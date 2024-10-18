@@ -1,5 +1,22 @@
 <?php if (!defined('ABSPATH')) die('Restricted Access'); ?>
 <?php
+
+// document title (<title> tag value)
+// returning any non empty value stops the regular excution of code and prints this value as title
+// 99 makes sure that this is executed last to avoid getting it overridden
+
+add_filter('pre_get_document_title', 'wp_job_portal_document_title', 99);
+
+function wp_job_portal_document_title($title) {
+    $companyid = isset(wpjobportal::$_data[0]->id) ? wpjobportal::$_data[0]->id : '';
+    if($companyid == ''){
+        return '';
+    }
+    $company_title_options = get_option('wpjobportal_company_document_title_settings');
+    $company_document_title = WPJOBPORTALincluder::getJSModel('company')->makeCompanySeoDocumentTitle($company_title_options , $companyid);
+    return $company_document_title;
+}
+
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 

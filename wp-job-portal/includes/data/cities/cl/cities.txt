@@ -1,0 +1,17 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Punta Arenas", "Punta Arenas", "Punta Arenas", NULL, 32, 0, 1, NULL, "-53.1625688", "-70.907822"),
+("Puerto Natales", "Puerto Natales", "Puerto Natales", NULL, 32, 0, 1, NULL, "-51.7262003", "-72.5059982"),
+("Coyhaique", "Coyhaique", "Coyhaique", NULL, 32, 0, 1, NULL, "-45.5711804", "-72.0684863"),
+("Osorno", "Osorno", "Osorno", NULL, 32, 0, 1, NULL, "-40.5732371", "-73.1358145"),
+("Valdivia", "Valdivia", "Valdivia", NULL, 32, 0, 1, NULL, "-39.8141262", "-73.2459859"),
+("Puerto Montt", "Puerto Montt", "Puerto Montt", NULL, 32, 0, 1, NULL, "-41.471798", "-72.9395915"),
+("Temuco", "Temuco", "Temuco", NULL, 32, 0, 1, NULL, "-38.7362611", "-72.590546"),
+("Los Ángeles", "Los Ángeles", "Los Ángeles", NULL, 32, 0, 1, NULL, "-37.4707455", "-72.351686"),
+("Talca", "Talca", "Talca", NULL, 32, 0, 1, NULL, "-35.4265343", "-71.6660322"),
+("Santiago", "Santiago", "Santiago", NULL, 32, 0, 1, NULL, "-33.4377756", "-70.6504502"),
+("La Serena", "La Serena", "La Serena", NULL, 32, 0, 1, NULL, "-29.902631", "-71.2520253"),
+("Copiapó", "Copiapó", "Copiapó", NULL, 32, 0, 1, NULL, "-27.3664685", "-70.3322753"),
+("Antofagasta", "Antofagasta", "Antofagasta", NULL, 32, 0, 1, NULL, "-23.6463741", "-70.3980033"),
+("Calama", "Calama", "Calama", NULL, 32, 0, 1, NULL, "-22.4623917", "-68.9272181"),
+("Iquique", "Iquique", "Iquique", NULL, 32, 0, 1, NULL, "-20.2140657", "-70.1524646");

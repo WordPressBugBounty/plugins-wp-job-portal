@@ -141,7 +141,13 @@ class WPJOBPORTALResumeModel {
 
         $resumeid = $data['id'];
         $data['sec_1']['id'] = $resumeid; // because id is not in any section to put for sections
-        $data['sec_1']['uid'] = $data['uid']; // because id is not in any section to put for sections
+        if(!current_user_can('manage_options')){ // if not admin then get current user is
+            $uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
+        }else{ // if admin then use the uid submitted on the form
+            $uid = $data['uid'];
+        }
+        $data['sec_1']['uid'] = $uid;
+
         $resumedata = $data['sec_1'];
         $resumedata['resume_logo_deleted'] = $data['resume_logo_deleted'];
 
@@ -636,10 +642,12 @@ class WPJOBPORTALResumeModel {
                 if($submission_type == 1){
                     $data['status'] = wpjobportal::$_config->getConfigurationByConfigName('empautoapprove');
                 }elseif ($submission_type == 2) {
-                    if(wpjobportal::$_config->getConfigValue('job_resume_price_perlisting') > 0){
+                    // in case of per listing submission mode
+                    $price_check = WPJOBPORTALincluder::getJSModel('credits')->checkIfPriceDefinedForAction('add_resume');
+                    if($price_check == 1){ // if price is defined then status 3
                         $data['status'] = 3;
-                    }else{
-                        $data['status'] = wpjobportal::$_config->getConfigurationByConfigName('empautoapprove');
+                    }else{ // if price not defined then status set to auto approve configuration
+                        $data['status'] = wpjobportal::$_config->getConfigValue('empautoapprove');
                     }
                 }elseif ($submission_type == 3) {
                         $upakid = WPJOBPORTALrequest::getVar('upakid',null,0);
@@ -977,7 +985,7 @@ class WPJOBPORTALResumeModel {
         } elseif ($sectionName == 'address') {
             $query = "SELECT address.*,
                         cities.id AS cityid,
-                        cities.cityName AS city,
+                        cities.name AS city,
                         states.name AS state,
                         countries.name AS country
                         FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` AS address
@@ -989,7 +997,7 @@ class WPJOBPORTALResumeModel {
         } else {
             $query = "SELECT " . esc_sql($sectionName) . ".*,
                         cities.id AS cityid,
-                        cities.cityName AS city,
+                        cities.name AS city,
                         states.name AS state,
                         countries.name AS country
                         FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume" . esc_sql($sectionName) . "s` AS " . esc_sql($sectionName) . "
@@ -1220,7 +1228,7 @@ class WPJOBPORTALResumeModel {
                 wpjobportal::$_data['sorting'] = ' resume.jobtype ';
                 break;
             case 5: // location
-                wpjobportal::$_data['sorting'] = ' city.cityName ';
+                wpjobportal::$_data['sorting'] = ' city.name ';
                 break;
             case 6: // created
                 wpjobportal::$_data['sorting'] = ' resume.created ';
@@ -1256,7 +1264,7 @@ class WPJOBPORTALResumeModel {
                 wpjobportal::$_data['sorting'] = ' app.jobtype ';
                 break;
             case 5: // location
-                wpjobportal::$_data['sorting'] = ' city.cityName ';
+                wpjobportal::$_data['sorting'] = ' city.name ';
                 break;
             case 6: // created
                 wpjobportal::$_data['sorting'] = ' app.created ';
@@ -2227,7 +2235,7 @@ class WPJOBPORTALResumeModel {
                                 $query = "SELECT resume.id,resume.uid,resume.application_title, resume.first_name, resume.last_name,resume.photo,resume.job_category, cat.cat_title AS categorytitle, jobtype.title AS jobtypetitle, resume.jobtype
                                         ,resume.params,resume.status,resume.created,LOWER(jobtype.title) AS jobtypetit
                                         ,resumeaddress.address_city, resumeaddress.address, resumeaddress.longitude, resumeaddress.latitude
-                                        ,city.cityName AS cityname, state.name AS statename, country.name AS countryname ,resumeaddress.params
+                                        ,city.name AS cityname, state.name AS statename, country.name AS countryname ,resumeaddress.params
                                         ,resume.salaryfixed as salary,LOWER(jobtype.title) AS jobtypetit,jobtype.color as jobtypecolor,resume.params
                                         FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
                                         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = resume.job_category
@@ -2362,7 +2370,7 @@ class WPJOBPORTALResumeModel {
         if (!$this->isYoursResume($id, $uid))
             return false;
         $query = "SELECT resumeaddress.id, resumeaddress.address_city, resumeaddress.address
-                        , city.cityName AS cityname, state.name AS statename, country.name AS countryname ,resumeaddress.params,resumeaddress.longitude,resumeaddress.latitude
+                        , city.name AS cityname, state.name AS statename, country.name AS countryname ,resumeaddress.params,resumeaddress.longitude,resumeaddress.latitude
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` resumeaddress
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON city.id = resumeaddress.address_city
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_states` AS state ON state.id = city.stateid
@@ -2390,7 +2398,7 @@ class WPJOBPORTALResumeModel {
             return false;
         $query = "SELECT employer.id, employer.employer, employer.employer_current_status,employer.employer_from_date, employer.employer_to_date, employer.employer_city,employer.employer_position
                     , employer.employer_phone, employer.employer_address
-                    , city.cityName AS cityname,employer.params, state.name AS statename, country.name AS countryname,city.latitude,city.longitude
+                    , city.name AS cityname,employer.params, state.name AS statename, country.name AS countryname,city.latitude,city.longitude
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeemployers` AS employer
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON city.id = employer.employer_city
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_states` AS state ON state.id = city.stateid
@@ -2898,7 +2906,7 @@ class WPJOBPORTALResumeModel {
                 ,resume.last_name,resume.application_title as applicationtitle,resume.email_address,category.cat_title
                 ,resume.created,jobtype.title AS jobtypetitle,resume.photo,
                 resume.isfeaturedresume,resume.endfeatureddate
-                ,resume.status,city.cityName AS cityname
+                ,resume.status,city.name AS cityname
                 ,state.name AS statename,resume.params,resume.salaryfixed as salary
                 ,resume.last_modified,LOWER(jobtype.title) AS jobtypetit,jobtype.color as jobtypecolor,country.name AS countryname,resume.id as resumeid
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
@@ -2924,6 +2932,7 @@ class WPJOBPORTALResumeModel {
         $results = wpjobportal::$_db->get_results($query);
         $data = array();
         foreach ($results AS $d) {
+            //  updated the query select to select 'name' as cityname
             $d->location = WPJOBPORTALincluder::getJSModel('common')->getLocationForView($d->cityname, $d->statename, $d->countryname);
             $data[] = $d;
         }
@@ -3414,6 +3423,12 @@ class WPJOBPORTALResumeModel {
                     }
                 }
                 $location = $common->removeSpecialCharacter($location);
+                // if url encoded string is different from the orginal string dont add it to url
+                $val = $location;
+                $test_val = urlencode($val);
+                if($val != $test_val){
+                    continue;
+                }
                 if($location != ""){
                     if($result == '')
                         $result .= wpjobportalphplib::wpJP_str_replace(' ', '-', $location);
@@ -3426,6 +3441,11 @@ class WPJOBPORTALResumeModel {
                     $data = wpjobportaldb::get_row($query);
                     if(isset($data->col)){
                         $val = $common->removeSpecialCharacter($data->col);
+                        // if url encoded string is different from the orginal string dont add it to url
+                        $test_val = urlencode($val);
+                        if($val != $test_val){
+                            continue;
+                        }
                         if($result == '')
                             $result .= wpjobportalphplib::wpJP_str_replace(' ', '-', $val);
                         else
@@ -3439,6 +3459,78 @@ class WPJOBPORTALResumeModel {
         }
         return $result;
     }
+
+
+    function makeResumeSeoDocumentTitle($resume_seo , $wpjobportalid){
+        if(empty($resume_seo))
+            return '';
+
+        $common = wpjobportal::$_common;
+        $id = $common->parseID($wpjobportalid);
+        if(! is_numeric($id))
+            return '';
+        $result = '';
+
+        $application_title = '';
+        $category_title = '';
+        $jobtype_title = '';
+        $resume_location = '';
+
+        $query = "SELECT resume.application_title, category.cat_title AS resumecategory,jobtype.title AS resumejobtype
+                        FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
+                        LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category ON category.id = resume.job_category
+                        LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = resume.jobtype
+                        WHERE resume.id = " . esc_sql($id);
+
+
+        $data = wpjobportaldb::get_row($query);
+
+        if(!empty($data)){
+            $resume_location = '';
+            $query = "SELECT city.name AS cityname
+                FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` resumeaddress
+                LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON city.id = resumeaddress.address_city
+                WHERE resumeaddress.resumeid = " . esc_sql($id);
+                $city_data = wpjobportaldb::get_results($query);
+            if(!empty($city_data)){
+                //  updated the query select to select 'name' as cityname
+                foreach ($city_data as $key => $city) {
+                    if($resume_location == ''){
+                        $resume_location .= $city->cityname;
+                    }else{
+                        $resume_location .= ', '.$city->cityname;
+                    }
+                }
+            }
+            $application_title = $data->application_title;
+            $category_title = $data->resumecategory;
+            $jobtype_title = $data->resumejobtype;
+            $matcharray = array(
+                '[applicationtitle]' => $application_title,
+                '[jobcategory]' => $category_title,
+                '[jobtype]' => $jobtype_title,
+                '[location]' => $resume_location,
+                '[separator]' => '-',
+                '[sitename]' => get_bloginfo( 'name', 'display' )
+            );
+            $result = $this->replaceMatches($resume_seo,$matcharray);
+
+            //echo var_dump($result);die("3499");
+
+        }
+
+        return $result;
+    }
+
+
+    function replaceMatches($string, $matcharray) {
+        foreach ($matcharray AS $find => $replace) {
+            $string = wpjobportalphplib::wpJP_str_replace($find, $replace, $string);
+        }
+        return $string;
+    }
+
+
     //getAllRoleLessUsersAjax
 
    function getMyResumes($uid) {
@@ -3457,7 +3549,7 @@ class WPJOBPORTALResumeModel {
         wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($total,'myresume');
 
         $query = "SELECT resume.id,resume.first_name,resume.last_name,resume.application_title as applicationtitle,CONCAT(resume.alias,'-',resume.id) resumealiasid,resume.email_address,category.cat_title,resume.created,jobtype.title AS jobtypetitle,resume.photo,resume.salaryfixed as salary,
-                resume.isfeaturedresume,resume.status,city.cityName AS cityname,state.name AS statename,country.name AS countryname,resume.id as resumeid,resume.endfeatureddate,resume.params,resume.last_modified,LOWER(jobtype.title) AS jobtypetit,jobtype.color as jobtypecolor
+                resume.isfeaturedresume,resume.status,city.name AS cityname,state.name AS statename,country.name AS countryname,resume.id as resumeid,resume.endfeatureddate,resume.params,resume.last_modified,LOWER(jobtype.title) AS jobtypetit,jobtype.color as jobtypecolor
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category ON category.id = resume.job_category
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = resume.jobtype
@@ -3473,7 +3565,7 @@ class WPJOBPORTALResumeModel {
         }
         $results = wpjobportal::$_db->get_results($query);
         $data = array();
-        foreach ($results AS $d) {
+        foreach ($results AS $d) {//  updated the query select to select 'name' as cityname
             $d->location = wpjobportal::$_common->getLocationForView($d->cityname, $d->statename, $d->countryname);
             $data[] = $d;
         }
@@ -4037,7 +4129,7 @@ class WPJOBPORTALResumeModel {
             ,resume.last_name,resume.application_title as applicationtitle,resume.email_address,category.cat_title
             ,resume.created,jobtype.title AS jobtypetitle,resume.photo,
             resume.isfeaturedresume,resume.endfeatureddate
-            ,resume.status,city.cityName AS cityname
+            ,resume.status,city.name AS cityname
             ,state.name AS statename,resume.params,resume.salaryfixed as salary
             ,resume.last_modified,LOWER(jobtype.title) AS jobtypetit,jobtype.color as jobtypecolor,country.name AS countryname,resume.id as resumeid
             FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
@@ -4056,6 +4148,7 @@ class WPJOBPORTALResumeModel {
 
         $data = array();
         foreach ($results AS $d) {
+            //  updated the query select to select 'name' as cityname
             $d->location = WPJOBPORTALincluder::getJSModel('common')->getLocationForView($d->cityname, $d->statename, $d->countryname);
             $data[] = $d;
         }

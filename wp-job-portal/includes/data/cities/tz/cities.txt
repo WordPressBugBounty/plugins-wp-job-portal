@@ -1,0 +1,12 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Dodoma", "Dodoma", "Dodoma", NULL, 189, 0, 1, NULL, "-6.1791181", "35.7468174"),
+("Dar es Salaam", "Dar es Salaam", "Dar es Salaam", NULL, 189, 0, 1, NULL, "-6.8160837", "39.2803583"),
+("Mbeya", "Mbeya", "Mbeya", NULL, 189, 0, 1, NULL, "-8.906508", "33.468672"),
+("Songea", "Songea", "Songea", NULL, 189, 0, 1, NULL, "-10.6787282", "35.6483576"),
+("Dodoma", "Dodoma", "Dodoma", NULL, 189, 0, 1, NULL, "-6.1791181", "35.7468174"),
+("Morogoro", "Morogoro", "Morogoro", NULL, 189, 0, 1, NULL, "-6.8161626", "37.6693891"),
+("Dar es-Salaam", "Dar es-Salaam", "Dar es-Salaam", NULL, 189, 0, 1, NULL, "-6.8160837", "39.2803583"),
+("Zanzibar City مدينة زنجبار", "Zanzibar City مدينة زنجبار", "Zanzibar City", NULL, 189, 0, 1, NULL, "-6.1664908", "39.2074312"),
+("Tanga", "Tanga", "Tanga", NULL, 189, 0, 1, NULL, "-5.0721976", "39.0993457"),
+("Arusha", "Arusha", "Arusha", NULL, 189, 0, 1, NULL, "-3.3696827", "36.6880794");

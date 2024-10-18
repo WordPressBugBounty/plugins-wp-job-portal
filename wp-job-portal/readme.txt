@@ -3,8 +3,8 @@ Contributors: wpjobportal
 Donate link: https://wpjobportal.com/pricing/
 Tags: job board, job listing, careers, job manager, jobs, company, recruiting, employer, candidate, resume, cv, wp jobs, wp job manager, employees, employment, recruitment, resume,  talent, vacancy application, freelance
 Requires at least: 5.5 
-Tested up to: 6.6.1
-Stable tag: 2.1.8
+Tested up to: 6.6.2
+Stable tag: 2.1.9
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -240,6 +240,12 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 == Changelog ==
 
 = 2.1.8 =
+* Add address data
+* Add SCO
+* Add SEF
+* Security update
+
+= 2.1.8 =
 * Add quick apply
 * Minimize required fields
 = 2.1.7 =
@@ -400,3 +406,6 @@ Yes; WP Job Portal will work with any theme.
 = Where can I report bugs or contribute to the project? =
 Bugs can be reported either in our support forum or preferably on the (https://wpjobportal.com).
 
+= How can I report security bugs? =
+
+You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/wp-job-portal)

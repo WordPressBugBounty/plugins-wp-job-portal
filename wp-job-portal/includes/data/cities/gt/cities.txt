@@ -1,0 +1,7 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Villa Nueva", "Villa Nueva", "Villa Nueva City", NULL, 17, 0, 1, NULL, "14.5308826", "-90.5963325"),
+("Ciudad de Guatemala", "Ciudad de Guatemala", "Guatemala City", NULL, 17, 0, 1, NULL, "14.6222328", "-90.5185188"),
+("Villa Nueva", "Villa Nueva", "Villa Nueva City", NULL, 17, 0, 1, NULL, "14.5308826", "-90.5963325"),
+("Ciudad de Guatemala", "Ciudad de Guatemala", "Guatemala City", NULL, 17, 0, 1, NULL, "14.6222328", "-90.5185188"),
+("Cobán", "Cobán", "Cobán", NULL, 17, 0, 1, NULL, "15.4702001", "-90.3735065");

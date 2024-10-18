@@ -22,7 +22,6 @@ class WPJOBPORTALStateController {
                     $countryid = WPJOBPORTALrequest::getVar('countryid');
                     if (!$countryid)
                         $countryid = get_option("wpjobportal_countryid_for_stateid");
-
                     update_option( 'wpjobportal_countryid_for_stateid', $countryid );
                     WPJOBPORTALincluder::getJSModel('state')->getAllCountryStates($countryid);
                     break;

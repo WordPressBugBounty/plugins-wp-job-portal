@@ -261,6 +261,44 @@ class WPJOBPORTALpremiumpluginModel {
             }
         }
     }
+
+    // get country cities sql from live
+    function getAddressSqlFile($addon_name,$addon_version,$countrycode){
+        $option_name = 'transaction_key_for_wp-job-portal-'.$addon_name;
+        $transaction_key = wpjobportal::$_common->getTranskey($option_name);
+        // $addonversion = wpjobportalphplib::wpJP_str_replace('.', '', $addon_version);
+        $site_url = site_url();
+        $site_url = wpjobportalphplib::wpJP_str_replace("http://","",$site_url);
+        $site_url = wpjobportalphplib::wpJP_str_replace("https://","",$site_url);
+
+        $network_site_url = network_site_url();
+        $network_site_url = wpjobportalphplib::wpJP_str_replace("http://","",$network_site_url);
+        $network_site_url = wpjobportalphplib::wpJP_str_replace("https://","",$network_site_url);
+
+        $defaults = array(
+            'request'  => 'getcitiessql',
+            'domain' => $network_site_url,
+            'subsite' => $site_url,
+            'activation_call' => 1,
+            'plugin_slug' => $addon_name,
+            'addonversion' => $addon_version,
+            'countrycode' => $countrycode,
+            'token' => $transaction_key
+        );
+
+        $request = wp_remote_get( self::$server_url . '?' . http_build_query( $defaults, '', '&' ) );
+        if ( is_wp_error( $request ) ) {
+            return wp_json_encode( array( 'error_code' => $request->get_error_code(), 'error' => $request->get_error_message() ) );
+        }
+
+        if ( wp_remote_retrieve_response_code( $request ) != 200 ) {
+            return wp_json_encode( array( 'error_code' => wp_remote_retrieve_response_code( $request ), 'error' => 'Error code: ' . wp_remote_retrieve_response_code( $request ) ) );
+        }
+
+        $response =  wp_remote_retrieve_body( $request );
+        return $response;
+    }
+
 }
 
 ?>

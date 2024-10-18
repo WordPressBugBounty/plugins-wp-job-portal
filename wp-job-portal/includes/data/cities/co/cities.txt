@@ -1,0 +1,21 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Perímetro Urbano Pasto", "Perímetro Urbano Pasto", "Pasto", NULL, 33, 0, 1, NULL, "1.2140275", "-77.2785096"),
+("Perímetro Urbano Santiago de Cali", "Perímetro Urbano Santiago de Cali", "Cali", NULL, 33, 0, 1, NULL, "3.4520339", "-76.5329352"),
+("Perímetro Urbano Manizales", "Perímetro Urbano Manizales", "Manizales", NULL, 33, 0, 1, NULL, "5.0668907", "-75.5066661"),
+("Medellín", "Medellín", "Medellín", NULL, 33, 0, 1, NULL, "6.2443382", "-75.573553"),
+("Pasto", "Pasto", "Pasto", NULL, 33, 0, 1, NULL, "1.2140275", "-77.2785096"),
+("Popayán", "Popayán", "Popayán", NULL, 33, 0, 1, NULL, "2.4422295", "-76.6072368"),
+("Santiago de Cali", "Santiago de Cali", "Cali", NULL, 33, 0, 1, NULL, "3.4520339", "-76.5329352"),
+("Villavicencio", "Villavicencio", "Villavicencio", NULL, 33, 0, 1, NULL, "4.1347644", "-73.6201517"),
+("Manizales", "Manizales", "Manizales", NULL, 33, 0, 1, NULL, "5.0668907", "-75.5066661"),
+("Bogotá", "Bogotá", "Bogota", NULL, 33, 0, 1, NULL, "4.6529539", "-74.0835643"),
+("Mitú", "Mitú", "Mitú", NULL, 33, 0, 1, NULL, "1.2523268", "-70.2308883"),
+("Yopal", "Yopal", "Yopal", NULL, 33, 0, 1, NULL, "5.3356662", "-72.3936931"),
+("Medellín", "Medellín", "Medellín", NULL, 33, 0, 1, NULL, "6.2443382", "-75.573553"),
+("Montería", "Montería", "Montería", NULL, 33, 0, 1, NULL, "8.7509361", "-75.8786806"),
+("Sincelejo", "Sincelejo", "Sincelejo", NULL, 33, 0, 1, NULL, "9.2973386", "-75.3926601"),
+("Cartagena de Indias", "Cartagena de Indias", "Cartagena", NULL, 33, 0, 1, NULL, "10.4266746", "-75.5443419"),
+("Santa Marta", "Santa Marta", "Santa Marta", NULL, 33, 0, 1, NULL, "11.2320944", "-74.1950916"),
+("Bucaramanga", "Bucaramanga", "Bucaramanga", NULL, 33, 0, 1, NULL, "7.1255169", "-73.1182624"),
+("San Andrés", "San Andrés", "San Andrés", NULL, 33, 0, 1, NULL, "12.5830104", "-81.6975682");

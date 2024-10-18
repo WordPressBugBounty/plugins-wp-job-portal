@@ -8,8 +8,9 @@ if ( !WPJOBPORTALincluder::getTemplate('templates/header', array('module' => 'co
     return;
 }
 //get Company id && Company Name
-$companyid = isset(wpjobportal::$_data[0]->id) ? wpjobportal::$_data[0]->id : '';
+
 $companyname = isset(wpjobportal::$_data[0]->name) ? wpjobportal::$_data[0]->name : '';
+$companyid = isset(wpjobportal::$_data[0]->id) ? wpjobportal::$_data[0]->id : '';
 if (wpjobportal::$_error_flag == null) {
     function getDataRow($title, $value) {
         $html = '<div class="wjportal-company-data">
@@ -46,7 +47,7 @@ if (wpjobportal::$_error_flag == null) {
             <?php } ?>
             <?php 
                 if(in_array('credits', wpjobportal::$_active_addons)){
-                    if(wpjobportal::$_config->getConfigValue('submission_type')==2){
+                    if(wpjobportal::$_config->getConfigValue('submission_type') == 2){
                         $paymentconfig = wpjobportal::$_data['paymentconfig'];
                         $price = wpjobportal::$_config->getConfigValue('job_viewcompanycontact_price_perlisting');
                         $currencyid = wpjobportal::$_config->getConfigValue('job_currency_viewcompanycontact_perlisting');

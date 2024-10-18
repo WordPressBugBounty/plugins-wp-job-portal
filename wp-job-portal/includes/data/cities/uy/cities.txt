@@ -1,0 +1,6 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Montevideo", "Montevideo", "Montevideo", NULL, 41, 0, 1, NULL, "-34.9058916", "-56.1913095"),
+("Rocha", "Rocha", "Rocha", NULL, 41, 0, 1, NULL, "-34.4810095", "-54.3365608"),
+("Paysandú", "Paysandú", "Paysandú", NULL, 41, 0, 1, NULL, "-32.3217257", "-58.0892136"),
+("Salto", "Salto", "Salto", NULL, 41, 0, 1, NULL, "-31.38889", "-57.9608876");

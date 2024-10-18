@@ -40,6 +40,16 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $menu_js_script );
                     <?php echo esc_html(__('Dashboard', 'wp-job-portal')); ?>
                 </a>
             </li>
+            <li class="<?php if($c == 'wpjobportal_slug' && ($layout == 'slug')) echo 'active'; ?>">
+                <a href="admin.php?page=wpjobportal_slug&wpjobportallt=slug" title="<?php echo esc_html(__('slug','wp-job-portal')); ?>">
+                    <?php echo esc_html(__('Slug','wp-job-portal')); ?>
+                </a>
+            </li>
+            <li class="<?php if($c == 'wpjobportal' && ($layout == 'pageseo' || $layout == '')) echo 'active'; ?>">
+                <a href="admin.php?page=wpjobportal&wpjobportallt=pageseo" title="<?php echo esc_html(__('SEO','wp-job-portal')); ?>">
+                    <?php echo esc_html(__('SEO','wp-job-portal')); ?>
+                </a>
+            </li>
             <li class="<?php if($c == 'wpjobportal_activitylog' && ($layout == 'wpjobportal_activitylog' || $layout == '')) echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal_activitylog" title="<?php echo esc_html(__('activity log','wp-job-portal')); ?>">
                     <?php echo esc_html(__('Activity Log','wp-job-portal')); ?>
@@ -60,11 +70,7 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $menu_js_script );
                     <?php echo esc_html(__('System Errors','wp-job-portal')); ?>
                 </a>
             </li>
-            <li class="<?php if($c == 'wpjobportal_slug' && ($layout == 'slug')) echo 'active'; ?>">
-                <a href="admin.php?page=wpjobportal_slug&wpjobportallt=slug" title="<?php echo esc_html(__('slug','wp-job-portal')); ?>">
-                    <?php echo esc_html(__('Slug','wp-job-portal')); ?>
-                </a>
-            </li>
+
         </ul>
     </li>
     <li class="treeview <?php if($c == 'wpjobportal_job' || $c == 'wpjobportal_jobapply' || $c == 'wpjobportal_jobalert' || $c == 'wpjobportal_customfield' || ($c == 'wpjobportal_fieldordering' && $ff == 2)) echo 'active'; ?>">
@@ -462,6 +468,38 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $menu_js_script );
                 </ul>
             </li>
     <?php } ?>
+    <li class="treeview <?php if($c == 'wpjobportal_country' || $c == 'wpjobportal_addressdata' || $c == 'wpjobportal_state' || $c == 'wpjobportal_city') echo 'active'; ?>">
+        <a href="admin.php?page=wpjobportal_country" title="<?php echo esc_html(__('countries' , 'wp-job-portal')); ?>">
+            <img class="wpjobportaladmin-menu-icon" alt="<?php echo esc_html(__('countries' , 'wp-job-portal')); ?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/admin-left-menu/address-data.png'; ?>" />
+            <span class="wpjobportaladmin-text">
+                <?php echo esc_html(__('Address Data' , 'wp-job-portal')); ?>
+            </span>
+        </a>
+        <ul class="wpjobportaladmin-sidebar-submenu treeview-menu">
+            <li class="<?php if($c == 'wpjobportal_city' && ($layout == 'loadaddressdata')) echo 'active'; ?>">
+                <a href="admin.php?page=wpjobportal_city&wpjobportallt=loadaddressdata" title="<?php echo esc_html(__('load address data', 'wp-job-portal')); ?>">
+                    <?php echo esc_html(__('Load Address Data', 'wp-job-portal')); ?>
+                </a>
+            </li>
+            <li class="<?php if($c == 'wpjobportal_city' && ($layout == 'locationnamesettings')) echo 'active'; ?>">
+                <a href="admin.php?page=wpjobportal_city&wpjobportallt=locationnamesettings" title="<?php echo esc_html(__('Loaction Name settings', 'wp-job-portal')); ?>">
+                    <?php echo esc_html(__('Loaction Name Settings', 'wp-job-portal')); ?>
+                </a>
+            </li>
+            <li class="<?php if(($c == 'wpjobportal_country' && $layout != 'formcountry') || $c == 'wpjobportal_state' || $c == 'wpjobportal_city' && ($layout == 'formcity' || $layout == '' )) echo 'active'; ?>">
+                <a href="admin.php?page=wpjobportal_country" title="<?php echo esc_html(__('countries', 'wp-job-portal')); ?>">
+                    <?php echo esc_html(__('Countries', 'wp-job-portal')); ?>&nbsp;/&nbsp;<?php echo esc_html(__('Cities', 'wp-job-portal')); ?>
+                </a>
+            </li>
+            <?php /*
+            <li class="<?php if($c == 'wpjobportal_country' && ($layout == 'formcountry')) echo 'active'; ?>">
+                <a href="admin.php?page=wpjobportal_country&wpjobportallt=formcountry" title="<?php echo esc_html(__('add new country', 'wp-job-portal')); ?>">
+                    <?php echo esc_html(__('Add New Country', 'wp-job-portal')); ?>
+                </a>
+            </li>
+            */?>
+        </ul>
+    </li>
     <?php
         if(in_array('folder', wpjobportal::$_active_addons)){
             do_action('wpjobportal_addons_admin_sidemenu_links_for_folder' , $c,$layout );
@@ -861,43 +899,6 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $menu_js_script );
                             </a>
                         </li>
                 <?php } ?>
-        </ul>
-    </li>
-    <li class="treeview <?php if($c == 'wpjobportal_country' || $c == 'wpjobportal_addressdata' || $c == 'wpjobportal_state' || $c == 'wpjobportal_city') echo 'active'; ?>">
-        <a href="admin.php?page=wpjobportal_country" title="<?php echo esc_html(__('countries' , 'wp-job-portal')); ?>">
-            <img class="wpjobportaladmin-menu-icon" alt="<?php echo esc_html(__('countries' , 'wp-job-portal')); ?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/admin-left-menu/address-data.png'; ?>" />
-            <span class="wpjobportaladmin-text">
-                <?php echo esc_html(__('Countries' , 'wp-job-portal')); ?>
-            </span>
-        </a>
-        <ul class="wpjobportaladmin-sidebar-submenu treeview-menu">
-            <li class="<?php if(($c == 'wpjobportal_country' && $layout != 'formcountry') || $c == 'wpjobportal_state' || $c == 'wpjobportal_city' && ($layout == 'formcity' || $layout == '' )) echo 'active'; ?>">
-                <a href="admin.php?page=wpjobportal_country" title="<?php echo esc_html(__('countries', 'wp-job-portal')); ?>">
-                    <?php echo esc_html(__('Countries', 'wp-job-portal')); ?>
-                </a>
-            </li>
-            <li class="<?php if($c == 'wpjobportal_country' && ($layout == 'formcountry')) echo 'active'; ?>">
-                <a href="admin.php?page=wpjobportal_country&wpjobportallt=formcountry" title="<?php echo esc_html(__('add new country', 'wp-job-portal')); ?>">
-                    <?php echo esc_html(__('Add New Country', 'wp-job-portal')); ?>
-                </a>
-            </li>
-            <?php
-                if(in_array('addressdata', wpjobportal::$_active_addons)){
-                    do_action('wpjobportal_addons_admin_sidemenu_addressdata',$c,$layout);
-                }else{
-                    $plugininfo = checkWPJPPluginInfo('wp-job-portal-addressdata/wp-job-portal-addressdata.php');
-                    if($plugininfo['availability'] == "1"){
-                        $text = $plugininfo['text'];
-                        $url = "plugins.php?s=wp-job-portal-addressdata&plugin_status=inactive";
-                    }elseif($plugininfo['availability'] == "0"){
-                        $text = $plugininfo['text'];
-                        $url = "https://wpjobportal.com/product/address-data/";
-                    } ?>
-                    <li class="disabled-menu fw">
-                        <span class="wpjobportaladmin-text"><?php echo esc_html(__('Load Address Data' , 'wp-job-portal')); ?></span>
-                        <a href="<?php echo esc_url($url); ?>" class="wpjobportaladmin-install-btn" title="<?php echo esc_attr($text); ?>"><?php echo esc_html($text); ?></a>
-                    </li>
-             <?php } ?>
         </ul>
     </li>
     <li class="treeview <?php if($c == 'wpjobportal' && $layout == 'help' ) echo 'active'; ?>">

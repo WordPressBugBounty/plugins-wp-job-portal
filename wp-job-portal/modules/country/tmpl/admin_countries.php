@@ -81,8 +81,14 @@
                                     <th>
                                         <input type="checkbox" name="selectall" id="selectall" value="">
                                     </th>
-                                    <th class="wpjobportal-text-left">
+                                    <th>
                                         <?php echo esc_html(__('Name', 'wp-job-portal')); ?>
+                                    </th>
+                                    <th>
+                                        <?php echo esc_html(__('International Name', 'wp-job-portal')); ?>
+                                    </th>
+                                    <th>
+                                        <?php echo esc_html(__('Native Name', 'wp-job-portal')); ?>
                                     </th>
                                     <th>
                                         <?php echo esc_html(__('Published', 'wp-job-portal')); ?>
@@ -122,8 +128,12 @@
                 } else {
                     $msg = esc_html(__('No record found','wp-job-portal'));
                     $link[] = array(
-                                'link' => 'admin.php?page=wpjobportal_country&wpjobportallt=formcountry',
+                            'link' => 'admin.php?page=wpjobportal_country&wpjobportallt=formcountry',
                             'text' => esc_html(__('Add New','wp-job-portal')) .' '. esc_html(__('Country','wp-job-portal'))
+                        );
+                    $link[] = array(
+                            'link' => 'admin.php?page=wpjobportal_city&wpjobportallt=loadaddressdata',
+                            'text' => esc_html(__('Load Address Data','wp-job-portal'))
                         );
                     WPJOBPORTALlayout::getNoRecordFound($msg,$link);
                 }

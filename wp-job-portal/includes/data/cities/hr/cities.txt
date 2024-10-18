@@ -1,0 +1,10 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Split", "Split", "Split", NULL, 52, 0, 1, NULL, "43.5116383", "16.4399659"),
+("Osijek", "Osijek", "Osijek", NULL, 52, 0, 1, NULL, "45.5548793", "18.6953685"),
+("Split", "Split", "Split", NULL, 52, 0, 1, NULL, "43.5116383", "16.4399659"),
+("Dubrovnik", "Dubrovnik", "Dubrovnik", NULL, 52, 0, 1, NULL, "42.6502473", "18.0924947"),
+("Zagreb", "Zagreb", "Zagreb", NULL, 52, 0, 1, NULL, "45.8131847", "15.9771774"),
+("Slavonski Brod", "Slavonski Brod", "Slavonski Brod", NULL, 52, 0, 1, NULL, "45.1665803", "18.0121385"),
+("Vinkovci", "Vinkovci", "Vinkovci", NULL, 52, 0, 1, NULL, "45.2883771", "18.8045248"),
+("Osijek", "Osijek", "Osijek", NULL, 52, 0, 1, NULL, "45.5548793", "18.6953685");

@@ -279,7 +279,7 @@ class WPJOBPORTALCommonModel {
         if (!is_numeric($id))
             return false;
         $config = wpjobportal::$_config->getConfigByFor('default');
-       $query = "SELECT city.id AS id, CONCAT(city.cityName";
+       $query = "SELECT city.id AS id, CONCAT(city.name";
         switch ($config['defaultaddressdisplaytype']) {
             case 'csc'://City, State, Country
                 $query .= " ,', ', (IF(state.name is not null,state.name,'')),IF(state.name is not null,', ',''),country.name)";
@@ -935,7 +935,7 @@ class WPJOBPORTALCommonModel {
             if(!is_numeric($city)){
                 continue;
             }
-            $query = "SELECT city.id AS id, CONCAT(city.cityName";
+            $query = "SELECT city.id AS id, CONCAT(city.name";
             switch ($defaultaddressdisplaytype) {
                 case 'csc'://City, State, Country
                     $query .= " ,', ', (IF(state.name is not null,state.name,'')),IF(state.name is not null,', ',''),country.name)";

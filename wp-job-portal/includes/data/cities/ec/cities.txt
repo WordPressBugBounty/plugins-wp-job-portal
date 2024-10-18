@@ -1,0 +1,9 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Machala", "Machala", "Machala", NULL, 34, 0, 1, NULL, "-3.2588565", "-79.9588518"),
+("Babahoyo", "Babahoyo", "Babahoyo", NULL, 34, 0, 1, NULL, "-1.8009022", "-79.5338214"),
+("Manta", "Manta", "Manta", NULL, 34, 0, 1, NULL, "-0.9482874", "-80.7197902"),
+("Portoviejo", "Portoviejo", "Portoviejo", NULL, 34, 0, 1, NULL, "-1.0528066", "-80.4534269"),
+("Santo Domingo de los Tsachilas", "Santo Domingo de los Tsachilas", "Santo Domingo de los Tsachilas", NULL, 34, 0, 1, NULL, "-0.2546212", "-79.1686724"),
+("Riobamba", "Riobamba", "Riobamba", NULL, 34, 0, 1, NULL, "-1.6732765", "-78.6482479"),
+("Quito", "Quito", "Quito", NULL, 34, 0, 1, NULL, "-0.2201641", "-78.5123274");

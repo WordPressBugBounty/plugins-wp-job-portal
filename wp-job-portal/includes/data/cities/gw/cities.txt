@@ -1,0 +1,3 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Bissau", "Bissau", "Bissau", NULL, 163, 0, 1, NULL, "11.861324", "-15.583055");

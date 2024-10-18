@@ -5,9 +5,12 @@ if (!defined('ABSPATH'))
 
 class WPJOBPORTALwpjobportalController {
 
+    private $_msgkey;
+
     function __construct() {
 
         self::handleRequest();
+        $this->_msgkey = WPJOBPORTALincluder::getJSModel('wpjobportal')->getMessagekey();
     }
 
     function handleRequest() {
@@ -48,6 +51,7 @@ class WPJOBPORTALwpjobportalController {
                 case 'admin_addonstatus': // to avoid default case
                 case 'admin_shortcodes': // to avoid default case
                 case 'admin_help': // to avoid default case
+                case 'admin_pageseo': // to avoid default case
                     break;
 
                 default:
@@ -90,6 +94,25 @@ class WPJOBPORTALwpjobportalController {
         wp_redirect($url);
         exit;
     }
+
+    function savedocumenttitleoptions() {
+        $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (! wp_verify_nonce( $nonce, 'wpjobportal_document_title_nonce') ) {
+             die( 'Security check Failed' );
+        }
+        if (!current_user_can('manage_options')) { //only admin can change it.
+            return false;
+        }
+        $data = WPJOBPORTALrequest::get('post');
+        $result = WPJOBPORTALincluder::getJSModel('wpjobportal')->saveDocumentTitleOptions($data);
+        echo var_dump($result);
+        $msg = WPJOBPORTALMessages::getMessage($result, "wpjobportal");
+        WPJOBPORTALMessages::setLayoutMessage($msg['message'], $msg['status'],$this->_msgkey);
+        $url = esc_url_raw(admin_url("admin.php?page=wpjobportal&wpjobportallt=pageseo"));
+        wp_redirect($url);
+        die();
+    }
+
 
 }
 

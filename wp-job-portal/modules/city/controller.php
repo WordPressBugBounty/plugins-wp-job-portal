@@ -28,6 +28,11 @@ class WPJOBPORTALCityController {
                     $id = WPJOBPORTALrequest::getVar('wpjobportalid');
                     WPJOBPORTALincluder::getJSModel('city')->getCitybyId($id);
                     break;
+                    case 'admin_loadaddressdata':
+                        break;
+                    case 'admin_locationnamesettings':
+                        WPJOBPORTALincluder::getJSModel('city')->getSampleCities();
+                        break;
                  default:
                     return;
            }
@@ -134,6 +139,37 @@ class WPJOBPORTALCityController {
         wp_redirect($url);
         die();
     }
+
+    function loadaddressdata() {
+        $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (! wp_verify_nonce( $nonce, 'wpjobportal_address_data_nonce') ) {
+             die( 'Security check Failed' );
+        }
+        $result = WPJOBPORTALincluder::getJSModel('city')->loadAddressData();
+        echo var_dump($result);
+        $msg = WPJOBPORTALMessages::getMessage($result, 'addressdata');
+        echo var_dump($msg);
+        WPJOBPORTALMessages::setLayoutMessage($msg['message'], $msg['status'],$this->_msgkey);
+        $url = admin_url("admin.php?page=wpjobportal_city&wpjobportallt=loadaddressdata");
+        wp_redirect($url);
+        die();
+    }
+
+    function savecitynamesettings() {
+        $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (! wp_verify_nonce( $nonce, 'wpjobportal_address_data_nonce') ) {
+             die( 'Security check Failed' );
+        }
+        $result = WPJOBPORTALincluder::getJSModel('city')->updateCityNameSettings();
+        echo var_dump($result);
+        $msg = WPJOBPORTALMessages::getMessage($result, 'addressdata');
+        echo var_dump($msg);
+        WPJOBPORTALMessages::setLayoutMessage($msg['message'], $msg['status'],$this->_msgkey);
+        $url = admin_url("admin.php?page=wpjobportal_city&wpjobportallt=locationnamesettings");
+        wp_redirect($url);
+        die();
+    }
+
 
 }
 

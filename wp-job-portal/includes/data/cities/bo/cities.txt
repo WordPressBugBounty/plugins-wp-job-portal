@@ -1,0 +1,10 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("La Paz", "La Paz", "La Paz", NULL, 30, 0, 1, NULL, "-16.4955455", "-68.1336229"),
+("Sucre", "Sucre", "Sucre", NULL, 30, 0, 1, NULL, "-19.0477251", "-65.2594306"),
+("Cochabamba", "Cochabamba", "Cochabamba", NULL, 30, 0, 1, NULL, "-17.3936114", "-66.1568983"),
+("Santa Cruz de la Sierra", "Santa Cruz de la Sierra", "Santa Cruz de la Sierra", NULL, 30, 0, 1, NULL, "-17.7834936", "-63.1820853"),
+("Montero", "Montero", "Montero", NULL, 30, 0, 1, NULL, "-17.3420202", "-63.2557687"),
+("Trinidad", "Trinidad", "Trinidad", NULL, 30, 0, 1, NULL, "-14.8349438", "-64.9044936"),
+("Riberalta", "Riberalta", "Riberalta", NULL, 30, 0, 1, NULL, "-10.997342", "-66.0751504"),
+("Guayaramerín", "Guayaramerín", "Guayaramerín", NULL, 30, 0, 1, NULL, "-10.818915", "-65.3550455");

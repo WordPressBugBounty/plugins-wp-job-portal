@@ -1,0 +1,4 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("David", "David", "David", NULL, 25, 0, 1, NULL, "8.4371469", "-82.4286281"),
+("Panamá", "Panamá", "Panama", NULL, 25, 0, 1, NULL, "8.9714493", "-79.5341802");

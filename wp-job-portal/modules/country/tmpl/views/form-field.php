@@ -16,6 +16,23 @@ if (!defined('ABSPATH'))
 </div>
 <div class="wpjobportal-form-wrapper">
     <div class="wpjobportal-form-title">
+        <?php echo esc_html(__('International Name', 'wp-job-portal')); ?>
+    </div>
+    <div class="wpjobportal-form-value">
+        <?php echo wp_kses(WPJOBPORTALformfield::text('internationalname', isset(wpjobportal::$_data[0]->internationalname) ? wpjobportal::wpjobportal_getVariableValue(wpjobportal::$_data[0]->internationalname) : '', array('class' => 'inputbox one wpjobportal-form-input-field')),WPJOBPORTAL_ALLOWED_TAGS) ?>
+    </div>
+</div>
+<div class="wpjobportal-form-wrapper">
+    <div class="wpjobportal-form-title">
+        <?php echo esc_html(__('Native Name', 'wp-job-portal')); ?>
+    </div>
+    <div class="wpjobportal-form-value">
+        <?php echo wp_kses(WPJOBPORTALformfield::text('localname', isset(wpjobportal::$_data[0]->localname) ? wpjobportal::wpjobportal_getVariableValue(wpjobportal::$_data[0]->localname) : '', array('class' => 'inputbox one wpjobportal-form-input-field')),WPJOBPORTAL_ALLOWED_TAGS) ?>
+    </div>
+</div>
+
+<div class="wpjobportal-form-wrapper">
+    <div class="wpjobportal-form-title">
     	<?php echo esc_html(__('Published', 'wp-job-portal')); ?>
     </div>
     <div class="wpjobportal-form-value">

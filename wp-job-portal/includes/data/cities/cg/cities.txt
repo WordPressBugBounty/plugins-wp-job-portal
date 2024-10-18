@@ -1,0 +1,4 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Brazzaville", "Brazzaville", "Brazzaville", NULL, 152, 0, 1, NULL, "-4.2694407", "15.2712256"),
+("Ouésso", "Ouésso", "Ouésso", NULL, 152, 0, 1, NULL, "1.6105452", "16.0513456");

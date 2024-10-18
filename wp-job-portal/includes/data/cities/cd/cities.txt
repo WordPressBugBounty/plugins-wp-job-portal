@@ -1,0 +1,20 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Mbandaka", "Mbandaka", "Mbandaka", NULL, 153, 0, 1, NULL, "0.0470732", "18.2564803"),
+("Matadi", "Matadi", "Matadi", NULL, 153, 0, 1, NULL, "-5.8256559", "13.4609047"),
+("Boma", "Boma", "Boma", NULL, 153, 0, 1, NULL, "-5.85", "13.05"),
+("Tshikapa", "Tshikapa", "Tshikapa", NULL, 153, 0, 1, NULL, "-6.4230495", "20.7887691"),
+("Kananga", "Kananga", "Kananga", NULL, 153, 0, 1, NULL, "-5.8951725", "22.408589"),
+("Kinshasa", "Kinshasa", "Kinshasa", NULL, 153, 0, 1, NULL, "-4.3217055", "15.3125974"),
+("Kikwit", "Kikwit", "Kikwit", NULL, 153, 0, 1, NULL, "-5.0383083", "18.8178447"),
+("Bandundu", "Bandundu", "Bandundu", NULL, 153, 0, 1, NULL, "-3.3201862", "17.3774958"),
+("Lubumbashi", "Lubumbashi", "Lubumbashi", NULL, 153, 0, 1, NULL, "-11.6642316", "27.4826264"),
+("Kolwezi", "Kolwezi", "Kolwezi", NULL, 153, 0, 1, NULL, "-10.7169952", "25.4669918"),
+("Mbuji-Mayi", "Mbuji-Mayi", "Kasaï-Oriental", NULL, 153, 0, 1, NULL, "-6.1258942", "23.5998111"),
+("Kindu", "Kindu", "Kindu", NULL, 153, 0, 1, NULL, "-2.9493766", "25.9184499"),
+("Goma", "Goma", "Goma", NULL, 153, 0, 1, NULL, "-1.6665685", "29.225652"),
+("Mbandaka", "Mbandaka", "Mbandaka", NULL, 153, 0, 1, NULL, "0.0470732", "18.2564803"),
+("Bumba", "Bumba", "Bumba", NULL, 153, 0, 1, NULL, "2.1837441", "22.466526"),
+("Gemena", "Gemena", "Gemena", NULL, 153, 0, 1, NULL, "3.2549286", "19.7750831"),
+("Buta", "Buta", "Buta", NULL, 153, 0, 1, NULL, "2.7932581", "24.7287054"),
+("Butembo", "Butembo", "Butembo", NULL, 153, 0, 1, NULL, "0.1249694", "29.2919545");

@@ -313,6 +313,12 @@ if ($module) {
 			case 'addonstatus':
 					$html .='<h1 class="wpjobportal-head-text">'. esc_html(__('Addons Status', 'wp-job-portal')).'</h1>';
 			break;
+			case 'seooptions':
+					$html .='<h1 class="wpjobportal-head-text">'. esc_html(__('SEO', 'wp-job-portal')).'</h1>';
+			break;
+			case 'loadaddressdata':
+					$html .='<h1 class="wpjobportal-head-text">'. esc_html(__('Load Address Data', 'wp-job-portal')).'</h1>';
+			break;
 		}
 	$html.=  '</div>';
 	echo wp_kses($html, WPJOBPORTAL_ALLOWED_TAGS);

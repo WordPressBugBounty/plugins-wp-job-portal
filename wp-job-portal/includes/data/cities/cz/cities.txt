@@ -1,0 +1,4 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("České Budějovice", "České Budějovice", "České Budějovice", NULL, 54, 0, 1, NULL, "48.9747357", "14.474285"),
+("Praha", "Praha", "Prague", NULL, 54, 0, 1, NULL, "50.0874654", "14.4212535");

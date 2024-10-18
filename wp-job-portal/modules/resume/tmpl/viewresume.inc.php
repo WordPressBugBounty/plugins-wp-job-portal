@@ -1,4 +1,23 @@
-<?php if (!defined('ABSPATH')) die('Restricted Access'); ?>
+<?php if (!defined('ABSPATH')) die('Restricted Access');
+
+// document title (<title> tag value)
+// returning any non empty value stops the regular excution of code and prints this value as title
+// 99 makes sure that this is executed last to avoid getting it overridden
+
+add_filter('pre_get_document_title', 'wp_job_portal_document_title', 99);
+
+function wp_job_portal_document_title($title) {
+    $resumeid = isset(wpjobportal::$_data[0]['personal_section']->id) ? wpjobportal::$_data[0]['personal_section']->id : '';
+    if($resumeid == ''){
+        return '';
+    }
+    $resume_title_options = get_option('wpjobportal_resume_document_title_settings');
+    $resume_document_title = WPJOBPORTALincluder::getJSModel('resume')->makeResumeSeoDocumentTitle($resume_title_options , $resumeid);
+    return $resume_document_title;
+}
+
+
+?>
 <?php $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://"; ?>
 <?php
     $mappingservices = wpjobportal::$_config->getConfigValue('mappingservice');

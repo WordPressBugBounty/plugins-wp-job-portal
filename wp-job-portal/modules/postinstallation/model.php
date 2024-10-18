@@ -308,7 +308,7 @@ class WPJOBPORTALPostinstallationModel {
             if($employer_id > 0 && is_numeric($employer_id)){
 
                 //  first company
-                $cityid = '69785';// cityids for companies
+                $cityid = '33';// cityids for companies
                 $insert_company = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companies` ( `uid`, `name`, `alias`, `url`, `logofilename`, `logoisfile`, `logo`, `smalllogofilename`, `smalllogoisfile`, `smalllogo`, `tagline`, `contactemail`, `description`, `city`, `address1`, `address2`, `created`, `modified`, `hits`, `metadescription`, `metakeywords`, `status`, `userpackageid`, `price`, `isgoldcompany`, `startgolddate`, `endgolddate`, `endfeatureddate`, `isfeaturedcompany`, `startfeatureddate`, `params`, `serverstatus`, `serverid`) VALUES
                     ( '".esc_sql($employer_id) ."', 'Buruj Solution', 'buruj-solution', 'http://www.burujsolutions.com', 'default-logo.png', 1, '', '', 0, '', 'We are the Best', 'sampledata@info.com', '<p>We aligns itself with modern and advanced concepts in IT industry to help its customers by providing value added software. We performs thorough research on each given problem and advises its customers on how their business growth aims can be achieved by the implementation of a specific and research-based software solution</p>\n', '$cityid', 'WAPDA Town, Gujranwala ', '', '".$curdate."', '".$curdate."', 0, NULL, NULL, 1, 0, 0, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '".$thirdydaydate."', 2, '0000-00-00 00:00:00', '[]', '', 0)
                     ";
@@ -322,7 +322,7 @@ class WPJOBPORTALPostinstallationModel {
                 wpjobportaldb::query($insert_companycity);
 
                 //  Second Company
-                $cityid1 = '69787';// cityids for companies
+                $cityid1 = '36';// cityids for companies
 
                 $insert_company = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companies` ( `uid`, `name`, `alias`, `url`, `logofilename`, `logoisfile`, `logo`, `smalllogofilename`, `smalllogoisfile`, `smalllogo`, `tagline`, `contactemail`, `description`, `city`, `address1`, `address2`, `created`, `modified`, `hits`, `metadescription`, `metakeywords`, `status`, `userpackageid`, `price`, `isgoldcompany`, `startgolddate`, `endgolddate`, `endfeatureddate`, `isfeaturedcompany`, `startfeatureddate`, `params`, `serverstatus`, `serverid`) VALUES
                     ('".esc_sql($employer_id) ."', 'Joom Sky', 'joom-sky', 'http://www.joomsky.com', 'default-logo.png', 1, '', '', 0, '', 'We are the Best', 'sampledata@joomsky.com', '<p>We aligns itself with modern and advanced concepts in IT industry to help its customers by providing value added software. We performs thorough research on each given problem and advises its customers on how their business growth aims can be achieved by the implementation of a specific and research-based software solution</p>\n', '$cityid1', 'WAPDA Town, Gujranwala ', '', '".$curdate."', '".$curdate."', 0, NULL, NULL, 1, 0, 0, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '".$thirdydaydate."', 2, '0000-00-00 00:00:00', '[]', '', 0)
@@ -338,7 +338,7 @@ class WPJOBPORTALPostinstallationModel {
 
 
                 //Third Company
-                $cityid2 = '69795';// cityids for companies
+                $cityid2 = '483';// cityids for companies
 
                 $insert_company = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companies` ( `uid`, `name`, `alias`, `url`, `logofilename`, `logoisfile`, `logo`, `smalllogofilename`, `smalllogoisfile`, `smalllogo`, `tagline`, `contactemail`, `description`, `city`, `address1`, `address2`, `created`, `modified`, `hits`, `metadescription`, `metakeywords`, `status`, `userpackageid`, `price`, `isgoldcompany`, `startgolddate`, `endgolddate`, `endfeatureddate`, `isfeaturedcompany`, `startfeatureddate`, `params`, `serverstatus`, `serverid`) VALUES
                     ('".esc_sql($employer_id) ."', 'Joom Shark', 'joom-shark', 'http://www.joomshark.com', 'default-logo.png', 1, '', '', 0, '', 'We are the Best', 'sample@joomshark.com', '<p>We aligns itself with modern and advanced concepts in IT industry to help its customers by providing value added software. We performs thorough research on each given problem and advises its customers on how their business growth aims can be achieved by the implementation of a specific and research-based software solution</p>\n', '$cityid2', 'WAPDA Town, Gujranwala ', '', '".$curdate."', '".$curdate."', 0, NULL, NULL, 1, 0, 0, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '".$endfeatureddate."', '".$isfeaturedcompany."', '".$startfeatureddate."', '[]', '', 0)
@@ -354,7 +354,7 @@ class WPJOBPORTALPostinstallationModel {
 
 
                 //  Fourth Company
-                $cityid3 = '69820';// cityids for companies
+                $cityid3 = '880';// cityids for companies
 
                 $insert_company = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companies` ( `uid`, `name`, `alias`, `url`, `logofilename`, `logoisfile`, `logo`, `smalllogofilename`, `smalllogoisfile`, `smalllogo`, `tagline`, `contactemail`, `description`, `city`, `address1`, `address2`, `created`, `modified`, `hits`, `metadescription`, `metakeywords`, `status`, `userpackageid`, `price`, `isgoldcompany`, `startgolddate`, `endgolddate`, `endfeatureddate`, `isfeaturedcompany`, `startfeatureddate`, `params`, `serverstatus`, `serverid`) VALUES
                     ( '".esc_sql($employer_id) ."', 'Sample Company', 'sample-company', 'http://www.sample.com', 'default-logo.png', 1, '', '', 0, '', 'We are the Best', 'sample@sample.com', '<p>We perform thorough research on each given problem and advises its customers on how their business growth aims can be achieved by the implementation of a specific and research-based software solution</p>\n', '$cityid3', 'some streest in some city ', '', '".$curdate."', '".$curdate."', 0, NULL, NULL, 1, 0, 0, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '".$thirdydaydate."', 2, '0000-00-00 00:00:00', '[]', '', 0)
@@ -369,7 +369,7 @@ class WPJOBPORTALPostinstallationModel {
                 wpjobportaldb::query($insert_companycity);
 
                 //Fifth Company
-                $cityid4 = '69786';
+                $cityid4 = '837';
 
                 $insert_company = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companies` ( `uid`, `name`, `alias`, `url`, `logofilename`, `logoisfile`, `logo`, `smalllogofilename`, `smalllogoisfile`, `smalllogo`, `tagline`, `contactemail`, `description`, `city`, `address1`, `address2`, `created`, `modified`, `hits`, `metadescription`, `metakeywords`, `status`, `userpackageid`, `price`, `isgoldcompany`, `startgolddate`, `endgolddate`, `endfeatureddate`, `isfeaturedcompany`, `startfeatureddate`, `params`, `serverstatus`, `serverid`) VALUES
                     ('".esc_sql($employer_id) ."', 'Sample Company 1', 'sample-company-1', 'http://www.sample1.com', 'default-logo.png', 1, '', '', 0, '', 'We are the Best', 'sample1@sample1.com', '<p>We perform thorough research on each given problem and advises its customers on how their business growth aims can be achieved by the implementation of a specific and research-based software solution</p>\n', '$cityid4', 'some streest in some city ', '', '".$curdate."', '".$curdate."', 0, NULL, NULL, 1, 0, 0, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '".$thirdydaydate."', 2, '0000-00-00 00:00:00', '[]', '', 0)
@@ -385,7 +385,7 @@ class WPJOBPORTALPostinstallationModel {
 
 
                 //Sixth  Company
-                $cityid5 = '69788';
+                $cityid5 = '1329';
                 $insert_company = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companies` ( `uid`, `name`, `alias`, `url`, `logofilename`, `logoisfile`, `logo`, `smalllogofilename`, `smalllogoisfile`, `smalllogo`, `tagline`, `contactemail`, `description`, `city`, `address1`, `address2`, `created`, `modified`, `hits`, `metadescription`, `metakeywords`, `status`, `userpackageid`, `price`, `isgoldcompany`, `startgolddate`, `endgolddate`, `endfeatureddate`, `isfeaturedcompany`, `startfeatureddate`, `params`, `serverstatus`, `serverid`) VALUES
                     ('".esc_sql($employer_id) ."', 'Sample Company 2', 'sample-company-2', 'http://www.sample2.com', 'default-logo.png', 1, '', '', 0, '', 'We are the Best', 'sample2@2sample.com', '<p>problem and advises its customers on how their business growth aims can be achieved by the implementation of a specific and research-based software solution</p>\n', '$cityid5', 'some streest in some city ', '', '".$curdate."', '".$curdate."', 0, NULL, NULL, 1, 0, 0, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '".$endfeatureddate."', '".$isfeaturedcompany."', '".$startfeatureddate."', '[]', '', 0)";
 
@@ -400,7 +400,7 @@ class WPJOBPORTALPostinstallationModel {
 
 
                 //Seventh Company
-                $cityid6 = '69801';
+                $cityid6 = '857';
 
                 $insert_company = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companies` (`uid`, `name`, `alias`, `url`, `logofilename`, `logoisfile`, `logo`, `smalllogofilename`, `smalllogoisfile`, `smalllogo`, `tagline`, `contactemail`, `description`, `city`, `address1`, `address2`, `created`, `modified`, `hits`, `metadescription`, `metakeywords`, `status`, `userpackageid`, `price`, `isgoldcompany`, `startgolddate`, `endgolddate`, `endfeatureddate`, `isfeaturedcompany`, `startfeatureddate`, `params`, `serverstatus`, `serverid`) VALUES
                     ('".esc_sql($employer_id) ."', 'Sample Company 3', 'sample-company-3', 'http://www.sample3.com', 'default-logo.png', 1, '', '', 0, '', 'We are the Best', 'sample3@3sample.com', '<p>problem and advises its customers on how their business growth aims can be achieved by the implementation of a specific and research-based software solution</p>\n', '$cityid6', 'some streest in some city ', '', '".$curdate."', '".$curdate."', 0, NULL, NULL, 1, 0, 0, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '".$thirdydaydate."', 2, '0000-00-00 00:00:00', '[]', '', 0)
@@ -415,7 +415,7 @@ class WPJOBPORTALPostinstallationModel {
                 wpjobportaldb::query($insert_companycity);
 
                 //Eight Company
-                 $cityid7 = '69792';
+                 $cityid7 = '872';
 
                  $insert_company = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companies` (`uid`, `name`, `alias`, `url`, `logofilename`, `logoisfile`, `logo`, `smalllogofilename`, `smalllogoisfile`, `smalllogo`, `tagline`, `contactemail`, `description`, `city`, `address1`, `address2`, `created`, `modified`, `hits`, `metadescription`, `metakeywords`, `status`, `userpackageid`, `price`, `isgoldcompany`, `startgolddate`, `endgolddate`, `endfeatureddate`, `isfeaturedcompany`, `startfeatureddate`, `params`, `serverstatus`, `serverid`) VALUES
                     ('".esc_sql($employer_id) ."', 'Sample Company 4', 'sample-company-4', 'http://www.sample.com', 'default-logo.png', 1, '', '', 0, '', 'We are the Best', 'sample4@4sample.com', '<p>problem and advises its customers on how their business growth aims can be achieved by the implementation of a specific and research-based software solution</p>\n', '$cityid7', 'some streest in some city ', '', '".$curdate."', '".$curdate."', 0, NULL, NULL, 1, 0, 0, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '".$thirdydaydate."', 2, '0000-00-00 00:00:00', '[]', '', 0)
@@ -430,7 +430,7 @@ class WPJOBPORTALPostinstallationModel {
                 wpjobportaldb::query($insert_companycity);
 
                 //Ninth Company
-                $cityid8 = '69793';
+                $cityid8 = '5';
 
                 $insert_company = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companies` (`uid`, `name`, `alias`, `url`, `logofilename`, `logoisfile`, `logo`, `smalllogofilename`, `smalllogoisfile`, `smalllogo`, `tagline`, `contactemail`, `description`, `city`, `address1`, `address2`, `created`, `modified`, `hits`, `metadescription`, `metakeywords`, `status`, `userpackageid`, `price`, `isgoldcompany`, `startgolddate`, `endgolddate`, `endfeatureddate`, `isfeaturedcompany`, `startfeatureddate`, `params`, `serverstatus`, `serverid`) VALUES
                     ('".esc_sql($employer_id) ."', 'Sample Company 5', 'sample-company-5', 'http://www.sample5.com', 'default-logo.png', 1, '', '', 0, '', 'We are the Best', 'sample5@5sample.com', '<p>problem and advises its customers on how their business growth aims can be achieved by the implementation of a specific and research-based software solution</p>\n', '$cityid8', 'some streest in some city ', '', '".$curdate."', '".$curdate."', 0, NULL, NULL, 1, 0, 0, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '".$endfeatureddate."', '".$isfeaturedcompany."', '".$startfeatureddate."', '[]', '', 0)
@@ -551,15 +551,15 @@ class WPJOBPORTALPostinstallationModel {
                   * * * Resume  * * *
                   */
 
-                $cityid = '69785';// cityids for resume
-                $cityid1 = '69787';// cityids for resume
-                $cityid2 = '69795';// cityids for resume
-                $cityid3 = '69820';// cityids for resume
-                $cityid4 = '69786';// cityids for resume
-                $cityid5 = '69788';// cityids for resume
-                $cityid6 = '69801';// cityids for resume
-                $cityid7 = '69792';// cityids for resume
-                $cityid8 = '69793';// cityids for resume
+                $cityid = '33';// cityids for resume
+                $cityid1 = '36';// cityids for resume
+                $cityid2 = '483';// cityids for resume
+                $cityid3 = '880';// cityids for resume
+                $cityid4 = '837';// cityids for resume
+                $cityid5 = '1329';// cityids for resume
+                $cityid6 = '857';// cityids for resume
+                $cityid7 = '872';// cityids for resume
+                $cityid8 = '5';// cityids for resume
 
                 // first  resumes
 

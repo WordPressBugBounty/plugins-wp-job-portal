@@ -1,0 +1,6 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("San Salvador", "San Salvador", "San Salvador", NULL, 13, 0, 1, NULL, "13.6989939", "-89.1914249"),
+("Ahuachapán", "Ahuachapán", "Ahuachapan", NULL, 13, 0, 1, NULL, "13.9234192", "-89.8462907"),
+("San Salvador", "San Salvador", "San Salvador", NULL, 13, 0, 1, NULL, "13.6989939", "-89.1914249"),
+("Sensuntepeque", "Sensuntepeque", "Sensuntepeque", NULL, 13, 0, 1, NULL, "13.8761841", "-88.6284918");

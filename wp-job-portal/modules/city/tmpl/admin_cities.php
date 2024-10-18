@@ -88,6 +88,12 @@
                                         <?php echo esc_html(__('Name', 'wp-job-portal')); ?>
                                     </th>
                                     <th>
+                                        <?php echo esc_html(__('International Name', 'wp-job-portal')); ?>
+                                    </th>
+                                    <th>
+                                        <?php echo esc_html(__('Native Name', 'wp-job-portal')); ?>
+                                    </th>
+                                    <th>
                                         <?php echo esc_html(__('Published', 'wp-job-portal')); ?>
                                     </th>
                                     <th>
@@ -122,6 +128,10 @@
                     $link[] = array(
                             'link' => 'admin.php?page=wpjobportal_city&wpjobportallt=formcity',
                             'text' => esc_html(__('Add New','wp-job-portal')) .' '. esc_html(__('City','wp-job-portal'))
+                        );
+                    $link[] = array(
+                            'link' => 'admin.php?page=wpjobportal_city&wpjobportallt=loadaddressdata',
+                            'text' => esc_html(__('Load Address Data','wp-job-portal'))
                         );
                     WPJOBPORTALlayout::getNoRecordFound($msg,$link);
                 }

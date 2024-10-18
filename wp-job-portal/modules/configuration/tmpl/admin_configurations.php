@@ -311,6 +311,11 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                                 <?php echo esc_html(__('Term And Conditions', 'wp-job-portal')); ?>
                                             </a>
                                         </li>
+                                        <li>
+                                            <a href="#url-settings">
+                                                <?php echo esc_html(__('URL Settings', 'wp-job-portal')); ?>
+                                            </a>
+                                        </li>
                                 </ul>
                                 <div class="tabInner">
                                     <!-- SITE SETTINGS -->
@@ -418,6 +423,7 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php /*
                                         <div class="wpjobportal-config-row">
                                             <div class="wpjobportal-config-title">
                                                 <?php echo esc_html(__('User can add city in database', 'wp-job-portal')); ?>
@@ -429,6 +435,7 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                                 </div>
                                             </div>
                                         </div>
+                                        */ ?>
                                         <div class="wpjobportal-config-row">
                                             <div class="wpjobportal-config-title">
                                                 <?php echo esc_html(__('Maximum record for city field', 'wp-job-portal')); ?>
@@ -488,6 +495,19 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="wpjobportal-config-row">
+                                            <div class="wpjobportal-config-title">
+                                                <?php echo esc_html(__('Show WP Job Portal page title', 'wp-job-portal')); ?>
+                                            </div>
+                                            <div class="wpjobportal-config-value">
+                                                <?php echo wp_kses(WPJOBPORTALformfield::select('show_wpjobportal_page_title', $yesno, wpjobportal::$_data[0]['show_wpjobportal_page_title']),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                <div class="wpjobportal-config-description">
+                                                    <?php echo esc_html(__('Show page title above wpjobportal breadcrumbs', 'wp-job-portal')) ." '".esc_html(__('job by type', 'wp-job-portal')) ."' ". esc_html(__('page', 'wp-job-portal')) .'.'; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
                                     </div>
                                     <!-- MASSAGES -->
                                     <?php if(in_array('message', wpjobportal::$_active_addons)){ ?>
@@ -821,6 +841,54 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                             </div>
                                         </div>
                                     </div>
+
+                                    <!-- URL SETTTINGS -->
+                                    <div id="url-settings" class="wpjobportal_gen_body">
+                                        <h3 class="wpjobportal-config-heading-main">
+                                            <?php echo esc_html(__('URL Settings', 'wp-job-portal')); ?>
+                                        </h3>
+
+                                        <div class="wpjobportal-config-row">
+                                            <div class="wpjobportal-config-title">
+                                                <?php echo esc_html(__('Job Detail URL', 'wp-job-portal')); ?>
+
+                                            </div>
+                                            <div class="wpjobportal-config-value">
+                                                <?php echo wp_kses(WPJOBPORTALformfield::text('job_seo', wpjobportal::$_data[0]['job_seo'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                <div class="wpjobportal-config-description">
+                                                    <?php echo esc_html(__('Job detail URL options are title, company, category, location, jobtype. eg- [title] [company]', 'wp-job-portal')); ?>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="wpjobportal-config-row">
+                                            <div class="wpjobportal-config-title">
+                                                <?php echo esc_html(__('Company Detail URL', 'wp-job-portal')); ?>
+
+                                            </div>
+                                            <div class="wpjobportal-config-value">
+                                                <?php echo wp_kses(WPJOBPORTALformfield::text('company_seo', wpjobportal::$_data[0]['company_seo'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                <div class="wpjobportal-config-description">
+                                                    <?php echo esc_html(__('Company detail url options are name, category, location. eg- [name] [category] [location]', 'wp-job-portal')); ?>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="wpjobportal-config-row">
+                                            <div class="wpjobportal-config-title">
+                                                <?php echo esc_html(__('Resume Detail URL', 'wp-job-portal')); ?>
+
+                                            </div>
+                                            <div class="wpjobportal-config-value">
+                                                <?php echo wp_kses(WPJOBPORTALformfield::text('resume_seo', wpjobportal::$_data[0]['resume_seo'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                <div class="wpjobportal-config-description">
+                                                    <?php echo esc_html(__('Resume detail URL options are title, category, location. eg- [title] [location]', 'wp-job-portal')); ?>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </div>
                             <!-- VISITOR SETTINGS -->

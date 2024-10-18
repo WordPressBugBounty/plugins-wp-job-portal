@@ -14,6 +14,13 @@
         </a>
     </td>
     <td>
+        <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($row->internationalname)); ?>
+    </td>
+    <td>
+        <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($row->localname)); ?>
+    </td>
+
+    <td>
         <?php if ($row->enabled == '1') { ?>
 	        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_state&task=unpublish&action=wpjobportaltask&wpjobportal-cb[]='.$row->id.$pageid)),'wpjobportal_state_nonce'); ?>" title="<?php echo esc_html(__('published', 'wp-job-portal')); ?>">
 	            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('published', 'wp-job-portal')); ?>" />

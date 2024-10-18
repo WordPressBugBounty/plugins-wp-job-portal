@@ -1,0 +1,7 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Serowe", "Serowe", "Serowe", NULL, 145, 0, 1, NULL, "-22.39776", "26.703289"),
+("Gaborone", "Gaborone", "Gaborone", NULL, 145, 0, 1, NULL, "-24.6581357", "25.9088474"),
+("Mochudi", "Mochudi", "Mochudi", NULL, 145, 0, 1, NULL, "-24.3828605", "26.1489495"),
+("Serowe", "Serowe", "Serowe", NULL, 145, 0, 1, NULL, "-22.39776", "26.703289"),
+("Francistown", "Francistown", "Francistown", NULL, 145, 0, 1, NULL, "-21.16636", "27.502515");

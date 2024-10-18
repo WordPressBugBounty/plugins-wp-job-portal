@@ -1,0 +1,7 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Malmö", "Malmö", "Malmo", NULL, 91, 0, 1, NULL, "55.6052931", "13.0001566"),
+("Örnsköldsvik", "Örnsköldsvik", "Örnsköldsvik", NULL, 91, 0, 1, NULL, "63.2888613", "18.7160209"),
+("Malmö", "Malmö", "Malmo", NULL, 91, 0, 1, NULL, "55.6052931", "13.0001566"),
+("Göteborg", "Göteborg", "Gothenburg", NULL, 91, 0, 1, NULL, "57.7072326", "11.9670171"),
+("Stockholm", "Stockholm", "Stockholm", NULL, 91, 0, 1, NULL, "59.3251172", "18.0710935");

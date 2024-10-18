@@ -1,0 +1,12 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Les Cayes", "Les Cayes", "Les Cayes", NULL, 18, 0, 1, NULL, "18.1944428", "-73.7511601"),
+("Miragoâne", "Miragoâne", "Miragoane", NULL, 18, 0, 1, NULL, "18.4448425", "-73.0886392"),
+("Pétion-Ville", "Pétion-Ville", "Pétion-Ville", NULL, 18, 0, 1, NULL, "18.5132181", "-72.2860209"),
+("Port-au-Prince", "Port-au-Prince", "Port-au-Prince", NULL, 18, 0, 1, NULL, "18.547327", "-72.3395928"),
+("Saint-Marc", "Saint-Marc", "Saint-Marc", NULL, 18, 0, 1, NULL, "19.1020269", "-72.699511"),
+("Les Gonaïves", "Les Gonaïves", "Gonaïves", NULL, 18, 0, 1, NULL, "19.4460597", "-72.6884336"),
+("Hinche", "Hinche", "Hinche", NULL, 18, 0, 1, NULL, "19.1445541", "-72.0087527"),
+("Fort-Liberté", "Fort-Liberté", "Fort-Liberté", NULL, 18, 0, 1, NULL, "19.6635608", "-71.8367046"),
+("Port-de-Paix", "Port-de-Paix", "Port-de-Paix", NULL, 18, 0, 1, NULL, "19.9389855", "-72.8308129"),
+("Cap-Haïtien", "Cap-Haïtien", "Cap-Haitien", NULL, 18, 0, 1, NULL, "19.7595236", "-72.2008068");

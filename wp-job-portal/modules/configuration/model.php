@@ -221,6 +221,7 @@ class WPJOBPORTALconfigurationModel {
                     }
                     $html .= '<li class="wpjobportal-child"><a href="?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=general_setting#offline" class="jslm_text">'.  esc_html(__("Offline" , 'wp-job-portal')) .'</a></li>
                     <li class="wpjobportal-child"><a href="?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=general_setting#terms" class="jslm_text">'.  esc_html(__("Term And Conditions" , 'wp-job-portal')) .'</a></li>
+                    <li class="wpjobportal-child"><a href="?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=general_setting#url-settings" class="jslm_text">'.  esc_html(__("URL Settings" , 'wp-job-portal')) .'</a></li>
                 </ul>
             </li>
             <li class="treeview" id="emp_setting">

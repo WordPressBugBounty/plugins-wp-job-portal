@@ -1,0 +1,6 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Santiago de los Caballeros", "Santiago de los Caballeros", "Santiago de los Caballeros", NULL, 12, 0, 1, NULL, "19.4503932", "-70.6909047"),
+("Santo Domingo", "Santo Domingo", "Santo Domingo", NULL, 12, 0, 1, NULL, "18.4801972", "-69.942111"),
+("La Romana", "La Romana", "La Romana", NULL, 12, 0, 1, NULL, "18.4272786", "-68.9734597"),
+("Samaná", "Samaná", "Samana", NULL, 12, 0, 1, NULL, "19.2036865", "-69.3389611");

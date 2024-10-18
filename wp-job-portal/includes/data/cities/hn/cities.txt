@@ -1,0 +1,4 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Tegucigalpa", "Tegucigalpa", "Tegucigalpa", NULL, 19, 0, 1, NULL, "14.1057433", "-87.2040052"),
+("La Ceiba", "La Ceiba", "La Ceiba", NULL, 19, 0, 1, NULL, "15.7833743", "-86.7917749");

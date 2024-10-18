@@ -1,0 +1,6 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Asunción", "Asunción", "Asuncion", NULL, 38, 0, 1, NULL, "-25.2800459", "-57.6343814"),
+("Limpio", "Limpio", "Limpio", NULL, 38, 0, 1, NULL, "-25.1728768", "-57.4778284"),
+("Encarnación", "Encarnación", "Encarnacion", NULL, 38, 0, 1, NULL, "-27.3376114", "-55.8669492"),
+("Ciudad del Este", "Ciudad del Este", "Ciudad del Este", NULL, 38, 0, 1, NULL, "-25.5169015", "-54.6168645");

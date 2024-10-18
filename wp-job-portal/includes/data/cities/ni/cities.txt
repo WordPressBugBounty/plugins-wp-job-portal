@@ -1,0 +1,6 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Jinotepe", "Jinotepe", "Jinotepe", NULL, 24, 0, 1, NULL, "11.8471433", "-86.1990863"),
+("Managua", "Managua", "Managua", NULL, 24, 0, 1, NULL, "12.1544035", "-86.2737642"),
+("Masaya", "Masaya", "Masaya", NULL, 24, 0, 1, NULL, "11.9736474", "-86.0960547"),
+("Estelí", "Estelí", "Esteli", NULL, 24, 0, 1, NULL, "13.0931241", "-86.3554436");

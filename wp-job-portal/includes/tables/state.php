@@ -7,6 +7,8 @@ class WPJOBPORTALstateTable extends WPJOBPORTALtable {
 
     public $id = '';
     public $name = '';
+    public $internationalname = '';
+    public $localname = '';
     public $shortRegion = '';
     public $countryid = '';
     public $enabled = '';

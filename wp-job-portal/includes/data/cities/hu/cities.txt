@@ -1,0 +1,6 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Budapest", "Budapest", "Budapest", NULL, 64, 0, 1, NULL, "47.48138955", "19.146094126912"),
+("Győr", "Győr", "Gyor", NULL, 64, 0, 1, NULL, "47.687609", "17.6346815"),
+("Budapest", "Budapest", "Budapest", NULL, 64, 0, 1, NULL, "47.4979937", "19.0403594"),
+("Eger", "Eger", "Eger", NULL, 64, 0, 1, NULL, "47.8989887", "20.3743665");

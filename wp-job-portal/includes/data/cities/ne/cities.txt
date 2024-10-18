@@ -1,0 +1,10 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Tahoua", "Tahoua", "Tahoua", NULL, 177, 0, 1, NULL, "14.889922", "5.262149"),
+("Niamey", "Niamey", "Niamey", NULL, 177, 0, 1, NULL, "13.524834", "2.109823"),
+("Dosso", "Dosso", "Dosso", NULL, 177, 0, 1, NULL, "13.0496369", "3.1944647"),
+("Tahoua", "Tahoua", "Tahoua", NULL, 177, 0, 1, NULL, "14.889922", "5.262149"),
+("Zinder", "Zinder", "Zinder", NULL, 177, 0, 1, NULL, "13.8063421", "8.9891659"),
+("Agadez", "Agadez", "Agadez", NULL, 177, 0, 1, NULL, "16.972556", "7.990739"),
+("Arlit", "Arlit", "Arlit", NULL, 177, 0, 1, NULL, "18.739079", "7.393331"),
+("N’Guigmi", "N’Guigmi", "N'guigmi", NULL, 177, 0, 1, NULL, "14.253302", "13.113545");

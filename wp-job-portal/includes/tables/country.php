@@ -7,6 +7,8 @@ class WPJOBPORTALcountryTable extends WPJOBPORTALtable {
 
     public $id = '';
     public $name = '';
+    public $internationalname = '';
+    public $localname = '';
     public $shortCountry = '';
     public $continentID = '';
     public $dialCode = '';

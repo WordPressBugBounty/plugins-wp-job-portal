@@ -9358,3 +9358,112 @@ msgstr ""
 msgid "User been successfully created"
 msgstr ""
 
+# new strings 17-oct
+
+msgid "International Name"
+msgstr ""
+
+msgid "Native Name"
+msgstr ""
+
+msgid "Import Location Data"
+msgstr ""
+
+msgid "Location Name Settings"
+msgstr ""
+
+msgid "URL Settings"
+msgstr ""
+
+msgid "Job Detail URL"
+msgstr ""
+
+msgid "Company Detail URL"
+msgstr ""
+
+msgid "Resume Detail URL"
+msgstr ""
+
+msgid "Company detail document title"
+msgstr ""
+
+msgid "Company detail page document title options are Company Name and Company City . eg- [name] [location] [separator] [sitename]"
+msgstr ""
+
+msgid "Job detail document title"
+msgstr ""
+
+msgid "Job detail page document title options are Job Title, Company Name, Job Category, Job Type and Job Cities . eg- [title] [companyname] [jobcategory] [jobtype] [location] [separator] [sitename]"
+msgstr ""
+
+msgid "Resume detail document title"
+msgstr ""
+
+msgid "Resume detail document title options are Application Title, Job Category, Job Type and Resume Location. eg- [applicationtitle] [jobcategory] [jobtype] [location] [separator] [sitename]"
+msgstr ""
+
+msgid "Job detail URL options are title, company, category, location, jobtype. eg- [title] [company] [category] [jobtype] [location]"
+msgstr ""
+
+msgid "Company detail url options are name, category, location. eg- [name] [category] [location]"
+msgstr ""
+
+msgid "Resume detail URL options are title, category, location. eg- [title] [location]"
+msgstr ""
+
+msgid "Cities Data To Import"
+msgstr ""
+
+msgid "Free Data"
+msgstr ""
+
+msgid "Paid Data"
+msgstr ""
+
+msgid "City Name Preferences"
+msgstr ""
+
+msgid "To enhance the user experience, do you prefer displaying city names in English or in their native language."
+msgstr ""
+
+msgid "Existing Data"
+msgstr ""
+
+msgid "Keep Data"
+msgstr ""
+
+msgid "Erase Data"
+msgstr ""
+
+msgid "Selecting 'Erase Data' will remove all existing cities from your database. If you choose this option all city data will be permanently deleted."
+msgstr ""
+
+msgid "Address Data Addon To Get All The Cities And Towns"
+msgstr ""
+
+msgid "Records"
+msgstr ""
+
+msgid "Free Version Contains"
+msgstr ""
+
+msgid "No Records Found"
+msgstr ""
+
+msgid "No Records"
+msgstr ""
+
+msgid "Paid Version Contains"
+msgstr ""
+
+msgid "Save Settings"
+msgstr ""
+
+msgid "Currently Set"
+msgstr ""
+
+msgid "Show WP Job Portal page title"
+msgstr ""
+
+msgid "Show page title above breadcrumbs"
+msgstr ""

@@ -1,0 +1,16 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Ungheni", "Ungheni", "Ungheni", NULL, 77, 0, 1, NULL, "47.2059965", "27.798917"),
+("Comrat", "Comrat", "Comrat", NULL, 77, 0, 1, NULL, "46.301119", "28.6558805"),
+("Chișinău", "Chișinău", "Chișinau", NULL, 77, 0, 1, NULL, "47.0245117", "28.8322923"),
+("Бендеры", "Бендеры", "Bender", NULL, 77, 0, 1, NULL, "46.8199504", "29.471093155448"),
+("Orhei", "Orhei", "Orhei", NULL, 77, 0, 1, NULL, "47.3782288", "28.8246754"),
+("Рыбница", "Рыбница", "Rybnitsa", NULL, 77, 0, 1, NULL, "47.7661115", "29.0073366"),
+("Тирасполь", "Тирасполь", "Tiraspol", NULL, 77, 0, 1, NULL, "46.8566229", "29.605918132911"),
+("Soroca", "Soroca", "Soroca", NULL, 77, 0, 1, NULL, "48.1571286", "28.2996052"),
+("Ungheni", "Ungheni", "Ungheni", NULL, 77, 0, 1, NULL, "47.2059965", "27.798917"),
+("Chișinău", "Chișinău", "Chișinău", NULL, 77, 0, 1, NULL, "47.0245117", "28.8322923"),
+("Бендеры", "Бендеры", "Bender", NULL, 77, 0, 1, NULL, "46.8218177", "29.4819196"),
+("Orhei", "Orhei", "Orhei", NULL, 77, 0, 1, NULL, "47.3782288", "28.8246754"),
+("Рыбница", "Рыбница", "Rybnitsa", NULL, 77, 0, 1, NULL, "47.7661115", "29.0073366"),
+("Тирасполь", "Тирасполь", "Tiraspol", NULL, 77, 0, 1, NULL, "46.8371103", "29.6109989");

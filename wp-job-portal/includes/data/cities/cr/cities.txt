@@ -1,0 +1,4 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Heredia", "Heredia", "Heredia", NULL, 9, 0, 1, NULL, "9.9983493", "-84.1167945"),
+("San José", "San José", "San José", NULL, 9, 0, 1, NULL, "9.9325427", "-84.0795782");

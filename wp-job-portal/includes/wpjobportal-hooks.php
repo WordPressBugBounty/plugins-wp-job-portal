@@ -739,4 +739,221 @@ function wp_job_portalvcSetAsTheme() {
 
     }
 }
+
+// code to show current layout title as wordpress page title(heading)
+add_filter( 'the_title', 'wp_job_portal_page_title' );
+function wp_job_portal_page_title($title) {
+    // making sure current
+    if(isset(wpjobportal::$_data) && isset(wpjobportal::$_data['sanitized_args']) && !empty(isset(wpjobportal::$_data['sanitized_args']))){
+        $module = WPJOBPORTALrequest::getVar('wpjobportalme');
+        $layout = WPJOBPORTALrequest::getVar('wpjobportallt');
+        if ($module != '' && $layout != '') { //only check for title if module and layout is set.(that means current page is opening our layout)
+            $page_title = getWPJobPortalPageTitle($module, $layout);
+            if($page_title != ''){
+                $title = $page_title;
+            }
+        }
+    }
+    return $title;
+}
+
+
+
+function getWPJobPortalPageTitle($module, $layout){
+    $title = '';
+    if ($module != '' && $layout != '') {
+        switch ($layout) {
+            case 'addcompany':
+                $title = esc_html(__('Add Company', 'wp-job-portal'));
+                break;
+            case 'mycompanies':
+                $title =  esc_html(__('My Companies', 'wp-job-portal'));
+                break;
+            case 'companies':
+                $title =  esc_html(__('Companies', 'wp-job-portal'));
+                break;
+            case 'featuredcompanies':
+                $title =  esc_html(__('Featured Companies', 'wp-job-portal'));
+                break;
+            case 'viewcompany':
+                $title =  esc_html(__('Company Information', 'wp-job-portal'));
+                break;
+            case 'adddepartment':
+                $title =  esc_html(__('Add Department', 'wp-job-portal'));
+                break;
+            case 'mydepartments':
+                $title =  esc_html(__('My Departments', 'wp-job-portal'));
+                break;
+            case 'viewdepartment':
+                $title =  esc_html(__('View Department', 'wp-job-portal'));
+                break;
+            case 'addcoverletter':
+                $title =  esc_html(__('Add Cover Letter', 'wp-job-portal'));
+                break;
+            case 'mycoverletters':
+                $title =  esc_html(__('My Cover Letters', 'wp-job-portal'));
+                break;
+            case 'viewcoverletter':
+                $title =  esc_html(__('View Cover Letter', 'wp-job-portal'));
+                break;
+            case 'addjob':
+                $title =  esc_html(__('Add Job', 'wp-job-portal'));
+                break;
+            case 'myjobs':
+                $title =  esc_html(__('My Jobs', 'wp-job-portal'));
+                break;
+            case 'viewjob':
+                $title =  esc_html(__('Job Information', 'wp-job-portal'));
+                break;
+            case 'jobsbycategories':
+                $title =  esc_html(__('Jobs By Categories', 'wp-job-portal'));
+                break;
+            case 'jobsbytypes':
+                $title =  esc_html(__('Jobs By Types', 'wp-job-portal'));
+                break;
+            case 'jobs':
+                $title =  esc_html(__('Newest Jobs', 'wp-job-portal'));
+                break;
+            case 'newestjobs':
+                $title =  esc_html(__('Newest Jobs', 'wp-job-portal'));
+                break;
+            case 'featuredjobs':
+                $title =  esc_html(__('Featured Jobs', 'wp-job-portal'));
+                break;
+            case 'shortlistedjobs':
+                $title =  esc_html(__('Short Listed Jobs', 'wp-job-portal'));
+                break;
+            case 'visitoraddjob':
+                $title = esc_html(__('Add Job','wp-job-portal'));
+                break;
+            case 'employermessages':
+                $title =  esc_html(__('Messages', 'wp-job-portal'));
+                break;
+            case 'jobseekermessages':
+                $title =  esc_html(__('Job Seeker Messages', 'wp-job-portal'));
+                break;
+            case 'jobmessages':
+                $title =  esc_html(__('Job Messages', 'wp-job-portal'));
+                break;
+            case 'sendmessage':
+                $title =  esc_html(__('Send Message', 'wp-job-portal'));
+                break;
+            case 'resumesearch':
+                $title =  esc_html(__('Resume Search', 'wp-job-portal'));
+                break;
+            case 'resumesavesearch':
+                $title =  esc_html(__('Resume Saved Searches', 'wp-job-portal'));
+                break;
+            case 'resumes':
+                $title =  esc_html(__('Resume List', 'wp-job-portal'));
+                break;
+            case 'employerpurchasehistory':
+                $title =  esc_html(__('Purchase History', 'wp-job-portal'));
+                break;
+            case 'jobseekerpurchasehistory':
+                $title =  esc_html(__('Purchase History', 'wp-job-portal'));
+                break;
+            case 'mysubscriptions':
+                $title =  esc_html(__('My Subscriptions', 'wp-job-portal'));
+                break;
+            case 'purchasehistory':
+                $title =  esc_html(__('My Packages', 'wp-job-portal'));
+                break;
+            case 'paydepartment':
+                $title =  esc_html(__('Pay For Department', 'wp-job-portal'));
+                break;
+            case 'payjobapply':
+                $title =  esc_html(__('Pay For Job Apply', 'wp-job-portal'));
+                break;
+            case 'paycompany':
+                $title =  esc_html(__('Pay For Company', 'wp-job-portal'));
+                break;
+            case 'payfeaturedcompany':
+                $title =  esc_html(__('Pay For Featured Company', 'wp-job-portal'));
+                break;
+            case 'payjob':
+                $title =  esc_html(__('Pay For Job', 'wp-job-portal'));
+                break;
+            case 'payfeaturedjob':
+                $title =  esc_html(__('Pay For Featured Job', 'wp-job-portal'));
+                break;
+            case 'payresumesearch':
+                $title =  esc_html(__('Pay For Resume Search', 'wp-job-portal'));
+                break;
+            case 'payresume':
+                $title =  esc_html(__('Pay For Resume ', 'wp-job-portal'));
+                break;
+            case 'payfeaturedresume':
+                $title =  esc_html(__('Pay For Featured Resume ', 'wp-job-portal'));
+                break;
+            case 'packages':
+                $title =  esc_html(__('Package', 'wp-job-portal'));
+                break;
+            case 'myinvoices':
+                $title =  esc_html(__('My Invoices', 'wp-job-portal'));
+                break;
+            case 'addfolder':
+                $title =  esc_html(__('Add Folder', 'wp-job-portal'));
+                break;
+            case 'myfolders':
+                $title =  esc_html(__('My Folders', 'wp-job-portal'));
+                break;
+            case 'viewfolder':
+                $title =  esc_html(__('View Folder', 'wp-job-portal'));
+                break;
+            case 'folderresume':
+                $title =  esc_html(__('Folder Resumes', 'wp-job-portal'));
+                break;
+            case 'addresume':
+                $title =  esc_html(__('Add Resume', 'wp-job-portal'));
+                break;
+            case 'myresumes':
+                $title =  esc_html(__('My Resumes', 'wp-job-portal'));
+                break;
+            case 'featuredresumes':
+                $title =  esc_html(__('Featured Resumes', 'wp-job-portal'));
+                break;
+            case 'resumebycategory':
+                $title =  esc_html(__('Resume By Categories', 'wp-job-portal'));
+                break;
+            case 'viewresume':
+                $title =  esc_html(__('View Resume', 'wp-job-portal'));
+                break;
+            case 'myappliedjobs':
+                $title =  esc_html(__('My Applied Jobs', 'wp-job-portal'));
+                break;
+            case 'jobappliedresume':
+                $title =  esc_html(__('Job Applied Resume', 'wp-job-portal'));
+                break;
+            case 'jobalert':
+                $title =  esc_html(__('Job Alert', 'wp-job-portal'));
+                break;
+            case 'jobsearch':
+                $title =  esc_html(__('Job Search', 'wp-job-portal'));
+                break;
+            case 'jobsavesearch':
+                $title =  esc_html(__('Job Saved Searches', 'wp-job-portal'));
+                break;
+            case 'controlpanel':
+                $title =  esc_html(__('Dashboard', 'wp-job-portal'));
+                break;
+            case 'login':
+                $title =  esc_html(__('Log In', 'wp-job-portal'));
+                break;
+            case 'regemployer':
+                $title =  esc_html(__('Employer Registration', 'wp-job-portal'));
+                break;
+            case 'regjobseeker':
+                $title =  esc_html(__('Job Seeker Registration', 'wp-job-portal'));
+                break;
+            case 'formprofile':
+                $title =  esc_html(__('Edit Profile', 'wp-job-portal'));
+                break;
+        }
+    }
+
+    return $title;
+}
+
+
 ?>

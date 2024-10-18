@@ -1,0 +1,7 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Nairobi", "Nairobi", "Nairobi", NULL, 165, 0, 1, NULL, "-1.2832533", "36.8172449"),
+("Meru", "Meru", "Meru", NULL, 165, 0, 1, NULL, "0.0499786", "37.6500063"),
+("Nairobi", "Nairobi", "Nairobi", NULL, 165, 0, 1, NULL, "-1.2832533", "36.8172449"),
+("Eldoret", "Eldoret", "Eldoret", NULL, 165, 0, 1, NULL, "0.5198329", "35.2715481"),
+("Meru", "Meru", "Meru", NULL, 165, 0, 1, NULL, "0.0499786", "37.6500063");

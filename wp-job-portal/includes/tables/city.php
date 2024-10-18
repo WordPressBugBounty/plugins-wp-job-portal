@@ -8,6 +8,8 @@ class WPJOBPORTALcityTable extends WPJOBPORTALtable {
     public $id = '';
     public $cityName = '';
     public $name = '';
+    public $internationalname = '';
+    public $localname = '';
     public $stateid = '';
     public $countryid = '';
     public $isedit = '';

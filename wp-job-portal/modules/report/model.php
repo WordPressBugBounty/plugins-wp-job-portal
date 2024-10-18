@@ -120,15 +120,15 @@ class WPJOBPORTALReportModel {
             /*wpjobportal::$_data['catpie'] .= "['" . $company->cat_title . "', " . $company->companies . "],";*/
         }
 
-        $query = "SELECT city.cityName,(SELECT COUNT(jobid) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobcities` WHERE cityid = city.id ) AS jobs
+        $query = "SELECT city.name,(SELECT COUNT(jobid) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobcities` WHERE cityid = city.id ) AS jobs
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city
                     ORDER BY jobs DESC LIMIT 5";
         $jobs = wpjobportal::$_db->get_results($query);
-        $query = "SELECT city.cityName,(SELECT COUNT(companyid) FROM `" . wpjobportal::$_db->prefix . "wj_portal_companycities` WHERE cityid = city.id) AS companies
+        $query = "SELECT city.name,(SELECT COUNT(companyid) FROM `" . wpjobportal::$_db->prefix . "wj_portal_companycities` WHERE cityid = city.id) AS companies
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city
                     ORDER BY companies DESC LIMIT 5";
         $companies = wpjobportal::$_db->get_results($query);
-        $query = "SELECT city.cityName,(SELECT COUNT(resumeid) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` WHERE address_city = city.id) AS resumes
+        $query = "SELECT city.name,(SELECT COUNT(resumeid) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` WHERE address_city = city.id) AS resumes
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city
                     ORDER BY resumes DESC LIMIT 5";
         $resume = wpjobportal::$_db->get_results($query);
@@ -139,9 +139,9 @@ class WPJOBPORTALReportModel {
             $job = $jobs[$i];
             $company = $companies[$i];
             $resum = $resume[$i];
-            wpjobportal::$_data['citybar1'] .= "['" . $job->cityName . "', " . $job->jobs . ", '" . $colors[$i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
-            wpjobportal::$_data['citybar2'] .= "['" . $resum->cityName . "', " . $resum->resumes . ", '" . $colors[$i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
-            wpjobportal::$_data['citypie'] .= "['" . $company->cityName . "', " . $company->companies . "],";
+            wpjobportal::$_data['citybar1'] .= "['" . $job->name . "', " . $job->jobs . ", '" . $colors[$i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
+            wpjobportal::$_data['citybar2'] .= "['" . $resum->name . "', " . $resum->resumes . ", '" . $colors[$i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
+            wpjobportal::$_data['citypie'] .= "['" . $company->name . "', " . $company->companies . "],";
         }
 
         $query = "SELECT jobtype.title,(SELECT COUNT(jobid) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE jobtype = jobtype.id ) AS jobs

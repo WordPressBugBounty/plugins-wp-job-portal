@@ -206,6 +206,25 @@ class WPJOBPORTALcountryModel {
         return $rows;
     }
 
+    // fucntion to prepare data for country based city import combo box
+    function getCountriesForComboForCityImport() {
+        $query = "SELECT namecode, name,localname, internationalname FROM `" . wpjobportal::$_db->prefix . "wj_portal_countries` WHERE enabled = 1 ORDER BY internationalname ASC ";
+        $data = wpjobportaldb::get_results($query);
+        $countries = array();
+        foreach ($data as $country_data) {
+            $country = new stdClass();
+            $country->id = $country_data->namecode;
+            $country->text = $country_data->internationalname;
+            if($country_data->localname != '' && $country->text != ''){
+                $country->text .= '&nbsp;('.$country_data->localname.')';
+            }else{
+                $country->text = $country_data->name;
+            }
+            $countries[] = $country;
+        }
+        return $countries;
+    }
+
     function getCountryIdByName($name) { // new function coded
         if (!$name)
             return;

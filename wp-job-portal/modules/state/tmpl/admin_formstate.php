@@ -9,6 +9,7 @@ $inline_js_script = "
     });
     ";
 wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+$countryid = get_option("wpjobportal_countryid_for_stateid");
 ?>
 <!-- main wrapper -->
 <div id="wpjobportaladmin-wrapper">
@@ -62,12 +63,38 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
             <form id="wpjobportal-form" class="wpjobportal-form" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_state&task=savestate")); ?>">
                 <div class="wpjobportal-form-wrapper">
                     <div class="wpjobportal-form-title">
+                        <?php echo esc_html(__('Country', 'wp-job-portal')); ?><font class="required-notifier">*</font>
+                    </div>
+                    <div class="wpjobportal-form-value">
+                        <?php echo wp_kses(WPJOBPORTALformfield::select('countryid', WPJOBPORTALincluder::getJSModel('country')->getCountriesForCombo(), isset(wpjobportal::$_data[0]) ? wpjobportal::$_data[0]->countryid : $countryid, esc_html(__('Select','wp-job-portal')) .' '. esc_html(__('Country', 'wp-job-portal')), array('class' => 'inputbox one wpjobportal-form-select-field', 'data-validation' => 'required')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                    </div>
+                </div>
+                <div class="wpjobportal-form-wrapper">
+                    <div class="wpjobportal-form-title">
                         <?php echo esc_html(__('Name', 'wp-job-portal')); ?><font class="required-notifier">*</font>
                     </div>
                     <div class="wpjobportal-form-value">
                         <?php echo wp_kses(WPJOBPORTALformfield::text('name', isset(wpjobportal::$_data[0]->name) ? wpjobportal::wpjobportal_getVariableValue(wpjobportal::$_data[0]->name) : '', array('class' => 'inputbox one wpjobportal-form-input-field', 'data-validation' => 'required')),WPJOBPORTAL_ALLOWED_TAGS) ?>
                     </div>
                 </div>
+
+                <div class="wpjobportal-form-wrapper">
+                    <div class="wpjobportal-form-title">
+                        <?php echo esc_html(__('International Name', 'wp-job-portal')); ?>
+                    </div>
+                    <div class="wpjobportal-form-value">
+                        <?php echo wp_kses(WPJOBPORTALformfield::text('internationalname', isset(wpjobportal::$_data[0]->internationalname) ? wpjobportal::wpjobportal_getVariableValue(wpjobportal::$_data[0]->internationalname) : '', array('class' => 'inputbox one wpjobportal-form-input-field')),WPJOBPORTAL_ALLOWED_TAGS) ?>
+                    </div>
+                </div>
+                <div class="wpjobportal-form-wrapper">
+                    <div class="wpjobportal-form-title">
+                        <?php echo esc_html(__('Native Name', 'wp-job-portal')); ?>
+                    </div>
+                    <div class="wpjobportal-form-value">
+                        <?php echo wp_kses(WPJOBPORTALformfield::text('localname', isset(wpjobportal::$_data[0]->localname) ? wpjobportal::wpjobportal_getVariableValue(wpjobportal::$_data[0]->localname) : '', array('class' => 'inputbox one wpjobportal-form-input-field')),WPJOBPORTAL_ALLOWED_TAGS) ?>
+                    </div>
+                </div>
+
                 <div class="wpjobportal-form-wrapper">
                     <div class="wpjobportal-form-title">
                         <?php echo esc_html(__('Published', 'wp-job-portal')); ?>

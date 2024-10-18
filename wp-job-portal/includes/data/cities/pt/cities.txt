@@ -1,0 +1,7 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Lisboa", "Lisboa", "Lisbon", NULL, 83, 0, 1, NULL, "38.7077507", "-9.1365919"),
+("Barreiro", "Barreiro", "Barreiro", NULL, 83, 0, 1, NULL, "38.6642226", "-9.07651"),
+("Setúbal", "Setúbal", "Setúbal", NULL, 83, 0, 1, NULL, "38.5241783", "-8.8932341"),
+("Lisboa", "Lisboa", "Lisbon", NULL, 83, 0, 1, NULL, "38.7077507", "-9.1365919"),
+("Faro", "Faro", "Faro", NULL, 83, 0, 1, NULL, "37.0162727", "-7.9351771");

@@ -1416,3 +1416,90 @@ tr.wpjobportal-field-ordering-section-headline td.wpjobportal-text-left{font-wei
 }
 div#wpjobportaladmin-wrapper div#wpjobportal-registraion-disabled {width: 100%;display: inline-block;padding: 8px 10px;float: left;border: 1px solid #ff0000;background: #f0f2f5;color: #333333;margin: 0px 0px 20px;}
 div#wpjobportaladmin-wrapper div#wpjobportal-field-ordering-notice {width: 100%;display: inline-block;padding: 8px 10px;float: left;border: 1px solid #ddd;background: #FFF;color: #333333;margin: 10px 0px 5px;}
+
+
+/* SEO page options  */
+div#wpjobportaladmin-wrapper div.wpjobportal-seo-option-page-wrap {float: left;width: 100%;margin-top: 40px;padding: 0 25px;}
+div#wpjobportaladmin-wrapper div.wpjobportal-seo-option-page-wrap .wpjobportal-config-heading-main {float: left;width: 100%;color: #353638;font-size: 30px;margin: unset;padding: 15px 0px;font-weight: 600;margin-bottom: 15px;line-height: 40px;}
+div#wpjobportaladmin-wrapper div.wpjobportal-seo-option-page-wrap div.wpjobportal-config-row {float: left;width: 100%;margin: 0 10px 25px;}
+div#wpjobportaladmin-wrapper div.wpjobportal-seo-option-page-wrap div.wpjobportal-config-row div.wpjobportal-config-title {float: left;width: 20%;padding: 0 5px 5px;font-weight: bold;color: #23282d;text-transform: capitalize;}
+div#wpjobportaladmin-wrapper div.wpjobportal-seo-option-page-wrap div.wpjobportal-config-row div.wpjobportal-config-title span.wpjobportal-config-title-span{text-decoration: underline;}
+div#wpjobportaladmin-wrapper div.wpjobportal-seo-option-page-wrap div.wpjobportal-config-row div.wpjobportal-config-value {float: left;width: 40%;overflow-wrap: break-word;word-break: break-word;}
+div#wpjobportaladmin-wrapper div.wpjobportal-seo-option-page-wrap div.wpjobportal-config-row div.wpjobportal-config-value.full-width {width: calc(80% - 50px);}
+div#wpjobportaladmin-wrapper div.wpjobportal-seo-option-page-wrap div.wpjobportal-config-row div.wpjobportal-config-value input[type="text"] {width: 100%;height: 45px;padding: 10px;box-shadow: unset;color: #6c757d;background: #f2f6ff;border: 1px solid #d1d3d3;}
+div#wpjobportaladmin-wrapper div.wpjobportal-seo-option-page-wrap div.wpjobportal-config-row div.wpjobportal-config-description {float: left;width: 100%;padding: 5px 5px 0;color: #606062;word-break: break-word;}
+
+
+div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap{width: 100%;float: left;padding: 0 20px 0 0;}
+div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap .wpjobportal-form-wrapper{width: 100%;margin: 0px;margin-bottom: 35px;}
+div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap .wpjobportal-form-wrapper .wpjobportal-form-title{width: 20%;margin: 0px;float: left;text-align: right;padding-right: 15px;padding-top: 15px;}
+div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap .wpjobportal-form-wrapper .wpjobportal-form-value{width: 80%;margin: 0px;float: left;}
+
+div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap .wpjobportal-form-wrapper .wpjobportal-form-value .wpjobportal-form-citycount-wrap{width: 100%;margin: 0px;float: left;}
+
+div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap .wpjobportal-form-wrapper .wpjobportal-form-value .wpjobportal-form-citycount-wrap span.wpjobportal-city-data-free-label{width: 50%;font-weight: bold;display: inline-block;float: left;padding-top: 5px;}
+div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap .wpjobportal-form-wrapper .wpjobportal-form-value .wpjobportal-form-citycount-wrap span.wpjobportal-city-data-pro-label{width: 50%;font-weight: bold;display: inline-block;float: left;padding-top: 5px;}
+
+
+
+div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap .wpjobportal-form-wrapper .wpjobportal-form-value .wpjobportal-form-radio-field{width: calc(50% - 5px);}
+div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap .wpjobportal-form-wrapper .wpjobportal-form-value .wpjobportal-form-radio-field.wpjobportal-form-radio-field-first{margin: 0;margin-right: 5px;}
+div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap .wpjobportal-form-wrapper .wpjobportal-form-value .wpjobportal-form-radio-field.wpjobportal-form-radio-field-second{margin: 0;margin-left: 5px;}
+div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap .wpjobportal-form-wrapper select{width: 100%;max-width: 100%;height: 45px;padding: 10px;box-shadow: unset;color: #6c757d;background: #f2f6ff;border: 1px solid #d1d3d3;background-image: url('../images/control_panel/dashboard/selecticon.png');background-repeat: no-repeat;background-position: calc(100% - 15px);-webkit-appearance: none;-moz-appearance: none;appearance: none;background-size: 16px;}
+div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap .wpjobportal-form-wrapper #loadaddressdata_city_name_msg{display: inline-block;padding: 15px 10px;border: 1px solid #eee;color: #175C3C;background: #F7FBFA;margin-top: 10px;width: 100%;}
+div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap .wpjobportal-form-wrapper #loadaddressdata_city_name_msg img{display: inline-block;height: 25px;width: auto;padding-right: 5px;}
+
+
+div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap.wpjobportal-city-data-form-wrap-left{width: 70%;display:inline-block ;float: left;margin: 0;}
+div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap-right{width: 30%;display:inline-block ;float: left;	margin: 0;}
+
+
+div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap .wpjobportal-form-wrapper #loadaddressdata_city_name_msg_warn{display: inline-block;padding: 10px 5px;border: 1px solid #eee;color: #8F4933;background: #FEF3EC;margin-top: 10px;width: 100%;}
+div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap .wpjobportal-form-wrapper #loadaddressdata_city_name_msg_warn img{display: inline-block;height: 25px;width: auto;padding-right: 10px;float: left;margin-top: 5px;}
+div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap .wpjobportal-form-wrapper #loadaddressdata_city_name_msg_warn p{display: inline-block;float: left;width: 92%;margin:0; }
+
+
+.wpjobportal-city-data-sample {width: 80% ;float: right; padding-left: 0px;}
+.wpjobportal-city-data-sample .wpjobportal-city-data-table-wrap{width: 50%;float: left;margin-bottom: 30px;;}
+.wpjobportal-city-data-sample .wpjobportal-city-data-table-wrap.csl-frst-wdth{padding-right: 10px;}
+.wpjobportal-city-data-sample .wpjobportal-city-data-table-wrap.csl-scnd-wdth{padding-left: 10px;}
+.wpjobportal-city-data-sample .wpjobportal-city-data-sample-heading{font-size: 22px;line-height: 40px;padding:0 0 15px 0; }
+.wpjobportal-city-data-sample-data {border-collapse: collapse;font-size: 15px;width: 100%;}
+.wpjobportal-city-data-sample-data th , .wpjobportal-city-data-sample-data td {border: 1px solid #ddd;padding: 12px;text-align: left;text-align: center}
+.wpjobportal-city-data-sample-data th {background-color: #f7f7f7;}
+.wpjobportal-city-data-sample-data td {background-color: #fff;color: #333;text-align: center}
+.wpjobportal-city-data-sample-data tr:nth-child(even) {background-color: #f2f2f2;}
+.wpjobportal-city-data-sample-data tr:hover {background-color: #ddd;}
+
+.wpjobportal-city-data-sample .wpjobportal-city-data-table-wrap.csl-frst-wdth .wpjobportal-set-name-disc{margin-top: 5px;display: inline-block;}
+
+
+.wpjobportal-city-data-form-wrap-right.wpjobportaladmin-add-on-page-wrp div.add-on-page-cnt{padding-left: 0;}
+
+div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap-right.wpjobportaladmin-add-on-page-wrp div.add-on-page-cnt div.add-on-list{border:none;padding-top: 0px;padding-bottom: 10px;}
+
+div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap-right.wpjobportaladmin-add-on-page-wrp div.add-on-page-cnt div.add-on-list div.add-on-item{width: 100%;background: #fff;height: auto;margin-top: 0;xp}
+div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap-right.wpjobportaladmin-add-on-page-wrp div.add-on-page-cnt div.add-on-list div.add-on-item img{max-width: 90%;}
+div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap-right.wpjobportaladmin-add-on-page-wrp div.add-on-page-cnt div.add-on-list div.add-on-item .add-on-name{font-size: 24px;line-height: 32px;margin-top: 10px;}
+div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap-right.wpjobportaladmin-add-on-page-wrp div.add-on-page-cnt div.add-on-list div.add-on-item a.add-on-btn{background: #FF2965;border-color:#FF2965;margin-top: 15px;}
+div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap-right.wpjobportaladmin-add-on-page-wrp div.add-on-page-cnt div.add-on-list div.add-on-item a.add-on-btn:hover{background: #000;border-color:#000;color: #fff !important;}
+
+
+form.wpjobportal-form div.wpjobportal-form-wrapper span.wpjobportal-form-radio-field.wpjobportal-wrn-cls{border-color:#ddd ;background: #f7f7f7;cursor: not-allowed;}
+form.wpjobportal-form div.wpjobportal-form-wrapper span.wpjobportal-form-radio-field.wpjobportal-wrn-cls label{color:#cfcfcf !important;cursor: not-allowed;}
+
+
+div#wpjobportal-page-quick-actions .wpjobportal-lcoation-pages-link-wrap{display: inline-block;float: right;}
+form.wpjobportal-form div.wpjobportal-form-wrapper div.wpjobportal-form-value input[type="checkbox"] + label, form.wpjobportal-form div.wpjobportal-form-wrapper div.wpjobportal-form-value input[type="radio"] + label{cursor: pointer;}
+
+
+div#wpjobportal-page-quick-actions .wpjobportal-page-quick-act-btn.wpjobportal-import-address-data-btn{border-color: #354561;color: #354561;}
+div#wpjobportal-page-quick-actions .wpjobportal-page-quick-act-btn.wpjobportal-import-address-data-btn img{height: 20px;width: auto;}
+div#wpjobportal-page-quick-actions .wpjobportal-page-quick-act-btn.wpjobportal-location-name-settings-btn{border-color: #BB1D39;color: #BB1D39;}
+div#wpjobportal-page-quick-actions .wpjobportal-page-quick-act-btn.wpjobportal-location-name-settings-btn img{height: 20px;width: auto;}
+
+form.wpjobportal-form div.wpjobportal-form-wrapper div.wpjobportal-form-title .wpjobportal-city-field-import-data-link{
+	float: right;
+/*	text-decoration: none;*/
+	color: #1578e8;
+}

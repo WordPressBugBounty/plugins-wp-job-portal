@@ -1,0 +1,9 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Luanda", "Luanda", "Luanda", NULL, 143, 0, 1, NULL, "-8.8272699", "13.2439512"),
+("Ondjiva", "Ondjiva", "Ondjiva", NULL, 143, 0, 1, NULL, "-17.0705234", "15.7280115"),
+("Moçâmedes", "Moçâmedes", "Moçâmedes", NULL, 143, 0, 1, NULL, "-15.195064", "12.1458085"),
+("Cuíto", "Cuíto", "Cuito", NULL, 143, 0, 1, NULL, "-12.3831319", "16.9425484"),
+("Luena", "Luena", "Luena", NULL, 143, 0, 1, NULL, "-11.7790355", "19.9122676"),
+("Sumbe", "Sumbe", "Sumbe", NULL, 143, 0, 1, NULL, "-11.2019365", "13.8396845"),
+("Luanda", "Luanda", "Luanda", NULL, 143, 0, 1, NULL, "-8.8272699", "13.2439512");

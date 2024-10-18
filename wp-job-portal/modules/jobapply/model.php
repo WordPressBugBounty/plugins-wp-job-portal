@@ -461,8 +461,12 @@ class WPJOBPORTALjobapplyModel {
                         }
                         // show proper messages
                         if($title != '' && $content != ''){
-                            $title = wpjobportalphplib::wpJP_safe_encoding($title);
-                            $content = wpjobportalphplib::wpJP_safe_encoding($content);
+                            // $title = wpjobportalphplib::wpJP_safe_encoding($title);
+                            // $content = wpjobportalphplib::wpJP_safe_encoding($content);
+
+                            $title = mb_convert_encoding($title, 'UTF-8', mb_detect_encoding($title));
+                            $content = mb_convert_encoding($content, 'UTF-8', mb_detect_encoding($content));
+
                             $array = array('title' => $title, 'content' => $content);
                             return wp_json_encode($array);
                         }
@@ -895,9 +899,11 @@ class WPJOBPORTALjobapplyModel {
             if(in_array('credits', wpjobportal::$_active_addons)){
                 if($submitType == 2){
                     # Perlisting
-                    if(wpjobportal::$_config->getConfigValue('job_jobapply_price_perlisting') > 0){
+                    // in case of per listing submission mode
+                    $price_check = WPJOBPORTALincluder::getJSModel('credits')->checkIfPriceDefinedForAction('job_apply');
+                    if($price_check == 1){ // if price is defined then status 3
                         $data['status'] = 3;
-                    }else{
+                    }else{ // if price not defined then status set to auto approve configuration
                         $data['status'] = 1;
                     }
                 }elseif ($submitType == 1) {
@@ -2140,7 +2146,7 @@ class WPJOBPORTALjobapplyModel {
                 wpjobportal::$_data['sorting'] = ' app.jobtype ';
                 break;
             case 5: // location
-                wpjobportal::$_data['sorting'] = ' city.cityName ';
+                wpjobportal::$_data['sorting'] = ' city.name ';
                 break;
             case 6: // created
                 wpjobportal::$_data['sorting'] = ' app.created ';

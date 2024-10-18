@@ -1,0 +1,4 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Kampala", "Kampala", "Kampala", NULL, 192, 0, 1, NULL, "0.3177137", "32.5813539"),
+("Gulu", "Gulu", "Gulu", NULL, 192, 0, 1, NULL, "2.770239", "32.3044273");

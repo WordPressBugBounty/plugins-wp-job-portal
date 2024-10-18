@@ -1,0 +1,4 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Lomé", "Lomé", "Lomé", NULL, 190, 0, 1, NULL, "6.130419", "1.215829"),
+("Lomé", "Lomé", "Lomé", NULL, 190, 0, 1, NULL, "6.130419", "1.215829");

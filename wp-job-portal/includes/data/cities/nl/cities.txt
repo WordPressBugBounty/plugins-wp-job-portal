@@ -1,0 +1,17 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Middelburg", "Middelburg", "Middelburg", NULL, 80, 0, 1, NULL, "51.4996784", "3.6137371"),
+("Rotterdam", "Rotterdam", "Rotterdam", NULL, 80, 0, 1, NULL, "51.9244424", "4.47775"),
+("Dordrecht", "Dordrecht", "Dordrecht", NULL, 80, 0, 1, NULL, "51.7958812", "4.6779351"),
+("Den Haag", "Den Haag", "The Hague", NULL, 80, 0, 1, NULL, "52.0799838", "4.3113461"),
+("Amsterdam", "Amsterdam", "Amsterdam", NULL, 80, 0, 1, NULL, "52.3730796", "4.8924534"),
+("Haarlem", "Haarlem", "Haarlem", NULL, 80, 0, 1, NULL, "52.3885317", "4.6388048"),
+("Alkmaar", "Alkmaar", "Alkmaar", NULL, 80, 0, 1, NULL, "52.6312592", "4.7503798"),
+("Utrecht", "Utrecht", "Utrecht", NULL, 80, 0, 1, NULL, "52.0907006", "5.1215634"),
+("Lelystad", "Lelystad", "Lelystad", NULL, 80, 0, 1, NULL, "52.5150949", "5.4768915"),
+("Maastricht", "Maastricht", "Maastricht", NULL, 80, 0, 1, NULL, "50.8512438", "5.6909768"),
+("Arnhem", "Arnhem", "Arnhem", NULL, 80, 0, 1, NULL, "51.984257", "5.9108573"),
+("Zwolle", "Zwolle", "Zwolle", NULL, 80, 0, 1, NULL, "52.5089759", "6.0943765"),
+("Leeuwarden", "Leeuwarden", "Leeuwarden", NULL, 80, 0, 1, NULL, "53.2005936", "5.7918548"),
+("Assen", "Assen", "Assen", NULL, 80, 0, 1, NULL, "52.9952273", "6.560498"),
+("Groningen", "Groningen", "Groningen", NULL, 80, 0, 1, NULL, "53.2190652", "6.5680077");

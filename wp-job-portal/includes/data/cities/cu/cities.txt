@@ -1,0 +1,11 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Pinar del Río", "Pinar del Río", "Pinar del Rio", NULL, 10, 0, 1, NULL, "22.4167422", "-83.7002582"),
+("Sancti Spíritus", "Sancti Spíritus", "Sancti Spiritus", NULL, 10, 0, 1, NULL, "21.927567", "-79.4431791"),
+("Holguín", "Holguín", "Holguín", NULL, 10, 0, 1, NULL, "20.8870943", "-76.2592587"),
+("Florida", "Florida", "Florida", NULL, 10, 0, 1, NULL, "21.5268861", "-78.2258106"),
+("Camagüey", "Camagüey", "Camagüey", NULL, 10, 0, 1, NULL, "21.3791765", "-77.9183681"),
+("Santiago de Cuba", "Santiago de Cuba", "Santiago de Cuba", NULL, 10, 0, 1, NULL, "20.0214637", "-75.8294928"),
+("Guantánamo", "Guantánamo", "Guantanamo", NULL, 10, 0, 1, NULL, "20.1431797", "-75.2034783"),
+("La Habana", "La Habana", "Havana", NULL, 10, 0, 1, NULL, "23.135305", "-82.3589631"),
+("Varadero", "Varadero", "Varadero", NULL, 10, 0, 1, NULL, "23.149578", "-81.260025");

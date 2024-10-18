@@ -9,11 +9,18 @@ if (!defined('ABSPATH'))
     <td>
         <input type="checkbox" class="wpjobportal-cb" id="wpjobportal-cb" name="wpjobportal-cb[]" value="<?php echo esc_attr($row->id); ?>" />
     </td>
-    <td class="wpjobportal-text-left">
+    <td>
         <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_country&wpjobportallt=formcountry&wpjobportalid='.$row->id)); ?>" title="<?php echo esc_html(__('name','wp-job-portal')); ?>">
             <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($row->name)); ?>
         </a>
     </td>
+    <td>
+        <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($row->internationalname)); ?>
+    </td>
+    <td>
+        <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($row->localname)); ?>
+    </td>
+
     <td>
         <?php if ($row->enabled == 1) { ?>
             <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_country&task=unpublish&action=wpjobportaltask&wpjobportal-cb[]='.$row->id.$pageid),'wpjobportal_country_nonce')); ?>" title="<?php echo esc_html(__('published', 'wp-job-portal')); ?>">

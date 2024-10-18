@@ -1,0 +1,9 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Berbérati", "Berbérati", "Berbérati", NULL, 150, 0, 1, NULL, "4.2593379", "15.7877826"),
+("Bangî - Bangui", "Bangî - Bangui", "Bangui", NULL, 150, 0, 1, NULL, "4.3907153", "18.5509126"),
+("Mobaye", "Mobaye", "Mobaye", NULL, 150, 0, 1, NULL, "4.3254367", "21.1778122"),
+("Bria", "Bria", "Bria", NULL, 150, 0, 1, NULL, "6.5333319", "21.9903299"),
+("Bria", "Bria", "Bria", NULL, 150, 0, 1, NULL, "6.5392732", "21.9871831"),
+("Obo", "Obo", "Obo", NULL, 150, 0, 1, NULL, "5.3940869", "26.4927242"),
+("Birao", "Birao", "Birao", NULL, 150, 0, 1, NULL, "10.2961965", "22.7809907");

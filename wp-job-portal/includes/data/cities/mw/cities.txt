@@ -1,0 +1,4 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Lilongwe", "Lilongwe", "Lilongwe", NULL, 170, 0, 1, NULL, "-13.9875107", "33.768144"),
+("Mzuzu", "Mzuzu", "Mzuzu", NULL, 170, 0, 1, NULL, "-11.4607518", "34.0226422");

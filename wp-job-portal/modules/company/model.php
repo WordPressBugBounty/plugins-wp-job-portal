@@ -41,7 +41,7 @@ class WPJOBPORTALCompanyModel {
         if (is_numeric($companyid) == false)
             return false;
 
-        $query = "SELECT company.*,city.cityName AS cityname
+        $query = "SELECT company.*,city.name AS cityname
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON company.city = city.id
                     WHERE  company.id = " . esc_sql($companyid);
@@ -214,7 +214,7 @@ class WPJOBPORTALCompanyModel {
                 wpjobportal::$_data['sorting'] = ' cat.cat_title ';
                 break;
             case 4: // location
-                wpjobportal::$_data['sorting'] = ' city.cityName ';
+                wpjobportal::$_data['sorting'] = ' city.name ';
                 break;
             case 5: // status
                 wpjobportal::$_data['sorting'] = ' company.status ';
@@ -417,7 +417,13 @@ class WPJOBPORTALCompanyModel {
                         if($submissionType == 1){
                             $data['status'] = wpjobportal::$_config->getConfigValue('companyautoapprove');
                         }elseif ($submissionType == 2) {
-                            $data['status'] = 3;
+                            // in case of per listing submission mode
+                            $price_check = WPJOBPORTALincluder::getJSModel('credits')->checkIfPriceDefinedForAction('add_company');
+                            if($price_check == 1){ // if price is defined then status 3
+                                $data['status'] = 3;
+                            }else{ // if price not defined then status set to auto approve configuration
+                                $data['status'] = wpjobportal::$_config->getConfigValue('companyautoapprove');
+                            }
                         }elseif ($submissionType == 3) {
                            $upakid = WPJOBPORTALrequest::getVar('upakid',null,0);
                             /*Getting Package filter for All Module*/
@@ -463,6 +469,14 @@ class WPJOBPORTALCompanyModel {
                                 $data['userpackageid'] = $upakid;
                             }
                         }
+                    }
+                }
+            }else{ // edit case
+                if(!wpjobportal::$_common->wpjp_isadmin()){ // checking if is admin
+                    // verify that can current user is editing his owned entity
+                    if(!$this->getIfCompanyOwner($id)){
+                        // if current entity being edited is not owned by current user dont allow to procced further
+                        return false;
                     }
                 }
             }
@@ -1114,6 +1128,7 @@ class WPJOBPORTALCompanyModel {
                     $query = "SELECT name AS col FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` WHERE id = " . esc_sql($id);
                 break;
                 case 'category':
+                    break;
                     $query = "SELECT category.cat_title AS col
                         FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company
                         WHERE company.id = " . esc_sql($id);
@@ -1143,6 +1158,12 @@ class WPJOBPORTALCompanyModel {
                             }
                         }
                         $location = $common->removeSpecialCharacter($location);
+                        // if url encoded string is different from the orginal string dont add it to url
+                        $val = $location;
+                        $test_val = urlencode($val);
+                        if($val != $test_val){
+                            continue;
+                        }
                         if($location != ''){
                             if($result == '')
                                 $result .= wpjobportalphplib::wpJP_str_replace(' ', '-', $location);
@@ -1151,6 +1172,11 @@ class WPJOBPORTALCompanyModel {
                         }
                     }else{
                         $val = $common->removeSpecialCharacter($data->col);
+                        // if url encoded string is different from the orginal string dont add it to url
+                        $test_val = urlencode($val);
+                        if($val != $test_val){
+                            continue;
+                        }
                         if($result == '')
                             $result .= wpjobportalphplib::wpJP_str_replace(' ', '-', $val);
                         else
@@ -1163,6 +1189,49 @@ class WPJOBPORTALCompanyModel {
             $result = wpjobportalphplib::wpJP_str_replace('_', '-', $result);
         }
         return $result;
+    }
+
+
+    function makeCompanySeoDocumentTitle($company_seo , $wpjobportalid){
+        if(empty($company_seo))
+            return '';
+
+        $common = wpjobportal::$_common;
+        $id = $common->parseID($wpjobportalid);
+        if(! is_numeric($id))
+            return '';
+        $result = '';
+
+        $companyname = '';
+        $companylocation = '';
+
+        $query = "SELECT name AS companyname, city AS companycity FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` WHERE id = " . esc_sql($id);
+        $data = wpjobportaldb::get_row($query);
+        if(!empty($data)){
+            $companylocation = '';
+            if($data->companycity != '' && is_numeric($data->companycity)){
+                $query = "SELECT name FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities` WHERE id = ". esc_sql($data->companycity);
+                $companylocation = wpjobportaldb::get_var($query);
+            }
+            $companyname = $data->companyname;
+            $matcharray = array(
+                '[name]' => $companyname,
+                '[location]' => $companylocation,
+                '[separator]' => '-',
+                '[sitename]' => get_bloginfo( 'name', 'display' )
+            );
+            $result = $this->replaceMatches($company_seo,$matcharray);
+
+        }
+
+        return $result;
+    }
+
+    function replaceMatches($string, $matcharray) {
+        foreach ($matcharray AS $find => $replace) {
+            $string = wpjobportalphplib::wpJP_str_replace($find, $replace, $string);
+        }
+        return $string;
     }
 
     function getCompanyExpiryStatus($id) {
@@ -1195,6 +1264,7 @@ class WPJOBPORTALCompanyModel {
             return true;
         }
     }
+
     function getMessagekey(){
         $key = 'company';if(wpjobportal::$_common->wpjp_isadmin()){$key = 'admin_'.$key;}return $key;
     }
@@ -1229,12 +1299,12 @@ class WPJOBPORTALCompanyModel {
                 wpjobportal::$_sortorder = "ASC";
                 break;
             case "locationdesc":
-                wpjobportal::$_ordering = "city.cityName DESC";
+                wpjobportal::$_ordering = "city.name DESC";
                 wpjobportal::$_sorton = "location";
                 wpjobportal::$_sortorder = "DESC";
                 break;
             case "locationasc":
-                wpjobportal::$_ordering = "city.cityName ASC";
+                wpjobportal::$_ordering = "city.name ASC";
                 wpjobportal::$_sorton = "location";
                 wpjobportal::$_sortorder = "ASC";
                 break;

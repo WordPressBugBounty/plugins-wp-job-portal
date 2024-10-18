@@ -15,7 +15,7 @@ class WPJOBPORTALCityModel {
         return;
     }
 
-        function getCityNamebyId($id) {
+    function getCityNamebyId($id) {
         if (is_numeric($id) == false)
             return false;
         $query = "SELECT name FROM `". wpjobportal::$_db->prefix ."wj_portal_cities` WHERE id = " . esc_sql($id);
@@ -55,7 +55,6 @@ class WPJOBPORTALCityModel {
         wpjobportal::$_data['coordinates'] = $jfinal_array;
         return;
     }
-
 
     function getAllStatesCities($countryid, $stateid) {
         if (!is_numeric($countryid))
@@ -239,7 +238,7 @@ class WPJOBPORTALCityModel {
     private function getDataForLocationByCityID($id) {
         if (!is_numeric($id))
             return false;
-        $query = "SELECT city.cityName AS cityname,state.name AS statename,country.name AS countryname
+        $query = "SELECT city.name AS cityname,state.name AS statename,country.name AS countryname
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city
                     JOIN `" . wpjobportal::$_db->prefix . "wj_portal_countries` AS country ON country.id = city.countryid
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_states` AS state ON state.id = city.stateid
@@ -336,13 +335,13 @@ class WPJOBPORTALCityModel {
         if ($id == 0) {
             if (isset($countryname)) {
                 $query .= " WHERE city.name LIKE '" . esc_sql($cityname) . "%' AND country.name LIKE '" . esc_sql($countryname) . "%' AND country.enabled = 1 AND city.enabled = 1 AND IF(state.name is not null,state.enabled,1) = 1 LIMIT " . WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue("number_of_cities_for_autocomplete");
-                //$query .= " WHERE city.cityName LIKE '" . esc_sql($cityname) . "%' AND country.name LIKE '" . esc_sql($countryname) . "%' AND country.enabled = 1 AND city.enabled = 1 AND IF(state.name is not null,state.enabled,1) = 1 LIMIT " . WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue("number_of_cities_for_autocomplete");
+                //$query .= " WHERE city.name LIKE '" . esc_sql($cityname) . "%' AND country.name LIKE '" . esc_sql($countryname) . "%' AND country.enabled = 1 AND city.enabled = 1 AND IF(state.name is not null,state.enabled,1) = 1 LIMIT " . WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue("number_of_cities_for_autocomplete");
             }elseif (isset($statename)) {
                 $query .= " WHERE city.name LIKE '" . esc_sql($cityname) . "%' AND state.name LIKE '" . esc_sql($statename) . "%' AND state.enabled = 1 AND city.enabled = 1 AND IF(state.name is not null,state.enabled,1) = 1 LIMIT " . WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue("number_of_cities_for_autocomplete");
-                //$query .= " WHERE city.cityName LIKE '" . esc_sql($cityname) . "%' AND country.name LIKE '" . esc_sql($countryname) . "%' AND country.enabled = 1 AND city.enabled = 1 AND IF(state.name is not null,state.enabled,1) = 1 LIMIT " . WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue("number_of_cities_for_autocomplete");
+                //$query .= " WHERE city.name LIKE '" . esc_sql($cityname) . "%' AND country.name LIKE '" . esc_sql($countryname) . "%' AND country.enabled = 1 AND city.enabled = 1 AND IF(state.name is not null,state.enabled,1) = 1 LIMIT " . WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue("number_of_cities_for_autocomplete");
             } else {
                 $query .= " WHERE city.name LIKE '" . esc_sql($cityname) . "%' AND country.enabled = 1 AND city.enabled = 1 AND IF(state.name is not null,state.enabled,1) = 1 LIMIT " . WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue("number_of_cities_for_autocomplete");
-                //$query .= " WHERE city.cityName LIKE '" . esc_sql($cityname) . "%' AND country.enabled = 1 AND city.enabled = 1 AND IF(state.name is not null,state.enabled,1) = 1 LIMIT " . WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue("number_of_cities_for_autocomplete");
+                //$query .= " WHERE city.name LIKE '" . esc_sql($cityname) . "%' AND country.enabled = 1 AND city.enabled = 1 AND IF(state.name is not null,state.enabled,1) = 1 LIMIT " . WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue("number_of_cities_for_autocomplete");
             }
         } else {
             $query .= " WHERE city.id = ".esc_sql($id)." AND country.enabled = 1 AND city.enabled = 1";
@@ -494,7 +493,229 @@ class WPJOBPORTALCityModel {
         $key = 'city';if(wpjobportal::$_common->wpjp_isadmin()){$key = 'admin_'.$key;}return $key;
     }
 
+    function loadAddressData() {
+        $data = WPJOBPORTALrequest::get('post');
+
+        /*
+        data variables
+        [country_code] => ae
+        [name_preference] => 1
+        [keepdata] => 2
+        */
+
+        if(!isset($data['country_code'])){
+            return false;
+        }
+
+        // $language code of country
+        $language_code = $data['country_code'];
+        // free data or pro data
+        //$data_to_import = 'free';
+        $data_to_import = $data['data_to_import'];
+
+        $file_contents = $this->getLocationDataFileContents($language_code,$data_to_import);
+        if ($file_contents != '') { // making sure the string is not empty (every error case will return this string as empty)
+            // checking & removing old data
+            if(isset($data['keepdata']) && $data['keepdata'] == 2){
+                // removing cities from the database
+                $remove_cities = "DELETE FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities`";
+                wpjobportaldb::query($remove_cities);
+            }
+            //preparing queries to execute
+            $query = wpjobportalphplib::wpJP_str_replace('#__', wpjobportal::$_db->prefix, $file_contents);
+
+            $query_array  = explode(';',$query); // breaking queries up to execute seprately
+            foreach ($query_array as $array_key => $single_query) {
+                $single_query = trim($single_query);
+                if($single_query != ''){
+                    wpjobportaldb::query($single_query);
+                }
+            }
+
+            //if($query_result){ // if query successfully executed return saved
+                // function to update name records.
+                $this->updateCitiesAndCountriesRecords($data['name_preference']);
+                return WPJOBPORTAL_SAVED;
+            //}
+        }
+        // if call comes to this point means something went wrong.
+        return WPJOBPORTAL_SAVE_ERROR;
+    }
+
+    function updateCityNameSettings() {
+        $data = WPJOBPORTALrequest::get('post');
+
+
+        if(!isset($data['name_preference'])){
+            return false;
+        }
+        /*
+        data variable
+        [name_preference] => 1
+        */
+
+        // function to update records.
+        $this->updateCitiesAndCountriesRecords($data['name_preference']);
+
+        // if($data['name_preference'] == 1){ // set internation name
+        //     // update cities table while making sure the value being set is not empty
+        //     $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_cities`
+        //                 SET `name` = `internationalname`
+        //                 WHERE `internationalname` IS NOT NULL
+        //                 AND `internationalname` != '';
+        //                 ";
+        //     $query_result = wpjobportaldb::query($query);
+
+        //     // update countries table while making sure the value being set is not empty
+        //     $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_countries`
+        //                 SET `name` = `internationalname`
+        //                 WHERE `internationalname` IS NOT NULL
+        //                 AND `internationalname` != '';
+        //                 ";
+        //     $query_result = wpjobportaldb::query($query);
+        // }elseif($data['name_preference'] == 2){ // set local name
+        //     // update cities table while making sure the value being set is not empty
+        //     $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_cities`
+        //                 SET `name` = `localname`
+        //                 WHERE `localname` IS NOT NULL
+        //                 AND `localname` != '';
+        //                 ";
+        //     $query_result = wpjobportaldb::query($query);
+
+        //     // update countries table while making sure the value being set is not empty
+        //     $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_countries`
+        //                 SET `name` = `localname`
+        //                 WHERE `localname` IS NOT NULL
+        //                 AND `localname` != '';
+        //                 ";
+        //     $query_result = wpjobportaldb::query($query);
+        // }
+
+        // if call comes to this point means something went wrong.
+        return WPJOBPORTAL_SAVED;
+    }
+
+    //this function updates the name column records for city and country table
+    function updateCitiesAndCountriesRecords($name_preference){
+        if(is_numeric($name_preference) && $name_preference > 0){
+            if($name_preference == 1){ // set internation name
+                // update cities table while making sure the value being set is not empty
+                $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_cities`
+                            SET `name` = `internationalname`
+                            WHERE `internationalname` IS NOT NULL
+                            AND `internationalname` != '';
+                            ";
+                $query_result = wpjobportaldb::query($query);
+
+                // update states table while making sure the value being set is not empty
+                $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_states`
+                            SET `name` = `internationalname`
+                            WHERE `internationalname` IS NOT NULL
+                            AND `internationalname` != '';
+                            ";
+                $query_result = wpjobportaldb::query($query);
+
+                // update countries table while making sure the value being set is not empty
+                $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_countries`
+                            SET `name` = `internationalname`
+                            WHERE `internationalname` IS NOT NULL
+                            AND `internationalname` != '';
+                            ";
+                $query_result = wpjobportaldb::query($query);
+
+            }elseif($name_preference == 2){ // set local name
+                // update cities table while making sure the value being set is not empty
+                $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_cities`
+                            SET `name` = `localname`
+                            WHERE `localname` IS NOT NULL
+                            AND `localname` != '';
+                            ";
+                $query_result = wpjobportaldb::query($query);
+
+                // update states table while making sure the value being set is not empty
+                $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_states`
+                            SET `name` = `localname`
+                            WHERE `localname` IS NOT NULL
+                            AND `localname` != '';
+                            ";
+                $query_result = wpjobportaldb::query($query);
+
+                // update countries table while making sure the value being set is not empty
+                $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_countries`
+                            SET `name` = `localname`
+                            WHERE `localname` IS NOT NULL
+                            AND `localname` != '';
+                            ";
+                $query_result = wpjobportaldb::query($query);
+            }
+            // setting location name prefrence in options to show
+            update_option("wpjobportal_location_name_preference",$name_preference);
+        }
+    }
+
+
+    function getLocationDataFileContents($country_code,$data_to_import){
+
+        // if trying to import pro data check if addon is installed
+        if(in_array('addressdata',wpjobportal::$_active_addons) && $data_to_import == 'pro'){
+            // pro version get sql content as json
+            $addon_name = 'addressdata';
+            $addon_version = get_option('wpjobportal-addon-addressdata-version');
+            // http call to live server to get pro version of city data for the country
+            $json_response = WPJOBPORTALincluder::getJSModel('premiumplugin')->getAddressSqlFile($addon_name,$addon_version,$country_code);
+            if($json_response != ''){
+                $response_array = json_decode($json_response,true);
+                if(isset($response_array['error_code'])){
+                    $error_message = "Load Address data addon sql activation error";
+                    WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError($error_message);
+                }else if(isset($response_array['verfication_status'])){
+                    if($response_array['verfication_status'] == 0){
+                        $error_message = "User authentication failed";
+                        WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError($error_message);
+                    }else if($response_array['verfication_status'] == 1){ // everything is correct
+                        if(isset($response_array['update_sql']) && $response_array['update_sql'] != ''){
+                            return $response_array['update_sql']; //  everything is correct
+                        }
+                    }
+                }
+            }
+            return '';// somthing went wrong
+        }else{// importing free data
+            if ( ! function_exists( 'WP_Filesystem' ) ) {
+                require_once ABSPATH . 'wp-admin/includes/file.php';
+            }
+            global $wp_filesystem;
+            if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
+                $creds = request_filesystem_credentials( site_url() );
+                wp_filesystem( $creds );
+            }
+
+            $installfile = WPJOBPORTAL_PLUGIN_PATH . 'includes/data/cities/'.$country_code.'/cities.txt';
+            // check file exsists
+            if ($wp_filesystem->exists($installfile)) {
+                // reading the file
+                $file_contents = $wp_filesystem->get_contents($installfile);
+                if ($file_contents !== false) { // if no error then proceed
+                    return $file_contents; //  everything is correct
+                }else{
+                    $error_message = "Address Data file reading error";
+                    WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError($error_message);
+                }
+            }else{
+                $error_message = "Address Data file not found";
+                WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError($error_message);
+            }
+        }
+        return ''; // somthing went wrong
+    }
+
+    function getSampleCities() {
+        //Data
+        $query = "SELECT name, localname, internationalname FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities`";
+        $query .=" ORDER BY id DESC LIMIT 10";
+        wpjobportal::$_data[0] = wpjobportaldb::get_results($query);
+        return;
+    }
 
 }
-
 ?>

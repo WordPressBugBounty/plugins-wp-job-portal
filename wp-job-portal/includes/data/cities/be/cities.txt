@@ -1,0 +1,11 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Namur", "Namur", "Namur", NULL, 49, 0, 1, NULL, "50.4665284", "4.8661892"),
+("Kortrijk", "Kortrijk", "Kortrijk", NULL, 49, 0, 1, NULL, "50.8276429", "3.2659884"),
+("Oostende", "Oostende", "Ostend", NULL, 49, 0, 1, NULL, "51.2258565", "2.919496"),
+("Brugge", "Brugge", "Bruges", NULL, 49, 0, 1, NULL, "51.2085526", "3.226772"),
+("Gent", "Gent", "Ghent", NULL, 49, 0, 1, NULL, "51.0538286", "3.7250121"),
+("Bruxelles - Brussel", "Bruxelles - Brussel", "Brussels", NULL, 49, 0, 1, NULL, "50.8465573", "4.351697"),
+("Leuven", "Leuven", "Leuven", NULL, 49, 0, 1, NULL, "50.879202", "4.7011675"),
+("Mechelen", "Mechelen", "Mechelen", NULL, 49, 0, 1, NULL, "51.0281381", "4.4803453"),
+("Antwerpen", "Antwerpen", "Antwerp", NULL, 49, 0, 1, NULL, "51.2211097", "4.3997081");

@@ -1,0 +1,6 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Liepāja", "Liepāja", "Liepaja", NULL, 71, 0, 1, NULL, "56.5048435", "21.0070903"),
+("Daugavpils", "Daugavpils", "Daugavpils", NULL, 71, 0, 1, NULL, "55.8712267", "26.5159337"),
+("Rīga", "Rīga", "Riga", NULL, 71, 0, 1, NULL, "56.9493977", "24.1051846"),
+("Rēzekne", "Rēzekne", "Rezekne", NULL, 71, 0, 1, NULL, "56.506281", "27.3306623");

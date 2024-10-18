@@ -24,7 +24,7 @@ class WPJOBPORTALEmployerModel {
     function getNewestResumeForEmployer($guestflag) {
         if($guestflag == false){
             $query = "SELECT resume.id,resume.first_name,resume.last_name,resume.application_title,resume.email_address,category.cat_title,resume.created,jobtype.title AS jobtypetitle,resume.photo
-                ,resume.status,city.cityName AS cityname,state.name AS statename,country.name AS countryname
+                ,resume.status,city.name AS cityname,state.name AS statename,country.name AS countryname
                 ,resume.params,resume.last_modified,LOWER(jobtype.title) AS jobtypetit
                 ,'resumeaddress' AS address_city
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume

@@ -1,0 +1,11 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Kraków", "Kraków", "Krakow", NULL, 82, 0, 1, NULL, "50.0619474", "19.9368564"),
+("Wrocław", "Wrocław", "Wrocław", NULL, 82, 0, 1, NULL, "51.1089776", "17.0326689"),
+("Warszawa", "Warszawa", "Warsaw", NULL, 82, 0, 1, NULL, "52.2319581", "21.0067249"),
+("Sopot", "Sopot", "Sopot", NULL, 82, 0, 1, NULL, "54.4447922", "18.5684902"),
+("Gdańsk", "Gdańsk", "Gdansk", NULL, 82, 0, 1, NULL, "54.3482907", "18.6540233"),
+("Lublin", "Lublin", "Lublin", NULL, 82, 0, 1, NULL, "51.250559", "22.5701022"),
+("Zamość", "Zamość", "Zamość", NULL, 82, 0, 1, NULL, "50.7170854", "23.2525711"),
+("Biała Podlaska", "Biała Podlaska", "Biała Podlaska", NULL, 82, 0, 1, NULL, "52.0338399", "23.1193948"),
+("Białystok", "Białystok", "Białystok", NULL, 82, 0, 1, NULL, "53.132398", "23.1591679");

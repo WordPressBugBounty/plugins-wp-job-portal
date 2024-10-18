@@ -1,0 +1,8 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Abidjan", "Abidjan", "Abidjan", NULL, 164, 0, 1, NULL, "5.320357", "-4.016107"),
+("Daloa", "Daloa", "Daloa", NULL, 164, 0, 1, NULL, "6.8766904", "-6.4516096"),
+("Korhogo", "Korhogo", "Korhogo", NULL, 164, 0, 1, NULL, "9.4574719", "-5.6342471"),
+("Yamoussoukro", "Yamoussoukro", "Yamoussoukro", NULL, 164, 0, 1, NULL, "6.8200066", "-5.2776034"),
+("Abengourou", "Abengourou", "Abengourou", NULL, 164, 0, 1, NULL, "6.7269042", "-3.4968431"),
+("Bouaké", "Bouaké", "Bouaké", NULL, 164, 0, 1, NULL, "7.6906058", "-5.0298408");

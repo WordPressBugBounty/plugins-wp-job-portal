@@ -1,0 +1,12 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Kayes", "Kayes", "Kayes", NULL, 171, 0, 1, NULL, "14.443406", "-11.437914"),
+("Bafoulabé", "Bafoulabé", "Bafoulabe", NULL, 171, 0, 1, NULL, "13.8088835", "-10.8342049"),
+("Bamako", "Bamako", "Bamako", NULL, 171, 0, 1, NULL, "12.649319", "-8.000337"),
+("Dioïla", "Dioïla", "Dioïla", NULL, 171, 0, 1, NULL, "12.4863792", "-6.7948799"),
+("Koulikoro", "Koulikoro", "Koulikoro", NULL, 171, 0, 1, NULL, "12.8646318", "-7.5561287"),
+("Djenné", "Djenné", "Djenné", NULL, 171, 0, 1, NULL, "13.9051631", "-4.5548581"),
+("Ténenkou", "Ténenkou", "Tenenkou", NULL, 171, 0, 1, NULL, "14.4547633", "-4.9164995"),
+("Mopti", "Mopti", "Mopti", NULL, 171, 0, 1, NULL, "14.4877275", "-4.1892469"),
+("Tombouctou", "Tombouctou", "Timbuktu", NULL, 171, 0, 1, NULL, "16.7719091", "-3.0087272"),
+("Gao", "Gao", "Gao", NULL, 171, 0, 1, NULL, "16.2788129", "-0.0412392");

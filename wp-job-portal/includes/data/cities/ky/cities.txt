@@ -1,0 +1,3 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("George Town", "George Town", "George Town", NULL, 8, 0, 1, NULL, "19.2953549", "-81.3807776");

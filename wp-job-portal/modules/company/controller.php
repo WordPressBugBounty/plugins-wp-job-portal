@@ -133,9 +133,9 @@ class WPJOBPORTALCompanyController {
                                    }else{
                                         wpjobportal::$_common->getBuyErrMsg();
                                    }
-                                }else{
-                                    if(WPJOBPORTALincluder::getJSModel('company')->canAddCompany($uid) == false){
-                                        wpjobportal::$_common->getMessagesForAddMore('Company');
+                                }else{ // without credit system case
+                                    if(WPJOBPORTALincluder::getJSModel('company')->canAddCompany($uid) == false){ // check employer already has 1 company
+                                        wpjobportal::$_common->getMessagesForAddMore('Company'); // show error message (not allowed more companies)
                                     }else{
                                         $check =  true;
                                     }

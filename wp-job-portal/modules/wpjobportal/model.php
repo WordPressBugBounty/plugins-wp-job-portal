@@ -351,7 +351,7 @@ class WPJOBPORTALwpjobportalModel {
         if (!is_numeric($id))
             return false;
 
-        $query = "select mcity.id AS id,country.name AS countryName,city.cityName AS cityName,state.name AS stateName, city.id AS cityid";
+        $query = "select mcity.id AS id,country.name AS countryName,city.name AS cityName,state.name AS stateName, city.id AS cityid";
         switch ($for) {
             case 1:
                 $query.=" FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobcities` AS mcity";
@@ -819,7 +819,7 @@ class WPJOBPORTALwpjobportalModel {
     }
 
     function getLatestResumes() {
-        $query = "SELECT resume.id,resume.first_name,resume.last_name,resume.application_title as applicationtitle,CONCAT(resume.alias,'-',resume.id) resumealiasid,resume.email_address,category.cat_title,resume.experienceid,resume.created,jobtype.title AS jobtypetitle,resume.photo,resume.salaryfixed as salary,resume.isfeaturedresume,resume.status,city.cityName AS cityname,state.name AS statename,country.name AS countryname,resume.endfeatureddate,resume.params,resume.last_modified,LOWER(jobtype.title) AS jobtypetit,jobtype.color as jobtypecolor
+        $query = "SELECT resume.id,resume.first_name,resume.last_name,resume.application_title as applicationtitle,CONCAT(resume.alias,'-',resume.id) resumealiasid,resume.email_address,category.cat_title,resume.experienceid,resume.created,jobtype.title AS jobtypetitle,resume.photo,resume.salaryfixed as salary,resume.isfeaturedresume,resume.status,city.name AS cityname,state.name AS statename,country.name AS countryname,resume.endfeatureddate,resume.params,resume.last_modified,LOWER(jobtype.title) AS jobtypetit,jobtype.color as jobtypecolor
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
                 JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category ON category.id = resume.job_category
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = resume.jobtype
@@ -832,7 +832,7 @@ class WPJOBPORTALwpjobportalModel {
         $results = wpjobportal::$_db->get_results($query);
         $data = array();
         foreach ($results AS $d) {
-            $d->location = wpjobportal::$_common->getLocationForView($d->cityname, $d->statename, $d->countryname);
+            $d->location = wpjobportal::$_common->getLocationForView($d->cityname, $d->statename, $d->countryname);//  updated the query select to select 'name' as cityname
             $data[] = $d;
         }
         wpjobportal::$_data['fields'] = WPJOBPORTALincluder::getJSModel('fieldordering')->getFieldsOrderingforView(3);
@@ -1576,12 +1576,46 @@ class WPJOBPORTALwpjobportalModel {
         @$wp_filesystem->rmdir($dir);
     }
 
+    function saveDocumentTitleOptions($data){
+        $company_options =  $data['wpjobportal_company_document_title_settings'];
+        $job_options =  $data['wpjobportal_job_document_title_settings'];
+        $resume_options =  $data['wpjobportal_resume_document_title_settings'];
+
+        update_option( 'wpjobportal_company_document_title_settings', $company_options);
+        update_option( 'wpjobportal_job_document_title_settings', $job_options);
+        update_option( 'wpjobportal_resume_document_title_settings', $resume_options);
+
+        $error = false;
+        // job seo
+        if(isset($data['job_seo'])){
+            $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_config` SET `configvalue` = '".esc_sql($data['job_seo'])."' WHERE `configname`= 'job_seo'";
+            if (false === wpjobportaldb::query($query)) {
+                $error = true;
+            }
+        }
+        // company seo
+        if(isset($data['company_seo'])){
+            $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_config` SET `configvalue` = '".esc_sql($data['company_seo'])."' WHERE `configname`= 'company_seo'";
+            if (false === wpjobportaldb::query($query)) {
+                $error = true;
+            }
+        }
+        // resume seo
+        if(isset($data['resume_seo'])){
+            $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_config` SET `configvalue` = '".esc_sql($data['resume_seo'])."' WHERE `configname`= 'resume_seo'";
+            if (false === wpjobportaldb::query($query)) {
+                $error = true;
+            }
+        }
+
+
+
+        return WPJOBPORTAL_SAVED;
+    }
+
     function getMessagekey(){
         $key = 'wpjobportal';if(wpjobportal::$_common->wpjp_isadmin()){$key = 'admin_'.$key;}return $key;
     }
-
-
-
 }
 
 ?>

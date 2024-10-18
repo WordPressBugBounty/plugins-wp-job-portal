@@ -1,0 +1,10 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Dakar", "Dakar", "Dakar", NULL, 182, 0, 1, NULL, "14.693425", "-17.447938"),
+("Dakar", "Dakar", "Dakar", NULL, 182, 0, 1, NULL, "14.693425", "-17.447938"),
+("Guédiawaye", "Guédiawaye", "Guédiawaye", NULL, 182, 0, 1, NULL, "14.7771207", "-17.390071"),
+("Ziguinchor", "Ziguinchor", "Ziguinchor", NULL, 182, 0, 1, NULL, "12.5634929", "-16.2724609"),
+("Kolda", "Kolda", "Kolda", NULL, 182, 0, 1, NULL, "12.8921154", "-14.9400971"),
+("Tambacounda", "Tambacounda", "Tambacounda", NULL, 182, 0, 1, NULL, "13.7692585", "-13.6682901"),
+("Kaolack", "Kaolack", "Kaolack", NULL, 182, 0, 1, NULL, "14.138815", "-16.076391"),
+("Saint-Louis", "Saint-Louis", "Saint-Louis", NULL, 182, 0, 1, NULL, "16.0280445", "-16.5048686");

@@ -509,6 +509,12 @@ class WPJOBPORTALMessages {
         case 'customfield':
             case 'fieldordering':$name = esc_html(__('Field', 'wp-job-portal'));
                 break;
+        case 'wpjobportal':
+            $name = esc_html(__('Options', 'wp-job-portal'));
+                break;
+        case 'addressdata':
+            $name = esc_html(__('Address data', 'wp-job-portal'));
+                break;
         }
         return $name;
     }

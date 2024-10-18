@@ -1,0 +1,9 @@
+
+INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Cidade de Maputo", "Cidade de Maputo", "Maputo", NULL, 175, 0, 1, NULL, "-25.966213", "32.56745"),
+("Cidade de Inhambane", "Cidade de Inhambane", "Inhambane", NULL, 175, 0, 1, NULL, "-23.865961", "35.384363"),
+("Maputo", "Maputo", "Maputo", NULL, 175, 0, 1, NULL, "-25.966213", "32.56745"),
+("Xai-Xai", "Xai-Xai", "Xai-Xai", NULL, 175, 0, 1, NULL, "-25.044479", "33.64073"),
+("Inhambane", "Inhambane", "Inhambane", NULL, 175, 0, 1, NULL, "-23.865961", "35.384363"),
+("Nampula", "Nampula", "Nampula", NULL, 175, 0, 1, NULL, "-15.1194063", "39.2615886"),
+("Nacala", "Nacala", "Nacala", NULL, 175, 0, 1, NULL, "-14.5583059", "40.6863816");
