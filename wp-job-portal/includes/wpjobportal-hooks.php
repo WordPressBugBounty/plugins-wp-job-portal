@@ -741,7 +741,7 @@ function wp_job_portalvcSetAsTheme() {
 }
 
 // code to show current layout title as wordpress page title(heading)
-add_filter( 'the_title', 'wp_job_portal_page_title' );
+//add_filter( 'the_title', 'wp_job_portal_page_title' );
 function wp_job_portal_page_title($title) {
     // making sure current
     if(isset(wpjobportal::$_data) && isset(wpjobportal::$_data['sanitized_args']) && !empty(isset(wpjobportal::$_data['sanitized_args']))){

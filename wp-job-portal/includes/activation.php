@@ -1855,7 +1855,7 @@ class WPJOBPORTALactivation {
               ('searchjobtag', '4', 'job', 'tag'),
               ('categories_colsperrow', '3', 'category', NULL),
               ('productcode', 'wpjobportal', 'default', NULL),
-              ('versioncode', '2.1.9', 'default', NULL),
+              ('versioncode', '2.2.0', 'default', NULL),
               ('producttype', 'free', 'default', NULL),
               ('vis_jscredits', '0', 'jscontrolpanel', 'credits'),
               ('vis_emcredits', '1', 'emcontrolpanel', NULL),
@@ -2386,9 +2386,6 @@ class WPJOBPORTALactivation {
 			(27, 0, 'new-message', NULL, 'WP Job Portal : New Message', '<div style=\"background-color: #f7f7f7; margin: 0; padding: 70px 0; width: 100%;\">\n<div style=\"border: 3px dotted #ebecec; width: 600px; display: block; margin: 0 auto; background: #fff;\">\n<div style=\"padding: 15px 20px; background: #3e4095; color: #fff; font-size: 16px; font-weight: bold; text-transform: uppercase; border-bottom: 1px solid #4b4b4d;\">Wp Job Portal</div>\n<div style=\"padding: 30px; text-align: center; font-weight: bold; background: #576cf1; color: #fff; text-transform: capitalize; font-size: 22px;\">{SITETITLE}: New Message</div>\n<div style=\"padding: 40px 20px 20px;\">\n<div style=\"padding-bottom: 20px; border-bottom: 1px solid #ebecec;\">\n<div style=\"font-weight: bold; font-size: 18px; margin-bottom: 15px; color: #4b4b4d;\">Dear {RECIPIENT_NAME},</div>\n<div style=\"color: #727376; line-height: 2;\">You have received a message from {SENDER_NAME} (<strong style=\"color: #4b4b4d;\">{SENDER_USER_ROLE}</strong>). You can view and respond to the message by clicking the below button.</div>\n</div>\n<div style=\"padding: 20px 0;\">\n</div>\n<div style=\"padding: 0 0 30px; text-align: center;\"><a style=\"display: inline-block; padding: 15px; background: #576cf1; width: 40%; text-align: center; text-decoration: none; color: #ffff; text-transform: capitalize; border-bottom: 3px solid #4b4b4d;\" href=\"{MESSAGE_LINK}\">View Message</a></div>\n<div style=\"background: #fef2ef; padding: 15px; margin-bottom: 20px; border: 1px solid #eba7a8;\">\n<div style=\"font-weight: bold; font-size: 14px; margin-bottom: 5px; color: #983133; text-transform: uppercase;\">Do not reply TO this E-Mail</div>\n<div style=\"color: #727376; line-height: 2;\">This is an automated e-mail message sent from our support system.<br />\nDo not reply to this e-mail as we cannot receive your reply!</div>\n</div>\n<div style=\"color: #727376; line-height: 2;\">This email was sent from <span style=\"color: #3e4095; display: inline-block; text-decoration: underline;\"> Wp Job Portal System </span> to <span style=\"color: #606062; display: inline-block; text-decoration: underline;\">{EMAIL}</span></div>\n</div>\n<div style=\"background: #4b4b4d; padding: 20px; color: #fff; text-align: center; border-bottom: 5px solid #576cf1;\">© {CURRENT_YEAR} All rights reserved – Wp Job Portal WordPress Plugin</div>\n</div>\n</div>\n', NULL, '0000-00-00 00:00:00');";
            wpjobportal::$_db->query($query);
 
-			$query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_emailtemplates_config` (`emailfor`, `admin`, `employer`, `jobseeker`, `jobseeker_visitor`, `employer_visitor`) VALUES
-			('new_message', 0, 0, 0, 0, 0);";
-           wpjobportal::$_db->query($query);
 
         $query = "CREATE TABLE IF NOT EXISTS `" . wpjobportal::$_db->prefix . "wj_portal_emailtemplates_config` (
               `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -2402,6 +2399,7 @@ class WPJOBPORTALactivation {
             ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26;";
 
             wpjobportal::$_db->query($query);
+
 
             $query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_emailtemplates_config` (`id`, `emailfor`, `admin`, `employer`, `jobseeker`, `jobseeker_visitor`, `employer_visitor`) VALUES
                 (1, 'add_new_company', 1, 1, 0, 0, 0),
@@ -2421,7 +2419,8 @@ class WPJOBPORTALactivation {
                 (15, 'add_new_resume_visitor', 0, 0, 0, 0, 0),
                 (16, 'add_new_job_visitor', 0, 0, 0, 0, 0),
                 (17, 'resume-delete', 0, 0, 0, 0, 0),
-                (18, 'applied-resume_status', 0, 0, 1, 0, 0);";
+                (18, 'applied-resume_status', 0, 0, 1, 0, 0),
+                (19, 'new_message', 0, 0, 0, 0, 0);";
 
             wpjobportal::$_db->query($query);
 

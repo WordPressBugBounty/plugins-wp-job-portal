@@ -885,7 +885,7 @@ class WPJOBPORTALjobapplyModel {
         $data['apply_date'] = gmdate('Y-m-d H:i:s');
         $row = WPJOBPORTALincluder::getJSTable('jobapply');
         $result = array();
-        if($quick_apply == 1 && !WPJOBPORTALincluder::getObjectClass('user')->isguest()){// if current user is guest ignore the already applied check.(it returns error on missing uid value check)
+        if($quick_apply != 1 && !WPJOBPORTALincluder::getObjectClass('user')->isguest()){// if current user is guest ignore the already applied check.(it returns error on missing uid value check)
             $alreadycheck = $this->checkAlreadyAppliedJob($data['jobid'], $data['uid']);
             if ($alreadycheck == false) {
                 if(null !=$themecall) return 2;
