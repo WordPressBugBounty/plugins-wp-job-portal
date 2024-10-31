@@ -2043,7 +2043,8 @@ class WPJOBPORTALjobModel {
                 $a = wpjobportalphplib::wpJP_explode(',', $array[0]);
                 foreach ($a as $item) {
                     if (is_numeric($item)) {
-                        $qa[] = "job.city LIKE '%" . esc_sql($item) . "%'";
+                        //$qa[] = "job.city LIKE '%" . esc_sql($item) . "%'";
+                        $qa[] = "  FIND_IN_SET('" . esc_sql($item) . "', job.city) > 0 ";
                     }
                 }
                 break;
@@ -2501,6 +2502,7 @@ class WPJOBPORTALjobModel {
             }
         }
 
+
         $state = WPJOBPORTALrequest::getVar('state','GET');
         if($state && is_numeric($state)){
             $inquery .= " AND state.id = ".esc_sql($state);
@@ -2524,6 +2526,7 @@ class WPJOBPORTALjobModel {
         if($only_featured == 1){
             $inquery .= ' AND job.isfeaturedjob = 1 AND DATE(job.endfeatureddate) >= CURDATE() ';
         }
+        $curdate = gmdate('Y-m-d');
 
         //Pagination
         $query = "SELECT COUNT(DISTINCT job.id)
@@ -2534,7 +2537,7 @@ class WPJOBPORTALjobModel {
         LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_states` AS state ON state.countryid = city.countryid
         LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_countries` AS country ON country.id = city.countryid
         LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
-        WHERE job.status = 1 AND DATE(job.startpublishing) <= CURDATE() AND DATE(job.stoppublishing) >= CURDATE()";
+        WHERE job.status = 1 AND DATE(job.startpublishing) <= '".$curdate."' AND DATE(job.stoppublishing) >= '".$curdate."'";
         $query .= $inquery;
         $total = wpjobportaldb::get_var($query);
         wpjobportal::$_data['total'] = $total;
@@ -2554,7 +2557,7 @@ class WPJOBPORTALjobModel {
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON city.id = jobcity.cityid
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_states` AS state ON state.countryid = city.countryid
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_countries` AS country ON country.id = city.countryid
-        WHERE job.status = 1 AND DATE(job.startpublishing) <= CURDATE() AND DATE(job.stoppublishing) >= CURDATE()";
+        WHERE job.status = 1 AND DATE(job.startpublishing) <= '".$curdate."' AND DATE(job.stoppublishing) >= '".$curdate."'";
         $query.= $inquery;
 
         $query.= " ORDER BY ".wpjobportal::$_ordering." LIMIT " . WPJOBPORTALpagination::$_offset . "," . WPJOBPORTALpagination::$_limit;

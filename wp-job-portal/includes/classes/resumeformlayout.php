@@ -290,7 +290,7 @@ class WPJOBPORTALResumeFormlayout {
                             $data .= ' data-validation="required"';
                         }
                 $name = 'sec_1['.$fieldName.']';
-                $data .=        ' type="text" name="' . $name . '" id="' . $fieldName . '" value = "' . $fieldValue.'"' ;
+                $data .=        ' type="text" name="' . $name . '" id="' . $fieldName . '" value = "' .  wpjobportalphplib::wpJP_htmlspecialchars($fieldValue).'"' ;
                 if (!empty($extraattr)){
                     foreach ($extraattr AS $key => $val){
                         $data .= ' ' . $key . '="' . $val . '"';
@@ -340,7 +340,7 @@ class WPJOBPORTALResumeFormlayout {
                             }
 
             $name = 'sec_1['.$fieldName.']';
-            $data .=        ' type="text" name="' . $name . '" id="' . $fieldName . '" value = "' . $fieldValue.'"' ;
+            $data .=        ' type="text" name="' . $name . '" id="' . $fieldName . '" value = "' .  wpjobportalphplib::wpJP_htmlspecialchars($fieldValue).'"' ;
             if (!empty($extraattr)){
                 foreach ($extraattr AS $key => $val){
                     $data .= ' ' . $key . '="' . $val . '"';
@@ -380,7 +380,7 @@ class WPJOBPORTALResumeFormlayout {
 
 
             $name = 'sec_1['.$fieldName.']';
-            $data .=        ' type="text" name="' . $name . '" id="' . $fieldName . '" value = "' . $fieldValue.'"' ;
+            $data .=        ' type="text" name="' . $name . '" id="' . $fieldName . '" value = "' .  wpjobportalphplib::wpJP_htmlspecialchars($fieldValue).'"' ;
             if (!empty($extraattr)){
                 foreach ($extraattr AS $key => $val){
                     $data .= ' ' . $key . '="' . $val . '"';
@@ -431,7 +431,7 @@ class WPJOBPORTALResumeFormlayout {
                 }
                 $name = $section."[$fieldName][$sectionid]";
 
-                $html .=    ' type="text" name="' . $name . '" id="' . $field_id_for . '" maxlength="250" value = "' . $fieldValue . '" />';
+                $html .=    ' type="text" name="' . $name . '" id="' . $field_id_for . '" maxlength="250" value = "' .  wpjobportalphplib::wpJP_htmlspecialchars($fieldValue) . '" />';
 
             $html .= '</div>
         </div>';
@@ -491,7 +491,7 @@ class WPJOBPORTALResumeFormlayout {
             }
             $name = $section."[$fieldName][$sectionid]";
 
-            $data .=    ' type="text" name="' . $name . '" id="' . $field_id_for . '" maxlength="250" value = "' . $fieldValue . '" />
+            $data .=    ' type="text" name="' . $name . '" id="' . $field_id_for . '" maxlength="250" value = "' .  wpjobportalphplib::wpJP_htmlspecialchars($fieldValue) . '" />
                     </div>
                 </div>';
 
@@ -540,7 +540,7 @@ class WPJOBPORTALResumeFormlayout {
             }
             $name = $section."[$fieldName][$sectionid]";
 
-            $data .=    ' type="text" name="' . $name . '" id="' . $field_id_for . '" maxlength="250" value = "' . $fieldValue . '" />
+            $data .=    ' type="text" name="' . $name . '" id="' . $field_id_for . '" maxlength="250" value = "' .  wpjobportalphplib::wpJP_htmlspecialchars($fieldValue) . '" />
                     </div>
                 </div>';
         }
@@ -626,7 +626,7 @@ class WPJOBPORTALResumeFormlayout {
                 </div>
                 <div class="wjportal-form-value">
                     <input data-for="'.esc_attr($cityfor).'_'.esc_attr($sectionid).'" class="inputbox jstokeninputcity ' . $city_required . '" '.$data_required.' type="text" name="sec_'.$for.'['.esc_attr($cityfor).'_city]['.esc_attr($sectionid).']" id="'.esc_attr($cityfor).'_city_'.esc_attr($sectionid).'" size="40" maxlength="100" value="'.$data['city_name'].'" />
-                    <input type="hidden" name="sec_'.$for.'['.esc_attr($cityfor).'cityforedit]['.esc_attr($sectionid).']" id="'.esc_attr($cityfor).'cityforedit_'.esc_attr($sectionid).'" value="'.$cityforedit.'" />
+                    <input type="hidden" name="sec_'.$for.'['.esc_attr($cityfor).'cityforedit]['.esc_attr($sectionid).']" id="'.esc_attr($cityfor).'cityforedit_'.esc_attr($sectionid).'" value="'. wpjobportalphplib::wpJP_htmlspecialchars($cityforedit).'" />
                     <input type="hidden" class="jscityid" name="jscityid" value="'.$data['city_id'].'" />
                     <input type="hidden" class="jscityname" name="jscityname" value="'.$data['city_name'].'" />
                 </div>';
@@ -689,7 +689,7 @@ class WPJOBPORTALResumeFormlayout {
         }
         $id = '';
         $deletethis = (empty($resume->resume)) ? 1 : 0;
-        $html .= '<input type="hidden" id="deletethis6'.esc_attr($sectionid).'" class="jsdeletethissection" name="sec_6[deletethis]['.esc_attr($sectionid).']" value="'.$deletethis.'">
+        $html .= '<input type="hidden" id="deletethis6'.esc_attr($sectionid).'" class="jsdeletethissection" name="sec_6[deletethis]['.esc_attr($sectionid).']" value="'. wpjobportalphplib::wpJP_htmlspecialchars($deletethis).'">
                     <input type="hidden" id="id" name="sec_6[id]['.esc_attr($sectionid).']" value="'.$id.'">
             </div></div>';
         if(empty($resume->resume)){

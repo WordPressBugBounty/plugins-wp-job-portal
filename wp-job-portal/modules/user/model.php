@@ -75,14 +75,19 @@ class WPJOBPORTALUserModel {
             $inquery .= esc_sql($clause) . " LOWER(u.user_login) LIKE '%" . esc_sql($searchusername) . "%'";
             $clause = " AND ";
         }
+        $company_join = '';
         if ($searchcompany) {
             $inquery .= esc_sql($clause) . " LOWER(company.name) LIKE '%" . esc_sql($searchcompany) . "%'";
             $clause = " AND ";
+            $company_join = 'LEFT JOIN ' . wpjobportal::$_db->prefix . 'wj_portal_companies AS company ON company.uid = a.id ';
+
         }
+        $resume_join = '';
         if ($searchresume) {
             $inquery .= esc_sql($clause) . " ( LOWER(resume.first_name) LIKE '%" . esc_sql($searchresume) . "%'
                         OR LOWER(resume.last_name) LIKE '%" . esc_sql($searchresume) . "%')";
             $clause = " AND ";
+            $resume_join = 'LEFT JOIN ' . wpjobportal::$_db->prefix . 'wj_portal_resume AS resume ON resume.uid = a.id ';
         }
         if ($searchrole){
             if (is_numeric($searchrole))
@@ -92,6 +97,8 @@ class WPJOBPORTALUserModel {
         $query = 'SELECT a.id '
                 . ' FROM `' . wpjobportal::$_db->prefix . 'wj_portal_users` AS a'
                 . ' LEFT JOIN `' . $this->jsGetPrefix() . 'users` AS u ON u.id = a.uid ';
+        $query .= $company_join;
+        $query .= $resume_join;
         $query .= $inquery;
         $query .= " GROUP BY a.id ";
         $total = wpjobportaldb::get_results($query);
@@ -103,8 +110,8 @@ class WPJOBPORTALUserModel {
         $query = 'SELECT a.*,u.user_login,u.id AS wpuid'
                 . ' FROM ' . wpjobportal::$_db->prefix . 'wj_portal_users AS a'
                 . ' LEFT JOIN ' . $this->jsGetPrefix() . 'users AS u ON u.id = a.uid ';
-                /*. 'LEFT JOIN ' . wpjobportal::$_db->prefix . 'wj_portal_companies AS company ON company.uid = a.id '
-                . 'LEFT JOIN ' . wpjobportal::$_db->prefix . 'wj_portal_resume AS resume ON resume.uid = a.id */
+        $query .= $company_join;
+        $query .= $resume_join;
         $query.=$inquery;
         $query .= ' GROUP BY a.id LIMIT ' . WPJOBPORTALpagination::$_offset . ',' . WPJOBPORTALpagination::$_limit;
 

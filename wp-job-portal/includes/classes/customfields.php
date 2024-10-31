@@ -238,7 +238,7 @@ class WPJOBPORTALcustomfields {
                               $check = 'checked';
                           }
                           $user_field .= '<span class="uf_checkbox_wrp">';
-                          $user_field .= '<input type="checkbox" ' . $check . ' '.$data_required.' class="'. $field->field .' radiobutton uf_of_type_ckbox '.$cssclass. $specialClass.'" value="' . $option . '" id="' . $id . '_' . $i . '" name="' . $name . '[]" data-validation="'.esc_attr($cssclass).'" onclick = "' . $jsFunction . '" ckbox-group-name="' . $field->field . '">';
+                          $user_field .= '<input type="checkbox" ' . $check . ' '.$data_required.' class="'. $field->field .' radiobutton uf_of_type_ckbox '.$cssclass. $specialClass.'" value="' . wpjobportalphplib::wpJP_htmlspecialchars($option) . '" id="' . $id . '_' . $i . '" name="' . $name . '[]" data-validation="'.esc_attr($cssclass).'" onclick = "' . $jsFunction . '" ckbox-group-name="' . $field->field . '">';
                           $user_field .= '<label class="cf_chkbox" for="' . $id . '_' . $i . '" id="foruf_checkbox1">' . $option . '</label>';
                           $user_field .= '</span>';
                           $i++;
@@ -584,7 +584,7 @@ class WPJOBPORTALcustomfields {
 
         foreach ($list AS $value => $label) {
             $radiobutton .= '<span class="uf_radiobtn_wrp">';
-            $radiobutton .= '<input type="radio" name="' . $name . '" id="' . $id . $count . '" value="' . $value . '"';
+            $radiobutton .= '<input type="radio" name="' . $name . '" id="' . $id . $count . '" value="' . wpjobportalphplib::wpJP_htmlspecialchars($value) . '"';
             if ($defaultvalue == $value){
                 $radiobutton .= ' checked="checked"';
             }
@@ -624,7 +624,7 @@ class WPJOBPORTALcustomfields {
         //END handleformresume
 
         foreach ($list AS $value => $label) {
-            $checkbox .= '<input type="checkbox" name="' . $name . '" id="' . $id . $count . '" value="' . $value . '"';
+            $checkbox .= '<input type="checkbox" name="' . $name . '" id="' . $id . $count . '" value="' . wpjobportalphplib::wpJP_htmlspecialchars($value) . '"';
             if ($defaultvalue == $value)
                 $checkbox .= ' checked="checked"';
             if (!empty($extraattr))
@@ -659,7 +659,7 @@ class WPJOBPORTALcustomfields {
         if (!empty($extraattr))
             foreach ($extraattr AS $key => $val)
                 $textarea .= ' ' . $key . '="' . $val . '"';
-        $textarea .= ' >' . $value . '</textarea>';
+        $textarea .= ' >' . wpjobportalphplib::wpJP_htmlspecialchars($value) . '</textarea>';
         return $textarea;
     }
 
@@ -682,7 +682,7 @@ class WPJOBPORTALcustomfields {
         }
         //END handleformresume
 
-        $textfield = '<input type="text" name="' . $name . '" id="' . $id . '" value="' . $value . '" ';
+        $textfield = '<input type="text" name="' . $name . '" id="' . $id . '" value="' . htmlspecialchars($value) . '" ';
         if (!empty($extraattr))
             foreach ($extraattr AS $key => $val)
                 $textfield .= ' ' . $key . '="' . $val . '"';
@@ -710,10 +710,10 @@ class WPJOBPORTALcustomfields {
         }
         //END handleformresume
 
-        $textfield = '<input type="text" name="' . $name . '" id="' . $id . '" value="' . $value . '" ';
+        $textfield = '<input type="text" name="' . $name . '" id="' . $id . '" value="' . wpjobportalphplib::wpJP_htmlspecialchars($value) . '" ';
         if (!empty($extraattr))
             foreach ($extraattr AS $key => $val)
-                $textfield .= ' ' . $key . '="' . $val . '"';
+                $textfield .= ' ' . $key . '="' . wpjobportalphplib::wpJP_htmlspecialchars($val) . '"';
         $textfield .= ' />';
         return $textfield;
     }
@@ -736,7 +736,7 @@ class WPJOBPORTALcustomfields {
         }
         //END handleformresume
 
-        $textfield = '<input type="email" name="' . $name . '" id="' . $id . '" value="' . $value . '" ';
+        $textfield = '<input type="email" name="' . $name . '" id="' . $id . '" value="' . wpjobportalphplib::wpJP_htmlspecialchars($value) . '" ';
         if (!empty($extraattr))
             foreach ($extraattr AS $key => $val)
                 $textfield .= ' ' . $key . '="' . $val . '"';
@@ -925,7 +925,7 @@ class WPJOBPORTALcustomfields {
                           if(in_array($option, $valuearray)){
                               $check = 'checked';
                           }
-                          $html .= '<input type="checkbox" ' . $check . ' class="uf_of_type_ckbox radiobutton ' . $field->field .$specialClass. '" value="' . $option . '" id="' . $field->field . '_' . $i . '" name="' . $field->field . '[]" data-validation="'.esc_attr($cssclass).'" onclick = "' . $jsFunction . '" ckbox-group-name="' . $field->field . '">';
+                          $html .= '<input type="checkbox" ' . $check . ' class="uf_of_type_ckbox radiobutton ' . $field->field .$specialClass. '" value="' . wpjobportalphplib::wpJP_htmlspecialchars($option) . '" id="' . $field->field . '_' . $i . '" name="' . $field->field . '[]" data-validation="'.esc_attr($cssclass).'" onclick = "' . $jsFunction . '" ckbox-group-name="' . $field->field . '">';
                           $html .= '<label for="' . $field->field . '_' . $i . '" id="foruf_checkbox1">' . $option . '</label>';
                           $i++;
                       }
@@ -1134,7 +1134,7 @@ class WPJOBPORTALcustomfields {
                         }else{
                             $check = '';
                         }
-                        $html .= '<input type="checkbox" ' . $check . ' class="radiobutton" value="' . $option . '" id="' . $field->field . '_' . $i . '" name="' . $field->field . '[]">';
+                        $html .= '<input type="checkbox" ' . $check . ' class="radiobutton" value="' . wpjobportalphplib::wpJP_htmlspecialchars($option) . '" id="' . $field->field . '_' . $i . '" name="' . $field->field . '[]">';
                         $html .= '<label for="' . $field->field . '_' . $i . '" id="foruf_checkbox1">' . $option . '</label>';
                         $i++;
                     }

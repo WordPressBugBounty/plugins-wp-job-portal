@@ -10,7 +10,7 @@ class WPJOBPORTALformfield {
     static function resumetext($fieldName, $value,$section, $extraattr = array(),$over_limit = 0) {
         $name = $section.'['.$fieldName.']';        
         $textfield = '<input type="text" name="' . $name . '" id="' . $fieldName . '" 
-        value="' . $value . '" ';
+        value="' .  wpjobportalphplib::wpJP_htmlspecialchars($value) . '" ';
         if (!empty($extraattr))
             foreach ($extraattr AS $key => $val)
                 $textfield .= ' ' . $key . '="' . $val . '"';
@@ -23,7 +23,7 @@ class WPJOBPORTALformfield {
 
     static function text($name, $value, $extraattr = array(),$over_limit = 0) {
         $textfield = '<input type="text" name="' . $name . '" id="' . $name . '"
-        value="' . $value . '" ';
+        value="' .  wpjobportalphplib::wpJP_htmlspecialchars($value) . '" ';
         if (!empty($extraattr))
             foreach ($extraattr AS $key => $val)
                 $textfield .= ' ' . $key . '="' . $val . '"';
@@ -37,7 +37,7 @@ class WPJOBPORTALformfield {
 
     static function email($name, $value, $extraattr = array()) {
         $textfield = '<input type="email" name="' . $name . '" id="' . $name . '" 
-        value="' . $value . '" ';
+        value="' .  wpjobportalphplib::wpJP_htmlspecialchars($value) . '" ';
         if (!empty($extraattr))
             foreach ($extraattr AS $key => $val)
                 $textfield .= ' ' . $key . '="' . $val . '"';
@@ -50,7 +50,7 @@ class WPJOBPORTALformfield {
      */
 
     static function password($name, $value, $extraattr = array()) {
-        $textfield = '<input type="password" name="' . $name . '" id="' . $name . '" value="' . $value . '" ';
+        $textfield = '<input type="password" name="' . $name . '" id="' . $name . '" value="' .  wpjobportalphplib::wpJP_htmlspecialchars($value) . '" ';
         if (!empty($extraattr))
             foreach ($extraattr AS $key => $val)
                 $textfield .= ' ' . $key . '="' . $val . '"';
@@ -83,12 +83,12 @@ class WPJOBPORTALformfield {
         if(is_array($value)){
             if(wpjobportalphplib::wpJP_strstr($name, '[]')){
                 for ($i=0; $i < count($value) ; $i++) { 
-                    $textfield .= "<input type='hidden' name='" . $name . "' id='" . $id . "' value='" . $value[$i] . "' /> ";
+                    $textfield .= "<input type='hidden' name='" . $name . "' id='" . $id . "' value='" .  wpjobportalphplib::wpJP_htmlspecialchars($value[$i]) . "' /> ";
                 }
                 return $textfield;
             }
         }
-        $textfield = "<input type='hidden' name='" . $name . "' id='" . $id . "' value='" . sanitize_text_field($value) . "'" ;
+        $textfield = "<input type='hidden' name='" . $name . "' id='" . $id . "' value='" . sanitize_text_field( wpjobportalphplib::wpJP_htmlspecialchars($value)) . "'" ;
         
         if (!empty($extraattr))
             foreach ($extraattr AS $key => $val)
@@ -102,7 +102,7 @@ class WPJOBPORTALformfield {
      */
 
     static function submitbutton($name, $value, $extraattr = array()) {
-        $textfield = '<input type="submit" name="' . $name . '" id="' . $name . '" value="' . $value . '" ';
+        $textfield = '<input type="submit" name="' . $name . '" id="' . $name . '" value="' .  wpjobportalphplib::wpJP_htmlspecialchars($value) . '" ';
         if (!empty($extraattr))
             foreach ($extraattr AS $key => $val)
                 $textfield .= ' ' . $key . '="' . $val . '"';
@@ -115,7 +115,7 @@ class WPJOBPORTALformfield {
      */
 
     static function button($name, $value, $extraattr = array()) {
-        $textfield = '<input type="button" name="' . $name . '" id="' . $name . '" value="' . $value . '" ';
+        $textfield = '<input type="button" name="' . $name . '" id="' . $name . '" value="' .  wpjobportalphplib::wpJP_htmlspecialchars($value) . '" ';
         if (!empty($extraattr))
             foreach ($extraattr AS $key => $val)
                 $textfield .= ' ' . $key . '="' . $val . '"';
@@ -129,7 +129,7 @@ class WPJOBPORTALformfield {
         $selectfield = '<select name="' . $name . '" id="' . $fieldName . '" ';
         if (!empty($extraattr))
             foreach ($extraattr AS $key => $val) {
-                $selectfield .= ' ' . $key . '="' . $val . '"';
+                $selectfield .= ' ' . $key . '="' .  wpjobportalphplib::wpJP_htmlspecialchars($val) . '"';
             }
         $selectfield .= ' >';
         if ($title != '') {
@@ -160,7 +160,7 @@ class WPJOBPORTALformfield {
         $selectfield = '<select name="' . $name . '" id="' . $name . '" ';
         if (!empty($extraattr))
             foreach ($extraattr AS $key => $val) {
-                $selectfield .= ' ' . $key . '="' . $val . '"';
+                $selectfield .= ' ' . $key . '="' .  wpjobportalphplib::wpJP_htmlspecialchars($val) . '"';
             }
         $selectfield .= ' >';
         if ($title != '') {
@@ -192,7 +192,7 @@ class WPJOBPORTALformfield {
         foreach ($list AS $value => $label) {
             //for admin forms added field wrapper
             $radiobutton .= '<span class="wpjobportal-form-radio-field" >';
-            $radiobutton .= '<input type="radio" name="' . $name . '" id="' . $name . $count . '" value="' . $value . '"';
+            $radiobutton .= '<input type="radio" name="' . $name . '" id="' . $name . $count . '" value="' .  wpjobportalphplib::wpJP_htmlspecialchars($value) . '"';
             if ($defaultvalue == $value)
                 $radiobutton .= ' checked="checked"';
 
@@ -217,7 +217,7 @@ class WPJOBPORTALformfield {
         foreach ($list AS $value => $label) {
             //for admin forms added field wrapper
             $checkbox .= '<span class="wpjobportal-form-chkbox-field" >';
-            $checkbox .= '<input type="checkbox" name="' . $name . '" id="' . $name . $count . '" value="' . $value . '"';
+            $checkbox .= '<input type="checkbox" name="' . $name . '" id="' . $name . $count . '" value="' .  wpjobportalphplib::wpJP_htmlspecialchars($value) . '"';
             if ($defaultvalue == $value)
                 $checkbox .= ' checked="checked"';
             if (!empty($extraattr))

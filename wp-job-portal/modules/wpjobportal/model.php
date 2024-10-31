@@ -21,7 +21,7 @@ class WPJOBPORTALwpjobportalModel {
         wpjobportal::$_data['today_ticket_chart']['title'] = "['".esc_html(__('Today Jobs','wp-job-portal'))."',";
         wpjobportal::$_data['today_ticket_chart']['data'] = "['',";
         foreach($priorities AS $pr){
-            wpjobportal::$_data['today_ticket_chart']['title'] .= "'".wpjobportal::wpjobportal_getVariableValue($pr->title)."',";
+            wpjobportal::$_data['today_ticket_chart']['title'] .= "'".wpjobportalphplib::wpJP_htmlspecialchars(wpjobportal::wpjobportal_getVariableValue($pr->title))."',";
             wpjobportal::$_data['today_ticket_chart']['data'] .= $pr->totaljob.",";
         }
         wpjobportal::$_data['today_ticket_chart']['title'] .= "]";

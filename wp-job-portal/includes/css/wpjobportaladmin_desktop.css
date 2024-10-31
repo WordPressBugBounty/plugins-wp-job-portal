@@ -1503,3 +1503,7 @@ form.wpjobportal-form div.wpjobportal-form-wrapper div.wpjobportal-form-title .w
 /*	text-decoration: none;*/
 	color: #1578e8;
 }
+div.menu-collasped-active div#wpjobportaladmin-leftmenu span.wpjobportaladmin-text{
+	line-height: normal;
+    padding-top: 12px;
+}

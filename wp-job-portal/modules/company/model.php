@@ -1699,15 +1699,18 @@ class WPJOBPORTALCompanyModel {
             }
             if ($wpjobportal_city) {
                 if(is_numeric($wpjobportal_city)){
-                    $inquery .= " AND LOWER(company.city) LIKE '%".esc_sql($wpjobportal_city)."%'";
+                    //$inquery .= " AND LOWER(company.city) LIKE '%".esc_sql($wpjobportal_city)."%'";
+                    $inquery .= " AND FIND_IN_SET('" . esc_sql($wpjobportal_city) . "', company.city) > 0 ";
                 }else{
                     $arr = wpjobportalphplib::wpJP_explode( ',' , esc_sql($wpjobportal_city));
                     $cityQuery = false;
                     foreach($arr as $i){
                         if($cityQuery){
-                            $cityQuery .= " OR LOWER(company.city) LIKE '%".esc_sql($i)."%' ";
+                            //$cityQuery .= " OR LOWER(company.city) LIKE '%".esc_sql($i)."%' ";
+                            $cityQuery .= " OR FIND_IN_SET('" . esc_sql($i) . "', company.city) > 0 ";
                         }else{
-                            $cityQuery = " LOWER(company.city) LIKE '%".esc_sql($i)."%' ";
+                            //$cityQuery = " LOWER(company.city) LIKE '%".esc_sql($i)."%' ";
+                            $cityQuery = " FIND_IN_SET('" . esc_sql($i) . "', company.city) > 0 ";
                         }
                     }
                     $inquery .= " AND ( $cityQuery ) ";

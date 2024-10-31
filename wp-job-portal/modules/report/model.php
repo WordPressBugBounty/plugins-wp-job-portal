@@ -115,8 +115,8 @@ class WPJOBPORTALReportModel {
             $job = $jobs[$i];
             /*$company = $companies[$i];*/
             $resum = $resume[$i];
-            wpjobportal::$_data['catbar1'] .= "['" . $job->cat_title . "', " . $job->jobs . ", '" . $colors[$i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
-            wpjobportal::$_data['catbar2'] .= "['" . $resum->cat_title . "', " . $resum->resumes . ", '" . $colors[$i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
+            wpjobportal::$_data['catbar1'] .= "['" . wpjobportalphplib::wpJP_htmlspecialchars($job->cat_title) . "', " . $job->jobs . ", '" . $colors[$i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
+            wpjobportal::$_data['catbar2'] .= "['" . wpjobportalphplib::wpJP_htmlspecialchars($resum->cat_title) . "', " . $resum->resumes . ", '" . $colors[$i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
             /*wpjobportal::$_data['catpie'] .= "['" . $company->cat_title . "', " . $company->companies . "],";*/
         }
 
@@ -139,9 +139,9 @@ class WPJOBPORTALReportModel {
             $job = $jobs[$i];
             $company = $companies[$i];
             $resum = $resume[$i];
-            wpjobportal::$_data['citybar1'] .= "['" . $job->name . "', " . $job->jobs . ", '" . $colors[$i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
-            wpjobportal::$_data['citybar2'] .= "['" . $resum->name . "', " . $resum->resumes . ", '" . $colors[$i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
-            wpjobportal::$_data['citypie'] .= "['" . $company->name . "', " . $company->companies . "],";
+            wpjobportal::$_data['citybar1'] .= "['" . wpjobportalphplib::wpJP_htmlspecialchars($job->name) . "', " . $job->jobs . ", '" . $colors[$i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
+            wpjobportal::$_data['citybar2'] .= "['" . wpjobportalphplib::wpJP_htmlspecialchars($resum->name) . "', " . $resum->resumes . ", '" . $colors[$i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
+            wpjobportal::$_data['citypie'] .= "['" . wpjobportalphplib::wpJP_htmlspecialchars($company->name) . "', " . $company->companies . "],";
         }
 
         $query = "SELECT jobtype.title,(SELECT COUNT(jobid) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE jobtype = jobtype.id ) AS jobs
@@ -158,8 +158,8 @@ class WPJOBPORTALReportModel {
             if (isset($jobs[$i]) && isset($jobs[$i])) {
                 $job = $jobs[$i];
                 $resum = $resume[$i];
-                wpjobportal::$_data['jobtypebar1'] .= "['" . $job->title . "', " . $job->jobs . ", '" . $colors[$i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
-                wpjobportal::$_data['jobtypebar2'] .= "['" . $resum->title . "', " . $resum->resumes . ", '" . $colors[$i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
+                wpjobportal::$_data['jobtypebar1'] .= "['" . wpjobportalphplib::wpJP_htmlspecialchars($job->title) . "', " . $job->jobs . ", '" . $colors[$i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
+                wpjobportal::$_data['jobtypebar2'] .= "['" . wpjobportalphplib::wpJP_htmlspecialchars($resum->title) . "', " . $resum->resumes . ", '" . $colors[$i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
             }
         }
     }

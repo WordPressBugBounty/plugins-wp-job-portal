@@ -4,7 +4,7 @@ Donate link: https://wpjobportal.com/pricing/
 Tags: job board, job listing, careers, job manager, jobs, company, recruiting, employer, candidate, resume, cv, wp jobs, wp job manager, employees, employment, recruitment, resume,  talent, vacancy application, freelance
 Requires at least: 5.5 
 Tested up to: 6.6.2
-Stable tag: 2.2.0
+Stable tag: 2.2.1
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -238,10 +238,11 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 
 == Changelog ==
+= 2.2.1 =
+* Security update
+
 = 2.2.0 =
 * Menu bug fix.
-
-
 
 = 2.1.9 =
 * Native lanuage support for location data (cities, states, and countries).
