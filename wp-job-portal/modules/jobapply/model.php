@@ -502,7 +502,7 @@ class WPJOBPORTALjobapplyModel {
                         $data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
                         $path = $wpdir['baseurl'] . '/' . $data_directory . '/data/employer/comp_' . $job->companyid . '/logo/' . $job->logofilename;
                     } else {
-                        $path = JOB_PORTAL_THEME_IMAGE . '/default_logo.png';
+                        $path = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer');
                     }
                     if(in_array('multicompany', wpjobportal::$_active_addons)){
                         $mod = "multicompany";
@@ -579,12 +579,11 @@ class WPJOBPORTALjobapplyModel {
                     /*Pop up detail data For Job(Extra Detail)*/
                     $content =  '<div class="wjportal-jobs-list">';
                     $content .= ' <div class="wjportal-jobs-list-top-wrp">';
+                    $path = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer');
                     if ($job->logofilename != "") {
                         $wpdir = wp_upload_dir();
                         $data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
                         $path = $wpdir['baseurl'] . '/' . $data_directory . '/data/employer/comp_' . $job->companyid . '/logo/' . $job->logofilename;
-                    } else {
-                        $path = esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/default_logo.png';
                     }
                     if(in_array('multicompany', wpjobportal::$_active_addons)){
                         $mod = "multicompany";

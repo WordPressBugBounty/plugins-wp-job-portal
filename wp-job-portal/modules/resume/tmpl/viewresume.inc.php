@@ -143,6 +143,8 @@ if(isset(wpjobportal::$_data[0]) && isset(wpjobportal::$_data[0]['personal_secti
                     closePopup(1);
                 });
             }
+            // per listing mode popup conficts with send message popup since they are using same container.
+            jQuery('#payment-popup').hide();
         }
 
           function getPackagePopup(resumeid) {

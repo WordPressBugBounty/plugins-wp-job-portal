@@ -202,10 +202,11 @@ function wpjobportal_add_new_member() {
             // empty last name
             wpjobportal_errors()->add('lastname_empty', esc_html(wpjobportal::wpjobportal_getVariableValue('Please enter a '.$fieldslist['wpjobportal_user_last']->fieldtitle)));
         }
-        if ($photo == ''  && isset($fieldslist['photo']) && $fieldslist['photo']->required == 1) {
-            // empty last name
-            wpjobportal_errors()->add('photo_empty', esc_html(wpjobportal::wpjobportal_getVariableValue('Please enter a '.$fieldslist['photo']->fieldtitle)));
-        }
+        // should not be required
+        // if ($photo == ''  && isset($fieldslist['photo']) && $fieldslist['photo']->required == 1) {
+        //     // empty last name
+        //     wpjobportal_errors()->add('photo_empty', esc_html(wpjobportal::wpjobportal_getVariableValue('Please enter a '.$fieldslist['photo']->fieldtitle)));
+        // }
         if (!is_email($user_email)) {
             //invalid email
             wpjobportal_errors()->add('email_invalid', esc_html(wpjobportal::wpjobportal_getVariableValue('Invalid '.$fieldslist['wpjobportal_user_email']->fieldtitle)));

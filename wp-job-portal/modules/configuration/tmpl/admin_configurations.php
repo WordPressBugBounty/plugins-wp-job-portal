@@ -152,6 +152,16 @@ if (!defined('ABSPATH'))
                 jQuery('.emp_registerlink_field').attr('style','display: none');
                 jQuery('.emp_registerpage_field').attr('style','display: block');
             }
+
+
+            // default image field related js
+
+            jQuery('#wjportal-form-delete-image').click(function(){
+                jQuery('.wjportal-form-image-wrp').slideUp('slow');
+                jQuery('#remove_default_image').val(1);
+            });
+
+
         });
     ";
     wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
@@ -254,7 +264,7 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
         </div>
         <!-- page content -->
         <div id="wpjobportal-admin-wrapper" class="wpjobportal-config-main-wrapper">
-            <form id="wpjobportal-form" class="wpjobportal-configurations" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_configuration&task=saveconfiguration")); ?>">
+            <form id="wpjobportal-form" class="wpjobportal-configurations" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_configuration&task=saveconfiguration")); ?>"  enctype="multipart/form-data">
                     <div class="wpjobportal-configurations-toggle">
                         <img alt="<?php echo esc_html(__('menu','wp-job-portal')); ?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/admin-left-menu/menu.png" />
                         <span class="jslm_text"><?php echo esc_html(__('Select Configuration', 'wp-job-portal')); ?></span>
@@ -506,8 +516,6 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                                 </div>
                                             </div>
                                         </div>
-
-
                                     </div>
                                     <!-- MASSAGES -->
                                     <?php if(in_array('message', wpjobportal::$_active_addons)){ ?>
@@ -595,6 +603,39 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                                 <?php echo wp_kses(WPJOBPORTALformfield::text('pagination_default_page_size', wpjobportal::$_data[0]['pagination_default_page_size'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                                                 <div class="wpjobportal-config-description">
                                                     <?php echo esc_html(__('Maximum number of records per page', 'wp-job-portal')); ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="wpjobportal-config-row">
+                                            <div class="wpjobportal-config-title">
+                                                <?php echo esc_html(__('Default Image For WP Job Portal', 'wp-job-portal')); ?>
+                                            </div>
+                                            <div class="wpjobportal-config-value">
+                                                <input id="default_image" name="default_image" type="file">
+                                                <input id="remove_default_image" name="remove_default_image" type="hidden" value="0">
+                                                <div class="wpjobportal-config-description wpjobportal-config-default-image-wrap ">
+                                                    <?php
+                                                    if (isset(wpjobportal::$_data[0]['default_image']) && wpjobportal::$_data[0]['default_image'] != "") {
+                                                        $data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue('data_directory');
+                                                        $wpdir = wp_upload_dir();
+                                                        $path = $wpdir['baseurl'] . '/' . $data_directory . '/data/default_image/' . wpjobportal::$_data[0]['default_image'];
+                                                        $class = '';
+                                                    }else{
+                                                        $path = '';
+                                                        $class = 'none';
+                                                    }?>
+                                                    <div class="wjportal-form-image-wrp" style="display:<?php echo esc_attr($class); ?> ;">
+                                                        <img class="wpjobportal-config-default-image" src="<?php echo esc_url($path); ?>" id="rs_photo" />
+                                                        <img id="wjportal-form-delete-image" src="<?php echo esc_html(WPJOBPORTAL_PLUGIN_URL);?>includes/images/no.png" alt="<?php echo esc_html(__('cross','wp-job-portal')); ?>">
+                                                    </div>
+                                                    <?php
+                                                    $logoformat = wpjobportal::$_config->getConfigValue('image_file_type');
+                                                    $maxsize = wpjobportal::$_config->getConfigValue('image_file_size');
+                                                    echo '<div class="wjportal-form-help-txt">'.esc_html($logoformat).'</div>';
+                                                    echo '<div class="wjportal-form-help-txt">'.esc_html(__("Maximum","wp-job-portal")).' '.esc_html($maxsize).' Kb'.'</div>';
+                                                    ?>
+
+                                                    <?php echo esc_html(__('This image will shown as default image for entities.', 'wp-job-portal')) ." '".esc_html(__('job by type', 'wp-job-portal')) ."' ". esc_html(__('page', 'wp-job-portal')) .'.'; ?>
                                                 </div>
                                             </div>
                                         </div>

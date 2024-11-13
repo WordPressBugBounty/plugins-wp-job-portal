@@ -79,6 +79,9 @@ class WPJOBPORTALconfigurationModel {
         $error = false;
         //DB class limitations
         foreach ($data as $key => $value) {
+            if ($key == 'default_image') { // ignore saving default image from here
+                continue;
+            }
 			if ($key == 'data_directory') {
 				$data_directory = $value;
 				if(empty($data_directory)){
@@ -112,10 +115,45 @@ class WPJOBPORTALconfigurationModel {
                 $error = true;
             }
         }
+
+        // upload deault image code
+        // removing file
+        if(isset($data['remove_default_image']) && $data['remove_default_image'] == 1){
+            $this->deletedefaultImageModel();
+        }
+        // uploading (attaching) file
+        if(isset($_FILES['default_image'])){// min field issue
+            if ($_FILES['default_image']['size'] > 0) {
+                // if(!isset($data['remove_default_image'])){
+                //     $this->deletedefaultImageModel();
+                // }
+                $res = WPJOBPORTALincluder::getObjectClass('uploads')->uploadDeafultImage();
+                if ($res == 6){
+                    $msg = WPJOBPORTALMessages::getMessage(WPJOBPORTAL_FILE_TYPE_ERROR, '');
+                    WPJOBPORTALMessages::setLayoutMessage($msg['message'], $msg['status'],$this->getMessagekey());
+                }
+                if($res == 5){
+                    $msg = WPJOBPORTALMessages::getMessage(WPJOBPORTAL_FILE_SIZE_ERROR, '');
+                    WPJOBPORTALMessages::setLayoutMessage($msg['message'], $msg['status'],$this->getMessagekey());
+                }
+            }
+        }
         if ($error)
             return WPJOBPORTAL_SAVE_ERROR;
         else
             return WPJOBPORTAL_SAVED;
+    }
+
+    // remove default image file and configuration value
+    private function deletedefaultImageModel(){
+        $data_directory = wpjobportal::$_config->getConfigValue('data_directory');
+        $wpdir = wp_upload_dir();
+        $path = $wpdir['basedir'] . '/' . $data_directory . '/data/default_image/';
+        $files = glob($path . '/*.*');
+        array_map('wp_delete_file', $files);    // delete all file in the direcoty
+        $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_config` SET configvalue = '' WHERE configname = 'default_image'";
+        wpjobportal::$_db->query($query);
+        return true;
     }
 
     function getConfigByFor($configfor) {

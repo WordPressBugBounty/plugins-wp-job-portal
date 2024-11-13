@@ -326,7 +326,7 @@ if($mapfield):
                     onAdd: function(item) {
                         if (item.id > 0){";
                         if($mapfield):
-                            if($mapfield->published == 1){ 
+                            if($mapfield->published == 1 && $mappingservice != 'osm'){
                                 $inline_js_script .= "addMarkerOnMap(item);";
                             }
                         endif; 
@@ -370,8 +370,11 @@ if($mapfield):
                                 },1500);
                         }
                     },
-                    onDelete: function(item){
-                        identifyMarkerForDelete(item);// delete marker associted with this token input value.
+                    onDelete: function(item){";
+                        if($mappingservice != 'osm'){
+                            $inline_js_script .= " identifyMarkerForDelete(item);// delete marker associted with this token input value.";
+                        }
+                         $inline_js_script .= "
                     }";
                 }
                 $inline_js_script .= "
@@ -400,7 +403,7 @@ if($mapfield):
                         if (item.id > 0){
                             ";
                         if($mapfield):
-                            if($mapfield->published == 1){
+                            if($mapfield->published == 1  && $mappingservice != 'osm'){
                                 $inline_js_script .= "addMarkerOnMap(item);";
                             }
                         endif;
@@ -444,8 +447,12 @@ if($mapfield):
                                 },1000);
                         }
                     },
-                    onDelete: function(item){
-                        identifyMarkerForDelete(item);// delete marker associted with this token input value.
+                    onDelete: function(item){";
+                        if($mappingservice != 'osm'){
+
+                        $inline_js_script .= " identifyMarkerForDelete(item);// delete marker associted with this token input value.";
+                        }
+                        $inline_js_script .= "
                     }";
                     }
                     $inline_js_script .= "

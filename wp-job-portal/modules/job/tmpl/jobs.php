@@ -22,13 +22,15 @@ if ($labelinlisting != 1)
         ?>
     </div>
     <div class="wjportal-newest-jobs">
-        <div class="wjportal-filter-search-main-wrp">
-            <form class="wjportal-form-wrp" id="job_form" method="post" action="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'jobs'))); ?>">
-                <?php
-                    WPJOBPORTALincluder::getTemplate('job/views/frontend/filter',array('layout' => 'newestjobsfilter'));
-                ?>
-            </form>
-        </div>
+        <?php if(empty(wpjobportal::$_data['shortcode_option_hide_filter'])){ ?>
+            <div class="wjportal-filter-search-main-wrp">
+                <form class="wjportal-form-wrp" id="job_form" method="post" action="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'jobs'))); ?>">
+                    <?php
+                        WPJOBPORTALincluder::getTemplate('job/views/frontend/filter',array('layout' => 'newestjobsfilter'));
+                    ?>
+                </form>
+            </div>
+        <?php } ?>
         <div class="wjportal-jobs-list-wrapper">
             <?php
                 if (!empty($jobs)) {
@@ -39,11 +41,14 @@ if ($labelinlisting != 1)
                             'control' => ''
                         ));
                     }
-                    if (wpjobportal::$_data[1]) {
-                        WPJOBPORTALincluder::getTemplate('templates/pagination',array(
-                            'pagination' => wpjobportal::$_data[1],
-                            'module' => 'job'
-                        ));
+
+                    if(empty(wpjobportal::$_data['shortcode_option_no_of_jobs'])){ // if no_of_jobs is set in shortcode dont show pagiantion
+                        if (wpjobportal::$_data[1]) {
+                            WPJOBPORTALincluder::getTemplate('templates/pagination',array(
+                                'pagination' => wpjobportal::$_data[1],
+                                'module' => 'job'
+                            ));
+                        }
                     }
                 } else {
                     $msg = esc_html(__('No record found','wp-job-portal'));

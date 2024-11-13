@@ -1381,7 +1381,7 @@ class WPJOBPORTALCompanyModel {
     }
 
     function getLogoUrl($companyid,$logofilename){
-        $logourl = esc_url(WPJOBPORTAL_PLUGIN_URL).'/includes/images/default_logo.png';
+        $logourl = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer');
         if(is_numeric($companyid) && !empty($logofilename)){
             $wpdir = wp_upload_dir();
             $dir = wpjobportal::$_config->getConfigValue('data_directory');
@@ -1699,17 +1699,14 @@ class WPJOBPORTALCompanyModel {
             }
             if ($wpjobportal_city) {
                 if(is_numeric($wpjobportal_city)){
-                    //$inquery .= " AND LOWER(company.city) LIKE '%".esc_sql($wpjobportal_city)."%'";
                     $inquery .= " AND FIND_IN_SET('" . esc_sql($wpjobportal_city) . "', company.city) > 0 ";
                 }else{
                     $arr = wpjobportalphplib::wpJP_explode( ',' , esc_sql($wpjobportal_city));
                     $cityQuery = false;
                     foreach($arr as $i){
                         if($cityQuery){
-                            //$cityQuery .= " OR LOWER(company.city) LIKE '%".esc_sql($i)."%' ";
                             $cityQuery .= " OR FIND_IN_SET('" . esc_sql($i) . "', company.city) > 0 ";
                         }else{
-                            //$cityQuery = " LOWER(company.city) LIKE '%".esc_sql($i)."%' ";
                             $cityQuery = " FIND_IN_SET('" . esc_sql($i) . "', company.city) > 0 ";
                         }
                     }
@@ -1723,25 +1720,55 @@ class WPJOBPORTALCompanyModel {
             if($only_featured_companies == 1){
                 $inquery .= " AND company.isfeaturedcompany = 1 AND DATE(company.endfeatureddate) >= CURDATE() ";
             }
+
+            // this function is used for more than one case ?? not sure atm!!
+
+            // by default these options are set to 0(so the data will be visible.)
+            wpjobportal::$_data['shortcode_option_hide_company_logo'] = 0;
+            wpjobportal::$_data['shortcode_option_hide_company_name'] = 0;
+
+            wpjobportal::$_ordering = "company.created DESC"; // defult value for ordering(handling without shortocde calls to this function)
+            $noofcompanies = '';
+            $module_name = WPJOBPORTALrequest::getVar('wpjobportalme');
+            if($module_name == 'allcompanies'){
+                //shortcode attribute proceesing (filter,ordering,no of jobs)
+                $attributes_query = $this->processShortcodeAttributesCompany();
+                if($attributes_query != ''){
+                    $inquery .= $attributes_query;
+                }
+                if(isset(wpjobportal::$_data['shortcode_option_no_of_companies']) && wpjobportal::$_data['shortcode_option_no_of_companies'] > 0){
+                    $noofcompanies = wpjobportal::$_data['shortcode_option_no_of_companies'];
+                }
+            }
+
             wpjobportal::$_data['filter']['wpjobportal-city'] = WPJOBPORTALincluder::getJSModel('common')->getCitiesForFilter($wpjobportal_city);
             wpjobportal::$_data['filter']['searchcompany'] = $searchcompany;
         // this field does not exsist
             //wpjobportal::$_data['filter']['searchcompcategory'] = $searchcompcategory;
 
-            //Pagination
-            $query = "SELECT COUNT(id) FROM " . wpjobportal::$_db->prefix . "wj_portal_companies AS company WHERE status = 1";
-            $query .=$inquery;
 
-            $total = wpjobportaldb::get_var($query);
-            wpjobportal::$_data['total'] = $total;
-            wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($total);
+            //Pagination
+            if($noofcompanies == ''){
+                $query = "SELECT COUNT(id) FROM " . wpjobportal::$_db->prefix . "wj_portal_companies AS company WHERE status = 1";
+                $query .=$inquery;
+
+                $total = wpjobportaldb::get_var($query);
+                wpjobportal::$_data['total'] = $total;
+                wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($total);
+            }
             //Data
             $query = "SELECT company.id,company.name,company.logofilename,CONCAT(company.alias,'-',company.id) AS aliasid,company.created,company.serverid,company.city,company.status,company.isfeaturedcompany
                      ,company.endfeatureddate,company.params,company.url
                     FROM " . wpjobportal::$_db->prefix . "wj_portal_companies AS company
                     WHERE company.status = 1 ";
-            $query .=$inquery;
-            $query .= " ORDER BY company.created DESC LIMIT " . WPJOBPORTALpagination::$_offset . "," . WPJOBPORTALpagination::$_limit;
+            $query .= $inquery;
+            $query .= " ORDER BY ".wpjobportal::$_ordering;
+            if($noofcompanies == ''){
+                $query .= " LIMIT " . WPJOBPORTALpagination::$_offset . "," . WPJOBPORTALpagination::$_limit;
+            }else{
+                $query.= " LIMIT " . esc_sql($noofcompanies);
+            }
+
             wpjobportal::$_data[0] = wpjobportaldb::get_results($query);
             $data = array();
             foreach (wpjobportal::$_data[0] AS $d) {
@@ -1754,5 +1781,135 @@ class WPJOBPORTALCompanyModel {
             return;
         }
 
+        function processShortcodeAttributesCompany(){
+            $inquery = '';
+            // cities
+            $cities_list = WPJOBPORTALrequest::getVar('locations', 'shortcode_option', false);
+            if ($cities_list && $cities_list !='' ) { // not empty check
+                $city_array = wpjobportalphplib::wpJP_explode( ',' , esc_sql($cities_list)); // handle multi case
+                $cityQuery = false;
+                foreach($city_array as $city_id){ // loop over all ids
+                    if($city_id != ''){ // null check
+                        $city_id = trim($city_id);
+                    }
+                    if(!is_numeric($city_id)){ // numric check
+                        continue;
+                    }
+                    if($cityQuery){
+                        $cityQuery .= " OR FIND_IN_SET('" . esc_sql($city_id) . "', company.city) > 0 ";
+                    }else{
+                        $cityQuery = " FIND_IN_SET('" . esc_sql($city_id) . "', company.city) > 0 ";
+                    }
+                }
+                $inquery .= " AND ( $cityQuery ) ";
+            }
+
+            // employers
+            $employer_list = WPJOBPORTALrequest::getVar('employers', 'shortcode_option', false);
+            if ($employer_list && $employer_list !='' ) { // not empty check
+                $employer_array = wpjobportalphplib::wpJP_explode( ',' , esc_sql($employer_list)); // handle multi case
+                $employerQuery = false;
+                foreach($employer_array as $employer_id){ // loop over all ids
+                    if($employer_id != ''){ // null check
+                        $employer_id = trim($employer_id);
+                    }
+                    if(!is_numeric($employer_id)){ // numric check
+                        continue;
+                    }
+                    if($employerQuery){
+                        $employerQuery .= " OR company.uid  = " . esc_sql($employer_id);
+                    }else{
+                        $employerQuery = " company.uid  =  " . esc_sql($employer_id);
+                    }
+                }
+                $inquery .= " AND ( $employerQuery ) ";
+            }
+
+            // company_ids
+            $company_list = WPJOBPORTALrequest::getVar('ids', 'shortcode_option', false);
+            if ($company_list && $company_list !='' ) { // not empty check
+                $company_array = wpjobportalphplib::wpJP_explode( ',' , esc_sql($company_list)); // handle multi case
+                $companyQuery = false;
+                foreach($company_array as $company_id){ // loop over all ids
+                    if($company_id != ''){ // null check
+                        $company_id = trim($company_id);
+                    }
+                    if(!is_numeric($company_id)){ // numric check
+                        continue;
+                    }
+                    if($companyQuery){
+                        $companyQuery .= " OR company.id  = " . esc_sql($company_id);
+                    }else{
+                        $companyQuery = " company.id  =  " . esc_sql($company_id);
+                    }
+                }
+                $inquery .= " AND ( $companyQuery ) ";
+            }
+
+
+            //handle attirbute for ordering
+            $sorting = WPJOBPORTALrequest::getVar('sorting', 'shortcode_option', false);
+            if($sorting && $sorting != ''){
+                $this->makeOrderingQueryFromShortcodeAttributesCompany($sorting);
+            }
+
+            //handle attirbute for no of jobs
+            $no_of_companies = WPJOBPORTALrequest::getVar('no_of_companies', 'shortcode_option', false);
+            if($no_of_companies && $no_of_companies != ''){
+                wpjobportal::$_data['shortcode_option_no_of_companies'] = (int) $no_of_companies;
+            }
+
+
+            // handle visibilty of data based on shortcode
+            $this->handleDataVisibilityByShortcodeAttributesCompany();
+            return $inquery;
+
+        }
+
+
+        function makeOrderingQueryFromShortcodeAttributesCompany($sorting) {
+            switch ($sorting) {
+                case "name_desc":
+                    wpjobportal::$_ordering = "company.name DESC";
+                    break;
+                case "name_asc":
+                    wpjobportal::$_ordering = "company.name ASC";
+                    break;
+                case "posted_desc":
+                    wpjobportal::$_ordering = "company.created DESC";
+                    break;
+                case "posted_asc":
+                    wpjobportal::$_ordering = "company.created ASC";
+                    break;
+            }
+            return;
+        }
+
+        function handleDataVisibilityByShortcodeAttributesCompany() {
+            /*
+                'hide_filter' => '',
+                'hide_filter_job_title' => '',
+                'hide_filter_job_location' => '',
+            */
+
+            //handle attirbute for hide company logo on all company listing
+            $hide_company_logo = WPJOBPORTALrequest::getVar('hide_company_logo', 'shortcode_option', false);
+            if($hide_company_logo && $hide_company_logo != ''){
+                wpjobportal::$_data['shortcode_option_hide_company_logo'] = 1;
+            }
+
+            //handle attirbute for hide company name on all company listing
+            $hide_company_name = WPJOBPORTALrequest::getVar('hide_company_name', 'shortcode_option', false);
+            if($hide_company_name && $hide_company_name != ''){
+                wpjobportal::$_data['shortcode_option_hide_company_name'] = 1;
+            }
+
+            //handle attirbute for hide company name on all company listing
+            $hide_company_location = WPJOBPORTALrequest::getVar('hide_company_location', 'shortcode_option', false);
+            if($hide_company_location && $hide_company_location != ''){
+                wpjobportal::$_data['shortcode_option_hide_company_location'] = 1;
+            }
+
+        }
 }
 ?>

@@ -434,12 +434,21 @@ $theme_chk = wpjobportal::$theme_chk;
                                 </h3>
                                 <div class="wpjobportal-config-row">
                                     <div class="wpjobportal-config-title">
+                                        <?php echo esc_html(__('Profile Section', 'wp-job-portal')); ?>
+                                    </div>
+                                    <div class="wpjobportal-config-value">
+                                        <?php echo wp_kses(WPJOBPORTALformfield::select('job_seeker_profile_section', $showhide, wpjobportal::$_data[0]['job_seeker_profile_section']),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                    </div>
+                                </div>
+                                <div class="wpjobportal-config-row">
+                                    <div class="wpjobportal-config-title">
                                         <?php echo esc_html(__('Job Seeker Stat Boxes', 'wp-job-portal')); ?>
                                     </div>
                                     <div class="wpjobportal-config-value">
                                         <?php echo wp_kses(WPJOBPORTALformfield::select('jobseekerstatboxes', $showhide, wpjobportal::$_data[0]['jobseekerstatboxes']),WPJOBPORTAL_ALLOWED_TAGS); ?>
                                     </div>
                                 </div>
+
                                 <?php if($theme_chk == 0){ ?>
                                     <div class="wpjobportal-config-row">
                                         <div class="wpjobportal-config-title">

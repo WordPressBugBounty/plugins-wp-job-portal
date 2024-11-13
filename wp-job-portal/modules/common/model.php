@@ -1442,5 +1442,24 @@ class WPJOBPORTALCommonModel {
         wpjobportal::$_search['search_filter']['sorton'] = isset($jsjp_search_array['sorton']) ? $jsjp_search_array['sorton'] : null;
         wpjobportal::$_search['search_filter']['sortby'] = isset($jsjp_search_array['sortby']) ? $jsjp_search_array['sortby'] : null;
     }
+
+    function getDefaultImage($role){
+        // job seeker deafult image
+        $img_path = esc_url(WPJOBPORTAL_PLUGIN_URL) . "includes/images/users.png";
+
+        // employer default image
+        if($role == 'employer'){
+            $img_path = esc_url(WPJOBPORTAL_PLUGIN_URL) . "includes/images/default_logo.png";
+        }
+
+        // admin set image
+        if(!empty(wpjobportal::$_configuration['default_image'])){
+            $data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
+            $wpdir = wp_upload_dir();
+            $img_path = $wpdir['baseurl'] . '/' . $data_directory . '/data/default_image/' . wpjobportal::$_configuration['default_image'];
+        }
+
+        return $img_path;
+    }
 }
 ?>

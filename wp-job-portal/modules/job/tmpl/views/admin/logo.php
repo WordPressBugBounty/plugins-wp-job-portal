@@ -11,11 +11,10 @@ switch ($layout) {
 		if(!isset($company_fields['logo'])){
 			break;
 		}
+        $logo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer');
 		if (isset($job->logo) && $job->logo != '') {
 	        $wpdir = wp_upload_dir();
 	        $logo = $wpdir['baseurl'] . '/' . $data_directory.'/data/employer/comp_'.$job->companyid.'/logo/'. $job->logo;
-	    } else {
-	        $logo = esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/default_logo.png';
 	    }
 		$html.= '<div class="wpjobportal-jobs-logo">
 					<a href='. esc_url_raw(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=formjob&wpjobportalid='.esc_attr($job->id))).'>
@@ -27,12 +26,11 @@ switch ($layout) {
 		if(!isset($company_fields['logo'])){
 			break;
 		}
+        $path = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer');
 	 	if ($job->logofilename != "") {
             $data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
             $wpdir = wp_upload_dir();
             $path = $wpdir['baseurl'] . '/' . $data_directory . '/data/employer/comp_' . $job->companyid . '/logo/' . $job->logofilename;
-        } else {
-            $path = esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/default_logo.png';
         }
 		$html.='<div class="wpjobportal-jobs-logo">
                     <a href='. esc_url_raw(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=formjob&wpjobportalid='.esc_attr($job->id).'&isqueue=1')).'>

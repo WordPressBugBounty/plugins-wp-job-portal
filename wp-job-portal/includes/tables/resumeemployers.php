@@ -36,4 +36,3 @@ class WPJOBPORTALresumeemployersTable extends WPJOBPORTALtable {
 }
 
 ?>
-    

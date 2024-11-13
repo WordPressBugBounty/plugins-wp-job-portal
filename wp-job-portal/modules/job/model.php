@@ -1251,6 +1251,11 @@ class WPJOBPORTALjobModel {
             $data['uid'] = $user->uid();
         }
 
+        // handle email alert for base version job apply
+        if(!in_array('jobalert', wpjobportal::$_active_addons)){
+            $data['sendemail'] = 1; // setting this one to make sure for base plugin the email alert is based on admin email settings
+        }
+
 // already satinzed above
     	$data = wpjobportal::$_common->stripslashesFull($data);
     	$description = WPJOBPORTALrequest::getVar('description','post','','',1);// sanitizing description data
@@ -2048,11 +2053,28 @@ class WPJOBPORTALjobModel {
                     }
                 }
                 break;
+            case 'job_cities':
+                foreach ($array as $item) {
+                    if (is_numeric($item)) {
+                        //$qa[] = "job.city LIKE '%" . esc_sql($item) . "%'";
+                        $qa[] = "  FIND_IN_SET('" . esc_sql($item) . "', job.city) > 0 ";
+                    }
+                }
+                break;
             case 'tags':
                 $array = wpjobportalphplib::wpJP_explode(',', $array);
                 foreach ($array as $item) {
                     $qa[] = "job.tags LIKE '%" . esc_sql($item) . "%'";
                 }
+                break;
+            case 'job_tags':
+                foreach ($array as $item) {
+                    $qa[] = "job.tags LIKE '%" . esc_sql($item) . "%'";
+                }
+                break;
+            case 'jobid': // new case for shortcode atttributes
+                $job_id_list = implode(',', $array);
+                $qa[] = "  job.id IN (" . esc_sql($job_id_list) . ") ";
                 break;
             default:
                 return false;
@@ -2087,6 +2109,212 @@ class WPJOBPORTALjobModel {
         }
         return false;
     }
+
+    private function processShortcodeAttributes() {
+        $inquery = "";
+
+        /* shortcode attributes
+    'companies' => '',
+    'categories' => '',
+    'types' => '',
+    'locations' => '',
+    'ids' => '',
+         */
+
+        // comapnies
+        $company_list = WPJOBPORTALrequest::getVar('companies', 'shortcode_option', false);
+        if ($company_list && $company_list !='' ) {
+            $company_array = explode(',', $company_list);// attribute contains comma seprated list. converting it into array to use exsisting code
+            $res = $this->makeQueryFromArray('company', $company_array);
+            if ($res){
+                $inquery .= " AND ( " . esc_sql($res ). " )";
+            }
+        }
+
+        // cateogries
+        $category_list = WPJOBPORTALrequest::getVar('categories', 'shortcode_option', false);
+        if ($category_list && $category_list !='' ) {
+            $category_array = explode(',', $category_list);// attribute contains comma seprated list. converting it into array to use exsisting code
+            $res = $this->makeQueryFromArray('category', $category_array);
+            if ($res){
+                $inquery .= " AND ( " . esc_sql($res ). " )";
+            }
+        }
+
+
+        // jobtypes
+        $jobtype_list = WPJOBPORTALrequest::getVar('types', 'shortcode_option', false);
+        if ($jobtype_list && $jobtype_list !='') {
+            $jobtype_array = explode(',', $jobtype_list);// attribute contains comma seprated list. converting it into array to use exsisting code
+            $res = $this->makeQueryFromArray('jobtype', $jobtype_array);
+            if ($res){
+                $inquery .= " AND ( " . esc_sql($res ). " )";
+            }
+        }
+
+        // cities
+        $cities_list = WPJOBPORTALrequest::getVar('locations', 'shortcode_option', false);
+        if ($cities_list && $cities_list !='' ) {
+            $cities_array = explode(',', $cities_list);// attribute contains comma seprated list. converting it into array to use exsisting code
+            $res = $this->makeQueryFromArray('job_cities', $cities_array);
+            if ($res){
+                $inquery .= " AND ( " . $res. " )";// $res has quotes can not esc_sql it
+            }
+        }
+
+        // job ids
+        $job_id_list = WPJOBPORTALrequest::getVar('ids', 'shortcode_option', false);
+        if ($job_id_list && $job_id_list !='' ) {
+            $job_id_array = explode(',', $job_id_list);// attribute contains comma seprated list. converting it into array to use exsisting code
+            $res = $this->makeQueryFromArray('jobid', $job_id_array);
+            if ($res){
+                $inquery .= " AND ( " . $res. " )";// $res has quotes can not esc_sql it
+            }
+        }
+
+
+        // career levels
+        $careerlevel_list = WPJOBPORTALrequest::getVar('careerlevels', 'shortcode_option', false);
+        if ($careerlevel_list && $careerlevel_list !='' ) {
+            $careerlevel_array = explode(',', $careerlevel_list);// attribute contains comma seprated list. converting it into array to use exsisting code
+            $res = $this->makeQueryFromArray('careerlevel', $careerlevel_array);
+            if ($res){
+                $inquery .= " AND ( " . esc_sql($res ). " )";
+            }
+        }
+
+        // job statuses
+        $jobstatus_list = WPJOBPORTALrequest::getVar('jobstatuses', 'shortcode_option', false);
+        if ($jobstatus_list && $jobstatus_list !='' ) {
+            $jobstatus_array = explode(',', $jobstatus_list);// attribute contains comma seprated list. converting it into array to use exsisting code
+            $res = $this->makeQueryFromArray('jobstatus', $jobstatus_array);
+            if ($res){
+                $inquery .= " AND ( " . esc_sql($res ). " )";
+            }
+        }
+
+
+        // tags
+        $tags_list = WPJOBPORTALrequest::getVar('tags', 'shortcode_option', false);
+        if ($tags_list && $tags_list !='' ) {
+            $tags_array = explode(',', $tags_list);// attribute contains comma seprated list. converting it into array to use exsisting code
+            $res = $this->makeQueryFromArray('job_tags', $tags_array);
+            if ($res){
+                $inquery .= " AND ( " . $res. " )";// $res has quotes can not esc_sql it
+            }
+        }
+
+        //handle attirbute for ordering
+        $sorting = WPJOBPORTALrequest::getVar('sorting', 'shortcode_option', false);
+        if($sorting && $sorting != ''){
+            $this->makeOrderingQueryFromShortcodeAttributes($sorting);
+            wpjobportal::$_data['shortcode_option_sorting'] = $sorting;
+        }
+
+        //handle attirbute for no of jobs
+        $no_of_jobs = WPJOBPORTALrequest::getVar('no_of_jobs', 'shortcode_option', false);
+        if($no_of_jobs && $no_of_jobs != ''){
+            wpjobportal::$_data['shortcode_option_no_of_jobs'] = (int) $no_of_jobs;
+        }
+
+
+        // handle visibilty of data based on shortcode
+        $this->handleDataVisibilityByShortcodeAttributes();
+
+        return $inquery;
+    }
+
+
+    function handleDataVisibilityByShortcodeAttributes() {
+        /*
+            'hide_filter' => '',
+            'hide_filter_job_title' => '',
+            'hide_filter_job_location' => '',
+        */
+
+        //handle attirbute for hide filter on job listing
+        $hide_filter = WPJOBPORTALrequest::getVar('hide_filter', 'shortcode_option', false);
+        if($hide_filter && $hide_filter != ''){
+            wpjobportal::$_data['shortcode_option_hide_filter'] = 1;
+        }
+
+        //handle attirbute for hide job title filter on job listing
+        $hide_filter_job_title = WPJOBPORTALrequest::getVar('hide_filter_job_title', 'shortcode_option', false);
+        if($hide_filter_job_title && $hide_filter_job_title != ''){
+            wpjobportal::$_data['shortcode_option_hide_filter_job_title'] = 1;
+        }
+
+        //handle attirbute for hide job location filter on job listing
+        $hide_filter_job_location = WPJOBPORTALrequest::getVar('hide_filter_job_location', 'shortcode_option', false);
+        if($hide_filter_job_location && $hide_filter_job_location != ''){
+            wpjobportal::$_data['shortcode_option_hide_filter_job_location'] = 1;
+        }
+
+        //handle attirbute for hide company logo on job listing
+        $hide_company_logo = WPJOBPORTALrequest::getVar('hide_company_logo', 'shortcode_option', false);
+        if($hide_company_logo && $hide_company_logo != ''){
+            wpjobportal::$_data['shortcode_option_hide_company_logo'] = 1;
+        }
+
+        //handle attirbute for hide company name on job listing
+        $hide_company_name = WPJOBPORTALrequest::getVar('hide_company_name', 'shortcode_option', false);
+        if($hide_company_name && $hide_company_name != ''){
+            wpjobportal::$_data['shortcode_option_hide_company_name'] = 1;
+        }
+
+    }
+
+    function makeOrderingQueryFromShortcodeAttributes($sorting) {
+        switch ($sorting) {
+            case "title_desc":
+                wpjobportal::$_ordering = "job.title DESC";
+                break;
+            case "title_asc":
+                wpjobportal::$_ordering = "job.title ASC";
+                break;
+            case "category_desc":
+                wpjobportal::$_ordering = "cat.cat_title DESC";
+                break;
+            case "category_asc":
+                wpjobportal::$_ordering = "cat.cat_title ASC";
+                break;
+            case "jobtype_desc":
+                wpjobportal::$_ordering = "jobtype.title DESC";
+                break;
+            case "jobtype_asc":
+                wpjobportal::$_ordering = "jobtype.title ASC";
+                break;
+            case "jobstatus_desc":
+                wpjobportal::$_ordering = "job.status DESC";
+                break;
+            case "jobstatus_asc":
+                wpjobportal::$_ordering = "job.status ASC";
+                break;
+            case "company_desc":
+                wpjobportal::$_ordering = "company.name DESC";
+                break;
+            case "company_asc":
+                wpjobportal::$_ordering = "company.name ASC";
+                break;
+            case "salary_desc":
+                wpjobportal::$_ordering = "srfrom.rangestart DESC";
+                break;
+            case "salary_asc":
+                wpjobportal::$_ordering = "srfrom.rangestart ASC";
+                break;
+            case "posted_desc":
+                wpjobportal::$_ordering = "job.created DESC";
+                break;
+            case "posted_asc":
+                wpjobportal::$_ordering = "job.created ASC";
+                break;
+        }
+
+        return;
+    }
+
+
+
     private function getRefinedJobs($searchajax = null) {
         $inquery = "";
         if($searchajax == null){
@@ -2502,7 +2730,6 @@ class WPJOBPORTALjobModel {
             }
         }
 
-
         $state = WPJOBPORTALrequest::getVar('state','GET');
         if($state && is_numeric($state)){
             $inquery .= " AND state.id = ".esc_sql($state);
@@ -2515,7 +2742,6 @@ class WPJOBPORTALjobModel {
         //local vars
         $simplejobs = array();
 
-
         // featuerd job short code parameter
         $featured_flag = WPJOBPORTALrequest::getVar('show_only_featured_jobs','',0);
         if($featured_flag == 1){
@@ -2526,22 +2752,44 @@ class WPJOBPORTALjobModel {
         if($only_featured == 1){
             $inquery .= ' AND job.isfeaturedjob = 1 AND DATE(job.endfeatureddate) >= CURDATE() ';
         }
+
+        //shortcode attribute proceesing (filter,ordering,no of jobs)
+        // by detafult set these values to 0 to make sure that these sections are visble
+        wpjobportal::$_data['shortcode_option_hide_filter'] = 0;
+        wpjobportal::$_data['shortcode_option_hide_filter_job_title'] = 0;
+        wpjobportal::$_data['shortcode_option_hide_filter_job_location'] = 0;
+        wpjobportal::$_data['shortcode_option_hide_company_logo'] = 0;
+        wpjobportal::$_data['shortcode_option_hide_company_name'] = 0;
+
+        $attributes_query = $this->processShortcodeAttributes();
+        if($attributes_query != ''){
+            $inquery .= $attributes_query;
+        }
+
+
+        $noofjobs = '';
+        if(!empty(wpjobportal::$_data['shortcode_option_no_of_jobs'])){
+            $noofjobs = wpjobportal::$_data['shortcode_option_no_of_jobs'];
+        }
+
         $curdate = gmdate('Y-m-d');
 
         //Pagination
-        $query = "SELECT COUNT(DISTINCT job.id)
-        FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-        JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
-        LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_jobcities` AS jobcity ON jobcity.jobid = job.id
-        LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_cities` AS city ON city.id = jobcity.cityid
-        LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_states` AS state ON state.countryid = city.countryid
-        LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_countries` AS country ON country.id = city.countryid
-        LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
-        WHERE job.status = 1 AND DATE(job.startpublishing) <= '".$curdate."' AND DATE(job.stoppublishing) >= '".$curdate."'";
-        $query .= $inquery;
-        $total = wpjobportaldb::get_var($query);
-        wpjobportal::$_data['total'] = $total;
-        wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($total,'jobs');
+        if($noofjobs == ''){ // if no of jobs not set in shortcode then do the pagiatnion total
+            $query = "SELECT COUNT(DISTINCT job.id)
+            FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
+            JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
+            LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_jobcities` AS jobcity ON jobcity.jobid = job.id
+            LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_cities` AS city ON city.id = jobcity.cityid
+            LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_states` AS state ON state.countryid = city.countryid
+            LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_countries` AS country ON country.id = city.countryid
+            LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
+            WHERE job.status = 1 AND DATE(job.startpublishing) <= '".$curdate."' AND DATE(job.stoppublishing) >= '".$curdate."'";
+            $query .= $inquery;
+            $total = wpjobportaldb::get_var($query);
+            wpjobportal::$_data['total'] = $total;
+            wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($total,'jobs');
+        }
         //Data/Data
         $query = "SELECT DISTINCT job.id AS jobid,job.id AS id,job.tags AS jobtags,job.title,job.created,job.city,job.endfeatureddate,job.isfeaturedjob,job.status,job.startpublishing,job.stoppublishing,job.currency,
         CONCAT(job.alias,'-',job.id) AS jobaliasid,job.noofjobs,
@@ -2558,9 +2806,18 @@ class WPJOBPORTALjobModel {
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_states` AS state ON state.countryid = city.countryid
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_countries` AS country ON country.id = city.countryid
         WHERE job.status = 1 AND DATE(job.startpublishing) <= '".$curdate."' AND DATE(job.stoppublishing) >= '".$curdate."'";
-        $query.= $inquery;
+        $query .= $inquery;
 
-        $query.= " ORDER BY ".wpjobportal::$_ordering." LIMIT " . WPJOBPORTALpagination::$_offset . "," . WPJOBPORTALpagination::$_limit;
+        // ordering
+        $query .= " ORDER BY ".wpjobportal::$_ordering;
+
+        // limit (no of jobs)
+        if($noofjobs !=''){
+            $query .= " LIMIT " . esc_sql($noofjobs);
+        }else{
+            $query .= " LIMIT " . WPJOBPORTALpagination::$_offset . "," . WPJOBPORTALpagination::$_limit;
+        }
+
         $results = wpjobportaldb::get_results($query);
 
         $data = array();
@@ -2924,6 +3181,7 @@ class WPJOBPORTALjobModel {
         echo wp_kses($jobshtml, WPJOBPORTAL_ALLOWED_TAGS);
         exit;
     }
+
     function getNextTemplateJobs(){
         $searchcriteria = WPJOBPORTALrequest::getVar('ajaxsearch');
         wpjobportal::$_data['wpjobportal_pageid'] = WPJOBPORTALrequest::getVar('wpjobportal_pageid');
@@ -3771,6 +4029,55 @@ class WPJOBPORTALjobModel {
             $latestjobs[] = $d;
         }
         return $latestjobs;
+    }
+
+    function jobDataStructuredPostJSON($job){
+        $wpdir = wp_upload_dir();
+        $data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
+        $path = $wpdir['baseurl'] . '/' . $data_directory . '/data/employer/comp_' . $job->companyid . '/logo/' . $job->logofilename;
+
+        $job_json = '
+        {
+          "@context" : "https://schema.org/",
+          "@type" : "JobPosting",
+          "title" : "'. $job->title .'",
+          "description" : "'. $job->description .'",
+          "identifier": {
+            "@type": "PropertyValue",
+            "name": "'. $job->companyname .'",
+            "value": "'. $job->jobid .'"
+          },
+          "datePosted" : "'. $job->created .'",
+          "validThrough" : "'. $job->stoppublishing .'",
+          "employmentType" : "'. $job->jobtypetitle .'",
+          "hiringOrganization" : {
+            "@type" : "Organization",
+            "name" : "'. $job->companyname .'",
+            "sameAs" : "https://www.facebook.com",
+            "logo" : "'. $path .'"
+          },
+          "jobLocation": {
+          "@type": "Place",
+            "address": [{
+            "@type": "PostalAddress",
+            "streetAddress": "'. $job->multicity .'"
+            },{
+            "@type": "PostalAddress",
+            "streetAddress": "'. $job->multicity .'"
+            }]
+          },
+         "baseSalary": {
+            "@type": "MonetaryAmount",
+            "currency": "'.$job->currency.'",
+            "value": {
+              "@type": "QuantitativeValue",
+              "value": "'.$job->salary.'",
+              "unitText": "'.$job->srangetypetitle.'"
+            }
+          }
+        }
+        ';
+        return $job_json;
     }
 }
 ?>

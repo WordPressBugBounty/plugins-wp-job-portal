@@ -31,7 +31,7 @@ switch ($layout) {
 	case 'complogo':
         $data_class = (isset(wpjobportal::$_data[2]['logo'])) ? 'two_column' : 'one_column';
         echo wp_kses($html, WPJOBPORTAL_ALLOWED_TAGS);
-        $logopath = esc_url(WPJOBPORTAL_PLUGIN_URL) . "includes/images/default_logo.png";
+        $logopath = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer');
 		if(isset($published_fields['logo']) && $published_fields['logo'] != ''){
         if ($comp->logofilename) {
             $data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');

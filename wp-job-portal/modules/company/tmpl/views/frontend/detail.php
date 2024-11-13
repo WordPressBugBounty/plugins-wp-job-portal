@@ -102,13 +102,17 @@ switch ($layout) {
                 <?php } ?>
 
                 <div class="wjportal-company-data"> 
-                    <?php if (wpjobportal::$_config->getConfigValue('comp_name')) { ?>
-                        <span class="wjportal-company-title">
-                            <a href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$company->aliasid))); ?>">
-                                <?php echo esc_html($company->name); ?>
-                            </a>
-                        </span>
-                        <?php }
+                    <?php
+                        if(empty(wpjobportal::$_data['shortcode_option_hide_company_name'])){
+                            if (wpjobportal::$_config->getConfigValue('comp_name')) { ?>
+                                <span class="wjportal-company-title">
+                                    <a href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$company->aliasid))); ?>">
+                                        <?php echo esc_html($company->name); ?>
+                                    </a>
+                                </span>
+                                <?php
+                            }
+                        }
                         // to show featured tag on all companies layout
                         if(WPJOBPORTALincluder::getObjectClass('user')->isemployer() || (isset($companies_layout) && $companies_layout == 'companies')){
                             do_action('wpjobportal_addons_lable_comp_feature',$company);
@@ -150,20 +154,21 @@ switch ($layout) {
                             <?php echo esc_html($statusCheck); ?>
                         </span>
                     </div>
-                    <?php } ?>
-                <?php if(isset($company) && !empty($company->location) && $config_array['comp_city'] == 1): ?>
-                    <?php if(isset($listing_fields['city']) && $listing_fields['city'] !='' ){ ?>
-                            <div class="wjportal-company-data-text">
-                                <span class="wjportal-company-data-title">
-                                    <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($listing_fields['city'])) . ':'; ?>
-                                </span>
-                                <span class="wjportal-company-data-value">
-                                    <?php echo esc_html($company->location); ?>
-                                </span>
-                            </div>
-
-                    <?php } ?>
-                <?php endif; ?>
+                    <?php }
+                    if(empty(wpjobportal::$_data['shortcode_option_hide_company_location'])){
+                        if(isset($company) && !empty($company->location) && $config_array['comp_city'] == 1):
+                             if(isset($listing_fields['city']) && $listing_fields['city'] !='' ){ ?>
+                                <div class="wjportal-company-data-text">
+                                    <span class="wjportal-company-data-title">
+                                        <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($listing_fields['city'])) . ':'; ?>
+                                    </span>
+                                    <span class="wjportal-company-data-value">
+                                        <?php echo esc_html($company->location); ?>
+                                    </span>
+                                </div><?php
+                            }
+                         endif;
+                    } ?>
                 </div>
                 <!-- custom fields -->
                 <div class="wjportal-custom-field-wrp">

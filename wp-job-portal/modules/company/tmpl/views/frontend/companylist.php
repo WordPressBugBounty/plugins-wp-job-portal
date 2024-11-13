@@ -13,13 +13,15 @@ if (!$company) {
     <div class="wjportal-company-list-top-wrp object_<?php echo esc_attr($company->id); ?>" data-boxid="company_<?php echo esc_attr($company->id); ?>">
         <?php
             $html='<div class="wjportal-company-logo">';
-        	WPJOBPORTALincluder::getTemplate('company/views/frontend/logo', array(
-        		'company' => $company,
-                'layout' => 'complogo',
-                'html' => $html,
-                'module' => 'company'
-               
-            ));
+            if(empty(wpjobportal::$_data['shortcode_option_hide_company_logo'])){
+            	WPJOBPORTALincluder::getTemplate('company/views/frontend/logo', array(
+            		'company' => $company,
+                    'layout' => 'complogo',
+                    'html' => $html,
+                    'module' => 'company'
+
+                ));
+            }
             $html = "</div>";
             WPJOBPORTALincluder::getTemplate('company/views/frontend/detail', array(
         		'company' => $company,

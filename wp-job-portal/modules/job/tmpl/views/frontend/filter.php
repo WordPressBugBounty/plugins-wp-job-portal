@@ -31,24 +31,31 @@ switch ($layout) {
 
 
 	case 'newestjobsfilter':
-        $html.='<div class="wjportal-filter-search-wrp">
-                    <div class="wjportal-filter-search-field-wrp">
-                        '. WPJOBPORTALformfield::text('jobtitle',isset(wpjobportal::$_data['filter']['jobtitle']) ? wpjobportal::$_data['filter']['jobtitle'] : '',array('placeholder'=>esc_html(__('Title','wp-job-portal')), 'class'=>'wjportal-filter-search-input-field')).'
-                    </div>
-                    <div class="wjportal-filter-search-field-wrp">
-                        '. WPJOBPORTALformfield::text('city',isset(wpjobportal::$_data['filter']['city_ids']) ? wpjobportal::$_data['filter']['city_ids'] : '',array('placeholder'=>esc_html(__("City",'wp-job-portal')),'class'=>'wpjobportal-job-listing-city-field')).'
-                    </div>
-                    <div class="wjportal-filter-search-btn-wrp">
-                        <button type="submit" class="wjportal-filter-search-btn">
-                            <i class="fa fa-search"></i>
-                        </button>
-                        <button id="reset-newest-jobfilter" type="reset" class="wjportal-filter-reset-btn">
-                            <i class="fa fa-refresh"></i>
-                        </button>
-                    </div>
-            </div>';
-        $html .= WPJOBPORTALformfield::hidden('wpjobportallay' , 'jobs');
-        $html .= WPJOBPORTALformfield::hidden('WPJOBPORTAL_form_search' , 'WPJOBPORTAL_SEARCH');
+
+            $html.='<div class="wjportal-filter-search-wrp"> ';
+            // Hide job title filter based on shortcode option
+            if(empty(wpjobportal::$_data['shortcode_option_hide_filter_job_title'])){ // if this value is set means hide this option is set in shortcode
+                $html.='    <div class="wjportal-filter-search-field-wrp">
+                            '. WPJOBPORTALformfield::text('jobtitle',isset(wpjobportal::$_data['filter']['jobtitle']) ? wpjobportal::$_data['filter']['jobtitle'] : '',array('placeholder'=>esc_html(__('Title','wp-job-portal')), 'class'=>'wjportal-filter-search-input-field')).'
+                        </div> ';
+            }
+            // Hide job location filter based on shortcode option
+            if(empty(wpjobportal::$_data['shortcode_option_hide_filter_job_location'])){ // if this value is set means hide this option is set in shortcode
+                $html.='    <div class="wjportal-filter-search-field-wrp">
+                            '. WPJOBPORTALformfield::text('city',isset(wpjobportal::$_data['filter']['city_ids']) ? wpjobportal::$_data['filter']['city_ids'] : '',array('placeholder'=>esc_html(__("City",'wp-job-portal')),'class'=>'wpjobportal-job-listing-city-field')).'
+                        </div> ';
+            }
+            $html.='    <div class="wjportal-filter-search-btn-wrp">
+                            <button type="submit" class="wjportal-filter-search-btn">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            <button id="reset-newest-jobfilter" type="reset" class="wjportal-filter-reset-btn">
+                                <i class="fa fa-refresh"></i>
+                            </button>
+                        </div>
+                </div>';
+            $html .= WPJOBPORTALformfield::hidden('wpjobportallay' , 'jobs');
+            $html .= WPJOBPORTALformfield::hidden('WPJOBPORTAL_form_search' , 'WPJOBPORTAL_SEARCH');
 		break;
 }
 echo wp_kses($html, WPJOBPORTAL_ALLOWED_TAGS);

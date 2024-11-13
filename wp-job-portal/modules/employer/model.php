@@ -260,7 +260,8 @@ class WPJOBPORTALEmployerModel {
         }
         return ;
     }
-// function to handle add/edit company button in left menu
+
+    // function to handle add/edit company button in left menu
     function getEmployerCompanyinfo($uid){
         if (!is_numeric($uid))
             return false;
@@ -273,10 +274,51 @@ class WPJOBPORTALEmployerModel {
             return $company;
     }
 
+
+    function handleShortCodeOptions(){
+
+        /*
+        hide_profile_section' => '',
+                    'hide_graph' => '',
+                    'hide_recent_applications' => '',
+                    'hide_stat_boxes' => '',
+                    'hide_invoices' => '', */
+
+        //handle attirbute for hide profile section on dashboard
+        $hide_profile_section = WPJOBPORTALrequest::getVar('hide_profile_section', 'shortcode_option', false);
+        if($hide_profile_section && $hide_profile_section != ''){
+            wpjobportal::$_data['shortcode_option_hide_profile_section'] = 1;
+        }
+
+        //handle attirbute for hide profile section on dashboard
+        $hide_graph = WPJOBPORTALrequest::getVar('hide_graph', 'shortcode_option', false);
+        if($hide_graph && $hide_graph != ''){
+            wpjobportal::$_data['shortcode_option_hide_graph'] = 1;
+        }
+
+        //handle attirbute for hide profile section on dashboard
+        $hide_recent_applications = WPJOBPORTALrequest::getVar('hide_recent_applications', 'shortcode_option', false);
+        if($hide_recent_applications && $hide_recent_applications != ''){
+            wpjobportal::$_data['shortcode_option_hide_recent_applications'] = 1;
+        }
+
+        //handle attirbute for hide profile section on dashboard
+        $hide_stat_boxes = WPJOBPORTALrequest::getVar('hide_stat_boxes', 'shortcode_option', false);
+        if($hide_stat_boxes && $hide_stat_boxes != ''){
+            wpjobportal::$_data['shortcode_option_hide_stat_boxes'] = 1;
+        }
+
+        //handle attirbute for hide profile section on dashboard
+        $hide_invoices = WPJOBPORTALrequest::getVar('hide_invoices', 'shortcode_option', false);
+        if($hide_invoices && $hide_invoices != ''){
+            wpjobportal::$_data['shortcode_option_hide_invoices'] = 1;
+        }
+
+    }
+
     function getMessagekey(){
         $key = 'employer';if(wpjobportal::$_common->wpjp_isadmin()){$key = 'admin_'.$key;}return $key;
     }
-
 
 }
 

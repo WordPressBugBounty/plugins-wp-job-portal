@@ -46,6 +46,8 @@ class WPJOBPORTALEmployerController {
                                 WPJOBPORTALincluder::getJSModel('employer')->getDataForDashboard($uid);
                             }
                            WPJOBPORTALincluder::getJSModel('employer')->getGraphDataNew($uid);
+                           // handle shortcode options to manage section visiblity
+                           WPJOBPORTALincluder::getJSModel('employer')->handleShortCodeOptions();
                        } else {
                                 if (WPJOBPORTALincluder::getObjectClass('user')->isjobseeker()) {
                                     $link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobseeker', 'wpjobportallt'=>'controlpanel'));

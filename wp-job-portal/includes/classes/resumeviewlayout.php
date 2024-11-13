@@ -481,14 +481,13 @@ class WPJOBPORTALResumeViewlayout {
         if($is_qucik_apply == 0){ // hide photo which is not set in case of quick apply
             if (isset(wpjobportal::$_data[2][1]['photo'])) {
                 $html .= '<div class="wjportal-resume-image">';
+                $img = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
                 if (wpjobportal::$_data[0]['personal_section']->photo != '') {
                     $wpdir = wp_upload_dir();
                     $data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
                     $img = $wpdir['baseurl'] . '/' . $data_directory . '/data/jobseeker/resume_' . wpjobportal::$_data[0]['personal_section']->id . '/photo/' . wpjobportal::$_data[0]['personal_section']->photo;
-                } else {
-                    $img = esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/users.png';
                 }
-                $html .= '<img src="' . $img . '" />';
+                $html .= '<img src="' . esc_url($img) . '" />';
                 $html .= '</div>';
             }
         }

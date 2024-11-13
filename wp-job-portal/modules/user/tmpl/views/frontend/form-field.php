@@ -119,16 +119,16 @@ foreach ($fieldslist AS $field) {
                     $text = '';
                     $photo_required ='';
                     $imgpath = '';
+
+                    $img = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
+                    $display = 'none';
+                    $photoname = '';
                     if(isset(wpjobportal::$_data[0]->photo) && !empty(wpjobportal::$_data[0]->photo)){
                         $wpdir = wp_upload_dir();
                         $data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
                         $img = $wpdir['baseurl'] . '/' . $data_directory . '/data/profile/profile_' . wpjobportal::$_data[0]->uid . '/profile/' . wpjobportal::$_data[0]->photo;
                         $display = '';
                         $photoname  = wpjobportal::$_data[0]->photo;
-                    }else{
-                        $img = esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/users.png';
-                        $display = 'none';
-                        $photoname = '';
                     }
 
                     $fieldvalue = '

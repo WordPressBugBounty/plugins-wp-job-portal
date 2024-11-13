@@ -482,7 +482,7 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
              if($mappingservice == "osm"){
                 $inline_js_script .= "
                 if(latitude != '' && longitude != ''){
-                    lmap.addMarker([latitude,longitude]);
+                    lmap.addMarker([longitude,latitude]);
                 }";
             }
             $inline_js_script .= "

@@ -16,12 +16,11 @@
 				';
 		break;
 		case 'profile':
+			$img = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
 			if (!empty($profile->photo)) {
 		        $wpdir = wp_upload_dir();
 		        $data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
 		        $img = $wpdir['baseurl'] . '/' . $data_directory . '/data/profile/profile_' . $profile->uid . '/profile/' . $profile->photo;
-        	} else {
-            	$img = esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/users-b.png';
         	}
         	$field_ordering = wpjobportalincluder::getJSModel('fieldordering')->getFieldsOrderingforView(4);
         	if(!empty($field_ordering) && isset($field_ordering['photo'])){

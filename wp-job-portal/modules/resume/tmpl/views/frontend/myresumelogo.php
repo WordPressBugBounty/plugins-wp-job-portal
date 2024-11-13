@@ -6,13 +6,12 @@
 ?>
 <?php
 $logo = isset($logo) ? $logo : null;
+$path = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
 if($myresume->photo != "") {
 	$data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
 	$wpdir = wp_upload_dir();
 	$path = $wpdir['baseurl'] . '/' . $data_directory . '/data/jobseeker/resume_' . $myresume->id . '/photo/' . $myresume->photo;
-	} else {
-	$path = esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/users.png';
-	}
+}
 	if($logo=="1"){
 		?>
 		<span class="fir">

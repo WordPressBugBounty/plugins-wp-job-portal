@@ -8,15 +8,13 @@ $listing_fields = WPJOBPORTALincluder::getJSModel('fieldordering')->getFieldOrde
 <?php
 	switch ($layout) {
 		case 'logo':
-			$photo = '';
+			$photo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
+			$padding = ' style="padding:15px;" ';
 			if (isset($data->photo) && $data->photo != '') {
 				$data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
 				$wpdir = wp_upload_dir();
 				$photo = $wpdir['baseurl'] . '/' . $data_directory . '/data/jobseeker/resume_' . $data->resumeid . '/photo/' . $data->photo;
 				$padding = "";
-			} else {
-				$photo = esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/users.png';
-				$padding = ' style="padding:15px;" ';
 			}
 			?>
 			<div class="wpjobportal-resume-logo">

@@ -55,6 +55,11 @@ class WPJOBPORTALrequest {
                             $value = wpjobportal::wpjobportal_sanitizeData($_GET[$variable_name]);
                         }
                     break;
+                case 'shortcode_option': // new case to handle shortcode attributes (since many variables have already used names so cant use above methods)
+                    if (isset(wpjobportal::$_data['shortcode_options'][$variable_name]) && wpjobportal::$_data['shortcode_options'][$variable_name] != '') {
+                        $value = wpjobportal::$_data['shortcode_options'][$variable_name];
+                    }
+                    break;
             }
         }
         if ($typecast != null) {

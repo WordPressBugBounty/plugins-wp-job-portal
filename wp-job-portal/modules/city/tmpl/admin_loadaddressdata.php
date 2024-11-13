@@ -135,14 +135,19 @@ if(!isset($_GET['case_is'])){
                         <div class="wpjobportal-form-title">
                             <?php echo __("Existing Data", "wp-job-portal"). ': '; ?>
                         </div>
-                        <div class="wpjobportal-form-value">
+                        <div class="wpjobportal-form-value wpjobportal-load-address-data-erase-data-radios">
                             <span class="wpjobportal-form-radio-field wpjobportal-form-radio-field-first">
                                 <input type="radio" name="keepdata" id="keepdata1"  checked="checked" value="1" />
                                 <label for="keepdata1"><?php echo __("Keep Data", "wp-job-portal"); ?></label>
                             </span>
                             <span class="wpjobportal-form-radio-field wpjobportal-form-radio-field-second">
                                 <input type="radio" name="keepdata" id="keepdata2" value="2" />
-                                <label for="keepdata2"><?php echo __("Erase Data", "wp-job-portal"); ?></label>
+                                <label for="keepdata2"><?php echo __("Erase Selected Country", "wp-job-portal"); ?></label>
+                                <span class="wpjobportal-form-erase-data-country-name" ></span>
+                            </span>
+                            <span class="wpjobportal-form-radio-field wpjobportal-form-radio-field-third">
+                                <input type="radio" name="keepdata" id="keepdata3" value="3" />
+                                <label for="keepdata3"><?php echo __("Erase All Data", "wp-job-portal"); ?></label>
                             </span>
                             <span id="loadaddressdata_city_name_msg_warn">
                                 <img src="<?php echo WPJOBPORTAL_PLUGIN_URL; ?>includes/images/import-city-warning-icon.png">
@@ -478,6 +483,8 @@ $inline_js_script = "
           }else{
               jQuery('.wpjobportal-city-data-pro-label').text('('+\"". esc_html(__('No Records','wp-job-portal')) ."\"+')');
           }
+          selectedLabelText = jQuery('#country_code').find('option:selected').text();
+          jQuery('.wpjobportal-form-erase-data-country-name').text(selectedLabelText);
       }
     ";
 wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );

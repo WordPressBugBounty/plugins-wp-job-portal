@@ -14,9 +14,14 @@ switch ($layout) {
     } ?>
     <div class="wjportal-jobs-middle-wrp">
         <div class="wjportal-jobs-data">
-            <?php if (wpjobportal::$_config->getConfigValue('comp_name')) { ?>
-                <a class="wjportal-companyname" href="<?php echo esc_url($url) ; ?>"><?php echo esc_html($job->companyname); ?></a><?php ?>
-            <?php } ?>
+            <?php
+                if(empty(wpjobportal::$_data['shortcode_option_hide_company_name'])){ // if this value is set means hide this company name is set in shortcode
+                    if (wpjobportal::$_config->getConfigValue('comp_name')) { ?>
+                        <a class="wjportal-companyname" href="<?php echo esc_url($url) ; ?>"><?php echo esc_html($job->companyname); ?></a><?php ?>
+                    <?php
+                    }
+                }
+            ?>
         </div>
         <div class="wjportal-jobs-data">
             <span class="wjportal-job-title">

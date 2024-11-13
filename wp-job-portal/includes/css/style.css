@@ -525,8 +525,8 @@ div.wjportal-resume-list-wrp {float: left;width: 100%;}
 div.wjportal-resume-list-wrp div.wjportal-resume-app-title {float: left;width: 100%;margin: 10px 0 15px;font-size: 16px;font-weight: bold;}
 div.wjportal-resume-list {float: left;width: 100%;margin-bottom: 20px;position: relative;overflow: hidden;}
 div.wjportal-resume-list div.wjportal-resume-list-top-wrp {float: left;width: 100%;padding: 20px;}
-div.wjportal-resume-list div.wjportal-resume-list-top-wrp div.wjportal-resume-logo {display: inline-block;width: 100px;height: 100px;float: left;text-align: center;position: relative;border-radius: 100%;}
-div.wjportal-resume-list div.wjportal-resume-list-top-wrp div.wjportal-resume-logo img {max-height: 95%;max-width: 95%;margin: auto;left: 0;top: 0;right: 0;bottom: 0;position: absolute;border-radius: 100%;}
+div.wjportal-resume-list div.wjportal-resume-list-top-wrp div.wjportal-resume-logo {display: inline-block;width: 100px;height: 100px;float: left;text-align: center;position: relative;}
+div.wjportal-resume-list div.wjportal-resume-list-top-wrp div.wjportal-resume-logo img {max-height: 100%;max-width: 100%;margin: auto;left: 0;top: 0;right: 0;bottom: 0;position: absolute;}
 div.wjportal-resume-list div.wjportal-resume-list-top-wrp div.wjportal-resume-cnt-wrp {display: inline-block;width: calc(100% - 100px);padding-left: 30px;}
 div.wjportal-resume-list div.wjportal-resume-list-top-wrp div.wjportal-resume-cnt-wrp div.wjportal-resume-middle-wrp {float: left;width: 70%;}
 div.wjportal-resume-list div.wjportal-resume-list-top-wrp div.wjportal-resume-cnt-wrp div.wjportal-resume-middle-wrp div.wjportal-resume-data {padding-bottom: 5px;font-size: 14px;}

@@ -112,7 +112,7 @@ class WPJOBPORTALUserModel {
                 . ' LEFT JOIN ' . $this->jsGetPrefix() . 'users AS u ON u.id = a.uid ';
         $query .= $company_join;
         $query .= $resume_join;
-        $query.=$inquery;
+        $query .= $inquery;
         $query .= ' GROUP BY a.id LIMIT ' . WPJOBPORTALpagination::$_offset . ',' . WPJOBPORTALpagination::$_limit;
 
         wpjobportal::$_data[0] = wpjobportaldb::get_results($query);

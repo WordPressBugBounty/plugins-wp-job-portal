@@ -40,21 +40,25 @@ echo '<div class="wjportal-resume-cnt-wrp">
                     <span class="wjportal-resume-title">'. esc_html($myresume->applicationtitle) .'</span>
                 </div>
                 <div class="wjportal-resume-data">';
-                    if(in_array('advanceresumebuilder', wpjobportal::$_active_addons)){
-                        if(isset($listing_fields['address_city'])){
-                            echo '<div class="wjportal-resume-data-text">
-                                <span class="wjportal-resume-data-title">'. esc_html(wpjobportal::wpjobportal_getVariableValue($listing_fields['address_city'])) . ': '.'</span>
-                                <span class="wjportal-resume-data-value">'. esc_html($myresume->location) .'</span>
-                            </div>';
+                    if(empty(wpjobportal::$_data['shortcode_option_hide_resume_location'])){
+                        if(in_array('advanceresumebuilder', wpjobportal::$_active_addons)){
+                            if(isset($listing_fields['address_city'])){
+                                echo '<div class="wjportal-resume-data-text">
+                                    <span class="wjportal-resume-data-title">'. esc_html(wpjobportal::wpjobportal_getVariableValue($listing_fields['address_city'])) . ': '.'</span>
+                                    <span class="wjportal-resume-data-value">'. esc_html($myresume->location) .'</span>
+                                </div>';
+                            }
                         }
                     }
-                    if(isset($listing_fields['salaryfixed']) && (isset($module) && ($module== "resume" || $module == "myresumes"))){
-                        echo '<div class="wjportal-resume-data-text">
-                                <span class="wjportal-resume-data-title">';
-                                echo esc_html(wpjobportal::wpjobportal_getVariableValue($listing_fields['salaryfixed'])) . ': ';
-                        echo '</span>
-                            <span class="wjportal-resume-data-value">'. esc_html($myresume->salary).'</span>
-                        </div>';
+                    if(empty(wpjobportal::$_data['shortcode_option_hide_resume_salary'])){
+                        if(isset($listing_fields['salaryfixed']) && (isset($module) && ($module== "resume" || $module == "myresumes"))){
+                            echo '<div class="wjportal-resume-data-text">
+                                    <span class="wjportal-resume-data-title">';
+                                    echo esc_html(wpjobportal::wpjobportal_getVariableValue($listing_fields['salaryfixed'])) . ': ';
+                            echo '</span>
+                                <span class="wjportal-resume-data-value">'. esc_html($myresume->salary).'</span>
+                            </div>';
+                        }
                     }
                     if(in_array('advanceresumebuilder', wpjobportal::$_active_addons)){
                         echo '<div class="wjportal-resume-data-text">

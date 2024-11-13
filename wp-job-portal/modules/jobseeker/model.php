@@ -230,6 +230,45 @@ class WPJOBPORTALJobseekerModel {
         return ;
     }
 
+    function handleShortCodeOptions(){
+        //handle attirbute for hide profile section on dashboard
+        $hide_profile_section = WPJOBPORTALrequest::getVar('hide_profile_section', 'shortcode_option', false);
+        if($hide_profile_section && $hide_profile_section != ''){
+            wpjobportal::$_data['shortcode_option_hide_profile_section'] = 1;
+        }
+
+        //handle attirbute for hide profile section on dashboard
+        $hide_graph = WPJOBPORTALrequest::getVar('hide_graph', 'shortcode_option', false);
+        if($hide_graph && $hide_graph != ''){
+            wpjobportal::$_data['shortcode_option_hide_graph'] = 1;
+        }
+
+        //handle attirbute for hide profile section on dashboard
+        $hide_newest_jobs = WPJOBPORTALrequest::getVar('hide_newest_jobs', 'shortcode_option', false);
+        if($hide_newest_jobs && $hide_newest_jobs != ''){
+            wpjobportal::$_data['shortcode_option_hide_newest_jobs'] = 1;
+        }
+
+        //handle attirbute for hide profile section on dashboard
+        $hide_job_applies = WPJOBPORTALrequest::getVar('hide_job_applies', 'shortcode_option', false);
+        if($hide_job_applies && $hide_job_applies != ''){
+            wpjobportal::$_data['shortcode_option_hide_job_applies'] = 1;
+        }
+
+        //handle attirbute for hide profile section on dashboard
+        $hide_stat_boxes = WPJOBPORTALrequest::getVar('hide_stat_boxes', 'shortcode_option', false);
+        if($hide_stat_boxes && $hide_stat_boxes != ''){
+            wpjobportal::$_data['shortcode_option_hide_stat_boxes'] = 1;
+        }
+
+        //handle attirbute for hide profile section on dashboard
+        $hide_invoices = WPJOBPORTALrequest::getVar('hide_invoices', 'shortcode_option', false);
+        if($hide_invoices && $hide_invoices != ''){
+            wpjobportal::$_data['shortcode_option_hide_invoices'] = 1;
+        }
+
+    }
+
 }
 
 ?>

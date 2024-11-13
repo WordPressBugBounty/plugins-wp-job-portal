@@ -42,6 +42,18 @@ class WPJOBPORTALactivation {
             wpjobportal::$_db->get_var("UPDATE `" . wpjobportal::$_db->prefix . "posts` SET post_status = 'publish' WHERE post_content LIKE '%[wpjobportal_jobseeker_controlpanel]%'");
         }
         update_option('rewrite_rules', '');
+
+        // set default starting values for new installs
+
+        $company_settings = get_option('wpjobportal_company_document_title_settings');
+        $job_settings = get_option('wpjobportal_job_document_title_settings');
+        $resume_settings = get_option('wpjobportal_resume_document_title_settings');
+
+        if(empty($company_settings) && empty($job_settings) && empty($resume_settings)){
+            update_option( 'wpjobportal_company_document_title_settings', '[name] [location] [separator] [sitename]');
+            update_option( 'wpjobportal_job_document_title_settings', '[title] [location] [separator] [sitename]');
+            update_option( 'wpjobportal_resume_document_title_settings', ' [applicationtitle] [jobcategory] [separator] [sitename]');
+        }
     }
 
     static private function runSQL() {
@@ -1769,8 +1781,8 @@ class WPJOBPORTALactivation {
               ('wpjobportalrss', '1', 'jscontrolpanel', 'rssfeedback'),
               ('vis_resume_rss', '1', 'emcontrolpanel', 'rssfeedback'),
               ('vis_job_rss', '1', 'jscontrolpanel', 'rssfeedback'),
-              ('default_longitude', '71.2577233', 'default', NULL),
-              ('default_latitude', '29.1411551', 'default', NULL),
+              ('default_longitude', '118.2426', 'default', NULL),
+              ('default_latitude', '34.0549', 'default', NULL),
               ('nooffeaturedjobsinlisting', '2', 'job', 'featuredjob'),
               ('showfeaturedjobsinlistjobs', '0', 'job', 'featuredjob'),
               ('googleadsenseclient', 'ca-pub-8827762976015158', 'googleadds', NULL),
@@ -1855,7 +1867,7 @@ class WPJOBPORTALactivation {
               ('searchjobtag', '4', 'job', 'tag'),
               ('categories_colsperrow', '3', 'category', NULL),
               ('productcode', 'wpjobportal', 'default', NULL),
-              ('versioncode', '2.2.1', 'default', NULL),
+              ('versioncode', '2.2.2', 'default', NULL),
               ('producttype', 'free', 'default', NULL),
               ('vis_jscredits', '0', 'jscontrolpanel', 'credits'),
               ('vis_emcredits', '1', 'emcontrolpanel', NULL),
@@ -2063,7 +2075,10 @@ class WPJOBPORTALactivation {
               ('quick_apply_for_user', '0', 'quick_apply', NULL),
               ('quick_apply_for_visitor', '0', 'quick_apply', NULL),
               ('quick_apply_captcha', '1', 'quick_apply', NULL),
-              ('show_wpjobportal_page_title', '1', 'wpjobportal', NULL)
+              ('show_wpjobportal_page_title', '1', 'wpjobportal', NULL),
+              ('job_seeker_profile_section', '1', 'wpjobportal', NULL),
+              ('employer_profile_section', '1', 'wpjobportal', NULL),
+              ('default_image', '', 'default', NULL)
               ;
                 ";
             wpjobportal::$_db->query($query);

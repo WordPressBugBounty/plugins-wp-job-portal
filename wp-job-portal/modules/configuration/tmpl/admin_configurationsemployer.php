@@ -466,12 +466,21 @@
                                     </h3>
                                     <div class="wpjobportal-config-row">
                                         <div class="wpjobportal-config-title">
+                                            <?php echo esc_html(__('Profile Section', 'wp-job-portal')); ?>
+                                        </div>
+                                        <div class="wpjobportal-config-value">
+                                            <?php echo wp_kses(WPJOBPORTALformfield::select('employer_profile_section', $showhide,wpjobportal::$_data[0]['employer_profile_section']),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                        </div>
+                                    </div>
+                                    <div class="wpjobportal-config-row">
+                                        <div class="wpjobportal-config-title">
                                             <?php echo esc_html(__('Employer Stat Boxes', 'wp-job-portal')); ?>
                                         </div>
                                         <div class="wpjobportal-config-value">
                                             <?php echo wp_kses(WPJOBPORTALformfield::select('employerstatboxes', $showhide,wpjobportal::$_data[0]['employerstatboxes']),WPJOBPORTAL_ALLOWED_TAGS); ?>
                                         </div>
                                     </div>
+
                                     <?php if($theme_chk == 0){ ?>
                                         <div class="wpjobportal-config-row">
                                             <div class="wpjobportal-config-title">

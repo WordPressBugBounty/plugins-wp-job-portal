@@ -446,7 +446,7 @@ if (!defined('ABSPATH'))
 
                     
                         if($mappingservice == 'osm'){
-                            if(isset($job)) { 
+                            if(isset($job) && !empty($job->longitude) && !empty($job->latitude)) {
                                     $inline_js_script .= "lmap.addMarker([parseFloat('". $job->longitude."'),parseFloat('". $job->latitude."')]); ";
                              }
                         } 
@@ -602,7 +602,7 @@ if (!defined('ABSPATH'))
                                         if (item.id > 0){";
                                             
                                             if($mapfield):
-                                                if($mapfield->published == 1){ 
+                                                if($mapfield->published == 1 && $mappingservice != "osm"){
                                                     $inline_js_script .= "addMarkerOnMap(item);";
                                                 } 
                                             endif; 
@@ -646,9 +646,12 @@ if (!defined('ABSPATH'))
                                                 },1500);
                                             }
                                     },
-                                    onDelete: function(item){
-                                        identifyMarkerForDelete(item);// delete marker associted with this token input value.
-                                    }";
+                                    onDelete: function(item){ ";
+                                        if($mappingservice != "osm"){
+                                            $inline_js_script .= "identifyMarkerForDelete(item);// delete marker associted with this token input value.";
+                                        }
+                                    $inline_js_script .= "
+                                        }";
                                 }
                                 $inline_js_script .= "
                             });
@@ -676,7 +679,7 @@ if (!defined('ABSPATH'))
                                         if (item.id > 0){
                                             ";
                                                 if($mapfield):
-                                                    if($mapfield->published == 1){
+                                                    if($mapfield->published == 1 && $mappingservice != "osm"){
                                                         $inline_js_script .= "addMarkerOnMap(item);";
                                                     }
                                                 endif;

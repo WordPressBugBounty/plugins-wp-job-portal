@@ -6,12 +6,11 @@
 $listing_fields = WPJOBPORTALincluder::getJSModel('fieldordering')->getFieldOrderingDataForListing(3);
 ?>
 <?php
-	$data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
+    $photo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
 	if (isset($resume->photo) && $resume->photo != '') {
+		$data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
 	    $wpdir = wp_upload_dir();
 	    $photo = $wpdir['baseurl'] . '/' . $data_directory . '/data/jobseeker/resume_' . $resume->id. '/photo/' . $resume->photo;
-	} else {
-	    $photo = esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/users.png';
 	}
 ?>
 

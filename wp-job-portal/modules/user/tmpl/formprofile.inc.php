@@ -73,7 +73,7 @@ $js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy', $js_script
                 var ajaxurl = \"". esc_url_raw(admin_url('admin-ajax.php'))."\";
                 jQuery.post(ajaxurl, {action: 'wpjobportal_ajax', wpjobportalme: 'user', task: 'deleteUserPhoto', userid: id, '_wpnonce':'". esc_attr(wp_create_nonce("delete-user-photo"))."'}, function (data) {
                     if(data) {
-                        jQuery('#wjportal-form-delete-image').attr('src',\"". esc_url(WPJOBPORTAL_IMAGE).'/users.png'."\");
+                        jQuery('#wjportal-form-delete-image').attr('src',\"". esc_url(WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker')) ."\");
                         jQuery('.wjportal-form-image-wrp').hide();
                         jQuery('#wjportal-form-delete-image').hide();
                         jQuery('span.wjportal-form-upload-btn-wrp-txt').text('');

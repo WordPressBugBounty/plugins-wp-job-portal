@@ -6,13 +6,11 @@ switch ($layouts) {
 		$profile=isset(wpjobportal::$_data[0]['company']['emp_profile']) ? wpjobportal::$_data
 			[0]['company']['emp_profile'] : null;
 		$comp_name=isset(wpjobportal::$_data[0]['companies'][0]) ? wpjobportal::$_data[0]['companies'][0] : null;
+		$img = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
 		if (isset($profile) && $profile->photo != '' ) {
 			$wpdir = wp_upload_dir();
-			
 			$data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
 			$img = $wpdir['baseurl'] . '/' . $data_directory . '/data/profile/profile_' . wpjobportal::$_data[0]['company']['emp_profile']->uid . '/profile/' . wpjobportal::$_data[0]['company']['emp_profile']->photo;
-		} else {
-			$img = esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/users-b.png';
 		}
 		$field_ordering = wpjobportalincluder::getJSModel('fieldordering')->getFieldsOrderingforView(4);
     	if(!empty($field_ordering) && isset($field_ordering['photo'])){

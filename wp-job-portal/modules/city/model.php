@@ -516,10 +516,22 @@ class WPJOBPORTALCityModel {
         $file_contents = $this->getLocationDataFileContents($language_code,$data_to_import);
         if ($file_contents != '') { // making sure the string is not empty (every error case will return this string as empty)
             // checking & removing old data
-            if(isset($data['keepdata']) && $data['keepdata'] == 2){
-                // removing cities from the database
-                $remove_cities = "DELETE FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities`";
-                wpjobportaldb::query($remove_cities);
+            if(isset($data['keepdata'])){
+                // removing cities of a country from the database
+                if($data['keepdata'] == 2){
+                    // get country id from country name code
+                    $query = "SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_countries` WHERE namecode = '".esc_sql($data['country_code'])."'";
+                    $countryid = wpjobportaldb::get_var($query);
+                    if(is_numeric($countryid) && $countryid > 0){
+                        // remove specific country cities
+                        $remove_cities = "DELETE FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities` WHERE countryid =".esc_sql($countryid);
+                        wpjobportaldb::query($remove_cities);
+                    }
+                }elseif($data['keepdata'] == 3){
+                    // removing all cities from the database
+                    $remove_cities = "DELETE FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities`";
+                    wpjobportaldb::query($remove_cities);
+                }
             }
             //preparing queries to execute
             $query = wpjobportalphplib::wpJP_str_replace('#__', wpjobportal::$_db->prefix, $file_contents);

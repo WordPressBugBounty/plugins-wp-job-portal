@@ -69,6 +69,8 @@ class WPJOBPORTALJobseekerController {
                     WPJOBPORTALincluder::getJSModel('jobseeker')->getUserinfo($uid);
                     WPJOBPORTALincluder::getJSModel('jobseeker')->getJobsekerResumeTitle($uid);
                     WPJOBPORTALincluder::getJSModel('jobseeker')->getGraphDataNew($uid);
+                    // handle shortcode options to manage section visiblity
+                    WPJOBPORTALincluder::getJSModel('jobseeker')->handleShortCodeOptions();
                     if(in_array('credits', wpjobportal::$_active_addons)){
                         WPJOBPORTALincluder::getJSModel('employer')->getDataForDashboard($uid);
                     }

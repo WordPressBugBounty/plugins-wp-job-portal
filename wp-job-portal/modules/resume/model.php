@@ -386,9 +386,6 @@ class WPJOBPORTALResumeModel {
             $table_name = 'resume' . $datafor . 's';
         }
 
-
-
-
        $row = WPJOBPORTALincluder::getJSTable($table_name);
         $return_cf = $this->makeResumeTableParams($formdata,$sectionid,$i);
         $params = array();
@@ -687,7 +684,9 @@ class WPJOBPORTALResumeModel {
 
         $data['last_modified'] = gmdate('Y-m-d H:i:s');
         $section = 1;
+
         $data = wpjobportal::wpjobportal_sanitizeData($data);
+
         $data = wpjobportal::$_common->stripslashesFull($data);// remove slashes with quotes.
         $return_cf = $this->makeResumeTableParams($data,$section);
         $data['params'] = $return_cf['params'];
@@ -2883,23 +2882,41 @@ class WPJOBPORTALResumeModel {
                 $inquery .= " AND resume.isfeaturedresume = 1 AND DATE(resume.endfeatureddate) >= CURDATE() ";
             }
 
+        // shortcode options
+        $noofresumes = '';
+        $module_name = WPJOBPORTALrequest::getVar('wpjobportalme');
+        if($module_name == 'allresumes'){
+            //shortcode attribute proceesing (filter,ordering,no of resume)
+            $attributes_query = $this->processShortcodeAttributesResume();
+            if($attributes_query != ''){
+                $inquery .= $attributes_query;
+            }
+            if(isset(wpjobportal::$_data['shortcode_option_no_of_resumes']) && wpjobportal::$_data['shortcode_option_no_of_resumes'] > 0){
+                $noofresumes = wpjobportal::$_data['shortcode_option_no_of_resumes'];
+            }
+        }
+
         //Pagination
-        $query = "SELECT COUNT(resume.id) AS total
-                FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
-                LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category ON category.id = resume.job_category ";
-            if($zipCode != ''){
-                $query .= " JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` AS address1 ON (address1.resumeid = resume.id AND address1.address_zipcode = '".esc_sql($zipCode)."' ) ";
-            }elseif ($city != '') {
-                $query .= " JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` AS address1 ON address1.resumeid = resume.id ";
-            }
-            $query .= " WHERE resume.status = 1 AND resume.quick_apply <> 1 ";
-            if($ignore_serachable == 0){
-                $query .= " AND resume.searchable = 1 ";
-            }
-        $query .= $inquery;
-        $total = wpjobportaldb::get_var($query);
-        wpjobportal::$_data['total'] = $total;
-        wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($total,'resumes');
+        if($noofresumes == ''){
+            $query = "SELECT COUNT(resume.id) AS total
+                    FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
+                    LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category ON category.id = resume.job_category ";
+                if($zipCode != ''){
+                    $query .= " JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` AS address1 ON (address1.resumeid = resume.id AND address1.address_zipcode = '".esc_sql($zipCode)."' ) ";
+                }elseif ($city != '') {
+                    $query .= " JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` AS address1 ON address1.resumeid = resume.id ";
+                }elseif (strstr($inquery, 'address1.address_city')) { // to handle shortcode option case for locations
+                    $query .= " JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` AS address1 ON address1.resumeid = resume.id ";
+                }
+                $query .= " WHERE resume.status = 1 AND resume.quick_apply <> 1 ";
+                if($ignore_serachable == 0){
+                    $query .= " AND resume.searchable = 1 ";
+                }
+            $query .= $inquery;
+            $total = wpjobportaldb::get_var($query);
+            wpjobportal::$_data['total'] = $total;
+            wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($total,'resumes');
+        }
 
         //Data
         $query = "SELECT resume.id,CONCAT(resume.alias,'-',resume.id) AS resumealiasid ,resume.first_name
@@ -2915,6 +2932,8 @@ class WPJOBPORTALResumeModel {
                 $query .= " JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` AS address1 ON (address1.resumeid = resume.id AND address1.address_zipcode = '".esc_sql($zipCode)."' ) ";
             }elseif ($city != '') {
                 $query .= " JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` AS address1 ON address1.resumeid = resume.id ";
+            }elseif (strstr($inquery, 'address1.address_city')) { // to handle shortcode option case for locations
+                $query .= " JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` AS address1 ON address1.resumeid = resume.id ";
             }
             $query .= "
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = resume.jobtype
@@ -2928,7 +2947,12 @@ class WPJOBPORTALResumeModel {
         $query .= $inquery;
         $query .= " GROUP BY resume.id ";
         $query.= " ORDER BY " . wpjobportal::$_data['sorting'];
-        $query .=" LIMIT " . WPJOBPORTALpagination::$_offset . "," . WPJOBPORTALpagination::$_limit;
+        if($noofresumes == ''){
+            $query .=" LIMIT " . WPJOBPORTALpagination::$_offset . "," . WPJOBPORTALpagination::$_limit;
+        }else{
+            $query .=" LIMIT " . esc_sql($noofresumes);
+        }
+
         $results = wpjobportal::$_db->get_results($query);
         $data = array();
         foreach ($results AS $d) {
@@ -4169,6 +4193,204 @@ class WPJOBPORTALResumeModel {
             return true;
          }else{
             return false;
+        }
+    }
+
+    function processShortcodeAttributesResume(){
+        $inquery = '';
+
+        // cities
+        $cities_list = WPJOBPORTALrequest::getVar('locations', 'shortcode_option', false);
+        if ($cities_list && $cities_list !='' ) { // not empty check
+            $city_array = wpjobportalphplib::wpJP_explode( ',' , $cities_list); // handle multi case
+            $cityQuery = false;
+            foreach($city_array as $city_id){ // loop over all ids
+                if($city_id != ''){ // null check
+                    $city_id = trim($city_id);
+                }
+                if(!is_numeric($city_id)){ // numric check
+                    continue;
+                }
+                if($cityQuery){
+                    $cityQuery .= " OR address1.address_city =  ".esc_sql($city_id);
+                }else{
+                    $cityQuery = " address1.address_city =  ".esc_sql($city_id);
+                }
+            }
+            if($cityQuery){
+                $inquery .= " AND ( $cityQuery ) ";
+            }
+        }
+
+        // tags
+        $tags_list = WPJOBPORTALrequest::getVar('tags', 'shortcode_option', false);
+        if ($tags_list && $tags_list !='' ) { // not empty check
+            $tag_array = wpjobportalphplib::wpJP_explode( ',' , $tags_list); // handle multi case
+            $tagQuery = false;
+            foreach($tag_array as $tag_id){ // loop over all ids
+                if($tag_id != ''){ // null check
+                    $tag_id = trim($tag_id);
+                }
+                if(!is_numeric($tag_id)){ // numric check
+                    continue;
+                }
+                if($tagQuery){
+                    $tagQuery .= " OR FIND_IN_SET('" . esc_sql($tag_id) . "', resume.tags) > 0 ";
+                }else{
+                    $tagQuery = " FIND_IN_SET('" . esc_sql($tag_id) . "', resume.tags) > 0 ";
+                }
+            }
+            if($tagQuery){
+                $inquery .= " AND ( $tagQuery ) ";
+            }
+        }
+
+        // categories
+        $category_list = WPJOBPORTALrequest::getVar('categories', 'shortcode_option', false);
+        if ($category_list && $category_list !='' ) { // not empty check
+            $category_array = wpjobportalphplib::wpJP_explode( ',' , $category_list); // handle multi case
+            $categoryQuery = false;
+            $wpjp_ids = array();
+            foreach($category_array as $category_id){  // loop over all ids
+                if($category_id != ''){ // null check
+                    $category_id = trim($category_id);
+                }
+                if(!is_numeric($category_id)){ // numric check
+                    continue;
+                }
+                // handle case of child categories of current category
+                $wpjp_query = "SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_categories` WHERE parentid = ". esc_sql($category_id);
+                $wpjp_cats = wpjobportaldb::get_results($wpjp_query);
+
+                foreach ($wpjp_cats as $wpjp_cat) {
+                    $wpjp_ids[] = $wpjp_cat->id;
+                }
+                $wpjp_ids[] = $category_id;
+
+            }
+            $wpjp_ids = implode(",",$wpjp_ids);
+            $inquery .= " AND resume.job_category IN(".$wpjp_ids.")";
+        }
+
+
+        // types
+        $jobtype_list = WPJOBPORTALrequest::getVar('types', 'shortcode_option', false);
+        if ($jobtype_list && $jobtype_list !='' ) { // not empty check
+            $jobtype_array = wpjobportalphplib::wpJP_explode( ',' , $jobtype_list); // handle multi case
+            $jobtypeQuery = false;
+            foreach($jobtype_array as $jobtype_id){  // loop over all ids
+                if($jobtype_id != ''){ // null check
+                    $jobtype_id = trim($jobtype_id);
+                }
+                if(!is_numeric($jobtype_id)){ // numric check
+                    continue;
+                }
+                if($jobtypeQuery){
+                    $jobtypeQuery .= " OR resume.jobtype  = " . esc_sql($jobtype_id);
+                }else{
+                    $jobtypeQuery = " resume.jobtype  =  " . esc_sql($jobtype_id);
+                }
+            }
+            if($jobtypeQuery){
+                $inquery .= " AND ( $jobtypeQuery ) ";
+            }
+        }
+
+        // resume ids
+        $resume_list = WPJOBPORTALrequest::getVar('ids', 'shortcode_option', false);
+        if ($resume_list && $resume_list !='' ) { // not empty check
+            $resume_array = wpjobportalphplib::wpJP_explode( ',' , $resume_list); // handle multi case
+            $resumeQuery = false;
+            foreach($resume_array as $resume_id){  // loop over all ids
+                if($resume_id != ''){ // null check
+                    $resume_id = trim($resume_id);
+                }
+                if(!is_numeric($resume_id)){ // numric check
+                    continue;
+                }
+                if($resumeQuery){
+                    $resumeQuery .= " OR resume.id  = " . esc_sql($resume_id);
+                }else{
+                    $resumeQuery = " resume.id  =  " . esc_sql($resume_id);
+                }
+            }
+            if($resumeQuery){
+                $inquery .= " AND ( $resumeQuery ) ";
+            }
+        }
+
+
+        //handle attirbute for ordering
+        $sorting = WPJOBPORTALrequest::getVar('sorting', 'shortcode_option', false);
+        if($sorting && $sorting != ''){
+            $this->makeOrderingQueryFromShortcodeAttributesResume($sorting);
+        }
+
+        //handle attirbute for no of jobs
+        $no_of_resumes = WPJOBPORTALrequest::getVar('no_of_resumes', 'shortcode_option', false);
+        if($no_of_resumes && $no_of_resumes != ''){
+            wpjobportal::$_data['shortcode_option_no_of_resumes'] = (int) $no_of_resumes;
+        }
+
+
+        // handle visibilty of data based on shortcode
+        $this->handleDataVisibilityByShortcodeAttributesResume();
+        return $inquery;
+    }
+
+
+    function makeOrderingQueryFromShortcodeAttributesResume($sorting) {
+        switch ($sorting) {
+            //name
+            case "name_desc":
+                wpjobportal::$_data['sorting'] = " resume.first_name DESC ";
+                break;
+            case "name_asc":
+                wpjobportal::$_data['sorting'] = " resume.first_name ASC ";
+                break;
+            //posted
+            case "posted_desc":
+                wpjobportal::$_data['sorting'] = " resume.created DESC ";
+                break;
+            case "posted_asc":
+                wpjobportal::$_data['sorting'] = " resume.created ASC ";
+                break;
+            // category
+            case 'category_asc':
+                wpjobportal::$_data['sorting'] = ' category.cat_title ASC ';
+                break;
+            case 'category_desc':
+                wpjobportal::$_data['sorting'] = ' category.cat_title DESC ';
+                break;
+            // jobtype
+            case 'jobtype_asc':
+                wpjobportal::$_data['sorting'] = ' jobtype.title ASC ';
+                break;
+            case 'jobtype_desc':
+                wpjobportal::$_data['sorting'] = ' jobtype.title DESC ';
+                break;
+        }
+        return;
+    }
+
+    function handleDataVisibilityByShortcodeAttributesResume() {
+
+        //handle attirbute for hide company logo on job listing
+        $hide_resume_photo = WPJOBPORTALrequest::getVar('hide_resume_photo', 'shortcode_option', false);
+        if($hide_resume_photo && $hide_resume_photo != ''){
+            wpjobportal::$_data['shortcode_option_hide_resume_photo'] = 1;
+        }
+
+        //handle attirbute for hide company name on job listing
+        $hide_resume_location = WPJOBPORTALrequest::getVar('hide_resume_location', 'shortcode_option', false);
+        if($hide_resume_location && $hide_resume_location != ''){
+            wpjobportal::$_data['shortcode_option_hide_resume_location'] = 1;
+        }
+
+        //handle attirbute for hide company name on job listing
+        $hide_resume_salary = WPJOBPORTALrequest::getVar('hide_resume_salary', 'shortcode_option', false);
+        if($hide_resume_salary && $hide_resume_salary != ''){
+            wpjobportal::$_data['shortcode_option_hide_resume_salary'] = 1;
         }
     }
 

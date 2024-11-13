@@ -650,12 +650,12 @@ class WPJOBPORTALwpjobportalModel {
                     if ($data->photo != "") {
                         $path = $wpdir['baseurl'] . '/' . $data_directory . '/data/employer/comp_' . $data->id . '/logo/' . $data->photo;
                     } else {
-                        $path = esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/default_logo.png';
+                        $path = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer');
                     }
                 } elseif ($data->photo != "") {
                     $path = $wpdir['baseurl'] . '/' . $data_directory . '/data/jobseeker/resume_' . $data->id . '/photo/' . $data->photo;
                 } else {
-                    $path = esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/users.png';
+                    $path = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
                 }
 
                 $picstyle = '';
@@ -748,13 +748,12 @@ class WPJOBPORTALwpjobportalModel {
     function getAppliedJobPopup($results) {
         $html = '';
         $wpdir = wp_upload_dir();
+        $data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
         foreach ($results as $data) {
             //photo / logo
+            $path = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer');
             if ($data->logo != "") {
-                $data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
                 $path = $wpdir['baseurl'] . '/' . $data_directory . '/data/employer/comp_' . $data->id . '/logo/' . $data->logo;
-            } else {
-                $path = esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/default_logo.png';
             }
 
 
@@ -894,21 +893,18 @@ class WPJOBPORTALwpjobportalModel {
         $html = '';
         $html .= '<div id="wp-job-portal-widget-wrapper">';
         $wpdir = wp_upload_dir();
+        $data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
         foreach ($results as $data) {
             //name
             $name = $data->username;
             //photo code
-            $data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
+            $path = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
             if ($role == 1) {
                 if ($data->photo != "") {
                     $path = $wpdir['baseurl'] . '/' . $data_directory . '/data/employer/comp_' . $data->companyid . '/logo/' . $data->photo;
-                } else {
-                    $path = esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/users.png';
                 }
             } elseif ($data->photo != "") {
                 $path = $wpdir['baseurl'] . '/' . $data_directory . '/data/jobseeker/resume_' . $data->resumeid . '/photo/' . $data->photo;
-            } else {
-                $path = esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/users.png';
             }
             //photo code
             $dateformat = wpjobportal::$_configuration['date_format'];

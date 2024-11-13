@@ -119,6 +119,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                 }
                 $contentswrapperstart .= '</div>';
                 $wpdir = wp_upload_dir();
+                $data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
                 if (isset($jobs)) {
                     foreach ($jobs as $job) {
                         $contents .= '<div id="wpjobportal_modulelist_databar"><span id="whiteback"></span>';
@@ -131,10 +132,8 @@ class WPJOBPORTALwpjobportalwidgetsModel {
 
                                 $c_l = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$job->companyaliasid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
 
-                                if($job->logofilename == ''){
-                                    $logo = esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/default_logo.png';
-                                }else{
-                                    $data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
+                                $logo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer');
+                                if($job->logofilename != ''){
                                     $logo = $wpdir['baseurl'] . '/' . $data_directory . '/data/employer/comp_' . $job->companyid . '/logo/' . $job->logofilename;
                                 }
                                 $contents .= '<a href=' . esc_url($c_l) . '><img  src="' . esc_url($logo) . '"  /></a>';
@@ -197,6 +196,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                 }
                 $inlineCSS = 'margin-top:' . esc_attr($jobmargintop) . 'px;margin-left:' . esc_attr($jobmarginleft) . 'px;';
                 $wpdir = wp_upload_dir();
+                $data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
                 if (isset($jobs)) {
                     foreach ($jobs as $job) {
                         $contents .= '<div id="wpjobportal_module_wrap" class="' . esc_attr($jobwidthclass) . ' ' . esc_attr($jobtabwidthclass) . ' wjportal-job-mod">
@@ -214,11 +214,8 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                                 $dataclass = "data100";
                                 $logocss = 'height:' . esc_attr($companylogoheight) . 'px;';
                             }
-
-                            if($job->logofilename == ''){
-                                $logo = esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/default_logo.png';
-                            }else{
-                                $data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
+                            $logo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer');
+                            if($job->logofilename != ''){
                                 $logo = $wpdir['baseurl'] . '/' . $data_directory . '/data/employer/comp_' . $job->companyid . '/logo/' . $job->logofilename;
                             }
 
@@ -437,9 +434,8 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                             $contents .= '<span id="wpjobportal_modulelist_databar" class="desktop_w-' . esc_attr($desktop_w) . ' tablet_w-' . esc_attr($tablet_w) . ' mobile_w-' . esc_attr($mobile_w) . ' ' . esc_attr($class) . '">';
                             $c_l = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$company->companyaliasid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
 
-                            if($company->logofilename == ''){
-                                $logo = esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/default_logo.png';
-                            }else{
+                            $logo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer');
+                            if($company->logofilename != ''){
                                 $logo = $wpdir['baseurl'] . '/' . $data_directory . '/data/employer/comp_' . $company->id . '/logo/' . $company->logofilename;
                             }
 
@@ -488,6 +484,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                 }
                 $inlineCSS = 'margin-top:' . esc_attr($jobmargintop) . 'px;margin-left:' . esc_attr($jobmarginleft) . 'px;';
                 if (isset($companies)) {
+                    $wpdir = wp_upload_dir();
                     foreach ($companies as $company) {
                         $contents .= '<div id="wpjobportal_module_wrap" class="' . esc_attr($jobwidthclass) . ' ' . esc_attr($jobtabwidthclass) . ' wjportal-comp-mod ">
                                       <div id="wpjobportal_module">';
@@ -504,10 +501,8 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                                 $dataclass = "data100";
                                 $logocss = 'height:' . esc_attr($companylogoheight) . 'px;';
                             }
-                            if($company->logofilename == ''){
-                                $logo = esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/default_logo.png';
-                            }else{
-                                $wpdir = wp_upload_dir();
+                            $logo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer');
+                            if($company->logofilename != ''){
                                 $logo = $wpdir['baseurl'] . '/' . $data_directory . '/data/employer/comp_' . $company->id . '/logo/' . $company->logofilename;
                             }
 
@@ -761,9 +756,8 @@ class WPJOBPORTALwpjobportalwidgetsModel {
 
                             $c_l = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'viewresume', 'wpjobportalid'=>$resume->resumealiasid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
 
-                            if($resume->photo == ''){
-                                $logo = esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/users.png';
-                            }else{
+                            $logo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
+                            if($resume->photo != ''){
                                 $logo = $wpdir['baseurl'] . '/' . $data_directory . '/data/jobseeker/resume_' . $resume->resumeid . '/photo/' . $resume->photo;
                             }
 
@@ -853,6 +847,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                 }
                 $inlineCSS = 'margin-top:' . esc_attr($resumemargintop) . 'px;margin-left:' . esc_attr($resumemarginleft) . 'px;';
                 if (isset($resumes)) {
+                    $wpdir = wp_upload_dir();
                     foreach ($resumes as $resume) {
                         $contents .= '<div id="wpjobportal_module_wrap" class="' . esc_attr($jobwidthclass) . ' ' . esc_attr($jobtabwidthclass) . ' wjportal-resume-mod">
                                       <div id="wpjobportal_module">';
@@ -871,10 +866,8 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                                 $dataclass = "data100";
                                 $logocss = 'height:' . esc_attr($photoheight) . 'px;';
                             }
-                            if($resume->photo == ''){
-                                $logo = esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/users.png';
-                            }else{
-                                $wpdir = wp_upload_dir();
+                            $logo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
+                            if($resume->photo != ''){
                                 $logo = $wpdir['baseurl'] . '/' . $data_directory . '/data/jobseeker/resume_' . $resume->resumeid . '/photo/' . $resume->photo;
                             }
                             $logoclass .= $this->getClasses($resumephoto);
@@ -1145,7 +1138,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
         $data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
         $wpdir = wp_upload_dir();
         $logopath = $wpdir['baseurl'] . '/' . $data_directory . '/data/employer/comp_'/* . $comp->id . '/logo/' . $comp->logofilename*/;
-        $default_logoPath = esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/default_logo.png';;
+        $default_logoPath = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer');
 
 
         $html = ''; 
@@ -1301,7 +1294,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                                             box = document.createElement("div");
                                             box.id = "osmmappopup";
                                         }
-                                        var html = "<div class=\'wjportal-jobs-list-map\'><div class=\'wjportal-jobs-list\'><div class=\'wjportal-jobs-logo\'><img src=\''. esc_url(WPJOBPORTAL_PLUGIN_URL) .'/includes/images/default_logo.png\' ></div><div class=\'wjportal-jobs-cnt\'><div class=\'wjportal-jobs-data\'><a href=\'#\' class=\'wjportal-companyname\'>Company Name</a></div><div class=\'wjportal-jobs-data\'><a href=\'#\' class=\'wjportal-job-title\'>Job Title</a></div><div class=\'wjportal-jobs-data\'><span class=\'wjportal-jobs-data-txt\'>Category</span></div></div></div></div>";
+                                        var html = "<div class=\'wjportal-jobs-list-map\'><div class=\'wjportal-jobs-list\'><div class=\'wjportal-jobs-logo\'><img src=\''. WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer') .'\' ></div><div class=\'wjportal-jobs-cnt\'><div class=\'wjportal-jobs-data\'><a href=\'#\' class=\'wjportal-companyname\'>Company Name</a></div><div class=\'wjportal-jobs-data\'><a href=\'#\' class=\'wjportal-job-title\'>Job Title</a></div><div class=\'wjportal-jobs-data\'><span class=\'wjportal-jobs-data-txt\'>Category</span></div></div></div></div>";
                                         box.innerHTML = html;
                                         var prev_infowindow = new ol.Overlay({
                                             element: box,
@@ -1363,16 +1356,15 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                                         </div>
                                     ';
                 $wpdir = wp_upload_dir();
+                $data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
                 if (isset($jobs)) {
                     foreach ($jobs as $job) {
                         $contents .= '<div id="wpjobportal-module-datalist" class="wjportal-jobs-list">';
                             $contents .= '<div class="wjportal-jobs-list-top-wrp">';
                                 $contents .= '<div class="wjportal-jobs-logo">';
                                     $c_l = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$job->companyaliasid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
-                                    if($job->logofilename == ''){
-                                        $logo = esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/default_logo.png';
-                                    }else{
-                                        $data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
+                                    $logo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer');
+                                    if($job->logofilename != ''){
                                         $logo = $wpdir['baseurl'] . '/' . $data_directory . '/data/employer/comp_' . $job->companyid . '/logo/' . $job->logofilename;
                                     }
                                     $contents .= '<a href=' . esc_url($c_l) . '><img src="' . esc_url($logo) . '"  /></a>';
@@ -1472,8 +1464,9 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                                             </span>
                                         </div>
                                     ';
-                $wpdir = wp_upload_dir();
                 if (isset($companies)) {
+                    $wpdir = wp_upload_dir();
+                    $data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
                     foreach ($companies as $company) {
                         $color = ($company->status == 1) ? "green" : "red";
                         if ($company->status == 1) {
@@ -1496,10 +1489,8 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                             $contents .= '<div class="wjportal-company-list-top-wrp">';
                                 $contents .= '<div class="wjportal-company-logo">';
                                     $c_l = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$company->alias, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
-                                    if($company->logofilename == ''){
-                                        $logo = esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/default_logo.png';
-                                    }else{
-                                        $data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
+                                    $logo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer');
+                                    if($company->logofilename != ''){
                                         $logo = $wpdir['baseurl'] . '/' . $data_directory . '/data/employer/comp_' . $company->id . '/logo/' . $company->logofilename;
                                     }
                                     $contents .= '<a href=' . esc_url($c_l) . '><img src="' . esc_url($logo) . '"  /></a>';
@@ -1585,9 +1576,8 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                             $contents .= '<div class="wjportal-resume-list-top-wrp">';
                                 $contents .= '<div class="wjportal-resume-logo">';
                                     $c_l = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'viewresume', 'wpjobportalid'=>$resume->resumealiasid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
-                                    if($resume->photo == ''){
-                                        $logo = esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/users.png';
-                                    }else{
+                                    $logo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
+                                    if($resume->photo != ''){
                                         $logo = $wpdir['baseurl'] . '/' . $data_directory . '/data/jobseeker/resume_' . $resume->resumeid . '/photo/' . $resume->photo;
                                     }
                                     $contents .= '<a href=' . esc_url($c_l) . '><img class="wpjobportal-module-datalist-img" src="' . esc_url($logo) . '"  /></a>';

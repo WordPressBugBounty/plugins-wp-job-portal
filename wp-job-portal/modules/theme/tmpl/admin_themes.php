@@ -161,7 +161,7 @@
                     <div class="wjportal-jobs-list-top-wrp">
                         <div class="wjportal-jobs-logo">
                             <a href="#">
-                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>/includes/images/default_logo.png" alt="<?php echo esc_html(__('Company logo','wp-job-portal')); ?>">
+                                <img src="<?php echo esc_url(WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer')); ?>" alt="<?php echo esc_html(__('Company logo','wp-job-portal')); ?>">
                             </a>
                         </div>
                         <div class="wjportal-jobs-cnt-wrp">
@@ -226,7 +226,7 @@
                     <div class="wjportal-jobs-list-top-wrp">
                         <div class="wjportal-jobs-logo">
                             <a href="#">
-                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>/includes/images/default_logo.png" alt="<?php echo esc_html(__('Company logo','wp-job-portal')); ?>">
+                                <img src="<?php echo esc_url(WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer')); ?>" alt="<?php echo esc_html(__('Company logo','wp-job-portal')); ?>">
                             </a>
                         </div>
                         <div class="wjportal-jobs-cnt-wrp">
@@ -287,7 +287,7 @@
                     <div class="wjportal-jobs-list-top-wrp">
                         <div class="wjportal-jobs-logo">
                             <a href="#">
-                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>/includes/images/default_logo.png" alt="<?php echo esc_html(__('Company logo','wp-job-portal')); ?>">
+                                <img src="<?php echo esc_url(WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer')); ?>" alt="<?php echo esc_html(__('Company logo','wp-job-portal')); ?>">
                             </a>
                         </div>
                         <div class="wjportal-jobs-cnt-wrp">
@@ -348,7 +348,7 @@
                     <div class="wjportal-jobs-list-top-wrp">
                         <div class="wjportal-jobs-logo">
                             <a href="#">
-                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>/includes/images/default_logo.png" alt="<?php echo esc_html(__('Company logo','wp-job-portal')); ?>">
+                                <img src="<?php echo esc_url(WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer')); ?>" alt="<?php echo esc_html(__('Company logo','wp-job-portal')); ?>">
                             </a>
                         </div>
                         <div class="wjportal-jobs-cnt-wrp">

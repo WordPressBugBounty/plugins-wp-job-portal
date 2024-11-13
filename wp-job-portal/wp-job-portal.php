@@ -3,14 +3,14 @@
 /**
  * @package WP JOB PORTAL
  * @author Ahmad Bilal
- * @version 2.2.1
+ * @version 2.2.2
  */
 /*
   * Plugin Name: WP Job Portal
   * Plugin URI: https://wpjobportal.com/
   * Description: WP JOB PORTAL is Word Press best job board plugin. It is easy to use and highly configurable. It fully accommodates job seekers and employers.
   * Author: WP Job Portal
-  * Version: 2.2.1
+  * Version: 2.2.2
   * Text Domain: wp-job-portal
   * Domain Path: /languages
   * Author URI: https://wpjobportal.com/
@@ -76,7 +76,7 @@ class wpjobportal {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '221';
+        self::$_currentversion = '222';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_common = WPJOBPORTALincluder::getJSModel('common');
         self::$_config = WPJOBPORTALincluder::getJSModel('configuration');
@@ -175,7 +175,7 @@ class wpjobportal {
                 if( $plugin == $our_plugin ) {
                     update_option('wpjp_currentversion', self::$_currentversion);
                     include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
-                    WPJOBPORTALupdates::checkUpdates('221');
+                    WPJOBPORTALupdates::checkUpdates('222');
 
                 	// restore colors data
 		            require(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
@@ -1123,7 +1123,7 @@ function wpjobportal_socialmedia_metatags(){
 
 
 // package system popup was not working so commented it out
-//add_action( 'wp_head', 'wpjobportal_job_posting_structured');
+add_action( 'wp_head', 'wpjobportal_job_posting_structured');
 function wpjobportal_job_posting_structured(){
     $layout = WPJOBPORTALrequest::getVar('wpjobportallt');
     if($layout == 'viewjob'){
@@ -1131,54 +1131,8 @@ function wpjobportal_job_posting_structured(){
         $jobid = wpjobportal::$_common->parseID($jobid);
         $job = WPJOBPORTALincluder::getJSModel('job')->jobDataStructuredPost($jobid);
         if(isset($job->title) && isset($job->id)){
-            $wpdir = wp_upload_dir();
-            $data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
-            $path = $wpdir['baseurl'] . '/' . $data_directory . '/data/employer/comp_' . $job->companyid . '/logo/' . $job->logofilename;
-            wp_register_script( 'wpjobportal-inline-handle', '' );
-            wp_enqueue_script( 'wpjobportal-inline-handle' );
-
-            $inline_js_script = '
-            {
-              "@context" : "https://schema.org/",
-              "@type" : "JobPosting",
-              "title" : "'. $job->title .'",
-              "description" : "'. $job->description .'",
-              "identifier": {
-                "@type": "PropertyValue",
-                "name": "'. $job->companyname .'",
-                "value": "'. $job->jobid .'"
-              },
-              "datePosted" : "'. $job->created .'",
-              "validThrough" : "'. $job->stoppublishing .'",
-              "employmentType" : "'. $job->jobtypetitle .'",
-              "hiringOrganization" : {
-                "@type" : "Organization",
-                "name" : "'. $job->companyname .'",
-                "sameAs" : "https://www.facebook.com",
-                "logo" : "'. $path .'"
-              },
-              "jobLocation": {
-              "@type": "Place",
-                "address": [{
-                "@type": "PostalAddress",
-                "streetAddress": "'. $job->multicity .'"
-                },{
-                "@type": "PostalAddress",
-                "streetAddress": "'. $job->multicity .'"
-                }]
-              },
-             "baseSalary": {
-                "@type": "MonetaryAmount",
-                "currency": "'.$job->currency.'",
-                "value": {
-                  "@type": "QuantitativeValue",
-                  "value": "'.$job->salary.'",
-                  "unitText": "'.$job->srangetypetitle.'"
-                }
-              }
-            }
-            ';
-            wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+            $job_json = WPJOBPORTALincluder::getJSModel('job')->jobDataStructuredPostJSON($job);
+            echo '<script type="application/ld+json">' . $job_json . '</script>';
         }
     }
 }

@@ -8,19 +8,15 @@
 $html = '';
 switch ($layout) {
 	case 'userlogo':
-		$photo = '';
+	    $photo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
 		if (isset($user->photo) && $user->photo != '') {
 		    $wpdir = wp_upload_dir();
 		    $data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
 		    $photo = $wpdir['baseurl'] . '/' . $data_directory . '/data/profile/profile_' . esc_attr($user->uid) . '/profile/' . $user->photo;
-		    $padding = "";
-		} else {
-		    $photo = esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/users.png';
-		    $padding = '';
 		}
 		$html.= '<div class="wpjobportal-user-logo">
                     <a href='. esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userdetail&id='.esc_attr($user->id))).'>
-                    	<img src="'. esc_url($photo) .'" '. esc_attr($padding) .' alt='.esc_html(__("logo","wp-job-portal")).'>
+                    	<img src="'. esc_url($photo) .'" alt='.esc_html(__("logo","wp-job-portal")).'>
                     </a>
                 </div>';
 		break;

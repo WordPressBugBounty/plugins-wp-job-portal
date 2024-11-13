@@ -1035,15 +1035,17 @@ class WPJOBPORTALResumeFormlayout {
 
                         $photo_required = ($field->required ? 'required' : '');
                         $imgpath = '';
+
+                        $img = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
+                        $class = 'none';
+
                         if (!empty($resume->photo)) {
                             $wpdir = wp_upload_dir();
                             $data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
                             $img = $wpdir['baseurl'] . '/' . $data_directory . '/data/jobseeker/resume_' . $resume->id . '/photo/' . $resume->photo;
                             $class = '';
-                        } else {
-                            $img = esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/users.png';
-                            $class = 'none';
                         }
+
                         $resumephoto = isset($resume->photo) ? $resume->photo : null;
                         //starts From there
                         $fieldvalue = '
@@ -1057,7 +1059,7 @@ class WPJOBPORTALResumeFormlayout {
                                     </span>
                                 </div>
                                 <div class="wjportal-form-image-wrp" style="display:'.$class.'">
-                                    <img class="rs_photo wjportal-form-image" id="rs_photo" src="' . $img . '" alt="'.esc_html(__('Resume image','wp-job-portal')).'"/>
+                                    <img class="rs_photo wjportal-form-image" id="rs_photo" src="' . esc_url($img) . '" alt="'.esc_html(__('Resume image','wp-job-portal')).'"/>
                                     <img id="wjportal-form-delete-image" alt="cross" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/no.png" />
                                 </div>';
                                 $logoformat = wpjobportal::$_config->getConfigurationByConfigName('image_file_type');
