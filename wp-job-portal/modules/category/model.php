@@ -434,7 +434,9 @@ class WPJOBPORTALCategoryModel {
 
     private function getAllParentListTillRoot($categoryid,&$parentsarray){
         if(!is_numeric($categoryid)) return false;
-        $query = "SELECT id, cat_title, parentid FROM `".wpjobportal::$_db->prefix."wj_portal_categories` WHERE id = " . esc_sql($categoryid);
+        $query = "SELECT id, cat_title, parentid
+        FROM `".wpjobportal::$_db->prefix."wj_portal_categories`
+        WHERE id = " . esc_sql($categoryid);
         $result = wpjobportal::$_db->get_row($query);
         if($result){
             $parentsarray[$result->id] = $result->cat_title;

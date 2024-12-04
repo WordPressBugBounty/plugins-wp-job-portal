@@ -81,7 +81,7 @@ class WPJOBPORTALCityModel {
                 $clause = ' AND ';
             }
         }
-        if ($countryid) {
+        if (is_numeric($countryid)) {
             $inquery .= esc_sql($clause) . "countryid = " . esc_sql($countryid);
             $clause = ' AND ';
         }
@@ -518,7 +518,25 @@ class WPJOBPORTALCityModel {
             // checking & removing old data
             if(isset($data['keepdata'])){
                 // removing cities of a country from the database
-                if($data['keepdata'] == 2){
+                if($data['keepdata'] == 1){
+                    // KEEP DATA
+
+                    // code to handle and modify query to avoid duplications
+                    // get country id from country name code
+                    $query = "SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_countries` WHERE namecode = '".esc_sql($data['country_code'])."'";
+                    $countryid = wpjobportaldb::get_var($query);
+
+                    if(is_numeric($countryid) && $countryid > 0){
+                        // get country cities to comapre
+                        $fetch_cities = " SELECT internationalname,stateid FROM`" . wpjobportal::$_db->prefix . "wj_portal_cities` WHERE countryid =".esc_sql($countryid);
+                        $country_cities = wpjobportaldb::get_results($fetch_cities);
+
+                        if(!empty($country_cities)){ // means there are already cities for this country
+                            // this function will find and remove records from query that already exsist in database
+                            $file_contents = $this->processFileQueries($file_contents,$country_cities);
+                        }
+                    }
+                }elseif($data['keepdata'] == 2){
                     // get country id from country name code
                     $query = "SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_countries` WHERE namecode = '".esc_sql($data['country_code'])."'";
                     $countryid = wpjobportaldb::get_var($query);
@@ -533,14 +551,16 @@ class WPJOBPORTALCityModel {
                     wpjobportaldb::query($remove_cities);
                 }
             }
-            //preparing queries to execute
-            $query = wpjobportalphplib::wpJP_str_replace('#__', wpjobportal::$_db->prefix, $file_contents);
+            if($file_contents != ''){
+                //preparing queries to execute
+                $query = wpjobportalphplib::wpJP_str_replace('#__', wpjobportal::$_db->prefix, $file_contents);
 
-            $query_array  = explode(';',$query); // breaking queries up to execute seprately
-            foreach ($query_array as $array_key => $single_query) {
-                $single_query = trim($single_query);
-                if($single_query != ''){
-                    wpjobportaldb::query($single_query);
+                $query_array  = explode(';',$query); // breaking queries up to execute seprately
+                foreach ($query_array as $array_key => $single_query) {
+                    $single_query = trim($single_query);
+                    if($single_query != ''){
+                        wpjobportaldb::query($single_query);
+                    }
                 }
             }
 
@@ -729,5 +749,123 @@ class WPJOBPORTALCityModel {
         return;
     }
 
+    function clean_word($word){
+        $word_to_check = str_replace('-', '', $word);
+        $word_to_check = str_replace(',', '', $word_to_check);
+        $word_to_check = str_replace('.', '', $word_to_check);
+        $word_to_check = str_replace(' ', '', $word_to_check);
+        $word_to_check = str_replace('"', '', $word_to_check);
+        $word_to_check = str_replace("'", '', $word_to_check);
+        $word_to_check = strtolower($word_to_check);
+        return $word_to_check;
+    }
+
+
+    function processFileQueries($main_query,$exsisting_data){
+        // if exsisting data empty somehow return the query
+        if( empty($exsisting_data)){
+            return $main_query;
+        }
+        // this variable is exsisting data in modifed form easy for comapre
+        $data_to_check = array();
+        foreach ($exsisting_data as $city) {
+            // using city name as index to check for duplication
+            $city_name_for_index = $this->clean_word($city->internationalname);
+            if($city->stateid != ''){
+                $city_name_for_index .= $city->stateid;
+            }
+            $data_to_check[$city_name_for_index] = 1;
+        }
+
+        // seprate all insert queries
+        $seprate_queries_array = explode(';',$main_query);
+
+        $final_query = '';
+        // loop over insert queries to process them
+        foreach ($seprate_queries_array as $query) {
+            // make sure the query is not just empty string
+            $query = trim($query);
+            if($query == ''){
+                continue;
+            }
+
+            $temp_query = $this->processSingleQuery($query,$data_to_check);
+            // if($temp_query != ''){ // removing this check in case of all cities already exsist
+                $final_query .= $temp_query;
+            // }
+        }
+
+        // removing this check in case of all cities already exsist
+        // if($final_query != ''){
+        //     $main_query =  $final_query;
+        // }
+        return $final_query;
+    }
+
+
+    function processSingleQuery($query,$exsisting_data){
+
+        if( empty($exsisting_data)){
+            return $query;
+        }
+
+        // this will separate the insert statemenr from values
+        $main_parts = explode('VALUES', $query);
+
+        // will only contain insert statement (before the word values)
+        $insert_query_part = $main_parts[0];
+
+        // this will only contain values section
+        $insert_value_part = $main_parts[1];
+
+        // will add "NEXTRECORD" in text after every record
+        $insert_value_part = str_replace('"),','"),NEXTRECORD', $insert_value_part);
+
+        // will make an array of line using NEXTRECORD as breaking point
+        $insert_value_parts_array = explode("NEXTRECORD",$insert_value_part);
+
+        //variable that will contain new cities to be isnerted
+        $new_cities_records_string = '';
+
+        // process indivual record
+        foreach ($insert_value_parts_array as $record_string) {
+            $record_query = explode(',',$record_string);
+
+            // 2 index is international name
+            $index_to_check  = $this->clean_word($record_query[2]);
+            $record_query[3]= trim($record_query[3]);
+            // 3 index is statename
+            if($record_query[3] != '' && $record_query[3] != 'NULL' ){
+                $index_to_check  .= $record_query[3];
+            }
+
+            if(isset($exsisting_data[$index_to_check]) && $exsisting_data[$index_to_check] == 1){// check condition ??
+                continue;
+            }else{
+                $new_cities_records_string .= $record_string; // rebuilding string using single records
+            }
+        }
+
+        $new_query = '';
+        if($new_cities_records_string !=''){
+
+            // remove if the last character is a ","
+            $new_cities_records_string = rtrim($new_cities_records_string, ',');
+
+            // set different parts into same array
+            $make_query = array();
+            $make_query[0] = $insert_query_part;
+            $make_query[1] = $new_cities_records_string;
+
+            // convert the array to string
+            $new_query = implode('VALUES', $make_query);
+
+            // adding semi colon at the end to make the query syntax proper
+            $new_query = $new_query.";\n\n ";
+        }
+
+        return $new_query;
+    }
 }
+
 ?>

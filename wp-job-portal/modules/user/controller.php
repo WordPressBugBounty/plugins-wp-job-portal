@@ -145,7 +145,13 @@ class WPJOBPORTALUserController {
     }
 
     function assignuserrole() {
-
+        $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (! wp_verify_nonce( $nonce, 'wpjobportal_user_nonce') ) {
+             die( 'Security check Failed' );
+        }
+        if (!current_user_can('manage_options')) { //only admin can change it.
+            return false;
+        }
         $data = WPJOBPORTALrequest::get('post');
         $result = WPJOBPORTALincluder::getJSModel('user')->assignUserRole($data);
         $msg = WPJOBPORTALMessages::getMessage($result, 'userrole');
@@ -159,6 +165,9 @@ class WPJOBPORTALUserController {
         $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'wpjobportal_user_nonce') ) {
              die( 'Security check Failed' );
+        }
+        if (!current_user_can('manage_options')) { //only admin can change it.
+            return false;
         }
         $userid = WPJOBPORTALrequest::getVar('wpjobportalid');
         $result = WPJOBPORTALincluder::getJSModel('user')->changeUserStatus($userid);
@@ -179,6 +188,9 @@ class WPJOBPORTALUserController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_user_nonce') ) {
              die( 'Security check Failed' );
         }
+        if (!current_user_can('manage_options')) { //only admin can change it.
+            return false;
+        }
         $userid = WPJOBPORTALrequest::getVar('wpjobportalid');
         $result = WPJOBPORTALincluder::getJSModel('user')->deleteUser($userid);
         $msg = WPJOBPORTALMessages::getMessage($result, 'user');
@@ -192,6 +204,9 @@ class WPJOBPORTALUserController {
         $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'wpjobportal_user_nonce') ) {
              die( 'Security check Failed' );
+        }
+        if (!current_user_can('manage_options')) { //only admin can change it.
+            return false;
         }
         $userid = WPJOBPORTALrequest::getVar('wpjobportalid');
         $result = WPJOBPORTALincluder::getJSModel('user')->enforceDeleteUser($userid);

@@ -85,6 +85,9 @@ class WPJOBPORTALuploads {
     }
 
     function uploadCompanyLogo($id){
+        if(!is_numeric($id)){
+            return false;
+        }
         $file_size = wpjobportal::$_config->getConfigurationByConfigName('company_logofilezize');
         if (!function_exists('wp_handle_upload')) {
             do_action('wpjobportal_load_wp_file');

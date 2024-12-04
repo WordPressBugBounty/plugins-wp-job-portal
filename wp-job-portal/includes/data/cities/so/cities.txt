@@ -17,6 +17,7 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("Afgooye أفجوي", "Afgooye أفجوي", "Afgooye", NULL, 185, 0, 1, NULL, "2.1460287", "45.1190379"),
 ("Jowhar جوهر", "Jowhar جوهر", "Jowhar", NULL, 185, 0, 1, NULL, "2.7797296", "45.5042168"),
 ("Beledweyne بلد وين", "Beledweyne بلد وين", "Beledweyne", NULL, 185, 0, 1, NULL, "4.7367735", "45.2038881"),
+("Balanbale   بلنبله", "Balanbale   بلنبله", "Balanbale   بلنبله", NULL, 185, 0, 1, NULL, "5.7669406", "45.7659615"),
 ("Caabudwaaq عابدؤاغ", "Caabudwaaq عابدؤاغ", "Abudwak", NULL, 185, 0, 1, NULL, "6.2461515", "46.2251544"),
 ("Dhabad طبت", "Dhabad طبت", "Debet", NULL, 185, 0, 1, NULL, "6.434309", "46.460472"),
 ("Gaalkacyo جالكعيو", "Gaalkacyo جالكعيو", "Galkayo", NULL, 185, 0, 1, NULL, "6.769726", "47.430826"),

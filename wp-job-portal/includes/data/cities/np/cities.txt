@@ -1,5 +1,6 @@
 
 INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Nepalgunj Sub Metropolitan City", "Nepalgunj Sub Metropolitan City", "Nepalgunj Sub Metropolitan City", NULL, 123, 0, 1, NULL, "28.06612885", "81.649783305891"),
 ("घोराही", "घोराही", "Ghorahi", NULL, 123, 0, 1, NULL, "28.0394954", "82.4855998"),
 ("बुटवल", "बुटवल", "Butwal", NULL, 123, 0, 1, NULL, "27.7003986", "83.4657667"),
 ("बिरगंज", "बिरगंज", "Birgunj", NULL, 123, 0, 1, NULL, "27.0135196", "84.8763804"),

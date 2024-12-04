@@ -54,6 +54,9 @@ class WPJOBPORTALjobModel {
             $result = wpjobportaldb::get_results($query);
 
             foreach ($result AS $job) {
+                if(!is_numeric($job->id)){
+                    continue;
+                }
                 if (empty($job->latitude) || empty($job->longitude)) {
                     $query = "SELECT city.name AS cityname, country.name AS countryname
                                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobcities` AS job
@@ -427,46 +430,46 @@ class WPJOBPORTALjobModel {
                 return;
         }
     }
+    // joomla code
+    // function getSearchOptions() {
+    //     $searchjobconfig = wpjobportal::$_config->getConfigByFor('searchjob');
 
-    function getSearchOptions() {
-        $searchjobconfig = wpjobportal::$_config->getConfigByFor('searchjob');
+    //     $searchoptions = array();
+    //     $companies = WPJOBPORTALincluder::getJSModel('company')->getAllCompaniesForSearchForCombo(esc_html(__('JS search all', 'wp-job-portal')));
+    //     $job_type = WPJOBPORTALincluder::getJSModel('jobtype')->getJobType(esc_html(__('JS_SEARCH_ALL', 'wp-job-portal')));
+    //     $jobstatus = WPJOBPORTALincluder::getJSModel('jobstatus')->getJobStatus(esc_html(__('JS_SEARCH_ALL', 'wp-job-portal')));
+    //     $heighesteducation = WPJOBPORTALincluder::getJSModel('highesteducation')->getHeighestEducation(esc_html(__('JS search all', 'wp-job-portal')));
+    //     $job_categories = WPJOBPORTALincluder::getJSModel('category')->getCategoriesForCombo(esc_html(__('JS search all', 'wp-job-portal')), '');
+    //     $job_salaryrange = WPJOBPORTALincluder::getJSModel('salaryrange')->getJobSalaryRangeForCombo(esc_html(__('JS search all', 'wp-job-portal')), '');
+    //     $shift = WPJOBPORTALincluder::getJSModel('shift')->getShift(esc_html(__('JS search all', 'wp-job-portal')));
+    //     $countries = WPJOBPORTALincluder::getJSModel('country')->getCountriesForCombo('');
 
-        $searchoptions = array();
-        $companies = WPJOBPORTALincluder::getJSModel('company')->getAllCompaniesForSearchForCombo(esc_html(__('JS search all', 'wp-job-portal')));
-        $job_type = WPJOBPORTALincluder::getJSModel('jobtype')->getJobType(esc_html(__('JS_SEARCH_ALL', 'wp-job-portal')));
-        $jobstatus = WPJOBPORTALincluder::getJSModel('jobstatus')->getJobStatus(esc_html(__('JS_SEARCH_ALL', 'wp-job-portal')));
-        $heighesteducation = WPJOBPORTALincluder::getJSModel('highesteducation')->getHeighestEducation(esc_html(__('JS search all', 'wp-job-portal')));
-        $job_categories = WPJOBPORTALincluder::getJSModel('category')->getCategoriesForCombo(esc_html(__('JS search all', 'wp-job-portal')), '');
-        $job_salaryrange = WPJOBPORTALincluder::getJSModel('salaryrange')->getJobSalaryRangeForCombo(esc_html(__('JS search all', 'wp-job-portal')), '');
-        $shift = WPJOBPORTALincluder::getJSModel('shift')->getShift(esc_html(__('JS search all', 'wp-job-portal')));
-        $countries = WPJOBPORTALincluder::getJSModel('country')->getCountriesForCombo('');
-
-        if (!isset($this->_config)) {
-            $this->_config = wpjobportal::$_config->getConfig();
-        }
-        $searchoptions['country'] = WPJOBPORTALformfield::select('select.genericList', $countries, 'country', 'class="inputbox required" ' . 'onChange="dochange(\'state\', this.value)"', 'value', 'text', '');
-        if (isset($states[1]))
-            if ($states[1] != '')
-                $searchoptions['state'] = WPJOBPORTALformfield::select('select.genericList', $states, 'state', 'class="inputbox" ' . 'onChange="dochange(\'city\', this.value)"', 'value', 'text', '');
-        if (isset($cities[1]))
-            if ($cities[1] != '')
-                $searchoptions['city'] = WPJOBPORTALformfield::select('select.genericList', $cities, 'city', 'class="inputbox" ' . '', 'value', 'text', '');
-        $searchoptions['companies'] = WPJOBPORTALformfield::select('select.genericList', $companies, 'company', 'class="inputbox" ' . '', 'value', 'text', '');
-        $searchoptions['jobcategory'] = WPJOBPORTALformfield::select('select.genericList', $job_categories, 'jobcategory', 'class="inputbox" ' . '', 'value', 'text', '');
-        $searchoptions['jobsalaryrange'] = WPJOBPORTALformfield::select('select.genericList', $job_salaryrange, 'jobsalaryrange', 'class="inputbox" ' . 'style="width:150px;"', 'value', 'text', '');
-        $searchoptions['salaryrangefrom'] = WPJOBPORTALformfield::select('select.genericList', WPJOBPORTALincluder::getJSModel('salaryrange')->getSalaryRangeForCombo(esc_html(__('JS From', 'wp-job-portal'))), 'salaryrangefrom', 'class="inputbox" ' . 'style="width:150px;"', 'value', 'text', '');
-        $searchoptions['salaryrangeto'] = WPJOBPORTALformfield::select('select.genericList', WPJOBPORTALincluder::getJSModel('salaryrange')->getSalaryRangeForCombo(esc_html(__('JS To', 'wp-job-portal'))), 'salaryrangeto', 'class="inputbox" ' . 'style="width:150px;"', 'value', 'text', '');
-        $searchoptions['salaryrangetypes'] = WPJOBPORTALformfield::select('select.genericList', WPJOBPORTALincluder::getJSModel('salaryrangetype')->getSalaryRangeTypes(''), 'salaryrangetype', 'class="inputbox" ' . 'style="width:150px;"', 'value', 'text', 2);
-        $searchoptions['jobstatus'] = WPJOBPORTALformfield::select('select.genericList', $jobstatus, 'jobstatus', 'class="inputbox" ' . '', 'value', 'text', '');
-        $searchoptions['jobtype'] = WPJOBPORTALformfield::select('select.genericList', $job_type, 'jobtype', 'class="inputbox" ' . '', 'value', 'text', '');
-        $searchoptions['heighestfinisheducation'] = WPJOBPORTALformfield::select('select.genericList', $heighesteducation, 'heighestfinisheducation', 'class="inputbox" ' . '', 'value', 'text', '');
-        $searchoptions['shift'] = WPJOBPORTALformfield::select('select.genericList', $shift, 'shift', 'class="inputbox" ' . '', 'value', 'text', '');
-        $searchoptions['currency'] = WPJOBPORTALformfield::select('select.genericList', WPJOBPORTALincluder::getJSModel('currency')->getCurrency(), 'currency', 'class="inputbox" ' . 'style="width:150px;"', 'value', 'text', '');
-        $result = array();
-        $result[0] = $searchoptions;
-        $result[1] = $searchjobconfig;
-        return $result;
-    }
+    //     if (!isset($this->_config)) {
+    //         $this->_config = wpjobportal::$_config->getConfig();
+    //     }
+    //     $searchoptions['country'] = WPJOBPORTALformfield::select('select.genericList', $countries, 'country', 'class="inputbox required" ' . 'onChange="dochange(\'state\', this.value)"', 'value', 'text', '');
+    //     if (isset($states[1]))
+    //         if ($states[1] != '')
+    //             $searchoptions['state'] = WPJOBPORTALformfield::select('select.genericList', $states, 'state', 'class="inputbox" ' . 'onChange="dochange(\'city\', this.value)"', 'value', 'text', '');
+    //     if (isset($cities[1]))
+    //         if ($cities[1] != '')
+    //             $searchoptions['city'] = WPJOBPORTALformfield::select('select.genericList', $cities, 'city', 'class="inputbox" ' . '', 'value', 'text', '');
+    //     $searchoptions['companies'] = WPJOBPORTALformfield::select('select.genericList', $companies, 'company', 'class="inputbox" ' . '', 'value', 'text', '');
+    //     $searchoptions['jobcategory'] = WPJOBPORTALformfield::select('select.genericList', $job_categories, 'jobcategory', 'class="inputbox" ' . '', 'value', 'text', '');
+    //     $searchoptions['jobsalaryrange'] = WPJOBPORTALformfield::select('select.genericList', $job_salaryrange, 'jobsalaryrange', 'class="inputbox" ' . 'style="width:150px;"', 'value', 'text', '');
+    //     $searchoptions['salaryrangefrom'] = WPJOBPORTALformfield::select('select.genericList', WPJOBPORTALincluder::getJSModel('salaryrange')->getSalaryRangeForCombo(esc_html(__('JS From', 'wp-job-portal'))), 'salaryrangefrom', 'class="inputbox" ' . 'style="width:150px;"', 'value', 'text', '');
+    //     $searchoptions['salaryrangeto'] = WPJOBPORTALformfield::select('select.genericList', WPJOBPORTALincluder::getJSModel('salaryrange')->getSalaryRangeForCombo(esc_html(__('JS To', 'wp-job-portal'))), 'salaryrangeto', 'class="inputbox" ' . 'style="width:150px;"', 'value', 'text', '');
+    //     $searchoptions['salaryrangetypes'] = WPJOBPORTALformfield::select('select.genericList', WPJOBPORTALincluder::getJSModel('salaryrangetype')->getSalaryRangeTypes(''), 'salaryrangetype', 'class="inputbox" ' . 'style="width:150px;"', 'value', 'text', 2);
+    //     $searchoptions['jobstatus'] = WPJOBPORTALformfield::select('select.genericList', $jobstatus, 'jobstatus', 'class="inputbox" ' . '', 'value', 'text', '');
+    //     $searchoptions['jobtype'] = WPJOBPORTALformfield::select('select.genericList', $job_type, 'jobtype', 'class="inputbox" ' . '', 'value', 'text', '');
+    //     $searchoptions['heighestfinisheducation'] = WPJOBPORTALformfield::select('select.genericList', $heighesteducation, 'heighestfinisheducation', 'class="inputbox" ' . '', 'value', 'text', '');
+    //     $searchoptions['shift'] = WPJOBPORTALformfield::select('select.genericList', $shift, 'shift', 'class="inputbox" ' . '', 'value', 'text', '');
+    //     $searchoptions['currency'] = WPJOBPORTALformfield::select('select.genericList', WPJOBPORTALincluder::getJSModel('currency')->getCurrency(), 'currency', 'class="inputbox" ' . 'style="width:150px;"', 'value', 'text', '');
+    //     $result = array();
+    //     $result[0] = $searchoptions;
+    //     $result[1] = $searchjobconfig;
+    //     return $result;
+    // }
 
     function getJobbyIdForView($job_id) {
         ////Start's WOrking From There FRIDAY//31..2020
@@ -522,6 +525,9 @@ class WPJOBPORTALjobModel {
         if(wpjobportal::$theme_chk != 0){
             // Related Jobs data
             $max = $job_portal_theme_options['maximum_relatedjobs'];
+            if(!is_numeric($max)){
+                $max = 5;
+            }
             $finaljobs = array();
             $relatedjobs=array();
             //var_dump($job_portal_theme_options['relatedjob_criteria_sorter']['enabled']);
@@ -529,12 +535,12 @@ class WPJOBPORTALjobModel {
                 $inquery = '';
                 switch($key){
                     case 'type':
-                        if(wpjobportal::$_data[0]->jobtype != ''){
+                        if(wpjobportal::$_data[0]->jobtype != '' && is_numeric(wpjobportal::$_data[0]->jobtype)){
                             $inquery = ' job.jobtype = ' . esc_sql(wpjobportal::$_data[0]->jobtype);
                         }
                     break;
                     case 'category':
-                        if(wpjobportal::$_data[0]->jobcategory != ''){
+                        if(wpjobportal::$_data[0]->jobcategory != '' && is_numeric(wpjobportal::$_data[0]->jobcategory)){
                             $inquery = ' job.jobcategory = ' . esc_sql(wpjobportal::$_data[0]->jobcategory);
                         }
                     break;
@@ -930,9 +936,9 @@ class WPJOBPORTALjobModel {
             $inquery .= " AND LOWER(job.title) LIKE '%" . esc_sql($searchtitle) . "%'";
         if ($searchcompany)
             $inquery .= " AND LOWER(company.name) LIKE '%" . esc_sql($searchcompany) . "%'";
-        if ($searchjobcategory)
+        if ($searchjobcategory && is_numeric($searchjobcategory))
             $inquery .= " AND job.jobcategory = " . esc_sql($searchjobcategory);
-        if ($searchjobtype)
+        if ($searchjobtype && is_numeric($searchjobtype))
             $inquery .= " AND job.jobtype = " . esc_sql($searchjobtype);
         if ($dateend != null){
             $dateend = gmdate('Y-m-d',strtotime($dateend));
@@ -942,7 +948,7 @@ class WPJOBPORTALjobModel {
             $datestart = gmdate('Y-m-d',strtotime($datestart));
             $inquery .= " AND DATE(job.created) >= '" . esc_sql($datestart) . "'";
         }
-        if ($status != null)
+        if ($status != null && is_numeric($status))
             $inquery .= " AND job.status = " . esc_sql($status);
         if ($featured != null)
             $inquery .= " AND job.isfeaturedjob = 1 AND DATE(job.startfeatureddate) <= '".esc_sql($curdate)."' AND DATE(job.endfeatureddate) >= '".esc_sql($curdate)."'";
@@ -953,7 +959,7 @@ class WPJOBPORTALjobModel {
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON city.id = (SELECT cityid FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobcities` WHERE jobid = job.id ORDER BY id DESC LIMIT 1)
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS salaryrangetype ON salaryrangetype.id = job.salaryduration
-                WHERE job.status != 0";
+                WHERE job.status != 0 ";
         $query.=$inquery;
 
         $total = wpjobportaldb::get_var($query);
@@ -1021,9 +1027,9 @@ class WPJOBPORTALjobModel {
             $inquery .= " AND LOWER(job.title) LIKE '%" . esc_sql($searchtitle) . "%'";
         if ($searchcompany)
             $inquery .= " AND LOWER(company.name) LIKE '%" . esc_sql($searchcompany) . "%'";
-        if ($searchjobcategory)
+        if ($searchjobcategory && is_numeric($searchjobcategory))
             $inquery .= " AND job.jobcategory = " . esc_sql($searchjobcategory);
-        if ($searchjobtype)
+        if ($searchjobtype && is_numeric($searchjobtype))
             $inquery .= " AND job.jobtype = " . esc_sql($searchjobtype);
         if ($dateend != null){
             $dateend = gmdate('Y-m-d',strtotime($dateend));
@@ -1033,7 +1039,7 @@ class WPJOBPORTALjobModel {
             $datestart = gmdate('Y-m-d',strtotime($datestart));
             $inquery .= " AND DATE(job.created) >= '" . esc_sql($datestart) . "'";
         }
-        if ($status != null)
+        if ($status != null && is_numeric($status))
             $inquery .= " AND job.status = " . esc_sql($status);
         if ($featured != null)
             $inquery .= " AND job.isfeaturedjob = 1";
@@ -1096,6 +1102,7 @@ class WPJOBPORTALjobModel {
             $data['uid'] = '';
         }
         $dateformat = wpjobportal::$_configuration['date_format'];
+        $ignore_stop_pulbishing_verification = 0;
         if ($data['id'] == '') {
             if(in_array('credits', wpjobportal::$_active_addons)){
                 $submission_type   = wpjobportal::$_config->getConfigValue('submission_type');
@@ -1177,15 +1184,25 @@ class WPJOBPORTALjobModel {
                     // if current entity being edited is not owned by current user dont allow to procced further
                     return false;
                 }
+                //handle stop publishing date in edit case
+                if(in_array('credits', wpjobportal::$_active_addons)){ // if package system
+                    $submission_type   = wpjobportal::$_config->getConfigValue('submission_type');
+                    if($submission_type == 3){// if membership mode is selected
+                        unset($data['stoppublishing']); // making sure the value does not update
+                        $ignore_stop_pulbishing_verification = 1;
+                    }
+                }
             }
        }
         #Free,per-listing,Package --Adjust
-        if(isset($data['stoppublishing'])){
-            $data['stoppublishing'] = gmdate('Y-m-d H:i:s', strtotime($data['stoppublishing']));
-        }else{ // if stop publishing date
-            $expiry = "2 years";
-            $curdate = date_i18n('Y-m-d');
-            $data['stoppublishing'] = gmdate('Y-m-d H:i:s',strtotime($curdate.'+'.$expiry));
+        if($ignore_stop_pulbishing_verification == 0){ // to handle edit in case in membership mode
+            if(isset($data['stoppublishing'])){
+                $data['stoppublishing'] = gmdate('Y-m-d H:i:s', strtotime($data['stoppublishing']));
+            }else{ // if stop publishing date
+                $expiry = "2 years";
+                $curdate = date_i18n('Y-m-d');
+                $data['stoppublishing'] = gmdate('Y-m-d H:i:s',strtotime($curdate.'+'.$expiry));
+            }
         }
 
         $data['jobapplylink'] = isset($data['jobapplylink']) ? 1 : 0;
@@ -1198,8 +1215,8 @@ class WPJOBPORTALjobModel {
         $jobalias = wpjobportalphplib::wpJP_strtolower(wpjobportalphplib::wpJP_str_replace('_', '-', $jobalias));
         $data['alias'] = $jobalias;
         if( isset($data['salarytype']) && $data['salarytype'] == WPJOBPORTAL_SALARY_FIXED){ // min field issue
-                $data['salarymin'] = $data['salaryfixed'];
-                $data['salarymax'] = $data['salaryfixed'];
+            $data['salarymin'] = $data['salaryfixed'];
+            $data['salarymax'] = $data['salaryfixed'];
         }
         // Uid must be the same as the company owner id
 
@@ -1257,7 +1274,10 @@ class WPJOBPORTALjobModel {
         }
 
 // already satinzed above
-    	$data = wpjobportal::$_common->stripslashesFull($data);
+        if(WPJOBPORTALincluder::getJSModel('common')->checkLanguageSpecialCase()){
+           $data = wpjobportal::$_common->stripslashesFull($data);
+        }
+
     	$description = WPJOBPORTALrequest::getVar('description','post','','',1);// sanitizing description data
         $data['description'] = wpautop(wptexturize(wpjobportalphplib::wpJP_stripslashes($description)));
         // remove slashes with quotes.
@@ -1414,6 +1434,9 @@ class WPJOBPORTALjobModel {
         $notdeleted = 0;
 
         foreach ($ids as $id) {
+            if(!is_numeric($id)){
+                continue;
+            }
             if ($this->jobCanDelete($id) == true) {
                 $mailextradata = array();
                 $resultforsendmail = WPJOBPORTALincluder::getJSModel('job')->getJobInfoForEmail($id);
@@ -1716,18 +1739,18 @@ class WPJOBPORTALjobModel {
                 $titlekeys[] = " job.title LIKE '%" . esc_sql($t_keywords) . "%'";
             }
         }
-        if ($jobcategory != '')
+        if ($jobcategory != '' && is_numeric($jobcategory))
             if ($jobcategory != '')
                 $wherequery .= " AND job.jobcategory = " . esc_sql($jobcategory);
         if (isset($keys))
             $wherequery .= " AND ( " . implode(' OR ', esc_sql($keys)) . " )";
         if (isset($titlekeys))
             $wherequery .= " AND ( " . implode(' OR ', esc_sql($titlekeys)) . " )";
-        if ($jobsubcategory != '')
+        if ($jobsubcategory != '' && is_numeric($jobsubcategory))
             $wherequery .= " AND job.subcategoryid = " . esc_sql($jobsubcategory);
-        if ($jobtype != '')
+        if ($jobtype != '' && is_numeric($jobtype))
             $wherequery .= " AND job.jobtype = " . esc_sql($jobtype);
-        if ($jobstatus != '')
+        if ($jobstatus != '' && is_numeric($jobstatus))
             $wherequery .= " AND job.jobstatus = " . esc_sql($jobstatus);
         if ($salaryrangefrom != '') {
             $query = "SELECT salfrom.rangestart
@@ -1747,10 +1770,10 @@ class WPJOBPORTALjobModel {
             $wherequery .= " AND salaryrangeto.rangeend <= " . esc_sql($rangeend_value);
             $issalary = 1;
         }
-        if (($issalary != '') && ($salaryrangetype != '')) {
+        if (($issalary != '') && ($salaryrangetype != '' && is_numeric($salaryrangetype))) {
             $wherequery .= " AND job.salaryrangetype = " . esc_sql($salaryrangetype);
         }
-        if ($shift != '')
+        if ($shift != '' && is_numeric($shift))
             $wherequery .= " AND job.shift = " . esc_sql($shift);
         if ($durration != '')
             $wherequery .= " AND job.duration LIKE '" . esc_sql($durration) . "'";
@@ -1758,16 +1781,19 @@ class WPJOBPORTALjobModel {
             $wherequery .= " AND job.startpublishing >= '" . esc_sql($startpublishing) . "'";
         if ($stoppublishing != '')
             $wherequery .= " AND job.stoppublishing <= '" . esc_sql($stoppublishing) . "'";
-        if ($company != '')
+        if ($company != '' && is_numeric($company))
             $wherequery .= " AND job.companyid = " . esc_sql($company);
         if ($city != '') {
             $city_value = wpjobportalphplib::wpJP_explode(',', $city);
             $lenght = count($city_value);
             for ($i = 0; $i < $lenght; $i++) {
-                if ($i == 0)
-                    $wherequery .= " AND ( mjob.cityid=" . esc_sql($city_value[$i]);
-                else
-                    $wherequery .= " OR mjob.cityid=" . esc_sql($city_value[$i]);
+                if(is_numeric($city_value[$i])){
+                    if ($i == 0){
+                        $wherequery .= " AND ( mjob.cityid=" . esc_sql($city_value[$i]);
+                    }else{
+                        $wherequery .= " OR mjob.cityid=" . esc_sql($city_value[$i]);
+                    }
+                }
             }
             $wherequery .= ")";
         }
@@ -2812,7 +2838,7 @@ class WPJOBPORTALjobModel {
         $query .= " ORDER BY ".wpjobportal::$_ordering;
 
         // limit (no of jobs)
-        if($noofjobs !=''){
+        if($noofjobs !='' && is_numeric($noofjobs)){
             $query .= " LIMIT " . esc_sql($noofjobs);
         }else{
             $query .= " LIMIT " . WPJOBPORTALpagination::$_offset . "," . WPJOBPORTALpagination::$_limit;

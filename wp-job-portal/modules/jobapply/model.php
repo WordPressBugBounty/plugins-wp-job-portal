@@ -55,11 +55,11 @@ class WPJOBPORTALjobapplyModel {
             $inquery .= " AND LOWER(job.title) LIKE '%" . esc_sql($searchtitle) . "%'";
         if ($searchcompany)
             $inquery .= " AND LOWER(company.name) LIKE '%" . esc_sql($searchcompany) . "%'";
-        if ($searchjobcategory)
+        if ($searchjobcategory && is_numeric($searchjobcategory))
             $inquery .= " AND job.jobcategory = " . esc_sql($searchjobcategory);
-        if ($searchjobtype)
+        if ($searchjobtype && is_numeric($searchjobtype))
             $inquery .= " AND job.jobtype = " . esc_sql($searchjobtype);
-        if ($searchjobstatus)
+        if ($searchjobstatus && is_numeric($searchjobstatus))
             $inquery .= " AND job.jobstatus = " . esc_sql($searchjobstatus);
 
         //Pagination
@@ -204,7 +204,7 @@ class WPJOBPORTALjobapplyModel {
 
 
         // $inquery = "";
-        if ($tab_action && in_array('resumeaction', wpjobportal::$_active_addons)) {
+        if ($tab_action && is_numeric($tab_action) && in_array('resumeaction', wpjobportal::$_active_addons)) {
             $inquery.=" AND jobapply.action_status =" . esc_sql($tab_action);
         }
         if(wpjobportal::$_common->wpjp_isadmin()){

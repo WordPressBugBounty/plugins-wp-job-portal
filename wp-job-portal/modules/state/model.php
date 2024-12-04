@@ -153,7 +153,7 @@ class WPJOBPORTALStateModel {
     }
 
     function getStatesForCombo($country) {
-        if (is_null($country) OR empty($country))
+        if (is_null($country) OR empty($country) OR !is_numeric($country))
             $country = 0;
         $query = "SELECT id, name AS text FROM `" . wpjobportal::$_db->prefix . "wj_portal_states` WHERE enabled = '1' AND countryid = " . esc_sql($country) . " ORDER BY name ASC ";
         $rows = wpjobportaldb::get_results($query);

@@ -32,7 +32,7 @@ class WPJOBPORTALJobseekerModel {
 
         $query = "SELECT resume.id as resumeid ,count(*) as resumeno
                     FROM " . wpjobportal::$_db->prefix . "wj_portal_resume AS resume
-                    WHERE `uid`='".esc_sql($uid)."'
+                    WHERE `uid`=".esc_sql($uid)."
                     GROUP BY resume.id  ORDER BY resume.id ASC LIMIT 0,1 ";// ASC to change to same resume shown in my resume listing in case of missing mutlti resume addon
         wpjobportal::$_data[0]['resume']['info'] = wpjobportaldb::get_results($query);
     }
@@ -163,10 +163,9 @@ class WPJOBPORTALJobseekerModel {
         if(!is_numeric($uid))
             return false;
         $query="SELECT application_title as tite FROM `".wpjobportal::$_db->prefix."wj_portal_resume`
-        WHERE `uid`='".esc_sql($uid)."' ORDER BY ID DESC LIMIT 0,1";
+        WHERE `uid`=".esc_sql($uid)." ORDER BY ID DESC LIMIT 0,1";
         $data=wpjobportaldb::get_var($query);
-        wpjobportal::$_data['application_title']=$data;
-
+        wpjobportal::$_data['application_title'] = $data;
     }
 
     function getGraphDataNew($uid=''){

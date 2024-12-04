@@ -6,17 +6,17 @@ if (!defined('ABSPATH'))
 // returning any non empty value stops the regular excution of code and prints this value as title
 // 99 makes sure that this is executed last to avoid getting it overridden
 
-add_filter('pre_get_document_title', 'wp_job_portal_document_title', 99);
+// add_filter('pre_get_document_title', 'wp_job_portal_document_title', 99);
 
-function wp_job_portal_document_title($title) {
-    $jobid = isset(wpjobportal::$_data[0]->id) ? wpjobportal::$_data[0]->id : '';
-    if($jobid == ''){
-        return '';
-    }
-    $job_title_options = get_option('wpjobportal_job_document_title_settings');
-    $job_document_title = WPJOBPORTALincluder::getJSModel('job')->makeJobSeoDocumentTitle($job_title_options , $jobid);
-    return $job_document_title;
-}
+// function wp_job_portal_document_title($title) {
+//     $jobid = isset(wpjobportal::$_data[0]->id) ? wpjobportal::$_data[0]->id : '';
+//     if($jobid == ''){
+//         return '';
+//     }
+//     $job_title_options = get_option('wpjobportal_job_document_title_settings');
+//     $job_document_title = WPJOBPORTALincluder::getJSModel('job')->makeJobSeoDocumentTitle($job_title_options , $jobid);
+//     return $job_document_title;
+// }
 
 $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
 wp_register_script ( 'wpjp-google-map-api', $protocol . 'maps.googleapis.com/maps/api/js?key=' . wpjobportal::$_configuration['google_map_api_key'] );

@@ -635,7 +635,7 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                                     echo '<div class="wjportal-form-help-txt">'.esc_html(__("Maximum","wp-job-portal")).' '.esc_html($maxsize).' Kb'.'</div>';
                                                     ?>
 
-                                                    <?php echo esc_html(__('This image will shown as default image for entities.', 'wp-job-portal')) ." '".esc_html(__('job by type', 'wp-job-portal')) ."' ". esc_html(__('page', 'wp-job-portal')) .'.'; ?>
+                                                    <?php echo esc_html(__('This image will shown as default image for entities & users if no other image is provided.', 'wp-job-portal')); ?>
                                                 </div>
                                             </div>
                                         </div>

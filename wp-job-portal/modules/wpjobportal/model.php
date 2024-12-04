@@ -817,29 +817,32 @@ class WPJOBPORTALwpjobportalModel {
         return $html;
     }
 
-    function getLatestResumes() {
-        $query = "SELECT resume.id,resume.first_name,resume.last_name,resume.application_title as applicationtitle,CONCAT(resume.alias,'-',resume.id) resumealiasid,resume.email_address,category.cat_title,resume.experienceid,resume.created,jobtype.title AS jobtypetitle,resume.photo,resume.salaryfixed as salary,resume.isfeaturedresume,resume.status,city.name AS cityname,state.name AS statename,country.name AS countryname,resume.endfeatureddate,resume.params,resume.last_modified,LOWER(jobtype.title) AS jobtypetit,jobtype.color as jobtypecolor
-                FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
-                JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category ON category.id = resume.job_category
-                LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = resume.jobtype
-                LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON city.id = (SELECT address_city FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` WHERE resumeid = resume.id LIMIT 1)
-                LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_states` AS state ON state.id = city.stateid
-                LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_countries` AS country ON country.id = city.countryid
-                WHERE resume.uid = ". esc_sql($uid);
-                $query.=" ORDER BY resume.id ASC LIMIT 0,5 ";
+    // function getLatestResumes() {
+    //     if(!is_numeric($uid)){
+    //         return false;
+    //     }
+    //     $query = "SELECT resume.id,resume.first_name,resume.last_name,resume.application_title as applicationtitle,CONCAT(resume.alias,'-',resume.id) resumealiasid,resume.email_address,category.cat_title,resume.experienceid,resume.created,jobtype.title AS jobtypetitle,resume.photo,resume.salaryfixed as salary,resume.isfeaturedresume,resume.status,city.name AS cityname,state.name AS statename,country.name AS countryname,resume.endfeatureddate,resume.params,resume.last_modified,LOWER(jobtype.title) AS jobtypetit,jobtype.color as jobtypecolor
+    //             FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
+    //             JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category ON category.id = resume.job_category
+    //             LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = resume.jobtype
+    //             LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON city.id = (SELECT address_city FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` WHERE resumeid = resume.id LIMIT 1)
+    //             LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_states` AS state ON state.id = city.stateid
+    //             LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_countries` AS country ON country.id = city.countryid
+    //             WHERE resume.uid = ". esc_sql($uid);
+    //             $query.=" ORDER BY resume.id ASC LIMIT 0,5 ";
 
-        $results = wpjobportal::$_db->get_results($query);
-        $data = array();
-        foreach ($results AS $d) {
-            $d->location = wpjobportal::$_common->getLocationForView($d->cityname, $d->statename, $d->countryname);//  updated the query select to select 'name' as cityname
-            $data[] = $d;
-        }
-        wpjobportal::$_data['fields'] = WPJOBPORTALincluder::getJSModel('fieldordering')->getFieldsOrderingforView(3);
-        wpjobportal::$_data[0]['latestresumes'] = $data;
-        wpjobportal::$_data['config'] = wpjobportal::$_config->getConfigByFor('resume');
-        wpjobportal::$_data['listingfields'] = WPJOBPORTALincluder::getJSModel('fieldordering')->getFieldsForListing(3);
-        return;
-    }
+    //     $results = wpjobportal::$_db->get_results($query);
+    //     $data = array();
+    //     foreach ($results AS $d) {
+    //         $d->location = wpjobportal::$_common->getLocationForView($d->cityname, $d->statename, $d->countryname);//  updated the query select to select 'name' as cityname
+    //         $data[] = $d;
+    //     }
+    //     wpjobportal::$_data['fields'] = WPJOBPORTALincluder::getJSModel('fieldordering')->getFieldsOrderingforView(3);
+    //     wpjobportal::$_data[0]['latestresumes'] = $data;
+    //     wpjobportal::$_data['config'] = wpjobportal::$_config->getConfigByFor('resume');
+    //     wpjobportal::$_data['listingfields'] = WPJOBPORTALincluder::getJSModel('fieldordering')->getFieldsForListing(3);
+    //     return;
+    // }
 
     function getNewestUsers($role) {
         if (!is_numeric($role))
@@ -853,6 +856,9 @@ class WPJOBPORTALwpjobportalModel {
         if ($role == 1) {
             $data = array();
             foreach ($results AS $d) {
+                if (!is_numeric($d->id)) {
+                    continue;
+                }
                 $query = "SELECT logofilename AS photo,id AS companyid FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies`
                 WHERE uid = " . esc_sql($d->id) . " ORDER BY logofilename DESC LIMIT 1";
 				$result = wpjobportal::$_db->get_row($query);
@@ -871,6 +877,9 @@ class WPJOBPORTALwpjobportalModel {
         if ($role == 2) {
             $data = array();
             foreach ($results AS $d) {
+                if(!is_numeric($d->id)){
+                    continue;
+                }
                 $query = "SELECT photo,id AS resumeid FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume`
                 WHERE uid = " . esc_sql($d->id) . " ORDER BY photo DESC LIMIT 1";
 				$result = wpjobportal::$_db->get_row($query);

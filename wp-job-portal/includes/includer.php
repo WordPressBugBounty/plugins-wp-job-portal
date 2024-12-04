@@ -37,6 +37,8 @@ class WPJOBPORTALincluder {
             }else if($wp_filesystem->exists($file_path)){
                 $incfilepath = wpjobportalphplib::wpJP_explode('.php', $file_path);
                 $incfilename = $incfilepath[0].'.inc.php';
+// to handle page title 
+                WPJOBPORTALincluder::getJSModel('common')->addWPSEOHooks($module_name,$filename);
                 if ($wp_filesystem->exists($incfilename)) {
                     require_once($incfilename);
                 }

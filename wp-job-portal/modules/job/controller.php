@@ -305,7 +305,7 @@ class WPJOBPORTALJobController {
                     $wpjpjob->getJobSearch();
                     break;
                 case 'admin_jobsearch':
-                    $wpjpjob->getSearchOptions();
+                    //$wpjpjob->getSearchOptions();
                     break;
                 case 'admin_view_job':
                     $id = WPJOBPORTALrequest::getVar('wpjobportalid');

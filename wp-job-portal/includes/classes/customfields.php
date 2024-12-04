@@ -828,7 +828,9 @@ class WPJOBPORTALcustomfields {
         } elseif (isset(wpjobportal::$_data[0]->id)) {
             // to handle the case of custom fields showing on listing and detail but not on form in edit case
             $params = wpjobportal::$_data[0]->params;
-            $params = wpjobportalphplib::wpJP_stripslashes($params);
+            if(WPJOBPORTALincluder::getJSModel('common')->checkLanguageSpecialCase()){
+                $params = wpjobportalphplib::wpJP_stripslashes($params);
+            }
             $params = html_entity_decode($params, ENT_QUOTES);
             $userfielddataarray = json_decode($params);
             $uffield = $field->field;
@@ -899,7 +901,10 @@ class WPJOBPORTALcustomfields {
                 }
                 $comboOptions = array();
                 if (!empty($field->userfieldparams)) {
-                    $obj_option = json_decode(wpjobportalphplib::wpJP_stripslashes($field->userfieldparams));
+                    if(WPJOBPORTALincluder::getJSModel('common')->checkLanguageSpecialCase()){
+                        $field->userfieldparams = wpjobportalphplib::wpJP_stripslashes($field->userfieldparams);
+                    }
+                    $obj_option = json_decode($field->userfieldparams);
                     foreach ($obj_option as $opt) {
                         $comboOptions[] = (object) array('id' => $opt, 'text' => $opt);
                     }
@@ -1252,7 +1257,9 @@ class WPJOBPORTALcustomfields {
             }
         }
         if(!empty($params)){
-            $params = wpjobportalphplib::wpJP_stripslashes($params);
+            if(WPJOBPORTALincluder::getJSModel('common')->checkLanguageSpecialCase()){
+                $params = wpjobportalphplib::wpJP_stripslashes($params);
+            }
             //$params = html_entity_decode($params, ENT_QUOTES);
             $data = json_decode($params,true);
             if(isset($data) && !empty($data)){
@@ -1382,14 +1389,21 @@ class WPJOBPORTALcustomfields {
             $ff = "AND fieldfor = 3 ";
         } elseif ($fieldfor == 6) {
             //form resume
-            $ff = "AND fieldfor = 3 AND section = $section ";
+            if(is_numeric($section)){
+                $ff = "AND fieldfor = 3 AND section = $section ";
+            }
         }
-        $query = "SELECT field,fieldtitle,required,isuserfield,userfieldtype,readonly,maxlength,depandant_field,userfieldparams,description,placeholder,visible_field,visibleparams  from " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE isuserfield = 1 AND " . esc_sql($published) . " AND field ='" . esc_sql($field) . "'" . esc_sql($ff);
+        $query = "SELECT field,fieldtitle,required,isuserfield,userfieldtype,readonly,maxlength,depandant_field,userfieldparams,description,placeholder,visible_field,visibleparams
+        FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering
+        WHERE isuserfield = 1 AND " . esc_sql($published) . " AND field ='" . esc_sql($field) . "'" . esc_sql($ff);
         $data = wpjobportaldb::get_row($query);
         return $data;
     }
 
     function userFieldsData($fieldfor, $listing = null,$getpersonal = null) {
+        if(!is_numeric($fieldfor)){
+            return false;
+        }
         if (WPJOBPORTALincluder::getObjectClass('user')->isguest()) {
             $published = ' isvisitorpublished = 1 ';
         } else {
@@ -1403,7 +1417,9 @@ class WPJOBPORTALcustomfields {
             $inquery .= ' AND section = 1 ';
         }
         //$inquery .= " AND (userfieldtype = 'text' OR userfieldtype = 'email')";
-        $query = "SELECT field,fieldtitle,isuserfield,userfieldtype,userfieldparams  FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE isuserfield = 1 AND " . esc_sql($published) . " AND fieldfor =" . esc_sql($fieldfor) . $inquery;
+        $query = "SELECT field,fieldtitle,isuserfield,userfieldtype,userfieldparams
+        FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering
+        WHERE isuserfield = 1 AND " . esc_sql($published) . " AND fieldfor =" . esc_sql($fieldfor) . $inquery;
         $query .= " ORDER BY ordering ASC "; // to handle the case of ordering on listing layouts
         $data = wpjobportaldb::get_results($query);
         return $data;
@@ -1474,7 +1490,9 @@ class WPJOBPORTALcustomfields {
         }
         // code for unpublished fields to be written later as in wp jobs by shees
         $params = wpjobportal::wpjobportal_sanitizeData($params);
-        $params = WPJOBPORTALincluder::getJSModel('common')->stripslashesFull($params);// remove slashes with quotes.
+        if(WPJOBPORTALincluder::getJSModel('common')->checkLanguageSpecialCase()){
+            $params = WPJOBPORTALincluder::getJSModel('common')->stripslashesFull($params);// remove slashes with quotes.
+        }
         $params = wp_json_encode($params);
         $uploadfor = '';
         if($entity == WPJOBPORTAL_COMPANY){
@@ -1551,7 +1569,9 @@ class WPJOBPORTALcustomfields {
     }
 
     function storeUploadFieldValueInParams($entity_id,$filename,$field,$uploadfor){
-
+        if(!is_numeric($entity_id)){
+            return false;
+        }
         /*
 
         //$query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_companies` SET `params`='$params' WHERE `id` =". esc_sql($id);

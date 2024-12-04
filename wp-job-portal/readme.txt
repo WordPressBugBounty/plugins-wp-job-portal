@@ -3,8 +3,8 @@ Contributors: wpjobportal
 Donate link: https://wpjobportal.com/pricing/
 Tags: job board, job listing, careers, job manager, jobs, company, recruiting, employer, candidate, resume, cv, wp jobs, wp job manager, employees, employment, recruitment, resume,  talent, vacancy application, freelance
 Requires at least: 5.5 
-Tested up to: 6.7
-Stable tag: 2.2.2
+Tested up to: 6.7.1
+Stable tag: 2.2.3
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -238,13 +238,21 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 
 == Changelog ==
+
+= 2.2.3 =
+* Improved import location data functionality
+* Added job views count on job detail
+* Added document (SEO) titles for all layouts
+* Security fixes
+
+
 = 2.2.2 =
 * Shortcode options added for job, company and resume listing shortocodes
 * Shortcode options added for job seeker & employer dashboard shortcode
 * New configurtaion added to control visiblity of profile section on user dasboard
 * New shortcode added for User Registration
 * Open Street Map bug fixed
-* New configurtaion added to set default place holder image
+* New configuration added to set default place holder image
 
 = 2.2.1 =
 * Security update
@@ -254,7 +262,7 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 * Menu bug fix.
 
 = 2.1.9 =
-* Native lanuage support for location data (cities, states, and countries).
+* Native language support for location data (cities, states, and countries).
 * Interface to import cities data for any country in international(English) or native language.
 * Customizable (SEO-friendly) URLs for job, resume, and company pages.
 * Customizable document (SEO) titles for company, job, and resume pages with fixed text and entity properties.

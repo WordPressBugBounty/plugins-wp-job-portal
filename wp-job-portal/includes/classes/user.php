@@ -42,10 +42,12 @@ class WPJOBPORTALuser {
             $id  = $this->currentuser->id;
             $string = "users.id";
         }
-        $query = "SELECT users.id,users.uid,users.first_name,users.photo,users.emailaddress,users.last_name,users.socialmedia
+        if(is_numeric($id)){
+            $query = "SELECT users.id,users.uid,users.first_name,users.photo,users.emailaddress,users.last_name,users.socialmedia
             FROM " . wpjobportal::$_db->prefix . "wj_portal_users AS users  
             WHERE users.id != 0 AND ".esc_sql($string)."=".esc_sql($id) ."  LIMIT 1 ";
             return wpjobportal::$_db->get_row($query);
+        }
         
         
         //}else{
@@ -55,18 +57,20 @@ class WPJOBPORTALuser {
 
     function getJobSeekerProfile(){
         if($this->isjobseeker()==true){
-        $id  = $this->currentuser->uid;
-        $string = "users.uid";
-        if (isset($_COOKIE['wpjobportal-socialid']) && !empty($_COOKIE['wpjobportal-socialid'])) { // social user is logged in
-            $id  = $this->currentuser->id;
-            $string = "users.id";
-        }
-        $query = "SELECT users.id,users.uid,users.first_name,users.photo,users.emailaddress,users.last_name,users.socialmedia
-            FROM " . wpjobportal::$_db->prefix . "wj_portal_users AS users  
-            WHERE users.id != 0 AND ".esc_sql($string)."=".esc_sql($id) ."  LIMIT 1 ";
-            return wpjobportal::$_db->get_row($query);
-        
-        
+            $id  = $this->currentuser->uid;
+            $string = "users.uid";
+            if (isset($_COOKIE['wpjobportal-socialid']) && !empty($_COOKIE['wpjobportal-socialid'])) { // social user is logged in
+                $id  = $this->currentuser->id;
+                $string = "users.id";
+            }
+            if(is_numeric($id)){
+                $query = "SELECT users.id,users.uid,users.first_name,users.photo,users.emailaddress,users.last_name,users.socialmedia
+                FROM " . wpjobportal::$_db->prefix . "wj_portal_users AS users
+                WHERE users.id != 0 AND ".esc_sql($string)."=".esc_sql($id) ."  LIMIT 1 ";
+                return wpjobportal::$_db->get_row($query);
+            }else{
+                return false;
+            }
         }else{
             return false;
         }
@@ -107,23 +111,25 @@ class WPJOBPORTALuser {
 
     function getJobseekerLogo(){
         if($this->isjobseeker()==true){
-            $query = "SELECT resume.id,resume.photo
+            if(is_numeric($this->currentuser->uid)){
+                $query = "SELECT resume.id,resume.photo
                 FROM " . wpjobportal::$_db->prefix . "wj_portal_resume AS resume  
                 WHERE resume.status != 0 AND resume.uid=".esc_sql($this->currentuser->uid)." AND resume.photo !='' LIMIT 1 ";
                 return wpjobportal::$_db->get_row($query);
-        }else{
-            return false;
+            }
         }
-    }    
+        return false;
+    }
     function getEmployerLogo(){
         if($this->isemployer()==true){
-            $query = "SELECT company.id,company.name,company.logofilename
+            if(is_numeric($this->currentuser->uid)){
+                $query = "SELECT company.id,company.name,company.logofilename
                 FROM " . wpjobportal::$_db->prefix . "wj_portal_companies AS company  
                 WHERE company.status != 0 AND company.uid=".esc_sql($this->currentuser->uid)." AND company.logofilename !='' LIMIT 1 ";
                 return wpjobportal::$_db->get_row($query);
-        }else{
-            return false;
+            }
         }
+        return false;
     }
     function isemployer() {
         if ($this->currentuser == null) { // current user is guest
@@ -138,7 +144,7 @@ class WPJOBPORTALuser {
     }
 
     function roleid($uid=0){
-        if($uid){
+        if(is_numeric($uid)){
             $query = "SELECT `roleid` FROM `".wpjobportal::$_db->prefix."wj_portal_users` WHERE `id` = ".esc_sql($uid);
             return wpjobportaldb::get_var($query); 
         }elseif($this->currentuser != null) {
@@ -187,9 +193,13 @@ class WPJOBPORTALuser {
                 return $name;
             }
         }else{
-            if(wpjobportal::$_common->wpjp_isadmin()){
-                $query = "SELECT CONCAT(first_name,' ',last_name) FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE `ID` = " . esc_sql($uid);
-                return wpjobportal::$_db->get_var($query);
+            if(is_numeric($uid)){
+                if(wpjobportal::$_common->wpjp_isadmin()){
+                    $query = "SELECT CONCAT(first_name,' ',last_name) FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE `ID` = " . esc_sql($uid);
+                    return wpjobportal::$_db->get_var($query);
+                }else{
+                    return '';
+                }
             }else{
                 return '';
             }

@@ -72,6 +72,9 @@ class WPJOBPORTALEmployerModel {
         $i=0;
         //////******To Get Job Wise Resume****///////
         foreach ($jobtype as $key) {
+            if(!is_numeric($key->jobid)){
+                continue;
+            }
             $query = "SELECT app.uid AS jobseekerid,company.uid AS employerid,jobapply.id AS jobapplyid ,job.id,job.uid as userid
                 , cat.cat_title ,jobapply.apply_date, jobapply.resumeview, jobtype.title AS jobtypetitle
                 ,app.id AS appid,app.id AS id,app.first_name,app.last_name, app.email_address,app.gender,app.isfeaturedresume,app.endfeatureddate,app.params,

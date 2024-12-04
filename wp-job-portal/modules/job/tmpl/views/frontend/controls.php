@@ -147,47 +147,44 @@ switch ($control) {
                             <a class="wjportal-jobs-act-btn" href= "<?php echo esc_url($joblink); ?>" target="_blank" ><?php echo esc_html(__('Apply Now','wp-job-portal')); ?></a><?php
                         }else{
                             if(WPJOBPORTALincluder::getObjectClass('user')->isjobseeker()){
-                                if(in_array('credits', wpjobportal::$_active_addons)){ ?>
-                                    <?php
-                                        //if($applied == true){
-                                        $submission_type = wpjobportal::$_config->getConfigValue('submission_type');
-                                        if($submission_type == 1){ ?>
-                                            <?php if($applied == true){?>
-                                                <a class="wjportal-jobs-act-btn" href="#" onclick="wpjobportalPopup('job_apply', '<?php echo esc_js($job->jobid); ?>',<?php echo esc_js(wpjobportal::wpjobportal_getPageid());?>)"><?php echo esc_html(__('Apply Now', 'wp-job-portal')) ?></a>
-                                        <?php }else{
-                                                echo'<a class="wjportal-job-jobapply-btn wjportal-jobs-act-btn" href="#" onclick="getApplyNowByJobid('. esc_js($job->jobid).','. esc_js(wpjobportal::wpjobportal_getPageid()).')">'. esc_html(__("You have Already Applied",'wp-job-portal')) .' </a>';
-                                            } ?>
-
-                                       <?php }elseif ($submission_type == 2) {
-                                            $payment = WPJOBPORTALincluder::getJSmodel('jobapply')->checkjobappllystats($job->jobid,WPJOBPORTALincluder::getObjectClass('user')->uid());
-                                           // echo $payment;
-                                            //echo $applied;
-                                            if($payment == true && $payment == false){ ?>
-                                                <a class="wjportal-jobs-act-btn" href="#" onclick="wpjobportalPopup('job_apply', '<?php echo esc_js($job->jobid); ?>',<?php echo esc_js(wpjobportal::wpjobportal_getPageid());?>)"><?php echo esc_html(__('Apply Now', 'wp-job-portal')) ?></a>
-                                         <?php }
-                                    if($payment == false && $applied != true){
-                                            $arr = array('wpjobportalme'=>'purchasehistory','wpjobportallt'=>'payjobapply','wpjobportalid'=>$job->jobid);
-                                            echo '<a class="wjportal-job-act-btn" href='. esc_url(wpjobportal::wpjobportal_makeUrl($arr)).' title='. esc_attr(esc_html(__('make payment','wp-job-portal'))).'>
-                                             '. esc_html(esc_html(__('Make Payment To Apply', 'wp-job-portal'))).'
-                                             </a>';
-                                       }else{
+                                if(in_array('credits', wpjobportal::$_active_addons)){
+                                    //if($applied == true){
+                                    $submission_type = wpjobportal::$_config->getConfigValue('submission_type');
+                                    if($submission_type == 1){
+                                        if($applied == true){?>
+                                            <a class="wjportal-jobs-act-btn" href="#" onclick="wpjobportalPopup('job_apply', '<?php echo esc_js($job->jobid); ?>',<?php echo esc_js(wpjobportal::wpjobportal_getPageid());?>)"><?php echo esc_html(__('Apply Now', 'wp-job-portal')) ?></a><?php
+                                        }else{
                                             echo'<a class="wjportal-job-jobapply-btn wjportal-jobs-act-btn" href="#" >'. esc_html(__("You have Already Applied",'wp-job-portal')) .' </a>';
-                                         }
-                                }elseif ($submission_type == 3) {
-                                    if($applied == true){
+                                        }
+                                    }elseif ($submission_type == 2) {
+                                        $payment = WPJOBPORTALincluder::getJSmodel('jobapply')->checkjobappllystats($job->jobid,WPJOBPORTALincluder::getObjectClass('user')->uid());
+                                       // echo $payment;
+                                        //echo $applied;
+                                        if($payment == true && $payment == false){ ?>
+                                            <a class="wjportal-jobs-act-btn" href="#" onclick="wpjobportalPopup('job_apply', '<?php echo esc_js($job->jobid); ?>',<?php echo esc_js(wpjobportal::wpjobportal_getPageid());?>)"><?php echo esc_html(__('Apply Now', 'wp-job-portal')) ?></a><?php
+                                        }
+                                        if($payment == false && $applied != true){
+                                                $arr = array('wpjobportalme'=>'purchasehistory','wpjobportallt'=>'payjobapply','wpjobportalid'=>$job->jobid);
+                                                echo '<a class="wjportal-job-act-btn" href='. esc_url(wpjobportal::wpjobportal_makeUrl($arr)).' title='. esc_attr(esc_html(__('make payment','wp-job-portal'))).'>
+                                                 '. esc_html(esc_html(__('Make Payment To Apply', 'wp-job-portal'))).'
+                                                 </a>';
+                                        }else{
+                                                echo'<a class="wjportal-job-jobapply-btn wjportal-jobs-act-btn" href="#" >'. esc_html(__("You have Already Applied",'wp-job-portal')) .' </a>';
+                                        }
+                                    }elseif ($submission_type == 3) {
+                                        if($applied == true){
 
-                                     echo'<a class="wjportal-job-jobapply-btn wjportal-jobs-act-btn" href="#" onclick="getPackagePopupJobView('. esc_js($job->jobid) .')">'. esc_html(__("Apply On This Job",'wp-job-portal')) .' </a>';
-                                    }else{
-                                        echo'<a class="wjportal-job-jobapply-btn wjportal-jobs-act-btn" href="#" >'. esc_html(__("You have Already Applied",'wp-job-portal')) .' </a>';
+                                         echo'<a class="wjportal-job-jobapply-btn wjportal-jobs-act-btn" href="#" onclick="getPackagePopupJobView('. esc_js($job->jobid) .')">'. esc_html(__("Apply On This Job",'wp-job-portal')) .' </a>';
+                                        }else{
+                                            echo'<a class="wjportal-job-jobapply-btn wjportal-jobs-act-btn" href="#" >'. esc_html(__("You have Already Applied",'wp-job-portal')) .' </a>';
+                                        }
                                     }
+                                }else{ ?>
+                                    <a class="wjportal-jobs-act-btn" href="#" onclick="getApplyNowByJobid('<?php echo esc_js($job->jobid); ?>',<?php echo esc_js(wpjobportal::wpjobportal_getPageid());?>)"><?php echo esc_html(__('Apply Now', 'wp-job-portal')) ?></a><?php
                                 }
-                                }else{?>
-                                        <a class="wjportal-jobs-act-btn" href="#" onclick="getApplyNowByJobid('<?php echo esc_js($job->jobid); ?>',<?php echo esc_js(wpjobportal::wpjobportal_getPageid());?>)"><?php echo esc_html(__('Apply Now', 'wp-job-portal')) ?></a>
-                            <?php } ?>
-
-                            <?php }else{ ?>
-                                <a class="wjportal-jobs-act-btn" href="#" onclick="getApplyNowByJobid('<?php echo esc_js($job->jobid); ?>',<?php echo esc_js(wpjobportal::wpjobportal_getPageid());?>);"><?php echo esc_html($desc); ?></a>
-                            <?php }
+                            }else{ ?>
+                                <a class="wjportal-jobs-act-btn" href="#" onclick="getApplyNowByJobid('<?php echo esc_js($job->jobid); ?>',<?php echo esc_js(wpjobportal::wpjobportal_getPageid());?>);"><?php echo esc_html($desc); ?></a><?php
+                            }
                         }
                     }
                 }// closing if for quick apply check

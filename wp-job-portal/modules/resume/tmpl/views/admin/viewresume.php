@@ -78,10 +78,12 @@
                     break;
                     default:
                         $showflag = 0;
+                        if (isset(wpjobportal::$_data[0]['personal_section']) && wpjobportal::$_data[0]['personal_section']->quick_apply == 1 ){// to handle empty section to some extent
+                            break;
+                        }
                         if (isset(wpjobportal::$_data[0]['personal_section']) && wpjobportal::$_data[0]['personal_section']->params !='[]' ){// to handle empty section to some extent
                             $showflag = 1;
                         }
-                        //if (isset(wpjobportal::$_data[2][5]['section_skills']) && $showflag == 1) {
                         if ($showflag == 1) {
                             // Handling Advance Resume Builder's Addons
                             if($resume_section->section > 8){ // only execute this code for custom sections

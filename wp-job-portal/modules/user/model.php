@@ -422,7 +422,8 @@ class WPJOBPORTALUserModel {
     }
 
     function userCanDelete($uid, $roleid) {
-
+        if (!is_numeric($uid))
+            return false;
         if ($roleid == 1) { // employer
             $query = "SELECT
                     (SELECT COUNT(job.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job WHERE job.uid = ".esc_sql($uid)." )

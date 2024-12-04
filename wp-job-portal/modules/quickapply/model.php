@@ -158,7 +158,7 @@ class WPJOBPORTALquickapplyModel {
         }
         $jobid = (int) WPJOBPORTALrequest::getVar('jobid');
         $res = "error";
-        if ($jobid) {
+        if ($jobid && is_numeric($jobid)) {
             $res = "copied";
             $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE id = " . esc_sql($jobid);
             $job = wpjobportaldb::get_row($query);

@@ -1,8 +1,11 @@
 
 INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Sangin", "Sangin", "Sangin", NULL, 97, 0, 1, NULL, "32.07019165", "64.847374916572"),
 ("عینو مېنه", "عینو مېنه", "Aino Maina", NULL, 97, 0, 1, NULL, "31.65259335", "65.78280002179"),
 ("ويش", "ويش", "Wesh", NULL, 97, 0, 1, NULL, "30.9703083", "66.450283918013"),
+("Tunian", "Tunian", "Tunian", NULL, 97, 0, 1, NULL, "34.3074748", "62.516022859025"),
 ("ګردېزښار", "ګردېزښار", "Gardez", NULL, 97, 0, 1, NULL, "33.6014533", "69.2235518"),
+("Zarghūn Shahr", "Zarghūn Shahr", "Zarghūn Shahr", NULL, 97, 0, 1, NULL, "34.1239512", "69.135949110553"),
 ("لښکرګاه", "لښکرګاه", "Lashkar Gah", NULL, 97, 0, 1, NULL, "31.5852277", "64.3608959"),
 ("فراه", "فراه", "Farah", NULL, 97, 0, 1, NULL, "32.3740907", "62.1146266"),
 ("کندهار", "کندهار", "Kandahar", NULL, 97, 0, 1, NULL, "31.6205738", "65.7157573"),

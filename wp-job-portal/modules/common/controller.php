@@ -102,35 +102,35 @@ class WPJOBPORTALCommonController {
         die();
     }
 
-    function defaultorderingup() {
-        $id = WPJOBPORTALrequest::getVar('id');
-        $for = WPJOBPORTALrequest::getVar('for'); //table name
-        $pagenum = WPJOBPORTALrequest::getVar('pagenum');
-        $result = WPJOBPORTALincluder::getJSModel('common')->setOrderingUpForDefaultTable($id, $for);
-        $object = $this->getpageandlayoutname($for);
-        $msg = WPJOBPORTALMessages::getMessage($result, $object['page']);
-        $url = esc_url_raw(admin_url("admin.php?page=wpjobportal_" . esc_attr($object['page']) . "&wpjobportallt=" . esc_attr($object['wpjobportallt'])));
-        if ($pagenum)
-            $url .= "&pagenum=" . $pagenum;
-        WPJOBPORTALMessages::setLayoutMessage($msg['message'], $msg['status'],$this->_msgkey);
-        wp_redirect($url);
-        die();
-    }
+    // function defaultorderingup() {
+    //     $id = WPJOBPORTALrequest::getVar('id');
+    //     $for = WPJOBPORTALrequest::getVar('for'); //table name
+    //     $pagenum = WPJOBPORTALrequest::getVar('pagenum');
+    //     $result = WPJOBPORTALincluder::getJSModel('common')->setOrderingUpForDefaultTable($id, $for);
+    //     $object = $this->getpageandlayoutname($for);
+    //     $msg = WPJOBPORTALMessages::getMessage($result, $object['page']);
+    //     $url = esc_url_raw(admin_url("admin.php?page=wpjobportal_" . esc_attr($object['page']) . "&wpjobportallt=" . esc_attr($object['wpjobportallt'])));
+    //     if ($pagenum)
+    //         $url .= "&pagenum=" . $pagenum;
+    //     WPJOBPORTALMessages::setLayoutMessage($msg['message'], $msg['status'],$this->_msgkey);
+    //     wp_redirect($url);
+    //     die();
+    // }
 
-    function defaultorderingdown() {
-        $id = WPJOBPORTALrequest::getVar('id');
-        $for = WPJOBPORTALrequest::getVar('for'); // table name
-        $pagenum = WPJOBPORTALrequest::getVar('pagenum');
-        $result = WPJOBPORTALincluder::getJSModel('common')->setOrderingDownForDefaultTable($id, $for);
-        $object = $this->getpageandlayoutname($for);
-        $msg = WPJOBPORTALMessages::getMessage($result, $object['page']);
-        $url = esc_url_raw(admin_url("admin.php?page=wpjobportal_" . esc_attr($object['page']) . "&wpjobportallt=" . esc_attr($object['wpjobportallt'])));
-        if ($pagenum)
-            $url .= "&pagenum=" . $pagenum;
-        WPJOBPORTALMessages::setLayoutMessage($msg['message'], $msg['status'],$this->_msgkey);
-        wp_redirect($url);
-        die();
-    }
+    // function defaultorderingdown() {
+    //     $id = WPJOBPORTALrequest::getVar('id');
+    //     $for = WPJOBPORTALrequest::getVar('for'); // table name
+    //     $pagenum = WPJOBPORTALrequest::getVar('pagenum');
+    //     $result = WPJOBPORTALincluder::getJSModel('common')->setOrderingDownForDefaultTable($id, $for);
+    //     $object = $this->getpageandlayoutname($for);
+    //     $msg = WPJOBPORTALMessages::getMessage($result, $object['page']);
+    //     $url = esc_url_raw(admin_url("admin.php?page=wpjobportal_" . esc_attr($object['page']) . "&wpjobportallt=" . esc_attr($object['wpjobportallt'])));
+    //     if ($pagenum)
+    //         $url .= "&pagenum=" . $pagenum;
+    //     WPJOBPORTALMessages::setLayoutMessage($msg['message'], $msg['status'],$this->_msgkey);
+    //     wp_redirect($url);
+    //     die();
+    // }
 
     function getpageandlayoutname($for) { // for tablename
         switch ($for) {

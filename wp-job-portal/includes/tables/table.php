@@ -114,7 +114,7 @@ class WPJOBPORTALtable {
 
     function load($id){
         if(!is_numeric($id)) return false;
-        $query = "SELECT * FROM `".$this->tablename."` WHERE ".esc_sql($this->primarykey)." = ".esc_sql($id);
+        $query = "SELECT * FROM `".$this->tablename."` WHERE `".esc_sql($this->primarykey)."` = ".esc_sql($id);
         $result = wpjobportal::$_db->get_row($query);
         $array = get_object_vars($this);
         unset($array['isnew']);

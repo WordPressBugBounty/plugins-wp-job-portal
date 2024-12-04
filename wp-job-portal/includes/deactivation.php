@@ -8,7 +8,9 @@ class WPJOBPORTALdeactivation {
     static function wpjobportal_deactivate() {
         wp_clear_scheduled_hook('wpjobportal_cronjobs_action');
         $id = wpjobportal::wpjobportal_getPageid();
-        wpjobportal::$_db->get_var("UPDATE `" . wpjobportal::$_db->prefix . "posts` SET post_status = 'draft' WHERE ID =".esc_sql($id));
+        if(is_numeric($id)){
+            wpjobportal::$_db->get_var("UPDATE `" . wpjobportal::$_db->prefix . "posts` SET post_status = 'draft' WHERE ID =".esc_sql($id));
+        }
 
         //Delete capabilities
         $role = get_role( 'administrator' );

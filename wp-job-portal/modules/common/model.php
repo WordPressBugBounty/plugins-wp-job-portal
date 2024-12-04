@@ -5,6 +5,10 @@ if (!defined('ABSPATH'))
 
 class WPJOBPORTALCommonModel {
 
+    public $module_name = '';
+    public $file_name = '';
+
+
     function removeSpecialCharacter($string) {
         $string = sanitize_title($string);
         return $string;
@@ -216,64 +220,64 @@ class WPJOBPORTALCommonModel {
         }
     }
 
-    function setOrderingUpForDefaultTable($field_id, $table) {
-        if (is_numeric($field_id) == false)
-            return false;
-        //DB class limitations
-        if($table == 'categories'){
-            $parentid = wpjobportal::$_db->get_var("SELECT parentid FROM `".wpjobportal::$_db->prefix."wj_portal_categories` WHERE id = ".esc_sql($field_id));
-            $query = "UPDATE " . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($table) . " AS f1, " . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($table) . " AS f2
-                        SET f1.ordering = f1.ordering + 1
-                        WHERE f1.ordering = f2.ordering - 1 AND f1.parentid = ".esc_sql($parentid)."
-                        AND f2.id = " . esc_sql($field_id);
-        }else{
-            $query = "UPDATE " . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($table) . " AS f1, " . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($table) . " AS f2
-                        SET f1.ordering = f1.ordering + 1
-                        WHERE f1.ordering = f2.ordering - 1
-                        AND f2.id = " . esc_sql($field_id);
-        }
-        if (false == wpjobportaldb::query($query)) {
-            return WPJOBPORTAL_ORDER_UP_ERROR;
-        }
-        $query = " UPDATE " . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($table) . "
-                    SET ordering = ordering - 1
-                    WHERE id = " . esc_sql($field_id);
+    // function setOrderingUpForDefaultTable($field_id, $table) {
+    //     if (is_numeric($field_id) == false)
+    //         return false;
+    //     //DB class limitations
+    //     if($table == 'categories'){
+    //         $parentid = wpjobportal::$_db->get_var("SELECT parentid FROM `".wpjobportal::$_db->prefix."wj_portal_categories` WHERE id = ".esc_sql($field_id));
+    //         $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($table) . "` AS f1, `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($table) . "` AS f2
+    //                     SET f1.ordering = f1.ordering + 1
+    //                     WHERE f1.ordering = f2.ordering - 1 AND f1.parentid = ".esc_sql($parentid)."
+    //                     AND f2.id = " . esc_sql($field_id);
+    //     }else{
+    //         $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($table) . "` AS f1, `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($table) . "` AS f2
+    //                     SET f1.ordering = f1.ordering + 1
+    //                     WHERE f1.ordering = f2.ordering - 1
+    //                     AND f2.id = " . esc_sql($field_id);
+    //     }
+    //     if (false == wpjobportaldb::query($query)) {
+    //         return WPJOBPORTAL_ORDER_UP_ERROR;
+    //     }
+    //     $query = " UPDATE " . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($table) . "
+    //                 SET ordering = ordering - 1
+    //                 WHERE id = " . esc_sql($field_id);
 
-        if (false == wpjobportaldb::query($query)) {
-            return WPJOBPORTAL_ORDER_UP_ERROR;
-        }
-        return WPJOBPORTAL_ORDER_UP;
-    }
+    //     if (false == wpjobportaldb::query($query)) {
+    //         return WPJOBPORTAL_ORDER_UP_ERROR;
+    //     }
+    //     return WPJOBPORTAL_ORDER_UP;
+    // }
 
-    function setOrderingDownForDefaultTable($field_id, $table) {
-        if (is_numeric($field_id) == false)
-            return false;
-        //DB class limitations
-        if($table == 'categories'){
-            $parentid = wpjobportal::$_db->get_var("SELECT parentid FROM `".wpjobportal::$_db->prefix."wj_portal_categories` WHERE id = ".esc_sql($field_id));
-            $query = "UPDATE " . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($table) . " AS f1, " . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($table) . " AS f2
-                        SET f1.ordering = f1.ordering - 1
-                        WHERE f1.ordering = f2.ordering + 1 AND f1.parentid = ".esc_sql($parentid)."
-                        AND f2.id = " . esc_sql($field_id);
-        }else{
-            $query = "UPDATE " . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($table) . " AS f1, " . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($table) . " AS f2
-                        SET f1.ordering = f1.ordering - 1
-                        WHERE f1.ordering = f2.ordering + 1
-                        AND f2.id = " . esc_sql($field_id);
-        }
+    // function setOrderingDownForDefaultTable($field_id, $table) {
+    //     if (is_numeric($field_id) == false)
+    //         return false;
+    //     //DB class limitations
+    //     if($table == 'categories'){
+    //         $parentid = wpjobportal::$_db->get_var("SELECT parentid FROM `".wpjobportal::$_db->prefix."wj_portal_categories` WHERE id = ".esc_sql($field_id));
+    //         $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($table) . "` AS f1, `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($table) . "` AS f2
+    //                     SET f1.ordering = f1.ordering - 1
+    //                     WHERE f1.ordering = f2.ordering + 1 AND f1.parentid = ".esc_sql($parentid)."
+    //                     AND f2.id = " . esc_sql($field_id);
+    //     }else{
+    //         $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($table) . "` AS f1, `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($table) . "` AS f2
+    //                     SET f1.ordering = f1.ordering - 1
+    //                     WHERE f1.ordering = f2.ordering + 1
+    //                     AND f2.id = " . esc_sql($field_id);
+    //     }
 
-        if (false == wpjobportaldb::query($query)) {
-            return WPJOBPORTAL_ORDER_DOWN_ERROR;
-        }
-        $query = " UPDATE " . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($table) . "
-                    SET ordering = ordering + 1
-                    WHERE id = " . esc_sql($field_id);
+    //     if (false == wpjobportaldb::query($query)) {
+    //         return WPJOBPORTAL_ORDER_DOWN_ERROR;
+    //     }
+    //     $query = " UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($table) . "`
+    //                 SET ordering = ordering + 1
+    //                 WHERE id = " . esc_sql($field_id);
 
-        if (false == wpjobportaldb::query($query)) {
-            return WPJOBPORTAL_ORDER_DOWN_ERROR;
-        }
-        return WPJOBPORTAL_ORDER_DOWN;
-    }
+    //     if (false == wpjobportaldb::query($query)) {
+    //         return WPJOBPORTAL_ORDER_DOWN_ERROR;
+    //     }
+    //     return WPJOBPORTAL_ORDER_DOWN;
+    // }
 
      function getMultiSelectEdit($id, $for) {
         if (!is_numeric($id))
@@ -428,6 +432,9 @@ class WPJOBPORTALCommonModel {
 
     function getTotalExp(&$resumeid){
         ///To get Total Experience From Resume Section's
+        if(!is_numeric($resumeid)){
+            return '';
+        }
         $resume_id = $resumeid;
         $query ="SELECT resume.employer_from_date AS fromdate,resume.employer_to_date AS todate,resume.employer_current_status
                 AS status FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeemployers` AS resume
@@ -1461,5 +1468,201 @@ class WPJOBPORTALCommonModel {
 
         return $img_path;
     }
+
+    function addWPSEOHooks($module_name,$file_name){
+        $this->module_name = $module_name;
+        $this->file_name = $file_name;
+        add_filter( 'pre_get_document_title', array($this, 'WPJobPortalGetDocumentTitle'));
+        //add_action("wp_head", array($this, "WPJobPortalMetaTags"));
+    }
+
+    function WPJobPortalGetDocumentTitle($title) {
+        $module = $this->module_name;
+        $layout = $this->file_name;
+        // making sure our layout is being opened & making sure proper values are set
+        if ($module != '' && $layout != '') {
+            // get page title for current page
+            $page_title = $this->getWPJobPortalDocumentTitleByPage($module, $layout);
+            if($page_title != ''){
+                $title = $page_title;
+            }
+        }
+        return $title;
+    }
+
+    function getWPJobPortalDocumentTitleByPage($module,$layout){
+        $title = '';
+        if ($module != '' && $layout != '') {
+            $title = $this->getPageTitleByFileName($layout,$module);
+        }
+        return $title;
+    }
+
+    function getPageTitleByFileName($layout,$module) {
+        $page_title_val = '';
+        $where_query = '';
+        if($layout == 'controlpanel' || $layout == 'mystats'){
+            $where_query = " AND modulename = '".esc_sql($module)."'";
+        }
+
+        $query = "SELECT pagetitle FROM `".wpjobportal::$_db->prefix."wj_portal_slug` WHERE filename = '".esc_sql($layout)."' ".$where_query;
+        $page_title_val = wpjobportal::$_db->get_var($query);
+        if($page_title_val != ''){
+            // using switch to handle different layouts seprately
+            switch ($layout) {
+                case 'viewcompany':
+                    $companyid = isset(wpjobportal::$_data[0]->id) ? wpjobportal::$_data[0]->id : '';
+                    if(is_numeric($companyid) && $companyid > 0){
+                        // below code is only here until the interface is not built properly
+                        $company_title_options = get_option('wpjobportal_company_document_title_settings');
+                        if(!empty($company_title_options)){
+                            $page_title_val = $company_title_options;
+                        }
+
+                        $page_title_val = WPJOBPORTALincluder::getJSModel('company')->makeCompanySeoDocumentTitle($page_title_val , $companyid);
+                    }
+                break;
+                case 'viewjob':
+                    $jobid = isset(wpjobportal::$_data[0]->id) ? wpjobportal::$_data[0]->id : '';
+                    if(is_numeric($jobid) && $jobid > 0){
+                        // below code is only here until the interface is not built properly
+                        $job_title_options = get_option('wpjobportal_job_document_title_settings');
+                        if(!empty($job_title_options)){
+                            $page_title_val = $job_title_options;
+                        }
+
+                        $page_title_val = WPJOBPORTALincluder::getJSModel('job')->makeJobSeoDocumentTitle($page_title_val , $jobid);
+                    }
+                break;
+                case 'viewresume':
+                    $resumeid = (!empty(wpjobportal::$_data[0]['personal_section']) && isset(wpjobportal::$_data[0]['personal_section']->id)) ? wpjobportal::$_data[0]['personal_section']->id : '';
+                    if(is_numeric($resumeid) && $resumeid > 0){
+                        // below code is only here until the interface is not built properly
+                        $resume_title_options = get_option('wpjobportal_resume_document_title_settings');
+                        if(!empty($resume_title_options)){
+                            $page_title_val = $resume_title_options;
+                        }
+
+                        $page_title_val = WPJOBPORTALincluder::getJSModel('resume')->makeResumeSeoDocumentTitle($page_title_val , $resumeid);
+                    }
+                break;
+                default: // for all other layouts
+                    $matcharray = array(
+                        '[separator]' => '|',
+                        '[sitename]' => get_bloginfo( 'name', 'display' )
+                    );
+                    $page_title_val = $this->replaceMatches($page_title_val,$matcharray);
+                    break;
+            }
+        }
+        return $page_title_val;
+    }
+
+    function replaceMatches($string, $matcharray) {
+        foreach ($matcharray AS $find => $replace) {
+            $string = wpjobportalphplib::wpJP_str_replace($find, $replace, $string);
+        }
+        return $string;
+    }
+
+    function WPJobPortalMetaTags(){
+        $module = $this->module_name;
+        $layout = $this->file_name;
+        // making sure our layout is being opened & making sure proper values are set
+        if ($module != '' && $layout != '') {
+            $description = $this->getWPJobPortalMetaDescriptionByPage($module, $layout);
+            if(!empty($description)){
+                echo '<meta name="description" content="'.esc_html($description).'"/>'."\n";
+            }
+        }
+    }
+
+    function getWPJobPortalMetaDescriptionByPage($module,$layout){
+        $description = '';
+        if ($module != '' && $layout != '') {
+            switch ($layout) {
+                case 'controlpanel':
+                    $description = esc_html(__('This Is Meta Description', 'wp-job-portal'));
+                    break;
+                }
+        }
+        return $description;
+    }
+
+    function checkLanguageSpecialCase(){
+        $locale = get_locale();
+        $locale = strtolower(substr($locale, 0,2));
+        switch ($locale) {
+            case 'ja':
+            // case 'ja_JP':
+                return false;
+            break;
+            case 'ko':
+            // case 'ko_KR':
+                return false;
+            break;
+            case 'es':
+            // case 'es_ES':
+                return false;
+            break;
+            case 'zh':
+            // case 'zh_CN':
+            // case 'zh_TW':
+            // case 'zh_HK':
+                return false;
+            break;
+            case 'el':
+                return false;
+            break;
+            case 'de':
+            //case 'de_DE':
+                return false;
+            break;
+
+        }
+        return true;
+    }
+
+    function encodeIdForDownload($resume_id){
+        if( $resume_id == ''){
+            return '';
+        }
+        $string_data = gmdate( 'Y-m-d H:i:s' )."Z".$resume_id;
+        //$resume_id_string = (base64_encode($string_data));
+        $resume_id_string = strtr(base64_encode($string_data), '+/', '-_');;
+        return $resume_id_string;
+    }
+
+    function decodeIdForDownload($resume_id_string){
+        if($resume_id_string == ''){
+            return '';
+        }
+
+        $string_val = base64_decode($resume_id_string);
+        $string_val = base64_decode(strtr($resume_id_string, '-_', '+/'));
+
+        $string_array = explode('Z', $string_val);
+
+        $date_time = $string_array[0];
+        $current_time = gmdate( 'Y-m-d H:i:s' );
+
+        $dateTime1 = new DateTime($date_time);
+        $dateTime2 = new DateTime($current_time);
+
+        // Calculate the difference
+        // $interval = $dateTime1->diff($dateTime2);
+
+        // Get the total difference in seconds
+        $secondsDifference = abs($dateTime1->getTimestamp() - $dateTime2->getTimestamp());
+
+        // Check if the difference is less than an hour (3600 seconds)
+        if ($secondsDifference < 3600) {
+            $resume_id = $string_array[1];
+            return $resume_id;
+        }
+
+        return '';
+    }
+
 }
 ?>

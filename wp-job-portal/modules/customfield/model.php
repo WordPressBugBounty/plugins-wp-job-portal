@@ -302,7 +302,10 @@ class WPJOBPORTALCustomFieldModel {
         if (empty($data)) {
             return false;
         }
-        echo '<pre>';
+
+        if(!is_numeric($data['fieldfor'])){
+            return false;
+        }
 
         $row = WPJOBPORTALincluder::getJSTable('fieldsordering');
         if ($data['isuserfield'] == 1) {
@@ -451,6 +454,9 @@ class WPJOBPORTALCustomFieldModel {
 
     function getSectionToFillValues() {
         $field = WPJOBPORTALrequest::getVar('pfield');
+        if(!is_numeric($field)){
+            return '';
+        }
         $query = "SELECT userfieldparams FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE id =". esc_sql($field);
         $data = wpjobportaldb::get_var($query);
         $datas = json_decode($data);
@@ -638,7 +644,7 @@ class WPJOBPORTALCustomFieldModel {
         } else {
             $published = ' published = 1 ';
         }
-        if ($resumesection != null) {
+        if ($resumesection != null && is_numeric($resumesection)) {
             $published .= " AND section = ".esc_sql($resumesection) ;
         }
         $query = "SELECT field,userfieldparams,userfieldtype FROM `" . wpjobportal::$_db->prefix . "wj_portal_fieldsordering` WHERE fieldfor = " . esc_sql($fieldfor) . " AND isuserfield = 1 AND " . esc_sql($published);
@@ -650,6 +656,9 @@ class WPJOBPORTALCustomFieldModel {
         if ($id) {
             if (is_numeric($id) == false)
                 return false;
+            if (is_numeric($fieldfor) == false)
+                return false;
+
             $query = "SELECT * FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE id = " . esc_sql($id);
             wpjobportal::$_data[0]['userfield'] = wpjobportaldb::get_row($query);
             $params = wpjobportal::$_data[0]['userfield']->userfieldparams;
@@ -661,6 +670,10 @@ class WPJOBPORTALCustomFieldModel {
             wpjobportal::$_data[0]['visibleparams'] = !empty($visibleparams) ? json_decode($visibleparams, True) : '';
 
             $visibleparams = json_decode($visibleparams, True);
+            if(!is_numeric($visibleparams['visibleParent'])){
+                wpjobportal::$_data[0]['visibleValue'] = array();
+                return;
+            }
             $query = "SELECT userfieldparams AS params FROM `" . wpjobportal::$_db->prefix . "wj_portal_fieldsordering` WHERE id = " . esc_sql($visibleparams['visibleParent']);
             $options = wpjobportal::$_db->get_var($query);
             $options = json_decode($options);
@@ -803,9 +816,13 @@ class WPJOBPORTALCustomFieldModel {
             $published = ' published = 1 ';
         }
 
+        $return_array = array();
+        if(!is_numeric($fieldfor)){
+            return $return_array;
+        }
+
         $query = "SELECT field  FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE showonlisting = 1 AND " . esc_sql($published) . " AND fieldfor =" . esc_sql($fieldfor) ;
         $data = wpjobportaldb::get_results($query);
-        $return_array = array();
         foreach ($data as $field) {
             $return_array[$field->field] = 1;
         }
@@ -856,6 +873,9 @@ class WPJOBPORTALCustomFieldModel {
     function getResumeFieldsOrderingBySection1($section) { // created and used by muhiaudin for resume view 'formresume'
         $uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
         if (empty($section)) {
+            return false;
+        }
+        if (is_numeric($section)) {
             return false;
         }
         if ($uid != "" AND $uid != 0) {

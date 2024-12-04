@@ -333,10 +333,10 @@ if (!defined('ABSPATH'))
                 wpjobportal::$_data['sanitized_args']['wpjobportallt'] = 'jobmessages';
                 wpjobportal::$_data['sanitized_args']['wpjobportalid'] = wpjobportalphplib::wpJP_str_replace('/', '',$q->query_vars['wpjobportal1']);
                 break;
-                case 'job-types':
-                wpjobportal::$_data['sanitized_args']['wpjobportalme'] = 'job';
-                wpjobportal::$_data['sanitized_args']['wpjobportallt'] = 'jobsbytypes';
-                break;
+                // case 'job-types':
+                // wpjobportal::$_data['sanitized_args']['wpjobportalme'] = 'job';
+                // wpjobportal::$_data['sanitized_args']['wpjobportallt'] = 'jobsbytypes';
+                // break;
                 case 'messages':
                 wpjobportal::$_data['sanitized_args']['wpjobportalme'] = 'message';
                 wpjobportal::$_data['sanitized_args']['wpjobportallt'] = 'messages';

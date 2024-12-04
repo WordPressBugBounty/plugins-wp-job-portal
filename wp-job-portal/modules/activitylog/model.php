@@ -351,9 +351,25 @@ class WPJOBPORTALactivitylogModel {
         if ($text == '' OR $tablename == '')
             return false;
 
-        $query = "SELECT $text FROM `$tablename` WHERE id = " . esc_sql($id);
-        $result = wpjobportal::$_db->get_var($query);
-        return $result;
+        if(!strstr($tablename, "wj_portal_") ){
+            return false;
+        }
+        switch ($text) {
+            case 'title':
+            case 'templatefor':
+            case 'name':
+            case "CONCAT(first_name, ' ', last_name) AS Name":
+            case 'searchname':
+            case 'cat_title':
+            case 'rangestart':
+                $query = "SELECT $text FROM `$tablename` WHERE id = " . esc_sql($id);
+                $result = wpjobportal::$_db->get_var($query);
+                return $result;
+            break;
+
+        }
+        return false;
+
     }
 
     function getJobTitleFromid($id) {
@@ -377,7 +393,7 @@ class WPJOBPORTALactivitylogModel {
             return false;
         if ($tablename == '')
             return false;
-        $query = "SELECT cvid,jobid FROM `$tablename` WHERE id = " . esc_sql($id);
+        $query = "SELECT cvid,jobid FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE id = " . esc_sql($id);
         $result = wpjobportal::$_db->get_row($query);
         $data = array();
         $data[0] = $result->jobid;

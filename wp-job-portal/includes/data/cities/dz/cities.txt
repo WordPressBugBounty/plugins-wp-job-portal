@@ -1,5 +1,6 @@
 
 INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("El Kala", "El Kala", "El Kala", NULL, 142, 0, 1, NULL, "36.88816645", "8.4390817444017"),
 ("Béchar", "Béchar", "Bechar", NULL, 142, 0, 1, NULL, "31.6165355", "-2.2180053"),
 ("Méchria", "Méchria", "Mecheria", NULL, 142, 0, 1, NULL, "33.5428415", "-0.2750524"),
 ("Maghnia", "Maghnia", "Maghnia", NULL, 142, 0, 1, NULL, "34.847199", "-1.729658"),

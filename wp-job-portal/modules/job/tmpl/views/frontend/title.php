@@ -287,6 +287,15 @@ switch ($layout) {
                                     </div>';
                         }
                     }
+                   if(isset($job) && !empty($job->hits)){
+                        echo '<div class="wjportal-jobinfo">
+                                    <span class="wjportal-jobinfo-data">
+                                        <img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/job-views.png" alt="'.esc_html(__("location",'wp-job-portal')).'" title="'.esc_html(__("location",'wp-job-portal')).'"/>
+                                        '.esc_html(__('Views','wp-job-portal')).':&nbsp;'. esc_html($job->hits) .'
+                                    </span>
+                                </div>';
+                    }
+
             echo '</div>';                
         break;
     case 'apply1':
@@ -320,7 +329,9 @@ switch ($layout) {
             }else{
                 if(wpjobportal::$_config->getConfigValue('showapplybutton') == 1){
                     $visitorcanapply = wpjobportal::$_config->getConfigurationByConfigName('visitor_can_apply_to_job');
-                    if(in_array('credits', wpjobportal::$_active_addons) && $visitorcanapply != 1){
+					if($job->jobapplylink == 1 && !empty($job->joblink)){
+						echo '<a class="wjportal-job-act-btn" href="'.esc_url($job->joblink).'"  target="_blank" >' . esc_html(__('Apply On This Job', 'wp-job-portal')).'</a>';
+                    }elseif(in_array('credits', wpjobportal::$_active_addons) && $visitorcanapply != 1){
                         $finalurl = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'wpjobportal', 'wpjobportallt'=>'login'));
                         echo '<a href="'.esc_url($finalurl).'" class="wjportal-job-company-btn" title="' . esc_html(__('Login to Apply On This Job', 'wp-job-portal')) . '">' . esc_html(__('Login to Apply On This Job', 'wp-job-portal')) . '</a>';
                     } else {
@@ -373,7 +384,9 @@ switch ($layout) {
             }else{
                 if(wpjobportal::$_config->getConfigValue('showapplybutton') == 1){
                     $visitorcanapply = wpjobportal::$_config->getConfigurationByConfigName('visitor_can_apply_to_job');
-                    if(in_array('credits', wpjobportal::$_active_addons) && $visitorcanapply != 1){
+					if($job->jobapplylink == 1 && !empty($job->joblink)){
+						echo '<a class="wjportal-job-act-btn" href="'.esc_url($job->joblink).'"  target="_blank" >' . esc_html(__('Apply On This Job', 'wp-job-portal')).'</a>';
+                    }elseif(in_array('credits', wpjobportal::$_active_addons) && $visitorcanapply != 1){
                         $finalurl = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'wpjobportal', 'wpjobportallt'=>'login'));
                         echo '<a href="'.esc_url($finalurl).'" class="wjportal-job-act-btn" title="' . esc_html(__('Login to Apply On This Job', 'wp-job-portal')) . '">' . esc_html(__('Login to Apply On This Job', 'wp-job-portal')) . '</a>';
                     } else {

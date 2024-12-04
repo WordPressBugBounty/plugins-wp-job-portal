@@ -76,6 +76,10 @@ class WPJOBPORTALResumeFormlayout {
                 $data .= '  </label>';
                 $data .= '  <div class="resumefieldvalue">';
                 $data .=        $result['value'];
+                        $description = $field->description;
+                        if(!empty($description)){
+                            $data .= '<div class="wjportal-form-help-txt">'. esc_html(wpjobportal::wpjobportal_getVariableValue($description)).'</div>';
+                        }
                 $data .= '  </div>
                           </div>';
 
@@ -89,6 +93,10 @@ class WPJOBPORTALResumeFormlayout {
                 $data .= '  </label>';
                 $data .= '  <div class="resumefieldvalue">';
                 $data .=        $result['value'];
+                        $description = $field->description;
+                        if(!empty($description)){
+                            $data .= '<div class="wjportal-form-help-txt">'. esc_html(wpjobportal::wpjobportal_getVariableValue($description)).'</div>';
+                        }
                 $data .= '  </div>
                           </div>';
             }
@@ -120,6 +128,12 @@ class WPJOBPORTALResumeFormlayout {
                         $data .= WPJOBPORTALformfield::checkbox($name, array('1' => wpjobportal::wpjobportal_getVariableValue($fieldtitle)), $fieldValue);
                         $data .= '
                     </div>
+                    ';
+                $description = $field->description;
+                if(!empty($description)){
+                    $data .= '<div class="wjportal-form-help-txt">'. esc_html(wpjobportal::wpjobportal_getVariableValue($description)).'</div>';
+                }
+                $data .= '
                 </div>
             </div>';
         return $data;
@@ -180,6 +194,12 @@ class WPJOBPORTALResumeFormlayout {
                     </div>
                     <div class="wjportal-form-value">
                         ' . $fieldValue .'
+                        ';
+                $description = $field->description;
+                if(!empty($description)){
+                    $data .= '<div class="wjportal-form-help-txt">'. esc_html(wpjobportal::wpjobportal_getVariableValue($description)).'</div>';
+                }
+                $data .= '
                     </div>
                 </div>';
         }
@@ -307,6 +327,7 @@ class WPJOBPORTALResumeFormlayout {
         $fieldtitle = $field->fieldtitle;
         $fieldName = $field->field;
         $required = $field->required;
+        $description = $field->description;
         $style = '';
         $jb_jm_class="";
         if($columns == 3){
@@ -341,12 +362,23 @@ class WPJOBPORTALResumeFormlayout {
 
             $name = 'sec_1['.$fieldName.']';
             $data .=        ' type="text" name="' . $name . '" id="' . $fieldName . '" value = "' .  wpjobportalphplib::wpJP_htmlspecialchars($fieldValue).'"' ;
+                // adding place holder in field
+            $placeholder = $field->placeholder;
+            if(!empty($placeholder)){
+                $data .= ' placeholder="'. esc_html(wpjobportal::wpjobportal_getVariableValue($placeholder)).'" ';
+            }
             if (!empty($extraattr)){
                 foreach ($extraattr AS $key => $val){
                     $data .= ' ' . $key . '="' . $val . '"';
                 }
             }
                 $data .= '" />
+                ';
+                $description = $field->description;
+                if(!empty($description)){
+                    $data .= '<div class="wjportal-form-help-txt">'. esc_html(wpjobportal::wpjobportal_getVariableValue($description)).'</div>';
+                }
+                $data .= '
                 </div>
             </div>';
         }else{
@@ -380,6 +412,10 @@ class WPJOBPORTALResumeFormlayout {
 
 
             $name = 'sec_1['.$fieldName.']';
+            $placeholder = $field->placeholder;
+            if(!empty($placeholder)){
+                $data .= ' placeholder="'. esc_html(wpjobportal::wpjobportal_getVariableValue($placeholder)).'" ';
+            }
             $data .=        ' type="text" name="' . $name . '" id="' . $fieldName . '" value = "' .  wpjobportalphplib::wpJP_htmlspecialchars($fieldValue).'"' ;
             if (!empty($extraattr)){
                 foreach ($extraattr AS $key => $val){
@@ -387,6 +423,12 @@ class WPJOBPORTALResumeFormlayout {
                 }
             }
                 $data .= '" />
+                ';
+                $description = $field->description;
+                if(!empty($description)){
+                    $data .= '<div class="wjportal-form-help-txt">'. esc_html(wpjobportal::wpjobportal_getVariableValue($description)).'</div>';
+                }
+                $data .= '
                 </div>
             </div>';
         }
@@ -444,6 +486,7 @@ class WPJOBPORTALResumeFormlayout {
         $fieldtitle = $field->fieldtitle;
         $fieldName = $field->field;
         $required = $field->required;
+        $placeholder = $field->placeholder;
 
         $field_id_for = $fieldName.$section.$sectionid;
         if(null !=$themecall){
@@ -490,6 +533,10 @@ class WPJOBPORTALResumeFormlayout {
                 case '8': $section = 'sec_8'; break;
             }
             $name = $section."[$fieldName][$sectionid]";
+
+            if($placeholder != ''){
+                $data .= ' placeholder="'.wpjobportalphplib::wpJP_htmlspecialchars($placeholder).'" ';
+            }
 
             $data .=    ' type="text" name="' . $name . '" id="' . $field_id_for . '" maxlength="250" value = "' .  wpjobportalphplib::wpJP_htmlspecialchars($fieldValue) . '" />
                     </div>
@@ -541,6 +588,12 @@ class WPJOBPORTALResumeFormlayout {
             $name = $section."[$fieldName][$sectionid]";
 
             $data .=    ' type="text" name="' . $name . '" id="' . $field_id_for . '" maxlength="250" value = "' .  wpjobportalphplib::wpJP_htmlspecialchars($fieldValue) . '" />
+                ';
+                    $description = $field->description;
+                    if(!empty($description)){
+                        $data .= '<div class="wjportal-form-help-txt">'. esc_html(wpjobportal::wpjobportal_getVariableValue($description)).'</div>';
+                    }
+                    $data .= '
                     </div>
                 </div>';
         }
@@ -629,6 +682,12 @@ class WPJOBPORTALResumeFormlayout {
                     <input type="hidden" name="sec_'.$for.'['.esc_attr($cityfor).'cityforedit]['.esc_attr($sectionid).']" id="'.esc_attr($cityfor).'cityforedit_'.esc_attr($sectionid).'" value="'. wpjobportalphplib::wpJP_htmlspecialchars($cityforedit).'" />
                     <input type="hidden" class="jscityid" name="jscityid" value="'.$data['city_id'].'" />
                     <input type="hidden" class="jscityname" name="jscityname" value="'.$data['city_name'].'" />
+                    ';
+                $description = $field->description;
+                if(!empty($description)){
+                    $html .= '<div class="wjportal-form-help-txt">'. esc_html(wpjobportal::wpjobportal_getVariableValue($description)).'</div>';
+                }
+                $html .= '
                 </div>';
             $html .= '</div>';
         return $html;

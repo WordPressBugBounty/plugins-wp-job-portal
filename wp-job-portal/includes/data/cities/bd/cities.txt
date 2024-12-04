@@ -1,5 +1,7 @@
 
 INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
+("Sreemangal", "Sreemangal", "Sreemangal", NULL, 99, 0, 1, NULL, "24.2909397", "91.730666986631"),
+("Talbaria", "Talbaria", "Talbaria", NULL, 99, 0, 1, NULL, "22.3374255", "90.369687"),
 ("সাতক্ষীরা", "সাতক্ষীরা", "Satkhira", NULL, 99, 0, 1, NULL, "22.7166509", "89.0749857"),
 ("যশোর", "যশোর", "Jashore", NULL, 99, 0, 1, NULL, "23.1665256", "89.2094419"),
 ("খুলনা", "খুলনা", "Khulna", NULL, 99, 0, 1, NULL, "22.8171664", "89.563759"),
@@ -17,6 +19,7 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("মানিকগঞ্জ", "মানিকগঞ্জ", "Manikganj", NULL, 99, 0, 1, NULL, "23.8711041", "89.9983327"),
 ("রাজশাহী", "রাজশাহী", "Rajshahi", NULL, 99, 0, 1, NULL, "24.3715513", "88.5921038"),
 ("চাঁপাইনবাবগঞ্জ", "চাঁপাইনবাবগঞ্জ", "Chapainawabganj", NULL, 99, 0, 1, NULL, "24.5954428", "88.2707613"),
+("চাঁপাইনবাবগঞ্জ উপশহর Chapainawabganj Sub-City", "চাঁপাইনবাবগঞ্জ উপশহর Chapainawabganj Sub-City", "চাঁপাইনবাবগঞ্জ উপশহর Chapainawabganj Sub-City", NULL, 99, 0, 1, NULL, "24.5785038", "88.2947076"),
 ("পাবনা", "পাবনা", "Pabna", NULL, 99, 0, 1, NULL, "24.0068082", "89.2448341"),
 ("নাটোর", "নাটোর", "Natore", NULL, 99, 0, 1, NULL, "24.4131849", "88.9866684"),
 ("টাঙ্গাইল", "টাঙ্গাইল", "Tangail", NULL, 99, 0, 1, NULL, "24.2507461", "89.9151479"),
@@ -42,6 +45,7 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("ঝালকাঠী", "ঝালকাঠী", "Jhalokathi", NULL, 99, 0, 1, NULL, "22.6426168", "90.1990344"),
 ("বরিশাল", "বরিশাল", "Barishal", NULL, 99, 0, 1, NULL, "22.7047521", "90.370729"),
 ("ভোলা", "ভোলা", "Bhola", NULL, 99, 0, 1, NULL, "22.689095", "90.6405813"),
+("Barisal", "Barisal", "Barisal", NULL, 99, 0, 1, NULL, "22.6976167", "90.3694786"),
 ("মাদারীপুর", "মাদারীপুর", "Madaripur", NULL, 99, 0, 1, NULL, "23.1675177", "90.2047265"),
 ("লক্ষ্মীপুর", "লক্ষ্মীপুর", "Lakshmipur", NULL, 99, 0, 1, NULL, "22.9445365", "90.8276345"),
 ("নোয়াখালী", "নোয়াখালী", "Noakhali", NULL, 99, 0, 1, NULL, "22.8741068", "91.0967316"),

@@ -15,9 +15,7 @@
     }
     ";
     wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
-?>
 
-<?php
     wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js');
     if (!WPJOBPORTALincluder::getTemplate('templates/admin/header',array('module' => 'country'))){
         return;

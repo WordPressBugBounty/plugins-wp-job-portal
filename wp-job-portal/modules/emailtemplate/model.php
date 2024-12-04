@@ -1562,7 +1562,7 @@ class WPJOBPORTALEmailtemplateModel {
                                     $jobseeker_data = wpjobportaldb::get_row($query);
                     }
                     $employer_data = new stdClass();
-                    if(isset($data->employerid) && $data->employerid > 0){
+                    if(isset($data->employerid) && is_numeric($data->employerid) && $data->employerid > 0){
                         $query = 'SELECT CONCAT(u.first_name," ",u.last_name) AS username, u.emailaddress AS useremail, u.roleid AS userrole
                                     FROM `' . wpjobportal::$_db->prefix . 'wj_portal_users` AS u
                                     WHERE u.id = ' . esc_sql($data->employerid);

@@ -258,6 +258,9 @@ class WPJOBPORTALcurrencyModel {
     }
 
     function currencyCanUnpulish($currencyid) {
+        if(!is_numeric($currencyid)){
+            return false;
+        }
         $query = " SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_currencies` AS cur WHERE cur.id = " . esc_sql($currencyid) . " AND cur.default = 1 ";
         $total = wpjobportaldb::get_var($query);
         if ($total > 0)
@@ -265,8 +268,6 @@ class WPJOBPORTALcurrencyModel {
         else
             return true;
     }
-
-
 
     function getCurrencyResumeAppliedForCombo() {
         $query = "SELECT id, symbol AS text FROM `" . wpjobportal::$_db->prefix . "wj_portal_currencies` WHERE status = 1";
