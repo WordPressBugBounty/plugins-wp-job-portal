@@ -3,14 +3,14 @@
 /**
  * @package WP JOB PORTAL
  * @author Ahmad Bilal
- * @version 2.2.3
+ * @version 2.2.4
  */
 /*
   * Plugin Name: WP Job Portal
   * Plugin URI: https://wpjobportal.com/
   * Description: WP JOB PORTAL is Word Press best job board plugin. It is easy to use and highly configurable. It fully accommodates job seekers and employers.
   * Author: WP Job Portal
-  * Version: 2.2.3
+  * Version: 2.2.4
   * Text Domain: wp-job-portal
   * Domain Path: /languages
   * Author URI: https://wpjobportal.com/
@@ -76,7 +76,7 @@ class wpjobportal {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '223';
+        self::$_currentversion = '224';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_common = WPJOBPORTALincluder::getJSModel('common');
         self::$_config = WPJOBPORTALincluder::getJSModel('configuration');
@@ -133,7 +133,7 @@ class wpjobportal {
             // Schedule the event
             wp_schedule_event( time(), 'daily', 'jsjp_delete_expire_session_data' );
         }
-        add_filter('safe_style_css', array($this,'jsjp_safe_style_css'));
+        add_filter('safe_style_css', array($this,'jsjp_safe_style_css'), 10, 1);
         add_action( 'upgrader_process_complete', array($this , 'jsjp_upgrade_completed'), 10, 2 );
         // code from advance custom fields addone
         add_filter('wpjobportal_addons_get_custom_field',array($this,'wpjobportal_addons_get_activeField'),10,4);
@@ -145,6 +145,15 @@ class wpjobportal {
         }
         // deactivate new block editor
         add_action( 'after_setup_theme', array($this , 'phi_theme_support'), 10, 2 );
+        add_filter( 'document_title', array($this, 'wpjobportalgetdocumenttitle'),1,99);
+    }
+
+    function wpjobportalgetdocumenttitle($title){
+        $custom_title = WPJOBPORTALincluder::getJSModel('common')->getWPJobPortalDocumentTitleByPage();
+        if($custom_title != '' ){
+            return $custom_title;
+        }
+        return $title;
     }
     // functions from advance custom fields addone
     function wpjobportal_addons_get_activeField($default_val,$id,$id1='',$id2=''){
@@ -175,7 +184,7 @@ class wpjobportal {
                 if( $plugin == $our_plugin ) {
                     update_option('wpjp_currentversion', self::$_currentversion);
                     include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
-                    WPJOBPORTALupdates::checkUpdates('223');
+                    WPJOBPORTALupdates::checkUpdates('224');
 
                 	// restore colors data
 		            require(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
@@ -751,8 +760,7 @@ class wpjobportal {
     function jsjp_handle_search_form_data(){
         WPJOBPORTALincluder::getObjectClass('handlesearchcookies');
     }
-
-    function jsjp_safe_style_css(){
+    function jsjp_safe_style_css($custom_styles){
         $styles[] = 'display';
         $styles[] = 'color';
         $styles[] = 'width';
@@ -798,7 +806,7 @@ class wpjobportal {
         $styles[] = 'top';
         $styles[] = 'z-index';
         $styles[] = 'overflow';
-        return $styles;
+        return array_merge($styles, $custom_styles);
     }
 
     function jsjp_handle_delete_cookies(){

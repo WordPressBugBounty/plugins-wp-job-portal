@@ -1490,7 +1490,11 @@ class WPJOBPORTALCommonModel {
         return $title;
     }
 
-    function getWPJobPortalDocumentTitleByPage($module,$layout){
+    function getWPJobPortalDocumentTitleByPage($module='',$layout=''){
+        if($module=='' && $layout==''){
+            $layout = WPJOBPORTALrequest::getVar('wpjobportallt');
+            $module = WPJOBPORTALrequest::getVar('wpjobportalme');
+        }
         $title = '';
         if ($module != '' && $layout != '') {
             $title = $this->getPageTitleByFileName($layout,$module);
@@ -1512,6 +1516,10 @@ class WPJOBPORTALCommonModel {
             switch ($layout) {
                 case 'viewcompany':
                     $companyid = isset(wpjobportal::$_data[0]->id) ? wpjobportal::$_data[0]->id : '';
+                    if($companyid == ''){
+                        $companyid = WPJOBPORTALrequest::getVar('wpjobportalid');
+                        $companyid = wpjobportal::$_common->parseID($companyid);
+                    }
                     if(is_numeric($companyid) && $companyid > 0){
                         // below code is only here until the interface is not built properly
                         $company_title_options = get_option('wpjobportal_company_document_title_settings');
@@ -1524,6 +1532,10 @@ class WPJOBPORTALCommonModel {
                 break;
                 case 'viewjob':
                     $jobid = isset(wpjobportal::$_data[0]->id) ? wpjobportal::$_data[0]->id : '';
+                    if($jobid == ''){
+                        $jobid = WPJOBPORTALrequest::getVar('wpjobportalid');
+                        $jobid = wpjobportal::$_common->parseID($jobid);
+                    }
                     if(is_numeric($jobid) && $jobid > 0){
                         // below code is only here until the interface is not built properly
                         $job_title_options = get_option('wpjobportal_job_document_title_settings');
@@ -1536,6 +1548,10 @@ class WPJOBPORTALCommonModel {
                 break;
                 case 'viewresume':
                     $resumeid = (!empty(wpjobportal::$_data[0]['personal_section']) && isset(wpjobportal::$_data[0]['personal_section']->id)) ? wpjobportal::$_data[0]['personal_section']->id : '';
+                    if($resumeid == ''){
+                        $resumeid = WPJOBPORTALrequest::getVar('wpjobportalid');
+                        $resumeid = wpjobportal::$_common->parseID($resumeid);
+                    }
                     if(is_numeric($resumeid) && $resumeid > 0){
                         // below code is only here until the interface is not built properly
                         $resume_title_options = get_option('wpjobportal_resume_document_title_settings');
