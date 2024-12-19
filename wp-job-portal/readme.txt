@@ -4,7 +4,7 @@ Donate link: https://wpjobportal.com/pricing/
 Tags: job board, job listing, careers, job manager, jobs, recruiting
 Requires at least: 5.5 
 Tested up to: 6.7.1
-Stable tag: 2.2.4
+Stable tag: 2.2.5
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -239,6 +239,9 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Changelog ==
 
+= 2.2.5 =
+* Security fixes
+
 = 2.2.4 =
 * Bug fixes
 
@@ -252,7 +255,7 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 = 2.2.2 =
 * Shortcode options added for job, company and resume listing shortocodes
 * Shortcode options added for job seeker & employer dashboard shortcode
-* New configurtaion added to control visiblity of profile section on user dasboard
+* New configuration added to control visibility of profile section on user dashboard
 * New shortcode added for User Registration
 * Open Street Map bug fixed
 * New configuration added to set default place holder image
@@ -271,13 +274,17 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 * Customizable document (SEO) titles for company, job, and resume pages with fixed text and entity properties.
 * Wordpress title bug on WP Job Portal pages fixed.
 * Security update.
+
 = 2.1.8 =
 * Add quick apply
 * Minimize required fields
+
 = 2.1.7 =
 * Security update
+
 = 2.1.6 =
 * Security update
+
 = 2.1.5 =
 * Added new Shortcode for Featured Jobs
 * Added new Shortcode for Featured Resumes
@@ -289,8 +296,9 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 = 2.1.4 =
 * Added new interface to optimize system as a job board or single employer
 * Security fix
+
 = 2.1.3 =
-* Added visibilty control for custom fields
+* Added visibility control for custom fields
 * Added Cover Letter addon
 * Translation issues fixed
 * Bug fixes
@@ -339,8 +347,8 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 
 = 2.0.0 =
-* PHP 8.2 compatability
-* Coverletter Addon added
+* PHP 8.2 compatibility
+* Cover Letter Addon added
 * Jobs By Cities page added
 * Jobs By Types page added
 * Email notifications bug fixed
@@ -366,10 +374,10 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 * Add Help page in admin area
 
 = 1.1.3 =
-* Add custome fields advance options
+* Add custom fields advance options
 
 = 1.1.2 =
-* Add plugin colors plage
+* Add plugin colors page
 
 = 1.1.1 =
 * Configuration base login redirect link
@@ -417,7 +425,7 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Upgrade Notice ==
 
-Bugfixes for latest version.
+Bug fixes for latest version.
 
 
 == Frequently Asked Questions ==

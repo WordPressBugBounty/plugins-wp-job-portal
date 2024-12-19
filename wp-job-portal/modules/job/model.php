@@ -1098,6 +1098,12 @@ class WPJOBPORTALjobModel {
             $data['uid'] = false;
         }
 
+        if(!wpjobportal::$_common->wpjp_isadmin()){ // maiking sure crrent record is not added/updated by admin
+            if(!WPJOBPORTALincluder::getJSModel('company')->getIfCompanyOwner($data['companyid'])){ // check if current user owns the company for which the job is being created
+                return WPJOBPORTAL_SAVE_ERROR; // if current user does not own the company he is posting job for return false.
+            }
+        }
+
         if($data['uid'] == false){
             $data['uid'] = '';
         }

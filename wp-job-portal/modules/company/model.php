@@ -408,6 +408,12 @@ class WPJOBPORTALCompanyModel {
             $id = (int) $data['id'];
             $isnew = !$id;
 
+        //making sure uid is not changed
+        // admin can edit other employers companies
+        if(!wpjobportal::$_common->wpjp_isadmin()){
+            $data['uid'] = $cuser->uid();
+        }
+
         # prepare data + business logic
             if($isnew){
                 $data['created'] = current_time('mysql');
