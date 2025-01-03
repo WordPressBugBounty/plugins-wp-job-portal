@@ -870,6 +870,11 @@ class WPJOBPORTALjobapplyModel {
             }
         }
 
+        if(!WPJOBPORTALincluder::getJSModel('resume')->getIfResumeOwner($cvid)){
+            $msg = '<div id="notification-not-ok"><label id="popup_message"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/unpublish.png"/>' . esc_html(__("Failed while performing this action", 'wp-job-portal')) . '</label><button class="applynow-closebutton" onclick="closePopup();" ><img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'/includes/images/popupcloseicon.png"/>'.esc_html(__('Close','wp-job-portal')).'</button></div>';
+            return $msg;
+        }
+
         $data = array();
         $data['jobid'] = $jobid;
         $data['cvid'] = $cvid;
