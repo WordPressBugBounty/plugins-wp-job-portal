@@ -2176,7 +2176,44 @@ class WPJOBPORTALjobapplyModel {
         $subject = WPJOBPORTALrequest::getVar('emailsubject');
         $senderemail = WPJOBPORTALrequest::getVar('senderid');
         $mail = WPJOBPORTALrequest::getVar('mailbody');
-        $return = wpjobportal::$_common->sendEmail($jobseekeremail, $subject, $mail, $senderemail, '');
+
+        // code to verify the sender & reciver of email are valid
+        $resumeid = WPJOBPORTALrequest::getVar('resumeid');
+        $jobid = WPJOBPORTALrequest::getVar('jobid');
+
+        // check if job owner is sending the email
+        $job_owner = WPJOBPORTALincluder::getJSModel('job')->getIfJobOwner($jobid);
+        $employer_email = '';
+        $jobseeker_email = '';
+        if (current_user_can('manage_options') || $job_owner == true) { //admin or job owner can send email
+
+            // getting employer email address
+            $employer_record =  $this->getEmployerEmailByJobId($jobid);
+            if(!empty($employer_record)){
+                $employer_email = $employer_record->companyuseremail;
+                if($employer_email == ''){ // if comapny contact email is not set
+                    $employer_email = $employer_record->useremail;
+                }
+            }
+
+            // getting jobseeker email address
+            $jobseeker_record =  $this->getJobSeekerEmailByResumeId($resumeid);
+            if(!empty($jobseeker_record)){
+                $jobseeker_email = $jobseeker_record->useremailfromresume;
+                if($jobseeker_email == ''){ // if comapny contact email is not set
+                    $jobseeker_email = $jobseeker_record->useremail;
+                }
+            }
+
+        }
+        $return = 0;
+        if($employer_email != '' && $jobseeker_email != ''){
+            $senderemail = $employer_email;
+            $jobseekeremail = $jobseeker_email;
+            $subject = sanitize_text_field( $subject );
+            $mail = sanitize_textarea_field( $mail );
+            $return = wpjobportal::$_common->sendEmail($jobseekeremail, $subject, $mail, $senderemail, '');
+        }
         if($return == 1){
             return esc_html(__('Email has been send','wp-job-portal'));
         }else{
@@ -2191,6 +2228,17 @@ class WPJOBPORTALjobapplyModel {
         }
         $email = WPJOBPORTALrequest::getVar('em');
         $resumeid = WPJOBPORTALrequest::getVar('resumeid');
+        $jobid = WPJOBPORTALrequest::getVar('jobid');
+
+        // filliung employer email in text field and making it disabled
+        $employer_record =  $this->getEmployerEmailByJobId($jobid);
+        if(!empty($employer_record)){
+            $employer_email = $employer_record->companyuseremail;
+            if($employer_email == ''){ // if comapny contact email is not set
+                $employer_email = $employer_record->useremail;
+            }
+        }
+
         $html = '';
         if (wpjobportal::$theme_chk == 1) {
             $html.='<img id="close-section" onclick="closeSection()" src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/no.png"/>';
@@ -2198,13 +2246,13 @@ class WPJOBPORTALjobapplyModel {
             $html.='<label for="jobseeker">'
                     . esc_html(__("Job Seeker", 'wp-job-portal'))
                     . ' : </label>';
-            $html.='<input type="text" id="jobseeker" value="' . $email . '" disabled /></div><div class="wpj-jp-applied-resume-cnt-row"><label for="subject">'
+            $html.='<input type="text" id="jobseeker" value="' . $email . '" disabled="disabled" /></div><div class="wpj-jp-applied-resume-cnt-row"><label for="subject">'
                     . esc_html(__('Subject', 'wp-job-portal')) .
                     ' : </label>';
             $html.='<input type="text" id="e-subject" />';
             $html.='</div><div class="wpj-jp-applied-resume-cnt-row">';
             $html.='<label for="sender">' . esc_html(__("Sender Email", 'wp-job-portal')) . '  : </label>';
-            $html.='<input type="text" id="sender"  /></div>';
+            $html.='<input type="text" id="sender" value="'.$employer_email.'" disabled="disabled" /></div>';
             $html.='<div class="wpj-jp-applied-resume-cnt-row"><textarea id="email-body" placeholder=' . esc_html(__('Type here', 'wp-job-portal')) . '>';
             $html.='</textarea></div> <div class="wpj-jp-applied-resume-cnt-row"><input class="wpj-jp-outline-btn" type="button" id="send" value=' . esc_html(__("Send", 'wp-job-portal')) . ' onclick="sendEmail('.$resumeid.')" /></div></div>';
         } else {
@@ -2219,12 +2267,40 @@ class WPJOBPORTALjobapplyModel {
             $html.='<input type="text" id="e-subject" />';
             $html.='</div><div class="wjportal-applied-job-actions-row">';
             $html.='<label for="sender">' . esc_html(__('Sender Email', 'wp-job-portal')) . '  : </label>';
-            $html.='<input type="text" id="sender"  /></div>';
+            $html.='<input type="text" id="sender" value="'.$employer_email.'" disabled="disabled"  /></div>';
             $html.='<div class="wjportal-applied-job-actions-row"><textarea id="email-body" placeholder=' . esc_html(__('Type here', 'wp-job-portal')) . '>';
             $html.='</textarea></div> <div class="wjportal-job-applied-actions-btn-wrp"><input class="wjportal-job-applied-actions-btn" type="button" id="send" value=' . esc_html(__('Send', 'wp-job-portal')) . ' onclick="sendEmail('.$resumeid.')" /></div></div>';
         }
+        // added these values to handle some verifications before sending email
+        $html .= '<input type="hidden" id="jobid" id="jobid" value="'.$jobid.'" />';
+        $html .= '<input type="hidden" id="resumeid" id="resumeid" value="'.$resumeid.'" />';
         return $html;
     }
+
+    // function to fetch employer emial by job id
+    function getEmployerEmailByJobId($jobid){
+        if(!is_numeric($jobid))
+            return false;
+        $query = 'SELECT company.contactemail AS companyuseremail, user.emailaddress AS useremail
+                    FROM `' . wpjobportal::$_db->prefix . 'wj_portal_jobs` AS job
+                    JOIN `' . wpjobportal::$_db->prefix . 'wj_portal_companies` AS company ON job.companyid = company.id
+                    LEFT JOIN `' . wpjobportal::$_db->prefix . 'wj_portal_users` AS user ON user.id = job.uid
+                    WHERE job.id = ' . esc_sql($jobid);
+        $result = wpjobportaldb::get_row($query);
+        return $result;
+    }
+    // function to fetch jobseeker emial by resume id
+    function getJobSeekerEmailByResumeId($resumeid){
+        if(!is_numeric($resumeid))
+            return false;
+        $query = 'SELECT resume.email_address AS useremailfromresume, user.emailaddress as useremail
+                    FROM `' . wpjobportal::$_db->prefix . 'wj_portal_resume` AS resume
+                    JOIN `' . wpjobportal::$_db->prefix . 'wj_portal_users` AS user ON user.id = resume.uid
+                    WHERE resume.id = ' . esc_sql($resumeid);
+        $result = wpjobportaldb::get_row($query);
+        return $result;
+    }
+
 
     function getJobApp($jobid){
         if(!is_numeric($jobid))

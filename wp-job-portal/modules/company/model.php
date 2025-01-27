@@ -840,6 +840,14 @@ class WPJOBPORTALCompanyModel {
         if(!is_numeric($companyid)){
             return false;
         }
+        if (!current_user_can('manage_options')) { // checking if is admin
+            // verify that can current user is editing his owned entity
+            if(!$this->getIfCompanyOwner($companyid)){
+                // if current entity being edited is not owned by current user dont allow to procced further
+                return false;
+            }
+        }
+
         $row = WPJOBPORTALincluder::getJSTable('company');
         $data_directory = wpjobportal::$_config->getConfigValue('data_directory');
         $wpdir = wp_upload_dir();

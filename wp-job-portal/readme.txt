@@ -4,7 +4,7 @@ Donate link: https://wpjobportal.com/pricing/
 Tags: job board, job listing, careers, job manager, jobs, recruiting
 Requires at least: 5.5 
 Tested up to: 6.7.1
-Stable tag: 2.2.6
+Stable tag: 2.2.7
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -18,7 +18,7 @@ A complete recruiting solution to create a job listing page or a popular job boa
 
 WP Job Portal is a lightweight, job board plugin for WordPress that comes with full functionality from the WordPress dashboard also the plugin is super simple to manage with the hiring process without using any codes. Being shortcode based it can work with multiple themes, you can get started for free with ease to use.
 
-👉 <a href="http://demo.wpjobportal.com/" target="_blank">View Demo</a> | <a href="https://www.youtube.com/channel/UCk_qYTzV6gusKmMHxTrgU2Q" target="_blank">Watch Videos</a> | <a href="https://wpjobportal.com/support/" target="_blank">Support</a> | <a href="https://wpjobportal.com/" target="_blank">Plugin Homepage</a> 
+👉 <a href="https://demo.wpjobportal.com/" target="_blank">View Demo</a> | <a href="https://docs.wpjobportal.com/" target="_blank">Documentation</a> | <a href="https://www.youtube.com/channel/UCk_qYTzV6gusKmMHxTrgU2Q" target="_blank">Watch Videos</a> | <a href="https://wpjobportal.com/support/" target="_blank">Support</a> | <a href="https://wpjobportal.com/" target="_blank">Plugin Homepage</a> 
 
 https://www.youtube.com/watch?v=UmO6EwsNMZo
 
@@ -238,6 +238,9 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 
 == Changelog ==
+
+= 2.2.7 =
+* Security fixes
 
 = 2.2.6 =
 * Security fixes

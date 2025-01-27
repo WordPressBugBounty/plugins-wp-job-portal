@@ -15,6 +15,8 @@ $gender = array(
     (object) array('id' => 2, 'text' => esc_html(__('Female', 'wp-job-portal'))));
 ?>
 <?php
+    // to handle the email candidate case
+    $jobid = WPJOBPORTALrequest::getVar('jobid','','');
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
@@ -275,6 +277,7 @@ $gender = array(
             var subject = jQuery('input#e-subject').val();
             var sid = jQuery('input#sender').val();
             var test = true;
+            var jobid = jQuery('div.'+resumeid).find('input#jobid').val();
             if(subject =='' && sid ==''){ // not to proceed for empty fields
                 jQuery('div#' + resumeid).html('<div id=\"notification-not-ok\"><label id=\"popup_message\"><img src=\"". esc_url(WPJOBPORTAL_PLUGIN_URL)."includes/images/unpublish.png\"/>". esc_html(__('Please Fill out fields','wp-job-portal'))."</label></div>');
                 event.preventDefault();
@@ -290,7 +293,7 @@ $gender = array(
                 return false;
             } else {
                 var body = jQuery('textarea#email-body').val();
-                jQuery.post(ajaxurl, {action: 'wpjobportal_ajax', wpjobportalme: 'jobapply', task: 'sendEmailToJobSeeker', jobseekerid: jid, emailsubject: subject, senderid: sid, mailbody: body, '_wpnonce':'". esc_attr(wp_create_nonce("send-email-to-jobseeker"))."'}, function (data) {
+                jQuery.post(ajaxurl, {action: 'wpjobportal_ajax', wpjobportalme: 'jobapply', task: 'sendEmailToJobSeeker', jobseekerid: jid, emailsubject: subject, senderid: sid, mailbody: body, jobid: jobid, resumeid: resumeid,  '_wpnonce':'". esc_attr(wp_create_nonce("send-email-to-jobseeker"))."'}, function (data) {
                     if (data) {
                         jQuery('div#' + resumeid).html('<div id=\"notification-ok\"><label id=\"popup_message\"><img src=\"". esc_url(WPJOBPORTAL_PLUGIN_URL)."includes/images/approve.png\"/>". esc_html(__('Email has been send','wp-job-portal'))."</label></div>');
                     }else{
@@ -371,8 +374,9 @@ $gender = array(
             });
         }
         function getEmailFields(emailid, resumeid) {
+            var jobid = ".$jobid.";// needed to get employer email address
             var ajaxurl = \"". esc_url_raw(admin_url('admin-ajax.php')) ."\";
-            jQuery.post(ajaxurl, {action: 'wpjobportal_ajax', wpjobportalme: 'jobapply', task: 'getEmailFields', em: emailid,resumeid: resumeid, '_wpnonce':'". esc_attr(wp_create_nonce("get-email-fields"))."'}, function (data) {
+            jQuery.post(ajaxurl, {action: 'wpjobportal_ajax', wpjobportalme: 'jobapply', task: 'getEmailFields', em: emailid,resumeid: resumeid, jobid:jobid, '_wpnonce':'". esc_attr(wp_create_nonce("get-email-fields"))."'}, function (data) {
                 if (data) {
                     jQuery('div.' + resumeid).html(data).show();
                 }

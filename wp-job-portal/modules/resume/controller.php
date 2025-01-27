@@ -702,19 +702,20 @@ class WPJOBPORTALResumeController {
 
     function getallresumefiles() {
         $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
-        if (! wp_verify_nonce( $nonce, 'wpjobportal_resume_nonce') ) {
+        $resumeid = WPJOBPORTALrequest::getVar('resumeid');
+        if (! wp_verify_nonce( $nonce, 'wpjobportal_resume_nonce'.$resumeid) ) {
              die( 'Security check Failed' );
         }
         WPJOBPORTALincluder::getJSModel('resume')->getAllResumeFiles();
     }
 
     function getresumefiledownloadbyid() {
+        $fileid = WPJOBPORTALrequest::getVar('wpjobportalid');
         $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
-        if (! wp_verify_nonce( $nonce, 'wpjobportal_resume_nonce') ) {
+        if (! wp_verify_nonce( $nonce, 'wpjobportal_resume_nonce'.$fileid) ) {
              die( 'Security check Failed' );
         }
-        $fileid_string = WPJOBPORTALrequest::getVar('wpjobportalid');
-        WPJOBPORTALincluder::getJSModel('resume')->getResumeFileDownloadById($fileid_string);
+        WPJOBPORTALincluder::getJSModel('resume')->getResumeFileDownloadById($fileid);
     }
 
     function addviewresumedetail() {

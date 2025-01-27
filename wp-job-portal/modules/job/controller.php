@@ -514,6 +514,9 @@ class WPJOBPORTALJobController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_job_nonce') ) {
              die( 'Security check Failed' );
         }
+        if (!current_user_can('manage_options')) { //only admin can change it.
+            return false;
+        }
         $jobid = WPJOBPORTALrequest::getVar('jobid');
         $callfrom = WPJOBPORTALrequest::getVar('callfrom');
         $uid = WPJOBPORTALincluder::getObjectClass('user')->uid();

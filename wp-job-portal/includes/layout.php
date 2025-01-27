@@ -132,9 +132,11 @@ class WPJOBPORTALlayout {
     static function setMessageFor($for, $link = null, $linktext = null, $return = 0) {
         $image = null;
         $description = '';
+        $login_register_link = 0;
         switch ($for) {
             case '1': // User is guest
                 $description = esc_html(__('You are not logged in', 'wp-job-portal'));
+                $login_register_link = 1;
                 break;
             case '2': // User is job seeker
                 $description = esc_html(__('Jobseeker not allowed to perform this action', 'wp-job-portal'));
@@ -176,13 +178,13 @@ class WPJOBPORTALlayout {
                 $description = esc_html(__('Addon Page Not Found','wp-job-portal'));
                 break;
         }
-        $html = WPJOBPORTALlayout::getUserNotAllowed($description, $link, $linktext, $image, $return);
+        $html = WPJOBPORTALlayout::getUserNotAllowed($description, $link, $linktext, $image, $return,$login_register_link);
         if ($return == 1) {
             return $html;
         }
     }
 
-    static function getUserNotAllowed($description, $link, $linktext, $image, $return = 0) {
+    static function getUserNotAllowed($description, $link, $linktext, $image, $return = 0,$login_register_link = 0) {
         $html = '<div class="wjportal-main-up-wrapper">
                 <div class="wjportal-error-messages-wrp">
                     <div class="wjportal-error-msg-image-wrp">
@@ -197,7 +199,10 @@ class WPJOBPORTALlayout {
                             $linktext = "Login";
                         }
                         if ($link != null) {
-                            $lrlink = WPJOBPORTALincluder::getJSModel('configuration')->getLoginRegisterRedirectLink($link,'login');
+                            $lrlink = $link;
+                            if($login_register_link == 1){
+                                $lrlink = WPJOBPORTALincluder::getJSModel('configuration')->getLoginRegisterRedirectLink($link,'login');
+                            }
                             $html .= '<a class="wjportal-error-msg-act-btn wjportal-error-msg-act-login-btn" href="' . $lrlink . '">' . wpjobportal::wpjobportal_getVariableValue($linktext) . '</a>';
                             if($linktext == "Login"){
                                 $defaultUrl = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'user', 'wpjobportallt'=>'userregister','wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));

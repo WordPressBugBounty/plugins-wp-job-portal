@@ -3016,8 +3016,8 @@ class WPJOBPORTALResumeModel {
     }
 
     function getAllResumeFiles() {
-        $resumeid_string = WPJOBPORTALrequest::getVar('resumeid');
-        $resumeid = WPJOBPORTALincluder::getJSModel('common')->decodeIdForDownload($resumeid_string);
+        $resumeid = WPJOBPORTALrequest::getVar('resumeid');
+        // $resumeid = WPJOBPORTALincluder::getJSModel('common')->decodeIdForDownload($resumeid_string);
 
         if(!is_numeric($resumeid)){
             return false;
@@ -3093,9 +3093,9 @@ class WPJOBPORTALResumeModel {
         exit();
     }
 
-    function getResumeFileDownloadById($fileid_string) {
+    function getResumeFileDownloadById($fileid) {
 
-        $fileid = WPJOBPORTALincluder::getJSModel('common')->decodeIdForDownload($fileid_string);
+        //$fileid = WPJOBPORTALincluder::getJSModel('common')->decodeIdForDownload($fileid_string);
 
         if (!is_numeric($fileid))
             return false;
@@ -3116,7 +3116,6 @@ class WPJOBPORTALResumeModel {
             $creds = request_filesystem_credentials( site_url() );
             wp_filesystem( $creds );
         }
-
 
         if (!$wp_filesystem->exists($file)) {// if file does not exsit then stop executing code(handling log errors)
             exit;

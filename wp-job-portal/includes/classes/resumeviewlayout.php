@@ -100,8 +100,8 @@ class WPJOBPORTALResumeViewlayout {
                             $exp_extension = wpjobportalphplib::wpJP_explode(".", $files);
                             $extension = end($exp_extension);
                             $filename=wpjobportalphplib::wpJP_substr($files,'0','3')."...";
-                            $file_id_string = WPJOBPORTALincluder::getJSModel('common')->encodeIdForDownload($file->id);
-                            $html .= '<a target="_blank" href="' . esc_url(wp_nonce_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'action'=>'wpjobportaltask', 'task'=>'getresumefiledownloadbyid', 'wpjobportalid'=>$file_id_string, 'wpjobportalpageid'=>WPJOBPORTALRequest::getVar('wpjobportalpageid'))),'wpjobportal_resume_nonce')) . '" class="file">
+                            //$file_id_string = WPJOBPORTALincluder::getJSModel('common')->encodeIdForDownload($file->id);
+                            $html .= '<a target="_blank" href="' . esc_url(wp_nonce_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'action'=>'wpjobportaltask', 'task'=>'getresumefiledownloadbyid', 'wpjobportalid'=>$file->id, 'wpjobportalpageid'=>WPJOBPORTALRequest::getVar('wpjobportalpageid'))),'wpjobportal_resume_nonce'.$file->id)) . '" class="file">
                                         <span class="wpjp-filename">' . esc_html($filename) . '</span><span class="wpjp-fileext">'.esc_html($extension).'</span>
                                         <i class="fa fa-download download" aria-hidden="true"></i>
                                     </a>';
@@ -124,8 +124,8 @@ class WPJOBPORTALResumeViewlayout {
                         <div class="wjportal-resume-sec-data-value">';
         if (!empty(wpjobportal::$_data[0]['file_section'])) {
             foreach (wpjobportal::$_data[0]['file_section'] AS $file) {
-                $file_id_string = WPJOBPORTALincluder::getJSModel('common')->encodeIdForDownload($file->id);
-                $html .= '<a target="_blank" href="' . esc_url(wp_nonce_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'action'=>'wpjobportaltask', 'task'=>'getresumefiledownloadbyid', 'wpjobportalid'=>$file_id_string, 'wpjobportalpageid'=>WPJOBPORTALRequest::getVar('wpjobportalpageid'))),'wpjobportal_resume_nonce')) . '" class="file">
+                //$file_id_string = WPJOBPORTALincluder::getJSModel('common')->encodeIdForDownload($file->id);
+                $html .= '<a target="_blank" href="' . esc_url(wp_nonce_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'action'=>'wpjobportaltask', 'task'=>'getresumefiledownloadbyid', 'wpjobportalid'=>$file->id, 'wpjobportalpageid'=>WPJOBPORTALRequest::getVar('wpjobportalpageid'))),'wpjobportal_resume_nonce'.$file->id)) . '" class="file">
                             <span class="wjportal-resume-attachment-filename">' . $file->filename . '</span>
                             <span class="wjportal-resume-attachment-file-ext"></span>
                             <img class="wjportal-resume-attachment-file-download" src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/resume/download.png" />

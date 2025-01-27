@@ -450,10 +450,13 @@ class WPJOBPORTALCompanyController {
     }
 
     function enforcedelete() {
-
         $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'wpjobportal_company_nonce') ) {
              die( 'Security check Failed' );
+        }
+
+        if (!current_user_can('manage_options')) { //only admin can change it.
+            return false;
         }
         $companyid = WPJOBPORTALrequest::getVar('id');
         $callfrom = WPJOBPORTALrequest::getVar('callfrom');

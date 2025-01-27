@@ -1,5 +1,8 @@
 <?php if (!defined('ABSPATH')) die('Restricted Access'); ?>
 <?php
+
+// to handle the email candidate case
+$jobid = WPJOBPORTALrequest::getVar('jobid','','');
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
@@ -221,11 +224,12 @@
             var subject = jQuery('div.'+resumeid).find('input#e-subject').val();
             var sid = jQuery('div.'+resumeid).find('input#sender').val();
             var body = jQuery('div.'+resumeid).find('textarea#email-body').val();
+            var jobid = jQuery('div.'+resumeid).find('input#jobid').val();
             if(subject =='' && sid ==''){ // not to proceed for empty fields
                 jQuery('div#' + resumeid).html('<div id=\"notification-not-ok\"><label id=\"popup_message\"><img src=\"". esc_url(WPJOBPORTAL_PLUGIN_URL)."includes/images/unpublish.png\"/>". esc_html(__('Please Fill out fields','wp-job-portal'))."</label></div>');
                 return;
             }
-            jQuery.post(ajaxurl, {action: 'wpjobportal_ajax', wpjobportalme: 'jobapply', task: 'sendEmailToJobSeeker', jobseekerid: jid, emailsubject: subject, senderid: sid, mailbody: body, '_wpnonce':'". esc_attr(wp_create_nonce("send-email-to-jobseeker"))."'}, function (data) {
+            jQuery.post(ajaxurl, {action: 'wpjobportal_ajax', wpjobportalme: 'jobapply', task: 'sendEmailToJobSeeker', jobseekerid: jid, emailsubject: subject, senderid: sid, mailbody: body, jobid: jobid, resumeid: resumeid, '_wpnonce':'". esc_attr(wp_create_nonce("send-email-to-jobseeker"))."'}, function (data) {
                 if (data) {
                     alert(data);
                 }
@@ -374,8 +378,9 @@
             }else{
                 jQuery('div#comments').css('display', 'inline-block');
             }
+            var jobid = ".$jobid.";// needed to get employer email address
             var ajaxurl = \"". esc_url_raw(admin_url('admin-ajax.php')) ."\";
-            jQuery.post(ajaxurl, {action: 'wpjobportal_ajax', wpjobportalme: 'jobapply', task: task, em: emailid,resumeid:resumeid, '_wpnonce':'". esc_attr(wp_create_nonce("get-email-fields"))."'}, function (data) {
+            jQuery.post(ajaxurl, {action: 'wpjobportal_ajax', wpjobportalme: 'jobapply', task: task, em: emailid, resumeid:resumeid, jobid:jobid, '_wpnonce':'". esc_attr(wp_create_nonce("get-email-fields"))."'}, function (data) {
                 if (data) {
                     jQuery('div.' + resumeid).html(data);
                 }
