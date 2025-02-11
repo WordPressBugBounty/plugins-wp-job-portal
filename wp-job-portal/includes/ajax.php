@@ -21,6 +21,8 @@ class WPJOBPORTALajax {
         $task = WPJOBPORTALrequest::getVar('task');
         if($task != '' && in_array($task, $fucntin_allowed)){
             $module = WPJOBPORTALrequest::getVar('wpjobportalme');
+			$module = str_replace("..","",$module);
+			$module = str_replace("/","",$module);
             $result = WPJOBPORTALincluder::getJSModel($module)->$task();
             echo $result;
             die();
