@@ -1384,7 +1384,7 @@ class WPJOBPORTALEmailtemplateModel {
         $msgBody = $template->body;
         $jobquery = "SELECT job.id AS id,job.title, job.jobstatus,job.jobid AS jobid, company.name AS companyname, cat.cat_title AS cattitle,job.sendemail,company.contactemail, CONCAT(user.first_name,' ',user.last_name) AS contactname
                               FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                              JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
+                              ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
                               LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_users` AS user ON user.id = company.uid
                               LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
                               WHERE job.id = " . esc_sql($jobid);
@@ -1493,7 +1493,7 @@ class WPJOBPORTALEmailtemplateModel {
                     $query = 'SELECT job.title AS jobtitle,company.name AS companyname,job.status AS status
                                 ,company.contactemail AS useremail,company.uid, job.isfeaturedjob AS featuredjob,job.params
                             FROM `' . wpjobportal::$_db->prefix . 'wj_portal_jobs` AS job
-                            JOIN `' . wpjobportal::$_db->prefix . 'wj_portal_companies` AS company ON job.companyid = company.id
+                            '.wpjobportal::$_company_job_table_join.' JOIN `' . wpjobportal::$_db->prefix . 'wj_portal_companies` AS company ON job.companyid = company.id
                             WHERE job.id = ' . esc_sql($id);
                 }
                 //query for get jobs
@@ -1501,7 +1501,7 @@ class WPJOBPORTALEmailtemplateModel {
                     $query = 'SELECT user.id AS id,job.title AS jobtitle,company.name AS companyname, CONCAT(user.first_name," ",user.last_name) AS username,job.status AS status
                     ,company.contactemail AS useremail ,company.uid, job.isfeaturedjob AS featuredjob,job.params
                             FROM `' . wpjobportal::$_db->prefix . 'wj_portal_jobs` AS job
-                            JOIN `' . wpjobportal::$_db->prefix . 'wj_portal_companies` AS company ON job.companyid = company.id
+                            '.wpjobportal::$_company_job_table_join.' JOIN `' . wpjobportal::$_db->prefix . 'wj_portal_companies` AS company ON job.companyid = company.id
                             JOIN `' . wpjobportal::$_db->prefix . 'wj_portal_users` AS user ON user.id = job.uid
                             WHERE job.id = ' . esc_sql($id);
                 }
@@ -1540,7 +1540,7 @@ class WPJOBPORTALEmailtemplateModel {
                 $query = 'SELECT rs.first_name AS firstname,rs.last_name AS lastname, jobap.action_status AS resumestatus , jobap.status AS jobapplystatus,rs.email_address AS resumeemail,job.title AS jobtitle,com.contactemail AS companycontactemail,com.name AS companyname, rs.application_title AS resumetitle, CONCAT(uforemployer.first_name," ",uforemployer.last_name) AS username, uforemployer.emailaddress AS useremailforemployer,uforjobseeker.emailaddress AS useremailforjobseeker,job.params
                             FROM ' . wpjobportal::$_db->prefix . 'wj_portal_jobapply AS jobap
                             JOIN ' . wpjobportal::$_db->prefix . 'wj_portal_jobs AS job ON jobap.jobid = job.id
-                            JOIN ' . wpjobportal::$_db->prefix . 'wj_portal_companies AS com ON job.companyid = com.id
+                            '.wpjobportal::$_company_job_table_join.' JOIN ' . wpjobportal::$_db->prefix . 'wj_portal_companies AS com ON job.companyid = com.id
                             JOIN ' . wpjobportal::$_db->prefix . 'wj_portal_resume AS rs ON rs.id = jobap.cvid
                             JOIN ' . wpjobportal::$_db->prefix . 'wj_portal_users AS uforemployer ON uforemployer.id = com.uid
                             JOIN ' . wpjobportal::$_db->prefix . 'wj_portal_users AS uforjobseeker ON uforjobseeker.id = jobap.uid

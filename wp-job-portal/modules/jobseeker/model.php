@@ -24,7 +24,7 @@ class WPJOBPORTALJobseekerModel {
                     FROM " . wpjobportal::$_db->prefix . "wj_portal_resume AS resume
                     JOIN " . wpjobportal::$_db->prefix . "wj_portal_jobapply AS jobapply ON jobapply.cvid = resume.id
                     JOIN " . wpjobportal::$_db->prefix . "wj_portal_jobs AS job ON job.id = jobapply.jobid
-                    JOIN " . wpjobportal::$_db->prefix . "wj_portal_companies AS company ON company.id = job.companyid
+                    ".wpjobportal::$_company_job_table_join." JOIN " . wpjobportal::$_db->prefix . "wj_portal_companies AS company ON company.id = job.companyid
                     LEFT JOIN " . wpjobportal::$_db->prefix . "wj_portal_categories AS jobcat ON jobcat.id = resume.job_category
                     WHERE resume.uid = ". esc_sql($uid)." GROUP BY jobapply.id LIMIT 0,5";
 
@@ -57,7 +57,7 @@ class WPJOBPORTALJobseekerModel {
         job.params,CONCAT(company.alias,'-',company.id) AS companyaliasid,LOWER(jobtype.title) AS jobtypetit,
         job.salarymax,job.salarymin,job.salarytype,srtype.title AS srangetypetitle,jobtype.color AS jobtypecolor
         FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-        JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
+        ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS srtype ON srtype.id = job.salaryduration
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
@@ -89,7 +89,7 @@ class WPJOBPORTALJobseekerModel {
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` AS jobapply
                  JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job ON job.id = jobapply.jobid
                  JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume ON resume.id = jobapply.cvid
-                 JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
+                 ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
                  LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category ON category.id = job.jobcategory
                  LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
                  LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobstatus` AS jobstatus ON jobstatus.id = job.jobstatus
@@ -211,7 +211,7 @@ class WPJOBPORTALJobseekerModel {
             $Month = $Time[1];
             $Year = $Time[0];
             $dateObj = DateTime::createFromFormat('!m', $Month);
-            $monthName = $dateObj->format('F');
+            $monthName = $dateObj->format('M');
              $MonthName=$monthName.'-'.wpjobportalphplib::wpJP_substr($Year,-2);
             /////******Passing Data To Graph*********//////////
             $FullTime = wpjobportal::$_data['jobtype'][0]->id;
@@ -221,7 +221,7 @@ class WPJOBPORTALJobseekerModel {
             $FullTimeData = isset(wpjobportal::$_data['datachart'][$FullTime][$Year][$Month]) ? wpjobportal::$_data['datachart'][$FullTime][$Year][$Month] : 0;
             $ParTimeData = isset(wpjobportal::$_data['datachart'][$PartTime][$Year][$Month]) ? wpjobportal::$_data['datachart'][$PartTime][$Year][$Month] : 0;
             $internshipData = isset(wpjobportal::$_data['datachart'][$internship][$Year][$Month]) ? wpjobportal::$_data['datachart'][$internship][$Year][$Month] : 0;
-            wpjobportal::$_data['stack_chart_horizontal']['data'] .= "$FullTimeData,$ParTimeData,$internshipData]";
+            wpjobportal::$_data['stack_chart_horizontal']['data'] .=  $FullTimeData.",".$ParTimeData.",".$internshipData."]";
             if($i!=12){
              wpjobportal::$_data['stack_chart_horizontal']['data'] .= ',';
             }

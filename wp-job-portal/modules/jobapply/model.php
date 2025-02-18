@@ -64,7 +64,7 @@ class WPJOBPORTALjobapplyModel {
 
         //Pagination
         $query = "SELECT COUNT(job.id) FROM " . wpjobportal::$_db->prefix . "wj_portal_jobs AS job
-        JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
+        ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
         WHERE job.status <> 0";
         $query.=$inquery;
 
@@ -76,7 +76,7 @@ class WPJOBPORTALjobapplyModel {
         $query = "SELECT job.*, cat.cat_title, jobtype.title AS jobtypetitle, jobstatus.title AS jobstatustitle, company.name AS companyname
                 , ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE jobid = job.id) AS totalresume
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
+                ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON job.jobcategory = cat.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON job.jobtype = jobtype.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobstatus` AS jobstatus ON job.jobstatus = jobstatus.id
@@ -241,7 +241,7 @@ class WPJOBPORTALjobapplyModel {
                 }
                 $query.=" FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
                 JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` AS jobapply  ON jobapply.jobid = job.id
-                JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
+                ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
                 JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS app ON app.id = jobapply.cvid
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS resum_cat ON resum_cat.id = app.job_category
@@ -497,25 +497,28 @@ class WPJOBPORTALjobapplyModel {
                     $content .=  '<i class="fas fa-times wpj-jp-popup-close-icon" data-dismiss="modal"></i>';
                     $content .=  '<div class="wpj-jp-popup-right">';
                     $content .=  '<div class="wpj-jp-popup-list">';
-                    if ($job->logofilename != "") {
-                        $wpdir = wp_upload_dir();
-                        $data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
-                        $path = $wpdir['baseurl'] . '/' . $data_directory . '/data/employer/comp_' . $job->companyid . '/logo/' . $job->logofilename;
-                    } else {
-                        $path = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer');
-                    }
-                    if(in_array('multicompany', wpjobportal::$_active_addons)){
-                        $mod = "multicompany";
-                    }else{
-                        $mod = "company";
-                    }
-                    $published_fields = WPJOBPORTALincluder::getJSModel('fieldordering')->getFieldOrderingData(1);
-                    if(isset($published_fields['logo']) && $published_fields['logo'] != ''){
-                        $content .= '<div class="wpj-jp-popup-list-logo">';
-                        $content .=     '<a href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$job->companyid,'wpjobportalpageid'=>$wpjobportal_pageid_ajax))) .' title='. esc_attr(__('company logo','wp-job-portal')).'>';
-                        $content .=         '<img src='. esc_url($path) .' alt="'.esc_attr(__('Company logo','wp-job-portal')).'" >';
-                        $content .=     '</a>';
-                        $content .= '</div>';
+                    if($job->companyid != ''){
+                        if ($job->logofilename != "") {
+                            $wpdir = wp_upload_dir();
+                            $data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
+                            $path = $wpdir['baseurl'] . '/' . $data_directory . '/data/employer/comp_' . $job->companyid . '/logo/' . $job->logofilename;
+                        } else {
+                            $path = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer');
+                        }
+                        if(in_array('multicompany', wpjobportal::$_active_addons)){
+                            $mod = "multicompany";
+                        }else{
+                            $mod = "company";
+                        }
+                        $published_fields = WPJOBPORTALincluder::getJSModel('fieldordering')->getFieldOrderingData(1);
+                        if(isset($published_fields['logo']) && $published_fields['logo'] != ''){
+                            $content .= '<div class="wpj-jp-popup-list-logo">';
+                            $content .=     '<a href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$job->companyid,'wpjobportalpageid'=>$wpjobportal_pageid_ajax))) .' title='. esc_attr(__('company logo','wp-job-portal')).'>';
+                            $content .=         '<img src='. esc_url($path) .' alt="'.esc_attr(__('Company logo','wp-job-portal')).'" >';
+                            $content .=     '</a>';
+                            $content .= '</div>';
+
+                        }
                     }
 
                     $content .= '<div class="wpj-jp-popup-list-cnt-wrp">';
@@ -579,24 +582,31 @@ class WPJOBPORTALjobapplyModel {
                     /*Pop up detail data For Job(Extra Detail)*/
                     $content =  '<div class="wjportal-jobs-list">';
                     $content .= ' <div class="wjportal-jobs-list-top-wrp">';
-                    $path = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer');
-                    if ($job->logofilename != "") {
-                        $wpdir = wp_upload_dir();
-                        $data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
-                        $path = $wpdir['baseurl'] . '/' . $data_directory . '/data/employer/comp_' . $job->companyid . '/logo/' . $job->logofilename;
-                    }
                     if(in_array('multicompany', wpjobportal::$_active_addons)){
                         $mod = "multicompany";
                     }else{
                         $mod = "company";
                     }
-                    $published_fields = WPJOBPORTALincluder::getJSModel('fieldordering')->getFieldOrderingData(1);
-                    if(isset($published_fields['logo']) && $published_fields['logo'] != ''){
-                        $content .= '<div class="wjportal-jobs-logo">';
-                        $content .=     '<a href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$job->companyid,'wpjobportalpageid'=>$wpjobportal_pageid_ajax))) .'>';
-                        $content .=         '<img src='. $path .' alt="'.esc_html(__('Company logo','wp-job-portal')).'" >';
-                        $content .=     '</a>';
-                        $content .= '</div>';
+                    if($job->companyid != ''){
+                        $path = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer');
+                        if ($job->logofilename != "") {
+                            $wpdir = wp_upload_dir();
+                            $data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
+                            $path = $wpdir['baseurl'] . '/' . $data_directory . '/data/employer/comp_' . $job->companyid . '/logo/' . $job->logofilename;
+                        }
+                        if(in_array('multicompany', wpjobportal::$_active_addons)){
+                            $mod = "multicompany";
+                        }else{
+                            $mod = "company";
+                        }
+                        $published_fields = WPJOBPORTALincluder::getJSModel('fieldordering')->getFieldOrderingData(1);
+                        if(isset($published_fields['logo']) && $published_fields['logo'] != ''){
+                            $content .= '<div class="wjportal-jobs-logo">';
+                            $content .=     '<a href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$job->companyid,'wpjobportalpageid'=>$wpjobportal_pageid_ajax))) .'>';
+                            $content .=         '<img src='. $path .' alt="'.esc_html(__('Company logo','wp-job-portal')).'" >';
+                            $content .=     '</a>';
+                            $content .= '</div>';
+                        }
                     }
                     $content .= '<div class="wjportal-jobs-cnt-wrp">';
                     $content .= '<div class="wjportal-jobs-middle-wrp">';
@@ -1007,8 +1017,10 @@ class WPJOBPORTALjobapplyModel {
 
 
         $jobquery = "SELECT company.name AS companyname, company.contactemail AS email, job.title, job.sendemail
-            FROM `".wpjobportal::$_db->prefix."wj_portal_companies` AS company
-            JOIN `".wpjobportal::$_db->prefix."wj_portal_jobs` AS job ON job.companyid = company.id
+                        ,CONCAT(user.first_name,' ',user.last_name) AS username,user.emailaddress AS useremail
+            FROM `".wpjobportal::$_db->prefix."wj_portal_jobs` AS job
+            LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_companies` AS company ON company.id = job.companyid
+            LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_users` AS user ON user.id = job.uid
             WHERE job.id = ". esc_sql($jobid);
 
         $jobuser = wpjobportaldb::get_row($jobquery);
@@ -1028,8 +1040,16 @@ class WPJOBPORTALjobapplyModel {
 
         $ApplicantName = $user->name;
         $EmployerEmail = $emailconfig['adminemailaddress'];
-        $EmployerName = $user->name;
+
+
         $JobTitle = $jobuser->title;
+        $EmployerName = $jobuser->username;
+
+        $Emailtoemployer = $jobuser->email;
+        if ($Emailtoemployer == '') {
+            $Emailtoemployer = $jobuser->useremail;
+        }
+
         $siteTitle = wpjobportal::$_config->getConfigValue('title');
 
         $msgSubject = wpjobportalphplib::wpJP_str_replace('{JOBSEEKER_NAME}', $ApplicantName, $msgSubject);
@@ -1101,7 +1121,11 @@ class WPJOBPORTALjobapplyModel {
 
         $ApplicantName = $user->name;
         $EmployerEmail = $jobuser->email;
-        $EmployerName = $jobuser->companyname;
+        if ($EmployerEmail == '') {
+            $EmployerEmail = $jobuser->useremail;
+        }
+        //$EmployerName = $jobuser->companyname;
+        $EmployerName = $jobuser->username;
         $JobTitle = $jobuser->title;
         $siteTitle = wpjobportal::$_config->getConfigValue('title');
         $msgSubject = wpjobportalphplib::wpJP_str_replace('{JOBSEEKER_NAME}', $ApplicantName, $msgSubject);
@@ -1368,7 +1392,7 @@ class WPJOBPORTALjobapplyModel {
                  FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` AS jobapply
                  JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job ON job.id = jobapply.jobid
                  JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume ON resume.id = jobapply.cvid
-                 JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
+                 ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
                  LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category ON category.id = job.jobcategory
                  LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
                  WHERE jobapply.uid = ". esc_sql($uid);
@@ -1384,7 +1408,7 @@ class WPJOBPORTALjobapplyModel {
                  FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` AS jobapply
                  JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job ON job.id = jobapply.jobid
                  JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume ON resume.id = jobapply.cvid
-                 JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
+                 ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
                  LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category ON category.id = job.jobcategory
                  LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
                  LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON job.city = city.id
@@ -2081,7 +2105,7 @@ class WPJOBPORTALjobapplyModel {
                  WHERE jobapply.jobid = job.id) AS resumeapplied ,job.params,job.startpublishing,job.stoppublishing
                  ,LOWER(jobtype.title) AS jobtypetit
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
+                ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS salaryrangetype ON salaryrangetype.id = job.salaryduration
@@ -2107,7 +2131,7 @@ class WPJOBPORTALjobapplyModel {
                  WHERE jobapply.jobid = job.id) AS resumeapplied ,job.params,job.startpublishing,job.stoppublishing
                  ,LOWER(jobtype.title) AS jobtypetit,jobtype.color as jobtypecolor
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
+                ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS salaryrangetype ON salaryrangetype.id = job.salaryduration
@@ -2283,7 +2307,7 @@ class WPJOBPORTALjobapplyModel {
             return false;
         $query = 'SELECT company.contactemail AS companyuseremail, user.emailaddress AS useremail
                     FROM `' . wpjobportal::$_db->prefix . 'wj_portal_jobs` AS job
-                    JOIN `' . wpjobportal::$_db->prefix . 'wj_portal_companies` AS company ON job.companyid = company.id
+                    ".wpjobportal::$_company_job_table_join." JOIN `' . wpjobportal::$_db->prefix . 'wj_portal_companies` AS company ON job.companyid = company.id
                     LEFT JOIN `' . wpjobportal::$_db->prefix . 'wj_portal_users` AS user ON user.id = job.uid
                     WHERE job.id = ' . esc_sql($jobid);
         $result = wpjobportaldb::get_row($query);
@@ -2307,7 +2331,7 @@ class WPJOBPORTALjobapplyModel {
             return false;
         $query = "SELECT job.*, cat.cat_title, jobtype.title AS jobtypetitle, company.name AS companyname ,company.logofilename AS logo ,company.id AS companyid,salaryrangetype.title AS salaryrangetype,jobtype.color AS jobtypecolor,( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE jobid = job.id) AS totalresume
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
+                ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON job.jobcategory = cat.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON job.jobtype = jobtype.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS salaryrangetype ON salaryrangetype.id = job.salaryduration

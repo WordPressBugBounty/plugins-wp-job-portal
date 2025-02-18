@@ -29,7 +29,7 @@ wp_enqueue_script( 'google-charts-handle' );
                     var options = {
                         title: '". esc_html(__('Job Apply', 'wp-job-portal')) ."',
                         'height':500,
-                        isStacked: 'relative',
+                        isStacked: true,
                         legend: {position: 'top'},
                         hAxis: {title: 'Month',  titleTextStyle: {color: '#333'}},
                         vAxis: {minValue: 0},
@@ -41,7 +41,7 @@ wp_enqueue_script( 'google-charts-handle' );
                         title: '". esc_html(__('Job Apply', 'wp-job-portal')) ."',
                         'height':400,
                         'width':734,
-                        isStacked: 'relative',
+                        isStacked: true,
                         legend: {position: 'top'},
                         hAxis: {title: 'Month',  titleTextStyle: {color: '#333'}},
                         vAxis: {minValue: 0},
@@ -52,7 +52,7 @@ wp_enqueue_script( 'google-charts-handle' );
                     };";
                 } 
                 $js_script .= "
-                var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+                var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
                 chart.draw(data, options);
             }
         ";

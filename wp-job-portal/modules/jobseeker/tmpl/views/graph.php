@@ -39,10 +39,10 @@ $js_script = "
                     title: '". esc_html(__("Job Type","wp-job-portal")) ."',
                     'height':400,
                     'width':734,
-                    isStacked: 'relative',
+                    isStacked: true,
                     legend: {position: 'top'},
                     hAxis: {title: 'Month',  titleTextStyle: {color: '#333'}},
-                    vAxis: {minValue: 0},
+                    vAxis: {minValue: 0, format: 0,title: 'Total Jobs'},
                     chartArea: {
                         left: 65,
                         width: 640,
@@ -50,7 +50,7 @@ $js_script = "
                 };";
             } 
             $js_script .= " 
-            var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
             chart.draw(data, options);
         }
         ";

@@ -64,7 +64,7 @@ class WPJOBPORTALEmployerModel {
         $query = "SELECT DISTINCT apply.jobid,company.id as companyid,jobs.title as title,company.uid as userid,apply.quick_apply
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` as apply
                     JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobs` as jobs on apply.jobid=jobs.id
-                    JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` as company ON company.id=jobs.companyid
+                    ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` as company ON company.id=jobs.companyid
                     WHERE company.uid='".esc_sql($uid)."' ORDER BY apply.jobid DESC limit 0,2 ";
         $result = wpjobportaldb::get_results($query);
         $jobtype = $result;
@@ -91,7 +91,7 @@ class WPJOBPORTALEmployerModel {
                 JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS app ON app.id = jobapply.cvid
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = app.job_category
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = app.jobtype
-             JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
+                ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
             WHERE jobapply.jobid = " . esc_sql($key->jobid);
             $result = wpjobportaldb::get_results($query);
             $data = array();
@@ -136,8 +136,8 @@ class WPJOBPORTALEmployerModel {
                  WHERE jobapply.jobid = job.id and jobapply.status = 1) AS resumeapplied ,job.params,job.startpublishing,job.stoppublishing
                  ,LOWER(jobtype.title) AS jobtypetit,jobtype.color AS jobtypecolor
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
                 JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
+                ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON job.city = city.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS salaryrangetype ON salaryrangetype.id = job.salaryduration
@@ -245,7 +245,7 @@ class WPJOBPORTALEmployerModel {
                 $Month = $Time[1];
                 $Year = $Time[0];
                 $dateObj = DateTime::createFromFormat('!m', $Month);
-                $monthName = $dateObj->format('F');
+                $monthName = $dateObj->format('M');
                 $MonthName = $monthName.'-'.wpjobportalphplib::wpJP_substr($Year,-2);
                 /////******Passing Data To Graph*********//////////
                 $FullTime = isset(wpjobportal::$_data['jobtype'][0]->id) ? wpjobportal::$_data['jobtype'][0]->id : null;
@@ -276,7 +276,6 @@ class WPJOBPORTALEmployerModel {
             $company = wpjobportaldb::get_row($query);
             return $company;
     }
-
 
     function handleShortCodeOptions(){
 

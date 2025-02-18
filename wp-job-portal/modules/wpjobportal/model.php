@@ -8,7 +8,7 @@ class WPJOBPORTALwpjobportalModel {
     function getCPJobs() {
         $query = "SELECT comp.name,comp.logofilename,cat.cat_title ,job.city
             FROM " . wpjobportal::$_db->prefix . "wj_portal_jobs as job
-            JOIN " . wpjobportal::$_db->prefix . "wj_portal_companies as comp on comp.id = job.companyid
+            ".wpjobportal::$_company_job_table_join." JOIN " . wpjobportal::$_db->prefix . "wj_portal_companies as comp on comp.id = job.companyid
             LEFT JOIN " . wpjobportal::$_db->prefix . "wj_portal_categories as cat on cat.id = job.jobcategory";
         wpjobportal::$_data[0]['jobs'] = wpjobportaldb::get_results($query);
     }
@@ -273,7 +273,7 @@ class WPJOBPORTALwpjobportalModel {
                     job.params,CONCAT(company.alias,'-',company.id) AS companyaliasid,LOWER(jobtype.title) AS jobtypetit,
                     job.salarymax,job.salarymin,job.salarytype,srtype.title AS salaryrangetype,jobtype.color AS jobtypecolor
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                    JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
+                    ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS srtype ON srtype.id = job.salaryduration
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
@@ -551,8 +551,8 @@ class WPJOBPORTALwpjobportalModel {
             $query = "SELECT job.companyid AS id,job.title,isfeaturedjob AS isfeatured
                         ,job.status,cat.cat_title,job.city,comp.logofilename AS photo
             FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-            JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS comp ON comp.id = job.companyid
-            LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
+            ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS comp ON comp.id = job.companyid
+            ".wpjobportal::$_company_job_table_join."LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
             WHERE DATE(job.created) >= DATE('" . esc_sql($lastdate) . "') AND DATE(job.created) <= DATE('" . esc_sql($curdate) . "')
             ORDER BY job.created DESC LIMIT 5";
             $results = wpjobportal::$_db->get_results($query);
@@ -581,7 +581,7 @@ class WPJOBPORTALwpjobportalModel {
             FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` AS jobapp
             JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume ON resume.id = jobapp.cvid
             JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job on job.id = jobapp.jobid
-            JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS comp ON comp.id = job.companyid
+            ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS comp ON comp.id = job.companyid
             WHERE DATE(jobapp.apply_date) >= DATE('" . esc_sql($lastdate) . "') AND DATE(jobapp.apply_date) <= DATE('" . esc_sql($curdate) . "')
             ORDER BY jobapp.apply_date DESC LIMIT 5";
             $results = wpjobportal::$_db->get_results($query);

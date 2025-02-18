@@ -318,5 +318,16 @@ class wpjobportalphplib {
         return $output;
     }
 
+
+    public static function wpJP_clean_file_path($path){ // this function to remove relative path componenets from module and file name
+        if($path != ''){
+            $path = str_replace('./','',$path);
+            $path = str_replace('..','',$path);
+        }
+        return $path;
+    }
+
+
+
 }
 ?>

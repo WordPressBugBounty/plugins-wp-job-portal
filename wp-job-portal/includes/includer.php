@@ -14,6 +14,11 @@ class WPJOBPORTALincluder {
      */
 
     public static function include_file($filename, $module_name = null) {
+        // making usre no relative path is being used
+        $filename = wpjobportalphplib::wpJP_clean_file_path($filename);
+        $module_name = wpjobportalphplib::wpJP_clean_file_path($module_name);
+
+
         if ( ! function_exists( 'WP_Filesystem' ) ) {
             require_once ABSPATH . 'wp-admin/includes/file.php';
         }
@@ -37,7 +42,7 @@ class WPJOBPORTALincluder {
             }else if($wp_filesystem->exists($file_path)){
                 $incfilepath = wpjobportalphplib::wpJP_explode('.php', $file_path);
                 $incfilename = $incfilepath[0].'.inc.php';
-// to handle page title 
+            // to handle page title
                 WPJOBPORTALincluder::getJSModel('common')->addWPSEOHooks($module_name,$filename);
                 if ($wp_filesystem->exists($incfilename)) {
                     require_once($incfilename);
@@ -164,7 +169,8 @@ class WPJOBPORTALincluder {
     }*/
 
     public static function getTemplate($template_name, $args = array()){
-       $template = self::locateTemplate($template_name,$args);
+        $template_name = wpjobportalphplib::wpJP_clean_file_path($template_name);
+        $template = self::locateTemplate($template_name,$args);
         if(!empty($args) && is_array($args)){
             extract($args);
         }
@@ -178,6 +184,7 @@ class WPJOBPORTALincluder {
     }
 
     public static function locateTemplate($template_name,$args= array()){
+        $template_name = wpjobportalphplib::wpJP_clean_file_path($template_name);
         $module = wpjobportalphplib::wpJP_substr($template_name, 0, wpjobportalphplib::wpJP_strpos($template_name, '/'));
         $template_name = wpjobportalphplib::wpJP_substr($template_name, wpjobportalphplib::wpJP_strpos($template_name, '/')+1);
         $module_name = isset($args['module_name']) ? $args['module_name'] : null;
@@ -200,6 +207,11 @@ class WPJOBPORTALincluder {
     }
 
     public static function getPluginPath($module,$type,$file_name = '') {
+        $module = wpjobportalphplib::wpJP_clean_file_path($module);
+        if($file_name != ''){
+            $file_name = wpjobportalphplib::wpJP_clean_file_path($file_name);
+        }
+
         //$addons_secondry = array('socialmedia','facebook','linkedin','xing','folderresume','mystats','creditslog','creditspack','purchasehistory','purchase','userpackage','subscription','invoice','userpackage','jobalertsetting','package','jobseekerviewcompany','employerviewresume','rating','transactionlog','jobalertcities','paymentmethodconfiguration','paypal','Stripe','resumeformAdons','ResumeViewAdons','Stripe/init','coverletter');
         $addons_secondry = array('socialmedia','facebook','linkedin','xing','folderresume','mystats','creditslog','creditspack','purchasehistory','purchase','userpackage','subscription','invoice','userpackage','jobalertsetting','package','jobseekerviewcompany','employerviewresume','rating','transactionlog','jobalertcities','paymentmethodconfiguration','paypal','Stripe','resumeformAdons','ResumeViewAdons','Stripe/init','coverletter','popup','multicompany');
         if(in_array($module, wpjobportal::$_active_addons) && $module != 'theme' && $module != 'customfields'){

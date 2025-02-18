@@ -86,7 +86,7 @@ class WPJOBPORTALjobModel {
         job.params,CONCAT(company.alias,'-',company.id) AS companyaliasid,LOWER(jobtype.title) AS jobtypetit,
         job.salarymax,job.salarymin,job.salarytype,srtype.title AS srangetypetitle,jobtype.color AS jobtypecolor,job.currency
         FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-        JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
+        ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS srtype ON srtype.id = job.salaryduration
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
@@ -240,7 +240,7 @@ class WPJOBPORTALjobModel {
                  cat.cat_title,company.id AS companyid,company.name AS companyname,company.logofilename, CONCAT(company.alias,'-',company.id) AS companyaliasid,
                  jobtype.title AS jobtypetitle,job.salarymax,job.salarymin,job.salarytype,salarytype.title AS srangetypetitle
                  FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                 JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
+                 ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
                  LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS salarytype ON salarytype.id = job.salaryduration
                  LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
                  LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype";
@@ -258,7 +258,7 @@ class WPJOBPORTALjobModel {
         $query = "SELECT job.id,job.title AS jobtitle,company.name AS companyname,cat.cat_title AS cattile,job.stoppublishing,
         salaryfrom.rangestart AS salaryfrom, salaryto.rangestart AS salaryto
         FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-        JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
+        ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON job.jobcategory = cat.id
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrange` AS salaryfrom ON job.salaryrangefrom = salaryfrom.id
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrange` AS salaryto ON job.salaryrangeto = salaryto.id
@@ -490,7 +490,7 @@ class WPJOBPORTALjobModel {
 
         $query .= " FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` AS jobapply  ON jobapply.jobid = job.id
-                    JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
+                    ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON job.jobcategory = cat.id
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON job.jobtype = jobtype.id
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobstatus` AS jobstatus ON job.jobstatus = jobstatus.id ";
@@ -558,7 +558,7 @@ class WPJOBPORTALjobModel {
                             ,jobtype.color AS jobtypecolor,job.params
 
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                    JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
+                    ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON job.jobcategory = cat.id
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes`  AS jobtype ON job.jobtype = jobtype.id
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobstatus` AS jobstatus ON job.jobstatus = jobstatus.id
@@ -820,7 +820,7 @@ class WPJOBPORTALjobModel {
                 return false;
             $query = "SELECT job.* ,cat.cat_title, jobtype.title AS jobtypetitle, company.name AS companyname,company.logofilename ,company.id AS companyid,salaryrangetype.title AS salaryrangetype,jobtype.color AS jobtypecolor,salaryrangetype.title AS srangetypetitle
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
+                ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON job.jobcategory = cat.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON job.jobtype = jobtype.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS salaryrangetype ON salaryrangetype.id = job.salaryduration
@@ -970,7 +970,7 @@ class WPJOBPORTALjobModel {
         $query = "SELECT job.*, cat.cat_title, jobtype.title AS jobtypetitle, company.name AS companyname ,company.logofilename AS logo ,company.id AS companyid,salaryrangetype.title AS salaryrangetype,jobtype.color AS jobtypecolor,
                 ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE jobid = job.id AND status = 1) AS totalresume
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
+                ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON job.jobcategory = cat.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON job.jobtype = jobtype.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS salaryrangetype ON salaryrangetype.id = job.salaryduration
@@ -1066,7 +1066,7 @@ class WPJOBPORTALjobModel {
         $query = "SELECT job.*, cat.cat_title, jobtype.title AS jobtypetitle,company.logofilename AS logofilename, company.name AS companyname ,salaryrangetype.title AS salaryrangetype,jobtype.color AS jobtypecolor,job.currency,
                 ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE jobid = job.id) AS totalresume
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
+                ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON job.jobcategory = cat.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON job.jobtype = jobtype.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON city.id = (SELECT cityid FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobcities` WHERE jobid = job.id ORDER BY id DESC LIMIT 1)
@@ -1098,9 +1098,12 @@ class WPJOBPORTALjobModel {
             $data['uid'] = false;
         }
 
-        if(!wpjobportal::$_common->wpjp_isadmin()){ // maiking sure crrent record is not added/updated by admin
-            if(!WPJOBPORTALincluder::getJSModel('company')->getIfCompanyOwner($data['companyid'])){ // check if current user owns the company for which the job is being created
-                return WPJOBPORTAL_SAVE_ERROR; // if current user does not own the company he is posting job for return false.
+        // need to reheck this case
+        if($data['companyid'] !=''){
+            if(!wpjobportal::$_common->wpjp_isadmin()){ // maiking sure crrent record is not added/updated by admin
+                if(!WPJOBPORTALincluder::getJSModel('company')->getIfCompanyOwner($data['companyid'])){ // check if current user owns the company for which the job is being created
+                    return WPJOBPORTAL_SAVE_ERROR; // if current user does not own the company he is posting job for return false.
+                }
             }
         }
 
@@ -1507,7 +1510,7 @@ class WPJOBPORTALjobModel {
             return false;
         $query = "SELECT job.title AS jobtitle, company.contactemail AS useremail,company.name AS companyname, user.first_name AS username
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                    JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid=company.id
+                    ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid=company.id
                     JOIN `" . wpjobportal::$_db->prefix . "wj_portal_users` AS user ON user.id = job.uid
                     WHERE job.id =" . esc_sql($jobid);
         $return_value = wpjobportaldb::get_row($query);
@@ -1833,7 +1836,7 @@ class WPJOBPORTALjobModel {
                 , salaryrangefrom.rangestart AS salaryfrom, salaryrangeto.rangeend AS salaryend
                 , company.name AS companyname, company.url
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
+                ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON job.jobcategory = cat.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON job.jobtype = jobtype.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobstatus` AS jobstatus ON job.jobstatus = jobstatus.id
@@ -1868,7 +1871,7 @@ class WPJOBPORTALjobModel {
         $this->checkCall();
         # pagination
         $query = "SELECT COUNT(job.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
+                ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
                 WHERE job.uid =". esc_sql($uid);
         $total = wpjobportaldb::get_var($query);
         wpjobportal::$_data['total'] = $total;
@@ -1883,7 +1886,7 @@ class WPJOBPORTALjobModel {
                  WHERE jobapply.jobid = job.id and jobapply.status = 1) AS resumeapplied ,job.params,job.startpublishing,job.stoppublishing
                  ,LOWER(jobtype.title) AS jobtypetit,jobtype.color AS jobtypecolor
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
+                ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON job.city = city.id
@@ -1913,7 +1916,7 @@ class WPJOBPORTALjobModel {
                 cat.cat_title, jobtype.title AS jobtypetitle,salaryrangetype.title AS srangetypetitle ,job.startpublishing,job.stoppublishing
                  ,LOWER(jobtype.title) AS jobtypetit,jobtype.color AS jobtypecolor
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
+                ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON job.city = city.id
@@ -2129,7 +2132,7 @@ class WPJOBPORTALjobModel {
             $query = "SELECT job.title,job.noofjobs,job.id, cat.cat_title,company.logofilename AS logofilename,company.id AS companyid,
                         company.name AS comp_title,jobtype.title AS jobtype,jobstatus.title AS jobstatus,CONCAT(job.alias,'-',job.id) AS jobaliasid,salarytype.title AS salarytype
                         FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                        JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
+                        ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
                         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON job.jobcategory = cat.id
                         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON job.jobtype = jobtype.id
                         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobstatus` AS jobstatus ON job.jobstatus = jobstatus.id
@@ -2810,7 +2813,7 @@ class WPJOBPORTALjobModel {
         if($noofjobs == ''){ // if no of jobs not set in shortcode then do the pagiatnion total
             $query = "SELECT COUNT(DISTINCT job.id)
             FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-            JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
+            ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
             LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_jobcities` AS jobcity ON jobcity.jobid = job.id
             LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_cities` AS city ON city.id = jobcity.cityid
             LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_states` AS state ON state.countryid = city.countryid
@@ -2829,7 +2832,7 @@ class WPJOBPORTALjobModel {
         job.params,CONCAT(company.alias,'-',company.id) AS companyaliasid,LOWER(jobtype.title) AS jobtypetit,
         job.salarymax,job.salarymin,job.salarytype,srtype.title AS srangetypetitle,jobtype.color AS jobtypecolor, job.jobapplylink, job.joblink
         FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-        JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
+        ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS srtype ON srtype.id = job.salaryduration
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
@@ -2913,7 +2916,7 @@ class WPJOBPORTALjobModel {
             $query = "SELECT job.title AS jobtitle, company.name AS companyname,job.isfeaturedjob , jobtype.title AS jobtypetitle
                         , salaryrangetype.title AS salaryrangetype,company.id AS companyid, job.currency, category.cat_title AS category, job.startpublishing, jobstatus.title AS jobstatustitle, job.degreetitle, job.city, job.longitude,job.latitude, job.description, job.duration,job.jobapplylink,job.joblink
                         FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                        JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
+                        ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
                         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category ON category.id = job.jobcategory
                         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
                         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobstatus` AS jobstatus ON jobstatus.id = job.jobstatus
@@ -3488,7 +3491,7 @@ class WPJOBPORTALjobModel {
                 case 'company':
                     $query = "SELECT company.name AS col
                         FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                        JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
+                        ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
                         WHERE job.id = " . esc_sql($id);
                 break;
                 case 'jobtype':
@@ -3578,7 +3581,7 @@ class WPJOBPORTALjobModel {
         $query = "SELECT job.title AS jobtitle, company.name AS companyname, category.cat_title AS categorytitle,
                     jobtype.title AS jobtypetitle, job.city as jobcities
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                    JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
+                    ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category ON category.id = job.jobcategory
                     WHERE job.id = " . esc_sql($id);
@@ -3869,7 +3872,7 @@ class WPJOBPORTALjobModel {
                 }
                 $query .= " , salarytype.id AS salarytype,LOWER(jobtype.title) AS jobtypetit,careerlevel.title AS careerleveltitle,salarytype.title AS srangetypetitle,jobtype.color AS jobtypecolor,company.contactemail AS companyemail
         FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-        JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
+        ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON job.jobcategory = cat.id
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON job.jobtype = jobtype.id
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobstatus` AS jobstatus ON job.jobstatus = jobstatus.id";
@@ -4044,7 +4047,7 @@ class WPJOBPORTALjobModel {
                 job.params,CONCAT(company.alias,'-',company.id) AS companyaliasid,LOWER(jobtype.title) AS jobtypetit,
                 job.salarymax,job.salarymin,job.salarytype,srtype.title AS srangetypetitle,jobtype.color AS jobtypecolor,job.jobapplylink ,job.joblink
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
+                ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS srtype ON srtype.id = job.salaryduration
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype

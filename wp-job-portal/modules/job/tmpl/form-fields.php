@@ -35,7 +35,7 @@ foreach($fields AS $field){
                             if (WPJOBPORTALincluder::getJSModel('company')->employerHaveCompany($uid)) {
                                 $content = WPJOBPORTALformfield::select('companyid', WPJOBPORTALincluder::getJSModel('company')->getCompanyForCombo($uid), isset($job->companyid) ? $job->companyid : '', esc_html(__('Select','wp-job-portal')) .' '. esc_html(__('Company', 'wp-job-portal')), array('class' => 'inputbox wjportal-form-select-field', 'onchange' => 'getdepartments(\'departmentid\', this.value);', 'data-validation' => $field->validation));
                             } else {
-                                $content = '<a class="wjportal-form-add-comp" href="'.wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'addcompany')).'">' . esc_html(__('Add','wp-job-portal')).' '. esc_html(__('Company', 'wp-job-portal')) . '</a><input type="hidden" name="companyid" id="companyid" data-validation="required" />';
+                                $content = '<a class="wjportal-form-add-comp" href="'.wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'addcompany')).'">' . esc_html(__('Add','wp-job-portal')).' '. esc_html(__('Company', 'wp-job-portal')) . '</a><input type="hidden" name="companyid" id="companyid" data-validation="'.$field->validation.'" />';
                             }
                         }
                     }else{
@@ -46,7 +46,7 @@ foreach($fields AS $field){
                          $content = "<div class='wjportal-form-text'>".$companyname ." </div>";
                             $content .= WPJOBPORTALformfield::hidden('companyid',$companyid);
                         }else{
-                              $content = '<a class="wjportal-form-add-comp" href="'.wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'addcompany')).'">' . esc_html(__('Add','wp-job-portal')).' '. esc_html(__('Company', 'wp-job-portal')) . '</a><input type="hidden" name="companyid" id="companyid" data-validation="required" />';
+                              $content = '<a class="wjportal-form-add-comp" href="'.wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'addcompany')).'">' . esc_html(__('Add','wp-job-portal')).' '. esc_html(__('Company', 'wp-job-portal')) . '</a><input type="hidden" name="companyid" id="companyid" data-validation="'.$field->validation.'" />';
                         }
 
                     }

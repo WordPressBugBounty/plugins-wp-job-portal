@@ -1341,5 +1341,10 @@ class WPJOBPORTALFieldorderingModel {
         return wpjobportalphplib::wpJP_htmlentities($arg, ENT_QUOTES, 'UTF-8');
     }
 
+    function checkCompanyFieldForJob(){
+        $query = "SELECT required  FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE  field ='company'";
+        return wpjobportal::$_db->get_var($query);
+    }
+
 }
 ?>

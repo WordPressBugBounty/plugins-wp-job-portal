@@ -78,9 +78,10 @@ class WPJOBPORTALjobTable extends WPJOBPORTALtable {
 
 
     public function check() {
-        if ($this->companyid == '') {
-            return false;
-        }
+        // allow users to create job without company
+        // if ($this->companyid == '') {
+        //     return false;
+        // }
 
         return true;
     }

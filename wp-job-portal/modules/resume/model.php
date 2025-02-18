@@ -2172,7 +2172,7 @@ class WPJOBPORTALResumeModel {
                  WHERE jobapply.jobid = job.id) AS resumeapplied ,job.params,job.startpublishing,job.stoppublishing
                  ,LOWER(jobtype.title) AS jobtypetit,jobtype.color as jobtypecolor
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
+                ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS salaryrangetype ON salaryrangetype.id = job.salarytype WHERE job.id = " . sanitize_key($_COOKIE['wpjobportal_apply_visitor']);
@@ -3794,6 +3794,10 @@ class WPJOBPORTALResumeModel {
         //     $result = wpjobportal::$_db->get_var($query);
         //     $resumeid = $jobid;
         // }
+        // to handle visitor quick apply case
+        if(!is_numeric($uid)){
+            $uid = 0;
+        }
         $query = "SELECT resume.id
         FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
         WHERE resume.uid = ". esc_sql($uid)."

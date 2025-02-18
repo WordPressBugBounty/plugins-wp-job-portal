@@ -447,7 +447,6 @@ class WPJOBPORTALquickapplyModel {
         if(isset($_FILES['resumefiles']) && !empty($_FILES['resumefiles'])){
             $outputArray = array(
                 'name' => array($_FILES['resumefiles']['name']),
-                'full_path' => array($_FILES['resumefiles']['full_path']),
                 'type' => array($_FILES['resumefiles']['type']),
                 'tmp_name' => array($_FILES['resumefiles']['tmp_name']),
                 'error' => array($_FILES['resumefiles']['error']),
