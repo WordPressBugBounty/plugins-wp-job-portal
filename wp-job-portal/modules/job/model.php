@@ -609,6 +609,10 @@ class WPJOBPORTALjobModel {
                 }
             }
         }
+        $addonclass = '';
+        if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()){
+            $addonclass = ' wjportal-elegant-addon-packages-popup ';
+        }
         if (wpjobportal::$theme_chk == 1) {
             $content = '
             <div id="wpj-jp-popup-background" style="display: none;"></div>
@@ -677,7 +681,7 @@ class WPJOBPORTALjobModel {
         } else {
             $content = '
             <div id="wjportal-popup-background" style="display: none;"></div>
-            <div id="package-popup" class="wjportal-popup-wrp wjportal-packages-popup">
+            <div id="package-popup" class="wjportal-popup-wrp wjportal-packages-popup '.$addonclass.'">
                 <div class="wjportal-popup-cnt">
                     <img id="wjportal-popup-close-btn" alt="popup cross" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/popup-close.png">
                     <div class="wjportal-popup-title">
@@ -734,7 +738,7 @@ class WPJOBPORTALjobModel {
                     </div>
                     <div class="wjportal-visitor-msg-btn-wrp">
                         <input type="hidden" id="wpjobportal_packageid" name="wpjobportal_packageid">
-                        <input type="submit" selected_pack="0" rel="button" id="jsre_featured_button" class="wjportal-visitor-msg-btn disabled" onclick="getApplyNowByJobid('. esc_attr($jobapplyid) .','.esc_attr(wpjobportal::wpjobportal_getPageid()).','.esc_attr($package->id).')" value="'.esc_html(__('Apply On This Job','wp-job-portal')).'"  data-dismiss="modal" disabled/>
+                        <input type="submit" selected_pack="0" rel="button" id="jsre_featured_button" class="wjportal-visitor-msg-btn disabled" onclick="hidePackagePopupForJobApply()" value="'.esc_html(__('Apply On This Job','wp-job-portal')).'"  data-dismiss="modal" disabled/>
                     </div>
                 </div>
             </div>';
@@ -1883,7 +1887,7 @@ class WPJOBPORTALjobModel {
                 CONCAT(job.alias,'-',job.id) AS jobaliasid,job.created,job.serverid,company.name AS companyname,company.id AS companyid,company.logofilename,CONCAT(company.alias,'-',company.id) AS compnayaliasid,job.salarytype,job.salarymin,job.salarymax,salaryrangetype.title AS salarydurationtitle,job.currency,
                 cat.cat_title, jobtype.title AS jobtypetitle,salaryrangetype.title AS srangetypetitle,
                 (SELECT count(jobapply.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` AS jobapply
-                 WHERE jobapply.jobid = job.id and jobapply.status = 1) AS resumeapplied ,job.params,job.startpublishing,job.stoppublishing
+                 WHERE jobapply.jobid = job.id and jobapply.status = 1) AS resumeapplied ,job.params,job.startpublishing,job.stoppublishing, job.description
                  ,LOWER(jobtype.title) AS jobtypetit,jobtype.color AS jobtypecolor
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
                 ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
@@ -2830,7 +2834,7 @@ class WPJOBPORTALjobModel {
         CONCAT(job.alias,'-',job.id) AS jobaliasid,job.noofjobs,
         cat.cat_title,company.id AS companyid,company.name AS companyname,company.logofilename, jobtype.title AS jobtypetitle,
         job.params,CONCAT(company.alias,'-',company.id) AS companyaliasid,LOWER(jobtype.title) AS jobtypetit,
-        job.salarymax,job.salarymin,job.salarytype,srtype.title AS srangetypetitle,jobtype.color AS jobtypecolor, job.jobapplylink, job.joblink
+        job.salarymax,job.salarymin,job.salarytype,srtype.title AS srangetypetitle,jobtype.color AS jobtypecolor, job.jobapplylink, job.joblink, job.description
         FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
         ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory

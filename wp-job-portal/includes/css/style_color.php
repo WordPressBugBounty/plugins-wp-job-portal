@@ -295,7 +295,7 @@ $result = "
     div.wjportal-form-wrp div.wjportal-form-row div.wjportal-form-value div.wjportal-form-5-fields div.wjportal-form-symbol-fields span.wjportal-form-symbol {border: 1px solid ".esc_attr($color5).";}
     div.wjportal-form-wrp div.wpjobportal-terms-and-conditions-wrap {color: ".esc_attr($color3).";}
     div.wjportal-form-wrp div.wjportal-terms-and-conditions-wrap {color: ".esc_attr($color3).";}
-    div.wjportal-form-wrp div.wjportal-form-btn-wrp {border-top: 1px solid ".esc_attr($color5).";}
+    /* div.wjportal-form-wrp div.wjportal-form-btn-wrp {border-top: 1px solid ".esc_attr($color5).";} */
     div.wjportal-form-wrp div.wjportal-form-btn-wrp .wjportal-form-btn {color: ".esc_attr($color7)."!important;background: ".esc_attr($color1)."!important;border: 1px solid ".esc_attr($color1)."!important;}
     div.wjportal-form-wrp div.wjportal-form-btn-wrp .wjportal-form-btn:hover {color: ".esc_attr($color1)."!important;background: ".esc_attr($color7)."!important;}
     div.wjportal-form-wrp div.wjportal-form-btn-wrp .wjportal-form-save-btn {color: ".esc_attr($color7).";background: ".esc_attr($color1).";border: 1px solid ".esc_attr($color1).";}
@@ -871,6 +871,29 @@ $result3 = "
     div#js_job_wrapper div.js_theme_wrapper div.theme_platte div.color_wrapper span.theme_name{color:".esc_attr($color7)."fff;}
 
     div.wjportal-resume-list .wjportal-coverletter-act-btn{border: 1px solid ".esc_attr($color5).";background: #fafafa;color: ".esc_attr($color3).";}
+
+    div.wjportal-view-job-page-job-apply-form-wraper div.wjportal-job-sec-title {color: ".esc_attr($color2).";border-bottom:1px solid ".$color5.";}
+    div.wjportal-view-job-page-job-apply-form-wraper div.wjportal-job-desc {color: ".esc_attr($color3).";}
+
+
+
+    div.wjportal-view-job-page-job-apply-form-wraper .wjportal-form-btn.wjportal-save-btn {color: ".esc_attr($color7).";border: 1px solid ".esc_attr($color1).";background: ".esc_attr($color1).";}
+    div.wjportal-view-job-page-job-apply-form-wraper .wjportal-form-btn.wjportal-save-btn:hover {color: ".esc_attr($color1).";background: ".esc_attr($color7).";}
+
+    div.wjportal-view-job-page-job-apply-form-wraper .wjportal-login-to-apply-btn {color: ".esc_attr($color7).";border: 1px solid ".esc_attr($color1).";background: ".esc_attr($color1).";}
+    div.wjportal-view-job-page-job-apply-form-wraper .wjportal-login-to-apply-btn:hover {color: ".esc_attr($color1).";background: ".esc_attr($color7).";}
+
+
+    div.wjportal-view-job-page-job-apply-form-wraper .wjportal-apply-as-visitor-btn {background: ".esc_attr($color2).";color: ".esc_attr($color7).";border-color: ".esc_attr($color2).";}
+    div.wjportal-view-job-page-job-apply-form-wraper .wjportal-apply-as-visitor-btn:hover {background: ".esc_attr($color7).";color: ".esc_attr($color2).";}
+    div.wjportal-view-job-page-job-apply-form-wraper .job-detail-jobapply-message-wrap .job-detail-jobapply-message-msg {border: 1px solid ".esc_attr($color5).";background: #fafafa;color: ".esc_attr($color3).";}
+    /* apply jobs */
+    
+    div.wjportal-view-job-page-job-apply-form-wraper .wpjobportal-quickapply-form .wjportal-login-to-apply-btn {border: 1px solid ".esc_attr($color7).";background: ".esc_attr($color1).";color: ".esc_attr($color7).";}
+    div.wjportal-view-job-page-job-apply-form-wraper .wpjobportal-quickapply-form .wjportal-login-to-apply-btn:hover {color: ".esc_attr($color1).";background: ".esc_attr($color7).";border: 1px solid ".esc_attr($color1).";}
+        div.wjportal-view-job-page-job-apply-form-wraper div.wjportal-form-wrp.wpjobportal-quickapply-form .job-detail-jobapply-message-wrap .job-detail-jobapply-message-link {color: ".esc_attr($color7).";border: 1px solid ".esc_attr($color1).";background: ".esc_attr($color7).";color: ".esc_attr($color1).";}
+        div.wjportal-view-job-page-job-apply-form-wraper div.wjportal-form-wrp.wpjobportal-quickapply-form .job-detail-jobapply-message-wrap .job-detail-jobapply-message-link:hover {color: ".esc_attr($color7).";background: ".esc_attr($color1).";}
+    div.wjportal-view-job-page-job-apply-form-wraper .wpjobportal-quickapply-form .wjportal-apply-as-visitor-btn{border: 1px solid ".esc_attr($color2).";}
 
 
 

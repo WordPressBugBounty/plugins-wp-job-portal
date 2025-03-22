@@ -285,7 +285,7 @@ class WPJOBPORTALuploads {
         // to hanld the case of allowing only currrent user to remove his own image
         $current_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
         if(!current_user_can('manage_options')){ // allow admin
-            if($uid != $current_uid){
+            if(WPJOBPORTALincluder::getJSModel('user')->getUserIDByWPUid($uid) != $current_uid){
                 return false;
             }
         }

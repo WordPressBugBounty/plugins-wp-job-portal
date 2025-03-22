@@ -1341,3 +1341,19 @@ function isFieldRequired (field_type, field, state, wpnonce) {
 jQuery(document).ready(function(){
     jQuery('.specialClass').closest("div.js-form-custm-flds-wrp").removeClass('visible');
 });
+
+
+function hidePackagePopupForJobApply(){
+    wpjobportalClosePopup();
+    jQuery("div#wjportal-popup-background").hide();
+    var selected_pack = jQuery("#jsre_featured_button").attr('selected_pack');
+    if (typeof selected_pack !== 'undefined' && selected_pack !== false && selected_pack != 0) {
+        package = selected_pack;
+        alert(package);
+        jQuery("input#upkid").val(package);
+    }
+    jQuery('.wjportal-apply-package-button').slideUp();
+    jQuery('.wjportal-apply-package-apply-now-button').slideDown();
+    alert('done');
+
+}

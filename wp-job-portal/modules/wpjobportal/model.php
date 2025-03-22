@@ -185,7 +185,7 @@ class WPJOBPORTALwpjobportalModel {
             'wp-job-portal-message' => array('title' => esc_html(__('Message System','wp-job-portal')), 'price' => 0, 'status' => 1),
             'wp-job-portal-pdf' => array('title' => esc_html(__('PDF','wp-job-portal')), 'price' => 0, 'status' => 1),
             'wp-job-portal-print' => array('title' => esc_html(__('Print','wp-job-portal')), 'price' => 0, 'status' => 1),
-            'wp-job-portal-reports'=> array('title' => esc_html(__("Report\'s","wp-job-portal")), 'price' => 0, 'status' => 1),
+            'wp-job-portal-reports'=> array('title' => esc_html(__("Reports","wp-job-portal")), 'price' => 0, 'status' => 1),
             'wp-job-portal-resumeaction' => array('title' => esc_html(__('Resume Action','wp-job-portal')), 'price' => 0, 'status' => 1),
             'wp-job-portal-multiresume' => array('title' => esc_html(__('Multi Resume','wp-job-portal')), 'price' => 0, 'status' => 1),
             'wp-job-portal-resumesearch' => array('title' => esc_html(__('Resume Search','wp-job-portal')), 'price' => 0, 'status' => 1),
@@ -552,7 +552,7 @@ class WPJOBPORTALwpjobportalModel {
                         ,job.status,cat.cat_title,job.city,comp.logofilename AS photo
             FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
             ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS comp ON comp.id = job.companyid
-            ".wpjobportal::$_company_job_table_join."LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
+            LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
             WHERE DATE(job.created) >= DATE('" . esc_sql($lastdate) . "') AND DATE(job.created) <= DATE('" . esc_sql($curdate) . "')
             ORDER BY job.created DESC LIMIT 5";
             $results = wpjobportal::$_db->get_results($query);
@@ -896,6 +896,20 @@ class WPJOBPORTALwpjobportalModel {
         }
         $html = $this->genrateUserWidget($results, $role);
         return $html;
+    }
+	function WPJPcheck_autfored() {
+        // Retrieve the option
+        $option_name = 'portledadofor_k';
+        $stored_data = get_option($option_name);
+
+        if ($stored_data) {
+            // Compare the encrypted value
+            if ($stored_data['wpjpkeyedfieldforkey']) {
+                return $stored_data['wpjpkeyedfieldforkey']; // Match found
+            }
+        }
+
+        return; // No match
     }
 
     function genrateUserWidget($results, $role) {

@@ -1165,37 +1165,48 @@ div.wjportal-error-messages-wrp div.wjportal-error-msg-txt.wpjobportal-off-confi
 	display: inline-block;
 	width: 100%;
 }
-.wjportal-view-job-page-wrapper .wjportal-view-job-page-job-info-wraper{
-	display: inline-block;
-	width: 100%;
-}
-.wjportal-view-job-page-wrapper .wjportal-view-job-page-job-info-wraper.wjportal-view-job-page-job-info-wraper-with-apply-form{
-	display: inline-block;
-	width: 70%;
-	float: left;
-}
-.wjportal-view-job-page-wrapper .wjportal-view-job-page-job-apply-form-wraper{
-	display: inline-block;
-	width: 30%;
-	float: left;
-}
 
+.wjportal-view-job-page-wrapper .wjportal-view-job-page-job-info-wraper{display: inline-block;width: 100%;}
 
-div.wjportal-form-wrp.wpjobportal-quickapply-form {
-	border:1px solid #ddd;
-	background: #f7f7f7;
-	padding: 10px 10px;
-}
-
-div.wjportal-form-wrp.wpjobportal-quickapply-form div.wjportal-form-row {
-	border: none;
-}
-
-div.wjportal-form-wrp.wpjobportal-quickapply-form div.wjportal-form-row div.wjportal-form-title{
-	width: 100%;
-}
-
-div.wjportal-form-wrp.wpjobportal-quickapply-form div.wjportal-form-row div.wjportal-form-value{
-	width: 100%;
-
-}
+/* Apply job */
+.wjportal-view-job-page-wrapper .wjportal-view-job-page-job-info-wraper.wjportal-view-job-page-job-info-wraper-with-apply-form .wjportal-company-job-applyfrm-wrp{float: left;width: 100%;}
+.wjportal-view-job-page-wrapper .wjportal-view-job-page-job-info-wraper.wjportal-view-job-page-job-info-wraper-with-apply-form .wjportal-company-job-applyfrm-leftwrp{display: inline-block;width: 70%;float: left;}
+.wjportal-view-job-page-wrapper .wjportal-view-job-page-job-info-wraper .wjportal-view-job-page-job-apply-form-wraper {display: inline-block;width: 30%;float: left;}
+div.wjportal-form-wrp.wpjobportal-quickapply-form {border:1px solid #ddd;background: #f7f7f7;padding: 10px 10px;}
+div.wjportal-form-wrp.wpjobportal-quickapply-form div.wjportal-form-row div.wjportal-form-title{width: 100%;}
+div.wjportal-form-wrp.wpjobportal-quickapply-form div.wjportal-form-row div.wjportal-form-value{width: 100%;}
+div.wjportal-form-wrp.wpjobportal-quickapply-form div.wjportal-form-row div.wjportal-form-title {padding-left: 0px;padding-right: 0px;}
+div.wjportal-view-job-page-job-apply-form-wraper div.wjportal-form-wrp.wpjobportal-quickapply-form div.wjportal-job-desc{font-size: 14px;}
+div.wjportal-form-wrp.wpjobportal-quickapply-form div.wjportal-form-row div.wjportal-form-title{font-size: 15px !important;}
+div.wjportal-form-wrp.wpjobportal-quickapply-form div.wjportal-form-row{padding-bottom: 0;border: none;padding-top: 5px;}
+div.wjportal-form-wrp.wpjobportal-quickapply-form div.wjportal-form-row div.wjportal-form-value textarea{max-width: 100%;}
+div.wjportal-form-wrp.wpjobportal-quickapply-form div.wjportal-form-row.wjportal-form-pckge-row div.wjportal-form-title{font-weight: bold;font-size: 16px !important;}
+div.wjportal-form-wrp.wpjobportal-quickapply-form div.wjportal-form-row.wjportal-form-pckge-row{padding-top: 20px;}
+div.wjportal-view-job-page-job-apply-form-wraper div.wjportal-form-wrp.wpjobportal-quickapply-form div.wjportal-job-sec-title{font-size: 16px;border: unset;}
+div.wjportal-view-job-page-job-apply-form-wraper div.wjportal-form-wrp.wpjobportal-quickapply-form .wjportal-login-to-apply-btn{display: inline-block;width: 100%;padding: 10px;font-size: 14px;height: 45px;text-align: center;}
+div.wjportal-view-job-page-job-apply-form-wraper div.wjportal-form-wrp.wpjobportal-quickapply-form .job-detail-jobapply-message-wrap .job-detail-jobapply-message-msg{padding: 10px;border: 1px solid #f79133;background-color: #f8f2ec;}
+div.wjportal-view-job-page-job-apply-form-wraper div.wjportal-form-wrp.wpjobportal-quickapply-form .job-detail-jobapply-message-wrap .job-detail-jobapply-message-msg img{padding-right: 10px;}
+div.wjportal-view-job-page-job-apply-form-wraper div.wjportal-form-wrp.wpjobportal-quickapply-form .job-detail-jobapply-message-wrap .job-detail-jobapply-message-link{display: inline-block;padding: 10px 20px;font-size: 14px;cursor: pointer;width: 100%;text-align: center;margin: 10px 0;}
+div.wjportal-view-job-page-job-apply-form-wraper div.wjportal-form-wrp.wpjobportal-quickapply-form .wjportal-form-btn.wjportal-save-btn{margin-right: 0;}
+div.wjportal-form-wrp.wpjobportal-quickapply-form .wjportal-job-apply-or-visitor{display: flex;align-items: center;justify-content: center;font-family: sans-serif;color: #666;width: 100%;}
+div.wjportal-form-wrp.wpjobportal-quickapply-form .wjportal-job-apply-or-visitor span{background-color: #fff;font-weight: bold;display: inline-block;margin-top: 15px;font-size: 17px;color: #000;}
+div.wjportal-form-wrp.wpjobportal-quickapply-form .wjportal-job-apply-or-visitor::after,div.wjportal-form-wrp.wpjobportal-quickapply-form .wjportal-job-apply-or-visitor::before{content: "";flex: 1;border-bottom: 1px solid #ccc;margin-top: 15px;}
+div.wjportal-form-wrp.wpjobportal-quickapply-form .wjportal-job-apply-or-visitor:not(:empty)::before {margin-right: 1em;}
+div.wjportal-form-wrp.wpjobportal-quickapply-form .wjportal-job-apply-or-visitor:not(:empty)::after {margin-left: 1em;}
+div.wjportal-view-job-page-job-apply-form-wraper div.wjportal-form-wrp.wpjobportal-quickapply-form .wjportal-apply-as-visitor-btn{padding: 10px;min-height: 45px;}
+div.wjportal-view-job-page-job-apply-form-wraper div.wjportal-form-wrp.wpjobportal-quickapply-form .recaptcha-wrp{border-top: unset;}
+/* Apply job */
+div.wjportal-view-job-page-job-apply-form-wraper {float: left;width: 100%;font-size: 15px;padding-bottom: 10px;}
+div.wjportal-view-job-page-job-apply-form-wraper div.wjportal-job-sec-title {float: left;width: 100%;margin-bottom: 10px;font-size: 18px;font-weight: bold;padding: 5px 0px;}
+div.wjportal-view-job-page-job-apply-form-wraper div.wjportal-job-desc {float: left;width: 100%;font-size: 15px;margin-bottom: 15px;}
+div.wjportal-view-job-page-job-apply-form-wraper .wjportal-form-btn.wjportal-save-btn {display: inline-block;padding: 7px 20px;margin-right: 5px;font-size: 15px;cursor: pointer;width: 100%;font-weight: bold;}
+div.wjportal-view-job-page-job-apply-form-wraper .wjportal-login-to-apply-btn {display: inline-block;padding: 7px 20px;margin-right: 5px;font-size: 15px;cursor: pointer;text-decoration: none;width: 100%;font-weight: bold;}
+div.wjportal-view-job-page-job-apply-form-wraper .wjportal-apply-as-visitor-btn {display: inline-block;padding: 7px 20px;margin-right: 5px;font-size: 15px;cursor: pointer;text-decoration: none;width: 100%;font-weight: bold;}
+div.wjportal-view-job-page-job-apply-form-wraper .job-detail-jobapply-message-wrap{ display:inline-block;width:100%; }
+div.wjportal-view-job-page-job-apply-form-wraper .job-detail-jobapply-message-wrap .job-detail-jobapply-message-msg{ display:inline-block;width:100%; font-size: 15px;padding: 5px;}
+div.wjportal-view-job-page-job-apply-form-wraper .job-detail-jobapply-message-wrap .job-detail-jobapply-message-msg img{ display:inline-block;height: 20px;}
+.wjportal-job-apply-price-msg{display: inline-block; width: 100%;padding: 5px 10px;margin-top: 10px;border:1px solid #ddd;background: #fff;}
+.wjportal-form-value.wjportal-job-apply-payment-method{display: inline-block; width: 100%;}
+.wjportal-form-value.wjportal-job-apply-payment-method .wpjobportal-form-radio-field{display: inline-block; width: 100%;    padding: 0 5px;margin-bottom: 5px;border:1px solid #ddd;background: #fff;}
+.wjportal-form-value.wjportal-job-apply-payment-method .wpjobportal-form-radio-field img{display: inline-block;height: 40px;}
+div.wjportal-form-wrp div.wjportal-form-row .wjportal-form-value.wjportal-job-apply-payment-method .wpjobportal-form-radio-field label{display: inline-block;margin: 0px;cursor: pointer;}

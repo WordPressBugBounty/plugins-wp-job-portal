@@ -79,7 +79,7 @@ class WPJOBPORTALEmployerModel {
                 , cat.cat_title ,jobapply.apply_date, jobapply.resumeview, jobtype.title AS jobtypetitle
                 ,app.id AS appid,app.id AS id,app.first_name,app.last_name, app.email_address,app.gender,app.isfeaturedresume,app.endfeatureddate,app.params,
                 app.jobtype AS jobtype
-                ,app.id AS resumeid ,job.hits AS jobview,app.last_modified,app.salaryfixed AS salary
+                ,app.id AS resumeid ,job.hits AS jobview,app.last_modified,app.salaryfixed AS salary,app.skills
                 ,(SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE jobid = job.id) AS totalapply
                 ,(SELECT address_city FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` WHERE resumeid = app.id ORDER BY created DESC LIMIT 1) AS resumecity,app.photo AS photo,app.application_title AS applicationtitle
                 ,CONCAT(app.alias,'-',app.id) resumealiasid, CONCAT(job.alias,'-',job.id) AS jobaliasid

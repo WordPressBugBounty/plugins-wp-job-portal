@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 
 msgid "Delete"
 msgstr "Excluir"
@@ -9328,3 +9328,948 @@ msgstr "Meu departamento"
 
 msgid "Add To ShortList"
 msgstr "Adicione para lista pequena"
+
+msgid "or"
+msgstr "ou"
+
+msgid "company logo"
+msgstr "Logotipo da empresa"
+
+msgid "job title"
+msgstr "cargo"
+
+msgid "company name"
+msgstr "nome da empresa"
+
+msgid "Resume Has Been Feature SuccesFully"
+msgstr "O currículo foi apresentado com sucesso"
+
+msgid "My coverletter"
+msgstr "Minha carta de apresentação"
+
+msgid "Add coverletter"
+msgstr "Adicionar carta de apresentação"
+
+msgid "Total Cover Letter"
+msgstr "Carta de apresentação total"
+
+msgid "Remaining Cover Letter"
+msgstr "Carta de apresentação restante"
+
+msgid "Open ChatGPT"
+msgstr "Open ChatGpt"
+
+msgid "How To Add Cover Letter With ChatGPT"
+msgstr "Como adicionar carta de apresentação com chatgpt"
+
+msgid "Edit coverletter"
+msgstr "Editar carta de apresentação"
+
+msgid "Edit Cover Letter"
+msgstr "Editar carta de apresentação"
+
+msgid "Delete coverletter"
+msgstr "Excluir carta de apresentação"
+
+msgid "coverletter title"
+msgstr "Título da carta de apresentação"
+
+msgid "Add New Cover Letter"
+msgstr "Adicionar nova carta de apresentação"
+
+msgid "Quote from Hello Dolly song, by Jerry Herman:"
+msgstr "Citação de Hello Dolly Song, de Jerry Herman:"
+
+msgid "Select Parent"
+msgstr "Selecione pai"
+
+msgid "Edit Field"
+msgstr "Editar Campo"
+
+msgid "Visitor published"
+msgstr "Visitante publicado"
+
+msgid "Show On Listing"
+msgstr "Mostrar na listagem"
+
+msgid "Advanced"
+msgstr "Avançado"
+
+msgid "Equal"
+msgstr "Igual"
+
+msgid "Not Equal"
+msgstr "Não é igual"
+
+msgid "Multi Select"
+msgstr "Multi Select"
+
+msgid "Visible"
+msgstr "Visível"
+
+msgid "Select Child"
+msgstr "Selecione Child"
+
+msgid "Select Condition"
+msgstr "Selecione condição"
+
+msgid "To use this feature please fill the above three fields."
+msgstr "Para usar esse recurso, preencha os três campos acima."
+
+msgid "No response found"
+msgstr "Nenhuma resposta encontrada"
+
+msgid "Quick Apply"
+msgstr "Aplicar rápido"
+
+msgid "user publish"
+msgstr "Publicação do usuário"
+
+msgid "User Unpublished"
+msgstr "Usuário não publicado"
+
+msgid "visitor publish"
+msgstr "Visitante Publish"
+
+msgid "visitor unpublish"
+msgstr "Visitante não publicado"
+
+msgid "Select user status"
+msgstr "Selecione o status do usuário"
+
+msgid "Un published"
+msgstr "UN publicado"
+
+msgid "File upload fields and text editor fields cannot be made required."
+msgstr "Os campos de upload de arquivos e os campos do editor de texto não podem ser necessários."
+
+msgid "Dependent Field"
+msgstr "Campo dependente"
+
+msgid "Job Apply settings"
+msgstr "Trabalho Aplicar configurações"
+
+msgid "Quick Apply settings"
+msgstr "Aplicar rápido configurações"
+
+msgid "Show count in jobs by cities page"
+msgstr "Mostrar contagem de empregos pela página de cidades"
+
+msgid "Show country in jobs by cities page"
+msgstr "Mostrar país em empregos pela página de cidades"
+
+msgid "Profile Section"
+msgstr "Seção de perfil"
+
+msgid "Recaptcha Version 2"
+msgstr "Recaptcha versão 2"
+
+msgid "Recaptcha Version 3"
+msgstr "Recaptcha versão 3"
+
+msgid "System slug"
+msgstr "Slug de sistema"
+
+msgid "Image file size"
+msgstr "Tamanho do arquivo de imagem"
+
+msgid "System will not upload if image size is greater than the given size"
+msgstr "O sistema não será carregado se o tamanho da imagem for maior que o tamanho fornecido"
+
+msgid "Show page title above wpjobportal breadcrumbs"
+msgstr "Mostrar título da página acima do wpjobportal brasbumbs"
+
+msgid "Default Image For WP Job Portal"
+msgstr "Imagem padrão para WP Job Portal"
+
+msgid "This image will shown as default image for entities & users if no other image is provided."
+msgstr "Esta imagem será mostrada como imagem padrão para entidades e usuários se nenhuma outra imagem for fornecida."
+
+msgid "Default country"
+msgstr "País padrão"
+
+msgid "Select default country for user added cities"
+msgstr "Selecione o país padrão para o usuário adicionado cidades"
+
+msgid "Job detail URL options are title, company, category, location, jobtype. eg- [title] [company]"
+msgstr "Detalhes de trabalho As opções de URL são título, empresa, categoria, localização, JobType. por exemplo, [Title] [Empresa]"
+
+msgid "Select the Google reCaptcha Version"
+msgstr "Selecione a versão do Google Recaptcha"
+
+msgid "Recent Resumes Box"
+msgstr "Caixa de currículos recentes"
+
+msgid "mode"
+msgstr "modo"
+
+msgid "expire"
+msgstr "expirar"
+
+msgid "Registration is disabled in WordPress settings, please enable to Membership: anyone can register."
+msgstr "O registro está desativado nas configurações do WordPress, ative a associação: qualquer um pode se registrar."
+
+msgid "Quick Apply Now"
+msgstr "Aplique rápido agora"
+
+msgid "Enable Quick Apply for user"
+msgstr "Ativar rápida solicitar ao usuário"
+
+msgid "Enable Quick Apply for visitor"
+msgstr "Ativar rápida solicitar ao visitante"
+
+msgid "Enable captcha for visitor Quick Apply"
+msgstr "Ativar Captcha para o visitante APLICA RÁPIDO"
+
+msgid "Show captcha to visitor on quick apply form."
+msgstr "Mostre Captcha ao Visitante no Formulário de Aplicação Rápida."
+
+msgid "Add ons for WP Job Portal have been installed and activated successfully. "
+msgstr "Adicionar o portal de trabalho WP foi instalado e ativado com sucesso."
+
+msgid "WP Job Portal is an open-source job board plugin for WordPress that provides advanced features to help you create a successful job board. In addition, we offer trusted WP Job Portal add-ons that can further enhance your job board's functionality in a fast, safe, and easy manner. Our add-ons have been designed to integrate seamlessly with our job board plugin, ensuring you can expand your job board's capabilities without any complications."
+msgstr "O WP Job Portal é um plug-in de placas de emprego de código aberto para o WordPress que fornece recursos avançados para ajudá-lo a criar um quadro de empregos bem-sucedido. Além disso, oferecemos complementos confiáveis ​​do WP Job Portal que podem melhorar ainda mais a funcionalidade do seu quadro de empregos de maneira rápida, segura e fácil. Nossos complementos foram projetados para se integrar perfeitamente ao nosso plug-in de tabuleiro de emprego, garantindo que você possa expandir as capacidades do seu quadro de empregos sem complicações."
+
+msgid "Savings*"
+msgstr "Poupança*"
+
+msgid "Best Deal"
+msgstr "Melhor negócio"
+
+msgid "Shortlist Job"
+msgstr "Trabalho de lista restrita"
+
+msgid "e.g 45000"
+msgstr "por exemplo, 45000"
+
+msgid "e.g 3000"
+msgstr "por exemplo, 3000"
+
+msgid "e.g 6000"
+msgstr "por exemplo, 6000"
+
+msgid "Deactivated"
+msgstr "Desativado"
+
+msgid "Not Installed"
+msgstr "Não instalado"
+
+msgid "Addon Installed Successfully"
+msgstr "Addon instalado com sucesso"
+
+msgid "Addon installation failed"
+msgstr "A instalação do addon falhou"
+
+msgid "Resume Data Management"
+msgstr "Retomar o gerenciamento de dados"
+
+msgid "Export (csv)"
+msgstr "Exportação (CSV)"
+
+msgid "Configuration Based Tutorials"
+msgstr "Tutoriais baseados em configuração"
+
+msgid "Slugs"
+msgstr "Lesmas"
+
+msgid "Theme Installation"
+msgstr "Instalação do tema"
+
+msgid "WP Job Portal Theme  Installation"
+msgstr "Instalação do tema do portal de emprego WP"
+
+msgid "System Management"
+msgstr "Gerenciamento do sistema"
+
+msgid "Activity Log and System Errors"
+msgstr "Log de atividades e erros do sistema"
+
+msgid "Shortcode"
+msgstr "Shortcode"
+
+msgid "Job Seeker Control Panel"
+msgstr "Painel de controle de busca de emprego"
+
+msgid "A shortcode designed for jobseeker, providing an easy-to-use controlpanel to manage applications, resume, and preferences directly from their dashboard."
+msgstr "Um shortcode projetado para candidato a emprego, fornecendo um controle de controle fácil de usar para gerenciar aplicativos, retomar e preferências diretamente do painel."
+
+msgid "Base Shortcode"
+msgstr "Base Shortcode"
+
+msgid "Shortcode With All Options"
+msgstr "Shortcode com todas as opções"
+
+msgid " The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "O painel de controle do empregador é uma interface simplificada que permite que os empregadores gerenciem publicações de emprego, rastreiam aplicativos, se comuniquem com candidatos e analisem métricas de contratação com eficiência."
+
+msgid "The job search shortcode enables users to easily find job listings based on various criteria."
+msgstr "O código de busca de busca de emprego permite que os usuários encontrem facilmente listagens de empregos com base em vários critérios."
+
+msgid "The jobs shortcode is a feature that displays individual job listings on a website."
+msgstr "O código de atalho Jobs é um recurso que exibe listagens de empregos individuais em um site."
+
+msgid "The featured job shortcode highlights select job listings on a website, making them stand out to potential applicants."
+msgstr "O código de trabalho destaque destaca as listagens de empregos em um site, fazendo -as se destacar para possíveis candidatos."
+
+msgid "This Shortcode requires WP Job Portal Featured Jobs Addon"
+msgstr "Este shortcode requer que o portal de trabalho WP em destaque"
+
+msgid "Get Addon"
+msgstr "Obtenha addon"
+
+msgid "Job Categories"
+msgstr "Categorias de trabalho"
+
+msgid "The job categories shortcode displays a dynamic list of available categories, enabling users to easily navigate and find relevant job listings."
+msgstr "As categorias de trabalho são exibidas uma lista dinâmica de categorias disponíveis, permitindo que os usuários naveguem facilmente e encontrem listagens de empregos relevantes."
+
+msgid "The job types shortcode presents a comprehensive list of available job types, allowing users to quickly explore and find suitable job opportunities."
+msgstr "O código de atalho dos tipos de trabalho apresenta uma lista abrangente dos tipos de trabalho disponíveis, permitindo que os usuários explorem rapidamente e encontrem oportunidades de emprego adequadas."
+
+msgid "My applied jobs shortcode provides users with a personalized list of their job applications, allowing easy access to track application status and details."
+msgstr "Meu código de atalho de trabalhos aplicado fornece aos usuários uma lista personalizada de seus aplicativos de emprego, permitindo fácil acesso para rastrear o status e os detalhes do aplicativo."
+
+msgid "My companies shortcode displays a personalized list of companies users are associated with, facilitating easy access to company information and opportunities."
+msgstr "Minhas empresas Shortcode exibem uma lista personalizada de empresas que os usuários estão associados, facilitando o fácil acesso às informações e oportunidades da empresa."
+
+msgid "All companies shortcode offers a curated directory of all companies, allowing users to easily browse and connect with potential employers."
+msgstr "Todas as empresas Shortcode oferece um diretório com curadoria de todas as empresas, permitindo que os usuários naveguem facilmente e se conectem com potenciais empregadores."
+
+msgid "This Shortcode requires WP Job Portal All Companies Addon"
+msgstr "Este shortcode requer WP Job Portal todas as empresas Addon"
+
+msgid "The featured companies shortcode showcases prominent companies within the portal, allowing users to explore exciting job opportunities from industry leaders."
+msgstr "O código de atalho das empresas em destaque apresenta empresas de destaque no portal, permitindo que os usuários explorem emocionantes oportunidades de emprego dos líderes do setor."
+
+msgid "This Shortcode requires WP Job Portal Featured Companies Addon"
+msgstr "Este shortcode exige que as empresas do WP Job em destaquem as empresas addon"
+
+msgid "My jobs shortcode allows users to view and manage their saved job listings, making it easy to keep track of potential opportunities."
+msgstr "Meu código de atalho de empregos permite que os usuários visualizem e gerenciem suas listagens de empregos salvos, facilitando o controle de oportunidades em potencial."
+
+msgid "My resume shortcode allows users to view and manage their uploaded resumes, providing a convenient way to keep their job application materials up to date."
+msgstr "Meu shortcode de currículo permite que os usuários visualizem e gerenciem seus currículos carregados, fornecendo uma maneira conveniente de manter seus materiais de aplicação de emprego atualizados."
+
+msgid "All Resumes"
+msgstr "Todos os currículos"
+
+msgid "All resumes shortcode allows job seekers to view and manage their uploaded resumes, ensuring they have easy access to their application materials."
+msgstr "Todos os currículos de currículo permitem que os candidatos a emprego visualizem e gerenciem seus currículos carregados, garantindo que eles tenham acesso fácil aos seus materiais de aplicação."
+
+msgid "This Shortcode requires WP Job Portal All Resumes Addon"
+msgstr "Este shortcode exige que o portal de trabalho WP seja retomado addon"
+
+msgid "The featured resumes shortcode showcases a selection of standout resumes, allowing job seekers to stand out to potential employers."
+msgstr "Os currículos em destaque mostram o código de short mostra uma seleção de currículos de destaque, permitindo que os candidatos a emprego se destacem para potenciais empregadores."
+
+msgid "This Shortcode requires WP Job Portal Featured Resumes Addon"
+msgstr "Este shortcode requer que o portal de trabalho WP em destaque retoma o addon"
+
+msgid "Add company shortcode allows employers to effortlessly register their organization, providing essential details to attract talent and post job openings."
+msgstr "A Add Company Shortcode permite que os empregadores registrem sem esforço sua organização, fornecendo detalhes essenciais para atrair talentos e pós -vagas."
+
+msgid "Add department shortcode enables employers to easily create and manage specific departments within their organization, facilitating better job categorization and organization."
+msgstr "A Adicionar o código de curto departamento permite que os empregadores criem e gerenciem facilmente departamentos específicos em sua organização, facilitando uma melhor categorização e organização de empregos."
+
+msgid "This Shortcode requires WP Job Portal Multi Departments Addon"
+msgstr "Este shortcode requer addon de departamentos do portal de trabalho WP"
+
+msgid "Add jobs enables organizations to effortlessly publish job postings, helping them connect with potential applicants and fill vacancies more effectively."
+msgstr "A Adicionar empregos permite que as organizações publiquem sem esforço as publicações de emprego, ajudando -as a se conectar com potenciais candidatos e preencher as vagas com mais eficiência."
+
+msgid "Add resume shortcode simplifies the process for candidates to submit their resumes, helping them showcase their qualifications and experiences to potential employers."
+msgstr "Adicione o código de currículo simplifica o processo para os candidatos enviarem seus currículos, ajudando -os a mostrar suas qualificações e experiências para potenciais empregadores."
+
+msgid "Resume search shortcode provides a powerful search tool for employers to explore candidate profiles, making it easier to connect with potential hires."
+msgstr "Retomar o código de curta -metragem fornece uma poderosa ferramenta de pesquisa para os empregadores explorarem perfis de candidatos, facilitando a conexão com possíveis contratações."
+
+msgid "This Shortcode requires WP Job Portal Resume Search Addon"
+msgstr "Este shortcode requer que o portal de trabalho do WP retume o addon de pesquisa"
+
+msgid "Registration"
+msgstr "Registro"
+
+msgid "Registration shortcode allows individuals to easily create accounts as their selected role"
+msgstr "O código de curto -registro permite que os indivíduos criem facilmente contas como sua função selecionada"
+
+msgid "Employer registration shortcode streamlines the process for organizations to register, ensuring they can efficiently manage job postings and their company profiles."
+msgstr "O código de curto de registro do empregador simplifica o processo para as organizações se registrarem, garantindo que elas possam gerenciar com eficiência as publicações de empregos e seus perfis da empresa."
+
+msgid "Job Seeker Registration"
+msgstr "Registro de candidatos a empregos"
+
+msgid "Job seeker registration shortcode allows individuals to easily create accounts, enabling them to apply for jobs and manage their resumes."
+msgstr "O código de curto de registro de candidatos a empregos permite que os indivíduos criem facilmente contas, permitindo que eles se candidatem a empregos e gerenciem seus currículos."
+
+msgid "Login Page"
+msgstr "Página de login"
+
+msgid "Login page shortcode offers a user-friendly interface for candidates and employers to securely log in and manage their profiles and postings."
+msgstr "A página de login Corthcode oferece uma interface amigável para candidatos e empregadores fazer login e gerenciar com segurança seus perfis e postagens."
+
+msgid "Widget"
+msgstr "Widget"
+
+msgid "Search job widget provides an intuitive interface for candidates to filter and browse openings, connecting them with opportunities that align with their skills."
+msgstr "O widget de trabalho de pesquisa fornece uma interface intuitiva para os candidatos filtrarem e navegarem aberturas, conectando -as a oportunidades que se alinham às suas habilidades."
+
+msgid "This Shortcode requires WP Job Portal Front-end Widgets Addon"
+msgstr "Este shortcode requer que os widgets de front-end do portal de trabalho WP addon"
+
+msgid "My packages offers a personalized dashboard for users to monitor their subscription details, helping them manage job postings and access features effectively."
+msgstr "Meus pacotes oferecem um painel personalizado para os usuários monitorarem seus detalhes de assinatura, ajudando -os a gerenciar as publicações e acessar os recursos de maneira eficaz."
+
+msgid "This Shortcode requires WP Job Portal Credits Addon"
+msgstr "Este shortcode requer créditos do portal de trabalho wp addon"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans.  "
+msgstr "Minha assinatura fornece aos usuários uma visão geral de suas assinaturas ativas, permitindo fácil gerenciamento e rastreamento de seus planos de publicação de emprego."
+
+msgid "All packages showcases a comprehensive list of available subscription plans, allowing users to compare features and select the best options for their job posting needs."
+msgstr "Todos os pacotes mostram uma lista abrangente de planos de assinatura disponíveis, permitindo que os usuários comparem os recursos e selecionem as melhores opções para suas necessidades de postagem de emprego."
+
+msgid "My invoices provides a convenient way for users to view and manage their invoices, helping them stay organized and up to date with their payments."
+msgstr "Minhas faturas fornecem uma maneira conveniente para os usuários visualizarem e gerenciarem suas faturas, ajudando -as a permanecerem organizados e atualizados com seus pagamentos."
+
+msgid "SEO"
+msgstr "SEO"
+
+msgid "Document Title Settings"
+msgstr "Configurações do título do documento"
+
+msgid "Company detail url options are name, location. eg- [name] [location]"
+msgstr "Detalhes da empresa As opções de URL são nome, localização. por exemplo, [nome] [Localização]"
+
+msgid "spinning wheel"
+msgstr "roda giratória"
+
+msgid "New Update Version"
+msgstr "Nova versão de atualização"
+
+msgid "is Available"
+msgstr "está disponível"
+
+msgid "Hey there! We have recently launched a fresh update for the add-ons. Don't forget to update the add-ons to enjoy the greatest features!"
+msgstr "Ei! Recentemente, lançamos uma nova atualização para os complementos. Não se esqueça de atualizar os complementos para aproveitar os melhores recursos!"
+
+msgid "View Addone Status"
+msgstr "Veja o status addone"
+
+msgid "Active Companies"
+msgstr "Empresas ativas"
+
+msgid "Help Page"
+msgstr "Página de ajuda"
+
+msgid "Watch Tutorial"
+msgstr "Assista ao tutorial"
+
+msgid "video"
+msgstr "vídeo"
+
+msgid "Apply Now Failed"
+msgstr "Aplicar agora falhou"
+
+msgid "You do not have package required for job apply"
+msgstr "Você não tem pacote necessário para se inscrever no trabalho"
+
+msgid "You package has expired"
+msgstr "Seu pacote expirou"
+
+msgid "You do not any more job apply available"
+msgstr "Você não mais se aplica disponível"
+
+msgid "Job Not Found"
+msgstr "Trabalho não encontrado"
+
+msgid "Job does not exist in the system"
+msgstr "O trabalho não existe no sistema"
+
+msgid "Make Payment To Complete The Job Apply"
+msgstr "Fazer pagamento para concluir o trabalho se aplicar"
+
+msgid "Successfully applied on job"
+msgstr "Aplicado com sucesso no trabalho"
+
+msgid "view coverletter"
+msgstr "Ver carta de apresentação"
+
+msgid "Please Fill out fields"
+msgstr "Por favor, preencha os campos"
+
+msgid "sender email is not of correct format"
+msgstr "O email do remetente não é do formato correto"
+
+msgid "Erase Selected Country"
+msgstr "Apague o país selecionado"
+
+msgid "Erase All Data"
+msgstr "Apague todos os dados"
+
+msgid "Click on package to select one"
+msgstr "Clique no pacote para selecionar um"
+
+msgid "Apply to the Job"
+msgstr "Aplique ao trabalho"
+
+msgid "No Cover Letter!"
+msgstr "Sem carta de apresentação!"
+
+msgid "Add Cover Lettter"
+msgstr "Adicionar carta de apresentação"
+
+msgid "You have already applied on this job."
+msgstr "Você já se inscreveu neste trabalho."
+
+msgid "Unlimited job applies"
+msgstr "O trabalho ilimitado se aplica"
+
+msgid "Job applies remaining"
+msgstr "O trabalho se aplica ao restante"
+
+msgid "Buy package to apply on job."
+msgstr "Compre o pacote para se inscrever no trabalho."
+
+msgid "Apply With Package"
+msgstr "Aplique com o pacote"
+
+msgid "Payment of"
+msgstr "Pagamento de"
+
+msgid "is required to complete the job apply process"
+msgstr "é necessário para concluir o processo de aplicação do trabalho"
+
+msgid "You are logged in as employer."
+msgstr "Você está conectado como empregador."
+
+msgid "You are not a logged in member."
+msgstr "Você não é um membro registrado."
+
+msgid "You do not have any role."
+msgstr "Você não tem nenhum papel."
+
+msgid "Proceed to payment"
+msgstr "Prossiga para o pagamento"
+
+msgid "Views"
+msgstr "Visualizações"
+
+msgid "Save As Draft"
+msgstr "Salve como rascunho"
+
+msgid "Job Has Been Feature SuccesFully"
+msgstr "Jó foi apresentado com sucesso"
+
+msgid "You are Not Allowed To Add More than One"
+msgstr "Você não tem permissão para adicionar mais de um"
+
+msgid "Contact TO Adminstrator"
+msgstr "Contato para o administrador"
+
+msgid "This Is Meta Description"
+msgstr "Esta é a meta descrição"
+
+msgid "jobs by cities"
+msgstr "empregos por cidades"
+
+msgid "Show Info"
+msgstr "Mostre informações"
+
+msgid "Changing a user's role will not remove its entites from the system !"
+msgstr "Alterar a função de um usuário não removerá seus atitos do sistema!"
+
+msgid "company reject"
+msgstr "rejeição da empresa"
+
+msgid "all reject"
+msgstr "todos rejeitam"
+
+msgid "Missing user(s) added successfully!"
+msgstr "Usuário (s) ausente (s) adicionado com sucesso!"
+
+msgid "No missing user found!"
+msgstr "Nenhum usuário ausente encontrado!"
+
+msgid "Jobs Listing Menu"
+msgstr "Menu de listagem de trabalhos"
+
+msgid "Visitor"
+msgstr "Visitante"
+
+msgid "new message alert"
+msgstr "Novo alerta de mensagem"
+
+msgid "New Message Alert"
+msgstr "Novo alerta de mensagem"
+
+msgid "Recipient Name"
+msgstr "Nome do destinatário"
+
+msgid "Sender Name"
+msgstr "Nome do remetente"
+
+msgid "Sender Role"
+msgstr "Função do remetente"
+
+msgid "Message Text"
+msgstr "Texto da mensagem"
+
+msgid "Job/Resume Info"
+msgstr "Informações sobre trabalho/currículo"
+
+msgid "Upload Resume"
+msgstr "Upload currículo"
+
+msgid "Profile Status"
+msgstr "Status do perfil"
+
+msgid "Profile Completed"
+msgstr "Perfil concluído"
+
+msgid "feature approve"
+msgstr "Recurso Aprovar"
+
+msgid "feature reject"
+msgstr "rejeição de recursos"
+
+msgid "Type city"
+msgstr "Cidade do tipo"
+
+msgid "New Message"
+msgstr "Nova mensagem"
+
+msgid "Employer is disabled by admin"
+msgstr "Empregador é desativado por administrador"
+
+msgid "You are not allowed to add more than one"
+msgstr "Você não tem permissão para adicionar mais de um"
+
+msgid "contact adminstrator"
+msgstr "Administrador de contato"
+
+msgid "Payment is not made against this job contact adminstrator"
+msgstr "O pagamento não é feito contra este administrador de contato de trabalho"
+
+msgid "Addon Page Not Found"
+msgstr "Página addon não encontrada"
+
+msgid "User Role"
+msgstr "Função de usuário"
+
+msgid "Jobs Role"
+msgstr "Função de empregos"
+
+msgid "User has been successfully created"
+msgstr "O usuário foi criado com sucesso"
+
+msgid "Pay For Department"
+msgstr "Pague pelo departamento"
+
+msgid "Pay For Job Apply"
+msgstr "Pagar pelo trabalho Aplicar"
+
+msgid "Pay For Company"
+msgstr "Pagar pela empresa"
+
+msgid "Pay For Featured Company"
+msgstr "Pague pela empresa em destaque"
+
+msgid "Pay For Job"
+msgstr "Pagar pelo trabalho"
+
+msgid "Pay For Featured Job"
+msgstr "Pague pelo trabalho em destaque"
+
+msgid "Pay For Resume Search"
+msgstr "Pague pela pesquisa de currículo"
+
+msgid "Pay For Resume "
+msgstr "Pague pelo currículo"
+
+msgid "Pay For Featured Resume "
+msgstr "Pague pelo currículo em destaque"
+
+msgid "Job Saved Searches"
+msgstr "Pesquisas salvas de emprego"
+
+msgid "Job Apply Configurations"
+msgstr "Trabalho aplicar configurações"
+
+msgid "Quick Apply Fields"
+msgstr "Aplicar rápido campos"
+
+msgid "addons status"
+msgstr "status de addons"
+
+msgid "coverletters"
+msgstr "cartas de cobertura"
+
+msgid "coverletter"
+msgstr "carta de apresentação"
+
+msgid "add new cover letter"
+msgstr "Adicionar nova carta de apresentação"
+
+msgid "Loaction Name settings"
+msgstr "Configurações de nome da localização"
+
+msgid "Loaction Name Settings"
+msgstr "Configurações de nome da localização"
+
+msgid "shifts"
+msgstr "turnos"
+
+msgid "ages"
+msgstr "idades"
+
+msgid "Error file size too large"
+msgstr "Tamanho do arquivo de erro muito grande"
+
+msgid "Maximum Size"
+msgstr "Tamanho máximo"
+
+msgid "is in use"
+msgstr "está em uso"
+
+msgid "can not deleted it"
+msgstr "não pode excluí -lo"
+
+msgid "Address data"
+msgstr "Dados de endereço"
+
+msgid "themes"
+msgstr "temas"
+
+msgid "Color Schemes"
+msgstr "Esquemas de cores"
+
+msgid "Color Chooser"
+msgstr "Caso de cores"
+
+msgid "Color 1"
+msgstr "Cor 1"
+
+msgid "Color 2"
+msgstr "Cor 2"
+
+msgid "Color 3"
+msgstr "Cor 3"
+
+msgid "Add User Fields"
+msgstr "Adicionar campos de usuário"
+
+msgid "cannot unpublished"
+msgstr "não pode não publicar"
+
+msgid "Search Name"
+msgstr "Nome da pesquisa"
+
+msgid "start"
+msgstr "começar"
+
+msgid "Total Resume Search"
+msgstr "Pesquisa de currículo total"
+
+msgid "Remaining Resume Search"
+msgstr "Pesquisa de currículo restante"
+
+msgid "Reference"
+msgstr "Referência"
+
+msgid "cancel payment"
+msgstr "Cancelar o pagamento"
+
+msgid "Apply now"
+msgstr "Aplique agora"
+
+msgid " Listing"
+msgstr "Listagem"
+
+msgid "Credits log"
+msgstr "Créditos log"
+
+msgid "Rate list"
+msgstr "Lista de taxas"
+
+msgid "Purchase history"
+msgstr "Histórico de compras"
+
+msgid " remaining"
+msgstr "restante"
+
+msgid "Cover Letter has been successfully published"
+msgstr "A carta de apresentação foi publicada com sucesso"
+
+msgid "cover Letter has been successfully published"
+msgstr "A carta de apresentação foi publicada com sucesso"
+
+msgid "Resume files download"
+msgstr "Retomar arquivos download"
+
+msgid "apply with facebook"
+msgstr "Inscreva -se com o Facebook"
+
+msgid "apply with linkedin"
+msgstr "Aplique no LinkedIn"
+
+msgid "apply with xing"
+msgstr "Aplique com Xing"
+
+msgid "Resume removed from featured"
+msgstr "Currículo removido de destaque"
+
+msgid "share blog"
+msgstr "Compartilhe o blog"
+
+msgid "share digg"
+msgstr "Compartilhe Digg"
+
+msgid "share fb"
+msgstr "compartilhe fb"
+
+msgid "share ff"
+msgstr "Compartilhe FF"
+
+msgid "share google"
+msgstr "Compartilhe o Google"
+
+msgid "share linkedin"
+msgstr "Compartilhar LinkedIn"
+
+msgid "share myspace"
+msgstr "Compartilhe o MySpace"
+
+msgid "share twitter"
+msgstr "Compartilhe o Twitter"
+
+msgid "share yahoo"
+msgstr "Compartilhe o Yahoo"
+
+msgid "Mark As Shortlist Job"
+msgstr "Marque como uma lista restrita"
+
+msgid "Keep this job on your list! Mark it as shortlisted and find it easily whenever you need."
+msgstr "Mantenha este emprego na sua lista! Marque -o como selecionado e encontre -o facilmente sempre que precisar."
+
+msgid "Search job title, company name, keywords"
+msgstr "Título do trabalho de pesquisa, nome da empresa, palavras -chave"
+
+msgid "Loction"
+msgstr "Localização"
+
+msgid "Applied Resume Title"
+msgstr "Título do currículo aplicado"
+
+msgid "Arrow"
+msgstr "Seta"
+
+msgid "Already Applied"
+msgstr "Já aplicado"
+
+msgid "Ready to take the next step? Simply fill out the form and submit your application. It only takes a few minutes!"
+msgstr "Pronto para dar o próximo passo? Basta preencher o formulário e enviar sua inscrição. Leva apenas alguns minutos!"
+
+msgid "Waiting for Payment"
+msgstr "Esperando pelo pagamento"
+
+msgid "Salery"
+msgstr "Salery"
+
+msgid "Buy"
+msgstr "Comprar"
+
+msgid "Employer can add companies and jobs while searching for potential candidate to hire"
+msgstr "O empregador pode adicionar empresas e empregos enquanto procura um candidato em potencial para contratar"
+
+msgid "Selected"
+msgstr "Selecionado"
+
+msgid "Jobseeker can add resume, cover letters, search jobs and apply to multiple jobs easily"
+msgstr "O JobSeeker pode adicionar currículo, cartas de cobertura, empregos de pesquisa e se inscrever em vários trabalhos facilmente"
+
+msgid "Hello, again!..."
+msgstr "Olá, de novo! ..."
+
+msgid "View All Applied Jobs"
+msgstr "Ver todos os empregos aplicados"
+
+msgid "View All Newest Jobs"
+msgstr "Veja todos os trabalhos mais recentes"
+
+msgid "Hello, again!…"
+msgstr "Olá, de novo! ..."
+
+msgid "Submit job"
+msgstr "Enviar trabalho"
+
+msgid "Submit Job"
+msgstr "Enviar trabalho"
+
+msgid "View detail"
+msgstr "Ver detalhes"
+
+msgid "Recently Applied Resume"
+msgstr "Currículo aplicado recentemente"
+
+msgid "Messages By Resume"
+msgstr "Mensagens por currículo"
+
+msgid "Reply"
+msgstr "Responder"
+
+msgid "View jobs"
+msgstr "Ver empregos"
+
+msgid "Other Info"
+msgstr "Outras informações"
+
+msgid "Link"
+msgstr "Link"
+
+msgid "Mail"
+msgstr "Correspondência"
+
+msgid "Site"
+msgstr "Site"
+
+msgid "View Company Details"
+msgstr "Ver detalhes da empresa"
+
+msgid "Completed"
+msgstr "Concluído"
+
+msgid "Categoty"
+msgstr "Categoria"
+
+msgid "tell a friend"
+msgstr "Conte a um amigo"
+
+msgid "Tell friend"
+msgstr "Diga ao amigo"
+
+msgid "Know someone perfect for this job? Share it with them!"
+msgstr "Conhece alguém perfeito para este trabalho? Compartilhe com eles!"
+
+msgid "Your name"
+msgstr "Seu nome"
+
+msgid "Your email"
+msgstr "Seu e -mail"
+
+msgid "Show the"
+msgstr "Mostre o"
+
+msgid "form to logged-in users on the job detail page. If this is on,"
+msgstr "formulário para usuários conectados na página de detalhes do trabalho. Se isso estiver ligado,"
+
+msgid "will be turned off."
+msgstr "será desligado."
+
+msgid "form to visitor on the job detail page. If this is on,"
+msgstr "formulário para visitante na página de detalhes do trabalho. Se isso estiver ligado,"
+
+msgid "You do not have any save serch remaining"
+msgstr "Você não tem nenhum serch salvo restante"
+
+msgid "We would love to hear from You."
+msgstr "Gostaríamos muito de ouvir de você."

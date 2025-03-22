@@ -455,7 +455,7 @@ wp_add_inline_script( 'google-charts-handle', $today_js_script );
                             </div>
                     <?php } ?>
                     <!-- add on list -->
-                    <?php if(count(wpjobportal::$_active_addons) < 30 ){ ?>
+                    <?php if(count(wpjobportal::$_active_addons) < 40 ){ ?>
                         <div class="wpjobportal-cp-addon-wrp">
                             <div class="wpjobportal-cp-cnt-title">
                                 <span class="wpjobportal-cp-cnt-title-txt">
@@ -916,7 +916,7 @@ wp_add_inline_script( 'google-charts-handle', $today_js_script );
                                                     </div>
                                                     <div class="wpjobportal-cp-addon-cnt">
                                                         <div class="wpjobportal-cp-addon-tit">
-                                                            <?php echo esc_html(__("Report\'s","wp-job-portal")); ?>
+                                                            <?php echo esc_html(__("Reports","wp-job-portal")); ?>
                                                         </div>
                                                         <div class="wpjobportal-cp-addon-desc">
                                                             <?php echo esc_html(__('WP Job Portal offers multiple reports by jobs, by companies and by resume. Admin can see overall reports of Employer and Job Seeker.','wp-job-portal')); ?>
@@ -1230,7 +1230,7 @@ wp_add_inline_script( 'google-charts-handle', $today_js_script );
                     <div class="wpjobportal-review">
                         <div class="wpjobportal-review-upper">
                             <span class="wpjobportal-review-simple-text">
-                                <?php echo esc_html(__('We\'d love to hear from You.', 'wp-job-portal')); ?>
+                                <?php echo esc_html(__('We would love to hear from You.', 'wp-job-portal')); ?>
                                 <br />
                                 <?php echo esc_html(__('Please write appreciated review at', 'wp-job-portal')); ?>
                             </span>

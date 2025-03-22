@@ -163,7 +163,49 @@ class WPJOBPORTALJobapplyController {
         die();
     }
 
+    function applyonjob() {
+        $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if(! wp_verify_nonce( $nonce, 'wpjobportal_job_apply_nonce')) {
+            die( 'Security check Failed' );
+        }
 
+        $result = WPJOBPORTALincluder::getJSModel('jobapply')->applyOnJob();
+        $jobid = WPJOBPORTALrequest::getVar('jobid');
+        $page_id = WPJOBPORTALrequest::getVar('wpjobportalpageid');
+        if($result == WPJOBPORTAL_SAVE_ERROR){
+            WPJOBPORTALmessages::setLayoutMessage(__("There was some problem performing action",'wp-job-portal'),'error','job');
+        }elseif($result == 3){
+            WPJOBPORTALmessages::setLayoutMessage(__("Make Payment To Complete The Job Apply",'wp-job-portal'),'updated','job');
+        }else{
+            WPJOBPORTALmessages::setLayoutMessage(__("Successfully applied on job",'wp-job-portal'),'updated','job');
+        }
+
+        $url = array('wpjobportalme'=>'job','wpjobportallt'=>'viewjob','wpjobportalid'=>$jobid,'wpjobportalpageid'=>$page_id);
+        $url = wpjobportal::wpjobportal_makeUrl($url);
+        if(in_array('credits', wpjobportal::$_active_addons)){ // check for credit system
+            $subtype = wpjobportal::$_config->getConfigValue('submission_type');
+            if( $subtype == 2 ){ // per listing mode is on
+                $selected_payment_method = WPJOBPORTALrequest::getVar('selected_payment_method');
+                if(isset(wpjobportal::$_data['job_apply_id'])){
+                    $id = wpjobportal::$_data['job_apply_id'];
+                    $paymentconfig = wpjobportal::$_wpjppaymentconfig->getPaymentConfigFor('paypal,stripe,woocommerce',true);
+                    if($selected_payment_method == 1){
+                        $url = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'purchase','action'=>'wpjobportaltask','task'=>'listingpaypalJobApply','wpjobportalid'=>$id,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
+                    }elseif($selected_payment_method == 2) {
+                        $url =  wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'purchase','action'=>'wpjobportaltask','task'=>'woocommedeptrceorder','wpjobportalid'=>'job_jobapply_price_perlisting','wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid(),'moduleid'=>$id));
+                    }elseif($selected_payment_method == 3) {
+                        //$url =  wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'purchase','action'=>'wpjobportaltask','task'=>'woocommedeptrceorder','wpjobportalid'=>'job_jobapply_price_perlisting','wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid(),'moduleid'=>$id));
+                        $url =  wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'purchasehistory','wpjobportallt'=>'payjobapply','wpjobportalid'=>$jobid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
+                    }
+                }
+            }
+        }
+        // echo var_dump($url);
+        // die(' in job apply controller apply function ');
+
+        wp_redirect(esc_url_raw($url));
+        die();
+    }
 
 }
 

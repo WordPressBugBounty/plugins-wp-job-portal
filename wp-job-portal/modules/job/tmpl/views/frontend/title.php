@@ -300,6 +300,7 @@ switch ($layout) {
         break;
     case 'apply1':
         $html = '';
+        /*
         $show_apply_form  = wpjobportal::$_config->getConfigurationByConfigName('quick_apply_for_user');
         if (WPJOBPORTALincluder::getObjectClass('user')->isguest()) {
             $show_apply_form  = wpjobportal::$_config->getConfigurationByConfigName('quick_apply_for_visitor');
@@ -345,6 +346,7 @@ switch ($layout) {
                 }
             }
         }
+        */
         
         $allow_tellafriend  = wpjobportal::$_config->getConfigurationByConfigName('allow_tellafriend');
         if($allow_tellafriend == 1 ){

@@ -480,19 +480,20 @@ class WPJOBPORTALResumeViewlayout {
             $is_qucik_apply = wpjobportal::$_data[0]['personal_section']->quick_apply;
         }
         $html = '<div class="wjportal-resume-top-section">';
-        if($is_qucik_apply == 0){ // hide photo which is not set in case of quick apply
-            if (isset(wpjobportal::$_data[2][1]['photo'])) {
-                $html .= '<div class="wjportal-resume-image">';
-                $img = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
-                if (wpjobportal::$_data[0]['personal_section']->photo != '') {
-                    $wpdir = wp_upload_dir();
-                    $data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
-                    $img = $wpdir['baseurl'] . '/' . $data_directory . '/data/jobseeker/resume_' . wpjobportal::$_data[0]['personal_section']->id . '/photo/' . wpjobportal::$_data[0]['personal_section']->photo;
+        if(!WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()){
+            if($is_qucik_apply == 0){ // hide photo which is not set in case of quick apply
+                if (isset(wpjobportal::$_data[2][1]['photo'])) {
+                    $html .= '<div class="wjportal-resume-image">';
+                    $img = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
+                    if (wpjobportal::$_data[0]['personal_section']->photo != '') {
+                        $wpdir = wp_upload_dir();
+                        $data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
+                        $img = $wpdir['baseurl'] . '/' . $data_directory . '/data/jobseeker/resume_' . wpjobportal::$_data[0]['personal_section']->id . '/photo/' . wpjobportal::$_data[0]['personal_section']->photo;
+                    }
+                    $html .= '<img src="' . esc_url($img) . '" />';
+                    $html .= '</div>';
                 }
-                $html .= '<img src="' . esc_url($img) . '" />';
-                $html .= '</div>';
             }
-        }
         // only hide photo section if unpublished
             $html .= '<div class="wjportal-resume-adv-act-wrp">';
             $layout = WPJOBPORTALrequest::getVar('wpjobportallt');
@@ -521,6 +522,7 @@ class WPJOBPORTALResumeViewlayout {
                     $html .= '<a href="#" onClick="window.print();" class="grayBtn">' . esc_html(__('Print', 'wp-job-portal')) . '</a>';
                 }
             $html .='</div>';
+        }
             $html .= '<div class="wjportal-personal-data">';
 
         //getResumeSectionAjax

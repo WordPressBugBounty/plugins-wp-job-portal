@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 
 msgid "Delete"
 msgstr "Menghapus"
@@ -9328,3 +9328,948 @@ msgstr "Departemen saya"
 
 msgid "Add To ShortList"
 msgstr "Tambahkan ke Daftar Pendek"
+
+msgid "or"
+msgstr "atau"
+
+msgid "company logo"
+msgstr "Logo Perusahaan"
+
+msgid "job title"
+msgstr "judul pekerjaan"
+
+msgid "company name"
+msgstr "nama perusahaan"
+
+msgid "Resume Has Been Feature SuccesFully"
+msgstr "Resume telah berhasil ditampilkan"
+
+msgid "My coverletter"
+msgstr "Surat lamaran saya"
+
+msgid "Add coverletter"
+msgstr "Tambahkan surat lamaran"
+
+msgid "Total Cover Letter"
+msgstr "Total surat lamaran"
+
+msgid "Remaining Cover Letter"
+msgstr "Surat pengantar yang tersisa"
+
+msgid "Open ChatGPT"
+msgstr "Buka chatgpt"
+
+msgid "How To Add Cover Letter With ChatGPT"
+msgstr "Cara menambahkan surat pengantar dengan chatgpt"
+
+msgid "Edit coverletter"
+msgstr "Edit surat lamaran"
+
+msgid "Edit Cover Letter"
+msgstr "Edit surat lamaran"
+
+msgid "Delete coverletter"
+msgstr "Hapus surat lamaran"
+
+msgid "coverletter title"
+msgstr "Judul surat lamaran"
+
+msgid "Add New Cover Letter"
+msgstr "Tambahkan surat pengantar baru"
+
+msgid "Quote from Hello Dolly song, by Jerry Herman:"
+msgstr "Kutipan dari Hello Dolly Song, oleh Jerry Herman:"
+
+msgid "Select Parent"
+msgstr "Pilih Orangtua"
+
+msgid "Edit Field"
+msgstr "Edit bidang"
+
+msgid "Visitor published"
+msgstr "Pengunjung diterbitkan"
+
+msgid "Show On Listing"
+msgstr "Tampilkan di daftar"
+
+msgid "Advanced"
+msgstr "Canggih"
+
+msgid "Equal"
+msgstr "Setara"
+
+msgid "Not Equal"
+msgstr "Tidak sama"
+
+msgid "Multi Select"
+msgstr "MULTI SELECT"
+
+msgid "Visible"
+msgstr "Bisa dilihat"
+
+msgid "Select Child"
+msgstr "Pilih Anak"
+
+msgid "Select Condition"
+msgstr "Pilih kondisi"
+
+msgid "To use this feature please fill the above three fields."
+msgstr "Untuk menggunakan fitur ini, isi tiga bidang di atas."
+
+msgid "No response found"
+msgstr "Tidak ada tanggapan yang ditemukan"
+
+msgid "Quick Apply"
+msgstr "Terapkan cepat"
+
+msgid "user publish"
+msgstr "PUBLISH PENGGUNA"
+
+msgid "User Unpublished"
+msgstr "Pengguna tidak dipublikasikan"
+
+msgid "visitor publish"
+msgstr "Publikasikan pengunjung"
+
+msgid "visitor unpublish"
+msgstr "Pengunjung tidak dipublikasikan"
+
+msgid "Select user status"
+msgstr "Pilih Status Pengguna"
+
+msgid "Un published"
+msgstr "PBB diterbitkan"
+
+msgid "File upload fields and text editor fields cannot be made required."
+msgstr "Bidang unggahan file dan bidang editor teks tidak dapat dilakukan."
+
+msgid "Dependent Field"
+msgstr "Bidang dependen"
+
+msgid "Job Apply settings"
+msgstr "Pengaturan melamar pekerjaan"
+
+msgid "Quick Apply settings"
+msgstr "Pengaturan Terapkan Cepat"
+
+msgid "Show count in jobs by cities page"
+msgstr "Tampilkan Hitung di Halaman Kota -Kota"
+
+msgid "Show country in jobs by cities page"
+msgstr "Tunjukkan negara di halaman pekerjaan menurut kota"
+
+msgid "Profile Section"
+msgstr "Bagian Profil"
+
+msgid "Recaptcha Version 2"
+msgstr "RECAPTCHA Versi 2"
+
+msgid "Recaptcha Version 3"
+msgstr "RECAPTCHA Versi 3"
+
+msgid "System slug"
+msgstr "Sistem Slug"
+
+msgid "Image file size"
+msgstr "Ukuran file gambar"
+
+msgid "System will not upload if image size is greater than the given size"
+msgstr "Sistem tidak akan mengunggah jika ukuran gambar lebih besar dari ukuran yang diberikan"
+
+msgid "Show page title above wpjobportal breadcrumbs"
+msgstr "Tampilkan Judul Halaman Di Atas Wpjobportal Breadcrumbs"
+
+msgid "Default Image For WP Job Portal"
+msgstr "Gambar default untuk portal pekerjaan wp"
+
+msgid "This image will shown as default image for entities & users if no other image is provided."
+msgstr "Gambar ini akan ditampilkan sebagai gambar default untuk entitas & pengguna jika tidak ada gambar lain yang disediakan."
+
+msgid "Default country"
+msgstr "Negara default"
+
+msgid "Select default country for user added cities"
+msgstr "Pilih negara default untuk kota yang ditambahkan pengguna"
+
+msgid "Job detail URL options are title, company, category, location, jobtype. eg- [title] [company]"
+msgstr "Opsi URL detail pekerjaan adalah judul, perusahaan, kategori, lokasi, JobType. misalnya [judul] [perusahaan]"
+
+msgid "Select the Google reCaptcha Version"
+msgstr "Pilih versi Google RECAPTCHA"
+
+msgid "Recent Resumes Box"
+msgstr "Kotak resume terbaru"
+
+msgid "mode"
+msgstr "mode"
+
+msgid "expire"
+msgstr "berakhir"
+
+msgid "Registration is disabled in WordPress settings, please enable to Membership: anyone can register."
+msgstr "Pendaftaran dinonaktifkan dalam pengaturan WordPress, Harap Aktifkan ke Keanggotaan: Siapa pun dapat mendaftar."
+
+msgid "Quick Apply Now"
+msgstr "Terapkan cepat sekarang"
+
+msgid "Enable Quick Apply for user"
+msgstr "Aktifkan berlaku cepat untuk pengguna"
+
+msgid "Enable Quick Apply for visitor"
+msgstr "Aktifkan berlaku cepat untuk pengunjung"
+
+msgid "Enable captcha for visitor Quick Apply"
+msgstr "Aktifkan captcha untuk pengunjung cepat berlaku"
+
+msgid "Show captcha to visitor on quick apply form."
+msgstr "Tunjukkan captcha kepada pengunjung pada formulir cepat."
+
+msgid "Add ons for WP Job Portal have been installed and activated successfully. "
+msgstr "Tambahkan ON untuk Portal Pekerjaan WP telah diinstal dan diaktifkan dengan sukses."
+
+msgid "WP Job Portal is an open-source job board plugin for WordPress that provides advanced features to help you create a successful job board. In addition, we offer trusted WP Job Portal add-ons that can further enhance your job board's functionality in a fast, safe, and easy manner. Our add-ons have been designed to integrate seamlessly with our job board plugin, ensuring you can expand your job board's capabilities without any complications."
+msgstr "WP Job Portal adalah plugin papan kerja open-source untuk WordPress yang menyediakan fitur canggih untuk membantu Anda membuat papan pekerjaan yang sukses. Selain itu, kami menawarkan add-ons portal pekerjaan WP tepercaya yang dapat lebih meningkatkan fungsionalitas dewan pekerjaan Anda dengan cara yang cepat, aman, dan mudah. Add-on kami telah dirancang untuk mengintegrasikan dengan mulus dengan plugin papan pekerjaan kami, memastikan Anda dapat memperluas kemampuan papan pekerjaan Anda tanpa komplikasi."
+
+msgid "Savings*"
+msgstr "Tabungan*"
+
+msgid "Best Deal"
+msgstr "Penawaran Terbaik"
+
+msgid "Shortlist Job"
+msgstr "Pekerjaan daftar pendek"
+
+msgid "e.g 45000"
+msgstr "mis. 45000"
+
+msgid "e.g 3000"
+msgstr "mis. 3000"
+
+msgid "e.g 6000"
+msgstr "mis. 6000"
+
+msgid "Deactivated"
+msgstr "Dinonaktifkan"
+
+msgid "Not Installed"
+msgstr "Tidak terpasang"
+
+msgid "Addon Installed Successfully"
+msgstr "Addon berhasil diinstal"
+
+msgid "Addon installation failed"
+msgstr "Instalasi Addon gagal"
+
+msgid "Resume Data Management"
+msgstr "Lanjutkan manajemen data"
+
+msgid "Export (csv)"
+msgstr "Ekspor (CSV)"
+
+msgid "Configuration Based Tutorials"
+msgstr "Tutorial berbasis konfigurasi"
+
+msgid "Slugs"
+msgstr "Siput"
+
+msgid "Theme Installation"
+msgstr "Instalasi tema"
+
+msgid "WP Job Portal Theme  Installation"
+msgstr "Instalasi Tema Portal Pekerjaan WP"
+
+msgid "System Management"
+msgstr "Manajemen Sistem"
+
+msgid "Activity Log and System Errors"
+msgstr "Log Aktivitas dan Kesalahan Sistem"
+
+msgid "Shortcode"
+msgstr "Kode pendek"
+
+msgid "Job Seeker Control Panel"
+msgstr "Panel Kontrol Pencari Kerja"
+
+msgid "A shortcode designed for jobseeker, providing an easy-to-use controlpanel to manage applications, resume, and preferences directly from their dashboard."
+msgstr "Kode pintas yang dirancang untuk pencari kerja, memberikan controlpanel yang mudah digunakan untuk mengelola aplikasi, melanjutkan, dan preferensi langsung dari dasbor mereka."
+
+msgid "Base Shortcode"
+msgstr "Kode pendek dasar"
+
+msgid "Shortcode With All Options"
+msgstr "Kode pendek dengan semua opsi"
+
+msgid " The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "Panel Kontrol Pemberi Kerja adalah antarmuka yang ramping yang memungkinkan pengusaha untuk mengelola posting pekerjaan, melacak aplikasi, berkomunikasi dengan kandidat, dan menganalisis perekrutan metrik secara efisien."
+
+msgid "The job search shortcode enables users to easily find job listings based on various criteria."
+msgstr "Kode pendek pencarian pekerjaan memungkinkan pengguna untuk dengan mudah menemukan daftar pekerjaan berdasarkan berbagai kriteria."
+
+msgid "The jobs shortcode is a feature that displays individual job listings on a website."
+msgstr "Kode pendek Jobs adalah fitur yang menampilkan daftar pekerjaan individual di situs web."
+
+msgid "The featured job shortcode highlights select job listings on a website, making them stand out to potential applicants."
+msgstr "Sorotan kode pendek unggulan sorotan pilih daftar pekerjaan di situs web, membuatnya menonjol bagi pelamar potensial."
+
+msgid "This Shortcode requires WP Job Portal Featured Jobs Addon"
+msgstr "Kode pintas ini membutuhkan Portal Pekerjaan WP Fitur Addon"
+
+msgid "Get Addon"
+msgstr "Dapatkan addon"
+
+msgid "Job Categories"
+msgstr "Kategori pekerjaan"
+
+msgid "The job categories shortcode displays a dynamic list of available categories, enabling users to easily navigate and find relevant job listings."
+msgstr "Kode pendek kategori pekerjaan menampilkan daftar dinamis kategori yang tersedia, memungkinkan pengguna untuk dengan mudah menavigasi dan menemukan daftar pekerjaan yang relevan."
+
+msgid "The job types shortcode presents a comprehensive list of available job types, allowing users to quickly explore and find suitable job opportunities."
+msgstr "Kode pendek jenis pekerjaan menyajikan daftar komprehensif jenis pekerjaan yang tersedia, memungkinkan pengguna untuk dengan cepat mengeksplorasi dan menemukan peluang kerja yang sesuai."
+
+msgid "My applied jobs shortcode provides users with a personalized list of their job applications, allowing easy access to track application status and details."
+msgstr "Kode pintas pekerjaan yang diterapkan saya memberi pengguna daftar aplikasi pekerjaan yang dipersonalisasi, memungkinkan akses mudah untuk melacak status dan detail aplikasi."
+
+msgid "My companies shortcode displays a personalized list of companies users are associated with, facilitating easy access to company information and opportunities."
+msgstr "Kode pendek perusahaan saya menampilkan daftar yang dipersonalisasi dari perusahaan yang dikaitkan dengan pengguna, memfasilitasi akses mudah ke informasi dan peluang perusahaan."
+
+msgid "All companies shortcode offers a curated directory of all companies, allowing users to easily browse and connect with potential employers."
+msgstr "Semua kode pendek perusahaan menawarkan direktori yang dikuratori dari semua perusahaan, memungkinkan pengguna untuk dengan mudah menelusuri dan terhubung dengan calon pemberi kerja."
+
+msgid "This Shortcode requires WP Job Portal All Companies Addon"
+msgstr "Kode pendek ini membutuhkan portal pekerjaan wp semua addon perusahaan"
+
+msgid "The featured companies shortcode showcases prominent companies within the portal, allowing users to explore exciting job opportunities from industry leaders."
+msgstr "Kode pendek perusahaan unggulan menampilkan perusahaan -perusahaan terkemuka di dalam portal, yang memungkinkan pengguna untuk mengeksplorasi peluang kerja yang menarik dari para pemimpin industri."
+
+msgid "This Shortcode requires WP Job Portal Featured Companies Addon"
+msgstr "Kode pintas ini membutuhkan WP Job Portal unggulan perusahaan addon"
+
+msgid "My jobs shortcode allows users to view and manage their saved job listings, making it easy to keep track of potential opportunities."
+msgstr "Kode pendek pekerjaan saya memungkinkan pengguna untuk melihat dan mengelola daftar pekerjaan yang disimpan, membuatnya mudah untuk melacak peluang potensial."
+
+msgid "My resume shortcode allows users to view and manage their uploaded resumes, providing a convenient way to keep their job application materials up to date."
+msgstr "Kode pendek resume saya memungkinkan pengguna untuk melihat dan mengelola resume mereka yang diunggah, memberikan cara yang nyaman untuk menjaga agar materi lamaran pekerjaan mereka tetap up to date."
+
+msgid "All Resumes"
+msgstr "Semua resume"
+
+msgid "All resumes shortcode allows job seekers to view and manage their uploaded resumes, ensuring they have easy access to their application materials."
+msgstr "Semua kode pendek resume memungkinkan pencari kerja untuk melihat dan mengelola resume yang diunggah, memastikan mereka memiliki akses mudah ke materi aplikasi mereka."
+
+msgid "This Shortcode requires WP Job Portal All Resumes Addon"
+msgstr "Kode pintas ini membutuhkan portal pekerjaan wp semua addon resume"
+
+msgid "The featured resumes shortcode showcases a selection of standout resumes, allowing job seekers to stand out to potential employers."
+msgstr "Kode pintas resume unggulan menampilkan pilihan resume yang menonjol, yang memungkinkan pencari kerja menonjol bagi calon pemberi kerja."
+
+msgid "This Shortcode requires WP Job Portal Featured Resumes Addon"
+msgstr "Kode pintas ini membutuhkan WP Job Portal Fitur Resume Addon"
+
+msgid "Add company shortcode allows employers to effortlessly register their organization, providing essential details to attract talent and post job openings."
+msgstr "Tambahkan kode pendek perusahaan memungkinkan pengusaha untuk dengan mudah mendaftarkan organisasi mereka, memberikan detail penting untuk menarik bakat dan memposting lowongan pekerjaan."
+
+msgid "Add department shortcode enables employers to easily create and manage specific departments within their organization, facilitating better job categorization and organization."
+msgstr "Tambahkan kode pendek departemen memungkinkan pengusaha untuk dengan mudah membuat dan mengelola departemen tertentu dalam organisasi mereka, memfasilitasi kategorisasi dan organisasi pekerjaan yang lebih baik."
+
+msgid "This Shortcode requires WP Job Portal Multi Departments Addon"
+msgstr "Kode pintas ini membutuhkan addon multi departemen portal pekerjaan wp"
+
+msgid "Add jobs enables organizations to effortlessly publish job postings, helping them connect with potential applicants and fill vacancies more effectively."
+msgstr "Tambahkan pekerjaan memungkinkan organisasi untuk dengan mudah menerbitkan posting pekerjaan, membantu mereka terhubung dengan pelamar potensial dan mengisi lowongan secara lebih efektif."
+
+msgid "Add resume shortcode simplifies the process for candidates to submit their resumes, helping them showcase their qualifications and experiences to potential employers."
+msgstr "Tambahkan kode pendek resume menyederhanakan proses bagi kandidat untuk mengirimkan resume mereka, membantu mereka memamerkan kualifikasi dan pengalaman mereka kepada calon pemberi kerja."
+
+msgid "Resume search shortcode provides a powerful search tool for employers to explore candidate profiles, making it easier to connect with potential hires."
+msgstr "Kode pendek pencarian resume menyediakan alat pencarian yang kuat bagi pengusaha untuk menjelajahi profil kandidat, membuatnya lebih mudah untuk terhubung dengan potensi perekrutan."
+
+msgid "This Shortcode requires WP Job Portal Resume Search Addon"
+msgstr "Kode pintas ini membutuhkan addon pencarian Portal Pekerjaan Pekerjaan WP"
+
+msgid "Registration"
+msgstr "Pendaftaran"
+
+msgid "Registration shortcode allows individuals to easily create accounts as their selected role"
+msgstr "Kode pendek pendaftaran memungkinkan individu untuk dengan mudah membuat akun sebagai peran yang dipilih"
+
+msgid "Employer registration shortcode streamlines the process for organizations to register, ensuring they can efficiently manage job postings and their company profiles."
+msgstr "Kode pendek pendaftaran majikan merampingkan proses bagi organisasi untuk mendaftar, memastikan mereka dapat secara efisien mengelola posting pekerjaan dan profil perusahaan mereka."
+
+msgid "Job Seeker Registration"
+msgstr "Pendaftaran Pencari Kerja"
+
+msgid "Job seeker registration shortcode allows individuals to easily create accounts, enabling them to apply for jobs and manage their resumes."
+msgstr "Kode pendek pendaftaran pencari kerja memungkinkan individu untuk dengan mudah membuat akun, memungkinkan mereka untuk melamar pekerjaan dan mengelola resume mereka."
+
+msgid "Login Page"
+msgstr "Halaman login"
+
+msgid "Login page shortcode offers a user-friendly interface for candidates and employers to securely log in and manage their profiles and postings."
+msgstr "Login Page Shortcode menawarkan antarmuka yang ramah pengguna bagi kandidat dan pengusaha untuk masuk dengan aman dan mengelola profil dan posting mereka."
+
+msgid "Widget"
+msgstr "Widget"
+
+msgid "Search job widget provides an intuitive interface for candidates to filter and browse openings, connecting them with opportunities that align with their skills."
+msgstr "Pencarian Job Widget menyediakan antarmuka intuitif bagi kandidat untuk memfilter dan menelusuri bukaan, menghubungkan mereka dengan peluang yang selaras dengan keterampilan mereka."
+
+msgid "This Shortcode requires WP Job Portal Front-end Widgets Addon"
+msgstr "Kode pendek ini membutuhkan widget front-end widget portal kerja wp"
+
+msgid "My packages offers a personalized dashboard for users to monitor their subscription details, helping them manage job postings and access features effectively."
+msgstr "Paket saya menawarkan dasbor yang dipersonalisasi bagi pengguna untuk memantau detail berlangganan mereka, membantu mereka mengelola posting pekerjaan dan mengakses fitur secara efektif."
+
+msgid "This Shortcode requires WP Job Portal Credits Addon"
+msgstr "Kode pintas ini membutuhkan addon portal pekerjaan portal wp"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans.  "
+msgstr "Langganan saya memberi pengguna gambaran umum tentang langganan aktif mereka, memungkinkan manajemen yang mudah dan melacak rencana posting pekerjaan mereka."
+
+msgid "All packages showcases a comprehensive list of available subscription plans, allowing users to compare features and select the best options for their job posting needs."
+msgstr "Semua paket menampilkan daftar komprehensif paket berlangganan yang tersedia, memungkinkan pengguna untuk membandingkan fitur dan memilih opsi terbaik untuk kebutuhan posting pekerjaan mereka."
+
+msgid "My invoices provides a convenient way for users to view and manage their invoices, helping them stay organized and up to date with their payments."
+msgstr "Faktur saya menyediakan cara yang nyaman bagi pengguna untuk melihat dan mengelola faktur mereka, membantu mereka tetap terorganisir dan terkini dengan pembayaran mereka."
+
+msgid "SEO"
+msgstr "Seo"
+
+msgid "Document Title Settings"
+msgstr "Pengaturan Judul Dokumen"
+
+msgid "Company detail url options are name, location. eg- [name] [location]"
+msgstr "Opsi URL detail perusahaan adalah nama, lokasi. misalnya [nama] [lokasi]"
+
+msgid "spinning wheel"
+msgstr "roda pemintalan"
+
+msgid "New Update Version"
+msgstr "Versi Pembaruan Baru"
+
+msgid "is Available"
+msgstr "tersedia"
+
+msgid "Hey there! We have recently launched a fresh update for the add-ons. Don't forget to update the add-ons to enjoy the greatest features!"
+msgstr "Hai! Kami baru-baru ini meluncurkan pembaruan baru untuk add-on. Jangan lupa memperbarui add-on untuk menikmati fitur terbesar!"
+
+msgid "View Addone Status"
+msgstr "Lihat status addone"
+
+msgid "Active Companies"
+msgstr "Perusahaan aktif"
+
+msgid "Help Page"
+msgstr "Halaman bantuan"
+
+msgid "Watch Tutorial"
+msgstr "Tonton tutorial"
+
+msgid "video"
+msgstr "video"
+
+msgid "Apply Now Failed"
+msgstr "Berlaku sekarang gagal"
+
+msgid "You do not have package required for job apply"
+msgstr "Anda tidak memiliki paket yang diperlukan untuk melamar pekerjaan"
+
+msgid "You package has expired"
+msgstr "Paket Anda telah kedaluwarsa"
+
+msgid "You do not any more job apply available"
+msgstr "Anda tidak lagi melamar pekerjaan"
+
+msgid "Job Not Found"
+msgstr "Pekerjaan tidak ditemukan"
+
+msgid "Job does not exist in the system"
+msgstr "Pekerjaan tidak ada dalam sistem"
+
+msgid "Make Payment To Complete The Job Apply"
+msgstr "Melakukan pembayaran untuk menyelesaikan pekerjaan"
+
+msgid "Successfully applied on job"
+msgstr "Berhasil melamar pekerjaan"
+
+msgid "view coverletter"
+msgstr "Lihat surat lamaran"
+
+msgid "Please Fill out fields"
+msgstr "Silakan isi bidang"
+
+msgid "sender email is not of correct format"
+msgstr "Email pengirim bukan format yang benar"
+
+msgid "Erase Selected Country"
+msgstr "Menghapus negara terpilih"
+
+msgid "Erase All Data"
+msgstr "Hapus semua data"
+
+msgid "Click on package to select one"
+msgstr "Klik paket untuk memilih satu"
+
+msgid "Apply to the Job"
+msgstr "Melamar pekerjaan"
+
+msgid "No Cover Letter!"
+msgstr "Tidak ada surat pengantar!"
+
+msgid "Add Cover Lettter"
+msgstr "Tambahkan surat lamaran"
+
+msgid "You have already applied on this job."
+msgstr "Anda sudah melamar pekerjaan ini."
+
+msgid "Unlimited job applies"
+msgstr "Pekerjaan tanpa batas berlaku"
+
+msgid "Job applies remaining"
+msgstr "Pekerjaan berlaku"
+
+msgid "Buy package to apply on job."
+msgstr "Beli paket untuk melamar pekerjaan."
+
+msgid "Apply With Package"
+msgstr "Berlaku dengan paket"
+
+msgid "Payment of"
+msgstr "Pembayaran"
+
+msgid "is required to complete the job apply process"
+msgstr "diperlukan untuk menyelesaikan proses aplikasi pekerjaan"
+
+msgid "You are logged in as employer."
+msgstr "Anda masuk sebagai majikan."
+
+msgid "You are not a logged in member."
+msgstr "Anda bukan anggota yang masuk."
+
+msgid "You do not have any role."
+msgstr "Anda tidak memiliki peran apa pun."
+
+msgid "Proceed to payment"
+msgstr "Melanjutkan ke pembayaran"
+
+msgid "Views"
+msgstr "Tampilan"
+
+msgid "Save As Draft"
+msgstr "Simpan sebagai draft"
+
+msgid "Job Has Been Feature SuccesFully"
+msgstr "Pekerjaan telah berhasil ditampilkan"
+
+msgid "You are Not Allowed To Add More than One"
+msgstr "Anda tidak diizinkan menambahkan lebih dari satu"
+
+msgid "Contact TO Adminstrator"
+msgstr "Hubungi Administrator"
+
+msgid "This Is Meta Description"
+msgstr "Ini adalah deskripsi meta"
+
+msgid "jobs by cities"
+msgstr "pekerjaan oleh kota"
+
+msgid "Show Info"
+msgstr "Tampilkan info"
+
+msgid "Changing a user's role will not remove its entites from the system !"
+msgstr "Mengubah peran pengguna tidak akan menghapus entitnya dari sistem!"
+
+msgid "company reject"
+msgstr "Perusahaan menolak"
+
+msgid "all reject"
+msgstr "semua menolak"
+
+msgid "Missing user(s) added successfully!"
+msgstr "Pengguna yang hilang ditambahkan dengan sukses!"
+
+msgid "No missing user found!"
+msgstr "Tidak ada pengguna yang hilang yang ditemukan!"
+
+msgid "Jobs Listing Menu"
+msgstr "Menu daftar pekerjaan"
+
+msgid "Visitor"
+msgstr "Pengunjung"
+
+msgid "new message alert"
+msgstr "Peringatan Pesan Baru"
+
+msgid "New Message Alert"
+msgstr "Peringatan Pesan Baru"
+
+msgid "Recipient Name"
+msgstr "Nama penerima"
+
+msgid "Sender Name"
+msgstr "Nama pengirim"
+
+msgid "Sender Role"
+msgstr "Peran pengirim"
+
+msgid "Message Text"
+msgstr "Teks pesan"
+
+msgid "Job/Resume Info"
+msgstr "Info pekerjaan/resume"
+
+msgid "Upload Resume"
+msgstr "Unggah resume"
+
+msgid "Profile Status"
+msgstr "Status profil"
+
+msgid "Profile Completed"
+msgstr "Profil selesai"
+
+msgid "feature approve"
+msgstr "fitur menyetujui"
+
+msgid "feature reject"
+msgstr "Fitur Tolak"
+
+msgid "Type city"
+msgstr "Tipe City"
+
+msgid "New Message"
+msgstr "Pesan baru"
+
+msgid "Employer is disabled by admin"
+msgstr "Majikan dinonaktifkan oleh admin"
+
+msgid "You are not allowed to add more than one"
+msgstr "Anda tidak diizinkan menambahkan lebih dari satu"
+
+msgid "contact adminstrator"
+msgstr "Hubungi Administrator"
+
+msgid "Payment is not made against this job contact adminstrator"
+msgstr "Pembayaran tidak dilakukan terhadap administrator kontak pekerjaan ini"
+
+msgid "Addon Page Not Found"
+msgstr "Halaman addon tidak ditemukan"
+
+msgid "User Role"
+msgstr "Peran Pengguna"
+
+msgid "Jobs Role"
+msgstr "Peran Pekerjaan"
+
+msgid "User has been successfully created"
+msgstr "Pengguna telah berhasil dibuat"
+
+msgid "Pay For Department"
+msgstr "Membayar departemen"
+
+msgid "Pay For Job Apply"
+msgstr "Bayar untuk melamar pekerjaan"
+
+msgid "Pay For Company"
+msgstr "Bayar untuk Perusahaan"
+
+msgid "Pay For Featured Company"
+msgstr "Bayar untuk perusahaan unggulan"
+
+msgid "Pay For Job"
+msgstr "Membayar pekerjaan"
+
+msgid "Pay For Featured Job"
+msgstr "Bayar pekerjaan unggulan"
+
+msgid "Pay For Resume Search"
+msgstr "Bayar pencarian resume"
+
+msgid "Pay For Resume "
+msgstr "Membayar resume"
+
+msgid "Pay For Featured Resume "
+msgstr "Bayar resume unggulan"
+
+msgid "Job Saved Searches"
+msgstr "Pencarian pekerjaan yang disimpan"
+
+msgid "Job Apply Configurations"
+msgstr "Konfigurasi Terapkan Pekerjaan"
+
+msgid "Quick Apply Fields"
+msgstr "Bidang Terapkan Cepat"
+
+msgid "addons status"
+msgstr "status tambahan"
+
+msgid "coverletters"
+msgstr "surat lamaran"
+
+msgid "coverletter"
+msgstr "surat pengantar"
+
+msgid "add new cover letter"
+msgstr "Tambahkan surat pengantar baru"
+
+msgid "Loaction Name settings"
+msgstr "Pengaturan Nama Lokasi"
+
+msgid "Loaction Name Settings"
+msgstr "Pengaturan Nama Lokasi"
+
+msgid "shifts"
+msgstr "shift"
+
+msgid "ages"
+msgstr "usia"
+
+msgid "Error file size too large"
+msgstr "Ukuran file kesalahan terlalu besar"
+
+msgid "Maximum Size"
+msgstr "Ukuran maksimum"
+
+msgid "is in use"
+msgstr "sedang digunakan"
+
+msgid "can not deleted it"
+msgstr "tidak bisa menghapusnya"
+
+msgid "Address data"
+msgstr "Alamat data"
+
+msgid "themes"
+msgstr "tema"
+
+msgid "Color Schemes"
+msgstr "Skema warna"
+
+msgid "Color Chooser"
+msgstr "Pemilih warna"
+
+msgid "Color 1"
+msgstr "Warna 1"
+
+msgid "Color 2"
+msgstr "Warna 2"
+
+msgid "Color 3"
+msgstr "Warna 3"
+
+msgid "Add User Fields"
+msgstr "Tambahkan bidang pengguna"
+
+msgid "cannot unpublished"
+msgstr "tidak bisa tidak dipublikasikan"
+
+msgid "Search Name"
+msgstr "Nama pencarian"
+
+msgid "start"
+msgstr "awal"
+
+msgid "Total Resume Search"
+msgstr "Total pencarian resume"
+
+msgid "Remaining Resume Search"
+msgstr "Pencarian resume yang tersisa"
+
+msgid "Reference"
+msgstr "Referensi"
+
+msgid "cancel payment"
+msgstr "Batalkan pembayaran"
+
+msgid "Apply now"
+msgstr "Terapkan sekarang"
+
+msgid " Listing"
+msgstr "Daftar"
+
+msgid "Credits log"
+msgstr "Log Kredit"
+
+msgid "Rate list"
+msgstr "Daftar tarif"
+
+msgid "Purchase history"
+msgstr "Riwayat pembelian"
+
+msgid " remaining"
+msgstr "tersisa"
+
+msgid "Cover Letter has been successfully published"
+msgstr "Surat pengantar telah berhasil diterbitkan"
+
+msgid "cover Letter has been successfully published"
+msgstr "Surat pengantar telah berhasil diterbitkan"
+
+msgid "Resume files download"
+msgstr "Lanjutkan file unduhan"
+
+msgid "apply with facebook"
+msgstr "Terapkan dengan Facebook"
+
+msgid "apply with linkedin"
+msgstr "Terapkan dengan LinkedIn"
+
+msgid "apply with xing"
+msgstr "Terapkan dengan Xing"
+
+msgid "Resume removed from featured"
+msgstr "Resume dihapus dari unggulan"
+
+msgid "share blog"
+msgstr "Bagikan blog"
+
+msgid "share digg"
+msgstr "Bagikan Digg"
+
+msgid "share fb"
+msgstr "Bagikan FB"
+
+msgid "share ff"
+msgstr "Bagikan FF"
+
+msgid "share google"
+msgstr "Bagikan Google"
+
+msgid "share linkedin"
+msgstr "Bagikan LinkedIn"
+
+msgid "share myspace"
+msgstr "Bagikan MySpace"
+
+msgid "share twitter"
+msgstr "Bagikan Twitter"
+
+msgid "share yahoo"
+msgstr "Bagikan Yahoo"
+
+msgid "Mark As Shortlist Job"
+msgstr "Tandai sebagai pekerjaan daftar pendek"
+
+msgid "Keep this job on your list! Mark it as shortlisted and find it easily whenever you need."
+msgstr "Simpan pekerjaan ini di daftar Anda! Tandai dengan daftar pendek dan temukan dengan mudah kapan pun Anda butuhkan."
+
+msgid "Search job title, company name, keywords"
+msgstr "Judul Pekerjaan Cari, Nama Perusahaan, Kata Kunci"
+
+msgid "Loction"
+msgstr "Loction"
+
+msgid "Applied Resume Title"
+msgstr "Judul Resume Terapan"
+
+msgid "Arrow"
+msgstr "Anak panah"
+
+msgid "Already Applied"
+msgstr "Sudah diterapkan"
+
+msgid "Ready to take the next step? Simply fill out the form and submit your application. It only takes a few minutes!"
+msgstr "Siap mengambil langkah berikutnya? Cukup isi formulir dan kirimkan aplikasi Anda. Hanya butuh beberapa menit!"
+
+msgid "Waiting for Payment"
+msgstr "Menunggu pembayaran"
+
+msgid "Salery"
+msgstr "Salery"
+
+msgid "Buy"
+msgstr "Membeli"
+
+msgid "Employer can add companies and jobs while searching for potential candidate to hire"
+msgstr "Majikan dapat menambah perusahaan dan pekerjaan saat mencari calon potensial untuk disewa"
+
+msgid "Selected"
+msgstr "Terpilih"
+
+msgid "Jobseeker can add resume, cover letters, search jobs and apply to multiple jobs easily"
+msgstr "Pencari kerja dapat menambahkan resume, surat pengantar, mencari pekerjaan dan melamar ke banyak pekerjaan dengan mudah"
+
+msgid "Hello, again!..."
+msgstr "Halo, lagi! ..."
+
+msgid "View All Applied Jobs"
+msgstr "Lihat semua pekerjaan yang diterapkan"
+
+msgid "View All Newest Jobs"
+msgstr "Lihat semua pekerjaan terbaru"
+
+msgid "Hello, again!…"
+msgstr "Halo, lagi!…"
+
+msgid "Submit job"
+msgstr "Kirimkan pekerjaan"
+
+msgid "Submit Job"
+msgstr "Kirimkan pekerjaan"
+
+msgid "View detail"
+msgstr "Lihat Detail"
+
+msgid "Recently Applied Resume"
+msgstr "Resume yang baru -baru ini diterapkan"
+
+msgid "Messages By Resume"
+msgstr "Pesan dengan resume"
+
+msgid "Reply"
+msgstr "Membalas"
+
+msgid "View jobs"
+msgstr "Lihat pekerjaan"
+
+msgid "Other Info"
+msgstr "Info lainnya"
+
+msgid "Link"
+msgstr "Link"
+
+msgid "Mail"
+msgstr "Surat"
+
+msgid "Site"
+msgstr "Lokasi"
+
+msgid "View Company Details"
+msgstr "Lihat detail perusahaan"
+
+msgid "Completed"
+msgstr "Selesai"
+
+msgid "Categoty"
+msgstr "Kategori"
+
+msgid "tell a friend"
+msgstr "Beri tahu teman"
+
+msgid "Tell friend"
+msgstr "Beri tahu teman"
+
+msgid "Know someone perfect for this job? Share it with them!"
+msgstr "Tahu seseorang yang sempurna untuk pekerjaan ini? Bagikan dengan mereka!"
+
+msgid "Your name"
+msgstr "Nama Anda"
+
+msgid "Your email"
+msgstr "Email Anda"
+
+msgid "Show the"
+msgstr "Tunjukkan"
+
+msgid "form to logged-in users on the job detail page. If this is on,"
+msgstr "Formulir untuk masuk pengguna di halaman detail pekerjaan. Jika ini aktif,"
+
+msgid "will be turned off."
+msgstr "akan dimatikan."
+
+msgid "form to visitor on the job detail page. If this is on,"
+msgstr "Formulir untuk pengunjung di halaman detail pekerjaan. Jika ini aktif,"
+
+msgid "You do not have any save serch remaining"
+msgstr "Anda tidak memiliki sisa Simpan Serch"
+
+msgid "We would love to hear from You."
+msgstr "Kami ingin mendengar dari Anda."

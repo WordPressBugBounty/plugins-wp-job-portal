@@ -19,11 +19,24 @@
 						if (isset($data->name) && $config_array['comp_name'] == 1) {
 					 		echo esc_html(wpjobportal::wpjobportal_getVariableValue($data->name));
 			            }// to show tag line when company name is hidden from configuration
-			            if(isset(wpjobportal::$_data[2]) && isset(wpjobportal::$_data[2]['tagline']) && wpjobportal::$_data[2]['tagline'] != '' ){
+			            if(isset(wpjobportal::$_data[2]) && isset(wpjobportal::$_data[2]['tagline']) && wpjobportal::$_data[2]['tagline'] != '' && !empty($data->tagline) ){
 					 		echo '<span class="wjportal-company-salogon">
 			  							-'.esc_html($data->tagline).'
 			                	</span>';
 		                }
+		                if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()){
+			                $curdate = date_i18n('Y-m-d');
+			                $featuredexpiry = date_i18n('Y-m-d', strtotime($data->endfeatureddate));
+			    			if ($data->isfeaturedcompany == 1 && $featuredexpiry >= $curdate) { ?>
+		    					<span class="wjportal-elegant-addon-featured-company">
+									<img class="wjportal-elegant-addon-filter-search-field-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL) . '/includes/images/featured.png';?> " title="<?php echo esc_html(__('Featured', 'wp-job-portal'));?>"  alt="<?php echo esc_html(__('Featured', 'wp-job-portal')) ;?>" />
+		    						<?php
+									do_action('wpjobportal_addons_lable_comp_feature', $data);
+									echo __('Featured', 'wp-job-portal') ?>
+								</span>
+								<?php
+							}
+						}
 			        break;
 					case 'mycompany':
 				 		echo esc_html(__('My Companies', 'wp-job-portal'));
@@ -42,7 +55,21 @@
 					 	echo esc_html(__('Job Applied Resume', 'wp-job-portal'));
 					break;
 					case 'jobdetail':
-						echo esc_html(wpjobportal::wpjobportal_getVariableValue($jobtitle));
+						if (!WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()) { 
+							echo esc_html(wpjobportal::wpjobportal_getVariableValue($jobtitle));
+						} else {
+							echo esc_html(wpjobportal::wpjobportal_getVariableValue($job->title));
+							$curdate = date_i18n('Y-m-d');
+							$featuredexpiry = date_i18n('Y-m-d', strtotime($job->endfeatureddate));
+							if ($job->isfeaturedjob == 1 && $featuredexpiry >= $curdate &&WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()) { 
+								?>
+								<span class="wjportal-elegant-addon-featured-job">
+									<img class="wjportal-elegant-addon-filter-search-field-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL) . '/includes/images/featured.png';?> " title="<?php echo esc_html(__('Featured', 'wp-job-portal'));?>"  alt="<?php echo esc_html(__('Featured', 'wp-job-portal')) ;?>" />
+								<?php echo __('Featured', 'wp-job-portal');?>
+								</span>
+								<?php
+							}
+						}
 					break;
 					case 'myapplied':
 						echo esc_html(__('My Applied Jobs','wp-job-portal'));
@@ -131,6 +158,18 @@
 						break;
 					case 'viewresume':
 						echo esc_html(wpjobportal::wpjobportal_getVariableValue($name));
+						if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()){
+			                $dateformat = wpjobportal::$_configuration['date_format'];
+			                $curdate = date_i18n('Y-m-d');
+			                $featuredexpiry = date_i18n('Y-m-d', strtotime(wpjobportal::$_data[0]['personal_section']->endfeatureddate));
+			                if (wpjobportal::$_data[0]['personal_section']->isfeaturedresume == 1 && $featuredexpiry >= $curdate) {
+			                    $featuredflag = false;
+			                    echo '<span class="wjportal-elegant-addon-featured-resume">';
+			                    do_action('wpjobportal_addons_feature_resume_lable',wpjobportal::$_data[0]['personal_section']);
+			                    echo __('Featured', 'wp-job-portal');
+			                    echo '</span>';
+			                }
+						}
 						break;
 					case 'myresume':
 						echo esc_html(wpjobportal::wpjobportal_getVariableValue($msg));
@@ -203,6 +242,8 @@
 				}
 			echo '</div>';
 		}
-		WPJOBPORTALbreadcrumbs::getBreadcrumbs();
+		if(!WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()){
+			WPJOBPORTALbreadcrumbs::getBreadcrumbs();
+		}
 	}
 ?>

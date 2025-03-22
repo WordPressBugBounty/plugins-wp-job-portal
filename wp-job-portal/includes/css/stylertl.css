@@ -333,6 +333,10 @@ div.wjportal-folder-list div.wjportal-folder-action-wrp {text-align: left;float:
 **********************/
 div.wjportal-folderdetail-wrapper {text-align: right;}
 
+/* apply jobs */
+.wjportal-view-job-page-wrapper .wjportal-view-job-page-job-info-wraper.wjportal-view-job-page-job-info-wraper-with-apply-form .wjportal-company-job-applyfrm-leftwrp{float: right;}
+.wjportal-view-job-page-wrapper .wjportal-view-job-page-job-info-wraper .wjportal-view-job-page-job-apply-form-wraper{float: right;}
+
 
 /* responsive */
 @media (max-width: 782px) {

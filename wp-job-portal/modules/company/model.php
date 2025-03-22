@@ -177,7 +177,7 @@ class WPJOBPORTALCompanyModel {
         wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($total,'mycompany');
         //Data
         $query = "SELECT company.id,company.name,company.logofilename,CONCAT(company.alias,'-',company.id) AS aliasid,company.created,company.serverid,company.city,company.status,company.isfeaturedcompany
-                 ,company.endfeatureddate,company.params,company.url
+                 ,company.endfeatureddate,company.params,company.url,company.description,company.contactemail
                 FROM " . wpjobportal::$_db->prefix . "wj_portal_companies AS company
                 WHERE company.uid = " . esc_sql($uid);
         $query .= $inquery;
@@ -1556,6 +1556,10 @@ class WPJOBPORTALCompanyModel {
                     $userpackages[] = $package;
                 }
             }
+            $addonclass = '';
+            if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()){
+                $addonclass = ' wjportal-elegant-addon-packages-popup ';
+            }
             if (wpjobportal::$theme_chk == 1) {
                 $content = '
                 <div id="wpj-jp-popup-background" style="display: none;"></div>
@@ -1626,7 +1630,7 @@ class WPJOBPORTALCompanyModel {
             } else {
             $content = '
             <div id="wjportal-popup-background" style="display: none;"></div>
-            <div id="package-popup" class="wjportal-popup-wrp wjportal-packages-popup">
+            <div id="package-popup" class="wjportal-popup-wrp wjportal-packages-popup '.$addonclass.'">
                 <div class="wjportal-popup-cnt">
                     <img id="wjportal-popup-close-btn" alt="popup cross" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/popup-close.png">
                     <div class="wjportal-popup-title">
@@ -1785,7 +1789,7 @@ class WPJOBPORTALCompanyModel {
             }
             //Data
             $query = "SELECT company.id,company.name,company.logofilename,CONCAT(company.alias,'-',company.id) AS aliasid,company.created,company.serverid,company.city,company.status,company.isfeaturedcompany
-                     ,company.endfeatureddate,company.params,company.url
+                     ,company.endfeatureddate,company.params,company.url,company.contactemail
                     FROM " . wpjobportal::$_db->prefix . "wj_portal_companies AS company
                     WHERE company.status = 1 ";
             $query .= $inquery;

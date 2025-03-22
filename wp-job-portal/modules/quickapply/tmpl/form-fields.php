@@ -11,6 +11,12 @@ $fields = wpjobportal::$_wpjpfieldordering->getFieldsOrderingforForm(5);
 $formfields = array();
 
 foreach($fields AS $field){
+    // If the Elegant Design feature is enabled, set the field placeholder to the field title if it's empty.
+    if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()){
+        if (empty($field->placeholder)) {
+            $field->placeholder = $field->fieldtitle;
+        }
+    }
 	$content = '';
     switch ($field->field){
         case 'full_name':

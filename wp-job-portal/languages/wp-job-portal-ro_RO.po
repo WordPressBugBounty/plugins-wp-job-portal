@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 
 msgid "Delete"
 msgstr "Șterge"
@@ -9331,3 +9331,948 @@ msgstr "Departamentul meu"
 
 msgid "Add To ShortList"
 msgstr "Adăugați la lista scurtă"
+
+msgid "or"
+msgstr "sau"
+
+msgid "company logo"
+msgstr "logo -ul companiei"
+
+msgid "job title"
+msgstr "denumirea funcției"
+
+msgid "company name"
+msgstr "Numele companiei"
+
+msgid "Resume Has Been Feature SuccesFully"
+msgstr "CV -ul a fost prezentat cu succes"
+
+msgid "My coverletter"
+msgstr "Scrisoarea mea de întâmpinare"
+
+msgid "Add coverletter"
+msgstr "Adăugați scrisoarea de întâmpinare"
+
+msgid "Total Cover Letter"
+msgstr "Scrisoare de întâmpinare totală"
+
+msgid "Remaining Cover Letter"
+msgstr "Scrisoarea de întâmpinare rămasă"
+
+msgid "Open ChatGPT"
+msgstr "Deschide chatgpt"
+
+msgid "How To Add Cover Letter With ChatGPT"
+msgstr "Cum se adaugă scrisoare de întâmpinare cu chatgpt"
+
+msgid "Edit coverletter"
+msgstr "Editați scrisoarea de întâmpinare"
+
+msgid "Edit Cover Letter"
+msgstr "Editați scrisoarea de întâmpinare"
+
+msgid "Delete coverletter"
+msgstr "Ștergeți scrisoarea de întâmpinare"
+
+msgid "coverletter title"
+msgstr "Titlul scrisorii de întâmpinare"
+
+msgid "Add New Cover Letter"
+msgstr "Adăugați o nouă scrisoare de întâmpinare"
+
+msgid "Quote from Hello Dolly song, by Jerry Herman:"
+msgstr "Citat din melodia Hello Dolly, de Jerry Herman:"
+
+msgid "Select Parent"
+msgstr "Selectați părinte"
+
+msgid "Edit Field"
+msgstr "Editați câmp"
+
+msgid "Visitor published"
+msgstr "Vizitator publicat"
+
+msgid "Show On Listing"
+msgstr "Afișați pe listare"
+
+msgid "Advanced"
+msgstr "Avansat"
+
+msgid "Equal"
+msgstr "Egal"
+
+msgid "Not Equal"
+msgstr "Nu este egal"
+
+msgid "Multi Select"
+msgstr "Multi select"
+
+msgid "Visible"
+msgstr "Vizibil"
+
+msgid "Select Child"
+msgstr "Selectați copil"
+
+msgid "Select Condition"
+msgstr "Selectați condiție"
+
+msgid "To use this feature please fill the above three fields."
+msgstr "Pentru a utiliza această caracteristică, vă rugăm să completați cele trei câmpuri de mai sus."
+
+msgid "No response found"
+msgstr "Nu a fost găsit niciun răspuns"
+
+msgid "Quick Apply"
+msgstr "Aplicați rapid"
+
+msgid "user publish"
+msgstr "Publicarea utilizatorului"
+
+msgid "User Unpublished"
+msgstr "Utilizator nepublicat"
+
+msgid "visitor publish"
+msgstr "Publicarea vizitatorilor"
+
+msgid "visitor unpublish"
+msgstr "vizitator nepublicat"
+
+msgid "Select user status"
+msgstr "Selectați starea utilizatorului"
+
+msgid "Un published"
+msgstr "Publicat ONU"
+
+msgid "File upload fields and text editor fields cannot be made required."
+msgstr "Câmpurile de încărcare a fișierelor și câmpurile editorului de text nu pot fi necesare."
+
+msgid "Dependent Field"
+msgstr "Câmp dependent"
+
+msgid "Job Apply settings"
+msgstr "Job Aplică setări"
+
+msgid "Quick Apply settings"
+msgstr "Aplicați rapid setările"
+
+msgid "Show count in jobs by cities page"
+msgstr "Afișează numărul de locuri de muncă pe pagina orașelor"
+
+msgid "Show country in jobs by cities page"
+msgstr "Afișați țara în locuri de muncă pe orașe"
+
+msgid "Profile Section"
+msgstr "Secțiune de profil"
+
+msgid "Recaptcha Version 2"
+msgstr "Recaptcha versiunea 2"
+
+msgid "Recaptcha Version 3"
+msgstr "Recaptcha versiunea 3"
+
+msgid "System slug"
+msgstr "SLUG DE SISTEM"
+
+msgid "Image file size"
+msgstr "Dimensiunea fișierului imaginii"
+
+msgid "System will not upload if image size is greater than the given size"
+msgstr "Sistemul nu se va încărca dacă dimensiunea imaginii este mai mare decât dimensiunea dată"
+
+msgid "Show page title above wpjobportal breadcrumbs"
+msgstr "Afișați titlul paginii deasupra WPJobPortal Pendcrubs"
+
+msgid "Default Image For WP Job Portal"
+msgstr "Imagine implicită pentru portalul de joburi WP"
+
+msgid "This image will shown as default image for entities & users if no other image is provided."
+msgstr "Această imagine va fi prezentată ca imagine implicită pentru entități și utilizatori, dacă nu este furnizată nicio altă imagine."
+
+msgid "Default country"
+msgstr "Țară implicită"
+
+msgid "Select default country for user added cities"
+msgstr "Selectați țara implicită pentru orașele adăugate de utilizator"
+
+msgid "Job detail URL options are title, company, category, location, jobtype. eg- [title] [company]"
+msgstr "Opțiunile URL de detaliu de locuri de muncă sunt titlul, compania, categoria, locația, jobType. de exemplu, [titlu] [companie]"
+
+msgid "Select the Google reCaptcha Version"
+msgstr "Selectați versiunea Google Recaptcha"
+
+msgid "Recent Resumes Box"
+msgstr "Celk -uri recente"
+
+msgid "mode"
+msgstr "Mod"
+
+msgid "expire"
+msgstr "expira"
+
+msgid "Registration is disabled in WordPress settings, please enable to Membership: anyone can register."
+msgstr "Înregistrarea este dezactivată în setările WordPress, vă rugăm să activați calitatea de membru: oricine se poate înregistra."
+
+msgid "Quick Apply Now"
+msgstr "Aplicați rapid acum"
+
+msgid "Enable Quick Apply for user"
+msgstr "Activați aplicarea rapidă pentru utilizator"
+
+msgid "Enable Quick Apply for visitor"
+msgstr "Activați să aplicați rapid pentru vizitator"
+
+msgid "Enable captcha for visitor Quick Apply"
+msgstr "Activați CAPTCHA pentru vizitatorul pentru vizitatori"
+
+msgid "Show captcha to visitor on quick apply form."
+msgstr "Afișați Captcha vizitatorului pe formularul de aplicare rapidă."
+
+msgid "Add ons for WP Job Portal have been installed and activated successfully. "
+msgstr "Adăugați ONS pentru portalul de joburi WP au fost instalate și activate cu succes."
+
+msgid "WP Job Portal is an open-source job board plugin for WordPress that provides advanced features to help you create a successful job board. In addition, we offer trusted WP Job Portal add-ons that can further enhance your job board's functionality in a fast, safe, and easy manner. Our add-ons have been designed to integrate seamlessly with our job board plugin, ensuring you can expand your job board's capabilities without any complications."
+msgstr "WP Job Portal este un plugin de bord de lucru open-source pentru WordPress care oferă funcții avansate pentru a vă ajuta să creați o placă de lucru de succes. În plus, oferim suplimente de încredere a portalului WP WP care pot îmbunătăți în continuare funcționalitatea consiliului de muncă într-un mod rapid, sigur și ușor. Adăugările noastre au fost proiectate pentru a se integra perfect cu pluginul nostru de bord, asigurându-vă că puteți extinde capacitățile tabloului de muncă fără complicații."
+
+msgid "Savings*"
+msgstr "Economii*"
+
+msgid "Best Deal"
+msgstr "Cea mai bună ofertă"
+
+msgid "Shortlist Job"
+msgstr "Lista scurtă de muncă"
+
+msgid "e.g 45000"
+msgstr "de exemplu, 45000"
+
+msgid "e.g 3000"
+msgstr "de exemplu 3000"
+
+msgid "e.g 6000"
+msgstr "de exemplu, 6000"
+
+msgid "Deactivated"
+msgstr "Dezactivat"
+
+msgid "Not Installed"
+msgstr "Nu este instalat"
+
+msgid "Addon Installed Successfully"
+msgstr "Addon instalat cu succes"
+
+msgid "Addon installation failed"
+msgstr "Instalarea Addon a eșuat"
+
+msgid "Resume Data Management"
+msgstr "Reluați gestionarea datelor"
+
+msgid "Export (csv)"
+msgstr "Export (CSV)"
+
+msgid "Configuration Based Tutorials"
+msgstr "Tutoriale bazate pe configurare"
+
+msgid "Slugs"
+msgstr "Slugs"
+
+msgid "Theme Installation"
+msgstr "Instalarea temei"
+
+msgid "WP Job Portal Theme  Installation"
+msgstr "Instalarea temei WP Portal Job"
+
+msgid "System Management"
+msgstr "Gestionarea sistemului"
+
+msgid "Activity Log and System Errors"
+msgstr "Jurnal de activități și erori de sistem"
+
+msgid "Shortcode"
+msgstr "Shortcode"
+
+msgid "Job Seeker Control Panel"
+msgstr "Panoul de control al căutătorului de locuri de muncă"
+
+msgid "A shortcode designed for jobseeker, providing an easy-to-use controlpanel to manage applications, resume, and preferences directly from their dashboard."
+msgstr "Un cod scurt proiectat pentru funcția de jocuri de muncă, care oferă un control de control ușor de utilizat pentru a gestiona aplicațiile, CV-ul și preferințele direct din tabloul de bord."
+
+msgid "Base Shortcode"
+msgstr "Codul scurt de bază"
+
+msgid "Shortcode With All Options"
+msgstr "Shortcode cu toate opțiunile"
+
+msgid " The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "Panoul de control al angajatorilor este o interfață simplificată care permite angajatorilor să gestioneze postările de locuri de muncă, să urmărească aplicațiile, să comunice cu candidații și să analizeze eficient valorile de angajare."
+
+msgid "The job search shortcode enables users to easily find job listings based on various criteria."
+msgstr "Codul scurt de căutare de locuri de muncă permite utilizatorilor să găsească cu ușurință listări de locuri de muncă pe baza diferitelor criterii."
+
+msgid "The jobs shortcode is a feature that displays individual job listings on a website."
+msgstr "Codul scurt pentru locuri de muncă este o caracteristică care afișează înregistrări individuale de locuri de muncă pe un site web."
+
+msgid "The featured job shortcode highlights select job listings on a website, making them stand out to potential applicants."
+msgstr "Codul scurt de lucru prezentat evidențiază listele de locuri de muncă selectate pe un site web, ceea ce le face să iasă în evidență potențialilor solicitanți."
+
+msgid "This Shortcode requires WP Job Portal Featured Jobs Addon"
+msgstr "Acest scurt cod necesită WP Portal de locuri de muncă prezentat Addon"
+
+msgid "Get Addon"
+msgstr "Obțineți addon"
+
+msgid "Job Categories"
+msgstr "Categorii de locuri de muncă"
+
+msgid "The job categories shortcode displays a dynamic list of available categories, enabling users to easily navigate and find relevant job listings."
+msgstr "Codul scurt pentru categorii de locuri de muncă afișează o listă dinamică de categorii disponibile, permițând utilizatorilor să navigheze cu ușurință și să găsească listări de locuri de muncă relevante."
+
+msgid "The job types shortcode presents a comprehensive list of available job types, allowing users to quickly explore and find suitable job opportunities."
+msgstr "Tipurile de locuri de muncă Shortcode prezintă o listă cuprinzătoare de tipuri de locuri de muncă disponibile, permițând utilizatorilor să exploreze rapid și să găsească oportunități de muncă adecvate."
+
+msgid "My applied jobs shortcode provides users with a personalized list of their job applications, allowing easy access to track application status and details."
+msgstr "Codul scurt pentru joburi aplicate oferă utilizatorilor o listă personalizată a aplicațiilor lor de locuri de muncă, permițând accesul ușor la urmărirea stării și detaliilor aplicației."
+
+msgid "My companies shortcode displays a personalized list of companies users are associated with, facilitating easy access to company information and opportunities."
+msgstr "Codul scurt al companiilor mele afișează o listă personalizată de companii care sunt asociați, facilitând accesul ușor la informațiile și oportunitățile companiei."
+
+msgid "All companies shortcode offers a curated directory of all companies, allowing users to easily browse and connect with potential employers."
+msgstr "Toate companiile Shortcode oferă un director curat al tuturor companiilor, permițând utilizatorilor să răsfoiască și să se conecteze cu ușurință cu potențialii angajatori."
+
+msgid "This Shortcode requires WP Job Portal All Companies Addon"
+msgstr "Acest scurt cod necesită portalul de locuri de muncă WP toate companiile addon"
+
+msgid "The featured companies shortcode showcases prominent companies within the portal, allowing users to explore exciting job opportunities from industry leaders."
+msgstr "Companiile prezentate Shortcode prezintă companii proeminente din portal, permițând utilizatorilor să exploreze oportunități de muncă interesante de la liderii industriei."
+
+msgid "This Shortcode requires WP Job Portal Featured Companies Addon"
+msgstr "Acest scurt cod necesită companii prezentate de joburi WP Addon"
+
+msgid "My jobs shortcode allows users to view and manage their saved job listings, making it easy to keep track of potential opportunities."
+msgstr "Codul scurt de locuri de muncă permite utilizatorilor să vizualizeze și să -și gestioneze listările de locuri de muncă salvate, ceea ce face ușor să țină evidența oportunităților potențiale."
+
+msgid "My resume shortcode allows users to view and manage their uploaded resumes, providing a convenient way to keep their job application materials up to date."
+msgstr "Codul scurt de CV -ul meu permite utilizatorilor să vizualizeze și să gestioneze CV -urile încărcate, oferind o modalitate convenabilă de a -și menține materialele de aplicație de muncă la zi."
+
+msgid "All Resumes"
+msgstr "Toate CV -urile"
+
+msgid "All resumes shortcode allows job seekers to view and manage their uploaded resumes, ensuring they have easy access to their application materials."
+msgstr "Toate CV -urile scurte ale CV -urilor permit solicitanților de locuri de muncă să -și vadă și să -și gestioneze CV -urile încărcate, asigurându -se că au acces facil la materialele lor de aplicație."
+
+msgid "This Shortcode requires WP Job Portal All Resumes Addon"
+msgstr "Acest scurt cod necesită portalul de locuri de muncă WP toate reluează addon"
+
+msgid "The featured resumes shortcode showcases a selection of standout resumes, allowing job seekers to stand out to potential employers."
+msgstr "Codul scurt, CV -urile prezentate prezintă o selecție de CV -uri deosebite, permițând solicitanților de locuri de muncă să iasă în evidență potențialilor angajatori."
+
+msgid "This Shortcode requires WP Job Portal Featured Resumes Addon"
+msgstr "Acest scurt cod necesită WP Portal de locuri de muncă prezentat Celturile addon"
+
+msgid "Add company shortcode allows employers to effortlessly register their organization, providing essential details to attract talent and post job openings."
+msgstr "Adăugați codul scurt al companiei permite angajatorilor să își înregistreze fără efort organizația, oferind detalii esențiale pentru a atrage talente și deschideri de posturi."
+
+msgid "Add department shortcode enables employers to easily create and manage specific departments within their organization, facilitating better job categorization and organization."
+msgstr "Adăugați codul scurt de departament permite angajatorilor să creeze și să gestioneze cu ușurință departamente specifice în cadrul organizației lor, facilitând o mai bună clasificare și organizare a locurilor de muncă."
+
+msgid "This Shortcode requires WP Job Portal Multi Departments Addon"
+msgstr "Acest scurt cod necesită WP Job Portal multipartamente addon"
+
+msgid "Add jobs enables organizations to effortlessly publish job postings, helping them connect with potential applicants and fill vacancies more effectively."
+msgstr "Adăugați locuri de muncă permite organizațiilor să publice fără efort postări de locuri de muncă, ajutându -le să se conecteze cu potențiali solicitanți și să completeze posturile vacante mai eficient."
+
+msgid "Add resume shortcode simplifies the process for candidates to submit their resumes, helping them showcase their qualifications and experiences to potential employers."
+msgstr "Adăugați codul scurt CV simplifică procesul pentru candidații să -și prezinte CV -urile, ajutându -i să își prezinte calificările și experiențele potențialilor angajatori."
+
+msgid "Resume search shortcode provides a powerful search tool for employers to explore candidate profiles, making it easier to connect with potential hires."
+msgstr "Codul scurt de căutare a CV -ului oferă un instrument de căutare puternic pentru angajatori pentru a explora profilurile candidaților, ceea ce face mai ușor conectarea cu potențiale angajări."
+
+msgid "This Shortcode requires WP Job Portal Resume Search Addon"
+msgstr "Acest scurt cod necesită WP Portal de joburi de reluare Addon"
+
+msgid "Registration"
+msgstr "Înregistrare"
+
+msgid "Registration shortcode allows individuals to easily create accounts as their selected role"
+msgstr "Codul scurt de înregistrare permite persoanelor fizice să creeze cu ușurință conturi ca rol selectat"
+
+msgid "Employer registration shortcode streamlines the process for organizations to register, ensuring they can efficiently manage job postings and their company profiles."
+msgstr "Codul scurt de înregistrare a angajatorilor simplifică procesul de înregistrare a organizațiilor, asigurându -se că pot gestiona eficient postările de locuri de muncă și profilurile companiei lor."
+
+msgid "Job Seeker Registration"
+msgstr "Înregistrarea căutătorului de locuri de muncă"
+
+msgid "Job seeker registration shortcode allows individuals to easily create accounts, enabling them to apply for jobs and manage their resumes."
+msgstr "Codul scurt de înregistrare a căutătorului de locuri de muncă permite persoanelor fizice să creeze cu ușurință conturi, permițându -le să solicite locuri de muncă și să își gestioneze CV -urile."
+
+msgid "Login Page"
+msgstr "Pagina de autentificare"
+
+msgid "Login page shortcode offers a user-friendly interface for candidates and employers to securely log in and manage their profiles and postings."
+msgstr "Codul de scurtă durată al paginii de conectare oferă o interfață ușor de utilizat pentru candidați și angajatori să se conecteze și să-și gestioneze în siguranță profilurile și postările."
+
+msgid "Widget"
+msgstr "Widget"
+
+msgid "Search job widget provides an intuitive interface for candidates to filter and browse openings, connecting them with opportunities that align with their skills."
+msgstr "Widget de căutare Job oferă o interfață intuitivă pentru candidații să filtreze și să răsfoiască deschiderile, conectându -le cu oportunități care se aliniază abilităților lor."
+
+msgid "This Shortcode requires WP Job Portal Front-end Widgets Addon"
+msgstr "Acest scurt cod necesită widget-end widget-uri portal de joburi WP"
+
+msgid "My packages offers a personalized dashboard for users to monitor their subscription details, helping them manage job postings and access features effectively."
+msgstr "Pachetele mele oferă un tablou de bord personalizat pentru utilizatori pentru a -și monitoriza detaliile abonamentului, ajutându -i să gestioneze în mod eficient înregistrările de locuri de muncă și să acceseze funcțiile."
+
+msgid "This Shortcode requires WP Job Portal Credits Addon"
+msgstr "Acest scurt cod necesită credite pentru portalul de lucru WP"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans.  "
+msgstr "Abonamentul meu oferă utilizatorilor o imagine de ansamblu a abonamentelor lor active, permițând gestionarea ușoară și urmărirea planurilor lor de postare a locurilor de muncă."
+
+msgid "All packages showcases a comprehensive list of available subscription plans, allowing users to compare features and select the best options for their job posting needs."
+msgstr "Toate pachetele prezintă o listă cuprinzătoare de planuri de abonament disponibile, permițând utilizatorilor să compare funcțiile și să selecteze cele mai bune opțiuni pentru nevoile lor de postare a locurilor de muncă."
+
+msgid "My invoices provides a convenient way for users to view and manage their invoices, helping them stay organized and up to date with their payments."
+msgstr "Facturile mele oferă o modalitate convenabilă pentru utilizatori de a -și vizualiza și gestiona facturile, ajutându -i să rămână organizați și la zi cu plățile lor."
+
+msgid "SEO"
+msgstr "SEO"
+
+msgid "Document Title Settings"
+msgstr "Setările titlului documentului"
+
+msgid "Company detail url options are name, location. eg- [name] [location]"
+msgstr "Opțiunile URL de detalii ale companiei sunt nume, locație. de exemplu, [nume] [locație]"
+
+msgid "spinning wheel"
+msgstr "roată rotativă"
+
+msgid "New Update Version"
+msgstr "Noua versiune de actualizare"
+
+msgid "is Available"
+msgstr "este disponibil"
+
+msgid "Hey there! We have recently launched a fresh update for the add-ons. Don't forget to update the add-ons to enjoy the greatest features!"
+msgstr "Hei acolo! Am lansat recent o nouă actualizare pentru suplimente. Nu uitați să actualizați suplimentele pentru a vă bucura de cele mai mari caracteristici!"
+
+msgid "View Addone Status"
+msgstr "Vizualizați starea addone"
+
+msgid "Active Companies"
+msgstr "Companii active"
+
+msgid "Help Page"
+msgstr "Pagina de ajutor"
+
+msgid "Watch Tutorial"
+msgstr "Urmăriți tutorialul"
+
+msgid "video"
+msgstr "video"
+
+msgid "Apply Now Failed"
+msgstr "Aplicați acum a eșuat"
+
+msgid "You do not have package required for job apply"
+msgstr "Nu aveți un pachet necesar pentru aplicarea postului"
+
+msgid "You package has expired"
+msgstr "Pachetul dvs. a expirat"
+
+msgid "You do not any more job apply available"
+msgstr "Nu mai aplicați la dispoziție"
+
+msgid "Job Not Found"
+msgstr "Job nu a fost găsit"
+
+msgid "Job does not exist in the system"
+msgstr "Locul de muncă nu există în sistem"
+
+msgid "Make Payment To Complete The Job Apply"
+msgstr "Efectuați plata pentru a finaliza lucrarea Aplicați"
+
+msgid "Successfully applied on job"
+msgstr "Aplicat cu succes pe job"
+
+msgid "view coverletter"
+msgstr "Vizualizați scrisoarea de întâmpinare"
+
+msgid "Please Fill out fields"
+msgstr "Vă rugăm să completați câmpurile"
+
+msgid "sender email is not of correct format"
+msgstr "E -mailul expeditorului nu are un format corect"
+
+msgid "Erase Selected Country"
+msgstr "Ștergeți țara selectată"
+
+msgid "Erase All Data"
+msgstr "Ștergeți toate datele"
+
+msgid "Click on package to select one"
+msgstr "Faceți clic pe pachet pentru a selecta unul"
+
+msgid "Apply to the Job"
+msgstr "Aplicați la job"
+
+msgid "No Cover Letter!"
+msgstr "Fără scrisoare de întâmpinare!"
+
+msgid "Add Cover Lettter"
+msgstr "Adăugați scrisoarea de întâmpinare"
+
+msgid "You have already applied on this job."
+msgstr "Ați aplicat deja la această lucrare."
+
+msgid "Unlimited job applies"
+msgstr "Se aplică un loc de muncă nelimitat"
+
+msgid "Job applies remaining"
+msgstr "Jobul se aplică"
+
+msgid "Buy package to apply on job."
+msgstr "Cumpărați pachet pentru a aplica la job."
+
+msgid "Apply With Package"
+msgstr "Aplicați cu pachet"
+
+msgid "Payment of"
+msgstr "Plata"
+
+msgid "is required to complete the job apply process"
+msgstr "este necesar pentru a finaliza procesul de aplicare a jobului"
+
+msgid "You are logged in as employer."
+msgstr "Sunteți conectat ca angajator."
+
+msgid "You are not a logged in member."
+msgstr "Nu sunteți conectat la membru."
+
+msgid "You do not have any role."
+msgstr "Nu aveți niciun rol."
+
+msgid "Proceed to payment"
+msgstr "Continuați la plată"
+
+msgid "Views"
+msgstr "Vizualizări"
+
+msgid "Save As Draft"
+msgstr "Salvați ca proiect"
+
+msgid "Job Has Been Feature SuccesFully"
+msgstr "Meseria a fost prezentată cu succes"
+
+msgid "You are Not Allowed To Add More than One"
+msgstr "Nu aveți voie să adăugați mai multe"
+
+msgid "Contact TO Adminstrator"
+msgstr "Contact pentru administrator"
+
+msgid "This Is Meta Description"
+msgstr "Aceasta este meta descriere"
+
+msgid "jobs by cities"
+msgstr "locuri de muncă pe orașe"
+
+msgid "Show Info"
+msgstr "Afișați informații"
+
+msgid "Changing a user's role will not remove its entites from the system !"
+msgstr "Schimbarea rolului unui utilizator nu va elimina atacurile sale din sistem!"
+
+msgid "company reject"
+msgstr "Compania respinge"
+
+msgid "all reject"
+msgstr "toate resping"
+
+msgid "Missing user(s) added successfully!"
+msgstr "Utilizatorii care lipsesc adăugați cu succes!"
+
+msgid "No missing user found!"
+msgstr "Nu a fost găsit niciun utilizator lipsă!"
+
+msgid "Jobs Listing Menu"
+msgstr "Meniu de listare a lucrărilor"
+
+msgid "Visitor"
+msgstr "Vizitator"
+
+msgid "new message alert"
+msgstr "Alertă de mesaje noi"
+
+msgid "New Message Alert"
+msgstr "Alertă de mesaje noi"
+
+msgid "Recipient Name"
+msgstr "Numele destinatarului"
+
+msgid "Sender Name"
+msgstr "Numele expeditorului"
+
+msgid "Sender Role"
+msgstr "Rolul expeditorului"
+
+msgid "Message Text"
+msgstr "Text mesaj"
+
+msgid "Job/Resume Info"
+msgstr "Informații despre job/CV"
+
+msgid "Upload Resume"
+msgstr "Încărcați CV -ul"
+
+msgid "Profile Status"
+msgstr "Starea profilului"
+
+msgid "Profile Completed"
+msgstr "Profil finalizat"
+
+msgid "feature approve"
+msgstr "Funcția aprobă"
+
+msgid "feature reject"
+msgstr "Respingerea caracteristicilor"
+
+msgid "Type city"
+msgstr "Tip oraș"
+
+msgid "New Message"
+msgstr "Mesaj nou"
+
+msgid "Employer is disabled by admin"
+msgstr "Angajatorul este dezactivat de admin"
+
+msgid "You are not allowed to add more than one"
+msgstr "Nu aveți voie să adăugați mai multe"
+
+msgid "contact adminstrator"
+msgstr "Administratorul de contact"
+
+msgid "Payment is not made against this job contact adminstrator"
+msgstr "Plata nu se face împotriva acestui administrator de contact"
+
+msgid "Addon Page Not Found"
+msgstr "Pagina addon nu a fost găsită"
+
+msgid "User Role"
+msgstr "Rolul utilizatorului"
+
+msgid "Jobs Role"
+msgstr "Rol de locuri de muncă"
+
+msgid "User has been successfully created"
+msgstr "Utilizatorul a fost creat cu succes"
+
+msgid "Pay For Department"
+msgstr "Plătiți pentru departament"
+
+msgid "Pay For Job Apply"
+msgstr "Plătiți pentru job Aplicați"
+
+msgid "Pay For Company"
+msgstr "Plătește pentru companie"
+
+msgid "Pay For Featured Company"
+msgstr "Plătiți pentru companie prezentată"
+
+msgid "Pay For Job"
+msgstr "Plătește pentru job"
+
+msgid "Pay For Featured Job"
+msgstr "Plătiți pentru jobul prezentat"
+
+msgid "Pay For Resume Search"
+msgstr "Plătiți pentru căutare CV"
+
+msgid "Pay For Resume "
+msgstr "Plătește pentru CV"
+
+msgid "Pay For Featured Resume "
+msgstr "Plătiți pentru CV -ul prezentat"
+
+msgid "Job Saved Searches"
+msgstr "Căutări salvate de joburi"
+
+msgid "Job Apply Configurations"
+msgstr "Configurații de aplicare a joburilor"
+
+msgid "Quick Apply Fields"
+msgstr "Aplicați rapid câmpuri"
+
+msgid "addons status"
+msgstr "Stare addons"
+
+msgid "coverletters"
+msgstr "Scrisori de întâmpinare"
+
+msgid "coverletter"
+msgstr "Scrisoare de întâmpinare"
+
+msgid "add new cover letter"
+msgstr "Adăugați o nouă scrisoare de întâmpinare"
+
+msgid "Loaction Name settings"
+msgstr "Setări nume de locație"
+
+msgid "Loaction Name Settings"
+msgstr "Setări nume de locație"
+
+msgid "shifts"
+msgstr "Schimbări"
+
+msgid "ages"
+msgstr "vârste"
+
+msgid "Error file size too large"
+msgstr "Dimensiunea fișierului de eroare prea mare"
+
+msgid "Maximum Size"
+msgstr "Dimensiunea maximă"
+
+msgid "is in use"
+msgstr "este în uz"
+
+msgid "can not deleted it"
+msgstr "nu o poate șterge"
+
+msgid "Address data"
+msgstr "Date de adresă"
+
+msgid "themes"
+msgstr "Teme"
+
+msgid "Color Schemes"
+msgstr "Scheme de culori"
+
+msgid "Color Chooser"
+msgstr "Alegetor de culoare"
+
+msgid "Color 1"
+msgstr "Culoare 1"
+
+msgid "Color 2"
+msgstr "Culoare 2"
+
+msgid "Color 3"
+msgstr "Culoare 3"
+
+msgid "Add User Fields"
+msgstr "Adăugați câmpuri de utilizator"
+
+msgid "cannot unpublished"
+msgstr "nu poate fi nepublicat"
+
+msgid "Search Name"
+msgstr "Numele căutării"
+
+msgid "start"
+msgstr "început"
+
+msgid "Total Resume Search"
+msgstr "Căutare totală a CV -ului"
+
+msgid "Remaining Resume Search"
+msgstr "Rămânerea de căutare a CV -ului"
+
+msgid "Reference"
+msgstr "Referinţă"
+
+msgid "cancel payment"
+msgstr "Anulați plata"
+
+msgid "Apply now"
+msgstr "Aplicați acum"
+
+msgid " Listing"
+msgstr "Listare"
+
+msgid "Credits log"
+msgstr "Jurnal de credite"
+
+msgid "Rate list"
+msgstr "Lista de tarife"
+
+msgid "Purchase history"
+msgstr "Istoric de cumpărare"
+
+msgid " remaining"
+msgstr "rămas"
+
+msgid "Cover Letter has been successfully published"
+msgstr "Scrisoarea de întâmpinare a fost publicată cu succes"
+
+msgid "cover Letter has been successfully published"
+msgstr "Scrisoarea de întâmpinare a fost publicată cu succes"
+
+msgid "Resume files download"
+msgstr "Reluați fișierele de descărcare"
+
+msgid "apply with facebook"
+msgstr "Aplicați cu Facebook"
+
+msgid "apply with linkedin"
+msgstr "Aplicați cu LinkedIn"
+
+msgid "apply with xing"
+msgstr "Aplicați cu Xing"
+
+msgid "Resume removed from featured"
+msgstr "Reluarea eliminată din prezentată"
+
+msgid "share blog"
+msgstr "Partajează blogul"
+
+msgid "share digg"
+msgstr "împărtășește digg"
+
+msgid "share fb"
+msgstr "Distribuie fb"
+
+msgid "share ff"
+msgstr "Distribuie ff"
+
+msgid "share google"
+msgstr "Partajează Google"
+
+msgid "share linkedin"
+msgstr "Partajează LinkedIn"
+
+msgid "share myspace"
+msgstr "Partajează MySpace"
+
+msgid "share twitter"
+msgstr "Partajează Twitter"
+
+msgid "share yahoo"
+msgstr "împărtășește yahoo"
+
+msgid "Mark As Shortlist Job"
+msgstr "Marca ca job de lista scurtă"
+
+msgid "Keep this job on your list! Mark it as shortlisted and find it easily whenever you need."
+msgstr "Păstrați acest loc de muncă pe lista dvs.! Marcați -l ca listat și găsiți -l cu ușurință ori de câte ori aveți nevoie."
+
+msgid "Search job title, company name, keywords"
+msgstr "Căutați titlul postului, numele companiei, cuvinte cheie"
+
+msgid "Loction"
+msgstr "Locare"
+
+msgid "Applied Resume Title"
+msgstr "Titlul CV -ului aplicat"
+
+msgid "Arrow"
+msgstr "Săgeată"
+
+msgid "Already Applied"
+msgstr "Deja aplicat"
+
+msgid "Ready to take the next step? Simply fill out the form and submit your application. It only takes a few minutes!"
+msgstr "Sunteți gata să faceți următorul pas? Pur și simplu completați formularul și trimiteți cererea. Durează doar câteva minute!"
+
+msgid "Waiting for Payment"
+msgstr "În așteptarea plății"
+
+msgid "Salery"
+msgstr "Salery"
+
+msgid "Buy"
+msgstr "Cumpăra"
+
+msgid "Employer can add companies and jobs while searching for potential candidate to hire"
+msgstr "Angajatorul poate adăuga companii și locuri de muncă în timp ce caută potențial candidat pentru a angaja"
+
+msgid "Selected"
+msgstr "Selectat"
+
+msgid "Jobseeker can add resume, cover letters, search jobs and apply to multiple jobs easily"
+msgstr "Outiarul de locuri de muncă poate adăuga CV, scrisori de întâmpinare, căutare de locuri de muncă și se poate aplica cu ușurință la mai multe locuri de muncă"
+
+msgid "Hello, again!..."
+msgstr "Bună, din nou! ..."
+
+msgid "View All Applied Jobs"
+msgstr "Vizualizați toate lucrările aplicate"
+
+msgid "View All Newest Jobs"
+msgstr "Vizualizați toate cele mai noi locuri de muncă"
+
+msgid "Hello, again!…"
+msgstr "Bună ziua, din nou! ..."
+
+msgid "Submit job"
+msgstr "Depune post"
+
+msgid "Submit Job"
+msgstr "Depune post"
+
+msgid "View detail"
+msgstr "Vizualizați detalii"
+
+msgid "Recently Applied Resume"
+msgstr "CV -ul aplicat recent"
+
+msgid "Messages By Resume"
+msgstr "Mesaje prin CV"
+
+msgid "Reply"
+msgstr "Răspuns"
+
+msgid "View jobs"
+msgstr "Vizualizați joburile"
+
+msgid "Other Info"
+msgstr "Alte informații"
+
+msgid "Link"
+msgstr "Legătură"
+
+msgid "Mail"
+msgstr "E -mail"
+
+msgid "Site"
+msgstr "Site"
+
+msgid "View Company Details"
+msgstr "Vizualizați detaliile companiei"
+
+msgid "Completed"
+msgstr "Completat"
+
+msgid "Categoty"
+msgstr "Categorie"
+
+msgid "tell a friend"
+msgstr "Spune -i unui prieten"
+
+msgid "Tell friend"
+msgstr "Spune -i prietenului"
+
+msgid "Know someone perfect for this job? Share it with them!"
+msgstr "Cunoașteți pe cineva perfect pentru acest job? Împărtășește -l cu ei!"
+
+msgid "Your name"
+msgstr "Numele dumneavoastră"
+
+msgid "Your email"
+msgstr "E -mailul tău"
+
+msgid "Show the"
+msgstr "Arată"
+
+msgid "form to logged-in users on the job detail page. If this is on,"
+msgstr "Formular pentru utilizatorii conectați pe pagina de detaliu al jobului. Dacă acest lucru este pornit,"
+
+msgid "will be turned off."
+msgstr "va fi oprit."
+
+msgid "form to visitor on the job detail page. If this is on,"
+msgstr "Formular pentru vizitator pe pagina detaliilor postului. Dacă acest lucru este pornit,"
+
+msgid "You do not have any save serch remaining"
+msgstr "Nu mai aveți niciun șerci de salvare rămase"
+
+msgid "We would love to hear from You."
+msgstr "Ne -ar plăcea să auzim de la tine."

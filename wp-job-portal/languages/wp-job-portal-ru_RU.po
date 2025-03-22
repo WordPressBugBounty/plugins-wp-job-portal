@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 
 msgid "Delete"
 msgstr "удалять"
@@ -9328,3 +9328,948 @@ msgstr "Мой отдел"
 
 msgid "Add To ShortList"
 msgstr "Добавить в короткий список"
+
+msgid "or"
+msgstr "или"
+
+msgid "company logo"
+msgstr "Логотип компании"
+
+msgid "job title"
+msgstr "должность"
+
+msgid "company name"
+msgstr "Название компании"
+
+msgid "Resume Has Been Feature SuccesFully"
+msgstr "Резюме было успешно показано"
+
+msgid "My coverletter"
+msgstr "Мое сопроводительное письмо"
+
+msgid "Add coverletter"
+msgstr "Добавить сопроводительное письмо"
+
+msgid "Total Cover Letter"
+msgstr "Общее сопроводительное письмо"
+
+msgid "Remaining Cover Letter"
+msgstr "Остальное сопроводительное письмо"
+
+msgid "Open ChatGPT"
+msgstr "Открыть чатт"
+
+msgid "How To Add Cover Letter With ChatGPT"
+msgstr "Как добавить сопроводительное письмо с Chatgpt"
+
+msgid "Edit coverletter"
+msgstr "Редактировать сопроводительное письмо"
+
+msgid "Edit Cover Letter"
+msgstr "Редактировать сопроводительное письмо"
+
+msgid "Delete coverletter"
+msgstr "Удалить сопроводительное письмо"
+
+msgid "coverletter title"
+msgstr "Титул сопроводительного письма"
+
+msgid "Add New Cover Letter"
+msgstr "Добавить новое сопроводительное письмо"
+
+msgid "Quote from Hello Dolly song, by Jerry Herman:"
+msgstr "Цитата от песни Hello Dolly, Джерри Херман:"
+
+msgid "Select Parent"
+msgstr "Выберите родитель"
+
+msgid "Edit Field"
+msgstr "Редактировать поле"
+
+msgid "Visitor published"
+msgstr "Посетитель опубликован"
+
+msgid "Show On Listing"
+msgstr "Показать в списке"
+
+msgid "Advanced"
+msgstr "Передовой"
+
+msgid "Equal"
+msgstr "Равный"
+
+msgid "Not Equal"
+msgstr "Не равен"
+
+msgid "Multi Select"
+msgstr "Multi Select"
+
+msgid "Visible"
+msgstr "Видимый"
+
+msgid "Select Child"
+msgstr "Выберите ребенка"
+
+msgid "Select Condition"
+msgstr "Выберите условие"
+
+msgid "To use this feature please fill the above three fields."
+msgstr "Чтобы использовать эту функцию, заполните вышеуказанные три поля."
+
+msgid "No response found"
+msgstr "Ответ не найден"
+
+msgid "Quick Apply"
+msgstr "Быстрое применение"
+
+msgid "user publish"
+msgstr "Пользователь публикуется"
+
+msgid "User Unpublished"
+msgstr "Пользователь не опубликован"
+
+msgid "visitor publish"
+msgstr "Посетитель Publish"
+
+msgid "visitor unpublish"
+msgstr "Посетитель неопубликовался"
+
+msgid "Select user status"
+msgstr "Выберите статус пользователя"
+
+msgid "Un published"
+msgstr "ООН опубликовано"
+
+msgid "File upload fields and text editor fields cannot be made required."
+msgstr "Поля загрузки файлов и поля текстового редактора не могут быть сделаны."
+
+msgid "Dependent Field"
+msgstr "Зависимое поле"
+
+msgid "Job Apply settings"
+msgstr "Задача применения настройки"
+
+msgid "Quick Apply settings"
+msgstr "Быстрое применение настройки"
+
+msgid "Show count in jobs by cities page"
+msgstr "Покажите счет на странице рабочих мест по городам"
+
+msgid "Show country in jobs by cities page"
+msgstr "Показать страну на странице рабочих мест по городам"
+
+msgid "Profile Section"
+msgstr "Раздел профиля"
+
+msgid "Recaptcha Version 2"
+msgstr "Recaptcha версия 2"
+
+msgid "Recaptcha Version 3"
+msgstr "Recaptcha версия 3"
+
+msgid "System slug"
+msgstr "Системная слизняк"
+
+msgid "Image file size"
+msgstr "Размер файла изображения"
+
+msgid "System will not upload if image size is greater than the given size"
+msgstr "Система не загрузится, если размер изображения больше, чем заданный размер"
+
+msgid "Show page title above wpjobportal breadcrumbs"
+msgstr "Название страницы показана выше"
+
+msgid "Default Image For WP Job Portal"
+msgstr "Изображение по умолчанию для портала заданий WP"
+
+msgid "This image will shown as default image for entities & users if no other image is provided."
+msgstr "Это изображение будет отображаться как изображение по умолчанию для объектов и пользователей, если не будет предоставлено другое изображение."
+
+msgid "Default country"
+msgstr "Страна по умолчанию"
+
+msgid "Select default country for user added cities"
+msgstr "Выберите страну по умолчанию для городов с добавленными пользователями"
+
+msgid "Job detail URL options are title, company, category, location, jobtype. eg- [title] [company]"
+msgstr "Подробные варианты работы URL - это название, компания, категория, местоположение, Jobtype. например, [название] [Компания]"
+
+msgid "Select the Google reCaptcha Version"
+msgstr "Выберите версию Google Recaptcha"
+
+msgid "Recent Resumes Box"
+msgstr "Недавние резюме коробки"
+
+msgid "mode"
+msgstr "режим"
+
+msgid "expire"
+msgstr "истекает"
+
+msgid "Registration is disabled in WordPress settings, please enable to Membership: anyone can register."
+msgstr "Регистрация отключена в настройках WordPress, пожалуйста, включите членство: любой может зарегистрироваться."
+
+msgid "Quick Apply Now"
+msgstr "Быстро применить сейчас"
+
+msgid "Enable Quick Apply for user"
+msgstr "Включить быстрое применение для пользователя"
+
+msgid "Enable Quick Apply for visitor"
+msgstr "Включить быстрое подать заявку на посетителя"
+
+msgid "Enable captcha for visitor Quick Apply"
+msgstr "Включить Captcha для посетителя быстрое применение"
+
+msgid "Show captcha to visitor on quick apply form."
+msgstr "Покажите Captcha посетителю в форме быстрого применения."
+
+msgid "Add ons for WP Job Portal have been installed and activated successfully. "
+msgstr "Добавить ONS для WP Work Portal был успешно установлен и активирован."
+
+msgid "WP Job Portal is an open-source job board plugin for WordPress that provides advanced features to help you create a successful job board. In addition, we offer trusted WP Job Portal add-ons that can further enhance your job board's functionality in a fast, safe, and easy manner. Our add-ons have been designed to integrate seamlessly with our job board plugin, ensuring you can expand your job board's capabilities without any complications."
+msgstr "WP Work Portal-это плагин с открытым исходным кодом для WordPress, который предоставляет расширенные функции, которые помогут вам создать успешную доску работы. Кроме того, мы предлагаем доверенные дополнения портала вакансий WP, которые могут дополнительно улучшить функциональность вашей доски о вакансиях быстро, безопасно и просто. Наши надстройки были разработаны для беспрепятственной интеграции с нашим плагином доски о вакансиях, гарантируя, что вы можете расширить возможности своей доски для работы без каких-либо осложнений."
+
+msgid "Savings*"
+msgstr "Экономия*"
+
+msgid "Best Deal"
+msgstr "Лучшая сделка"
+
+msgid "Shortlist Job"
+msgstr "Работа в шорт -листе"
+
+msgid "e.g 45000"
+msgstr "например, 45000"
+
+msgid "e.g 3000"
+msgstr "например, 3000"
+
+msgid "e.g 6000"
+msgstr "например, 6000"
+
+msgid "Deactivated"
+msgstr "Деактивирован"
+
+msgid "Not Installed"
+msgstr "Не установлен"
+
+msgid "Addon Installed Successfully"
+msgstr "Аддон установил успешно"
+
+msgid "Addon installation failed"
+msgstr "Установка аддона не удалась"
+
+msgid "Resume Data Management"
+msgstr "Резюме управление данными"
+
+msgid "Export (csv)"
+msgstr "Экспорт (CSV)"
+
+msgid "Configuration Based Tutorials"
+msgstr "Учебные пособия на основе конфигурации"
+
+msgid "Slugs"
+msgstr "Слизняки"
+
+msgid "Theme Installation"
+msgstr "Установка темы"
+
+msgid "WP Job Portal Theme  Installation"
+msgstr "Установка темы вакансий WP"
+
+msgid "System Management"
+msgstr "Управление системой"
+
+msgid "Activity Log and System Errors"
+msgstr "Журнал деятельности и системные ошибки"
+
+msgid "Shortcode"
+msgstr "Шорткод"
+
+msgid "Job Seeker Control Panel"
+msgstr "Панель управления и соискателя"
+
+msgid "A shortcode designed for jobseeker, providing an easy-to-use controlpanel to manage applications, resume, and preferences directly from their dashboard."
+msgstr "Шорткод, предназначенный для соискателя, предоставляющий простую в использовании ControlPanel для управления приложениями, резюме и предпочтений непосредственно с их панели панели."
+
+msgid "Base Shortcode"
+msgstr "Базовый шорткод"
+
+msgid "Shortcode With All Options"
+msgstr "Шорткод со всеми параметрами"
+
+msgid " The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "Панель управления работодателем - это оптимизированный интерфейс, который позволяет работодателям управлять публикациями, отслеживать приложения, общаться с кандидатами и эффективно анализировать показатели найма."
+
+msgid "The job search shortcode enables users to easily find job listings based on various criteria."
+msgstr "Шорткод поиска работы позволяет пользователям легко находить списки заданий на основе различных критериев."
+
+msgid "The jobs shortcode is a feature that displays individual job listings on a website."
+msgstr "Шорткод заданий - это функция, которая отображает отдельные списки заданий на веб -сайте."
+
+msgid "The featured job shortcode highlights select job listings on a website, making them stand out to potential applicants."
+msgstr "Шорткод избранных заданий подчеркивает выберите списки заданий на веб -сайте, что выделяет их потенциальным кандидатам."
+
+msgid "This Shortcode requires WP Job Portal Featured Jobs Addon"
+msgstr "Этот короткометражный код требует WP Work Portal, представленного Addon Jobs Addon"
+
+msgid "Get Addon"
+msgstr "Получить аддон"
+
+msgid "Job Categories"
+msgstr "Категории вакансий"
+
+msgid "The job categories shortcode displays a dynamic list of available categories, enabling users to easily navigate and find relevant job listings."
+msgstr "Шорткод категорий заданий отображает динамический список доступных категорий, позволяя пользователям легко ориентироваться и найти соответствующие списки заданий."
+
+msgid "The job types shortcode presents a comprehensive list of available job types, allowing users to quickly explore and find suitable job opportunities."
+msgstr "Шорткод типов заданий представляет собой комплексный список доступных типов заданий, позволяющий пользователям быстро изучать и найти подходящие возможности для трудоустройства."
+
+msgid "My applied jobs shortcode provides users with a personalized list of their job applications, allowing easy access to track application status and details."
+msgstr "My Applied Jobs Shortcode предоставляет пользователям персонализированный список своих приложений для работы, что позволяет легкий доступ к состоянию и деталям отслеживать статус приложения."
+
+msgid "My companies shortcode displays a personalized list of companies users are associated with, facilitating easy access to company information and opportunities."
+msgstr "Мои компании Shortcode отображает персональный список компаний, с которыми сталкиваются пользователи, способствуя легкому доступу к информации и возможностям компании."
+
+msgid "All companies shortcode offers a curated directory of all companies, allowing users to easily browse and connect with potential employers."
+msgstr "Все компании компании предлагают кураторский каталог всех компаний, позволяя пользователям легко просматривать и общаться с потенциальными работодателями."
+
+msgid "This Shortcode requires WP Job Portal All Companies Addon"
+msgstr "Этот шорткод требует портала WP All Companies addon"
+
+msgid "The featured companies shortcode showcases prominent companies within the portal, allowing users to explore exciting job opportunities from industry leaders."
+msgstr "Шорткод из популярных компаний демонстрирует выдающиеся компании в портале, что позволяет пользователям изучать захватывающие возможности трудоустройства со стороны лидеров отрасли."
+
+msgid "This Shortcode requires WP Job Portal Featured Companies Addon"
+msgstr "Этот шорткод требует WP Work Portal, представленные компаниями Addon"
+
+msgid "My jobs shortcode allows users to view and manage their saved job listings, making it easy to keep track of potential opportunities."
+msgstr "Мой шорткод работы позволяет пользователям просматривать и управлять своими сохраненными списками заданий, что позволяет легко отслеживать потенциальные возможности."
+
+msgid "My resume shortcode allows users to view and manage their uploaded resumes, providing a convenient way to keep their job application materials up to date."
+msgstr "Мой шорт -код резюме позволяет пользователям просматривать и управлять загруженными резюмом, предоставляя удобный способ поддерживать их материалы для применения работы."
+
+msgid "All Resumes"
+msgstr "Все резюме"
+
+msgid "All resumes shortcode allows job seekers to view and manage their uploaded resumes, ensuring they have easy access to their application materials."
+msgstr "Все шорткод Resumes позволяет соискателям просматривать и управлять своими загруженными резюме, гарантируя, что они имеют легкий доступ к своим материалам для приложений."
+
+msgid "This Shortcode requires WP Job Portal All Resumes Addon"
+msgstr "Этот короткометражный код требует портала WP All Resumes Addon"
+
+msgid "The featured resumes shortcode showcases a selection of standout resumes, allowing job seekers to stand out to potential employers."
+msgstr "Шорткод избранного резюме демонстрирует выбор выдающихся резюме, что позволяет соискателям выделяться потенциальным работодателям."
+
+msgid "This Shortcode requires WP Job Portal Featured Resumes Addon"
+msgstr "Этот шорткод требует WP Work Portal, представленного Resumes Addon"
+
+msgid "Add company shortcode allows employers to effortlessly register their organization, providing essential details to attract talent and post job openings."
+msgstr "Добавить Shortcode Company позволяет работодателям без особых усилий регистрировать свою организацию, предоставляя важные детали для привлечения талантов и открытия работы."
+
+msgid "Add department shortcode enables employers to easily create and manage specific departments within their organization, facilitating better job categorization and organization."
+msgstr "Добавить шорткод департамента позволяет работодателям легко создавать и управлять конкретными отделениями в своей организации, способствуя лучшей категоризации и организации."
+
+msgid "This Shortcode requires WP Job Portal Multi Departments Addon"
+msgstr "Этот шорт -код требует портала WP Multi Devirets Addon"
+
+msgid "Add jobs enables organizations to effortlessly publish job postings, helping them connect with potential applicants and fill vacancies more effectively."
+msgstr "Добавить рабочие места позволяет организациям без особых усилий публиковать сообщения о работе, помогая им общаться с потенциальными кандидатами и более эффективно заполнять вакансии."
+
+msgid "Add resume shortcode simplifies the process for candidates to submit their resumes, helping them showcase their qualifications and experiences to potential employers."
+msgstr "Добавить резюме шорткода упрощает процесс для кандидатов, чтобы представить свои резюме, помогая им продемонстрировать свои квалификации и опыт потенциальным работодателям."
+
+msgid "Resume search shortcode provides a powerful search tool for employers to explore candidate profiles, making it easier to connect with potential hires."
+msgstr "Шорткод резюме поиска предоставляет мощный инструмент поиска для работодателей для изучения профилей кандидатов, что облегчает подключение к потенциальным сотрудникам."
+
+msgid "This Shortcode requires WP Job Portal Resume Search Addon"
+msgstr "Этот шорткод требует портала WP Portal Resume Addon"
+
+msgid "Registration"
+msgstr "Регистрация"
+
+msgid "Registration shortcode allows individuals to easily create accounts as their selected role"
+msgstr "Регистрационный шорткод позволяет людям легко создавать учетные записи в качестве выбранной роли"
+
+msgid "Employer registration shortcode streamlines the process for organizations to register, ensuring they can efficiently manage job postings and their company profiles."
+msgstr "Шорткод регистрации работодателя оптимизирует процесс для регистрации организаций, обеспечивая эффективное управление публикациями работы и профилями своих компаний."
+
+msgid "Job Seeker Registration"
+msgstr "Регистрация и соискателя"
+
+msgid "Job seeker registration shortcode allows individuals to easily create accounts, enabling them to apply for jobs and manage their resumes."
+msgstr "Шорткод регистрации и соискателя позволяет людям легко создавать учетные записи, позволяя им подать заявку на работу и управлять своими резюмом."
+
+msgid "Login Page"
+msgstr "Страница входа в систему"
+
+msgid "Login page shortcode offers a user-friendly interface for candidates and employers to securely log in and manage their profiles and postings."
+msgstr "Шорткод страницы входа предлагает удобный интерфейс для кандидатов и работодателей, чтобы надежно войти в систему и управлять своими профилями и публикациями."
+
+msgid "Widget"
+msgstr "Виджет"
+
+msgid "Search job widget provides an intuitive interface for candidates to filter and browse openings, connecting them with opportunities that align with their skills."
+msgstr "Виджет работы поиска предоставляет интуитивно понятный интерфейс для кандидатов для фильтрации и просмотра отверстий, связывая их с возможностями, которые соответствуют их навыкам."
+
+msgid "This Shortcode requires WP Job Portal Front-end Widgets Addon"
+msgstr "Этот шорткод требует аддона передового портального портала WP"
+
+msgid "My packages offers a personalized dashboard for users to monitor their subscription details, helping them manage job postings and access features effectively."
+msgstr "My Packages предлагает персонализированную панель инструментов для пользователей для мониторинга своей подписки, помогая им эффективно управлять публикациями и функциями доступа."
+
+msgid "This Shortcode requires WP Job Portal Credits Addon"
+msgstr "Этот шорткод требует wp job wormtrits retrits addon"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans.  "
+msgstr "Моя подписка предоставляет пользователям обзор их активных подписок, позволяя легко управлять и отслеживать свои планы размещения работы."
+
+msgid "All packages showcases a comprehensive list of available subscription plans, allowing users to compare features and select the best options for their job posting needs."
+msgstr "Все пакеты демонстрируют комплексный список доступных планов подписки, позволяя пользователям сравнивать функции и выбирать лучшие варианты для их потребностей в размещении работы."
+
+msgid "My invoices provides a convenient way for users to view and manage their invoices, helping them stay organized and up to date with their payments."
+msgstr "Мои счета предоставляют пользователям удобный способ просмотреть и управлять своими счетами, помогая им оставаться организованными и в курсе своих платежей."
+
+msgid "SEO"
+msgstr "Сео"
+
+msgid "Document Title Settings"
+msgstr "Настройки заголовка документа"
+
+msgid "Company detail url options are name, location. eg- [name] [location]"
+msgstr "Подробные варианты URL -адресов компании - это название, местоположение. Например, [имя] [место]"
+
+msgid "spinning wheel"
+msgstr "вращающее колесо"
+
+msgid "New Update Version"
+msgstr "Новая версия обновления"
+
+msgid "is Available"
+msgstr "доступен"
+
+msgid "Hey there! We have recently launched a fresh update for the add-ons. Don't forget to update the add-ons to enjoy the greatest features!"
+msgstr "Привет! Недавно мы запустили новое обновление для надстройки. Не забудьте обновить дополнения, чтобы насладиться лучшими функциями!"
+
+msgid "View Addone Status"
+msgstr "Просмотреть статус добавления"
+
+msgid "Active Companies"
+msgstr "Активные компании"
+
+msgid "Help Page"
+msgstr "Справочная страница"
+
+msgid "Watch Tutorial"
+msgstr "Смотреть учебник"
+
+msgid "video"
+msgstr "видео"
+
+msgid "Apply Now Failed"
+msgstr "Подать заявку сейчас не удалось"
+
+msgid "You do not have package required for job apply"
+msgstr "У вас нет пакета, необходимого для подачи работы"
+
+msgid "You package has expired"
+msgstr "Вы истек срок"
+
+msgid "You do not any more job apply available"
+msgstr "Вы больше не имеете применения работы"
+
+msgid "Job Not Found"
+msgstr "Работа не найдена"
+
+msgid "Job does not exist in the system"
+msgstr "Работа не существует в системе"
+
+msgid "Make Payment To Complete The Job Apply"
+msgstr "Сделайте оплату, чтобы заполнить работу."
+
+msgid "Successfully applied on job"
+msgstr "Успешно подал заявку на работу"
+
+msgid "view coverletter"
+msgstr "Посмотреть сопроводительное письмо"
+
+msgid "Please Fill out fields"
+msgstr "Пожалуйста, заполните поля"
+
+msgid "sender email is not of correct format"
+msgstr "Электронная почта отправителя не имеет правильного формата"
+
+msgid "Erase Selected Country"
+msgstr "Стереть отобранную страну"
+
+msgid "Erase All Data"
+msgstr "Стереть все данные"
+
+msgid "Click on package to select one"
+msgstr "Нажмите на пакет, чтобы выбрать один"
+
+msgid "Apply to the Job"
+msgstr "Подать заявку на работу"
+
+msgid "No Cover Letter!"
+msgstr "Нет сопроводительного письма!"
+
+msgid "Add Cover Lettter"
+msgstr "Добавить сопроводительное письмо"
+
+msgid "You have already applied on this job."
+msgstr "Вы уже подали заявку на эту работу."
+
+msgid "Unlimited job applies"
+msgstr "Неограниченная работа применяется"
+
+msgid "Job applies remaining"
+msgstr "Работа применяет оставшиеся"
+
+msgid "Buy package to apply on job."
+msgstr "Купить пакет, чтобы подать заявку на работу."
+
+msgid "Apply With Package"
+msgstr "Применить с пакетом"
+
+msgid "Payment of"
+msgstr "Выплата"
+
+msgid "is required to complete the job apply process"
+msgstr "требуется для завершения процесса применения работы"
+
+msgid "You are logged in as employer."
+msgstr "Вы вошли в систему как работодатель."
+
+msgid "You are not a logged in member."
+msgstr "Вы не зарегистрированы в члене."
+
+msgid "You do not have any role."
+msgstr "У вас нет никакой роли."
+
+msgid "Proceed to payment"
+msgstr "Перейти к оплате"
+
+msgid "Views"
+msgstr "Виды"
+
+msgid "Save As Draft"
+msgstr "Сохранить как черновик"
+
+msgid "Job Has Been Feature SuccesFully"
+msgstr "Работа была успешно показана"
+
+msgid "You are Not Allowed To Add More than One"
+msgstr "Вам не разрешено добавлять более одного"
+
+msgid "Contact TO Adminstrator"
+msgstr "Контакт с администратором"
+
+msgid "This Is Meta Description"
+msgstr "Это мета -описание"
+
+msgid "jobs by cities"
+msgstr "Работа по городам"
+
+msgid "Show Info"
+msgstr "Показать информацию"
+
+msgid "Changing a user's role will not remove its entites from the system !"
+msgstr "Изменение роли пользователя не удаляет его Entisers из системы!"
+
+msgid "company reject"
+msgstr "Компания отвергает"
+
+msgid "all reject"
+msgstr "все отвергнут"
+
+msgid "Missing user(s) added successfully!"
+msgstr "Успешно добавлены пользователи (ы)!"
+
+msgid "No missing user found!"
+msgstr "Нет пропущенного пользователя!"
+
+msgid "Jobs Listing Menu"
+msgstr "РАБОТА МЕНЮ СПИСОК"
+
+msgid "Visitor"
+msgstr "Посетитель"
+
+msgid "new message alert"
+msgstr "Новое предупреждение о сообщении"
+
+msgid "New Message Alert"
+msgstr "Новое предупреждение о сообщении"
+
+msgid "Recipient Name"
+msgstr "Имя получателя"
+
+msgid "Sender Name"
+msgstr "Имя отправителя"
+
+msgid "Sender Role"
+msgstr "Роль отправителя"
+
+msgid "Message Text"
+msgstr "Текст сообщения"
+
+msgid "Job/Resume Info"
+msgstr "Информация о работе/резюме"
+
+msgid "Upload Resume"
+msgstr "Загрузите резюме"
+
+msgid "Profile Status"
+msgstr "Статус профиля"
+
+msgid "Profile Completed"
+msgstr "Профиль завершен"
+
+msgid "feature approve"
+msgstr "функция одобрения"
+
+msgid "feature reject"
+msgstr "функция отклонить"
+
+msgid "Type city"
+msgstr "Тип города"
+
+msgid "New Message"
+msgstr "Новое сообщение"
+
+msgid "Employer is disabled by admin"
+msgstr "Работодатель отключен администратором"
+
+msgid "You are not allowed to add more than one"
+msgstr "Вам не разрешено добавлять более одного"
+
+msgid "contact adminstrator"
+msgstr "Свяжитесь с администратором"
+
+msgid "Payment is not made against this job contact adminstrator"
+msgstr "Оплата не произведена против этой работы, контактной администраторы"
+
+msgid "Addon Page Not Found"
+msgstr "Страница аддона не найдена"
+
+msgid "User Role"
+msgstr "Роль пользователя"
+
+msgid "Jobs Role"
+msgstr "Роль рабочих мест"
+
+msgid "User has been successfully created"
+msgstr "Пользователь был успешно создан"
+
+msgid "Pay For Department"
+msgstr "Оплата за отдел"
+
+msgid "Pay For Job Apply"
+msgstr "Оплата за работу подать заявку"
+
+msgid "Pay For Company"
+msgstr "Оплатить компанию"
+
+msgid "Pay For Featured Company"
+msgstr "Платить за фиксированную компанию"
+
+msgid "Pay For Job"
+msgstr "Заплатить за работу"
+
+msgid "Pay For Featured Job"
+msgstr "Платить за представленную работу"
+
+msgid "Pay For Resume Search"
+msgstr "Оплата за поиск резюме"
+
+msgid "Pay For Resume "
+msgstr "Заплатить за резюме"
+
+msgid "Pay For Featured Resume "
+msgstr "Заплатить за избранное резюме"
+
+msgid "Job Saved Searches"
+msgstr "Задача сохранена поиски"
+
+msgid "Job Apply Configurations"
+msgstr "Задача применить конфигурации"
+
+msgid "Quick Apply Fields"
+msgstr "Быстрое применение полей"
+
+msgid "addons status"
+msgstr "Статус аддонов"
+
+msgid "coverletters"
+msgstr "сопроводительные письма"
+
+msgid "coverletter"
+msgstr "Сопроводительное письмо"
+
+msgid "add new cover letter"
+msgstr "Добавить новое сопроводительное письмо"
+
+msgid "Loaction Name settings"
+msgstr "Настройки имени местоположения"
+
+msgid "Loaction Name Settings"
+msgstr "Настройки имени местоположения"
+
+msgid "shifts"
+msgstr "смены"
+
+msgid "ages"
+msgstr "возраст"
+
+msgid "Error file size too large"
+msgstr "Размер файла ошибки слишком большой"
+
+msgid "Maximum Size"
+msgstr "Максимальный размер"
+
+msgid "is in use"
+msgstr "используется"
+
+msgid "can not deleted it"
+msgstr "не могу удалить это"
+
+msgid "Address data"
+msgstr "Адресные данные"
+
+msgid "themes"
+msgstr "темы"
+
+msgid "Color Schemes"
+msgstr "Цветовые схемы"
+
+msgid "Color Chooser"
+msgstr "Выбор цвета"
+
+msgid "Color 1"
+msgstr "Цвет 1"
+
+msgid "Color 2"
+msgstr "Цвет 2"
+
+msgid "Color 3"
+msgstr "Цвет 3"
+
+msgid "Add User Fields"
+msgstr "Добавьте пользовательские поля"
+
+msgid "cannot unpublished"
+msgstr "не может неопубликоваться"
+
+msgid "Search Name"
+msgstr "Имя поиска"
+
+msgid "start"
+msgstr "начинать"
+
+msgid "Total Resume Search"
+msgstr "Поиск общего резюме"
+
+msgid "Remaining Resume Search"
+msgstr "Оставшийся резюме поиск"
+
+msgid "Reference"
+msgstr "Ссылка"
+
+msgid "cancel payment"
+msgstr "Отменить оплату"
+
+msgid "Apply now"
+msgstr "Применить сейчас"
+
+msgid " Listing"
+msgstr "Список"
+
+msgid "Credits log"
+msgstr "Журнал кредитов"
+
+msgid "Rate list"
+msgstr "Список ставок"
+
+msgid "Purchase history"
+msgstr "История покупки"
+
+msgid " remaining"
+msgstr "оставшийся"
+
+msgid "Cover Letter has been successfully published"
+msgstr "Сопроводительное письмо было успешно опубликовано"
+
+msgid "cover Letter has been successfully published"
+msgstr "Сопроводительное письмо было успешно опубликовано"
+
+msgid "Resume files download"
+msgstr "Резюме файлы скачать"
+
+msgid "apply with facebook"
+msgstr "Подать заявку на Facebook"
+
+msgid "apply with linkedin"
+msgstr "Применить с LinkedIn"
+
+msgid "apply with xing"
+msgstr "применить с Син"
+
+msgid "Resume removed from featured"
+msgstr "Резюме удалено из избранных"
+
+msgid "share blog"
+msgstr "поделиться блогом"
+
+msgid "share digg"
+msgstr "Поделиться Digg"
+
+msgid "share fb"
+msgstr "Поделиться фб"
+
+msgid "share ff"
+msgstr "Поделиться ff"
+
+msgid "share google"
+msgstr "Поделиться Google"
+
+msgid "share linkedin"
+msgstr "Поделиться LinkedIn"
+
+msgid "share myspace"
+msgstr "Поделиться myspace"
+
+msgid "share twitter"
+msgstr "Поделиться Twitter"
+
+msgid "share yahoo"
+msgstr "Поделиться Yahoo"
+
+msgid "Mark As Shortlist Job"
+msgstr "Марк как работа в шорт -листе"
+
+msgid "Keep this job on your list! Mark it as shortlisted and find it easily whenever you need."
+msgstr "Держите эту работу в своем списке! Отметьте его как шорт -лист и найдите его легко, когда вам нужно."
+
+msgid "Search job title, company name, keywords"
+msgstr "Поиск названия работы, название компании, ключевые слова"
+
+msgid "Loction"
+msgstr "Мест"
+
+msgid "Applied Resume Title"
+msgstr "Применил заголовок резюме"
+
+msgid "Arrow"
+msgstr "Стрелка"
+
+msgid "Already Applied"
+msgstr "Уже применяется"
+
+msgid "Ready to take the next step? Simply fill out the form and submit your application. It only takes a few minutes!"
+msgstr "Готовы сделать следующий шаг? Просто заполните форму и подайте заявление. Это занимает всего несколько минут!"
+
+msgid "Waiting for Payment"
+msgstr "В ожидании оплаты"
+
+msgid "Salery"
+msgstr "Салери"
+
+msgid "Buy"
+msgstr "Купить"
+
+msgid "Employer can add companies and jobs while searching for potential candidate to hire"
+msgstr "Работодатель может добавлять компании и рабочие места при поиске потенциального кандидата на найм"
+
+msgid "Selected"
+msgstr "Выбран"
+
+msgid "Jobseeker can add resume, cover letters, search jobs and apply to multiple jobs easily"
+msgstr "Shipeeker может легко добавить резюме, сопроводительные письма, поиск и обработать на несколько заданий."
+
+msgid "Hello, again!..."
+msgstr "Привет, снова! ..."
+
+msgid "View All Applied Jobs"
+msgstr "Просмотреть все прикладные рабочие места"
+
+msgid "View All Newest Jobs"
+msgstr "Посмотреть все новейшие рабочие места"
+
+msgid "Hello, again!…"
+msgstr "Привет, снова!…"
+
+msgid "Submit job"
+msgstr "Отправить работу"
+
+msgid "Submit Job"
+msgstr "Отправить работу"
+
+msgid "View detail"
+msgstr "Просмотреть детали"
+
+msgid "Recently Applied Resume"
+msgstr "Недавно применил резюме"
+
+msgid "Messages By Resume"
+msgstr "Сообщения по резюме"
+
+msgid "Reply"
+msgstr "Отвечать"
+
+msgid "View jobs"
+msgstr "Посмотреть работы"
+
+msgid "Other Info"
+msgstr "Другая информация"
+
+msgid "Link"
+msgstr "Связь"
+
+msgid "Mail"
+msgstr "Почта"
+
+msgid "Site"
+msgstr "Сайт"
+
+msgid "View Company Details"
+msgstr "Просмотреть детали компании"
+
+msgid "Completed"
+msgstr "Завершенный"
+
+msgid "Categoty"
+msgstr "Категория"
+
+msgid "tell a friend"
+msgstr "Расскажи другу"
+
+msgid "Tell friend"
+msgstr "Расскажи другу"
+
+msgid "Know someone perfect for this job? Share it with them!"
+msgstr "Знаете кого -нибудь, идеально подходящего для этой работы? Поделитесь с ними!"
+
+msgid "Your name"
+msgstr "Ваше имя"
+
+msgid "Your email"
+msgstr "Ваша электронная почта"
+
+msgid "Show the"
+msgstr "Показывать"
+
+msgid "form to logged-in users on the job detail page. If this is on,"
+msgstr "Форма для регистрации пользователей на странице деталей работы. Если это включено,"
+
+msgid "will be turned off."
+msgstr "будет отключен."
+
+msgid "form to visitor on the job detail page. If this is on,"
+msgstr "Форма для посетителя на странице деталей работы. Если это включено,"
+
+msgid "You do not have any save serch remaining"
+msgstr "У вас нет оставшегося сохранения серната"
+
+msgid "We would love to hear from You."
+msgstr "Мы хотели бы услышать от вас."

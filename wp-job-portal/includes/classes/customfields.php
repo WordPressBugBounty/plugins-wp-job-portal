@@ -1246,7 +1246,7 @@ class WPJOBPORTALcustomfields {
         return $fields;
     }
 
-    function showCustomFields($field, $fieldfor, $params,$uploadfor = '',$entity_id = '') {// 2 new paramters to handle file upload field
+    function showCustomFields($field, $fieldfor, $params,$uploadfor = '',$entity_id = '',$field_class = '', $field_title_class = '', $field_value_class = '') {// 2 new paramters to handle file upload field
         $html = '';
         $fvalue = '';
         $labelflag = wpjobportal::$_configuration['labelinlisting'];
@@ -1268,6 +1268,13 @@ class WPJOBPORTALcustomfields {
                 }
             }
         }
+		if($field_class == "")
+			$field_class == "wjportal-custom-field";
+		if($field_title_class == "")
+			$field_title_class == "wjportal-custom-field-tit";
+		if($field_value_class == "")
+			$field_value_class = "wjportal-custom-field-val";
+
         if($field->userfieldtype=='file'){
 
            if($uploadfor !=null && $entity_id !=''){
@@ -1287,20 +1294,20 @@ class WPJOBPORTALcustomfields {
         }
 
         if($fieldfor == 1){ // jobs listing
-            $html = '<div class="wjportal-custom-field">';
-            if (wpjobportal::$theme_chk == 1) {
-                if ($labelflag == 1) {
-                    $html .= '<span class="wjportal-custom-field-tit">' . esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)) . ': </span>';
-                }
-                $html .= '<span class="wjportal-custom-field-val">' . wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS). '</span>
-                             </div>';
-            } else {
-                if ($labelflag == 1) {
-                    $html .= '<span class="wjportal-custom-field-tit">' . esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)) . ': </span>';
-                }
-                $html .= '<span class="wjportal-custom-field-val">' . wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS) . '</span>
-                             </div>';
-            }
+			$html = '<div class="'.$field_class.'">';
+			if (wpjobportal::$theme_chk == 1) {
+				if ($labelflag == 1) {
+					$html .= '<span class="'.$field_title_class.'">' . esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)) . ': </span>';
+				}
+				$html .= '<span class="'.$field_value_class.'">' . wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS). '</span>
+							 </div>';
+			} else {
+				if ($labelflag == 1) {
+					$html .= '<span class="'.$field_title_class.'">' . esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)) . ': </span>';
+				}
+				$html .= '<span class="'.$field_value_class.'">' . wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS) . '</span>
+							 </div>';
+			}
         }elseif($fieldfor == 2){ // job view
             if (wpjobportal::$theme_chk == 1) {
                 $html = '<div class="wpj-jp-cf"  >
@@ -1308,9 +1315,9 @@ class WPJOBPORTALcustomfields {
                     <span class="wpj-jp-cf-val">' . wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS). '</span>
 		</div>';
             } else {
-                $html = '<div class="wjportal-custom-field"  >
-                    <span class="wjportal-custom-field-tit">' . esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)) . ': </span)>
-                    <span class="wjportal-custom-field-val">' . wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS) . '</span>
+                $html = '<div class="'.$field_class.'"  >
+                    <span class="'.$field_title_class.'">' . esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)) . ': </span)>
+                    <span class="'.$field_value_class.'">' . wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS) . '</span>
                 </div>';
             }
         }elseif($fieldfor == 7 || $fieldfor == 9 || $fieldfor == 10){ // myjobs, myresume, resume listing
@@ -1320,10 +1327,10 @@ class WPJOBPORTALcustomfields {
                 $html .= '<span class="wpj-jp-cf-val">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
                 $html .= '</div>';
             } else {
-                $html = '<div class="wjportal-custom-field">';
-                $html .= '<span class="wjportal-custom-field-tit">'.esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)).': </span>';
-                $html .= '<span class="wjportal-custom-field-val">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
-                $html .= '</div>';
+				$html = '<div class="'.$field_class.'">';
+				$html .= '<span class="'.$field_title_class.'">'.esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)).': </span>';
+				$html .= '<span class="'.$field_value_class.'">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
+				$html .= '</div>';
             }
         }elseif($fieldfor == 4){ // company listing
             if (wpjobportal::$theme_chk == 1) {
@@ -1332,9 +1339,9 @@ class WPJOBPORTALcustomfields {
                 $html .= '<span class="wpj-jp-cf-val">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
                 $html .= '</div>';
             } else {
-                $html = '<div class="wjportal-custom-field">';
-                $html .= '<span class="wjportal-custom-field-tit">'.esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)).': </span>';
-                $html .= '<span class="wjportal-custom-field-val">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
+                $html = '<div class="'.$field_class.'">';
+                $html .= '<span class="'.$field_title_class.'">'.esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)).': </span>';
+                $html .= '<span class="'.$field_value_class.'">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
                 $html .= '</div>';
             }
         }elseif($fieldfor == 5){ // company view
@@ -1344,9 +1351,9 @@ class WPJOBPORTALcustomfields {
                 $html .= '<span class="wpj-jp-cf-val">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
                 $html .= '</div>';
             } else {
-                $html = '<div class="wjportal-custom-field">';
-                $html .= '<span class="wjportal-custom-field-tit">'.esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)).': </span>';
-                $html .= '<span class="wjportal-custom-field-val">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
+                $html = '<div class="'.$field_class.'">';
+                $html .= '<span class="'.$field_title_class.'">'.esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)).': </span>';
+                $html .= '<span class="'.$field_value_class.'">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
                 $html .= '</div>';
             }
         }elseif($fieldfor == 8){ // mycompanies
@@ -1356,9 +1363,9 @@ class WPJOBPORTALcustomfields {
                 $html .= '<span class="wpj-jp-cf-val">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
                 $html .= '</div>';
             } else {
-                $html = '<div class="wjportal-custom-field">';
-                $html .= '<span class="wjportal-custom-field-tit">'.esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)).': </span>';
-                $html .= '<span class="wjportal-custom-field-val">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
+                $html = '<div class="'.$field_class.'">';
+                $html .= '<span class="'.$field_title_class.'">'.esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)).': </span>';
+                $html .= '<span class="'.$field_value_class.'">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
                 $html .= '</div>';
             }
         }elseif($fieldfor == 11 || $fieldfor == 6){ // view resume

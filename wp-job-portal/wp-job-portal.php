@@ -3,14 +3,14 @@
 /**
  * @package WP JOB PORTAL
  * @author Ahmad Bilal
- * @version 2.2.9
+ * @version 2.3.0
  */
 /*
   * Plugin Name: WP Job Portal
   * Plugin URI: https://wpjobportal.com/
   * Description: WP JOB PORTAL is Word Press best job board plugin. It is easy to use and highly configurable. It fully accommodates job seekers and employers.
   * Author: WP Job Portal
-  * Version: 2.2.9
+  * Version: 2.3.0
   * Text Domain: wp-job-portal
   * Domain Path: /languages
   * Author URI: https://wpjobportal.com/
@@ -77,7 +77,7 @@ class wpjobportal {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '229';
+        self::$_currentversion = '230';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_common = WPJOBPORTALincluder::getJSModel('common');
         self::$_config = WPJOBPORTALincluder::getJSModel('configuration');
@@ -137,7 +137,7 @@ class wpjobportal {
             wp_schedule_event( time(), 'daily', 'jsjp_delete_expire_session_data' );
         }
         add_filter('safe_style_css', array($this,'jsjp_safe_style_css'), 10, 1);
-        add_action( 'upgrader_process_complete', array($this , 'jsjp_upgrade_completed'), 10, 2 );
+        //add_action( 'upgrader_process_complete', array($this , 'jsjp_upgrade_completed'), 10, 2 );
         // code from advance custom fields addone
         add_filter('wpjobportal_addons_get_custom_field',array($this,'wpjobportal_addons_get_activeField'),10,4);
         add_filter('wpjobportal_addons_show_customfields_params',array($this,'wpjobportal_addons_paramsfields'),10,4);
@@ -187,7 +187,7 @@ class wpjobportal {
                 if( $plugin == $our_plugin ) {
                     update_option('wpjp_currentversion', self::$_currentversion);
                     include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
-                    WPJOBPORTALupdates::checkUpdates('229');
+                    WPJOBPORTALupdates::checkUpdates('230');
 
                 	// restore colors data
 		            require(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
@@ -274,11 +274,11 @@ class wpjobportal {
      */
 
     public function wpjobportal_load_plugin_textdomain() {
-        if(!load_plugin_textdomain('wp-job-portal')){
+        //if(!load_plugin_textdomain('wp-job-portal')){
             load_plugin_textdomain('wp-job-portal', false, wpjobportalphplib::wpJP_dirname(plugin_basename(__FILE__)) . '/languages/');
-        }else{
+        /*}else{
             load_plugin_textdomain('wp-job-portal');
-        }
+        }*/
     }
 
     /*
@@ -1436,6 +1436,29 @@ function wpjobportal_login_redirect($redirect_to, $request, $user){
    } else {
        return $redirect_to;
    }
+}
+
+add_action( 'upgrader_process_complete', 'wpjobportal_upgrade_completed', 10, 2 ); // some time above hook does not workin, so add this hook.
+function wpjobportal_upgrade_completed( $upgrader_object, $options ) {
+
+	// The path to our plugin's main file
+	$our_plugin = plugin_basename( __FILE__ );
+	// If an update has taken place and the updated type is plugins and the plugins element exists
+	if( $options['action'] == 'update' && $options['type'] == 'plugin' && isset( $options['plugins'] ) ) {
+		// Iterate through the plugins being updated and check if ours is there
+		foreach( $options['plugins'] as $plugin ) {
+			if( $plugin == $our_plugin ) {
+				update_option('wpjp_currentversion', wpjobportal::$_currentversion);
+				include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
+
+				WPJOBPORTALupdates::checkUpdates('230');
+
+				// restore colors data
+				require_once(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
+				// restore colors data end
+			}
+		}
+	}
 }
 
 ?>

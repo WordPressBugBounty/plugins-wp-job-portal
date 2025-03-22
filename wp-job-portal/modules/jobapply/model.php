@@ -850,10 +850,10 @@ class WPJOBPORTALjobapplyModel {
     }
 
     function jobapply($themecall=null) {
-        $nonce = WPJOBPORTALrequest::getVar('js_nonce');
-        if (! wp_verify_nonce( $nonce, 'wp-job-portal-nonce') ) {
-            die( 'Security check Failed' );
-        }
+        // $nonce = WPJOBPORTALrequest::getVar('js_nonce');
+        // if (! wp_verify_nonce( $nonce, 'wp-job-portal-nonce') ) {
+        //     die( 'Security check Failed' );
+        // }
         $jobid = WPJOBPORTALrequest::getVar('jobid');
         $cvid = WPJOBPORTALrequest::getVar('cvid');
         $coverletterid = WPJOBPORTALrequest::getVar('coverletterid');
@@ -908,7 +908,7 @@ class WPJOBPORTALjobapplyModel {
             }
         }
         $return = WPJOBPORTAL_SAVED;
-        if($quick_apply == 0){ // package system calculation ignored in case of quickapply
+        //if($quick_apply == 0){ // package system calculation ignored in case of quickapply
             $submitType = wpjobportal::$_config->getConfigValue('submission_type');
             if(in_array('credits', wpjobportal::$_active_addons)){
                 if($submitType == 2){
@@ -942,9 +942,9 @@ class WPJOBPORTALjobapplyModel {
                     $data['status'] = 1;
                 }
             }
-        }else{
-            $data['status'] = 1;// job apply status 1 in case of quick job apply
-        }
+        // }else{
+        //     $data['status'] = 1;// job apply status 1 in case of quick job apply
+        // }
 
         $data = wpjobportal::wpjobportal_sanitizeData($data);
         if (!$row->bind($data)) {
@@ -954,12 +954,14 @@ class WPJOBPORTALjobapplyModel {
             $return = WPJOBPORTAL_SAVE_ERROR;
         }
         $job_apply_id = $row->id;
-        if($quick_apply == 1){ // package system & apply message ignored in case of quickapply
-            if ($return != WPJOBPORTAL_SAVE_ERROR) {
-                $this->sendMail($jobid,$cvid,$job_apply_id);
-                return $return;
-            }
-        }
+        // needed for per listing mode redirect
+        wpjobportal::$_data['job_apply_id'] = $job_apply_id;
+        // //if($quick_apply == 1){ // package system & apply message ignored in case of quickapply
+        //     if ($return != WPJOBPORTAL_SAVE_ERROR) {
+        //         $this->sendMail($jobid,$cvid,$job_apply_id);
+        //         //return $return;
+        //     }
+        // //}
 
         if(in_array('credits', wpjobportal::$_active_addons)){
             if($submitType == 3 &&  WPJOBPORTALincluder::getObjectClass('user')->isjobseeker()){
@@ -1399,7 +1401,7 @@ class WPJOBPORTALjobapplyModel {
         $total = wpjobportaldb::get_var($query);
         wpjobportal::$_data['total'] = $total;
         wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($total,'appliedjobs');
-        $query = "SELECT job.id AS jobid,job.city,job.title,job.noofjobs,job.currency,CONCAT(job.alias,'-',job.id) AS jobaliasid ,CONCAT(company.alias,'-',companyid) AS companyaliasid, job.serverid,job.status,job.endfeatureddate,job.isfeaturedjob,job.startpublishing,job.stoppublishing,
+        $query = "SELECT job.id AS jobid,job.city,job.title,job.noofjobs,job.currency,CONCAT(job.alias,'-',job.id) AS jobaliasid ,CONCAT(company.alias,'-',companyid) AS companyaliasid, job.serverid,job.status,job.endfeatureddate,job.isfeaturedjob,job.startpublishing,job.stoppublishing,job.description,
                  jobapply.action_status AS resumestatus,jobapply.apply_date,
                  company.id AS companyid, company.name AS companyname,company.logofilename,category.cat_title,
                  jobtype.title AS jobtypetitle, jobstatus.title AS jobstatustitle,resume.id AS resumeid,resume.salaryfixed as salary,resume.application_title,job.params,job.created,LOWER(jobtype.title) AS jobtype
@@ -2124,7 +2126,7 @@ class WPJOBPORTALjobapplyModel {
      function getMyJobs($uid,$jobid='') {
        if (!is_numeric($uid)) return false;
         # Data Query Listing
-        $query = "SELECT job.endfeatureddate,job.id,job.uid,job.title,job.isfeaturedjob,job.serverid,job.noofjobs,job.city,job.status,job.currency,
+        $query = "SELECT job.endfeatureddate,job.id,job.uid,job.title,job.isfeaturedjob,job.serverid,job.noofjobs,job.city,job.status,job.currency,job.description,
                 CONCAT(job.alias,'-',job.id) AS jobaliasid,job.created,job.serverid,company.name AS companyname,company.id AS companyid,company.logofilename,CONCAT(company.alias,'-',company.id) AS compnayaliasid,job.salarytype,job.salarymin,job.salarymax,salaryrangetype.title AS salarydurationtitle,
                 cat.cat_title, jobtype.title AS jobtypetitle,salaryrangetype.title AS srangetypetitle,
                 (SELECT count(jobapply.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` AS jobapply
@@ -2307,7 +2309,7 @@ class WPJOBPORTALjobapplyModel {
             return false;
         $query = 'SELECT company.contactemail AS companyuseremail, user.emailaddress AS useremail
                     FROM `' . wpjobportal::$_db->prefix . 'wj_portal_jobs` AS job
-                    ".wpjobportal::$_company_job_table_join." JOIN `' . wpjobportal::$_db->prefix . 'wj_portal_companies` AS company ON job.companyid = company.id
+                    '.wpjobportal::$_company_job_table_join.' JOIN `' . wpjobportal::$_db->prefix . 'wj_portal_companies` AS company ON job.companyid = company.id
                     LEFT JOIN `' . wpjobportal::$_db->prefix . 'wj_portal_users` AS user ON user.id = job.uid
                     WHERE job.id = ' . esc_sql($jobid);
         $result = wpjobportaldb::get_row($query);
@@ -2354,6 +2356,23 @@ class WPJOBPORTALjobapplyModel {
 
     function getMessagekey(){
         $key = 'jobapply';if(wpjobportal::$_common->wpjp_isadmin()){$key = 'admin_'.$key;}return $key;
+    }
+
+    function applyOnJob(){
+        $data  = WPJOBPORTALrequest::get('post');
+
+        $quick_apply_flag = WPJOBPORTALrequest::getVar('quickapply','','');
+
+        // store resume check for quick apply
+        $store_resume_for_apply = 1;
+        if($quick_apply_flag == 1){
+            $store_resume_for_apply = WPJOBPORTALincluder::getJSModel('quickapply')->quickApplyOnJob();
+        }
+
+        // if resume stored this variable will contain resume id
+        if(is_numeric($store_resume_for_apply)){ // regular job apply
+            return $this->jobapply(1);
+        }
     }
 
 }

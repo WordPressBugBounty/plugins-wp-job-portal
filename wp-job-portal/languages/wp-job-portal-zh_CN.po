@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 
 msgid "Delete"
 msgstr "删除"
@@ -9331,3 +9331,948 @@ msgstr "我的部门"
 
 msgid "Add To ShortList"
 msgstr "添加到候选名单"
+
+msgid "or"
+msgstr "或者"
+
+msgid "company logo"
+msgstr "公司徽标"
+
+msgid "job title"
+msgstr "职称"
+
+msgid "company name"
+msgstr "公司名称"
+
+msgid "Resume Has Been Feature SuccesFully"
+msgstr "简历已成功地推荐"
+
+msgid "My coverletter"
+msgstr "我的求职信"
+
+msgid "Add coverletter"
+msgstr "添加求职信"
+
+msgid "Total Cover Letter"
+msgstr "总求职信"
+
+msgid "Remaining Cover Letter"
+msgstr "剩下的求职信"
+
+msgid "Open ChatGPT"
+msgstr "打开chatgpt"
+
+msgid "How To Add Cover Letter With ChatGPT"
+msgstr "如何与chatgpt添加求职信"
+
+msgid "Edit coverletter"
+msgstr "编辑求职信"
+
+msgid "Edit Cover Letter"
+msgstr "编辑求职信"
+
+msgid "Delete coverletter"
+msgstr "删除求职信"
+
+msgid "coverletter title"
+msgstr "求职信标题"
+
+msgid "Add New Cover Letter"
+msgstr "添加新的求职信"
+
+msgid "Quote from Hello Dolly song, by Jerry Herman:"
+msgstr "杰里·赫尔曼（Jerry Herman）的《 Hello Dolly Song》的引用："
+
+msgid "Select Parent"
+msgstr "选择父"
+
+msgid "Edit Field"
+msgstr "编辑字段"
+
+msgid "Visitor published"
+msgstr "访客出版"
+
+msgid "Show On Listing"
+msgstr "显示上市"
+
+msgid "Advanced"
+msgstr "先进的"
+
+msgid "Equal"
+msgstr "平等的"
+
+msgid "Not Equal"
+msgstr "不相等"
+
+msgid "Multi Select"
+msgstr "多选择"
+
+msgid "Visible"
+msgstr "可见的"
+
+msgid "Select Child"
+msgstr "选择孩子"
+
+msgid "Select Condition"
+msgstr "选择条件"
+
+msgid "To use this feature please fill the above three fields."
+msgstr "要使用此功能，请填写以上三个字段。"
+
+msgid "No response found"
+msgstr "找不到响应"
+
+msgid "Quick Apply"
+msgstr "快速申请"
+
+msgid "user publish"
+msgstr "用户发布"
+
+msgid "User Unpublished"
+msgstr "用户未发表"
+
+msgid "visitor publish"
+msgstr "访客发布"
+
+msgid "visitor unpublish"
+msgstr "访客不公开"
+
+msgid "Select user status"
+msgstr "选择用户状态"
+
+msgid "Un published"
+msgstr "联合国出版"
+
+msgid "File upload fields and text editor fields cannot be made required."
+msgstr "不需要文件上传字段和文本编辑器字段。"
+
+msgid "Dependent Field"
+msgstr "依赖字段"
+
+msgid "Job Apply settings"
+msgstr "工作应用设置"
+
+msgid "Quick Apply settings"
+msgstr "快速应用设置"
+
+msgid "Show count in jobs by cities page"
+msgstr "在城市页面上显示工作中的计数"
+
+msgid "Show country in jobs by cities page"
+msgstr "在城市页面上展示乔布斯的国家"
+
+msgid "Profile Section"
+msgstr "个人资料部分"
+
+msgid "Recaptcha Version 2"
+msgstr "Recaptcha版本2"
+
+msgid "Recaptcha Version 3"
+msgstr "Recaptcha版本3"
+
+msgid "System slug"
+msgstr "系统sl"
+
+msgid "Image file size"
+msgstr "图像文件大小"
+
+msgid "System will not upload if image size is greater than the given size"
+msgstr "如果图像大小大于给定的大小，则系统不会上传"
+
+msgid "Show page title above wpjobportal breadcrumbs"
+msgstr "wpjobportal面包屑上方的显示页面标题"
+
+msgid "Default Image For WP Job Portal"
+msgstr "WP作业门户的默认图像"
+
+msgid "This image will shown as default image for entities & users if no other image is provided."
+msgstr "如果未提供其他图像，则此图像将显示为实体和用户的默认图像。"
+
+msgid "Default country"
+msgstr "默认国家"
+
+msgid "Select default country for user added cities"
+msgstr "选择用户添加城市的默认国家 /地区"
+
+msgid "Job detail URL options are title, company, category, location, jobtype. eg- [title] [company]"
+msgstr "工作详细信息URL选项是标题，公司，类别，位置，JobType。例如 -  [title] [公司]"
+
+msgid "Select the Google reCaptcha Version"
+msgstr "选择Google Recaptcha版本"
+
+msgid "Recent Resumes Box"
+msgstr "最近的简历框"
+
+msgid "mode"
+msgstr "模式"
+
+msgid "expire"
+msgstr "到期"
+
+msgid "Registration is disabled in WordPress settings, please enable to Membership: anyone can register."
+msgstr "在WordPress设置中禁用注册，请启用会员资格：任何人都可以注册。"
+
+msgid "Quick Apply Now"
+msgstr "快速应用"
+
+msgid "Enable Quick Apply for user"
+msgstr "启用快速申请用户"
+
+msgid "Enable Quick Apply for visitor"
+msgstr "启用快速申请访客"
+
+msgid "Enable captcha for visitor Quick Apply"
+msgstr "启用Captcha供访客快速应用"
+
+msgid "Show captcha to visitor on quick apply form."
+msgstr "在快速应用表格中向访问者显示验证码。"
+
+msgid "Add ons for WP Job Portal have been installed and activated successfully. "
+msgstr "为WP作业门户添加ONS已成功安装并激活。"
+
+msgid "WP Job Portal is an open-source job board plugin for WordPress that provides advanced features to help you create a successful job board. In addition, we offer trusted WP Job Portal add-ons that can further enhance your job board's functionality in a fast, safe, and easy manner. Our add-ons have been designed to integrate seamlessly with our job board plugin, ensuring you can expand your job board's capabilities without any complications."
+msgstr "WP Job Portal是WordPress的开源工作板插件，可提供高级功能，以帮助您创建成功的工作板。此外，我们还提供可信赖的WP作业门户附加组件，可以快速，安全和简单的方式进一步增强您的工作委员会功能。我们的附加组件旨在与我们的工作板插件无缝集成，以确保您可以扩展工作板的功能而不会出现任何并发症。"
+
+msgid "Savings*"
+msgstr "储蓄*"
+
+msgid "Best Deal"
+msgstr "最好的交易"
+
+msgid "Shortlist Job"
+msgstr "入围工作"
+
+msgid "e.g 45000"
+msgstr "例如45000"
+
+msgid "e.g 3000"
+msgstr "例如3000"
+
+msgid "e.g 6000"
+msgstr "例如6000"
+
+msgid "Deactivated"
+msgstr "停用"
+
+msgid "Not Installed"
+msgstr "未安装"
+
+msgid "Addon Installed Successfully"
+msgstr "插件成功安装了"
+
+msgid "Addon installation failed"
+msgstr "插件安装失败"
+
+msgid "Resume Data Management"
+msgstr "恢复数据管理"
+
+msgid "Export (csv)"
+msgstr "出口（CSV）"
+
+msgid "Configuration Based Tutorials"
+msgstr "基于配置的教程"
+
+msgid "Slugs"
+msgstr "sl"
+
+msgid "Theme Installation"
+msgstr "主题安装"
+
+msgid "WP Job Portal Theme  Installation"
+msgstr "WP作业门户主题安装"
+
+msgid "System Management"
+msgstr "系统管理"
+
+msgid "Activity Log and System Errors"
+msgstr "活动日志和系统错误"
+
+msgid "Shortcode"
+msgstr "快捷代码"
+
+msgid "Job Seeker Control Panel"
+msgstr "求职者控制面板"
+
+msgid "A shortcode designed for jobseeker, providing an easy-to-use controlpanel to manage applications, resume, and preferences directly from their dashboard."
+msgstr "为求职者设计的短代码，为直接从其仪表板直接管理应用程序，恢复和偏好提供了易于使用的控制台。"
+
+msgid "Base Shortcode"
+msgstr "基本快捷代码"
+
+msgid "Shortcode With All Options"
+msgstr "带有所有选项的短代码"
+
+msgid " The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "雇主控制面板是一个简化的接口，允许雇主管理职位发布，跟踪应用程序，与候选人进行通信，并有效地分析招聘指标。"
+
+msgid "The job search shortcode enables users to easily find job listings based on various criteria."
+msgstr "求职快捷代码使用户可以根据各种标准轻松找到作业清单。"
+
+msgid "The jobs shortcode is a feature that displays individual job listings on a website."
+msgstr "Jobs短码是一项功能，可在网站上显示单个作业清单。"
+
+msgid "The featured job shortcode highlights select job listings on a website, making them stand out to potential applicants."
+msgstr "特色的作业短代码突出显示了网站上选择的作业清单，使他们在潜在的申请人身上脱颖而出。"
+
+msgid "This Shortcode requires WP Job Portal Featured Jobs Addon"
+msgstr "此短代码需要WP作业门户特色工作插件"
+
+msgid "Get Addon"
+msgstr "获取插件"
+
+msgid "Job Categories"
+msgstr "工作类别"
+
+msgid "The job categories shortcode displays a dynamic list of available categories, enabling users to easily navigate and find relevant job listings."
+msgstr "作业类别短代码显示了可用类别的动态列表，使用户可以轻松导航并找到相关的作业清单。"
+
+msgid "The job types shortcode presents a comprehensive list of available job types, allowing users to quickly explore and find suitable job opportunities."
+msgstr "工作类型短代码提供了可用的工作类型的全面列表，使用户可以快速探索并找到合适的工作机会。"
+
+msgid "My applied jobs shortcode provides users with a personalized list of their job applications, allowing easy access to track application status and details."
+msgstr "我的应用作业短代码为用户提供了个性化的作业申请列表，从而可以轻松地访问跟踪应用程序状态和详细信息。"
+
+msgid "My companies shortcode displays a personalized list of companies users are associated with, facilitating easy access to company information and opportunities."
+msgstr "我的公司短代码显示了用户与用户相关联的个性化列表，从而便利地访问了公司信息和机会。"
+
+msgid "All companies shortcode offers a curated directory of all companies, allowing users to easily browse and connect with potential employers."
+msgstr "所有公司快捷代码都提供所有公司的精选目录，使用户可以轻松浏览并与潜在的雇主联系。"
+
+msgid "This Shortcode requires WP Job Portal All Companies Addon"
+msgstr "此快捷代码要求WP Job Portal所有公司"
+
+msgid "The featured companies shortcode showcases prominent companies within the portal, allowing users to explore exciting job opportunities from industry leaders."
+msgstr "特色公司的快捷代码展示了门户网站中的著名公司，使用户可以探索行业领导者的激动人心的工作机会。"
+
+msgid "This Shortcode requires WP Job Portal Featured Companies Addon"
+msgstr "此快捷代码需要WP作业门户特色公司addon"
+
+msgid "My jobs shortcode allows users to view and manage their saved job listings, making it easy to keep track of potential opportunities."
+msgstr "我的工作短代码允许用户查看和管理其保存的工作清单，从而轻松跟踪潜在的机会。"
+
+msgid "My resume shortcode allows users to view and manage their uploaded resumes, providing a convenient way to keep their job application materials up to date."
+msgstr "我的简历短代码允许用户查看和管理其上传的简历，从而提供了一种方便的方法来使其工作申请材料保持最新。"
+
+msgid "All Resumes"
+msgstr "所有简历"
+
+msgid "All resumes shortcode allows job seekers to view and manage their uploaded resumes, ensuring they have easy access to their application materials."
+msgstr "所有简历短代码都使求职者可以查看和管理其上传的简历，以确保他们可以轻松访问其应用程序材料。"
+
+msgid "This Shortcode requires WP Job Portal All Resumes Addon"
+msgstr "此短代码需要WP作业门户所有简历插件"
+
+msgid "The featured resumes shortcode showcases a selection of standout resumes, allowing job seekers to stand out to potential employers."
+msgstr "特色简历短代码展示了一些杰出的简历，使求职者能够在潜在的雇主身上脱颖而出。"
+
+msgid "This Shortcode requires WP Job Portal Featured Resumes Addon"
+msgstr "此短代码需要WP作业门户特色简历插件"
+
+msgid "Add company shortcode allows employers to effortlessly register their organization, providing essential details to attract talent and post job openings."
+msgstr "添加公司快捷代码允许雇主轻松注册其组织，提供基本细节以吸引人才和职位职位空缺。"
+
+msgid "Add department shortcode enables employers to easily create and manage specific departments within their organization, facilitating better job categorization and organization."
+msgstr "添加部门短码使雇主能够轻松地在组织内部创建和管理特定部门，从而促进更好的工作分类和组织。"
+
+msgid "This Shortcode requires WP Job Portal Multi Departments Addon"
+msgstr "此快捷代码需要WP Job Portal多部门插件"
+
+msgid "Add jobs enables organizations to effortlessly publish job postings, helping them connect with potential applicants and fill vacancies more effectively."
+msgstr "添加工作使组织能够毫不费力地发布职位发布，帮助他们与潜在的申请人建立联系并更有效地填补空缺。"
+
+msgid "Add resume shortcode simplifies the process for candidates to submit their resumes, helping them showcase their qualifications and experiences to potential employers."
+msgstr "添加简历短代码简化了候选人提交简历的过程，帮助他们向潜在雇主展示其资格和经验。"
+
+msgid "Resume search shortcode provides a powerful search tool for employers to explore candidate profiles, making it easier to connect with potential hires."
+msgstr "简历搜索短代码为雇主提供了强大的搜索工具，可以探索候选人资料，从而更容易与潜在的员工联系。"
+
+msgid "This Shortcode requires WP Job Portal Resume Search Addon"
+msgstr "此短代码需要WP作业门户简历搜索插件"
+
+msgid "Registration"
+msgstr "登记"
+
+msgid "Registration shortcode allows individuals to easily create accounts as their selected role"
+msgstr "注册快捷代码允许个人轻松创建帐户作为其选定角色"
+
+msgid "Employer registration shortcode streamlines the process for organizations to register, ensuring they can efficiently manage job postings and their company profiles."
+msgstr "雇主注册简编码简化了组织注册的过程，以确保他们可以有效地管理职位发布及其公司资料。"
+
+msgid "Job Seeker Registration"
+msgstr "求职者注册"
+
+msgid "Job seeker registration shortcode allows individuals to easily create accounts, enabling them to apply for jobs and manage their resumes."
+msgstr "求职者注册短代码允许个人轻松创建帐户，使他们能够申请工作并管理其简历。"
+
+msgid "Login Page"
+msgstr "登录页面"
+
+msgid "Login page shortcode offers a user-friendly interface for candidates and employers to securely log in and manage their profiles and postings."
+msgstr "登录页面短代码为候选人和雇主提供一个用户友好的接口，以安全地登录和管理其配置文件和发布。"
+
+msgid "Widget"
+msgstr "小部件"
+
+msgid "Search job widget provides an intuitive interface for candidates to filter and browse openings, connecting them with opportunities that align with their skills."
+msgstr "搜索工作小部件为候选人提供了一个直观的界面，以过滤和浏览开口，并将其与与他们的技能保持一致的机会联系起来。"
+
+msgid "This Shortcode requires WP Job Portal Front-end Widgets Addon"
+msgstr "此短代码需要WP作业门户前端小部件插件"
+
+msgid "My packages offers a personalized dashboard for users to monitor their subscription details, helping them manage job postings and access features effectively."
+msgstr "我的软件包为用户提供了个性化的仪表板，以监视其订阅详细信息，帮助他们有效地管理职位发布和访问功能。"
+
+msgid "This Shortcode requires WP Job Portal Credits Addon"
+msgstr "此快捷代码需要WP作业门户信用插件"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans.  "
+msgstr "我的订阅为用户提供了其主动订阅的概述，从而可以轻松管理和跟踪其职位发布计划。"
+
+msgid "All packages showcases a comprehensive list of available subscription plans, allowing users to compare features and select the best options for their job posting needs."
+msgstr "所有软件包都展示了可用订阅计划的全面列表，使用户可以比较功能并为其职位发布需求选择最佳选项。"
+
+msgid "My invoices provides a convenient way for users to view and manage their invoices, helping them stay organized and up to date with their payments."
+msgstr "我的发票为用户提供了一种方便的方式，可让用户查看和管理发票，帮助他们保持井井有条并与付款保持最新。"
+
+msgid "SEO"
+msgstr "SEO"
+
+msgid "Document Title Settings"
+msgstr "文档标题设置"
+
+msgid "Company detail url options are name, location. eg- [name] [location]"
+msgstr "公司详细信息URL选项是名称，位置。例如 -  [名称] [位置]"
+
+msgid "spinning wheel"
+msgstr "旋转轮"
+
+msgid "New Update Version"
+msgstr "新更新版本"
+
+msgid "is Available"
+msgstr "可用"
+
+msgid "Hey there! We have recently launched a fresh update for the add-ons. Don't forget to update the add-ons to enjoy the greatest features!"
+msgstr "嘿！我们最近为附加组件启动了新的更新。不要忘记更新附加组件以享受最大的功能！"
+
+msgid "View Addone Status"
+msgstr "查看添加状态"
+
+msgid "Active Companies"
+msgstr "活跃公司"
+
+msgid "Help Page"
+msgstr "帮助页面"
+
+msgid "Watch Tutorial"
+msgstr "观看教程"
+
+msgid "video"
+msgstr "视频"
+
+msgid "Apply Now Failed"
+msgstr "现在申请失败"
+
+msgid "You do not have package required for job apply"
+msgstr "您没有工作所需的包裹"
+
+msgid "You package has expired"
+msgstr "您的包裹已过期"
+
+msgid "You do not any more job apply available"
+msgstr "您不再适用任何工作"
+
+msgid "Job Not Found"
+msgstr "找不到工作"
+
+msgid "Job does not exist in the system"
+msgstr "系统中不存在作业"
+
+msgid "Make Payment To Complete The Job Apply"
+msgstr "付款以完成工作适用"
+
+msgid "Successfully applied on job"
+msgstr "成功应用工作"
+
+msgid "view coverletter"
+msgstr "查看求职信"
+
+msgid "Please Fill out fields"
+msgstr "请填写字段"
+
+msgid "sender email is not of correct format"
+msgstr "发件人电子邮件的格式不正确"
+
+msgid "Erase Selected Country"
+msgstr "擦除选定的国家"
+
+msgid "Erase All Data"
+msgstr "删除所有数据"
+
+msgid "Click on package to select one"
+msgstr "单击软件包选择一个"
+
+msgid "Apply to the Job"
+msgstr "申请工作"
+
+msgid "No Cover Letter!"
+msgstr "没有求职信！"
+
+msgid "Add Cover Lettter"
+msgstr "添加求职信"
+
+msgid "You have already applied on this job."
+msgstr "您已经申请了这项工作。"
+
+msgid "Unlimited job applies"
+msgstr "无限的工作适用"
+
+msgid "Job applies remaining"
+msgstr "工作适用"
+
+msgid "Buy package to apply on job."
+msgstr "购买包裹申请工作。"
+
+msgid "Apply With Package"
+msgstr "申请包装"
+
+msgid "Payment of"
+msgstr "付款"
+
+msgid "is required to complete the job apply process"
+msgstr "需要完成工作申请过程"
+
+msgid "You are logged in as employer."
+msgstr "您被登录为雇主。"
+
+msgid "You are not a logged in member."
+msgstr "您不是登录成员。"
+
+msgid "You do not have any role."
+msgstr "您没有任何角色。"
+
+msgid "Proceed to payment"
+msgstr "继续付款"
+
+msgid "Views"
+msgstr "视图"
+
+msgid "Save As Draft"
+msgstr "保存为草稿"
+
+msgid "Job Has Been Feature SuccesFully"
+msgstr "工作已成功地推荐"
+
+msgid "You are Not Allowed To Add More than One"
+msgstr "您不允许添加多个"
+
+msgid "Contact TO Adminstrator"
+msgstr "与管理员联系"
+
+msgid "This Is Meta Description"
+msgstr "这是元描述"
+
+msgid "jobs by cities"
+msgstr "城市的工作"
+
+msgid "Show Info"
+msgstr "显示信息"
+
+msgid "Changing a user's role will not remove its entites from the system !"
+msgstr "更改用户的角色不会从系统中删除其entites！"
+
+msgid "company reject"
+msgstr "公司拒绝"
+
+msgid "all reject"
+msgstr "所有人都拒绝"
+
+msgid "Missing user(s) added successfully!"
+msgstr "缺少用户成功添加了！"
+
+msgid "No missing user found!"
+msgstr "找不到缺少的用户！"
+
+msgid "Jobs Listing Menu"
+msgstr "作业清单菜单"
+
+msgid "Visitor"
+msgstr "游客"
+
+msgid "new message alert"
+msgstr "新消息警报"
+
+msgid "New Message Alert"
+msgstr "新消息警报"
+
+msgid "Recipient Name"
+msgstr "收件人名称"
+
+msgid "Sender Name"
+msgstr "发件人名称"
+
+msgid "Sender Role"
+msgstr "发件人角色"
+
+msgid "Message Text"
+msgstr "消息文字"
+
+msgid "Job/Resume Info"
+msgstr "工作/简历信息"
+
+msgid "Upload Resume"
+msgstr "上传简历"
+
+msgid "Profile Status"
+msgstr "个人资料状态"
+
+msgid "Profile Completed"
+msgstr "个人资料完成了"
+
+msgid "feature approve"
+msgstr "功能批准"
+
+msgid "feature reject"
+msgstr "功能拒绝"
+
+msgid "Type city"
+msgstr "类型城市"
+
+msgid "New Message"
+msgstr "新消息"
+
+msgid "Employer is disabled by admin"
+msgstr "雇主被管理员禁用"
+
+msgid "You are not allowed to add more than one"
+msgstr "您不允许添加多个"
+
+msgid "contact adminstrator"
+msgstr "联系管理员"
+
+msgid "Payment is not made against this job contact adminstrator"
+msgstr "没有针对此职位联系管理员付款"
+
+msgid "Addon Page Not Found"
+msgstr "找不到插件页面"
+
+msgid "User Role"
+msgstr "用户角色"
+
+msgid "Jobs Role"
+msgstr "工作角色"
+
+msgid "User has been successfully created"
+msgstr "用户已成功创建"
+
+msgid "Pay For Department"
+msgstr "支付部门"
+
+msgid "Pay For Job Apply"
+msgstr "付费申请"
+
+msgid "Pay For Company"
+msgstr "支付公司"
+
+msgid "Pay For Featured Company"
+msgstr "支付特色公司"
+
+msgid "Pay For Job"
+msgstr "付费"
+
+msgid "Pay For Featured Job"
+msgstr "支付特色工作"
+
+msgid "Pay For Resume Search"
+msgstr "支付简历搜索"
+
+msgid "Pay For Resume "
+msgstr "支付简历"
+
+msgid "Pay For Featured Resume "
+msgstr "支付特色简历"
+
+msgid "Job Saved Searches"
+msgstr "工作保存的搜索"
+
+msgid "Job Apply Configurations"
+msgstr "作业应用配置"
+
+msgid "Quick Apply Fields"
+msgstr "快速应用字段"
+
+msgid "addons status"
+msgstr "插件状态"
+
+msgid "coverletters"
+msgstr "求职信"
+
+msgid "coverletter"
+msgstr "求职信"
+
+msgid "add new cover letter"
+msgstr "添加新的求职信"
+
+msgid "Loaction Name settings"
+msgstr "位置名称设置"
+
+msgid "Loaction Name Settings"
+msgstr "位置名称设置"
+
+msgid "shifts"
+msgstr "转移"
+
+msgid "ages"
+msgstr "年龄"
+
+msgid "Error file size too large"
+msgstr "错误文件大小太大"
+
+msgid "Maximum Size"
+msgstr "最大尺寸"
+
+msgid "is in use"
+msgstr "正在使用"
+
+msgid "can not deleted it"
+msgstr "无法删除它"
+
+msgid "Address data"
+msgstr "地址数据"
+
+msgid "themes"
+msgstr "主题"
+
+msgid "Color Schemes"
+msgstr "配色方案"
+
+msgid "Color Chooser"
+msgstr "颜色选择器"
+
+msgid "Color 1"
+msgstr "颜色1"
+
+msgid "Color 2"
+msgstr "颜色2"
+
+msgid "Color 3"
+msgstr "颜色3"
+
+msgid "Add User Fields"
+msgstr "添加用户字段"
+
+msgid "cannot unpublished"
+msgstr "不能未发表"
+
+msgid "Search Name"
+msgstr "搜索名称"
+
+msgid "start"
+msgstr "开始"
+
+msgid "Total Resume Search"
+msgstr "总简历搜索"
+
+msgid "Remaining Resume Search"
+msgstr "剩余的简历搜索"
+
+msgid "Reference"
+msgstr "参考"
+
+msgid "cancel payment"
+msgstr "取消付款"
+
+msgid "Apply now"
+msgstr "立即申请"
+
+msgid " Listing"
+msgstr "清单"
+
+msgid "Credits log"
+msgstr "学分日志"
+
+msgid "Rate list"
+msgstr "费率列表"
+
+msgid "Purchase history"
+msgstr "购买历史记录"
+
+msgid " remaining"
+msgstr "其余的"
+
+msgid "Cover Letter has been successfully published"
+msgstr "求职信已成功发表"
+
+msgid "cover Letter has been successfully published"
+msgstr "求职信已成功发表"
+
+msgid "Resume files download"
+msgstr "恢复文件下载"
+
+msgid "apply with facebook"
+msgstr "向Facebook申请"
+
+msgid "apply with linkedin"
+msgstr "与LinkedIn申请"
+
+msgid "apply with xing"
+msgstr "与Xing一起涂抹"
+
+msgid "Resume removed from featured"
+msgstr "从特色中删除的简历"
+
+msgid "share blog"
+msgstr "分享博客"
+
+msgid "share digg"
+msgstr "分享Digg"
+
+msgid "share fb"
+msgstr "分享FB"
+
+msgid "share ff"
+msgstr "分享ff"
+
+msgid "share google"
+msgstr "分享Google"
+
+msgid "share linkedin"
+msgstr "共享LinkedIn"
+
+msgid "share myspace"
+msgstr "分享myspace"
+
+msgid "share twitter"
+msgstr "分享Twitter"
+
+msgid "share yahoo"
+msgstr "分享雅虎"
+
+msgid "Mark As Shortlist Job"
+msgstr "标记为入围工作"
+
+msgid "Keep this job on your list! Mark it as shortlisted and find it easily whenever you need."
+msgstr "将此工作保留在您的清单上！将其标记为入围名单，并在需要时轻松找到它。"
+
+msgid "Search job title, company name, keywords"
+msgstr "搜索职位，公司名称，关键字"
+
+msgid "Loction"
+msgstr "浪费"
+
+msgid "Applied Resume Title"
+msgstr "应用简历标题"
+
+msgid "Arrow"
+msgstr "箭"
+
+msgid "Already Applied"
+msgstr "已经应用了"
+
+msgid "Ready to take the next step? Simply fill out the form and submit your application. It only takes a few minutes!"
+msgstr "准备下一步了吗？只需填写表格并提交您的申请即可。只需几分钟！"
+
+msgid "Waiting for Payment"
+msgstr "等待付款"
+
+msgid "Salery"
+msgstr "塞莱"
+
+msgid "Buy"
+msgstr "买"
+
+msgid "Employer can add companies and jobs while searching for potential candidate to hire"
+msgstr "雇主可以在寻找潜在候选人聘用的同时增加公司和工作"
+
+msgid "Selected"
+msgstr "选定"
+
+msgid "Jobseeker can add resume, cover letters, search jobs and apply to multiple jobs easily"
+msgstr "求职者可以添加简历，求职信，搜索作业，并轻松地应用于多个作业"
+
+msgid "Hello, again!..."
+msgstr "你好，再次！"
+
+msgid "View All Applied Jobs"
+msgstr "查看所有应用工作"
+
+msgid "View All Newest Jobs"
+msgstr "查看所有最新工作"
+
+msgid "Hello, again!…"
+msgstr "你好，再次！"
+
+msgid "Submit job"
+msgstr "提交工作"
+
+msgid "Submit Job"
+msgstr "提交工作"
+
+msgid "View detail"
+msgstr "查看细节"
+
+msgid "Recently Applied Resume"
+msgstr "最近应用简历"
+
+msgid "Messages By Resume"
+msgstr "简历消息"
+
+msgid "Reply"
+msgstr "回复"
+
+msgid "View jobs"
+msgstr "查看工作"
+
+msgid "Other Info"
+msgstr "其他信息"
+
+msgid "Link"
+msgstr "关联"
+
+msgid "Mail"
+msgstr "邮件"
+
+msgid "Site"
+msgstr "地点"
+
+msgid "View Company Details"
+msgstr "查看公司详细信息"
+
+msgid "Completed"
+msgstr "完全的"
+
+msgid "Categoty"
+msgstr "类别"
+
+msgid "tell a friend"
+msgstr "告诉朋友"
+
+msgid "Tell friend"
+msgstr "告诉朋友"
+
+msgid "Know someone perfect for this job? Share it with them!"
+msgstr "知道一个非常适合这份工作的人吗？与他们分享！"
+
+msgid "Your name"
+msgstr "你的名字"
+
+msgid "Your email"
+msgstr "您的电子邮件"
+
+msgid "Show the"
+msgstr "显示"
+
+msgid "form to logged-in users on the job detail page. If this is on,"
+msgstr "表格以登录工作详细信息页面上的用户。如果这就是"
+
+msgid "will be turned off."
+msgstr "将关闭。"
+
+msgid "form to visitor on the job detail page. If this is on,"
+msgstr "在工作详细信息页面上向访问者表格。如果这就是"
+
+msgid "You do not have any save serch remaining"
+msgstr "您没有任何保存的Serch剩余"
+
+msgid "We would love to hear from You."
+msgstr "我们很想听听您的来信。"

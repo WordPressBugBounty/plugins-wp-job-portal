@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 
 msgid "Delete"
 msgstr "Radera"
@@ -9328,3 +9328,948 @@ msgstr "Min avdelning"
 
 msgid "Add To ShortList"
 msgstr "Lägg till på listan"
+
+msgid "or"
+msgstr "eller"
+
+msgid "company logo"
+msgstr "företagslogotyp"
+
+msgid "job title"
+msgstr "arbetstitel"
+
+msgid "company name"
+msgstr "företagsnamn"
+
+msgid "Resume Has Been Feature SuccesFully"
+msgstr "CV har presenterats framgångsrikt"
+
+msgid "My coverletter"
+msgstr "Mitt brev"
+
+msgid "Add coverletter"
+msgstr "Lägg till omslagsbrev"
+
+msgid "Total Cover Letter"
+msgstr "Totalt omslagsbrev"
+
+msgid "Remaining Cover Letter"
+msgstr "Återstående följebrev"
+
+msgid "Open ChatGPT"
+msgstr "Öppen chatgpt"
+
+msgid "How To Add Cover Letter With ChatGPT"
+msgstr "Hur man lägger till omslagsbrev med chatgpt"
+
+msgid "Edit coverletter"
+msgstr "Redigera omslagsbrev"
+
+msgid "Edit Cover Letter"
+msgstr "Redigera omslagsbrev"
+
+msgid "Delete coverletter"
+msgstr "Radera omslagsbrev"
+
+msgid "coverletter title"
+msgstr "titel för brevbrev"
+
+msgid "Add New Cover Letter"
+msgstr "Lägg till nytt omslagsbrev"
+
+msgid "Quote from Hello Dolly song, by Jerry Herman:"
+msgstr "Citat från Hello Dolly Song, av Jerry Herman:"
+
+msgid "Select Parent"
+msgstr "Välj förälder"
+
+msgid "Edit Field"
+msgstr "Redigera fält"
+
+msgid "Visitor published"
+msgstr "Besökare publicerad"
+
+msgid "Show On Listing"
+msgstr "Visning på listan"
+
+msgid "Advanced"
+msgstr "Avancerad"
+
+msgid "Equal"
+msgstr "Lika"
+
+msgid "Not Equal"
+msgstr "Inte lika"
+
+msgid "Multi Select"
+msgstr "Multi Select"
+
+msgid "Visible"
+msgstr "Synlig"
+
+msgid "Select Child"
+msgstr "Välj barn"
+
+msgid "Select Condition"
+msgstr "Välj villkor"
+
+msgid "To use this feature please fill the above three fields."
+msgstr "För att använda den här funktionen, fyll ovanstående tre fält."
+
+msgid "No response found"
+msgstr "Inget svar hittades"
+
+msgid "Quick Apply"
+msgstr "Snabb tillämpning"
+
+msgid "user publish"
+msgstr "användarpublicering"
+
+msgid "User Unpublished"
+msgstr "Användare opublicerad"
+
+msgid "visitor publish"
+msgstr "besökare"
+
+msgid "visitor unpublish"
+msgstr "besökare opublicerar"
+
+msgid "Select user status"
+msgstr "Välj användarstatus"
+
+msgid "Un published"
+msgstr "Un publicerad"
+
+msgid "File upload fields and text editor fields cannot be made required."
+msgstr "Filuppladdningsfält och textredigerare kan inte göras krävs."
+
+msgid "Dependent Field"
+msgstr "Fältto"
+
+msgid "Job Apply settings"
+msgstr "Jobb Apply Inställningar"
+
+msgid "Quick Apply settings"
+msgstr "Snabbtillämpningsinställningar"
+
+msgid "Show count in jobs by cities page"
+msgstr "Visa räkning i jobb efter städer"
+
+msgid "Show country in jobs by cities page"
+msgstr "Visa land i jobb vid städernas sida"
+
+msgid "Profile Section"
+msgstr "Profilavsnitt"
+
+msgid "Recaptcha Version 2"
+msgstr "Recaptcha version 2"
+
+msgid "Recaptcha Version 3"
+msgstr "Recaptcha version 3"
+
+msgid "System slug"
+msgstr "Systemslugg"
+
+msgid "Image file size"
+msgstr "Bildfilstorlek"
+
+msgid "System will not upload if image size is greater than the given size"
+msgstr "Systemet laddas inte upp om bildstorleken är större än den givna storleken"
+
+msgid "Show page title above wpjobportal breadcrumbs"
+msgstr "Visa sidtitel ovanför wpjobportal brödsmulor"
+
+msgid "Default Image For WP Job Portal"
+msgstr "Standardbild för WP Job Portal"
+
+msgid "This image will shown as default image for entities & users if no other image is provided."
+msgstr "Den här bilden visas som standardbild för enheter och användare om ingen annan bild tillhandahålls."
+
+msgid "Default country"
+msgstr "Standardland"
+
+msgid "Select default country for user added cities"
+msgstr "Välj standardland för användare tillagda städer"
+
+msgid "Job detail URL options are title, company, category, location, jobtype. eg- [title] [company]"
+msgstr "Jobbdetalj URL -alternativ är titel, företag, kategori, plats, jobbtyp. t.ex. [titel] [företag]"
+
+msgid "Select the Google reCaptcha Version"
+msgstr "Välj Google Recaptcha -versionen"
+
+msgid "Recent Resumes Box"
+msgstr "Senaste CV -lådan"
+
+msgid "mode"
+msgstr "läge"
+
+msgid "expire"
+msgstr "upphöra"
+
+msgid "Registration is disabled in WordPress settings, please enable to Membership: anyone can register."
+msgstr "Registrering är inaktiverad i WordPress -inställningar, vänligen aktivera medlemskap: Vem som helst kan registrera dig."
+
+msgid "Quick Apply Now"
+msgstr "Snabbt ansöka nu"
+
+msgid "Enable Quick Apply for user"
+msgstr "Aktivera snabb Apply för användare"
+
+msgid "Enable Quick Apply for visitor"
+msgstr "Aktivera snabbt ansökan om besökare"
+
+msgid "Enable captcha for visitor Quick Apply"
+msgstr "Aktivera CAPTCHA för besökare Quick Apply"
+
+msgid "Show captcha to visitor on quick apply form."
+msgstr "Visa Captcha till besökaren på snabb tillämpningsformulär."
+
+msgid "Add ons for WP Job Portal have been installed and activated successfully. "
+msgstr "Lägg till ONS för WP Job Portal har installerats och aktiverats framgångsrikt."
+
+msgid "WP Job Portal is an open-source job board plugin for WordPress that provides advanced features to help you create a successful job board. In addition, we offer trusted WP Job Portal add-ons that can further enhance your job board's functionality in a fast, safe, and easy manner. Our add-ons have been designed to integrate seamlessly with our job board plugin, ensuring you can expand your job board's capabilities without any complications."
+msgstr "WP Job Portal är ett open source Job Board-plugin för WordPress som ger avancerade funktioner som hjälper dig att skapa en framgångsrik jobbstyrelse. Dessutom erbjuder vi pålitliga WP-jobbportal-tillägg som kan ytterligare förbättra ditt jobbstyrelsens funktionalitet på ett snabbt, säkert och enkelt sätt. Våra tillägg har utformats för att integreras sömlöst med vårt Job Board-plugin, vilket säkerställer att du kan utöka din jobbstyrelsens kapacitet utan komplikationer."
+
+msgid "Savings*"
+msgstr "Besparingar*"
+
+msgid "Best Deal"
+msgstr "Bästa affär"
+
+msgid "Shortlist Job"
+msgstr "Kortlista"
+
+msgid "e.g 45000"
+msgstr "t.ex. 45000"
+
+msgid "e.g 3000"
+msgstr "t.ex. 3000"
+
+msgid "e.g 6000"
+msgstr "t.ex. 6000"
+
+msgid "Deactivated"
+msgstr "Inaktiverad"
+
+msgid "Not Installed"
+msgstr "Inte installerad"
+
+msgid "Addon Installed Successfully"
+msgstr "Addon installerade framgångsrikt"
+
+msgid "Addon installation failed"
+msgstr "Addon -installation misslyckades"
+
+msgid "Resume Data Management"
+msgstr "Återuppta datahantering"
+
+msgid "Export (csv)"
+msgstr "Export (CSV)"
+
+msgid "Configuration Based Tutorials"
+msgstr "Konfigurationsbaserade tutorials"
+
+msgid "Slugs"
+msgstr "Snigel"
+
+msgid "Theme Installation"
+msgstr "Teminstallation"
+
+msgid "WP Job Portal Theme  Installation"
+msgstr "WP Job Portal Theme Installation"
+
+msgid "System Management"
+msgstr "Systemhantering"
+
+msgid "Activity Log and System Errors"
+msgstr "Aktivitetslogg och systemfel"
+
+msgid "Shortcode"
+msgstr "Kortkod"
+
+msgid "Job Seeker Control Panel"
+msgstr "Jobbsökande kontrollpanel"
+
+msgid "A shortcode designed for jobseeker, providing an easy-to-use controlpanel to manage applications, resume, and preferences directly from their dashboard."
+msgstr "En kortkod designad för Jobseeker, som tillhandahåller en lättanvänd kontrollpanel för att hantera applikationer, återuppta och preferenser direkt från deras instrumentpanel."
+
+msgid "Base Shortcode"
+msgstr "Baskod"
+
+msgid "Shortcode With All Options"
+msgstr "Kortkod med alla alternativ"
+
+msgid " The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "Arbetsgivarens kontrollpanel är ett strömlinjeformat gränssnitt som gör det möjligt för arbetsgivare att hantera jobbpostningar, spåra ansökningar, kommunicera med kandidater och analysera anställning av mätvärden effektivt."
+
+msgid "The job search shortcode enables users to easily find job listings based on various criteria."
+msgstr "Jobbsökningskoden gör det möjligt för användare att enkelt hitta jobblistor baserat på olika kriterier."
+
+msgid "The jobs shortcode is a feature that displays individual job listings on a website."
+msgstr "Jobbskoden är en funktion som visar enskilda jobblistor på en webbplats."
+
+msgid "The featured job shortcode highlights select job listings on a website, making them stand out to potential applicants."
+msgstr "Den presenterade Job -kortkodhöjdpunkterna utvalda jobblistor på en webbplats, vilket gör att de sticker ut för potentiella sökande."
+
+msgid "This Shortcode requires WP Job Portal Featured Jobs Addon"
+msgstr "Denna kortkod kräver WP Job Portal presenterade Jobs Addon"
+
+msgid "Get Addon"
+msgstr "Få tillägg"
+
+msgid "Job Categories"
+msgstr "Jobbkategorier"
+
+msgid "The job categories shortcode displays a dynamic list of available categories, enabling users to easily navigate and find relevant job listings."
+msgstr "Jobbkategorierna kortkod visar en dynamisk lista över tillgängliga kategorier, vilket gör att användare enkelt kan navigera och hitta relevanta jobblistor."
+
+msgid "The job types shortcode presents a comprehensive list of available job types, allowing users to quickly explore and find suitable job opportunities."
+msgstr "Jobbtyperna kortkod presenterar en omfattande lista över tillgängliga jobbtyper, vilket gör att användare snabbt kan utforska och hitta lämpliga jobbmöjligheter."
+
+msgid "My applied jobs shortcode provides users with a personalized list of their job applications, allowing easy access to track application status and details."
+msgstr "Mina Applied Jobs -kortkod ger användare en personlig lista över sina jobbapplikationer, vilket möjliggör enkel åtkomst för att spåra applikationsstatus och detaljer."
+
+msgid "My companies shortcode displays a personalized list of companies users are associated with, facilitating easy access to company information and opportunities."
+msgstr "Mina företagskort visar en personlig lista över företag som användare är associerade med, vilket underlättar enkel tillgång till företagets information och möjligheter."
+
+msgid "All companies shortcode offers a curated directory of all companies, allowing users to easily browse and connect with potential employers."
+msgstr "Alla företagskort erbjuder en kuraterad katalog över alla företag, vilket gör att användare enkelt kan bläddra och ansluta sig till potentiella arbetsgivare."
+
+msgid "This Shortcode requires WP Job Portal All Companies Addon"
+msgstr "Denna kortkod kräver WP Job Portal Alla företag Addon"
+
+msgid "The featured companies shortcode showcases prominent companies within the portal, allowing users to explore exciting job opportunities from industry leaders."
+msgstr "De presenterade företagens kortkod visar framstående företag inom portalen, vilket gör att användare kan utforska spännande jobbmöjligheter från branschledare."
+
+msgid "This Shortcode requires WP Job Portal Featured Companies Addon"
+msgstr "Denna kortkod kräver WP Job Portal presenterade företag Addon"
+
+msgid "My jobs shortcode allows users to view and manage their saved job listings, making it easy to keep track of potential opportunities."
+msgstr "Mina jobbskort gör det möjligt för användare att se och hantera sina sparade jobblistor, vilket gör det enkelt att hålla reda på potentiella möjligheter."
+
+msgid "My resume shortcode allows users to view and manage their uploaded resumes, providing a convenient way to keep their job application materials up to date."
+msgstr "Min CV -kortkod gör det möjligt för användare att se och hantera sina uppladdade CV, vilket ger ett bekvämt sätt att hålla sitt jobbapplikationsmaterial uppdaterat."
+
+msgid "All Resumes"
+msgstr "Alla CV"
+
+msgid "All resumes shortcode allows job seekers to view and manage their uploaded resumes, ensuring they have easy access to their application materials."
+msgstr "Alla CV -kortkoden gör det möjligt för arbetssökande att se och hantera sina uppladdade CV, vilket säkerställer att de har enkel åtkomst till sina applikationsmaterial."
+
+msgid "This Shortcode requires WP Job Portal All Resumes Addon"
+msgstr "Denna kortkod kräver WP Job Portal alla återupptas addon"
+
+msgid "The featured resumes shortcode showcases a selection of standout resumes, allowing job seekers to stand out to potential employers."
+msgstr "Den presenterade CV -kortkoden visar ett urval av framstående CV, vilket gör att arbetssökande kan sticka ut för potentiella arbetsgivare."
+
+msgid "This Shortcode requires WP Job Portal Featured Resumes Addon"
+msgstr "Denna kortkod kräver WP Job Portal presenterade CV -tillägg"
+
+msgid "Add company shortcode allows employers to effortlessly register their organization, providing essential details to attract talent and post job openings."
+msgstr "Lägg till företagskort gör det möjligt för arbetsgivare att enkelt registrera sin organisation och tillhandahålla viktiga detaljer för att locka talang och postjobböppningar."
+
+msgid "Add department shortcode enables employers to easily create and manage specific departments within their organization, facilitating better job categorization and organization."
+msgstr "Lägg till avdelningskort gör det möjligt för arbetsgivare att enkelt skapa och hantera specifika avdelningar inom sin organisation, vilket underlättar bättre jobbkategorisering och organisation."
+
+msgid "This Shortcode requires WP Job Portal Multi Departments Addon"
+msgstr "Denna kortkod kräver WP Job Portal Multi -avdelningar tillägg"
+
+msgid "Add jobs enables organizations to effortlessly publish job postings, helping them connect with potential applicants and fill vacancies more effectively."
+msgstr "Lägg till jobb gör det möjligt för organisationer att enkelt publicera jobbposter, hjälpa dem att få kontakt med potentiella sökande och fylla lediga platser mer effektivt."
+
+msgid "Add resume shortcode simplifies the process for candidates to submit their resumes, helping them showcase their qualifications and experiences to potential employers."
+msgstr "Lägg till CV -kortkod förenklar processen för kandidater att lämna in sina CV, vilket hjälper dem att visa upp sina kvalifikationer och erfarenheter för potentiella arbetsgivare."
+
+msgid "Resume search shortcode provides a powerful search tool for employers to explore candidate profiles, making it easier to connect with potential hires."
+msgstr "Resume Search Shortcode ger ett kraftfullt sökverktyg för arbetsgivare för att utforska kandidatprofiler, vilket gör det enklare att ansluta till potentiella anställningar."
+
+msgid "This Shortcode requires WP Job Portal Resume Search Addon"
+msgstr "Denna kortkod kräver WP Job Portal CV -sökning addon"
+
+msgid "Registration"
+msgstr "Registrering"
+
+msgid "Registration shortcode allows individuals to easily create accounts as their selected role"
+msgstr "Registreringskort gör det möjligt för individer att enkelt skapa konton som sin valda roll"
+
+msgid "Employer registration shortcode streamlines the process for organizations to register, ensuring they can efficiently manage job postings and their company profiles."
+msgstr "Arbetsgivarregistreringskoden effektiviserar processen för organisationer att registrera sig, vilket säkerställer att de effektivt kan hantera jobbpostningar och deras företagsprofiler."
+
+msgid "Job Seeker Registration"
+msgstr "Jobbsökande registrering"
+
+msgid "Job seeker registration shortcode allows individuals to easily create accounts, enabling them to apply for jobs and manage their resumes."
+msgstr "Jobbsökande kortkod gör det möjligt för individer att enkelt skapa konton, vilket gör att de kan ansöka om jobb och hantera sina CV."
+
+msgid "Login Page"
+msgstr "Inloggningssida"
+
+msgid "Login page shortcode offers a user-friendly interface for candidates and employers to securely log in and manage their profiles and postings."
+msgstr "Inloggningssida Shortcode erbjuder ett användarvänligt gränssnitt för kandidater och arbetsgivare för att säkert logga in och hantera sina profiler och inlägg."
+
+msgid "Widget"
+msgstr "Widget"
+
+msgid "Search job widget provides an intuitive interface for candidates to filter and browse openings, connecting them with opportunities that align with their skills."
+msgstr "Sökjobb widget ger ett intuitivt gränssnitt för kandidater att filtrera och bläddra i öppningar och ansluta dem till möjligheter som överensstämmer med sina färdigheter."
+
+msgid "This Shortcode requires WP Job Portal Front-end Widgets Addon"
+msgstr "Denna kortkod kräver WP Job Portal Front-End-widgets addon"
+
+msgid "My packages offers a personalized dashboard for users to monitor their subscription details, helping them manage job postings and access features effectively."
+msgstr "Mina paket erbjuder en personlig instrumentpanel för användare att övervaka sina prenumerationsinformation, hjälpa dem att hantera jobbpostningar och åtkomstfunktioner effektivt."
+
+msgid "This Shortcode requires WP Job Portal Credits Addon"
+msgstr "Denna kortkod kräver WP Job Portal Credits Addon"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans.  "
+msgstr "Mitt prenumeration ger användare en översikt över sina aktiva prenumerationer, vilket möjliggör enkel hantering och spårning av sina jobbpostplaner."
+
+msgid "All packages showcases a comprehensive list of available subscription plans, allowing users to compare features and select the best options for their job posting needs."
+msgstr "Alla paket visar en omfattande lista över tillgängliga prenumerationsplaner, vilket gör att användare kan jämföra funktioner och välja de bästa alternativen för deras jobbpostbehov."
+
+msgid "My invoices provides a convenient way for users to view and manage their invoices, helping them stay organized and up to date with their payments."
+msgstr "Mina fakturor ger ett bekvämt sätt för användare att se och hantera sina fakturor och hjälpa dem att hålla sig organiserade och uppdaterade med sina betalningar."
+
+msgid "SEO"
+msgstr "SEO"
+
+msgid "Document Title Settings"
+msgstr "Inställningar för dokumenttitel"
+
+msgid "Company detail url options are name, location. eg- [name] [location]"
+msgstr "Företagsdetalj URL -alternativ är namn, plats. t.ex. [namn] [plats]"
+
+msgid "spinning wheel"
+msgstr "spinnrock"
+
+msgid "New Update Version"
+msgstr "Ny uppdateringsversion"
+
+msgid "is Available"
+msgstr "är tillgängligt"
+
+msgid "Hey there! We have recently launched a fresh update for the add-ons. Don't forget to update the add-ons to enjoy the greatest features!"
+msgstr "Hej där! Vi har nyligen lanserat en ny uppdatering för tillägg. Glöm inte att uppdatera tilläggen för att njuta av de största funktionerna!"
+
+msgid "View Addone Status"
+msgstr "Visa tilläggsstatus"
+
+msgid "Active Companies"
+msgstr "Aktiebolag"
+
+msgid "Help Page"
+msgstr "Hjälpsida"
+
+msgid "Watch Tutorial"
+msgstr "Titta på handledning"
+
+msgid "video"
+msgstr "video"
+
+msgid "Apply Now Failed"
+msgstr "Ansöka nu misslyckades"
+
+msgid "You do not have package required for job apply"
+msgstr "Du har inte paket som krävs för jobb"
+
+msgid "You package has expired"
+msgstr "Ditt paket har gått ut"
+
+msgid "You do not any more job apply available"
+msgstr "Du har inte mer jobb tillämpat tillgängligt"
+
+msgid "Job Not Found"
+msgstr "Jobb hittades inte"
+
+msgid "Job does not exist in the system"
+msgstr "Jobb finns inte i systemet"
+
+msgid "Make Payment To Complete The Job Apply"
+msgstr "Göra betalning för att slutföra jobbet"
+
+msgid "Successfully applied on job"
+msgstr "Framgångsrikt tillämpas på jobb"
+
+msgid "view coverletter"
+msgstr "Visa omslagsbrev"
+
+msgid "Please Fill out fields"
+msgstr "Fyll i fält"
+
+msgid "sender email is not of correct format"
+msgstr "avsändarens e -post är inte av korrekt format"
+
+msgid "Erase Selected Country"
+msgstr "Radera utvalt land"
+
+msgid "Erase All Data"
+msgstr "Radera all data"
+
+msgid "Click on package to select one"
+msgstr "Klicka på paketet för att välja ett"
+
+msgid "Apply to the Job"
+msgstr "Ansöka till jobbet"
+
+msgid "No Cover Letter!"
+msgstr "Inget brev!"
+
+msgid "Add Cover Lettter"
+msgstr "Lägg till omslagsbrev"
+
+msgid "You have already applied on this job."
+msgstr "Du har redan ansökt om det här jobbet."
+
+msgid "Unlimited job applies"
+msgstr "Obegränsat jobb gäller"
+
+msgid "Job applies remaining"
+msgstr "Jobb gäller återstående"
+
+msgid "Buy package to apply on job."
+msgstr "Köp paket för att ansöka på jobb."
+
+msgid "Apply With Package"
+msgstr "Applicera med paketet"
+
+msgid "Payment of"
+msgstr "Betalning av"
+
+msgid "is required to complete the job apply process"
+msgstr "krävs för att slutföra jobbansökningsprocessen"
+
+msgid "You are logged in as employer."
+msgstr "Du är inloggad som arbetsgivare."
+
+msgid "You are not a logged in member."
+msgstr "Du är inte en inloggad medlem."
+
+msgid "You do not have any role."
+msgstr "Du har ingen roll."
+
+msgid "Proceed to payment"
+msgstr "Fortsätt till betalning"
+
+msgid "Views"
+msgstr "Åsikter"
+
+msgid "Save As Draft"
+msgstr "Save As Draft"
+
+msgid "Job Has Been Feature SuccesFully"
+msgstr "Job har presenterats framgångsrikt"
+
+msgid "You are Not Allowed To Add More than One"
+msgstr "Du får inte lägga till mer än en"
+
+msgid "Contact TO Adminstrator"
+msgstr "Kontakt till administratören"
+
+msgid "This Is Meta Description"
+msgstr "Detta är metabeskrivning"
+
+msgid "jobs by cities"
+msgstr "Jobb av städer"
+
+msgid "Show Info"
+msgstr "Visa info"
+
+msgid "Changing a user's role will not remove its entites from the system !"
+msgstr "Att ändra en användares roll tar inte bort sina enheter från systemet!"
+
+msgid "company reject"
+msgstr "företag avvisa"
+
+msgid "all reject"
+msgstr "alla avvisar"
+
+msgid "Missing user(s) added successfully!"
+msgstr "Saknade användare (er) tillagda framgångsrikt!"
+
+msgid "No missing user found!"
+msgstr "Ingen saknad användare hittades!"
+
+msgid "Jobs Listing Menu"
+msgstr "Jobblista -meny"
+
+msgid "Visitor"
+msgstr "Besökare"
+
+msgid "new message alert"
+msgstr "Ny meddelandevarning"
+
+msgid "New Message Alert"
+msgstr "Ny meddelandevarning"
+
+msgid "Recipient Name"
+msgstr "Mottagarnamn"
+
+msgid "Sender Name"
+msgstr "Avsändarnamn"
+
+msgid "Sender Role"
+msgstr "Avsändarroll"
+
+msgid "Message Text"
+msgstr "Meddelandetext"
+
+msgid "Job/Resume Info"
+msgstr "Jobb/återuppta info"
+
+msgid "Upload Resume"
+msgstr "Ladda upp CV"
+
+msgid "Profile Status"
+msgstr "Profilstatus"
+
+msgid "Profile Completed"
+msgstr "Profilen slutförd"
+
+msgid "feature approve"
+msgstr "Funktion godkänner"
+
+msgid "feature reject"
+msgstr "funktionsavvisande"
+
+msgid "Type city"
+msgstr "Typstad"
+
+msgid "New Message"
+msgstr "Nytt meddelande"
+
+msgid "Employer is disabled by admin"
+msgstr "Arbetsgivaren är inaktiverad av admin"
+
+msgid "You are not allowed to add more than one"
+msgstr "Du får inte lägga till mer än en"
+
+msgid "contact adminstrator"
+msgstr "kontaktadministratör"
+
+msgid "Payment is not made against this job contact adminstrator"
+msgstr "Betalning görs inte mot detta jobbkontaktadministratör"
+
+msgid "Addon Page Not Found"
+msgstr "Addon -sida hittades inte"
+
+msgid "User Role"
+msgstr "Användarroll"
+
+msgid "Jobs Role"
+msgstr "Jobbroll"
+
+msgid "User has been successfully created"
+msgstr "Användaren har skapats framgångsrikt"
+
+msgid "Pay For Department"
+msgstr "Betala för avdelningen"
+
+msgid "Pay For Job Apply"
+msgstr "Betala för jobb"
+
+msgid "Pay For Company"
+msgstr "Betala för företag"
+
+msgid "Pay For Featured Company"
+msgstr "Betala för presenterat företag"
+
+msgid "Pay For Job"
+msgstr "Betala för jobb"
+
+msgid "Pay For Featured Job"
+msgstr "Betala för presenterat jobb"
+
+msgid "Pay For Resume Search"
+msgstr "Betala för CV -sökning"
+
+msgid "Pay For Resume "
+msgstr "Betala för CV"
+
+msgid "Pay For Featured Resume "
+msgstr "Betala för Featured CV"
+
+msgid "Job Saved Searches"
+msgstr "Jobb sparade sökningar"
+
+msgid "Job Apply Configurations"
+msgstr "Jobb Apply Configurations"
+
+msgid "Quick Apply Fields"
+msgstr "Snabb Apply Fields"
+
+msgid "addons status"
+msgstr "tilläggsstatus"
+
+msgid "coverletters"
+msgstr "täckbrev"
+
+msgid "coverletter"
+msgstr "brevbrev"
+
+msgid "add new cover letter"
+msgstr "Lägg till nytt omslagsbrev"
+
+msgid "Loaction Name settings"
+msgstr "Platsnamninställningar"
+
+msgid "Loaction Name Settings"
+msgstr "Platsnamninställningar"
+
+msgid "shifts"
+msgstr "skift"
+
+msgid "ages"
+msgstr "åldrar"
+
+msgid "Error file size too large"
+msgstr "Felfilstorlek för stor"
+
+msgid "Maximum Size"
+msgstr "Maximal storlek"
+
+msgid "is in use"
+msgstr "används"
+
+msgid "can not deleted it"
+msgstr "kan inte ta bort det"
+
+msgid "Address data"
+msgstr "Adressdata"
+
+msgid "themes"
+msgstr "teman"
+
+msgid "Color Schemes"
+msgstr "Färgscheman"
+
+msgid "Color Chooser"
+msgstr "Färgväljare"
+
+msgid "Color 1"
+msgstr "Färg 1"
+
+msgid "Color 2"
+msgstr "Färg 2"
+
+msgid "Color 3"
+msgstr "Färg 3"
+
+msgid "Add User Fields"
+msgstr "Lägg till användarfält"
+
+msgid "cannot unpublished"
+msgstr "kan inte opubliceras"
+
+msgid "Search Name"
+msgstr "Söknamn"
+
+msgid "start"
+msgstr "start"
+
+msgid "Total Resume Search"
+msgstr "Total CV -sökning"
+
+msgid "Remaining Resume Search"
+msgstr "Återstående CV -sökning"
+
+msgid "Reference"
+msgstr "Hänvisning"
+
+msgid "cancel payment"
+msgstr "Avbryt betalning"
+
+msgid "Apply now"
+msgstr "Ansök nu"
+
+msgid " Listing"
+msgstr "Lista"
+
+msgid "Credits log"
+msgstr "Credits logg"
+
+msgid "Rate list"
+msgstr "Hastighetslista"
+
+msgid "Purchase history"
+msgstr "Köphistorik"
+
+msgid " remaining"
+msgstr "återstående"
+
+msgid "Cover Letter has been successfully published"
+msgstr "Omslagsbrev har publicerats framgångsrikt"
+
+msgid "cover Letter has been successfully published"
+msgstr "omslagsbrev har publicerats framgångsrikt"
+
+msgid "Resume files download"
+msgstr "Återuppta filer nedladdning"
+
+msgid "apply with facebook"
+msgstr "Ansök med Facebook"
+
+msgid "apply with linkedin"
+msgstr "Ansök med LinkedIn"
+
+msgid "apply with xing"
+msgstr "Applicera med Xing"
+
+msgid "Resume removed from featured"
+msgstr "Återupptas från presenterad"
+
+msgid "share blog"
+msgstr "Dela blogg"
+
+msgid "share digg"
+msgstr "Dela Digg"
+
+msgid "share fb"
+msgstr "Dela FB"
+
+msgid "share ff"
+msgstr "Dela FF"
+
+msgid "share google"
+msgstr "Dela Google"
+
+msgid "share linkedin"
+msgstr "Dela LinkedIn"
+
+msgid "share myspace"
+msgstr "Dela MySpace"
+
+msgid "share twitter"
+msgstr "Dela Twitter"
+
+msgid "share yahoo"
+msgstr "Dela Yahoo"
+
+msgid "Mark As Shortlist Job"
+msgstr "Markera som kortlista jobb"
+
+msgid "Keep this job on your list! Mark it as shortlisted and find it easily whenever you need."
+msgstr "Håll det här jobbet på din lista! Markera det som kortlistat och hitta det enkelt när du behöver."
+
+msgid "Search job title, company name, keywords"
+msgstr "Sökjobbtitel, företagsnamn, nyckelord"
+
+msgid "Loction"
+msgstr "Lova"
+
+msgid "Applied Resume Title"
+msgstr "Tillämpad CV -titel"
+
+msgid "Arrow"
+msgstr "Pil"
+
+msgid "Already Applied"
+msgstr "Redan applicerat"
+
+msgid "Ready to take the next step? Simply fill out the form and submit your application. It only takes a few minutes!"
+msgstr "Redo att ta nästa steg? Fyll bara i formuläret och skicka in din ansökan. Det tar bara några minuter!"
+
+msgid "Waiting for Payment"
+msgstr "Väntar på betalning"
+
+msgid "Salery"
+msgstr "Sälverk"
+
+msgid "Buy"
+msgstr "Köpa"
+
+msgid "Employer can add companies and jobs while searching for potential candidate to hire"
+msgstr "Arbetsgivare kan lägga till företag och jobb när de söker efter potentiell kandidat för att anställa"
+
+msgid "Selected"
+msgstr "Vald"
+
+msgid "Jobseeker can add resume, cover letters, search jobs and apply to multiple jobs easily"
+msgstr "Jobseeker kan lägga till CV, täckningsbrev, söka jobb och tillämpas på flera jobb enkelt"
+
+msgid "Hello, again!..."
+msgstr "Hej, igen! ..."
+
+msgid "View All Applied Jobs"
+msgstr "Visa alla tillämpade jobb"
+
+msgid "View All Newest Jobs"
+msgstr "Visa alla nyaste jobb"
+
+msgid "Hello, again!…"
+msgstr "Hej, igen! ..."
+
+msgid "Submit job"
+msgstr "Skicka jobb"
+
+msgid "Submit Job"
+msgstr "Skicka jobb"
+
+msgid "View detail"
+msgstr "Visa detalj"
+
+msgid "Recently Applied Resume"
+msgstr "Nyligen tillämpad CV"
+
+msgid "Messages By Resume"
+msgstr "Meddelanden av CV"
+
+msgid "Reply"
+msgstr "Svar"
+
+msgid "View jobs"
+msgstr "Se jobb"
+
+msgid "Other Info"
+msgstr "Annan information"
+
+msgid "Link"
+msgstr "Länk"
+
+msgid "Mail"
+msgstr "Post"
+
+msgid "Site"
+msgstr "Plats"
+
+msgid "View Company Details"
+msgstr "Visa företagsinformation"
+
+msgid "Completed"
+msgstr "Avslutad"
+
+msgid "Categoty"
+msgstr "Kategori"
+
+msgid "tell a friend"
+msgstr "Berätta för en vän"
+
+msgid "Tell friend"
+msgstr "Berätta vän"
+
+msgid "Know someone perfect for this job? Share it with them!"
+msgstr "Känner du någon perfekt för det här jobbet? Dela det med dem!"
+
+msgid "Your name"
+msgstr "Ditt namn"
+
+msgid "Your email"
+msgstr "Din e -post"
+
+msgid "Show the"
+msgstr "Visa den"
+
+msgid "form to logged-in users on the job detail page. If this is on,"
+msgstr "formulär för inloggade användare på sidan Jobbdetalj. Om detta är på,"
+
+msgid "will be turned off."
+msgstr "kommer att stängas av."
+
+msgid "form to visitor on the job detail page. If this is on,"
+msgstr "Form till besökaren på sidan Jobbdetalj. Om detta är på,"
+
+msgid "You do not have any save serch remaining"
+msgstr "Du har ingen räddningsserch kvar"
+
+msgid "We would love to hear from You."
+msgstr "Vi skulle gärna höra från dig."

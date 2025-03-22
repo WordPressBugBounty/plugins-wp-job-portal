@@ -15,10 +15,10 @@
     span.wjportal-featured-tag-icon-wrp span.wjportal-featured-tag-icon {color: #fff;}
     span.wjportal-featured-tag-icon-wrp span.wjportal-featured-hover-wrp {background: #fff;color: #575757;}
     span.wjportal-featured-tag-icon-wrp span.wjportal-featured-hover-wrp::before {border-top: 7px solid transparent;border-right: 7px solid #fff;border-bottom: 7px solid transparent;}
-    .wjportal-payment-act-btn {border: 1px solid #d4d4d5;background: #fff;color: #3baeda;}
+    .wjportal-payment-act-btn {border: 1px solid #3baeda;background: #fff;color: #3baeda;}
     .wjportal-payment-act-btn:hover {border-color: #3baeda;background: #3baeda;color: #fff;}
-    .wjportal-resume-adv-act-c-detail-btn {border: 1px solid #07a593;background: #fff;color: #07a593;}
-    .wjportal-resume-adv-act-c-detail-btn:hover {border-color: #07a593;background: #07a593;color: #fff;}
+    .wjportal-resume-adv-act-c-detail-btn {border: 1px solid #3baeda;background: #fff;color: #3baeda;}
+    .wjportal-resume-adv-act-c-detail-btn:hover {border-color: #3baeda;background: #3baeda;color: #fff;}
     .wjportal-show-contact-det-btn {color: #333333;border: 1px solid #333333;background: #fff;}
     .wjportal-show-contact-det-btn:hover {color: #fff;background: #333333;}
     div.wjportal-payment-action-wrp {border-top: 1px solid #d4d4d5;background: #fafafa;}
@@ -246,7 +246,7 @@
     div.wjportal-form-wrp div.wjportal-form-row div.wjportal-form-value div.wjportal-form-5-fields div.wjportal-form-symbol-fields span.wjportal-form-symbol {border: 1px solid #d4d4d5;}
     div.wjportal-form-wrp div.wpjobportal-terms-and-conditions-wrap {color: #575757;}
     div.wjportal-form-wrp div.wjportal-terms-and-conditions-wrap {color: #575757;}
-    div.wjportal-form-wrp div.wjportal-form-btn-wrp {border-top: 1px solid #d4d4d5;}
+    /* div.wjportal-form-wrp div.wjportal-form-btn-wrp {border-top: 1px solid #d4d4d5;} */
     div.wjportal-form-wrp div.wjportal-form-btn-wrp .wjportal-form-btn {color: #fff!important;background: #3baeda!important;border: 1px solid #3baeda!important;}
     div.wjportal-form-wrp div.wjportal-form-btn-wrp .wjportal-form-btn:hover {color: #3baeda!important;background: #fff!important;}
     div.wjportal-form-wrp div.wjportal-form-btn-wrp .wjportal-form-save-btn {color: #fff;background: #3baeda;border: 1px solid #3baeda;}
@@ -361,27 +361,29 @@
     div.wjportal-send-message-wrapper div.wjportal-message-history-wrp div.wjportal-msg-history div.wjportal-msg-history-cnt div.wjportal-msg-history-text {color: #575757;}
 
 
+
+
     /***********************
         coverletter list
     **********************/
     div.wjportal-coverletter-list {border: 1px solid #d4d4d5;background: #fff;}
-    div.wjportal-coverletter-list div.wjportal-coverletter-list-top-wrp div.wjportal-coverletter-cnt-wrp div.wjportal-coverletter-middle-wrp div.wjportal-coverletter-data div.wjportal-coverletter-title {color: #000000;}
-    div.wjportal-coverletter-list div.wjportal-coverletter-list-top-wrp div.wjportal-coverletter-cnt-wrp div.wjportal-coverletter-middle-wrp div.wjportal-coverletter-data div.wjportal-coverletter-info-data a.wjportal-companyname {color: #4d89dc;}
+    div.wjportal-coverletter-list div.wjportal-coverletter-list-top-wrp div.wjportal-coverletter-cnt-wrp div.wjportal-coverletter-middle-wrp div.wjportal-coverletter-data div.wjportal-coverletter-title {color: #333333;}
+    div.wjportal-coverletter-list div.wjportal-coverletter-list-top-wrp div.wjportal-coverletter-cnt-wrp div.wjportal-coverletter-middle-wrp div.wjportal-coverletter-data div.wjportal-coverletter-info-data a.wjportal-companyname {color: #3baeda;}
     div.wjportal-coverletter-list div.wjportal-coverletter-list-top-wrp div.wjportal-coverletter-cnt-wrp div.wjportal-coverletter-middle-wrp div.wjportal-coverletter-data div.wjportal-coverletter-info-data span.wjportal-coverletter-info-tit {color: #575757;}
-    div.wjportal-coverletter-list div.wjportal-coverletter-list-top-wrp div.wjportal-coverletter-cnt-wrp div.wjportal-coverletter-middle-wrp div.wjportal-coverletter-data div.wjportal-coverletter-info-data span.wjportal-coverletter-info-val {color: #000000;}
+    div.wjportal-coverletter-list div.wjportal-coverletter-list-top-wrp div.wjportal-coverletter-cnt-wrp div.wjportal-coverletter-middle-wrp div.wjportal-coverletter-data div.wjportal-coverletter-info-data span.wjportal-coverletter-info-val {color: #333333;}
     div.wjportal-coverletter-list div.wjportal-coverletter-list-top-wrp div.wjportal-coverletter-cnt-wrp div.wjportal-coverletter-middle-wrp div.wjportal-coverletter-data div.wjportal-coverletter-desc {color: #575757;}
     div.wjportal-coverletter-list div.wjportal-coverletter-list-top-wrp div.wjportal-coverletter-cnt-wrp div.wjportal-coverletter-right-wrp div.wjportal-coverletter-info span.wjportal-coverletter-status {color: #fff;}
     div.wjportal-coverletter-list div.wjportal-coverletter-list-btm-wrp {border-top: 1px solid #d4d4d5;background: #fafafa;}
-    div.wjportal-coverletter-list div.wjportal-coverletter-list-btm-wrp div.wjportal-coverletter-action-wrp a.wjportal-coverletter-act-btn {border: 1px solid #d4d4d5;background: #fff;color: #4d89dc;}
-    div.wjportal-coverletter-list div.wjportal-coverletter-list-btm-wrp div.wjportal-coverletter-action-wrp a.wjportal-coverletter-act-btn:hover {border-color: #4d89dc;background: #4d89dc;color: #fff;}
+    div.wjportal-coverletter-list div.wjportal-coverletter-list-btm-wrp div.wjportal-coverletter-action-wrp a.wjportal-coverletter-act-btn {border: 1px solid #d4d4d5;background: #fff;color: #3baeda;}
+    div.wjportal-coverletter-list div.wjportal-coverletter-list-btm-wrp div.wjportal-coverletter-action-wrp a.wjportal-coverletter-act-btn:hover {border-color: #3baeda;background: #3baeda;color: #fff;}
 
     /**********************
         coverletter detail
     **********************/
-    div.wjportal-coverletterdetail-wrapper div.wjportal-coverletter-data-wrp div.wjportal-coverletter-sec-title {color: #000000;}
-    div.wjportal-coverletterdetail-wrapper div.wjportal-coverletter-data-wrp div.wjportal-coverletter-data a.wjportal-companyname {color: #4d89dc;}
+    div.wjportal-coverletterdetail-wrapper div.wjportal-coverletter-data-wrp div.wjportal-coverletter-sec-title {color: #333333;}
+    div.wjportal-coverletterdetail-wrapper div.wjportal-coverletter-data-wrp div.wjportal-coverletter-data a.wjportal-companyname {color: #3baeda;}
     div.wjportal-coverletterdetail-wrapper div.wjportal-coverletter-data-wrp div.wjportal-coverletter-data span.wjportal-coverletter-data-tit {color: #575757;}
-    div.wjportal-coverletterdetail-wrapper div.wjportal-coverletter-data-wrp div.wjportal-coverletter-data span.wjportal-coverletter-data-val {color: #000000;}
+    div.wjportal-coverletterdetail-wrapper div.wjportal-coverletter-data-wrp div.wjportal-coverletter-data span.wjportal-coverletter-data-val {color: #333333;}
     div.wjportal-coverletterdetail-wrapper div.wjportal-coverletter-data-wrp div.wjportal-coverletter-desc {color: #575757;}
 
 
@@ -816,7 +818,30 @@
     div#js_job_wrapper div.js_theme_wrapper div.theme_platte div.color_wrapper img.preview{box-shadow: 0px 0px 3px #ffffff;}
     div#js_job_wrapper div.js_theme_wrapper div.theme_platte div.color_wrapper span.theme_name{color:#ffffff;}
 
-    div.wjportal-resume-list .wjportal-coverletter-act-btn {border: 1px solid #d4d4d5;background: #fafafa;color: #575757;}
+    div.wjportal-resume-list .wjportal-coverletter-act-btn{border: 1px solid #d4d4d5;background: #fafafa;color: #575757;}
+
+    div.wjportal-view-job-page-job-apply-form-wraper div.wjportal-job-sec-title {color: #333333;border-bottom:1px solid #d4d4d5;}
+    div.wjportal-view-job-page-job-apply-form-wraper div.wjportal-job-desc {color: #575757;}
+
+
+
+    div.wjportal-view-job-page-job-apply-form-wraper .wjportal-form-btn.wjportal-save-btn {color: #fff;border: 1px solid #3baeda;background: #3baeda;}
+    div.wjportal-view-job-page-job-apply-form-wraper .wjportal-form-btn.wjportal-save-btn:hover {color: #3baeda;background: #fff;}
+
+    div.wjportal-view-job-page-job-apply-form-wraper .wjportal-login-to-apply-btn {color: #fff;border: 1px solid #3baeda;background: #3baeda;}
+    div.wjportal-view-job-page-job-apply-form-wraper .wjportal-login-to-apply-btn:hover {color: #3baeda;background: #fff;}
+
+
+    div.wjportal-view-job-page-job-apply-form-wraper .wjportal-apply-as-visitor-btn {background: #333333;color: #fff;border-color: #333333;}
+    div.wjportal-view-job-page-job-apply-form-wraper .wjportal-apply-as-visitor-btn:hover {background: #fff;color: #333333;}
+    div.wjportal-view-job-page-job-apply-form-wraper .job-detail-jobapply-message-wrap .job-detail-jobapply-message-msg {border: 1px solid #d4d4d5;background: #fafafa;color: #575757;}
+    /* apply jobs */
+    
+    div.wjportal-view-job-page-job-apply-form-wraper .wpjobportal-quickapply-form .wjportal-login-to-apply-btn {border: 1px solid #fff;background: #3baeda;color: #fff;}
+    div.wjportal-view-job-page-job-apply-form-wraper .wpjobportal-quickapply-form .wjportal-login-to-apply-btn:hover {color: #3baeda;background: #fff;border: 1px solid #3baeda;}
+        div.wjportal-view-job-page-job-apply-form-wraper div.wjportal-form-wrp.wpjobportal-quickapply-form .job-detail-jobapply-message-wrap .job-detail-jobapply-message-link {color: #fff;border: 1px solid #3baeda;background: #fff;color: #3baeda;}
+        div.wjportal-view-job-page-job-apply-form-wraper div.wjportal-form-wrp.wpjobportal-quickapply-form .job-detail-jobapply-message-wrap .job-detail-jobapply-message-link:hover {color: #fff;background: #3baeda;}
+    div.wjportal-view-job-page-job-apply-form-wraper .wpjobportal-quickapply-form .wjportal-apply-as-visitor-btn{border: 1px solid #333333;}
 
 
 
@@ -832,4 +857,3 @@
     @media (max-width: 480px) {
 
     }
-

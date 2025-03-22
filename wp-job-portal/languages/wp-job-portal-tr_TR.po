@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 
 msgid "Delete"
 msgstr "Sil"
@@ -9328,3 +9328,948 @@ msgstr "Benim bölümüm"
 
 msgid "Add To ShortList"
 msgstr "Kısa Listeye Ekle"
+
+msgid "or"
+msgstr "veya"
+
+msgid "company logo"
+msgstr "şirket logosu"
+
+msgid "job title"
+msgstr "iş unvanı"
+
+msgid "company name"
+msgstr "Firma Adı"
+
+msgid "Resume Has Been Feature SuccesFully"
+msgstr "Özgeçmiş başarıyla öne çıktı"
+
+msgid "My coverletter"
+msgstr "Kapak mektubum"
+
+msgid "Add coverletter"
+msgstr "Kapak Mektubu Ekle"
+
+msgid "Total Cover Letter"
+msgstr "Toplam Kapak Mektubu"
+
+msgid "Remaining Cover Letter"
+msgstr "Kalan kapak mektubu"
+
+msgid "Open ChatGPT"
+msgstr "Chatgpt'i açık"
+
+msgid "How To Add Cover Letter With ChatGPT"
+msgstr "Chatgpt ile kapak mektubu nasıl eklenir"
+
+msgid "Edit coverletter"
+msgstr "Kapak Mektubunu Düzenle"
+
+msgid "Edit Cover Letter"
+msgstr "Kapak Mektubunu Düzenle"
+
+msgid "Delete coverletter"
+msgstr "Kapak mektubunu sil"
+
+msgid "coverletter title"
+msgstr "Kapak Mektubu Başlığı"
+
+msgid "Add New Cover Letter"
+msgstr "Yeni Kapak Mektubu Ekle"
+
+msgid "Quote from Hello Dolly song, by Jerry Herman:"
+msgstr "Hello Dolly Song'dan Alıntı, Jerry Herman tarafından:"
+
+msgid "Select Parent"
+msgstr "Ebeveyn seçin"
+
+msgid "Edit Field"
+msgstr "Alanı Düzenle"
+
+msgid "Visitor published"
+msgstr "Ziyaretçi yayınlandı"
+
+msgid "Show On Listing"
+msgstr "Listede Göster"
+
+msgid "Advanced"
+msgstr "Gelişmiş"
+
+msgid "Equal"
+msgstr "Eşit"
+
+msgid "Not Equal"
+msgstr "Eşit değil"
+
+msgid "Multi Select"
+msgstr "Çok seçkin"
+
+msgid "Visible"
+msgstr "Görünür"
+
+msgid "Select Child"
+msgstr "Çocuk seçin"
+
+msgid "Select Condition"
+msgstr "Durumu seçin"
+
+msgid "To use this feature please fill the above three fields."
+msgstr "Bu özelliği kullanmak için lütfen yukarıdaki üç alanı doldurun."
+
+msgid "No response found"
+msgstr "Yanıt bulunamadı"
+
+msgid "Quick Apply"
+msgstr "Hızlı Uygulama"
+
+msgid "user publish"
+msgstr "Kullanıcı Yayınları"
+
+msgid "User Unpublished"
+msgstr "Kullanıcı yayınlanmamış"
+
+msgid "visitor publish"
+msgstr "Ziyaretçi Yayın"
+
+msgid "visitor unpublish"
+msgstr "Ziyaretçi yayınlanmamış"
+
+msgid "Select user status"
+msgstr "Kullanıcı Durumunu Seçin"
+
+msgid "Un published"
+msgstr "BM Yayınlandı"
+
+msgid "File upload fields and text editor fields cannot be made required."
+msgstr "Dosya yükleme alanları ve metin düzenleyicisi alanları gerekli yapılamaz."
+
+msgid "Dependent Field"
+msgstr "Bağımlı alan"
+
+msgid "Job Apply settings"
+msgstr "İş Uygulama Ayarları"
+
+msgid "Quick Apply settings"
+msgstr "Hızlı Uygulama Ayarları"
+
+msgid "Show count in jobs by cities page"
+msgstr "Şehirlere Göre İşler Sayfasında Sayısı Göster"
+
+msgid "Show country in jobs by cities page"
+msgstr "Şehirlere Göre İşlerde Ülkeyi Göster"
+
+msgid "Profile Section"
+msgstr "Profil bölümü"
+
+msgid "Recaptcha Version 2"
+msgstr "Recaptcha Sürüm 2"
+
+msgid "Recaptcha Version 3"
+msgstr "Recaptcha Sürüm 3"
+
+msgid "System slug"
+msgstr "Sistem sümüklüsü"
+
+msgid "Image file size"
+msgstr "Resim Dosyası Boyutu"
+
+msgid "System will not upload if image size is greater than the given size"
+msgstr "Görüntü boyutu verilen boyuttan büyükse sistem yüklemeyecek"
+
+msgid "Show page title above wpjobportal breadcrumbs"
+msgstr "Yukarıdaki sayfa başlığını göster wpjobportal ekmek kırıntıları"
+
+msgid "Default Image For WP Job Portal"
+msgstr "WP iş portalı için varsayılan resim"
+
+msgid "This image will shown as default image for entities & users if no other image is provided."
+msgstr "Bu görüntü, başka bir resim sunulmuyorsa, varlıklar ve kullanıcılar için varsayılan görüntü olarak gösterilecektir."
+
+msgid "Default country"
+msgstr "Varsayılan ülke"
+
+msgid "Select default country for user added cities"
+msgstr "Kullanıcı eklenen şehirler için varsayılan ülkeyi seçin"
+
+msgid "Job detail URL options are title, company, category, location, jobtype. eg- [title] [company]"
+msgstr "İş detayı URL seçenekleri başlık, şirket, kategori, konum, JobType'dir. EG- [başlık] [Şirket]"
+
+msgid "Select the Google reCaptcha Version"
+msgstr "Google Recaptcha sürümünü seçin"
+
+msgid "Recent Resumes Box"
+msgstr "Son Özgeçmişler Kutusu"
+
+msgid "mode"
+msgstr "moda"
+
+msgid "expire"
+msgstr "süresi dolmak"
+
+msgid "Registration is disabled in WordPress settings, please enable to Membership: anyone can register."
+msgstr "Kayıt WordPress ayarlarında devre dışı bırakılır, lütfen Üyeliğe Etkinleştirin: Herkes kayıt yaptırabilir."
+
+msgid "Quick Apply Now"
+msgstr "Hızlı şimdi başvurun"
+
+msgid "Enable Quick Apply for user"
+msgstr "Kullanıcı için Hızlı Başvurun"
+
+msgid "Enable Quick Apply for visitor"
+msgstr "Ziyaretçi için hızlı başvurmayı etkinleştir"
+
+msgid "Enable captcha for visitor Quick Apply"
+msgstr "Ziyaretçi için captcha'yı etkinleştir hızlı bir şekilde başvurun"
+
+msgid "Show captcha to visitor on quick apply form."
+msgstr "Captcha'yı hızlı uygulama formunda ziyaretçiye gösterin."
+
+msgid "Add ons for WP Job Portal have been installed and activated successfully. "
+msgstr "WP iş portalı için ADD ONS, başarılı bir şekilde kuruldu ve etkinleştirildi."
+
+msgid "WP Job Portal is an open-source job board plugin for WordPress that provides advanced features to help you create a successful job board. In addition, we offer trusted WP Job Portal add-ons that can further enhance your job board's functionality in a fast, safe, and easy manner. Our add-ons have been designed to integrate seamlessly with our job board plugin, ensuring you can expand your job board's capabilities without any complications."
+msgstr "WP Job Portal, başarılı bir iş panosu oluşturmanıza yardımcı olacak gelişmiş özellikler sağlayan WordPress için açık kaynaklı bir iş panosu eklentisidir. Buna ek olarak, iş kurulunuzun işlevselliğini hızlı, güvenli ve kolay bir şekilde daha da artırabilecek güvenilir WP iş portalı eklentileri sunuyoruz. Eklentilerimiz, iş pano eklentimizle sorunsuz bir şekilde entegre olmak üzere tasarlanmış ve iş panosunun yeteneklerini herhangi bir komplikasyon olmadan genişletebilmeniz için tasarlanmıştır."
+
+msgid "Savings*"
+msgstr "Tasarruf*"
+
+msgid "Best Deal"
+msgstr "En iyi anlaşma"
+
+msgid "Shortlist Job"
+msgstr "Kısa liste işi"
+
+msgid "e.g 45000"
+msgstr "örn. 45000"
+
+msgid "e.g 3000"
+msgstr "Örneğin 3000"
+
+msgid "e.g 6000"
+msgstr "örn. 6000"
+
+msgid "Deactivated"
+msgstr "Devre dışı bırakılmış"
+
+msgid "Not Installed"
+msgstr "Kurulmamış"
+
+msgid "Addon Installed Successfully"
+msgstr "Addon başarıyla yüklendi"
+
+msgid "Addon installation failed"
+msgstr "Addon kurulumu başarısız oldu"
+
+msgid "Resume Data Management"
+msgstr "Veri Yönetimine Devam Edin"
+
+msgid "Export (csv)"
+msgstr "İhracat (CSV)"
+
+msgid "Configuration Based Tutorials"
+msgstr "Yapılandırma tabanlı öğreticiler"
+
+msgid "Slugs"
+msgstr "Sümüklü böcek"
+
+msgid "Theme Installation"
+msgstr "Tema Kurulumu"
+
+msgid "WP Job Portal Theme  Installation"
+msgstr "WP İş Portalı Tema Kurulumu"
+
+msgid "System Management"
+msgstr "Sistem yönetimi"
+
+msgid "Activity Log and System Errors"
+msgstr "Etkinlik Günlüğü ve Sistem Hataları"
+
+msgid "Shortcode"
+msgstr "Kısa kodu"
+
+msgid "Job Seeker Control Panel"
+msgstr "İş arayan kontrol paneli"
+
+msgid "A shortcode designed for jobseeker, providing an easy-to-use controlpanel to manage applications, resume, and preferences directly from their dashboard."
+msgstr "JobSeeker için tasarlanmış bir kısa kod, uygulamaları yönetmek, özgeçmiş ve tercihleri ​​doğrudan gösterge panellerinden yönetmek için kullanımı kolay bir denetleme işlemi sağlar."
+
+msgid "Base Shortcode"
+msgstr "Temel kısa kodu"
+
+msgid "Shortcode With All Options"
+msgstr "Tüm seçeneklerle kısa kod"
+
+msgid " The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "İşveren Kontrol Paneli, işverenlerin iş ilanlarını yönetmesine, uygulamaları izlemesine, adaylarla iletişim kurmasına ve işe alım metriklerini verimli bir şekilde analiz etmesine olanak tanıyan aerodinamik bir arayüzdür."
+
+msgid "The job search shortcode enables users to easily find job listings based on various criteria."
+msgstr "İş Arama Kısaylığı, kullanıcıların çeşitli kriterlere göre iş listelerini kolayca bulmalarını sağlar."
+
+msgid "The jobs shortcode is a feature that displays individual job listings on a website."
+msgstr "Jobs Shortcode, bir web sitesinde bireysel iş listelerini görüntüleyen bir özelliktir."
+
+msgid "The featured job shortcode highlights select job listings on a website, making them stand out to potential applicants."
+msgstr "Öne çıkan iş kısay kodu, bir web sitesindeki iş listelerini seçerek potansiyel başvuru sahiplerine öne çıkmalarını sağlar."
+
+msgid "This Shortcode requires WP Job Portal Featured Jobs Addon"
+msgstr "Bu kısa kod WP iş portalı gerektirir Jobs Addon"
+
+msgid "Get Addon"
+msgstr "Eklenti Al"
+
+msgid "Job Categories"
+msgstr "İş kategorileri"
+
+msgid "The job categories shortcode displays a dynamic list of available categories, enabling users to easily navigate and find relevant job listings."
+msgstr "İş kategorileri kısay kodu, kullanıcıların kolayca gezinmesini ve ilgili iş listelemelerini bulmasını sağlayan mevcut kategorilerin dinamik bir listesini görüntüler."
+
+msgid "The job types shortcode presents a comprehensive list of available job types, allowing users to quickly explore and find suitable job opportunities."
+msgstr "İş Türleri Kısa Kodu, kullanıcıların uygun iş fırsatlarını hızlı bir şekilde keşfetmelerine ve bulmalarına olanak tanıyan mevcut iş türlerinin kapsamlı bir listesini sunar."
+
+msgid "My applied jobs shortcode provides users with a personalized list of their job applications, allowing easy access to track application status and details."
+msgstr "Uygulamalı Jobs Shortcode, kullanıcılara iş uygulamalarının kişiselleştirilmiş bir listesini sağlar ve uygulama durumunu ve ayrıntıları izlemeye kolay erişim sağlar."
+
+msgid "My companies shortcode displays a personalized list of companies users are associated with, facilitating easy access to company information and opportunities."
+msgstr "Şirketlerim Kısayol Kodu, kullanıcıların ilişkilendirildiği kişiselleştirilmiş bir liste görüntüler ve şirket bilgilerine ve fırsatlarına kolay erişimi kolaylaştırır."
+
+msgid "All companies shortcode offers a curated directory of all companies, allowing users to easily browse and connect with potential employers."
+msgstr "Tüm Şirketler Shortcode, kullanıcıların potansiyel işverenlere kolayca göz atmasına ve bağlantı kurmasına olanak tanıyan tüm şirketlerin küratörlü bir dizini sunar."
+
+msgid "This Shortcode requires WP Job Portal All Companies Addon"
+msgstr "Bu kısa kod WP İş Portalı Tüm Şirketler Addon gerektirir"
+
+msgid "The featured companies shortcode showcases prominent companies within the portal, allowing users to explore exciting job opportunities from industry leaders."
+msgstr "Öne çıkan şirketler kısa kodu, portal içindeki önde gelen şirketleri sergiliyor ve kullanıcıların endüstri liderlerinden heyecan verici iş fırsatlarını keşfetmelerini sağlıyor."
+
+msgid "This Shortcode requires WP Job Portal Featured Companies Addon"
+msgstr "Bu kısa kod WP iş portalı gerektiren şirketler addon"
+
+msgid "My jobs shortcode allows users to view and manage their saved job listings, making it easy to keep track of potential opportunities."
+msgstr "İşim Kısayol kodum, kullanıcıların kaydedilen iş listelerini görüntülemelerine ve yönetmelerine olanak tanıyarak potansiyel fırsatları takip etmeyi kolaylaştırır."
+
+msgid "My resume shortcode allows users to view and manage their uploaded resumes, providing a convenient way to keep their job application materials up to date."
+msgstr "Özgeçmiş kısa kodum, kullanıcıların yüklenen özgeçmişlerini görüntülemelerine ve yönetmelerine olanak tanıyarak iş başvurusu materyallerini güncel tutmak için uygun bir yol sağlar."
+
+msgid "All Resumes"
+msgstr "Tüm Özgeçmişler"
+
+msgid "All resumes shortcode allows job seekers to view and manage their uploaded resumes, ensuring they have easy access to their application materials."
+msgstr "Tüm Özgeçmişler Kısa Kodu, iş arayanların yüklenen özgeçmişlerini görüntülemelerine ve yönetmelerine olanak tanır ve uygulama materyallerine kolay erişime sahip olmalarını sağlar."
+
+msgid "This Shortcode requires WP Job Portal All Resumes Addon"
+msgstr "Bu kısa kodu WP iş portalı gerektirir Tüm Özgeçmişler Addon"
+
+msgid "The featured resumes shortcode showcases a selection of standout resumes, allowing job seekers to stand out to potential employers."
+msgstr "Öne çıkan özgeçmiş kısay kodu, iş arayanların potansiyel işverenlere öne çıkmasına izin veren bir dizi göze çarpan özgeçmiş sergiliyor."
+
+msgid "This Shortcode requires WP Job Portal Featured Resumes Addon"
+msgstr "Bu kısa kodu WP iş portalı gerektirir."
+
+msgid "Add company shortcode allows employers to effortlessly register their organization, providing essential details to attract talent and post job openings."
+msgstr "Şirket Ekle Kısa Kodu, işverenlerin organizasyonlarını zahmetsizce kaydettirmelerini sağlar ve yetenekleri çekmek ve iş açılış sonrası açılışlar için temel ayrıntılar sağlar."
+
+msgid "Add department shortcode enables employers to easily create and manage specific departments within their organization, facilitating better job categorization and organization."
+msgstr "Departman Ekle Kısaylık kodu, işverenlerin kuruluşları içindeki belirli departmanları kolayca oluşturmalarını ve yönetmesini sağlar ve daha iyi iş kategorizasyonu ve organizasyonunu kolaylaştırır."
+
+msgid "This Shortcode requires WP Job Portal Multi Departments Addon"
+msgstr "Bu kısa kod WP İş Portalı Çok Departmanlar Addon gerektirir"
+
+msgid "Add jobs enables organizations to effortlessly publish job postings, helping them connect with potential applicants and fill vacancies more effectively."
+msgstr "İş ekle, kuruluşların iş ilanlarını zahmetsizce yayınlamalarını, potansiyel başvuru sahipleriyle bağlantı kurmalarına ve boş pozisyonları daha etkili bir şekilde doldurmalarına olanak tanır."
+
+msgid "Add resume shortcode simplifies the process for candidates to submit their resumes, helping them showcase their qualifications and experiences to potential employers."
+msgstr "Özgeçmiş Ekle Kısayol Kodu, adayların özgeçmişlerini gönderme sürecini basitleştirir ve niteliklerini ve deneyimlerini potansiyel işverenlere sergilemelerine yardımcı olur."
+
+msgid "Resume search shortcode provides a powerful search tool for employers to explore candidate profiles, making it easier to connect with potential hires."
+msgstr "Özgeçmiş Arama Shortcode, işverenlerin aday profillerini keşfetmeleri için güçlü bir arama aracı sağlar ve potansiyel işe alımlarla bağlantı kurmayı kolaylaştırır."
+
+msgid "This Shortcode requires WP Job Portal Resume Search Addon"
+msgstr "Bu kısa kod WP İş Portalı Özgeçmiş Arama Eklenmesi gerektirir"
+
+msgid "Registration"
+msgstr "Kayıt"
+
+msgid "Registration shortcode allows individuals to easily create accounts as their selected role"
+msgstr "Kayıt Kısalt Kodu"
+
+msgid "Employer registration shortcode streamlines the process for organizations to register, ensuring they can efficiently manage job postings and their company profiles."
+msgstr "İşveren kaydı kısay kodu, kuruluşların kayıt yaptırma sürecini kolaylaştırarak iş ilanlarını ve şirket profillerini verimli bir şekilde yönetebilmelerini sağlar."
+
+msgid "Job Seeker Registration"
+msgstr "İş arayan kaydı"
+
+msgid "Job seeker registration shortcode allows individuals to easily create accounts, enabling them to apply for jobs and manage their resumes."
+msgstr "İş Arayan Kayıt Kısaltma Kodu, bireylerin iş başvurusunda bulunmalarını ve özgeçmişlerini yönetmelerini sağlayarak bireylerin kolayca hesap oluşturmalarını sağlar."
+
+msgid "Login Page"
+msgstr "Giriş sayfası"
+
+msgid "Login page shortcode offers a user-friendly interface for candidates and employers to securely log in and manage their profiles and postings."
+msgstr "Oturum Açma Sayfası Kısa Kodu, adayların ve işverenlerin profillerini ve gönderilerini güvenli bir şekilde giriş yapmaları ve yönetmeleri için kullanıcı dostu bir arayüz sunar."
+
+msgid "Widget"
+msgstr "Widget"
+
+msgid "Search job widget provides an intuitive interface for candidates to filter and browse openings, connecting them with opportunities that align with their skills."
+msgstr "Arama Job Widget, adayların açıklıklara filtre yapmaları ve göz atmaları için sezgisel bir arayüz sağlar ve bunları becerilerine uygun fırsatlarla birleştirir."
+
+msgid "This Shortcode requires WP Job Portal Front-end Widgets Addon"
+msgstr "Bu kısa kodu WP İş Portalı Ön Uç Widgets Addon gerektirir"
+
+msgid "My packages offers a personalized dashboard for users to monitor their subscription details, helping them manage job postings and access features effectively."
+msgstr "Paketlerim, kullanıcıların abonelik ayrıntılarını izlemeleri için kişiselleştirilmiş bir gösterge tablosu sunarak iş ilanlarını ve erişim özelliklerini etkili bir şekilde yönetmelerine yardımcı olur."
+
+msgid "This Shortcode requires WP Job Portal Credits Addon"
+msgstr "Bu kısa kod WP İş Portalı Kredileri Addon gerektirir"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans.  "
+msgstr "Aboneliğim, kullanıcılara aktif aboneliklerine genel bir bakış sunarak iş gönderme planlarının kolay yönetimi ve izlenmesi sağlıyor."
+
+msgid "All packages showcases a comprehensive list of available subscription plans, allowing users to compare features and select the best options for their job posting needs."
+msgstr "Tüm paketler, kullanıcıların özellikleri karşılaştırmasına ve iş gönderme ihtiyaçları için en iyi seçenekleri seçmelerine olanak tanıyan mevcut abonelik planlarının kapsamlı bir listesini sergiler."
+
+msgid "My invoices provides a convenient way for users to view and manage their invoices, helping them stay organized and up to date with their payments."
+msgstr "Faturalarım, kullanıcıların faturalarını görüntülemeleri ve yönetmeleri için uygun bir yol sunarak, ödemeleriyle düzenli ve güncel kalmalarına yardımcı olur."
+
+msgid "SEO"
+msgstr "SEO"
+
+msgid "Document Title Settings"
+msgstr "Belge Başlık Ayarları"
+
+msgid "Company detail url options are name, location. eg- [name] [location]"
+msgstr "Şirket detay URL seçenekleri ad, konumdur. EG- [Name] [Konum]"
+
+msgid "spinning wheel"
+msgstr "çıkrık"
+
+msgid "New Update Version"
+msgstr "Yeni Güncelleme Sürümü"
+
+msgid "is Available"
+msgstr "mevcut"
+
+msgid "Hey there! We have recently launched a fresh update for the add-ons. Don't forget to update the add-ons to enjoy the greatest features!"
+msgstr "Selam! Yakın zamanda eklentiler için yeni bir güncelleme başlattık. En büyük özelliklerin tadını çıkarmak için eklentileri güncellemeyi unutmayın!"
+
+msgid "View Addone Status"
+msgstr "Addone Durumunu Görüntüle"
+
+msgid "Active Companies"
+msgstr "Aktif şirketler"
+
+msgid "Help Page"
+msgstr "Yardım Sayfası"
+
+msgid "Watch Tutorial"
+msgstr "İzle öğreticisi"
+
+msgid "video"
+msgstr "video"
+
+msgid "Apply Now Failed"
+msgstr "Şimdi başvuru başarısız oldu"
+
+msgid "You do not have package required for job apply"
+msgstr "İş başvurusu için gerekli paketiniz yok"
+
+msgid "You package has expired"
+msgstr "Paketin süresi doldu"
+
+msgid "You do not any more job apply available"
+msgstr "Daha fazla iş başvurusu yok"
+
+msgid "Job Not Found"
+msgstr "İş bulunamadı"
+
+msgid "Job does not exist in the system"
+msgstr "Sistemde iş yok"
+
+msgid "Make Payment To Complete The Job Apply"
+msgstr "İşi tamamlamak için ödeme yapın"
+
+msgid "Successfully applied on job"
+msgstr "İşe başarıyla uygulandı"
+
+msgid "view coverletter"
+msgstr "Kapak Mektubunu Görüntüle"
+
+msgid "Please Fill out fields"
+msgstr "Lütfen Alanları Doldurun"
+
+msgid "sender email is not of correct format"
+msgstr "Gönderen e -postası doğru formatta değil"
+
+msgid "Erase Selected Country"
+msgstr "Seçilmiş Ülkeyi Sil"
+
+msgid "Erase All Data"
+msgstr "Tüm verileri sil"
+
+msgid "Click on package to select one"
+msgstr "Birini seçmek için pakete tıklayın"
+
+msgid "Apply to the Job"
+msgstr "İşe başvurun"
+
+msgid "No Cover Letter!"
+msgstr "Kapak mektubu yok!"
+
+msgid "Add Cover Lettter"
+msgstr "Kapak Mektubu Ekle"
+
+msgid "You have already applied on this job."
+msgstr "Bu işe zaten başvurdunuz."
+
+msgid "Unlimited job applies"
+msgstr "Sınırsız iş geçerlidir"
+
+msgid "Job applies remaining"
+msgstr "İş kalan kalır"
+
+msgid "Buy package to apply on job."
+msgstr "İşe başvurmak için paket satın alın."
+
+msgid "Apply With Package"
+msgstr "Paketle başvurun"
+
+msgid "Payment of"
+msgstr "Ödenmesi"
+
+msgid "is required to complete the job apply process"
+msgstr "İş başvuru sürecini tamamlamak için gereklidir"
+
+msgid "You are logged in as employer."
+msgstr "İşveren olarak oturum açtınız."
+
+msgid "You are not a logged in member."
+msgstr "Üye olarak oturum açmış değilsiniz."
+
+msgid "You do not have any role."
+msgstr "Herhangi bir rolünüz yok."
+
+msgid "Proceed to payment"
+msgstr "Ödemeye devam edin"
+
+msgid "Views"
+msgstr "Görüşler"
+
+msgid "Save As Draft"
+msgstr "Taslak Olarak Kaydet"
+
+msgid "Job Has Been Feature SuccesFully"
+msgstr "Job başarıyla öne çıktı"
+
+msgid "You are Not Allowed To Add More than One"
+msgstr "Birden fazla eklemenize izin verilmiyor"
+
+msgid "Contact TO Adminstrator"
+msgstr "Yöneticiye İletişim"
+
+msgid "This Is Meta Description"
+msgstr "Bu meta açıklama"
+
+msgid "jobs by cities"
+msgstr "Şehirler tarafından işler"
+
+msgid "Show Info"
+msgstr "Bilgi Göster"
+
+msgid "Changing a user's role will not remove its entites from the system !"
+msgstr "Bir kullanıcının rolünü değiştirmek, entitlerini sistemden kaldırmaz!"
+
+msgid "company reject"
+msgstr "Şirket reddediyor"
+
+msgid "all reject"
+msgstr "tüm reddedilir"
+
+msgid "Missing user(s) added successfully!"
+msgstr "Eksik kullanıcı (lar) başarıyla eklendi!"
+
+msgid "No missing user found!"
+msgstr "Eksik kullanıcı bulunamadı!"
+
+msgid "Jobs Listing Menu"
+msgstr "İş Listesi Menüsü"
+
+msgid "Visitor"
+msgstr "Ziyaretçi"
+
+msgid "new message alert"
+msgstr "Yeni Mesaj Uyarısı"
+
+msgid "New Message Alert"
+msgstr "Yeni Mesaj Uyarısı"
+
+msgid "Recipient Name"
+msgstr "Alıcı adı"
+
+msgid "Sender Name"
+msgstr "Gönderen adı"
+
+msgid "Sender Role"
+msgstr "Gönderen rolü"
+
+msgid "Message Text"
+msgstr "Mesaj metni"
+
+msgid "Job/Resume Info"
+msgstr "İş/Özgeçmiş Bilgisi"
+
+msgid "Upload Resume"
+msgstr "Özgeçmiş Yükle"
+
+msgid "Profile Status"
+msgstr "Profil Durumu"
+
+msgid "Profile Completed"
+msgstr "Profil tamamlandı"
+
+msgid "feature approve"
+msgstr "Özellik Onaylama"
+
+msgid "feature reject"
+msgstr "Özellik Reddet"
+
+msgid "Type city"
+msgstr "Tip Şehir"
+
+msgid "New Message"
+msgstr "Yeni Mesaj"
+
+msgid "Employer is disabled by admin"
+msgstr "İşveren yönetici tarafından devre dışı bırakıldı"
+
+msgid "You are not allowed to add more than one"
+msgstr "Birden fazla eklemenize izin verilmiyor"
+
+msgid "contact adminstrator"
+msgstr "İletişim Yöneticisi"
+
+msgid "Payment is not made against this job contact adminstrator"
+msgstr "Bu İş İletişim Yöneticisine Karşı Ödeme Yapılmaz"
+
+msgid "Addon Page Not Found"
+msgstr "Eklenti sayfası bulunamadı"
+
+msgid "User Role"
+msgstr "Kullanıcı rolü"
+
+msgid "Jobs Role"
+msgstr "İş rolü"
+
+msgid "User has been successfully created"
+msgstr "Kullanıcı başarıyla oluşturuldu"
+
+msgid "Pay For Department"
+msgstr "Bölüm için ödeme"
+
+msgid "Pay For Job Apply"
+msgstr "İş başvurusu için ödeme"
+
+msgid "Pay For Company"
+msgstr "Şirket için ödeme"
+
+msgid "Pay For Featured Company"
+msgstr "Öne çıkan şirket için ödeme"
+
+msgid "Pay For Job"
+msgstr "İş için ödeme"
+
+msgid "Pay For Featured Job"
+msgstr "Öne çıkan iş için ödeme"
+
+msgid "Pay For Resume Search"
+msgstr "Özgeçmiş arama için ödeme"
+
+msgid "Pay For Resume "
+msgstr "Özgeçmiş için ödeme"
+
+msgid "Pay For Featured Resume "
+msgstr "Öne çıkan özgeçmiş için ödeme"
+
+msgid "Job Saved Searches"
+msgstr "İş Kayıtlı Aramalar"
+
+msgid "Job Apply Configurations"
+msgstr "İş uygulama yapılandırmaları"
+
+msgid "Quick Apply Fields"
+msgstr "Hızlı Uygulama Alanları"
+
+msgid "addons status"
+msgstr "Eklentiler Durumu"
+
+msgid "coverletters"
+msgstr "kapak mektupları"
+
+msgid "coverletter"
+msgstr "ön yazı"
+
+msgid "add new cover letter"
+msgstr "Yeni Kapak Mektubu Ekle"
+
+msgid "Loaction Name settings"
+msgstr "Konum adı ayarları"
+
+msgid "Loaction Name Settings"
+msgstr "Konum adı ayarları"
+
+msgid "shifts"
+msgstr "vardiyalar"
+
+msgid "ages"
+msgstr "çağlar"
+
+msgid "Error file size too large"
+msgstr "Hata dosyası boyutu çok büyük"
+
+msgid "Maximum Size"
+msgstr "Maksimum boyut"
+
+msgid "is in use"
+msgstr "kullanımda"
+
+msgid "can not deleted it"
+msgstr "silinemiyor"
+
+msgid "Address data"
+msgstr "Adres verileri"
+
+msgid "themes"
+msgstr "temalar"
+
+msgid "Color Schemes"
+msgstr "Renk şemaları"
+
+msgid "Color Chooser"
+msgstr "Renk seçicisi"
+
+msgid "Color 1"
+msgstr "Renk 1"
+
+msgid "Color 2"
+msgstr "Renk 2"
+
+msgid "Color 3"
+msgstr "Renk 3"
+
+msgid "Add User Fields"
+msgstr "Kullanıcı alanları ekleyin"
+
+msgid "cannot unpublished"
+msgstr "Yayımlanmamış"
+
+msgid "Search Name"
+msgstr "Arama Adı"
+
+msgid "start"
+msgstr "başlangıç"
+
+msgid "Total Resume Search"
+msgstr "Toplam Özgeçmiş Arama"
+
+msgid "Remaining Resume Search"
+msgstr "Kalan Özgeçmiş Arama"
+
+msgid "Reference"
+msgstr "Referans"
+
+msgid "cancel payment"
+msgstr "Ödemeyi iptal et"
+
+msgid "Apply now"
+msgstr "Şimdi uygulayın"
+
+msgid " Listing"
+msgstr "Liste"
+
+msgid "Credits log"
+msgstr "Kredi Günlüğü"
+
+msgid "Rate list"
+msgstr "Ücret listesi"
+
+msgid "Purchase history"
+msgstr "Satınalma Geçmişi"
+
+msgid " remaining"
+msgstr "geriye kalan"
+
+msgid "Cover Letter has been successfully published"
+msgstr "Kapak mektubu başarıyla yayınlandı"
+
+msgid "cover Letter has been successfully published"
+msgstr "Kapak mektubu başarıyla yayınlandı"
+
+msgid "Resume files download"
+msgstr "Özgeçmiş dosyaları indir"
+
+msgid "apply with facebook"
+msgstr "Facebook ile başvurun"
+
+msgid "apply with linkedin"
+msgstr "LinkedIn'e başvurun"
+
+msgid "apply with xing"
+msgstr "Xing ile uygulayın"
+
+msgid "Resume removed from featured"
+msgstr "Özgeçmiş, özelliklerden kaldırıldı"
+
+msgid "share blog"
+msgstr "Paylaş blog"
+
+msgid "share digg"
+msgstr "Paylaş Digg"
+
+msgid "share fb"
+msgstr "Paylaş FB"
+
+msgid "share ff"
+msgstr "Paylaş ff"
+
+msgid "share google"
+msgstr "Google'ı paylaşın"
+
+msgid "share linkedin"
+msgstr "Paylaş LinkedIn"
+
+msgid "share myspace"
+msgstr "Myspace'i paylaş"
+
+msgid "share twitter"
+msgstr "Paylaş Twitter"
+
+msgid "share yahoo"
+msgstr "Yahoo'yu paylaş"
+
+msgid "Mark As Shortlist Job"
+msgstr "Kısa liste işi olarak işaretleyin"
+
+msgid "Keep this job on your list! Mark it as shortlisted and find it easily whenever you need."
+msgstr "Bu işi listenizde tutun! Kısa liste olarak işaretleyin ve ihtiyacınız olduğunda kolayca bulun."
+
+msgid "Search job title, company name, keywords"
+msgstr "İş Başlığı, Şirket Adı, Anahtar Kelimeler Arama"
+
+msgid "Loction"
+msgstr "Yer"
+
+msgid "Applied Resume Title"
+msgstr "Uygulamalı Özgeçmiş Başlığı"
+
+msgid "Arrow"
+msgstr "Ok"
+
+msgid "Already Applied"
+msgstr "Zaten uygulandı"
+
+msgid "Ready to take the next step? Simply fill out the form and submit your application. It only takes a few minutes!"
+msgstr "Bir sonraki adımı atmaya hazır mısınız? Formu doldurun ve başvurunuzu gönderin. Sadece birkaç dakika sürüyor!"
+
+msgid "Waiting for Payment"
+msgstr "Ödeme Bekliyor"
+
+msgid "Salery"
+msgstr "Alem"
+
+msgid "Buy"
+msgstr "Satın almak"
+
+msgid "Employer can add companies and jobs while searching for potential candidate to hire"
+msgstr "İşveren, işe alınacak potansiyel aday ararken şirket ve iş ekleyebilir"
+
+msgid "Selected"
+msgstr "Seçilmiş"
+
+msgid "Jobseeker can add resume, cover letters, search jobs and apply to multiple jobs easily"
+msgstr "Jobeeker özgeçmiş ekleyebilir, mektupları örtebilir, arayabilir ve birden fazla iş için kolayca başvurabilir"
+
+msgid "Hello, again!..."
+msgstr "Merhaba, yine! ..."
+
+msgid "View All Applied Jobs"
+msgstr "Uygulanan tüm işleri görüntüleyin"
+
+msgid "View All Newest Jobs"
+msgstr "Tüm yeni işleri görüntüleyin"
+
+msgid "Hello, again!…"
+msgstr "Merhaba, yine!…"
+
+msgid "Submit job"
+msgstr "İş gönder"
+
+msgid "Submit Job"
+msgstr "İş gönder"
+
+msgid "View detail"
+msgstr "Ayrıntıyı görüntüle"
+
+msgid "Recently Applied Resume"
+msgstr "Son zamanlarda uygulanan özgeçmiş"
+
+msgid "Messages By Resume"
+msgstr "Özgeçmişine Göre Mesajlar"
+
+msgid "Reply"
+msgstr "Cevap vermek"
+
+msgid "View jobs"
+msgstr "İşleri Görüntüle"
+
+msgid "Other Info"
+msgstr "Diğer Bilgiler"
+
+msgid "Link"
+msgstr "Bağlantı"
+
+msgid "Mail"
+msgstr "Posta"
+
+msgid "Site"
+msgstr "Alan"
+
+msgid "View Company Details"
+msgstr "Şirket Detaylarını Görüntüle"
+
+msgid "Completed"
+msgstr "Tamamlanmış"
+
+msgid "Categoty"
+msgstr "Kategori"
+
+msgid "tell a friend"
+msgstr "Bir arkadaşa söyle"
+
+msgid "Tell friend"
+msgstr "Arkadaşa söyle"
+
+msgid "Know someone perfect for this job? Share it with them!"
+msgstr "Bu iş için mükemmel birini tanıyor musun? Onlarla paylaşın!"
+
+msgid "Your name"
+msgstr "Adınız"
+
+msgid "Your email"
+msgstr "E -postanız"
+
+msgid "Show the"
+msgstr "Göster"
+
+msgid "form to logged-in users on the job detail page. If this is on,"
+msgstr "İş detayı sayfasında oturum açmış kullanıcılara form. Bu açıksa,"
+
+msgid "will be turned off."
+msgstr "kapatılacak."
+
+msgid "form to visitor on the job detail page. If this is on,"
+msgstr "İş detayı sayfasında ziyaretçiye form. Bu açıksa,"
+
+msgid "You do not have any save serch remaining"
+msgstr "Kalan Serch'in hiçbir kurtarma yok"
+
+msgid "We would love to hear from You."
+msgstr "Sizden haber almak isteriz."

@@ -241,7 +241,8 @@ class WPJOBPORTALpremiumpluginModel {
             $addonsql = $this->getAddonSqlForUpdation($plugin_slug,$installedversion,$newversion);
             $decodedata = json_decode($addonsql,true);
             $delimiter = ';';
-            if(isset($decodedata['verfication_status']) && $decodedata['update_sql'] != ""){
+			if(isset($decodedata['update_sql'])) $update_sql = $decodedata['update_sql']; else $update_sql = "";
+            if(isset($decodedata['verfication_status']) && $update_sql != ""){
                 $lines = wpjobportalphplib::wpJP_explode(PHP_EOL, $addonsql);
                 if(!empty($lines)){
                     foreach($lines as $line){

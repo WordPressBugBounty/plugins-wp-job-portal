@@ -486,4 +486,64 @@ add_action('woocommerce_order_status_completed', 'wpjobportal_woocommerce_paymen
 add_action('woocommerce_order_status_completed', 'wpjobportal_woocommerce_paymentperlisting_completed');
 add_action('woocommerce_order_status_refunded', 'wpjobportal_woocommerce_payment_refunded');
 add_action('woocommerce_order_status_cancelled', 'wpjobportal_woocommerce_payment_cancelled');
+
+// subscription code
+
+add_action('admin_enqueue_scripts', function(){
+    wp_enqueue_script('wpjobportalsubscriptionadminjs',plugins_url('/', __FILE__).'js/wc_admin.js');
+});
+
+add_filter('product_type_options', 'wpjobportalsubscription_checkbox');
+    function wpjobportalsubscription_checkbox($options){
+        $options['is_wpjobportalsubscription'] = array(
+            'id'            => '_wpjobportalsubscription',
+            'wrapper_class' => 'show_if_subscription',
+            'label'         => __('WP Job Portal', 'wp-job-portal'),
+            'description'   => __('Check if you want to use WP Job Portal packages', 'wp-job-portal'),
+            'default'       => 'no',
+        );
+        return $options;
+    }
+
+add_action('woocommerce_product_options_general_product_data', 'wpjobportalsubscription_packages');    
+    function wpjobportalsubscription_packages(){
+        global $post;
+        
+        $query = "SELECT id,title,price FROM `" . wpjobportal::$_db->prefix . "wj_portal_packages` WHERE status = 1";
+        $result = wpjobportal::$_db->get_results($query);
+        $wpjobportal_packagepack_field_id = '';
+        $wpjobportal_packagepack_field_id = esc_attr(get_post_meta($post->ID, 'wpjobportal_packagepack_field', true));
+        //parse the packages packs
+        if ($result && is_array($result)) {
+            $options = '<option value = "">'.esc_html(__('Select Package', 'wp-job-portal'))."</option>";
+             foreach ($result AS $pack) {
+                if($wpjobportal_packagepack_field_id == $pack->id) $selected = "selected"; else $selected = "";
+                $options .= '<option value = "'.$pack->id.'"'.$selected.'>'.esc_html(__($pack->title, 'wp-job-portal'))."</option>";
+            }
+        }
+
+        ?>
+        <div class="options_group show_if_wpjobportalsubscription hidden">
+            <p class="form-field show_if_subscription hidden">
+                <label><?php echo esc_html(__("WP Job Portal Packages",'wp-job-portal')); ?></label>
+                <span class="wrap">
+                    <select id="wpjobportal_packagepack_field" name="wpjobportal_packagepack_field" class="select short"> <?php echo $options; ?>"</select>
+                    <span class="woocommerce-help-tip" data-tip="<?php echo esc_attr(__("Select packages pack so that user can purchase them",'wp-job-portal')); ?>"></span>
+                </span>
+            </p>
+        </div>
+        <?php
+    }
+
+//add_action( 'woocommerce_process_product_meta_simple', array($this,'save_wpjobportalsubscription_option_fields'  ));
+//add_action( 'woocommerce_process_product_meta_variable', array($this,'save_wpjobportalsubscription_option_fields'  ));
+add_action( 'woocommerce_process_product_meta_subscription', 'save_wpjobportalsubscription_option_fields'  );
+    function save_wpjobportalsubscription_option_fields( $post_id ) {
+        $is_wpjobportalsubscription = isset( $_POST['_wpjobportalsubscription'] ) ? 'yes' : 'no';
+        $wpjobportal_packagepack_field = $_POST['wpjobportal_packagepack_field'];
+        update_post_meta( $post_id, '_wpjobportalsubscription', $is_wpjobportalsubscription );
+        update_post_meta( $post_id, 'is_wpjobportalsubscription', $is_wpjobportalsubscription );
+        update_post_meta( $post_id, 'wpjobportal_packagepack_field', $wpjobportal_packagepack_field );
+    }
+
 ?>

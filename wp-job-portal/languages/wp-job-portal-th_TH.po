@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 
 msgid "Delete"
 msgstr "ลบ"
@@ -9328,3 +9328,948 @@ msgstr "แผนกของฉัน"
 
 msgid "Add To ShortList"
 msgstr "เพิ่มไปยังรายการสั้น"
+
+msgid "or"
+msgstr "หรือ"
+
+msgid "company logo"
+msgstr "โลโก้ บริษัท"
+
+msgid "job title"
+msgstr "ตำแหน่งงาน"
+
+msgid "company name"
+msgstr "ชื่อ บริษัท"
+
+msgid "Resume Has Been Feature SuccesFully"
+msgstr "เรซูเม่ประสบความสำเร็จ"
+
+msgid "My coverletter"
+msgstr "จดหมายสมัครงานของฉัน"
+
+msgid "Add coverletter"
+msgstr "เพิ่มจดหมายปะหน้า"
+
+msgid "Total Cover Letter"
+msgstr "จดหมายปะหน้าทั้งหมด"
+
+msgid "Remaining Cover Letter"
+msgstr "จดหมายปะหน้า"
+
+msgid "Open ChatGPT"
+msgstr "เปิด chatgpt"
+
+msgid "How To Add Cover Letter With ChatGPT"
+msgstr "วิธีเพิ่มจดหมายสมัครงานด้วย CHATGPT"
+
+msgid "Edit coverletter"
+msgstr "แก้ไขจดหมายปะหน้า"
+
+msgid "Edit Cover Letter"
+msgstr "แก้ไขจดหมายปะหน้า"
+
+msgid "Delete coverletter"
+msgstr "ลบจดหมายปะหน้า"
+
+msgid "coverletter title"
+msgstr "ชื่อจดหมายสมัครงาน"
+
+msgid "Add New Cover Letter"
+msgstr "เพิ่มจดหมายปะหน้าใหม่"
+
+msgid "Quote from Hello Dolly song, by Jerry Herman:"
+msgstr "อ้างจาก Hello Dolly Song โดย Jerry Herman:"
+
+msgid "Select Parent"
+msgstr "เลือกผู้ปกครอง"
+
+msgid "Edit Field"
+msgstr "แก้ไขเขตข้อมูล"
+
+msgid "Visitor published"
+msgstr "ผู้เยี่ยมชมเผยแพร่"
+
+msgid "Show On Listing"
+msgstr "แสดงในรายชื่อ"
+
+msgid "Advanced"
+msgstr "ขั้นสูง"
+
+msgid "Equal"
+msgstr "เท่ากัน"
+
+msgid "Not Equal"
+msgstr "ไม่เท่ากัน"
+
+msgid "Multi Select"
+msgstr "หลายตัวเลือก"
+
+msgid "Visible"
+msgstr "มองเห็นได้"
+
+msgid "Select Child"
+msgstr "เลือกลูก"
+
+msgid "Select Condition"
+msgstr "เลือกเงื่อนไข"
+
+msgid "To use this feature please fill the above three fields."
+msgstr "หากต้องการใช้คุณสมบัตินี้โปรดเติมเต็มสามฟิลด์ข้างต้น"
+
+msgid "No response found"
+msgstr "ไม่พบการตอบสนอง"
+
+msgid "Quick Apply"
+msgstr "ใช้อย่างรวดเร็ว"
+
+msgid "user publish"
+msgstr "ผู้ใช้เผยแพร่"
+
+msgid "User Unpublished"
+msgstr "ผู้ใช้ไม่ได้เผยแพร่"
+
+msgid "visitor publish"
+msgstr "ผู้เยี่ยมชมเผยแพร่"
+
+msgid "visitor unpublish"
+msgstr "ผู้เยี่ยมชมไม่ได้เผยแพร่"
+
+msgid "Select user status"
+msgstr "เลือกสถานะผู้ใช้"
+
+msgid "Un published"
+msgstr "สหประชาชาติเผยแพร่"
+
+msgid "File upload fields and text editor fields cannot be made required."
+msgstr "ไม่จำเป็นต้องใช้ฟิลด์การอัปโหลดไฟล์และฟิลด์ตัวแก้ไขข้อความ"
+
+msgid "Dependent Field"
+msgstr "ฟิลด์ขึ้นอยู่กับ"
+
+msgid "Job Apply settings"
+msgstr "การตั้งค่างานสมัครงาน"
+
+msgid "Quick Apply settings"
+msgstr "การตั้งค่าอย่างรวดเร็ว"
+
+msgid "Show count in jobs by cities page"
+msgstr "แสดงการนับในหน้างานโดยเมือง"
+
+msgid "Show country in jobs by cities page"
+msgstr "แสดงประเทศในหน้างานโดยเมือง"
+
+msgid "Profile Section"
+msgstr "ส่วนโปรไฟล์"
+
+msgid "Recaptcha Version 2"
+msgstr "Recaptcha เวอร์ชัน 2"
+
+msgid "Recaptcha Version 3"
+msgstr "Recaptcha เวอร์ชัน 3"
+
+msgid "System slug"
+msgstr "ระบบ"
+
+msgid "Image file size"
+msgstr "ขนาดไฟล์ภาพ"
+
+msgid "System will not upload if image size is greater than the given size"
+msgstr "ระบบจะไม่อัปโหลดหากขนาดภาพมากกว่าขนาดที่กำหนด"
+
+msgid "Show page title above wpjobportal breadcrumbs"
+msgstr "แสดงชื่อหน้าชื่อด้านบน wpjobportal breadcrumbs"
+
+msgid "Default Image For WP Job Portal"
+msgstr "ภาพเริ่มต้นสำหรับพอร์ทัลงาน WP"
+
+msgid "This image will shown as default image for entities & users if no other image is provided."
+msgstr "ภาพนี้จะแสดงเป็นภาพเริ่มต้นสำหรับเอนทิตีและผู้ใช้หากไม่มีภาพอื่น ๆ"
+
+msgid "Default country"
+msgstr "ประเทศเริ่มต้น"
+
+msgid "Select default country for user added cities"
+msgstr "เลือกประเทศเริ่มต้นสำหรับเมืองที่เพิ่มผู้ใช้"
+
+msgid "Job detail URL options are title, company, category, location, jobtype. eg- [title] [company]"
+msgstr "ตัวเลือกรายละเอียดงาน URL คือชื่อ บริษัท หมวดหมู่สถานที่ตั้ง JobType EG- [ชื่อ] [บริษัท ]"
+
+msgid "Select the Google reCaptcha Version"
+msgstr "เลือกเวอร์ชัน Google Recaptcha"
+
+msgid "Recent Resumes Box"
+msgstr "กล่องประวัติย่อล่าสุด"
+
+msgid "mode"
+msgstr "โหมด"
+
+msgid "expire"
+msgstr "หมดอายุ"
+
+msgid "Registration is disabled in WordPress settings, please enable to Membership: anyone can register."
+msgstr "การลงทะเบียนถูกปิดใช้งานในการตั้งค่า WordPress โปรดเปิดใช้งานการเป็นสมาชิก: ทุกคนสามารถลงทะเบียนได้"
+
+msgid "Quick Apply Now"
+msgstr "สมัครอย่างรวดเร็วทันที"
+
+msgid "Enable Quick Apply for user"
+msgstr "เปิดใช้งานอย่างรวดเร็วสมัครสำหรับผู้ใช้"
+
+msgid "Enable Quick Apply for visitor"
+msgstr "เปิดใช้งานการสมัครอย่างรวดเร็วสำหรับผู้เข้าชม"
+
+msgid "Enable captcha for visitor Quick Apply"
+msgstr "เปิดใช้งาน Captcha สำหรับผู้เข้าชมอย่างรวดเร็ว"
+
+msgid "Show captcha to visitor on quick apply form."
+msgstr "แสดง captcha ให้ผู้เยี่ยมชมในแบบฟอร์มการสมัครอย่างรวดเร็ว"
+
+msgid "Add ons for WP Job Portal have been installed and activated successfully. "
+msgstr "เพิ่ม ons สำหรับพอร์ทัลงาน WP ได้รับการติดตั้งและเปิดใช้งานสำเร็จ"
+
+msgid "WP Job Portal is an open-source job board plugin for WordPress that provides advanced features to help you create a successful job board. In addition, we offer trusted WP Job Portal add-ons that can further enhance your job board's functionality in a fast, safe, and easy manner. Our add-ons have been designed to integrate seamlessly with our job board plugin, ensuring you can expand your job board's capabilities without any complications."
+msgstr "WP Job Portal เป็นปลั๊กอินบอร์ดงานโอเพนซอร์ซสำหรับ WordPress ที่ให้คุณสมบัติขั้นสูงเพื่อช่วยให้คุณสร้างบอร์ดงานที่ประสบความสำเร็จ นอกจากนี้เรายังนำเสนอส่วนเสริมพอร์ทัลงาน WP ที่เชื่อถือได้ซึ่งสามารถปรับปรุงการทำงานของบอร์ดงานของคุณในลักษณะที่รวดเร็วปลอดภัยและง่าย ส่วนเสริมของเราได้รับการออกแบบมาเพื่อรวมเข้ากับปลั๊กอินบอร์ดงานของเราอย่างราบรื่นเพื่อให้แน่ใจว่าคุณสามารถขยายขีดความสามารถของบอร์ดงานของคุณโดยไม่ต้องมีภาวะแทรกซ้อนใด ๆ"
+
+msgid "Savings*"
+msgstr "เงินออม*"
+
+msgid "Best Deal"
+msgstr "ข้อเสนอที่ดีที่สุด"
+
+msgid "Shortlist Job"
+msgstr "งานตัวเลือก"
+
+msgid "e.g 45000"
+msgstr "E.G 45000"
+
+msgid "e.g 3000"
+msgstr "E.G 3000"
+
+msgid "e.g 6000"
+msgstr "E.G 6000"
+
+msgid "Deactivated"
+msgstr "ปิดใช้งาน"
+
+msgid "Not Installed"
+msgstr "ไม่ได้ติดตั้ง"
+
+msgid "Addon Installed Successfully"
+msgstr "Addon ติดตั้งสำเร็จ"
+
+msgid "Addon installation failed"
+msgstr "การติดตั้ง Addon ล้มเหลว"
+
+msgid "Resume Data Management"
+msgstr "การจัดการข้อมูลกลับมาทำงานต่อ"
+
+msgid "Export (csv)"
+msgstr "การส่งออก (CSV)"
+
+msgid "Configuration Based Tutorials"
+msgstr "แบบฝึกหัดตามการกำหนดค่า"
+
+msgid "Slugs"
+msgstr "รอยต่อ"
+
+msgid "Theme Installation"
+msgstr "การติดตั้งธีม"
+
+msgid "WP Job Portal Theme  Installation"
+msgstr "การติดตั้งชุดรูปแบบพอร์ทัลงาน WP"
+
+msgid "System Management"
+msgstr "การจัดการระบบ"
+
+msgid "Activity Log and System Errors"
+msgstr "บันทึกกิจกรรมและข้อผิดพลาดของระบบ"
+
+msgid "Shortcode"
+msgstr "รหัสย่อ"
+
+msgid "Job Seeker Control Panel"
+msgstr "แผงควบคุมผู้หางาน"
+
+msgid "A shortcode designed for jobseeker, providing an easy-to-use controlpanel to manage applications, resume, and preferences directly from their dashboard."
+msgstr "รหัสย่อที่ออกแบบมาสำหรับผู้หางานจัดให้มีการควบคุมที่ใช้งานง่ายเพื่อจัดการแอปพลิเคชันประวัติย่อและการตั้งค่าโดยตรงจากแดชบอร์ดของพวกเขา"
+
+msgid "Base Shortcode"
+msgstr "รหัสย่อฐาน"
+
+msgid "Shortcode With All Options"
+msgstr "รหัสย่อพร้อมตัวเลือกทั้งหมด"
+
+msgid " The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "แผงควบคุมนายจ้างเป็นอินเทอร์เฟซที่มีความคล่องตัวซึ่งช่วยให้นายจ้างสามารถจัดการการโพสต์งานติดตามแอปพลิเคชันสื่อสารกับผู้สมัครและวิเคราะห์การจ้างงานอย่างมีประสิทธิภาพ"
+
+msgid "The job search shortcode enables users to easily find job listings based on various criteria."
+msgstr "รหัสย่อการค้นหางานช่วยให้ผู้ใช้สามารถค้นหารายชื่องานได้อย่างง่ายดายตามเกณฑ์ต่างๆ"
+
+msgid "The jobs shortcode is a feature that displays individual job listings on a website."
+msgstr "รหัสย่อของ Jobs เป็นคุณสมบัติที่แสดงรายชื่องานแต่ละรายการบนเว็บไซต์"
+
+msgid "The featured job shortcode highlights select job listings on a website, making them stand out to potential applicants."
+msgstr "รหัสย่อของงานที่โดดเด่นเน้นรายการงานที่เลือกบนเว็บไซต์ทำให้พวกเขาโดดเด่นกับผู้สมัครที่มีศักยภาพ"
+
+msgid "This Shortcode requires WP Job Portal Featured Jobs Addon"
+msgstr "รหัสย่อนี้ต้องใช้พอร์ทัลงาน WP งานที่โดดเด่น addon"
+
+msgid "Get Addon"
+msgstr "รับ Addon"
+
+msgid "Job Categories"
+msgstr "หมวดหมู่งาน"
+
+msgid "The job categories shortcode displays a dynamic list of available categories, enabling users to easily navigate and find relevant job listings."
+msgstr "รหัสย่อของงานแสดงรายการแบบไดนามิกของหมวดหมู่ที่มีอยู่ทำให้ผู้ใช้สามารถนำทางและค้นหารายชื่องานที่เกี่ยวข้องได้อย่างง่ายดาย"
+
+msgid "The job types shortcode presents a comprehensive list of available job types, allowing users to quickly explore and find suitable job opportunities."
+msgstr "รหัสย่อประเภทงานนำเสนอรายการที่ครอบคลุมของประเภทงานที่มีอยู่ช่วยให้ผู้ใช้สามารถสำรวจและค้นหาโอกาสในการทำงานที่เหมาะสมได้อย่างรวดเร็ว"
+
+msgid "My applied jobs shortcode provides users with a personalized list of their job applications, allowing easy access to track application status and details."
+msgstr "รหัสย่อของงานที่ใช้งานของฉันให้รายชื่อแอปพลิเคชันงานของพวกเขาแก่ผู้ใช้ซึ่งช่วยให้สามารถเข้าถึงสถานะแอปพลิเคชันและรายละเอียดได้อย่างง่ายดาย"
+
+msgid "My companies shortcode displays a personalized list of companies users are associated with, facilitating easy access to company information and opportunities."
+msgstr "รหัสย่อของ บริษัท ของฉันแสดงรายการส่วนบุคคลของ บริษัท ที่เกี่ยวข้องกับผู้ใช้ที่เกี่ยวข้องกับการอำนวยความสะดวกในการเข้าถึงข้อมูลและโอกาสของ บริษัท ได้อย่างง่ายดาย"
+
+msgid "All companies shortcode offers a curated directory of all companies, allowing users to easily browse and connect with potential employers."
+msgstr "รหัสย่อของ บริษัท ทุกแห่งเสนอไดเรกทอรีที่ดูแลของทุก บริษัท ช่วยให้ผู้ใช้สามารถเรียกดูและเชื่อมต่อกับนายจ้างที่มีศักยภาพได้อย่างง่ายดาย"
+
+msgid "This Shortcode requires WP Job Portal All Companies Addon"
+msgstr "รหัสย่อนี้ต้องใช้พอร์ทัลงาน WP ทั้งหมด"
+
+msgid "The featured companies shortcode showcases prominent companies within the portal, allowing users to explore exciting job opportunities from industry leaders."
+msgstr "รหัสย่อของ บริษัท ที่โดดเด่นนำเสนอ บริษัท ที่โดดเด่นภายในพอร์ทัลช่วยให้ผู้ใช้สามารถสำรวจโอกาสในการทำงานที่น่าตื่นเต้นจากผู้นำอุตสาหกรรม"
+
+msgid "This Shortcode requires WP Job Portal Featured Companies Addon"
+msgstr "รหัสย่อนี้ต้องใช้ WP Job Portal บริษัท ที่โดดเด่น Addon"
+
+msgid "My jobs shortcode allows users to view and manage their saved job listings, making it easy to keep track of potential opportunities."
+msgstr "รหัสย่อของงานของฉันช่วยให้ผู้ใช้สามารถดูและจัดการรายชื่องานที่บันทึกไว้ทำให้ง่ายต่อการติดตามโอกาสที่อาจเกิดขึ้น"
+
+msgid "My resume shortcode allows users to view and manage their uploaded resumes, providing a convenient way to keep their job application materials up to date."
+msgstr "รหัสย่อแบบเรซูเม่ของฉันช่วยให้ผู้ใช้สามารถดูและจัดการเรซูเม่ที่อัปโหลดได้ซึ่งเป็นวิธีที่สะดวกในการรักษาสื่อการสมัครงานให้ทันสมัย"
+
+msgid "All Resumes"
+msgstr "ประวัติย่อทั้งหมด"
+
+msgid "All resumes shortcode allows job seekers to view and manage their uploaded resumes, ensuring they have easy access to their application materials."
+msgstr "รหัสย่อแบบเรซูเม่ทั้งหมดช่วยให้ผู้หางานดูและจัดการเรซูเม่ที่อัปโหลดได้เพื่อให้แน่ใจว่าพวกเขาสามารถเข้าถึงวัสดุแอปพลิเคชันได้ง่าย"
+
+msgid "This Shortcode requires WP Job Portal All Resumes Addon"
+msgstr "รหัสย่อนี้ต้องใช้พอร์ทัลงาน WP ทั้งหมดเรซูเม่ addon"
+
+msgid "The featured resumes shortcode showcases a selection of standout resumes, allowing job seekers to stand out to potential employers."
+msgstr "รหัสย่อที่โดดเด่นในการจัดแสดงการเลือกผลงานที่โดดเด่นทำให้ผู้หางานสามารถโดดเด่นกับนายจ้างที่มีศักยภาพ"
+
+msgid "This Shortcode requires WP Job Portal Featured Resumes Addon"
+msgstr "รหัสย่อนี้ต้องใช้พอร์ทัลงาน WP ที่โดดเด่น"
+
+msgid "Add company shortcode allows employers to effortlessly register their organization, providing essential details to attract talent and post job openings."
+msgstr "เพิ่มรหัสย่อของ บริษัท ช่วยให้นายจ้างสามารถลงทะเบียนองค์กรของพวกเขาได้อย่างง่ายดายโดยให้รายละเอียดที่จำเป็นเพื่อดึงดูดความสามารถและการโพสต์งานเปิดงาน"
+
+msgid "Add department shortcode enables employers to easily create and manage specific departments within their organization, facilitating better job categorization and organization."
+msgstr "เพิ่มรหัสย่อของแผนกช่วยให้นายจ้างสามารถสร้างและจัดการแผนกเฉพาะภายในองค์กรได้อย่างง่ายดายอำนวยความสะดวกในการจัดหมวดหมู่งานและองค์กรที่ดีขึ้น"
+
+msgid "This Shortcode requires WP Job Portal Multi Departments Addon"
+msgstr "รหัสย่อนี้ต้องใช้ WP Job Portal Multi Captence Addon"
+
+msgid "Add jobs enables organizations to effortlessly publish job postings, helping them connect with potential applicants and fill vacancies more effectively."
+msgstr "เพิ่มงานช่วยให้องค์กรสามารถเผยแพร่การโพสต์งานได้อย่างง่ายดายช่วยให้พวกเขาเชื่อมต่อกับผู้สมัครที่มีศักยภาพและเติมตำแหน่งว่างได้อย่างมีประสิทธิภาพมากขึ้น"
+
+msgid "Add resume shortcode simplifies the process for candidates to submit their resumes, helping them showcase their qualifications and experiences to potential employers."
+msgstr "เพิ่มรหัสย่อแบบเรซูเม่ทำให้กระบวนการสำหรับผู้สมัครสามารถส่งประวัติย่อของพวกเขาช่วยให้พวกเขาแสดงคุณสมบัติและประสบการณ์ของพวกเขาไปยังนายจ้างที่มีศักยภาพ"
+
+msgid "Resume search shortcode provides a powerful search tool for employers to explore candidate profiles, making it easier to connect with potential hires."
+msgstr "Resume Search Shortcode เป็นเครื่องมือค้นหาที่มีประสิทธิภาพสำหรับนายจ้างในการสำรวจโปรไฟล์ผู้สมัครทำให้การเชื่อมต่อกับการจ้างงานที่อาจเกิดขึ้นได้ง่ายขึ้น"
+
+msgid "This Shortcode requires WP Job Portal Resume Search Addon"
+msgstr "รหัสย่อนี้ต้องการ WP Job Portal Resume Search Addon"
+
+msgid "Registration"
+msgstr "การลงทะเบียน"
+
+msgid "Registration shortcode allows individuals to easily create accounts as their selected role"
+msgstr "รหัสย่อการลงทะเบียนช่วยให้บุคคลสามารถสร้างบัญชีได้อย่างง่ายดายเป็นบทบาทที่เลือก"
+
+msgid "Employer registration shortcode streamlines the process for organizations to register, ensuring they can efficiently manage job postings and their company profiles."
+msgstr "รหัสย่อการลงทะเบียนนายจ้างทำให้กระบวนการสำหรับองค์กรลงทะเบียนเพื่อให้มั่นใจว่าพวกเขาสามารถจัดการการโพสต์งานและโปรไฟล์ บริษัท ได้อย่างมีประสิทธิภาพ"
+
+msgid "Job Seeker Registration"
+msgstr "การลงทะเบียนผู้หางาน"
+
+msgid "Job seeker registration shortcode allows individuals to easily create accounts, enabling them to apply for jobs and manage their resumes."
+msgstr "รหัสย่อการลงทะเบียนของผู้หางานช่วยให้บุคคลสามารถสร้างบัญชีได้อย่างง่ายดายทำให้พวกเขาสามารถสมัครงานและจัดการประวัติย่อได้"
+
+msgid "Login Page"
+msgstr "หน้าเข้าสู่ระบบ"
+
+msgid "Login page shortcode offers a user-friendly interface for candidates and employers to securely log in and manage their profiles and postings."
+msgstr "รหัสหน้าเข้าสู่ระบบนำเสนออินเทอร์เฟซที่ใช้งานง่ายสำหรับผู้สมัครและนายจ้างเพื่อเข้าสู่ระบบอย่างปลอดภัยและจัดการโปรไฟล์และการโพสต์"
+
+msgid "Widget"
+msgstr "วิดเจ็ต"
+
+msgid "Search job widget provides an intuitive interface for candidates to filter and browse openings, connecting them with opportunities that align with their skills."
+msgstr "วิดเจ็ตงานค้นหาให้อินเทอร์เฟซที่ใช้งานง่ายสำหรับผู้สมัครในการกรองและเรียกดูการเปิดการเชื่อมต่อพวกเขากับโอกาสที่สอดคล้องกับทักษะของพวกเขา"
+
+msgid "This Shortcode requires WP Job Portal Front-end Widgets Addon"
+msgstr "รหัสย่อนี้ต้องใช้ WP Job Portal Widgets Front-end Addon"
+
+msgid "My packages offers a personalized dashboard for users to monitor their subscription details, helping them manage job postings and access features effectively."
+msgstr "แพ็คเกจของฉันมีแดชบอร์ดส่วนบุคคลสำหรับผู้ใช้ในการตรวจสอบรายละเอียดการสมัครสมาชิกช่วยให้พวกเขาจัดการการโพสต์งานและคุณสมบัติการเข้าถึงได้อย่างมีประสิทธิภาพ"
+
+msgid "This Shortcode requires WP Job Portal Credits Addon"
+msgstr "รหัสย่อนี้ต้องใช้ WP Job Portal เครดิต Addon"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans.  "
+msgstr "การสมัครสมาชิกของฉันให้ภาพรวมของการสมัครสมาชิกที่ใช้งานของพวกเขาช่วยให้การจัดการที่ง่ายและการติดตามแผนการโพสต์งานของพวกเขา"
+
+msgid "All packages showcases a comprehensive list of available subscription plans, allowing users to compare features and select the best options for their job posting needs."
+msgstr "แพ็คเกจทั้งหมดแสดงรายการที่ครอบคลุมของแผนการสมัครสมาชิกที่มีอยู่ช่วยให้ผู้ใช้สามารถเปรียบเทียบคุณสมบัติและเลือกตัวเลือกที่ดีที่สุดสำหรับความต้องการการโพสต์งานของพวกเขา"
+
+msgid "My invoices provides a convenient way for users to view and manage their invoices, helping them stay organized and up to date with their payments."
+msgstr "ใบแจ้งหนี้ของฉันเป็นวิธีที่สะดวกสำหรับผู้ใช้ในการดูและจัดการใบแจ้งหนี้ของพวกเขาช่วยให้พวกเขาจัดระเบียบและทันสมัยด้วยการชำระเงินของพวกเขา"
+
+msgid "SEO"
+msgstr "SEO"
+
+msgid "Document Title Settings"
+msgstr "การตั้งค่าชื่อเอกสาร"
+
+msgid "Company detail url options are name, location. eg- [name] [location]"
+msgstr "ตัวเลือก URL รายละเอียดของ บริษัท คือชื่อที่ตั้ง เช่น- [ชื่อ] [ตำแหน่ง]"
+
+msgid "spinning wheel"
+msgstr "ล้อหมุน"
+
+msgid "New Update Version"
+msgstr "เวอร์ชันอัปเดตใหม่"
+
+msgid "is Available"
+msgstr "พร้อมใช้งาน"
+
+msgid "Hey there! We have recently launched a fresh update for the add-ons. Don't forget to update the add-ons to enjoy the greatest features!"
+msgstr "เฮ้ เราเพิ่งเปิดตัวการอัปเดตใหม่สำหรับส่วนเสริม อย่าลืมอัปเดตส่วนเสริมเพื่อเพลิดเพลินกับคุณสมบัติที่ยิ่งใหญ่ที่สุด!"
+
+msgid "View Addone Status"
+msgstr "ดูสถานะ addone"
+
+msgid "Active Companies"
+msgstr "บริษัท ที่ใช้งาน"
+
+msgid "Help Page"
+msgstr "หน้าช่วยเหลือ"
+
+msgid "Watch Tutorial"
+msgstr "ดูบทช่วยสอน"
+
+msgid "video"
+msgstr "วิดีโอ"
+
+msgid "Apply Now Failed"
+msgstr "สมัครตอนนี้ล้มเหลว"
+
+msgid "You do not have package required for job apply"
+msgstr "คุณไม่มีแพ็คเกจที่จำเป็นสำหรับการสมัครงาน"
+
+msgid "You package has expired"
+msgstr "แพ็คเกจของคุณหมดอายุแล้ว"
+
+msgid "You do not any more job apply available"
+msgstr "คุณไม่มีงานอีกต่อไป"
+
+msgid "Job Not Found"
+msgstr "ไม่พบงาน"
+
+msgid "Job does not exist in the system"
+msgstr "งานไม่มีอยู่ในระบบ"
+
+msgid "Make Payment To Complete The Job Apply"
+msgstr "ชำระเงินเพื่อให้งานเสร็จสมบูรณ์"
+
+msgid "Successfully applied on job"
+msgstr "ใช้งานได้สำเร็จกับงาน"
+
+msgid "view coverletter"
+msgstr "ดูจดหมายปะหน้า"
+
+msgid "Please Fill out fields"
+msgstr "กรุณากรอกข้อมูล"
+
+msgid "sender email is not of correct format"
+msgstr "อีเมลผู้ส่งไม่ได้อยู่ในรูปแบบที่ถูกต้อง"
+
+msgid "Erase Selected Country"
+msgstr "ลบประเทศที่เลือก"
+
+msgid "Erase All Data"
+msgstr "ลบข้อมูลทั้งหมด"
+
+msgid "Click on package to select one"
+msgstr "คลิกที่แพ็คเกจเพื่อเลือกหนึ่ง"
+
+msgid "Apply to the Job"
+msgstr "สมัครงาน"
+
+msgid "No Cover Letter!"
+msgstr "ไม่มีจดหมายปะหน้า!"
+
+msgid "Add Cover Lettter"
+msgstr "เพิ่มจดหมายปะหน้า"
+
+msgid "You have already applied on this job."
+msgstr "คุณได้สมัครงานนี้แล้ว"
+
+msgid "Unlimited job applies"
+msgstr "ใช้งานไม่ จำกัด"
+
+msgid "Job applies remaining"
+msgstr "ใช้งานที่เหลืออยู่"
+
+msgid "Buy package to apply on job."
+msgstr "ซื้อแพ็คเกจเพื่อสมัครงาน"
+
+msgid "Apply With Package"
+msgstr "ใช้กับแพ็คเกจ"
+
+msgid "Payment of"
+msgstr "การชำระเงิน"
+
+msgid "is required to complete the job apply process"
+msgstr "จำเป็นต้องดำเนินการตามกระบวนการสมัครงาน"
+
+msgid "You are logged in as employer."
+msgstr "คุณเข้าสู่ระบบในฐานะนายจ้าง"
+
+msgid "You are not a logged in member."
+msgstr "คุณไม่ใช่สมาชิกที่เข้าสู่ระบบ"
+
+msgid "You do not have any role."
+msgstr "คุณไม่มีบทบาทใด ๆ"
+
+msgid "Proceed to payment"
+msgstr "ดำเนินการชำระเงิน"
+
+msgid "Views"
+msgstr "มุมมอง"
+
+msgid "Save As Draft"
+msgstr "บันทึกเป็นร่าง"
+
+msgid "Job Has Been Feature SuccesFully"
+msgstr "งานได้รับการแนะนำอย่างประสบความสำเร็จ"
+
+msgid "You are Not Allowed To Add More than One"
+msgstr "คุณไม่ได้รับอนุญาตให้เพิ่มมากกว่าหนึ่ง"
+
+msgid "Contact TO Adminstrator"
+msgstr "ติดต่อกับผู้ดูแลระบบ"
+
+msgid "This Is Meta Description"
+msgstr "นี่คือคำอธิบายเมตา"
+
+msgid "jobs by cities"
+msgstr "งานโดยเมือง"
+
+msgid "Show Info"
+msgstr "แสดงข้อมูล"
+
+msgid "Changing a user's role will not remove its entites from the system !"
+msgstr "การเปลี่ยนบทบาทของผู้ใช้จะไม่ลบข้อมูลออกจากระบบ!"
+
+msgid "company reject"
+msgstr "บริษัท ปฏิเสธ"
+
+msgid "all reject"
+msgstr "ปฏิเสธทั้งหมด"
+
+msgid "Missing user(s) added successfully!"
+msgstr "ผู้ใช้หายไปได้สำเร็จ!"
+
+msgid "No missing user found!"
+msgstr "ไม่พบผู้ใช้ที่หายไป!"
+
+msgid "Jobs Listing Menu"
+msgstr "เมนูรายชื่องาน"
+
+msgid "Visitor"
+msgstr "ผู้มาเยือน"
+
+msgid "new message alert"
+msgstr "การแจ้งเตือนข้อความใหม่"
+
+msgid "New Message Alert"
+msgstr "การแจ้งเตือนข้อความใหม่"
+
+msgid "Recipient Name"
+msgstr "ชื่อผู้รับ"
+
+msgid "Sender Name"
+msgstr "ชื่อผู้ส่ง"
+
+msgid "Sender Role"
+msgstr "บทบาทผู้ส่ง"
+
+msgid "Message Text"
+msgstr "ข้อความข้อความ"
+
+msgid "Job/Resume Info"
+msgstr "ข้อมูลงาน/ประวัติย่อ"
+
+msgid "Upload Resume"
+msgstr "อัปโหลดประวัติย่อ"
+
+msgid "Profile Status"
+msgstr "สถานะโปรไฟล์"
+
+msgid "Profile Completed"
+msgstr "โปรไฟล์เสร็จสมบูรณ์"
+
+msgid "feature approve"
+msgstr "คุณลักษณะที่ได้รับการอนุมัติ"
+
+msgid "feature reject"
+msgstr "คุณลักษณะปฏิเสธ"
+
+msgid "Type city"
+msgstr "ประเภทเมือง"
+
+msgid "New Message"
+msgstr "ข้อความใหม่"
+
+msgid "Employer is disabled by admin"
+msgstr "นายจ้างถูกปิดใช้งานโดยผู้ดูแลระบบ"
+
+msgid "You are not allowed to add more than one"
+msgstr "คุณไม่ได้รับอนุญาตให้เพิ่มมากกว่าหนึ่ง"
+
+msgid "contact adminstrator"
+msgstr "ผู้ดูแลระบบติดต่อ"
+
+msgid "Payment is not made against this job contact adminstrator"
+msgstr "การชำระเงินไม่ได้ทำกับผู้ดูแลระบบงานนี้"
+
+msgid "Addon Page Not Found"
+msgstr "ไม่พบหน้า Addon"
+
+msgid "User Role"
+msgstr "บทบาทผู้ใช้"
+
+msgid "Jobs Role"
+msgstr "บทบาทงาน"
+
+msgid "User has been successfully created"
+msgstr "ผู้ใช้ได้รับการสร้างเรียบร้อยแล้ว"
+
+msgid "Pay For Department"
+msgstr "จ่ายค่าแผนก"
+
+msgid "Pay For Job Apply"
+msgstr "จ่ายค่าสมัครงาน"
+
+msgid "Pay For Company"
+msgstr "จ่ายเงินสำหรับ บริษัท"
+
+msgid "Pay For Featured Company"
+msgstr "จ่ายเงินสำหรับ บริษัท ที่โดดเด่น"
+
+msgid "Pay For Job"
+msgstr "จ่ายค่างาน"
+
+msgid "Pay For Featured Job"
+msgstr "จ่ายค่างานที่โดดเด่น"
+
+msgid "Pay For Resume Search"
+msgstr "จ่ายค่าใช้จ่ายในการค้นหาประวัติย่อ"
+
+msgid "Pay For Resume "
+msgstr "จ่ายค่าประวัติย่อ"
+
+msgid "Pay For Featured Resume "
+msgstr "จ่ายค่าประวัติย่อที่โดดเด่น"
+
+msgid "Job Saved Searches"
+msgstr "งานบันทึกการค้นหา"
+
+msgid "Job Apply Configurations"
+msgstr "ใช้งานการกำหนดค่า"
+
+msgid "Quick Apply Fields"
+msgstr "ฟิลด์ใช้อย่างรวดเร็ว"
+
+msgid "addons status"
+msgstr "สถานะส่วนเสริม"
+
+msgid "coverletters"
+msgstr "จดหมายปก"
+
+msgid "coverletter"
+msgstr "จดหมายปะหน้า"
+
+msgid "add new cover letter"
+msgstr "เพิ่มจดหมายปะหน้าใหม่"
+
+msgid "Loaction Name settings"
+msgstr "การตั้งค่าชื่อสถานที่"
+
+msgid "Loaction Name Settings"
+msgstr "การตั้งค่าชื่อสถานที่"
+
+msgid "shifts"
+msgstr "การเปลี่ยน"
+
+msgid "ages"
+msgstr "อายุ"
+
+msgid "Error file size too large"
+msgstr "ขนาดไฟล์ข้อผิดพลาดขนาดใหญ่เกินไป"
+
+msgid "Maximum Size"
+msgstr "ขนาดสูงสุด"
+
+msgid "is in use"
+msgstr "มีการใช้งาน"
+
+msgid "can not deleted it"
+msgstr "ไม่สามารถลบได้"
+
+msgid "Address data"
+msgstr "ข้อมูลที่อยู่"
+
+msgid "themes"
+msgstr "ธีม"
+
+msgid "Color Schemes"
+msgstr "โทนสี"
+
+msgid "Color Chooser"
+msgstr "ตัวเลือกสี"
+
+msgid "Color 1"
+msgstr "สี 1"
+
+msgid "Color 2"
+msgstr "สี 2"
+
+msgid "Color 3"
+msgstr "สี 3"
+
+msgid "Add User Fields"
+msgstr "เพิ่มเขตข้อมูลผู้ใช้"
+
+msgid "cannot unpublished"
+msgstr "ไม่สามารถเผยแพร่ได้"
+
+msgid "Search Name"
+msgstr "ชื่อค้นหา"
+
+msgid "start"
+msgstr "เริ่ม"
+
+msgid "Total Resume Search"
+msgstr "การค้นหาประวัติย่อทั้งหมด"
+
+msgid "Remaining Resume Search"
+msgstr "การค้นหาประวัติย่อที่เหลืออยู่"
+
+msgid "Reference"
+msgstr "อ้างอิง"
+
+msgid "cancel payment"
+msgstr "ยกเลิกการชำระเงิน"
+
+msgid "Apply now"
+msgstr "สมัครเลย"
+
+msgid " Listing"
+msgstr "การแสดงรายชื่อ"
+
+msgid "Credits log"
+msgstr "บันทึกเครดิต"
+
+msgid "Rate list"
+msgstr "รายการอัตรา"
+
+msgid "Purchase history"
+msgstr "ประวัติการซื้อ"
+
+msgid " remaining"
+msgstr "ที่เหลืออยู่"
+
+msgid "Cover Letter has been successfully published"
+msgstr "จดหมายสมัครงานได้รับการเผยแพร่สำเร็จ"
+
+msgid "cover Letter has been successfully published"
+msgstr "จดหมายสมัครงานได้รับการเผยแพร่สำเร็จ"
+
+msgid "Resume files download"
+msgstr "ดาวน์โหลดไฟล์ประวัติย่อ"
+
+msgid "apply with facebook"
+msgstr "สมัครกับ Facebook"
+
+msgid "apply with linkedin"
+msgstr "สมัครกับ LinkedIn"
+
+msgid "apply with xing"
+msgstr "ใช้กับซิง"
+
+msgid "Resume removed from featured"
+msgstr "ถูกลบกลับมาจากจุดเด่น"
+
+msgid "share blog"
+msgstr "แชร์บล็อก"
+
+msgid "share digg"
+msgstr "แบ่งปัน Digg"
+
+msgid "share fb"
+msgstr "แบ่งปัน FB"
+
+msgid "share ff"
+msgstr "แบ่งปัน ff"
+
+msgid "share google"
+msgstr "แบ่งปัน Google"
+
+msgid "share linkedin"
+msgstr "แบ่งปัน LinkedIn"
+
+msgid "share myspace"
+msgstr "แบ่งปัน myspace"
+
+msgid "share twitter"
+msgstr "แบ่งปัน Twitter"
+
+msgid "share yahoo"
+msgstr "แบ่งปัน yahoo"
+
+msgid "Mark As Shortlist Job"
+msgstr "ทำเครื่องหมายว่าเป็นงานตัวเลือก"
+
+msgid "Keep this job on your list! Mark it as shortlisted and find it easily whenever you need."
+msgstr "เก็บงานนี้ไว้ในรายการของคุณ! ทำเครื่องหมายว่าสั้นและค้นหาได้อย่างง่ายดายเมื่อใดก็ตามที่คุณต้องการ"
+
+msgid "Search job title, company name, keywords"
+msgstr "ค้นหาชื่องานชื่อ บริษัท คำหลัก"
+
+msgid "Loction"
+msgstr "สถานที่"
+
+msgid "Applied Resume Title"
+msgstr "ชื่อเรซูเม่ที่ใช้"
+
+msgid "Arrow"
+msgstr "ลูกศร"
+
+msgid "Already Applied"
+msgstr "ใช้ไปแล้ว"
+
+msgid "Ready to take the next step? Simply fill out the form and submit your application. It only takes a few minutes!"
+msgstr "พร้อมที่จะก้าวต่อไปหรือยัง? เพียงกรอกแบบฟอร์มและส่งใบสมัครของคุณ ใช้เวลาเพียงไม่กี่นาที!"
+
+msgid "Waiting for Payment"
+msgstr "กำลังรอการชำระเงิน"
+
+msgid "Salery"
+msgstr "เครื่องช่วย"
+
+msgid "Buy"
+msgstr "ซื้อ"
+
+msgid "Employer can add companies and jobs while searching for potential candidate to hire"
+msgstr "นายจ้างสามารถเพิ่ม บริษัท และงานในขณะที่ค้นหาผู้สมัครที่มีศักยภาพที่จะจ้าง"
+
+msgid "Selected"
+msgstr "ที่เลือก"
+
+msgid "Jobseeker can add resume, cover letters, search jobs and apply to multiple jobs easily"
+msgstr "Jobseeker สามารถเพิ่มเรซูเม่จดหมายสมัครงานค้นหางานและใช้กับงานหลายงานได้อย่างง่ายดาย"
+
+msgid "Hello, again!..."
+msgstr "สวัสดีอีกครั้ง! ..."
+
+msgid "View All Applied Jobs"
+msgstr "ดูงานที่ใช้ทั้งหมด"
+
+msgid "View All Newest Jobs"
+msgstr "ดูงานใหม่ล่าสุดทั้งหมด"
+
+msgid "Hello, again!…"
+msgstr "สวัสดีอีกครั้ง! …"
+
+msgid "Submit job"
+msgstr "ส่งงาน"
+
+msgid "Submit Job"
+msgstr "ส่งงาน"
+
+msgid "View detail"
+msgstr "ดูรายละเอียด"
+
+msgid "Recently Applied Resume"
+msgstr "ประวัติย่อที่ใช้เมื่อเร็ว ๆ นี้"
+
+msgid "Messages By Resume"
+msgstr "ข้อความโดยเรซูเม่"
+
+msgid "Reply"
+msgstr "ตอบ"
+
+msgid "View jobs"
+msgstr "ดูงาน"
+
+msgid "Other Info"
+msgstr "ข้อมูลอื่น ๆ"
+
+msgid "Link"
+msgstr "การเชื่อมโยง"
+
+msgid "Mail"
+msgstr "ส่งจดหมาย"
+
+msgid "Site"
+msgstr "เว็บไซต์"
+
+msgid "View Company Details"
+msgstr "ดูรายละเอียดของ บริษัท"
+
+msgid "Completed"
+msgstr "สมบูรณ์"
+
+msgid "Categoty"
+msgstr "หมวดหมู่"
+
+msgid "tell a friend"
+msgstr "บอกเพื่อน"
+
+msgid "Tell friend"
+msgstr "บอกเพื่อน"
+
+msgid "Know someone perfect for this job? Share it with them!"
+msgstr "รู้จักใครที่สมบูรณ์แบบสำหรับงานนี้? แบ่งปันกับพวกเขา!"
+
+msgid "Your name"
+msgstr "ชื่อของคุณ"
+
+msgid "Your email"
+msgstr "อีเมลของคุณ"
+
+msgid "Show the"
+msgstr "แสดง"
+
+msgid "form to logged-in users on the job detail page. If this is on,"
+msgstr "แบบฟอร์มสำหรับผู้ใช้ที่เข้าสู่ระบบในหน้ารายละเอียดงาน หากเป็นเช่นนี้"
+
+msgid "will be turned off."
+msgstr "จะถูกปิด"
+
+msgid "form to visitor on the job detail page. If this is on,"
+msgstr "แบบฟอร์มสำหรับผู้เข้าชมในหน้ารายละเอียดงาน หากเป็นเช่นนี้"
+
+msgid "You do not have any save serch remaining"
+msgstr "คุณไม่มี Save Serch ที่เหลืออยู่"
+
+msgid "We would love to hear from You."
+msgstr "เราชอบที่จะได้ยินจากคุณ"

@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 
 msgid "Delete"
 msgstr "Vymazat"
@@ -9325,3 +9325,948 @@ msgstr "Moje oddělení"
 
 msgid "Add To ShortList"
 msgstr "Přidat do užšího seznamu"
+
+msgid "or"
+msgstr "nebo"
+
+msgid "company logo"
+msgstr "Logo společnosti"
+
+msgid "job title"
+msgstr "Název pozice"
+
+msgid "company name"
+msgstr "název společnosti"
+
+msgid "Resume Has Been Feature SuccesFully"
+msgstr "Životopis byl úspěšně uveden"
+
+msgid "My coverletter"
+msgstr "Můj průvodní dopis"
+
+msgid "Add coverletter"
+msgstr "Přidejte průvodní dopis"
+
+msgid "Total Cover Letter"
+msgstr "Celkový průvodní dopis"
+
+msgid "Remaining Cover Letter"
+msgstr "Zbývající průvodní dopis"
+
+msgid "Open ChatGPT"
+msgstr "Otevřený chatgpt"
+
+msgid "How To Add Cover Letter With ChatGPT"
+msgstr "Jak přidat průvodní dopis s chatgptem"
+
+msgid "Edit coverletter"
+msgstr "Upravit průvodní dopis"
+
+msgid "Edit Cover Letter"
+msgstr "Upravit průvodní dopis"
+
+msgid "Delete coverletter"
+msgstr "Odstranit průvodní dopis"
+
+msgid "coverletter title"
+msgstr "název průvodního dopisu"
+
+msgid "Add New Cover Letter"
+msgstr "Přidejte nový průvodní dopis"
+
+msgid "Quote from Hello Dolly song, by Jerry Herman:"
+msgstr "Citace z Hello Dolly Song, Jerry Herman:"
+
+msgid "Select Parent"
+msgstr "Vyberte rodič"
+
+msgid "Edit Field"
+msgstr "Upravit pole"
+
+msgid "Visitor published"
+msgstr "Publikován návštěvník"
+
+msgid "Show On Listing"
+msgstr "Zobrazit na seznamu"
+
+msgid "Advanced"
+msgstr "Moderní"
+
+msgid "Equal"
+msgstr "Rovné"
+
+msgid "Not Equal"
+msgstr "Nerovná"
+
+msgid "Multi Select"
+msgstr "Multi Select"
+
+msgid "Visible"
+msgstr "Viditelné"
+
+msgid "Select Child"
+msgstr "Vyberte dítě"
+
+msgid "Select Condition"
+msgstr "Vyberte podmínku"
+
+msgid "To use this feature please fill the above three fields."
+msgstr "Chcete -li použít tuto funkci, vyplňte výše uvedená tři pole."
+
+msgid "No response found"
+msgstr "Žádná odpověď"
+
+msgid "Quick Apply"
+msgstr "Rychle aplikujte"
+
+msgid "user publish"
+msgstr "Uživatel publikovat"
+
+msgid "User Unpublished"
+msgstr "Uživatel nepublikován"
+
+msgid "visitor publish"
+msgstr "Visitor Publish"
+
+msgid "visitor unpublish"
+msgstr "Návštěvník nepublikuje"
+
+msgid "Select user status"
+msgstr "Vyberte stav uživatele"
+
+msgid "Un published"
+msgstr "Un Publikováno"
+
+msgid "File upload fields and text editor fields cannot be made required."
+msgstr "Pole nahrávání souborů a polí textového editoru nelze provést požadovanou."
+
+msgid "Dependent Field"
+msgstr "Závislé pole"
+
+msgid "Job Apply settings"
+msgstr "Nastavení úlohy"
+
+msgid "Quick Apply settings"
+msgstr "Rychlé nastavení"
+
+msgid "Show count in jobs by cities page"
+msgstr "Zobrazit počet v úlohách podle stránky měst"
+
+msgid "Show country in jobs by cities page"
+msgstr "Zobrazit zemi v pracovních místech od měst"
+
+msgid "Profile Section"
+msgstr "Sekce profilu"
+
+msgid "Recaptcha Version 2"
+msgstr "Recaptcha verze 2"
+
+msgid "Recaptcha Version 3"
+msgstr "Recaptcha verze 3"
+
+msgid "System slug"
+msgstr "Systém slimák"
+
+msgid "Image file size"
+msgstr "Velikost souboru obrázku"
+
+msgid "System will not upload if image size is greater than the given size"
+msgstr "Systém nebude nahrávat, pokud je velikost obrázku větší než daná velikost"
+
+msgid "Show page title above wpjobportal breadcrumbs"
+msgstr "Zobrazit název stránky výše"
+
+msgid "Default Image For WP Job Portal"
+msgstr "Výchozí obrázek pro portál práce WP"
+
+msgid "This image will shown as default image for entities & users if no other image is provided."
+msgstr "Tento obrázek se zobrazí jako výchozí obrázek pro entity a uživatele, pokud není uveden žádný jiný obrázek."
+
+msgid "Default country"
+msgstr "Výchozí země"
+
+msgid "Select default country for user added cities"
+msgstr "Vyberte výchozí zemi pro přidaná uživatelé"
+
+msgid "Job detail URL options are title, company, category, location, jobtype. eg- [title] [company]"
+msgstr "Možnosti adresy URL úlohy jsou název, společnost, kategorie, umístění, JobType. např. [Title] [společnost]"
+
+msgid "Select the Google reCaptcha Version"
+msgstr "Vyberte verzi Google Recoptcha"
+
+msgid "Recent Resumes Box"
+msgstr "Nedávná obnovuje krabici"
+
+msgid "mode"
+msgstr "režim"
+
+msgid "expire"
+msgstr "vyprší"
+
+msgid "Registration is disabled in WordPress settings, please enable to Membership: anyone can register."
+msgstr "Registrace je zakázána v nastavení WordPress, povolte prosím členství: Kdokoli se může zaregistrovat."
+
+msgid "Quick Apply Now"
+msgstr "Rychle aplikujte hned"
+
+msgid "Enable Quick Apply for user"
+msgstr "Povolit rychlé použití pro uživatele"
+
+msgid "Enable Quick Apply for visitor"
+msgstr "Povolte rychlé použití pro návštěvníka"
+
+msgid "Enable captcha for visitor Quick Apply"
+msgstr "Povolte, aby Captcha pro návštěvníka rychle použila"
+
+msgid "Show captcha to visitor on quick apply form."
+msgstr "Ukažte Captcha návštěvníkovi na formuláři Quick Applic."
+
+msgid "Add ons for WP Job Portal have been installed and activated successfully. "
+msgstr "Přidat ONS pro pracovní portál WP byl nainstalován a úspěšně aktivován."
+
+msgid "WP Job Portal is an open-source job board plugin for WordPress that provides advanced features to help you create a successful job board. In addition, we offer trusted WP Job Portal add-ons that can further enhance your job board's functionality in a fast, safe, and easy manner. Our add-ons have been designed to integrate seamlessly with our job board plugin, ensuring you can expand your job board's capabilities without any complications."
+msgstr "WP Job Portal je plugin desky open-source úloh pro WordPress, který poskytuje pokročilé funkce, které vám pomohou vytvořit úspěšnou desku práce. Kromě toho nabízíme důvěryhodné doplňky WP pracovního portálu, které mohou dále zlepšit funkčnost vaší pracovní desky rychlým, bezpečným a snadným způsobem. Naše doplňky byly navrženy tak, aby se bezproblémově integrovaly s našim pluginem pracovní desky a zajistily, že můžete bez jakýchkoli komplikací rozšířit schopnosti své pracovní desky."
+
+msgid "Savings*"
+msgstr "Úspory*"
+
+msgid "Best Deal"
+msgstr "Nejlepší řešení"
+
+msgid "Shortlist Job"
+msgstr "Úloha z užšího výběru"
+
+msgid "e.g 45000"
+msgstr "např. 45000"
+
+msgid "e.g 3000"
+msgstr "např. 3000"
+
+msgid "e.g 6000"
+msgstr "např. 6000"
+
+msgid "Deactivated"
+msgstr "Deaktivován"
+
+msgid "Not Installed"
+msgstr "Není nainstalováno"
+
+msgid "Addon Installed Successfully"
+msgstr "Addon se nainstaloval úspěšně"
+
+msgid "Addon installation failed"
+msgstr "Instalace doplňků selhala"
+
+msgid "Resume Data Management"
+msgstr "Pokračovat v řízení dat"
+
+msgid "Export (csv)"
+msgstr "Export (CSV)"
+
+msgid "Configuration Based Tutorials"
+msgstr "Tutoriály založené na konfiguraci"
+
+msgid "Slugs"
+msgstr "Slimáci"
+
+msgid "Theme Installation"
+msgstr "Instalace motivu"
+
+msgid "WP Job Portal Theme  Installation"
+msgstr "Instalace motivu WP pracovního portálu"
+
+msgid "System Management"
+msgstr "Správa systému"
+
+msgid "Activity Log and System Errors"
+msgstr "Protokol aktivity a chyby systému"
+
+msgid "Shortcode"
+msgstr "Krátký kód"
+
+msgid "Job Seeker Control Panel"
+msgstr "Ovládací panel uchazeče o zaměstnání"
+
+msgid "A shortcode designed for jobseeker, providing an easy-to-use controlpanel to manage applications, resume, and preferences directly from their dashboard."
+msgstr "Krátký kód určený pro uchazeč o zaměstnání, který poskytuje snadno použitelný ovládací zařízení pro správu aplikací, životopisu a preferencí přímo z jejich palubní desky."
+
+msgid "Base Shortcode"
+msgstr "Základní krátký kód"
+
+msgid "Shortcode With All Options"
+msgstr "Krátký kód se všemi možnostmi"
+
+msgid " The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "Ovládací panel zaměstnavatele je efektivní rozhraní, které umožňuje zaměstnavatelům spravovat příspěvky pracovních míst, sledovat aplikace, komunikovat s kandidáty a efektivně analyzovat najímání metrik."
+
+msgid "The job search shortcode enables users to easily find job listings based on various criteria."
+msgstr "Krátký kód vyhledávání úlohy umožňuje uživatelům snadno najít výpisy úloh na základě různých kritérií."
+
+msgid "The jobs shortcode is a feature that displays individual job listings on a website."
+msgstr "Krátký kód úloh je funkce, která zobrazuje jednotlivé výpisy úloh na webu."
+
+msgid "The featured job shortcode highlights select job listings on a website, making them stand out to potential applicants."
+msgstr "Hlavní úlohy s uvedenými úlohami na webu vybírají výpisy úloh, což je vyniká potenciálním uchazečům."
+
+msgid "This Shortcode requires WP Job Portal Featured Jobs Addon"
+msgstr "Tento krátký kód vyžaduje WP pracovní portál předvoleného úlohy Addon"
+
+msgid "Get Addon"
+msgstr "Získejte doplněk"
+
+msgid "Job Categories"
+msgstr "Kategorie práce"
+
+msgid "The job categories shortcode displays a dynamic list of available categories, enabling users to easily navigate and find relevant job listings."
+msgstr "Krátký kód kategorií úloh zobrazuje dynamický seznam dostupných kategorií, což uživatelům umožňuje snadno navigovat a najít relevantní výpisy úloh."
+
+msgid "The job types shortcode presents a comprehensive list of available job types, allowing users to quickly explore and find suitable job opportunities."
+msgstr "Krátký kód typů úloh představuje komplexní seznam dostupných typů úloh, což uživatelům umožňuje rychle prozkoumat a najít vhodné pracovní příležitosti."
+
+msgid "My applied jobs shortcode provides users with a personalized list of their job applications, allowing easy access to track application status and details."
+msgstr "Můj použitý krátký kód úloh poskytuje uživatelům přizpůsobený seznam aplikací jejich úloh, což umožňuje snadný přístup ke sledování stavu a podrobností aplikace."
+
+msgid "My companies shortcode displays a personalized list of companies users are associated with, facilitating easy access to company information and opportunities."
+msgstr "Krátkodobý kód mých společností zobrazuje osobní seznam uživatelů společností, s nimiž je spojen, a usnadňuje snadný přístup k informacím a příležitostem společnosti."
+
+msgid "All companies shortcode offers a curated directory of all companies, allowing users to easily browse and connect with potential employers."
+msgstr "Všechny společnosti Shortcode nabízí kurátorský adresář všech společností, který uživatelům umožňuje snadno procházet a spojit se s potenciálními zaměstnavateli."
+
+msgid "This Shortcode requires WP Job Portal All Companies Addon"
+msgstr "Tento krátký kód vyžaduje WP pracovní portál všech společností Addon"
+
+msgid "The featured companies shortcode showcases prominent companies within the portal, allowing users to explore exciting job opportunities from industry leaders."
+msgstr "Představené společnosti zkratky předvádějí v rámci portálu prominentní společnosti, což uživatelům umožňuje prozkoumat vzrušující pracovní příležitosti od vůdců v oboru."
+
+msgid "This Shortcode requires WP Job Portal Featured Companies Addon"
+msgstr "Tento krátký kód vyžaduje WP Job Portal Beted Companies Addon"
+
+msgid "My jobs shortcode allows users to view and manage their saved job listings, making it easy to keep track of potential opportunities."
+msgstr "Můj úložný krátký kód umožňuje uživatelům prohlížet a spravovat své uložené výpisy úloh, což usnadňuje sledování potenciálních příležitostí."
+
+msgid "My resume shortcode allows users to view and manage their uploaded resumes, providing a convenient way to keep their job application materials up to date."
+msgstr "Můj krátký kód životopisu umožňuje uživatelům prohlížet a spravovat své nahrané životopisy a poskytuje pohodlný způsob, jak udržovat aktuální informace o aplikaci zaměstnání."
+
+msgid "All Resumes"
+msgstr "Všechny životopisy"
+
+msgid "All resumes shortcode allows job seekers to view and manage their uploaded resumes, ensuring they have easy access to their application materials."
+msgstr "Všechny životopis krátký kód umožňuje uchazečům o zaměstnání sledovat a spravovat své nahrané životopisy, což zajišťuje, že mají snadný přístup k jejich aplikačním materiálům."
+
+msgid "This Shortcode requires WP Job Portal All Resumes Addon"
+msgstr "Tento krátký kód vyžaduje WP pracovní portál VŠECHNY POTŘEBUJE ADDON"
+
+msgid "The featured resumes shortcode showcases a selection of standout resumes, allowing job seekers to stand out to potential employers."
+msgstr "Představené obnovení předvádí krátký kód výběr standout životopisů, což umožňuje uchazečům o zaměstnání vyniknout potenciálním zaměstnavatelům."
+
+msgid "This Shortcode requires WP Job Portal Featured Resumes Addon"
+msgstr "Tento krátký kód vyžaduje WP pracovní portál představovaný životopis"
+
+msgid "Add company shortcode allows employers to effortlessly register their organization, providing essential details to attract talent and post job openings."
+msgstr "Add Company Shortcode umožňuje zaměstnavatelům bez námahy zaregistrovat jejich organizaci a poskytovat základní podrobnosti k přilákání talentů a zveřejňování pracovních míst."
+
+msgid "Add department shortcode enables employers to easily create and manage specific departments within their organization, facilitating better job categorization and organization."
+msgstr "Přidat krátký kód oddělení umožňuje zaměstnavatelům snadno vytvářet a spravovat konkrétní oddělení v rámci své organizace, což usnadňuje lepší kategorizaci a organizaci."
+
+msgid "This Shortcode requires WP Job Portal Multi Departments Addon"
+msgstr "Tento krátký kód vyžaduje více oddělení WP pracovního portálu"
+
+msgid "Add jobs enables organizations to effortlessly publish job postings, helping them connect with potential applicants and fill vacancies more effectively."
+msgstr "Přidat pracovní místa umožňují organizacím bez námahy zveřejňovat příspěvky na zaměstnání, pomáhat jim spojit se s potenciálními uchazeči a efektivněji obsadit volná místa."
+
+msgid "Add resume shortcode simplifies the process for candidates to submit their resumes, helping them showcase their qualifications and experiences to potential employers."
+msgstr "Přidat životopis zkratka zjednodušuje proces, aby kandidáti předložili své životopisy a pomohli jim předvést jejich kvalifikaci a zkušenosti potenciálním zaměstnavatelům."
+
+msgid "Resume search shortcode provides a powerful search tool for employers to explore candidate profiles, making it easier to connect with potential hires."
+msgstr "Krátký kód pro pokračování v vyhledávání poskytuje výkonným vyhledávacím nástrojem pro zaměstnavatele k prozkoumání profilů kandidátů, což usnadňuje spojení s potenciálními nájemci."
+
+msgid "This Shortcode requires WP Job Portal Resume Search Addon"
+msgstr "Tento krátký kód vyžaduje wp pracovní portál obnovení vyhledávacího doplňku"
+
+msgid "Registration"
+msgstr "Registrace"
+
+msgid "Registration shortcode allows individuals to easily create accounts as their selected role"
+msgstr "Registrační krátký kód umožňuje jednotlivcům snadno vytvářet účty jako svou vybranou roli"
+
+msgid "Employer registration shortcode streamlines the process for organizations to register, ensuring they can efficiently manage job postings and their company profiles."
+msgstr "Krátký kód pro registraci zaměstnavatele zefektivňuje proces registrace organizací, což zajišťuje, že mohou efektivně spravovat příspěvky pracovních míst a jejich profily společnosti."
+
+msgid "Job Seeker Registration"
+msgstr "Registrace uchazeče o zaměstnání"
+
+msgid "Job seeker registration shortcode allows individuals to easily create accounts, enabling them to apply for jobs and manage their resumes."
+msgstr "Krátký kód registrace uchazeče o zaměstnání umožňuje jednotlivcům snadno vytvářet účty, což jim umožňuje žádat o pracovní místa a spravovat své životopisy."
+
+msgid "Login Page"
+msgstr "Přihlašovací stránka"
+
+msgid "Login page shortcode offers a user-friendly interface for candidates and employers to securely log in and manage their profiles and postings."
+msgstr "Krátký kód přihlašovací stránky nabízí uživatelsky přívětivé rozhraní pro kandidáty a zaměstnavatele, aby se bezpečně přihlásily a spravovaly své profily a příspěvky."
+
+msgid "Widget"
+msgstr "Widget"
+
+msgid "Search job widget provides an intuitive interface for candidates to filter and browse openings, connecting them with opportunities that align with their skills."
+msgstr "Widget pro vyhledávání poskytuje intuitivní rozhraní pro kandidáty k filtrování a procházení otvorů a propojení je s příležitostmi, které jsou v souladu s jejich dovednostmi."
+
+msgid "This Shortcode requires WP Job Portal Front-end Widgets Addon"
+msgstr "Tento krátký kód vyžaduje widgety widgetů WP"
+
+msgid "My packages offers a personalized dashboard for users to monitor their subscription details, helping them manage job postings and access features effectively."
+msgstr "Moje balíčky nabízejí uživatelům personalizovaný řídicí panel pro sledování jejich podrobností o předplatném a pomáhat jim efektivně spravovat příspěvky a přístup k funkcím."
+
+msgid "This Shortcode requires WP Job Portal Credits Addon"
+msgstr "Tento krátký kód vyžaduje WP pracovního portálového kreditu Addon"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans.  "
+msgstr "Moje předplatné poskytuje uživatelům přehled o jejich aktivním předplatném, což umožňuje snadné správu a sledování jejich plánů zveřejňování pracovních míst."
+
+msgid "All packages showcases a comprehensive list of available subscription plans, allowing users to compare features and select the best options for their job posting needs."
+msgstr "Všechny balíčky představují komplexní seznam dostupných plánů předplatného, ​​což uživatelům umožňuje porovnat funkce a vybrat nejlepší možnosti pro jejich potřeby zasílání zaměstnání."
+
+msgid "My invoices provides a convenient way for users to view and manage their invoices, helping them stay organized and up to date with their payments."
+msgstr "Moje faktury poskytují pro uživatele pohodlný způsob, jak si prohlédnout a spravovat své faktury, pomáhat jim zůstat v organizaci a aktuální s jejich platbami."
+
+msgid "SEO"
+msgstr "SEO"
+
+msgid "Document Title Settings"
+msgstr "Nastavení názvu dokumentu"
+
+msgid "Company detail url options are name, location. eg- [name] [location]"
+msgstr "Možnosti URL společnosti pro detaily společnosti jsou jméno, umístění. EG- [Name] [Umístění]"
+
+msgid "spinning wheel"
+msgstr "kolovrat"
+
+msgid "New Update Version"
+msgstr "Nová aktualizační verze"
+
+msgid "is Available"
+msgstr "je k dispozici"
+
+msgid "Hey there! We have recently launched a fresh update for the add-ons. Don't forget to update the add-ons to enjoy the greatest features!"
+msgstr "Ahoj! Nedávno jsme spustili novou aktualizaci pro doplňky. Nezapomeňte aktualizovat doplňky, abyste si užili největší funkce!"
+
+msgid "View Addone Status"
+msgstr "Zobrazit stav ADDONE"
+
+msgid "Active Companies"
+msgstr "Aktivní společnosti"
+
+msgid "Help Page"
+msgstr "Stránka nápovědy"
+
+msgid "Watch Tutorial"
+msgstr "Sledujte tutoriál"
+
+msgid "video"
+msgstr "video"
+
+msgid "Apply Now Failed"
+msgstr "Použití nyní selhalo"
+
+msgid "You do not have package required for job apply"
+msgstr "Pro použití práce nemáte potřebný balíček"
+
+msgid "You package has expired"
+msgstr "Vyprší balíček"
+
+msgid "You do not any more job apply available"
+msgstr "Už k dispozici není k dispozici více práce"
+
+msgid "Job Not Found"
+msgstr "Práce nebyla nalezena"
+
+msgid "Job does not exist in the system"
+msgstr "Práce v systému neexistuje"
+
+msgid "Make Payment To Complete The Job Apply"
+msgstr "Proveďte platbu k dokončení úlohy použijte"
+
+msgid "Successfully applied on job"
+msgstr "Úspěšně aplikováno na práci"
+
+msgid "view coverletter"
+msgstr "Zobrazit průvodní dopis"
+
+msgid "Please Fill out fields"
+msgstr "Vyplňte pole"
+
+msgid "sender email is not of correct format"
+msgstr "E -mail odesílatele nemá správný formát"
+
+msgid "Erase Selected Country"
+msgstr "Vymazat vybranou zemi"
+
+msgid "Erase All Data"
+msgstr "Vymažte všechna data"
+
+msgid "Click on package to select one"
+msgstr "Kliknutím na balíček vyberte jeden"
+
+msgid "Apply to the Job"
+msgstr "Přihlaste se na práci"
+
+msgid "No Cover Letter!"
+msgstr "Žádný průvodní dopis!"
+
+msgid "Add Cover Lettter"
+msgstr "Přidejte průvodní dopis"
+
+msgid "You have already applied on this job."
+msgstr "Na tuto práci jste již použili."
+
+msgid "Unlimited job applies"
+msgstr "Neomezená práce platí"
+
+msgid "Job applies remaining"
+msgstr "Job platí zbývající"
+
+msgid "Buy package to apply on job."
+msgstr "Kupte si balíček, který se můžete přihlásit na práci."
+
+msgid "Apply With Package"
+msgstr "Použít s balíčkem"
+
+msgid "Payment of"
+msgstr "Platba"
+
+msgid "is required to complete the job apply process"
+msgstr "je vyžadován k dokončení procesu použití úlohy"
+
+msgid "You are logged in as employer."
+msgstr "Jste přihlášeni jako zaměstnavatel."
+
+msgid "You are not a logged in member."
+msgstr "Nejste přihlášeni členem."
+
+msgid "You do not have any role."
+msgstr "Nemáte žádnou roli."
+
+msgid "Proceed to payment"
+msgstr "Pokračujte v platbě"
+
+msgid "Views"
+msgstr "Pohledy"
+
+msgid "Save As Draft"
+msgstr "Uložit jako koncept"
+
+msgid "Job Has Been Feature SuccesFully"
+msgstr "Práce byla úspěšně uvedena"
+
+msgid "You are Not Allowed To Add More than One"
+msgstr "Nemáte dovoleno přidat více než jeden"
+
+msgid "Contact TO Adminstrator"
+msgstr "Kontakt s administrátorem"
+
+msgid "This Is Meta Description"
+msgstr "Toto je meta popis"
+
+msgid "jobs by cities"
+msgstr "pracovní místa měst"
+
+msgid "Show Info"
+msgstr "Zobrazit informace"
+
+msgid "Changing a user's role will not remove its entites from the system !"
+msgstr "Změna role uživatele neodstraní jeho entity ze systému!"
+
+msgid "company reject"
+msgstr "společnost odmítne"
+
+msgid "all reject"
+msgstr "všechny odmítnutí"
+
+msgid "Missing user(s) added successfully!"
+msgstr "Chybějící uživatele (uživatele) přidány úspěšně!"
+
+msgid "No missing user found!"
+msgstr "Nebyl nalezen žádný chybějící uživatel!"
+
+msgid "Jobs Listing Menu"
+msgstr "Nabídka výpisu úloh"
+
+msgid "Visitor"
+msgstr "Návštěvník"
+
+msgid "new message alert"
+msgstr "Nová upozornění na zprávu"
+
+msgid "New Message Alert"
+msgstr "Nová upozornění na zprávu"
+
+msgid "Recipient Name"
+msgstr "Jméno příjemce"
+
+msgid "Sender Name"
+msgstr "Jméno odesílatele"
+
+msgid "Sender Role"
+msgstr "Role odesílatele"
+
+msgid "Message Text"
+msgstr "Text zprávy"
+
+msgid "Job/Resume Info"
+msgstr "Informace o práci/životopisu"
+
+msgid "Upload Resume"
+msgstr "Nahrát životopis"
+
+msgid "Profile Status"
+msgstr "Stav profilu"
+
+msgid "Profile Completed"
+msgstr "Profil dokončen"
+
+msgid "feature approve"
+msgstr "Funkce schválit"
+
+msgid "feature reject"
+msgstr "funkce odmítnutí"
+
+msgid "Type city"
+msgstr "Typ město"
+
+msgid "New Message"
+msgstr "Nová zpráva"
+
+msgid "Employer is disabled by admin"
+msgstr "Zaměstnavatel je zakázán správcem"
+
+msgid "You are not allowed to add more than one"
+msgstr "Nemáte dovoleno přidat více než jeden"
+
+msgid "contact adminstrator"
+msgstr "Kontaktní správce"
+
+msgid "Payment is not made against this job contact adminstrator"
+msgstr "Platba není prováděna proti této práci správce kontaktu"
+
+msgid "Addon Page Not Found"
+msgstr "Addonská stránka nebyla nalezena"
+
+msgid "User Role"
+msgstr "Uživatelská role"
+
+msgid "Jobs Role"
+msgstr "Role pracovních míst"
+
+msgid "User has been successfully created"
+msgstr "Uživatel byl úspěšně vytvořen"
+
+msgid "Pay For Department"
+msgstr "Plaťte za oddělení"
+
+msgid "Pay For Job Apply"
+msgstr "Platit za práci platit"
+
+msgid "Pay For Company"
+msgstr "Platit za společnost"
+
+msgid "Pay For Featured Company"
+msgstr "Plaťte za doporučenou společnost"
+
+msgid "Pay For Job"
+msgstr "Platit za práci"
+
+msgid "Pay For Featured Job"
+msgstr "Plaťte za doporučenou práci"
+
+msgid "Pay For Resume Search"
+msgstr "Plaťte za životopis"
+
+msgid "Pay For Resume "
+msgstr "Plaťte za životopis"
+
+msgid "Pay For Featured Resume "
+msgstr "Plaťte za doporučený životopis"
+
+msgid "Job Saved Searches"
+msgstr "Vyhledávání uložené práce"
+
+msgid "Job Apply Configurations"
+msgstr "Úloha Aplikujte konfigurace"
+
+msgid "Quick Apply Fields"
+msgstr "Rychlá pole aplikujte"
+
+msgid "addons status"
+msgstr "Stav doplňků"
+
+msgid "coverletters"
+msgstr "krycí dopisy"
+
+msgid "coverletter"
+msgstr "průvodní dopis"
+
+msgid "add new cover letter"
+msgstr "Přidejte nový průvodní dopis"
+
+msgid "Loaction Name settings"
+msgstr "Nastavení názvu umístění"
+
+msgid "Loaction Name Settings"
+msgstr "Nastavení názvu umístění"
+
+msgid "shifts"
+msgstr "směny"
+
+msgid "ages"
+msgstr "věky"
+
+msgid "Error file size too large"
+msgstr "Velikost souboru chyb příliš velká"
+
+msgid "Maximum Size"
+msgstr "Maximální velikost"
+
+msgid "is in use"
+msgstr "se používá"
+
+msgid "can not deleted it"
+msgstr "nelze to odstranit"
+
+msgid "Address data"
+msgstr "Adresova data"
+
+msgid "themes"
+msgstr "Témata"
+
+msgid "Color Schemes"
+msgstr "Barevná schémata"
+
+msgid "Color Chooser"
+msgstr "Vybírání barev"
+
+msgid "Color 1"
+msgstr "Barva 1"
+
+msgid "Color 2"
+msgstr "Barva 2"
+
+msgid "Color 3"
+msgstr "Barva 3"
+
+msgid "Add User Fields"
+msgstr "Přidejte uživatelská pole"
+
+msgid "cannot unpublished"
+msgstr "nelze nepublikovat"
+
+msgid "Search Name"
+msgstr "Hledat název"
+
+msgid "start"
+msgstr "start"
+
+msgid "Total Resume Search"
+msgstr "Celkové obnovení vyhledávání"
+
+msgid "Remaining Resume Search"
+msgstr "Zbývající obnovení"
+
+msgid "Reference"
+msgstr "Odkaz"
+
+msgid "cancel payment"
+msgstr "Zrušit platbu"
+
+msgid "Apply now"
+msgstr "Přihlaste se hned"
+
+msgid " Listing"
+msgstr "Výpis"
+
+msgid "Credits log"
+msgstr "Protokol kreditů"
+
+msgid "Rate list"
+msgstr "Seznam sazeb"
+
+msgid "Purchase history"
+msgstr "Historie nákupu"
+
+msgid " remaining"
+msgstr "zbývající"
+
+msgid "Cover Letter has been successfully published"
+msgstr "Průvodní dopis byl úspěšně zveřejněn"
+
+msgid "cover Letter has been successfully published"
+msgstr "Průvodní dopis byl úspěšně zveřejněn"
+
+msgid "Resume files download"
+msgstr "Pokračovat v souborech ke stažení"
+
+msgid "apply with facebook"
+msgstr "Přihlaste se s Facebookem"
+
+msgid "apply with linkedin"
+msgstr "Aplikujte s LinkedIn"
+
+msgid "apply with xing"
+msgstr "Aplikujte s Xingem"
+
+msgid "Resume removed from featured"
+msgstr "Životopis odstraněn z prvního"
+
+msgid "share blog"
+msgstr "Sdílejte blog"
+
+msgid "share digg"
+msgstr "Sdílet Digg"
+
+msgid "share fb"
+msgstr "Sdílet FB"
+
+msgid "share ff"
+msgstr "Sdílet ff"
+
+msgid "share google"
+msgstr "Sdílejte Google"
+
+msgid "share linkedin"
+msgstr "Sdílet LinkedIn"
+
+msgid "share myspace"
+msgstr "Sdílejte myspace"
+
+msgid "share twitter"
+msgstr "Sdílejte Twitter"
+
+msgid "share yahoo"
+msgstr "Sdílejte Yahoo"
+
+msgid "Mark As Shortlist Job"
+msgstr "Označte jako pracovní místo"
+
+msgid "Keep this job on your list! Mark it as shortlisted and find it easily whenever you need."
+msgstr "Udržujte tuto práci na svém seznamu! Označte to jako užší výběr a najděte jej snadno, kdykoli budete potřebovat."
+
+msgid "Search job title, company name, keywords"
+msgstr "Hledat název pracovní pozice, název společnosti, klíčová slova"
+
+msgid "Loction"
+msgstr "Loction"
+
+msgid "Applied Resume Title"
+msgstr "Aplikovaný životopis"
+
+msgid "Arrow"
+msgstr "Šipka"
+
+msgid "Already Applied"
+msgstr "Již aplikované"
+
+msgid "Ready to take the next step? Simply fill out the form and submit your application. It only takes a few minutes!"
+msgstr "Jste připraveni udělat další krok? Jednoduše vyplňte formulář a odešlete svou žádost. Trvá to jen pár minut!"
+
+msgid "Waiting for Payment"
+msgstr "Čekání na platbu"
+
+msgid "Salery"
+msgstr "Salery"
+
+msgid "Buy"
+msgstr "Nakoupit"
+
+msgid "Employer can add companies and jobs while searching for potential candidate to hire"
+msgstr "Zaměstnavatel může přidat společnosti a zaměstnání při hledání potenciálního kandidáta na najmutí"
+
+msgid "Selected"
+msgstr "Vybraný"
+
+msgid "Jobseeker can add resume, cover letters, search jobs and apply to multiple jobs easily"
+msgstr "Useeker zaměstnavatele může přidat životopis, krycí dopisy, hledat úlohy a snadno se aplikovat na více úloh"
+
+msgid "Hello, again!..."
+msgstr "Dobrý den, znovu! ..."
+
+msgid "View All Applied Jobs"
+msgstr "Zobrazit všechny aplikované úlohy"
+
+msgid "View All Newest Jobs"
+msgstr "Zobrazit všechny nejnovější úlohy"
+
+msgid "Hello, again!…"
+msgstr "Ahoj, znovu! ..."
+
+msgid "Submit job"
+msgstr "Odeslat práci"
+
+msgid "Submit Job"
+msgstr "Odeslat práci"
+
+msgid "View detail"
+msgstr "Zobrazit detaily"
+
+msgid "Recently Applied Resume"
+msgstr "Nedávno aplikovaný životopis"
+
+msgid "Messages By Resume"
+msgstr "Zprávy životopisem"
+
+msgid "Reply"
+msgstr "Odpověď"
+
+msgid "View jobs"
+msgstr "Zobrazit úlohy"
+
+msgid "Other Info"
+msgstr "Další informace"
+
+msgid "Link"
+msgstr "Odkaz"
+
+msgid "Mail"
+msgstr "Pošta"
+
+msgid "Site"
+msgstr "Místo"
+
+msgid "View Company Details"
+msgstr "Zobrazit podrobnosti společnosti"
+
+msgid "Completed"
+msgstr "Dokončeno"
+
+msgid "Categoty"
+msgstr "Kategorie"
+
+msgid "tell a friend"
+msgstr "Řekněte příteli"
+
+msgid "Tell friend"
+msgstr "Řekni příteli"
+
+msgid "Know someone perfect for this job? Share it with them!"
+msgstr "Znáte někoho perfektního pro tuto práci? Sdílejte to s nimi!"
+
+msgid "Your name"
+msgstr "Vaše jméno"
+
+msgid "Your email"
+msgstr "Váš e -mail"
+
+msgid "Show the"
+msgstr "Ukázat"
+
+msgid "form to logged-in users on the job detail page. If this is on,"
+msgstr "Formulář pro přihlášení uživatelů na stránce podrobnosti o úloze. Pokud je to zapnuto,"
+
+msgid "will be turned off."
+msgstr "bude vypnut."
+
+msgid "form to visitor on the job detail page. If this is on,"
+msgstr "Formulář návštěvníka na stránce podrobnosti o úloze. Pokud je to zapnuto,"
+
+msgid "You do not have any save serch remaining"
+msgstr "Nemáte zbývající Serch"
+
+msgid "We would love to hear from You."
+msgstr "Rádi bychom od vás slyšeli."

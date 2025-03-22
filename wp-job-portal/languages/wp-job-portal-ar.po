@@ -9328,3 +9328,948 @@ msgstr "ادارتي"
 
 msgid "Add To ShortList"
 msgstr "أضف إلى القائمة المختصرة"
+
+msgid "or"
+msgstr "أو"
+
+msgid "company logo"
+msgstr "شعار الشركة"
+
+msgid "job title"
+msgstr "مسمى وظيفي"
+
+msgid "company name"
+msgstr "اسم الشركة"
+
+msgid "Resume Has Been Feature SuccesFully"
+msgstr "تم عرض السيرة الذاتية بنجاح"
+
+msgid "My coverletter"
+msgstr "رسالة التغطية الخاصة بي"
+
+msgid "Add coverletter"
+msgstr "أضف خطاب الغلاف"
+
+msgid "Total Cover Letter"
+msgstr "إجمالي خطاب التغطية"
+
+msgid "Remaining Cover Letter"
+msgstr "خطاب الغلاف المتبقي"
+
+msgid "Open ChatGPT"
+msgstr "فتح chatgpt"
+
+msgid "How To Add Cover Letter With ChatGPT"
+msgstr "كيفية إضافة خطاب تغطية مع chatgpt"
+
+msgid "Edit coverletter"
+msgstr "تحرير خطاب الغلاف"
+
+msgid "Edit Cover Letter"
+msgstr "تحرير خطاب الغلاف"
+
+msgid "Delete coverletter"
+msgstr "حذف خطاب الغلاف"
+
+msgid "coverletter title"
+msgstr "عنوان خطاب الغلاف"
+
+msgid "Add New Cover Letter"
+msgstr "أضف رسالة تغطية جديدة"
+
+msgid "Quote from Hello Dolly song, by Jerry Herman:"
+msgstr "اقتبس من Hello Dolly Song ، بقلم جيري هيرمان:"
+
+msgid "Select Parent"
+msgstr "حدد الأصل"
+
+msgid "Edit Field"
+msgstr "تحرير الحقل"
+
+msgid "Visitor published"
+msgstr "نشر الزائر"
+
+msgid "Show On Listing"
+msgstr "عرض على القائمة"
+
+msgid "Advanced"
+msgstr "متقدم"
+
+msgid "Equal"
+msgstr "متساوي"
+
+msgid "Not Equal"
+msgstr "لا يساوي"
+
+msgid "Multi Select"
+msgstr "Multi Select"
+
+msgid "Visible"
+msgstr "مرئي"
+
+msgid "Select Child"
+msgstr "حدد الطفل"
+
+msgid "Select Condition"
+msgstr "حدد الحالة"
+
+msgid "To use this feature please fill the above three fields."
+msgstr "لاستخدام هذه الميزة ، يرجى ملء الحقول الثلاثة أعلاه."
+
+msgid "No response found"
+msgstr "لم يتم العثور على استجابة"
+
+msgid "Quick Apply"
+msgstr "تطبيق سريع"
+
+msgid "user publish"
+msgstr "نشر المستخدم"
+
+msgid "User Unpublished"
+msgstr "المستخدم غير منشور"
+
+msgid "visitor publish"
+msgstr "نشر الزائر"
+
+msgid "visitor unpublish"
+msgstr "زائر unpublish"
+
+msgid "Select user status"
+msgstr "حدد حالة المستخدم"
+
+msgid "Un published"
+msgstr "تم نشرها"
+
+msgid "File upload fields and text editor fields cannot be made required."
+msgstr "لا يمكن إجراء حقول تحميل الملفات وحقول محرر النصوص."
+
+msgid "Dependent Field"
+msgstr "الحقل التابع"
+
+msgid "Job Apply settings"
+msgstr "وظيفة تطبيق الإعدادات"
+
+msgid "Quick Apply settings"
+msgstr "قم بتطبيق إعدادات سريعة"
+
+msgid "Show count in jobs by cities page"
+msgstr "عرض العد في الوظائف من قبل المدن صفحة"
+
+msgid "Show country in jobs by cities page"
+msgstr "عرض البلد في وظائف من قبل المدن صفحة"
+
+msgid "Profile Section"
+msgstr "قسم الملف الشخصي"
+
+msgid "Recaptcha Version 2"
+msgstr "Recaptcha الإصدار 2"
+
+msgid "Recaptcha Version 3"
+msgstr "Recaptcha الإصدار 3"
+
+msgid "System slug"
+msgstr "System Slug"
+
+msgid "Image file size"
+msgstr "حجم ملف الصورة"
+
+msgid "System will not upload if image size is greater than the given size"
+msgstr "لن يتم تحميل النظام إذا كان حجم الصورة أكبر من الحجم المحدد"
+
+msgid "Show page title above wpjobportal breadcrumbs"
+msgstr "عرض عنوان الصفحة فوق فتات الخبز wpjobportal"
+
+msgid "Default Image For WP Job Portal"
+msgstr "الصورة الافتراضية لبوابة وظيفة WP"
+
+msgid "This image will shown as default image for entities & users if no other image is provided."
+msgstr "ستُظهر هذه الصورة كصورة افتراضية للكيانات والمستخدمين إذا لم يتم توفير صورة أخرى."
+
+msgid "Default country"
+msgstr "البلد الافتراضي"
+
+msgid "Select default country for user added cities"
+msgstr "حدد البلد الافتراضي للمستخدم المضافة للمستخدم"
+
+msgid "Job detail URL options are title, company, category, location, jobtype. eg- [title] [company]"
+msgstr "خيارات عنوان URL للتفاصيل الوظيفية هي العنوان ، الشركة ، الفئة ، الموقع ، JobType. مثل [العنوان] [الشركة]"
+
+msgid "Select the Google reCaptcha Version"
+msgstr "حدد إصدار Google Recaptcha"
+
+msgid "Recent Resumes Box"
+msgstr "مربع السير الذاتية الأخيرة"
+
+msgid "mode"
+msgstr "وضع"
+
+msgid "expire"
+msgstr "تنتهي"
+
+msgid "Registration is disabled in WordPress settings, please enable to Membership: anyone can register."
+msgstr "يتم تعطيل التسجيل في إعدادات WordPress ، يرجى تمكين العضوية: يمكن لأي شخص التسجيل."
+
+msgid "Quick Apply Now"
+msgstr "تطبيق سريع الآن"
+
+msgid "Enable Quick Apply for user"
+msgstr "تمكين تطبيق سريع للمستخدم"
+
+msgid "Enable Quick Apply for visitor"
+msgstr "تمكين التقديم السريع للزائر"
+
+msgid "Enable captcha for visitor Quick Apply"
+msgstr "تمكين Captcha للزائر تطبيق سريع"
+
+msgid "Show captcha to visitor on quick apply form."
+msgstr "عرض Captcha للزائر في نموذج تطبيق سريع."
+
+msgid "Add ons for WP Job Portal have been installed and activated successfully. "
+msgstr "إضافة ONS لبوابة الوظائف WP تم تثبيتها وتفعيلها بنجاح."
+
+msgid "WP Job Portal is an open-source job board plugin for WordPress that provides advanced features to help you create a successful job board. In addition, we offer trusted WP Job Portal add-ons that can further enhance your job board's functionality in a fast, safe, and easy manner. Our add-ons have been designed to integrate seamlessly with our job board plugin, ensuring you can expand your job board's capabilities without any complications."
+msgstr "WP Job Portal هو مكون إضافي لوحة عمل مفتوحة المصدر لـ WordPress يوفر ميزات متقدمة لمساعدتك في إنشاء لوحة عمل ناجحة. بالإضافة إلى ذلك ، نقدم إضافات بوابة الوظائف الموثوق بها والتي يمكن أن تعزز وظائف مجلس الوظائف بطريقة سريعة وآمنة وسهلة. لقد تم تصميم الوظائف الإضافية لدينا لتكاملها بسلاسة مع البرنامج المساعد لمجلس العمل الخاص بنا ، مما يضمن أن تتمكن من توسيع قدرات لوحة العمل الخاصة بك دون أي مضاعفات."
+
+msgid "Savings*"
+msgstr "المدخرات*"
+
+msgid "Best Deal"
+msgstr "أفضل صفقة"
+
+msgid "Shortlist Job"
+msgstr "وظيفة القائمة المختصرة"
+
+msgid "e.g 45000"
+msgstr "على سبيل المثال 45000"
+
+msgid "e.g 3000"
+msgstr "على سبيل المثال 3000"
+
+msgid "e.g 6000"
+msgstr "على سبيل المثال 6000"
+
+msgid "Deactivated"
+msgstr "إلغاء تنشيط"
+
+msgid "Not Installed"
+msgstr "غير مثبت"
+
+msgid "Addon Installed Successfully"
+msgstr "تم تثبيت Addon بنجاح"
+
+msgid "Addon installation failed"
+msgstr "فشل تثبيت Addon"
+
+msgid "Resume Data Management"
+msgstr "استئناف إدارة البيانات"
+
+msgid "Export (csv)"
+msgstr "التصدير (CSV)"
+
+msgid "Configuration Based Tutorials"
+msgstr "دروس تعليمية قائمة على التكوين"
+
+msgid "Slugs"
+msgstr "الرخويات"
+
+msgid "Theme Installation"
+msgstr "تركيب السمة"
+
+msgid "WP Job Portal Theme  Installation"
+msgstr "تركيب موضوع بوابة وظيفة WP"
+
+msgid "System Management"
+msgstr "إدارة النظام"
+
+msgid "Activity Log and System Errors"
+msgstr "سجل النشاط وأخطاء النظام"
+
+msgid "Shortcode"
+msgstr "الرمز القصير"
+
+msgid "Job Seeker Control Panel"
+msgstr "لوحة التحكم في الباحث عن عمل"
+
+msgid "A shortcode designed for jobseeker, providing an easy-to-use controlpanel to manage applications, resume, and preferences directly from their dashboard."
+msgstr "رمز مختصر مصمم للباحث عن عمل ، يوفر جهاز تحكم سهل الاستخدام لإدارة التطبيقات والاستئناف والتفضيلات مباشرة من لوحة القيادة الخاصة بهم."
+
+msgid "Base Shortcode"
+msgstr "القاعدة القصير"
+
+msgid "Shortcode With All Options"
+msgstr "رمز قصير مع جميع الخيارات"
+
+msgid " The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "لوحة التحكم في صاحب العمل هي واجهة مبسطة تتيح لأصحاب العمل إدارة وظائف الوظائف وتتبع الطلبات والتواصل مع المرشحين وتحليل مقاييس التوظيف بكفاءة."
+
+msgid "The job search shortcode enables users to easily find job listings based on various criteria."
+msgstr "يمكّن الرمز المختصر للبحث عن الوظائف المستخدمين من العثور بسهولة على قوائم الوظائف بناءً على معايير مختلفة."
+
+msgid "The jobs shortcode is a feature that displays individual job listings on a website."
+msgstr "الرمز القصير في الوظائف هو ميزة تعرض قوائم الوظائف الفردية على موقع الويب."
+
+msgid "The featured job shortcode highlights select job listings on a website, making them stand out to potential applicants."
+msgstr "أبرز ما يسلط الضوء على الرمز القصير في الوظائف المختارة على قوائم الوظائف على موقع ويب ، مما يجعلها تبرز للمتقدمين المحتملين."
+
+msgid "This Shortcode requires WP Job Portal Featured Jobs Addon"
+msgstr "يتطلب هذا الرمز القصير بوابة وظيفة WP المميزة Jobs Addon"
+
+msgid "Get Addon"
+msgstr "الحصول على addon"
+
+msgid "Job Categories"
+msgstr "فئات الوظائف"
+
+msgid "The job categories shortcode displays a dynamic list of available categories, enabling users to easily navigate and find relevant job listings."
+msgstr "يعرض فئات الوظائف المختصرة قائمة ديناميكية من الفئات المتاحة ، مما يتيح للمستخدمين التنقل بسهولة وإيجاد قوائم الوظائف ذات الصلة."
+
+msgid "The job types shortcode presents a comprehensive list of available job types, allowing users to quickly explore and find suitable job opportunities."
+msgstr "يقدم الرمز المختصر لأنواع الوظائف قائمة شاملة بأنواع الوظائف المتاحة ، مما يسمح للمستخدمين بالاستكشاف بسرعة وإيجاد فرص عمل مناسبة."
+
+msgid "My applied jobs shortcode provides users with a personalized list of their job applications, allowing easy access to track application status and details."
+msgstr "يوفر الرمز المختصر في الوظائف التطبيقية للمستخدمين قائمة مخصصة لتطبيقات الوظائف الخاصة بهم ، مما يتيح سهولة الوصول إلى تتبع حالة التطبيق والتفاصيل."
+
+msgid "My companies shortcode displays a personalized list of companies users are associated with, facilitating easy access to company information and opportunities."
+msgstr "يعرض شركاتي Shortcode قائمة مخصصة من الشركات التي يرتبط بها المستخدمون ، مما يسهل الوصول بسهولة إلى معلومات الشركة وفرصها."
+
+msgid "All companies shortcode offers a curated directory of all companies, allowing users to easily browse and connect with potential employers."
+msgstr "تقدم جميع الشركات المختصرة الدليل المنسق لجميع الشركات ، مما يسمح للمستخدمين بالتصفح بسهولة والتواصل مع أصحاب العمل المحتملين."
+
+msgid "This Shortcode requires WP Job Portal All Companies Addon"
+msgstr "يتطلب هذا الرمز القصير بوابة وظيفة WP جميع الشركات Addon"
+
+msgid "The featured companies shortcode showcases prominent companies within the portal, allowing users to explore exciting job opportunities from industry leaders."
+msgstr "تعرض الشركات المختصرة المميزة شركات بارزة داخل البوابة ، مما يسمح للمستخدمين باستكشاف فرص عمل مثيرة من قادة الصناعة."
+
+msgid "This Shortcode requires WP Job Portal Featured Companies Addon"
+msgstr "يتطلب هذا الرمز القصير بوابة عمل WP شركات Addon"
+
+msgid "My jobs shortcode allows users to view and manage their saved job listings, making it easy to keep track of potential opportunities."
+msgstr "يتيح الرمز القصير في وظائفي للمستخدمين عرض وإدارة قوائم الوظائف المحفوظة الخاصة بهم ، مما يجعل من السهل تتبع الفرص المحتملة."
+
+msgid "My resume shortcode allows users to view and manage their uploaded resumes, providing a convenient way to keep their job application materials up to date."
+msgstr "يتيح الرمز المختصر الخاص بي للمستخدمين عرض وإدارة سيرتهم الذاتية التي تم تحميلها ، مما يوفر طريقة مريحة للحفاظ على مواد تطبيق الوظائف الخاصة بهم محدثة."
+
+msgid "All Resumes"
+msgstr "جميع السير الذاتية"
+
+msgid "All resumes shortcode allows job seekers to view and manage their uploaded resumes, ensuring they have easy access to their application materials."
+msgstr "يتيح جميع الرمز القصير المستأنف للباحثين عن عمل عرض وإدارة السير الذاتية التي تم تحميلها ، مما يضمن سهولة الوصول إلى مواد التطبيق الخاصة بهم."
+
+msgid "This Shortcode requires WP Job Portal All Resumes Addon"
+msgstr "يتطلب هذا الرمز القصير بوابة وظيفة WP جميعها استئناف addon"
+
+msgid "The featured resumes shortcode showcases a selection of standout resumes, allowing job seekers to stand out to potential employers."
+msgstr "تعرض الرمز القصير المميز في السير الذاتية مجموعة مختارة من السير الذاتية ، مما يسمح للباحثين عن عمل بالتبرع بأرباب العمل المحتملين."
+
+msgid "This Shortcode requires WP Job Portal Featured Resumes Addon"
+msgstr "يتطلب هذا الرمز القصير بوابة وظيفة WP مميزة استئناف addon"
+
+msgid "Add company shortcode allows employers to effortlessly register their organization, providing essential details to attract talent and post job openings."
+msgstr "إضافة الشركة القصيرة التي تتيح لأصحاب العمل تسجيل مؤسستهم دون عناء ، وتوفير التفاصيل الأساسية لجذب المواهب وبعد الوظائف."
+
+msgid "Add department shortcode enables employers to easily create and manage specific departments within their organization, facilitating better job categorization and organization."
+msgstr "تمكن الإدارة المختصرة من أصحاب العمل من إنشاء وإدارة إدارات معينة بسهولة داخل مؤسستهم ، مما يسهل تصنيف الوظائف والتنظيم بشكل أفضل."
+
+msgid "This Shortcode requires WP Job Portal Multi Departments Addon"
+msgstr "يتطلب هذا الرمز القصير WP Portal Multi Districs Addon"
+
+msgid "Add jobs enables organizations to effortlessly publish job postings, helping them connect with potential applicants and fill vacancies more effectively."
+msgstr "تمكن الوظائف من المؤسسات من نشر الوظائف دون عناء ، ومساعدتهم على التواصل مع المتقدمين المحتملين وملء الوظائف الشاغرة بشكل أكثر فعالية."
+
+msgid "Add resume shortcode simplifies the process for candidates to submit their resumes, helping them showcase their qualifications and experiences to potential employers."
+msgstr "أضف Resume Shortcode تبسيط العملية للمرشحين لتقديم سيرهم الذاتية ، ومساعدتهم على عرض مؤهلاتهم وخبراتهم لأصحاب العمل المحتملين."
+
+msgid "Resume search shortcode provides a powerful search tool for employers to explore candidate profiles, making it easier to connect with potential hires."
+msgstr "يوفر الرمز القصير للبحث عن السيرة الذاتية أداة بحث قوية لأصحاب العمل لاستكشاف ملفات تعريف المرشحين ، مما يسهل التواصل مع التعيينات المحتملة."
+
+msgid "This Shortcode requires WP Job Portal Resume Search Addon"
+msgstr "يتطلب هذا الرمز القصير WP Portal Portal استئناف Search Addon"
+
+msgid "Registration"
+msgstr "تسجيل"
+
+msgid "Registration shortcode allows individuals to easily create accounts as their selected role"
+msgstr "يتيح الرمز القصير للتسجيل للأفراد إنشاء حسابات بسهولة كدورهم المحدد"
+
+msgid "Employer registration shortcode streamlines the process for organizations to register, ensuring they can efficiently manage job postings and their company profiles."
+msgstr "يقوم صاحب العمل بتسجيل الرمز المختصر بتبسيط عملية التسجيل للمؤسسات ، مما يضمن أن يتمكنوا من إدارة منشورات الوظائف وملفات تعريف شركاتها بكفاءة."
+
+msgid "Job Seeker Registration"
+msgstr "تسجيل الباحث عن الوظائف"
+
+msgid "Job seeker registration shortcode allows individuals to easily create accounts, enabling them to apply for jobs and manage their resumes."
+msgstr "يتيح رمز التسجيل الخاص ببلاكر الأفراد إنشاء حسابات بسهولة ، وتمكينهم من التقدم للوظائف وإدارة سيرهم الذاتية."
+
+msgid "Login Page"
+msgstr "صفحة تسجيل الدخول"
+
+msgid "Login page shortcode offers a user-friendly interface for candidates and employers to securely log in and manage their profiles and postings."
+msgstr "يوفر Page Shortcode تسجيل الدخول واجهة سهلة الاستخدام للمرشحين وأصحاب العمل لتسجيل الدخول وإدارة ملفاتهم الشخصية بشكل آمن."
+
+msgid "Widget"
+msgstr "أداة"
+
+msgid "Search job widget provides an intuitive interface for candidates to filter and browse openings, connecting them with opportunities that align with their skills."
+msgstr "يوفر خدمة Search Job Widget واجهة بديهية للمرشحين لتصفية الفتحات وتصفحها ، وربطهم بالفرص التي تتماشى مع مهاراتهم."
+
+msgid "This Shortcode requires WP Job Portal Front-end Widgets Addon"
+msgstr "يتطلب هذا الرمز القصير WP Portal Front-Endgets Addon Addon"
+
+msgid "My packages offers a personalized dashboard for users to monitor their subscription details, helping them manage job postings and access features effectively."
+msgstr "تقدم حزماتي لوحة معلومات مخصصة للمستخدمين لمراقبة تفاصيل الاشتراك الخاصة بهم ، ومساعدتهم على إدارة منشورات الوظائف والوصول إلى ميزات الوصول بشكل فعال."
+
+msgid "This Shortcode requires WP Job Portal Credits Addon"
+msgstr "يتطلب هذا الرمز المختصر ADDON WP Job Portal Addits Addon"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans.  "
+msgstr "يوفر اشتراكي للمستخدمين لمحة عامة عن اشتراكاتهم النشطة ، مما يسمح بإدارة وتتبع خطط نشر وظائفهم."
+
+msgid "All packages showcases a comprehensive list of available subscription plans, allowing users to compare features and select the best options for their job posting needs."
+msgstr "تعرض جميع الحزم قائمة شاملة لخطط الاشتراك المتاحة ، مما يسمح للمستخدمين بمقارنة الميزات وتحديد أفضل الخيارات لاحتياجات نشر الوظائف الخاصة بهم."
+
+msgid "My invoices provides a convenient way for users to view and manage their invoices, helping them stay organized and up to date with their payments."
+msgstr "توفر فواتيري طريقة مريحة للمستخدمين لعرض فواتيرهم وإدارتها ، ومساعدتهم على البقاء منظمًا وحديثًا مع مدفوعاتهم."
+
+msgid "SEO"
+msgstr "كبار المسئولين الاقتصاديين"
+
+msgid "Document Title Settings"
+msgstr "إعدادات عنوان المستند"
+
+msgid "Company detail url options are name, location. eg- [name] [location]"
+msgstr "خيارات عنوان URL تفاصيل الشركة هي الاسم والموقع. مثل [اسم] [الموقع]"
+
+msgid "spinning wheel"
+msgstr "عجلة الغزل"
+
+msgid "New Update Version"
+msgstr "إصدار تحديث جديد"
+
+msgid "is Available"
+msgstr "متاح"
+
+msgid "Hey there! We have recently launched a fresh update for the add-ons. Don't forget to update the add-ons to enjoy the greatest features!"
+msgstr "مرحبًا يا من هناك! لقد أطلقنا مؤخرًا تحديثًا جديدًا للإضافات. لا تنس تحديث الوظائف الإضافية للاستمتاع بأكبر الميزات!"
+
+msgid "View Addone Status"
+msgstr "عرض حالة addone"
+
+msgid "Active Companies"
+msgstr "الشركات النشطة"
+
+msgid "Help Page"
+msgstr "صفحة المساعدة"
+
+msgid "Watch Tutorial"
+msgstr "مشاهدة البرنامج التعليمي"
+
+msgid "video"
+msgstr "فيديو"
+
+msgid "Apply Now Failed"
+msgstr "فشل الآن فشل"
+
+msgid "You do not have package required for job apply"
+msgstr "ليس لديك حزمة مطلوبة للتطبيق المهمة"
+
+msgid "You package has expired"
+msgstr "لقد انتهت صلاحية الحزمة"
+
+msgid "You do not any more job apply available"
+msgstr "أنت لم تعد هناك وظيفة متاحة"
+
+msgid "Job Not Found"
+msgstr "لم يتم العثور على الوظيفة"
+
+msgid "Job does not exist in the system"
+msgstr "الوظيفة غير موجودة في النظام"
+
+msgid "Make Payment To Complete The Job Apply"
+msgstr "قم بالدفع لإكمال المهمة"
+
+msgid "Successfully applied on job"
+msgstr "تطبق بنجاح على الوظيفة"
+
+msgid "view coverletter"
+msgstr "عرض خطاب الغلاف"
+
+msgid "Please Fill out fields"
+msgstr "يرجى ملء الحقول"
+
+msgid "sender email is not of correct format"
+msgstr "البريد الإلكتروني المرسل ليس من التنسيق الصحيح"
+
+msgid "Erase Selected Country"
+msgstr "محو البلد المختار"
+
+msgid "Erase All Data"
+msgstr "محو جميع البيانات"
+
+msgid "Click on package to select one"
+msgstr "انقر على الحزمة لتحديد واحد"
+
+msgid "Apply to the Job"
+msgstr "تنطبق على الوظيفة"
+
+msgid "No Cover Letter!"
+msgstr "لا يوجد خطاب تغطية!"
+
+msgid "Add Cover Lettter"
+msgstr "أضف خطاب الغلاف"
+
+msgid "You have already applied on this job."
+msgstr "لقد تقدمت بالفعل على هذه الوظيفة."
+
+msgid "Unlimited job applies"
+msgstr "تنطبق وظيفة غير محدودة"
+
+msgid "Job applies remaining"
+msgstr "تنطبق الوظيفة المتبقية"
+
+msgid "Buy package to apply on job."
+msgstr "شراء الحزمة للتقدم على الوظيفة."
+
+msgid "Apply With Package"
+msgstr "تنطبق مع الحزمة"
+
+msgid "Payment of"
+msgstr "دفع"
+
+msgid "is required to complete the job apply process"
+msgstr "مطلوب لإكمال عملية تطبيق الوظيفة"
+
+msgid "You are logged in as employer."
+msgstr "لقد قمت بتسجيل الدخول كصاحب عمل."
+
+msgid "You are not a logged in member."
+msgstr "أنت لست عضوًا مسجلاً في العضو."
+
+msgid "You do not have any role."
+msgstr "ليس لديك أي دور."
+
+msgid "Proceed to payment"
+msgstr "انتقل إلى الدفع"
+
+msgid "Views"
+msgstr "وجهات النظر"
+
+msgid "Save As Draft"
+msgstr "حفظ كما المسودة"
+
+msgid "Job Has Been Feature SuccesFully"
+msgstr "تم عرض الوظيفة بنجاح"
+
+msgid "You are Not Allowed To Add More than One"
+msgstr "لا يُسمح لك بإضافة أكثر من واحد"
+
+msgid "Contact TO Adminstrator"
+msgstr "الاتصال إلى المسؤول"
+
+msgid "This Is Meta Description"
+msgstr "هذا وصف ميتا"
+
+msgid "jobs by cities"
+msgstr "وظائف من قبل المدن"
+
+msgid "Show Info"
+msgstr "عرض المعلومات"
+
+msgid "Changing a user's role will not remove its entites from the system !"
+msgstr "إن تغيير دور المستخدم لن يزيل entes من النظام!"
+
+msgid "company reject"
+msgstr "ترفض الشركة"
+
+msgid "all reject"
+msgstr "كل رفض"
+
+msgid "Missing user(s) added successfully!"
+msgstr "المفقودين المستخدمين (المفقودين) أضيفت بنجاح!"
+
+msgid "No missing user found!"
+msgstr "لم يتم العثور على مستخدم مفقود!"
+
+msgid "Jobs Listing Menu"
+msgstr "قائمة قائمة الوظائف"
+
+msgid "Visitor"
+msgstr "زائر"
+
+msgid "new message alert"
+msgstr "تنبيه رسالة جديدة"
+
+msgid "New Message Alert"
+msgstr "تنبيه رسالة جديدة"
+
+msgid "Recipient Name"
+msgstr "اسم المستلم"
+
+msgid "Sender Name"
+msgstr "اسم المرسل"
+
+msgid "Sender Role"
+msgstr "دور المرسل"
+
+msgid "Message Text"
+msgstr "نص الرسالة"
+
+msgid "Job/Resume Info"
+msgstr "وظيفة/استئناف المعلومات"
+
+msgid "Upload Resume"
+msgstr "تحميل السيرة الذاتية"
+
+msgid "Profile Status"
+msgstr "حالة الملف الشخصي"
+
+msgid "Profile Completed"
+msgstr "الانتهاء من الملف الشخصي"
+
+msgid "feature approve"
+msgstr "ميزة الموافقة"
+
+msgid "feature reject"
+msgstr "ميزة رفض"
+
+msgid "Type city"
+msgstr "اكتب المدينة"
+
+msgid "New Message"
+msgstr "رسالة جديدة"
+
+msgid "Employer is disabled by admin"
+msgstr "يتم تعطيل صاحب العمل بواسطة المسؤول"
+
+msgid "You are not allowed to add more than one"
+msgstr "لا يُسمح لك بإضافة أكثر من واحد"
+
+msgid "contact adminstrator"
+msgstr "مسؤول الاتصال"
+
+msgid "Payment is not made against this job contact adminstrator"
+msgstr "لا يتم الدفع مقابل هذا المسؤول الاتصال بالوظيفة"
+
+msgid "Addon Page Not Found"
+msgstr "لم يتم العثور على صفحة Addon"
+
+msgid "User Role"
+msgstr "دور المستخدم"
+
+msgid "Jobs Role"
+msgstr "دور الوظائف"
+
+msgid "User has been successfully created"
+msgstr "تم إنشاء المستخدم بنجاح"
+
+msgid "Pay For Department"
+msgstr "دفع ثمن القسم"
+
+msgid "Pay For Job Apply"
+msgstr "دفع ثمن تطبيق الوظيفة"
+
+msgid "Pay For Company"
+msgstr "دفع ثمن الشركة"
+
+msgid "Pay For Featured Company"
+msgstr "دفع ثمن الشركة المميزة"
+
+msgid "Pay For Job"
+msgstr "دفع ثمن الوظيفة"
+
+msgid "Pay For Featured Job"
+msgstr "دفع ثمن الوظيفة المميزة"
+
+msgid "Pay For Resume Search"
+msgstr "دفع للبحث عن السيرة الذاتية"
+
+msgid "Pay For Resume "
+msgstr "دفع للسيرة الذاتية"
+
+msgid "Pay For Featured Resume "
+msgstr "دفع ثمن السيرة الذاتية المميزة"
+
+msgid "Job Saved Searches"
+msgstr "عمليات البحث المحفوظة"
+
+msgid "Job Apply Configurations"
+msgstr "وظيفة تطبيق التكوينات"
+
+msgid "Quick Apply Fields"
+msgstr "تطبيق سريع الحقول"
+
+msgid "addons status"
+msgstr "حالة addons"
+
+msgid "coverletters"
+msgstr "رسائل تغطية"
+
+msgid "coverletter"
+msgstr "غطاء الرسالة"
+
+msgid "add new cover letter"
+msgstr "أضف رسالة تغطية جديدة"
+
+msgid "Loaction Name settings"
+msgstr "إعدادات اسم الموقع"
+
+msgid "Loaction Name Settings"
+msgstr "إعدادات اسم الموقع"
+
+msgid "shifts"
+msgstr "التحولات"
+
+msgid "ages"
+msgstr "الأعمار"
+
+msgid "Error file size too large"
+msgstr "حجم ملف الخطأ كبير جدا"
+
+msgid "Maximum Size"
+msgstr "الحد الأقصى للحجم"
+
+msgid "is in use"
+msgstr "قيد الاستخدام"
+
+msgid "can not deleted it"
+msgstr "لا يمكن حذفه"
+
+msgid "Address data"
+msgstr "بيانات العنوان"
+
+msgid "themes"
+msgstr "موضوعات"
+
+msgid "Color Schemes"
+msgstr "مخططات الألوان"
+
+msgid "Color Chooser"
+msgstr "اختيار اللون"
+
+msgid "Color 1"
+msgstr "اللون 1"
+
+msgid "Color 2"
+msgstr "اللون 2"
+
+msgid "Color 3"
+msgstr "اللون 3"
+
+msgid "Add User Fields"
+msgstr "إضافة حقول المستخدم"
+
+msgid "cannot unpublished"
+msgstr "لا يمكن أن ينشر"
+
+msgid "Search Name"
+msgstr "اسم البحث"
+
+msgid "start"
+msgstr "يبدأ"
+
+msgid "Total Resume Search"
+msgstr "إجمالي البحث عن السيرة الذاتية"
+
+msgid "Remaining Resume Search"
+msgstr "البحث عن السيرة الذاتية المتبقية"
+
+msgid "Reference"
+msgstr "مرجع"
+
+msgid "cancel payment"
+msgstr "إلغاء الدفع"
+
+msgid "Apply now"
+msgstr "تقدم الآن"
+
+msgid " Listing"
+msgstr "قائمة"
+
+msgid "Credits log"
+msgstr "سجل الاعتمادات"
+
+msgid "Rate list"
+msgstr "قائمة الأسعار"
+
+msgid "Purchase history"
+msgstr "سجل الشراء"
+
+msgid " remaining"
+msgstr "متبقي"
+
+msgid "Cover Letter has been successfully published"
+msgstr "تم نشر خطاب التغطية بنجاح"
+
+msgid "cover Letter has been successfully published"
+msgstr "تم نشر خطاب التغطية بنجاح"
+
+msgid "Resume files download"
+msgstr "استئناف الملفات تنزيل"
+
+msgid "apply with facebook"
+msgstr "تنطبق مع Facebook"
+
+msgid "apply with linkedin"
+msgstr "تنطبق مع LinkedIn"
+
+msgid "apply with xing"
+msgstr "تنطبق مع Xing"
+
+msgid "Resume removed from featured"
+msgstr "استئناف الإزالة من المميز"
+
+msgid "share blog"
+msgstr "مشاركة المدونة"
+
+msgid "share digg"
+msgstr "مشاركة Digg"
+
+msgid "share fb"
+msgstr "مشاركة FB"
+
+msgid "share ff"
+msgstr "مشاركة FF"
+
+msgid "share google"
+msgstr "مشاركة Google"
+
+msgid "share linkedin"
+msgstr "مشاركة LinkedIn"
+
+msgid "share myspace"
+msgstr "شارك ماي سبيس"
+
+msgid "share twitter"
+msgstr "شارك تويتر"
+
+msgid "share yahoo"
+msgstr "شارك ياهو"
+
+msgid "Mark As Shortlist Job"
+msgstr "علامة على الوظيفة القائمة المختصرة"
+
+msgid "Keep this job on your list! Mark it as shortlisted and find it easily whenever you need."
+msgstr "احتفظ بهذه المهمة في قائمتك! ضع علامة عليها على أنها مختصرة وابحث عنها بسهولة كلما احتجت."
+
+msgid "Search job title, company name, keywords"
+msgstr "البحث عن عنوان الوظيفة ، اسم الشركة ، الكلمات الرئيسية"
+
+msgid "Loction"
+msgstr "loction"
+
+msgid "Applied Resume Title"
+msgstr "عنوان السيرة الذاتية التطبيقية"
+
+msgid "Arrow"
+msgstr "سهم"
+
+msgid "Already Applied"
+msgstr "تم تطبيقه بالفعل"
+
+msgid "Ready to take the next step? Simply fill out the form and submit your application. It only takes a few minutes!"
+msgstr "هل أنت مستعد لاتخاذ الخطوة التالية؟ ما عليك سوى ملء النموذج وتقديم طلبك. يستغرق الأمر بضع دقائق فقط!"
+
+msgid "Waiting for Payment"
+msgstr "في انتظار الدفع"
+
+msgid "Salery"
+msgstr "الملاهي"
+
+msgid "Buy"
+msgstr "يشتري"
+
+msgid "Employer can add companies and jobs while searching for potential candidate to hire"
+msgstr "يمكن لصاحب العمل إضافة الشركات والوظائف أثناء البحث عن مرشح محتمل لتوظيفه"
+
+msgid "Selected"
+msgstr "محدد"
+
+msgid "Jobseeker can add resume, cover letters, search jobs and apply to multiple jobs easily"
+msgstr "يمكن للمساح للعمل إضافة السيرة الذاتية ، وتغطية الرسائل ، ووظائف البحث والتقدم إلى وظائف متعددة بسهولة"
+
+msgid "Hello, again!..."
+msgstr "مرحبا مرة أخرى! ..."
+
+msgid "View All Applied Jobs"
+msgstr "عرض جميع الوظائف التطبيقية"
+
+msgid "View All Newest Jobs"
+msgstr "عرض جميع أحدث الوظائف"
+
+msgid "Hello, again!…"
+msgstr "مرحبا مرة أخرى! ..."
+
+msgid "Submit job"
+msgstr "تقديم الوظيفة"
+
+msgid "Submit Job"
+msgstr "تقديم الوظيفة"
+
+msgid "View detail"
+msgstr "عرض التفاصيل"
+
+msgid "Recently Applied Resume"
+msgstr "استئناف تطبيقها مؤخرًا"
+
+msgid "Messages By Resume"
+msgstr "رسائل عن طريق السيرة الذاتية"
+
+msgid "Reply"
+msgstr "رد"
+
+msgid "View jobs"
+msgstr "عرض الوظائف"
+
+msgid "Other Info"
+msgstr "معلومات أخرى"
+
+msgid "Link"
+msgstr "وصلة"
+
+msgid "Mail"
+msgstr "بريد"
+
+msgid "Site"
+msgstr "موقع"
+
+msgid "View Company Details"
+msgstr "عرض تفاصيل الشركة"
+
+msgid "Completed"
+msgstr "مكتمل"
+
+msgid "Categoty"
+msgstr "فئة"
+
+msgid "tell a friend"
+msgstr "أخبر صديق"
+
+msgid "Tell friend"
+msgstr "أخبر الصديق"
+
+msgid "Know someone perfect for this job? Share it with them!"
+msgstr "هل تعرف شخصًا مثاليًا لهذه الوظيفة؟ شاركها معهم!"
+
+msgid "Your name"
+msgstr "اسمك"
+
+msgid "Your email"
+msgstr "بريدك الإلكتروني"
+
+msgid "Show the"
+msgstr "أظهر"
+
+msgid "form to logged-in users on the job detail page. If this is on,"
+msgstr "نموذج إلى المستخدمين الذين تم تسجيل الدخول على صفحة تفاصيل الوظيفة. إذا كان هذا قيد التشغيل ،"
+
+msgid "will be turned off."
+msgstr "سيتم إيقاف تشغيله."
+
+msgid "form to visitor on the job detail page. If this is on,"
+msgstr "نموذج للزائر على صفحة تفاصيل الوظيفة. إذا كان هذا قيد التشغيل ،"
+
+msgid "You do not have any save serch remaining"
+msgstr "ليس لديك أي حفظ Serch المتبقية"
+
+msgid "We would love to hear from You."
+msgstr "نود أن نسمع منك."

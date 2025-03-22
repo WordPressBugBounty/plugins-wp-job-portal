@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 
 msgid "Delete"
 msgstr "Tanggalin"
@@ -9331,3 +9331,948 @@ msgstr "Departamento ko"
 
 msgid "Add To ShortList"
 msgstr "Idagdag Sa ShortList"
+
+msgid "or"
+msgstr "o"
+
+msgid "company logo"
+msgstr "logo ng kumpanya"
+
+msgid "job title"
+msgstr "pamagat ng trabaho"
+
+msgid "company name"
+msgstr "Pangalan ng Kumpanya"
+
+msgid "Resume Has Been Feature SuccesFully"
+msgstr "Matagumpay na itinampok ang resume"
+
+msgid "My coverletter"
+msgstr "Ang cover letter ko"
+
+msgid "Add coverletter"
+msgstr "Magdagdag ng sulat ng takip"
+
+msgid "Total Cover Letter"
+msgstr "Kabuuang sulat ng takip"
+
+msgid "Remaining Cover Letter"
+msgstr "Natitirang sulat ng takip"
+
+msgid "Open ChatGPT"
+msgstr "Buksan ang chatgpt"
+
+msgid "How To Add Cover Letter With ChatGPT"
+msgstr "Paano Magdagdag ng Cover Letter na may Chatgpt"
+
+msgid "Edit coverletter"
+msgstr "I -edit ang sulat ng takip"
+
+msgid "Edit Cover Letter"
+msgstr "I -edit ang takip ng takip"
+
+msgid "Delete coverletter"
+msgstr "Tanggalin ang takip ng takip"
+
+msgid "coverletter title"
+msgstr "Pamagat ng takip ng takip"
+
+msgid "Add New Cover Letter"
+msgstr "Magdagdag ng bagong sulat ng takip"
+
+msgid "Quote from Hello Dolly song, by Jerry Herman:"
+msgstr "Quote mula sa Hello Dolly Song, ni Jerry Herman:"
+
+msgid "Select Parent"
+msgstr "Piliin ang Magulang"
+
+msgid "Edit Field"
+msgstr "I -edit ang patlang"
+
+msgid "Visitor published"
+msgstr "Nai -publish ang bisita"
+
+msgid "Show On Listing"
+msgstr "Ipakita sa listahan"
+
+msgid "Advanced"
+msgstr "Advanced"
+
+msgid "Equal"
+msgstr "Pantay -pantay"
+
+msgid "Not Equal"
+msgstr "Hindi pantay"
+
+msgid "Multi Select"
+msgstr "Multi piliin"
+
+msgid "Visible"
+msgstr "Nakikita"
+
+msgid "Select Child"
+msgstr "Piliin ang Bata"
+
+msgid "Select Condition"
+msgstr "Piliin ang Kondisyon"
+
+msgid "To use this feature please fill the above three fields."
+msgstr "Upang magamit ang tampok na ito mangyaring punan ang nasa itaas na tatlong patlang."
+
+msgid "No response found"
+msgstr "Walang nahanap na tugon"
+
+msgid "Quick Apply"
+msgstr "Mabilis na mag -apply"
+
+msgid "user publish"
+msgstr "I -publish ang gumagamit"
+
+msgid "User Unpublished"
+msgstr "Hindi nai -publish ang gumagamit"
+
+msgid "visitor publish"
+msgstr "Nag -publish ang bisita"
+
+msgid "visitor unpublish"
+msgstr "hindi nai -publish ang bisita"
+
+msgid "Select user status"
+msgstr "Piliin ang katayuan ng gumagamit"
+
+msgid "Un published"
+msgstr "UN nai -publish"
+
+msgid "File upload fields and text editor fields cannot be made required."
+msgstr "Ang mga patlang ng pag -upload ng file at mga patlang ng text editor ay hindi maaaring gawin."
+
+msgid "Dependent Field"
+msgstr "Nakasalalay na patlang"
+
+msgid "Job Apply settings"
+msgstr "Mag -apply ng mga setting ng trabaho"
+
+msgid "Quick Apply settings"
+msgstr "Mabilis na mag -apply ng mga setting"
+
+msgid "Show count in jobs by cities page"
+msgstr "Ipakita ang bilang sa pahina ng Mga Trabaho ng Mga Lungsod"
+
+msgid "Show country in jobs by cities page"
+msgstr "Ipakita ang pahina ng bansa sa mga trabaho sa pamamagitan ng mga lungsod"
+
+msgid "Profile Section"
+msgstr "Seksyon ng profile"
+
+msgid "Recaptcha Version 2"
+msgstr "Recaptcha Bersyon 2"
+
+msgid "Recaptcha Version 3"
+msgstr "Recaptcha Bersyon 3"
+
+msgid "System slug"
+msgstr "System Slug"
+
+msgid "Image file size"
+msgstr "Laki ng file ng imahe"
+
+msgid "System will not upload if image size is greater than the given size"
+msgstr "Hindi mai -upload ng system kung ang laki ng imahe ay mas malaki kaysa sa naibigay na laki"
+
+msgid "Show page title above wpjobportal breadcrumbs"
+msgstr "Ipakita ang pamagat ng pahina sa itaas ng wpjobportal breadcrumbs"
+
+msgid "Default Image For WP Job Portal"
+msgstr "Default na imahe para sa WP Job Portal"
+
+msgid "This image will shown as default image for entities & users if no other image is provided."
+msgstr "Ang imaheng ito ay ipapakita bilang default na imahe para sa mga entidad at mga gumagamit kung walang ibang imahe na ibinigay."
+
+msgid "Default country"
+msgstr "Default na bansa"
+
+msgid "Select default country for user added cities"
+msgstr "Piliin ang Default na Bansa para sa Mga Dagdag na Lungsod ng Gumagamit"
+
+msgid "Job detail URL options are title, company, category, location, jobtype. eg- [title] [company]"
+msgstr "Ang mga pagpipilian sa url ng detalye ng trabaho ay pamagat, kumpanya, kategorya, lokasyon, jobtype. EG- [Pamagat] [Kumpanya]"
+
+msgid "Select the Google reCaptcha Version"
+msgstr "Piliin ang bersyon ng Google Recaptcha"
+
+msgid "Recent Resumes Box"
+msgstr "Kamakailang kahon ng resume"
+
+msgid "mode"
+msgstr "mode"
+
+msgid "expire"
+msgstr "Mag -expire"
+
+msgid "Registration is disabled in WordPress settings, please enable to Membership: anyone can register."
+msgstr "Ang pagrehistro ay hindi pinagana sa mga setting ng WordPress, mangyaring paganahin ang pagiging kasapi: kahit sino ay maaaring magparehistro."
+
+msgid "Quick Apply Now"
+msgstr "Mabilis na mag -apply ngayon"
+
+msgid "Enable Quick Apply for user"
+msgstr "Paganahin ang mabilis na mag -aplay para sa gumagamit"
+
+msgid "Enable Quick Apply for visitor"
+msgstr "Paganahin ang mabilis na mag -aplay para sa bisita"
+
+msgid "Enable captcha for visitor Quick Apply"
+msgstr "Paganahin ang CAPTCHA para sa Visitor Mabilis na Mag -apply"
+
+msgid "Show captcha to visitor on quick apply form."
+msgstr "Ipakita ang CAPTCHA sa bisita sa mabilis na form na nalalapat."
+
+msgid "Add ons for WP Job Portal have been installed and activated successfully. "
+msgstr "Magdagdag ng mga ON para sa WP Job Portal ay na -install at matagumpay na naaktibo."
+
+msgid "WP Job Portal is an open-source job board plugin for WordPress that provides advanced features to help you create a successful job board. In addition, we offer trusted WP Job Portal add-ons that can further enhance your job board's functionality in a fast, safe, and easy manner. Our add-ons have been designed to integrate seamlessly with our job board plugin, ensuring you can expand your job board's capabilities without any complications."
+msgstr "Ang WP Job Portal ay isang open-source job board plugin para sa WordPress na nagbibigay ng mga advanced na tampok upang matulungan kang lumikha ng isang matagumpay na board ng trabaho. Bilang karagdagan, nag-aalok kami ng pinagkakatiwalaang WP job portal add-on na maaaring mapahusay ang pag-andar ng iyong board ng trabaho sa isang mabilis, ligtas, at madaling paraan. Ang aming mga add-on ay idinisenyo upang pagsamahin nang walang putol sa aming plugin ng board ng trabaho, tinitiyak na maaari mong mapalawak ang mga kakayahan ng iyong board ng trabaho nang walang anumang mga komplikasyon."
+
+msgid "Savings*"
+msgstr "MATAPOS*"
+
+msgid "Best Deal"
+msgstr "Pinakamahusay na pakikitungo"
+
+msgid "Shortlist Job"
+msgstr "Trabaho sa lista"
+
+msgid "e.g 45000"
+msgstr "e.g 45000"
+
+msgid "e.g 3000"
+msgstr "e.g 3000"
+
+msgid "e.g 6000"
+msgstr "e.g 6000"
+
+msgid "Deactivated"
+msgstr "Deactivated"
+
+msgid "Not Installed"
+msgstr "Hindi naka -install"
+
+msgid "Addon Installed Successfully"
+msgstr "Matagumpay na naka -install si Addon"
+
+msgid "Addon installation failed"
+msgstr "Nabigo ang pag -install ng addon"
+
+msgid "Resume Data Management"
+msgstr "Ipagpatuloy ang pamamahala ng data"
+
+msgid "Export (csv)"
+msgstr "I -export (CSV)"
+
+msgid "Configuration Based Tutorials"
+msgstr "Mga tutorial na batay sa pagsasaayos"
+
+msgid "Slugs"
+msgstr "Slugs"
+
+msgid "Theme Installation"
+msgstr "Pag -install ng tema"
+
+msgid "WP Job Portal Theme  Installation"
+msgstr "Pag -install ng WP Job Portal Tema"
+
+msgid "System Management"
+msgstr "Pamamahala ng System"
+
+msgid "Activity Log and System Errors"
+msgstr "Mga error sa log at system"
+
+msgid "Shortcode"
+msgstr "Shortcode"
+
+msgid "Job Seeker Control Panel"
+msgstr "Job Seeker Control Panel"
+
+msgid "A shortcode designed for jobseeker, providing an easy-to-use controlpanel to manage applications, resume, and preferences directly from their dashboard."
+msgstr "Ang isang shortcode na idinisenyo para sa jobseeker, na nagbibigay ng isang madaling gamitin na controlpanel upang pamahalaan ang mga aplikasyon, ipagpatuloy, at mga kagustuhan nang direkta mula sa kanilang dashboard."
+
+msgid "Base Shortcode"
+msgstr "Base shortcode"
+
+msgid "Shortcode With All Options"
+msgstr "Shortcode sa lahat ng mga pagpipilian"
+
+msgid " The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "Ang panel ng control ng employer ay isang naka -streamline na interface na nagbibigay -daan sa mga employer na pamahalaan ang mga pag -post ng trabaho, subaybayan ang mga aplikasyon, makipag -usap sa mga kandidato, at pag -aralan nang mahusay ang mga sukatan ng pag -upa."
+
+msgid "The job search shortcode enables users to easily find job listings based on various criteria."
+msgstr "Ang shortcode ng paghahanap ng trabaho ay nagbibigay -daan sa mga gumagamit na madaling makahanap ng mga listahan ng trabaho batay sa iba't ibang pamantayan."
+
+msgid "The jobs shortcode is a feature that displays individual job listings on a website."
+msgstr "Ang Shortcode ng Trabaho ay isang tampok na nagpapakita ng mga indibidwal na listahan ng trabaho sa isang website."
+
+msgid "The featured job shortcode highlights select job listings on a website, making them stand out to potential applicants."
+msgstr "Ang itinampok na mga highlight ng shortcode ng trabaho ay pumili ng mga listahan ng trabaho sa isang website, na ginagawa silang tumayo sa mga potensyal na aplikante."
+
+msgid "This Shortcode requires WP Job Portal Featured Jobs Addon"
+msgstr "Ang shortcode na ito ay nangangailangan ng WP job portal na itinampok sa mga trabaho addon"
+
+msgid "Get Addon"
+msgstr "Kumuha ng Addon"
+
+msgid "Job Categories"
+msgstr "Mga kategorya ng trabaho"
+
+msgid "The job categories shortcode displays a dynamic list of available categories, enabling users to easily navigate and find relevant job listings."
+msgstr "Ang mga kategorya ng trabaho ng shortcode ay nagpapakita ng isang dynamic na listahan ng mga magagamit na kategorya, na nagbibigay -daan sa mga gumagamit na madaling mag -navigate at makahanap ng mga nauugnay na listahan ng trabaho."
+
+msgid "The job types shortcode presents a comprehensive list of available job types, allowing users to quickly explore and find suitable job opportunities."
+msgstr "Ang mga uri ng shortcode ng trabaho ay nagtatanghal ng isang komprehensibong listahan ng magagamit na mga uri ng trabaho, na nagpapahintulot sa mga gumagamit na mabilis na galugarin at makahanap ng angkop na mga pagkakataon sa trabaho."
+
+msgid "My applied jobs shortcode provides users with a personalized list of their job applications, allowing easy access to track application status and details."
+msgstr "Ang aking inilapat na shortcode ng trabaho ay nagbibigay ng mga gumagamit ng isang isinapersonal na listahan ng kanilang mga aplikasyon sa trabaho, na nagpapahintulot sa madaling pag -access upang subaybayan ang katayuan ng aplikasyon at mga detalye."
+
+msgid "My companies shortcode displays a personalized list of companies users are associated with, facilitating easy access to company information and opportunities."
+msgstr "Ang aking mga kumpanya ng shortcode ay nagpapakita ng isang isinapersonal na listahan ng mga gumagamit ng mga gumagamit ay nauugnay sa, pinadali ang madaling pag -access sa impormasyon ng kumpanya at mga pagkakataon."
+
+msgid "All companies shortcode offers a curated directory of all companies, allowing users to easily browse and connect with potential employers."
+msgstr "Nag -aalok ang lahat ng mga shortcode ng kumpanya ng isang curated directory ng lahat ng mga kumpanya, na nagpapahintulot sa mga gumagamit na madaling mag -browse at kumonekta sa mga potensyal na employer."
+
+msgid "This Shortcode requires WP Job Portal All Companies Addon"
+msgstr "Ang shortcode na ito ay nangangailangan ng WP Job Portal lahat ng mga kumpanya na Addon"
+
+msgid "The featured companies shortcode showcases prominent companies within the portal, allowing users to explore exciting job opportunities from industry leaders."
+msgstr "Ang mga tampok na shortcode ng kumpanya ay nagpapakita ng mga kilalang kumpanya sa loob ng portal, na nagpapahintulot sa mga gumagamit na galugarin ang mga kapana -panabik na mga pagkakataon sa trabaho mula sa mga pinuno ng industriya."
+
+msgid "This Shortcode requires WP Job Portal Featured Companies Addon"
+msgstr "Ang shortcode na ito ay nangangailangan ng WP Job Portal na itinampok ng mga kumpanya na Addon"
+
+msgid "My jobs shortcode allows users to view and manage their saved job listings, making it easy to keep track of potential opportunities."
+msgstr "Pinapayagan ng aking shortcode ng trabaho ang mga gumagamit na tingnan at pamahalaan ang kanilang nai -save na mga listahan ng trabaho, na ginagawang madali upang masubaybayan ang mga potensyal na pagkakataon."
+
+msgid "My resume shortcode allows users to view and manage their uploaded resumes, providing a convenient way to keep their job application materials up to date."
+msgstr "Pinapayagan ng aking shortcode ng resume ang mga gumagamit na tingnan at pamahalaan ang kanilang na -upload na mga resume, na nagbibigay ng isang maginhawang paraan upang mapanatili ang kanilang mga materyales sa aplikasyon ng trabaho hanggang sa kasalukuyan."
+
+msgid "All Resumes"
+msgstr "Lahat ng resume"
+
+msgid "All resumes shortcode allows job seekers to view and manage their uploaded resumes, ensuring they have easy access to their application materials."
+msgstr "Ang lahat ng nagpapatuloy na shortcode ay nagbibigay -daan sa mga naghahanap ng trabaho upang tingnan at pamahalaan ang kanilang mga na -upload na resume, tinitiyak na madali silang mag -access sa kanilang mga materyales sa aplikasyon."
+
+msgid "This Shortcode requires WP Job Portal All Resumes Addon"
+msgstr "Ang shortcode na ito ay nangangailangan ng WP Job Portal lahat ng resume addon"
+
+msgid "The featured resumes shortcode showcases a selection of standout resumes, allowing job seekers to stand out to potential employers."
+msgstr "Ang itinatampok na resume ng shortcode ay nagpapakita ng isang seleksyon ng mga resume ng standout, na nagpapahintulot sa mga naghahanap ng trabaho na tumayo sa mga potensyal na employer."
+
+msgid "This Shortcode requires WP Job Portal Featured Resumes Addon"
+msgstr "Ang shortcode na ito ay nangangailangan ng WP Job Portal na itinampok na resume addon"
+
+msgid "Add company shortcode allows employers to effortlessly register their organization, providing essential details to attract talent and post job openings."
+msgstr "Magdagdag ng shortcode ng kumpanya ay nagbibigay -daan sa mga employer na walang kahirap -hirap na magparehistro ng kanilang samahan, na nagbibigay ng mga mahahalagang detalye upang maakit ang mga talento at pag -post ng mga pagbubukas ng trabaho."
+
+msgid "Add department shortcode enables employers to easily create and manage specific departments within their organization, facilitating better job categorization and organization."
+msgstr "Magdagdag ng shortcode ng departamento ay nagbibigay -daan sa mga employer na madaling lumikha at pamahalaan ang mga tukoy na kagawaran sa loob ng kanilang samahan, mapadali ang mas mahusay na pag -uuri ng trabaho at samahan."
+
+msgid "This Shortcode requires WP Job Portal Multi Departments Addon"
+msgstr "Ang shortcode na ito ay nangangailangan ng WP Job Portal Multi Department Addon"
+
+msgid "Add jobs enables organizations to effortlessly publish job postings, helping them connect with potential applicants and fill vacancies more effectively."
+msgstr "Magdagdag ng mga trabaho ay nagbibigay -daan sa mga organisasyon na walang kahirap -hirap na mai -publish ang mga pag -post ng trabaho, na tumutulong sa kanila na kumonekta sa mga potensyal na aplikante at punan ang mga bakante nang mas epektibo."
+
+msgid "Add resume shortcode simplifies the process for candidates to submit their resumes, helping them showcase their qualifications and experiences to potential employers."
+msgstr "Magdagdag ng Resume Shortcode pinadali ang proseso para sa mga kandidato upang isumite ang kanilang mga resume, na tumutulong sa kanila na ipakita ang kanilang mga kwalipikasyon at karanasan sa mga potensyal na employer."
+
+msgid "Resume search shortcode provides a powerful search tool for employers to explore candidate profiles, making it easier to connect with potential hires."
+msgstr "Ang Resume Search Shortcode ay nagbibigay ng isang malakas na tool sa paghahanap para sa mga employer upang galugarin ang mga profile ng kandidato, na ginagawang mas madali upang kumonekta sa mga potensyal na hires."
+
+msgid "This Shortcode requires WP Job Portal Resume Search Addon"
+msgstr "Ang shortcode na ito ay nangangailangan ng WP Job Portal Resume Search Addon"
+
+msgid "Registration"
+msgstr "Pagrehistro"
+
+msgid "Registration shortcode allows individuals to easily create accounts as their selected role"
+msgstr "Pinapayagan ng shortcode ng pagpaparehistro ang mga indibidwal na madaling lumikha ng mga account bilang kanilang napiling papel"
+
+msgid "Employer registration shortcode streamlines the process for organizations to register, ensuring they can efficiently manage job postings and their company profiles."
+msgstr "Ang shortcode ng pagpaparehistro ng employer ay nag -stream ng proseso para sa mga organisasyon upang magparehistro, tinitiyak na maaari nilang mahusay na pamahalaan ang mga pag -post ng trabaho at ang kanilang mga profile ng kumpanya."
+
+msgid "Job Seeker Registration"
+msgstr "Pagpaparehistro ng Job Seeker"
+
+msgid "Job seeker registration shortcode allows individuals to easily create accounts, enabling them to apply for jobs and manage their resumes."
+msgstr "Pinapayagan ng shortcode ng pagpaparehistro ng job seeker ang mga indibidwal na madaling lumikha ng mga account, na nagpapagana sa kanila na mag -aplay para sa mga trabaho at pamahalaan ang kanilang mga resume."
+
+msgid "Login Page"
+msgstr "Pahina ng Pag -login"
+
+msgid "Login page shortcode offers a user-friendly interface for candidates and employers to securely log in and manage their profiles and postings."
+msgstr "Nag-aalok ang Shortcode ng Pahina ng Pag-login ng isang interface ng user-friendly para sa mga kandidato at employer upang ligtas na mag-log in at pamahalaan ang kanilang mga profile at pag-post."
+
+msgid "Widget"
+msgstr "Widget"
+
+msgid "Search job widget provides an intuitive interface for candidates to filter and browse openings, connecting them with opportunities that align with their skills."
+msgstr "Nagbibigay ang Widget ng Job Widget ng isang intuitive interface para sa mga kandidato na mag -filter at mag -browse ng mga pagbubukas, na kumokonekta sa kanila ng mga pagkakataon na nakahanay sa kanilang mga kasanayan."
+
+msgid "This Shortcode requires WP Job Portal Front-end Widgets Addon"
+msgstr "Ang shortcode na ito ay nangangailangan ng WP Job Portal Front-End Widget Addon"
+
+msgid "My packages offers a personalized dashboard for users to monitor their subscription details, helping them manage job postings and access features effectively."
+msgstr "Nag -aalok ang aking mga pakete ng isang isinapersonal na dashboard para sa mga gumagamit upang masubaybayan ang kanilang mga detalye sa subscription, na tinutulungan silang pamahalaan ang mga pag -post ng trabaho at epektibong ma -access ang mga tampok."
+
+msgid "This Shortcode requires WP Job Portal Credits Addon"
+msgstr "Ang shortcode na ito ay nangangailangan ng WP Job Portal Credits Addon"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans.  "
+msgstr "Ang aking subscription ay nagbibigay ng mga gumagamit ng isang pangkalahatang -ideya ng kanilang mga aktibong subscription, na nagpapahintulot sa madaling pamamahala at pagsubaybay sa kanilang mga plano sa pag -post ng trabaho."
+
+msgid "All packages showcases a comprehensive list of available subscription plans, allowing users to compare features and select the best options for their job posting needs."
+msgstr "Ang lahat ng mga pakete ay nagpapakita ng isang komprehensibong listahan ng magagamit na mga plano sa subscription, na nagpapahintulot sa mga gumagamit na ihambing ang mga tampok at piliin ang pinakamahusay na mga pagpipilian para sa kanilang mga pangangailangan sa pag -post ng trabaho."
+
+msgid "My invoices provides a convenient way for users to view and manage their invoices, helping them stay organized and up to date with their payments."
+msgstr "Ang aking mga invoice ay nagbibigay ng isang maginhawang paraan para matingnan at pamahalaan ng mga gumagamit ang kanilang mga invoice, na tinutulungan silang manatiling maayos at napapanahon sa kanilang mga pagbabayad."
+
+msgid "SEO"
+msgstr "Seo"
+
+msgid "Document Title Settings"
+msgstr "Mga Setting ng Pamagat ng Dokumento"
+
+msgid "Company detail url options are name, location. eg- [name] [location]"
+msgstr "Ang mga pagpipilian sa url ng detalye ng kumpanya ay pangalan, lokasyon. EG- [Pangalan] [Lokasyon]"
+
+msgid "spinning wheel"
+msgstr "umiikot na gulong"
+
+msgid "New Update Version"
+msgstr "Bagong bersyon ng pag -update"
+
+msgid "is Available"
+msgstr "ay magagamit"
+
+msgid "Hey there! We have recently launched a fresh update for the add-ons. Don't forget to update the add-ons to enjoy the greatest features!"
+msgstr "Hoy! Kamakailan lamang ay naglunsad kami ng isang sariwang pag-update para sa mga add-on. Huwag kalimutan na i-update ang mga add-on upang tamasahin ang mga pinakadakilang tampok!"
+
+msgid "View Addone Status"
+msgstr "Tingnan ang Katayuan ng AddOne"
+
+msgid "Active Companies"
+msgstr "Mga aktibong kumpanya"
+
+msgid "Help Page"
+msgstr "Tulong sa Pahina"
+
+msgid "Watch Tutorial"
+msgstr "Panoorin ang tutorial"
+
+msgid "video"
+msgstr "video"
+
+msgid "Apply Now Failed"
+msgstr "Mag -apply ngayon nabigo"
+
+msgid "You do not have package required for job apply"
+msgstr "Wala kang kinakailangang pakete para sa paglalapat ng trabaho"
+
+msgid "You package has expired"
+msgstr "Nag -expire na ang package mo"
+
+msgid "You do not any more job apply available"
+msgstr "Wala ka pang magagamit na trabaho na magagamit"
+
+msgid "Job Not Found"
+msgstr "Hindi natagpuan si Job"
+
+msgid "Job does not exist in the system"
+msgstr "Ang trabaho ay hindi umiiral sa system"
+
+msgid "Make Payment To Complete The Job Apply"
+msgstr "Gumawa ng pagbabayad upang makumpleto ang trabaho na mag -aplay"
+
+msgid "Successfully applied on job"
+msgstr "Matagumpay na inilapat sa trabaho"
+
+msgid "view coverletter"
+msgstr "Tingnan ang takip ng takip"
+
+msgid "Please Fill out fields"
+msgstr "Mangyaring punan ang mga patlang"
+
+msgid "sender email is not of correct format"
+msgstr "Ang email ng nagpadala ay hindi tamang format"
+
+msgid "Erase Selected Country"
+msgstr "Burahin ang napiling bansa"
+
+msgid "Erase All Data"
+msgstr "Burahin ang lahat ng data"
+
+msgid "Click on package to select one"
+msgstr "Mag -click sa package upang pumili ng isa"
+
+msgid "Apply to the Job"
+msgstr "Mag -apply sa trabaho"
+
+msgid "No Cover Letter!"
+msgstr "Walang takip na sulat!"
+
+msgid "Add Cover Lettter"
+msgstr "Magdagdag ng sulat ng takip"
+
+msgid "You have already applied on this job."
+msgstr "Nag -apply ka na sa trabahong ito."
+
+msgid "Unlimited job applies"
+msgstr "Nalalapat ang walang limitasyong trabaho"
+
+msgid "Job applies remaining"
+msgstr "Nalalapat ang trabaho"
+
+msgid "Buy package to apply on job."
+msgstr "Bumili ng package upang mag -aplay sa trabaho."
+
+msgid "Apply With Package"
+msgstr "Mag -apply sa package"
+
+msgid "Payment of"
+msgstr "Pagbabayad ng"
+
+msgid "is required to complete the job apply process"
+msgstr "ay kinakailangan upang makumpleto ang proseso ng pag -apply ng trabaho"
+
+msgid "You are logged in as employer."
+msgstr "Naka -log in ka bilang employer."
+
+msgid "You are not a logged in member."
+msgstr "Hindi ka naka -log in sa miyembro."
+
+msgid "You do not have any role."
+msgstr "Wala kang papel."
+
+msgid "Proceed to payment"
+msgstr "Magpatuloy sa pagbabayad"
+
+msgid "Views"
+msgstr "Tanawin"
+
+msgid "Save As Draft"
+msgstr "Makatipid bilang draft"
+
+msgid "Job Has Been Feature SuccesFully"
+msgstr "Matagumpay na itinampok si Job"
+
+msgid "You are Not Allowed To Add More than One"
+msgstr "Hindi ka pinapayagan na magdagdag ng higit sa isa"
+
+msgid "Contact TO Adminstrator"
+msgstr "Makipag -ugnay sa Administrator"
+
+msgid "This Is Meta Description"
+msgstr "Ito ay paglalarawan ng meta"
+
+msgid "jobs by cities"
+msgstr "Trabaho ng mga lungsod"
+
+msgid "Show Info"
+msgstr "Ipakita ang impormasyon"
+
+msgid "Changing a user's role will not remove its entites from the system !"
+msgstr "Ang pagpapalit ng papel ng isang gumagamit ay hindi aalisin ang mga entite nito sa system!"
+
+msgid "company reject"
+msgstr "Tumanggi ang kumpanya"
+
+msgid "all reject"
+msgstr "Lahat ay tumanggi"
+
+msgid "Missing user(s) added successfully!"
+msgstr "Matagumpay na naidagdag ang mga (mga) nawawalang gumagamit!"
+
+msgid "No missing user found!"
+msgstr "Walang nawawalang gumagamit na natagpuan!"
+
+msgid "Jobs Listing Menu"
+msgstr "Menu ng listahan ng mga trabaho"
+
+msgid "Visitor"
+msgstr "Bisita"
+
+msgid "new message alert"
+msgstr "Bagong alerto ng mensahe"
+
+msgid "New Message Alert"
+msgstr "Bagong alerto ng mensahe"
+
+msgid "Recipient Name"
+msgstr "Pangalan ng tatanggap"
+
+msgid "Sender Name"
+msgstr "Pangalan ng nagpadala"
+
+msgid "Sender Role"
+msgstr "Papel ng nagpadala"
+
+msgid "Message Text"
+msgstr "Teksto ng mensahe"
+
+msgid "Job/Resume Info"
+msgstr "Impormasyon sa trabaho/ipagpatuloy"
+
+msgid "Upload Resume"
+msgstr "Mag -upload ng resume"
+
+msgid "Profile Status"
+msgstr "Katayuan ng profile"
+
+msgid "Profile Completed"
+msgstr "Nakumpleto ang profile"
+
+msgid "feature approve"
+msgstr "Inaprubahan ng tampok"
+
+msgid "feature reject"
+msgstr "tampok na tanggihan"
+
+msgid "Type city"
+msgstr "I -type ang lungsod"
+
+msgid "New Message"
+msgstr "Bagong mensahe"
+
+msgid "Employer is disabled by admin"
+msgstr "Ang employer ay hindi pinagana ng admin"
+
+msgid "You are not allowed to add more than one"
+msgstr "Hindi ka pinapayagan na magdagdag ng higit sa isa"
+
+msgid "contact adminstrator"
+msgstr "Makipag -ugnay sa Administrator"
+
+msgid "Payment is not made against this job contact adminstrator"
+msgstr "Ang pagbabayad ay hindi ginawa laban sa job contact administrator"
+
+msgid "Addon Page Not Found"
+msgstr "Hindi natagpuan ang pahina ng Addon"
+
+msgid "User Role"
+msgstr "Papel ng gumagamit"
+
+msgid "Jobs Role"
+msgstr "Papel ng trabaho"
+
+msgid "User has been successfully created"
+msgstr "Ang gumagamit ay matagumpay na nilikha"
+
+msgid "Pay For Department"
+msgstr "Magbayad para sa departamento"
+
+msgid "Pay For Job Apply"
+msgstr "Magbayad para sa trabaho Mag -apply"
+
+msgid "Pay For Company"
+msgstr "Magbayad para sa kumpanya"
+
+msgid "Pay For Featured Company"
+msgstr "Magbayad para sa tampok na kumpanya"
+
+msgid "Pay For Job"
+msgstr "Magbayad para sa trabaho"
+
+msgid "Pay For Featured Job"
+msgstr "Magbayad para sa itinampok na trabaho"
+
+msgid "Pay For Resume Search"
+msgstr "Magbayad para sa paghahanap ng resume"
+
+msgid "Pay For Resume "
+msgstr "Magbayad para sa resume"
+
+msgid "Pay For Featured Resume "
+msgstr "Magbayad para sa tampok na resume"
+
+msgid "Job Saved Searches"
+msgstr "Nai -save ang mga paghahanap sa trabaho"
+
+msgid "Job Apply Configurations"
+msgstr "Mag -apply ng mga pagsasaayos ng trabaho"
+
+msgid "Quick Apply Fields"
+msgstr "Mabilis na mag -apply ng mga patlang"
+
+msgid "addons status"
+msgstr "Katayuan ng Addons"
+
+msgid "coverletters"
+msgstr "Takpan ang mga titik"
+
+msgid "coverletter"
+msgstr "takip ng sulat"
+
+msgid "add new cover letter"
+msgstr "Magdagdag ng bagong sulat ng takip"
+
+msgid "Loaction Name settings"
+msgstr "Mga Setting ng Pangalan ng Lokasyon"
+
+msgid "Loaction Name Settings"
+msgstr "Mga Setting ng Pangalan ng Lokasyon"
+
+msgid "shifts"
+msgstr "Shifts"
+
+msgid "ages"
+msgstr "edad"
+
+msgid "Error file size too large"
+msgstr "Malaki ang laki ng file ng error"
+
+msgid "Maximum Size"
+msgstr "Maximum na laki"
+
+msgid "is in use"
+msgstr "ay ginagamit"
+
+msgid "can not deleted it"
+msgstr "hindi ito matanggal"
+
+msgid "Address data"
+msgstr "Address ng data"
+
+msgid "themes"
+msgstr "Mga tema"
+
+msgid "Color Schemes"
+msgstr "Mga scheme ng kulay"
+
+msgid "Color Chooser"
+msgstr "Tagapili ng Kulay"
+
+msgid "Color 1"
+msgstr "Kulay 1"
+
+msgid "Color 2"
+msgstr "Kulay 2"
+
+msgid "Color 3"
+msgstr "Kulay 3"
+
+msgid "Add User Fields"
+msgstr "Magdagdag ng mga patlang ng gumagamit"
+
+msgid "cannot unpublished"
+msgstr "hindi ma -publish"
+
+msgid "Search Name"
+msgstr "Pangalan ng Paghahanap"
+
+msgid "start"
+msgstr "magsimula"
+
+msgid "Total Resume Search"
+msgstr "Kabuuang paghahanap ng resume"
+
+msgid "Remaining Resume Search"
+msgstr "Natitirang paghahanap ng resume"
+
+msgid "Reference"
+msgstr "Sanggunian"
+
+msgid "cancel payment"
+msgstr "Kanselahin ang pagbabayad"
+
+msgid "Apply now"
+msgstr "Mag -apply ngayon"
+
+msgid " Listing"
+msgstr "Listahan"
+
+msgid "Credits log"
+msgstr "Log ng mga kredito"
+
+msgid "Rate list"
+msgstr "Listahan ng rate"
+
+msgid "Purchase history"
+msgstr "Bumili ng Kasaysayan"
+
+msgid " remaining"
+msgstr "natitira"
+
+msgid "Cover Letter has been successfully published"
+msgstr "Ang sulat ng takip ay matagumpay na nai -publish"
+
+msgid "cover Letter has been successfully published"
+msgstr "Ang sulat ng takip ay matagumpay na nai -publish"
+
+msgid "Resume files download"
+msgstr "Ipagpatuloy ang pag -download ng mga file"
+
+msgid "apply with facebook"
+msgstr "Mag -apply sa Facebook"
+
+msgid "apply with linkedin"
+msgstr "Mag -apply sa LinkedIn"
+
+msgid "apply with xing"
+msgstr "Mag -apply kasama si Xing"
+
+msgid "Resume removed from featured"
+msgstr "Resume tinanggal mula sa tampok"
+
+msgid "share blog"
+msgstr "Ibahagi ang blog"
+
+msgid "share digg"
+msgstr "Ibahagi ang Digg"
+
+msgid "share fb"
+msgstr "Ibahagi ang FB"
+
+msgid "share ff"
+msgstr "Ibahagi ang ff"
+
+msgid "share google"
+msgstr "Ibahagi ang Google"
+
+msgid "share linkedin"
+msgstr "Ibahagi ang LinkedIn"
+
+msgid "share myspace"
+msgstr "Ibahagi ang MySpace"
+
+msgid "share twitter"
+msgstr "Ibahagi ang Twitter"
+
+msgid "share yahoo"
+msgstr "Ibahagi ang Yahoo"
+
+msgid "Mark As Shortlist Job"
+msgstr "Markahan bilang trabaho sa lista"
+
+msgid "Keep this job on your list! Mark it as shortlisted and find it easily whenever you need."
+msgstr "Itago ang trabahong ito sa iyong listahan! Markahan ito bilang shortlist at hanapin ito nang madali tuwing kailangan mo."
+
+msgid "Search job title, company name, keywords"
+msgstr "Pamagat ng trabaho sa paghahanap, pangalan ng kumpanya, mga keyword"
+
+msgid "Loction"
+msgstr "Lokasyon"
+
+msgid "Applied Resume Title"
+msgstr "Inilapat na pamagat ng resume"
+
+msgid "Arrow"
+msgstr "Arrow"
+
+msgid "Already Applied"
+msgstr "Nag -apply na"
+
+msgid "Ready to take the next step? Simply fill out the form and submit your application. It only takes a few minutes!"
+msgstr "Handa nang gumawa ng susunod na hakbang? Punan lamang ang form at isumite ang iyong aplikasyon. Tumatagal lamang ng ilang minuto!"
+
+msgid "Waiting for Payment"
+msgstr "Naghihintay para sa pagbabayad"
+
+msgid "Salery"
+msgstr "Salery"
+
+msgid "Buy"
+msgstr "Bilhin"
+
+msgid "Employer can add companies and jobs while searching for potential candidate to hire"
+msgstr "Ang employer ay maaaring magdagdag ng mga kumpanya at trabaho habang naghahanap ng potensyal na kandidato na umarkila"
+
+msgid "Selected"
+msgstr "Napili"
+
+msgid "Jobseeker can add resume, cover letters, search jobs and apply to multiple jobs easily"
+msgstr "Ang Jobseeker ay maaaring magdagdag ng resume, takpan ang mga titik, mga trabaho sa paghahanap at madaling mag -apply sa maraming mga trabaho nang madali"
+
+msgid "Hello, again!..."
+msgstr "Kumusta, muli! ..."
+
+msgid "View All Applied Jobs"
+msgstr "Tingnan ang lahat ng mga inilapat na trabaho"
+
+msgid "View All Newest Jobs"
+msgstr "Tingnan ang lahat ng mga pinakabagong trabaho"
+
+msgid "Hello, again!…"
+msgstr "Kumusta, muli!…"
+
+msgid "Submit job"
+msgstr "Magsumite ng trabaho"
+
+msgid "Submit Job"
+msgstr "Magsumite ng trabaho"
+
+msgid "View detail"
+msgstr "Tingnan ang detalye"
+
+msgid "Recently Applied Resume"
+msgstr "Kamakailan -lamang na inilapat ang resume"
+
+msgid "Messages By Resume"
+msgstr "Mga mensahe sa pamamagitan ng resume"
+
+msgid "Reply"
+msgstr "Sumagot"
+
+msgid "View jobs"
+msgstr "Tingnan ang mga trabaho"
+
+msgid "Other Info"
+msgstr "Iba pang impormasyon"
+
+msgid "Link"
+msgstr "Link"
+
+msgid "Mail"
+msgstr "Mail"
+
+msgid "Site"
+msgstr "Site"
+
+msgid "View Company Details"
+msgstr "Tingnan ang mga detalye ng kumpanya"
+
+msgid "Completed"
+msgstr "Nakumpleto"
+
+msgid "Categoty"
+msgstr "Kategorya"
+
+msgid "tell a friend"
+msgstr "Sabihin mo sa isang kaibigan"
+
+msgid "Tell friend"
+msgstr "Sabihin mo sa kaibigan"
+
+msgid "Know someone perfect for this job? Share it with them!"
+msgstr "Alam ang isang tao na perpekto para sa trabahong ito? Ibahagi ito sa kanila!"
+
+msgid "Your name"
+msgstr "Ang pangalan mo"
+
+msgid "Your email"
+msgstr "Ang iyong email"
+
+msgid "Show the"
+msgstr "Ipakita ang"
+
+msgid "form to logged-in users on the job detail page. If this is on,"
+msgstr "Form sa mga gumagamit ng naka-log in sa pahina ng detalye ng trabaho. Kung ito ay nasa,"
+
+msgid "will be turned off."
+msgstr "ay i -off."
+
+msgid "form to visitor on the job detail page. If this is on,"
+msgstr "form sa bisita sa pahina ng detalye ng trabaho. Kung ito ay nasa,"
+
+msgid "You do not have any save serch remaining"
+msgstr "Wala kang natitirang i -save Serch"
+
+msgid "We would love to hear from You."
+msgstr "Gusto naming marinig mula sa iyo."

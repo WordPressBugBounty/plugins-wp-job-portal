@@ -73,8 +73,10 @@ if(wpjobportal::$theme_chk == 1){
                 if (link.hasClass('touch')) {
                     return true;
                 }else {
-                    link.addClass('touch');
                     jQuery('div.wjportal-by-category-wrp').not(this).removeClass('touch');
+                    link.addClass('touch');
+                    jQuery('div.wjportal-by-category-wrp').not(jQuery(this).parents()).find('div.wjportal-by-sub-catagory').slideUp('slow');
+                    jQuery(this).find('div.wjportal-by-sub-catagory').slideDown('slow');
                     e.preventDefault();
                     return false; //extra, and to make sure the function has consistent return points
                 }

@@ -9467,3 +9467,946 @@ msgstr ""
 
 msgid "Show page title above breadcrumbs"
 msgstr ""
+msgid "or"
+msgstr ""
+
+msgid "company logo"
+msgstr ""
+
+msgid "job title"
+msgstr ""
+
+msgid "company name"
+msgstr ""
+
+msgid "Resume Has Been Feature SuccesFully"
+msgstr ""
+
+msgid "My coverletter"
+msgstr ""
+
+msgid "Add coverletter"
+msgstr ""
+
+msgid "Total Cover Letter"
+msgstr ""
+
+msgid "Remaining Cover Letter"
+msgstr ""
+
+msgid "Open ChatGPT"
+msgstr ""
+
+msgid "How To Add Cover Letter With ChatGPT"
+msgstr ""
+
+msgid "Edit coverletter"
+msgstr ""
+
+msgid "Edit Cover Letter"
+msgstr ""
+
+msgid "Delete coverletter"
+msgstr ""
+
+msgid "coverletter title"
+msgstr ""
+
+msgid "Add New Cover Letter"
+msgstr ""
+
+msgid "Quote from Hello Dolly song, by Jerry Herman:"
+msgstr ""
+
+msgid "Select Parent"
+msgstr ""
+
+msgid "Edit Field"
+msgstr ""
+
+msgid "Visitor published"
+msgstr ""
+
+msgid "Show On Listing"
+msgstr ""
+
+msgid "Advanced"
+msgstr ""
+
+msgid "Equal"
+msgstr ""
+
+msgid "Not Equal"
+msgstr ""
+
+msgid "Multi Select"
+msgstr ""
+
+msgid "Visible"
+msgstr ""
+
+msgid "Select Child"
+msgstr ""
+
+msgid "Select Condition"
+msgstr ""
+
+msgid "To use this feature please fill the above three fields."
+msgstr ""
+
+msgid "No response found"
+msgstr ""
+
+msgid "Quick Apply"
+msgstr ""
+
+msgid "user publish"
+msgstr ""
+
+msgid "User Unpublished"
+msgstr ""
+
+msgid "visitor publish"
+msgstr ""
+
+msgid "visitor unpublish"
+msgstr ""
+
+msgid "Select user status"
+msgstr ""
+
+msgid "Un published"
+msgstr ""
+
+msgid "File upload fields and text editor fields cannot be made required."
+msgstr ""
+
+msgid "Dependent Field"
+msgstr ""
+
+msgid "Job Apply settings"
+msgstr ""
+
+msgid "Quick Apply settings"
+msgstr ""
+
+msgid "Show count in jobs by cities page"
+msgstr ""
+
+msgid "Show country in jobs by cities page"
+msgstr ""
+
+msgid "Profile Section"
+msgstr ""
+
+msgid "Recaptcha Version 2"
+msgstr ""
+
+msgid "Recaptcha Version 3"
+msgstr ""
+
+msgid "System slug"
+msgstr ""
+
+msgid "Image file size"
+msgstr ""
+
+msgid "System will not upload if image size is greater than the given size"
+msgstr ""
+
+msgid "Show page title above wpjobportal breadcrumbs"
+msgstr ""
+
+msgid "Default Image For WP Job Portal"
+msgstr ""
+
+msgid "This image will shown as default image for entities & users if no other image is provided."
+msgstr ""
+
+msgid "Default country"
+msgstr ""
+
+msgid "Select default country for user added cities"
+msgstr ""
+
+msgid "Job detail URL options are title, company, category, location, jobtype. eg- [title] [company]"
+msgstr ""
+
+msgid "Select the Google reCaptcha Version"
+msgstr ""
+
+msgid "Recent Resumes Box"
+msgstr ""
+
+msgid "mode"
+msgstr ""
+
+msgid "expire"
+msgstr ""
+
+msgid "Registration is disabled in WordPress settings, please enable to Membership: anyone can register."
+msgstr ""
+
+msgid "Quick Apply Now"
+msgstr ""
+
+msgid "Enable Quick Apply for user"
+msgstr ""
+
+msgid "Enable Quick Apply for visitor"
+msgstr ""
+
+msgid "Enable captcha for visitor Quick Apply"
+msgstr ""
+
+msgid "Show captcha to visitor on quick apply form."
+msgstr ""
+
+msgid "Add ons for WP Job Portal have been installed and activated successfully. "
+msgstr ""
+
+msgid "WP Job Portal is an open-source job board plugin for WordPress that provides advanced features to help you create a successful job board. In addition, we offer trusted WP Job Portal add-ons that can further enhance your job board's functionality in a fast, safe, and easy manner. Our add-ons have been designed to integrate seamlessly with our job board plugin, ensuring you can expand your job board's capabilities without any complications."
+msgstr ""
+
+msgid "Savings*"
+msgstr ""
+
+msgid "Best Deal"
+msgstr ""
+
+msgid "Shortlist Job"
+msgstr ""
+
+msgid "e.g 45000"
+msgstr ""
+
+msgid "e.g 3000"
+msgstr ""
+
+msgid "e.g 6000"
+msgstr ""
+
+msgid "Deactivated"
+msgstr ""
+
+msgid "Not Installed"
+msgstr ""
+
+msgid "Addon Installed Successfully"
+msgstr ""
+
+msgid "Addon installation failed"
+msgstr ""
+
+msgid "Resume Data Management"
+msgstr ""
+
+msgid "Export (csv)"
+msgstr ""
+
+msgid "Configuration Based Tutorials"
+msgstr ""
+
+msgid "Slugs"
+msgstr ""
+
+msgid "Theme Installation"
+msgstr ""
+
+msgid "WP Job Portal Theme  Installation"
+msgstr ""
+
+msgid "System Management"
+msgstr ""
+
+msgid "Activity Log and System Errors"
+msgstr ""
+
+msgid "Shortcode"
+msgstr ""
+
+msgid "Job Seeker Control Panel"
+msgstr ""
+
+msgid "A shortcode designed for jobseeker, providing an easy-to-use controlpanel to manage applications, resume, and preferences directly from their dashboard."
+msgstr ""
+
+msgid "Base Shortcode"
+msgstr ""
+
+msgid "Shortcode With All Options"
+msgstr ""
+
+msgid " The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr ""
+
+msgid "The job search shortcode enables users to easily find job listings based on various criteria."
+msgstr ""
+
+msgid "The jobs shortcode is a feature that displays individual job listings on a website."
+msgstr ""
+
+msgid "The featured job shortcode highlights select job listings on a website, making them stand out to potential applicants."
+msgstr ""
+
+msgid "This Shortcode requires WP Job Portal Featured Jobs Addon"
+msgstr ""
+
+msgid "Get Addon"
+msgstr ""
+
+msgid "Job Categories"
+msgstr ""
+
+msgid "The job categories shortcode displays a dynamic list of available categories, enabling users to easily navigate and find relevant job listings."
+msgstr ""
+
+msgid "The job types shortcode presents a comprehensive list of available job types, allowing users to quickly explore and find suitable job opportunities."
+msgstr ""
+
+msgid "My applied jobs shortcode provides users with a personalized list of their job applications, allowing easy access to track application status and details."
+msgstr ""
+
+msgid "My companies shortcode displays a personalized list of companies users are associated with, facilitating easy access to company information and opportunities."
+msgstr ""
+
+msgid "All companies shortcode offers a curated directory of all companies, allowing users to easily browse and connect with potential employers."
+msgstr ""
+
+msgid "This Shortcode requires WP Job Portal All Companies Addon"
+msgstr ""
+
+msgid "The featured companies shortcode showcases prominent companies within the portal, allowing users to explore exciting job opportunities from industry leaders."
+msgstr ""
+
+msgid "This Shortcode requires WP Job Portal Featured Companies Addon"
+msgstr ""
+
+msgid "My jobs shortcode allows users to view and manage their saved job listings, making it easy to keep track of potential opportunities."
+msgstr ""
+
+msgid "My resume shortcode allows users to view and manage their uploaded resumes, providing a convenient way to keep their job application materials up to date."
+msgstr ""
+
+msgid "All Resumes"
+msgstr ""
+
+msgid "All resumes shortcode allows job seekers to view and manage their uploaded resumes, ensuring they have easy access to their application materials."
+msgstr ""
+
+msgid "This Shortcode requires WP Job Portal All Resumes Addon"
+msgstr ""
+
+msgid "The featured resumes shortcode showcases a selection of standout resumes, allowing job seekers to stand out to potential employers."
+msgstr ""
+
+msgid "This Shortcode requires WP Job Portal Featured Resumes Addon"
+msgstr ""
+
+msgid "Add company shortcode allows employers to effortlessly register their organization, providing essential details to attract talent and post job openings."
+msgstr ""
+
+msgid "Add department shortcode enables employers to easily create and manage specific departments within their organization, facilitating better job categorization and organization."
+msgstr ""
+
+msgid "This Shortcode requires WP Job Portal Multi Departments Addon"
+msgstr ""
+
+msgid "Add jobs enables organizations to effortlessly publish job postings, helping them connect with potential applicants and fill vacancies more effectively."
+msgstr ""
+
+msgid "Add resume shortcode simplifies the process for candidates to submit their resumes, helping them showcase their qualifications and experiences to potential employers."
+msgstr ""
+
+msgid "Resume search shortcode provides a powerful search tool for employers to explore candidate profiles, making it easier to connect with potential hires."
+msgstr ""
+
+msgid "This Shortcode requires WP Job Portal Resume Search Addon"
+msgstr ""
+
+msgid "Registration"
+msgstr ""
+
+msgid "Registration shortcode allows individuals to easily create accounts as their selected role"
+msgstr ""
+
+msgid "Employer registration shortcode streamlines the process for organizations to register, ensuring they can efficiently manage job postings and their company profiles."
+msgstr ""
+
+msgid "Job Seeker Registration"
+msgstr ""
+
+msgid "Job seeker registration shortcode allows individuals to easily create accounts, enabling them to apply for jobs and manage their resumes."
+msgstr ""
+
+msgid "Login Page"
+msgstr ""
+
+msgid "Login page shortcode offers a user-friendly interface for candidates and employers to securely log in and manage their profiles and postings."
+msgstr ""
+
+msgid "Widget"
+msgstr ""
+
+msgid "Search job widget provides an intuitive interface for candidates to filter and browse openings, connecting them with opportunities that align with their skills."
+msgstr ""
+
+msgid "This Shortcode requires WP Job Portal Front-end Widgets Addon"
+msgstr ""
+
+msgid "My packages offers a personalized dashboard for users to monitor their subscription details, helping them manage job postings and access features effectively."
+msgstr ""
+
+msgid "This Shortcode requires WP Job Portal Credits Addon"
+msgstr ""
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans.  "
+msgstr ""
+
+msgid "All packages showcases a comprehensive list of available subscription plans, allowing users to compare features and select the best options for their job posting needs."
+msgstr ""
+
+msgid "My invoices provides a convenient way for users to view and manage their invoices, helping them stay organized and up to date with their payments."
+msgstr ""
+
+msgid "SEO"
+msgstr ""
+
+msgid "Document Title Settings"
+msgstr ""
+
+msgid "Company detail url options are name, location. eg- [name] [location]"
+msgstr ""
+
+msgid "spinning wheel"
+msgstr ""
+
+msgid "New Update Version"
+msgstr ""
+
+msgid "is Available"
+msgstr ""
+
+msgid "Hey there! We have recently launched a fresh update for the add-ons. Don't forget to update the add-ons to enjoy the greatest features!"
+msgstr ""
+
+msgid "View Addone Status"
+msgstr ""
+
+msgid "Active Companies"
+msgstr ""
+
+msgid "Help Page"
+msgstr ""
+
+msgid "Watch Tutorial"
+msgstr ""
+
+msgid "video"
+msgstr ""
+
+msgid "Apply Now Failed"
+msgstr ""
+
+msgid "You do not have package required for job apply"
+msgstr ""
+
+msgid "You package has expired"
+msgstr ""
+
+msgid "You do not any more job apply available"
+msgstr ""
+
+msgid "Job Not Found"
+msgstr ""
+
+msgid "Job does not exist in the system"
+msgstr ""
+
+msgid "Make Payment To Complete The Job Apply"
+msgstr ""
+
+msgid "Successfully applied on job"
+msgstr ""
+
+msgid "view coverletter"
+msgstr ""
+
+msgid "Please Fill out fields"
+msgstr ""
+
+msgid "sender email is not of correct format"
+msgstr ""
+
+msgid "Erase Selected Country"
+msgstr ""
+
+msgid "Erase All Data"
+msgstr ""
+
+msgid "Click on package to select one"
+msgstr ""
+
+msgid "Apply to the Job"
+msgstr ""
+
+msgid "No Cover Letter!"
+msgstr ""
+
+msgid "Add Cover Lettter"
+msgstr ""
+
+msgid "You have already applied on this job."
+msgstr ""
+
+msgid "Unlimited job applies"
+msgstr ""
+
+msgid "Job applies remaining"
+msgstr ""
+
+msgid "Buy package to apply on job."
+msgstr ""
+
+msgid "Apply With Package"
+msgstr ""
+
+msgid "Payment of"
+msgstr ""
+
+msgid "is required to complete the job apply process"
+msgstr ""
+
+msgid "You are logged in as employer."
+msgstr ""
+
+msgid "You are not a logged in member."
+msgstr ""
+
+msgid "You do not have any role."
+msgstr ""
+
+msgid "Proceed to payment"
+msgstr ""
+
+msgid "Views"
+msgstr ""
+
+msgid "Save As Draft"
+msgstr ""
+
+msgid "Job Has Been Feature SuccesFully"
+msgstr ""
+
+msgid "You are Not Allowed To Add More than One"
+msgstr ""
+
+msgid "Contact TO Adminstrator"
+msgstr ""
+
+msgid "This Is Meta Description"
+msgstr ""
+
+msgid "jobs by cities"
+msgstr ""
+
+msgid "Show Info"
+msgstr ""
+
+msgid "Changing a user's role will not remove its entites from the system !"
+msgstr ""
+
+msgid "company reject"
+msgstr ""
+
+msgid "all reject"
+msgstr ""
+
+msgid "Missing user(s) added successfully!"
+msgstr ""
+
+msgid "No missing user found!"
+msgstr ""
+
+msgid "Jobs Listing Menu"
+msgstr ""
+
+msgid "Visitor"
+msgstr ""
+
+msgid "new message alert"
+msgstr ""
+
+msgid "New Message Alert"
+msgstr ""
+
+msgid "Recipient Name"
+msgstr ""
+
+msgid "Sender Name"
+msgstr ""
+
+msgid "Sender Role"
+msgstr ""
+
+msgid "Message Text"
+msgstr ""
+
+msgid "Job/Resume Info"
+msgstr ""
+
+msgid "Upload Resume"
+msgstr ""
+
+msgid "Profile Status"
+msgstr ""
+
+msgid "Profile Completed"
+msgstr ""
+
+msgid "feature approve"
+msgstr ""
+
+msgid "feature reject"
+msgstr ""
+
+msgid "Type city"
+msgstr ""
+
+msgid "New Message"
+msgstr ""
+
+msgid "Employer is disabled by admin"
+msgstr ""
+
+msgid "You are not allowed to add more than one"
+msgstr ""
+
+msgid "contact adminstrator"
+msgstr ""
+
+msgid "Payment is not made against this job contact adminstrator"
+msgstr ""
+
+msgid "Addon Page Not Found"
+msgstr ""
+
+msgid "User Role"
+msgstr ""
+
+msgid "Jobs Role"
+msgstr ""
+
+msgid "User has been successfully created"
+msgstr ""
+
+msgid "Pay For Department"
+msgstr ""
+
+msgid "Pay For Job Apply"
+msgstr ""
+
+msgid "Pay For Company"
+msgstr ""
+
+msgid "Pay For Featured Company"
+msgstr ""
+
+msgid "Pay For Job"
+msgstr ""
+
+msgid "Pay For Featured Job"
+msgstr ""
+
+msgid "Pay For Resume Search"
+msgstr ""
+
+msgid "Pay For Resume "
+msgstr ""
+
+msgid "Pay For Featured Resume "
+msgstr ""
+
+msgid "Job Saved Searches"
+msgstr ""
+
+msgid "Job Apply Configurations"
+msgstr ""
+
+msgid "Quick Apply Fields"
+msgstr ""
+
+msgid "addons status"
+msgstr ""
+
+msgid "coverletters"
+msgstr ""
+
+msgid "coverletter"
+msgstr ""
+
+msgid "add new cover letter"
+msgstr ""
+
+msgid "Loaction Name settings"
+msgstr ""
+
+msgid "Loaction Name Settings"
+msgstr ""
+
+msgid "shifts"
+msgstr ""
+
+msgid "ages"
+msgstr ""
+
+msgid "Error file size too large"
+msgstr ""
+
+msgid "Maximum Size"
+msgstr ""
+
+msgid "is in use"
+msgstr ""
+
+msgid "can not deleted it"
+msgstr ""
+
+msgid "Address data"
+msgstr ""
+
+msgid "themes"
+msgstr ""
+
+msgid "Color Schemes"
+msgstr ""
+
+msgid "Color Chooser"
+msgstr ""
+
+msgid "Color 1"
+msgstr ""
+
+msgid "Color 2"
+msgstr ""
+
+msgid "Color 3"
+msgstr ""
+
+msgid "Add User Fields"
+msgstr ""
+
+msgid "cannot unpublished"
+msgstr ""
+
+msgid "Search Name"
+msgstr ""
+
+msgid "start"
+msgstr ""
+
+msgid "Total Resume Search"
+msgstr ""
+
+msgid "Remaining Resume Search"
+msgstr ""
+
+msgid "Reference"
+msgstr ""
+
+msgid "cancel payment"
+msgstr ""
+
+msgid "Apply now"
+msgstr ""
+
+msgid " Listing"
+msgstr ""
+
+msgid "Credits log"
+msgstr ""
+
+msgid "Rate list"
+msgstr ""
+
+msgid "Purchase history"
+msgstr ""
+
+msgid " remaining"
+msgstr ""
+
+msgid "Cover Letter has been successfully published"
+msgstr ""
+
+msgid "cover Letter has been successfully published"
+msgstr ""
+
+msgid "Resume files download"
+msgstr ""
+
+msgid "apply with facebook"
+msgstr ""
+
+msgid "apply with linkedin"
+msgstr ""
+
+msgid "apply with xing"
+msgstr ""
+
+msgid "Resume removed from featured"
+msgstr ""
+
+msgid "share blog"
+msgstr ""
+
+msgid "share digg"
+msgstr ""
+
+msgid "share fb"
+msgstr ""
+
+msgid "share ff"
+msgstr ""
+
+msgid "share google"
+msgstr ""
+
+msgid "share linkedin"
+msgstr ""
+
+msgid "share myspace"
+msgstr ""
+
+msgid "share twitter"
+msgstr ""
+
+msgid "share yahoo"
+msgstr ""
+
+msgid "Mark As Shortlist Job"
+msgstr ""
+
+msgid "Keep this job on your list! Mark it as shortlisted and find it easily whenever you need."
+msgstr ""
+
+msgid "Search job title, company name, keywords"
+msgstr ""
+
+msgid "Loction"
+msgstr ""
+
+msgid "Applied Resume Title"
+msgstr ""
+
+msgid "Arrow"
+msgstr ""
+
+msgid "Already Applied"
+msgstr ""
+
+msgid "Ready to take the next step? Simply fill out the form and submit your application. It only takes a few minutes!"
+msgstr ""
+
+msgid "Waiting for Payment"
+msgstr ""
+
+msgid "Salery"
+msgstr ""
+
+msgid "Buy"
+msgstr ""
+
+msgid "Employer can add companies and jobs while searching for potential candidate to hire"
+msgstr ""
+
+msgid "Selected"
+msgstr ""
+
+msgid "Jobseeker can add resume, cover letters, search jobs and apply to multiple jobs easily"
+msgstr ""
+
+msgid "Hello, again!..."
+msgstr ""
+
+msgid "View All Applied Jobs"
+msgstr ""
+
+msgid "View All Newest Jobs"
+msgstr ""
+
+msgid "Hello, again!…"
+msgstr ""
+
+msgid "Submit job"
+msgstr ""
+
+msgid "Submit Job"
+msgstr ""
+
+msgid "View detail"
+msgstr ""
+
+msgid "Recently Applied Resume"
+msgstr ""
+
+msgid "Messages By Resume"
+msgstr ""
+
+msgid "Reply"
+msgstr ""
+
+msgid "View jobs"
+msgstr ""
+
+msgid "Other Info"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "Mail"
+msgstr ""
+
+msgid "Site"
+msgstr ""
+
+msgid "View Company Details"
+msgstr ""
+
+msgid "Completed"
+msgstr ""
+
+msgid "Categoty"
+msgstr ""
+
+msgid "tell a friend"
+msgstr ""
+
+msgid "Tell friend"
+msgstr ""
+
+msgid "Know someone perfect for this job? Share it with them!"
+msgstr ""
+
+msgid "Your name"
+msgstr ""
+
+msgid "Your email"
+msgstr ""
+msgid "Show the"
+msgstr ""
+
+msgid "form to logged-in users on the job detail page. If this is on,"
+msgstr ""
+
+msgid "will be turned off."
+msgstr ""
+
+msgid "form to visitor on the job detail page. If this is on,"
+msgstr ""
+
+msgid "You do not have any save serch remaining"
+msgstr ""
+
+msgid "We would love to hear from You."
+msgstr ""

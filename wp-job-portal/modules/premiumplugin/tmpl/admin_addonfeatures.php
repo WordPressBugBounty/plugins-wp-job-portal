@@ -178,7 +178,7 @@
                             <a title="<?php echo esc_html(__('buy now','wp-job-portal')); ?>" href="https://wpjobportal.com/product/print/" class="add-on-btn"><?php echo esc_html(__('buy now','wp-job-portal')); ?></a>
                         </div>
                         <div class="add-on-item reports">
-                            <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/reports.png" alt="<?php echo esc_html(__('Report\'s','wp-job-portal')); ?>" />
+                            <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/reports.png" alt="<?php echo esc_html(__('Reports','wp-job-portal')); ?>" />
                             <div class="add-on-name"><?php echo esc_html(__("Reports",'wp-job-portal')); ?></div>
                             <div class="add-on-txt"><?php echo esc_html(__('WP Job Portal offers multiple reports by jobs, by companies and by resume. Admin can see overall reports of Employer and Job Seeker.','wp-job-portal')); ?></div>
                             <a title="<?php echo esc_html(__('buy now','wp-job-portal')); ?>" href="https://wpjobportal.com/product/reports/" class="add-on-btn"><?php echo esc_html(__('buy now','wp-job-portal')); ?></a>

@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 
 msgid "Delete"
 msgstr "削除"
@@ -9328,3 +9328,948 @@ msgstr "私の部署"
 
 msgid "Add To ShortList"
 msgstr "ショートリストに追加"
+
+msgid "or"
+msgstr "または"
+
+msgid "company logo"
+msgstr "会社のロゴ"
+
+msgid "job title"
+msgstr "役職"
+
+msgid "company name"
+msgstr "会社名"
+
+msgid "Resume Has Been Feature SuccesFully"
+msgstr "履歴書は正常に取り上げられています"
+
+msgid "My coverletter"
+msgstr "私のカバーレター"
+
+msgid "Add coverletter"
+msgstr "カバーレターを追加します"
+
+msgid "Total Cover Letter"
+msgstr "トータルカバーレター"
+
+msgid "Remaining Cover Letter"
+msgstr "残りのカバーレター"
+
+msgid "Open ChatGPT"
+msgstr "chatgptを開きます"
+
+msgid "How To Add Cover Letter With ChatGPT"
+msgstr "chatgptにカバーレターを追加する方法"
+
+msgid "Edit coverletter"
+msgstr "カバーレターを編集します"
+
+msgid "Edit Cover Letter"
+msgstr "カバーレターを編集します"
+
+msgid "Delete coverletter"
+msgstr "カバーレターを削除します"
+
+msgid "coverletter title"
+msgstr "カバーレターのタイトル"
+
+msgid "Add New Cover Letter"
+msgstr "新しいカバーレターを追加します"
+
+msgid "Quote from Hello Dolly song, by Jerry Herman:"
+msgstr "ジェリー・ハーマンによるハロー・ドリー・ソングからの引用："
+
+msgid "Select Parent"
+msgstr "親を選択します"
+
+msgid "Edit Field"
+msgstr "フィールドを編集します"
+
+msgid "Visitor published"
+msgstr "訪問者が公開されました"
+
+msgid "Show On Listing"
+msgstr "リストに表示します"
+
+msgid "Advanced"
+msgstr "高度な"
+
+msgid "Equal"
+msgstr "等しい"
+
+msgid "Not Equal"
+msgstr "平等ではありません"
+
+msgid "Multi Select"
+msgstr "マルチセレクト"
+
+msgid "Visible"
+msgstr "見える"
+
+msgid "Select Child"
+msgstr "子を選択します"
+
+msgid "Select Condition"
+msgstr "条件を選択します"
+
+msgid "To use this feature please fill the above three fields."
+msgstr "この機能を使用するには、上記の3つのフィールドを埋めてください。"
+
+msgid "No response found"
+msgstr "応答が見つかりません"
+
+msgid "Quick Apply"
+msgstr "迅速な適用"
+
+msgid "user publish"
+msgstr "ユーザーパブリッシュ"
+
+msgid "User Unpublished"
+msgstr "ユーザー未発表"
+
+msgid "visitor publish"
+msgstr "訪問者パブリッシュ"
+
+msgid "visitor unpublish"
+msgstr "訪問者は不公開"
+
+msgid "Select user status"
+msgstr "ユーザーステータスを選択します"
+
+msgid "Un published"
+msgstr "国連公開"
+
+msgid "File upload fields and text editor fields cannot be made required."
+msgstr "ファイルアップロードフィールドとテキストエディターフィールドを必要とすることはできません。"
+
+msgid "Dependent Field"
+msgstr "従属フィールド"
+
+msgid "Job Apply settings"
+msgstr "job適用設定"
+
+msgid "Quick Apply settings"
+msgstr "クイック適用設定"
+
+msgid "Show count in jobs by cities page"
+msgstr "都市ごとのJobsのカウントを表示します"
+
+msgid "Show country in jobs by cities page"
+msgstr "都市ごとのジョブズの国を表示します"
+
+msgid "Profile Section"
+msgstr "プロファイルセクション"
+
+msgid "Recaptcha Version 2"
+msgstr "Recaptchaバージョン2"
+
+msgid "Recaptcha Version 3"
+msgstr "Recaptchaバージョン3"
+
+msgid "System slug"
+msgstr "システムスラッグ"
+
+msgid "Image file size"
+msgstr "画像ファイルサイズ"
+
+msgid "System will not upload if image size is greater than the given size"
+msgstr "画像サイズが与えられたサイズより大きい場合、システムはアップロードされません"
+
+msgid "Show page title above wpjobportal breadcrumbs"
+msgstr "wpjobportalパン粉の上にページのタイトルを表示します"
+
+msgid "Default Image For WP Job Portal"
+msgstr "WPジョブポータルのデフォルト画像"
+
+msgid "This image will shown as default image for entities & users if no other image is provided."
+msgstr "この画像は、他の画像が提供されていない場合、エンティティとユーザーのデフォルト画像として表示されます。"
+
+msgid "Default country"
+msgstr "デフォルトの国"
+
+msgid "Select default country for user added cities"
+msgstr "ユーザーが追加された都市のデフォルトの国を選択します"
+
+msgid "Job detail URL options are title, company, category, location, jobtype. eg- [title] [company]"
+msgstr "ジョブの詳細URLオプションは、タイトル、会社、カテゴリ、場所、jobTypeです。 eg- [title] [company]"
+
+msgid "Select the Google reCaptcha Version"
+msgstr "Google Recaptchaバージョンを選択します"
+
+msgid "Recent Resumes Box"
+msgstr "最近の履歴書ボックス"
+
+msgid "mode"
+msgstr "モード"
+
+msgid "expire"
+msgstr "期限切れ"
+
+msgid "Registration is disabled in WordPress settings, please enable to Membership: anyone can register."
+msgstr "登録はWordPressの設定で無効になります。メンバーシップを有効にしてください：誰でも登録できます。"
+
+msgid "Quick Apply Now"
+msgstr "今すぐ迅速に適用してください"
+
+msgid "Enable Quick Apply for user"
+msgstr "ユーザーを迅速に適用できるようにします"
+
+msgid "Enable Quick Apply for visitor"
+msgstr "訪問者を迅速に適用できるようにします"
+
+msgid "Enable captcha for visitor Quick Apply"
+msgstr "訪問者にCaptchaを迅速に適用できるようにします"
+
+msgid "Show captcha to visitor on quick apply form."
+msgstr "Quick Apply FormでCaptchaを訪問者に見せます。"
+
+msgid "Add ons for WP Job Portal have been installed and activated successfully. "
+msgstr "WPジョブポータルの追加をインストールし、正常にアクティブ化しました。"
+
+msgid "WP Job Portal is an open-source job board plugin for WordPress that provides advanced features to help you create a successful job board. In addition, we offer trusted WP Job Portal add-ons that can further enhance your job board's functionality in a fast, safe, and easy manner. Our add-ons have been designed to integrate seamlessly with our job board plugin, ensuring you can expand your job board's capabilities without any complications."
+msgstr "WP Job Portalは、WordPress用のオープンソースジョブボードプラグインであり、成功したジョブボードを作成するのに役立つ高度な機能を提供します。さらに、迅速で安全で簡単な方法でジョブボードの機能をさらに強化できる、信頼できるWPジョブポータルアドオンを提供しています。アドオンは、ジョブボードプラグインとシームレスに統合するように設計されており、合併症なくジョブボードの機能を拡大できるようにしています。"
+
+msgid "Savings*"
+msgstr "節約*"
+
+msgid "Best Deal"
+msgstr "最良の取引"
+
+msgid "Shortlist Job"
+msgstr "候補者の仕事"
+
+msgid "e.g 45000"
+msgstr "例：45000"
+
+msgid "e.g 3000"
+msgstr "例：3000"
+
+msgid "e.g 6000"
+msgstr "例：6000"
+
+msgid "Deactivated"
+msgstr "非アクティブ化"
+
+msgid "Not Installed"
+msgstr "インストールされていません"
+
+msgid "Addon Installed Successfully"
+msgstr "Addonは正常にインストールされました"
+
+msgid "Addon installation failed"
+msgstr "アドオンのインストールに失敗しました"
+
+msgid "Resume Data Management"
+msgstr "データ管理を再開します"
+
+msgid "Export (csv)"
+msgstr "エクスポート（CSV）"
+
+msgid "Configuration Based Tutorials"
+msgstr "構成ベースのチュートリアル"
+
+msgid "Slugs"
+msgstr "ナメクジ"
+
+msgid "Theme Installation"
+msgstr "テーマのインストール"
+
+msgid "WP Job Portal Theme  Installation"
+msgstr "WPジョブポータルテーマのインストール"
+
+msgid "System Management"
+msgstr "システム管理"
+
+msgid "Activity Log and System Errors"
+msgstr "アクティビティログとシステムエラー"
+
+msgid "Shortcode"
+msgstr "ショートコード"
+
+msgid "Job Seeker Control Panel"
+msgstr "求職者コントロールパネル"
+
+msgid "A shortcode designed for jobseeker, providing an easy-to-use controlpanel to manage applications, resume, and preferences directly from their dashboard."
+msgstr "ジョブシーカー向けに設計されたショートコードは、ダッシュボードから直接アプリケーション、履歴書、および好みを管理するための使いやすいコントロールパネルを提供します。"
+
+msgid "Base Shortcode"
+msgstr "ベースショートコード"
+
+msgid "Shortcode With All Options"
+msgstr "すべてのオプションを備えたショートコード"
+
+msgid " The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "雇用主のコントロールパネルは、雇用主が求人を管理し、アプリケーションを追跡し、候補者と通信し、採用メトリックを効率的に分析できるための合理化されたインターフェイスです。"
+
+msgid "The job search shortcode enables users to easily find job listings based on various criteria."
+msgstr "求人検索ショートコードにより、ユーザーはさまざまな基準に基づいてジョブリストを簡単に見つけることができます。"
+
+msgid "The jobs shortcode is a feature that displays individual job listings on a website."
+msgstr "Jobsショートコードは、Webサイトに個々のジョブリストを表示する機能です。"
+
+msgid "The featured job shortcode highlights select job listings on a website, making them stand out to potential applicants."
+msgstr "注目のジョブショートコードは、Webサイトで選択したジョブリストを強調し、潜在的な応募者に目立たせます。"
+
+msgid "This Shortcode requires WP Job Portal Featured Jobs Addon"
+msgstr "このショートコードには、WPジョブポータルが機能するジョブアドオンが必要です"
+
+msgid "Get Addon"
+msgstr "アドオンを取得します"
+
+msgid "Job Categories"
+msgstr "職種"
+
+msgid "The job categories shortcode displays a dynamic list of available categories, enabling users to easily navigate and find relevant job listings."
+msgstr "ジョブカテゴリショートコードは、利用可能なカテゴリの動的リストを表示し、ユーザーが簡単にナビゲートして関連するジョブリストを見つけることができます。"
+
+msgid "The job types shortcode presents a comprehensive list of available job types, allowing users to quickly explore and find suitable job opportunities."
+msgstr "ジョブタイプのショートコードは、利用可能なジョブタイプの包括的なリストを提供し、ユーザーが迅速に適切な雇用機会を探索して見つけることができます。"
+
+msgid "My applied jobs shortcode provides users with a personalized list of their job applications, allowing easy access to track application status and details."
+msgstr "私のApplied Jobsショートコードは、ユーザーに求人アプリケーションのパーソナライズされたリストを提供し、アプリケーションのステータスと詳細を簡単に追跡できるようにします。"
+
+msgid "My companies shortcode displays a personalized list of companies users are associated with, facilitating easy access to company information and opportunities."
+msgstr "私の企業のショートコードは、ユーザーが関連付けている企業のパーソナライズされたリストを表示し、企業の情報と機会への簡単なアクセスを促進します。"
+
+msgid "All companies shortcode offers a curated directory of all companies, allowing users to easily browse and connect with potential employers."
+msgstr "すべての企業ショートコードは、すべての企業のキュレーションされたディレクトリを提供しており、ユーザーは潜在的な雇用主と簡単に閲覧してつながることができます。"
+
+msgid "This Shortcode requires WP Job Portal All Companies Addon"
+msgstr "このショートコードには、WPジョブポータルすべての企業アドオンが必要です"
+
+msgid "The featured companies shortcode showcases prominent companies within the portal, allowing users to explore exciting job opportunities from industry leaders."
+msgstr "注目の企業ショートコードは、ポータル内の著名な企業を紹介し、ユーザーが業界のリーダーからのエキサイティングな雇用機会を探求できるようにします。"
+
+msgid "This Shortcode requires WP Job Portal Featured Companies Addon"
+msgstr "このショートコードには、WPジョブポータルが特徴の企業アドオンが必要です"
+
+msgid "My jobs shortcode allows users to view and manage their saved job listings, making it easy to keep track of potential opportunities."
+msgstr "私のジョブショートコードにより、ユーザーは保存されたジョブリストを表示および管理できるようになり、潜在的な機会を簡単に追跡できます。"
+
+msgid "My resume shortcode allows users to view and manage their uploaded resumes, providing a convenient way to keep their job application materials up to date."
+msgstr "私の履歴書ショートコードにより、ユーザーはアップロードされた履歴書を表示および管理できるようになり、求人資料を最新の状態に保つための便利な方法が提供されます。"
+
+msgid "All Resumes"
+msgstr "すべての履歴書"
+
+msgid "All resumes shortcode allows job seekers to view and manage their uploaded resumes, ensuring they have easy access to their application materials."
+msgstr "すべての履歴書ショートコードにより、求職者はアップロードされた履歴書を表示および管理することができ、アプリケーション資料に簡単にアクセスできるようにします。"
+
+msgid "This Shortcode requires WP Job Portal All Resumes Addon"
+msgstr "このショートコードには、WPジョブポータルがすべてAddonを履歴書する必要があります"
+
+msgid "The featured resumes shortcode showcases a selection of standout resumes, allowing job seekers to stand out to potential employers."
+msgstr "注目の履歴書のショートコードは、傑出した履歴書の選択を紹介し、求職者が潜在的な雇用主に目立つことができます。"
+
+msgid "This Shortcode requires WP Job Portal Featured Resumes Addon"
+msgstr "このショートコードには、WPジョブポータルが履歴書アドオンを特徴とする必要があります"
+
+msgid "Add company shortcode allows employers to effortlessly register their organization, providing essential details to attract talent and post job openings."
+msgstr "ADD Companyショートコードにより、雇用主は組織を楽に登録することができ、才能を引き付け、求人をポストするための本質的な詳細を提供します。"
+
+msgid "Add department shortcode enables employers to easily create and manage specific departments within their organization, facilitating better job categorization and organization."
+msgstr "部門のショートコードを追加すると、雇用主は組織内の特定の部門を簡単に作成および管理できるようになり、より良い職種化と組織が促進されます。"
+
+msgid "This Shortcode requires WP Job Portal Multi Departments Addon"
+msgstr "このショートコードには、WPジョブポータルマルチ部門アドオンが必要です"
+
+msgid "Add jobs enables organizations to effortlessly publish job postings, helping them connect with potential applicants and fill vacancies more effectively."
+msgstr "ADDジョブにより、組織は求人を簡単に公開し、潜在的な応募者とつながり、空席をより効果的に満たすのに役立ちます。"
+
+msgid "Add resume shortcode simplifies the process for candidates to submit their resumes, helping them showcase their qualifications and experiences to potential employers."
+msgstr "履歴書ショートコードを追加すると、候補者が履歴書を提出するプロセスを簡素化し、潜在的な雇用主に資格と経験を紹介するのに役立ちます。"
+
+msgid "Resume search shortcode provides a powerful search tool for employers to explore candidate profiles, making it easier to connect with potential hires."
+msgstr "Resume Searchショートコードは、雇用主が候補者のプロファイルを探索するための強力な検索ツールを提供し、潜在的な採用者との接続を容易にします。"
+
+msgid "This Shortcode requires WP Job Portal Resume Search Addon"
+msgstr "このショートコードには、WPジョブポータル履歴書検索アドオンが必要です"
+
+msgid "Registration"
+msgstr "登録"
+
+msgid "Registration shortcode allows individuals to easily create accounts as their selected role"
+msgstr "登録ショートコードにより、個人は選択した役割としてアカウントを簡単に作成できます"
+
+msgid "Employer registration shortcode streamlines the process for organizations to register, ensuring they can efficiently manage job postings and their company profiles."
+msgstr "雇用主の登録ショートコードは、組織が登録するプロセスを合理化し、求人と会社のプロファイルを効率的に管理できるようにします。"
+
+msgid "Job Seeker Registration"
+msgstr "求職者登録"
+
+msgid "Job seeker registration shortcode allows individuals to easily create accounts, enabling them to apply for jobs and manage their resumes."
+msgstr "求職者登録ショートコードにより、個人はアカウントを簡単に作成できるようになり、ジョブに応募して履歴書を管理できます。"
+
+msgid "Login Page"
+msgstr "ログインページ"
+
+msgid "Login page shortcode offers a user-friendly interface for candidates and employers to securely log in and manage their profiles and postings."
+msgstr "ログインページショートコードは、候補者と雇用主がプロファイルと投稿を安全にログインして管理するためのユーザーフレンドリーなインターフェイスを提供します。"
+
+msgid "Widget"
+msgstr "ウィジェット"
+
+msgid "Search job widget provides an intuitive interface for candidates to filter and browse openings, connecting them with opportunities that align with their skills."
+msgstr "検索ジョブウィジェットは、候補者が開口部をフィルタリングおよび閲覧するための直感的なインターフェイスを提供し、スキルと一致する機会と接続します。"
+
+msgid "This Shortcode requires WP Job Portal Front-end Widgets Addon"
+msgstr "このショートコードには、WPジョブポータルフロントエンドウィジェットアドオンが必要です"
+
+msgid "My packages offers a personalized dashboard for users to monitor their subscription details, helping them manage job postings and access features effectively."
+msgstr "私のパッケージには、ユーザーがサブスクリプションの詳細を監視するためのパーソナライズされたダッシュボードを提供し、求人とアクセス機能を効果的に管理するのに役立ちます。"
+
+msgid "This Shortcode requires WP Job Portal Credits Addon"
+msgstr "このショートコードには、WPジョブポータルクレジットアドオンが必要です"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans.  "
+msgstr "私のサブスクリプションは、ユーザーにアクティブなサブスクリプションの概要を提供し、求人計画の簡単な管理と追跡を可能にします。"
+
+msgid "All packages showcases a comprehensive list of available subscription plans, allowing users to compare features and select the best options for their job posting needs."
+msgstr "すべてのパッケージには、利用可能なサブスクリプションプランの包括的なリストが表示され、ユーザーが機能を比較し、求人ニーズに最適なオプションを選択できます。"
+
+msgid "My invoices provides a convenient way for users to view and manage their invoices, helping them stay organized and up to date with their payments."
+msgstr "私の請求書は、ユーザーが請求書を表示および管理するための便利な方法を提供し、支払いを組織化し、最新の状態に保つのに役立ちます。"
+
+msgid "SEO"
+msgstr "SEO"
+
+msgid "Document Title Settings"
+msgstr "ドキュメントタイトル設定"
+
+msgid "Company detail url options are name, location. eg- [name] [location]"
+msgstr "会社の詳細URLオプションは、名前、場所です。 eg- [name] [場所]"
+
+msgid "spinning wheel"
+msgstr "紡績ホイール"
+
+msgid "New Update Version"
+msgstr "新しいアップデートバージョン"
+
+msgid "is Available"
+msgstr "利用可能です"
+
+msgid "Hey there! We have recently launched a fresh update for the add-ons. Don't forget to update the add-ons to enjoy the greatest features!"
+msgstr "ちょっと、そこ！最近、アドオンの新鮮なアップデートを開始しました。アドオンを更新して、最大の機能を楽しむことを忘れないでください！"
+
+msgid "View Addone Status"
+msgstr "アドオンステータスを表示します"
+
+msgid "Active Companies"
+msgstr "アクティブな企業"
+
+msgid "Help Page"
+msgstr "ヘルプページ"
+
+msgid "Watch Tutorial"
+msgstr "チュートリアルをご覧ください"
+
+msgid "video"
+msgstr "ビデオ"
+
+msgid "Apply Now Failed"
+msgstr "今すぐ応募しました"
+
+msgid "You do not have package required for job apply"
+msgstr "仕事の応募に必要なパッケージはありません"
+
+msgid "You package has expired"
+msgstr "パッケージの有効期限が切れています"
+
+msgid "You do not any more job apply available"
+msgstr "あなたはこれ以上の仕事を利用可能にしません"
+
+msgid "Job Not Found"
+msgstr "ジョブが見つかりません"
+
+msgid "Job does not exist in the system"
+msgstr "システムにはジョブは存在しません"
+
+msgid "Make Payment To Complete The Job Apply"
+msgstr "仕事を完了するために支払いを行います"
+
+msgid "Successfully applied on job"
+msgstr "ジョブに正常に適用されます"
+
+msgid "view coverletter"
+msgstr "カバーレターを表示します"
+
+msgid "Please Fill out fields"
+msgstr "フィールドに記入してください"
+
+msgid "sender email is not of correct format"
+msgstr "送信者の電子メールは正しい形式ではありません"
+
+msgid "Erase Selected Country"
+msgstr "選択した国を消去します"
+
+msgid "Erase All Data"
+msgstr "すべてのデータを消去します"
+
+msgid "Click on package to select one"
+msgstr "パッケージをクリックして選択します"
+
+msgid "Apply to the Job"
+msgstr "仕事に応募してください"
+
+msgid "No Cover Letter!"
+msgstr "カバーレターはありません！"
+
+msgid "Add Cover Lettter"
+msgstr "カバーレターを追加します"
+
+msgid "You have already applied on this job."
+msgstr "あなたはすでにこの仕事に応募しています。"
+
+msgid "Unlimited job applies"
+msgstr "無制限の求人が適用されます"
+
+msgid "Job applies remaining"
+msgstr "ジョブは残りを適用します"
+
+msgid "Buy package to apply on job."
+msgstr "仕事に応募するためにパッケージを購入します。"
+
+msgid "Apply With Package"
+msgstr "パッケージで適用します"
+
+msgid "Payment of"
+msgstr "の支払い"
+
+msgid "is required to complete the job apply process"
+msgstr "職務適用プロセスを完了するには必要です"
+
+msgid "You are logged in as employer."
+msgstr "あなたは雇用主としてログインしています。"
+
+msgid "You are not a logged in member."
+msgstr "あなたはログインしているメンバーではありません。"
+
+msgid "You do not have any role."
+msgstr "あなたには何の役割もありません。"
+
+msgid "Proceed to payment"
+msgstr "支払いに進みます"
+
+msgid "Views"
+msgstr "ビュー"
+
+msgid "Save As Draft"
+msgstr "ドラフトとして保存します"
+
+msgid "Job Has Been Feature SuccesFully"
+msgstr "仕事は正常に取り上げられています"
+
+msgid "You are Not Allowed To Add More than One"
+msgstr "複数を追加することは許可されていません"
+
+msgid "Contact TO Adminstrator"
+msgstr "管理者に連絡します"
+
+msgid "This Is Meta Description"
+msgstr "これはメタの説明です"
+
+msgid "jobs by cities"
+msgstr "都市による仕事"
+
+msgid "Show Info"
+msgstr "情報を表示します"
+
+msgid "Changing a user's role will not remove its entites from the system !"
+msgstr "ユーザーの役割を変更しても、システムからエンティテスが削除されません！"
+
+msgid "company reject"
+msgstr "会社は拒否します"
+
+msgid "all reject"
+msgstr "すべてが拒否されます"
+
+msgid "Missing user(s) added successfully!"
+msgstr "不足しているユーザーが正常に追加されました！"
+
+msgid "No missing user found!"
+msgstr "不足しているユーザーは見つかりません！"
+
+msgid "Jobs Listing Menu"
+msgstr "ジョブリストメニュー"
+
+msgid "Visitor"
+msgstr "ビジター"
+
+msgid "new message alert"
+msgstr "新しいメッセージアラート"
+
+msgid "New Message Alert"
+msgstr "新しいメッセージアラート"
+
+msgid "Recipient Name"
+msgstr "受信者名"
+
+msgid "Sender Name"
+msgstr "送信者名"
+
+msgid "Sender Role"
+msgstr "送信者の役割"
+
+msgid "Message Text"
+msgstr "メッセージテキスト"
+
+msgid "Job/Resume Info"
+msgstr "ジョブ/履歴書情報"
+
+msgid "Upload Resume"
+msgstr "履歴書をアップロードします"
+
+msgid "Profile Status"
+msgstr "プロファイルステータス"
+
+msgid "Profile Completed"
+msgstr "プロファイルが完了しました"
+
+msgid "feature approve"
+msgstr "機能承認"
+
+msgid "feature reject"
+msgstr "機能は拒否されます"
+
+msgid "Type city"
+msgstr "タイプシティ"
+
+msgid "New Message"
+msgstr "新しいメッセージ"
+
+msgid "Employer is disabled by admin"
+msgstr "雇用主は管理者によって無効になっています"
+
+msgid "You are not allowed to add more than one"
+msgstr "複数を追加することは許可されていません"
+
+msgid "contact adminstrator"
+msgstr "管理者に連絡してください"
+
+msgid "Payment is not made against this job contact adminstrator"
+msgstr "このジョブ連絡先管理者に対する支払いは行われません"
+
+msgid "Addon Page Not Found"
+msgstr "アドオンページが見つかりません"
+
+msgid "User Role"
+msgstr "ユーザーロール"
+
+msgid "Jobs Role"
+msgstr "仕事の役割"
+
+msgid "User has been successfully created"
+msgstr "ユーザーは正常に作成されました"
+
+msgid "Pay For Department"
+msgstr "部門の支払い"
+
+msgid "Pay For Job Apply"
+msgstr "雇用申請の支払い"
+
+msgid "Pay For Company"
+msgstr "会社の代金を支払う"
+
+msgid "Pay For Featured Company"
+msgstr "特集会社の支払い"
+
+msgid "Pay For Job"
+msgstr "仕事の代金を支払う"
+
+msgid "Pay For Featured Job"
+msgstr "注目の仕事の代金を支払います"
+
+msgid "Pay For Resume Search"
+msgstr "履歴書検索の支払い"
+
+msgid "Pay For Resume "
+msgstr "履歴書の支払い"
+
+msgid "Pay For Featured Resume "
+msgstr "特集履歴書の支払い"
+
+msgid "Job Saved Searches"
+msgstr "ジョブで保存された検索"
+
+msgid "Job Apply Configurations"
+msgstr "JOB応用構成"
+
+msgid "Quick Apply Fields"
+msgstr "クイック適用フィールド"
+
+msgid "addons status"
+msgstr "アドオンステータス"
+
+msgid "coverletters"
+msgstr "カバーレター"
+
+msgid "coverletter"
+msgstr "カバーレター"
+
+msgid "add new cover letter"
+msgstr "新しいカバーレターを追加します"
+
+msgid "Loaction Name settings"
+msgstr "ロケーション名の設定"
+
+msgid "Loaction Name Settings"
+msgstr "ロケーション名の設定"
+
+msgid "shifts"
+msgstr "シフト"
+
+msgid "ages"
+msgstr "年齢"
+
+msgid "Error file size too large"
+msgstr "エラーファイルサイズが大きすぎます"
+
+msgid "Maximum Size"
+msgstr "最大サイズ"
+
+msgid "is in use"
+msgstr "使用中です"
+
+msgid "can not deleted it"
+msgstr "削除できません"
+
+msgid "Address data"
+msgstr "アドレスデータ"
+
+msgid "themes"
+msgstr "テーマ"
+
+msgid "Color Schemes"
+msgstr "カラースキーム"
+
+msgid "Color Chooser"
+msgstr "カラーチョーザー"
+
+msgid "Color 1"
+msgstr "色1"
+
+msgid "Color 2"
+msgstr "色2"
+
+msgid "Color 3"
+msgstr "色3"
+
+msgid "Add User Fields"
+msgstr "ユーザーフィールドを追加します"
+
+msgid "cannot unpublished"
+msgstr "未発表はできません"
+
+msgid "Search Name"
+msgstr "名前を検索します"
+
+msgid "start"
+msgstr "始める"
+
+msgid "Total Resume Search"
+msgstr "履歴書の合計検索"
+
+msgid "Remaining Resume Search"
+msgstr "残りの履歴書検索"
+
+msgid "Reference"
+msgstr "参照"
+
+msgid "cancel payment"
+msgstr "支払いをキャンセルします"
+
+msgid "Apply now"
+msgstr "今すぐ申請してください"
+
+msgid " Listing"
+msgstr "リスト"
+
+msgid "Credits log"
+msgstr "クレジットログ"
+
+msgid "Rate list"
+msgstr "レートリスト"
+
+msgid "Purchase history"
+msgstr "購入履歴"
+
+msgid " remaining"
+msgstr "残り"
+
+msgid "Cover Letter has been successfully published"
+msgstr "カバーレターが正常に公開されました"
+
+msgid "cover Letter has been successfully published"
+msgstr "カバーレターが正常に公開されました"
+
+msgid "Resume files download"
+msgstr "再開ファイルのダウンロード"
+
+msgid "apply with facebook"
+msgstr "Facebookに適用します"
+
+msgid "apply with linkedin"
+msgstr "LinkedInに適用します"
+
+msgid "apply with xing"
+msgstr "xingで適用します"
+
+msgid "Resume removed from featured"
+msgstr "機能から削除された履歴書"
+
+msgid "share blog"
+msgstr "ブログを共有します"
+
+msgid "share digg"
+msgstr "Diggを共有します"
+
+msgid "share fb"
+msgstr "FBを共有します"
+
+msgid "share ff"
+msgstr "FFを共有します"
+
+msgid "share google"
+msgstr "Googleを共有します"
+
+msgid "share linkedin"
+msgstr "LinkedInを共有します"
+
+msgid "share myspace"
+msgstr "myspaceを共有します"
+
+msgid "share twitter"
+msgstr "Twitterを共有します"
+
+msgid "share yahoo"
+msgstr "Yahooを共有します"
+
+msgid "Mark As Shortlist Job"
+msgstr "最終リストとしてマークするジョブとしてマークします"
+
+msgid "Keep this job on your list! Mark it as shortlisted and find it easily whenever you need."
+msgstr "この仕事をリストに載せてください！最終候補としてマークを付け、必要なときにいつでも簡単に見つけてください。"
+
+msgid "Search job title, company name, keywords"
+msgstr "役職、会社名、キーワードを検索します"
+
+msgid "Loction"
+msgstr "loction"
+
+msgid "Applied Resume Title"
+msgstr "応用履歴書タイトル"
+
+msgid "Arrow"
+msgstr "矢印"
+
+msgid "Already Applied"
+msgstr "すでに適用されています"
+
+msgid "Ready to take the next step? Simply fill out the form and submit your application. It only takes a few minutes!"
+msgstr "次のステップを踏む準備はできましたか？フォームに記入して、アプリケーションを送信するだけです。数分しかかかりません！"
+
+msgid "Waiting for Payment"
+msgstr "支払いを待っています"
+
+msgid "Salery"
+msgstr "塩水"
+
+msgid "Buy"
+msgstr "買う"
+
+msgid "Employer can add companies and jobs while searching for potential candidate to hire"
+msgstr "雇用主は、雇用する潜在的な候補者を探している間、企業や仕事を追加できます"
+
+msgid "Selected"
+msgstr "選択"
+
+msgid "Jobseeker can add resume, cover letters, search jobs and apply to multiple jobs easily"
+msgstr "Jobseekerは履歴書を追加したり、カバーレターを追加したり、ジョブを検索したり、複数のジョブに簡単に適用できます"
+
+msgid "Hello, again!..."
+msgstr "こんにちは、もう一度！..."
+
+msgid "View All Applied Jobs"
+msgstr "すべての適用ジョブを表示します"
+
+msgid "View All Newest Jobs"
+msgstr "すべての最新の仕事を見る"
+
+msgid "Hello, again!…"
+msgstr "こんにちは、また！…"
+
+msgid "Submit job"
+msgstr "ジョブを提出します"
+
+msgid "Submit Job"
+msgstr "ジョブを提出します"
+
+msgid "View detail"
+msgstr "詳細を表示します"
+
+msgid "Recently Applied Resume"
+msgstr "最近適用された履歴書"
+
+msgid "Messages By Resume"
+msgstr "履歴書によるメッセージ"
+
+msgid "Reply"
+msgstr "返事"
+
+msgid "View jobs"
+msgstr "ジョブを見る"
+
+msgid "Other Info"
+msgstr "その他の情報"
+
+msgid "Link"
+msgstr "リンク"
+
+msgid "Mail"
+msgstr "郵便"
+
+msgid "Site"
+msgstr "サイト"
+
+msgid "View Company Details"
+msgstr "会社の詳細を表示します"
+
+msgid "Completed"
+msgstr "完了しました"
+
+msgid "Categoty"
+msgstr "カテゴリ"
+
+msgid "tell a friend"
+msgstr "友達に教えてください"
+
+msgid "Tell friend"
+msgstr "友達に教えてください"
+
+msgid "Know someone perfect for this job? Share it with them!"
+msgstr "この仕事にぴったりの人を知っていますか？彼らと共有してください！"
+
+msgid "Your name"
+msgstr "あなたの名前"
+
+msgid "Your email"
+msgstr "あなたのメール"
+
+msgid "Show the"
+msgstr "を表示します"
+
+msgid "form to logged-in users on the job detail page. If this is on,"
+msgstr "ジョブの詳細ページでユーザーをログインするフォーム。これがオンになっている場合、"
+
+msgid "will be turned off."
+msgstr "オフになります。"
+
+msgid "form to visitor on the job detail page. If this is on,"
+msgstr "ジョブの詳細ページで訪問者にフォーム。これがオンになっている場合、"
+
+msgid "You do not have any save serch remaining"
+msgstr "セーブセルチが残っていません"
+
+msgid "We would love to hear from You."
+msgstr "私たちはあなたから聞いてみたいです。"

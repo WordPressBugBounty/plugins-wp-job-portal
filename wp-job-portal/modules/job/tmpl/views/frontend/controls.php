@@ -127,6 +127,7 @@ switch ($control) {
                  } ?>
                <a class="wjportal-jobs-act-btn" href="<?php echo  esc_url(wp_nonce_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid(),'wpjobportalme'=>'shortlist', 'action'=>'wpjobportaltask', 'task'=>'removeshortlist', 'wpjobportalid'=>$job->slid)),'wpjobportal_shortlist_job_nonce')); ?>"><?php echo esc_html(__('Delete Job', 'wp-job-portal')); ?></a><?php
                 $config_array = wpjobportal::$_data['config'];
+                /*
                 $show_apply_form  = wpjobportal::$_config->getConfigurationByConfigName('quick_apply_for_user');
                 if (WPJOBPORTALincluder::getObjectClass('user')->isguest()) {
                     $show_apply_form  = wpjobportal::$_config->getConfigurationByConfigName('quick_apply_for_visitor');
@@ -188,6 +189,7 @@ switch ($control) {
                         }
                     }
                 }// closing if for quick apply check
+                */
                 ?>
                 <div class="wjportal-shortlist-stars">
                     <?php

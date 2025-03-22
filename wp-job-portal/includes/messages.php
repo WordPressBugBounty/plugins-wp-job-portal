@@ -322,7 +322,7 @@ class WPJOBPORTALMessages {
                         </div>
                         <div class="jsre-error-page-message-text">
                             <div class="jsre-error-page-message-txt">
-                                ' . esc_html(esc_html(__('You don\'t have enough credits','wp-job-portal'))) . '
+                                ' . esc_html(__('You do not have enough credits','wp-job-portal')) . '
                             </div>
                         </div>
                         <div class="jsre-error-page-message-btn">

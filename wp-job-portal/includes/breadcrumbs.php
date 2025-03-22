@@ -141,6 +141,10 @@ class WPJOBPORTALbreadcrumbs {
                                 $array[] = $staticUrl;
                                 $array[] = array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'jobsbycategories')), 'text' => esc_html(__('Jobs By Types', 'wp-job-portal')));
                                 break;
+                            case 'jobsbycities':
+                                $array[] = $staticUrl;
+                                $array[] = array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'jobsbycities')), 'text' => esc_html(__('Jobs By Cities', 'wp-job-portal')));
+                                break;
                             case 'jobs':
                                 $array[] = $staticUrl;
                                 $array[] = array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'jobsbycategories')), 'text' => esc_html(__('Jobs', 'wp-job-portal')));

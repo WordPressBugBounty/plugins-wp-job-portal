@@ -55,7 +55,7 @@ class WPJOBPORTALJobseekerModel {
         CONCAT(job.alias,'-',job.id) AS jobaliasid,job.noofjobs,job.endfeatureddate,
         job.isfeaturedjob,job.status,job.startpublishing,job.stoppublishing,cat.cat_title,company.id AS companyid,company.name AS companyname,company.logofilename, jobtype.title AS jobtypetitle,job.id AS id,
         job.params,CONCAT(company.alias,'-',company.id) AS companyaliasid,LOWER(jobtype.title) AS jobtypetit,
-        job.salarymax,job.salarymin,job.salarytype,srtype.title AS srangetypetitle,jobtype.color AS jobtypecolor
+        job.salarymax,job.salarymin,job.salarytype,job.description,srtype.title AS srangetypetitle,jobtype.color AS jobtypecolor
         FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
         ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
@@ -85,7 +85,7 @@ class WPJOBPORTALJobseekerModel {
                  company.id AS companyid, company.name AS companyname,company.logofilename,category.cat_title,
                  jobtype.title AS jobtypetitle, jobstatus.title AS jobstatustitle,resume.id AS resumeid,resume.salaryfixed as salary,resume.application_title,job.params,job.created,LOWER(jobtype.title) AS jobtype
                 ,jobapply.id AS id,resume.first_name,resume.last_name,job.salarymin,job.salarymax,job.salarytype,
-                                salaryrangetype.title AS srangetypetitle,job.endfeatureddate,job.isfeaturedjob,job.status,job.startpublishing,job.stoppublishing,jobtype.color AS jobtypecolor,jobapply.coverletterid
+                                salaryrangetype.title AS srangetypetitle,job.endfeatureddate,job.isfeaturedjob,job.status,job.startpublishing,job.stoppublishing,jobtype.color AS jobtypecolor,jobapply.coverletterid,job.description
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` AS jobapply
                  JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job ON job.id = jobapply.jobid
                  JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume ON resume.id = jobapply.cvid

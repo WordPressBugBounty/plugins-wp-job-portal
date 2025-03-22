@@ -722,6 +722,19 @@ class WPJOBPORTALCommonModel {
 
         }
     }
+    function WPJPcheck_field() {
+		$autfored = WPJOBPORTALincluder::getJSModel('wpjobportal')->WPJPcheck_autfored(); 
+        $encrypted_field = openssl_encrypt('ed', 'AES-128-ECB', $autfored);
+        $option_name = 'wjportal_ed';
+        $stored_data = get_option($option_name);
+
+        if ($stored_data) {
+            if ($stored_data['encrypted_field_name'] === $encrypted_field) {
+                return true; // Match found
+            }
+        }
+        return false; // No match
+    }
 
     function getJobtempModelFrontend() {
         $componentPath = JPATH_SITE . '/components/com_wpjobportal';
@@ -1100,9 +1113,8 @@ class WPJOBPORTALCommonModel {
     function listModuleJobsStats($classname, $title, $showtitle, $employers, $jobseekers, $jobs, $companies, $activejobs, $resumes, $todaystats,$data){
         $my_html = '
             <div id="wpjobportals_mod_wrapper" class="wjportal-stats-mod"> ';
-        if ($showtitle == 1) {
-            $my_html .= '<div id="wpjobportals-mod-heading" class="wjportal-mod-heading"> ' . $title . '</div>';
-        }
+		$my_html .= '<div id="wpjobportals-mod-heading" class="wjportal-mod-heading"> ' . esc_html(__('Stats', 'wp-job-portal')) . '</div>';
+
         $my_html .='
                 <div id="wpjobportals-data-wrapper" class="' . $classname . ' wjportal-stats">';
         $curdate = gmdate('Y-m-d');
@@ -1125,9 +1137,7 @@ class WPJOBPORTALCommonModel {
             $my_html .='<div class="wpjobportals-value wjportal-stats-data">' . esc_html(__('Resume', 'wp-job-portal')) . ' <span class="wjportal-stats-num">(' . $data['totalresume'] . ')</span></div>';
         }
         if ($todaystats == 1) {
-            if ($showtitle == 1) {
-                $my_html .= '</div> <div id="wpjobportals-mod-heading" class="wjportal-mod-heading"> ' . esc_html(__('Today', 'wp-job-portal')) . ' ' . $title . '</div>';
-            }
+			$my_html .= '</div> <div id="wpjobportals-mod-heading" class="wjportal-mod-heading"> ' . esc_html(__('Today Stats', 'wp-job-portal')) . '</div>';
             $my_html .='
                 <div id="wpjobportals-data-wrapper" class="' . $classname . ' wjportal-stats">';
             if ($employers == 1) {
@@ -1452,7 +1462,12 @@ class WPJOBPORTALCommonModel {
 
     function getDefaultImage($role){
         // job seeker deafult image
-        $img_path = esc_url(WPJOBPORTAL_PLUGIN_URL) . "includes/images/users.png";
+        if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()){
+            $url = ELEGANTDESIGN_PLUGIN_URL;
+        } else {
+            $url = WPJOBPORTAL_PLUGIN_URL;
+        }
+        $img_path = esc_url($url) . "includes/images/users.png";
 
         // employer default image
         if($role == 'employer'){
@@ -1592,6 +1607,20 @@ class WPJOBPORTALCommonModel {
             }
         }
     }
+	
+    function isElegantDesignEnabled(){
+        if(in_array('elegantdesign', wpjobportal::$_active_addons)){
+            // check if addon is not properly installed
+            if (!$this->WPJPcheck_field()) {
+				if(!current_user_can('manage_options')){
+					return false;
+				}
+            }
+            return true;
+        }
+
+        return false;
+    }
 
     function getWPJobPortalMetaDescriptionByPage($module,$layout){
         $description = '';
@@ -1679,6 +1708,8 @@ class WPJOBPORTALCommonModel {
 
         return '';
     }
+
+
 
 }
 ?>

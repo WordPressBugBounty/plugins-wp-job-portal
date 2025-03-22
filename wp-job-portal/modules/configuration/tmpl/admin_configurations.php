@@ -1175,6 +1175,7 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                             </div>
                                         <?php } ?>
                                         <?php if(in_array('visitorapplyjob', wpjobportal::$_active_addons)){ ?>
+                                            <?php  /*
                                             <div class="wpjobportal-config-row">
                                                 <div class="wpjobportal-config-title">
                                                     <?php echo esc_html(__('Show login message to visitor', 'wp-job-portal')); ?>
@@ -1186,6 +1187,7 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                                     </div>
                                                 </div>
                                             </div>
+                                            */?>
                                             <div class="wpjobportal-config-row">
                                                 <div class="wpjobportal-config-title">
                                                     <?php echo esc_html(__('Visitor post resume redirect page ', 'wp-job-portal')); ?>
@@ -2966,7 +2968,7 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                             <div class="wpjobportal-config-value">
                                                 <?php echo wp_kses(WPJOBPORTALformfield::select('quick_apply_for_user', $yesno, wpjobportal::$_data[0]['quick_apply_for_user']),WPJOBPORTAL_ALLOWED_TAGS); ?>
                                                 <div class="wpjobportal-config-description">
-                                                    <?php echo esc_html(__('Show the "Quick Apply" form to logged-in users on the job detail page. If this is on, "Apply Now" will be turned off.', 'wp-job-portal')); ?>
+                                                    <?php echo esc_html(__('Show the', 'wp-job-portal')).' <b>'. esc_html(__('Quick Apply', 'wp-job-portal')).'</b> '. esc_html(__('form to logged-in users on the job detail page. If this is on,', 'wp-job-portal')).' <b>'.esc_html(__('Apply Now', 'wp-job-portal')).'</b> '.esc_html(__('will be turned off.', 'wp-job-portal')); ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -2977,7 +2979,7 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                             <div class="wpjobportal-config-value">
                                                 <?php echo wp_kses(WPJOBPORTALformfield::select('quick_apply_for_visitor', $yesno, wpjobportal::$_data[0]['quick_apply_for_visitor']),WPJOBPORTAL_ALLOWED_TAGS); ?>
                                                 <div class="wpjobportal-config-description">
-                                                    <?php echo esc_html(__('Show the "Quick Apply" form to visitor on the job detail page. If this is on, "Apply Now" will be turned off.', 'wp-job-portal')); ?>
+                                                    <?php echo esc_html(__('Show the', 'wp-job-portal')).' <b>'.esc_html(__('Quick Apply', 'wp-job-portal')).'</b> '.esc_html(__('form to visitor on the job detail page. If this is on,', 'wp-job-portal')).' <b>'.esc_html(__('Apply Now', 'wp-job-portal')).'</b> '.esc_html(__('will be turned off.', 'wp-job-portal')); ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -3001,12 +3003,12 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                         </h3>
                                         <div class="wpjobportal-config-row">
                                             <div class="wpjobportal-config-title">
-                                                <?php echo esc_html(__('Show apply button', 'wp-job-portal')); ?>
+                                                <?php echo esc_html(__('Show apply', 'wp-job-portal')); ?>
                                             </div>
                                             <div class="wpjobportal-config-value">
                                                 <?php echo wp_kses(WPJOBPORTALformfield::select('showapplybutton', $yesno, wpjobportal::$_data[0]['showapplybutton']),WPJOBPORTAL_ALLOWED_TAGS); ?>
                                                 <div class="wpjobportal-config-description">
-                                                    <?php echo esc_html(__('Controls the visibility of apply now button in plugin', 'wp-job-portal')); ?>
+                                                    <?php echo esc_html(__('Controls the visibility of apply in plugin', 'wp-job-portal')); ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -3019,6 +3021,7 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                                     <?php echo wp_kses(WPJOBPORTALformfield::select('visitor_can_apply_to_job', $yesno, wpjobportal::$_data[0]['visitor_can_apply_to_job']),WPJOBPORTAL_ALLOWED_TAGS); ?>
                                                 </div>
                                             </div>
+                                            <?php /*
                                             <div class="wpjobportal-config-row">
                                                 <div class="wpjobportal-config-title">
                                                     <?php echo esc_html(__('Show login message to visitor', 'wp-job-portal')); ?>
@@ -3030,6 +3033,7 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                                     </div>
                                                 </div>
                                             </div>
+                                            */?>
                                         <?php } ?>
 
 

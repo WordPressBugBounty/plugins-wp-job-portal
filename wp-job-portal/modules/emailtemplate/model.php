@@ -1205,6 +1205,16 @@ class WPJOBPORTALEmailtemplateModel {
                             $sender_role = __('Employer','wp-job-portal');
                             $send_email_jobseeker = 1;
                         }
+                        if($Email == ""){
+                            if(current_user_can('manage_options')){ // admin
+                                $recipient_name = $record->jobseeker_data->username;
+                                $sender_name = $record->employer_data->username;
+                                $Email = $record->jobseeker_data->useremail;
+                                $sender_role = __('Admin','wp-job-portal');
+                                $send_email_jobseeker = 1;
+                            }
+                        }
+
                         $message = $record->message;
                         $message_link_id = $record->replytoid;
                         if(is_numeric($message_link_id) && $message_link_id > 0){

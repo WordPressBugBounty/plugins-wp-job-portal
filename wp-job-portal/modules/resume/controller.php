@@ -458,11 +458,13 @@ class WPJOBPORTALResumeController {
                     wpjobportal::$_error_flag = true;
                 }
             }
-            $module = (wpjobportal::$_common->wpjp_isadmin()) ? 'page' : 'wpjobportalme';
-            $module = WPJOBPORTALrequest::getVar($module, null, 'resume');
-            $module = wpjobportalphplib::wpJP_str_replace('wpjobportal_', '', $module);
-            if(is_numeric($module)){
-                $module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'resume');
+            if(!isset($module)){
+                $module = (wpjobportal::$_common->wpjp_isadmin()) ? 'page' : 'wpjobportalme';
+                $module = WPJOBPORTALrequest::getVar($module, null, 'resume');
+                $module = wpjobportalphplib::wpJP_str_replace('wpjobportal_', '', $module);
+                if(is_numeric($module)){
+                    $module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'resume');
+                }
             }
             wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
             WPJOBPORTALincluder::include_file($layout, $module);

@@ -57,7 +57,7 @@ function wpjobportal_add_registration_fields() {
     //Get and set any values already sent
     if (isset($_SESSION['js_cpfrom'])) {
         ?>
-        <div class="wjportal-form-title"><?php echo esc_html(__('User role', 'wp-job-portal')); ?></div>
+        <div class="wjportal-form-title"><?php echo esc_html(__('User Role', 'wp-job-portal')); ?></div>
         <div class="wjportal-form-value">
             <div class="wjportal-form-text">
                 <?php if ($_SESSION['js_cpfrom'] == 1) { ?>
@@ -77,7 +77,7 @@ function wpjobportal_add_registration_fields() {
 
             <div class="wjportal-form-title">
                 <label for="jobs_role">
-                    <?php echo esc_html(__('Jobs role', 'wp-job-portal')) ?>
+                    <?php echo esc_html(__('Jobs Role', 'wp-job-portal')) ?>
                 </label>
             </div>
             <div class="wjportal-form-value">
@@ -352,7 +352,7 @@ function wpjobportal_add_new_member() {
                     }elseif($userrole == 2){
                         $pageid = wpjobportal::$_config->getConfigurationByConfigName('register_jobseeker_redirect_page');
                     }
-                    WPJOBPORTALMessages::setLayoutMessage(esc_html(__('User been successfully created', 'wp-job-portal')), 'updated',$key);
+                    WPJOBPORTALMessages::setLayoutMessage(esc_html(__('User has been successfully created', 'wp-job-portal')), 'updated',$key);
                     // $url = home_url();
                     if(is_numeric($pageid) && $pageid > 0){
                            if(get_post_status($pageid) == 'publish'){

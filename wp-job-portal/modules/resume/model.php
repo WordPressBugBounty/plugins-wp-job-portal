@@ -2349,7 +2349,7 @@ class WPJOBPORTALResumeModel {
         $query = "SELECT resume.id,resume.salaryfixed, resume.tags AS viewtags , resume.tags AS resumetags ,resume.uid,resume.application_title, resume.first_name, resume.last_name, resume.cell, resume.email_address, resume.nationality AS nationalityid, resume.photo, resume.gender, resume.job_category
                     , resume.skills, resume.keywords, cat.cat_title AS categorytitle, jobtype.title AS jobtypetitle,resume.jobtype
                     , resume.resume,nationality.name AS nationality
-                    ,resume.params,resume.status,resume.hits AS resumehits ,resume.created,resume.searchable,LOWER(jobtype.title) AS jobtypetit,jobtype.color AS jobtypecolor,resume.quick_apply
+                    ,resume.params,resume.status,resume.hits AS resumehits ,resume.created,resume.searchable,LOWER(jobtype.title) AS jobtypetit,jobtype.color AS jobtypecolor,resume.quick_apply,resume.isfeaturedresume,resume.endfeatureddate
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = resume.job_category
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = resume.jobtype
@@ -2940,7 +2940,7 @@ class WPJOBPORTALResumeModel {
                 resume.isfeaturedresume,resume.endfeatureddate
                 ,resume.status,city.name AS cityname
                 ,state.name AS statename,resume.params,resume.salaryfixed as salary
-                ,resume.last_modified,LOWER(jobtype.title) AS jobtypetit,jobtype.color as jobtypecolor,country.name AS countryname,resume.id as resumeid
+                ,resume.last_modified,LOWER(jobtype.title) AS jobtypetit,jobtype.color as jobtypecolor,country.name AS countryname,resume.id as resumeid,resume.skills
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category ON category.id = resume.job_category ";
             if($zipCode != ''){
@@ -3600,7 +3600,7 @@ class WPJOBPORTALResumeModel {
         wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($total,'myresume');
 
         $query = "SELECT resume.id,resume.first_name,resume.last_name,resume.application_title as applicationtitle,CONCAT(resume.alias,'-',resume.id) resumealiasid,resume.email_address,category.cat_title,resume.created,jobtype.title AS jobtypetitle,resume.photo,resume.salaryfixed as salary,
-                resume.isfeaturedresume,resume.status,city.name AS cityname,state.name AS statename,country.name AS countryname,resume.id as resumeid,resume.endfeatureddate,resume.params,resume.last_modified,LOWER(jobtype.title) AS jobtypetit,jobtype.color as jobtypecolor
+                resume.isfeaturedresume,resume.status,city.name AS cityname,state.name AS statename,country.name AS countryname,resume.id as resumeid,resume.endfeatureddate,resume.params,resume.last_modified,LOWER(jobtype.title) AS jobtypetit,jobtype.color as jobtypecolor,resume.skills
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category ON category.id = resume.job_category
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = resume.jobtype
@@ -3825,6 +3825,10 @@ class WPJOBPORTALResumeModel {
             }
             $userpackages = array();
             $pack = apply_filters('wpjobportal_addons_credit_get_Packages_user',false,$uid,'resumecontactdetail');
+            $addonclass = '';
+            if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()){
+                $addonclass = ' wjportal-elegant-addon-packages-popup ';
+            }
             foreach($pack as $package){
                 if($package->resumecontactdetail == -1 || $package->remresumecontactdetail > 0){ //-1 = unlimited
                     $userpackages[] = $package;
@@ -3900,7 +3904,7 @@ class WPJOBPORTALResumeModel {
             } else {
            $content = '
             <div id="wjportal-popup-background" style="display: none;"></div>
-            <div id="package-popup" class="wjportal-popup-wrp wjportal-packages-popup">
+            <div id="package-popup" class="wjportal-popup-wrp wjportal-packages-popup '.$addonclass.'">
                 <div class="wjportal-popup-cnt">
                     <img id="wjportal-popup-close-btn" alt="popup cross" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/popup-close.png">
                     <div class="wjportal-popup-title">
@@ -4433,6 +4437,29 @@ class WPJOBPORTALResumeModel {
         if($hide_resume_salary && $hide_resume_salary != ''){
             wpjobportal::$_data['shortcode_option_hide_resume_salary'] = 1;
         }
+    }
+
+    function getResumesForJobapply(){
+        $uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
+        $resume_list = array();
+        if( is_numeric($uid) && $uid > 0 ){
+            $query = "SELECT id,application_title,first_name,last_name FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE status = 1 AND quick_apply <> 1 AND uid = ". esc_sql($uid);
+            // code to handle unpublished application_title
+            $resume_data = wpjobportal::$_db->get_results($query);
+            $resume_list = array();
+            foreach ($resume_data as $single_resume) {
+                $resume_record = new stdClass();
+                $resume_record->id = $single_resume->id;
+                if($single_resume->application_title != ''){
+                    $resume_record->text = $single_resume->application_title;
+                }else{
+                    $resume_record->text = $single_resume->first_name.' '.$single_resume->last_name;
+                }
+                $resume_list[] = $resume_record;
+            }
+        }
+        return $resume_list;
+
     }
 
 }

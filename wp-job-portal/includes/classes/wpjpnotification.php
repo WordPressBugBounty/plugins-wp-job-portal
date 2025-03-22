@@ -69,8 +69,9 @@ class WPJOBPORTALwpjpnotification {
 
             $data = wp_json_encode($data , true);
             $sessionmsg = wpjobportalphplib::wpJP_safe_encoding($data);
+            $newexp = time() + (int)(30); // 30 sec
             if(!$update){
-                wpjobportal::$_db->insert( wpjobportal::$_db->prefix."wj_portal_jswjsessiondata", array("usersessionid" => wpjobportal::$_jsjpsession->sessionid, "sessionmsg" => $sessionmsg, "sessionexpire" => wpjobportal::$_jsjpsession->sessionexpire, "sessionfor" => $sessiondatafor , "msgkey" => $msgkey) );
+                wpjobportal::$_db->insert( wpjobportal::$_db->prefix."wj_portal_jswjsessiondata", array("usersessionid" => wpjobportal::$_jsjpsession->sessionid, "sessionmsg" => $sessionmsg, "sessionexpire" => $newexp, "sessionfor" => $sessiondatafor , "msgkey" => $msgkey) );
             }else{
                 wpjobportal::$_db->update( wpjobportal::$_db->prefix."wj_portal_jswjsessiondata", array("sessionmsg" => $sessionmsg), array("usersessionid" => wpjobportal::$_jsjpsession->sessionid , 'sessionfor' => $sessiondatafor) );
             }

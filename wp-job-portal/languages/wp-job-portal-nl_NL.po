@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 
 msgid "Delete"
 msgstr "Verwijderen"
@@ -9328,3 +9328,948 @@ msgstr "Mijn afdeling"
 
 msgid "Add To ShortList"
 msgstr "Toevoegen aan shortlist"
+
+msgid "or"
+msgstr "of"
+
+msgid "company logo"
+msgstr "Bedrijfslogo"
+
+msgid "job title"
+msgstr "titel"
+
+msgid "company name"
+msgstr "Bedrijfsnaam"
+
+msgid "Resume Has Been Feature SuccesFully"
+msgstr "CV is met succes te zien geweest"
+
+msgid "My coverletter"
+msgstr "Mijn sollicitatiebrief"
+
+msgid "Add coverletter"
+msgstr "Voeg sollicitatiebrief toe"
+
+msgid "Total Cover Letter"
+msgstr "Totale sollicitatiebrief"
+
+msgid "Remaining Cover Letter"
+msgstr "Resterende sollicitatiebrief"
+
+msgid "Open ChatGPT"
+msgstr "Open chatgpt"
+
+msgid "How To Add Cover Letter With ChatGPT"
+msgstr "Hoe u sollicitatiebrief toevoegt met chatgpt"
+
+msgid "Edit coverletter"
+msgstr "Bewerk sollicitatiebrief"
+
+msgid "Edit Cover Letter"
+msgstr "Bewerk sollicitatiebrief"
+
+msgid "Delete coverletter"
+msgstr "Verwijder sollicitatiebrief"
+
+msgid "coverletter title"
+msgstr "sollicitatiebrief titel"
+
+msgid "Add New Cover Letter"
+msgstr "Voeg nieuwe sollicitatiebrief toe"
+
+msgid "Quote from Hello Dolly song, by Jerry Herman:"
+msgstr "Citaat van Hello Dolly Song, door Jerry Herman:"
+
+msgid "Select Parent"
+msgstr "Selecteer ouder"
+
+msgid "Edit Field"
+msgstr "Bewerk veld"
+
+msgid "Visitor published"
+msgstr "Bezoeker gepubliceerd"
+
+msgid "Show On Listing"
+msgstr "Toon op lijst"
+
+msgid "Advanced"
+msgstr "Geavanceerd"
+
+msgid "Equal"
+msgstr "Gelijkwaardig"
+
+msgid "Not Equal"
+msgstr "Niet gelijk"
+
+msgid "Multi Select"
+msgstr "Multi Select"
+
+msgid "Visible"
+msgstr "Zichtbaar"
+
+msgid "Select Child"
+msgstr "Selecteer kind"
+
+msgid "Select Condition"
+msgstr "Selecteer voorwaarde"
+
+msgid "To use this feature please fill the above three fields."
+msgstr "Vul de bovenstaande drie velden in om deze functie te gebruiken."
+
+msgid "No response found"
+msgstr "Geen reactie gevonden"
+
+msgid "Quick Apply"
+msgstr "Snel aanvragen"
+
+msgid "user publish"
+msgstr "Gebruikers publiceren"
+
+msgid "User Unpublished"
+msgstr "Gebruiker niet gepubliceerd"
+
+msgid "visitor publish"
+msgstr "Bezoeker publiceren"
+
+msgid "visitor unpublish"
+msgstr "bezoeker niet publiceren"
+
+msgid "Select user status"
+msgstr "Selecteer Gebruikersstatus"
+
+msgid "Un published"
+msgstr "VN gepubliceerd"
+
+msgid "File upload fields and text editor fields cannot be made required."
+msgstr "Bestand upload velden en teksteditorvelden kunnen niet worden vereist."
+
+msgid "Dependent Field"
+msgstr "Afhankelijk veld"
+
+msgid "Job Apply settings"
+msgstr "Object sollicitaties"
+
+msgid "Quick Apply settings"
+msgstr "Snelle instellingen"
+
+msgid "Show count in jobs by cities page"
+msgstr "Tellingen tonen in banen door steden pagina"
+
+msgid "Show country in jobs by cities page"
+msgstr "Toon land in banen door steden pagina"
+
+msgid "Profile Section"
+msgstr "Profielgedeelte"
+
+msgid "Recaptcha Version 2"
+msgstr "Recaptcha versie 2"
+
+msgid "Recaptcha Version 3"
+msgstr "Recaptcha versie 3"
+
+msgid "System slug"
+msgstr "System Slug"
+
+msgid "Image file size"
+msgstr "Afbeeldingsbestandsgrootte"
+
+msgid "System will not upload if image size is greater than the given size"
+msgstr "Systeem wordt niet geüpload als de beeldgrootte groter is dan de gegeven grootte"
+
+msgid "Show page title above wpjobportal breadcrumbs"
+msgstr "Toon pagina titel hierboven WPJOBPORTAL BROOTCROMMS"
+
+msgid "Default Image For WP Job Portal"
+msgstr "Standaardafbeelding voor WP -taakportal"
+
+msgid "This image will shown as default image for entities & users if no other image is provided."
+msgstr "Deze afbeelding wordt weergegeven als standaardafbeelding voor entiteiten en gebruikers als er geen andere afbeelding wordt verstrekt."
+
+msgid "Default country"
+msgstr "Standaardland"
+
+msgid "Select default country for user added cities"
+msgstr "Selecteer Standaardland voor door de gebruiker toegevoegde steden"
+
+msgid "Job detail URL options are title, company, category, location, jobtype. eg- [title] [company]"
+msgstr "Taakdetail -URL -opties zijn titel, bedrijf, categorie, locatie, Jobtype. bijv. [Titel] [Bedrijf]"
+
+msgid "Select the Google reCaptcha Version"
+msgstr "Selecteer de Google Recaptcha -versie"
+
+msgid "Recent Resumes Box"
+msgstr "Recente CV -doos"
+
+msgid "mode"
+msgstr "modus"
+
+msgid "expire"
+msgstr "verlopen"
+
+msgid "Registration is disabled in WordPress settings, please enable to Membership: anyone can register."
+msgstr "Registratie is uitgeschakeld in WordPress -instellingen, kunt u inschakelen voor lidmaatschap: iedereen kan zich registreren."
+
+msgid "Quick Apply Now"
+msgstr "Snel aanvragen nu"
+
+msgid "Enable Quick Apply for user"
+msgstr "Schakel snel gebruiker in voor de gebruiker"
+
+msgid "Enable Quick Apply for visitor"
+msgstr "Schakel snelle aanvraag in voor bezoeker"
+
+msgid "Enable captcha for visitor Quick Apply"
+msgstr "Schakel captcha in voor bezoeker snel van toepassing"
+
+msgid "Show captcha to visitor on quick apply form."
+msgstr "Toon CAPTCHA aan bezoeker op Quick Toepssformulier."
+
+msgid "Add ons for WP Job Portal have been installed and activated successfully. "
+msgstr "Toevoeging voor WP Job Portal zijn met succes geïnstalleerd en geactiveerd."
+
+msgid "WP Job Portal is an open-source job board plugin for WordPress that provides advanced features to help you create a successful job board. In addition, we offer trusted WP Job Portal add-ons that can further enhance your job board's functionality in a fast, safe, and easy manner. Our add-ons have been designed to integrate seamlessly with our job board plugin, ensuring you can expand your job board's capabilities without any complications."
+msgstr "WP Job Portal is een open-source vacature plug-in voor WordPress die geavanceerde functies biedt om u te helpen een succesvol vacature te maken. Daarnaast bieden we vertrouwde WP-vacature-portal-add-ons die de functionaliteit van uw vacature op een snelle, veilige en eenvoudige manier verder kunnen verbeteren. Onze add-ons zijn ontworpen om naadloos te integreren met onze vacature-plug-in, zodat u de mogelijkheden van uw vacature kunt uitbreiden zonder complicaties."
+
+msgid "Savings*"
+msgstr "Besparingen*"
+
+msgid "Best Deal"
+msgstr "Beste deal"
+
+msgid "Shortlist Job"
+msgstr "Shortlist -baan"
+
+msgid "e.g 45000"
+msgstr "bijv. 45000"
+
+msgid "e.g 3000"
+msgstr "bijv. 3000"
+
+msgid "e.g 6000"
+msgstr "bijv. 6000"
+
+msgid "Deactivated"
+msgstr "Gedeactiveerd"
+
+msgid "Not Installed"
+msgstr "Niet geïnstalleerd"
+
+msgid "Addon Installed Successfully"
+msgstr "Addon met succes geïnstalleerd"
+
+msgid "Addon installation failed"
+msgstr "Addon -installatie is mislukt"
+
+msgid "Resume Data Management"
+msgstr "Hervatten gegevensbeheer"
+
+msgid "Export (csv)"
+msgstr "Exporteren (CSV)"
+
+msgid "Configuration Based Tutorials"
+msgstr "Op configuratie gebaseerde tutorials"
+
+msgid "Slugs"
+msgstr "Naaktslakken"
+
+msgid "Theme Installation"
+msgstr "Thema -installatie"
+
+msgid "WP Job Portal Theme  Installation"
+msgstr "WP Job Portal -thema -installatie"
+
+msgid "System Management"
+msgstr "Systeembeheer"
+
+msgid "Activity Log and System Errors"
+msgstr "Activiteitslogboek en systeemfouten"
+
+msgid "Shortcode"
+msgstr "Kortsluiting"
+
+msgid "Job Seeker Control Panel"
+msgstr "Werkzoekercontrolepaneel"
+
+msgid "A shortcode designed for jobseeker, providing an easy-to-use controlpanel to manage applications, resume, and preferences directly from their dashboard."
+msgstr "Een shortcode die is ontworpen voor Jobseeker, die een eenvoudig te gebruiken ControlPanel biedt om applicaties, cv en voorkeuren rechtstreeks vanuit hun dashboard te beheren."
+
+msgid "Base Shortcode"
+msgstr "Base shortcode"
+
+msgid "Shortcode With All Options"
+msgstr "Shortcode met alle opties"
+
+msgid " The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "Het werkgevercontrolepaneel is een gestroomlijnde interface waarmee werkgevers vacatures kunnen beheren, applicaties kunnen volgen, communiceren met kandidaten en efficiënt aanwervingsstatistieken analyseren."
+
+msgid "The job search shortcode enables users to easily find job listings based on various criteria."
+msgstr "Met de shortcode voor het zoeken naar werk kunnen gebruikers eenvoudig vacatures vinden op basis van verschillende criteria."
+
+msgid "The jobs shortcode is a feature that displays individual job listings on a website."
+msgstr "De shortcode van Jobs is een functie die afzonderlijke vacatures op een website weergeeft."
+
+msgid "The featured job shortcode highlights select job listings on a website, making them stand out to potential applicants."
+msgstr "De uitgelichte taak shortcode -hoogtepunten selecteren vacatures op een website, waardoor ze opvallen voor potentiële aanvragers."
+
+msgid "This Shortcode requires WP Job Portal Featured Jobs Addon"
+msgstr "Deze shortcode vereist WP Job Portal aanbevolen Jobs Addon"
+
+msgid "Get Addon"
+msgstr "Krijg addon"
+
+msgid "Job Categories"
+msgstr "Functiecategorieën"
+
+msgid "The job categories shortcode displays a dynamic list of available categories, enabling users to easily navigate and find relevant job listings."
+msgstr "De shortcode van de functiecategorieën geeft een dynamische lijst met beschikbare categorieën weer, waarmee gebruikers eenvoudig kunnen navigeren en relevante vacatures kunnen vinden."
+
+msgid "The job types shortcode presents a comprehensive list of available job types, allowing users to quickly explore and find suitable job opportunities."
+msgstr "De shortcode van de taaktypen presenteert een uitgebreide lijst met beschikbare taaktypen, waardoor gebruikers snel kunnen verkennen en geschikte vacatures kunnen vinden."
+
+msgid "My applied jobs shortcode provides users with a personalized list of their job applications, allowing easy access to track application status and details."
+msgstr "My Applied Jobs Shortcode biedt gebruikers een gepersonaliseerde lijst van hun sollicitaties, waardoor eenvoudige toegang mogelijk is om de status en details van de applicatie bij te houden."
+
+msgid "My companies shortcode displays a personalized list of companies users are associated with, facilitating easy access to company information and opportunities."
+msgstr "De shortcode van mijn bedrijven toont een gepersonaliseerde lijst van bedrijven die gebruikers hebben geassocieerd, waardoor gemakkelijke toegang tot bedrijfsinformatie en kansen wordt vergemakkelijkt."
+
+msgid "All companies shortcode offers a curated directory of all companies, allowing users to easily browse and connect with potential employers."
+msgstr "Alle Companies Shortcode biedt een samengestelde directory van alle bedrijven, waardoor gebruikers gemakkelijk kunnen bladeren en contact kunnen maken met potentiële werkgevers."
+
+msgid "This Shortcode requires WP Job Portal All Companies Addon"
+msgstr "Deze shortcode vereist WP Job Portal alle bedrijven add -on"
+
+msgid "The featured companies shortcode showcases prominent companies within the portal, allowing users to explore exciting job opportunities from industry leaders."
+msgstr "De aanbevolen bedrijven Shortcode toont prominente bedrijven binnen de portal, waardoor gebruikers spannende vacatures van marktleiders kunnen verkennen."
+
+msgid "This Shortcode requires WP Job Portal Featured Companies Addon"
+msgstr "Deze shortcode vereist WP Job Portal aanbevolen bedrijven addon"
+
+msgid "My jobs shortcode allows users to view and manage their saved job listings, making it easy to keep track of potential opportunities."
+msgstr "Met mijn shortcode van Jobs kunnen gebruikers hun opgeslagen vacatures bekijken en beheren, waardoor het gemakkelijk is om potentiële kansen bij te houden."
+
+msgid "My resume shortcode allows users to view and manage their uploaded resumes, providing a convenient way to keep their job application materials up to date."
+msgstr "Met mijn cv -shortcode kunnen gebruikers hun geüploade cv's bekijken en beheren, waardoor een handige manier is om hun sollicitatiemateriaal actueel te houden."
+
+msgid "All Resumes"
+msgstr "Alle hervatten"
+
+msgid "All resumes shortcode allows job seekers to view and manage their uploaded resumes, ensuring they have easy access to their application materials."
+msgstr "Alle cv's met shortcode kunnen werkzoekenden hun geüploade cv's bekijken en beheren, waardoor ze gemakkelijk toegang hebben tot hun applicatiemateriaal."
+
+msgid "This Shortcode requires WP Job Portal All Resumes Addon"
+msgstr "Deze shortcode vereist WP -taakportaal allemaal add -on hervat"
+
+msgid "The featured resumes shortcode showcases a selection of standout resumes, allowing job seekers to stand out to potential employers."
+msgstr "De uitgelichte CV -shortcode toont een selectie van opvallende cv's, waardoor werkzoekenden kunnen opvallen bij potentiële werkgevers."
+
+msgid "This Shortcode requires WP Job Portal Featured Resumes Addon"
+msgstr "Deze shortcode vereist WP Job Portal aanbevolen CV addon"
+
+msgid "Add company shortcode allows employers to effortlessly register their organization, providing essential details to attract talent and post job openings."
+msgstr "Door Company Shortcode toe te voegen, kunnen werkgevers hun organisatie moeiteloos registreren, essentiële details verstrekken om talent aan te trekken en vacatures te plaatsen."
+
+msgid "Add department shortcode enables employers to easily create and manage specific departments within their organization, facilitating better job categorization and organization."
+msgstr "Department -shortcode toevoegen stelt werkgevers in staat om eenvoudig specifieke afdelingen binnen hun organisatie te maken en te beheren, waardoor betere banencategorie en organisatie worden vergemakkelijkt."
+
+msgid "This Shortcode requires WP Job Portal Multi Departments Addon"
+msgstr "Deze shortcode vereist WP Job Portal multi -afdelingen addon"
+
+msgid "Add jobs enables organizations to effortlessly publish job postings, helping them connect with potential applicants and fill vacancies more effectively."
+msgstr "Door banen toe te voegen stelt organisaties in staat om moeiteloos vacatures te publiceren, waardoor ze contact maken met potentiële aanvragers en vacatures effectiever vullen."
+
+msgid "Add resume shortcode simplifies the process for candidates to submit their resumes, helping them showcase their qualifications and experiences to potential employers."
+msgstr "CV -shortcode toevoegen vereenvoudigt het proces voor kandidaten om hun cv's in te dienen, waardoor ze hun kwalificaties en ervaringen kunnen laten zien aan potentiële werkgevers."
+
+msgid "Resume search shortcode provides a powerful search tool for employers to explore candidate profiles, making it easier to connect with potential hires."
+msgstr "CV Search Shortcode biedt een krachtig zoekhulpmiddel voor werkgevers om kandidaatprofielen te verkennen, waardoor het gemakkelijker wordt om verbinding te maken met potentiële medewerkers."
+
+msgid "This Shortcode requires WP Job Portal Resume Search Addon"
+msgstr "Deze shortcode vereist WP Job Portal CV -zoekopdracht"
+
+msgid "Registration"
+msgstr "Registratie"
+
+msgid "Registration shortcode allows individuals to easily create accounts as their selected role"
+msgstr "Registratie -shortcode stelt individuen in staat om eenvoudig accounts te maken als hun geselecteerde rol"
+
+msgid "Employer registration shortcode streamlines the process for organizations to register, ensuring they can efficiently manage job postings and their company profiles."
+msgstr "Werkgeverregistratie Shortcode stroomlijnt het proces voor organisaties om zich te registreren, waardoor ze vacatures en hun bedrijfsprofielen efficiënt kunnen beheren."
+
+msgid "Job Seeker Registration"
+msgstr "Werkzoekersregistratie"
+
+msgid "Job seeker registration shortcode allows individuals to easily create accounts, enabling them to apply for jobs and manage their resumes."
+msgstr "Werkzoeker registratie met een shortcode stelt individuen in staat om eenvoudig accounts aan te maken, waardoor ze banen kunnen aanvragen en hun cv's kunnen beheren."
+
+msgid "Login Page"
+msgstr "Inlogpagina"
+
+msgid "Login page shortcode offers a user-friendly interface for candidates and employers to securely log in and manage their profiles and postings."
+msgstr "Inlogpagina Shortcode biedt een gebruiksvriendelijke interface voor kandidaten en werkgevers om zich veilig aan te melden en hun profielen en berichten te beheren."
+
+msgid "Widget"
+msgstr "Widget"
+
+msgid "Search job widget provides an intuitive interface for candidates to filter and browse openings, connecting them with opportunities that align with their skills."
+msgstr "Search Job Widget biedt een intuïtieve interface voor kandidaten om openingen te filteren en te bladeren, waardoor ze worden verbonden met kansen die aansluiten bij hun vaardigheden."
+
+msgid "This Shortcode requires WP Job Portal Front-end Widgets Addon"
+msgstr "Deze shortcode vereist WP Job Portal front-end widgets addon"
+
+msgid "My packages offers a personalized dashboard for users to monitor their subscription details, helping them manage job postings and access features effectively."
+msgstr "My Packages biedt een gepersonaliseerd dashboard voor gebruikers om hun abonnementsdetails te controleren, waardoor ze vacatures en toegang tot functies effectief kunnen beheren."
+
+msgid "This Shortcode requires WP Job Portal Credits Addon"
+msgstr "Deze shortcode vereist WP Job Portal Credits Add -on"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans.  "
+msgstr "Mijn abonnement biedt gebruikers een overzicht van hun actieve abonnementen, waardoor eenvoudig beheer en het volgen van hun functieplannen mogelijk is."
+
+msgid "All packages showcases a comprehensive list of available subscription plans, allowing users to compare features and select the best options for their job posting needs."
+msgstr "Alle pakketten toont een uitgebreide lijst met beschikbare abonnementsplannen, waarmee gebruikers functies kunnen vergelijken en de beste opties kunnen selecteren voor hun vacature -behoeften."
+
+msgid "My invoices provides a convenient way for users to view and manage their invoices, helping them stay organized and up to date with their payments."
+msgstr "Mijn facturen bieden gebruikers een handige manier om hun facturen te bekijken en te beheren, waardoor ze georganiseerd en up -to -date blijven met hun betalingen."
+
+msgid "SEO"
+msgstr "SEO"
+
+msgid "Document Title Settings"
+msgstr "Document titelinstellingen"
+
+msgid "Company detail url options are name, location. eg- [name] [location]"
+msgstr "Bedrijfsdetail -URL -opties zijn naam, locatie. bijv. [Naam] [Locatie]"
+
+msgid "spinning wheel"
+msgstr "spinnewiel"
+
+msgid "New Update Version"
+msgstr "Nieuwe updateversie"
+
+msgid "is Available"
+msgstr "is beschikbaar"
+
+msgid "Hey there! We have recently launched a fresh update for the add-ons. Don't forget to update the add-ons to enjoy the greatest features!"
+msgstr "Hé daar! We hebben onlangs een nieuwe update gelanceerd voor de add-ons. Vergeet niet om de add-ons bij te werken om te genieten van de beste functies!"
+
+msgid "View Addone Status"
+msgstr "Bekijk addOne -status"
+
+msgid "Active Companies"
+msgstr "Actieve bedrijven"
+
+msgid "Help Page"
+msgstr "Helppagina"
+
+msgid "Watch Tutorial"
+msgstr "Bekijk de tutorial"
+
+msgid "video"
+msgstr "video"
+
+msgid "Apply Now Failed"
+msgstr "Toepassing nu mislukt"
+
+msgid "You do not have package required for job apply"
+msgstr "U heeft geen pakket vereist voor sollicitatie"
+
+msgid "You package has expired"
+msgstr "Uw pakket is verlopen"
+
+msgid "You do not any more job apply available"
+msgstr "U hebt geen sollicitatie meer beschikbaar"
+
+msgid "Job Not Found"
+msgstr "Job niet gevonden"
+
+msgid "Job does not exist in the system"
+msgstr "Job bestaat niet in het systeem"
+
+msgid "Make Payment To Complete The Job Apply"
+msgstr "Betaling doen om de sollicitatie te voltooien"
+
+msgid "Successfully applied on job"
+msgstr "Succesvol toegepast op Job"
+
+msgid "view coverletter"
+msgstr "Bekijk sollicitatiebrief"
+
+msgid "Please Fill out fields"
+msgstr "Vul velden in"
+
+msgid "sender email is not of correct format"
+msgstr "Afzender -e -mail is niet van de juiste indeling"
+
+msgid "Erase Selected Country"
+msgstr "Wis geselecteerd land"
+
+msgid "Erase All Data"
+msgstr "Wis alle gegevens"
+
+msgid "Click on package to select one"
+msgstr "Klik op het pakket om er een te selecteren"
+
+msgid "Apply to the Job"
+msgstr "Solliciteer voor de baan"
+
+msgid "No Cover Letter!"
+msgstr "Geen sollicitatiebrief!"
+
+msgid "Add Cover Lettter"
+msgstr "Voeg sollicitatiebrief toe"
+
+msgid "You have already applied on this job."
+msgstr "U hebt al aangevraagd voor deze taak."
+
+msgid "Unlimited job applies"
+msgstr "Onbeperkt werk is van toepassing"
+
+msgid "Job applies remaining"
+msgstr "Job is van toepassing"
+
+msgid "Buy package to apply on job."
+msgstr "Koop een pakket om aan te solliciteren."
+
+msgid "Apply With Package"
+msgstr "Aanmelden met pakket"
+
+msgid "Payment of"
+msgstr "Betaling van"
+
+msgid "is required to complete the job apply process"
+msgstr "is vereist om het proces voor het aanbrengen van een baan te voltooien"
+
+msgid "You are logged in as employer."
+msgstr "U bent aangemeld als werkgever."
+
+msgid "You are not a logged in member."
+msgstr "U bent geen aangemeld lid."
+
+msgid "You do not have any role."
+msgstr "Je hebt geen rol."
+
+msgid "Proceed to payment"
+msgstr "Doorgaan tot betaling"
+
+msgid "Views"
+msgstr "Uitzichten"
+
+msgid "Save As Draft"
+msgstr "Bespaar als concept"
+
+msgid "Job Has Been Feature SuccesFully"
+msgstr "Job is met succes te zien"
+
+msgid "You are Not Allowed To Add More than One"
+msgstr "U mag niet meer dan één toevoegen"
+
+msgid "Contact TO Adminstrator"
+msgstr "Neem contact op met beheerder"
+
+msgid "This Is Meta Description"
+msgstr "Dit is metabeschrijving"
+
+msgid "jobs by cities"
+msgstr "Banen per steden"
+
+msgid "Show Info"
+msgstr "Toon info"
+
+msgid "Changing a user's role will not remove its entites from the system !"
+msgstr "Het wijzigen van de rol van een gebruiker zal zijn entites niet uit het systeem verwijderen!"
+
+msgid "company reject"
+msgstr "Bedrijf afwijzen"
+
+msgid "all reject"
+msgstr "allemaal afwijzen"
+
+msgid "Missing user(s) added successfully!"
+msgstr "Ontbrekende gebruiker (s) met succes toegevoegd!"
+
+msgid "No missing user found!"
+msgstr "Geen ontbrekende gebruiker gevonden!"
+
+msgid "Jobs Listing Menu"
+msgstr "Takenlijstmenu"
+
+msgid "Visitor"
+msgstr "Bezoeker"
+
+msgid "new message alert"
+msgstr "Nieuw berichtwaarschuwing"
+
+msgid "New Message Alert"
+msgstr "Nieuw berichtwaarschuwing"
+
+msgid "Recipient Name"
+msgstr "Ontvangernaam"
+
+msgid "Sender Name"
+msgstr "SENDER NAAM"
+
+msgid "Sender Role"
+msgstr "Afzenderrol"
+
+msgid "Message Text"
+msgstr "Berichttekst"
+
+msgid "Job/Resume Info"
+msgstr "Taak/cv info"
+
+msgid "Upload Resume"
+msgstr "Uploaden CV"
+
+msgid "Profile Status"
+msgstr "Profielstatus"
+
+msgid "Profile Completed"
+msgstr "Profiel voltooid"
+
+msgid "feature approve"
+msgstr "functie goedkeuren"
+
+msgid "feature reject"
+msgstr "Feature afwijzen"
+
+msgid "Type city"
+msgstr "Type stad"
+
+msgid "New Message"
+msgstr "Nieuw bericht"
+
+msgid "Employer is disabled by admin"
+msgstr "Werkgever is uitgeschakeld door admin"
+
+msgid "You are not allowed to add more than one"
+msgstr "U mag niet meer dan één toevoegen"
+
+msgid "contact adminstrator"
+msgstr "Neem contact op met beheerder"
+
+msgid "Payment is not made against this job contact adminstrator"
+msgstr "Betaling wordt niet gedaan tegen deze taakcontactbeheerder"
+
+msgid "Addon Page Not Found"
+msgstr "Addon -pagina niet gevonden"
+
+msgid "User Role"
+msgstr "Gebruikersrol"
+
+msgid "Jobs Role"
+msgstr "Jobsrol"
+
+msgid "User has been successfully created"
+msgstr "Gebruiker is succesvol gemaakt"
+
+msgid "Pay For Department"
+msgstr "Betalen voor afdeling"
+
+msgid "Pay For Job Apply"
+msgstr "Betalen voor sollicitatie"
+
+msgid "Pay For Company"
+msgstr "Betalen voor bedrijf"
+
+msgid "Pay For Featured Company"
+msgstr "Betaal voor aanbevolen bedrijf"
+
+msgid "Pay For Job"
+msgstr "Betalen voor een baan"
+
+msgid "Pay For Featured Job"
+msgstr "Betaal voor aanbevolen baan"
+
+msgid "Pay For Resume Search"
+msgstr "Betaal voor het zoeken naar cv"
+
+msgid "Pay For Resume "
+msgstr "Betaal voor CV"
+
+msgid "Pay For Featured Resume "
+msgstr "Betaal voor aanbevolen CV"
+
+msgid "Job Saved Searches"
+msgstr "Job opgeslagen zoekopdrachten"
+
+msgid "Job Apply Configurations"
+msgstr "Object Toepassen Configuraties"
+
+msgid "Quick Apply Fields"
+msgstr "Snel velden aanbrengen"
+
+msgid "addons status"
+msgstr "addons status"
+
+msgid "coverletters"
+msgstr "sollicitatiebrieven"
+
+msgid "coverletter"
+msgstr "sollicitatiebrief"
+
+msgid "add new cover letter"
+msgstr "Voeg nieuwe sollicitatiebrief toe"
+
+msgid "Loaction Name settings"
+msgstr "Locatienaaminstellingen"
+
+msgid "Loaction Name Settings"
+msgstr "Locatienaaminstellingen"
+
+msgid "shifts"
+msgstr "verschuivingen"
+
+msgid "ages"
+msgstr "leeftijden"
+
+msgid "Error file size too large"
+msgstr "Foutbestandsgrootte te groot"
+
+msgid "Maximum Size"
+msgstr "Maximale maat"
+
+msgid "is in use"
+msgstr "is in gebruik"
+
+msgid "can not deleted it"
+msgstr "kan het niet verwijderen"
+
+msgid "Address data"
+msgstr "Adresgegevens"
+
+msgid "themes"
+msgstr "thema's"
+
+msgid "Color Schemes"
+msgstr "Kleurschema's"
+
+msgid "Color Chooser"
+msgstr "Kleur kiezer"
+
+msgid "Color 1"
+msgstr "Kleur 1"
+
+msgid "Color 2"
+msgstr "Kleur 2"
+
+msgid "Color 3"
+msgstr "Kleur 3"
+
+msgid "Add User Fields"
+msgstr "Voeg gebruikersvelden toe"
+
+msgid "cannot unpublished"
+msgstr "kan niet niet worden gepubliceerd"
+
+msgid "Search Name"
+msgstr "Zoeknaam"
+
+msgid "start"
+msgstr "begin"
+
+msgid "Total Resume Search"
+msgstr "Totale CV -zoekopdracht"
+
+msgid "Remaining Resume Search"
+msgstr "Resterende CV -zoekopdracht"
+
+msgid "Reference"
+msgstr "Referentie"
+
+msgid "cancel payment"
+msgstr "Annuleer de betaling"
+
+msgid "Apply now"
+msgstr "Solliciteer nu"
+
+msgid " Listing"
+msgstr "Aanbieding"
+
+msgid "Credits log"
+msgstr "Credits Log"
+
+msgid "Rate list"
+msgstr "Tarieflijst"
+
+msgid "Purchase history"
+msgstr "Koopgeschiedenis"
+
+msgid " remaining"
+msgstr "overig"
+
+msgid "Cover Letter has been successfully published"
+msgstr "Sollicitatiebrief is succesvol gepubliceerd"
+
+msgid "cover Letter has been successfully published"
+msgstr "Sollicitatiebrief is succesvol gepubliceerd"
+
+msgid "Resume files download"
+msgstr "Hervatten bestanden downloaden"
+
+msgid "apply with facebook"
+msgstr "aanmelden bij Facebook"
+
+msgid "apply with linkedin"
+msgstr "aanmelden met LinkedIn"
+
+msgid "apply with xing"
+msgstr "aanmelden met xing"
+
+msgid "Resume removed from featured"
+msgstr "CV verwijderd uit de uitgelicht"
+
+msgid "share blog"
+msgstr "Deel blog"
+
+msgid "share digg"
+msgstr "Deel Digg"
+
+msgid "share fb"
+msgstr "Deel FB"
+
+msgid "share ff"
+msgstr "Deel FF"
+
+msgid "share google"
+msgstr "Deel Google"
+
+msgid "share linkedin"
+msgstr "Deel LinkedIn"
+
+msgid "share myspace"
+msgstr "Deel MySpace"
+
+msgid "share twitter"
+msgstr "Deel Twitter"
+
+msgid "share yahoo"
+msgstr "Deel Yahoo"
+
+msgid "Mark As Shortlist Job"
+msgstr "Markeer als een shortlist -baan"
+
+msgid "Keep this job on your list! Mark it as shortlisted and find it easily whenever you need."
+msgstr "Houd deze baan op uw lijst! Markeer het als op de shortlist en vind het gemakkelijk wanneer u maar wilt."
+
+msgid "Search job title, company name, keywords"
+msgstr "Zoek functie, bedrijfsnaam, trefwoorden"
+
+msgid "Loction"
+msgstr "Locatie"
+
+msgid "Applied Resume Title"
+msgstr "Toegepaste CV -titel"
+
+msgid "Arrow"
+msgstr "Pijl"
+
+msgid "Already Applied"
+msgstr "Al toegepast"
+
+msgid "Ready to take the next step? Simply fill out the form and submit your application. It only takes a few minutes!"
+msgstr "Klaar om de volgende stap te zetten? Vul het formulier in en dien uw aanvraag in. Het duurt maar een paar minuten!"
+
+msgid "Waiting for Payment"
+msgstr "Wachten op betaling"
+
+msgid "Salery"
+msgstr "Souly"
+
+msgid "Buy"
+msgstr "Kopen"
+
+msgid "Employer can add companies and jobs while searching for potential candidate to hire"
+msgstr "Werkgever kan bedrijven en banen toevoegen tijdens het zoeken naar potentiële kandidaat om in te huren"
+
+msgid "Selected"
+msgstr "Gekozen"
+
+msgid "Jobseeker can add resume, cover letters, search jobs and apply to multiple jobs easily"
+msgstr "Jobseeker kan cv toevoegen, sollicitatiebrieven, zoekopdrachten en sollicitatietaken eenvoudig toepassen"
+
+msgid "Hello, again!..."
+msgstr "Hallo, nogmaals! ..."
+
+msgid "View All Applied Jobs"
+msgstr "Bekijk alle toegepaste banen"
+
+msgid "View All Newest Jobs"
+msgstr "Bekijk alle nieuwste banen"
+
+msgid "Hello, again!…"
+msgstr "Hallo, nogmaals! ..."
+
+msgid "Submit job"
+msgstr "Job indienen"
+
+msgid "Submit Job"
+msgstr "Job indienen"
+
+msgid "View detail"
+msgstr "Bekijk detail"
+
+msgid "Recently Applied Resume"
+msgstr "Onlangs toegepast CV"
+
+msgid "Messages By Resume"
+msgstr "Berichten door CV"
+
+msgid "Reply"
+msgstr "Antwoord"
+
+msgid "View jobs"
+msgstr "Bekijk banen"
+
+msgid "Other Info"
+msgstr "Andere info"
+
+msgid "Link"
+msgstr "Link"
+
+msgid "Mail"
+msgstr "Mail"
+
+msgid "Site"
+msgstr "Site"
+
+msgid "View Company Details"
+msgstr "Bekijk bedrijfsgegevens"
+
+msgid "Completed"
+msgstr "Voltooid"
+
+msgid "Categoty"
+msgstr "Categorie"
+
+msgid "tell a friend"
+msgstr "Vertel het een vriend"
+
+msgid "Tell friend"
+msgstr "Vertel vriend"
+
+msgid "Know someone perfect for this job? Share it with them!"
+msgstr "Weet je iemand die perfect is voor deze baan? Deel het met hen!"
+
+msgid "Your name"
+msgstr "Uw naam"
+
+msgid "Your email"
+msgstr "Uw e -mail"
+
+msgid "Show the"
+msgstr "Laat de"
+
+msgid "form to logged-in users on the job detail page. If this is on,"
+msgstr "formulier voor ingelogde gebruikers op de pagina Job Detail. Als dit is,"
+
+msgid "will be turned off."
+msgstr "zal worden uitgeschakeld."
+
+msgid "form to visitor on the job detail page. If this is on,"
+msgstr "formulier naar bezoeker op de pagina Job Detail. Als dit is,"
+
+msgid "You do not have any save serch remaining"
+msgstr "U hebt geen overblijfselen van Save Serch"
+
+msgid "We would love to hear from You."
+msgstr "We zouden graag van je horen."

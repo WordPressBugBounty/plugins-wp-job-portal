@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 
 msgid "Delete"
 msgstr "삭제"
@@ -9331,3 +9331,948 @@ msgstr "내 부서"
 
 msgid "Add To ShortList"
 msgstr "관심 목록에 추가"
+
+msgid "or"
+msgstr "또는"
+
+msgid "company logo"
+msgstr "회사 로고"
+
+msgid "job title"
+msgstr "직위"
+
+msgid "company name"
+msgstr "회사 이름"
+
+msgid "Resume Has Been Feature SuccesFully"
+msgstr "이력서는 성공적으로 등장했습니다"
+
+msgid "My coverletter"
+msgstr "내 커버 레터"
+
+msgid "Add coverletter"
+msgstr "커버 레터를 추가하십시오"
+
+msgid "Total Cover Letter"
+msgstr "총 커버 레터"
+
+msgid "Remaining Cover Letter"
+msgstr "남은 커버 레터"
+
+msgid "Open ChatGPT"
+msgstr "chatgpt를 엽니 다"
+
+msgid "How To Add Cover Letter With ChatGPT"
+msgstr "chatgpt와 함께 커버 레터를 추가하는 방법"
+
+msgid "Edit coverletter"
+msgstr "커버 레터를 편집하십시오"
+
+msgid "Edit Cover Letter"
+msgstr "커버 레터를 편집하십시오"
+
+msgid "Delete coverletter"
+msgstr "커버 레터를 삭제하십시오"
+
+msgid "coverletter title"
+msgstr "표지 제목"
+
+msgid "Add New Cover Letter"
+msgstr "새 커버 레터를 추가하십시오"
+
+msgid "Quote from Hello Dolly song, by Jerry Herman:"
+msgstr "Jerry Herman의 Hello Dolly Song의 인용문 :"
+
+msgid "Select Parent"
+msgstr "부모를 선택하십시오"
+
+msgid "Edit Field"
+msgstr "필드 편집"
+
+msgid "Visitor published"
+msgstr "방문자가 게시되었습니다"
+
+msgid "Show On Listing"
+msgstr "목록에 표시하십시오"
+
+msgid "Advanced"
+msgstr "고급의"
+
+msgid "Equal"
+msgstr "동일한"
+
+msgid "Not Equal"
+msgstr "동일하지 않습니다"
+
+msgid "Multi Select"
+msgstr "멀티 선택"
+
+msgid "Visible"
+msgstr "보이는"
+
+msgid "Select Child"
+msgstr "아이를 선택하십시오"
+
+msgid "Select Condition"
+msgstr "조건을 선택하십시오"
+
+msgid "To use this feature please fill the above three fields."
+msgstr "이 기능을 사용하려면 위의 세 필드를 채우십시오."
+
+msgid "No response found"
+msgstr "응답이 없습니다"
+
+msgid "Quick Apply"
+msgstr "빠른 적용"
+
+msgid "user publish"
+msgstr "사용자 게시"
+
+msgid "User Unpublished"
+msgstr "사용자 미공개"
+
+msgid "visitor publish"
+msgstr "방문자 게시"
+
+msgid "visitor unpublish"
+msgstr "방문자는 게시되지 않습니다"
+
+msgid "Select user status"
+msgstr "사용자 상태를 선택하십시오"
+
+msgid "Un published"
+msgstr "UN 출판"
+
+msgid "File upload fields and text editor fields cannot be made required."
+msgstr "파일 업로드 필드 및 텍스트 편집기 필드는 필요할 수 없습니다."
+
+msgid "Dependent Field"
+msgstr "종속 필드"
+
+msgid "Job Apply settings"
+msgstr "작업은 설정을 적용합니다"
+
+msgid "Quick Apply settings"
+msgstr "빠른 설정 설정"
+
+msgid "Show count in jobs by cities page"
+msgstr "도시별로 작업에 카운트를 표시하십시오"
+
+msgid "Show country in jobs by cities page"
+msgstr "도시로 일자리에서 국가를 보여주십시오"
+
+msgid "Profile Section"
+msgstr "프로필 섹션"
+
+msgid "Recaptcha Version 2"
+msgstr "recaptcha 버전 2"
+
+msgid "Recaptcha Version 3"
+msgstr "Recaptcha 버전 3"
+
+msgid "System slug"
+msgstr "시스템 슬러그"
+
+msgid "Image file size"
+msgstr "이미지 파일 크기"
+
+msgid "System will not upload if image size is greater than the given size"
+msgstr "이미지 크기가 주어진 크기보다 큰 경우 시스템이 업로드되지 않습니다."
+
+msgid "Show page title above wpjobportal breadcrumbs"
+msgstr "WPJOBPORTAL BREAKSCRUMBS 위의 페이지 제목을 표시하십시오"
+
+msgid "Default Image For WP Job Portal"
+msgstr "WP 작업 포털의 기본 이미지"
+
+msgid "This image will shown as default image for entities & users if no other image is provided."
+msgstr "이 이미지는 다른 이미지가 제공되지 않으면 엔터티 및 사용자의 기본 이미지로 표시됩니다."
+
+msgid "Default country"
+msgstr "기본 국가"
+
+msgid "Select default country for user added cities"
+msgstr "사용자 추가 도시의 기본 국가를 선택하십시오"
+
+msgid "Job detail URL options are title, company, category, location, jobtype. eg- [title] [company]"
+msgstr "작업 세부 사항 URL 옵션은 제목, 회사, 카테고리, 위치, JobType입니다. 예 : [제목] [회사]"
+
+msgid "Select the Google reCaptcha Version"
+msgstr "Google Recaptcha 버전을 선택하십시오"
+
+msgid "Recent Resumes Box"
+msgstr "최근 이력서 상자"
+
+msgid "mode"
+msgstr "방법"
+
+msgid "expire"
+msgstr "내쉬다"
+
+msgid "Registration is disabled in WordPress settings, please enable to Membership: anyone can register."
+msgstr "WordPress 설정에서 등록이 비활성화되어 있습니다. 회원 자격을 활성화하십시오. 누구나 등록 할 수 있습니다."
+
+msgid "Quick Apply Now"
+msgstr "지금 빨리 적용하십시오"
+
+msgid "Enable Quick Apply for user"
+msgstr "사용자를 빠르게 적용 할 수 있습니다"
+
+msgid "Enable Quick Apply for visitor"
+msgstr "방문자를 신속하게 신청하십시오"
+
+msgid "Enable captcha for visitor Quick Apply"
+msgstr "방문자를 위해 Captcha를 활성화하십시오"
+
+msgid "Show captcha to visitor on quick apply form."
+msgstr "Quick Apply Form에서 Captcha를 방문자에게 보여줍니다."
+
+msgid "Add ons for WP Job Portal have been installed and activated successfully. "
+msgstr "WP 작업 포털에 대한 추가 기능이 설치되어 활성화되었습니다."
+
+msgid "WP Job Portal is an open-source job board plugin for WordPress that provides advanced features to help you create a successful job board. In addition, we offer trusted WP Job Portal add-ons that can further enhance your job board's functionality in a fast, safe, and easy manner. Our add-ons have been designed to integrate seamlessly with our job board plugin, ensuring you can expand your job board's capabilities without any complications."
+msgstr "WP Job Portal은 성공적인 작업 보드를 만드는 데 도움이되는 고급 기능을 제공하는 WordPress 용 오픈 소스 작업 보드 플러그인입니다. 또한 신뢰할 수있는 WP 작업 포털 애드온을 제공하여 빠르고 안전하며 쉬운 방식으로 작업 보드의 기능을 더욱 향상시킬 수 있습니다. 우리의 애드온은 작업 보드 플러그인과 완벽하게 통합하도록 설계되어 합병증없이 작업 보드의 기능을 확장 할 수 있도록 설계되었습니다."
+
+msgid "Savings*"
+msgstr "저금*"
+
+msgid "Best Deal"
+msgstr "최고의 거래"
+
+msgid "Shortlist Job"
+msgstr "후보자 업무"
+
+msgid "e.g 45000"
+msgstr "예 : 45000"
+
+msgid "e.g 3000"
+msgstr "예 : 3000"
+
+msgid "e.g 6000"
+msgstr "예 : 6000"
+
+msgid "Deactivated"
+msgstr "비활성화"
+
+msgid "Not Installed"
+msgstr "설치되지 않았습니다"
+
+msgid "Addon Installed Successfully"
+msgstr "Addon은 성공적으로 설치했습니다"
+
+msgid "Addon installation failed"
+msgstr "애드온 설치가 실패했습니다"
+
+msgid "Resume Data Management"
+msgstr "데이터 관리를 재개하십시오"
+
+msgid "Export (csv)"
+msgstr "수출 (CSV)"
+
+msgid "Configuration Based Tutorials"
+msgstr "구성 기반 자습서"
+
+msgid "Slugs"
+msgstr "슬러그"
+
+msgid "Theme Installation"
+msgstr "테마 설치"
+
+msgid "WP Job Portal Theme  Installation"
+msgstr "WP 작업 포털 테마 설치"
+
+msgid "System Management"
+msgstr "시스템 관리"
+
+msgid "Activity Log and System Errors"
+msgstr "활동 로그 및 시스템 오류"
+
+msgid "Shortcode"
+msgstr "바로가 코드"
+
+msgid "Job Seeker Control Panel"
+msgstr "구직자 제어판"
+
+msgid "A shortcode designed for jobseeker, providing an easy-to-use controlpanel to manage applications, resume, and preferences directly from their dashboard."
+msgstr "Jobseeker를 위해 설계된 단축 코드로 응용 프로그램, 이력서 및 환경 설정을 대시 보드에서 직접 관리 할 수있는 사용하기 쉬운 ControlPanel을 제공합니다."
+
+msgid "Base Shortcode"
+msgstr "기본 단축 코드"
+
+msgid "Shortcode With All Options"
+msgstr "모든 옵션이있는 단축 코드"
+
+msgid " The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "고용주 제어판은 고용주가 구인 게시를 관리하고, 응용 프로그램을 추적하고, 후보자와 의사 소통하고, 고용 지표를 효율적으로 분석 할 수있는 간소화 된 인터페이스입니다."
+
+msgid "The job search shortcode enables users to easily find job listings based on various criteria."
+msgstr "구직 단축 코드를 통해 사용자는 다양한 기준에 따라 구인 목록을 쉽게 찾을 수 있습니다."
+
+msgid "The jobs shortcode is a feature that displays individual job listings on a website."
+msgstr "Jobs ShortCode는 웹 사이트에 개별 작업 목록을 표시하는 기능입니다."
+
+msgid "The featured job shortcode highlights select job listings on a website, making them stand out to potential applicants."
+msgstr "추천 작업 단축 코드는 웹 사이트에서 작업 목록 선택을 강조하여 잠재적 인 지원자에게 눈에 띄게 만듭니다."
+
+msgid "This Shortcode requires WP Job Portal Featured Jobs Addon"
+msgstr "이 단축 코드에는 WP 작업 포털 특집 작업 애드온이 필요합니다"
+
+msgid "Get Addon"
+msgstr "애드온을 얻으십시오"
+
+msgid "Job Categories"
+msgstr "작업 카테고리"
+
+msgid "The job categories shortcode displays a dynamic list of available categories, enabling users to easily navigate and find relevant job listings."
+msgstr "작업 카테고리 단축 코드는 사용 가능한 카테고리의 동적 목록을 표시하므로 사용자가 쉽게 탐색하고 관련 작업 목록을 찾을 수 있습니다."
+
+msgid "The job types shortcode presents a comprehensive list of available job types, allowing users to quickly explore and find suitable job opportunities."
+msgstr "작업 유형의 단축 코드는 사용 가능한 작업 유형의 포괄적 인 목록을 제공하므로 사용자가 적절한 작업 기회를 빠르게 탐색하고 찾을 수 있습니다."
+
+msgid "My applied jobs shortcode provides users with a personalized list of their job applications, allowing easy access to track application status and details."
+msgstr "My Applied Jobs Shortcode는 사용자에게 개인화 된 작업 애플리케이션 목록을 제공하여 응용 프로그램 상태 및 세부 사항을 쉽게 추적 할 수 있습니다."
+
+msgid "My companies shortcode displays a personalized list of companies users are associated with, facilitating easy access to company information and opportunities."
+msgstr "My Company Satrcode는 사용자가 관련된 개인화 된 회사 목록을 표시하여 회사 정보 및 기회에 쉽게 액세스 할 수 있습니다."
+
+msgid "All companies shortcode offers a curated directory of all companies, allowing users to easily browse and connect with potential employers."
+msgstr "모든 회사의 단축 코드는 모든 회사의 선별 된 디렉토리를 제공하여 사용자가 잠재적 고용주를 쉽게 탐색하고 연결할 수 있습니다."
+
+msgid "This Shortcode requires WP Job Portal All Companies Addon"
+msgstr "이 단축 코드에는 WP 작업 포털이 필요합니다. 모든 회사 Addon이 필요합니다"
+
+msgid "The featured companies shortcode showcases prominent companies within the portal, allowing users to explore exciting job opportunities from industry leaders."
+msgstr "주요 회사 단축 코드는 포털 내에서 저명한 회사를 선보이며 사용자는 업계 리더의 흥미로운 직업 기회를 탐색 할 수 있습니다."
+
+msgid "This Shortcode requires WP Job Portal Featured Companies Addon"
+msgstr "이 단축 코드에는 WP 작업 포털 특집 회사 Addon이 필요합니다"
+
+msgid "My jobs shortcode allows users to view and manage their saved job listings, making it easy to keep track of potential opportunities."
+msgstr "My Jobs ShortCode를 통해 사용자는 저장된 작업 목록을보고 관리 할 수 ​​있으므로 잠재적 인 기회를 쉽게 추적 할 수 있습니다."
+
+msgid "My resume shortcode allows users to view and manage their uploaded resumes, providing a convenient way to keep their job application materials up to date."
+msgstr "내 이력서 단축 코드를 통해 사용자는 업로드 된 이력서를보고 관리 할 수 ​​있으므로 작업 응용 프로그램 자료를 최신 상태로 유지하는 편리한 방법을 제공합니다."
+
+msgid "All Resumes"
+msgstr "모든 이력서"
+
+msgid "All resumes shortcode allows job seekers to view and manage their uploaded resumes, ensuring they have easy access to their application materials."
+msgstr "모든 이력서 단축 코드를 사용하면 구직자가 업로드 된 이력서를보고 관리 할 수 ​​있으므로 응용 프로그램 자료에 쉽게 액세스 할 수 있습니다."
+
+msgid "This Shortcode requires WP Job Portal All Resumes Addon"
+msgstr "이 단축 코드에는 WP 작업 포털이 모든 이력서가 필요합니다"
+
+msgid "The featured resumes shortcode showcases a selection of standout resumes, allowing job seekers to stand out to potential employers."
+msgstr "Featured Resumes Shortcode는 선택한 선정 이력서를 보여 주어 구직자가 잠재적 인 고용주에게 눈에 띄게 할 수 있습니다."
+
+msgid "This Shortcode requires WP Job Portal Featured Resumes Addon"
+msgstr "이 단축 코드에는 WP 작업 포털이 제공되는 이력서가 필요합니다"
+
+msgid "Add company shortcode allows employers to effortlessly register their organization, providing essential details to attract talent and post job openings."
+msgstr "회사 단축 코드 추가를 통해 고용주는 조직을 쉽게 등록하여 재능을 유치하고 구직 포스트 오프닝을 유치 할 수있는 필수 세부 정보를 제공 할 수 있습니다."
+
+msgid "Add department shortcode enables employers to easily create and manage specific departments within their organization, facilitating better job categorization and organization."
+msgstr "부서 추가 단축 코드 추가를 통해 고용주는 조직 내 특정 부서를 쉽게 만들고 관리 할 수있어 더 나은 직무 분류 및 조직을 촉진 할 수 있습니다."
+
+msgid "This Shortcode requires WP Job Portal Multi Departments Addon"
+msgstr "이 단축 코드에는 WP 작업 포털 다중 부서 추가가 필요합니다"
+
+msgid "Add jobs enables organizations to effortlessly publish job postings, helping them connect with potential applicants and fill vacancies more effectively."
+msgstr "일자리 추가를 통해 조직은 구인 게시물을 쉽게 게시하여 잠재적 인 지원자와 연결하고 공석을보다 효과적으로 채울 수 있습니다."
+
+msgid "Add resume shortcode simplifies the process for candidates to submit their resumes, helping them showcase their qualifications and experiences to potential employers."
+msgstr "이력서 추가 단축 코드 추가 후보자가 이력서를 제출할 수있는 프로세스를 단순화하여 잠재적 인 고용주에게 자격과 경험을 보여줍니다."
+
+msgid "Resume search shortcode provides a powerful search tool for employers to explore candidate profiles, making it easier to connect with potential hires."
+msgstr "이력서 검색 단축 코드는 고용주가 후보자 프로필을 탐색 할 수있는 강력한 검색 도구를 제공하여 잠재적 인 직원과 쉽게 연결할 수 있습니다."
+
+msgid "This Shortcode requires WP Job Portal Resume Search Addon"
+msgstr "이 바로 코드에는 WP 작업 포털 이력서 검색 애드온이 필요합니다"
+
+msgid "Registration"
+msgstr "등록"
+
+msgid "Registration shortcode allows individuals to easily create accounts as their selected role"
+msgstr "등록 단축 코드는 개인이 선택한 역할로 계정을 쉽게 만들 수 있습니다."
+
+msgid "Employer registration shortcode streamlines the process for organizations to register, ensuring they can efficiently manage job postings and their company profiles."
+msgstr "고용주 등록 단축 코드는 조직이 등록하는 프로세스를 간소화하여 작업 게시물 및 회사 프로필을 효율적으로 관리 할 수 ​​있도록합니다."
+
+msgid "Job Seeker Registration"
+msgstr "구직자 등록"
+
+msgid "Job seeker registration shortcode allows individuals to easily create accounts, enabling them to apply for jobs and manage their resumes."
+msgstr "구직자 등록 단축 코드를 사용하면 개인이 계정을 쉽게 만들 수있어 작업을 신청하고 이력서를 관리 할 수 ​​있습니다."
+
+msgid "Login Page"
+msgstr "로그인 페이지"
+
+msgid "Login page shortcode offers a user-friendly interface for candidates and employers to securely log in and manage their profiles and postings."
+msgstr "로그인 페이지 바로 코드는 후보자와 고용주가 프로필 및 게시물을 안전하게 로그인하고 관리 할 수있는 사용자 친화적 인 인터페이스를 제공합니다."
+
+msgid "Widget"
+msgstr "위젯"
+
+msgid "Search job widget provides an intuitive interface for candidates to filter and browse openings, connecting them with opportunities that align with their skills."
+msgstr "Search Job Widget은 후보자가 오프닝을 필터링하고 찾아 볼 수있는 직관적 인 인터페이스를 제공하여 기술과 일치하는 기회를 연결합니다."
+
+msgid "This Shortcode requires WP Job Portal Front-end Widgets Addon"
+msgstr "이 바로가 코드에는 WP 작업 포털 프론트 엔드 위젯 애드온이 필요합니다"
+
+msgid "My packages offers a personalized dashboard for users to monitor their subscription details, helping them manage job postings and access features effectively."
+msgstr "내 패키지는 사용자가 구독 세부 정보를 모니터링 할 수있는 맞춤형 대시 보드를 제공하여 작업 게시 및 액세스 기능을 효과적으로 관리 할 수 ​​있도록 도와줍니다."
+
+msgid "This Shortcode requires WP Job Portal Credits Addon"
+msgstr "이 바로 코드에는 WP Job Portal Credits Addon이 필요합니다"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans.  "
+msgstr "내 구독은 사용자에게 활성 구독에 대한 개요를 제공하여 직무 게시 계획을 쉽게 관리하고 추적 할 수 있습니다."
+
+msgid "All packages showcases a comprehensive list of available subscription plans, allowing users to compare features and select the best options for their job posting needs."
+msgstr "모든 패키지에는 사용 가능한 가입 계획의 포괄적 인 목록이 표시되어 사용자가 기능을 비교하고 작업 게시 요구에 가장 적합한 옵션을 선택할 수 있습니다."
+
+msgid "My invoices provides a convenient way for users to view and manage their invoices, helping them stay organized and up to date with their payments."
+msgstr "내 송장은 사용자가 송장을보고 관리 할 수있는 편리한 방법을 제공하여 결제로 구성되고 최신 상태를 유지할 수 있도록 도와줍니다."
+
+msgid "SEO"
+msgstr "서"
+
+msgid "Document Title Settings"
+msgstr "문서 제목 설정"
+
+msgid "Company detail url options are name, location. eg- [name] [location]"
+msgstr "회사 세부 사항 URL 옵션은 이름, 위치입니다. 예 : [이름] [위치]"
+
+msgid "spinning wheel"
+msgstr "물레"
+
+msgid "New Update Version"
+msgstr "새로운 업데이트 버전"
+
+msgid "is Available"
+msgstr "사용 가능합니다"
+
+msgid "Hey there! We have recently launched a fresh update for the add-ons. Don't forget to update the add-ons to enjoy the greatest features!"
+msgstr "이봐! 우리는 최근에 애드온에 대한 새로운 업데이트를 시작했습니다. 가장 큰 기능을 즐기기 위해 추가 기능을 업데이트하는 것을 잊지 마십시오!"
+
+msgid "View Addone Status"
+msgstr "Addone 상태를보기"
+
+msgid "Active Companies"
+msgstr "활동적인 회사"
+
+msgid "Help Page"
+msgstr "도움말 페이지"
+
+msgid "Watch Tutorial"
+msgstr "튜토리얼을 시청하십시오"
+
+msgid "video"
+msgstr "동영상"
+
+msgid "Apply Now Failed"
+msgstr "지금 신청하지 못했습니다"
+
+msgid "You do not have package required for job apply"
+msgstr "구직에 필요한 패키지가 없습니다"
+
+msgid "You package has expired"
+msgstr "귀하의 패키지가 만료되었습니다"
+
+msgid "You do not any more job apply available"
+msgstr "더 이상 구직을 할 수 없습니다"
+
+msgid "Job Not Found"
+msgstr "직업을 찾을 수 없습니다"
+
+msgid "Job does not exist in the system"
+msgstr "작업은 시스템에 존재하지 않습니다"
+
+msgid "Make Payment To Complete The Job Apply"
+msgstr "구직을 완료하기 위해 지불하십시오"
+
+msgid "Successfully applied on job"
+msgstr "작업에 성공적으로 적용됩니다"
+
+msgid "view coverletter"
+msgstr "커버 레터를보십시오"
+
+msgid "Please Fill out fields"
+msgstr "필드를 작성하십시오"
+
+msgid "sender email is not of correct format"
+msgstr "발신자 이메일은 올바른 형식이 아닙니다"
+
+msgid "Erase Selected Country"
+msgstr "선택된 국가를 지우십시오"
+
+msgid "Erase All Data"
+msgstr "모든 데이터를 지우십시오"
+
+msgid "Click on package to select one"
+msgstr "패키지를 클릭하여 하나를 선택하십시오"
+
+msgid "Apply to the Job"
+msgstr "직업에 신청하십시오"
+
+msgid "No Cover Letter!"
+msgstr "커버 레터가 없습니다!"
+
+msgid "Add Cover Lettter"
+msgstr "커버 레터를 추가하십시오"
+
+msgid "You have already applied on this job."
+msgstr "당신은 이미이 직업에 신청했습니다."
+
+msgid "Unlimited job applies"
+msgstr "무제한 작업이 적용됩니다"
+
+msgid "Job applies remaining"
+msgstr "작업은 나머지 적용됩니다"
+
+msgid "Buy package to apply on job."
+msgstr "직업에 신청할 패키지를 구입하십시오."
+
+msgid "Apply With Package"
+msgstr "패키지로 적용하십시오"
+
+msgid "Payment of"
+msgstr "지불"
+
+msgid "is required to complete the job apply process"
+msgstr "작업 적용 프로세스를 완료하려면 필요합니다"
+
+msgid "You are logged in as employer."
+msgstr "당신은 고용주로 로그인됩니다."
+
+msgid "You are not a logged in member."
+msgstr "당신은 로그인 한 멤버가 아닙니다."
+
+msgid "You do not have any role."
+msgstr "당신은 어떤 역할도 없습니다."
+
+msgid "Proceed to payment"
+msgstr "지불을 진행하십시오"
+
+msgid "Views"
+msgstr "보기"
+
+msgid "Save As Draft"
+msgstr "드래프트로 저장하십시오"
+
+msgid "Job Has Been Feature SuccesFully"
+msgstr "작업은 성공적으로 등장했습니다"
+
+msgid "You are Not Allowed To Add More than One"
+msgstr "당신은 둘 이상을 추가 할 수 없습니다"
+
+msgid "Contact TO Adminstrator"
+msgstr "관리자에게 연락하십시오"
+
+msgid "This Is Meta Description"
+msgstr "이것은 메타 설명입니다"
+
+msgid "jobs by cities"
+msgstr "도시에 의한 직업"
+
+msgid "Show Info"
+msgstr "정보 표시"
+
+msgid "Changing a user's role will not remove its entites from the system !"
+msgstr "사용자의 역할을 변경하면 시스템에서 엔터테이션이 제거되지 않습니다!"
+
+msgid "company reject"
+msgstr "회사 거부"
+
+msgid "all reject"
+msgstr "모두 거부"
+
+msgid "Missing user(s) added successfully!"
+msgstr "누락 된 사용자가 성공적으로 추가되었습니다!"
+
+msgid "No missing user found!"
+msgstr "누락 된 사용자가 없습니다!"
+
+msgid "Jobs Listing Menu"
+msgstr "작업 목록 메뉴"
+
+msgid "Visitor"
+msgstr "방문객"
+
+msgid "new message alert"
+msgstr "새로운 메시지 경보"
+
+msgid "New Message Alert"
+msgstr "새로운 메시지 경보"
+
+msgid "Recipient Name"
+msgstr "수신자 이름"
+
+msgid "Sender Name"
+msgstr "발신자 이름"
+
+msgid "Sender Role"
+msgstr "발신자 역할"
+
+msgid "Message Text"
+msgstr "메시지 텍스트"
+
+msgid "Job/Resume Info"
+msgstr "작업/이력서 정보"
+
+msgid "Upload Resume"
+msgstr "이력서를 업로드하십시오"
+
+msgid "Profile Status"
+msgstr "프로필 상태"
+
+msgid "Profile Completed"
+msgstr "프로필이 완료되었습니다"
+
+msgid "feature approve"
+msgstr "기능 승인"
+
+msgid "feature reject"
+msgstr "기능 거부"
+
+msgid "Type city"
+msgstr "타입 도시"
+
+msgid "New Message"
+msgstr "새로운 메시지"
+
+msgid "Employer is disabled by admin"
+msgstr "고용주는 관리자에 의해 비활성화됩니다"
+
+msgid "You are not allowed to add more than one"
+msgstr "당신은 둘 이상을 추가 할 수 없습니다"
+
+msgid "contact adminstrator"
+msgstr "연락 관리자"
+
+msgid "Payment is not made against this job contact adminstrator"
+msgstr "이 작업 담당자에 대한 지불은 이루어지지 않습니다"
+
+msgid "Addon Page Not Found"
+msgstr "애드온 페이지를 찾을 수 없습니다"
+
+msgid "User Role"
+msgstr "사용자 역할"
+
+msgid "Jobs Role"
+msgstr "직업 역할"
+
+msgid "User has been successfully created"
+msgstr "사용자가 성공적으로 생성되었습니다"
+
+msgid "Pay For Department"
+msgstr "부서를 지불하십시오"
+
+msgid "Pay For Job Apply"
+msgstr "구직 비용을 지불하십시오"
+
+msgid "Pay For Company"
+msgstr "회사에 대한 지불"
+
+msgid "Pay For Featured Company"
+msgstr "추천 회사에 대한 지불"
+
+msgid "Pay For Job"
+msgstr "직업을 지불하십시오"
+
+msgid "Pay For Featured Job"
+msgstr "추천 직업을 지불하십시오"
+
+msgid "Pay For Resume Search"
+msgstr "이력서 검색 비용을 지불하십시오"
+
+msgid "Pay For Resume "
+msgstr "이력서를 지불하십시오"
+
+msgid "Pay For Featured Resume "
+msgstr "특집 이력서를 지불하십시오"
+
+msgid "Job Saved Searches"
+msgstr "작업 저장 검색"
+
+msgid "Job Apply Configurations"
+msgstr "작업은 구성을 적용합니다"
+
+msgid "Quick Apply Fields"
+msgstr "빠른 필드를 적용하십시오"
+
+msgid "addons status"
+msgstr "애드온 상태"
+
+msgid "coverletters"
+msgstr "표지"
+
+msgid "coverletter"
+msgstr "표지"
+
+msgid "add new cover letter"
+msgstr "새 커버 레터를 추가하십시오"
+
+msgid "Loaction Name settings"
+msgstr "위치 이름 설정"
+
+msgid "Loaction Name Settings"
+msgstr "위치 이름 설정"
+
+msgid "shifts"
+msgstr "변화"
+
+msgid "ages"
+msgstr "나이"
+
+msgid "Error file size too large"
+msgstr "오류 파일 크기가 너무 큽니다"
+
+msgid "Maximum Size"
+msgstr "최대 크기"
+
+msgid "is in use"
+msgstr "사용 중입니다"
+
+msgid "can not deleted it"
+msgstr "삭제할 수 없습니다"
+
+msgid "Address data"
+msgstr "주소 데이터"
+
+msgid "themes"
+msgstr "테마"
+
+msgid "Color Schemes"
+msgstr "색 구성표"
+
+msgid "Color Chooser"
+msgstr "컬러 선택기"
+
+msgid "Color 1"
+msgstr "색상 1"
+
+msgid "Color 2"
+msgstr "색상 2"
+
+msgid "Color 3"
+msgstr "컬러 3"
+
+msgid "Add User Fields"
+msgstr "사용자 필드를 추가하십시오"
+
+msgid "cannot unpublished"
+msgstr "미공개가 없습니다"
+
+msgid "Search Name"
+msgstr "검색 이름"
+
+msgid "start"
+msgstr "시작"
+
+msgid "Total Resume Search"
+msgstr "총 이력서 검색"
+
+msgid "Remaining Resume Search"
+msgstr "나머지 이력서 검색"
+
+msgid "Reference"
+msgstr "참조"
+
+msgid "cancel payment"
+msgstr "지불을 취소합니다"
+
+msgid "Apply now"
+msgstr "지금 신청하십시오"
+
+msgid " Listing"
+msgstr "목록"
+
+msgid "Credits log"
+msgstr "크레딧 로그"
+
+msgid "Rate list"
+msgstr "요금 목록"
+
+msgid "Purchase history"
+msgstr "구매 기록"
+
+msgid " remaining"
+msgstr "남아 있습니다"
+
+msgid "Cover Letter has been successfully published"
+msgstr "커버 레터가 성공적으로 출판되었습니다"
+
+msgid "cover Letter has been successfully published"
+msgstr "커버 레터가 성공적으로 출판되었습니다"
+
+msgid "Resume files download"
+msgstr "파일 다운로드를 재개하십시오"
+
+msgid "apply with facebook"
+msgstr "Facebook과 함께 신청하십시오"
+
+msgid "apply with linkedin"
+msgstr "LinkedIn에 신청하십시오"
+
+msgid "apply with xing"
+msgstr "Xing과 함께 적용하십시오"
+
+msgid "Resume removed from featured"
+msgstr "이력서에서 추천에서 제거되었습니다"
+
+msgid "share blog"
+msgstr "블로그 공유"
+
+msgid "share digg"
+msgstr "Digg를 공유하십시오"
+
+msgid "share fb"
+msgstr "FB를 공유하십시오"
+
+msgid "share ff"
+msgstr "공유 ff"
+
+msgid "share google"
+msgstr "Google을 공유하십시오"
+
+msgid "share linkedin"
+msgstr "LinkedIn을 공유하십시오"
+
+msgid "share myspace"
+msgstr "MySpace를 공유하십시오"
+
+msgid "share twitter"
+msgstr "트위터를 공유하십시오"
+
+msgid "share yahoo"
+msgstr "야후를 공유하십시오"
+
+msgid "Mark As Shortlist Job"
+msgstr "선정 직무로 표시하십시오"
+
+msgid "Keep this job on your list! Mark it as shortlisted and find it easily whenever you need."
+msgstr "이 작업을 목록에 유지하십시오! 후보자로 표시하고 필요할 때마다 쉽게 찾으십시오."
+
+msgid "Search job title, company name, keywords"
+msgstr "검색 작업 제목, 회사 이름, 키워드"
+
+msgid "Loction"
+msgstr "위치"
+
+msgid "Applied Resume Title"
+msgstr "응용 이력서 제목"
+
+msgid "Arrow"
+msgstr "화살"
+
+msgid "Already Applied"
+msgstr "이미 적용되었습니다"
+
+msgid "Ready to take the next step? Simply fill out the form and submit your application. It only takes a few minutes!"
+msgstr "다음 단계를 수행 할 준비가 되셨습니까? 양식을 작성하고 신청서를 제출하십시오. 몇 분 밖에 걸리지 않습니다!"
+
+msgid "Waiting for Payment"
+msgstr "지불을 기다리고 있습니다"
+
+msgid "Salery"
+msgstr "살리"
+
+msgid "Buy"
+msgstr "구입하다"
+
+msgid "Employer can add companies and jobs while searching for potential candidate to hire"
+msgstr "고용주는 잠재적 인 후보자를 찾는 동안 회사와 일자리를 추가 할 수 있습니다."
+
+msgid "Selected"
+msgstr "선택된"
+
+msgid "Jobseeker can add resume, cover letters, search jobs and apply to multiple jobs easily"
+msgstr "Jobseeker는 이력서, 표지, 검색 작업을 추가하고 여러 작업에 쉽게 신청할 수 있습니다."
+
+msgid "Hello, again!..."
+msgstr "안녕하세요, 다시! ..."
+
+msgid "View All Applied Jobs"
+msgstr "적용된 모든 작업을보십시오"
+
+msgid "View All Newest Jobs"
+msgstr "모든 최신 작업을보십시오"
+
+msgid "Hello, again!…"
+msgstr "안녕하세요, 다시!…"
+
+msgid "Submit job"
+msgstr "직업을 제출하십시오"
+
+msgid "Submit Job"
+msgstr "직업을 제출하십시오"
+
+msgid "View detail"
+msgstr "세부 사항을보십시오"
+
+msgid "Recently Applied Resume"
+msgstr "최근에 이력서를 적용했습니다"
+
+msgid "Messages By Resume"
+msgstr "이력서에 의한 메시지"
+
+msgid "Reply"
+msgstr "회신하다"
+
+msgid "View jobs"
+msgstr "작업을보십시오"
+
+msgid "Other Info"
+msgstr "다른 정보"
+
+msgid "Link"
+msgstr "링크"
+
+msgid "Mail"
+msgstr "우편"
+
+msgid "Site"
+msgstr "대지"
+
+msgid "View Company Details"
+msgstr "회사 세부 사항을 봅니다"
+
+msgid "Completed"
+msgstr "완전한"
+
+msgid "Categoty"
+msgstr "범주"
+
+msgid "tell a friend"
+msgstr "친구에게 말하십시오"
+
+msgid "Tell friend"
+msgstr "친구에게 말하십시오"
+
+msgid "Know someone perfect for this job? Share it with them!"
+msgstr "이 직업에 완벽한 사람을 알고 있습니까? 그들과 공유하십시오!"
+
+msgid "Your name"
+msgstr "당신의 이름"
+
+msgid "Your email"
+msgstr "귀하의 이메일"
+
+msgid "Show the"
+msgstr "표시"
+
+msgid "form to logged-in users on the job detail page. If this is on,"
+msgstr "작업 세부 사항 페이지에서 로그인 사용자에게 양식. 이것이 켜져 있으면"
+
+msgid "will be turned off."
+msgstr "꺼집니다."
+
+msgid "form to visitor on the job detail page. If this is on,"
+msgstr "작업 세부 사항 페이지에서 방문자에게 양식. 이것이 켜져 있으면"
+
+msgid "You do not have any save serch remaining"
+msgstr "당신은 저장 세르치가 남아 있지 않습니다"
+
+msgid "We would love to hear from You."
+msgstr "우리는 당신의 의견을 듣고 싶습니다."

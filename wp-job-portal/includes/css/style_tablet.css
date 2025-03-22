@@ -66,10 +66,9 @@ div.wjportal-packages-list div.wjportal-pkg-list-item div.wjportal-pkg-list-item
 div.wjportal-filter-search-main-wrp div.wjportal-filter-search-wrp div.wjportal-filter-search-field-wrp {width: calc(41% - 5px);}
 div.wjportal-filter-search-main-wrp div.wjportal-filter-search-wrp div.wjportal-filter-search-btn-wrp {width: 18%;}
 
-
-
-
-
-
 /* theme css */
 .module.right_sidebar .container .row .col-sm-6 {width: 100%;}
+
+/* job apply */
+.wjportal-view-job-page-wrapper .wjportal-view-job-page-job-info-wraper.wjportal-view-job-page-job-info-wraper-with-apply-form .wjportal-company-job-applyfrm-leftwrp{width: 100%;}
+.wjportal-view-job-page-wrapper .wjportal-view-job-page-job-info-wraper .wjportal-view-job-page-job-apply-form-wraper{width: 100%;}

@@ -203,6 +203,10 @@ class WPJOBPORTALquickapplyModel {
             }
             $userpackages = array();
             $userpackage = apply_filters('wpjobportal_addons_credit_get_Packages_user',false,$uid,'job');
+            $addonclass = '';
+            if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()){
+                $addonclass = ' wjportal-elegant-addon-packages-popup ';
+            }
             foreach($userpackage as $package){
                 if($package->job == -1 || $package->remjob > 0){ //-1 = unlimited
                     $userpackages[] = $package;
@@ -283,7 +287,7 @@ class WPJOBPORTALquickapplyModel {
             } else {
             $content = '
             <div id="wjportal-popup-background" style="display: none;"></div>
-            <div id="package-popup" class="wjportal-popup-wrp wjportal-packages-popup">
+            <div id="package-popup" class="wjportal-popup-wrp wjportal-packages-popup '.$addonclass.'">
                 <div class="wjportal-popup-cnt">
                     <img id="wjportal-popup-close-btn" alt="'.__('popup close','wp-job-portal').'" title="'.__('popup close','wp-job-portal').'" src="'.WPJOBPORTAL_PLUGIN_URL.'includes/images/popup-close.png">
                     <div class="wjportal-popup-title">
@@ -467,7 +471,14 @@ class WPJOBPORTALquickapplyModel {
         }
 
         // calling the job apply function with "1" for $themecall to make sure it returns a numric value for the status of job apply
-        $job_applied = WPJOBPORTALincluder::getJSmodel('jobapply')->jobapply(1);
+        //$job_applied = WPJOBPORTALincluder::getJSmodel('jobapply')->jobapply(1);
+
+
+
+        return $row->id; // returning resume id
+
+
+
         // echo var_dump($job_applied);
         // echo '<pre>';print_r(wpjobportal::$_data['sanitized_args']);echo '</pre>';
         // die('asd');
