@@ -463,6 +463,33 @@ wp_add_inline_script( 'google-charts-handle', $today_js_script );
                                 </span>
                             </div>
                             <div class="wpjobportal-cp-addon-list">
+                                <?php if ( !in_array('elegantdesign',wpjobportal::$_active_addons)) { ?>
+                                        <div class="wpjobportal-cp-addon">
+                                            <div class="wpjobportal-cp-addon-image">
+                                                <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/elegantdesign.png" alt="<?php echo esc_html(__('address data','wp-job-portal')); ?>">
+                                            </div>
+                                            <div class="wpjobportal-cp-addon-cnt">
+                                                <div class="wpjobportal-cp-addon-tit">
+                                                    <?php echo esc_html(__('Elegant Design','wp-job-portal')); ?>
+                                                </div>
+                                                <div class="wpjobportal-cp-addon-desc">
+                                                    <?php echo esc_html(__('This add-on will change the Job Portal pages to a simple yet powerful and rich web design that involves focusing on clean aesthetics, intuitive navigation, and functional elements while ensuring performance and responsiveness.','wp-job-portal')); ?>
+                                                </div>
+                                            </div>
+                                            <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-elegantdesign/wp-job-portal-elegantdesign.php');
+                                                if($plugininfo['availability'] == "1"){
+                                                    $text = $plugininfo['text'];
+                                                    $url = "plugins.php?s=wp-job-portal-elegantdesign&plugin_status=inactive";
+                                                }elseif($plugininfo['availability'] == "0"){
+                                                    $text = $plugininfo['text'];
+                                                    $url = "https://wpjobportal.com/product/elegant-design/";
+                                                } ?>
+                                                <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
+                                                    <?php echo esc_html($text); ?>
+                                                </a>
+                                            </div>
+                                <?php } ?>
+
                                 <?php if ( !in_array('addressdata',wpjobportal::$_active_addons)) { ?>
                                         <div class="wpjobportal-cp-addon">
                                             <div class="wpjobportal-cp-addon-image">
@@ -488,7 +515,8 @@ wp_add_inline_script( 'google-charts-handle', $today_js_script );
                                                     <?php echo esc_html($text); ?>
                                                 </a>
                                             </div>
-                                        <?php } ?>
+                                <?php } ?>
+
                                 <?php if ( !in_array('sociallogin',wpjobportal::$_active_addons)) { ?>
                                         <div class="wpjobportal-cp-addon">
                                             <div class="wpjobportal-cp-addon-image">
@@ -1016,7 +1044,7 @@ wp_add_inline_script( 'google-charts-handle', $today_js_script );
                             <?php if ( !in_array('shortlist',wpjobportal::$_active_addons)) { ?>
                                         <div class="wpjobportal-cp-addon">
                                             <div class="wpjobportal-cp-addon-image">
-                                                <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/shortlist-job.png" alt="<?php echo esc_html(__('shortlist','wp-job-portal')); ?>">
+                                                <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/shortlist.png" alt="<?php echo esc_html(__('shortlist','wp-job-portal')); ?>">
                                             </div>
                                             <div class="wpjobportal-cp-addon-cnt">
                                                 <div class="wpjobportal-cp-addon-tit">
@@ -1198,7 +1226,7 @@ wp_add_inline_script( 'google-charts-handle', $today_js_script );
                                 <?php if ( !in_array('widgets',wpjobportal::$_active_addons)) { ?>
                                     <div class="wpjobportal-cp-addon">
                                         <div class="wpjobportal-cp-addon-image">
-                                            <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/front-end-widgets.png" height="60px" width="60px" alt="<?php echo esc_html(__('Front-End Widgets','wp-job-portal')); ?>">
+                                            <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/widgets.png" height="60px" width="60px" alt="<?php echo esc_html(__('Front-End Widgets','wp-job-portal')); ?>">
                                         </div>
                                         <div class="wpjobportal-cp-addon-cnt">
                                             <div class="wpjobportal-cp-addon-tit">
@@ -1243,10 +1271,10 @@ wp_add_inline_script( 'google-charts-handle', $today_js_script );
                             <span class="wpjobportal-review-simple-text">
                                 <?php echo esc_html(__('Spread the word : ','wp-job-portal')); ?>
                             </span>
-                            <a class="wpjobportal-review-soc-link" href="https://www.facebook.com/joomsky">
+                            <a class="wpjobportal-review-soc-link" href="https://www.facebook.com/joomsky" target="_blank">
                                 <img alt="fb" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/review/fb.png">
                             </a>
-                            <a class="wpjobportal-review-soc-link" href="https://twitter.com/joomsky">
+                            <a class="wpjobportal-review-soc-link" href="https://twitter.com/joomsky" target="_blank">
                                 <img alt="twitter" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/review/twitter.png">
                             </a>
                         </div>

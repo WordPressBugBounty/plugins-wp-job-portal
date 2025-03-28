@@ -32,8 +32,7 @@
                 }
                 $html .= '<a class="sort-icon" href="#" data-image1='. esc_attr($image1).' data-image2='. esc_attr($image2).' data-sortby='.$data_sortby.'><img id="sortingimage" src='.  esc_url($image).'></a>';
                 $html .= '</div>';
-                $html.= ' </div>
-                        </div>';
+                $html.= ' </div>';
         break;
         case 'sortby':?>
         <div id="resume-list-navebar" class="wjportal-filter-wrp">

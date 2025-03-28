@@ -168,6 +168,7 @@ class WPJOBPORTALwpjobportalModel {
 
     function getWPJPAddonsArray(){
         return  array(
+            'wp-job-portal-elegantdesign' => array('title' => esc_html(__('Elegant Design','wp-job-portal')), 'price' => 0, 'status' => 1),
             'wp-job-portal-addressdata' => array('title' => esc_html(__('Address Data','wp-job-portal')), 'price' => 0, 'status' => 1),
             'wp-job-portal-sociallogin' => array('title' => esc_html(__('Social Login','wp-job-portal')), 'price' => 0, 'status' => 1),
             'wp-job-portal-visitorapplyjob' => array('title' => esc_html(__('visitor apply job','wp-job-portal')), 'price' => 0, 'status' => 1),
@@ -1473,7 +1474,7 @@ class WPJOBPORTALwpjobportalModel {
                     WPJOBPORTALincluder::getJSModel('premiumplugin')->getAddonUpdateSqlFromUpdateDir($installedversion,$newversion,$plugin_path . '/sql/');
                     $updatesdir = $plugin_path.'/sql/';
                     if(preg_match('/wp-job-portal-[a-zA-Z]+/', $updatesdir)){
-                        wpjpRemoveAddonUpdatesFolder($updatesdir);
+                        $this->wpjpRemoveAddonUpdatesFolder($updatesdir);
                     }
                 }else{
                     WPJOBPORTALincluder::getJSModel('premiumplugin')->getAddonUpdateSqlFromLive($installedversion,$newversion,$plugin_slug);
@@ -1490,7 +1491,113 @@ class WPJOBPORTALwpjobportalModel {
         $result = wp_json_encode($result);
         return $result;
     }
+    function WPJPAddonsAutoUpdate(){
+		/*
+			code for auto update check from configuration
+		*/
 
+        $wpjobportal_addons_auto_update = wpjobportal::$_config->getConfigValue('wpjobportal_addons_auto_update');
+        if( $wpjobportal_addons_auto_update != 1){
+            return;
+        }
+		
+		require_once WPJOBPORTAL_PLUGIN_PATH.'includes/addon-updater/wpjobportalupdater.php';
+		$WP_JOBPORTALUpdater  = new WP_JOBPORTALUpdater();
+		$cdnversiondata = $WP_JOBPORTALUpdater->getPluginVersionDataFromCDN();
+
+		$wpjobportal_addons = $this->getWPJPAddonsArray();
+		$installed_plugins = get_plugins();
+		$need_to_update = array();
+		$addon_json_array = array();
+		foreach ($wpjobportal_addons as $key1 => $value1) {
+			$matched = 0;
+			$version = "";
+			foreach ($installed_plugins as $name => $value) {
+				$install_plugin_name = wpjobportalphplib::wpJP_str_replace(".php","",wpjobportalphplib::wpJP_basename($name));
+				if($key1 == $install_plugin_name){
+					$matched = 1;
+					$version = $value["Version"];
+					$install_plugin_matched_name = $install_plugin_name;
+				}
+			}
+			if($matched == 1){ //installed
+				$name = $key1;
+				$title = $value1['title'];
+				$cdnavailableversion = "";
+				foreach ($cdnversiondata as $cdnname => $cdnversion) {
+					$install_plugin_name_simple = wpjobportalphplib::wpJP_str_replace("-", "", $install_plugin_matched_name);
+					if($cdnname == wpjobportalphplib::wpJP_str_replace("-", "", $install_plugin_matched_name)){
+						if($cdnversion > $version){ // new version available
+							$status = 'update_available';
+							$cdnavailableversion = $cdnversion;
+							$plugin_slug = wpjobportalphplib::wpJP_str_replace('wp-job-portal-', '', $name);
+							$need_to_update[] = array("name" => $name, "current_version" => $version, "available_version" => $cdnavailableversion, "plugin_slug" => $plugin_slug );
+							$addon_json_array[] = wpjobportalphplib::wpJP_str_replace('wp-job-portal-', '', $name);;
+						}
+					}    
+				}
+			}
+		}
+		$token = "";
+		if(is_array($need_to_update)){
+			if(isset($need_to_update[0])){
+				$key = $need_to_update[0]["name"];
+				$token = get_option('transaction_key_for_'.esc_attr($key));
+			}
+			if($token == ''){
+				return;
+			}
+			$site_url = site_url();
+			if($site_url != ''){
+				$site_url = wpjobportalphplib::wpJP_str_replace("https://","",$site_url);
+				$site_url = wpjobportalphplib::wpJP_str_replace("http://","",$site_url);
+			}
+			$url = 'https://wpjobportal.com/setup/index.php?token='.esc_attr($token).'&productcode='. wp_json_encode($addon_json_array).'&domain='.$site_url;
+			// verify token
+			$verifytransactionkey = $this->verifytransactionkey($token, $url);
+			if($verifytransactionkey['status'] == 0){
+				return;
+			}
+
+			$installed = $this->install_plugin($url);
+			if ( !is_wp_error( $installed ) && $installed ) {
+				// had to run two seprate loops to save token for all the addons even if some error is triggered by activation.
+
+				// run update sql
+				foreach($need_to_update AS $update){
+					$installedversion = $update["current_version"];
+					$newversion = $update["available_version"];
+					$plugin_slug = $update["plugin_slug"];
+					$key = $update["name"];
+					if ($installedversion != $newversion) {
+						$optionname = 'wpjobportal-addon-'. $plugin_slug .'s-version';
+						update_option($optionname, $newversion);
+						$plugin_path = WP_CONTENT_DIR;
+						$plugin_path = $plugin_path.'/plugins/'.$key.'/includes';
+						if(is_dir($plugin_path . '/sql/') && is_readable($plugin_path . '/sql/')){
+							if($installedversion != ''){
+								$installedversion = str_replace('.','', $installedversion);
+							}
+							if($newversion != ''){
+								$newversion = str_replace('.','', $newversion);
+							}
+							WPJOBPORTALincluder::getJSModel('premiumplugin')->getAddonUpdateSqlFromUpdateDir($installedversion,$newversion,$plugin_path . '/sql/');
+							$updatesdir = $plugin_path.'/sql/';
+							if(preg_match('/wp-job-portal-[a-zA-Z]+/', $updatesdir)){
+								$this->wpjpRemoveAddonUpdatesFolder($updatesdir);
+							}
+						}else{
+							WPJOBPORTALincluder::getJSModel('premiumplugin')->getAddonUpdateSqlFromLive($installedversion,$newversion,$plugin_slug);
+						}
+					}
+				}
+
+			}else{
+				return;
+			}
+		}
+		return;
+    }
     function verifytransactionkey($transactionkey, $url){
         $message = 1;
         if($transactionkey != ''){
@@ -1577,7 +1684,7 @@ class WPJOBPORTALwpjobportalModel {
         if (is_array($structure)) {
             foreach ($structure as $file) {
                 if (is_dir($file)) {
-                    wpjpRemoveAddonUpdatesFolder($file);
+                    $this->wpjpRemoveAddonUpdatesFolder($file);
                 } elseif (is_file($file)) {
                     @wp_delete_file($file);
                 }

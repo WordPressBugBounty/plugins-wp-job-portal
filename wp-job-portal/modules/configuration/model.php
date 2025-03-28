@@ -144,6 +144,29 @@ class WPJOBPORTALconfigurationModel {
             return WPJOBPORTAL_SAVED;
     }
 
+    function storeAutoUpdateConfig() {
+
+        if (!current_user_can('manage_options')) { //only admin can change it.
+            return false;
+        }
+        $configvalue = WPJOBPORTALrequest::getVar('wpjobportal_addons_auto_update','','');
+
+        if (!is_numeric($configvalue)) { //can only have numric value
+            return false;
+        }
+
+        $error = false;
+        $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_config` SET `configvalue` = ".esc_sql($configvalue)." WHERE `configname`= 'wpjobportal_addons_auto_update'";
+        if (false === wpjobportaldb::query($query)) {
+            $error = true;
+        }
+
+        if ($error)
+            return WPJOBPORTAL_SAVE_ERROR;
+        else
+            return WPJOBPORTAL_SAVED;
+    }
+
     // remove default image file and configuration value
     private function deletedefaultImageModel(){
         $data_directory = wpjobportal::$_config->getConfigValue('data_directory');

@@ -16,7 +16,7 @@ $color6 = "#f0f0f0";
 $color7 = "#fff";
 $color8 = "#3c3435";
 $color9 = "#D34034";
-$color10 = wpjpAdjustBrightness($color1, -30);
+$color10 = $color1;
 
 $color_string_values = get_option("wpjp_set_theme_colors");
 if($color_string_values != ''){
@@ -25,28 +25,9 @@ if($color_string_values != ''){
         $color1 = esc_attr($json_values['color1']);
         $color2 = esc_attr($json_values['color2']);
         $color3 = esc_attr($json_values['color3']);
-        $color10 = wpjpAdjustBrightness($color1, -30);
     }
 }
 
-function wpjpAdjustBrightness($hex, $steps) {
-    // Steps should be between -255 and 255. Negative = darker, positive = lighter
-    $steps = max(-255, min(255, $steps));
-    // Normalize into a six character long hex string
-    $hex = wpjobportalphplib::wpJP_str_replace('#', '', $hex);
-    if (wpjobportalphplib::wpJP_strlen($hex) == 3) {
-        $hex = wpjobportalphplib::wpJP_str_repeat(wpjobportalphplib::wpJP_substr($hex, 0, 1), 2) . wpjobportalphplib::wpJP_str_repeat(wpjobportalphplib::wpJP_substr($hex, 1, 1), 2) . wpjobportalphplib::wpJP_str_repeat(wpjobportalphplib::wpJP_substr($hex, 2, 1), 2);
-    }
-    // Split into three parts: R, G and B
-    $color_parts = str_split($hex, 2);
-    $return = '#';
-    foreach ($color_parts as $color) {
-        $color = hexdec($color); // Convert to decimal
-        $color = max(0, min(255, $color + $steps)); // Adjust color
-        $return .= str_pad(dechex($color), 2, '0', STR_PAD_LEFT); // Make two char hex code
-    }
-    return $return;
-}
 $result = "
 
     /**********************
@@ -214,6 +195,7 @@ $result = "
     **********************/
     div.wjportal-jobdetail-wrapper div.wjportal-jobinfo-wrp div.wjportal-jobinfo span.wjportal-jobtype {color: ".esc_attr($color7).";}
     div.wjportal-jobdetail-wrapper div.wjportal-jobinfo-wrp div.wjportal-jobinfo span.wjportal-jobinfo-data {color: ".esc_attr($color3).";}
+    div.wjportal-jobdetail-wrapper div.wjportal-jobinfo-wrp div.wjportal-jobinfo .wjportal-salary-type {color: ".esc_attr($color3).";}
     div.wjportal-jobdetail-wrapper div.wjportal-jobinfo-wrp div.wjportal-jobinfo span.wjportal-job-close-date {color: #f58634;}
     div.wjportal-jobdetail-wrapper div.wjportal-job-company-wrp div.wjportal-job-company-logo {background: ".esc_attr($color7).";border: 1px solid ".esc_attr($color5).";}
     div.wjportal-jobdetail-wrapper div.wjportal-job-company-wrp div.wjportal-job-company-cnt div.wjportal-job-company-info a.wjportal-job-company-name {color: ".esc_attr($color1).";}

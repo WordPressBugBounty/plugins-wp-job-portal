@@ -74,6 +74,23 @@ class WPJOBPORTALConfigurationController {
         wp_redirect($url);
         die();
     }
+    // function to handle auto update configuration
+    function saveautoupdateconfiguration() {
+        $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (! wp_verify_nonce( $nonce, 'wpjobportal_configuration_nonce') ) {
+             die( 'Security check Failed' );
+        }
+        if (!current_user_can('manage_options')) { //only admin can change it.
+            return false;
+        }
+        $result = WPJOBPORTALincluder::getJSModel('configuration')->storeAutoUpdateConfig();
+        $msg = WPJOBPORTALMessages::getMessage($result, "configuration");
+        WPJOBPORTALMessages::setLayoutMessage($msg['message'], $msg['status'],$this->_msgkey);
+        $url = esc_url_raw(admin_url("admin.php?page=wpjobportal&wpjobportallt=addonstatus"));
+        wp_redirect($url);
+        die();
+    }
+
 
 }
 

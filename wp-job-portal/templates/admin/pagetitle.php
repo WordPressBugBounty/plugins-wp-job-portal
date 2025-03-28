@@ -311,7 +311,22 @@ if ($module) {
 					$html .='<h1 class="wpjobportal-head-text">'. esc_html(__('Cover Letter Approval Queue', 'wp-job-portal')).'</h1>';
 			break;
 			case 'addonstatus':
-					$html .='<h1 class="wpjobportal-head-text">'. esc_html(__('Addons Status', 'wp-job-portal')).'</h1>';
+					$wpjobportal_addons_auto_update = wpjobportal::$_config->getConfigValue('wpjobportal_addons_auto_update');
+					$html .='
+						<div class="wpjobportal-head-addons-status-wrp">
+							<h1 class="wpjobportal-head-text">'. esc_html(__('Addons Status', 'wp-job-portal')).'</h1>
+							<div class="wpjobportal-head-addons-status-update">
+								'. esc_html(__('Addon will automatically update to the newest version', 'wp-job-portal'));
+								if($wpjobportal_addons_auto_update == 1 ){
+									$html .= ' <a href="'.esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_configuration&task=saveautoupdateconfiguration&action=wpjobportaltask&wpjobportal_addons_auto_update=0'),'wpjobportal_configuration_nonce')).'" class="wpjobportal-head-addons-status-update-onbtn">'. esc_html(__('Auto Update: On', 'wp-job-portal')).'</a>';
+								}else{
+									$html .= ' <a href="'.esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_configuration&task=saveautoupdateconfiguration&action=wpjobportaltask&wpjobportal_addons_auto_update=1'),'wpjobportal_configuration_nonce')).'" class="wpjobportal-head-addons-status-update-offbtn">'. esc_html(__('Auto Update: Off', 'wp-job-portal')).'</a>';
+								}
+
+							$html .= '
+							</div>
+						</div>
+					';
 			break;
 			case 'seooptions':
 					$html .='<h1 class="wpjobportal-head-text">'. esc_html(__('SEO', 'wp-job-portal')).'</h1>';

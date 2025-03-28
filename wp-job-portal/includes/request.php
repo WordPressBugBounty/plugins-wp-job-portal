@@ -128,7 +128,15 @@ class WPJOBPORTALrequest {
         if ($layoutname == null) {
             $layoutname = $defaultvalue;
         }
-        if (is_admin()) {
+
+        $is_elementor_edit_mode = false;
+
+        if ( class_exists('\Elementor\Plugin') && \Elementor\Plugin::$instance->editor ) {
+            $is_elementor_edit_mode = \Elementor\Plugin::$instance->editor->is_edit_mode();
+        }
+
+        if (is_admin() && $is_elementor_edit_mode == false) {
+        //if (is_admin() && !wp_is_json_request() && !wp_doing_ajax()) {
             $layoutname = 'admin_' . $layoutname;
         }
         return $layoutname;

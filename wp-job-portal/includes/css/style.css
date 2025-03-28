@@ -611,7 +611,7 @@ div.wjportal-main-wrapper div.wjportal-job-sec-heading:not(:first-child) {margin
 div.wjportal-form-wrp {float: left;width: 100%;}
 div.wjportal-form-wrp div.wjportal-form-sec-heading {float: left;width: 100%;font-size: 18px;font-weight: bold;margin-bottom: 20px;}
 div.wjportal-form-wrp div.wjportal-form-row {width: 100%;float: left;padding: 15px 0;font-size: 14px;}
-div.wjportal-form-wrp div.wjportal-form-row div.wjportal-form-title {float: left;width: 30%;padding: 10px;height: 45px;font-weight: normal;text-transform: capitalize;font-size: 17px !important;}
+div.wjportal-form-wrp div.wjportal-form-row div.wjportal-form-title {float: left;width: 30%;padding: 10px;height: 45px;font-weight: normal;text-transform: capitalize;font-size: 17px;}
 div.wjportal-form-wrp div.wjportal-form-row div.wjportal-form-title label {display: inline-block;width: 100%;margin: 0;font-weight: normal;}
 div.wjportal-form-wrp div.wjportal-form-row div.wjportal-form-value {float: left;width: 70%;}
 div.wjportal-main-up-wrapper div.wp-core-ui.wp-editor-wrap textarea.wp-editor-area {border:unset;}

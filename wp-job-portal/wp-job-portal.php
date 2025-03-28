@@ -3,14 +3,14 @@
 /**
  * @package WP JOB PORTAL
  * @author Ahmad Bilal
- * @version 2.3.0
+ * @version 2.3.1
  */
 /*
   * Plugin Name: WP Job Portal
   * Plugin URI: https://wpjobportal.com/
   * Description: WP JOB PORTAL is Word Press best job board plugin. It is easy to use and highly configurable. It fully accommodates job seekers and employers.
   * Author: WP Job Portal
-  * Version: 2.3.0
+  * Version: 2.3.1
   * Text Domain: wp-job-portal
   * Domain Path: /languages
   * Author URI: https://wpjobportal.com/
@@ -77,7 +77,7 @@ class wpjobportal {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '230';
+        self::$_currentversion = '231';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_common = WPJOBPORTALincluder::getJSModel('common');
         self::$_config = WPJOBPORTALincluder::getJSModel('configuration');
@@ -187,7 +187,7 @@ class wpjobportal {
                 if( $plugin == $our_plugin ) {
                     update_option('wpjp_currentversion', self::$_currentversion);
                     include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
-                    WPJOBPORTALupdates::checkUpdates('230');
+                    WPJOBPORTALupdates::checkUpdates('231');
 
                 	// restore colors data
 		            require(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
@@ -267,7 +267,12 @@ class wpjobportal {
         //Widgets TO include
         include_once 'includes/widgets/searchjobs.php';
         // include_once 'includes/addon-updater/wpjobportalupdater.php';
+        // check for elementor to include intergation files
+        if ( class_exists( '\Elementor\Plugin' ) ) {
+            include_once 'includes/elementor-addon.php';
         }
+
+    }
 
     /*
      * Localization
@@ -1034,6 +1039,18 @@ function wpjobportal_register_plugin_styles(){
     wp_style_add_data( 'wpjobportal-css-ie', 'conditional', 'IE' );
     //wp_enqueue_script('wpjobportal-vue.js','https://cdn.jsdelivr.net/npm/vue/dist/vue.js',array(),false,1);
     //wp_enqueue_script('wpjobportal-vue-components', WPJOBPORTALincluder::getComponentJsUrl('common'),array(),false,1);
+
+     // elementor overides css
+    $is_elementor_edit_mode = false;
+
+    if ( class_exists('\Elementor\Plugin') && \Elementor\Plugin::$instance->editor ) {
+        $is_elementor_edit_mode = \Elementor\Plugin::$instance->editor->is_edit_mode();
+    }
+
+    if ($is_elementor_edit_mode == false) {
+        wp_enqueue_style('wpjobportal-elementor-overrides', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjp_elementor_overrides.css');
+    }
+
 }
 
 add_action( 'wp_enqueue_scripts', 'wpjobportal_register_plugin_styles' );
@@ -1451,14 +1468,19 @@ function wpjobportal_upgrade_completed( $upgrader_object, $options ) {
 				update_option('wpjp_currentversion', wpjobportal::$_currentversion);
 				include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
 
-				WPJOBPORTALupdates::checkUpdates('230');
+				WPJOBPORTALupdates::checkUpdates('231');
 
 				// restore colors data
 				require_once(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
 				// restore colors data end
+				WPJOBPORTALincluder::getJSModel('wpjobportal')->WPJPAddonsAutoUpdate();
 			}
 		}
 	}
 }
+add_filter('jsjp_delete_expire_session_data','wpjobportal_auto_update_addons');
+	function wpjobportal_auto_update_addons( ) {
+		WPJOBPORTALincluder::getJSModel('wpjobportal')->WPJPAddonsAutoUpdate();
+	}
 
 ?>

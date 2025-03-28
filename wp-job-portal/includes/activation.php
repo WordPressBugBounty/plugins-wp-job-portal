@@ -453,7 +453,7 @@ class WPJOBPORTALactivation {
               ('searchjobtag', '4', 'job', 'tag'),
               ('categories_colsperrow', '3', 'category', NULL),
               ('productcode', 'wpjobportal', 'default', NULL),
-              ('versioncode', '2.3.0', 'default', NULL),
+              ('versioncode', '2.3.1', 'default', NULL),
               ('producttype', 'free', 'default', NULL),
               ('vis_jscredits', '0', 'jscontrolpanel', 'credits'),
               ('vis_emcredits', '1', 'emcontrolpanel', NULL),
@@ -664,7 +664,8 @@ class WPJOBPORTALactivation {
               ('show_wpjobportal_page_title', '1', 'wpjobportal', NULL),
               ('job_seeker_profile_section', '1', 'wpjobportal', NULL),
               ('employer_profile_section', '1', 'wpjobportal', NULL),
-              ('default_image', '', 'default', NULL)
+              ('default_image', '', 'default', NULL),
+              ('wpjobportal_addons_auto_update', 1, 'wpjobportal', NULL),
               ;
                 ";
             wpjobportal::$_db->query($query);

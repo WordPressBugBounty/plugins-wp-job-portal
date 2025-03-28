@@ -52,11 +52,18 @@
                     </div>
                     <div class="add-on-list">
                         <div class="add-on-item address-data">
+                            <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/elegant-icon.png" alt="<?php echo esc_html(__('Address Data','wp-job-portal')); ?>" />
+                            <div class="add-on-name"><?php echo esc_html(__('Elegant Design','wp-job-portal')); ?></div>
+                            <div class="add-on-txt"><?php echo esc_html(__('This add-on will change the Job Portal pages to a simple yet powerful and rich web design that involves focusing on clean aesthetics, intuitive navigation, and functional elements while ensuring performance and responsiveness.','wp-job-portal')); ?></div>
+                            <a title="<?php echo esc_html(__('buy now','wp-job-portal')); ?>" href="https://wpjobportal.com/product/elegant-design/" class="add-on-btn"><?php echo esc_html(__('buy now','wp-job-portal')); ?></a>
+                        </div>
+                        <div class="add-on-item address-data">
                             <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/address-data.png" alt="<?php echo esc_html(__('Address Data','wp-job-portal')); ?>" />
                             <div class="add-on-name"><?php echo esc_html(__('Address Data','wp-job-portal')); ?></div>
                             <div class="add-on-txt"><?php echo esc_html(__('WP Job Portal offers a feature for users to see address data for states, cities or both. Admin will upload that file.','wp-job-portal')); ?></div>
                             <a title="<?php echo esc_html(__('buy now','wp-job-portal')); ?>" href="https://wpjobportal.com/product/address-data/" class="add-on-btn"><?php echo esc_html(__('buy now','wp-job-portal')); ?></a>
                         </div>
+
                         <div class="add-on-item adv-res-builder">
                             <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/resume-manager.png" alt="<?php echo esc_html(__('Advance Resume Builder','wp-job-portal')); ?>" />
                             <div class="add-on-name"><?php echo esc_html(__('Advance Resume Builder','wp-job-portal')); ?></div>

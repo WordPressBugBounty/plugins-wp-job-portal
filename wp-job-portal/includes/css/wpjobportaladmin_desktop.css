@@ -1596,3 +1596,9 @@ div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap .wpjobportal-form-
 	width: 100%;
 	
 }
+/* addons status auto update section */
+div#wpjobportal-head .wpjobportal-head-addons-status-wrp{float: left;width: 100%;display: flex;align-items: center;flex-wrap: wrap;justify-content: space-between;gap: 10px;}
+div#wpjobportal-head .wpjobportal-head-addons-status-wrp .wpjobportal-head-text{width: fit-content;}
+div#wpjobportal-head .wpjobportal-head-addons-status-wrp .wpjobportal-head-addons-status-update{float:inline-end;display: flex;align-items: center;justify-content: space-between;flex-wrap: wrap; min-width:fit-content;background-color: #fff;color: #000;padding: 10px;font-size: 14px;gap: 10px;width: fit-content;}
+div#wpjobportal-head .wpjobportal-head-addons-status-wrp .wpjobportal-head-addons-status-update .wpjobportal-head-addons-status-update-onbtn {float: inline-end;padding: 10px 20px;background-color: #00A859;border: 2px solid #057a43;color: #fff;font-size: 15px;cursor: pointer;text-decoration: unset;box-shadow: 0px 0px 10px #c2c7c5 !important;font-weight: bold;}
+div#wpjobportal-head .wpjobportal-head-addons-status-wrp .wpjobportal-head-addons-status-update .wpjobportal-head-addons-status-update-offbtn{float: inline-end;padding: 10px 20px;background-color: #8c0202;border: 2px solid #470303;color: #fff;font-size: 15px;cursor: pointer;text-decoration: unset;box-shadow: 0px 0px 10px #c2c7c5 !important;font-weight: bold;}
