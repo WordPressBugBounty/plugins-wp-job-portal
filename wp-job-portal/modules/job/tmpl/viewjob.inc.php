@@ -48,7 +48,35 @@ $mappingservice = wpjobportal::$_config->getConfigValue('mappingservice');
             $('#wpj-jp-popup-background').click(function () {
                 closePopup(1);
             });
+            // to handle extentsion and size validation & show selected the file name
+            $('#resumefiles').change(function () {
+                readURL(this);
+            });
         });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var fileext = input.files[0].name.split('.').pop();
+                var filesize = (input.files[0].size / 1024);
+                var allowedsize = ". wpjobportal::$_config->getConfigValue('document_file_size').";
+                var allowedExt = '". wpjobportal::$_config->getConfigValue('document_file_type')."';
+                allowedExt = allowedExt.split(',');
+                if (jQuery.inArray(fileext, allowedExt) != - 1){
+                    if (allowedsize > filesize){
+                        //alert(input.files[0].name);
+                        jQuery('.wjportal-form-upload-btn-wrp-txt').html(input.files[0].name);
+                    } else{
+                        jQuery('input#resumefiles').replaceWith(jQuery('input#resumefiles').val('').clone(true));
+                        alert(\"". esc_html(__("File size is greater then allowed file size", 'wp-job-portal'))."\");
+                    }
+                } else{
+                    jQuery('input#resumefiles').replaceWith(jQuery('input#resumefiles').val('').clone(true));
+                    alert(\"". esc_html(__("File ext. is mismatched", 'wp-job-portal'))."\");
+                }
+
+            }
+        }
+
 
         jQuery('body').delegate('i.wpj-jp-popup-close-icon', 'click', function(e){
             closePopup(1);

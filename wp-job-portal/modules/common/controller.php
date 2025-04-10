@@ -27,6 +27,13 @@ class WPJOBPORTALCommonController {
                         wpjobportal::$_error_flag_message = WPJOBPORTALLayout::setMessageFor(1 , $link , $linktext,1);
                         wpjobportal::$_error_flag = true;
                     }
+                    // to disable admin from selecting role
+                    if(current_user_can('manage_options')){
+                        $link = get_permalink();
+                        $linktext = '';
+                        wpjobportal::$_error_flag_message = WPJOBPORTALLayout::setMessageFor(10 , $link , $linktext,1);
+                        wpjobportal::$_error_flag = true;
+                    }
                 break;
                 case 'addonmissing':
                     // set error message page only shows in case of missing addon link
@@ -176,6 +183,9 @@ class WPJOBPORTALCommonController {
         $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'wpjobportal_new_in_jobportal_nonce') ) {
              die( 'Security check Failed' );
+        }
+        if(current_user_can( 'manage_options' )){ // if current user is admin{
+             die( 'Not Allowed' );
         }
         $data = WPJOBPORTALrequest::get('post');
         $result = WPJOBPORTALincluder::getJSModel('common')->saveNewInWPJOBPORTAL($data);

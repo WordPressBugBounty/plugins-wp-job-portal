@@ -8,15 +8,18 @@ if (!defined('ABSPATH'))
    if(!WPJOBPORTALincluder::getTemplate('templates/header',array('module'=>'common'))){
         return;
    }
+
+// to disbale this page for admin
+if(current_user_can( 'manage_options' )){ // if current user is admin
+    wpjobportal::$_error_flag = true; // set error flag if there's no already
+    wpjobportal::$_error_flag_message_for = 10;
+    wpjobportal::$_error_flag_message = WPJOBPORTALLayout::setMessageFor(10 , '' , '',1);
+}
 if (wpjobportal::$_error_flag == null) {
     $module = WPJOBPORTALrequest::getVar('wpjobportalme');
     $layout = WPJOBPORTALrequest::getVar('wpjobportallt');
-    $currentuser = get_userdata(get_current_user_id());
-    $uid = '';
-    if($currentuser){
-    $uid = $currentuser->ID ? $currentuser->ID : "";
-    }
     $email = "";
+    $uid = get_current_user_id();
     if(isset($_COOKIE['wpjobportal-socialemail'])){
         $email = sanitize_key($_COOKIE['wpjobportal-socialemail']);
     }

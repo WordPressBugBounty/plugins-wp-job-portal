@@ -171,35 +171,37 @@ $captcha_quick_apply  = wpjobportal::$_config->getConfigurationByConfigName('qui
                                             $decimals = WPJOBPORTALincluder::getJSModel('currency')->getDecimalPlaces($currencyid);
                                             $formattedPrice = wpjobportalphplib::wpJP_number_format($price,$decimals);
                                             $priceCompanytlist = WPJOBPORTALincluder::getJSModel('common')->getFancyPrice($price,$currencyid,array('decimal_places'=>$decimals));
-                                            echo '<div class="wjportal-job-apply-price-msg" >';
-                                            echo esc_html(__('Payment of', 'wp-job-portal')). ' <strong>'.esc_html($priceCompanytlist).'</strong> '.esc_html(__('is required to complete the job apply process', 'wp-job-portal'));
-                                            echo '</div>';
-                                            if($payment_not_required == true){ // job apply is not pending becasue of payment
+											if(is_numeric($price) && $price > 0){
+												echo '<div class="wjportal-job-apply-price-msg" >';
+												echo esc_html(__('Payment of', 'wp-job-portal')). ' <strong>'.esc_html($priceCompanytlist).'</strong> '.esc_html(__('is required to complete the job apply process', 'wp-job-portal'));
+												echo '</div>';
+												if($payment_not_required == true){ // job apply is not pending becasue of payment
 
-                                                // check enabled payment methods create an array for radio button selection in case of multiple
-                                                $paymentconfig = wpjobportal::$_wpjppaymentconfig->getPaymentConfigFor('paypal,stripe,woocommerce',true);
-                                                $default_selected_payment_method = '';
-                                                if($paymentconfig['isenabled_paypal'] == 1){ // paypal as a payment method is enabled
-                                                    $payment_methods_array[1] = '<img src="'. esc_url(WPJOBPORTAL_IMAGE).'/paypal.jpg" alt="'. __("paypal","wp-job-portal").'" title="'. __("paypal","wp-job-portal").'" /> '. esc_html(__('PayPal', 'wp-job-portal'));
-                                                    $default_selected_payment_method = 1;
-                                                }
-                                                if($paymentconfig['isenabled_woocommerce'] == 1) { // woo commerce as a payment method is enabled
-                                                    // uncomment this line
-                                                    // if(class_exists( 'WooCommerce' )){
-                                                        $payment_methods_array[2] = '<img src="'. esc_url(WPJOBPORTAL_IMAGE).'/woo.jpg" alt="'. __("woocommerce","wp-job-portal").'" title="'. __("woocommerce","wp-job-portal").'" /> '. esc_html(__('Woocommerce', 'wp-job-portal'));
-                                                        if($default_selected_payment_method == '')
-                                                            $default_selected_payment_method = 2;
-                                                    // }
-                                                }
-                                                if($paymentconfig['isenabled_stripe'] == 1) { // stripe as a payment method is enabled
-                                                    $payment_methods_array[3] = '<img src="'. esc_url(WPJOBPORTAL_IMAGE).'/stripe.jpg" alt="'. __("stripe","wp-job-portal").'" title="'. __("stripe","wp-job-portal").'" /> '. esc_html(__('Stripe', 'wp-job-portal'));
-                                                    if($default_selected_payment_method == '')
-                                                        $default_selected_payment_method = 3;
-                                                }
-                                            }else{ // payment is requied for job apply
-                                                $show_proceed_to_payment_button = 1; // show proceed to payment button
-                                                $hide_apply_btn = 1; // hide apply button
-                                            }
+													// check enabled payment methods create an array for radio button selection in case of multiple
+													$paymentconfig = wpjobportal::$_wpjppaymentconfig->getPaymentConfigFor('paypal,stripe,woocommerce',true);
+													$default_selected_payment_method = '';
+													if($paymentconfig['isenabled_paypal'] == 1){ // paypal as a payment method is enabled
+														$payment_methods_array[1] = '<img src="'. esc_url(WPJOBPORTAL_IMAGE).'/paypal.jpg" alt="'. __("paypal","wp-job-portal").'" title="'. __("paypal","wp-job-portal").'" /> '. esc_html(__('PayPal', 'wp-job-portal'));
+														$default_selected_payment_method = 1;
+													}
+													if($paymentconfig['isenabled_woocommerce'] == 1) { // woo commerce as a payment method is enabled
+														// uncomment this line
+														// if(class_exists( 'WooCommerce' )){
+															$payment_methods_array[2] = '<img src="'. esc_url(WPJOBPORTAL_IMAGE).'/woo.jpg" alt="'. __("woocommerce","wp-job-portal").'" title="'. __("woocommerce","wp-job-portal").'" /> '. esc_html(__('Woocommerce', 'wp-job-portal'));
+															if($default_selected_payment_method == '')
+																$default_selected_payment_method = 2;
+														// }
+													}
+													if($paymentconfig['isenabled_stripe'] == 1) { // stripe as a payment method is enabled
+														$payment_methods_array[3] = '<img src="'. esc_url(WPJOBPORTAL_IMAGE).'/stripe.jpg" alt="'. __("stripe","wp-job-portal").'" title="'. __("stripe","wp-job-portal").'" /> '. esc_html(__('Stripe', 'wp-job-portal'));
+														if($default_selected_payment_method == '')
+															$default_selected_payment_method = 3;
+													}
+												}else{ // payment is requied for job apply
+													$show_proceed_to_payment_button = 1; // show proceed to payment button
+													$hide_apply_btn = 1; // hide apply button
+												}
+											}	
                                         }
                                     }
                                 }

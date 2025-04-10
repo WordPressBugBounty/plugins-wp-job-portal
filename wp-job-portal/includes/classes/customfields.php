@@ -1269,9 +1269,9 @@ class WPJOBPORTALcustomfields {
             }
         }
 		if($field_class == "")
-			$field_class == "wjportal-custom-field";
+			$field_class = "wjportal-custom-field";
 		if($field_title_class == "")
-			$field_title_class == "wjportal-custom-field-tit";
+			$field_title_class = "wjportal-custom-field-tit";
 		if($field_value_class == "")
 			$field_value_class = "wjportal-custom-field-val";
 

@@ -3,14 +3,14 @@
 /**
  * @package WP JOB PORTAL
  * @author Ahmad Bilal
- * @version 2.3.1
+ * @version 2.3.2
  */
 /*
   * Plugin Name: WP Job Portal
   * Plugin URI: https://wpjobportal.com/
   * Description: WP JOB PORTAL is Word Press best job board plugin. It is easy to use and highly configurable. It fully accommodates job seekers and employers.
   * Author: WP Job Portal
-  * Version: 2.3.1
+  * Version: 2.3.2
   * Text Domain: wp-job-portal
   * Domain Path: /languages
   * Author URI: https://wpjobportal.com/
@@ -77,7 +77,7 @@ class wpjobportal {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '231';
+        self::$_currentversion = '232';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_common = WPJOBPORTALincluder::getJSModel('common');
         self::$_config = WPJOBPORTALincluder::getJSModel('configuration');
@@ -187,7 +187,7 @@ class wpjobportal {
                 if( $plugin == $our_plugin ) {
                     update_option('wpjp_currentversion', self::$_currentversion);
                     include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
-                    WPJOBPORTALupdates::checkUpdates('231');
+                    WPJOBPORTALupdates::checkUpdates('232');
 
                 	// restore colors data
 		            require(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
@@ -1468,7 +1468,7 @@ function wpjobportal_upgrade_completed( $upgrader_object, $options ) {
 				update_option('wpjp_currentversion', wpjobportal::$_currentversion);
 				include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
 
-				WPJOBPORTALupdates::checkUpdates('231');
+				WPJOBPORTALupdates::checkUpdates('232');
 
 				// restore colors data
 				require_once(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
