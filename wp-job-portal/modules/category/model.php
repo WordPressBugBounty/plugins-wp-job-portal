@@ -186,8 +186,8 @@ class WPJOBPORTALCategoryModel {
     function validateFormData(&$data) {
         $category = WPJOBPORTALrequest::getVar('parentid');
         $inquery = ' ';
-        if ($category) {
-            $inquery .=" WHERE parentid = $category ";
+        if (is_numeric($category)) {
+            $inquery .=" WHERE parentid = ".esc_sql($category);
         }
         $canupdate = false;
         if ($data['id'] == '') {

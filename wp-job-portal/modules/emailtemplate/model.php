@@ -1192,6 +1192,7 @@ class WPJOBPORTALEmailtemplateModel {
                         //(since we are using same email template for job seekr and employer notification so using "sendbyid" to identify sender and reicpient)
                         $send_email_employer = 0;
                         $send_email_jobseeker = 0;
+                        $Email = ''; // handling log error
                         if($record->sendby == $record->jobseekerid){// jobseeker sent message
                             $recipient_name = $record->employer_data->username;
                             $sender_name = $record->jobseeker_data->username;
@@ -1432,7 +1433,7 @@ class WPJOBPORTALEmailtemplateModel {
             $msgBody = wpjobportalphplib::wpJP_str_replace('{EMPLOYER_NAME}', $ContactName, $msgBody);
             $msgBody = wpjobportalphplib::wpJP_str_replace('{JOB_LINK}', $joblink, $msgBody);
             $msgBody = wpjobportalphplib::wpJP_str_replace('{SITETITLE}', $siteTitle, $msgBody);
-            $msgBody = wpjobportalphplib::wpJP_str_replace('{EMAIL}', $Email, $msgBody);
+            //$msgBody = wpjobportalphplib::wpJP_str_replace('{EMAIL}', $Email, $msgBody); // handling log error
             $msgBody = wpjobportalphplib::wpJP_str_replace('{CURRENT_YEAR}', gmdate('Y'), $msgBody);
 
             $config = WPJOBPORTALincluder::getJSModel('configuration')->getConfigByFor('visitor');

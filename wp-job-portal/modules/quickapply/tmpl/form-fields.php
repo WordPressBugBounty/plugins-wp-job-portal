@@ -38,7 +38,6 @@ foreach($fields AS $field){
                 <div class="wjportal-form-upload-btn-wrp">
                     <span class="wjportal-form-upload-btn-wrp-txt"></span>
                     <span class="wjportal-form-upload-btn">
-
                         <?php echo esc_html(__('Upload Resume','wp-job-portal')); ?>
                         <input id="resumefiles" name="resumefiles" type="file" >
                     </span>

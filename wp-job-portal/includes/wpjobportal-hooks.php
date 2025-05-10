@@ -956,5 +956,62 @@ function getWPJobPortalPageTitle($module, $layout){
     return $title;
 }
 
+// hook to store ai data for job
+/*
+//  job ai string
+add_action('wpjobportal_after_store_job_hook','storeAIStringDataForJob',10,1);
+function storeAIStringDataForJob($data){
+    WPJOBPORTALincluder::getJSModel('job')->prepareAIStringDataForJob($data);
+}
 
+//  resume ai string
+add_action('wpjobportal_after_store_resume_hook','storeAIStringDataForResume',10,1);
+function storeAIStringDataForResume($data){
+    WPJOBPORTALincluder::getJSModel('resume')->prepareAIStringDataForResume($data);
+}
+
+
+// ai banner
+
+// Retrieve the value of the 'wpjobportal_ai_search_data_sync_needed' option
+$sync_needed = get_option('wpjobportal_ai_search_data_sync_needed');
+if ($sync_needed === false || $sync_needed != 0) {
+    add_action( 'admin_notices', 'wpjobportal_ai_search_data_sync_needed_notice');
+}
+
+function wpjobportal_ai_search_data_sync_needed_notice() {
+    ?>
+    <div class="notice wpjobportal-ai-search-data-synchronize-section-mainwrp is-dismissible">
+         <div class="wpjobportal-ai-search-data-synchronize-section">
+            <div class="wpjobportal-ai-search-data-synchronize-imgwrp">
+                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/sql_update.png" title="<?php echo esc_attr(__('Update', 'wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Update', 'wp-job-portal')); ?>" class="wpjobportal-ai-search-data-synchronize-img">
+            </div>
+            <div class="wpjobportal-ai-search-data-synchronize-content-wrp">
+                <span class="wpjobportal-ai-search-data-synchronize-content-title"><?php echo esc_html(__('Database Update Needed', 'wp-job-portal'));?></span>
+                <span class="wpjobportal-ai-search-data-synchronize-content-disc"><?php echo esc_html(__("A critical update for WP Job Portal is required to maintain performance and prevent issues. Please update now.", 'wp-job-portal'));?></span>
+            </div>
+            <div class="wpjobportal-ai-search-data-synchronize-button-wrp">
+                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_common&task=wpjobportal_synchronize_ai_search_data&action=wpjobportaltask'),'synchronize_ai_search_data')); ?>" id="wpjobportalCheckUpdates" class="wpjobportal_ai_synchronize_data" title="<?php echo esc_attr(__('Update Now', 'wp-job-portal')); ?>">
+                    <?php echo esc_html(__('Update Now', 'wp-job-portal')); ?>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="wpjp-loading-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.65); z-index:9999; text-align:center; color:#fff; font-size:20px; padding-top:20%; font-family:sans-serif;">
+        <div><?php echo esc_html(__('Updating Database, please wait...', 'wp-job-portal')); ?></div>
+    </div>
+    <?php
+    wp_register_script( 'wpjobportal-inline-handle', '' );
+    wp_enqueue_script( 'wpjobportal-inline-handle' );
+
+    $inline_js_script = "
+        jQuery(document).ready(function(){
+            jQuery('#wpjobportalCheckUpdates').on('click', function() {
+                jQuery('#wpjp-loading-overlay').fadeIn();
+            });
+        }); ";
+    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+
+}
+*/
 ?>

@@ -269,6 +269,16 @@ class WPJOBPORTALJobstatusModel {
             return false;
     }
 
+    function getTitleByid($id) {
+        if (!is_numeric($id)){
+            return false;
+        }
+        $query = "SELECT title FROM " . wpjobportal::$_db->prefix . "wj_portal_jobstatus WHERE id = " . esc_sql($id);
+        $result = wpjobportaldb::get_var($query);
+        return $result;
+    }
+
+
     function getDefaultJobStatusId() {
         $query = "SELECT id FROM " . wpjobportal::$_db->prefix . "wj_portal_jobstatus WHERE isdefault = 1";
         $id = wpjobportaldb::get_var($query);

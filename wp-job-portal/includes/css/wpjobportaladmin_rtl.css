@@ -313,6 +313,12 @@ div.wpjobportal-update-alert-wrp div.wpjobportal-update-alert-image {float: righ
 div.wpjobportal-update-alert-wrp div.wpjobportal-update-alert-cnt {float: right;padding: 13px 10px 0 0px;}
 div.wpjobportal-update-alert-wrp a.wpjobportal-update-alert-btn {float: left;}
 
+
+/* synchronize section */
+div.wpjobportal-ai-search-data-synchronize-section .wpjobportal-ai-search-data-synchronize-button-wrp a{float: left;}
+div.wpjobportal-ai-search-data-synchronize-section .wpjobportal-ai-search-data-synchronize-button-wrp a img{margin-right: 0;margin-left: 5px;}
+
+
 /* responsive */
 @media (max-width: 782px) {
 	
@@ -401,3 +407,4 @@ div.wpjobportal-update-alert-wrp a.wpjobportal-update-alert-btn {float: left;}
     div#wpjobportal-admin-wrapper .wpjobportal-help-btm .wpjobportal-help-btm-wrp .wpjobportal-help-btm-cnt {margin: 0 0 10px 0 !important; }
     div#wpjobportal-admin-wrapper .wpjobportal-help-btm .wpjobportal-help-btm-wrp .wpjobportal-help-btm-cnt a img {margin-left: unset !important;}
 }
+

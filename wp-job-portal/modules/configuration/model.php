@@ -321,7 +321,21 @@ class WPJOBPORTALconfigurationModel {
                     <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=job_apply#quick_apply" class="jslm_text">'.  esc_html(__("Quick Apply settings",'wp-job-portal')) .'</a></li>
                     <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=job_apply#job_apply_settings" class="jslm_text">'.  esc_html(__("Job Apply settings",'wp-job-portal')) .'</a></li>
                 </ul>
+            </li> ';
+            // ai addons admin left menu
+            /*
+            <li class="treeview" id="ai_setting">
+                <a class="js-icon-left" href="#" title="'. esc_html(__('AI Settings' , 'wp-job-portal')) .'">
+                    <img src="'. esc_url(WPJOBPORTAL_PLUGIN_URL)."includes/images/config/apply-config.png" .'"/>
+                    <span class="jslm_text wpjobportal-parent">'. esc_html(__("AI settings" , 'wp-job-portal')) .'</span>
+                </a>
+                <ul class="wpjobportaladmin-sidebar-submenu treeview-menu">
+                    <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=ai_settings#ai_settings_tab" class="jslm_text">'.  esc_html(__("AI settings",'wp-job-portal')) .'</a></li>
+                </ul>
             </li>
+            */
+            $html .= '
+
             <li class="treeview" id="vis_setting">
                 <a class="js-icon-left" href="#" title="'. esc_html(__('visitor setting' , 'wp-job-portal')) .'">
                     <img src="'. esc_url(WPJOBPORTAL_PLUGIN_URL)."includes/images/config/user.png" .'"/>

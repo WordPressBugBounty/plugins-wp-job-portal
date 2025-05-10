@@ -9,8 +9,8 @@
     $msgkey = WPJOBPORTALincluder::getJSModel('configuration')->getMessagekey();
     WPJOBPORTALMessages::getLayoutMessage($msgkey);
     $theme_chk = wpjobportal::$theme_chk ;
-?>
-<?php
+    $search_resume = array((object) array('id' => 0, 'text' => esc_html(__('Not allowed', 'wp-job-portal'))), (object) array('id' => 1, 'text' => esc_html(__('Allowed to all (employers, job seekers and visitors)', 'wp-job-portal'))), (object) array('id' => 2, 'text' => esc_html(__('Allowed only to employers', 'wp-job-portal'))));
+
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
@@ -226,7 +226,19 @@
                                         </h3>
                                         <div class="wpjobportal-config-row">
                                             <div class="wpjobportal-config-title">
-.                                                <?php echo esc_html(__('Allow save search', 'wp-job-portal')); ?>
+                                                <?php echo esc_html(__('Allow search resume', 'wp-job-portal')); ?>
+
+                                            </div>
+                                            <div class="wpjobportal-config-value">
+                                                <?php echo wp_kses(WPJOBPORTALformfield::select('allow_search_resume', $search_resume, wpjobportal::$_data[0]['allow_search_resume']),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                <div class="wpjobportal-config-description">
+                                                    <?php echo esc_html(__('Who can search resume.', 'wp-job-portal')); ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="wpjobportal-config-row">
+                                            <div class="wpjobportal-config-title">
+                                                <?php echo esc_html(__('Allow save search', 'wp-job-portal')); ?>
 
                                             </div>
                                             <div class="wpjobportal-config-value">

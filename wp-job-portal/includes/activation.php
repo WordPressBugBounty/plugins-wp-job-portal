@@ -453,7 +453,7 @@ class WPJOBPORTALactivation {
               ('searchjobtag', '4', 'job', 'tag'),
               ('categories_colsperrow', '3', 'category', NULL),
               ('productcode', 'wpjobportal', 'default', NULL),
-              ('versioncode', '2.3.2', 'default', NULL),
+              ('versioncode', '2.3.3', 'default', NULL),
               ('producttype', 'free', 'default', NULL),
               ('vis_jscredits', '0', 'jscontrolpanel', 'credits'),
               ('vis_emcredits', '1', 'emcontrolpanel', NULL),
@@ -665,7 +665,8 @@ class WPJOBPORTALactivation {
               ('job_seeker_profile_section', '1', 'wpjobportal', NULL),
               ('employer_profile_section', '1', 'wpjobportal', NULL),
               ('default_image', '', 'default', NULL),
-              ('wpjobportal_addons_auto_update', 1, 'wpjobportal', NULL)
+              ('wpjobportal_addons_auto_update', 1, 'wpjobportal', NULL),
+              ('allow_search_resume', '2', 'resume', 'resumesearch')
               ;
                 ";
             wpjobportal::$_db->query($query);
@@ -1323,11 +1324,16 @@ class WPJOBPORTALactivation {
               `salaryduration` int(11) DEFAULT NULL,
               `userpackageid` int(11) DEFAULT NULL,
               `price` int(20) DEFAULT NULL,
+              `aijobsearchtext` MEDIUMTEXT NULL,
+              `aijobsearchdescription` MEDIUMTEXT NULL,
               PRIMARY KEY (`id`),
               KEY `jobcategory` (`jobcategory`),
-              KEY `jobs_companyid` (`companyid`)
-            ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;";
+              KEY `jobs_companyid` (`companyid`),
+              FULLTEXT KEY `aijobsearchtext` (`aijobsearchtext`),
+              FULLTEXT KEY `aijobsearchdescription` (`aijobsearchdescription`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             wpjobportal::$_db->query($query);
+
 
 
             $query = "CREATE TABLE IF NOT EXISTS `" . wpjobportal::$_db->prefix . "wj_portal_jobstatus` (
@@ -1397,9 +1403,14 @@ class WPJOBPORTALactivation {
               `userpackageid` int(11) DEFAULT NULL,
               `price` int(20) DEFAULT NULL,
               `quick_apply` tinyint(1) NULL DEFAULT '0',
-              PRIMARY KEY (`id`)
-            ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;";
+              `airesumesearchtext` MEDIUMTEXT NULL,
+              `airesumesearchdescription` MEDIUMTEXT NULL,
+              PRIMARY KEY (`id`),
+              FULLTEXT KEY `airesumesearchtext` (`airesumesearchtext`),
+              FULLTEXT KEY `airesumesearchdescription` (`airesumesearchdescription`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             wpjobportal::$_db->query($query);
+
 
             $query = "CREATE TABLE IF NOT EXISTS  `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` (
                 `id` int(11) NOT NULL AUTO_INCREMENT,

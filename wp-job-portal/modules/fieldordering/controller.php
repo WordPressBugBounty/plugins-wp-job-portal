@@ -13,7 +13,7 @@ class WPJOBPORTALfieldorderingController {
 
     function handleRequest() {
         $layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'fieldsordering');
-        if (self::canaddfile()) {
+        if (self::canaddfile($layout)) {
             switch ($layout) {
                 case 'admin_fieldsordering':
                     $fieldfor = WPJOBPORTALrequest::getVar('ff','',1);// 1 is to make sure the page does not show warnings in case of parameter drop
@@ -48,15 +48,19 @@ class WPJOBPORTALfieldorderingController {
         }
     }
 
-    function canaddfile() {
+    function canaddfile($layout) {
         $nonce_value = WPJOBPORTALrequest::getVar('wpjobportal_nonce');
         if ( wp_verify_nonce( $nonce_value, 'wpjobportal_nonce') ) {
             if (isset($_POST['form_request']) && $_POST['form_request'] == 'wpjobportal')
                 return false;
             elseif (isset($_GET['action']) && $_GET['action'] == 'wpjobportaltask')
                 return false;
-            else
+            else{
+                if(!is_admin() && strpos($layout, 'admin_') === 0){
+                    return false;
+                }
                 return true;
+            }
         }
     }
 
@@ -65,6 +69,8 @@ class WPJOBPORTALfieldorderingController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_field_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $pagenum = WPJOBPORTALrequest::getVar('pagenum');
         $fieldfor = WPJOBPORTALrequest::getVar('ff','',1);// 1 is to make sure the page does not show warnings in case of parameter drop
         $ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
@@ -83,6 +89,8 @@ class WPJOBPORTALfieldorderingController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_field_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $pagenum = WPJOBPORTALrequest::getVar('pagenum');
         $fieldfor = WPJOBPORTALrequest::getVar('ff','',1);// 1 is to make sure the page does not show warnings in case of parameter drop
         $ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
@@ -101,6 +109,8 @@ class WPJOBPORTALfieldorderingController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_field_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $pagenum = WPJOBPORTALrequest::getVar('pagenum');
         $fieldfor = WPJOBPORTALrequest::getVar('ff','',1);// 1 is to make sure the page does not show warnings in case of parameter drop
         $ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
@@ -119,6 +129,8 @@ class WPJOBPORTALfieldorderingController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_field_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $pagenum = WPJOBPORTALrequest::getVar('pagenum');
         $fieldfor = WPJOBPORTALrequest::getVar('ff','',1);// 1 is to make sure the page does not show warnings in case of parameter drop
         $ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
@@ -137,6 +149,8 @@ class WPJOBPORTALfieldorderingController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_field_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $pagenum = WPJOBPORTALrequest::getVar('pagenum');
         $fieldfor = WPJOBPORTALrequest::getVar('ff','',1);// 1 is to make sure the page does not show warnings in case of parameter drop
         $ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
@@ -155,6 +169,8 @@ class WPJOBPORTALfieldorderingController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_field_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $pagenum = WPJOBPORTALrequest::getVar('pagenum');
         $fieldfor = WPJOBPORTALrequest::getVar('ff','',1);// 1 is to make sure the page does not show warnings in case of parameter drop
         $ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
@@ -201,6 +217,8 @@ class WPJOBPORTALfieldorderingController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_field_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $data = WPJOBPORTALrequest::get('post');
         $fieldfor = WPJOBPORTALrequest::getVar('fieldfor','',1);// 1 is to make sure the page does not show warnings in case of parameter drop
         if($fieldfor == ''){
@@ -222,6 +240,8 @@ class WPJOBPORTALfieldorderingController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_field_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $data = WPJOBPORTALrequest::get('post');
         $fieldfor = WPJOBPORTALrequest::getVar('fieldfor','',1);// 1 is to make sure the page does not show warnings in case of parameter drop
         if($fieldfor == ''){
@@ -240,6 +260,8 @@ class WPJOBPORTALfieldorderingController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_field_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $data = WPJOBPORTALrequest::get('post');
         $fieldfor = WPJOBPORTALrequest::getVar('fieldfor','',1);// 1 is to make sure the page does not show warnings in case of parameter drop
         if($fieldfor == ''){
@@ -258,6 +280,8 @@ class WPJOBPORTALfieldorderingController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_field_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $pagenum = WPJOBPORTALrequest::getVar('pagenum');
         $id = WPJOBPORTALrequest::getVar('fieldid');
         $is_section_headline = WPJOBPORTALrequest::getVar('is_section_headline','',0);

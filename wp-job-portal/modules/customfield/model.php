@@ -734,6 +734,7 @@ class WPJOBPORTALCustomFieldModel {
         $phtml = wp_json_encode($html);
         return $phtml;
     }
+
     function DataForDepandantFieldResume(){
         $nonce = WPJOBPORTALrequest::getVar('js_nonce');
         if (! wp_verify_nonce( $nonce, 'wp-job-portal-nonce') ) {
@@ -910,6 +911,14 @@ class WPJOBPORTALCustomFieldModel {
         //$file_name to access the file and download it
 
         $filename = wpjobportalphplib::wpJP_str_replace(' ', '_', $file_name);
+
+        // clean file name to remove relative path
+        $filename = wpjobportalphplib::wpJP_clean_file_path($filename);
+
+        if($filename == ''){
+            return;
+        }
+
         $maindir = wp_upload_dir();
         $basedir = $maindir['basedir'];
         $datadirectory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');

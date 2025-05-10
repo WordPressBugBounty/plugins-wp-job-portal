@@ -57,6 +57,37 @@ switch ($layout) {
             $html .= WPJOBPORTALformfield::hidden('wpjobportallay' , 'jobs');
             $html .= WPJOBPORTALformfield::hidden('WPJOBPORTAL_form_search' , 'WPJOBPORTAL_SEARCH');
 		break;
+/*
+    case 'aijobfilter':
+            // action  hook code is in AI Job search addon
+            // hook creates inout field and hidden fields for form
+            //$html .= do_action('wpjobportal_addons_aijobsearch_field');
+        $html.='<div class="wjportal-filter-ai-searchfrm-wrp">
+                    <div class="wjportal-ai-searchfrm-logo-wrp">
+                        <img class="wjportal-ai-searchfrm-logo" src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/ai-icon.png " alt="' . esc_html(__('AI Search', 'wp-job-portal')) . '" />
+                    </div>
+                 ';
+            $html.='<div class="wjportal-aifilter-search-wrp">
+                <span class="wjportal-filter-ai-searchfrm-title">' . esc_html(__('Unlock your career potential with AI-driven job search', 'wp-job-portal')) . '</span>
+             ';
+            // Hide job title filter based on shortcode option
+
+            $html.='    <div class="wjportal-filter-search-field-wrp">
+                        '. WPJOBPORTALformfield::text('aijobsearcch',isset(wpjobportal::$_data['filter']['aijobsearcch']) ? wpjobportal::$_data['filter']['aijobsearcch'] : '',array('placeholder'=>esc_html(__("Ready to find your dream job? Let's get started",'wp-job-portal')), 'class'=>'wjportal-filter-search-input-field')).'
+                    </div>';
+            $html.='    <div class="wjportal-filter-search-btn-wrp">
+                            <button type="submit" class="wjportal-filter-search-btn">
+                                <img class="wjportal-filter-search-field-icon" src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/search-icon.png " alt="' . esc_html(__('Search', 'wp-job-portal')) . '" />
+                                ' . esc_html(__('Search Jobs', 'wp-job-portal')) . '
+                            </button>
+                        </div>
+                        <span class="wjportal-filter-ai-searchfrm-discription">' . esc_html(__('Start typing what you know – our AI will help you find the best matching jobs.', 'wp-job-portal')) . '</span>
+
+                </div>
+        </div>';
+        $html .= WPJOBPORTALformfield::hidden('wpjobportallay' , 'jobs');
+        $html .= WPJOBPORTALformfield::hidden('WPJOBPORTAL_form_search' , 'WPJOBPORTAL_SEARCH');
+        break; */
 }
 echo wp_kses($html, WPJOBPORTAL_ALLOWED_TAGS);
 

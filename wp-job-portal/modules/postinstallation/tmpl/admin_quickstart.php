@@ -60,15 +60,12 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
         </div>
         <div class="wpjobportal-post-data">
             <div class="wpjobportal-post-heading">
-                <?php echo esc_html(__('Quick Start','wp-job-portal'));?>
+                <?php echo esc_html(__('Configure WP Job Portal As','wp-job-portal'));?>
             </div>
             <form id="wpjobportal-form-ins" class="wpjobportal-form" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_postinstallation&task=save&action=wpjobportaltask")); ?>">
 
-                <div class="wpjobportal-post-data-row">
+                <div class="wpjobportal-post-data-row wpjobportal-post-data-quickstart-row">
                     <div class="wpjobportal-post-employer-mode-wrap">
-                        <div class="wpjobportal-post-employer-mode-section-title">
-                            <?php echo esc_html(__('Configure WP Job Portal As','wp-job-portal'));?>
-                        </div>
                         <div class="wpjobportal-post-employer-mode-single wpj-is-selected wpjobportal-pst-first">
                             <div class="wpjobportal-post-employer-mode-single-img-wrap">
                                 <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/postinstallation/job-board-icon.png'; ?>"/>

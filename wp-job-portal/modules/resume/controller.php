@@ -16,7 +16,7 @@ class WPJOBPORTALResumeController {
     function handleRequest() {
         $layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'resumes');
         $uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
-        if (self::canaddfile()) {
+        if (self::canaddfile($layout)) {
             $empflag  = wpjobportal::$_config->getConfigurationByConfigName('disable_employer');
             $string = "'jscontrolpanel','emcontrolpanel','visitor','resume'" ;
             $config_array = wpjobportal::$_config->getConfigurationByConfigForMultiple($string);
@@ -84,6 +84,11 @@ class WPJOBPORTALResumeController {
                                         $sortby = $array[0];
                                         $id = '';
                                         break;
+                                    case '15': //Search
+                                        $id = wpjobportalphplib::wpJP_substr($id, 2);
+                                        wpjobportal::$_data['aisuggestedresumes_job'] = $array[0] . '-' . $id;
+                                        $vars['aisuggestedresumes_job'] = $id;
+                                        break;
                                     default:
                                         $id = '';
                                         break;
@@ -113,6 +118,12 @@ class WPJOBPORTALResumeController {
                         if ($tags) {
                             $tags = wpjobportal::tagfillout($tags);
                             $vars['tags'] = $tags;
+                        }
+                        $aisuggestedresumes_job = WPJOBPORTALrequest::getVar('aisuggestedresumes_job', 'get');
+                        if ($aisuggestedresumes_job) {
+                            $array = wpjobportalphplib::wpJP_explode('-', $aisuggestedresumes_job);
+                            $aisuggestedresumes_job = $array[count($array) - 1];
+                            $vars['aisuggestedresumes_job'] = (int) $aisuggestedresumes_job;
                         }
                     }
                     if (WPJOBPORTALincluder::getObjectClass('user')->isjobseeker()) {
@@ -471,15 +482,19 @@ class WPJOBPORTALResumeController {
         }
     }
 
-    function canaddfile() {
+    function canaddfile($layout) {
         $nonce_value = WPJOBPORTALrequest::getVar('wpjobportal_nonce');
         if ( wp_verify_nonce( $nonce_value, 'wpjobportal_nonce') ) {
             if (isset($_POST['form_request']) && $_POST['form_request'] == 'wpjobportal')
                 return false;
             elseif (isset($_GET['action']) && $_GET['action'] == 'wpjobportaltask')
                 return false;
-            else
+            else{
+                if(!is_admin() && strpos($layout, 'admin_') === 0){
+                    return false;
+                }
                 return true;
+            }
         }
     }
 

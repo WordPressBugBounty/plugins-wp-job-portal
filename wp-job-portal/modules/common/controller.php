@@ -18,7 +18,7 @@ class WPJOBPORTALCommonController {
         if(isset($_COOKIE['wpjobportal-socialid'])){
             $socialUser = sanitize_key($_COOKIE['wpjobportal-socialid']);
         }
-        if (self::canaddfile()) {
+        if (self::canaddfile($layout)) {
             switch ($layout) {
                 case 'newinwpjobportal':
                     if(WPJOBPORTALincluder::getObjectClass('user')->isguest() && !$socialUser){
@@ -55,15 +55,19 @@ class WPJOBPORTALCommonController {
         }
     }
 
-    function canaddfile() {
+    function canaddfile($layout) {
         $nonce_value = WPJOBPORTALrequest::getVar('wpjobportal_nonce');
         if ( wp_verify_nonce( $nonce_value, 'wpjobportal_nonce') ) {
             if (isset($_POST['form_request']) && $_POST['form_request'] == 'wpjobportal')
                 return false;
             elseif (isset($_GET['action']) && $_GET['action'] == 'wpjobportaltask')
                 return false;
-            else
+            else{
+                if(!is_admin() && strpos($layout, 'admin_') === 0){
+                    return false;
+                }
                 return true;
+            }
         }
     }
 
@@ -71,6 +75,9 @@ class WPJOBPORTALCommonController {
         $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'wpjobportal_common_entity_nonce') ) {
              die( 'Security check Failed' );
+        }
+        if (!current_user_can('manage_options')) { //only admin can DO it.
+            return false;
         }
         $id = WPJOBPORTALrequest::getVar('id');
         $for = WPJOBPORTALrequest::getVar('for'); // table name
@@ -200,6 +207,23 @@ class WPJOBPORTALCommonController {
         $url = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$data['desired_module'], 'wpjobportallt'=>$data['desired_layout']));
         $msg = WPJOBPORTALMessages::getMessage($result, 'userrole');
         WPJOBPORTALMessages::setLayoutMessage($msg['message'], $msg['status'],$this->_msgkey);
+        wp_redirect($url);
+        die();
+    }
+
+
+    function wpjobportal_synchronize_ai_search_data() {
+        $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (! wp_verify_nonce( $nonce, 'synchronize_ai_search_data') ) {
+            die( 'Security check Failed' );
+        }
+        if (!current_user_can('manage_options')) { //only admin can DO it.
+            return false;
+        }
+        WPJOBPORTALincluder::getJSModel('common')->updateRecordsForAISearch();
+        $msgkey = WPJOBPORTALincluder::getJSModel('wpjobportal')->getMessagekey();
+        WPJOBPORTALMessages::setLayoutMessage(__('Database update completed', 'wp-job-portal'), "updated",$msgkey);
+        $url = esc_url_raw(admin_url("admin.php?page=wpjobportal"));
         wp_redirect($url);
         die();
     }

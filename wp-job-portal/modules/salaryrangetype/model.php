@@ -219,6 +219,14 @@ class WPJOBPORTALsalaryrangetypeModel {
         return $rows;
     }
 
+    function getTitleByid($id) {
+        if (! is_numeric($id))
+            return false;
+        $query = "SELECT title FROM " . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes WHERE id = '" . esc_sql($id) . "'";
+        $result = wpjobportaldb::get_var($query);
+        return $result;
+    }
+
     function isSalaryRangeTypeExist($title) {
         if (!$title)
             return false;

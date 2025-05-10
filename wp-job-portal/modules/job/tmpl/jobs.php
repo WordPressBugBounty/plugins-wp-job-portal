@@ -26,7 +26,12 @@ if ($labelinlisting != 1)
             <div class="wjportal-filter-search-main-wrp">
                 <form class="wjportal-form-wrp" id="job_form" method="post" action="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'jobs'))); ?>">
                     <?php
-                        WPJOBPORTALincluder::getTemplate('job/views/frontend/filter',array('layout' => 'newestjobsfilter'));
+                        // $job_list_ai_filter = wpjobportal::$_config->getConfigValue('job_list_ai_filter');
+                        // if($job_list_ai_filter == 0){ // show job filter without ai
+                            WPJOBPORTALincluder::getTemplate('job/views/frontend/filter',array('layout' => 'newestjobsfilter'));
+                        // }else{
+                        //     WPJOBPORTALincluder::getTemplate('job/views/frontend/filter',array('layout' => 'aijobfilter'));
+                        // }
                     ?>
                 </form>
             </div>

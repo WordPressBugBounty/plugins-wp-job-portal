@@ -28,6 +28,9 @@ if (!defined('ABSPATH'))
             }else if (wpjpconfigid == 'job_apply') {
                 jQuery('#job_apply').css('display','inline-block');
                 jQuery('#apply_setting').addClass('active');
+            }else if (wpjpconfigid == 'ai_settings') {
+                jQuery('#ai_settings').css('display','inline-block');
+                jQuery('#ai_settings').addClass('active');
             }else{
                 jQuery('#general_setting').css('display','inline-block');
                 jQuery('#gen_setting').addClass('active');
@@ -1960,6 +1963,11 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                                 </div>
                                             </div>
                                             <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title-section">
+                                                    <?php echo esc_html(__('Company', 'wp-job-portal')); ?>
+                                                </div>
+                                            </div>
+                                            <div class="wpjobportal-config-row">
                                                 <div class="wpjobportal-config-title">
                                                     <?php echo esc_html(__('Price per', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Company', 'wp-job-portal'))."</span> ".esc_html(__('submission', 'wp-job-portal'))." (". esc_html(__('only for', 'wp-job-portal')).' "'. esc_html(__('per listing', 'wp-job-portal')).'" '. esc_html(__('mode', 'wp-job-portal')).")"; ?>
                                                 </div>
@@ -1969,180 +1977,6 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                                     </div>
                                                     <div class="wpjobportal-config-inner-fields">
                                                         <?php echo wp_kses(WPJOBPORTALformfield::text('company_price_perlisting', wpjobportal::$_data[0]['company_price_perlisting'],array('class'=>'inputbox half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="wpjobportal-config-row">
-                                                <div class="wpjobportal-config-title">
-                                                    <?php echo esc_html(__('Price per', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Job Alert', 'wp-job-portal'))."</span> ".esc_html(__('submission', 'wp-job-portal'))." (". esc_html(__('only for', 'wp-job-portal')).' "'. esc_html(__('per listing', 'wp-job-portal')).'" '. esc_html(__('mode', 'wp-job-portal')).")"; ?>
-                                                </div>
-                                                <div class="wpjobportal-config-value wpjobportal-config-2-fields">
-                                                    <div class="wpjobportal-config-inner-fields">
-                                                        <?php echo wp_kses(WPJOBPORTALformfield::select('job_currency_jobalert_perlisting',WPJOBPORTALincluder::getJSModel('currency')->getCurrencyForCombo(), wpjobportal::$_data[0]['job_currency_jobalert_perlisting'],null,array('class'=>'half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                    </div>
-                                                    <div class="wpjobportal-config-inner-fields">
-                                                        <?php echo wp_kses(WPJOBPORTALformfield::text('job_jobalert_price_perlisting', wpjobportal::$_data[0]['job_jobalert_price_perlisting'],array('class'=>'inputbox half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="wpjobportal-config-row">
-                                                <div class="wpjobportal-config-title">
-                                                    <?php echo esc_html(__('Price per', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Job', 'wp-job-portal'))."</span> ".esc_html(__('submission', 'wp-job-portal'))." (". esc_html(__('only for', 'wp-job-portal')).' "'. esc_html(__('per listing', 'wp-job-portal')).'" '. esc_html(__('mode', 'wp-job-portal')).")"; ?>
-                                                </div>
-                                                <div class="wpjobportal-config-value wpjobportal-config-2-fields">
-                                                    <div class="wpjobportal-config-inner-fields">
-                                                        <?php echo wp_kses(WPJOBPORTALformfield::select('job_currency_perlisting',WPJOBPORTALincluder::getJSModel('currency')->getCurrencyForCombo(), wpjobportal::$_data[0]['job_currency_perlisting'],null,array('class'=>'half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                    </div>
-                                                    <div class="wpjobportal-config-inner-fields">
-                                                        <?php echo wp_kses(WPJOBPORTALformfield::text('job_currency_price_perlisting', wpjobportal::$_data[0]['job_currency_price_perlisting'],array('class'=>'inputbox half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="wpjobportal-config-row">
-                                                <div class="wpjobportal-config-title">
-                                                    <?php echo esc_html(__('Price per', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Featured Job', 'wp-job-portal'))."</span> ".esc_html(__('submission', 'wp-job-portal'))." (". esc_html(__('only for', 'wp-job-portal')).' "'. esc_html(__('per listing', 'wp-job-portal')).'" '. esc_html(__('mode', 'wp-job-portal')).")"; ?>
-                                                </div>
-                                                <div class="wpjobportal-config-value wpjobportal-config-2-fields">
-                                                    <div class="wpjobportal-config-inner-fields">
-                                                        <?php echo wp_kses(WPJOBPORTALformfield::select('job_currency_feature_perlisting',WPJOBPORTALincluder::getJSModel('currency')->getCurrencyForCombo(), wpjobportal::$_data[0]['job_currency_feature_perlisting'],null,array('class'=>'half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                    </div>
-                                                    <div class="wpjobportal-config-inner-fields">
-                                                        <?php echo wp_kses(WPJOBPORTALformfield::text('jobs_feature_price_perlisting', wpjobportal::$_data[0]['jobs_feature_price_perlisting'],array('class'=>'inputbox half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="wpjobportal-config-row">
-                                                <div class="wpjobportal-config-title">
-                                                    <?php echo esc_html(__('No of days untill', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Job', 'wp-job-portal'))."</span> ".esc_html(__('expire', 'wp-job-portal'))." (". esc_html(__('only for', 'wp-job-portal')).' "'. esc_html(__('per listing', 'wp-job-portal')).'" '. esc_html(__('mode', 'wp-job-portal')).")"; ?>
-
-                                                </div>
-                                                <div class="wpjobportal-config-value">
-                                                    <?php echo wp_kses(WPJOBPORTALformfield::text('jobexpiry_days_perlisting', wpjobportal::$_data[0]['jobexpiry_days_perlisting'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                    <div class="wpjobportal-config-description">
-                                                        <?php echo esc_html(__('Job Expiry Days (per-listing)', 'wp-job-portal')); ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="wpjobportal-config-row">
-                                                <div class="wpjobportal-config-title">
-                                                    <?php echo esc_html(__('No of days untill', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Featured Company', 'wp-job-portal'))."</span> ".esc_html(__('expire', 'wp-job-portal'))." (". esc_html(__('only for', 'wp-job-portal')).' "'. esc_html(__('per listing', 'wp-job-portal')).'" '. esc_html(__('mode', 'wp-job-portal')).")"; ?>
-
-                                                </div>
-                                                <div class="wpjobportal-config-value">
-                                                    <?php echo wp_kses(WPJOBPORTALformfield::text('company_featureexpire_price_perlisting', wpjobportal::$_data[0]['company_featureexpire_price_perlisting'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                    <div class="wpjobportal-config-description">
-                                                        <?php echo esc_html(__('Company Expiry Days (per-listing)', 'wp-job-portal')); ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="wpjobportal-config-row">
-                                                <div class="wpjobportal-config-title">
-                                                    <?php echo esc_html(__('No of days untill', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Featured Company', 'wp-job-portal'))."</span> ".esc_html(__('expire', 'wp-job-portal'))." (". esc_html(__('Free', 'wp-job-portal')).")"; ?>
-
-                                                </div>
-                                                <div class="wpjobportal-config-value">
-                                                    <?php echo wp_kses(WPJOBPORTALformfield::text('company_featureexpire_free', wpjobportal::$_data[0]['company_featureexpire_free'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                    <div class="wpjobportal-config-description">
-                                                        <?php echo esc_html(__('Company Expiry Days (Free)', 'wp-job-portal')); ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="wpjobportal-config-row">
-                                                <div class="wpjobportal-config-title">
-                                                    <?php echo esc_html(__('No of days untill', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Featured Job', 'wp-job-portal'))."</span> ".esc_html(__('expire', 'wp-job-portal'))." (". esc_html(__('only for', 'wp-job-portal')).' "'. esc_html(__('per listing', 'wp-job-portal')).'" '. esc_html(__('mode', 'wp-job-portal')).")"; ?>
-
-                                                </div>
-                                                <div class="wpjobportal-config-value">
-                                                    <?php echo wp_kses(WPJOBPORTALformfield::text('featuredjobexpiry_days_perlisting', wpjobportal::$_data[0]['featuredjobexpiry_days_perlisting'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                    <div class="wpjobportal-config-description">
-                                                        <?php echo esc_html(__('Job Expiry Days (per-listing)', 'wp-job-portal')); ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="wpjobportal-config-row">
-                                                <div class="wpjobportal-config-title">
-                                                    <?php echo esc_html(__('Price per', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Resume', 'wp-job-portal'))."</span> ".esc_html(__('submission', 'wp-job-portal'))." (". esc_html(__('only for', 'wp-job-portal')).' "'. esc_html(__('per listing', 'wp-job-portal')).'" '. esc_html(__('mode', 'wp-job-portal')).")"; ?>
-                                                </div>
-                                                <div class="wpjobportal-config-value wpjobportal-config-2-fields">
-                                                    <div class="wpjobportal-config-inner-fields">
-                                                        <?php echo wp_kses(WPJOBPORTALformfield::select('job_currency_resume_perlisting',WPJOBPORTALincluder::getJSModel('currency')->getCurrencyForCombo(), wpjobportal::$_data[0]['job_currency_resume_perlisting'],null,array('class'=>'half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                    </div>
-                                                    <div class="wpjobportal-config-inner-fields">
-                                                        <?php echo wp_kses(WPJOBPORTALformfield::text('job_resume_price_perlisting', wpjobportal::$_data[0]['job_resume_price_perlisting'],array('class'=>'inputbox half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="wpjobportal-config-row">
-                                                <div class="wpjobportal-config-title">
-                                                    <?php echo esc_html(__('Price per', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Department', 'wp-job-portal'))."</span> ".esc_html(__('submission', 'wp-job-portal'))." (". esc_html(__('only for', 'wp-job-portal')).' "'. esc_html(__('per listing', 'wp-job-portal')).'" '. esc_html(__('mode', 'wp-job-portal')).")"; ?>
-                                                </div>
-                                                <div class="wpjobportal-config-value wpjobportal-config-2-fields">
-                                                    <div class="wpjobportal-config-inner-fields">
-                                                        <?php echo wp_kses(WPJOBPORTALformfield::select('job_currency_department_perlisting',WPJOBPORTALincluder::getJSModel('currency')->getCurrencyForCombo(), wpjobportal::$_data[0]['job_currency_department_perlisting'],null,array('class'=>'half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                    </div>
-                                                    <div class="wpjobportal-config-inner-fields">
-                                                        <?php echo wp_kses(WPJOBPORTALformfield::text('job_department_price_perlisting', wpjobportal::$_data[0]['job_department_price_perlisting'],array('class'=>'inputbox half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="wpjobportal-config-row">
-                                                <div class="wpjobportal-config-title">
-                                                    <?php echo esc_html(__('Price per', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Featured Resume', 'wp-job-portal'))."</span> ".esc_html(__('submission', 'wp-job-portal'))." (". esc_html(__('only for', 'wp-job-portal')).' "'. esc_html(__('per listing', 'wp-job-portal')).'" '. esc_html(__('mode', 'wp-job-portal')).")"; ?>
-                                                </div>
-                                                <div class="wpjobportal-config-value wpjobportal-config-2-fields">
-                                                    <div class="wpjobportal-config-inner-fields">
-                                                        <?php echo wp_kses(WPJOBPORTALformfield::select('job_currency_featureresume_perlisting',WPJOBPORTALincluder::getJSModel('currency')->getCurrencyForCombo(), wpjobportal::$_data[0]['job_currency_featureresume_perlisting'],null,array('class'=>'half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                    </div>
-                                                    <div class="wpjobportal-config-inner-fields">
-                                                        <?php echo wp_kses(WPJOBPORTALformfield::text('job_featureresume_price_perlisting', wpjobportal::$_data[0]['job_featureresume_price_perlisting'],array('class'=>'inputbox half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="wpjobportal-config-row">
-                                                <div class="wpjobportal-config-title">
-                                                    <?php echo esc_html(__('No of days untill', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Featured Job', 'wp-job-portal'))."</span> ".esc_html(__('expire', 'wp-job-portal'))." (". esc_html(__('Free', 'wp-job-portal')).")"; ?>
-
-                                                </div>
-                                                <div class="wpjobportal-config-value">
-                                                    <?php echo wp_kses(WPJOBPORTALformfield::text('featuredjobexpiry_days_free', wpjobportal::$_data[0]['featuredjobexpiry_days_free'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                    <div class="wpjobportal-config-description">
-                                                        <?php echo esc_html(__('Featured Job Expiry Days (Free)', 'wp-job-portal')); ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="wpjobportal-config-row">
-                                                <div class="wpjobportal-config-title">
-                                                    <?php echo esc_html(__('No of days untill', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Featured Resume', 'wp-job-portal'))."</span> ".esc_html(__('expire', 'wp-job-portal'))." (". esc_html(__('Free', 'wp-job-portal')).")"; ?>
-
-                                                </div>
-                                                <div class="wpjobportal-config-value">
-                                                    <?php echo wp_kses(WPJOBPORTALformfield::text('job_resume_days_free', wpjobportal::$_data[0]['job_resume_days_free'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                    <div class="wpjobportal-config-description">
-                                                        <?php echo esc_html(__('Featured Resume Expiry Days (Free)', 'wp-job-portal')); ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="wpjobportal-config-row">
-                                                <div class="wpjobportal-config-title">
-                                                    <?php echo esc_html(__('No of days untill', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Featured Resume', 'wp-job-portal'))."</span> ".esc_html(__('expire', 'wp-job-portal'))." (". esc_html(__('only for', 'wp-job-portal')).' "'. esc_html(__('per listing', 'wp-job-portal')).'" '. esc_html(__('mode', 'wp-job-portal')).")"; ?>
-
-                                                </div>
-                                                <div class="wpjobportal-config-value">
-                                                    <?php echo wp_kses(WPJOBPORTALformfield::text('job_resume_days_perlisting', wpjobportal::$_data[0]['job_resume_days_perlisting'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                    <div class="wpjobportal-config-description">
-                                                        <?php echo esc_html(__('Featured Resume Expiry Days (per-listing)', 'wp-job-portal')); ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="wpjobportal-config-row">
-                                                <div class="wpjobportal-config-title">
-                                                    <?php echo esc_html(__('No of days untill', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Job', 'wp-job-portal'))."</span> ".esc_html(__('expire', 'wp-job-portal'))." (". esc_html(__('Free', 'wp-job-portal')).")"; ?>
-
-                                                </div>
-                                                <div class="wpjobportal-config-value">
-                                                    <?php echo wp_kses(WPJOBPORTALformfield::text('jobexpiry_days_free', wpjobportal::$_data[0]['jobexpiry_days_free'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                    <div class="wpjobportal-config-description">
-                                                        <?php echo esc_html(__('Job Expiry Days (Free)', 'wp-job-portal')); ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2161,6 +1995,172 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                             </div>
                                             <div class="wpjobportal-config-row">
                                                 <div class="wpjobportal-config-title">
+                                                    <?php echo esc_html(__('Number of days untill', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Featured Company', 'wp-job-portal'))."</span> ".esc_html(__('expire', 'wp-job-portal'))." (". esc_html(__('only for', 'wp-job-portal')).' "'. esc_html(__('per listing', 'wp-job-portal')).'" '. esc_html(__('mode', 'wp-job-portal')).")"; ?>
+
+                                                </div>
+                                                <div class="wpjobportal-config-value">
+                                                    <?php echo wp_kses(WPJOBPORTALformfield::text('company_featureexpire_price_perlisting', wpjobportal::$_data[0]['company_featureexpire_price_perlisting'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    <div class="wpjobportal-config-description">
+                                                        <?php echo esc_html(__('Company Expiry Days (per-listing)', 'wp-job-portal')); ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title">
+                                                    <?php echo esc_html(__('Number of days untill', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Featured Company', 'wp-job-portal'))."</span> ".esc_html(__('expire', 'wp-job-portal'))." (". esc_html(__('Free', 'wp-job-portal')).")"; ?>
+
+                                                </div>
+                                                <div class="wpjobportal-config-value">
+                                                    <?php echo wp_kses(WPJOBPORTALformfield::text('company_featureexpire_free', wpjobportal::$_data[0]['company_featureexpire_free'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    <div class="wpjobportal-config-description">
+                                                        <?php echo esc_html(__('Company Expiry Days (Free)', 'wp-job-portal')); ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title-section">
+                                                    <?php echo esc_html(__('Job', 'wp-job-portal')); ?>
+                                                </div>
+                                            </div>
+                                            <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title">
+                                                    <?php echo esc_html(__('Price per', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Job', 'wp-job-portal'))."</span> ".esc_html(__('submission', 'wp-job-portal'))." (". esc_html(__('only for', 'wp-job-portal')).' "'. esc_html(__('per listing', 'wp-job-portal')).'" '. esc_html(__('mode', 'wp-job-portal')).")"; ?>
+                                                </div>
+                                                <div class="wpjobportal-config-value wpjobportal-config-2-fields">
+                                                    <div class="wpjobportal-config-inner-fields">
+                                                        <?php echo wp_kses(WPJOBPORTALformfield::select('job_currency_perlisting',WPJOBPORTALincluder::getJSModel('currency')->getCurrencyForCombo(), wpjobportal::$_data[0]['job_currency_perlisting'],null,array('class'=>'half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    </div>
+                                                    <div class="wpjobportal-config-inner-fields">
+                                                        <?php echo wp_kses(WPJOBPORTALformfield::text('job_currency_price_perlisting', wpjobportal::$_data[0]['job_currency_price_perlisting'],array('class'=>'inputbox half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title">
+                                                    <?php echo esc_html(__('Number of days untill', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Job', 'wp-job-portal'))."</span> ".esc_html(__('expire', 'wp-job-portal'))." (". esc_html(__('only for', 'wp-job-portal')).' "'. esc_html(__('per listing', 'wp-job-portal')).'" '. esc_html(__('mode', 'wp-job-portal')).")"; ?>
+
+                                                </div>
+                                                <div class="wpjobportal-config-value">
+                                                    <?php echo wp_kses(WPJOBPORTALformfield::text('jobexpiry_days_perlisting', wpjobportal::$_data[0]['jobexpiry_days_perlisting'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    <div class="wpjobportal-config-description">
+                                                        <?php echo esc_html(__('Job Expiry Days (per-listing)', 'wp-job-portal')); ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title">
+                                                    <?php echo esc_html(__('Number of days untill', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Job', 'wp-job-portal'))."</span> ".esc_html(__('expire', 'wp-job-portal'))." (". esc_html(__('Free', 'wp-job-portal')).")"; ?>
+
+                                                </div>
+                                                <div class="wpjobportal-config-value">
+                                                    <?php echo wp_kses(WPJOBPORTALformfield::text('jobexpiry_days_free', wpjobportal::$_data[0]['jobexpiry_days_free'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    <div class="wpjobportal-config-description">
+                                                        <?php echo esc_html(__('Job Expiry Days (Free)', 'wp-job-portal')); ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title">
+                                                    <?php echo esc_html(__('Price per', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Featured Job', 'wp-job-portal'))."</span> ".esc_html(__('submission', 'wp-job-portal'))." (". esc_html(__('only for', 'wp-job-portal')).' "'. esc_html(__('per listing', 'wp-job-portal')).'" '. esc_html(__('mode', 'wp-job-portal')).")"; ?>
+                                                </div>
+                                                <div class="wpjobportal-config-value wpjobportal-config-2-fields">
+                                                    <div class="wpjobportal-config-inner-fields">
+                                                        <?php echo wp_kses(WPJOBPORTALformfield::select('job_currency_feature_perlisting',WPJOBPORTALincluder::getJSModel('currency')->getCurrencyForCombo(), wpjobportal::$_data[0]['job_currency_feature_perlisting'],null,array('class'=>'half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    </div>
+                                                    <div class="wpjobportal-config-inner-fields">
+                                                        <?php echo wp_kses(WPJOBPORTALformfield::text('jobs_feature_price_perlisting', wpjobportal::$_data[0]['jobs_feature_price_perlisting'],array('class'=>'inputbox half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title">
+                                                    <?php echo esc_html(__('Number of days untill', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Featured Job', 'wp-job-portal'))."</span> ".esc_html(__('expire', 'wp-job-portal'))." (". esc_html(__('only for', 'wp-job-portal')).' "'. esc_html(__('per listing', 'wp-job-portal')).'" '. esc_html(__('mode', 'wp-job-portal')).")"; ?>
+
+                                                </div>
+                                                <div class="wpjobportal-config-value">
+                                                    <?php echo wp_kses(WPJOBPORTALformfield::text('featuredjobexpiry_days_perlisting', wpjobportal::$_data[0]['featuredjobexpiry_days_perlisting'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    <div class="wpjobportal-config-description">
+                                                        <?php echo esc_html(__('Job Expiry Days (per-listing)', 'wp-job-portal')); ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title">
+                                                    <?php echo esc_html(__('Number of days untill', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Featured Job', 'wp-job-portal'))."</span> ".esc_html(__('expire', 'wp-job-portal'))." (". esc_html(__('Free', 'wp-job-portal')).")"; ?>
+
+                                                </div>
+                                                <div class="wpjobportal-config-value">
+                                                    <?php echo wp_kses(WPJOBPORTALformfield::text('featuredjobexpiry_days_free', wpjobportal::$_data[0]['featuredjobexpiry_days_free'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    <div class="wpjobportal-config-description">
+                                                        <?php echo esc_html(__('Featured Job Expiry Days (Free)', 'wp-job-portal')); ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title-section">
+                                                    <?php echo esc_html(__('Resume', 'wp-job-portal')); ?>
+                                                </div>
+                                            </div>
+                                            <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title">
+                                                    <?php echo esc_html(__('Price per', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Resume', 'wp-job-portal'))."</span> ".esc_html(__('submission', 'wp-job-portal'))." (". esc_html(__('only for', 'wp-job-portal')).' "'. esc_html(__('per listing', 'wp-job-portal')).'" '. esc_html(__('mode', 'wp-job-portal')).")"; ?>
+                                                </div>
+                                                <div class="wpjobportal-config-value wpjobportal-config-2-fields">
+                                                    <div class="wpjobportal-config-inner-fields">
+                                                        <?php echo wp_kses(WPJOBPORTALformfield::select('job_currency_resume_perlisting',WPJOBPORTALincluder::getJSModel('currency')->getCurrencyForCombo(), wpjobportal::$_data[0]['job_currency_resume_perlisting'],null,array('class'=>'half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    </div>
+                                                    <div class="wpjobportal-config-inner-fields">
+                                                        <?php echo wp_kses(WPJOBPORTALformfield::text('job_resume_price_perlisting', wpjobportal::$_data[0]['job_resume_price_perlisting'],array('class'=>'inputbox half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title">
+                                                    <?php echo esc_html(__('Price per', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Featured Resume', 'wp-job-portal'))."</span> ".esc_html(__('submission', 'wp-job-portal'))." (". esc_html(__('only for', 'wp-job-portal')).' "'. esc_html(__('per listing', 'wp-job-portal')).'" '. esc_html(__('mode', 'wp-job-portal')).")"; ?>
+                                                </div>
+                                                <div class="wpjobportal-config-value wpjobportal-config-2-fields">
+                                                    <div class="wpjobportal-config-inner-fields">
+                                                        <?php echo wp_kses(WPJOBPORTALformfield::select('job_currency_featureresume_perlisting',WPJOBPORTALincluder::getJSModel('currency')->getCurrencyForCombo(), wpjobportal::$_data[0]['job_currency_featureresume_perlisting'],null,array('class'=>'half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    </div>
+                                                    <div class="wpjobportal-config-inner-fields">
+                                                        <?php echo wp_kses(WPJOBPORTALformfield::text('job_featureresume_price_perlisting', wpjobportal::$_data[0]['job_featureresume_price_perlisting'],array('class'=>'inputbox half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title">
+                                                    <?php echo esc_html(__('Number of days untill', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Featured Resume', 'wp-job-portal'))."</span> ".esc_html(__('expire', 'wp-job-portal'))." (". esc_html(__('only for', 'wp-job-portal')).' "'. esc_html(__('per listing', 'wp-job-portal')).'" '. esc_html(__('mode', 'wp-job-portal')).")"; ?>
+
+                                                </div>
+                                                <div class="wpjobportal-config-value">
+                                                    <?php echo wp_kses(WPJOBPORTALformfield::text('job_resume_days_perlisting', wpjobportal::$_data[0]['job_resume_days_perlisting'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    <div class="wpjobportal-config-description">
+                                                        <?php echo esc_html(__('Featured Resume Expiry Days (per-listing)', 'wp-job-portal')); ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title">
+                                                    <?php echo esc_html(__('Number of days untill', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Featured Resume', 'wp-job-portal'))."</span> ".esc_html(__('expire', 'wp-job-portal'))." (". esc_html(__('Free', 'wp-job-portal')).")"; ?>
+
+                                                </div>
+                                                <div class="wpjobportal-config-value">
+                                                    <?php echo wp_kses(WPJOBPORTALformfield::text('job_resume_days_free', wpjobportal::$_data[0]['job_resume_days_free'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    <div class="wpjobportal-config-description">
+                                                        <?php echo esc_html(__('Featured Resume Expiry Days (Free)', 'wp-job-portal')); ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <?php /*
+                                            <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title">
                                                     <?php echo esc_html(__('Price per', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Resume Save Search', 'wp-job-portal'))."</span> "." (". esc_html(__('only for', 'wp-job-portal')).' "'. esc_html(__('per listing', 'wp-job-portal')).'" '. esc_html(__('mode', 'wp-job-portal')).")"; ?>
                                                 </div>
                                                 <div class="wpjobportal-config-value wpjobportal-config-2-fields">
@@ -2170,6 +2170,12 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                                     <div class="wpjobportal-config-inner-fields">
                                                         <?php echo wp_kses(WPJOBPORTALformfield::text('job_resumesavesearch_price_perlisting', wpjobportal::$_data[0]['job_resumesavesearch_price_perlisting'],array('class'=>'inputbox half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            */ ?>
+                                            <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title-section">
+                                                    <?php echo esc_html(__('Miscellaneous', 'wp-job-portal')); ?>
                                                 </div>
                                             </div>
                                             <div class="wpjobportal-config-row">
@@ -2182,6 +2188,19 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                                     </div>
                                                     <div class="wpjobportal-config-inner-fields">
                                                         <?php echo wp_kses(WPJOBPORTALformfield::text('job_jobapply_price_perlisting', wpjobportal::$_data[0]['job_jobapply_price_perlisting'],array('class'=>'inputbox half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title">
+                                                    <?php echo esc_html(__('Price per', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Job Alert', 'wp-job-portal'))."</span> ".esc_html(__('submission', 'wp-job-portal'))." (". esc_html(__('only for', 'wp-job-portal')).' "'. esc_html(__('per listing', 'wp-job-portal')).'" '. esc_html(__('mode', 'wp-job-portal')).")"; ?>
+                                                </div>
+                                                <div class="wpjobportal-config-value wpjobportal-config-2-fields">
+                                                    <div class="wpjobportal-config-inner-fields">
+                                                        <?php echo wp_kses(WPJOBPORTALformfield::select('job_currency_jobalert_perlisting',WPJOBPORTALincluder::getJSModel('currency')->getCurrencyForCombo(), wpjobportal::$_data[0]['job_currency_jobalert_perlisting'],null,array('class'=>'half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    </div>
+                                                    <div class="wpjobportal-config-inner-fields">
+                                                        <?php echo wp_kses(WPJOBPORTALformfield::text('job_jobalert_price_perlisting', wpjobportal::$_data[0]['job_jobalert_price_perlisting'],array('class'=>'inputbox half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2208,6 +2227,19 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                                     </div>
                                                     <div class="wpjobportal-config-inner-fields">
                                                         <?php echo wp_kses(WPJOBPORTALformfield::text('job_viewcompanycontact_price_perlisting', wpjobportal::$_data[0]['job_viewcompanycontact_price_perlisting'],array('class'=>'inputbox half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title">
+                                                    <?php echo esc_html(__('Price per', 'wp-job-portal'))." <span class='wpjobportal-config-title-span'>".esc_html(__('Department', 'wp-job-portal'))."</span> ".esc_html(__('submission', 'wp-job-portal'))." (". esc_html(__('only for', 'wp-job-portal')).' "'. esc_html(__('per listing', 'wp-job-portal')).'" '. esc_html(__('mode', 'wp-job-portal')).")"; ?>
+                                                </div>
+                                                <div class="wpjobportal-config-value wpjobportal-config-2-fields">
+                                                    <div class="wpjobportal-config-inner-fields">
+                                                        <?php echo wp_kses(WPJOBPORTALformfield::select('job_currency_department_perlisting',WPJOBPORTALincluder::getJSModel('currency')->getCurrencyForCombo(), wpjobportal::$_data[0]['job_currency_department_perlisting'],null,array('class'=>'half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    </div>
+                                                    <div class="wpjobportal-config-inner-fields">
+                                                        <?php echo wp_kses(WPJOBPORTALformfield::text('job_department_price_perlisting', wpjobportal::$_data[0]['job_department_price_perlisting'],array('class'=>'inputbox half')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2278,6 +2310,8 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                                     <?php echo esc_html(__('Facebook comments', 'wp-job-portal')); ?>
                                                 </label>
                                             </div>
+                                            <?php
+                                            /*
                                             <div class="wpjobportal-config-social-share-row">
                                                 <label>
                                                     <?php echo wp_kses(WPJOBPORTALformfield::checkbox('employer_share_google_like', $social, (wpjobportal::$_data[0]['employer_share_google_like'] == 1) ? 1 : 0, array('class' => 'checkbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
@@ -2290,6 +2324,7 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                                     <?php echo esc_html(__('Google share', 'wp-job-portal')); ?>
                                                 </label>
                                             </div>
+                                            */?>
                                             <div class="wpjobportal-config-social-share-row">
                                                 <label>
                                                     <?php echo wp_kses(WPJOBPORTALformfield::checkbox('employer_share_blog_share', $social, (wpjobportal::$_data[0]['employer_share_blog_share'] == 1) ? 1 : 0, array('class' => 'checkbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
@@ -3013,6 +3048,8 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                             </div>
                                         </div>
                                         <?php if(in_array('visitorapplyjob', wpjobportal::$_active_addons)) { ?>
+                                            <?php /*
+                                            // this configration was in code twice
                                             <div class="wpjobportal-config-row">
                                                 <div class="wpjobportal-config-title">
                                                     <?php echo esc_html(__('Visitor can apply to job', 'wp-job-portal')); ?>
@@ -3021,7 +3058,6 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                                     <?php echo wp_kses(WPJOBPORTALformfield::select('visitor_can_apply_to_job', $yesno, wpjobportal::$_data[0]['visitor_can_apply_to_job']),WPJOBPORTAL_ALLOWED_TAGS); ?>
                                                 </div>
                                             </div>
-                                            <?php /*
                                             <div class="wpjobportal-config-row">
                                                 <div class="wpjobportal-config-title">
                                                     <?php echo esc_html(__('Show login message to visitor', 'wp-job-portal')); ?>
@@ -3040,6 +3076,128 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                     </div>
                                 </div>
                             </div>
+                            <!-- Job Apply Configuration -->
+                            <?php
+                            // ai addons configs
+                            /*
+                            <div id="ai_settings" class="wpjobportal-hide-config">
+                                <ul>
+                                    <li class="ui-tabs-active">
+                                        <a href="#ai_settings_tab">
+                                            <?php echo esc_html(__('AI Settings', 'wp-job-portal')); ?>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tabInner">
+                                    <div id="ai_settings_tab" class="wpjobportal_gen_body">
+                                        <h3 class="wpjobportal-config-heading-main">
+                                            <?php echo esc_html(__('AI Job Search', 'wp-job-portal')); ?>
+                                        </h3>
+                                        <div class="wpjobportal-config-row">
+                                            <div class="wpjobportal-config-title">
+                                                <?php echo esc_html(__('AI Search On Job Search Page', 'wp-job-portal')); ?>
+                                            </div>
+                                            <div class="wpjobportal-config-value">
+                                                <?php echo wp_kses(WPJOBPORTALformfield::select('job_search_ai_form', $yesno, wpjobportal::$_data[0]['job_search_ai_form']),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                <div class="wpjobportal-config-description">
+                                                    <?php echo esc_html(__('Show the AI search field on job search form', 'wp-job-portal'));?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="wpjobportal-config-row">
+                                            <div class="wpjobportal-config-title">
+                                                <?php echo esc_html(__('AI Search Filter On Job Listing', 'wp-job-portal')); ?>
+                                            </div>
+                                            <div class="wpjobportal-config-value">
+                                                <?php echo wp_kses(WPJOBPORTALformfield::select('job_list_ai_filter', $yesno, wpjobportal::$_data[0]['job_list_ai_filter']),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                <div class="wpjobportal-config-description">
+                                                    <?php echo esc_html(__('Show the AI search field on job listing', 'wp-job-portal'));?>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <h3 class="wpjobportal-config-heading-main">
+                                            <?php echo esc_html(__('AI Suggested Jobs', 'wp-job-portal')); ?>
+                                        </h3>
+                                        <div class="wpjobportal-config-row">
+                                            <div class="wpjobportal-config-title">
+                                                <?php echo esc_html(__('Show AI Suggested Jobs Button', 'wp-job-portal')); ?>
+                                            </div>
+                                            <div class="wpjobportal-config-value">
+                                                <?php echo wp_kses(WPJOBPORTALformfield::select('show_suggested_jobs_btn', $yesno, wpjobportal::$_data[0]['show_suggested_jobs_btn']),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                <div class="wpjobportal-config-description">
+                                                    <?php echo esc_html(__('Show AI suggested jobs button on my resumes page to job seeker.', 'wp-job-portal'));?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="wpjobportal-config-row">
+                                            <div class="wpjobportal-config-title">
+                                                <?php echo esc_html(__('AI Suggested Jobs On Dashboard', 'wp-job-portal')); ?>
+                                            </div>
+                                            <div class="wpjobportal-config-value">
+                                                <?php echo wp_kses(WPJOBPORTALformfield::select('show_suggested_jobs_dashboard', $yesno, wpjobportal::$_data[0]['show_suggested_jobs_dashboard']),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                <div class="wpjobportal-config-description">
+                                                    <?php echo esc_html(__('Show AI suggested jobs on job seeker dashboard.', 'wp-job-portal'));?>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <h3 class="wpjobportal-config-heading-main">
+                                            <?php echo esc_html(__('AI Resume Search', 'wp-job-portal')); ?>
+                                        </h3>
+                                        <div class="wpjobportal-config-row">
+                                            <div class="wpjobportal-config-title">
+                                                <?php echo esc_html(__('AI Search On Resume Search Page', 'wp-job-portal')); ?>
+                                            </div>
+                                            <div class="wpjobportal-config-value">
+                                                <?php echo wp_kses(WPJOBPORTALformfield::select('resume_search_ai_form', $yesno, wpjobportal::$_data[0]['resume_search_ai_form']),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                <div class="wpjobportal-config-description">
+                                                    <?php echo esc_html(__('Show the AI search field on resume search form', 'wp-job-portal'));?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="wpjobportal-config-row">
+                                            <div class="wpjobportal-config-title">
+                                                <?php echo esc_html(__('AI Search Filter On Resume Listing', 'wp-job-portal')); ?>
+                                            </div>
+                                            <div class="wpjobportal-config-value">
+                                                <?php echo wp_kses(WPJOBPORTALformfield::select('resume_list_ai_filter', $yesno, wpjobportal::$_data[0]['resume_list_ai_filter']),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                <div class="wpjobportal-config-description">
+                                                    <?php echo esc_html(__('Show the AI search field on resume listing', 'wp-job-portal'));?>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <h3 class="wpjobportal-config-heading-main">
+                                            <?php echo esc_html(__('AI Suggested Resumes', 'wp-job-portal')); ?>
+                                        </h3>
+                                        <div class="wpjobportal-config-row">
+                                            <div class="wpjobportal-config-title">
+                                                <?php echo esc_html(__('Show AI Suggested Resumes Button', 'wp-job-portal')); ?>
+                                            </div>
+                                            <div class="wpjobportal-config-value">
+                                                <?php echo wp_kses(WPJOBPORTALformfield::select('show_suggested_resumes_btn', $yesno, wpjobportal::$_data[0]['show_suggested_resumes_btn']),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                <div class="wpjobportal-config-description">
+                                                    <?php echo esc_html(__('Show AI suggested resumes button on my jobs page to employer.', 'wp-job-portal'));?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="wpjobportal-config-row">
+                                            <div class="wpjobportal-config-title">
+                                                <?php echo esc_html(__('AI Suggested Resumes On Dashboard', 'wp-job-portal')); ?>
+                                            </div>
+                                            <div class="wpjobportal-config-value">
+                                                <?php echo wp_kses(WPJOBPORTALformfield::select('show_suggested_resumes_dashboard', $yesno, wpjobportal::$_data[0]['show_suggested_resumes_dashboard']),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                <div class="wpjobportal-config-description">
+                                                    <?php echo esc_html(__('Show AI suggested resumes on employer dashboard.', 'wp-job-portal'));?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            */ ?>
                         </div>
                     </div>
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('isgeneralbuttonsubmit', 1),WPJOBPORTAL_ALLOWED_TAGS); ?>

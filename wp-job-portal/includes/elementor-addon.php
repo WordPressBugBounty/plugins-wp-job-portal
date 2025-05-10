@@ -48,14 +48,19 @@ function jp_save_post_job_portal_shortcode_element($post_id) {
         }
     }
 
+
+
     // 'jp_shortcodes_wigdet' widget name to find
     $widget_settings = find_elementor_widget($elements, 'jp_shortcodes_wigdet');
-
-    if ($widget_settings) {
+    if (!empty($widget_settings) && isset($widget_settings['jp_shortcode']) && $widget_settings['jp_shortcode'] == 'wpjobportal_jobseeker_controlpanel')  { // only run beloe code for specific shortcode
         $elementor_css = create_css_from_widget_settings($widget_settings);
         if($elementor_css != ''){
             jp_put_css_in_file($elementor_css);
         }
+        // to handle reset case
+        // $color_array['color1'] = "#3baeda";
+        // $color_array['color2'] = "#333333";
+        // $color_array['color3'] = "#575757";
 
         // handle color css
         // to handle the case of not all three are changed
@@ -70,17 +75,25 @@ function jp_save_post_job_portal_shortcode_element($post_id) {
             }
         }
 
+
         if(!empty($widget_settings['jp_primarycolor'])){
             $color_array['color1'] = $widget_settings['jp_primarycolor'];
+        }else{
+            $color_array['color1'] = "#3baeda";
         }
 
         if(!empty($widget_settings['jp_secondarycolor'])){
             $color_array['color2'] = $widget_settings['jp_secondarycolor'];
+        }else{
+            $color_array['color2'] = "#333333";
         }
 
         if(!empty($widget_settings['jp_contentcolor'])){
             $color_array['color3'] = $widget_settings['jp_contentcolor'];
+        }else{
+            $color_array['color3'] = "#575757";
         }
+
         // set the option to use in color css generation
         update_option('wpjp_set_theme_colors', wp_json_encode($color_array));
         $return = require(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
@@ -113,6 +126,9 @@ function create_css_from_widget_settings_for_elegant($settings){
         $color3 = $settings['jp_contentcolor'];
     }
 
+
+
+
     // typography variables
     // Content Typography settings
     $content_font_style = !empty($settings['typography_content_font_style']) ? esc_attr($settings['typography_content_font_style']) : '';
@@ -120,8 +136,8 @@ function create_css_from_widget_settings_for_elegant($settings){
     $content_font_size = isset($settings['typography_content_font_size']['size']) ? esc_attr($settings['typography_content_font_size']['size']) . esc_attr($settings['typography_content_font_size']['unit']) : '17px';
     $content_font_weight = isset($settings['typography_content_font_weight']) ? esc_attr($settings['typography_content_font_weight']) : '';
     $content_font_family = !empty($settings['typography_content_font_family']) ? esc_attr($settings['typography_content_font_family']) : '';
-    $content_line_height = isset($settings['typography_content_font_line_height']['size']) ? esc_attr($settings['typography_content_font_line_height']['size']) . esc_attr($settings['typography_content_font_line_height']['unit']) : '';
-    $content_letter_spacing = isset($settings['typography_content_font_letter_spacing']['size']) ? esc_attr($settings['typography_content_font_letter_spacing']['size']) . esc_attr($settings['typography_content_font_letter_spacing']['unit']) : '';
+    $content_line_height = isset($settings['typography_content_line_height']['size']) ? esc_attr($settings['typography_content_line_height']['size']) . esc_attr($settings['typography_content_line_height']['unit']) : '';
+    $content_letter_spacing = isset($settings['typography_content_letter_spacing']['size']) ? esc_attr($settings['typography_content_letter_spacing']['size']) . esc_attr($settings['typography_content_letter_spacing']['unit']) : '';
 
     // page heading & section title Typography settings
     $section_title_font_style = !empty($settings['typography_section_title_font_style']) ? esc_attr($settings['typography_section_title_font_style']) : '';
@@ -129,8 +145,8 @@ function create_css_from_widget_settings_for_elegant($settings){
     $section_title_font_size = isset($settings['typography_section_title_font_size']['size']) ? esc_attr($settings['typography_section_title_font_size']['size']) . esc_attr($settings['typography_section_title_font_size']['unit']) : '38px';
     $section_title_font_weight = isset($settings['typography_section_title_font_weight']) ? esc_attr($settings['typography_section_title_font_weight']) : '';
     $section_title_font_family = !empty($settings['typography_section_title_font_family']) ? esc_attr($settings['typography_section_title_font_family']) : '';
-    $section_title_line_height = isset($settings['typography_section_title_font_line_height']['size']) ? esc_attr($settings['typography_section_title_font_line_height']['size']) . esc_attr($settings['typography_section_title_font_line_height']['unit']) : '';
-    $section_title_letter_spacing = isset($settings['typography_section_title_font_letter_spacing']['size']) ? esc_attr($settings['typography_section_title_font_letter_spacing']['size']) . esc_attr($settings['typography_section_title_font_letter_spacing']['unit']) : '';
+    $section_title_line_height = isset($settings['typography_section_title_line_height']['size']) ? esc_attr($settings['typography_section_title_line_height']['size']) . esc_attr($settings['typography_section_title_line_height']['unit']) : '';
+    $section_title_letter_spacing = isset($settings['typography_section_title_letter_spacing']['size']) ? esc_attr($settings['typography_section_title_letter_spacing']['size']) . esc_attr($settings['typography_section_title_letter_spacing']['unit']) : '';
 
 
     // page buttons Typography settings
@@ -139,8 +155,8 @@ function create_css_from_widget_settings_for_elegant($settings){
     $buttons_font_size = isset($settings['typography_buttons_font_size']['size']) ? esc_attr($settings['typography_buttons_font_size']['size']) . esc_attr($settings['typography_buttons_font_size']['unit']) : '';
     $buttons_font_weight = isset($settings['typography_buttons_font_weight']) ? esc_attr($settings['typography_buttons_font_weight']) : '';
     $buttons_font_family = !empty($settings['typography_buttons_font_family']) ? esc_attr($settings['typography_buttons_font_family']) : '';
-    $buttons_line_height = isset($settings['typography_buttons_font_line_height']['size']) ? esc_attr($settings['typography_buttons_font_line_height']['size']) . esc_attr($settings['typography_buttons_font_line_height']['unit']) : '';
-    $buttons_letter_spacing = isset($settings['typography_buttons_font_letter_spacing']['size']) ? esc_attr($settings['typography_buttons_font_letter_spacing']['size']) . esc_attr($settings['typography_buttons_font_letter_spacing']['unit']) : '';
+    $buttons_line_height = isset($settings['typography_buttons_line_height']['size']) ? esc_attr($settings['typography_buttons_line_height']['size']) . esc_attr($settings['typography_buttons_line_height']['unit']) : '';
+    $buttons_letter_spacing = isset($settings['typography_buttons_letter_spacing']['size']) ? esc_attr($settings['typography_buttons_letter_spacing']['size']) . esc_attr($settings['typography_buttons_letter_spacing']['unit']) : '';
 
 
 
@@ -343,8 +359,8 @@ function create_css_from_widget_settings($settings){
           $content_font_size = isset($settings['typography_content_font_size']['size']) ? esc_attr($settings['typography_content_font_size']['size']) . esc_attr($settings['typography_content_font_size']['unit']) : '';
           $content_font_weight = isset($settings['typography_content_font_weight']) ? esc_attr($settings['typography_content_font_weight']) : '';
           $content_font_family = !empty($settings['typography_content_font_family']) ? esc_attr($settings['typography_content_font_family']) : '';
-          $content_line_height = isset($settings['typography_content_font_line_height']['size']) ? esc_attr($settings['typography_content_font_line_height']['size']) . esc_attr($settings['typography_content_font_line_height']['unit']) : '';
-          $content_letter_spacing = isset($settings['typography_content_font_letter_spacing']['size']) ? esc_attr($settings['typography_content_font_letter_spacing']['size']) . esc_attr($settings['typography_content_font_letter_spacing']['unit']) : '';
+          $content_line_height = isset($settings['typography_content_line_height']['size']) ? esc_attr($settings['typography_content_line_height']['size']) . esc_attr($settings['typography_content_line_height']['unit']) : '';
+          $content_letter_spacing = isset($settings['typography_content_letter_spacing']['size']) ? esc_attr($settings['typography_content_letter_spacing']['size']) . esc_attr($settings['typography_content_letter_spacing']['unit']) : '';
 
           // page heading & section title Typography settings
           $section_title_font_style = !empty($settings['typography_section_title_font_style']) ? esc_attr($settings['typography_section_title_font_style']) : '';
@@ -352,8 +368,8 @@ function create_css_from_widget_settings($settings){
           $section_title_font_size = isset($settings['typography_section_title_font_size']['size']) ? esc_attr($settings['typography_section_title_font_size']['size']) . esc_attr($settings['typography_section_title_font_size']['unit']) : '';
           $section_title_font_weight = isset($settings['typography_section_title_font_weight']) ? esc_attr($settings['typography_section_title_font_weight']) : '';
           $section_title_font_family = !empty($settings['typography_section_title_font_family']) ? esc_attr($settings['typography_section_title_font_family']) : '';
-          $section_title_line_height = isset($settings['typography_section_title_font_line_height']['size']) ? esc_attr($settings['typography_section_title_font_line_height']['size']) . esc_attr($settings['typography_section_title_font_line_height']['unit']) : '';
-          $section_title_letter_spacing = isset($settings['typography_section_title_font_letter_spacing']['size']) ? esc_attr($settings['typography_section_title_font_letter_spacing']['size']) . esc_attr($settings['typography_section_title_font_letter_spacing']['unit']) : '';
+          $section_title_line_height = isset($settings['typography_section_title_line_height']['size']) ? esc_attr($settings['typography_section_title_line_height']['size']) . esc_attr($settings['typography_section_title_line_height']['unit']) : '';
+          $section_title_letter_spacing = isset($settings['typography_section_title_letter_spacing']['size']) ? esc_attr($settings['typography_section_title_letter_spacing']['size']) . esc_attr($settings['typography_section_title_letter_spacing']['unit']) : '';
 
 
           // page buttons Typography settings
@@ -362,8 +378,8 @@ function create_css_from_widget_settings($settings){
           $buttons_font_size = isset($settings['typography_buttons_font_size']['size']) ? esc_attr($settings['typography_buttons_font_size']['size']) . esc_attr($settings['typography_buttons_font_size']['unit']) : '';
           $buttons_font_weight = isset($settings['typography_buttons_font_weight']) ? esc_attr($settings['typography_buttons_font_weight']) : '';
           $buttons_font_family = !empty($settings['typography_buttons_font_family']) ? esc_attr($settings['typography_buttons_font_family']) : '';
-          $buttons_line_height = isset($settings['typography_buttons_font_line_height']['size']) ? esc_attr($settings['typography_buttons_font_line_height']['size']) . esc_attr($settings['typography_buttons_font_line_height']['unit']) : '';
-          $buttons_letter_spacing = isset($settings['typography_buttons_font_letter_spacing']['size']) ? esc_attr($settings['typography_buttons_font_letter_spacing']['size']) . esc_attr($settings['typography_buttons_font_letter_spacing']['unit']) : '';
+          $buttons_line_height = isset($settings['typography_buttons_line_height']['size']) ? esc_attr($settings['typography_buttons_line_height']['size']) . esc_attr($settings['typography_buttons_line_height']['unit']) : '';
+          $buttons_letter_spacing = isset($settings['typography_buttons_letter_spacing']['size']) ? esc_attr($settings['typography_buttons_letter_spacing']['size']) . esc_attr($settings['typography_buttons_letter_spacing']['unit']) : '';
 
           // page body css start
           //.wjportal-elegant-addon-main-wrapper *:not(i):not(g):not(.wjportal-cp-sec-title):not(.wjportal-page-heading)
@@ -501,3 +517,17 @@ function jp_put_css_in_file($css){
 add_action( 'wp_enqueue_scripts', function() {
     \Elementor\Plugin::$instance->frontend->enqueue_styles();
 });
+
+
+// custom category for job portal
+add_action('elementor/init', 'jp_job_portal_elementor_category');
+
+   function jp_job_portal_elementor_category() {
+        \Elementor\Plugin::instance()->elements_manager->add_category(
+            'job-portal-category', // category slug
+            [
+                'title' => __('WP Job Portal', 'elementor-addon'), // title shown in Elementor
+                'icon' => 'fa fa-briefcase', // optional FontAwesome icon
+            ],0
+        );
+    }

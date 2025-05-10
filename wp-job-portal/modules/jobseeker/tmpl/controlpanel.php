@@ -264,6 +264,43 @@ if (!defined('ABSPATH'))
                             } ?>
                         </div><?php
                     }
+/*
+                    // suggested jobs
+                    $show_suggested_jobs_dashboard = wpjobportal::$_config->getConfigValue('show_suggested_jobs_dashboard');
+                    if($show_suggested_jobs_dashboard == 1){
+                        if( in_array('aisuggestedjobs', wpjobportal::$_active_addons)){
+                            // this hook prepares the data for suggested jobs
+                            do_action('wpjobportal_addons_aisuggestedjobs_dashboard');
+                            if(isset(wpjobportal::$_data['suggested_jobs']) && !empty(wpjobportal::$_data['suggested_jobs'])){
+                                //the data is set from addon
+                                $suggestedjobs = wpjobportal::$_data['suggested_jobs']; ?>
+                                <div  id="job-applied-resume-wrapper" class="wjportal-cp-sect-wrp wjportal-newest-jobs-wrp">
+                                    <?php
+                                    $print = TRUE;
+                                    if ($print) { ?>
+                                        <div class="wjportal-cp-sec-title">
+                                            <?php echo esc_html(__('Sugeested Jobs','wp-job-portal')); ?>
+                                        </div>
+                                        <div class="wjportal-cp-cnt">
+                                                <?php
+                                                foreach ($suggestedjobs AS $job) {
+                                                    WPJOBPORTALincluder::getTemplate('job/views/frontend/joblist', array(
+                                                        'job' => $job,
+                                                        'labelflag' => $labelflag,
+                                                        'control' => ''
+                                                    ));
+                                                }
+                                                ?>
+                                        </div>
+                                        <div class="wjportal-cp-view-btn-wrp">
+
+                                        </div><?php
+                                    } ?>
+                                </div><?php
+                            }
+                        }
+                    }
+*/
                     if(empty(wpjobportal::$_data['shortcode_option_hide_invoices'])){
                         if(WPJOBPORTALincluder::getObjectClass('user')->isjobseeker()){
                             //Invoices

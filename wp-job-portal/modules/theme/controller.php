@@ -16,7 +16,7 @@ class WPJOBPORTALthemeController {
     function handleRequest() {
         $layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'themes');
         $uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
-        if (self::canaddfile()) {
+        if (self::canaddfile($layout)) {
             $string = "'jscontrolpanel','emcontrolpanel'";
             $config_array = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigForMultiple($string);
 
@@ -37,15 +37,19 @@ class WPJOBPORTALthemeController {
         }
     }
 
-    function canaddfile() {
+    function canaddfile($layout) {
         $nonce_value = WPJOBPORTALrequest::getVar('wpjobportal_nonce');
         if ( wp_verify_nonce( $nonce_value, 'wpjobportal_nonce') ) {
             if (isset($_POST['form_request']) && $_POST['form_request'] == 'wpjobportal')
                 return false;
             elseif (isset($_GET['action']) && $_GET['action'] == 'wpjobportaltask')
                 return false;
-            else
+            else{
+                if(!is_admin() && strpos($layout, 'admin_') === 0){
+                    return false;
+                }
                 return true;
+            }
         }
     }
 
@@ -54,6 +58,8 @@ class WPJOBPORTALthemeController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_theme_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $data = WPJOBPORTALrequest::get('post');
         WPJOBPORTALincluder::getJSModel('theme')->storeTheme($data);
         $url = esc_url_raw(admin_url("admin.php?page=wpjobportal_theme&wpjobportallt=themes"));

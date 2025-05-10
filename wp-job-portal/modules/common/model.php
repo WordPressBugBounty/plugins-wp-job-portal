@@ -1487,7 +1487,7 @@ class WPJOBPORTALCommonModel {
     function addWPSEOHooks($module_name,$file_name){
         $this->module_name = $module_name;
         $this->file_name = $file_name;
-        add_filter( 'pre_get_document_title', array($this, 'WPJobPortalGetDocumentTitle'));
+        add_filter( 'pre_get_document_title', array($this, 'WPJobPortalGetDocumentTitle'),99);
         //add_action("wp_head", array($this, "WPJobPortalMetaTags"));
     }
 
@@ -1710,6 +1710,165 @@ class WPJOBPORTALCommonModel {
     }
 
 
+    function applyThresholdOnResults($results, $highest_score, $enitity_for) {
+        if (empty($results)) {
+            return $results; // Return early if no results
+        }
+
+        $threshold = 30; // Percentage threshold
+        $highest_custom_score = $results[0]->custom_score ?? 0;
+
+        // Calculate threshold values
+        $custom_score_threshold_value = ($threshold / 100) * $highest_custom_score;
+        $score_threshold_value = ($threshold / 100) * $highest_score;
+
+        // Track highest scores for each jobid
+        $unique_results = [];
+
+        foreach ($results as $result) {
+            // Skip results below the threshold (except the first result)
+            if (
+                ($result->custom_score <= $custom_score_threshold_value && $result !== $results[0]) &&
+                ($result->score <= $score_threshold_value && $result !== $results[0])
+            ) {
+                continue;
+            }
+
+            // Ensure uniqueness by entitiy id, keeping the highest custom_score and then the highest score
+            if($enitity_for == 1){
+                $record_id = $result->jobid;
+            }else{
+                $record_id = $result->resumeid;
+            }
+
+            if (
+                !isset($unique_results[$record_id]) ||
+                $result->custom_score > $unique_results[$record_id]->custom_score ||
+                ($result->custom_score === $unique_results[$record_id]->custom_score && $result->score > $unique_results[$record_id]->score)
+            ) {
+                $unique_results[$record_id] = $result;
+            }
+
+            if (!isset($unique_results[$record_id]) || $result->score > $unique_results[$record_id]->score) {
+                $unique_results[$record_id] = $result;
+            }
+        }
+        return array_values($unique_results); // Return reindexed array
+    }
+
+    function getUniqueIdForTransient() {
+        $uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
+        if ( is_numeric($uid) && $uid > 0 ) {
+            $transient_id = 'user_' .$uid;
+        } else { // Fallback: generate ID from IP + User Agent
+            $ip = !empty($_SERVER['REMOTE_ADDR']) ? filter_var($_SERVER['REMOTE_ADDR'], FILTER_VALIDATE_IP) : '0.0.0.0';
+            $useragent = !empty($_SERVER['HTTP_USER_AGENT']) ? sanitize_text_field($_SERVER['HTTP_USER_AGENT']) : 'unknown';
+            $transient_id = $ip .'_'. $useragent;
+        }
+        $transient_id = base64_encode($transient_id);
+        return  $transient_id;
+    }
+
+    function getRecordIdsForCurrentPage($job_ids_list, $page_num) {
+        $current_records_to_show = '';
+        if($job_ids_list !=''){
+            if(!is_numeric($page_num) ){ // handle no page(first page)
+                $page_num = 1;
+            }
+            // make an array
+            $job_id_list_arrray = array_map('intval', explode(',', $job_ids_list)); // Convert to array of integers
+
+            $pagination_size = wpjobportal::$_configuration['pagination_default_page_size'];; // How many per page
+
+            // Calculate start index
+            $page_num_offset = ($page_num - 1) * $pagination_size;
+
+            // Get current slice of ids (array elements)
+            $current_records_to_show_array = array_slice($job_id_list_arrray, $page_num_offset, $pagination_size);
+            if(!empty($current_records_to_show_array)){
+                $current_records_to_show = implode(',', $current_records_to_show_array); // create comma sperated string from array
+            }
+        }
+        return $current_records_to_show;
+    }
+
+    function storeAIRecordsIDListTransient($job_ids_list, $transient_for) {
+        switch ($transient_for) {
+            case 1:
+                $transient_string = 'ai_suggested_jobs_list_';
+                break;
+            case 2:
+                $transient_string = 'ai_suggested_jobs_dashboard_';
+                break;
+            case 3:
+                $transient_string = 'ai_websearch_jobs_list_';
+                break;
+            case 4:
+                $transient_string = 'ai_suggested_resume_list_';
+                break;
+            case 5:
+                $transient_string = 'ai_suggested_resume_dashboard_';
+                break;
+            case 6:
+                $transient_string = 'ai_websearch_resume_list_';
+                break;
+            default:
+                $transient_string = 'ai_suggested_jobs_list_';
+                break;
+        }
+        // get unique transient id for current user/guesat
+        $transient_id = WPJOBPORTALincluder::getJSModel('common')->getUniqueIdForTransient();
+        // Store the data in a transient (expires in 1 hour)
+        if($job_ids_list != '' &&  $transient_id != ''){ // making sure the data is not empty
+            set_transient($transient_string.$transient_id, $job_ids_list, HOUR_IN_SECONDS);
+        }
+    }
+
+    function getAIRecordsIdListFromTransient($transient_for){
+        switch ($transient_for) {
+            case 1:
+                $transient_string = 'ai_suggested_jobs_list_';
+                break;
+            case 2:
+                $transient_string = 'ai_suggested_jobs_dashboard_';
+                break;
+            case 3:
+                $transient_string = 'ai_websearch_jobs_list_';
+                break;
+            case 4:
+                $transient_string = 'ai_suggested_resume_list_';
+                break;
+            case 5:
+                $transient_string = 'ai_suggested_resume_dashboard_';
+                break;
+            case 6:
+                $transient_string = 'ai_websearch_resume_list_';
+                break;
+            default:
+                $transient_string = 'ai_suggested_jobs_list_';
+                break;
+        }
+
+        $result_list = '';
+        // get unique transient id for current user/guesat
+        $transient_id = WPJOBPORTALincluder::getJSModel('common')->getUniqueIdForTransient();
+        // Store the data in a transient (expires in 1 hour)
+        if($transient_id != ''){
+            $result = get_transient($transient_string.$transient_id);
+            if ($result !== false) { // if data is found
+                $result_list = $result;
+            }
+        }
+        return $result_list;
+    }
+
+
+    function updateRecordsForAISearch(){
+       WPJOBPORTALincluder::getJSModel('job')->updateRecordsForAISearchJob();
+        WPJOBPORTALincluder::getJSModel('resume')->updateRecordsForAISearchResume();
+        update_option( 'wpjobportal_ai_search_data_sync_needed', 0,);
+        return ;
+    }
 
 }
 ?>

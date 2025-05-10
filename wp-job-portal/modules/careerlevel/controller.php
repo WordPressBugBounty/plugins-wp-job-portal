@@ -14,7 +14,7 @@ class WPJOBPORTALCareerlevelController {
 
     function handleRequest() {
         $layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'careerlevels');
-        if (self::canaddfile()) {
+        if (self::canaddfile($layout)) {
             switch ($layout) {
                 case 'admin_careerlevels':
                     WPJOBPORTALincluder::getJSModel('careerlevel')->getAllCareerLevels();
@@ -34,15 +34,19 @@ class WPJOBPORTALCareerlevelController {
         }
     }
 
-    function canaddfile() {
+    function canaddfile($layout) {
         $nonce_value = WPJOBPORTALrequest::getVar('wpjobportal_nonce');
         if ( wp_verify_nonce( $nonce_value, 'wpjobportal_nonce') ) {
             if (isset($_POST['form_request']) && $_POST['form_request'] == 'wpjobportal')
                 return false;
-            elseif (isset($_GET['action']) && $_GET['action'] == 'wpjobportaltask')
+            elseif (isset($_GET['action']) && $_GET['action'] == 'wpjobportaltask'){
                 return false;
-            else
+            }else{
+                if(!is_admin() && strpos($layout, 'admin_') === 0){
+                    return false;
+                }
                 return true;
+            }
         }
     }
 
@@ -51,6 +55,8 @@ class WPJOBPORTALCareerlevelController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_careerlevel_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $data = WPJOBPORTALrequest::get('post');
         $result = WPJOBPORTALincluder::getJSModel('careerlevel')->storeCareerLevel($data);
 
@@ -66,6 +72,8 @@ class WPJOBPORTALCareerlevelController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_careerlevel_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
         $result = WPJOBPORTALincluder::getJSModel('careerlevel')->deleteCareerLevels($ids);
         $msg = WPJOBPORTALMessages::getMessage($result, 'careerlevel');
@@ -79,6 +87,8 @@ class WPJOBPORTALCareerlevelController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_careerlevel_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $pagenum = WPJOBPORTALrequest::getVar('pagenum');
         $ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
         $result = WPJOBPORTALincluder::getJSModel('careerlevel')->publishUnpublish($ids, 1); //  for publish
@@ -96,6 +106,8 @@ class WPJOBPORTALCareerlevelController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_careerlevel_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $pagenum = WPJOBPORTALrequest::getVar('pagenum');
         $ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
         $result = WPJOBPORTALincluder::getJSModel('careerlevel')->publishUnpublish($ids, 0); //  for unpublish
@@ -116,6 +128,8 @@ class WPJOBPORTALCareerlevelController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_careerlevel_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $post = WPJOBPORTALrequest::get('post');
         if($post['task'] == 'unpublish'){
             $this->unpublish();

@@ -65,6 +65,10 @@ wp_add_inline_script( 'google-charts-handle', $today_js_script );
     </div>
     <div id="wpjobportaladmin-data">
         <div class="wpjobportal-admin-cp-wrapper">
+            <?php
+                $msgkey = WPJOBPORTALincluder::getJSModel('wpjobportal')->getMessagekey();
+                WPJOBPORTALMessages::getLayoutMessage($msgkey);
+            ?>
             <!-- top bar -->
             <div id="wpjobportal-wrapper-top">
                 <div id="wpjobportal-wrapper-top-left">

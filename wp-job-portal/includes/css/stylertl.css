@@ -352,6 +352,14 @@ div.wjportal-folderdetail-wrapper {text-align: right;}
 	**********************/
 	table#wjportal-table tbody tr td {text-align: right;}
 
+		/* ai search form */
+	div.wjportal-main-up-wrapper .wjportal-filter-ai-searchfrm-wrp .wjportal-filter-search-btn-wrp{border-left-width:0px;}
+	div.wjportal-main-up-wrapper .wjportal-aifilter-search-wrp .wjportal-filter-search-field-wrp ul.wpjobportal-input-list-wpjobportal{border-left-width: 1px;}
+	div.wjportal-main-up-wrapper .wjportal-aifilter-search-wrp .wjportal-filter-search-field-wrp{border-left-width: 1px;}
+	div.wjportal-main-up-wrapper .wjportal-aifilter-search-wrp .wjportal-filter-search-field-wrp{border-left-width:1px;}
+	div.wjportal-main-up-wrapper .wjportal-aifilter-search-wrp .wjportal-filter-search-btn-wrp{border-left-width: 0px;}
+
+
 }
 
 @media (max-width: 650px) {

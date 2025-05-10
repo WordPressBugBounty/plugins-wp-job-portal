@@ -13,7 +13,7 @@ class WPJOBPORTALCurrencyController {
 
     function handleRequest() {
         $layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'currency');
-        if (self::canaddfile()) {
+        if (self::canaddfile($layout)) {
             switch ($layout) {
                 case 'admin_currency':
                     WPJOBPORTALincluder::getJSModel('currency')->getAllCurrencies();
@@ -33,15 +33,19 @@ class WPJOBPORTALCurrencyController {
         }
     }
 
-    function canaddfile() {
+    function canaddfile($layout) {
         $nonce_value = WPJOBPORTALrequest::getVar('wpjobportal_nonce');
         if ( wp_verify_nonce( $nonce_value, 'wpjobportal_nonce') ) {
             if (isset($_POST['form_request']) && $_POST['form_request'] == 'wpjobportal')
                 return false;
             elseif (isset($_GET['action']) && $_GET['action'] == 'wpjobportaltask')
                 return false;
-            else
+            else{
+                if(!is_admin() && strpos($layout, 'admin_') === 0){
+                    return false;
+                }
                 return true;
+            }
         }
     }
 
@@ -50,6 +54,8 @@ class WPJOBPORTALCurrencyController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_currency_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $data = WPJOBPORTALrequest::get('post');
         $result = WPJOBPORTALincluder::getJSModel('currency')->storeCurrency($data);
         $url = esc_url_raw(admin_url("admin.php?page=wpjobportal_currency&wpjobportallt=currency"));
@@ -64,6 +70,8 @@ class WPJOBPORTALCurrencyController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_currency_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
         $result = WPJOBPORTALincluder::getJSModel('currency')->deleteCurrencies($ids);
         $msg = WPJOBPORTALMessages::getMessage($result, 'currency');
@@ -78,6 +86,8 @@ class WPJOBPORTALCurrencyController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_currency_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $pagenum = WPJOBPORTALrequest::getVar('pagenum');
         $ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
         $result = WPJOBPORTALincluder::getJSModel('currency')->publishUnpublish($ids, 1); //  for publish
@@ -95,6 +105,8 @@ class WPJOBPORTALCurrencyController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_currency_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $pagenum = WPJOBPORTALrequest::getVar('pagenum');
         $ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
         $result = WPJOBPORTALincluder::getJSModel('currency')->publishUnpublish($ids, 0); //  for unpublish
@@ -113,6 +125,8 @@ class WPJOBPORTALCurrencyController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_currency_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $post = WPJOBPORTALrequest::get('post');
         if($post['task'] == 'unpublish'){
             $this->unpublish();

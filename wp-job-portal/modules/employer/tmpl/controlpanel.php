@@ -181,6 +181,34 @@ if (!defined('ABSPATH'))
                             </div><?php
                         }
                     }
+/*
+                    $show_suggested_resumes_dashboard = wpjobportal::$_config->getConfigValue('show_suggested_resumes_dashboard');
+                    if($show_suggested_resumes_dashboard == 1){
+                        do_action('wpjobportal_addons_aisuggestedresumes_dashboard');
+                        if (isset(wpjobportal::$_data['suggested_resumes']) && !empty(wpjobportal::$_data['suggested_resumes'])) { ?>
+                            <div id="job-applied-resume-wrapper" class="wjportal-cp-sect-wrp wjportal-applied-resume-wrp">
+                                <div class="wjportal-cp-sec-title">
+                                    <?php echo esc_html(__("Suggested Resumes","wp-job-portal")); ?>
+                                </div>
+                                <div class="wjportal-cp-cnt">
+                                    <div id="job-applied-resume" class="wjportal-resume-list-wrp">
+                                        <?php
+                                            $suggested_resumes = wpjobportal::$_data['suggested_resumes'];
+                                            foreach ($suggested_resumes AS $resume) {
+                                                WPJOBPORTALincluder::getTemplate('resume/views/frontend/resumelist',array(
+                                                    'myresume' => $resume,
+                                                    'module' => 'dashboard',
+                                                    'control' => '',
+                                                    'percentage' => ''
+                                                ));
+                                            }
+                                        ?>
+                                    </div>
+                                </div>
+                            </div><?php
+                        }
+                    }
+*/
                     if(empty(wpjobportal::$_data['shortcode_option_hide_invoices'])){
                         //Invoices
                         if (in_array('credits', wpjobportal::$_active_addons)) {

@@ -14,7 +14,7 @@ class WPJOBPORTALquickapplyController {
 
     function handleRequest() {
         $layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'job');
-        if (self::canaddfile()) {
+        if (self::canaddfile($layout)) {
             return;// this module does not have any layout at the moment
             $module = (wpjobportal::$_common->wpjp_isadmin()) ? 'page' : 'wpjobportalme';
             $module = WPJOBPORTALrequest::getVar($module, null, 'job');
@@ -23,13 +23,17 @@ class WPJOBPORTALquickapplyController {
         }
     }
 
-    function canaddfile() {
+    function canaddfile($layout) {
         if (isset($_POST['form_request']) && $_POST['form_request'] == 'wpjobportal')
             return false;
         elseif (isset($_GET['action']) && $_GET['action'] == 'wpjobportaltask')
             return false;
-        else
-            return true;
+        else{
+                if(!is_admin() && strpos($layout, 'admin_') === 0){
+                    return false;
+                }
+                return true;
+            }
     }
 
     function addtoquickapply() {

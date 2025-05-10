@@ -16,7 +16,7 @@ class WPJOBPORTALJobstatusController {
 
     function handleRequest() {
         $layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'jobstatus');
-        if (self::canaddfile()) {
+        if (self::canaddfile($layout)) {
             switch ($layout) {
                 case 'admin_jobstatus':
                     WPJOBPORTALincluder::getJSModel('jobstatus')->getAllJobStatus();
@@ -36,15 +36,19 @@ class WPJOBPORTALJobstatusController {
         }
     }
 
-    function canaddfile() {
+    function canaddfile($layout) {
         $nonce_value = WPJOBPORTALrequest::getVar('wpjobportal_nonce');
         if ( wp_verify_nonce( $nonce_value, 'wpjobportal_nonce') ) {
             if (isset($_POST['form_request']) && $_POST['form_request'] == 'wpjobportal')
                 return false;
             elseif (isset($_GET['action']) && $_GET['action'] == 'wpjobportaltask')
                 return false;
-            else
+            else{
+                if(!is_admin() && strpos($layout, 'admin_') === 0){
+                    return false;
+                }
                 return true;
+            }
         }
     }
 
@@ -53,6 +57,8 @@ class WPJOBPORTALJobstatusController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_job_status_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $data = WPJOBPORTALrequest::get('post');
         $result = WPJOBPORTALincluder::getJSModel('jobstatus')->storeJobStatus($data);
         $url = esc_url_raw(admin_url('admin.php?page=wpjobportal_jobstatus&wpjobportallt=jobstatus'));
@@ -67,6 +73,8 @@ class WPJOBPORTALJobstatusController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_job_status_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
         $result = WPJOBPORTALincluder::getJSModel('jobstatus')->deleteJobsStatus($ids);
         $msg = WPJOBPORTALMessages::getMessage($result, 'jobstatus');
@@ -81,6 +89,8 @@ class WPJOBPORTALJobstatusController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_job_status_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $pagenum = WPJOBPORTALrequest::getVar('pagenum');
         $ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
         $result = WPJOBPORTALincluder::getJSModel('jobstatus')->publishUnpublish($ids, 1); //  for publish
@@ -98,6 +108,8 @@ class WPJOBPORTALJobstatusController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_job_status_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $pagenum = WPJOBPORTALrequest::getVar('pagenum');
         $ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
         $result = WPJOBPORTALincluder::getJSModel('jobstatus')->publishUnpublish($ids, 0); //  for unpublish
@@ -117,6 +129,8 @@ class WPJOBPORTALJobstatusController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_job_status_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $post = WPJOBPORTALrequest::get('post');
         if($post['task'] == 'unpublish'){
             $this->unpublish();

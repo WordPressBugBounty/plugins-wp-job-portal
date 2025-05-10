@@ -18,7 +18,7 @@ class WPJOBPORTALJobController {
         $layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'jobs');
         $uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
         $wpjpjob = WPJOBPORTALincluder::getJSModel('job');
-        if (self::canaddfile()) {
+        if (self::canaddfile($layout)) {
             $empflag  = wpjobportal::$_config->getConfigurationByConfigName('disable_employer');
             if(is_admin()){
                 $empflag = true;
@@ -420,15 +420,19 @@ class WPJOBPORTALJobController {
     //     wp_redirect($url);
     // }
 
-    function canaddfile() {
+    function canaddfile($layout) {
         $nonce_value = WPJOBPORTALrequest::getVar('wpjobportal_nonce');
         if ( wp_verify_nonce( $nonce_value, 'wpjobportal_nonce') ) {
             if (isset($_POST['form_request']) && $_POST['form_request'] == 'wpjobportal')
                 return false;
             elseif (isset($_GET['action']) && $_GET['action'] == 'wpjobportaltask')
                 return false;
-            else
+            else{
+                if(!is_admin() && strpos($layout, 'admin_') === 0){
+                    return false;
+                }
                 return true;
+            }
         }
     }
 

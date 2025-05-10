@@ -17,7 +17,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 	}
 
 	public function get_categories(){
-		 return ['basic']; // Moves the widget to the "General" category
+		 return ['job-portal-category']; // Moves the widget to the "General" category
 	}
 
 	// search results triggers
@@ -69,6 +69,26 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		$pages_for_no_styling_msg_array['jp_shortcode!'] = array('wpjobportal_jobseeker_controlpanel');
 		// $pages_for_styling_array['jp_shortcode'] = array('wpjobportal_job', 'wpjobportal_jobseeker_controlpanel', 'wpjobportal_employer_controlpanel');
 		// $pages_for_no_styling_msg_array['jp_shortcode!'] = array('wpjobportal_job', 'wpjobportal_jobseeker_controlpanel', 'wpjobportal_employer_controlpanel');
+
+
+		//to handle default/reset case
+        $color_array['color1'] = "#3baeda";
+        $color_array['color2'] = "#333333";
+        $color_array['color3'] = "#575757";
+
+        // handle color css
+        // to handle the case of not all three are changed
+        // $color_array = array();
+        // $color_string_values = get_option("wpjp_set_theme_colors");
+        // if($color_string_values != ''){
+        //     $json_values = json_decode($color_string_values,true);
+        //     if(is_array($json_values) && !empty($json_values)){
+        //         $color_array['color1'] = esc_attr($json_values['color1']);
+        //         $color_array['color2'] = esc_attr($json_values['color2']);
+        //         $color_array['color3'] = esc_attr($json_values['color3']);
+        //     }
+        // }
+
 
 	    $this->add_control(
 	        'main_bottom_message',
@@ -144,8 +164,18 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 				            '{{WRAPPER}} div.wjportal-elegant-addon-main-up-wrapper .wjportal-elegant-addon-jobs-apply-btn-wrp a.wjportal-elegant-addon-jobs-apply-btn' => 'background-color: {{VALUE}} !important;border-color: {{VALUE}} !important;',
 				        ],
 				        'condition' => $pages_for_styling_array,
+				        // 'default' => $color_array['color1'],
 		            ]
 		        );
+
+		        // $this->add_control(
+		        //     'use_default_color1',
+		        //     [
+		        //         'label' => __( 'Use Default Color For Color 1', 'plugin-name' ),
+		        //         'type' => \Elementor\Controls_Manager::SWITCHER,
+		        //         'default' => 'no',
+		        //     ]
+		        // );
 
 		        $this->add_control(
 		            'jp_primarycolor_desc',
@@ -175,6 +205,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 
 		                ],
 		                'condition' => $pages_for_styling_array,
+		                // 'default' => $color_array['color2'],
 		            ]
 		        );
 		        $this->add_control(
@@ -205,6 +236,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		                    '{{WRAPPER}} div.wjportal-elegant-addon-main-up-wrapper .wjportal-elegant-addon-filter-search-wrp input' => 'color: {{VALUE}} !important;',
 		                ],
 		                'condition' => $pages_for_styling_array,
+		                // 'default' => $color_array['color3'],
 		            ]
 		        );
 		        $this->add_control(

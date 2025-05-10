@@ -33,6 +33,11 @@ $captcha_quick_apply  = wpjobportal::$_config->getConfigurationByConfigName('qui
                         echo '<div class="wjportal-job-sec-title" >';
                             echo esc_html(__('Apply to the Job', 'wp-job-portal'));
                         echo '</div>';
+                        $show_job_apply_redirect_link_only = 0;
+                        if($job->jobapplylink == 1 && !empty($job->joblink)){
+                            $show_job_apply_redirect_link_only = 1;
+                        }
+
                         echo '<form class="wjportal-form" id="wpjobportal-form" method="post" enctype="multipart/form-data" action="'. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobapply', 'task'=>'applyonjob'))).'">';
                             $jobid =  (!empty(wpjobportal::$_data[0]) && isset(wpjobportal::$_data[0]->id)) ? wpjobportal::$_data[0]->id : '';
                             $hide_apply_btn = 0;
@@ -43,80 +48,81 @@ $captcha_quick_apply  = wpjobportal::$_config->getConfigurationByConfigName('qui
                             $payment_methods_array = array();
                             $force_hide_btn = 0;
                             $uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
-                            if($show_quick_apply_form == 1){ // quick apply case
-                                $formfields = WPJOBPORTALincluder::getTemplate('quickapply/form-fields',array());
-                                foreach ($formfields as $formfield) {
-                                    WPJOBPORTALincluder::getTemplate('templates/form-field', $formfield);
-                                }
-                                if (WPJOBPORTALincluder::getObjectClass('user')->isguest() && $captcha_quick_apply == 1) {
-                                    $config_array = wpjobportal::$_config->getConfigByFor('captcha');
-                                    if ($config_array['captcha_selection'] == 1) { // Google recaptcha
-                                        if($config_array['recaptcha_version'] == 1){
-                                            echo '<div class="g-recaptcha" data-sitekey="'.$config_array["recaptcha_publickey"].'"></div>';
-                                        }else{
-                                            $google_recaptcha_3 = true;
-                                        }
-
-                                    } else { // own captcha
-                                        $captcha = new WPJOBPORTALcaptcha;
-                                        echo '<div class="recaptcha-wrp">'.$captcha->getCaptchaForForm().'</div>';
+                            if($show_job_apply_redirect_link_only ==0){
+                                if($show_quick_apply_form == 1){ // quick apply case
+                                    $formfields = WPJOBPORTALincluder::getTemplate('quickapply/form-fields',array());
+                                    foreach ($formfields as $formfield) {
+                                        WPJOBPORTALincluder::getTemplate('templates/form-field', $formfield);
                                     }
-                                }
-                                echo wp_kses(WPJOBPORTALformfield::hidden('quickapply', 1),WPJOBPORTAL_ALLOWED_TAGS);
-                            }else{ // legacy apply case
-                                if (!WPJOBPORTALincluder::getObjectClass('user')->isguest()) { // curent user not guest
-                                    $isjobseeker = WPJOBPORTALincluder::getObjectClass('user')->isjobseeker();
-                                    $isemployer = WPJOBPORTALincluder::getObjectClass('user')->isemployer();
-                                    if (is_numeric($uid) && $uid != 0 && $isjobseeker == true) { // not guest and is jobseeker
-                                        // resume section
+                                    if (WPJOBPORTALincluder::getObjectClass('user')->isguest() && $captcha_quick_apply == 1) {
+                                        $config_array = wpjobportal::$_config->getConfigByFor('captcha');
+                                        if ($config_array['captcha_selection'] == 1) { // Google recaptcha
+                                            if($config_array['recaptcha_version'] == 1){
+                                                echo '<div class="g-recaptcha" data-sitekey="'.$config_array["recaptcha_publickey"].'"></div>';
+                                            }else{
+                                                $google_recaptcha_3 = true;
+                                            }
 
-                                        //get resumes
-                                        $resume_list = WPJOBPORTALincluder::getJSModel('resume')->getResumesForJobapply();
-                                        if(!empty($resume_list)){ // if user has resumes
-                                            echo '
-                                            <div class="wjportal-form-row">
-                                                <div class="wjportal-form-title">
-                                                    '. __('Resume', 'wp-job-portal').' <font color="#000">*</font>
-                                                </div>
-                                                <div class="wjportal-form-value"> ';
-                                                    echo wp_kses(WPJOBPORTALformfield::select('cvid', $resume_list, '', '', array('class' => 'inputbox wjportal-form-select-field', 'data-validation' => 'required')), WPJOBPORTAL_ALLOWED_TAGS);
-                                            echo '
-                                                </div>
-                                            </div>';
-                                        }else{ // no resume message and link to add resume
-                                            echo '<div class="job-detail-jobapply-message-wrap">';
-                                                echo '<span class="job-detail-jobapply-message-msg"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/not-loggedin.png" />' . esc_html(__('You do not have any resume!', 'wp-job-portal')) . '</span>';
-                                                echo '<a class="job-detail-jobapply-message-link" href="'.wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'addresume')).'" class="resumeaddlink" target="_blank">' . esc_html(__('Add Resume', 'wp-job-portal')) . '</a>';
-                                            echo '</div>';
-                                            $hide_apply_btn = 1;
+                                        } else { // own captcha
+                                            $captcha = new WPJOBPORTALcaptcha;
+                                            echo '<div class="recaptcha-wrp">'.$captcha->getCaptchaForForm().'</div>';
                                         }
+                                    }
+                                    echo wp_kses(WPJOBPORTALformfield::hidden('quickapply', 1),WPJOBPORTAL_ALLOWED_TAGS);
+                                }else{ // legacy apply case
+                                    if (!WPJOBPORTALincluder::getObjectClass('user')->isguest()) { // curent user not guest
+                                        $isjobseeker = WPJOBPORTALincluder::getObjectClass('user')->isjobseeker();
+                                        $isemployer = WPJOBPORTALincluder::getObjectClass('user')->isemployer();
+                                        if (is_numeric($uid) && $uid != 0 && $isjobseeker == true) { // not guest and is jobseeker
+                                            // resume section
 
-                                        if(in_array('coverletter', wpjobportal::$_active_addons)){
-                                            // Cover letter section
-                                            // get user cover letters
-                                            $cover_letter_list = WPJOBPORTALincluder::getJSModel('coverletter')->getCoverLetterForCombocoverletter($uid);
-                                            if(!empty($cover_letter_list)){ // if user has coverletters
+                                            //get resumes
+                                            $resume_list = WPJOBPORTALincluder::getJSModel('resume')->getResumesForJobapply();
+                                            if(!empty($resume_list)){ // if user has resumes
                                                 echo '
                                                 <div class="wjportal-form-row">
                                                     <div class="wjportal-form-title">
-                                                        '. __('Cover Letter', 'wp-job-portal').' <font color="#000">*</font>
+                                                        '. __('Resume', 'wp-job-portal').' <font color="#000">*</font>
                                                     </div>
                                                     <div class="wjportal-form-value"> ';
-                                                        echo wp_kses(WPJOBPORTALformfield::select('coverletterid', $cover_letter_list, '', '', array('class' => 'inputbox wjportal-form-select-field', 'data-validation' => 'required')), WPJOBPORTAL_ALLOWED_TAGS);
+                                                        echo wp_kses(WPJOBPORTALformfield::select('cvid', $resume_list, '', '', array('class' => 'inputbox wjportal-form-select-field', 'data-validation' => 'required')), WPJOBPORTAL_ALLOWED_TAGS);
                                                 echo '
                                                     </div>
                                                 </div>';
-                                            }else{ // no cover letter message and add cover letter link
+                                            }else{ // no resume message and link to add resume
                                                 echo '<div class="job-detail-jobapply-message-wrap">';
-                                                    echo '<span class="job-detail-jobapply-message-msg"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/not-loggedin.png" />' . esc_html(__('No Cover Letter!', 'wp-job-portal')) . '</span>';
-                                                    echo '<a class="job-detail-jobapply-message-link" href="'.wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'coverletter', 'wpjobportallt'=>'addcoverletter')).'" class="coverlettteraddlink" target="_blank">' . esc_html(__('Add Cover Lettter', 'wp-job-portal')) . '</a>';
+                                                    echo '<span class="job-detail-jobapply-message-msg"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/not-loggedin.png" />' . esc_html(__('You do not have any resume!', 'wp-job-portal')) . '</span>';
+                                                    echo '<a class="job-detail-jobapply-message-link" href="'.wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'addresume')).'" class="resumeaddlink" target="_blank">' . esc_html(__('Add Resume', 'wp-job-portal')) . '</a>';
                                                 echo '</div>';
+                                                $hide_apply_btn = 1;
+                                            }
+
+                                            if(in_array('coverletter', wpjobportal::$_active_addons)){
+                                                // Cover letter section
+                                                // get user cover letters
+                                                $cover_letter_list = WPJOBPORTALincluder::getJSModel('coverletter')->getCoverLetterForCombocoverletter($uid);
+                                                if(!empty($cover_letter_list)){ // if user has coverletters
+                                                    echo '
+                                                    <div class="wjportal-form-row">
+                                                        <div class="wjportal-form-title">
+                                                            '. __('Cover Letter', 'wp-job-portal').' <font color="#000">*</font>
+                                                        </div>
+                                                        <div class="wjportal-form-value"> ';
+                                                            echo wp_kses(WPJOBPORTALformfield::select('coverletterid', $cover_letter_list, '', '', array('class' => 'inputbox wjportal-form-select-field', 'data-validation' => 'required')), WPJOBPORTAL_ALLOWED_TAGS);
+                                                    echo '
+                                                        </div>
+                                                    </div>';
+                                                }else{ // no cover letter message and add cover letter link
+                                                    echo '<div class="job-detail-jobapply-message-wrap">';
+                                                        echo '<span class="job-detail-jobapply-message-msg"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/not-loggedin.png" />' . esc_html(__('No Cover Letter!', 'wp-job-portal')) . '</span>';
+                                                        echo '<a class="job-detail-jobapply-message-link" href="'.wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'coverletter', 'wpjobportallt'=>'addcoverletter')).'" class="coverlettteraddlink" target="_blank">' . esc_html(__('Add Cover Lettter', 'wp-job-portal')) . '</a>';
+                                                    echo '</div>';
+                                                }
                                             }
                                         }
                                     }
-                                }
-                            } // legacy apply resume and cover letter section ended
-
+                                } // legacy apply resume and cover letter section ended
+                            } // show_job_apply_redirect_link_only
 
                             // to handle per listing and membership mode
                             $subtype = wpjobportal::$_config->getConfigValue('submission_type');
@@ -171,37 +177,37 @@ $captcha_quick_apply  = wpjobportal::$_config->getConfigurationByConfigName('qui
                                             $decimals = WPJOBPORTALincluder::getJSModel('currency')->getDecimalPlaces($currencyid);
                                             $formattedPrice = wpjobportalphplib::wpJP_number_format($price,$decimals);
                                             $priceCompanytlist = WPJOBPORTALincluder::getJSModel('common')->getFancyPrice($price,$currencyid,array('decimal_places'=>$decimals));
-											if(is_numeric($price) && $price > 0){
-												echo '<div class="wjportal-job-apply-price-msg" >';
-												echo esc_html(__('Payment of', 'wp-job-portal')). ' <strong>'.esc_html($priceCompanytlist).'</strong> '.esc_html(__('is required to complete the job apply process', 'wp-job-portal'));
-												echo '</div>';
-												if($payment_not_required == true){ // job apply is not pending becasue of payment
+                                            if(is_numeric($price) && $price > 0){
+                                                echo '<div class="wjportal-job-apply-price-msg" >';
+                                                echo esc_html(__('Payment of', 'wp-job-portal')). ' <strong>'.esc_html($priceCompanytlist).'</strong> '.esc_html(__('is required to complete the job apply process', 'wp-job-portal'));
+                                                echo '</div>';
+                                                if($payment_not_required == true){ // job apply is not pending becasue of payment
 
-													// check enabled payment methods create an array for radio button selection in case of multiple
-													$paymentconfig = wpjobportal::$_wpjppaymentconfig->getPaymentConfigFor('paypal,stripe,woocommerce',true);
-													$default_selected_payment_method = '';
-													if($paymentconfig['isenabled_paypal'] == 1){ // paypal as a payment method is enabled
-														$payment_methods_array[1] = '<img src="'. esc_url(WPJOBPORTAL_IMAGE).'/paypal.jpg" alt="'. __("paypal","wp-job-portal").'" title="'. __("paypal","wp-job-portal").'" /> '. esc_html(__('PayPal', 'wp-job-portal'));
-														$default_selected_payment_method = 1;
-													}
-													if($paymentconfig['isenabled_woocommerce'] == 1) { // woo commerce as a payment method is enabled
-														// uncomment this line
-														// if(class_exists( 'WooCommerce' )){
-															$payment_methods_array[2] = '<img src="'. esc_url(WPJOBPORTAL_IMAGE).'/woo.jpg" alt="'. __("woocommerce","wp-job-portal").'" title="'. __("woocommerce","wp-job-portal").'" /> '. esc_html(__('Woocommerce', 'wp-job-portal'));
-															if($default_selected_payment_method == '')
-																$default_selected_payment_method = 2;
-														// }
-													}
-													if($paymentconfig['isenabled_stripe'] == 1) { // stripe as a payment method is enabled
-														$payment_methods_array[3] = '<img src="'. esc_url(WPJOBPORTAL_IMAGE).'/stripe.jpg" alt="'. __("stripe","wp-job-portal").'" title="'. __("stripe","wp-job-portal").'" /> '. esc_html(__('Stripe', 'wp-job-portal'));
-														if($default_selected_payment_method == '')
-															$default_selected_payment_method = 3;
-													}
-												}else{ // payment is requied for job apply
-													$show_proceed_to_payment_button = 1; // show proceed to payment button
-													$hide_apply_btn = 1; // hide apply button
-												}
-											}	
+                                                    // check enabled payment methods create an array for radio button selection in case of multiple
+                                                    $paymentconfig = wpjobportal::$_wpjppaymentconfig->getPaymentConfigFor('paypal,stripe,woocommerce',true);
+                                                    $default_selected_payment_method = '';
+                                                    if($paymentconfig['isenabled_paypal'] == 1){ // paypal as a payment method is enabled
+                                                        $payment_methods_array[1] = '<img src="'. esc_url(WPJOBPORTAL_IMAGE).'/paypal.jpg" alt="'. __("paypal","wp-job-portal").'" title="'. __("paypal","wp-job-portal").'" /> '. esc_html(__('PayPal', 'wp-job-portal'));
+                                                        $default_selected_payment_method = 1;
+                                                    }
+                                                    if($paymentconfig['isenabled_woocommerce'] == 1) { // woo commerce as a payment method is enabled
+                                                        // uncomment this line
+                                                        // if(class_exists( 'WooCommerce' )){
+                                                            $payment_methods_array[2] = '<img src="'. esc_url(WPJOBPORTAL_IMAGE).'/woo.jpg" alt="'. __("woocommerce","wp-job-portal").'" title="'. __("woocommerce","wp-job-portal").'" /> '. esc_html(__('Woocommerce', 'wp-job-portal'));
+                                                            if($default_selected_payment_method == '')
+                                                                $default_selected_payment_method = 2;
+                                                        // }
+                                                    }
+                                                    if($paymentconfig['isenabled_stripe'] == 1) { // stripe as a payment method is enabled
+                                                        $payment_methods_array[3] = '<img src="'. esc_url(WPJOBPORTAL_IMAGE).'/stripe.jpg" alt="'. __("stripe","wp-job-portal").'" title="'. __("stripe","wp-job-portal").'" /> '. esc_html(__('Stripe', 'wp-job-portal'));
+                                                        if($default_selected_payment_method == '')
+                                                            $default_selected_payment_method = 3;
+                                                    }
+                                                }else{ // payment is requied for job apply
+                                                    $show_proceed_to_payment_button = 1; // show proceed to payment button
+                                                    $hide_apply_btn = 1; // hide apply button
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -225,7 +231,7 @@ $captcha_quick_apply  = wpjobportal::$_config->getConfigurationByConfigName('qui
                             if($hide_apply_btn == 0){
                                 $btn_label  = __('Apply Now', 'wp-job-portal');
                                 // if payment method array is not empty show select package drop down and change button text
-                                if(!empty($payment_methods_array)){
+                                if(!empty($payment_methods_array) && $show_job_apply_redirect_link_only == 0){
                                     $btn_label  = __('Proceed to payment', 'wp-job-portal');
                                     echo '
                                     <div class="wjportal-form-row">
@@ -239,16 +245,20 @@ $captcha_quick_apply  = wpjobportal::$_config->getConfigurationByConfigName('qui
                                     </div>';
 
                                 }
-                                // button will remain submit for all three modes.(free, per listing, memebership)
-                                echo '<div class="wjportal-form-btn-wrp wjportal-apply-package-apply-now-button">
-                                    '. wp_kses(WPJOBPORTALformfield::submitbutton('save', esc_html($btn_label), array('class' => 'button wjportal-form-btn wjportal-save-btn')),WPJOBPORTAL_ALLOWED_TAGS).'
-                                </div>';
-                                $btn_visible = 1;
+                                if($show_job_apply_redirect_link_only == 0){
+                                    // button will remain submit for all three modes.(free, per listing, memebership)
+                                    echo '<div class="wjportal-form-btn-wrp wjportal-apply-package-apply-now-button">
+                                        '. wp_kses(WPJOBPORTALformfield::submitbutton('save', esc_html($btn_label), array('class' => 'button wjportal-form-btn wjportal-save-btn')),WPJOBPORTAL_ALLOWED_TAGS).'
+                                    </div>';
+                                    $btn_visible = 1;
+                                }elseif($show_job_apply_redirect_link_only == 1){
+                                    echo '<div class="wjportal-form-btn-wrp wjportal-apply-package-apply-now-button">
+                                     <a class="wjportal-login-to-apply-btn" href="'.esc_url($job->joblink).'"  target="_blank">' . esc_html(__('Apply Now', 'wp-job-portal')).'</a>
+                                    </div>';
+                                    $btn_visible = 1;
+                                }
                             }
-                        ?>
-                        <?php
-
-                            if($hide_login_and_apply_btn == 0){ // show login & apply button to visitor
+                        if($hide_login_and_apply_btn == 0  && $show_job_apply_redirect_link_only == 0){ // show login & apply button to visitor
                                 $redirect_url = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'viewjob', 'wpjobportalid'=>$jobid));
                                 $redirect_url = wpjobportalphplib::wpJP_safe_encoding($redirect_url);
                                 $login_link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'wpjobportal', 'wpjobportallt'=>'login', 'wpjobportalredirecturl'=>$redirect_url));
@@ -292,6 +302,14 @@ $captcha_quick_apply  = wpjobportal::$_config->getConfigurationByConfigName('qui
                                 </div>';
                                 $btn_visible = 1;
                             }
+
+                            if($btn_visible == 0  && $show_job_apply_redirect_link_only == 1){
+                                echo '<div class="wjportal-form-btn-wrp wjportal-apply-package-apply-now-button">
+                                 <a class="wjportal-login-to-apply-btn" href="'.esc_url($job->joblink).'"  target="_blank">' . esc_html(__('Apply Now', 'wp-job-portal')).'</a>
+                                </div>';
+                                $btn_visible = 1;
+                            }
+
 
                             if($btn_visible == 0 && $force_hide_btn == 0){ // show dummy btn if no button is shown
                                 echo '<div class="wjportal-form-btn-wrp wjportal-login-to-apply-btn-wrap">

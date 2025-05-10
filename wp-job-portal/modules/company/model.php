@@ -406,7 +406,11 @@ class WPJOBPORTALCompanyModel {
         # request parameters
             $cuser = WPJOBPORTALincluder::getObjectClass('user');
             $id = (int) $data['id'];
-            $isnew = !$id;
+
+        $isnew = true;
+        if(is_numeric($id) && $id > 0){
+            $isnew = false;
+        }
 
         //making sure uid is not changed
         // admin can edit other employers companies
@@ -455,26 +459,28 @@ class WPJOBPORTALCompanyModel {
                     }
                 }else{
                     if(wpjobportal::$_common->wpjp_isadmin()){
-                        if ($submissionType == 3) {
-                            if ($data['payment'] == 0) {
-                                $upakid = WPJOBPORTALrequest::getVar('upakid',null,0);
-                                $data['userpackageid'] = $upakid;
-                            } else {
-                                $upakid = WPJOBPORTALrequest::getVar('upakid',null,0);
-                                /*Getting Package filter for All Module*/
-                                $package = apply_filters('wpjobportal_addons_userpackages_permodule',false,$upakid,$data['uid'],'remcompany');
-                                if( !$package ){
-                                    return WPJOBPORTAL_SAVE_ERROR;
+                        if(in_array('credits', wpjobportal::$_active_addons)){
+                            if ($submissionType == 3) {
+                                if ($data['payment'] == 0) {
+                                    $upakid = WPJOBPORTALrequest::getVar('upakid',null,0);
+                                    $data['userpackageid'] = $upakid;
+                                } else {
+                                    $upakid = WPJOBPORTALrequest::getVar('upakid',null,0);
+                                    /*Getting Package filter for All Module*/
+                                    $package = apply_filters('wpjobportal_addons_userpackages_permodule',false,$upakid,$data['uid'],'remcompany');
+                                    if( !$package ){
+                                        return WPJOBPORTAL_SAVE_ERROR;
+                                    }
+                                    if( $package->expired ){
+                                        return WPJOBPORTAL_SAVE_ERROR;
+                                    }
+                                    //if Department are not unlimited & there is no remaining left
+                                    if( $package->companies!=-1 && !$package->remcompany ){ //-1 = unlimited
+                                        return WPJOBPORTAL_SAVE_ERROR;
+                                    }
+                                    #user packae id--
+                                    $data['userpackageid'] = $upakid;
                                 }
-                                if( $package->expired ){
-                                    return WPJOBPORTAL_SAVE_ERROR;
-                                }
-                                //if Department are not unlimited & there is no remaining left
-                                if( $package->companies!=-1 && !$package->remcompany ){ //-1 = unlimited
-                                    return WPJOBPORTAL_SAVE_ERROR;
-                                }
-                                #user packae id--
-                                $data['userpackageid'] = $upakid;
                             }
                         }
                     }

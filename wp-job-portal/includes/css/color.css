@@ -165,6 +165,7 @@
     **********************/
     div.wjportal-jobdetail-wrapper div.wjportal-jobinfo-wrp div.wjportal-jobinfo span.wjportal-jobtype {color: #fff;}
     div.wjportal-jobdetail-wrapper div.wjportal-jobinfo-wrp div.wjportal-jobinfo span.wjportal-jobinfo-data {color: #575757;}
+    div.wjportal-jobdetail-wrapper div.wjportal-jobinfo-wrp div.wjportal-jobinfo .wjportal-salary-type {color: #575757;}
     div.wjportal-jobdetail-wrapper div.wjportal-jobinfo-wrp div.wjportal-jobinfo span.wjportal-job-close-date {color: #f58634;}
     div.wjportal-jobdetail-wrapper div.wjportal-job-company-wrp div.wjportal-job-company-logo {background: #fff;border: 1px solid #d4d4d5;}
     div.wjportal-jobdetail-wrapper div.wjportal-job-company-wrp div.wjportal-job-company-cnt div.wjportal-job-company-info a.wjportal-job-company-name {color: #3baeda;}
@@ -387,6 +388,19 @@
     div.wjportal-coverletterdetail-wrapper div.wjportal-coverletter-data-wrp div.wjportal-coverletter-desc {color: #575757;}
 
 
+        /**********************
+        ai search form
+    **********************/
+    div.wjportal-main-up-wrapper .wjportal-filter-ai-searchfrm-wrp .wjportal-ai-searchfrm-logo-wrp{background-color: #3baeda;}
+    div.wjportal-main-up-wrapper .wjportal-filter-ai-searchfrm-wrp .wjportal-aifilter-search-wrp .wjportal-filter-search-btn-wrp .wjportal-filter-search-btn{background-color: #3baeda;color:#fff;}
+    div.wjportal-main-up-wrapper .wjportal-filter-ai-searchfrm-wrp .wjportal-aifilter-search-wrp .wjportal-filter-search-btn-wrp .wjportal-filter-search-btn:hover{background-color: #333333;color:#fff;border-color:#333333;}
+    div.wjportal-main-up-wrapper .wjportal-filter-ai-searchfrm-wrp{border-color:#d4d4d5;}
+    div.wjportal-main-up-wrapper .wjportal-filter-ai-searchfrm-wrp .wjportal-aifilter-search-wrp .wjportal-filter-search-field-wrp{border-color:#d4d4d5;}
+    div.wjportal-main-up-wrapper .wjportal-filter-ai-searchfrm-wrp .wjportal-aifilter-search-wrp .wjportal-filter-search-btn-wrp{border-color:#d4d4d5;}
+    div.wjportal-main-up-wrapper .wjportal-filter-ai-searchfrm-wrp .wjportal-aifilter-search-wrp .wjportal-filter-ai-searchfrm-discription{color:#575757;}
+    div.wjportal-main-up-wrapper .wjportal-filter-ai-searchfrm-wrp .wjportal-aifilter-search-wrp .wjportal-filter-ai-searchfrm-title{color:#333333;}
+
+
 
 
 
@@ -536,7 +550,7 @@
     **********************/
     div#black_wrapper_jobapply {background: rgba(0,0,0,.8);}
     div.wpjp-resume-popup-wrp {background: #fff;border-bottom: 5px solid #3baeda;}
-    div.wpjp-resume-popup-wrp span.close-resume-files {background: #3baeda;border-bottom: 5px solid #1d90bc;color: #fff;}
+    div.wpjp-resume-popup-wrp span.close-resume-files {background: #3baeda;border-bottom: 5px solid #3baeda;color: #fff;}
     div.wpjp-resume-popup-wrp div.wpjp-resumepopup-section-wrapper span.wpjp-clickable-files {background: #f0f0f0;color: #3c3435;border: 1px solid #d4d4d5;}
     div.wpjp-resume-popup-wrp div.wpjp-resumepopup-section-wrapper span.wpjp-heading-popup {background: #3baeda;color: #f0f0f0;}
     div.wpjp-resume-popup-wrp div.wpjp-resumepopup-section-wrapper span#resume-files-selected {background: #fff;border: 1px solid #d4d4d5;}

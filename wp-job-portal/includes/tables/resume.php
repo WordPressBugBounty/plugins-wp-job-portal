@@ -39,6 +39,9 @@ class WPJOBPORTALresumeTable extends WPJOBPORTALtable {
     public $price = '';
     public $userpackageid = '';
     public $quick_apply = '';
+
+    public $airesumesearchtext = '';
+    public $airesumesearchdescription = '';
     function __construct() {
         parent::__construct('resume', 'id'); // tablename, primarykey
     }

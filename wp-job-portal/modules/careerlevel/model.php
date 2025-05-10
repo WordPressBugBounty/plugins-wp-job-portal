@@ -229,7 +229,6 @@ class WPJOBPORTALCareerlevelModel {
         return $id;
     }
 
-
     function isCareerlevelExist($title) {
         $query = "SELECT COUNT(id) FROM " . wpjobportal::$_db->prefix . "wj_portal_careerlevels WHERE title ='$title'";
         $result = wpjobportaldb::get_var($query);
@@ -238,6 +237,16 @@ class WPJOBPORTALCareerlevelModel {
         else
             return false;
     }
+
+    function getTitleByid($id) {
+        if(!is_numeric($id)){
+            return false;
+        }
+        $query = "SELECT title FROM " . wpjobportal::$_db->prefix . "wj_portal_careerlevels WHERE id =". esc_sql($id);
+        $result = wpjobportaldb::get_var($query);
+        return $result;
+    }
+
     function getMessagekey(){
         $key = 'careerlevel';if(wpjobportal::$_common->wpjp_isadmin()){$key = 'admin_'.$key;}return $key;
     }

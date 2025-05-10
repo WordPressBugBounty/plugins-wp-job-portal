@@ -418,6 +418,19 @@ $result = "
     div.wjportal-coverletterdetail-wrapper div.wjportal-coverletter-data-wrp div.wjportal-coverletter-desc {color: ".esc_attr($color3).";}
 
 
+        /**********************
+        ai search form
+    **********************/
+    div.wjportal-main-up-wrapper .wjportal-filter-ai-searchfrm-wrp .wjportal-ai-searchfrm-logo-wrp{background-color: ".esc_attr($color1).";}
+    div.wjportal-main-up-wrapper .wjportal-filter-ai-searchfrm-wrp .wjportal-aifilter-search-wrp .wjportal-filter-search-btn-wrp .wjportal-filter-search-btn{background-color: ".esc_attr($color1).";color:#fff;}
+    div.wjportal-main-up-wrapper .wjportal-filter-ai-searchfrm-wrp .wjportal-aifilter-search-wrp .wjportal-filter-search-btn-wrp .wjportal-filter-search-btn:hover{background-color: ".esc_attr($color2).";color:#fff;border-color:".esc_attr($color2).";}
+    div.wjportal-main-up-wrapper .wjportal-filter-ai-searchfrm-wrp{border-color:".esc_attr($color5).";}
+    div.wjportal-main-up-wrapper .wjportal-filter-ai-searchfrm-wrp .wjportal-aifilter-search-wrp .wjportal-filter-search-field-wrp{border-color:".esc_attr($color5).";}
+    div.wjportal-main-up-wrapper .wjportal-filter-ai-searchfrm-wrp .wjportal-aifilter-search-wrp .wjportal-filter-search-btn-wrp{border-color:".esc_attr($color5).";}
+    div.wjportal-main-up-wrapper .wjportal-filter-ai-searchfrm-wrp .wjportal-aifilter-search-wrp .wjportal-filter-ai-searchfrm-discription{color:".esc_attr($color3).";}
+    div.wjportal-main-up-wrapper .wjportal-filter-ai-searchfrm-wrp .wjportal-aifilter-search-wrp .wjportal-filter-ai-searchfrm-title{color:".esc_attr($color2).";}
+
+
 
 ";
 $result1 = "

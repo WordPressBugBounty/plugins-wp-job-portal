@@ -345,6 +345,18 @@ class WPJOBPORTALFieldorderingModel {
         return $sections;
     }
 
+    function getResumeCustomSectionsFields(){
+        $query = "SELECT field.field,field.section,field.userfieldtype
+                    FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering AS field
+                    WHERE field.fieldfor = 3
+                    AND field.is_section_headline = 1 AND field.field != 'section_resume' AND field.section > 8 ";// 8 is for language section greater then 8 means custom sections
+        if(!in_array('advanceresumebuilder', wpjobportal::$_active_addons)){
+            $query .= " AND field.field = 'section_personal'"; // for free version
+        }
+        $sections = wpjobportaldb::get_results($query);
+        return $sections;
+    }
+
     function getResumeCustomSectionFields($section){
         if(!is_numeric($section)){
             return false;

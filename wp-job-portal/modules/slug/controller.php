@@ -11,7 +11,7 @@ class WPJOBPORTALslugController {
 
     function handleRequest() {
         $layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'slug');
-        if (self::canaddfile()) {
+        if (self::canaddfile($layout)) {
             switch ($layout) {
                 case 'admin_slug':
                     WPJOBPORTALincluder::getJSModel('slug')->getSlug();
@@ -27,15 +27,19 @@ class WPJOBPORTALslugController {
         }
     }
 
-    function canaddfile() {
+    function canaddfile($layout) {
         $nonce_value = WPJOBPORTALrequest::getVar('wpjobportal_nonce');
         if ( wp_verify_nonce( $nonce_value, 'wpjobportal_nonce') ) {
             if (isset($_POST['form_request']) && $_POST['form_request'] == 'wpjobportal')
                 return false;
             elseif (isset($_GET['action']) && $_GET['action'] == 'wpjobportaltask')
                 return false;
-            else
+            else{
+                if(!is_admin() && strpos($layout, 'admin_') === 0){
+                    return false;
+                }
                 return true;
+            }
         }
     }
 
@@ -44,6 +48,8 @@ class WPJOBPORTALslugController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_slug_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $data = WPJOBPORTALrequest::get('post');
         $result = WPJOBPORTALincluder::getJSModel('slug')->storeSlug($data);
         if($data['pagenum'] > 0){
@@ -63,6 +69,8 @@ class WPJOBPORTALslugController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_slug_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $data = WPJOBPORTALrequest::get('post');
         $result = WPJOBPORTALincluder::getJSModel('slug')->savePrefix($data);
         $url = esc_url_raw(admin_url("admin.php?page=wpjobportal_slug"));
@@ -77,6 +85,8 @@ class WPJOBPORTALslugController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_slug_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $data = WPJOBPORTALrequest::get('post');
         $result = WPJOBPORTALincluder::getJSModel('slug')->saveHomePrefix($data);
         $url = esc_url_raw(admin_url("admin.php?page=wpjobportal_slug"));
@@ -91,6 +101,8 @@ class WPJOBPORTALslugController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_slug_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $data = WPJOBPORTALrequest::get('post');
         $result = WPJOBPORTALincluder::getJSModel('slug')->resetAllSlugs();
         $url = esc_url_raw(admin_url("admin.php?page=wpjobportal_slug"));

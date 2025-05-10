@@ -13,7 +13,7 @@ class WPJOBPORTALEmployerController {
     function handleRequest() {
         $layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'controlpanel');
         $addonmissing = WPJOBPORTALrequest::getLayout('addonmissing', null, 0);
-        if (self::canaddfile()) {
+        if (self::canaddfile($layout)) {
             $empflag  = wpjobportal::$_config->getConfigurationByConfigName('disable_employer');
             $guestflag = false;
             $visitorallowed = wpjobportal::$_config->getConfigurationByConfigName('visitorview_emp_conrolpanel');
@@ -97,15 +97,19 @@ class WPJOBPORTALEmployerController {
         }
     }
 
-    function canaddfile() {
+    function canaddfile($layout) {
         $nonce_value = WPJOBPORTALrequest::getVar('wpjobportal_nonce');
         if ( wp_verify_nonce( $nonce_value, 'wpjobportal_nonce') ) {
             if (isset($_POST['form_request']) && $_POST['form_request'] == 'wpjobportal')
                 return false;
             elseif (isset($_GET['action']) && $_GET['action'] == 'wpjobportaltask')
                 return false;
-            else
+            else{
+                if(!is_admin() && strpos($layout, 'admin_') === 0){
+                    return false;
+                }
                 return true;
+            }
         }
     }
 

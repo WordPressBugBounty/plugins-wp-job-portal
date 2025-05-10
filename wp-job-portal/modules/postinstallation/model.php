@@ -38,6 +38,17 @@ class WPJOBPORTALPostinstallationModel {
                 $config_array['visitor_can_add_resume'] = 1;// allow visitor to add resume
 
 
+                $config_array['quick_apply_for_user'] = 1;// enable quick apply for logged in user
+                $config_array['quick_apply_for_visitor'] = 1;// enable quick apply for visitor
+                $config_array['cur_location'] = 0;// hide breadcrumbs
+
+
+
+                // un require company field for form job
+                $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_fieldsordering` SET `required` = 0 WHERE `field` = 'company'";
+                if (!wpjobportaldb::query($query)) {
+                }
+
                 $query = '';
                 foreach ($config_array as $key => $value) {
                     $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_config` SET `configvalue` = '" . esc_sql($value) . "' WHERE `configname`= '" . esc_sql($key) . "'";
@@ -202,7 +213,7 @@ class WPJOBPORTALPostinstallationModel {
                 );
                 $post_ID = wp_insert_post($post);
             }
-	delete_option( 'wpjobportal_multiple_employers' );
+    delete_option( 'wpjobportal_multiple_employers' );
         }
         if ( ! function_exists( 'WP_Filesystem' ) ) {
             require_once ABSPATH . 'wp-admin/includes/file.php';
@@ -238,58 +249,67 @@ class WPJOBPORTALPostinstallationModel {
                 $tmpfile = download_url( $url);
             }
 
+            $data_directory_path = $wp_upload_dir["basedir"]."/".$data_directory;
+            if(!$wp_filesystem->exists($data_directory_path)){
+                $this->makeDir($data_directory_path);
+            }
+
+            $this->makeDir($basepath.'tmp');
+
             if(!is_wp_error($tmpfile)){
+               // echo "<br>tmpfile: ".$tmpfile;
+                //echo "<br>filepath: ".$filepath;
                 copy( $tmpfile, $filepath );
                 @wp_delete_file( $tmpfile ); // must wp_delete_file afterwards
 
                 if ($wp_filesystem->exists($basepath . "tmp/jp_sample_data.zip")) {
                     do_action('wpjobportal_load_wp_pcl_zip');
                     $archive = new PclZip($basepath . "tmp/jp_sample_data.zip");
-                    $v_list = $archive->extract($wp_upload_dir["basedir"]."/".$data_directory."/");
+                    $v_list = $archive->extract(PCLZIP_OPT_PATH, $data_directory_path."/");
                 }
 
                 // end of sample images code
             }
-			$jobseeker_id = 0;
-			$employer_id = 0;
+            $jobseeker_id = 0;
+            $employer_id = 0;
             $post_jobseeker_id = WPJOBPORTALrequest::getVar('jobseeker_id','post');
-			if(isset($post_jobseeker_id) && is_numeric($post_jobseeker_id) && $post_jobseeker_id != 0){
+            if(isset($post_jobseeker_id) && is_numeric($post_jobseeker_id) && $post_jobseeker_id != 0){
 
-				/* insert new jobseeker */
-				$query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "users` where ID= ". $post_jobseeker_id;
-				$jobseeker_data =wpjobportaldb::get_row($query);
-				
-				$query = "SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` where uid= ". $post_jobseeker_id;
-				$jobseeker_already_exist =wpjobportaldb::get_var($query);
-				if(empty($jobseeker_already_exist)){
-					$insert_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_users`
-								(id,uid,first_name,roleid,emailaddress,status,created)
-								  VALUES('',".esc_sql($post_jobseeker_id).",'".esc_sql($jobseeker_data->user_login)."',2,'".esc_sql($jobseeker_data->user_email)."',1,'".esc_sql($date)."');";
-					wpjobportaldb::query($insert_query);
-					$jobseeker_id = wpjobportal::$_db->insert_id;
-				}else{
-					$jobseeker_id = $jobseeker_already_exist;
-				}
-			}
+                /* insert new jobseeker */
+                $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "users` where ID= ". $post_jobseeker_id;
+                $jobseeker_data =wpjobportaldb::get_row($query);
+
+                $query = "SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` where uid= ". $post_jobseeker_id;
+                $jobseeker_already_exist =wpjobportaldb::get_var($query);
+                if(empty($jobseeker_already_exist)){
+                    $insert_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_users`
+                                (id,uid,first_name,roleid,emailaddress,status,created)
+                                  VALUES('',".esc_sql($post_jobseeker_id).",'".esc_sql($jobseeker_data->user_login)."',2,'".esc_sql($jobseeker_data->user_email)."',1,'".esc_sql($date)."');";
+                    wpjobportaldb::query($insert_query);
+                    $jobseeker_id = wpjobportal::$_db->insert_id;
+                }else{
+                    $jobseeker_id = $jobseeker_already_exist;
+                }
+            }
             $post_employer_id = WPJOBPORTALrequest::getVar('employer_id','post');
-			if(isset($post_employer_id) && is_numeric($post_employer_id) && $post_employer_id != 0){
+            if(isset($post_employer_id) && is_numeric($post_employer_id) && $post_employer_id != 0){
 
-				/* insert new employer */
-				$query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "users` where ID= ". $post_employer_id;
-				$employer_data =wpjobportaldb::get_row($query);
-				
-				$query = "SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` where uid= ". $post_employer_id;
-				$employer_already_exist =wpjobportaldb::get_var($query);
-				if(empty($employer_already_exist)){
-					$insert_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_users`
-								(id,uid,first_name,roleid,emailaddress,status,created)
-								  VALUES('',".$post_employer_id.",'". esc_sql($employer_data->user_login) ."',1,'". esc_sql($employer_data->user_email) ."',1,'".esc_sql($date)."');";
-					wpjobportaldb::query($insert_query);
-					$employer_id = wpjobportal::$_db->insert_id;
-				}else{
-					$employer_id = $employer_already_exist;
-				}
-			}
+                /* insert new employer */
+                $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "users` where ID= ". $post_employer_id;
+                $employer_data =wpjobportaldb::get_row($query);
+
+                $query = "SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` where uid= ". $post_employer_id;
+                $employer_already_exist =wpjobportaldb::get_var($query);
+                if(empty($employer_already_exist)){
+                    $insert_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_users`
+                                (id,uid,first_name,roleid,emailaddress,status,created)
+                                  VALUES('',".$post_employer_id.",'". esc_sql($employer_data->user_login) ."',1,'". esc_sql($employer_data->user_email) ."',1,'".esc_sql($date)."');";
+                    wpjobportaldb::query($insert_query);
+                    $employer_id = wpjobportal::$_db->insert_id;
+                }else{
+                    $employer_id = $employer_already_exist;
+                }
+            }
 
             /**
             *@param wp job portal
@@ -305,7 +325,8 @@ class WPJOBPORTALPostinstallationModel {
                $endfeatureddate = gmdate("Y-m-d H:i:s", strtotime("+12 months"));
             }
 
-            if($employer_id > 0 && is_numeric($employer_id)){
+            //if($employer_id > 0 && is_numeric($employer_id)){
+            if(is_numeric($employer_id)){
 
                 //  first company
                 $cityid = '33';// cityids for companies
@@ -543,7 +564,8 @@ class WPJOBPORTALPostinstallationModel {
                 $insetjobcities = $this->insertJobCities($jobid, $cityid8);
             }
 
-            if($jobseeker_id > 0){
+            //if($jobseeker_id > 0){
+            if($jobseeker_id >= 0){
 
                 /**
                   * @param wp job portal

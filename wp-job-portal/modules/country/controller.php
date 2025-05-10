@@ -15,7 +15,7 @@ class WPJOBPORTALcountryController {
     function handleRequest() {
 
         $layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'countries');
-        if (self::canaddfile()) {
+        if (self::canaddfile($layout)) {
             switch ($layout) {
                 case 'admin_countries':
                     WPJOBPORTALincluder::getJSModel('country')->getAllCountries();
@@ -36,15 +36,19 @@ class WPJOBPORTALcountryController {
         }
     }
 
-    function canaddfile() {
+    function canaddfile($layout) {
         $nonce_value = WPJOBPORTALrequest::getVar('wpjobportal_nonce');
         if ( wp_verify_nonce( $nonce_value, 'wpjobportal_nonce') ) {
             if (isset($_POST['form_request']) && $_POST['form_request'] == 'wpjobportal')
                 return false;
             elseif (isset($_GET['action']) && $_GET['action'] == 'wpjobportaltask')
                 return false;
-            else
+            else{
+                if(!is_admin() && strpos($layout, 'admin_') === 0){
+                    return false;
+                }
                 return true;
+            }
         }
     }
 
@@ -53,6 +57,8 @@ class WPJOBPORTALcountryController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_country_nonce') ) {
              die( 'Security check Failed' ); 
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
         $result = WPJOBPORTALincluder::getJSModel('country')->deleteCountries($ids);
         $msg = WPJOBPORTALMessages::getMessage($result, 'country');
@@ -67,6 +73,8 @@ class WPJOBPORTALcountryController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_country_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $pagenum = WPJOBPORTALrequest::getVar('pagenum');
         $ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
         $result = WPJOBPORTALincluder::getJSModel('country')->publishUnpublish($ids, 1); //  for publish
@@ -84,6 +92,8 @@ class WPJOBPORTALcountryController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_country_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $pagenum = WPJOBPORTALrequest::getVar('pagenum');
         $ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
         $result = WPJOBPORTALincluder::getJSModel('country')->publishUnpublish($ids, 0); //  for unpublish
@@ -101,6 +111,8 @@ class WPJOBPORTALcountryController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_country_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $data = WPJOBPORTALrequest::get('post');
         $result = WPJOBPORTALincluder::getJSModel('country')->storeCountry($data);
         $url = esc_url_raw(admin_url("admin.php?page=wpjobportal_country&wpjobportallt=countries"));

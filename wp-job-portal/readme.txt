@@ -3,8 +3,8 @@ Contributors: wpjobportal
 Donate link: https://wpjobportal.com/pricing/
 Tags: job board, job listing, careers, job manager, jobs, recruiting
 Requires at least: 5.5 
-Tested up to: 6.7.2
-Stable tag: 2.3.2
+Tested up to: 6.8.1
+Stable tag: 2.3.3
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -239,16 +239,23 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Changelog ==
 
+= 2.3.3 =
+* Resume Search visibility control improved
+* Security fixes
+* Custom field bug fixed
+* Package system functionality improved
+* Job form salary field required bug fixed
+
 = 2.3.2 =
 * Quick Apply upload file bug fixed
 * Custom fields bug fixed
 
 = 2.3.1 =
-* Elementor Support Addded
+* Elementor Support Added
 * Elementor widget for WP Job portal shortcodes added
-* Elementor widget to customize typo graphy
+* Elementor widget to customize typography
 * Elementor widget to customize color scheme
-* Add Addons auto update functionality
+* Addons auto update functionality added
 
 
 = 2.3.0 =
@@ -256,10 +263,10 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 * Add Elegant Design Addon
 
 = 2.2.9 =
-* Remove company requirment in posting a job
+* Remove company requirement in posting a job
 * Security fixes
-* Job Seeker Dashbaord Graph improved
-* Employer Dashbaord Graph improved
+* Job Seeker Dashboard Graph improved
+* Employer Dashboard Graph improved
 
 = 2.2.8 =
 * Security fixes

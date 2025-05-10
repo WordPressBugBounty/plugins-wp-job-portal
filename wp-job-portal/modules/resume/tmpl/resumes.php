@@ -43,7 +43,19 @@ if (wpjobportal::$_error_flag == null) { ?>
             ?>
             </div>
         </div>
-        <?php
+        <?php /*
+        <div class="wjportal-filter-search-main-wrp">
+            <?php if(in_array('airesumesearch', wpjobportal::$_active_addons)){ ?>
+                <form class="wjportal-form-wrp" id="job_form" method="post" action="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'resumes'))); ?>">
+                    <?php
+                    // resume ai Search
+                    WPJOBPORTALincluder::getTemplate('resume/views/frontend/filter',array(
+                        'filter' => 'airesumesearch',
+                    )); ?>
+                </form>
+            <?php }?>
+        </div>
+        */
             if (isset(wpjobportal::$_data['fromtags'])) {
                 $heading = esc_html(__('Resumes By Tag', 'wp-job-portal')) . ' [' . wpjobportal::$_data['fromtags'] . ']';
             }else {

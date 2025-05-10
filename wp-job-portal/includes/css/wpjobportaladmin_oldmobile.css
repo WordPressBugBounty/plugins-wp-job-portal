@@ -229,3 +229,14 @@ div.wpjpadmin-addons-list-wrp div.wpjp-admin-addon-status div.wpjp-admin-addon-s
 div.wpjpadmin-addons-list-wrp div.wpjp-admin-addon-status div.wpjp-admin-addon-status-addonstatus-wrp{width:100%;float: right;line-height: 40px;}
 div.wpjpadmin-addons-list-wrp div.wpjp-admin-addon-status div.wpjp-admin-addon-status-addonsversion-wrp{width:100%;float: right;}
 div.wpjpadmin-addons-list-wrp div.wpjp-admin-addon-status div.wpjp-admin-addon-status-addonstatusbtn-wrp{width:100%;float: right;text-align: left;display: flex;justify-content: center;}
+
+/* synchronize section */
+div.wpjobportal-ai-search-data-synchronize-section .wpjobportal-ai-search-data-synchronize-imgwrp{width: 100%;text-align: center;}
+div.wpjobportal-ai-search-data-synchronize-section .wpjobportal-ai-search-data-synchronize-content-wrp{width:100%;text-align: center;padding: 0;}
+div.wpjobportal-ai-search-data-synchronize-section .wpjobportal-ai-search-data-synchronize-button-wrp{width: 100%;text-align: center;padding: 0;margin-bottom: 10px; display: flex;justify-content: center;}
+div.wpjobportal-ai-search-data-synchronize-section .wpjobportal-ai-search-data-synchronize-button-wrp a{float:unset;}
+div.wpjobportal-ai-search-data-synchronize-section .wpjobportal-ai-search-data-synchronize-content-title{margin: 10px 0;}
+div.wpjobportal-ai-search-data-synchronize-section .wpjobportal-ai-search-data-synchronize-content-disc{margin-bottom: 10px;}
+div.wpjobportal-ai-search-data-synchronize-section.wpjobportal-ai-search-data-synchronize-available-section .wpjobportal-ai-search-data-synchronize-imgwrp{width: 100%;}
+div.wpjobportal-ai-search-data-synchronize-section.wpjobportal-ai-search-data-synchronize-available-section .wpjobportal-ai-search-data-synchronize-content-wrp{width: 100%;}
+div.wpjobportal-ai-search-data-synchronize-section.wpjobportal-ai-search-data-synchronize-available-section .wpjobportal-ai-search-data-synchronize-button-wrp{width: 100%;margin-top: 15px;}

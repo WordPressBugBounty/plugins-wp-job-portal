@@ -38,30 +38,31 @@ $salarytypelist = array(
         jQuery(document).ready(function ($) {
             jQuery(document).delegate('#salarytype', 'change', function(){
                 var salarytype = jQuery(this).val();
+                var salarytype_req = jQuery(this).attr('data-validation');
                 if(salarytype == 1){ //negotiable
-                    jQuery('#salaryfixed').hide();
-                    jQuery('#salarymin').hide();
-                    jQuery('#salarymax').hide();
-                    jQuery('#salaryduration').hide();
-                    jQuery('.wjportal-form-symbol').hide();
+                    jQuery('#salaryfixed').hide().removeAttr('data-validation');
+                    jQuery('#salarymin').hide().removeAttr('data-validation');
+                    jQuery('#salarymax').hide().removeAttr('data-validation');
+                    jQuery('#salaryduration').hide().removeAttr('data-validation');
+                    jQuery('.wjportal-form-symbol').hide().removeAttr('data-validation');
                 }else if(salarytype == 2){ //fixed
-                    jQuery('#salaryfixed').show();
-                    jQuery('#salarymin').hide();
-                    jQuery('#salarymax').hide();
-                    jQuery('#salaryduration').show();
-                    jQuery('.wjportal-form-symbol').show();
+                    jQuery('#salaryfixed').show().attr('data-validation',salarytype_req);
+                    jQuery('#salarymin').hide().removeAttr('data-validation');
+                    jQuery('#salarymax').hide().removeAttr('data-validation');
+                    jQuery('#salaryduration').show().attr('data-validation',salarytype_req);
+                    jQuery('.wjportal-form-symbol').show().attr('data-validation',salarytype_req);
                 }else if(salarytype == 3){ //range
-                    jQuery('#salaryfixed').hide();
-                    jQuery('#salarymin').show();
-                    jQuery('#salarymax').show();
-                    jQuery('#salaryduration').show();
-                    jQuery('.wjportal-form-symbol').show();
+                    jQuery('#salaryfixed').hide().removeAttr('data-validation');
+                    jQuery('#salarymin').show().attr('data-validation',salarytype_req);
+                    jQuery('#salarymax').show().attr('data-validation',salarytype_req);
+                    jQuery('#salaryduration').show().attr('data-validation',salarytype_req);
+                    jQuery('.wjportal-form-symbol').show().attr('data-validation',salarytype_req);
                 }else{ //not selected
-                    jQuery('#salaryfixed').hide();
-                    jQuery('#salarymin').hide();
-                    jQuery('#salarymax').hide();
-                    jQuery('#salaryduration').hide();
-                    jQuery('.wjportal-form-symbol').hide();
+                    jQuery('#salaryfixed').hide().removeAttr('data-validation');
+                    jQuery('#salarymin').hide().removeAttr('data-validation');
+                    jQuery('#salarymax').hide().removeAttr('data-validation');
+                    jQuery('#salaryduration').hide().removeAttr('data-validation');
+                    jQuery('.wjportal-form-symbol').hide().removeAttr('data-validation');
                 }
             });
 

@@ -12,7 +12,7 @@ class WPJOBPORTALpostinstallationController {
 
     function handleRequest() {
         $layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'stepone');
-        if($this->canaddfile()){
+        if($this->canaddfile($layout)){
             switch ($layout) {
                 case 'admin_stepone':
                     WPJOBPORTALincluder::getJSModel('postinstallation')->getConfigurationValues();
@@ -45,15 +45,19 @@ class WPJOBPORTALpostinstallationController {
         }
 
     }
-    function canaddfile() {
+    function canaddfile($layout) {
         $nonce_value = WPJOBPORTALrequest::getVar('wpjobportal_nonce');
         if ( wp_verify_nonce( $nonce_value, 'wpjobportal_nonce') ) {
             if (isset($_POST['form_request']) && $_POST['form_request'] == 'wpjobportal')
                 return false;
             elseif (isset($_GET['action']) && $_GET['action'] == 'wpjobportaltask')
                 return false;
-            else
+            else{
+                if(!is_admin() && strpos($layout, 'admin_') === 0){
+                    return false;
+                }
                 return true;
+            }
         }
     }
 
@@ -62,6 +66,8 @@ class WPJOBPORTALpostinstallationController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_postinstallation_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $data = WPJOBPORTALrequest::get('post');
         $result = WPJOBPORTALincluder::getJSModel('postinstallation')->storeconfigurations($data);
 
@@ -89,6 +95,8 @@ class WPJOBPORTALpostinstallationController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_postinstallation_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $data = WPJOBPORTALrequest::get('post');
         $sampledata = $data['sampledata'];
         $temp_data = 0;
@@ -125,6 +133,8 @@ class WPJOBPORTALpostinstallationController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_postinstallation_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $flag = WPJOBPORTALrequest::getVar('flag');
         $result = WPJOBPORTALincluder::getJSModel('postinstallation')->installSampleDataTemplate($flag);
         $url = esc_url_raw(admin_url("admin.php?page=wpjobportal_postinstallation&wpjobportallt=themedemodata&flag=".esc_url($result)));
@@ -137,6 +147,8 @@ class WPJOBPORTALpostinstallationController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_postinstallation_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $flag = WPJOBPORTALrequest::getVar('flag','',0);// zero as default value to avoid problems
         if($flag == 'f'){
             $result = WPJOBPORTALincluder::getJSModel('postinstallation')->importTemplateSampleData($flag);
@@ -153,6 +165,8 @@ class WPJOBPORTALpostinstallationController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_postinstallation_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $demoid = WPJOBPORTALrequest::getVar('demoid');
         $foldername = WPJOBPORTALrequest::getVar('foldername');
         $demo_overwrite = WPJOBPORTALrequest::getVar('demo_overwrite');
@@ -167,6 +181,8 @@ class WPJOBPORTALpostinstallationController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_postinstallation_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         if(wpjobportal::$theme_chk == 1){// 1 for job manager
             $result = WPJOBPORTALincluder::getJSModel('postinstallation')->installFreeToProData();
         }else{
@@ -182,6 +198,8 @@ class WPJOBPORTALpostinstallationController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_postinstallation_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $result = WPJOBPORTALincluder::getJSModel('postinstallation')->installSampleDataTemplateJobPortal();
         $url = esc_url_raw(admin_url("admin.php?page=wpjobportal"));
         wp_redirect($url);

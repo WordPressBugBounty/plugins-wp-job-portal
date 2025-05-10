@@ -18,6 +18,14 @@ class wpjobportaladmin {
                 plugins_url('wp-job-portal/includes/images/admin_wpjobportal1.png'),26
         );
 
+        add_submenu_page('wpjobportal', // parent slug
+                esc_html(__('Dashboard', 'wp-job-portal')), // Page title
+                esc_html(__('Dashboard', 'wp-job-portal')), // menu title
+                'wpjobportal', // capability
+                'wpjobportal', //menu slug
+                array($this, 'showAdminPage') // function name
+        );
+
         add_submenu_page('wpjobportal_hide', // parent slug
                 esc_html(__('Theme', 'wp-job-portal')), // Page title
                 esc_html(__('Theme', 'wp-job-portal')), // menu title
@@ -25,6 +33,7 @@ class wpjobportaladmin {
                 'wpjobportal_theme', //menu slug
                 array($this, 'showAdminPage') // function name
         );
+
         add_submenu_page('wpjobportal_hide', // parent slug
                 esc_html(__('pdf', 'wp-job-portal')), // Page title
                 esc_html(__('pdf', 'wp-job-portal')), // menu title

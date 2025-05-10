@@ -1258,7 +1258,9 @@ class WPJOBPORTALcustomfields {
         }
         if(!empty($params)){
             if(WPJOBPORTALincluder::getJSModel('common')->checkLanguageSpecialCase()){
-                $params = wpjobportalphplib::wpJP_stripslashes($params);
+                if(!preg_match('/[^a-zA-Z0-9]/', $params) > 0){
+                    $params = wpjobportalphplib::wpJP_stripslashes($params);
+                }
             }
             //$params = html_entity_decode($params, ENT_QUOTES);
             $data = json_decode($params,true);

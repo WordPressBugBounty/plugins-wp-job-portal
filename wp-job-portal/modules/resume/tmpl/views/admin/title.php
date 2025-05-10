@@ -20,11 +20,18 @@ $listing_fields = WPJOBPORTALincluder::getJSModel('fieldordering')->getFieldOrde
                 <a href="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_resume&wpjobportallt=formresume&wpjobportalid=".$resume->id));?>">
                     <?php
                     // since application title is not required showing name in its place
+                    echo esc_html(wpjobportal::wpjobportal_getVariableValue($resume->application_title));
                     if($resume->application_title !=''){
-                        echo esc_html(wpjobportal::wpjobportal_getVariableValue($resume->application_title));
-                    }else{
-                        echo esc_html(wpjobportal::wpjobportal_getVariableValue($resume->first_name)) .'&nbsp;'. esc_html(wpjobportal::wpjobportal_getVariableValue($resume->last_name));
-                    } ?>
+                        echo '&nbsp;(';
+                    }
+                    echo esc_html(wpjobportal::wpjobportal_getVariableValue($resume->first_name));
+                    if($resume->last_name != ''){
+                        echo '&nbsp;'. esc_html(wpjobportal::wpjobportal_getVariableValue($resume->last_name));
+                    }
+                    if($resume->application_title !=''){
+                        echo ')';
+                    }
+                     ?>
                 </a>
             </span>
             <?php

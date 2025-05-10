@@ -139,7 +139,7 @@
         </div>
         <?php
         // job apply form
-                WPJOBPORTALincluder::getTemplate('job/views/frontend/jobapply', array());
+                WPJOBPORTALincluder::getTemplate('job/views/frontend/jobapply', array('job' => $job));
         ?>
     </div>
 </div>

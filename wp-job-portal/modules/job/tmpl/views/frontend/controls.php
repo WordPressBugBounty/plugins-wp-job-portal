@@ -19,6 +19,13 @@ switch ($control) {
                     if($job->status == 1 || $job->status == 3){
                         echo '<a class="wjportal-jobs-act-btn" title ='.esc_html(__('Edit Job','wp-job-portal')).' href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'addjob', 'wpjobportalid'=>$job->id))).'>'. esc_html(__('Edit Job', 'wp-job-portal')).'</a>';
                     }
+/*
+                    $show_suggested_resumes_btn = wpjobportal::$_config->getConfigValue('show_suggested_resumes_btn');
+                    if($show_suggested_resumes_btn == 1){ ?>
+                        <a class="wjportal-jobs-act-btn" href="<?php echo esc_url(wp_nonce_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'resumes', 'aisuggestedresumes_job'=>$job->jobaliasid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid())),'wpjobportal_job_nonce')); ?>"><?php echo esc_html(__('Suggested Resumes', 'wp-job-portal')); ?></a>
+                    <?php
+                    }
+*/
                     $config_array = wpjobportal::$_data['config'];
                     if($job->status != 3 && $job->status != 4){
                         #Feature Job--

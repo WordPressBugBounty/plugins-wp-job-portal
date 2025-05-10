@@ -15,7 +15,7 @@ class WPJOBPORTALsalaryrangetypeController {
 
     function handleRequest() {
         $layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'salaryrangetype');
-        if (self::canaddfile()) {
+        if (self::canaddfile($layout)) {
             switch ($layout) {
                 case 'admin_salaryrangetype':
                     WPJOBPORTALincluder::getJSModel('salaryrangetype')->getAllSalaryRangeType();
@@ -35,15 +35,19 @@ class WPJOBPORTALsalaryrangetypeController {
         }
     }
 
-    function canaddfile() {
+    function canaddfile($layout) {
         $nonce_value = WPJOBPORTALrequest::getVar('wpjobportal_nonce');
         if ( wp_verify_nonce( $nonce_value, 'wpjobportal_nonce') ) {
             if (isset($_POST['form_request']) && $_POST['form_request'] == 'wpjobportal')
                 return false;
             elseif (isset($_GET['action']) && $_GET['action'] == 'wpjobportaltask')
                 return false;
-            else
+            else{
+                if(!is_admin() && strpos($layout, 'admin_') === 0){
+                    return false;
+                }
                 return true;
+            }
         }
     }
 
@@ -52,6 +56,8 @@ class WPJOBPORTALsalaryrangetypeController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_salary_range_type_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $data = WPJOBPORTALrequest::get('post');
         $result = WPJOBPORTALincluder::getJSModel('salaryrangetype')->storeSalaryRangeType($data);
         $url = esc_url_raw(admin_url('admin.php?page=wpjobportal_salaryrangetype&wpjobportallt=salaryrangetype'));
@@ -66,6 +72,8 @@ class WPJOBPORTALsalaryrangetypeController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_salary_range_type_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
         $result = WPJOBPORTALincluder::getJSModel('salaryrangetype')->deleteSalaryRangesType($ids);
         $msg = WPJOBPORTALMessages::getMessage($result, 'salaryrangetype');
@@ -80,6 +88,8 @@ class WPJOBPORTALsalaryrangetypeController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_salary_range_type_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $pagenum = WPJOBPORTALrequest::getVar('pagenum');
         $ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
         $result = WPJOBPORTALincluder::getJSModel('salaryrangetype')->publishUnpublish($ids, 1); //  for publish
@@ -97,6 +107,8 @@ class WPJOBPORTALsalaryrangetypeController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_salary_range_type_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $pagenum = WPJOBPORTALrequest::getVar('pagenum');
         $ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
         $result = WPJOBPORTALincluder::getJSModel('salaryrangetype')->publishUnpublish($ids, 0); //  for unpublish
@@ -116,6 +128,8 @@ class WPJOBPORTALsalaryrangetypeController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_salary_range_type_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $post = WPJOBPORTALrequest::get('post');
         if($post['task'] == 'unpublish'){
             $this->unpublish();

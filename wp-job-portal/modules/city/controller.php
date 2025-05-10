@@ -14,7 +14,7 @@ class WPJOBPORTALCityController {
 
     function handleRequest() {
         $layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'cities');
-        if (self::canaddfile()) {
+        if (self::canaddfile($layout)) {
             switch ($layout) {
                 case 'admin_cities':
                     $countryid = WPJOBPORTALrequest::getVar('countryid');
@@ -44,15 +44,19 @@ class WPJOBPORTALCityController {
         }
     }
 
-    function canaddfile() {
+    function canaddfile($layout) {
         $nonce_value = WPJOBPORTALrequest::getVar('wpjobportal_nonce');
         if ( wp_verify_nonce( $nonce_value, 'wpjobportal_nonce') ) {
             if (isset($_POST['form_request']) && $_POST['form_request'] == 'wpjobportal')
                 return false;
             elseif (isset($_GET['action']) && $_GET['action'] == 'wpjobportaltask')
                 return false;
-            else
+            else{
+                if(!is_admin() && strpos($layout, 'admin_') === 0){
+                    return false;
+                }
                 return true;
+            }
         }
     }
 
@@ -68,6 +72,9 @@ class WPJOBPORTALCityController {
         $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'wpjobportal_city_nonce') ) {
              die( 'Security check Failed' );
+        }
+        if (!current_user_can('manage_options')) { //only admin can DO it.
+            return false;
         }
         $countryid = get_option("wpjobportal_countryid_for_city" );
         $stateid = get_option( "wpjobportal_stateid_for_city" );
@@ -85,6 +92,9 @@ class WPJOBPORTALCityController {
         $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'wpjobportal_city_nonce') ) {
              die( 'Security check Failed' );
+        }
+        if (!current_user_can('manage_options')) { //only admin can DO it.
+            return false;
         }
         $countryid = get_option("wpjobportal_countryid_for_city" );
         $stateid = get_option( "wpjobportal_stateid_for_city" );
@@ -106,6 +116,9 @@ class WPJOBPORTALCityController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_city_nonce') ) {
              die( 'Security check Failed' );
         }
+        if (!current_user_can('manage_options')) { //only admin can DO it.
+            return false;
+        }
         $countryid = get_option("wpjobportal_countryid_for_city" );
         $stateid = get_option( "wpjobportal_stateid_for_city" );
 
@@ -126,6 +139,9 @@ class WPJOBPORTALCityController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_city_nonce') ) {
              die( 'Security check Failed' );
         }
+        if (!current_user_can('manage_options')) { //only admin can DO it.
+            return false;
+        }
         $countryid = get_option("wpjobportal_countryid_for_city" );
         $stateid = get_option( "wpjobportal_stateid_for_city" );
         $url = esc_url_raw(admin_url("admin.php?page=wpjobportal_city&wpjobportallt=cities&countryid=" . esc_attr($countryid) . "&stateid=" . esc_attr($stateid)));
@@ -145,6 +161,9 @@ class WPJOBPORTALCityController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_address_data_nonce') ) {
              die( 'Security check Failed' );
         }
+        if (!current_user_can('manage_options')) { //only admin can DO it.
+            return false;
+        }
         $result = WPJOBPORTALincluder::getJSModel('city')->loadAddressData();
         echo var_dump($result);
         $msg = WPJOBPORTALMessages::getMessage($result, 'addressdata');
@@ -159,6 +178,9 @@ class WPJOBPORTALCityController {
         $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'wpjobportal_address_data_nonce') ) {
              die( 'Security check Failed' );
+        }
+        if (!current_user_can('manage_options')) { //only admin can DO it.
+            return false;
         }
         $result = WPJOBPORTALincluder::getJSModel('city')->updateCityNameSettings();
         echo var_dump($result);

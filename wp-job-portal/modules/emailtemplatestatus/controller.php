@@ -12,7 +12,7 @@ class WPJOBPORTALemailtemplatestatusController {
 
     function handleRequest() {
         $layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'emailtemplatestatus');
-        if (self::canaddfile()) {
+        if (self::canaddfile($layout)) {
             switch ($layout) {
                 case 'admin_emailtemplatestatus':
                     WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getEmailTemplateStatusData();
@@ -33,6 +33,8 @@ class WPJOBPORTALemailtemplatestatusController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_emailstatus_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $id = WPJOBPORTALrequest::getVar('wpjobportalid');
         $action = WPJOBPORTALrequest::getVar('actionfor');
         WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->sendEmailModel($id, $action); //  for send email
@@ -46,6 +48,8 @@ class WPJOBPORTALemailtemplatestatusController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_emailstatus_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $id = WPJOBPORTALrequest::getVar('wpjobportalid');
         $action = WPJOBPORTALrequest::getVar('actionfor');
         WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->noSendEmailModel($id, $action); //  for notsendemail
@@ -54,15 +58,19 @@ class WPJOBPORTALemailtemplatestatusController {
         die();
     }
 
-    function canaddfile() {
+    function canaddfile($layout) {
         $nonce_value = WPJOBPORTALrequest::getVar('wpjobportal_nonce');
         if ( wp_verify_nonce( $nonce_value, 'wpjobportal_nonce') ) {
             if (isset($_POST['form_request']) && $_POST['form_request'] == 'wpjobportal')
                 return false;
             elseif (isset($_GET['action']) && $_GET['action'] == 'wpjobportaltask')
                 return false;
-            else
+            else{
+                if(!is_admin() && strpos($layout, 'admin_') === 0){
+                    return false;
+                }
                 return true;
+            }
         }
     }
 

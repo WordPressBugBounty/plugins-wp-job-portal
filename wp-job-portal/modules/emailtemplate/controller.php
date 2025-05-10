@@ -14,7 +14,7 @@ class WPJOBPORTALEmailtemplateController {
 
     function handleRequest() {
         $layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'emailtemplate');
-        if (self::canaddfile()) {
+        if (self::canaddfile($layout)) {
             switch ($layout) {
                 case 'admin_emailtemplate':
                     $tempfor = WPJOBPORTALrequest::getVar('for', null, 'ew-cm');
@@ -32,15 +32,19 @@ class WPJOBPORTALEmailtemplateController {
         }
     }
 
-    function canaddfile() {
+    function canaddfile($layout) {
         $nonce_value = WPJOBPORTALrequest::getVar('wpjobportal_nonce');
         if ( wp_verify_nonce( $nonce_value, 'wpjobportal_nonce') ) {
             if (isset($_POST['form_request']) && $_POST['form_request'] == 'wpjobportal')
                 return false;
             elseif (isset($_GET['action']) && $_GET['action'] == 'wpjobportaltask')
                 return false;
-            else
+            else{
+                if(!is_admin() && strpos($layout, 'admin_') === 0){
+                    return false;
+                }
                 return true;
+            }
         }
     }
 
@@ -49,6 +53,8 @@ class WPJOBPORTALEmailtemplateController {
         if (! wp_verify_nonce( $nonce, 'wpjobportal_email_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin())
+            return false;
         $data = WPJOBPORTALrequest::get('post');
         $templatefor = $data['templatefor'];
         $result = WPJOBPORTALincluder::getJSModel('emailtemplate')->storeEmailTemplate($data);

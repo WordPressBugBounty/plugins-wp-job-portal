@@ -3,14 +3,14 @@
 /**
  * @package WP JOB PORTAL
  * @author Ahmad Bilal
- * @version 2.3.2
+ * @version 2.3.3
  */
 /*
   * Plugin Name: WP Job Portal
   * Plugin URI: https://wpjobportal.com/
   * Description: WP JOB PORTAL is Word Press best job board plugin. It is easy to use and highly configurable. It fully accommodates job seekers and employers.
   * Author: WP Job Portal
-  * Version: 2.3.2
+  * Version: 2.3.3
   * Text Domain: wp-job-portal
   * Domain Path: /languages
   * Author URI: https://wpjobportal.com/
@@ -77,7 +77,7 @@ class wpjobportal {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '232';
+        self::$_currentversion = '233';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_common = WPJOBPORTALincluder::getJSModel('common');
         self::$_config = WPJOBPORTALincluder::getJSModel('configuration');
@@ -187,7 +187,7 @@ class wpjobportal {
                 if( $plugin == $our_plugin ) {
                     update_option('wpjp_currentversion', self::$_currentversion);
                     include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
-                    WPJOBPORTALupdates::checkUpdates('232');
+                    WPJOBPORTALupdates::checkUpdates('233');
 
                 	// restore colors data
 		            require(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
@@ -621,6 +621,31 @@ class wpjobportal {
                 $alias = WPJOBPORTALincluder::getJSModel('common')->removeSpecialCharacter($alias);
                 $_redirect .= '/'.urlencode($alias).'_14' . $args['city'];
             }
+
+            // If is suggested jobs resume id
+            if (isset($args['aisuggestedjobs_resume'])) {
+                $aisuggestedjobs_resume = $args['aisuggestedjobs_resume'];
+                $array = wpjobportalphplib::wpJP_explode('-', $aisuggestedjobs_resume);
+                $count = count($array);
+                $id = $array[$count - 1];
+                unset($array[$count - 1]);
+                $string = implode("-", $array);
+                $finalstring = $string . '_15' . $id;
+                $_redirect .='/' . $finalstring;
+            }
+
+            // If is suggested resumes job id
+            if (isset($args['aisuggestedresumes_job'])) {
+                $aisuggestedresumes_job = $args['aisuggestedresumes_job'];
+                $array = wpjobportalphplib::wpJP_explode('-', $aisuggestedresumes_job);
+                $count = count($array);
+                $id = $array[$count - 1];
+                unset($array[$count - 1]);
+                $string = implode("-", $array);
+                $finalstring = $string . '_16' . $id;
+                $_redirect .='/' . $finalstring;
+            }
+
 
             // If is sortby
             if (isset($args['sortby'])) {
@@ -1461,14 +1486,15 @@ function wpjobportal_upgrade_completed( $upgrader_object, $options ) {
 	// The path to our plugin's main file
 	$our_plugin = plugin_basename( __FILE__ );
 	// If an update has taken place and the updated type is plugins and the plugins element exists
-	if( $options['action'] == 'update' && $options['type'] == 'plugin' && isset( $options['plugins'] ) ) {
+    // log error
+	if( isset($options['action']) && $options['action'] == 'update' && $options['type'] == 'plugin' && isset( $options['plugins'] ) ) {
 		// Iterate through the plugins being updated and check if ours is there
 		foreach( $options['plugins'] as $plugin ) {
 			if( $plugin == $our_plugin ) {
 				update_option('wpjp_currentversion', wpjobportal::$_currentversion);
 				include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
 
-				WPJOBPORTALupdates::checkUpdates('232');
+				WPJOBPORTALupdates::checkUpdates('233');
 
 				// restore colors data
 				require_once(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');

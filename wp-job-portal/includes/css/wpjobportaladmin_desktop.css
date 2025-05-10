@@ -1402,16 +1402,16 @@ tr.wpjobportal-field-ordering-section-headline td.wpjobportal-text-left{font-wei
 /* postinstalltion new scree   */
 .wpjobportal-post-employer-mode-wrap{width: 100%;display: inline-block;}
 .wpjobportal-post-employer-mode-section-title{text-align: center;color: #000;font-size: 25px;line-height: initial;margin: 0;font-weight: bold;padding: 10px 0}
-.wpjobportal-post-employer-mode-single{width: 40%; float: left;border: 2px solid #ddd;padding: 30px 20px;background: #f7f7f7;margin-top: 25px;margin-bottom: 25px;}
+.wpjobportal-post-employer-mode-single{width: 40%; float: left;border: 2px solid #ddd;padding: 15px 20px 30px 20px;background: #f7f7f7;margin-top: 0px;margin-bottom:0px;}
 .wpjobportal-post-employer-mode-single.wpjobportal-pst-first{margin-left:  8%;margin-right: 2%;}
 .wpjobportal-post-employer-mode-single.wpjobportal-pst-second{margin-left:  2%;margin-right: 8%;}
 .wpjobportal-post-employer-mode-single.wpj-is-selected{border: 2px solid #1572e8;}
 .wpjobportal-post-employer-mode-single-img-wrap{width: 100%;text-align: center;}
 .wpjobportal-post-employer-mode-single-img-wrap img{display: inline-block;width: 40%;}
     
-.wpjobportal-post-employer-mode-single-title{text-align: center;color: #000;font-size: 25px;line-height: initial;margin: 0;font-weight: bold;padding: 25px 0}
+.wpjobportal-post-employer-mode-single-title{text-align: center;color: #000;font-size: 25px;line-height: initial;margin: 0;font-weight: bold;padding: 15px 0}
 .wpjobportal-post-employer-mode-single-desc{float: left;width: 100%;color: #6c757d;font-size: 16px;text-align: center;line-height: 25px;min-height: 100px;}
-.wpjobportal-post-employer-mode-single-btn{text-align: center;padding-top: 25px;display: inline-block;width: 100%;}
+.wpjobportal-post-employer-mode-single-btn{text-align: center;padding-top: 15px;display: inline-block;width: 100%;}
 .wpjobportal-post-employer-mode-single-btn button{display: inline-block;font-size: 16px;padding: 12px 20px;font-weight: bold;cursor: pointer;}
 .wpjobportal-post-employer-mode-single-btn button#wpjobportal-post-employer-mode-job-board-btn{background: #1572e8;color: #fff;border: 1px solid #1572e8;}
 .wpjobportal-post-employer-mode-single-btn button#wpjobportal-post-employer-mode-single-company-btn{background: #32373c;color: #fff;border: 1px solid #32373c;}
@@ -1602,3 +1602,64 @@ div#wpjobportal-head .wpjobportal-head-addons-status-wrp .wpjobportal-head-text{
 div#wpjobportal-head .wpjobportal-head-addons-status-wrp .wpjobportal-head-addons-status-update{float:inline-end;display: flex;align-items: center;justify-content: space-between;flex-wrap: wrap; min-width:fit-content;background-color: #fff;color: #000;padding: 10px;font-size: 14px;gap: 10px;width: fit-content;}
 div#wpjobportal-head .wpjobportal-head-addons-status-wrp .wpjobportal-head-addons-status-update .wpjobportal-head-addons-status-update-onbtn {float: inline-end;padding: 10px 20px;background-color: #00A859;border: 2px solid #057a43;color: #fff;font-size: 15px;cursor: pointer;text-decoration: unset;box-shadow: 0px 0px 10px #c2c7c5 !important;font-weight: bold;}
 div#wpjobportal-head .wpjobportal-head-addons-status-wrp .wpjobportal-head-addons-status-update .wpjobportal-head-addons-status-update-offbtn{float: inline-end;padding: 10px 20px;background-color: #8c0202;border: 2px solid #470303;color: #fff;font-size: 15px;cursor: pointer;text-decoration: unset;box-shadow: 0px 0px 10px #c2c7c5 !important;font-weight: bold;}
+
+/* synchronize section */
+div.wpjobportal-ai-search-data-synchronize-section.wpjobportal-ai-search-data-synchronize-available-section{border: 1px solid #3e9fc8;background-color: #e2f3fa;}
+div.wpjobportal-ai-search-data-synchronize-section.wpjobportal-ai-search-data-synchronize-available-section.wpjobportal-ai-search-data-synchronized-successfully{border: 1px solid #60b864;background-color: #f2fff2;}
+div.wpjobportal-ai-search-data-synchronize-section.wpjobportal-ai-search-data-synchronize-available-section.wpjobportal-ai-search-data-synchronize-error{border: 1px solid #915503;background-color: #fff5ec;}
+div.wpjobportal-ai-search-data-synchronize-section.wpjobportal-ai-search-data-synchronize-available-section{border: 1px solid #e47fb7;background-color: #fff2f9;margin-bottom: 40px;padding: 15px;}
+div.wpjobportal-ai-search-data-synchronize-section{box-sizing: border-box; display: flex;flex-wrap: wrap; align-items: center;width: 100%;padding:10px 20px;border: 1px solid #3e9fc8;background-color: #e2f3fa;}
+div.wpjobportal-ai-search-data-synchronize-section .wpjobportal-ai-search-data-synchronize-imgwrp{width: 60px;}
+div.wpjobportal-ai-search-data-synchronize-section.wpjobportal-ai-search-data-synchronize-available-section .wpjobportal-ai-search-data-synchronize-imgwrp {width: 120px;}
+div.wpjobportal-ai-search-data-synchronize-section .wpjobportal-ai-search-data-synchronize-imgwrp img{width: 60px;height: auto;}
+div.wpjobportal-ai-search-data-synchronize-section.wpjobportal-ai-search-data-synchronize-available-section .wpjobportal-ai-search-data-synchronize-imgwrp img{width: 120px;}
+div.wpjobportal-ai-search-data-synchronize-section .wpjobportal-ai-search-data-synchronize-content-title{display: inline-block;width: 100%;color: #373435;font-size: 19px;font-weight:bold;line-height: 35px;}
+div.wpjobportal-ai-search-data-synchronize-section.wpjobportal-ai-search-data-synchronized-successfully .wpjobportal-ai-search-data-synchronize-content-title{color: #003a02;}
+div.wpjobportal-ai-search-data-synchronize-section.wpjobportal-ai-search-data-synchronize-error .wpjobportal-ai-search-data-synchronize-content-title{color: #915503;}
+div.wpjobportal-ai-search-data-synchronize-section.wpjobportal-ai-search-data-synchronize-available-section .wpjobportal-ai-search-data-synchronize-content-title{font-size: 22px;}
+div.wpjobportal-ai-search-data-synchronize-section .wpjobportal-ai-search-data-synchronize-content-wrp{width: calc(82% - 60px);padding: 0 20px;}
+div.wpjobportal-ai-search-data-synchronize-section.wpjobportal-ai-search-data-synchronize-available-section .wpjobportal-ai-search-data-synchronize-content-wrp{width: calc(82% - 120px);max-width:calc(100% - 295px); padding: 0 20px;}
+div.wpjobportal-ai-search-data-synchronize-section .wpjobportal-ai-search-data-synchronize-button-wrp{width: 18%;}
+div.wpjobportal-ai-search-data-synchronize-section.wpjobportal-ai-search-data-synchronize-available-section .wpjobportal-ai-search-data-synchronize-button-wrp{width: 18%;text-align: center;min-width: 172px;}
+div.wpjobportal-ai-search-data-synchronize-section .wpjobportal-ai-search-data-synchronize-button-wrp a{float: right;padding:10px 15px;background-color:#4b4b4d;color: #fff;font-size: 16px;cursor: pointer;}
+div.wpjobportal-ai-search-data-synchronize-section.wpjobportal-ai-search-data-synchronize-available-section .wpjobportal-ai-search-data-synchronize-button-wrp a{background-color:#4b4b4d;border: 1px solid #3e9fc8;}
+div.wpjobportal-ai-search-data-synchronize-section.wpjobportal-ai-search-data-synchronize-available-section .wpjobportal-ai-search-data-synchronize-button-wrp a{background-color:#b84f89;border: 1px solid #7e2154;float: unset;display: inline-block;padding: 15px 15px;}
+div.wpjobportal-ai-search-data-synchronize-section .wpjobportal-ai-search-data-synchronize-button-wrp a:hover{background-color: #373435;}
+div.wpjobportal-ai-search-data-synchronize-section .wpjobportal-ai-search-data-synchronize-button-wrp a img{width: 20px;height: auto;margin-right: 5px;}
+div.wpjobportal-ai-search-data-synchronize-section .wpjobportal-ai-search-data-synchronize-content-disc{line-height: 25px;display: inline-block;color:#373435;font-size: 15px;}
+div.wpjobportal-ai-search-data-synchronize-section.wpjobportal-ai-search-data-synchronize-available-section .wpjobportal-ai-search-data-synchronize-content-disc{font-size: 16px;padding-top: 3px;}
+.notice.wpjobportal-ai-search-data-synchronize-section-mainwrp .notice-dismiss{display: none;}
+.wp-core-ui .notice.wpjobportal-ai-search-data-synchronize-section-mainwrp{padding: 0;box-shadow: unset;border: unset;width:calc(100% - 0px);margin: 20px 0px 2px 0px;}
+div.wpjobportal-ai-search-data-synchronize-section *{box-sizing: border-box;}
+
+
+div#wpjobportaladmin-wrapper div.tabs div.tabInner div.wpjobportal-config-row div.wpjobportal-config-title-section{
+	font-weight: bold;
+	display: inline-block;
+	border-bottom:1px solid #000 ;
+	padding-bottom: 5px;
+	font-size: 22px;
+}
+
+div.wpjobportal-post-installation div.wpjobportal-post-data form div.wpjobportal-post-data-row.wpjobportal-post-data-quickstart-row {
+    border: unset;
+    padding: 10px 0;
+}
+
+
+@media (max-width: 1280px){
+	div.wpjobportal-cp-cnt-sec .wpjobportal-cp-help-section .wpjobportal-cp-helping-card .wpjobportal-cp-helping-card-left{display: none;}
+	div.wpjobportal-cp-cnt-sec .wpjobportal-cp-help-section .wpjobportal-cp-helping-card .wpjobportal-cp-helping-card-right{width: 100%;padding: 5px 0px 20px 0px;}
+	div.wpjobportal-cp-cnt-sec .wpjobportal-cp-help-section .wpjobportal-cp-helping-card{min-height: 219px;}
+	div.wpjobportal-ai-search-data-synchronize-section .wpjobportal-ai-search-data-synchronize-content-wrp{width: calc(75% - 60px);}
+	div.wpjobportal-ai-search-data-synchronize-section .wpjobportal-ai-search-data-synchronize-button-wrp{width: 25%;}
+	div.wpjobportal-ai-search-data-synchronize-section .wpjobportal-ai-search-data-synchronize-button-wrp a{padding: 16px 20px;}
+}
+
+@media (max-width: 1079px){
+	/* synchronize section */
+	div.wpjobportal-ai-search-data-synchronize-section .wpjobportal-ai-search-data-synchronize-content-wrp{width: calc(100% - 60px);}
+	div.wpjobportal-ai-search-data-synchronize-section .wpjobportal-ai-search-data-synchronize-button-wrp{width:calc(100% - 60px);float: right;padding: 0 20px;margin-top: 15px;}
+	div.wpjobportal-ai-search-data-synchronize-section .wpjobportal-ai-search-data-synchronize-button-wrp a{float: left;}
+	div.wpjobportal-ai-search-data-synchronize-section{justify-content: flex-end;}
+}

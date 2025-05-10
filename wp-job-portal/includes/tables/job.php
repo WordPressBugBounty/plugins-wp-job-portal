@@ -75,6 +75,9 @@ class WPJOBPORTALjobTable extends WPJOBPORTALtable {
     // log error
     public $startfeatureddate = '';
     public $endfeatureddate = '';
+    // AI strings
+    public $aijobsearchtext = '';
+    public $aijobsearchdescription = '';
 
 
     public function check() {
