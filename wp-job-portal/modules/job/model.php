@@ -2795,7 +2795,6 @@ class WPJOBPORTALjobModel {
 
 
         $dont_prep_data = 0;
-/*
         // AI Job search
 
         $aijobsearcch = isset(wpjobportal::$_search['jobs']['aijobsearcch']) ? wpjobportal::$_search['jobs']['aijobsearcch'] : '';
@@ -2816,7 +2815,7 @@ class WPJOBPORTALjobModel {
             }
         }
 
-*/
+
         //shortcode attribute proceesing (filter,ordering,no of jobs)
         // by detafult set these values to 0 to make sure that these sections are visble
         wpjobportal::$_data['shortcode_option_hide_filter'] = 0;
@@ -4158,7 +4157,7 @@ class WPJOBPORTALjobModel {
         ';
         return $job_json;
     }
-/*
+
     // functino for ai addons get jobs by job ids for suggested and ai web search
 
     function getJobsByJobIds($job_id_list){
@@ -4581,7 +4580,7 @@ class WPJOBPORTALjobModel {
         }
         return;
     }
-*/
+
 
 }
 ?>

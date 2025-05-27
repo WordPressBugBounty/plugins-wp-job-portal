@@ -22,16 +22,21 @@ if ($labelinlisting != 1)
         ?>
     </div>
     <div class="wjportal-newest-jobs">
-        <?php if(empty(wpjobportal::$_data['shortcode_option_hide_filter'])){ ?>
-            <div class="wjportal-filter-search-main-wrp">
+        <?php
+        $job_list_ai_filter = wpjobportal::$_config->getConfigValue('job_list_ai_filter');
+        $ai_extra_cls = "";
+        if($job_list_ai_filter != 0){ // show job filter without ai
+            $ai_extra_cls = "wjportal-filter-aisearch-main-wrp";
+        }
+        if(empty(wpjobportal::$_data['shortcode_option_hide_filter'])){ ?>
+            <div class="wjportal-filter-search-main-wrp  <?php echo esc_attr($ai_extra_cls);?>">
                 <form class="wjportal-form-wrp" id="job_form" method="post" action="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'jobs'))); ?>">
                     <?php
-                        // $job_list_ai_filter = wpjobportal::$_config->getConfigValue('job_list_ai_filter');
-                        // if($job_list_ai_filter == 0){ // show job filter without ai
+                        if($job_list_ai_filter == 0){ // show job filter without ai
                             WPJOBPORTALincluder::getTemplate('job/views/frontend/filter',array('layout' => 'newestjobsfilter'));
-                        // }else{
-                        //     WPJOBPORTALincluder::getTemplate('job/views/frontend/filter',array('layout' => 'aijobfilter'));
-                        // }
+                        }else{
+                            WPJOBPORTALincluder::getTemplate('job/views/frontend/filter',array('layout' => 'aijobfilter'));
+                        }
                     ?>
                 </form>
             </div>

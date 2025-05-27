@@ -33,19 +33,19 @@ switch ($control) {
                      } 
                     if($myresume->status == 3){
                         do_action('wpjobportal_addons_makePayment_for_department',$myresume,"payresume");
-                    }
-/*
-                    $show_suggested_jobs_btn = wpjobportal::$_config->getConfigValue('show_suggested_jobs_btn');
-                    if($show_suggested_jobs_btn == 1){ // show button for suggested jobs
-                    ?>
-                        <a class="wjportal-resume-act-btn" href="<?php echo esc_url(wp_nonce_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'jobs', 'aisuggestedjobs_resume'=> $myresume->resumealiasid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid())),'wpjobportal_resume_nonce')); ?>">
-                            <?php echo esc_html(__('Suggested Jobs', 'wp-job-portal')); ?>
-                        </a>
-                    <?php } */ ?>
+                    } ?>
 
                     <a class="wjportal-resume-act-btn" href="<?php echo esc_url(wp_nonce_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'task'=>'removeresume', 'action'=>'wpjobportaltask', 'wpjobportal-cb[]'=>$myresume->id, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid())),'wpjobportal_resume_nonce')); ?>"onclick='return confirmdelete("<?php echo esc_html(__('Are you sure to delete','wp-job-portal')).' ?'; ?>");'>
-                        <?php echo esc_html(__('Delete Resume', 'wp-job-portal')); ?> 
+                        <?php echo esc_html(__('Delete Resume', 'wp-job-portal')); ?>
                     </a>
+                    <?php
+                    $show_suggested_jobs_button = wpjobportal::$_config->getConfigValue('show_suggested_jobs_button');
+                    if($show_suggested_jobs_button == 1){ // show button for suggested jobs
+                    ?>
+                        <a class="wjportal-resume-act-btn wjportal-resume-act-btn-ai-suggested-jobs" href="<?php echo esc_url(wp_nonce_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'jobs', 'aisuggestedjobs_resume'=> $myresume->resumealiasid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid())),'wpjobportal_resume_nonce')); ?>">
+                            <?php echo esc_html(__('Suggested Jobs', 'wp-job-portal')); ?>
+                        </a>
+                    <?php }  ?>
 
                 </div>
             </div>

@@ -197,7 +197,13 @@ class WPJOBPORTALwpjobportalModel {
             'wp-job-portal-advanceresumebuilder' => array('title' => esc_html(__('Advance Resume Builder','wp-job-portal')), 'price' => 0, 'status' => 1),
             'wp-job-portal-visitorcanaddjob' => array('title' => esc_html(__('Visitor Add Job','wp-job-portal')), 'price' => 0, 'status' => 1),
             'wp-job-portal-cronjob' => array('title' => esc_html(__('Cron Job','wp-job-portal')), 'price' => 0, 'status' => 1),
-            'wp-job-portal-widgets' => array('title' => esc_html(__('Front-End Widgets','wp-job-portal')), 'price' => 0, 'status' => 1)
+            'wp-job-portal-widgets' => array('title' => esc_html(__('Front-End Widgets','wp-job-portal')), 'price' => 0, 'status' => 1),
+
+            'wp-job-portal-aijobsearch' => array('title' => esc_html(__('AI Job Search','wp-job-portal')), 'price' => 0, 'status' => 1),
+            'wp-job-portal-airesumesearch' => array('title' => esc_html(__('AI Resume Search','wp-job-portal')), 'price' => 0, 'status' => 1),
+            'wp-job-portal-aisuggestedjobs' => array('title' => esc_html(__('AI Suggested Jobs','wp-job-portal')), 'price' => 0, 'status' => 1),
+            'wp-job-portal-aisuggestedresumes' => array('title' => esc_html(__('AI Suggested Resumes','wp-job-portal')), 'price' => 0, 'status' => 1)
+
         );
     }
 
@@ -1524,18 +1530,20 @@ class WPJOBPORTALwpjobportalModel {
 				$name = $key1;
 				$title = $value1['title'];
 				$cdnavailableversion = "";
-				foreach ($cdnversiondata as $cdnname => $cdnversion) {
-					$install_plugin_name_simple = wpjobportalphplib::wpJP_str_replace("-", "", $install_plugin_matched_name);
-					if($cdnname == wpjobportalphplib::wpJP_str_replace("-", "", $install_plugin_matched_name)){
-						if($cdnversion > $version){ // new version available
-							$status = 'update_available';
-							$cdnavailableversion = $cdnversion;
-							$plugin_slug = wpjobportalphplib::wpJP_str_replace('wp-job-portal-', '', $name);
-							$need_to_update[] = array("name" => $name, "current_version" => $version, "available_version" => $cdnavailableversion, "plugin_slug" => $plugin_slug );
-							$addon_json_array[] = wpjobportalphplib::wpJP_str_replace('wp-job-portal-', '', $name);;
-						}
-					}    
-				}
+                if(is_array($cdnversiondata)){ // log error for null instead of array
+    				foreach ($cdnversiondata as $cdnname => $cdnversion) {
+    					$install_plugin_name_simple = wpjobportalphplib::wpJP_str_replace("-", "", $install_plugin_matched_name);
+    					if($cdnname == wpjobportalphplib::wpJP_str_replace("-", "", $install_plugin_matched_name)){
+    						if($cdnversion > $version){ // new version available
+    							$status = 'update_available';
+    							$cdnavailableversion = $cdnversion;
+    							$plugin_slug = wpjobportalphplib::wpJP_str_replace('wp-job-portal-', '', $name);
+    							$need_to_update[] = array("name" => $name, "current_version" => $version, "available_version" => $cdnavailableversion, "plugin_slug" => $plugin_slug );
+    							$addon_json_array[] = wpjobportalphplib::wpJP_str_replace('wp-job-portal-', '', $name);;
+    						}
+    					}
+    				}
+                }
 			}
 		}
 		$token = "";

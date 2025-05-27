@@ -3,14 +3,14 @@
 /**
  * @package WP JOB PORTAL
  * @author Ahmad Bilal
- * @version 2.3.3
+ * @version 2.3.4
  */
 /*
   * Plugin Name: WP Job Portal
   * Plugin URI: https://wpjobportal.com/
   * Description: WP JOB PORTAL is Word Press best job board plugin. It is easy to use and highly configurable. It fully accommodates job seekers and employers.
   * Author: WP Job Portal
-  * Version: 2.3.3
+  * Version: 2.3.4
   * Text Domain: wp-job-portal
   * Domain Path: /languages
   * Author URI: https://wpjobportal.com/
@@ -77,7 +77,7 @@ class wpjobportal {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '233';
+        self::$_currentversion = '234';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_common = WPJOBPORTALincluder::getJSModel('common');
         self::$_config = WPJOBPORTALincluder::getJSModel('configuration');
@@ -187,7 +187,7 @@ class wpjobportal {
                 if( $plugin == $our_plugin ) {
                     update_option('wpjp_currentversion', self::$_currentversion);
                     include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
-                    WPJOBPORTALupdates::checkUpdates('233');
+                    WPJOBPORTALupdates::checkUpdates('234');
 
                 	// restore colors data
 		            require(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
@@ -870,9 +870,9 @@ class wpjobportal {
             return false;
         $data = wp_json_encode( $jsjp_search_array );
         $data = wpjobportalphplib::wpJP_safe_encoding($data);
-        wpjobportalphplib::wpJP_setcookie('jsjp_jobportal_search_data' , $data , 0 , COOKIEPATH);
+        wpjobportalphplib::wpJP_setcookie('jsjp_jobportal_search_data' , $data , time() + 600 , COOKIEPATH);
         if ( SITECOOKIEPATH != COOKIEPATH ){
-            wpjobportalphplib::wpJP_setcookie('jsjp_jobportal_search_data' , $data , 0 , SITECOOKIEPATH);
+            wpjobportalphplib::wpJP_setcookie('jsjp_jobportal_search_data' , $data , time() + 600 , SITECOOKIEPATH);
         }
     }
 
@@ -1494,7 +1494,7 @@ function wpjobportal_upgrade_completed( $upgrader_object, $options ) {
 				update_option('wpjp_currentversion', wpjobportal::$_currentversion);
 				include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
 
-				WPJOBPORTALupdates::checkUpdates('233');
+				WPJOBPORTALupdates::checkUpdates('234');
 
 				// restore colors data
 				require_once(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');

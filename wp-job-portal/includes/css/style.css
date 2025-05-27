@@ -1213,7 +1213,7 @@ div.wjportal-form-wrp div.wjportal-form-row .wjportal-form-value.wjportal-job-ap
 
 
  /* ai form search */
- .wjportal-main-up-wrapper .wjportal-filter-ai-searchfrm-wrp .wjportal-aifilter-search-wrp{display: flex;align-items:flex-start;margin-bottom: 40px;background-color: #fff;}
+ .wjportal-main-up-wrapper .wjportal-filter-ai-searchfrm-wrp .wjportal-aifilter-search-wrp{display: flex;align-items:flex-start;margin-bottom: 40px;}
  .wjportal-main-up-wrapper .wjportal-filter-ai-searchfrm-wrp .wjportal-aifilter-search-wrp input{width:calc(100% - 2px);min-height: 57px;border: unset;padding:0 10px;font-size: 14px;}
  .wjportal-main-up-wrapper .wjportal-filter-ai-searchfrm-wrp .wjportal-aifilter-search-wrp .wjportal-filter-search-field-wrp{flex: 1 1 30%; min-width: 30%; position: relative;border: 1px solid;border-right-width: 0px;}
  .wjportal-main-up-wrapper .wjportal-filter-ai-searchfrm-wrp .wjportal-aifilter-search-wrp .wjportal-filter-search-field-wrp{flex: 1 1 40%;margin-right: 0;position: relative;border: 1px solid;border-right-width:0px;display: flex;align-items: center;}
@@ -1251,3 +1251,7 @@ div.wjportal-form-wrp div.wjportal-form-row .wjportal-form-value.wjportal-job-ap
  .wjportal-main-up-wrapper .wjportal-aisearch-form .wjportal-filter-ai-searchfrm-wrp .wjportal-aifilter-search-wrp .wjportal-filter-ai-searchfrm-discription{justify-content: center;text-align: center;padding-bottom: 20px;padding-top: 0;}
  .wjportal-main-up-wrapper .wjportal-aisearch-form .wjportal-filter-ai-searchfrm-wrp .wjportal-aifilter-search-wrp .wjportal-filter-search-field-wrp{width: 65%;flex:unset;border-right-width:1px;margin:0 auto 20px;}
  .wjportal-main-up-wrapper .wjportal-aisearch-form .wjportal-filter-ai-searchfrm-wrp .wjportal-aifilter-search-wrp .wjportal-filter-search-btn-wrp{justify-content: center;border: unset;width: 100%;padding-right: 0;}
+
+
+div.wjportal-resume-list div.wjportal-resume-list-btm-wrp div.wjportal-resume-action-wrp .wjportal-resume-act-btn.wjportal-resume-act-btn-ai-suggested-jobs{float: right;text-decoration: none;}
+div.wjportal-jobs-list div.wjportal-jobs-list-btm-wrp div.wjportal-jobs-action-wrp a.wjportal-jobs-act-btn.wjportal-jobs-act-btn-ai-suggested-resumes{float: right;text-decoration: none;}

@@ -1253,6 +1253,115 @@ wp_add_inline_script( 'google-charts-handle', $today_js_script );
                                             </a>
                                     </div>
                                 <?php } ?>
+
+                                <?php if ( !in_array('aisuggestedjobs',wpjobportal::$_active_addons)) { ?>
+                                    <div class="wpjobportal-cp-addon">
+                                        <div class="wpjobportal-cp-addon-image">
+                                            <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/aisuggestedjobs.png" height="60px" width="60px" alt="<?php echo esc_html(__('AI Suggested Jobs','wp-job-portal')); ?>">
+                                        </div>
+                                        <div class="wpjobportal-cp-addon-cnt">
+                                            <div class="wpjobportal-cp-addon-tit">
+                                                <?php echo esc_html(__('AI Suggested Jobs','wp-job-portal')); ?>
+                                            </div>
+                                            <div class="wpjobportal-cp-addon-desc">
+                                                <?php echo esc_html(__('This addon provides personalized job suggestions by analyzing resume data, ensuring jobseekers see the most relevant openings first.','wp-job-portal')); ?>
+                                            </div>
+                                        </div>
+                                        <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-aisuggestedjobs/wp-job-portal-aisuggestedjobs.php');
+                                            if($plugininfo['availability'] == "1"){
+                                                $text = $plugininfo['text'];
+                                                $url = "plugins.php?s=wp-job-portal-aisuggestedjobs&plugin_status=inactive";
+                                            }elseif($plugininfo['availability'] == "0"){
+                                                $text = $plugininfo['text'];
+                                                $url = "https://wpjobportal.com/product/ai-suggested-jobs/";
+                                            } ?>
+                                            <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
+                                                <?php echo esc_html($text); ?>
+                                            </a>
+                                    </div>
+                                <?php } ?>
+
+                                <?php if ( !in_array('aisuggestedresumes',wpjobportal::$_active_addons)) { ?>
+                                    <div class="wpjobportal-cp-addon">
+                                        <div class="wpjobportal-cp-addon-image">
+                                            <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/aisuggestedresumes.png" height="60px" width="60px" alt="<?php echo esc_html(__('AI Suggested Resumes','wp-job-portal')); ?>">
+                                        </div>
+                                        <div class="wpjobportal-cp-addon-cnt">
+                                            <div class="wpjobportal-cp-addon-tit">
+                                                <?php echo esc_html(__('AI Suggested Resumes','wp-job-portal')); ?>
+                                            </div>
+                                            <div class="wpjobportal-cp-addon-desc">
+                                                <?php echo esc_html(__('This addon utilizes artificial intelligence to suggest the most fitting resumes for each job posting.','wp-job-portal')); ?>
+                                            </div>
+                                        </div>
+                                        <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-aisuggestedresumes/wp-job-portal-aisuggestedresumes.php');
+                                            if($plugininfo['availability'] == "1"){
+                                                $text = $plugininfo['text'];
+                                                $url = "plugins.php?s=wp-job-portal-aisuggestedresumes&plugin_status=inactive";
+                                            }elseif($plugininfo['availability'] == "0"){
+                                                $text = $plugininfo['text'];
+                                                $url = "https://wpjobportal.com/product/ai-suggested-resume/";
+                                            } ?>
+                                            <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
+                                                <?php echo esc_html($text); ?>
+                                            </a>
+                                    </div>
+                                <?php } ?>
+
+
+                                <?php if ( !in_array('aijobsearch',wpjobportal::$_active_addons)) { ?>
+                                    <div class="wpjobportal-cp-addon">
+                                        <div class="wpjobportal-cp-addon-image">
+                                            <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/aijobsearch.png" height="60px" width="60px" alt="<?php echo esc_html(__('AI Job Search','wp-job-portal')); ?>">
+                                        </div>
+                                        <div class="wpjobportal-cp-addon-cnt">
+                                            <div class="wpjobportal-cp-addon-tit">
+                                                <?php echo esc_html(__('AI Job Search','wp-job-portal')); ?>
+                                            </div>
+                                            <div class="wpjobportal-cp-addon-desc">
+                                                <?php echo esc_html(__('AI Job Search harnesses powerful artificial intelligence to analyze candidate preferences, skills, and search behavior, providing highly relevant and personalized job listings.','wp-job-portal')); ?>
+                                            </div>
+                                        </div>
+                                        <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-aijobsearch/wp-job-portal-aijobsearch.php');
+                                            if($plugininfo['availability'] == "1"){
+                                                $text = $plugininfo['text'];
+                                                $url = "plugins.php?s=wp-job-portal-aijobsearch&plugin_status=inactive";
+                                            }elseif($plugininfo['availability'] == "0"){
+                                                $text = $plugininfo['text'];
+                                                $url = "https://wpjobportal.com/product/ai-job-search/";
+                                            } ?>
+                                            <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
+                                                <?php echo esc_html($text); ?>
+                                            </a>
+                                    </div>
+                                <?php } ?>
+
+                                <?php if ( !in_array('airesumesearch',wpjobportal::$_active_addons)) { ?>
+                                    <div class="wpjobportal-cp-addon">
+                                        <div class="wpjobportal-cp-addon-image">
+                                            <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/airesumesearch.png" height="60px" width="60px" alt="<?php echo esc_html(__('AI Job Search','wp-job-portal')); ?>">
+                                        </div>
+                                        <div class="wpjobportal-cp-addon-cnt">
+                                            <div class="wpjobportal-cp-addon-tit">
+                                                <?php echo esc_html(__('AI Job Search','wp-job-portal')); ?>
+                                            </div>
+                                            <div class="wpjobportal-cp-addon-desc">
+                                                <?php echo esc_html(__('AI Resume Search uses advanced artificial intelligence algorithms to help employers quickly find the most relevant candidate resumes from your database.','wp-job-portal')); ?>
+                                            </div>
+                                        </div>
+                                        <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-airesumesearch/wp-job-portal-airesumesearch.php');
+                                            if($plugininfo['availability'] == "1"){
+                                                $text = $plugininfo['text'];
+                                                $url = "plugins.php?s=wp-job-portal-airesumesearch&plugin_status=inactive";
+                                            }elseif($plugininfo['availability'] == "0"){
+                                                $text = $plugininfo['text'];
+                                                $url = "https://wpjobportal.com/product/ai-resume-search/";
+                                            } ?>
+                                            <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
+                                                <?php echo esc_html($text); ?>
+                                            </a>
+                                    </div>
+                                <?php } ?>
                             </div>
                         </div>
                     <?php } ?>

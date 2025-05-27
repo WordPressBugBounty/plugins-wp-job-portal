@@ -181,7 +181,7 @@ if (!defined('ABSPATH'))
                             </div><?php
                         }
                     }
-/*
+
                     $show_suggested_resumes_dashboard = wpjobportal::$_config->getConfigValue('show_suggested_resumes_dashboard');
                     if($show_suggested_resumes_dashboard == 1){
                         do_action('wpjobportal_addons_aisuggestedresumes_dashboard');
@@ -208,7 +208,7 @@ if (!defined('ABSPATH'))
                             </div><?php
                         }
                     }
-*/
+
                     if(empty(wpjobportal::$_data['shortcode_option_hide_invoices'])){
                         //Invoices
                         if (in_array('credits', wpjobportal::$_active_addons)) {

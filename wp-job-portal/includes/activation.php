@@ -453,7 +453,7 @@ class WPJOBPORTALactivation {
               ('searchjobtag', '4', 'job', 'tag'),
               ('categories_colsperrow', '3', 'category', NULL),
               ('productcode', 'wpjobportal', 'default', NULL),
-              ('versioncode', '2.3.3', 'default', NULL),
+              ('versioncode', '2.3.4', 'default', NULL),
               ('producttype', 'free', 'default', NULL),
               ('vis_jscredits', '0', 'jscontrolpanel', 'credits'),
               ('vis_emcredits', '1', 'emcontrolpanel', NULL),
@@ -666,9 +666,17 @@ class WPJOBPORTALactivation {
               ('employer_profile_section', '1', 'wpjobportal', NULL),
               ('default_image', '', 'default', NULL),
               ('wpjobportal_addons_auto_update', 1, 'wpjobportal', NULL),
-              ('allow_search_resume', '2', 'resume', 'resumesearch')
+              ('allow_search_resume', '2', 'resume', 'resumesearch'),
+              ('job_search_ai_form', '0', 'job', 'aijobsearch'),
+              ('job_list_ai_filter', '0', 'job', 'aijobsearch'),
+              ('show_suggested_jobs_button', '1', 'job', 'aisuggestedjobs'),
+              ('show_suggested_jobs_dashboard', '1', 'job', 'aisuggestedjobs'),
+              ('resume_search_ai_form', '0', 'resume', 'airesumesearch'),
+              ('resume_list_ai_filter', '0', 'resume', 'airesumesearch'),
+              ('show_suggested_resumes_button', '1', 'resume', 'aisuggestedresumes'),
+              ('show_suggested_resumes_dashboard', '1', 'resume', 'aisuggestedresumes')
               ;
-                ";
+              ";
             wpjobportal::$_db->query($query);
 
             $query = "CREATE TABLE IF NOT EXISTS `" . wpjobportal::$_db->prefix . "wj_portal_countries` (

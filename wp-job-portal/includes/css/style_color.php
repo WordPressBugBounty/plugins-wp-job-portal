@@ -890,6 +890,8 @@ $result3 = "
         div.wjportal-view-job-page-job-apply-form-wraper div.wjportal-form-wrp.wpjobportal-quickapply-form .job-detail-jobapply-message-wrap .job-detail-jobapply-message-link:hover {color: ".esc_attr($color7).";background: ".esc_attr($color1).";}
     div.wjportal-view-job-page-job-apply-form-wraper .wpjobportal-quickapply-form .wjportal-apply-as-visitor-btn{border: 1px solid ".esc_attr($color2).";}
 
+    div.wjportal-resume-list div.wjportal-resume-list-btm-wrp div.wjportal-resume-action-wrp .wjportal-resume-act-btn.wjportal-resume-act-btn-ai-suggested-jobs {background: ".esc_attr($color1).";color: ".esc_attr($color7).";}
+    div.wjportal-jobs-list div.wjportal-jobs-list-btm-wrp div.wjportal-jobs-action-wrp a.wjportal-jobs-act-btn.wjportal-jobs-act-btn-ai-suggested-resumes {background: ".esc_attr($color1).";color: ".esc_attr($color7).";border-color: ".esc_attr($color1).";}
 
 
     /* responsive */

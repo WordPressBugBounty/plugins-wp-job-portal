@@ -169,7 +169,6 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $menu_js_script );
                         <?php echo esc_html(__('Quick Apply Fields', 'wp-job-portal')); ?>
                     </a>
                 </li>
-            
         </ul>
     </li>
 

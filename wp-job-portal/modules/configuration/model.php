@@ -321,20 +321,88 @@ class WPJOBPORTALconfigurationModel {
                     <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=job_apply#quick_apply" class="jslm_text">'.  esc_html(__("Quick Apply settings",'wp-job-portal')) .'</a></li>
                     <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=job_apply#job_apply_settings" class="jslm_text">'.  esc_html(__("Job Apply settings",'wp-job-portal')) .'</a></li>
                 </ul>
-            </li> ';
-            // ai addons admin left menu
-            /*
+            </li>
+
+
             <li class="treeview" id="ai_setting">
                 <a class="js-icon-left" href="#" title="'. esc_html(__('AI Settings' , 'wp-job-portal')) .'">
-                    <img src="'. esc_url(WPJOBPORTAL_PLUGIN_URL)."includes/images/config/apply-config.png" .'"/>
+                    <img src="'. esc_url(WPJOBPORTAL_PLUGIN_URL)."includes/images/config/ai-addons.png" .'"/>
                     <span class="jslm_text wpjobportal-parent">'. esc_html(__("AI settings" , 'wp-job-portal')) .'</span>
                 </a>
-                <ul class="wpjobportaladmin-sidebar-submenu treeview-menu">
-                    <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=ai_settings#ai_settings_tab" class="jslm_text">'.  esc_html(__("AI settings",'wp-job-portal')) .'</a></li>
+                <ul class="wpjobportaladmin-sidebar-submenu treeview-menu"> ';
+
+                    if(in_array('aijobsearch', wpjobportal::$_active_addons)){
+                        $html .= '<li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=ai_settings#aijobsearch" class="jslm_text">'.  esc_html(__("AI Job Search",'wp-job-portal')) .'</a></li>';
+                    } else {
+                        $plugininfo = checkWPJPPluginInfo('wp-job-portal-aijobsearch/wp-job-portal-aijobsearch.php');
+                        if($plugininfo['availability'] == "1"){
+                            $text = $plugininfo['text'];
+                            $url = "plugins.php?s=wp-job-portal-aijobsearch&plugin_status=inactive";
+                        }elseif($plugininfo['availability'] == "0"){
+                            $text = $plugininfo['text'];
+                            $url = "https://wpjobportal.com/product/social-share/";
+                        }
+                        $html .= '<li class="disabled-menu">
+                                    <span class="wpjobportaladmin-text">'. esc_html(__('AI Job Search' , 'wp-job-portal')).'</span>
+                                    <a href="'. esc_url($url).'" class="jslm_text">'. esc_html($text).'</a>
+                                 </li>';
+                    }
+
+                    if(in_array('aisuggestedjobs', wpjobportal::$_active_addons)){
+                        $html .= '<li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=ai_settings#aisuggestedjobs" class="jslm_text">'.  esc_html(__("AI Suggested Jobs",'wp-job-portal')) .'</a></li>';
+                    } else {
+                        $plugininfo = checkWPJPPluginInfo('wp-job-portal-aisuggestedjobs/wp-job-portal-aisuggestedjobs.php');
+                        if($plugininfo['availability'] == "1"){
+                            $text = $plugininfo['text'];
+                            $url = "plugins.php?s=wp-job-portal-aisuggestedjobs&plugin_status=inactive";
+                        }elseif($plugininfo['availability'] == "0"){
+                            $text = $plugininfo['text'];
+                            $url = "https://wpjobportal.com/product/social-share/";
+                        }
+                        $html .= '<li class="disabled-menu">
+                                    <span class="wpjobportaladmin-text">'. esc_html(__('AI Suggested Jobs' , 'wp-job-portal')).'</span>
+                                    <a href="'. esc_url($url).'" class="jslm_text">'. esc_html($text).'</a>
+                                 </li>';
+                    }
+
+                    if(in_array('airesumesearch', wpjobportal::$_active_addons)){
+                        $html .= '<li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=ai_settings#airesumesearch" class="jslm_text">'.  esc_html(__("AI Resume Search",'wp-job-portal')) .'</a></li>';
+                    } else {
+                        $plugininfo = checkWPJPPluginInfo('wp-job-portal-airesumesearch/wp-job-portal-airesumesearch.php');
+                        if($plugininfo['availability'] == "1"){
+                            $text = $plugininfo['text'];
+                            $url = "plugins.php?s=wp-job-portal-airesumesearch&plugin_status=inactive";
+                        }elseif($plugininfo['availability'] == "0"){
+                            $text = $plugininfo['text'];
+                            $url = "https://wpjobportal.com/product/social-share/";
+                        }
+                        $html .= '<li class="disabled-menu">
+                                    <span class="wpjobportaladmin-text">'. esc_html(__('AI Resume Search' , 'wp-job-portal')).'</span>
+                                    <a href="'. esc_url($url).'" class="jslm_text">'. esc_html($text).'</a>
+                                 </li>';
+                    }
+
+                    if(in_array('aisuggestedresumes', wpjobportal::$_active_addons)){
+                        $html .= '<li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=ai_settings#aisuggestedresumes" class="jslm_text">'.  esc_html(__("AI Suggested Resumes",'wp-job-portal')) .'</a></li>';
+                    } else {
+                        $plugininfo = checkWPJPPluginInfo('wp-job-portal-aisuggestedresumes/wp-job-portal-aisuggestedresumes.php');
+                        if($plugininfo['availability'] == "1"){
+                            $text = $plugininfo['text'];
+                            $url = "plugins.php?s=wp-job-portal-aisuggestedresumes&plugin_status=inactive";
+                        }elseif($plugininfo['availability'] == "0"){
+                            $text = $plugininfo['text'];
+                            $url = "https://wpjobportal.com/product/social-share/";
+                        }
+                        $html .= '<li class="disabled-menu">
+                                    <span class="wpjobportaladmin-text">'. esc_html(__('AI Suggested Resumes' , 'wp-job-portal')).'</span>
+                                    <a href="'. esc_url($url).'" class="jslm_text">'. esc_html($text).'</a>
+                                 </li>';
+                    }
+
+                $html .= '
                 </ul>
             </li>
-            */
-            $html .= '
+
 
             <li class="treeview" id="vis_setting">
                 <a class="js-icon-left" href="#" title="'. esc_html(__('visitor setting' , 'wp-job-portal')) .'">

@@ -334,6 +334,12 @@ if ($module) {
 			case 'loadaddressdata':
 					$html .='<h1 class="wpjobportal-head-text">'. esc_html(__('Load Address Data', 'wp-job-portal')).'</h1>';
 			break;
+			case 'importdata':
+					$html .='<h1 class="wpjobportal-head-text">'. esc_html(__('Import Data', 'wp-job-portal')).'</h1>';
+			break;
+			case 'importresult':
+					$html .='<h1 class="wpjobportal-head-text">'. esc_html(__('Import Data Report', 'wp-job-portal')).'</h1>';
+			break;
 		}
 	$html.=  '</div>';
 	echo wp_kses($html, WPJOBPORTAL_ALLOWED_TAGS);

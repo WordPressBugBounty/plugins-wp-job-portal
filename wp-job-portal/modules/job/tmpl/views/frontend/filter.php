@@ -57,7 +57,7 @@ switch ($layout) {
             $html .= WPJOBPORTALformfield::hidden('wpjobportallay' , 'jobs');
             $html .= WPJOBPORTALformfield::hidden('WPJOBPORTAL_form_search' , 'WPJOBPORTAL_SEARCH');
 		break;
-/*
+
     case 'aijobfilter':
             // action  hook code is in AI Job search addon
             // hook creates inout field and hidden fields for form
@@ -80,14 +80,14 @@ switch ($layout) {
                                 <img class="wjportal-filter-search-field-icon" src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/search-icon.png " alt="' . esc_html(__('Search', 'wp-job-portal')) . '" />
                                 ' . esc_html(__('Search Jobs', 'wp-job-portal')) . '
                             </button>
-                        </div>
-                        <span class="wjportal-filter-ai-searchfrm-discription">' . esc_html(__('Start typing what you know – our AI will help you find the best matching jobs.', 'wp-job-portal')) . '</span>
-
+                        </div>';
+                    //$html.='    <span class="wjportal-filter-ai-searchfrm-discription">' . esc_html(__('Start typing what you know – our AI will help you find the best matching jobs.', 'wp-job-portal')) . '</span>';
+                    $html.='
                 </div>
         </div>';
         $html .= WPJOBPORTALformfield::hidden('wpjobportallay' , 'jobs');
         $html .= WPJOBPORTALformfield::hidden('WPJOBPORTAL_form_search' , 'WPJOBPORTAL_SEARCH');
-        break; */
+        break;
 }
 echo wp_kses($html, WPJOBPORTAL_ALLOWED_TAGS);
 

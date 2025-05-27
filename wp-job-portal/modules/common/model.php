@@ -1734,6 +1734,7 @@ class WPJOBPORTALCommonModel {
                 continue;
             }
 
+            if($result->custom_score == 0 && $result->score < 1.5) continue;
             // Ensure uniqueness by entitiy id, keeping the highest custom_score and then the highest score
             if($enitity_for == 1){
                 $record_id = $result->jobid;

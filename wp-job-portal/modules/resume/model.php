@@ -2746,7 +2746,7 @@ class WPJOBPORTALResumeModel {
 
         // variable to handle the resme data prepration overide
         $dont_prep_data = 0;
-/*
+
         $airesumesearcch = isset(wpjobportal::$_search['resumes']['airesumesearcch']) ? wpjobportal::$_search['resumes']['airesumesearcch'] : '';
         if ($airesumesearcch != '') {
         // AI search
@@ -2767,7 +2767,7 @@ class WPJOBPORTALResumeModel {
                 $dont_prep_data = 1; // ignore the below code data is preped.
             }
         }
-*/
+
         $this->sortingrescat();
         //variables form search form
             $title = isset(wpjobportal::$_search['resumes']['application_title']) ? wpjobportal::$_search['resumes']['application_title'] : '';
@@ -4492,7 +4492,7 @@ class WPJOBPORTALResumeModel {
         }
         return $resume_list;
     }
-/*
+
     function getResumesByResumeIds($resume_id_list){
         if($resume_id_list == ''){
             return false;
@@ -5241,6 +5241,5 @@ class WPJOBPORTALResumeModel {
         $return_data = $resume_custom_section_string;
         return $return_data;
     }
-*/
 }
 ?>

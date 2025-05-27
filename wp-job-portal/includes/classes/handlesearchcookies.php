@@ -163,7 +163,9 @@ class WPJOBPORTALhandlesearchcookies {
             break;
 
             default:
-                wpjobportal::removeusersearchcookies();
+                if($jstlay != '' ){ // avoid deleting cookies for wordpress internal call
+                    wpjobportal::removeusersearchcookies();
+                }
             break;
         }
 

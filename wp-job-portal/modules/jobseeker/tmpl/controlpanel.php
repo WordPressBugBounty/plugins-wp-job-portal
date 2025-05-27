@@ -264,7 +264,7 @@ if (!defined('ABSPATH'))
                             } ?>
                         </div><?php
                     }
-/*
+
                     // suggested jobs
                     $show_suggested_jobs_dashboard = wpjobportal::$_config->getConfigValue('show_suggested_jobs_dashboard');
                     if($show_suggested_jobs_dashboard == 1){
@@ -300,7 +300,7 @@ if (!defined('ABSPATH'))
                             }
                         }
                     }
-*/
+
                     if(empty(wpjobportal::$_data['shortcode_option_hide_invoices'])){
                         if(WPJOBPORTALincluder::getObjectClass('user')->isjobseeker()){
                             //Invoices

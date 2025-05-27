@@ -4,7 +4,7 @@ Donate link: https://wpjobportal.com/pricing/
 Tags: job board, job listing, careers, job manager, jobs, recruiting
 Requires at least: 5.5 
 Tested up to: 6.8.1
-Stable tag: 2.3.3
+Stable tag: 2.3.4
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -239,12 +239,20 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Changelog ==
 
+= 2.3.4 =
+* Addon AI Job Search Added
+* Addon AI Suggested Jobs Added
+* Addon AI Resume Search Added
+* Addon AI Suggested Resumes Added
+
+
 = 2.3.3 =
 * Resume Search visibility control improved
 * Security fixes
 * Custom field bug fixed
 * Package system functionality improved
 * Job form salary field required bug fixed
+
 
 = 2.3.2 =
 * Quick Apply upload file bug fixed

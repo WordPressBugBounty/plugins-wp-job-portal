@@ -858,6 +858,9 @@
     div.wjportal-view-job-page-job-apply-form-wraper .wpjobportal-quickapply-form .wjportal-apply-as-visitor-btn{border: 1px solid #333333;}
 
 
+    div.wjportal-resume-list div.wjportal-resume-list-btm-wrp div.wjportal-resume-action-wrp .wjportal-resume-act-btn.wjportal-resume-act-btn-ai-suggested-jobs {background: #3baeda;color: #fff;}
+
+    div.wjportal-jobs-list div.wjportal-jobs-list-btm-wrp div.wjportal-jobs-action-wrp a.wjportal-jobs-act-btn.wjportal-jobs-act-btn-ai-suggested-resumes {background: #3baeda;color: #fff;border-color: #3baeda;}
 
     /* responsive */
     @media (max-width: 782px) {

@@ -3076,10 +3076,8 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Job Apply Configuration -->
-                            <?php
-                            // ai addons configs
-                            /*
+                            <!-- ai addons configs -->
+
                             <div id="ai_settings" class="wpjobportal-hide-config">
                                 <ul>
                                     <li class="ui-tabs-active">
@@ -3090,114 +3088,120 @@ WPJOBPORTALMessages::getLayoutMessage($msgkey); ?>
                                 </ul>
                                 <div class="tabInner">
                                     <div id="ai_settings_tab" class="wpjobportal_gen_body">
-                                        <h3 class="wpjobportal-config-heading-main">
+                                        <h3 class="wpjobportal-config-heading-main" id="aijobsearch">
                                             <?php echo esc_html(__('AI Job Search', 'wp-job-portal')); ?>
                                         </h3>
-                                        <div class="wpjobportal-config-row">
-                                            <div class="wpjobportal-config-title">
-                                                <?php echo esc_html(__('AI Search On Job Search Page', 'wp-job-portal')); ?>
-                                            </div>
-                                            <div class="wpjobportal-config-value">
-                                                <?php echo wp_kses(WPJOBPORTALformfield::select('job_search_ai_form', $yesno, wpjobportal::$_data[0]['job_search_ai_form']),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                <div class="wpjobportal-config-description">
-                                                    <?php echo esc_html(__('Show the AI search field on job search form', 'wp-job-portal'));?>
+                                        <?php if(in_array('aijobsearch', wpjobportal::$_active_addons)){ ?>
+                                            <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title">
+                                                    <?php echo esc_html(__('AI Search On Job Search Page', 'wp-job-portal')); ?>
+                                                </div>
+                                                <div class="wpjobportal-config-value">
+                                                    <?php echo wp_kses(WPJOBPORTALformfield::select('job_search_ai_form', $yesno, wpjobportal::$_data[0]['job_search_ai_form']),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    <div class="wpjobportal-config-description">
+                                                        <?php echo esc_html(__('Show the AI search field on job search form', 'wp-job-portal'));?>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="wpjobportal-config-row">
-                                            <div class="wpjobportal-config-title">
-                                                <?php echo esc_html(__('AI Search Filter On Job Listing', 'wp-job-portal')); ?>
-                                            </div>
-                                            <div class="wpjobportal-config-value">
-                                                <?php echo wp_kses(WPJOBPORTALformfield::select('job_list_ai_filter', $yesno, wpjobportal::$_data[0]['job_list_ai_filter']),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                <div class="wpjobportal-config-description">
-                                                    <?php echo esc_html(__('Show the AI search field on job listing', 'wp-job-portal'));?>
+                                            <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title">
+                                                    <?php echo esc_html(__('AI Search Filter On Job Listing', 'wp-job-portal')); ?>
+                                                </div>
+                                                <div class="wpjobportal-config-value">
+                                                    <?php echo wp_kses(WPJOBPORTALformfield::select('job_list_ai_filter', $yesno, wpjobportal::$_data[0]['job_list_ai_filter']),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    <div class="wpjobportal-config-description">
+                                                        <?php echo esc_html(__('Show the AI search field on job listing', 'wp-job-portal'));?>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        <?php } ?>
 
-                                        <h3 class="wpjobportal-config-heading-main">
+                                        <h3 class="wpjobportal-config-heading-main" id="aisuggestedjobs">
                                             <?php echo esc_html(__('AI Suggested Jobs', 'wp-job-portal')); ?>
                                         </h3>
-                                        <div class="wpjobportal-config-row">
-                                            <div class="wpjobportal-config-title">
-                                                <?php echo esc_html(__('Show AI Suggested Jobs Button', 'wp-job-portal')); ?>
-                                            </div>
-                                            <div class="wpjobportal-config-value">
-                                                <?php echo wp_kses(WPJOBPORTALformfield::select('show_suggested_jobs_btn', $yesno, wpjobportal::$_data[0]['show_suggested_jobs_btn']),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                <div class="wpjobportal-config-description">
-                                                    <?php echo esc_html(__('Show AI suggested jobs button on my resumes page to job seeker.', 'wp-job-portal'));?>
+                                        <?php if(in_array('aisuggestedjobs', wpjobportal::$_active_addons)){ ?>
+                                            <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title">
+                                                    <?php echo esc_html(__('Show AI Suggested Jobs Button', 'wp-job-portal')); ?>
+                                                </div>
+                                                <div class="wpjobportal-config-value">
+                                                    <?php echo wp_kses(WPJOBPORTALformfield::select('show_suggested_jobs_button', $yesno, wpjobportal::$_data[0]['show_suggested_jobs_button']),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    <div class="wpjobportal-config-description">
+                                                        <?php echo esc_html(__('Show AI suggested jobs button on my resumes page to job seeker.', 'wp-job-portal'));?>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="wpjobportal-config-row">
-                                            <div class="wpjobportal-config-title">
-                                                <?php echo esc_html(__('AI Suggested Jobs On Dashboard', 'wp-job-portal')); ?>
-                                            </div>
-                                            <div class="wpjobportal-config-value">
-                                                <?php echo wp_kses(WPJOBPORTALformfield::select('show_suggested_jobs_dashboard', $yesno, wpjobportal::$_data[0]['show_suggested_jobs_dashboard']),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                <div class="wpjobportal-config-description">
-                                                    <?php echo esc_html(__('Show AI suggested jobs on job seeker dashboard.', 'wp-job-portal'));?>
+                                            <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title">
+                                                    <?php echo esc_html(__('AI Suggested Jobs On Dashboard', 'wp-job-portal')); ?>
+                                                </div>
+                                                <div class="wpjobportal-config-value">
+                                                    <?php echo wp_kses(WPJOBPORTALformfield::select('show_suggested_jobs_dashboard', $yesno, wpjobportal::$_data[0]['show_suggested_jobs_dashboard']),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    <div class="wpjobportal-config-description">
+                                                        <?php echo esc_html(__('Show AI suggested jobs on job seeker dashboard.', 'wp-job-portal'));?>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        <?php }?>
 
-
-                                        <h3 class="wpjobportal-config-heading-main">
+                                        <h3 class="wpjobportal-config-heading-main" id="airesumesearch">
                                             <?php echo esc_html(__('AI Resume Search', 'wp-job-portal')); ?>
                                         </h3>
-                                        <div class="wpjobportal-config-row">
-                                            <div class="wpjobportal-config-title">
-                                                <?php echo esc_html(__('AI Search On Resume Search Page', 'wp-job-portal')); ?>
-                                            </div>
-                                            <div class="wpjobportal-config-value">
-                                                <?php echo wp_kses(WPJOBPORTALformfield::select('resume_search_ai_form', $yesno, wpjobportal::$_data[0]['resume_search_ai_form']),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                <div class="wpjobportal-config-description">
-                                                    <?php echo esc_html(__('Show the AI search field on resume search form', 'wp-job-portal'));?>
+                                        <?php if(in_array('airesumesearch', wpjobportal::$_active_addons)){ ?>
+                                            <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title">
+                                                    <?php echo esc_html(__('AI Search On Resume Search Page', 'wp-job-portal')); ?>
+                                                </div>
+                                                <div class="wpjobportal-config-value">
+                                                    <?php echo wp_kses(WPJOBPORTALformfield::select('resume_search_ai_form', $yesno, wpjobportal::$_data[0]['resume_search_ai_form']),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    <div class="wpjobportal-config-description">
+                                                        <?php echo esc_html(__('Show the AI search field on resume search form', 'wp-job-portal'));?>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="wpjobportal-config-row">
-                                            <div class="wpjobportal-config-title">
-                                                <?php echo esc_html(__('AI Search Filter On Resume Listing', 'wp-job-portal')); ?>
-                                            </div>
-                                            <div class="wpjobportal-config-value">
-                                                <?php echo wp_kses(WPJOBPORTALformfield::select('resume_list_ai_filter', $yesno, wpjobportal::$_data[0]['resume_list_ai_filter']),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                <div class="wpjobportal-config-description">
-                                                    <?php echo esc_html(__('Show the AI search field on resume listing', 'wp-job-portal'));?>
+                                            <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title">
+                                                    <?php echo esc_html(__('AI Search Filter On Resume Listing', 'wp-job-portal')); ?>
+                                                </div>
+                                                <div class="wpjobportal-config-value">
+                                                    <?php echo wp_kses(WPJOBPORTALformfield::select('resume_list_ai_filter', $yesno, wpjobportal::$_data[0]['resume_list_ai_filter']),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    <div class="wpjobportal-config-description">
+                                                        <?php echo esc_html(__('Show the AI search field on resume listing', 'wp-job-portal'));?>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <h3 class="wpjobportal-config-heading-main">
+                                        <?php } ?>
+                                        <h3 class="wpjobportal-config-heading-main" id="aisuggestedresumes">
                                             <?php echo esc_html(__('AI Suggested Resumes', 'wp-job-portal')); ?>
                                         </h3>
-                                        <div class="wpjobportal-config-row">
-                                            <div class="wpjobportal-config-title">
-                                                <?php echo esc_html(__('Show AI Suggested Resumes Button', 'wp-job-portal')); ?>
-                                            </div>
-                                            <div class="wpjobportal-config-value">
-                                                <?php echo wp_kses(WPJOBPORTALformfield::select('show_suggested_resumes_btn', $yesno, wpjobportal::$_data[0]['show_suggested_resumes_btn']),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                <div class="wpjobportal-config-description">
-                                                    <?php echo esc_html(__('Show AI suggested resumes button on my jobs page to employer.', 'wp-job-portal'));?>
+                                        <?php if(in_array('aisuggestedresumes', wpjobportal::$_active_addons)){ ?>
+                                            <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title">
+                                                    <?php echo esc_html(__('Show AI Suggested Resumes Button', 'wp-job-portal')); ?>
+                                                </div>
+                                                <div class="wpjobportal-config-value">
+                                                    <?php echo wp_kses(WPJOBPORTALformfield::select('show_suggested_resumes_button', $yesno, wpjobportal::$_data[0]['show_suggested_resumes_button']),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    <div class="wpjobportal-config-description">
+                                                        <?php echo esc_html(__('Show AI suggested resumes button on my jobs page to employer.', 'wp-job-portal'));?>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="wpjobportal-config-row">
-                                            <div class="wpjobportal-config-title">
-                                                <?php echo esc_html(__('AI Suggested Resumes On Dashboard', 'wp-job-portal')); ?>
-                                            </div>
-                                            <div class="wpjobportal-config-value">
-                                                <?php echo wp_kses(WPJOBPORTALformfield::select('show_suggested_resumes_dashboard', $yesno, wpjobportal::$_data[0]['show_suggested_resumes_dashboard']),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                                                <div class="wpjobportal-config-description">
-                                                    <?php echo esc_html(__('Show AI suggested resumes on employer dashboard.', 'wp-job-portal'));?>
+                                            <div class="wpjobportal-config-row">
+                                                <div class="wpjobportal-config-title">
+                                                    <?php echo esc_html(__('AI Suggested Resumes On Dashboard', 'wp-job-portal')); ?>
+                                                </div>
+                                                <div class="wpjobportal-config-value">
+                                                    <?php echo wp_kses(WPJOBPORTALformfield::select('show_suggested_resumes_dashboard', $yesno, wpjobportal::$_data[0]['show_suggested_resumes_dashboard']),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                                    <div class="wpjobportal-config-description">
+                                                        <?php echo esc_html(__('Show AI suggested resumes on employer dashboard.', 'wp-job-portal'));?>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        <?php }?>
                                     </div>
                                 </div>
                             </div>
-                            */ ?>
+
                         </div>
                     </div>
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('isgeneralbuttonsubmit', 1),WPJOBPORTAL_ALLOWED_TAGS); ?>

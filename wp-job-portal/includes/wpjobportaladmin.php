@@ -472,6 +472,14 @@ class wpjobportaladmin {
                 'wpjobportal_slug', //menu slug
                 array($this, 'showAdminPage') // function name
         );
+        add_submenu_page('wpjobportal_hide', // parent slug
+                esc_html(__('WP Job Portal Import Data', 'wp-job-portal')), // Page title
+                esc_html(__('WP Job Portal Import Data', 'wp-job-portal')), // menu title
+                'wpjobportal', // capability
+                'wpjobportal_thirdpartyimport', //menu slug
+                array($this, 'showAdminPage') // function name
+        );
+
         add_submenu_page('wpjobportal', // parent slug
                 esc_html(__('Install Addons', 'wp-job-portal')), // Page title
                 esc_html(__('Install Addons', 'wp-job-portal')), // menu title

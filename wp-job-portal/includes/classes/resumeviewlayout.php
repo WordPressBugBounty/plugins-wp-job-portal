@@ -359,6 +359,13 @@ class WPJOBPORTALResumeViewlayout {
                             $value = wpjobportal::$_data[0]['personal_section']->first_name;
                             $html .= $this->getRowForView($text, $value, $i,$themecall);
                         break;
+                    case 'last_name':// in case of admin view resume last name was not printing at all
+                        // only last name field is required so making it visible in content area
+                            $text = $this->getFieldTitleByField($field);
+                            $value = wpjobportal::$_data[0]['personal_section']->last_name;
+                            $html .= $this->getRowForView($text, $value, $i,$themecall);
+                        break;
+
                     case 'nationality':
                         if($is_qucik_apply == 1){ // dont print this field for quick apply resume
                             break;

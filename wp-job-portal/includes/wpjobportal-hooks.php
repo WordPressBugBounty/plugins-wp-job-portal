@@ -957,7 +957,7 @@ function getWPJobPortalPageTitle($module, $layout){
 }
 
 // hook to store ai data for job
-/*
+
 //  job ai string
 add_action('wpjobportal_after_store_job_hook','storeAIStringDataForJob',10,1);
 function storeAIStringDataForJob($data){
@@ -975,7 +975,7 @@ function storeAIStringDataForResume($data){
 
 // Retrieve the value of the 'wpjobportal_ai_search_data_sync_needed' option
 $sync_needed = get_option('wpjobportal_ai_search_data_sync_needed');
-if ($sync_needed === false || $sync_needed != 0) {
+if ($sync_needed === false || $sync_needed != 0) { // if not found then show update database banner
     add_action( 'admin_notices', 'wpjobportal_ai_search_data_sync_needed_notice');
 }
 
@@ -1013,5 +1013,4 @@ function wpjobportal_ai_search_data_sync_needed_notice() {
     wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
 
 }
-*/
 ?>

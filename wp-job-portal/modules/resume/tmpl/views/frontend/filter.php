@@ -18,7 +18,7 @@ switch ($filter) {
     </div>
         <?php
     break;
-/*
+
     case 'airesumesearch':
         //do_action('wpjobportal_addons_airesumesearch_field');
         $html = '';
@@ -39,15 +39,13 @@ switch ($filter) {
                                 <img class="wjportal-filter-search-field-icon" src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/search-icon.png " alt="' . esc_html(__('Search', 'wp-job-portal')) . '" />
                                 ' . esc_html(__('Search Resumes', 'wp-job-portal')) . '
                             </button>
-                        </div>
-                        <span class="wjportal-filter-ai-searchfrm-discription">' . esc_html(__('Start typing what you know – our AI will help you find the best matching resumes.', 'wp-job-portal')) . '</span>
-
+                        </div>';
+                //$html.='        <span class="wjportal-filter-ai-searchfrm-discription">' . esc_html(__('Start typing what you know – our AI will help you find the best matching resumes.', 'wp-job-portal')) . '</span>';
+                $html.='
                 </div>
         </div>';
         $html .= WPJOBPORTALformfield::hidden('wpjobportallay' , 'resumes');
         $html .= WPJOBPORTALformfield::hidden('WPJOBPORTAL_form_search' , 'WPJOBPORTAL_SEARCH');
         echo $html;
-    break; */
-
-    
+    break;
 }
