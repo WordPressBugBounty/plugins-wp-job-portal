@@ -48,7 +48,7 @@ die('Restricted Access');
         <!-- page content -->
         <div id="wpjobportal-admin-wrapper">
             <?php
-
+/*
             $results_array = [
                 'company' => [
                     'imported' => 10,
@@ -97,6 +97,10 @@ die('Restricted Access');
                     'failed'   => 3,
                 ]
             ];
+*/
+            // $results_array = wpjobportal::$_data['import_counts'];
+            $results_array = get_option('wpjob_portal_import_counts');
+
             $plugin_label = 'WP Job Manager';
             if(!empty(wpjobportal::$_data['import_for'])){
                 $import_for = wpjobportal::$_data['import_for'];
@@ -113,7 +117,6 @@ die('Restricted Access');
                         <th style="text-align: center;background-color: #006D3A;width:16.6%;"><?php echo  __('Imported','wp-job-portal'); ?></th>
                         <th style="text-align: center;background-color: #A75424;width:16.6%;"><?php echo  __('Similar Found','wp-job-portal'); ?></th>
                         <th style="text-align: center;background-color: #891518;width:16.6%;"><?php echo  __('Not Imported','wp-job-portal'); ?></th>
-
                     </tr>
                 </thead>
                 <tbody>
@@ -123,11 +126,26 @@ die('Restricted Access');
                         $skipped  = (int) $counts['skipped'];
                         $failed   = (int) $counts['failed'];
 
-                        if($label == 'Company' && $imported > 1){
-                            $label = 'Companies';
-                        }else{
-                            $label = $label.'s';
+                        if(strtolower($label) == 'tag'){
+                            if(!in_array('tags', wpjobportal::$_active_addons)){
+                                $query = "SELECT taxonomy.*, terms.*
+                                            FROM `" . wpjobportal::$_db->prefix . "term_taxonomy` AS taxonomy
+                                            JOIN `" . wpjobportal::$_db->prefix . "terms` AS terms ON terms.term_id = taxonomy.term_id
+                                            WHERE taxonomy.taxonomy = 'job_listing_tag';";
+                                $tags = wpjobportal::$_db->get_results($query);
+                                $failed = is_array($tags) ? count($tags) : 0;
+				$skipped = 0;
+                            }
                         }
+			if($imported > 1){
+		                if($label == 'Company'){
+		                    $label = 'Companies';
+		                }elseif(strtolower($label) == 'category'){
+		                    $label = 'Categories';
+		                }else{
+		                    $label = $label.'s';
+		                }
+			}
                         ?>
                         <tr>
                             <td><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($label)); ?></td>
@@ -149,6 +167,9 @@ die('Restricted Access');
                 </tbody>
             </table>
 
+        <div>
+            <span class="wpjobportal-import-data-addon-message"><?php echo esc_html(__('Please verify Locations and salaries for imported data entities','wp-job-portal')); ?></span>
+        </div>
         </div>
     </div>
 </div>

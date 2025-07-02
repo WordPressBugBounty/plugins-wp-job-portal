@@ -885,22 +885,34 @@ $result3 = "
     div.wjportal-resume-list div.wjportal-resume-list-btm-wrp div.wjportal-resume-action-wrp .wjportal-resume-act-btn.wjportal-resume-act-btn-ai-suggested-jobs {background: ".esc_attr($color1).";color: ".esc_attr($color7).";}
     div.wjportal-jobs-list div.wjportal-jobs-list-btm-wrp div.wjportal-jobs-action-wrp a.wjportal-jobs-act-btn.wjportal-jobs-act-btn-ai-suggested-resumes {background: ".esc_attr($color1).";color: ".esc_attr($color7).";border-color: ".esc_attr($color1).";}
 
-    .wpjobportal-resume-widget-multi-style-wrapper.wpjobportal-layout-list .wpjobportal-resume-box{border-left-color: ".esc_attr($color1).";}
-    .wpjobportal-resume-widget-multi-style-wrapper .wpjobportal-resume-box{border: 1px solid ".esc_attr($color5).";color: ".esc_attr($color4).";background: ".esc_attr($color7).";}
+
+    .wpjobportal-resume-widget-multi-style-wrapper .wpjobportal-resume-box{color: ".esc_attr($color4).";background: ".esc_attr($color7).";}
+    .wpjobportal-resume-widget-multi-style-wrapper.wpjobportal-layout-list .wpjobportal-resume-box{border-bottom: 1px solid ".esc_attr($color5).";}
     .wpjobportal-resume-widget-multi-style-wrapper .wpjobportal-resume-name a{color: ".esc_attr($color2).";}
     .wpjobportal-resume-widget-multi-style-wrapper .wpjobportal-resume-name a:hover {color: ".esc_attr($color1).";}
     .wpjobportal-resume-widget-multi-style-wrapper .wpjobportal-resume-title a{color: ".esc_attr($color1).";}
     .wpjobportal-resume-widget-multi-style-wrapper .wpjobportal-resume-title a:hover {color: ".esc_attr($color2).";}
     .wpjobportal-resume-widget-multi-style-wrapper .wpjobportal-resume-meta-row {color: ".esc_attr($color3).";}
 
-    .wpjobportal-job-widget-multi-style-wrapper.wpjobportal-layout-list .wpjobportal-job-box{border-left-color: ".esc_attr($color1).";}
-    .wpjobportal-job-widget-multi-style-wrapper .wpjobportal-job-box{border: 1px solid ".esc_attr($color5).";color: ".esc_attr($color4).";background: ".esc_attr($color7).";}
+
+    .wpjobportal-job-widget-multi-style-wrapper .wpjobportal-job-box{color: ".esc_attr($color4).";background: ".esc_attr($color7).";}
+    .wpjobportal-job-widget-multi-style-wrapper.wpjobportal-layout-list .wpjobportal-job-box{border-bottom: 1px solid ".esc_attr($color5).";}
+    .wpjobportal-job-widget-multi-style-wrapper.wpjobportal-layout-grid .wpjobportal-job-box{border: 1px solid ".esc_attr($color5).";}
+    .wpjobportal-job-widget-multi-style-wrapper.wpjobportal-layout-card .wpjobportal-job-box{border: 1px solid ".esc_attr($color5).";}
+
     .wpjobportal-job-widget-multi-style-wrapper .wpjobportal-job-title a {color: ".esc_attr($color1).";}
     .wpjobportal-job-widget-multi-style-wrapper .wpjobportal-job-title a:hover {color: ".esc_attr($color2).";}
     .wpjobportal-job-widget-multi-style-wrapper .wpjobportal-job-company a{color: ".esc_attr($color2).";}
     .wpjobportal-job-widget-multi-style-wrapper .wpjobportal-job-company a:hover {color: ".esc_attr($color1).";}
+
+    /* grid specific css */
+    .wpjobportal-job-widget-multi-style-wrapper.wpjobportal-layout-grid .wpjobportal-job-title a {color: ".esc_attr($color2).";}
+    .wpjobportal-job-widget-multi-style-wrapper.wpjobportal-layout-grid .wpjobportal-job-title a:hover {color: ".esc_attr($color1).";}
+    .wpjobportal-job-widget-multi-style-wrapper.wpjobportal-layout-grid .wpjobportal-job-company a{color: ".esc_attr($color1).";}
+    .wpjobportal-job-widget-multi-style-wrapper.wpjobportal-layout-grid .wpjobportal-job-company a:hover {color: ".esc_attr($color2).";}
+
     .wpjobportal-job-widget-multi-style-wrapper .wpjobportal-job-meta-row {color: ".esc_attr($color3).";}
-    .wpjobportal-job-widget-multi-style-wrapper.wpjobportal-layout-grid .wpjobportal-job-box{background:#fafafa;}
+    .wpjobportal-job-widget-multi-style-wrapper.wpjobportal-layout-grid .wpjobportal-job-box{background:#fff;}
 
     .wpjobportal-companies-grid-wrapper .wpjobportal-company-box, .wpjobportal-companies-list-row{border: 1px solid ".esc_attr($color5).";color: ".esc_attr($color4).";background: ".esc_attr($color7).";}
     .wpjobportal-companies-grid-wrapper .wpjobportal-company-title a {color: ".esc_attr($color1).";}
@@ -908,7 +920,7 @@ $result3 = "
     .wpjobportal-companies-list-col-title a {color: ".esc_attr($color1).";}
     .wpjobportal-companies-list-col-title a:hover {color: ".esc_attr($color2).";}
     .wpjobportal-company-field {color: ".esc_attr($color3).";}
-    .wpjobportal-companies-grid-wrapper .wpjobportal-company-box:hover, .wpjobportal-companies-list-row:hover {border-color: ".esc_attr($color1).";}
+
 
     #footer .wpjobportal-resume-widget-multi-style-wrapper.wpjobportal-layout-list .wpjobportal-resume-box{border-left-color: ".esc_attr($color1).";}
     #footer .wpjobportal-resume-widget-multi-style-wrapper .wpjobportal-resume-box{border: 1px solid ".esc_attr($color5).";color: ".esc_attr($color4).";background: ".esc_attr($color7).";}
@@ -917,6 +929,10 @@ $result3 = "
     #footer .wpjobportal-resume-widget-multi-style-wrapper .wpjobportal-resume-title a{color: ".esc_attr($color1).";}
     #footer .wpjobportal-resume-widget-multi-style-wrapper .wpjobportal-resume-title a:hover {color: ".esc_attr($color2).";}
     #footer .wpjobportal-resume-widget-multi-style-wrapper .wpjobportal-resume-meta-row {color: ".esc_attr($color3).";}
+
+    .wpjobportal-resume-widget-multi-style-wrapper.wpjobportal-layout-list .wpjobportal-resume-photo a{border:2px solid ".esc_attr($color1).";}
+
+
 
     #footer .wpjobportal-job-widget-multi-style-wrapper.wpjobportal-layout-list .wpjobportal-job-box{border-left-color: ".esc_attr($color1).";}
     #footer .wpjobportal-job-widget-multi-style-wrapper .wpjobportal-job-box{border: 1px solid ".esc_attr($color5).";color: ".esc_attr($color4).";background: ".esc_attr($color7).";}
@@ -933,22 +949,101 @@ $result3 = "
     #footer .wpjobportal-companies-widget-wrapper .wpjobportal-companies-list-col-title a {color: ".esc_attr($color1).";}
     #footer .wpjobportal-companies-widget-wrapper .wpjobportal-companies-list-col-title a:hover {color: ".esc_attr($color2).";}
     #footer .wpjobportal-company-field {color: ".esc_attr($color3).";}
-    #footer .wpjobportal-companies-grid-wrapper .wpjobportal-company-box:hover, .wpjobportal-companies-list-row:hover {border-color: ".esc_attr($color1).";}
 
 
-
-    div.wjportal-search-mod form.wjportal-form div.wjportal-form-btn-row button {background: ".esc_attr($color1).";}
+    div.wjportal-search-mod form.wjportal-form div.wjportal-form-btn-row button {background: ".esc_attr($color1)."; color:#fff;}
     div.wjportal-search-mod form.wjportal-form div.wjportal-form-btn-row button:hover {background: ".esc_attr($color2).";}
 
 
-    .wpjobportal-slick-nav-wrapper .slick-next {background: ".esc_attr($color1).";color:#fff;}
-    .wpjobportal-slick-nav-wrapper .slick-next:hover {background: ".esc_attr($color2).";color:#fff;}
-    .wpjobportal-slick-nav-wrapper .slick-prev {background: ".esc_attr($color2).";color:#fff;}
-    .wpjobportal-slick-nav-wrapper .slick-prev:hover {background: ".esc_attr($color1).";color:#fff;}
+    .wpjobportal-slick-nav-wrapper .slick-next {background: ".esc_attr($color1).";color:#fff;border-color: ".esc_attr($color1).";}
+    .wpjobportal-slick-nav-wrapper .slick-next:hover {background: ".esc_attr($color2).";color:#fff;border-color: ".esc_attr($color2).";}
+    .wpjobportal-slick-nav-wrapper .slick-prev {background: ".esc_attr($color2).";color:#fff;border-color: ".esc_attr($color2).";}
+    .wpjobportal-slick-nav-wrapper .slick-prev:hover {background: ".esc_attr($color1).";color:#fff;border-color: ".esc_attr($color1).";}
+
     .wpjobportal-slick-nav-wrapper .slick-dots .slick-active button {background: ".esc_attr($color1).";color:#fff;}
 
-    div.wjportal-search-mod form.wjportal-form div.wjportal-form-btn-row button:hover {background: ".esc_attr($color2).";}
+    .wpjobportal-job-widget-multi-style-wrapper .wpjobportal-job-logo a{border:2px solid ".esc_attr($color1).";color:#fff;background:#fff;}
 
+    .wpjobportal-job-widget-multi-style-wrapper .wpjobportal-job-view-all-jb-button{background: ".esc_attr($color2).";color:#fff;}
+    .wpjobportal-job-widget-multi-style-wrapper .wpjobportal-job-view-all-jb-button:hover{background: ".esc_attr($color1).";}
+
+    .wpjobportal-job-widget-multi-style-wrapper .wpjobportal-job-view-jb-button{background: ".esc_attr($color1).";color:#fff;}
+    .wpjobportal-job-widget-multi-style-wrapper .wpjobportal-job-view-jb-button:hover{background: ".esc_attr($color2).";}
+
+
+    .wpjobportal-company-box .wpjobportal-company-grid-view-company-button{background: ".esc_attr($color1).";color:#fff;}
+    .wpjobportal-company-box .wpjobportal-company-grid-view-company-button:hover{background: ".esc_attr($color2).";}
+
+    .wpjobportal-companies-grid-wrapper .wpjobportal-company-box{border-top: 4px solid ".esc_attr($color1).";}
+
+
+    .wpjobportal-layout-grid .wpjobportal-job-meta-col .wpjobportal-job-widget-detail-field-data:last-of-type {
+        background: #fafafa;
+        border: 1px solid ".esc_attr($color5).";
+        border-left:none;
+        border-right:none;
+    }
+    .wpjobportal-company-box .wpjobportal-company-details .wpjobportal-company-field:last-of-type {
+        background: #fafafa;
+        border: 1px solid ".esc_attr($color5).";
+        border-left:none;
+        border-right:none;
+    }
+
+    .wpjobportal-job-widget-multi-style-wrapper.wpjobportal-layout-grid .wpjobportal-job-title{
+        border-bottom:1px solid ".esc_attr($color5).";
+    }
+
+    .wpjobportal-job-widget-multi-style-wrapper.wpjobportal-layout-grid .wpjobportal-job-box {
+        border-top:4px solid ".esc_attr($color1).";
+    }
+
+
+
+    .wpjobportal-resume-widget-multi-style-wrapper.wpjobportal-layout-grid .wpjobportal-resume-box{
+        border:1px solid ".esc_attr($color5).";
+        border-top:4px solid ".esc_attr($color1).";
+    }
+    .wpjobportal-resume-widget-multi-style-wrapper.wpjobportal-layout-card .wpjobportal-resume-box{
+        border:1px solid ".esc_attr($color5).";
+        border-top:4px solid ".esc_attr($color1).";
+    }
+
+
+    .wpjobportal-resume-widget-multi-style-wrapper.wpjobportal-layout-grid .wpjobportal-resume-photo a{
+        border:2px solid ".esc_attr($color1).";
+        background:#fff;
+    }
+    .wpjobportal-companies-list-col-logo a{
+        border:2px solid ".esc_attr($color1).";
+        background:#fff;
+    }
+    .wpjobportal-company-box .wpjobportal-company-logo a {
+        border:2px solid ".esc_attr($color1).";
+        background:#fff;
+    }
+
+
+.wpjobportal-companies-widget-wrapper .wpjobportal-companies-list-row{
+    border-top: 4px solid ".esc_attr($color1).";
+}
+
+
+    .wpjobportal-resume-widget-multi-style-wrapper.wpjobportal-layout-card .wpjobportal-resume-photo a{
+        border:2px solid ".esc_attr($color1).";
+    }
+
+    .wpjobportal-resume-widget-multi-style-wrapper.wpjobportal-layout-grid .wpjobportal-resume-meta-col .wpjobportal-resume-widget-detail-field-data:last-of-type{
+        background:#f5f5f5;
+        border-top:1px solid ".esc_attr($color5).";
+    }
+
+
+    .wpjobportal-resume-widget-multi-style-wrapper .wpjobportal-resume-view-all-button{background: ".esc_attr($color2).";color:#fff;}
+    .wpjobportal-resume-widget-multi-style-wrapper .wpjobportal-resume-view-all-button:hover{background: ".esc_attr($color1).";}
+
+    .wpjobportal-resume-widget-multi-style-wrapper .wpjobportal-resume-view-button{background: ".esc_attr($color1).";color:#fff;}
+    .wpjobportal-resume-widget-multi-style-wrapper .wpjobportal-resume-view-button:hover{background: ".esc_attr($color2).";}
 
 
     /* responsive */

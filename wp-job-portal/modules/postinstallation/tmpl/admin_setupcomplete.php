@@ -86,7 +86,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                 <span class="wpjobportal-post-cmpletesetup-logo"><img alt="<?php echo esc_html(__('Setup Complete','wp-job-portal'));?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/complete-setup.png" /></span>
                 <span class="wpjobportal-post-cmpletesetup-title"><?php echo esc_html(__('Settings you applied have been successfully saved','wp-job-portal'));?></span>
                 <div class="wpjobportal-post-action-btn">
-                    <a class="next-step wpjobportal-post-act-btn" href="#" title="<?php echo esc_html(__('finish','wp-job-portal')); ?>">
+                    <a class="next-step wpjobportal-post-act-btn" href="admin.php?page=wpjobportal" title="<?php echo esc_html(__('finish','wp-job-portal')); ?>">
                         <?php echo esc_html(__('Go To Dashboard','wp-job-portal')); ?>
                     </a>
                 </div>

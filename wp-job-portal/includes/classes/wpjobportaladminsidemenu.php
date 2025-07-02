@@ -50,6 +50,11 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $menu_js_script );
                     <?php echo esc_html(__('SEO','wp-job-portal')); ?>
                 </a>
             </li>
+            <li class="<?php if($c == 'wpjobportal_thirdpartyimport' && ($layout == 'importdata' || $layout == '')) echo 'active'; ?>">
+                <a href="admin.php?page=wpjobportal_thirdpartyimport" title="<?php echo esc_html(__('Import Data','wp-job-portal')); ?>">
+                    <?php echo esc_html(__('Import Third Party Data','wp-job-portal')); ?>
+                </a>
+            </li>
             <li class="<?php if($c == 'wpjobportal_activitylog' && ($layout == 'wpjobportal_activitylog' || $layout == '')) echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal_activitylog" title="<?php echo esc_html(__('activity log','wp-job-portal')); ?>">
                     <?php echo esc_html(__('Activity Log','wp-job-portal')); ?>

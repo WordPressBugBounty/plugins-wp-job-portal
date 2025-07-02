@@ -49,6 +49,8 @@ class WPJOBPORTALwpjobportalController {
                     }
                     break;
                 case 'admin_addonstatus': // to avoid default case
+                    WPJOBPORTALincluder::getJSModel('wpjobportal')->wpjobportalCheckLicenseStatus();
+                    break;
                 case 'admin_shortcodes': // to avoid default case
                 case 'admin_help': // to avoid default case
                 case 'admin_pageseo': // to avoid default case

@@ -22,7 +22,7 @@ die('Restricted Access');
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
-                        <li><?php echo esc_html(__('Import Data','wp-job-portal')); ?></li>
+                        <li><?php echo esc_html(__('Import Third Party Data','wp-job-portal')); ?></li>
                     </ul>
                 </div>
             </div>
@@ -59,22 +59,22 @@ die('Restricted Access');
                 $plguins_array = [];
 
                 // plugin data
-                $plguins_array['dummp_plgn'] = [];
-                $plguins_array['dummp_plgn']['name'] = esc_html(__('Dummy Plugin','wp-job-portal'));
-                $plguins_array['dummp_plgn']['path'] = "dummy-manager/dummy-manager.php"; // needed to check if plugin is active
-                $plguins_array['dummp_plgn']['internalid'] = 2; // value used to identfy the plugin
+                // $plguins_array['dummp_plgn'] = [];
+                // $plguins_array['dummp_plgn']['name'] = esc_html(__('Dummy Plugin','wp-job-portal'));
+                // $plguins_array['dummp_plgn']['path'] = "dummy-manager/dummy-manager.php"; // needed to check if plugin is active
+                // $plguins_array['dummp_plgn']['internalid'] = 2; // value used to identfy the plugin
 
                 // plugin data
                 $plguins_array['wp_job_manager'] = [];
-                $plguins_array['wp_job_manager']['name'] = esc_html(__('Job Manager','wp-job-portal'));
+                $plguins_array['wp_job_manager']['name'] = esc_html(__('WP Job Manager','wp-job-portal'));
                 $plguins_array['wp_job_manager']['path'] = "wp-job-manager/wp-job-manager.php";  // needed to check if plugin is active
                 $plguins_array['wp_job_manager']['internalid'] = 1; // value used to identfy the plugin
 
                 // plugin data
-                $plguins_array['dummp_plgn2'] = [];
-                $plguins_array['dummp_plgn2']['name'] = esc_html(__('Dummy Plugin 2','wp-job-portal'));
-                $plguins_array['dummp_plgn2']['path'] = "dummy-manager/dummy-manager.php"; // needed to check if plugin is active
-                $plguins_array['dummp_plgn2']['internalid'] = 3; // value used to identfy the plugin
+                // $plguins_array['dummp_plgn2'] = [];
+                // $plguins_array['dummp_plgn2']['name'] = esc_html(__('Dummy Plugin 2','wp-job-portal'));
+                // $plguins_array['dummp_plgn2']['path'] = "dummy-manager/dummy-manager.php"; // needed to check if plugin is active
+                // $plguins_array['dummp_plgn2']['internalid'] = 3; // value used to identfy the plugin
 
 
             foreach ($plguins_array as $plugin) {

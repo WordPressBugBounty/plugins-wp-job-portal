@@ -10,11 +10,11 @@ class WPJOBPORTALthirdpartyimportController {
     }
 
     function handleRequest() {
-        $layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'thirdpartyimport');
+        $layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'importdata');
         if (self::canaddfile($layout)) {
             switch ($layout) {
                 case 'admin_importdata':
-                    die("NOT ALLOWED !!");
+                    
                     $selected_plugin = WPJOBPORTALrequest::getVar('selected_plugin', '', 0);
                     wpjobportal::$_data['count_for'] = $selected_plugin;
                     if($selected_plugin != 0){
@@ -24,7 +24,7 @@ class WPJOBPORTALthirdpartyimportController {
                     // no plugin selected
                     break;
                 case 'admin_importresult':
-                    die("NOT ALLOWED !!");
+                    
                     break;
                 default:
                     return;
@@ -55,7 +55,7 @@ class WPJOBPORTALthirdpartyimportController {
 
 
     function importjobmanagerdata() {
-        die("NOT ALLOWED !!");
+        
         // $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
         // if (! wp_verify_nonce( $nonce, 'wpjobportal_job_manager_import_nonce') ) {
         //      die( 'Security check Failed' );
@@ -76,7 +76,7 @@ class WPJOBPORTALthirdpartyimportController {
     }
 
     function getjobmanagerdatastats() {
-        die("NOT ALLOWED !!");
+        
         $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
         if (! wp_verify_nonce( $nonce, 'wpjobportal_job_manager_import_nonce') ) {
             die( 'Security check Failed' );
@@ -86,8 +86,6 @@ class WPJOBPORTALthirdpartyimportController {
             return false;
         }
         $result = WPJOBPORTALincluder::getJSModel('thirdpartyimport')->getJobManagerDataStats();
-        echo var_dump($result);
-        die('in thirdpartyimport controller');
         $msg = WPJOBPORTALMessages::getMessage($result, "thirdpartyimport");
         WPJOBPORTALMessages::setLayoutMessage($msg['message'], $msg['status'],$this->_msgkey);
         $url = esc_url_raw(admin_url("admin.php?page=wpjobportal_thirdpartyimport&wpjobportallt=importresult"));

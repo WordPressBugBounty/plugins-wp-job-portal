@@ -11,6 +11,7 @@ class WPJOBPORTALpremiumpluginController {
         $module = "premiumplugin";
         if ($this->canAddLayout()) {
             $layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'step1');
+            WPJOBPORTALincluder::getJSModel('wpjobportal')->wpjobportalCheckLicenseStatus();
             switch ($layout) {
                 case 'admin_step1':
                     wpjobportal::$_data['versioncode'] = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('versioncode');

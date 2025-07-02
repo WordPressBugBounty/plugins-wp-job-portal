@@ -62,7 +62,7 @@ class WPJOBPORTALjobSearchModel {
             $html .= '<div id="wpjobportal-mod-heading" class="wjportal-mod-heading">' . esc_html($title) . '</div>';
         }
 
-        $html .= '<form class="job_form wjportal-form" id="job_form" method="post" action="' . esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'jobs', 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))) . '">';
+        $html .= '<form class="job_form wjportal-form" id="job_form" method="post" action="' . esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'jobs', 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageidForWidgets()))) . '">';
 
 
         if ($fieldtitle == 1) {
@@ -190,7 +190,7 @@ class WPJOBPORTALjobSearchModel {
                         <button type="submit" class="wjportal-filter-search-btn">
                             ' . $search_label . '
                         </button>
-            ' . ( ($show_adv_button) ? '<a class="anchor wjportal-form-btn wjportal-form-adv-srch-btn" href="' . esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobsearch', 'wpjobportallt'=>'jobsearch', 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))) . '">' . $adv_label . '</a>' : '') . '
+            ' . ( ($show_adv_button) ? '<a class="anchor wjportal-form-btn wjportal-form-adv-srch-btn" href="' . esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobsearch', 'wpjobportallt'=>'jobsearch', 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageidForWidgets()))) . '">' . $adv_label . '</a>' : '') . '
         </div>';
 
         $html .= '
@@ -221,6 +221,95 @@ class WPJOBPORTALjobSearchModel {
 
         return $html;
     }
+
+    function getAISearchJobs_Widget($title, $showtitle, $layout = 'vertical', $show_adv_button = true, $use_icons_for_buttons = false, $field_custom_class = '',$show_labels = 1,$show_placeholders = 0, $label_value = '', $placeholder_value = '') {
+        // to handle button widths ( mainly for horizental style and advnce search diasble case for less then four fields)
+        $button_wrap_class = '';
+        // Set widths
+        if ($layout === 'vertical') {
+            $field_width = '100';
+            $button_style = '100';
+        } else {
+            $button_style = $show_adv_button ? 25 : 15;
+            $button_wrap_class = $show_adv_button ? '' : 'wpjobportal-search-btn-full-width';// to handle button widths ( mainly for horizental style and advnce search diasble case for less then four fields)
+            $field_width = round((100 - $button_style) , 2);
+        }
+        if(!function_exists('renderCurrentFieldJP')){
+            function renderCurrentFieldJP($title_str, $field_html, $field_width) {
+                $current_html = '<div class="wjportal-form-row " style="width:' . esc_attr($field_width) . '%;">
+                                    <div class="wjportal-form-tit">' . esc_html($title_str) . '</div>
+                                    <div class="wjportal-form-val">' . wp_kses($field_html, WPJOBPORTAL_ALLOWED_TAGS) . '</div>
+                                </div>';
+                return $current_html;
+            }
+        }
+
+
+        $layout_class = $layout == 'horizontal' ? 'wjportal-form-horizontal' : 'wjportal-form-vertical';
+
+        $html = '<div id="wpjobportal_mod_wrapper" class="wjportal-search-mod wjportal-form-mod ' . esc_attr($layout_class) . '">';
+
+        $html .= '<form class="job_form wjportal-form" id="job_form" method="post" action="' . esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'jobs', 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageidForWidgets()))) . '">';
+
+
+        if (1 == 1) {
+            $title = '';
+            $placeholder = '';
+            if($show_labels == 1){
+                //$title = esc_html(__('AI Search Job', 'wp-job-portal'));
+                $title = esc_html($label_value);
+            }
+            if($show_placeholders == 1){
+                $placeholder = esc_html($placeholder_value);
+            }
+            $value = WPJOBPORTALformfield::text('aijobsearcch', '', array('class' => 'inputbox'.' '.$field_custom_class, 'placeholder' => $placeholder));
+            $html .= renderCurrentFieldJP($title, $value, $field_width);
+        }
+
+        // Buttons
+        $search_label = $use_icons_for_buttons ? ' <i class="fa fa-search"></i> ' : esc_html(__('Search Job', 'wp-job-portal'));
+        $adv_label = $use_icons_for_buttons ? ' <i class="fa fa-cogs"></i> ' : esc_html(__('Advance Search', 'wp-job-portal'));
+
+        $html .= '<div class="wjportal-form-btn-row '.esc_attr($button_wrap_class).' " style="width:' . $button_style . '%;"> ';
+                if($show_labels == 1){
+                    $html .='    <div class="wjportal-form-tit">&nbsp;</div>';
+                }
+        $html .='
+                    <button type="submit" class="wjportal-filter-search-btn">
+                        ' . $search_label . '
+                    </button>
+            ' . ( ($show_adv_button) ? '<a class="anchor wjportal-form-btn wjportal-form-adv-srch-btn" href="' . esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobsearch', 'wpjobportallt'=>'jobsearch', 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageidForWidgets()))) . '">' . $adv_label . '</a>' : '') . '
+        </div>';
+
+        $html .= '
+            <input type="hidden" id="issearchform" name="issearchform" value="1"/>
+            <input type="hidden" id="WPJOBPORTAL_form_search" name="WPJOBPORTAL_form_search" value="WPJOBPORTAL_SEARCH"/>
+            <input type="hidden" id="wpjobportallay" name="wpjobportallay" value="jobs"/>
+        </form>
+        </div>';
+
+        wp_register_script( 'wpjobportal-inline-handle', '' );
+        wp_enqueue_script( 'wpjobportal-inline-handle' );
+        $inline_js_script = '
+            function getTokenInputWidget() {
+                var cityArray = "' . esc_url_raw(admin_url("admin.php?page=wpjobportal_city&action=wpjobportaltask&task=getaddressdatabycityname")) . '";
+                jQuery(".wpjobportal-job-search-widget-city-field").tokenInput(cityArray, {
+                    theme: "wpjobportal",
+                    preventDuplicates: true,
+                    hintText: "' . esc_html(__('Type In A Search Term', 'wp-job-portal')) . '",
+                    noResultsText: "' . esc_html(__('No Results', 'wp-job-portal')) . '",
+                    searchingText: "' . esc_html(__('Searching', 'wp-job-portal')) . '"
+                });
+            }
+            jQuery(document).ready(function(){
+                getTokenInputWidget();
+            });
+        ';
+        wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+
+        return $html;
+    }
+
 
     function getJobSearchOptions() {
         wpjobportal::$_data[2] = WPJOBPORTALincluder::getJSModel('fieldordering')->getFieldsOrderingforSearch(2);

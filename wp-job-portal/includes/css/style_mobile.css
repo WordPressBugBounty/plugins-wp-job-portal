@@ -111,3 +111,7 @@ div.wjportal-packages-list div.wjportal-pkg-list-item div.wjportal-pkg-list-item
 div.wjportal-jobs-list div.wjportal-jobs-list-btm-wrp div.wjportal-jobs-list-resume-wrp div.wjportal-jobs-list-resume-data {width: 100%;margin-right: 0;}
 div.wjportal-jobs-list div.wjportal-jobs-list-btm-wrp div.wjportal-jobs-list-resume-wrp span.wjportal-applied-job-resume-status {float: left;margin-top: 10px;}
 div.wjportal-jobs-list div.wjportal-jobs-list-btm-wrp div.wjportal-shortlist-stars {float: left;}
+
+.wpjobportal-company-field {
+    align-items: flex-start;
+}

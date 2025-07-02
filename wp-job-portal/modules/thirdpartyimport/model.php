@@ -139,13 +139,13 @@ class WPJOBPORTALthirdpartyimportModel {
         return isset( $counts->publish ) ? (int) $counts->publish : 0;
     }
 
-   function getJobManagerDataStats($count_for) {
+    function getJobManagerDataStats($count_for) {
         // $count_for handles different plugins
 
-    //  at the moment only 1 is supported/ 1 is for wp job manager
-    if($count_for != 1){
-        return;
-    }
+        //  at the moment only 1 is supported/ 1 is for wp job manager
+        if($count_for != 1){
+            return;
+        }
 
         // Make sure WP Job Manager is active
         include_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -161,24 +161,87 @@ class WPJOBPORTALthirdpartyimportModel {
         // $entity_counts['users'] = (int) $user_query->get_total();
 
         // Jobs
-        $entity_counts['jobs'] = $this->getPostConutByType( 'job_listing' );
+        //$entity_counts['jobs'] = $this->getPostConutByType( 'job_listing' );
+
+        $jobs = get_posts([
+            'post_type'      => 'job_listing',
+            'post_status'    => 'any', // will include all except 'auto-draft'
+            'orderby'        => 'ID',
+            'order'          => 'ASC',
+            'numberposts'    => -1, // fetch all posts
+            'exclude'        => wp_list_pluck(
+                get_posts([
+                    'post_type'   => 'job_listing',
+                    'post_status'=> 'auto-draft',
+                    'fields'     => 'ids',
+                    'numberposts'=> -1
+                ]),
+                null
+            ),
+        ]);
+        $entity_counts['jobs'] = count($jobs);
 
         // Companies
-        $entity_counts['companies'] = post_type_exists( 'company' ) ? $this->getPostConutByType( 'company' ) : 0;
+        $entity_counts['companies'] = post_type_exists( 'company_listings' ) ? $this->getPostConutByType( 'company_listings' ) : 0;
 
         // Resumes
-        $entity_counts['resumes'] = post_type_exists( 'resume' ) ? $this->getPostConutByType( 'resume' ) : 0;
+        //$entity_counts['resumes'] = post_type_exists( 'resume' ) ? $this->getPostConutByType( 'resume' ) : 0;
+        $resumes = get_posts( array(
+                'post_type'      => 'resume',
+                'post_status'    => array_diff( get_post_stati(), array( 'auto-draft' ) ),
+                'numberposts'    => -1, // get all
+                'orderby'        => 'ID',
+                'order'          => 'ASC',
+            ) );
+        $entity_counts['resumes'] = count($resumes);
+
 
         // Job Applications
-        $entity_counts['job_applies'] = post_type_exists( 'job_application' ) ? $this->getPostConutByType( 'job_application' ) : 0;
+        // $entity_counts['job_applies'] = post_type_exists( 'job_application' ) ? $this->getPostConutByType( 'job_application' ) : 0;
+
+        $job_applications = get_posts( [
+            'post_type'      => 'job_application',
+            'post_status'    => 'any', // includes all except 'auto-draft'
+            'orderby'        => 'ID',
+            'order'          => 'ASC',
+            'numberposts'    => -1, // get all
+            'exclude'        => get_posts([
+                'post_type'   => 'job_application',
+                'post_status'=> 'auto-draft',
+                'fields'      => 'ids',
+            ]),
+        ] );
+
+        $entity_counts['job_applies'] = count($job_applications);
 
         // Categories (job_listing_category taxonomy)
-        $categories = get_terms([
+        // $categories = get_terms([
+        //     'taxonomy'   => 'job_listing_category',
+        //     'hide_empty' => false,
+        //     'fields'     => 'ids'
+        // ]);
+        // $entity_counts['job_categories'] = is_array($categories) ? count($categories) : 0;
+
+
+        $job_categories = get_terms([
             'taxonomy'   => 'job_listing_category',
             'hide_empty' => false,
-            'fields'     => 'ids'
         ]);
-        $entity_counts['job_categories'] = is_array($categories) ? count($categories) : 0;
+
+        $resume_categories = get_terms([
+            'taxonomy'   => 'resume_category',
+            'hide_empty' => false,
+        ]);
+        $categories = [];
+        if (!is_wp_error($job_categories) && is_array($job_categories)) {
+            if(is_array($resume_categories)){
+                $categories = array_merge($job_categories, $resume_categories);
+            }else{
+                $categories = $job_categories;
+            }
+        }
+
+        $entity_counts['job_categories'] = count($categories);
 
         // Job Types (job_listing_type taxonomy)
         $job_types = get_terms([
@@ -200,6 +263,23 @@ class WPJOBPORTALthirdpartyimportModel {
                     WHERE taxonomy.taxonomy = 'job_listing_tag';";
         $tags = wpjobportal::$_db->get_results($query);
         $entity_counts['tags'] = is_array($tags) ? count($tags) : 0;
+
+
+
+        // Field count
+        $field_count = 0;
+
+        $all_custom_fields = get_option("_transient_jmfe_fields_custom");
+        if (!empty($all_custom_fields)) {
+            foreach ($all_custom_fields as $key => $value) {
+                if ($key === 'company' || $key === 'job' || $key === 'resume_fields') {
+                    foreach ($value as $custom_field) {
+                        $field_count++;
+                    }
+                }
+            }
+        }
+        $entity_counts['fields'] = $field_count;
 
         wpjobportal::$_data['entity_counts'] = $entity_counts;
 
@@ -255,10 +335,10 @@ class WPJOBPORTALthirdpartyimportModel {
         //$this->deletejobmanagerimporteddata();
 
         // removing ids from options
-        update_option('job_portal_jm_data_users','');
-        update_option('job_portal_jm_data_companies','');
-        update_option('job_portal_jm_data_jobs','');
-        update_option('job_portal_jm_data_resumes','');
+        //update_option('job_portal_jm_data_users','');
+        //update_option('job_portal_jm_data_companies','');
+        //update_option('job_portal_jm_data_jobs','');
+        //update_option('job_portal_jm_data_resumes','');
 
 
         // import users to wp job portal table
@@ -278,6 +358,7 @@ class WPJOBPORTALthirdpartyimportModel {
         // echo '<pre>';print_r($this->job_manager_job_custom_fields);
         // echo '<pre>';print_r($this->job_manager_import_count);
         // die('here in job manager import 1817');
+        update_option('wpjob_portal_import_counts',$this->job_manager_import_count);
         return;
     }
 
@@ -431,7 +512,7 @@ class WPJOBPORTALthirdpartyimportModel {
                 $this->job_manager_import_count['company']['skipped'] += 1;
                 continue;
             }
-            echo "<br>".$company->ID;
+            //echo "<br>".$company->ID;
             $args2 = array('post_parent' => $company->ID);
             $companies_details = get_posts($args2);
 
@@ -439,7 +520,7 @@ class WPJOBPORTALthirdpartyimportModel {
             $logoisfile = '';
             $logo_url = get_the_post_thumbnail_url( $company->ID, 'full' );
             if($logo_url != ''){
-                $logo =basename($logo_url);
+                $logo = basename($logo_url);
                 $logoisfile = 1;
             }
 
@@ -453,6 +534,7 @@ class WPJOBPORTALthirdpartyimportModel {
             if($post_meta["_company_location"][0]) $address = $post_meta["_company_location"][0]; else $address = "";
             if($post_meta["_company_website"][0]) $website = $post_meta["_company_website"][0]; else $website = "";
             if($post_meta["_company_twitter"][0]) $twitter = $post_meta["_company_twitter"][0]; else $twitter = "";
+            if(!empty($post_meta["_company_tagline"][0])) $tagline = $post_meta["_company_tagline"][0]; else $tagline = "";
 
             $end_featured_date = '';
             if(in_array('featuredcompany', wpjobportal::$_active_addons)){
@@ -488,7 +570,7 @@ class WPJOBPORTALthirdpartyimportModel {
                 "price" => "",
                 "modified" => $company->post_modified,
                 "hits" => "",
-                "tagline" => "",
+                "tagline" => $tagline,
                 "status" => "1",
                 "isfeaturedcompany" => $featured,
                 "startfeatureddate" => "",
@@ -503,7 +585,7 @@ class WPJOBPORTALthirdpartyimportModel {
                 "facebook_link" => ""
             ];
             $row = WPJOBPORTALincluder::getJSTable('company');
-            print_r($data);
+            //print_r($data);
 
             if(!($row->bind($data) && $row->check() && $row->store())){
                 $this->job_manager_import_count['company']['failed'] += 1;
@@ -757,14 +839,14 @@ class WPJOBPORTALthirdpartyimportModel {
                             JOIN `" . wpjobportal::$_db->prefix . "terms` AS terms ON terms.term_id = taxonomy.term_id
                             WHERE relationships.object_id = ".$job->ID.";";
                 $taxonomy = wpjobportal::$_db->get_results($query);
-                $job_manager_job_type = "";
-                $job_manager_categories = array();
                 foreach($taxonomy as $tax){
                     if($tax->taxonomy == "job_listing_tag"){
                         $job_manager_tags[] = $tax->name;
                     }
                 }
             }
+            $job_manager_job_type = "";
+            $job_manager_categories = array();
 
             $categories = get_the_terms( $job->ID, 'job_listing_category' );
 
@@ -915,7 +997,7 @@ class WPJOBPORTALthirdpartyimportModel {
                 }
                 if (!$row->store()) {
                     //$error[] = wpjobportal::$_db->last_error;
-                    echo "<br> error job city store----------";
+                    //echo "<br> error job city store----------";
                 }
 
             }
@@ -950,18 +1032,16 @@ class WPJOBPORTALthirdpartyimportModel {
             $name = $post_meta["_company_name"][0];
             $query = "SELECT company.id
                         FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company
-                        WHERE LOWER(company.name) = '".strtolower($name)."'
+                        WHERE LOWER(company.name) = '".strtolower(esc_sql($name))."'
                         AND company.uid = ".$uid.";";
                         //echo "<br>".$query;
             $jpcompany = wpjobportaldb::get_row($query);
             if(!empty($jpcompany)){
                 return $jpcompany->id;
             }else{
-                echo "<br>";
-                print_r($company);
-                print_r($post_meta);
-                if($post_meta["_company_website"][0]) $website = $post_meta["_company_website"][0]; else $website = "";
-                if($post_meta["_company_twitter"][0]) $twitter = $post_meta["_company_twitter"][0]; else $twitter = "";
+                if(!empty($post_meta["_company_website"][0])) $website = $post_meta["_company_website"][0]; else $website = "";
+                if(!empty($post_meta["_company_twitter"][0])) $twitter = $post_meta["_company_twitter"][0]; else $twitter = "";
+                if(!empty($post_meta["_company_tagline"][0])) $tagline = $post_meta["_company_tagline"][0]; else $tagline = "";
 
                 $alias = wpjobportal::$_common->stringToAlias($name);
 
@@ -988,7 +1068,7 @@ class WPJOBPORTALthirdpartyimportModel {
                     "price" => "",
                     "modified" => $company->post_modified,
                     "hits" => "",
-                    "tagline" => "",
+                    "tagline" => $tagline,
                     "status" => "1",
                     "isfeaturedcompany" => "",
                     "startfeatureddate" => "",
@@ -1018,19 +1098,23 @@ class WPJOBPORTALthirdpartyimportModel {
     }
 
     function getCompanyIdByJobManagerId($post_id){
+        if(!is_numeric($post_id)){
+            return;
+        }
         $query = "SELECT post.*
                     FROM `" . wpjobportal::$_db->prefix . "posts` AS post
                     WHERE post.post_type = 'company_listings'
-                    AND post.id = ".$post_id.";";
+                    AND post.id = ".$post_id;
                     //echo "<br>".$query;
 
 
         $jmcompany = wpjobportaldb::get_row($query);
-        if($jmcompany){
+        if(!empty($jmcompany)){
+            $uid = $this->getUserIDFromAuthorID($jmcompany->post_author);
             $query = "SELECT company.id
                         FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company
-                        WHERE LOWER(company.name) = '".strtolower($jmcompany->post_title)."'
-                        AND company.uid = ".$jmcompany->post_author.";";
+                        WHERE LOWER(company.name) = '".strtolower(esc_sql($jmcompany->post_title))."'
+                        AND company.uid = ".$uid;
                         //echo "<br>".$query;
             $jpcompany = wpjobportaldb::get_row($query);
             if($jpcompany)
@@ -1077,7 +1161,6 @@ class WPJOBPORTALthirdpartyimportModel {
                     $end_featured_date = gmdate('Y-m-d H:i:s',strtotime(" +30 days"));
                 }
             }
-
 
             $candidate_photo = "";
             if($candidate_photo_url != ''){
@@ -1139,7 +1222,7 @@ class WPJOBPORTALthirdpartyimportModel {
                 "params" => $resumeparams
             ];
             $row = WPJOBPORTALincluder::getJSTable('resume');
-            print_r($data);
+            // print_r($data);
             if(!($row->bind($data) && $row->check() && $row->store())){
                 $this->job_manager_import_count['resume']['failed'] += 1;
                 continue; // move on to next post if store fialed
@@ -1174,7 +1257,7 @@ class WPJOBPORTALthirdpartyimportModel {
                     $cols['filesize'] = $resume_file_size;
                     $cols['created'] = $resume->post_date;
                     $cols = wpjobportal::wpjobportal_sanitizeData($cols);
-                    print_r($cols);
+
                     if($row->bind($cols) && $row->store()) { // if record inserted in table
                         $this->handleUploadFile(4, $resumeid, $resume_file); // move the file to wpjobportal uploads
                     }
@@ -1202,7 +1285,7 @@ class WPJOBPORTALthirdpartyimportModel {
                         echo "<br> error --- ";
                         return false;
                     }
-                    print_r($data);
+
                 }
                 // education section
                 if($post_meta["_candidate_education"][0]) {
@@ -1219,7 +1302,7 @@ class WPJOBPORTALthirdpartyimportModel {
                             "todate" => "",
                             "created" => $resume->post_date,
                         ];
-                        print_r($data);
+
                         if(!($row->bind($data) && $row->check() && $row->store())){
                             echo "<br> error --- ";
                             return false;
@@ -1246,9 +1329,9 @@ class WPJOBPORTALthirdpartyimportModel {
                             echo "<br> error --- ";
                             return false;
                         }
-                        print_r($data);
+                        // print_r($data);
                     }
-                    print_r($experiences);
+                    // print_r($experiences);
                 }
             }
         }
@@ -1293,12 +1376,14 @@ class WPJOBPORTALthirdpartyimportModel {
                         continue;
                     }
                     $resume_file = "";
-                    if($post_meta["_job_applied_for"][0]) $job_applied_for = $post_meta["_job_applied_for"][0]; else $job_applied_for = "";
-                    if($post_meta["_candidate_email"][0]) $candidate_email = $post_meta["_candidate_email"][0]; else $candidate_email = "";
-                    if($post_meta["Message"][0]) $message = $post_meta["Message"][0]; else $message = "";
-                    if($post_meta["Full name"][0]) $full_name = $post_meta["Full name"][0]; else $full_name = "";
+                    if(!empty($post_meta["_job_applied_for"][0])) $job_applied_for = $post_meta["_job_applied_for"][0]; else $job_applied_for = "";
+                    if(!empty($post_meta["_candidate_email"][0])) $candidate_email = $post_meta["_candidate_email"][0]; else $candidate_email = "";
+                    if(!empty($post_meta["Message"][0])) $message = $post_meta["Message"][0]; else $message = "";
+                    if(!empty($post_meta["_candidate_name"][0])) $full_name = $post_meta["_candidate_name"][0]; else $full_name = $job_application->post_title;
+                    //if(!empty($post_meta["Full name"][0])) $full_name = $post_meta["Full name"][0]; else $full_name = "";
+                    // if name not set use post title // first_name system fielf (required)
                     $filename = '';
-                    if($post_meta["_attachment_file"][0]){
+                    if(!empty($post_meta["_attachment_file"][0])){
                         $attachment_file = unserialize($post_meta["_attachment_file"][0]);
                         $resume_file = $attachment_file[0];
                     }
@@ -1310,19 +1395,20 @@ class WPJOBPORTALthirdpartyimportModel {
                         "first_name" => $full_name,
                         "email_address" => $candidate_email,
                         "alias" => $alias,
-                        "status" => "1",
+                        "status" => 1,
                         "quick_apply" => "1",
                         "last_modified" => $job_application->post_date,
                         "created" => $job_application->post_date
                     ];
                     $row = WPJOBPORTALincluder::getJSTable('resume');
+                    // not counting resume for job applies in resume to show consisitent data for stats and results page
                     if(!($row->bind($data) && $row->check() && $row->store())){
-                        $this->job_manager_import_count['resume']['failed'] += 1;
+                        // $this->job_manager_import_count['resume']['failed'] += 1;
                         continue; // move on to next post if store fialed
                     }else{
                         // if no error then
                         $this->job_manager_resume_ids[] = $job_application->ID; // create an array of resume ids to store
-                        $this->job_manager_import_count['resume']['imported'] += 1;
+                        // $this->job_manager_import_count['resume']['imported'] += 1;
                     }
                     $resumeid = $row->id;
 
@@ -1347,7 +1433,7 @@ class WPJOBPORTALthirdpartyimportModel {
                         $cols['filesize'] = $resume_file_size;
                         $cols['created'] = $job_application->post_date;
                         $cols = wpjobportal::wpjobportal_sanitizeData($cols);
-                        print_r($cols);
+                        //print_r($cols);
                         if($row->bind($cols) && $row->store()) { // if record inserted in table
                             $this->handleUploadFile(4, $resumeid, $resume_file); // move the file to wpjobportal uploads
                         }
@@ -1358,14 +1444,14 @@ class WPJOBPORTALthirdpartyimportModel {
                         "jobid" => $jobid,
                         "cvid" => $resumeid,
                         "apply_date" => $job_application->post_date,
-                        "action_status" => "1",
-                        "status" => "1",
-                        "quick_apply" => "1",
+                        "action_status" => 1,
+                        "status" => 1,
+                        "quick_apply" => 1,
                         "apply_message" => $message,
                         "params" => "",
                         "created" => $job_application->post_date
                     ];
-                    print_r($data);
+                    //print_r($data);
                     $row = WPJOBPORTALincluder::getJSTable('jobapply');
                     if(!($row->bind($data) && $row->check() && $row->store())){
                         $this->job_manager_import_count['jobapply']['failed'] += 1;
@@ -1375,6 +1461,8 @@ class WPJOBPORTALthirdpartyimportModel {
                         $this->job_manager_jobapply_ids[] = $job_application->ID; // create an array of jobapply ids to store
                         $this->job_manager_import_count['jobapply']['imported'] += 1;
                     }
+                }else{ // job id not found for some reason then fail the job apply
+                    $this->job_manager_import_count['jobapply']['failed'] += 1;
                 }
             }
         }
@@ -1393,8 +1481,8 @@ class WPJOBPORTALthirdpartyimportModel {
             // }
             $query = "SELECT job.id
                         FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                        WHERE job.uid = ".$uid."
-                        AND LOWER(job.title) ='".strtolower($job->post_title)."';";
+                        WHERE job.uid = ".esc_sql($uid)."
+                        AND LOWER(job.title) ='".strtolower(esc_sql($job->post_title))."';";
             $jpjob_job_id = wpjobportaldb::get_var($query);
             if(is_numeric($jpjob_job_id) && $jpjob_job_id > 0){
                 return $jpjob_job_id;
@@ -1417,21 +1505,21 @@ class WPJOBPORTALthirdpartyimportModel {
         if($country_name){
             $query = "SELECT country.id
                         FROM `" . wpjobportal::$_db->prefix . "wj_portal_countries` AS country
-                        WHERE LOWER(country.name) = '".strtolower(trim($country_name))."' OR LOWER(country.shortCountry) = '".strtolower($country_name)."';";
+                        WHERE LOWER(country.name) = '".strtolower(trim(esc_sql($country_name)))."' OR LOWER(country.shortCountry) = '".strtolower(esc_sql($country_name))."';";
                         //echo "<br>".$query;
             $jpcountry = wpjobportaldb::get_row($query);
             if($jpcountry){
                 if($state_name){
                     $query = "SELECT state.id
                                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_states` AS state
-                                WHERE LOWER(state.name) = '".strtolower(trim($state_name))."' OR LOWER(state.shortRegion) = '".strtolower($state_name)."'
+                                WHERE LOWER(state.name) = '".strtolower(trim(esc_sql($state_name)))."' OR LOWER(state.shortRegion) = '".strtolower(esc_sql($state_name))."'
                                 AND state.countryid = ".$jpcountry->id.";";
                                 //echo "<br>".$query;
                     $jpstate = wpjobportaldb::get_row($query);
                     if($jpstate){
                         $query = "SELECT city.id
                                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city
-                                    WHERE (LOWER(city.name) = '".strtolower(trim($city_name))."' OR LOWER(city.localname) = '".strtolower(trim($city_name))."' OR LOWER(city.internationalname) = '".strtolower(trim($city_name))."')
+                                    WHERE (LOWER(city.name) = '".strtolower(trim(esc_sql($city_name)))."' OR LOWER(city.localname) = '".strtolower(trim(esc_sql($city_name)))."' OR LOWER(city.internationalname) = '".strtolower(trim($city_name))."')
                                     AND city.countryid = ".$jpcountry->id."
                                     AND city.stateid = ".$jpstate->id." ;";
                                     //echo "<br>".$query;
@@ -1441,7 +1529,7 @@ class WPJOBPORTALthirdpartyimportModel {
                     }else{
                         $query = "SELECT city.id
                                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city
-                                    WHERE (LOWER(city.name) = '".strtolower(trim($city_name))."' OR LOWER(city.localname) = '".strtolower(trim($city_name))."' OR LOWER(city.internationalname) = '".strtolower(trim($city_name))."')
+                                    WHERE (LOWER(city.name) = '".strtolower(trim($city_name))."' OR LOWER(city.localname) = '".strtolower(trim(esc_sql($city_name)))."' OR LOWER(city.internationalname) = '".strtolower(trim(esc_sql($city_name)))."')
                                     AND city.countryid = ".$jpcountry->id.";";
                                     //echo "<br>".$query;
                         $jpcity = wpjobportaldb::get_row($query);
@@ -1451,7 +1539,7 @@ class WPJOBPORTALthirdpartyimportModel {
                 }else{
                         $query = "SELECT city.id
                                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city
-                                    WHERE (LOWER(city.name) = '".strtolower(trim($city_name))."' OR LOWER(city.localname) = '".strtolower(trim($city_name))."' OR LOWER(city.internationalname) = '".strtolower(trim($city_name))."')
+                                    WHERE (LOWER(city.name) = '".strtolower(trim($city_name))."' OR LOWER(city.localname) = '".strtolower(trim(esc_sql($city_name)))."' OR LOWER(city.internationalname) = '".strtolower(trim(esc_sql($city_name)))."')
                                     AND city.countryid = ".$jpcountry->id.";";
                                     //echo "<br>".$query;
                         $jpcity = wpjobportaldb::get_row($query);
@@ -1470,7 +1558,7 @@ class WPJOBPORTALthirdpartyimportModel {
         $title = "Per ".$duration;
         $query = "SELECT type.id
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS type
-                    WHERE LOWER(type.title) = '".strtolower($title)."';";
+                    WHERE LOWER(type.title) = '".strtolower(esc_sql($title))."';";
                     //echo "<br>".$query;
         $jptitle = wpjobportaldb::get_row($query);
         if($jptitle){
@@ -1550,7 +1638,7 @@ class WPJOBPORTALthirdpartyimportModel {
         foreach($tags as $tag){
             $query = "SELECT tag.tag
                         FROM `" . wpjobportal::$_db->prefix . "wj_portal_tags` AS tag
-                        WHERE LOWER(tag.tag) = '".strtolower($tag)."';";
+                        WHERE LOWER(tag.tag) = '".strtolower(esc_sql($tag))."';";
                         //echo "<br>".$query;
             $jptags = wpjobportaldb::get_row($query);
             if($jptags){
@@ -1571,11 +1659,13 @@ class WPJOBPORTALthirdpartyimportModel {
             'taxonomy'   => 'resume_category',
             'hide_empty' => false,
         ]);
-
-        if(is_array($resume_categories)){
-            $categories = array_merge($job_categories, $resume_categories);
-        }else{
-            $categories = $job_categories;
+	$categories = [];
+        if (!is_wp_error($job_categories) && is_array($job_categories)) {
+            if(is_array($resume_categories)){
+                $categories = array_merge($job_categories, $resume_categories);
+            }else{
+                $categories = $job_categories;
+            }
         }
 
         // Get max ordering from existing categories table
@@ -1594,7 +1684,7 @@ class WPJOBPORTALthirdpartyimportModel {
             $jp_category_names[$existing_category->id] = $this->cleanStringForCompare($existing_category->cat_title);
         }
 
-        if (!is_wp_error($categories) && !empty($categories)) {
+        if ( !empty($categories)) {
             foreach ($categories as $category) {
                 $parent_category_id = '';
                 $name = $category->name;
@@ -1743,7 +1833,7 @@ class WPJOBPORTALthirdpartyimportModel {
 
                 $query = "SELECT tag.*
                             FROM `" . wpjobportal::$_db->prefix . "wj_portal_tags` AS tag
-                            WHERE LOWER(tag.tag) = '".strtolower($name)."'";
+                            WHERE LOWER(tag.tag) = '".strtolower(esc_sql($name))."'";
                 $jptag = wpjobportal::$_db->get_row($query);
 
                 if(!$jptag){ // not exists

@@ -1515,7 +1515,9 @@ class WPJOBPORTALwpjobportalModel {
 		$installed_plugins = get_plugins();
 		$need_to_update = array();
 		$addon_json_array = array();
-		foreach ($wpjobportal_addons as $key1 => $value1) {
+
+        $status_prefix = 'key_status_for_wp-job-portal_';
+        foreach ($wpjobportal_addons as $key1 => $value1) {
 			$matched = 0;
 			$version = "";
 			foreach ($installed_plugins as $name => $value) {
@@ -1538,8 +1540,13 @@ class WPJOBPORTALwpjobportalModel {
     							$status = 'update_available';
     							$cdnavailableversion = $cdnversion;
     							$plugin_slug = wpjobportalphplib::wpJP_str_replace('wp-job-portal-', '', $name);
-    							$need_to_update[] = array("name" => $name, "current_version" => $version, "available_version" => $cdnavailableversion, "plugin_slug" => $plugin_slug );
-    							$addon_json_array[] = wpjobportalphplib::wpJP_str_replace('wp-job-portal-', '', $name);;
+                                // check key status
+                                $token = get_option('transaction_key_for_'.esc_attr($name));
+                                $key_local_status = get_option($status_prefix . $token);
+                                if($key_local_status == 1){
+                                    $need_to_update[] = array("name" => $name, "current_version" => $version, "available_version" => $cdnavailableversion, "plugin_slug" => $plugin_slug );
+        							$addon_json_array[] = wpjobportalphplib::wpJP_str_replace('wp-job-portal-', '', $name);
+                                }
     						}
     					}
     				}
@@ -1555,6 +1562,7 @@ class WPJOBPORTALwpjobportalModel {
 			if($token == ''){
 				return;
 			}
+
 			$site_url = site_url();
 			if($site_url != ''){
 				$site_url = wpjobportalphplib::wpJP_str_replace("https://","",$site_url);
@@ -1741,10 +1749,68 @@ class WPJOBPORTALwpjobportalModel {
                 $error = true;
             }
         }
-
-
-
         return WPJOBPORTAL_SAVED;
+    }
+
+    function wpjobportalCheckLicenseStatus() {
+        // Get all distinct transaction keys
+        $query = "
+            SELECT DISTINCT option_value
+            FROM " . wpjobportal::$_db->prefix . "options
+            WHERE option_name LIKE 'transaction_key_for_wp-job-portal%'
+        ";
+        $transaction_keys = wpjobportal::$_db->get_col($query);
+
+        if (empty($transaction_keys)) return;
+
+        $status_prefix = 'key_status_for_wp-job-portal_';
+        // $site_url = WPJOBPORTALincluder::getJSModel('wpjobportal')->getSiteUrl();
+        $site_url = site_url();
+        $site_url = wpjobportalphplib::wpJP_str_replace("https://","",$site_url);
+        $site_url = wpjobportalphplib::wpJP_str_replace("http://","",$site_url);
+
+        $show_key_expiry_msg = 0;
+
+        foreach ($transaction_keys as $key) {
+            // Build query string for GET request
+            $query_args = [
+                'token'   => $key,
+                'domain'  => $site_url,
+                'request' => 'keyexpirycheck'
+            ];
+
+            $url = add_query_arg($query_args, 'https://wpjobportal.com/setup/index.php');
+
+            // Perform GET request
+            $response = wp_remote_get($url, [ 'timeout' => 15 ]);
+
+
+            if (is_wp_error($response)) {
+                continue; // Skip on error
+            }
+
+            $body = wp_remote_retrieve_body($response);
+            $data = json_decode($body, true);
+
+
+            if (!is_array($data) || !isset($data['status'])) {
+                continue; // Invalid response
+            }
+
+            // Save status
+            update_option($status_prefix . $key, $data['status'], false);
+
+            // Save expiry date if available
+            if ($data['status'] == 1 && !empty($data['expirydate'])) {
+                if (strtotime(current_time('mysql')) > strtotime($data['expirydate'])) {
+                    $show_key_expiry_msg = 1;
+                }
+            } else {
+                $show_key_expiry_msg = 1;
+            }
+        }
+
+        update_option('wpjobportal_show_key_expiry_msg', $show_key_expiry_msg, false);
     }
 
     function getMessagekey(){

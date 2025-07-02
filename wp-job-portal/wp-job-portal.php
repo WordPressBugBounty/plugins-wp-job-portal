@@ -3,14 +3,14 @@
 /**
  * @package WP JOB PORTAL
  * @author Ahmad Bilal
- * @version 2.3.5
+ * @version 2.3.6
  */
 /*
   * Plugin Name: WP Job Portal
   * Plugin URI: https://wpjobportal.com/
-  * Description: WP JOB PORTAL is Word Press best job board plugin. It is easy to use and highly configurable. It fully accommodates job seekers and employers.
+  * Description: WP Job Portal is WordPress’s best job board plugin — easy to use, highly configurable, and built to support both job seekers and employers. AI-powered add-ons offer's smart job & resume search, and personalized recommendations.
   * Author: WP Job Portal
-  * Version: 2.3.5
+  * Version: 2.3.6
   * Text Domain: wp-job-portal
   * Domain Path: /languages
   * Author URI: https://wpjobportal.com/
@@ -77,7 +77,7 @@ class wpjobportal {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '235';
+        self::$_currentversion = '236';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_common = WPJOBPORTALincluder::getJSModel('common');
         self::$_config = WPJOBPORTALincluder::getJSModel('configuration');
@@ -187,12 +187,13 @@ class wpjobportal {
                 if( $plugin == $our_plugin ) {
                     update_option('wpjp_currentversion', self::$_currentversion);
                     include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
-                    WPJOBPORTALupdates::checkUpdates('235');
+                    WPJOBPORTALupdates::checkUpdates('236');
 
                 	// restore colors data
 		            require(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
 
 			        // restore colors data end
+                    WPJOBPORTALincluder::getJSModel('wpjobportal')->wpjobportalCheckLicenseStatus();
                 }
             }
         }
@@ -895,8 +896,6 @@ class wpjobportal {
         return $translation;
     }
 
-
-
     function wpjobportal_LoadWpCoreFiles() {
         add_action('wpjobportal_load_wp_plugin_file', array($this,'wpjobportal_load_wp_plugin_file') );
         add_action('wpjobportal_load_wp_admin_file', array($this,'wpjobportal_load_wp_admin_file') );
@@ -1007,8 +1006,6 @@ class wpjobportal {
         }
         require_once($wp_site_path);
     }
-
-
 }
 
 $wpjobportal = new wpjobportal();
@@ -1504,19 +1501,34 @@ function wpjobportal_upgrade_completed( $upgrader_object, $options ) {
 				update_option('wpjp_currentversion', wpjobportal::$_currentversion);
 				include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
 
-				WPJOBPORTALupdates::checkUpdates('235');
+				WPJOBPORTALupdates::checkUpdates('236');
 
 				// restore colors data
 				require_once(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
 				// restore colors data end
-				WPJOBPORTALincluder::getJSModel('wpjobportal')->WPJPAddonsAutoUpdate();
+				WPJOBPORTALincluder::getJSModel('wpjobportal')->wpjobportalCheckLicenseStatus();
+                WPJOBPORTALincluder::getJSModel('wpjobportal')->WPJPAddonsAutoUpdate();
 			}
 		}
 	}
 }
 add_filter('jsjp_delete_expire_session_data','wpjobportal_auto_update_addons');
-	function wpjobportal_auto_update_addons( ) {
-		WPJOBPORTALincluder::getJSModel('wpjobportal')->WPJPAddonsAutoUpdate();
-	}
+function wpjobportal_auto_update_addons( ) {
+	WPJOBPORTALincluder::getJSModel('wpjobportal')->wpjobportalCheckLicenseStatus();
+    WPJOBPORTALincluder::getJSModel('wpjobportal')->WPJPAddonsAutoUpdate();
+}
+
+add_action('admin_notices', 'wpjobportal_show_expiry_error_notice');
+
+function wpjobportal_show_expiry_error_notice() {
+    // Check if the option is set and equals '1'
+    if (get_option('wpjobportal_show_key_expiry_msg') == '1') {
+        ?>
+        <div class="notice notice-error is-dismissible">
+            <p><?php echo __('Your WP Job Portal license key has expired or is invalid. Please update it to continue receiving support and updates.', 'wp-job-portal'); ?></p>
+        </div>
+        <?php
+    }
+}
 
 ?>
