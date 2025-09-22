@@ -338,7 +338,7 @@ class WPJOBPORTALResumeController {
                             throw new Exception(WPJOBPORTALLayout::setMessageFor(1 , $link , $linktext,1));
                         }
                         if ((WPJOBPORTALincluder::getObjectClass('user')->isjobseeker() && $config_array['formresume'] == 1) || ($guestallowed == 1) && in_array('visitorapplyjob', wpjobportal::$_active_addons) || wpjobportal::$_common->wpjp_isadmin()) {
-                        wpjobportal::$_data['resumeid'] = WPJOBPORTALrequest::getVar('wpjobportalid');
+                            wpjobportal::$_data['resumeid'] = WPJOBPORTALrequest::getVar('wpjobportalid');
 
                             if(is_numeric(wpjobportal::$_data['resumeid'])){
                                 if(!wpjobportal::$_common->wpjp_isadmin()){

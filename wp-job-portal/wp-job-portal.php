@@ -3,14 +3,14 @@
 /**
  * @package WP JOB PORTAL
  * @author Ahmad Bilal
- * @version 2.3.6
+ * @version 2.3.7
  */
 /*
   * Plugin Name: WP Job Portal
   * Plugin URI: https://wpjobportal.com/
   * Description: WP Job Portal is WordPress’s best job board plugin — easy to use, highly configurable, and built to support both job seekers and employers. AI-powered add-ons offer's smart job & resume search, and personalized recommendations.
   * Author: WP Job Portal
-  * Version: 2.3.6
+  * Version: 2.3.7
   * Text Domain: wp-job-portal
   * Domain Path: /languages
   * Author URI: https://wpjobportal.com/
@@ -77,7 +77,7 @@ class wpjobportal {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '236';
+        self::$_currentversion = '237';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_common = WPJOBPORTALincluder::getJSModel('common');
         self::$_config = WPJOBPORTALincluder::getJSModel('configuration');
@@ -187,7 +187,7 @@ class wpjobportal {
                 if( $plugin == $our_plugin ) {
                     update_option('wpjp_currentversion', self::$_currentversion);
                     include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
-                    WPJOBPORTALupdates::checkUpdates('236');
+                    WPJOBPORTALupdates::checkUpdates('237');
 
                 	// restore colors data
 		            require(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
@@ -322,11 +322,11 @@ class wpjobportal {
      */
 
     public static function wpjobportal_getPageidForWidgets() {
-        $pageid = wpjobportal::$_db->get_var("SELECT configvalue FROM `".wpjobportal::$_db->prefix."wj_portal_config` WHERE configname = 'default_pageid'");
+        $pageid = wpjobportal::$_db->get_var("SELECT configvalue FROM ".wpjobportal::$_db->prefix."wj_portal_config WHERE configname = 'default_pageid'");
         if ( is_numeric($pageid) && $pageid > 0){
             $id = $pageid;
         }else{ // fall back. just in case of no config set
-            $id = $this->wpjobportal_getPageid();
+            $id = wpjobportal::wpjobportal_getPageid();
         }
         return $id;
     }
@@ -1501,7 +1501,7 @@ function wpjobportal_upgrade_completed( $upgrader_object, $options ) {
 				update_option('wpjp_currentversion', wpjobportal::$_currentversion);
 				include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
 
-				WPJOBPORTALupdates::checkUpdates('236');
+				WPJOBPORTALupdates::checkUpdates('237');
 
 				// restore colors data
 				require_once(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');

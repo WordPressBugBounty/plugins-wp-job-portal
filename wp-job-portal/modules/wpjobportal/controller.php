@@ -121,6 +121,60 @@ class WPJOBPORTALwpjobportalController {
         die();
     }
 
+    function savescreenoptions() {
+        // 1. Verify the security nonce
+        if (!isset($_POST['wjp_dashboard_nonce']) || !wp_verify_nonce($_POST['wjp_dashboard_nonce'], 'wjp_dashboard_options_nonce')) {
+            wp_die('Security check failed.');
+        }
+
+        // 2. Check if the user has permission to save options
+        if (!current_user_can('manage_options')) {
+            wp_die('You do not have permission to perform this action.');
+        }
+
+        $option_name = 'wjp_dashboard_screen_options';
+
+        // 3. Define the default state for the dashboard sections
+        $wjp_dashboard_defaults = [
+            'quick_actions' => 'on',
+            'platform_growth' => 'on',
+            'quick_stats' => 'on',
+            'recent_jobs' => 'on',
+            'jobs_by_status_chart' => 'on',
+            'top_categories_chart' => 'on',
+            'latest_job_applies' => 'on',
+            'latest_resumes' => 'on',
+            'latest_subscriptions' => 'on',
+            'latest_payments' => 'on',
+            'latest_activity' => 'on',
+            'system_error_log' => 'on',
+            'latest_job_seekers' => 'on',
+            'latest_employers' => 'on',
+        ];
+
+        // 4. Handle the "Reset Defaults" action
+        if (isset($_POST['wjp_reset_options'])) {
+            update_option($option_name, $wjp_dashboard_defaults);
+        } else {
+            // 5. Sanitize and save the submitted options
+            $submitted_options = isset($_POST['wjp_screen_options']) ? (array) $_POST['wjp_screen_options'] : [];
+            $sanitized_options = [];
+
+            // Loop through the defaults to ensure only valid keys are saved
+            foreach (array_keys($wjp_dashboard_defaults) as $key) {
+                if (isset($submitted_options[$key])) {
+                    $sanitized_options[$key] = 'on'; // Save a consistent value
+                }
+            }
+            update_option($option_name, $sanitized_options);
+        }
+
+        // 6. Redirect the user back to the dashboard
+        $url = admin_url('admin.php?page=wpjobportal');
+        wp_safe_redirect($url);
+        exit;
+    }
+
 
 }
 

@@ -83,14 +83,14 @@ function wpjobportal_add_registration_fields() {
             <div class="wjportal-form-value">
                 <?php
                 $empflag  = wpjobportal::$_config->getConfigurationByConfigName('disable_employer');
-                if($empflag == 1){
-                 ?>
-                <select id="jobs_role" name="jobs_role" class="input form-control wjportal-form-select-field">
-                    <option value="0"><?php echo esc_html(__('Select job role', 'wp-job-portal')); ?></option>
-                    <option value="1"><?php echo esc_html(__('Employer', 'wp-job-portal')); ?></option>
-                    <option value="2"><?php echo esc_html(__('Job seeker', 'wp-job-portal')); ?></option>
-                </select>
-            <?php }else{ ?>
+                $showemployerlink  = wpjobportal::$_config->getConfigurationByConfigName('showemployerlink');
+                if($empflag == 1 && $showemployerlink == 1){ ?>
+                    <select id="jobs_role" name="jobs_role" class="input form-control wjportal-form-select-field">
+                        <option value="0"><?php echo esc_html(__('Select job role', 'wp-job-portal')); ?></option>
+                        <option value="1"><?php echo esc_html(__('Employer', 'wp-job-portal')); ?></option>
+                        <option value="2"><?php echo esc_html(__('Job seeker', 'wp-job-portal')); ?></option>
+                    </select><?php
+                }else{ ?>
                     <div class="wjportal-form-text">
                         <input type="hidden" name="jobs_role" value="2" />
                          <?php echo esc_html(__('Job seeker', 'wp-job-portal')); ?>

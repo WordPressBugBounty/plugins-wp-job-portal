@@ -1,1432 +1,761 @@
 <?php
 if (!defined('ABSPATH'))
-die('Restricted Access');
-wp_enqueue_style('status-graph', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/status_graph.css');
-wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js');
-wp_enqueue_script('wpjobportal-commonjs', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/common.js');
-$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+    die('Restricted Access');
 
-wp_enqueue_script( 'jp-google-charts', esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/js/google-charts.js', array(), '1.1.1', false );
-wp_register_script( 'google-charts-handle', '' );
-wp_enqueue_script( 'google-charts-handle' );
+wp_enqueue_style('wpjobportal-redesign-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportaladmin_redesign.css');
+// Enqueue necessary scripts and styles
+// wp_enqueue_style('wjp-font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+// wp_enqueue_script('chart-js', 'https://cdn.jsdelivr.net/npm/chart.js');
+// Safely load external CSS/JS
+
+    // Font Awesome (CSS)
+    wp_enqueue_style(
+        'wjp-font-awesome',
+        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css',
+        [], // no dependencies
+        '5.15.4' // version
+    );
+
+    // Chart.js (JS)
+    wp_enqueue_script(
+        'chart-js',
+        'https://cdn.jsdelivr.net/npm/chart.js',
+        [],        // dependencies (none here, but you could add 'jquery' if needed)
+        '4.4.0',   // version (always specify if possible)
+        true       // load in footer (better for performance)
+    );
 
 
-$stats_js_script = "    
-    google.charts.load('current', {'packages':['corechart']});
-    google.setOnLoadCallback(drawStackChartHorizontal);
-    function drawStackChartHorizontal() {
-        var data = google.visualization.arrayToDataTable([
-            ".
-                wpjobportal::$_data['stack_chart_horizontal']['title'] . ','.
-                wpjobportal::$_data['stack_chart_horizontal']['data']
-            ." ]);
-        var view = new google.visualization.DataView(data);
-        var options = {
-        curveType: 'function',
-                height:286,
-                legend: { position: 'top', maxLines: 3 },
-                pointSize: 4,
-                isStacked: true,
-                focusTarget: 'category',
-                chartArea: {width:'90%', top:50}
-        };
-        var chart = new google.visualization.LineChart(document.getElementById('stack_chart_horizontal'));
-        chart.draw(view, options);
+// Register a handle for our inline script
+wp_register_script('wp-job-portal-dashboard-js', '');
+wp_enqueue_script('wp-job-portal-dashboard-js');
+
+// Define default options and get the user's saved options from the wp_options table
+$wjp_dashboard_defaults = [
+    'quick_actions' => 'on',
+    'platform_growth' => 'on',
+    'quick_stats' => 'on',
+    'recent_jobs' => 'on',
+    'jobs_by_status_chart' => 'on',
+    'top_categories_chart' => 'on',
+    'latest_job_applies' => 'on',
+    'latest_resumes' => 'on',
+    'latest_subscriptions' => 'on',
+    'latest_payments' => 'on',
+    'latest_activity' => 'on',
+    'system_error_log' => 'on',
+    'latest_job_seekers' => 'on',
+    'latest_employers' => 'on',
+];
+$wjp_options = get_option('wjp_dashboard_screen_options', $wjp_dashboard_defaults);
+
+/**
+ * Helper function to determine the CSS class for a system error log entry.
+ *
+ * @param string $error_message The error message text.
+ * @return string The appropriate CSS class.
+ */
+if (!function_exists('get_error_log_class')) {
+    function get_error_log_class($error_message) {
+        $error_message_lower = strtolower($error_message);
+        if (str_contains($error_message_lower, 'error') || str_contains($error_message_lower, 'failed') || str_contains($error_message_lower, 'fatal')) {
+            return 'wjp-log-error';
+        } elseif (str_contains($error_message_lower, 'warning')) {
+            return 'wjp-log-warning';
+        } elseif (str_contains($error_message_lower, 'notice')) {
+            return 'wjp-log-notice';
+        }
+        return ''; // Default class
     }
-    ";
-wp_add_inline_script( 'google-charts-handle', $stats_js_script );
-
-$today_js_script = "
-    google.setOnLoadCallback(drawTodayTicketsChart);
-    function drawTodayTicketsChart() {
-      var data = google.visualization.arrayToDataTable([
-        ".
-            wpjobportal::$_data['today_ticket_chart']['title'].','.
-            wpjobportal::$_data['today_ticket_chart']['data']
-      ." ]);
-      var view = new google.visualization.DataView(data);
-      var options = {
-        height:120,
-        chartArea: { width: '80%', left: 30 },
-        legend: { position: 'top' },
-        hAxis: { textPosition: 'none' },
-      };
-      var chart = new google.visualization.ColumnChart(document.getElementById('today_ticket_chart'));
-      chart.draw(view, options);
-    }
-    ";
-wp_add_inline_script( 'google-charts-handle', $today_js_script );
+}
 
 ?>
-<!-- main wrapper -->
-<div id="wpjobportaladmin-wrapper">
-    <div id="wpjobportaladmin-leftmenu">
-        <?php  wpjobportalincluder::getClassesInclude('wpjobportaladminsidemenu'); ?>
-    </div>
-    <div id="wpjobportaladmin-data">
-        <div class="wpjobportal-admin-cp-wrapper">
-            <?php
-                $msgkey = WPJOBPORTALincluder::getJSModel('wpjobportal')->getMessagekey();
-                WPJOBPORTALMessages::getLayoutMessage($msgkey);
-            ?>
-            <!-- top bar -->
-            <div id="wpjobportal-wrapper-top">
-                <div id="wpjobportal-wrapper-top-left">
-                    <div id="wpjobportal-breadcrumbs">
-                        <ul>
-                            <li>
-                                <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_html(__('dashboard','wp-job-portal')); ?>">
-                                    <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div id="wpjobportal-wrapper-top-right">
-                    <div id="wpjobportal-config-btn">
-                        <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_html(__('configuration','wp-job-portal')); ?>">
-                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
-                       </a>
-                    </div>
-                    <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                        <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_html(__('help','wp-job-portal')); ?>">
-                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
-                       </a>
-                    </div>
-                    <div id="wpjobportal-vers-txt">
-                        <?php echo esc_html(__('Version','wp-job-portal')).': '; ?>
-                        <span class="wpjobportal-ver"><?php echo esc_html(WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue('versioncode')); ?></span>
-                    </div>
-                </div>
-            </div>
-            <!-- top head -->
-            <?php WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('module' => 'wpjobportal' , 'layouts' => 'controlpanel')); ?>
-            <!-- page content -->
-            <div id="wpjobportal-admin-wrapper" class="p0 bg-n bs-n">
-                <!-- page single section wrp -->
-                <div class="wpjobportal-cp-cnt-sec">
-                    <!-- update available alert -->
-                    <?php if (wpjobportal::$_data['update_avaliable_for_addons'] != 0) {?>
-                        <div class="wpjobportal-update-alert-wrp">
-                            <div class="wpjobportal-update-alert-image">
-                                <img alt="<?php echo esc_attr(__('Update','wp-job-portal')); ?>" class="wpjobportal-update-alert-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/update-icon.png"/>
-                            </div>
-                            <div class="wpjobportal-update-alert-cnt">
-                                    <?php echo esc_html(__("Hey there! We have recently launched a fresh update for the add-ons. Don't forget to update the add-ons to enjoy the greatest features!",'wp-job-portal')); ?>
-                            </div>
-                            <a href="admin.php?page=wpjobportal&wpjobportallt=addonstatus" class="wpjobportal-update-alert-btn" title="<?php echo esc_attr(__('View','wp-job-portal')); ?>">
-                                <?php echo esc_html(__('View Addone Status','wp-job-portal')); ?>
-                            </a>
-                        </div>
-                    <?php } ?>
-                    <div class="wpjobportal-cp-cnt-left">
-                        <?php
-                            $total_companies = 0;
-                            $total_resumes = 0;
-                            $total_jobs = 0;
-                            $total_activeJObs = 0;
-                            $overdue_percentage = 0;
-                                if(isset(wpjobportal::$_data['totalcompanies']) && !empty(wpjobportal::$_data['totalcompanies'])){
-                                    $open_percentage = @round((wpjobportal::$_data['totalapcompanies'] / wpjobportal::$_data['totalcompanies']) * 100);
-                                }else{
-                                 $open_percentage = 100;
-                                }
-                                if(isset(wpjobportal::$_data['totaljobs']) && !empty(wpjobportal::$_data['totaljobs'])){
-                                    $total_activeJObs =  @round((wpjobportal::$_data['totalactivejobs'] / wpjobportal::$_data['totaljobs']) * 100);
-                                }else{
-                                    $total_activeJObs = 100;
-                                }
 
-                                if(isset(wpjobportal::$_data['totalresume']) && !empty(wpjobportal::$_data['totalresume'])){
-                                    $total_resumes =  @round((wpjobportal::$_data['totalapresume'] / wpjobportal::$_data['totalresume']) * 100);
-                                }else{
-                                    $total_resumes = 100;
-                                }
+<div id="wjp-dashboard-wrapper">
+    <div id="wpjobportaladmin-wrapper">
+        <div id="wpjobportaladmin-leftmenu">
+            <?php wpjobportalincluder::getClassesInclude('wpjobportaladminsidemenu'); ?>
+        </div>
+        <div id="wpjobportaladmin-data">
+            <main class="wjp-main-content">
 
-                                if(isset(wpjobportal::$_data['totaljobs']) && !empty(wpjobportal::$_data['totaljobs'])){
-                                    $total_jobs =  @round((wpjobportal::$_data['totalnewjobs'] / wpjobportal::$_data['totaljobs']) * 100);
-                                }else{
-                                    $total_jobs = 100;
-                                }
-                        ?>
-                        <!-- count boxes -->
-                        <div class="wpjobportal-count-wrp">
-                            <div class="wpjobportal-count-link">
-                                <a class="wpjobportal-count-link wpjobportal-count-companies" href="admin.php?page=wpjobportal_company" data-tab-number="1" title="<?php echo esc_html(__('Active Companies', 'wp-job-portal')); ?>">
-                                    <div class="wpjobportal-count-cricle-wrp" data-per="<?php echo esc_attr($open_percentage); ?>" data-tab-number="1">
-                                        <div class="js-mr-rp" data-progress="<?php echo esc_attr($open_percentage); ?>">
-                                            <div class="circle">
-                                                <div class="mask full">
-                                                     <div class="fill"></div>
-                                                </div>
-                                                <div class="mask half">
-                                                    <div class="fill"></div>
-                                                    <div class="fill fix"></div>
-                                                </div>
-                                                <div class="shadow"></div>
-                                            </div>
-                                            <div class="inset">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wpjobportal-count-link-text">
-                                        <?php
-                                            echo esc_html(__('Companies', 'wp-job-portal'));
-                                            echo ' ( '.esc_html(wpjobportal::$_data['totalapcompanies']).' )';
-                                        ?>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="wpjobportal-count-link">
-                                <a class="wpjobportal-count-link wpjobportal-count-jobs" href="admin.php?page=wpjobportal_job" data-tab-number="2" title="<?php echo esc_html(__('Newest Jobs', 'wp-job-portal')); ?>">
-                                    <div class="wpjobportal-count-cricle-wrp" data-per="<?php echo esc_attr($total_jobs); ?>" >
-                                        <div class="js-mr-rp" data-progress="<?php echo esc_attr($total_jobs); ?>">
-                                            <div class="circle">
-                                                <div class="mask full">
-                                                     <div class="fill"></div>
-                                                </div>
-                                                <div class="mask half">
-                                                    <div class="fill"></div>
-                                                    <div class="fill fix"></div>
-                                                </div>
-                                                <div class="shadow"></div>
-                                            </div>
-                                            <div class="inset">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wpjobportal-count-link-text">
-                                        <?php
-                                            echo esc_html(__('Newest Jobs', 'wp-job-portal'));
-                                            echo ' ( '. esc_html(wpjobportal::$_data['totalnewjobs']).' )';
-                                        ?>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="wpjobportal-count-link">
-                                <a class="wpjobportal-count-link wpjobportal-count-resume" href="admin.php?page=wpjobportal_resume" data-tab-number="3" title="<?php echo esc_html(__('Active Resume', 'wp-job-portal')); ?>">
-                                    <div class="wpjobportal-count-cricle-wrp" data-per="<?php echo esc_attr($total_resumes); ?>">
-                                        <div class="js-mr-rp" data-progress="<?php echo esc_attr($total_resumes); ?>">
-                                            <div class="circle">
-                                                <div class="mask full">
-                                                     <div class="fill"></div>
-                                                </div>
-                                                <div class="mask half">
-                                                    <div class="fill"></div>
-                                                    <div class="fill fix"></div>
-                                                </div>
-                                                <div class="shadow"></div>
-                                            </div>
-                                            <div class="inset">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wpjobportal-count-link-text">
-                                        <?php
-                                            echo esc_html(__('Resume', 'wp-job-portal'));
-                                            echo ' ( '. esc_html(wpjobportal::$_data['totalapresume']).' )';
-                                        ?>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="wpjobportal-count-link">
-                                <a class="wpjobportal-count-link wpjobportal-count-active-jobs" href="admin.php?page=wpjobportal_job" data-tab-number="4" title="<?php echo esc_html(__('Active Jobs', 'wp-job-portal')); ?>">
-                                    <div class="wpjobportal-count-cricle-wrp" data-per="<?php echo esc_attr($total_activeJObs); ?>" >
-                                        <div class="js-mr-rp" data-progress="<?php echo esc_attr($total_activeJObs); ?>">
-                                            <div class="circle">
-                                                <div class="mask full">
-                                                     <div class="fill"></div>
-                                                </div>
-                                                <div class="mask half">
-                                                    <div class="fill"></div>
-                                                    <div class="fill fix"></div>
-                                                </div>
-                                                <div class="shadow"></div>
-                                            </div>
-                                            <div class="inset">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wpjobportal-count-link-text">
-                                        <?php
-                                            echo esc_html(__('Active Jobs', 'wp-job-portal'));
-                                            echo ' ( '. esc_html(wpjobportal::$_data['totalactivejobs']).' )';
-                                        ?>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+                <div id="wjp-header">
+                    <div class="wjp-header-title">
+                        <div class="wjp-h2"><?php echo esc_html__('Welcome back!', 'wp-job-portal'); ?></div>
+                        <p><?php echo esc_html__('Here\'s a snapshot of your job board\'s performance.', 'wp-job-portal'); ?></p>
                     </div>
-                    <div class="wpjobportal-cp-cnt-right">
-                        <!-- today stats -->
-                        <div class="wpjobportal-cp-cnt">
-                            <div class="wpjobportal-cp-cnt-title">
-                                <span class="wpjobportal-cp-cnt-title-txt">
-                                    <?php echo esc_html(__('Today Jobs', 'wp-job-portal')); ?>
-                                </span>
-                            </div>
-                            <div id="today_ticket_chart" class="wpjobportal-today-stats-wrp">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="wpjobportal-cp-cnt-left">
-                        <div class="wpjobportal-cp-help-section">
-                            <div class="wpjobportal-cp-helping-card setup-card">
-                                <a href="https://youtu.be/0stgD2ca8Ag?si=aysjvU_TOpEJ7Uhh" class="wpjobportal-cp-helping-card-left" target="_blank">
-                                    <img title="<?php echo esc_html(__('How to Set Up', 'wp-job-portal')); ?>" alt="<?php echo esc_html(__('How to Set Up', 'wp-job-portal')); ?>" class="wpjobportal-short-link-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/helping-section/setup-icon.png"/>
-                                </a>
-                                <div class="wpjobportal-cp-helping-card-right">
-                                    <div class="wpjobportal-cp-helping-card-tit"><?php echo esc_html(__('How to Set Up WP Job Portal', 'wp-job-portal')); ?></div>
-                                    <div class="wpjobportal-cp-helping-card-desc"><?php echo esc_html(__('Find step-by-step setup instructions and access all tutorial videos to get started quickly.', 'wp-job-portal')); ?></div>
-                                    <div class="wpjobportal-cp-helping-card-btns"><a title="<?php echo esc_html(__('How to Setup', 'wp-job-portal')); ?>" class="wpjobportal-cp-helping-card-left-btn" href="https://youtu.be/0stgD2ca8Ag?si=aysjvU_TOpEJ7Uhh"><?php echo esc_html(__('How to Set Up', 'wp-job-portal')); ?></a><a title="<?php echo esc_html(__('Help Page', 'wp-job-portal')); ?>" class="wpjobportal-cp-helping-card-right-btn" href="admin.php?page=wpjobportal&wpjobportallt=help"><?php echo esc_html(__('Visit Help Page', 'wp-job-portal')); ?></a></div>
-                                </div>
-                            </div>
-                            <div class="wpjobportal-cp-helping-card shortcodes-card">
-                                <a href="https://www.youtube.com/watch?v=ySAb0uKgxLk" class="wpjobportal-cp-helping-card-left" target="_blank">
-                                    <img title="<?php echo esc_html(__('Shortcodes', 'wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcodes', 'wp-job-portal')); ?>" class="wpjobportal-short-link-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/helping-section/shortcode.png"/>
-                                </a>
-                                <div class="wpjobportal-cp-helping-card-right">
-                                    <div class="wpjobportal-cp-helping-card-tit"><?php echo esc_html(__('Shortcodes', 'wp-job-portal')); ?></div>
-                                    <div class="wpjobportal-cp-helping-card-desc"><?php echo esc_html(__('Explore all shortcodes and watch a video tutorial on how to create pages with them.', 'wp-job-portal')); ?></div>
-                                    <div class="wpjobportal-cp-helping-card-btns"><a title="<?php echo esc_html(__('Shortcodes', 'wp-job-portal')); ?>" class="wpjobportal-cp-helping-card-left-btn" href="admin.php?page=wpjobportal&wpjobportallt=shortcodes"><?php echo esc_html(__('Shortcodes', 'wp-job-portal')); ?></a><a title="<?php echo esc_html(__('Watch Tutorial', 'wp-job-portal')); ?>" class="wpjobportal-cp-helping-card-right-btn" href="https://www.youtube.com/watch?v=ySAb0uKgxLk" target="_blank"><img title="<?php echo esc_html(__('Watch Tutorial', 'wp-job-portal')); ?>" alt="<?php echo esc_html(__('video', 'wp-job-portal')); ?>" class="wpjobportal-short-link-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/helping-section/video.png"/></a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="wpjobportal-cp-cnt-right">
-                        <div class="wpjobportal-cp-help-section">
-                            <div class="wpjobportal-cp-helping-card manage-addons-card">
-                                 <a href="https://www.youtube.com/watch?v=VW4KqwDoWNw" class="wpjobportal-cp-helping-card-left" target="_blank">
-                                    <img title="<?php echo esc_html(__('Manage Addons', 'wp-job-portal')); ?>" alt="<?php echo esc_html(__('Manage Addons', 'wp-job-portal')); ?>" class="wpjobportal-short-link-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/helping-section/adons.png"/>
-                                </a>
-                                <div class="wpjobportal-cp-helping-card-right">
-                                    <div class="wpjobportal-cp-helping-card-tit"><?php echo esc_html(__('Manage Addons', 'wp-job-portal')); ?></div>
-                                    <div class="wpjobportal-cp-helping-card-desc"><?php echo esc_html(__('Check the status of your addons and easily install new ones to enhance functionality.', 'wp-job-portal')); ?></div>
-                                    <div class="wpjobportal-cp-helping-card-btns"><a title="<?php echo esc_html(__('Check Status', 'wp-job-portal')); ?>" class="wpjobportal-cp-helping-card-left-btn" href="admin.php?page=wpjobportal&wpjobportallt=addonstatus"><?php echo esc_html(__('Check Status', 'wp-job-portal')); ?></a><a title="<?php echo esc_html(__('Install Addons', 'wp-job-portal')); ?>" class="wpjobportal-cp-helping-card-right-btn" href="https://www.youtube.com/watch?v=VW4KqwDoWNw" target="_blank"><?php echo esc_html(__('Install Guide', 'wp-job-portal')); ?></a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="wpjobportal-cp-cnt-left">
-                        <!-- statistics -->
-                        <div class="wpjobportal-cp-cnt">
-                            <div class="wpjobportal-cp-cnt-title">
-                                <span class="wpjobportal-cp-cnt-title-txt">
-                                    <?php echo esc_html(__('Statistics', 'wp-job-portal')); ?>
-                                    (<?php echo esc_html(wpjobportal::$_data['fromdate']); ?>
-                                    <?php echo esc_html(wpjobportal::$_data['curdate']); ?>)
-                                </span>
-                            </div>
-                            <div class="wpjobportal-performance-graph" id="stack_chart_horizontal"></div>
-                        </div>
-                    </div>
-                    <div class="wpjobportal-cp-cnt-right">
-                        <!-- short links -->
-                        <div class="wpjobportal-cp-cnt">
-                            <div class="wpjobportal-cp-cnt-title">
-                                <span class="wpjobportal-cp-cnt-title-txt">
-                                    <?php echo esc_html(__('Short Links', 'wp-job-portal')); ?>
-                                </span>
-                            </div>
-                            <div class="wpjobportal-short-links-wrp">
-                                <a title="<?php echo esc_html(__('configuartion', 'wp-job-portal')); ?>" class="wpjobportal-short-link" href="admin.php?page=wpjobportal_configuration">
-                                    <img alt="<?php echo esc_html(__('configuartion', 'wp-job-portal')); ?>" class="wpjobportal-short-link-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/admin-left-menu/config.png"/>
-                                    <span class="wpjobportal-short-link-text"><?php echo esc_html(__('Configuartion', 'wp-job-portal')); ?></span>
-                                    <img alt="<?php echo esc_html(__('arrow', 'wp-job-portal')); ?>" class="wpjobportal-short-link-arrow-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/admin-left-menu/arrows/red.png"/>
-                                </a>
-                                <a title="<?php echo esc_html(__('companies', 'wp-job-portal')); ?>" class="wpjobportal-short-link" href="admin.php?page=wpjobportal_company">
-                                    <img alt="<?php echo esc_html(__('companies', 'wp-job-portal')); ?>" class="wpjobportal-short-link-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/admin-left-menu/companies.png"/>
-                                    <span class="wpjobportal-short-link-text"><?php echo esc_html(__('Companies', 'wp-job-portal')); ?></span>
-                                    <img alt="<?php echo esc_html(__('arrow', 'wp-job-portal')); ?>" class="wpjobportal-short-link-arrow-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/admin-left-menu/arrows/green.png"/>
-                                </a>
-                                <a title="<?php echo esc_html(__('jobs', 'wp-job-portal')); ?>" class="wpjobportal-short-link" href="admin.php?page=wpjobportal_job">
-                                    <img alt="<?php echo esc_html(__('jobs', 'wp-job-portal')); ?>" class="wpjobportal-short-link-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/admin-left-menu/jobs.png"/>
-                                    <span class="wpjobportal-short-link-text"><?php echo esc_html(__('Jobs', 'wp-job-portal')); ?></span>
-                                    <img alt="<?php echo esc_html(__('arrow', 'wp-job-portal')); ?>" class="wpjobportal-short-link-arrow-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/admin-left-menu/arrows/dark-blue.png"/>
-                                </a>
-                                <a title="<?php echo esc_html(__('resume', 'wp-job-portal')); ?>" class="wpjobportal-short-link" href="admin.php?page=wpjobportal_resume">
-                                    <img alt="<?php echo esc_html(__('resume', 'wp-job-portal')); ?>" class="wpjobportal-short-link-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/admin-left-menu/resume.png"/>
-                                    <span class="wpjobportal-short-link-text"><?php echo esc_html(__('Resume', 'wp-job-portal')); ?></span>
-                                    <img alt="<?php echo esc_html(__('arrow', 'wp-job-portal')); ?>" class="wpjobportal-short-link-arrow-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/admin-left-menu/arrows/green.png"/>
-                                </a>
-                                <?php if(in_array('credits', wpjobportal::$_active_addons)){ ?>
-                                    <a title="<?php echo esc_html(__('credits', 'wp-job-portal')); ?>" class="wpjobportal-short-link" href="admin.php?page=wpjobportal_package">
-                                        <img alt="<?php echo esc_html(__('credits', 'wp-job-portal')); ?>" class="wpjobportal-short-link-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/admin-left-menu/credits.png"/>
-                                        <span class="wpjobportal-short-link-text"><?php echo esc_html(__('Credits', 'wp-job-portal')); ?></span>
-                                        <img alt="<?php echo esc_html(__('arrow', 'wp-job-portal')); ?>" class="wpjobportal-short-link-arrow-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/admin-left-menu/arrows/orange.png"/>
-                                    </a>
-                                <?php } /* ?>
-                                <a title="<?php echo esc_html(__('trannslations', 'wp-job-portal')); ?>" class="wpjobportal-short-link" href="admin.php?page=wpjobportal&wpjobportallt=translations">
-                                    <img alt="<?php echo esc_html(__('trannslations', 'wp-job-portal')); ?>" class="wpjobportal-short-link-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/admin-left-menu/trannslations.png"/>
-                                    <span class="wpjobportal-short-link-text"><?php echo esc_html(__('Trannslations', 'wp-job-portal')); ?></span>
-                                    <img alt="<?php echo esc_html(__('arrow', 'wp-job-portal')); ?>" class="wpjobportal-short-link-arrow-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/admin-left-menu/arrows/purple.png"/>
-                                </a> <?php */ ?>
-                                <a title="<?php echo esc_html(__('premium add ons', 'wp-job-portal')); ?>" class="wpjobportal-short-link" href="admin.php?page=wpjobportal_premiumplugin">
-                                    <img alt="<?php echo esc_html(__('ad ons', 'wp-job-portal')); ?>" class="wpjobportal-short-link-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/admin-left-menu/ad-ons.png"/>
-                                    <span class="wpjobportal-short-link-text"><?php echo esc_html(__('Premium Add Ons', 'wp-job-portal')); ?></span>
-                                    <img alt="<?php echo esc_html(__('arrow', 'wp-job-portal')); ?>" class="wpjobportal-short-link-arrow-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/admin-left-menu/arrows/dark-blue.png"/>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- page single section wrp -->
-                <div class="wpjobportal-cp-cnt-sec wpjobportal-cp-baner">
-                    <div class="wpjobportal-cp-baner-cnt">
-                        <div class="wpjobportal-cp-banner-tit-bold">
-                            <?php echo esc_html(__('Install Now','wp-job-portal')); ?>
-                        </div>
-                        <div class="wpjobportal-cp-banner-tit">
-                            <?php $data = esc_html(__('Premium Addons List & Features','wp-job-portal'));
-                            echo esc_html($data); ?>
-                        </div>
-                        <div class="wpjobportal-cp-banner-desc">
-                            <?php echo esc_html(__('The best support system plugin for WordPress has everything you need.','wp-job-portal')); ?>
-                        </div>
-                        <div class="wpjobportal-cp-banner-btn-wrp">
-                            <a href="?page=wpjobportal_premiumplugin&wpjobportallt=addonfeatures" class="wpjobportal-cp-banner-btn orange-bg">
-                                <?php  $data = esc_html(__('Add-Ons List','wp-job-portal'));
-                                echo esc_html($data); ?>
+                    <div class="wjp-header-actions">
+                        <div class="wjp-dropdown">
+                            <a href="#" id="wjp-screen-options-btn" class="wjp-btn wjp-btn-secondary">
+                                <i class="fas fa-sliders-h wjp-btn-icon"></i> <?php echo esc_html__('Options', 'wp-job-portal'); ?>
                             </a>
-                            <a href="?page=wpjobportal_premiumplugin&wpjobportallt=step1" class="wpjobportal-cp-banner-btn">
-                                <?php echo esc_html(__('Add New Addons','wp-job-portal')); ?>
-                            </a>
-                        </div>
-                    </div>
-                    <img class="wpjobportal-cp-baner-img" alt="<?php echo esc_html(__('addon','wp-job-portal')); ?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addon-image.png"/>
-                </div>
-                <!-- page single section wrp -->
-                <div class="wpjobportal-cp-cnt-sec wpjobportal-cp-job-list">
-                    <div class="wpjobportal-cp-cnt-title">
-                        <span class="wpjobportal-cp-cnt-title-txt">
-                            <?php echo esc_html(__('Latest Jobs','wp-job-portal')); ?>
-                        </span>
-                        <a href="admin.php?page=wpjobportal_job" class="wpjobportal-cp-cnt-title-btn" title="<?php echo esc_html(__('view all jobs','wp-job-portal')); ?>">
-                            <?php echo esc_html(__('View All Jobs','wp-job-portal')); ?>
+
+                            <div id="wjp-screen-options-menu" class="wjp-so-popup">
+                               <form method="post" action="<?php echo esc_url(admin_url('admin.php?page=wpjobportal&task=savescreenoptions&action=wpjobportaltask')); ?>">
+                                    <?php // NONCE & ACTION FIELDS - DO NOT REMOVE ?>
+                                    <input type="hidden" name="action" value="wpjobportaltask">
+                                    <?php wp_nonce_field('wjp_dashboard_options_nonce', 'wjp_dashboard_nonce'); ?>
+
+                                    <div class="wjp-so-header">
+                                        <div class="wjp-so-title"><?php echo esc_html__('Customize Your Dashboard', 'wp-job-portal'); ?></div>
+                                        <a href="#" class="wjp-so-close wjp-close-dropdown"><i class="fas fa-times"></i></a>
+                                    </div>
+
+                                    <div class="wjp-so-content">
+
+                                        <div class="wjp-so-section">
+                                            <div class="wjp-so-section-title"><?php echo esc_html__('Core Components', 'wp-job-portal'); ?></div>
+                                            <div class="wjp-so-grid">
+                                                <div class="wjp-so-item">
+                                                    <div class="wjp-so-item-label"><i class="fas fa-bolt"></i><span><?php echo esc_html__('Quick Actions', 'wp-job-portal'); ?></span></div>
+                                                    <label class="wjp-so-toggle"><input type="checkbox" name="wjp_screen_options[quick_actions]" <?php checked(isset($wjp_options['quick_actions'])); ?>><span class="wjp-so-slider"></span></label>
+                                                </div>
+                                                <div class="wjp-so-item">
+                                                    <div class="wjp-so-item-label"><i class="fas fa-briefcase"></i><span><?php echo esc_html__('Recent Jobs', 'wp-job-portal'); ?></span></div>
+                                                    <label class="wjp-so-toggle"><input type="checkbox" name="wjp_screen_options[recent_jobs]" <?php checked(isset($wjp_options['recent_jobs'])); ?>><span class="wjp-so-slider"></span></label>
+                                                </div>
+                                                <div class="wjp-so-item">
+                                                    <div class="wjp-so-item-label"><i class="fas fa-tachometer-alt"></i><span><?php echo esc_html__('Quick Stats', 'wp-job-portal'); ?></span></div>
+                                                    <label class="wjp-so-toggle"><input type="checkbox" name="wjp_screen_options[quick_stats]" <?php checked(isset($wjp_options['quick_stats'])); ?>><span class="wjp-so-slider"></span></label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="wjp-so-section">
+                                            <div class="wjp-so-section-title"><?php echo esc_html__('Visualizations', 'wp-job-portal'); ?></div>
+                                            <div class="wjp-so-grid">
+                                                <div class="wjp-so-item">
+                                                    <div class="wjp-so-item-label"><i class="fas fa-chart-line"></i><span><?php echo esc_html__('Platform Growth', 'wp-job-portal'); ?></span></div>
+                                                    <label class="wjp-so-toggle"><input type="checkbox" name="wjp_screen_options[platform_growth]" <?php checked(isset($wjp_options['platform_growth'])); ?>><span class="wjp-so-slider"></span></label>
+                                                </div>
+                                                <div class="wjp-so-item">
+                                                    <div class="wjp-so-item-label"><i class="fas fa-chart-pie"></i><span><?php echo esc_html__('Jobs by Status', 'wp-job-portal'); ?></span></div>
+                                                    <label class="wjp-so-toggle"><input type="checkbox" name="wjp_screen_options[jobs_by_status_chart]" <?php checked(isset($wjp_options['jobs_by_status_chart'])); ?>><span class="wjp-so-slider"></span></label>
+                                                </div>
+                                                <div class="wjp-so-item">
+                                                    <div class="wjp-so-item-label"><i class="fas fa-chart-bar"></i><span><?php echo esc_html__('Top Categories', 'wp-job-portal'); ?></span></div>
+                                                    <label class="wjp-so-toggle"><input type="checkbox" name="wjp_screen_options[top_categories_chart]" <?php checked(isset($wjp_options['top_categories_chart'])); ?>><span class="wjp-so-slider"></span></label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="wjp-so-section">
+                                            <div class="wjp-so-section-title"><?php echo esc_html__('Activity & System Feeds', 'wp-job-portal'); ?></div>
+                                            <div class="wjp-so-grid">
+                                                <div class="wjp-so-item">
+                                                    <div class="wjp-so-item-label"><i class="fas fa-file-signature"></i><span><?php echo esc_html__('Latest Applies', 'wp-job-portal'); ?></span></div>
+                                                    <label class="wjp-so-toggle"><input type="checkbox" name="wjp_screen_options[latest_job_applies]" <?php checked(isset($wjp_options['latest_job_applies'])); ?>><span class="wjp-so-slider"></span></label>
+                                                </div>
+                                                <div class="wjp-so-item">
+                                                    <div class="wjp-so-item-label"><i class="fas fa-file-alt"></i><span><?php echo esc_html__('Latest Resumes', 'wp-job-portal'); ?></span></div>
+                                                    <label class="wjp-so-toggle"><input type="checkbox" name="wjp_screen_options[latest_resumes]" <?php checked(isset($wjp_options['latest_resumes'])); ?>><span class="wjp-so-slider"></span></label>
+                                                </div>
+                                                <div class="wjp-so-item">
+                                                    <div class="wjp-so-item-label"><i class="fas fa-history"></i><span><?php echo esc_html__('Activity Log', 'wp-job-portal'); ?></span></div>
+                                                    <label class="wjp-so-toggle"><input type="checkbox" name="wjp_screen_options[latest_activity]" <?php checked(isset($wjp_options['latest_activity'])); ?>><span class="wjp-so-slider"></span></label>
+                                                </div>
+                                                <div class="wjp-so-item">
+                                                    <div class="wjp-so-item-label"><i class="fas fa-exclamation-triangle"></i><span><?php echo esc_html__('Error Log', 'wp-job-portal'); ?></span></div>
+                                                    <label class="wjp-so-toggle"><input type="checkbox" name="wjp_screen_options[system_error_log]" <?php checked(isset($wjp_options['system_error_log'])); ?>><span class="wjp-so-slider"></span></label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="wjp-so-section">
+                                            <div class="wjp-so-section-title"><?php echo esc_html__('User & Financials', 'wp-job-portal'); ?></div>
+                                            <div class="wjp-so-grid">
+                                                <div class="wjp-so-item">
+                                                    <div class="wjp-so-item-label"><i class="fas fa-user-friends"></i><span><?php echo esc_html__('Job Seekers', 'wp-job-portal'); ?></span></div>
+                                                    <label class="wjp-so-toggle"><input type="checkbox" name="wjp_screen_options[latest_job_seekers]" <?php checked(isset($wjp_options['latest_job_seekers'])); ?>><span class="wjp-so-slider"></span></label>
+                                                </div>
+                                                <div class="wjp-so-item">
+                                                    <div class="wjp-so-item-label"><i class="fas fa-building"></i><span><?php echo esc_html__('Employers', 'wp-job-portal'); ?></span></div>
+                                                    <label class="wjp-so-toggle"><input type="checkbox" name="wjp_screen_options[latest_employers]" <?php checked(isset($wjp_options['latest_employers'])); ?>><span class="wjp-so-slider"></span></label>
+                                                </div>
+                                                <?php if(in_array('credits', wpjobportal::$_active_addons)){ ?>
+                                                    <div class="wjp-so-item">
+                                                        <div class="wjp-so-item-label"><i class="fas fa-tags"></i><span><?php echo esc_html__('Subscriptions', 'wp-job-portal'); ?></span></div>
+                                                        <label class="wjp-so-toggle"><input type="checkbox" name="wjp_screen_options[latest_subscriptions]" <?php checked(isset($wjp_options['latest_subscriptions'])); ?>><span class="wjp-so-slider"></span></label>
+                                                    </div>
+                                                    <div class="wjp-so-item">
+                                                        <div class="wjp-so-item-label"><i class="fas fa-credit-card"></i><span><?php echo esc_html__('Payments', 'wp-job-portal'); ?></span></div>
+                                                        <label class="wjp-so-toggle"><input type="checkbox" name="wjp_screen_options[latest_payments]" <?php checked(isset($wjp_options['latest_payments'])); ?>><span class="wjp-so-slider"></span></label>
+                                                    </div>
+                                                <?php }?>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="wjp-so-footer">
+                                        <button type="submit" name="wjp_reset_options" value="1" class="wjp-btn-sm wjp-btn-reset"><?php echo esc_html__('Reset to Defaults', 'wp-job-portal'); ?></button>
+                                        <button type="submit" class="wjp-btn-sm wjp-btn-primary"><?php echo esc_html__('Apply Changes', 'wp-job-portal'); ?></button>
+                                    </div>
+                               </form>
+                            </div>
+                            </div>
+                        <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=formjob')); ?>" class="wjp-btn wjp-btn-primary">
+                            <i class="fas fa-plus wjp-btn-icon"></i> <?php echo esc_html__('Add New Job', 'wp-job-portal'); ?>
                         </a>
                     </div>
-                    <div class="wpjobportal-jobs-list-wrapper">
-                        <?php
-                        if(isset(wpjobportal::$_data[0]['latestjobs']) && !empty(wpjobportal::$_data[0]['latestjobs'])){
-                            foreach (wpjobportal::$_data[0]['latestjobs'] AS $latestjobs) {?>
-                            <?php
-                                WPJOBPORTALincluder::getTemplate('job/views/admin/joblist',array(
-                                    'job' => $latestjobs,
-                                    'layout' => '',
-                                    'logo' => 'logo'
-                                ));
-                        }
-                     }else{ ?>
-                        <div class="wpjobportal_no_record">
-                                <?php echo esc_html(__("No Record Found",'wp-job-portal')); ?>
-                            </div>
-                    <?php } ?>
-                    </div>
                 </div>
-                <!-- page single section wrp -->
-                <div class="wpjobportal-cp-cnt-sec wpjobportal-cp-res-ad-sec">
-                    <!-- resume list -->
-                    <?php $fullwidthclass = "";
-                    if(count(wpjobportal::$_active_addons) >= 30 ){
-                        $fullwidthclass = "style=width:100% !important";
-                    }?>
-                    <?php  if(isset(wpjobportal::$_data[0]['latestresumes']) && !empty(wpjobportal::$_data[0]['latestresumes'])){ ?>
-                            <div class="wpjobportal-cp-resume-wrp" <?php echo esc_attr($fullwidthclass); ?>>
-                                <div class="wpjobportal-cp-cnt-title">
-                                    <span class="wpjobportal-cp-cnt-title-txt">
-                                        <?php echo esc_html(__('Latest Resume','wp-job-portal')); ?>
-                                    </span>
-                                </div>
-                                <div class="wpjobportal-resume-list-wrp">
-                                    <?php foreach (wpjobportal::$_data[0]['latestresumes'] AS $resume) { ?>
-                                        <div class="wpjobportal-resume-list">
-                                           <?php
-                                            WPJOBPORTALincluder::getTemplate('resume/views/admin/details',array(
-                                                'resume' => $resume,
-                                                'control' => '',
-                                                'arr' => ''
-                                            ));
-                                           ?>
-                                        </div>
-                                    <?php } ?>
-                                </div>
-                                <div class="wpjop-portal-cp-view-btn-wrp">
-                                    <a href="admin.php?page=wpjobportal_resume" class="wpjop-portal-cp-view-btn" title="<?php echo esc_html(__('view all','wp-job-portal')); ?>">
-                                        <i class="fa fa-plus"></i>
-                                        <?php echo esc_html(__('View All','wp-job-portal')); ?>
-                                    </a>
-                                </div>
-                            </div>
+                <?php if (isset($wjp_options['quick_actions'])) : ?>
+                <div id="wjp-quick-actions">
+                    <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=jobqueue')); ?>" class="wjp-action-card">
+                        <div class="wjp-action-icon-wrapper wjp-bg-indigo"><i class="fas fa-check"></i></div>
+                        <p class="wjp-action-title"><?php echo esc_html__('Approve Jobs', 'wp-job-portal'); ?></p>
+                        <p class="wjp-action-subtitle"><?php echo esc_html(isset(wpjobportal::$_data['totalnewjobspending']) ? wpjobportal::$_data['totalnewjobspending'] : '0'); ?> <?php echo esc_html__('Pending', 'wp-job-portal'); ?></p>
+                    </a>
+                    <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_user')); ?>" class="wjp-action-card">
+                        <div class="wjp-action-icon-wrapper wjp-bg-sky"><i class="fas fa-users-cog"></i></div>
+                        <p class="wjp-action-title"><?php echo esc_html__('Manage Users', 'wp-job-portal'); ?></p>
+                        <p class="wjp-action-subtitle"><?php echo esc_html(isset(wpjobportal::$_data['totaljobapply']) ? wpjobportal::$_data['totaljobapply'] : '0'); ?> <?php echo esc_html__('Total', 'wp-job-portal'); ?></p>
+                    </a>
+                    <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_report&wpjobportallt=overallreports')); ?>" class="wjp-action-card">
+                        <div class="wjp-action-icon-wrapper wjp-bg-emerald"><i class="fas fa-chart-bar"></i></div>
+                        <p class="wjp-action-title"><?php echo esc_html__('View Reports', 'wp-job-portal'); ?></p>
+                        <p class="wjp-action-subtitle"><?php echo esc_html__('Analytics', 'wp-job-portal'); ?></p>
+                    </a>
+                    <?php if(in_array('credits', wpjobportal::$_active_addons)){ ?>
+                        <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_package')); ?>" class="wjp-action-card">
+                            <div class="wjp-action-icon-wrapper wjp-bg-amber"><i class="fas fa-tags"></i></div>
+                            <p class="wjp-action-title"><?php echo esc_html__('Manage Plans', 'wp-job-portal'); ?></p>
+                            <p class="wjp-action-subtitle"><?php echo esc_html__('Subscriptions', 'wp-job-portal'); ?></p>
+                        </a>
                     <?php } ?>
-                    <!-- add on list -->
-                    <?php if(count(wpjobportal::$_active_addons) < 40 ){ ?>
-                        <div class="wpjobportal-cp-addon-wrp">
-                            <div class="wpjobportal-cp-cnt-title">
-                                <span class="wpjobportal-cp-cnt-title-txt">
-                                    <?php echo esc_html(__('Addons','wp-job-portal')); ?>
-                                </span>
+                    <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=general_setting')); ?>" class="wjp-action-card">
+                        <div class="wjp-action-icon-wrapper wjp-bg-slate"><i class="fas fa-cogs"></i></div>
+                        <p class="wjp-action-title"><?php echo esc_html__('Settings', 'wp-job-portal'); ?></p>
+                        <p class="wjp-action-subtitle"><?php echo esc_html__('Platform Config', 'wp-job-portal'); ?></p>
+                    </a>
+                </div>
+                <?php endif; ?>
+                <div id="wjp-main-grid" class="wjp-grid-section">
+                    <?php if (isset($wjp_options['platform_growth'])) : ?>
+                    <div id="wjp-platform-growth" class="wjp-card">
+                        <div class="wjp-card-header">
+                            <div class="wjp-h3" style="margin-bottom:0;"><?php echo esc_html__('Platform Growth', 'wp-job-portal'); ?></div>
+                            <div class="wjp-chart-legend">
+                                <span class="wjp-legend-item"><span class="wjp-legend-dot" style="background-color: var(--wjp-color-primary);"></span><?php echo esc_html__('Applications', 'wp-job-portal'); ?></span>
+                                <span class="wjp-legend-item"><span class="wjp-legend-dot" style="background-color: #14b8a6;"></span><?php echo esc_html__('New Jobs', 'wp-job-portal'); ?></span>
                             </div>
-                            <div class="wpjobportal-cp-addon-list">
-                                <?php if ( !in_array('elegantdesign',wpjobportal::$_active_addons)) { ?>
-                                        <div class="wpjobportal-cp-addon">
-                                            <div class="wpjobportal-cp-addon-image">
-                                                <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/elegantdesign.png" alt="<?php echo esc_html(__('address data','wp-job-portal')); ?>">
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-cnt">
-                                                <div class="wpjobportal-cp-addon-tit">
-                                                    <?php echo esc_html(__('Elegant Design','wp-job-portal')); ?>
-                                                </div>
-                                                <div class="wpjobportal-cp-addon-desc">
-                                                    <?php echo esc_html(__('This add-on will change the Job Portal pages to a simple yet powerful and rich web design that involves focusing on clean aesthetics, intuitive navigation, and functional elements while ensuring performance and responsiveness.','wp-job-portal')); ?>
-                                                </div>
-                                            </div>
-                                            <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-elegantdesign/wp-job-portal-elegantdesign.php');
-                                                if($plugininfo['availability'] == "1"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "plugins.php?s=wp-job-portal-elegantdesign&plugin_status=inactive";
-                                                }elseif($plugininfo['availability'] == "0"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "https://wpjobportal.com/product/elegant-design/";
-                                                } ?>
-                                                <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                    <?php echo esc_html($text); ?>
-                                                </a>
-                                            </div>
-                                <?php } ?>
+                        </div>
+                        <div class="wjp-chart-container"><canvas id="applicationChart"></canvas></div>
+                    </div>
+                    <?php endif; ?>
 
-                                <?php if ( !in_array('addressdata',wpjobportal::$_active_addons)) { ?>
-                                        <div class="wpjobportal-cp-addon">
-                                            <div class="wpjobportal-cp-addon-image">
-                                                <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/addressdata.png" alt="<?php echo esc_html(__('address data','wp-job-portal')); ?>">
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-cnt">
-                                                <div class="wpjobportal-cp-addon-tit">
-                                                    <?php echo esc_html(__('Address Data','wp-job-portal')); ?>
-                                                </div>
-                                                <div class="wpjobportal-cp-addon-desc">
-                                                    <?php echo esc_html(__('WP Job Portal offers 75,000+ world cities database. Employers and job seekers can easily type and select cities.','wp-job-portal')); ?>
-                                                </div>
-                                            </div>
-                                            <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-addressdata/wp-job-portal-addressdata.php');
-                                                if($plugininfo['availability'] == "1"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "plugins.php?s=wp-job-portal-addressdata&plugin_status=inactive";
-                                                }elseif($plugininfo['availability'] == "0"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "https://wpjobportal.com/product/address-data/";
-                                                } ?>
-                                                <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                    <?php echo esc_html($text); ?>
-                                                </a>
-                                            </div>
-                                <?php } ?>
-
-                                <?php if ( !in_array('sociallogin',wpjobportal::$_active_addons)) { ?>
-                                        <div class="wpjobportal-cp-addon">
-                                            <div class="wpjobportal-cp-addon-image">
-                                                <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/sociallogin.png" alt="<?php echo esc_html(__('social login','wp-job-portal')); ?>">
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-cnt">
-                                                <div class="wpjobportal-cp-addon-tit">
-                                                    <?php echo esc_html(__('Social Login','wp-job-portal')); ?>
-                                                </div>
-                                                <div class="wpjobportal-cp-addon-desc">
-                                                    <?php echo esc_html(__('WP Job Portal allows logins from social media. Employer and Job Seekers login into WP Jobs Portal by using their social media Logins.','wp-job-portal')); ?>
-                                                </div>
-                                            </div>
-                                                <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-sociallogin/wp-job-portal-sociallogin.php');
-                                                if($plugininfo['availability'] == "1"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "plugins.php?s=wp-job-portal-sociallogin&plugin_status=inactive";
-                                                }elseif($plugininfo['availability'] == "0"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "https://wpjobportal.com/product/social-login/";
-                                                } ?>
-                                                <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                    <?php echo esc_html($text); ?>
-                                                </a>
-                                        </div>
-
-                                        <?php } ?>
-
-                                <?php if ( !in_array('visitorapplyjob',wpjobportal::$_active_addons)) { ?>
-                                    <div class="wpjobportal-cp-addon">
-                                        <div class="wpjobportal-cp-addon-image">
-                                            <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/visitorapplyjob.png" alt="<?php echo esc_html(__('visitor apply job','wp-job-portal')); ?>">
-                                        </div>
-                                        <div class="wpjobportal-cp-addon-cnt">
-                                            <div class="wpjobportal-cp-addon-tit">
-                                                <?php echo esc_html(__('Visitor Apply Job','wp-job-portal')); ?>
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-desc">
-                                                <?php echo esc_html(__('WP Job Portal offers a feature for visitors. No need to create a account, job seeker apply to any available job as a visitor.','wp-job-portal')); ?>
-                                            </div>
-                                        </div>
-                                            <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-visitorapplyjob/wp-job-portal-visitorapplyjob.php');
-                                            if($plugininfo['availability'] == "1"){
-                                                $text = $plugininfo['text'];
-                                                $url = "plugins.php?s=wp-job-portal-visitorapplyjob&plugin_status=inactive";
-                                            }elseif($plugininfo['availability'] == "0"){
-                                                $text = $plugininfo['text'];
-                                                $url = "https://wpjobportal.com/product/apply-as-visitor/";
-                                            } ?>
-                                            <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                <?php echo esc_html($text); ?>
-                                            </a>
-                                    </div>
-                                <?php } ?>
-
-                                <?php if ( !in_array('multicompany',wpjobportal::$_active_addons)) { ?>
-                                        <div class="wpjobportal-cp-addon">
-                                            <div class="wpjobportal-cp-addon-image">
-                                                <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/multicompany.png" alt="<?php echo esc_html(__('companies','wp-job-portal')); ?>">
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-cnt">
-                                                <div class="wpjobportal-cp-addon-tit">
-                                                    <?php echo esc_html(__('Multi Company','wp-job-portal')); ?>
-                                                </div>
-                                                <div class="wpjobportal-cp-addon-desc">
-                                                    <?php echo esc_html(__('WP Job Portal offers a useful feature for employers to control all his companies in a single account.','wp-job-portal')); ?>
-                                                </div>
-                                            </div>
-                                            <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-multicompany/wp-job-portal-multicompany.php');
-                                            if($plugininfo['availability'] == "1"){
-                                                $text = $plugininfo['text'];
-                                                $url = "plugins.php?s=wp-job-portal-multicompany&plugin_status=inactive";
-                                            }elseif($plugininfo['availability'] == "0"){
-                                                $text = $plugininfo['text'];
-                                                $url = "https://wpjobportal.com/product/multi_companies/";
-                                            } ?>
-                                            <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                <?php echo esc_html($text); ?>
-                                            </a>
-                                        </div>
-                                <?php } ?>
-                                 <?php if ( !in_array('featuredcompany',wpjobportal::$_active_addons)) { ?>
-                                            <div class="wpjobportal-cp-addon">
-                                                <div class="wpjobportal-cp-addon-image">
-                                                    <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/featuredcompany.png" alt="<?php echo esc_html(__('featured company','wp-job-portal')); ?>">
-                                                </div>
-                                                <div class="wpjobportal-cp-addon-cnt">
-                                                    <div class="wpjobportal-cp-addon-tit">
-                                                        <?php echo esc_html(__('Featured Company','wp-job-portal')); ?>
-                                                    </div>
-                                                    <div class="wpjobportal-cp-addon-desc">
-                                                        <?php echo esc_html(__('WP Job Portal offers an outstanding feature for employers to mark their company as featured. Featured companies shows top of companies list.','wp-job-portal')); ?>
-                                                    </div>
-                                                </div>
-                                                <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-featuredcompany/wp-job-portal-featuredcompany.php');
-                                                if($plugininfo['availability'] == "1"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "plugins.php?s=wp-job-portal-featuredcompany&plugin_status=inactive";
-                                                }elseif($plugininfo['availability'] == "0"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "https://wpjobportal.com/product/featured-company/";
-                                                } ?>
-                                                <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                    <?php echo esc_html($text); ?>
-                                                </a>
-                                            </div>
-                                        <?php } ?>
-                                 <?php if ( !in_array('copyjob',wpjobportal::$_active_addons)) { ?>
-                                            <div class="wpjobportal-cp-addon">
-                                                <div class="wpjobportal-cp-addon-image">
-                                                    <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/copyjob.png" alt="<?php echo esc_html(__('copy job','wp-job-portal')); ?>">
-                                                </div>
-                                                <div class="wpjobportal-cp-addon-cnt">
-                                                    <div class="wpjobportal-cp-addon-tit">
-                                                        <?php echo esc_html(__('Copy Job','wp-job-portal')); ?>
-                                                    </div>
-                                                    <div class="wpjobportal-cp-addon-desc">
-                                                        <?php echo esc_html(__('WP Job Portal offers a feature for an employer to copy their jobs. Employers can copy their jobs easily.','wp-job-portal')); ?>
-                                                    </div>
-                                                </div>
-                                                <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-copyjob/wp-job-portal-copyjob.php');
-                                                if($plugininfo['availability'] == "1"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "plugins.php?s=wp-job-portal-copyjob&plugin_status=inactive";
-                                                }elseif($plugininfo['availability'] == "0"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "https://wpjobportal.com/product/copy-job/";
-                                                } ?>
-                                                <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                    <?php echo esc_html($text); ?>
-                                                </a>
-                                            </div>
-                                <?php } ?>
-                                 <?php if ( !in_array('credits',wpjobportal::$_active_addons)) { ?>
-                                    <div class="wpjobportal-cp-addon">
-                                        <div class="wpjobportal-cp-addon-image">
-                                            <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/credits.png" alt="<?php echo esc_html(__('credits','wp-job-portal')); ?>">
-                                        </div>
-                                        <div class="wpjobportal-cp-addon-cnt">
-                                            <div class="wpjobportal-cp-addon-tit">
-                                                <?php echo esc_html(__('Credits','wp-job-portal')); ?>
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-desc">
-                                                <?php echo esc_html(__('WP Job Portal offers a feature for admin to add multiple credit system against particular actions. Admin can add multiple packages against particular actions.','wp-job-portal')); ?>
-                                            </div>
-                                        </div>
-                                        <?php
-                                        $plugininfo = checkWPJPPluginInfo('wp-job-portal-credits/wp-job-portal-credits.php');
-                                        if($plugininfo['availability'] == "1"){
-                                            $text = $plugininfo['text'];
-                                            $url = "plugins.php?s=wp-job-portal-credits&plugin_status=inactive";
-                                        }elseif($plugininfo['availability'] == "0"){
-                                            $text = $plugininfo['text'];
-                                            $url = "https://wpjobportal.com/product/credit-system/";
-                                        } ?>
-                                        <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                            <?php echo esc_html($text); ?>
-                                        </a>
-                                    </div>
-                                <?php } ?>
-                                    <?php if ( !in_array('departments',wpjobportal::$_active_addons)) { ?>
-                                            <div class="wpjobportal-cp-addon">
-                                                <div class="wpjobportal-cp-addon-image">
-                                                    <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/departments.png" alt="<?php echo esc_html(__('department','wp-job-portal')); ?>">
-                                                </div>
-                                                <div class="wpjobportal-cp-addon-cnt">
-                                                    <div class="wpjobportal-cp-addon-tit">
-                                                        <?php echo esc_html(__('Department','wp-job-portal')); ?>
-                                                    </div>
-                                                    <div class="wpjobportal-cp-addon-desc">
-                                                        <?php echo esc_html(__('WP Job Portal offers this feature to Employes to add multiple departments to better manage his jobs. Job seeker apply to the desired department jobs.','wp-job-portal')); ?>
-                                                    </div>
-                                                </div>
-                                                <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-departments/wp-job-portal-departments.php');
-                                                if($plugininfo['availability'] == "1"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "plugins.php?s=wp-job-portal-departments&plugin_status=inactive";
-                                                }elseif($plugininfo['availability'] == "0"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "https://wpjobportal.com/product/multi_departments/";
-                                                } ?>
-                                                <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                    <?php echo esc_html($text); ?>
-                                                </a>
-                                            </div>
-                                        <?php } ?>
-                                <?php if ( !in_array('export',wpjobportal::$_active_addons)) { ?>
-                                        <div class="wpjobportal-cp-addon">
-                                            <div class="wpjobportal-cp-addon-image">
-                                                <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/export.png" alt="<?php echo esc_html(__('export','wp-job-portal')); ?>">
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-cnt">
-                                                <div class="wpjobportal-cp-addon-tit">
-                                                    <?php echo esc_html(__('Export','wp-job-portal')); ?>
-                                                </div>
-                                                <div class="wpjobportal-cp-addon-desc">
-                                                    <?php echo esc_html(__('WP Job Manager offers a feature for Employer and Job Seeker in which they can export Resume information in the form of an excel file easily.','wp-job-portal')); ?>
-                                                </div>
-                                            </div>
-                                            <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-export/wp-job-portal-export.php');
-                                                if($plugininfo['availability'] == "1"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "plugins.php?s=wp-job-portal-export&plugin_status=inactive";
-                                                }elseif($plugininfo['availability'] == "0"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "https://wpjobportal.com/product/export/";
-                                                } ?>
-                                                <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                    <?php echo esc_html($text); ?>
-                                                </a>
-                                        </div>
-                                <?php } ?>
-                                <?php if ( !in_array('featureresume',wpjobportal::$_active_addons)) { ?>
-                                        <div class="wpjobportal-cp-addon">
-                                            <div class="wpjobportal-cp-addon-image">
-                                                <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/featureresume.png" alt="<?php echo esc_html(__('feature resume','wp-job-portal')); ?>">
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-cnt">
-                                                <div class="wpjobportal-cp-addon-tit">
-                                                    <?php echo esc_html(__('Feature Resume','wp-job-portal')); ?>
-                                                </div>
-                                                <div class="wpjobportal-cp-addon-desc">
-                                                    <?php echo esc_html(__('WP Job Portal helps job seekers to make any of his resume as Featured Resume.','wp-job-portal')); ?>
-                                                </div>
-                                            </div>
-                                            <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-featureresume/wp-job-portal-featureresume.php');
-                                                if($plugininfo['availability'] == "1"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "plugins.php?s=wp-job-portal-featureresume&plugin_status=inactive";
-                                                }elseif($plugininfo['availability'] == "0"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "https://wpjobportal.com/product/featured-resume/";
-                                                } ?>
-                                                <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                    <?php echo esc_html($text); ?>
-                                                </a>
-                                        </div>
-                                    <?php } ?>
-                                <?php if ( !in_array('featuredjob',wpjobportal::$_active_addons)) { ?>
-                                        <div class="wpjobportal-cp-addon">
-                                            <div class="wpjobportal-cp-addon-image">
-                                                <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/featuredjob.png" alt="<?php echo esc_html(__('featured job','wp-job-portal')); ?>">
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-cnt">
-                                                <div class="wpjobportal-cp-addon-tit">
-                                                    <?php echo esc_html(__('Featured Job','wp-job-portal')); ?>
-                                                </div>
-                                                <div class="wpjobportal-cp-addon-desc">
-                                                    <?php echo esc_html(__('WP Job Portal offers a feature for making the jobs as Featured Job. This will help to make it easier for jobseekers to find jobs.','wp-job-portal')); ?>
-                                                </div>
-                                            </div>
-                                            <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-featuredjob/wp-job-portal-featuredjob.php');
-                                                if($plugininfo['availability'] == "1"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "plugins.php?s=wp-job-portal-featuredjob&plugin_status=inactive";
-                                                }elseif($plugininfo['availability'] == "0"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "https://wpjobportal.com/product/featured-job/";
-                                                } ?>
-                                                <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                    <?php echo esc_html($text); ?>
-                                                </a>
-                                        </div>
-                                <?php } ?>
-                                <?php if ( !in_array('rssfeedback',wpjobportal::$_active_addons)) { ?>
-                                    <div class="wpjobportal-cp-addon">
-                                        <div class="wpjobportal-cp-addon-image">
-                                            <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/rssfeedback.png" alt="<?php echo esc_html(__('rss feed','wp-job-portal')); ?>">
-                                        </div>
-                                        <div class="wpjobportal-cp-addon-cnt">
-                                            <div class="wpjobportal-cp-addon-tit">
-                                                <?php echo esc_html(__('Rss Feed','wp-job-portal')); ?>
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-desc">
-                                                <?php echo esc_html(__('WP Job Portal offers Real Simple Syndication (RSS) to set feeds for the jobs. Everyone can get jobs RSS just by clicking on icon.','wp-job-portal')); ?>
-                                            </div>
-                                        </div>
-                                        <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-rssfeedback/wp-job-portal-rssfeedback.php');
-                                            if($plugininfo['availability'] == "1"){
-                                                $text = $plugininfo['text'];
-                                                $url = "plugins.php?s=wp-job-portal-rssfeedback&plugin_status=inactive";
-                                            }elseif($plugininfo['availability'] == "0"){
-                                                $text = $plugininfo['text'];
-                                                $url = "https://wpjobportal.com/product/rss-2/";
-                                            } ?>
-                                            <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                <?php echo esc_html($text); ?>
-                                            </a>
-                                    </div>
-                                    <?php } ?>
-                                <?php if ( !in_array('folder',wpjobportal::$_active_addons)) { ?>
-                                        <div class="wpjobportal-cp-addon">
-                                            <div class="wpjobportal-cp-addon-image">
-                                                <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/folder.png" alt="<?php echo esc_html(__('folder','wp-job-portal')); ?>">
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-cnt">
-                                                <div class="wpjobportal-cp-addon-tit">
-                                                    <?php echo esc_html(__('Folder','wp-job-portal')); ?>
-                                                </div>
-                                                <div class="wpjobportal-cp-addon-desc">
-                                                    <?php echo esc_html(__('WP Job Portal offers a feature for employers to make folders. Employers can make a folder and copy their resumes into the folders.','wp-job-portal')); ?>
-                                                </div>
-                                            </div>
-                                            <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-folder/wp-job-portal-folder.php');
-                                                if($plugininfo['availability'] == "1"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "plugins.php?s=wp-job-portal-folder&plugin_status=inactive";
-                                                }elseif($plugininfo['availability'] == "0"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "https://wpjobportal.com/product/folders/";
-                                                } ?>
-                                                <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                    <?php echo esc_html($text); ?>
-                                                </a>
-                                        </div>
-                                <?php } ?>
-                                <?php if ( !in_array('jobalert',wpjobportal::$_active_addons)) { ?>
-                                        <div class="wpjobportal-cp-addon">
-                                            <div class="wpjobportal-cp-addon-image">
-                                                <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/jobalert.png" alt="<?php echo esc_html(__('job alert','wp-job-portal')); ?>">
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-cnt">
-                                                <div class="wpjobportal-cp-addon-tit">
-                                                    <?php echo esc_html(__('Job Alert','wp-job-portal')); ?>
-                                                </div>
-                                                <div class="wpjobportal-cp-addon-desc">
-                                                    <?php echo esc_html(__('WP Job Portal allows registered users to save their job searches and create alerts that send new jobs via email daily, weekly or fortnightly.','wp-job-portal')); ?>
-                                                </div>
-                                            </div>
-                                            <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-jobalert/wp-job-portal-jobalert.php');
-                                                if($plugininfo['availability'] == "1"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "plugins.php?s=wp-job-portal-jobalert&plugin_status=inactive";
-                                                }elseif($plugininfo['availability'] == "0"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "https://wpjobportal.com/product/job-alert/";
-                                                } ?>
-                                                <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                    <?php echo esc_html($text); ?>
-                                                </a>
-                                        </div>
-                                        <?php } ?>
-                                    <?php if ( !in_array('message',wpjobportal::$_active_addons)) { ?>
-                                        <div class="wpjobportal-cp-addon">
-                                            <div class="wpjobportal-cp-addon-image">
-                                                <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/message.png" alt="<?php echo esc_html(__('message','wp-job-portal')); ?>">
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-cnt">
-                                                <div class="wpjobportal-cp-addon-tit">
-                                                    <?php echo esc_html(__('Message System','wp-job-portal')); ?>
-                                                </div>
-                                                <div class="wpjobportal-cp-addon-desc">
-                                                    <?php echo esc_html(__('WP Job Portal offers a message system for Employers and Job Seekers. Employers initiate messages on any applied resume.','wp-job-portal')); ?>
-                                                </div>
-                                            </div>
-                                            <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-message/wp-job-portal-message.php');
-                                                if($plugininfo['availability'] == "1"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "plugins.php?s=wp-job-portal-message&plugin_status=inactive";
-                                                }elseif($plugininfo['availability'] == "0"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "https://wpjobportal.com/product/messages/";
-                                                } ?>
-                                                <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                    <?php echo esc_html($text); ?>
-                                                </a>
-                                        </div>
-                                    <?php } ?>
-                                <?php if ( !in_array('pdf',wpjobportal::$_active_addons)) { ?>
-                                        <div class="wpjobportal-cp-addon">
-                                            <div class="wpjobportal-cp-addon-image">
-                                                <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/pdf.png" alt="<?php echo esc_html(__('pdf','wp-job-portal')); ?>">
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-cnt">
-                                                <div class="wpjobportal-cp-addon-tit">
-                                                    <?php echo esc_html(__('PDF','wp-job-portal')); ?>
-                                                </div>
-                                                <div class="wpjobportal-cp-addon-desc">
-                                                    <?php echo esc_html(__('WP Job Portal offer a feature for Employer and Job Seekers , which allows them to take PDF of Resume and can save it.','wp-job-portal')); ?>
-                                                </div>
-                                            </div>
-                                            <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-pdf/wp-job-portal-pdf.php');
-                                                if($plugininfo['availability'] == "1"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "plugins.php?s=wp-job-portal-pdf&plugin_status=inactive";
-                                                }elseif($plugininfo['availability'] == "0"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "https://wpjobportal.com/product/pdf/";
-                                                } ?>
-                                                <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                    <?php echo esc_html($text); ?>
-                                                </a>
-                                        </div>
-                                    <?php } ?>
-                                   <?php if ( !in_array('print',wpjobportal::$_active_addons)) { ?>
-                                        <div class="wpjobportal-cp-addon">
-                                            <div class="wpjobportal-cp-addon-image">
-                                                <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/print.png" alt="<?php echo esc_html(__('print','wp-job-portal')); ?>">
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-cnt">
-                                                <div class="wpjobportal-cp-addon-tit">
-                                                    <?php echo esc_html(__('Print','wp-job-portal')); ?>
-                                                </div>
-                                                <div class="wpjobportal-cp-addon-desc">
-                                                    <?php echo esc_html(__('WP Job Portal offers a Resume and print feature. Employer and Job Seeker can view the Resume page or take a print of the Resume.','wp-job-portal')); ?>
-                                                </div>
-                                            </div>
-                                            <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-print/wp-job-portal-print.php');
-                                                if($plugininfo['availability'] == "1"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "plugins.php?s=wp-job-portal-print&plugin_status=inactive";
-                                                }elseif($plugininfo['availability'] == "0"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "https://wpjobportal.com/product/print/";
-                                                } ?>
-                                                <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                    <?php echo esc_html($text); ?>
-                                                </a>
-                                        </div>
-                                    <?php } ?>
-                                      <?php if ( !in_array('reports',wpjobportal::$_active_addons)) { ?>
-                                                <div class="wpjobportal-cp-addon">
-                                                    <div class="wpjobportal-cp-addon-image">
-                                                        <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/reports.png" alt="<?php echo esc_html(__('reports','wp-job-portal')); ?>">
-                                                    </div>
-                                                    <div class="wpjobportal-cp-addon-cnt">
-                                                        <div class="wpjobportal-cp-addon-tit">
-                                                            <?php echo esc_html(__("Reports","wp-job-portal")); ?>
-                                                        </div>
-                                                        <div class="wpjobportal-cp-addon-desc">
-                                                            <?php echo esc_html(__('WP Job Portal offers multiple reports by jobs, by companies and by resume. Admin can see overall reports of Employer and Job Seeker.','wp-job-portal')); ?>
-                                                        </div>
-                                                    </div>
-                                                    <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-reports/wp-job-portal-reports.php');
-                                                        if($plugininfo['availability'] == "1"){
-                                                            $text = $plugininfo['text'];
-                                                            $url = "plugins.php?s=wp-job-portal-reports&plugin_status=inactive";
-                                                        }elseif($plugininfo['availability'] == "0"){
-                                                            $text = $plugininfo['text'];
-                                                            $url = "https://wpjobportal.com/product/reports/";
-                                                        } ?>
-                                                        <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                            <?php echo esc_html($text); ?>
-                                                        </a>
-                                                </div>
-                                            <?php } ?>
-                                     <?php if ( !in_array('resumeaction',wpjobportal::$_active_addons)) { ?>
-                                            <div class="wpjobportal-cp-addon">
-                                                <div class="wpjobportal-cp-addon-image">
-                                                    <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/resumeaction.png" alt="<?php echo esc_html(__('resume action','wp-job-portal')); ?>">
-                                                </div>
-                                                <div class="wpjobportal-cp-addon-cnt">
-                                                    <div class="wpjobportal-cp-addon-tit">
-                                                        <?php echo esc_html(__('Resume Action','wp-job-portal')); ?>
-                                                    </div>
-                                                    <div class="wpjobportal-cp-addon-desc">
-                                                        <?php echo esc_html(__('WP Job Portal offers a feature for employers to perform some actions on resumes. Employer mark shortlisted, hired, spam, add a note on the applied resume.','wp-job-portal')); ?>
-                                                    </div>
-                                                </div>
-                                                <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-resumeaction/wp-job-portal-resumeaction.php');
-                                                    if($plugininfo['availability'] == "1"){
-                                                        $text = $plugininfo['text'];
-                                                        $url = "plugins.php?s=wp-job-portal-resumeaction&plugin_status=inactive";
-                                                    }elseif($plugininfo['availability'] == "0"){
-                                                        $text = $plugininfo['text'];
-                                                        $url = "https://wpjobportal.com/product/resume-action/";
-                                                    } ?>
-                                                    <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                        <?php echo esc_attr($text); ?>
-                                                    </a>
-                                            </div>
-                                    <?php } ?>
-                            <?php if ( !in_array('multiresume',wpjobportal::$_active_addons)) { ?>
-                                    <div class="wpjobportal-cp-addon">
-                                        <div class="wpjobportal-cp-addon-image">
-                                            <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/multiresume.png" alt="<?php echo esc_html(__('multi resume','wp-job-portal')); ?>">
-                                        </div>
-                                        <div class="wpjobportal-cp-addon-cnt">
-                                            <div class="wpjobportal-cp-addon-tit">
-                                                <?php echo esc_html(__('Multi Resume','wp-job-portal')); ?>
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-desc">
-                                                <?php echo esc_html(__('WP Job Portal offers a feature for the job seeker to add multiple resumes. Job seeker have a choice on which job which resume to apply.','wp-job-portal')); ?>
-                                            </div>
-                                        </div>
-                                        <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-multiresume/wp-job-portal-multiresume.php');
-                                            if($plugininfo['availability'] == "1"){
-                                                $text = $plugininfo['text'];
-                                                $url = "plugins.php?s=wp-job-portal-multiresume&plugin_status=inactive";
-                                            }elseif($plugininfo['availability'] == "0"){
-                                                $text = $plugininfo['text'];
-                                                $url = "https://wpjobportal.com/product/multi-resume/";
-                                            } ?>
-                                            <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                <?php echo esc_html($text); ?>
-                                            </a>
-                                    </div>
+                    <?php if (isset($wjp_options['quick_stats'])) : ?>
+                    <div id="wjp-quick-stats" class="wjp-card">
+                        <div class="wjp-h3"><?php echo esc_html__('Quick Stats', 'wp-job-portal'); ?></div>
+                        <div class="wjp-stats-list">
+                            <div class="wjp-stat-item"><div class="wjp-stat-icon-wrapper wjp-bg-amber"><i class="fas fa-file-invoice"></i></div><div class="wjp-stat-info"><p class="wjp-stat-label"><?php echo esc_html__('Pending Jobs', 'wp-job-portal'); ?></p><p class="wjp-stat-value"><?php echo esc_html(wpjobportal::$_data['quick_stats']['pending_jobs']); ?></p></div></div>
+                            <div class="wjp-stat-item"><div class="wjp-stat-icon-wrapper wjp-bg-sky"><i class="fas fa-user-plus"></i></div><div class="wjp-stat-info"><p class="wjp-stat-label"><?php echo esc_html__('New Applicants', 'wp-job-portal'); ?></p><p class="wjp-stat-value"><?php echo esc_html(wpjobportal::$_data['quick_stats']['new_applicants']); ?></p></div></div>
+                            <?php if(in_array('credits', wpjobportal::$_active_addons)){ ?>
+                                <div class="wjp-stat-item"><div class="wjp-stat-icon-wrapper wjp-bg-indigo"><i class="fas fa-tags"></i></div><div class="wjp-stat-info"><p class="wjp-stat-label"><?php echo esc_html__('Active Subscriptions', 'wp-job-portal'); ?></p><p class="wjp-stat-value"><?php echo esc_html(wpjobportal::$_data['quick_stats']['active_subscriptions']); ?></p></div></div>
                             <?php } ?>
-                            <?php if ( !in_array('resumesearch',wpjobportal::$_active_addons)) { ?>
-                                    <div class="wpjobportal-cp-addon">
-                                        <div class="wpjobportal-cp-addon-image">
-                                            <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/resumesearch.png" alt="<?php echo esc_html(__('resume search','wp-job-portal')); ?>">
-                                        </div>
-                                        <div class="wpjobportal-cp-addon-cnt">
-                                            <div class="wpjobportal-cp-addon-tit">
-                                                <?php echo esc_html(__('Resume Search','wp-job-portal')); ?>
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-desc">
-                                                <?php echo esc_html(__('This add-on offers to the employer to search the resume in the system with multiple criteria.','wp-job-portal')); ?>
-                                            </div>
-                                        </div>
-                                        <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-resumesearch/wp-job-portal-resumesearch.php');
-                                            if($plugininfo['availability'] == "1"){
-                                                $text = $plugininfo['text'];
-                                                $url = "plugins.php?s=wp-job-portal-resumesearch&plugin_status=inactive";
-                                            }elseif($plugininfo['availability'] == "0"){
-                                                $text = $plugininfo['text'];
-                                                $url = "https://wpjobportal.com/product/resume-save-search/";
-                                            } ?>
-                                            <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                <?php echo esc_html($text); ?>
-                                            </a>
-                                    </div>
-                                <?php } ?>
-                            <?php if ( !in_array('shortlist',wpjobportal::$_active_addons)) { ?>
-                                        <div class="wpjobportal-cp-addon">
-                                            <div class="wpjobportal-cp-addon-image">
-                                                <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/shortlist.png" alt="<?php echo esc_html(__('shortlist','wp-job-portal')); ?>">
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-cnt">
-                                                <div class="wpjobportal-cp-addon-tit">
-                                                    <?php echo esc_html(__('Shortlist','wp-job-portal')); ?>
-                                                </div>
-                                                <div class="wpjobportal-cp-addon-desc">
-                                                    <?php echo esc_html(__('WP Job Portal will help job seekers to shortlist their desired jobs. All shortlisted jobs are available in job seeker dashboard.','wp-job-portal')); ?>
-                                                </div>
-                                            </div>
-                                            <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-shortlist/wp-job-portal-shortlist.php');
-                                                if($plugininfo['availability'] == "1"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "plugins.php?s=wp-job-portal-shortlist&plugin_status=inactive";
-                                                }elseif($plugininfo['availability'] == "0"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "https://wpjobportal.com/product/shortlist-job/";
-                                                } ?>
-                                                <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                    <?php echo esc_html($text); ?>
-                                                </a>
-                                        </div>
+                            <div class="wjp-stat-item"><div class="wjp-stat-icon-wrapper wjp-bg-green"><i class="fas fa-users"></i></div><div class="wjp-stat-info"><p class="wjp-stat-label"><?php echo esc_html__('Total Users', 'wp-job-portal'); ?></p><p class="wjp-stat-value"><?php echo esc_html(wpjobportal::$_data['quick_stats']['total_users']); ?></p></div></div>
+                            <div class="wjp-stat-item"><div class="wjp-stat-icon-wrapper wjp-bg-red"><i class="fas fa-times-circle"></i></div><div class="wjp-stat-info"><p class="wjp-stat-label"><?php echo esc_html__('Closed Jobs', 'wp-job-portal'); ?></p><p class="wjp-stat-value"><?php echo esc_html(wpjobportal::$_data['quick_stats']['closed_jobs']); ?></p></div></div>
+                            <?php if(in_array('credits', wpjobportal::$_active_addons)){ ?>
+                                <div class="wjp-stat-item"><div class="wjp-stat-icon-wrapper wjp-bg-emerald"><i class="fas fa-dollar-sign"></i></div><div class="wjp-stat-info"><p class="wjp-stat-label"><?php echo esc_html__('Monthly Revenue', 'wp-job-portal'); ?></p><p class="wjp-stat-value">$<?php echo esc_html(number_format(wpjobportal::$_data['quick_stats']['monthly_revenue'], 2)); ?></p></div></div>
+                            <?php } ?>
+
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                </div>
+                <?php if (isset($wjp_options['recent_jobs'])) : ?>
+                <div id="wjp-recent-jobs" class="wjp-card">
+                    <div class="wjp-h3"><?php echo esc_html__('Recent Job Postings', 'wp-job-portal'); ?></div>
+                    <div class="wjp-table-wrapper">
+                        <?php
+                        // field ordering check
+                        $job_listing_fields = WPJOBPORTALincluder::getJSModel('fieldordering')->getFieldOrderingData(2);
+                        ?>
+                        <table class="wjp-table">
+                            <thead>
+                                <tr><th><?php echo esc_html__('Job Title', 'wp-job-portal'); ?></th>
+                                    <th><?php echo esc_html__('Company', 'wp-job-portal'); ?></th>
+                                    <?php if(isset($job_listing_fields['jobcategory']) && $job_listing_fields['jobcategory'] !='' ){ ?>
+                                        <th><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($job_listing_fields['jobcategory'])); ?></th>
                                     <?php } ?>
-                            <?php if ( !in_array('socialshare',wpjobportal::$_active_addons)) { ?>
-                                        <div class="wpjobportal-cp-addon">
-                                            <div class="wpjobportal-cp-addon-image">
-                                                <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/socialshare.png" alt="<?php echo esc_html(__('social share','wp-job-portal')); ?>">
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-cnt">
-                                                <div class="wpjobportal-cp-addon-tit">
-                                                    <?php echo esc_html(__('Social Share','wp-job-portal')); ?>
-                                                </div>
-                                                <div class="wpjobportal-cp-addon-desc">
-                                                    <?php echo esc_html(__('WP Job Portal offers a jobs share feature on various social media sites for Employers and Job Seekers.','wp-job-portal')); ?>
-                                                </div>
-                                            </div>
-                                            <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-socialshare/wp-job-portal-socialshare.php');
-                                                if($plugininfo['availability'] == "1"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "plugins.php?s=wp-job-portal-socialshare&plugin_status=inactive";
-                                                }elseif($plugininfo['availability'] == "0"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "https://wpjobportal.com/product/social-share/";
-                                                } ?>
-                                                <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                    <?php echo esc_html($text); ?>
-                                                </a>
-                                        </div>
-                                    <?php } ?>
-                            <?php if ( !in_array('tag',wpjobportal::$_active_addons)) { ?>
-                                        <div class="wpjobportal-cp-addon">
-                                            <div class="wpjobportal-cp-addon-image">
-                                                <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/tag.png" alt="<?php echo esc_html(__('tags','wp-job-portal')); ?>">
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-cnt">
-                                                <div class="wpjobportal-cp-addon-tit">
-                                                    <?php echo esc_html(__('Tags','wp-job-portal')); ?>
-                                                </div>
-                                                <div class="wpjobportal-cp-addon-desc">
-                                                    <?php echo esc_html(__('WP Job Portal offers a feature for searching the jobs by tags. Employers will add some tags related to jobs search.','wp-job-portal')); ?>
-                                                </div>
-                                            </div>
-                                            <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-tag/wp-job-portal-tag.php');
-                                                if($plugininfo['availability'] == "1"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "plugins.php?s=wp-job-portal-tag&plugin_status=inactive";
-                                                }elseif($plugininfo['availability'] == "0"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "https://wpjobportal.com/product/tags/";
-                                                } ?>
-                                                <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                    <?php echo esc_html($text); ?>
-                                                </a>
-                                        </div>
+                                    <th><?php echo esc_html__('Date Posted', 'wp-job-portal'); ?></th>
+                                    <th><?php echo esc_html__('Status', 'wp-job-portal'); ?></th>
+                                    <th><?php echo esc_html__('Actions', 'wp-job-portal'); ?></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if(isset(wpjobportal::$_data[0]['latestjobs']) && !empty(wpjobportal::$_data[0]['latestjobs'])){
+                                    foreach (wpjobportal::$_data[0]['latestjobs'] AS $job) { ?>
+                                    <tr>
+                                        <td class="wjp-job-title"><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=formjob&wpjobportalid='.$job->id)); ?>"><?php echo esc_html($job->title); ?></a></td>
+                                        <td class="wjp-company-name"><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_company&wpjobportallt=formcompany&wpjobportalid='.$job->companyid)); ?>"><?php echo esc_html($job->companyname); ?></a></td>
+                                        <?php if(isset($job_listing_fields['jobcategory']) && $job_listing_fields['jobcategory'] !='' ){ ?>
+                                            <td><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($job->cat_title)); ?></td>
+                                        <?php } ?>
+                                        <td><?php echo esc_html(human_time_diff(strtotime($job->created) ,strtotime(date_i18n("Y-m-d H:i:s")))).' '.esc_html(__("Ago",'wp-job-portal')); ?></td>
+                                        <td>
+                                            <?php
+                                            $status_class = ($job->status == 1) ? 'wjp-status-active' : 'wjp-status-closed';
+                                            $status_label = ($job->status == 1) ? esc_html__('Approved', 'wp-job-portal') : esc_html__('Pending', 'wp-job-portal');
+                                            ?>
+                                            <span class="wjp-status-badge <?php echo $status_class; ?>">
+                                                <?php echo $status_label; ?>
+                                            </span>
+                                        </td>
+                                        <td class="wjp-table-actions"><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=formjob&wpjobportalid='.$job->id)); ?>"><?php echo esc_html__('Edit', 'wp-job-portal'); ?></a></td>
+                                    </tr>
+                                <?php }
+                                } else { ?>
+                                    <tr class="wjp-no-records">
+                                        <td colspan="6"><?php echo esc_html__('No recent job postings found.', 'wp-job-portal'); ?></td>
+                                    </tr>
                                 <?php } ?>
-                            <?php if ( !in_array('tellfriend',wpjobportal::$_active_addons)) { ?>
-                                        <div class="wpjobportal-cp-addon">
-                                            <div class="wpjobportal-cp-addon-image">
-                                                <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/tellfriend.png" alt="<?php echo esc_html(__('tell friend','wp-job-portal')); ?>">
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-cnt">
-                                                <div class="wpjobportal-cp-addon-tit">
-                                                    <?php echo esc_html(__('Tell Friend','wp-job-portal')); ?>
-                                                </div>
-                                                <div class="wpjobportal-cp-addon-desc">
-                                                    <?php echo esc_html(__('WP Job Portal offers a feature in which Employer and Job Seekers can share and tell their friends about Jobs by sending them an email.','wp-job-portal')); ?>
-                                                </div>
-                                            </div>
-                                            <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-departments/wp-job-portal-departments.php');
-                                                if($plugininfo['availability'] == "1"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "plugins.php?s=wp-job-portal-departments&plugin_status=inactive";
-                                                }elseif($plugininfo['availability'] == "0"){
-                                                    $text = $plugininfo['text'];
-                                                    $url = "https://wpjobportal.com/product/tell-a-friend/";
-                                                } ?>
-                                                <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                    <?php echo esc_html($text); ?>
-                                                </a>
-                                        </div>
-                                <?php } ?>
-                                <?php if ( !in_array('advanceresumebuilder',wpjobportal::$_active_addons)) { ?>
-                                    <div class="wpjobportal-cp-addon">
-                                        <div class="wpjobportal-cp-addon-image">
-                                            <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/advanceresumebuilder.png" alt="<?php echo esc_html(__('advance resume builder','wp-job-portal')); ?>">
-                                        </div>
-                                        <div class="wpjobportal-cp-addon-cnt">
-                                            <div class="wpjobportal-cp-addon-tit">
-                                                <?php echo esc_html(__('Advance Resume Builder','wp-job-portal')); ?>
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-desc">
-                                                <?php echo esc_html(__('This add-on offers to job seekers create a resume with multiple options like multiple addresses, institutions, employers, references and skills.','wp-job-portal')); ?>
-                                            </div>
-                                        </div>
-                                        <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-advanceresumebuilder/wp-job-portal-advanceresumebuilder.php');
-                                            if($plugininfo['availability'] == "1"){
-                                                $text = $plugininfo['text'];
-                                                $url = "plugins.php?s=wp-job-portal-advanceresumebuilder&plugin_status=inactive";
-                                            }elseif($plugininfo['availability'] == "0"){
-                                                $text = $plugininfo['text'];
-                                                $url = "https://wpjobportal.com/product/advance-resume-builder/";
-                                            } ?>
-                                            <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                <?php echo esc_html($text); ?>
-                                            </a>
-                                    </div>
-                                <?php } ?>
-                                <?php if ( !in_array('visitorcanaddjob',wpjobportal::$_active_addons)) { ?>
-                                    <div class="wpjobportal-cp-addon">
-                                        <div class="wpjobportal-cp-addon-image">
-                                            <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/visitorcanaddjob.png" alt="<?php echo esc_html(__('visitor add job','wp-job-portal')); ?>">
-                                        </div>
-                                        <div class="wpjobportal-cp-addon-cnt">
-                                            <div class="wpjobportal-cp-addon-tit">
-                                                <?php echo esc_html(__('Visitor Add Job','wp-job-portal')); ?>
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-desc">
-                                                <?php echo esc_html(__('Visitor add job add-on offers guests can add job in the system without logged in the system.','wp-job-portal')); ?>
-                                            </div>
-                                        </div>
-                                        <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-visitorcanaddjob/wp-job-portal-visitorcanaddjob.php');
-                                            if($plugininfo['availability'] == "1"){
-                                                $text = $plugininfo['text'];
-                                                $url = "plugins.php?s=wp-job-portal-visitorcanaddjob&plugin_status=inactive";
-                                            }elseif($plugininfo['availability'] == "0"){
-                                                $text = $plugininfo['text'];
-                                                $url = "https://wpjobportal.com/product/visitor-add-jobs/";
-                                            } ?>
-                                            <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                <?php echo esc_html($text); ?>
-                                            </a>
-                                    </div>
-                                <?php } ?>
-                                <?php if ( !in_array('cronjob',wpjobportal::$_active_addons)) { ?>
-                                    <div class="wpjobportal-cp-addon">
-                                        <div class="wpjobportal-cp-addon-image">
-                                            <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/cronjob.png" alt="<?php echo esc_html(__('cron job','wp-job-portal')); ?>">
-                                        </div>
-                                        <div class="wpjobportal-cp-addon-cnt">
-                                            <div class="wpjobportal-cp-addon-tit">
-                                                <?php echo esc_html(__('Cron Job','wp-job-portal')); ?>
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-desc">
-                                                <?php echo esc_html(__('Cron job adon offers to reduce dependencies on WordPress cron job and support Hosting Panel cron job for WP Job Portal tasks.','wp-job-portal')); ?>
-                                            </div>
-                                        </div>
-                                        <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-cronjob/wp-job-portal-cronjob.php');
-                                            if($plugininfo['availability'] == "1"){
-                                                $text = $plugininfo['text'];
-                                                $url = "plugins.php?s=wp-job-portal-cronjob&plugin_status=inactive";
-                                            }elseif($plugininfo['availability'] == "0"){
-                                                $text = $plugininfo['text'];
-                                                $url = "https://wpjobportal.com/product/cron-job-copy/";
-                                            } ?>
-                                            <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                <?php echo esc_html($text); ?>
-                                            </a>
-                                    </div>
-                                <?php } ?>
-                                <?php if ( !in_array('widgets',wpjobportal::$_active_addons)) { ?>
-                                    <div class="wpjobportal-cp-addon">
-                                        <div class="wpjobportal-cp-addon-image">
-                                            <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/widgets.png" height="60px" width="60px" alt="<?php echo esc_html(__('Front-End Widgets','wp-job-portal')); ?>">
-                                        </div>
-                                        <div class="wpjobportal-cp-addon-cnt">
-                                            <div class="wpjobportal-cp-addon-tit">
-                                                <?php echo esc_html(__('Front-End Widgets','wp-job-portal')); ?>
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-desc">
-                                                <?php echo esc_html(__('Widgets in WordPress allow you to add content and features in the widgetized areas of your theme.','wp-job-portal')); ?>
-                                            </div>
-                                        </div>
-                                        <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-widgets/wp-job-portal-widgets.php');
-                                            if($plugininfo['availability'] == "1"){
-                                                $text = $plugininfo['text'];
-                                                $url = "plugins.php?s=wp-job-portal-widgets&plugin_status=inactive";
-                                            }elseif($plugininfo['availability'] == "0"){
-                                                $text = $plugininfo['text'];
-                                                $url = "https://wpjobportal.com/product/widget/";
-                                            } ?>
-                                            <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                <?php echo esc_html($text); ?>
-                                            </a>
-                                    </div>
-                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <?php endif; ?>
+                <div id="wjp-new-charts" class="">
+                    <?php if (isset($wjp_options['jobs_by_status_chart'])) : ?>
+                    <div class="wjp-chart-card">
+                        <div class="wjp-h3"><?php echo esc_html__('Jobs by Status', 'wp-job-portal'); ?></div>
+                        <div class="wjp-chart-container"><canvas id="jobsStatusChart"></canvas></div>
+                    </div>
+                    <?php endif; ?>
+                    <?php if (isset($wjp_options['top_categories_chart'])) : ?>
+                    <div class="wjp-chart-card">
+                        <div class="wjp-h3"><?php echo esc_html__('Top Job Categories', 'wp-job-portal'); ?></div>
+                        <div class="wjp-chart-container"><canvas id="topCategoriesChart"></canvas></div>
+                    </div>
+                    <?php endif; ?>
+                </div>
+                <div class="wjp-grid-section">
+                    <?php if (isset($wjp_options['latest_job_applies'])) : ?>
+                    <div id="" class="wjp-card wjp-new-sections">
+                        <div class="wjp-card-header"><div class="wjp-h3" style="margin-bottom:0;"><?php echo esc_html__('Latest Job Applies', 'wp-job-portal'); ?></div></div>
+                        <div class="wjp-list wjp-apply-list">
+                            <?php if (isset(wpjobportal::$_data[0]['latest_applies']) && !empty(wpjobportal::$_data[0]['latest_applies'])) {
+                                $data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
+                                foreach(wpjobportal::$_data[0]['latest_applies'] as $apply) {
 
-                                <?php if ( !in_array('aisuggestedjobs',wpjobportal::$_active_addons)) { ?>
-                                    <div class="wpjobportal-cp-addon">
-                                        <div class="wpjobportal-cp-addon-image">
-                                            <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/aisuggestedjobs.png" height="60px" width="60px" alt="<?php echo esc_html(__('AI Suggested Jobs','wp-job-portal')); ?>">
-                                        </div>
-                                        <div class="wpjobportal-cp-addon-cnt">
-                                            <div class="wpjobportal-cp-addon-tit">
-                                                <?php echo esc_html(__('AI Suggested Jobs','wp-job-portal')); ?>
+                                    $logo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer');
+                                    if (isset($apply->logo) && $apply->logo != '') {
+                                        $wpdir = wp_upload_dir();
+                                        $logo = $wpdir['baseurl'] . '/' . $data_directory.'/data/employer/comp_'.$apply->companyid.'/logo/'. $apply->logo;
+                                    }
+                                    ?>
+                                    <div class="wjp-apply-item">
+                                        <div class="wjp-apply-item-header">
+                                            <div class="wjp-applicant-info">
+                                                <img src="<?php echo esc_attr($logo)?>" alt="<?php echo esc_attr($apply->first_name); ?>" class="wjp-avatar">
+                                                <div class="wjp-applicant-text">
+                                                    <p class="wjp-text-1"><strong><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_resume&wpjobportallt=viewresume&wpjobportalid='.(isset($apply->resumeid) ? $apply->resumeid : ''))); ?>"><?php echo esc_html($apply->first_name . ' ' . $apply->last_name); ?></a></strong> <?php echo esc_html__('applied for', 'wp-job-portal'); ?></p>
+                                                    <p class="wjp-job-title"><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=formjob&wpjobportalid='.(isset($apply->jobid) ? $apply->jobid : ''))); ?>"><?php echo esc_html($apply->job_title); ?></a></p>
+                                                    <p class="wjp-company-loc"><?php echo esc_html__('at', 'wp-job-portal'); ?> <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_company&wpjobportallt=formcompany&wpjobportalid='.(isset($apply->companyid) ? $apply->companyid : ''))); ?>"><?php echo esc_html($apply->company_name); ?></a></p>
+                                                </div>
                                             </div>
-                                            <div class="wpjobportal-cp-addon-desc">
-                                                <?php echo esc_html(__('This addon provides personalized job suggestions by analyzing resume data, ensuring jobseekers see the most relevant openings first.','wp-job-portal')); ?>
-                                            </div>
+                                            <span class="wjp-timestamp"><?php echo esc_html(human_time_diff(strtotime($apply->apply_date) ,strtotime(date_i18n("Y-m-d H:i:s")))).' '.esc_html(__("ago",'wp-job-portal')); ?></span>
                                         </div>
-                                        <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-aisuggestedjobs/wp-job-portal-aisuggestedjobs.php');
-                                            if($plugininfo['availability'] == "1"){
-                                                $text = $plugininfo['text'];
-                                                $url = "plugins.php?s=wp-job-portal-aisuggestedjobs&plugin_status=inactive";
-                                            }elseif($plugininfo['availability'] == "0"){
-                                                $text = $plugininfo['text'];
-                                                $url = "https://wpjobportal.com/product/ai-suggested-jobs/";
-                                            } ?>
-                                            <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                <?php echo esc_html($text); ?>
-                                            </a>
-                                    </div>
-                                <?php } ?>
-
-                                <?php if ( !in_array('aisuggestedresumes',wpjobportal::$_active_addons)) { ?>
-                                    <div class="wpjobportal-cp-addon">
-                                        <div class="wpjobportal-cp-addon-image">
-                                            <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/aisuggestedresumes.png" height="60px" width="60px" alt="<?php echo esc_html(__('AI Suggested Resumes','wp-job-portal')); ?>">
-                                        </div>
-                                        <div class="wpjobportal-cp-addon-cnt">
-                                            <div class="wpjobportal-cp-addon-tit">
-                                                <?php echo esc_html(__('AI Suggested Resumes','wp-job-portal')); ?>
+                                        <div class="wjp-item-footer">
+                                            <div class="wjp-tag-list">
+                                                <span class="wjp-tag wjp-tag-sky"><?php echo esc_html($apply->jobtype_title); ?></span>
+                                                <span class="wjp-tag wjp-tag-slate"><i class="fas fa-map-marker-alt"></i> <?php echo esc_html(WPJOBPORTALincluder::getJSModel('city')->getLocationDataForView($apply->city)); ?></span>
+                                                <?php /*
+                                                <span class="wjp-tag wjp-tag-emerald">
+                                                    <?php echo esc_html(wpjobportal::$_common->getSalaryRangeView($apply->salarytype, $apply->salarymin, $apply->salarymax,$apply->currency)); ?>
+                                                    <?php if($apply->salarytype==3 || $apply->salarytype==2) { ?>
+                                                        <span class="wpjobportal-salary-type"> <?php echo ' / ' .esc_html(wpjobportal::wpjobportal_getVariableValue($apply->salaryrangetype)); ?></span>
+                                                    <?php }?>
+                                                </span>
+                                             */ ?>
                                             </div>
-                                            <div class="wpjobportal-cp-addon-desc">
-                                                <?php echo esc_html(__('This addon utilizes artificial intelligence to suggest the most fitting resumes for each job posting.','wp-job-portal')); ?>
-                                            </div>
-                                        </div>
-                                        <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-aisuggestedresumes/wp-job-portal-aisuggestedresumes.php');
-                                            if($plugininfo['availability'] == "1"){
-                                                $text = $plugininfo['text'];
-                                                $url = "plugins.php?s=wp-job-portal-aisuggestedresumes&plugin_status=inactive";
-                                            }elseif($plugininfo['availability'] == "0"){
-                                                $text = $plugininfo['text'];
-                                                $url = "https://wpjobportal.com/product/ai-suggested-resume/";
-                                            } ?>
-                                            <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                <?php echo esc_html($text); ?>
-                                            </a>
-                                    </div>
-                                <?php } ?>
 
 
-                                <?php if ( !in_array('aijobsearch',wpjobportal::$_active_addons)) { ?>
-                                    <div class="wpjobportal-cp-addon">
-                                        <div class="wpjobportal-cp-addon-image">
-                                            <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/aijobsearch.png" height="60px" width="60px" alt="<?php echo esc_html(__('AI Job Search','wp-job-portal')); ?>">
+                                            <div class="wjp-actions"><a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_jobapply&wpjobportallt=jobappliedresume&jobid='.$apply->jobid)); ?>" class="wjp-btn-xs wjp-btn-indigo"><?php echo esc_html__('View App', 'wp-job-portal'); ?></a></div>
                                         </div>
-                                        <div class="wpjobportal-cp-addon-cnt">
-                                            <div class="wpjobportal-cp-addon-tit">
-                                                <?php echo esc_html(__('AI Job Search','wp-job-portal')); ?>
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-desc">
-                                                <?php echo esc_html(__('AI Job Search harnesses powerful artificial intelligence to analyze candidate preferences, skills, and search behavior, providing highly relevant and personalized job listings.','wp-job-portal')); ?>
-                                            </div>
-                                        </div>
-                                        <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-aijobsearch/wp-job-portal-aijobsearch.php');
-                                            if($plugininfo['availability'] == "1"){
-                                                $text = $plugininfo['text'];
-                                                $url = "plugins.php?s=wp-job-portal-aijobsearch&plugin_status=inactive";
-                                            }elseif($plugininfo['availability'] == "0"){
-                                                $text = $plugininfo['text'];
-                                                $url = "https://wpjobportal.com/product/ai-job-search/";
-                                            } ?>
-                                            <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                <?php echo esc_html($text); ?>
-                                            </a>
                                     </div>
-                                <?php } ?>
+                                <?php }
+                            } else { ?>
+                                <div class="wjp-no-records"><?php echo esc_html__('No recent job applications to display.', 'wp-job-portal'); ?></div>
+                            <?php } ?>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                    <?php if (isset($wjp_options['latest_resumes'])) : ?>
+                    <div id="" class="wjp-card wjp-new-sections">
+                         <div class="wjp-card-header"><div class="wjp-h3" style="margin-bottom:0;"><?php echo esc_html__('Latest Resumes', 'wp-job-portal'); ?></div><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_resume')); ?>" class="wjp-view-all-link"><?php echo esc_html__('View All', 'wp-job-portal'); ?></a></div>
+                         <div class="wjp-list">
+                            <?php if(isset(wpjobportal::$_data[0]['latestresumes']) && !empty(wpjobportal::$_data[0]['latestresumes'])){
+                                $data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
+                                foreach(wpjobportal::$_data[0]['latestresumes'] AS $resume){
+                                $photo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
+                                if (isset($resume->photo) && $resume->photo != '') {
+                                    $wpdir = wp_upload_dir();
+                                    $photo = $wpdir['baseurl'] . '/' . $data_directory . '/data/jobseeker/resume_' . $resume->id. '/photo/' . $resume->photo;
+                                }
+                                ?>
+                                <div class="wjp-list-item">
+                                    <div class="wjp-item-main-info">
+                                        <img src="<?php echo esc_attr($photo); ?>" alt="<?php echo esc_attr($resume->application_title); ?>" class="wjp-avatar">
+                                        <div class="wjp-item-text"><p class="wjp-name"><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_resume&wpjobportallt=viewresume&wpjobportalid='.$resume->id)); ?>"><?php echo esc_html($resume->first_name . ' ' . $resume->last_name); ?></a></p><p class="wjp-subtext"> <?php echo esc_html($resume->application_title); ?></p>
+                                            <div class="wjp-tag-list" style="margin-top: 0.25rem;">
+                                                <span class="wjp-tag wjp-tag-sky"><?php echo esc_html($resume->jobtypetitle); ?></span>
+                                                <span class="wjp-tag wjp-tag-slate"><?php echo esc_html($resume->cat_title); ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="wjp-item-aside-info"><span class="wjp-tag wjp-tag-blue"><?php echo esc_html__('New', 'wp-job-portal'); ?></span><p class="wjp-date"><?php echo esc_html(human_time_diff(strtotime($resume->created) ,strtotime(date_i18n("Y-m-d H:i:s")))).' '.esc_html(__("Ago",'wp-job-portal')); ?></p></div>
+                                </div>
+                            <?php }
+                            } else { ?>
+                                <div class="wjp-no-records"><?php echo esc_html__('No new resumes have been added recently.', 'wp-job-portal'); ?></div>
+                            <?php } ?>
+                         </div>
+                    </div>
+                    <?php endif; ?>
 
-                                <?php if ( !in_array('airesumesearch',wpjobportal::$_active_addons)) { ?>
-                                    <div class="wpjobportal-cp-addon">
-                                        <div class="wpjobportal-cp-addon-image">
-                                            <img class="wpjobportal-cp-addon-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/addons/airesumesearch.png" height="60px" width="60px" alt="<?php echo esc_html(__('AI Job Search','wp-job-portal')); ?>">
+                <?php if(in_array('credits', wpjobportal::$_active_addons)){ ?>
+
+                        <?php if (isset($wjp_options['latest_subscriptions'])) : ?>
+                        <div id="" class="wjp-card wjp-financials">
+                            <div class="wjp-h3"><?php echo esc_html__('Latest Package Subscriptions', 'wp-job-portal'); ?></div>
+                            <div class="wjp-list">
+                                <?php if (isset(wpjobportal::$_data[0]['latest_subscriptions']) && !empty(wpjobportal::$_data[0]['latest_subscriptions'])) {
+                                    foreach(wpjobportal::$_data[0]['latest_subscriptions'] as $sub) { ?>
+                                    <div class="wjp-list-item wjp-list-item-simple">
+                                        <div class="wjp-item-main-info">
+                                            <?php
+                                            $photo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
+                                            if (isset($sub->photo) && $sub->photo != '') {
+                                                $wpdir = wp_upload_dir();
+                                                $data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
+                                                $photo = $wpdir['baseurl'] . '/' . $data_directory . '/data/profile/profile_' . esc_attr($sub->uid) . '/profile/' . $sub->photo;
+                                            }
+                                            ?>
+                                            <img src="<?php echo esc_attr($photo);?>" alt="<?php echo esc_attr($sub->first_name); ?> Logo" class="wjp-logo">
+                                            <p>
+                                                <span class="wjp-company-name">
+                                                    <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userdetail&id='.(isset($sub->uid) ? $sub->uid : ''))); ?>">
+                                                        <?php echo esc_html($sub->first_name . ' ' . $sub->last_name); ?>
+                                                    </a>
+                                                </span>
+                                                <?php echo esc_html__('subscribed to', 'wp-job-portal'); ?>
+                                                <span class="wjp-plan-pro"><?php echo esc_html($sub->package_name); ?></span>.
+                                            </p>
                                         </div>
-                                        <div class="wpjobportal-cp-addon-cnt">
-                                            <div class="wpjobportal-cp-addon-tit">
-                                                <?php echo esc_html(__('AI Job Search','wp-job-portal')); ?>
-                                            </div>
-                                            <div class="wpjobportal-cp-addon-desc">
-                                                <?php echo esc_html(__('AI Resume Search uses advanced artificial intelligence algorithms to help employers quickly find the most relevant candidate resumes from your database.','wp-job-portal')); ?>
-                                            </div>
-                                        </div>
-                                        <?php $plugininfo = checkWPJPPluginInfo('wp-job-portal-airesumesearch/wp-job-portal-airesumesearch.php');
-                                            if($plugininfo['availability'] == "1"){
-                                                $text = $plugininfo['text'];
-                                                $url = "plugins.php?s=wp-job-portal-airesumesearch&plugin_status=inactive";
-                                            }elseif($plugininfo['availability'] == "0"){
-                                                $text = $plugininfo['text'];
-                                                $url = "https://wpjobportal.com/product/ai-resume-search/";
-                                            } ?>
-                                            <a href="<?php echo esc_url($url); ?>" class="wpjobportal-cp-addon-btn" title="<?php echo esc_attr($text); ?>">
-                                                <?php echo esc_html($text); ?>
-                                            </a>
+                                        <span class="wjp-timestamp"><?php echo esc_html(human_time_diff(strtotime($sub->created) ,strtotime(date_i18n("Y-m-d H:i:s")))).' '.esc_html(__("ago",'wp-job-portal')); ?></span>
                                     </div>
+                                <?php }
+                                } else { ?>
+                                    <div class="wjp-list-item wjp-list-item-simple"><p><?php echo esc_html__('No new subscriptions found.', 'wp-job-portal'); ?></p></div>
                                 <?php } ?>
                             </div>
                         </div>
-                    <?php } ?>
-                </div>
-                <!-- page single section wrp -->
-                <div class="wpjobportal-review-sec">
-                    <div class="wpjobportal-review">
-                        <div class="wpjobportal-review-upper">
-                            <span class="wpjobportal-review-simple-text">
-                                <?php echo esc_html(__('We would love to hear from You.', 'wp-job-portal')); ?>
-                                <br />
-                                <?php echo esc_html(__('Please write appreciated review at', 'wp-job-portal')); ?>
-                            </span>
-                            <a class="wpjobportal-review-link" href="https://wordpress.org/support/view/plugin-reviews/wp-job-portal" target="_blank">
-                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/review/star.png">
-                                <?php echo esc_html(__('WP Extension Directory', 'wp-job-portal')); ?>
-                            </a>
+                        <?php endif; ?>
+                        <?php if (isset($wjp_options['latest_payments'])) : ?>
+                        <div id="" class="wjp-card wjp-financials">
+                            <div class="wjp-h3"><?php echo esc_html__('Latest Payments', 'wp-job-portal'); ?></div>
+                             <div class="wjp-list">
+                                 <?php if (isset(wpjobportal::$_data[0]['latest_payments']) && !empty(wpjobportal::$_data[0]['latest_payments'])) {
+                                    foreach(wpjobportal::$_data[0]['latest_payments'] as $payment) { ?>
+
+                                    <div class="wjp-list-item wjp-list-item-simple">
+                                        <div class="wjp-item-main-info">
+                                            <?php
+                                            $photo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
+                                            if (isset($sub->photo) && $sub->photo != '') {
+                                                $wpdir = wp_upload_dir();
+                                                $data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
+                                                $photo = $wpdir['baseurl'] . '/' . $data_directory . '/data/profile/profile_' . esc_attr($sub->uid) . '/profile/' . $sub->photo;
+                                            }
+                                            ?>
+                                            <img src="<?php echo esc_attr($photo);?>" alt="<?php echo esc_attr($payment->payer_name); ?> Logo" class="wjp-logo">
+                                            <div class="wjp-item-text">
+                                                <p class="wjp-name"><?php echo esc_html($payment->payer_name); ?></p>
+                                                <p class="wjp-subtext"><?php echo esc_html($payment->description); ?></p>
+                                            </div>
+                                        </div>
+                                        <div class="wjp-item-aside-info">
+                                            <p class="wjp-amount"><?php echo esc_html($payment->symbol) . esc_html($payment->amount); ?></p>
+                                        </div>
+                                    </div>
+                                 <?php }
+                                 } else { ?>
+                                    <div class="wjp-no-records"><?php echo esc_html__('No recent payments to display.', 'wp-job-portal'); ?></div>
+                                 <?php } ?>
+                             </div>
                         </div>
-                        <div class="wpjobportal-review-lower">
-                            <span class="wpjobportal-review-simple-text">
-                                <?php echo esc_html(__('Spread the word : ','wp-job-portal')); ?>
-                            </span>
-                            <a class="wpjobportal-review-soc-link" href="https://www.facebook.com/joomsky" target="_blank">
-                                <img alt="fb" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/review/fb.png">
-                            </a>
-                            <a class="wpjobportal-review-soc-link" href="https://twitter.com/joomsky" target="_blank">
-                                <img alt="twitter" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/review/twitter.png">
-                            </a>
+                        <?php endif; ?>
+
+                <?php } ?>
+
+                    <?php if (isset($wjp_options['latest_activity'])) : ?>
+                    <div id="" class="wjp-card wjp-system-logs wjp-col-span-3">
+                        <div class="wjp-h3"><?php echo esc_html__('Latest Activity', 'wp-job-portal'); ?></div>
+                        <div class="wjp-list">
+                            <?php if (isset(wpjobportal::$_data[0]['latest_activity']) && !empty(wpjobportal::$_data[0]['latest_activity'])) {
+                                foreach(wpjobportal::$_data[0]['latest_activity'] as $log) {
+                                    $icon_config = $log->icon_config;
+                                    //$icon_config = function_exists('getActivityLogIconConfigForDashboard') ? getActivityLogIconConfigForDashboard($log->description) : ['icon' => 'fas fa-info', 'bg_class' => 'wjp-bg-slate'];
+                                    ?>
+                                <div class="wjp-activity-item">
+                                    <div class="wjp-activity-icon <?php echo esc_attr($icon_config['bg_class']); ?>"><i class="<?php echo esc_attr($icon_config['icon']); ?>"></i></div>
+                                    <div class="wjp-activity-text">
+                                        <p><?php echo isset($log->description) ? wp_kses_post($log->description) : ''; ?></p>
+                                        <p class="wjp-subtext"><?php echo isset($log->created) ? esc_html(human_time_diff(strtotime($log->created) ,strtotime(date_i18n("Y-m-d H:i:s")))).' '.esc_html(__("ago",'wp-job-portal')) : ''; ?></p>
+                                    </div>
+                                </div>
+                            <?php }
+                            } ?>
                         </div>
                     </div>
+                    <?php endif; ?>
+                    <?php if (isset($wjp_options['system_error_log'])) : ?>
+                    <div id="" class="wjp-card wjp-system-logs wjp-col-span-2">
+                        <div class="wjp-h3"><?php echo esc_html__('System Error Log', 'wp-job-portal'); ?></div>
+                        <div class="wjp-list">
+                           <?php if (isset(wpjobportal::$_data[0]['latest_errors']) && !empty(wpjobportal::$_data[0]['latest_errors'])) {
+                                foreach(wpjobportal::$_data[0]['latest_errors'] as $log) {
+                                    $log_class = get_error_log_class($log->error);
+                                    ?>
+                                <div class="wjp-list-item wjp-list-item-simple">
+                                    <div class="wjp-item-text">
+                                        <p class="wjp-log-text <?php echo esc_attr($log_class); ?>"><?php echo esc_html($log->error); ?></p>
+                                        <p class="wjp-subtext"><?php echo esc_html(human_time_diff(strtotime($log->created), current_time('timestamp'))) . ' ' . esc_html__('ago', 'wp-job-portal'); ?></p>
+                                    </div>
+
+                                </div>
+                            <?php }
+                           } else { ?>
+                                <div class="wjp-no-records"><?php echo esc_html__('Hooray! No system errors to report.', 'wp-job-portal'); ?></div>
+                           <?php } ?>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+
+
+                    <?php if (isset($wjp_options['latest_job_seekers'])) : ?>
+                    <div id="" class="wjp-card wjp-latest-members">
+                        <div class="wjp-h3"><?php echo esc_html__('Latest Job Seekers', 'wp-job-portal'); ?></div>
+                         <div class="wjp-list">
+                            <?php if (isset(wpjobportal::$_data[0]['latest_jobseekers']) && !empty(wpjobportal::$_data[0]['latest_jobseekers'])) {
+                                foreach(wpjobportal::$_data[0]['latest_jobseekers'] as $seeker) { ?>
+                                <div class="wjp-list-item wjp-list-item-simple">
+                                    <div class="wjp-item-main-info">
+                                        <?php
+                                        $photo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
+                                        if (isset($seeker->photo) && $seeker->photo != '') {
+                                            $wpdir = wp_upload_dir();
+                                            $data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
+                                            $photo = $wpdir['baseurl'] . '/' . $data_directory . '/data/profile/profile_' . esc_attr($seeker->id) . '/profile/' . $seeker->photo;
+                                        }
+                                        ?>
+                                        <img src="<?php echo esc_attr($photo) ?>" alt="<?php echo esc_attr($seeker->title); ?>" class="wjp-avatar">
+                                        <div class="wjp-item-text">
+                                            <p class="wjp-name"><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userdetail&id='.(isset($seeker->id) ? $seeker->id : ''))); ?>"><?php echo esc_html($seeker->username); ?></a></p>
+                                            <p class="wjp-subtext"><?php echo esc_html($seeker->title); ?></p>
+                                            <p class="wjp-subtext"><?php echo esc_html__('Joined', 'wp-job-portal'); ?>: <?php echo !empty($seeker->created) ? esc_html(date_i18n(get_option('date_format'), strtotime($seeker->created))) : ''; ?></p>
+                                        </div>
+                                    </div>
+                                    <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userdetail&id='.(isset($seeker->id) ? $seeker->id : ''))); ?>" class="wjp-view-all-link"><?php echo esc_html__('View Profile', 'wp-job-portal'); ?></a>
+                                </div>
+                            <?php }
+                            } else { ?>
+                                <div class="wjp-no-records"><?php echo esc_html__('No new job seekers have registered.', 'wp-job-portal'); ?></div>
+                            <?php } ?>
+                         </div>
+                    </div>
+                    <?php endif; ?>
+                    <?php if (isset($wjp_options['latest_employers'])) : ?>
+                    <div id="" class="wjp-card wjp-latest-members">
+                        <div class="wjp-h3"><?php echo esc_html__('Latest Employers', 'wp-job-portal'); ?></div>
+                        <div class="wjp-list">
+                            <?php if (isset(wpjobportal::$_data[0]['latest_employers']) && !empty(wpjobportal::$_data[0]['latest_employers'])) {
+                                foreach(wpjobportal::$_data[0]['latest_employers'] as $employer) { ?>
+                                <div class="wjp-list-item wjp-list-item-simple">
+                                    <div class="wjp-item-main-info">
+                                        <?php
+                                        $photo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
+                                        if (isset($employer->photo) && $employer->photo != '') {
+                                            $wpdir = wp_upload_dir();
+                                            $data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
+                                            $photo = $wpdir['baseurl'] . '/' . $data_directory . '/data/profile/profile_' . esc_attr($employer->id) . '/profile/' . $employer->photo;
+                                        }
+                                        ?>
+                                        <img src="<?php echo esc_attr($photo) ?>" alt="<?php echo esc_attr($employer->title); ?> Logo" class="wjp-logo">
+                                        <div class="wjp-item-text">
+                                            <p class="wjp-name"><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userdetail&id='.(isset($employer->id) ? $employer->id : ''))); ?>"><?php echo esc_html($employer->username); ?></a></p>
+                                            <p class="wjp-subtext"><?php echo esc_html__('Joined', 'wp-job-portal'); ?>: <?php echo !empty($employer->created) ? esc_html(date_i18n(get_option('date_format'), strtotime($employer->created))) : ''; ?></p>
+                                        </div>
+                                    </div>
+                                    <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userdetail&id='.(isset($employer->id) ? $employer->id : ''))); ?>" class="wjp-view-all-link"><?php echo esc_html__('View Profile', 'wp-job-portal'); ?></a>
+                                </div>
+                            <?php }
+                            } else { ?>
+                                <div class="wjp-no-records"><?php echo esc_html__('No new employers have registered.', 'wp-job-portal'); ?></div>
+                            <?php } ?>
+                        </div>
+                    </div>
+                    <?php endif; ?>
                 </div>
-            </div>
+                </main>
         </div>
     </div>
 </div>
 <?php
-    wp_register_script( 'wpjobportal-inline-handle', '' );
-    wp_enqueue_script( 'wpjobportal-inline-handle' );
+$wojobportal_js = '
+    jQuery(document).ready(function($) {
+        // --- DROPDOWN LOGIC ---
+        const $dropdownMenu = $("#wjp-screen-options-menu");
+        const $dropdownButton = $("#wjp-screen-options-btn");
 
-    $inline_js_script = "
-            jQuery(document).ready(function () {
-                jQuery('div.resume').animate({left: '-100%'});
-                jQuery('div.companies span.img img').click(function (e) {
-                    jQuery('div.companies').animate({left: '-100%'});
-                    jQuery('div.resume').animate({left: '0%'});
-                });
-                jQuery('div.resume span.img img').click(function (e) {
-                    jQuery('div.resume').animate({left: '-100%'});
-                    jQuery('div.companies').animate({left: '0%'});
-                });
-                jQuery('div.jobs').animate({right: '-100%'});
-                jQuery('div.jobs span.img img').click(function (e) {
-                    jQuery('div.jobs').animate({right: '-100%'});
-                    jQuery('div.appliedjobs').animate({right: '0%'});
-                });
-                jQuery('div.appliedjobs span.img img').click(function (e) {
-                    jQuery('div.appliedjobs').animate({right: '-100%'});
-                    jQuery('div.jobs').animate({right: '0%'});
-                });
-                jQuery('span.dashboard-icon').find('span.download').hover(function(){
-                    jQuery(this).find('span').toggle('slide');
-                }, function(){
-                    jQuery(this).find('span').toggle('slide');
-                });
+        $dropdownButton.on("click", function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            $dropdownMenu.toggle();
+        });
+
+        $(".wjp-close-dropdown").on("click", function(event) {
+            event.preventDefault();
+            $dropdownMenu.hide();
+        });
+
+        $(document).on("click", function(event) {
+            if ($dropdownMenu.is(":visible") && !$(event.target).closest($dropdownMenu).length && !$(event.target).closest($dropdownButton).length) {
+                $dropdownMenu.hide();
+            }
+        });
+
+        // --- CHARTS INITIALIZATION ---
+        const chartColors = {
+            primary: "#4f46e5",
+            secondary: "#0ea5e9",
+            success: "#10b981",
+            warning: "#f59e0b",
+            danger: "#ef4444",
+            slateBg: "#e2e8f0",
+            borderColor: "#e2e8f0",
+            teal: "#14b8a6",
+            tealBg: "rgba(20, 184, 166, 0.1)",
+            primaryTransparent: "rgba(79, 70, 229, 0.1)"
+        };
+
+        if (jQuery("#applicationChart").length) {
+            new Chart($("#applicationChart")[0].getContext("2d"), {
+                type: "line",
+                data: {
+                    labels: '. (isset(wpjobportal::$_data['platform_growth']['labels']) ? json_encode(wpjobportal::$_data['platform_growth']['labels']) : '[]') .',
+                    datasets: [
+                        {
+                            label: "'. esc_js(__('Applications', 'wp-job-portal')) .'",
+                            data: '. (isset(wpjobportal::$_data['platform_growth']['applies']) ? json_encode(wpjobportal::$_data['platform_growth']['applies']) : '[]') .',
+                            borderColor: chartColors.primary,
+                            backgroundColor: chartColors.primaryTransparent,
+                            borderWidth: 2,
+                            tension: 0.4,
+                            fill: true,
+                            pointBackgroundColor: chartColors.primary,
+                            pointRadius: 5,
+                            pointHoverRadius: 7
+                        },
+                        {
+                            label: "'. esc_js(__('New Jobs', 'wp-job-portal')) .'",
+                            data: '. (isset(wpjobportal::$_data['platform_growth']['jobs']) ? json_encode(wpjobportal::$_data['platform_growth']['jobs']) : '[]') .',
+                            borderColor: chartColors.teal,
+                            backgroundColor: chartColors.tealBg,
+                            borderWidth: 2,
+                            tension: 0.4,
+                            fill: true,
+                            pointBackgroundColor: chartColors.teal,
+                            pointRadius: 5,
+                            pointHoverRadius: 7
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: chartColors.borderColor }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: "index"
+                    }
+                }
             });
-    ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+        }
+
+        if (jQuery("#jobsStatusChart").length) {
+            new Chart($("#jobsStatusChart")[0].getContext("2d"), {
+                type: "doughnut",
+                data: {
+                    labels: '. (isset(wpjobportal::$_data['jobs_by_status']['labels']) ? json_encode(wpjobportal::$_data['jobs_by_status']['labels']) : '[]') .',
+                    datasets: [{
+                        data: '. (isset(wpjobportal::$_data['jobs_by_status']['data']) ? json_encode(wpjobportal::$_data['jobs_by_status']['data']) : '[]') .',
+                        backgroundColor: [chartColors.primary, chartColors.secondary, chartColors.warning, chartColors.slateBg, chartColors.success, chartColors.danger],
+                        hoverOffset: 4,
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: "70%",
+                    plugins: {
+                        legend: {
+                            position: "bottom",
+                            labels: {
+                                usePointStyle: true,
+                                boxWidth: 8,
+                                padding: 15
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        if (jQuery("#topCategoriesChart").length) {
+            new Chart($("#topCategoriesChart")[0].getContext("2d"), {
+                type: "bar",
+                data: {
+                    labels: '. (isset(wpjobportal::$_data['top_categories']['labels']) ? json_encode(wpjobportal::$_data['top_categories']['labels']) : '[]') .',
+                    datasets: [{
+                        data: '. (isset(wpjobportal::$_data['top_categories']['data']) ? json_encode(wpjobportal::$_data['top_categories']['data']) : '[]') .',
+                        backgroundColor: [chartColors.primary, chartColors.secondary, chartColors.success, chartColors.warning, chartColors.danger],
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    indexAxis: "y",
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            grid: { color: chartColors.borderColor }
+                        },
+                        y: {
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        }
+    });
+';
+
+wp_add_inline_script('wp-job-portal-dashboard-js', $wojobportal_js);
 ?>

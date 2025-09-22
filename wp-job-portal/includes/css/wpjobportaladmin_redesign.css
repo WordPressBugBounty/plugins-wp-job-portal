@@ -1,0 +1,1262 @@
+/* ==========================================================================
+   1. GLOBAL STYLES & VARIABLES
+   ========================================================================== */
+:root {
+    /* Colors */
+    --wjp-color-primary: #4f46e5;
+    --wjp-color-primary-dark: #4338ca;
+    --wjp-color-primary-light: #e0e7ff;
+    --wjp-color-primary-bg: #eef2ff;
+    --wjp-color-secondary: #0ea5e9;
+    --wjp-color-success: #10b981;
+    --wjp-color-success-text: #065f46;
+    --wjp-color-success-bg: #d1fae5;
+    --wjp-color-warning: #f59e0b;
+    --wjp-color-warning-text: #b45309;
+    --wjp-color-warning-bg: #fef3c7;
+    --wjp-color-danger: #ef4444;
+    --wjp-color-danger-text: #991b1b;
+    --wjp-color-danger-bg: #fee2e2;
+    --wjp-color-slate: #475569;
+    --wjp-color-slate-bg: #e2e8f0;
+
+    /* Text */
+    --wjp-text-dark: #1e293b;
+    --wjp-text-medium: #475569;
+    --wjp-text-light: #64748b;
+    --wjp-text-lighter: #94a3b8;
+    --wjp-text-white: #ffffff;
+
+    /* Backgrounds & Borders */
+    --wjp-bg-body: #f8fafc;
+    --wjp-bg-card: #ffffff;
+    --wjp-bg-light: #f1f5f9;
+    --wjp-bg-hover: #f8fafc;
+    --wjp-border-color: #e2e8f0;
+
+    /* Misc */
+    --wjp-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --wjp-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --wjp-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --wjp-border-radius: 0.75rem;
+    --wjp-border-radius-sm: 0.5rem;
+
+    /* Fonts */
+    --wjp-font-family: 'Inter', sans-serif;
+    --wjp-font-weight-normal: 400;
+    --wjp-font-weight-medium: 500;
+    --wjp-font-weight-semibold: 600;
+    --wjp-font-weight-bold: 700;
+    --wjp-font-size-xs: 0.75rem;
+    --wjp-font-size-sm: 0.875rem;
+    --wjp-font-size-base: 1rem;
+    --wjp-font-size-lg: 1.125rem;
+    --wjp-font-size-xl: 1.25rem;
+    --wjp-font-size-2xl: 1.5rem;
+    --wjp-font-size-3xl: 1.875rem;
+}
+
+#wjp-dashboard-wrapper div#wpjobportaladmin-data {
+    font-family: var(--wjp-font-family);
+    background-color: var(--wjp-bg-body);
+    color: var(--wjp-text-medium);
+}
+
+#wjp-dashboard-wrapper div#wpjobportaladmin-data * {
+    box-sizing: border-box;
+}
+
+#wjp-dashboard-wrapper div#wpjobportaladmin-data a {
+    text-decoration: none;
+}
+
+/* Style for 'No Records' messages */
+#wjp-dashboard-wrapper .wjp-no-records {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    color: var(--wjp-text-light);
+    font-style: italic;
+}
+
+#wjp-dashboard-wrapper table .wjp-no-records td {
+    border-bottom: none;
+}
+
+
+/* ==========================================================================
+   2. LAYOUT & CORE COMPONENTS
+   ========================================================================== */
+/* Main Layout */
+#wjp-dashboard-wrapper .wjp-main-content {
+    flex-grow: 1;
+    padding: 1rem;
+}
+
+/* Header */
+#wjp-dashboard-wrapper div#wjp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2.5rem;
+}
+
+#wjp-dashboard-wrapper div#wjp-header div.wjp-header-title div.wjp-h2 {
+    font-size: var(--wjp-font-size-3xl);
+    font-weight: var(--wjp-font-weight-bold);
+    color: var(--wjp-text-dark);
+    margin: 0;
+}
+
+#wjp-dashboard-wrapper div#wjp-header div.wjp-header-title p {
+    margin-top: 0.25rem;
+    color: var(--wjp-text-light);
+}
+
+#wjp-dashboard-wrapper div#wjp-header div.wjp-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Buttons */
+#wjp-dashboard-wrapper a.wjp-btn,
+#wjp-dashboard-wrapper button.wjp-btn-sm {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: var(--wjp-border-radius-sm);
+    font-weight: var(--wjp-font-weight-medium);
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+    box-shadow: var(--wjp-shadow);
+    font-family: var(--wjp-font-family);
+    font-size: var(--wjp-font-size-sm);
+}
+
+#wjp-dashboard-wrapper a.wjp-btn {
+    font-size: var(--wjp-font-size-base);
+}
+
+#wjp-dashboard-wrapper button.wjp-btn-sm {
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.375rem;
+}
+
+#wjp-dashboard-wrapper a.wjp-btn-secondary,
+#wjp-dashboard-wrapper button.wjp-btn-sm {
+    background-color: var(--wjp-bg-card);
+    color: var(--wjp-text-medium);
+    border-color: var(--wjp-border-color);
+}
+
+#wjp-dashboard-wrapper a.wjp-btn-secondary:hover,
+#wjp-dashboard-wrapper button.wjp-btn-sm:not(.wjp-btn-primary):hover {
+    background-color: var(--wjp-bg-hover);
+    border-color: #d1d5db;
+}
+
+#wjp-dashboard-wrapper a.wjp-btn-primary,
+#wjp-dashboard-wrapper button.wjp-btn-sm.wjp-btn-primary {
+    background-color: var(--wjp-color-primary);
+    color: var(--wjp-text-white);
+    border-color: var(--wjp-color-primary);
+}
+
+#wjp-dashboard-wrapper a.wjp-btn-primary:hover,
+#wjp-dashboard-wrapper button.wjp-btn-sm.wjp-btn-primary:hover {
+    background-color: var(--wjp-color-primary-dark);
+    border-color: var(--wjp-color-primary-dark);
+}
+
+#wjp-dashboard-wrapper a.wjp-btn i.wjp-btn-icon {
+    margin-right: 0.5rem;
+}
+
+#wjp-dashboard-wrapper a.wjp-btn-xs {
+    padding: 0.25rem 0.75rem;
+    font-size: var(--wjp-font-size-xs);
+    font-weight: var(--wjp-font-weight-medium);
+    border-radius: 9999px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s;
+}
+
+#wjp-dashboard-wrapper a.wjp-btn-xs.wjp-btn-slate {
+    background-color: var(--wjp-bg-light);
+    color: #334155;
+}
+
+#wjp-dashboard-wrapper a.wjp-btn-xs.wjp-btn-slate:hover {
+    background-color: var(--wjp-border-color);
+}
+
+#wjp-dashboard-wrapper a.wjp-btn-xs.wjp-btn-indigo {
+    background-color: var(--wjp-color-primary-light);
+    color: var(--wjp-color-primary);
+}
+
+#wjp-dashboard-wrapper a.wjp-btn-xs.wjp-btn-indigo:hover {
+    background-color: #c7d2fe;
+}
+
+/* Dropdown */
+#wjp-dashboard-wrapper div.wjp-dropdown {
+    position: relative;
+}
+
+/* ==========================================================================
+   START: REDESIGNED SCREEN OPTIONS POPUP STYLES
+   ========================================================================== */
+
+#wjp-dashboard-wrapper .wjp-so-popup { /* New name for dropdown menu */
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    width: 480px; /* Wider */
+    background-color: var(--wjp-bg-card);
+    border-radius: var(--wjp-border-radius); /* Larger radius */
+    box-shadow: var(--wjp-shadow-lg);
+    border: 1px solid var(--wjp-border-color);
+    z-index: 100;
+    display: none;
+    overflow: hidden;
+    animation: wjp-fade-in 0.2s ease-out;
+}
+
+@keyframes wjp-fade-in {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#wjp-dashboard-wrapper .wjp-so-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--wjp-border-color);
+    background-color: var(--wjp-bg-light);
+}
+
+#wjp-dashboard-wrapper .wjp-so-header .wjp-so-title {
+    margin: 0;
+    font-weight: var(--wjp-font-weight-semibold);
+    font-size: var(--wjp-font-size-lg);
+    color: var(--wjp-text-dark);
+}
+
+#wjp-dashboard-wrapper .wjp-so-header .wjp-so-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--wjp-text-lighter);
+    font-size: 1.25rem;
+    line-height: 1;
+    padding: 0.25rem;
+    transition: color 0.2s;
+}
+#wjp-dashboard-wrapper .wjp-so-header .wjp-so-close:hover {
+    color: var(--wjp-text-dark);
+}
+
+#wjp-dashboard-wrapper .wjp-so-content {
+    padding: 1.5rem;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+#wjp-dashboard-wrapper .wjp-so-section {
+    margin-bottom: 1.5rem;
+}
+#wjp-dashboard-wrapper .wjp-so-section:last-child {
+    margin-bottom: 0;
+}
+
+#wjp-dashboard-wrapper .wjp-so-section-title {
+    font-size: var(--wjp-font-size-xs);
+    font-weight: var(--wjp-font-weight-bold);
+    color: var(--wjp-text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--wjp-border-color);
+}
+
+#wjp-dashboard-wrapper .wjp-so-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+#wjp-dashboard-wrapper .wjp-so-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--wjp-bg-body);
+    padding: 0.75rem 1rem;
+    border-radius: var(--wjp-border-radius-sm);
+    border: 1px solid var(--wjp-border-color);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#wjp-dashboard-wrapper .wjp-so-item:hover {
+    border-color: #d1d5db;
+}
+
+#wjp-dashboard-wrapper .wjp-so-item-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: var(--wjp-font-size-sm);
+    color: var(--wjp-text-medium);
+    font-weight: var(--wjp-font-weight-medium);
+}
+
+#wjp-dashboard-wrapper .wjp-so-item-label i {
+    color: var(--wjp-text-light);
+    width: 16px;
+    text-align: center;
+}
+
+/* Redesigned Toggle Switch */
+#wjp-dashboard-wrapper .wjp-so-toggle {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+#wjp-dashboard-wrapper .wjp-so-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+#wjp-dashboard-wrapper .wjp-so-toggle .wjp-so-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+#wjp-dashboard-wrapper .wjp-so-toggle .wjp-so-slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+#wjp-dashboard-wrapper .wjp-so-toggle input:checked + .wjp-so-slider {
+    background-color: var(--wjp-color-primary);
+}
+
+#wjp-dashboard-wrapper .wjp-so-toggle input:checked + .wjp-so-slider:before {
+    transform: translateX(20px);
+}
+
+#wjp-dashboard-wrapper .wjp-so-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--wjp-border-color);
+    background-color: var(--wjp-bg-light);
+}
+
+#wjp-dashboard-wrapper .wjp-so-footer .wjp-btn-sm.wjp-btn-reset {
+    background-color: transparent;
+    color: var(--wjp-text-medium);
+    border: none;
+    box-shadow: none;
+    font-weight: var(--wjp-font-weight-medium);
+}
+
+#wjp-dashboard-wrapper .wjp-so-footer .wjp-btn-sm.wjp-btn-reset:hover {
+    background-color: var(--wjp-border-color);
+    color: var(--wjp-text-dark);
+}
+
+/* ==========================================================================
+   END: REDESIGNED SCREEN OPTIONS POPUP STYLES
+   ========================================================================== */
+
+/* Cards */
+#wjp-dashboard-wrapper div.wjp-card {
+    background-color: var(--wjp-bg-card);
+    padding: 1.5rem;
+    border-radius: var(--wjp-border-radius);
+    box-shadow: var(--wjp-shadow);
+    border: 1px solid var(--wjp-border-color);
+}
+
+#wjp-dashboard-wrapper div.wjp-grid-section div.wjp-card {
+    margin-bottom: 0;
+}
+
+#wjp-dashboard-wrapper div.wjp-card:not(div.wjp-grid-section div.wjp-card) {
+    margin-bottom: 2.5rem;
+}
+
+#wjp-dashboard-wrapper div.wjp-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+#wjp-dashboard-wrapper div.wjp-card-title,
+#wjp-dashboard-wrapper div.wjp-h3 {
+    font-size: var(--wjp-font-size-lg);
+    font-weight: var(--wjp-font-weight-semibold);
+    color: var(--wjp-text-dark);
+    margin: 0 0 1rem 0;
+}
+
+#wjp-dashboard-wrapper div.wjp-card a.wjp-view-all-link {
+    font-size: var(--wjp-font-size-sm);
+    font-weight: var(--wjp-font-weight-medium);
+}
+
+#wjp-dashboard-wrapper div.wjp-card a.wjp-view-all-link:hover {
+    text-decoration: underline;
+}
+
+/* Tables */
+#wjp-dashboard-wrapper div.wjp-table-wrapper {
+    overflow-x: auto;
+}
+
+#wjp-dashboard-wrapper table.wjp-table {
+    width: 100%;
+    text-align: left;
+    font-size: var(--wjp-font-size-sm);
+    border-collapse: collapse;
+}
+
+#wjp-dashboard-wrapper table.wjp-table thead {
+    font-size: var(--wjp-font-size-xs);
+    text-transform: uppercase;
+    color: var(--wjp-text-light);
+    background-color: var(--wjp-bg-light);
+}
+
+#wjp-dashboard-wrapper table.wjp-table th,
+#wjp-dashboard-wrapper table.wjp-table td {
+    padding: 0.75rem 1.5rem;
+}
+
+#wjp-dashboard-wrapper table.wjp-table th:first-child {
+    border-top-left-radius: var(--wjp-border-radius-sm);
+    border-bottom-left-radius: var(--wjp-border-radius-sm);
+}
+
+#wjp-dashboard-wrapper table.wjp-table th:last-child {
+    border-top-right-radius: var(--wjp-border-radius-sm);
+    border-bottom-right-radius: var(--wjp-border-radius-sm);
+}
+
+#wjp-dashboard-wrapper table.wjp-table tbody tr {
+    border-bottom: 1px solid var(--wjp-border-color);
+}
+
+#wjp-dashboard-wrapper table.wjp-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+#wjp-dashboard-wrapper table.wjp-table td.wjp-table-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+#wjp-dashboard-wrapper table.wjp-table td.wjp-table-actions a {
+    font-weight: var(--wjp-font-weight-medium);
+}
+
+#wjp-dashboard-wrapper table.wjp-table td.wjp-table-actions a:hover {
+    text-decoration: underline;
+}
+
+/* Badges & Tags */
+#wjp-dashboard-wrapper span.wjp-status-badge {
+    padding: 0.25rem 0.625rem;
+    font-size: var(--wjp-font-size-xs);
+    font-weight: var(--wjp-font-weight-medium);
+    border-radius: 9999px;
+}
+
+#wjp-dashboard-wrapper span.wjp-status-active {
+    color: var(--wjp-color-success-text);
+    background-color: var(--wjp-color-success-bg);
+}
+
+#wjp-dashboard-wrapper span.wjp-status-closed {
+    color: var(--wjp-text-medium);
+    background-color: var(--wjp-color-slate-bg);
+}
+
+#wjp-dashboard-wrapper span.wjp-tag {
+    padding: 0.125rem 0.5rem;
+    font-size: var(--wjp-font-size-xs);
+    font-weight: var(--wjp-font-weight-medium);
+    border-radius: 9999px;
+}
+
+#wjp-dashboard-wrapper span.wjp-tag-sky {
+    color: #0c4a6e;
+    background-color: #e0f2fe;
+}
+
+#wjp-dashboard-wrapper span.wjp-tag-emerald {
+    color: var(--wjp-color-success-text);
+    background-color: var(--wjp-color-success-bg);
+}
+
+#wjp-dashboard-wrapper span.wjp-tag-purple {
+    color: #5b21b6;
+    background-color: #ede9fe;
+}
+
+#wjp-dashboard-wrapper span.wjp-tag-amber {
+    background-color: var(--wjp-color-warning-bg);
+    color: #92400e;
+}
+
+#wjp-dashboard-wrapper span.wjp-tag-slate {
+    background-color: var(--wjp-bg-light);
+    color: #334155;
+}
+
+#wjp-dashboard-wrapper span.wjp-tag-blue {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+#wjp-dashboard-wrapper span.wjp-tag-green {
+    background-color: var(--wjp-color-success-bg);
+    color: var(--wjp-color-success-text);
+}
+
+#wjp-dashboard-wrapper span.wjp-tag-purple-alt {
+    background-color: #f5d0fe;
+    color: #701a75;
+}
+
+/* Lists */
+#wjp-dashboard-wrapper div.wjp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+#wjp-dashboard-wrapper div.wjp-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-radius: var(--wjp-border-radius-sm);
+    transition: background-color 0.2s;
+}
+
+#wjp-dashboard-wrapper div.wjp-list-item:hover {
+    background-color: var(--wjp-bg-hover);
+}
+
+#wjp-dashboard-wrapper div.wjp-list-item-simple {
+    padding: 0;
+}
+
+#wjp-dashboard-wrapper div.wjp-list-item-simple:hover {
+    background-color: transparent;
+}
+
+#wjp-dashboard-wrapper div.wjp-item-main-info {
+    display: flex;
+    align-items: center;
+}
+
+#wjp-dashboard-wrapper div.wjp-item-main-info img.wjp-avatar {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 9999px;
+    margin-right: 1rem;
+}
+
+#wjp-dashboard-wrapper div.wjp-item-main-info img.wjp-logo {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 0.375rem;
+    margin-right: 1rem;
+}
+
+#wjp-dashboard-wrapper p.wjp-name {
+    font-weight: var(--wjp-font-weight-semibold);
+    font-size: var(--wjp-font-size-sm);
+    color: var(--wjp-text-dark);
+    margin: 0;
+}
+
+#wjp-dashboard-wrapper p.wjp-name a {
+   color: inherit;
+   text-decoration: none;
+}
+#wjp-dashboard-wrapper p.wjp-name a:hover {
+    color: var(--wjp-color-primary);
+    text-decoration: underline;
+}
+
+#wjp-dashboard-wrapper p.wjp-subtext {
+    font-size: var(--wjp-font-size-xs);
+    color: var(--wjp-text-light);
+    margin: 0.1rem 0 0 0;
+}
+
+#wjp-dashboard-wrapper div.wjp-item-aside-info {
+    text-align: right;
+}
+
+#wjp-dashboard-wrapper p.wjp-date {
+    font-size: var(--wjp-font-size-xs);
+    color: var(--wjp-text-lighter);
+    margin-top: 0.25rem;
+}
+
+#wjp-dashboard-wrapper span.wjp-timestamp {
+    font-size: var(--wjp-font-size-xs);
+    color: var(--wjp-text-lighter);
+    flex-shrink: 0;
+}
+
+/* --- MODIFIED --- Converted Grid Section to Flexbox for flexible layouts */
+#wjp-dashboard-wrapper div.wjp-grid-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+/* ==========================================================================
+   3. SECTION-SPECIFIC STYLES
+   ========================================================================== */
+
+/* Quick Actions */
+#wjp-dashboard-wrapper div#wjp-quick-actions {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+#wjp-dashboard-wrapper div#wjp-quick-actions a.wjp-action-card {
+    background-color: var(--wjp-bg-card);
+    padding: 1.25rem;
+    border-radius: var(--wjp-border-radius);
+    box-shadow: var(--wjp-shadow);
+    border: 1px solid var(--wjp-border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+#wjp-dashboard-wrapper div#wjp-quick-actions a.wjp-action-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--wjp-shadow-lg);
+}
+
+#wjp-dashboard-wrapper div#wjp-quick-actions div.wjp-action-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    border-radius: 9999px;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#wjp-dashboard-wrapper div#wjp-quick-actions div.wjp-bg-indigo {
+    background-color: var(--wjp-color-primary-light);
+    color: var(--wjp-color-primary);
+}
+
+#wjp-dashboard-wrapper div#wjp-quick-actions div.wjp-bg-sky {
+    background-color: #e0f2fe;
+    color: #0369a1;
+}
+
+#wjp-dashboard-wrapper div#wjp-quick-actions div.wjp-bg-emerald {
+    background-color: var(--wjp-color-success-bg);
+    color: var(--wjp-color-success-text);
+}
+
+#wjp-dashboard-wrapper div#wjp-quick-actions div.wjp-bg-amber {
+    background-color: var(--wjp-color-warning-bg);
+    color: var(--wjp-color-warning-text);
+}
+
+#wjp-dashboard-wrapper div#wjp-quick-actions div.wjp-bg-slate {
+    background-color: var(--wjp-color-slate-bg);
+    color: var(--wjp-color-slate);
+}
+
+#wjp-dashboard-wrapper div#wjp-quick-actions p.wjp-action-title {
+    font-weight: var(--wjp-font-weight-semibold);
+    font-size: var(--wjp-font-size-sm);
+    color: var(--wjp-text-dark);
+    margin: 0;
+}
+
+#wjp-dashboard-wrapper div#wjp-quick-actions p.wjp-action-subtitle {
+    font-size: var(--wjp-font-size-xs);
+    color: var(--wjp-text-light);
+    margin: 0.1rem 0 0 0;
+}
+
+/* --- MODIFIED --- Main Grid (Platform Growth & Quick Stats) Flexbox Layout */
+#wjp-dashboard-wrapper #wjp-platform-growth {
+    flex: 2 1 60%; /* This section takes up roughly 2/3 of the space */
+    min-width: 300px;
+}
+#wjp-dashboard-wrapper #wjp-quick-stats {
+    flex: 1 1 30%; /* This section takes up roughly 1/3 of the space */
+    min-width: 300px;
+}
+
+
+#wjp-dashboard-wrapper div#wjp-platform-growth div.wjp-chart-container {
+    height: 21.5rem;
+}
+
+#wjp-dashboard-wrapper div#wjp-platform-growth div.wjp-chart-legend {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: var(--wjp-font-size-sm);
+}
+
+#wjp-dashboard-wrapper div#wjp-platform-growth span.wjp-legend-item {
+    display: flex;
+    align-items: center;
+}
+
+#wjp-dashboard-wrapper div#wjp-platform-growth span.wjp-legend-dot {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 9999px;
+    margin-right: 0.5rem;
+}
+
+#wjp-dashboard-wrapper div#wjp-quick-stats div.wjp-stats-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+#wjp-dashboard-wrapper div#wjp-quick-stats div.wjp-stat-item {
+    display: flex;
+    align-items: center;
+}
+
+#wjp-dashboard-wrapper div#wjp-quick-stats div.wjp-stat-icon-wrapper {
+    flex-shrink: 0;
+    padding: 0.75rem;
+    border-radius: var(--wjp-border-radius-sm);
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+#wjp-dashboard-wrapper div#wjp-quick-stats div.wjp-bg-emerald {
+    background-color: var(--wjp-color-success-bg);
+    color: var(--wjp-color-success-text);
+}
+
+#wjp-dashboard-wrapper div#wjp-quick-stats div.wjp-bg-sky {
+    background-color: #e0f2fe;
+    color: #0369a1;
+}
+
+#wjp-dashboard-wrapper div#wjp-quick-stats div.wjp-bg-indigo {
+    background-color: var(--wjp-color-primary-light);
+    color: var(--wjp-color-primary);
+}
+
+#wjp-dashboard-wrapper div#wjp-quick-stats div.wjp-bg-amber {
+    background-color: var(--wjp-color-warning-bg);
+    color: var(--wjp-color-warning-text);
+}
+
+#wjp-dashboard-wrapper div#wjp-quick-stats div.wjp-bg-green {
+    background-color: #dcfce7;
+    color: #16a34a;
+}
+
+#wjp-dashboard-wrapper div#wjp-quick-stats div.wjp-bg-red {
+    background-color: var(--wjp-color-danger-bg);
+    color: var(--wjp-color-danger-text);
+}
+
+#wjp-dashboard-wrapper div#wjp-quick-stats p.wjp-stat-label {
+    font-size: var(--wjp-font-size-sm);
+    color: var(--wjp-text-light);
+    margin: 0;
+}
+
+#wjp-dashboard-wrapper div#wjp-quick-stats p.wjp-stat-value {
+    font-size: var(--wjp-font-size-xl);
+    font-weight: var(--wjp-font-weight-bold);
+    color: var(--wjp-text-dark);
+    margin: 0.1rem 0 0 0;
+}
+
+/* Recent Jobs */
+#wjp-dashboard-wrapper #wjp-recent-jobs td.wjp-job-title {
+    font-weight: var(--wjp-font-weight-semibold);
+    color: var(--wjp-text-dark);
+}
+#wjp-dashboard-wrapper #wjp-recent-jobs td.wjp-job-title a,
+#wjp-dashboard-wrapper #wjp-recent-jobs td.wjp-company-name a {
+    color: inherit;
+    text-decoration: none;
+}
+#wjp-dashboard-wrapper #wjp-recent-jobs td.wjp-job-title a:hover,
+#wjp-dashboard-wrapper #wjp-recent-jobs td.wjp-company-name a:hover {
+    color: var(--wjp-color-primary);
+    text-decoration: underline;
+}
+#wjp-dashboard-wrapper #wjp-recent-jobs td.wjp-company-name {
+    color: var(--wjp-text-medium);
+}
+
+/* Status & Category Charts */
+#wjp-dashboard-wrapper #wjp-new-charts {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 2.5rem;
+}
+
+#wjp-dashboard-wrapper #wjp-new-charts .wjp-chart-container {
+    height: 16rem;
+}
+
+#wjp-dashboard-wrapper #wjp-new-charts .wjp-chart-card {
+    flex: 1 1 auto;
+    min-width: 300px; /* Prevent charts from becoming too small */
+    width: calc(50% - 10px);
+    background-color: var(--wjp-bg-card);
+    padding: 1.5rem;
+    border-radius: var(--wjp-border-radius);
+    box-shadow: var(--wjp-shadow);
+    border: 1px solid var(--wjp-border-color);
+}
+
+/* --- ADDED --- Generic 50/50 Flexbox Layout for multiple sections */
+#wjp-dashboard-wrapper div.wjp-new-sections.wjp-card,
+#wjp-dashboard-wrapper div.wjp-financials.wjp-card,
+#wjp-dashboard-wrapper div.wjp-system-logs.wjp-card, /* System Logs is now 50/50 */
+#wjp-dashboard-wrapper div.wjp-latest-members.wjp-card {
+    flex: 1 1 calc(50% - 0.75rem); /* Creates a two-column layout accounting for gap */
+    min-width: 300px; /* Ensures items don't get too squished before wrapping */
+}
+
+/* Applies & Resumes */
+#wjp-dashboard-wrapper div.wjp-new-sections div.wjp-apply-list {
+    gap: 1rem;
+}
+
+#wjp-dashboard-wrapper div.wjp-new-sections div.wjp-applicant-info {
+    display: flex;
+    align-items: flex-start;
+}
+
+#wjp-dashboard-wrapper div.wjp-new-sections div.wjp-applicant-text p {
+    margin: 0;
+}
+
+#wjp-dashboard-wrapper div.wjp-new-sections p.wjp-text-1 {
+    font-size: var(--wjp-font-size-sm);
+    color: var(--wjp-text-light);
+}
+
+#wjp-dashboard-wrapper div.wjp-new-sections p.wjp-text-1 strong {
+    font-weight: var(--wjp-font-weight-bold);
+    color: var(--wjp-text-dark);
+}
+
+/* Consolidated and corrected link color rules */
+#wjp-dashboard-wrapper div.wjp-new-sections p.wjp-text-1 strong a,
+#wjp-dashboard-wrapper div.wjp-new-sections p.wjp-job-title a,
+#wjp-dashboard-wrapper div.wjp-new-sections p.wjp-company-loc a {
+   color: inherit;
+   text-decoration: none;
+}
+#wjp-dashboard-wrapper div.wjp-new-sections p.wjp-text-1 strong a:hover,
+#wjp-dashboard-wrapper div.wjp-new-sections p.wjp-job-title a:hover,
+#wjp-dashboard-wrapper div.wjp-new-sections p.wjp-company-loc a:hover {
+    color: var(--wjp-color-primary);
+    text-decoration: underline;
+}
+
+#wjp-dashboard-wrapper div.wjp-new-sections p.wjp-job-title {
+    font-weight: var(--wjp-font-weight-semibold);
+    color: var(--wjp-text-dark);
+}
+
+#wjp-dashboard-wrapper div.wjp-new-sections p.wjp-company-loc {
+    font-size: var(--wjp-font-size-xs);
+    color: var(--wjp-text-light);
+    margin-top: 0.125rem;
+}
+
+#wjp-dashboard-wrapper div.wjp-new-sections div.wjp-apply-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+#wjp-dashboard-wrapper div.wjp-new-sections div.wjp-item-footer {
+    margin-top: 0.5rem;
+    padding-left: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#wjp-dashboard-wrapper div.wjp-new-sections div.wjp-tag-list {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap; /* Allow tags to wrap on small screens */
+}
+
+#wjp-dashboard-wrapper div.wjp-new-sections div.wjp-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#wjp-dashboard-wrapper div.wjp-new-sections div.wjp-list {
+    gap: 0.5rem;
+}
+
+#wjp-dashboard-wrapper div.wjp-new-sections div.wjp-apply-item {
+    padding: 1rem;
+    border-radius: var(--wjp-border-radius-sm);
+    transition: background-color 0.2s;
+}
+
+#wjp-dashboard-wrapper div.wjp-new-sections div.wjp-apply-item:hover {
+    background-color: var(--wjp-bg-hover);
+}
+#wjp-dashboard-wrapper div.wjp-applicant-info img.wjp-avatar{
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 0.375rem;
+    margin-right: 1rem;
+}
+
+/* Financials (Subscriptions & Payments) */
+#wjp-dashboard-wrapper div.wjp-financials span.wjp-company-name {
+    font-weight: var(--wjp-font-weight-semibold);
+    color: var(--wjp-text-dark);
+}
+#wjp-dashboard-wrapper div.wjp-financials span.wjp-company-name a {
+    color: inherit;
+    text-decoration: none;
+}
+ #wjp-dashboard-wrapper div.wjp-financials span.wjp-company-name a:hover {
+    color: var(--wjp-color-primary);
+    text-decoration: underline;
+}
+
+#wjp-dashboard-wrapper div.wjp-financials span.wjp-plan-pro {
+    font-weight: var(--wjp-font-weight-semibold);
+    color: var(--wjp-color-success);
+}
+
+#wjp-dashboard-wrapper div.wjp-financials span.wjp-plan-ent {
+    font-weight: var(--wjp-font-weight-semibold);
+    color: var(--wjp-color-primary);
+}
+
+#wjp-dashboard-wrapper div.wjp-financials span.wjp-plan-basic {
+    font-weight: var(--wjp-font-weight-semibold);
+    color: var(--wjp-color-secondary);
+}
+
+#wjp-dashboard-wrapper div.wjp-financials p.wjp-amount {
+    font-weight: var(--wjp-font-weight-semibold);
+    color: var(--wjp-color-success);
+    margin: 0;
+}
+
+/* --- MODIFIED --- Resetting old grid column spans as they are no longer needed */
+#wjp-dashboard-wrapper div.wjp-system-logs div.wjp-col-span-3,
+#wjp-dashboard-wrapper div.wjp-system-logs div.wjp-col-span-2 {
+     grid-column: initial;
+}
+
+/* Improved Activity Log Styles */
+#wjp-dashboard-wrapper div.wjp-system-logs div.wjp-list {
+    gap: 0; /* Use padding/borders for separation */
+}
+#wjp-dashboard-wrapper div.wjp-system-logs div.wjp-activity-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 1rem 0.5rem;
+    margin: 0 -0.5rem;
+    border-bottom: 1px solid var(--wjp-border-color);
+    transition: background-color 0.2s;
+    border-radius: var(--wjp-border-radius-sm);
+}
+#wjp-dashboard-wrapper div.wjp-system-logs .wjp-list > div:last-child.wjp-activity-item {
+    border-bottom: none;
+}
+
+#wjp-dashboard-wrapper div.wjp-system-logs div.wjp-activity-icon {
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+    margin-right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+}
+#wjp-dashboard-wrapper div.wjp-system-logs div.wjp-activity-icon i {
+    font-size: 0.875rem;
+}
+#wjp-dashboard-wrapper div.wjp-system-logs div.wjp-activity-text {
+    font-size: var(--wjp-font-size-sm);
+}
+#wjp-dashboard-wrapper div.wjp-system-logs div.wjp-activity-text p {
+    margin: 0;
+    line-height: 1.5;
+}
+#wjp-dashboard-wrapper div.wjp-system-logs .wjp-activity-text p:first-child {
+    color: var(--wjp-text-medium);
+    margin-bottom: 0.25rem;
+}
+#wjp-dashboard-wrapper div.wjp-system-logs .wjp-activity-text p a {
+    font-weight: var(--wjp-font-weight-medium);
+    color: var(--wjp-color-primary);
+}
+ #wjp-dashboard-wrapper div.wjp-system-logs .wjp-activity-text p a:hover {
+    text-decoration: underline;
+}
+#wjp-dashboard-wrapper div.wjp-system-logs .wjp-activity-text p strong {
+    font-weight: var(--wjp-font-weight-semibold);
+
+}
+/* End of Improved Styles */
+
+#wjp-dashboard-wrapper div.wjp-system-logs div.wjp-bg-emerald {
+    background-color: var(--wjp-color-success-bg);
+    color: var(--wjp-color-success-text);
+}
+#wjp-dashboard-wrapper div.wjp-system-logs div.wjp-bg-indigo {
+    background-color: var(--wjp-color-primary-bg);
+    color: var(--wjp-color-primary-dark);
+}
+#wjp-dashboard-wrapper div.wjp-system-logs div.wjp-bg-sky {
+    background-color: #e0f2fe;
+    color: #0369a1;
+}
+#wjp-dashboard-wrapper div.wjp-system-logs div.wjp-bg-amber {
+    background-color: var(--wjp-color-warning-bg);
+    color: var(--wjp-color-warning-text);
+}
+#wjp-dashboard-wrapper div.wjp-system-logs div.wjp-bg-slate {
+    background-color: var(--wjp-color-slate-bg);
+    color: var(--wjp-color-slate);
+}
+
+#wjp-dashboard-wrapper div.wjp-system-logs p.wjp-log-text {
+    font-weight: var(--wjp-font-weight-medium);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#wjp-dashboard-wrapper div.wjp-system-logs .wjp-log-error { color: var(--wjp-color-danger); }
+#wjp-dashboard-wrapper div.wjp-system-logs .wjp-log-warning { color: var(--wjp-color-warning-text); }
+#wjp-dashboard-wrapper div.wjp-system-logs .wjp-log-notice { color: var(--wjp-color-secondary); }
+
+#wjp-dashboard-wrapper div.wjp-system-logs .wjp-list .wjp-list-item-simple {
+    align-items: flex-start;
+}
+#wjp-dashboard-wrapper div.wjp-system-logs .wjp-list .wjp-list-item-simple:not(:last-child) {
+    border-bottom: 1px solid var(--wjp-border-color);
+    padding-bottom: 0.75rem;
+}
+#wjp-dashboard-wrapper div.wjp-system-logs .wjp-item-text {
+    flex-grow: 1;
+    min-width: 0;
+    padding-right: 1rem;
+}
+#wjp-dashboard-wrapper div.wjp-system-logs .wjp-timestamp {
+    flex-shrink: 0;
+}
+
+/* Latest Members (Seekers & Employers) */
+#wjp-dashboard-wrapper div.wjp-latest-members p.wjp-name a {
+    color: inherit;
+    text-decoration: none;
+}
+#wjp-dashboard-wrapper div.wjp-latest-members p.wjp-name a:hover {
+    color: var(--wjp-color-primary);
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   5. RESPONSIVE STYLES
+   ========================================================================== */
+
+/* For Small Desktops and Large Tablets */
+@media (max-width: 1200px) {
+    /* --- MODIFIED --- Stacking specific flex sections on medium screens */
+    #wjp-dashboard-wrapper #wjp-main-grid > .wjp-card,
+    #wjp-dashboard-wrapper div.wjp-system-logs.wjp-card {
+        flex-basis: 100%; /* Stack these sections earlier */
+        min-width: 0;
+    }
+}
+
+/* For Standard Tablets */
+@media (max-width: 1024px) {
+    #wjp-dashboard-wrapper div#wjp-sidebar {
+        display: none;
+    }
+
+    /* --- MODIFIED --- Stacking all flex sections on tablets */
+    #wjp-dashboard-wrapper div.wjp-grid-section > .wjp-card {
+        flex-basis: 100% !important; /* Stack all cards within these sections */
+        min-width: 0;
+    }
+    
+    #wjp-dashboard-wrapper div#wjp-quick-actions {
+         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+    }
+}
+
+/* For Small Tablets */
+@media (max-width: 768px) {
+    #wjp-dashboard-wrapper div.wjp-main-content {
+        padding: 1.5rem;
+    }
+    #wjp-dashboard-wrapper .wjp-so-popup {
+        width: 90vw;
+        max-width: 400px;
+    }
+
+    #wjp-dashboard-wrapper div#wjp-header div.wjp-header-title div.wjp-h2 {
+        font-size: var(--wjp-font-size-2xl); /* Slightly smaller title on tablets */
+    }
+
+    /* Reduce card padding for more content space */
+    #wjp-dashboard-wrapper div.wjp-card {
+        padding: 1rem;
+    }
+
+    /* Reduce table cell padding on tablets */
+    #wjp-dashboard-wrapper table.wjp-table th,
+    #wjp-dashboard-wrapper table.wjp-table td {
+        padding: 0.75rem 1rem;
+    }
+}
+
+/* For Mobile Phones */
+@media (max-width: 640px) {
+    #wjp-dashboard-wrapper div.wjp-main-content {
+        padding: 1rem; /* Further reduce padding for small screens */
+    }
+
+    #wjp-dashboard-wrapper div#wjp-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem; /* Add gap for spacing */
+    }
+
+    #wjp-dashboard-wrapper div#wjp-header div.wjp-header-actions {
+        margin-top: 0; /* Remove margin-top as gap is used */
+        width: 100%;
+        flex-wrap: wrap; /* Allow buttons to wrap */
+        justify-content: flex-start; /* Align buttons to the start */
+    }
+
+    #wjp-dashboard-wrapper .wjp-so-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #wjp-dashboard-wrapper div#wjp-quick-actions {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important;
+        gap: 1rem; /* Reduce gap on mobile */
+    }
+
+    /* Adjust list item layout for mobile to stack content vertically */
+    #wjp-dashboard-wrapper div.wjp-list-item,
+    #wjp-dashboard-wrapper div.wjp-list-item-simple {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    #wjp-dashboard-wrapper div.wjp-item-aside-info,
+    #wjp-dashboard-wrapper .wjp-view-all-link {
+        width: 100%;
+        text-align: left;
+        margin-top: 0.5rem;
+    }
+    #wjp-dashboard-wrapper .wjp-latest-members .wjp-view-all-link {
+        display: inline-block;
+        background-color: var(--wjp-bg-light);
+        padding: 0.5rem;
+        border-radius: var(--wjp-border-radius-sm);
+        text-align: center;
+    }
+    #wjp-dashboard-wrapper p.wjp-date {
+        margin-top: 0;
+    }
+
+    /* Stack 'Latest Applies' content on mobile */
+    #wjp-dashboard-wrapper div.wjp-apply-item {
+        padding: 1rem 0.5rem;
+    }
+    #wjp-dashboard-wrapper div.wjp-new-sections div.wjp-apply-item-header {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 0.5rem;
+    }
+    #wjp-dashboard-wrapper div.wjp-new-sections div.wjp-item-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 1rem;
+        padding-left: 0; /* Remove padding as it's stacked now */
+    }
+}

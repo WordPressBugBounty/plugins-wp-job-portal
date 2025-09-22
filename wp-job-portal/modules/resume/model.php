@@ -624,6 +624,7 @@ class WPJOBPORTALResumeModel {
         $row = WPJOBPORTALincluder::getJSTable('resume');
         $submission_type = wpjobportal::$_config->getConfigValue('submission_type') ;
         $user = WPJOBPORTALincluder::getObjectClass('user');
+        $no_package_needed = 0;
         if (empty($data['id'])) {
             if(isset($data['application_title'])){
                 $data['alias'] = wpjobportalphplib::wpJP_str_replace(' ', '-', $data['application_title']);
@@ -651,6 +652,13 @@ class WPJOBPORTALResumeModel {
                         $data['status'] = wpjobportal::$_config->getConfigValue('empautoapprove');
                     }
                 }elseif ($submission_type == 3) {
+
+                    $result = WPJOBPORTALincluder::getJSModel('credits')->checkIfPackageDefinedForRole(2); //2 for job seeker
+                    if($result == 0){ // 0 means no package found. so allow the action.
+                        $no_package_needed = 1;
+                    }
+
+                    if($no_package_needed == 0){
                         $upakid = WPJOBPORTALrequest::getVar('upakid',null,0);
                         $package = apply_filters('wpjobportal_addons_userpackages_permodule',false,$upakid,$user->uid(),'remresume');
                         if( !$package ){
@@ -664,8 +672,9 @@ class WPJOBPORTALResumeModel {
                             return WPJOBPORTAL_SAVE_ERROR;
                         }
                         #user packae id--
-                        $data['status'] = wpjobportal::$_config->getConfigValue('empautoapprove');
                         $data['userpackageid'] = $upakid;
+                    }
+                    $data['status'] = wpjobportal::$_config->getConfigValue('empautoapprove');
                 }
             }else{
                 $data['status'] = wpjobportal::$_config->getConfigValue('empautoapprove');
@@ -766,7 +775,7 @@ class WPJOBPORTALResumeModel {
         }
 
         if(in_array('credits', wpjobportal::$_active_addons)){
-            if(!WPJOBPORTALincluder::getObjectClass('user')->isguest() && !wpjobportal::$_common->wpjp_isadmin() && empty($data['id']) && $submission_type == 3){
+            if(!WPJOBPORTALincluder::getObjectClass('user')->isguest() && !wpjobportal::$_common->wpjp_isadmin() && empty($data['id']) && ($submission_type == 3 && $no_package_needed == 0) ){
                 do_action('wpjobportal_addons_user_transactionlog',$row,'resume',$upakid,$user->uid(),$isnew);
             }
         }
@@ -2143,7 +2152,8 @@ class WPJOBPORTALResumeModel {
         return $data;
     }
 
-    private function getUidByResumeId($id) {
+    // this function is now also used for role based package
+    public function getUidByResumeId($id) {
         if (!is_numeric($id)) return false;
         $query = "SELECT uid FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE id = " . esc_sql($id);
         $uid = wpjobportal::$_db->get_var($query);
@@ -2287,21 +2297,33 @@ class WPJOBPORTALResumeModel {
                     $subType = wpjobportal::$_config->getConfigValue('submission_type');
                     if($subType == 1){
                         wpjobportal::$_data['resumecontactdetail'] = true;
-                    }elseif ($subType == 2 || $subType == 3) {
-                        $contantdetail_paid = 1;
-                        if($subType == 2){
-                            if(!wpjobportal::$_config->getConfigValue('job_viewresumecontact_price_perlisting') > 0){
-                                $contantdetail_paid = 0;
-                            }
-                        }
-                        if($contantdetail_paid == 1){
+                    }elseif($subType == 2){
+                        $price = wpjobportal::$_config->getConfigValue('job_viewresumecontact_price_perlisting');
+                        if($price > 0){
+                            // Paid
                             wpjobportal::$_data['resumecontactdetail'] = $this->checkAlreadyViewResumeContactDetail($id);
-                        }else{
+                        } else {
+                            // Free
                             wpjobportal::$_data['resumecontactdetail'] = true;
                         }
+                    }elseif($subType == 3){
+                        $uid = !empty($uid) ? $uid : WPJOBPORTALincluder::getObjectClass('user')->uid();
+                        if(is_numeric($uid) && $uid > 0){
+                            $hasPackage = WPJOBPORTALincluder::getJSModel('credits')->checkIfPackageDefinedForUserRole($uid);
+                            if($hasPackage == 0) {
+                                // No package system
+                                wpjobportal::$_data['resumecontactdetail'] = true;
+                            } else {
+                                // Package system exists
+                                wpjobportal::$_data['resumecontactdetail'] = $this->checkAlreadyViewResumeContactDetail($id);
+                            }
+                        } else {
+                            // Fallback
+                            wpjobportal::$_data['resumecontactdetail'] = $this->checkAlreadyViewResumeContactDetail($id);
+                        }
+                    }else{
+                        wpjobportal::$_data['resumecontactdetail'] = true;
                     }
-                }else{
-                    wpjobportal::$_data['resumecontactdetail'] = true;
                 }
                 if(is_numeric($id) && $id > 0){
                     // if resume owner not viewing it then count the resume views, its shown on view resume page
@@ -5150,6 +5172,7 @@ class WPJOBPORTALResumeModel {
 
         $return_data = '';
         $resume_skill_section_string = '';
+		$skip_types = ['file', 'email'];
 
 
         // skill

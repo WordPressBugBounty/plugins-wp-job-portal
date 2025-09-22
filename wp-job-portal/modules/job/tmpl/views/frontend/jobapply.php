@@ -34,7 +34,7 @@ $captcha_quick_apply  = wpjobportal::$_config->getConfigurationByConfigName('qui
                             echo esc_html(__('Apply to the Job', 'wp-job-portal'));
                         echo '</div>';
                         $show_job_apply_redirect_link_only = 0;
-                        if($job->jobapplylink == 1 && !empty($job->joblink)){
+                        if( !empty($job) && $job->jobapplylink == 1 && !empty($job->joblink)){ // hadnling error in case of employer job detail
                             $show_job_apply_redirect_link_only = 1;
                         }
 
@@ -138,35 +138,62 @@ $captcha_quick_apply  = wpjobportal::$_config->getConfigurationByConfigName('qui
                                 }else{ // current user is job seeker and has no job apply check and impliment package system
                                     if(in_array('credits', wpjobportal::$_active_addons)){ // check for credit system
                                         if( $subtype == 3 ){ // membership mode is on
-                                            $userpackages = array(); // array to handle user packages in select package drop down
-                                            $userpackage = apply_filters('wpjobportal_addons_credit_get_Packages_user',false,$uid,'jobapply');
-                                            if(is_array($userpackage) && !empty($userpackage)){ // user bought packages array
-                                                foreach($userpackage as $package){
-                                                    if($package->jobapply == -1 || $package->remjobapply > 0){ //-1 = unlimited // checking if current package has job applies remaining
-                                                        $package_for_combo = new stdClass();
-                                                        $package_for_combo->id = $package->id;
-                                                        $package_for_combo->text = $package->title;
-                                                        $package_for_combo->text .= $package->jobapply == -1 ? ' ('.esc_html(__("Unlimited job applies",'wp-job-portal')).')' : ' ('.esc_attr($package->remjobapply).' '.esc_html(__("Job applies remaining",'wp-job-portal')).')' ;
-                                                        $userpackages[] = $package_for_combo;
-                                                    }
-                                                }
-                                            }else{ // user does not have package show message and btn to buy package
-                                                echo '<div class="frontend error"><p>'.esc_html(__("Buy package to apply on job.",'wp-job-portal')).'</p></div>';
-                                                $hide_apply_btn = 1;
-                                                $show_buy_package_btn = 1;
+                                            // Ensure $uid is resolved
+                                            if ( empty($uid) ) {
+                                                $uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
                                             }
 
-                                            if(!empty($userpackages)){ // if user has package then show those packages in drop down for selection
-                                                echo '
-                                                <div class="wjportal-form-row wjportal-form-pckge-row">
-                                                    <div class="wjportal-form-title">
-                                                        '. __('Apply With Package', 'wp-job-portal').' <font color="#000">*</font>
-                                                    </div>
-                                                    <div class="wjportal-form-value"> ';
-                                                        echo wp_kses(WPJOBPORTALformfield::select('upkid', $userpackages, '', '', array('class' => 'inputbox wjportal-form-select-field', 'data-validation' => 'required')), WPJOBPORTAL_ALLOWED_TAGS);
-                                                echo '
-                                                    </div>
-                                                </div>';
+                                            // Determine if package system is defined for this user's role.
+                                            // If no package is defined for the role (result == 0) -> bypass package system entirely.
+                                            $no_package_needed = 0;
+                                            if ( is_numeric($uid) && $uid > 0 ) { // only meaningful for logged in users
+                                                $result = WPJOBPORTALincluder::getJSModel('credits')->checkIfPackageDefinedForUserRole($uid);
+                                                if ( $result == 0 ) { // 0 means no package defined for this user role -> bypass packages
+                                                    $no_package_needed = 1;
+                                                }
+                                            }
+
+                                            if ( $no_package_needed == 1 ) {
+                                                // No package system defined for this user role — allow apply flow like "free" mode.
+                                                // Do not show any package UI or messages. Keep $hide_apply_btn as-is (default behavior).
+                                                // Intentionally empty: form continues without package-related UI.
+                                            } else {
+                                                // Package system exists for this role -> enforce package logic (unchanged behaviour)
+                                                $userpackages = array(); // array to handle user packages in select package drop down
+                                                $userpackage = apply_filters('wpjobportal_addons_credit_get_Packages_user', false, $uid, 'jobapply');
+
+                                                if ( is_array($userpackage) && !empty($userpackage) ) { // user bought packages array
+                                                    foreach ($userpackage as $package) {
+                                                        if ($package->jobapply == -1 || $package->remjobapply > 0) { // -1 = unlimited, or remaining > 0
+                                                            $package_for_combo = new stdClass();
+                                                            $package_for_combo->id = $package->id;
+                                                            $package_for_combo->text = $package->title;
+                                                            $package_for_combo->text .= $package->jobapply == -1
+                                                                ? ' ('.esc_html(__("Unlimited job applies",'wp-job-portal')).')'
+                                                                : ' ('.esc_attr($package->remjobapply).' '.esc_html(__("Job applies remaining",'wp-job-portal')).')' ;
+                                                            $userpackages[] = $package_for_combo;
+                                                        }
+                                                    }
+                                                }
+
+                                                if ( !empty($userpackages) ) {
+                                                    // If user has valid packages, show dropdown (same UI as before)
+                                                    echo '
+                                                    <div class="wjportal-form-row wjportal-form-pckge-row">
+                                                        <div class="wjportal-form-title">
+                                                            '. __('Apply With Package', 'wp-job-portal').' <font color="#000">*</font>
+                                                        </div>
+                                                        <div class="wjportal-form-value"> ';
+                                                            echo wp_kses(WPJOBPORTALformfield::select('upkid', $userpackages, '', '', array('class' => 'inputbox wjportal-form-select-field', 'data-validation' => 'required')), WPJOBPORTAL_ALLOWED_TAGS);
+                                                    echo '
+                                                        </div>
+                                                    </div>';
+                                                } else {
+                                                    // User has no purchased package but package system IS defined for the role -> require buying package
+                                                    echo '<div class="frontend error"><p>'.esc_html(__("Buy package to apply on job.",'wp-job-portal')).'</p></div>';
+                                                    $hide_apply_btn = 1;
+                                                    $show_buy_package_btn = 1;
+                                                }
                                             }
                                             // memebership mode code ended
 

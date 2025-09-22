@@ -923,19 +923,32 @@ class WPJOBPORTALjobapplyModel {
                 }elseif ($submitType == 1) {
                     $data['status'] = 1;
                 }elseif ($submitType == 3) {
-                    $package = WPJOBPORTALincluder::getJSModel('purchasehistory')->getUserPackageById($upkid,$uid,'remjobapply');
-                    if( !$package ){
-                        return WPJOBPORTAL_SAVE_ERROR;
+                    if($uid == '' || $uid == 0){ // to handle different possible cases
+                        $uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
                     }
-                    if( $package->expired ){
-                        return WPJOBPORTAL_SAVE_ERROR;
+                    // check if there is package defined for current user
+                    $no_package_needed = 0;
+
+                    $result = WPJOBPORTALincluder::getJSModel('credits')->checkIfPackageDefinedForRole(2); //2 for job seeker
+                    if($result == 0){ // 0 means no package found. so allow the action.
+                        $no_package_needed = 1;
                     }
-                    //if Department are not unlimited & there is no remaining left
-                    if( $package->jobapply!=-1 && !$package->remjobapply ){ //-1 = unlimited
-                        return WPJOBPORTAL_SAVE_ERROR;
+
+                    if($no_package_needed == 0){
+                        $package = WPJOBPORTALincluder::getJSModel('purchasehistory')->getUserPackageById($upkid,$uid,'remjobapply');
+                        if( !$package ){
+                            return WPJOBPORTAL_SAVE_ERROR;
+                        }
+                        if( $package->expired ){
+                            return WPJOBPORTAL_SAVE_ERROR;
+                        }
+                        //if job apply are not unlimited & there is no remaining left
+                        if( $package->jobapply!=-1 && !$package->remjobapply ){ //-1 = unlimited
+                            return WPJOBPORTAL_SAVE_ERROR;
+                        }
+                        $data['userpackageid'] = $upkid;
                     }
                     $data['status'] = 1;
-                    $data['userpackageid'] = $upkid;
                 }
             }else{
                 if(isset($data) && empty($data['status'])){
@@ -964,7 +977,7 @@ class WPJOBPORTALjobapplyModel {
         // //}
 
         if(in_array('credits', wpjobportal::$_active_addons)){
-            if($submitType == 3 &&  WPJOBPORTALincluder::getObjectClass('user')->isjobseeker()){
+            if($submitType == 3 &&  WPJOBPORTALincluder::getObjectClass('user')->isjobseeker() && $no_package_needed == 0){
             # Transaction For Job Apply--
                 $trans = WPJOBPORTALincluder::getJSTable('transactionlog');
                 $arr = array();

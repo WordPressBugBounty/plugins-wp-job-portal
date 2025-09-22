@@ -144,8 +144,8 @@ class WPJOBPORTALuser {
     }
 
     function roleid($uid=0){
-        if(is_numeric($uid)){
-            $query = "SELECT `roleid` FROM `".wpjobportal::$_db->prefix."wj_portal_users` WHERE `id` = ".esc_sql($uid);
+        if(is_numeric($uid) && $uid != 0){
+            $query = "SELECT roleid FROM ".wpjobportal::$_db->prefix."wj_portal_users WHERE id = ".esc_sql($uid);
             return wpjobportaldb::get_var($query); 
         }elseif($this->currentuser != null) {
             return $this->currentuser->roleid;

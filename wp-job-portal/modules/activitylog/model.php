@@ -537,14 +537,14 @@ class WPJOBPORTALactivitylogModel {
             case 'jobsearches':
                 $entityname = esc_html(__('Job Search', 'wp-job-portal'));
                 $linktext = $flag == 1 ? $columns['searchname'] : $this->getEntityNameOrTitle($id, 'searchname', $tablename);
-                $path = "?page=wpjobportal_jobsearch";
-                $html = "<a href=" . esc_url($path) . " target='".esc_attr($target)."''><strong>" . esc_html($linktext) . "</strong></a>";
+                //$path = "?page=wpjobportal_jobsearch"; // layout does exsist
+                $html = "<strong>" . esc_html($linktext) . "</strong>";
                 break;
             case 'resumesearches':
                 $entityname = esc_html(__('Resume Search', 'wp-job-portal'));
                 $linktext = $flag == 1 ? $columns['searchname'] : $this->getEntityNameOrTitle($id, 'searchname', $tablename);
-                $path = "?page=wpjobportal_resumesearch";
-                $html = "<a href=" . esc_url($path) . " target='".esc_attr($target)."''><strong>" . esc_html($linktext) . "</strong></a>";
+                // $path = "?page=wpjobportal_resumesearch"; // layout does not exsist
+                $html = "<strong>" . esc_html($linktext) . "</strong>";
                 break;
             case 'categories':
                 $entityname = esc_html(__('Category', 'wp-job-portal'));

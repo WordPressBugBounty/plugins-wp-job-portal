@@ -1117,6 +1117,7 @@ class WPJOBPORTALjobModel {
         }
         $dateformat = wpjobportal::$_configuration['date_format'];
         $ignore_stop_pulbishing_verification = 0;
+        $no_package_needed = 0;
         if ($data['id'] == '') {
             if(in_array('credits', wpjobportal::$_active_addons)){
                 $submission_type   = wpjobportal::$_config->getConfigValue('submission_type');
@@ -1147,36 +1148,51 @@ class WPJOBPORTALjobModel {
                         $data['status'] = 1;
                     }
                 }elseif ($submission_type == 3) {
-                    $upakid = WPJOBPORTALrequest::getVar('upakid',null,0);
-                    if ($data['payment'] == 0 && wpjobportal::$_common->wpjp_isadmin()) {
+                    if(!wpjobportal::$_common->wpjp_isadmin()){ // to handle different possible cases
+                        $uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
+                    }else{
+                        $uid = $data['uid'];
+                    }
+                    // check if there is package defined for current user
+
+                    $result = WPJOBPORTALincluder::getJSModel('credits')->checkIfPackageDefinedForRole(1); //1 for employer
+                    if($result == 0){ // 0 means no package found. so allow the action.
+                        $no_package_needed = 1;
+                        $expiry = "90 days"; // in case of undefined add job for 90 days
+                    }
+
+                    if($no_package_needed == 0){
                         $upakid = WPJOBPORTALrequest::getVar('upakid',null,0);
+                        if ($data['payment'] == 0 && wpjobportal::$_common->wpjp_isadmin()) {
+                            $upakid = WPJOBPORTALrequest::getVar('upakid',null,0);
+                            $data['userpackageid'] = $upakid;
+                        } else {
+                            if(!wpjobportal::$_common->wpjp_isadmin()){
+                                $package = WPJOBPORTALincluder::getJSModel('purchasehistory')->getUserPackageById($upakid,$user->uid(),'remjob');
+                            }elseif (wpjobportal::$_common->wpjp_isadmin()) {
+                                $package = WPJOBPORTALincluder::getJSModel('purchasehistory')->getUserPackageById($upakid,$data['uid'],'remjob');
+                            }
+                            if( !$package ){
+                                return WPJOBPORTAL_SAVE_ERROR;
+                            }
+                            if( $package->expired ){
+                                return WPJOBPORTAL_SAVE_ERROR;
+                            }
+                            //if Department are not unlimited & there is no remaining left
+                            if( $package->job!=-1 && !$package->remjob ){ //-1 = unlimited
+                                return WPJOBPORTAL_SAVE_ERROR;
+                            }
+                        }
+                        #user packae id--
                         $data['userpackageid'] = $upakid;
-                    } else {
-                        if(!wpjobportal::$_common->wpjp_isadmin()){
-                            $package = WPJOBPORTALincluder::getJSModel('purchasehistory')->getUserPackageById($upakid,$user->uid(),'remjob');
-                        }elseif (wpjobportal::$_common->wpjp_isadmin()) {
-                            $package = WPJOBPORTALincluder::getJSModel('purchasehistory')->getUserPackageById($upakid,$data['uid'],'remjob');
-                        }
-                        if( !$package ){
-                            return WPJOBPORTAL_SAVE_ERROR;
-                        }
-                        if( $package->expired ){
-                            return WPJOBPORTAL_SAVE_ERROR;
-                        }
-                        //if Department are not unlimited & there is no remaining left
-                        if( $package->job!=-1 && !$package->remjob ){ //-1 = unlimited
-                            return WPJOBPORTAL_SAVE_ERROR;
+                        if(isset($package) && !empty($package)){
+                            $expiry = $package->jobtime.''.$package->jobtimeunit;
+                        }else{
+                            $expiry = "30 days"; // in case of undefined add job for 30 days
                         }
                     }
-                    #user packae id--
                     if (!wpjobportal::$_common->wpjp_isadmin()) {
                         $data['status'] = wpjobportal::$_config->getConfigValue('jobautoapprove');
-                    }
-                    $data['userpackageid'] = $upakid;
-                    if(isset($package) && !empty($package)){
-                        $expiry = $package->jobtime.''.$package->jobtimeunit;
-                    }else{
-                        $expiry = "30 days"; // in case of undefined add job for 30 days
                     }
                     $curdate = date_i18n('Y-m-d');
                     $data['stoppublishing'] = gmdate($dateformat,strtotime($curdate.'+'.$expiry));
@@ -1202,8 +1218,21 @@ class WPJOBPORTALjobModel {
                 if(in_array('credits', wpjobportal::$_active_addons)){ // if package system
                     $submission_type   = wpjobportal::$_config->getConfigValue('submission_type');
                     if($submission_type == 3){// if membership mode is selected
-                        unset($data['stoppublishing']); // making sure the value does not update
-                        $ignore_stop_pulbishing_verification = 1;
+                        if(!wpjobportal::$_common->wpjp_isadmin()){ // to handle different possible cases
+                            $uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
+                        }else{
+                            $uid = $data['uid'];
+                        }
+
+                        $result = WPJOBPORTALincluder::getJSModel('credits')->checkIfPackageDefinedForRole(1); //1 for employer
+                        if($result == 0){ // 0 means no package found. so allow the action.
+                            $no_package_needed = 1;
+                        }
+
+                        if($no_package_needed == 0){ // dont allow update for date if package is defined
+                            unset($data['stoppublishing']); // making sure the value does not update
+                        	$ignore_stop_pulbishing_verification = 1;
+                        }
                     }
                 }
             }
@@ -1311,7 +1340,7 @@ class WPJOBPORTALjobModel {
         //store custom fields (same as company module)
         wpjobportal::$_wpjpcustomfield->storeCustomFields(2,$jobid,$data);
         if(in_array('credits', wpjobportal::$_active_addons)){
-            if($isnew && $submission_type == 3){
+            if($isnew && $submission_type == 3 && $no_package_needed == 0){
                 $trans = WPJOBPORTALincluder::getJSTable('transactionlog');
                 $arr = array();
                 if(!wpjobportal::$_common->wpjp_isadmin()){

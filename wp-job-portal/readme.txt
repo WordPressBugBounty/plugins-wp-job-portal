@@ -3,8 +3,8 @@ Contributors: wpjobportal
 Donate link: https://wpjobportal.com/pricing/
 Tags: job board, job listing, careers, job manager, jobs, recruiting
 Requires at least: 5.5 
-Tested up to: 6.8.1
-Stable tag: 2.3.6
+Tested up to: 6.8.2
+Stable tag: 2.3.7
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -259,6 +259,12 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 
 == Changelog ==
+
+= 2.3.7 =
+* Redesigned admin dashboard for a cleaner, more intuitive experience
+* Added Screen Options support to the admin dashboard
+* Enhanced membership mode for packages with role-based package handling
+
 
 = 2.3.6 =
 * Added WP Job Manager import functionality
