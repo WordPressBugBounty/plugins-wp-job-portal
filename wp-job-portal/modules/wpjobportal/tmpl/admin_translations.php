@@ -10,8 +10,8 @@ if(!defined('ABSPATH'))
     </div>
     <div id="wpjobportaladmin-data">
         <?php
-            $msgkey = WPJOBPORTALincluder::getJSModel('wpjobportal')->getMessagekey();
-            WPJOBPORTALMessages::getLayoutMessage($msgkey);
+            $wpjobportal_msgkey = WPJOBPORTALincluder::getJSModel('wpjobportal')->getMessagekey();
+            WPJOBPORTALMessages::getLayoutMessage($wpjobportal_msgkey);
         ?>
         <!-- top bar -->
         <div id="wpjobportal-wrapper-top">
@@ -19,7 +19,7 @@ if(!defined('ABSPATH'))
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_html__('dashboard','wp-job-portal'); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr__('dashboard','wp-job-portal'); ?>">
                                 <?php echo esc_html__('Dashboard','wp-job-portal'); ?>
                             </a>
                         </li>
@@ -29,12 +29,12 @@ if(!defined('ABSPATH'))
             </div>
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_html__('configuration','wp-job-portal'); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr__('configuration','wp-job-portal'); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_html__('help','wp-job-portal'); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr__('help','wp-job-portal'); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -45,7 +45,7 @@ if(!defined('ABSPATH'))
             </div>
         </div>
         <!-- top head -->
-        <?php WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('module' => 'wpjobportal' , 'layouts' => 'translations')); ?>
+        <?php WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('wpjobportal_module' => 'wpjobportal' , 'wpjobportal_layouts' => 'translations')); ?>
         <!-- page content -->
         <div id="wpjobportal-admin-wrapper" class="p0">
             <div id="black_wrapper_translation"></div>
@@ -105,7 +105,7 @@ if(!defined('ABSPATH'))
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
         var ajaxurl = \"". esc_url_raw(admin_url('admin-ajax.php')) ."\";
         jQuery(document).ready(function(){
             jQuery('#gettranslation').click(function(){
@@ -186,5 +186,5 @@ if(!defined('ABSPATH'))
             jQuery('div#jstran_loading').hide();
         }
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>

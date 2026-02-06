@@ -11,8 +11,8 @@
     </div>
     <div id="wpjobportaladmin-data">
         <?php
-            $msgkey = WPJOBPORTALincluder::getJSModel('wpjobportal')->getMessagekey();
-            WPJOBPORTALMessages::getLayoutMessage($msgkey);
+            $wpjobportal_msgkey = WPJOBPORTALincluder::getJSModel('wpjobportal')->getMessagekey();
+            WPJOBPORTALMessages::getLayoutMessage($wpjobportal_msgkey);
         ?>
         <!-- top bar -->
         <div id="wpjobportal-wrapper-top">
@@ -20,7 +20,7 @@
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_html(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -30,12 +30,12 @@
             </div>
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_html(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_html(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -46,11 +46,11 @@
             </div>
         </div>
         <!-- top head -->
-        <?php WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('module' => 'wpjobportal' , 'layouts' => 'shortcodes')); ?>
+        <?php WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('wpjobportal_module' => 'wpjobportal' , 'wpjobportal_layouts' => 'shortcodes')); ?>
         <!-- page content -->
         <div id="wpjobportal-admin-wrapper" class="p0">
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('Job Seeker Control Panel','wp-job-portal')); ?>
@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('Employer Control Panel','wp-job-portal')); ?>
@@ -98,7 +98,7 @@
                 </div>
             </div>
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('Job','wp-job-portal')).' '. esc_html(__('Search','wp-job-portal')); ?>
@@ -115,7 +115,7 @@
                 </div>
             </div>
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('Jobs','wp-job-portal')); ?>
@@ -147,7 +147,7 @@
                 </div>
             </div>
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('Featured Jobs','wp-job-portal')); ?>
@@ -163,36 +163,38 @@
                     </div>
                     <div class="wpjobportal-shortcode-shortcodewrp">
                         <?php
-                            $msg_class = "wpjobportal-notice-msg";
-                            $msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-warning-icon.png";
-                            $show_link = 1;
-                            if( in_array('featuredjob', wpjobportal::$_active_addons) ){
-                                $msg_class = "wpjobportal-info-msg";
-                                $msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-notice-icon.png";
-                                $show_link = 0;
-                            }
-                         ?>
-                        <div class="wpjobportal-shortcode-notice-wrap <?php echo esc_attr($msg_class);?>" >
-                            <img src="<?php echo esc_url($msg_image); ?>">
-                            <p>
-                                <?php echo esc_html(__('This Shortcode requires WP Job Portal Featured Jobs Addon','wp-job-portal')); ?>
-                                <?php
-                                if($show_link == 1){
-                                    echo '('; ?>
-                                    <a href="https://wpjobportal.com/product/featured-job/" target="_blank">
-                                        <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
-                                    </a>
-                                    <?php echo ')';
-                                }
-                                ?>
-                            </p>
-                        </div>
+                        if(!in_array('featuredjob', wpjobportal::$_active_addons) ){
+                            $wpjobportal_msg_class = "wpjobportal-notice-msg";
+                            $wpjobportal_msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-warning-icon.png";
+                            $wpjobportal_show_link = 1;
+                            // if( in_array('featuredjob', wpjobportal::$_active_addons) ){
+                            //     $wpjobportal_msg_class = "wpjobportal-info-msg";
+                            //     $wpjobportal_msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-notice-icon.png";
+                            //     $wpjobportal_show_link = 0;
+                            // }
+                             ?>
+                            <div class="wpjobportal-shortcode-notice-wrap <?php echo esc_attr($wpjobportal_msg_class);?>" >
+                                <img src="<?php echo esc_url($wpjobportal_msg_image); ?>">
+                                <p>
+                                    <?php echo esc_html(__('This Shortcode requires WP Job Portal Featured Jobs Addon','wp-job-portal')); ?>
+                                    <?php
+                                    if($wpjobportal_show_link == 1){
+                                        echo '('; ?>
+                                        <a href="https://wpjobportal.com/product/featured-job/" target="_blank">
+                                            <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
+                                        </a>
+                                        <?php echo ')';
+                                    }
+                                    ?>
+                                </p>
+                            </div>
+                        <?php }?>
                     </div>
                 </div>
             </div>
 
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('Job Categories','wp-job-portal')); ?>
@@ -209,7 +211,7 @@
                 </div>
             </div>
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('Job Types','wp-job-portal')); ?>
@@ -226,7 +228,7 @@
                 </div>
             </div>
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('My Applied Jobs','wp-job-portal')); ?>
@@ -243,7 +245,7 @@
                 </div>
             </div>
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('My Companies','wp-job-portal')); ?>
@@ -260,7 +262,7 @@
                 </div>
             </div>
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('All Companies','wp-job-portal')); ?>
@@ -284,35 +286,37 @@
                     </div>
                     <div class="wpjobportal-shortcode-shortcodewrp">
                         <?php
-                            $msg_class = "wpjobportal-notice-msg";
-                            $msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-warning-icon.png";
-                            $show_link = 1;
-                            if( in_array('allcompanies', wpjobportal::$_active_addons) ){
-                                $msg_class = "wpjobportal-info-msg";
-                                $msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-notice-icon.png";
-                                $show_link = 0;
-                            }
-                         ?>
-                        <div class="wpjobportal-shortcode-notice-wrap <?php echo esc_attr($msg_class);?>" >
-                            <img src="<?php echo esc_url($msg_image); ?>">
-                            <p>
-                                <?php echo esc_html(__('This Shortcode requires WP Job Portal All Companies Addon','wp-job-portal')); ?>
-                                <?php
-                                if($show_link == 1){
-                                    echo '('; ?>
-                                    <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_premiumplugin&wpjobportallt=addonfeatures')); ?>">
-                                        <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
-                                    </a>
-                                    <?php echo ')';
-                                }
-                                ?>
-                            </p>
-                        </div>
+                        if(!in_array('allcompanies', wpjobportal::$_active_addons) ){
+                                $wpjobportal_msg_class = "wpjobportal-notice-msg";
+                                $wpjobportal_msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-warning-icon.png";
+                                $wpjobportal_show_link = 1;
+                             //    if( in_array('allcompanies', wpjobportal::$_active_addons) ){
+                             //        $wpjobportal_msg_class = "wpjobportal-info-msg";
+                             //        $wpjobportal_msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-notice-icon.png";
+                             //        $wpjobportal_show_link = 0;
+                             //    }
+                             // ?>
+                            <div class="wpjobportal-shortcode-notice-wrap <?php echo esc_attr($wpjobportal_msg_class);?>" >
+                                <img src="<?php echo esc_url($wpjobportal_msg_image); ?>">
+                                <p>
+                                    <?php echo esc_html(__('This Shortcode requires WP Job Portal All Companies Addon','wp-job-portal')); ?>
+                                    <?php
+                                    if($wpjobportal_show_link == 1){
+                                        echo '('; ?>
+                                        <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_premiumplugin&wpjobportallt=addonfeatures')); ?>">
+                                            <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
+                                        </a>
+                                        <?php echo ')';
+                                    }
+                                    ?>
+                                </p>
+                            </div>
+                        <?php }?>
                     </div>
                 </div>
             </div>
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('Featured Companies','wp-job-portal')); ?>
@@ -328,36 +332,38 @@
                     </div>
                     <div class="wpjobportal-shortcode-shortcodewrp">
                         <?php
-                            $msg_class = "wpjobportal-notice-msg";
-                            $msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-warning-icon.png";
-                            $show_link = 1;
-                            if( in_array('featuredcompany', wpjobportal::$_active_addons) ){
-                                $msg_class = "wpjobportal-info-msg";
-                                $msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-notice-icon.png";
-                                $show_link = 0;
-                            }
-                         ?>
-                        <div class="wpjobportal-shortcode-notice-wrap <?php echo esc_attr($msg_class);?>" >
-                            <img src="<?php echo esc_url($msg_image); ?>">
-                            <p>
-                                <?php echo esc_html(__('This Shortcode requires WP Job Portal Featured Companies Addon','wp-job-portal')); ?>
-                                <?php
-                                if($show_link == 1){
-                                    echo '('; ?>
-                                    <a href="https://wpjobportal.com/product/featured-company/" target="_blank">
-                                        <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
-                                    </a>
-                                    <?php echo ')';
-                                }
-                                ?>
-                            </p>
-                        </div>
+                        if(!in_array('featuredcompany', wpjobportal::$_active_addons) ){
+                                $wpjobportal_msg_class = "wpjobportal-notice-msg";
+                                $wpjobportal_msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-warning-icon.png";
+                                $wpjobportal_show_link = 1;
+                                // if( in_array('featuredcompany', wpjobportal::$_active_addons) ){
+                                //     $wpjobportal_msg_class = "wpjobportal-info-msg";
+                                //     $wpjobportal_msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-notice-icon.png";
+                                //     $wpjobportal_show_link = 0;
+                                // }
+                             ?>
+                            <div class="wpjobportal-shortcode-notice-wrap <?php echo esc_attr($wpjobportal_msg_class);?>" >
+                                <img src="<?php echo esc_url($wpjobportal_msg_image); ?>">
+                                <p>
+                                    <?php echo esc_html(__('This Shortcode requires WP Job Portal Featured Companies Addon','wp-job-portal')); ?>
+                                    <?php
+                                    if($wpjobportal_show_link == 1){
+                                        echo '('; ?>
+                                        <a href="https://wpjobportal.com/product/featured-company/" target="_blank">
+                                            <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
+                                        </a>
+                                        <?php echo ')';
+                                    }
+                                    ?>
+                                </p>
+                            </div>
+                        <?php }?>
                     </div>
                 </div>
             </div>
 
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('My Jobs','wp-job-portal')); ?>
@@ -374,7 +380,7 @@
                 </div>
             </div>
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('My Resume','wp-job-portal')); ?>
@@ -391,7 +397,7 @@
                 </div>
             </div>
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('All Resumes','wp-job-portal')); ?>
@@ -417,35 +423,37 @@
                     </div>
                     <div class="wpjobportal-shortcode-shortcodewrp">
                         <?php
-                            $msg_class = "wpjobportal-notice-msg";
-                            $msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-warning-icon.png";
-                            $show_link = 1;
-                            if( in_array('allresumes', wpjobportal::$_active_addons) ){
-                                $msg_class = "wpjobportal-info-msg";
-                                $msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-notice-icon.png";
-                                $show_link = 0;
-                            }
-                         ?>
-                        <div class="wpjobportal-shortcode-notice-wrap <?php echo esc_attr($msg_class);?>" >
-                            <img src="<?php echo esc_url($msg_image); ?>">
-                            <p>
-                                <?php echo esc_html(__('This Shortcode requires WP Job Portal All Resumes Addon','wp-job-portal')); ?>
-                                <?php
-                                if($show_link == 1){
-                                    echo '('; ?>
-                                    <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_premiumplugin&wpjobportallt=addonfeatures')); ?>">
-                                        <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
-                                    </a>
-                                    <?php echo ')';
-                                }
-                                ?>
-                            </p>
-                        </div>
+                        if(!in_array('allresumes', wpjobportal::$_active_addons) ){
+                                $wpjobportal_msg_class = "wpjobportal-notice-msg";
+                                $wpjobportal_msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-warning-icon.png";
+                                $wpjobportal_show_link = 1;
+                                // if( in_array('allresumes', wpjobportal::$_active_addons) ){
+                                //     $wpjobportal_msg_class = "wpjobportal-info-msg";
+                                //     $wpjobportal_msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-notice-icon.png";
+                                //     $wpjobportal_show_link = 0;
+                                // }
+                             ?>
+                            <div class="wpjobportal-shortcode-notice-wrap <?php echo esc_attr($wpjobportal_msg_class);?>" >
+                                <img src="<?php echo esc_url($wpjobportal_msg_image); ?>">
+                                <p>
+                                    <?php echo esc_html(__('This Shortcode requires WP Job Portal All Resumes Addon','wp-job-portal')); ?>
+                                    <?php
+                                    if($wpjobportal_show_link == 1){
+                                        echo '('; ?>
+                                        <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_premiumplugin&wpjobportallt=addonfeatures')); ?>">
+                                            <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
+                                        </a>
+                                        <?php echo ')';
+                                    }
+                                    ?>
+                                </p>
+                            </div>
+                        <?php }?>
                     </div>
                 </div>
             </div>
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('Featured Resumes','wp-job-portal')); ?>
@@ -461,36 +469,38 @@
                     </div>
                     <div class="wpjobportal-shortcode-shortcodewrp">
                         <?php
-                            $msg_class = "wpjobportal-notice-msg";
-                            $msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-warning-icon.png";
-                            $show_link = 1;
-                            if( in_array('featureresume', wpjobportal::$_active_addons) ){
-                                $msg_class = "wpjobportal-info-msg";
-                                $msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-notice-icon.png";
-                                $show_link = 0;
-                            }
-                         ?>
-                        <div class="wpjobportal-shortcode-notice-wrap <?php echo esc_attr($msg_class);?>" >
-                            <img src="<?php echo esc_url($msg_image); ?>">
-                            <p>
-                                <?php echo esc_html(__('This Shortcode requires WP Job Portal Featured Resumes Addon','wp-job-portal')); ?>
-                                <?php
-                                if($show_link == 1){
-                                    echo '('; ?>
-                                    <a href="https://wpjobportal.com/product/featured-resume/" target="_blank">
-                                        <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
-                                    </a>
-                                    <?php echo ')';
-                                }
-                                ?>
-                            </p>
-                        </div>
+                        if(!in_array('featureresume', wpjobportal::$_active_addons) ){
+                                $wpjobportal_msg_class = "wpjobportal-notice-msg";
+                                $wpjobportal_msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-warning-icon.png";
+                                $wpjobportal_show_link = 1;
+                                // if( in_array('featureresume', wpjobportal::$_active_addons) ){
+                                //     $wpjobportal_msg_class = "wpjobportal-info-msg";
+                                //     $wpjobportal_msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-notice-icon.png";
+                                //     $wpjobportal_show_link = 0;
+                                // }
+                             ?>
+                            <div class="wpjobportal-shortcode-notice-wrap <?php echo esc_attr($wpjobportal_msg_class);?>" >
+                                <img src="<?php echo esc_url($wpjobportal_msg_image); ?>">
+                                <p>
+                                    <?php echo esc_html(__('This Shortcode requires WP Job Portal Featured Resumes Addon','wp-job-portal')); ?>
+                                    <?php
+                                    if($wpjobportal_show_link == 1){
+                                        echo '('; ?>
+                                        <a href="https://wpjobportal.com/product/featured-resume/" target="_blank">
+                                            <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
+                                        </a>
+                                        <?php echo ')';
+                                    }
+                                    ?>
+                                </p>
+                            </div>
+                        <?php }?>
                     </div>
                 </div>
             </div>
 
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('Add','wp-job-portal')).' '. esc_html(__('Company','wp-job-portal')); ?>
@@ -507,7 +517,7 @@
                 </div>
             </div>
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('Add','wp-job-portal')).' '. esc_html(__('Department','wp-job-portal')); ?>
@@ -523,35 +533,37 @@
                     </div>
                     <div class="wpjobportal-shortcode-shortcodewrp">
                         <?php
-                            $msg_class = "wpjobportal-notice-msg";
-                            $msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-warning-icon.png";
-                            $show_link = 1;
-                            if( in_array('departments', wpjobportal::$_active_addons) ){
-                                $msg_class = "wpjobportal-info-msg";
-                                $msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-notice-icon.png";
-                                $show_link = 0;
-                            }
-                         ?>
-                        <div class="wpjobportal-shortcode-notice-wrap <?php echo esc_attr($msg_class);?>" >
-                            <img src="<?php echo esc_url($msg_image); ?>">
-                            <p>
-                                <?php echo esc_html(__('This Shortcode requires WP Job Portal Multi Departments Addon','wp-job-portal')); ?>
-                                <?php
-                                if($show_link == 1){
-                                    echo '('; ?>
-                                    <a href="https://wpjobportal.com/product/multi_departments/" target="_blank">
-                                        <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
-                                    </a>
-                                    <?php echo ')';
-                                }
-                                ?>
-                            </p>
-                        </div>
+                        if(!in_array('departments', wpjobportal::$_active_addons) ){
+                                $wpjobportal_msg_class = "wpjobportal-notice-msg";
+                                $wpjobportal_msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-warning-icon.png";
+                                $wpjobportal_show_link = 1;
+                                // if( in_array('departments', wpjobportal::$_active_addons) ){
+                                //     $wpjobportal_msg_class = "wpjobportal-info-msg";
+                                //     $wpjobportal_msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-notice-icon.png";
+                                //     $wpjobportal_show_link = 0;
+                                // }
+                             ?>
+                            <div class="wpjobportal-shortcode-notice-wrap <?php echo esc_attr($wpjobportal_msg_class);?>" >
+                                <img src="<?php echo esc_url($wpjobportal_msg_image); ?>">
+                                <p>
+                                    <?php echo esc_html(__('This Shortcode requires WP Job Portal Multi Departments Addon','wp-job-portal')); ?>
+                                    <?php
+                                    if($wpjobportal_show_link == 1){
+                                        echo '('; ?>
+                                        <a href="https://wpjobportal.com/product/multi_departments/" target="_blank">
+                                            <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
+                                        </a>
+                                        <?php echo ')';
+                                    }
+                                    ?>
+                                </p>
+                            </div>
+                        <?php }?>
                     </div>
                 </div>
             </div>
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('Add','wp-job-portal')).' '. esc_html(__('Job','wp-job-portal')); ?>
@@ -568,7 +580,7 @@
                 </div>
             </div>
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('Add','wp-job-portal')).' '. esc_html(__('Resume','wp-job-portal')); ?>
@@ -585,7 +597,7 @@
                 </div>
             </div>
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('Resume','wp-job-portal')).' '. esc_html(__('Search','wp-job-portal')); ?>
@@ -601,35 +613,37 @@
                     </div>
                     <div class="wpjobportal-shortcode-shortcodewrp">
                         <?php
-                            $msg_class = "wpjobportal-notice-msg";
-                            $msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-warning-icon.png";
-                            $show_link = 1;
-                            if( in_array('resumesearch', wpjobportal::$_active_addons) ){
-                                $msg_class = "wpjobportal-info-msg";
-                                $msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-notice-icon.png";
-                                $show_link = 0;
-                            }
-                         ?>
-                        <div class="wpjobportal-shortcode-notice-wrap <?php echo esc_attr($msg_class);?>" >
-                            <img src="<?php echo esc_url($msg_image); ?>">
-                            <p>
-                                <?php echo esc_html(__('This Shortcode requires WP Job Portal Resume Search Addon','wp-job-portal')); ?>
-                                <?php
-                                if($show_link == 1){
-                                    echo '('; ?>
-                                    <a href="https://wpjobportal.com/product/resume-save-search/" target="_blank">
-                                        <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
-                                    </a>
-                                    <?php echo ')';
-                                }
-                                ?>
-                            </p>
-                        </div>
+                        if(!in_array('resumesearch', wpjobportal::$_active_addons) ){
+                                $wpjobportal_msg_class = "wpjobportal-notice-msg";
+                                $wpjobportal_msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-warning-icon.png";
+                                $wpjobportal_show_link = 1;
+                                // if( in_array('resumesearch', wpjobportal::$_active_addons) ){
+                                //     $wpjobportal_msg_class = "wpjobportal-info-msg";
+                                //     $wpjobportal_msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-notice-icon.png";
+                                //     $wpjobportal_show_link = 0;
+                                // }
+                             ?>
+                            <div class="wpjobportal-shortcode-notice-wrap <?php echo esc_attr($wpjobportal_msg_class);?>" >
+                                <img src="<?php echo esc_url($wpjobportal_msg_image); ?>">
+                                <p>
+                                    <?php echo esc_html(__('This Shortcode requires WP Job Portal Resume Search Addon','wp-job-portal')); ?>
+                                    <?php
+                                    if($wpjobportal_show_link == 1){
+                                        echo '('; ?>
+                                        <a href="https://wpjobportal.com/product/resume-save-search/" target="_blank">
+                                            <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
+                                        </a>
+                                        <?php echo ')';
+                                    }
+                                    ?>
+                                </p>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('Registration','wp-job-portal')); ?>
@@ -646,7 +660,7 @@
                 </div>
             </div>
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('Employer Registration','wp-job-portal')); ?>
@@ -663,7 +677,7 @@
                 </div>
             </div>
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('Job Seeker Registration','wp-job-portal')); ?>
@@ -680,7 +694,7 @@
                 </div>
             </div>
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('Login Page','wp-job-portal')); ?>
@@ -697,7 +711,7 @@
                 </div>
             </div>
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('Search Job','wp-job-portal')).' '. esc_html(__('Widget','wp-job-portal')); ?>
@@ -713,35 +727,37 @@
                     </div>
                     <div class="wpjobportal-shortcode-shortcodewrp">
                         <?php
-                            $msg_class = "wpjobportal-notice-msg";
-                            $msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-warning-icon.png";
-                            $show_link = 1;
-                            if( in_array('widgets', wpjobportal::$_active_addons) ){
-                                $msg_class = "wpjobportal-info-msg";
-                                $msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-notice-icon.png";
-                                $show_link = 0;
-                            }
-                         ?>
-                        <div class="wpjobportal-shortcode-notice-wrap <?php echo esc_attr($msg_class);?>" >
-                            <img src="<?php echo esc_url($msg_image); ?>">
-                            <p>
-                                <?php echo esc_html(__('This Shortcode requires WP Job Portal Front-end Widgets Addon','wp-job-portal')); ?>
-                                <?php
-                                if($show_link == 1){
-                                    echo '('; ?>
-                                    <a href="https://wpjobportal.com/product/widgets/" target="_blank">
-                                        <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
-                                    </a>
-                                    <?php echo ')';
-                                }
-                                ?>
-                            </p>
-                        </div>
+                        if(!in_array('widgets', wpjobportal::$_active_addons) ){
+                                $wpjobportal_msg_class = "wpjobportal-notice-msg";
+                                $wpjobportal_msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-warning-icon.png";
+                                $wpjobportal_show_link = 1;
+                                // if( in_array('widgets', wpjobportal::$_active_addons) ){
+                                //     $wpjobportal_msg_class = "wpjobportal-info-msg";
+                                //     $wpjobportal_msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-notice-icon.png";
+                                //     $wpjobportal_show_link = 0;
+                                // }
+                             ?>
+                            <div class="wpjobportal-shortcode-notice-wrap <?php echo esc_attr($wpjobportal_msg_class);?>" >
+                                <img src="<?php echo esc_url($wpjobportal_msg_image); ?>">
+                                <p>
+                                    <?php echo esc_html(__('This Shortcode requires WP Job Portal Front-end Widgets Addon','wp-job-portal')); ?>
+                                    <?php
+                                    if($wpjobportal_show_link == 1){
+                                        echo '('; ?>
+                                        <a href="https://wpjobportal.com/product/widgets/" target="_blank">
+                                            <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
+                                        </a>
+                                        <?php echo ')';
+                                    }
+                                    ?>
+                                </p>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('My Packages','wp-job-portal')); ?>
@@ -757,35 +773,37 @@
                     </div>
                     <div class="wpjobportal-shortcode-shortcodewrp">
                         <?php
-                            $msg_class = "wpjobportal-notice-msg";
-                            $msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-warning-icon.png";
-                            $show_link = 1;
-                            if( in_array('credits', wpjobportal::$_active_addons) ){
-                                $msg_class = "wpjobportal-info-msg";
-                                $msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-notice-icon.png";
-                                $show_link = 0;
-                            }
-                         ?>
-                        <div class="wpjobportal-shortcode-notice-wrap <?php echo esc_attr($msg_class);?>" >
-                            <img src="<?php echo esc_url($msg_image); ?>">
-                            <p>
-                                <?php echo esc_html(__('This Shortcode requires WP Job Portal Credits Addon','wp-job-portal')); ?>
-                                <?php
-                                if($show_link == 1){
-                                    echo '('; ?>
-                                    <a href="https://wpjobportal.com/product/credit-system/" target="_blank">
-                                        <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
-                                    </a>
-                                    <?php echo ')';
-                                }
-                                ?>
-                            </p>
-                        </div>
+                        if(!in_array('credits', wpjobportal::$_active_addons) ){
+                                $wpjobportal_msg_class = "wpjobportal-notice-msg";
+                                $wpjobportal_msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-warning-icon.png";
+                                $wpjobportal_show_link = 1;
+                                // if( in_array('credits', wpjobportal::$_active_addons) ){
+                                //     $wpjobportal_msg_class = "wpjobportal-info-msg";
+                                //     $wpjobportal_msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-notice-icon.png";
+                                //     $wpjobportal_show_link = 0;
+                                // }
+                             ?>
+                            <div class="wpjobportal-shortcode-notice-wrap <?php echo esc_attr($wpjobportal_msg_class);?>" >
+                                <img src="<?php echo esc_url($wpjobportal_msg_image); ?>">
+                                <p>
+                                    <?php echo esc_html(__('This Shortcode requires WP Job Portal Credits Addon','wp-job-portal')); ?>
+                                    <?php
+                                    if($wpjobportal_show_link == 1){
+                                        echo '('; ?>
+                                        <a href="https://wpjobportal.com/product/credit-system/" target="_blank">
+                                            <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
+                                        </a>
+                                        <?php echo ')';
+                                    }
+                                    ?>
+                                </p>
+                            </div>
+                        <?php }?>
                     </div>
                 </div>
             </div>
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('My Subscription','wp-job-portal')); ?>
@@ -801,35 +819,37 @@
                     </div>
                     <div class="wpjobportal-shortcode-shortcodewrp">
                         <?php
-                            $msg_class = "wpjobportal-notice-msg";
-                            $msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-warning-icon.png";
-                            $show_link = 1;
-                            if( in_array('credits', wpjobportal::$_active_addons) ){
-                                $msg_class = "wpjobportal-info-msg";
-                                $msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-notice-icon.png";
-                                $show_link = 0;
-                            }
-                         ?>
-                        <div class="wpjobportal-shortcode-notice-wrap <?php echo esc_attr($msg_class);?>" >
-                            <img src="<?php echo esc_url($msg_image); ?>">
-                            <p>
-                                <?php echo esc_html(__('This Shortcode requires WP Job Portal Credits Addon','wp-job-portal')); ?>
-                                <?php
-                                if($show_link == 1){
-                                    echo '('; ?>
-                                    <a href="https://wpjobportal.com/product/credit-system/" target="_blank">
-                                        <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
-                                    </a>
-                                    <?php echo ')';
-                                }
-                                ?>
-                            </p>
-                        </div>
+                        if(!in_array('credits', wpjobportal::$_active_addons) ){
+                                $wpjobportal_msg_class = "wpjobportal-notice-msg";
+                                $wpjobportal_msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-warning-icon.png";
+                                $wpjobportal_show_link = 1;
+                                // if( in_array('credits', wpjobportal::$_active_addons) ){
+                                //     $wpjobportal_msg_class = "wpjobportal-info-msg";
+                                //     $wpjobportal_msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-notice-icon.png";
+                                //     $wpjobportal_show_link = 0;
+                                // }
+                             ?>
+                            <div class="wpjobportal-shortcode-notice-wrap <?php echo esc_attr($wpjobportal_msg_class);?>" >
+                                <img src="<?php echo esc_url($wpjobportal_msg_image); ?>">
+                                <p>
+                                    <?php echo esc_html(__('This Shortcode requires WP Job Portal Credits Addon','wp-job-portal')); ?>
+                                    <?php
+                                    if($wpjobportal_show_link == 1){
+                                        echo '('; ?>
+                                        <a href="https://wpjobportal.com/product/credit-system/" target="_blank">
+                                            <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
+                                        </a>
+                                        <?php echo ')';
+                                    }
+                                    ?>
+                                </p>
+                            </div>
+                        <?php }?>
                     </div>
                 </div>
             </div>
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('All Packages','wp-job-portal')); ?>
@@ -845,35 +865,37 @@
                     </div>
                     <div class="wpjobportal-shortcode-shortcodewrp">
                         <?php
-                            $msg_class = "wpjobportal-notice-msg";
-                            $msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-warning-icon.png";
-                            $show_link = 1;
-                            if( in_array('credits', wpjobportal::$_active_addons) ){
-                                $msg_class = "wpjobportal-info-msg";
-                                $msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-notice-icon.png";
-                                $show_link = 0;
-                            }
-                         ?>
-                        <div class="wpjobportal-shortcode-notice-wrap <?php echo esc_attr($msg_class);?>" >
-                            <img src="<?php echo esc_url($msg_image); ?>">
-                            <p>
-                                <?php echo esc_html(__('This Shortcode requires WP Job Portal Credits Addon','wp-job-portal')); ?>
-                                <?php
-                                if($show_link == 1){
-                                    echo '('; ?>
-                                    <a href="https://wpjobportal.com/product/credit-system/" target="_blank">
-                                        <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
-                                    </a>
-                                    <?php echo ')';
-                                }
-                                ?>
-                            </p>
-                        </div>
+                        if(!in_array('credits', wpjobportal::$_active_addons) ){
+                                $wpjobportal_msg_class = "wpjobportal-notice-msg";
+                                $wpjobportal_msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-warning-icon.png";
+                                $wpjobportal_show_link = 1;
+                                // if( in_array('credits', wpjobportal::$_active_addons) ){
+                                //     $wpjobportal_msg_class = "wpjobportal-info-msg";
+                                //     $wpjobportal_msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-notice-icon.png";
+                                //     $wpjobportal_show_link = 0;
+                                // }
+                             ?>
+                            <div class="wpjobportal-shortcode-notice-wrap <?php echo esc_attr($wpjobportal_msg_class);?>" >
+                                <img src="<?php echo esc_url($wpjobportal_msg_image); ?>">
+                                <p>
+                                    <?php echo esc_html(__('This Shortcode requires WP Job Portal Credits Addon','wp-job-portal')); ?>
+                                    <?php
+                                    if($wpjobportal_show_link == 1){
+                                        echo '('; ?>
+                                        <a href="https://wpjobportal.com/product/credit-system/" target="_blank">
+                                            <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
+                                        </a>
+                                        <?php echo ')';
+                                    }
+                                    ?>
+                                </p>
+                            </div>
+                        <?php }?>
                     </div>
                 </div>
             </div>
             <div id="wpjobportal-shortcode-wrapper">
-                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_html(__('Shortcode','wp-job-portal')); ?>"></div>
+                <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('My Invoices','wp-job-portal')); ?>
@@ -889,30 +911,32 @@
                     </div>
                     <div class="wpjobportal-shortcode-shortcodewrp">
                         <?php
-                            $msg_class = "wpjobportal-notice-msg";
-                            $msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-warning-icon.png";
-                            $show_link = 1;
-                            if( in_array('credits', wpjobportal::$_active_addons) ){
-                                $msg_class = "wpjobportal-info-msg";
-                                $msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-notice-icon.png";
-                                $show_link = 0;
-                            }
-                         ?>
-                        <div class="wpjobportal-shortcode-notice-wrap <?php echo esc_attr($msg_class);?>" >
-                            <img src="<?php echo esc_url($msg_image); ?>">
-                            <p>
-                                <?php echo esc_html(__('This Shortcode requires WP Job Portal Credits Addon','wp-job-portal')); ?>
-                                <?php
-                                if($show_link == 1){
-                                    echo '('; ?>
-                                    <a href="https://wpjobportal.com/product/credit-system/">
-                                        <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
-                                    </a>
-                                    <?php echo ')';
-                                }
-                                ?>
-                            </p>
-                        </div>
+                        if(!in_array('credits', wpjobportal::$_active_addons) ){
+                                $wpjobportal_msg_class = "wpjobportal-notice-msg";
+                                $wpjobportal_msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-warning-icon.png";
+                                $wpjobportal_show_link = 1;
+                                    if( in_array('credits', wpjobportal::$_active_addons) ){
+                                        $wpjobportal_msg_class = "wpjobportal-info-msg";
+                                        $wpjobportal_msg_image = WPJOBPORTAL_PLUGIN_URL."includes/images/import-city-notice-icon.png";
+                                        $wpjobportal_show_link = 0;
+                                    }
+                             ?>
+                            <div class="wpjobportal-shortcode-notice-wrap <?php echo esc_attr($wpjobportal_msg_class);?>" >
+                                <img src="<?php echo esc_url($wpjobportal_msg_image); ?>">
+                                <p>
+                                    <?php echo esc_html(__('This Shortcode requires WP Job Portal Credits Addon','wp-job-portal')); ?>
+                                    <?php
+                                    if($wpjobportal_show_link == 1){
+                                        echo '('; ?>
+                                        <a href="https://wpjobportal.com/product/credit-system/">
+                                            <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
+                                        </a>
+                                        <?php echo ')';
+                                    }
+                                    ?>
+                                </p>
+                            </div>
+                        <?php }?>
                     </div>
                 </div>
             </div>

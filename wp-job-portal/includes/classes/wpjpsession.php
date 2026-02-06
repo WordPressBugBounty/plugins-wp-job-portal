@@ -22,17 +22,17 @@ class WPJOBPORTALwpjpsession {
     function init(){
         if (isset($_COOKIE['_wpjsjp_session_'])) {
             $cookie = wpjobportalphplib::wpJP_stripslashes(wpjobportal::wpjobportal_sanitizeData($_COOKIE['_wpjsjp_session_']));
-            $user_cookie = wpjobportalphplib::wpJP_explode('/', $cookie);
-            $this->sessionid = wpjobportalphplib::wpJP_preg_replace("/[^A-Za-z0-9_]/", '', $user_cookie[0]);
-            $this->sessionexpire = absint($user_cookie[1]);
-            $this->nextsessionexpire = absint($user_cookie[2]);
+            $wpjobportal_user_cookie = wpjobportalphplib::wpJP_explode('/', $cookie);
+            $this->sessionid = wpjobportalphplib::wpJP_preg_replace("/[^A-Za-z0-9_]/", '', $wpjobportal_user_cookie[0]);
+            $this->sessionexpire = absint($wpjobportal_user_cookie[1]);
+            $this->nextsessionexpire = absint($wpjobportal_user_cookie[2]);
             // Update options session expiration
             if (time() > $this->nextsessionexpire) {
                 $this->jsjp_set_cookies_expiration();
             }
         } else {
-            $sessionid = $this->jsjp_generate_id();
-            $this->sessionid = $sessionid . get_option( '_wpjsjp_session_', 0 );
+            $wpjobportal_sessionid = $this->jsjp_generate_id();
+            $this->sessionid = $wpjobportal_sessionid . get_option( '_wpjsjp_session_', 0 );
             $this->jsjp_set_cookies_expiration();
         }
         $this->jshd_set_user_cookies();
@@ -54,8 +54,8 @@ class WPJOBPORTALwpjpsession {
 
     private function jshd_set_user_cookies(){
         wpjobportalphplib::wpJP_setcookie( '_wpjsjp_session_', $this->sessionid . '/' . $this->sessionexpire . '/' . $this->nextsessionexpire , $this->sessionexpire, COOKIEPATH, COOKIE_DOMAIN);
-        $count = get_option( '_wpjsjp_session_', 0 );
-        update_option( '_wpjsjp_session_', ++$count);
+        $wpjobportal_count = get_option( '_wpjsjp_session_', 0 );
+        update_option( '_wpjsjp_session_', ++$wpjobportal_count);
     }
 
 }

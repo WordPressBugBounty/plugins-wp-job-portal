@@ -1,9 +1,9 @@
 <?php if (!defined('ABSPATH')) die('Restricted Access'); ?>
 <?php
-$date_format = array((object) array('id' => 'd-m-Y', 'text' => esc_html(__('DD MM YYYY', 'wp-job-portal'))),
+$wpjobportal_date_format = array((object) array('id' => 'd-m-Y', 'text' => esc_html(__('DD MM YYYY', 'wp-job-portal'))),
                 (object) array('id' => 'm/d/Y', 'text' => esc_html(__('MM DD YYYY', 'wp-job-portal'))),
                 (object) array('id' => 'Y-m-d', 'text' => esc_html(__('YYYY MM DD', 'wp-job-portal'))));
-$yesno = array((object) array('id' => 1, 'text' => esc_html(__('Yes', 'wp-job-portal')))
+$wpjobportal_yesno = array((object) array('id' => 1, 'text' => esc_html(__('Yes', 'wp-job-portal')))
                 , (object) array('id' => 0, 'text' => esc_html(__('No', 'wp-job-portal'))));
 if (!defined('ABSPATH')) die('Restricted Access'); ?>
 <div id="wpjobportaladmin-wrapper" class="wpjobportal-post-installation-wrp">
@@ -93,7 +93,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                         }
                         ?>
                     </span>
-                    <a class="wpjobportal-post-head-closebtn" href="admin.php?page=wpjobportal"title="<?php echo esc_html(__('Close','wp-job-portal'));?>">
+                    <a class="wpjobportal-post-head-closebtn" href="admin.php?page=wpjobportal"title="<?php echo esc_attr(__('Close','wp-job-portal'));?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/close.png" />
                     </a>
                 </div>
@@ -185,7 +185,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                         <?php echo esc_html(__('Show breadcrumbs','wp-job-portal')); ?>
                     </div>
                     <div class="wpjobportal-post-val">
-                        <?php echo wp_kses(WPJOBPORTALformfield::select('cur_location', $yesno,wpjobportal::$_data[0]['cur_location'],'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                        <?php echo wp_kses(WPJOBPORTALformfield::select('cur_location', $wpjobportal_yesno,wpjobportal::$_data[0]['cur_location'],'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                         <div class="wpjobportal-post-help-text">
                             <?php echo esc_html(__('Show navigation in breadcrumbs','wp-job-portal'));?>
                         </div>
@@ -196,7 +196,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                         <?php echo esc_html(__('Default date format','wp-job-portal')); ?>
                     </div>
                     <div class="wpjobportal-post-val">
-                        <?php echo wp_kses(WPJOBPORTALformfield::select('date_format', $date_format,wpjobportal::$_data[0]['date_format'],'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                        <?php echo wp_kses(WPJOBPORTALformfield::select('date_format', $wpjobportal_date_format,wpjobportal::$_data[0]['date_format'],'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                         <div class="wpjobportal-post-help-text">
                             <?php echo esc_html(__('Date format for plugin','wp-job-portal'));?>
                         </div>
@@ -209,8 +209,8 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                     </div>
                     <div class="wpjobportal-post-val">
                         <?php
-                        $defaultaddressdisplaytype = array((object) array('id' => 'csc', 'text' => esc_html(__('City','wp-job-portal')).', ' .esc_html(__('State','wp-job-portal')).', ' .esc_html(__('Country', 'wp-job-portal'))), (object) array('id' => 'cs', 'text' => esc_html(__('City','wp-job-portal')).', ' .esc_html(__('State', 'wp-job-portal'))), (object) array('id' => 'cc', 'text' => esc_html(__('City','wp-job-portal')).', ' .esc_html(__('Country', 'wp-job-portal'))), (object) array('id' => 'c', 'text' => esc_html(__('City', 'wp-job-portal'))));
-                        echo wp_kses(WPJOBPORTALformfield::select('defaultaddressdisplaytype', $defaultaddressdisplaytype, wpjobportal::$_data[0]['defaultaddressdisplaytype']),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                        $wpjobportal_defaultaddressdisplaytype = array((object) array('id' => 'csc', 'text' => esc_html(__('City','wp-job-portal')).', ' .esc_html(__('State','wp-job-portal')).', ' .esc_html(__('Country', 'wp-job-portal'))), (object) array('id' => 'cs', 'text' => esc_html(__('City','wp-job-portal')).', ' .esc_html(__('State', 'wp-job-portal'))), (object) array('id' => 'cc', 'text' => esc_html(__('City','wp-job-portal')).', ' .esc_html(__('Country', 'wp-job-portal'))), (object) array('id' => 'c', 'text' => esc_html(__('City', 'wp-job-portal'))));
+                        echo wp_kses(WPJOBPORTALformfield::select('defaultaddressdisplaytype', $wpjobportal_defaultaddressdisplaytype, wpjobportal::$_data[0]['defaultaddressdisplaytype']),WPJOBPORTAL_ALLOWED_TAGS); ?>
                         <div class="wpjobportal-post-help-text">
                             <?php echo esc_html(__('Address display style for plugin','wp-job-portal'));?>
                         </div>
@@ -218,7 +218,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                 </div>
 
                 <div class="wpjobportal-post-action-btn">
-                    <a class="next-step wpjobportal-post-act-btn" href="javascript:void();" onclick="document.getElementById('wpjobportal-form-ins').submit();"  title="<?php echo esc_html(__('next','wp-job-portal')); ?>">
+                    <a class="next-step wpjobportal-post-act-btn" href="javascript:void();" onclick="document.getElementById('wpjobportal-form-ins').submit();"  title="<?php echo esc_attr(__('next','wp-job-portal')); ?>">
                         <?php echo esc_html(__('Next','wp-job-portal')); ?>
                     </a>
                 </div>
@@ -235,7 +235,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
     jQuery(document).ready(function () {
         jQuery('.inputbox').on('focus', function () {
         jQuery(this)
@@ -251,5 +251,5 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
         });
     });
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>

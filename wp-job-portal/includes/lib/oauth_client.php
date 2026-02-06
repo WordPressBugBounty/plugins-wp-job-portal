@@ -11,20 +11,20 @@ if (!defined('ABSPATH'))
     die('Restricted Access');
 
 
-class oauth_session_value_class
+class wpjobportal_oauth_session_value_class
 {
-  var $id;
-  var $session;
-  var $state;
-  var $access_token;
-  var $access_token_secret;
+  var $wpjobportal_id;
+  var $wpjobportal_session;
+  var $wpjobportal_state;
+  var $wpjobportal_access_token;
+  var $wpjobportal_access_token_secret;
   var $authorized;
-  var $expiry;
+  var $wpjobportal_expiry;
   var $type;
-  var $server;
+  var $wpjobportal_server;
   var $creation;
   var $refresh_token;
-  var $access_token_response;
+  var $wpjobportal_access_token_response;
 };
 
 /*
@@ -120,7 +120,7 @@ class oauth_session_value_class
 {/metadocument}
 */
 
-class oauth_client_class
+class wpjobportal_oauth_client_class
 {
 /*
 {metadocument}
@@ -165,7 +165,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $debug = false;
+  var $wpjobportal_debug = false;
 
 /*
 {metadocument}
@@ -182,7 +182,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $display_debug = false;
+  var $wpjobportal_display_debug = false;
 
 /*
 {metadocument}
@@ -199,7 +199,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $debug_http = false;
+  var $wpjobportal_debug_http = false;
 
 /*
 {metadocument}
@@ -217,7 +217,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $log_file_name = '';
+  var $wpjobportal_log_file_name = '';
 
 /*
 {metadocument}
@@ -235,7 +235,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $exit = false;
+  var $wpjobportal_exit = false;
 
 /*
 {metadocument}
@@ -251,7 +251,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $debug_output = '';
+  var $wpjobportal_debug_output = '';
 
 /*
 {metadocument}
@@ -268,7 +268,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $debug_prefix = 'OAuth client: ';
+  var $wpjobportal_debug_prefix = 'OAuth client: ';
 
 /*
 {metadocument}
@@ -360,7 +360,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $server = '';
+  var $wpjobportal_server = '';
 
 /*
 {metadocument}
@@ -378,7 +378,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $configuration_file = 'oauth_configuration.json';
+  var $wpjobportal_configuration_file = 'oauth_configuration.json';
 
 /*
 {metadocument}
@@ -403,7 +403,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $request_token_url = '';
+  var $wpjobportal_request_token_url = '';
 
 /*
 {metadocument}
@@ -440,7 +440,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $dialog_url = '';
+  var $wpjobportal_dialog_url = '';
 
 /*
 {metadocument}
@@ -537,7 +537,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $append_state_to_redirect_uri = '';
+  var $wpjobportal_append_state_to_redirect_uri = '';
 
 /*
 {metadocument}
@@ -554,7 +554,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $access_token_url = '';
+  var $wpjobportal_access_token_url = '';
 
 /*
 {metadocument}
@@ -607,7 +607,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $url_parameters = false;
+  var $wpjobportal_url_parameters = false;
 
 /*
 {metadocument}
@@ -643,7 +643,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $token_request_method = 'GET';
+  var $wpjobportal_token_request_method = 'GET';
 
 /*
 {metadocument}
@@ -836,7 +836,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $access_token = '';
+  var $wpjobportal_access_token = '';
 
 /*
 {metadocument}
@@ -853,7 +853,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $access_token_secret = '';
+  var $wpjobportal_access_token_secret = '';
 
 /*
 {metadocument}
@@ -871,7 +871,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $access_token_expiry = '';
+  var $wpjobportal_access_token_expiry = '';
 
 /*
 {metadocument}
@@ -887,7 +887,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $access_token_type = '';
+  var $wpjobportal_access_token_type = '';
 
 /*
 {metadocument}
@@ -905,7 +905,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $default_access_token_type = '';
+  var $wpjobportal_default_access_token_type = '';
 
 /*
 {metadocument}
@@ -922,7 +922,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $access_token_content_type = '';
+  var $wpjobportal_access_token_content_type = '';
 
 /*
 {metadocument}
@@ -941,7 +941,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $access_token_parameter = '';
+  var $wpjobportal_access_token_parameter = '';
 
 
 /*
@@ -957,7 +957,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $access_token_response;
+  var $wpjobportal_access_token_response;
 
 /*
 {metadocument}
@@ -977,7 +977,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $store_access_token_response = false;
+  var $wpjobportal_store_access_token_response = false;
 
 /*
 {metadocument}
@@ -999,7 +999,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $access_token_authentication = '';
+  var $wpjobportal_access_token_authentication = '';
 
 /*
 {metadocument}
@@ -1019,7 +1019,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $access_token_accept_content_type = '';
+  var $wpjobportal_access_token_accept_content_type = '';
 
 /*
 {metadocument}
@@ -1073,7 +1073,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $access_token_error = '';
+  var $wpjobportal_access_token_error = '';
 
 /*
 {metadocument}
@@ -1106,7 +1106,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $id_token;
+  var $wpjobportal_id_token;
 
 /*
 {metadocument}
@@ -1265,7 +1265,7 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $session_cookie = 'oauth_session';
+  var $wpjobportal_session_cookie = 'oauth_session';
 
 /*
 {metadocument}
@@ -1284,10 +1284,10 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $session_name_prefix = 'OAUTH_';
+  var $wpjobportal_session_name_prefix = 'OAUTH_';
 
   var $response_time = 0;
-  var $session = '';
+  var $wpjobportal_session = '';
 
 /*
 {metadocument}
@@ -1306,34 +1306,34 @@ class oauth_client_class
   </variable>
 {/metadocument}
 */
-  var $map_urls = array();
+  var $wpjobportal_map_urls = array();
 
   Function ConvertObjectToArray($object)
   {
-    $array = array();
-    foreach($object as $property => $value)
+    $wpjobportal_array = array();
+    foreach($object as $wpjobportal_property => $wpjobportal_value)
     {
-      switch(GetType($value))
+      switch(GetType($wpjobportal_value))
       {
         case 'object':
         case 'array':
-          $array[$property] = $this->ConvertObjectToArray($value);
+          $wpjobportal_array[$wpjobportal_property] = $this->ConvertObjectToArray($wpjobportal_value);
           break;
         default:
-          $array[$property] = $value;
+          $wpjobportal_array[$wpjobportal_property] = $wpjobportal_value;
       }
     }
-    return $array;
+    return $wpjobportal_array;
   }
 
   Function ISOTime($timestamp = null)
   {
     if(extension_loaded('Intl'))
     {
-      $date = new DateTime();
+      $wpjobportal_date = new DateTime();
       if(IsSet($timestamp))
-        $date->setTimestamp($timestamp);
-      $time = $date->format('Y-m-d H:i:s');
+        $wpjobportal_date->setTimestamp($timestamp);
+      $time = $wpjobportal_date->format('Y-m-d H:i:s');
     }
     else
     {
@@ -1376,82 +1376,82 @@ class oauth_client_class
     return(true);
   }
 
-  Function SetupSession(&$session)
+  Function SetupSession(&$wpjobportal_session)
   {
     if(strlen($this->session)
     || IsSet($_COOKIE[$this->session_cookie]))
     {
       if($this->debug)
         $this->OutputDebug(strlen($this->session) ? 'Checking OAuth session '.$this->session : 'Checking OAuth session from cookie '.$_COOKIE[$this->session_cookie]);
-      if(!$this->GetOAuthSession(strlen($this->session) ? $this->session : $_COOKIE[$this->session_cookie], $this->server, $session))
+      if(!$this->GetOAuthSession(strlen($this->session) ? $this->session : $_COOKIE[$this->session_cookie], $this->server, $wpjobportal_session))
         return($this->SetError('OAuth session error: '.$this->error));
     }
     else
     {
       if($this->debug)
         $this->OutputDebug('No OAuth session is set');
-      $session = null;
+      $wpjobportal_session = null;
     }
-    if(!IsSet($session))
+    if(!IsSet($wpjobportal_session))
     {
       if($this->debug)
         $this->OutputDebug('Creating a new OAuth session');
-      if(!$this->CreateOAuthSession($this->server, $session))
+      if(!$this->CreateOAuthSession($this->server, $wpjobportal_session))
         return($this->SetError('OAuth session error: '.$this->error));
-      SetCookie($this->session_cookie, $session->session, 0, $this->session_path);
+      SetCookie($this->session_cookie, $wpjobportal_session->session, 0, $this->session_path);
     }
-    $this->session = $session->session;
+    $this->session = $wpjobportal_session->session;
     return true;
   }
 
-  Function InitializeOAuthSession(&$session)
+  Function InitializeOAuthSession(&$wpjobportal_session)
   {
-    $session = new oauth_session_value_class;
-    $session->state = md5(time().wp_rand());
-    $session->session = md5($session->state.time().wp_rand());
-    $session->access_token = '';
-    $session->access_token_secret = '';
-    $session->authorized = null;
-    $session->expiry = null;
-    $session->type = '';
-    $session->server = $this->server;
-    $session->creation = $this->ISOTime();
-    $session->refresh_token = '';
-    $session->access_token_response = null;
+    $wpjobportal_session = new wpjobportal_oauth_session_value_class;
+    $wpjobportal_session->state = md5(time().wp_rand());
+    $wpjobportal_session->session = md5($wpjobportal_session->state.time().wp_rand());
+    $wpjobportal_session->access_token = '';
+    $wpjobportal_session->access_token_secret = '';
+    $wpjobportal_session->authorized = null;
+    $wpjobportal_session->expiry = null;
+    $wpjobportal_session->type = '';
+    $wpjobportal_session->server = $this->server;
+    $wpjobportal_session->creation = $this->ISOTime();
+    $wpjobportal_session->refresh_token = '';
+    $wpjobportal_session->access_token_response = null;
   }
 
-  Function GetRequestTokenURL(&$request_token_url)
+  Function GetRequestTokenURL(&$wpjobportal_request_token_url)
   {
-    $request_token_url = $this->request_token_url;
+    $wpjobportal_request_token_url = $this->request_token_url;
     return(true);
   }
 
-  Function GetDialogURL(&$url, $redirect_uri = '', $state = '')
+  Function GetDialogURL(&$wpjobportal_url, $redirect_uri = '', $wpjobportal_state = '')
   {
-    $url = (($this->offline && strlen($this->offline_dialog_url)) ? $this->offline_dialog_url : (($redirect_uri === 'oob' && strlen($this->pin_dialog_url)) ? $this->pin_dialog_url : ($this->reauthenticate ? $this->reauthenticate_dialog_url : $this->dialog_url)));
-    if(strlen($url) === 0)
+    $wpjobportal_url = (($this->offline && strlen($this->offline_dialog_url)) ? $this->offline_dialog_url : (($redirect_uri === 'oob' && strlen($this->pin_dialog_url)) ? $this->pin_dialog_url : ($this->reauthenticate ? $this->reauthenticate_dialog_url : $this->dialog_url)));
+    if(strlen($wpjobportal_url) === 0)
       return $this->SetError('the dialog URL '.($this->offline ? 'for offline access ' : ($this->reauthenticate ?  'for reautentication' : '')).'is not defined for this server');
-    $url = str_replace(
-      '{NONCE}', UrlEncode(uniqid($state)), str_replace(
+    $wpjobportal_url = str_replace(
+      '{NONCE}', UrlEncode(uniqid($wpjobportal_state)), str_replace(
       '{REDIRECT_URI}', UrlEncode($redirect_uri), str_replace(
-      '{STATE}', UrlEncode($state), str_replace(
+      '{STATE}', UrlEncode($wpjobportal_state), str_replace(
       '{CLIENT_ID}', UrlEncode($this->client_id), str_replace(
       '{API_KEY}', UrlEncode($this->api_key), str_replace(
       '{SCOPE}', UrlEncode($this->scope), str_replace(
       '{REALM}', UrlEncode($this->realm),
-      $url)))))));
+      $wpjobportal_url)))))));
     return(true);
   }
 
-  Function GetAccessTokenURL(&$access_token_url)
+  Function GetAccessTokenURL(&$wpjobportal_access_token_url)
   {
-    $access_token_url = str_replace('{API_KEY}', $this->api_key, $this->access_token_url);
+    $wpjobportal_access_token_url = str_replace('{API_KEY}', $this->api_key, $this->access_token_url);
     return(true);
   }
 
-  Function GetRevokeTokenURL($token, &$revoke_token_url)
+  Function GetRevokeTokenURL($wpjobportal_token, &$revoke_token_url)
   {
-    $revoke_token_url = str_replace('{TOKEN}', $token, $this->revoke_token_url);
+    $revoke_token_url = str_replace('{TOKEN}', $wpjobportal_token, $this->revoke_token_url);
     return(true);
   }
 
@@ -1461,63 +1461,63 @@ class oauth_client_class
       return $this->SetError('Session variables are not accessible in this PHP environment');
         if(version_compare(phpversion(), '5.4.0', '>='))
     {
-      switch($session_status = session_status())
+      switch($wpjobportal_session_status = session_status())
       {
         case PHP_SESSION_DISABLED:
           return $this->SetError('PHP session support is disabled in this environment');
 
         case PHP_SESSION_ACTIVE:
-          $session_active = true;
+          $wpjobportal_session_active = true;
           break;
 
         case PHP_SESSION_NONE:
-          $session_active = false;
+          $wpjobportal_session_active = false;
           break;
 
         default:
-          return $this->SetError($session_status.' is not yet a supported PHP session status value');
+          return $this->SetError($wpjobportal_session_status.' is not yet a supported PHP session status value');
       }
         }
         else
     {
-            $session_active = (session_id() !== '');
+            $wpjobportal_session_active = (session_id() !== '');
         }
-    if(!$session_active
+    if(!$wpjobportal_session_active
     && !session_start())
       return($this->SetPHPError('it was not possible to start the PHP session'));
     return true;
   }
 
-  Function GetStoredState(&$state)
+  Function GetStoredState(&$wpjobportal_state)
   {
     if(!$this->SessionStart())
       return false;
     if(IsSet($_SESSION[$this->session_name_prefix.'STATE']))
-      $state = $_SESSION[$this->session_name_prefix.'STATE'];
+      $wpjobportal_state = $_SESSION[$this->session_name_prefix.'STATE'];
     else
-      $state = $_SESSION[$this->session_name_prefix.'STATE'] = time().'-'.substr(md5(wp_rand().time()), 0, 6);
+      $wpjobportal_state = $_SESSION[$this->session_name_prefix.'STATE'] = time().'-'.substr(md5(wp_rand().time()), 0, 6);
     return(true);
   }
 
-  Function GetRequestState(&$state)
+  Function GetRequestState(&$wpjobportal_state)
   {
     if(IsSet($_GET['error']))
     {
       if($this->debug)
         $this->OutputDebug('it was returned the request state error '.$_GET['error']);
-      $state = null;
+      $wpjobportal_state = null;
       $this->error = $_GET['error'];
       if(IsSet($_GET['error_description']))
         $this->error .= ': '.$_GET['error_description'];
       return false;
     }
-    $check = (strlen($this->append_state_to_redirect_uri) ? $this->append_state_to_redirect_uri : 'state');
+    $wpjobportal_check = (strlen($this->append_state_to_redirect_uri) ? $this->append_state_to_redirect_uri : 'state');
     if($this->debug)
     {
-      if(!IsSet($_GET[$check]))
+      if(!IsSet($_GET[$wpjobportal_check]))
         $this->OutputDebug('The authentication state value was not passed by the OAuth server.');
     }
-    $state = (IsSet($_GET[$check]) ? $_GET[$check] : null);
+    $wpjobportal_state = (IsSet($_GET[$wpjobportal_check]) ? $_GET[$wpjobportal_check] : null);
     return(true);
   }
 
@@ -1533,15 +1533,15 @@ class oauth_client_class
     return(true);
   }
 
-  Function GetRequestDenied(&$denied)
+  Function GetRequestDenied(&$wpjobportal_denied)
   {
-    $denied = (IsSet($_GET['denied']) ? $_GET['denied'] : null);
+    $wpjobportal_denied = (IsSet($_GET['denied']) ? $_GET['denied'] : null);
     return(true);
   }
 
-  Function GetRequestToken(&$token, &$verifier)
+  Function GetRequestToken(&$wpjobportal_token, &$verifier)
   {
-    $token = (IsSet($_GET['oauth_token']) ? $_GET['oauth_token'] : null);
+    $wpjobportal_token = (IsSet($_GET['oauth_token']) ? $_GET['oauth_token'] : null);
     $verifier = (IsSet($_GET['oauth_verifier']) ? $_GET['oauth_verifier'] : null);
     return(true);
   }
@@ -1578,10 +1578,10 @@ class oauth_client_class
     <do>
 {/metadocument}
 */
-  Function Redirect($url)
+  Function Redirect($wpjobportal_url)
   {
     Header('HTTP/1.0 302 OAuth Redirection');
-    Header('Location: '.$url);
+    Header('Location: '.$wpjobportal_url);
   }
 /*
 {metadocument}
@@ -1634,16 +1634,16 @@ class oauth_client_class
     <do>
 {/metadocument}
 */
-  Function StoreAccessToken($access_token)
+  Function StoreAccessToken($wpjobportal_access_token)
   {
     if(!function_exists('session_start'))
       return $this->SetError('Session variables are not accessible in this PHP environment');
     if(session_id() === ''
     && !session_start())
       return($this->SetPHPError('it was not possible to start the PHP session'));
-    if(!$this->GetAccessTokenURL($access_token_url))
+    if(!$this->GetAccessTokenURL($wpjobportal_access_token_url))
       return false;
-    $_SESSION[$this->session_name_prefix.'ACCESS_TOKEN'][$access_token_url] = $access_token;
+    $_SESSION[$this->session_name_prefix.'ACCESS_TOKEN'][$wpjobportal_access_token_url] = $wpjobportal_access_token;
     return true;
   }
 /*
@@ -1688,18 +1688,18 @@ class oauth_client_class
     <do>
 {/metadocument}
 */
-  Function GetAccessToken(&$access_token)
+  Function GetAccessToken(&$wpjobportal_access_token)
   {
     if(!function_exists('session_start'))
       return $this->SetError('Session variables are not accessible in this PHP environment');
     if(!$this->SessionStart())
       return false;
-    if(!$this->GetAccessTokenURL($access_token_url))
+    if(!$this->GetAccessTokenURL($wpjobportal_access_token_url))
       return false;
-    if(IsSet($_SESSION[$this->session_name_prefix.'ACCESS_TOKEN'][$access_token_url]))
-      $access_token = $_SESSION[$this->session_name_prefix.'ACCESS_TOKEN'][$access_token_url];
+    if(IsSet($_SESSION[$this->session_name_prefix.'ACCESS_TOKEN'][$wpjobportal_access_token_url]))
+      $wpjobportal_access_token = $_SESSION[$this->session_name_prefix.'ACCESS_TOKEN'][$wpjobportal_access_token_url];
     else
-      $access_token = array();
+      $wpjobportal_access_token = array();
     return true;
   }
 /*
@@ -1739,13 +1739,13 @@ class oauth_client_class
 */
   Function ResetAccessToken()
   {
-    if(!$this->GetAccessTokenURL($access_token_url))
+    if(!$this->GetAccessTokenURL($wpjobportal_access_token_url))
       return false;
     if($this->debug)
-      $this->OutputDebug('Resetting the access token status for OAuth server located at '.$access_token_url);
+      $this->OutputDebug('Resetting the access token status for OAuth server located at '.$wpjobportal_access_token_url);
     if(!$this->SessionStart())
       return false;
-    Unset($_SESSION[$this->session_name_prefix.'ACCESS_TOKEN'][$access_token_url]);
+    Unset($_SESSION[$this->session_name_prefix.'ACCESS_TOKEN'][$wpjobportal_access_token_url]);
     UnSet($_SESSION[$this->session_name_prefix.'STATE']);
     return true;
   }
@@ -1756,40 +1756,40 @@ class oauth_client_class
 {/metadocument}
 */
 
-  Function Encode($value)
+  Function Encode($wpjobportal_value)
   {
-    return(is_array($value) ? $this->EncodeArray($value) : str_replace('%7E', '~', str_replace('+',' ', RawURLEncode($value))));
+    return(is_array($wpjobportal_value) ? $this->EncodeArray($wpjobportal_value) : str_replace('%7E', '~', str_replace('+',' ', RawURLEncode($wpjobportal_value))));
   }
 
-  Function EncodeArray($array)
+  Function EncodeArray($wpjobportal_array)
   {
-    foreach($array as $key => $value)
-      $array[$key] = $this->Encode($value);
-    return $array;
+    foreach($wpjobportal_array as $wpjobportal_key => $wpjobportal_value)
+      $wpjobportal_array[$wpjobportal_key] = $this->Encode($wpjobportal_value);
+    return $wpjobportal_array;
   }
 
-  Function HMAC($function, $data, $key)
+  Function HMAC($function, $wpjobportal_data, $wpjobportal_key)
   {
     switch($function)
     {
       case 'sha1':
-        $pack = 'H40';
+        $wpjobportal_pack = 'H40';
         break;
       default:
         if($this->debug)
           $this->OutputDebug($function.' is not a supported an HMAC hash type');
         return('');
     }
-    if(strlen($key) > 64)
-      $key = pack($pack, $function($key));
-    if(strlen($key) < 64)
-      $key = str_pad($key, 64, "\0");
-    return(pack($pack, $function((str_repeat("\x5c", 64) ^ $key).pack($pack, $function((str_repeat("\x36", 64) ^ $key).$data)))));
+    if(strlen($wpjobportal_key) > 64)
+      $wpjobportal_key = pack($wpjobportal_pack, $function($wpjobportal_key));
+    if(strlen($wpjobportal_key) < 64)
+      $wpjobportal_key = str_pad($wpjobportal_key, 64, "\0");
+    return(pack($wpjobportal_pack, $function((str_repeat("\x5c", 64) ^ $wpjobportal_key).pack($wpjobportal_pack, $function((str_repeat("\x36", 64) ^ $wpjobportal_key).$wpjobportal_data)))));
   }
 
-  Function Sign(&$url, $method, $parameters, $oauth, $request_content_type, $has_files, $post_values_in_uri, &$authorization, &$post_values)
+  Function Sign(&$wpjobportal_url, $method, $parameters, $oauth, $wpjobportal_request_content_type, $has_files, $post_values_in_uri, &$authorization, &$post_values)
   {
-    $values = array(
+    $wpjobportal_values = array(
       'oauth_consumer_key'=>$this->client_id,
       'oauth_nonce'=>md5(uniqid(wp_rand(), true)),
       'oauth_signature_method'=>$this->signature_method,
@@ -1797,51 +1797,51 @@ class oauth_client_class
       'oauth_version'=>'1.0',
     );
     if($has_files)
-      $value_parameters = array();
+      $wpjobportal_value_parameters = array();
     else
     {
       if(($this->url_parameters
       || $method !== 'POST')
-      && $request_content_type === 'application/x-www-form-urlencoded'
+      && $wpjobportal_request_content_type === 'application/x-www-form-urlencoded'
       && count($parameters))
       {
-        $first = (strpos($url, '?') === false);
-        foreach($parameters as $parameter => $value)
+        $wpjobportal_first = (strpos($wpjobportal_url, '?') === false);
+        foreach($parameters as $parameter => $wpjobportal_value)
         {
-          $url .= ($first ? '?' : '&').UrlEncode($parameter).'='.UrlEncode($value);
-          $first = false;
+          $wpjobportal_url .= ($wpjobportal_first ? '?' : '&').UrlEncode($parameter).'='.UrlEncode($wpjobportal_value);
+          $wpjobportal_first = false;
         }
         $parameters = array();
       }
-      $value_parameters = (($request_content_type !== 'application/x-www-form-urlencoded') ? array() : $parameters);
+      $wpjobportal_value_parameters = (($wpjobportal_request_content_type !== 'application/x-www-form-urlencoded') ? array() : $parameters);
     }
-    $header_values = ($method === 'GET' ? array_merge($values, $oauth, $value_parameters) : array_merge($values, $oauth));
-    $values = array_merge($values, $oauth, $value_parameters);
-    $key = $this->Encode($this->client_secret).'&'.$this->Encode($this->access_token_secret);
+    $header_values = ($method === 'GET' ? array_merge($wpjobportal_values, $oauth, $wpjobportal_value_parameters) : array_merge($wpjobportal_values, $oauth));
+    $wpjobportal_values = array_merge($wpjobportal_values, $oauth, $wpjobportal_value_parameters);
+    $wpjobportal_key = $this->Encode($this->client_secret).'&'.$this->Encode($this->access_token_secret);
     switch($this->signature_method)
     {
       case 'PLAINTEXT':
-        $values['oauth_signature'] = $key;
+        $wpjobportal_values['oauth_signature'] = $wpjobportal_key;
         break;
       case 'HMAC-SHA1':
-        $uri = strtok($url, '?');
+        $uri = strtok($wpjobportal_url, '?');
         $sign = $method.'&'.$this->Encode($uri).'&';
-        $first = true;
-        $sign_values = $values;
-        $u = wp_parse_url($url);
+        $wpjobportal_first = true;
+        $sign_values = $wpjobportal_values;
+        $u = wp_parse_url($wpjobportal_url);
         if(IsSet($u['query']))
         {
           parse_str($u['query'], $q);
-          foreach($q as $parameter => $value)
-            $sign_values[$parameter] = $value;
+          foreach($q as $parameter => $wpjobportal_value)
+            $sign_values[$parameter] = $wpjobportal_value;
         }
         KSort($sign_values);
-        foreach($sign_values as $parameter => $value)
+        foreach($sign_values as $parameter => $wpjobportal_value)
         {
-          $sign .= $this->Encode(($first ? '' : '&').$parameter.'='.$this->Encode($value));
-          $first = false;
+          $sign .= $this->Encode(($wpjobportal_first ? '' : '&').$parameter.'='.$this->Encode($wpjobportal_value));
+          $wpjobportal_first = false;
         }
-        $header_values['oauth_signature'] = $values['oauth_signature'] = base64_encode($this->HMAC('sha1', $sign, $key));
+        $header_values['oauth_signature'] = $wpjobportal_values['oauth_signature'] = base64_encode($this->HMAC('sha1', $sign, $wpjobportal_key));
         break;
       default:
         return $this->SetError($this->signature_method.' signature method is not yet supported');
@@ -1849,11 +1849,11 @@ class oauth_client_class
     if($this->authorization_header)
     {
       $authorization = 'OAuth';
-      $first = true;
-      foreach($header_values as $parameter => $value)
+      $wpjobportal_first = true;
+      foreach($header_values as $parameter => $wpjobportal_value)
       {
-        $authorization .= ($first ? ' ' : ',').$parameter.'="'.$this->Encode($value).'"';
-        $first = false;
+        $authorization .= ($wpjobportal_first ? ' ' : ',').$parameter.'="'.$this->Encode($wpjobportal_value).'"';
+        $wpjobportal_first = false;
       }
       $post_values = $parameters;
     }
@@ -1862,21 +1862,21 @@ class oauth_client_class
       if($method !== 'POST'
       || $post_values_in_uri)
       {
-        $first = (strcspn($url, '?') == strlen($url));
-        foreach($values as $parameter => $value)
+        $wpjobportal_first = (strcspn($wpjobportal_url, '?') == strlen($wpjobportal_url));
+        foreach($wpjobportal_values as $parameter => $wpjobportal_value)
         {
-          $url .= ($first ? '?' : '&').$parameter.'='.$this->Encode($value);
-          $first = false;
+          $wpjobportal_url .= ($wpjobportal_first ? '?' : '&').$parameter.'='.$this->Encode($wpjobportal_value);
+          $wpjobportal_first = false;
         }
         $post_values = array();
       }
       else
-        $post_values = $values;
+        $post_values = $wpjobportal_values;
     }
     return true;
   }
 
-  Function SendAPIRequest($url, $method, $parameters, $oauth, $options, &$response)
+  Function SendAPIRequest($wpjobportal_url, $method, $parameters, $oauth, $wpjobportal_options, &$response)
   {
     $this->response_status = 0;
     $http = new http_class;
@@ -1885,58 +1885,58 @@ class oauth_client_class
     $http->log_file_name = $this->log_file_name;
     $http->sasl_authenticate = 0;
     $http->user_agent = $this->oauth_user_agent;
-    $http->redirection_limit = (IsSet($options['FollowRedirection']) ? intval($options['FollowRedirection']) : 0);
+    $http->redirection_limit = (IsSet($wpjobportal_options['FollowRedirection']) ? intval($wpjobportal_options['FollowRedirection']) : 0);
     $http->follow_redirect = ($http->redirection_limit != 0);
     if($this->debug)
-      $this->OutputDebug('Accessing the '.$options['Resource'].' at '.$url);
+      $this->OutputDebug('Accessing the '.$wpjobportal_options['Resource'].' at '.$wpjobportal_url);
     $post_files = array();
     $method = strtoupper($method);
     $authorization = '';
-    $request_content_type = (IsSet($options['RequestContentType']) ? strtolower(trim(strtok($options['RequestContentType'], ';'))) : (($method === 'POST' || IsSet($oauth)) ? 'application/x-www-form-urlencoded' : ''));
-    $files = (IsSet($options['Files']) ? $options['Files'] : array());
+    $wpjobportal_request_content_type = (IsSet($wpjobportal_options['RequestContentType']) ? strtolower(trim(strtok($wpjobportal_options['RequestContentType'], ';'))) : (($method === 'POST' || IsSet($oauth)) ? 'application/x-www-form-urlencoded' : ''));
+    $files = (IsSet($wpjobportal_options['Files']) ? $wpjobportal_options['Files'] : array());
     if(count($files))
     {
-      foreach($files as $name => $value)
+      foreach($files as $wpjobportal_name => $wpjobportal_value)
       {
-        if(!IsSet($parameters[$name]))
-          return($this->SetError('it was not specified a file parameter named '.$name));
+        if(!IsSet($parameters[$wpjobportal_name]))
+          return($this->SetError('it was not specified a file parameter named '.$wpjobportal_name));
         $file = array();
-        $value_type = IsSet($value['Type']) ? $value['Type'] : 'FileName';
-        switch($value_type)
+        $wpjobportal_value_type = IsSet($wpjobportal_value['Type']) ? $wpjobportal_value['Type'] : 'FileName';
+        switch($wpjobportal_value_type)
         {
           case 'FileName':
-            $file['FileName'] = $parameters[$name];
-            if(IsSet($value['FileName']))
-              $file['Name'] = $value['FileName'];
+            $file['FileName'] = $parameters[$wpjobportal_name];
+            if(IsSet($wpjobportal_value['FileName']))
+              $file['Name'] = $wpjobportal_value['FileName'];
             break;
           case 'Data':
-            $file['Data'] = $parameters[$name];
-            if(!IsSet($value['FileName']))
-              return($this->SetError('it was not specified the file name for data file parameter '.$name));
-            $file['Name'] = $value['FileName'];
+            $file['Data'] = $parameters[$wpjobportal_name];
+            if(!IsSet($wpjobportal_value['FileName']))
+              return($this->SetError('it was not specified the file name for data file parameter '.$wpjobportal_name));
+            $file['Name'] = $wpjobportal_value['FileName'];
             break;
           default:
-            return($this->SetError($value_type.' is not a valid type for file '.$name));
+            return($this->SetError($wpjobportal_value_type.' is not a valid type for file '.$wpjobportal_name));
         }
-        $file['Content-Type'] = (IsSet($value['ContentType']) ? $value['ContentType'] : 'automatic/name');
-        $post_files[$name] = $file;
-        UnSet($parameters[$name]);
+        $file['Content-Type'] = (IsSet($wpjobportal_value['ContentType']) ? $wpjobportal_value['ContentType'] : 'automatic/name');
+        $post_files[$wpjobportal_name] = $file;
+        UnSet($parameters[$wpjobportal_name]);
       }
       if($method !== 'POST')
       {
         $this->OutputDebug('For uploading files the method should be POST not '.$method);
         $method = 'POST';
       }
-      if($request_content_type !== 'multipart/form-data')
+      if($wpjobportal_request_content_type !== 'multipart/form-data')
       {
-        if(IsSet($options['RequestContentType']))
+        if(IsSet($wpjobportal_options['RequestContentType']))
           return($this->SetError('the request content type for uploading files should be multipart/form-data'));
-        $request_content_type = 'multipart/form-data';
+        $wpjobportal_request_content_type = 'multipart/form-data';
       }
     }
     if(IsSet($oauth))
     {
-      if(!$this->Sign($url, $method, $parameters, $oauth, $request_content_type, count($files) !== 0, IsSet($options['PostValuesInURI']) && $options['PostValuesInURI'], $authorization, $post_values))
+      if(!$this->Sign($wpjobportal_url, $method, $parameters, $oauth, $wpjobportal_request_content_type, count($files) !== 0, IsSet($wpjobportal_options['PostValuesInURI']) && $wpjobportal_options['PostValuesInURI'], $authorization, $post_values))
         return false;
     }
     else
@@ -1944,15 +1944,15 @@ class oauth_client_class
       if(GetType($parameters) !== 'array')
       {
         if(GetType($parameters) !== 'object')
-          return $this->SetError('the parameters value for the '.$options['Resource'].' to '.$url.' is not an array');
+          return $this->SetError('the parameters value for the '.$wpjobportal_options['Resource'].' to '.$wpjobportal_url.' is not an array');
         if($this->debug)
-          $this->OutputDebug('the parameters value for the '.$options['Resource'].' to '.$url.' is not an array');
+          $this->OutputDebug('the parameters value for the '.$wpjobportal_options['Resource'].' to '.$wpjobportal_url.' is not an array');
         $parameters = (array)$parameters;
       }
       $post_values = $parameters;
       if(count($parameters))
       {
-        switch($request_content_type)
+        switch($wpjobportal_request_content_type)
         {
           case 'application/x-www-form-urlencoded':
           case 'multipart/form-data':
@@ -1960,21 +1960,21 @@ class oauth_client_class
           case 'application/javascript':
             break;
           default:
-            $first = (strpos($url, '?') === false);
-            foreach($parameters as $name => $value)
+            $wpjobportal_first = (strpos($wpjobportal_url, '?') === false);
+            foreach($parameters as $wpjobportal_name => $wpjobportal_value)
             {
-              if(GetType($value) === 'array')
+              if(GetType($wpjobportal_value) === 'array')
               {
-                foreach($value as $index => $value)
+                foreach($wpjobportal_value as $wpjobportal_index => $wpjobportal_value)
                 {
-                  $url .= ($first ? '?' : '&').$name.'='.UrlEncode($value);
-                  $first = false;
+                  $wpjobportal_url .= ($wpjobportal_first ? '?' : '&').$wpjobportal_name.'='.UrlEncode($wpjobportal_value);
+                  $wpjobportal_first = false;
                 }
               }
               else
               {
-                $url .= ($first ? '?' : '&').$name.'='.UrlEncode($value);
-                $first = false;
+                $wpjobportal_url .= ($wpjobportal_first ? '?' : '&').$wpjobportal_name.'='.UrlEncode($wpjobportal_value);
+                $wpjobportal_first = false;
               }
             }
         }
@@ -1983,99 +1983,99 @@ class oauth_client_class
     if(strlen($authorization) === 0
     && !strcasecmp($this->access_token_type, 'Bearer'))
       $authorization = 'Bearer '.$this->access_token;
-    $real_url = $url;
-    foreach($this->map_urls as $from => $to)
+    $real_url = $wpjobportal_url;
+    foreach($this->map_urls as $from => $wpjobportal_to)
     {
       $f = strlen($from);
       if(substr($real_url, 0, $f) === $from)
       {
-        $mapped_url = $to.substr($real_url, $f);
+        $wpjobportal_mapped_url = $wpjobportal_to.substr($real_url, $f);
         if($this->debug)
         {
-          $this->OutputDebug('The HTTP request URL '.$real_url.' was mapped to '.$mapped_url);
+          $this->OutputDebug('The HTTP request URL '.$real_url.' was mapped to '.$wpjobportal_mapped_url);
         }
-        $real_url = $mapped_url;
+        $real_url = $wpjobportal_mapped_url;
       }
     }
-    if(strlen($error = $http->GetRequestArguments($real_url, $arguments)))
-      return($this->SetError('it was not possible to open the '.$options['Resource'].' URL: '.$error));
-    $arguments = array_merge($this->http_arguments, $arguments);
-    if(strlen($error = $http->Open($arguments)))
-      return($this->SetError('it was not possible to open the '.$options['Resource'].' URL: '.$error));
+    if(strlen($error = $http->GetRequestArguments($real_url, $wpjobportal_arguments)))
+      return($this->SetError('it was not possible to open the '.$wpjobportal_options['Resource'].' URL: '.$error));
+    $wpjobportal_arguments = array_merge($this->http_arguments, $wpjobportal_arguments);
+    if(strlen($error = $http->Open($wpjobportal_arguments)))
+      return($this->SetError('it was not possible to open the '.$wpjobportal_options['Resource'].' URL: '.$error));
     if(count($post_files))
-      $arguments['PostFiles'] = $post_files;
-    $arguments['RequestMethod'] = $method;
-    switch($request_content_type)
+      $wpjobportal_arguments['PostFiles'] = $post_files;
+    $wpjobportal_arguments['RequestMethod'] = $method;
+    switch($wpjobportal_request_content_type)
     {
       case 'application/x-www-form-urlencoded':
       case 'multipart/form-data':
-        if(IsSet($options['RequestBody']))
+        if(IsSet($wpjobportal_options['RequestBody']))
           return($this->SetError('the request body is defined automatically from the parameters'));
-        $arguments['PostValues'] = $post_values;
+        $wpjobportal_arguments['PostValues'] = $post_values;
         break;
       case 'application/json':
       case 'application/javascript':
-        $arguments['Headers']['Content-Type'] = $options['RequestContentType'];
-        $arguments['Body'] = (IsSet($options['RequestBody']) ? $options['RequestBody'] : wp_json_encode($parameters));
+        $wpjobportal_arguments['Headers']['Content-Type'] = $wpjobportal_options['RequestContentType'];
+        $wpjobportal_arguments['Body'] = (IsSet($wpjobportal_options['RequestBody']) ? $wpjobportal_options['RequestBody'] : wp_json_encode($parameters));
         break;
       default:
-        if(!IsSet($options['RequestBody']))
+        if(!IsSet($wpjobportal_options['RequestBody']))
         {
-          if(IsSet($options['RequestContentType']))
+          if(IsSet($wpjobportal_options['RequestContentType']))
             return($this->SetError('it was not specified the body value of the of the API call request'));
           break;
         }
-        $arguments['Headers']['Content-Type'] = $options['RequestContentType'];
-        $arguments['Body'] = $options['RequestBody'];
+        $wpjobportal_arguments['Headers']['Content-Type'] = $wpjobportal_options['RequestContentType'];
+        $wpjobportal_arguments['Body'] = $wpjobportal_options['RequestBody'];
         break;
     }
-    $arguments['Headers']['Accept'] = (IsSet($options['Accept']) ? $options['Accept'] : '*/*');
-    switch($authentication = (IsSet($options['AccessTokenAuthentication']) ? strtolower($options['AccessTokenAuthentication']) : ''))
+    $wpjobportal_arguments['Headers']['Accept'] = (IsSet($wpjobportal_options['Accept']) ? $wpjobportal_options['Accept'] : '*/*');
+    switch($authentication = (IsSet($wpjobportal_options['AccessTokenAuthentication']) ? strtolower($wpjobportal_options['AccessTokenAuthentication']) : ''))
     {
       case 'basic':
-        $arguments['Headers']['Authorization'] = 'Basic '.base64_encode($this->client_id.':'.($this->get_token_with_api_key ? $this->api_key : $this->client_secret));
+        $wpjobportal_arguments['Headers']['Authorization'] = 'Basic '.base64_encode($this->client_id.':'.($this->get_token_with_api_key ? $this->api_key : $this->client_secret));
         break;
       case '':
         if(strlen($authorization))
-          $arguments['Headers']['Authorization'] = $authorization;
+          $wpjobportal_arguments['Headers']['Authorization'] = $authorization;
         break;
       case 'none':
         break;
       default:
         return($this->SetError($authentication.' is not a supported authentication mechanism to retrieve an access token'));
     }
-    if(IsSet($options['RequestHeaders']))
-      $arguments['Headers'] = array_merge($arguments['Headers'], $options['RequestHeaders']);
-    if(strlen($error = $http->SendRequest($arguments))
+    if(IsSet($wpjobportal_options['RequestHeaders']))
+      $wpjobportal_arguments['Headers'] = array_merge($wpjobportal_arguments['Headers'], $wpjobportal_options['RequestHeaders']);
+    if(strlen($error = $http->SendRequest($wpjobportal_arguments))
     || strlen($error = $http->ReadReplyHeaders($headers)))
     {
       $http->Close();
-      return($this->SetError('it was not possible to retrieve the '.$options['Resource'].': '.$error));
+      return($this->SetError('it was not possible to retrieve the '.$wpjobportal_options['Resource'].': '.$error));
     }
-    $error = $http->ReadWholeReplyBody($data);
+    $error = $http->ReadWholeReplyBody($wpjobportal_data);
     $http->Close();
     if(strlen($error))
     {
-      return($this->SetError('it was not possible to access the '.$options['Resource'].': '.$error));
+      return($this->SetError('it was not possible to access the '.$wpjobportal_options['Resource'].': '.$error));
     }
     $this->response_status = intval($http->response_status);
     $this->response_headers = $headers;
-    $content_type = (IsSet($options['ResponseContentType']) ? $options['ResponseContentType'] : (IsSet($headers['content-type']) ? strtolower(trim(strtok($headers['content-type'], ';'))) : 'unspecified'));
-    $content_type = preg_replace('/^(.+\\/).+\\+(.+)$/', '\\1\\2', $content_type);
+    $wpjobportal_content_type = (IsSet($wpjobportal_options['ResponseContentType']) ? $wpjobportal_options['ResponseContentType'] : (IsSet($headers['content-type']) ? strtolower(trim(strtok($headers['content-type'], ';'))) : 'unspecified'));
+    $wpjobportal_content_type = preg_replace('/^(.+\\/).+\\+(.+)$/', '\\1\\2', $wpjobportal_content_type);
     $this->response_time = (IsSet($headers['date']) ? strtotime(GetType($headers['date']) === 'array' ? $headers['date'][0] : $headers['date']) : time());
-    switch($content_type)
+    switch($wpjobportal_content_type)
     {
       case 'text/javascript':
       case 'application/json':
       case 'application/javascript':
         if(!function_exists('json_decode'))
           return($this->SetError('the JSON extension is not available in this PHP setup'));
-        $object = json_decode($data);
+        $object = json_decode($wpjobportal_data);
         switch(GetType($object))
         {
           case 'object':
-            if(!IsSet($options['ConvertObjects'])
-            || !$options['ConvertObjects'])
+            if(!IsSet($wpjobportal_options['ConvertObjects'])
+            || !$wpjobportal_options['ConvertObjects'])
               $response = $object;
             else
               $response = $this->ConvertObjectToArray($object);
@@ -2085,7 +2085,7 @@ class oauth_client_class
             break;
           default:
             if(!IsSet($object))
-              return($this->SetError('it was not returned a valid JSON definition of the '.$options['Resource'].' values'));
+              return($this->SetError('it was not returned a valid JSON definition of the '.$wpjobportal_options['Resource'].' values'));
             $response = $object;
             break;
         }
@@ -2096,7 +2096,7 @@ class oauth_client_class
           return true;
         if(!function_exists('json_decode'))
           return($this->SetError('the JSON extension is not available in this PHP setup'));
-        $object = json_decode($data);
+        $object = json_decode($wpjobportal_data);
         if(GetType($object) !== 'object')
           return($this->SetError('the access token response is not in the JSON format'));
         $response = array('response' => $object);
@@ -2107,31 +2107,31 @@ class oauth_client_class
       case 'application/x-www-form-urlencoded':
       case 'text/plain':
       case 'text/html':
-        parse_str($data, $response);
+        parse_str($wpjobportal_data, $response);
         break;
       case 'text/xml':
-        if(IsSet($options['DecodeXMLResponse']))
+        if(IsSet($wpjobportal_options['DecodeXMLResponse']))
         {
-          switch(strtolower($options['DecodeXMLResponse']))
+          switch(strtolower($wpjobportal_options['DecodeXMLResponse']))
           {
             case 'simplexml':
               if($this->debug)
                 $this->OutputDebug('Decoding XML response with simplexml');
               try
               {
-                $response = @new SimpleXMLElement($data);
+                $response = @new SimpleXMLElement($wpjobportal_data);
               }
-              catch(Exception $exception)
+              catch(Exception $wpjobportal_exception)
               {
-                return $this->SetError('Could not parse XML response: '.$exception->getMessage());
+                return $this->SetError('Could not parse XML response: '.$wpjobportal_exception->getMessage());
               }
               break 2;
             default:
-              return $this->SetError($options['DecodeXML'].' is not a supported method to decode XML responses');
+              return $this->SetError($wpjobportal_options['DecodeXML'].' is not a supported method to decode XML responses');
           }
         }
       default:
-        $response = $data;
+        $response = $wpjobportal_data;
         break;
     }
     if($this->response_status >= 200
@@ -2139,11 +2139,11 @@ class oauth_client_class
       $this->access_token_error = '';
     else
     {
-      $this->access_token_error = 'it was not possible to access the '.$options['Resource'].': it was returned an unexpected response status '.$http->response_status.' Response: '.$data;
+      $this->access_token_error = 'it was not possible to access the '.$wpjobportal_options['Resource'].': it was returned an unexpected response status '.$http->response_status.' Response: '.$wpjobportal_data;
       if($this->debug)
         $this->OutputDebug('Could not retrieve the OAuth access token. Error: '.$this->access_token_error);
-      if(IsSet($options['FailOnAccessError'])
-      && $options['FailOnAccessError'])
+      if(IsSet($wpjobportal_options['FailOnAccessError'])
+      && $wpjobportal_options['FailOnAccessError'])
       {
         $this->error = $this->access_token_error;
         return false;
@@ -2152,24 +2152,24 @@ class oauth_client_class
     return true;
   }
 
-  Function ProcessToken1($oauth, &$access_token)
+  Function ProcessToken1($oauth, &$wpjobportal_access_token)
   {
-    if(!$this->GetAccessTokenURL($url))
+    if(!$this->GetAccessTokenURL($wpjobportal_url))
       return false;
-    $options = array('Resource'=>'OAuth access token');
+    $wpjobportal_options = array('Resource'=>'OAuth access token');
     $method = strtoupper($this->token_request_method);
     switch($method)
     {
       case 'GET':
         break;
       case 'POST':
-        $options['PostValuesInURI'] = true;
+        $wpjobportal_options['PostValuesInURI'] = true;
         break;
       default:
         $this->error = $method.' is not a supported method to request tokens';
         return false;
     }
-    if(!$this->SendAPIRequest($url, $method, array(), $oauth, $options, $response))
+    if(!$this->SendAPIRequest($wpjobportal_url, $method, array(), $oauth, $wpjobportal_options, $response))
       return false;
     if(strlen($this->access_token_error))
     {
@@ -2182,7 +2182,7 @@ class oauth_client_class
       $this->authorization_error= 'it was not returned the access token and secret';
       return true;
     }
-    $access_token = array(
+    $wpjobportal_access_token = array(
       'value'=>$response['oauth_token'],
       'secret'=>$response['oauth_token_secret'],
       'authorized'=>true
@@ -2196,24 +2196,24 @@ class oauth_client_class
     }
     elseif(IsSet($response['oauth_expires_in']))
     {
-      $expires = $response['oauth_expires_in'];
-      if(strval($expires) !== strval(intval($expires))
-      || $expires <= 0)
+      $wpjobportal_expires = $response['oauth_expires_in'];
+      if(strval($wpjobportal_expires) !== strval(intval($wpjobportal_expires))
+      || $wpjobportal_expires <= 0)
         return($this->SetError('OAuth server did not return a supported type of access token expiry time'));
-      $this->access_token_expiry = $this->ISOTime($this->response_time + $expires);
+      $this->access_token_expiry = $this->ISOTime($this->response_time + $wpjobportal_expires);
       if($this->debug)
         $this->OutputDebug('Access token expiry: '.$this->access_token_expiry.' UTC');
-      $access_token['expiry'] = $this->access_token_expiry;
+      $wpjobportal_access_token['expiry'] = $this->access_token_expiry;
     }
     else
       $this->access_token_expiry = '';
     if(IsSet($response['oauth_session_handle']))
     {
-      $access_token['refresh'] = $response['oauth_session_handle'];
+      $wpjobportal_access_token['refresh'] = $response['oauth_session_handle'];
       if($this->debug)
-        $this->OutputDebug('Refresh token: '.$access_token['refresh']);
+        $this->OutputDebug('Refresh token: '.$wpjobportal_access_token['refresh']);
     }
-    return $this->StoreAccessToken($access_token);
+    return $this->StoreAccessToken($wpjobportal_access_token);
   }
 
   Function ProcessToken2($code, $refresh)
@@ -2223,7 +2223,7 @@ class oauth_client_class
     $authentication = $this->access_token_authentication;
     if(strlen($this->oauth_username))
     {
-      $values = array(
+      $wpjobportal_values = array(
         'grant_type'=>'password',
         'username'=>$this->oauth_username,
         'password'=>$this->oauth_password,
@@ -2234,7 +2234,7 @@ class oauth_client_class
     elseif($this->redirect_uri === 'oob'
     && strlen($this->pin))
     {
-      $values = array(
+      $wpjobportal_values = array(
         'grant_type'=>'pin',
         'pin'=>$this->pin,
         'scope'=>$this->scope,
@@ -2242,7 +2242,7 @@ class oauth_client_class
     }
     elseif($refresh)
     {
-      $values = array(
+      $wpjobportal_values = array(
         'refresh_token'=>$this->refresh_token,
         'grant_type'=>'refresh_token',
         'scope'=>$this->scope,
@@ -2257,25 +2257,25 @@ class oauth_client_class
         case 'password':
           return $this->SetError('it was not specified the username for obtaining a password based OAuth 2 authorization');
         case 'authorization_code':
-          $values = array(
+          $wpjobportal_values = array(
             'code'=>$code,
             'redirect_uri'=>$redirect_uri,
             'grant_type'=>'authorization_code'
           );
           break;
         case 'client_credentials':
-          $values = array(
+          $wpjobportal_values = array(
             'grant_type'=>'client_credentials'
           );
           if($this->scope !== '')
-            $values['scope'] = $this->scope;
+            $wpjobportal_values['scope'] = $this->scope;
           $authentication = 'Basic';
           break;
         default:
           return $this->SetError($this->grant_type.' is not yet a supported OAuth 2 grant type');
       }
     }
-    $options = array(
+    $wpjobportal_options = array(
       'Resource'=>'OAuth '.($refresh ? 'refresh' : 'access').' token',
       'ConvertObjects'=>true
     );
@@ -2283,22 +2283,22 @@ class oauth_client_class
     {
       case 'basic':
       case 'none':
-        $options['AccessTokenAuthentication'] = $authentication;
+        $wpjobportal_options['AccessTokenAuthentication'] = $authentication;
         break;
       case '':
-        $values['client_id'] = $this->client_id;
-        $values['client_secret'] = ($this->get_token_with_api_key ? $this->api_key : $this->client_secret);
+        $wpjobportal_values['client_id'] = $this->client_id;
+        $wpjobportal_values['client_secret'] = ($this->get_token_with_api_key ? $this->api_key : $this->client_secret);
         break;
       default:
         return($this->SetError($authentication.' is not a supported authentication mechanism to retrieve an access token'));
     }
-    if(!$this->GetAccessTokenURL($access_token_url))
+    if(!$this->GetAccessTokenURL($wpjobportal_access_token_url))
       return false;
     if(strlen($this->access_token_content_type))
-      $options['ResponseContentType'] = $this->access_token_content_type;
+      $wpjobportal_options['ResponseContentType'] = $this->access_token_content_type;
     if(strlen($this->access_token_accept_content_type))
-      $options['Accept'] = $this->access_token_accept_content_type;
-    if(!$this->SendAPIRequest($access_token_url, 'POST', $values, null, $options, $response))
+      $wpjobportal_options['Accept'] = $this->access_token_accept_content_type;
+    if(!$this->SendAPIRequest($wpjobportal_access_token_url, 'POST', $wpjobportal_values, null, $wpjobportal_options, $response))
       return false;
     if(strlen($this->access_token_error))
     {
@@ -2306,9 +2306,9 @@ class oauth_client_class
       return true;
     }
     $this->access_token = '';
-    if(IsSet($response[$name = 'access_token'])
-    || IsSet($response[$name = 'AccessToken']))
-      $this->access_token = $response[$name];
+    if(IsSet($response[$wpjobportal_name = 'access_token'])
+    || IsSet($response[$wpjobportal_name = 'AccessToken']))
+      $this->access_token = $response[$wpjobportal_name];
     if(IsSet($response['id_token']))
     {
       $jwt = base64_decode($response['id_token']);
@@ -2316,7 +2316,7 @@ class oauth_client_class
       || !preg_match('/^((?U){[^}]+})((?U){[^}]+})?(.+)$/m', $jwt, $m)
       || !($header = json_decode($m[1]))
       || (strlen($m[2])
-      && !($payload = json_decode($m[2]))))
+      && !($wpjobportal_payload = json_decode($m[2]))))
       {
         if($this->debug)
           $this->OutputDebug('it was returned an invalid JSON Web Token for the id_token');
@@ -2325,7 +2325,7 @@ class oauth_client_class
       {
         if(strlen($m[2]))
         {
-          $this->id_token = $payload;
+          $this->id_token = $wpjobportal_payload;
         }
       }
     }
@@ -2343,14 +2343,14 @@ class oauth_client_class
       if($this->debug)
         $this->OutputDebug('The OAuth server did not return an OAuth token but returned an id_token');
     }
-    $access_token = array(
+    $wpjobportal_access_token = array(
       'value'=>$this->access_token,
       'authorized'=>true,
     );
     if(IsSet($this->id_token))
-      $access_token['id_token'] = $this->id_token;
+      $wpjobportal_access_token['id_token'] = $this->id_token;
     if($this->store_access_token_response)
-      $access_token['response'] = $this->access_token_response = $response;
+      $wpjobportal_access_token['response'] = $this->access_token_response = $response;
     if($this->debug)
       $this->OutputDebug('Access token: '.(strlen($this->access_token) ? $this->access_token : 'Not retrieved'));
     if(IsSet($response['expires_in'])
@@ -2360,18 +2360,18 @@ class oauth_client_class
         $this->OutputDebug('Ignoring access token expiry set to 0');
       $this->access_token_expiry = '';
     }
-    elseif((IsSet($response[$name = 'expires'])
-    || IsSet($response[$name = 'Expires']))
+    elseif((IsSet($response[$wpjobportal_name = 'expires'])
+    || IsSet($response[$wpjobportal_name = 'Expires']))
     || IsSet($response['expires_in']))
     {
-      $expires = (IsSet($response['expires_in']) ? $response['expires_in'] : $response[$name] - ($response[$name] > $this->response_time ? $this->response_time : 0));
-      if(strval($expires) !== strval(intval($expires))
-      || $expires <= 0)
+      $wpjobportal_expires = (IsSet($response['expires_in']) ? $response['expires_in'] : $response[$wpjobportal_name] - ($response[$wpjobportal_name] > $this->response_time ? $this->response_time : 0));
+      if(strval($wpjobportal_expires) !== strval(intval($wpjobportal_expires))
+      || $wpjobportal_expires <= 0)
         return($this->SetError('OAuth server did not return a supported type of access token expiry time'));
-      $this->access_token_expiry = $this->ISOTime($this->response_time + $expires);
+      $this->access_token_expiry = $this->ISOTime($this->response_time + $wpjobportal_expires);
       if($this->debug)
         $this->OutputDebug('Access token expiry: '.$this->access_token_expiry.' UTC');
-      $access_token['expiry'] = $this->access_token_expiry;
+      $wpjobportal_access_token['expiry'] = $this->access_token_expiry;
     }
     else
       $this->access_token_expiry = '';
@@ -2381,7 +2381,7 @@ class oauth_client_class
       if(strlen($this->access_token_type)
       && $this->debug)
         $this->OutputDebug('Access token type: '.$this->access_token_type);
-      $access_token['type'] = $this->access_token_type;
+      $wpjobportal_access_token['type'] = $this->access_token_type;
     }
     else
     {
@@ -2390,39 +2390,39 @@ class oauth_client_class
       && $this->debug)
         $this->OutputDebug('Assumed the default for OAuth access token type which is '.$this->access_token_type);
     }
-    if(IsSet($response[$name = 'refresh_token'])
-    || IsSet($response[$name = 'RefreshToken']))
+    if(IsSet($response[$wpjobportal_name = 'refresh_token'])
+    || IsSet($response[$wpjobportal_name = 'RefreshToken']))
     {
-      $this->refresh_token = $response[$name];
+      $this->refresh_token = $response[$wpjobportal_name];
       if($this->debug)
         $this->OutputDebug('Refresh token: '.$this->refresh_token);
-      $access_token['refresh'] = $this->refresh_token;
+      $wpjobportal_access_token['refresh'] = $this->refresh_token;
     }
     elseif(strlen($this->refresh_token))
     {
       if($this->debug)
         $this->OutputDebug('Reusing previous refresh token: '.$this->refresh_token);
-      $access_token['refresh'] = $this->refresh_token;
+      $wpjobportal_access_token['refresh'] = $this->refresh_token;
     }
-    return $this->StoreAccessToken($access_token);
+    return $this->StoreAccessToken($wpjobportal_access_token);
   }
 
-  Function RetrieveToken(&$valid)
+  Function RetrieveToken(&$wpjobportal_valid)
   {
-    $valid = false;
-    if(!$this->GetAccessToken($access_token))
+    $wpjobportal_valid = false;
+    if(!$this->GetAccessToken($wpjobportal_access_token))
       return false;
-    if(IsSet($access_token['value']))
+    if(IsSet($wpjobportal_access_token['value']))
     {
-      $this->access_token = $access_token['value'];
+      $this->access_token = $wpjobportal_access_token['value'];
       $this->access_token_expiry = '';
-      $expired = (IsSet($access_token['expiry']) && strcmp($this->access_token_expiry = $access_token['expiry'], $this->ISOTime()) < 0);
+      $wpjobportal_expired = (IsSet($wpjobportal_access_token['expiry']) && strcmp($this->access_token_expiry = $wpjobportal_access_token['expiry'], $this->ISOTime()) < 0);
       if($this->debug)
       {
-        if($expired)
+        if($wpjobportal_expired)
         {
           $this->OutputDebug('The OAuth access token expired on '.$this->access_token_expiry.' UTC');
-          $valid = false;
+          $wpjobportal_valid = false;
           return true;
         }
         elseif(strlen($this->access_token))
@@ -2436,11 +2436,11 @@ class oauth_client_class
           $this->OutputDebug('The OAuth access token value was not retrieved before.');
         }
       }
-      if(IsSet($access_token['type']))
+      if(IsSet($wpjobportal_access_token['type']))
       {
-        $this->access_token_type = $access_token['type'];
+        $this->access_token_type = $wpjobportal_access_token['type'];
         if(strlen($this->access_token_type)
-        && !$expired
+        && !$wpjobportal_expired
         && $this->debug)
           $this->OutputDebug('The OAuth access token is of type '.$this->access_token_type);
       }
@@ -2448,28 +2448,28 @@ class oauth_client_class
       {
         $this->access_token_type = $this->default_access_token_type;
         if(strlen($this->access_token_type)
-        && !$expired
+        && !$wpjobportal_expired
         && $this->debug)
           $this->OutputDebug('Assumed the default for OAuth access token type which is '.$this->access_token_type);
       }
-      if(IsSet($access_token['secret']))
+      if(IsSet($wpjobportal_access_token['secret']))
       {
-        $this->access_token_secret = $access_token['secret'];
+        $this->access_token_secret = $wpjobportal_access_token['secret'];
         if($this->debug
-        && !$expired
+        && !$wpjobportal_expired
         && strlen($this->access_token_secret))
           $this->OutputDebug('The OAuth access token secret is '.$this->access_token_secret);
       }
-      if(IsSet($access_token['refresh']))
-        $this->refresh_token = $access_token['refresh'];
+      if(IsSet($wpjobportal_access_token['refresh']))
+        $this->refresh_token = $wpjobportal_access_token['refresh'];
       else
         $this->refresh_token = '';
-      if(IsSet($access_token['id_token']))
-        $this->id_token = $access_token['id_token'];
+      if(IsSet($wpjobportal_access_token['id_token']))
+        $this->id_token = $wpjobportal_access_token['id_token'];
       else
         $this->id_token = null;
-      $this->access_token_response = (($this->store_access_token_response && IsSet($access_token['response'])) ? $access_token['response'] : null);
-      $valid = true;
+      $this->access_token_response = (($this->store_access_token_response && IsSet($wpjobportal_access_token['response'])) ? $wpjobportal_access_token['response'] : null);
+      $wpjobportal_valid = true;
     }
     return true;
   }
@@ -2629,23 +2629,23 @@ class oauth_client_class
     <do>
 {/metadocument}
 */
-  Function CallAPI($url, $method, $parameters, $options, &$response)
+  Function CallAPI($wpjobportal_url, $method, $parameters, $wpjobportal_options, &$response)
   {
-    if(!IsSet($options['Resource']))
-      $options['Resource'] = 'API call';
-    if(!IsSet($options['ConvertObjects']))
-      $options['ConvertObjects'] = false;
-    $version = intval($this->oauth_version);
-    $two_legged = ($version === 1 && IsSet($options['2Legged']) && $options['2Legged']);
+    if(!IsSet($wpjobportal_options['Resource']))
+      $wpjobportal_options['Resource'] = 'API call';
+    if(!IsSet($wpjobportal_options['ConvertObjects']))
+      $wpjobportal_options['ConvertObjects'] = false;
+    $wpjobportal_version = intval($this->oauth_version);
+    $two_legged = ($wpjobportal_version === 1 && IsSet($wpjobportal_options['2Legged']) && $wpjobportal_options['2Legged']);
     if(strlen($this->access_token) === 0
     && !$two_legged)
     {
-      if(!$this->RetrieveToken($valid))
+      if(!$this->RetrieveToken($wpjobportal_valid))
         return false;
-      if(!$valid)
+      if(!$wpjobportal_valid)
         return $this->SetError('the access token for server '.$this->server.' is not set to a valid value');
     }
-    switch($version)
+    switch($wpjobportal_version)
     {
       case 1:
         if(!$two_legged
@@ -2660,22 +2660,22 @@ class oauth_client_class
             'oauth_token'=>$this->access_token,
             'oauth_session_handle'=>$this->refresh_token
           );
-          if(!$this->ProcessToken1($oauth, $access_token))
+          if(!$this->ProcessToken1($oauth, $wpjobportal_access_token))
             return false;
-          if(IsSet($options['FailOnAccessError'])
-          && $options['FailOnAccessError']
+          if(IsSet($wpjobportal_options['FailOnAccessError'])
+          && $wpjobportal_options['FailOnAccessError']
           && strlen($this->authorization_error))
           {
             $this->error = $this->authorization_error;
             return false;
           }
-          if(!IsSet($access_token['authorized'])
-          || !$access_token['authorized'])
+          if(!IsSet($wpjobportal_access_token['authorized'])
+          || !$wpjobportal_access_token['authorized'])
             return($this->SetError('failed to obtain a renewed the expired access token'));
-          $this->access_token = $access_token['value'];
-          $this->access_token_secret = $access_token['secret'];
-          if(IsSet($access_token['refresh']))
-            $this->refresh_token = $access_token['refresh'];
+          $this->access_token = $wpjobportal_access_token['value'];
+          $this->access_token_secret = $wpjobportal_access_token['secret'];
+          if(IsSet($wpjobportal_access_token['refresh']))
+            $this->refresh_token = $wpjobportal_access_token['refresh'];
         }
         $oauth = array();
         if(!$two_legged)
@@ -2692,8 +2692,8 @@ class oauth_client_class
             $this->OutputDebug('Refreshing the OAuth access token expired on '.$this->access_token_expiry);
           if(!$this->ProcessToken2(null, true))
             return false;
-          if(IsSet($options['FailOnAccessError'])
-          && $options['FailOnAccessError']
+          if(IsSet($wpjobportal_options['FailOnAccessError'])
+          && $wpjobportal_options['FailOnAccessError']
           && strlen($this->authorization_error))
           {
             $this->error = $this->authorization_error;
@@ -2702,13 +2702,13 @@ class oauth_client_class
         }
         $oauth = null;
         if(strcasecmp($this->access_token_type, 'Bearer'))
-          $url .= (strcspn($url, '?') < strlen($url) ? '&' : '?').(strlen($this->access_token_parameter) ? $this->access_token_parameter : 'access_token').'='.UrlEncode($this->access_token);
+          $wpjobportal_url .= (strcspn($wpjobportal_url, '?') < strlen($wpjobportal_url) ? '&' : '?').(strlen($this->access_token_parameter) ? $this->access_token_parameter : 'access_token').'='.UrlEncode($this->access_token);
         break;
 
       default:
         return($this->SetError($this->oauth_version.' is not a supported version of the OAuth protocol'));
     }
-    return($this->SendAPIRequest($url, $method, $parameters, $oauth, $options, $response));
+    return($this->SendAPIRequest($wpjobportal_url, $method, $parameters, $oauth, $wpjobportal_options, $response));
   }
 /*
 {metadocument}
@@ -2823,15 +2823,15 @@ class oauth_client_class
         break;
 
       default:
-        $json = wp_remote_get($this->configuration_file);
-        if (is_wp_error($json)) {
+        $wpjobportal_json = wp_remote_get($this->configuration_file);
+        if (is_wp_error($wpjobportal_json)) {
             if(!file_exists($this->configuration_file)){
               return $this->SetError('the OAuth server configuration file '.$this->configuration_file.' does not exist');
             }
             return $this->SetPHPError('could not read the OAuth server configuration file '.$this->configuration_file);
         }
 
-        $oauth_server = json_decode($json);
+        $oauth_server = json_decode($wpjobportal_json);
         if(!IsSet($oauth_server))
           return $this->SetPHPError('It was not possible to decode the OAuth server configuration file '.$this->configuration_file.' eventually due to incorrect format');
         if(GetType($oauth_server) !== 'object')
@@ -2841,8 +2841,8 @@ class oauth_client_class
           return $this->SetError('It was not possible to decode the OAuth server configuration file '.$this->configuration_file.' because it does not correctly define a JSON object for servers');
         if(!IsSet($oauth_server->servers->{$this->server}))
           return($this->SetError($this->server.' is not yet a supported type of OAuth server. Please send a request in this class support forum (preferred) http://www.phpclasses.org/oauth-api , or if it is a security or private matter, contact the author Manuel Lemos mlemos@acm.org to request adding built-in support to this type of OAuth server.'));
-        $properties = $oauth_server->servers->{$this->server};
-        if(GetType($properties) !== 'object')
+        $wpjobportal_properties = $oauth_server->servers->{$this->server};
+        if(GetType($wpjobportal_properties) !== 'object')
           return $this->SetError('The OAuth server configuration file '.$this->configuration_file.' for the "'.$this->server.'" server does not correctly define a JSON object');
         $types = array(
           'oauth_version'=>'string',
@@ -2868,28 +2868,28 @@ class oauth_client_class
           'revoke_token_url'=>'string',
           'oauth_user_agent'=>'string',
         );
-        $required = array(
+        $wpjobportal_required = array(
           'oauth_version'=>array(),
           'request_token_url'=>array('1.0', '1.0a'),
           'dialog_url'=>array(),
           'access_token_url'=>array(),
         );
-        foreach($properties as $property => $value)
+        foreach($wpjobportal_properties as $wpjobportal_property => $wpjobportal_value)
         {
-          if(!IsSet($types[$property]))
-            return $this->SetError($property.' is not a supported property for the "'.$this->server.'" server in the OAuth server configuration file '.$this->configuration_file);
-          $type = GetType($value);
-          $expected = $types[$property];
-          if($type !== $expected)
-            return $this->SetError(' the property "'.$property.'" for the "'.$this->server.'" server is not of type "'.$expected.'", it is of type "'.$type.'", in the OAuth server configuration file '.$this->configuration_file);
-          $this->{$property} = $value;
-          UnSet($required[$property]);
+          if(!IsSet($types[$wpjobportal_property]))
+            return $this->SetError($wpjobportal_property.' is not a supported property for the "'.$this->server.'" server in the OAuth server configuration file '.$this->configuration_file);
+          $type = GetType($wpjobportal_value);
+          $wpjobportal_expected = $types[$wpjobportal_property];
+          if($type !== $wpjobportal_expected)
+            return $this->SetError(' the property "'.$wpjobportal_property.'" for the "'.$this->server.'" server is not of type "'.$wpjobportal_expected.'", it is of type "'.$type.'", in the OAuth server configuration file '.$this->configuration_file);
+          $this->{$wpjobportal_property} = $wpjobportal_value;
+          UnSet($wpjobportal_required[$wpjobportal_property]);
         }
-        foreach($required as $property => $value)
+        foreach($wpjobportal_required as $wpjobportal_property => $wpjobportal_value)
         {
-          if(count($value)
-          && in_array($this->oauth_version, $value))
-            return $this->SetError('the property "'.$property.'" is not defined for the "'.$this->server.'" server in the OAuth server configuration file '.$this->configuration_file);
+          if(count($wpjobportal_value)
+          && in_array($this->oauth_version, $wpjobportal_value))
+            return $this->SetError('the property "'.$wpjobportal_property.'" is not defined for the "'.$this->server.'" server in the OAuth server configuration file '.$this->configuration_file);
         }
         break;
     }
@@ -2947,21 +2947,21 @@ class oauth_client_class
         $one_a = ($this->oauth_version === '1.0a');
         if($this->debug)
           $this->OutputDebug('Checking the OAuth token authorization state');
-        if(!$this->GetAccessToken($access_token))
+        if(!$this->GetAccessToken($wpjobportal_access_token))
           return false;
-        if(IsSet($access_token['expiry']))
-          $this->access_token_expiry = $access_token['expiry'];
-        if(IsSet($access_token['authorized'])
-        && IsSet($access_token['value']))
+        if(IsSet($wpjobportal_access_token['expiry']))
+          $this->access_token_expiry = $wpjobportal_access_token['expiry'];
+        if(IsSet($wpjobportal_access_token['authorized'])
+        && IsSet($wpjobportal_access_token['value']))
         {
-          $expired = (IsSet($access_token['expiry']) && strcmp($access_token['expiry'], $this->ISOTime()) <= 0);
-          if(!$access_token['authorized']
-          || $expired)
+          $wpjobportal_expired = (IsSet($wpjobportal_access_token['expiry']) && strcmp($wpjobportal_access_token['expiry'], $this->ISOTime()) <= 0);
+          if(!$wpjobportal_access_token['authorized']
+          || $wpjobportal_expired)
           {
             if($this->debug)
             {
-              if($expired)
-                $this->OutputDebug('The OAuth token expired on '.$access_token['expiry'].'UTC');
+              if($wpjobportal_expired)
+                $this->OutputDebug('The OAuth token expired on '.$wpjobportal_access_token['expiry'].'UTC');
               else
                 $this->OutputDebug('The OAuth token is not yet authorized');
             }
@@ -2971,12 +2971,12 @@ class oauth_client_class
             {
               if($this->debug)
                 $this->OutputDebug('Checking the pin');
-              $this->access_token_secret = $access_token['secret'];
+              $this->access_token_secret = $wpjobportal_access_token['secret'];
               $oauth = array(
-                'oauth_token'=>$access_token['value'],
+                'oauth_token'=>$wpjobportal_access_token['value'],
                 'oauth_verifier'=>$this->pin
               );
-              if(!$this->ProcessToken1($oauth, $access_token))
+              if(!$this->ProcessToken1($oauth, $wpjobportal_access_token))
                 return false;
               if($this->debug)
                 $this->OutputDebug('The OAuth token was authorized');
@@ -2985,16 +2985,16 @@ class oauth_client_class
             {
               if($this->debug)
                 $this->OutputDebug('Checking the OAuth token and verifier');
-              if(!$this->GetRequestToken($token, $verifier))
+              if(!$this->GetRequestToken($wpjobportal_token, $verifier))
                 return false;
-              if(!IsSet($token)
+              if(!IsSet($wpjobportal_token)
               || ($one_a
               && !IsSet($verifier)))
               {
-                if(!$this->GetRequestDenied($denied))
+                if(!$this->GetRequestDenied($wpjobportal_denied))
                   return false;
-                if(IsSet($denied)
-                && $denied === $access_token['value'])
+                if(IsSet($wpjobportal_denied)
+                && $wpjobportal_denied === $wpjobportal_access_token['value'])
                 {
                   if($this->debug)
                     $this->OutputDebug('The authorization request was denied');
@@ -3005,24 +3005,24 @@ class oauth_client_class
                 {
                   if($this->debug)
                     $this->OutputDebug('Reset the OAuth token state because token and verifier are not both set');
-                  $access_token = array();
+                  $wpjobportal_access_token = array();
                 }
               }
-              elseif($token !== $access_token['value'])
+              elseif($wpjobportal_token !== $wpjobportal_access_token['value'])
               {
                 if($this->debug)
                   $this->OutputDebug('Reset the OAuth token state because token does not match what as previously retrieved');
-                $access_token = array();
+                $wpjobportal_access_token = array();
               }
               else
               {
-                $this->access_token_secret = $access_token['secret'];
+                $this->access_token_secret = $wpjobportal_access_token['secret'];
                 $oauth = array(
-                  'oauth_token'=>$token,
+                  'oauth_token'=>$wpjobportal_token,
                 );
                 if($one_a)
                   $oauth['oauth_verifier'] = $verifier;
-                if(!$this->ProcessToken1($oauth, $access_token))
+                if(!$this->ProcessToken1($oauth, $wpjobportal_access_token))
                   return false;
                 if($this->debug)
                   $this->OutputDebug('The OAuth token was authorized');
@@ -3031,13 +3031,13 @@ class oauth_client_class
           }
           elseif($this->debug)
             $this->OutputDebug('The OAuth token was already authorized');
-          if(IsSet($access_token['authorized'])
-          && $access_token['authorized'])
+          if(IsSet($wpjobportal_access_token['authorized'])
+          && $wpjobportal_access_token['authorized'])
           {
-            $this->access_token = $access_token['value'];
-            $this->access_token_secret = $access_token['secret'];
-            if(IsSet($access_token['refresh']))
-              $this->refresh_token = $access_token['refresh'];
+            $this->access_token = $wpjobportal_access_token['value'];
+            $this->access_token_secret = $wpjobportal_access_token['secret'];
+            if(IsSet($wpjobportal_access_token['refresh']))
+              $this->refresh_token = $wpjobportal_access_token['refresh'];
             return true;
           }
         }
@@ -3045,21 +3045,21 @@ class oauth_client_class
         {
           if($this->debug)
             $this->OutputDebug('The OAuth access token is not set');
-          $access_token = array();
+          $wpjobportal_access_token = array();
         }
-        if(!IsSet($access_token['authorized']))
+        if(!IsSet($wpjobportal_access_token['authorized']))
         {
           if($this->debug)
             $this->OutputDebug('Requesting the unauthorized OAuth token');
-          if(!$this->GetRequestTokenURL($url))
+          if(!$this->GetRequestTokenURL($wpjobportal_url))
             return false;
-          $url = str_replace('{SCOPE}', UrlEncode($this->scope), $url);
+          $wpjobportal_url = str_replace('{SCOPE}', UrlEncode($this->scope), $wpjobportal_url);
           if(!$this->GetRedirectURI($redirect_uri))
             return false;
           $oauth = array(
             'oauth_callback'=>$redirect_uri,
           );
-          $options = array(
+          $wpjobportal_options = array(
             'Resource'=>'OAuth request token',
             'FailOnAccessError'=>true
           );
@@ -3069,13 +3069,13 @@ class oauth_client_class
             case 'GET':
               break;
             case 'POST':
-              $options['PostValuesInURI'] = true;
+              $wpjobportal_options['PostValuesInURI'] = true;
               break;
             default:
               $this->error = $method.' is not a supported method to request tokens';
               break;
           }
-          if(!$this->SendAPIRequest($url, $method, array(), $oauth, $options, $response))
+          if(!$this->SendAPIRequest($wpjobportal_url, $method, array(), $oauth, $wpjobportal_options, $response))
             return false;
           if(strlen($this->access_token_error))
           {
@@ -3088,71 +3088,71 @@ class oauth_client_class
             $this->authorization_error = 'it was not returned the requested token';
             return true;
           }
-          $access_token = array(
+          $wpjobportal_access_token = array(
             'value'=>$response['oauth_token'],
             'secret'=>$response['oauth_token_secret'],
             'authorized'=>false
           );
           if(IsSet($response['login_url']))
-            $access_token['login_url'] = $response['login_url'];
-          if(!$this->StoreAccessToken($access_token))
+            $wpjobportal_access_token['login_url'] = $response['login_url'];
+          if(!$this->StoreAccessToken($wpjobportal_access_token))
             return false;
         }
         if(!$this->GetRedirectURI($redirect_uri))
           return false;
-        if(!$this->GetDialogURL($url, $redirect_uri))
+        if(!$this->GetDialogURL($wpjobportal_url, $redirect_uri))
           return false;
-        switch($url)
+        switch($wpjobportal_url)
         {
           case 'automatic':
-            if(!IsSet($access_token['login_url']))
+            if(!IsSet($wpjobportal_access_token['login_url']))
               return($this->SetError('The request token response did not automatically the login dialog URL as expected'));
             if($this->debug)
-              $this->OutputDebug('Dialog URL obtained automatically from the request token response: '.$url);
-            $url = $access_token['login_url'];
+              $this->OutputDebug('Dialog URL obtained automatically from the request token response: '.$wpjobportal_url);
+            $wpjobportal_url = $wpjobportal_access_token['login_url'];
             break;
           case '2legged':
             if($this->debug)
               $this->OutputDebug('Obtaining 2 legged access token');
-            $this->access_token_secret = $access_token['secret'];
+            $this->access_token_secret = $wpjobportal_access_token['secret'];
             $oauth = array(
-              'oauth_token'=>$access_token['value'],
+              'oauth_token'=>$wpjobportal_access_token['value'],
             );
-            if(!$this->ProcessToken1($oauth, $access_token))
+            if(!$this->ProcessToken1($oauth, $wpjobportal_access_token))
               return false;
             if($this->debug)
               $this->OutputDebug('The OAuth token was authorized');
             return true;
           default:
-            $url .= (strpos($url, '?') === false ? '?' : '&').'oauth_token='.$access_token['value'];
+            $wpjobportal_url .= (strpos($wpjobportal_url, '?') === false ? '?' : '&').'oauth_token='.$wpjobportal_access_token['value'];
         }
         if(!$one_a)
         {
           if(!$this->GetRedirectURI($redirect_uri))
             return false;
-          $url .= '&oauth_callback='.UrlEncode($redirect_uri);
+          $wpjobportal_url .= '&oauth_callback='.UrlEncode($redirect_uri);
         }
-        $redirect_url = $url;
+        $redirect_url = $wpjobportal_url;
         return true;
 
       case 2:
         if($this->debug)
         {
-          if(!$this->GetAccessTokenURL($access_token_url))
+          if(!$this->GetAccessTokenURL($wpjobportal_access_token_url))
             return false;
-          $this->OutputDebug('Checking if OAuth access token was already retrieved from '.$access_token_url);
+          $this->OutputDebug('Checking if OAuth access token was already retrieved from '.$wpjobportal_access_token_url);
         }
-        if(!$this->RetrieveToken($valid))
+        if(!$this->RetrieveToken($wpjobportal_valid))
           return false;
-        $expired = (strlen($this->access_token_expiry) && strcmp($this->access_token_expiry, $this->ISOTime()) <= 0 && strlen($this->refresh_token) === 0);
-        if($valid
-        && !$expired)
+        $wpjobportal_expired = (strlen($this->access_token_expiry) && strcmp($this->access_token_expiry, $this->ISOTime()) <= 0 && strlen($this->refresh_token) === 0);
+        if($wpjobportal_valid
+        && !$wpjobportal_expired)
           return true;
         if($this->debug)
         {
-          if(!$valid)
+          if(!$wpjobportal_valid)
             $this->OutputDebug('A valid access token is not available');
-          elseif($expired)
+          elseif($wpjobportal_expired)
             $this->OutputDebug('The access token expired');
         }
         switch($this->grant_type)
@@ -3192,15 +3192,15 @@ class oauth_client_class
         }
         if($this->debug)
           $this->OutputDebug('Getting the authentication state from URI '.(IsSet($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '"'.$this->redirect_uri.'"'));
-        if(!$this->GetStoredState($stored_state))
+        if(!$this->GetStoredState($wpjobportal_stored_state))
           return false;
-        if(strlen($stored_state) == 0)
+        if(strlen($wpjobportal_stored_state) == 0)
           return($this->SetError('it was not set the OAuth state'));
         if($this->debug)
           $this->OutputDebug('Checking the authentication state');
-        if(!$this->GetRequestState($state))
+        if(!$this->GetRequestState($wpjobportal_state))
           return false;
-        if($state === $stored_state)
+        if($wpjobportal_state === $wpjobportal_stored_state)
         {
           if($this->debug)
             $this->OutputDebug('Checking the authentication code');
@@ -3240,18 +3240,18 @@ class oauth_client_class
         {
           if($this->debug)
           {
-            if($stored_state !== '')
+            if($wpjobportal_stored_state !== '')
               $this->OutputDebug('The authentication state is not valid.');
           }
           if(!$this->GetRedirectURI($redirect_uri))
             return false;
           if(strlen($this->append_state_to_redirect_uri))
-            $redirect_uri .= (strpos($redirect_uri, '?') === false ? '?' : '&').$this->append_state_to_redirect_uri.'='.$stored_state;
-          if(!$this->GetDialogURL($url, $redirect_uri, $stored_state))
+            $redirect_uri .= (strpos($redirect_uri, '?') === false ? '?' : '&').$this->append_state_to_redirect_uri.'='.$wpjobportal_stored_state;
+          if(!$this->GetDialogURL($wpjobportal_url, $redirect_uri, $wpjobportal_stored_state))
             return false;
-          if(strlen($url) == 0)
+          if(strlen($wpjobportal_url) == 0)
             return($this->SetError('it was not set the OAuth dialog URL'));
-          $redirect_url = $url;
+          $redirect_url = $wpjobportal_url;
         }
         break;
 
@@ -3329,34 +3329,34 @@ class oauth_client_class
     <do>
 {/metadocument}
 */
-  Function RevokeToken($token_type_hint = 'access_token')
+  Function RevokeToken($wpjobportal_token_type_hint = 'access_token')
   {
-    switch($token_type_hint)
+    switch($wpjobportal_token_type_hint)
     {
       case 'access_token':
-        $token = $this->access_token;
+        $wpjobportal_token = $this->access_token;
         break;
       default:
-        return $this->SetError('Revoking tokens of type '.$token_type_hint.' is not yet supported');
+        return $this->SetError('Revoking tokens of type '.$wpjobportal_token_type_hint.' is not yet supported');
     }
-    if(!$this->GetRevokeTokenURL($token, $revoke_token_url))
+    if(!$this->GetRevokeTokenURL($wpjobportal_token, $revoke_token_url))
       return false;
     if(strlen($revoke_token_url) === 0)
         return $this->SetError('OAuth revoke token URL is not defined');
     $parameters = array(
-      'token'=>$token,
-      'token_type_hint'=>$token_type_hint
+      'token'=>$wpjobportal_token,
+      'token_type_hint'=>$wpjobportal_token_type_hint
     );
-    $options = array(
+    $wpjobportal_options = array(
       'Resource'=>'OAuth revoke token',
       'FailOnAccessError'=>true,
       'AccessTokenAuthentication'=>'basic'
     );
     if($this->debug)
-      $this->OutputDebug('Revoking token of type '.$token_type_hint.': '.$token);
-    if(!$this->SendAPIRequest($revoke_token_url, 'POST', $parameters, null, $options, $response))
+      $this->OutputDebug('Revoking token of type '.$wpjobportal_token_type_hint.': '.$wpjobportal_token);
+    if(!$this->SendAPIRequest($revoke_token_url, 'POST', $parameters, null, $wpjobportal_options, $response))
       return false;
-    if($token_type_hint === 'access_token')
+    if($wpjobportal_token_type_hint === 'access_token')
       return $this->ResetAccessToken();
     return true;
   }
@@ -3392,9 +3392,9 @@ class oauth_client_class
     <do>
 {/metadocument}
 */
-  Function Finalize($success)
+  Function Finalize($wpjobportal_success)
   {
-    return($success);
+    return($wpjobportal_success);
   }
 /*
 {metadocument}

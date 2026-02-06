@@ -2,9 +2,9 @@
 
 if (!defined('ABSPATH'))
     die('Restricted Access');
-$name = 'DejaVuSansCondensed';
+$wpjobportal_name = 'DejaVuSansCondensed';
 $type = 'TTF';
-$desc = array(
+$wpjobportal_desc = array(
     'Ascent' => 928,
     'Descent' => -236,
     'CapHeight' => 928,
@@ -14,9 +14,9 @@ $desc = array(
     'StemV' => 87,
     'MissingWidth' => 540,
 );
-$up = -63;
-$ut = 44;
-$ttffile =WPJOBPORTAL_PLUGIN_PATH.'modules/resume/tmpl/font/unifont/DejaVuSansCondensed.ttf';
-$originalsize = 643852;
-$fontkey = 'dejavu';
+$wpjobportal_up = -63;
+$wpjobportal_ut = 44;
+$wpjobportal_ttffile =WPJOBPORTAL_PLUGIN_PATH.'modules/resume/tmpl/font/unifont/DejaVuSansCondensed.ttf';
+$wpjobportal_originalsize = 643852;
+$wpjobportal_fontkey = 'dejavu';
 ?>

@@ -6,26 +6,26 @@ if (!defined('ABSPATH'))
 class WPJOBPORTALcaptcha {
 
     function getCaptchaForForm() {
-        $config_array = WPJOBPORTALincluder::getJSModel('configuration')->getConfigByFor('captcha');
-        $rand = $this->randomNumber();
-        WPJOBPORTALincluder::getObjectClass('wpjpnotification')->addSessionNotificationDataToTable($rand,'','wpjobportal_spamcheckid','captcha');
+        $wpjobportal_config_array = WPJOBPORTALincluder::getJSModel('configuration')->getConfigByFor('captcha');
+        $wpjobportal_rand = $this->randomNumber();
+        WPJOBPORTALincluder::getObjectClass('wpjpnotification')->addSessionNotificationDataToTable($wpjobportal_rand,'','wpjobportal_spamcheckid','captcha');
         $wpjobportal_rot13 = wp_rand(0, 1);
         WPJOBPORTALincluder::getObjectClass('wpjpnotification')->addSessionNotificationDataToTable($wpjobportal_rot13,'','wpjobportal_rot13','captcha');
         $operator = 2;
         if ($operator == 2) {
-            $tcalc = $config_array['owncaptcha_calculationtype'];
+            $tcalc = $wpjobportal_config_array['owncaptcha_calculationtype'];
         }
-        $max_value = 20;
-        $negativ = 1;
-        $operend_1 = wp_rand($negativ, $max_value);
-        $operend_2 = wp_rand($negativ, $max_value);
-        $operand = $config_array['owncaptcha_totaloperand'];
+        $wpjobportal_max_value = 20;
+        $wpjobportal_negativ = 1;
+        $operend_1 = wp_rand($wpjobportal_negativ, $wpjobportal_max_value);
+        $operend_2 = wp_rand($wpjobportal_negativ, $wpjobportal_max_value);
+        $operand = $wpjobportal_config_array['owncaptcha_totaloperand'];
         if ($operand == 3) {
-            $operend_3 = wp_rand($negativ, $max_value);
+            $operend_3 = wp_rand($wpjobportal_negativ, $wpjobportal_max_value);
         }
 
-        if ($config_array['owncaptcha_calculationtype'] == 2) { // Subtraction
-            if ($config_array['owncaptcha_subtractionans'] == 1) {
+        if ($wpjobportal_config_array['owncaptcha_calculationtype'] == 2) { // Subtraction
+            if ($wpjobportal_config_array['owncaptcha_subtractionans'] == 1) {
                 $ans = $operend_1 - $operend_2;
                 if ($ans < 0) {
                     $one = $operend_2;
@@ -82,38 +82,38 @@ class WPJOBPORTALcaptcha {
                 }
             }
         }
-        $add_string = "";
-        if (wpjobportal::$theme_chk == 1) {
-            $add_string .= '<div class="wpj-jp-form-captcha" ><div class="wpj-jp-form-label" for="' . $rand . '">';
+        $wpjobportal_add_string = "";
+        if (wpjobportal::$wpjobportal_theme_chk == 1) {
+            $wpjobportal_add_string .= '<div class="wpj-jp-form-captcha" ><div class="wpj-jp-form-label" for="' . $wpjobportal_rand . '">';
         } else {
-            $add_string .= '<div class="wjportal-form-row wjportal-form-captcha" ><div class="wjportal-form-title" for="' . $rand . '">';
+            $wpjobportal_add_string .= '<div class="wjportal-form-row wjportal-form-captcha" ><div class="wjportal-form-title" for="' . $wpjobportal_rand . '">';
         }
 
         if ($tcalc == 1) {
             if ($operand == 2) {
-                $add_string .= $operend_1 . ' ' . esc_html(__('Plus', 'wp-job-portal')) . ' ' . $operend_2 . ' ' . esc_html(__('Equals', 'wp-job-portal')) . ' ';
+                $wpjobportal_add_string .= $operend_1 . ' ' . esc_html(__('Plus', 'wp-job-portal')) . ' ' . $operend_2 . ' ' . esc_html(__('Equals', 'wp-job-portal')) . ' ';
             } elseif ($operand == 3) {
-                $add_string .= $operend_1 . ' ' . esc_html(__('Plus', 'wp-job-portal')) . ' ' . $operend_2 . ' ' . esc_html(__('Plus', 'wp-job-portal')) . ' ' . $operend_3 . ' ' . esc_html(__('Equals', 'wp-job-portal')) . ' ';
+                $wpjobportal_add_string .= $operend_1 . ' ' . esc_html(__('Plus', 'wp-job-portal')) . ' ' . $operend_2 . ' ' . esc_html(__('Plus', 'wp-job-portal')) . ' ' . $operend_3 . ' ' . esc_html(__('Equals', 'wp-job-portal')) . ' ';
             }
         } elseif ($tcalc == 2) {
             $converttostring = 0;
             if ($operand == 2) {
-                $add_string .= $operend_1 . ' ' . esc_html(__('Minus', 'wp-job-portal')) . ' ' . $operend_2 . ' ' . esc_html(__('Equals', 'wp-job-portal')) . ' ';
+                $wpjobportal_add_string .= $operend_1 . ' ' . esc_html(__('Minus', 'wp-job-portal')) . ' ' . $operend_2 . ' ' . esc_html(__('Equals', 'wp-job-portal')) . ' ';
             } elseif ($operand == 3) {
-                $add_string .= $operend_1 . ' ' . esc_html(__('Minus', 'wp-job-portal')) . ' ' . $operend_2 . ' ' . esc_html(__('Minus', 'wp-job-portal')) . ' ' . $operend_3 . ' ' . esc_html(__('Equals', 'wp-job-portal')) . ' ';
+                $wpjobportal_add_string .= $operend_1 . ' ' . esc_html(__('Minus', 'wp-job-portal')) . ' ' . $operend_2 . ' ' . esc_html(__('Minus', 'wp-job-portal')) . ' ' . $operend_3 . ' ' . esc_html(__('Equals', 'wp-job-portal')) . ' ';
             }
         }
 
-        $add_string .= '<font color="red">* </font></div>';
-        $class_prefix = "";
-        if(wpjobportal::$theme_chk == 1){
-            $class_prefix = 'wpj-jp';
+        $wpjobportal_add_string .= '<font color="red">* </font></div>';
+        $wpjobportal_class_prefix = "";
+        if(wpjobportal::$wpjobportal_theme_chk == 1){
+            $wpjobportal_class_prefix = 'wpj-jp';
         }
 
-        $add_string .= '<div class="wjportal-form-value"><input type="text" name="' . $rand . '" id="' . $rand . '" size="3" class="inputbox form-control wjportal-form-input-field '.$class_prefix.'-input-field  ' . $rand . '" value="" data-validation="required" /></div>';
-        $add_string .= '</div>';
+        $wpjobportal_add_string .= '<div class="wjportal-form-value"><input type="text" name="' . $wpjobportal_rand . '" id="' . $wpjobportal_rand . '" size="3" class="inputbox form-control wjportal-form-input-field '.$wpjobportal_class_prefix.'-input-field  ' . $wpjobportal_rand . '" value="" data-validation="required" /></div>';
+        $wpjobportal_add_string .= '</div>';
 
-        return $add_string;
+        return $wpjobportal_add_string;
     }
 
     function randomNumber() {
@@ -124,12 +124,12 @@ class WPJOBPORTALcaptcha {
         $pw .= $characters[wp_rand(0, 25)];
 
         // other characters arbitrarily
-        $numbers = range(0, 9);
-        $characters = array_merge($characters, $numbers);
+        $wpjobportal_numbers = range(0, 9);
+        $characters = array_merge($characters, $wpjobportal_numbers);
 
         $pw_length = wp_rand(4, 12);
 
-        for ($i = 0; $i < $pw_length; $i++) {
+        for ($wpjobportal_i = 0; $wpjobportal_i < $pw_length; $wpjobportal_i++) {
             $pw .= $characters[wp_rand(0, 35)];
         }
         return $pw;

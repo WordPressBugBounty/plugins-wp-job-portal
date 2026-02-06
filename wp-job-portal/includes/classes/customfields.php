@@ -6,59 +6,59 @@ class WPJOBPORTALcustomfields {
     public $class_prefix = '';
 
     function __construct(){
-        if(wpjobportal::$theme_chk == 1){
+        if(wpjobportal::$wpjobportal_theme_chk == 1){
             $this->class_prefix = 'jsjb-jm';
-        }elseif(wpjobportal::$theme_chk == 2){
+        }elseif(wpjobportal::$wpjobportal_theme_chk == 2){
             $this->class_prefix = 'jsjb-jh';
         }
     }
 
-    function formCustomFieldsResume($field , $obj_id, $obj_params ,$resumeform=null,  $section = null, $sectionid = null, $ishidden = null,$themecall=null){
+    function formCustomFieldsResume($wpjobportal_field , $obj_id, $obj_params ,$wpjobportal_resumeform=null,  $wpjobportal_section = null, $wpjobportal_sectionid = null, $wpjobportal_ishidden = null,$wpjobportal_themecall=null){
         //had to do this so that there are minimum changes in resume code
-        $field = $this->userFieldData($field->field, 5, $section);
-        //$field = $this->userFieldData($field, 5, $section);
-        if (empty($field)) {
+        $wpjobportal_field = $this->userFieldData($wpjobportal_field->field, 5, $wpjobportal_section);
+        //$wpjobportal_field = $this->userFieldData($wpjobportal_field, 5, $wpjobportal_section);
+        if (empty($wpjobportal_field)) {
             return '';
         }
         //if(!in_array('customfield', wpjobportal::$_active_addons)){
-        //    if($field->userfieldtype != 'text' && $field->userfieldtype != 'email'){
+        //    if($wpjobportal_field->userfieldtype != 'text' && $wpjobportal_field->userfieldtype != 'email'){
         //        return '';
         //    }
         //}
-        $visibleclass = "";
-        if (isset($field->visibleparams) && $field->visibleparams != ''){
-            $visibleclass = " visible js-form-custm-flds-wrp";
+        $wpjobportal_visibleclass = "";
+        if (isset($wpjobportal_field->visibleparams) && $wpjobportal_field->visibleparams != ''){
+            $wpjobportal_visibleclass = " visible js-form-custm-flds-wrp";
         }
-        $themebfclass = " ".$this->class_prefix."-bigfont ";
-        if(null != $themecall){
-            $div1 = 'resume-row-wrapper form wjportal-form-row';
-            $div2 = 'row-title wjportal-form-title';
-            $div3 = 'row-value wjportal-form-value';
+        $wpjobportal_themebfclass = " ".$this->class_prefix."-bigfont ";
+        if(null != $wpjobportal_themecall){
+            $wpjobportal_div1 = 'resume-row-wrapper form wjportal-form-row';
+            $wpjobportal_div2 = 'row-title wjportal-form-title';
+            $wpjobportal_div3 = 'row-value wjportal-form-value';
         }else{
-            $div1 = 'resume-row-wrapper form wjportal-form-row';
-            $div2 = 'row-title wjportal-form-title';
-            $div3 = 'row-value wjportal-form-value';
+            $wpjobportal_div1 = 'resume-row-wrapper form wjportal-form-row';
+            $wpjobportal_div2 = 'row-title wjportal-form-title';
+            $wpjobportal_div3 = 'row-value wjportal-form-value';
 
         }
-        $div1 .= $visibleclass;
+        $wpjobportal_div1 .= $wpjobportal_visibleclass;
         $cssclass = "";
-        $required = $field->required;
-        $html = '<div class="' . $div1 . '">
-               <div class="' . $div2 . '">';
-        if ($required == 1) {
-            $html .= wpjobportal::wpjobportal_getVariableValue($field->fieldtitle) . ' <font color="red"> *</font>';
-            // if ($field->userfieldtype == 'email'){
+        $wpjobportal_required = $wpjobportal_field->required;
+        $wpjobportal_html = '<div class="' . $wpjobportal_div1 . '">
+               <div class="' . $wpjobportal_div2 . '">';
+        if ($wpjobportal_required == 1) {
+            $wpjobportal_html .= wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle) . ' <font color="red"> *</font>';
+            // if ($wpjobportal_field->userfieldtype == 'email'){
             //     //$cssclass = "required validate-email";
-            //     if($section AND $section == null){ // too handle bug related to sub section email field
+            //     if($wpjobportal_section AND $wpjobportal_section == null){ // too handle bug related to sub section email field
             //         $cssclass = "required email";
             //     }
             // }else{
                 $cssclass = " required ";
             // }
         }else {
-            $html .= wpjobportal::wpjobportal_getVariableValue($field->fieldtitle);
-            // if ($field->userfieldtype == 'email'){
-            //     if($section AND $section == null){ // too handle bug related to sub section email field
+            $wpjobportal_html .= wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle);
+            // if ($wpjobportal_field->userfieldtype == 'email'){
+            //     if($wpjobportal_section AND $wpjobportal_section == null){ // too handle bug related to sub section email field
             //         //$cssclass = "validate-email";
             //         $cssclass = "required email";
             //     }
@@ -66,374 +66,374 @@ class WPJOBPORTALcustomfields {
                 $cssclass = "";
             // }
         }
-        $html .= ' </div><div class="' . $div3 . '">';
+        $wpjobportal_html .= ' </div><div class="' . $wpjobportal_div3 . '">';
 
-        $resumeTitle = wpjobportal::wpjobportal_getVariableValue($field->fieldtitle);
+        $wpjobportal_resumeTitle = wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle);
 
         $size = '';
-        $maxlength = '';
-        if(isset($field->size) && 0!=$field->size){
-            $size = $field->size;
+        $wpjobportal_maxlength = '';
+        if(isset($wpjobportal_field->size) && 0!=$wpjobportal_field->size){
+            $size = $wpjobportal_field->size;
         }
-        if(isset($field->maxlength) && 0!=$field->maxlength){
-            $maxlength = $field->maxlength;
+        if(isset($wpjobportal_field->maxlength) && 0!=$wpjobportal_field->maxlength){
+            $wpjobportal_maxlength = $wpjobportal_field->maxlength;
         }
 
         $fvalue = "";
-        $value = "";
-        $userdataid = "";
-        $value = $obj_params;
+        $wpjobportal_value = "";
+        $wpjobportal_userdataid = "";
+        $wpjobportal_value = $obj_params;
 
-        if($value){ // data has been stored
-            $userfielddataarray = json_decode($value);
-            $valuearray = json_decode($value,true);
+        if($wpjobportal_value){ // data has been stored
+            $wpjobportal_userfielddataarray = json_decode($wpjobportal_value);
+            $wpjobportal_valuearray = json_decode($wpjobportal_value,true);
         }else{
-            $valuearray = array();
+            $wpjobportal_valuearray = array();
         }
-        if(is_array($valuearray) && array_key_exists($field->field, $valuearray)){
-            $value = $valuearray[$field->field];
+        if(is_array($wpjobportal_valuearray) && array_key_exists($wpjobportal_field->field, $wpjobportal_valuearray)){
+            $wpjobportal_value = $wpjobportal_valuearray[$wpjobportal_field->field];
         }else{
-            $value = '';
+            $wpjobportal_value = '';
         }
-        $user_field = '';
-        if($themecall != null){
-            $theme_string = ', '. $themecall;
+        $wpjobportal_user_field = '';
+        if($wpjobportal_themecall != null){
+            $wpjobportal_theme_string = ', '. $wpjobportal_themecall;
         }else{
-            $theme_string = '';
+            $wpjobportal_theme_string = '';
         }
 
         $specialClass='';
-        if($value != ''){
+        if($wpjobportal_value != ''){
             $specialClass = ' specialClass ';
         }
 
-        switch ($field->userfieldtype) {
+        switch ($wpjobportal_field->userfieldtype) {
             case 'text':
-                if(wpjobportal::$theme_chk == 1){
-                    $themeclass = getJobManagerThemeClass('text');
+                if(wpjobportal::$wpjobportal_theme_chk == 1){
+                    $wpjobportal_themeclass = getJobManagerThemeClass('text');
                 }else{
-                    $themeclass = '';
+                    $wpjobportal_themeclass = '';
                 }
-                $extraattr = array('class' => "inputbox one ".$cssclass.$specialClass.$themeclass." wjportal-form-input-field", 'data-validation' => $cssclass, 'size' => $size, 'maxlength' => $maxlength, 'placeholder'=>$field->placeholder);
+                $wpjobportal_extraattr = array('class' => "inputbox one ".$cssclass.$specialClass.$wpjobportal_themeclass." wjportal-form-input-field", 'data-validation' => $cssclass, 'size' => $size, 'maxlength' => $wpjobportal_maxlength, 'placeholder'=>$wpjobportal_field->placeholder);
                 // handleformresume
-                if($section AND $section != 1){
-                    if($ishidden){
-                        if ($required == 1) {
-                            $extraattr['data-validation'] = '';
-                            $extraattr['data-myrequired'] = $cssclass;
-                            $extraattr['class'] = "inputbox one ".$themeclass.$specialClass." wjportal-form-input-field";
+                if($wpjobportal_section AND $wpjobportal_section != 1){
+                    if($wpjobportal_ishidden){
+                        if ($wpjobportal_required == 1) {
+                            $wpjobportal_extraattr['data-validation'] = '';
+                            $wpjobportal_extraattr['data-myrequired'] = $cssclass;
+                            $wpjobportal_extraattr['class'] = "inputbox one ".$wpjobportal_themeclass.$specialClass." wjportal-form-input-field";
                         }
                     }
                 }
                 //END handleformresume
-                $user_field .= $this->textResume($field->field, $value, $extraattr, $section , $sectionid);
+                $wpjobportal_user_field .= $this->textResume($wpjobportal_field->field, $wpjobportal_value, $wpjobportal_extraattr, $wpjobportal_section , $wpjobportal_sectionid);
             break;
             case 'email':
-                if(wpjobportal::$theme_chk == 1){
-                    $themeclass = getJobManagerThemeClass('text');
+                if(wpjobportal::$wpjobportal_theme_chk == 1){
+                    $wpjobportal_themeclass = getJobManagerThemeClass('text');
                 }else{
-                    $themeclass = '';
+                    $wpjobportal_themeclass = '';
                 }
-                $extraattr = array('class' => "inputbox one ".$cssclass.$specialClass.$themeclass." wjportal-form-input-field", 'data-validation' => $cssclass, 'size' => $size, 'maxlength' => $maxlength, 'placeholder'=>$field->placeholder);
+                $wpjobportal_extraattr = array('class' => "inputbox one ".$cssclass.$specialClass.$wpjobportal_themeclass." wjportal-form-input-field", 'data-validation' => $cssclass, 'size' => $size, 'maxlength' => $wpjobportal_maxlength, 'placeholder'=>$wpjobportal_field->placeholder);
                 // handleformresume
-                if($section AND $section != 1){
-                    if($ishidden){
-                        if ($required == 1) {
-                            $extraattr['data-validation'] = '';
-                            $extraattr['data-myrequired'] = $cssclass;
-                            $extraattr['class'] = "inputbox one $themeclass wjportal-form-input-field";
+                if($wpjobportal_section AND $wpjobportal_section != 1){
+                    if($wpjobportal_ishidden){
+                        if ($wpjobportal_required == 1) {
+                            $wpjobportal_extraattr['data-validation'] = '';
+                            $wpjobportal_extraattr['data-myrequired'] = $cssclass;
+                            $wpjobportal_extraattr['class'] = "inputbox one $wpjobportal_themeclass wjportal-form-input-field";
                         }
                     }
                 }
                 //END handleformresume
-                $user_field .= $this->emailResume($field->field, $value, $extraattr, $section , $sectionid);
+                $wpjobportal_user_field .= $this->emailResume($wpjobportal_field->field, $wpjobportal_value, $wpjobportal_extraattr, $wpjobportal_section , $wpjobportal_sectionid);
             break;
             case 'date':
-                    if(wpjobportal::$theme_chk == 1){
-                        $themeclass = getJobManagerThemeClass('text');
+                    if(wpjobportal::$wpjobportal_theme_chk == 1){
+                        $wpjobportal_themeclass = getJobManagerThemeClass('text');
                     }else{
-                        $themeclass = '';
+                        $wpjobportal_themeclass = '';
                     }
-                    $req=($field->required==1)?"required":"";
-                    $extraattr = array('class' => 'inputbox wjportal-form-date-field custom_date '.$specialClass.' cal_userfield  '.$themeclass.' '.$cssclass, 'size' => '10', 'maxlength' => '19','data-validation'=>$req,'autocomplete'=>'off', 'placeholder'=>$field->placeholder);
+                    $wpjobportal_req=($wpjobportal_field->required==1)?"required":"";
+                    $wpjobportal_extraattr = array('class' => 'inputbox wjportal-form-date-field custom_date '.$specialClass.' cal_userfield  '.$wpjobportal_themeclass.' '.$cssclass, 'size' => '10', 'maxlength' => '19','data-validation'=>$wpjobportal_req,'autocomplete'=>'off', 'placeholder'=>$wpjobportal_field->placeholder);
                     // handleformresume
-                    if($section AND $section != 1){
-                        if($ishidden){
-                            if ($required == 1) {
-                                $extraattr['data-validation'] = '';
-                                $extraattr['data-myrequired'] = $cssclass;
-                                $extraattr['class'] = "inputbox wjportal-form-date-field custom_date ".$specialClass." cal_userfield  ".$themeclass." ".$cssclass;
+                    if($wpjobportal_section AND $wpjobportal_section != 1){
+                        if($wpjobportal_ishidden){
+                            if ($wpjobportal_required == 1) {
+                                $wpjobportal_extraattr['data-validation'] = '';
+                                $wpjobportal_extraattr['data-myrequired'] = $cssclass;
+                                $wpjobportal_extraattr['class'] = "inputbox wjportal-form-date-field custom_date ".$specialClass." cal_userfield  ".$wpjobportal_themeclass." ".$cssclass;
                             }
                         }
                     }
                     //END handleformresume
-                    $user_field .= $this->dateResume($field->field, $value, $extraattr, $section , $sectionid);
+                    $wpjobportal_user_field .= $this->dateResume($wpjobportal_field->field, $wpjobportal_value, $wpjobportal_extraattr, $wpjobportal_section , $wpjobportal_sectionid);
             break;
             case 'textarea':
-                $rows = '';
+                $wpjobportal_rows = '';
                 $cols = '';
-                if(isset($field->rows)){
-                    $rows = $field->rows;
+                if(isset($wpjobportal_field->rows)){
+                    $wpjobportal_rows = $wpjobportal_field->rows;
                 }
-                if(isset($field->cols)){
-                    $cols = $field->cols;
+                if(isset($wpjobportal_field->cols)){
+                    $cols = $wpjobportal_field->cols;
                 }
-                if(wpjobportal::$theme_chk == 1){
-                    $themeclass = getJobManagerThemeClass('textarea');
+                if(wpjobportal::$wpjobportal_theme_chk == 1){
+                    $wpjobportal_themeclass = getJobManagerThemeClass('textarea');
                 }else{
-                    $themeclass = '';
+                    $wpjobportal_themeclass = '';
                 }
 
-                $extraattr = array('class' => "inputbox wpjobportal-form-textarea-field one ".$cssclass.$specialClass.$themeclass, 'data-validation' => $cssclass, 'rows' => $rows, 'cols' => $cols);
+                $wpjobportal_extraattr = array('class' => "inputbox wpjobportal-form-textarea-field one ".$cssclass.$specialClass.$wpjobportal_themeclass, 'data-validation' => $cssclass, 'rows' => $wpjobportal_rows, 'cols' => $cols);
                 // handleformresume
-                if($section AND $section != 1){
-                    if($ishidden){
-                        if ($required == 1) {
-                            $extraattr['data-validation'] = '';
-                            $extraattr['data-myrequired'] = $cssclass;
-                            $extraattr['class'] = "inputbox ".$specialClass." one";
+                if($wpjobportal_section AND $wpjobportal_section != 1){
+                    if($wpjobportal_ishidden){
+                        if ($wpjobportal_required == 1) {
+                            $wpjobportal_extraattr['data-validation'] = '';
+                            $wpjobportal_extraattr['data-myrequired'] = $cssclass;
+                            $wpjobportal_extraattr['class'] = "inputbox ".$specialClass." one";
                         }
                     }
                 }
                 //END handleformresume
 
-                $user_field .= $this->textareaResume($field->field, $value, $extraattr , $section , $sectionid);
+                $wpjobportal_user_field .= $this->textareaResume($wpjobportal_field->field, $wpjobportal_value, $wpjobportal_extraattr , $wpjobportal_section , $wpjobportal_sectionid);
             break;
             case 'checkbox':
-                if (!empty($field->userfieldparams)) {
-                    $comboOptions = array();
-                    $obj_option = json_decode($field->userfieldparams);
-                    $i = 0;
-                    $valuearray = wpjobportalphplib::wpJP_explode(', ',$value);
-                    $name = $field->field;
-                    if (wpjobportalphplib::wpJP_strpos($name, '[]') !== false) {
-                        $id = wpjobportalphplib::wpJP_str_replace('[]', '', $name);
+                if (!empty($wpjobportal_field->userfieldparams)) {
+                    $wpjobportal_comboOptions = array();
+                    $obj_option = json_decode($wpjobportal_field->userfieldparams);
+                    $wpjobportal_i = 0;
+                    $wpjobportal_valuearray = wpjobportalphplib::wpJP_explode(', ',$wpjobportal_value);
+                    $wpjobportal_name = $wpjobportal_field->field;
+                    if (wpjobportalphplib::wpJP_strpos($wpjobportal_name, '[]') !== false) {
+                        $wpjobportal_id = wpjobportalphplib::wpJP_str_replace('[]', '', $wpjobportal_name);
                     }else{
-                        $id = $name;
+                        $wpjobportal_id = $wpjobportal_name;
                     }
-                    $data_required = '';
-                    if($section){
-                        if($section != 1){
-                            if($ishidden){
-                                if($required == 1){
-                                    $data_required = 'data-myrequired="required"';
+                    $wpjobportal_data_required = '';
+                    if($wpjobportal_section){
+                        if($wpjobportal_section != 1){
+                            if($wpjobportal_ishidden){
+                                if($wpjobportal_required == 1){
+                                    $wpjobportal_data_required = 'data-myrequired="required"';
                                     $cssclass = '';
                                 }
                             }
-                            $name = 'sec_'.$section.'['.$name.']['.$sectionid.']';
-                            $id .=$sectionid;
+                            $wpjobportal_name = 'sec_'.$wpjobportal_section.'['.$wpjobportal_name.']['.$wpjobportal_sectionid.']';
+                            $wpjobportal_id .=$wpjobportal_sectionid;
                         }else{
-                            $name = 'sec_'.$section.'['.$name.']';
+                            $wpjobportal_name = 'sec_'.$wpjobportal_section.'['.$wpjobportal_name.']';
                         }
                     }
 
-                    $jsFunction = '';
-                    if ($required == 1) {
-                        $jsFunction = "deRequireUfCheckbox('" . $field->field . "');";
+                    $wpjobportal_jsFunction = '';
+                    if ($wpjobportal_required == 1) {
+                        $wpjobportal_jsFunction = "deRequireUfCheckbox('" . $wpjobportal_field->field . "');";
                     }
                   	if(is_array($obj_option)){
-                      foreach ($obj_option AS $option) {
-                          $check = '';
-                          if(in_array($option, $valuearray)){
-                              $check = 'checked';
+                      foreach ($obj_option AS $wpjobportal_option) {
+                          $wpjobportal_check = '';
+                          if(in_array($wpjobportal_option, $wpjobportal_valuearray)){
+                              $wpjobportal_check = 'checked';
                           }
-                          $user_field .= '<span class="uf_checkbox_wrp">';
-                          $user_field .= '<input type="checkbox" ' . $check . ' '.$data_required.' class="'. $field->field .' radiobutton uf_of_type_ckbox '.$cssclass. $specialClass.'" value="' . wpjobportalphplib::wpJP_htmlspecialchars($option) . '" id="' . $id . '_' . $i . '" name="' . $name . '[]" data-validation="'.esc_attr($cssclass).'" onclick = "' . $jsFunction . '" ckbox-group-name="' . $field->field . '">';
-                          $user_field .= '<label class="cf_chkbox" for="' . $id . '_' . $i . '" id="foruf_checkbox1">' . $option . '</label>';
-                          $user_field .= '</span>';
-                          $i++;
+                          $wpjobportal_user_field .= '<span class="wpjobportal-form-radio-field">';
+                          $wpjobportal_user_field .= '<input type="checkbox" ' . $wpjobportal_check . ' '.$wpjobportal_data_required.' class="'. $wpjobportal_field->field .' radiobutton uf_of_type_ckbox '.$cssclass. $specialClass.'" value="' . wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_option) . '" id="' . $wpjobportal_id . '_' . $wpjobportal_i . '" name="' . $wpjobportal_name . '[]" data-validation="'.esc_attr($cssclass).'" onclick = "' . $wpjobportal_jsFunction . '" ckbox-group-name="' . $wpjobportal_field->field . '">';
+                          $wpjobportal_user_field .= '<label class="cf_chkbox" for="' . $wpjobportal_id . '_' . $wpjobportal_i . '" id="foruf_checkbox1">' . $wpjobportal_option . '</label>';
+                          $wpjobportal_user_field .= '</span>';
+                          $wpjobportal_i++;
                       }
                   	}
                   
                 } else {
-                    $comboOptions = array('1' => wpjobportal::wpjobportal_getVariableValue($field->fieldtitle));
-                    $extraattr = array('class' => "radiobutton $cssclass");
+                    $wpjobportal_comboOptions = array('1' => wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle));
+                    $wpjobportal_extraattr = array('class' => "radiobutton $cssclass");
                     // handleformresume
-                    if($section AND $section != 1){
-                        if($ishidden){
-                            if ($required == 1) {
-                                $extraattr['data-validation'] = '';
-                                $extraattr['data-myrequired'] = $cssclass;
-                                $extraattr['class'] = "radiobutton";
+                    if($wpjobportal_section AND $wpjobportal_section != 1){
+                        if($wpjobportal_ishidden){
+                            if ($wpjobportal_required == 1) {
+                                $wpjobportal_extraattr['data-validation'] = '';
+                                $wpjobportal_extraattr['data-myrequired'] = $cssclass;
+                                $wpjobportal_extraattr['class'] = "radiobutton";
                             }
                         }
                     }
                     //END handleformresume
-                    $user_field .= $this->checkboxResume($field->field, $comboOptions, $value, array('class' => "radiobutton $cssclass") , $section , $sectionid);
+                    $wpjobportal_user_field .= $this->checkboxResume($wpjobportal_field->field, $wpjobportal_comboOptions, $wpjobportal_value, array('class' => "radiobutton $cssclass") , $wpjobportal_section , $wpjobportal_sectionid);
                 }
             break;
             case 'radio':
-                $comboOptions = array();
-                if (!empty($field->userfieldparams)) {
-                    $obj_option = json_decode($field->userfieldparams);
+                $wpjobportal_comboOptions = array();
+                if (!empty($wpjobportal_field->userfieldparams)) {
+                    $obj_option = json_decode($wpjobportal_field->userfieldparams);
                   	if(is_array($obj_option)){
-                      for ($i = 0; $i < count($obj_option); $i++) {
-                          $comboOptions[$obj_option[$i]] = wpjobportal::wpjobportal_getVariableValue($obj_option[$i]);
+                      for ($wpjobportal_i = 0; $wpjobportal_i < count($obj_option); $wpjobportal_i++) {
+                          $wpjobportal_comboOptions[$obj_option[$wpjobportal_i]] = wpjobportal::wpjobportal_getVariableValue($obj_option[$wpjobportal_i]);
                       }
                   }
                 }
-                $jsFunction = '';
-                if ($field->depandant_field != null) {
-                    $jsFunction = "getDataForDepandantFieldResume('" . $field->field . "','" . $field->depandant_field . "',2,'".$section."','".$sectionid."'". $theme_string.");";
+                $wpjobportal_jsFunction = '';
+                if ($wpjobportal_field->depandant_field != null) {
+                    $wpjobportal_jsFunction = "getDataForDepandantFieldResume('" . $wpjobportal_field->field . "','" . $wpjobportal_field->depandant_field . "',2,'".$wpjobportal_section."','".$wpjobportal_sectionid."'". $wpjobportal_theme_string.");";
                 }
-                $extraattr = array('class' => "cf_radio radiobutton $cssclass".$specialClass , 'data-validation' => $cssclass, 'onclick' => $jsFunction);
+                $wpjobportal_extraattr = array('class' => "cf_radio radiobutton $cssclass".$specialClass , 'data-validation' => $cssclass, 'onclick' => $wpjobportal_jsFunction);
                 // handleformresume
-                if($section AND $section != 1){
-                    if($ishidden){
-                        if ($required == 1) {
-                            $extraattr['data-validation'] = '';
-                            $extraattr['data-myrequired'] = $cssclass;
-                            $extraattr['class'] = "cf_radio radiobutton";
+                if($wpjobportal_section AND $wpjobportal_section != 1){
+                    if($wpjobportal_ishidden){
+                        if ($wpjobportal_required == 1) {
+                            $wpjobportal_extraattr['data-validation'] = '';
+                            $wpjobportal_extraattr['data-myrequired'] = $cssclass;
+                            $wpjobportal_extraattr['class'] = "cf_radio radiobutton";
                         }
                     }
                 }
                 //END handleformresume
 
-                $user_field .= $this->radiobuttonResume($field->field, $comboOptions, $value, $extraattr , $section , $sectionid);
+                $wpjobportal_user_field .= $this->radiobuttonResume($wpjobportal_field->field, $wpjobportal_comboOptions, $wpjobportal_value, $wpjobportal_extraattr , $wpjobportal_section , $wpjobportal_sectionid);
             break;
             case 'combo':
-                if(wpjobportal::$theme_chk == 1){
-                    $themeclass = getJobManagerThemeClass('select');
+                if(wpjobportal::$wpjobportal_theme_chk == 1){
+                    $wpjobportal_themeclass = getJobManagerThemeClass('select');
                 }else{
-                    $themeclass = '';
+                    $wpjobportal_themeclass = '';
                 }
-                $comboOptions = array();
-                if (!empty($field->userfieldparams)) {
-                    $obj_option = json_decode($field->userfieldparams);
+                $wpjobportal_comboOptions = array();
+                if (!empty($wpjobportal_field->userfieldparams)) {
+                    $obj_option = json_decode($wpjobportal_field->userfieldparams);
                     foreach ($obj_option as $opt) {
-                        $comboOptions[] = (object) array('id' => $opt, 'text' => wpjobportal::wpjobportal_getVariableValue($opt));
+                        $wpjobportal_comboOptions[] = (object) array('id' => $opt, 'text' => wpjobportal::wpjobportal_getVariableValue($opt));
                     }
                 }
                 //code for handling dependent field
-                $jsFunction = '';
-                if ($field->depandant_field != null) {
-                    $jsFunction = "getDataForDepandantFieldResume('" . $field->field . "','" . $field->depandant_field . "',1,'".$section."','".$sectionid."'". $theme_string.");";
+                $wpjobportal_jsFunction = '';
+                if ($wpjobportal_field->depandant_field != null) {
+                    $wpjobportal_jsFunction = "getDataForDepandantFieldResume('" . $wpjobportal_field->field . "','" . $wpjobportal_field->depandant_field . "',1,'".$wpjobportal_section."','".$wpjobportal_sectionid."'". $wpjobportal_theme_string.");";
                 }
-                if ($field->placeholder != '') {
-                    $placeholder = $field->placeholder;
+                if ($wpjobportal_field->placeholder != '') {
+                    $placeholder = $wpjobportal_field->placeholder;
                 } else {
-                    $placeholder = esc_html(__('Select', 'wp-job-portal')) . ' ' . esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle));
+                    $placeholder = esc_html(__('Select', 'wp-job-portal')) . ' ' . esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle));
                 }
                 //end
                 //code for handling visible field
-                $jsVisibleFunction = '';
-                if ($field->visible_field != null) {
-                    $visibleparams = WPJOBPORTALincluder::getJSModel('fieldordering')->getDataForVisibleField($field->visible_field);
-                    foreach ($visibleparams as $visibleparam) {
+                $wpjobportal_jsVisibleFunction = '';
+                if ($wpjobportal_field->visible_field != null) {
+                    $wpjobportal_visibleparams = WPJOBPORTALincluder::getJSModel('fieldordering')->getDataForVisibleField($wpjobportal_field->visible_field);
+                    foreach ($wpjobportal_visibleparams as $wpjobportal_visibleparam) {
                         $wpnonce = wp_create_nonce("is-field-required");
                         // the code is double t handle the personal section and custom sections. (first line handles personal section & second line line handles resume custom sections)
-                        $jsVisibleFunction .= " getDataForVisibleField('".$wpnonce."', this.value, '" . $visibleparam->visibleParent . "','" . 'sec_1['.$visibleparam->visibleParentField.']' . "','".$visibleparam->visibleValue."','".$visibleparam->visibleCondition."');";
-                        $jsVisibleFunction .= " getDataForVisibleField('".$wpnonce."', this.value, '" . $visibleparam->visibleParent . "','" . $visibleparam->visibleParentField. "','".$visibleparam->visibleValue."','".$visibleparam->visibleCondition."');";
+                        $wpjobportal_jsVisibleFunction .= " getDataForVisibleField('".$wpnonce."', this.value, '" . $wpjobportal_visibleparam->visibleParent . "','" . 'sec_1['.$wpjobportal_visibleparam->visibleParentField.']' . "','".$wpjobportal_visibleparam->visibleValue."','".$wpjobportal_visibleparam->visibleCondition."');";
+                        $wpjobportal_jsVisibleFunction .= " getDataForVisibleField('".$wpnonce."', this.value, '" . $wpjobportal_visibleparam->visibleParent . "','" . $wpjobportal_visibleparam->visibleParentField. "','".$wpjobportal_visibleparam->visibleValue."','".$wpjobportal_visibleparam->visibleCondition."');";
                     }
-                    $jsFunction.=$jsVisibleFunction;
+                    $wpjobportal_jsFunction.=$wpjobportal_jsVisibleFunction;
                 }
-                $extraattr = array('data-validation' => $cssclass, 'onchange' => $jsFunction, 'class' => "inputbox wjportal-form-select-field one ".$cssclass.$specialClass.$themeclass);
+                $wpjobportal_extraattr = array('data-validation' => $cssclass, 'onchange' => $wpjobportal_jsFunction, 'class' => "inputbox wjportal-form-select-field one ".$cssclass.$specialClass.$wpjobportal_themeclass);
                 // handleformresume
-                if($section AND $section != 1){
-                    if($ishidden){
-                        if ($required == 1) {
-                            $extraattr['data-validation'] = '';
-                            $extraattr['data-myrequired'] = $cssclass;
-                            $extraattr['class'] = "inputbox wjportal-form-select-field one";
+                if($wpjobportal_section AND $wpjobportal_section != 1){
+                    if($wpjobportal_ishidden){
+                        if ($wpjobportal_required == 1) {
+                            $wpjobportal_extraattr['data-validation'] = '';
+                            $wpjobportal_extraattr['data-myrequired'] = $cssclass;
+                            $wpjobportal_extraattr['class'] = "inputbox wjportal-form-select-field one";
                         }
                     }
                 }
                 //END handleformresume
 
-                $user_field .= $this->selectResume($field->field, $comboOptions, $value, $placeholder, $extraattr , null,$section , $sectionid);
+                $wpjobportal_user_field .= $this->selectResume($wpjobportal_field->field, $wpjobportal_comboOptions, $wpjobportal_value, $placeholder, $wpjobportal_extraattr , null,$wpjobportal_section , $wpjobportal_sectionid);
             break;
             /*case 'depandant_field':
-                if(wpjobportal::$theme_chk == 1){
-                    $themeclass = getJobManagerThemeClass('select');
+                if(wpjobportal::$wpjobportal_theme_chk == 1){
+                    $wpjobportal_themeclass = getJobManagerThemeClass('select');
                 }else{
-                    $themeclass = '';
+                    $wpjobportal_themeclass = '';
                 }
-                $comboOptions = array();
-                if ($value != null) {
-                    if (!empty($field->userfieldparams)) {
-                        $obj_option = $this->getDataForDepandantFieldByParentField($field->field, $userfielddataarray);
+                $wpjobportal_comboOptions = array();
+                if ($wpjobportal_value != null) {
+                    if (!empty($wpjobportal_field->userfieldparams)) {
+                        $obj_option = $this->getDataForDepandantFieldByParentField($wpjobportal_field->field, $wpjobportal_userfielddataarray);
                         foreach ($obj_option as $opt) {
-                            $comboOptions[] = (object) array('id' => $opt, 'text' => wpjobportal::wpjobportal_getVariableValue($opt));
+                            $wpjobportal_comboOptions[] = (object) array('id' => $opt, 'text' => wpjobportal::wpjobportal_getVariableValue($opt));
                         }
                     }
                 }
                 //code for handling dependent field
-                $jsFunction = '';
-                if ($field->depandant_field != null) {
-                    $jsFunction = "getDataForDepandantFieldResume('" . $field->field . "','" . $field->depandant_field . "','".$section."','".$sectionid."'". $theme_string.");";
+                $wpjobportal_jsFunction = '';
+                if ($wpjobportal_field->depandant_field != null) {
+                    $wpjobportal_jsFunction = "getDataForDepandantFieldResume('" . $wpjobportal_field->field . "','" . $wpjobportal_field->depandant_field . "','".$wpjobportal_section."','".$wpjobportal_sectionid."'". $wpjobportal_theme_string.");";
                 }
                 //end
-                $extraattr = array('data-validation' => $cssclass, 'class' => "inputbox one ".$cssclass.$specialClass.$themeclass);
-                if(""!=$jsFunction){
-                    $extraattr['onchange']=$jsFunction;
+                $wpjobportal_extraattr = array('data-validation' => $cssclass, 'class' => "inputbox one ".$cssclass.$specialClass.$wpjobportal_themeclass);
+                if(""!=$wpjobportal_jsFunction){
+                    $wpjobportal_extraattr['onchange']=$wpjobportal_jsFunction;
                 }
                 // handleformresume
-                if($section AND $section != 1){
-                    if($ishidden){
-                        if ($required == 1) {
-                            $extraattr['data-validation'] = '';
-                            $extraattr['data-myrequired'] = $cssclass;
-                            $extraattr['class'] = "inputbox one";
+                if($wpjobportal_section AND $wpjobportal_section != 1){
+                    if($wpjobportal_ishidden){
+                        if ($wpjobportal_required == 1) {
+                            $wpjobportal_extraattr['data-validation'] = '';
+                            $wpjobportal_extraattr['data-myrequired'] = $cssclass;
+                            $wpjobportal_extraattr['class'] = "inputbox one";
                         }
                     }
                 }
                 //END handleformresume
-                $user_field .= $this->selectResume($field->field, $comboOptions, $value, esc_html(__('Select','wp-job-portal')) . ' ' . $field->fieldtitle, $extraattr , null, $section , $sectionid);
+                $wpjobportal_user_field .= $this->selectResume($wpjobportal_field->field, $wpjobportal_comboOptions, $wpjobportal_value, esc_html(__('Select','wp-job-portal')) . ' ' . $wpjobportal_field->fieldtitle, $wpjobportal_extraattr , null, $wpjobportal_section , $wpjobportal_sectionid);
             break;*/
             case 'multiple':
-                if(wpjobportal::$theme_chk == 1){
-                    $themeclass = getJobManagerThemeClass('select');
+                if(wpjobportal::$wpjobportal_theme_chk == 1){
+                    $wpjobportal_themeclass = getJobManagerThemeClass('select');
                 }else{
-                    $themeclass = '';
+                    $wpjobportal_themeclass = '';
                 }
-                $comboOptions = array();
-                if (!empty($field->userfieldparams)) {
-                    $obj_option = json_decode($field->userfieldparams);
+                $wpjobportal_comboOptions = array();
+                if (!empty($wpjobportal_field->userfieldparams)) {
+                    $obj_option = json_decode($wpjobportal_field->userfieldparams);
                     foreach ($obj_option as $opt) {
-                        $comboOptions[] = (object) array('id' => $opt, 'text' => wpjobportal::wpjobportal_getVariableValue($opt));
+                        $wpjobportal_comboOptions[] = (object) array('id' => $opt, 'text' => wpjobportal::wpjobportal_getVariableValue($opt));
                     }
                 }
-                $name = $field->field;
-                $name .= '[]';
-                $valuearray = wpjobportalphplib::wpJP_explode(', ', $value);
-                $ismultiple = 1;
-                $extraattr = array('data-validation' => $cssclass, 'multiple' => 'multiple', 'class' => "inputbox one ".$cssclass.$specialClass.$themeclass);
+                $wpjobportal_name = $wpjobportal_field->field;
+                $wpjobportal_name .= '[]';
+                $wpjobportal_valuearray = wpjobportalphplib::wpJP_explode(', ', $wpjobportal_value);
+                $wpjobportal_ismultiple = 1;
+                $wpjobportal_extraattr = array('data-validation' => $cssclass, 'multiple' => 'multiple', 'class' => "inputbox one ".$cssclass.$specialClass.$wpjobportal_themeclass);
                 // handleformresume
-                if($section AND $section != 1){
-                    if($ishidden){
-                        if ($required == 1) {
-                            $extraattr['data-validation'] = '';
-                            $extraattr['data-myrequired'] = $cssclass;
-                            $extraattr['class'] = "inputbox one";
+                if($wpjobportal_section AND $wpjobportal_section != 1){
+                    if($wpjobportal_ishidden){
+                        if ($wpjobportal_required == 1) {
+                            $wpjobportal_extraattr['data-validation'] = '';
+                            $wpjobportal_extraattr['data-myrequired'] = $cssclass;
+                            $wpjobportal_extraattr['class'] = "inputbox one";
                         }
                     }
                 }
                 //END handleformresume
-                //$user_field .= $this->selectResume($name, $comboOptions, $valuearray, '', $extraattr , null ,$section , $sectionid , $ismultiple);
-            	$user_field .= $this->selectResume($name, $comboOptions, $valuearray,  __('Select', 'wp-job-portal') . ' ' . esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)), $extraattr , null ,$section , $sectionid , $ismultiple);
+                //$wpjobportal_user_field .= $this->selectResume($wpjobportal_name, $wpjobportal_comboOptions, $wpjobportal_valuearray, '', $wpjobportal_extraattr , null ,$wpjobportal_section , $wpjobportal_sectionid , $wpjobportal_ismultiple);
+            	$wpjobportal_user_field .= $this->selectResume($wpjobportal_name, $wpjobportal_comboOptions, $wpjobportal_valuearray,  __('Select', 'wp-job-portal') . ' ' . esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle)), $wpjobportal_extraattr , null ,$wpjobportal_section , $wpjobportal_sectionid , $wpjobportal_ismultiple);
             break;
             case 'file':
-                if($value != null){ // since file already uploaded so we reglect the required
+                if($wpjobportal_value != null){ // since file already uploaded so we reglect the required
                     $cssclass = wpjobportalphplib::wpJP_str_replace('required', '', $cssclass);
                 }
 
-                $name = $field->field;
-                $data_required = '';
-                if($section){
-                    if($section != 1){
-                        if($ishidden){
-                            if($required == 1){
-                                $data_required = 'data-myrequired="required"';
+                $wpjobportal_name = $wpjobportal_field->field;
+                $wpjobportal_data_required = '';
+                if($wpjobportal_section){
+                    if($wpjobportal_section != 1){
+                        if($wpjobportal_ishidden){
+                            if($wpjobportal_required == 1){
+                                $wpjobportal_data_required = 'data-myrequired="required"';
                                 $cssclass = '';
                             }
                         }
-                        // $name = 'sec_'.$section.'['.$name.']['.$sectionid.']';// upload code does not work for resume section specific fields
+                        // $wpjobportal_name = 'sec_'.$wpjobportal_section.'['.$wpjobportal_name.']['.$wpjobportal_sectionid.']';// upload code does not work for resume section specific fields
                     }else{
-                        // $name = 'sec_'.$section.'['.$name.']';// upload code does not work for resume section specific fields
+                        // $wpjobportal_name = 'sec_'.$wpjobportal_section.'['.$wpjobportal_name.']';// upload code does not work for resume section specific fields
                     }
                 }
 
-                $user_field .= '<input type="file" class="'.esc_attr($cssclass).' cf_uploadfile" '.$data_required.' name="'.$name.'" id="'.$field->field.'"/>';
+                $wpjobportal_user_field .= '<input type="file" class="'.esc_attr($cssclass).' cf_uploadfile" '.$wpjobportal_data_required.' name="'.$wpjobportal_name.'" id="'.$wpjobportal_field->field.'"/>';
                 // if(JFactory::getApplication()->isAdmin()){
                 //     $this->_config = JSModel::getJSModel('configuration')->getConfig();
                 // }else{
@@ -452,378 +452,378 @@ class WPJOBPORTALcustomfields {
                 //         $fileext .= $conf->configvalue;
                 //     }
                 //     if ($conf->configname == 'document_file_size')
-                //         $maxFileSize = $conf->configvalue;
+                //         $wpjobportal_maxFileSize = $conf->configvalue;
                 // }
-                $image_file_type = wpjobportal::$_config->getConfigurationByConfigName('image_file_type');
+                $wpjobportal_image_file_type = wpjobportal::$_config->getConfigurationByConfigName('image_file_type');
                 $document_file_type = wpjobportal::$_config->getConfigurationByConfigName('document_file_type');
                 $document_file_size = wpjobportal::$_config->getConfigurationByConfigName('document_file_size');
 
                 $fileext  = '';
-                $fileext .= $document_file_type.','.$image_file_type;
-                $maxFileSize = $document_file_size;
-                $user_field .= '<div id="js_cust_file_ext">'.esc_html(__('Files','wp-job-portal')).' ('.$fileext.')<br> '.esc_html(__('Maximum Size','wp-job-portal')).' '.$maxFileSize.'(kb)</div>';
-                if($value != null){
-                    // $user_field .= $this->hidden($field->field.'_1', 0 , array(), $section , $sectionid);
-                    // $user_field .= $this->hidden($field->field.'_2',$value, array(), $section , $sectionid);
-                    $jsFunction = "deleteCutomUploadedFile('".$field->field."','".$field->required."')";
-                    // $value = wpjobportalphplib::wpJP_explode('_', $value , 2);
-                    // $value = $value[1];
-                    $user_field .= WPJOBPORTALformfield::hidden($field->field.'_1', 0);
-                    $user_field .= WPJOBPORTALformfield::hidden($field->field.'_2', $value);
-                    $user_field .='<span class='.$field->field.'_1>'.$value.'( ';
-                    $user_field .= "<a href='javascript:void(0)' onClick=".$jsFunction." >". esc_html(__('Delete','wp-job-portal'))."</a>";
-                    $user_field .= ' )</span>';
+                $fileext .= $document_file_type.','.$wpjobportal_image_file_type;
+                $wpjobportal_maxFileSize = $document_file_size;
+                $wpjobportal_user_field .= '<div id="js_cust_file_ext">'.esc_html(__('Files','wp-job-portal')).' ('.$fileext.')<br> '.esc_html(__('Maximum Size','wp-job-portal')).' '.$wpjobportal_maxFileSize.'(kb)</div>';
+                if($wpjobportal_value != null){
+                    // $wpjobportal_user_field .= $this->hidden($wpjobportal_field->field.'_1', 0 , array(), $wpjobportal_section , $wpjobportal_sectionid);
+                    // $wpjobportal_user_field .= $this->hidden($wpjobportal_field->field.'_2',$wpjobportal_value, array(), $wpjobportal_section , $wpjobportal_sectionid);
+                    $wpjobportal_jsFunction = "deleteCutomUploadedFile('".$wpjobportal_field->field."','".$wpjobportal_field->required."')";
+                    // $wpjobportal_value = wpjobportalphplib::wpJP_explode('_', $wpjobportal_value , 2);
+                    // $wpjobportal_value = $wpjobportal_value[1];
+                    $wpjobportal_user_field .= WPJOBPORTALformfield::hidden($wpjobportal_field->field.'_1', 0);
+                    $wpjobportal_user_field .= WPJOBPORTALformfield::hidden($wpjobportal_field->field.'_2', $wpjobportal_value);
+                    $wpjobportal_user_field .='<span class='.$wpjobportal_field->field.'_1>'.$wpjobportal_value.'( ';
+                    $wpjobportal_user_field .= "<a href='javascript:void(0)' onClick=".$wpjobportal_jsFunction." >". esc_html(__('Delete','wp-job-portal'))."</a>";
+                    $wpjobportal_user_field .= ' )</span>';
                 }
             break;
         }
-        $html .= $user_field;
-        if (isset($field->description) && !empty($field->description)) {
-            $html .= '<div class="wjportal-form-help-txt">'.$field->description.'</div>';
+        $wpjobportal_html .= $wpjobportal_user_field;
+        if (isset($wpjobportal_field->description) && !empty($wpjobportal_field->description)) {
+            $wpjobportal_html .= '<div class="wjportal-form-help-txt">'.$wpjobportal_field->description.'</div>';
         }
-        $html .= '</div></div>';
-        if ($resumeform === 1) {
-            return array('title' => $resumeTitle , 'value' => $user_field);
-        }elseif($resumeform == 'admin'){
-            return array('title' => $resumeTitle , 'value' => $user_field , 'lable' => $field->field);
-        }elseif($resumeform == 'f_company'){
-            return array('title' => $resumeTitle , 'value' => $user_field , 'lable' => $field->field);
+        $wpjobportal_html .= '</div></div>';
+        if ($wpjobportal_resumeform === 1) {
+            return array('title' => $wpjobportal_resumeTitle , 'value' => $wpjobportal_user_field);
+        }elseif($wpjobportal_resumeform == 'admin'){
+            return array('title' => $wpjobportal_resumeTitle , 'value' => $wpjobportal_user_field , 'lable' => $wpjobportal_field->field);
+        }elseif($wpjobportal_resumeform == 'f_company'){
+            return array('title' => $wpjobportal_resumeTitle , 'value' => $wpjobportal_user_field , 'lable' => $wpjobportal_field->field);
         }else {
-            return $html;
+            return $wpjobportal_html;
         }
 
     }
 
-    static function selectResume($name, $list, $defaultvalue, $title = '', $extraattr = array() , $disabled = '',  $resume_section_id = null , $sectionid = null , $ismultiple = false) {
-        if (wpjobportalphplib::wpJP_strpos($name, '[]') !== false) {
-            $id = wpjobportalphplib::wpJP_str_replace('[]', '', $name);
+    static function selectResume($wpjobportal_name, $list, $wpjobportal_defaultvalue, $title = '', $wpjobportal_extraattr = array() , $wpjobportal_disabled = '',  $wpjobportal_resume_section_id = null , $wpjobportal_sectionid = null , $wpjobportal_ismultiple = false) {
+        if (wpjobportalphplib::wpJP_strpos($wpjobportal_name, '[]') !== false) {
+            $wpjobportal_id = wpjobportalphplib::wpJP_str_replace('[]', '', $wpjobportal_name);
         }else{
-            $id = $name;
+            $wpjobportal_id = $wpjobportal_name;
         }
 
         // handleformresume
-        if($resume_section_id){
-            if($resume_section_id != 1){
-                if($ismultiple){
-                    $name = wpjobportalphplib::wpJP_str_replace('[]', '', $name);
-                    $name = 'sec_'.$resume_section_id.'['.$name.']['.$sectionid.'][]';
-                    $id .=$sectionid;
+        if($wpjobportal_resume_section_id){
+            if($wpjobportal_resume_section_id != 1){
+                if($wpjobportal_ismultiple){
+                    $wpjobportal_name = wpjobportalphplib::wpJP_str_replace('[]', '', $wpjobportal_name);
+                    $wpjobportal_name = 'sec_'.$wpjobportal_resume_section_id.'['.$wpjobportal_name.']['.$wpjobportal_sectionid.'][]';
+                    $wpjobportal_id .=$wpjobportal_sectionid;
                 }else{
-                    $name = 'sec_'.$resume_section_id.'['.$name.']['.$sectionid.']';
-                    $id .=$sectionid;
+                    $wpjobportal_name = 'sec_'.$wpjobportal_resume_section_id.'['.$wpjobportal_name.']['.$wpjobportal_sectionid.']';
+                    $wpjobportal_id .=$wpjobportal_sectionid;
                 }
             }else{
-                if($ismultiple){
-                    $name = wpjobportalphplib::wpJP_str_replace('[]', '', $name);
-                    $name = 'sec_'.$resume_section_id.'['.$name.'][]';
+                if($wpjobportal_ismultiple){
+                    $wpjobportal_name = wpjobportalphplib::wpJP_str_replace('[]', '', $wpjobportal_name);
+                    $wpjobportal_name = 'sec_'.$wpjobportal_resume_section_id.'['.$wpjobportal_name.'][]';
                 }else{
-                    $name = 'sec_'.$resume_section_id.'['.$name.']';
+                    $wpjobportal_name = 'sec_'.$wpjobportal_resume_section_id.'['.$wpjobportal_name.']';
                 }
             }
         }
         //END handleformresume
 
-        $selectfield = '<select name="' . $name . '" id="' . $id . '" ';
-        if (!empty($extraattr))
-            foreach ($extraattr AS $key => $val) {
-                $selectfield .= ' ' . $key . '="' . $val . '"';
+        $wpjobportal_selectfield = '<select name="' . $wpjobportal_name . '" id="' . $wpjobportal_id . '" ';
+        if (!empty($wpjobportal_extraattr))
+            foreach ($wpjobportal_extraattr AS $wpjobportal_key => $wpjobportal_val) {
+                $wpjobportal_selectfield .= ' ' . $wpjobportal_key . '="' . $wpjobportal_val . '"';
             }
-        if($disabled)
-            $selectfield .= ' disabled>';
+        if($wpjobportal_disabled)
+            $wpjobportal_selectfield .= ' disabled>';
         else
-            $selectfield .= ' >';
+            $wpjobportal_selectfield .= ' >';
         if ($title != '') {
-            $selectfield .= '<option value="">' . $title . '</option>';
+            $wpjobportal_selectfield .= '<option value="">' . $title . '</option>';
         }
         if (!empty($list))
             foreach ($list AS $record) {
-                if ((is_array($defaultvalue) && in_array($record->id, $defaultvalue)) || $defaultvalue == $record->id)
-                    $selectfield .= '<option selected="selected" value="' . $record->id . '">' . wpjobportal::wpjobportal_getVariableValue($record->text) . '</option>';
+                if ((is_array($wpjobportal_defaultvalue) && in_array($record->id, $wpjobportal_defaultvalue)) || $wpjobportal_defaultvalue == $record->id)
+                    $wpjobportal_selectfield .= '<option selected="selected" value="' . $record->id . '">' . wpjobportal::wpjobportal_getVariableValue($record->text) . '</option>';
                 else
-                    $selectfield .= '<option value="' . $record->id . '">' . wpjobportal::wpjobportal_getVariableValue($record->text) . '</option>';
+                    $wpjobportal_selectfield .= '<option value="' . $record->id . '">' . wpjobportal::wpjobportal_getVariableValue($record->text) . '</option>';
             }
 
-        $selectfield .= '</select>';
-        return $selectfield;
+        $wpjobportal_selectfield .= '</select>';
+        return $wpjobportal_selectfield;
     }
 
 
 
-    static function radiobuttonResume($name, $list, $defaultvalue, $extraattr = array() , $resume_section_id = null , $sectionid = null) {
-        if (wpjobportalphplib::wpJP_strpos($name, '[]') !== false) {
-            $id = wpjobportalphplib::wpJP_str_replace('[]', '', $name);
+    static function radiobuttonResume($wpjobportal_name, $list, $wpjobportal_defaultvalue, $wpjobportal_extraattr = array() , $wpjobportal_resume_section_id = null , $wpjobportal_sectionid = null) {
+        if (wpjobportalphplib::wpJP_strpos($wpjobportal_name, '[]') !== false) {
+            $wpjobportal_id = wpjobportalphplib::wpJP_str_replace('[]', '', $wpjobportal_name);
         }else{
-            $id = $name;
+            $wpjobportal_id = $wpjobportal_name;
         }
 
         $radiobutton = '';
-        $count = 1;
-        $match = false;
-        $firstvalue = '';
-        foreach($list AS $value => $label){
-            if($firstvalue == '')
-                $firstvalue = $value;
-            if($defaultvalue == $value){
-                $match = true;
+        $wpjobportal_count = 1;
+        $wpjobportal_match = false;
+        $wpjobportal_firstvalue = '';
+        foreach($list AS $wpjobportal_value => $wpjobportal_label){
+            if($wpjobportal_firstvalue == '')
+                $wpjobportal_firstvalue = $wpjobportal_value;
+            if($wpjobportal_defaultvalue == $wpjobportal_value){
+                $wpjobportal_match = true;
                 break;
             }
         }
-        if($match == false){
-            //$defaultvalue = $firstvalue;
+        if($wpjobportal_match == false){
+            //$wpjobportal_defaultvalue = $wpjobportal_firstvalue;
         }
 
         // handleformresume
-        if($resume_section_id){
-            if($resume_section_id != 1){
-                $name = 'sec_'.$resume_section_id.'['.$name.']['.$sectionid.']';
-                $id .=$sectionid;
+        if($wpjobportal_resume_section_id){
+            if($wpjobportal_resume_section_id != 1){
+                $wpjobportal_name = 'sec_'.$wpjobportal_resume_section_id.'['.$wpjobportal_name.']['.$wpjobportal_sectionid.']';
+                $wpjobportal_id .=$wpjobportal_sectionid;
             }else{
-                $name = 'sec_'.$resume_section_id.'['.$name.']';
+                $wpjobportal_name = 'sec_'.$wpjobportal_resume_section_id.'['.$wpjobportal_name.']';
             }
         }
         //END handleformresume
 
-        foreach ($list AS $value => $label) {
-            $radiobutton .= '<span class="uf_radiobtn_wrp">';
-            $radiobutton .= '<input type="radio" name="' . $name . '" id="' . $id . $count . '" value="' . wpjobportalphplib::wpJP_htmlspecialchars($value) . '"';
-            if ($defaultvalue == $value){
+        foreach ($list AS $wpjobportal_value => $wpjobportal_label) {
+            $radiobutton .= '<span class="wpjobportal-form-radio-field">';
+            $radiobutton .= '<input type="radio" name="' . $wpjobportal_name . '" id="' . $wpjobportal_id . $wpjobportal_count . '" value="' . wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_value) . '"';
+            if ($wpjobportal_defaultvalue == $wpjobportal_value){
                 $radiobutton .= ' checked="checked"';
             }
-            if (!empty($extraattr))
-                foreach ($extraattr AS $key => $val) {
-                    $radiobutton .= ' ' . $key . '="' . $val . '"';
+            if (!empty($wpjobportal_extraattr))
+                foreach ($wpjobportal_extraattr AS $wpjobportal_key => $wpjobportal_val) {
+                    $radiobutton .= ' ' . $wpjobportal_key . '="' . $wpjobportal_val . '"';
                 }
-            $radiobutton .= '/><label id="for' . $id . '" class="cf_radiobtn" for="' . $id . $count . '">' . $label . '</label>';
+            $radiobutton .= '/><label id="for' . $wpjobportal_id . '" class="cf_radiobtn" for="' . $wpjobportal_id . $wpjobportal_count . '">' . $wpjobportal_label . '</label>';
             $radiobutton .= '</span>';
-            $count++;
+            $wpjobportal_count++;
         }
         return $radiobutton;
     }
 
 
 
-    static function checkboxResume($name, $list, $defaultvalue, $extraattr = array() , $resume_section_id = null , $sectionid = null) {
+    static function checkboxResume($wpjobportal_name, $list, $wpjobportal_defaultvalue, $wpjobportal_extraattr = array() , $wpjobportal_resume_section_id = null , $wpjobportal_sectionid = null) {
 
-        if (wpjobportalphplib::wpJP_strpos($name, '[]') !== false) {
-            $id = wpjobportalphplib::wpJP_str_replace('[]', '', $name);
+        if (wpjobportalphplib::wpJP_strpos($wpjobportal_name, '[]') !== false) {
+            $wpjobportal_id = wpjobportalphplib::wpJP_str_replace('[]', '', $wpjobportal_name);
         }else{
-            $id = $name;
+            $wpjobportal_id = $wpjobportal_name;
         }
 
-        $checkbox = '';
-        $count = 1;
+        $wpjobportal_checkbox = '';
+        $wpjobportal_count = 1;
 
         // handleformresume
-        if($resume_section_id){
-            if($resume_section_id != 1){
-                $name = 'sec_'.$resume_section_id.'['.$name.']['.$sectionid.'][]';
-                $id .=$sectionid;
+        if($wpjobportal_resume_section_id){
+            if($wpjobportal_resume_section_id != 1){
+                $wpjobportal_name = 'sec_'.$wpjobportal_resume_section_id.'['.$wpjobportal_name.']['.$wpjobportal_sectionid.'][]';
+                $wpjobportal_id .=$wpjobportal_sectionid;
             }else{
-                $name = 'sec_'.$resume_section_id.'['.$name.'][]';
+                $wpjobportal_name = 'sec_'.$wpjobportal_resume_section_id.'['.$wpjobportal_name.'][]';
             }
         }
         //END handleformresume
 
-        foreach ($list AS $value => $label) {
-            $checkbox .= '<input type="checkbox" name="' . $name . '" id="' . $id . $count . '" value="' . wpjobportalphplib::wpJP_htmlspecialchars($value) . '"';
-            if ($defaultvalue == $value)
-                $checkbox .= ' checked="checked"';
-            if (!empty($extraattr))
-                foreach ($extraattr AS $key => $val) {
-                    $checkbox .= ' ' . $key . '="' . $val . '"';
+        foreach ($list AS $wpjobportal_value => $wpjobportal_label) {
+            $wpjobportal_checkbox .= '<input type="checkbox" name="' . $wpjobportal_name . '" id="' . $wpjobportal_id . $wpjobportal_count . '" value="' . wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_value) . '"';
+            if ($wpjobportal_defaultvalue == $wpjobportal_value)
+                $wpjobportal_checkbox .= ' checked="checked"';
+            if (!empty($wpjobportal_extraattr))
+                foreach ($wpjobportal_extraattr AS $wpjobportal_key => $wpjobportal_val) {
+                    $wpjobportal_checkbox .= ' ' . $wpjobportal_key . '="' . $wpjobportal_val . '"';
                 }
-            $checkbox .= '/><label id="for' . $id . '" for="' . $id . $count . '">' . $label . '</label>';
-            $count++;
+            $wpjobportal_checkbox .= '/><label id="for' . $wpjobportal_id . '" for="' . $wpjobportal_id . $wpjobportal_count . '">' . $wpjobportal_label . '</label>';
+            $wpjobportal_count++;
         }
-        return $checkbox;
+        return $wpjobportal_checkbox;
     }
 
 
-    static function textareaResume($name, $value, $extraattr = array() , $resume_section_id = null , $sectionid = null) {
-            if (wpjobportalphplib::wpJP_strpos($name, '[]') !== false) {
-                $id = wpjobportalphplib::wpJP_str_replace('[]', '', $name);
+    static function textareaResume($wpjobportal_name, $wpjobportal_value, $wpjobportal_extraattr = array() , $wpjobportal_resume_section_id = null , $wpjobportal_sectionid = null) {
+            if (wpjobportalphplib::wpJP_strpos($wpjobportal_name, '[]') !== false) {
+                $wpjobportal_id = wpjobportalphplib::wpJP_str_replace('[]', '', $wpjobportal_name);
             }else{
-                $id = $name;
+                $wpjobportal_id = $wpjobportal_name;
             }
         // handleformresume
-        if($resume_section_id){
-            if($resume_section_id != 1){
-                $name = 'sec_'.$resume_section_id.'['.$name.']['.$sectionid.']';
-                $id .=$sectionid;
+        if($wpjobportal_resume_section_id){
+            if($wpjobportal_resume_section_id != 1){
+                $wpjobportal_name = 'sec_'.$wpjobportal_resume_section_id.'['.$wpjobportal_name.']['.$wpjobportal_sectionid.']';
+                $wpjobportal_id .=$wpjobportal_sectionid;
             }else{
-                $name = 'sec_'.$resume_section_id.'['.$name.']';
+                $wpjobportal_name = 'sec_'.$wpjobportal_resume_section_id.'['.$wpjobportal_name.']';
             }
         }
         //END handleformresume
 
-        $textarea = '<textarea name="' . $name . '" id="' . $id . '" ';
-        if (!empty($extraattr))
-            foreach ($extraattr AS $key => $val)
-                $textarea .= ' ' . $key . '="' . $val . '"';
-        $textarea .= ' >' . wpjobportalphplib::wpJP_htmlspecialchars($value) . '</textarea>';
-        return $textarea;
+        $wpjobportal_textarea = '<textarea name="' . $wpjobportal_name . '" id="' . $wpjobportal_id . '" ';
+        if (!empty($wpjobportal_extraattr))
+            foreach ($wpjobportal_extraattr AS $wpjobportal_key => $wpjobportal_val)
+                $wpjobportal_textarea .= ' ' . $wpjobportal_key . '="' . $wpjobportal_val . '"';
+        $wpjobportal_textarea .= ' >' . wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_value) . '</textarea>';
+        return $wpjobportal_textarea;
     }
 
 
-    static function dateResume($name, $value, $extraattr = array() , $resume_section_id = null , $sectionid = null) {
-        if (wpjobportalphplib::wpJP_strpos($name, '[]') !== false) {
-            $id = wpjobportalphplib::wpJP_str_replace('[]', '', $name);
+    static function dateResume($wpjobportal_name, $wpjobportal_value, $wpjobportal_extraattr = array() , $wpjobportal_resume_section_id = null , $wpjobportal_sectionid = null) {
+        if (wpjobportalphplib::wpJP_strpos($wpjobportal_name, '[]') !== false) {
+            $wpjobportal_id = wpjobportalphplib::wpJP_str_replace('[]', '', $wpjobportal_name);
         }else{
-            $id = $name;
+            $wpjobportal_id = $wpjobportal_name;
         }
 
         // handleformresume
-        if($resume_section_id){
-            if($resume_section_id != 1){
-                $name = 'sec_'.$resume_section_id.'['.$name.']['.$sectionid.']';
-                $id .=$sectionid;
+        if($wpjobportal_resume_section_id){
+            if($wpjobportal_resume_section_id != 1){
+                $wpjobportal_name = 'sec_'.$wpjobportal_resume_section_id.'['.$wpjobportal_name.']['.$wpjobportal_sectionid.']';
+                $wpjobportal_id .=$wpjobportal_sectionid;
             }else{
-                $name = 'sec_'.$resume_section_id.'['.$name.']';
+                $wpjobportal_name = 'sec_'.$wpjobportal_resume_section_id.'['.$wpjobportal_name.']';
             }
         }
         //END handleformresume
 
-        $textfield = '<input type="text" name="' . $name . '" id="' . $id . '" value="' . htmlspecialchars($value) . '" ';
-        if (!empty($extraattr))
-            foreach ($extraattr AS $key => $val)
-                $textfield .= ' ' . $key . '="' . $val . '"';
-        $textfield .= ' />';
-        return $textfield;
+        $wpjobportal_textfield = '<input type="text" name="' . $wpjobportal_name . '" id="' . $wpjobportal_id . '" value="' . htmlspecialchars($wpjobportal_value) . '" ';
+        if (!empty($wpjobportal_extraattr))
+            foreach ($wpjobportal_extraattr AS $wpjobportal_key => $wpjobportal_val)
+                $wpjobportal_textfield .= ' ' . $wpjobportal_key . '="' . $wpjobportal_val . '"';
+        $wpjobportal_textfield .= ' />';
+        return $wpjobportal_textfield;
     }
 
-    static function textResume($name, $value, $extraattr = array() , $resume_section_id = null , $sectionid = null) {
+    static function textResume($wpjobportal_name, $wpjobportal_value, $wpjobportal_extraattr = array() , $wpjobportal_resume_section_id = null , $wpjobportal_sectionid = null) {
 
 
-        if (wpjobportalphplib::wpJP_strpos($name, '[]') !== false) {
-            $id = wpjobportalphplib::wpJP_str_replace('[]', '', $name);
+        if (wpjobportalphplib::wpJP_strpos($wpjobportal_name, '[]') !== false) {
+            $wpjobportal_id = wpjobportalphplib::wpJP_str_replace('[]', '', $wpjobportal_name);
         }else{
-            $id = $name;
+            $wpjobportal_id = $wpjobportal_name;
         }
 
         // handleformresume
-        if($resume_section_id){
-            if($resume_section_id != 1){
-                $name = 'sec_'.$resume_section_id.'['.$name.']['.$sectionid.']';
-                $id .=$sectionid;
+        if($wpjobportal_resume_section_id){
+            if($wpjobportal_resume_section_id != 1){
+                $wpjobportal_name = 'sec_'.$wpjobportal_resume_section_id.'['.$wpjobportal_name.']['.$wpjobportal_sectionid.']';
+                $wpjobportal_id .=$wpjobportal_sectionid;
             }else{
-                $name = 'sec_'.$resume_section_id.'['.$name.']';
+                $wpjobportal_name = 'sec_'.$wpjobportal_resume_section_id.'['.$wpjobportal_name.']';
             }
         }
         //END handleformresume
 
-        $textfield = '<input type="text" name="' . $name . '" id="' . $id . '" value="' . wpjobportalphplib::wpJP_htmlspecialchars($value) . '" ';
-        if (!empty($extraattr))
-            foreach ($extraattr AS $key => $val)
-                $textfield .= ' ' . $key . '="' . wpjobportalphplib::wpJP_htmlspecialchars($val) . '"';
-        $textfield .= ' />';
-        return $textfield;
+        $wpjobportal_textfield = '<input type="text" name="' . $wpjobportal_name . '" id="' . $wpjobportal_id . '" value="' . wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_value) . '" ';
+        if (!empty($wpjobportal_extraattr))
+            foreach ($wpjobportal_extraattr AS $wpjobportal_key => $wpjobportal_val)
+                $wpjobportal_textfield .= ' ' . $wpjobportal_key . '="' . wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_val) . '"';
+        $wpjobportal_textfield .= ' />';
+        return $wpjobportal_textfield;
     }
 
-    static function emailResume($name, $value, $extraattr = array() , $resume_section_id = null , $sectionid = null) {
-        if (wpjobportalphplib::wpJP_strpos($name, '[]') !== false) {
-            $id = wpjobportalphplib::wpJP_str_replace('[]', '', $name);
+    static function emailResume($wpjobportal_name, $wpjobportal_value, $wpjobportal_extraattr = array() , $wpjobportal_resume_section_id = null , $wpjobportal_sectionid = null) {
+        if (wpjobportalphplib::wpJP_strpos($wpjobportal_name, '[]') !== false) {
+            $wpjobportal_id = wpjobportalphplib::wpJP_str_replace('[]', '', $wpjobportal_name);
         }else{
-            $id = $name;
+            $wpjobportal_id = $wpjobportal_name;
         }
 
         // handleformresume
-        if($resume_section_id){
-            if($resume_section_id != 1){
-                $name = 'sec_'.$resume_section_id.'['.$name.']['.$sectionid.']';
-                $id .=$sectionid;
+        if($wpjobportal_resume_section_id){
+            if($wpjobportal_resume_section_id != 1){
+                $wpjobportal_name = 'sec_'.$wpjobportal_resume_section_id.'['.$wpjobportal_name.']['.$wpjobportal_sectionid.']';
+                $wpjobportal_id .=$wpjobportal_sectionid;
             }else{
-                $name = 'sec_'.$resume_section_id.'['.$name.']';
+                $wpjobportal_name = 'sec_'.$wpjobportal_resume_section_id.'['.$wpjobportal_name.']';
             }
         }
         //END handleformresume
 
-        $textfield = '<input type="email" name="' . $name . '" id="' . $id . '" value="' . wpjobportalphplib::wpJP_htmlspecialchars($value) . '" ';
-        if (!empty($extraattr))
-            foreach ($extraattr AS $key => $val)
-                $textfield .= ' ' . $key . '="' . $val . '"';
-        $textfield .= ' />';
-        return $textfield;
+        $wpjobportal_textfield = '<input type="email" name="' . $wpjobportal_name . '" id="' . $wpjobportal_id . '" value="' . wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_value) . '" ';
+        if (!empty($wpjobportal_extraattr))
+            foreach ($wpjobportal_extraattr AS $wpjobportal_key => $wpjobportal_val)
+                $wpjobportal_textfield .= ' ' . $wpjobportal_key . '="' . $wpjobportal_val . '"';
+        $wpjobportal_textfield .= ' />';
+        return $wpjobportal_textfield;
     }
 
-    function formCustomFields($field,$resumeform = null, $section = null, $refid = null,$themecall=null) {
+    function formCustomFields($wpjobportal_field,$wpjobportal_resumeform = null, $wpjobportal_section = null, $refid = null,$wpjobportal_themecall=null) {
         //patch to saolve notices on resume form but it may causse problems like showing disabled fiedls
-        if ($resumeform != 1) {
-            if ($field->isuserfield != 1) {
+        if ($wpjobportal_resumeform != 1) {
+            if ($wpjobportal_field->isuserfield != 1) {
                 return;
             }
         }
 
-        if(null != $themecall){
-            $div1 = 'resume-row-wrapper form';
-            $div2 = 'row-title';
-            $div3 = 'row-value';
+        if(null != $wpjobportal_themecall){
+            $wpjobportal_div1 = 'resume-row-wrapper form';
+            $wpjobportal_div2 = 'row-title';
+            $wpjobportal_div3 = 'row-value';
         }else{
-            $div1 = 'resume-row-wrapper form';
-            $div2 = 'row-title';
-            $div3 = 'row-value';
+            $wpjobportal_div1 = 'resume-row-wrapper form';
+            $wpjobportal_div2 = 'row-title';
+            $wpjobportal_div3 = 'row-value';
 
         }
 
         $cssclass = "";
-        $visibleclass = "";
-        if (isset($field->visibleparams) && $field->visibleparams != ''){
-            $visibleclass = "visible";
-            $div1 .= ' visible ';
+        $wpjobportal_visibleclass = "";
+        if (isset($wpjobportal_field->visibleparams) && $wpjobportal_field->visibleparams != ''){
+            $wpjobportal_visibleclass = "visible";
+            $wpjobportal_div1 .= ' visible ';
         }
-        $html = '';
-        $themebfclass = " ".$this->class_prefix."-bigfont ";
-        $required = $field->required;
-        if ($required == 1) {
-            $html .= wpjobportal::wpjobportal_getVariableValue($field->fieldtitle) . '<font color="red"> *</font>';
+        $wpjobportal_html = '';
+        $wpjobportal_themebfclass = " ".$this->class_prefix."-bigfont ";
+        $wpjobportal_required = $wpjobportal_field->required;
+        if ($wpjobportal_required == 1) {
+            $wpjobportal_html .= wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle) . '<font color="red"> *</font>';
             $cssclass = "required";
         }else {
-            $html .= wpjobportal::wpjobportal_getVariableValue($field->fieldtitle);
+            $wpjobportal_html .= wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle);
             $cssclass = "";
         }
-        if (isset($field->visibleparams) && $field->visibleparams !='') {
-            $required = 0;
+        if (isset($wpjobportal_field->visibleparams) && $wpjobportal_field->visibleparams !='') {
+            $wpjobportal_required = 0;
             $cssclass= '';
         }
-        //$readonly = $field->readonly ? "'readonly => 'readonly'" : "";
-        //$maxlength = $field->maxlength ? "'maxlength' => '" . $field->maxlength : "";
+        //$wpjobportal_readonly = $wpjobportal_field->readonly ? "'readonly => 'readonly'" : "";
+        //$wpjobportal_maxlength = $wpjobportal_field->maxlength ? "'maxlength' => '" . $wpjobportal_field->maxlength : "";
         $fvalue = "";
-        $value = "";
-        $userdataid = "";
-        if ($resumeform == 1) {
-            if($section == 1 || $section == 5 || $section == 6){ // personal section
+        $wpjobportal_value = "";
+        $wpjobportal_userdataid = "";
+        if ($wpjobportal_resumeform == 1) {
+            if($wpjobportal_section == 1 || $wpjobportal_section == 5 || $wpjobportal_section == 6){ // personal section
                 if(isset(wpjobportal::$_data[0]['personal_section'])){
-                    $value = wpjobportal::$_data[0]['personal_section']->params;
+                    $wpjobportal_value = wpjobportal::$_data[0]['personal_section']->params;
                 }
-            }elseif($section == 2){
+            }elseif($wpjobportal_section == 2){
                 if(isset(wpjobportal::$_data[0]['address_section'])){
-                    $value = wpjobportal::$_data[0]['address_section']->params;
+                    $wpjobportal_value = wpjobportal::$_data[0]['address_section']->params;
                 }
-            }elseif($section == 3){
+            }elseif($wpjobportal_section == 3){
                 if(isset(wpjobportal::$_data[0]['institute_section'])){
-                    $value = wpjobportal::$_data[0]['institute_section']->params;
+                    $wpjobportal_value = wpjobportal::$_data[0]['institute_section']->params;
                 }
-            }elseif($section == 4){
+            }elseif($wpjobportal_section == 4){
                 if(isset(wpjobportal::$_data[0]['employer_section'])){
-                    $value = wpjobportal::$_data[0]['employer_section']->params;
+                    $wpjobportal_value = wpjobportal::$_data[0]['employer_section']->params;
                 }
-            }elseif($section == 7){
+            }elseif($wpjobportal_section == 7){
                 if(isset(wpjobportal::$_data[0]['reference_section'])){
-                    $value = wpjobportal::$_data[0]['reference_section']->params;
+                    $wpjobportal_value = wpjobportal::$_data[0]['reference_section']->params;
                 }
-            }elseif($section == 8){
+            }elseif($wpjobportal_section == 8){
                 if(isset(wpjobportal::$_data[0]['language_section'])){
-                    $value = wpjobportal::$_data[0]['language_section']->params;
+                    $wpjobportal_value = wpjobportal::$_data[0]['language_section']->params;
                 }
             }
-            if($value){ // data has been stored
-                $userfielddataarray = json_decode($value);
-                $valuearray = json_decode($value,true);
+            if($wpjobportal_value){ // data has been stored
+                $wpjobportal_userfielddataarray = json_decode($wpjobportal_value);
+                $wpjobportal_valuearray = json_decode($wpjobportal_value,true);
             }else{
-                $valuearray = array();
+                $wpjobportal_valuearray = array();
             }
-            if(array_key_exists($field->field, $valuearray)){
-                $value = $valuearray[$field->field];
+            if(array_key_exists($wpjobportal_field->field, $wpjobportal_valuearray)){
+                $wpjobportal_value = $wpjobportal_valuearray[$wpjobportal_field->field];
             }else{
-                $value = '';
+                $wpjobportal_value = '';
             }
         } elseif (isset(wpjobportal::$_data[0]->id)) {
             // to handle the case of custom fields showing on listing and detail but not on form in edit case
@@ -832,427 +832,433 @@ class WPJOBPORTALcustomfields {
                 $params = wpjobportalphplib::wpJP_stripslashes($params);
             }
             $params = html_entity_decode($params, ENT_QUOTES);
-            $userfielddataarray = json_decode($params);
-            $uffield = $field->field;
-            if (isset($userfielddataarray->$uffield) || !empty($userfielddataarray->$uffield)) {
-                $value = $userfielddataarray->$uffield;
+            $wpjobportal_userfielddataarray = json_decode($params);
+            $uffield = $wpjobportal_field->field;
+            if (isset($wpjobportal_userfielddataarray->$uffield) || !empty($wpjobportal_userfielddataarray->$uffield)) {
+                $wpjobportal_value = $wpjobportal_userfielddataarray->$uffield;
             } else {
-                $value = '';
+                $wpjobportal_value = '';
             }
         }
-        $html = '<div class="' . $div1 . '">
-               <div class="' . $div2 . '">';
+        $wpjobportal_html = '<div class="' . $wpjobportal_div1 . '">
+               <div class="' . $wpjobportal_div2 . '">';
 
-        $theme_string = '';
-        $html = '';
+        $wpjobportal_theme_string = '';
+        $wpjobportal_html = '';
         $specialClass = '';
-        if($value != ''){
+        if($wpjobportal_value != ''){
             $specialClass = ' specialClass ';
         }
-        switch ($field->userfieldtype) {
+        switch ($wpjobportal_field->userfieldtype) {
             case 'text':
-                if(wpjobportal::$theme_chk == 1){
-                    $themeclass = getJobManagerThemeClass('text');
+                if(wpjobportal::$wpjobportal_theme_chk == 1){
+                    $wpjobportal_themeclass = getJobManagerThemeClass('text');
                 }else{
-                    $themeclass = '';
+                    $wpjobportal_themeclass = '';
                 }
-                $html .= WPJOBPORTALformfield::text($field->field, $value, array('class' => ' inputbox one wjportal-form-input-field '. $themeclass.$specialClass, 'data-validation' => $cssclass,'placeholder'=>$field->placeholder));
+                $wpjobportal_html .= WPJOBPORTALformfield::text($wpjobportal_field->field, $wpjobportal_value, array('class' => ' inputbox one wjportal-form-input-field '. $wpjobportal_themeclass.$specialClass, 'data-validation' => $cssclass,'placeholder'=>$wpjobportal_field->placeholder));
                 break;
             case 'email':
-                if(wpjobportal::$theme_chk == 1){
-                    $themeclass = getJobManagerThemeClass('text');
+                if(wpjobportal::$wpjobportal_theme_chk == 1){
+                    $wpjobportal_themeclass = getJobManagerThemeClass('text');
                 }else{
-                    $themeclass = '';
+                    $wpjobportal_themeclass = '';
                 }
-                $html .= WPJOBPORTALformfield::email($field->field, $value, array('class' => ' inputbox one wjportal-form-input-field '. $themeclass.$specialClass, 'data-validation' => $cssclass,'placeholder'=>$field->placeholder));
+                $wpjobportal_html .= WPJOBPORTALformfield::email($wpjobportal_field->field, $wpjobportal_value, array('class' => ' inputbox one wjportal-form-input-field '. $wpjobportal_themeclass.$specialClass, 'data-validation' => $cssclass,'placeholder'=>$wpjobportal_field->placeholder));
                 break;
             case 'date':
-                if(wpjobportal::$theme_chk == 1){
-                    $themeclass = getJobManagerThemeClass('text');
+                if(wpjobportal::$wpjobportal_theme_chk == 1){
+                    $wpjobportal_themeclass = getJobManagerThemeClass('text');
                 }else{
-                    $themeclass = '';
+                    $wpjobportal_themeclass = '';
                 }
-                if ($value != '') {
-                    $value = gmdate(wpjobportal::$_configuration['date_format'],strtotime($value));
+                if ($wpjobportal_value != '') {
+                    $wpjobportal_value = gmdate(wpjobportal::$_configuration['date_format'],strtotime($wpjobportal_value));
                 }
-                $html .= WPJOBPORTALformfield::text($field->field, $value, array('class' => 'custom_date one wjportal-form-date-field '. $themeclass.$specialClass, 'data-validation' => $cssclass,'placeholder'=>$field->placeholder,'autocomplete'=>'off'));
+                $wpjobportal_html .= WPJOBPORTALformfield::text($wpjobportal_field->field, $wpjobportal_value, array('class' => 'custom_date one wjportal-form-date-field '. $wpjobportal_themeclass.$specialClass, 'data-validation' => $cssclass,'placeholder'=>$wpjobportal_field->placeholder,'autocomplete'=>'off'));
                 break;
             case 'textarea':
-                $rows = '10';
+                $wpjobportal_rows = '10';
                 $cols = '10';
-                // if(isset($field->rows)){
-                //     $rows = $field->rows;
+                // if(isset($wpjobportal_field->rows)){
+                //     $wpjobportal_rows = $wpjobportal_field->rows;
                 // }
-                // if(isset($field->cols)){
-                //     $cols = $field->cols;
+                // if(isset($wpjobportal_field->cols)){
+                //     $cols = $wpjobportal_field->cols;
                 // }
-                if(wpjobportal::$theme_chk == 1){
-                    $themeclass = getJobManagerThemeClass('textarea');
+                if(wpjobportal::$wpjobportal_theme_chk == 1){
+                    $wpjobportal_themeclass = getJobManagerThemeClass('textarea');
                 }else{
-                    $themeclass = '';
+                    $wpjobportal_themeclass = '';
                 }
-                $html .= WPJOBPORTALformfield::textarea($field->field, $value, array('class' => ' inputbox one wpjobportal-form-textarea-field '. $themeclass.$specialClass, 'data-validation' => $cssclass, 'rows' => $rows, 'cols' => $cols));
+                $wpjobportal_html .= WPJOBPORTALformfield::textarea($wpjobportal_field->field, $wpjobportal_value, array('class' => ' inputbox one wpjobportal-form-textarea-field '. $wpjobportal_themeclass.$specialClass, 'data-validation' => $cssclass, 'rows' => $wpjobportal_rows, 'cols' => $cols));
                 break;
             case 'multiple':
-                if(wpjobportal::$theme_chk == 1){
-                    $themeclass = getJobManagerThemeClass('select');
+                if(wpjobportal::$wpjobportal_theme_chk == 1){
+                    $wpjobportal_themeclass = getJobManagerThemeClass('select');
                 }else{
-                    $themeclass = '';
+                    $wpjobportal_themeclass = '';
                 }
-                $comboOptions = array();
-                if (!empty($field->userfieldparams)) {
+                $wpjobportal_comboOptions = array();
+                if (!empty($wpjobportal_field->userfieldparams)) {
                     if(WPJOBPORTALincluder::getJSModel('common')->checkLanguageSpecialCase()){
-                        $field->userfieldparams = wpjobportalphplib::wpJP_stripslashes($field->userfieldparams);
+                        $wpjobportal_field->userfieldparams = wpjobportalphplib::wpJP_stripslashes($wpjobportal_field->userfieldparams);
                     }
-                    $obj_option = json_decode($field->userfieldparams);
+                    $obj_option = json_decode($wpjobportal_field->userfieldparams);
                     foreach ($obj_option as $opt) {
-                        $comboOptions[] = (object) array('id' => $opt, 'text' => $opt);
+                        $wpjobportal_comboOptions[] = (object) array('id' => $opt, 'text' => $opt);
                     }
                 }
-                $array = $field->field;
-                $array .= '[]';
-                $valuearray = wpjobportalphplib::wpJP_explode(', ', $value);
-                $html .= WPJOBPORTALformfield::select($array, $comboOptions, $valuearray, __('Select', 'wp-job-portal') . ' ' . $field->fieldtitle, array('data-validation' => $cssclass, 'multiple' => 'multiple', 'class' => 'inputbox one wjportal-form-select-field wjportal-form-multi-select-field '. $themeclass.$specialClass));
+                $wpjobportal_array = $wpjobportal_field->field;
+                $wpjobportal_array .= '[]';
+                $wpjobportal_valuearray = wpjobportalphplib::wpJP_explode(', ', $wpjobportal_value);
+                $wpjobportal_html .= WPJOBPORTALformfield::select($wpjobportal_array, $wpjobportal_comboOptions, $wpjobportal_valuearray, __('Select', 'wp-job-portal') . ' ' . $wpjobportal_field->fieldtitle, array('data-validation' => $cssclass, 'multiple' => 'multiple', 'class' => 'inputbox one wjportal-form-select-field wjportal-form-multi-select-field '. $wpjobportal_themeclass.$specialClass));
                 break;
             case 'checkbox':
-                if (!empty($field->userfieldparams)) {
-                    $comboOptions = array();
-                    $obj_option = json_decode($field->userfieldparams);
-                    $i = 0;
-                    $valuearray = wpjobportalphplib::wpJP_explode(', ',$value);
-                    $jsFunction = '';
-                    if ($required == 1) {
-                        $jsFunction = "deRequireUfCheckbox('" . $field->field . "');";
+                if (!empty($wpjobportal_field->userfieldparams)) {
+                    $wpjobportal_comboOptions = array();
+                    $obj_option = json_decode($wpjobportal_field->userfieldparams);
+                    $wpjobportal_i = 0;
+                    $wpjobportal_valuearray = wpjobportalphplib::wpJP_explode(', ',$wpjobportal_value);
+                    $wpjobportal_jsFunction = '';
+                    if ($wpjobportal_required == 1) {
+                        $wpjobportal_jsFunction = "deRequireUfCheckbox('" . $wpjobportal_field->field . "');";
                     }
                   	if(is_array($obj_option)){
-                      foreach ($obj_option AS $option) {
-                          $check = '';
-                          if(in_array($option, $valuearray)){
-                              $check = 'checked';
+                      foreach ($obj_option AS $wpjobportal_option) {
+                          $wpjobportal_check = '';
+                          if(in_array($wpjobportal_option, $wpjobportal_valuearray)){
+                              $wpjobportal_check = 'checked';
                           }
-                          $html .= '<input type="checkbox" ' . $check . ' class="uf_of_type_ckbox radiobutton ' . $field->field .$specialClass. '" value="' . wpjobportalphplib::wpJP_htmlspecialchars($option) . '" id="' . $field->field . '_' . $i . '" name="' . $field->field . '[]" data-validation="'.esc_attr($cssclass).'" onclick = "' . $jsFunction . '" ckbox-group-name="' . $field->field . '">';
-                          $html .= '<label for="' . $field->field . '_' . $i . '" id="foruf_checkbox1">' . $option . '</label>';
-                          $i++;
+                          $wpjobportal_html .= '<span class="wpjobportal-form-radio-field">';
+                          $wpjobportal_html .= '<input type="checkbox" ' . $wpjobportal_check . ' class="uf_of_type_ckbox radiobutton ' . $wpjobportal_field->field .$specialClass. '" value="' . wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_option) . '" id="' . $wpjobportal_field->field . '_' . $wpjobportal_i . '" name="' . $wpjobportal_field->field . '[]" data-validation="'.esc_attr($cssclass).'" onclick = "' . $wpjobportal_jsFunction . '" ckbox-group-name="' . $wpjobportal_field->field . '">';
+                          $wpjobportal_html .= '<label for="' . $wpjobportal_field->field . '_' . $wpjobportal_i . '" id="foruf_checkbox1">' . $wpjobportal_option . '</label>';
+                          $wpjobportal_html .= '</span>';
+
+                          $wpjobportal_i++;
                       }
                 	}
                 } else {
-                    $comboOptions = array('1' => $field->fieldtitle);
-                    $html .= WPJOBPORTALformfield::checkbox($field->field, $comboOptions, $value, array('class' => 'radiobutton wjportal-form-checkbox-field'.$specialClass));
+                    $wpjobportal_comboOptions = array('1' => $wpjobportal_field->fieldtitle);
+                    $wpjobportal_html .= WPJOBPORTALformfield::checkbox($wpjobportal_field->field, $wpjobportal_comboOptions, $wpjobportal_value, array('class' => 'radiobutton wjportal-form-checkbox-field'.$specialClass));
                 }
                 break;
             case 'radio':
-                $comboOptions = array();
-                if (!empty($field->userfieldparams)) {
-                    $obj_option = json_decode($field->userfieldparams);
+                $wpjobportal_comboOptions = array();
+                if (!empty($wpjobportal_field->userfieldparams)) {
+                    $obj_option = json_decode($wpjobportal_field->userfieldparams);
                   	if(is_array($obj_option)){
-                      for ($i = 0; $i < count($obj_option); $i++) {
-                          $comboOptions[$obj_option[$i]] = "$obj_option[$i]";
+                      for ($wpjobportal_i = 0; $wpjobportal_i < count($obj_option); $wpjobportal_i++) {
+                          $wpjobportal_comboOptions[$obj_option[$wpjobportal_i]] = "$obj_option[$wpjobportal_i]";
                       }
                     }
                 }
-                $jsFunction = '';
-                $dependentclass = '';
-                if ($field->depandant_field != null) {
-                    $jsFunction = "getDataForDepandantField('" . $field->field . "','" . $field->depandant_field . "',2,'',''". $theme_string.");";
-                    $dependentclass = 'dependent wjportal-form-radio-field';
+                $wpjobportal_jsFunction = '';
+                $wpjobportal_dependentclass = '';
+                if ($wpjobportal_field->depandant_field != null) {
+                    $wpjobportal_jsFunction = "getDataForDepandantField('" . $wpjobportal_field->field . "','" . $wpjobportal_field->depandant_field . "',2,'',''". $wpjobportal_theme_string.");";
+                    $wpjobportal_dependentclass = 'dependent wjportal-form-radio-field';
                 }
-                $html .= WPJOBPORTALformfield::radiobutton($field->field, $comboOptions, $value, array('data-validation' => $cssclass , 'class' =>  $dependentclass.$specialClass, 'onclick' => $jsFunction));
+                $wpjobportal_html .= WPJOBPORTALformfield::radiobutton($wpjobportal_field->field, $wpjobportal_comboOptions, $wpjobportal_value, array('data-validation' => $cssclass , 'class' =>  $wpjobportal_dependentclass.$specialClass, 'onclick' => $wpjobportal_jsFunction));
                 break;
             case 'combo':
-                if(wpjobportal::$theme_chk == 1){
-                    $themeclass = getJobManagerThemeClass('select');
+                if(wpjobportal::$wpjobportal_theme_chk == 1){
+                    $wpjobportal_themeclass = getJobManagerThemeClass('select');
                 }else{
-                    $themeclass = '';
+                    $wpjobportal_themeclass = '';
                 }
-                $comboOptions = array();
-                if (!empty($field->userfieldparams)) {
-                    $obj_option = json_decode($field->userfieldparams);
+                $wpjobportal_comboOptions = array();
+                if (!empty($wpjobportal_field->userfieldparams)) {
+                    $obj_option = json_decode($wpjobportal_field->userfieldparams);
                     if(is_array($obj_option)){ // to handle log error
                         foreach ($obj_option as $opt) {
-                            $comboOptions[] = (object) array('id' => $opt, 'text' => $opt);
+                            $wpjobportal_comboOptions[] = (object) array('id' => $opt, 'text' => $opt);
                         }
                     }
                 }
                 //code for handling dependent field
-                $jsFunction = '';
-                if ($field->depandant_field != null) {
-                    $jsFunction = "getDataForDepandantField('" . $field->field . "','" . $field->depandant_field . "',1,'',''". $theme_string. ");";
+                $wpjobportal_jsFunction = '';
+                if ($wpjobportal_field->depandant_field != null) {
+                    $wpjobportal_jsFunction = "getDataForDepandantField('" . $wpjobportal_field->field . "','" . $wpjobportal_field->depandant_field . "',1,'',''". $wpjobportal_theme_string. ");";
                 }
-                if ($field->placeholder != '') {
-                    $placeholder = $field->placeholder;
+                if ($wpjobportal_field->placeholder != '') {
+                    $placeholder = $wpjobportal_field->placeholder;
                 } else {
-                    $placeholder = esc_html(__('Select', 'wp-job-portal')) . ' ' . esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle));
+                    $placeholder = esc_html(__('Select', 'wp-job-portal')) . ' ' . esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle));
                 }
                 //end
                 //code for handling visible field
-                $jsVisibleFunction = '';
-                if ($field->visible_field != null) {
-                    $visibleparams = WPJOBPORTALincluder::getJSModel('fieldordering')->getDataForVisibleField($field->visible_field);
-                    foreach ($visibleparams as $visibleparam) {
+                $wpjobportal_jsVisibleFunction = '';
+                if ($wpjobportal_field->visible_field != null) {
+                    $wpjobportal_visibleparams = WPJOBPORTALincluder::getJSModel('fieldordering')->getDataForVisibleField($wpjobportal_field->visible_field);
+                    foreach ($wpjobportal_visibleparams as $wpjobportal_visibleparam) {
                         $wpnonce = wp_create_nonce("is-field-required");
-                        $jsVisibleFunction .= " getDataForVisibleField('".$wpnonce."', this.value, '" . $visibleparam->visibleParent . "','" . $visibleparam->visibleParentField . "','".$visibleparam->visibleValue."','".$visibleparam->visibleCondition."');";
+                        $wpjobportal_jsVisibleFunction .= " getDataForVisibleField('".$wpnonce."', this.value, '" . $wpjobportal_visibleparam->visibleParent . "','" . $wpjobportal_visibleparam->visibleParentField . "','".$wpjobportal_visibleparam->visibleValue."','".$wpjobportal_visibleparam->visibleCondition."');";
                     }
-                    $jsFunction.=$jsVisibleFunction;
+                    $wpjobportal_jsFunction.=$wpjobportal_jsVisibleFunction;
                 }
                 // end
-                $html .= WPJOBPORTALformfield::select($field->field, $comboOptions, $value, $placeholder, array('data-validation' => $cssclass, 'onchange' => $jsFunction, 'class' => 'inputbox one wjportal-form-select-field'. $themeclass.$specialClass));
+                $wpjobportal_html .= WPJOBPORTALformfield::select($wpjobportal_field->field, $wpjobportal_comboOptions, $wpjobportal_value, $placeholder, array('data-validation' => $cssclass, 'onchange' => $wpjobportal_jsFunction, 'class' => 'inputbox one wjportal-form-select-field'. $wpjobportal_themeclass.$specialClass));
                 break;
             case 'file':
-                if($value != null){ // since file already uploaded so we reglect the required
+                if($wpjobportal_value != null){ // since file already uploaded so we reglect the required
                     $cssclass = wpjobportalphplib::wpJP_str_replace('required', '', $cssclass);
                 }
-                $user_field ='';
-                $name = $field->field;
-                $data_required = '';
-                if($section){
-                    if($section != 1){
-                        if($ishidden){
-                            if($required == 1){
-                                $data_required = 'data-myrequired="required"';
+                $wpjobportal_user_field ='';
+                $wpjobportal_name = $wpjobportal_field->field;
+                $wpjobportal_data_required = '';
+                if($wpjobportal_section){
+                    if($wpjobportal_section != 1){
+                        if($wpjobportal_ishidden){
+                            if($wpjobportal_required == 1){
+                                $wpjobportal_data_required = 'data-myrequired="required"';
                                 $cssclass = '';
                             }
                         }
-                        $name = 'sec_'.$section.'['.$name.']['.$sectionid.']';
+                        $wpjobportal_name = 'sec_'.$wpjobportal_section.'['.$wpjobportal_name.']['.$wpjobportal_sectionid.']';
                     }else{
-                        $name = 'sec_'.$section.'['.$name.']';
+                        $wpjobportal_name = 'sec_'.$wpjobportal_section.'['.$wpjobportal_name.']';
                     }
                 }
 
-                $user_field .= '<input type="file" class="'.$cssclass.$specialClass.' cf_uploadfile" '.$data_required.' name="'.$name.'" id="'.$field->field.'"/>';
+                $wpjobportal_user_field .= '<input type="file" class="'.$cssclass.$specialClass.' cf_uploadfile" '.$wpjobportal_data_required.' name="'.$wpjobportal_name.'" id="'.$wpjobportal_field->field.'"/>';
 
-                $image_file_type = wpjobportal::$_config->getConfigurationByConfigName('image_file_type');
+                $wpjobportal_image_file_type = wpjobportal::$_config->getConfigurationByConfigName('image_file_type');
                 $document_file_type = wpjobportal::$_config->getConfigurationByConfigName('document_file_type');
                 $document_file_size = wpjobportal::$_config->getConfigurationByConfigName('document_file_size');
 
                 $fileext  = '';
-                $fileext .= $document_file_type.','.$image_file_type;
-                $maxFileSize = $document_file_size;
+                $fileext .= $document_file_type.','.$wpjobportal_image_file_type;
+                $wpjobportal_maxFileSize = $document_file_size;
 
                 $fileext = wpjobportalphplib::wpJP_explode(',', $fileext);
                 $fileext = array_unique($fileext);
                 $fileext = implode(',', $fileext);
-                $user_field .= '<div id="js_cust_file_ext">'.__('Files','wp-job-portal').' ('.$fileext.')<br> '.__('Maximum Size','wp-job-portal').' '.$maxFileSize.'(kb)</div>';
-                if($value != null){
-                    $user_field .= WPJOBPORTALformfield::hidden($field->field.'_1', 0);
-                    $user_field .= WPJOBPORTALformfield::hidden($field->field.'_2', $value);
-                    // $user_field .= $this->hidden($field->field.'_1', 0 , array(), $section , $sectionid);
-                    // $user_field .= $this->hidden($field->field.'_2',$value, array(), $section , $sectionid);
-                    //$jsFunction = "";
-                    // $value = wpjobportalphplib::wpJP_explode('_', $value , 2);
-                    // $value = $value[1];
-                    $user_field .='<span class='.$field->field.'_1>'.$value.'( ';
-                    $user_field .= "<a href='#' onclick='deleteCutomUploadedFile(\"".$field->field."\")' >". __('Delete','wp-job-portal')."</a>";
-                    $user_field .= ' )</span>';
+                $wpjobportal_user_field .= '<div id="js_cust_file_ext">'.esc_html__('Files','wp-job-portal').' ('.$fileext.')<br> '.esc_html__('Maximum Size','wp-job-portal').' '.$wpjobportal_maxFileSize.'(kb)</div>';
+                if($wpjobportal_value != null){
+                    $wpjobportal_user_field .= WPJOBPORTALformfield::hidden($wpjobportal_field->field.'_1', 0);
+                    $wpjobportal_user_field .= WPJOBPORTALformfield::hidden($wpjobportal_field->field.'_2', $wpjobportal_value);
+                    // $wpjobportal_user_field .= $this->hidden($wpjobportal_field->field.'_1', 0 , array(), $wpjobportal_section , $wpjobportal_sectionid);
+                    // $wpjobportal_user_field .= $this->hidden($wpjobportal_field->field.'_2',$wpjobportal_value, array(), $wpjobportal_section , $wpjobportal_sectionid);
+                    //$wpjobportal_jsFunction = "";
+                    // $wpjobportal_value = wpjobportalphplib::wpJP_explode('_', $wpjobportal_value , 2);
+                    // $wpjobportal_value = $wpjobportal_value[1];
+                    $wpjobportal_user_field .='<span class='.$wpjobportal_field->field.'_1>'.$wpjobportal_value.'( ';
+                    $wpjobportal_user_field .= "<a href='#' onclick='deleteCutomUploadedFile(\"".$wpjobportal_field->field."\")' >". __('Delete','wp-job-portal')."</a>";
+                    $wpjobportal_user_field .= ' )</span>';
                 }
-                $html .= $user_field;
+                $wpjobportal_html .= $wpjobportal_user_field;
             break;
         }
-        return $html;
+        return $wpjobportal_html;
     }
 
-    function formCustomFieldsForSearch($field, &$i, $resumeform = null, $subrefid = null,$themecall=null,$themrefine=null) {
-        if ($field->isuserfield != 1)
+    function formCustomFieldsForSearch($wpjobportal_field, &$wpjobportal_i, $wpjobportal_resumeform = null, $wpjobportal_subrefid = null,$wpjobportal_themecall=null,$wpjobportal_themrefine=null) {
+        if ($wpjobportal_field->isuserfield != 1)
             return false;
         $cssclass = "";
-        $html = '';
-        $i++;
-        if($resumeform != 3 && $resumeform != 'f_jobsearch'){// to handle top search case for job and resume listing.
+        $wpjobportal_html = '';
+        $wpjobportal_i++;
+        if($wpjobportal_resumeform != 3 && $wpjobportal_resumeform != 'f_jobsearch'){// to handle top search case for job and resume listing.
 
-            $themebfclass = " ".$this->class_prefix."-bigfont ";
+            $wpjobportal_themebfclass = " ".$this->class_prefix."-bigfont ";
 
-            $themenopadmarclass = " ".$this->class_prefix."-nopad-nomar ";
+            $wpjobportal_themenopadmarclass = " ".$this->class_prefix."-nopad-nomar ";
 
-            $required = $field->required;
-            $div1 = 'wjportal-form-row '.$themenopadmarclass;
-            $div2 = 'wjportal-form-title '.$themebfclass;
-            $div3 = 'wjportal-form-value';
+            $wpjobportal_required = $wpjobportal_field->required;
+            $wpjobportal_div1 = 'wjportal-form-row '.$wpjobportal_themenopadmarclass;
+            $wpjobportal_div2 = 'wjportal-form-title '.$wpjobportal_themebfclass;
+            $wpjobportal_div3 = 'wjportal-form-value';
 
-            $html = '<div class="' . $div1 . '" title="'. esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)) .'" )>
-                   <div class="' . $div2 . '">';
-            $html .= wpjobportal::wpjobportal_getVariableValue($field->fieldtitle);
-            $html .= ' </div><div class="' . $div3 . '">';
+            $wpjobportal_html = '<div class="' . $wpjobportal_div1 . '" title="'. esc_attr(wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle)) .'" )>
+                   <div class="' . $wpjobportal_div2 . '">';
+            $wpjobportal_html .= wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle);
+            $wpjobportal_html .= ' </div><div class="' . $wpjobportal_div3 . '">';
         }
-        $readonly = ''; //$field->readonly ? "'readonly => 'readonly'" : "";
-        $maxlength = ''; //$field->maxlength ? "'maxlength' => '".$field->maxlength : "";
+        $wpjobportal_readonly = ''; //$wpjobportal_field->readonly ? "'readonly => 'readonly'" : "";
+        $wpjobportal_maxlength = ''; //$wpjobportal_field->maxlength ? "'maxlength' => '".$wpjobportal_field->maxlength : "";
         $fvalue = "";
-        $value = null;
-        $userdataid = "";
-        $userfielddataarray = array();
+        $wpjobportal_value = null;
+        $wpjobportal_userdataid = "";
+        $wpjobportal_userfielddataarray = array();
         if (isset(wpjobportal::$_data['filter']['params'])) {
-            $userfielddataarray = wpjobportal::$_data['filter']['params'];
-            $uffield = $field->field;
+            $wpjobportal_userfielddataarray = wpjobportal::$_data['filter']['params'];
+            $uffield = $wpjobportal_field->field;
             //had to user || oprator bcz of radio buttons
 
-            if (isset($userfielddataarray[$uffield]) || !empty($userfielddataarray[$uffield])) {
-                $value = $userfielddataarray[$uffield];
+            if (isset($wpjobportal_userfielddataarray[$uffield]) || !empty($wpjobportal_userfielddataarray[$uffield])) {
+                $wpjobportal_value = $wpjobportal_userfielddataarray[$uffield];
             } else {
-                $value = '';
+                $wpjobportal_value = '';
             }
         }
-         if($themecall != null){
-            $theme_string = ", '". $themecall ."'";
+         if($wpjobportal_themecall != null){
+            $wpjobportal_theme_string = ", '". $wpjobportal_themecall ."'";
         }else{
-            $theme_string = '';
+            $wpjobportal_theme_string = '';
         }
-        switch ($field->userfieldtype) {
+        switch ($wpjobportal_field->userfieldtype) {
             case 'text':
             case 'textarea':
 		
-                if(wpjobportal::$theme_chk == 1){
-                    $themeclass = getJobManagerThemeClass('text');
+                if(wpjobportal::$wpjobportal_theme_chk == 1){
+                    $wpjobportal_themeclass = getJobManagerThemeClass('text');
                 }else{
-                    $themeclass = '';
+                    $wpjobportal_themeclass = '';
                 }
-                $html .= WPJOBPORTALformfield::text($field->field, $value, array('class' => 'inputbox one form-control wjportal-form-input-field '.$this->class_prefix.'-input'.$themeclass, 'data-validation' => $cssclass, 'size' => $field->size, $maxlength, $readonly, 'placeholder' => wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)));
+                $wpjobportal_html .= WPJOBPORTALformfield::text($wpjobportal_field->field, $wpjobportal_value, array('class' => 'inputbox one form-control wjportal-form-input-field '.$this->class_prefix.'-input'.$wpjobportal_themeclass, 'data-validation' => $cssclass, 'size' => $wpjobportal_field->size, $wpjobportal_maxlength, $wpjobportal_readonly, 'placeholder' => wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle)));
                 break;
             case 'email':
-                if(wpjobportal::$theme_chk == 1){
-                    $themeclass = getJobManagerThemeClass('text');
+                if(wpjobportal::$wpjobportal_theme_chk == 1){
+                    $wpjobportal_themeclass = getJobManagerThemeClass('text');
                 }else{
-                    $themeclass = '';
+                    $wpjobportal_themeclass = '';
                 }
-                $html .= WPJOBPORTALformfield::email($field->field, $value, array('class' => 'inputbox one form-control wjportal-form-input-field '.$this->class_prefix.'-input'.$themeclass, 'data-validation' => $cssclass, 'size' => $field->size, $maxlength, $readonly, 'placeholder' => wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)));
+                $wpjobportal_html .= WPJOBPORTALformfield::email($wpjobportal_field->field, $wpjobportal_value, array('class' => 'inputbox one form-control wjportal-form-input-field '.$this->class_prefix.'-input'.$wpjobportal_themeclass, 'data-validation' => $cssclass, 'size' => $wpjobportal_field->size, $wpjobportal_maxlength, $wpjobportal_readonly, 'placeholder' => wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle)));
                 break;
             case 'date':
-                if(wpjobportal::$theme_chk == 1){
-                    $themeclass = getJobManagerThemeClass('text');
+                if(wpjobportal::$wpjobportal_theme_chk == 1){
+                    $wpjobportal_themeclass = getJobManagerThemeClass('text');
                 }else{
-                    $themeclass = '';
+                    $wpjobportal_themeclass = '';
                 }
-                $html .= WPJOBPORTALformfield::text($field->field, $value, array('class' => 'custom_date wjportal-form-date-field one '.$themeclass, 'data-validation' => $cssclass,'autocomplete'=>'off'));
+                $wpjobportal_html .= WPJOBPORTALformfield::text($wpjobportal_field->field, $wpjobportal_value, array('class' => 'custom_date wjportal-form-date-field one '.$wpjobportal_themeclass, 'data-validation' => $cssclass,'autocomplete'=>'off'));
                 break;
             case 'checkbox':
-                if (!empty($field->userfieldparams)) {
-                    $comboOptions = array();
-                    $obj_option = json_decode($field->userfieldparams);
-                    if(empty($value) || $value == ''){
-                        unset($value);
-                        $value = array();
+                if (!empty($wpjobportal_field->userfieldparams)) {
+                    $wpjobportal_comboOptions = array();
+                    $obj_option = json_decode($wpjobportal_field->userfieldparams);
+                    if(empty($wpjobportal_value) || $wpjobportal_value == ''){
+                        unset($wpjobportal_value);
+                        $wpjobportal_value = array();
                     }
-                    foreach ($obj_option AS $option) {
-                        if(is_array($value)){
-                            if( in_array($option, $value)){
-                                $check = 'checked="true"';
+                    foreach ($obj_option AS $wpjobportal_option) {
+                        if(is_array($wpjobportal_value)){
+                            if( in_array($wpjobportal_option, $wpjobportal_value)){
+                                $wpjobportal_check = 'checked="true"';
                             }else{
-                                $check = '';
+                                $wpjobportal_check = '';
                             }
                         }else{
-                            $check = '';
+                            $wpjobportal_check = '';
                         }
-                        $html .= '<input type="checkbox" ' . $check . ' class="radiobutton" value="' . wpjobportalphplib::wpJP_htmlspecialchars($option) . '" id="' . $field->field . '_' . $i . '" name="' . $field->field . '[]">';
-                        $html .= '<label for="' . $field->field . '_' . $i . '" id="foruf_checkbox1">' . $option . '</label>';
-                        $i++;
+                        $wpjobportal_html .= '<span class="wpjobportal-form-radio-field">';
+                        $wpjobportal_html .= '<input type="checkbox" ' . $wpjobportal_check . ' class="radiobutton" value="' . wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_option) . '" id="' . $wpjobportal_field->field . '_' . $wpjobportal_i . '" name="' . $wpjobportal_field->field . '[]">';
+                        $wpjobportal_html .= '<label for="' . $wpjobportal_field->field . '_' . $wpjobportal_i . '" id="foruf_checkbox1">' . $wpjobportal_option . '</label>';
+                        $wpjobportal_html .= '</span>';
+
+                        $wpjobportal_i++;
                     }
                 } else {
-                    $comboOptions = array('1' => $field->fieldtitle);
-                    $html .= WPJOBPORTALformfield::checkbox($field->field, $comboOptions, $value, array('class' => 'radiobutton'));
+                    $wpjobportal_comboOptions = array('1' => $wpjobportal_field->fieldtitle);
+                    $wpjobportal_html .= WPJOBPORTALformfield::checkbox($wpjobportal_field->field, $wpjobportal_comboOptions, $wpjobportal_value, array('class' => 'radiobutton'));
                 }
                 break;
             case 'radio':
-                $comboOptions = array();
-                if (!empty($field->userfieldparams)) {
-                    $obj_option = json_decode($field->userfieldparams);
-                    for ($i = 0; $i < count($obj_option); $i++) {
-                        $comboOptions[$obj_option[$i]] = "$obj_option[$i]";
+                $wpjobportal_comboOptions = array();
+                if (!empty($wpjobportal_field->userfieldparams)) {
+                    $obj_option = json_decode($wpjobportal_field->userfieldparams);
+                    for ($wpjobportal_i = 0; $wpjobportal_i < count($obj_option); $wpjobportal_i++) {
+                        $wpjobportal_comboOptions[$obj_option[$wpjobportal_i]] = "$obj_option[$wpjobportal_i]";
                     }
                 }
-                $jsFunction = '';
-                if ($field->depandant_field != null) {
-                    $jsFunction = "getDataForDepandantField('" . $field->field . "','" . $field->depandant_field . "',2,'',''" . $theme_string . ");";
+                $wpjobportal_jsFunction = '';
+                if ($wpjobportal_field->depandant_field != null) {
+                    $wpjobportal_jsFunction = "getDataForDepandantField('" . $wpjobportal_field->field . "','" . $wpjobportal_field->depandant_field . "',2,'',''" . $wpjobportal_theme_string . ");";
                 }
-                $html .= WPJOBPORTALformfield::radiobutton($field->field, $comboOptions, $value, array('data-validation' => $cssclass, "autocomplete" => "off", 'onclick' => $jsFunction));
+                $wpjobportal_html .= WPJOBPORTALformfield::radiobutton($wpjobportal_field->field, $wpjobportal_comboOptions, $wpjobportal_value, array('data-validation' => $cssclass, "autocomplete" => "off", 'onclick' => $wpjobportal_jsFunction));
                 break;
             case 'combo':
-                if(wpjobportal::$theme_chk == 1){
-                    $themeclass = getJobManagerThemeClass('select');
+                if(wpjobportal::$wpjobportal_theme_chk == 1){
+                    $wpjobportal_themeclass = getJobManagerThemeClass('select');
                 }else{
-                    $themeclass = '';
+                    $wpjobportal_themeclass = '';
                 }
-                $comboOptions = array();
-                if (!empty($field->userfieldparams)) {
-                    $obj_option = json_decode($field->userfieldparams);
+                $wpjobportal_comboOptions = array();
+                if (!empty($wpjobportal_field->userfieldparams)) {
+                    $obj_option = json_decode($wpjobportal_field->userfieldparams);
                     foreach ($obj_option as $opt) {
-                        $comboOptions[] = (object) array('id' => $opt, 'text' => $opt);
+                        $wpjobportal_comboOptions[] = (object) array('id' => $opt, 'text' => $opt);
                     }
                 }
                 //code for handling dependent field
-                $jsFunction = '';
-                if ($field->depandant_field != null) {
-                    $jsFunction = "getDataForDepandantField('" . $field->field . "','" . $field->depandant_field . "','1','',''" . $theme_string . ");";
+                $wpjobportal_jsFunction = '';
+                if ($wpjobportal_field->depandant_field != null) {
+                    $wpjobportal_jsFunction = "getDataForDepandantField('" . $wpjobportal_field->field . "','" . $wpjobportal_field->depandant_field . "','1','',''" . $wpjobportal_theme_string . ");";
                 }
                 //end
-                if ($field->placeholder != '') {
-                    $placeholder = $field->placeholder;
+                if ($wpjobportal_field->placeholder != '') {
+                    $placeholder = $wpjobportal_field->placeholder;
                 } else {
-                    $placeholder = esc_html(__('Select', 'wp-job-portal')) . ' ' . esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle));
+                    $placeholder = esc_html(__('Select', 'wp-job-portal')) . ' ' . esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle));
                 }
-                $html .= WPJOBPORTALformfield::select($field->field, $comboOptions, $value, $placeholder, array('data-validation' => $cssclass, 'onchange' => $jsFunction, 'class' => 'inputbox wjportal-form-select-field one form-control  '.$this->class_prefix.'-select '.$themeclass));
+                $wpjobportal_html .= WPJOBPORTALformfield::select($wpjobportal_field->field, $wpjobportal_comboOptions, $wpjobportal_value, $placeholder, array('data-validation' => $cssclass, 'onchange' => $wpjobportal_jsFunction, 'class' => 'inputbox wjportal-form-select-field one form-control  '.$this->class_prefix.'-select '.$wpjobportal_themeclass));
                 break;
             case 'multiple':
-                if(wpjobportal::$theme_chk == 1){
-                    $themeclass = getJobManagerThemeClass('select');
+                if(wpjobportal::$wpjobportal_theme_chk == 1){
+                    $wpjobportal_themeclass = getJobManagerThemeClass('select');
                 }else{
-                    $themeclass = '';
+                    $wpjobportal_themeclass = '';
                 }
-                $comboOptions = array();
-                if (!empty($field->userfieldparams)) {
-                    $obj_option = json_decode($field->userfieldparams);
+                $wpjobportal_comboOptions = array();
+                if (!empty($wpjobportal_field->userfieldparams)) {
+                    $obj_option = json_decode($wpjobportal_field->userfieldparams);
                     foreach ($obj_option as $opt) {
-                        $comboOptions[] = (object) array('id' => $opt, 'text' => $opt);
+                        $wpjobportal_comboOptions[] = (object) array('id' => $opt, 'text' => $opt);
                     }
                 }
                 //code for handling dependent field
-                $jsFunction = '';
-                // if ($field->depandant_field != null) {
-                //     $jsFunction = "getDataForDepandantField('" . $field->field . "','" . $field->depandant_field . "','1','',''" . $theme_string . ");";
+                $wpjobportal_jsFunction = '';
+                // if ($wpjobportal_field->depandant_field != null) {
+                //     $wpjobportal_jsFunction = "getDataForDepandantField('" . $wpjobportal_field->field . "','" . $wpjobportal_field->depandant_field . "','1','',''" . $wpjobportal_theme_string . ");";
                 // }
                 //end
-                if ($field->placeholder != '') {
-                    $placeholder = $field->placeholder;
+                if ($wpjobportal_field->placeholder != '') {
+                    $placeholder = $wpjobportal_field->placeholder;
                 } else {
-                    $placeholder = esc_html(__('Select', 'wp-job-portal')) . ' ' . esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle));
+                    $placeholder = esc_html(__('Select', 'wp-job-portal')) . ' ' . esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle));
                 }
-                $array = $field->field;
-                $array .= '[]';
-                //$html .= WPJOBPORTALformfield::select($field->field, $comboOptions, $value, $placeholder, array('data-validation' => $cssclass, 'onchange' => $jsFunction, 'class' => 'inputbox wjportal-form-select-field one form-control  '.$this->class_prefix.'-select '.$themeclass));
-                $html .= WPJOBPORTALformfield::select($array, $comboOptions, $value, $placeholder, array('multiple' => 'multiple', 'class' => 'inputbox one wjportal-form-select-field wjportal-form-multi-select-field '. $themeclass));
+                $wpjobportal_array = $wpjobportal_field->field;
+                $wpjobportal_array .= '[]';
+                //$wpjobportal_html .= WPJOBPORTALformfield::select($wpjobportal_field->field, $wpjobportal_comboOptions, $wpjobportal_value, $placeholder, array('data-validation' => $cssclass, 'onchange' => $wpjobportal_jsFunction, 'class' => 'inputbox wjportal-form-select-field one form-control  '.$this->class_prefix.'-select '.$wpjobportal_themeclass));
+                $wpjobportal_html .= WPJOBPORTALformfield::select($wpjobportal_array, $wpjobportal_comboOptions, $wpjobportal_value, $placeholder, array('multiple' => 'multiple', 'class' => 'inputbox one wjportal-form-select-field wjportal-form-multi-select-field '. $wpjobportal_themeclass));
             break;
         }
-        if ($resumeform == 3) {// to handle top search case for job and resume listing.
-            return $html;
+        if ($wpjobportal_resumeform == 3) {// to handle top search case for job and resume listing.
+            return $wpjobportal_html;
         }
-        if ($resumeform != 'f_jobsearch') {
-            $html .= '</div></div>';
+        if ($wpjobportal_resumeform != 'f_jobsearch') {
+            $wpjobportal_html .= '</div></div>';
         }
-        if ($resumeform == 1 || $resumeform == 'f_jobsearch') {
-            return $html;
+        if ($wpjobportal_resumeform == 1 || $wpjobportal_resumeform == 'f_jobsearch') {
+            return $wpjobportal_html;
         } else {
-            echo wp_kses($html, WPJOBPORTAL_ALLOWED_TAGS);
+            echo wp_kses($wpjobportal_html, WPJOBPORTAL_ALLOWED_TAGS);
         }
     }
 
-    function getUserFieldByField($field){
-        $query = "SELECT * FROM `".wpjobportal::$_db->prefix."wj_portal_fieldsordering` WHERE field = '".esc_sql($field)."' AND isuserfield = 1 ";
-        $field = wpjobportal::$_db->get_row($query);
-        return $field;
+    function getUserFieldByField($wpjobportal_field){
+        $query = "SELECT * FROM `".wpjobportal::$_db->prefix."wj_portal_fieldsordering` WHERE field = '".esc_sql($wpjobportal_field)."' AND isuserfield = 1 ";
+        $wpjobportal_field = wpjobportal::$_db->get_row($query);
+        return $wpjobportal_field;
     }
 
-    function getSearchUserFieldByFieldFor($fieldfor){
-        if(!is_numeric($fieldfor)){
+    function getSearchUserFieldByFieldFor($wpjobportal_fieldfor){
+        if(!is_numeric($wpjobportal_fieldfor)){
             return;
         }
-        $query = "SELECT * FROM `".wpjobportal::$_db->prefix."wj_portal_fieldsordering` WHERE fieldfor = '".esc_sql($fieldfor)."' AND isuserfield = 1 AND (search_user  = 1 OR search_visitor = 1 ) ";
-        $fields = wpjobportal::$_db->get_results($query);
-        return $fields;
+        $query = "SELECT * FROM `".wpjobportal::$_db->prefix."wj_portal_fieldsordering` WHERE fieldfor = '".esc_sql($wpjobportal_fieldfor)."' AND isuserfield = 1 AND (search_user  = 1 OR search_visitor = 1 ) ";
+        $wpjobportal_fields = wpjobportal::$_db->get_results($query);
+        return $wpjobportal_fields;
     }
 
-    function showCustomFields($field, $fieldfor, $params,$uploadfor = '',$entity_id = '',$field_class = '', $field_title_class = '', $field_value_class = '') {// 2 new paramters to handle file upload field
-        $html = '';
+    function showCustomFields($wpjobportal_field, $wpjobportal_fieldfor, $params,$wpjobportal_uploadfor = '',$wpjobportal_entity_id = '',$wpjobportal_field_class = '', $wpjobportal_field_title_class = '', $wpjobportal_field_value_class = '') {// 2 new paramters to handle file upload field
+        $wpjobportal_html = '';
         $fvalue = '';
-        $labelflag = wpjobportal::$_configuration['labelinlisting'];
-        if($fieldfor == 11){
-            $field = $this->getUserFieldByField($field);
-            if(empty($field)){
+        $wpjobportal_labelflag = wpjobportal::$_configuration['labelinlisting'];
+        if($wpjobportal_fieldfor == 11){
+            $wpjobportal_field = $this->getUserFieldByField($wpjobportal_field);
+            if(empty($wpjobportal_field)){
                 return false;
             }
         }
@@ -1263,208 +1269,208 @@ class WPJOBPORTALcustomfields {
                 }
             }
             //$params = html_entity_decode($params, ENT_QUOTES);
-            $data = json_decode($params,true);
-            if(isset($data) && !empty($data)){
-                if(array_key_exists($field->field, $data)){
-                    $fvalue = $data[$field->field];
+            $wpjobportal_data = json_decode($params,true);
+            if(isset($wpjobportal_data) && !empty($wpjobportal_data)){
+                if(array_key_exists($wpjobportal_field->field, $wpjobportal_data)){
+                    $fvalue = $wpjobportal_data[$wpjobportal_field->field];
                 }
             }
         }
-		if($field_class == "")
-			$field_class = "wjportal-custom-field";
-		if($field_title_class == "")
-			$field_title_class = "wjportal-custom-field-tit";
-		if($field_value_class == "")
-			$field_value_class = "wjportal-custom-field-val";
+		if($wpjobportal_field_class == "")
+			$wpjobportal_field_class = "wjportal-custom-field";
+		if($wpjobportal_field_title_class == "")
+			$wpjobportal_field_title_class = "wjportal-custom-field-tit";
+		if($wpjobportal_field_value_class == "")
+			$wpjobportal_field_value_class = "wjportal-custom-field-val";
 
-        if($field->userfieldtype=='file'){
+        if($wpjobportal_field->userfieldtype=='file'){
 
-           if($uploadfor !=null && $entity_id !=''){
+           if($wpjobportal_uploadfor !=null && $wpjobportal_entity_id !=''){
                if($fvalue !=null){
-                    //$path = esc_url_raw(admin_url("?page=ticket&action=jstask&task=downloadbyname&id=".jssupportticket::$_data['custom']['ticketid']."&name=".$fvalue));
-                    $path = esc_url(wp_nonce_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'customfield', 'task'=>'downloadcustomfile', 'entity_id'=>esc_attr($entity_id),'upload_for'=>esc_attr($uploadfor),'file_name'=>$fvalue, 'action'=>'wpjobportaltask','wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid())),'wpjobportal_field_nonce'));
-                    $html = '
+                    //$wpjobportal_path = esc_url_raw(admin_url("?page=ticket&action=jstask&task=downloadbyname&id=".jssupportticket::$_data['custom']['ticketid']."&name=".$fvalue));
+                    $wpjobportal_path = esc_url(wp_nonce_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'customfield', 'task'=>'downloadcustomfile', 'entity_id'=>esc_attr($wpjobportal_entity_id),'upload_for'=>esc_attr($wpjobportal_uploadfor),'file_name'=>$fvalue, 'action'=>'wpjobportaltask','wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid())),'wpjobportal_field_nonce'));
+                    $wpjobportal_html = '
                         <div class="wpjobportal_upload_file_attachment">
                             ' .  $fvalue . '
-                            <a class="button" target="_blank" href="' . esc_url($path) . '">' . esc_html(__('Download', 'wp-job-portal')) . '</a>
+                            <a class="button" target="_blank" href="' . esc_url($wpjobportal_path) . '">' . esc_html(__('Download', 'wp-job-portal')) . '</a>
                         </div>';
-                    $fvalue = $html;
+                    $fvalue = $wpjobportal_html;
                 }
             }
-        }elseif ($field->userfieldtype == 'date' && $fvalue != '') {
+        }elseif ($wpjobportal_field->userfieldtype == 'date' && $fvalue != '') {
             $fvalue = date_i18n(wpjobportal::$_configuration['date_format'],strtotime($fvalue));
         }
 
-        if($fieldfor == 1){ // jobs listing
-			$html = '<div class="'.$field_class.'">';
-			if (wpjobportal::$theme_chk == 1) {
-				if ($labelflag == 1) {
-					$html .= '<span class="'.$field_title_class.'">' . esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)) . ': </span>';
+        if($wpjobportal_fieldfor == 1){ // jobs listing
+			$wpjobportal_html = '<div class="'.$wpjobportal_field_class.'">';
+			if (wpjobportal::$wpjobportal_theme_chk == 1) {
+				if ($wpjobportal_labelflag == 1) {
+					$wpjobportal_html .= '<span class="'.$wpjobportal_field_title_class.'">' . esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle)) . ': </span>';
 				}
-				$html .= '<span class="'.$field_value_class.'">' . wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS). '</span>
+				$wpjobportal_html .= '<span class="'.$wpjobportal_field_value_class.'">' . wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS). '</span>
 							 </div>';
 			} else {
-				if ($labelflag == 1) {
-					$html .= '<span class="'.$field_title_class.'">' . esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)) . ': </span>';
+				if ($wpjobportal_labelflag == 1) {
+					$wpjobportal_html .= '<span class="'.$wpjobportal_field_title_class.'">' . esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle)) . ': </span>';
 				}
-				$html .= '<span class="'.$field_value_class.'">' . wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS) . '</span>
+				$wpjobportal_html .= '<span class="'.$wpjobportal_field_value_class.'">' . wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS) . '</span>
 							 </div>';
 			}
-        }elseif($fieldfor == 2){ // job view
-            if (wpjobportal::$theme_chk == 1) {
-                $html = '<div class="wpj-jp-cf"  >
-                    <span class="wpj-jp-cf-tit">' . esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)) . ':&nbsp;</span)>
+        }elseif($wpjobportal_fieldfor == 2){ // job view
+            if (wpjobportal::$wpjobportal_theme_chk == 1) {
+                $wpjobportal_html = '<div class="wpj-jp-cf"  >
+                    <span class="wpj-jp-cf-tit">' . esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle)) . ':&nbsp;</span)>
                     <span class="wpj-jp-cf-val">' . wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS). '</span>
 		</div>';
             } else {
-                $html = '<div class="'.$field_class.'"  >
-                    <span class="'.$field_title_class.'">' . esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)) . ': </span)>
-                    <span class="'.$field_value_class.'">' . wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS) . '</span>
+                $wpjobportal_html = '<div class="'.$wpjobportal_field_class.'"  >
+                    <span class="'.$wpjobportal_field_title_class.'">' . esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle)) . ': </span)>
+                    <span class="'.$wpjobportal_field_value_class.'">' . wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS) . '</span>
                 </div>';
             }
-        }elseif($fieldfor == 7 || $fieldfor == 9 || $fieldfor == 10){ // myjobs, myresume, resume listing
-            if (wpjobportal::$theme_chk == 1) {
-                $html = '<div class="wpj-jp-cf">';
-                $html .= '<span class="wpj-jp-cf-tit">'.esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)).':</span>';
-                $html .= '<span class="wpj-jp-cf-val">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
-                $html .= '</div>';
+        }elseif($wpjobportal_fieldfor == 7 || $wpjobportal_fieldfor == 9 || $wpjobportal_fieldfor == 10){ // myjobs, myresume, resume listing
+            if (wpjobportal::$wpjobportal_theme_chk == 1) {
+                $wpjobportal_html = '<div class="wpj-jp-cf">';
+                $wpjobportal_html .= '<span class="wpj-jp-cf-tit">'.esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle)).':</span>';
+                $wpjobportal_html .= '<span class="wpj-jp-cf-val">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
+                $wpjobportal_html .= '</div>';
             } else {
-				$html = '<div class="'.$field_class.'">';
-				$html .= '<span class="'.$field_title_class.'">'.esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)).': </span>';
-				$html .= '<span class="'.$field_value_class.'">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
-				$html .= '</div>';
+				$wpjobportal_html = '<div class="'.$wpjobportal_field_class.'">';
+				$wpjobportal_html .= '<span class="'.$wpjobportal_field_title_class.'">'.esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle)).': </span>';
+				$wpjobportal_html .= '<span class="'.$wpjobportal_field_value_class.'">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
+				$wpjobportal_html .= '</div>';
             }
-        }elseif($fieldfor == 4){ // company listing
-            if (wpjobportal::$theme_chk == 1) {
-                $html = '<div class="wpj-jp-cf">';
-                $html .= '<span class="wpj-jp-cf-tit">'.esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)).': </span>';
-                $html .= '<span class="wpj-jp-cf-val">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
-                $html .= '</div>';
+        }elseif($wpjobportal_fieldfor == 4){ // company listing
+            if (wpjobportal::$wpjobportal_theme_chk == 1) {
+                $wpjobportal_html = '<div class="wpj-jp-cf">';
+                $wpjobportal_html .= '<span class="wpj-jp-cf-tit">'.esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle)).': </span>';
+                $wpjobportal_html .= '<span class="wpj-jp-cf-val">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
+                $wpjobportal_html .= '</div>';
             } else {
-                $html = '<div class="'.$field_class.'">';
-                $html .= '<span class="'.$field_title_class.'">'.esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)).': </span>';
-                $html .= '<span class="'.$field_value_class.'">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
-                $html .= '</div>';
+                $wpjobportal_html = '<div class="'.$wpjobportal_field_class.'">';
+                $wpjobportal_html .= '<span class="'.$wpjobportal_field_title_class.'">'.esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle)).': </span>';
+                $wpjobportal_html .= '<span class="'.$wpjobportal_field_value_class.'">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
+                $wpjobportal_html .= '</div>';
             }
-        }elseif($fieldfor == 5){ // company view
-            if (wpjobportal::$theme_chk == 1) {
-                $html = '<div class="wpj-jp-cf">';
-                $html .= '<span class="wpj-jp-cf-tit">'.esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)).': </span>';
-                $html .= '<span class="wpj-jp-cf-val">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
-                $html .= '</div>';
+        }elseif($wpjobportal_fieldfor == 5){ // company view
+            if (wpjobportal::$wpjobportal_theme_chk == 1) {
+                $wpjobportal_html = '<div class="wpj-jp-cf">';
+                $wpjobportal_html .= '<span class="wpj-jp-cf-tit">'.esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle)).': </span>';
+                $wpjobportal_html .= '<span class="wpj-jp-cf-val">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
+                $wpjobportal_html .= '</div>';
             } else {
-                $html = '<div class="'.$field_class.'">';
-                $html .= '<span class="'.$field_title_class.'">'.esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)).': </span>';
-                $html .= '<span class="'.$field_value_class.'">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
-                $html .= '</div>';
+                $wpjobportal_html = '<div class="'.$wpjobportal_field_class.'">';
+                $wpjobportal_html .= '<span class="'.$wpjobportal_field_title_class.'">'.esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle)).': </span>';
+                $wpjobportal_html .= '<span class="'.$wpjobportal_field_value_class.'">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
+                $wpjobportal_html .= '</div>';
             }
-        }elseif($fieldfor == 8){ // mycompanies
-            if (wpjobportal::$theme_chk == 1) {
-                $html = '<div class="wpj-jp-cf">';
-                $html .= '<span class="wpj-jp-cf-tit">'.esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)).': </span>';
-                $html .= '<span class="wpj-jp-cf-val">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
-                $html .= '</div>';
+        }elseif($wpjobportal_fieldfor == 8){ // mycompanies
+            if (wpjobportal::$wpjobportal_theme_chk == 1) {
+                $wpjobportal_html = '<div class="wpj-jp-cf">';
+                $wpjobportal_html .= '<span class="wpj-jp-cf-tit">'.esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle)).': </span>';
+                $wpjobportal_html .= '<span class="wpj-jp-cf-val">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
+                $wpjobportal_html .= '</div>';
             } else {
-                $html = '<div class="'.$field_class.'">';
-                $html .= '<span class="'.$field_title_class.'">'.esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)).': </span>';
-                $html .= '<span class="'.$field_value_class.'">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
-                $html .= '</div>';
+                $wpjobportal_html = '<div class="'.$wpjobportal_field_class.'">';
+                $wpjobportal_html .= '<span class="'.$wpjobportal_field_title_class.'">'.esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle)).': </span>';
+                $wpjobportal_html .= '<span class="'.$wpjobportal_field_value_class.'">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
+                $wpjobportal_html .= '</div>';
             }
-        }elseif($fieldfor == 11 || $fieldfor == 6){ // view resume
-            return array('title' => $field->fieldtitle, 'value' => $fvalue);
-        }elseif($fieldfor == 12){ // user detail
-            $html = '<div class="wpjobportal-user-data-text">';
-            $html .= '<span class="wpjobportal-user-data-title">'.esc_html(wpjobportal::wpjobportal_getVariableValue($field->fieldtitle)).': </span>';
-            $html .= '<span class="wpjobportal-user-data-value">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
-            $html .= '</div>';
+        }elseif($wpjobportal_fieldfor == 11 || $wpjobportal_fieldfor == 6){ // view resume
+            return array('title' => $wpjobportal_field->fieldtitle, 'value' => $fvalue);
+        }elseif($wpjobportal_fieldfor == 12){ // user detail
+            $wpjobportal_html = '<div class="wpjobportal-user-data-text">';
+            $wpjobportal_html .= '<span class="wpjobportal-user-data-title">'.esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle)).': </span>';
+            $wpjobportal_html .= '<span class="wpjobportal-user-data-value">'.wp_kses(wpjobportal::wpjobportal_getVariableValue($fvalue), WPJOBPORTAL_ALLOWED_TAGS).'</span>';
+            $wpjobportal_html .= '</div>';
         }
 
-        return $html;
+        return $wpjobportal_html;
     }
 
-    function userFieldData($field, $fieldfor, $section = null) {
+    function userFieldData($wpjobportal_field, $wpjobportal_fieldfor, $wpjobportal_section = null) {
 
         if (WPJOBPORTALincluder::getObjectClass('user')->isguest()) {
-            $published = ' isvisitorpublished = 1 ';
+            $wpjobportal_published = ' isvisitorpublished = 1 ';
         } else {
-            $published = ' published = 1 ';
+            $wpjobportal_published = ' published = 1 ';
         }
-        $ff = '';
-        if ($fieldfor == 2 || $fieldfor == 3) {
-            $ff = " AND fieldfor = 2 ";
-        } elseif ($fieldfor == 1 || $fieldfor == 4) {
-            $ff = "AND fieldfor = 1 ";
-        } elseif ($fieldfor == 5) {
-            $ff = "AND fieldfor = 3 ";
-        } elseif ($fieldfor == 6) {
+        $wpjobportal_ff = '';
+        if ($wpjobportal_fieldfor == 2 || $wpjobportal_fieldfor == 3) {
+            $wpjobportal_ff = " AND fieldfor = 2 ";
+        } elseif ($wpjobportal_fieldfor == 1 || $wpjobportal_fieldfor == 4) {
+            $wpjobportal_ff = "AND fieldfor = 1 ";
+        } elseif ($wpjobportal_fieldfor == 5) {
+            $wpjobportal_ff = "AND fieldfor = 3 ";
+        } elseif ($wpjobportal_fieldfor == 6) {
             //form resume
-            if(is_numeric($section)){
-                $ff = "AND fieldfor = 3 AND section = $section ";
+            if(is_numeric($wpjobportal_section)){
+                $wpjobportal_ff = "AND fieldfor = 3 AND section = $wpjobportal_section ";
             }
         }
         $query = "SELECT field,fieldtitle,required,isuserfield,userfieldtype,readonly,maxlength,depandant_field,userfieldparams,description,placeholder,visible_field,visibleparams
         FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering
-        WHERE isuserfield = 1 AND " . esc_sql($published) . " AND field ='" . esc_sql($field) . "'" . esc_sql($ff);
-        $data = wpjobportaldb::get_row($query);
-        return $data;
+        WHERE isuserfield = 1 AND " . esc_sql($wpjobportal_published) . " AND field ='" . esc_sql($wpjobportal_field) . "'" . esc_sql($wpjobportal_ff);
+        $wpjobportal_data = wpjobportaldb::get_row($query);
+        return $wpjobportal_data;
     }
 
-    function userFieldsData($fieldfor, $listing = null,$getpersonal = null) {
-        if(!is_numeric($fieldfor)){
+    function userFieldsData($wpjobportal_fieldfor, $wpjobportal_listing = null,$getpersonal = null) {
+        if(!is_numeric($wpjobportal_fieldfor)){
             return false;
         }
         if (WPJOBPORTALincluder::getObjectClass('user')->isguest()) {
-            $published = ' isvisitorpublished = 1 ';
+            $wpjobportal_published = ' isvisitorpublished = 1 ';
         } else {
-            $published = ' published = 1 ';
+            $wpjobportal_published = ' published = 1 ';
         }
-        $inquery = '';
-        if ($listing == 1) {
-            $inquery = ' AND showonlisting = 1 ';
+        $wpjobportal_inquery = '';
+        if ($wpjobportal_listing == 1) {
+            $wpjobportal_inquery = ' AND showonlisting = 1 ';
         }
         if( $getpersonal == 1){
-            $inquery .= ' AND section = 1 ';
+            $wpjobportal_inquery .= ' AND section = 1 ';
         }
-        //$inquery .= " AND (userfieldtype = 'text' OR userfieldtype = 'email')";
+        //$wpjobportal_inquery .= " AND (userfieldtype = 'text' OR userfieldtype = 'email')";
         $query = "SELECT field,fieldtitle,isuserfield,userfieldtype,userfieldparams
         FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering
-        WHERE isuserfield = 1 AND " . esc_sql($published) . " AND fieldfor =" . esc_sql($fieldfor) . $inquery;
+        WHERE isuserfield = 1 AND " . esc_sql($wpjobportal_published) . " AND fieldfor =" . esc_sql($wpjobportal_fieldfor) . $wpjobportal_inquery;
         $query .= " ORDER BY ordering ASC "; // to handle the case of ordering on listing layouts
-        $data = wpjobportaldb::get_results($query);
-        return $data;
+        $wpjobportal_data = wpjobportaldb::get_results($query);
+        return $wpjobportal_data;
     }
 
-    function getDataForDepandantFieldByParentField($fieldfor, $data) {
+    function getDataForDepandantFieldByParentField($wpjobportal_fieldfor, $wpjobportal_data) {
         if (WPJOBPORTALincluder::getObjectClass('user')->isguest()) {
-            $published = ' isvisitorpublished = 1 ';
+            $wpjobportal_published = ' isvisitorpublished = 1 ';
         } else {
-            $published = ' published = 1 ';
+            $wpjobportal_published = ' published = 1 ';
         }
-        $value = '';
+        $wpjobportal_value = '';
         $returnarray = array();
-        $query = "SELECT field from " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE isuserfield = 1 AND " . esc_sql($published) . " AND depandant_field ='" . esc_sql($fieldfor) . "'";
-        $field = wpjobportaldb::get_var($query);
-        if ($data != null) {
-            foreach ($data as $key => $val) {
-                if ($key == $field) {
-                    $value = $val;
+        $query = "SELECT field from " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE isuserfield = 1 AND " . esc_sql($wpjobportal_published) . " AND depandant_field ='" . esc_sql($wpjobportal_fieldfor) . "'";
+        $wpjobportal_field = wpjobportaldb::get_var($query);
+        if ($wpjobportal_data != null) {
+            foreach ($wpjobportal_data as $wpjobportal_key => $wpjobportal_val) {
+                if ($wpjobportal_key == $wpjobportal_field) {
+                    $wpjobportal_value = $wpjobportal_val;
                 }
             }
         }
-        $query = "SELECT userfieldparams from " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE isuserfield = 1 AND " . esc_sql($published) . " AND field ='" . esc_sql($fieldfor) . "'";
-        $field = wpjobportaldb::get_var($query);
-        $fieldarray = json_decode($field);
-        if(!empty($fieldarray)){
-            foreach ($fieldarray as $key => $val) {
-                if ($value == $key)
-                    $returnarray = $val;
+        $query = "SELECT userfieldparams from " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE isuserfield = 1 AND " . esc_sql($wpjobportal_published) . " AND field ='" . esc_sql($wpjobportal_fieldfor) . "'";
+        $wpjobportal_field = wpjobportaldb::get_var($query);
+        $wpjobportal_fieldarray = json_decode($wpjobportal_field);
+        if(!empty($wpjobportal_fieldarray)){
+            foreach ($wpjobportal_fieldarray as $wpjobportal_key => $wpjobportal_val) {
+                if ($wpjobportal_value == $wpjobportal_key)
+                    $returnarray = $wpjobportal_val;
             }
         }
         return $returnarray;
     }
 
-    function storeCustomFields($entity,$id,$data){
-        $customfields = WPJOBPORTALincluder::getJSModel('fieldordering')->getUserfieldsfor($entity);
+    function storeCustomFields($wpjobportal_entity,$wpjobportal_id,$wpjobportal_data){
+        $wpjobportal_customfields = WPJOBPORTALincluder::getJSModel('fieldordering')->getUserfieldsfor($wpjobportal_entity);
         $params = array();
         $filelistadd = array();
         $filelistdelete = array();
@@ -1473,28 +1479,28 @@ class WPJOBPORTALcustomfields {
         $customflagfordelete = false;
         $custom_field_namesforadd = array();
         $custom_field_namesfordelete = array();
-        foreach($customfields AS $field){
-            $vardata = '';
-            if ($field->userfieldtype == 'date') {
-                $vardata = (isset($data[$field->field]) && $data[$field->field] !='')  ? gmdate('Y-m-d H:i:s',strtotime($data[$field->field])) : '';
-            } elseif($field->userfieldtype == 'file'){ // to handle upload field seprately
-                if(isset($data[$field->field.'_1']) && $data[$field->field.'_1']== 0){
-                    $vardata = $data[$field->field.'_2'];
+        foreach($wpjobportal_customfields AS $wpjobportal_field){
+            $wpjobportal_vardata = '';
+            if ($wpjobportal_field->userfieldtype == 'date') {
+                $wpjobportal_vardata = (isset($wpjobportal_data[$wpjobportal_field->field]) && $wpjobportal_data[$wpjobportal_field->field] !='')  ? gmdate('Y-m-d H:i:s',strtotime($wpjobportal_data[$wpjobportal_field->field])) : '';
+            } elseif($wpjobportal_field->userfieldtype == 'file'){ // to handle upload field seprately
+                if(isset($wpjobportal_data[$wpjobportal_field->field.'_1']) && $wpjobportal_data[$wpjobportal_field->field.'_1']== 0){
+                    $wpjobportal_vardata = $wpjobportal_data[$wpjobportal_field->field.'_2'];
                 }
                 $customflagforadd = true;
-                $custom_field_namesforadd[]=$field->field;
+                $custom_field_namesforadd[]=$wpjobportal_field->field;
             }else{
-                $vardata = isset($data[$field->field]) ? $data[$field->field] : '';
+                $wpjobportal_vardata = isset($wpjobportal_data[$wpjobportal_field->field]) ? $wpjobportal_data[$wpjobportal_field->field] : '';
             }
-            if(isset($data[$field->field.'_1']) && $data[$field->field.'_1'] == 1){
+            if(isset($wpjobportal_data[$wpjobportal_field->field.'_1']) && $wpjobportal_data[$wpjobportal_field->field.'_1'] == 1){
                 $customflagfordelete = true;
-                $custom_field_namesfordelete[]= $data[$field->field.'_2'];
+                $custom_field_namesfordelete[]= $wpjobportal_data[$wpjobportal_field->field.'_2'];
             }
-            if(!empty($vardata)){
-                if(is_array($vardata)){
-                    $vardata = implode(', ', $vardata);
+            if(!empty($wpjobportal_vardata)){
+                if(is_array($wpjobportal_vardata)){
+                    $wpjobportal_vardata = implode(', ', $wpjobportal_vardata);
                 }
-                $params[$field->field] = wpjobportalphplib::wpJP_htmlspecialchars($vardata);
+                $params[$wpjobportal_field->field] = wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_vardata);
             }
         }
         // code for unpublished fields to be written later as in wp jobs by shees
@@ -1503,134 +1509,134 @@ class WPJOBPORTALcustomfields {
             $params = WPJOBPORTALincluder::getJSModel('common')->stripslashesFull($params);// remove slashes with quotes.
         }
         $params = wp_json_encode($params);
-        $uploadfor = '';
-        if($entity == WPJOBPORTAL_COMPANY){
-            //$row->update(array('id' => $id, 'status' => -1))
-            $row = WPJOBPORTALincluder::getJSTable('company');
-            $row->update(array('id' => $id, 'params' => $params));
-            //$query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_companies` SET `params`='$params' WHERE `id` =". esc_sql($id);
+        $wpjobportal_uploadfor = '';
+        if($wpjobportal_entity == WPJOBPORTAL_COMPANY){
+            //$wpjobportal_row->update(array('id' => $wpjobportal_id, 'status' => -1))
+            $wpjobportal_row = WPJOBPORTALincluder::getJSTable('company');
+            $wpjobportal_row->update(array('id' => $wpjobportal_id, 'params' => $params));
+            //$query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_companies` SET `params`='$params' WHERE `id` =". esc_sql($wpjobportal_id);
             //wpjobportal::$_db->query($query);
-            $entity_for = 'company';
-        }else if($entity == 2){
-            $row = WPJOBPORTALincluder::getJSTable('job');
-            $row->update(array('id' => $id, 'params' => $params));
-            // $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_jobs` SET `params`='$params' WHERE `id` =". esc_sql($id);
+            $wpjobportal_entity_for = 'company';
+        }else if($wpjobportal_entity == 2){
+            $wpjobportal_row = WPJOBPORTALincluder::getJSTable('job');
+            $wpjobportal_row->update(array('id' => $wpjobportal_id, 'params' => $params));
+            // $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_jobs` SET `params`='$params' WHERE `id` =". esc_sql($wpjobportal_id);
             // wpjobportal::$_db->query($query);
-            $entity_for = 'job';
-        }else if($entity == WPJOBPORTAL_RESUME){
-            $row = WPJOBPORTALincluder::getJSTable('resume');
-            $row->update(array('id' => $id, 'params' => $params));
-            // $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_resume` SET `params`='$params' WHERE `id` =". esc_sql($id);
+            $wpjobportal_entity_for = 'job';
+        }else if($wpjobportal_entity == WPJOBPORTAL_RESUME){
+            $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resume');
+            $wpjobportal_row->update(array('id' => $wpjobportal_id, 'params' => $params));
+            // $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_resume` SET `params`='$params' WHERE `id` =". esc_sql($wpjobportal_id);
             // wpjobportal::$_db->query($query);
-            $entity_for = 'resume';
-        }elseif ($entity == 4) {
-            $row = WPJOBPORTALincluder::getJSTable('users');
-            $row->update(array('id' => $id, 'params' => $params));
-            // $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_users` SET `params`='$params' WHERE `id` =". esc_sql($id);
+            $wpjobportal_entity_for = 'resume';
+        }elseif ($wpjobportal_entity == 4) {
+            $wpjobportal_row = WPJOBPORTALincluder::getJSTable('users');
+            $wpjobportal_row->update(array('id' => $wpjobportal_id, 'params' => $params));
+            // $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_users` SET `params`='$params' WHERE `id` =". esc_sql($wpjobportal_id);
             // wpjobportal::$_db->query($query);
-            $entity_for = 'user';
+            $wpjobportal_entity_for = 'user';
         }
 
         //removing custom field attachments
         if($customflagfordelete == true){
-            foreach ($custom_field_namesfordelete as $key) {
-               $res = $this->removeFileCustom($id,$key,$entity_for);
+            foreach ($custom_field_namesfordelete as $wpjobportal_key) {
+               $res = $this->removeFileCustom($wpjobportal_id,$wpjobportal_key,$wpjobportal_entity_for);
             }
         }
         //storing custom field attachments
         if($customflagforadd == true){
-            foreach ($custom_field_namesforadd as $key) {
-                if (isset($_FILES[$key])) {
-                    if ($_FILES[$key]['size'] > 0) { // logo
-                       $res = $this->uploadFileCustom($id,$key,$entity_for);
+            foreach ($custom_field_namesforadd as $wpjobportal_key) {
+                if (isset($_FILES[$wpjobportal_key])) {
+                    if ($_FILES[$wpjobportal_key]['size'] > 0) { // logo
+                       $res = $this->uploadFileCustom($wpjobportal_id,$wpjobportal_key,$wpjobportal_entity_for);
                     }
                 }
             }
         }
     }
 
-    function removeFileCustom($id,$key,$uploadfor){
-        $filename = wpjobportalphplib::wpJP_str_replace(' ', '_', $key);
-        $maindir = wp_upload_dir();
-        $basedir = $maindir['basedir'];
-        $datadirectory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
+    function removeFileCustom($wpjobportal_id,$wpjobportal_key,$wpjobportal_uploadfor){
+        $filename = wpjobportalphplib::wpJP_str_replace(' ', '_', $wpjobportal_key);
+        $wpjobportal_maindir = wp_upload_dir();
+        $basedir = $wpjobportal_maindir['basedir'];
+        $wpjobportal_datadirectory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
 
-        $path = $basedir . '/' . $datadirectory. '/data';
+        $wpjobportal_path = $basedir . '/' . $wpjobportal_datadirectory. '/data';
 
-        if($uploadfor == 'company'){
-            $path = $path . '/employer/comp_'.$id.'/custom_uploads';
-        }elseif($uploadfor == 'job'){
-            $path = $path . '/employer/job_'.$id.'/custom_uploads';
-        }elseif($uploadfor == 'resume'){
-            $path = $path . '/jobseeker/resume_'.$id.'/custom_uploads';
-        }elseif($uploadfor == 'profile'){
-            $path = $path . '/profile/profile_'.$id.'/custom_uploads';
+        if($wpjobportal_uploadfor == 'company'){
+            $wpjobportal_path = $wpjobportal_path . '/employer/comp_'.$wpjobportal_id.'/custom_uploads';
+        }elseif($wpjobportal_uploadfor == 'job'){
+            $wpjobportal_path = $wpjobportal_path . '/employer/job_'.$wpjobportal_id.'/custom_uploads';
+        }elseif($wpjobportal_uploadfor == 'resume'){
+            $wpjobportal_path = $wpjobportal_path . '/jobseeker/resume_'.$wpjobportal_id.'/custom_uploads';
+        }elseif($wpjobportal_uploadfor == 'profile'){
+            $wpjobportal_path = $wpjobportal_path . '/profile/profile_'.$wpjobportal_id.'/custom_uploads';
         }
 
 
-        $userpath = $path .'/'.$filename;
-        wp_delete_file($userpath);
+        $wpjobportal_userpath = $wpjobportal_path .'/'.$filename;
+        wp_delete_file($wpjobportal_userpath);
         return ;
     }
 
-    function uploadFileCustom($id,$field,$uploadfor){
-         WPJOBPORTALincluder::getObjectClass('uploads')->storeCustomUploadFile($id,$field,$uploadfor);
+    function uploadFileCustom($wpjobportal_id,$wpjobportal_field,$wpjobportal_uploadfor){
+         WPJOBPORTALincluder::getObjectClass('uploads')->storeCustomUploadFile($wpjobportal_id,$wpjobportal_field,$wpjobportal_uploadfor);
     }
 
-    function storeUploadFieldValueInParams($entity_id,$filename,$field,$uploadfor){
-        if(!is_numeric($entity_id)){
+    function storeUploadFieldValueInParams($wpjobportal_entity_id,$filename,$wpjobportal_field,$wpjobportal_uploadfor){
+        if(!is_numeric($wpjobportal_entity_id)){
             return false;
         }
         /*
 
-        //$query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_companies` SET `params`='$params' WHERE `id` =". esc_sql($id);
-// $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_jobs` SET `params`='$params' WHERE `id` =". esc_sql($id);
-// $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_resume` SET `params`='$params' WHERE `id` =". esc_sql($id);
-// $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_users` SET `params`='$params' WHERE `id` =". esc_sql($id);
+        //$query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_companies` SET `params`='$params' WHERE `id` =". esc_sql($wpjobportal_id);
+// $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_jobs` SET `params`='$params' WHERE `id` =". esc_sql($wpjobportal_id);
+// $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_resume` SET `params`='$params' WHERE `id` =". esc_sql($wpjobportal_id);
+// $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_users` SET `params`='$params' WHERE `id` =". esc_sql($wpjobportal_id);
         */
         $query = '';
-        if($uploadfor == 'company'){
-            $query = "SELECT params FROM `".wpjobportal::$_db->prefix."wj_portal_companies` WHERE id = ".esc_sql($entity_id);
-        }elseif($uploadfor == 'job'){
-            $query = "SELECT params FROM `".wpjobportal::$_db->prefix."wj_portal_jobs` WHERE id = ".esc_sql($entity_id);
-        }elseif($uploadfor == 'resume'){
-            $query = "SELECT params FROM `".wpjobportal::$_db->prefix."wj_portal_resume` WHERE id = ".esc_sql($entity_id);
-        }elseif($uploadfor == 'user'){
-            $query = "SELECT params FROM `".wpjobportal::$_db->prefix."wj_portal_users` WHERE id = ".esc_sql($entity_id);
+        if($wpjobportal_uploadfor == 'company'){
+            $query = "SELECT params FROM `".wpjobportal::$_db->prefix."wj_portal_companies` WHERE id = ".esc_sql($wpjobportal_entity_id);
+        }elseif($wpjobportal_uploadfor == 'job'){
+            $query = "SELECT params FROM `".wpjobportal::$_db->prefix."wj_portal_jobs` WHERE id = ".esc_sql($wpjobportal_entity_id);
+        }elseif($wpjobportal_uploadfor == 'resume'){
+            $query = "SELECT params FROM `".wpjobportal::$_db->prefix."wj_portal_resume` WHERE id = ".esc_sql($wpjobportal_entity_id);
+        }elseif($wpjobportal_uploadfor == 'user'){
+            $query = "SELECT params FROM `".wpjobportal::$_db->prefix."wj_portal_users` WHERE id = ".esc_sql($wpjobportal_entity_id);
         }
         $params = '';
         if($query != ''){
             $params = wpjobportal::$_db->get_var($query);
         }
         if($params != ''){
-            $decoded_params = json_decode($params,true);
+            $wpjobportal_decoded_params = json_decode($params,true);
         }else{
-            $decoded_params = array();
+            $wpjobportal_decoded_params = array();
         }
 
-        $decoded_params[$field] = $filename;
-        $params = wp_json_encode($decoded_params, JSON_UNESCAPED_UNICODE);
+        $wpjobportal_decoded_params[$wpjobportal_field] = $filename;
+        $params = wp_json_encode($wpjobportal_decoded_params, JSON_UNESCAPED_UNICODE);
 
 
-        if($uploadfor == 'company'){
-            $row = WPJOBPORTALincluder::getJSTable('company');
-            $row->update(array('id' => $entity_id, 'params' => $params));
-            //$query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_companies` SET `params`='$params' WHERE `id` =". esc_sql($id);
+        if($wpjobportal_uploadfor == 'company'){
+            $wpjobportal_row = WPJOBPORTALincluder::getJSTable('company');
+            $wpjobportal_row->update(array('id' => $wpjobportal_entity_id, 'params' => $params));
+            //$query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_companies` SET `params`='$params' WHERE `id` =". esc_sql($wpjobportal_id);
             //wpjobportal::$_db->query($query);
-        }else if($uploadfor == 'job'){
-            $row = WPJOBPORTALincluder::getJSTable('job');
-            $row->update(array('id' => $entity_id, 'params' => $params));
-            // $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_jobs` SET `params`='$params' WHERE `id` =". esc_sql($id);
+        }else if($wpjobportal_uploadfor == 'job'){
+            $wpjobportal_row = WPJOBPORTALincluder::getJSTable('job');
+            $wpjobportal_row->update(array('id' => $wpjobportal_entity_id, 'params' => $params));
+            // $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_jobs` SET `params`='$params' WHERE `id` =". esc_sql($wpjobportal_id);
             // wpjobportal::$_db->query($query);
-        }else if($uploadfor == 'resume'){
-            $row = WPJOBPORTALincluder::getJSTable('resume');
-            $row->update(array('id' => $entity_id, 'params' => $params));
-            // $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_resume` SET `params`='$params' WHERE `id` =". esc_sql($id);
+        }else if($wpjobportal_uploadfor == 'resume'){
+            $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resume');
+            $wpjobportal_row->update(array('id' => $wpjobportal_entity_id, 'params' => $params));
+            // $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_resume` SET `params`='$params' WHERE `id` =". esc_sql($wpjobportal_id);
             // wpjobportal::$_db->query($query);
-        }elseif ($uploadfor == 'user') {
-            $row = WPJOBPORTALincluder::getJSTable('users');
-            $row->update(array('id' => $entity_id, 'params' => $params));
-            // $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_users` SET `params`='$params' WHERE `id` =". esc_sql($id);
+        }elseif ($wpjobportal_uploadfor == 'user') {
+            $wpjobportal_row = WPJOBPORTALincluder::getJSTable('users');
+            $wpjobportal_row->update(array('id' => $wpjobportal_entity_id, 'params' => $params));
+            // $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_users` SET `params`='$params' WHERE `id` =". esc_sql($wpjobportal_id);
             // wpjobportal::$_db->query($query);
         }
 

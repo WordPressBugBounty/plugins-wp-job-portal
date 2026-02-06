@@ -7,59 +7,66 @@
  * @param content 		field html
  * @param description 	field description
  */
-if (isset($field)) {
+if (isset($wpjobportal_field)) {
 	if (!isset($title)) {
-		$title = $field->fieldtitle;
+		$title = $wpjobportal_field->fieldtitle;
 	}
-	if (!isset($required)) {
-		$required = $field->required;
+	if (!isset($wpjobportal_required)) {
+		$wpjobportal_required = $wpjobportal_field->required;
 	}
-	if (!isset($description)) {
-		$description = $field->description;
+	if (!isset($wpjobportal_description)) {
+		$wpjobportal_description = $wpjobportal_field->description;
 	}
 } else {
     if (!isset($title)) {
         $title = '';
     }
-    if (!isset($required)) {
-        $required = false;
+    if (!isset($wpjobportal_required)) {
+        $wpjobportal_required = false;
     }
-    if (!isset($description)) {
-        $description = '';
+    if (!isset($wpjobportal_description)) {
+        $wpjobportal_description = '';
     }
 }
-$visibleclass = "";
-if (isset($field->visibleparams) && $field->visibleparams != ''){
-    $visibleclass = " visible js-form-custm-flds-wrp";
+$wpjobportal_visibleclass = "";
+if (isset($wpjobportal_field->visibleparams) && $wpjobportal_field->visibleparams != ''){
+    $wpjobportal_visibleclass = " visible js-form-custm-flds-wrp";
 }
 
-$fullwidth_class = "";
-if(isset($field->field) && $field->field == 'description') {
-   $fullwidth_class = "wpjobportal-fullwidth";
+$wpjobportal_fullwidth_class = "";
+if(isset($wpjobportal_field->field) && $wpjobportal_field->field == 'description') {
+   $wpjobportal_fullwidth_class = "wpjobportal-fullwidth";
 }
 ?>
-<div class="wpjobportal-form-wrapper <?php echo esc_attr($fullwidth_class); ?> <?php echo esc_attr($visibleclass); ?>">
+<div class="wpjobportal-form-wrapper <?php echo esc_attr($wpjobportal_fullwidth_class); ?> <?php echo esc_attr($wpjobportal_visibleclass); ?>">
     <div class="wpjobportal-form-title">
         <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($title)); ?>
-        <?php if($required == 1): ?>
+        <?php if($wpjobportal_required == 1): ?>
         	<span color="red">*</span>
     	<?php endif;
 
+
+
+        ?>
+    </div>
+
+    <div class="wpjobportal-form-value">
+        <?php echo wp_kses($wpjobportal_content, WPJOBPORTAL_ALLOWED_TAGS); ?>
+    </div>
+        <?php if(!empty($wpjobportal_description)): ?>
+            <div class="wpjobportal-form-description"><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_description)); ?></div>
+        <?php endif; ?>
+        <?php
         // adding import data message to city fields
         if(is_admin()){ // only show on admin side
-            if(isset($field->field) && $field->field == 'city') { // only show on city fields ?>
-                <a class="wpjobportal-city-field-import-data-link" href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_city&wpjobportallt=loadaddressdata')); ?>" title="<?php echo esc_html(__('Import Location Data', 'wp-job-portal')); ?>">
-                    <?php echo esc_html(__('Import Location Data', 'wp-job-portal')); ?>
-                </a>
+            if(isset($wpjobportal_field->field) && $wpjobportal_field->field == 'city') { // only show on city fields ?>
+                <div class="wpjobportal-city-field-import-data-link-wrapper">
+                    <a class="wpjobportal-city-field-import-data-link" href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_city&wpjobportallt=loadaddressdata')); ?>" title="<?php echo esc_attr(__('Import Location Data', 'wp-job-portal')); ?>">
+                        <?php echo esc_html(__('Import Location Data', 'wp-job-portal')); ?>
+                    </a>
+                </div>
             <?php
             }
         }
         ?>
-    </div>
-    <div class="wpjobportal-form-value">
-        <?php echo wp_kses($content, WPJOBPORTAL_ALLOWED_TAGS); ?>
-    </div>
-        <?php if(!empty($description)): ?>
-            <div class="wpjobportal-form-description"><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($description)); ?></div>
-        <?php endif; ?>
 </div>

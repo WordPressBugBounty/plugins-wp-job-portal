@@ -2,14 +2,14 @@
 <div id="wpjobportaladmin-wrapper">
 	<div id="wpjobportaladmin-data">
 		<?php
-			$over_write = array(
+			$wpjobportal_over_write = array(
 							(object) array('id'=>0,'text'=>'Ignore and insert'),
 							(object) array('id'=>1,'text'=>'Remove and insert')
 			);
-		$demo_flag = get_option('job_portal_demno_id');
-		//$demo_flag = false;
-		if(!$demo_flag){
-			$demo_flag = -1;
+		$wpjobportal_demo_flag = get_option('job_portal_demno_id');
+		//$wpjobportal_demo_flag = false;
+		if(!$wpjobportal_demo_flag){
+			$wpjobportal_demo_flag = -1;
 		}
 		if(get_option( 'wpjobportal_jobs_sample_data' , '') == 1){ ?>
 			<div class="frontend updated"><p><?php echo esc_html(__("Jobs data has been successfully imported",'wp-job-portal')); ?></p></div>
@@ -26,7 +26,7 @@
 						</div>
 						<div class="wpjobportal-temp-sample-data-content-demo-combo" ><?php
 							if(isset(wpjobportal::$_data[0]) && !empty(wpjobportal::$_data[0])){
-								echo wp_kses(WPJOBPORTALformfield::select('demoid', wpjobportal::$_data[0], $demo_flag, esc_html(__('Select demo', 'wp-job-portal')), array('class' => 'wpjobportal_inputbox', 'data-validation' => 'required', 'onchange' => 'demoChanged(this.options[this.selectedIndex].value);')),WPJOBPORTAL_ALLOWED_TAGS);
+								echo wp_kses(WPJOBPORTALformfield::select('demoid', wpjobportal::$_data[0], $wpjobportal_demo_flag, esc_html(__('Select demo', 'wp-job-portal')), array('class' => 'wpjobportal_inputbox', 'data-validation' => 'required', 'onchange' => 'demoChanged(this.options[this.selectedIndex].value);')),WPJOBPORTAL_ALLOWED_TAGS);
 							}?>
 						</div>
 						<div class="wpjobportal-temp-sample-data-content-demo-desc" id="demo_desc" >
@@ -34,7 +34,7 @@
 						</div>
 						<div class="wpjobportal-temp-sample-data-content-demo-overwrite" id="demo_overwrite_wrap" style="display: none;">
 							<label for="demo_overwrite"><?php echo esc_html(__('What to do with previous demo data','wp-job-portal'));?></label>
-							<?php echo wp_kses(WPJOBPORTALformfield::select('demo_overwrite', $over_write, 1, '', array('class' => 'wpjobportal_inputbox', 'onchange' => 'showMessage(this.options[this.selectedIndex].value);')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+							<?php echo wp_kses(WPJOBPORTALformfield::select('demo_overwrite', $wpjobportal_over_write, 1, '', array('class' => 'wpjobportal_inputbox', 'onchange' => 'showMessage(this.options[this.selectedIndex].value);')),WPJOBPORTAL_ALLOWED_TAGS); ?>
 							<div id="demo_warning">
 								 
 							</div>
@@ -61,22 +61,22 @@
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
 		var images = new Array();
 		var names = new Array();
 		var descs = new Array();
 		var folders = new Array();
-		var demo_flag_js = ". $demo_flag .";
+		var demo_flag_js = ". $wpjobportal_demo_flag .";
 		";
 		
-			foreach (wpjobportal::$_data[1] as $key => $value) {
-				$inline_js_script .= "images['".$key."'] = '".$value['imagepath']."';";
-				$inline_js_script .= "names['".$key."'] = '".$value['name']."';";
-				$inline_js_script .= "descs['".$key."'] = '".$value['desc']."';";
-				$inline_js_script .= "folders['".$key."'] = '".$value['foldername']."';";
+			foreach (wpjobportal::$_data[1] as $wpjobportal_key => $wpjobportal_value) {
+				$wpjobportal_inline_js_script .= "images['".$wpjobportal_key."'] = '".$wpjobportal_value['imagepath']."';";
+				$wpjobportal_inline_js_script .= "names['".$wpjobportal_key."'] = '".$wpjobportal_value['name']."';";
+				$wpjobportal_inline_js_script .= "descs['".$wpjobportal_key."'] = '".$wpjobportal_value['desc']."';";
+				$wpjobportal_inline_js_script .= "folders['".$wpjobportal_key."'] = '".$wpjobportal_value['foldername']."';";
 			}
 		
-		$inline_js_script .= "
+		$wpjobportal_inline_js_script .= "
 		if(demo_flag_js != -1){
 			jQuery( document ).ready(function() {
 			    demoChanged(demo_flag_js);
@@ -91,7 +91,7 @@
 			// image loading
 			var js_image = jQuery('#demo_image');
 			var js_downloadingImage = jQuery('<img>');
-			js_downloadingImage.load(function(){
+			 js_downloadingImage.on('load', function(){
 				js_image.attr('src', jQuery(this).attr('src'));
 			});
 			js_downloadingImage.attr('src',images[demoid]);
@@ -128,5 +128,5 @@
 	   	});
 	});
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>

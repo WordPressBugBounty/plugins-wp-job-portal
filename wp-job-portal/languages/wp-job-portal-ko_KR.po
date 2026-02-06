@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Delete"
 msgstr "삭제"
@@ -10276,3 +10276,2472 @@ msgstr "당신은 저장 세르치가 남아 있지 않습니다"
 
 msgid "We would love to hear from You."
 msgstr "우리는 당신의 의견을 듣고 싶습니다."
+
+msgid "Welcome back!"
+msgstr "다시 오신 것을 환영합니다!"
+
+msgid "Here's a snapshot of your job board's performance."
+msgstr "다음은 구인 보드 성능의 스냅 샷입니다."
+
+msgid "Customize Your Dashboard"
+msgstr "대시 보드를 사용자 정의하십시오"
+
+msgid "Core Components"
+msgstr "핵심 구성 요소"
+
+msgid "Quick Actions"
+msgstr "빠른 행동"
+
+msgid "Recent Jobs"
+msgstr "최근 직업"
+
+msgid "Quick Stats"
+msgstr "빠른 통계"
+
+msgid "Visualizations"
+msgstr "시각화"
+
+msgid "Platform Growth"
+msgstr "플랫폼 성장"
+
+msgid "Jobs by Status"
+msgstr "상태별로 일자리"
+
+msgid "Top Categories"
+msgstr "최고의 카테고리"
+
+msgid "Activity & System Feeds"
+msgstr "활동 및 시스템 피드"
+
+msgid "Latest Applies"
+msgstr "최신 적용"
+
+msgid "User & Financials"
+msgstr "사용자 및 재무"
+
+msgid "Job Seekers"
+msgstr "구직자"
+
+msgid "Payments"
+msgstr "지불"
+
+msgid "Reset to Defaults"
+msgstr "기본값으로 재설정하십시오"
+
+msgid "Apply Changes"
+msgstr "변경 사항을 적용하십시오"
+
+msgid "Approve Jobs"
+msgstr "일자리를 승인합니다"
+
+msgid "Manage Users"
+msgstr "사용자를 관리합니다"
+
+msgid "View Reports"
+msgstr "보고서보기"
+
+msgid "Analytics"
+msgstr "해석학"
+
+msgid "Manage Plans"
+msgstr "계획을 관리합니다"
+
+msgid "Platform Config"
+msgstr "플랫폼 구성"
+
+msgid "Applications"
+msgstr "응용 프로그램"
+
+msgid "Pending Jobs"
+msgstr "보류중인 직업"
+
+msgid "New Applicants"
+msgstr "새로운 지원자"
+
+msgid "Active Subscriptions"
+msgstr "활성 구독"
+
+msgid "Total Users"
+msgstr "총 사용자"
+
+msgid "Closed Jobs"
+msgstr "폐쇄 된 일자리"
+
+msgid "Monthly Revenue"
+msgstr "월 수익"
+
+msgid "Recent Job Postings"
+msgstr "최근의 채용 사업 게시"
+
+msgid "Date Posted"
+msgstr "게시 날짜"
+
+msgid "Actions"
+msgstr "행위"
+
+msgid "No recent job postings found."
+msgstr "최근에 구인이 발견되지 않았습니다."
+
+msgid "Top Job Categories"
+msgstr "최고의 직업 카테고리"
+
+msgid "Latest Job Applies"
+msgstr "최신 작업이 적용됩니다"
+
+msgid "applied for"
+msgstr "신청"
+
+msgid "at"
+msgstr "~에"
+
+msgid "View App"
+msgstr "앱보기"
+
+msgid "No recent job applications to display."
+msgstr "최근에 표시 할 작업 응용 프로그램이 없습니다."
+
+msgid "No new resumes have been added recently."
+msgstr "최근에 새로운 이력서가 추가되지 않았습니다."
+
+msgid "Latest Package Subscriptions"
+msgstr "최신 패키지 구독"
+
+msgid "subscribed to"
+msgstr "가입"
+
+msgid "No new subscriptions found."
+msgstr "새로운 구독이 발견되지 않았습니다."
+
+msgid "Latest Payments"
+msgstr "최신 지불"
+
+msgid "No recent payments to display."
+msgstr "최근에 표시 할 지불이 없습니다."
+
+msgid "Latest Activity"
+msgstr "최신 활동"
+
+msgid "Hooray! No system errors to report."
+msgstr "만세! 보고 할 시스템 오류가 없습니다."
+
+msgid "Latest Job Seekers"
+msgstr "최신 구직자"
+
+msgid "Joined"
+msgstr "가입"
+
+msgid "No new job seekers have registered."
+msgstr "새로운 구직자는 등록하지 않았습니다."
+
+msgid "Latest Employers"
+msgstr "최신 고용주"
+
+msgid "No new employers have registered."
+msgstr "새로운 고용주는 등록하지 않았습니다."
+
+msgid "Not allowed"
+msgstr "허용되지 않음"
+
+msgid "Allowed to all"
+msgstr "모두에게 허용됨"
+
+msgid "employers, job seekers and visitors"
+msgstr "고용주, 구직자 및 방문자"
+
+msgid "Allowed only to employers"
+msgstr "고용주에게만 허용"
+
+msgid "City, State, Country"
+msgstr "시, 주, 국가"
+
+msgid "City, State"
+msgstr "시, 주"
+
+msgid "City, Country"
+msgstr "도시, 국가"
+
+msgid "Minutes"
+msgstr "분"
+
+msgid "Hour"
+msgstr "시간"
+
+msgid "Hours"
+msgstr "시간"
+
+msgid "Week"
+msgstr "주"
+
+msgid "System & Site"
+msgstr "시스템 및 사이트"
+
+msgid "Site & System"
+msgstr "사이트 및 시스템"
+
+msgid "Core details about your job portal, its status, and default behaviors"
+msgstr "취업 포털, 상태 및 기본 동작에 대한 핵심 세부정보"
+
+msgid "Site Title"
+msgstr "사이트 제목"
+
+msgid "The main title for your job portal"
+msgstr "취업 포털의 기본 제목"
+
+msgid "Site Offline"
+msgstr "오프라인 사이트"
+
+msgid "Take the site offline for maintenance"
+msgstr "유지 관리를 위해 사이트를 오프라인으로 전환"
+
+msgid "The message shown to visitors when the site is offline"
+msgstr "사이트가 오프라인일 때 방문자에게 표시되는 메시지"
+
+msgid "Default Page"
+msgstr "기본 페이지"
+
+msgid "Select the main WordPress page for the job portal"
+msgstr "취업 포털의 기본 WordPress 페이지를 선택하세요."
+
+msgid "Email links and support icons may not work if this is not set"
+msgstr "설정하지 않으면 이메일 링크와 지원 아이콘이 작동하지 않을 수 있습니다."
+
+msgid "Date Format"
+msgstr "날짜 형식"
+
+msgid "Set the date format used throughout the plugin"
+msgstr "플러그인 전체에서 사용되는 날짜 형식 설정"
+
+msgid "Default Address Display Style"
+msgstr "기본 주소 표시 스타일"
+
+msgid "Select the default format for displaying addresses"
+msgstr "주소 표시를 위한 기본 형식 선택"
+
+msgid "Registration & Login"
+msgstr "등록 및 로그인"
+
+msgid "Control user registration flows and login/logout redirects"
+msgstr "사용자 등록 흐름 및 로그인/로그아웃 리디렉션 제어"
+
+msgid "Set Register Link"
+msgstr "등록 링크 설정"
+
+msgid "Set the main registration page for the site"
+msgstr "사이트의 기본 등록 페이지 설정"
+
+msgid "Custom Register Redirect Link"
+msgstr "사용자 정의 등록 리디렉션 링크"
+
+msgid "Enter the custom URL for registration if"
+msgstr "다음과 같은 경우 등록을 위한 맞춤 URL을 입력하세요."
+
+msgid "is selected above"
+msgstr "위에서 선택되었습니다"
+
+msgid "Set the main login page for the site"
+msgstr "사이트의 기본 로그인 페이지 설정"
+
+msgid "Custom Login Redirect Link"
+msgstr "사용자 정의 로그인 리디렉션 링크"
+
+msgid "Enter the custom URL for login if"
+msgstr "다음과 같은 경우 로그인을 위한 맞춤 URL을 입력하세요."
+
+msgid "Redirect Link For Non-Portal WP User"
+msgstr "포털이 아닌 WP 사용자에 대한 링크 리디렉션"
+
+msgid "Redirect WordPress users who do not have a role in WP Job Portal to this link after login"
+msgstr "WP Job Portal에 역할이 없는 WordPress 사용자를 로그인 후 이 링크로 리디렉션"
+
+msgid "Terms & Conditions"
+msgstr "이용약관"
+
+msgid "Assign specific Terms & Conditions pages for different submission types"
+msgstr "다양한 제출 유형에 대한 특정 이용 약관 페이지 할당"
+
+msgid "Company Terms Page"
+msgstr "회사 약관 페이지"
+
+msgid "Select the"
+msgstr "선택"
+
+msgid "page for company submissions"
+msgstr "회사 제출 페이지"
+
+msgid "Job Terms Page"
+msgstr "채용 조건 페이지"
+
+msgid "page for job submissions"
+msgstr "채용공고 제출 페이지"
+
+msgid "Resume Terms Page"
+msgstr "이력서 용어 페이지"
+
+msgid "page for resume submissions"
+msgstr "이력서 제출 페이지"
+
+msgid "Content & Display"
+msgstr "콘텐츠 및 디스플레이"
+
+msgid "Taxonomy & Categories"
+msgstr "분류 및 카테고리"
+
+msgid "Manage how content like categories and tags are handled"
+msgstr "카테고리 및 태그와 같은 콘텐츠가 처리되는 방식을 관리합니다."
+
+msgid "Even if Empty"
+msgstr "비어 있어도"
+
+msgid "If no is selected then only categories that have jobs or resumes will be shown"
+msgstr "아니요를 선택하면 직업이나 이력서가 있는 카테고리만 표시됩니다."
+
+msgid "Categories Per Row"
+msgstr "행별 카테고리"
+
+msgid "Number of categories to display per row on category listing pages"
+msgstr "카테고리 목록 페이지의 행당 표시할 카테고리 수"
+
+msgid "Sub-categories Limit"
+msgstr "하위 카테고리 제한"
+
+msgid "How many sub-categories to show in the popup on category pages"
+msgstr "카테고리 페이지의 팝업에 표시할 하위 카테고리 수"
+
+msgid "User Can Add New Tags"
+msgstr "사용자가 새 태그를 추가할 수 있음"
+
+msgid "Allow users to create new tags in the system when posting"
+msgstr "사용자가 게시할 때 시스템에서 새 태그를 생성하도록 허용"
+
+msgid "Default Pagination Size"
+msgstr "기본 페이지 매김 크기"
+
+msgid "Maximum number of records to show per page"
+msgstr "페이지당 표시할 최대 레코드 수"
+
+msgid "Show Breadcrumbs"
+msgstr "이동 경로 표시"
+
+msgid "Show WP Job Portal Page Title"
+msgstr "WP 취업 포털 페이지 제목 표시"
+
+msgid "File Uploads & Defaults"
+msgstr "파일 업로드 및 기본값"
+
+msgid "Manage file uploads and default placeholder images"
+msgstr "파일 업로드 및 기본 자리 표시자 이미지 관리"
+
+msgid "Data Directory"
+msgstr "데이터 디렉토리"
+
+msgid "System will upload all user files into this folder within the WordPress uploads directory"
+msgstr "시스템은 모든 사용자 파일을 WordPress 업로드 디렉터리 내의 이 폴더에 업로드합니다."
+
+msgid "Default Image"
+msgstr "기본 이미지"
+
+msgid "This image will be shown as the default for entities & users if no other image is provided"
+msgstr "다른 이미지가 제공되지 않으면 이 이미지가 엔터티 및 사용자에 대한 기본값으로 표시됩니다."
+
+msgid "Allowed Image Extensions"
+msgstr "허용되는 이미지 확장"
+
+msgid "Comma-separated list of allowed image file extensions"
+msgstr "허용되는 이미지 파일 확장자의 쉼표로 구분된 목록"
+
+msgid "Max Image Size"
+msgstr "최대 이미지 크기"
+
+msgid "Maximum file size for general image uploads in kilobytes"
+msgstr "일반 이미지 업로드를 위한 최대 파일 크기(KB)"
+
+msgid "URL & SEO"
+msgstr "URL 및 SEO"
+
+msgid "URL Structure"
+msgstr "URL 구조"
+
+msgid "Configure the URL structure"
+msgstr "URL 구조 구성"
+
+msgid "permalinks"
+msgstr "영구 링크"
+
+msgid "for detail pages"
+msgstr "상세 페이지의 경우"
+
+msgid "Job Detail URL Structure"
+msgstr "직무 세부정보 URL 구조"
+
+msgid "Click on the available tags below to build the URL structure for job detail pages"
+msgstr "채용 세부정보 페이지의 URL 구조를 구축하려면 아래에서 사용 가능한 태그를 클릭하세요."
+
+msgid "Company Detail URL Structure"
+msgstr "회사 세부정보 URL 구조"
+
+msgid "Click on the available tags below to build the URL structure for company detail pages"
+msgstr "회사 세부정보 페이지의 URL 구조를 구축하려면 아래에서 사용 가능한 태그를 클릭하세요."
+
+msgid "Resume Detail URL Structure"
+msgstr "이력서 상세 URL 구조"
+
+msgid "Click on the available tags below to build the URL structure for resume detail pages"
+msgstr "이력서 세부정보 페이지의 URL 구조를 구축하려면 아래에서 사용 가능한 태그를 클릭하세요."
+
+msgid "Registration & Access"
+msgstr "등록 및 액세스"
+
+msgid "If no then front end employer area is not accessible"
+msgstr "그렇지 않은 경우 프런트 엔드 고용주 영역에 접근할 수 없습니다."
+
+msgid "Allow Registration as Employer"
+msgstr "고용주로 등록 허용"
+
+msgid "Show the option to register as an employer on the registration form"
+msgstr "등록 양식에 고용주로 등록할 수 있는 옵션 표시"
+
+msgid "Employer Default Role"
+msgstr "고용주 기본 역할"
+
+msgid "Employer Can View Job Seeker Area"
+msgstr "고용주는 구직자 영역을 볼 수 있습니다"
+
+msgid "Allow logged-in employers to view the job seeker control panel"
+msgstr "로그인한 고용주가 구직자 제어판을 볼 수 있도록 허용"
+
+msgid "Set Employer After-Register Link"
+msgstr "고용주 등록 후 링크 설정"
+
+msgid "Employer After-Registration Page"
+msgstr "고용주 등록 후 페이지"
+
+msgid "Employer Custom After-Registration Link"
+msgstr "고용주 맞춤형 등록 후 링크"
+
+msgid "Custom Empolyer After Regitser Link"
+msgstr "등록 링크 후 맞춤 고용주"
+
+msgid "Layout & Widgets"
+msgstr "레이아웃 및 위젯"
+
+msgid "Control the visibility of main sections and widgets in the logged-in employer dashboard"
+msgstr "로그인한 고용주 대시보드에서 주요 섹션 및 위젯의 가시성을 제어합니다."
+
+msgid "Show Profile Section"
+msgstr "프로필 섹션 표시"
+
+msgid "Show Stat Boxes"
+msgstr "통계 상자 표시"
+
+msgid "Show Recent Resumes Box"
+msgstr "최근 이력서 상자 표시"
+
+msgid "Show Stats Graph"
+msgstr "통계 그래프 표시"
+
+msgid "Setting to show the stats graph on the employer dashboard"
+msgstr "고용주 대시보드에 통계 그래프를 표시하도록 설정"
+
+msgid "Show Useful Links"
+msgstr "유용한 링크 표시"
+
+msgid "Setting to show the useful links section"
+msgstr "유용한 링크 섹션을 표시하도록 설정"
+
+msgid "Show Applied Resumes"
+msgstr "적용된 이력서 표시"
+
+msgid "Setting to show the applied resumes section"
+msgstr "적용된 이력서 섹션을 표시하도록 설정"
+
+msgid "Show Saved Searches"
+msgstr "저장된 검색 표시"
+
+msgid "Setting to show the saved searches section"
+msgstr "저장된 검색 섹션을 표시하도록 설정"
+
+msgid "Show Newest Resumes"
+msgstr "최신 이력서 표시"
+
+msgid "Setting to show the newest resumes section"
+msgstr "최신 이력서 섹션을 표시하도록 설정"
+
+msgid "Navigation Links"
+msgstr "탐색 링크"
+
+msgid "Control which navigation links are visible in the logged-in employer dashboard menu"
+msgstr "로그인한 고용주 대시보드 메뉴에 표시되는 탐색 링크 제어"
+
+msgid "link in the employer dashboard"
+msgstr "고용주 대시보드의 링크"
+
+msgid "RSS Feedback"
+msgstr "RSS 피드백"
+
+msgid "Job Seeker Default Role"
+msgstr "구직자 기본 역할"
+
+msgid "Set Job Seeker After-Register Link"
+msgstr "구직자 등록 후 링크 설정"
+
+msgid "Job Seeker After-Registration Page"
+msgstr "구직자 등록 후 페이지"
+
+msgid "Job Seeker Custom After-Registration Link"
+msgstr "구직자 맞춤형 등록 후 링크"
+
+msgid "Custom Job seeker After Regitser Link"
+msgstr "맞춤형 구직자 등록 후 링크"
+
+msgid "Enable Job Shortlisting"
+msgstr "채용 후보자 목록 활성화"
+
+msgid "Allow job seekers to shortlist jobs"
+msgstr "구직자가 채용 정보를 최종 후보에 올릴 수 있도록 허용"
+
+msgid "This affects the job detail page"
+msgstr "이는 작업 세부정보 페이지에 영향을 미칩니다."
+
+msgid "Enable Tell a Friend"
+msgstr "친구에게 알리기 활성화"
+
+msgid "Enable the"
+msgstr "활성화"
+
+msgid "feature on job listing pages"
+msgstr "채용 정보 페이지의 기능"
+
+msgid "Control the visibility of main sections and widgets in the logged-in job seeker dashboard"
+msgstr "로그인한 구직자 대시보드에서 주요 섹션 및 위젯의 가시성을 제어합니다."
+
+msgid "Show Applied Jobs Box"
+msgstr "지원 직무 상자 표시"
+
+msgid "Show Newest Jobs Box"
+msgstr "최신 채용 정보 상자 표시"
+
+msgid "Show Jobs Graph"
+msgstr "채용 그래프 표시"
+
+msgid "Setting to show the jobs graph on the job seeker dashboard"
+msgstr "구직자 대시보드에 채용정보 그래프를 표시하도록 설정"
+
+msgid "Show Applied Jobs"
+msgstr "지원 직무 표시"
+
+msgid "Setting to show the applied jobs section"
+msgstr "적용된 작업 섹션을 표시하도록 설정"
+
+msgid "Show Shortlisted Jobs"
+msgstr "최종 채용 공고 표시"
+
+msgid "Setting to show the shortlisted jobs section"
+msgstr "최종 후보 채용정보 섹션을 표시하도록 설정"
+
+msgid "Show Newest Jobs"
+msgstr "최신 채용 정보 표시"
+
+msgid "Setting to show the newest jobs section"
+msgstr "최신 채용정보 섹션을 표시하도록 설정"
+
+msgid "Control which navigation links are visible in the logged-in job seeker dashboard menu"
+msgstr "로그인한 구직자 대시보드 메뉴에 표시되는 탐색 링크 제어"
+
+msgid "link in the job seeker dashboard"
+msgstr "구직자 대시보드의 링크"
+
+msgid "Visitors"
+msgstr "방문자"
+
+msgid "General Permissions"
+msgstr "일반 권한"
+
+msgid "Define what non-logged-in users are allowed to do on the site"
+msgstr "로그인하지 않은 사용자가 사이트에서 수행할 수 있는 작업을 정의합니다."
+
+msgid "Visitor Can Post Job"
+msgstr "방문자가 채용 정보를 게시할 수 있음"
+
+msgid "Allow non-logged-in users to post jobs"
+msgstr "로그인하지 않은 사용자가 채용 공고를 게시하도록 허용"
+
+msgid "Visitor Can Add Job"
+msgstr "방문자가 작업을 추가할 수 있습니다."
+
+msgid "Visitor Job Post Redirect Page"
+msgstr "방문자 채용 게시물 리디렉션 페이지"
+
+msgid "A visitor will be redirected to this page after posting a job"
+msgstr "방문자는 채용공고를 게시한 후 이 페이지로 리디렉션됩니다."
+
+msgid "Visitor Can Apply to Job"
+msgstr "방문자가 채용에 지원할 수 있습니다."
+
+msgid "Allow non-logged-in users to apply for jobs"
+msgstr "로그인하지 않은 사용자가 채용에 지원하도록 허용"
+
+msgid "Visitor Can Add Resume"
+msgstr "방문자가 이력서를 추가할 수 있습니다."
+
+msgid "Allow non-logged-in users to add a resume"
+msgstr "로그인하지 않은 사용자가 이력서를 추가하도록 허용"
+
+msgid "Visitor Resume Post Redirect Page"
+msgstr "방문자 이력서 게시물 리디렉션 페이지"
+
+msgid "A visitor will be redirected to this page after posting a resume"
+msgstr "방문자는 이력서를 게시한 후 이 페이지로 리디렉션됩니다."
+
+msgid "Visitor Can Edit Job"
+msgstr "방문자가 작업을 편집할 수 있음"
+
+msgid "Allow non-logged-in users to edit jobs they have posted"
+msgstr "로그인하지 않은 사용자가 자신이 게시한 채용 공고를 편집할 수 있도록 허용"
+
+msgid "Page & Link Access"
+msgstr "페이지 및 링크 액세스"
+
+msgid "Control which pages and links are visible to non-logged-in users"
+msgstr "로그인하지 않은 사용자에게 표시되는 페이지와 링크 제어"
+
+msgid "Allow visitors to view the employer control panel links"
+msgstr "방문자가 고용주 제어판 링크를 볼 수 있도록 허용"
+
+msgid "Allow visitors to view the resume categories page"
+msgstr "방문자가 이력서 카테고리 페이지를 볼 수 있도록 허용"
+
+msgid "Allow visitors to access the resume search functionality"
+msgstr "방문자가 이력서 검색 기능에 액세스하도록 허용"
+
+msgid "Allow visitors to view company detail pages"
+msgstr "방문자가 회사 세부 정보 페이지를 볼 수 있도록 허용"
+
+msgid "Allow visitors to view job detail pages"
+msgstr "방문자가 채용 세부정보 페이지를 볼 수 있도록 허용"
+
+msgid "Allow visitors to view resume detail pages"
+msgstr "방문자가 이력서 세부정보 페이지를 볼 수 있도록 허용"
+
+msgid "Allow visitors to view the job seeker control panel links"
+msgstr "방문자가 구직자 제어판 링크를 볼 수 있도록 허용"
+
+msgid "Allow visitors to view the jobs by category page"
+msgstr "방문자가 카테고리 페이지별로 채용 공고를 볼 수 있도록 허용"
+
+msgid "Allow visitors to use the job search functionality"
+msgstr "방문자가 구직 기능을 사용할 수 있도록 허용"
+
+msgid "Allow visitors to see job search result listings"
+msgstr "방문자가 구직 검색 결과 목록을 볼 수 있도록 허용"
+
+msgid "Allow visitors to see the newest jobs page"
+msgstr "방문자가 최신 채용 정보 페이지를 볼 수 있도록 허용"
+
+msgid "Job Posting & Management"
+msgstr "채용 공고 및 관리"
+
+msgid "Manage how jobs are posted, their lifecycle, and related features"
+msgstr "작업 게시 방법, 수명 주기, 관련 기능을 관리합니다."
+
+msgid "Job Auto Approve"
+msgstr "작업 자동 승인"
+
+msgid "Automatically approve new jobs upon submission"
+msgstr "제출 시 새 작업을 자동으로 승인"
+
+msgid "Job Expiry Days"
+msgstr "작업 만료일"
+
+msgid "Number of days until a freely posted job expires"
+msgstr "자유롭게 게시된 채용 정보가 만료될 때까지의 일수"
+
+msgid "Number of days until a paid"
+msgstr "유료화까지 남은 일수"
+
+msgid "job expires"
+msgstr "직업이 만료됨"
+
+msgid "Job Display & Listings"
+msgstr "채용정보 및 목록"
+
+msgid "Control how job-related pages and information are displayed to users"
+msgstr "작업 관련 페이지 및 정보가 사용자에게 표시되는 방식 제어"
+
+msgid "Show Country on Jobs by Cities Page"
+msgstr "도시별 채용 정보 페이지에 국가 표시"
+
+msgid "Display the country name next to the city"
+msgstr "도시 옆에 국가 이름을 표시합니다."
+
+msgid "Show Count on Jobs by Cities Page"
+msgstr "도시별 채용 정보 페이지 표시"
+
+msgid "Display the total number of jobs available in each city"
+msgstr "각 도시에서 이용 가능한 총 일자리 수를 표시합니다."
+
+msgid "Show Count in Job Categories"
+msgstr "직업 카테고리에 개수 표시"
+
+msgid "Display the total number of jobs for each category"
+msgstr "카테고리별 전체 채용공고 수 표시"
+
+msgid "Show Count on Jobs by Types Page"
+msgstr "유형별 작업 개수 표시 페이지"
+
+msgid "Display the total number of jobs for each job type"
+msgstr "각 직업 유형에 대한 총 작업 수를 표시합니다."
+
+msgid "Job Types Per Row"
+msgstr "행당 작업 유형"
+
+msgid "How many job types to display per row on the"
+msgstr "행당 표시할 작업 유형 수"
+
+msgid "Job by Type"
+msgstr "유형별 직업"
+
+msgid "Show Jobs Graph for Employer"
+msgstr "고용주에 대한 채용 그래프 표시"
+
+msgid "Show Active Jobs Graph for Job Seeker"
+msgstr "구직자에 대한 활성 채용 그래프 표시"
+
+msgid "Company Profile Display"
+msgstr "회사 프로필 표시"
+
+msgid "Control which company details are visible on listings and company pages"
+msgstr "목록 및 회사 페이지에 표시되는 회사 세부 정보 제어"
+
+msgid "Show Company Name"
+msgstr "회사 이름 표시"
+
+msgid "Show Company Description"
+msgstr "회사 설명 표시"
+
+msgid "Show Company Email Address"
+msgstr "회사 이메일 주소 표시"
+
+msgid "Show Company City"
+msgstr "회사 도시 표시"
+
+msgid "Show Company URL"
+msgstr "회사 URL 표시"
+
+msgid "Show Company Contact Detail by Default"
+msgstr "기본적으로 회사 연락처 세부 정보 표시"
+
+msgid "If disabled, credits may be required to view contact details"
+msgstr "비활성화된 경우 연락처 세부 정보를 보려면 크레딧이 필요할 수 있습니다."
+
+msgid "General settings for company profiles"
+msgstr "회사 프로필의 일반 설정"
+
+msgid "Company Logo Maximum Size"
+msgstr "회사 로고 최대 크기"
+
+msgid "Set the maximum file size for company logo uploads in kilobytes"
+msgstr "회사 로고 업로드의 최대 파일 크기를 킬로바이트 단위로 설정하세요."
+
+msgid "Company Auto Approve"
+msgstr "회사 자동 승인"
+
+msgid "Automatically approve new company profiles upon submission"
+msgstr "제출 시 새 회사 프로필을 자동으로 승인"
+
+msgid "Control resume submissions, visibility, and search functionality"
+msgstr "이력서 제출, 가시성 및 검색 기능 제어"
+
+msgid "Resume Auto Approve"
+msgstr "자동 승인 재개"
+
+msgid "Automatically approve new resumes upon submission"
+msgstr "새로운 이력서 제출 시 자동으로 승인"
+
+msgid "Show Resume Contact Detail by Default"
+msgstr "기본적으로 이력서 연락처 세부정보 표시"
+
+msgid "If disabled, credits may be required to view resume contact details"
+msgstr "비활성화된 경우 이력서 연락처 세부 정보를 보려면 크레딧이 필요할 수 있습니다."
+
+msgid "Show Count in Resume Categories"
+msgstr "이력서 카테고리에 개수 표시"
+
+msgid "Display the total number of resumes for each category"
+msgstr "카테고리별 총 이력서 수 표시"
+
+msgid "Allow Resume Search"
+msgstr "이력서 검색 허용"
+
+msgid "Define who is allowed to search for resumes"
+msgstr "이력서 검색이 허용되는 사람 정의"
+
+msgid "Allow Users to Save Resume Searches"
+msgstr "사용자가 이력서 검색을 저장하도록 허용"
+
+msgid "Allow users to save their resume search criteria for later use"
+msgstr "사용자가 나중에 사용할 수 있도록 이력서 검색 기준을 저장할 수 있도록 허용"
+
+msgid "Resume Files & Builder"
+msgstr "이력서 파일 및 빌더"
+
+msgid "Define limits and allowed types for resume file uploads and advanced builder sections"
+msgstr "이력서 파일 업로드 및 고급 빌더 섹션에 대한 제한 및 허용 유형 정의"
+
+msgid "Resume Photo Maximum Size"
+msgstr "이력서 사진 최대 크기"
+
+msgid "Maximum file size for resume photos in kilobytes"
+msgstr "이력서 사진의 최대 파일 크기(KB)"
+
+msgid "Resume Document Maximum Size"
+msgstr "이력서 문서 최대 크기"
+
+msgid "System will not upload if resume file size exceeds the given size"
+msgstr "이력서 파일 크기가 지정된 크기를 초과하면 시스템이 업로드되지 않습니다."
+
+msgid "Allowed Document Extensions"
+msgstr "허용되는 문서 확장자"
+
+msgid "Comma-separated list of allowed document file extensions"
+msgstr "허용되는 문서 파일 확장자의 쉼표로 구분된 목록"
+
+msgid "Maximum Number of Files for Resume"
+msgstr "이력서의 최대 파일 수"
+
+msgid "Maximum number of files a job seeker can upload with their resume"
+msgstr "구직자가 이력서와 함께 업로드할 수 있는 최대 파일 수"
+
+msgid "Max Employers in Resume Builder"
+msgstr "이력서 작성기의 최대 고용주"
+
+msgid "Maximum number of employers allowed in the resume builder"
+msgstr "이력서 작성 도구에 허용되는 최대 고용주 수"
+
+msgid "Max Institutes in Resume Builder"
+msgstr "이력서 작성기의 Max Institute"
+
+msgid "Maximum number of institutes allowed in the resume builder"
+msgstr "이력서 작성 도구에 허용되는 최대 교육 기관 수"
+
+msgid "Max Languages in Resume Builder"
+msgstr "이력서 작성기의 최대 언어"
+
+msgid "Maximum number of languages allowed in the resume builder"
+msgstr "이력서 작성 도구에 허용되는 최대 언어 수"
+
+msgid "Max Addresses in Resume Builder"
+msgstr "이력서 작성기의 최대 주소"
+
+msgid "Maximum number of addresses allowed in the resume builder"
+msgstr "이력서 작성 도구에 허용되는 최대 주소 수"
+
+msgid "Job Applications"
+msgstr "입사 지원서"
+
+msgid "Configure the job application process and related notifications"
+msgstr "채용 지원 프로세스 및 관련 알림 구성"
+
+msgid "Show Apply Now Button"
+msgstr "지금 신청 버튼 표시"
+
+msgid "Enable Quick Apply for Logged-in Users"
+msgstr "로그인한 사용자에 대해 빠른 적용 활성화"
+
+msgid "Enable Quick Apply for Visitors"
+msgstr "방문자를 위한 빠른 신청 활성화"
+
+msgid "Show Applied Resume Status to Job Seeker"
+msgstr "구직자에게 적용된 이력서 상태 표시"
+
+msgid "Resume Data in Email"
+msgstr "이메일로 데이터 재개"
+
+msgid "Sections"
+msgstr "섹션"
+
+msgid "Choose whether to include all resume sections or only filled ones in the application email to employers"
+msgstr "고용주에게 보내는 지원서 이메일에 모든 이력서 섹션을 포함할지, 아니면 채워진 섹션만 포함할지 선택하세요."
+
+msgid "Choose whether to include all fields or only filled fields in the application email"
+msgstr "지원서 이메일에 모든 필드를 포함할지 아니면 채워진 필드만 포함할지 선택하세요."
+
+msgid "Auto-Approve Rules"
+msgstr "자동 승인 규칙"
+
+msgid "Set auto-approval rules for various user-submitted content"
+msgstr "사용자가 제출한 다양한 콘텐츠에 대한 자동 승인 규칙 설정"
+
+msgid "Featured Resume Auto Approve"
+msgstr "추천 이력서 ​​자동 승인"
+
+msgid "Automatically approve resumes marked as featured"
+msgstr "추천으로 표시된 이력서를 자동으로 승인합니다."
+
+msgid "Featured Company Auto Approve"
+msgstr "주요 회사 자동 승인"
+
+msgid "Automatically approve companies marked as featured"
+msgstr "추천으로 표시된 회사를 자동으로 승인"
+
+msgid "Featured Job Auto Approve"
+msgstr "추천 직무 자동 승인"
+
+msgid "Automatically approve jobs marked as featured"
+msgstr "추천으로 표시된 채용정보를 자동으로 승인합니다."
+
+msgid "Cover Letter Auto Approve"
+msgstr "자기 소개서 자동 승인"
+
+msgid "Automatically approve cover letters submitted by job seekers"
+msgstr "구직자가 제출한 자기소개서 자동 승인"
+
+msgid "Folder Auto Approve"
+msgstr "폴더 자동 승인"
+
+msgid "Automatically approve new folders created by employers"
+msgstr "고용주가 만든 새 폴더를 자동으로 승인"
+
+msgid "Department Auto Approve"
+msgstr "부서 자동 승인"
+
+msgid "Automatically approve new departments created by employers"
+msgstr "고용주가 만든 새 부서를 자동으로 승인"
+
+msgid "Message Auto Approve"
+msgstr "메시지 자동 승인"
+
+msgid "Automatically approve messages between job seekers and employers"
+msgstr "구직자와 고용주 간의 메시지를 자동으로 승인합니다."
+
+msgid "Conflict Message Auto Approve"
+msgstr "충돌 메시지 자동 승인"
+
+msgid "Automatically approve conflicted messages"
+msgstr "충돌 메시지 자동 승인"
+
+msgid "Email & Alerts"
+msgstr "이메일 및 알림"
+
+msgid "Email Sender Identity"
+msgstr "이메일 발신자 신원"
+
+msgid "Configure sender details for all outgoing system emails"
+msgstr "모든 발신 시스템 이메일에 대한 발신자 세부 정보 구성"
+
+msgid "Admin Email Address"
+msgstr "관리자 이메일 주소"
+
+msgid "Admin will receive email notifications at this address"
+msgstr "관리자는 이 주소로 이메일 알림을 받게 됩니다."
+
+msgid "Sender Email Address"
+msgstr "보낸 사람 이메일 주소"
+
+msgid "The email address that will be used to send system emails"
+msgstr "시스템 이메일을 보내는 데 사용될 이메일 주소"
+
+msgid "The sender name that will be used in system emails"
+msgstr "시스템 이메일에 사용될 발신자 이름"
+
+msgid "Job Alerts"
+msgstr "채용 공고"
+
+msgid "Configure settings for job alert emails and forms"
+msgstr "채용 알림 이메일 및 양식에 대한 설정 구성"
+
+msgid "Show Job Alert Link"
+msgstr "채용공고 링크 표시"
+
+msgid "Show the Job Alert link in the job seeker control panel"
+msgstr "구직자 제어판에 채용 알림 링크 표시"
+
+msgid "Enable Job Alerts for Visitors"
+msgstr "방문자를 위한 채용 공고 알림 활성화"
+
+msgid "Allow non-logged-in users to sign up for job alerts"
+msgstr "로그인하지 않은 사용자가 채용공고 알림에 등록할 수 있도록 허용"
+
+msgid "Job Alert Auto Approve"
+msgstr "채용 알림 자동 승인"
+
+msgid "Automatically approve new job alerts upon creation"
+msgstr "새 채용 알림 생성 시 자동으로 승인"
+
+msgid "Captcha on Visitor Job Alert Form"
+msgstr "방문자 채용 알림 양식의 보안 문자"
+
+msgid "Show a captcha on the job alert sign-up form for visitors"
+msgstr "방문자를 위한 채용 알림 가입 양식에 보안문자 표시"
+
+msgid "Allow users to save their search queries for jobs and resumes"
+msgstr "사용자가 채용 정보 및 이력서에 대한 검색어를 저장할 수 있도록 허용"
+
+msgid "Show Saved Searches for Job Seekers"
+msgstr "구직자에게 저장된 검색결과 표시"
+
+msgid "Allow job seekers to save their job searches"
+msgstr "구직자가 구직 활동을 저장할 수 있도록 허용"
+
+msgid "Show Saved Searches for Employers"
+msgstr "고용주를 위해 저장된 검색 표시"
+
+msgid "Allow employers to save their resume searches"
+msgstr "고용주가 이력서 검색을 저장할 수 있도록 허용"
+
+msgid "Feeds & AI"
+msgstr "피드 및 AI"
+
+msgid "RSS Feeds"
+msgstr "RSS 피드"
+
+msgid "Configure the RSS feed for jobs"
+msgstr "작업에 대한 RSS 피드 구성"
+
+msgid "Enable Jobs RSS Feed"
+msgstr "채용정보 RSS 피드 활성화"
+
+msgid "Enable the main RSS feed for new jobs"
+msgstr "새 작업에 대한 기본 RSS 피드 활성화"
+
+msgid "Job Feed Title"
+msgstr "채용정보 피드 제목"
+
+msgid "The title for the job RSS feed"
+msgstr "채용공고 RSS 피드의 제목"
+
+msgid "Job Feed Description"
+msgstr "채용정보 피드 설명"
+
+msgid "The description for the job RSS feed"
+msgstr "채용정보 RSS 피드에 대한 설명"
+
+msgid "Job Feed Copyright"
+msgstr "채용정보 피드 저작권"
+
+msgid "Copyright notice for the job feed"
+msgstr "채용정보 피드에 대한 저작권 고지"
+
+msgid "Job Feed Editor"
+msgstr "채용정보 피드 편집자"
+
+msgid "The person responsible for editorial content"
+msgstr "편집 내용을 담당하는 사람"
+
+msgid "Job Feed Webmaster"
+msgstr "채용정보 피드 웹마스터"
+
+msgid "The person responsible for technical issues"
+msgstr "기술적인 문제를 담당하는 사람"
+
+msgid "Job Feed TTL"
+msgstr "작업 피드 TTL"
+
+msgid "Time to Live"
+msgstr "생존 시간"
+
+msgid "Number of minutes the feed can be cached before refreshing"
+msgstr "새로 고치기 전에 피드를 캐시할 수 있는 시간(분)"
+
+msgid "Show Categories in Job Feed"
+msgstr "채용정보 피드에 카테고리 표시"
+
+msgid "Include categories in the job feed items"
+msgstr "채용정보 피드 항목에 카테고리 포함"
+
+msgid "Show Company Image in Job Feed"
+msgstr "채용정보 피드에 회사 이미지 표시"
+
+msgid "Include the company logo in the job feed items"
+msgstr "채용정보 피드 항목에 회사 로고 포함"
+
+msgid "Configure the RSS feed for resumes"
+msgstr "이력서에 대한 RSS 피드 구성"
+
+msgid "Enable Resumes RSS Feed"
+msgstr "이력서 RSS 피드 활성화"
+
+msgid "Enable the main RSS feed for new resumes"
+msgstr "새 이력서에 대한 기본 RSS 피드 활성화"
+
+msgid "Resume Feed Title"
+msgstr "이력서 제목"
+
+msgid "The title for the resume RSS feed"
+msgstr "이력서 RSS 피드 제목"
+
+msgid "Resume Feed Description"
+msgstr "이력서 피드 설명"
+
+msgid "The description for the resume RSS feed"
+msgstr "이력서 RSS 피드에 대한 설명"
+
+msgid "Resume Feed Copyright"
+msgstr "피드 저작권 재개"
+
+msgid "Copyright notice for the resume feed"
+msgstr "이력서 피드에 대한 저작권 고지"
+
+msgid "Resume Feed Editor"
+msgstr "이력서 피드 편집기"
+
+msgid "Resume Feed Webmaster"
+msgstr "이력서 웹마스터"
+
+msgid "Resume Feed TTL"
+msgstr "피드 TTL 재개"
+
+msgid "Show Categories in Resume Feed"
+msgstr "이력서 피드에 카테고리 표시"
+
+msgid "Include categories in the resume feed items"
+msgstr "이력서 피드 항목에 카테고리 포함"
+
+msgid "Show Resume File in Resume Feed"
+msgstr "이력서 피드에 이력서 파일 표시"
+
+msgid "Make resume files downloadable from the feed"
+msgstr "피드에서 이력서 파일을 다운로드할 수 있도록 설정"
+
+msgid "AI Suggested Matches"
+msgstr "AI 추천 매치"
+
+msgid "Configure AI-powered job and resume suggestion features"
+msgstr "AI 기반 채용정보 구성 및 추천 재개 기능"
+
+msgid "AI Search On Job Search Page"
+msgstr "직업 검색 페이지의 AI 검색"
+
+msgid "Show the AI search field on the main job search form"
+msgstr "기본 채용정보 검색 양식에 AI 검색 필드 표시"
+
+msgid "AI Job Search"
+msgstr "AI 취업검색"
+
+msgid "AI Search Filter On Job Listing"
+msgstr "채용 공고의 AI 검색 필터"
+
+msgid "Show the AI search field as a filter on the job listing page"
+msgstr "채용정보 페이지에 AI 검색 필드를 필터로 표시"
+
+msgid "AI Search On Resume Search Page"
+msgstr "이력서 검색 페이지의 AI 검색"
+
+msgid "Show the AI search field on the main resume search form"
+msgstr "기본 이력서 검색 양식에 AI 검색 필드 표시"
+
+msgid "AI Resume Search"
+msgstr "AI 이력서 검색"
+
+msgid "AI Search Filter On Resume Listing"
+msgstr "이력서 목록의 AI 검색 필터"
+
+msgid "Show the AI search field as a filter on the resume listing page"
+msgstr "이력서 목록 페이지에 AI 검색 필드를 필터로 표시"
+
+msgid "Show AI Suggested Jobs Button"
+msgstr "AI 추천 직업 버튼 표시"
+
+msgid "AI Suggested Jobs"
+msgstr "AI 추천 직업"
+
+msgid "Show AI Suggested Jobs on Dashboard"
+msgstr "대시보드에 AI 추천 채용정보 표시"
+
+msgid "Show a list of AI-suggested jobs on the job seeker dashboard"
+msgstr "구직자 대시보드에 AI가 추천하는 일자리 목록 표시"
+
+msgid "Show AI Suggested Resumes Button"
+msgstr "AI 추천 이력서 ​​버튼 표시"
+
+msgid "AI Suggested Resumes"
+msgstr "AI 추천 이력서"
+
+msgid "Show AI Suggested Resumes on Dashboard"
+msgstr "대시보드에 AI 추천 이력서 ​​표시"
+
+msgid "Show a list of AI-suggested resumes on the employer dashboard"
+msgstr "AI가 추천한 이력서 목록을 고용주 대시보드에 표시"
+
+msgid "Integrations"
+msgstr "통합"
+
+msgid "Allow users to register and log in with their social media accounts"
+msgstr "사용자가 소셜 미디어 계정으로 등록하고 로그인할 수 있도록 허용"
+
+msgid "Login with Facebook"
+msgstr "페이스북으로 로그인"
+
+msgid "Allow users to log in using their Facebook account"
+msgstr "사용자가 Facebook 계정을 사용하여 로그인하도록 허용"
+
+msgid "Apply with Facebook"
+msgstr "페이스북으로 신청"
+
+msgid "Allow users to apply for jobs using their Facebook profile"
+msgstr "사용자가 Facebook 프로필을 사용하여 채용에 지원할 수 있도록 허용"
+
+msgid "Facebook App ID"
+msgstr "페이스북 앱 ID"
+
+msgid "Enter your Facebook App ID"
+msgstr "Facebook 앱 ID를 입력하세요."
+
+msgid "Facebook App Secret"
+msgstr "Facebook 앱 비밀"
+
+msgid "Enter your Facebook App Secret"
+msgstr "Facebook 앱 비밀번호를 입력하세요."
+
+msgid "Valid OAuth URI"
+msgstr "유효한 OAuth URI"
+
+msgid "Apply"
+msgstr "적용하다"
+
+msgid "Login with LinkedIn"
+msgstr "LinkedIn으로 로그인"
+
+msgid "Allow users to log in using their LinkedIn account"
+msgstr "사용자가 LinkedIn 계정을 사용하여 로그인하도록 허용"
+
+msgid "Apply with LinkedIn"
+msgstr "LinkedIn으로 신청하세요"
+
+msgid "Allow users to apply for jobs using their LinkedIn profile"
+msgstr "사용자가 LinkedIn 프로필을 사용하여 채용 공고에 지원할 수 있도록 허용"
+
+msgid "LinkedIn Client ID"
+msgstr "LinkedIn 클라이언트 ID"
+
+msgid "Enter your LinkedIn Client ID"
+msgstr "LinkedIn 클라이언트 ID를 입력하세요."
+
+msgid "API Key"
+msgstr "API 키"
+
+msgid "LinkedIn Client Secret"
+msgstr "LinkedIn 클라이언트 비밀번호"
+
+msgid "Enter your LinkedIn Client Secret"
+msgstr "LinkedIn 고객 비밀번호를 입력하세요."
+
+msgid "Social Sharing"
+msgstr "소셜 공유"
+
+msgid "Enable social sharing buttons on your pages"
+msgstr "페이지에서 소셜 공유 버튼 활성화"
+
+msgid "Enable Facebook Likes"
+msgstr "Facebook 좋아요 활성화"
+
+msgid "Show Facebook like button"
+msgstr "Facebook 좋아요 버튼 표시"
+
+msgid "Enable Facebook Share"
+msgstr "Facebook 공유 활성화"
+
+msgid "Show Facebook share button"
+msgstr "Facebook 공유 버튼 표시"
+
+msgid "Enable Facebook Comments"
+msgstr "Facebook 댓글 활성화"
+
+msgid "Show Facebook comments widget"
+msgstr "Facebook 댓글 위젯 표시"
+
+msgid "Enable Twitter Share"
+msgstr "트위터 공유 활성화"
+
+msgid "Show Twitter share button"
+msgstr "트위터 공유 버튼 표시"
+
+msgid "Enable LinkedIn Share"
+msgstr "LinkedIn 공유 활성화"
+
+msgid "Show LinkedIn share button"
+msgstr "LinkedIn 공유 버튼 표시"
+
+msgid "Enable Blogger Share"
+msgstr "Blogger 공유 활성화"
+
+msgid "Show Blogger share button"
+msgstr "Blogger 공유 버튼 표시"
+
+msgid "Enable Digg Share"
+msgstr "Digg 공유 활성화"
+
+msgid "Show Digg share button"
+msgstr "Digg 공유 버튼 표시"
+
+msgid "Enable Myspace Share"
+msgstr "Myspace 공유 활성화"
+
+msgid "Show Myspace share button"
+msgstr "Myspace 공유 버튼 표시"
+
+msgid "Enable Yahoo Share"
+msgstr "야후 공유 활성화"
+
+msgid "Show Yahoo share button"
+msgstr "Yahoo 공유 버튼 표시"
+
+msgid "Mapping & Geolocation"
+msgstr "매핑 및 지리적 위치"
+
+msgid "Configure map services and location-based features"
+msgstr "지도 서비스 및 위치 기반 기능 구성"
+
+msgid "Choose between Google Maps and OpenStreetMap for map displays"
+msgstr "지도 표시를 위해 Google 지도와 OpenStreetMap 중에서 선택하세요"
+
+msgid "Google Map API Key"
+msgstr "Google 지도 API 키"
+
+msgid "Enter your Google Maps API key"
+msgstr "Google 지도 API 키를 입력하세요."
+
+msgid "Map Height"
+msgstr "지도 높이"
+
+msgid "Set the height for maps displayed in the plugin, in pixels"
+msgstr "플러그인에 표시되는 지도의 높이를 픽셀 단위로 설정합니다."
+
+msgid "Default Longitude"
+msgstr "기본 경도"
+
+msgid "Default longitude for map centering"
+msgstr "지도 중심 맞추기의 기본 경도"
+
+msgid "Default Latitude"
+msgstr "기본 위도"
+
+msgid "Default latitude for map centering"
+msgstr "지도 중심 맞추기의 기본 위도"
+
+msgid "Default Map Radius Type"
+msgstr "기본 지도 반경 유형"
+
+msgid "Default unit for map radius calculations"
+msgstr "지도 반경 계산의 기본 단위"
+
+msgid "Max Records for City Field"
+msgstr "시티 필드의 최대 기록"
+
+msgid "Set the number of cities to show in the location autocomplete results"
+msgstr "위치 자동 완성 결과에 표시할 도시 수 설정"
+
+msgid "Max Records for Tag Field"
+msgstr "태그 필드의 최대 기록"
+
+msgid "Set the number of tags to show in the tag autocomplete results"
+msgstr "태그 자동 완성 결과에 표시할 태그 수 설정"
+
+msgid "Security & Captcha"
+msgstr "보안 및 보안 문자"
+
+msgid "Captcha Options"
+msgstr "보안 문자 옵션"
+
+msgid "Enable captcha on various forms to prevent spam"
+msgstr "스팸 방지를 위해 다양한 양식에서 보안 문자를 활성화하세요."
+
+msgid "Default Captcha Type"
+msgstr "기본 보안 문자 유형"
+
+msgid "Select the default captcha to use throughout the plugin"
+msgstr "플러그인 전체에서 사용할 기본 보안 문자를 선택하세요."
+
+msgid "Captcha on Registration Form"
+msgstr "등록 양식의 보안 문자"
+
+msgid "Show a captcha on the WP Job Portal registration form"
+msgstr "WP Job Portal 등록 양식에 보안 문자 표시"
+
+msgid "Captcha on Visitor Quick Apply"
+msgstr "방문자 빠른 신청 시 보안 문자"
+
+msgid "Show captcha to visitors on the quick apply form"
+msgstr "빠른 신청 양식을 통해 방문자에게 보안 문자를 표시하세요."
+
+msgid "Captcha on Visitor Job Form"
+msgstr "방문자 작업 양식의 보안 문자"
+
+msgid "Show captcha on the job submission form for visitors"
+msgstr "방문자를 위한 채용 제출 양식에 보안 문자 표시"
+
+msgid "Captcha on Visitor Resume Form"
+msgstr "방문자 이력서 양식의 보안 문자"
+
+msgid "Show captcha on the resume submission form for visitors"
+msgstr "방문자의 이력서 제출 양식에 보안 문자 표시"
+
+msgid "Captcha on Tell a Friend Popup"
+msgstr "친구에게 알리기 팝업의 보안 문자"
+
+msgid "Show captcha on the"
+msgstr "보안문자 표시"
+
+msgid "popup for visitors"
+msgstr "방문객을 위한 팝업"
+
+msgid "WP Job Portal Captcha"
+msgstr "WP 취업 포털 보안 문자"
+
+msgid "Settings for the built-in mathematical captcha"
+msgstr "내장된 수학 보안 문자 설정"
+
+msgid "Calculation Type"
+msgstr "계산 유형"
+
+msgid "Select the type of math problem for the captcha"
+msgstr "보안문자에 대한 수학 문제 유형을 선택하세요."
+
+msgid "Addition or Subtraction"
+msgstr "덧셈 또는 뺄셈"
+
+msgid "Answer Always Positive"
+msgstr "항상 긍정적으로 대답하세요"
+
+msgid "Ensure that subtraction problems always result in a positive answer"
+msgstr "뺄셈 문제는 항상 긍정적인 답을 얻게 하세요."
+
+msgid "Number of Operands"
+msgstr "피연산자 수"
+
+msgid "Choose the number of operands for the math problem"
+msgstr "수학 문제의 피연산자 수를 선택하세요."
+
+msgid "Google reCAPTCHA"
+msgstr "구글 리캡차"
+
+msgid "Configure Google reCAPTCHA v2 or v3"
+msgstr "Google reCAPTCHA v2 또는 v3 구성"
+
+msgid "Select which version of Google reCAPTCHA to use"
+msgstr "사용할 Google reCAPTCHA 버전을 선택하세요."
+
+msgid "Enter the site key from your Google reCAPTCHA admin console"
+msgstr "Google reCAPTCHA 관리 콘솔에서 사이트 키를 입력하세요."
+
+msgid "Google reCaptcha Secret Key"
+msgstr "Google reCaptcha 비밀 키"
+
+msgid "Enter the secret key from your Google reCAPTCHA admin console"
+msgstr "Google reCAPTCHA 관리 콘솔에서 비밀 키를 입력하세요."
+
+msgid "Monetization"
+msgstr "수익화"
+
+msgid "General Monetization"
+msgstr "일반 수익화"
+
+msgid "Core settings for handling payments and packages"
+msgstr "결제 및 택배 처리를 위한 핵심 설정"
+
+msgid "Choose the monetization model for submissions"
+msgstr "제출물에 대한 수익 창출 모델 선택"
+
+msgid "Free, Per Listing, or Membership-based"
+msgstr "무료, 목록당 또는 회원 기반"
+
+msgid "Default Currency Symbol"
+msgstr "기본 통화 기호"
+
+msgid "The currency symbol to be used across the site"
+msgstr "사이트 전체에서 사용되는 통화 기호"
+
+msgid "Currency Symbol Position"
+msgstr "통화 기호 위치"
+
+msgid "Packages & Featured Listings"
+msgstr "패키지 및 추천 목록"
+
+msgid "Manage free packages and enable featured listings"
+msgstr "무료 패키지 관리 및 추천 목록 활성화"
+
+msgid "Auto-assign Free Package to New User"
+msgstr "신규 사용자에게 무료 패키지 자동 할당"
+
+msgid "Automatically give new users a free package if one exists"
+msgstr "신규 사용자에게 무료 패키지가 있는 경우 자동으로 제공"
+
+msgid "Free Package Purchase Auto Approve"
+msgstr "무료 패키지 구매 자동 승인"
+
+msgid "Automatically approve the purchase of free packages"
+msgstr "무료 패키지 구매를 자동으로 승인합니다."
+
+msgid "Purchase Free Package Only Once"
+msgstr "무료 패키지는 한 번만 구매하세요"
+
+msgid "Prevent users from acquiring a free package more than once"
+msgstr "사용자가 무료 패키지를 두 번 이상 획득하지 못하도록 방지"
+
+msgid "Enable Featured Companies"
+msgstr "주요 기업 활성화"
+
+msgid "Allow companies to be marked as"
+msgstr "회사가 다음으로 표시되도록 허용"
+
+msgid "Enable Featured Jobs"
+msgstr "추천 채용정보 활성화"
+
+msgid "Allow jobs to be marked as"
+msgstr "작업이 다음으로 표시되도록 허용"
+
+msgid "Enable Featured Resumes"
+msgstr "추천 이력서 ​​활성화"
+
+msgid "Allow resumes to be marked as"
+msgstr "이력서가 다음으로 표시되도록 허용"
+
+msgid "Per Listing Prices"
+msgstr "목록당 가격"
+
+msgid "Set prices for various actions when using the"
+msgstr "사용 시 다양한 작업에 대한 가격을 설정하세요."
+
+msgid "submission type"
+msgstr "제출 유형"
+
+msgid "Submission"
+msgstr "제출"
+
+msgid "Price to submit a single company profile"
+msgstr "단일 회사 프로필 제출 가격"
+
+msgid "Additional price to make a company"
+msgstr "회사를 만드는 데 추가 비용"
+
+msgid "Days Until Featured Company Expires"
+msgstr "추천 회사가 만료될 때까지 남은 일수"
+
+msgid "Number of days a"
+msgstr "일수"
+
+msgid "per-listing"
+msgstr "목록당"
+
+msgid "featured company remains active"
+msgstr "추천 회사는 계속 활동 중입니다."
+
+msgid "free"
+msgstr "무료"
+
+msgid "Price to submit a single job"
+msgstr "단일 작업 제출 가격"
+
+msgid "Additional price to make a job"
+msgstr "일자리를 만드는 데 드는 추가 비용"
+
+msgid "Days Until Featured Job Expires"
+msgstr "추천 채용정보가 만료될 때까지 남은 일수"
+
+msgid "featured job remains active"
+msgstr "추천 채용정보는 계속 활성 상태로 유지됩니다."
+
+msgid "Price to submit a single resume"
+msgstr "이력서 한 장을 제출하는 데 드는 비용"
+
+msgid "Additional price to make a resume"
+msgstr "이력서 작성을 위한 추가 가격"
+
+msgid "Days Until Featured Resume Expires"
+msgstr "추천 이력서가 만료될 때까지 남은 일수"
+
+msgid "featured resume remains active"
+msgstr "주요 이력서는 활성 상태로 유지됩니다"
+
+msgid "Price per Job Apply"
+msgstr "작업당 가격 적용"
+
+msgid "Price for a job seeker to apply for a job"
+msgstr "구직자가 구직을 신청하는 데 드는 가격"
+
+msgid "Price to View Resume Contact"
+msgstr "이력서 연락처 보기 가격"
+
+msgid "Price to View Company Contact"
+msgstr "회사 연락처 보기 가격"
+
+msgid "Price to submit a department"
+msgstr "학과 제출 가격"
+
+msgid "Price to submit a cover letter"
+msgstr "자기 소개서 제출 가격"
+
+msgid "Price to create a job alert"
+msgstr "채용 알림 생성 가격"
+
+msgid "Dashboard Monetization Links"
+msgstr "대시보드 수익화 링크"
+
+msgid "Control the visibility of monetization-related links in user dashboards"
+msgstr "사용자 대시보드에서 수익화 관련 링크의 가시성을 제어합니다."
+
+msgid "Employer Show Invoice History"
+msgstr "고용주 송장 내역 표시"
+
+msgid "Setting to show the invoice/purchase history section"
+msgstr "청구서/구매 내역 섹션을 표시하도록 설정"
+
+msgid "Job Seeker Show Invoice History"
+msgstr "구직자 표시 송장 내역"
+
+msgid "Job Seeker Show Credits Log"
+msgstr "구직자 쇼 크레딧 로그"
+
+msgid "Setting to show the credits log section"
+msgstr "크레딧 로그 섹션을 표시하도록 설정"
+
+msgid "Payment Gateways"
+msgstr "결제 게이트웨이"
+
+msgid "Configure PayPal payment gateway settings for API integration"
+msgstr "API 통합을 위한 PayPal 결제 게이트웨이 설정 구성"
+
+msgid "Enable PayPal"
+msgstr "페이팔 활성화"
+
+msgid "Enable or disable PayPal as a payment option"
+msgstr "PayPal을 결제 옵션으로 활성화 또는 비활성화"
+
+msgid "Your PayPal API Username"
+msgstr "귀하의 PayPal API 사용자 이름"
+
+msgid "Your PayPal API Password"
+msgstr "귀하의 PayPal API 비밀번호"
+
+msgid "Your PayPal API Signature"
+msgstr "귀하의 PayPal API 서명"
+
+msgid "A URL to your logo image to display on the PayPal checkout page"
+msgstr "PayPal 결제 페이지에 표시할 로고 이미지의 URL"
+
+msgid "Cancel URL"
+msgstr "취소 URL"
+
+msgid "The URL users are sent to if they cancel the payment"
+msgstr "사용자가 결제를 취소할 경우 전송되는 URL"
+
+msgid "Notify URL"
+msgstr "알림 URL"
+
+msgid "Sandbox"
+msgstr "모래 상자"
+
+msgid "Enable PayPal Sandbox for testing purposes"
+msgstr "테스트 목적으로 PayPal Sandbox 활성화"
+
+msgid "Please enter language code, for example"
+msgstr "예를 들어 언어 코드를 입력하세요."
+
+msgid "Subscription IPN URL"
+msgstr "구독 IPN URL"
+
+msgid "Configure Stripe payment gateway settings"
+msgstr "Stripe 결제 게이트웨이 설정 구성"
+
+msgid "Enable Stripe"
+msgstr "스트라이프 활성화"
+
+msgid "Enable or disable Stripe as a payment option"
+msgstr "결제 옵션으로 Stripe를 활성화 또는 비활성화합니다."
+
+msgid "Publishable Key"
+msgstr "게시 가능한 키"
+
+msgid "Enter your Stripe Publishable Key"
+msgstr "Stripe 게시 가능 키를 입력하세요"
+
+msgid "Secret Key"
+msgstr "비밀키"
+
+msgid "Enter your Stripe Secret Key"
+msgstr "스트라이프 비밀 키를 입력하세요"
+
+msgid "Subscription Webhook URL"
+msgstr "구독 웹훅 URL"
+
+msgid "WooCommerce"
+msgstr "우커머스"
+
+msgid "Use WooCommerce to handle payments"
+msgstr "WooCommerce를 사용하여 결제 처리"
+
+msgid "Enable WooCommerce"
+msgstr "WooCommerce 활성화"
+
+msgid "Enable or disable WooCommerce as a payment option"
+msgstr "WooCommerce를 결제 옵션으로 활성화 또는 비활성화"
+
+msgid "Home Page"
+msgstr "홈 페이지"
+
+msgid "WordPress Default"
+msgstr "워드프레스 기본값"
+
+msgid "Blog"
+msgstr "블로그"
+
+msgid "This feature is part of a premium addon"
+msgstr "이 기능은 프리미엄 애드온의 일부입니다."
+
+msgid "Available tags"
+msgstr "사용 가능한 태그"
+
+msgid "This image will be shown as the default image for entities & users if no other image is provided"
+msgstr "다른 이미지가 제공되지 않으면 이 이미지가 엔터티 및 사용자의 기본 이미지로 표시됩니다."
+
+msgid "Discard"
+msgstr "버리다"
+
+msgid "Save Changes"
+msgstr "변경 사항 저장"
+
+msgid "Quickly find any setting"
+msgstr "모든 설정을 빠르게 찾으세요"
+
+msgid "Search by setting title or tooltip description"
+msgstr "설정 제목 또는 툴팁 설명으로 검색"
+
+msgid "Unlock"
+msgstr "터놓다"
+
+msgid "This and other powerful features are available in the"
+msgstr "이 기능과 기타 강력한 기능은 다음에서 사용할 수 있습니다."
+
+msgid "Upgrade Now"
+msgstr "지금 업그레이드"
+
+msgid "No settings found for your search"
+msgstr "검색에 대한 설정이 없습니다."
+
+msgid "Copied to clipboard"
+msgstr "클립보드에 복사됨"
+
+msgid "Search results for"
+msgstr "다음에 대한 검색 결과"
+
+msgid "Unlock with"
+msgstr "다음으로 잠금 해제"
+
+msgid "Settings related to employer accounts, registration, and permissions"
+msgstr "고용주 계정, 등록 및 권한과 관련된 설정"
+
+msgid "Settings related to job seeker accounts and registration"
+msgstr "구직자 계정 및 등록 관련 설정"
+
+msgid "Visitor Can View Employer's Control Panel Links"
+msgstr "방문자는 고용주의 제어판 링크를 볼 수 있습니다."
+
+msgid "Visitor Can View Resume Categories"
+msgstr "방문자는 이력서 카테고리를 볼 수 있습니다."
+
+msgid "Visitor Can Search Resumes"
+msgstr "방문자는 이력서를 검색할 수 있습니다"
+
+msgid "Visitor Can View Company Details"
+msgstr "방문자는 회사 세부 정보를 볼 수 있습니다"
+
+msgid "Visitor Can View Job Details"
+msgstr "방문자는 작업 세부 정보를 볼 수 있습니다."
+
+msgid "Visitor Can View Resume Details"
+msgstr "방문자는 이력서 세부 정보를 볼 수 있습니다."
+
+msgid "Visitor Can View Job Seeker's Control Panel Links"
+msgstr "방문자는 구직자의 제어판 링크를 볼 수 있습니다."
+
+msgid "Visitor Can View Jobs by Categories"
+msgstr "방문자는 카테고리별로 채용 공고를 볼 수 있습니다."
+
+msgid "Visitor Can Search Jobs"
+msgstr "방문자는 채용 정보를 검색할 수 있습니다."
+
+msgid "Visitor Can View Newest Jobs"
+msgstr "방문자는 최신 채용 정보를 볼 수 있습니다"
+
+msgid "Visitor Can View Job Search Results"
+msgstr "방문자는 채용 검색 결과를 볼 수 있습니다"
+
+msgid "1 Column"
+msgstr "1개의 칼럼"
+
+msgid "10254 Departments found"
+msgstr "10254개의 부서를 찾았습니다."
+
+msgid "2 Columns"
+msgstr "2열"
+
+msgid "3 Columns"
+msgstr "3개의 칼럼"
+
+msgid "4 Columns"
+msgstr "4개의 기둥"
+
+msgid "5 Columns"
+msgstr "5개의 칼럼"
+
+msgid "A critical update for WP Job Portal is required to maintain performance and prevent issues. Please update now."
+msgstr "성능을 유지하고 문제를 방지하려면 WP Job Portal에 대한 중요 업데이트가 필요합니다. 지금 업데이트하세요."
+
+msgid "AI Search"
+msgstr "AI 검색"
+
+msgid "AI Search Job"
+msgstr "AI 검색 직업"
+
+msgid "AI Settings"
+msgstr "AI 설정"
+
+msgid "AI settings"
+msgstr "AI 설정"
+
+msgid "About"
+msgstr "에 대한"
+
+msgid "Account & Billing"
+msgstr "계정 및 청구"
+
+msgid "Activation failed"
+msgstr "활성화 실패"
+
+msgid "Add-ons for WP Job Portal have been installed and activated successfully."
+msgstr "WP Job Portal용 추가 기능이 성공적으로 설치 및 활성화되었습니다."
+
+msgid "Addon Installer"
+msgstr "애드온 설치 프로그램"
+
+msgid "Addon not installed please install addon first."
+msgstr "애드온이 설치되지 않았습니다. 먼저 애드온을 설치하세요."
+
+msgid "Addon will automatically update to the newest version"
+msgstr "애드온이 자동으로 최신 버전으로 업데이트됩니다."
+
+msgid "Addon(s) Installed successfully!"
+msgstr "애드온이 성공적으로 설치되었습니다!"
+
+msgid "Address display style for plugin"
+msgstr "플러그인의 주소 표시 스타일"
+
+msgid "Advanced Resume Builder Addon missing, resume sections data will not be imported!"
+msgstr "고급 이력서 작성기 애드온이 누락되어 이력서 섹션 데이터를 가져올 수 없습니다!"
+
+msgid "All selected add-ons are now active."
+msgstr "이제 선택한 모든 추가 기능이 활성화되었습니다."
+
+msgid "Allow employers and job Seekers to register on the site."
+msgstr "고용주와 구직자가 사이트에 등록할 수 있도록 허용합니다."
+
+msgid "Allow search resume"
+msgstr "검색 재개 허용"
+
+msgid "Allowed to all (employers, job seekers and visitors)"
+msgstr "모두에게 허용됨(고용주, 구직자, 방문자)"
+
+msgid "Auto Update: Off"
+msgstr "자동 업데이트: 끄기"
+
+msgid "Auto Update: On"
+msgstr "자동 업데이트: 켜짐"
+
+msgid "Back to listing"
+msgstr "목록으로 돌아가기"
+
+msgid "Basic Info"
+msgstr "기본 정보"
+
+msgid "Buttons Styling"
+msgstr "버튼 스타일링"
+
+msgid "Capitalize"
+msgstr "대문자로 표기"
+
+msgid "Check if you want to use WP Job Portal packages"
+msgstr "WP Job Portal 패키지를 사용하고 싶은지 확인하세요"
+
+msgid "City name"
+msgstr "도시 이름"
+
+msgid "Columns per Row"
+msgstr "행당 열"
+
+msgid "Comma separated list of job types i.e JTFT, JTPT, JTFP, JTCT, JTIN"
+msgstr "쉼표로 구분된 작업 유형 목록(예: JTFT, JTPT, JTFP, JTCT, JTIN)"
+
+msgid "Communication"
+msgstr "의사소통"
+
+msgid "Company Management"
+msgstr "회사 관리"
+
+msgid "Complete Your Resume"
+msgstr "이력서를 작성하세요"
+
+msgid "Content Access"
+msgstr "콘텐츠 액세스"
+
+msgid "Content Styling"
+msgstr "콘텐츠 스타일링"
+
+msgid "Control which employer dashboard navigation links are visible to visitors"
+msgstr "방문자에게 표시되는 고용주 대시보드 탐색 링크 제어"
+
+msgid "Control which employer dashboard widgets and sections are visible to visitors"
+msgstr "방문자에게 표시되는 고용주 대시보드 위젯 및 섹션 제어"
+
+msgid "Control which job seeker dashboard navigation links are visible to visitors"
+msgstr "방문자에게 표시되는 구직자 대시보드 탐색 링크 제어"
+
+msgid "Control which job seeker dashboard widgets and sections are visible to visitors"
+msgstr "방문자에게 표시되는 구직자 대시보드 위젯 및 섹션 제어"
+
+msgid "Control which pages and content areas are visible to non-logged-in users"
+msgstr "로그인하지 않은 사용자에게 표시되는 페이지 및 콘텐츠 영역 제어"
+
+msgid "Custom Field Class"
+msgstr "사용자 정의 필드 클래스"
+
+msgid "Database Update Needed"
+msgstr "데이터베이스 업데이트 필요"
+
+msgid "Database update completed"
+msgstr "데이터베이스 업데이트 완료"
+
+msgid "Delete All Unused Keys"
+msgstr "사용하지 않는 키 모두 삭제"
+
+msgid "Discover"
+msgstr "발견하다"
+
+msgid "Display the status of applications to the job seeker"
+msgstr "구직자에게 지원 현황을 표시"
+
+msgid "Dummy Plugin"
+msgstr "더미 플러그인"
+
+msgid "Dummy Plugin 2"
+msgstr "더미 플러그인 2"
+
+msgid "Elegant Design"
+msgstr "우아한 디자인"
+
+msgid "Employer Widgets"
+msgstr "고용주 위젯"
+
+msgid "Enter the Site Title"
+msgstr "사이트 제목을 입력하세요"
+
+msgid "Entity"
+msgstr "실재"
+
+msgid "Fetch Data"
+msgstr "데이터 가져오기"
+
+msgid "Find your next star hire with AI-driven resume search"
+msgstr "AI 기반 이력서 검색으로 다음 인재를 찾아보세요"
+
+msgid "Font Family"
+msgstr "글꼴군"
+
+msgid "Font Size"
+msgstr "글꼴 크기"
+
+msgid "Font Style"
+msgstr "글꼴 스타일"
+
+msgid "Font Weight"
+msgstr "글꼴 두께"
+
+msgid "Go To Dashboard"
+msgstr "대시보드로 이동"
+
+msgid "Import Data Report"
+msgstr "데이터 보고서 가져오기"
+
+msgid "Import Third Party Data"
+msgstr "제3자 데이터 가져오기"
+
+msgid "Import demo data to populate your site with example companies, jobs, resumes, and applications."
+msgstr "데모 데이터를 가져와서 회사, 채용 정보, 이력서 및 지원서 예시로 사이트를 채우세요."
+
+msgid "Imported"
+msgstr "수입됨"
+
+msgid "Infi Icon"
+msgstr "인피 아이콘"
+
+msgid "Info"
+msgstr "정보"
+
+msgid "Info Icon"
+msgstr "정보 아이콘"
+
+msgid "Invalid server response"
+msgstr "잘못된 서버 응답"
+
+msgid "Italic"
+msgstr "이탤릭체"
+
+msgid "Job Alert Time"
+msgstr "채용 알림 시간"
+
+msgid "Job Detail"
+msgstr "직무 세부정보"
+
+msgid "Job Seeker Links"
+msgstr "구직자 링크"
+
+msgid "Job Seeker Settings"
+msgstr "구직자 설정"
+
+msgid "Job Seeker Widgets"
+msgstr "구직자 위젯"
+
+msgid "Jobs by Category"
+msgstr "카테고리별 채용정보"
+
+msgid "Layout"
+msgstr "공들여 나열한 것"
+
+msgid "Letter Spacing"
+msgstr "문자 간격"
+
+msgid "Line Height"
+msgstr "라인 높이"
+
+msgid "Live Preview Not available at the moment !"
+msgstr "현재 실시간 미리보기를 사용할 수 없습니다!"
+
+msgid "Login/Register"
+msgstr "로그인/회원가입"
+
+msgid "Lowercase"
+msgstr "소문자"
+
+msgid "Manage Documents"
+msgstr "문서 관리"
+
+msgid "Manage Jobs"
+msgstr "채용정보 관리"
+
+msgid "Manage Unused Keys"
+msgstr "사용하지 않는 키 관리"
+
+msgid "More Actions"
+msgstr "추가 작업"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans."
+msgstr "내 구독은 사용자에게 활성 구독에 대한 개요를 제공하므로 채용 공고 계획을 쉽게 관리하고 추적할 수 있습니다."
+
+msgid "New Jobs"
+msgstr "새로운 직업"
+
+msgid "Next Setup"
+msgstr "다음 설정"
+
+msgid "No Addon Installed!"
+msgstr "애드온이 설치되지 않았습니다!"
+
+msgid "No unused keys were found."
+msgstr "사용되지 않은 키를 찾을 수 없습니다."
+
+msgid "None"
+msgstr "없음"
+
+msgid "Not Imported"
+msgstr "가져오지 않음"
+
+msgid "Oblique"
+msgstr "비스듬한"
+
+msgid "Only job seekers can register. Jobs and companies are managed by the admin."
+msgstr "구직자만 등록 가능합니다. 채용정보와 회사는 관리자가 관리합니다."
+
+msgid "Paid access Only"
+msgstr "유료 액세스만 가능"
+
+msgid "Pay For Featured Resume"
+msgstr "추천 이력서 ​​비용 지불"
+
+msgid "Pay For Resume"
+msgstr "이력서 비용 지불"
+
+msgid "Pay per listing price to publish your"
+msgstr "게시하려면 목록 가격당 지불하세요."
+
+msgid "Please Insert Your Activation Key"
+msgstr "활성화 키를 삽입하세요"
+
+msgid "Please log in to register to continue."
+msgstr "계속하려면 로그인하여 등록하세요."
+
+msgid "Please select at least one addon!"
+msgstr "애드온을 하나 이상 선택하세요!"
+
+msgid "Please verify Locations and salaries for imported data entities"
+msgstr "가져온 데이터 엔터티의 위치와 급여를 확인하세요."
+
+msgid "Plugin not installed"
+msgstr "플러그인이 설치되지 않았습니다."
+
+msgid "Price for a job seeker to view a company's contact details"
+msgstr "구직자가 회사의 연락처 정보를 볼 수 있는 가격"
+
+msgid "Price for an employer to view a resume's contact details"
+msgstr "고용주가 이력서의 연락처 정보를 볼 수 있는 가격"
+
+msgid "Quick Configuration"
+msgstr "빠른 구성"
+
+msgid "Ready to find your dream job? Let's get started"
+msgstr "꿈의 직업을 찾을 준비가 되셨나요? 시작하자"
+
+msgid "Ready to find your potential employee? Let's get started"
+msgstr "잠재적인 직원을 찾을 준비가 되셨나요? 시작하자"
+
+msgid "Search Jobs"
+msgstr "채용정보 검색"
+
+msgid "Search Resumes"
+msgstr "이력서 검색"
+
+msgid "Search smarter – just type anything you know about the job: title, category, type, skills, or even a description!"
+msgstr "더욱 스마트하게 검색하세요. 직책, 카테고리, 유형, 기술, 설명 등 직무에 대해 알고 있는 모든 것을 입력하세요!"
+
+msgid "Section Title Styling"
+msgstr "섹션 제목 스타일링"
+
+msgid "Select Addons to Update with New Activation Key"
+msgstr "새 활성화 키로 업데이트할 애드온 선택"
+
+msgid "Select Company"
+msgstr "회사 선택"
+
+msgid "Select Job Category"
+msgstr "직종 선택"
+
+msgid "Select Job Status"
+msgstr "작업 상태 선택"
+
+msgid "Select Job Type"
+msgstr "직무 유형 선택"
+
+msgid "Select Page To Show"
+msgstr "표시할 페이지 선택"
+
+msgid "Select Plugin Setting for WP Job Portal"
+msgstr "WP 취업 포털 플러그인 설정 선택"
+
+msgid "Select packages pack so that user can purchase them"
+msgstr "사용자가 구매할 수 있도록 패키지 팩을 선택하세요."
+
+msgid "Select who can view company contact details."
+msgstr "회사 연락처 세부정보를 볼 수 있는 사람을 선택하세요."
+
+msgid "Settings you applied have been successfully saved"
+msgstr "적용한 설정이 성공적으로 저장되었습니다."
+
+msgid "Setup Complete"
+msgstr "설정 완료"
+
+msgid "Show Advanced Search Button"
+msgstr "고급 검색 버튼 표시"
+
+msgid "Show Employers"
+msgstr "고용주 표시"
+
+msgid "Show Everyone"
+msgstr "모두에게 보여주기"
+
+msgid "Show Job seekers"
+msgstr "구직자 표시"
+
+msgid "Show Labels"
+msgstr "라벨 표시"
+
+msgid "Show No One"
+msgstr "아무도 표시하지 않음"
+
+msgid "Show Placeholders"
+msgstr "자리 표시자 표시"
+
+msgid "Show Resume Status Section"
+msgstr "이력서 상태 섹션 표시"
+
+msgid "Show a box with applied jobs on the job seeker's dashboard"
+msgstr "구직자의 대시보드에 적용된 채용정보가 표시된 상자 표시"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard"
+msgstr "구직자의 대시보드에 최신 채용 정보가 포함된 상자 표시"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard to visitor"
+msgstr "구직자의 대시보드에 최신 채용 정보가 포함된 상자를 방문자에게 표시합니다."
+
+msgid "Show a box with recent resumes on the employer's dashboard"
+msgstr "고용주 대시보드에 최근 이력서가 포함된 상자 표시"
+
+msgid "Show a box with recent resumes on the employer's dashboard to visitor"
+msgstr "방문자에게 고용주 대시보드에 최근 이력서가 포함된 상자를 표시합니다."
+
+msgid "Show a graph of job statistics in the employer's dashboard"
+msgstr "고용주 대시보드에 직업 통계 그래프 표시"
+
+msgid "Show a graph of job statistics in the employer's dashboard to visitor"
+msgstr "방문자에게 고용주 대시보드의 직업 통계 그래프를 보여줍니다."
+
+msgid "Show a graph of job statistics in the job seeker's dashboard"
+msgstr "구직자의 대시보드에 취업 통계 그래프 표시"
+
+msgid "Show a graph of job statistics in the job seeker's dashboard to visitor"
+msgstr "구직자의 대시보드에 채용 통계 그래프를 방문자에게 표시합니다."
+
+msgid "Show a link to active subscriptions in the employer's dashboard"
+msgstr "고용주의 대시보드에 활성 구독에 대한 링크 표시"
+
+msgid "Show a link to active subscriptions in the job seeker's dashboard"
+msgstr "구직자의 대시보드에 활성 구독에 대한 링크 표시"
+
+msgid "Show a link to the packages page in the employer's dashboard"
+msgstr "고용주 대시보드에 패키지 페이지 링크 표시"
+
+msgid "Show a link to the packages page in the job seeker's dashboard"
+msgstr "구직자의 대시보드에 패키지 페이지 링크 표시"
+
+msgid "Show a link to the purchase history/invoices in the employer's dashboard"
+msgstr "고용주 대시보드에 구매 내역/송장 링크 표시"
+
+msgid "Show a link to the purchase history/invoices in the job seeker's dashboard"
+msgstr "구직자 대시보드에 구매 내역/인보이스 링크 표시"
+
+msgid "Show a link to the user's purchased packages in their dashboard"
+msgstr "대시보드에 사용자가 구매한 패키지에 대한 링크 표시"
+
+msgid "Show an 'AI Suggested Jobs' button on the 'My Resumes' page for job seekers"
+msgstr "구직자를 위한 '내 이력서' 페이지에 'AI 추천 채용정보' 버튼 표시"
+
+msgid "Show an 'AI Suggested Resumes' button on the 'My Jobs' page for employers"
+msgstr "고용주를 위해 '내 직업' 페이지에 'AI 추천 이력서' 버튼 표시"
+
+msgid "Show or hide the profile section on the employer's control panel"
+msgstr "고용주 제어판에서 프로필 섹션을 표시하거나 숨깁니다."
+
+msgid "Show or hide the profile section on the job seeker's control panel"
+msgstr "구직자의 제어판에서 프로필 섹션을 표시하거나 숨깁니다."
+
+msgid "Show resume status section on the job seeker's dashboard"
+msgstr "구직자의 대시보드에 이력서 상태 섹션 표시"
+
+msgid "Show statistics boxes on the employer's dashboard"
+msgstr "고용주 대시보드에 통계 상자 표시"
+
+msgid "Show statistics boxes on the job seeker's dashboard"
+msgstr "구직자의 대시보드에 통계 상자 표시"
+
+msgid "Show the 'Quick Apply' form to logged-in users on the job detail page"
+msgstr "채용 세부정보 페이지에서 로그인한 사용자에게 '빠른 지원' 양식 표시"
+
+msgid "Show the 'Quick Apply' form to visitors on the job detail page"
+msgstr "직무 세부정보 페이지에서 방문자에게 '빠른 지원' 양식을 표시합니다."
+
+msgid "Similar Found"
+msgstr "유사한 발견"
+
+msgid "Start typing what you know – our AI will help you find the best matching jobs."
+msgstr "알고 있는 내용을 입력해 보세요. AI가 가장 적합한 직업을 찾는 데 도움이 됩니다."
+
+msgid "Start typing what you know – our AI will help you find the best matching resumes."
+msgstr "알고 있는 내용을 입력하세요. AI가 가장 잘 어울리는 이력서를 찾는 데 도움을 드립니다."
+
+msgid "Step 1 of 5"
+msgstr "5단계 중 1단계"
+
+msgid "Step 2 of 4"
+msgstr "4단계 중 2단계"
+
+msgid "Step 2 of 5"
+msgstr "5단계 중 2단계"
+
+msgid "Step 3 of 4"
+msgstr "4단계 중 3단계"
+
+msgid "Step 3 of 5"
+msgstr "5단계 중 3단계"
+
+msgid "Step 4 of 4"
+msgstr "4단계 중 4단계"
+
+msgid "Step 4 of 5"
+msgstr "5단계 중 4단계"
+
+msgid "Step 5 of 5"
+msgstr "5단계 중 5단계"
+
+msgid "Subscriptions"
+msgstr "구독"
+
+msgid "Sugeested Jobs"
+msgstr "추천 직업"
+
+msgid "Suggested Jobs"
+msgstr "추천 직업"
+
+msgid "Suggested Resumes"
+msgstr "추천 이력서"
+
+msgid "System"
+msgstr "체계"
+
+msgid "System Error Log"
+msgstr "시스템 오류 로그"
+
+msgid "Text Transform"
+msgstr "텍스트 변환"
+
+msgid "The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "고용주 제어판은 고용주가 채용 공고를 관리하고, 지원서를 추적하고, 후보자와 통신하고, 채용 지표를 효율적으로 분석할 수 있는 간소화된 인터페이스입니다."
+
+msgid "The highlighted addons are not included in your current license. Please adjust your selection accordingly."
+msgstr "강조 표시된 애드온은 현재 라이센스에 포함되어 있지 않습니다. 이에 따라 선택 항목을 조정하세요."
+
+msgid "This add-on will change the Job Portal pages to a simple yet powerful and rich web design that involves focusing on clean aesthetics, intuitive navigation, and functional elements while ensuring performance and responsiveness."
+msgstr "이 추가 기능은 작업 포털 페이지를 깔끔한 미적 감각, 직관적인 탐색 및 기능적 요소에 초점을 맞추면서 성능과 응답성을 보장하는 단순하면서도 강력하고 풍부한 웹 디자인으로 변경합니다."
+
+msgid "This will replace the old key with the new one."
+msgstr "그러면 기존 키가 새 키로 교체됩니다."
+
+msgid "Today Stats"
+msgstr "오늘의 통계"
+
+msgid "Unlock your career potential with AI-driven job search"
+msgstr "AI 기반 구직 검색을 통해 경력 잠재력을 발휘하세요"
+
+msgid "Update Key"
+msgstr "업데이트 키"
+
+msgid "Update Now"
+msgstr "지금 업데이트"
+
+msgid "Updating Database, please wait..."
+msgstr "데이터베이스를 업데이트하는 중입니다. 잠시 기다려 주세요..."
+
+msgid "Uppercase"
+msgstr "대문자"
+
+msgid "Use Default Color For Color 1"
+msgstr "색상 1에 기본 색상 사용"
+
+msgid "Use Icons for Buttons"
+msgstr "버튼에 아이콘 사용"
+
+msgid "View All Resumes"
+msgstr "모든 이력서 보기"
+
+msgid "View Company Contact Detail"
+msgstr "회사 연락처 세부정보 보기"
+
+msgid "Visitor Show"
+msgstr "방문객 쇼"
+
+msgid "Visitor Show Active Jobs Graph"
+msgstr "방문자 표시 활성 작업 그래프"
+
+msgid "Visitor Show Applied Jobs Section"
+msgstr "방문자 쇼 적용 채용 섹션"
+
+msgid "Visitor Show Applied Resumes Section"
+msgstr "방문자 쇼 적용된 이력서 섹션"
+
+msgid "Visitor Show Credits Log Section"
+msgstr "방문자 쇼 크레딧 로그 섹션"
+
+msgid "Visitor Show Jobs Graph"
+msgstr "방문자 쇼 채용 그래프"
+
+msgid "Visitor Show Jobs Graph Section"
+msgstr "방문자 쇼 채용 그래프 섹션"
+
+msgid "Visitor Show Newest Jobs Box"
+msgstr "방문자 쇼 최신 채용 정보 상자"
+
+msgid "Visitor Show Newest Jobs Section"
+msgstr "방문자 쇼 최신 채용 정보 섹션"
+
+msgid "Visitor Show Newest Resumes Section"
+msgstr "방문자 쇼 최신 이력서 섹션"
+
+msgid "Visitor Show Purchase History Section"
+msgstr "방문자 쇼 구매 내역 섹션"
+
+msgid "Visitor Show Recent Resumes Box"
+msgstr "방문자 쇼 최근 이력서 상자"
+
+msgid "Visitor Show Saved Searches Section"
+msgstr "방문자는 저장된 검색 섹션을 표시합니다."
+
+msgid "Visitor Show Shortlisted Jobs Section"
+msgstr "방문자 쇼 최종 채용 정보 섹션"
+
+msgid "Visitor Show Stats Graph Section"
+msgstr "방문자 쇼 통계 그래프 섹션"
+
+msgid "Visitor Show Useful Links Section"
+msgstr "방문자에게 유용한 링크 섹션 표시"
+
+msgid "WP Job Manager"
+msgstr "WP 작업 관리자"
+
+msgid "WP Job Portal Activation Key"
+msgstr "WP 취업 포털 활성화 키"
+
+msgid "WP Job Portal Import Data"
+msgstr "WP 취업 포털 가져오기 데이터"
+
+msgid "WP Job Portal Packages"
+msgstr "WP 취업 포털 패키지"
+
+msgid "Welcome to WP Job Portal Addon Installer"
+msgstr "WP Job Portal 애드온 설치 프로그램에 오신 것을 환영합니다."
+
+msgid "Welcome, Visitor"
+msgstr "환영합니다, 방문자"
+
+msgid "Who can search resume."
+msgstr "이력서를 검색할 수 있는 사람"
+
+msgid "Who can view resume contact details"
+msgstr "이력서 연락처 정보를 볼 수 있는 사람"
+
+msgid "You Already Applied to this job"
+msgstr "귀하는 이미 이 직무에 지원했습니다."
+
+msgid "You have"
+msgstr "당신은"
+
+msgid "Your WP Job Portal license key has expired or is invalid. Please update it to continue receiving support and updates."
+msgstr "WP Job Portal 라이센스 키가 만료되었거나 유효하지 않습니다. 계속해서 지원과 업데이트를 받으려면 업데이트하세요."
+
+msgid "failed."
+msgstr "실패한."
+
+msgid "found"
+msgstr "설립하다"
+
+msgid "icon"
+msgstr "상"
+
+msgid "imported."
+msgstr "수입."
+
+msgid "skipped."
+msgstr "건너뛰었습니다."
+
+msgid "unused key has been deleted successfully!"
+msgstr "사용하지 않은 키가 성공적으로 삭제되었습니다!"
+
+msgid "unused key(s) that can be safely removed."
+msgstr "안전하게 제거할 수 있는 사용되지 않은 키."
+
+msgid "unused keys have been deleted successfully!"
+msgstr "사용하지 않은 키가 성공적으로 삭제되었습니다!"

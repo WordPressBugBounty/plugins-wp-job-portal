@@ -7,10 +7,10 @@ if (!defined('ABSPATH'))
 ?>
 <?php
 	WPJOBPORTALincluder::getTemplate('company/views/frontend/viewcompanydetail',array(
-		'config_array' => $config_array,
-		'data_class' => $data_class,
-		'module' => $module,
-		'config_array' => $config_array	
+		'wpjobportal_config_array' => $wpjobportal_config_array,
+		'wpjobportal_data_class' => $wpjobportal_data_class,
+		'wpjobportal_module' => $wpjobportal_module,
+		'wpjobportal_config_array' => $wpjobportal_config_array
 	));
 
 ?>

@@ -1,23 +1,23 @@
 <?php
 if (!defined('ABSPATH')) die('Restricted Access');
-    $labelflag = true;
-    $labelinlisting = wpjobportal::$_configuration['labelinlisting'];
-    if ($labelinlisting != 1)
-        $labelflag = false;
+    $wpjobportal_labelflag = true;
+    $wpjobportal_labelinlisting = wpjobportal::$_configuration['labelinlisting'];
+    if ($wpjobportal_labelinlisting != 1)
+        $wpjobportal_labelflag = false;
     ?>
     <div class="wjportal-main-up-wrapper">
     <div class="wjportal-main-wrapper wjportal-clearfix">
         <div class="wjportal-page-header">
             <div class="wjportal-page-header-cnt">
                 <?php
-                WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('module' => 'myjob','layout' => 'myjob'));
+                WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('wpjobportal_module' => 'myjob','wpjobportal_layout' => 'myjob'));
                 ?>
             </div>
             <?php if(wpjobportal::$_error_flag == null){ ?>
                     <div class="wjportal-header-actions">
                     <?php
                     #Search List
-                        $categoryarray = array(
+                        $wpjobportal_categoryarray = array(
                             (object) array('id' => 1, 'text' => esc_html(__('Job Title', 'wp-job-portal'))),
                             (object) array('id' => 2, 'text' => esc_html(__('Company Name', 'wp-job-portal'))),
                             (object) array('id' => 3, 'text' => esc_html(__('Category', 'wp-job-portal'))),
@@ -28,25 +28,25 @@ if (!defined('ABSPATH')) die('Restricted Access');
                             (object) array('id' => 8, 'text' => esc_html(__('Salary', 'wp-job-portal')))
                         );
                     //Filter js-job
-                        $image1 = esc_url(WPJOBPORTAL_PLUGIN_URL) . "includes/images/sort-up.png";
-                        $image2 = esc_url(WPJOBPORTAL_PLUGIN_URL) . "includes/images/sort-down.png";
+                        $wpjobportal_image1 = esc_url(WPJOBPORTAL_PLUGIN_URL) . "includes/images/sort-up.png";
+                        $wpjobportal_image2 = esc_url(WPJOBPORTAL_PLUGIN_URL) . "includes/images/sort-down.png";
                         if (wpjobportal::$_data['sortby'] == 1) {
-                            $image = $image1;
+                            $wpjobportal_image = $wpjobportal_image1;
                         } else {
-                            $image = $image2;
+                            $wpjobportal_image = $wpjobportal_image2;
                         }
                         WPJOBPORTALincluder::getTemplate('job/views/frontend/filter',array(
-                            'sortbylist' => $categoryarray,
-                            'layout' => 'myjobfilter',
-                            'image' => $image,
-                            'image1' => $image1,
-                            'image2' => $image2
+                            'wpjobportal_sortbylist' => $wpjobportal_categoryarray,
+                            'wpjobportal_layout' => 'myjobfilter',
+                            'wpjobportal_image' => $wpjobportal_image,
+                            'wpjobportal_image1' => $wpjobportal_image1,
+                            'wpjobportal_image2' => $wpjobportal_image2
                         ));
                     ?>
                     </div>
             <?php } ?>
             <?php
-            if ( !WPJOBPORTALincluder::getTemplate('templates/header',array('module' => 'job')) ) {
+            if ( !WPJOBPORTALincluder::getTemplate('templates/header',array('wpjobportal_module' => 'job')) ) {
                 return;
             }
             ?>
@@ -56,17 +56,17 @@ if (!defined('ABSPATH')) die('Restricted Access');
                     <form id="job_form" method="post" action="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job','wpjobportallt'=>'myjobs'))); ?>">
                         <?php
                             if (!empty(wpjobportal::$_data[0])) {
-                                foreach (wpjobportal::$_data[0] AS $job) {
+                                foreach (wpjobportal::$_data[0] AS $wpjobportal_job) {
                                     # Template For Job View
                                     WPJOBPORTALincluder::getTemplate('job/views/frontend/joblist',array(
-                                        'job' => $job,
-                                        'labelflag' => $labelflag,
-                                        'control' => 'myjobs'
+                                        'wpjobportal_job' => $wpjobportal_job,
+                                        'wpjobportal_labelflag' => $wpjobportal_labelflag,
+                                        'wpjobportal_control' => 'myjobs'
                                     ));
                                 }
                                 # pagination Template
                                 if (wpjobportal::$_data[1]) {
-                                    WPJOBPORTALincluder::getTemplate('templates/pagination',array('module' => 'job','pagination' => wpjobportal::$_data[1]));
+                                    WPJOBPORTALincluder::getTemplate('templates/pagination',array('wpjobportal_module' => 'job','pagination' => wpjobportal::$_data[1]));
                                 }
                                 echo wp_kses(WPJOBPORTALformfield::hidden('sortby', wpjobportal::$_data['sortby']),WPJOBPORTAL_ALLOWED_TAGS);
                                 echo wp_kses(WPJOBPORTALformfield::hidden('sorton', wpjobportal::$_data['sorton']),WPJOBPORTAL_ALLOWED_TAGS);
@@ -77,12 +77,12 @@ if (!defined('ABSPATH')) die('Restricted Access');
                 </div>
         <?php
             } else {
-                $msg = esc_html(__('No record found','wp-job-portal'));
-                $linkmyjobs[] = array(
+                $wpjobportal_msg = esc_html(__('No record found','wp-job-portal'));
+                $wpjobportal_linkmyjobs[] = array(
                     'link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'addjob')),
                     'text' => esc_html(__('Add New','wp-job-portal')) .' '. esc_html(__('Job', 'wp-job-portal'))
                 );
-                WPJOBPORTALLayout::getNoRecordFound($msg,$linkmyjobs);
+                WPJOBPORTALLayout::getNoRecordFound($wpjobportal_msg,$wpjobportal_linkmyjobs);
             }
         ?>
     </div>

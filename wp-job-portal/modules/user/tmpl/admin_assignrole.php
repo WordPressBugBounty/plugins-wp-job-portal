@@ -14,23 +14,23 @@
         <div id="popup_main" style="display:none;">
             <span class="popup-top">
                 <span id="popup_title" ></span>
-                <img id="popup_cross" alt="<?php echo esc_html(__('popup cross','wp-job-portal')); ?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/popup-close.png">
+                <img id="popup_cross" alt="<?php echo esc_attr(__('popup cross','wp-job-portal')); ?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/popup-close.png">
             </span>
             <div class="popup-search">
                 <form id="userpopupsearch">
                     <div class="popup-form-fields-wrp">
                         <div class="popup-form-field search-value">
-                            <input type="text" name="uname" id="uname" placeholder="<?php echo esc_html(__('Username', 'wp-job-portal'));?>" />
+                            <input type="text" name="uname" id="uname" placeholder="<?php echo esc_attr(__('Username', 'wp-job-portal'));?>" />
                         </div>
                         <div class="popup-form-field search-value">
-                            <input type="text" name="name" id="name" placeholder="<?php echo esc_html(__('Name', 'wp-job-portal'));?>" />
+                            <input type="text" name="name" id="name" placeholder="<?php echo esc_attr(__('Name', 'wp-job-portal'));?>" />
                         </div>
                         <div class="popup-form-field search-value">
-                            <input type="text" name="email" id="email" placeholder="<?php echo esc_html(__('Email Address', 'wp-job-portal'));?>"/>
+                            <input type="text" name="email" id="email" placeholder="<?php echo esc_attr(__('Email Address', 'wp-job-portal'));?>"/>
                         </div>
                         <div class="popup-form-btn-wrp">
-                            <input type="submit" class="popup-search-btn" value="<?php echo esc_html(__('Search', 'wp-job-portal'));?>" />
-                            <input type="submit" class="popup-reset-btn" onclick="document.getElementById('name').value = '';document.getElementById('uname').value = ''; document.getElementById('email').value = '';" value="<?php echo esc_html(__('Reset', 'wp-job-portal'));?>" />
+                            <input type="submit" class="popup-search-btn" value="<?php echo esc_attr(__('Search', 'wp-job-portal'));?>" />
+                            <input type="submit" class="popup-reset-btn" onclick="document.getElementById('name').value = '';document.getElementById('uname').value = ''; document.getElementById('email').value = '';" value="<?php echo esc_attr(__('Reset', 'wp-job-portal'));?>" />
                         </div>
                     </div>
                 </form>
@@ -43,7 +43,7 @@
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_html(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -53,12 +53,12 @@
             </div>    
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_html(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_html(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -69,7 +69,7 @@
             </div>    
         </div>
         <!-- top head -->
-        <?php WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('module' => 'users' , 'layouts' => 'assignrole')); ?>
+        <?php WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('wpjobportal_module' => 'users' , 'wpjobportal_layouts' => 'assignrole')); ?>
         <!-- page content -->
         <div id="wpjobportal-admin-wrapper">
             <form id="wpjobportal-form" class="wpjobportal-form" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_user&task=assignuserrole")); ?>">
@@ -114,7 +114,7 @@
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
         jQuery(document).ready(function () {
             jQuery.validate();
             jQuery('a#userpopup').click(function (e) {
@@ -155,7 +155,7 @@
             });
         }
         
-        jQuery(document).delegate('form#userpopupsearch', 'submit', function (e) {
+        jQuery(document).on('submit', 'form#userpopupsearch', function (e) {
             e.preventDefault();
             e.preventDefault();
             var username = jQuery('input#uname').val();
@@ -178,5 +178,5 @@
         
         });
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>

@@ -4,23 +4,23 @@ if (!defined('ABSPATH'))
 ?>
 <div class="wjportal-main-up-wrapper">
 <?php
-$isouruser = WPJOBPORTALincluder::getObjectClass('user')->isisWPJobportalUser();
-if($isouruser != true){
-    $link_url = wpjobportal::$_config->getConfigurationByConfigName('loginlinkforwpuser');
-    if($link_url != ''){
-        wpjobportal::$_data[0]['redirect_url'] = $link_url;
+$wpjobportal_isouruser = WPJOBPORTALincluder::getObjectClass('user')->isisWPJobportalUser();
+if($wpjobportal_isouruser != true){
+    $wpjobportal_link_url = wpjobportal::$_config->getConfigurationByConfigName('loginlinkforwpuser');
+    if($wpjobportal_link_url != ''){
+        wpjobportal::$wpjobportal_data[0]['redirect_url'] = $wpjobportal_link_url;
     }
 }
-//echo var_dump(wpjobportal::$_data[0]['redirect_url']);
+//echo var_dump(wpjobportal::$wpjobportal_data[0]['redirect_url']);
 if (wpjobportal::$_error_flag == null) {
     ?>
     <div class="wjportal-main-wrapper wjportal-clearfix">
         <div class="wjportal-page-header">
             <?php
-                WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('module' => 'login' , 'layout' => 'login'));
+                WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('wpjobportal_module' => 'login' , 'wpjobportal_layout' => 'login'));
             ?>
             <?php
-                if(!WPJOBPORTALincluder::getTemplate('templates/header',array('module'=>'user'))){
+                if(!WPJOBPORTALincluder::getTemplate('templates/header',array('wpjobportal_module'=>'user'))){
                     return;
                 }
             ?>
@@ -31,8 +31,8 @@ if (wpjobportal::$_error_flag == null) {
             </div>
             <?php
                 if (!is_user_logged_in()) { // Display WordPress login form:
-                    $args = array(
-                        'redirect' => wpjobportal::$_data[0]['redirect_url'],
+                    $wpjobportal_args = array(
+                        'redirect' => wpjobportal::$wpjobportal_data[0]['redirect_url'],
                       	'wpjobportalpageid' => wpjobportal::wpjobportal_getPageid(),
                         'form_id' => 'loginform-custom',
                         'label_username' => esc_html(__('Username', 'wp-job-portal')),
@@ -41,7 +41,7 @@ if (wpjobportal::$_error_flag == null) {
                         'label_log_in' => esc_html(__('Login', 'wp-job-portal')),
                         'remember' => true
                     );
-                    wp_login_form($args);
+                    wp_login_form($wpjobportal_args);
                 } /* else { // If logged in:
                   wp_loginout( home_url() ); // Display "Log Out" link.
                   echo " | ";
@@ -49,10 +49,10 @@ if (wpjobportal::$_error_flag == null) {
                   } */
                     if(class_exists('wpjobportal')){ ?>
                         <?php
-                            $defaultUrl = wpjobportal::wpjobportal_makeUrl(array('wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid(), 'wpjobportalme'=>'user', 'wpjobportallt'=>'userregister'));
-                            $lrlink = WPJOBPORTALincluder::getJSModel('configuration')->getLoginRegisterRedirectLink($defaultUrl,'register');
+                            $wpjobportal_defaultUrl = wpjobportal::wpjobportal_makeUrl(array('wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid(), 'wpjobportalme'=>'user', 'wpjobportallt'=>'userregister'));
+                            $wpjobportal_lrlink = WPJOBPORTALincluder::getJSModel('configuration')->getLoginRegisterRedirectLink($wpjobportal_defaultUrl,'register');
                         ?>
-                            <a class="wjportal-form-reg-btn" title="<?php echo esc_attr(esc_html(__('register','wp-job-portal'))); ?>" href="<?php echo esc_url($lrlink); ?>" href="<?php echo esc_html(__('register an account', 'wp-job-portal')); ?>">
+                            <a class="wjportal-form-reg-btn" title="<?php echo esc_attr(__('register','wp-job-portal')); ?>" href="<?php echo esc_url($wpjobportal_lrlink); ?>" >
                                 <?php echo esc_html(__('Register an account', 'wp-job-portal')); ?>
                             </a>
                         <?php 

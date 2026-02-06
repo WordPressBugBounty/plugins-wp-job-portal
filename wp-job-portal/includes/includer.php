@@ -13,10 +13,10 @@ class WPJOBPORTALincluder {
      * Includes files
      */
 
-    public static function include_file($filename, $module_name = null) {
+    public static function include_file($filename, $wpjobportal_module_name = null) {
         // making usre no relative path is being used
         $filename = wpjobportalphplib::wpJP_clean_file_path($filename);
-        $module_name = wpjobportalphplib::wpJP_clean_file_path($module_name);
+        $wpjobportal_module_name = wpjobportalphplib::wpJP_clean_file_path($wpjobportal_module_name);
 
 
         if ( ! function_exists( 'WP_Filesystem' ) ) {
@@ -28,11 +28,11 @@ class WPJOBPORTALincluder {
             wp_filesystem( $creds );
         }
 
-        if ($module_name != null) {
+        if ($wpjobportal_module_name != null) {
             wp_enqueue_style('wpjobportal-jobseeker-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jobseekercp.css');
-            $file_path = self::getPluginPath($module_name,'file',$filename);
-            if ($wp_filesystem->exists(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/inc-css/' . $module_name . '-' . $filename . '.css.php')) {
-                require_once(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/inc-css/' . $module_name . '-' . $filename . '.css.php');
+            $file_path = self::getPluginPath($wpjobportal_module_name,'file',$filename);
+            if ($wp_filesystem->exists(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/inc-css/' . $wpjobportal_module_name . '-' . $filename . '.css.php')) {
+                require_once(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/inc-css/' . $wpjobportal_module_name . '-' . $filename . '.css.php');
             }
             if(is_array($file_path) && $wp_filesystem->exists($file_path['tmpl_file'])){
                 if ($wp_filesystem->exists($file_path['inc_file'])) {
@@ -40,12 +40,12 @@ class WPJOBPORTALincluder {
                 }
                 include_once $file_path['tmpl_file'];
             }else if($wp_filesystem->exists($file_path)){
-                $incfilepath = wpjobportalphplib::wpJP_explode('.php', $file_path);
-                $incfilename = $incfilepath[0].'.inc.php';
+                $wpjobportal_incfilepath = wpjobportalphplib::wpJP_explode('.php', $file_path);
+                $wpjobportal_incfilename = $wpjobportal_incfilepath[0].'.inc.php';
             // to handle page title
-                WPJOBPORTALincluder::getJSModel('common')->addWPSEOHooks($module_name,$filename);
-                if ($wp_filesystem->exists($incfilename)) {
-                    require_once($incfilename);
+                WPJOBPORTALincluder::getJSModel('common')->addWPSEOHooks($wpjobportal_module_name,$filename);
+                if ($wp_filesystem->exists($wpjobportal_incfilename)) {
+                    require_once($wpjobportal_incfilename);
                 }
                 include_once $file_path; //
             }else{
@@ -83,13 +83,13 @@ class WPJOBPORTALincluder {
      * Static function for the model object
      */
 
-    public static function getJSModel($modelname) {
-        $file_path = self::getPluginPath($modelname,'model');
+    public static function getJSModel($wpjobportal_modelname) {
+        $file_path = self::getPluginPath($wpjobportal_modelname,'model');
         include_once $file_path;
-        $classname = "WPJOBPORTAL" . $modelname . 'Model';
-        //var_dump($classname);
+        $wpjobportal_classname = "WPJOBPORTAL" . $wpjobportal_modelname . 'Model';
+        //var_dump($wpjobportal_classname);
         //exit();
-        $obj = new $classname();
+        $obj = new $wpjobportal_classname();
         return $obj;
     }
 
@@ -97,12 +97,12 @@ class WPJOBPORTALincluder {
      * Static function for the classes objects
      */
 
-    public static function getObjectClass($classname) {
+    public static function getObjectClass($wpjobportal_classname) {
 
-        $file_path = self::getPluginPath($classname,'class');
+        $file_path = self::getPluginPath($wpjobportal_classname,'class');
         include_once $file_path;
-        $classname = "WPJOBPORTAL" . $classname ;
-        $obj = new $classname();
+        $wpjobportal_classname = "WPJOBPORTAL" . $wpjobportal_classname ;
+        $obj = new $wpjobportal_classname();
         return $obj;
     }
 
@@ -110,8 +110,8 @@ class WPJOBPORTALincluder {
      * Static function for the classes not objects
      */
 
-    public static function getClassesInclude($classname) {
-        $file_path = self::getPluginPath($classname,'class');
+    public static function getClassesInclude($wpjobportal_classname) {
+        $file_path = self::getPluginPath($wpjobportal_classname,'class');
         include_once $file_path;
     }
 
@@ -119,12 +119,12 @@ class WPJOBPORTALincluder {
      * Static function for the table object
      */
 
-    public static function getJSTable($tableclass) {
-        $file_path = self::getPluginPath($tableclass,'table');
+    public static function getJSTable($wpjobportal_tableclass) {
+        $file_path = self::getPluginPath($wpjobportal_tableclass,'table');
         require_once WPJOBPORTAL_PLUGIN_PATH . 'includes/tables/table.php';
         include_once $file_path;
-        $classname = "WPJOBPORTAL" . $tableclass . 'Table';
-        $obj = new $classname();
+        $wpjobportal_classname = "WPJOBPORTAL" . $wpjobportal_tableclass . 'Table';
+        $obj = new $wpjobportal_classname();
         return $obj;
     }
 
@@ -132,12 +132,12 @@ class WPJOBPORTALincluder {
      * Static function for the controller object
      */
 
-    public static function getJSController($controllername) {
-        $file_path = self::getPluginPath($controllername,'controller');
+    public static function getJSController($wpjobportal_controllername) {
+        $file_path = self::getPluginPath($wpjobportal_controllername,'controller');
 
         include_once $file_path;
-        $classname = "WPJOBPORTAL".$controllername . "Controller";
-        $obj = new $classname();
+        $wpjobportal_classname = "WPJOBPORTAL".$wpjobportal_controllername . "Controller";
+        $obj = new $wpjobportal_classname();
         return $obj;
     }
 /*
@@ -147,16 +147,16 @@ class WPJOBPORTALincluder {
         }
         foreach($filenames as $filename){
             //load component template
-            $templatepath = self::getComponentTemplatePath($filename);
-            if(file_exists($templatepath)){
+            $wpjobportal_templatepath = self::getComponentTemplatePath($filename);
+            if(file_exists($wpjobportal_templatepath)){
                 echo '<div id="wpjobportal-'.$filename.'" style="display:none;">';
-                include $templatepath;
+                include $wpjobportal_templatepath;
                 echo '</div>';
             }
 
             //load component js file
-            $jsfilepath = self::getComponentJsUrl($filename);
-            wp_enqueue_script($filename,$jsfilepath,array(),false,1);
+            $wpjobportal_jsfilepath = self::getComponentJsUrl($filename);
+            wp_enqueue_script($filename,$wpjobportal_jsfilepath,array(),false,1);
         }
     }
 
@@ -168,97 +168,97 @@ class WPJOBPORTALincluder {
         return WPJOBPORTAL_PLUGIN_PATH . '/components/'.$filename.'.vue.php';
     }*/
 
-    public static function getTemplate($template_name, $args = array()){
-        $template_name = wpjobportalphplib::wpJP_clean_file_path($template_name);
-        $template = self::locateTemplate($template_name,$args);
-        if(!empty($args) && is_array($args)){
-            extract($args);
+    public static function getTemplate($wpjobportal_template_name, $wpjobportal_args = array()){
+        $wpjobportal_template_name = wpjobportalphplib::wpJP_clean_file_path($wpjobportal_template_name);
+        $wpjobportal_template = self::locateTemplate($wpjobportal_template_name,$wpjobportal_args);
+        if(!empty($wpjobportal_args) && is_array($wpjobportal_args)){
+            extract($wpjobportal_args);
         }
-        return include $template;
+        return include $wpjobportal_template;
     }
 
-    public static function getTemplateHtml($template_name, $args = array()){
+    public static function getTemplateHtml($wpjobportal_template_name, $wpjobportal_args = array()){
         ob_start();
-        self::getTemplate($template_name, $args);
+        self::getTemplate($wpjobportal_template_name, $wpjobportal_args);
         return ob_get_clean();
     }
 
-    public static function locateTemplate($template_name,$args= array()){
-        $template_name = wpjobportalphplib::wpJP_clean_file_path($template_name);
-        $module = wpjobportalphplib::wpJP_substr($template_name, 0, wpjobportalphplib::wpJP_strpos($template_name, '/'));
-        $template_name = wpjobportalphplib::wpJP_substr($template_name, wpjobportalphplib::wpJP_strpos($template_name, '/')+1);
-        $module_name = isset($args['module_name']) ? $args['module_name'] : null;
+    public static function locateTemplate($wpjobportal_template_name,$wpjobportal_args= array()){
+        $wpjobportal_template_name = wpjobportalphplib::wpJP_clean_file_path($wpjobportal_template_name);
+        $wpjobportal_module = wpjobportalphplib::wpJP_substr($wpjobportal_template_name, 0, wpjobportalphplib::wpJP_strpos($wpjobportal_template_name, '/'));
+        $wpjobportal_template_name = wpjobportalphplib::wpJP_substr($wpjobportal_template_name, wpjobportalphplib::wpJP_strpos($wpjobportal_template_name, '/')+1);
+        $wpjobportal_module_name = isset($wpjobportal_args['module_name']) ? $wpjobportal_args['module_name'] : null;
         /* ADDONS PLUGIN DIR FOR TEMPLATE => module_name  */
-       if($module_name!=null && $module_name!=""){
+       if($wpjobportal_module_name!=null && $wpjobportal_module_name!=""){
     //To Manage Template Working IN Addons
-            if(in_array($args['module_name'], wpjobportal::$_active_addons)){
-				if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled() && file_exists(WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $args['module_name'] . '/tmpl/views/' . $template_name . '.php')){
-					$template = WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $args['module_name'] . '/tmpl/views/' . $template_name . '.php';
+            if(in_array($wpjobportal_args['module_name'], wpjobportal::$_active_addons)){
+				if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled() && file_exists(WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $wpjobportal_args['module_name'] . '/tmpl/views/' . $wpjobportal_template_name . '.php')){
+					$wpjobportal_template = WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $wpjobportal_args['module_name'] . '/tmpl/views/' . $wpjobportal_template_name . '.php';
 				}else{	
-					$path = WP_PLUGIN_DIR.'/'.'wp-job-portal-'.$args['module_name'].'/';
-					$template = $path.'module/tmpl/views/'.$template_name.'.php';
+					$wpjobportal_path = WP_PLUGIN_DIR.'/'.'wp-job-portal-'.$wpjobportal_args['module_name'].'/';
+					$wpjobportal_template = $wpjobportal_path.'module/tmpl/views/'.$wpjobportal_template_name.'.php';
 				}
             }
         }else{
-            if($module == 'templates'){
-                $template = WPJOBPORTAL_PLUGIN_PATH.'templates/'.$template_name.'.php';
+            if($wpjobportal_module == 'templates'){
+                $wpjobportal_template = WPJOBPORTAL_PLUGIN_PATH.'templates/'.$wpjobportal_template_name.'.php';
             }else{
-				if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled() && file_exists(WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $module . '/tmpl/' . $template_name . '.php')){
-					$template = WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/'.$module.'/tmpl/'.$template_name.'.php';
+				if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled() && file_exists(WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $wpjobportal_module . '/tmpl/' . $wpjobportal_template_name . '.php')){
+					$wpjobportal_template = WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/'.$wpjobportal_module.'/tmpl/'.$wpjobportal_template_name.'.php';
 				}else{	
-					$template = WPJOBPORTAL_PLUGIN_PATH.'modules/'.$module.'/tmpl/'.$template_name.'.php';
+					$wpjobportal_template = WPJOBPORTAL_PLUGIN_PATH.'modules/'.$wpjobportal_module.'/tmpl/'.$wpjobportal_template_name.'.php';
 				}
             }
         }
 
-       return $template;
+       return $wpjobportal_template;
     }
 
-    public static function getPluginPath($module,$type,$file_name = '') {
-        $module = wpjobportalphplib::wpJP_clean_file_path($module);
+    public static function getPluginPath($wpjobportal_module,$type,$file_name = '') {
+        $wpjobportal_module = wpjobportalphplib::wpJP_clean_file_path($wpjobportal_module);
         if($file_name != ''){
             $file_name = wpjobportalphplib::wpJP_clean_file_path($file_name);
         }
 
-        //$addons_secondry = array('socialmedia','facebook','linkedin','xing','folderresume','mystats','creditslog','creditspack','purchasehistory','purchase','userpackage','subscription','invoice','userpackage','jobalertsetting','package','jobseekerviewcompany','employerviewresume','rating','transactionlog','jobalertcities','paymentmethodconfiguration','paypal','Stripe','resumeformAdons','ResumeViewAdons','Stripe/init','coverletter');
-        $addons_secondry = array('socialmedia','facebook','linkedin','xing','folderresume','mystats','creditslog','creditspack','purchasehistory','purchase','userpackage','subscription','invoice','userpackage','jobalertsetting','package','jobseekerviewcompany','employerviewresume','rating','transactionlog','jobalertcities','paymentmethodconfiguration','paypal','Stripe','resumeformAdons','ResumeViewAdons','Stripe/init','coverletter','popup','multicompany');
-        if(in_array($module, wpjobportal::$_active_addons) && $module != 'theme' && $module != 'customfields'){
+        //$wpjobportal_addons_secondry = array('socialmedia','facebook','linkedin','xing','folderresume','mystats','creditslog','creditspack','purchasehistory','purchase','userpackage','subscription','invoice','userpackage','jobalertsetting','package','jobseekerviewcompany','employerviewresume','rating','transactionlog','jobalertcities','paymentmethodconfiguration','paypal','Stripe','resumeformAdons','ResumeViewAdons','Stripe/init','coverletter');
+        $wpjobportal_addons_secondry = array('socialmedia','facebook','linkedin','xing','folderresume','mystats','creditslog','creditspack','purchasehistory','purchase','userpackage','subscription','invoice','userpackage','jobalertsetting','package','jobseekerviewcompany','employerviewresume','rating','transactionlog','jobalertcities','paymentmethodconfiguration','paypal','Stripe','resumeformAdons','ResumeViewAdons','Stripe/init','coverletter','popup','multicompany');
+        if(in_array($wpjobportal_module, wpjobportal::$_active_addons) && $wpjobportal_module != 'theme' && $wpjobportal_module != 'customfields'){
 
-            $path = WP_PLUGIN_DIR.'/'.'wp-job-portal-'.$module.'/';
+            $wpjobportal_path = WP_PLUGIN_DIR.'/'.'wp-job-portal-'.$wpjobportal_module.'/';
             switch ($type) {
                 case 'file':
                     if($file_name != ''){
-                        if (locate_template('wp-job-portal/' . $module . '-' . $file_name . '.php', 0, 1)) {
-                            $file_path['inc_file'] = $path . 'module/tmpl/' . $file_name . '.inc.php';
-                            $file_path['tmpl_file'] = locate_template('wp-job-portal/' . $module . '-' . $file_name . '.php', 0, 1);
-						}elseif(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled() && file_exists(WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $module . '/tmpl/' . $file_name . '.php')){
-                            $file_path['inc_file'] = $path . 'module/tmpl/' . $file_name . '.inc.php';
-							$file_path['tmpl_file'] = WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/'.$module.'/tmpl/'.$file_name.'.php';
+                        if (locate_template('wp-job-portal/' . $wpjobportal_module . '-' . $file_name . '.php', 0, 1)) {
+                            $file_path['inc_file'] = $wpjobportal_path . 'module/tmpl/' . $file_name . '.inc.php';
+                            $file_path['tmpl_file'] = locate_template('wp-job-portal/' . $wpjobportal_module . '-' . $file_name . '.php', 0, 1);
+						}elseif(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled() && file_exists(WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $wpjobportal_module . '/tmpl/' . $file_name . '.php')){
+                            $file_path['inc_file'] = $wpjobportal_path . 'module/tmpl/' . $file_name . '.inc.php';
+							$file_path['tmpl_file'] = WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/'.$wpjobportal_module.'/tmpl/'.$file_name.'.php';
                         }else{
-                            $file_path = $path . 'module/tmpl/' . $file_name . '.php';
+                            $file_path = $wpjobportal_path . 'module/tmpl/' . $file_name . '.php';
 
                         }
                     }else{
-                        $file_path = $path . 'module/controller.php';
+                        $file_path = $wpjobportal_path . 'module/controller.php';
                     }
                     break;
                 case 'model':
-                    $file_path = $path . 'module/model.php';
+                    $file_path = $wpjobportal_path . 'module/model.php';
                     break;
                 case 'class':
-                    $file_path = $path . 'classes/' . $module . '.php';
+                    $file_path = $wpjobportal_path . 'classes/' . $wpjobportal_module . '.php';
                     break;
                 case 'controller':
-                    $file_path = $path . 'module/controller.php';
+                    $file_path = $wpjobportal_path . 'module/controller.php';
                     break;
                 case 'table':
-                    $file_path = $path . 'includes/' . $module . '-table.php';
+                    $file_path = $wpjobportal_path . 'includes/' . $wpjobportal_module . '-table.php';
                     break;
             }
 
-        }elseif(in_array($module, $addons_secondry)){ // to handle the case of modules that are submodules for some addon
+        }elseif(in_array($wpjobportal_module, $wpjobportal_addons_secondry)){ // to handle the case of modules that are submodules for some addon
             $parent_module = '';
-            switch ($module) {// to identify addon for submodules.
+            switch ($wpjobportal_module) {// to identify addon for submodules.
                 case 'folderresume':
                     $parent_module = 'folder';
                     break;
@@ -313,80 +313,82 @@ class WPJOBPORTALincluder {
                     break;
                 }
                 if($parent_module == "customfield" && !in_array('customfield', wpjobportal::$_active_addons)){
-                  $path = WP_PLUGIN_DIR.'/'.'wp-job-portal/includes/';
+                  $wpjobportal_path = WP_PLUGIN_DIR.'/'.'wp-job-portal/includes/';
                 }else{
-                    $path = WP_PLUGIN_DIR.'/'.'wp-job-portal-'.$parent_module.'/';
+                    $wpjobportal_path = WP_PLUGIN_DIR.'/'.'wp-job-portal-'.$parent_module.'/';
 
                 }
             if(in_array($parent_module, wpjobportal::$_active_addons) || $parent_module == "customfield"){
                 switch ($type) {
                     case 'file':
                         if($file_name != ''){
-                            if (locate_template('wp-job-portal/' . $module . '-' . $file_name . '.php', 0, 1)) {
-                                $file_path['inc_file'] = $path . $module.'/tmpl/' . $file_name . '.inc.php';
-                                $file_path['tmpl_file'] = locate_template('wp-job-portal/' . $module . '-' . $file_name . '.php', 0, 1);
-							}elseif(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled() && file_exists(WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $module . '-' . $file_name . '.php')){
-								$file_path['inc_file'] = $path . $module.'/tmpl/' . $file_name . '.inc.php';
-								$file_path['tmpl_file'] = WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $module . '-' . $file_name . '.php';
+                            if (locate_template('wp-job-portal/' . $wpjobportal_module . '-' . $file_name . '.php', 0, 1)) {
+                                $file_path['inc_file'] = $wpjobportal_path . $wpjobportal_module.'/tmpl/' . $file_name . '.inc.php';
+                                $file_path['tmpl_file'] = locate_template('wp-job-portal/' . $wpjobportal_module . '-' . $file_name . '.php', 0, 1);
+							}elseif(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled() && file_exists(WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $wpjobportal_module . '-' . $file_name . '.php')){
+								$file_path['inc_file'] = $wpjobportal_path . $wpjobportal_module.'/tmpl/' . $file_name . '.inc.php';
+								$file_path['tmpl_file'] = WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $wpjobportal_module . '-' . $file_name . '.php';
                             }else{
-                                if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled() && file_exists(WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $parent_module . '/'. $module . '/tmpl/' . $file_name . '.php')){
-                                    $file_path = WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $parent_module . '/'. $module . '/tmpl/' . $file_name . '.php';
+                                if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled() && file_exists(WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $parent_module . '/'. $wpjobportal_module . '/tmpl/' . $file_name . '.php')){
+                                    
+                                    $file_path['inc_file'] = $wpjobportal_path . $wpjobportal_module.'/tmpl/' . $file_name . '.inc.php';
+                                    $file_path['tmpl_file'] = WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $parent_module . '/'. $wpjobportal_module . '/tmpl/' . $file_name . '.php';
                                 } else {
-                                    $file_path = $path . $module.'/tmpl/' . $file_name . '.php';
+                                    $file_path = $wpjobportal_path . $wpjobportal_module.'/tmpl/' . $file_name . '.php';
                                 }
                             }
                         }else{
-                            $file_path = $path . $module.'/controller.php';
+                            $file_path = $wpjobportal_path . $wpjobportal_module.'/controller.php';
                         }
                         break;
                     case 'model':
-                        $file_path = $path . $module.'/model.php';
+                        $file_path = $wpjobportal_path . $wpjobportal_module.'/model.php';
                         break;
 
                     case 'class':
-                        $file_path = $path . 'classes/' . $module . '.php';
+                        $file_path = $wpjobportal_path . 'classes/' . $wpjobportal_module . '.php';
                         break;
                     case 'controller':
-                        $file_path = $path . $module.'/controller.php';
+                        $file_path = $wpjobportal_path . $wpjobportal_module.'/controller.php';
                         break;
                     case 'table':
-                        $file_path = $path . 'includes/' . $module . '-table.php';
+                        $file_path = $wpjobportal_path . 'includes/' . $wpjobportal_module . '-table.php';
                         break;
                 }
             }else{
                // $file_path = self::getPluginPath('premiumplugin','file');
                 }
             }else{
-            $path = WPJOBPORTAL_PLUGIN_PATH;
+            $wpjobportal_path = WPJOBPORTAL_PLUGIN_PATH;
             switch ($type) {
                 case 'file':
                     if($file_name != ''){
-                        if (locate_template('wp-job-portal/' . $module . '-' . $file_name . '.php', 0, 1)) {
-                            $file_path['inc_file'] = $path . 'modules/' . $module . '/tmpl/' . $file_name . '.inc.php';
-                            $file_path['tmpl_file'] = locate_template('wp-job-portal/' . $module . '-' . $file_name . '.php', 0, 1);
-						}elseif(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled() && file_exists(WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $module . '/tmpl/' . $file_name . '.php')){
+                        if (locate_template('wp-job-portal/' . $wpjobportal_module . '-' . $file_name . '.php', 0, 1)) {
+                            $file_path['inc_file'] = $wpjobportal_path . 'modules/' . $wpjobportal_module . '/tmpl/' . $file_name . '.inc.php';
+                            $file_path['tmpl_file'] = locate_template('wp-job-portal/' . $wpjobportal_module . '-' . $file_name . '.php', 0, 1);
+						}elseif(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled() && file_exists(WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $wpjobportal_module . '/tmpl/' . $file_name . '.php')){
 
-							$file_path['inc_file'] = $path . 'modules/' . $module.'/tmpl/' . $file_name . '.inc.php';
-							$file_path['tmpl_file'] = WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $module . '/tmpl/' . $file_name . '.php';
+							$file_path['inc_file'] = $wpjobportal_path . 'modules/' . $wpjobportal_module.'/tmpl/' . $file_name . '.inc.php';
+							$file_path['tmpl_file'] = WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $wpjobportal_module . '/tmpl/' . $file_name . '.php';
                         }else{
-                            $file_path = $path . 'modules/' . $module . '/tmpl/' . $file_name . '.php';
+                            $file_path = $wpjobportal_path . 'modules/' . $wpjobportal_module . '/tmpl/' . $file_name . '.php';
                         }
                     }else{
-                        $file_path = $path . 'modules/' . $module . '/controller.php';
+                        $file_path = $wpjobportal_path . 'modules/' . $wpjobportal_module . '/controller.php';
                     }
                     break;
                 case 'model':
-                        $file_path = $path . 'modules/' . $module . '/model.php';
+                        $file_path = $wpjobportal_path . 'modules/' . $wpjobportal_module . '/model.php';
                     break;
 
                 case 'class':
-                    $file_path = $path . 'includes/classes/' . $module . '.php';
+                    $file_path = $wpjobportal_path . 'includes/classes/' . $wpjobportal_module . '.php';
                     break;
                 case 'controller':
-                        $file_path = $path . 'modules/' . $module . '/controller.php';
+                        $file_path = $wpjobportal_path . 'modules/' . $wpjobportal_module . '/controller.php';
                     break;
                 case 'table':
-                    $file_path = $path . 'includes/tables/' . $module . '.php';;
+                    $file_path = $wpjobportal_path . 'includes/tables/' . $wpjobportal_module . '.php';;
                     break;
             }
         }
@@ -397,5 +399,5 @@ class WPJOBPORTALincluder {
 
 }
 
-$includer = new WPJOBPORTALincluder();
+$wpjobportal_includer = new WPJOBPORTALincluder();
 ?>

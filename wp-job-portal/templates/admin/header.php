@@ -4,19 +4,19 @@
  * @param module 		module name - optional
  */
 
-if (!isset($module)) {
+if (!isset($wpjobportal_module)) {
 	// if module name is not passed than pick from url
-	$module = WPJOBPORTALrequest::getVar('wpjobportalme');
+	$wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme');
 }
 
 
 /*
 show module wise flash messages
 */
-if ($module) {
-	$model = WPJOBPORTALincluder::getJSModel($module);
-	if ($model) {
-		$msgkey = $model->getMessagekey();
-		WPJOBPORTALMessages::getLayoutMessage($msgkey);
+if ($wpjobportal_module) {
+	$wpjobportal_model = WPJOBPORTALincluder::getJSModel($wpjobportal_module);
+	if ($wpjobportal_model) {
+		$wpjobportal_msgkey = $wpjobportal_model->getMessagekey();
+		WPJOBPORTALMessages::getLayoutMessage($wpjobportal_msgkey);
 	}
 }

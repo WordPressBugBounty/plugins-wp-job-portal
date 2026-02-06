@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Delete"
 msgstr "Tanggalin"
@@ -10276,3 +10276,2472 @@ msgstr "Wala kang natitirang i -save Serch"
 
 msgid "We would love to hear from You."
 msgstr "Gusto naming marinig mula sa iyo."
+
+msgid "Welcome back!"
+msgstr "Maligayang pagdating!"
+
+msgid "Here's a snapshot of your job board's performance."
+msgstr "Narito ang isang snapshot ng pagganap ng iyong board ng trabaho."
+
+msgid "Customize Your Dashboard"
+msgstr "Ipasadya ang iyong dashboard"
+
+msgid "Core Components"
+msgstr "Mga pangunahing sangkap"
+
+msgid "Quick Actions"
+msgstr "Mabilis na pagkilos"
+
+msgid "Recent Jobs"
+msgstr "Kamakailang mga trabaho"
+
+msgid "Quick Stats"
+msgstr "Mabilis na istatistika"
+
+msgid "Visualizations"
+msgstr "Visualizations"
+
+msgid "Platform Growth"
+msgstr "Paglago ng platform"
+
+msgid "Jobs by Status"
+msgstr "Mga trabaho ayon sa katayuan"
+
+msgid "Top Categories"
+msgstr "Nangungunang kategorya"
+
+msgid "Activity & System Feeds"
+msgstr "Mga feed ng aktibidad at system"
+
+msgid "Latest Applies"
+msgstr "Pinakabagong naaangkop"
+
+msgid "User & Financials"
+msgstr "Gumagamit at Pinansyal"
+
+msgid "Job Seekers"
+msgstr "Mga naghahanap ng trabaho"
+
+msgid "Payments"
+msgstr "Pagbabayad"
+
+msgid "Reset to Defaults"
+msgstr "I -reset sa mga default"
+
+msgid "Apply Changes"
+msgstr "Mag -apply ng mga pagbabago"
+
+msgid "Approve Jobs"
+msgstr "Aprubahan ang mga trabaho"
+
+msgid "Manage Users"
+msgstr "Pamahalaan ang mga gumagamit"
+
+msgid "View Reports"
+msgstr "Tingnan ang mga ulat"
+
+msgid "Analytics"
+msgstr "Analytics"
+
+msgid "Manage Plans"
+msgstr "Pamahalaan ang mga plano"
+
+msgid "Platform Config"
+msgstr "Platform config"
+
+msgid "Applications"
+msgstr "Mga Aplikasyon"
+
+msgid "Pending Jobs"
+msgstr "Nakabinbin na trabaho"
+
+msgid "New Applicants"
+msgstr "Mga bagong aplikante"
+
+msgid "Active Subscriptions"
+msgstr "Mga aktibong subscription"
+
+msgid "Total Users"
+msgstr "Kabuuang mga gumagamit"
+
+msgid "Closed Jobs"
+msgstr "Mga saradong trabaho"
+
+msgid "Monthly Revenue"
+msgstr "Buwanang kita"
+
+msgid "Recent Job Postings"
+msgstr "Kamakailang pag -post ng trabaho"
+
+msgid "Date Posted"
+msgstr "Petsa Nai -post"
+
+msgid "Actions"
+msgstr "Mga kilos"
+
+msgid "No recent job postings found."
+msgstr "Walang nahanap na kamakailang mga pag -post ng trabaho."
+
+msgid "Top Job Categories"
+msgstr "Nangungunang mga kategorya ng trabaho"
+
+msgid "Latest Job Applies"
+msgstr "Nalalapat ang pinakabagong trabaho"
+
+msgid "applied for"
+msgstr "nag -apply para sa"
+
+msgid "at"
+msgstr "sa"
+
+msgid "View App"
+msgstr "Tingnan ang app"
+
+msgid "No recent job applications to display."
+msgstr "Walang mga kamakailang aplikasyon sa trabaho upang ipakita."
+
+msgid "No new resumes have been added recently."
+msgstr "Walang mga bagong resume na naidagdag kamakailan."
+
+msgid "Latest Package Subscriptions"
+msgstr "Pinakabagong mga subscription sa package"
+
+msgid "subscribed to"
+msgstr "naka -subscribe sa"
+
+msgid "No new subscriptions found."
+msgstr "Walang nahanap na mga bagong subscription."
+
+msgid "Latest Payments"
+msgstr "Pinakabagong mga pagbabayad"
+
+msgid "No recent payments to display."
+msgstr "Walang mga kamakailang pagbabayad upang ipakita."
+
+msgid "Latest Activity"
+msgstr "Pinakabagong aktibidad"
+
+msgid "Hooray! No system errors to report."
+msgstr "Hooray! Walang mga error sa system na mag -uulat."
+
+msgid "Latest Job Seekers"
+msgstr "Pinakabagong mga naghahanap ng trabaho"
+
+msgid "Joined"
+msgstr "Sumali"
+
+msgid "No new job seekers have registered."
+msgstr "Walang mga bagong naghahanap ng trabaho ang nakarehistro."
+
+msgid "Latest Employers"
+msgstr "Pinakabagong mga employer"
+
+msgid "No new employers have registered."
+msgstr "Walang mga bagong employer ang nakarehistro."
+
+msgid "Not allowed"
+msgstr "Hindi pinapayagan"
+
+msgid "Allowed to all"
+msgstr "Pinapayagan sa lahat"
+
+msgid "employers, job seekers and visitors"
+msgstr "mga employer, naghahanap ng trabaho at mga bisita"
+
+msgid "Allowed only to employers"
+msgstr "Pinapayagan lamang sa mga employer"
+
+msgid "City, State, Country"
+msgstr "Lungsod, Estado, Bansa"
+
+msgid "City, State"
+msgstr "Lungsod, Estado"
+
+msgid "City, Country"
+msgstr "Lungsod, bansa"
+
+msgid "Minutes"
+msgstr "Minuto"
+
+msgid "Hour"
+msgstr "Oras"
+
+msgid "Hours"
+msgstr "Oras"
+
+msgid "Week"
+msgstr "Linggo"
+
+msgid "System & Site"
+msgstr "System at Site"
+
+msgid "Site & System"
+msgstr "Site at System"
+
+msgid "Core details about your job portal, its status, and default behaviors"
+msgstr "Ang mga pangunahing detalye tungkol sa iyong portal ng trabaho, katayuan nito, at default na pag -uugali"
+
+msgid "Site Title"
+msgstr "Pamagat ng site"
+
+msgid "The main title for your job portal"
+msgstr "Ang pangunahing pamagat para sa iyong portal ng trabaho"
+
+msgid "Site Offline"
+msgstr "Offline ng site"
+
+msgid "Take the site offline for maintenance"
+msgstr "Kunin ang offline ng site para sa pagpapanatili"
+
+msgid "The message shown to visitors when the site is offline"
+msgstr "Ang mensahe na ipinakita sa mga bisita kapag ang site ay offline"
+
+msgid "Default Page"
+msgstr "Default na pahina"
+
+msgid "Select the main WordPress page for the job portal"
+msgstr "Piliin ang pangunahing pahina ng WordPress para sa portal ng trabaho"
+
+msgid "Email links and support icons may not work if this is not set"
+msgstr "Ang mga link sa email at mga icon ng suporta ay maaaring hindi gumana kung hindi ito nakatakda"
+
+msgid "Date Format"
+msgstr "Format ng petsa"
+
+msgid "Set the date format used throughout the plugin"
+msgstr "Itakda ang format ng petsa na ginamit sa buong plugin"
+
+msgid "Default Address Display Style"
+msgstr "Istilo ng display ng default na address"
+
+msgid "Select the default format for displaying addresses"
+msgstr "Piliin ang default na format para sa pagpapakita ng mga address"
+
+msgid "Registration & Login"
+msgstr "Pagrehistro at Pag -login"
+
+msgid "Control user registration flows and login/logout redirects"
+msgstr "Kontrolin ang pagpaparehistro ng gumagamit at pag -login/pag -redirect ng pag -logout"
+
+msgid "Set Register Link"
+msgstr "Itakda ang link ng rehistro"
+
+msgid "Set the main registration page for the site"
+msgstr "Itakda ang pangunahing pahina ng pagrehistro para sa site"
+
+msgid "Custom Register Redirect Link"
+msgstr "Custom REGIRECT REDIRECT LINK"
+
+msgid "Enter the custom URL for registration if"
+msgstr "Ipasok ang pasadyang URL para sa pagpaparehistro kung"
+
+msgid "is selected above"
+msgstr "ay napili sa itaas"
+
+msgid "Set the main login page for the site"
+msgstr "Itakda ang pangunahing pahina ng pag -login para sa site"
+
+msgid "Custom Login Redirect Link"
+msgstr "Pasadyang link ng pag -redirect ng pag -login"
+
+msgid "Enter the custom URL for login if"
+msgstr "Ipasok ang pasadyang URL para sa pag -login kung"
+
+msgid "Redirect Link For Non-Portal WP User"
+msgstr "I-redirect ang link para sa hindi gumagamit ng WP na gumagamit"
+
+msgid "Redirect WordPress users who do not have a role in WP Job Portal to this link after login"
+msgstr "I -redirect ang mga gumagamit ng WordPress na walang papel sa portal ng trabaho sa WP sa link na ito pagkatapos mag -login"
+
+msgid "Terms & Conditions"
+msgstr "Mga Tuntunin at Kundisyon"
+
+msgid "Assign specific Terms & Conditions pages for different submission types"
+msgstr "Magtalaga ng mga tukoy na pahina ng Mga Tuntunin at Kundisyon para sa iba't ibang mga uri ng pagsusumite"
+
+msgid "Company Terms Page"
+msgstr "Pahina ng Mga Tuntunin ng Kumpanya"
+
+msgid "Select the"
+msgstr "Piliin ang"
+
+msgid "page for company submissions"
+msgstr "Pahina para sa mga pagsusumite ng kumpanya"
+
+msgid "Job Terms Page"
+msgstr "Pahina ng Mga Tuntunin sa Trabaho"
+
+msgid "page for job submissions"
+msgstr "Pahina para sa mga pagsusumite ng trabaho"
+
+msgid "Resume Terms Page"
+msgstr "Ipagpatuloy ang pahina ng Mga Tuntunin"
+
+msgid "page for resume submissions"
+msgstr "Pahina para sa mga pagsusumite ng resume"
+
+msgid "Content & Display"
+msgstr "Nilalaman at pagpapakita"
+
+msgid "Taxonomy & Categories"
+msgstr "Taxonomy at kategorya"
+
+msgid "Manage how content like categories and tags are handled"
+msgstr "Pamahalaan kung paano hawakan ang nilalaman tulad ng mga kategorya at tag"
+
+msgid "Even if Empty"
+msgstr "Kahit na walang laman"
+
+msgid "If no is selected then only categories that have jobs or resumes will be shown"
+msgstr "Kung hindi napili pagkatapos lamang ang mga kategorya na may mga trabaho o resume ay ipapakita"
+
+msgid "Categories Per Row"
+msgstr "Mga kategorya bawat hilera"
+
+msgid "Number of categories to display per row on category listing pages"
+msgstr "Bilang ng mga kategorya upang ipakita ang bawat hilera sa mga pahina ng listahan ng kategorya"
+
+msgid "Sub-categories Limit"
+msgstr "Limitasyon ng mga sub-kategorya"
+
+msgid "How many sub-categories to show in the popup on category pages"
+msgstr "Ilan ang mga sub-kategorya upang ipakita sa popup sa mga pahina ng kategorya"
+
+msgid "User Can Add New Tags"
+msgstr "Ang gumagamit ay maaaring magdagdag ng mga bagong tag"
+
+msgid "Allow users to create new tags in the system when posting"
+msgstr "Payagan ang mga gumagamit na lumikha ng mga bagong tag sa system kapag nag -post"
+
+msgid "Default Pagination Size"
+msgstr "Default na laki ng pagination"
+
+msgid "Maximum number of records to show per page"
+msgstr "Pinakamataas na bilang ng mga talaan upang ipakita sa bawat pahina"
+
+msgid "Show Breadcrumbs"
+msgstr "Ipakita ang mga tinapay"
+
+msgid "Show WP Job Portal Page Title"
+msgstr "Ipakita ang pamagat ng pahina ng WP Job Portal"
+
+msgid "File Uploads & Defaults"
+msgstr "Mga pag -upload at mga default ng file"
+
+msgid "Manage file uploads and default placeholder images"
+msgstr "Pamahalaan ang mga pag -upload ng file at mga default na imahe ng placeholder"
+
+msgid "Data Directory"
+msgstr "Direktoryo ng data"
+
+msgid "System will upload all user files into this folder within the WordPress uploads directory"
+msgstr "I -upload ng system ang lahat ng mga file ng gumagamit sa folder na ito sa loob ng direktoryo ng pag -upload ng WordPress"
+
+msgid "Default Image"
+msgstr "Default na imahe"
+
+msgid "This image will be shown as the default for entities & users if no other image is provided"
+msgstr "Ang imaheng ito ay ipapakita bilang default para sa mga entidad at mga gumagamit kung walang ibang imahe na ibinigay"
+
+msgid "Allowed Image Extensions"
+msgstr "Pinapayagan ang mga extension ng imahe"
+
+msgid "Comma-separated list of allowed image file extensions"
+msgstr "Ang listahan ng hiwalay na comma ng pinapayagan na mga extension ng file ng imahe"
+
+msgid "Max Image Size"
+msgstr "Max laki ng imahe"
+
+msgid "Maximum file size for general image uploads in kilobytes"
+msgstr "Pinakamataas na laki ng file para sa pangkalahatang pag -upload ng imahe sa mga kilobyte"
+
+msgid "URL & SEO"
+msgstr "URL & SEO"
+
+msgid "URL Structure"
+msgstr "Istraktura ng url"
+
+msgid "Configure the URL structure"
+msgstr "I -configure ang istraktura ng URL"
+
+msgid "permalinks"
+msgstr "Permalinks"
+
+msgid "for detail pages"
+msgstr "Para sa mga detalye ng pahina"
+
+msgid "Job Detail URL Structure"
+msgstr "Istraktura ng detalye ng url ng trabaho"
+
+msgid "Click on the available tags below to build the URL structure for job detail pages"
+msgstr "Mag -click sa magagamit na mga tag sa ibaba upang mabuo ang istraktura ng URL para sa mga pahina ng detalye ng trabaho"
+
+msgid "Company Detail URL Structure"
+msgstr "Istraktura ng Detalye ng URL ng Kumpanya"
+
+msgid "Click on the available tags below to build the URL structure for company detail pages"
+msgstr "Mag -click sa magagamit na mga tag sa ibaba upang mabuo ang istraktura ng URL para sa mga pahina ng detalye ng kumpanya"
+
+msgid "Resume Detail URL Structure"
+msgstr "Ipagpatuloy ang istraktura ng detalye ng URL"
+
+msgid "Click on the available tags below to build the URL structure for resume detail pages"
+msgstr "Mag -click sa magagamit na mga tag sa ibaba upang mabuo ang istraktura ng URL para sa mga pahina ng detalye ng resume"
+
+msgid "Registration & Access"
+msgstr "Pagrehistro at Pag -access"
+
+msgid "If no then front end employer area is not accessible"
+msgstr "Kung hindi pagkatapos ay hindi maa -access ang harap na lugar ng employer"
+
+msgid "Allow Registration as Employer"
+msgstr "Payagan ang pagpaparehistro bilang employer"
+
+msgid "Show the option to register as an employer on the registration form"
+msgstr "Ipakita ang pagpipilian upang magparehistro bilang isang tagapag -empleyo sa form ng pagpaparehistro"
+
+msgid "Employer Default Role"
+msgstr "Papel ng default na employer"
+
+msgid "Employer Can View Job Seeker Area"
+msgstr "Maaaring tingnan ng employer ang lugar ng naghahanap ng trabaho"
+
+msgid "Allow logged-in employers to view the job seeker control panel"
+msgstr "Payagan ang mga naka-log-in na employer upang tingnan ang job seeker control panel"
+
+msgid "Set Employer After-Register Link"
+msgstr "Itakda ang Link pagkatapos-rehistro ng Link"
+
+msgid "Employer After-Registration Page"
+msgstr "Pahina ng pag-rehistro ng employer"
+
+msgid "Employer Custom After-Registration Link"
+msgstr "Link ng pasadyang pag-rehistro ng employer"
+
+msgid "Custom Empolyer After Regitser Link"
+msgstr "Pasadyang Link ng Rehistro pagkatapos Magrehistro"
+
+msgid "Layout & Widgets"
+msgstr "Layout at Mga Widget"
+
+msgid "Control the visibility of main sections and widgets in the logged-in employer dashboard"
+msgstr "Kontrolin ang kakayahang makita ng mga pangunahing seksyon at mga widget sa naka-log-in na dashboard ng employer"
+
+msgid "Show Profile Section"
+msgstr "Ipakita ang seksyon ng profile"
+
+msgid "Show Stat Boxes"
+msgstr "Ipakita ang mga kahon ng stat"
+
+msgid "Show Recent Resumes Box"
+msgstr "Ipakita ang kamakailang kahon ng resume"
+
+msgid "Show Stats Graph"
+msgstr "Ipakita ang Stats Graph"
+
+msgid "Setting to show the stats graph on the employer dashboard"
+msgstr "Setting upang ipakita ang stats graph sa dashboard ng employer"
+
+msgid "Show Useful Links"
+msgstr "Ipakita ang mga kapaki -pakinabang na link"
+
+msgid "Setting to show the useful links section"
+msgstr "Pagtatakda upang ipakita ang kapaki -pakinabang na seksyon ng mga link"
+
+msgid "Show Applied Resumes"
+msgstr "Ipakita ang inilapat na resume"
+
+msgid "Setting to show the applied resumes section"
+msgstr "Setting upang ipakita ang inilapat na seksyon ng resume"
+
+msgid "Show Saved Searches"
+msgstr "Ipakita ang nai -save na mga paghahanap"
+
+msgid "Setting to show the saved searches section"
+msgstr "Setting upang ipakita ang nai -save na seksyon ng mga paghahanap"
+
+msgid "Show Newest Resumes"
+msgstr "Ipakita ang pinakabagong mga resume"
+
+msgid "Setting to show the newest resumes section"
+msgstr "Setting upang ipakita ang pinakabagong seksyon ng resume"
+
+msgid "Navigation Links"
+msgstr "Mga link sa nabigasyon"
+
+msgid "Control which navigation links are visible in the logged-in employer dashboard menu"
+msgstr "Kontrolin kung aling mga link sa nabigasyon ang makikita sa menu ng naka-log-in na dashboard ng employer"
+
+msgid "link in the employer dashboard"
+msgstr "Mag -link sa dashboard ng employer"
+
+msgid "RSS Feedback"
+msgstr "RSS feedback"
+
+msgid "Job Seeker Default Role"
+msgstr "Job Seeker Default Role"
+
+msgid "Set Job Seeker After-Register Link"
+msgstr "Magtakda ng Job Seeker After-Register Link"
+
+msgid "Job Seeker After-Registration Page"
+msgstr "Pahina ng Paghahanap ng Job After-Rehistro"
+
+msgid "Job Seeker Custom After-Registration Link"
+msgstr "Link ng Seeker ng Job Seeker After-Rehistro"
+
+msgid "Custom Job seeker After Regitser Link"
+msgstr "Pasadyang Job Seeker After Register Link"
+
+msgid "Enable Job Shortlisting"
+msgstr "Paganahin ang lista ng trabaho"
+
+msgid "Allow job seekers to shortlist jobs"
+msgstr "Payagan ang mga naghahanap ng trabaho sa mga trabaho sa lista"
+
+msgid "This affects the job detail page"
+msgstr "Naaapektuhan nito ang pahina ng detalye ng trabaho"
+
+msgid "Enable Tell a Friend"
+msgstr "Paganahin ang isang kaibigan"
+
+msgid "Enable the"
+msgstr "Paganahin ang"
+
+msgid "feature on job listing pages"
+msgstr "tampok sa mga pahina ng listahan ng trabaho"
+
+msgid "Control the visibility of main sections and widgets in the logged-in job seeker dashboard"
+msgstr "Kontrolin ang kakayahang makita ng mga pangunahing seksyon at mga widget sa naka-log-in na job seeker dashboard"
+
+msgid "Show Applied Jobs Box"
+msgstr "Ipakita ang inilapat na kahon ng trabaho"
+
+msgid "Show Newest Jobs Box"
+msgstr "Ipakita ang pinakabagong kahon ng trabaho"
+
+msgid "Show Jobs Graph"
+msgstr "Ipakita ang graph ng trabaho"
+
+msgid "Setting to show the jobs graph on the job seeker dashboard"
+msgstr "Pagtatakda upang ipakita ang graph ng mga trabaho sa dashboard ng naghahanap ng trabaho"
+
+msgid "Show Applied Jobs"
+msgstr "Ipakita ang mga inilapat na trabaho"
+
+msgid "Setting to show the applied jobs section"
+msgstr "Pagtatakda upang ipakita ang seksyon ng Inilapat na Trabaho"
+
+msgid "Show Shortlisted Jobs"
+msgstr "Ipakita ang mga naka -lista na trabaho"
+
+msgid "Setting to show the shortlisted jobs section"
+msgstr "Pagtatakda upang ipakita ang seksyon ng mga naka -lista na trabaho"
+
+msgid "Show Newest Jobs"
+msgstr "Ipakita ang mga pinakabagong trabaho"
+
+msgid "Setting to show the newest jobs section"
+msgstr "Pagtatakda upang ipakita ang pinakabagong seksyon ng mga trabaho"
+
+msgid "Control which navigation links are visible in the logged-in job seeker dashboard menu"
+msgstr "Kontrolin kung aling mga link sa nabigasyon ang makikita sa menu ng Dashboard na naka-log in na job seeker"
+
+msgid "link in the job seeker dashboard"
+msgstr "Mag -link sa job seeker dashboard"
+
+msgid "Visitors"
+msgstr "Mga bisita"
+
+msgid "General Permissions"
+msgstr "Pangkalahatang Pahintulot"
+
+msgid "Define what non-logged-in users are allowed to do on the site"
+msgstr "Tukuyin kung ano ang pinapayagan na gawin ng mga gumagamit na hindi naka-log-in"
+
+msgid "Visitor Can Post Job"
+msgstr "Ang bisita ay maaaring mag -post ng trabaho"
+
+msgid "Allow non-logged-in users to post jobs"
+msgstr "Payagan ang mga gumagamit na hindi naka-log-in na mag-post ng mga trabaho"
+
+msgid "Visitor Can Add Job"
+msgstr "Ang bisita ay maaaring magdagdag ng trabaho"
+
+msgid "Visitor Job Post Redirect Page"
+msgstr "Ang pahina ng pag -redirect ng Visitor Job ay nag -redirect"
+
+msgid "A visitor will be redirected to this page after posting a job"
+msgstr "Ang isang bisita ay mai -redirect sa pahinang ito pagkatapos mag -post ng trabaho"
+
+msgid "Visitor Can Apply to Job"
+msgstr "Ang bisita ay maaaring mag -aplay sa trabaho"
+
+msgid "Allow non-logged-in users to apply for jobs"
+msgstr "Payagan ang mga gumagamit na hindi naka-log-in na mag-aplay para sa mga trabaho"
+
+msgid "Visitor Can Add Resume"
+msgstr "Ang bisita ay maaaring magdagdag ng resume"
+
+msgid "Allow non-logged-in users to add a resume"
+msgstr "Payagan ang mga gumagamit na hindi naka-log-in upang magdagdag ng isang resume"
+
+msgid "Visitor Resume Post Redirect Page"
+msgstr "Pahina ng Pag -redirect ng Bisitahin ang Redirect"
+
+msgid "A visitor will be redirected to this page after posting a resume"
+msgstr "Ang isang bisita ay mai -redirect sa pahinang ito pagkatapos mag -post ng isang resume"
+
+msgid "Visitor Can Edit Job"
+msgstr "Ang bisita ay maaaring mag -edit ng trabaho"
+
+msgid "Allow non-logged-in users to edit jobs they have posted"
+msgstr "Payagan ang mga gumagamit na hindi naka-log-in na mag-edit ng mga trabaho na nai-post nila"
+
+msgid "Page & Link Access"
+msgstr "Pahina at Pag -access sa Link"
+
+msgid "Control which pages and links are visible to non-logged-in users"
+msgstr "Kontrolin kung aling mga pahina at link ang makikita sa mga gumagamit na hindi naka-log-in"
+
+msgid "Allow visitors to view the employer control panel links"
+msgstr "Payagan ang mga bisita na tingnan ang mga link sa control panel ng employer"
+
+msgid "Allow visitors to view the resume categories page"
+msgstr "Payagan ang mga bisita na tingnan ang pahina ng mga kategorya ng resume"
+
+msgid "Allow visitors to access the resume search functionality"
+msgstr "Payagan ang mga bisita na ma -access ang pag -andar ng paghahanap ng resume"
+
+msgid "Allow visitors to view company detail pages"
+msgstr "Payagan ang mga bisita na tingnan ang mga pahina ng detalye ng kumpanya"
+
+msgid "Allow visitors to view job detail pages"
+msgstr "Payagan ang mga bisita na tingnan ang mga pahina ng detalye ng trabaho"
+
+msgid "Allow visitors to view resume detail pages"
+msgstr "Payagan ang mga bisita na tingnan ang mga pahina ng detalye ng resume"
+
+msgid "Allow visitors to view the job seeker control panel links"
+msgstr "Payagan ang mga bisita na tingnan ang mga link sa control panel ng job seeker"
+
+msgid "Allow visitors to view the jobs by category page"
+msgstr "Payagan ang mga bisita na tingnan ang mga trabaho ayon sa pahina ng kategorya"
+
+msgid "Allow visitors to use the job search functionality"
+msgstr "Payagan ang mga bisita na gamitin ang pag -andar sa paghahanap ng trabaho"
+
+msgid "Allow visitors to see job search result listings"
+msgstr "Payagan ang mga bisita na makita ang mga listahan ng resulta ng paghahanap ng trabaho"
+
+msgid "Allow visitors to see the newest jobs page"
+msgstr "Payagan ang mga bisita na makita ang pinakabagong pahina ng trabaho"
+
+msgid "Job Posting & Management"
+msgstr "Pag -post at Pamamahala sa Trabaho"
+
+msgid "Manage how jobs are posted, their lifecycle, and related features"
+msgstr "Pamahalaan kung paano nai -post ang mga trabaho, ang kanilang lifecycle, at mga kaugnay na tampok"
+
+msgid "Job Auto Approve"
+msgstr "Aprubahan ng auto auto"
+
+msgid "Automatically approve new jobs upon submission"
+msgstr "Awtomatikong aprubahan ang mga bagong trabaho sa pagsusumite"
+
+msgid "Job Expiry Days"
+msgstr "Araw ng pag -expire ng trabaho"
+
+msgid "Number of days until a freely posted job expires"
+msgstr "Bilang ng mga araw hanggang sa malayang nai -post ang trabaho"
+
+msgid "Number of days until a paid"
+msgstr "Bilang ng mga araw hanggang sa isang bayad"
+
+msgid "job expires"
+msgstr "Mag -expire ang trabaho"
+
+msgid "Job Display & Listings"
+msgstr "Pagpapakita ng trabaho at listahan"
+
+msgid "Control how job-related pages and information are displayed to users"
+msgstr "Kontrolin kung paano ipinapakita ang mga pahina at impormasyon na may kaugnayan sa trabaho sa mga gumagamit"
+
+msgid "Show Country on Jobs by Cities Page"
+msgstr "Ipakita ang Pahina ng Mga Trabaho sa Mga Trabaho ng Mga Lungsod"
+
+msgid "Display the country name next to the city"
+msgstr "Ipakita ang pangalan ng bansa sa tabi ng lungsod"
+
+msgid "Show Count on Jobs by Cities Page"
+msgstr "Ipakita ang bilang ng mga trabaho sa pamamagitan ng pahina ng mga lungsod"
+
+msgid "Display the total number of jobs available in each city"
+msgstr "Ipakita ang kabuuang bilang ng mga trabaho na magagamit sa bawat lungsod"
+
+msgid "Show Count in Job Categories"
+msgstr "Ipakita ang bilang sa mga kategorya ng trabaho"
+
+msgid "Display the total number of jobs for each category"
+msgstr "Ipakita ang kabuuang bilang ng mga trabaho para sa bawat kategorya"
+
+msgid "Show Count on Jobs by Types Page"
+msgstr "Ipakita ang bilang ng mga trabaho ayon sa mga uri ng pahina"
+
+msgid "Display the total number of jobs for each job type"
+msgstr "Ipakita ang kabuuang bilang ng mga trabaho para sa bawat uri ng trabaho"
+
+msgid "Job Types Per Row"
+msgstr "Mga uri ng trabaho bawat hilera"
+
+msgid "How many job types to display per row on the"
+msgstr "Ilan ang mga uri ng trabaho upang ipakita bawat hilera sa"
+
+msgid "Job by Type"
+msgstr "Trabaho ayon sa uri"
+
+msgid "Show Jobs Graph for Employer"
+msgstr "Ipakita ang graph ng trabaho para sa employer"
+
+msgid "Show Active Jobs Graph for Job Seeker"
+msgstr "Ipakita ang mga aktibong graph ng trabaho para sa naghahanap ng trabaho"
+
+msgid "Company Profile Display"
+msgstr "Display ng profile ng kumpanya"
+
+msgid "Control which company details are visible on listings and company pages"
+msgstr "Kontrolin kung aling mga detalye ng kumpanya ang makikita sa mga listahan at mga pahina ng kumpanya"
+
+msgid "Show Company Name"
+msgstr "Ipakita ang pangalan ng kumpanya"
+
+msgid "Show Company Description"
+msgstr "Ipakita ang paglalarawan ng kumpanya"
+
+msgid "Show Company Email Address"
+msgstr "Ipakita ang email address ng kumpanya"
+
+msgid "Show Company City"
+msgstr "Ipakita ang Lungsod ng Kumpanya"
+
+msgid "Show Company URL"
+msgstr "Ipakita ang URL ng kumpanya"
+
+msgid "Show Company Contact Detail by Default"
+msgstr "Ipakita ang detalye ng contact ng kumpanya bilang default"
+
+msgid "If disabled, credits may be required to view contact details"
+msgstr "Kung hindi pinagana, maaaring kailanganin ang mga kredito upang matingnan ang mga detalye ng contact"
+
+msgid "General settings for company profiles"
+msgstr "Pangkalahatang mga setting para sa mga profile ng kumpanya"
+
+msgid "Company Logo Maximum Size"
+msgstr "Maximum na laki ng logo ng kumpanya"
+
+msgid "Set the maximum file size for company logo uploads in kilobytes"
+msgstr "Itakda ang maximum na laki ng file para sa pag -upload ng logo ng kumpanya sa mga kilobytes"
+
+msgid "Company Auto Approve"
+msgstr "Aprubahan ng auto auto"
+
+msgid "Automatically approve new company profiles upon submission"
+msgstr "Awtomatikong aprubahan ang mga bagong profile ng kumpanya sa pagsumite"
+
+msgid "Control resume submissions, visibility, and search functionality"
+msgstr "Control resume pagsusumite, kakayahang makita, at pag -andar ng paghahanap"
+
+msgid "Resume Auto Approve"
+msgstr "Ipagpatuloy ang pag -apruba ng auto"
+
+msgid "Automatically approve new resumes upon submission"
+msgstr "Awtomatikong aprubahan ang mga bagong resume sa pagsusumite"
+
+msgid "Show Resume Contact Detail by Default"
+msgstr "Ipakita ang detalye ng contact contact bilang default"
+
+msgid "If disabled, credits may be required to view resume contact details"
+msgstr "Kung hindi pinagana, maaaring kailanganin ang mga kredito upang matingnan ang mga detalye ng contact ng resume"
+
+msgid "Show Count in Resume Categories"
+msgstr "Ipakita ang bilang sa mga kategorya ng resume"
+
+msgid "Display the total number of resumes for each category"
+msgstr "Ipakita ang kabuuang bilang ng mga resume para sa bawat kategorya"
+
+msgid "Allow Resume Search"
+msgstr "Payagan ang paghahanap ng resume"
+
+msgid "Define who is allowed to search for resumes"
+msgstr "Tukuyin kung sino ang pinapayagan na maghanap para sa mga resume"
+
+msgid "Allow Users to Save Resume Searches"
+msgstr "Payagan ang mga gumagamit na makatipid ng mga paghahanap sa resume"
+
+msgid "Allow users to save their resume search criteria for later use"
+msgstr "Payagan ang mga gumagamit na i -save ang kanilang mga pamantayan sa paghahanap ng resume para magamit sa ibang pagkakataon"
+
+msgid "Resume Files & Builder"
+msgstr "Ipagpatuloy ang mga file at tagabuo"
+
+msgid "Define limits and allowed types for resume file uploads and advanced builder sections"
+msgstr "Tukuyin ang mga limitasyon at pinapayagan na mga uri para sa mga pag -upload ng file ng resume at mga seksyon ng advanced na tagabuo"
+
+msgid "Resume Photo Maximum Size"
+msgstr "Ipagpatuloy ang maximum na laki ng larawan"
+
+msgid "Maximum file size for resume photos in kilobytes"
+msgstr "Pinakamataas na laki ng file para sa mga larawan ng resume sa mga kilobytes"
+
+msgid "Resume Document Maximum Size"
+msgstr "Ipagpatuloy ang maximum na laki ng dokumento"
+
+msgid "System will not upload if resume file size exceeds the given size"
+msgstr "Hindi mai -upload ng system kung ang laki ng file ng resume ay lumampas sa naibigay na laki"
+
+msgid "Allowed Document Extensions"
+msgstr "Pinapayagan ang mga extension ng dokumento"
+
+msgid "Comma-separated list of allowed document file extensions"
+msgstr "Ang listahan ng hiwalay na comma ng pinapayagan na mga extension ng file ng dokumento"
+
+msgid "Maximum Number of Files for Resume"
+msgstr "Pinakamataas na bilang ng mga file para sa resume"
+
+msgid "Maximum number of files a job seeker can upload with their resume"
+msgstr "Maximum na bilang ng mga file na maaaring mag -upload ang isang naghahanap ng trabaho sa kanilang resume"
+
+msgid "Max Employers in Resume Builder"
+msgstr "Max employer sa resume builder"
+
+msgid "Maximum number of employers allowed in the resume builder"
+msgstr "Pinakamataas na bilang ng mga employer na pinapayagan sa tagabuo ng resume"
+
+msgid "Max Institutes in Resume Builder"
+msgstr "Max Institutes sa Resume Builder"
+
+msgid "Maximum number of institutes allowed in the resume builder"
+msgstr "Pinakamataas na bilang ng mga institusyon na pinapayagan sa tagabuo ng resume"
+
+msgid "Max Languages in Resume Builder"
+msgstr "Max Languages ​​sa Resume Builder"
+
+msgid "Maximum number of languages allowed in the resume builder"
+msgstr "Pinakamataas na bilang ng mga wika na pinapayagan sa tagabuo ng resume"
+
+msgid "Max Addresses in Resume Builder"
+msgstr "Max address sa resume builder"
+
+msgid "Maximum number of addresses allowed in the resume builder"
+msgstr "Pinakamataas na bilang ng mga address na pinapayagan sa tagabuo ng resume"
+
+msgid "Job Applications"
+msgstr "Mga aplikasyon ng trabaho"
+
+msgid "Configure the job application process and related notifications"
+msgstr "I -configure ang proseso ng aplikasyon ng trabaho at mga kaugnay na abiso"
+
+msgid "Show Apply Now Button"
+msgstr "Ipakita ang pindutan ngayon"
+
+msgid "Enable Quick Apply for Logged-in Users"
+msgstr "Paganahin ang mabilis na mag-aplay para sa mga gumagamit ng naka-log in"
+
+msgid "Enable Quick Apply for Visitors"
+msgstr "Paganahin ang mabilis na mag -aplay para sa mga bisita"
+
+msgid "Show Applied Resume Status to Job Seeker"
+msgstr "Ipakita ang inilapat na katayuan ng resume sa naghahanap ng trabaho"
+
+msgid "Resume Data in Email"
+msgstr "Ipagpatuloy ang data sa email"
+
+msgid "Sections"
+msgstr "Mga seksyon"
+
+msgid "Choose whether to include all resume sections or only filled ones in the application email to employers"
+msgstr "Piliin kung isasama ang lahat ng mga seksyon ng resume o mga napuno lamang sa email ng application sa mga employer"
+
+msgid "Choose whether to include all fields or only filled fields in the application email"
+msgstr "Piliin kung isasama ang lahat ng mga patlang o napuno lamang na mga patlang sa email ng application"
+
+msgid "Auto-Approve Rules"
+msgstr "Mga Batas ng Auto-aprubahan"
+
+msgid "Set auto-approval rules for various user-submitted content"
+msgstr "Itakda ang mga patakaran sa pag-apruba ng auto para sa iba't ibang nilalaman na isinumite ng gumagamit"
+
+msgid "Featured Resume Auto Approve"
+msgstr "Itinatampok na resume auto aprubahan"
+
+msgid "Automatically approve resumes marked as featured"
+msgstr "Awtomatikong aprubahan ang mga resume na minarkahan bilang itinampok"
+
+msgid "Featured Company Auto Approve"
+msgstr "Itinatampok na kumpanya ng pag -apruba ng kumpanya"
+
+msgid "Automatically approve companies marked as featured"
+msgstr "Awtomatikong aprubahan ang mga kumpanya na minarkahan bilang itinampok"
+
+msgid "Featured Job Auto Approve"
+msgstr "Itinatampok na pag -apruba ng auto ng trabaho"
+
+msgid "Automatically approve jobs marked as featured"
+msgstr "Awtomatikong aprubahan ang mga trabaho na minarkahan bilang itinampok"
+
+msgid "Cover Letter Auto Approve"
+msgstr "Cover Letter Auto aprubahan"
+
+msgid "Automatically approve cover letters submitted by job seekers"
+msgstr "Awtomatikong aprubahan ang mga takip na titik na isinumite ng mga naghahanap ng trabaho"
+
+msgid "Folder Auto Approve"
+msgstr "Aprubahan ng folder auto"
+
+msgid "Automatically approve new folders created by employers"
+msgstr "Awtomatikong aprubahan ang mga bagong folder na nilikha ng mga employer"
+
+msgid "Department Auto Approve"
+msgstr "Aprubahan ng departamento ng awtomatikong"
+
+msgid "Automatically approve new departments created by employers"
+msgstr "Awtomatikong aprubahan ang mga bagong kagawaran na nilikha ng mga employer"
+
+msgid "Message Auto Approve"
+msgstr "Aprubahan ng message auto"
+
+msgid "Automatically approve messages between job seekers and employers"
+msgstr "Awtomatikong aprubahan ang mga mensahe sa pagitan ng mga naghahanap ng trabaho at employer"
+
+msgid "Conflict Message Auto Approve"
+msgstr "Aprubahan ang mensahe ng awtomatikong message"
+
+msgid "Automatically approve conflicted messages"
+msgstr "Awtomatikong aprubahan ang mga magkasalungat na mensahe"
+
+msgid "Email & Alerts"
+msgstr "Email at Mga Alerto"
+
+msgid "Email Sender Identity"
+msgstr "Pagkakakilanlan ng nagpadala ng email"
+
+msgid "Configure sender details for all outgoing system emails"
+msgstr "I -configure ang mga detalye ng nagpadala para sa lahat ng mga papalabas na email ng system"
+
+msgid "Admin Email Address"
+msgstr "Admin email address"
+
+msgid "Admin will receive email notifications at this address"
+msgstr "Makakatanggap ng admin ang mga abiso sa email sa address na ito"
+
+msgid "Sender Email Address"
+msgstr "Sender email address"
+
+msgid "The email address that will be used to send system emails"
+msgstr "Ang email address na gagamitin upang magpadala ng mga email ng system"
+
+msgid "The sender name that will be used in system emails"
+msgstr "Ang pangalan ng nagpadala na gagamitin sa mga email ng system"
+
+msgid "Job Alerts"
+msgstr "Mga alerto sa trabaho"
+
+msgid "Configure settings for job alert emails and forms"
+msgstr "I -configure ang mga setting para sa mga email ng alerto sa trabaho at mga form"
+
+msgid "Show Job Alert Link"
+msgstr "Ipakita ang link ng alerto sa trabaho"
+
+msgid "Show the Job Alert link in the job seeker control panel"
+msgstr "Ipakita ang Job Alert Link sa Job Seeker Control Panel"
+
+msgid "Enable Job Alerts for Visitors"
+msgstr "Paganahin ang mga alerto sa trabaho para sa mga bisita"
+
+msgid "Allow non-logged-in users to sign up for job alerts"
+msgstr "Payagan ang mga gumagamit na hindi naka-log-in na mag-sign up para sa mga alerto sa trabaho"
+
+msgid "Job Alert Auto Approve"
+msgstr "Aprubahan ng alerto sa trabaho"
+
+msgid "Automatically approve new job alerts upon creation"
+msgstr "Awtomatikong aprubahan ang mga bagong alerto sa trabaho sa paglikha"
+
+msgid "Captcha on Visitor Job Alert Form"
+msgstr "Captcha sa form ng alerto sa trabaho ng bisita"
+
+msgid "Show a captcha on the job alert sign-up form for visitors"
+msgstr "Magpakita ng isang captcha sa form ng pag-sign up ng job alerto para sa mga bisita"
+
+msgid "Allow users to save their search queries for jobs and resumes"
+msgstr "Payagan ang mga gumagamit na i -save ang kanilang mga query sa paghahanap para sa mga trabaho at resume"
+
+msgid "Show Saved Searches for Job Seekers"
+msgstr "Ipakita ang nai -save na mga paghahanap para sa mga naghahanap ng trabaho"
+
+msgid "Allow job seekers to save their job searches"
+msgstr "Payagan ang mga naghahanap ng trabaho upang mai -save ang kanilang mga paghahanap sa trabaho"
+
+msgid "Show Saved Searches for Employers"
+msgstr "Ipakita ang nai -save na mga paghahanap para sa mga employer"
+
+msgid "Allow employers to save their resume searches"
+msgstr "Payagan ang mga employer na i -save ang kanilang mga paghahanap sa resume"
+
+msgid "Feeds & AI"
+msgstr "Feed at ai"
+
+msgid "RSS Feeds"
+msgstr "RSS feed"
+
+msgid "Configure the RSS feed for jobs"
+msgstr "I -configure ang RSS feed para sa mga trabaho"
+
+msgid "Enable Jobs RSS Feed"
+msgstr "Paganahin ang mga trabaho sa RSS feed"
+
+msgid "Enable the main RSS feed for new jobs"
+msgstr "Paganahin ang pangunahing RSS feed para sa mga bagong trabaho"
+
+msgid "Job Feed Title"
+msgstr "Pamagat ng feed ng trabaho"
+
+msgid "The title for the job RSS feed"
+msgstr "Ang pamagat para sa feed ng RSS feed"
+
+msgid "Job Feed Description"
+msgstr "Paglalarawan ng feed ng trabaho"
+
+msgid "The description for the job RSS feed"
+msgstr "Ang paglalarawan para sa feed ng RSS feed"
+
+msgid "Job Feed Copyright"
+msgstr "Ang copyright ng feed ng trabaho"
+
+msgid "Copyright notice for the job feed"
+msgstr "Paunawa sa copyright para sa feed ng trabaho"
+
+msgid "Job Feed Editor"
+msgstr "Editor ng Job Feed"
+
+msgid "The person responsible for editorial content"
+msgstr "Ang taong responsable para sa nilalaman ng editoryal"
+
+msgid "Job Feed Webmaster"
+msgstr "Job Feed Webmaster"
+
+msgid "The person responsible for technical issues"
+msgstr "Ang taong responsable para sa mga teknikal na isyu"
+
+msgid "Job Feed TTL"
+msgstr "Job Feed TTL"
+
+msgid "Time to Live"
+msgstr "Oras upang mabuhay"
+
+msgid "Number of minutes the feed can be cached before refreshing"
+msgstr "Bilang ng minuto ang feed ay maaaring mai -cache bago mag -refresh"
+
+msgid "Show Categories in Job Feed"
+msgstr "Ipakita ang mga kategorya sa feed ng trabaho"
+
+msgid "Include categories in the job feed items"
+msgstr "Isama ang mga kategorya sa mga item sa feed ng trabaho"
+
+msgid "Show Company Image in Job Feed"
+msgstr "Ipakita ang imahe ng kumpanya sa feed ng trabaho"
+
+msgid "Include the company logo in the job feed items"
+msgstr "Isama ang logo ng kumpanya sa mga item ng feed ng trabaho"
+
+msgid "Configure the RSS feed for resumes"
+msgstr "I -configure ang RSS feed para sa mga resume"
+
+msgid "Enable Resumes RSS Feed"
+msgstr "Paganahin ang resume ng RSS feed"
+
+msgid "Enable the main RSS feed for new resumes"
+msgstr "Paganahin ang pangunahing RSS feed para sa mga bagong resume"
+
+msgid "Resume Feed Title"
+msgstr "Ipagpatuloy ang pamagat ng feed"
+
+msgid "The title for the resume RSS feed"
+msgstr "Ang pamagat para sa resume RSS feed"
+
+msgid "Resume Feed Description"
+msgstr "Ipagpatuloy ang paglalarawan ng feed"
+
+msgid "The description for the resume RSS feed"
+msgstr "Ang paglalarawan para sa resume RSS feed"
+
+msgid "Resume Feed Copyright"
+msgstr "Ipagpatuloy ang copyright ng feed"
+
+msgid "Copyright notice for the resume feed"
+msgstr "Copyright Notice para sa resume feed"
+
+msgid "Resume Feed Editor"
+msgstr "Ipagpatuloy ang editor ng feed"
+
+msgid "Resume Feed Webmaster"
+msgstr "Ipagpatuloy ang feed webmaster"
+
+msgid "Resume Feed TTL"
+msgstr "Ipagpatuloy ang feed ttl"
+
+msgid "Show Categories in Resume Feed"
+msgstr "Ipakita ang mga kategorya sa resume feed"
+
+msgid "Include categories in the resume feed items"
+msgstr "Isama ang mga kategorya sa mga item ng resume feed"
+
+msgid "Show Resume File in Resume Feed"
+msgstr "Ipakita ang resume file sa resume feed"
+
+msgid "Make resume files downloadable from the feed"
+msgstr "Gawing ma -download ang mga file ng resume mula sa feed"
+
+msgid "AI Suggested Matches"
+msgstr "Iminungkahi ng AI ang mga tugma"
+
+msgid "Configure AI-powered job and resume suggestion features"
+msgstr "I-configure ang trabaho ng AI-powered at ipagpatuloy ang mga tampok ng mungkahi"
+
+msgid "AI Search On Job Search Page"
+msgstr "AI Paghahanap sa pahina ng Paghahanap ng Trabaho"
+
+msgid "Show the AI search field on the main job search form"
+msgstr "Ipakita ang patlang ng Paghahanap ng AI sa Main Job Search Form"
+
+msgid "AI Job Search"
+msgstr "Paghahanap sa trabaho ng AI"
+
+msgid "AI Search Filter On Job Listing"
+msgstr "AI search filter sa listahan ng trabaho"
+
+msgid "Show the AI search field as a filter on the job listing page"
+msgstr "Ipakita ang patlang ng Paghahanap ng AI bilang isang filter sa pahina ng listahan ng trabaho"
+
+msgid "AI Search On Resume Search Page"
+msgstr "AI Paghahanap sa Pahina ng Paghahanap ng Resume"
+
+msgid "Show the AI search field on the main resume search form"
+msgstr "Ipakita ang patlang ng Paghahanap ng AI sa Main Resume Search Form"
+
+msgid "AI Resume Search"
+msgstr "Ai resume search"
+
+msgid "AI Search Filter On Resume Listing"
+msgstr "AI Search Filter sa Listahan ng Resume"
+
+msgid "Show the AI search field as a filter on the resume listing page"
+msgstr "Ipakita ang patlang ng Paghahanap ng AI bilang isang filter sa pahina ng Listahan ng Resume"
+
+msgid "Show AI Suggested Jobs Button"
+msgstr "Ipakita ang Iminungkahing Button ng Trabaho"
+
+msgid "AI Suggested Jobs"
+msgstr "Iminungkahi ng AI ang mga trabaho"
+
+msgid "Show AI Suggested Jobs on Dashboard"
+msgstr "Ipakita ang mga iminungkahing trabaho sa dashboard"
+
+msgid "Show a list of AI-suggested jobs on the job seeker dashboard"
+msgstr "Magpakita ng isang listahan ng mga trabaho sa AI-Guggested sa Job Seeker Dashboard"
+
+msgid "Show AI Suggested Resumes Button"
+msgstr "Ipakita ang iminungkahing pindutan ng resume"
+
+msgid "AI Suggested Resumes"
+msgstr "Iminungkahi ng AI na resume"
+
+msgid "Show AI Suggested Resumes on Dashboard"
+msgstr "Ipakita ang iminungkahing resume sa dashboard"
+
+msgid "Show a list of AI-suggested resumes on the employer dashboard"
+msgstr "Magpakita ng isang listahan ng mga resume ng AI-Guggested sa dashboard ng employer"
+
+msgid "Integrations"
+msgstr "Pagsasama"
+
+msgid "Allow users to register and log in with their social media accounts"
+msgstr "Payagan ang mga gumagamit na magparehistro at mag -log in sa kanilang mga social media account"
+
+msgid "Login with Facebook"
+msgstr "Mag -login sa Facebook"
+
+msgid "Allow users to log in using their Facebook account"
+msgstr "Payagan ang mga gumagamit na mag -log in gamit ang kanilang Facebook account"
+
+msgid "Apply with Facebook"
+msgstr "Mag -apply sa Facebook"
+
+msgid "Allow users to apply for jobs using their Facebook profile"
+msgstr "Payagan ang mga gumagamit na mag -aplay para sa mga trabaho gamit ang kanilang profile sa Facebook"
+
+msgid "Facebook App ID"
+msgstr "Facebook App ID"
+
+msgid "Enter your Facebook App ID"
+msgstr "Ipasok ang iyong Facebook App ID"
+
+msgid "Facebook App Secret"
+msgstr "Lihim ng Facebook App"
+
+msgid "Enter your Facebook App Secret"
+msgstr "Ipasok ang iyong lihim na Facebook app"
+
+msgid "Valid OAuth URI"
+msgstr "Wastong Oauth Uri"
+
+msgid "Apply"
+msgstr "Mag -apply"
+
+msgid "Login with LinkedIn"
+msgstr "Mag -login sa LinkedIn"
+
+msgid "Allow users to log in using their LinkedIn account"
+msgstr "Payagan ang mga gumagamit na mag -log in gamit ang kanilang LinkedIn account"
+
+msgid "Apply with LinkedIn"
+msgstr "Mag -apply sa LinkedIn"
+
+msgid "Allow users to apply for jobs using their LinkedIn profile"
+msgstr "Payagan ang mga gumagamit na mag -aplay para sa mga trabaho gamit ang kanilang profile sa LinkedIn"
+
+msgid "LinkedIn Client ID"
+msgstr "LinkedIn Client ID"
+
+msgid "Enter your LinkedIn Client ID"
+msgstr "Ipasok ang iyong LinkedIn Client ID"
+
+msgid "API Key"
+msgstr "Susi ng API"
+
+msgid "LinkedIn Client Secret"
+msgstr "LinkedIn Client Secret"
+
+msgid "Enter your LinkedIn Client Secret"
+msgstr "Ipasok ang iyong LinkedIn Client Secret"
+
+msgid "Social Sharing"
+msgstr "Pagbabahagi ng lipunan"
+
+msgid "Enable social sharing buttons on your pages"
+msgstr "Paganahin ang mga pindutan ng pagbabahagi ng lipunan sa iyong mga pahina"
+
+msgid "Enable Facebook Likes"
+msgstr "Paganahin ang gusto ng Facebook"
+
+msgid "Show Facebook like button"
+msgstr "Ipakita ang pindutan ng Facebook tulad ng Button"
+
+msgid "Enable Facebook Share"
+msgstr "Paganahin ang pagbabahagi ng Facebook"
+
+msgid "Show Facebook share button"
+msgstr "Ipakita ang pindutan ng pagbabahagi ng Facebook"
+
+msgid "Enable Facebook Comments"
+msgstr "Paganahin ang mga komento sa Facebook"
+
+msgid "Show Facebook comments widget"
+msgstr "Ipakita ang widget ng mga komento sa Facebook"
+
+msgid "Enable Twitter Share"
+msgstr "Paganahin ang pagbabahagi ng Twitter"
+
+msgid "Show Twitter share button"
+msgstr "Ipakita ang pindutan ng pagbabahagi ng Twitter"
+
+msgid "Enable LinkedIn Share"
+msgstr "Paganahin ang pagbabahagi ng LinkedIn"
+
+msgid "Show LinkedIn share button"
+msgstr "Ipakita ang pindutan ng pagbabahagi ng LinkedIn"
+
+msgid "Enable Blogger Share"
+msgstr "Paganahin ang pagbabahagi ng blogger"
+
+msgid "Show Blogger share button"
+msgstr "Ipakita ang pindutan ng pagbabahagi ng blogger"
+
+msgid "Enable Digg Share"
+msgstr "Paganahin ang Digg Share"
+
+msgid "Show Digg share button"
+msgstr "Ipakita ang pindutan ng pagbabahagi ng Digg"
+
+msgid "Enable Myspace Share"
+msgstr "Paganahin ang pagbabahagi ng MySpace"
+
+msgid "Show Myspace share button"
+msgstr "Ipakita ang pindutan ng pagbabahagi ng MySpace"
+
+msgid "Enable Yahoo Share"
+msgstr "Paganahin ang pagbabahagi ng yahoo"
+
+msgid "Show Yahoo share button"
+msgstr "Ipakita ang pindutan ng pagbabahagi ng Yahoo"
+
+msgid "Mapping & Geolocation"
+msgstr "Pagma -map at geolocation"
+
+msgid "Configure map services and location-based features"
+msgstr "I-configure ang mga serbisyo ng mapa at mga tampok na batay sa lokasyon"
+
+msgid "Choose between Google Maps and OpenStreetMap for map displays"
+msgstr "Pumili sa pagitan ng Google Maps at OpenStreetMap para sa mga display ng MAP"
+
+msgid "Google Map API Key"
+msgstr "Google Map API Key"
+
+msgid "Enter your Google Maps API key"
+msgstr "Ipasok ang iyong key ng Google Maps API"
+
+msgid "Map Height"
+msgstr "Taas ng mapa"
+
+msgid "Set the height for maps displayed in the plugin, in pixels"
+msgstr "Itakda ang taas para sa mga mapa na ipinapakita sa plugin, sa mga pixel"
+
+msgid "Default Longitude"
+msgstr "Default na longitude"
+
+msgid "Default longitude for map centering"
+msgstr "Default na longitude para sa pagsentro sa mapa"
+
+msgid "Default Latitude"
+msgstr "Default na latitude"
+
+msgid "Default latitude for map centering"
+msgstr "Default na latitude para sa pagsentro sa mapa"
+
+msgid "Default Map Radius Type"
+msgstr "Default na uri ng radius ng mapa"
+
+msgid "Default unit for map radius calculations"
+msgstr "Default na yunit para sa mga kalkulasyon ng radius ng mapa"
+
+msgid "Max Records for City Field"
+msgstr "Max Records para sa Lungsod ng Lungsod"
+
+msgid "Set the number of cities to show in the location autocomplete results"
+msgstr "Itakda ang bilang ng mga lungsod na maipakita sa lokasyon ng autocomplete na mga resulta"
+
+msgid "Max Records for Tag Field"
+msgstr "MAX RECORDS PARA SA TAG FIELD"
+
+msgid "Set the number of tags to show in the tag autocomplete results"
+msgstr "Itakda ang bilang ng mga tag na maipakita sa mga resulta ng tag na kumpleto"
+
+msgid "Security & Captcha"
+msgstr "Seguridad at Captcha"
+
+msgid "Captcha Options"
+msgstr "Mga pagpipilian sa captcha"
+
+msgid "Enable captcha on various forms to prevent spam"
+msgstr "Paganahin ang CAPTCHA sa iba't ibang mga form upang maiwasan ang spam"
+
+msgid "Default Captcha Type"
+msgstr "Default na uri ng captcha"
+
+msgid "Select the default captcha to use throughout the plugin"
+msgstr "Piliin ang default na captcha upang magamit sa buong plugin"
+
+msgid "Captcha on Registration Form"
+msgstr "CAPTCHA sa form ng pagpaparehistro"
+
+msgid "Show a captcha on the WP Job Portal registration form"
+msgstr "Magpakita ng isang CAPTCHA sa WP Job Portal Registration Form"
+
+msgid "Captcha on Visitor Quick Apply"
+msgstr "CAPTCHA SA VISITOR Mabilis na Mag -apply"
+
+msgid "Show captcha to visitors on the quick apply form"
+msgstr "Ipakita ang CAPTCHA sa mga bisita sa mabilis na form na nalalapat"
+
+msgid "Captcha on Visitor Job Form"
+msgstr "Captcha sa form ng trabaho ng bisita"
+
+msgid "Show captcha on the job submission form for visitors"
+msgstr "Ipakita ang Captcha sa form ng pagsusumite ng trabaho para sa mga bisita"
+
+msgid "Captcha on Visitor Resume Form"
+msgstr "Captcha sa form ng resume ng bisita"
+
+msgid "Show captcha on the resume submission form for visitors"
+msgstr "Ipakita ang Captcha sa form ng pagsusumite ng resume para sa mga bisita"
+
+msgid "Captcha on Tell a Friend Popup"
+msgstr "Captcha sa sabihin sa isang kaibigan na popup"
+
+msgid "Show captcha on the"
+msgstr "Ipakita si Captcha sa"
+
+msgid "popup for visitors"
+msgstr "Popup para sa mga bisita"
+
+msgid "WP Job Portal Captcha"
+msgstr "WP Job Portal Captcha"
+
+msgid "Settings for the built-in mathematical captcha"
+msgstr "Mga setting para sa built-in na matematika captcha"
+
+msgid "Calculation Type"
+msgstr "Uri ng pagkalkula"
+
+msgid "Select the type of math problem for the captcha"
+msgstr "Piliin ang uri ng problema sa matematika para sa captcha"
+
+msgid "Addition or Subtraction"
+msgstr "Karagdagan o pagbabawas"
+
+msgid "Answer Always Positive"
+msgstr "Palaging positibo ang sagot"
+
+msgid "Ensure that subtraction problems always result in a positive answer"
+msgstr "Tiyakin na ang mga problema sa pagbabawas ay palaging nagreresulta sa isang positibong sagot"
+
+msgid "Number of Operands"
+msgstr "Bilang ng mga operand"
+
+msgid "Choose the number of operands for the math problem"
+msgstr "Piliin ang bilang ng mga operand para sa problema sa matematika"
+
+msgid "Google reCAPTCHA"
+msgstr "Google recaptcha"
+
+msgid "Configure Google reCAPTCHA v2 or v3"
+msgstr "I -configure ang google recaptcha v2 o v3"
+
+msgid "Select which version of Google reCAPTCHA to use"
+msgstr "Piliin kung aling bersyon ng google recaptcha ang gagamitin"
+
+msgid "Enter the site key from your Google reCAPTCHA admin console"
+msgstr "Ipasok ang Site Key mula sa iyong Google Recaptcha Admin Console"
+
+msgid "Google reCaptcha Secret Key"
+msgstr "Google Recaptcha Secret Key"
+
+msgid "Enter the secret key from your Google reCAPTCHA admin console"
+msgstr "Ipasok ang Lihim na Susi mula sa iyong Google Recaptcha Admin Console"
+
+msgid "Monetization"
+msgstr "Monetization"
+
+msgid "General Monetization"
+msgstr "Pangkalahatang monetization"
+
+msgid "Core settings for handling payments and packages"
+msgstr "Mga setting ng pangunahing para sa paghawak ng mga pagbabayad at mga pakete"
+
+msgid "Choose the monetization model for submissions"
+msgstr "Piliin ang modelo ng monetization para sa mga pagsusumite"
+
+msgid "Free, Per Listing, or Membership-based"
+msgstr "Libre, bawat listahan, o batay sa pagiging kasapi"
+
+msgid "Default Currency Symbol"
+msgstr "Simbolo ng default na pera"
+
+msgid "The currency symbol to be used across the site"
+msgstr "Ang simbolo ng pera na gagamitin sa buong site"
+
+msgid "Currency Symbol Position"
+msgstr "Posisyon ng simbolo ng pera"
+
+msgid "Packages & Featured Listings"
+msgstr "Mga Package at Itinatampok na Listahan"
+
+msgid "Manage free packages and enable featured listings"
+msgstr "Pamahalaan ang mga libreng pakete at paganahin ang mga tampok na listahan"
+
+msgid "Auto-assign Free Package to New User"
+msgstr "Auto-assign libreng pakete sa bagong gumagamit"
+
+msgid "Automatically give new users a free package if one exists"
+msgstr "Awtomatikong bigyan ang mga bagong gumagamit ng isang libreng pakete kung mayroon ang isa"
+
+msgid "Free Package Purchase Auto Approve"
+msgstr "Libreng Pag -apruba ng Package Auto"
+
+msgid "Automatically approve the purchase of free packages"
+msgstr "Awtomatikong aprubahan ang pagbili ng mga libreng pakete"
+
+msgid "Purchase Free Package Only Once"
+msgstr "Bumili lamang ng libreng pakete"
+
+msgid "Prevent users from acquiring a free package more than once"
+msgstr "Pigilan ang mga gumagamit mula sa pagkuha ng isang libreng pakete nang higit sa isang beses"
+
+msgid "Enable Featured Companies"
+msgstr "Paganahin ang mga tampok na kumpanya"
+
+msgid "Allow companies to be marked as"
+msgstr "Payagan ang mga kumpanya na minarkahan bilang"
+
+msgid "Enable Featured Jobs"
+msgstr "Paganahin ang mga tampok na trabaho"
+
+msgid "Allow jobs to be marked as"
+msgstr "Payagan ang mga trabaho na minarkahan bilang"
+
+msgid "Enable Featured Resumes"
+msgstr "Paganahin ang mga tampok na resume"
+
+msgid "Allow resumes to be marked as"
+msgstr "Payagan ang mga resume na minarkahan bilang"
+
+msgid "Per Listing Prices"
+msgstr "Bawat presyo ng mga presyo"
+
+msgid "Set prices for various actions when using the"
+msgstr "Magtakda ng mga presyo para sa iba't ibang mga aksyon kapag ginagamit ang"
+
+msgid "submission type"
+msgstr "Uri ng Pagsumite"
+
+msgid "Submission"
+msgstr "Pagsumite"
+
+msgid "Price to submit a single company profile"
+msgstr "Presyo upang magsumite ng isang solong profile ng kumpanya"
+
+msgid "Additional price to make a company"
+msgstr "Karagdagang presyo upang makagawa ng isang kumpanya"
+
+msgid "Days Until Featured Company Expires"
+msgstr "Mga araw hanggang sa mag -expire ang mga tampok na kumpanya"
+
+msgid "Number of days a"
+msgstr "Bilang ng mga araw a"
+
+msgid "per-listing"
+msgstr "bawat listahan"
+
+msgid "featured company remains active"
+msgstr "Ang tampok na kumpanya ay nananatiling aktibo"
+
+msgid "free"
+msgstr "libre"
+
+msgid "Price to submit a single job"
+msgstr "Presyo upang magsumite ng isang solong trabaho"
+
+msgid "Additional price to make a job"
+msgstr "Karagdagang presyo upang makagawa ng trabaho"
+
+msgid "Days Until Featured Job Expires"
+msgstr "Mga araw hanggang sa mag -expire ang itinampok na trabaho"
+
+msgid "featured job remains active"
+msgstr "Ang tampok na trabaho ay nananatiling aktibo"
+
+msgid "Price to submit a single resume"
+msgstr "Presyo upang magsumite ng isang solong resume"
+
+msgid "Additional price to make a resume"
+msgstr "Karagdagang presyo upang makagawa ng isang resume"
+
+msgid "Days Until Featured Resume Expires"
+msgstr "Mga araw hanggang sa itampok ang resume na mag -expire"
+
+msgid "featured resume remains active"
+msgstr "Ang tampok na resume ay nananatiling aktibo"
+
+msgid "Price per Job Apply"
+msgstr "Mag -apply ang Presyo Per Job"
+
+msgid "Price for a job seeker to apply for a job"
+msgstr "Presyo para sa isang naghahanap ng trabaho upang mag -aplay para sa isang trabaho"
+
+msgid "Price to View Resume Contact"
+msgstr "Presyo upang matingnan ang contact contact"
+
+msgid "Price to View Company Contact"
+msgstr "Presyo upang matingnan ang contact ng kumpanya"
+
+msgid "Price to submit a department"
+msgstr "Presyo upang magsumite ng isang kagawaran"
+
+msgid "Price to submit a cover letter"
+msgstr "Presyo upang magsumite ng isang takip na sulat"
+
+msgid "Price to create a job alert"
+msgstr "Presyo upang lumikha ng isang alerto sa trabaho"
+
+msgid "Dashboard Monetization Links"
+msgstr "Mga link sa monetisasyon ng dashboard"
+
+msgid "Control the visibility of monetization-related links in user dashboards"
+msgstr "Kontrolin ang kakayahang makita ng mga link na nauugnay sa monetization sa mga dashboard ng gumagamit"
+
+msgid "Employer Show Invoice History"
+msgstr "Ang kasaysayan ng pagpapakita ng invoice ng employer"
+
+msgid "Setting to show the invoice/purchase history section"
+msgstr "Pagtatakda upang ipakita ang seksyon ng Invoice/Pagbili ng Kasaysayan"
+
+msgid "Job Seeker Show Invoice History"
+msgstr "Job Seeker Show Invoice History"
+
+msgid "Job Seeker Show Credits Log"
+msgstr "Ang Job Seeker Show Credits Log"
+
+msgid "Setting to show the credits log section"
+msgstr "Pagtatakda upang ipakita ang seksyon ng log ng kredito"
+
+msgid "Payment Gateways"
+msgstr "Mga gateway ng pagbabayad"
+
+msgid "Configure PayPal payment gateway settings for API integration"
+msgstr "I -configure ang mga setting ng gateway ng pagbabayad ng paypal para sa pagsasama ng API"
+
+msgid "Enable PayPal"
+msgstr "Paganahin ang PayPal"
+
+msgid "Enable or disable PayPal as a payment option"
+msgstr "Paganahin o huwag paganahin ang PayPal bilang isang pagpipilian sa pagbabayad"
+
+msgid "Your PayPal API Username"
+msgstr "Ang iyong PayPal API Username"
+
+msgid "Your PayPal API Password"
+msgstr "Ang iyong password sa PayPal API"
+
+msgid "Your PayPal API Signature"
+msgstr "Ang iyong lagda sa PayPal API"
+
+msgid "A URL to your logo image to display on the PayPal checkout page"
+msgstr "Isang URL sa iyong imahe ng logo upang ipakita sa pahina ng pag -checkout ng PayPal"
+
+msgid "Cancel URL"
+msgstr "Kanselahin ang URL"
+
+msgid "The URL users are sent to if they cancel the payment"
+msgstr "Ang mga gumagamit ng URL ay ipinadala kung kanselahin nila ang pagbabayad"
+
+msgid "Notify URL"
+msgstr "Abisuhan ang URL"
+
+msgid "Sandbox"
+msgstr "Sandbox"
+
+msgid "Enable PayPal Sandbox for testing purposes"
+msgstr "Paganahin ang PayPal Sandbox para sa mga layunin ng pagsubok"
+
+msgid "Please enter language code, for example"
+msgstr "Mangyaring ipasok ang code ng wika, halimbawa"
+
+msgid "Subscription IPN URL"
+msgstr "Subscription IPN URL"
+
+msgid "Configure Stripe payment gateway settings"
+msgstr "I -configure ang mga setting ng gateway ng pagbabayad ng guhit"
+
+msgid "Enable Stripe"
+msgstr "Paganahin ang guhit"
+
+msgid "Enable or disable Stripe as a payment option"
+msgstr "Paganahin o huwag paganahin ang Stripe bilang isang pagpipilian sa pagbabayad"
+
+msgid "Publishable Key"
+msgstr "Mai -publish na susi"
+
+msgid "Enter your Stripe Publishable Key"
+msgstr "Ipasok ang iyong Stripe Publishable Key"
+
+msgid "Secret Key"
+msgstr "Lihim na susi"
+
+msgid "Enter your Stripe Secret Key"
+msgstr "Ipasok ang iyong Stripe Secret Key"
+
+msgid "Subscription Webhook URL"
+msgstr "SUBSCRIPTION WEBHOOK URL"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Use WooCommerce to handle payments"
+msgstr "Gumamit ng WooCommerce upang mahawakan ang mga pagbabayad"
+
+msgid "Enable WooCommerce"
+msgstr "Paganahin ang WooCommerce"
+
+msgid "Enable or disable WooCommerce as a payment option"
+msgstr "Paganahin o huwag paganahin ang WooCommerce bilang isang pagpipilian sa pagbabayad"
+
+msgid "Home Page"
+msgstr "Home page"
+
+msgid "WordPress Default"
+msgstr "Default ng WordPress"
+
+msgid "Blog"
+msgstr "Blog"
+
+msgid "This feature is part of a premium addon"
+msgstr "Ang tampok na ito ay bahagi ng isang premium addon"
+
+msgid "Available tags"
+msgstr "Magagamit na mga tag"
+
+msgid "This image will be shown as the default image for entities & users if no other image is provided"
+msgstr "Ang imaheng ito ay ipapakita bilang default na imahe para sa mga entidad at mga gumagamit kung walang ibang imahe na ibinigay"
+
+msgid "Discard"
+msgstr "Itapon"
+
+msgid "Save Changes"
+msgstr "I -save ang mga pagbabago"
+
+msgid "Quickly find any setting"
+msgstr "Mabilis na makahanap ng anumang setting"
+
+msgid "Search by setting title or tooltip description"
+msgstr "Maghanap sa pamamagitan ng pagtatakda ng pamagat o paglalarawan ng tooltip"
+
+msgid "Unlock"
+msgstr "I -unlock"
+
+msgid "This and other powerful features are available in the"
+msgstr "Ito at iba pang mga makapangyarihang tampok ay magagamit sa"
+
+msgid "Upgrade Now"
+msgstr "Mag -upgrade ngayon"
+
+msgid "No settings found for your search"
+msgstr "Walang nahanap na mga setting para sa iyong paghahanap"
+
+msgid "Copied to clipboard"
+msgstr "Kinopya sa clipboard"
+
+msgid "Search results for"
+msgstr "Mga resulta sa paghahanap para sa"
+
+msgid "Unlock with"
+msgstr "I -unlock sa"
+
+msgid "Settings related to employer accounts, registration, and permissions"
+msgstr "Mga setting na may kaugnayan sa mga account sa employer, pagpaparehistro, at mga pahintulot"
+
+msgid "Settings related to job seeker accounts and registration"
+msgstr "Mga setting na may kaugnayan sa mga account sa naghahanap ng trabaho at pagrehistro"
+
+msgid "Visitor Can View Employer's Control Panel Links"
+msgstr "Maaaring tingnan ng bisita ang mga link sa control panel ng employer"
+
+msgid "Visitor Can View Resume Categories"
+msgstr "Maaaring tingnan ng bisita ang mga kategorya ng resume"
+
+msgid "Visitor Can Search Resumes"
+msgstr "Ang bisita ay maaaring maghanap ng mga resume"
+
+msgid "Visitor Can View Company Details"
+msgstr "Maaaring tingnan ng bisita ang mga detalye ng kumpanya"
+
+msgid "Visitor Can View Job Details"
+msgstr "Maaaring tingnan ng bisita ang mga detalye ng trabaho"
+
+msgid "Visitor Can View Resume Details"
+msgstr "Maaaring tingnan ng bisita ang mga detalye ng resume"
+
+msgid "Visitor Can View Job Seeker's Control Panel Links"
+msgstr "Maaaring tingnan ng bisita ang mga link sa control panel ng Job Seeker"
+
+msgid "Visitor Can View Jobs by Categories"
+msgstr "Maaaring tingnan ng bisita ang mga trabaho ayon sa mga kategorya"
+
+msgid "Visitor Can Search Jobs"
+msgstr "Ang bisita ay maaaring maghanap ng mga trabaho"
+
+msgid "Visitor Can View Newest Jobs"
+msgstr "Maaaring tingnan ng bisita ang mga pinakabagong trabaho"
+
+msgid "Visitor Can View Job Search Results"
+msgstr "Maaaring tingnan ng bisita ang mga resulta ng paghahanap sa trabaho"
+
+msgid "1 Column"
+msgstr "1 haligi"
+
+msgid "10254 Departments found"
+msgstr "Natagpuan ang mga kagawaran ng 10254"
+
+msgid "2 Columns"
+msgstr "2 mga haligi"
+
+msgid "3 Columns"
+msgstr "3 mga haligi"
+
+msgid "4 Columns"
+msgstr "4 na mga haligi"
+
+msgid "5 Columns"
+msgstr "5 mga haligi"
+
+msgid "A critical update for WP Job Portal is required to maintain performance and prevent issues. Please update now."
+msgstr "Ang isang kritikal na pag -update para sa WP Job Portal ay kinakailangan upang mapanatili ang pagganap at maiwasan ang mga isyu. Mangyaring i -update ngayon."
+
+msgid "AI Search"
+msgstr "AI Search"
+
+msgid "AI Search Job"
+msgstr "Trabaho sa paghahanap ng AI"
+
+msgid "AI Settings"
+msgstr "Mga Setting ng AI"
+
+msgid "AI settings"
+msgstr "Mga Setting ng AI"
+
+msgid "About"
+msgstr "Tungkol sa"
+
+msgid "Account & Billing"
+msgstr "Account at pagsingil"
+
+msgid "Activation failed"
+msgstr "Nabigo ang pag -activate"
+
+msgid "Add-ons for WP Job Portal have been installed and activated successfully."
+msgstr "Ang mga add-on para sa WP job portal ay na-install at matagumpay na naaktibo."
+
+msgid "Addon Installer"
+msgstr "Addon installer"
+
+msgid "Addon not installed please install addon first."
+msgstr "Hindi naka -install ang Addon mangyaring i -install muna ang Addon."
+
+msgid "Addon will automatically update to the newest version"
+msgstr "Awtomatikong mai -update ang Addon sa pinakabagong bersyon"
+
+msgid "Addon(s) Installed successfully!"
+msgstr "Matagumpay na naka -install ang mga addon (s)!"
+
+msgid "Address display style for plugin"
+msgstr "Istilo ng display ng address para sa plugin"
+
+msgid "Advanced Resume Builder Addon missing, resume sections data will not be imported!"
+msgstr "Nawawala ang Advanced Resume Builder Addon, ang data ng mga seksyon ng resume ay hindi mai -import!"
+
+msgid "All selected add-ons are now active."
+msgstr "Lahat ng napiling mga add-on ay aktibo na ngayon."
+
+msgid "Allow employers and job Seekers to register on the site."
+msgstr "Payagan ang mga employer at naghahanap ng trabaho na magparehistro sa site."
+
+msgid "Allow search resume"
+msgstr "Payagan ang resume ng paghahanap"
+
+msgid "Allowed to all (employers, job seekers and visitors)"
+msgstr "Pinapayagan sa lahat (mga employer, naghahanap ng trabaho at mga bisita)"
+
+msgid "Auto Update: Off"
+msgstr "Auto Update: Off"
+
+msgid "Auto Update: On"
+msgstr "Auto Update: ON"
+
+msgid "Back to listing"
+msgstr "Bumalik sa listahan"
+
+msgid "Basic Info"
+msgstr "Pangunahing impormasyon"
+
+msgid "Buttons Styling"
+msgstr "Pag -istilo ng mga pindutan"
+
+msgid "Capitalize"
+msgstr "Capitalize"
+
+msgid "Check if you want to use WP Job Portal packages"
+msgstr "Suriin kung nais mong gumamit ng mga pakete ng portal ng trabaho sa WP"
+
+msgid "City name"
+msgstr "Pangalan ng Lungsod"
+
+msgid "Columns per Row"
+msgstr "Mga haligi bawat hilera"
+
+msgid "Comma separated list of job types i.e JTFT, JTPT, JTFP, JTCT, JTIN"
+msgstr "Comma hiwalay na listahan ng mga uri ng trabaho i.e jtft, jtpt, jtfp, jtct, jtin"
+
+msgid "Communication"
+msgstr "Komunikasyon"
+
+msgid "Company Management"
+msgstr "Pamamahala ng Kumpanya"
+
+msgid "Complete Your Resume"
+msgstr "Kumpletuhin ang iyong resume"
+
+msgid "Content Access"
+msgstr "Pag -access sa Nilalaman"
+
+msgid "Content Styling"
+msgstr "Pag -istilo ng nilalaman"
+
+msgid "Control which employer dashboard navigation links are visible to visitors"
+msgstr "Kontrolin kung aling mga link sa pag -navigate ng dashboard ng employer ang makikita sa mga bisita"
+
+msgid "Control which employer dashboard widgets and sections are visible to visitors"
+msgstr "Kontrolin kung aling mga widget ng dashboard ng employer ang makikita sa mga bisita"
+
+msgid "Control which job seeker dashboard navigation links are visible to visitors"
+msgstr "Kontrolin Aling Mga Link ng Pag -navigate sa Dashboard ng Trabaho ay makikita sa mga bisita"
+
+msgid "Control which job seeker dashboard widgets and sections are visible to visitors"
+msgstr "Kontrolin kung aling mga job seeker dashboard widget at seksyon ang makikita sa mga bisita"
+
+msgid "Control which pages and content areas are visible to non-logged-in users"
+msgstr "Kontrolin kung aling mga pahina at mga lugar ng nilalaman ang makikita sa mga gumagamit na hindi naka-log-in"
+
+msgid "Custom Field Class"
+msgstr "Pasadyang klase ng patlang"
+
+msgid "Database Update Needed"
+msgstr "Kailangan ang pag -update ng database"
+
+msgid "Database update completed"
+msgstr "Nakumpleto ang pag -update ng database"
+
+msgid "Delete All Unused Keys"
+msgstr "Tanggalin ang lahat ng hindi nagamit na mga susi"
+
+msgid "Discover"
+msgstr "Tuklasin"
+
+msgid "Display the status of applications to the job seeker"
+msgstr "Ipakita ang katayuan ng mga aplikasyon sa naghahanap ng trabaho"
+
+msgid "Dummy Plugin"
+msgstr "Dummy plugin"
+
+msgid "Dummy Plugin 2"
+msgstr "Dummy Plugin 2"
+
+msgid "Elegant Design"
+msgstr "Elegant na disenyo"
+
+msgid "Employer Widgets"
+msgstr "Mga widget ng employer"
+
+msgid "Enter the Site Title"
+msgstr "Ipasok ang pamagat ng site"
+
+msgid "Entity"
+msgstr "Nilalang"
+
+msgid "Fetch Data"
+msgstr "Kumuha ng data"
+
+msgid "Find your next star hire with AI-driven resume search"
+msgstr "Hanapin ang iyong susunod na pag-upa ng bituin na may paghahanap ng resume na hinihimok ng AI"
+
+msgid "Font Family"
+msgstr "Pamilya ng Font"
+
+msgid "Font Size"
+msgstr "Laki ng font"
+
+msgid "Font Style"
+msgstr "Estilo ng font"
+
+msgid "Font Weight"
+msgstr "Bigat ng font"
+
+msgid "Go To Dashboard"
+msgstr "Pumunta sa dashboard"
+
+msgid "Import Data Report"
+msgstr "I -import ang ulat ng data"
+
+msgid "Import Third Party Data"
+msgstr "Mag -import ng data ng third party"
+
+msgid "Import demo data to populate your site with example companies, jobs, resumes, and applications."
+msgstr "I -import ang data ng demo upang mai -populate ang iyong site na may mga halimbawa ng mga kumpanya, trabaho, resume, at aplikasyon."
+
+msgid "Imported"
+msgstr "Na -import"
+
+msgid "Infi Icon"
+msgstr "INFI ICON"
+
+msgid "Info"
+msgstr "Impormasyon"
+
+msgid "Info Icon"
+msgstr "Impormasyon Icon"
+
+msgid "Invalid server response"
+msgstr "Di -wastong tugon ng server"
+
+msgid "Italic"
+msgstr "Italic"
+
+msgid "Job Alert Time"
+msgstr "Oras ng alerto sa trabaho"
+
+msgid "Job Detail"
+msgstr "Detalye ng trabaho"
+
+msgid "Job Seeker Links"
+msgstr "Mga link sa naghahanap ng trabaho"
+
+msgid "Job Seeker Settings"
+msgstr "Mga setting ng naghahanap ng trabaho"
+
+msgid "Job Seeker Widgets"
+msgstr "Mga widget ng naghahanap ng trabaho"
+
+msgid "Jobs by Category"
+msgstr "Mga trabaho ayon sa kategorya"
+
+msgid "Layout"
+msgstr "Layout"
+
+msgid "Letter Spacing"
+msgstr "Sulat spacing"
+
+msgid "Line Height"
+msgstr "Taas ng linya"
+
+msgid "Live Preview Not available at the moment !"
+msgstr "Hindi magagamit ang Live Preview sa ngayon!"
+
+msgid "Login/Register"
+msgstr "Mag -login/Magrehistro"
+
+msgid "Lowercase"
+msgstr "Maliit na titik"
+
+msgid "Manage Documents"
+msgstr "Pamahalaan ang mga dokumento"
+
+msgid "Manage Jobs"
+msgstr "Pamahalaan ang mga trabaho"
+
+msgid "Manage Unused Keys"
+msgstr "Pamahalaan ang hindi nagamit na mga susi"
+
+msgid "More Actions"
+msgstr "Marami pang mga aksyon"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans."
+msgstr "Ang aking subscription ay nagbibigay ng mga gumagamit ng isang pangkalahatang -ideya ng kanilang mga aktibong subscription, na nagpapahintulot sa madaling pamamahala at pagsubaybay sa kanilang mga plano sa pag -post ng trabaho."
+
+msgid "New Jobs"
+msgstr "Mga bagong trabaho"
+
+msgid "Next Setup"
+msgstr "Susunod na pag -setup"
+
+msgid "No Addon Installed!"
+msgstr "Walang naka -install na addon!"
+
+msgid "No unused keys were found."
+msgstr "Walang mga hindi nagamit na mga susi ang natagpuan."
+
+msgid "None"
+msgstr "Wala"
+
+msgid "Not Imported"
+msgstr "Hindi na -import"
+
+msgid "Oblique"
+msgstr "Pahilig"
+
+msgid "Only job seekers can register. Jobs and companies are managed by the admin."
+msgstr "Ang mga naghahanap ng trabaho lamang ang maaaring magparehistro. Ang mga trabaho at kumpanya ay pinamamahalaan ng admin."
+
+msgid "Paid access Only"
+msgstr "Bayad na pag -access lamang"
+
+msgid "Pay For Featured Resume"
+msgstr "Magbayad para sa tampok na resume"
+
+msgid "Pay For Resume"
+msgstr "Magbayad para sa resume"
+
+msgid "Pay per listing price to publish your"
+msgstr "Magbayad sa bawat presyo ng listahan upang mai -publish ang iyong"
+
+msgid "Please Insert Your Activation Key"
+msgstr "Mangyaring ipasok ang iyong key ng pag -activate"
+
+msgid "Please log in to register to continue."
+msgstr "Mangyaring mag -log in upang magparehistro upang magpatuloy."
+
+msgid "Please select at least one addon!"
+msgstr "Mangyaring piliin ang hindi bababa sa isang addon!"
+
+msgid "Please verify Locations and salaries for imported data entities"
+msgstr "Mangyaring i -verify ang mga lokasyon at suweldo para sa mga na -import na mga nilalang ng data"
+
+msgid "Plugin not installed"
+msgstr "Hindi naka -install ang plugin"
+
+msgid "Price for a job seeker to view a company's contact details"
+msgstr "Presyo para sa isang naghahanap ng trabaho upang matingnan ang mga detalye ng contact ng isang kumpanya"
+
+msgid "Price for an employer to view a resume's contact details"
+msgstr "Presyo para sa isang employer upang matingnan ang mga detalye ng contact ng isang resume"
+
+msgid "Quick Configuration"
+msgstr "Mabilis na pagsasaayos"
+
+msgid "Ready to find your dream job? Let's get started"
+msgstr "Handa nang hanapin ang iyong pangarap na trabaho? Magsimula na tayo"
+
+msgid "Ready to find your potential employee? Let's get started"
+msgstr "Handa nang hanapin ang iyong potensyal na empleyado? Magsimula na tayo"
+
+msgid "Search Jobs"
+msgstr "Mga Trabaho sa Paghahanap"
+
+msgid "Search Resumes"
+msgstr "Resume ng paghahanap"
+
+msgid "Search smarter – just type anything you know about the job: title, category, type, skills, or even a description!"
+msgstr "Maghanap ng mas matalinong - i -type lamang ang anumang alam mo tungkol sa trabaho: pamagat, kategorya, uri, kasanayan, o kahit isang paglalarawan!"
+
+msgid "Section Title Styling"
+msgstr "Pag -istilo ng pamagat ng seksyon"
+
+msgid "Select Addons to Update with New Activation Key"
+msgstr "Piliin ang mga addon upang i -update gamit ang bagong key ng pag -activate"
+
+msgid "Select Company"
+msgstr "Piliin ang Kumpanya"
+
+msgid "Select Job Category"
+msgstr "Piliin ang kategorya ng trabaho"
+
+msgid "Select Job Status"
+msgstr "Piliin ang katayuan ng trabaho"
+
+msgid "Select Job Type"
+msgstr "Piliin ang Uri ng Trabaho"
+
+msgid "Select Page To Show"
+msgstr "Piliin ang pahina upang ipakita"
+
+msgid "Select Plugin Setting for WP Job Portal"
+msgstr "Piliin ang setting ng plugin para sa WP Job Portal"
+
+msgid "Select packages pack so that user can purchase them"
+msgstr "Piliin ang Packages Pack upang mabili ng gumagamit ang mga ito"
+
+msgid "Select who can view company contact details."
+msgstr "Piliin kung sino ang maaaring tingnan ang mga detalye ng contact ng kumpanya."
+
+msgid "Settings you applied have been successfully saved"
+msgstr "Ang mga setting na inilapat mo ay matagumpay na na -save"
+
+msgid "Setup Complete"
+msgstr "Kumpleto ang pag -setup"
+
+msgid "Show Advanced Search Button"
+msgstr "Ipakita ang advanced na pindutan ng paghahanap"
+
+msgid "Show Employers"
+msgstr "Ipakita ang mga employer"
+
+msgid "Show Everyone"
+msgstr "Ipakita ang lahat"
+
+msgid "Show Job seekers"
+msgstr "Ipakita ang mga naghahanap ng trabaho"
+
+msgid "Show Labels"
+msgstr "Ipakita ang mga label"
+
+msgid "Show No One"
+msgstr "Hindi magpakita ng sinuman"
+
+msgid "Show Placeholders"
+msgstr "Ipakita ang mga placeholder"
+
+msgid "Show Resume Status Section"
+msgstr "Ipakita ang seksyon ng Katayuan ng Resume"
+
+msgid "Show a box with applied jobs on the job seeker's dashboard"
+msgstr "Magpakita ng isang kahon na may mga inilapat na trabaho sa dashboard ng naghahanap ng trabaho"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard"
+msgstr "Magpakita ng isang kahon na may pinakabagong mga trabaho sa dashboard ng naghahanap ng trabaho"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard to visitor"
+msgstr "Magpakita ng isang kahon na may pinakabagong mga trabaho sa dashboard ng naghahanap ng trabaho sa bisita"
+
+msgid "Show a box with recent resumes on the employer's dashboard"
+msgstr "Magpakita ng isang kahon na may kamakailang mga resume sa dashboard ng employer"
+
+msgid "Show a box with recent resumes on the employer's dashboard to visitor"
+msgstr "Magpakita ng isang kahon na may kamakailang mga resume sa dashboard ng employer sa bisita"
+
+msgid "Show a graph of job statistics in the employer's dashboard"
+msgstr "Magpakita ng isang graph ng mga istatistika ng trabaho sa dashboard ng employer"
+
+msgid "Show a graph of job statistics in the employer's dashboard to visitor"
+msgstr "Magpakita ng isang graph ng mga istatistika ng trabaho sa dashboard ng employer sa bisita"
+
+msgid "Show a graph of job statistics in the job seeker's dashboard"
+msgstr "Magpakita ng isang graph ng mga istatistika ng trabaho sa dashboard ng naghahanap ng trabaho"
+
+msgid "Show a graph of job statistics in the job seeker's dashboard to visitor"
+msgstr "Magpakita ng isang graph ng mga istatistika ng trabaho sa dashboard ng job seeker sa bisita"
+
+msgid "Show a link to active subscriptions in the employer's dashboard"
+msgstr "Magpakita ng isang link sa mga aktibong subscription sa dashboard ng employer"
+
+msgid "Show a link to active subscriptions in the job seeker's dashboard"
+msgstr "Magpakita ng isang link sa mga aktibong subscription sa dashboard ng naghahanap ng trabaho"
+
+msgid "Show a link to the packages page in the employer's dashboard"
+msgstr "Magpakita ng isang link sa pahina ng mga pakete sa dashboard ng employer"
+
+msgid "Show a link to the packages page in the job seeker's dashboard"
+msgstr "Magpakita ng isang link sa pahina ng mga pakete sa dashboard ng naghahanap ng trabaho"
+
+msgid "Show a link to the purchase history/invoices in the employer's dashboard"
+msgstr "Magpakita ng isang link sa kasaysayan ng pagbili/invoice sa dashboard ng employer"
+
+msgid "Show a link to the purchase history/invoices in the job seeker's dashboard"
+msgstr "Magpakita ng isang link sa kasaysayan ng pagbili/invoice sa dashboard ng naghahanap ng trabaho"
+
+msgid "Show a link to the user's purchased packages in their dashboard"
+msgstr "Magpakita ng isang link sa binili na mga pakete ng gumagamit sa kanilang dashboard"
+
+msgid "Show an 'AI Suggested Jobs' button on the 'My Resumes' page for job seekers"
+msgstr "Magpakita ng isang pindutan ng 'AI Iminungkahing Jobs' sa pahina ng 'My Resumes' para sa mga naghahanap ng trabaho"
+
+msgid "Show an 'AI Suggested Resumes' button on the 'My Jobs' page for employers"
+msgstr "Magpakita ng pindutan ng 'AI Iminungkahing Resumes' sa pahina ng 'My Jobs' para sa mga employer"
+
+msgid "Show or hide the profile section on the employer's control panel"
+msgstr "Ipakita o itago ang seksyon ng profile sa control panel ng employer"
+
+msgid "Show or hide the profile section on the job seeker's control panel"
+msgstr "Ipakita o itago ang seksyon ng profile sa control panel ng job seeker"
+
+msgid "Show resume status section on the job seeker's dashboard"
+msgstr "Ipakita ang seksyon ng Katayuan ng Resume sa dashboard ng naghahanap ng trabaho"
+
+msgid "Show statistics boxes on the employer's dashboard"
+msgstr "Ipakita ang mga kahon ng istatistika sa dashboard ng employer"
+
+msgid "Show statistics boxes on the job seeker's dashboard"
+msgstr "Ipakita ang mga kahon ng istatistika sa dashboard ng naghahanap ng trabaho"
+
+msgid "Show the 'Quick Apply' form to logged-in users on the job detail page"
+msgstr "Ipakita ang form na 'Mabilis na Pag-apply' sa Mga Gumagamit na Nag-log in sa pahina ng Detalye ng Trabaho"
+
+msgid "Show the 'Quick Apply' form to visitors on the job detail page"
+msgstr "Ipakita ang form na 'Mabilis na Pag -apply' sa mga bisita sa pahina ng Detalye ng Trabaho"
+
+msgid "Similar Found"
+msgstr "Katulad na nahanap"
+
+msgid "Start typing what you know – our AI will help you find the best matching jobs."
+msgstr "Simulan ang pag -type ng alam mo - tutulungan ka ng aming AI na makahanap ng pinakamahusay na mga trabaho sa pagtutugma."
+
+msgid "Start typing what you know – our AI will help you find the best matching resumes."
+msgstr "Simulan ang pag -type ng alam mo - ang aming AI ay makakatulong sa iyo na makahanap ng pinakamahusay na pagtutugma ng mga resume."
+
+msgid "Step 1 of 5"
+msgstr "Hakbang 1 ng 5"
+
+msgid "Step 2 of 4"
+msgstr "Hakbang 2 ng 4"
+
+msgid "Step 2 of 5"
+msgstr "Hakbang 2 ng 5"
+
+msgid "Step 3 of 4"
+msgstr "Hakbang 3 ng 4"
+
+msgid "Step 3 of 5"
+msgstr "Hakbang 3 ng 5"
+
+msgid "Step 4 of 4"
+msgstr "Hakbang 4 ng 4"
+
+msgid "Step 4 of 5"
+msgstr "Hakbang 4 ng 5"
+
+msgid "Step 5 of 5"
+msgstr "Hakbang 5 ng 5"
+
+msgid "Subscriptions"
+msgstr "Mga subscription"
+
+msgid "Sugeested Jobs"
+msgstr "Mga iminungkahing trabaho"
+
+msgid "Suggested Jobs"
+msgstr "Mga iminungkahing trabaho"
+
+msgid "Suggested Resumes"
+msgstr "Iminungkahing resume"
+
+msgid "System"
+msgstr "System"
+
+msgid "System Error Log"
+msgstr "SYSTEM ERROR LOG"
+
+msgid "Text Transform"
+msgstr "Pagbabago ng teksto"
+
+msgid "The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "Ang panel ng control ng employer ay isang naka -streamline na interface na nagpapahintulot sa mga employer na pamahalaan ang mga pag -post ng trabaho, subaybayan ang mga aplikasyon, makipag -usap sa mga kandidato, at pag -aralan nang mahusay ang mga sukatan ng pag -upa."
+
+msgid "The highlighted addons are not included in your current license. Please adjust your selection accordingly."
+msgstr "Ang mga naka -highlight na addon ay hindi kasama sa iyong kasalukuyang lisensya. Mangyaring ayusin ang iyong pagpili nang naaayon."
+
+msgid "This add-on will change the Job Portal pages to a simple yet powerful and rich web design that involves focusing on clean aesthetics, intuitive navigation, and functional elements while ensuring performance and responsiveness."
+msgstr "Ang add-on na ito ay magbabago sa mga pahina ng portal ng trabaho sa isang simple ngunit malakas at mayaman na disenyo ng web na nagsasangkot sa pagtuon sa malinis na aesthetics, intuitive navigation, at mga functional na elemento habang tinitiyak ang pagganap at pagtugon."
+
+msgid "This will replace the old key with the new one."
+msgstr "Papalitan nito ang lumang susi sa bago."
+
+msgid "Today Stats"
+msgstr "Ngayon Stats"
+
+msgid "Unlock your career potential with AI-driven job search"
+msgstr "I-unlock ang iyong potensyal na karera sa paghahanap ng trabaho na hinihimok ng AI"
+
+msgid "Update Key"
+msgstr "I -update ang susi"
+
+msgid "Update Now"
+msgstr "I -update ngayon"
+
+msgid "Updating Database, please wait..."
+msgstr "Pag -update ng database, mangyaring maghintay ..."
+
+msgid "Uppercase"
+msgstr "Uppercase"
+
+msgid "Use Default Color For Color 1"
+msgstr "Gumamit ng default na kulay para sa kulay 1"
+
+msgid "Use Icons for Buttons"
+msgstr "Gumamit ng mga icon para sa mga pindutan"
+
+msgid "View All Resumes"
+msgstr "Tingnan ang lahat ng resume"
+
+msgid "View Company Contact Detail"
+msgstr "Tingnan ang detalye ng contact ng kumpanya"
+
+msgid "Visitor Show"
+msgstr "Palabas ng bisita"
+
+msgid "Visitor Show Active Jobs Graph"
+msgstr "Ang mga bisita ay nagpapakita ng mga aktibong graph ng trabaho"
+
+msgid "Visitor Show Applied Jobs Section"
+msgstr "Bisita Ipakita ang Applied Jobs Section"
+
+msgid "Visitor Show Applied Resumes Section"
+msgstr "Ang Seksyon ng Visitor Show Applied Resume"
+
+msgid "Visitor Show Credits Log Section"
+msgstr "Ang seksyon ng Log ng Visitor Show Credits"
+
+msgid "Visitor Show Jobs Graph"
+msgstr "Ang mga bisita ay nagpapakita ng graph ng trabaho"
+
+msgid "Visitor Show Jobs Graph Section"
+msgstr "Ang seksyon ng Graph Graph ay nagpapakita ng mga trabaho"
+
+msgid "Visitor Show Newest Jobs Box"
+msgstr "Ang bisita ay nagpapakita ng pinakabagong kahon ng trabaho"
+
+msgid "Visitor Show Newest Jobs Section"
+msgstr "Ang Bisita ay nagpapakita ng pinakabagong seksyon ng mga trabaho"
+
+msgid "Visitor Show Newest Resumes Section"
+msgstr "Ang bisita ay nagpapakita ng pinakabagong seksyon ng resume"
+
+msgid "Visitor Show Purchase History Section"
+msgstr "Seksyon ng Pagbili ng Kasaysayan ng Pagbili ng bisita"
+
+msgid "Visitor Show Recent Resumes Box"
+msgstr "Ipinakita ng bisita ang kamakailang kahon ng resume"
+
+msgid "Visitor Show Saved Searches Section"
+msgstr "Ang seksyon ng Visitor Show ay naka -save na seksyon"
+
+msgid "Visitor Show Shortlisted Jobs Section"
+msgstr "Ang Seksyon ng Mga Lista ng Bisita na Showlist na Trabaho"
+
+msgid "Visitor Show Stats Graph Section"
+msgstr "Ang Seksyon ng Graph ng Bisita ay nagpapakita ng seksyon ng graph"
+
+msgid "Visitor Show Useful Links Section"
+msgstr "Ang seksyon ng bisita ay nagpapakita ng kapaki -pakinabang na seksyon ng mga link"
+
+msgid "WP Job Manager"
+msgstr "WP Job Manager"
+
+msgid "WP Job Portal Activation Key"
+msgstr "WP Job Portal activation key"
+
+msgid "WP Job Portal Import Data"
+msgstr "Ang data ng pag -import ng portal ng WP"
+
+msgid "WP Job Portal Packages"
+msgstr "WP Job Portal Packages"
+
+msgid "Welcome to WP Job Portal Addon Installer"
+msgstr "Maligayang pagdating sa WP Job Portal Addon Installer"
+
+msgid "Welcome, Visitor"
+msgstr "Maligayang pagdating, bisita"
+
+msgid "Who can search resume."
+msgstr "Sino ang maaaring maghanap ng resume."
+
+msgid "Who can view resume contact details"
+msgstr "Sino ang maaaring tingnan ang mga detalye ng contact contact"
+
+msgid "You Already Applied to this job"
+msgstr "Nag -apply ka na sa trabahong ito"
+
+msgid "You have"
+msgstr "Mayroon ka"
+
+msgid "Your WP Job Portal license key has expired or is invalid. Please update it to continue receiving support and updates."
+msgstr "Ang iyong WP Job Portal Lisensya Key ay nag -expire o hindi wasto. Mangyaring i -update ito upang magpatuloy sa pagtanggap ng suporta at pag -update."
+
+msgid "failed."
+msgstr "nabigo."
+
+msgid "found"
+msgstr "Natagpuan"
+
+msgid "icon"
+msgstr "icon"
+
+msgid "imported."
+msgstr "na -import."
+
+msgid "skipped."
+msgstr "nilaktawan."
+
+msgid "unused key has been deleted successfully!"
+msgstr "Ang hindi nagamit na susi ay matagumpay na tinanggal!"
+
+msgid "unused key(s) that can be safely removed."
+msgstr "hindi nagamit na mga susi na maaaring ligtas na maalis."
+
+msgid "unused keys have been deleted successfully!"
+msgstr "Ang hindi nagamit na mga susi ay matagumpay na tinanggal!"

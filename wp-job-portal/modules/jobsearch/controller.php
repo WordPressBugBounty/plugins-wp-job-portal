@@ -16,10 +16,10 @@ class WPJOBPORTALjobSearchController {
 
     function handleRequest() {
 
-        $layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'jobsavesearch');
-        if (self::canaddfile($layout)) {
-            $config_array = WPJOBPORTALincluder::getJSModel('configuration')->getConfigByFor('jscontrolpanel');
-            switch ($layout) {
+        $wpjobportal_layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'jobsavesearch');
+        if (self::canaddfile($wpjobportal_layout)) {
+            $wpjobportal_config_array = WPJOBPORTALincluder::getJSModel('configuration')->getConfigByFor('jscontrolpanel');
+            switch ($wpjobportal_layout) {
                 case 'jobsearch':
                     try {
                         if (WPJOBPORTALincluder::getObjectClass('user')->isjobseeker() || WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('visitorview_js_jobsearch') == 1 ) {
@@ -29,86 +29,86 @@ class WPJOBPORTALjobSearchController {
                                 wpjobportal::$_error_flag_message_for=3;
                                 throw new Exception(WPJOBPORTALLayout::setMessageFor(3,null,null,1));
                             } elseif (WPJOBPORTALincluder::getObjectClass('user')->isguest()) {
-                                $link = WPJOBPORTALincluder::getJSModel('common')->jsMakeRedirectURL('jobsearch', $layout, 1);
-                                $linktext = esc_html(__('Login','wp-job-portal'));
+                                $wpjobportal_link = WPJOBPORTALincluder::getJSModel('common')->jsMakeRedirectURL('jobsearch', $wpjobportal_layout, 1);
+                                $wpjobportal_linktext = esc_html(__('Login','wp-job-portal'));
                                 wpjobportal::$_error_flag_message_for=1;
                                 wpjobportal::$_error_flag_message_register_for=1;
-                                throw new Exception(WPJOBPORTALLayout::setMessageFor(1 , $link , $linktext,1));
+                                throw new Exception(WPJOBPORTALLayout::setMessageFor(1 , $wpjobportal_link , $wpjobportal_linktext,1));
 
                             } elseif (!WPJOBPORTALincluder::getObjectClass('user')->isWPJOBPortalUser()) {
-                                $link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'common', 'wpjobportallt'=>'newinwpjobportal', 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
-                                $linktext = esc_html(__('Select role','wp-job-portal'));
+                                $wpjobportal_link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'common', 'wpjobportallt'=>'newinwpjobportal', 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
+                                $wpjobportal_linktext = esc_html(__('Select role','wp-job-portal'));
                                 wpjobportal::$_error_flag_message_for=9;
-                                throw new Exception(WPJOBPORTALLayout::setMessageFor(9 , $link , $linktext,1));
+                                throw new Exception(WPJOBPORTALLayout::setMessageFor(9 , $wpjobportal_link , $wpjobportal_linktext,1));
                             }
-                            if(isset($link) && isset($linktext)){
-                                wpjobportal::$_error_flag_message_for_link = $link;
-                                wpjobportal::$_error_flag_message_for_link_text = $linktext;
+                            if(isset($wpjobportal_link) && isset($wpjobportal_linktext)){
+                                wpjobportal::$_error_flag_message_for_link = $wpjobportal_link;
+                                wpjobportal::$_error_flag_message_for_link_text = $wpjobportal_linktext;
                             }
                         }
-                    } catch (Exception $ex) {
+                    } catch (Exception $wpjobportal_ex) {
                         wpjobportal::$_error_flag = true;
-                        wpjobportal::$_error_flag_message = $ex->getMessage();
+                        wpjobportal::$_error_flag_message = $wpjobportal_ex->getMessage();
                     }
 
                     break;
                 case 'jobsavesearch':
                     try {
                         if (WPJOBPORTALincluder::getObjectClass('user')->isjobseeker()) {
-                        $userid = WPJOBPORTALincluder::getObjectClass('user')->uid();
-                        WPJOBPORTALincluder::getJSModel('jobsearch')->getMyJobSaveSearchbyUid($userid);
+                        $wpjobportal_userid = WPJOBPORTALincluder::getObjectClass('user')->uid();
+                        WPJOBPORTALincluder::getJSModel('jobsearch')->getMyJobSaveSearchbyUid($wpjobportal_userid);
                     } else {
                         if (WPJOBPORTALincluder::getObjectClass('user')->isemployer()) {
                             wpjobportal::$_error_flag_message_for=3;
                             throw new Exception(WPJOBPORTALLayout::setMessageFor(3,null,null,1));
 
                         } elseif (WPJOBPORTALincluder::getObjectClass('user')->isguest()) {
-                            $link = WPJOBPORTALincluder::getJSModel('common')->jsMakeRedirectURL('jobsearch', $layout, 1);
-                            $linktext = esc_html(__('Login','wp-job-portal'));
+                            $wpjobportal_link = WPJOBPORTALincluder::getJSModel('common')->jsMakeRedirectURL('jobsearch', $wpjobportal_layout, 1);
+                            $wpjobportal_linktext = esc_html(__('Login','wp-job-portal'));
                             wpjobportal::$_error_flag_message_for=1;
-                            throw new Exception(WPJOBPORTALLayout::setMessageFor(1 , $link , $linktext,1));
+                            throw new Exception(WPJOBPORTALLayout::setMessageFor(1 , $wpjobportal_link , $wpjobportal_linktext,1));
 
                         } elseif (!WPJOBPORTALincluder::getObjectClass('user')->isWPJOBPortalUser()) {
-                            $link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'common', 'wpjobportallt'=>'newinwpjobportal', 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
-                            $linktext = esc_html(__('Select role','wp-job-portal'));
+                            $wpjobportal_link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'common', 'wpjobportallt'=>'newinwpjobportal', 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
+                            $wpjobportal_linktext = esc_html(__('Select role','wp-job-portal'));
                             wpjobportal::$_error_flag_message_for=9;
-                            throw new Exception(WPJOBPORTALLayout::setMessageFor(9 , $link , $linktext,1));
+                            throw new Exception(WPJOBPORTALLayout::setMessageFor(9 , $wpjobportal_link , $wpjobportal_linktext,1));
 
                         }
-                            if(isset($link) && isset($linktext)){
-                                wpjobportal::$_error_flag_message_for_link = $link;
-                                wpjobportal::$_error_flag_message_for_link_text = $linktext;
+                            if(isset($wpjobportal_link) && isset($wpjobportal_linktext)){
+                                wpjobportal::$_error_flag_message_for_link = $wpjobportal_link;
+                                wpjobportal::$_error_flag_message_for_link_text = $wpjobportal_linktext;
                             }
                         }
-                    } catch (Exception $ex) {
+                    } catch (Exception $wpjobportal_ex) {
                         wpjobportal::$_error_flag = true;
-                        wpjobportal::$_error_flag_message = $ex->getMessage();
+                        wpjobportal::$_error_flag_message = $wpjobportal_ex->getMessage();
                     }
 
                     break;
                 default:
                     return;
             }
-            $module = (wpjobportal::$_common->wpjp_isadmin()) ? 'page' : 'wpjobportalme';
-            $module = WPJOBPORTALrequest::getVar($module, null, 'jobsearch');
-            $module = wpjobportalphplib::wpJP_str_replace('wpjobportal_', '', $module);
-            if(is_numeric($module)){
-                $module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'jobsearch');
+            $wpjobportal_module = (wpjobportal::$_common->wpjp_isadmin()) ? 'page' : 'wpjobportalme';
+            $wpjobportal_module = WPJOBPORTALrequest::getVar($wpjobportal_module, null, 'jobsearch');
+            $wpjobportal_module = wpjobportalphplib::wpJP_str_replace('wpjobportal_', '', $wpjobportal_module);
+            if(is_numeric($wpjobportal_module)){
+                $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'jobsearch');
             }
             wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-            WPJOBPORTALincluder::include_file($layout, $module);
+            WPJOBPORTALincluder::include_file($wpjobportal_layout, $wpjobportal_module);
         }
     }
 
-    function canaddfile($layout) {
-        $nonce_value = WPJOBPORTALrequest::getVar('wpjobportal_nonce');
-        if ( wp_verify_nonce( $nonce_value, 'wpjobportal_nonce') ) {
+    function canaddfile($wpjobportal_layout) {
+        $wpjobportal_nonce_value = WPJOBPORTALrequest::getVar('wpjobportal_nonce');
+        if ( wp_verify_nonce( $wpjobportal_nonce_value, 'wpjobportal_nonce') ) {
             if (isset($_POST['form_request']) && $_POST['form_request'] == 'wpjobportal')
                 return false;
             elseif (isset($_GET['action']) && $_GET['action'] == 'wpjobportaltask')
                 return false;
             else{
-                if(!is_admin() && strpos($layout, 'admin_') === 0){
+                if(!is_admin() && strpos($wpjobportal_layout, 'admin_') === 0){
                     return false;
                 }
                 return true;

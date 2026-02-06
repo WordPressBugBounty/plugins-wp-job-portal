@@ -487,6 +487,7 @@ class wpjobportaladmin {
                 'wpjobportal_premiumplugin', //menu slug
                 array($this, 'showAdminPage') // function name
         );
+
     }
 
   static  function showAdminPage() {
@@ -496,12 +497,12 @@ class wpjobportaladmin {
         WPJOBPORTALincluder::include_file($page);
     }
 
-    function addMissingAddonPage($module_name){
+    function addMissingAddonPage($wpjobportal_module_name){
         add_submenu_page('wpjobportal_hide', // parent slug
                 esc_html(__('Premium Addon', 'wp-job-portal')), // Page title
                 esc_html(__('Premium Addon', 'wp-job-portal')), // menu title
                 'wpjobportal', // capability
-                $module_name, //menu slug
+                $wpjobportal_module_name, //menu slug
                 array($this, 'showMissingAddonPage') // function name
         );
     }

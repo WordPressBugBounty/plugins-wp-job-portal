@@ -19,9 +19,9 @@ class WPJOBPORTALactivation {
 
     static private function addCapabilites() {
 
-        $role = get_role( 'administrator' );
-        $role->add_cap( 'wpjobportal' );
-        $role->add_cap( 'wpjobportal_jobs' );
+        $wpjobportal_role = get_role( 'administrator' );
+        $wpjobportal_role->add_cap( 'wpjobportal' );
+        $wpjobportal_role->add_cap( 'wpjobportal_jobs' );
 
         // hide (AI) database update required banner for new installs
         update_option( 'wpjobportal_ai_search_data_sync_needed', 0,);
@@ -34,8 +34,8 @@ class WPJOBPORTALactivation {
         wpjobportaldb::query($query);
 
         // send by email address
-        $send_by_email = 'wordpress@' . str_replace( 'www.', '', parse_url( home_url(), PHP_URL_HOST ) );
-        $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_config` SET `configvalue` = '".esc_sql($send_by_email)."' WHERE `configname`= 'mailfromaddress'";
+        $wpjobportal_send_by_email = 'wordpress@' . str_replace( 'www.', '', wp_parse_url( home_url(), PHP_URL_HOST ) );
+        $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_config` SET `configvalue` = '".esc_sql($wpjobportal_send_by_email)."' WHERE `configname`= 'mailfromaddress'";
         wpjobportaldb::query($query);
       }
 
@@ -49,10 +49,10 @@ class WPJOBPORTALactivation {
                 'post_content' => '[wpjobportal_jobseeker_controlpanel]',
                 'post_type' => 'page'
             );
-            $pageid = wp_insert_post($post);
-            if(is_numeric($pageid)){
+            $wpjobportal_pageid = wp_insert_post($post);
+            if(is_numeric($wpjobportal_pageid)){
                 // insert wp job portal jobseeker control panel id to configuration
-                $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_config` SET `configvalue` = ".esc_sql($pageid)." WHERE `configname`= 'default_pageid'";
+                $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_config` SET `configvalue` = ".esc_sql($wpjobportal_pageid)." WHERE `configname`= 'default_pageid'";
                 wpjobportaldb::query($query);
             }
         } else {
@@ -62,11 +62,11 @@ class WPJOBPORTALactivation {
 
         // set default starting values for new installs
 
-        $company_settings = get_option('wpjobportal_company_document_title_settings');
-        $job_settings = get_option('wpjobportal_job_document_title_settings');
-        $resume_settings = get_option('wpjobportal_resume_document_title_settings');
+        $wpjobportal_company_settings = get_option('wpjobportal_company_document_title_settings');
+        $wpjobportal_job_settings = get_option('wpjobportal_job_document_title_settings');
+        $wpjobportal_resume_settings = get_option('wpjobportal_resume_document_title_settings');
 
-        if(empty($company_settings) && empty($job_settings) && empty($resume_settings)){
+        if(empty($wpjobportal_company_settings) && empty($wpjobportal_job_settings) && empty($wpjobportal_resume_settings)){
             update_option( 'wpjobportal_company_document_title_settings', '[name] [location] [separator] [sitename]');
             update_option( 'wpjobportal_job_document_title_settings', '[title] [location] [separator] [sitename]');
             update_option( 'wpjobportal_resume_document_title_settings', ' [applicationtitle] [jobcategory] [separator] [sitename]');
@@ -147,20 +147,20 @@ class WPJOBPORTALactivation {
                 wp_filesystem( $creds );
             }
             // file path for us cities
-            $installfile = WPJOBPORTAL_PLUGIN_PATH . 'includes/data/cities/us/cities.txt';
+            $wpjobportal_installfile = WPJOBPORTAL_PLUGIN_PATH . 'includes/data/cities/us/cities.txt';
             // check file exsists
-            if ($wp_filesystem->exists($installfile)) {
+            if ($wp_filesystem->exists($wpjobportal_installfile)) {
                 // reading the file
-                $file_contents = $wp_filesystem->get_contents($installfile);
+                $file_contents = $wp_filesystem->get_contents($wpjobportal_installfile);
                 if ($file_contents !== false) { // if no error then proceed
                     //preparing queries to execute
                     $query = wpjobportalphplib::wpJP_str_replace('#__', wpjobportal::$_db->prefix, $file_contents);
 
                     $query_array  = explode(';',$query); // breaking queries up to execute seprately
-                    foreach ($query_array as $array_key => $single_query) {
-                        $single_query = trim($single_query);
-                        if($single_query != ''){
-                            wpjobportal::$_db->query($single_query); // execute single insert query
+                    foreach ($query_array as $wpjobportal_array_key => $wpjobportal_single_query) {
+                        $wpjobportal_single_query = trim($wpjobportal_single_query);
+                        if($wpjobportal_single_query != ''){
+                            wpjobportal::$_db->query($wpjobportal_single_query); // execute single insert query
                         }
                     }
                 }
@@ -468,7 +468,7 @@ class WPJOBPORTALactivation {
               ('searchjobtag', '4', 'job', 'tag'),
               ('categories_colsperrow', '3', 'category', NULL),
               ('productcode', 'wpjobportal', 'default', NULL),
-              ('versioncode', '2.3.7', 'default', NULL),
+              ('versioncode', '2.4.6', 'default', NULL),
               ('producttype', 'free', 'default', NULL),
               ('vis_jscredits', '0', 'jscontrolpanel', 'credits'),
               ('vis_emcredits', '1', 'emcontrolpanel', NULL),
@@ -544,7 +544,7 @@ class WPJOBPORTALactivation {
               ('vis_emresumebycategory', '1', 'emcontrolpanel', NULL),
               ('default_pageid', '239', 'default', NULL),
               ('visitorview_emp_resumesearch', '1', 'visitor', 'resumesearch'),
-              ('visitorview_emp_viewresume', '1', 'visitor', NULL),
+              ('visitorview_emp_viewresume', '0', 'visitor', NULL),
               ('visitorview_emp_resumecat', '1', 'visitor', NULL),
               ('google_map_api_key', 'AIzaSyCZcnAK0DiGg8lAXej74e7PlrhkfCM86-M', 'default', NULL),
               ('tell_a_friend_captcha', '1', 'captcha', NULL),
@@ -689,7 +689,10 @@ class WPJOBPORTALactivation {
               ('resume_search_ai_form', '0', 'resume', 'airesumesearch'),
               ('resume_list_ai_filter', '0', 'resume', 'airesumesearch'),
               ('show_suggested_resumes_button', '1', 'resume', 'aisuggestedresumes'),
-              ('show_suggested_resumes_dashboard', '1', 'resume', 'aisuggestedresumes')
+              ('show_suggested_resumes_dashboard', '1', 'resume', 'aisuggestedresumes'),
+              ('show_jobseeker_dashboard_invoices', '0', 'jscontrolpanel', 'credits'),
+              ('show_employer_dashboard_invoices', '0', 'emcontrolpanel', 'credits'),
+              ('jobseeker_show_resume_status_section', 1, 'jobseeker', 'advanceresumebuilder')
               ;
               ";
             wpjobportal::$_db->query($query);
@@ -1125,7 +1128,7 @@ class WPJOBPORTALactivation {
             (4, 'contactemail', 'Contact Email', 5, '', 0, NULL, NULL, 1, 1, 1, 0, 0, 1, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 1, 0, 0, 0, 0, '', NULL, NULL),
             (5, 'category', 'Category', 8, '', 0, NULL, NULL, 1, 1, 1, 0, 0, 1, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
             (6, 'logo', 'Logo', 9, '', 0, NULL, NULL, 1, 1, 1, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
-            (7, 'description', 'Description', 14, '', 0, NULL, NULL, 1, 1, 1, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
+            (7, 'description', 'Description', 14, '', 0, NULL, NULL, 1, 1, 1, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 0, '', 0, 0, 0, 0, 0, '', NULL, NULL),
             (8, 'address1', 'Address1', 15, '', 0, NULL, NULL, 1, 1, 1, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
             (9, 'address2', 'Address2', 16, '', 0, NULL, NULL, 1, 1, 1, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
             (10, 'city', 'City', 17, '', 0, NULL, NULL, 1, 1, 1, 0, 0, 0, 0, '', '', 0, 0, NULL, 0, 1, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
@@ -1148,7 +1151,7 @@ class WPJOBPORTALactivation {
             (28, 'city', 'City', 15, '', 0, NULL, NULL, 2, 1, 1, 0, 0, 0, 0, '', '', 1, 1, NULL, 0, 1, 0, '', 0, 0, 0, 0, 0, '', NULL, NULL),
             (29, 'sendemail', 'Send Email', 22, '', 0, NULL, NULL, 2, 1, 1, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
             (30, 'sendmeresume', 'Send me Resume', 23, '', 0, NULL, NULL, 2, 1, 1, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
-            (31, 'description', 'Description', 24, '', 0, NULL, NULL, 2, 1, 1, 0, 1, 1, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
+            (31, 'description', 'Description', 24, '', 0, NULL, NULL, 2, 1, 1, 0, 1, 1, 0, '', '', 0, 0, NULL, 1, 0, 0, '', 0, 0, 0, 0, 0, '', NULL, NULL),
             (32, 'qualifications', 'Qualifications', 25, '', 0, NULL, NULL, 2, 1, 1, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
             (33, 'prefferdskills', 'Prefered Skills', 26, '', 0, NULL, NULL, 2, 1, 1, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
             (34, 'agreement', 'Agreement', 27, '', 0, NULL, NULL, 2, 1, 1, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
@@ -1189,7 +1192,7 @@ class WPJOBPORTALactivation {
             (73, 'employer_address', 'Address', 46, '4', 0, NULL, NULL, 3, 1, 1, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
             (74, 'employer_city', 'City', 47, '4', 0, NULL, NULL, 3, 1, 1, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
             (75, 'section_skills', 'Skills', 80, '5', 1, NULL, NULL, 3, 1, 1, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
-            (76, 'skills', 'Skills', 49, '5', 0, NULL, NULL, 3, 1, 1, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
+            (76, 'skills', 'Skills', 49, '5', 0, NULL, NULL, 3, 1, 1, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 0, '', 0, 0, 0, 0, 0, '', NULL, NULL),
             (79, 'section_language', 'Add Language', 100, '8', 1, NULL, NULL, 3, 1, 1, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
             (80, 'language', 'Language Name', 59, '8', 0, NULL, NULL, 3, 1, 1, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
             (81, 'institute_date_from', 'Date From', 36, '3', 0, NULL, NULL, 3, 1, 1, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
@@ -1690,90 +1693,90 @@ class WPJOBPORTALactivation {
             wp_filesystem( $creds );
         }
 
-        $slugprefix = "";
+        $wpjobportal_slugprefix = "";
         if($wp_filesystem->exists(WP_PLUGIN_DIR.'/js-jobs/js-jobs.php')){
-          $slugprefix = 'wpjobportal-';
+          $wpjobportal_slugprefix = 'wpjobportal-';
         }
         $query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_slug` (`id`, `slug`, `defaultslug`, `filename`, `description`, `pagetitle`, `defaultpagetitle`, `modulename`, `titleoptions`, `status`) VALUES
-          (1, '".$slugprefix."new-in-wpjobportal', 'new-in-wpjobportal', 'newinwpjobportal', 'slug for new in wp job portal page', 'New In WP Job Portal [separator] [sitename]', 'New In WP Job Portal [separator] [sitename]', 'wpjobportal', '[separator],[sitename]', 1),
-          (2, '".$slugprefix."wpjobportal-login', 'wpjobportal-login', 'login', 'slug for login page', 'WP Job Portal Login [separator] [sitename]', 'WP Job Portal Login [separator] [sitename]', 'wpjobportal', '[separator],[sitename]', 1),
-          (3, '".$slugprefix."jobseeker-control-panel', 'jobseeker-control-panel', 'controlpanel', 'slug for jobseeker control panel', 'Jobseeker Control Panel [separator] [sitename]', 'Jobseeker Control Panel [separator] [sitename]', 'jobseeker', '[separator],[sitename]', 1),
-          (4, '".$slugprefix."employer-control-panel', 'employer-control-panel', 'controlpanel', 'slug for employer control panel', 'Employer Control Panel [separator] [sitename]', 'Employer Control Panel [separator] [sitename]', 'employer', '[separator],[sitename]', 1),
-          (5, '".$slugprefix."jobseeker-my-stats', 'jobseeker-my-stats', 'mystats', 'slug for job seeker my stats page', 'Jobseeker My Stats [separator] [sitename]', 'Jobseeker My Stats [separator] [sitename]', 'jobseeker', '[separator],[sitename]', 1),
-          (6, '".$slugprefix."employer-my-stats', 'employer-my-stats', 'mystats', 'slug for employer my stats page', 'Employer My Stats [separator] [sitename]', 'Employer My Stats [separator] [sitename]', 'employer', '[separator],[sitename]', 1),
-          (7, '".$slugprefix."resumes', 'resumes', 'resumes', 'slug for resume main listing page', 'Resumes [separator] [sitename]', 'Resumes [separator] [sitename]', 'resume', '[separator],[sitename]', 1),
-          (8, '".$slugprefix."jobs', 'jobs', 'jobs', 'slug for job main listing page', 'Jobs [separator] [sitename]', 'Jobs [separator] [sitename]', 'job', '[separator],[sitename]', 1),
-          (9, '".$slugprefix."my-companies', 'my-companies', 'mycompanies', 'slug for my companies page', 'My Companies [separator] [sitename]', 'My Companies [separator] [sitename]', 'company', '[separator],[sitename]', 1),
-          (10, '".$slugprefix."add-company', 'add-company', 'addcompany', 'slug for add company page', 'Add Company [separator] [sitename]', 'Add Company [separator] [sitename]', 'company', '[separator],[sitename]', 1),
-          (11, '".$slugprefix."my-jobs', 'my-jobs', 'myjobs', 'slug for my jobs page', 'My Jobs [separator] [sitename]', 'My Jobs [separator] [sitename]', 'job', '[separator],[sitename]', 1),
-          (12, '".$slugprefix."add-job', 'add-job', 'addjob', 'slug for add job page', 'Add Job [separator] [sitename]', 'Add Job [separator] [sitename]', 'job', '[separator],[sitename]', 1),
-          (13, '".$slugprefix."my-departments', 'my-departments', 'mydepartments', 'slug for my departments page', 'My Departments [separator] [sitename]', 'My Departments [separator] [sitename]', 'department', '[separator],[sitename]', 1),
-          (14, '".$slugprefix."add-department', 'add-department', 'adddepartment', 'slug for add department page', 'Add Department [separator] [sitename]', 'Add Department [separator] [sitename]', 'department', '[separator],[sitename]', 1),
-          (15, '".$slugprefix."department', 'department', 'viewdepartment', 'slug for view department page', 'Department Information [separator] [sitename]', 'Department Information [separator] [sitename]', 'department', '[separator],[sitename]', 1),
-          (17, '".$slugprefix."company', 'company', 'viewcompany', 'slug for view company page', '[name] [location] [separator] [sitename]', '[name] [location] [separator] [sitename]', 'company', '[name],[location],[separator],[sitename]', 1),
-          (18, '".$slugprefix."resume', 'resume', 'viewresume', 'slug for view resume page', '[applicationtitle] [jobcategory] [separator] [sitename]', '[applicationtitle] [jobcategory] [separator] [sitename]', 'resume', '[applicationtitle],[jobcategory],[jobtype],[location],[separator],[sitename]', 1),
-          (19, '".$slugprefix."job', 'job', 'viewjob', 'slug for view job page', '[title] [location] [separator] [sitename]', '[title] [location] [separator] [sitename]', 'job', '[title],[companyname],[jobcategory],[jobtype],[location],[separator],[sitename]', 1),
-          (20, '".$slugprefix."my-folders', 'my-folders', 'myfolders', 'slug for my folders page', 'My Folders [separator] [sitename]', 'My Folders [separator] [sitename]', 'folder', '[separator],[sitename]', 1),
-          (21, '".$slugprefix."add-folder', 'add-folder', 'addfolder', 'slug for add folder page', 'Add Folder [separator] [sitename]', 'Add Folder [separator] [sitename]', 'folder', '[separator],[sitename]', 1),
-          (22, '".$slugprefix."folder', 'folder', 'viewfolder', 'slug for view folder page', 'Folder Information [separator] [sitename]', 'Folder Information [separator] [sitename]', 'folder', '[separator],[sitename]', 1),
-          (23, '".$slugprefix."folder-resumes', 'folder-resumes', 'folderresume', 'slug for folder resume page', 'Folder Resumes [separator] [sitename]', 'Folder Resumes [separator] [sitename]', 'folder', '[separator],[sitename]', 1),
-          (24, '".$slugprefix."jobseeker-messages', 'jobseeker-messages', 'jobseekermessages', 'slug for job seeker messages page', 'Jobseeker Messages [separator] [sitename]', 'Jobseeker Messages [separator] [sitename]', 'message', '[separator],[sitename]', 1),
-          (25, '".$slugprefix."employer-messages', 'employer-messages', 'employermessages', 'slug for employer messages page', 'Employer Messages [separator] [sitename]', 'Employer Messages [separator] [sitename]', 'message', '[separator],[sitename]', 1),
-          (26, '".$slugprefix."message', 'message', 'sendmessage', 'slug for send message page', 'Message [separator] [sitename]', 'Message [separator] [sitename]', 'message', '[separator],[sitename]', 1),
-          (27, '".$slugprefix."job-messages', 'job-messages', 'jobmessages', 'slug for job messages page', 'Job Messages [separator] [sitename]', 'Job Messages [separator] [sitename]', 'message', '[separator],[sitename]', 1),
-          (29, '".$slugprefix."messages', 'messages', 'messages', 'slug for messages page', 'Messages [separator] [sitename]', 'Messages [separator] [sitename]', 'message', '[separator],[sitename]', 1),
-          (30, '".$slugprefix."resume-search', 'resume-search', 'resumesearch', 'slug for resume search page', 'Resume Search [separator] [sitename]', 'Resume Search [separator] [sitename]', 'resumesearch', '[separator],[sitename]', 1),
-          (31, '".$slugprefix."resume-save-searches', 'resume-save-searches', 'resumesavesearch', 'slug for resume save search page', 'Resume Save Searches [separator] [sitename]', 'Resume Save Searches [separator] [sitename]', 'resumesearch', '[separator],[sitename]', 1),
-          (32, '".$slugprefix."resume-categories', 'resume-categories', 'resumebycategory', 'slug for resume by category page', 'Resume By Categories [separator] [sitename]', 'Resume By Categories [separator] [sitename]', 'resume', '[separator],[sitename]', 1),
-          (33, '".$slugprefix."resume-rss', 'resume-rss', 'resumerss', 'slug for resume rss page', 'Resume Rss [separator] [sitename]', 'Resume Rss [separator] [sitename]', 'rss', '[separator],[sitename]', 1),
-          (34, '".$slugprefix."employer-credits', 'employer-credits', 'employercredits', 'slug for employer credits page', 'Employer Credits [separator] [sitename]', 'Employer Credits [separator] [sitename]', 'credtis', '[separator],[sitename]', 1),
-          (35, '".$slugprefix."jobseeker-credits', 'jobseeker-credits', 'jobseekercredits', 'slug for job seeker credits page', 'Jobseeker Credits [separator] [sitename]', 'Jobseeker Credits [separator] [sitename]', 'credtis', '[separator],[sitename]', 1),
-          (36, '".$slugprefix."employer-purchase-history', 'employer-purchase-history', 'employerpurchasehistory', 'slug for employer purchase history page', 'Employer Purchase History [separator] [sitename]', 'Employer Purchase History [separator] [sitename]', 'credtis', '[separator],[sitename]', 1),
-          (37, '".$slugprefix."employer-my-stats', 'employer-my-stats', 'employermystats', 'employer my stats page', 'Employer My Stats [separator] [sitename]', 'Employer My Stats [separator] [sitename]', 'employer', '[separator],[sitename]', 1),
-          (38, '".$slugprefix."jobseker-my-stats', 'jobseker-my-stats', 'jobseekerstats', 'slug for job seeker stats page', 'Jobseker My Stats [separator] [sitename]', 'Jobseker My Stats [separator] [sitename]', 'jobseeker', '[separator],[sitename]', 1),
-          (39, '".$slugprefix."employer-register', 'employer-register', 'regemployer', 'slug for register as employer page', 'Employer Registration [separator] [sitename]', 'Employer Registration [separator] [sitename]', 'employer', '[separator],[sitename]', 1),
-          (40, '".$slugprefix."jobseeker-register', 'jobseeker-register', 'regjobseeker', 'reg job seeker page', 'Job Seeker Registration [separator] [sitename]', 'Job Seeker Registration [separator] [sitename]', 'jobseeker', '[separator],[sitename]', 1),
-          (41, '".$slugprefix."user-register', 'user-register', 'userregister', 'slug for user register page', 'User Registration [separator] [sitename]', 'User Registration [separator] [sitename]', 'wpjobportal', '[separator],[sitename]', 1),
-          (42, '".$slugprefix."add-resume', 'add-resume', 'addresume', 'slug for add resume page', 'Add Resume [separator] [sitename]', 'Add Resume [separator] [sitename]', 'resume', '[separator],[sitename]', 1),
-          (43, '".$slugprefix."my-resumes', 'my-resumes', 'myresumes', 'slug for my resumes page', 'My Resumes [separator] [sitename]', 'My Resumes [separator] [sitename]', 'resume', '[separator],[sitename]', 1),
-          (45, '".$slugprefix."companies', 'companies', 'companies', 'slug for companies page', 'Companies [separator] [sitename]', 'Companies [separator] [sitename]', 'company', '[separator],[sitename]', 1),
-          (46, '".$slugprefix."my-applied-jobs', 'my-applied-jobs', 'myappliedjobs', 'slug for my applied jobs page', 'My Applied Jobs [separator] [sitename]', 'My Applied Jobs [separator] [sitename]', 'jobapply', '[separator],[sitename]', 1),
-          (47, '".$slugprefix."job-applied-resume', 'job-applied-resume', 'jobappliedresume', 'slug for job applied resume page', 'Job Applied Resume [separator] [sitename]', 'Job Applied Resume [separator] [sitename]', 'jobapply', '[separator],[sitename]', 1),
-          (49, '".$slugprefix."job-search', 'job-search', 'jobsearch', 'slug for job search page', 'Job Search [separator] [sitename]', 'Job Search [separator] [sitename]', 'jobsearch', '[separator],[sitename]', 1),
-          (50, '".$slugprefix."job-save-searches', 'job-save-searches', 'jobsavesearch', 'slug for job save search page', 'Job Save Searches [separator] [sitename]', 'Job Save Searches [separator] [sitename]', 'jobsearch', '[separator],[sitename]', 1),
-          (51, '".$slugprefix."job-alert', 'job-alert', 'jobalert', 'slug for job alert page', 'Job Alert [separator] [sitename]', 'Job Alert [separator] [sitename]', 'jobalert', '[separator],[sitename]', 1),
-          (52, '".$slugprefix."job-rss', 'job-rss', 'jobrss', 'slug for job rss page', 'Job Rss [separator] [sitename]', 'Job Rss [separator] [sitename]', 'rss', '[separator],[sitename]', 1),
-          (53, '".$slugprefix."shortlisted-jobs', 'shortlisted-jobs', 'shortlistedjobs', 'slug for shortlisted jobs page', 'Shortlisted Jobs [separator] [sitename]', 'Shortlisted Jobs [separator] [sitename]', 'shortlistedjobs', '[separator],[sitename]', 1),
-          (54, '".$slugprefix."jobseeker-purchase-history', 'jobseeker-purchase-history', 'jobseekerpurchasehistory', 'slug for job seeker purchase history page', 'Job Seeker Purchase History [separator] [sitename]', 'Job Seeker Purchase History [separator] [sitename]', 'credits', '[separator],[sitename]', 1),
-          (55, '".$slugprefix."jobseeker-rate-list', 'jobseeker-rate-list', 'ratelistjobseeker', 'slug for rate list job seeker page', 'Job Seeker Rate List [separator] [sitename]', 'Job Seeker Rate List [separator] [sitename]', 'credits', '[separator],[sitename]', 1),
-          (56, '".$slugprefix."employer-rate-list', 'employer-rate-list', 'ratelistemployer', 'slug for rate list employer page', 'Employer Rate List [separator] [sitename]', 'Employer Rate List [separator] [sitename]', 'credits', '[separator],[sitename]', 1),
-          (57, '".$slugprefix."jobseeker-credits-log', 'jobseeker-credits-log', 'jobseekercreditslog', 'slug for job seeker credits log page', 'Job Seeker Credits Log [separator] [sitename]', 'Job Seeker Credits Log [separator] [sitename]', 'credits', '[separator],[sitename]', 1),
-          (58, '".$slugprefix."employer-credits-log', 'employer-credits-log', 'employercreditslog', 'slug for employer credits log page', 'Employer Credits Log [separator] [sitename]', 'Employer Credits Log [separator] [sitename]', 'credits', '[separator],[sitename]', 1),
-          (59, '".$slugprefix."job-categories', 'job-categories', 'jobsbycategories', 'slug for jobs by categories page', 'Job By Categories [separator] [sitename]', 'Job By Categories [separator] [sitename]', 'category', '[separator],[sitename]', 1),
-          (60, '".$slugprefix."newest-jobs', 'newest-jobs', 'newestjobs', 'slug for newest jobs page', 'Newest Jobs [separator] [sitename]', 'Newest Jobs [separator] [sitename]', 'job', '[separator],[sitename]', 1),
-          (61, '".$slugprefix."job-by-types', 'job-by-types', 'jobsbytypes', 'slug for jobs by types page', 'Job By Types [separator] [sitename]', 'Job By Types [separator] [sitename]', 'job', '[separator],[sitename]', 1),
-          (64, '".$slugprefix."jobs-by-cities', 'jobs-by-cities', 'jobsbycities', 'slug for jobs by cities page', 'Jobs By Cities [separator] [sitename]', 'Jobs By Cities [separator] [sitename]', 'job', '[separator],[sitename]', 1),
-          (65, '".$slugprefix."resume-pdf', 'resume-pdf', 'pdf', 'slug for employer resume pdf', 'Resume PDF [separator] [sitename]', 'Resume PDF [separator] [sitename]', 'resume', '[separator],[sitename]', 1),
-          (67, '".$slugprefix."my-invoices', 'my-invoices', 'myinvoices', 'slug for new in wp job portal page', 'My Invoices [separator] [sitename]', 'My Invoices [separator] [sitename]', 'credits', '[separator],[sitename]', 1),
-          (69, '".$slugprefix."my-packages', 'my-packages', 'purchasehistory', 'slug for new in wp job portal page', 'My Packages [separator] [sitename]', 'My Packages [separator] [sitename]', 'credits', '[separator],[sitename]', 1),
-          (70, '".$slugprefix."packages', 'packages', 'packages', 'slug for new in wp job portal page', 'Packages [separator] [sitename]', 'Packages [separator] [sitename]', 'credits', '[separator],[sitename]', 1),
-          (71, '".$slugprefix."my-subscriptions', 'my-subscriptions', 'mysubscriptions', 'slug for new in wp job portal page', 'My Subscriptions [separator] [sitename]', 'My Subscriptions [separator] [sitename]', 'credits', '[separator],[sitename]', 1),
-          (72, '".$slugprefix."edit-profile', 'edit-profile', 'formprofile', 'Slug for edit Profile', 'Edit Profile [separator] [sitename]', 'Edit Profile [separator] [sitename]', 'wpjobportal', '[separator],[sitename]', 1),
-          (75, '".$slugprefix."resume-print', 'resume-print', 'printresume', '', 'Resume Print [separator] [sitename]', 'Resume Print [separator] [sitename]', 'resume', '[separator],[sitename]', NULL),
-          (78, '".$slugprefix."company-payment', 'company-payment', 'paycompany', '', 'Company Payment [separator] [sitename]', 'Company Payment [separator] [sitename]', 'credits', '[separator],[sitename]', NULL),
-          (80, '".$slugprefix."featuredcompany-payment', 'featuredcompany-payment', 'payfeaturedcompany', '', 'Featured Company Payment [separator] [sitename]', 'Featured Company Payment [separator] [sitename]', 'credits', '[separator],[sitename]', NULL),
-          (81, '".$slugprefix."department-payment', 'department-payment', 'paydepartment', '', 'Department Payment [separator] [sitename]', 'Department Payment [separator] [sitename]', 'credits', '[separator],[sitename]', 1),
-          (82, '".$slugprefix."featuredjob-payment', 'featuredjob-payment', 'payfeaturedjob', '', 'Featured Job Payment [separator] [sitename]', 'Featured Job Payment [separator] [sitename]', 'credits', '[separator],[sitename]', NULL),
-          (83, '".$slugprefix."job-payment', 'job-payment', 'payjob', '', 'Job Payment [separator] [sitename]', 'Job Payment [separator] [sitename]', 'credits', '[separator],[sitename]', NULL),
-          (84, '".$slugprefix."featuredresume-payment', 'featuredresume-payment', 'payfeaturedresume', '', 'Featured Resume Payment [separator] [sitename]', 'Featured Resume Payment [separator] [sitename]', 'credits', '[separator],[sitename]', NULL),
-          (85, '".$slugprefix."jobapply-payment', 'jobapply-payment', 'payjobapply', '', 'Job Apply Payment [separator] [sitename]', 'Job Apply Payment [separator] [sitename]', 'credits', '[separator],[sitename]', NULL),
-          (86, '".$slugprefix."resume-payment', 'resume-payment', 'payresume', '', 'Resume Payment [separator] [sitename]', 'Resume Payment [separator] [sitename]', 'credits', '[separator],[sitename]', NULL),
-          (87, '".$slugprefix."newest-jobs', 'newest-jobs', 'newestjobs', '1', 'Newest Jobs [separator] [sitename]', 'Newest Jobs [separator] [sitename]', 'job', '[separator],[sitename]', NULL),
-          (88, '".$slugprefix."resumesavesearch-payment', 'resumesavesearch-payment', 'payresumesearch', '', 'Resume Save Search Payment [separator] [sitename]', 'Resume Save Search Payment [separator] [sitename]', 'credits', '[separator],[sitename]', NULL),
-          (89, '".$slugprefix."my-coverletters', 'my-coverletters', 'mycoverletters', 'slug for my coverletters page', 'My Cover Letters [separator] [sitename]', 'My Cover Letters [separator] [sitename]', 'coverletter', '[separator],[sitename]', 1),
-          (90, '".$slugprefix."add-coverletter', 'add-coverletter', 'addcoverletter', 'slug for add coverletter page', 'Add Cover Letter [separator] [sitename]', 'Add Cover Letter [separator] [sitename]', 'coverletter', '[separator],[sitename]', 1),
-          (91, '".$slugprefix."coverletter', 'coverletter', 'viewcoverletter', 'slug for view coverletter page', 'Cover Letter Information [separator] [sitename]', 'Cover Letter Information [separator] [sitename]', 'coverletter', '[separator],[sitename]', 1),
-          (92, '".$slugprefix."coverletter-payment', 'coverletter-payment', 'paycoverletter', '', 'Cover Letter Payment [separator] [sitename]', 'Cover Letter Payment [separator] [sitename]', 'credits', '[separator],[sitename]', 1);
+          (1, '".$wpjobportal_slugprefix."new-in-wpjobportal', 'new-in-wpjobportal', 'newinwpjobportal', 'slug for new in wp job portal page', 'New In WP Job Portal [separator] [sitename]', 'New In WP Job Portal [separator] [sitename]', 'wpjobportal', '[separator],[sitename]', 1),
+          (2, '".$wpjobportal_slugprefix."wpjobportal-login', 'wpjobportal-login', 'login', 'slug for login page', 'WP Job Portal Login [separator] [sitename]', 'WP Job Portal Login [separator] [sitename]', 'wpjobportal', '[separator],[sitename]', 1),
+          (3, '".$wpjobportal_slugprefix."jobseeker-control-panel', 'jobseeker-control-panel', 'controlpanel', 'slug for jobseeker control panel', 'Jobseeker Control Panel [separator] [sitename]', 'Jobseeker Control Panel [separator] [sitename]', 'jobseeker', '[separator],[sitename]', 1),
+          (4, '".$wpjobportal_slugprefix."employer-control-panel', 'employer-control-panel', 'controlpanel', 'slug for employer control panel', 'Employer Control Panel [separator] [sitename]', 'Employer Control Panel [separator] [sitename]', 'employer', '[separator],[sitename]', 1),
+          (5, '".$wpjobportal_slugprefix."jobseeker-my-stats', 'jobseeker-my-stats', 'mystats', 'slug for job seeker my stats page', 'Jobseeker My Stats [separator] [sitename]', 'Jobseeker My Stats [separator] [sitename]', 'jobseeker', '[separator],[sitename]', 1),
+          (6, '".$wpjobportal_slugprefix."employer-my-stats', 'employer-my-stats', 'mystats', 'slug for employer my stats page', 'Employer My Stats [separator] [sitename]', 'Employer My Stats [separator] [sitename]', 'employer', '[separator],[sitename]', 1),
+          (7, '".$wpjobportal_slugprefix."resumes', 'resumes', 'resumes', 'slug for resume main listing page', 'Resumes [separator] [sitename]', 'Resumes [separator] [sitename]', 'resume', '[separator],[sitename]', 1),
+          (8, '".$wpjobportal_slugprefix."jobs', 'jobs', 'jobs', 'slug for job main listing page', 'Jobs [separator] [sitename]', 'Jobs [separator] [sitename]', 'job', '[separator],[sitename]', 1),
+          (9, '".$wpjobportal_slugprefix."my-companies', 'my-companies', 'mycompanies', 'slug for my companies page', 'My Companies [separator] [sitename]', 'My Companies [separator] [sitename]', 'company', '[separator],[sitename]', 1),
+          (10, '".$wpjobportal_slugprefix."add-company', 'add-company', 'addcompany', 'slug for add company page', 'Add Company [separator] [sitename]', 'Add Company [separator] [sitename]', 'company', '[separator],[sitename]', 1),
+          (11, '".$wpjobportal_slugprefix."my-jobs', 'my-jobs', 'myjobs', 'slug for my jobs page', 'My Jobs [separator] [sitename]', 'My Jobs [separator] [sitename]', 'job', '[separator],[sitename]', 1),
+          (12, '".$wpjobportal_slugprefix."add-job', 'add-job', 'addjob', 'slug for add job page', 'Add Job [separator] [sitename]', 'Add Job [separator] [sitename]', 'job', '[separator],[sitename]', 1),
+          (13, '".$wpjobportal_slugprefix."my-departments', 'my-departments', 'mydepartments', 'slug for my departments page', 'My Departments [separator] [sitename]', 'My Departments [separator] [sitename]', 'department', '[separator],[sitename]', 1),
+          (14, '".$wpjobportal_slugprefix."add-department', 'add-department', 'adddepartment', 'slug for add department page', 'Add Department [separator] [sitename]', 'Add Department [separator] [sitename]', 'department', '[separator],[sitename]', 1),
+          (15, '".$wpjobportal_slugprefix."department', 'department', 'viewdepartment', 'slug for view department page', 'Department Information [separator] [sitename]', 'Department Information [separator] [sitename]', 'department', '[separator],[sitename]', 1),
+          (17, '".$wpjobportal_slugprefix."company', 'company', 'viewcompany', 'slug for view company page', '[name] [location] [separator] [sitename]', '[name] [location] [separator] [sitename]', 'company', '[name],[location],[separator],[sitename]', 1),
+          (18, '".$wpjobportal_slugprefix."resume', 'resume', 'viewresume', 'slug for view resume page', '[applicationtitle] [jobcategory] [separator] [sitename]', '[applicationtitle] [jobcategory] [separator] [sitename]', 'resume', '[applicationtitle],[jobcategory],[jobtype],[location],[separator],[sitename]', 1),
+          (19, '".$wpjobportal_slugprefix."job', 'job', 'viewjob', 'slug for view job page', '[title] [location] [separator] [sitename]', '[title] [location] [separator] [sitename]', 'job', '[title],[companyname],[jobcategory],[jobtype],[location],[separator],[sitename]', 1),
+          (20, '".$wpjobportal_slugprefix."my-folders', 'my-folders', 'myfolders', 'slug for my folders page', 'My Folders [separator] [sitename]', 'My Folders [separator] [sitename]', 'folder', '[separator],[sitename]', 1),
+          (21, '".$wpjobportal_slugprefix."add-folder', 'add-folder', 'addfolder', 'slug for add folder page', 'Add Folder [separator] [sitename]', 'Add Folder [separator] [sitename]', 'folder', '[separator],[sitename]', 1),
+          (22, '".$wpjobportal_slugprefix."folder', 'folder', 'viewfolder', 'slug for view folder page', 'Folder Information [separator] [sitename]', 'Folder Information [separator] [sitename]', 'folder', '[separator],[sitename]', 1),
+          (23, '".$wpjobportal_slugprefix."folder-resumes', 'folder-resumes', 'folderresume', 'slug for folder resume page', 'Folder Resumes [separator] [sitename]', 'Folder Resumes [separator] [sitename]', 'folder', '[separator],[sitename]', 1),
+          (24, '".$wpjobportal_slugprefix."jobseeker-messages', 'jobseeker-messages', 'jobseekermessages', 'slug for job seeker messages page', 'Jobseeker Messages [separator] [sitename]', 'Jobseeker Messages [separator] [sitename]', 'message', '[separator],[sitename]', 1),
+          (25, '".$wpjobportal_slugprefix."employer-messages', 'employer-messages', 'employermessages', 'slug for employer messages page', 'Employer Messages [separator] [sitename]', 'Employer Messages [separator] [sitename]', 'message', '[separator],[sitename]', 1),
+          (26, '".$wpjobportal_slugprefix."message', 'message', 'sendmessage', 'slug for send message page', 'Message [separator] [sitename]', 'Message [separator] [sitename]', 'message', '[separator],[sitename]', 1),
+          (27, '".$wpjobportal_slugprefix."job-messages', 'job-messages', 'jobmessages', 'slug for job messages page', 'Job Messages [separator] [sitename]', 'Job Messages [separator] [sitename]', 'message', '[separator],[sitename]', 1),
+          (29, '".$wpjobportal_slugprefix."messages', 'messages', 'messages', 'slug for messages page', 'Messages [separator] [sitename]', 'Messages [separator] [sitename]', 'message', '[separator],[sitename]', 1),
+          (30, '".$wpjobportal_slugprefix."resume-search', 'resume-search', 'resumesearch', 'slug for resume search page', 'Resume Search [separator] [sitename]', 'Resume Search [separator] [sitename]', 'resumesearch', '[separator],[sitename]', 1),
+          (31, '".$wpjobportal_slugprefix."resume-save-searches', 'resume-save-searches', 'resumesavesearch', 'slug for resume save search page', 'Resume Save Searches [separator] [sitename]', 'Resume Save Searches [separator] [sitename]', 'resumesearch', '[separator],[sitename]', 1),
+          (32, '".$wpjobportal_slugprefix."resume-categories', 'resume-categories', 'resumebycategory', 'slug for resume by category page', 'Resume By Categories [separator] [sitename]', 'Resume By Categories [separator] [sitename]', 'resume', '[separator],[sitename]', 1),
+          (33, '".$wpjobportal_slugprefix."resume-rss', 'resume-rss', 'resumerss', 'slug for resume rss page', 'Resume Rss [separator] [sitename]', 'Resume Rss [separator] [sitename]', 'rss', '[separator],[sitename]', 1),
+          (34, '".$wpjobportal_slugprefix."employer-credits', 'employer-credits', 'employercredits', 'slug for employer credits page', 'Employer Credits [separator] [sitename]', 'Employer Credits [separator] [sitename]', 'credtis', '[separator],[sitename]', 1),
+          (35, '".$wpjobportal_slugprefix."jobseeker-credits', 'jobseeker-credits', 'jobseekercredits', 'slug for job seeker credits page', 'Jobseeker Credits [separator] [sitename]', 'Jobseeker Credits [separator] [sitename]', 'credtis', '[separator],[sitename]', 1),
+          (36, '".$wpjobportal_slugprefix."employer-purchase-history', 'employer-purchase-history', 'employerpurchasehistory', 'slug for employer purchase history page', 'Employer Purchase History [separator] [sitename]', 'Employer Purchase History [separator] [sitename]', 'credtis', '[separator],[sitename]', 1),
+          (37, '".$wpjobportal_slugprefix."employer-my-stats', 'employer-my-stats', 'employermystats', 'employer my stats page', 'Employer My Stats [separator] [sitename]', 'Employer My Stats [separator] [sitename]', 'employer', '[separator],[sitename]', 1),
+          (38, '".$wpjobportal_slugprefix."jobseker-my-stats', 'jobseker-my-stats', 'jobseekerstats', 'slug for job seeker stats page', 'Jobseker My Stats [separator] [sitename]', 'Jobseker My Stats [separator] [sitename]', 'jobseeker', '[separator],[sitename]', 1),
+          (39, '".$wpjobportal_slugprefix."employer-register', 'employer-register', 'regemployer', 'slug for register as employer page', 'Employer Registration [separator] [sitename]', 'Employer Registration [separator] [sitename]', 'employer', '[separator],[sitename]', 1),
+          (40, '".$wpjobportal_slugprefix."jobseeker-register', 'jobseeker-register', 'regjobseeker', 'reg job seeker page', 'Job Seeker Registration [separator] [sitename]', 'Job Seeker Registration [separator] [sitename]', 'jobseeker', '[separator],[sitename]', 1),
+          (41, '".$wpjobportal_slugprefix."user-register', 'user-register', 'userregister', 'slug for user register page', 'User Registration [separator] [sitename]', 'User Registration [separator] [sitename]', 'wpjobportal', '[separator],[sitename]', 1),
+          (42, '".$wpjobportal_slugprefix."add-resume', 'add-resume', 'addresume', 'slug for add resume page', 'Add Resume [separator] [sitename]', 'Add Resume [separator] [sitename]', 'resume', '[separator],[sitename]', 1),
+          (43, '".$wpjobportal_slugprefix."my-resumes', 'my-resumes', 'myresumes', 'slug for my resumes page', 'My Resumes [separator] [sitename]', 'My Resumes [separator] [sitename]', 'resume', '[separator],[sitename]', 1),
+          (45, '".$wpjobportal_slugprefix."companies', 'companies', 'companies', 'slug for companies page', 'Companies [separator] [sitename]', 'Companies [separator] [sitename]', 'company', '[separator],[sitename]', 1),
+          (46, '".$wpjobportal_slugprefix."my-applied-jobs', 'my-applied-jobs', 'myappliedjobs', 'slug for my applied jobs page', 'My Applied Jobs [separator] [sitename]', 'My Applied Jobs [separator] [sitename]', 'jobapply', '[separator],[sitename]', 1),
+          (47, '".$wpjobportal_slugprefix."job-applied-resume', 'job-applied-resume', 'jobappliedresume', 'slug for job applied resume page', 'Job Applied Resume [separator] [sitename]', 'Job Applied Resume [separator] [sitename]', 'jobapply', '[separator],[sitename]', 1),
+          (49, '".$wpjobportal_slugprefix."job-search', 'job-search', 'jobsearch', 'slug for job search page', 'Job Search [separator] [sitename]', 'Job Search [separator] [sitename]', 'jobsearch', '[separator],[sitename]', 1),
+          (50, '".$wpjobportal_slugprefix."job-save-searches', 'job-save-searches', 'jobsavesearch', 'slug for job save search page', 'Job Save Searches [separator] [sitename]', 'Job Save Searches [separator] [sitename]', 'jobsearch', '[separator],[sitename]', 1),
+          (51, '".$wpjobportal_slugprefix."job-alert', 'job-alert', 'jobalert', 'slug for job alert page', 'Job Alert [separator] [sitename]', 'Job Alert [separator] [sitename]', 'jobalert', '[separator],[sitename]', 1),
+          (52, '".$wpjobportal_slugprefix."job-rss', 'job-rss', 'jobrss', 'slug for job rss page', 'Job Rss [separator] [sitename]', 'Job Rss [separator] [sitename]', 'rss', '[separator],[sitename]', 1),
+          (53, '".$wpjobportal_slugprefix."shortlisted-jobs', 'shortlisted-jobs', 'shortlistedjobs', 'slug for shortlisted jobs page', 'Shortlisted Jobs [separator] [sitename]', 'Shortlisted Jobs [separator] [sitename]', 'shortlistedjobs', '[separator],[sitename]', 1),
+          (54, '".$wpjobportal_slugprefix."jobseeker-purchase-history', 'jobseeker-purchase-history', 'jobseekerpurchasehistory', 'slug for job seeker purchase history page', 'Job Seeker Purchase History [separator] [sitename]', 'Job Seeker Purchase History [separator] [sitename]', 'credits', '[separator],[sitename]', 1),
+          (55, '".$wpjobportal_slugprefix."jobseeker-rate-list', 'jobseeker-rate-list', 'ratelistjobseeker', 'slug for rate list job seeker page', 'Job Seeker Rate List [separator] [sitename]', 'Job Seeker Rate List [separator] [sitename]', 'credits', '[separator],[sitename]', 1),
+          (56, '".$wpjobportal_slugprefix."employer-rate-list', 'employer-rate-list', 'ratelistemployer', 'slug for rate list employer page', 'Employer Rate List [separator] [sitename]', 'Employer Rate List [separator] [sitename]', 'credits', '[separator],[sitename]', 1),
+          (57, '".$wpjobportal_slugprefix."jobseeker-credits-log', 'jobseeker-credits-log', 'jobseekercreditslog', 'slug for job seeker credits log page', 'Job Seeker Credits Log [separator] [sitename]', 'Job Seeker Credits Log [separator] [sitename]', 'credits', '[separator],[sitename]', 1),
+          (58, '".$wpjobportal_slugprefix."employer-credits-log', 'employer-credits-log', 'employercreditslog', 'slug for employer credits log page', 'Employer Credits Log [separator] [sitename]', 'Employer Credits Log [separator] [sitename]', 'credits', '[separator],[sitename]', 1),
+          (59, '".$wpjobportal_slugprefix."job-categories', 'job-categories', 'jobsbycategories', 'slug for jobs by categories page', 'Job By Categories [separator] [sitename]', 'Job By Categories [separator] [sitename]', 'category', '[separator],[sitename]', 1),
+          (60, '".$wpjobportal_slugprefix."newest-jobs', 'newest-jobs', 'newestjobs', 'slug for newest jobs page', 'Newest Jobs [separator] [sitename]', 'Newest Jobs [separator] [sitename]', 'job', '[separator],[sitename]', 1),
+          (61, '".$wpjobportal_slugprefix."job-by-types', 'job-by-types', 'jobsbytypes', 'slug for jobs by types page', 'Job By Types [separator] [sitename]', 'Job By Types [separator] [sitename]', 'job', '[separator],[sitename]', 1),
+          (64, '".$wpjobportal_slugprefix."jobs-by-cities', 'jobs-by-cities', 'jobsbycities', 'slug for jobs by cities page', 'Jobs By Cities [separator] [sitename]', 'Jobs By Cities [separator] [sitename]', 'job', '[separator],[sitename]', 1),
+          (65, '".$wpjobportal_slugprefix."resume-pdf', 'resume-pdf', 'pdf', 'slug for employer resume pdf', 'Resume PDF [separator] [sitename]', 'Resume PDF [separator] [sitename]', 'resume', '[separator],[sitename]', 1),
+          (67, '".$wpjobportal_slugprefix."my-invoices', 'my-invoices', 'myinvoices', 'slug for new in wp job portal page', 'My Invoices [separator] [sitename]', 'My Invoices [separator] [sitename]', 'credits', '[separator],[sitename]', 1),
+          (69, '".$wpjobportal_slugprefix."my-packages', 'my-packages', 'purchasehistory', 'slug for new in wp job portal page', 'My Packages [separator] [sitename]', 'My Packages [separator] [sitename]', 'credits', '[separator],[sitename]', 1),
+          (70, '".$wpjobportal_slugprefix."packages', 'packages', 'packages', 'slug for new in wp job portal page', 'Packages [separator] [sitename]', 'Packages [separator] [sitename]', 'credits', '[separator],[sitename]', 1),
+          (71, '".$wpjobportal_slugprefix."my-subscriptions', 'my-subscriptions', 'mysubscriptions', 'slug for new in wp job portal page', 'My Subscriptions [separator] [sitename]', 'My Subscriptions [separator] [sitename]', 'credits', '[separator],[sitename]', 1),
+          (72, '".$wpjobportal_slugprefix."edit-profile', 'edit-profile', 'formprofile', 'Slug for edit Profile', 'Edit Profile [separator] [sitename]', 'Edit Profile [separator] [sitename]', 'wpjobportal', '[separator],[sitename]', 1),
+          (75, '".$wpjobportal_slugprefix."resume-print', 'resume-print', 'printresume', '', 'Resume Print [separator] [sitename]', 'Resume Print [separator] [sitename]', 'resume', '[separator],[sitename]', NULL),
+          (78, '".$wpjobportal_slugprefix."company-payment', 'company-payment', 'paycompany', '', 'Company Payment [separator] [sitename]', 'Company Payment [separator] [sitename]', 'credits', '[separator],[sitename]', NULL),
+          (80, '".$wpjobportal_slugprefix."featuredcompany-payment', 'featuredcompany-payment', 'payfeaturedcompany', '', 'Featured Company Payment [separator] [sitename]', 'Featured Company Payment [separator] [sitename]', 'credits', '[separator],[sitename]', NULL),
+          (81, '".$wpjobportal_slugprefix."department-payment', 'department-payment', 'paydepartment', '', 'Department Payment [separator] [sitename]', 'Department Payment [separator] [sitename]', 'credits', '[separator],[sitename]', 1),
+          (82, '".$wpjobportal_slugprefix."featuredjob-payment', 'featuredjob-payment', 'payfeaturedjob', '', 'Featured Job Payment [separator] [sitename]', 'Featured Job Payment [separator] [sitename]', 'credits', '[separator],[sitename]', NULL),
+          (83, '".$wpjobportal_slugprefix."job-payment', 'job-payment', 'payjob', '', 'Job Payment [separator] [sitename]', 'Job Payment [separator] [sitename]', 'credits', '[separator],[sitename]', NULL),
+          (84, '".$wpjobportal_slugprefix."featuredresume-payment', 'featuredresume-payment', 'payfeaturedresume', '', 'Featured Resume Payment [separator] [sitename]', 'Featured Resume Payment [separator] [sitename]', 'credits', '[separator],[sitename]', NULL),
+          (85, '".$wpjobportal_slugprefix."jobapply-payment', 'jobapply-payment', 'payjobapply', '', 'Job Apply Payment [separator] [sitename]', 'Job Apply Payment [separator] [sitename]', 'credits', '[separator],[sitename]', NULL),
+          (86, '".$wpjobportal_slugprefix."resume-payment', 'resume-payment', 'payresume', '', 'Resume Payment [separator] [sitename]', 'Resume Payment [separator] [sitename]', 'credits', '[separator],[sitename]', NULL),
+          (87, '".$wpjobportal_slugprefix."newest-jobs', 'newest-jobs', 'newestjobs', '1', 'Newest Jobs [separator] [sitename]', 'Newest Jobs [separator] [sitename]', 'job', '[separator],[sitename]', NULL),
+          (88, '".$wpjobportal_slugprefix."resumesavesearch-payment', 'resumesavesearch-payment', 'payresumesearch', '', 'Resume Save Search Payment [separator] [sitename]', 'Resume Save Search Payment [separator] [sitename]', 'credits', '[separator],[sitename]', NULL),
+          (89, '".$wpjobportal_slugprefix."my-coverletters', 'my-coverletters', 'mycoverletters', 'slug for my coverletters page', 'My Cover Letters [separator] [sitename]', 'My Cover Letters [separator] [sitename]', 'coverletter', '[separator],[sitename]', 1),
+          (90, '".$wpjobportal_slugprefix."add-coverletter', 'add-coverletter', 'addcoverletter', 'slug for add coverletter page', 'Add Cover Letter [separator] [sitename]', 'Add Cover Letter [separator] [sitename]', 'coverletter', '[separator],[sitename]', 1),
+          (91, '".$wpjobportal_slugprefix."coverletter', 'coverletter', 'viewcoverletter', 'slug for view coverletter page', 'Cover Letter Information [separator] [sitename]', 'Cover Letter Information [separator] [sitename]', 'coverletter', '[separator],[sitename]', 1),
+          (92, '".$wpjobportal_slugprefix."coverletter-payment', 'coverletter-payment', 'paycoverletter', '', 'Cover Letter Payment [separator] [sitename]', 'Cover Letter Payment [separator] [sitename]', 'credits', '[separator],[sitename]', 1);
 
           ";
           wpjobportal::$_db->query($query);

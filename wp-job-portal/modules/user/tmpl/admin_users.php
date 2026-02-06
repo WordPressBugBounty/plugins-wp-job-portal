@@ -1,6 +1,6 @@
 <?php 
     if (!defined('ABSPATH')) die('Restricted Access');
-    if(!WPJOBPORTALincluder::getTemplate('templates/admin/header',array('module' => 'user'))){
+    if(!WPJOBPORTALincluder::getTemplate('templates/admin/header',array('wpjobportal_module' => 'user'))){
         return;
     }
 ?>   
@@ -8,7 +8,7 @@
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
         jQuery(document).ready(function () {
             jQuery('span#showhidefilter').click(function (e) {
                 e.preventDefault();
@@ -50,13 +50,13 @@
         }
 
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>
 <!-- main wrapper -->
 <div id="wpjobportaladmin-wrapper">
     <!-- left menu -->
     <div id="wpjobportaladmin-leftmenu">
-        <?php WPJOBPORTALincluder::getTemplate('templates/admin/leftmenue',array('module' => 'user')); ?>
+        <?php WPJOBPORTALincluder::getTemplate('templates/admin/leftmenue',array('wpjobportal_module' => 'user')); ?>
     </div>
     <div id="wpjobportaladmin-data">
         <!-- top bar -->
@@ -65,7 +65,7 @@
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_html(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -75,12 +75,12 @@
             </div>    
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_html(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_html(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -91,7 +91,7 @@
             </div>    
         </div>
         <!-- top head -->
-        <?php WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('module' => 'user' ,'layouts' => 'users')); ?>
+        <?php WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('wpjobportal_module' => 'user' ,'wpjobportal_layouts' => 'users')); ?>
         <!-- page content -->
         <div id="wpjobportal-admin-wrapper" class="p0 bg-n bs-n">
             <!-- filter form -->
@@ -100,16 +100,16 @@
             </form>
             <?php
                 if (!empty(wpjobportal::$_data[0])) {
-                    $wpdir = wp_upload_dir();
-                    foreach (wpjobportal::$_data[0] AS $user) {
-                        WPJOBPORTALincluder::getTemplate('user/views/admin/main',array('user' => $user));
+                    $wpjobportal_wpdir = wp_upload_dir();
+                    foreach (wpjobportal::$_data[0] AS $wpjobportal_user) {
+                        WPJOBPORTALincluder::getTemplate('user/views/admin/main',array('wpjobportal_user' => $wpjobportal_user));
                     }
                     if (wpjobportal::$_data[1]) {
-                        WPJOBPORTALincluder::getTemplate('templates/admin/pagination',array('module' => 'user','pagination' => wpjobportal::$_data[1]));
+                        WPJOBPORTALincluder::getTemplate('templates/admin/pagination',array('wpjobportal_module' => 'user','pagination' => wpjobportal::$_data[1]));
                     }
                 } else {
-                    $msg = esc_html(__('No record found','wp-job-portal'));
-                    WPJOBPORTALlayout::getNoRecordFound($msg);
+                    $wpjobportal_msg = esc_html(__('No record found','wp-job-portal'));
+                    WPJOBPORTALlayout::getNoRecordFound($wpjobportal_msg);
                 }
             ?>
         </div>

@@ -4,43 +4,43 @@ if (!defined('ABSPATH'))
 ?>
 <div class="wjportal-main-up-wrapper">
 <?php
-if ( !WPJOBPORTALincluder::getTemplate('templates/header', array('module' => 'job') )) {
+if ( !WPJOBPORTALincluder::getTemplate('templates/header', array('wpjobportal_module' => 'job') )) {
     return;
 }
 if (wpjobportal::$_error_flag == null) {
-    $job = isset(wpjobportal::$_data[0]) ? wpjobportal::$_data[0]  : null;
-    $jobfields = wpjobportal::$_data[2];
+    $wpjobportal_job = isset(wpjobportal::$_data[0]) ? wpjobportal::$_data[0]  : null;
+    $wpjobportal_jobfields = wpjobportal::$_data[2];
     
     /* Member Package Pop-up */
-    function getDataRow($title, $value) {
-        $html = '<div class="wjportal-job-data">
+    function wpjobportal_getDataRow($title, $wpjobportal_value) {
+        $wpjobportal_html = '<div class="wjportal-job-data">
                     <span class="wjportal-job-data-tit">' . $title . ': </span>
-                    <span class="wjportal-job-data-val">' . $value . '</span>
+                    <span class="wjportal-job-data-val">' . $wpjobportal_value . '</span>
                 </div>';
-        return $html;
+        return $wpjobportal_html;
     }
 
-    function getHeading2($value) {
-        $html = '<div class="heading2">' . $value . '</div>';
-        return $html;
+    function wpjobportal_getHeading2($wpjobportal_value) {
+        $wpjobportal_html = '<div class="heading2">' . $wpjobportal_value . '</div>';
+        return $wpjobportal_html;
     }
 
-    function getPeragraph($value) {
-        $html = '<div class="peragraph">' . $value . '</div>';
-        return $html;
+    function wpjobportal_getPeragraph($wpjobportal_value) {
+        $wpjobportal_html = '<div class="peragraph">' . $wpjobportal_value . '</div>';
+        return $wpjobportal_html;
     }
-    echo '<meta property="description" content="'.esc_attr($job->metadescription).'"/>';
-    echo '<meta property="keywords" content="'.esc_attr($job->metakeywords).'"/>';
+    echo '<meta property="description" content="'.esc_attr($wpjobportal_job->metadescription).'"/>';
+    echo '<meta property="keywords" content="'.esc_attr($wpjobportal_job->metakeywords).'"/>';
 
     // published fields title array to handle visibilty on layouts
-    wpjobportal::$_data['published_fields'] = array();
-    foreach (wpjobportal::$_data[2] as $key => $value) {
-        wpjobportal::$_data['published_fields'][$key] = $value->fieldtitle;
+    wpjobportal::$wpjobportal_data['published_fields'] = array();
+    foreach (wpjobportal::$_data[2] as $wpjobportal_key => $wpjobportal_value) {
+        wpjobportal::$wpjobportal_data['published_fields'][$wpjobportal_key] = $wpjobportal_value->fieldtitle;
     }
 
     WPJOBPORTALincluder::getTemplate('job/views/frontend/viewjobdetail',array(
-        'job' => $job,
-        'jobfields' => $jobfields
+        'wpjobportal_job' => $wpjobportal_job,
+        'wpjobportal_jobfields' => $wpjobportal_jobfields
     ));
     ?>
     <?php

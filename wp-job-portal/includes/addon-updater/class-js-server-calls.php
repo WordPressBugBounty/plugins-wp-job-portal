@@ -4,104 +4,104 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class wpjobportalServerCalls extends WP_JOBPORTALUpdater{
+class wpjobportalServerCalls extends WPJOBPORTAL_JOBPORTALUpdater{
 
-	private static $server_url = 'https://wpjobportal.com/setup/index.php';
+	private static $wpjobportal_server_url = 'https://wpjobportal.com/setup/index.php';
 
-	public static function wpjobportalPluginUpdateCheck($token_arrray_json) {
-		$args = array(
+	public static function wpjobportalPluginUpdateCheck($wpjobportal_token_arrray_json) {
+		$wpjobportal_args = array(
 			'request' => 'pluginupdatecheck',
-			'token' => $token_arrray_json,
+			'token' => $wpjobportal_token_arrray_json,
 			'domain' => site_url()
 		);
 
-		$url = self::$server_url . '?' . http_build_query( $args, '', '&' );
-		$request = wp_remote_get($url);
+		$wpjobportal_url = self::$wpjobportal_server_url . '?' . http_build_query( $wpjobportal_args, '', '&' );
+		$wpjobportal_request = wp_remote_get($wpjobportal_url);
 
-		if ( is_wp_error( $request ) || wp_remote_retrieve_response_code( $request ) != 200 ) {
-			$error_message = 'pluginupdatecheck case returned error';
-			WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError($error_message);
+		if ( is_wp_error( $wpjobportal_request ) || wp_remote_retrieve_response_code( $wpjobportal_request ) != 200 ) {
+			$wpjobportal_error_message = 'pluginupdatecheck case returned error';
+			WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError($wpjobportal_error_message);
 			return false;
 		}
 
-		$response = wp_remote_retrieve_body( $request );
+		$response = wp_remote_retrieve_body( $wpjobportal_request );
 		$response = json_decode($response);
 
 		if ( is_object( $response ) ) {
 			return $response;
 		} else {
-			$error_message = 'pluginupdatecheck case returned data which was not correct';
-			WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError($error_message);
+			$wpjobportal_error_message = 'pluginupdatecheck case returned data which was not correct';
+			WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError($wpjobportal_error_message);
 			return false;
 		}
 	}
 
 	public static function wpjobportalPluginUpdateCheckFromCDN() {
 
-		$url = "https://d37svg59fxemmm.cloudfront.net/addonslatestversions.txt";
-		$request = wp_remote_get($url);
+		$wpjobportal_url = "https://d37svg59fxemmm.cloudfront.net/addonslatestversions.txt";
+		$wpjobportal_request = wp_remote_get($wpjobportal_url);
 
-		if ( is_wp_error( $request ) || wp_remote_retrieve_response_code( $request ) != 200 ) {
-			$error_message = 'pluginupdatecheck cdn case returned error';
-			WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError($error_message);
+		if ( is_wp_error( $wpjobportal_request ) || wp_remote_retrieve_response_code( $wpjobportal_request ) != 200 ) {
+			$wpjobportal_error_message = 'pluginupdatecheck cdn case returned error';
+			WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError($wpjobportal_error_message);
 			return false;
 		}
 
-		$response = wp_remote_retrieve_body( $request );
+		$response = wp_remote_retrieve_body( $wpjobportal_request );
 		$response = json_decode($response);
 
 		if ( is_object( $response ) ) {
 			return $response;
 		} else {
-			$error_message = 'pluginupdatecheck cdn case returned data which was not correct';
-			WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError($error_message);
+			$wpjobportal_error_message = 'pluginupdatecheck cdn case returned data which was not correct';
+			WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError($wpjobportal_error_message);
 			return false;
 		}
 	}
 
-	public static function wpjobportalGenerateToken($transaction_key,$addon_name) {
-		$args = array(
+	public static function wpjobportalGenerateToken($wpjobportal_transaction_key,$wpjobportal_addon_name) {
+		$wpjobportal_args = array(
 			'request' => 'generatetoken',
-			'transactionkey' => $transaction_key,
-			'productcode' => $addon_name,
+			'transactionkey' => $wpjobportal_transaction_key,
+			'productcode' => $wpjobportal_addon_name,
 			'domain' => site_url()
 		);
 
-		$url = self::$server_url . '?' . http_build_query( $args, '', '&' );
-		$request = wp_remote_get($url);
-		if ( is_wp_error( $request ) || wp_remote_retrieve_response_code( $request ) != 200 ) {
-			$error_message = 'generatetoken case returned error';
-			WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError($error_message);
-			return array('error'=>$error_message);
+		$wpjobportal_url = self::$wpjobportal_server_url . '?' . http_build_query( $wpjobportal_args, '', '&' );
+		$wpjobportal_request = wp_remote_get($wpjobportal_url);
+		if ( is_wp_error( $wpjobportal_request ) || wp_remote_retrieve_response_code( $wpjobportal_request ) != 200 ) {
+			$wpjobportal_error_message = 'generatetoken case returned error';
+			WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError($wpjobportal_error_message);
+			return array('error'=>$wpjobportal_error_message);
 		}
 
-		$response = wp_remote_retrieve_body( $request );
+		$response = wp_remote_retrieve_body( $wpjobportal_request );
 		$response = json_decode($response,true);
 
 		if ( is_array( $response ) ) {
 			return $response;
 		} else {
-			$error_message = 'generatetoken case returned data which was not correct';
-			WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError($error_message);
-			return array('error'=>$error_message);
+			$wpjobportal_error_message = 'generatetoken case returned data which was not correct';
+			WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError($wpjobportal_error_message);
+			return array('error'=>$wpjobportal_error_message);
 		}
 		return false;
 	}
 
 
 	public static function wpjobportalGetLatestVersions() {
-		$args = array(
+		$wpjobportal_args = array(
 				'request' => 'getlatestversions'
 			);
-		$request = wp_remote_get( 'https://wpjobportal.com/appsys/addoninfo/index.php' . '?' . http_build_query( $args, '', '&' ) );
+		$wpjobportal_request = wp_remote_get( 'https://wpjobportal.com/appsys/addoninfo/index.php' . '?' . http_build_query( $wpjobportal_args, '', '&' ) );
 
-		if ( is_wp_error( $request ) || wp_remote_retrieve_response_code( $request ) != 200 ) {
-			$error_message = 'getlatestversions case returned error';
-			WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError($error_message);
+		if ( is_wp_error( $wpjobportal_request ) || wp_remote_retrieve_response_code( $wpjobportal_request ) != 200 ) {
+			$wpjobportal_error_message = 'getlatestversions case returned error';
+			WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError($wpjobportal_error_message);
 			return false;
 		}
 
-		$response = wp_remote_retrieve_body( $request );
+		$response = wp_remote_retrieve_body( $wpjobportal_request );
 		// $response = array();
 		// $response['js-support-ticket-agent'] = '1.1.0';
 		// $response['js-support-ticket-actions'] = '1.1.0';
@@ -112,14 +112,14 @@ class wpjobportalServerCalls extends WP_JOBPORTALUpdater{
 		if ( is_array( $response ) ) {
 			return $response;
 		} else {
-			$error_message = 'getlatestversions case returned data which was not correct';
-			WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError($error_message);
+			$wpjobportal_error_message = 'getlatestversions case returned data which was not correct';
+			WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError($wpjobportal_error_message);
 			return false;
 		}
 	}
 
-	public static function wpjobportalPluginInformation( $args ) {
-		$defaults = array(
+	public static function wpjobportalPluginInformation( $wpjobportal_args ) {
+		$wpjobportal_defaults = array(
 			'request'        => 'plugininformation',
 			'plugin_slug'    => '',
 			'version'        => '',
@@ -127,23 +127,23 @@ class wpjobportalServerCalls extends WP_JOBPORTALUpdater{
 			'domain'          => site_url()
 		);
 
-		$args    = wp_parse_args( $args, $defaults );
-		$request = wp_remote_get( 'https://wpjobportal.com/appsys/addoninfo/index.php' . '?' . http_build_query( $args, '', '&' ) );
+		$wpjobportal_args    = wp_parse_args( $wpjobportal_args, $wpjobportal_defaults );
+		$wpjobportal_request = wp_remote_get( 'https://wpjobportal.com/appsys/addoninfo/index.php' . '?' . http_build_query( $wpjobportal_args, '', '&' ) );
 
-		if ( is_wp_error( $request ) || wp_remote_retrieve_response_code( $request ) != 200 ) {
-			$error_message = 'plugininformation case returned data error';
-			WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError($error_message);
+		if ( is_wp_error( $wpjobportal_request ) || wp_remote_retrieve_response_code( $wpjobportal_request ) != 200 ) {
+			$wpjobportal_error_message = 'plugininformation case returned data error';
+			WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError($wpjobportal_error_message);
 			return false;
 		}
-		$response = wp_remote_retrieve_body( $request );
+		$response = wp_remote_retrieve_body( $wpjobportal_request );
 
 		$response = json_decode($response);
 
 		if ( is_object( $response ) ) {
 			return $response;
 		} else {
-			$error_message = 'plugininformation case returned data which is not correct';
-			WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError($error_message);
+			$wpjobportal_error_message = 'plugininformation case returned data which is not correct';
+			WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError($wpjobportal_error_message);
 			return false;
 		}
 	}

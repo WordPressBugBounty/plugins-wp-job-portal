@@ -18,35 +18,35 @@ class WPJOBPORTALupdates {
             wp_filesystem( $creds );
         }
 
-        $installedversion = WPJOBPORTALupdates::getInstalledVersion();
-        if ($installedversion != $cversion) {
+        $wpjobportal_installedversion = WPJOBPORTALupdates::getInstalledVersion();
+        if ($wpjobportal_installedversion != $cversion) {
             $query = "REPLACE INTO `".wpjobportal::$_db->prefix."wj_portal_config` (`configname`, `configvalue`, `configfor`) VALUES ('last_version','','default');";
             wpjobportal::$_db->query($query); //old actual
             /*wpjobportal::$_db->show_errors(false);
             @wpjobportal::$_db->query($query);          */
             $query = "SELECT configvalue FROM `".wpjobportal::$_db->prefix."wj_portal_config` WHERE configname='versioncode'";
-            $versioncode = wpjobportal::$_db->get_var($query);
-            $versioncode = wpjobportalphplib::wpJP_str_replace('.','',$versioncode);
-            $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_config` SET configvalue = '".esc_sql($versioncode)."' WHERE configname = 'last_version';";
+            $wpjobportal_versioncode = wpjobportal::$_db->get_var($query);
+            $wpjobportal_versioncode = wpjobportalphplib::wpJP_str_replace('.','',$wpjobportal_versioncode);
+            $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_config` SET configvalue = '".esc_sql($wpjobportal_versioncode)."' WHERE configname = 'last_version';";
             wpjobportal::$_db->query($query);
-            $from = $installedversion + 1;
-            $to = $cversion;
-            if ($from != "" && $to != "") {
-                for ($i = $from; $i <= $to; $i++) {
-                    $installfile = WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/sql/' . $i . '.sql';
+            $from = $wpjobportal_installedversion + 1;
+            $wpjobportal_to = $cversion;
+            if ($from != "" && $wpjobportal_to != "") {
+                for ($wpjobportal_i = $from; $wpjobportal_i <= $wpjobportal_to; $wpjobportal_i++) {
+                    $wpjobportal_installfile = WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/sql/' . $wpjobportal_i . '.sql';
 
                     // Check if the file exists
-                    if ($wp_filesystem->exists($installfile)) {
-                        $delimiter = ';';
+                    if ($wp_filesystem->exists($wpjobportal_installfile)) {
+                        $wpjobportal_delimiter = ';';
                         // Get the file contents
-                        $file_contents = $wp_filesystem->get_contents($installfile);
+                        $file_contents = $wp_filesystem->get_contents($wpjobportal_installfile);
                         if ($file_contents !== false) {
                             $lines = explode("\n", $file_contents);
                             $query = array();
 
                             foreach ($lines as $line) {
                                 $query[] = $line;
-                                if (preg_match('~' . preg_quote($delimiter, '~') . '\s*$~iS', end($query)) === 1) {
+                                if (preg_match('~' . preg_quote($wpjobportal_delimiter, '~') . '\s*$~iS', end($query)) === 1) {
                                     $query_string = trim(implode('', $query));
                                     $query_string = wpjobportalphplib::wpJP_str_replace("#__", wpjobportal::$_db->prefix, $query_string);
                                     if (!empty($query_string)) {
@@ -69,12 +69,12 @@ class WPJOBPORTALupdates {
 
     static function getInstalledVersion() {
         $query = "SELECT configvalue FROM `" . wpjobportal::$_db->prefix . "wj_portal_config` WHERE configname = 'versioncode'";
-        $version = wpjobportal::$_db->get_var($query);
-        if (!$version)
-            $version = '100';
+        $wpjobportal_version = wpjobportal::$_db->get_var($query);
+        if (!$wpjobportal_version)
+            $wpjobportal_version = '100';
         else
-            $version = wpjobportalphplib::wpJP_str_replace('.', '', $version);
-        return $version;
+            $wpjobportal_version = wpjobportalphplib::wpJP_str_replace('.', '', $wpjobportal_version);
+        return $wpjobportal_version;
     }
 
 }

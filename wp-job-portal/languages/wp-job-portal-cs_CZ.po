@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Delete"
 msgstr "Vymazat"
@@ -10270,3 +10270,2472 @@ msgstr "Nemáte zbývající Serch"
 
 msgid "We would love to hear from You."
 msgstr "Rádi bychom od vás slyšeli."
+
+msgid "Welcome back!"
+msgstr "Vítejte zpět!"
+
+msgid "Here's a snapshot of your job board's performance."
+msgstr "Zde je snímek výkonu vaší pracovní desky."
+
+msgid "Customize Your Dashboard"
+msgstr "Přizpůsobte si řídicí panel"
+
+msgid "Core Components"
+msgstr "Základní komponenty"
+
+msgid "Quick Actions"
+msgstr "Rychlé akce"
+
+msgid "Recent Jobs"
+msgstr "Nedávná pracovní místa"
+
+msgid "Quick Stats"
+msgstr "Rychlé statistiky"
+
+msgid "Visualizations"
+msgstr "Vizualizace"
+
+msgid "Platform Growth"
+msgstr "Růst platformy"
+
+msgid "Jobs by Status"
+msgstr "Úlohy podle stavu"
+
+msgid "Top Categories"
+msgstr "Nejvyšší kategorie"
+
+msgid "Activity & System Feeds"
+msgstr "Krmivá aktivita a systém"
+
+msgid "Latest Applies"
+msgstr "Nejnovější platí"
+
+msgid "User & Financials"
+msgstr "Uživatel a finanční prostředky"
+
+msgid "Job Seekers"
+msgstr "Uchazeči o zaměstnání"
+
+msgid "Payments"
+msgstr "Platby"
+
+msgid "Reset to Defaults"
+msgstr "Resetovat na výchozí hodnoty"
+
+msgid "Apply Changes"
+msgstr "Použít změny"
+
+msgid "Approve Jobs"
+msgstr "Schválit pracovní místa"
+
+msgid "Manage Users"
+msgstr "Správa uživatelů"
+
+msgid "View Reports"
+msgstr "Zobrazit zprávy"
+
+msgid "Analytics"
+msgstr "Analytika"
+
+msgid "Manage Plans"
+msgstr "Spravujte plány"
+
+msgid "Platform Config"
+msgstr "Konfigurace platformy"
+
+msgid "Applications"
+msgstr "Aplikace"
+
+msgid "Pending Jobs"
+msgstr "Čekající na pracovní místa"
+
+msgid "New Applicants"
+msgstr "Noví uchazeči"
+
+msgid "Active Subscriptions"
+msgstr "Aktivní předplatné"
+
+msgid "Total Users"
+msgstr "Celkem uživatelé"
+
+msgid "Closed Jobs"
+msgstr "Uzavřené práce"
+
+msgid "Monthly Revenue"
+msgstr "Měsíční příjmy"
+
+msgid "Recent Job Postings"
+msgstr "Nedávné příspěvky na zaměstnání"
+
+msgid "Date Posted"
+msgstr "Datum zveřejněno"
+
+msgid "Actions"
+msgstr "Akce"
+
+msgid "No recent job postings found."
+msgstr "Nalezeny žádné nedávné příspěvky na zaměstnání."
+
+msgid "Top Job Categories"
+msgstr "Nejlepší kategorie pracovních míst"
+
+msgid "Latest Job Applies"
+msgstr "Platí nejnovější práce"
+
+msgid "applied for"
+msgstr "žádán"
+
+msgid "at"
+msgstr "na"
+
+msgid "View App"
+msgstr "Zobrazit aplikaci"
+
+msgid "No recent job applications to display."
+msgstr "Žádné nedávné aplikace práce, které se mají zobrazit."
+
+msgid "No new resumes have been added recently."
+msgstr "Nedávno nebyly přidány žádné nové životopisy."
+
+msgid "Latest Package Subscriptions"
+msgstr "Nejnovější předplatné balíčku"
+
+msgid "subscribed to"
+msgstr "předplaceno"
+
+msgid "No new subscriptions found."
+msgstr "Nebyly nalezeny žádné nové předplatné."
+
+msgid "Latest Payments"
+msgstr "Nejnovější platby"
+
+msgid "No recent payments to display."
+msgstr "Žádné nedávné platby k zobrazení."
+
+msgid "Latest Activity"
+msgstr "Nejnovější aktivita"
+
+msgid "Hooray! No system errors to report."
+msgstr "Hurá! Žádné systémové chyby k hlášení."
+
+msgid "Latest Job Seekers"
+msgstr "Nejnovější uchazeči o zaměstnání"
+
+msgid "Joined"
+msgstr "Připojil se"
+
+msgid "No new job seekers have registered."
+msgstr "Žádní noví uchazeči o zaměstnání se nezaregistrovali."
+
+msgid "Latest Employers"
+msgstr "Nejnovější zaměstnavatelé"
+
+msgid "No new employers have registered."
+msgstr "Žádní noví zaměstnavatelé se nezaregistrovali."
+
+msgid "Not allowed"
+msgstr "Není povoleno"
+
+msgid "Allowed to all"
+msgstr "Povoleno všem"
+
+msgid "employers, job seekers and visitors"
+msgstr "zaměstnavatelé, uchazeči o zaměstnání a návštěvníci"
+
+msgid "Allowed only to employers"
+msgstr "Povoleno pouze zaměstnavatelům"
+
+msgid "City, State, Country"
+msgstr "Město, stát, země"
+
+msgid "City, State"
+msgstr "Město, stát"
+
+msgid "City, Country"
+msgstr "Město, země"
+
+msgid "Minutes"
+msgstr "Zápis"
+
+msgid "Hour"
+msgstr "Hodina"
+
+msgid "Hours"
+msgstr "Hodiny"
+
+msgid "Week"
+msgstr "Týden"
+
+msgid "System & Site"
+msgstr "Systém a web"
+
+msgid "Site & System"
+msgstr "Web a systém"
+
+msgid "Core details about your job portal, its status, and default behaviors"
+msgstr "Základní podrobnosti o pracovním portálu, jeho stavu a výchozím chování"
+
+msgid "Site Title"
+msgstr "Název webu"
+
+msgid "The main title for your job portal"
+msgstr "Hlavní název pro váš pracovní portál"
+
+msgid "Site Offline"
+msgstr "Offline web"
+
+msgid "Take the site offline for maintenance"
+msgstr "Vezměte web offline pro údržbu"
+
+msgid "The message shown to visitors when the site is offline"
+msgstr "Zpráva zobrazená návštěvníkům, když je web offline"
+
+msgid "Default Page"
+msgstr "Výchozí stránka"
+
+msgid "Select the main WordPress page for the job portal"
+msgstr "Vyberte hlavní stránku WordPress pro pracovní portál"
+
+msgid "Email links and support icons may not work if this is not set"
+msgstr "E -mailové odkazy a podpůrné ikony nemusí fungovat, pokud to není nastaveno"
+
+msgid "Date Format"
+msgstr "Formát data"
+
+msgid "Set the date format used throughout the plugin"
+msgstr "Nastavte formát data použitý v pluginu"
+
+msgid "Default Address Display Style"
+msgstr "Výchozí styl zobrazení adresy"
+
+msgid "Select the default format for displaying addresses"
+msgstr "Vyberte výchozí formát pro zobrazení adres"
+
+msgid "Registration & Login"
+msgstr "Registrace a přihlášení"
+
+msgid "Control user registration flows and login/logout redirects"
+msgstr "Ovládací toky registrace uživatele a přesměrování přihlášení/odhlášení"
+
+msgid "Set Register Link"
+msgstr "Nastavit odkaz registru"
+
+msgid "Set the main registration page for the site"
+msgstr "Nastavte hlavní registrační stránku pro web"
+
+msgid "Custom Register Redirect Link"
+msgstr "Vlastní registr přesměrování odkazu"
+
+msgid "Enter the custom URL for registration if"
+msgstr "Zadejte vlastní adresu URL pro registraci, pokud"
+
+msgid "is selected above"
+msgstr "je vybráno výše"
+
+msgid "Set the main login page for the site"
+msgstr "Nastavte hlavní přihlašovací stránku pro web"
+
+msgid "Custom Login Redirect Link"
+msgstr "Vlastní přihlašovací přesměrování odkazu"
+
+msgid "Enter the custom URL for login if"
+msgstr "Zadejte vlastní adresu URL pro přihlášení, pokud"
+
+msgid "Redirect Link For Non-Portal WP User"
+msgstr "Přesměrování odkazu pro uživatele WP nestartů"
+
+msgid "Redirect WordPress users who do not have a role in WP Job Portal to this link after login"
+msgstr "Přesměrovat uživatele WordPress, kteří nemají roli v pracovním portálu WP k tomuto odkazu po přihlášení"
+
+msgid "Terms & Conditions"
+msgstr "Smluvní podmínky"
+
+msgid "Assign specific Terms & Conditions pages for different submission types"
+msgstr "Přiřaďte stránky konkrétních podmínek pro různé typy odeslání"
+
+msgid "Company Terms Page"
+msgstr "Stránka pro firemní podmínky"
+
+msgid "Select the"
+msgstr "Vyberte"
+
+msgid "page for company submissions"
+msgstr "Stránka pro příspěvky společnosti"
+
+msgid "Job Terms Page"
+msgstr "Strana pracovních podmínek"
+
+msgid "page for job submissions"
+msgstr "Stránka pro příspěvky"
+
+msgid "Resume Terms Page"
+msgstr "Obnovit stránka podmínek"
+
+msgid "page for resume submissions"
+msgstr "Stránka pro životopis"
+
+msgid "Content & Display"
+msgstr "Obsah a zobrazení"
+
+msgid "Taxonomy & Categories"
+msgstr "Taxonomie a kategorie"
+
+msgid "Manage how content like categories and tags are handled"
+msgstr "Spravujte, jak se obsah jako kategorie a značky manipuluje"
+
+msgid "Even if Empty"
+msgstr "I když je prázdný"
+
+msgid "If no is selected then only categories that have jobs or resumes will be shown"
+msgstr "Pokud není vybráno ne, zobrazí se pouze kategorie, které mají úlohy nebo životopisy"
+
+msgid "Categories Per Row"
+msgstr "Kategorie za řádky"
+
+msgid "Number of categories to display per row on category listing pages"
+msgstr "Počet kategorií, které se mají zobrazit za řádky na seznamu kategorií"
+
+msgid "Sub-categories Limit"
+msgstr "Limit podkategorie"
+
+msgid "How many sub-categories to show in the popup on category pages"
+msgstr "Kolik dílčích kategorií se zobrazí v vyskakovacích stránkách na stránkách kategorie"
+
+msgid "User Can Add New Tags"
+msgstr "Uživatel může přidat nové značky"
+
+msgid "Allow users to create new tags in the system when posting"
+msgstr "Umožněte uživatelům vytvářet nové značky v systému při zveřejňování příspěvku"
+
+msgid "Default Pagination Size"
+msgstr "Výchozí velikost stránkování"
+
+msgid "Maximum number of records to show per page"
+msgstr "Maximální počet záznamů, které se zobrazí na stránce"
+
+msgid "Show Breadcrumbs"
+msgstr "Zobrazit strouhanku"
+
+msgid "Show WP Job Portal Page Title"
+msgstr "Zobrazit název portálu WP Portal Portal"
+
+msgid "File Uploads & Defaults"
+msgstr "Nahrání a výchozí hodnoty souborů"
+
+msgid "Manage file uploads and default placeholder images"
+msgstr "Správa nahrávání souborů a výchozí obrázky zástupných symbolů"
+
+msgid "Data Directory"
+msgstr "Datový adresář"
+
+msgid "System will upload all user files into this folder within the WordPress uploads directory"
+msgstr "Systém nahraje všechny uživatelské soubory do této složky v adresáři WordPress"
+
+msgid "Default Image"
+msgstr "Výchozí obrázek"
+
+msgid "This image will be shown as the default for entities & users if no other image is provided"
+msgstr "Tento obrázek se zobrazí jako výchozí hodnota pro entity a uživatele, pokud není poskytnut žádný jiný obrázek"
+
+msgid "Allowed Image Extensions"
+msgstr "Povolená rozšíření obrazu"
+
+msgid "Comma-separated list of allowed image file extensions"
+msgstr "Seznam povolených rozšíření obrazových souborů oddělených čárkami"
+
+msgid "Max Image Size"
+msgstr "Maximální velikost obrázku"
+
+msgid "Maximum file size for general image uploads in kilobytes"
+msgstr "Maximální velikost souboru pro obecné nahrávání obrázků v kilobajtech"
+
+msgid "URL & SEO"
+msgstr "URL & SEO"
+
+msgid "URL Structure"
+msgstr "Struktura URL"
+
+msgid "Configure the URL structure"
+msgstr "Nakonfigurujte strukturu URL"
+
+msgid "permalinks"
+msgstr "Permalinks"
+
+msgid "for detail pages"
+msgstr "pro podrobné stránky"
+
+msgid "Job Detail URL Structure"
+msgstr "Struktura adresy URL úlohy"
+
+msgid "Click on the available tags below to build the URL structure for job detail pages"
+msgstr "Kliknutím na dostupné značky níže vytvořte strukturu URL pro stránky podrobnosti o úloze"
+
+msgid "Company Detail URL Structure"
+msgstr "Struktura URL společnosti Detail společnosti Detail"
+
+msgid "Click on the available tags below to build the URL structure for company detail pages"
+msgstr "Kliknutím na dostupné značky níže vytvořte strukturu adresy URL pro stránky s detailem společnosti"
+
+msgid "Resume Detail URL Structure"
+msgstr "Pokračovat v detailních struktuře URL"
+
+msgid "Click on the available tags below to build the URL structure for resume detail pages"
+msgstr "Kliknutím na dostupné značky níže vytvořte strukturu URL pro životopis podrobnosti"
+
+msgid "Registration & Access"
+msgstr "Registrace a přístup"
+
+msgid "If no then front end employer area is not accessible"
+msgstr "Pokud ne, pak není dostupná oblast zaměstnavatele front -end"
+
+msgid "Allow Registration as Employer"
+msgstr "Povolit registraci jako zaměstnavatel"
+
+msgid "Show the option to register as an employer on the registration form"
+msgstr "Zobrazit možnost zaregistrovat se jako zaměstnavatel na registračním formuláři"
+
+msgid "Employer Default Role"
+msgstr "Výchozí role zaměstnavatele"
+
+msgid "Employer Can View Job Seeker Area"
+msgstr "Zaměstnavatel si může prohlížet oblast uchazeče o zaměstnání"
+
+msgid "Allow logged-in employers to view the job seeker control panel"
+msgstr "Povolit přihlášené zaměstnavatele k prohlížení ovládacího panelu uchazeče o zaměstnání"
+
+msgid "Set Employer After-Register Link"
+msgstr "Nastavte odkaz zaměstnavatele po registraci"
+
+msgid "Employer After-Registration Page"
+msgstr "Stránka po registraci zaměstnavatele"
+
+msgid "Employer Custom After-Registration Link"
+msgstr "Zaměstnavatel vlastní odkaz na registraci"
+
+msgid "Custom Empolyer After Regitser Link"
+msgstr "Vlastní zaměstnavatel po odkazu na registraci"
+
+msgid "Layout & Widgets"
+msgstr "Rozložení a widgety"
+
+msgid "Control the visibility of main sections and widgets in the logged-in employer dashboard"
+msgstr "Ovládejte viditelnost hlavních sekcí a widgetů v přihlášeném přístrojovém panelu zaměstnavatele"
+
+msgid "Show Profile Section"
+msgstr "Zobrazit sekci profilu"
+
+msgid "Show Stat Boxes"
+msgstr "Zobrazit boxy statistiky"
+
+msgid "Show Recent Resumes Box"
+msgstr "Zobrazit nejnovější obnovu"
+
+msgid "Show Stats Graph"
+msgstr "Zobrazit graf statistik"
+
+msgid "Setting to show the stats graph on the employer dashboard"
+msgstr "Nastavení pro zobrazení grafu statistik na palubní desce zaměstnavatele"
+
+msgid "Show Useful Links"
+msgstr "Zobrazit užitečné odkazy"
+
+msgid "Setting to show the useful links section"
+msgstr "Nastavení pro zobrazení sekce užitečných odkazů"
+
+msgid "Show Applied Resumes"
+msgstr "Zobrazit aplikované životopisy"
+
+msgid "Setting to show the applied resumes section"
+msgstr "Nastavení pro zobrazení sekce Applied Resumes"
+
+msgid "Show Saved Searches"
+msgstr "Zobrazit uložené vyhledávání"
+
+msgid "Setting to show the saved searches section"
+msgstr "Nastavení pro zobrazení sekce uložených vyhledávání"
+
+msgid "Show Newest Resumes"
+msgstr "Zobrazit nejnovější životopisy"
+
+msgid "Setting to show the newest resumes section"
+msgstr "Nastavení pro zobrazení nejnovější sekce životopisů"
+
+msgid "Navigation Links"
+msgstr "Navigační odkazy"
+
+msgid "Control which navigation links are visible in the logged-in employer dashboard menu"
+msgstr "Ovládejte, které navigační odkazy jsou viditelné v nabídce přihlášeného zaměstnavatele"
+
+msgid "link in the employer dashboard"
+msgstr "Odkaz na palubní desce zaměstnavatele"
+
+msgid "RSS Feedback"
+msgstr "RSS zpětná vazba"
+
+msgid "Job Seeker Default Role"
+msgstr "Výchozí role uchazeče o zaměstnání"
+
+msgid "Set Job Seeker After-Register Link"
+msgstr "Nastavte odkaz na úlohu uchazeče o zaměstnání"
+
+msgid "Job Seeker After-Registration Page"
+msgstr "Stránka po registraci uchazeče o zaměstnání"
+
+msgid "Job Seeker Custom After-Registration Link"
+msgstr "Uchazeč o zaměstnání na vlastní odkaz"
+
+msgid "Custom Job seeker After Regitser Link"
+msgstr "Vlastní uchazeč o zaměstnání po odkazu"
+
+msgid "Enable Job Shortlisting"
+msgstr "Povolte krátkodobý výběr úlohy"
+
+msgid "Allow job seekers to shortlist jobs"
+msgstr "Umožněte uchazečům o zaměstnání na výběr pracovních míst"
+
+msgid "This affects the job detail page"
+msgstr "To ovlivňuje stránku detailu úlohy"
+
+msgid "Enable Tell a Friend"
+msgstr "Povolte, aby to řekl příteli"
+
+msgid "Enable the"
+msgstr "Povolit"
+
+msgid "feature on job listing pages"
+msgstr "Funkce na stránkách seznamu úloh"
+
+msgid "Control the visibility of main sections and widgets in the logged-in job seeker dashboard"
+msgstr "Ovládejte viditelnost hlavních sekcí a widgetů v přístrojovém desce přihlášeném uchazeči o zaměstnání"
+
+msgid "Show Applied Jobs Box"
+msgstr "Zobrazit box Applied Jobs"
+
+msgid "Show Newest Jobs Box"
+msgstr "Zobrazit nejnovější box Jobs"
+
+msgid "Show Jobs Graph"
+msgstr "Zobrazit graf úloh"
+
+msgid "Setting to show the jobs graph on the job seeker dashboard"
+msgstr "Nastavení pro zobrazení grafu úloh na palubní desce uchazeče o zaměstnání"
+
+msgid "Show Applied Jobs"
+msgstr "Zobrazit aplikované úlohy"
+
+msgid "Setting to show the applied jobs section"
+msgstr "Nastavení pro zobrazení sekce Applied Jobs"
+
+msgid "Show Shortlisted Jobs"
+msgstr "Zobrazit pracovní místa"
+
+msgid "Setting to show the shortlisted jobs section"
+msgstr "Nastavení pro zobrazení sekce zařazených do užšího výběru"
+
+msgid "Show Newest Jobs"
+msgstr "Zobrazit nejnovější úlohy"
+
+msgid "Setting to show the newest jobs section"
+msgstr "Nastavení pro zobrazení nejnovější sekce úloh"
+
+msgid "Control which navigation links are visible in the logged-in job seeker dashboard menu"
+msgstr "Ovládejte, které navigační odkazy jsou viditelné v nabídce Dashboard pro přihlášení"
+
+msgid "link in the job seeker dashboard"
+msgstr "Odkaz na palubní desce uchazeče o zaměstnání"
+
+msgid "Visitors"
+msgstr "Návštěvníci"
+
+msgid "General Permissions"
+msgstr "Obecná oprávnění"
+
+msgid "Define what non-logged-in users are allowed to do on the site"
+msgstr "Definujte, co na webu mohou dělat nedbalé uživatele"
+
+msgid "Visitor Can Post Job"
+msgstr "Návštěvník může zveřejňovat práci"
+
+msgid "Allow non-logged-in users to post jobs"
+msgstr "Umožněte nedbalým uživatelům zveřejňovat úlohy"
+
+msgid "Visitor Can Add Job"
+msgstr "Návštěvník může přidat práci"
+
+msgid "Visitor Job Post Redirect Page"
+msgstr "Stránka přesměrování úlohy návštěvníka"
+
+msgid "A visitor will be redirected to this page after posting a job"
+msgstr "Po zveřejnění úlohy bude návštěvník přesměrován na tuto stránku"
+
+msgid "Visitor Can Apply to Job"
+msgstr "Návštěvník se může přihlásit na práci"
+
+msgid "Allow non-logged-in users to apply for jobs"
+msgstr "Umožněte nedbalým uživatelům žádat o úlohy"
+
+msgid "Visitor Can Add Resume"
+msgstr "Návštěvník může přidat životopis"
+
+msgid "Allow non-logged-in users to add a resume"
+msgstr "Umožněte nedbalým uživatelům přidat životopis"
+
+msgid "Visitor Resume Post Redirect Page"
+msgstr "Návštěvník pokračujete po přesměrování stránky"
+
+msgid "A visitor will be redirected to this page after posting a resume"
+msgstr "Po zveřejnění životopisu bude na tuto stránku přesměrován návštěvník"
+
+msgid "Visitor Can Edit Job"
+msgstr "Návštěvník může upravit úlohu"
+
+msgid "Allow non-logged-in users to edit jobs they have posted"
+msgstr "Umožněte nedbalým uživatelům upravovat úlohy, které zveřejnili"
+
+msgid "Page & Link Access"
+msgstr "Přístup na stránku a odkaz"
+
+msgid "Control which pages and links are visible to non-logged-in users"
+msgstr "Ovládejte, které stránky a odkazy jsou viditelné pro uživatele, kteří nejsou zařazeni"
+
+msgid "Allow visitors to view the employer control panel links"
+msgstr "Umožněte návštěvníkům zobrazit odkazy na ovládací panely zaměstnavatele"
+
+msgid "Allow visitors to view the resume categories page"
+msgstr "Umožněte návštěvníkům zobrazit stránku kategorií životopisu"
+
+msgid "Allow visitors to access the resume search functionality"
+msgstr "Umožněte návštěvníkům přístup k funkcím vyhledávání životopisu"
+
+msgid "Allow visitors to view company detail pages"
+msgstr "Umožněte návštěvníkům zobrazit stránky podrobností společnosti"
+
+msgid "Allow visitors to view job detail pages"
+msgstr "Umožněte návštěvníkům zobrazit stránky podrobností o zaměstnání"
+
+msgid "Allow visitors to view resume detail pages"
+msgstr "Umožněte návštěvníkům zobrazit stránky s životopisem"
+
+msgid "Allow visitors to view the job seeker control panel links"
+msgstr "Umožněte návštěvníkům zobrazit odkazy na ovládací panel uchazeče o zaměstnání"
+
+msgid "Allow visitors to view the jobs by category page"
+msgstr "Umožněte návštěvníkům zobrazit úlohy podle stránky kategorie"
+
+msgid "Allow visitors to use the job search functionality"
+msgstr "Umožněte návštěvníkům používat funkčnost hledání zaměstnání"
+
+msgid "Allow visitors to see job search result listings"
+msgstr "Umožněte návštěvníkům vidět výpisy výsledek vyhledávání zaměstnání"
+
+msgid "Allow visitors to see the newest jobs page"
+msgstr "Umožněte návštěvníkům vidět nejnovější stránku Jobs"
+
+msgid "Job Posting & Management"
+msgstr "Posílání a správa práce"
+
+msgid "Manage how jobs are posted, their lifecycle, and related features"
+msgstr "Spravujte, jak jsou zaměstnání zveřejňovány, jejich životní cyklus a související funkce"
+
+msgid "Job Auto Approve"
+msgstr "Automatické schválení úlohy"
+
+msgid "Automatically approve new jobs upon submission"
+msgstr "Po odeslání automaticky schválit nová pracovní místa"
+
+msgid "Job Expiry Days"
+msgstr "Dny vypršení práce"
+
+msgid "Number of days until a freely posted job expires"
+msgstr "Počet dní, než vyprší volně zveřejněná práce"
+
+msgid "Number of days until a paid"
+msgstr "Počet dní do zaplacení"
+
+msgid "job expires"
+msgstr "Platnost práce"
+
+msgid "Job Display & Listings"
+msgstr "Zobrazení práce a výpisy"
+
+msgid "Control how job-related pages and information are displayed to users"
+msgstr "Ovládejte, jak jsou stránky a informace související s prací zobrazovány uživatelům"
+
+msgid "Show Country on Jobs by Cities Page"
+msgstr "Zobrazit zemi na stránce Cities by Cities"
+
+msgid "Display the country name next to the city"
+msgstr "Zobrazit název země vedle města"
+
+msgid "Show Count on Jobs by Cities Page"
+msgstr "Zobrazit počet na stránce úloh podle měst"
+
+msgid "Display the total number of jobs available in each city"
+msgstr "Zobrazit celkový počet pracovních míst dostupných v každém městě"
+
+msgid "Show Count in Job Categories"
+msgstr "Zobrazit počet v kategoriích práce"
+
+msgid "Display the total number of jobs for each category"
+msgstr "Zobrazit celkový počet úloh pro každou kategorii"
+
+msgid "Show Count on Jobs by Types Page"
+msgstr "Zobrazit počet na stránce typů podle typů"
+
+msgid "Display the total number of jobs for each job type"
+msgstr "Zobrazit celkový počet úloh pro každý typ úlohy"
+
+msgid "Job Types Per Row"
+msgstr "Typy úloh za řadu"
+
+msgid "How many job types to display per row on the"
+msgstr "Kolik typů úloh se zobrazí na řádku na"
+
+msgid "Job by Type"
+msgstr "Úloha podle typu"
+
+msgid "Show Jobs Graph for Employer"
+msgstr "Zobrazit graf úloh pro zaměstnavatele"
+
+msgid "Show Active Jobs Graph for Job Seeker"
+msgstr "Zobrazit graf aktivních úloh pro uchazeče o zaměstnání"
+
+msgid "Company Profile Display"
+msgstr "Displej profilu společnosti"
+
+msgid "Control which company details are visible on listings and company pages"
+msgstr "Ovládejte, které podrobnosti společnosti jsou viditelné na seznamech a na stránkách společnosti"
+
+msgid "Show Company Name"
+msgstr "Zobrazit název společnosti"
+
+msgid "Show Company Description"
+msgstr "Zobrazit popis společnosti"
+
+msgid "Show Company Email Address"
+msgstr "Zobrazit e -mailovou adresu společnosti"
+
+msgid "Show Company City"
+msgstr "Show Company City"
+
+msgid "Show Company URL"
+msgstr "Zobrazit URL společnosti"
+
+msgid "Show Company Contact Detail by Default"
+msgstr "Ve výchozím nastavení zobrazí kontaktní detaily společnosti"
+
+msgid "If disabled, credits may be required to view contact details"
+msgstr "Pokud jsou zakázány, mohou být vyžadovány kredity k prohlížení kontaktních údajů"
+
+msgid "General settings for company profiles"
+msgstr "Obecná nastavení pro profily společnosti"
+
+msgid "Company Logo Maximum Size"
+msgstr "Logo společnosti Maximální velikost"
+
+msgid "Set the maximum file size for company logo uploads in kilobytes"
+msgstr "Nastavte maximální velikost souboru pro nahrávání loga společnosti v kilobajtech"
+
+msgid "Company Auto Approve"
+msgstr "Společnost Auto Schválí"
+
+msgid "Automatically approve new company profiles upon submission"
+msgstr "Automaticky schválit nové profily společnosti po odeslání"
+
+msgid "Control resume submissions, visibility, and search functionality"
+msgstr "Ovládání podání životopisu, viditelnost a funkce vyhledávání"
+
+msgid "Resume Auto Approve"
+msgstr "Obnovit automatické schválení"
+
+msgid "Automatically approve new resumes upon submission"
+msgstr "Automaticky schválí nové životopisy po odeslání"
+
+msgid "Show Resume Contact Detail by Default"
+msgstr "Ve výchozím nastavení zobrazíte kontaktní podrobnosti o životopisu"
+
+msgid "If disabled, credits may be required to view resume contact details"
+msgstr "Pokud jsou deaktivovány, mohou být vyžadovány kredity, aby se zobrazily obnovení kontaktních údajů"
+
+msgid "Show Count in Resume Categories"
+msgstr "Zobrazit počet v kategoriích životopisu"
+
+msgid "Display the total number of resumes for each category"
+msgstr "Zobrazit celkový počet životopisů pro každou kategorii"
+
+msgid "Allow Resume Search"
+msgstr "Povolit životopis"
+
+msgid "Define who is allowed to search for resumes"
+msgstr "Definujte, kdo může hledat životopisy"
+
+msgid "Allow Users to Save Resume Searches"
+msgstr "Umožněte uživatelům ukládat obnovení vyhledávání"
+
+msgid "Allow users to save their resume search criteria for later use"
+msgstr "Umožněte uživatelům uložit jejich kritéria pro obnovení pro pozdější použití"
+
+msgid "Resume Files & Builder"
+msgstr "Pokračovat v souborech a tvůrce"
+
+msgid "Define limits and allowed types for resume file uploads and advanced builder sections"
+msgstr "Definujte limity a povolené typy pro životopis nahrávání souborů a sekce Advanced Builder"
+
+msgid "Resume Photo Maximum Size"
+msgstr "Pokračovat v maximální velikosti fotografie"
+
+msgid "Maximum file size for resume photos in kilobytes"
+msgstr "Maximální velikost souboru pro obnovení fotografií v kilobajtech"
+
+msgid "Resume Document Maximum Size"
+msgstr "Pokračovat v dokumentu Maximální velikost"
+
+msgid "System will not upload if resume file size exceeds the given size"
+msgstr "Systém nebude nahrávat, pokud velikost souboru obnoví danou velikost"
+
+msgid "Allowed Document Extensions"
+msgstr "Povolená rozšíření dokumentu"
+
+msgid "Comma-separated list of allowed document file extensions"
+msgstr "Seznam povolených prodloužení souborů dokumentu se oddíl na čárku"
+
+msgid "Maximum Number of Files for Resume"
+msgstr "Maximální počet souborů pro životopis"
+
+msgid "Maximum number of files a job seeker can upload with their resume"
+msgstr "Maximální počet souborů, které uchazeč o zaměstnání může nahrát pomocí svého životopisu"
+
+msgid "Max Employers in Resume Builder"
+msgstr "Max Zaměstnavatelé v životopisu Builder"
+
+msgid "Maximum number of employers allowed in the resume builder"
+msgstr "Maximální počet zaměstnavatelů povolených v životopise"
+
+msgid "Max Institutes in Resume Builder"
+msgstr "Max Institutes in Resume Builder"
+
+msgid "Maximum number of institutes allowed in the resume builder"
+msgstr "Maximální počet ústavů povolených v tvůrci životopisu"
+
+msgid "Max Languages in Resume Builder"
+msgstr "Max jazyky v životopisu Builder"
+
+msgid "Maximum number of languages allowed in the resume builder"
+msgstr "Maximální počet jazyků povolených v tvůrci životopisu"
+
+msgid "Max Addresses in Resume Builder"
+msgstr "Max Address in Resume Builder"
+
+msgid "Maximum number of addresses allowed in the resume builder"
+msgstr "Maximální počet adres povolených v životopisu Tvůrce"
+
+msgid "Job Applications"
+msgstr "Aplikace práce"
+
+msgid "Configure the job application process and related notifications"
+msgstr "Nakonfigurujte proces žádosti o zaměstnání a související oznámení"
+
+msgid "Show Apply Now Button"
+msgstr "Zobrazit tlačítko Použít nyní"
+
+msgid "Enable Quick Apply for Logged-in Users"
+msgstr "Povolit rychlé použití pro uživatele přihlášení"
+
+msgid "Enable Quick Apply for Visitors"
+msgstr "Povolit rychlé použití pro návštěvníky"
+
+msgid "Show Applied Resume Status to Job Seeker"
+msgstr "Zobrazit status aplikovaného životopisu na uchazeč o zaměstnání"
+
+msgid "Resume Data in Email"
+msgstr "Obnovit data v e -mailu"
+
+msgid "Sections"
+msgstr "Sekce"
+
+msgid "Choose whether to include all resume sections or only filled ones in the application email to employers"
+msgstr "Vyberte si, zda do e -mailu aplikací zahrnout všechny sekce životopisu nebo pouze vyplněné"
+
+msgid "Choose whether to include all fields or only filled fields in the application email"
+msgstr "Vyberte si, zda do e -mailu aplikace zahrnout všechna pole nebo pouze vyplněná pole"
+
+msgid "Auto-Approve Rules"
+msgstr "Pravidla auto-Approve"
+
+msgid "Set auto-approval rules for various user-submitted content"
+msgstr "Nastavte pravidla pro automatické schválení pro různé obsah odevzdané uživatelem"
+
+msgid "Featured Resume Auto Approve"
+msgstr "Představené životopis automatické schválení"
+
+msgid "Automatically approve resumes marked as featured"
+msgstr "Automaticky schválit životopisy označené jako uvedené"
+
+msgid "Featured Company Auto Approve"
+msgstr "Hlavní společnost Auto Assured"
+
+msgid "Automatically approve companies marked as featured"
+msgstr "Automaticky schválit společnosti označené jako uvedené"
+
+msgid "Featured Job Auto Approve"
+msgstr "Hlavní automatické schválení"
+
+msgid "Automatically approve jobs marked as featured"
+msgstr "Automaticky schválit úlohy označené jako uvedené"
+
+msgid "Cover Letter Auto Approve"
+msgstr "Průvodní dopis automaticky schválit"
+
+msgid "Automatically approve cover letters submitted by job seekers"
+msgstr "Automaticky schválit průvodní dopisy předložené uchazeči o zaměstnání"
+
+msgid "Folder Auto Approve"
+msgstr "Složka automaticky schválit"
+
+msgid "Automatically approve new folders created by employers"
+msgstr "Automaticky schválit nové složky vytvořené zaměstnavateli"
+
+msgid "Department Auto Approve"
+msgstr "Automatické automatické schválení"
+
+msgid "Automatically approve new departments created by employers"
+msgstr "Automaticky schválit nová oddělení vytvořená zaměstnavateli"
+
+msgid "Message Auto Approve"
+msgstr "Automatické schválení zprávy"
+
+msgid "Automatically approve messages between job seekers and employers"
+msgstr "Automaticky schválit zprávy mezi uchazeči o zaměstnání a zaměstnavateli"
+
+msgid "Conflict Message Auto Approve"
+msgstr "Konfliktní zpráva Automatické schválení"
+
+msgid "Automatically approve conflicted messages"
+msgstr "Automaticky schválit konfliktní zprávy"
+
+msgid "Email & Alerts"
+msgstr "E -mail a upozornění"
+
+msgid "Email Sender Identity"
+msgstr "Identita odesílatele e -mailu"
+
+msgid "Configure sender details for all outgoing system emails"
+msgstr "Nakonfigurujte podrobnosti odesílatele pro všechny odchozí systémové e -maily"
+
+msgid "Admin Email Address"
+msgstr "Admin E -mailová adresa"
+
+msgid "Admin will receive email notifications at this address"
+msgstr "Admin obdrží na tuto adresu e -mailová oznámení"
+
+msgid "Sender Email Address"
+msgstr "E -mailová adresa odesílatele"
+
+msgid "The email address that will be used to send system emails"
+msgstr "E -mailová adresa, která bude použita k odesílání systémových e -mailů"
+
+msgid "The sender name that will be used in system emails"
+msgstr "Jméno odesílatele, které bude použito v systémových e -mailech"
+
+msgid "Job Alerts"
+msgstr "Upozornění na práci"
+
+msgid "Configure settings for job alert emails and forms"
+msgstr "Nakonfigurujte nastavení pro e -maily a formuláře pro upozornění na úlohu"
+
+msgid "Show Job Alert Link"
+msgstr "Zobrazit odkaz na výstrahu práce"
+
+msgid "Show the Job Alert link in the job seeker control panel"
+msgstr "Zobrazit odkaz na upozornění na úlohu v ovládacím panelu uchazeče o zaměstnání"
+
+msgid "Enable Job Alerts for Visitors"
+msgstr "Povolte upozornění na úlohu pro návštěvníky"
+
+msgid "Allow non-logged-in users to sign up for job alerts"
+msgstr "Umožněte nedbalým uživatelům, aby se zaregistrovali na upozornění"
+
+msgid "Job Alert Auto Approve"
+msgstr "Automatické automatické schválení úlohy"
+
+msgid "Automatically approve new job alerts upon creation"
+msgstr "Automaticky schválit nová upozornění na úlohu po vytvoření"
+
+msgid "Captcha on Visitor Job Alert Form"
+msgstr "CAPTCHA na formuláři pro upozornění na úlohu návštěvníka"
+
+msgid "Show a captcha on the job alert sign-up form for visitors"
+msgstr "Zobrazit kapitán na přihlašovacím formuláři pro návštěvníky pro návštěvníky"
+
+msgid "Allow users to save their search queries for jobs and resumes"
+msgstr "Umožněte uživatelům uložit jejich vyhledávací dotazy pro úlohy a životopis"
+
+msgid "Show Saved Searches for Job Seekers"
+msgstr "Zobrazit uložené vyhledávání uchazečů o zaměstnání"
+
+msgid "Allow job seekers to save their job searches"
+msgstr "Umožněte uchazečům o zaměstnání zachránit vyhledávání zaměstnání"
+
+msgid "Show Saved Searches for Employers"
+msgstr "Zobrazit uložené vyhledávání zaměstnavatelů"
+
+msgid "Allow employers to save their resume searches"
+msgstr "Umožněte zaměstnavatelům zachránit jejich životopisy"
+
+msgid "Feeds & AI"
+msgstr "Krmiva a ai"
+
+msgid "RSS Feeds"
+msgstr "RSS kanály"
+
+msgid "Configure the RSS feed for jobs"
+msgstr "Nakonfigurujte RSS zdroj pro úlohy"
+
+msgid "Enable Jobs RSS Feed"
+msgstr "Povolit úlohy RSS Feed"
+
+msgid "Enable the main RSS feed for new jobs"
+msgstr "Povolte hlavní zdroj RSS pro nová pracovní místa"
+
+msgid "Job Feed Title"
+msgstr "Název krmiva práce"
+
+msgid "The title for the job RSS feed"
+msgstr "Název pro kanálu RSS úlohy"
+
+msgid "Job Feed Description"
+msgstr "Popis zdroje úlohy"
+
+msgid "The description for the job RSS feed"
+msgstr "Popis kanálu RSS úlohy"
+
+msgid "Job Feed Copyright"
+msgstr "Krmivo pro krmení autorského práva"
+
+msgid "Copyright notice for the job feed"
+msgstr "Oznámení o autorských právech pro zdroj práce"
+
+msgid "Job Feed Editor"
+msgstr "Editor krmiva práce"
+
+msgid "The person responsible for editorial content"
+msgstr "Osoba odpovědná za redakční obsah"
+
+msgid "Job Feed Webmaster"
+msgstr "Píchání webmasteru"
+
+msgid "The person responsible for technical issues"
+msgstr "Osoba odpovědná za technické problémy"
+
+msgid "Job Feed TTL"
+msgstr "Krmivo úlohy ttl"
+
+msgid "Time to Live"
+msgstr "Čas žít"
+
+msgid "Number of minutes the feed can be cached before refreshing"
+msgstr "Počet minut může být krmivo před osvěžením v mezipaměti"
+
+msgid "Show Categories in Job Feed"
+msgstr "Zobrazit kategorie ve zdroji práce"
+
+msgid "Include categories in the job feed items"
+msgstr "Zahrňte kategorie do položek krmiva práce"
+
+msgid "Show Company Image in Job Feed"
+msgstr "Zobrazit image společnosti ve zdroji úlohy"
+
+msgid "Include the company logo in the job feed items"
+msgstr "Zahrňte logo společnosti do položek krmiva práce"
+
+msgid "Configure the RSS feed for resumes"
+msgstr "Nakonfigurujte zdroj RSS pro životopisy"
+
+msgid "Enable Resumes RSS Feed"
+msgstr "Povolit životopis RSS zdroje"
+
+msgid "Enable the main RSS feed for new resumes"
+msgstr "Povolte hlavní zdroj RSS pro nové životopisy"
+
+msgid "Resume Feed Title"
+msgstr "Obnovit název zdroje"
+
+msgid "The title for the resume RSS feed"
+msgstr "Název pro životopis RSS zdroj"
+
+msgid "Resume Feed Description"
+msgstr "Popis krmiva pro životopis"
+
+msgid "The description for the resume RSS feed"
+msgstr "Popis pro životopis RSS zdroj"
+
+msgid "Resume Feed Copyright"
+msgstr "Životopis krmiva Copyright"
+
+msgid "Copyright notice for the resume feed"
+msgstr "Oznámení o autorských právech pro krmení životopisu"
+
+msgid "Resume Feed Editor"
+msgstr "Redakční editor krmení"
+
+msgid "Resume Feed Webmaster"
+msgstr "Životopis zdroje webmastera"
+
+msgid "Resume Feed TTL"
+msgstr "Pokračovat v krmivu ttl"
+
+msgid "Show Categories in Resume Feed"
+msgstr "Zobrazit kategorie v krmivu životopisu"
+
+msgid "Include categories in the resume feed items"
+msgstr "Zahrnout kategorie do položek krmiva pro životopis"
+
+msgid "Show Resume File in Resume Feed"
+msgstr "Zobrazit soubor životopisu v zdroji životopisu"
+
+msgid "Make resume files downloadable from the feed"
+msgstr "Vytvořte soubory životopisu ke stažení z zdroje"
+
+msgid "AI Suggested Matches"
+msgstr "AI navrhl zápasy"
+
+msgid "Configure AI-powered job and resume suggestion features"
+msgstr "Konfigurace funkcí úlohy a obnovení poháněných AI"
+
+msgid "AI Search On Job Search Page"
+msgstr "Vyhledávání AI na stránce vyhledávání zaměstnání"
+
+msgid "Show the AI search field on the main job search form"
+msgstr "Zobrazit pole vyhledávání AI na hlavním formuláři hledání zaměstnání"
+
+msgid "AI Job Search"
+msgstr "Hledání zaměstnání AI"
+
+msgid "AI Search Filter On Job Listing"
+msgstr "Filtr vyhledávání AI na seznamu úloh"
+
+msgid "Show the AI search field as a filter on the job listing page"
+msgstr "Zobrazit pole AI vyhledávání jako filtr na stránce seznamu úloh"
+
+msgid "AI Search On Resume Search Page"
+msgstr "Hledání AI na stránce pro pokračování"
+
+msgid "Show the AI search field on the main resume search form"
+msgstr "Zobrazit pole vyhledávání AI na hlavní formuláři pro vyhledávání životopisu"
+
+msgid "AI Resume Search"
+msgstr "AI pokračovat v hledání"
+
+msgid "AI Search Filter On Resume Listing"
+msgstr "Filtr vyhledávání AI na seznamu životopisu"
+
+msgid "Show the AI search field as a filter on the resume listing page"
+msgstr "Zobrazit pole vyhledávání AI jako filtr na stránce seznamu životopisu"
+
+msgid "Show AI Suggested Jobs Button"
+msgstr "Zobrazit tlačítko AI navrhované úlohy"
+
+msgid "AI Suggested Jobs"
+msgstr "AI navrhovala práce"
+
+msgid "Show AI Suggested Jobs on Dashboard"
+msgstr "Zobrazit AI navrhované úlohy na palubní desce"
+
+msgid "Show a list of AI-suggested jobs on the job seeker dashboard"
+msgstr "Zobrazit seznam úloh se střelbou AI na palubní desce uchazeče o zaměstnání"
+
+msgid "Show AI Suggested Resumes Button"
+msgstr "Zobrazit tlačítko AI navrhované životopis"
+
+msgid "AI Suggested Resumes"
+msgstr "AI navrhovala životopisy"
+
+msgid "Show AI Suggested Resumes on Dashboard"
+msgstr "Zobrazit AI navrhované životopisy na palubní desce"
+
+msgid "Show a list of AI-suggested resumes on the employer dashboard"
+msgstr "Zobrazit seznam životopisů se střelbou AI na palubní desce zaměstnavatele"
+
+msgid "Integrations"
+msgstr "Integrace"
+
+msgid "Allow users to register and log in with their social media accounts"
+msgstr "Umožněte uživatelům zaregistrovat se a přihlásit se svými účty sociálních médií"
+
+msgid "Login with Facebook"
+msgstr "Přihlaste se s Facebookem"
+
+msgid "Allow users to log in using their Facebook account"
+msgstr "Umožněte uživatelům přihlásit se pomocí svého účtu na Facebooku"
+
+msgid "Apply with Facebook"
+msgstr "Přihlaste se s Facebookem"
+
+msgid "Allow users to apply for jobs using their Facebook profile"
+msgstr "Umožněte uživatelům žádat o úlohy pomocí jejich profilu na Facebooku"
+
+msgid "Facebook App ID"
+msgstr "ID aplikace na Facebooku"
+
+msgid "Enter your Facebook App ID"
+msgstr "Zadejte ID své aplikace na Facebooku"
+
+msgid "Facebook App Secret"
+msgstr "Facebook App Secret"
+
+msgid "Enter your Facebook App Secret"
+msgstr "Zadejte tajemství aplikace na Facebooku"
+
+msgid "Valid OAuth URI"
+msgstr "Platný oauth uri"
+
+msgid "Apply"
+msgstr "Aplikovat"
+
+msgid "Login with LinkedIn"
+msgstr "Přihlaste se s LinkedIn"
+
+msgid "Allow users to log in using their LinkedIn account"
+msgstr "Umožněte uživatelům přihlásit se pomocí jejich účtu LinkedIn"
+
+msgid "Apply with LinkedIn"
+msgstr "Aplikujte s LinkedIn"
+
+msgid "Allow users to apply for jobs using their LinkedIn profile"
+msgstr "Umožněte uživatelům žádat o úlohy pomocí jejich profilu LinkedIn"
+
+msgid "LinkedIn Client ID"
+msgstr "ID klienta LinkedIn"
+
+msgid "Enter your LinkedIn Client ID"
+msgstr "Zadejte své ID klienta LinkedIn"
+
+msgid "API Key"
+msgstr "Klíč API"
+
+msgid "LinkedIn Client Secret"
+msgstr "LinkedIn Client Secret"
+
+msgid "Enter your LinkedIn Client Secret"
+msgstr "Zadejte své tajemství klienta LinkedIn"
+
+msgid "Social Sharing"
+msgstr "Sociální sdílení"
+
+msgid "Enable social sharing buttons on your pages"
+msgstr "Povolte na vašich stránkách tlačítka pro sociální sdílení"
+
+msgid "Enable Facebook Likes"
+msgstr "Povolit lajky na Facebooku"
+
+msgid "Show Facebook like button"
+msgstr "Zobrazit tlačítko Facebook Like"
+
+msgid "Enable Facebook Share"
+msgstr "Povolit Sdílet na Facebooku"
+
+msgid "Show Facebook share button"
+msgstr "Zobrazit tlačítko Sdílet na Facebooku"
+
+msgid "Enable Facebook Comments"
+msgstr "Povolit komentáře na Facebooku"
+
+msgid "Show Facebook comments widget"
+msgstr "Zobrazit widget komentářů na facebooku"
+
+msgid "Enable Twitter Share"
+msgstr "Povolte Twitter Share"
+
+msgid "Show Twitter share button"
+msgstr "Zobrazit tlačítko Sdílet na Twitteru"
+
+msgid "Enable LinkedIn Share"
+msgstr "Povolit sdílení LinkedIn"
+
+msgid "Show LinkedIn share button"
+msgstr "Zobrazit tlačítko Sdílet LinkedIn"
+
+msgid "Enable Blogger Share"
+msgstr "Povolit sdílení bloggerů"
+
+msgid "Show Blogger share button"
+msgstr "Zobrazit tlačítko Share Blogger Share"
+
+msgid "Enable Digg Share"
+msgstr "Povolit Sdílet Digg"
+
+msgid "Show Digg share button"
+msgstr "Zobrazit tlačítko DIGG Share"
+
+msgid "Enable Myspace Share"
+msgstr "Povolit sdílení MySpace"
+
+msgid "Show Myspace share button"
+msgstr "Zobrazit tlačítko sdílení MySpace"
+
+msgid "Enable Yahoo Share"
+msgstr "Povolte Yahoo Share"
+
+msgid "Show Yahoo share button"
+msgstr "Zobrazit tlačítko Yahoo Share"
+
+msgid "Mapping & Geolocation"
+msgstr "Mapování a geolokace"
+
+msgid "Configure map services and location-based features"
+msgstr "Konfigurace mapových služeb a funkcí založených na poloze"
+
+msgid "Choose between Google Maps and OpenStreetMap for map displays"
+msgstr "Vyberte si mezi mapami Google a OpenStreetMap pro mapové displeje"
+
+msgid "Google Map API Key"
+msgstr "Klíč API Google Map"
+
+msgid "Enter your Google Maps API key"
+msgstr "Zadejte klíč API Google Maps"
+
+msgid "Map Height"
+msgstr "Výška mapy"
+
+msgid "Set the height for maps displayed in the plugin, in pixels"
+msgstr "Nastavte výšku pro mapy zobrazené v pluginu, v pixelech"
+
+msgid "Default Longitude"
+msgstr "Výchozí délka"
+
+msgid "Default longitude for map centering"
+msgstr "Výchozí délka pro soustředění mapy"
+
+msgid "Default Latitude"
+msgstr "Výchozí zeměpisná šířka"
+
+msgid "Default latitude for map centering"
+msgstr "Výchozí zeměpisná šířka pro soustředění mapy"
+
+msgid "Default Map Radius Type"
+msgstr "Výchozí typ poloměru mapy"
+
+msgid "Default unit for map radius calculations"
+msgstr "Výchozí jednotka pro výpočty poloměru mapy"
+
+msgid "Max Records for City Field"
+msgstr "Max Records for City Field"
+
+msgid "Set the number of cities to show in the location autocomplete results"
+msgstr "Nastavte počet měst, která se zobrazují na výsledcích automatického doplňování umístění"
+
+msgid "Max Records for Tag Field"
+msgstr "Max záznamy pro pole značky"
+
+msgid "Set the number of tags to show in the tag autocomplete results"
+msgstr "Nastavte počet značek, které se zobrazí ve výsledcích automatického doplňování značky"
+
+msgid "Security & Captcha"
+msgstr "Zabezpečení a Captcha"
+
+msgid "Captcha Options"
+msgstr "Možnosti Captcha"
+
+msgid "Enable captcha on various forms to prevent spam"
+msgstr "Povolte Captcha v různých formách, aby se zabránilo spamu"
+
+msgid "Default Captcha Type"
+msgstr "Výchozí typ Captcha"
+
+msgid "Select the default captcha to use throughout the plugin"
+msgstr "Vyberte výchozí kapitán, který chcete použít v celém pluginu"
+
+msgid "Captcha on Registration Form"
+msgstr "Captcha na registračním formuláři"
+
+msgid "Show a captcha on the WP Job Portal registration form"
+msgstr "Zobrazit kapitán na registračním formuláři portálu WP"
+
+msgid "Captcha on Visitor Quick Apply"
+msgstr "CAPTCHA na návštěvníkovi Quick Appl"
+
+msgid "Show captcha to visitors on the quick apply form"
+msgstr "Zobrazit Captcha návštěvníkům ve formuláři rychlého použití"
+
+msgid "Captcha on Visitor Job Form"
+msgstr "Captcha na formuláři práce návštěvníka"
+
+msgid "Show captcha on the job submission form for visitors"
+msgstr "Zobrazit Captcha ve formuláři pro odeslání práce pro návštěvníky"
+
+msgid "Captcha on Visitor Resume Form"
+msgstr "Captcha na formuláři pokračování návštěvníků"
+
+msgid "Show captcha on the resume submission form for visitors"
+msgstr "Zobrazit Captcha na formuláři pro životopis pro návštěvníky"
+
+msgid "Captcha on Tell a Friend Popup"
+msgstr "Captcha on Tell a Tell Friend vyskakovací okna"
+
+msgid "Show captcha on the"
+msgstr "Zobrazit Captcha na"
+
+msgid "popup for visitors"
+msgstr "vyskakovací okno pro návštěvníky"
+
+msgid "WP Job Portal Captcha"
+msgstr "WP Job Portal Captcha"
+
+msgid "Settings for the built-in mathematical captcha"
+msgstr "Nastavení pro vestavěnou matematickou captcha"
+
+msgid "Calculation Type"
+msgstr "Typ výpočtu"
+
+msgid "Select the type of math problem for the captcha"
+msgstr "Vyberte typ matematického problému pro Captcha"
+
+msgid "Addition or Subtraction"
+msgstr "Přidání nebo odčítání"
+
+msgid "Answer Always Positive"
+msgstr "Odpověď vždy pozitivní"
+
+msgid "Ensure that subtraction problems always result in a positive answer"
+msgstr "Zajistěte, aby problémy s odčítáním vždy měly za následek pozitivní odpověď"
+
+msgid "Number of Operands"
+msgstr "Počet operandů"
+
+msgid "Choose the number of operands for the math problem"
+msgstr "Vyberte si počet operandů pro matematický problém"
+
+msgid "Google reCAPTCHA"
+msgstr "Google Recaptcha"
+
+msgid "Configure Google reCAPTCHA v2 or v3"
+msgstr "Nakonfigurujte Google Recaptcha V2 nebo V3"
+
+msgid "Select which version of Google reCAPTCHA to use"
+msgstr "Vyberte, jakou verzi Google Recaptcha použije"
+
+msgid "Enter the site key from your Google reCAPTCHA admin console"
+msgstr "Zadejte klíč webu z konzoly Google Recoptcha Admin Console"
+
+msgid "Google reCaptcha Secret Key"
+msgstr "Google Recaptcha Secret Key"
+
+msgid "Enter the secret key from your Google reCAPTCHA admin console"
+msgstr "Zadejte tajný klíč z vaší konzoly Google Recoptcha Admin Console"
+
+msgid "Monetization"
+msgstr "Zpeněžení"
+
+msgid "General Monetization"
+msgstr "Obecná zpeněžení"
+
+msgid "Core settings for handling payments and packages"
+msgstr "Základní nastavení pro manipulaci s platbami a balíčky"
+
+msgid "Choose the monetization model for submissions"
+msgstr "Vyberte model zpeněžení pro podání"
+
+msgid "Free, Per Listing, or Membership-based"
+msgstr "Zdarma, na seznam nebo členství založené"
+
+msgid "Default Currency Symbol"
+msgstr "Výchozí symbol měny"
+
+msgid "The currency symbol to be used across the site"
+msgstr "Symbol měny, který má být použit na celém webu"
+
+msgid "Currency Symbol Position"
+msgstr "Pozice symbolu měny"
+
+msgid "Packages & Featured Listings"
+msgstr "Balíčky a doporučené výpisy"
+
+msgid "Manage free packages and enable featured listings"
+msgstr "Spravujte balíčky zdarma a povolte uvedené výpisy"
+
+msgid "Auto-assign Free Package to New User"
+msgstr "Automatické přidělení balíčku bezplatného uživatele"
+
+msgid "Automatically give new users a free package if one exists"
+msgstr "Automaticky poskytnout novým uživatelům bezplatný balíček, pokud existuje"
+
+msgid "Free Package Purchase Auto Approve"
+msgstr "Bezplatný nákup balíčku Automatické schválení"
+
+msgid "Automatically approve the purchase of free packages"
+msgstr "Automaticky schválit nákup balíčků zdarma"
+
+msgid "Purchase Free Package Only Once"
+msgstr "Zakupte si balíček zdarma pouze jednou"
+
+msgid "Prevent users from acquiring a free package more than once"
+msgstr "Zabraňte uživatelům v získávání bezplatného balíčku"
+
+msgid "Enable Featured Companies"
+msgstr "Povolit doporučené společnosti"
+
+msgid "Allow companies to be marked as"
+msgstr "Umožněte společnosti označit jako"
+
+msgid "Enable Featured Jobs"
+msgstr "Povolit doporučené úlohy"
+
+msgid "Allow jobs to be marked as"
+msgstr "Umožněte označení úloh jako"
+
+msgid "Enable Featured Resumes"
+msgstr "Povolit doporučené životopisy"
+
+msgid "Allow resumes to be marked as"
+msgstr "Nechte životopisy být označeny jako"
+
+msgid "Per Listing Prices"
+msgstr "Za seznam cen"
+
+msgid "Set prices for various actions when using the"
+msgstr "Při použití"
+
+msgid "submission type"
+msgstr "Typ odeslání"
+
+msgid "Submission"
+msgstr "Podání"
+
+msgid "Price to submit a single company profile"
+msgstr "Cena za odeslání jediného profilu společnosti"
+
+msgid "Additional price to make a company"
+msgstr "Další cena za vytvoření společnosti"
+
+msgid "Days Until Featured Company Expires"
+msgstr "Dny, dokud vyprší vypršená společnost"
+
+msgid "Number of days a"
+msgstr "Počet dní a"
+
+msgid "per-listing"
+msgstr "na seznam"
+
+msgid "featured company remains active"
+msgstr "Přednášející společnost zůstává aktivní"
+
+msgid "free"
+msgstr "uvolnit"
+
+msgid "Price to submit a single job"
+msgstr "Cena za odeslání jediné práce"
+
+msgid "Additional price to make a job"
+msgstr "Další cena za účelem práce"
+
+msgid "Days Until Featured Job Expires"
+msgstr "Dny, dokud vyprší vypršená práce"
+
+msgid "featured job remains active"
+msgstr "Hlavní práce zůstává aktivní"
+
+msgid "Price to submit a single resume"
+msgstr "Cena za odeslání jediného životopisu"
+
+msgid "Additional price to make a resume"
+msgstr "Další cena za účelem životopisu"
+
+msgid "Days Until Featured Resume Expires"
+msgstr "Dny do doby, kdy se objeví pokračovat v vypršení"
+
+msgid "featured resume remains active"
+msgstr "Představený životopis zůstává aktivní"
+
+msgid "Price per Job Apply"
+msgstr "Platí cena za práci"
+
+msgid "Price for a job seeker to apply for a job"
+msgstr "Cena pro uchazeče o zaměstnání požádat o práci"
+
+msgid "Price to View Resume Contact"
+msgstr "Cena k zobrazení životopisu kontaktu"
+
+msgid "Price to View Company Contact"
+msgstr "Cena k zobrazení kontaktu společnosti"
+
+msgid "Price to submit a department"
+msgstr "Cena za odeslání oddělení"
+
+msgid "Price to submit a cover letter"
+msgstr "Cena za odeslání průvodního dopisu"
+
+msgid "Price to create a job alert"
+msgstr "Cena za vytvoření upozornění na práci"
+
+msgid "Dashboard Monetization Links"
+msgstr "Odkazy na zpeněžení řídicího panelu"
+
+msgid "Control the visibility of monetization-related links in user dashboards"
+msgstr "Ovládejte viditelnost odkazů souvisejících s monetizací v uživatelských dashboardech"
+
+msgid "Employer Show Invoice History"
+msgstr "Historie zaměstnavatele ukazuje"
+
+msgid "Setting to show the invoice/purchase history section"
+msgstr "Nastavení pro zobrazení sekce Historie faktury/nákupu"
+
+msgid "Job Seeker Show Invoice History"
+msgstr "Uchazeč o zaměstnání ukazuje historii faktur"
+
+msgid "Job Seeker Show Credits Log"
+msgstr "Úvěry uchazeče o zaměstnání"
+
+msgid "Setting to show the credits log section"
+msgstr "Nastavení pro zobrazení sekce protokolu kreditů"
+
+msgid "Payment Gateways"
+msgstr "Platební brány"
+
+msgid "Configure PayPal payment gateway settings for API integration"
+msgstr "Nakonfigurujte nastavení platební brány PayPal pro integraci API"
+
+msgid "Enable PayPal"
+msgstr "Povolit PayPal"
+
+msgid "Enable or disable PayPal as a payment option"
+msgstr "Povolte nebo deaktivujte jako možnost platby"
+
+msgid "Your PayPal API Username"
+msgstr "Vaše uživatelské jméno API PayPal API"
+
+msgid "Your PayPal API Password"
+msgstr "Heslo API PayPal API"
+
+msgid "Your PayPal API Signature"
+msgstr "Váš podpis API PayPal API"
+
+msgid "A URL to your logo image to display on the PayPal checkout page"
+msgstr "URL na obrázek loga, která se zobrazí na stránce pokladny PayPal"
+
+msgid "Cancel URL"
+msgstr "Zrušit URL"
+
+msgid "The URL users are sent to if they cancel the payment"
+msgstr "Uživatelé adresy URL jsou odesíláni, pokud platbu zruší"
+
+msgid "Notify URL"
+msgstr "Upozornit URL"
+
+msgid "Sandbox"
+msgstr "Sandbox"
+
+msgid "Enable PayPal Sandbox for testing purposes"
+msgstr "Povolit karanténu PayPal pro účely testování"
+
+msgid "Please enter language code, for example"
+msgstr "Zadejte například jazykový kód"
+
+msgid "Subscription IPN URL"
+msgstr "URL IPN předplatného"
+
+msgid "Configure Stripe payment gateway settings"
+msgstr "Nakonfigurujte nastavení platební brány pruhu"
+
+msgid "Enable Stripe"
+msgstr "Povolit pruh"
+
+msgid "Enable or disable Stripe as a payment option"
+msgstr "Povolte nebo deaktivujte jako možnost platby"
+
+msgid "Publishable Key"
+msgstr "Publikovatelný klíč"
+
+msgid "Enter your Stripe Publishable Key"
+msgstr "Zadejte svůj klíč s vydavatelným pruhem"
+
+msgid "Secret Key"
+msgstr "Tajný klíč"
+
+msgid "Enter your Stripe Secret Key"
+msgstr "Zadejte svůj klíč z pruhu"
+
+msgid "Subscription Webhook URL"
+msgstr "URL předplatného webhook"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Use WooCommerce to handle payments"
+msgstr "Použijte WooCommerce k zpracování plateb"
+
+msgid "Enable WooCommerce"
+msgstr "Povolit WooCommerce"
+
+msgid "Enable or disable WooCommerce as a payment option"
+msgstr "Povolte nebo deaktivujte WooCommerce jako možnost platby"
+
+msgid "Home Page"
+msgstr "Domovská stránka"
+
+msgid "WordPress Default"
+msgstr "Výchozí hodnota WordPress"
+
+msgid "Blog"
+msgstr "Blog"
+
+msgid "This feature is part of a premium addon"
+msgstr "Tato funkce je součástí prémiového doplňku"
+
+msgid "Available tags"
+msgstr "Dostupné značky"
+
+msgid "This image will be shown as the default image for entities & users if no other image is provided"
+msgstr "Tento obrázek se zobrazí jako výchozí obrázek pro entity a uživatele, pokud není poskytnut žádný jiný obrázek"
+
+msgid "Discard"
+msgstr "Vyřadit"
+
+msgid "Save Changes"
+msgstr "Ušetřete změny"
+
+msgid "Quickly find any setting"
+msgstr "Rychle najděte jakékoli nastavení"
+
+msgid "Search by setting title or tooltip description"
+msgstr "Vyhledejte nastavením názvu nebo popisu popisky"
+
+msgid "Unlock"
+msgstr "Odemknout"
+
+msgid "This and other powerful features are available in the"
+msgstr "Tyto a další výkonné funkce jsou k dispozici v"
+
+msgid "Upgrade Now"
+msgstr "Upgradujte nyní"
+
+msgid "No settings found for your search"
+msgstr "Pro vaše vyhledávání není nalezena žádná nastavení"
+
+msgid "Copied to clipboard"
+msgstr "Zkopírováno do schránky"
+
+msgid "Search results for"
+msgstr "Výsledky hledání pro"
+
+msgid "Unlock with"
+msgstr "Odemknout s"
+
+msgid "Settings related to employer accounts, registration, and permissions"
+msgstr "Nastavení související s účty zaměstnavatelů, registrací a oprávnění"
+
+msgid "Settings related to job seeker accounts and registration"
+msgstr "Nastavení související s účty uchazeče o zaměstnání a registraci"
+
+msgid "Visitor Can View Employer's Control Panel Links"
+msgstr "Návštěvník si může zobrazit odkazy na ovládací panely zaměstnavatele"
+
+msgid "Visitor Can View Resume Categories"
+msgstr "Návštěvník si může zobrazit kategorie životopisu"
+
+msgid "Visitor Can Search Resumes"
+msgstr "Návštěvník může vyhledávat životopisy"
+
+msgid "Visitor Can View Company Details"
+msgstr "Návštěvník si může zobrazit podrobnosti společnosti"
+
+msgid "Visitor Can View Job Details"
+msgstr "Návštěvník si může zobrazit podrobnosti o úloze"
+
+msgid "Visitor Can View Resume Details"
+msgstr "Návštěvník si může zobrazit podrobnosti o životopisu"
+
+msgid "Visitor Can View Job Seeker's Control Panel Links"
+msgstr "Návštěvník si můžete prohlédnout odkazy na ovládací panel uchazeče o zaměstnání"
+
+msgid "Visitor Can View Jobs by Categories"
+msgstr "Návštěvník může zobrazit úlohy podle kategorií"
+
+msgid "Visitor Can Search Jobs"
+msgstr "Návštěvník může hledat úlohy"
+
+msgid "Visitor Can View Newest Jobs"
+msgstr "Návštěvník si může prohlédnout nejnovější úlohy"
+
+msgid "Visitor Can View Job Search Results"
+msgstr "Návštěvník si může zobrazit výsledky vyhledávání zaměstnání"
+
+msgid "1 Column"
+msgstr "1 sloupec"
+
+msgid "10254 Departments found"
+msgstr "Nalezeno 10254 oddělení"
+
+msgid "2 Columns"
+msgstr "2 sloupce"
+
+msgid "3 Columns"
+msgstr "3 sloupce"
+
+msgid "4 Columns"
+msgstr "4 sloupce"
+
+msgid "5 Columns"
+msgstr "5 sloupců"
+
+msgid "A critical update for WP Job Portal is required to maintain performance and prevent issues. Please update now."
+msgstr "K udržení výkonu a prevenci problémů je nutná kritická aktualizace portálu úloh WP. Aktualizujte prosím nyní."
+
+msgid "AI Search"
+msgstr "AI vyhledávání"
+
+msgid "AI Search Job"
+msgstr "AI hledání práce"
+
+msgid "AI Settings"
+msgstr "Nastavení AI"
+
+msgid "AI settings"
+msgstr "nastavení AI"
+
+msgid "About"
+msgstr "O"
+
+msgid "Account & Billing"
+msgstr "Účet a fakturace"
+
+msgid "Activation failed"
+msgstr "Aktivace se nezdařila"
+
+msgid "Add-ons for WP Job Portal have been installed and activated successfully."
+msgstr "Doplňky pro portál WP Job Portal byly úspěšně nainstalovány a aktivovány."
+
+msgid "Addon Installer"
+msgstr "Instalační program doplňků"
+
+msgid "Addon not installed please install addon first."
+msgstr "Doplněk není nainstalován, nainstalujte nejprve doplněk."
+
+msgid "Addon will automatically update to the newest version"
+msgstr "Addon se automaticky aktualizuje na nejnovější verzi"
+
+msgid "Addon(s) Installed successfully!"
+msgstr "Doplňky byly úspěšně nainstalovány!"
+
+msgid "Address display style for plugin"
+msgstr "Styl zobrazení adresy pro plugin"
+
+msgid "Advanced Resume Builder Addon missing, resume sections data will not be imported!"
+msgstr "Chybí doplněk Advanced Resume Builder, data sekcí životopisu nebudou importována!"
+
+msgid "All selected add-ons are now active."
+msgstr "Všechny vybrané doplňky jsou nyní aktivní."
+
+msgid "Allow employers and job Seekers to register on the site."
+msgstr "Umožněte zaměstnavatelům a uchazečům o zaměstnání zaregistrovat se na stránce."
+
+msgid "Allow search resume"
+msgstr "Povolit obnovení vyhledávání"
+
+msgid "Allowed to all (employers, job seekers and visitors)"
+msgstr "Povoleno všem (zaměstnavatelům, uchazečům o zaměstnání a návštěvníkům)"
+
+msgid "Auto Update: Off"
+msgstr "Automatická aktualizace: Vypnuto"
+
+msgid "Auto Update: On"
+msgstr "Automatická aktualizace: Zapnuto"
+
+msgid "Back to listing"
+msgstr "Zpět na výpis"
+
+msgid "Basic Info"
+msgstr "Základní informace"
+
+msgid "Buttons Styling"
+msgstr "Stylování tlačítek"
+
+msgid "Capitalize"
+msgstr "Velká písmena"
+
+msgid "Check if you want to use WP Job Portal packages"
+msgstr "Zaškrtněte, zda chcete používat balíčky WP Job Portal"
+
+msgid "City name"
+msgstr "Název města"
+
+msgid "Columns per Row"
+msgstr "Sloupce na řádek"
+
+msgid "Comma separated list of job types i.e JTFT, JTPT, JTFP, JTCT, JTIN"
+msgstr "Čárkami oddělený seznam typů úloh, např. JTFT, JTPT, JTFP, JTCT, JTIN"
+
+msgid "Communication"
+msgstr "Sdělení"
+
+msgid "Company Management"
+msgstr "Vedení společnosti"
+
+msgid "Complete Your Resume"
+msgstr "Vyplňte svůj životopis"
+
+msgid "Content Access"
+msgstr "Přístup k obsahu"
+
+msgid "Content Styling"
+msgstr "Styling obsahu"
+
+msgid "Control which employer dashboard navigation links are visible to visitors"
+msgstr "Určete, které odkazy na navigační panel zaměstnavatele uvidí návštěvníci"
+
+msgid "Control which employer dashboard widgets and sections are visible to visitors"
+msgstr "Určete, které widgety a sekce panelu zaměstnavatele budou viditelné pro návštěvníky"
+
+msgid "Control which job seeker dashboard navigation links are visible to visitors"
+msgstr "Určete, které navigační odkazy na panelu uchazečů o zaměstnání budou viditelné pro návštěvníky"
+
+msgid "Control which job seeker dashboard widgets and sections are visible to visitors"
+msgstr "Určete, které widgety a sekce panelu uchazečů o zaměstnání jsou viditelné pro návštěvníky"
+
+msgid "Control which pages and content areas are visible to non-logged-in users"
+msgstr "Určete, které stránky a oblasti obsahu jsou viditelné pro nepřihlášené uživatele"
+
+msgid "Custom Field Class"
+msgstr "Vlastní třída pole"
+
+msgid "Database Update Needed"
+msgstr "Je nutná aktualizace databáze"
+
+msgid "Database update completed"
+msgstr "Aktualizace databáze dokončena"
+
+msgid "Delete All Unused Keys"
+msgstr "Smazat všechny nepoužívané klíče"
+
+msgid "Discover"
+msgstr "Objevit"
+
+msgid "Display the status of applications to the job seeker"
+msgstr "Zobrazte stav žádostí uchazeči o zaměstnání"
+
+msgid "Dummy Plugin"
+msgstr "Dummy Plugin"
+
+msgid "Dummy Plugin 2"
+msgstr "Dummy Plugin 2"
+
+msgid "Elegant Design"
+msgstr "Elegantní Design"
+
+msgid "Employer Widgets"
+msgstr "Widgety pro zaměstnavatele"
+
+msgid "Enter the Site Title"
+msgstr "Zadejte Název webu"
+
+msgid "Entity"
+msgstr "Entita"
+
+msgid "Fetch Data"
+msgstr "Načíst data"
+
+msgid "Find your next star hire with AI-driven resume search"
+msgstr "Najděte si svou další hvězdičku pomocí vyhledávání životopisů řízených umělou inteligencí"
+
+msgid "Font Family"
+msgstr "Rodina písem"
+
+msgid "Font Size"
+msgstr "Velikost písma"
+
+msgid "Font Style"
+msgstr "Styl písma"
+
+msgid "Font Weight"
+msgstr "Tloušťka písma"
+
+msgid "Go To Dashboard"
+msgstr "Přejít na řídicí panel"
+
+msgid "Import Data Report"
+msgstr "Importovat sestavu dat"
+
+msgid "Import Third Party Data"
+msgstr "Importujte data třetích stran"
+
+msgid "Import demo data to populate your site with example companies, jobs, resumes, and applications."
+msgstr "Importujte ukázková data a naplňte svůj web vzorovými společnostmi, pracovními místy, životopisy a aplikacemi."
+
+msgid "Imported"
+msgstr "Importováno"
+
+msgid "Infi Icon"
+msgstr "Ikona Infi"
+
+msgid "Info"
+msgstr "Info"
+
+msgid "Info Icon"
+msgstr "Informační ikona"
+
+msgid "Invalid server response"
+msgstr "Neplatná odpověď serveru"
+
+msgid "Italic"
+msgstr "kurzíva"
+
+msgid "Job Alert Time"
+msgstr "Čas upozornění na práci"
+
+msgid "Job Detail"
+msgstr "Detail práce"
+
+msgid "Job Seeker Links"
+msgstr "Odkazy pro uchazeče o zaměstnání"
+
+msgid "Job Seeker Settings"
+msgstr "Nastavení uchazeče o zaměstnání"
+
+msgid "Job Seeker Widgets"
+msgstr "Widgety pro uchazeče o zaměstnání"
+
+msgid "Jobs by Category"
+msgstr "Práce podle kategorie"
+
+msgid "Layout"
+msgstr "Rozložení"
+
+msgid "Letter Spacing"
+msgstr "Mezery mezi písmeny"
+
+msgid "Line Height"
+msgstr "Výška řádku"
+
+msgid "Live Preview Not available at the moment !"
+msgstr "Živý náhled Momentálně není k dispozici!"
+
+msgid "Login/Register"
+msgstr "Přihlášení/Registrace"
+
+msgid "Lowercase"
+msgstr "Malá písmena"
+
+msgid "Manage Documents"
+msgstr "Správa dokumentů"
+
+msgid "Manage Jobs"
+msgstr "Správa úloh"
+
+msgid "Manage Unused Keys"
+msgstr "Správa nepoužívaných klíčů"
+
+msgid "More Actions"
+msgstr "Další akce"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans."
+msgstr "Moje předplatné poskytuje uživatelům přehled jejich aktivních předplatných a umožňuje snadnou správu a sledování jejich plánů pracovních nabídek."
+
+msgid "New Jobs"
+msgstr "Nová pracovní místa"
+
+msgid "Next Setup"
+msgstr "Další nastavení"
+
+msgid "No Addon Installed!"
+msgstr "Není nainstalován žádný doplněk!"
+
+msgid "No unused keys were found."
+msgstr "Nebyly nalezeny žádné nepoužité klíče."
+
+msgid "None"
+msgstr "Žádný"
+
+msgid "Not Imported"
+msgstr "Neimportováno"
+
+msgid "Oblique"
+msgstr "Šikmý"
+
+msgid "Only job seekers can register. Jobs and companies are managed by the admin."
+msgstr "Registrovat se mohou pouze uchazeči o zaměstnání. Úlohy a společnosti spravuje admin."
+
+msgid "Paid access Only"
+msgstr "Pouze placený přístup"
+
+msgid "Pay For Featured Resume"
+msgstr "Zaplaťte za doporučený životopis"
+
+msgid "Pay For Resume"
+msgstr "Zaplaťte za obnovení"
+
+msgid "Pay per listing price to publish your"
+msgstr "Zaplaťte za cenu za zveřejnění"
+
+msgid "Please Insert Your Activation Key"
+msgstr "Vložte prosím svůj aktivační klíč"
+
+msgid "Please log in to register to continue."
+msgstr "Pro pokračování se prosím přihlaste."
+
+msgid "Please select at least one addon!"
+msgstr "Vyberte prosím alespoň jeden doplněk!"
+
+msgid "Please verify Locations and salaries for imported data entities"
+msgstr "Ověřte prosím umístění a platy pro importované datové entity"
+
+msgid "Plugin not installed"
+msgstr "Plugin není nainstalován"
+
+msgid "Price for a job seeker to view a company's contact details"
+msgstr "Cena pro uchazeče o zaměstnání za zobrazení kontaktních údajů společnosti"
+
+msgid "Price for an employer to view a resume's contact details"
+msgstr "Cena pro zaměstnavatele za zobrazení kontaktních údajů životopisu"
+
+msgid "Quick Configuration"
+msgstr "Rychlá konfigurace"
+
+msgid "Ready to find your dream job? Let's get started"
+msgstr "Jste připraveni najít svou vysněnou práci? Začněme"
+
+msgid "Ready to find your potential employee? Let's get started"
+msgstr "Jste připraveni najít svého potenciálního zaměstnance? Začněme"
+
+msgid "Search Jobs"
+msgstr "Hledat nabídky práce"
+
+msgid "Search Resumes"
+msgstr "Obnovení vyhledávání"
+
+msgid "Search smarter – just type anything you know about the job: title, category, type, skills, or even a description!"
+msgstr "Hledejte chytřeji – stačí napsat cokoli, co o práci víte: název, kategorie, typ, dovednosti nebo dokonce popis!"
+
+msgid "Section Title Styling"
+msgstr "Styl nadpisu sekce"
+
+msgid "Select Addons to Update with New Activation Key"
+msgstr "Vyberte Addons to Update with New Activation Key"
+
+msgid "Select Company"
+msgstr "Vyberte Společnost"
+
+msgid "Select Job Category"
+msgstr "Vyberte kategorii práce"
+
+msgid "Select Job Status"
+msgstr "Vyberte Stav úlohy"
+
+msgid "Select Job Type"
+msgstr "Vyberte Typ úlohy"
+
+msgid "Select Page To Show"
+msgstr "Vyberte Stránka k zobrazení"
+
+msgid "Select Plugin Setting for WP Job Portal"
+msgstr "Vyberte Nastavení pluginu pro WP Job Portal"
+
+msgid "Select packages pack so that user can purchase them"
+msgstr "Vyberte balíčky balíčků, aby si je uživatel mohl zakoupit"
+
+msgid "Select who can view company contact details."
+msgstr "Vyberte, kdo může zobrazit kontaktní údaje společnosti."
+
+msgid "Settings you applied have been successfully saved"
+msgstr "Nastavení, která jste použili, byla úspěšně uložena"
+
+msgid "Setup Complete"
+msgstr "Nastavení dokončeno"
+
+msgid "Show Advanced Search Button"
+msgstr "Zobrazit tlačítko Rozšířené vyhledávání"
+
+msgid "Show Employers"
+msgstr "Zobrazit zaměstnavatele"
+
+msgid "Show Everyone"
+msgstr "Ukaž všem"
+
+msgid "Show Job seekers"
+msgstr "Zobrazit uchazeče o zaměstnání"
+
+msgid "Show Labels"
+msgstr "Zobrazit štítky"
+
+msgid "Show No One"
+msgstr "Ukázat nikoho"
+
+msgid "Show Placeholders"
+msgstr "Zobrazit zástupné symboly"
+
+msgid "Show Resume Status Section"
+msgstr "Zobrazit sekci Stav obnovení"
+
+msgid "Show a box with applied jobs on the job seeker's dashboard"
+msgstr "Zobrazit pole s použitými úlohami na řídicím panelu uchazeče o zaměstnání"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard"
+msgstr "Ukažte rámeček s nejnovějšími pracovními pozicemi na řídicím panelu uchazeče o zaměstnání"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard to visitor"
+msgstr "Ukažte návštěvníkovi box s nejnovějšími pracovními pozicemi na řídicím panelu uchazeče o zaměstnání"
+
+msgid "Show a box with recent resumes on the employer's dashboard"
+msgstr "Ukažte pole s nedávnými životopisy na řídicím panelu zaměstnavatele"
+
+msgid "Show a box with recent resumes on the employer's dashboard to visitor"
+msgstr "Ukažte návštěvníkovi pole s nedávnými životopisy na řídicím panelu zaměstnavatele"
+
+msgid "Show a graph of job statistics in the employer's dashboard"
+msgstr "Zobrazit graf statistik práce na řídicím panelu zaměstnavatele"
+
+msgid "Show a graph of job statistics in the employer's dashboard to visitor"
+msgstr "Ukažte návštěvníkovi graf statistik práce na řídicím panelu zaměstnavatele"
+
+msgid "Show a graph of job statistics in the job seeker's dashboard"
+msgstr "Zobrazit graf statistik práce na řídicím panelu uchazeče o zaměstnání"
+
+msgid "Show a graph of job statistics in the job seeker's dashboard to visitor"
+msgstr "Ukažte návštěvníkovi graf statistik práce na řídicím panelu uchazeče o zaměstnání"
+
+msgid "Show a link to active subscriptions in the employer's dashboard"
+msgstr "Zobrazit odkaz na aktivní předplatná na řídicím panelu zaměstnavatele"
+
+msgid "Show a link to active subscriptions in the job seeker's dashboard"
+msgstr "Zobrazit odkaz na aktivní odběry na řídicím panelu uchazeče o zaměstnání"
+
+msgid "Show a link to the packages page in the employer's dashboard"
+msgstr "Zobrazit odkaz na stránku balíčků na řídicím panelu zaměstnavatele"
+
+msgid "Show a link to the packages page in the job seeker's dashboard"
+msgstr "Zobrazit odkaz na stránku balíčků na řídicím panelu uchazeče o zaměstnání"
+
+msgid "Show a link to the purchase history/invoices in the employer's dashboard"
+msgstr "Zobrazit odkaz na historii nákupů/faktury na dashboardu zaměstnavatele"
+
+msgid "Show a link to the purchase history/invoices in the job seeker's dashboard"
+msgstr "Zobrazit odkaz na historii nákupů/faktury na řídicím panelu uchazeče o zaměstnání"
+
+msgid "Show a link to the user's purchased packages in their dashboard"
+msgstr "Zobrazit odkaz na uživatelem zakoupené balíčky na jeho panelu"
+
+msgid "Show an 'AI Suggested Jobs' button on the 'My Resumes' page for job seekers"
+msgstr "Ukázat uchazečům o zaměstnání na stránce Moje životopisy tlačítko AI Suggested Jobs"
+
+msgid "Show an 'AI Suggested Resumes' button on the 'My Jobs' page for employers"
+msgstr "Zobrazte zaměstnavatelům tlačítko 'AI Suggested Resumes' na stránce 'My Jobs'"
+
+msgid "Show or hide the profile section on the employer's control panel"
+msgstr "Zobrazit nebo skrýt sekci profilu na ovládacím panelu zaměstnavatele"
+
+msgid "Show or hide the profile section on the job seeker's control panel"
+msgstr "Zobrazit nebo skrýt sekci profilu na ovládacím panelu uchazeče o zaměstnání"
+
+msgid "Show resume status section on the job seeker's dashboard"
+msgstr "Zobrazit sekci stavu životopisu na řídicím panelu uchazeče o zaměstnání"
+
+msgid "Show statistics boxes on the employer's dashboard"
+msgstr "Zobrazit pole statistik na řídicím panelu zaměstnavatele"
+
+msgid "Show statistics boxes on the job seeker's dashboard"
+msgstr "Zobrazit statistická pole na řídicím panelu uchazeče o zaměstnání"
+
+msgid "Show the 'Quick Apply' form to logged-in users on the job detail page"
+msgstr "Ukažte přihlášeným uživatelům na stránce s podrobnostmi úlohy formulář „Rychlá žádost“."
+
+msgid "Show the 'Quick Apply' form to visitors on the job detail page"
+msgstr "Ukažte návštěvníkům formulář „Rychlá žádost“ na stránce s podrobnostmi o pracovní pozici"
+
+msgid "Similar Found"
+msgstr "Podobné nalezeno"
+
+msgid "Start typing what you know – our AI will help you find the best matching jobs."
+msgstr "Začněte psát, co znáte – naše umělá inteligence vám pomůže najít ty nejvhodnější pracovní pozice."
+
+msgid "Start typing what you know – our AI will help you find the best matching resumes."
+msgstr "Začněte psát, co znáte – naše umělá inteligence vám pomůže najít ty nejvhodnější životopisy."
+
+msgid "Step 1 of 5"
+msgstr "Krok 1 z 5"
+
+msgid "Step 2 of 4"
+msgstr "Krok 2 ze 4"
+
+msgid "Step 2 of 5"
+msgstr "Krok 2 z 5"
+
+msgid "Step 3 of 4"
+msgstr "Krok 3 ze 4"
+
+msgid "Step 3 of 5"
+msgstr "Krok 3 z 5"
+
+msgid "Step 4 of 4"
+msgstr "Krok 4 ze 4"
+
+msgid "Step 4 of 5"
+msgstr "Krok 4 z 5"
+
+msgid "Step 5 of 5"
+msgstr "Krok 5 z 5"
+
+msgid "Subscriptions"
+msgstr "Předplatné"
+
+msgid "Sugeested Jobs"
+msgstr "Navrhovaná pracovní místa"
+
+msgid "Suggested Jobs"
+msgstr "Navrhovaná pracovní místa"
+
+msgid "Suggested Resumes"
+msgstr "Navrhované životopisy"
+
+msgid "System"
+msgstr "Systém"
+
+msgid "System Error Log"
+msgstr "Protokol systémových chyb"
+
+msgid "Text Transform"
+msgstr "Transformace textu"
+
+msgid "The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "Ovládací panel zaměstnavatele je zjednodušené rozhraní, které umožňuje zaměstnavatelům efektivně spravovat nabídky práce, sledovat žádosti, komunikovat s kandidáty a analyzovat metriky náboru."
+
+msgid "The highlighted addons are not included in your current license. Please adjust your selection accordingly."
+msgstr "Zvýrazněné doplňky nejsou součástí vaší aktuální licence. Upravte podle toho svůj výběr."
+
+msgid "This add-on will change the Job Portal pages to a simple yet powerful and rich web design that involves focusing on clean aesthetics, intuitive navigation, and functional elements while ensuring performance and responsiveness."
+msgstr "Tento doplněk změní stránky Job Portal na jednoduchý, ale výkonný a bohatý webový design, který zahrnuje zaměření na čistou estetiku, intuitivní navigaci a funkční prvky a zároveň zajišťuje výkon a odezvu."
+
+msgid "This will replace the old key with the new one."
+msgstr "Tím nahradíte starý klíč novým."
+
+msgid "Today Stats"
+msgstr "Dnešní statistiky"
+
+msgid "Unlock your career potential with AI-driven job search"
+msgstr "Odemkněte svůj kariérní potenciál s hledáním práce řízeným umělou inteligencí"
+
+msgid "Update Key"
+msgstr "Aktualizovat klíč"
+
+msgid "Update Now"
+msgstr "Aktualizovat nyní"
+
+msgid "Updating Database, please wait..."
+msgstr "Aktualizace databáze, čekejte prosím..."
+
+msgid "Uppercase"
+msgstr "Velká písmena"
+
+msgid "Use Default Color For Color 1"
+msgstr "Použít výchozí barvu pro barvu 1"
+
+msgid "Use Icons for Buttons"
+msgstr "Použijte ikony pro tlačítka"
+
+msgid "View All Resumes"
+msgstr "Zobrazit všechny životopisy"
+
+msgid "View Company Contact Detail"
+msgstr "Zobrazit kontaktní údaje společnosti"
+
+msgid "Visitor Show"
+msgstr "Návštěvnická show"
+
+msgid "Visitor Show Active Jobs Graph"
+msgstr "Návštěvník Zobrazit graf aktivních pracovních míst"
+
+msgid "Visitor Show Applied Jobs Section"
+msgstr "Návštěvník Zobrazit sekci aplikovaných pracovních míst"
+
+msgid "Visitor Show Applied Resumes Section"
+msgstr "Návštěvník Zobrazit sekci Použitá resumé"
+
+msgid "Visitor Show Credits Log Section"
+msgstr "Sekce záznamu kreditů návštěvníka"
+
+msgid "Visitor Show Jobs Graph"
+msgstr "Návštěvník Zobrazit graf pracovních míst"
+
+msgid "Visitor Show Jobs Graph Section"
+msgstr "Návštěvník Zobrazit část grafu pracovních míst"
+
+msgid "Visitor Show Newest Jobs Box"
+msgstr "Návštěvník Zobrazit pole nejnovějších pracovních míst"
+
+msgid "Visitor Show Newest Jobs Section"
+msgstr "Návštěvník Zobrazit sekci nejnovějších pracovních míst"
+
+msgid "Visitor Show Newest Resumes Section"
+msgstr "Návštěvník Zobrazit nejnovější resumé sekce"
+
+msgid "Visitor Show Purchase History Section"
+msgstr "Návštěvník Zobrazit sekci Historie nákupů"
+
+msgid "Visitor Show Recent Resumes Box"
+msgstr "Návštěvník Zobrazit Nedávné životopisy Box"
+
+msgid "Visitor Show Saved Searches Section"
+msgstr "Návštěvník Zobrazit sekci uložených vyhledávání"
+
+msgid "Visitor Show Shortlisted Jobs Section"
+msgstr "Návštěvník Zobrazit sekci vybraných pracovních míst"
+
+msgid "Visitor Show Stats Graph Section"
+msgstr "Sekce grafu statistik návštěvníka"
+
+msgid "Visitor Show Useful Links Section"
+msgstr "Návštěvník Zobrazit sekci užitečných odkazů"
+
+msgid "WP Job Manager"
+msgstr "WP Job Manager"
+
+msgid "WP Job Portal Activation Key"
+msgstr "Aktivační klíč WP Job Portal"
+
+msgid "WP Job Portal Import Data"
+msgstr "WP Job Portal Import dat"
+
+msgid "WP Job Portal Packages"
+msgstr "Balíčky WP Job Portal"
+
+msgid "Welcome to WP Job Portal Addon Installer"
+msgstr "Vítejte v instalátoru doplňků WP Job Portal"
+
+msgid "Welcome, Visitor"
+msgstr "Vítejte, návštěvníku"
+
+msgid "Who can search resume."
+msgstr "Kdo může hledat životopis."
+
+msgid "Who can view resume contact details"
+msgstr "Kdo může zobrazit kontaktní údaje životopisu"
+
+msgid "You Already Applied to this job"
+msgstr "Na tuto zakázku jste se již přihlásili"
+
+msgid "You have"
+msgstr "máte"
+
+msgid "Your WP Job Portal license key has expired or is invalid. Please update it to continue receiving support and updates."
+msgstr "Váš licenční klíč portálu úloh WP vypršel nebo je neplatný. Aktualizujte jej, abyste i nadále dostávali podporu a aktualizace."
+
+msgid "failed."
+msgstr "nepodařilo."
+
+msgid "found"
+msgstr "nalezeno"
+
+msgid "icon"
+msgstr "ikona"
+
+msgid "imported."
+msgstr "dovezeno."
+
+msgid "skipped."
+msgstr "přeskočeno."
+
+msgid "unused key has been deleted successfully!"
+msgstr "nepoužitý klíč byl úspěšně smazán!"
+
+msgid "unused key(s) that can be safely removed."
+msgstr "nepoužité klíče, které lze bezpečně vyjmout."
+
+msgid "unused keys have been deleted successfully!"
+msgstr "nepoužité klíče byly úspěšně smazány!"

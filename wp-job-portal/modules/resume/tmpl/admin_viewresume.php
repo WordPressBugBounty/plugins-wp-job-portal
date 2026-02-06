@@ -3,15 +3,15 @@ if (!defined('ABSPATH'))
     die('Restricted Access');
 ?>
 <?php
-$filekey = WPJOBPORTALincluder::getJSModel('common')->getGoogleMapApiAddress();
-//echo $filekey;
-wp_enqueue_script( 'jp-google-map', $filekey, array(), '1.1.1', false );
+$wpjobportal_filekey = WPJOBPORTALincluder::getJSModel('common')->getGoogleMapApiAddress();
+//echo $wpjobportal_filekey;
+wp_enqueue_script( 'jp-google-map', $wpjobportal_filekey, array(), '1.1.1', false );
 ?>
 <?php
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
         var ajaxurl = \"". esc_url_raw(admin_url('admin-ajax.php')) ."\";
         function makeExpiry() {
             jQuery('.goldnew').hover(function () {
@@ -119,13 +119,13 @@ wp_enqueue_script( 'jp-google-map', $filekey, array(), '1.1.1', false );
             });
         }
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>
 <?php
     // css front end
     wpjobportal::wpjobportal_addStyleSheets();
     //include_once WPJOBPORTAL_PLUGIN_PATH. 'includes/css/style_color.php';
-    wp_enqueue_style('wpjobportal-color', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/color.css');
+    //wp_enqueue_style('wpjobportal-color', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/color.css');
     wp_enqueue_style('wpjobportal-jobseeker-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jobseekercp.css');
     wp_enqueue_style('wpjobportal-employer-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/employercp.css');
     wp_enqueue_style('wpjobportal-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/style.css');
@@ -138,20 +138,20 @@ wp_enqueue_script( 'jp-google-map', $filekey, array(), '1.1.1', false );
         wp_register_style('wpjobportal-style-rtl', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/stylertl.css');
         wp_enqueue_style('wpjobportal-style-rtl');
     }
-    $msgkey = WPJOBPORTALincluder::getJSModel('resume')->getMessagekey();
-    WPJOBPORTALMessages::getLayoutMessage($msgkey);
+    $wpjobportal_msgkey = WPJOBPORTALincluder::getJSModel('resume')->getMessagekey();
+    WPJOBPORTALMessages::getLayoutMessage($wpjobportal_msgkey);
     if(! wpjobportal::$_common->wpjp_isadmin()){
         WPJOBPORTALbreadcrumbs::getBreadcrumbs();
         include_once(WPJOBPORTAL_PLUGIN_PATH . 'includes/header.php');
     }
 if (wpjobportal::$_error_flag == null) {
-    $resumeviewlayout = WPJOBPORTALincluder::getObjectClass('resumeviewlayout');
+    $wpjobportal_resumeviewlayout = WPJOBPORTALincluder::getObjectClass('resumeviewlayout');
     ?>
     <!-- main wrapper -->
     <div id="wpjobportaladmin-wrapper">
         <!-- left menu -->
         <div id="wpjobportaladmin-leftmenu">
-            <?php WPJOBPORTALincluder::getTemplate('templates/admin/leftmenue',array('module' => 'resume')); ?>
+            <?php WPJOBPORTALincluder::getTemplate('templates/admin/leftmenue',array('wpjobportal_module' => 'resume')); ?>
         </div>
         <div id="wpjobportaladmin-data">
             <!-- top bar -->
@@ -160,7 +160,7 @@ if (wpjobportal::$_error_flag == null) {
                     <div id="wpjobportal-breadcrumbs">
                         <ul>
                             <li>
-                                <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_html(__('dashboard','wp-job-portal')); ?>">
+                                <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
                                     <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                                 </a>
                             </li>
@@ -170,12 +170,12 @@ if (wpjobportal::$_error_flag == null) {
                 </div>
                 <div id="wpjobportal-wrapper-top-right">
                     <div id="wpjobportal-config-btn">
-                        <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_html(__('configuration','wp-job-portal')); ?>">
+                        <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
                             <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                        </a>
                     </div>
                     <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                        <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_html(__('help','wp-job-portal')); ?>">
+                        <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
                             <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                        </a>
                     </div>
@@ -187,27 +187,38 @@ if (wpjobportal::$_error_flag == null) {
             </div>
             <!-- top head -->
             <?php
-                WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('module' => 'resume' ,'layouts' => 'viewresume'));
-                WPJOBPORTALincluder::getTemplate('templates/admin/leftmenue',array('module' => 'resume'));
+                WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('wpjobportal_module' => 'resume' ,'wpjobportal_layouts' => 'viewresume'));
+                WPJOBPORTALincluder::getTemplate('templates/admin/leftmenue',array('wpjobportal_module' => 'resume'));
             ?>
             <!-- page content -->
             <div id="wpjobportal-admin-wrapper">
                 <?php
-                    $html = '<div id="resume-wrapper">';
-                    $isowner = (WPJOBPORTALincluder::getObjectClass('user')->uid() == wpjobportal::$_data[0]['personal_section']->uid) ? 1 : 0;
-                    $html .= $resumeviewlayout->getPersonalTopSection($isowner, 1);
-                    $html .= '<div class="resume-section-title">
+                $wpjobportal_token = WPJOBPORTALincluder::getJSModel('common')->getUniqueIdForTransient();
+                $wpjobportal_transient_val = get_transient('current_user_token_resume_'.$wpjobportal_token);
+                if(!empty($wpjobportal_transient_val)){
+                    ?>
+                    <div class="wpjobportal-admin--backlink-wrap">
+                        <a id="form-back-button" class="wpjobportal-form-back-btn" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_resume&wpjobportal_restore_results='.$wpjobportal_token)); ?>" title="<?php echo esc_attr(__('Back to listing', 'wp-job-portal')); ?>">
+                            <?php echo esc_html(__('Back to listing', 'wp-job-portal')); ?>
+                        </a>
+                    </div>
+                <?php }?>
+                <?php
+                    $wpjobportal_html = '<div id="resume-wrapper">';
+                    $wpjobportal_isowner = (WPJOBPORTALincluder::getObjectClass('user')->uid() == wpjobportal::$_data[0]['personal_section']->uid) ? 1 : 0;
+                    $wpjobportal_html .= $wpjobportal_resumeviewlayout->getPersonalTopSection($wpjobportal_isowner, 1);
+                    $wpjobportal_html .= '<div class="resume-section-title">
                                     <img class="heading-img" src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/personal-info.png" />
                                     ' . esc_html(__('Personal information', 'wp-job-portal')) . '
                                 </div>';
-                    $html .= $resumeviewlayout->getPersonalSection(0, 1);
-                    $show_section_that_have_value = wpjobportal::$_config->getConfigValue('show_only_section_that_have_value');
-                    $showflag = 1;
+                    $wpjobportal_html .= $wpjobportal_resumeviewlayout->getPersonalSection(0, 1);
+                    $wpjobportal_show_section_that_have_value = wpjobportal::$_config->getConfigValue('show_only_section_that_have_value');
+                    $wpjobportal_showflag = 1;
                     WPJOBPORTALincluder::getTemplate('resume/views/admin/viewresume',array(
-                        'showflag' => $showflag,
-                        'show_section_that_have_value' =>$show_section_that_have_value,
-                        'html' => $html,
-                        'resumeviewlayout' => $resumeviewlayout
+                        'wpjobportal_showflag' => $wpjobportal_showflag,
+                        'wpjobportal_show_section_that_have_value' =>$wpjobportal_show_section_that_have_value,
+                        'wpjobportal_html' => $wpjobportal_html,
+                        'wpjobportal_resumeviewlayout' => $wpjobportal_resumeviewlayout
                     ));
                 ?>
             </div>

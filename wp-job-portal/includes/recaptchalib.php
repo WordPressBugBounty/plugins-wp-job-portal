@@ -3,30 +3,30 @@
 if (!defined('ABSPATH'))
     die('Restricted Access');
 
-    if(! function_exists('googleRecaptchaHTTPPost')){
-        function googleRecaptchaHTTPPost($sharedkey , $grresponse) {
-            $url = "https://www.google.com/recaptcha/api/siteverify";
-            $secret = $sharedkey;
-            $ip = $_SERVER['REMOTE_ADDR'];
+    if(! function_exists('wpjobportal_googleRecaptchaHTTPPost')){
+        function wpjobportal_googleRecaptchaHTTPPost($sharedkey , $grresponse) {
+            $wpjobportal_url = "https://www.google.com/recaptcha/api/siteverify";
+            $wpjobportal_secret = $sharedkey;
+            $wpjobportal_ip = $_SERVER['REMOTE_ADDR'];
             
             $post_data = array();
-            $post_data['secret'] = $secret;
+            $post_data['secret'] = $wpjobportal_secret;
             $post_data['response'] = $grresponse;
-            $post_data['remoteip'] = $ip;
+            $post_data['remoteip'] = $wpjobportal_ip;
 
-            $response = wp_remote_post( $url, array('body' => $post_data,'timeout'=>7,'sslverify'=>false));
+            $response = wp_remote_post( $wpjobportal_url, array('body' => $post_data,'timeout'=>7,'sslverify'=>false));
             if( !is_wp_error($response) && $response['response']['code'] == 200 && isset($response['body']) ){
-                $result = $response['body'];
+                $wpjobportal_result = $response['body'];
             }else{
-                $result = false;
+                $wpjobportal_result = false;
                 if(!is_wp_error($response)){
                    $error = $response['response']['message'];
                }else{
                     $error = $response->get_error_message();
                }
             }
-            if($result){
-                $res= json_decode($result, true);
+            if($wpjobportal_result){
+                $res= json_decode($wpjobportal_result, true);
             }else{
                 return FALSE;
             }

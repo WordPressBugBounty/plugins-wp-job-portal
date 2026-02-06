@@ -4,7 +4,7 @@
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
         var ajaxurl = \"". esc_url_raw(admin_url('admin-ajax.php')) ."\";
         function sortbychanged(){
             var sortval= jQuery('#sortbycombo').val();
@@ -40,7 +40,7 @@
         }";
 
         if(in_array('copyjob', wpjobportal::$_active_addons)){  
-            $inline_js_script .= "
+            $wpjobportal_inline_js_script .= "
             function copyJob(jobsid) {
                 if (jobsid) {
                     jQuery('#js_ajax_pleasewait').show();
@@ -60,7 +60,7 @@
         }
 
         if(in_array('credits', wpjobportal::$_active_addons)){ 
-            $inline_js_script .= "
+            $wpjobportal_inline_js_script .= "
             function selectPackage(packageid){
                jQuery('.package-div').css('border','1px solid #ccc');
                 jQuery('.wjportal-pkg-item, .wpj-jp-pkg-item').removeClass('wjportal-pkg-selected');
@@ -113,7 +113,7 @@
                 });
             }";
         }
-        $inline_js_script .= "
+        $wpjobportal_inline_js_script .= "
         function makeExpiry() {
             jQuery('.goldnew').hover(function () {
                 jQuery(this).find('.goldnew-onhover').show();
@@ -159,11 +159,11 @@
                 html += '</span>';
                 html += '</span>';
                 jQuery('#featuredjob_'+cid).hide();
-                jQuery('div.object_' + cid).append(html);
+                jQuery('div.object_' + cid + ' .wjportal-job-title').append(html);
 
                  jQuery('div.wjportal-page-header').append(\"<div class='  frontend updated'><p>". esc_html(__('Job Has Been Feature SuccessFully', 'wp-job-portal'))."</p></div>\");
             }
         }
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>

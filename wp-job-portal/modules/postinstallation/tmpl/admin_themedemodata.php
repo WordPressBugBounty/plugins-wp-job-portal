@@ -55,13 +55,13 @@
 				<a href="?page=wpjobportal" >
 					<?php echo esc_html(__('Click Here To Go Control Panel','wp-job-portal')); ?>
 				</a>
-				<?php if(wpjobportal::$theme_chk == 1){
-					$url = "?page=job_manager_options";
+				<?php if(wpjobportal::$wpjobportal_theme_chk == 1){
+					$wpjobportal_url = "?page=job_manager_options";
 				}else{
-					$url = "?page=job_hub_options";
+					$wpjobportal_url = "?page=job_hub_options";
 				}
 				?>
-				<a href="<?php echo esc_url($url);;?>" >
+				<a href="<?php echo esc_url($wpjobportal_url);;?>" >
 					<?php echo esc_html(__('Click Here To Go Template Options','wp-job-portal')); ?>
 				</a>
 			</div>

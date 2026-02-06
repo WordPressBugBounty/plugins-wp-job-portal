@@ -6,13 +6,13 @@ if (!defined('ABSPATH'))
  */
 ?>
 <?php
-if (!isset($company)) {
-	$company[0]=null;
-	$comp = isset(wpjobportal::$_data[0]) ? wpjobportal::$_data[0]:'';
-} else if (isset($company)) {
-	$comp = $company;
+if (!isset($wpjobportal_company)) {
+	$wpjobportal_company[0]=null;
+	$wpjobportal_comp = isset(wpjobportal::$_data[0]) ? wpjobportal::$_data[0]:'';
+} else if (isset($wpjobportal_company)) {
+	$wpjobportal_comp = $wpjobportal_company;
 } else {
-	$comp='';
+	$wpjobportal_comp='';
 }
 
 /**
@@ -22,35 +22,40 @@ if (!isset($company)) {
 **/
 if(in_array('multicompany',wpjobportal::$_active_addons)){
     // Mudlue
-    $mod = "multicompany";
+    $wpjobportal_mod = "multicompany";
 }else{
-    $mod = "company";
+    $wpjobportal_mod = "company";
 }
-$published_fields = WPJOBPORTALincluder::getJSModel('fieldordering')->getFieldOrderingData(1);
-switch ($layout) {
+$wpjobportal_published_fields = WPJOBPORTALincluder::getJSModel('fieldordering')->getFieldOrderingData(1);
+switch ($wpjobportal_layout) {
 	case 'complogo':
-        $data_class = (isset(wpjobportal::$_data[2]['logo'])) ? 'two_column' : 'one_column';
-        echo wp_kses($html, WPJOBPORTAL_ALLOWED_TAGS);
-        $logopath = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer');
-		if(isset($published_fields['logo']) && $published_fields['logo'] != ''){
-        if ($comp->logofilename) {
-            $data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
-            $wpdir = wp_upload_dir();
-            $logopath = $wpdir['baseurl'] . '/' . $data_directory . '/data/employer/comp_' . $comp->id . '/logo/' . $comp->logofilename;
-            }
-            $class = isset($classname) ? $classname : '';
-            if ($class == "") {
-           	    ?>
-           	    <a href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$company->aliasid))); ?>">
-           	        <?php } ?>
-               		<img src="<?php echo esc_url($logopath); ?>" class="<?php echo esc_attr($class);?>" alt="<?php echo esc_html(__('Company logo','wp-job-portal')); ?>" />
-                    <?php if ($class=="") { ?>
+        $wpjobportal_data_class = (isset(wpjobportal::$_data[2]['logo'])) ? 'two_column' : 'one_column';
+        $wpjobportal_logopath = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer');
+        $wpjobportal_class = '';
+        if(!empty($wpjobportal_classname)){
+            $wpjobportal_class = $wpjobportal_classname;
+        }
+		if(isset($wpjobportal_published_fields['logo']) && $wpjobportal_published_fields['logo'] != ''){
+            if ($wpjobportal_comp->logofilename) {
+                $wpjobportal_data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
+                $wpjobportal_wpdir = wp_upload_dir();
+                $wpjobportal_logopath = $wpjobportal_wpdir['baseurl'] . '/' . $wpjobportal_data_directory . '/data/employer/comp_' . $wpjobportal_comp->id . '/logo/' . $wpjobportal_comp->logofilename;
+            } ?>
+            <div class="wjportal-company-logo">
+                <?php
+                $wpjobportal_company_url = '#';
+                if(!empty($wpjobportal_comp->aliasid)){
+                    $wpjobportal_company_url = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$wpjobportal_mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$wpjobportal_comp->aliasid));
+                }
+                ?>
+           	    <a href="<?php echo esc_url($wpjobportal_company_url); ?>">
+               		<img src="<?php echo esc_url($wpjobportal_logopath); ?>" class="<?php echo esc_attr($wpjobportal_class);?>" alt="<?php echo esc_attr(__('Company logo','wp-job-portal')); ?>" />
             	</a>
-    	   <?php }
-           } ?>
-        </div> <!-- logo div close -->
+            </div>
+            <?php
+        } ?>
         <div>
-            <?php do_action('wpjobportal_addons_social_share_company',$comp,$data_class); ?>
+            <?php do_action('wpjobportal_addons_social_share_company',$wpjobportal_comp,$wpjobportal_data_class); ?>
         </div>
         <?php
     break;

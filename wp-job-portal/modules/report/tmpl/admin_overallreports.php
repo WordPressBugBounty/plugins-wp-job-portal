@@ -10,9 +10,9 @@
     </div>
     <div id="wpjobportaladmin-data">
         <?php
-            $msgkey = WPJOBPORTALincluder::getJSModel('report')->getMessagekey();
-            WPJOBPORTALMessages::getLayoutMessage($msgkey);
-            $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+            $wpjobportal_msgkey = WPJOBPORTALincluder::getJSModel('report')->getMessagekey();
+            WPJOBPORTALMessages::getLayoutMessage($wpjobportal_msgkey);
+            $wpjobportal_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
         ?>
         <!-- top bar -->
         <div id="wpjobportal-wrapper-top">
@@ -20,7 +20,7 @@
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_html(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -30,12 +30,12 @@
             </div>
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_html(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_html(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -55,37 +55,37 @@
         <div id="wpjobportal-admin-wrapper" class="p0 bg-n bs-n">
             <?php
             if(isset(wpjobportal::$_data['tot_jobs']) && !empty(wpjobportal::$_dat['tot_jobs'])){
-                $total_jobs = @round((wpjobportal::$_data['tot_jobs'] / wpjobportal::$_data['totaljobs']) * 100);
+                $wpjobportal_total_jobs = @round((wpjobportal::$_data['tot_jobs'] / wpjobportal::$_data['totaljobs']) * 100);
             }else{
-               $total_jobs = 100;
+               $wpjobportal_total_jobs = 100;
             }
-            $total_appliedresume = 0;
+            $wpjobportal_total_appliedresume = 0;
             if(isset(wpjobportal::$_data['totaljobs']) && !empty(wpjobportal::$_dat['totaljobs'])){
-                $total_appliedresume = @round((wpjobportal::$_data['totalappliedresume'] / wpjobportal::$_data['totaljobs']) * 100);
+                $wpjobportal_total_appliedresume = @round((wpjobportal::$_data['totalappliedresume'] / wpjobportal::$_data['totaljobs']) * 100);
             }else{
-               $total_appliedresume = 100;
+               $wpjobportal_total_appliedresume = 100;
             }
 
-            $tot_comp = 0;
+            $wpjobportal_tot_comp = 0;
             if(isset(wpjobportal::$_data['tot_comp']) && !empty(wpjobportal::$_dat['tot_comp'])){
-                $tot_comp = @round((wpjobportal::$_data['totalcompany'] / wpjobportal::$_data['tot_comp']) * 100);
+                $wpjobportal_tot_comp = @round((wpjobportal::$_data['totalcompany'] / wpjobportal::$_data['tot_comp']) * 100);
             }else{
-               $tot_comp = 100;
+               $wpjobportal_tot_comp = 100;
             }
 
-            $tot_resume = 0;
+            $wpjobportal_tot_resume = 0;
             if(isset(wpjobportal::$_data['presume']) && !empty(wpjobportal::$_dat['presume'])){
-                $tot_resume = @round((wpjobportal::$_data['presume'] / wpjobportal::$_data['totalresume']) * 100);
+                $wpjobportal_tot_resume = @round((wpjobportal::$_data['presume'] / wpjobportal::$_data['totalresume']) * 100);
             }else{
-               $tot_resume = 100;
+               $wpjobportal_tot_resume = 100;
             }
             ?>
             <!-- count boxes -->
             <div class="wpjobportal-count-wrp">
                 <div class="wpjobportal-count-link">
                     <a class="wpjobportal-count-link wpjobportal-count-jobs" href="admin.php?page=wpjobportal_job" data-tab-number="1">
-                        <div class="wpjobportal-count-cricle-wrp" data-per="<?php echo esc_attr($total_jobs); ?>" data-tab-number="1">
-                            <div class="js-mr-rp" data-progress="<?php echo esc_attr($total_jobs); ?>">
+                        <div class="wpjobportal-count-cricle-wrp" data-per="<?php echo esc_attr($wpjobportal_total_jobs); ?>" data-tab-number="1">
+                            <div class="js-mr-rp" data-progress="<?php echo esc_attr($wpjobportal_total_jobs); ?>">
                                 <div class="circle">
                                     <div class="mask full">
                                          <div class="fill"></div>
@@ -110,8 +110,8 @@
                 </div>
                 <div class="wpjobportal-count-link">
                     <a class="wpjobportal-count-link wpjobportal-count-resume" href="admin.php?page=wpjobportal_resume" data-tab-number="2">
-                        <div class="wpjobportal-count-cricle-wrp" data-per="<?php echo esc_attr($tot_resume); ?>" >
-                            <div class="js-mr-rp" data-progress="<?php echo esc_attr($tot_resume); ?>">
+                        <div class="wpjobportal-count-cricle-wrp" data-per="<?php echo esc_attr($wpjobportal_tot_resume); ?>" >
+                            <div class="js-mr-rp" data-progress="<?php echo esc_attr($wpjobportal_tot_resume); ?>">
                                 <div class="circle">
                                     <div class="mask full">
                                          <div class="fill"></div>
@@ -136,8 +136,8 @@
                 </div>
                 <div class="wpjobportal-count-link">
                     <a class="wpjobportal-count-link wpjobportal-count-companies" href="admin.php?page=wpjobportal_company" data-tab-number="3">
-                        <div class="wpjobportal-count-cricle-wrp" data-per="<?php echo esc_attr($tot_comp); ?>">
-                            <div class="js-mr-rp" data-progress="<?php echo esc_attr($tot_comp); ?>">
+                        <div class="wpjobportal-count-cricle-wrp" data-per="<?php echo esc_attr($wpjobportal_tot_comp); ?>">
+                            <div class="js-mr-rp" data-progress="<?php echo esc_attr($wpjobportal_tot_comp); ?>">
                                 <div class="circle">
                                     <div class="mask full">
                                          <div class="fill"></div>
@@ -162,8 +162,8 @@
                 </div>
                 <div class="wpjobportal-count-link">
                     <a class="wpjobportal-count-link wpjobportal-count-active-jobs" href="admin.php?page=wpjobportal_job" data-tab-number="4">
-                        <div class="wpjobportal-count-cricle-wrp" data-per="<?php echo esc_attr($total_appliedresume); ?>" >
-                            <div class="js-mr-rp" data-progress="<?php echo esc_attr($total_appliedresume); ?>">
+                        <div class="wpjobportal-count-cricle-wrp" data-per="<?php echo esc_attr($wpjobportal_total_appliedresume); ?>" >
+                            <div class="js-mr-rp" data-progress="<?php echo esc_attr($wpjobportal_total_appliedresume); ?>">
                                 <div class="circle">
                                     <div class="mask full">
                                          <div class="fill"></div>
@@ -244,7 +244,7 @@
 wp_enqueue_script( 'jp-google-charts', esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/js/google-charts.js', array(), '1.1.1', false );
 wp_register_script( 'google-charts-handle', '' );
 wp_enqueue_script( 'google-charts-handle' );
-$drawChartTop_js_script = "
+$wpjobportal_drawChartTop_js_script = "
     google.charts.load('current', {'packages':['corechart']});
     google.setOnLoadCallback(drawChartTop);
             function drawChartTop() {
@@ -273,9 +273,9 @@ $drawChartTop_js_script = "
             }
 
 ";
-wp_add_inline_script( 'google-charts-handle', $drawChartTop_js_script );
+wp_add_inline_script( 'google-charts-handle', $wpjobportal_drawChartTop_js_script );
 
-$drawChartCatBar1_js_script = "
+$wpjobportal_drawChartCatBar1_js_script = "
     google.setOnLoadCallback(drawChartCatBar1);
     function drawChartCatBar1(){
     var data = google.visualization.arrayToDataTable([
@@ -301,9 +301,9 @@ $drawChartCatBar1_js_script = "
             chart.draw(view, options);
     }
 ";
-wp_add_inline_script( 'google-charts-handle', $drawChartCatBar1_js_script );
+wp_add_inline_script( 'google-charts-handle', $wpjobportal_drawChartCatBar1_js_script );
 
-$drawChartCatBar2_js_script = "
+$wpjobportal_drawChartCatBar2_js_script = "
     google.setOnLoadCallback(drawChartCatBar2);
     function drawChartCatBar2(){
     var data = google.visualization.arrayToDataTable([
@@ -333,9 +333,9 @@ $drawChartCatBar2_js_script = "
             piechart.draw(piedata, pieoptions);
     }
 ";
-wp_add_inline_script( 'google-charts-handle', $drawChartCatBar2_js_script );
+wp_add_inline_script( 'google-charts-handle', $wpjobportal_drawChartCatBar2_js_script );
 
-$drawChartCatBar3_js_script = "
+$wpjobportal_drawChartCatBar3_js_script = "
 
     google.setOnLoadCallback(drawChartCityBar1);
     function drawChartCityBar1(){
@@ -362,9 +362,9 @@ $drawChartCatBar3_js_script = "
             chart.draw(view, options);
     }
 ";
-wp_add_inline_script( 'google-charts-handle', $drawChartCatBar3_js_script );
+wp_add_inline_script( 'google-charts-handle', $wpjobportal_drawChartCatBar3_js_script );
 
-$drawChartCatBar4_js_script = "
+$wpjobportal_drawChartCatBar4_js_script = "
 
     google.setOnLoadCallback(drawChartCityBar2);
     //4
@@ -396,9 +396,9 @@ $drawChartCatBar4_js_script = "
             piechart.draw(piedata, pieoptions);
     }
 ";
-wp_add_inline_script( 'google-charts-handle', $drawChartCatBar4_js_script );
+wp_add_inline_script( 'google-charts-handle', $wpjobportal_drawChartCatBar4_js_script );
 
-$drawChartCatBar5_js_script = "
+$wpjobportal_drawChartCatBar5_js_script = "
 
     google.setOnLoadCallback(drawChartJobtypeBar1);
     function drawChartJobtypeBar1(){
@@ -443,6 +443,6 @@ $drawChartCatBar5_js_script = "
             chart.draw(view, options);
     }
 ";
-wp_add_inline_script( 'google-charts-handle', $drawChartCatBar5_js_script );
+wp_add_inline_script( 'google-charts-handle', $wpjobportal_drawChartCatBar5_js_script );
 
 ?>

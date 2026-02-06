@@ -13,8 +13,8 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
     </div>
     <div id="wpjobportaladmin-data">
         <?php
-            $msgkey = WPJOBPORTALincluder::getJSModel('slug')->getMessagekey();
-            WPJOBPORTALMessages::getLayoutMessage($msgkey);
+            $wpjobportal_msgkey = WPJOBPORTALincluder::getJSModel('slug')->getMessagekey();
+            WPJOBPORTALMessages::getLayoutMessage($wpjobportal_msgkey);
         ?>
         <!-- top bar -->
         <div id="wpjobportal-wrapper-top">
@@ -22,7 +22,7 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_html(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -32,12 +32,12 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
             </div>
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_html(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_html(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -48,12 +48,12 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
             </div>
         </div>
         <!-- top head -->
-        <?php WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('module' => 'slug' , 'layouts' => 'slug')); ?>
+        <?php WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('wpjobportal_module' => 'slug' , 'wpjobportal_layouts' => 'slug')); ?>
         <?php
             wp_register_script( 'wpjobportal-inline-handle', '' );
             wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-            $inline_js_script = "
+            $wpjobportal_inline_js_script = "
                 var slug_for_edit = 0;
                 jQuery(document).ready(function () {
                 jQuery('div#full_background').click(function () {
@@ -92,7 +92,7 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                 closePopup();
                 }
             ";
-            wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+            wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
         ?>
 
         <!-- page content -->
@@ -146,24 +146,24 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                             </thead>
                             <tbody>
                                 <?php
-                                    $pagenum = WPJOBPORTALrequest::getVar('pagenum', 'get', 1);
-                                    $pageid = ($pagenum > 1) ? '&pagenum=' . $pagenum : '';
-                                    foreach (wpjobportal::$_data[0] as $row){
+                                    $wpjobportal_pagenum = WPJOBPORTALrequest::getVar('pagenum', 'get', 1);
+                                    $wpjobportal_pageid = ($wpjobportal_pagenum > 1) ? '&pagenum=' . $wpjobportal_pagenum : '';
+                                    foreach (wpjobportal::$_data[0] as $wpjobportal_row){
                                         ?>
                                         <tr>
-                                            <td class="wpjobportal-text-left" id="<?php echo 'td_'.esc_attr($row->id);?>">
-                                                <?php echo esc_html($row->slug);?>
+                                            <td class="wpjobportal-text-left" id="<?php echo 'td_'.esc_attr($wpjobportal_row->id);?>">
+                                                <?php echo esc_html($wpjobportal_row->slug);?>
                                             </td>
                                             <td class="wpjobportal-text-left">
-                                                <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($row->description));?>
+                                                <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_row->description));?>
                                             </td>
                                             <td>
-                                                <a class="wpjobportal-table-act-btn" href="#" onclick="showPopupAndSetValues(<?php echo esc_js($row->id); ?>)" title="<?php echo esc_html(__('edit', 'wp-job-portal')); ?>">
-                                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/edit.png" alt="<?php echo esc_html(__('edit', 'wp-job-portal')); ?>">
+                                                <a class="wpjobportal-table-act-btn" href="#" onclick="showPopupAndSetValues(<?php echo esc_js($wpjobportal_row->id); ?>)" title="<?php echo esc_attr(__('edit', 'wp-job-portal')); ?>">
+                                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/edit.png" alt="<?php echo esc_attr(__('edit', 'wp-job-portal')); ?>">
                                                 </a>
                                             </td>
                                         </tr>
-                                        <?php echo wp_kses(WPJOBPORTALformfield::hidden(esc_html($row->id), esc_html($row->slug)),WPJOBPORTAL_ALLOWED_TAGS);?>
+                                        <?php echo wp_kses(WPJOBPORTALformfield::hidden(esc_html($wpjobportal_row->id), esc_html($wpjobportal_row->slug)),WPJOBPORTAL_ALLOWED_TAGS);?>
                                         <?php
                                     }
                                 ?>
@@ -177,7 +177,7 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                             </div>
                         </div>
                         <?php echo wp_kses(WPJOBPORTALformfield::hidden('task', ''),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                        <?php echo wp_kses(WPJOBPORTALformfield::hidden('pagenum', ($pagenum > 1) ? esc_html($pagenum) : ''),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                        <?php echo wp_kses(WPJOBPORTALformfield::hidden('pagenum', ($wpjobportal_pagenum > 1) ? esc_html($wpjobportal_pagenum) : ''),WPJOBPORTAL_ALLOWED_TAGS); ?>
                         <?php echo wp_kses(WPJOBPORTALformfield::hidden('form_request', 'wpjobportal'),WPJOBPORTAL_ALLOWED_TAGS); ?>
                         <?php echo wp_kses(WPJOBPORTALformfield::hidden('_wpnonce', esc_html(wp_create_nonce('wpjobportal_slug_nonce'))),WPJOBPORTAL_ALLOWED_TAGS); ?>
                     </form>
@@ -186,11 +186,11 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                         echo '<div class="tablenav"><div class="tablenav-pages">' . wp_kses_post(wpjobportal::$_data[1]) . '</div></div>';
                     }
                 } else {
-                    $msg = esc_html(__('No record found','wp-job-portal'));
-                    $link[] = array(
+                    $wpjobportal_msg = esc_html(__('No record found','wp-job-portal'));
+                    $wpjobportal_link[] = array(
                             'link' => 'admin.php?page=wpjobportal_slug&wpjobportallt=formcareerlevels',
                         );
-                    WPJOBPORTALlayout::getNoRecordFound($msg, $link);
+                    WPJOBPORTALlayout::getNoRecordFound($wpjobportal_msg, $wpjobportal_link);
                 }
             ?>
         </div>

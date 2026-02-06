@@ -3,9 +3,9 @@
      die('Restricted Access');
     wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js');
     wp_enqueue_script('jquery-ui-sortable');
-    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+    $wpjobportal_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
     wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jquery-ui-smoothness.css');
-    $searchable_combo = array(
+    $wpjobportal_searchable_combo = array(
          (object) array('id' => 1, 'text' => esc_html(__('Enabled', 'wp-job-portal'))),
          (object) array('id' => 0, 'text' => esc_html(__('Disabled', 'wp-job-portal'))));
 ?>
@@ -20,21 +20,21 @@
         <div id="popup_main" style="display:none;">
             <span class="popup-top">
                 <span id="popup_title" ></span>
-                <img id="popup_cross" alt="popup cross" onClick="closePopup();" src="<?php echo  esc_html(WPJOBPORTAL_PLUGIN_URL);?>includes/images/popup-close.png">
+                <img id="popup_cross" alt="popup cross" onClick="closePopup();" src="<?php echo  esc_url(WPJOBPORTAL_PLUGIN_URL);?>includes/images/popup-close.png">
             </span>
-            <?php $ff = wpjobportal::$_data["fieldfor"]; ?>
-            <form id="wpjobportal-form" class="popup-field-from" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_fieldordering&task=savesearchfieldordering&action=wpjobportaltask&fieldfor=$ff&ff=$ff"));?>">
+            <?php $wpjobportal_ff = wpjobportal::$wpjobportal_data["fieldfor"]; ?>
+            <form id="wpjobportal-form" class="popup-field-from" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_fieldordering&task=savesearchfieldordering&action=wpjobportaltask&fieldfor=$wpjobportal_ff&ff=$wpjobportal_ff"));?>">
                 <div class="popup-field-wrapper">
                     <div class="popup-field-title"><?php echo  esc_html(__('User Search', 'wp-job-portal'));?></div>
-                    <div class="popup-field-obj"><?php echo  wp_kses(WPJOBPORTALformfield::select('search_user', $searchable_combo, 0, '', array('class' => 'inputbox one')),WPJOBPORTAL_ALLOWED_TAGS);?></div>
+                    <div class="popup-field-obj"><?php echo  wp_kses(WPJOBPORTALformfield::select('search_user', $wpjobportal_searchable_combo, 0, '', array('class' => 'inputbox one')),WPJOBPORTAL_ALLOWED_TAGS);?></div>
                 </div>
                 <div class="popup-field-wrapper">
                     <div class="popup-field-title"><?php echo  esc_html(__('Visitor Search', 'wp-job-portal'));?></div>
-                    <div class="popup-field-obj"><?php echo  wp_kses(WPJOBPORTALformfield::select('search_visitor', $searchable_combo, 0, '', array('class' => 'inputbox one')),WPJOBPORTAL_ALLOWED_TAGS);?></div>
+                    <div class="popup-field-obj"><?php echo  wp_kses(WPJOBPORTALformfield::select('search_visitor', $wpjobportal_searchable_combo, 0, '', array('class' => 'inputbox one')),WPJOBPORTAL_ALLOWED_TAGS);?></div>
                 </div>
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('form_request', 'wpjobportal'),WPJOBPORTAL_ALLOWED_TAGS); ?>
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('id',''),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                <?php echo wp_kses(WPJOBPORTALformfield::hidden('fieldfor',wpjobportal::$_data['fieldfor']),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                <?php echo wp_kses(WPJOBPORTALformfield::hidden('fieldfor',wpjobportal::$wpjobportal_data['fieldfor']),WPJOBPORTAL_ALLOWED_TAGS); ?>
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('_wpnonce',wp_create_nonce('wpjobportal_field_nonce')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                 <div class="popup-act-btn-wrp">
                     <?php echo  wp_kses(WPJOBPORTALformfield::submitbutton('save', esc_html(__('Save', 'wp-job-portal')), array('class' => 'button popup-act-btn')),WPJOBPORTAL_ALLOWED_TAGS); ?>
@@ -44,7 +44,7 @@
         <?php
             wp_register_script( 'wpjobportal-inline-handle', '' );
             wp_enqueue_script( 'wpjobportal-inline-handle' );
-            $inline_js_script = "
+            $wpjobportal_inline_js_script = "
                 jQuery(document).ready(function () {
                     jQuery('div#full_background').click(function () {
                         closePopup();
@@ -75,12 +75,12 @@
                     }, 700);
                 }
             ";
-            wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+            wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
         ?>
         <?php
-            $msgkey = WPJOBPORTALincluder::getJSModel('fieldordering')->getMessagekey();
-            WPJOBPORTALMessages::getLayoutMessage($msgkey);
-            $search_combo = array(
+            $wpjobportal_msgkey = WPJOBPORTALincluder::getJSModel('fieldordering')->getMessagekey();
+            WPJOBPORTALMessages::getLayoutMessage($wpjobportal_msgkey);
+            $wpjobportal_search_combo = array(
                 (object) array('id' => 0, 'text' => esc_html(__('Search Fields', 'wp-job-portal'))),
                 (object) array('id' => 1, 'text' => esc_html(__('All Fields', 'wp-job-portal'))));
         ?>
@@ -90,7 +90,7 @@
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_html(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -100,12 +100,12 @@
             </div>
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_html(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_html(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -119,11 +119,11 @@
         <div id="wpjobportal-head">
             <h1 class="wpjobportal-head-text">
                 <?php
-                    if(wpjobportal::$_data['fieldfor'] == 1){
+                    if(wpjobportal::$wpjobportal_data['fieldfor'] == 1){
                         echo esc_html(__('Company','wp-job-portal'));
-                    }elseif(wpjobportal::$_data['fieldfor'] == 2){
+                    }elseif(wpjobportal::$wpjobportal_data['fieldfor'] == 2){
                         echo esc_html(__('Job','wp-job-portal'));
-                    }elseif(wpjobportal::$_data['fieldfor'] == 3){
+                    }elseif(wpjobportal::$wpjobportal_data['fieldfor'] == 3){
                         echo esc_html(__('Resume','wp-job-portal'));
                     }
                     echo ' '.esc_html(__('Search Fields', 'wp-job-portal'));
@@ -133,16 +133,16 @@
         <!-- page content -->
         <div id="wpjobportal-admin-wrapper" class="p0 bg-n bs-n">
             <!-- filter form -->
-            <?php $ff = wpjobportal::$_data["fieldfor"]; ?>
-            <form class="wpjobportal-filter-form" name="wpjobportalform" id="wpjobportalform" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_fieldordering&wpjobportallt=searchfields&ff=".esc_attr($ff))); ?>">
-                <?php echo wp_kses(WPJOBPORTALformfield::select('search', $search_combo, wpjobportal::$_data['filter']['search'], '', array('class' => 'inputbox wpjobportal-form-select-field')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+            <?php $wpjobportal_ff = wpjobportal::$wpjobportal_data["fieldfor"]; ?>
+            <form class="wpjobportal-filter-form" name="wpjobportalform" id="wpjobportalform" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_fieldordering&wpjobportallt=searchfields&ff=".esc_attr($wpjobportal_ff))); ?>">
+                <?php echo wp_kses(WPJOBPORTALformfield::select('search', $wpjobportal_search_combo, wpjobportal::$_data['filter']['search'], '', array('class' => 'inputbox wpjobportal-form-select-field')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                 <?php echo wp_kses(WPJOBPORTALformfield::submitbutton('btnsubmit', esc_html(__('Go', 'wp-job-portal')), array('class' => 'button wpjobportal-form-search-btn')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                <?php echo wp_kses(WPJOBPORTALformfield::hidden('fieldfor', wpjobportal::$_data['fieldfor']),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                <?php echo wp_kses(WPJOBPORTALformfield::hidden('fieldfor', wpjobportal::$wpjobportal_data['fieldfor']),WPJOBPORTAL_ALLOWED_TAGS); ?>
             </form>
             <?php
                 if (!empty(wpjobportal::$_data[0])) {
                     ?>
-                    <form  id="wpjobportal-form" class="search-fields-form" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_fieldordering&action=wpjobportaltask&task=savesearchfieldorderingFromForm&fieldfor=$ff&ff=$ff")); ?>">
+                    <form  id="wpjobportal-form" class="search-fields-form" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_fieldordering&action=wpjobportaltask&task=savesearchfieldorderingFromForm&fieldfor=$wpjobportal_ff&ff=$wpjobportal_ff")); ?>">
                         <table id="wpjobportal-table" class="wpjobportal-table">
                             <thead>
                                 <tr>
@@ -165,33 +165,33 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    for ($i = 0, $n = count(wpjobportal::$_data[0]); $i < $n; $i++) {
-                                        $row = wpjobportal::$_data[0][$i];
+                                    for ($wpjobportal_i = 0, $wpjobportal_n = count(wpjobportal::$_data[0]); $wpjobportal_i < $wpjobportal_n; $wpjobportal_i++) {
+                                        $wpjobportal_row = wpjobportal::$_data[0][$wpjobportal_i];
                                         ?>
-                                        <tr id="id_<?php echo esc_attr($row->id); ?>" >
+                                        <tr id="id_<?php echo esc_attr($wpjobportal_row->id); ?>" >
                                             <td class="wpjobportal-order-grab-column">
-                                               <img alt="<?php echo esc_html(__('grab','wp-job-portal')); ?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/list-full.png'?>"/>
+                                               <img alt="<?php echo esc_attr(__('grab','wp-job-portal')); ?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/list-full.png'?>"/>
                                             </td>
                                             <td class="wpjobportal-text-left" style="cursor:grab;">
-                                                <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($row->fieldtitle)); ?>
+                                                <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_row->fieldtitle)); ?>
                                             </td>
                                             <td>
-                                                <?php if($row->search_user == 1){ ?>
-                                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" alt="<?php echo esc_html(__('published', 'wp-job-portal')); ?>" />
+                                                <?php if($wpjobportal_row->search_user == 1){ ?>
+                                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" alt="<?php echo esc_attr(__('published', 'wp-job-portal')); ?>" />
                                                 <?php } else { ?>
-                                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" alt="<?php echo esc_html(__('unpublished', 'wp-job-portal')); ?>" />
+                                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" alt="<?php echo esc_attr(__('unpublished', 'wp-job-portal')); ?>" />
                                                 <?php } ?>
                                             </td>
                                             <td>
-                                                <?php if($row->search_visitor == 1){ ?>
-                                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" alt="<?php echo esc_html(__('published', 'wp-job-portal')); ?>" />
+                                                <?php if($wpjobportal_row->search_visitor == 1){ ?>
+                                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" alt="<?php echo esc_attr(__('published', 'wp-job-portal')); ?>" />
                                                 <?php } else { ?>
-                                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" alt="<?php echo esc_html(__('unpublished', 'wp-job-portal')); ?>" />
+                                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" alt="<?php echo esc_attr(__('unpublished', 'wp-job-portal')); ?>" />
                                                 <?php } ?>
                                             </td>
                                             <td>
-                                                <a class="wpjobportal-table-act-btn" href="#" onclick="showPopupAndSetValues(<?php echo esc_js($row->id); ?>,'<?php echo esc_js(wpjobportal::wpjobportal_getVariableValue($row->fieldtitle));?>', <?php echo esc_js($row->search_user);?>, <?php echo esc_js($row->search_visitor);?>)" title="<?php echo esc_html(__('edit', 'wp-job-portal')); ?>">
-                                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/edit.png" alt="<?php echo esc_html(__('edit', 'wp-job-portal')); ?>">
+                                                <a class="wpjobportal-table-act-btn" href="#" onclick="showPopupAndSetValues(<?php echo esc_js($wpjobportal_row->id); ?>,'<?php echo esc_js(wpjobportal::wpjobportal_getVariableValue($wpjobportal_row->fieldtitle));?>', <?php echo esc_js($wpjobportal_row->search_user);?>, <?php echo esc_js($wpjobportal_row->search_visitor);?>)" title="<?php echo esc_attr(__('edit', 'wp-job-portal')); ?>">
+                                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/edit.png" alt="<?php echo esc_attr(__('edit', 'wp-job-portal')); ?>">
                                                 </a>
                                             </td>
                                         </tr>
@@ -201,11 +201,11 @@
                             </tbody>
                         </table>
                         <?php echo wp_kses(WPJOBPORTALformfield::hidden('form_request', 'wpjobportal'),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                        <?php echo wp_kses(WPJOBPORTALformfield::hidden('fieldfor', wpjobportal::$_data['fieldfor']),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                        <?php echo wp_kses(WPJOBPORTALformfield::hidden('fieldfor', wpjobportal::$wpjobportal_data['fieldfor']),WPJOBPORTAL_ALLOWED_TAGS); ?>
                         <?php echo wp_kses(WPJOBPORTALformfield::hidden('fields_ordering_new',''),WPJOBPORTAL_ALLOWED_TAGS); ?>
                         <?php echo wp_kses(WPJOBPORTALformfield::hidden('_wpnonce',wp_create_nonce('wpjobportal_field_nonce')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                         <div class="wpjobportal-filter-form-action-wrp">
-                            <a class="wpjobportal-form-canc-btn" id="form-cancel-button" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_fieldordering&ff='.wpjobportal::$_data['fieldfor'])); ?>" title="<?php echo esc_html(__('cancel', 'wp-job-portal')); ?>">
+                            <a class="wpjobportal-form-canc-btn" id="form-cancel-button" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_fieldordering&ff='.wpjobportal::$wpjobportal_data['fieldfor'])); ?>" title="<?php echo esc_attr(__('cancel', 'wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Cancel', 'wp-job-portal')); ?>
                             </a>
                             <?php echo wp_kses(WPJOBPORTALformfield::submitbutton('save', esc_html(__('Save','wp-job-portal')) .' '. esc_html(__('Ordering', 'wp-job-portal')), array('class' => 'button wpjobportal-form-act-btn')),WPJOBPORTAL_ALLOWED_TAGS); ?>

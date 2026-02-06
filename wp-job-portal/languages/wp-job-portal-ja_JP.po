@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Delete"
 msgstr "削除"
@@ -10273,3 +10273,2472 @@ msgstr "セーブセルチが残っていません"
 
 msgid "We would love to hear from You."
 msgstr "私たちはあなたから聞いてみたいです。"
+
+msgid "Welcome back!"
+msgstr "おかえり！"
+
+msgid "Here's a snapshot of your job board's performance."
+msgstr "ジョブボードのパフォーマンスのスナップショットです。"
+
+msgid "Customize Your Dashboard"
+msgstr "ダッシュボードをカスタマイズします"
+
+msgid "Core Components"
+msgstr "コアコンポーネント"
+
+msgid "Quick Actions"
+msgstr "クイックアクション"
+
+msgid "Recent Jobs"
+msgstr "最近の仕事"
+
+msgid "Quick Stats"
+msgstr "クイック統計"
+
+msgid "Visualizations"
+msgstr "視覚化"
+
+msgid "Platform Growth"
+msgstr "プラットフォームの成長"
+
+msgid "Jobs by Status"
+msgstr "ステータス別のジョブ"
+
+msgid "Top Categories"
+msgstr "トップカテゴリ"
+
+msgid "Activity & System Feeds"
+msgstr "アクティビティとシステムフィード"
+
+msgid "Latest Applies"
+msgstr "最新の適用"
+
+msgid "User & Financials"
+msgstr "ユーザーと財務"
+
+msgid "Job Seekers"
+msgstr "求職者"
+
+msgid "Payments"
+msgstr "支払い"
+
+msgid "Reset to Defaults"
+msgstr "デフォルトにリセットします"
+
+msgid "Apply Changes"
+msgstr "変更を適用します"
+
+msgid "Approve Jobs"
+msgstr "仕事を承認します"
+
+msgid "Manage Users"
+msgstr "ユーザーを管理します"
+
+msgid "View Reports"
+msgstr "レポートを表示します"
+
+msgid "Analytics"
+msgstr "分析"
+
+msgid "Manage Plans"
+msgstr "計画を管理します"
+
+msgid "Platform Config"
+msgstr "プラットフォーム構成"
+
+msgid "Applications"
+msgstr "アプリケーション"
+
+msgid "Pending Jobs"
+msgstr "保留中の仕事"
+
+msgid "New Applicants"
+msgstr "新しい応募者"
+
+msgid "Active Subscriptions"
+msgstr "アクティブなサブスクリプション"
+
+msgid "Total Users"
+msgstr "総ユーザー"
+
+msgid "Closed Jobs"
+msgstr "閉鎖された仕事"
+
+msgid "Monthly Revenue"
+msgstr "毎月の収益"
+
+msgid "Recent Job Postings"
+msgstr "最近の求人"
+
+msgid "Date Posted"
+msgstr "投稿された日付"
+
+msgid "Actions"
+msgstr "アクション"
+
+msgid "No recent job postings found."
+msgstr "最近の求人は見つかりませんでした。"
+
+msgid "Top Job Categories"
+msgstr "一流の職種"
+
+msgid "Latest Job Applies"
+msgstr "最新の仕事が適用されます"
+
+msgid "applied for"
+msgstr "適用されます"
+
+msgid "at"
+msgstr "で"
+
+msgid "View App"
+msgstr "アプリを表示します"
+
+msgid "No recent job applications to display."
+msgstr "表示する最近の求人アプリケーションはありません。"
+
+msgid "No new resumes have been added recently."
+msgstr "最近、新しい履歴書は追加されていません。"
+
+msgid "Latest Package Subscriptions"
+msgstr "最新のパッケージサブスクリプション"
+
+msgid "subscribed to"
+msgstr "サブスクライブ"
+
+msgid "No new subscriptions found."
+msgstr "新しいサブスクリプションは見つかりませんでした。"
+
+msgid "Latest Payments"
+msgstr "最新の支払い"
+
+msgid "No recent payments to display."
+msgstr "表示する最近の支払いはありません。"
+
+msgid "Latest Activity"
+msgstr "最新のアクティビティ"
+
+msgid "Hooray! No system errors to report."
+msgstr "hooray！報告するシステムエラーはありません。"
+
+msgid "Latest Job Seekers"
+msgstr "最新の求職者"
+
+msgid "Joined"
+msgstr "参加"
+
+msgid "No new job seekers have registered."
+msgstr "新しい求職者は登録していません。"
+
+msgid "Latest Employers"
+msgstr "最新の雇用主"
+
+msgid "No new employers have registered."
+msgstr "新しい雇用主は登録していません。"
+
+msgid "Not allowed"
+msgstr "許可されていません"
+
+msgid "Allowed to all"
+msgstr "すべてに許可"
+
+msgid "employers, job seekers and visitors"
+msgstr "雇用主、求職者、訪問者"
+
+msgid "Allowed only to employers"
+msgstr "雇用主のみに許可される"
+
+msgid "City, State, Country"
+msgstr "市、州、国"
+
+msgid "City, State"
+msgstr "市、州"
+
+msgid "City, Country"
+msgstr "都市、国"
+
+msgid "Minutes"
+msgstr "分"
+
+msgid "Hour"
+msgstr "時間"
+
+msgid "Hours"
+msgstr "営業時間"
+
+msgid "Week"
+msgstr "週"
+
+msgid "System & Site"
+msgstr "システムとサイト"
+
+msgid "Site & System"
+msgstr "サイトとシステム"
+
+msgid "Core details about your job portal, its status, and default behaviors"
+msgstr "求人ポータル、そのステータス、デフォルトの動作に関する重要な詳細"
+
+msgid "Site Title"
+msgstr "サイトタイトル"
+
+msgid "The main title for your job portal"
+msgstr "求人ポータルのメイン タイトル"
+
+msgid "Site Offline"
+msgstr "サイトがオフライン"
+
+msgid "Take the site offline for maintenance"
+msgstr "メンテナンスのためにサイトをオフラインにする"
+
+msgid "The message shown to visitors when the site is offline"
+msgstr "サイトがオフラインのときに訪問者に表示されるメッセージ"
+
+msgid "Default Page"
+msgstr "デフォルトページ"
+
+msgid "Select the main WordPress page for the job portal"
+msgstr "求人ポータルのメイン WordPress ページを選択します"
+
+msgid "Email links and support icons may not work if this is not set"
+msgstr "これが設定されていない場合、電子メール リンクとサポート アイコンが機能しない可能性があります"
+
+msgid "Date Format"
+msgstr "日付形式"
+
+msgid "Set the date format used throughout the plugin"
+msgstr "プラグイン全体で使用される日付形式を設定します"
+
+msgid "Default Address Display Style"
+msgstr "デフォルトのアドレス表示スタイル"
+
+msgid "Select the default format for displaying addresses"
+msgstr "住所を表示するためのデフォルトの形式を選択します"
+
+msgid "Registration & Login"
+msgstr "登録とログイン"
+
+msgid "Control user registration flows and login/logout redirects"
+msgstr "ユーザー登録フローとログイン/ログアウトのリダイレクトを制御する"
+
+msgid "Set Register Link"
+msgstr "レジスタリンクの設定"
+
+msgid "Set the main registration page for the site"
+msgstr "サイトのメイン登録ページを設定する"
+
+msgid "Custom Register Redirect Link"
+msgstr "カスタム登録リダイレクト リンク"
+
+msgid "Enter the custom URL for registration if"
+msgstr "場合は、登録用のカスタム URL を入力します。"
+
+msgid "is selected above"
+msgstr "上で選択されています"
+
+msgid "Set the main login page for the site"
+msgstr "サイトのメイン ログイン ページを設定する"
+
+msgid "Custom Login Redirect Link"
+msgstr "カスタムログインリダイレクトリンク"
+
+msgid "Enter the custom URL for login if"
+msgstr "ログイン用のカスタム URL を入力します。"
+
+msgid "Redirect Link For Non-Portal WP User"
+msgstr "非ポータル WP ユーザー用のリダイレクト リンク"
+
+msgid "Redirect WordPress users who do not have a role in WP Job Portal to this link after login"
+msgstr "WP Job Portal で役割を持たない WordPress ユーザーをログイン後にこのリンクにリダイレクトします"
+
+msgid "Terms & Conditions"
+msgstr "利用規約"
+
+msgid "Assign specific Terms & Conditions pages for different submission types"
+msgstr "さまざまな提出タイプに特定の利用規約ページを割り当てる"
+
+msgid "Company Terms Page"
+msgstr "会社規約ページ"
+
+msgid "Select the"
+msgstr "を選択します。"
+
+msgid "page for company submissions"
+msgstr "企業提出用ページ"
+
+msgid "Job Terms Page"
+msgstr "求人条件ページ"
+
+msgid "page for job submissions"
+msgstr "仕事を提出するためのページ"
+
+msgid "Resume Terms Page"
+msgstr "履歴書の規約ページ"
+
+msgid "page for resume submissions"
+msgstr "履歴書提出用ページ"
+
+msgid "Content & Display"
+msgstr "コンテンツとディスプレイ"
+
+msgid "Taxonomy & Categories"
+msgstr "分類とカテゴリ"
+
+msgid "Manage how content like categories and tags are handled"
+msgstr "カテゴリやタグなどのコンテンツの処理方法を管理する"
+
+msgid "Even if Empty"
+msgstr "たとえ空であっても"
+
+msgid "If no is selected then only categories that have jobs or resumes will be shown"
+msgstr "「いいえ」が選択されている場合は、求人または履歴書があるカテゴリのみが表示されます。"
+
+msgid "Categories Per Row"
+msgstr "行ごとのカテゴリ"
+
+msgid "Number of categories to display per row on category listing pages"
+msgstr "カテゴリ一覧ページの 1 行に表示するカテゴリの数"
+
+msgid "Sub-categories Limit"
+msgstr "サブカテゴリ 制限"
+
+msgid "How many sub-categories to show in the popup on category pages"
+msgstr "カテゴリ ページのポップアップに表示するサブカテゴリの数"
+
+msgid "User Can Add New Tags"
+msgstr "ユーザーは新しいタグを追加できる"
+
+msgid "Allow users to create new tags in the system when posting"
+msgstr "投稿時にユーザーがシステムに新しいタグを作成できるようにする"
+
+msgid "Default Pagination Size"
+msgstr "デフォルトのページネーションサイズ"
+
+msgid "Maximum number of records to show per page"
+msgstr "ページごとに表示するレコードの最大数"
+
+msgid "Show Breadcrumbs"
+msgstr "ブレッドクラムを表示"
+
+msgid "Show WP Job Portal Page Title"
+msgstr "WP ジョブ ポータル ページ タイトルを表示"
+
+msgid "File Uploads & Defaults"
+msgstr "ファイルのアップロードとデフォルト"
+
+msgid "Manage file uploads and default placeholder images"
+msgstr "ファイルのアップロードとデフォルトのプレースホルダー画像を管理する"
+
+msgid "Data Directory"
+msgstr "データディレクトリ"
+
+msgid "System will upload all user files into this folder within the WordPress uploads directory"
+msgstr "システムはすべてのユーザー ファイルを WordPress アップロード ディレクトリ内のこのフォルダーにアップロードします。"
+
+msgid "Default Image"
+msgstr "デフォルト画像"
+
+msgid "This image will be shown as the default for entities & users if no other image is provided"
+msgstr "他の画像が提供されない場合、この画像はエンティティとユーザーのデフォルトとして表示されます"
+
+msgid "Allowed Image Extensions"
+msgstr "許可される画像拡張子"
+
+msgid "Comma-separated list of allowed image file extensions"
+msgstr "許可される画像ファイル拡張子のカンマ区切りリスト"
+
+msgid "Max Image Size"
+msgstr "最大画像サイズ"
+
+msgid "Maximum file size for general image uploads in kilobytes"
+msgstr "一般的な画像アップロードの最大ファイル サイズ (キロバイト単位)"
+
+msgid "URL & SEO"
+msgstr "URLとSEO"
+
+msgid "URL Structure"
+msgstr "URL構造"
+
+msgid "Configure the URL structure"
+msgstr "URL構造を構成する"
+
+msgid "permalinks"
+msgstr "パーマリンク"
+
+msgid "for detail pages"
+msgstr "詳細ページ用"
+
+msgid "Job Detail URL Structure"
+msgstr "ジョブ詳細の URL 構造"
+
+msgid "Click on the available tags below to build the URL structure for job detail pages"
+msgstr "以下の利用可能なタグをクリックして、求人詳細ページの URL 構造を構築します。"
+
+msgid "Company Detail URL Structure"
+msgstr "会社詳細URL構造"
+
+msgid "Click on the available tags below to build the URL structure for company detail pages"
+msgstr "以下の利用可能なタグをクリックして、会社詳細ページの URL 構造を構築します。"
+
+msgid "Resume Detail URL Structure"
+msgstr "履歴書の詳細 URL 構造"
+
+msgid "Click on the available tags below to build the URL structure for resume detail pages"
+msgstr "以下の利用可能なタグをクリックして、履歴書の詳細ページの URL 構造を構築します。"
+
+msgid "Registration & Access"
+msgstr "登録とアクセス"
+
+msgid "If no then front end employer area is not accessible"
+msgstr "「いいえ」の場合、フロントエンドの雇用主エリアにアクセスできません"
+
+msgid "Allow Registration as Employer"
+msgstr "雇用主としての登録を許可する"
+
+msgid "Show the option to register as an employer on the registration form"
+msgstr "登録フォームに雇用主として登録するオプションを表示します"
+
+msgid "Employer Default Role"
+msgstr "雇用主のデフォルトの役割"
+
+msgid "Employer Can View Job Seeker Area"
+msgstr "雇用主は求職者エリアを閲覧できます"
+
+msgid "Allow logged-in employers to view the job seeker control panel"
+msgstr "ログインした雇用主に求職者のコントロール パネルの表示を許可する"
+
+msgid "Set Employer After-Register Link"
+msgstr "雇用主の登録後リンクを設定する"
+
+msgid "Employer After-Registration Page"
+msgstr "雇用主登録後ページ"
+
+msgid "Employer Custom After-Registration Link"
+msgstr "雇用主のカスタム登録後リンク"
+
+msgid "Custom Empolyer After Regitser Link"
+msgstr "登録後のカスタム雇用主リンク"
+
+msgid "Layout & Widgets"
+msgstr "レイアウトとウィジェット"
+
+msgid "Control the visibility of main sections and widgets in the logged-in employer dashboard"
+msgstr "ログインした雇用主ダッシュボードの主要セクションとウィジェットの表示を制御します"
+
+msgid "Show Profile Section"
+msgstr "プロフィールセクションを表示"
+
+msgid "Show Stat Boxes"
+msgstr "統計ボックスを表示"
+
+msgid "Show Recent Resumes Box"
+msgstr "最近の履歴書ボックスを表示"
+
+msgid "Show Stats Graph"
+msgstr "統計グラフを表示"
+
+msgid "Setting to show the stats graph on the employer dashboard"
+msgstr "雇用主ダッシュボードに統計グラフを表示する設定"
+
+msgid "Show Useful Links"
+msgstr "役立つリンクを表示する"
+
+msgid "Setting to show the useful links section"
+msgstr "便利なリンクセクションを表示する設定"
+
+msgid "Show Applied Resumes"
+msgstr "応募済みの履歴書を表示"
+
+msgid "Setting to show the applied resumes section"
+msgstr "応募した履歴書セクションを表示する設定"
+
+msgid "Show Saved Searches"
+msgstr "保存された検索を表示"
+
+msgid "Setting to show the saved searches section"
+msgstr "保存された検索セクションを表示する設定"
+
+msgid "Show Newest Resumes"
+msgstr "最新の履歴書を表示"
+
+msgid "Setting to show the newest resumes section"
+msgstr "最新の履歴書セクションを表示する設定"
+
+msgid "Navigation Links"
+msgstr "ナビゲーションリンク"
+
+msgid "Control which navigation links are visible in the logged-in employer dashboard menu"
+msgstr "ログインした雇用主ダッシュボード メニューに表示されるナビゲーション リンクを制御する"
+
+msgid "link in the employer dashboard"
+msgstr "雇用主ダッシュボードのリンク"
+
+msgid "RSS Feedback"
+msgstr "RSSフィードバック"
+
+msgid "Job Seeker Default Role"
+msgstr "求職者のデフォルトの役割"
+
+msgid "Set Job Seeker After-Register Link"
+msgstr "求職者登録後リンクの設定"
+
+msgid "Job Seeker After-Registration Page"
+msgstr "求職者登録後ページ"
+
+msgid "Job Seeker Custom After-Registration Link"
+msgstr "求職者カスタム登録後リンク"
+
+msgid "Custom Job seeker After Regitser Link"
+msgstr "登録後のカスタム求職者リンク"
+
+msgid "Enable Job Shortlisting"
+msgstr "求人候補リストを有効にする"
+
+msgid "Allow job seekers to shortlist jobs"
+msgstr "求職者が求人候補をリストアップできるようにする"
+
+msgid "This affects the job detail page"
+msgstr "これはジョブの詳細ページに影響します"
+
+msgid "Enable Tell a Friend"
+msgstr "友達に教えるを有効にする"
+
+msgid "Enable the"
+msgstr "有効にする"
+
+msgid "feature on job listing pages"
+msgstr "求人ページの特集"
+
+msgid "Control the visibility of main sections and widgets in the logged-in job seeker dashboard"
+msgstr "ログインした求職者ダッシュボードの主要セクションとウィジェットの表示を制御します"
+
+msgid "Show Applied Jobs Box"
+msgstr "適用されたジョブボックスを表示"
+
+msgid "Show Newest Jobs Box"
+msgstr "最新の求人ボックスを表示"
+
+msgid "Show Jobs Graph"
+msgstr "ジョブグラフを表示"
+
+msgid "Setting to show the jobs graph on the job seeker dashboard"
+msgstr "求職者ダッシュボードに求人グラフを表示する設定"
+
+msgid "Show Applied Jobs"
+msgstr "適用されたジョブを表示"
+
+msgid "Setting to show the applied jobs section"
+msgstr "適用されたジョブセクションを表示する設定"
+
+msgid "Show Shortlisted Jobs"
+msgstr "最終候補リストに掲載された求人を表示"
+
+msgid "Setting to show the shortlisted jobs section"
+msgstr "最終候補リストに掲載された求人セクションを表示する設定"
+
+msgid "Show Newest Jobs"
+msgstr "最新の求人を表示"
+
+msgid "Setting to show the newest jobs section"
+msgstr "最新のジョブセクションを表示する設定"
+
+msgid "Control which navigation links are visible in the logged-in job seeker dashboard menu"
+msgstr "ログインしている求職者のダッシュボード メニューに表示されるナビゲーション リンクを制御する"
+
+msgid "link in the job seeker dashboard"
+msgstr "求職者ダッシュボードのリンク"
+
+msgid "Visitors"
+msgstr "訪問者"
+
+msgid "General Permissions"
+msgstr "一般的な権限"
+
+msgid "Define what non-logged-in users are allowed to do on the site"
+msgstr "ログインしていないユーザーがサイト上で実行できる内容を定義する"
+
+msgid "Visitor Can Post Job"
+msgstr "訪問者は求人を投稿できます"
+
+msgid "Allow non-logged-in users to post jobs"
+msgstr "ログインしていないユーザーがジョブを投稿できるようにする"
+
+msgid "Visitor Can Add Job"
+msgstr "訪問者は仕事を追加できます"
+
+msgid "Visitor Job Post Redirect Page"
+msgstr "訪問者の求人投稿リダイレクト ページ"
+
+msgid "A visitor will be redirected to this page after posting a job"
+msgstr "求人を投稿すると、訪問者はこのページにリダイレクトされます。"
+
+msgid "Visitor Can Apply to Job"
+msgstr "訪問者が仕事に応募できる"
+
+msgid "Allow non-logged-in users to apply for jobs"
+msgstr "ログインしていないユーザーが求人に応募できるようにする"
+
+msgid "Visitor Can Add Resume"
+msgstr "訪問者は履歴書を追加できます"
+
+msgid "Allow non-logged-in users to add a resume"
+msgstr "ログインしていないユーザーに履歴書の追加を許可する"
+
+msgid "Visitor Resume Post Redirect Page"
+msgstr "リダイレクト後の訪問者の履歴書ページ"
+
+msgid "A visitor will be redirected to this page after posting a resume"
+msgstr "履歴書を投稿すると、訪問者はこのページにリダイレクトされます。"
+
+msgid "Visitor Can Edit Job"
+msgstr "訪問者はジョブを編集できます"
+
+msgid "Allow non-logged-in users to edit jobs they have posted"
+msgstr "ログインしていないユーザーが投稿した求人を編集できるようにする"
+
+msgid "Page & Link Access"
+msgstr "ページとリンクへのアクセス"
+
+msgid "Control which pages and links are visible to non-logged-in users"
+msgstr "ログインしていないユーザーに表示されるページとリンクを制御する"
+
+msgid "Allow visitors to view the employer control panel links"
+msgstr "訪問者が雇用主のコントロール パネルのリンクを表示できるようにする"
+
+msgid "Allow visitors to view the resume categories page"
+msgstr "訪問者が履歴書のカテゴリ ページを閲覧できるようにする"
+
+msgid "Allow visitors to access the resume search functionality"
+msgstr "訪問者が履歴書検索機能にアクセスできるようにする"
+
+msgid "Allow visitors to view company detail pages"
+msgstr "訪問者が会社の詳細ページを閲覧できるようにする"
+
+msgid "Allow visitors to view job detail pages"
+msgstr "訪問者が求人詳細ページを閲覧できるようにする"
+
+msgid "Allow visitors to view resume detail pages"
+msgstr "訪問者が履歴書の詳細ページを閲覧できるようにする"
+
+msgid "Allow visitors to view the job seeker control panel links"
+msgstr "訪問者が求職者のコントロール パネルのリンクを表示できるようにする"
+
+msgid "Allow visitors to view the jobs by category page"
+msgstr "訪問者がカテゴリページごとに求人を閲覧できるようにする"
+
+msgid "Allow visitors to use the job search functionality"
+msgstr "訪問者が求人検索機能を使用できるようにする"
+
+msgid "Allow visitors to see job search result listings"
+msgstr "訪問者が求人検索結果リストを閲覧できるようにする"
+
+msgid "Allow visitors to see the newest jobs page"
+msgstr "訪問者が最新の求人ページを閲覧できるようにする"
+
+msgid "Job Posting & Management"
+msgstr "求人掲載と管理"
+
+msgid "Manage how jobs are posted, their lifecycle, and related features"
+msgstr "求人の掲載方法、ライフサイクル、関連機能を管理します"
+
+msgid "Job Auto Approve"
+msgstr "ジョブの自動承認"
+
+msgid "Automatically approve new jobs upon submission"
+msgstr "新しいジョブを送信すると自動的に承認されます"
+
+msgid "Job Expiry Days"
+msgstr "ジョブの有効期限日"
+
+msgid "Number of days until a freely posted job expires"
+msgstr "自由に投稿された求人が期限切れになるまでの日数"
+
+msgid "Number of days until a paid"
+msgstr "支払われるまでの日数"
+
+msgid "job expires"
+msgstr "ジョブの有効期限が切れます"
+
+msgid "Job Display & Listings"
+msgstr "求人の表示とリスト"
+
+msgid "Control how job-related pages and information are displayed to users"
+msgstr "ジョブ関連のページと情報をユーザーに表示する方法を制御する"
+
+msgid "Show Country on Jobs by Cities Page"
+msgstr "都市別の求人ページで国を表示"
+
+msgid "Display the country name next to the city"
+msgstr "都市の横に国名を表示します"
+
+msgid "Show Count on Jobs by Cities Page"
+msgstr "都市別の求人数を表示ページ"
+
+msgid "Display the total number of jobs available in each city"
+msgstr "各都市で利用可能な求人の総数を表示します"
+
+msgid "Show Count in Job Categories"
+msgstr "職種別の数を表示"
+
+msgid "Display the total number of jobs for each category"
+msgstr "カテゴリごとのジョブの総数を表示します"
+
+msgid "Show Count on Jobs by Types Page"
+msgstr "「タイプ別ジョブ数の表示」ページ"
+
+msgid "Display the total number of jobs for each job type"
+msgstr "ジョブの種類ごとにジョブの総数を表示します"
+
+msgid "Job Types Per Row"
+msgstr "行ごとのジョブ タイプ"
+
+msgid "How many job types to display per row on the"
+msgstr "の行ごとに表示するジョブ タイプの数"
+
+msgid "Job by Type"
+msgstr "種類別の仕事"
+
+msgid "Show Jobs Graph for Employer"
+msgstr "雇用主の求人グラフを表示"
+
+msgid "Show Active Jobs Graph for Job Seeker"
+msgstr "求職者にアクティブな求人グラフを表示"
+
+msgid "Company Profile Display"
+msgstr "会社概要の表示"
+
+msgid "Control which company details are visible on listings and company pages"
+msgstr "リストと会社ページにどの会社の詳細を表示するかを制御します"
+
+msgid "Show Company Name"
+msgstr "会社名を表示"
+
+msgid "Show Company Description"
+msgstr "会社概要を表示"
+
+msgid "Show Company Email Address"
+msgstr "会社のメールアドレスを表示"
+
+msgid "Show Company City"
+msgstr "会社都市を表示する"
+
+msgid "Show Company URL"
+msgstr "会社のURLを表示"
+
+msgid "Show Company Contact Detail by Default"
+msgstr "デフォルトで会社の連絡先詳細を表示"
+
+msgid "If disabled, credits may be required to view contact details"
+msgstr "無効にすると、連絡先の詳細を表示するためにクレジットが必要になる場合があります"
+
+msgid "General settings for company profiles"
+msgstr "会社プロファイルの一般設定"
+
+msgid "Company Logo Maximum Size"
+msgstr "会社ロゴの最大サイズ"
+
+msgid "Set the maximum file size for company logo uploads in kilobytes"
+msgstr "会社ロゴのアップロードの最大ファイル サイズをキロバイト単位で設定します"
+
+msgid "Company Auto Approve"
+msgstr "会社の自動承認"
+
+msgid "Automatically approve new company profiles upon submission"
+msgstr "新しい会社概要を送信すると自動的に承認されます"
+
+msgid "Control resume submissions, visibility, and search functionality"
+msgstr "履歴書の提出、可視性、検索機能を制御する"
+
+msgid "Resume Auto Approve"
+msgstr "自動承認を再開する"
+
+msgid "Automatically approve new resumes upon submission"
+msgstr "新しい履歴書を送信すると自動的に承認されます"
+
+msgid "Show Resume Contact Detail by Default"
+msgstr "デフォルトで履歴書の連絡先詳細を表示"
+
+msgid "If disabled, credits may be required to view resume contact details"
+msgstr "無効になっている場合、履歴書の連絡先詳細を表示するにはクレジットが必要になる場合があります"
+
+msgid "Show Count in Resume Categories"
+msgstr "履歴書カテゴリの表示数"
+
+msgid "Display the total number of resumes for each category"
+msgstr "カテゴリごとの履歴書の総数を表示します"
+
+msgid "Allow Resume Search"
+msgstr "履歴書の検索を許可する"
+
+msgid "Define who is allowed to search for resumes"
+msgstr "履歴書の検索を許可するユーザーを定義する"
+
+msgid "Allow Users to Save Resume Searches"
+msgstr "ユーザーが履歴書検索を保存できるようにする"
+
+msgid "Allow users to save their resume search criteria for later use"
+msgstr "ユーザーが後で使用できるように履歴書の検索条件を保存できるようにする"
+
+msgid "Resume Files & Builder"
+msgstr "履歴書ファイルとビルダー"
+
+msgid "Define limits and allowed types for resume file uploads and advanced builder sections"
+msgstr "再開ファイルのアップロードと高度なビルダー セクションの制限と許可されるタイプを定義する"
+
+msgid "Resume Photo Maximum Size"
+msgstr "履歴書写真の最大サイズ"
+
+msgid "Maximum file size for resume photos in kilobytes"
+msgstr "履歴書写真の最大ファイル サイズ (キロバイト単位)"
+
+msgid "Resume Document Maximum Size"
+msgstr "履歴書ドキュメントの最大サイズ"
+
+msgid "System will not upload if resume file size exceeds the given size"
+msgstr "履歴書のファイルサイズが指定されたサイズを超える場合、システムはアップロードしません"
+
+msgid "Allowed Document Extensions"
+msgstr "許可されるドキュメント拡張子"
+
+msgid "Comma-separated list of allowed document file extensions"
+msgstr "許可されるドキュメントファイル拡張子のカンマ区切りリスト"
+
+msgid "Maximum Number of Files for Resume"
+msgstr "履歴書の最大ファイル数"
+
+msgid "Maximum number of files a job seeker can upload with their resume"
+msgstr "求職者が履歴書とともにアップロードできるファイルの最大数"
+
+msgid "Max Employers in Resume Builder"
+msgstr "Resume Builder の最大雇用主数"
+
+msgid "Maximum number of employers allowed in the resume builder"
+msgstr "履歴書ビルダーで許可される雇用主の最大数"
+
+msgid "Max Institutes in Resume Builder"
+msgstr "Resume Builder の Max Institutes"
+
+msgid "Maximum number of institutes allowed in the resume builder"
+msgstr "履歴書ビルダーで許可される研究機関の最大数"
+
+msgid "Max Languages in Resume Builder"
+msgstr "履歴書ビルダーの最大言語"
+
+msgid "Maximum number of languages allowed in the resume builder"
+msgstr "履歴書ビルダーで許可される言語の最大数"
+
+msgid "Max Addresses in Resume Builder"
+msgstr "履歴書ビルダーの最大住所"
+
+msgid "Maximum number of addresses allowed in the resume builder"
+msgstr "履歴書ビルダーで許可されるアドレスの最大数"
+
+msgid "Job Applications"
+msgstr "求人応募"
+
+msgid "Configure the job application process and related notifications"
+msgstr "求人応募プロセスと関連する通知を構成する"
+
+msgid "Show Apply Now Button"
+msgstr "「今すぐ適用」ボタンを表示"
+
+msgid "Enable Quick Apply for Logged-in Users"
+msgstr "ログインユーザーのクイック適用を有効にする"
+
+msgid "Enable Quick Apply for Visitors"
+msgstr "訪問者のクイック申請を有効にする"
+
+msgid "Show Applied Resume Status to Job Seeker"
+msgstr "応募済みの履歴書のステータスを求職者に表示"
+
+msgid "Resume Data in Email"
+msgstr "電子メールの履歴書データ"
+
+msgid "Sections"
+msgstr "セクション"
+
+msgid "Choose whether to include all resume sections or only filled ones in the application email to employers"
+msgstr "雇用主への応募メールに履歴書のすべてのセクションを含めるか、記入済みのセクションのみを含めるかを選択します"
+
+msgid "Choose whether to include all fields or only filled fields in the application email"
+msgstr "アプリケーション電子メールにすべてのフィールドを含めるか、入力されたフィールドのみを含めるかを選択します"
+
+msgid "Auto-Approve Rules"
+msgstr "自動承認ルール"
+
+msgid "Set auto-approval rules for various user-submitted content"
+msgstr "ユーザーが送信したさまざまなコンテンツの自動承認ルールを設定する"
+
+msgid "Featured Resume Auto Approve"
+msgstr "注目の履歴書の自動承認"
+
+msgid "Automatically approve resumes marked as featured"
+msgstr "注目としてマークされた履歴書を自動的に承認する"
+
+msgid "Featured Company Auto Approve"
+msgstr "注目の会社の自動承認"
+
+msgid "Automatically approve companies marked as featured"
+msgstr "注目としてマークされた企業を自動的に承認します"
+
+msgid "Featured Job Auto Approve"
+msgstr "注目のジョブの自動承認"
+
+msgid "Automatically approve jobs marked as featured"
+msgstr "注目としてマークされたジョブを自動的に承認する"
+
+msgid "Cover Letter Auto Approve"
+msgstr "カバーレターの自動承認"
+
+msgid "Automatically approve cover letters submitted by job seekers"
+msgstr "求職者が提出したカバーレターを自動的に承認します"
+
+msgid "Folder Auto Approve"
+msgstr "フォルダーの自動承認"
+
+msgid "Automatically approve new folders created by employers"
+msgstr "雇用主が作成した新しいフォルダーを自動的に承認する"
+
+msgid "Department Auto Approve"
+msgstr "部門の自動承認"
+
+msgid "Automatically approve new departments created by employers"
+msgstr "雇用主が作成した新しい部門を自動的に承認する"
+
+msgid "Message Auto Approve"
+msgstr "メッセージの自動承認"
+
+msgid "Automatically approve messages between job seekers and employers"
+msgstr "求職者と雇用主の間のメッセージを自動的に承認する"
+
+msgid "Conflict Message Auto Approve"
+msgstr "競合メッセージの自動承認"
+
+msgid "Automatically approve conflicted messages"
+msgstr "競合するメッセージを自動的に承認する"
+
+msgid "Email & Alerts"
+msgstr "電子メールとアラート"
+
+msgid "Email Sender Identity"
+msgstr "電子メール送信者の ID"
+
+msgid "Configure sender details for all outgoing system emails"
+msgstr "すべての送信システム電子メールの送信者の詳細を構成する"
+
+msgid "Admin Email Address"
+msgstr "管理者のメールアドレス"
+
+msgid "Admin will receive email notifications at this address"
+msgstr "管理者はこのアドレスで電子メール通知を受け取ります"
+
+msgid "Sender Email Address"
+msgstr "送信者のメールアドレス"
+
+msgid "The email address that will be used to send system emails"
+msgstr "システムメールの送信に使用されるメールアドレス"
+
+msgid "The sender name that will be used in system emails"
+msgstr "システムメールで使用される送信者名"
+
+msgid "Job Alerts"
+msgstr "ジョブアラート"
+
+msgid "Configure settings for job alert emails and forms"
+msgstr "ジョブアラートメールとフォームの設定を構成する"
+
+msgid "Show Job Alert Link"
+msgstr "ジョブアラートリンクを表示"
+
+msgid "Show the Job Alert link in the job seeker control panel"
+msgstr "求職者のコントロール パネルに [ジョブ アラート] リンクを表示します。"
+
+msgid "Enable Job Alerts for Visitors"
+msgstr "訪問者向けの求人アラートを有効にする"
+
+msgid "Allow non-logged-in users to sign up for job alerts"
+msgstr "ログインしていないユーザーが求人アラートにサインアップできるようにする"
+
+msgid "Job Alert Auto Approve"
+msgstr "ジョブアラートの自動承認"
+
+msgid "Automatically approve new job alerts upon creation"
+msgstr "新しい求人アラートを作成時に自動的に承認する"
+
+msgid "Captcha on Visitor Job Alert Form"
+msgstr "訪問者ジョブアラートフォームのキャプチャ"
+
+msgid "Show a captcha on the job alert sign-up form for visitors"
+msgstr "訪問者向けの求人アラート登録フォームにキャプチャを表示する"
+
+msgid "Allow users to save their search queries for jobs and resumes"
+msgstr "ユーザーが求人や履歴書の検索クエリを保存できるようにする"
+
+msgid "Show Saved Searches for Job Seekers"
+msgstr "求職者向けに保存された検索結果を表示"
+
+msgid "Allow job seekers to save their job searches"
+msgstr "求職者が求人検索を保存できるようにする"
+
+msgid "Show Saved Searches for Employers"
+msgstr "雇用主の保存済み検索を表示"
+
+msgid "Allow employers to save their resume searches"
+msgstr "雇用主が履歴書の検索結果を保存できるようにする"
+
+msgid "Feeds & AI"
+msgstr "フィードと AI"
+
+msgid "RSS Feeds"
+msgstr "RSSフィード"
+
+msgid "Configure the RSS feed for jobs"
+msgstr "ジョブの RSS フィードを構成する"
+
+msgid "Enable Jobs RSS Feed"
+msgstr "ジョブの RSS フィードを有効にする"
+
+msgid "Enable the main RSS feed for new jobs"
+msgstr "新しいジョブのメイン RSS フィードを有効にする"
+
+msgid "Job Feed Title"
+msgstr "ジョブフィードのタイトル"
+
+msgid "The title for the job RSS feed"
+msgstr "求人の RSS フィードのタイトル"
+
+msgid "Job Feed Description"
+msgstr "ジョブフィードの説明"
+
+msgid "The description for the job RSS feed"
+msgstr "ジョブの RSS フィードの説明"
+
+msgid "Job Feed Copyright"
+msgstr "ジョブフィードの著作権"
+
+msgid "Copyright notice for the job feed"
+msgstr "ジョブフィードの著作権表示"
+
+msgid "Job Feed Editor"
+msgstr "ジョブフィードエディター"
+
+msgid "The person responsible for editorial content"
+msgstr "編集内容の責任者"
+
+msgid "Job Feed Webmaster"
+msgstr "ジョブフィードウェブマスター"
+
+msgid "The person responsible for technical issues"
+msgstr "技術的な問題の責任者"
+
+msgid "Job Feed TTL"
+msgstr "ジョブフィードTTL"
+
+msgid "Time to Live"
+msgstr "生存時間"
+
+msgid "Number of minutes the feed can be cached before refreshing"
+msgstr "更新するまでにフィードをキャッシュできる分数"
+
+msgid "Show Categories in Job Feed"
+msgstr "ジョブフィードにカテゴリを表示"
+
+msgid "Include categories in the job feed items"
+msgstr "ジョブフィードアイテムにカテゴリを含める"
+
+msgid "Show Company Image in Job Feed"
+msgstr "求人フィードに企業イメージを表示"
+
+msgid "Include the company logo in the job feed items"
+msgstr "ジョブフィード項目に会社のロゴを含める"
+
+msgid "Configure the RSS feed for resumes"
+msgstr "履歴書用の RSS フィードを構成する"
+
+msgid "Enable Resumes RSS Feed"
+msgstr "履歴書の RSS フィードを有効にする"
+
+msgid "Enable the main RSS feed for new resumes"
+msgstr "新しい履歴書のメイン RSS フィードを有効にする"
+
+msgid "Resume Feed Title"
+msgstr "フィードのタイトルを再開"
+
+msgid "The title for the resume RSS feed"
+msgstr "履歴書の RSS フィードのタイトル"
+
+msgid "Resume Feed Description"
+msgstr "フィードの説明を再開する"
+
+msgid "The description for the resume RSS feed"
+msgstr "再開 RSS フィードの説明"
+
+msgid "Resume Feed Copyright"
+msgstr "フィードの著作権を再開する"
+
+msgid "Copyright notice for the resume feed"
+msgstr "履歴書フィードの著作権表示"
+
+msgid "Resume Feed Editor"
+msgstr "フィードエディターを再開する"
+
+msgid "Resume Feed Webmaster"
+msgstr "フィードウェブマスターを再開する"
+
+msgid "Resume Feed TTL"
+msgstr "フィード TTL を再開"
+
+msgid "Show Categories in Resume Feed"
+msgstr "フィードの再開でカテゴリを表示"
+
+msgid "Include categories in the resume feed items"
+msgstr "履歴書のフィード項目にカテゴリを含める"
+
+msgid "Show Resume File in Resume Feed"
+msgstr "履歴書フィードに履歴書ファイルを表示"
+
+msgid "Make resume files downloadable from the feed"
+msgstr "履歴書ファイルをフィードからダウンロードできるようにする"
+
+msgid "AI Suggested Matches"
+msgstr "AI が提案する一致"
+
+msgid "Configure AI-powered job and resume suggestion features"
+msgstr "AI を利用したジョブと履歴書の提案機能を構成する"
+
+msgid "AI Search On Job Search Page"
+msgstr "求人検索ページでAI検索"
+
+msgid "Show the AI search field on the main job search form"
+msgstr "メインの求人検索フォームに AI 検索フィールドを表示する"
+
+msgid "AI Job Search"
+msgstr "AIの仕事探し"
+
+msgid "AI Search Filter On Job Listing"
+msgstr "求人情報の AI 検索フィルター"
+
+msgid "Show the AI search field as a filter on the job listing page"
+msgstr "求人一覧ページに AI 検索フィールドをフィルターとして表示する"
+
+msgid "AI Search On Resume Search Page"
+msgstr "履歴書検索ページでの AI 検索"
+
+msgid "Show the AI search field on the main resume search form"
+msgstr "メインの履歴書検索フォームに AI 検索フィールドを表示する"
+
+msgid "AI Resume Search"
+msgstr "AI履歴書検索"
+
+msgid "AI Search Filter On Resume Listing"
+msgstr "履歴書掲載時の AI 検索フィルター"
+
+msgid "Show the AI search field as a filter on the resume listing page"
+msgstr "履歴書の一覧ページに AI 検索フィールドをフィルターとして表示します"
+
+msgid "Show AI Suggested Jobs Button"
+msgstr "「AI が提案するジョブを表示」ボタン"
+
+msgid "AI Suggested Jobs"
+msgstr "AIが提案するジョブ"
+
+msgid "Show AI Suggested Jobs on Dashboard"
+msgstr "AI が提案したジョブをダッシュ​​ボードに表示"
+
+msgid "Show a list of AI-suggested jobs on the job seeker dashboard"
+msgstr "求職者ダッシュボードに AI が提案した求人のリストを表示する"
+
+msgid "Show AI Suggested Resumes Button"
+msgstr "AI が提案する履歴書ボタンを表示"
+
+msgid "AI Suggested Resumes"
+msgstr "AI が提案する履歴書"
+
+msgid "Show AI Suggested Resumes on Dashboard"
+msgstr "AI が提案した履歴書をダッシュ​​ボードに表示"
+
+msgid "Show a list of AI-suggested resumes on the employer dashboard"
+msgstr "AI が提案した履歴書のリストを雇用主ダッシュボードに表示する"
+
+msgid "Integrations"
+msgstr "統合"
+
+msgid "Allow users to register and log in with their social media accounts"
+msgstr "ユーザーがソーシャル メディア アカウントで登録およびログインできるようにする"
+
+msgid "Login with Facebook"
+msgstr "Facebookでログイン"
+
+msgid "Allow users to log in using their Facebook account"
+msgstr "ユーザーが自分の Facebook アカウントを使用してログインできるようにする"
+
+msgid "Apply with Facebook"
+msgstr "Facebookで申し込む"
+
+msgid "Allow users to apply for jobs using their Facebook profile"
+msgstr "ユーザーが Facebook プロフィールを使用して求人に応募できるようにする"
+
+msgid "Facebook App ID"
+msgstr "FacebookアプリID"
+
+msgid "Enter your Facebook App ID"
+msgstr "Facebook アプリ ID を入力してください"
+
+msgid "Facebook App Secret"
+msgstr "Facebookアプリの秘密"
+
+msgid "Enter your Facebook App Secret"
+msgstr "Facebook アプリの秘密を入力してください"
+
+msgid "Valid OAuth URI"
+msgstr "有効なOAuth URI"
+
+msgid "Apply"
+msgstr "適用する"
+
+msgid "Login with LinkedIn"
+msgstr "LinkedIn でログイン"
+
+msgid "Allow users to log in using their LinkedIn account"
+msgstr "ユーザーが LinkedIn アカウントを使用してログインできるようにする"
+
+msgid "Apply with LinkedIn"
+msgstr "LinkedIn で応募する"
+
+msgid "Allow users to apply for jobs using their LinkedIn profile"
+msgstr "ユーザーが LinkedIn プロフィールを使用して求人に応募できるようにする"
+
+msgid "LinkedIn Client ID"
+msgstr "LinkedIn クライアント ID"
+
+msgid "Enter your LinkedIn Client ID"
+msgstr "LinkedIn クライアント ID を入力してください"
+
+msgid "API Key"
+msgstr "APIキー"
+
+msgid "LinkedIn Client Secret"
+msgstr "LinkedIn クライアント シークレット"
+
+msgid "Enter your LinkedIn Client Secret"
+msgstr "LinkedIn クライアント シークレットを入力してください"
+
+msgid "Social Sharing"
+msgstr "ソーシャルシェアリング"
+
+msgid "Enable social sharing buttons on your pages"
+msgstr "ページ上でソーシャル共有ボタンを有効にする"
+
+msgid "Enable Facebook Likes"
+msgstr "Facebookの「いいね！」を有効にする"
+
+msgid "Show Facebook like button"
+msgstr "Facebookの「いいね！」ボタンを表示"
+
+msgid "Enable Facebook Share"
+msgstr "Facebook 共有を有効にする"
+
+msgid "Show Facebook share button"
+msgstr "Facebookの共有ボタンを表示する"
+
+msgid "Enable Facebook Comments"
+msgstr "Facebook コメントを有効にする"
+
+msgid "Show Facebook comments widget"
+msgstr "Facebook コメントウィジェットを表示"
+
+msgid "Enable Twitter Share"
+msgstr "Twitter シェアを有効にする"
+
+msgid "Show Twitter share button"
+msgstr "Twitterのシェアボタンを表示"
+
+msgid "Enable LinkedIn Share"
+msgstr "LinkedIn 共有を有効にする"
+
+msgid "Show LinkedIn share button"
+msgstr "LinkedIn 共有ボタンを表示する"
+
+msgid "Enable Blogger Share"
+msgstr "ブロガー共有を有効にする"
+
+msgid "Show Blogger share button"
+msgstr "Blogger の共有ボタンを表示する"
+
+msgid "Enable Digg Share"
+msgstr "Digg シェアを有効にする"
+
+msgid "Show Digg share button"
+msgstr "Digg 共有ボタンを表示"
+
+msgid "Enable Myspace Share"
+msgstr "Myspace 共有を有効にする"
+
+msgid "Show Myspace share button"
+msgstr "Myspace 共有ボタンを表示する"
+
+msgid "Enable Yahoo Share"
+msgstr "Yahooシェアを有効にする"
+
+msgid "Show Yahoo share button"
+msgstr "Yahooのシェアボタンを表示"
+
+msgid "Mapping & Geolocation"
+msgstr "マッピングと地理位置情報"
+
+msgid "Configure map services and location-based features"
+msgstr "マップ サービスと位置ベースの機能を構成する"
+
+msgid "Choose between Google Maps and OpenStreetMap for map displays"
+msgstr "地図表示には Google マップと OpenStreetMap のどちらかを選択してください"
+
+msgid "Google Map API Key"
+msgstr "Google マップ API キー"
+
+msgid "Enter your Google Maps API key"
+msgstr "Google Maps API キーを入力してください"
+
+msgid "Map Height"
+msgstr "マップの高さ"
+
+msgid "Set the height for maps displayed in the plugin, in pixels"
+msgstr "プラグインで表示されるマップの高さをピクセル単位で設定します。"
+
+msgid "Default Longitude"
+msgstr "デフォルトの経度"
+
+msgid "Default longitude for map centering"
+msgstr "地図の中心合わせのデフォルトの経度"
+
+msgid "Default Latitude"
+msgstr "デフォルトの緯度"
+
+msgid "Default latitude for map centering"
+msgstr "地図の中央揃えのデフォルトの緯度"
+
+msgid "Default Map Radius Type"
+msgstr "デフォルトのマップ半径タイプ"
+
+msgid "Default unit for map radius calculations"
+msgstr "マップ半径計算のデフォルトの単位"
+
+msgid "Max Records for City Field"
+msgstr "都市フィールドの最大レコード"
+
+msgid "Set the number of cities to show in the location autocomplete results"
+msgstr "場所のオートコンプリート結果に表示する都市の数を設定します"
+
+msgid "Max Records for Tag Field"
+msgstr "タグフィールドの最大レコード数"
+
+msgid "Set the number of tags to show in the tag autocomplete results"
+msgstr "タグのオートコンプリート結果に表示するタグの数を設定します"
+
+msgid "Security & Captcha"
+msgstr "セキュリティとキャプチャ"
+
+msgid "Captcha Options"
+msgstr "キャプチャオプション"
+
+msgid "Enable captcha on various forms to prevent spam"
+msgstr "スパムを防ぐためにさまざまなフォームでキャプチャを有効にする"
+
+msgid "Default Captcha Type"
+msgstr "デフォルトのキャプチャ タイプ"
+
+msgid "Select the default captcha to use throughout the plugin"
+msgstr "プラグイン全体で使用するデフォルトのキャプチャを選択します"
+
+msgid "Captcha on Registration Form"
+msgstr "登録フォームのキャプチャ"
+
+msgid "Show a captcha on the WP Job Portal registration form"
+msgstr "WP Job Portal 登録フォームにキャプチャを表示する"
+
+msgid "Captcha on Visitor Quick Apply"
+msgstr "訪問者のクイック適用時のキャプチャ"
+
+msgid "Show captcha to visitors on the quick apply form"
+msgstr "クイック申請フォームで訪問者にキャプチャを表示します"
+
+msgid "Captcha on Visitor Job Form"
+msgstr "訪問者のジョブフォームのキャプチャ"
+
+msgid "Show captcha on the job submission form for visitors"
+msgstr "訪問者向けにジョブ送信フォームにキャプチャを表示する"
+
+msgid "Captcha on Visitor Resume Form"
+msgstr "訪問者の履歴書フォームのキャプチャ"
+
+msgid "Show captcha on the resume submission form for visitors"
+msgstr "訪問者の履歴書提出フォームにキャプチャを表示する"
+
+msgid "Captcha on Tell a Friend Popup"
+msgstr "「友達に教える」ポップアップのキャプチャ"
+
+msgid "Show captcha on the"
+msgstr "にキャプチャを表示します"
+
+msgid "popup for visitors"
+msgstr "訪問者向けのポップアップ"
+
+msgid "WP Job Portal Captcha"
+msgstr "WP ジョブ ポータルのキャプチャ"
+
+msgid "Settings for the built-in mathematical captcha"
+msgstr "組み込みの数学的キャプチャの設定"
+
+msgid "Calculation Type"
+msgstr "計算の種類"
+
+msgid "Select the type of math problem for the captcha"
+msgstr "キャプチャの数学問題の種類を選択してください"
+
+msgid "Addition or Subtraction"
+msgstr "加算または減算"
+
+msgid "Answer Always Positive"
+msgstr "常に肯定的に答える"
+
+msgid "Ensure that subtraction problems always result in a positive answer"
+msgstr "引き算の問題で常に肯定的な答えが得られるようにする"
+
+msgid "Number of Operands"
+msgstr "オペランドの数"
+
+msgid "Choose the number of operands for the math problem"
+msgstr "数学問題のオペランドの数を選択してください"
+
+msgid "Google reCAPTCHA"
+msgstr "Google reCAPTCHA"
+
+msgid "Configure Google reCAPTCHA v2 or v3"
+msgstr "Google reCAPTCHA v2 または v3 を構成する"
+
+msgid "Select which version of Google reCAPTCHA to use"
+msgstr "使用する Google reCAPTCHA のバージョンを選択します"
+
+msgid "Enter the site key from your Google reCAPTCHA admin console"
+msgstr "Google reCAPTCHA 管理コンソールからサイト キーを入力します。"
+
+msgid "Google reCaptcha Secret Key"
+msgstr "Google reCaptcha 秘密キー"
+
+msgid "Enter the secret key from your Google reCAPTCHA admin console"
+msgstr "Google reCAPTCHA 管理コンソールから秘密キーを入力します。"
+
+msgid "Monetization"
+msgstr "収益化"
+
+msgid "General Monetization"
+msgstr "一般的な収益化"
+
+msgid "Core settings for handling payments and packages"
+msgstr "支払いとパッケージを処理するための主要な設定"
+
+msgid "Choose the monetization model for submissions"
+msgstr "投稿の収益化モデルを選択する"
+
+msgid "Free, Per Listing, or Membership-based"
+msgstr "無料、リスティングごと、またはメンバーシップベース"
+
+msgid "Default Currency Symbol"
+msgstr "デフォルトの通貨記号"
+
+msgid "The currency symbol to be used across the site"
+msgstr "サイト全体で使用される通貨記号"
+
+msgid "Currency Symbol Position"
+msgstr "通貨記号の位置"
+
+msgid "Packages & Featured Listings"
+msgstr "パッケージと注目のリスト"
+
+msgid "Manage free packages and enable featured listings"
+msgstr "無料パッケージを管理し、注目のリストを有効にする"
+
+msgid "Auto-assign Free Package to New User"
+msgstr "無料パッケージを新規ユーザーに自動割り当て"
+
+msgid "Automatically give new users a free package if one exists"
+msgstr "無料パッケージが存在する場合、新規ユーザーに自動的にそれを提供します"
+
+msgid "Free Package Purchase Auto Approve"
+msgstr "無料パッケージ購入の自動承認"
+
+msgid "Automatically approve the purchase of free packages"
+msgstr "無料パッケージの購入を自動的に承認する"
+
+msgid "Purchase Free Package Only Once"
+msgstr "無料パッケージを一度だけ購入する"
+
+msgid "Prevent users from acquiring a free package more than once"
+msgstr "ユーザーが無料パッケージを複数回取得できないようにする"
+
+msgid "Enable Featured Companies"
+msgstr "注目の企業を有効にする"
+
+msgid "Allow companies to be marked as"
+msgstr "企業を次のようにマークできるようにする"
+
+msgid "Enable Featured Jobs"
+msgstr "注目のジョブを有効にする"
+
+msgid "Allow jobs to be marked as"
+msgstr "ジョブのマークを許可する"
+
+msgid "Enable Featured Resumes"
+msgstr "注目の履歴書を有効にする"
+
+msgid "Allow resumes to be marked as"
+msgstr "履歴書に次のマークを付けることを許可する"
+
+msgid "Per Listing Prices"
+msgstr "出品ごとの価格"
+
+msgid "Set prices for various actions when using the"
+msgstr "を使用するときにさまざまなアクションの価格を設定します。"
+
+msgid "submission type"
+msgstr "提出タイプ"
+
+msgid "Submission"
+msgstr "提出"
+
+msgid "Price to submit a single company profile"
+msgstr "単一の会社概要を送信するための料金"
+
+msgid "Additional price to make a company"
+msgstr "会社設立にかかる追加料金"
+
+msgid "Days Until Featured Company Expires"
+msgstr "注目の企業の有効期限が切れるまでの日数"
+
+msgid "Number of days a"
+msgstr "日数"
+
+msgid "per-listing"
+msgstr "リストごと"
+
+msgid "featured company remains active"
+msgstr "注目の企業は引き続き活動中"
+
+msgid "free"
+msgstr "無料"
+
+msgid "Price to submit a single job"
+msgstr "単一のジョブを送信するための価格"
+
+msgid "Additional price to make a job"
+msgstr "仕事を作るための追加料金"
+
+msgid "Days Until Featured Job Expires"
+msgstr "注目のジョブの有効期限が切れるまでの日数"
+
+msgid "featured job remains active"
+msgstr "注目のジョブは引き続きアクティブです"
+
+msgid "Price to submit a single resume"
+msgstr "1 つの履歴書を提出するための料金"
+
+msgid "Additional price to make a resume"
+msgstr "履歴書作成には追加料金がかかります"
+
+msgid "Days Until Featured Resume Expires"
+msgstr "注目の履歴書の有効期限が切れるまでの日数"
+
+msgid "featured resume remains active"
+msgstr "注目の履歴書はアクティブのままです"
+
+msgid "Price per Job Apply"
+msgstr "求人応募あたりの価格"
+
+msgid "Price for a job seeker to apply for a job"
+msgstr "求職者が仕事に応募するための価格"
+
+msgid "Price to View Resume Contact"
+msgstr "閲覧価格 履歴書 お問い合わせ"
+
+msgid "Price to View Company Contact"
+msgstr "表示価格 会社連絡先"
+
+msgid "Price to submit a department"
+msgstr "部門を提出するための価格"
+
+msgid "Price to submit a cover letter"
+msgstr "カバーレターの提出料金"
+
+msgid "Price to create a job alert"
+msgstr "求人アラート作成の価格"
+
+msgid "Dashboard Monetization Links"
+msgstr "ダッシュボードの収益化リンク"
+
+msgid "Control the visibility of monetization-related links in user dashboards"
+msgstr "ユーザーダッシュボードでの収益化関連リンクの表示を制御する"
+
+msgid "Employer Show Invoice History"
+msgstr "雇用主が請求書履歴を表示"
+
+msgid "Setting to show the invoice/purchase history section"
+msgstr "請求書・購入履歴セクションを表示する設定"
+
+msgid "Job Seeker Show Invoice History"
+msgstr "求職者に請求書履歴を表示"
+
+msgid "Job Seeker Show Credits Log"
+msgstr "求職者表示クレジット ログ"
+
+msgid "Setting to show the credits log section"
+msgstr "クレジットログセクションを表示する設定"
+
+msgid "Payment Gateways"
+msgstr "支払いゲートウェイ"
+
+msgid "Configure PayPal payment gateway settings for API integration"
+msgstr "API 統合用に PayPal 支払いゲートウェイ設定を構成する"
+
+msgid "Enable PayPal"
+msgstr "PayPal を有効にする"
+
+msgid "Enable or disable PayPal as a payment option"
+msgstr "支払いオプションとして PayPal を有効または無効にする"
+
+msgid "Your PayPal API Username"
+msgstr "PayPal API ユーザー名"
+
+msgid "Your PayPal API Password"
+msgstr "PayPal API パスワード"
+
+msgid "Your PayPal API Signature"
+msgstr "PayPal API 署名"
+
+msgid "A URL to your logo image to display on the PayPal checkout page"
+msgstr "PayPal チェックアウト ページに表示するロゴ画像への URL"
+
+msgid "Cancel URL"
+msgstr "キャンセルURL"
+
+msgid "The URL users are sent to if they cancel the payment"
+msgstr "ユーザーが支払いをキャンセルした場合に送信される URL"
+
+msgid "Notify URL"
+msgstr "通知URL"
+
+msgid "Sandbox"
+msgstr "サンドボックス"
+
+msgid "Enable PayPal Sandbox for testing purposes"
+msgstr "テスト目的で PayPal サンドボックスを有効にする"
+
+msgid "Please enter language code, for example"
+msgstr "言語コードを入力してください。たとえば、"
+
+msgid "Subscription IPN URL"
+msgstr "サブスクリプションIPN URL"
+
+msgid "Configure Stripe payment gateway settings"
+msgstr "Stripe 支払いゲートウェイの設定を構成する"
+
+msgid "Enable Stripe"
+msgstr "ストライプを有効にする"
+
+msgid "Enable or disable Stripe as a payment option"
+msgstr "支払いオプションとして Stripe を有効または無効にする"
+
+msgid "Publishable Key"
+msgstr "公開可能なキー"
+
+msgid "Enter your Stripe Publishable Key"
+msgstr "Stripe 公開可能キーを入力してください"
+
+msgid "Secret Key"
+msgstr "秘密鍵"
+
+msgid "Enter your Stripe Secret Key"
+msgstr "Stripe 秘密キーを入力してください"
+
+msgid "Subscription Webhook URL"
+msgstr "サブスクリプション Webhook URL"
+
+msgid "WooCommerce"
+msgstr "ウーコマース"
+
+msgid "Use WooCommerce to handle payments"
+msgstr "WooCommerce を使用して支払いを処理する"
+
+msgid "Enable WooCommerce"
+msgstr "WooCommerce を有効にする"
+
+msgid "Enable or disable WooCommerce as a payment option"
+msgstr "支払いオプションとして WooCommerce を有効または無効にする"
+
+msgid "Home Page"
+msgstr "ホームページ"
+
+msgid "WordPress Default"
+msgstr "ワードプレスのデフォルト"
+
+msgid "Blog"
+msgstr "ブログ"
+
+msgid "This feature is part of a premium addon"
+msgstr "この機能はプレミアム アドオンの一部です"
+
+msgid "Available tags"
+msgstr "利用可能なタグ"
+
+msgid "This image will be shown as the default image for entities & users if no other image is provided"
+msgstr "他の画像が提供されない場合、この画像はエンティティおよびユーザーのデフォルト画像として表示されます"
+
+msgid "Discard"
+msgstr "破棄"
+
+msgid "Save Changes"
+msgstr "変更を保存"
+
+msgid "Quickly find any setting"
+msgstr "設定をすぐに見つける"
+
+msgid "Search by setting title or tooltip description"
+msgstr "タイトルまたはツールチップの説明を設定して検索する"
+
+msgid "Unlock"
+msgstr "ロックを解除する"
+
+msgid "This and other powerful features are available in the"
+msgstr "この機能およびその他の強力な機能は、"
+
+msgid "Upgrade Now"
+msgstr "今すぐアップグレード"
+
+msgid "No settings found for your search"
+msgstr "検索で設定が見つかりませんでした"
+
+msgid "Copied to clipboard"
+msgstr "クリップボードにコピーされました"
+
+msgid "Search results for"
+msgstr "の検索結果"
+
+msgid "Unlock with"
+msgstr "でロックを解除します"
+
+msgid "Settings related to employer accounts, registration, and permissions"
+msgstr "雇用主アカウント、登録、権限に関する設定"
+
+msgid "Settings related to job seeker accounts and registration"
+msgstr "求職者アカウントと登録に関する設定"
+
+msgid "Visitor Can View Employer's Control Panel Links"
+msgstr "訪問者は雇用主のコントロール パネルのリンクを表示できます"
+
+msgid "Visitor Can View Resume Categories"
+msgstr "訪問者は履歴書のカテゴリを表示できます"
+
+msgid "Visitor Can Search Resumes"
+msgstr "訪問者は履歴書を検索できます"
+
+msgid "Visitor Can View Company Details"
+msgstr "訪問者は会社の詳細を閲覧できます"
+
+msgid "Visitor Can View Job Details"
+msgstr "訪問者は仕事の詳細を閲覧できます"
+
+msgid "Visitor Can View Resume Details"
+msgstr "訪問者は履歴書の詳細を表示できます"
+
+msgid "Visitor Can View Job Seeker's Control Panel Links"
+msgstr "訪問者は求職者のコントロール パネルのリンクを表示できます"
+
+msgid "Visitor Can View Jobs by Categories"
+msgstr "訪問者はカテゴリ別に求人を表示できます"
+
+msgid "Visitor Can Search Jobs"
+msgstr "訪問者は仕事を検索できます"
+
+msgid "Visitor Can View Newest Jobs"
+msgstr "訪問者は最新の求人を閲覧できます"
+
+msgid "Visitor Can View Job Search Results"
+msgstr "訪問者は求人検索結果を閲覧できます"
+
+msgid "1 Column"
+msgstr "1列"
+
+msgid "10254 Departments found"
+msgstr "10254 部門が見つかりました"
+
+msgid "2 Columns"
+msgstr "2列"
+
+msgid "3 Columns"
+msgstr "3列"
+
+msgid "4 Columns"
+msgstr "4列"
+
+msgid "5 Columns"
+msgstr "5列"
+
+msgid "A critical update for WP Job Portal is required to maintain performance and prevent issues. Please update now."
+msgstr "パフォーマンスを維持し、問題を防ぐには、WP Job Portal の重要なアップデートが必要です。今すぐ更新してください。"
+
+msgid "AI Search"
+msgstr "AI検索"
+
+msgid "AI Search Job"
+msgstr "AI検索の仕事"
+
+msgid "AI Settings"
+msgstr "AI設定"
+
+msgid "AI settings"
+msgstr "AI設定"
+
+msgid "About"
+msgstr "について"
+
+msgid "Account & Billing"
+msgstr "アカウントと請求"
+
+msgid "Activation failed"
+msgstr "アクティベーションに失敗しました"
+
+msgid "Add-ons for WP Job Portal have been installed and activated successfully."
+msgstr "WP Job Portal のアドオンがインストールされ、正常にアクティブ化されました。"
+
+msgid "Addon Installer"
+msgstr "アドオンインストーラー"
+
+msgid "Addon not installed please install addon first."
+msgstr "アドオンがインストールされていません。まずアドオンをインストールしてください。"
+
+msgid "Addon will automatically update to the newest version"
+msgstr "アドオンは自動的に最新バージョンに更新されます"
+
+msgid "Addon(s) Installed successfully!"
+msgstr "アドオンは正常にインストールされました。"
+
+msgid "Address display style for plugin"
+msgstr "プラグインのアドレス表示スタイル"
+
+msgid "Advanced Resume Builder Addon missing, resume sections data will not be imported!"
+msgstr "Advanced Resume Builder アドオンが欠落しているため、履歴書セクションのデータはインポートされません。"
+
+msgid "All selected add-ons are now active."
+msgstr "選択したすべてのアドオンがアクティブになりました。"
+
+msgid "Allow employers and job Seekers to register on the site."
+msgstr "雇用主と求職者がサイトに登録できるようにします。"
+
+msgid "Allow search resume"
+msgstr "検索の再開を許可する"
+
+msgid "Allowed to all (employers, job seekers and visitors)"
+msgstr "すべて（雇用主、求職者、訪問者）に許可されます"
+
+msgid "Auto Update: Off"
+msgstr "自動更新: オフ"
+
+msgid "Auto Update: On"
+msgstr "自動更新: オン"
+
+msgid "Back to listing"
+msgstr "リストに戻る"
+
+msgid "Basic Info"
+msgstr "基本情報"
+
+msgid "Buttons Styling"
+msgstr "ボタンのスタイリング"
+
+msgid "Capitalize"
+msgstr "大文字にする"
+
+msgid "Check if you want to use WP Job Portal packages"
+msgstr "WP Job Portal パッケージを使用するかどうかを確認します"
+
+msgid "City name"
+msgstr "都市名"
+
+msgid "Columns per Row"
+msgstr "行ごとの列数"
+
+msgid "Comma separated list of job types i.e JTFT, JTPT, JTFP, JTCT, JTIN"
+msgstr "ジョブ タイプのカンマ区切りリスト (JTFT、JTPT、JTFP、JTCT、JTIN)"
+
+msgid "Communication"
+msgstr "コミュニケーション"
+
+msgid "Company Management"
+msgstr "会社経営"
+
+msgid "Complete Your Resume"
+msgstr "履歴書を完成させてください"
+
+msgid "Content Access"
+msgstr "コンテンツへのアクセス"
+
+msgid "Content Styling"
+msgstr "コンテンツのスタイリング"
+
+msgid "Control which employer dashboard navigation links are visible to visitors"
+msgstr "どの雇用主ダッシュボード ナビゲーション リンクを訪問者に表示するかを制御します"
+
+msgid "Control which employer dashboard widgets and sections are visible to visitors"
+msgstr "どの雇用主ダッシュボード ウィジェットとセクションを訪問者に表示するかを制御します"
+
+msgid "Control which job seeker dashboard navigation links are visible to visitors"
+msgstr "どの求職者ダッシュボード ナビゲーション リンクを訪問者に表示するかを制御します"
+
+msgid "Control which job seeker dashboard widgets and sections are visible to visitors"
+msgstr "どの求職者ダッシュボード ウィジェットとセクションを訪問者に表示するかを制御します"
+
+msgid "Control which pages and content areas are visible to non-logged-in users"
+msgstr "ログインしていないユーザーに表示されるページとコンテンツ領域を制御する"
+
+msgid "Custom Field Class"
+msgstr "カスタムフィールドクラス"
+
+msgid "Database Update Needed"
+msgstr "データベースの更新が必要です"
+
+msgid "Database update completed"
+msgstr "データベースの更新が完了しました"
+
+msgid "Delete All Unused Keys"
+msgstr "未使用のキーをすべて削除する"
+
+msgid "Discover"
+msgstr "発見する"
+
+msgid "Display the status of applications to the job seeker"
+msgstr "求職者への応募状況の表示"
+
+msgid "Dummy Plugin"
+msgstr "ダミープラグイン"
+
+msgid "Dummy Plugin 2"
+msgstr "ダミープラグイン2"
+
+msgid "Elegant Design"
+msgstr "エレガントなデザイン"
+
+msgid "Employer Widgets"
+msgstr "雇用主ウィジェット"
+
+msgid "Enter the Site Title"
+msgstr "サイトのタイトルを入力してください"
+
+msgid "Entity"
+msgstr "実在物"
+
+msgid "Fetch Data"
+msgstr "データのフェッチ"
+
+msgid "Find your next star hire with AI-driven resume search"
+msgstr "AI を活用した履歴書検索で次のスター雇用を見つけよう"
+
+msgid "Font Family"
+msgstr "フォントファミリー"
+
+msgid "Font Size"
+msgstr "フォントサイズ"
+
+msgid "Font Style"
+msgstr "フォントスタイル"
+
+msgid "Font Weight"
+msgstr "フォントの太さ"
+
+msgid "Go To Dashboard"
+msgstr "ダッシュボードに移動"
+
+msgid "Import Data Report"
+msgstr "インポートデータレポート"
+
+msgid "Import Third Party Data"
+msgstr "サードパーティデータのインポート"
+
+msgid "Import demo data to populate your site with example companies, jobs, resumes, and applications."
+msgstr "デモ データをインポートして、会社、求人、履歴書、応募書類の例をサイトに追加します。"
+
+msgid "Imported"
+msgstr "輸入品"
+
+msgid "Infi Icon"
+msgstr "インフィアイコン"
+
+msgid "Info"
+msgstr "情報"
+
+msgid "Info Icon"
+msgstr "情報アイコン"
+
+msgid "Invalid server response"
+msgstr "無効なサーバー応答"
+
+msgid "Italic"
+msgstr "イタリック"
+
+msgid "Job Alert Time"
+msgstr "ジョブアラート時間"
+
+msgid "Job Detail"
+msgstr "仕事の詳細"
+
+msgid "Job Seeker Links"
+msgstr "求職者リンク"
+
+msgid "Job Seeker Settings"
+msgstr "求職者の設定"
+
+msgid "Job Seeker Widgets"
+msgstr "求職者ウィジェット"
+
+msgid "Jobs by Category"
+msgstr "カテゴリ別の求人"
+
+msgid "Layout"
+msgstr "レイアウト"
+
+msgid "Letter Spacing"
+msgstr "文字間隔"
+
+msgid "Line Height"
+msgstr "線の高さ"
+
+msgid "Live Preview Not available at the moment !"
+msgstr "ライブ プレビュー 現在のところ利用できません。"
+
+msgid "Login/Register"
+msgstr "ログイン/登録"
+
+msgid "Lowercase"
+msgstr "小文字"
+
+msgid "Manage Documents"
+msgstr "文書の管理"
+
+msgid "Manage Jobs"
+msgstr "ジョブの管理"
+
+msgid "Manage Unused Keys"
+msgstr "未使用のキーの管理"
+
+msgid "More Actions"
+msgstr "さらなるアクション"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans."
+msgstr "私のサブスクリプションは、アクティブなサブスクリプションの概要をユーザーに提供し、求人掲載計画の管理と追跡を容易にします。"
+
+msgid "New Jobs"
+msgstr "新しい仕事"
+
+msgid "Next Setup"
+msgstr "次のセットアップ"
+
+msgid "No Addon Installed!"
+msgstr "アドオンがインストールされていません!"
+
+msgid "No unused keys were found."
+msgstr "未使用のキーは見つかりませんでした。"
+
+msgid "None"
+msgstr "なし"
+
+msgid "Not Imported"
+msgstr "輸入されていない"
+
+msgid "Oblique"
+msgstr "斜め"
+
+msgid "Only job seekers can register. Jobs and companies are managed by the admin."
+msgstr "求職者のみご登録いただけます。仕事と会社は管理者によって管理されます。"
+
+msgid "Paid access Only"
+msgstr "有料アクセスのみ"
+
+msgid "Pay For Featured Resume"
+msgstr "注目の履歴書に料金を支払う"
+
+msgid "Pay For Resume"
+msgstr "履歴書の支払い"
+
+msgid "Pay per listing price to publish your"
+msgstr "掲載価格ごとに支払い、"
+
+msgid "Please Insert Your Activation Key"
+msgstr "アクティベーション キーを挿入してください"
+
+msgid "Please log in to register to continue."
+msgstr "続行するにはログインして登録してください。"
+
+msgid "Please select at least one addon!"
+msgstr "少なくとも 1 つのアドオンを選択してください。"
+
+msgid "Please verify Locations and salaries for imported data entities"
+msgstr "インポートされたデータ エンティティの場所と給与を確認してください"
+
+msgid "Plugin not installed"
+msgstr "プラグインがインストールされていません"
+
+msgid "Price for a job seeker to view a company's contact details"
+msgstr "求職者が企業の連絡先詳細を閲覧するための料金"
+
+msgid "Price for an employer to view a resume's contact details"
+msgstr "雇用主が履歴書の連絡先詳細を閲覧するための料金"
+
+msgid "Quick Configuration"
+msgstr "クイック構成"
+
+msgid "Ready to find your dream job? Let's get started"
+msgstr "夢の仕事を見つける準備はできていますか?始めましょう"
+
+msgid "Ready to find your potential employee? Let's get started"
+msgstr "潜在的な従業員を見つける準備はできていますか?始めましょう"
+
+msgid "Search Jobs"
+msgstr "求人を探す"
+
+msgid "Search Resumes"
+msgstr "履歴書の検索"
+
+msgid "Search smarter – just type anything you know about the job: title, category, type, skills, or even a description!"
+msgstr "よりスマートに検索 – 役職、カテゴリ、タイプ、スキル、説明など、その仕事について知っていることをすべて入力するだけです。"
+
+msgid "Section Title Styling"
+msgstr "セクションタイトルのスタイル"
+
+msgid "Select Addons to Update with New Activation Key"
+msgstr "新しいアクティベーション キーで更新するアドオンを選択してください"
+
+msgid "Select Company"
+msgstr "会社を選択してください"
+
+msgid "Select Job Category"
+msgstr "職種を選択してください"
+
+msgid "Select Job Status"
+msgstr "ジョブステータスの選択"
+
+msgid "Select Job Type"
+msgstr "ジョブタイプを選択してください"
+
+msgid "Select Page To Show"
+msgstr "表示するページを選択してください"
+
+msgid "Select Plugin Setting for WP Job Portal"
+msgstr "WPジョブポータルのプラグイン設定を選択"
+
+msgid "Select packages pack so that user can purchase them"
+msgstr "ユーザーが購入できるようにパッケージを選択します"
+
+msgid "Select who can view company contact details."
+msgstr "会社の連絡先詳細を表示できる人を選択します。"
+
+msgid "Settings you applied have been successfully saved"
+msgstr "適用した設定は正常に保存されました"
+
+msgid "Setup Complete"
+msgstr "セットアップ完了"
+
+msgid "Show Advanced Search Button"
+msgstr "詳細検索ボタンを表示"
+
+msgid "Show Employers"
+msgstr "雇用主を表示"
+
+msgid "Show Everyone"
+msgstr "全員に見せる"
+
+msgid "Show Job seekers"
+msgstr "求職者を表示"
+
+msgid "Show Labels"
+msgstr "ラベルを表示"
+
+msgid "Show No One"
+msgstr "誰も見せない"
+
+msgid "Show Placeholders"
+msgstr "プレースホルダーを表示"
+
+msgid "Show Resume Status Section"
+msgstr "再開ステータスセクションを表示"
+
+msgid "Show a box with applied jobs on the job seeker's dashboard"
+msgstr "求職者のダッシュボードに応募された求人を含むボックスを表示します"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard"
+msgstr "求職者のダッシュボードに最新の求人を含むボックスを表示します"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard to visitor"
+msgstr "求職者のダッシュボード上の最新の求人を含むボックスを訪問者に表示します"
+
+msgid "Show a box with recent resumes on the employer's dashboard"
+msgstr "雇用主のダッシュボードに最近の履歴書が入ったボックスを表示します"
+
+msgid "Show a box with recent resumes on the employer's dashboard to visitor"
+msgstr "雇用主のダッシュボードにある最近の履歴書が入ったボックスを訪問者に表示します"
+
+msgid "Show a graph of job statistics in the employer's dashboard"
+msgstr "雇用主のダッシュボードに求人統計のグラフを表示する"
+
+msgid "Show a graph of job statistics in the employer's dashboard to visitor"
+msgstr "雇用主のダッシュボードにある求人統計のグラフを訪問者に表示する"
+
+msgid "Show a graph of job statistics in the job seeker's dashboard"
+msgstr "求職者のダッシュボードに求人統計のグラフを表示する"
+
+msgid "Show a graph of job statistics in the job seeker's dashboard to visitor"
+msgstr "求職者のダッシュボードにある求人統計のグラフを訪問者に表示します"
+
+msgid "Show a link to active subscriptions in the employer's dashboard"
+msgstr "雇用主のダッシュボードにアクティブなサブスクリプションへのリンクを表示します"
+
+msgid "Show a link to active subscriptions in the job seeker's dashboard"
+msgstr "求職者のダッシュボードにアクティブなサブスクリプションへのリンクを表示します"
+
+msgid "Show a link to the packages page in the employer's dashboard"
+msgstr "雇用主のダッシュボードにパッケージ ページへのリンクを表示します。"
+
+msgid "Show a link to the packages page in the job seeker's dashboard"
+msgstr "求職者のダッシュボードにパッケージ ページへのリンクを表示します。"
+
+msgid "Show a link to the purchase history/invoices in the employer's dashboard"
+msgstr "雇用主のダッシュボードに購入履歴/請求書へのリンクを表示します"
+
+msgid "Show a link to the purchase history/invoices in the job seeker's dashboard"
+msgstr "求職者のダッシュボードに購入履歴/請求書へのリンクを表示します。"
+
+msgid "Show a link to the user's purchased packages in their dashboard"
+msgstr "ユーザーが購入したパッケージへのリンクをダッシュ​​ボードに表示します"
+
+msgid "Show an 'AI Suggested Jobs' button on the 'My Resumes' page for job seekers"
+msgstr "求職者の「私の履歴書」ページに「AI が提案する求人」ボタンを表示します。"
+
+msgid "Show an 'AI Suggested Resumes' button on the 'My Jobs' page for employers"
+msgstr "雇用主向けの「マイジョブ」ページに「AI が提案する履歴書」ボタンを表示する"
+
+msgid "Show or hide the profile section on the employer's control panel"
+msgstr "雇用主のコントロール パネルのプロフィール セクションを表示または非表示にする"
+
+msgid "Show or hide the profile section on the job seeker's control panel"
+msgstr "求職者のコントロール パネルのプロフィール セクションを表示または非表示にする"
+
+msgid "Show resume status section on the job seeker's dashboard"
+msgstr "求職者のダッシュボードに履歴書ステータスセクションを表示する"
+
+msgid "Show statistics boxes on the employer's dashboard"
+msgstr "雇用主のダッシュボードに統計ボックスを表示する"
+
+msgid "Show statistics boxes on the job seeker's dashboard"
+msgstr "求職者のダッシュボードに統計ボックスを表示する"
+
+msgid "Show the 'Quick Apply' form to logged-in users on the job detail page"
+msgstr "求人詳細ページでログインユーザーに「クイック応募」フォームを表示します。"
+
+msgid "Show the 'Quick Apply' form to visitors on the job detail page"
+msgstr "求人詳細ページの訪問者に「クイック応募」フォームを表示する"
+
+msgid "Similar Found"
+msgstr "同様のものが見つかりました"
+
+msgid "Start typing what you know – our AI will help you find the best matching jobs."
+msgstr "知っていることを入力し始めます。当社の AI が最適な求人を見つけるお手伝いをします。"
+
+msgid "Start typing what you know – our AI will help you find the best matching resumes."
+msgstr "知っている内容を入力し始めます – 当社の AI が最適な履歴書を見つけるお手伝いをします。"
+
+msgid "Step 1 of 5"
+msgstr "ステップ 1/5"
+
+msgid "Step 2 of 4"
+msgstr "ステップ 2/4"
+
+msgid "Step 2 of 5"
+msgstr "ステップ 2/5"
+
+msgid "Step 3 of 4"
+msgstr "ステップ 3/4"
+
+msgid "Step 3 of 5"
+msgstr "ステップ 3/5"
+
+msgid "Step 4 of 4"
+msgstr "ステップ 4/4"
+
+msgid "Step 4 of 5"
+msgstr "ステップ 4/5"
+
+msgid "Step 5 of 5"
+msgstr "ステップ 5/5"
+
+msgid "Subscriptions"
+msgstr "定期購入"
+
+msgid "Sugeested Jobs"
+msgstr "おすすめの仕事"
+
+msgid "Suggested Jobs"
+msgstr "おすすめの仕事"
+
+msgid "Suggested Resumes"
+msgstr "推奨される履歴書"
+
+msgid "System"
+msgstr "システム"
+
+msgid "System Error Log"
+msgstr "システムエラーログ"
+
+msgid "Text Transform"
+msgstr "テキスト変換"
+
+msgid "The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "雇用主コントロール パネルは、雇用主が求人情報を管理し、応募を追跡し、候補者とコミュニケーションし、採用指標を効率的に分析できるようにする合理化されたインターフェイスです。"
+
+msgid "The highlighted addons are not included in your current license. Please adjust your selection accordingly."
+msgstr "強調表示されたアドオンは、現在のライセンスに含まれていません。それに応じて選択を調整してください。"
+
+msgid "This add-on will change the Job Portal pages to a simple yet powerful and rich web design that involves focusing on clean aesthetics, intuitive navigation, and functional elements while ensuring performance and responsiveness."
+msgstr "このアドオンは、Job Portal ページを、パフォーマンスと応答性を確保しながら、クリーンな美しさ、直感的なナビゲーション、機能的要素に重点を置いた、シンプルかつ強力でリッチな Web デザインに変更します。"
+
+msgid "This will replace the old key with the new one."
+msgstr "これにより、古いキーが新しいキーに置き換えられます。"
+
+msgid "Today Stats"
+msgstr "今日の統計"
+
+msgid "Unlock your career potential with AI-driven job search"
+msgstr "AI 主導の求人検索でキャリアの可能性を解き放ちます"
+
+msgid "Update Key"
+msgstr "更新キー"
+
+msgid "Update Now"
+msgstr "今すぐアップデート"
+
+msgid "Updating Database, please wait..."
+msgstr "データベースを更新しています。お待ちください..."
+
+msgid "Uppercase"
+msgstr "大文字"
+
+msgid "Use Default Color For Color 1"
+msgstr "色 1 にデフォルトの色を使用"
+
+msgid "Use Icons for Buttons"
+msgstr "ボタンにアイコンを使用する"
+
+msgid "View All Resumes"
+msgstr "すべての履歴書を表示"
+
+msgid "View Company Contact Detail"
+msgstr "会社の連絡先詳細を表示"
+
+msgid "Visitor Show"
+msgstr "ビジターショー"
+
+msgid "Visitor Show Active Jobs Graph"
+msgstr "訪問者がアクティブなジョブのグラフを表示"
+
+msgid "Visitor Show Applied Jobs Section"
+msgstr "ビジターショー 応募職種セクション"
+
+msgid "Visitor Show Applied Resumes Section"
+msgstr "ビジターショー応募履歴書セクション"
+
+msgid "Visitor Show Credits Log Section"
+msgstr "訪問者表示クレジット ログ セクション"
+
+msgid "Visitor Show Jobs Graph"
+msgstr "ビジターショージョブグラフ"
+
+msgid "Visitor Show Jobs Graph Section"
+msgstr "ビジターショージョブグラフセクション"
+
+msgid "Visitor Show Newest Jobs Box"
+msgstr "訪問者は最新の求人ボックスを表示します"
+
+msgid "Visitor Show Newest Jobs Section"
+msgstr "ビジターショーの最新求人セクション"
+
+msgid "Visitor Show Newest Resumes Section"
+msgstr "ビジターショーの最新履歴書セクション"
+
+msgid "Visitor Show Purchase History Section"
+msgstr "ビジターショーの購入履歴セクション"
+
+msgid "Visitor Show Recent Resumes Box"
+msgstr "訪問者に最近の履歴書ボックスを表示"
+
+msgid "Visitor Show Saved Searches Section"
+msgstr "訪問者は保存された検索セクションを表示します"
+
+msgid "Visitor Show Shortlisted Jobs Section"
+msgstr "ビジターショーの最終候補者リストの求人セクション"
+
+msgid "Visitor Show Stats Graph Section"
+msgstr "訪問者ショー統計グラフセクション"
+
+msgid "Visitor Show Useful Links Section"
+msgstr "訪問者向けの便利なリンク セクションを表示"
+
+msgid "WP Job Manager"
+msgstr "WPジョブマネージャー"
+
+msgid "WP Job Portal Activation Key"
+msgstr "WP ジョブポータルアクティベーションキー"
+
+msgid "WP Job Portal Import Data"
+msgstr "WP Job Portal インポートデータ"
+
+msgid "WP Job Portal Packages"
+msgstr "WP ジョブ ポータル パッケージ"
+
+msgid "Welcome to WP Job Portal Addon Installer"
+msgstr "WP Job Portal アドオン インストーラーへようこそ"
+
+msgid "Welcome, Visitor"
+msgstr "ようこそ、訪問者"
+
+msgid "Who can search resume."
+msgstr "履歴書を検索できる人。"
+
+msgid "Who can view resume contact details"
+msgstr "履歴書の連絡先詳細を閲覧できる人"
+
+msgid "You Already Applied to this job"
+msgstr "あなたはすでにこの求人に応募しています"
+
+msgid "You have"
+msgstr "あなたが持っている"
+
+msgid "Your WP Job Portal license key has expired or is invalid. Please update it to continue receiving support and updates."
+msgstr "WP Job Portal ライセンス キーの有効期限が切れているか、無効です。引き続きサポートとアップデートを受信するには、更新してください。"
+
+msgid "failed."
+msgstr "失敗した。"
+
+msgid "found"
+msgstr "見つかった"
+
+msgid "icon"
+msgstr "アイコン"
+
+msgid "imported."
+msgstr "輸入された。"
+
+msgid "skipped."
+msgstr "スキップしました。"
+
+msgid "unused key has been deleted successfully!"
+msgstr "未使用のキーは正常に削除されました。"
+
+msgid "unused key(s) that can be safely removed."
+msgstr "未使用のキーは安全に削除できます。"
+
+msgid "unused keys have been deleted successfully!"
+msgstr "未使用のキーは正常に削除されました。"

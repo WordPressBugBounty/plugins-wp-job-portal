@@ -4,23 +4,23 @@
     ////*******Script Design For Image****//////
 	wp_enqueue_script('jquery-ui-datepicker');
 	wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jquery-ui-smoothness.css');
-	$config = wpjobportal::$_configuration;
-	if ($config['date_format'] == 'm/d/Y' || $config['date_format'] == 'd/m/y' || $config['date_format'] == 'm/d/y' || $config['date_format'] == 'd/m/Y') {
-	    $dash = '/';
+	$wpjobportal_config = wpjobportal::$_configuration;
+	if ($wpjobportal_config['date_format'] == 'm/d/Y' || $wpjobportal_config['date_format'] == 'd/m/y' || $wpjobportal_config['date_format'] == 'm/d/y' || $wpjobportal_config['date_format'] == 'd/m/Y') {
+	    $wpjobportal_dash = '/';
 	} else {
-	    $dash = '-';
+	    $wpjobportal_dash = '-';
 	}
-	$dateformat = $config['date_format'];
-	$firstdash = wpjobportalphplib::wpJP_strpos($dateformat, $dash, 0);
-	$firstvalue = wpjobportalphplib::wpJP_substr($dateformat, 0, $firstdash);
-	$firstdash = $firstdash + 1;
-	$seconddash = wpjobportalphplib::wpJP_strpos($dateformat, $dash, $firstdash);
-	$secondvalue = wpjobportalphplib::wpJP_substr($dateformat, $firstdash, $seconddash - $firstdash);
-	$seconddash = $seconddash + 1;
-	$thirdvalue = wpjobportalphplib::wpJP_substr($dateformat, $seconddash, wpjobportalphplib::wpJP_strlen($dateformat) - $seconddash);
-	$js_dateformat = '%' . $firstvalue . $dash . '%' . $secondvalue . $dash . '%' . $thirdvalue;
-	$js_scriptdateformat = $firstvalue . $dash . $secondvalue . $dash . $thirdvalue;
-	$js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy', $js_scriptdateformat);
+	$wpjobportal_dateformat = $wpjobportal_config['date_format'];
+	$wpjobportal_firstdash = wpjobportalphplib::wpJP_strpos($wpjobportal_dateformat, $wpjobportal_dash, 0);
+	$wpjobportal_firstvalue = wpjobportalphplib::wpJP_substr($wpjobportal_dateformat, 0, $wpjobportal_firstdash);
+	$wpjobportal_firstdash = $wpjobportal_firstdash + 1;
+	$wpjobportal_seconddash = wpjobportalphplib::wpJP_strpos($wpjobportal_dateformat, $wpjobportal_dash, $wpjobportal_firstdash);
+	$wpjobportal_secondvalue = wpjobportalphplib::wpJP_substr($wpjobportal_dateformat, $wpjobportal_firstdash, $wpjobportal_seconddash - $wpjobportal_firstdash);
+	$wpjobportal_seconddash = $wpjobportal_seconddash + 1;
+	$wpjobportal_thirdvalue = wpjobportalphplib::wpJP_substr($wpjobportal_dateformat, $wpjobportal_seconddash, wpjobportalphplib::wpJP_strlen($wpjobportal_dateformat) - $wpjobportal_seconddash);
+	$wpjobportal_js_dateformat = '%' . $wpjobportal_firstvalue . $wpjobportal_dash . '%' . $wpjobportal_secondvalue . $wpjobportal_dash . '%' . $wpjobportal_thirdvalue;
+	$wpjobportal_js_scriptdateformat = $wpjobportal_firstvalue . $wpjobportal_dash . $wpjobportal_secondvalue . $wpjobportal_dash . $wpjobportal_thirdvalue;
+	$wpjobportal_js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy', $wpjobportal_js_scriptdateformat);
 ?>
 <style type="text/css">
 .ui-datepicker{
@@ -31,7 +31,7 @@
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
     	jQuery(document).ready(function ($) {
     	    $.validate();
     	});
@@ -53,13 +53,15 @@
 		            if (allowedsize > filesize){
 		                jQuery('.wjportal-form-image-wrp').show();
 						jQuery('#rs_photo')[0].src = (window.URL ? URL : webkitURL).createObjectURL(input.files[0]);
+		                jQuery('.wjportal-form-upload-btn-wrp-txt').show();
 		                jQuery('.wjportal-form-upload-btn-wrp-txt').html(input.files[0].name);
 		                jQuery('img#wjportal-form-delete-image').on('click',function(){
 		                    jQuery('.wjportal-form-image-wrp').hide();
 		                    jQuery('input#photo').val('').clone(true);
+		                    jQuery('span.wjportal-form-upload-btn-wrp-txt').hide();
 		                    jQuery('span.wjportal-form-upload-btn-wrp-txt').text('');
 		                });
-		                jQuery('#password,#confirmpassword').bind('change',validatePassword);
+		                jQuery('#password,#confirmpassword').on('change', validatePassword);
 		            } else{
 		                jQuery('input#photo').replaceWith(jQuery('input#photo').val('').clone(true));
 		                alert(\"". esc_html(__("File size is greater then allowed file size", 'wp-job-portal'))."\");
@@ -83,11 +85,11 @@
 		}
 
 		function addDatePicker(){
-	        jQuery('.custom_date').datepicker({dateFormat: '". $js_scriptdateformat."'});
+	        jQuery('.custom_date').datepicker({dateFormat: '". $wpjobportal_js_scriptdateformat."'});
 	    }
 	    function onSubmit(token) {
          document.getElementById('wpjobportal_registration_form').submit();
        }
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>

@@ -1,11 +1,11 @@
 <?php if (!defined('ABSPATH')) die('Restricted Access'); ?>
  <?php
-$allPlugins = get_plugins(); // associative array of all installed plugins
+$wpjobportal_allPlugins = get_plugins(); // associative array of all installed plugins
 
-$addon_array = array();
-foreach ($allPlugins as $key => $value) {
-    $addon_index = wpjobportalphplib::wpJP_explode('/', $key);
-    $addon_array[] = $addon_index[0];
+$wpjobportal_addon_array = array();
+foreach ($wpjobportal_allPlugins as $wpjobportal_key => $wpjobportal_value) {
+    $wpjobportal_addon_index = wpjobportalphplib::wpJP_explode('/', $wpjobportal_key);
+    $wpjobportal_addon_array[] = $wpjobportal_addon_index[0];
 }
 ?>
     <div id="wpjobportaladmin-wrapper">
@@ -18,7 +18,7 @@ foreach ($allPlugins as $key => $value) {
                     <div id="wpjobportal-breadcrumbs">
                         <ul>
                             <li>
-                                <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_html(__('Dashboard','wp-job-portal')); ?>">
+                                <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('Dashboard','wp-job-portal')); ?>">
                                     <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                                 </a>
                             </li>
@@ -28,12 +28,12 @@ foreach ($allPlugins as $key => $value) {
                 </div>
                 <div id="wpjobportal-wrapper-top-right">
                     <div id="wpjobportal-config-btn">
-                        <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_html(__('configuration','wp-job-portal')); ?>">
+                        <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
                             <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                        </a>
                     </div>
                     <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                        <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_html(__('help','wp-job-portal')); ?>">
+                        <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
                             <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                        </a>
                     </div>
@@ -72,30 +72,30 @@ foreach ($allPlugins as $key => $value) {
                                         if(get_option( 'wpjobportal_addon_install_data', '' )){
                                             $wpjobportal_addon_install_data = json_decode(get_option('wpjobportal_addon_install_data'), true);
                                         }
-                                        $error_message = '';
+                                        $wpjobportal_error_message = '';
                                         if($wpjobportal_addon_install_data){
-                                            $result = $wpjobportal_addon_install_data;
-                                            if(isset($result['status']) && $result['status'] == 1){ ?>
+                                            $wpjobportal_result = $wpjobportal_addon_install_data;
+                                            if(isset($wpjobportal_result['status']) && $wpjobportal_result['status'] == 1){ ?>
                                                 <div class="wpjobportal-addon-installer-right-addon-section" >
                                                     <?php
-                                                    if(!empty($result['data'])){
-                                                        $addon_availble_count = 0;
-                                                        foreach ($result['data'] as $key => $value) {
-                                                            if(!in_array($key, $addon_array)){
-                                                                $addon_availble_count++;
-                                                                $addon_slug_array = wpjobportalphplib::wpJP_explode('-', $key);
-                                                                $addon_image_name = $addon_slug_array[count($addon_slug_array) - 1];
-                                                                $addon_slug = wpjobportalphplib::wpJP_str_replace('-', '', $key);
+                                                    if(!empty($wpjobportal_result['data'])){
+                                                        $wpjobportal_addon_availble_count = 0;
+                                                        foreach ($wpjobportal_result['data'] as $wpjobportal_key => $wpjobportal_value) {
+                                                            if(!in_array($wpjobportal_key, $wpjobportal_addon_array)){
+                                                                $wpjobportal_addon_availble_count++;
+                                                                $wpjobportal_addon_slug_array = wpjobportalphplib::wpJP_explode('-', $wpjobportal_key);
+                                                                $wpjobportal_addon_image_name = $wpjobportal_addon_slug_array[count($wpjobportal_addon_slug_array) - 1];
+                                                                $wpjobportal_addon_slug = wpjobportalphplib::wpJP_str_replace('-', '', $wpjobportal_key);
 
-                                                                $addon_img_path = '';
-                                                                $addon_img_path = esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/addon-images/addons/';
-                                                                if($value['status'] == 1){ ?>
+                                                                $wpjobportal_addon_img_path = '';
+                                                                $wpjobportal_addon_img_path = esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/addon-images/addons/';
+                                                                if($wpjobportal_value['status'] == 1){ ?>
                                                                     <div class="wpjobportal-addon-installer-right-addon-single" >
-                                                                        <img class="wpjobportal-addon-installer-right-addon-image" data-addon-name="<?php echo esc_attr($key); ?>" src="<?php echo esc_url($addon_img_path.$addon_image_name.'.png');?>" />
+                                                                        <img class="wpjobportal-addon-installer-right-addon-image" data-addon-name="<?php echo esc_attr($wpjobportal_key); ?>" src="<?php echo esc_url($wpjobportal_addon_img_path.$wpjobportal_addon_image_name.'.png');?>" />
                                                                         <div class="wpjobportal-addon-installer-right-addon-name" >
                                                                             <label>
-                                                                                <input type="checkbox" class="wpjobportal-addon-installer-right-addon-single-checkbox" id="addon-<?php echo esc_attr($key); ?>" name="<?php echo esc_attr($key); ?>" value="1">
-                                                                                <?php echo esc_html($value['title']) ;?>
+                                                                                <input type="checkbox" class="wpjobportal-addon-installer-right-addon-single-checkbox" id="addon-<?php echo esc_attr($wpjobportal_key); ?>" name="<?php echo esc_attr($wpjobportal_key); ?>" value="1">
+                                                                                <?php echo esc_html($wpjobportal_value['title']) ;?>
                                                                             </label>
                                                                         </div>
                                                                     </div>
@@ -103,40 +103,40 @@ foreach ($allPlugins as $key => $value) {
                                                                 }
                                                             }
                                                         }
-                                                        if($addon_availble_count == 0){ // all allowed addon are already installed
-                                                            $error_message = esc_html(__('All allowed add-ons are already installed','wp-job-portal')).'.';
+                                                        if($wpjobportal_addon_availble_count == 0){ // all allowed addon are already installed
+                                                            $wpjobportal_error_message = esc_html(__('All allowed add-ons are already installed','wp-job-portal')).'.';
                                                         }
                                                     }else{ // no addon returend
-                                                        $error_message = esc_html(__('You are not allowed to install any add on','wp-job-portal')).'.';
+                                                        $wpjobportal_error_message = esc_html(__('You are not allowed to install any add on','wp-job-portal')).'.';
                                                     }
-                                                    if($error_message != ''){
-                                                        $url = esc_url_raw(admin_url("admin.php?page=wpjobportal_premiumplugin&wpjobportallt=step1"));
+                                                    if($wpjobportal_error_message != ''){
+                                                        $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_premiumplugin&wpjobportallt=step1"));
 
                                                         echo '<div class="wpjobportal-addon-go-back-messsage-wrap">';
                                                         echo '<h1>';
-                                                        echo esc_html($error_message);
+                                                        echo esc_html($wpjobportal_error_message);
                                                         echo '</h1>';
 
-                                                        echo '<a class="wpjobportal-addon-go-back-link" href="'.esc_url($url).'">';
+                                                        echo '<a class="wpjobportal-addon-go-back-link" href="'.esc_url($wpjobportal_url).'">';
                                                         echo esc_html(__('Back','wp-job-portal'));
                                                         echo '</a>';
                                                         echo '</div>';
                                                     }
                                                      ?>
                                                 </div>
-                                                <?php if($error_message == ''){
+                                                <?php if($wpjobportal_error_message == ''){
                                                 }
                                             }
                                         }else{
-                                            $error_message = esc_html(__('Something went wrong','wp-job-portal')).'!';
-                                            $url = esc_url_raw(admin_url("admin.php?page=wpjobportal_premiumplugin&wpjobportallt=step1"));
+                                            $wpjobportal_error_message = esc_html(__('Something went wrong','wp-job-portal')).'!';
+                                            $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_premiumplugin&wpjobportallt=step1"));
 
                                             echo '<div class="wpjobportal-addon-go-back-messsage-wrap">';
                                             echo '<h1>';
-                                            echo esc_html($error_message);
+                                            echo esc_html($wpjobportal_error_message);
                                             echo '</h1>';
 
-                                            echo '<a class="wpjobportal-addon-go-back-link" href="'.esc_url($url).'">';
+                                            echo '<a class="wpjobportal-addon-go-back-link" href="'.esc_url($wpjobportal_url).'">';
                                             echo esc_html(__('Back','wp-job-portal'));
                                             echo '</a>';
                                             echo '</div>';
@@ -144,7 +144,7 @@ foreach ($allPlugins as $key => $value) {
 
                                          ?>
                                     </div>
-                                    <?php if($error_message == ''){ ?>
+                                    <?php if($wpjobportal_error_message == ''){ ?>
                                         <div class="wpjobportal-addon-installer-right-button" >
                                             <button type="submit" class="wpjobportal_btn" role="submit" onclick="jsShowLoading();"><?php echo esc_html(__("Install Addons",'wp-job-portal')); ?></button>
                                         </div>
@@ -152,11 +152,11 @@ foreach ($allPlugins as $key => $value) {
                                 </div>
 
                                 <?php // to handle log error
-                                $token = '';
-                                if(isset($result['token']) && $result['token']!= ''){
-                                    $token = $result['token'];
+                                $wpjobportal_token = '';
+                                if(isset($wpjobportal_result['token']) && $wpjobportal_result['token']!= ''){
+                                    $wpjobportal_token = $wpjobportal_result['token'];
                                 } ?>
-                                    <input type="hidden" name="token" value="<?php echo esc_attr($token); ?>"/>
+                                    <input type="hidden" name="token" value="<?php echo esc_attr($wpjobportal_token); ?>"/>
                             </form>
                         </div>
                     </div>
@@ -168,7 +168,7 @@ foreach ($allPlugins as $key => $value) {
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
     jQuery(document).ready(function(){
         jQuery('#wpjobportalfrom').on('submit', function() {
             jsShowLoading();
@@ -194,7 +194,7 @@ foreach ($allPlugins as $key => $value) {
         jQuery('div#jstran_loading').show();
     }
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>
 
 <?php

@@ -3,13 +3,13 @@
 wp_register_script( 'wpjobportal-inline-handle', '' );
 wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-$inline_js_script = "
+$wpjobportal_inline_js_script = "
     jQuery(document).ready(function ($) {
         $.validate();
     });
     ";
-wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
-$countryid = get_option("wpjobportal_countryid_for_stateid");
+wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
+$wpjobportal_countryid = get_option("wpjobportal_countryid_for_stateid");
 ?>
 <!-- main wrapper -->
 <div id="wpjobportaladmin-wrapper">
@@ -24,7 +24,7 @@ $countryid = get_option("wpjobportal_countryid_for_stateid");
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_html(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -34,12 +34,12 @@ $countryid = get_option("wpjobportal_countryid_for_stateid");
             </div>
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_html(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_html(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -53,20 +53,32 @@ $countryid = get_option("wpjobportal_countryid_for_stateid");
         <div id="wpjobportal-head">
             <h1 class="wpjobportal-head-text">
                 <?php
-                    $heading = isset(wpjobportal::$_data[0]) ? esc_html(__('Edit', 'wp-job-portal')) : esc_html(__('Add New', 'wp-job-portal'));
-                    echo esc_html($heading) . ' ' . esc_html(__('State', 'wp-job-portal'));
+                    $wpjobportal_heading = isset(wpjobportal::$_data[0]) ? esc_html(__('Edit', 'wp-job-portal')) : esc_html(__('Add New', 'wp-job-portal'));
+                    echo esc_html($wpjobportal_heading) . ' ' . esc_html(__('State', 'wp-job-portal'));
                 ?>
             </h1>
         </div>
         <!-- page content -->
         <div id="wpjobportal-admin-wrapper">
+            <?php
+            $wpjobportal_token = WPJOBPORTALincluder::getJSModel('common')->getUniqueIdForTransient();
+            $wpjobportal_transient_val = get_transient('current_user_token_state_'.$wpjobportal_token);
+            if(!empty($wpjobportal_transient_val)){
+                $wpjobportal_state_id = (int) get_option('wpjobportal_countryid_for_stateid');
+                ?>
+                <div class="wpjobportal-admin--backlink-wrap">
+                    <a id="form-back-button" class="wpjobportal-form-back-btn" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_state&wpjobportal_restore_results='.$wpjobportal_token.'&countryid='.esc_attr($wpjobportal_state_id))); ?>" title="<?php echo esc_attr(__('Back to listing', 'wp-job-portal')); ?>">
+                        <?php echo esc_html(__('Back to listing', 'wp-job-portal')); ?>
+                    </a>
+                </div>
+            <?php }?>
             <form id="wpjobportal-form" class="wpjobportal-form" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_state&task=savestate")); ?>">
                 <div class="wpjobportal-form-wrapper">
                     <div class="wpjobportal-form-title">
                         <?php echo esc_html(__('Country', 'wp-job-portal')); ?><font class="required-notifier">*</font>
                     </div>
                     <div class="wpjobportal-form-value">
-                        <?php echo wp_kses(WPJOBPORTALformfield::select('countryid', WPJOBPORTALincluder::getJSModel('country')->getCountriesForCombo(), isset(wpjobportal::$_data[0]) ? wpjobportal::$_data[0]->countryid : $countryid, esc_html(__('Select','wp-job-portal')) .' '. esc_html(__('Country', 'wp-job-portal')), array('class' => 'inputbox one wpjobportal-form-select-field', 'data-validation' => 'required')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                        <?php echo wp_kses(WPJOBPORTALformfield::select('countryid', WPJOBPORTALincluder::getJSModel('country')->getCountriesForCombo(), isset(wpjobportal::$_data[0]) ? wpjobportal::$_data[0]->countryid : $wpjobportal_countryid, esc_html(__('Select','wp-job-portal')) .' '. esc_html(__('Country', 'wp-job-portal')), array('class' => 'inputbox one wpjobportal-form-select-field', 'data-validation' => 'required')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                     </div>
                 </div>
                 <div class="wpjobportal-form-wrapper">
@@ -108,7 +120,7 @@ $countryid = get_option("wpjobportal_countryid_for_stateid");
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('form_request', 'wpjobportal'),WPJOBPORTAL_ALLOWED_TAGS); ?>
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('_wpnonce', esc_html(wp_create_nonce('wpjobportal_state_nonce'))),WPJOBPORTAL_ALLOWED_TAGS); ?>
                 <div class="wpjobportal-form-button">
-                    <a id="form-cancel-button" class="wpjobportal-form-cancel-btn" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_state&countryid='.esc_attr(get_option('wpjobportal_countryid_for_stateid')))); ?>" title="<?php echo esc_html(__('cancel', 'wp-job-portal')); ?>">
+                    <a id="form-cancel-button" class="wpjobportal-form-cancel-btn" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_state&countryid='.esc_attr(get_option('wpjobportal_countryid_for_stateid')))); ?>" title="<?php echo esc_attr(__('cancel', 'wp-job-portal')); ?>">
                         <?php echo esc_html(__('Cancel', 'wp-job-portal')); ?>
                     </a>
                     <?php echo wp_kses(WPJOBPORTALformfield::submitbutton('save', esc_html(__('Save','wp-job-portal')) .' '. esc_html(__('State', 'wp-job-portal')), array('class' => 'button wpjobportal-form-save-btn')),WPJOBPORTAL_ALLOWED_TAGS); ?>

@@ -31,7 +31,7 @@ jQuery(document).ready(function () {
   });
 
     // Call block for all the #
-    jQuery("body").delegate('a[href="#"]', "click", function (event) {
+    jQuery("body").on("click", 'a[href="#"]', function (event) {
         event.preventDefault();
     });
     // Check boxess multi-selection
@@ -52,15 +52,13 @@ jQuery(document).ready(function () {
         jQuery("#payment-popup, #package-popup, .wjportal-popup-wrp").slideUp('slow');
     });
 
-    
-    jQuery("body").delegate("#wjportal-popup-close-btn", "click", function(e){
+    jQuery("body").on("click", "#wjportal-popup-close-btn", function(e){
         jQuery("div#wjportal-popup-background").hide();
         jQuery('div').removeClass('modal-backdrop in');
         jQuery("#payment-popup, #package-popup").slideUp('slow');
     });
 
-    
-    jQuery("body").delegate(".wpj-jp-popup-close-icon", "click", function(e){
+    jQuery("body").on("click", ".wpj-jp-popup-close-icon", function(e){
         var themecall = 1;
         wpjobportalClosePopup(themecall);
     });
@@ -68,7 +66,7 @@ jQuery(document).ready(function () {
     //submit form with anchor
     jQuery("a.multioperation").click(function (e) {
         e.preventDefault();
-        var total = jQuery('.wpjobportal-cb:checked').size();
+        var total = jQuery('.wpjobportal-cb:checked').length;
         if (total > 0) {
             var task = jQuery(this).attr('data-for');
             if (task.toLowerCase().indexOf("remove") >= 0) {
@@ -291,6 +289,10 @@ function wpjobportalPopupProceeds(actionname, objectid, srcid, anchorid, actioni
             if (actionname == 'copy_job') {
                 location.reload();
             } else {
+                if(data == 'WPJOBPORTAL_SAVED'){ // possible problem case when proper json is not returned, fix for that spefic case
+                    location.reload();
+                    return;
+                }
                 var obj = jQuery.parseJSON(data);
                 if (1 == themecall) {
                     wpjobportalClosePopup(themecall);
@@ -656,7 +658,7 @@ function getShortlistViewByJobid(jobid) {
         jQuery('div#' + common.theme_chk_prefix + '-popup-background').show();
         task = "getShortListViewByJobIdJobPortal";
     } else {
-        jQuery("div#wjportal-popup-background").show();
+        jQuery("div#wjportal-popup-background").first().show();
     }
     jQuery.post(common.ajaxurl, { action: 'wpjobportal_ajax', wpjobportalme: 'shortlist', task: task, jobid: jobid, js_nonce: common.js_nonce }, function (data) {
         if (data) {
@@ -783,9 +785,9 @@ function getTellaFriend(jobid) {
         jQuery('div#' + common.theme_chk_prefix + '-popup-background').show();
         // task = "getTellaFriendJobManager";
     } else {
-        jQuery("div#wjportal-popup-background").show();
+        jQuery("div#wjportal-popup-background").first().show();
     }
-    jQuery("div#wjportal-popup-background").show();
+    jQuery("div#wjportal-popup-background").first().show();
     jQuery.post(common.ajaxurl, { action: 'wpjobportal_ajax', wpjobportalme: 'tellfriend', task: task, jobid: jobid, js_nonce: common.js_nonce }, function (data) {
         if (data) {
             var d = jQuery.parseJSON(data);
@@ -993,21 +995,22 @@ function sendEmailToFriend() {
         jQuery("input#femail2").css({ "border": "1px solid red" }).focus();
         return false;
     }
-    var femail3 = jQuery("input#femail3").val();
-    if (typeof femail3 != "undefined" && femail3 != '' && emailverify(femail3) == false) {
-        jQuery("input#femail3").css({ "border": "1px solid red" }).focus();
-        return false;
-    }
-    var femail4 = jQuery("input#femail4").val();
-    if (typeof femail4 != "undefined" && femail4 != '' && emailverify(femail4) == false) {
-        jQuery("input#femail4").css({ "border": "1px solid red" }).focus();
-        return false;
-    }
-    var femail5 = jQuery("input#femail5").val();
-    if (typeof femail5 != "undefined" && femail5 != '' && emailverify(femail5) == false) {
-        jQuery("input#femail5").css({ "border": "1px solid red" }).focus();
-        return false;
-    }
+    
+    // var femail3 = jQuery("input#femail3").val();
+    // if (typeof femail3 != "undefined" && femail3 != '' && emailverify(femail3) == false) {
+    //     jQuery("input#femail3").css({ "border": "1px solid red" }).focus();
+    //     return false;
+    // }
+    // var femail4 = jQuery("input#femail4").val();
+    // if (typeof femail4 != "undefined" && femail4 != '' && emailverify(femail4) == false) {
+    //     jQuery("input#femail4").css({ "border": "1px solid red" }).focus();
+    //     return false;
+    // }
+    // var femail5 = jQuery("input#femail5").val();
+    // if (typeof femail5 != "undefined" && femail5 != '' && emailverify(femail5) == false) {
+    //     jQuery("input#femail5").css({ "border": "1px solid red" }).focus();
+    //     return false;
+    // }
     var message = jQuery("textarea#message").val();
     if (message == '') {
         jQuery("textarea#message").css({ "border": "1px solid red" }).focus();
@@ -1038,9 +1041,9 @@ function sendEmailToFriend() {
         message: message,
         femail1: femail1,
         femail2: femail2,
-        femail3: femail3,
-        femail4: femail4,
-        femail5: femail5,
+        // femail3: femail3,
+        // femail4: femail4,
+        // femail5: femail5,
         jobtitle: jobtitle,
         jobid: jobid,
         js_nonce: common.js_nonce
@@ -1356,4 +1359,17 @@ function hidePackagePopupForJobApply(){
     jQuery('.wjportal-apply-package-apply-now-button').slideDown();
     alert('done');
 
+}
+
+function toggleFilterFields() {
+    var extraFields = jQuery('.wpjobportal-extra-filter-fields');
+    var toggleBtn   = jQuery('.wpjobportal-toggle-filter-btn');
+
+    if (extraFields.is(':visible')) {
+        extraFields.hide().css('display', 'none');
+        toggleBtn.val(toggleBtn.attr('data-search-title'));
+    } else {
+        extraFields.css('display', 'flex').show();
+        toggleBtn.val(toggleBtn.attr('data-hide-title'));
+    }
 }

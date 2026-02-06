@@ -8,14 +8,14 @@
 <div class="wpjobportal-user-list">
 	<div class="wpjobportal-user-list-top-wrp">
 		<?php
-			wpjobportalincluder::getTemplate('user/views/admin/logo',array('user' => $user,'layout' => 'userlogo'));
+			wpjobportalincluder::getTemplate('user/views/admin/logo',array('wpjobportal_user' => $wpjobportal_user,'wpjobportal_layout' => 'userlogo'));
 
-			wpjobportalincluder::getTemplate('user/views/admin/userdetail',array('user' => $user,'layout' => 'userdetail'));
+			wpjobportalincluder::getTemplate('user/views/admin/userdetail',array('wpjobportal_user' => $wpjobportal_user,'wpjobportal_layout' => 'userdetail'));
 		?>
 	</div>
 	<div class="wpjobportal-user-list-btm-wrp">
 		<?php
-			wpjobportalincluder::getTemplate('user/views/admin/control',array('user' => $user,'layout' => 'userdetailcontrol'));
+			wpjobportalincluder::getTemplate('user/views/admin/control',array('wpjobportal_user' => $wpjobportal_user,'wpjobportal_layout' => 'userdetailcontrol'));
 		?>
 	</div>
 </div>
@@ -25,11 +25,11 @@
         <?php echo esc_html(__('User Stats','wp-job-portal')); ?>
     </div>
     <div class="wpjobportal-user-stats">
-	    <?php if($user->roleid == 1){
+	    <?php if($wpjobportal_user->roleid == 1){
 	    	if (isset(wpjobportal::$_data['companies'])) {?>
 	    		<div class="wpjobportal-user-stat-item">
 		            <div class="wpjobportal-user-stat-image">
-		            	<img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/latest-icons-admin/lower-icons/jobs.png" alt="<?php echo esc_html(__('Jobs','wp-job-portal')); ?>">
+		            	<img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/latest-icons-admin/lower-icons/jobs.png" alt="<?php echo esc_attr(__('Jobs','wp-job-portal')); ?>">
 		            </div>
 		            <div class="wpjobportal-user-stat-cnt">
 			            <span class="wpjobportal-user-stat-number">
@@ -44,7 +44,7 @@
 	    	if (isset(wpjobportal::$_data['jobs'])) { ?>
 		        <div class="wpjobportal-user-stat-item">
 		            <div class="wpjobportal-user-stat-image">
-		            	<img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/latest-icons-admin/lower-icons/companies.png" alt="<?php echo esc_html(__('Companies','wp-job-portal')); ?>">
+		            	<img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/latest-icons-admin/lower-icons/companies.png" alt="<?php echo esc_attr(__('Companies','wp-job-portal')); ?>">
 		            </div>
 		            <div class="wpjobportal-user-stat-cnt">
 			            <span class="wpjobportal-user-stat-number">
@@ -59,7 +59,7 @@
 	        <?php if (isset(wpjobportal::$_data['department'])) { ?>
 	        	<div class="wpjobportal-user-stat-item">
 		            <div class="wpjobportal-user-stat-image">
-		            	<img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/latest-icons-admin/lower-icons/department.png" alt="<?php echo esc_html(__('Department','wp-job-portal')); ?>">
+		            	<img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/latest-icons-admin/lower-icons/department.png" alt="<?php echo esc_attr(__('Department','wp-job-portal')); ?>">
 		            </div>
 		            <div class="wpjobportal-user-stat-cnt">
 			            <span class="wpjobportal-user-stat-number">
@@ -74,7 +74,7 @@
 	        if (isset(wpjobportal::$_data['jobapply'])) { ?>
 		        <div class="wpjobportal-user-stat-item">
 		            <div class="wpjobportal-user-stat-image">
-		            	<img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/latest-icons-admin/lower-icons/job-applied.png" alt="<?php echo esc_html(__('Job Applies','wp-job-portal')); ?>">
+		            	<img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/latest-icons-admin/lower-icons/job-applied.png" alt="<?php echo esc_attr(__('Job Applies','wp-job-portal')); ?>">
 		            </div>
 		            <div class="wpjobportal-user-stat-cnt">
 			            <span class="wpjobportal-user-stat-number">
@@ -86,15 +86,15 @@
 		            </div>
 		        </div>
 		    <?php } ?>
-	    <?php }elseif($user->roleid == 2){
-	    	if (isset(wpjobportal::$_data['resume'])) {?>
+	    <?php }elseif($wpjobportal_user->roleid == 2){
+	    	if (isset(wpjobportal::$wpjobportal_data['resume'])) {?>
 		        <div class="wpjobportal-user-stat-item">
 		            <div class="wpjobportal-user-stat-image">
-		            	<img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/latest-icons-admin/lower-icons/reume.png" alt="<?php echo esc_html(__('Resumes','wp-job-portal')); ?>">
+		            	<img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/latest-icons-admin/lower-icons/reume.png" alt="<?php echo esc_attr(__('Resumes','wp-job-portal')); ?>">
 		            </div>
 		            <div class="wpjobportal-user-stat-cnt">
 			            <span class="wpjobportal-user-stat-number">
-			            	<?php echo esc_html(wpjobportal::$_data['resume']) ?>
+			            	<?php echo esc_html(wpjobportal::$wpjobportal_data['resume']) ?>
 			            </span>
 			            <span class="wpjobportal-user-stat-text">
 			            	<?php echo esc_html(__('Resume','wp-job-portal'))?>
@@ -105,7 +105,7 @@
 		    if (isset(wpjobportal::$_data['jobapply'])) { ?>
 		        <div class="wpjobportal-user-stat-item">
 		            <div class="wpjobportal-user-stat-image">
-		            	<img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/latest-icons-admin/lower-icons/job-applied.png" alt="<?php echo esc_html(__('Job Applies','wp-job-portal')); ?>">
+		            	<img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/latest-icons-admin/lower-icons/job-applied.png" alt="<?php echo esc_attr(__('Job Applies','wp-job-portal')); ?>">
 		            </div>
 		            <div class="wpjobportal-user-stat-cnt">
 			            <span class="wpjobportal-user-stat-number">

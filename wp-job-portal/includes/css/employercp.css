@@ -1,39 +1,619 @@
-/******************************
-	WP Job Portal Employer CSS
-*******************************/
 
-div#wjportal-emp-cp-wrp {float: left;width: 100%;margin: 40px 0;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-sec-title {font-size: 18px;padding: 20px;font-weight: bold;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-left {float: left;width: 30%;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-left div.wjportal-cp-user {padding: 30px 20px;text-align: center;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-left div.wjportal-cp-user div.wjportal-user-logo {height: 170px;width: 170px;margin: 0 auto 20px;position: relative;overflow: hidden;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-left div.wjportal-cp-user div.wjportal-user-logo img.wjportal-user-logo-image {position: absolute;top: 0;left: 0;right: 0;bottom: 0;z-index: 0;max-width: 100%;max-height: 100%;margin: auto;display: inline-block;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-left div.wjportal-cp-user div.wjportal-user-name {font-size: 18px;font-weight: bold;padding-bottom: 5px;text-transform: capitalize;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-left div.wjportal-cp-user div.wjportal-user-tagline {display: inline-block;font-size: 14px;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-left div.wjportal-cp-user div.wjportal-cp-user-action {margin-top: 20px;padding-top: 15px;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-left div.wjportal-cp-user div.wjportal-cp-user-action a.wjportal-cp-user-act-btn {padding: 10px 15px;display: block;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-left div.wjportal-cp-user div.wjportal-cp-user-action span.wjportal-cp-user-act-btn {font-size: 15px;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-left div.wjportal-cp-short-links-wrp {float: left;width: 100%;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-left div.wjportal-cp-short-links-wrp div.wjportal-cp-short-links-list {float: left;width: 100%;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-left div.wjportal-cp-short-links-wrp div.wjportal-cp-short-links-list div.wjportal-cp-list {font-size: 14px;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-left div.wjportal-cp-short-links-wrp div.wjportal-cp-short-links-list div.wjportal-cp-list a.wjportal-list-anchor {display: block;padding: 20px;text-decoration: none;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-left div.wjportal-cp-short-links-wrp div.wjportal-cp-short-links-list div.wjportal-cp-list span.wjportal-cp-link-text {margin-left: 10px;display: inline-block;vertical-align: middle;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-right  {float: left;width: 70%;padding-left: 20px;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-right div.wjportal-cp-boxes {float: left;width: 100%;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-right div.wjportal-cp-boxes div.wjportal-cp-box {float: left;width: calc(100% / 3 - 10px);margin: 0 10px 25px 0;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-right div.wjportal-cp-boxes div.wjportal-cp-box div.wjportal-cp-box-top {padding: 10px 15px;position: relative;text-align: right;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-right div.wjportal-cp-boxes div.wjportal-cp-box div.wjportal-cp-box-top i {float: left;margin-top: 5px;font-size: 40px;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-right div.wjportal-cp-boxes div.wjportal-cp-box div.wjportal-cp-box-top img {float: left;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-right div.wjportal-cp-boxes div.wjportal-cp-box div.wjportal-cp-box-top div.wjportal-cp-box-num {padding-left: 55px;font-weight: bold;font-size: 26px;line-height: initial;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-right div.wjportal-cp-boxes div.wjportal-cp-box div.wjportal-cp-box-top div.wjportal-cp-box-tit {padding-left: 55px;font-size: 14px;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-right div.wjportal-cp-boxes div.wjportal-cp-box div.wjportal-cp-box-btm {padding: 10px 15px 7px;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-right div.wjportal-cp-boxes div.wjportal-cp-box div.wjportal-cp-box-btm a {float: left;width: 100%;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-right div.wjportal-cp-boxes div.wjportal-cp-box div.wjportal-cp-box-btm span.wjportal-cp-box-text {float: left;font-size: 14px;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-right div.wjportal-cp-boxes div.wjportal-cp-box div.wjportal-cp-box-btm i {float: right;line-height: inherit;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-right div.wjportal-cp-sect-wrp {float: left;width: 100%;margin-bottom: 30px;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-right div.wjportal-cp-sect-wrp:last-child {margin-bottom: 0px;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-right div.wjportal-cp-sect-wrp div.wjportal-cp-cnt {float: left;width: 100%;overflow-y: scroll;max-height: 550px;padding: 15px;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-right div.wjportal-cp-view-btn-wrp {float: left;width: 100%;padding: 15px 20px;}
-div#wjportal-emp-cp-wrp div.wjportal-cp-right div.wjportal-cp-view-btn-wrp a.wjportal-cp-view-btn {display: inline-block;padding: 9px 18px;font-size: 14px;}
+@import url('job_portal_variables.css');
+
+#wjportal-emp-cp-wrp{
+   display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+a {
+    text-decoration: none;
+    color: var(--wpjp-primary-color); /* Primary link color */
+    transition: color 0.3s, opacity 0.3s;
+}
+
+a:hover {
+    color: var(--wpjp-secondary-color);
+}
+#wjportal-emp-cp-wrp .wjportal-cp-top{
+ width: 100%;
+    border: 1px solid var(--wpjp-border-color);
+    padding:20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    border-top: 5px solid var(--wpjp-primary-color);
+    background: linear-gradient(to bottom, var(--wpjp-primary-color), var(--wpjp-secondary-color));
+}
+.wjportal-cp-user{
+   display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+}
+.wjportal-user-logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--wpjp-border-color); /* Gold ring accent */
+    box-shadow: 0 0 0 2px var(--wpjp-border-color);
+    flex-shrink: 0;
+    background-color: white;
+    padding: 5px;
+}
+
+.wjportal-user-logo-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.wjportal-user-name {
+    font-size: var(--wpjp-sub-heading);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+}
+
+.wjportal-user-tagline {
+    font-size: var(--wpjp-body-font-size);
+    color: #fff; 
+    margin-top: 2px;
+    font-weight: 500;
+}
+
+.wjportal-cp-user-action {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* --- Action Buttons with SVG Icons via Data URI --- */
+.wjportal-cp-user-act-btn.wjportal-cp-user-act-profile-add-job,
+.wjportal-cp-user-act-btn.wjportal-cp-user-act-profile-my-companies,
+.wjportal-cp-user-act-btn.wjportal-cp-user-act-profile-edit-profile {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--wpjp-body-font-size);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+    background-color: var(--wpjp-card-background);
+    color: var(--wpjp-secondary-color);
+    border-color: var(--wpjp-border-color);
+}
+.wjportal-cp-user-act-btn.wjportal-cp-user-act-profile-edit-profile{
+    background-color: var(--wpjp-secondary-color);
+    color: #fff;
+    border-color: var(--wpjp-secondary-color);
+}
+.wjportal-cp-user-act-btn.wjportal-cp-user-act-profile-add-job:hover,
+.wjportal-cp-user-act-btn.wjportal-cp-user-act-profile-my-companies:hover,
+.wjportal-cp-user-act-btn.wjportal-cp-user-act-profile-edit-profile:hover{
+    background-color: var(--wpjp-secondary-color);
+    color: #fff;
+    border-color: var(--wpjp-secondary-color);
+
+}
+.wjportal-cp-user-act-btn.wjportal-cp-user-act-profile-edit-profile:hover{
+    background-color: #ffffff;
+    color: var(--wpjp-secondary-color);
+    border-color: var(--wpjp-secondary-color);
+}
+
+/* 1. Make the links align icon and text nicely */
+.wjportal-cp-user-act-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em; /* Creates space between the icon and the text */
+}
+
+/* 2. Common styles for all icons */
+.wjportal-cp-user-act-btn::before {
+    content: "";
+    display: inline-block;
+    width: 1em;  /* Adjust icon size as needed */
+    height: 1em;
+
+    /* --- This is your icon color! --- */
+    /* Change this one color to update all icons. */
+    background-color: currentColor; /* Example: A standard blue */
+
+    /* Standard mask properties for all icons */
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+}
+
+/* 3. Specific icon for "Add job" (File-plus icon) */
+.wjportal-cp-user-act-btn.wjportal-cp-user-act-profile-add-job::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 16 16'%3E%3Cpath d='M8.5 6a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V10a.5.5 0 0 0 1 0V8.5H10a.5.5 0 0 0 0-1H8.5V6z'/%3E%3Cpath d='M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 16 16'%3E%3Cpath d='M8.5 6a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V10a.5.5 0 0 0 1 0V8.5H10a.5.5 0 0 0 0-1H8.5V6z'/%3E%3Cpath d='M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z'/%3E%3C/svg%3E");
+}
+
+/* 4. Specific icon for "My Companies"  */
+.wjportal-cp-user-act-btn.wjportal-cp-user-act-profile-my-companies::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z'/%3E%3C/svg%3E");
+}
+/* 5. Specific icon for "Edit Profile" (Pencil icon) */
+.wjportal-cp-user-act-profile-edit-profile::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 16 16'%3E%3Cpath d='M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 16 16'%3E%3Cpath d='M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z'/%3E%3C/svg%3E");
+}
+
+/* --- Stats Boxes Section (Key Metrics) --- */
+/* --- all files in jobseekercp.css --- */
+
+/* Styling for specific box accent colors */
+#wjportal-emp-cp-wrp .wjportal-cp-box.box1 { border-top: 4px solid #3498db; }
+#wjportal-emp-cp-wrp .wjportal-cp-box.box2 { border-top: 4px solid #30cd72; }
+#wjportal-emp-cp-wrp .wjportal-cp-box.box3 { border-top: 4px solid #f5a623; }
+#wjportal-emp-cp-wrp .wjportal-cp-box.box4 { border-top: 4px solid #bd10e0; }
+
+/* Specific SVG icons for each box */
+/* Icon 1: Posted jobs (Document) */
+#wjportal-emp-cp-wrp .wjportal-cp-box.box1 .wjportal-cp-box-top::before {
+   content: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="%234A90E2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Crect x="2" y="7" width="20" height="14" rx="2" ry="2"%3E%3C/rect%3E%3Cpath d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"%3E%3C/path%3E%3C/svg%3E');
+}
+
+/* Icon 2: Applied Resume (Clipboard Check) */
+#wjportal-emp-cp-wrp .wjportal-cp-box.box2 .wjportal-cp-box-top::before {
+    content: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="%2330cd72" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"%3E%3C/path%3E%3Cpolyline points="14 2 14 8 20 8"%3E%3C/polyline%3E%3Cpolyline points="9 15 11 17 15 13"%3E%3C/polyline%3E%3C/svg%3E');
+}
+
+/* Icon 3: My Companies (Bell) */
+#wjportal-emp-cp-wrp .wjportal-cp-box.box3 .wjportal-cp-box-top::before {
+    content: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="%23f5a623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M14 22V10h-4v12M18 22V8h-4M10 22V14h-4v8M22 22H2"%3E%3C/path%3E%3C/svg%3E');
+}
+
+/* Icon 4: Resume Save search (Star) */
+#wjportal-emp-cp-wrp .wjportal-cp-box.box4 .wjportal-cp-box-top::before {
+    content: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="%23bd10e0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z"%3E%3C/path%3E%3C/svg%3E');
+}
+
+/* --- Layout: Left Sidebar and Right Content --- */
+.wjportal-cp-left {
+    flex: 0 0 280px; 
+    border-radius: 10px;
+    height: max-content;
+    position: sticky;
+    top: 4.5rem;
+    padding: 0;
+    overflow: hidden;
+    min-height: 800px;
+}
+
+.wjportal-cp-right {
+    flex: 1; 
+    min-width: 550px;
+}
+
+/* --wpjp-- Sidebar Short Links --wpjp-- */
+/* --wpjp-- Left Column: Short Links --wpjp-- */
+#wjportal-emp-cp-wrp .wjportal-cp-sec-title,
+.wjportal-my-invoices-sec-tit-txt {
+    font-size:var(--wpjp-sub-heading);
+    color: var(--wpjp-text-secondary);
+    font-weight: 700;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--wpjp-border-color);
+    text-align: left;
+}
+#wjportal-emp-cp-wrp #wpjobportal-center .wjportal-cp-sec-title{
+    margin-bottom: 20px;
+}
+#wjportal-emp-cp-wrp h3.wjportal-section-title{
+    font-size:var(--wpjp-body-font-size);
+    color: var(--wpjp-secondary-color);
+    font-weight: 600;
+    padding: 15px 0 15px 0;
+    padding-left: 0;
+    margin: 0;
+    border-bottom: 1px solid var(--wpjp-border-color);
+    text-align: left;
+}
+#wjportal-emp-cp-wrp .wjportal-jobs-list.wpjobportal-list-item-is-featured{
+    border: 1px solid #ffb63b;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, #fcfaf2 100%);
+}
+/* --wpjp-- Layout: Left Sidebar and Right Content --wpjp-- */
 
 
+.wjportal-cp-right {
+    flex: 1; 
+    min-width: 550px;
+}
+
+/* --- Sidebar Short Links --- */
+/* --- Left Column: Short Links --- */
+#wjportal-emp-cp-wrp  .wjportal-cp-sec-title,
+.wjportal-my-invoices-sec-tit-txt {
+    font-size:var(--wpjp-sub-heading);
+    color: var(--wpjp-text-secondary);
+    font-weight: 700;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--wpjp-border-color);
+    text-align: left;
+}
+#wjportal-emp-cp-wrp  #wpjobportal-center .wjportal-cp-sec-title{
+    margin-bottom: 20px;
+}
+h3.wjportal-section-title{
+    font-size:var(--wpjp-body-font-size);
+    color: var(--wpjp-secondary-color);
+    font-weight: 600;
+    padding: 15px 0 15px 0;
+    padding-left: 0;
+    margin: 0;
+    border-bottom: 1px solid var(--wpjp-border-color);
+    text-align: left;
+}
+#wjportal-emp-cp-wrp  .wjportal-jobs-list.wpjobportal-list-item-is-featured{
+    border: 1px solid #ffb63b;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, #fcfaf2 100%);
+}
+
+#wjportal-emp-cp-wrp  .wjportal-cp-short-links-wrp {
+    background-color: var(--wpjp-card-background);
+    border: 1px solid var(--wpjp-border-color);
+    border-radius: 12px;
+    box-shadow: var(--wpjp-card-shadow);
+    padding: 10px 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+/*#wjportal-emp-cp-wrp  .wjportal-cp-sec-title{
+    display: none;
+}*/
+#wjportal-emp-cp-wrp  .wjportal-cp-short-links-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+#wjportal-emp-cp-wrp  .wjportal-list-anchor {
+    display: flex;
+    align-items:flex-start;
+    gap: 12px;
+    padding: 10px 10px 10px 10px;
+    text-decoration: none;
+    color: var(--wpjp-wpjp-body-font-color);
+    font-size: var(--wpjp-body-font-size);
+    font-weight: 500;
+
+}
+
+#wjportal-emp-cp-wrp  .wjportal-list-anchor:hover {
+    background-color: var(--wpjp-background-color);
+    color: var(--wpjp-primary-color);
+    filter: none;
+    border-radius: 8px;
+}
+
+#wjportal-emp-cp-wrp  .wjportal-list-anchor img {
+    width: 24px;
+    height: 24px;
+    filter: grayscale(1) opacity(0.6);
+}
+#wjportal-emp-cp-wrp  .wjportal-list-anchor:hover img{
+    filter: unset;
+}
+#wjportal-emp-cp-wrp span.wjportal-cp-link-text {
+    text-align: left;
+}
+#wjportal-emp-cp-wrp  .app-status {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 0.9em;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: var(--wpjp-bg-body);
+    flex-shrink: 0;
+}
+.wjportal-cp-graph-wrp.wjportal-cp-sect-wrp,
+.wjportal-cp-sect-wrp.wjportal-applied-resume-wrp{
+   width: 100%;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: var(--wpjp-card-shadow);
+    border: 1px solid var(--wpjp-border-color);
+}
+ #wjportal-emp-cp-wrp .wjportal-cp-right .wjportal-resume-list-wrp .wjportal-resume-app-title{
+  background-color: var(--wpjp-background-color);
+  border: 1px solid var(--wpjp-border-color);
+  padding: 13px 5px;
+  color: var(--wpjp-secondary-color);
+  font-size: var(--wpjp-body-font-size);
+  font-weight: 600;
+  margin: 15px 0;
+
+}
+ #wjportal-emp-cp-wrp .wjportal-resume-list-top-wrp .wjportal-resume-logo{
+  flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+  #wjportal-emp-cp-wrp .wjportal-resume-list-top-wrp span.wjportal-resume-name {
+    color: var(--wpjp-secondary-color);
+    font-size: var(--wpjp-body-font-size);
+    text-decoration: none;
+    font-weight: 700;
+}
+ #wjportal-emp-cp-wrp .wjportal-resume-list-top-wrp .wjportal-resume-listing-skills-data-text,
+  #wjportal-emp-cp-wrp .wjportal-resume-list-top-wrp .wjportal-resume-right-wrp,
+  #wjportal-emp-cp-wrp .wjportal-resume-list  .wjportal-resume-list-btm-wrp{
+  display: none;
+ }
+#wjportal-emp-cp-wrp .wjportal-resume-list-top-wrp .wjportal-resume-middle-wrp{
+  width: 100%;
+}
+
+/* ------------------------------------------- */
+/* --- Responsive Design Media Queries --- */
+/* ------------------------------------------- */
+
+/* 1. Large Laptops / Desktops (Max Width 1280px) */
+@media (max-width: 1280px) {
+    /* Font scaling for slightly smaller screens */
+    :root {
+        --wpjp-main-heading: 2.0em;
+        --wpjp-second-sub-heading: 1.5em;
+        --wpjp-sub-heading: 1.15em;
+        --wpjp-body-font-size: 0.95em;
+    }
+}
+
+/* 2. Tablets / Small Laptops (Max Width 1080px) - Main Layout Break */
+@media (max-width: 1080px) {
+    /* Font scaling */
+    :root {
+        --wpjp-main-heading: 1.8em;
+        --wpjp-second-sub-heading: 1.4em;
+        --wpjp-sub-heading: 1.1em;
+        --wpjp-body-font-size: 0.95em;
+    }
+
+    /* Stack the main dashboard container (Left/Right columns) */
+    #wjportal-emp-cp-wrp {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* Sidebar (Left) and Content (Right) take full width */
+    .wjportal-cp-left,
+    .wjportal-cp-right {
+        flex: 1 1 100%;
+        min-width: 100%;
+        min-height: auto;
+        position: static; /* Remove sticky positioning on smaller screens */
+        top: auto;
+        
+    }
+
+    .wjportal-cp-left {
+        /* Make sidebar area less dominant when it's at the top */
+        min-height: auto;
+        margin-bottom: 20px;
+    }
+    
+    .wjportal-cp-right {
+        /* Remove inner padding that might look bad when stacking */
+        padding: 0;
+        width: 100%;
+    }
+    
+    .wjportal-cp-boxes {
+        /* Change from 4 columns to 3 columns on medium screens */
+        grid-template-columns: repeat(3, 1fr);
+        justify-content: center;
+    }
+}
+
+/* 3. Smaller Tablets / Large Phones (Max Width 767px) */
+@media (max-width: 767px) {
+    /* Font scaling */
+    :root {
+        --wpjp-main-heading: 1.6em;
+        --wpjp-second-sub-heading: 1.3em;
+        --wpjp-sub-heading: 1.0em;
+        --wpjp-body-font-size: 0.9em;
+    }
+    
+    /* Stats Boxes change to 2 columns */
+    .wjportal-cp-boxes {
+        grid-template-columns: repeat(2, 1fr);
+        padding-top: 20px;
+    }
+
+    /* Top User Profile Adjustments: Stack user info and actions */
+    .wjportal-cp-top {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+    
+    .wjportal-cp-user {
+        /* Remove 100% width from inner user wrapper that was constraining it */
+        width: auto;
+        margin-bottom: 20px;
+    }
+
+    .wjportal-cp-user-action {
+        margin-left: 0;
+        justify-content: flex-start;
+        width: 100%;
+    }
+    
+    /* Resume/Job Card adjustments */
+    #wjportal-emp-cp-wrp .wjportal-resume-status-dashboard-data {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+    #wjportal-emp-cp-wrp .wjportal-resume-data {
+        /* Ensure resume details take full width */
+        width: 100%;
+    }
+    
+    #wjportal-emp-cp-wrp .wjportal-progress-bar-container{ width:100%; }
+    /* Invoice Table Responsiveness (stacking rows) */
+    .wjportal-table-wrp {
+        min-width: unset; /* Allow table to shrink */
+        border: none;
+    }
+
+    .wjportal-table-wrp thead {
+        display: none;
+    }
+
+    .wjportal-table-wrp tbody,
+    .wjportal-table-wrp tr {
+        display: block;
+    }
+
+    .wjportal-table-wrp tbody tr {
+        margin-bottom: 15px;
+        border: 1px solid var(--wpjp-border-color);
+        border-radius: 4px;
+    }
+
+    .wjportal-table-wrp td {
+        display: block;
+        text-align: right;
+        border-bottom: 1px dotted var(--wpjp-border-color);
+        position: relative;
+        padding: 10px 15px;
+    }
+
+    .wjportal-table-wrp td::before {
+        /* Add column header label */
+        content: attr(data-th); 
+        font-weight: bold;
+        float: left;
+        color: var(--wpjp-primary-color);
+    }
+    
+    .wjportal-table-w50 {
+        width: 100%; 
+    }
+}
+
+/* 4. Large Mobile Phones (Max Width 650px) */
+@media (max-width: 650px) {
+    /* Font scaling */
+    :root {
+        --wpjp-main-heading: 1.5em;
+        --wpjp-second-sub-heading: 1.2em;
+        --wpjp-sub-heading: 1.0em;
+        --wpjp-body-font-size: 0.9em;
+    }
+    
+    /* Simplify button wrapping in top section */
+    .wjportal-cp-user-act-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    .wjportal-cp-user-action {
+        gap: 8px;
+    }
+
+    /* Reduce dashboard item padding */
+    #wjportal-emp-cp-wrp div#wpjobportal-center {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+}
+
+
+/* 5. Small Mobile Phones (Max Width 480px) */
+@media (max-width: 480px) {
+    /* Final font scaling for smallest screens */
+    :root {
+        --wpjp-main-heading: 1.4em;
+        --wpjp-second-sub-heading: 1.1em;
+        --wpjp-sub-heading: 0.95em;
+        --wpjp-body-font-size: 0.85em;
+    }
+    .wjportal-cp-user{
+        justify-content: center;
+    }
+    .wjportal-jobseeker-cp-data-top-middle-wrap{
+        text-align: center;
+    }
+    /* Stats Boxes collapse to a single column */
+    .wjportal-cp-boxes {
+        grid-template-columns: 1fr; /* 1 column */
+        margin-top: 10px;
+        padding-top: 10px;
+        gap: 15px;
+    }
+   #wjportal-emp-cp-wrp .wjportal-cp-box-top::before{
+        top: 11px;
+        right: 0px;
+        left: 0;
+        margin: auto;
+        text-align: center;
+    }
+    .wjportal-applied-job-resume-status {
+        top: 88% !important;
+    right: 0rem !important;
+}
+    /* Shrink the user logo */
+    .wjportal-user-logo {
+        width: 80px;
+        height: 80px;
+    }
+    
+    /* Adjust padding on the list items */
+    #wjportal-emp-cp-wrp .wjportal-jobs-list-top-wrp {
+        width: 100%;
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    /* Ensure action buttons are always full width if they stack */
+    .wjportal-cp-user-act-btn {
+        padding: 8px 12px;
+    }
+    
+    /* Adjust short links padding */
+    #wjportal-emp-cp-wrp .wjportal-cp-short-links-wrp {
+        padding: 10px 15px;
+    }
+    
+    .wjportal-cp-box-num {
+        font-size: 30px;
+    }
+    .wjportal-cp-box-tit {
+        margin-top: 50px;
+    }
+}

@@ -8,42 +8,42 @@ class WPJOBPORTALUserModel {
     function jsGetPrefix(){
         global $wpdb;
         if(is_multisite()) {
-            $prefix = $wpdb->base_prefix;
+            $wpjobportal_prefix = $wpdb->base_prefix;
         }else{
-            $prefix = wpjobportal::$_db->prefix;
+            $wpjobportal_prefix = wpjobportal::$_db->prefix;
         }
-        return $prefix;
+        return $wpjobportal_prefix;
     }
 
-       function getMyAvailableCredits($uid) {
-            if (!is_numeric($uid))
+       function getMyAvailableCredits($wpjobportal_uid) {
+            if (!is_numeric($wpjobportal_uid))
             return false;
         $query = "SELECT purchase.purchasecredit AS credits,purchase.expireindays,purchase.created
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_purchasehistory` AS purchase
-                    WHERE purchase.uid = ". esc_sql($uid)." AND purchase.transactionverified = 1 ORDER BY purchase.id ASC";
-        $credits = wpjobportal::$_db->get_results($query);
-        $totalcredits = 0;
-        $expireindays = 7;
+                    WHERE purchase.uid = ". esc_sql($wpjobportal_uid)." AND purchase.transactionverified = 1 ORDER BY purchase.id ASC";
+        $wpjobportal_credits = wpjobportal::$_db->get_results($query);
+        $wpjobportal_totalcredits = 0;
+        $wpjobportal_expireindays = 7;
         $lastpurchase = '';
-        foreach ($credits AS $credit) {
-            $totalcredits += $credit->credits;
-            $expireindays = $credit->expireindays;
-            $lastpurchase = $credit->created;
+        foreach ($wpjobportal_credits AS $wpjobportal_credit) {
+            $wpjobportal_totalcredits += $wpjobportal_credit->credits;
+            $wpjobportal_expireindays = $wpjobportal_credit->expireindays;
+            $lastpurchase = $wpjobportal_credit->created;
         }
-        if($expireindays > 7900) // php max limit
-            $expireindays = 7900;
+        if($wpjobportal_expireindays > 7900) // php max limit
+            $wpjobportal_expireindays = 7900;
 
         $lastpurchasedate = gmdate('Y-m-d', strtotime($lastpurchase));
-        $expirydate = gmdate('Y-m-d', strtotime($lastpurchasedate . " + $expireindays days"));
-        $curdate = gmdate('Y-m-d');
-        if ($expirydate > $curdate) { // credits are valid
-            $query = "SELECT credits FROM `" . wpjobportal::$_db->prefix . "wj_portal_credits_log` WHERE uid = ". esc_sql($uid);
-            $creditslog = wpjobportal::$_db->get_results($query);
-            $totalusecredits = 0;
-            foreach ($creditslog AS $log) {
-                $totalusecredits += $log->credits;
+        $wpjobportal_expirydate = gmdate('Y-m-d', strtotime($lastpurchasedate . " + $wpjobportal_expireindays days"));
+        $wpjobportal_curdate = gmdate('Y-m-d');
+        if ($wpjobportal_expirydate > $wpjobportal_curdate) { // credits are valid
+            $query = "SELECT credits FROM `" . wpjobportal::$_db->prefix . "wj_portal_credits_log` WHERE uid = ". esc_sql($wpjobportal_uid);
+            $wpjobportal_creditslog = wpjobportal::$_db->get_results($query);
+            $wpjobportal_totalusecredits = 0;
+            foreach ($wpjobportal_creditslog AS $wpjobportal_log) {
+                $wpjobportal_totalusecredits += $wpjobportal_log->credits;
             }
-            $available = $totalcredits - $totalusecredits;
+            $available = $wpjobportal_totalcredits - $wpjobportal_totalusecredits;
             return $available;
         } else { // credits are expired
             return 0;
@@ -53,66 +53,66 @@ class WPJOBPORTALUserModel {
     function getAllUsers() {
 
         //Filters
-        $searchname = wpjobportal::$_search['user']['searchname'];
-        $searchusername = wpjobportal::$_search['user']['searchusername'];
-        $searchrole = wpjobportal::$_search['user']['searchrole'];
-        $searchcompany = wpjobportal::$_search['user']['searchcompany'];
-        $searchresume = wpjobportal::$_search['user']['searchresume'];
+        $wpjobportal_searchname = wpjobportal::$_search['user']['searchname'];
+        $wpjobportal_searchusername = wpjobportal::$_search['user']['searchusername'];
+        $wpjobportal_searchrole = wpjobportal::$_search['user']['searchrole'];
+        $wpjobportal_searchcompany = wpjobportal::$_search['user']['searchcompany'];
+        $wpjobportal_searchresume = wpjobportal::$_search['user']['searchresume'];
 
-        wpjobportal::$_data['filter']['searchname'] = $searchname;
-        wpjobportal::$_data['filter']['searchusername'] = $searchusername;
-        wpjobportal::$_data['filter']['searchrole'] = $searchrole;
-        wpjobportal::$_data['filter']['searchcompany'] = $searchcompany;
-        wpjobportal::$_data['filter']['searchresume'] = $searchresume;
+        wpjobportal::$_data['filter']['searchname'] = $wpjobportal_searchname;
+        wpjobportal::$_data['filter']['searchusername'] = $wpjobportal_searchusername;
+        wpjobportal::$_data['filter']['searchrole'] = $wpjobportal_searchrole;
+        wpjobportal::$_data['filter']['searchcompany'] = $wpjobportal_searchcompany;
+        wpjobportal::$_data['filter']['searchresume'] = $wpjobportal_searchresume;
 
         $clause = " WHERE ";
-        $inquery = '';
-        if ($searchname) {
-            $inquery .= esc_sql($clause) . "(LOWER(a.first_name) LIKE '%" . esc_sql($searchname) . "%' OR LOWER(a.last_name) LIKE '%" . esc_sql($searchname) . "%')";
+        $wpjobportal_inquery = '';
+        if ($wpjobportal_searchname) {
+            $wpjobportal_inquery .= esc_sql($clause) . "(LOWER(a.first_name) LIKE '%" . esc_sql($wpjobportal_searchname) . "%' OR LOWER(a.last_name) LIKE '%" . esc_sql($wpjobportal_searchname) . "%')";
             $clause = " AND ";
         }
-        if ($searchusername) {
-            $inquery .= esc_sql($clause) . " LOWER(u.user_login) LIKE '%" . esc_sql($searchusername) . "%'";
+        if ($wpjobportal_searchusername) {
+            $wpjobportal_inquery .= esc_sql($clause) . " LOWER(u.user_login) LIKE '%" . esc_sql($wpjobportal_searchusername) . "%'";
             $clause = " AND ";
         }
-        $company_join = '';
-        if ($searchcompany) {
-            $inquery .= esc_sql($clause) . " LOWER(company.name) LIKE '%" . esc_sql($searchcompany) . "%'";
+        $wpjobportal_company_join = '';
+        if ($wpjobportal_searchcompany) {
+            $wpjobportal_inquery .= esc_sql($clause) . " LOWER(company.name) LIKE '%" . esc_sql($wpjobportal_searchcompany) . "%'";
             $clause = " AND ";
-            $company_join = 'LEFT JOIN ' . wpjobportal::$_db->prefix . 'wj_portal_companies AS company ON company.uid = a.id ';
+            $wpjobportal_company_join = 'LEFT JOIN ' . wpjobportal::$_db->prefix . 'wj_portal_companies AS company ON company.uid = a.id ';
 
         }
-        $resume_join = '';
-        if ($searchresume) {
-            $inquery .= esc_sql($clause) . " ( LOWER(resume.first_name) LIKE '%" . esc_sql($searchresume) . "%'
-                        OR LOWER(resume.last_name) LIKE '%" . esc_sql($searchresume) . "%')";
+        $wpjobportal_resume_join = '';
+        if ($wpjobportal_searchresume) {
+            $wpjobportal_inquery .= esc_sql($clause) . " ( LOWER(resume.first_name) LIKE '%" . esc_sql($wpjobportal_searchresume) . "%'
+                        OR LOWER(resume.last_name) LIKE '%" . esc_sql($wpjobportal_searchresume) . "%')";
             $clause = " AND ";
-            $resume_join = 'LEFT JOIN ' . wpjobportal::$_db->prefix . 'wj_portal_resume AS resume ON resume.uid = a.id ';
+            $wpjobportal_resume_join = 'LEFT JOIN ' . wpjobportal::$_db->prefix . 'wj_portal_resume AS resume ON resume.uid = a.id ';
         }
-        if ($searchrole){
-            if (is_numeric($searchrole))
-                $inquery .= esc_sql($clause) . "a.roleid = " . esc_sql($searchrole);
+        if ($wpjobportal_searchrole){
+            if (is_numeric($wpjobportal_searchrole))
+                $wpjobportal_inquery .= esc_sql($clause) . "a.roleid = " . esc_sql($wpjobportal_searchrole);
         }
         //Pagination
         $query = 'SELECT a.id '
                 . ' FROM `' . wpjobportal::$_db->prefix . 'wj_portal_users` AS a'
                 . ' LEFT JOIN `' . $this->jsGetPrefix() . 'users` AS u ON u.id = a.uid ';
-        $query .= $company_join;
-        $query .= $resume_join;
-        $query .= $inquery;
+        $query .= $wpjobportal_company_join;
+        $query .= $wpjobportal_resume_join;
+        $query .= $wpjobportal_inquery;
         $query .= " GROUP BY a.id ";
-        $total = wpjobportaldb::get_results($query);
-        $total = count($total);
-        wpjobportal::$_data['total'] = $total;
-        wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($total);
+        $wpjobportal_total = wpjobportaldb::get_results($query);
+        $wpjobportal_total = count($wpjobportal_total);
+        wpjobportal::$_data['total'] = $wpjobportal_total;
+        wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($wpjobportal_total);
 
         //Data
         $query = 'SELECT a.*,u.user_login,u.id AS wpuid'
                 . ' FROM ' . wpjobportal::$_db->prefix . 'wj_portal_users AS a'
                 . ' LEFT JOIN ' . $this->jsGetPrefix() . 'users AS u ON u.id = a.uid ';
-        $query .= $company_join;
-        $query .= $resume_join;
-        $query .= $inquery;
+        $query .= $wpjobportal_company_join;
+        $query .= $wpjobportal_resume_join;
+        $query .= $wpjobportal_inquery;
         $query .= ' GROUP BY a.id LIMIT ' . WPJOBPORTALpagination::$_offset . ',' . WPJOBPORTALpagination::$_limit;
 
         wpjobportal::$_data[0] = wpjobportaldb::get_results($query);
@@ -121,50 +121,50 @@ class WPJOBPORTALUserModel {
 
 
     function getUserRoleBasedInfo() {
-        $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
-        if (! wp_verify_nonce( $nonce, 'wpjobportal_user_nonce') ) {
+        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_user_nonce') ) {
             die( 'Security check Failed' );
         }
-        $uid = WPJOBPORTALrequest::getVar('uid');
-        if(!is_numeric($uid)){
+        $wpjobportal_uid = WPJOBPORTALrequest::getVar('uid');
+        if(!is_numeric($wpjobportal_uid)){
             return false;
         }
-        $roleid = WPJOBPORTALrequest::getVar('roleid');
-        if(!is_numeric($roleid)){
+        $wpjobportal_roleid = WPJOBPORTALrequest::getVar('roleid');
+        if(!is_numeric($wpjobportal_roleid)){
             return false;
         }
 
 
         //Data
-        $data = '';
-        if($roleid == 1){
+        $wpjobportal_data = '';
+        if($wpjobportal_roleid == 1){
             $query = 'SELECT company.name AS display_value
-                    FROM ' . wpjobportal::$_db->prefix . 'wj_portal_companies AS company WHERE company.uid = '.esc_sql($uid);
-            $label = __('Company', 'wp-job-portal');
-            $data = wpjobportaldb::get_var($query);
-        }elseif($roleid == 2){
+                    FROM ' . wpjobportal::$_db->prefix . 'wj_portal_companies AS company WHERE company.uid = '.esc_sql($wpjobportal_uid);
+            $wpjobportal_label = __('Company', 'wp-job-portal');
+            $wpjobportal_data = wpjobportaldb::get_var($query);
+        }elseif($wpjobportal_roleid == 2){
             $query = 'SELECT  resume.application_title AS application_title, CONCAT(resume.first_name," ",resume.last_name) AS name
-                    FROM ' . wpjobportal::$_db->prefix . 'wj_portal_resume AS resume WHERE resume.uid = '.esc_sql($uid);
-            $label = __('Resume', 'wp-job-portal');
-            $data_row = wpjobportaldb::get_row($query);
-            if(!empty($data_row)){ // to handle the case of user application title field is not published.
-                if(isset($data_row->application_title) && $data_row->application_title != ''){
-                    $data = $data_row->application_title;
+                    FROM ' . wpjobportal::$_db->prefix . 'wj_portal_resume AS resume WHERE resume.uid = '.esc_sql($wpjobportal_uid);
+            $wpjobportal_label = __('Resume', 'wp-job-portal');
+            $wpjobportal_data_row = wpjobportaldb::get_row($query);
+            if(!empty($wpjobportal_data_row)){ // to handle the case of user application title field is not published.
+                if(isset($wpjobportal_data_row->application_title) && $wpjobportal_data_row->application_title != ''){
+                    $wpjobportal_data = $wpjobportal_data_row->application_title;
                 }else{
-                    $label = __('Name', 'wp-job-portal');
-                    $data = $data_row->name;
+                    $wpjobportal_label = __('Name', 'wp-job-portal');
+                    $wpjobportal_data = $wpjobportal_data_row->name;
                 }
             }
         }
 
-        if($data !=''){
+        if($wpjobportal_data !=''){
             $return_html = '
                             <div class="wpjobportal-user-data-text">
                                 <span class="wpjobportal-user-data-title">
-                                    '.esc_html($label) . ':
+                                    '.esc_html($wpjobportal_label) . ':
                                 </span>
                                 <span class="wpjobportal-user-data-value">
-                                    '.esc_html($data).'
+                                    '.esc_html($wpjobportal_data).'
                                 </span>
                             </div>';
             return wp_json_encode($return_html);
@@ -174,20 +174,20 @@ class WPJOBPORTALUserModel {
 
     }
 
-    function enforceDeleteUser($uid) {
-        if (!is_numeric($uid))
+    function enforceDeleteUser($wpjobportal_uid) {
+        if (!is_numeric($wpjobportal_uid))
             return false;
 
-        $roleid = $this->getUserRoleByUid($uid);
+        $wpjobportal_roleid = $this->getUserRoleByUid($wpjobportal_uid);
 
-        if (!is_numeric($roleid)) {
+        if (!is_numeric($wpjobportal_roleid)) {
             // this user has no role
             // what to do then ?
         } else {
 
-            $wp_uid = $this->getWPuidByOuruid($uid);
+            $wp_uid = $this->getWPuidByOuruid($wpjobportal_uid);
 
-            if ($this->enforceDeleteOurUser($uid, $roleid)) {
+            if ($this->enforceDeleteOurUser($wpjobportal_uid, $wpjobportal_roleid)) {
 
                 do_action('wpjobportal_load_wp_users');
 
@@ -202,12 +202,12 @@ class WPJOBPORTALUserModel {
         }
     }
 
-   function enforceDeleteOurUser($uid, $roleid) {
-        if (!is_numeric($uid))
+   function enforceDeleteOurUser($wpjobportal_uid, $wpjobportal_roleid) {
+        if (!is_numeric($wpjobportal_uid))
             return false;
         $query = '';
 
-        if ($roleid == 1) { // employer
+        if ($wpjobportal_roleid == 1) { // employer
             $query = "DELETE u, job,comp";
             if(in_array('departments', wpjobportal::$_active_addons)){
                 $query .= ",dep ";
@@ -247,10 +247,10 @@ class WPJOBPORTALUserModel {
                 }
 
                 $query .= " LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companycities` AS compcity ON compcity.companyid = comp.id
-                WHERE u.id = " . esc_sql($uid);
+                WHERE u.id = " . esc_sql($wpjobportal_uid);
         }
 
-        if ($roleid == 2) { // seeker
+        if ($wpjobportal_roleid == 2) { // seeker
                 $query = "DELETE u,resume , ra, re,rf,ri,rl,ja ";
                     if(in_array('resumesearch', wpjobportal::$_active_addons)){
                         $query .= " ,rs ";
@@ -289,7 +289,7 @@ class WPJOBPORTALUserModel {
                         $query .= " LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobalertsetting` AS jobalert ON jobalert.uid = u.id ";
                         $query .= " LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobalertcities` AS acity ON acity.alertid = jobalert.id ";
                     }
-                    $query .= " WHERE u.id = " . esc_sql($uid);
+                    $query .= " WHERE u.id = " . esc_sql($wpjobportal_uid);
         }
 
         if($query != ''){
@@ -301,25 +301,25 @@ class WPJOBPORTALUserModel {
         }
     }
 
-    function getUserRoleByUid($uid) {
-        if (!is_numeric($uid))
+    function getUserRoleByUid($wpjobportal_uid) {
+        if (!is_numeric($wpjobportal_uid))
             return false;
-        $query = "SELECT roleid FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE id = " . esc_sql($uid);
-        $result = wpjobportaldb::get_var($query);
-        return $result;
+        $query = "SELECT roleid FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE id = " . esc_sql($wpjobportal_uid);
+        $wpjobportal_result = wpjobportaldb::get_var($query);
+        return $wpjobportal_result;
     }
 
     function getUserRoleByWPUid($wpuid) {
         if (!is_numeric($wpuid))
             return false;
         $query = "SELECT roleid FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE uid = " . esc_sql($wpuid);
-        $result = wpjobportaldb::get_var($query);
-        return $result;
+        $wpjobportal_result = wpjobportaldb::get_var($query);
+        return $wpjobportal_result;
     }
 
      function deleteUserPhoto() {
-        $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
-        if (! wp_verify_nonce( $nonce, 'delete-user-photo') ) {
+        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (! wp_verify_nonce( $wpjobportal_nonce, 'delete-user-photo') ) {
             die( 'Security check Failed' );
         }        $cid = WPJOBPORTALrequest::getVar('userid');
         if(!is_numeric($cid)){
@@ -333,25 +333,25 @@ class WPJOBPORTALUserModel {
         if (!is_numeric($wpuid))
             return false;
         $query = "SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE uid = " . esc_sql($wpuid);
-        $result = wpjobportaldb::get_var($query);
-        return $result;
+        $wpjobportal_result = wpjobportaldb::get_var($query);
+        return $wpjobportal_result;
     }
 
     function getWPuidByOuruid($our_uid) {
         if (!is_numeric($our_uid))
             return false;
         $query = "SELECT uid AS wpuid FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE id = " . esc_sql($our_uid);
-        $result = wpjobportaldb::get_var($query);
-        return $result;
+        $wpjobportal_result = wpjobportaldb::get_var($query);
+        return $wpjobportal_result;
     }
 
-    function changeUserStatus($userid){
-        if(!is_numeric($userid)) return false;
-        $row = WPJOBPORTALincluder::getJSTable('users');
-        if($row->load($userid)){
-            $row->columns['status'] = 1 - $row->status;
-            if($row->store()){
-                if($row->columns['status'] == 1){
+    function changeUserStatus($wpjobportal_userid){
+        if(!is_numeric($wpjobportal_userid)) return false;
+        $wpjobportal_row = WPJOBPORTALincluder::getJSTable('users');
+        if($wpjobportal_row->load($wpjobportal_userid)){
+            $wpjobportal_row->columns['status'] = 1 - $wpjobportal_row->status;
+            if($wpjobportal_row->store()){
+                if($wpjobportal_row->columns['status'] == 1){
                     return WPJOBPORTAL_ENABLED;
                 }else{
                     return WPJOBPORTAL_DISABLED;
@@ -364,48 +364,48 @@ class WPJOBPORTALUserModel {
         }
     }
 
-    function assignUserRole($data){
+    function assignUserRole($wpjobportal_data){
 
-        if(empty($data))
+        if(empty($wpjobportal_data))
             return false;
-        if(! is_numeric($data['uid']))
+        if(! is_numeric($wpjobportal_data['uid']))
             return false;
-        if(! is_numeric($data['roleid']))
+        if(! is_numeric($wpjobportal_data['roleid']))
             return false;
 
-        $arr = array();
-        $arr['uid'] = $data['uid'];
-        $arr['roleid'] = $data['roleid'];
-        $arr['first_name'] = $data['payer_firstname'];
-        $arr['emailaddress'] = $data['payer_emailadress'];
-        $arr['status'] = 1;
-        $arr['created'] = gmdate("Y-m-d H:i:s");
-        $arr = wpjobportal::wpjobportal_sanitizeData($arr);
-        $row = WPJOBPORTALincluder::getJSTable('users');
-        if (!$row->bind($arr)) {
+        $wpjobportal_arr = array();
+        $wpjobportal_arr['uid'] = $wpjobportal_data['uid'];
+        $wpjobportal_arr['roleid'] = $wpjobportal_data['roleid'];
+        $wpjobportal_arr['first_name'] = $wpjobportal_data['payer_firstname'];
+        $wpjobportal_arr['emailaddress'] = $wpjobportal_data['payer_emailadress'];
+        $wpjobportal_arr['status'] = 1;
+        $wpjobportal_arr['created'] = gmdate("Y-m-d H:i:s");
+        $wpjobportal_arr = wpjobportal::wpjobportal_sanitizeData($wpjobportal_arr);
+        $wpjobportal_row = WPJOBPORTALincluder::getJSTable('users');
+        if (!$wpjobportal_row->bind($wpjobportal_arr)) {
             return WPJOBPORTAL_SAVE_ERROR;
         }
-        if (!$row->check()) {
+        if (!$wpjobportal_row->check()) {
             return WPJOBPORTAL_SAVE_ERROR;
         }
-        if (!$row->store()) {
+        if (!$wpjobportal_row->store()) {
             return WPJOBPORTAL_SAVE_ERROR;
         }
         return WPJOBPORTAL_SAVED;
     }
 
-    function deleteUser($uid) {
-        if (!is_numeric($uid))
+    function deleteUser($wpjobportal_uid) {
+        if (!is_numeric($wpjobportal_uid))
             return false;
-        $roleid = $this->getUserRoleByUid($uid);
-        if (!is_numeric($roleid)) {
+        $wpjobportal_roleid = $this->getUserRoleByUid($wpjobportal_uid);
+        if (!is_numeric($wpjobportal_roleid)) {
             // this user has no role
             // what to do then ?
         } else {
-            if ($this->userCanDelete($uid, $roleid)) {
-                $wp_uid = $this->getWPuidByOuruid($uid);
+            if ($this->userCanDelete($wpjobportal_uid, $wpjobportal_roleid)) {
+                $wp_uid = $this->getWPuidByOuruid($wpjobportal_uid);
 
-                if ($this->deleteOurUser($uid)) {
+                if ($this->deleteOurUser($wpjobportal_uid)) {
                     do_action('wpjobportal_load_wp_users');
                     if (wp_delete_user($wp_uid)) {
                         return WPJOBPORTAL_DELETED;
@@ -421,39 +421,39 @@ class WPJOBPORTALUserModel {
         }
     }
 
-    function userCanDelete($uid, $roleid) {
-        if (!is_numeric($uid))
+    function userCanDelete($wpjobportal_uid, $wpjobportal_roleid) {
+        if (!is_numeric($wpjobportal_uid))
             return false;
-        if ($roleid == 1) { // employer
+        if ($wpjobportal_roleid == 1) { // employer
             $query = "SELECT
-                    (SELECT COUNT(job.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job WHERE job.uid = ".esc_sql($uid)." )
-                +   (SELECT COUNT(comp.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS comp WHERE comp.uid = ".esc_sql($uid)." )";
+                    (SELECT COUNT(job.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job WHERE job.uid = ".esc_sql($wpjobportal_uid)." )
+                +   (SELECT COUNT(comp.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS comp WHERE comp.uid = ".esc_sql($wpjobportal_uid)." )";
                 if(in_array('departments', wpjobportal::$_active_addons)){
-                    $query .= " +   (SELECT COUNT(dep.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_departments` AS dep WHERE dep.uid = ".esc_sql($uid)." )";
+                    $query .= " +   (SELECT COUNT(dep.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_departments` AS dep WHERE dep.uid = ".esc_sql($wpjobportal_uid)." )";
                 }
                 $query .= " AS total
             ";
         }
 
-        if ($roleid == 2) { // seeker
+        if ($wpjobportal_roleid == 2) { // seeker
             $query = "SELECT
-                    (SELECT COUNT(resume.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume WHERE resume.uid = ".esc_sql($uid)." )
+                    (SELECT COUNT(resume.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume WHERE resume.uid = ".esc_sql($wpjobportal_uid)." )
 
                 AS total
             ";
         }
 
-        $result = wpjobportaldb::get_var($query);
-        if ($result > 0)
+        $wpjobportal_result = wpjobportaldb::get_var($query);
+        if ($wpjobportal_result > 0)
             return false;
         else
             return true;
     }
 
-    function deleteOurUser($uid) {
-        if (!is_numeric($uid))
+    function deleteOurUser($wpjobportal_uid) {
+        if (!is_numeric($wpjobportal_uid))
             return false;
-        $query = "DELETE FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE id = " . esc_sql($uid);
+        $query = "DELETE FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE id = " . esc_sql($wpjobportal_uid);
         if (wpjobportaldb::query($query)) {
             return true;
         } else {
@@ -463,38 +463,38 @@ class WPJOBPORTALUserModel {
 
     // function getUserStats() {
     //     //Filters
-    //     $searchname = WPJOBPORTALrequest::getVar('searchname');
-    //     $searchusername = WPJOBPORTALrequest::getVar('searchusername');
-    //     $formsearch = WPJOBPORTALrequest::getVar('WPJOBPORTAL_form_search', 'post');
-    //     if ($formsearch == 'WPJOBPORTAL_SEARCH') {
-    //         $_SESSION['WPJOBPORTAL_SEARCH']['searchname'] = $searchname;
-    //         $_SESSION['WPJOBPORTAL_SEARCH']['searchusername'] = $searchusername;
+    //     $wpjobportal_searchname = WPJOBPORTALrequest::getVar('searchname');
+    //     $wpjobportal_searchusername = WPJOBPORTALrequest::getVar('searchusername');
+    //     $wpjobportal_formsearch = WPJOBPORTALrequest::getVar('WPJOBPORTAL_form_search', 'post');
+    //     if ($wpjobportal_formsearch == 'WPJOBPORTAL_SEARCH') {
+    //         $_SESSION['WPJOBPORTAL_SEARCH']['searchname'] = $wpjobportal_searchname;
+    //         $_SESSION['WPJOBPORTAL_SEARCH']['searchusername'] = $wpjobportal_searchusername;
     //     }
     //     if (WPJOBPORTALrequest::getVar('pagenum', 'get', null) != null) {
-    //         $searchname = (isset($_SESSION['WPJOBPORTAL_SEARCH']['searchname']) && $_SESSION['WPJOBPORTAL_SEARCH']['searchname'] != '') ? sanitize_key($_SESSION['WPJOBPORTAL_SEARCH']['searchname']) : null;
-    //         $searchusername = (isset($_SESSION['WPJOBPORTAL_SEARCH']['searchusername']) && $_SESSION['WPJOBPORTAL_SEARCH']['searchusername'] != '') ? sanitize_key($_SESSION['WPJOBPORTAL_SEARCH']['searchusername']) : null;
-    //     } elseif ($formsearch !== 'WPJOBPORTAL_SEARCH') {
+    //         $wpjobportal_searchname = (isset($_SESSION['WPJOBPORTAL_SEARCH']['searchname']) && $_SESSION['WPJOBPORTAL_SEARCH']['searchname'] != '') ? sanitize_key($_SESSION['WPJOBPORTAL_SEARCH']['searchname']) : null;
+    //         $wpjobportal_searchusername = (isset($_SESSION['WPJOBPORTAL_SEARCH']['searchusername']) && $_SESSION['WPJOBPORTAL_SEARCH']['searchusername'] != '') ? sanitize_key($_SESSION['WPJOBPORTAL_SEARCH']['searchusername']) : null;
+    //     } elseif ($wpjobportal_formsearch !== 'WPJOBPORTAL_SEARCH') {
     //         unset($_SESSION['WPJOBPORTAL_SEARCH']);
     //     }
-    //     wpjobportal::$_data['filter']['searchname'] = $searchname;
-    //     wpjobportal::$_data['filter']['searchusername'] = $searchusername;
+    //     wpjobportal::$_data['filter']['searchname'] = $wpjobportal_searchname;
+    //     wpjobportal::$_data['filter']['searchusername'] = $wpjobportal_searchusername;
 
     //     $clause = " WHERE ";
-    //     $inquery = "";
-    //     if ($searchname) {
-    //         $inquery .= esc_sql($clause) . " (LOWER(a.first_name) LIKE '%" . esc_sql($searchname) . "%' OR LOWER(a.last_name) LIKE '%" . esc_sql($searchname) . "%')";
+    //     $wpjobportal_inquery = "";
+    //     if ($wpjobportal_searchname) {
+    //         $wpjobportal_inquery .= esc_sql($clause) . " (LOWER(a.first_name) LIKE '%" . esc_sql($wpjobportal_searchname) . "%' OR LOWER(a.last_name) LIKE '%" . esc_sql($wpjobportal_searchname) . "%')";
     //         $clause = 'AND';
     //     }
-    //     if ($searchusername)
-    //         $inquery .= esc_sql($clause) . " LOWER(a.user_login) LIKE '%" . esc_sql($searchusername) . "%'";
+    //     if ($wpjobportal_searchusername)
+    //         $wpjobportal_inquery .= esc_sql($clause) . " LOWER(a.user_login) LIKE '%" . esc_sql($wpjobportal_searchusername) . "%'";
 
     //     //Pagination
     //     $query = "SELECT COUNT(a.ID) FROM " . $this->jsGetPrefix() . "users AS a";
-    //     $query.=$inquery;
+    //     $query.=$wpjobportal_inquery;
 
-    //     $total = wpjobportaldb::get_var($query);
-    //     wpjobportal::$_data['total'] = $total;
-    //     wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($total);
+    //     $wpjobportal_total = wpjobportaldb::get_var($query);
+    //     wpjobportal::$_data['total'] = $wpjobportal_total;
+    //     wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($wpjobportal_total);
 
     //     //Data
     //     $query = "SELECT a.id AS id, CONCAT(a.first_name,' ',a.last_name) AS name, u.user_login AS username
@@ -505,24 +505,24 @@ class WPJOBPORTALUserModel {
     //             ,(SELECT count(id) FROM " . wpjobportal::$_db->prefix . "wj_portal_resume WHERE uid=a.id ) AS resumes
     //             FROM " . wpjobportal::$_db->prefix . "wj_portal_users AS a
     //             LEFT JOIN " . $this->jsGetPrefix() . "users AS u ON u.id = a.uid";
-    //     $query.=$inquery;
+    //     $query.=$wpjobportal_inquery;
     //     $query .= ' GROUP BY a.id LIMIT ' . WPJOBPORTALpagination::$_offset . ',' . WPJOBPORTALpagination::$_limit;
     //     wpjobportal::$_data[0] = wpjobportaldb::get_results($query);
 
     //     return;
     // }
 
-    // function getUserStatsCompanies($companyuid) {
-    //     if (is_numeric($companyuid) == false)
+    // function getUserStatsCompanies($wpjobportal_companyuid) {
+    //     if (is_numeric($wpjobportal_companyuid) == false)
     //         return false;
 
     //     //Pagination
     //     $query = "SELECT COUNT(company.id)
     //               FROM " . wpjobportal::$_db->prefix . "wj_portal_companies AS company
-	   //            WHERE company.uid = " . esc_sql($companyuid);
-    //     $total = wpjobportaldb::get_var($query);
-    //     wpjobportal::$_data['total'] = $total;
-    //     wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($total);
+	   //            WHERE company.uid = " . esc_sql($wpjobportal_companyuid);
+    //     $wpjobportal_total = wpjobportaldb::get_var($query);
+    //     wpjobportal::$_data['total'] = $wpjobportal_total;
+    //     wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($wpjobportal_total);
 
     //     //Data
     //     $query = "SELECT company.*,cat.cat_title"
@@ -530,7 +530,7 @@ class WPJOBPORTALUserModel {
     //             . " LEFT JOIN " . wpjobportal::$_db->prefix . "wj_portal_categories AS cat ON cat.id=company.category"
     //             . " LEFT JOIN " . wpjobportal::$_db->prefix . "wj_portal_cities AS city ON city.id=company.city"
     //             . " LEFT JOIN " . wpjobportal::$_db->prefix . "wj_portal_countries AS country ON country.id=city.countryid
-		  //         WHERE company.uid = " . esc_sql($companyuid);
+		  //         WHERE company.uid = " . esc_sql($wpjobportal_companyuid);
     //     $query .= " ORDER BY company.name LIMIT " . WPJOBPORTALpagination::$_offset . "," . WPJOBPORTALpagination::$_limit;
 
     //     wpjobportal::$_data[0] = wpjobportaldb::get_results($query);
@@ -538,26 +538,26 @@ class WPJOBPORTALUserModel {
     //     return;
     // }
 
-    function getWPRoleNameById($id) {
-        $rolename = "";
-        if ($id) {
-            $user = new WP_User($id);
-            $rolename = $user->roles[0];
+    function getWPRoleNameById($wpjobportal_id) {
+        $wpjobportal_rolename = "";
+        if ($wpjobportal_id) {
+            $wpjobportal_user = new WP_User($wpjobportal_id);
+            $wpjobportal_rolename = $wpjobportal_user->roles[0];
         }
-        return $rolename;
+        return $wpjobportal_rolename;
     }
 
-    // function getUserStatsJobs($jobuid) {
-    //     if (is_numeric($jobuid) == false)
+    // function getUserStatsJobs($wpjobportal_jobuid) {
+    //     if (is_numeric($wpjobportal_jobuid) == false)
     //         return false;
 
     //     //Pagination
     //     $query = "SELECT COUNT(job.id)
-    //             FROM " . wpjobportal::$_db->prefix . "wj_portal_jobs AS job WHERE job.uid = " . esc_sql($jobuid);
+    //             FROM " . wpjobportal::$_db->prefix . "wj_portal_jobs AS job WHERE job.uid = " . esc_sql($wpjobportal_jobuid);
 
-    //     $total = wpjobportaldb::get_var($query);
-    //     wpjobportal::$_data['total'] = $total;
-    //     wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($total);
+    //     $wpjobportal_total = wpjobportaldb::get_var($query);
+    //     wpjobportal::$_data['total'] = $wpjobportal_total;
+    //     wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($wpjobportal_total);
 
     //     //Data
     //     $query = "SELECT job.*,company.name AS companyname,cat.cat_title,jobtype.title AS jobtypetitle"
@@ -565,7 +565,7 @@ class WPJOBPORTALUserModel {
     //             . " LEFT JOIN " . wpjobportal::$_db->prefix . "wj_portal_companies AS company ON company.id=job.companyid"
     //             . " LEFT JOIN " . wpjobportal::$_db->prefix . "wj_portal_categories AS cat ON cat.id=job.jobcategory"
     //             . " LEFT JOIN " . wpjobportal::$_db->prefix . "wj_portal_jobtypes AS jobtype ON jobtype.id=job.jobtype
-		  //  WHERE job.uid = " . esc_sql($jobuid);
+		  //  WHERE job.uid = " . esc_sql($wpjobportal_jobuid);
     //     $query .= " ORDER BY job.title LIMIT " . WPJOBPORTALpagination::$_offset . "," . WPJOBPORTALpagination::$_limit;
 
     //     wpjobportal::$_data[0] = wpjobportaldb::get_results($query);
@@ -573,48 +573,48 @@ class WPJOBPORTALUserModel {
     // }
 
     function getuserlistajax() {
-        $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
-        if (! wp_verify_nonce( $nonce, 'get-user-list-ajax') ) {
+        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (! wp_verify_nonce( $wpjobportal_nonce, 'get-user-list-ajax') ) {
             die( 'Security check Failed' );
         }
-        $userlimit = WPJOBPORTALrequest::getVar('userlimit', null, 0);
-        $maxrecorded = 3;
+        $wpjobportal_userlimit = WPJOBPORTALrequest::getVar('userlimit', null, 0);
+        $wpjobportal_maxrecorded = 3;
         //Filters
         $uname = WPJOBPORTALrequest::getVar('uname');
-        $name = WPJOBPORTALrequest::getVar('name');
-        $email = WPJOBPORTALrequest::getVar('email');
+        $wpjobportal_name = WPJOBPORTALrequest::getVar('name');
+        $wpjobportal_email = WPJOBPORTALrequest::getVar('email');
         $listfor = WPJOBPORTALrequest::getVar('listfor');
 
-        wpjobportal::$_data['filter']['name'] = $name;
+        wpjobportal::$_data['filter']['name'] = $wpjobportal_name;
         wpjobportal::$_data['filter']['uname'] = $uname;
-        wpjobportal::$_data['filter']['email'] = $email;
+        wpjobportal::$_data['filter']['email'] = $wpjobportal_email;
 
-        $inquery = "";
+        $wpjobportal_inquery = "";
 
-        if ($name != null) {
-            $inquery .= " AND ( user.first_name LIKE '%" . esc_sql($name) . "%' OR user.last_name LIKE '%" . esc_sql($name) . "%' ) ";
+        if ($wpjobportal_name != null) {
+            $wpjobportal_inquery .= " AND ( user.first_name LIKE '%" . esc_sql($wpjobportal_name) . "%' OR user.last_name LIKE '%" . esc_sql($wpjobportal_name) . "%' ) ";
         }
         if ($uname != null) {
-            $inquery .= " AND  u.user_login LIKE  '%" . esc_sql($uname) . "%' ";
+            $wpjobportal_inquery .= " AND  u.user_login LIKE  '%" . esc_sql($uname) . "%' ";
         }
-        if ($email != null)
-            $inquery .= " AND user.emailaddress LIKE '%" . esc_sql($email) . "%' ";
+        if ($wpjobportal_email != null)
+            $wpjobportal_inquery .= " AND user.emailaddress LIKE '%" . esc_sql($wpjobportal_email) . "%' ";
 
         if ($listfor == 1) {
-            $status = "WHERE 1 = 1 "; //to get all users
+            $wpjobportal_status = "WHERE 1 = 1 "; //to get all users
         } else {
-            $status = "WHERE user.roleid =1 ";
+            $wpjobportal_status = "WHERE user.roleid =1 ";
         }
 
 
         $query = "SELECT COUNT(user.id)
                 FROM " . wpjobportal::$_db->prefix . "wj_portal_users AS user
                 LEFT JOIN " . $this->jsGetPrefix() . "users AS u ON u.id = user.uid
-                $status ";
-        $query .= $inquery;
-        $total = wpjobportaldb::get_var($query);
-        $limit = $userlimit * $maxrecorded;
-        if ($limit >= $total) {
+                $wpjobportal_status ";
+        $query .= $wpjobportal_inquery;
+        $wpjobportal_total = wpjobportaldb::get_var($query);
+        $limit = $wpjobportal_userlimit * $wpjobportal_maxrecorded;
+        if ($limit >= $wpjobportal_total) {
             $limit = 0;
         }
 
@@ -623,57 +623,57 @@ class WPJOBPORTALUserModel {
                     ,u.user_login
                 FROM " . wpjobportal::$_db->prefix . "wj_portal_users AS user
                 LEFT JOIN " . $this->jsGetPrefix() . "users AS u ON u.id = user.uid
-                $status ";
-        $query .= $inquery;
-        $query .= " ORDER BY user.id LIMIT $limit, $maxrecorded";
-        $users = wpjobportaldb::get_results($query);
+                $wpjobportal_status ";
+        $query .= $wpjobportal_inquery;
+        $query .= " ORDER BY user.id LIMIT $limit, $wpjobportal_maxrecorded";
+        $wpjobportal_users = wpjobportaldb::get_results($query);
 
-        $html = $this->makeUserList($users, $total, $maxrecorded, $userlimit);
-        return $html;
+        $wpjobportal_html = $this->makeUserList($wpjobportal_users, $wpjobportal_total, $wpjobportal_maxrecorded, $wpjobportal_userlimit);
+        return $wpjobportal_html;
     }
 
     function getAllRoleLessUsersAjax() {
 
-        $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
-        if (! wp_verify_nonce( $nonce, 'get-all-role-less-users-ajax') ) {
+        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (! wp_verify_nonce( $wpjobportal_nonce, 'get-all-role-less-users-ajax') ) {
             die( 'Security check Failed' );
         }
-        $userlimit = WPJOBPORTALrequest::getVar('userlimit', null, 0);
-        $maxrecorded = 3;
+        $wpjobportal_userlimit = WPJOBPORTALrequest::getVar('userlimit', null, 0);
+        $wpjobportal_maxrecorded = 3;
         //Filters
 
-        $name = WPJOBPORTALrequest::getVar('name');
+        $wpjobportal_name = WPJOBPORTALrequest::getVar('name');
         $uname = WPJOBPORTALrequest::getVar('uname');
-        $email = WPJOBPORTALrequest::getVar('email');
+        $wpjobportal_email = WPJOBPORTALrequest::getVar('email');
 
-        wpjobportal::$_data['filter']['name'] = $name;
+        wpjobportal::$_data['filter']['name'] = $wpjobportal_name;
         wpjobportal::$_data['filter']['uname'] = $uname;
-        wpjobportal::$_data['filter']['email'] = $email;
+        wpjobportal::$_data['filter']['email'] = $wpjobportal_email;
 
-        $inquery = "";
+        $wpjobportal_inquery = "";
 
         if ($uname != null) {
-            $inquery .= " AND ( user.user_login LIKE '%" . esc_sql($uname) . "%' ) ";
+            $wpjobportal_inquery .= " AND ( user.user_login LIKE '%" . esc_sql($uname) . "%' ) ";
         }
 
-        if ($name != null) {
-            $inquery .= " AND ( user.display_name LIKE '%" . esc_sql($name) . "%' ) ";
+        if ($wpjobportal_name != null) {
+            $wpjobportal_inquery .= " AND ( user.display_name LIKE '%" . esc_sql($wpjobportal_name) . "%' ) ";
         }
 
-        if ($email != null) {
-            $inquery .= " AND ( user.user_email LIKE '%" . esc_sql($email) . "%' ) ";
+        if ($wpjobportal_email != null) {
+            $wpjobportal_inquery .= " AND ( user.user_email LIKE '%" . esc_sql($wpjobportal_email) . "%' ) ";
         }
 
         $query = "SELECT COUNT( user.ID ) AS total
                     FROM `" . $this->jsGetPrefix() . "users` AS user
                     WHERE NOT EXISTS( SELECT jsuser.id FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` AS jsuser WHERE user.ID = jsuser.uid) AND
                     NOT EXISTS(SELECT umeta_id FROM `".wpjobportal::$_db->prefix."usermeta` WHERE meta_value LIKE '%administrator%' AND user_id = user.id)";
-        $query .= $inquery;
+        $query .= $wpjobportal_inquery;
         $query .= " GROUP BY user.ID";
-        $total = wpjobportaldb::get_var($query);
+        $wpjobportal_total = wpjobportaldb::get_var($query);
 
-        $limit = $userlimit * $maxrecorded;
-        if ($limit >= $total) {
+        $limit = $wpjobportal_userlimit * $wpjobportal_maxrecorded;
+        if ($limit >= $wpjobportal_total) {
             $limit = 0;
         }
 
@@ -683,23 +683,23 @@ class WPJOBPORTALUserModel {
                     WHERE NOT EXISTS( SELECT jsuser.id FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` AS jsuser WHERE user.ID = jsuser.uid) AND
                     NOT EXISTS(SELECT umeta_id FROM `".wpjobportal::$_db->prefix."usermeta` WHERE meta_value LIKE '%administrator%' AND user_id = user.ID)";
 
-        $query .= $inquery;
-        $query .= " ORDER BY user.ID ASC LIMIT $limit, $maxrecorded";
-        $users = wpjobportaldb::get_results($query);
+        $query .= $wpjobportal_inquery;
+        $query .= " ORDER BY user.ID ASC LIMIT $limit, $wpjobportal_maxrecorded";
+        $wpjobportal_users = wpjobportaldb::get_results($query);
 
-        $html = $this->makeUserList($users, $total, $maxrecorded, $userlimit , true);
-        return $html;
+        $wpjobportal_html = $this->makeUserList($wpjobportal_users, $wpjobportal_total, $wpjobportal_maxrecorded, $wpjobportal_userlimit , true);
+        return $wpjobportal_html;
     }
 
-    function makeUserList($users, $total, $maxrecorded, $userlimit , $assignrole = false) {
-        $html = '';
-        if (!empty($users)) {
-            if (is_array($users)) {
+    function makeUserList($wpjobportal_users, $wpjobportal_total, $wpjobportal_maxrecorded, $wpjobportal_userlimit , $assignrole = false) {
+        $wpjobportal_html = '';
+        if (!empty($wpjobportal_users)) {
+            if (is_array($wpjobportal_users)) {
 
-                $html .= '
+                $wpjobportal_html .= '
                     <div id="records">';
 
-                $html .='
+                $wpjobportal_html .='
                 <div id="user-list-header" class="popup-table">
                     <div class="user-list-header-col user-id">' . esc_html(__('ID', 'wp-job-portal')) . '</div>
                     <div class="user-list-header-col user-name">' . esc_html(__('Name', 'wp-job-portal')) . '</div>
@@ -709,104 +709,104 @@ class WPJOBPORTALUserModel {
                 </div>
                 <div class="user-records-wrapper" >';
 
-                    foreach ($users AS $user) {
+                    foreach ($wpjobportal_users AS $wpjobportal_user) {
                         if($assignrole){
-                            $username = $user->name;
+                            $wpjobportal_username = $wpjobportal_user->name;
                         }else{
-                            $username = $user->first_name . ' ' . $user->last_name;
+                            $wpjobportal_username = $wpjobportal_user->first_name . ' ' . $wpjobportal_user->last_name;
                         }
-                        $html .='
+                        $wpjobportal_html .='
                             <div class="user-records-row" >
                                 <div class="user-list-body-col user-id">
-                                    ' . $user->userid . '
+                                    ' . $wpjobportal_user->userid . '
                                 </div>
                                 <div class="user-list-body-col user-name">
-                                    <a href="#" class="userpopup-link js-userpopup-link" data-id=' . $user->userid . ' data-name="' . $username . '" data-email="' . $user->emailaddress . '" >' . $username . '</a>
+                                    <a href="#" class="userpopup-link js-userpopup-link" data-id=' . $wpjobportal_user->userid . ' data-name="' . $wpjobportal_username . '" data-email="' . $wpjobportal_user->emailaddress . '" >' . $wpjobportal_username . '</a>
                                 </div>
                                 <div class="user-list-body-col user-name-n">
-                                    ' . $user->user_login . '
+                                    ' . $wpjobportal_user->user_login . '
                                 </div>
                                 <div class="user-list-body-col user-email">
-                                    ' . $user->emailaddress . '
+                                    ' . $wpjobportal_user->emailaddress . '
                                 </div>
                             </div>';
                     }
-                $html .='</div>';
+                $wpjobportal_html .='</div>';
             }
-            $num_of_pages = ceil($total / $maxrecorded);
-            $num_of_pages = ($num_of_pages > 0) ? ceil($num_of_pages) : floor($num_of_pages);
-            if ($num_of_pages > 0) {
+            $wpjobportal_num_of_pages = ceil($wpjobportal_total / $wpjobportal_maxrecorded);
+            $wpjobportal_num_of_pages = ($wpjobportal_num_of_pages > 0) ? ceil($wpjobportal_num_of_pages) : floor($wpjobportal_num_of_pages);
+            if ($wpjobportal_num_of_pages > 0) {
                 $page_html = '';
-                $prev = $userlimit;
-                if ($prev > 0) {
-                    $page_html .= '<a class="wpjobportaladmin-userlink" href="#" onclick="updateuserlist(' . ($prev - 1) . ');">' . esc_html(__('Previous', 'wp-job-portal')) . '</a>';
+                $wpjobportal_prev = $wpjobportal_userlimit;
+                if ($wpjobportal_prev > 0) {
+                    $page_html .= '<a class="wpjobportaladmin-userlink" href="#" onclick="updateuserlist(' . ($wpjobportal_prev - 1) . ');">' . esc_html(__('Previous', 'wp-job-portal')) . '</a>';
                 }
-                for ($i = 0; $i < $num_of_pages; $i++) {
-                    if ($i == $userlimit)
-                        $page_html .= '<span class="wpjobportaladmin-userlink selected" >' . ($i + 1) . '</span>';
+                for ($wpjobportal_i = 0; $wpjobportal_i < $wpjobportal_num_of_pages; $wpjobportal_i++) {
+                    if ($wpjobportal_i == $wpjobportal_userlimit)
+                        $page_html .= '<span class="wpjobportaladmin-userlink selected" >' . ($wpjobportal_i + 1) . '</span>';
                     else
-                        $page_html .= '<a class="wpjobportaladmin-userlink" href="#" onclick="updateuserlist(' . $i . ');">' . ($i + 1) . '</a>';
+                        $page_html .= '<a class="wpjobportaladmin-userlink" href="#" onclick="updateuserlist(' . $wpjobportal_i . ');">' . ($wpjobportal_i + 1) . '</a>';
                 }
-                $next = $userlimit + 1;
-                if ($next < $num_of_pages) {
-                    $page_html .= '<a class="wpjobportaladmin-userlink" href="#" onclick="updateuserlist(' . $next . ');">' . esc_html(__('Next', 'wp-job-portal')) . '</a>';
+                $wpjobportal_next = $wpjobportal_userlimit + 1;
+                if ($wpjobportal_next < $wpjobportal_num_of_pages) {
+                    $page_html .= '<a class="wpjobportaladmin-userlink" href="#" onclick="updateuserlist(' . $wpjobportal_next . ');">' . esc_html(__('Next', 'wp-job-portal')) . '</a>';
                 }
                 if ($page_html != '') {
-                    $html .= '<div class="wpjobportaladmin-userpages">' . $page_html . '</div>';
+                    $wpjobportal_html .= '<div class="wpjobportaladmin-userpages">' . $page_html . '</div>';
                 }
             }
         } else {
-            $html = WPJOBPORTALlayout::getAdminPopupNoRecordFound();
+            $wpjobportal_html = WPJOBPORTALlayout::getAdminPopupNoRecordFound();
         }
-        $html .= '</div>';
-        return $html;
+        $wpjobportal_html .= '</div>';
+        return $wpjobportal_html;
     }
 
-    function checkUserBySocialID($socialid) {
-        $query = "SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE socialid = '" . esc_sql($socialid) . "'";
-        $result = wpjobportal::$_db->get_var($query);
-        return $result;
+    function checkUserBySocialID($wpjobportal_socialid) {
+        $query = "SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE socialid = '" . esc_sql($wpjobportal_socialid) . "'";
+        $wpjobportal_result = wpjobportal::$_db->get_var($query);
+        return $wpjobportal_result;
     }
     
-    function getAppliedCountProfileID($socialprofileid,$jobid) {
-        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE socialprofileid = '" . esc_sql($socialprofileid) . "' AND jobid ='".esc_sql($jobid)."'";
-        $result = wpjobportal::$_db->get_var($query);
-        return $result;
+    function getAppliedCountProfileID($wpjobportal_socialprofileid,$wpjobportal_jobid) {
+        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE socialprofileid = '" . esc_sql($wpjobportal_socialprofileid) . "' AND jobid ='".esc_sql($wpjobportal_jobid)."'";
+        $wpjobportal_result = wpjobportal::$_db->get_var($query);
+        return $wpjobportal_result;
     }
 
-    function getSocialProfileID($socialid) {
-        $query = "SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_socialprofiles` WHERE socialid = '" . esc_sql($socialid) . "'";
-        $result = wpjobportal::$_db->get_var($query);
-        return $result;
+    function getSocialProfileID($wpjobportal_socialid) {
+        $query = "SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_socialprofiles` WHERE socialid = '" . esc_sql($wpjobportal_socialid) . "'";
+        $wpjobportal_result = wpjobportal::$_db->get_var($query);
+        return $wpjobportal_result;
     }
 
-    function getUserData($id){
-        if (!is_numeric($id))
+    function getUserData($wpjobportal_id){
+        if (!is_numeric($wpjobportal_id))
             return false;
-        $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE id = " . esc_sql($id) ;
+        $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE id = " . esc_sql($wpjobportal_id) ;
         wpjobportal::$_data[0] = wpjobportal::$_db->get_row($query);
         if(!empty(wpjobportal::$_data[0]) && isset(wpjobportal::$_data[0]->roleid)){// roleid not set error in log
             //employer
             if(wpjobportal::$_data[0]->roleid == 1){
-                $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE uid=".esc_sql($id);
+                $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE uid=".esc_sql($wpjobportal_id);
                 wpjobportal::$_data['jobs'] = wpjobportal::$_db->get_var($query);
 
-                $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` WHERE uid=".esc_sql($id);
+                $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` WHERE uid=".esc_sql($wpjobportal_id);
                 wpjobportal::$_data['companies'] = wpjobportal::$_db->get_var($query);
                 if(in_array('departments', wpjobportal::$_active_addons)){
-                    $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_departments` WHERE uid=".esc_sql($id);
+                    $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_departments` WHERE uid=".esc_sql($wpjobportal_id);
                     wpjobportal::$_data['department'] = wpjobportal::$_db->get_var($query);
                 }
 
                 $query = "SELECT COUNT(jobapply.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` as jobapply
-                JOIN ".wpjobportal::$_db->prefix."wj_portal_jobs AS job ON job.id = jobapply.jobid  WHERE job.uid=".esc_sql($id);
+                JOIN ".wpjobportal::$_db->prefix."wj_portal_jobs AS job ON job.id = jobapply.jobid  WHERE job.uid=".esc_sql($wpjobportal_id);
                 wpjobportal::$_data['jobapply'] = wpjobportal::$_db->get_var($query);
             }elseif(wpjobportal::$_data[0]->roleid == 2){
                 //jobseeker
-                $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE uid=".esc_sql($id);
-                wpjobportal::$_data['resume'] = wpjobportal::$_db->get_var($query);
+                $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE uid=".esc_sql($wpjobportal_id);
+                wpjobportal::$wpjobportal_data['resume'] = wpjobportal::$_db->get_var($query);
 
-                $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply`  WHERE uid=".esc_sql($id);
+                $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply`  WHERE uid=".esc_sql($wpjobportal_id);
                 wpjobportal::$_data['jobapply'] = wpjobportal::$_db->get_var($query);
             }
         }
@@ -824,33 +824,33 @@ class WPJOBPORTALUserModel {
         return;
     }
 
-    function storeUserRole($data) {
-        if (empty($data))
+    function storeUserRole($wpjobportal_data) {
+        if (empty($wpjobportal_data))
             return false;
-        $row = WPJOBPORTALincluder::getJSTable('users');
-        $data = wpjobportal::wpjobportal_sanitizeData($data);
-        if (!$row->bind($data)) {
+        $wpjobportal_row = WPJOBPORTALincluder::getJSTable('users');
+        $wpjobportal_data = wpjobportal::wpjobportal_sanitizeData($wpjobportal_data);
+        if (!$wpjobportal_row->bind($wpjobportal_data)) {
             return WPJOBPORTAL_SAVE_ERROR;
         }
-        if (!$row->check()) {
+        if (!$wpjobportal_row->check()) {
             return WPJOBPORTAL_SAVE_ERROR;
         }
-        if (!$row->store()) {
+        if (!$wpjobportal_row->store()) {
             return WPJOBPORTAL_SAVE_ERROR;
         }
         return WPJOBPORTAL_SAVED;
     }
 
     function getUserIdByCompanyid(){
-        $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
-        if (! wp_verify_nonce( $nonce, 'get-user-id-by-company-id') ) {
+        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (! wp_verify_nonce( $wpjobportal_nonce, 'get-user-id-by-company-id') ) {
             die( 'Security check Failed' );
         }
-        $companyid = WPJOBPORTALrequest::getVar('companyid');
-        if(!is_numeric($companyid)) return false;
-        $query = "SELECT uid FROM `".wpjobportal::$_db->prefix."wj_portal_companies` WHERE id = ".esc_sql($companyid);
-        $companyid = wpjobportal::$_db->get_var($query);
-        return $companyid;
+        $wpjobportal_companyid = WPJOBPORTALrequest::getVar('companyid');
+        if(!is_numeric($wpjobportal_companyid)) return false;
+        $query = "SELECT uid FROM `".wpjobportal::$_db->prefix."wj_portal_companies` WHERE id = ".esc_sql($wpjobportal_companyid);
+        $wpjobportal_companyid = wpjobportal::$_db->get_var($query);
+        return $wpjobportal_companyid;
     }
 
     function getUserDetailsById($u_id){
@@ -876,55 +876,55 @@ class WPJOBPORTALUserModel {
         return true;
     }
 
-    function storeUser($data){
-        if(empty($data)){
+    function storeUser($wpjobportal_data){
+        if(empty($wpjobportal_data)){
             return false;
         }
-        if(!$data['id']){
+        if(!$wpjobportal_data['id']){
             return false;
         }
-        $data['first_name'] = wpjobportal::wpjobportal_sanitizeData(WPJOBPORTALrequest::getVar('wpjobportal_user_first'));
-        $data['last_name'] = wpjobportal::wpjobportal_sanitizeData(WPJOBPORTALrequest::getVar('wpjobportal_user_last'));
-        $data = wpjobportal::wpjobportal_sanitizeData($data);
-        $data = wpjobportal::$_common->stripslashesFull($data);// remove slashes with quotes.
-        $data['description'] = wpautop(wptexturize(wpjobportalphplib::wpJP_stripslashes(WPJOBPORTALrequest::getVar('description','post','','',1))));
-        $row = WPJOBPORTALincluder::getJSTable('users');
-        if(!$row->bind($data)) {
+        $wpjobportal_data['first_name'] = wpjobportal::wpjobportal_sanitizeData(WPJOBPORTALrequest::getVar('wpjobportal_user_first'));
+        $wpjobportal_data['last_name'] = wpjobportal::wpjobportal_sanitizeData(WPJOBPORTALrequest::getVar('wpjobportal_user_last'));
+        $wpjobportal_data = wpjobportal::wpjobportal_sanitizeData($wpjobportal_data);
+        $wpjobportal_data = wpjobportal::$_common->stripslashesFull($wpjobportal_data);// remove slashes with quotes.
+        $wpjobportal_data['description'] = wpautop(wptexturize(wptexturize(wpjobportalphplib::wpJP_stripslashes(WPJOBPORTALrequest::getVar('description','post','','',1)))));
+        $wpjobportal_row = WPJOBPORTALincluder::getJSTable('users');
+        if(!$wpjobportal_row->bind($wpjobportal_data)) {
             return WPJOBPORTAL_SAVE_ERROR;
         }
-        if(!$row->check()) {
+        if(!$wpjobportal_row->check()) {
             return WPJOBPORTAL_SAVE_ERROR;
         }
-        if(!$row->store()) {
+        if(!$wpjobportal_row->store()) {
             return WPJOBPORTAL_SAVE_ERROR;
         }
 
         $this->storeUserPhoto(WPJOBPORTALincluder::getObjectClass('user')->getWPuid());
 
-        WPJOBPORTALincluder::getObjectClass('customfields')->storeCustomFields(4,$row->id,$data);
+        WPJOBPORTALincluder::getObjectClass('customfields')->storeCustomFields(4,$wpjobportal_row->id,$wpjobportal_data);
 
-        if(!$data['id']){
-            WPJOBPORTALincluder::getJSModel('emailtemplate')->sendMail(2,1,$row->id);
+        if(!$wpjobportal_data['id']){
+            WPJOBPORTALincluder::getJSModel('emailtemplate')->sendMail(2,1,$wpjobportal_row->id);
         }
 
-        if(isset($data['oldStatus']) && $data['oldStatus']!=$data['status']){
-            WPJOBPORTALincluder::getJSModel('emailtemplate')->sendMail(2,2,$row->id);
+        if(isset($wpjobportal_data['oldStatus']) && $wpjobportal_data['oldStatus']!=$wpjobportal_data['status']){
+            WPJOBPORTALincluder::getJSModel('emailtemplate')->sendMail(2,2,$wpjobportal_row->id);
         }
 
         return WPJOBPORTAL_SAVED;
     }
 
-    function storeUserPhoto($id){
-        if(!is_numeric($id)){
+    function storeUserPhoto($wpjobportal_id){
+        if(!is_numeric($wpjobportal_id)){
             return false;
         }
-        if($_FILES['photo']['size'] > 0) { // logo
-            $query = "SELECT photo FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE uid = ".esc_sql($id);
-            $photo = wpjobportal::$_db->get_var($query);
-            if( !empty($photo) ){
-               WPJOBPORTALincluder::getObjectClass('uploads')->removeUserPhoto($id);
+        if(!empty($_FILES['photo']) && $_FILES['photo']['size'] > 0) { // logo
+            $query = "SELECT photo FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE uid = ".esc_sql($wpjobportal_id);
+            $wpjobportal_photo = wpjobportal::$_db->get_var($query);
+            if( !empty($wpjobportal_photo) ){
+               WPJOBPORTALincluder::getObjectClass('uploads')->removeUserPhoto($wpjobportal_id);
             }
-            WPJOBPORTALincluder::getObjectClass('uploads')->uploadUserPhoto($id);
+            WPJOBPORTALincluder::getObjectClass('uploads')->uploadUserPhoto($wpjobportal_id);
         }
         return;
     }
@@ -933,18 +933,18 @@ class WPJOBPORTALUserModel {
     // setcookies for search form data
     //search cookies data
     function getSearchFormData(){
-        $jsjp_search_array = array();
-        $jsjp_search_array['searchname'] = WPJOBPORTALrequest::getVar('searchname');
-        $jsjp_search_array['searchusername'] = WPJOBPORTALrequest::getVar('searchusername');
-        $jsjp_search_array['searchrole'] = WPJOBPORTALrequest::getVar('searchrole');
-        $jsjp_search_array['searchcompany'] = WPJOBPORTALrequest::getVar('searchcompany');
-        $jsjp_search_array['searchresume'] = WPJOBPORTALrequest::getVar('searchresume');
-        $jsjp_search_array['search_from_user'] = 1;
-        return $jsjp_search_array;
+        $wpjobportal_jsjp_search_array = array();
+        $wpjobportal_jsjp_search_array['searchname'] = WPJOBPORTALrequest::getVar('searchname');
+        $wpjobportal_jsjp_search_array['searchusername'] = WPJOBPORTALrequest::getVar('searchusername');
+        $wpjobportal_jsjp_search_array['searchrole'] = WPJOBPORTALrequest::getVar('searchrole');
+        $wpjobportal_jsjp_search_array['searchcompany'] = WPJOBPORTALrequest::getVar('searchcompany');
+        $wpjobportal_jsjp_search_array['searchresume'] = WPJOBPORTALrequest::getVar('searchresume');
+        $wpjobportal_jsjp_search_array['search_from_user'] = 1;
+        return $wpjobportal_jsjp_search_array;
     }
 
     function getSavedCookiesDataForSearch(){
-        $jsjp_search_array = array();
+        $wpjobportal_jsjp_search_array = array();
         $wpjp_search_cookie_data = '';
         if(isset($_COOKIE['jsjp_jobportal_search_data'])){
             $wpjp_search_cookie_data = wpjobportal::wpjobportal_sanitizeData($_COOKIE['jsjp_jobportal_search_data']);
@@ -952,25 +952,25 @@ class WPJOBPORTALUserModel {
             $wpjp_search_cookie_data = json_decode( $wpjp_search_cookie_data , true );
         }
         if($wpjp_search_cookie_data != '' && isset($wpjp_search_cookie_data['search_from_user']) && $wpjp_search_cookie_data['search_from_user'] == 1){
-            $jsjp_search_array['searchname'] = $wpjp_search_cookie_data['searchname'];
-            $jsjp_search_array['searchusername'] = $wpjp_search_cookie_data['searchusername'];
-            $jsjp_search_array['searchrole'] = $wpjp_search_cookie_data['searchrole'];
-            $jsjp_search_array['searchcompany'] = $wpjp_search_cookie_data['searchcompany'];
-            $jsjp_search_array['searchresume'] = $wpjp_search_cookie_data['searchresume'];
+            $wpjobportal_jsjp_search_array['searchname'] = $wpjp_search_cookie_data['searchname'];
+            $wpjobportal_jsjp_search_array['searchusername'] = $wpjp_search_cookie_data['searchusername'];
+            $wpjobportal_jsjp_search_array['searchrole'] = $wpjp_search_cookie_data['searchrole'];
+            $wpjobportal_jsjp_search_array['searchcompany'] = $wpjp_search_cookie_data['searchcompany'];
+            $wpjobportal_jsjp_search_array['searchresume'] = $wpjp_search_cookie_data['searchresume'];
         }
-        return $jsjp_search_array;
+        return $wpjobportal_jsjp_search_array;
     }
 
-    function setSearchVariableForSearch($jsjp_search_array){
-        wpjobportal::$_search['user']['searchname'] = isset($jsjp_search_array['searchname']) ? $jsjp_search_array['searchname'] : null;
-        wpjobportal::$_search['user']['searchusername'] = isset($jsjp_search_array['searchusername']) ? $jsjp_search_array['searchusername'] : null;
-        wpjobportal::$_search['user']['searchrole'] = isset($jsjp_search_array['searchrole']) ? $jsjp_search_array['searchrole'] : null;
-        wpjobportal::$_search['user']['searchcompany'] = isset($jsjp_search_array['searchcompany']) ? $jsjp_search_array['searchcompany'] : null;
-        wpjobportal::$_search['user']['searchresume'] = isset($jsjp_search_array['searchresume']) ? $jsjp_search_array['searchresume'] : null;
+    function setSearchVariableForSearch($wpjobportal_jsjp_search_array){
+        wpjobportal::$_search['user']['searchname'] = isset($wpjobportal_jsjp_search_array['searchname']) ? $wpjobportal_jsjp_search_array['searchname'] : null;
+        wpjobportal::$_search['user']['searchusername'] = isset($wpjobportal_jsjp_search_array['searchusername']) ? $wpjobportal_jsjp_search_array['searchusername'] : null;
+        wpjobportal::$_search['user']['searchrole'] = isset($wpjobportal_jsjp_search_array['searchrole']) ? $wpjobportal_jsjp_search_array['searchrole'] : null;
+        wpjobportal::$_search['user']['searchcompany'] = isset($wpjobportal_jsjp_search_array['searchcompany']) ? $wpjobportal_jsjp_search_array['searchcompany'] : null;
+        wpjobportal::$_search['user']['searchresume'] = isset($wpjobportal_jsjp_search_array['searchresume']) ? $wpjobportal_jsjp_search_array['searchresume'] : null;
     }
 
     function getMessagekey(){
-        $key = 'user';if(wpjobportal::$_common->wpjp_isadmin()){$key = 'admin_'.$key;}return $key;
+        $wpjobportal_key = 'user';if(wpjobportal::$_common->wpjp_isadmin()){$wpjobportal_key = 'admin_'.$wpjobportal_key;}return $wpjobportal_key;
     }
 
 

@@ -15,18 +15,18 @@ class WPJOBPORTALformhandler {
      */
 
     function checkFormRequest() {
-        $formrequest = WPJOBPORTALrequest::getVar('form_request', 'post');
-        if ($formrequest == 'wpjobportal') {
+        $wpjobportal_formrequest = WPJOBPORTALrequest::getVar('form_request', 'post');
+        if ($wpjobportal_formrequest == 'wpjobportal') {
             //handle the request
-            $modulename = (is_admin()) ? 'page' : 'wpjobportalme';
-            $module = WPJOBPORTALrequest::getVar($modulename);
-            $module = wpjobportalphplib::wpJP_str_replace('wpjobportal_', '', $module);
+            $wpjobportal_modulename = (is_admin()) ? 'page' : 'wpjobportalme';
+            $wpjobportal_module = WPJOBPORTALrequest::getVar($wpjobportal_modulename);
+            $wpjobportal_module = wpjobportalphplib::wpJP_str_replace('wpjobportal_', '', $wpjobportal_module);
             wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-            WPJOBPORTALincluder::include_file($module);
-            $class = 'WPJOBPORTAL' . $module . "Controller";
-            $task = WPJOBPORTALrequest::getVar('task');
-            $obj = new $class;
-            $obj->$task();
+            WPJOBPORTALincluder::include_file($wpjobportal_module);
+            $wpjobportal_class = 'WPJOBPORTAL' . $wpjobportal_module . "Controller";
+            $wpjobportal_task = WPJOBPORTALrequest::getVar('task');
+            $obj = new $wpjobportal_class;
+            $obj->$wpjobportal_task();
         }
     }
 
@@ -38,19 +38,19 @@ class WPJOBPORTALformhandler {
         $wpjobportal_action = WPJOBPORTALrequest::getVar('action', 'get');
         if ($wpjobportal_action == 'wpjobportaltask') {
             //handle the request
-            $modulename = (is_admin()) ? 'page' : 'wpjobportalme';
-            $module = WPJOBPORTALrequest::getVar($modulename);
-            $module = wpjobportalphplib::wpJP_str_replace('wpjobportal_', '', $module);
+            $wpjobportal_modulename = (is_admin()) ? 'page' : 'wpjobportalme';
+            $wpjobportal_module = WPJOBPORTALrequest::getVar($wpjobportal_modulename);
+            $wpjobportal_module = wpjobportalphplib::wpJP_str_replace('wpjobportal_', '', $wpjobportal_module);
             wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-            WPJOBPORTALincluder::include_file($module);
-            $class = 'WPJOBPORTAL' . $module . "Controller";
-            $action = WPJOBPORTALrequest::getVar('task');
-            $obj = new $class;
-            $obj->$action();
+            WPJOBPORTALincluder::include_file($wpjobportal_module);
+            $wpjobportal_class = 'WPJOBPORTAL' . $wpjobportal_module . "Controller";
+            $wpjobportal_action = WPJOBPORTALrequest::getVar('task');
+            $obj = new $wpjobportal_class;
+            $obj->$wpjobportal_action();
         }
     }
 
 }
 
-$formhandler = new WPJOBPORTALformhandler();
+$wpjobportal_formhandler = new WPJOBPORTALformhandler();
 ?>

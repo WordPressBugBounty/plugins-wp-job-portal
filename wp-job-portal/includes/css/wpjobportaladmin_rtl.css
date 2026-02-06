@@ -74,7 +74,7 @@ div.wpjobportal-review-sec div.wpjobportal-review div.wpjobportal-review-lower a
 
 /* job list */
 div.wpjobportal-jobs-list div.wpjobportal-jobs-list-top-wrp div.wpjobportal-jobs-logo {float: right;}
-div.wpjobportal-jobs-list div.wpjobportal-jobs-list-top-wrp div.wpjobportal-jobs-cnt-wrp {padding-left: 0;padding-right: 20px;}
+div.wpjobportal-jobs-list div.wpjobportal-jobs-list-top-wrp div.wpjobportal-jobs-cnt-wrp {padding-left: 0;}
 div.wpjobportal-jobs-list div.wpjobportal-jobs-list-top-wrp div.wpjobportal-jobs-cnt-wrp div.wpjobportal-jobs-middle-wrp {float: right;}
 div.wpjobportal-jobs-list div.wpjobportal-jobs-list-top-wrp div.wpjobportal-jobs-cnt-wrp div.wpjobportal-jobs-middle-wrp div.wpjobportal-jobs-data span.wpjobportal-jobs-data-text {margin-right: 0;margin-left: 20px;}
 div.wpjobportal-jobs-list div.wpjobportal-jobs-list-top-wrp div.wpjobportal-jobs-cnt-wrp div.wpjobportal-jobs-right-wrp {text-align: left;}
@@ -84,11 +84,14 @@ div.wpjobportal-jobs-list div.wpjobportal-jobs-list-btm-wrp div.wpjobportal-jobs
 div.wpjobportal-resume-list div.wpjobportal-resume-list-top-wrp div.wpjobportal-resume-logo {float: right;}
 div.wpjobportal-resume-list div.wpjobportal-resume-list-top-wrp div.wpjobportal-resume-cnt-wrp {padding-left: 0;padding-right: 30px;}
 div.wpjobportal-resume-list div.wpjobportal-resume-list-top-wrp div.wpjobportal-resume-cnt-wrp div.wpjobportal-resume-middle-wrp {float: right;}
-div.wpjobportal-resume-list div.wpjobportal-resume-list-top-wrp div.wpjobportal-resume-cnt-wrp div.wpjobportal-resume-middle-wrp div.wpjobportal-resume-data div.wpjobportal-resume-data-text {margin-right: 0;margin-left: 15px;}
+div.wpjobportal-resume-list div.wpjobportal-resume-list-top-wrp div.wpjobportal-resume-cnt-wrp div.wpjobportal-resume-middle-wrp div.wpjobportal-resume-data div.wpjobportal-resume-data-text {margin-right: 0;margin-left: 15px;padding-right: 0;}
+div.wpjobportal-resume-list .wpjobportal-resume-middle-wrp{padding-right: 0;}
 div.wpjobportal-resume-list div.wpjobportal-resume-list-top-wrp div.wpjobportal-resume-cnt-wrp div.wpjobportal-resume-middle-wrp div.wpjobportal-resume-data div.wpjobportal-resume-data-text span.wpjobportal-resume-data-title {margin-right: 0;margin-left: 3px;}
 div.wpjobportal-resume-list div.wpjobportal-resume-list-btm-wrp div.wpjobportal-resume-action-wrp .wpjobportal-resume-act-btn {float: right;}
 div.wpjobportal-resume-list div.wpjobportal-resume-list-top-wrp div.wpjobportal-resume-cnt-wrp div.wpjobportal-resume-right-wrp {text-align: left;}
-
+div.wpjobportal-resume-list div.wpjobportal-resume-list-top-wrp div.wpjobportal-resume-cnt-wrp{padding-right: 0;}
+.wpjobportal-resume-data-value::before{    margin-left: 8px;}
+ul.wpjobportaladmin-sidebar-menu li.disabled-menu a.wpjobportaladmin-install-btn{float: left;}
 /* edit resume */
 div.wjportal-form-wrp div.wjportal-form-row div.wjportal-form-title {float: right !important;}
 div.wjportal-form-wrp div.wjportal-resume-add-new-section-btn {float: right !important;}
@@ -128,10 +131,12 @@ div.wpjobportal-company-list div.wpjobportal-company-list-top-wrp div.wpjobporta
 div.wpjobportal-company-list div.wpjobportal-company-list-top-wrp div.wpjobportal-company-cnt-wrp div.wpjobportal-company-middle-wrp div.wpjobportal-company-data-text span.wpjobportal-company-data-title {margin-right: 0;margin-left: 3px;}
 div.wpjobportal-company-list div.wpjobportal-company-list-top-wrp div.wpjobportal-company-cnt-wrp div.wpjobportal-company-right-wrp {text-align: left;}
 div.wpjobportal-company-list div.wpjobportal-company-list-btm-wrp div.wpjobportal-company-action-wrp .wpjobportal-company-act-btn {float: right;margin-right: 0;margin-left: 5px;}
-
+.wpjobportal-company-data-value::before{margin-left: 8px;}
+.wpjobportal-company-middle-wrp{padding-right: 0;}
+div.wpjobportal-company-list div.wpjobportal-company-list-top-wrp div.wpjobportal-company-cnt-wrp{padding-right: 0;}
 /* quick actions */
 div#wpjobportal-page-quick-actions .wpjobportal-page-quick-act-btn img {margin-right: 0;margin-left: 3px;}
-div#wpjobportal-page-quick-actions div.wpjobportal-sorting-wrp {float: left;}
+div#wpjobportal-page-quick-actions div.wpjobportal-sorting-wrp {justify-content: left;margin-left: 0;margin-right: auto;}
 div#wpjobportal-page-quick-actions div.wpjobportal-sorting-wrp span.wpjobportal-sort-text {float: right;}
 div#wpjobportal-page-quick-actions div.wpjobportal-sorting-wrp span.wpjobportal-sort-field {float: right;}
 div#wpjobportal-page-quick-actions div.wpjobportal-sorting-wrp span.wpjobportal-sort-field select {    background-position: calc(100% - 93%);}
@@ -148,11 +153,13 @@ div#wpjobportaladmin-wrapper div#popup_main div#popup-record-data div.user-recor
 div#wpjobportaladmin-wrapper div#popup-main-outer div#popup-main span.popup-top span#popup_title {float: right;}
 div#wpjobportaladmin-wrapper div#popup-main-outer div#popup-main span.popup-top img#popup_cross {float: left;}
 div#wpjobportaladmin-wrapper div#popup_main form.popup-field-from div.popup-field-wrapper div.popup-field-obj select {float: right;background-position: calc(100% - 95%);}
-
+div#wpjobportaladmin-wrapper input#contactemail {
+    text-align: end;
+}
 /* tables */
 table.wpjobportal-table td.wpjobportal-table-section-header {text-align: right;}
-table.wpjobportal-table tr th.wpjobportal-text-left {text-align: right;}
-table.wpjobportal-table tr td.wpjobportal-text-left {text-align: right;}
+table.wpjobportal-table tr th.wpjobportal-text-left {text-align: right !important;}
+table.wpjobportal-table tr td.wpjobportal-text-left {text-align: right !important;}
 table.wpjobportal-table tr th {border-right: 0;border-left: 1px solid #ebecec;}
 table.wpjobportal-table tr th:last-child {border-left: 0;}
 table.wpjobportal-table tr td {border-right: 0;border-left: 1px solid #ebecec;}
@@ -176,6 +183,9 @@ form.wpjobportal-filter-form div.wpjobportal-form-checkbox-field {float: right;}
 form.wpjobportal-filter-form div.wpjobportal-form-checkbox-field input {margin-right: 0;margin-left: 10px;}
 
 /* forms */
+span#loadaddressdata_city_name_msg_warn img{margin-left: 5px; margin-right: 0;}
+.wpjobportal-form-description{margin-right: 200px; left: auto;}
+form.wpjobportal-form .wpjobportal-form-title{justify-content: right;}
 form.wpjobportal-form div.wpjobportal-form-wrapper {float: right;}
 form.wpjobportal-form div.wpjobportal-form-wrapper span.wpjobportal-form-radio-field {float: right;margin-right: 0;margin-left: 5px;}
 form.wpjobportal-form div.wpjobportal-form-wrapper div.wpjobportal-form-value a#userpopup {right: auto;left: 0;}
@@ -201,7 +211,7 @@ div#wpjobportaladmin-wrapper div.tabs div.tabInner div.wpjobportal-config-row di
 div#wpjobportaladmin-wrapper div.tabs div.tabInner div.wpjobportal-config-row div.wpjobportal-config-value {float: right;}
 div.wpjobportal-config-main-wrapper .wpjobportal-configurations div.wpjobportal-left-menu ul.config-accordion li.disabled-menu a.wpjobportaladmin-install-btn,
 div.wpjobportal-config-main-wrapper .wpjobportal-configurations div.wpjobportal-left-menu ul.config-accordion li ul.wpjobportaladmin-sidebar-submenu li.disabled-menu a {float: left;}
-
+#wjp-config-dashboard .wjp-pro-group-cta a.wjp-btn{    margin-right: auto; margin-left: 0;}
 /* themes */
 div.js_effect_preview div#jsst_breadcrumbs_parent div {float: right !important;margin-left: 0 !important;margin-right: 5px !important;}
 div.js_effect_preview div#wpjobportal-header-main-wrapper a.headerlinks {float: right;}
@@ -283,6 +293,7 @@ div.wpjobportal-post-installation div.wpjobportal-post-data form div.wpjobportal
 /* job applied resume */
 form.wpjobportal-adv-srch-filter-form input.wpjobportal-form-input-field {float: right;}
 form.wpjobportal-adv-srch-filter-form select.wpjobportal-form-select-field {float: right;}
+#wpjobportal_appliedresume_action_allexport{margin-left: 10px;margin-right: auto;}
 
 /* addon list */
 div.wpjobportaladmin-add-on-page-wrp div.add-on-page-cnt div.add-on-msg .add-on-msg-txt {float: right;}
@@ -308,7 +319,7 @@ div#wpjobportal-admin-wrapper .wpjobportal-help-top .wpjobportal-help-top-right 
 div#wpjobportal-admin-wrapper .wpjobportal-help-top .wpjobportal-help-top-left .wpjobportal-help-top-left-cnt-info .wpjobportal-help-top-middle-action img,
 div#wpjobportal-admin-wrapper .wpjobportal-help-top .wpjobportal-help-top-right .wpjobportal-help-top-right-cnt-info .wpjobportal-help-top-middle-action img {margin-right: unset;margin-left: 8px;}
 div#wpjobportal-admin-wrapper .wpjobportal-help-btm .wpjobportal-help-btm-wrp .wpjobportal-help-btm-cnt a .wpjobportal-help-btm-cnt-img {float: right;}
-div#wpjobportal-admin-wrapper .wpjobportal-help-btm .wpjobportal-help-btm-wrp .wpjobportal-help-btm-cnt {margin: 0 0px 10px 10px;float: right;}
+div#wpjobportal-admin-wrapper .wpjobportal-help-btm .wpjobportal-help-btm-wrp .wpjobportal-help-btm-cnt {margin: 0 0px 10px 10px;float: right;width: 100% ;}
 div#wpjobportal-admin-wrapper .wpjobportal-help-btm .wpjobportal-help-btm-wrp .wpjobportal-help-btm-cnt a .wpjobportal-help-btm-cnt-title span {padding: 25px 5px 0 0;}
 div.wpjobportal-help-btn {margin-left: unset;margin-right: 5px;}
 
@@ -333,6 +344,23 @@ div#wpjobportal-admin-wrapper .wpjobportal-overview-addonupdate-card .wpjobporta
 div#wpjobportal-admin-wrapper .wpjobportal-overview-config-detail-secwrp .wpjobportal-overview-config-detail-leftclm .wpjobportal-overview-config-detail-innerwrp .wpjobportal-overview-config-tpsect .wpjobportal-overview-config-tpsect-btnwrp a.wpjobportal-overview-config-tpsect-videobtn img{padding-right: 0;padding-left: 10px;}
 div#wpjobportal-admin-wrapper .wp-jobportal-config-slider .wp-jobportal-switch-text.wpjobportal-congin-disabled{justify-content: flex-start;}
 div#wpjobportal-admin-wrapper .wp-jobportal-config-slider .wp-jobportal-switch-text.wpjobportal-congin-enabled{text-align: left;width: 100%;}
+
+div#wpjobportaladmin-wrapper .featurednew{left: 200px;right: auto;}
+
+ #wjp-dashboard-wrapper div#wpjobportaladmin-wrapper .wjp-so-popup {
+    left: 0; 
+   right: auto;
+}
+.wpjobportal-config-title{justify-content:flex-start; }
+div#wpjobportaladmin-wrapper .email-feilds{    display: flex;
+    gap: 10px;
+    align-items: center;}
+
+div#wpjobportaladmin-wrapper span.selector{right: -4px; left: auto;}
+#wjp-dashboard-wrapper div.wjp-item-main-info img.wjp-avatar{    margin-left: 1rem;}
+#wjp-dashboard-wrapper div.wjp-applicant-info img.wjp-avatar{    margin-left: 1rem;}
+div#wpjobportaladmin-wrapper .wpjobportal-jobs-data-text{margin-right: 0;}
+div#wpjobportaladmin-wrapper .wpjobportal-jobs-middle-wrp{ padding-right: 0rem;}
 
 /* responsive */
 @media (max-width: 782px) {

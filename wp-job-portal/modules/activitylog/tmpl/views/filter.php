@@ -53,7 +53,7 @@ if (!defined('ABSPATH'))
             <?php echo wp_kses(WPJOBPORTALformfield::hidden('sorton', wpjobportal::$_data['sorton']),WPJOBPORTAL_ALLOWED_TAGS); ?>
             <?php echo wp_kses(WPJOBPORTALformfield::hidden('WPJOBPORTAL_form_search', 'WPJOBPORTAL_SEARCH'),WPJOBPORTAL_ALLOWED_TAGS); ?>
             <div class="popup-act-btn-wrp" >
-                <a href="#" class="popup-act-btn" onclick="submitfrom()" title="<?php echo esc_html(__('submit', 'wp-job-portal')); ?>">
+                <a href="#" class="popup-act-btn" onclick="submitfrom()" title="<?php echo esc_attr(__('submit', 'wp-job-portal')); ?>">
                     <?php echo esc_html(__('Submit', 'wp-job-portal')); ?>
                 </a>
             </div>

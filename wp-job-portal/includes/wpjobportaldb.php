@@ -10,11 +10,11 @@ class wpjobportaldb {
     }
 
     public static function get_var($query) {
-        $result = wpjobportal::$_db->get_var($query);
+        $wpjobportal_result = wpjobportal::$_db->get_var($query);
         if (wpjobportal::$_db->last_error != null) {
             WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError();
         }
-        return $result;
+        return $wpjobportal_result;
     }
 
     function setQuery($query){
@@ -22,19 +22,19 @@ class wpjobportaldb {
     }
 
     public static function get_row($query) {
-        $result = wpjobportal::$_db->get_row($query);
+        $wpjobportal_result = wpjobportal::$_db->get_row($query);
         if (wpjobportal::$_db->last_error != null) {
             WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError();
         }
-        return $result;
+        return $wpjobportal_result;
     }
 
     public static function get_results($query) {
-        $result = wpjobportal::$_db->get_results($query);
+        $wpjobportal_result = wpjobportal::$_db->get_results($query);
         if (wpjobportal::$_db->last_error != null) {
             WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError();
         }
-        return $result;
+        return $wpjobportal_result;
     }
 
     private function parseQuery($query){
@@ -43,13 +43,13 @@ class wpjobportaldb {
     }
 
     public static function query($query) {
-        $result = true;
+        $wpjobportal_result = true;
         wpjobportal::$_db->query($query);
         if (wpjobportal::$_db->last_error != null) {
             WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError();
-            $result = false;
+            $wpjobportal_result = false;
         }
-        return $result;
+        return $wpjobportal_result;
     }
 
 }

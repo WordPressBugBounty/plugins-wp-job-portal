@@ -2,14 +2,14 @@
 if (!defined('ABSPATH'))
     die('Restricted Access');
 
-class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
+class WPJOBPORTAL_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 
 	public function get_name() {
 		return 'jp_shortcodes_wigdet';
 	}
 
 	public function get_title() {
-		return esc_html__( 'Job Portal', 'elementor-addon' );
+		return esc_html__( 'Job Portal', 'wp-job-portal' );
 	}
 
 	public function get_icon() {
@@ -32,7 +32,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_title',
 			[
-				'label' => esc_html__( 'WP Job Portal', 'elementor-addon' ),
+				'label' => esc_html__( 'WP Job Portal', 'wp-job-portal' ),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -41,22 +41,22 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 	    $this->add_control(
 	        'jp_shortcode',
 	        [
-	            'label' => __('Select Page To Show', 'custom-elementor'),
+	            'label' => __('Select Page To Show', 'wp-job-portal'),
 	            'type' => \Elementor\Controls_Manager::SELECT,
 	            'options' => [
-						'wpjobportal_jobseeker_controlpanel' => __('Job Seeker Control Panel', 'text-domain'),
-	                	'wpjobportal_employer_controlpanel' => __('Employer Control Panel', 'text-domain'),
-						'wpjobportal_job' => __('Job Listing', 'text-domain'),
-						'wpjobportal_job_categories' => __('Job Categories', 'text-domain'),
-						'wpjobportal_job_types' => __('Job Types', 'text-domain'),
-						'wpjobportal_my_appliedjobs' => __('My Applied Jobs', 'text-domain'),
-						'wpjobportal_my_companies' => __('My Companies', 'text-domain'),
-						'wpjobportal_my_departments' => __('My Departments', 'text-domain'),
-						'wpjobportal_my_jobs' => __('My Jobs', 'text-domain'),
-						'wpjobportal_my_resumes' => __('My Resumes', 'text-domain'),
-						'wpjobportal_searchjob' => __('Search Jobs', 'text-domain'),
-						'wpjobportal_searchresume' => __('Search Resumes', 'text-domain'),
-						'wpjobportal_jobbycategory' => __('Jobs by Category', 'text-domain'),
+						'wpjobportal_jobseeker_controlpanel' => __('Job Seeker Control Panel', 'wp-job-portal'),
+	                	'wpjobportal_employer_controlpanel' => __('Employer Control Panel', 'wp-job-portal'),
+						'wpjobportal_job' => __('Job Listing', 'wp-job-portal'),
+						'wpjobportal_job_categories' => __('Job Categories', 'wp-job-portal'),
+						'wpjobportal_job_types' => __('Job Types', 'wp-job-portal'),
+						'wpjobportal_my_appliedjobs' => __('My Applied Jobs', 'wp-job-portal'),
+						'wpjobportal_my_companies' => __('My Companies', 'wp-job-portal'),
+						'wpjobportal_my_departments' => __('My Departments', 'wp-job-portal'),
+						'wpjobportal_my_jobs' => __('My Jobs', 'wp-job-portal'),
+						'wpjobportal_my_resumes' => __('My Resumes', 'wp-job-portal'),
+						'wpjobportal_searchjob' => __('Search Jobs', 'wp-job-portal'),
+						'wpjobportal_searchresume' => __('Search Resumes', 'wp-job-portal'),
+						'wpjobportal_jobbycategory' => __('Jobs by Category', 'wp-job-portal'),
 	            ],
 	            'default' => 'wpjobportal_job',
 	        ]
@@ -72,20 +72,20 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 
 
 		//to handle default/reset case
-        $color_array['color1'] = "#3baeda";
-        $color_array['color2'] = "#333333";
-        $color_array['color3'] = "#575757";
+        $wpjobportal_color_array['color1'] = "#3baeda";
+        $wpjobportal_color_array['color2'] = "#333333";
+        $wpjobportal_color_array['color3'] = "#575757";
 
         // handle color css
         // to handle the case of not all three are changed
-        // $color_array = array();
-        // $color_string_values = get_option("wpjp_set_theme_colors");
-        // if($color_string_values != ''){
-        //     $json_values = json_decode($color_string_values,true);
-        //     if(is_array($json_values) && !empty($json_values)){
-        //         $color_array['color1'] = esc_attr($json_values['color1']);
-        //         $color_array['color2'] = esc_attr($json_values['color2']);
-        //         $color_array['color3'] = esc_attr($json_values['color3']);
+        // $wpjobportal_color_array = array();
+        // $wpjobportal_color_string_values = get_option("wpjp_set_theme_colors");
+        // if($wpjobportal_color_string_values != ''){
+        //     $wpjobportal_json_values = json_decode($wpjobportal_color_string_values,true);
+        //     if(is_array($wpjobportal_json_values) && !empty($wpjobportal_json_values)){
+        //         $wpjobportal_color_array['color1'] = esc_attr($wpjobportal_json_values['color1']);
+        //         $wpjobportal_color_array['color2'] = esc_attr($wpjobportal_json_values['color2']);
+        //         $wpjobportal_color_array['color3'] = esc_attr($wpjobportal_json_values['color3']);
         //     }
         // }
 
@@ -137,7 +137,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 		            'style_section',
 		            [
-		                'label' => __('Colors', 'custom-elementor'),
+		                'label' => __('Colors', 'wp-job-portal'),
 		                'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
 		            ]
 		        );
@@ -145,7 +145,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		        $this->add_control(
 		            'jp_primarycolor',
 		            [
-		                'label'     => __('Primary Color', 'custom-elementor'),
+		                'label'     => __('Primary Color', 'wp-job-portal'),
 		                'type'      => \Elementor\Controls_Manager::COLOR,
 		                'selectors' => [
 				            '{{WRAPPER}} .wjportal-main-wrapper .wjportal-cp-user-act-btn' => 'background: {{VALUE}} !important;',
@@ -164,7 +164,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 				            '{{WRAPPER}} div.wjportal-elegant-addon-main-up-wrapper .wjportal-elegant-addon-jobs-apply-btn-wrp a.wjportal-elegant-addon-jobs-apply-btn' => 'background-color: {{VALUE}} !important;border-color: {{VALUE}} !important;',
 				        ],
 				        'condition' => $pages_for_styling_array,
-				        // 'default' => $color_array['color1'],
+				        // 'default' => $wpjobportal_color_array['color1'],
 		            ]
 		        );
 
@@ -189,7 +189,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		        $this->add_control(
 		            'jp_secondarycolor',
 		            [
-		                'label'     => __('Secondary Color', 'custom-elementor'),
+		                'label'     => __('Secondary Color', 'wp-job-portal'),
 		                'type'      => \Elementor\Controls_Manager::COLOR,
 		                'selectors' => [
 				            '{{WRAPPER}} div.wjportal-jobs-list div.wjportal-jobs-list-top-wrp div.wjportal-jobs-cnt-wrp div.wjportal-jobs-middle-wrp div.wjportal-jobs-data a.wjportal-companyname' => 'color: {{VALUE}} !important;',
@@ -205,7 +205,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 
 		                ],
 		                'condition' => $pages_for_styling_array,
-		                // 'default' => $color_array['color2'],
+		                // 'default' => $wpjobportal_color_array['color2'],
 		            ]
 		        );
 		        $this->add_control(
@@ -221,7 +221,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		        $this->add_control(
 		            'jp_contentcolor',
 		            [
-		                'label'     => __('Content Color', 'custom-elementor'),
+		                'label'     => __('Content Color', 'wp-job-portal'),
 		                'type'      => \Elementor\Controls_Manager::COLOR,
 		                'selectors' => [
 		                    //'{{WRAPPER}} div#wjportal-emp-cp-wrp div.wjportal-cp-left div.wjportal-cp-short-links-wrp div.wjportal-cp-short-links-list div.wjportal-cp-list a.wjportal-list-anchor' => 'color: {{VALUE}} !important;',
@@ -236,7 +236,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		                    '{{WRAPPER}} div.wjportal-elegant-addon-main-up-wrapper .wjportal-elegant-addon-filter-search-wrp input' => 'color: {{VALUE}} !important;',
 		                ],
 		                'condition' => $pages_for_styling_array,
-		                // 'default' => $color_array['color3'],
+		                // 'default' => $wpjobportal_color_array['color3'],
 		            ]
 		        );
 		        $this->add_control(
@@ -295,7 +295,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		        $this->start_controls_section(
 		            'body_typography_section',
 		            [
-		                'label' => __('Content Styling', 'custom-elementor'),
+		                'label' => __('Content Styling', 'wp-job-portal'),
 		                'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
 		                'condition' => $pages_for_styling_array,
 		            ]
@@ -304,7 +304,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 				$this->add_control(
 				    'typography_content_font_family',
 				    [
-				        'label' => __('Font Family', 'custom-elementor'),
+				        'label' => __('Font Family', 'wp-job-portal'),
 				        'type' => \Elementor\Controls_Manager::FONT,
 				        'default' => '',
 				        'selectors' => [
@@ -332,7 +332,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 				$this->add_control(
 				    'typography_content_font_size',
 				    [
-				        'label' => __('Font Size', 'custom-elementor'),
+				        'label' => __('Font Size', 'wp-job-portal'),
 				        'type' => \Elementor\Controls_Manager::SLIDER,
 				        'size_units' => ['px', 'em', 'rem'],
 				        'range' => [
@@ -370,7 +370,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 				$this->add_control(
 				    'typography_content_font_weight',
 				    [
-				        'label' => __('Font Weight', 'custom-elementor'),
+				        'label' => __('Font Weight', 'wp-job-portal'),
 				        'type' => \Elementor\Controls_Manager::SELECT,
 				        'options' => [
 				            '100' => 'Thin',
@@ -408,7 +408,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 				$this->add_control(
 				    'typography_content_text_transform',
 				    [
-				        'label' => __('Text Transform', 'custom-elementor'),
+				        'label' => __('Text Transform', 'wp-job-portal'),
 				        'type' => \Elementor\Controls_Manager::SELECT,
 				        'options' => [
 				            'none' => 'None',
@@ -441,7 +441,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 				$this->add_control(
 				    'typography_content_font_style',
 				    [
-				        'label' => __('Font Style', 'custom-elementor'),
+				        'label' => __('Font Style', 'wp-job-portal'),
 				        'type' => \Elementor\Controls_Manager::SELECT,
 				        'options' => [
 				            'normal' => 'Normal',
@@ -473,7 +473,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 				$this->add_control(
 				    'typography_content_line_height',
 				    [
-				        'label' => __('Line Height', 'custom-elementor'),
+				        'label' => __('Line Height', 'wp-job-portal'),
 				        'type' => \Elementor\Controls_Manager::SLIDER,
 				        'size_units' => ['em', 'px', 'rem'],
 				        'range' => [
@@ -509,7 +509,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 				$this->add_control(
 				    'typography_content_letter_spacing',
 				    [
-				        'label' => __('Letter Spacing', 'custom-elementor'),
+				        'label' => __('Letter Spacing', 'wp-job-portal'),
 				        'type' => \Elementor\Controls_Manager::SLIDER,
 				        'size_units' => ['px', 'em', 'rem'],
 				        'range' => [
@@ -560,7 +560,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		        $this->start_controls_section(
 		            'title_typography_section',
 		            [
-		                'label' => __('Section Title Styling', 'custom-elementor'),
+		                'label' => __('Section Title Styling', 'wp-job-portal'),
 		                'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
 		                'condition' => $pages_for_styling_array,
 		            ]
@@ -570,7 +570,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		        $this->add_control(
 		            'typography_section_title_font_family',
 		            [
-		                'label' => __('Font Family', 'custom-elementor'),
+		                'label' => __('Font Family', 'wp-job-portal'),
 		                'type' => \Elementor\Controls_Manager::FONT,
 		                'default' => 'Arial, sans-serif',
 		                'selectors' => [
@@ -588,7 +588,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		        $this->add_control(
 		            'typography_section_title_font_size',
 		            [
-		                'label' => __('Font Size', 'custom-elementor'),
+		                'label' => __('Font Size', 'wp-job-portal'),
 		                'type' => \Elementor\Controls_Manager::SLIDER,
 		                'size_units' => ['px', 'em', 'rem'],
 		                'range' => [
@@ -615,7 +615,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		        $this->add_control(
 		            'typography_section_title_font_weight',
 		            [
-		                'label' => __('Font Weight', 'custom-elementor'),
+		                'label' => __('Font Weight', 'wp-job-portal'),
 		                'type' => \Elementor\Controls_Manager::SELECT,
 		                'default' => '400',
 		                'options' => [
@@ -644,14 +644,14 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		        $this->add_control(
 		            'typography_section_title_text_transform',
 		            [
-		                'label' => __('Text Transform', 'custom-elementor'),
+		                'label' => __('Text Transform', 'wp-job-portal'),
 		                'type' => \Elementor\Controls_Manager::SELECT,
 		                'default' => 'none',
 		                'options' => [
-		                    'none' => __('None', 'custom-elementor'),
-		                    'uppercase' => __('Uppercase', 'custom-elementor'),
-		                    'lowercase' => __('Lowercase', 'custom-elementor'),
-		                    'capitalize' => __('Capitalize', 'custom-elementor'),
+		                    'none' => __('None', 'wp-job-portal'),
+		                    'uppercase' => __('Uppercase', 'wp-job-portal'),
+		                    'lowercase' => __('Lowercase', 'wp-job-portal'),
+		                    'capitalize' => __('Capitalize', 'wp-job-portal'),
 		                ],
 		                'selectors' => [
 		                    '{{WRAPPER}} .wjportal-main-wrapper div#wjportal-job-cp-wrp div.wjportal-cp-sec-title' => 'text-transform: {{VALUE}} !important;',
@@ -668,13 +668,13 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		        $this->add_control(
 		            'typography_section_title_font_style',
 		            [
-		                'label' => __('Font Style', 'custom-elementor'),
+		                'label' => __('Font Style', 'wp-job-portal'),
 		                'type' => \Elementor\Controls_Manager::SELECT,
 		                'default' => 'normal',
 		                'options' => [
-		                    'normal' => __('Normal', 'custom-elementor'),
-		                    'italic' => __('Italic', 'custom-elementor'),
-		                    'oblique' => __('Oblique', 'custom-elementor'),
+		                    'normal' => __('Normal', 'wp-job-portal'),
+		                    'italic' => __('Italic', 'wp-job-portal'),
+		                    'oblique' => __('Oblique', 'wp-job-portal'),
 		                ],
 		                'selectors' => [
 		                    '{{WRAPPER}} .wjportal-main-wrapper div#wjportal-job-cp-wrp div.wjportal-cp-sec-title' => 'font-style: {{VALUE}} !important;',
@@ -691,7 +691,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		        $this->add_control(
 		            'typography_section_title_line_height',
 		            [
-		                'label' => __('Line Height', 'custom-elementor'),
+		                'label' => __('Line Height', 'wp-job-portal'),
 		                'type' => \Elementor\Controls_Manager::SLIDER,
 		                'size_units' => ['px', 'em'],
 		                'range' => [
@@ -717,7 +717,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		        $this->add_control(
 		            'typography_section_title_letter_spacing',
 		            [
-		                'label' => __('Letter Spacing', 'custom-elementor'),
+		                'label' => __('Letter Spacing', 'wp-job-portal'),
 		                'type' => \Elementor\Controls_Manager::SLIDER,
 		                'size_units' => ['px', 'em'],
 		                'range' => [
@@ -758,7 +758,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		        $this->start_controls_section(
 		            'button_typography_section',
 		            [
-		                'label' => __('Buttons Styling', 'custom-elementor'),
+		                'label' => __('Buttons Styling', 'wp-job-portal'),
 		                'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
 		                'condition' => $pages_for_styling_array,
 		            ]
@@ -781,7 +781,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		        $this->add_control(
 		            'typography_buttons_font_family',
 		            [
-		                'label' => __('Font Family', 'custom-elementor'),
+		                'label' => __('Font Family', 'wp-job-portal'),
 		                'type' => \Elementor\Controls_Manager::FONT,
 		                'default' => '',
 		                'selectors' => [
@@ -798,7 +798,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		        $this->add_control(
 		            'typography_buttons_font_size',
 		            [
-		                'label' => __('Font Size', 'custom-elementor'),
+		                'label' => __('Font Size', 'wp-job-portal'),
 		                'type' => \Elementor\Controls_Manager::SLIDER,
 		                'size_units' => ['px', 'em', 'rem'],
 		                'range' => [
@@ -829,7 +829,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		        $this->add_control(
 		            'typography_buttons_font_weight',
 		            [
-		                'label' => __('Font Weight', 'custom-elementor'),
+		                'label' => __('Font Weight', 'wp-job-portal'),
 		                'type' => \Elementor\Controls_Manager::SELECT,
 		                'default' => '400',
 		                'options' => [
@@ -861,14 +861,14 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		        $this->add_control(
 		            'typography_buttons_text_transform',
 		            [
-		                'label' => __('Text Transform', 'custom-elementor'),
+		                'label' => __('Text Transform', 'wp-job-portal'),
 		                'type' => \Elementor\Controls_Manager::SELECT,
 		                'default' => 'none',
 		                'options' => [
-		                    'none' => __('None', 'custom-elementor'),
-		                    'uppercase' => __('Uppercase', 'custom-elementor'),
-		                    'lowercase' => __('Lowercase', 'custom-elementor'),
-		                    'capitalize' => __('Capitalize', 'custom-elementor'),
+		                    'none' => __('None', 'wp-job-portal'),
+		                    'uppercase' => __('Uppercase', 'wp-job-portal'),
+		                    'lowercase' => __('Lowercase', 'wp-job-portal'),
+		                    'capitalize' => __('Capitalize', 'wp-job-portal'),
 		                ],
 		                'selectors' => [
 		                    '{{WRAPPER}} div#wjportal-job-cp-wrp div.wjportal-cp-left div.wjportal-cp-user div.wjportal-cp-user-action a.wjportal-cp-user-act-btn' => 'text-transform: {{VALUE}} !important;',
@@ -888,13 +888,13 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		        $this->add_control(
 		            'typography_buttons_font_style',
 		            [
-		                'label' => __('Font Style', 'custom-elementor'),
+		                'label' => __('Font Style', 'wp-job-portal'),
 		                'type' => \Elementor\Controls_Manager::SELECT,
 		                'default' => 'normal',
 		                'options' => [
-		                    'normal' => __('Normal', 'custom-elementor'),
-		                    'italic' => __('Italic', 'custom-elementor'),
-		                    'oblique' => __('Oblique', 'custom-elementor'),
+		                    'normal' => __('Normal', 'wp-job-portal'),
+		                    'italic' => __('Italic', 'wp-job-portal'),
+		                    'oblique' => __('Oblique', 'wp-job-portal'),
 		                ],
 		                'selectors' => [
 		                    '{{WRAPPER}} div#wjportal-job-cp-wrp div.wjportal-cp-left div.wjportal-cp-user div.wjportal-cp-user-action a.wjportal-cp-user-act-btn' => 'font-style: {{VALUE}} !important;',
@@ -914,7 +914,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		        $this->add_control(
 		            'typography_buttons_line_height',
 		            [
-		                'label' => __('Line Height', 'custom-elementor'),
+		                'label' => __('Line Height', 'wp-job-portal'),
 		                'type' => \Elementor\Controls_Manager::SLIDER,
 		                'size_units' => ['px', 'em'],
 		                'range' => [
@@ -943,7 +943,7 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		        $this->add_control(
 		            'typography_buttons_letter_spacing',
 		            [
-		                'label' => __('Letter Spacing', 'custom-elementor'),
+		                'label' => __('Letter Spacing', 'wp-job-portal'),
 		                'type' => \Elementor\Controls_Manager::SLIDER,
 		                'size_units' => ['px', 'em'],
 		                'range' => [
@@ -976,12 +976,12 @@ class JP_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 	}
 
 	protected function render(){
-		$settings = $this->get_settings_for_display();
+		$wpjobportal_settings = $this->get_settings_for_display();
 
-        //echo '<pre>';print_r($settings);echo '</pre>';
-		if (!empty($settings['jp_shortcode'])) {
+        //echo '<pre>';print_r($wpjobportal_settings);echo '</pre>';
+		if (!empty($wpjobportal_settings['jp_shortcode'])) {
             echo '<div class="custom-shortcode-output job-portal-overrides-wrap-typo">';
-            echo do_shortcode('['.$settings['jp_shortcode'].']');
+            echo do_shortcode('['.$wpjobportal_settings['jp_shortcode'].']');
             echo '</div>';
         }
 

@@ -181,6 +181,8 @@ if (!defined('WPJOBPORTAL_FILE_TYPE_ERROR')) {
             'credit_userid' => array(),
             'data-dismiss' => array(),
             'data-validation-optional' => array(),
+            'data-search-title' => array(),
+            'data-hide-title' => array(),
             'style' => array(),
             'disbled' => array(),
         ),
@@ -247,7 +249,7 @@ if (!defined('WPJOBPORTAL_FILE_TYPE_ERROR')) {
         ),
         'meta'      => array(
             'property'  => array(),
-            'content' => array(),
+            'wpjobportal_content' => array(),
             'style' => array(),
         ),
         'a'      => array(

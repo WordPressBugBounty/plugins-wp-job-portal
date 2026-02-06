@@ -3,7 +3,7 @@ if (!defined('ABSPATH'))
     die('Restricted Access');
 
 wp_enqueue_script('jquery-ui-datepicker');
-$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+$wpjobportal_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
 wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jquery-ui-smoothness.css');
 ?>
 <style>
@@ -13,29 +13,29 @@ wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/cs
 </style>
 <?php
 
-$config = wpjobportal::$_configuration;
-if ($config['date_format'] == 'm/d/Y' || $config['date_format'] == 'd/m/y' || $config['date_format'] == 'm/d/y' || $config['date_format'] == 'd/m/Y') {
-    $dash = '/';
+$wpjobportal_config = wpjobportal::$_configuration;
+if ($wpjobportal_config['date_format'] == 'm/d/Y' || $wpjobportal_config['date_format'] == 'd/m/y' || $wpjobportal_config['date_format'] == 'm/d/y' || $wpjobportal_config['date_format'] == 'd/m/Y') {
+    $wpjobportal_dash = '/';
 } else {
-    $dash = '-';
+    $wpjobportal_dash = '-';
 }
-$dateformat = $config['date_format'];
-$firstdash = wpjobportalphplib::wpJP_strpos($dateformat, $dash, 0);
-$firstvalue = wpjobportalphplib::wpJP_substr($dateformat, 0, $firstdash);
-$firstdash = $firstdash + 1;
-$seconddash = wpjobportalphplib::wpJP_strpos($dateformat, $dash, $firstdash);
-$secondvalue = wpjobportalphplib::wpJP_substr($dateformat, $firstdash, $seconddash - $firstdash);
-$seconddash = $seconddash + 1;
-$thirdvalue = wpjobportalphplib::wpJP_substr($dateformat, $seconddash, wpjobportalphplib::wpJP_strlen($dateformat) - $seconddash);
-$js_dateformat = '%' . $firstvalue . $dash . '%' . $secondvalue . $dash . '%' . $thirdvalue;
-$js_scriptdateformat = $firstvalue . $dash . $secondvalue . $dash . $thirdvalue;
-$js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy', $js_scriptdateformat);
+$wpjobportal_dateformat = $wpjobportal_config['date_format'];
+$wpjobportal_firstdash = wpjobportalphplib::wpJP_strpos($wpjobportal_dateformat, $wpjobportal_dash, 0);
+$wpjobportal_firstvalue = wpjobportalphplib::wpJP_substr($wpjobportal_dateformat, 0, $wpjobportal_firstdash);
+$wpjobportal_firstdash = $wpjobportal_firstdash + 1;
+$wpjobportal_seconddash = wpjobportalphplib::wpJP_strpos($wpjobportal_dateformat, $wpjobportal_dash, $wpjobportal_firstdash);
+$wpjobportal_secondvalue = wpjobportalphplib::wpJP_substr($wpjobportal_dateformat, $wpjobportal_firstdash, $wpjobportal_seconddash - $wpjobportal_firstdash);
+$wpjobportal_seconddash = $wpjobportal_seconddash + 1;
+$wpjobportal_thirdvalue = wpjobportalphplib::wpJP_substr($wpjobportal_dateformat, $wpjobportal_seconddash, wpjobportalphplib::wpJP_strlen($wpjobportal_dateformat) - $wpjobportal_seconddash);
+$wpjobportal_js_dateformat = '%' . $wpjobportal_firstvalue . $wpjobportal_dash . '%' . $wpjobportal_secondvalue . $wpjobportal_dash . '%' . $wpjobportal_thirdvalue;
+$wpjobportal_js_scriptdateformat = $wpjobportal_firstvalue . $wpjobportal_dash . $wpjobportal_secondvalue . $wpjobportal_dash . $wpjobportal_thirdvalue;
+$wpjobportal_js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy', $wpjobportal_js_scriptdateformat);
 ?>
 <?php
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
         function removeLogo(id) {
             var ajaxurl = '". esc_url_raw(admin_url('admin-ajax.php')) ."'
             jQuery.post(ajaxurl, {action: 'wpjobportal_ajax', wpjobportalme: 'company', task: 'deletecompanylogo', companyid: id, '_wpnonce':'". esc_attr(wp_create_nonce("delete-company-logo"))."'}, function (data) {
@@ -49,17 +49,17 @@ $js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy', $js_script
             });
         }
         jQuery(document).ready(function ($) {
-            $('.custom_date').datepicker({dateFormat: '". esc_attr($js_scriptdateformat) ."'});
+            $('.custom_date').datepicker({dateFormat: '". esc_attr($wpjobportal_js_scriptdateformat) ."'});
             //$.validate();
             //Token Input
             ";
-            $multicities = " var multicities = ''; ";
+            $wpjobportal_multicities = " var multicities = ''; ";
             if(isset(wpjobportal::$_data[0]->multicity)) 
                 if(!(wpjobportal::$_data[0]->multicity == "[]")) 
-                    $multicities = " var multicities = ". wpjobportal::$_data[0]->multicity."; ";
+                    $wpjobportal_multicities = " var multicities = ". wpjobportal::$_data[0]->multicity."; ";
             
-            $inline_js_script .= $multicities;
-            $inline_js_script .= "
+            $wpjobportal_inline_js_script .= $wpjobportal_multicities;
+            $wpjobportal_inline_js_script .= "
             getTokenInput(multicities);
             jQuery('form#company_form').submit(function (e) {
                 var termsandcondtions = jQuery('div.wpjobportal-terms-and-conditions-wrap').attr('data-wpjobportal-terms-and-conditions');
@@ -71,14 +71,14 @@ $js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy', $js_script
                 }
             });
 // moved this code to document.ready
-            jQuery('body').delegate('#logo', 'click', function(e){
+
+                jQuery('body').on('click', '#logo', function(e){
                     jQuery('input#logo').change(function(){
                         var srcimage = jQuery('img.rs_photo');
                         readURL(this, srcimage);
                     });
                 });
-
-            jQuery('body').delegate('img#wjportal-form-delete-image', 'click', function(e){
+            jQuery('body').on('click', 'img#wjportal-form-delete-image', function(e){
                 jQuery('.wjportal-form-image-wrp').hide();
                 jQuery('input#photo').val('').clone(true);
                 jQuery('span.wjportal-form-upload-btn-wrp-txt').text('');
@@ -161,11 +161,13 @@ $js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy', $js_script
                         reader.onload = function (e) {
                             jQuery('#rs_photo').attr('src', e.target.result);
                             jQuery('.wjportal-form-image-wrp').show();
+                            jQuery('.wjportal-form-upload-btn-wrp-txt').show();
                             jQuery('.wjportal-form-upload-btn-wrp-txt').html(input.files[0].name);
                             jQuery('img#wjportal-form-delete-image').on('click',function(){
                                 jQuery('.wjportal-form-image-wrp').hide();
                                 jQuery('input#logo').val('').clone(true);
                                 jQuery('span.wjportal-form-upload-btn-wrp-txt').text('');
+                                jQuery('span.wjportal-form-upload-btn-wrp-txt').hide();
                             });
                        }
                         reader.readAsDataURL(input.files[0]);
@@ -180,9 +182,9 @@ $js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy', $js_script
             }
         }
         ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 
-        $inline_js_script = "
+        $wpjobportal_inline_js_script = "
         var ajaxurl = \"". esc_url_raw(admin_url('admin-ajax.php')) ."\";
         function getTokenInput(multicities) {
             var cityArray = '". esc_url_raw(admin_url("admin.php?page=wpjobportal_city&action=wpjobportaltask&task=getaddressdatabycityname")) ."';
@@ -196,9 +198,9 @@ $js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy', $js_script
                     searchingText: \"". esc_html(__("Searching", "wp-job-portal")) ."\",
                     // tokenLimit: 1,
                     prePopulate: multicities,";
-                    $newtyped_cities = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('newtyped_cities');
-                    if ($newtyped_cities == 1) { 
-                        $inline_js_script .= "
+                    $wpjobportal_newtyped_cities = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('newtyped_cities');
+                    if ($wpjobportal_newtyped_cities == 1) {
+                        $wpjobportal_inline_js_script .= "
                             onResult: function (item) {
                                 if (jQuery.isEmptyObject(item)) {
                                     return [{id: 0, name: jQuery('tester').text()}];
@@ -251,7 +253,7 @@ $js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy', $js_script
                             }
                             ";
                     } 
-                    $inline_js_script .= "
+                    $wpjobportal_inline_js_script .= "
                 });
             } else {
                 jQuery('.wpjobportal-company-form-city-field').tokenInput(cityArray, {
@@ -262,9 +264,9 @@ $js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy', $js_script
                     searchingText: \"".  esc_html(__("Searching", "wp-job-portal"))."\",
                     // tokenLimit: 1,";
 
-                    $newtyped_cities = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('newtyped_cities');
-                    if ($newtyped_cities == 1) { 
-                        $inline_js_script .= "
+                    $wpjobportal_newtyped_cities = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('newtyped_cities');
+                    if ($wpjobportal_newtyped_cities == 1) {
+                        $wpjobportal_inline_js_script .= "
                         onResult: function (item) {
                             if (jQuery.isEmptyObject(item)) {
                                 return [{id: 0, name: jQuery('tester').text()}];
@@ -301,11 +303,11 @@ $js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy', $js_script
                             }
                         } ";
                     } 
-                $inline_js_script .= "
+                $wpjobportal_inline_js_script .= "
                 });
             }
         }
 
         ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>

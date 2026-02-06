@@ -6,8 +6,8 @@ if (!defined('ABSPATH'))
 <?php
     wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js');
 
-$msgkey = WPJOBPORTALincluder::getJSModel('jobseeker')->getMessagekey();
-WPJOBPORTALMessages::getLayoutMessage($msgkey);
+$wpjobportal_msgkey = WPJOBPORTALincluder::getJSModel('jobseeker')->getMessagekey();
+WPJOBPORTALMessages::getLayoutMessage($wpjobportal_msgkey);
 WPJOBPORTALbreadcrumbs::getBreadcrumbs();
 include_once(WPJOBPORTAL_PLUGIN_PATH . 'includes/header.php');
 if (wpjobportal::$_error_flag == null) {
@@ -54,8 +54,8 @@ if (wpjobportal::$_error_flag == null) {
         </div>
         <?php
     } else{
-        $msg = esc_html(__('No record found','wp-job-portal'));
-        WPJOBPORTALlayout::getNoRecordFound($msg);
+        $wpjobportal_msg = esc_html(__('No record found','wp-job-portal'));
+        WPJOBPORTALlayout::getNoRecordFound($wpjobportal_msg);
     }
         ?>
 

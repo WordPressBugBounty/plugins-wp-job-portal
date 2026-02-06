@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Delete"
 msgstr "ลบ"
@@ -10273,3 +10273,2472 @@ msgstr "คุณไม่มี Save Serch ที่เหลืออยู่
 
 msgid "We would love to hear from You."
 msgstr "เราชอบที่จะได้ยินจากคุณ"
+
+msgid "Welcome back!"
+msgstr "ยินดีต้อนรับกลับมา!"
+
+msgid "Here's a snapshot of your job board's performance."
+msgstr "นี่คือภาพรวมของประสิทธิภาพของบอร์ดงานของคุณ"
+
+msgid "Customize Your Dashboard"
+msgstr "ปรับแต่งแดชบอร์ดของคุณ"
+
+msgid "Core Components"
+msgstr "ส่วนประกอบหลัก"
+
+msgid "Quick Actions"
+msgstr "การกระทำที่รวดเร็ว"
+
+msgid "Recent Jobs"
+msgstr "งานล่าสุด"
+
+msgid "Quick Stats"
+msgstr "สถิติด่วน"
+
+msgid "Visualizations"
+msgstr "การแสดงภาพ"
+
+msgid "Platform Growth"
+msgstr "การเติบโตของแพลตฟอร์ม"
+
+msgid "Jobs by Status"
+msgstr "งานตามสถานะ"
+
+msgid "Top Categories"
+msgstr "หมวดหมู่ด้านบน"
+
+msgid "Activity & System Feeds"
+msgstr "กิจกรรมและระบบฟีด"
+
+msgid "Latest Applies"
+msgstr "ใช้ล่าสุด"
+
+msgid "User & Financials"
+msgstr "ผู้ใช้และการเงิน"
+
+msgid "Job Seekers"
+msgstr "ผู้หางาน"
+
+msgid "Payments"
+msgstr "การชำระเงิน"
+
+msgid "Reset to Defaults"
+msgstr "รีเซ็ตเป็นค่าเริ่มต้น"
+
+msgid "Apply Changes"
+msgstr "ใช้การเปลี่ยนแปลง"
+
+msgid "Approve Jobs"
+msgstr "อนุมัติงาน"
+
+msgid "Manage Users"
+msgstr "จัดการผู้ใช้"
+
+msgid "View Reports"
+msgstr "ดูรายงาน"
+
+msgid "Analytics"
+msgstr "การวิเคราะห์"
+
+msgid "Manage Plans"
+msgstr "จัดการแผน"
+
+msgid "Platform Config"
+msgstr "กำหนดค่าแพลตฟอร์ม"
+
+msgid "Applications"
+msgstr "แอปพลิเคชัน"
+
+msgid "Pending Jobs"
+msgstr "งานที่รอดำเนินการ"
+
+msgid "New Applicants"
+msgstr "ผู้สมัครใหม่"
+
+msgid "Active Subscriptions"
+msgstr "การสมัครสมาชิกที่ใช้งานอยู่"
+
+msgid "Total Users"
+msgstr "ผู้ใช้ทั้งหมด"
+
+msgid "Closed Jobs"
+msgstr "งานปิด"
+
+msgid "Monthly Revenue"
+msgstr "รายได้รายเดือน"
+
+msgid "Recent Job Postings"
+msgstr "การโพสต์งานล่าสุด"
+
+msgid "Date Posted"
+msgstr "วันที่โพสต์"
+
+msgid "Actions"
+msgstr "การกระทำ"
+
+msgid "No recent job postings found."
+msgstr "ไม่พบการโพสต์งานล่าสุด"
+
+msgid "Top Job Categories"
+msgstr "หมวดหมู่งานด้านบน"
+
+msgid "Latest Job Applies"
+msgstr "ใช้งานล่าสุด"
+
+msgid "applied for"
+msgstr "ใช้สำหรับ"
+
+msgid "at"
+msgstr "ที่"
+
+msgid "View App"
+msgstr "ดูแอพ"
+
+msgid "No recent job applications to display."
+msgstr "ไม่มีแอปพลิเคชันงานล่าสุดที่จะแสดง"
+
+msgid "No new resumes have been added recently."
+msgstr "ไม่มีการเพิ่มประวัติย่อใหม่เมื่อเร็ว ๆ นี้"
+
+msgid "Latest Package Subscriptions"
+msgstr "การสมัครสมาชิกแพ็คเกจล่าสุด"
+
+msgid "subscribed to"
+msgstr "สมัครสมาชิก"
+
+msgid "No new subscriptions found."
+msgstr "ไม่พบการสมัครสมาชิกใหม่"
+
+msgid "Latest Payments"
+msgstr "การชำระเงินล่าสุด"
+
+msgid "No recent payments to display."
+msgstr "ไม่มีการชำระเงินล่าสุดที่จะแสดง"
+
+msgid "Latest Activity"
+msgstr "กิจกรรมล่าสุด"
+
+msgid "Hooray! No system errors to report."
+msgstr "ไชโย ไม่มีข้อผิดพลาดของระบบในการรายงาน"
+
+msgid "Latest Job Seekers"
+msgstr "ผู้หางานล่าสุด"
+
+msgid "Joined"
+msgstr "เข้าร่วม"
+
+msgid "No new job seekers have registered."
+msgstr "ไม่มีผู้หางานใหม่ได้ลงทะเบียน"
+
+msgid "Latest Employers"
+msgstr "นายจ้างล่าสุด"
+
+msgid "No new employers have registered."
+msgstr "ไม่มีนายจ้างใหม่ลงทะเบียน"
+
+msgid "Not allowed"
+msgstr "ไม่อนุญาต"
+
+msgid "Allowed to all"
+msgstr "อนุญาตให้ทุกคน"
+
+msgid "employers, job seekers and visitors"
+msgstr "นายจ้าง ผู้หางาน และผู้มาเยือน"
+
+msgid "Allowed only to employers"
+msgstr "อนุญาตเฉพาะนายจ้างเท่านั้น"
+
+msgid "City, State, Country"
+msgstr "เมือง รัฐ ประเทศ"
+
+msgid "City, State"
+msgstr "เมืองรัฐ"
+
+msgid "City, Country"
+msgstr "เมือง, ประเทศ"
+
+msgid "Minutes"
+msgstr "นาที"
+
+msgid "Hour"
+msgstr "ชั่วโมง"
+
+msgid "Hours"
+msgstr "ชั่วโมง"
+
+msgid "Week"
+msgstr "สัปดาห์"
+
+msgid "System & Site"
+msgstr "ระบบและไซต์"
+
+msgid "Site & System"
+msgstr "เว็บไซต์และระบบ"
+
+msgid "Core details about your job portal, its status, and default behaviors"
+msgstr "รายละเอียดหลักเกี่ยวกับพอร์ทัลงานของคุณ สถานะ และพฤติกรรมเริ่มต้น"
+
+msgid "Site Title"
+msgstr "ชื่อไซต์"
+
+msgid "The main title for your job portal"
+msgstr "ตำแหน่งหลักสำหรับพอร์ทัลงานของคุณ"
+
+msgid "Site Offline"
+msgstr "เว็บไซต์ออฟไลน์"
+
+msgid "Take the site offline for maintenance"
+msgstr "ทำให้ไซต์ออฟไลน์เพื่อการบำรุงรักษา"
+
+msgid "The message shown to visitors when the site is offline"
+msgstr "ข้อความที่แสดงต่อผู้เยี่ยมชมเมื่อไซต์ออฟไลน์"
+
+msgid "Default Page"
+msgstr "หน้าเริ่มต้น"
+
+msgid "Select the main WordPress page for the job portal"
+msgstr "เลือกหน้า WordPress หลักสำหรับพอร์ทัลงาน"
+
+msgid "Email links and support icons may not work if this is not set"
+msgstr "ลิงก์อีเมลและไอคอนสนับสนุนอาจไม่ทำงานหากไม่ได้ตั้งค่าไว้"
+
+msgid "Date Format"
+msgstr "รูปแบบวันที่"
+
+msgid "Set the date format used throughout the plugin"
+msgstr "กำหนดรูปแบบวันที่ที่ใช้ในปลั๊กอิน"
+
+msgid "Default Address Display Style"
+msgstr "รูปแบบการแสดงที่อยู่เริ่มต้น"
+
+msgid "Select the default format for displaying addresses"
+msgstr "เลือกรูปแบบเริ่มต้นสำหรับการแสดงที่อยู่"
+
+msgid "Registration & Login"
+msgstr "การลงทะเบียนและเข้าสู่ระบบ"
+
+msgid "Control user registration flows and login/logout redirects"
+msgstr "ควบคุมขั้นตอนการลงทะเบียนผู้ใช้และการเปลี่ยนเส้นทางการเข้าสู่ระบบ/ออกจากระบบ"
+
+msgid "Set Register Link"
+msgstr "ตั้งค่าลิงค์ลงทะเบียน"
+
+msgid "Set the main registration page for the site"
+msgstr "ตั้งค่าหน้าลงทะเบียนหลักสำหรับเว็บไซต์"
+
+msgid "Custom Register Redirect Link"
+msgstr "ลิงค์เปลี่ยนเส้นทางการลงทะเบียนแบบกำหนดเอง"
+
+msgid "Enter the custom URL for registration if"
+msgstr "ป้อน URL ที่กำหนดเองสำหรับการลงทะเบียนหาก"
+
+msgid "is selected above"
+msgstr "ถูกเลือกไว้ด้านบน"
+
+msgid "Set the main login page for the site"
+msgstr "ตั้งค่าหน้าเข้าสู่ระบบหลักสำหรับเว็บไซต์"
+
+msgid "Custom Login Redirect Link"
+msgstr "ลิงก์เปลี่ยนเส้นทางการเข้าสู่ระบบแบบกำหนดเอง"
+
+msgid "Enter the custom URL for login if"
+msgstr "ป้อน URL ที่กำหนดเองสำหรับการเข้าสู่ระบบหาก"
+
+msgid "Redirect Link For Non-Portal WP User"
+msgstr "ลิงก์เปลี่ยนเส้นทางสำหรับผู้ใช้ WP ที่ไม่ใช่พอร์ทัล"
+
+msgid "Redirect WordPress users who do not have a role in WP Job Portal to this link after login"
+msgstr "เปลี่ยนเส้นทางผู้ใช้ WordPress ที่ไม่มีบทบาทใน WP Job Portal ไปยังลิงก์นี้หลังจากเข้าสู่ระบบ"
+
+msgid "Terms & Conditions"
+msgstr "ข้อกำหนดและเงื่อนไข"
+
+msgid "Assign specific Terms & Conditions pages for different submission types"
+msgstr "กำหนดหน้าข้อกำหนดและเงื่อนไขเฉพาะสำหรับประเภทการส่งที่แตกต่างกัน"
+
+msgid "Company Terms Page"
+msgstr "หน้าข้อกำหนดของบริษัท"
+
+msgid "Select the"
+msgstr "เลือก"
+
+msgid "page for company submissions"
+msgstr "หน้าสำหรับส่งผลงานของบริษัท"
+
+msgid "Job Terms Page"
+msgstr "หน้าเงื่อนไขงาน"
+
+msgid "page for job submissions"
+msgstr "หน้าสำหรับส่งงาน"
+
+msgid "Resume Terms Page"
+msgstr "หน้าข้อกำหนดประวัติย่อ"
+
+msgid "page for resume submissions"
+msgstr "หน้าสำหรับส่งเรซูเม่"
+
+msgid "Content & Display"
+msgstr "เนื้อหาและการแสดงผล"
+
+msgid "Taxonomy & Categories"
+msgstr "อนุกรมวิธานและหมวดหมู่"
+
+msgid "Manage how content like categories and tags are handled"
+msgstr "จัดการวิธีจัดการเนื้อหา เช่น หมวดหมู่และแท็ก"
+
+msgid "Even if Empty"
+msgstr "แม้จะว่างเปล่า"
+
+msgid "If no is selected then only categories that have jobs or resumes will be shown"
+msgstr "หากไม่เลือก ระบบจะแสดงเฉพาะหมวดหมู่ที่มีงานหรือประวัติย่อเท่านั้น"
+
+msgid "Categories Per Row"
+msgstr "หมวดหมู่ต่อแถว"
+
+msgid "Number of categories to display per row on category listing pages"
+msgstr "จำนวนหมวดหมู่ที่จะแสดงต่อแถวในหน้ารายการหมวดหมู่"
+
+msgid "Sub-categories Limit"
+msgstr "ขีดจำกัดหมวดหมู่ย่อย"
+
+msgid "How many sub-categories to show in the popup on category pages"
+msgstr "จำนวนหมวดหมู่ย่อยที่จะแสดงในป๊อปอัปบนหน้าหมวดหมู่"
+
+msgid "User Can Add New Tags"
+msgstr "ผู้ใช้สามารถเพิ่มแท็กใหม่ได้"
+
+msgid "Allow users to create new tags in the system when posting"
+msgstr "อนุญาตให้ผู้ใช้สร้างแท็กใหม่ในระบบเมื่อโพสต์"
+
+msgid "Default Pagination Size"
+msgstr "ขนาดการแบ่งหน้าเริ่มต้น"
+
+msgid "Maximum number of records to show per page"
+msgstr "จำนวนบันทึกสูงสุดที่จะแสดงต่อหน้า"
+
+msgid "Show Breadcrumbs"
+msgstr "แสดงเบรดครัมบ์"
+
+msgid "Show WP Job Portal Page Title"
+msgstr "แสดงชื่อหน้าพอร์ทัลงาน WP"
+
+msgid "File Uploads & Defaults"
+msgstr "การอัพโหลดไฟล์และค่าเริ่มต้น"
+
+msgid "Manage file uploads and default placeholder images"
+msgstr "จัดการการอัปโหลดไฟล์และรูปภาพตัวยึดตำแหน่งเริ่มต้น"
+
+msgid "Data Directory"
+msgstr "ไดเร็กทอรีข้อมูล"
+
+msgid "System will upload all user files into this folder within the WordPress uploads directory"
+msgstr "ระบบจะอัพโหลดไฟล์ผู้ใช้ทั้งหมดลงในโฟลเดอร์นี้ภายในไดเร็กทอรีอัพโหลดของ WordPress"
+
+msgid "Default Image"
+msgstr "รูปภาพเริ่มต้น"
+
+msgid "This image will be shown as the default for entities & users if no other image is provided"
+msgstr "รูปภาพนี้จะแสดงเป็นค่าเริ่มต้นสำหรับเอนทิตีและผู้ใช้ หากไม่มีรูปภาพอื่นให้ไว้"
+
+msgid "Allowed Image Extensions"
+msgstr "ส่วนขยายรูปภาพที่อนุญาต"
+
+msgid "Comma-separated list of allowed image file extensions"
+msgstr "รายการนามสกุลไฟล์ภาพที่อนุญาตโดยคั่นด้วยเครื่องหมายจุลภาค"
+
+msgid "Max Image Size"
+msgstr "ขนาดภาพสูงสุด"
+
+msgid "Maximum file size for general image uploads in kilobytes"
+msgstr "ขนาดไฟล์สูงสุดสำหรับการอัพโหลดรูปภาพทั่วไปในหน่วยกิโลไบต์"
+
+msgid "URL & SEO"
+msgstr "URL และ SEO"
+
+msgid "URL Structure"
+msgstr "โครงสร้าง URL"
+
+msgid "Configure the URL structure"
+msgstr "กำหนดค่าโครงสร้าง URL"
+
+msgid "permalinks"
+msgstr "ลิงก์ถาวร"
+
+msgid "for detail pages"
+msgstr "สำหรับหน้ารายละเอียด"
+
+msgid "Job Detail URL Structure"
+msgstr "โครงสร้าง URL รายละเอียดงาน"
+
+msgid "Click on the available tags below to build the URL structure for job detail pages"
+msgstr "คลิกแท็กที่มีอยู่ด้านล่างเพื่อสร้างโครงสร้าง URL สำหรับหน้ารายละเอียดงาน"
+
+msgid "Company Detail URL Structure"
+msgstr "โครงสร้าง URL รายละเอียดบริษัท"
+
+msgid "Click on the available tags below to build the URL structure for company detail pages"
+msgstr "คลิกแท็กที่มีอยู่ด้านล่างเพื่อสร้างโครงสร้าง URL สำหรับหน้ารายละเอียดบริษัท"
+
+msgid "Resume Detail URL Structure"
+msgstr "โครงสร้าง URL รายละเอียดประวัติย่อ"
+
+msgid "Click on the available tags below to build the URL structure for resume detail pages"
+msgstr "คลิกที่แท็กที่มีอยู่ด้านล่างเพื่อสร้างโครงสร้าง URL สำหรับหน้ารายละเอียดเรซูเม่"
+
+msgid "Registration & Access"
+msgstr "การลงทะเบียนและการเข้าถึง"
+
+msgid "If no then front end employer area is not accessible"
+msgstr "หากไม่มี แสดงว่าพื้นที่นายจ้างส่วนหน้าไม่สามารถเข้าถึงได้"
+
+msgid "Allow Registration as Employer"
+msgstr "อนุญาตให้ลงทะเบียนเป็นนายจ้าง"
+
+msgid "Show the option to register as an employer on the registration form"
+msgstr "แสดงตัวเลือกในการลงทะเบียนเป็นนายจ้างในแบบฟอร์มลงทะเบียน"
+
+msgid "Employer Default Role"
+msgstr "บทบาทเริ่มต้นของนายจ้าง"
+
+msgid "Employer Can View Job Seeker Area"
+msgstr "นายจ้างสามารถดูพื้นที่ผู้หางานได้"
+
+msgid "Allow logged-in employers to view the job seeker control panel"
+msgstr "อนุญาตให้นายจ้างที่เข้าสู่ระบบสามารถดูแผงควบคุมผู้หางานได้"
+
+msgid "Set Employer After-Register Link"
+msgstr "ตั้งค่าลิงก์หลังการลงทะเบียนของนายจ้าง"
+
+msgid "Employer After-Registration Page"
+msgstr "หน้าหลังการลงทะเบียนของนายจ้าง"
+
+msgid "Employer Custom After-Registration Link"
+msgstr "ลิงค์ลงทะเบียนหลังการลงทะเบียนแบบกำหนดเองของนายจ้าง"
+
+msgid "Custom Empolyer After Regitser Link"
+msgstr "นายจ้างที่กำหนดเองหลังจากลิงค์ลงทะเบียน"
+
+msgid "Layout & Widgets"
+msgstr "เค้าโครงและวิดเจ็ต"
+
+msgid "Control the visibility of main sections and widgets in the logged-in employer dashboard"
+msgstr "ควบคุมการเปิดเผยส่วนหลักและวิดเจ็ตในแดชบอร์ดนายจ้างที่เข้าสู่ระบบ"
+
+msgid "Show Profile Section"
+msgstr "แสดงส่วนโปรไฟล์"
+
+msgid "Show Stat Boxes"
+msgstr "แสดงกล่องสถิติ"
+
+msgid "Show Recent Resumes Box"
+msgstr "แสดงกล่องประวัติย่อล่าสุด"
+
+msgid "Show Stats Graph"
+msgstr "แสดงกราฟสถิติ"
+
+msgid "Setting to show the stats graph on the employer dashboard"
+msgstr "การตั้งค่าให้แสดงกราฟสถิติบนแดชบอร์ดนายจ้าง"
+
+msgid "Show Useful Links"
+msgstr "แสดงลิงค์ที่เป็นประโยชน์"
+
+msgid "Setting to show the useful links section"
+msgstr "การตั้งค่าให้แสดงส่วนลิงค์ที่เป็นประโยชน์"
+
+msgid "Show Applied Resumes"
+msgstr "แสดงเรซูเม่ที่สมัคร"
+
+msgid "Setting to show the applied resumes section"
+msgstr "การตั้งค่าให้แสดงส่วนเรซูเม่ที่สมัคร"
+
+msgid "Show Saved Searches"
+msgstr "แสดงการค้นหาที่บันทึกไว้"
+
+msgid "Setting to show the saved searches section"
+msgstr "การตั้งค่าเพื่อแสดงส่วนการค้นหาที่บันทึกไว้"
+
+msgid "Show Newest Resumes"
+msgstr "แสดงเรซูเม่ใหม่ล่าสุด"
+
+msgid "Setting to show the newest resumes section"
+msgstr "การตั้งค่าให้แสดงส่วนเรซูเม่ใหม่ล่าสุด"
+
+msgid "Navigation Links"
+msgstr "ลิงค์การนำทาง"
+
+msgid "Control which navigation links are visible in the logged-in employer dashboard menu"
+msgstr "ควบคุมว่าลิงก์การนำทางใดที่จะมองเห็นได้ในเมนูแดชบอร์ดนายจ้างที่เข้าสู่ระบบ"
+
+msgid "link in the employer dashboard"
+msgstr "ลิงก์ในแดชบอร์ดนายจ้าง"
+
+msgid "RSS Feedback"
+msgstr "ความคิดเห็น RSS"
+
+msgid "Job Seeker Default Role"
+msgstr "บทบาทเริ่มต้นของผู้หางาน"
+
+msgid "Set Job Seeker After-Register Link"
+msgstr "ตั้งค่าลิงค์ผู้หางานหลังการลงทะเบียน"
+
+msgid "Job Seeker After-Registration Page"
+msgstr "หน้าหลังการลงทะเบียนผู้หางาน"
+
+msgid "Job Seeker Custom After-Registration Link"
+msgstr "ลิงก์สำหรับผู้หางานแบบกำหนดเองหลังการลงทะเบียน"
+
+msgid "Custom Job seeker After Regitser Link"
+msgstr "ผู้หางานแบบกำหนดเองหลังจากลิงก์ลงทะเบียน"
+
+msgid "Enable Job Shortlisting"
+msgstr "เปิดใช้งานการคัดเลือกงาน"
+
+msgid "Allow job seekers to shortlist jobs"
+msgstr "อนุญาตให้ผู้หางานเลือกงานได้"
+
+msgid "This affects the job detail page"
+msgstr "ซึ่งส่งผลต่อหน้ารายละเอียดงาน"
+
+msgid "Enable Tell a Friend"
+msgstr "เปิดใช้งานการบอกเพื่อน"
+
+msgid "Enable the"
+msgstr "เปิดใช้งาน"
+
+msgid "feature on job listing pages"
+msgstr "คุณลักษณะในหน้ารายการงาน"
+
+msgid "Control the visibility of main sections and widgets in the logged-in job seeker dashboard"
+msgstr "ควบคุมการเปิดเผยส่วนหลักและวิดเจ็ตในแดชบอร์ดผู้หางานที่เข้าสู่ระบบ"
+
+msgid "Show Applied Jobs Box"
+msgstr "แสดงกล่องงานที่สมัคร"
+
+msgid "Show Newest Jobs Box"
+msgstr "แสดงกล่องงานใหม่ล่าสุด"
+
+msgid "Show Jobs Graph"
+msgstr "แสดงกราฟงาน"
+
+msgid "Setting to show the jobs graph on the job seeker dashboard"
+msgstr "การตั้งค่าให้แสดงกราฟงานบนแดชบอร์ดผู้หางาน"
+
+msgid "Show Applied Jobs"
+msgstr "แสดงงานที่สมัคร"
+
+msgid "Setting to show the applied jobs section"
+msgstr "การตั้งค่าให้แสดงส่วนงานที่สมัคร"
+
+msgid "Show Shortlisted Jobs"
+msgstr "แสดงงานสั้น ๆ"
+
+msgid "Setting to show the shortlisted jobs section"
+msgstr "การตั้งค่าให้แสดงส่วนงานที่ได้รับคัดเลือก"
+
+msgid "Show Newest Jobs"
+msgstr "แสดงงานใหม่ล่าสุด"
+
+msgid "Setting to show the newest jobs section"
+msgstr "การตั้งค่าให้แสดงส่วนงานใหม่ล่าสุด"
+
+msgid "Control which navigation links are visible in the logged-in job seeker dashboard menu"
+msgstr "ควบคุมว่าลิงก์การนำทางใดที่จะมองเห็นได้ในเมนูแดชบอร์ดของผู้หางานที่เข้าสู่ระบบ"
+
+msgid "link in the job seeker dashboard"
+msgstr "ลิงก์ในแดชบอร์ดผู้หางาน"
+
+msgid "Visitors"
+msgstr "ผู้เยี่ยมชม"
+
+msgid "General Permissions"
+msgstr "สิทธิ์ทั่วไป"
+
+msgid "Define what non-logged-in users are allowed to do on the site"
+msgstr "กำหนดสิ่งที่ผู้ใช้ที่ไม่ได้เข้าสู่ระบบได้รับอนุญาตให้ทำบนไซต์"
+
+msgid "Visitor Can Post Job"
+msgstr "ผู้เยี่ยมชมสามารถลงประกาศงานได้"
+
+msgid "Allow non-logged-in users to post jobs"
+msgstr "อนุญาตให้ผู้ใช้ที่ไม่ได้เข้าสู่ระบบสามารถโพสต์งานได้"
+
+msgid "Visitor Can Add Job"
+msgstr "ผู้เยี่ยมชมสามารถเพิ่มงานได้"
+
+msgid "Visitor Job Post Redirect Page"
+msgstr "หน้าเปลี่ยนเส้นทางการโพสต์งานของผู้เยี่ยมชม"
+
+msgid "A visitor will be redirected to this page after posting a job"
+msgstr "ผู้เยี่ยมชมจะถูกเปลี่ยนเส้นทางไปยังหน้านี้หลังจากโพสต์งาน"
+
+msgid "Visitor Can Apply to Job"
+msgstr "ผู้เข้าชมสามารถสมัครงานได้"
+
+msgid "Allow non-logged-in users to apply for jobs"
+msgstr "อนุญาตให้ผู้ใช้ที่ไม่ได้เข้าสู่ระบบสามารถสมัครงานได้"
+
+msgid "Visitor Can Add Resume"
+msgstr "ผู้เยี่ยมชมสามารถเพิ่มเรซูเม่ได้"
+
+msgid "Allow non-logged-in users to add a resume"
+msgstr "อนุญาตให้ผู้ใช้ที่ไม่ได้เข้าสู่ระบบสามารถเพิ่มเรซูเม่ได้"
+
+msgid "Visitor Resume Post Redirect Page"
+msgstr "ประวัติผู้เยี่ยมชมโพสต์หน้าเปลี่ยนเส้นทาง"
+
+msgid "A visitor will be redirected to this page after posting a resume"
+msgstr "ผู้เยี่ยมชมจะถูกเปลี่ยนเส้นทางไปยังหน้านี้หลังจากโพสต์เรซูเม่"
+
+msgid "Visitor Can Edit Job"
+msgstr "ผู้เยี่ยมชมสามารถแก้ไขงานได้"
+
+msgid "Allow non-logged-in users to edit jobs they have posted"
+msgstr "อนุญาตให้ผู้ใช้ที่ไม่ได้เข้าสู่ระบบสามารถแก้ไขงานที่พวกเขาโพสต์ได้"
+
+msgid "Page & Link Access"
+msgstr "การเข้าถึงเพจและลิงก์"
+
+msgid "Control which pages and links are visible to non-logged-in users"
+msgstr "ควบคุมว่าเพจและลิงก์ใดที่ผู้ใช้ที่ไม่ได้เข้าสู่ระบบจะมองเห็นได้"
+
+msgid "Allow visitors to view the employer control panel links"
+msgstr "อนุญาตให้ผู้เยี่ยมชมดูลิงก์แผงควบคุมนายจ้าง"
+
+msgid "Allow visitors to view the resume categories page"
+msgstr "อนุญาตให้ผู้เยี่ยมชมดูหน้าหมวดหมู่เรซูเม่"
+
+msgid "Allow visitors to access the resume search functionality"
+msgstr "อนุญาตให้ผู้เยี่ยมชมเข้าถึงฟังก์ชันการค้นหาประวัติย่อ"
+
+msgid "Allow visitors to view company detail pages"
+msgstr "อนุญาตให้ผู้เยี่ยมชมดูหน้ารายละเอียดของบริษัท"
+
+msgid "Allow visitors to view job detail pages"
+msgstr "อนุญาตให้ผู้เยี่ยมชมดูหน้ารายละเอียดงาน"
+
+msgid "Allow visitors to view resume detail pages"
+msgstr "อนุญาตให้ผู้เยี่ยมชมดูหน้ารายละเอียดเรซูเม่"
+
+msgid "Allow visitors to view the job seeker control panel links"
+msgstr "อนุญาตให้ผู้เยี่ยมชมดูลิงก์แผงควบคุมผู้หางาน"
+
+msgid "Allow visitors to view the jobs by category page"
+msgstr "อนุญาตให้ผู้เยี่ยมชมดูงานตามหน้าหมวดหมู่"
+
+msgid "Allow visitors to use the job search functionality"
+msgstr "อนุญาตให้ผู้เยี่ยมชมใช้ฟังก์ชันการค้นหางาน"
+
+msgid "Allow visitors to see job search result listings"
+msgstr "อนุญาตให้ผู้เยี่ยมชมดูรายการผลการค้นหางาน"
+
+msgid "Allow visitors to see the newest jobs page"
+msgstr "อนุญาตให้ผู้เยี่ยมชมเห็นหน้างานใหม่ล่าสุด"
+
+msgid "Job Posting & Management"
+msgstr "ประกาศรับสมัครงานและการจัดการ"
+
+msgid "Manage how jobs are posted, their lifecycle, and related features"
+msgstr "จัดการวิธีการลงประกาศงาน วงจรการใช้งาน และฟีเจอร์ที่เกี่ยวข้อง"
+
+msgid "Job Auto Approve"
+msgstr "อนุมัติงานอัตโนมัติ"
+
+msgid "Automatically approve new jobs upon submission"
+msgstr "อนุมัติงานใหม่โดยอัตโนมัติเมื่อมีการส่ง"
+
+msgid "Job Expiry Days"
+msgstr "วันหมดอายุงาน"
+
+msgid "Number of days until a freely posted job expires"
+msgstr "จำนวนวันจนกว่างานที่ลงประกาศอย่างอิสระจะหมดอายุ"
+
+msgid "Number of days until a paid"
+msgstr "จำนวนวันจนกว่าจะชำระเงิน"
+
+msgid "job expires"
+msgstr "งานหมดอายุ"
+
+msgid "Job Display & Listings"
+msgstr "การแสดงงานและรายการ"
+
+msgid "Control how job-related pages and information are displayed to users"
+msgstr "ควบคุมวิธีการแสดงเพจและข้อมูลที่เกี่ยวข้องกับงานแก่ผู้ใช้"
+
+msgid "Show Country on Jobs by Cities Page"
+msgstr "แสดงประเทศในงานตามหน้าเมือง"
+
+msgid "Display the country name next to the city"
+msgstr "แสดงชื่อประเทศถัดจากเมือง"
+
+msgid "Show Count on Jobs by Cities Page"
+msgstr "แสดงจำนวนงานตามหน้าเมือง"
+
+msgid "Display the total number of jobs available in each city"
+msgstr "แสดงจำนวนงานทั้งหมดที่มีอยู่ในแต่ละเมือง"
+
+msgid "Show Count in Job Categories"
+msgstr "แสดงจำนวนในหมวดหมู่งาน"
+
+msgid "Display the total number of jobs for each category"
+msgstr "แสดงจำนวนงานทั้งหมดสำหรับแต่ละหมวดหมู่"
+
+msgid "Show Count on Jobs by Types Page"
+msgstr "แสดงจำนวนงานตามประเภทหน้า"
+
+msgid "Display the total number of jobs for each job type"
+msgstr "แสดงจำนวนงานทั้งหมดสำหรับแต่ละประเภทงาน"
+
+msgid "Job Types Per Row"
+msgstr "ประเภทงานต่อแถว"
+
+msgid "How many job types to display per row on the"
+msgstr "มีกี่ประเภทงานที่จะแสดงต่อแถวบน"
+
+msgid "Job by Type"
+msgstr "งานตามประเภท"
+
+msgid "Show Jobs Graph for Employer"
+msgstr "แสดงกราฟงานสำหรับนายจ้าง"
+
+msgid "Show Active Jobs Graph for Job Seeker"
+msgstr "แสดงกราฟงานที่ใช้งานอยู่สำหรับผู้หางาน"
+
+msgid "Company Profile Display"
+msgstr "การแสดงโปรไฟล์บริษัท"
+
+msgid "Control which company details are visible on listings and company pages"
+msgstr "ควบคุมรายละเอียดของบริษัทที่จะมองเห็นได้ในรายชื่อและหน้าเพจของบริษัท"
+
+msgid "Show Company Name"
+msgstr "แสดงชื่อบริษัท"
+
+msgid "Show Company Description"
+msgstr "แสดงรายละเอียดบริษัท"
+
+msgid "Show Company Email Address"
+msgstr "แสดงที่อยู่อีเมลของบริษัท"
+
+msgid "Show Company City"
+msgstr "แสดงเมืองของบริษัท"
+
+msgid "Show Company URL"
+msgstr "แสดง URL บริษัท"
+
+msgid "Show Company Contact Detail by Default"
+msgstr "แสดงรายละเอียดการติดต่อของบริษัทตามค่าเริ่มต้น"
+
+msgid "If disabled, credits may be required to view contact details"
+msgstr "หากปิดใช้งาน อาจต้องใช้เครดิตเพื่อดูรายละเอียดการติดต่อ"
+
+msgid "General settings for company profiles"
+msgstr "การตั้งค่าทั่วไปสำหรับโปรไฟล์บริษัท"
+
+msgid "Company Logo Maximum Size"
+msgstr "โลโก้บริษัทขนาดสูงสุด"
+
+msgid "Set the maximum file size for company logo uploads in kilobytes"
+msgstr "กำหนดขนาดไฟล์สูงสุดสำหรับการอัปโหลดโลโก้บริษัทเป็นกิโลไบต์"
+
+msgid "Company Auto Approve"
+msgstr "บริษัทอนุมัติอัตโนมัติ"
+
+msgid "Automatically approve new company profiles upon submission"
+msgstr "อนุมัติโปรไฟล์บริษัทใหม่โดยอัตโนมัติเมื่อส่ง"
+
+msgid "Control resume submissions, visibility, and search functionality"
+msgstr "ควบคุมการส่งเรซูเม่ การเปิดเผย และฟังก์ชันการค้นหา"
+
+msgid "Resume Auto Approve"
+msgstr "ดำเนินการอนุมัติอัตโนมัติต่อ"
+
+msgid "Automatically approve new resumes upon submission"
+msgstr "อนุมัติเรซูเม่ใหม่โดยอัตโนมัติเมื่อส่ง"
+
+msgid "Show Resume Contact Detail by Default"
+msgstr "แสดงรายละเอียดการติดต่อต่อตามค่าเริ่มต้น"
+
+msgid "If disabled, credits may be required to view resume contact details"
+msgstr "หากปิดใช้งาน อาจต้องใช้เครดิตเพื่อดูรายละเอียดการติดต่อต่อ"
+
+msgid "Show Count in Resume Categories"
+msgstr "แสดงจำนวนในหมวดหมู่เรซูเม่"
+
+msgid "Display the total number of resumes for each category"
+msgstr "แสดงจำนวนเรซูเม่ทั้งหมดสำหรับแต่ละหมวดหมู่"
+
+msgid "Allow Resume Search"
+msgstr "อนุญาตให้ค้นหาต่อ"
+
+msgid "Define who is allowed to search for resumes"
+msgstr "กำหนดผู้ที่ได้รับอนุญาตให้ค้นหาเรซูเม่"
+
+msgid "Allow Users to Save Resume Searches"
+msgstr "อนุญาตให้ผู้ใช้บันทึกการค้นหาประวัติย่อ"
+
+msgid "Allow users to save their resume search criteria for later use"
+msgstr "อนุญาตให้ผู้ใช้สามารถบันทึกเกณฑ์การค้นหาประวัติย่อเพื่อใช้ในภายหลัง"
+
+msgid "Resume Files & Builder"
+msgstr "ไฟล์และตัวสร้างประวัติย่อ"
+
+msgid "Define limits and allowed types for resume file uploads and advanced builder sections"
+msgstr "กำหนดขีดจำกัดและประเภทที่อนุญาตสำหรับการอัปโหลดไฟล์เรซูเม่และส่วนเครื่องมือสร้างขั้นสูง"
+
+msgid "Resume Photo Maximum Size"
+msgstr "ปรับขนาดรูปภาพต่อสูงสุด"
+
+msgid "Maximum file size for resume photos in kilobytes"
+msgstr "ขนาดไฟล์สูงสุดสำหรับรูปถ่ายเรซูเม่ในหน่วยกิโลไบต์"
+
+msgid "Resume Document Maximum Size"
+msgstr "ขนาดสูงสุดของเอกสารต่อ"
+
+msgid "System will not upload if resume file size exceeds the given size"
+msgstr "ระบบจะไม่อัพโหลดหากขนาดไฟล์เรซูเม่เกินขนาดที่กำหนด"
+
+msgid "Allowed Document Extensions"
+msgstr "ส่วนขยายเอกสารที่อนุญาต"
+
+msgid "Comma-separated list of allowed document file extensions"
+msgstr "รายการนามสกุลไฟล์เอกสารที่อนุญาตโดยคั่นด้วยเครื่องหมายจุลภาค"
+
+msgid "Maximum Number of Files for Resume"
+msgstr "จำนวนไฟล์สูงสุดสำหรับเรซูเม่"
+
+msgid "Maximum number of files a job seeker can upload with their resume"
+msgstr "จำนวนไฟล์สูงสุดที่ผู้หางานสามารถอัปโหลดพร้อมกับเรซูเม่ของพวกเขาได้"
+
+msgid "Max Employers in Resume Builder"
+msgstr "นายจ้างสูงสุดในตัวสร้างเรซูเม่"
+
+msgid "Maximum number of employers allowed in the resume builder"
+msgstr "จำนวนนายจ้างสูงสุดที่อนุญาตในการสร้างเรซูเม่"
+
+msgid "Max Institutes in Resume Builder"
+msgstr "สถาบัน Max ในตัวสร้างเรซูเม่"
+
+msgid "Maximum number of institutes allowed in the resume builder"
+msgstr "จำนวนสถาบันสูงสุดที่อนุญาตในการสร้างเรซูเม่"
+
+msgid "Max Languages in Resume Builder"
+msgstr "ภาษาสูงสุดในตัวสร้างเรซูเม่"
+
+msgid "Maximum number of languages allowed in the resume builder"
+msgstr "จำนวนภาษาสูงสุดที่อนุญาตในการสร้างเรซูเม่"
+
+msgid "Max Addresses in Resume Builder"
+msgstr "ที่อยู่สูงสุดในตัวสร้างเรซูเม่"
+
+msgid "Maximum number of addresses allowed in the resume builder"
+msgstr "จำนวนที่อยู่สูงสุดที่อนุญาตในการสร้างเรซูเม่"
+
+msgid "Job Applications"
+msgstr "การสมัครงาน"
+
+msgid "Configure the job application process and related notifications"
+msgstr "กำหนดค่ากระบวนการสมัครงานและการแจ้งเตือนที่เกี่ยวข้อง"
+
+msgid "Show Apply Now Button"
+msgstr "แสดงปุ่มสมัครเลย"
+
+msgid "Enable Quick Apply for Logged-in Users"
+msgstr "เปิดใช้งานการสมัครด่วนสำหรับผู้ใช้ที่เข้าสู่ระบบ"
+
+msgid "Enable Quick Apply for Visitors"
+msgstr "เปิดใช้งานการสมัครด่วนสำหรับผู้เยี่ยมชม"
+
+msgid "Show Applied Resume Status to Job Seeker"
+msgstr "แสดงสถานะผู้สมัครงานต่อผู้หางาน"
+
+msgid "Resume Data in Email"
+msgstr "ข้อมูลประวัติในอีเมล"
+
+msgid "Sections"
+msgstr "ส่วนต่างๆ"
+
+msgid "Choose whether to include all resume sections or only filled ones in the application email to employers"
+msgstr "เลือกว่าจะรวมส่วนเรซูเม่ทั้งหมดหรือเฉพาะส่วนที่กรอกไว้ในอีเมลใบสมัครถึงนายจ้าง"
+
+msgid "Choose whether to include all fields or only filled fields in the application email"
+msgstr "เลือกว่าจะรวมทุกช่องหรือเฉพาะช่องที่กรอกในอีเมลใบสมัคร"
+
+msgid "Auto-Approve Rules"
+msgstr "กฎการอนุมัติอัตโนมัติ"
+
+msgid "Set auto-approval rules for various user-submitted content"
+msgstr "ตั้งกฎการอนุมัติอัตโนมัติสำหรับเนื้อหาต่างๆ ที่ผู้ใช้ส่งมา"
+
+msgid "Featured Resume Auto Approve"
+msgstr "ประวัติย่อที่โดดเด่น อนุมัติอัตโนมัติ"
+
+msgid "Automatically approve resumes marked as featured"
+msgstr "อนุมัติเรซูเม่ที่ทำเครื่องหมายว่าเป็นจุดเด่นโดยอัตโนมัติ"
+
+msgid "Featured Company Auto Approve"
+msgstr "บริษัทเด่น อนุมัติอัตโนมัติ"
+
+msgid "Automatically approve companies marked as featured"
+msgstr "อนุมัติบริษัทที่ทำเครื่องหมายเป็นจุดเด่นโดยอัตโนมัติ"
+
+msgid "Featured Job Auto Approve"
+msgstr "งานเด่น อนุมัติอัตโนมัติ"
+
+msgid "Automatically approve jobs marked as featured"
+msgstr "อนุมัติงานที่ทำเครื่องหมายว่าเป็นงานเด่นโดยอัตโนมัติ"
+
+msgid "Cover Letter Auto Approve"
+msgstr "จดหมายสมัครงานอนุมัติอัตโนมัติ"
+
+msgid "Automatically approve cover letters submitted by job seekers"
+msgstr "อนุมัติจดหมายสมัครงานที่ส่งมาจากผู้หางานโดยอัตโนมัติ"
+
+msgid "Folder Auto Approve"
+msgstr "อนุมัติโฟลเดอร์อัตโนมัติ"
+
+msgid "Automatically approve new folders created by employers"
+msgstr "อนุมัติโฟลเดอร์ใหม่ที่สร้างโดยนายจ้างโดยอัตโนมัติ"
+
+msgid "Department Auto Approve"
+msgstr "แผนกอนุมัติอัตโนมัติ"
+
+msgid "Automatically approve new departments created by employers"
+msgstr "อนุมัติแผนกใหม่ที่สร้างโดยนายจ้างโดยอัตโนมัติ"
+
+msgid "Message Auto Approve"
+msgstr "ข้อความอนุมัติอัตโนมัติ"
+
+msgid "Automatically approve messages between job seekers and employers"
+msgstr "อนุมัติข้อความระหว่างผู้หางานและนายจ้างโดยอัตโนมัติ"
+
+msgid "Conflict Message Auto Approve"
+msgstr "ข้อความที่ขัดแย้งกัน อนุมัติอัตโนมัติ"
+
+msgid "Automatically approve conflicted messages"
+msgstr "อนุมัติข้อความที่ขัดแย้งโดยอัตโนมัติ"
+
+msgid "Email & Alerts"
+msgstr "อีเมลและการแจ้งเตือน"
+
+msgid "Email Sender Identity"
+msgstr "ข้อมูลประจำตัวผู้ส่งอีเมล"
+
+msgid "Configure sender details for all outgoing system emails"
+msgstr "กำหนดค่ารายละเอียดผู้ส่งสำหรับอีเมลระบบขาออกทั้งหมด"
+
+msgid "Admin Email Address"
+msgstr "ที่อยู่อีเมลของผู้ดูแลระบบ"
+
+msgid "Admin will receive email notifications at this address"
+msgstr "ผู้ดูแลระบบจะได้รับการแจ้งเตือนทางอีเมลตามที่อยู่นี้"
+
+msgid "Sender Email Address"
+msgstr "ที่อยู่อีเมลของผู้ส่ง"
+
+msgid "The email address that will be used to send system emails"
+msgstr "ที่อยู่อีเมลที่จะใช้ในการส่งอีเมลของระบบ"
+
+msgid "The sender name that will be used in system emails"
+msgstr "ชื่อผู้ส่งที่จะใช้ในอีเมลของระบบ"
+
+msgid "Job Alerts"
+msgstr "การแจ้งเตือนงาน"
+
+msgid "Configure settings for job alert emails and forms"
+msgstr "กำหนดการตั้งค่าสำหรับอีเมลและแบบฟอร์มแจ้งเตือนงาน"
+
+msgid "Show Job Alert Link"
+msgstr "แสดงลิงค์แจ้งเตือนงาน"
+
+msgid "Show the Job Alert link in the job seeker control panel"
+msgstr "แสดงลิงก์การแจ้งเตือนงานในแผงควบคุมผู้หางาน"
+
+msgid "Enable Job Alerts for Visitors"
+msgstr "เปิดใช้งานการแจ้งเตือนงานสำหรับผู้เยี่ยมชม"
+
+msgid "Allow non-logged-in users to sign up for job alerts"
+msgstr "อนุญาตให้ผู้ใช้ที่ไม่ได้เข้าสู่ระบบสามารถสมัครรับการแจ้งเตือนงานได้"
+
+msgid "Job Alert Auto Approve"
+msgstr "การแจ้งเตือนงานอนุมัติอัตโนมัติ"
+
+msgid "Automatically approve new job alerts upon creation"
+msgstr "อนุมัติการแจ้งเตือนงานใหม่โดยอัตโนมัติเมื่อมีการสร้าง"
+
+msgid "Captcha on Visitor Job Alert Form"
+msgstr "Captcha ในแบบฟอร์มการแจ้งเตือนงานของผู้เยี่ยมชม"
+
+msgid "Show a captcha on the job alert sign-up form for visitors"
+msgstr "แสดง captcha ในแบบฟอร์มลงทะเบียนแจ้งเตือนงานสำหรับผู้มาเยี่ยม"
+
+msgid "Allow users to save their search queries for jobs and resumes"
+msgstr "อนุญาตให้ผู้ใช้บันทึกคำค้นหาสำหรับงานและประวัติย่อ"
+
+msgid "Show Saved Searches for Job Seekers"
+msgstr "แสดงการค้นหาที่บันทึกไว้สำหรับผู้หางาน"
+
+msgid "Allow job seekers to save their job searches"
+msgstr "อนุญาตให้ผู้หางานบันทึกการค้นหางานของตน"
+
+msgid "Show Saved Searches for Employers"
+msgstr "แสดงการค้นหาที่บันทึกไว้สำหรับนายจ้าง"
+
+msgid "Allow employers to save their resume searches"
+msgstr "อนุญาตให้นายจ้างบันทึกการค้นหาเรซูเม่ของตน"
+
+msgid "Feeds & AI"
+msgstr "ฟีดและ AI"
+
+msgid "RSS Feeds"
+msgstr "ฟีด RSS"
+
+msgid "Configure the RSS feed for jobs"
+msgstr "กำหนดค่าฟีด RSS สำหรับงาน"
+
+msgid "Enable Jobs RSS Feed"
+msgstr "เปิดใช้งานฟีด RSS งาน"
+
+msgid "Enable the main RSS feed for new jobs"
+msgstr "เปิดใช้งานฟีด RSS หลักสำหรับงานใหม่"
+
+msgid "Job Feed Title"
+msgstr "ชื่อฟีดงาน"
+
+msgid "The title for the job RSS feed"
+msgstr "ชื่อเรื่องสำหรับฟีด RSS ของงาน"
+
+msgid "Job Feed Description"
+msgstr "คำอธิบายฟีดงาน"
+
+msgid "The description for the job RSS feed"
+msgstr "คำอธิบายสำหรับฟีด RSS ของงาน"
+
+msgid "Job Feed Copyright"
+msgstr "ลิขสิทธิ์ฟีดงาน"
+
+msgid "Copyright notice for the job feed"
+msgstr "ประกาศเกี่ยวกับลิขสิทธิ์สำหรับฟีดงาน"
+
+msgid "Job Feed Editor"
+msgstr "ตัวแก้ไขฟีดงาน"
+
+msgid "The person responsible for editorial content"
+msgstr "ผู้รับผิดชอบเนื้อหาด้านบรรณาธิการ"
+
+msgid "Job Feed Webmaster"
+msgstr "งานฟีดเว็บมาสเตอร์"
+
+msgid "The person responsible for technical issues"
+msgstr "บุคคลที่รับผิดชอบปัญหาด้านเทคนิค"
+
+msgid "Job Feed TTL"
+msgstr "ฟีดงาน TTL"
+
+msgid "Time to Live"
+msgstr "ถึงเวลาที่จะมีชีวิตอยู่"
+
+msgid "Number of minutes the feed can be cached before refreshing"
+msgstr "จำนวนนาทีที่สามารถแคชฟีดได้ก่อนที่จะรีเฟรช"
+
+msgid "Show Categories in Job Feed"
+msgstr "แสดงหมวดหมู่ในฟีดงาน"
+
+msgid "Include categories in the job feed items"
+msgstr "รวมหมวดหมู่ในรายการฟีดงาน"
+
+msgid "Show Company Image in Job Feed"
+msgstr "แสดงภาพลักษณ์บริษัทในฟีดงาน"
+
+msgid "Include the company logo in the job feed items"
+msgstr "รวมโลโก้บริษัทในรายการฟีดงาน"
+
+msgid "Configure the RSS feed for resumes"
+msgstr "กำหนดค่าฟีด RSS สำหรับประวัติย่อ"
+
+msgid "Enable Resumes RSS Feed"
+msgstr "เปิดใช้งานฟีด RSS ดำเนินการต่อ"
+
+msgid "Enable the main RSS feed for new resumes"
+msgstr "เปิดใช้งานฟีด RSS หลักสำหรับเรซูเม่ใหม่"
+
+msgid "Resume Feed Title"
+msgstr "ชื่อฟีดต่อ"
+
+msgid "The title for the resume RSS feed"
+msgstr "ชื่อเรื่องสำหรับฟีด RSS ของเรซูเม่"
+
+msgid "Resume Feed Description"
+msgstr "คำอธิบายฟีดต่อ"
+
+msgid "The description for the resume RSS feed"
+msgstr "คำอธิบายสำหรับฟีด RSS เรซูเม่"
+
+msgid "Resume Feed Copyright"
+msgstr "ลิขสิทธิ์ฟีดต่อ"
+
+msgid "Copyright notice for the resume feed"
+msgstr "ประกาศเกี่ยวกับลิขสิทธิ์สำหรับฟีดเรซูเม่"
+
+msgid "Resume Feed Editor"
+msgstr "ดำเนินการต่อตัวแก้ไขฟีด"
+
+msgid "Resume Feed Webmaster"
+msgstr "ดำเนินการต่อฟีดผู้ดูแลเว็บ"
+
+msgid "Resume Feed TTL"
+msgstr "ฟีดต่อ TTL"
+
+msgid "Show Categories in Resume Feed"
+msgstr "แสดงหมวดหมู่ในฟีดเรซูเม่"
+
+msgid "Include categories in the resume feed items"
+msgstr "รวมหมวดหมู่ในรายการฟีดเรซูเม่"
+
+msgid "Show Resume File in Resume Feed"
+msgstr "แสดงไฟล์เรซูเม่ในฟีดเรซูเม่"
+
+msgid "Make resume files downloadable from the feed"
+msgstr "ทำให้สามารถดาวน์โหลดไฟล์เรซูเม่ได้จากฟีด"
+
+msgid "AI Suggested Matches"
+msgstr "การแข่งขันที่แนะนำโดย AI"
+
+msgid "Configure AI-powered job and resume suggestion features"
+msgstr "กำหนดค่าคุณสมบัติงานที่ขับเคลื่อนด้วย AI และดำเนินการคำแนะนำต่อ"
+
+msgid "AI Search On Job Search Page"
+msgstr "ค้นหา AI บนหน้าค้นหางาน"
+
+msgid "Show the AI search field on the main job search form"
+msgstr "แสดงช่องค้นหา AI บนแบบฟอร์มค้นหางานหลัก"
+
+msgid "AI Job Search"
+msgstr "ค้นหางาน AI"
+
+msgid "AI Search Filter On Job Listing"
+msgstr "ตัวกรองการค้นหา AI ในรายการงาน"
+
+msgid "Show the AI search field as a filter on the job listing page"
+msgstr "แสดงช่องค้นหา AI เป็นตัวกรองในหน้ารายการงาน"
+
+msgid "AI Search On Resume Search Page"
+msgstr "ค้นหา AI ในหน้าค้นหาประวัติย่อ"
+
+msgid "Show the AI search field on the main resume search form"
+msgstr "แสดงช่องค้นหา AI บนแบบฟอร์มค้นหาเรซูเม่หลัก"
+
+msgid "AI Resume Search"
+msgstr "AI ค้นหาเรซูเม่"
+
+msgid "AI Search Filter On Resume Listing"
+msgstr "ตัวกรองการค้นหา AI ในรายการเรซูเม่"
+
+msgid "Show the AI search field as a filter on the resume listing page"
+msgstr "แสดงช่องค้นหา AI เป็นตัวกรองในหน้ารายการเรซูเม่"
+
+msgid "Show AI Suggested Jobs Button"
+msgstr "แสดงปุ่มงานที่แนะนำโดย AI"
+
+msgid "AI Suggested Jobs"
+msgstr "AI แนะนำงาน"
+
+msgid "Show AI Suggested Jobs on Dashboard"
+msgstr "แสดงงานที่แนะนำโดย AI บนแดชบอร์ด"
+
+msgid "Show a list of AI-suggested jobs on the job seeker dashboard"
+msgstr "แสดงรายการงานที่แนะนำโดย AI บนแดชบอร์ดผู้หางาน"
+
+msgid "Show AI Suggested Resumes Button"
+msgstr "แสดงปุ่มเรซูเม่ที่แนะนำโดย AI"
+
+msgid "AI Suggested Resumes"
+msgstr "AI เรซูเม่ที่แนะนำ"
+
+msgid "Show AI Suggested Resumes on Dashboard"
+msgstr "แสดงประวัติย่อที่แนะนำโดย AI บนแดชบอร์ด"
+
+msgid "Show a list of AI-suggested resumes on the employer dashboard"
+msgstr "แสดงรายการเรซูเม่ที่แนะนำโดย AI บนแดชบอร์ดนายจ้าง"
+
+msgid "Integrations"
+msgstr "บูรณาการ"
+
+msgid "Allow users to register and log in with their social media accounts"
+msgstr "อนุญาตให้ผู้ใช้ลงทะเบียนและเข้าสู่ระบบด้วยบัญชีโซเชียลมีเดียของตน"
+
+msgid "Login with Facebook"
+msgstr "เข้าสู่ระบบด้วย Facebook"
+
+msgid "Allow users to log in using their Facebook account"
+msgstr "อนุญาตให้ผู้ใช้เข้าสู่ระบบโดยใช้บัญชี Facebook ของตน"
+
+msgid "Apply with Facebook"
+msgstr "สมัครด้วยเฟสบุ๊ค"
+
+msgid "Allow users to apply for jobs using their Facebook profile"
+msgstr "อนุญาตให้ผู้ใช้สมัครงานโดยใช้โปรไฟล์ Facebook ของตน"
+
+msgid "Facebook App ID"
+msgstr "รหัสแอพ Facebook"
+
+msgid "Enter your Facebook App ID"
+msgstr "ป้อน ID แอพ Facebook ของคุณ"
+
+msgid "Facebook App Secret"
+msgstr "ความลับของแอพ Facebook"
+
+msgid "Enter your Facebook App Secret"
+msgstr "ป้อนความลับของแอพ Facebook ของคุณ"
+
+msgid "Valid OAuth URI"
+msgstr "OAuth URI ที่ถูกต้อง"
+
+msgid "Apply"
+msgstr "นำมาใช้"
+
+msgid "Login with LinkedIn"
+msgstr "เข้าสู่ระบบด้วย LinkedIn"
+
+msgid "Allow users to log in using their LinkedIn account"
+msgstr "อนุญาตให้ผู้ใช้เข้าสู่ระบบโดยใช้บัญชี LinkedIn ของตน"
+
+msgid "Apply with LinkedIn"
+msgstr "สมัครด้วย LinkedIn"
+
+msgid "Allow users to apply for jobs using their LinkedIn profile"
+msgstr "อนุญาตให้ผู้ใช้สมัครงานโดยใช้โปรไฟล์ LinkedIn ของตน"
+
+msgid "LinkedIn Client ID"
+msgstr "รหัสลูกค้า LinkedIn"
+
+msgid "Enter your LinkedIn Client ID"
+msgstr "ป้อนรหัสลูกค้า LinkedIn ของคุณ"
+
+msgid "API Key"
+msgstr "คีย์ API"
+
+msgid "LinkedIn Client Secret"
+msgstr "ความลับของลูกค้า LinkedIn"
+
+msgid "Enter your LinkedIn Client Secret"
+msgstr "ป้อนข้อมูลลับไคลเอนต์ LinkedIn ของคุณ"
+
+msgid "Social Sharing"
+msgstr "การแบ่งปันทางสังคม"
+
+msgid "Enable social sharing buttons on your pages"
+msgstr "เปิดใช้งานปุ่มแบ่งปันทางสังคมบนเพจของคุณ"
+
+msgid "Enable Facebook Likes"
+msgstr "เปิดใช้งานการกดไลค์บน Facebook"
+
+msgid "Show Facebook like button"
+msgstr "แสดงปุ่มไลค์ Facebook"
+
+msgid "Enable Facebook Share"
+msgstr "เปิดใช้งานการแชร์บน Facebook"
+
+msgid "Show Facebook share button"
+msgstr "แสดงปุ่มแชร์ Facebook"
+
+msgid "Enable Facebook Comments"
+msgstr "เปิดใช้งานความคิดเห็นของ Facebook"
+
+msgid "Show Facebook comments widget"
+msgstr "แสดงวิดเจ็ตความคิดเห็นของ Facebook"
+
+msgid "Enable Twitter Share"
+msgstr "เปิดใช้งานการแชร์ Twitter"
+
+msgid "Show Twitter share button"
+msgstr "แสดงปุ่มแชร์ Twitter"
+
+msgid "Enable LinkedIn Share"
+msgstr "เปิดใช้งานการแบ่งปัน LinkedIn"
+
+msgid "Show LinkedIn share button"
+msgstr "แสดงปุ่มแชร์ LinkedIn"
+
+msgid "Enable Blogger Share"
+msgstr "เปิดใช้งานการแบ่งปันบล็อกเกอร์"
+
+msgid "Show Blogger share button"
+msgstr "แสดงปุ่มแชร์ของ Blogger"
+
+msgid "Enable Digg Share"
+msgstr "เปิดใช้งานการแบ่งปัน Digg"
+
+msgid "Show Digg share button"
+msgstr "แสดงปุ่มแชร์ Digg"
+
+msgid "Enable Myspace Share"
+msgstr "เปิดใช้งาน Myspace Share"
+
+msgid "Show Myspace share button"
+msgstr "แสดงปุ่มแชร์ Myspace"
+
+msgid "Enable Yahoo Share"
+msgstr "เปิดใช้งานการแบ่งปัน Yahoo"
+
+msgid "Show Yahoo share button"
+msgstr "แสดงปุ่มแชร์ของ Yahoo"
+
+msgid "Mapping & Geolocation"
+msgstr "การทำแผนที่และตำแหน่งทางภูมิศาสตร์"
+
+msgid "Configure map services and location-based features"
+msgstr "กำหนดค่าบริการแผนที่และคุณสมบัติตามตำแหน่ง"
+
+msgid "Choose between Google Maps and OpenStreetMap for map displays"
+msgstr "เลือกระหว่าง Google Maps และ OpenStreetMap สำหรับการแสดงแผนที่"
+
+msgid "Google Map API Key"
+msgstr "คีย์ Google Map API"
+
+msgid "Enter your Google Maps API key"
+msgstr "ป้อนรหัส Google Maps API ของคุณ"
+
+msgid "Map Height"
+msgstr "ความสูงของแผนที่"
+
+msgid "Set the height for maps displayed in the plugin, in pixels"
+msgstr "ตั้งค่าความสูงของแผนที่ที่แสดงในปลั๊กอิน หน่วยเป็นพิกเซล"
+
+msgid "Default Longitude"
+msgstr "ลองจิจูดเริ่มต้น"
+
+msgid "Default longitude for map centering"
+msgstr "ลองจิจูดเริ่มต้นสำหรับการตั้งศูนย์กลางแผนที่"
+
+msgid "Default Latitude"
+msgstr "ละติจูดเริ่มต้น"
+
+msgid "Default latitude for map centering"
+msgstr "ละติจูดเริ่มต้นสำหรับการวางศูนย์กลางแผนที่"
+
+msgid "Default Map Radius Type"
+msgstr "ประเภทรัศมีแผนที่เริ่มต้น"
+
+msgid "Default unit for map radius calculations"
+msgstr "หน่วยเริ่มต้นสำหรับการคำนวณรัศมีแผนที่"
+
+msgid "Max Records for City Field"
+msgstr "Max Records สำหรับสนามซิตี้"
+
+msgid "Set the number of cities to show in the location autocomplete results"
+msgstr "กำหนดจำนวนเมืองที่จะแสดงในผลลัพธ์การเติมตำแหน่งอัตโนมัติ"
+
+msgid "Max Records for Tag Field"
+msgstr "บันทึกสูงสุดสำหรับฟิลด์แท็ก"
+
+msgid "Set the number of tags to show in the tag autocomplete results"
+msgstr "กำหนดจำนวนแท็กที่จะแสดงในผลลัพธ์การเติมแท็กอัตโนมัติ"
+
+msgid "Security & Captcha"
+msgstr "ความปลอดภัย & แคปต์ชา"
+
+msgid "Captcha Options"
+msgstr "ตัวเลือกแคปช่า"
+
+msgid "Enable captcha on various forms to prevent spam"
+msgstr "เปิดใช้งาน captcha ในรูปแบบต่างๆ เพื่อป้องกันสแปม"
+
+msgid "Default Captcha Type"
+msgstr "ประเภทแคปต์ชาเริ่มต้น"
+
+msgid "Select the default captcha to use throughout the plugin"
+msgstr "เลือก captcha เริ่มต้นเพื่อใช้ตลอดทั้งปลั๊กอิน"
+
+msgid "Captcha on Registration Form"
+msgstr "แคปต์ชาในแบบฟอร์มลงทะเบียน"
+
+msgid "Show a captcha on the WP Job Portal registration form"
+msgstr "แสดง captcha ในแบบฟอร์มการลงทะเบียน WP Job Portal"
+
+msgid "Captcha on Visitor Quick Apply"
+msgstr "Captcha กับผู้เยี่ยมชมสมัครด่วน"
+
+msgid "Show captcha to visitors on the quick apply form"
+msgstr "แสดง captcha แก่ผู้เยี่ยมชมในแบบฟอร์มสมัครด่วน"
+
+msgid "Captcha on Visitor Job Form"
+msgstr "Captcha ในแบบฟอร์มงานผู้เยี่ยมชม"
+
+msgid "Show captcha on the job submission form for visitors"
+msgstr "แสดง captcha ในแบบฟอร์มการส่งงานสำหรับผู้เยี่ยมชม"
+
+msgid "Captcha on Visitor Resume Form"
+msgstr "Captcha ในแบบฟอร์มประวัติย่อของผู้เยี่ยมชม"
+
+msgid "Show captcha on the resume submission form for visitors"
+msgstr "แสดง captcha ในแบบฟอร์มส่งเรซูเม่สำหรับผู้เยี่ยมชม"
+
+msgid "Captcha on Tell a Friend Popup"
+msgstr "แคปต์ชาบนป๊อปอัปบอกเพื่อน"
+
+msgid "Show captcha on the"
+msgstr "แสดง captcha บน"
+
+msgid "popup for visitors"
+msgstr "ป๊อปอัปสำหรับผู้เยี่ยมชม"
+
+msgid "WP Job Portal Captcha"
+msgstr "WP งานพอร์ทัล Captcha"
+
+msgid "Settings for the built-in mathematical captcha"
+msgstr "การตั้งค่าสำหรับ captcha ทางคณิตศาสตร์ในตัว"
+
+msgid "Calculation Type"
+msgstr "ประเภทการคำนวณ"
+
+msgid "Select the type of math problem for the captcha"
+msgstr "เลือกประเภทของปัญหาทางคณิตศาสตร์สำหรับ captcha"
+
+msgid "Addition or Subtraction"
+msgstr "การบวกหรือการลบ"
+
+msgid "Answer Always Positive"
+msgstr "ตอบเชิงบวกเสมอ"
+
+msgid "Ensure that subtraction problems always result in a positive answer"
+msgstr "ตรวจสอบให้แน่ใจว่าปัญหาการลบจะส่งผลให้ได้คำตอบที่เป็นบวกเสมอ"
+
+msgid "Number of Operands"
+msgstr "จำนวนตัวถูกดำเนินการ"
+
+msgid "Choose the number of operands for the math problem"
+msgstr "เลือกจำนวนตัวถูกดำเนินการสำหรับโจทย์คณิตศาสตร์"
+
+msgid "Google reCAPTCHA"
+msgstr "Google reCAPTCHA"
+
+msgid "Configure Google reCAPTCHA v2 or v3"
+msgstr "กำหนดค่า Google reCAPTCHA v2 หรือ v3"
+
+msgid "Select which version of Google reCAPTCHA to use"
+msgstr "เลือกเวอร์ชันของ Google reCAPTCHA ที่จะใช้"
+
+msgid "Enter the site key from your Google reCAPTCHA admin console"
+msgstr "ป้อนรหัสไซต์จากคอนโซลผู้ดูแลระบบ Google reCAPTCHA"
+
+msgid "Google reCaptcha Secret Key"
+msgstr "รหัสลับ Google reCaptcha"
+
+msgid "Enter the secret key from your Google reCAPTCHA admin console"
+msgstr "ป้อนรหัสลับจากคอนโซลผู้ดูแลระบบ Google reCAPTCHA"
+
+msgid "Monetization"
+msgstr "การสร้างรายได้"
+
+msgid "General Monetization"
+msgstr "การสร้างรายได้ทั่วไป"
+
+msgid "Core settings for handling payments and packages"
+msgstr "การตั้งค่าหลักสำหรับการจัดการการชำระเงินและแพ็คเกจ"
+
+msgid "Choose the monetization model for submissions"
+msgstr "เลือกรูปแบบการสร้างรายได้สำหรับการส่ง"
+
+msgid "Free, Per Listing, or Membership-based"
+msgstr "ฟรี ต่อรายการ หรือตามการเป็นสมาชิก"
+
+msgid "Default Currency Symbol"
+msgstr "สัญลักษณ์สกุลเงินเริ่มต้น"
+
+msgid "The currency symbol to be used across the site"
+msgstr "สัญลักษณ์สกุลเงินที่จะใช้ทั่วทั้งไซต์"
+
+msgid "Currency Symbol Position"
+msgstr "ตำแหน่งสัญลักษณ์สกุลเงิน"
+
+msgid "Packages & Featured Listings"
+msgstr "แพ็คเกจและรายการแนะนำ"
+
+msgid "Manage free packages and enable featured listings"
+msgstr "จัดการแพ็คเกจฟรีและเปิดใช้งานรายการเด่น"
+
+msgid "Auto-assign Free Package to New User"
+msgstr "กำหนดแพ็คเกจฟรีให้กับผู้ใช้ใหม่โดยอัตโนมัติ"
+
+msgid "Automatically give new users a free package if one exists"
+msgstr "มอบแพ็คเกจฟรีให้กับผู้ใช้ใหม่โดยอัตโนมัติหากมีอยู่"
+
+msgid "Free Package Purchase Auto Approve"
+msgstr "ซื้อแพ็คเกจฟรีอนุมัติอัตโนมัติ"
+
+msgid "Automatically approve the purchase of free packages"
+msgstr "อนุมัติการซื้อแพ็คเกจฟรีโดยอัตโนมัติ"
+
+msgid "Purchase Free Package Only Once"
+msgstr "ซื้อแพ็คเกจฟรีเพียงครั้งเดียวเท่านั้น"
+
+msgid "Prevent users from acquiring a free package more than once"
+msgstr "ป้องกันไม่ให้ผู้ใช้รับแพ็คเกจฟรีมากกว่าหนึ่งครั้ง"
+
+msgid "Enable Featured Companies"
+msgstr "เปิดใช้งานบริษัทแนะนำ"
+
+msgid "Allow companies to be marked as"
+msgstr "อนุญาตให้บริษัทถูกทำเครื่องหมายเป็น"
+
+msgid "Enable Featured Jobs"
+msgstr "เปิดใช้งานงานเด่น"
+
+msgid "Allow jobs to be marked as"
+msgstr "อนุญาตให้ทำเครื่องหมายงานเป็น"
+
+msgid "Enable Featured Resumes"
+msgstr "เปิดใช้งานเรซูเม่แนะนำ"
+
+msgid "Allow resumes to be marked as"
+msgstr "อนุญาตให้ทำเครื่องหมายประวัติย่อเป็น"
+
+msgid "Per Listing Prices"
+msgstr "ราคาต่อรายการ"
+
+msgid "Set prices for various actions when using the"
+msgstr "กำหนดราคาสำหรับการดำเนินการต่างๆ เมื่อใช้"
+
+msgid "submission type"
+msgstr "ประเภทการส่ง"
+
+msgid "Submission"
+msgstr "การส่ง"
+
+msgid "Price to submit a single company profile"
+msgstr "ราคาส่งโปรไฟล์บริษัทเดียว"
+
+msgid "Additional price to make a company"
+msgstr "ราคาเพิ่มเพื่อทำบริษัท"
+
+msgid "Days Until Featured Company Expires"
+msgstr "วันจนกว่าบริษัทแนะนำจะหมดอายุ"
+
+msgid "Number of days a"
+msgstr "จำนวนวัน ก"
+
+msgid "per-listing"
+msgstr "ต่อรายการ"
+
+msgid "featured company remains active"
+msgstr "บริษัทที่โดดเด่นยังคงใช้งานอยู่"
+
+msgid "free"
+msgstr "ฟรี"
+
+msgid "Price to submit a single job"
+msgstr "ราคาส่งงานเดียว"
+
+msgid "Additional price to make a job"
+msgstr "ราคาเพิ่มในการทำงาน"
+
+msgid "Days Until Featured Job Expires"
+msgstr "วันจนกว่างานแนะนำจะหมดอายุ"
+
+msgid "featured job remains active"
+msgstr "งานเด่นยังคงใช้งานอยู่"
+
+msgid "Price to submit a single resume"
+msgstr "ราคาส่งเรซูเม่เดี่ยว"
+
+msgid "Additional price to make a resume"
+msgstr "ราคาเพิ่มเติมในการทำเรซูเม่"
+
+msgid "Days Until Featured Resume Expires"
+msgstr "วันจนกว่าเรซูเม่ที่แนะนำจะหมดอายุ"
+
+msgid "featured resume remains active"
+msgstr "ประวัติย่อที่โดดเด่นยังคงใช้งานอยู่"
+
+msgid "Price per Job Apply"
+msgstr "ราคาต่อตำแหน่งงาน"
+
+msgid "Price for a job seeker to apply for a job"
+msgstr "ราคาสำหรับผู้หางานเพื่อสมัครงาน"
+
+msgid "Price to View Resume Contact"
+msgstr "ราคาเพื่อดูประวัติการติดต่อ"
+
+msgid "Price to View Company Contact"
+msgstr "ราคาเพื่อดูข้อมูลติดต่อบริษัท"
+
+msgid "Price to submit a department"
+msgstr "ราคาส่งแผนก"
+
+msgid "Price to submit a cover letter"
+msgstr "ราคาในการส่งจดหมายปะหน้า"
+
+msgid "Price to create a job alert"
+msgstr "ราคาเพื่อสร้างการแจ้งเตือนงาน"
+
+msgid "Dashboard Monetization Links"
+msgstr "ลิงก์การสร้างรายได้ของแดชบอร์ด"
+
+msgid "Control the visibility of monetization-related links in user dashboards"
+msgstr "ควบคุมการมองเห็นลิงก์ที่เกี่ยวข้องกับการสร้างรายได้ในแดชบอร์ดผู้ใช้"
+
+msgid "Employer Show Invoice History"
+msgstr "นายจ้างแสดงประวัติใบแจ้งหนี้"
+
+msgid "Setting to show the invoice/purchase history section"
+msgstr "การตั้งค่าให้แสดงส่วนใบแจ้งหนี้/ประวัติการซื้อ"
+
+msgid "Job Seeker Show Invoice History"
+msgstr "ผู้หางานแสดงประวัติใบแจ้งหนี้"
+
+msgid "Job Seeker Show Credits Log"
+msgstr "ผู้หางานแสดงบันทึกเครดิต"
+
+msgid "Setting to show the credits log section"
+msgstr "การตั้งค่าให้แสดงส่วนบันทึกเครดิต"
+
+msgid "Payment Gateways"
+msgstr "เกตเวย์การชำระเงิน"
+
+msgid "Configure PayPal payment gateway settings for API integration"
+msgstr "กำหนดการตั้งค่าเกตเวย์การชำระเงิน PayPal สำหรับการรวม API"
+
+msgid "Enable PayPal"
+msgstr "เปิดใช้งานเพย์พาล"
+
+msgid "Enable or disable PayPal as a payment option"
+msgstr "เปิดหรือปิดใช้งาน PayPal เป็นตัวเลือกการชำระเงิน"
+
+msgid "Your PayPal API Username"
+msgstr "ชื่อผู้ใช้ PayPal API ของคุณ"
+
+msgid "Your PayPal API Password"
+msgstr "รหัสผ่าน PayPal API ของคุณ"
+
+msgid "Your PayPal API Signature"
+msgstr "ลายเซ็น PayPal API ของคุณ"
+
+msgid "A URL to your logo image to display on the PayPal checkout page"
+msgstr "URL ไปยังรูปภาพโลโก้ของคุณเพื่อแสดงบนหน้าชำระเงินของ PayPal"
+
+msgid "Cancel URL"
+msgstr "ยกเลิก URL"
+
+msgid "The URL users are sent to if they cancel the payment"
+msgstr "ผู้ใช้ URL จะถูกส่งไปยังหากพวกเขายกเลิกการชำระเงิน"
+
+msgid "Notify URL"
+msgstr "แจ้ง URL"
+
+msgid "Sandbox"
+msgstr "แซนด์บ็อกซ์"
+
+msgid "Enable PayPal Sandbox for testing purposes"
+msgstr "เปิดใช้งาน PayPal Sandbox เพื่อการทดสอบ"
+
+msgid "Please enter language code, for example"
+msgstr "กรุณากรอกรหัสภาษา เป็นต้น"
+
+msgid "Subscription IPN URL"
+msgstr "URL การสมัครสมาชิก IPN"
+
+msgid "Configure Stripe payment gateway settings"
+msgstr "กำหนดการตั้งค่าเกตเวย์การชำระเงินแบบ Stripe"
+
+msgid "Enable Stripe"
+msgstr "เปิดใช้งานแถบ"
+
+msgid "Enable or disable Stripe as a payment option"
+msgstr "เปิดหรือปิดใช้งาน Stripe เป็นตัวเลือกการชำระเงิน"
+
+msgid "Publishable Key"
+msgstr "รหัสที่เผยแพร่ได้"
+
+msgid "Enter your Stripe Publishable Key"
+msgstr "ป้อนรหัส Stripe Publishable ของคุณ"
+
+msgid "Secret Key"
+msgstr "รหัสลับ"
+
+msgid "Enter your Stripe Secret Key"
+msgstr "ป้อนรหัสลับแถบของคุณ"
+
+msgid "Subscription Webhook URL"
+msgstr "URL ของ Webhook ที่สมัครสมาชิก"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Use WooCommerce to handle payments"
+msgstr "ใช้ WooCommerce เพื่อจัดการการชำระเงิน"
+
+msgid "Enable WooCommerce"
+msgstr "เปิดใช้งาน WooCommerce"
+
+msgid "Enable or disable WooCommerce as a payment option"
+msgstr "เปิดหรือปิดใช้งาน WooCommerce เป็นตัวเลือกการชำระเงิน"
+
+msgid "Home Page"
+msgstr "หน้าแรก"
+
+msgid "WordPress Default"
+msgstr "ค่าเริ่มต้นของเวิร์ดเพรส"
+
+msgid "Blog"
+msgstr "บล็อก"
+
+msgid "This feature is part of a premium addon"
+msgstr "คุณลักษณะนี้เป็นส่วนหนึ่งของส่วนเสริมระดับพรีเมียม"
+
+msgid "Available tags"
+msgstr "แท็กที่มีอยู่"
+
+msgid "This image will be shown as the default image for entities & users if no other image is provided"
+msgstr "รูปภาพนี้จะแสดงเป็นรูปเริ่มต้นสำหรับเอนทิตีและผู้ใช้ หากไม่มีรูปภาพอื่นให้ไว้"
+
+msgid "Discard"
+msgstr "ทิ้ง"
+
+msgid "Save Changes"
+msgstr "บันทึกการเปลี่ยนแปลง"
+
+msgid "Quickly find any setting"
+msgstr "ค้นหาการตั้งค่าใดๆ ได้อย่างรวดเร็ว"
+
+msgid "Search by setting title or tooltip description"
+msgstr "ค้นหาโดยการตั้งชื่อหรือคำอธิบายคำแนะนำเครื่องมือ"
+
+msgid "Unlock"
+msgstr "ปลดล็อค"
+
+msgid "This and other powerful features are available in the"
+msgstr "คุณสมบัติอันทรงพลังนี้และคุณสมบัติอื่น ๆ มีอยู่ใน"
+
+msgid "Upgrade Now"
+msgstr "อัพเกรดทันที"
+
+msgid "No settings found for your search"
+msgstr "ไม่พบการตั้งค่าสำหรับการค้นหาของคุณ"
+
+msgid "Copied to clipboard"
+msgstr "คัดลอกไปยังคลิปบอร์ดแล้ว"
+
+msgid "Search results for"
+msgstr "ผลการค้นหาสำหรับ"
+
+msgid "Unlock with"
+msgstr "ปลดล็อคด้วย"
+
+msgid "Settings related to employer accounts, registration, and permissions"
+msgstr "การตั้งค่าที่เกี่ยวข้องกับบัญชีนายจ้าง การลงทะเบียน และการอนุญาต"
+
+msgid "Settings related to job seeker accounts and registration"
+msgstr "การตั้งค่าที่เกี่ยวข้องกับบัญชีผู้หางานและการลงทะเบียน"
+
+msgid "Visitor Can View Employer's Control Panel Links"
+msgstr "ผู้เยี่ยมชมสามารถดูลิงก์แผงควบคุมของนายจ้างได้"
+
+msgid "Visitor Can View Resume Categories"
+msgstr "ผู้เยี่ยมชมสามารถดูหมวดหมู่เรซูเม่ได้"
+
+msgid "Visitor Can Search Resumes"
+msgstr "ผู้เยี่ยมชมสามารถค้นหาเรซูเม่ได้"
+
+msgid "Visitor Can View Company Details"
+msgstr "ผู้เยี่ยมชมสามารถดูรายละเอียดบริษัท"
+
+msgid "Visitor Can View Job Details"
+msgstr "ผู้เยี่ยมชมสามารถดูรายละเอียดงานได้"
+
+msgid "Visitor Can View Resume Details"
+msgstr "ผู้เยี่ยมชมสามารถดูรายละเอียดเรซูเม่ได้"
+
+msgid "Visitor Can View Job Seeker's Control Panel Links"
+msgstr "ผู้เยี่ยมชมสามารถดูลิงก์แผงควบคุมของผู้หางานได้"
+
+msgid "Visitor Can View Jobs by Categories"
+msgstr "ผู้เยี่ยมชมสามารถดูงานตามหมวดหมู่"
+
+msgid "Visitor Can Search Jobs"
+msgstr "ผู้เยี่ยมชมสามารถค้นหางานได้"
+
+msgid "Visitor Can View Newest Jobs"
+msgstr "ผู้เยี่ยมชมสามารถดูงานใหม่ล่าสุด"
+
+msgid "Visitor Can View Job Search Results"
+msgstr "ผู้เยี่ยมชมสามารถดูผลการค้นหางานได้"
+
+msgid "1 Column"
+msgstr "1 คอลัมน์"
+
+msgid "10254 Departments found"
+msgstr "พบ 1,0254 หน่วยงาน"
+
+msgid "2 Columns"
+msgstr "2 คอลัมน์"
+
+msgid "3 Columns"
+msgstr "3 คอลัมน์"
+
+msgid "4 Columns"
+msgstr "4 คอลัมน์"
+
+msgid "5 Columns"
+msgstr "5 คอลัมน์"
+
+msgid "A critical update for WP Job Portal is required to maintain performance and prevent issues. Please update now."
+msgstr "จำเป็นต้องมีการอัปเดตที่สำคัญสำหรับ WP Job Portal เพื่อรักษาประสิทธิภาพและป้องกันปัญหา โปรดอัปเดตตอนนี้"
+
+msgid "AI Search"
+msgstr "ค้นหาเอไอ"
+
+msgid "AI Search Job"
+msgstr "งานค้นหา AI"
+
+msgid "AI Settings"
+msgstr "การตั้งค่าเอไอ"
+
+msgid "AI settings"
+msgstr "การตั้งค่าเอไอ"
+
+msgid "About"
+msgstr "เกี่ยวกับ"
+
+msgid "Account & Billing"
+msgstr "บัญชีและการเรียกเก็บเงิน"
+
+msgid "Activation failed"
+msgstr "การเปิดใช้งานล้มเหลว"
+
+msgid "Add-ons for WP Job Portal have been installed and activated successfully."
+msgstr "ติดตั้งและเปิดใช้งานส่วนเสริมสำหรับ WP Job Portal สำเร็จแล้ว"
+
+msgid "Addon Installer"
+msgstr "ตัวติดตั้ง Addon"
+
+msgid "Addon not installed please install addon first."
+msgstr "ไม่ได้ติดตั้ง Addon โปรดติดตั้ง addon ก่อน"
+
+msgid "Addon will automatically update to the newest version"
+msgstr "Addon จะอัปเดตเป็นเวอร์ชันใหม่ล่าสุดโดยอัตโนมัติ"
+
+msgid "Addon(s) Installed successfully!"
+msgstr "ติดตั้ง Addon สำเร็จแล้ว!"
+
+msgid "Address display style for plugin"
+msgstr "รูปแบบการแสดงที่อยู่สำหรับปลั๊กอิน"
+
+msgid "Advanced Resume Builder Addon missing, resume sections data will not be imported!"
+msgstr "ไม่มี Addon ตัวสร้างเรซูเม่ขั้นสูง ข้อมูลส่วนเรซูเม่จะไม่ถูกนำเข้า!"
+
+msgid "All selected add-ons are now active."
+msgstr "ส่วนเสริมที่เลือกทั้งหมดใช้งานได้แล้ว"
+
+msgid "Allow employers and job Seekers to register on the site."
+msgstr "อนุญาตให้นายจ้างและผู้หางานลงทะเบียนบนเว็บไซต์"
+
+msgid "Allow search resume"
+msgstr "อนุญาตให้ค้นหาต่อ"
+
+msgid "Allowed to all (employers, job seekers and visitors)"
+msgstr "อนุญาตให้ทุกคน (นายจ้าง ผู้หางาน และผู้เยี่ยมชม)"
+
+msgid "Auto Update: Off"
+msgstr "อัพเดตอัตโนมัติ: ปิด"
+
+msgid "Auto Update: On"
+msgstr "อัปเดตอัตโนมัติ: เปิด"
+
+msgid "Back to listing"
+msgstr "กลับไปที่รายการ"
+
+msgid "Basic Info"
+msgstr "ข้อมูลพื้นฐาน"
+
+msgid "Buttons Styling"
+msgstr "การจัดสไตล์ปุ่ม"
+
+msgid "Capitalize"
+msgstr "ใช้อักษรตัวพิมพ์ใหญ่"
+
+msgid "Check if you want to use WP Job Portal packages"
+msgstr "ตรวจสอบว่าคุณต้องการใช้แพ็คเกจ WP Job Portal หรือไม่"
+
+msgid "City name"
+msgstr "ชื่อเมือง"
+
+msgid "Columns per Row"
+msgstr "คอลัมน์ต่อแถว"
+
+msgid "Comma separated list of job types i.e JTFT, JTPT, JTFP, JTCT, JTIN"
+msgstr "รายการประเภทงานคั่นด้วยเครื่องหมายจุลภาค เช่น JTFT, JTPT, JTFP, JTCT, JTIN"
+
+msgid "Communication"
+msgstr "การสื่อสาร"
+
+msgid "Company Management"
+msgstr "การจัดการบริษัท"
+
+msgid "Complete Your Resume"
+msgstr "กรอกเรซูเม่ของคุณให้สมบูรณ์"
+
+msgid "Content Access"
+msgstr "การเข้าถึงเนื้อหา"
+
+msgid "Content Styling"
+msgstr "การจัดรูปแบบเนื้อหา"
+
+msgid "Control which employer dashboard navigation links are visible to visitors"
+msgstr "ควบคุมลิงก์การนำทางแดชบอร์ดของนายจ้างที่ผู้เยี่ยมชมมองเห็นได้"
+
+msgid "Control which employer dashboard widgets and sections are visible to visitors"
+msgstr "ควบคุมวิดเจ็ตและส่วนแดชบอร์ดของนายจ้างที่ผู้เยี่ยมชมมองเห็นได้"
+
+msgid "Control which job seeker dashboard navigation links are visible to visitors"
+msgstr "ควบคุมลิงก์การนำทางแดชบอร์ดของผู้หางานที่จะมองเห็นได้สำหรับผู้เยี่ยมชม"
+
+msgid "Control which job seeker dashboard widgets and sections are visible to visitors"
+msgstr "ควบคุมว่าวิดเจ็ตและส่วนแดชบอร์ดของผู้หางานใดบ้างที่ผู้เยี่ยมชมมองเห็นได้"
+
+msgid "Control which pages and content areas are visible to non-logged-in users"
+msgstr "ควบคุมว่าเพจและพื้นที่เนื้อหาใดที่ผู้ใช้ที่ไม่ได้เข้าสู่ระบบจะมองเห็นได้"
+
+msgid "Custom Field Class"
+msgstr "คลาสฟิลด์แบบกำหนดเอง"
+
+msgid "Database Update Needed"
+msgstr "จำเป็นต้องอัพเดตฐานข้อมูล"
+
+msgid "Database update completed"
+msgstr "การอัปเดตฐานข้อมูลเสร็จสมบูรณ์"
+
+msgid "Delete All Unused Keys"
+msgstr "ลบคีย์ที่ไม่ได้ใช้ทั้งหมด"
+
+msgid "Discover"
+msgstr "ค้นพบ"
+
+msgid "Display the status of applications to the job seeker"
+msgstr "แสดงสถานะการสมัครงานแก่ผู้หางาน"
+
+msgid "Dummy Plugin"
+msgstr "ปลั๊กอินจำลอง"
+
+msgid "Dummy Plugin 2"
+msgstr "ปลั๊กอินจำลอง 2"
+
+msgid "Elegant Design"
+msgstr "การออกแบบที่หรูหรา"
+
+msgid "Employer Widgets"
+msgstr "วิดเจ็ตนายจ้าง"
+
+msgid "Enter the Site Title"
+msgstr "ป้อนชื่อไซต์"
+
+msgid "Entity"
+msgstr "เอนทิตี"
+
+msgid "Fetch Data"
+msgstr "ดึงข้อมูล"
+
+msgid "Find your next star hire with AI-driven resume search"
+msgstr "ค้นหาดาวดวงใหม่ของคุณด้วยการค้นหาเรซูเม่ที่ขับเคลื่อนด้วย AI"
+
+msgid "Font Family"
+msgstr "ครอบครัวแบบอักษร"
+
+msgid "Font Size"
+msgstr "ขนาดตัวอักษร"
+
+msgid "Font Style"
+msgstr "รูปแบบตัวอักษร"
+
+msgid "Font Weight"
+msgstr "น้ำหนักตัวอักษร"
+
+msgid "Go To Dashboard"
+msgstr "ไปที่แดชบอร์ด"
+
+msgid "Import Data Report"
+msgstr "นำเข้ารายงานข้อมูล"
+
+msgid "Import Third Party Data"
+msgstr "นำเข้าข้อมูลบุคคลที่สาม"
+
+msgid "Import demo data to populate your site with example companies, jobs, resumes, and applications."
+msgstr "นำเข้าข้อมูลสาธิตเพื่อเติมไซต์ของคุณด้วยตัวอย่างบริษัท งาน ประวัติย่อ และใบสมัคร"
+
+msgid "Imported"
+msgstr "นำเข้า"
+
+msgid "Infi Icon"
+msgstr "ไอคอนอินฟิ"
+
+msgid "Info"
+msgstr "ข้อมูล"
+
+msgid "Info Icon"
+msgstr "ไอคอนข้อมูล"
+
+msgid "Invalid server response"
+msgstr "การตอบสนองของเซิร์ฟเวอร์ไม่ถูกต้อง"
+
+msgid "Italic"
+msgstr "ตัวเอียง"
+
+msgid "Job Alert Time"
+msgstr "เวลาแจ้งเตือนงาน"
+
+msgid "Job Detail"
+msgstr "รายละเอียดงาน"
+
+msgid "Job Seeker Links"
+msgstr "ลิงค์ผู้หางาน"
+
+msgid "Job Seeker Settings"
+msgstr "การตั้งค่าผู้หางาน"
+
+msgid "Job Seeker Widgets"
+msgstr "วิดเจ็ตผู้หางาน"
+
+msgid "Jobs by Category"
+msgstr "งานตามประเภท"
+
+msgid "Layout"
+msgstr "เค้าโครง"
+
+msgid "Letter Spacing"
+msgstr "การเว้นวรรคจดหมาย"
+
+msgid "Line Height"
+msgstr "ความสูงของเส้น"
+
+msgid "Live Preview Not available at the moment !"
+msgstr "ดูตัวอย่างสด ไม่สามารถใช้ได้ในขณะนี้ !"
+
+msgid "Login/Register"
+msgstr "เข้าสู่ระบบ/ลงทะเบียน"
+
+msgid "Lowercase"
+msgstr "ตัวพิมพ์เล็ก"
+
+msgid "Manage Documents"
+msgstr "จัดการเอกสาร"
+
+msgid "Manage Jobs"
+msgstr "จัดการงาน"
+
+msgid "Manage Unused Keys"
+msgstr "จัดการคีย์ที่ไม่ได้ใช้"
+
+msgid "More Actions"
+msgstr "การดำเนินการเพิ่มเติม"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans."
+msgstr "การสมัครสมาชิกของฉันทำให้ผู้ใช้เห็นภาพรวมของการสมัครสมาชิกที่ใช้งานอยู่ ทำให้สามารถจัดการและติดตามแผนการประกาศรับสมัครงานได้อย่างง่ายดาย"
+
+msgid "New Jobs"
+msgstr "งานใหม่"
+
+msgid "Next Setup"
+msgstr "การตั้งค่าถัดไป"
+
+msgid "No Addon Installed!"
+msgstr "ไม่มีการติดตั้ง Addon!"
+
+msgid "No unused keys were found."
+msgstr "ไม่พบคีย์ที่ไม่ได้ใช้"
+
+msgid "None"
+msgstr "ไม่มี"
+
+msgid "Not Imported"
+msgstr "ไม่นำเข้า"
+
+msgid "Oblique"
+msgstr "เฉียง"
+
+msgid "Only job seekers can register. Jobs and companies are managed by the admin."
+msgstr "เฉพาะผู้หางานเท่านั้นที่สามารถลงทะเบียนได้ งานและบริษัทได้รับการจัดการโดยผู้ดูแลระบบ"
+
+msgid "Paid access Only"
+msgstr "เข้าถึงแบบชำระเงินเท่านั้น"
+
+msgid "Pay For Featured Resume"
+msgstr "ชำระเงินสำหรับเรซูเม่แนะนำ"
+
+msgid "Pay For Resume"
+msgstr "ชำระเงินสำหรับเรซูเม่"
+
+msgid "Pay per listing price to publish your"
+msgstr "จ่ายตามราคารายการเพื่อเผยแพร่ของคุณ"
+
+msgid "Please Insert Your Activation Key"
+msgstr "กรุณาใส่รหัสเปิดใช้งานของคุณ"
+
+msgid "Please log in to register to continue."
+msgstr "กรุณาเข้าสู่ระบบเพื่อลงทะเบียนเพื่อดำเนินการต่อ"
+
+msgid "Please select at least one addon!"
+msgstr "โปรดเลือกอย่างน้อยหนึ่งรายการเสริม!"
+
+msgid "Please verify Locations and salaries for imported data entities"
+msgstr "โปรดตรวจสอบสถานที่และเงินเดือนสำหรับเอนทิตีข้อมูลที่นำเข้า"
+
+msgid "Plugin not installed"
+msgstr "ไม่ได้ติดตั้งปลั๊กอิน"
+
+msgid "Price for a job seeker to view a company's contact details"
+msgstr "ราคาสำหรับผู้หางานเพื่อดูรายละเอียดการติดต่อของบริษัท"
+
+msgid "Price for an employer to view a resume's contact details"
+msgstr "ราคานายจ้างสามารถดูรายละเอียดการติดต่อเรซูเม่ได้"
+
+msgid "Quick Configuration"
+msgstr "การกำหนดค่าด่วน"
+
+msgid "Ready to find your dream job? Let's get started"
+msgstr "พร้อมที่จะหางานในฝันของคุณแล้วหรือยัง? มาเริ่มกันเลย"
+
+msgid "Ready to find your potential employee? Let's get started"
+msgstr "พร้อมที่จะค้นหาพนักงานที่มีศักยภาพของคุณแล้วหรือยัง? มาเริ่มกันเลย"
+
+msgid "Search Jobs"
+msgstr "ค้นหางาน"
+
+msgid "Search Resumes"
+msgstr "ค้นหาเรซูเม่"
+
+msgid "Search smarter – just type anything you know about the job: title, category, type, skills, or even a description!"
+msgstr "ค้นหาอย่างชาญฉลาดยิ่งขึ้น – เพียงพิมพ์สิ่งที่คุณรู้เกี่ยวกับงาน: ตำแหน่ง หมวดหมู่ ประเภท ทักษะ หรือแม้แต่คำอธิบาย!"
+
+msgid "Section Title Styling"
+msgstr "การจัดรูปแบบชื่อเรื่องของส่วน"
+
+msgid "Select Addons to Update with New Activation Key"
+msgstr "เลือก Addons เพื่ออัปเดตด้วยรหัสเปิดใช้งานใหม่"
+
+msgid "Select Company"
+msgstr "เลือกบริษัท"
+
+msgid "Select Job Category"
+msgstr "เลือกประเภทงาน"
+
+msgid "Select Job Status"
+msgstr "เลือกสถานะงาน"
+
+msgid "Select Job Type"
+msgstr "เลือกประเภทงาน"
+
+msgid "Select Page To Show"
+msgstr "เลือกหน้าที่จะแสดง"
+
+msgid "Select Plugin Setting for WP Job Portal"
+msgstr "เลือกการตั้งค่าปลั๊กอินสำหรับ WP Job Portal"
+
+msgid "Select packages pack so that user can purchase them"
+msgstr "เลือกแพ็คเกจแพ็คเพื่อให้ผู้ใช้สามารถซื้อได้"
+
+msgid "Select who can view company contact details."
+msgstr "เลือกผู้ที่สามารถดูรายละเอียดการติดต่อของบริษัทได้"
+
+msgid "Settings you applied have been successfully saved"
+msgstr "บันทึกการตั้งค่าที่คุณใช้ได้รับการบันทึกเรียบร้อยแล้ว"
+
+msgid "Setup Complete"
+msgstr "ตั้งค่าเสร็จสมบูรณ์"
+
+msgid "Show Advanced Search Button"
+msgstr "แสดงปุ่มค้นหาขั้นสูง"
+
+msgid "Show Employers"
+msgstr "แสดงนายจ้าง"
+
+msgid "Show Everyone"
+msgstr "แสดงให้ทุกคนเห็น"
+
+msgid "Show Job seekers"
+msgstr "แสดงผู้หางาน"
+
+msgid "Show Labels"
+msgstr "แสดงป้ายกำกับ"
+
+msgid "Show No One"
+msgstr "ไม่แสดงให้ใครเห็น"
+
+msgid "Show Placeholders"
+msgstr "แสดงตัวยึดตำแหน่ง"
+
+msgid "Show Resume Status Section"
+msgstr "แสดงส่วนสถานะประวัติย่อ"
+
+msgid "Show a box with applied jobs on the job seeker's dashboard"
+msgstr "แสดงกล่องที่มีงานที่สมัครบนแดชบอร์ดของผู้หางาน"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard"
+msgstr "แสดงกล่องที่มีงานใหม่ล่าสุดบนแดชบอร์ดของผู้หางาน"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard to visitor"
+msgstr "แสดงกล่องที่มีงานใหม่ล่าสุดบนแดชบอร์ดของผู้หางานให้ผู้เข้าชมเห็น"
+
+msgid "Show a box with recent resumes on the employer's dashboard"
+msgstr "แสดงกล่องที่มีประวัติย่อล่าสุดบนแดชบอร์ดของนายจ้าง"
+
+msgid "Show a box with recent resumes on the employer's dashboard to visitor"
+msgstr "แสดงกล่องที่มีประวัติย่อล่าสุดบนแดชบอร์ดของนายจ้างให้ผู้เข้าชมเห็น"
+
+msgid "Show a graph of job statistics in the employer's dashboard"
+msgstr "แสดงกราฟสถิติงานในแดชบอร์ดนายจ้าง"
+
+msgid "Show a graph of job statistics in the employer's dashboard to visitor"
+msgstr "แสดงกราฟสถิติงานในแดชบอร์ดของนายจ้างแก่ผู้เยี่ยมชม"
+
+msgid "Show a graph of job statistics in the job seeker's dashboard"
+msgstr "แสดงกราฟสถิติงานในแดชบอร์ดของผู้หางาน"
+
+msgid "Show a graph of job statistics in the job seeker's dashboard to visitor"
+msgstr "แสดงกราฟสถิติงานในแดชบอร์ดของผู้หางานให้ผู้เข้าชมเห็น"
+
+msgid "Show a link to active subscriptions in the employer's dashboard"
+msgstr "แสดงลิงก์ไปยังการสมัครสมาชิกที่ใช้งานอยู่ในแดชบอร์ดของนายจ้าง"
+
+msgid "Show a link to active subscriptions in the job seeker's dashboard"
+msgstr "แสดงลิงก์ไปยังการสมัครรับข้อมูลที่ใช้งานอยู่ในแดชบอร์ดของผู้หางาน"
+
+msgid "Show a link to the packages page in the employer's dashboard"
+msgstr "แสดงลิงค์ไปยังหน้าแพ็คเกจในแดชบอร์ดของนายจ้าง"
+
+msgid "Show a link to the packages page in the job seeker's dashboard"
+msgstr "แสดงลิงค์ไปยังหน้าแพ็คเกจในแดชบอร์ดของผู้หางาน"
+
+msgid "Show a link to the purchase history/invoices in the employer's dashboard"
+msgstr "แสดงลิงค์ประวัติการซื้อ/ใบแจ้งหนี้ในหน้าแดชบอร์ดของนายจ้าง"
+
+msgid "Show a link to the purchase history/invoices in the job seeker's dashboard"
+msgstr "แสดงลิงค์ประวัติการซื้อ/ใบแจ้งหนี้ในหน้าแดชบอร์ดของผู้หางาน"
+
+msgid "Show a link to the user's purchased packages in their dashboard"
+msgstr "แสดงลิงก์ไปยังแพ็คเกจที่ผู้ใช้ซื้อในแดชบอร์ด"
+
+msgid "Show an 'AI Suggested Jobs' button on the 'My Resumes' page for job seekers"
+msgstr "แสดงปุ่ม 'งานที่แนะนำโดย AI' ในหน้า 'ประวัติย่อของฉัน' สำหรับผู้หางาน"
+
+msgid "Show an 'AI Suggested Resumes' button on the 'My Jobs' page for employers"
+msgstr "แสดงปุ่ม 'AI แนะนำเรซูเม่' ในหน้า 'งานของฉัน' สำหรับนายจ้าง"
+
+msgid "Show or hide the profile section on the employer's control panel"
+msgstr "แสดงหรือซ่อนส่วนโปรไฟล์บนแผงควบคุมของนายจ้าง"
+
+msgid "Show or hide the profile section on the job seeker's control panel"
+msgstr "แสดงหรือซ่อนส่วนโปรไฟล์บนแผงควบคุมของผู้หางาน"
+
+msgid "Show resume status section on the job seeker's dashboard"
+msgstr "แสดงส่วนสถานะประวัติการทำงานบนแดชบอร์ดของผู้หางาน"
+
+msgid "Show statistics boxes on the employer's dashboard"
+msgstr "แสดงกล่องสถิติบนแดชบอร์ดของนายจ้าง"
+
+msgid "Show statistics boxes on the job seeker's dashboard"
+msgstr "แสดงกล่องสถิติบนแดชบอร์ดของผู้หางาน"
+
+msgid "Show the 'Quick Apply' form to logged-in users on the job detail page"
+msgstr "แสดงแบบฟอร์ม 'สมัครด่วน' ให้กับผู้ใช้ที่เข้าสู่ระบบในหน้ารายละเอียดงาน"
+
+msgid "Show the 'Quick Apply' form to visitors on the job detail page"
+msgstr "แสดงแบบฟอร์ม 'สมัครด่วน' แก่ผู้เยี่ยมชมในหน้ารายละเอียดงาน"
+
+msgid "Similar Found"
+msgstr "คล้ายกันที่พบ"
+
+msgid "Start typing what you know – our AI will help you find the best matching jobs."
+msgstr "เริ่มพิมพ์สิ่งที่คุณรู้ – AI ของเราจะช่วยคุณค้นหางานที่ตรงกันที่สุด"
+
+msgid "Start typing what you know – our AI will help you find the best matching resumes."
+msgstr "เริ่มพิมพ์สิ่งที่คุณรู้ – AI ของเราจะช่วยคุณค้นหาเรซูเม่ที่ตรงกันที่สุด"
+
+msgid "Step 1 of 5"
+msgstr "ขั้นตอนที่ 1 จาก 5"
+
+msgid "Step 2 of 4"
+msgstr "ขั้นตอนที่ 2 จาก 4"
+
+msgid "Step 2 of 5"
+msgstr "ขั้นตอนที่ 2 จาก 5"
+
+msgid "Step 3 of 4"
+msgstr "ขั้นตอนที่ 3 จาก 4"
+
+msgid "Step 3 of 5"
+msgstr "ขั้นตอนที่ 3 จาก 5"
+
+msgid "Step 4 of 4"
+msgstr "ขั้นตอนที่ 4 จาก 4"
+
+msgid "Step 4 of 5"
+msgstr "ขั้นตอนที่ 4 จาก 5"
+
+msgid "Step 5 of 5"
+msgstr "ขั้นตอนที่ 5 จาก 5"
+
+msgid "Subscriptions"
+msgstr "การสมัครรับข้อมูล"
+
+msgid "Sugeested Jobs"
+msgstr "งานแนะนำ"
+
+msgid "Suggested Jobs"
+msgstr "งานแนะนำ"
+
+msgid "Suggested Resumes"
+msgstr "เรซูเม่ที่แนะนำ"
+
+msgid "System"
+msgstr "ระบบ"
+
+msgid "System Error Log"
+msgstr "บันทึกข้อผิดพลาดของระบบ"
+
+msgid "Text Transform"
+msgstr "การแปลงข้อความ"
+
+msgid "The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "แผงควบคุมนายจ้างเป็นอินเทอร์เฟซที่มีประสิทธิภาพซึ่งช่วยให้นายจ้างสามารถจัดการประกาศรับสมัครงาน ติดตามใบสมัคร สื่อสารกับผู้สมัคร และวิเคราะห์เกณฑ์ชี้วัดการจ้างงานได้อย่างมีประสิทธิภาพ"
+
+msgid "The highlighted addons are not included in your current license. Please adjust your selection accordingly."
+msgstr "ส่วนเสริมที่ไฮไลต์ไม่รวมอยู่ในใบอนุญาตปัจจุบันของคุณ โปรดปรับการเลือกของคุณให้เหมาะสม"
+
+msgid "This add-on will change the Job Portal pages to a simple yet powerful and rich web design that involves focusing on clean aesthetics, intuitive navigation, and functional elements while ensuring performance and responsiveness."
+msgstr "ส่วนเสริมนี้จะเปลี่ยนหน้าพอร์ทัลงานให้เป็นการออกแบบเว็บที่เรียบง่ายแต่ทรงพลังและสมบูรณ์ ซึ่งเกี่ยวข้องกับการเน้นไปที่ความสวยงามที่สะอาดตา การนำทางที่ใช้งานง่าย และองค์ประกอบการทำงาน ในขณะเดียวกันก็รับประกันประสิทธิภาพและการตอบสนอง"
+
+msgid "This will replace the old key with the new one."
+msgstr "สิ่งนี้จะแทนที่กุญแจเก่าด้วยกุญแจใหม่"
+
+msgid "Today Stats"
+msgstr "สถิติวันนี้"
+
+msgid "Unlock your career potential with AI-driven job search"
+msgstr "ปลดล็อกศักยภาพทางอาชีพของคุณด้วยการค้นหางานที่ขับเคลื่อนด้วย AI"
+
+msgid "Update Key"
+msgstr "อัปเดตคีย์"
+
+msgid "Update Now"
+msgstr "อัปเดตทันที"
+
+msgid "Updating Database, please wait..."
+msgstr "กำลังอัปเดตฐานข้อมูล กรุณารอสักครู่..."
+
+msgid "Uppercase"
+msgstr "ตัวพิมพ์ใหญ่"
+
+msgid "Use Default Color For Color 1"
+msgstr "ใช้สีเริ่มต้นสำหรับสี 1"
+
+msgid "Use Icons for Buttons"
+msgstr "ใช้ไอคอนสำหรับปุ่ม"
+
+msgid "View All Resumes"
+msgstr "ดูเรซูเม่ทั้งหมด"
+
+msgid "View Company Contact Detail"
+msgstr "ดูรายละเอียดการติดต่อบริษัท"
+
+msgid "Visitor Show"
+msgstr "การแสดงของผู้เยี่ยมชม"
+
+msgid "Visitor Show Active Jobs Graph"
+msgstr "ผู้เยี่ยมชมแสดงกราฟงานที่ใช้งานอยู่"
+
+msgid "Visitor Show Applied Jobs Section"
+msgstr "ผู้เยี่ยมชมแสดงแผนกงานที่สมัคร"
+
+msgid "Visitor Show Applied Resumes Section"
+msgstr "ผู้เยี่ยมชมแสดงส่วนเรซูเม่ประยุกต์"
+
+msgid "Visitor Show Credits Log Section"
+msgstr "ส่วนบันทึกการแสดงเครดิตของผู้เยี่ยมชม"
+
+msgid "Visitor Show Jobs Graph"
+msgstr "ผู้เยี่ยมชมแสดงกราฟงาน"
+
+msgid "Visitor Show Jobs Graph Section"
+msgstr "ผู้เยี่ยมชมแสดงส่วนกราฟงาน"
+
+msgid "Visitor Show Newest Jobs Box"
+msgstr "ผู้เยี่ยมชมแสดงกล่องงานใหม่ล่าสุด"
+
+msgid "Visitor Show Newest Jobs Section"
+msgstr "ผู้เยี่ยมชมแสดงส่วนงานใหม่ล่าสุด"
+
+msgid "Visitor Show Newest Resumes Section"
+msgstr "ผู้เยี่ยมชมแสดงส่วนเรซูเม่ใหม่ล่าสุด"
+
+msgid "Visitor Show Purchase History Section"
+msgstr "ผู้เยี่ยมชมแสดงส่วนประวัติการซื้อ"
+
+msgid "Visitor Show Recent Resumes Box"
+msgstr "ผู้เยี่ยมชมแสดงกล่องประวัติย่อล่าสุด"
+
+msgid "Visitor Show Saved Searches Section"
+msgstr "ผู้เยี่ยมชมแสดงส่วนการค้นหาที่บันทึกไว้"
+
+msgid "Visitor Show Shortlisted Jobs Section"
+msgstr "ผู้เยี่ยมชมแสดงส่วนงานสั้น ๆ"
+
+msgid "Visitor Show Stats Graph Section"
+msgstr "ผู้เยี่ยมชมแสดงส่วนกราฟสถิติ"
+
+msgid "Visitor Show Useful Links Section"
+msgstr "ผู้เยี่ยมชมแสดงส่วนลิงก์ที่เป็นประโยชน์"
+
+msgid "WP Job Manager"
+msgstr "ผู้จัดการงาน WP"
+
+msgid "WP Job Portal Activation Key"
+msgstr "รหัสเปิดใช้งานพอร์ทัลงาน WP"
+
+msgid "WP Job Portal Import Data"
+msgstr "ข้อมูลการนำเข้าพอร์ทัลงาน WP"
+
+msgid "WP Job Portal Packages"
+msgstr "แพ็คเกจพอร์ทัลงาน WP"
+
+msgid "Welcome to WP Job Portal Addon Installer"
+msgstr "ยินดีต้อนรับสู่ตัวติดตั้ง WP Job Portal Addon"
+
+msgid "Welcome, Visitor"
+msgstr "ยินดีต้อนรับผู้เยี่ยมชม"
+
+msgid "Who can search resume."
+msgstr "ใครสามารถค้นหาเรซูเม่ได้"
+
+msgid "Who can view resume contact details"
+msgstr "ใครสามารถดูรายละเอียดการติดต่อเรซูเม่ได้"
+
+msgid "You Already Applied to this job"
+msgstr "คุณได้สมัครงานนี้แล้ว"
+
+msgid "You have"
+msgstr "คุณมี"
+
+msgid "Your WP Job Portal license key has expired or is invalid. Please update it to continue receiving support and updates."
+msgstr "รหัสลิขสิทธิ์ WP Job Portal ของคุณหมดอายุหรือไม่ถูกต้อง โปรดอัปเดตเพื่อรับการสนับสนุนและการอัปเดตต่อไป"
+
+msgid "failed."
+msgstr "ล้มเหลว."
+
+msgid "found"
+msgstr "พบ"
+
+msgid "icon"
+msgstr "ไอคอน"
+
+msgid "imported."
+msgstr "นำเข้า"
+
+msgid "skipped."
+msgstr "ข้ามไป"
+
+msgid "unused key has been deleted successfully!"
+msgstr "ลบคีย์ที่ไม่ได้ใช้สำเร็จแล้ว!"
+
+msgid "unused key(s) that can be safely removed."
+msgstr "คีย์ที่ไม่ได้ใช้ซึ่งสามารถลบออกได้อย่างปลอดภัย"
+
+msgid "unused keys have been deleted successfully!"
+msgstr "ลบคีย์ที่ไม่ได้ใช้เรียบร้อยแล้ว!"

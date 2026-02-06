@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Delete"
 msgstr "Radera"
@@ -10273,3 +10273,2472 @@ msgstr "Du har ingen räddningsserch kvar"
 
 msgid "We would love to hear from You."
 msgstr "Vi skulle gärna höra från dig."
+
+msgid "Welcome back!"
+msgstr "Välkommen tillbaka!"
+
+msgid "Here's a snapshot of your job board's performance."
+msgstr "Här är en ögonblicksbild av ditt jobbstyrelsens prestanda."
+
+msgid "Customize Your Dashboard"
+msgstr "Anpassa din instrumentpanel"
+
+msgid "Core Components"
+msgstr "Kärnkomponenter"
+
+msgid "Quick Actions"
+msgstr "Snabbåtgärder"
+
+msgid "Recent Jobs"
+msgstr "Senaste jobb"
+
+msgid "Quick Stats"
+msgstr "Snabbstatistik"
+
+msgid "Visualizations"
+msgstr "Visualiseringar"
+
+msgid "Platform Growth"
+msgstr "Plattformstillväxt"
+
+msgid "Jobs by Status"
+msgstr "Jobb efter status"
+
+msgid "Top Categories"
+msgstr "Högsta kategorier"
+
+msgid "Activity & System Feeds"
+msgstr "Aktivitets- och systemflöden"
+
+msgid "Latest Applies"
+msgstr "Senaste gäller"
+
+msgid "User & Financials"
+msgstr "Användare och ekonomi"
+
+msgid "Job Seekers"
+msgstr "Arbetssökande"
+
+msgid "Payments"
+msgstr "Betalningar"
+
+msgid "Reset to Defaults"
+msgstr "Återställas till standardvärden"
+
+msgid "Apply Changes"
+msgstr "Tillämpa ändringar"
+
+msgid "Approve Jobs"
+msgstr "Godkänna jobb"
+
+msgid "Manage Users"
+msgstr "Hantera användare"
+
+msgid "View Reports"
+msgstr "Visa rapporter"
+
+msgid "Analytics"
+msgstr "Analys"
+
+msgid "Manage Plans"
+msgstr "Hantera planer"
+
+msgid "Platform Config"
+msgstr "Plattformskonfigur"
+
+msgid "Applications"
+msgstr "Ansökningar"
+
+msgid "Pending Jobs"
+msgstr "Avvänjningsjobb"
+
+msgid "New Applicants"
+msgstr "Nya sökande"
+
+msgid "Active Subscriptions"
+msgstr "Aktivt prenumerationer"
+
+msgid "Total Users"
+msgstr "Totala användare"
+
+msgid "Closed Jobs"
+msgstr "Stängda jobb"
+
+msgid "Monthly Revenue"
+msgstr "Månadsintäkter"
+
+msgid "Recent Job Postings"
+msgstr "Nya jobbannonser"
+
+msgid "Date Posted"
+msgstr "Datum publicerat"
+
+msgid "Actions"
+msgstr "Handlingar"
+
+msgid "No recent job postings found."
+msgstr "Inga nyligen publicerade jobb."
+
+msgid "Top Job Categories"
+msgstr "Toppjobbskategorier"
+
+msgid "Latest Job Applies"
+msgstr "Senaste jobbet gäller"
+
+msgid "applied for"
+msgstr "ansökte om"
+
+msgid "at"
+msgstr "på"
+
+msgid "View App"
+msgstr "Visa app"
+
+msgid "No recent job applications to display."
+msgstr "Inga nyligen ansökningar om jobb."
+
+msgid "No new resumes have been added recently."
+msgstr "Inga nya CV har lagts till nyligen."
+
+msgid "Latest Package Subscriptions"
+msgstr "Senaste paketabonnemang"
+
+msgid "subscribed to"
+msgstr "prenumererad på"
+
+msgid "No new subscriptions found."
+msgstr "Inga nya prenumerationer hittades."
+
+msgid "Latest Payments"
+msgstr "Senaste betalningar"
+
+msgid "No recent payments to display."
+msgstr "Inga nyligen betalningar som ska visas."
+
+msgid "Latest Activity"
+msgstr "Senaste aktivitet"
+
+msgid "Hooray! No system errors to report."
+msgstr "Hooray! Inga systemfel att rapportera."
+
+msgid "Latest Job Seekers"
+msgstr "Senaste arbetssökande"
+
+msgid "Joined"
+msgstr "Gick med i"
+
+msgid "No new job seekers have registered."
+msgstr "Inga nya arbetssökande har registrerat sig."
+
+msgid "Latest Employers"
+msgstr "Senaste arbetsgivare"
+
+msgid "No new employers have registered."
+msgstr "Inga nya arbetsgivare har registrerat sig."
+
+msgid "Not allowed"
+msgstr "Inte tillåtet"
+
+msgid "Allowed to all"
+msgstr "Tillåtet för alla"
+
+msgid "employers, job seekers and visitors"
+msgstr "arbetsgivare, arbetssökande och besökare"
+
+msgid "Allowed only to employers"
+msgstr "Tillåtet endast till arbetsgivare"
+
+msgid "City, State, Country"
+msgstr "Stad, stat, land"
+
+msgid "City, State"
+msgstr "Stad, stat"
+
+msgid "City, Country"
+msgstr "Stad, land"
+
+msgid "Minutes"
+msgstr "Minuter"
+
+msgid "Hour"
+msgstr "Timme"
+
+msgid "Hours"
+msgstr "Timme"
+
+msgid "Week"
+msgstr "Vecka"
+
+msgid "System & Site"
+msgstr "System och webbplats"
+
+msgid "Site & System"
+msgstr "Webbplats och system"
+
+msgid "Core details about your job portal, its status, and default behaviors"
+msgstr "Kärninformation om din jobbportal, dess status och standardbeteenden"
+
+msgid "Site Title"
+msgstr "Webbplatstitel"
+
+msgid "The main title for your job portal"
+msgstr "Huvudtiteln för din jobbportal"
+
+msgid "Site Offline"
+msgstr "Webbplats"
+
+msgid "Take the site offline for maintenance"
+msgstr "Ta webbplatsen offline för underhåll"
+
+msgid "The message shown to visitors when the site is offline"
+msgstr "Meddelandet som visas för besökare när webbplatsen är offline"
+
+msgid "Default Page"
+msgstr "Standardsida"
+
+msgid "Select the main WordPress page for the job portal"
+msgstr "Välj huvudpress -sidan för jobbportalen"
+
+msgid "Email links and support icons may not work if this is not set"
+msgstr "E -postlänkar och supportikoner kanske inte fungerar om detta inte är inställt"
+
+msgid "Date Format"
+msgstr "Datumformat"
+
+msgid "Set the date format used throughout the plugin"
+msgstr "Ställ in datumformatet som används i hela plugin"
+
+msgid "Default Address Display Style"
+msgstr "Standardadress Displaystil"
+
+msgid "Select the default format for displaying addresses"
+msgstr "Välj standardformat för att visa adresser"
+
+msgid "Registration & Login"
+msgstr "Registrering och inloggning"
+
+msgid "Control user registration flows and login/logout redirects"
+msgstr "Kontroll av användarregistreringsflöden och inloggning/utloggning omdirigeringar"
+
+msgid "Set Register Link"
+msgstr "Set Register Link"
+
+msgid "Set the main registration page for the site"
+msgstr "Ställ in huvudregistreringssidan för webbplatsen"
+
+msgid "Custom Register Redirect Link"
+msgstr "Anpassad register omdirigera länken"
+
+msgid "Enter the custom URL for registration if"
+msgstr "Ange den anpassade URL: n för registrering om"
+
+msgid "is selected above"
+msgstr "väljs ovan"
+
+msgid "Set the main login page for the site"
+msgstr "Ställ in huvudinloggningssidan för webbplatsen"
+
+msgid "Custom Login Redirect Link"
+msgstr "Anpassad inloggning omdirigeringslänk"
+
+msgid "Enter the custom URL for login if"
+msgstr "Ange den anpassade URL: n för inloggning om"
+
+msgid "Redirect Link For Non-Portal WP User"
+msgstr "Omdirigera länk för icke-portal WP-användare"
+
+msgid "Redirect WordPress users who do not have a role in WP Job Portal to this link after login"
+msgstr "Omdirigera WordPress -användare som inte har någon roll i WP Job Portal till denna länk efter inloggning"
+
+msgid "Terms & Conditions"
+msgstr "Villkor och villkor"
+
+msgid "Assign specific Terms & Conditions pages for different submission types"
+msgstr "Tilldela specifika villkor sidor för olika inlämningstyper"
+
+msgid "Company Terms Page"
+msgstr "Företagsvillkor"
+
+msgid "Select the"
+msgstr "Välj"
+
+msgid "page for company submissions"
+msgstr "sida för företagets inlämningar"
+
+msgid "Job Terms Page"
+msgstr "Jobbvillkor"
+
+msgid "page for job submissions"
+msgstr "sida för jobbinlämningar"
+
+msgid "Resume Terms Page"
+msgstr "Återuppta termer sida"
+
+msgid "page for resume submissions"
+msgstr "sida för CV -inlägg"
+
+msgid "Content & Display"
+msgstr "Innehåll och display"
+
+msgid "Taxonomy & Categories"
+msgstr "Taxonomi och kategorier"
+
+msgid "Manage how content like categories and tags are handled"
+msgstr "Hantera hur innehåll som kategorier och taggar hanteras"
+
+msgid "Even if Empty"
+msgstr "Även om det är tomt"
+
+msgid "If no is selected then only categories that have jobs or resumes will be shown"
+msgstr "Om ingen väljs kommer endast kategorier som har jobb eller CV att visas"
+
+msgid "Categories Per Row"
+msgstr "Kategorier per rad"
+
+msgid "Number of categories to display per row on category listing pages"
+msgstr "Antal kategorier som ska visas per rad på kategoristeckningar"
+
+msgid "Sub-categories Limit"
+msgstr "Underkategorier gräns"
+
+msgid "How many sub-categories to show in the popup on category pages"
+msgstr "Hur många underkategorier att visa i popup på kategorisidor"
+
+msgid "User Can Add New Tags"
+msgstr "Användaren kan lägga till nya taggar"
+
+msgid "Allow users to create new tags in the system when posting"
+msgstr "Låt användare skapa nya taggar i systemet när du publicerar"
+
+msgid "Default Pagination Size"
+msgstr "Standardpaginationsstorlek"
+
+msgid "Maximum number of records to show per page"
+msgstr "Maximalt antal poster som ska visas per sida"
+
+msgid "Show Breadcrumbs"
+msgstr "Visa brödsmulor"
+
+msgid "Show WP Job Portal Page Title"
+msgstr "Visa WP Job Portal Sids titel"
+
+msgid "File Uploads & Defaults"
+msgstr "Filuppladdningar och standardvärden"
+
+msgid "Manage file uploads and default placeholder images"
+msgstr "Hantera filuppladdningar och standardbilderbilder"
+
+msgid "Data Directory"
+msgstr "Datakatalog"
+
+msgid "System will upload all user files into this folder within the WordPress uploads directory"
+msgstr "Systemet laddar upp alla användarfiler i den här mappen i WordPress -uppladdningskatalogen"
+
+msgid "Default Image"
+msgstr "Standardbild"
+
+msgid "This image will be shown as the default for entities & users if no other image is provided"
+msgstr "Den här bilden kommer att visas som standard för enheter och användare om ingen annan bild tillhandahålls"
+
+msgid "Allowed Image Extensions"
+msgstr "Tillåtna bildförlängningar"
+
+msgid "Comma-separated list of allowed image file extensions"
+msgstr "Komma-separerad lista över tillåtna bildfilförlängningar"
+
+msgid "Max Image Size"
+msgstr "Max bildstorlek"
+
+msgid "Maximum file size for general image uploads in kilobytes"
+msgstr "Maximal filstorlek för allmänna bilduppladdningar i kilobyte"
+
+msgid "URL & SEO"
+msgstr "Url & seo"
+
+msgid "URL Structure"
+msgstr "Url -struktur"
+
+msgid "Configure the URL structure"
+msgstr "Konfigurera URL -strukturen"
+
+msgid "permalinks"
+msgstr "permalänkar"
+
+msgid "for detail pages"
+msgstr "för detaljsidor"
+
+msgid "Job Detail URL Structure"
+msgstr "Jobbdetalj url -struktur"
+
+msgid "Click on the available tags below to build the URL structure for job detail pages"
+msgstr "Klicka på de tillgängliga taggarna nedan för att bygga URL -strukturen för Jobbdetaljsidor"
+
+msgid "Company Detail URL Structure"
+msgstr "Företagsdetalj url -struktur"
+
+msgid "Click on the available tags below to build the URL structure for company detail pages"
+msgstr "Klicka på de tillgängliga taggarna nedan för att bygga URL -strukturen för företagsdetaljsidor"
+
+msgid "Resume Detail URL Structure"
+msgstr "Återuppta detalj URL -struktur"
+
+msgid "Click on the available tags below to build the URL structure for resume detail pages"
+msgstr "Klicka på de tillgängliga taggarna nedan för att bygga URL -strukturen för CV -detaljsidor"
+
+msgid "Registration & Access"
+msgstr "Registrering och åtkomst"
+
+msgid "If no then front end employer area is not accessible"
+msgstr "Om inget är inte Front End -arbetsgivarområdet tillgängligt"
+
+msgid "Allow Registration as Employer"
+msgstr "Tillåt registrering som arbetsgivare"
+
+msgid "Show the option to register as an employer on the registration form"
+msgstr "Visa alternativet att registrera sig som arbetsgivare på registreringsformuläret"
+
+msgid "Employer Default Role"
+msgstr "Arbetsgivarens standardroll"
+
+msgid "Employer Can View Job Seeker Area"
+msgstr "Arbetsgivare kan se jobbsökande område"
+
+msgid "Allow logged-in employers to view the job seeker control panel"
+msgstr "Låt inloggade arbetsgivare se arbetssökningskontrollpanelen"
+
+msgid "Set Employer After-Register Link"
+msgstr "Ställ in arbetsgivare efterregistreringslänk"
+
+msgid "Employer After-Registration Page"
+msgstr "Arbetsgivare efterregistreringssida"
+
+msgid "Employer Custom After-Registration Link"
+msgstr "Arbetsgivaranpassad länk efter registrering"
+
+msgid "Custom Empolyer After Regitser Link"
+msgstr "Anpassad arbetsgivare efter registerlänk"
+
+msgid "Layout & Widgets"
+msgstr "Layout & widgetar"
+
+msgid "Control the visibility of main sections and widgets in the logged-in employer dashboard"
+msgstr "Kontrollera synligheten för huvudavsnitt och widgetar i den inloggade arbetsgivarens instrumentpanel"
+
+msgid "Show Profile Section"
+msgstr "Visa profilavsnitt"
+
+msgid "Show Stat Boxes"
+msgstr "Visa statslådor"
+
+msgid "Show Recent Resumes Box"
+msgstr "Visa senaste återupptagningsrutan"
+
+msgid "Show Stats Graph"
+msgstr "Visa statistikgraf"
+
+msgid "Setting to show the stats graph on the employer dashboard"
+msgstr "Inställning för att visa statistikgrafen på arbetsgivarens instrumentpanel"
+
+msgid "Show Useful Links"
+msgstr "Visa användbara länkar"
+
+msgid "Setting to show the useful links section"
+msgstr "Inställning för att visa avsnittet EN VÄSTA LINKS"
+
+msgid "Show Applied Resumes"
+msgstr "Show Applied CV"
+
+msgid "Setting to show the applied resumes section"
+msgstr "Inställning för att visa avsnittet Applied CV"
+
+msgid "Show Saved Searches"
+msgstr "Visa sparade sökningar"
+
+msgid "Setting to show the saved searches section"
+msgstr "Inställning för att visa avsnittet Sparade sökningar"
+
+msgid "Show Newest Resumes"
+msgstr "Visa nyaste CV"
+
+msgid "Setting to show the newest resumes section"
+msgstr "Inställning för att visa avsnittet nyaste CV"
+
+msgid "Navigation Links"
+msgstr "Navigationslänkar"
+
+msgid "Control which navigation links are visible in the logged-in employer dashboard menu"
+msgstr "Kontrollera vilka navigationslänkar som är synliga i den inloggade arbetsgivarens instrumentpanely"
+
+msgid "link in the employer dashboard"
+msgstr "länk i arbetsgivarens instrumentbräda"
+
+msgid "RSS Feedback"
+msgstr "RSS -feedback"
+
+msgid "Job Seeker Default Role"
+msgstr "Jobbsökande standardroll"
+
+msgid "Set Job Seeker After-Register Link"
+msgstr "Ställ in arbetssökande efterregistreringslänk"
+
+msgid "Job Seeker After-Registration Page"
+msgstr "Jobbsökande efterregistreringssida"
+
+msgid "Job Seeker Custom After-Registration Link"
+msgstr "Jobbsökande anpassad länk efter registrering"
+
+msgid "Custom Job seeker After Regitser Link"
+msgstr "Anpassad jobbsökande efter registerlänk"
+
+msgid "Enable Job Shortlisting"
+msgstr "Aktivera jobb med kortlista"
+
+msgid "Allow job seekers to shortlist jobs"
+msgstr "Låt arbetssökande kortlista jobb"
+
+msgid "This affects the job detail page"
+msgstr "Detta påverkar sidan av jobbdetalj"
+
+msgid "Enable Tell a Friend"
+msgstr "Aktivera berätta för en vän"
+
+msgid "Enable the"
+msgstr "Aktivera den"
+
+msgid "feature on job listing pages"
+msgstr "Funktion på jobblistningssidor"
+
+msgid "Control the visibility of main sections and widgets in the logged-in job seeker dashboard"
+msgstr "Kontrollera synligheten för huvudavsnitt och widgetar i den inloggade jobbsökande instrumentpanelen"
+
+msgid "Show Applied Jobs Box"
+msgstr "Show Applied Jobs Box"
+
+msgid "Show Newest Jobs Box"
+msgstr "Visa nyaste jobbrutan"
+
+msgid "Show Jobs Graph"
+msgstr "Visa jobbgraf"
+
+msgid "Setting to show the jobs graph on the job seeker dashboard"
+msgstr "Inställning för att visa jobbgrafen på Job Seeker -instrumentpanelen"
+
+msgid "Show Applied Jobs"
+msgstr "Visa tillämpade jobb"
+
+msgid "Setting to show the applied jobs section"
+msgstr "Inställning för att visa avsnittet Applied Jobs"
+
+msgid "Show Shortlisted Jobs"
+msgstr "Visa kortlistade jobb"
+
+msgid "Setting to show the shortlisted jobs section"
+msgstr "Inställning för att visa avsnittet Shortlisted Jobs"
+
+msgid "Show Newest Jobs"
+msgstr "Visa nyaste jobb"
+
+msgid "Setting to show the newest jobs section"
+msgstr "Inställning för att visa avsnittet nyaste jobb"
+
+msgid "Control which navigation links are visible in the logged-in job seeker dashboard menu"
+msgstr "Kontroll vilka navigationslänkar som är synliga i den inloggade jobbsökande instrumentpanelen"
+
+msgid "link in the job seeker dashboard"
+msgstr "länk i jobbsökande instrumentpanelen"
+
+msgid "Visitors"
+msgstr "Besökare"
+
+msgid "General Permissions"
+msgstr "Allmänna behörigheter"
+
+msgid "Define what non-logged-in users are allowed to do on the site"
+msgstr "Definiera vad icke-inloggade användare får göra på webbplatsen"
+
+msgid "Visitor Can Post Job"
+msgstr "Besökare kan publicera jobb"
+
+msgid "Allow non-logged-in users to post jobs"
+msgstr "Låt icke-inloggade användare publicera jobb"
+
+msgid "Visitor Can Add Job"
+msgstr "Besökare kan lägga till jobb"
+
+msgid "Visitor Job Post Redirect Page"
+msgstr "Besökarjobb efter omdirigeringssidan"
+
+msgid "A visitor will be redirected to this page after posting a job"
+msgstr "En besökare kommer att omdirigeras till denna sida efter att ha publicerat ett jobb"
+
+msgid "Visitor Can Apply to Job"
+msgstr "Besökare kan ansöka till Job"
+
+msgid "Allow non-logged-in users to apply for jobs"
+msgstr "Låt icke-inloggade användare ansöka om jobb"
+
+msgid "Visitor Can Add Resume"
+msgstr "Besökare kan lägga till CV"
+
+msgid "Allow non-logged-in users to add a resume"
+msgstr "Låt icke-inloggade användare lägga till ett CV"
+
+msgid "Visitor Resume Post Redirect Page"
+msgstr "Besökare återupptar efter omdirigeringssidan"
+
+msgid "A visitor will be redirected to this page after posting a resume"
+msgstr "En besökare kommer att omdirigeras till denna sida efter att ha lagt ut ett CV"
+
+msgid "Visitor Can Edit Job"
+msgstr "Besökare kan redigera Job"
+
+msgid "Allow non-logged-in users to edit jobs they have posted"
+msgstr "Låt icke-inloggade användare redigera jobb som de har lagt ut"
+
+msgid "Page & Link Access"
+msgstr "Sid & länkåtkomst"
+
+msgid "Control which pages and links are visible to non-logged-in users"
+msgstr "Kontrollera vilka sidor och länkar som är synliga för icke-inloggade användare"
+
+msgid "Allow visitors to view the employer control panel links"
+msgstr "Låt besökare se arbetsgivarens kontrollpanellänkar"
+
+msgid "Allow visitors to view the resume categories page"
+msgstr "Låt besökare se sidan CV -kategorier"
+
+msgid "Allow visitors to access the resume search functionality"
+msgstr "Låt besökare komma åt CV -sökfunktionen"
+
+msgid "Allow visitors to view company detail pages"
+msgstr "Låt besökare se företagsdetaljsidor"
+
+msgid "Allow visitors to view job detail pages"
+msgstr "Låt besökare se sidor för jobbdetalj"
+
+msgid "Allow visitors to view resume detail pages"
+msgstr "Låt besökare se CV -detaljsidor"
+
+msgid "Allow visitors to view the job seeker control panel links"
+msgstr "Låt besökare se länkarna för kontrollpanelen för arbetssökande"
+
+msgid "Allow visitors to view the jobs by category page"
+msgstr "Låt besökare se jobb efter kategorisida"
+
+msgid "Allow visitors to use the job search functionality"
+msgstr "Låt besökare använda jobbsökningsfunktionen"
+
+msgid "Allow visitors to see job search result listings"
+msgstr "Låt besökare se listor över sökresultat"
+
+msgid "Allow visitors to see the newest jobs page"
+msgstr "Låt besökare se den senaste arbetssidan"
+
+msgid "Job Posting & Management"
+msgstr "Jobbpost och ledning"
+
+msgid "Manage how jobs are posted, their lifecycle, and related features"
+msgstr "Hantera hur jobb publiceras, deras livscykel och relaterade funktioner"
+
+msgid "Job Auto Approve"
+msgstr "Jobb Auto godkänner"
+
+msgid "Automatically approve new jobs upon submission"
+msgstr "Godkänna automatiskt nya jobb vid inlämning"
+
+msgid "Job Expiry Days"
+msgstr "Jobbutgång dagar"
+
+msgid "Number of days until a freely posted job expires"
+msgstr "Antal dagar tills ett fritt publicerat jobb löper ut"
+
+msgid "Number of days until a paid"
+msgstr "Antal dagar tills en betald"
+
+msgid "job expires"
+msgstr "jobb löper ut"
+
+msgid "Job Display & Listings"
+msgstr "Jobbvisning och listor"
+
+msgid "Control how job-related pages and information are displayed to users"
+msgstr "Kontrollera hur jobbrelaterade sidor och information visas för användare"
+
+msgid "Show Country on Jobs by Cities Page"
+msgstr "Visa land på jobb vid städernas sida"
+
+msgid "Display the country name next to the city"
+msgstr "Visa landsnamnet bredvid staden"
+
+msgid "Show Count on Jobs by Cities Page"
+msgstr "Visa räkning på jobb efter städer"
+
+msgid "Display the total number of jobs available in each city"
+msgstr "Visa det totala antalet jobb som finns i varje stad"
+
+msgid "Show Count in Job Categories"
+msgstr "Visa räkning i jobbkategorier"
+
+msgid "Display the total number of jobs for each category"
+msgstr "Visa det totala antalet jobb för varje kategori"
+
+msgid "Show Count on Jobs by Types Page"
+msgstr "Visa räkning på jobb efter typer sida"
+
+msgid "Display the total number of jobs for each job type"
+msgstr "Visa det totala antalet jobb för varje jobbtyp"
+
+msgid "Job Types Per Row"
+msgstr "Jobbtyper per rad"
+
+msgid "How many job types to display per row on the"
+msgstr "Hur många jobbtyper som ska visas per rad på"
+
+msgid "Job by Type"
+msgstr "Jobb efter typ"
+
+msgid "Show Jobs Graph for Employer"
+msgstr "Visa jobbgraf för arbetsgivaren"
+
+msgid "Show Active Jobs Graph for Job Seeker"
+msgstr "Visa aktivt jobbgraf för jobbsökande"
+
+msgid "Company Profile Display"
+msgstr "Företagets profildisplay"
+
+msgid "Control which company details are visible on listings and company pages"
+msgstr "Kontrollera vilka företagsuppgifter som är synliga på listor och företagssidor"
+
+msgid "Show Company Name"
+msgstr "Visa företagsnamn"
+
+msgid "Show Company Description"
+msgstr "Visa företagsbeskrivning"
+
+msgid "Show Company Email Address"
+msgstr "Visa företagets e -postadress"
+
+msgid "Show Company City"
+msgstr "Show Company City"
+
+msgid "Show Company URL"
+msgstr "Visa företag URL"
+
+msgid "Show Company Contact Detail by Default"
+msgstr "Visa företagskontaktdetaljer som standard"
+
+msgid "If disabled, credits may be required to view contact details"
+msgstr "Om inaktiverad kan krediter krävas för att se kontaktuppgifter"
+
+msgid "General settings for company profiles"
+msgstr "Allmänna inställningar för företagsprofiler"
+
+msgid "Company Logo Maximum Size"
+msgstr "Företagslogotyp maximal storlek"
+
+msgid "Set the maximum file size for company logo uploads in kilobytes"
+msgstr "Ställ in den maximala filstorleken för företagslogotypuppladdningar i kilobyte"
+
+msgid "Company Auto Approve"
+msgstr "Företag Auto godkänner"
+
+msgid "Automatically approve new company profiles upon submission"
+msgstr "Godkänna automatiskt nya företagsprofiler vid inlämning"
+
+msgid "Control resume submissions, visibility, and search functionality"
+msgstr "Kontroll återuppta inlägg, synlighet och sökfunktionalitet"
+
+msgid "Resume Auto Approve"
+msgstr "Återuppta auto godkänna"
+
+msgid "Automatically approve new resumes upon submission"
+msgstr "Godkänna automatiskt nya CV vid inlämning"
+
+msgid "Show Resume Contact Detail by Default"
+msgstr "Visa CV Kontaktdetaljer som standard"
+
+msgid "If disabled, credits may be required to view resume contact details"
+msgstr "Om inaktiverad kan krediter krävas för att se CV -kontaktinformation"
+
+msgid "Show Count in Resume Categories"
+msgstr "Visa räkning i CV -kategorier"
+
+msgid "Display the total number of resumes for each category"
+msgstr "Visa det totala antalet CV för varje kategori"
+
+msgid "Allow Resume Search"
+msgstr "Tillåt CV -sökning"
+
+msgid "Define who is allowed to search for resumes"
+msgstr "Definiera vem som får söka efter CV"
+
+msgid "Allow Users to Save Resume Searches"
+msgstr "Låt användare spara CV -sökningar"
+
+msgid "Allow users to save their resume search criteria for later use"
+msgstr "Låt användare spara sina CV -sökkriterier för senare användning"
+
+msgid "Resume Files & Builder"
+msgstr "Återuppta filer och byggare"
+
+msgid "Define limits and allowed types for resume file uploads and advanced builder sections"
+msgstr "Definiera gränser och tillåtna typer för återupptagning av filuppladdningar och avancerade byggmästaresektioner"
+
+msgid "Resume Photo Maximum Size"
+msgstr "Återuppta foto maximal storlek"
+
+msgid "Maximum file size for resume photos in kilobytes"
+msgstr "Maximal filstorlek för CV -foton i kilobyte"
+
+msgid "Resume Document Maximum Size"
+msgstr "Återuppta dokumentets maximala storlek"
+
+msgid "System will not upload if resume file size exceeds the given size"
+msgstr "Systemet laddas inte upp om återuppta filstorleken överstiger den givna storleken"
+
+msgid "Allowed Document Extensions"
+msgstr "Tillåtna dokumentförlängningar"
+
+msgid "Comma-separated list of allowed document file extensions"
+msgstr "Komma-separerad lista över tillåtna dokumentfilförlängningar"
+
+msgid "Maximum Number of Files for Resume"
+msgstr "Maximalt antal filer för CV"
+
+msgid "Maximum number of files a job seeker can upload with their resume"
+msgstr "Maximalt antal filer som en arbetssökande kan ladda upp med deras CV"
+
+msgid "Max Employers in Resume Builder"
+msgstr "Max arbetsgivare i CV byggare"
+
+msgid "Maximum number of employers allowed in the resume builder"
+msgstr "Maximalt antal arbetsgivare tillåtna i CV -byggaren"
+
+msgid "Max Institutes in Resume Builder"
+msgstr "Max Institute i CV Builder"
+
+msgid "Maximum number of institutes allowed in the resume builder"
+msgstr "Maximalt antal institut tillåtna i CV -byggaren"
+
+msgid "Max Languages in Resume Builder"
+msgstr "Max språk i CV -byggare"
+
+msgid "Maximum number of languages allowed in the resume builder"
+msgstr "Maximalt antal tillåtna språk i CV -byggaren"
+
+msgid "Max Addresses in Resume Builder"
+msgstr "Max adresser i CV -byggare"
+
+msgid "Maximum number of addresses allowed in the resume builder"
+msgstr "Maximalt antal adresser tillåtna i CV -byggaren"
+
+msgid "Job Applications"
+msgstr "Arbetsansökningar"
+
+msgid "Configure the job application process and related notifications"
+msgstr "Konfigurera jobbansökningsprocessen och relaterade aviseringar"
+
+msgid "Show Apply Now Button"
+msgstr "Visa Apply Now -knappen"
+
+msgid "Enable Quick Apply for Logged-in Users"
+msgstr "Aktivera Quick Apply för inloggade användare"
+
+msgid "Enable Quick Apply for Visitors"
+msgstr "Aktivera snabbt ansökan om besökare"
+
+msgid "Show Applied Resume Status to Job Seeker"
+msgstr "Visa tillämpad CV -status på jobbsökande"
+
+msgid "Resume Data in Email"
+msgstr "Återuppta data i e -post"
+
+msgid "Sections"
+msgstr "Sektioner"
+
+msgid "Choose whether to include all resume sections or only filled ones in the application email to employers"
+msgstr "Välj om du vill inkludera alla CV -avsnitt eller endast fyllda i ansökan om ansökan till arbetsgivarna"
+
+msgid "Choose whether to include all fields or only filled fields in the application email"
+msgstr "Välj om du vill inkludera alla fält eller endast fyllda fält i applikationens e -post"
+
+msgid "Auto-Approve Rules"
+msgstr "Auto-Approve-regler"
+
+msgid "Set auto-approval rules for various user-submitted content"
+msgstr "Ställ in regler för auto-godkännande för olika användarinlämnat innehåll"
+
+msgid "Featured Resume Auto Approve"
+msgstr "Presenterad CV Auto godkännande"
+
+msgid "Automatically approve resumes marked as featured"
+msgstr "Godkänna automatiskt CV märkt som presenterad"
+
+msgid "Featured Company Auto Approve"
+msgstr "Presenterat företag Auto godkännande"
+
+msgid "Automatically approve companies marked as featured"
+msgstr "Godkänna automatiskt företag markerade som visas"
+
+msgid "Featured Job Auto Approve"
+msgstr "Presenterat Job Auto godkännande"
+
+msgid "Automatically approve jobs marked as featured"
+msgstr "Godkänna automatiskt jobb markerade som visas"
+
+msgid "Cover Letter Auto Approve"
+msgstr "Täckbrev automatiskt godkänna"
+
+msgid "Automatically approve cover letters submitted by job seekers"
+msgstr "Godkänna automatiskt täckningsbrev som skickats av arbetssökande"
+
+msgid "Folder Auto Approve"
+msgstr "Mapp Auto godkänner"
+
+msgid "Automatically approve new folders created by employers"
+msgstr "Godkänna automatiskt nya mappar skapade av arbetsgivare"
+
+msgid "Department Auto Approve"
+msgstr "Avdelning Auto godkänner"
+
+msgid "Automatically approve new departments created by employers"
+msgstr "Godkänna automatiskt nya avdelningar skapade av arbetsgivare"
+
+msgid "Message Auto Approve"
+msgstr "Meddelande automatiskt godkänna"
+
+msgid "Automatically approve messages between job seekers and employers"
+msgstr "Godkänna automatiskt meddelanden mellan arbetssökande och arbetsgivare"
+
+msgid "Conflict Message Auto Approve"
+msgstr "Konfliktmeddelande Auto godkänner"
+
+msgid "Automatically approve conflicted messages"
+msgstr "Godkänna automatiskt konflikter"
+
+msgid "Email & Alerts"
+msgstr "E -post & varningar"
+
+msgid "Email Sender Identity"
+msgstr "E -postsändarens identitet"
+
+msgid "Configure sender details for all outgoing system emails"
+msgstr "Konfigurera avsändarinformation för alla utgående systemmeddelanden"
+
+msgid "Admin Email Address"
+msgstr "Administratörs e -postadress"
+
+msgid "Admin will receive email notifications at this address"
+msgstr "Admin kommer att få e -postmeddelanden på den här adressen"
+
+msgid "Sender Email Address"
+msgstr "Avsändarens e -postadress"
+
+msgid "The email address that will be used to send system emails"
+msgstr "E -postadressen som kommer att användas för att skicka systemmeddelanden"
+
+msgid "The sender name that will be used in system emails"
+msgstr "Avsändarens namn som kommer att användas i systemmeddelanden"
+
+msgid "Job Alerts"
+msgstr "Jobbvarningar"
+
+msgid "Configure settings for job alert emails and forms"
+msgstr "Konfigurera inställningar för e -postmeddelanden och formulär"
+
+msgid "Show Job Alert Link"
+msgstr "Visa jobbvarningslänk"
+
+msgid "Show the Job Alert link in the job seeker control panel"
+msgstr "Visa länken Jobbvarning i kontrollpanelen för jobbsökande"
+
+msgid "Enable Job Alerts for Visitors"
+msgstr "Aktivera jobbvarningar för besökare"
+
+msgid "Allow non-logged-in users to sign up for job alerts"
+msgstr "Låt icke-inloggade användare registrera sig för jobbvarningar"
+
+msgid "Job Alert Auto Approve"
+msgstr "Jobbvarning Auto godkänner"
+
+msgid "Automatically approve new job alerts upon creation"
+msgstr "Godkänna automatiskt nya jobbvarningar vid skapelsen"
+
+msgid "Captcha on Visitor Job Alert Form"
+msgstr "CAPTCHA PÅ BESÖKARE JOB ALERT FORM"
+
+msgid "Show a captcha on the job alert sign-up form for visitors"
+msgstr "Visa en captcha på jobbvarningsformuläret för besökare"
+
+msgid "Allow users to save their search queries for jobs and resumes"
+msgstr "Låt användare spara sina sökfrågor för jobb och återupptas"
+
+msgid "Show Saved Searches for Job Seekers"
+msgstr "Visa sparade sökningar efter arbetssökande"
+
+msgid "Allow job seekers to save their job searches"
+msgstr "Låt arbetssökande spara sina jobbsökningar"
+
+msgid "Show Saved Searches for Employers"
+msgstr "Visa sparade sökningar efter arbetsgivare"
+
+msgid "Allow employers to save their resume searches"
+msgstr "Låt arbetsgivare spara sina CV -sökningar"
+
+msgid "Feeds & AI"
+msgstr "Foder & AI"
+
+msgid "RSS Feeds"
+msgstr "RSS -flöden"
+
+msgid "Configure the RSS feed for jobs"
+msgstr "Konfigurera RSS -flödet för jobb"
+
+msgid "Enable Jobs RSS Feed"
+msgstr "Aktivera jobb RSS -flöde"
+
+msgid "Enable the main RSS feed for new jobs"
+msgstr "Aktivera det huvudsakliga RSS -flödet för nya jobb"
+
+msgid "Job Feed Title"
+msgstr "Jobbmatningstitel"
+
+msgid "The title for the job RSS feed"
+msgstr "Titeln för Job RSS -flödet"
+
+msgid "Job Feed Description"
+msgstr "Jobbfoderbeskrivning"
+
+msgid "The description for the job RSS feed"
+msgstr "Beskrivningen för jobbet RSS -flöde"
+
+msgid "Job Feed Copyright"
+msgstr "Jobbflöde upphovsrätt"
+
+msgid "Copyright notice for the job feed"
+msgstr "Upphovsrättsmeddelande för jobbflödet"
+
+msgid "Job Feed Editor"
+msgstr "Jobbflöde redaktör"
+
+msgid "The person responsible for editorial content"
+msgstr "Den person som ansvarar för redaktionellt innehåll"
+
+msgid "Job Feed Webmaster"
+msgstr "Jobbfoderwebbmästare"
+
+msgid "The person responsible for technical issues"
+msgstr "Den person som ansvarar för tekniska frågor"
+
+msgid "Job Feed TTL"
+msgstr "Jobbflöde TTL"
+
+msgid "Time to Live"
+msgstr "Tid att leva"
+
+msgid "Number of minutes the feed can be cached before refreshing"
+msgstr "Antal minuter kan fodret cachas innan uppfriskning"
+
+msgid "Show Categories in Job Feed"
+msgstr "Visa kategorier i jobbfoder"
+
+msgid "Include categories in the job feed items"
+msgstr "Inkludera kategorier i jobbmatningsartiklarna"
+
+msgid "Show Company Image in Job Feed"
+msgstr "Visa företagsbild i jobbflöde"
+
+msgid "Include the company logo in the job feed items"
+msgstr "Inkludera företagets logotyp i jobbmatningsobjekten"
+
+msgid "Configure the RSS feed for resumes"
+msgstr "Konfigurera RSS -flödet för CV"
+
+msgid "Enable Resumes RSS Feed"
+msgstr "Aktivera CV RSS -flöde"
+
+msgid "Enable the main RSS feed for new resumes"
+msgstr "Aktivera det huvudsakliga RSS -flödet för nya CV"
+
+msgid "Resume Feed Title"
+msgstr "Återuppta fodertitel"
+
+msgid "The title for the resume RSS feed"
+msgstr "Titeln för CV RSS -flödet"
+
+msgid "Resume Feed Description"
+msgstr "Återuppta foderbeskrivning"
+
+msgid "The description for the resume RSS feed"
+msgstr "Beskrivningen för CV RSS -flödet"
+
+msgid "Resume Feed Copyright"
+msgstr "CV FEED COPYRIGHT"
+
+msgid "Copyright notice for the resume feed"
+msgstr "Upphovsrättsmeddelande för CV -flödet"
+
+msgid "Resume Feed Editor"
+msgstr "CV FEED REDATER"
+
+msgid "Resume Feed Webmaster"
+msgstr "Återuppta foderwebmästare"
+
+msgid "Resume Feed TTL"
+msgstr "CV FEED TTL"
+
+msgid "Show Categories in Resume Feed"
+msgstr "Visa kategorier i CV -flöde"
+
+msgid "Include categories in the resume feed items"
+msgstr "Inkludera kategorier i CV -matningsobjekten"
+
+msgid "Show Resume File in Resume Feed"
+msgstr "Visa CV -fil i CV -flöde"
+
+msgid "Make resume files downloadable from the feed"
+msgstr "Gör CV -filer nedladdningsbara från flödet"
+
+msgid "AI Suggested Matches"
+msgstr "AI föreslog matchningar"
+
+msgid "Configure AI-powered job and resume suggestion features"
+msgstr "Konfigurera AI-driven jobb och CV-förslagsfunktioner"
+
+msgid "AI Search On Job Search Page"
+msgstr "AI -sökning på jobbsökningssida"
+
+msgid "Show the AI search field on the main job search form"
+msgstr "Visa AI -sökfältet på det huvudsakliga jobbsökningsformuläret"
+
+msgid "AI Job Search"
+msgstr "AI jobbsökning"
+
+msgid "AI Search Filter On Job Listing"
+msgstr "AI -sökfilter på jobblista"
+
+msgid "Show the AI search field as a filter on the job listing page"
+msgstr "Visa AI -sökfältet som ett filter på sidan av jobblista"
+
+msgid "AI Search On Resume Search Page"
+msgstr "AI -sökning på CV -sökningssidan"
+
+msgid "Show the AI search field on the main resume search form"
+msgstr "Visa AI -sökfältet på det huvudsakliga CV -sökformuläret"
+
+msgid "AI Resume Search"
+msgstr "AI CV -sökning"
+
+msgid "AI Search Filter On Resume Listing"
+msgstr "AI -sökfilter på CV -listan"
+
+msgid "Show the AI search field as a filter on the resume listing page"
+msgstr "Visa AI -sökfältet som ett filter på CV -listan"
+
+msgid "Show AI Suggested Jobs Button"
+msgstr "Visa AI föreslagna jobbknapp"
+
+msgid "AI Suggested Jobs"
+msgstr "AI föreslog jobb"
+
+msgid "Show AI Suggested Jobs on Dashboard"
+msgstr "Visa AI föreslagna jobb på instrumentpanelen"
+
+msgid "Show a list of AI-suggested jobs on the job seeker dashboard"
+msgstr "Visa en lista över AI-suggested jobb på Job Seeker-instrumentpanelen"
+
+msgid "Show AI Suggested Resumes Button"
+msgstr "Visa AI föreslagna CV -knappen"
+
+msgid "AI Suggested Resumes"
+msgstr "AI föreslog CV"
+
+msgid "Show AI Suggested Resumes on Dashboard"
+msgstr "Visa AI föreslagna CV på instrumentpanelen"
+
+msgid "Show a list of AI-suggested resumes on the employer dashboard"
+msgstr "Visa en lista över AI-Suggested CV på arbetsgivarens instrumentpanel"
+
+msgid "Integrations"
+msgstr "Integrationer"
+
+msgid "Allow users to register and log in with their social media accounts"
+msgstr "Låt användare registrera sig och logga in med sina sociala mediekonton"
+
+msgid "Login with Facebook"
+msgstr "Logga in med Facebook"
+
+msgid "Allow users to log in using their Facebook account"
+msgstr "Låt användare logga in med sitt Facebook -konto"
+
+msgid "Apply with Facebook"
+msgstr "Ansök med Facebook"
+
+msgid "Allow users to apply for jobs using their Facebook profile"
+msgstr "Låt användare ansöka om jobb med sin Facebook -profil"
+
+msgid "Facebook App ID"
+msgstr "Facebook -app -id"
+
+msgid "Enter your Facebook App ID"
+msgstr "Ange ditt Facebook -app -ID"
+
+msgid "Facebook App Secret"
+msgstr "Facebook App Secret"
+
+msgid "Enter your Facebook App Secret"
+msgstr "Ange din Facebook -apphemor"
+
+msgid "Valid OAuth URI"
+msgstr "Giltig oauth uri"
+
+msgid "Apply"
+msgstr "Tillämpas"
+
+msgid "Login with LinkedIn"
+msgstr "Logga in med LinkedIn"
+
+msgid "Allow users to log in using their LinkedIn account"
+msgstr "Låt användare logga in med sitt LinkedIn -konto"
+
+msgid "Apply with LinkedIn"
+msgstr "Ansök med LinkedIn"
+
+msgid "Allow users to apply for jobs using their LinkedIn profile"
+msgstr "Låt användare ansöka om jobb med sin LinkedIn -profil"
+
+msgid "LinkedIn Client ID"
+msgstr "LinkedIn Client ID"
+
+msgid "Enter your LinkedIn Client ID"
+msgstr "Ange ditt LinkedIn -klient -ID"
+
+msgid "API Key"
+msgstr "API -nyckel"
+
+msgid "LinkedIn Client Secret"
+msgstr "LinkedIn Client Secret"
+
+msgid "Enter your LinkedIn Client Secret"
+msgstr "Ange din LinkedIn Client Secret"
+
+msgid "Social Sharing"
+msgstr "Socialdelning"
+
+msgid "Enable social sharing buttons on your pages"
+msgstr "Aktivera sociala delningsknappar på dina sidor"
+
+msgid "Enable Facebook Likes"
+msgstr "Aktivera Facebook -gillar"
+
+msgid "Show Facebook like button"
+msgstr "Visa Facebook -liknande knapp"
+
+msgid "Enable Facebook Share"
+msgstr "Aktivera Facebook -delning"
+
+msgid "Show Facebook share button"
+msgstr "Visa Facebook Share -knapp"
+
+msgid "Enable Facebook Comments"
+msgstr "Aktivera Facebook -kommentarer"
+
+msgid "Show Facebook comments widget"
+msgstr "Visa Facebook -kommentarer widget"
+
+msgid "Enable Twitter Share"
+msgstr "Aktivera Twitter Share"
+
+msgid "Show Twitter share button"
+msgstr "Visa Twitter Share -knapp"
+
+msgid "Enable LinkedIn Share"
+msgstr "Aktivera LinkedIn Share"
+
+msgid "Show LinkedIn share button"
+msgstr "Visa LinkedIn Share -knapp"
+
+msgid "Enable Blogger Share"
+msgstr "Aktivera Blogger Share"
+
+msgid "Show Blogger share button"
+msgstr "Visa Blogger Share -knapp"
+
+msgid "Enable Digg Share"
+msgstr "Aktivera Digg Share"
+
+msgid "Show Digg share button"
+msgstr "Visa Digg Share -knapp"
+
+msgid "Enable Myspace Share"
+msgstr "Aktivera MySpace Share"
+
+msgid "Show Myspace share button"
+msgstr "Visa MySpace Share -knappen"
+
+msgid "Enable Yahoo Share"
+msgstr "Aktivera Yahoo Share"
+
+msgid "Show Yahoo share button"
+msgstr "Visa Yahoo Share -knapp"
+
+msgid "Mapping & Geolocation"
+msgstr "Kartläggning och geolokalisering"
+
+msgid "Configure map services and location-based features"
+msgstr "Konfigurera karttjänster och platsbaserade funktioner"
+
+msgid "Choose between Google Maps and OpenStreetMap for map displays"
+msgstr "Välj mellan Google Maps och OpenStreetMap för kartskärmar"
+
+msgid "Google Map API Key"
+msgstr "Google Map API -nyckel"
+
+msgid "Enter your Google Maps API key"
+msgstr "Ange din API -nyckel i Google Maps"
+
+msgid "Map Height"
+msgstr "Karthöjd"
+
+msgid "Set the height for maps displayed in the plugin, in pixels"
+msgstr "Ställ in höjden för kartor som visas i plugin, i pixlar"
+
+msgid "Default Longitude"
+msgstr "Standardlongitud"
+
+msgid "Default longitude for map centering"
+msgstr "Standardlongitud för kartcentrering"
+
+msgid "Default Latitude"
+msgstr "Latitud"
+
+msgid "Default latitude for map centering"
+msgstr "Standardlatitud för kartcentrering"
+
+msgid "Default Map Radius Type"
+msgstr "Standardkarta radie typ"
+
+msgid "Default unit for map radius calculations"
+msgstr "Standardenhet för MAP -radieberäkningar"
+
+msgid "Max Records for City Field"
+msgstr "Max Records for City Field"
+
+msgid "Set the number of cities to show in the location autocomplete results"
+msgstr "Ställ in antalet städer att visa i platsen Auto -kompletta resultat"
+
+msgid "Max Records for Tag Field"
+msgstr "Max Records för TAG -fält"
+
+msgid "Set the number of tags to show in the tag autocomplete results"
+msgstr "Ställ in antalet taggar som ska visas i taggen AutoComplete -resultat"
+
+msgid "Security & Captcha"
+msgstr "Säkerhet & captcha"
+
+msgid "Captcha Options"
+msgstr "Captcha -alternativ"
+
+msgid "Enable captcha on various forms to prevent spam"
+msgstr "Aktivera captcha på olika former för att förhindra skräppost"
+
+msgid "Default Captcha Type"
+msgstr "Standard Captcha -typ"
+
+msgid "Select the default captcha to use throughout the plugin"
+msgstr "Välj standard Captcha som ska användas i hela plugin"
+
+msgid "Captcha on Registration Form"
+msgstr "CAPTCHA på registreringsformuläret"
+
+msgid "Show a captcha on the WP Job Portal registration form"
+msgstr "Visa en CAPTCHA på WP Job Portal Registration Form"
+
+msgid "Captcha on Visitor Quick Apply"
+msgstr "CAPTCHA på besökaren Quick Apply"
+
+msgid "Show captcha to visitors on the quick apply form"
+msgstr "Visa captcha till besökare på snabba tillämpningsformulär"
+
+msgid "Captcha on Visitor Job Form"
+msgstr "CAPTCHA på besökarens jobbformulär"
+
+msgid "Show captcha on the job submission form for visitors"
+msgstr "Visa Captcha på jobbinlämningsformuläret för besökare"
+
+msgid "Captcha on Visitor Resume Form"
+msgstr "CAPTCHA på besökarens CV -formulär"
+
+msgid "Show captcha on the resume submission form for visitors"
+msgstr "Visa Captcha på CV -inlämningsformuläret för besökare"
+
+msgid "Captcha on Tell a Friend Popup"
+msgstr "Captcha på berätta för en vän popup"
+
+msgid "Show captcha on the"
+msgstr "Visa captcha på"
+
+msgid "popup for visitors"
+msgstr "popup för besökare"
+
+msgid "WP Job Portal Captcha"
+msgstr "WP Job Portal Captcha"
+
+msgid "Settings for the built-in mathematical captcha"
+msgstr "Inställningar för den inbyggda matematiska captcha"
+
+msgid "Calculation Type"
+msgstr "Beräkningstyp"
+
+msgid "Select the type of math problem for the captcha"
+msgstr "Välj typ av matematikproblem för CAPTCHA"
+
+msgid "Addition or Subtraction"
+msgstr "Tillägg eller subtraktion"
+
+msgid "Answer Always Positive"
+msgstr "Svar alltid positivt"
+
+msgid "Ensure that subtraction problems always result in a positive answer"
+msgstr "Se till att problem med subtraktion alltid resulterar i ett positivt svar"
+
+msgid "Number of Operands"
+msgstr "Antal operander"
+
+msgid "Choose the number of operands for the math problem"
+msgstr "Välj antalet operander för matematikproblemet"
+
+msgid "Google reCAPTCHA"
+msgstr "Google Recaptcha"
+
+msgid "Configure Google reCAPTCHA v2 or v3"
+msgstr "Konfigurera Google Recaptcha V2 eller V3"
+
+msgid "Select which version of Google reCAPTCHA to use"
+msgstr "Välj vilken version av Google Recaptcha som ska användas"
+
+msgid "Enter the site key from your Google reCAPTCHA admin console"
+msgstr "Ange webbplatsnyckeln från din Google Recaptcha -administratörskonsol"
+
+msgid "Google reCaptcha Secret Key"
+msgstr "Google Recaptcha Secret Key"
+
+msgid "Enter the secret key from your Google reCAPTCHA admin console"
+msgstr "Ange den hemliga nyckeln från din Google Recaptcha -administratörskonsol"
+
+msgid "Monetization"
+msgstr "Pengar"
+
+msgid "General Monetization"
+msgstr "Allmän intäktsgenerering"
+
+msgid "Core settings for handling payments and packages"
+msgstr "Kärninställningar för hantering av betalningar och paket"
+
+msgid "Choose the monetization model for submissions"
+msgstr "Välj intäktsmodell för inlagor"
+
+msgid "Free, Per Listing, or Membership-based"
+msgstr "Gratis, per lista eller medlemsbaserad"
+
+msgid "Default Currency Symbol"
+msgstr "Standardvalutesymbol"
+
+msgid "The currency symbol to be used across the site"
+msgstr "Valutasymbolen som ska användas över hela webbplatsen"
+
+msgid "Currency Symbol Position"
+msgstr "Valutasymbolposition"
+
+msgid "Packages & Featured Listings"
+msgstr "Paket och listor"
+
+msgid "Manage free packages and enable featured listings"
+msgstr "Hantera gratispaket och aktivera listor"
+
+msgid "Auto-assign Free Package to New User"
+msgstr "Auto-tilldela gratis paket till ny användare"
+
+msgid "Automatically give new users a free package if one exists"
+msgstr "Ge automatiskt nya användare ett gratis paket om man finns"
+
+msgid "Free Package Purchase Auto Approve"
+msgstr "Gratis paketköp auto godkänna"
+
+msgid "Automatically approve the purchase of free packages"
+msgstr "Godkänna automatiskt köp av gratis paket"
+
+msgid "Purchase Free Package Only Once"
+msgstr "Köp gratispaket endast en gång"
+
+msgid "Prevent users from acquiring a free package more than once"
+msgstr "Förhindra användare från att förvärva ett gratis paket mer än en gång"
+
+msgid "Enable Featured Companies"
+msgstr "Aktivera presenterade företag"
+
+msgid "Allow companies to be marked as"
+msgstr "Låt företag markeras som"
+
+msgid "Enable Featured Jobs"
+msgstr "Aktivera presenterade jobb"
+
+msgid "Allow jobs to be marked as"
+msgstr "Låt jobb markeras som"
+
+msgid "Enable Featured Resumes"
+msgstr "Aktivera presenterade CV"
+
+msgid "Allow resumes to be marked as"
+msgstr "Tillåta CV att markeras som"
+
+msgid "Per Listing Prices"
+msgstr "Per noteringspriser"
+
+msgid "Set prices for various actions when using the"
+msgstr "Sätta priser för olika åtgärder när du använder"
+
+msgid "submission type"
+msgstr "inlämningstyp"
+
+msgid "Submission"
+msgstr "Underkastelse"
+
+msgid "Price to submit a single company profile"
+msgstr "Pris för att skicka en enda företagsprofil"
+
+msgid "Additional price to make a company"
+msgstr "Ytterligare pris för att göra ett företag"
+
+msgid "Days Until Featured Company Expires"
+msgstr "Dagar tills företaget går ut"
+
+msgid "Number of days a"
+msgstr "Antal dagar a"
+
+msgid "per-listing"
+msgstr "per-listande"
+
+msgid "featured company remains active"
+msgstr "Featured Company förblir aktivt"
+
+msgid "free"
+msgstr "gratis"
+
+msgid "Price to submit a single job"
+msgstr "Pris för att skicka ett enda jobb"
+
+msgid "Additional price to make a job"
+msgstr "Ytterligare pris för att göra ett jobb"
+
+msgid "Days Until Featured Job Expires"
+msgstr "Dagar tills det finns jobb löper ut"
+
+msgid "featured job remains active"
+msgstr "Featured Job förblir aktiv"
+
+msgid "Price to submit a single resume"
+msgstr "Pris för att skicka ett enda CV"
+
+msgid "Additional price to make a resume"
+msgstr "Ytterligare pris för att göra ett CV"
+
+msgid "Days Until Featured Resume Expires"
+msgstr "Dagar tills presenterad CV går ut"
+
+msgid "featured resume remains active"
+msgstr "Featured CV förblir aktiv"
+
+msgid "Price per Job Apply"
+msgstr "Pris per jobb gäller"
+
+msgid "Price for a job seeker to apply for a job"
+msgstr "Pris för en arbetssökande att ansöka om ett jobb"
+
+msgid "Price to View Resume Contact"
+msgstr "Pris för att se CV -kontakt"
+
+msgid "Price to View Company Contact"
+msgstr "Pris för att se företagskontakt"
+
+msgid "Price to submit a department"
+msgstr "Pris för att lämna in en avdelning"
+
+msgid "Price to submit a cover letter"
+msgstr "Pris för att skicka ett brev"
+
+msgid "Price to create a job alert"
+msgstr "Pris för att skapa en jobbvarning"
+
+msgid "Dashboard Monetization Links"
+msgstr "Instrumentpanelens intäktslänkar"
+
+msgid "Control the visibility of monetization-related links in user dashboards"
+msgstr "Kontrollera synligheten för intäktsrelaterade länkar i användarpaneler"
+
+msgid "Employer Show Invoice History"
+msgstr "Arbetsgivares visar fakturahistoria"
+
+msgid "Setting to show the invoice/purchase history section"
+msgstr "Inställning för att visa avsnittet Faktura/köphistorik"
+
+msgid "Job Seeker Show Invoice History"
+msgstr "Jobbsökande showfakturahistoria"
+
+msgid "Job Seeker Show Credits Log"
+msgstr "Jobbsökande show Credits Log"
+
+msgid "Setting to show the credits log section"
+msgstr "Inställning för att visa kreditavsnittet"
+
+msgid "Payment Gateways"
+msgstr "Betalningsport"
+
+msgid "Configure PayPal payment gateway settings for API integration"
+msgstr "Konfigurera PayPal Payment Gateway -inställningar för API -integration"
+
+msgid "Enable PayPal"
+msgstr "Aktivera PayPal"
+
+msgid "Enable or disable PayPal as a payment option"
+msgstr "Aktivera eller inaktivera PayPal som betalningsalternativ"
+
+msgid "Your PayPal API Username"
+msgstr "Ditt PayPal API -användarnamn"
+
+msgid "Your PayPal API Password"
+msgstr "Ditt PayPal API -lösenord"
+
+msgid "Your PayPal API Signature"
+msgstr "Din PayPal API -signatur"
+
+msgid "A URL to your logo image to display on the PayPal checkout page"
+msgstr "En URL till din logotypbild för att visas på PayPal -kassasidan"
+
+msgid "Cancel URL"
+msgstr "Avbryt url"
+
+msgid "The URL users are sent to if they cancel the payment"
+msgstr "URL -användare skickas till om de avbryter betalningen"
+
+msgid "Notify URL"
+msgstr "Meddela URL"
+
+msgid "Sandbox"
+msgstr "Sandlåda"
+
+msgid "Enable PayPal Sandbox for testing purposes"
+msgstr "Aktivera PayPal Sandbox för teständamål"
+
+msgid "Please enter language code, for example"
+msgstr "Ange till exempel språkkod"
+
+msgid "Subscription IPN URL"
+msgstr "Prenumeration IPN URL"
+
+msgid "Configure Stripe payment gateway settings"
+msgstr "Konfigurera inställningar för betalning av rand"
+
+msgid "Enable Stripe"
+msgstr "Aktivera rand"
+
+msgid "Enable or disable Stripe as a payment option"
+msgstr "Aktivera eller inaktivera rand som betalningsalternativ"
+
+msgid "Publishable Key"
+msgstr "Publicerbar nyckel"
+
+msgid "Enter your Stripe Publishable Key"
+msgstr "Ange din PRIPE -publicerbara nyckel"
+
+msgid "Secret Key"
+msgstr "Hemlig nyckel"
+
+msgid "Enter your Stripe Secret Key"
+msgstr "Ange din randhemliga nyckel"
+
+msgid "Subscription Webhook URL"
+msgstr "Prenumeration webhook url"
+
+msgid "WooCommerce"
+msgstr "Woocommerce"
+
+msgid "Use WooCommerce to handle payments"
+msgstr "Använd WooCommerce för att hantera betalningar"
+
+msgid "Enable WooCommerce"
+msgstr "Aktivera WooCommerce"
+
+msgid "Enable or disable WooCommerce as a payment option"
+msgstr "Aktivera eller inaktivera WooCommerce som betalningsalternativ"
+
+msgid "Home Page"
+msgstr "Hemsida"
+
+msgid "WordPress Default"
+msgstr "WordPress Standard"
+
+msgid "Blog"
+msgstr "Blogga"
+
+msgid "This feature is part of a premium addon"
+msgstr "Den här funktionen är en del av ett premium -tillägg"
+
+msgid "Available tags"
+msgstr "Tillgängliga taggar"
+
+msgid "This image will be shown as the default image for entities & users if no other image is provided"
+msgstr "Den här bilden kommer att visas som standardbild för enheter och användare om ingen annan bild tillhandahålls"
+
+msgid "Discard"
+msgstr "Kassera"
+
+msgid "Save Changes"
+msgstr "Spara förändringar"
+
+msgid "Quickly find any setting"
+msgstr "Hitta snabbt någon inställning"
+
+msgid "Search by setting title or tooltip description"
+msgstr "Sök genom att ställa in titel eller verktygstipsbeskrivning"
+
+msgid "Unlock"
+msgstr "Låsa upp"
+
+msgid "This and other powerful features are available in the"
+msgstr "Detta och andra kraftfulla funktioner finns i"
+
+msgid "Upgrade Now"
+msgstr "Uppgradera nu"
+
+msgid "No settings found for your search"
+msgstr "Inga inställningar hittades för din sökning"
+
+msgid "Copied to clipboard"
+msgstr "Kopierad till urklipp"
+
+msgid "Search results for"
+msgstr "Sökresultat för"
+
+msgid "Unlock with"
+msgstr "Låsa upp med"
+
+msgid "Settings related to employer accounts, registration, and permissions"
+msgstr "Inställningar relaterade till arbetsgivarkonton, registrering och behörigheter"
+
+msgid "Settings related to job seeker accounts and registration"
+msgstr "Inställningar relaterade till jobbsökande konton och registrering"
+
+msgid "Visitor Can View Employer's Control Panel Links"
+msgstr "Besökare kan se arbetsgivarens kontrollpanellänkar"
+
+msgid "Visitor Can View Resume Categories"
+msgstr "Besökare kan se CV -kategorier"
+
+msgid "Visitor Can Search Resumes"
+msgstr "Besökare kan söka CV"
+
+msgid "Visitor Can View Company Details"
+msgstr "Besökare kan se företagets detaljer"
+
+msgid "Visitor Can View Job Details"
+msgstr "Besökare kan se jobbinformation"
+
+msgid "Visitor Can View Resume Details"
+msgstr "Besökare kan visa CV -detaljer"
+
+msgid "Visitor Can View Job Seeker's Control Panel Links"
+msgstr "Besökare kan se Job Seekers kontrollpanellänkar"
+
+msgid "Visitor Can View Jobs by Categories"
+msgstr "Besökare kan se jobb efter kategorier"
+
+msgid "Visitor Can Search Jobs"
+msgstr "Besökare kan söka jobb"
+
+msgid "Visitor Can View Newest Jobs"
+msgstr "Besökare kan se nyaste jobb"
+
+msgid "Visitor Can View Job Search Results"
+msgstr "Besökare kan se jobbsökningsresultat"
+
+msgid "1 Column"
+msgstr "1 kolumn"
+
+msgid "10254 Departments found"
+msgstr "10254 avdelningar hittades"
+
+msgid "2 Columns"
+msgstr "2 kolumner"
+
+msgid "3 Columns"
+msgstr "3 kolumner"
+
+msgid "4 Columns"
+msgstr "4 kolumner"
+
+msgid "5 Columns"
+msgstr "5 kolumner"
+
+msgid "A critical update for WP Job Portal is required to maintain performance and prevent issues. Please update now."
+msgstr "En kritisk uppdatering för WP Job Portal krävs för att upprätthålla prestanda och förhindra problem. Vänligen uppdatera nu."
+
+msgid "AI Search"
+msgstr "AI-sökning"
+
+msgid "AI Search Job"
+msgstr "AI Sök jobb"
+
+msgid "AI Settings"
+msgstr "AI-inställningar"
+
+msgid "AI settings"
+msgstr "AI-inställningar"
+
+msgid "About"
+msgstr "Om"
+
+msgid "Account & Billing"
+msgstr "Konto & fakturering"
+
+msgid "Activation failed"
+msgstr "Aktiveringen misslyckades"
+
+msgid "Add-ons for WP Job Portal have been installed and activated successfully."
+msgstr "Tillägg för WP Job Portal har installerats och aktiverats framgångsrikt."
+
+msgid "Addon Installer"
+msgstr "Addon Installer"
+
+msgid "Addon not installed please install addon first."
+msgstr "Tillägget är inte installerat, installera tillägget först."
+
+msgid "Addon will automatically update to the newest version"
+msgstr "Addon kommer automatiskt att uppdateras till den senaste versionen"
+
+msgid "Addon(s) Installed successfully!"
+msgstr "Addon(s) installerade framgångsrikt!"
+
+msgid "Address display style for plugin"
+msgstr "Adressvisningsstil för plugin"
+
+msgid "Advanced Resume Builder Addon missing, resume sections data will not be imported!"
+msgstr "Advanced Resume Builder Addon saknas, CV-sektionsdata kommer inte att importeras!"
+
+msgid "All selected add-ons are now active."
+msgstr "Alla valda tillägg är nu aktiva."
+
+msgid "Allow employers and job Seekers to register on the site."
+msgstr "Tillåt arbetsgivare och arbetssökande att registrera sig på webbplatsen."
+
+msgid "Allow search resume"
+msgstr "Tillåt att sökningen återupptas"
+
+msgid "Allowed to all (employers, job seekers and visitors)"
+msgstr "Tillåtet för alla (arbetsgivare, arbetssökande och besökare)"
+
+msgid "Auto Update: Off"
+msgstr "Automatisk uppdatering: Av"
+
+msgid "Auto Update: On"
+msgstr "Automatisk uppdatering: På"
+
+msgid "Back to listing"
+msgstr "Tillbaka till listan"
+
+msgid "Basic Info"
+msgstr "Grundläggande info"
+
+msgid "Buttons Styling"
+msgstr "Knappar Styling"
+
+msgid "Capitalize"
+msgstr "Kapitalisera"
+
+msgid "Check if you want to use WP Job Portal packages"
+msgstr "Markera om du vill använda WP Job Portal-paket"
+
+msgid "City name"
+msgstr "Stadsnamn"
+
+msgid "Columns per Row"
+msgstr "Kolumner per rad"
+
+msgid "Comma separated list of job types i.e JTFT, JTPT, JTFP, JTCT, JTIN"
+msgstr "Kommaseparerad lista över jobbtyper, t.ex. JTFT, JTPT, JTFP, JTCT, JTIN"
+
+msgid "Communication"
+msgstr "Kommunikation"
+
+msgid "Company Management"
+msgstr "Företagsledning"
+
+msgid "Complete Your Resume"
+msgstr "Fyll i ditt CV"
+
+msgid "Content Access"
+msgstr "Tillgång till innehåll"
+
+msgid "Content Styling"
+msgstr "Innehållsstyling"
+
+msgid "Control which employer dashboard navigation links are visible to visitors"
+msgstr "Kontrollera vilka navigeringslänkar för arbetsgivares instrumentpanel som är synliga för besökare"
+
+msgid "Control which employer dashboard widgets and sections are visible to visitors"
+msgstr "Kontrollera vilka widgets och sektioner för arbetsgivarens instrumentpanel som är synliga för besökare"
+
+msgid "Control which job seeker dashboard navigation links are visible to visitors"
+msgstr "Kontrollera vilka navigeringslänkar i instrumentpanelen för arbetssökande som är synliga för besökare"
+
+msgid "Control which job seeker dashboard widgets and sections are visible to visitors"
+msgstr "Kontrollera vilka widgets och sektioner i instrumentpanelen för arbetssökande som är synliga för besökare"
+
+msgid "Control which pages and content areas are visible to non-logged-in users"
+msgstr "Kontrollera vilka sidor och innehållsområden som är synliga för icke-inloggade användare"
+
+msgid "Custom Field Class"
+msgstr "Anpassad fältklass"
+
+msgid "Database Update Needed"
+msgstr "Databasuppdatering behövs"
+
+msgid "Database update completed"
+msgstr "Databasuppdatering slutförd"
+
+msgid "Delete All Unused Keys"
+msgstr "Ta bort alla oanvända nycklar"
+
+msgid "Discover"
+msgstr "Upptäcka"
+
+msgid "Display the status of applications to the job seeker"
+msgstr "Visa status för ansökningar till den arbetssökande"
+
+msgid "Dummy Plugin"
+msgstr "Dummy plugin"
+
+msgid "Dummy Plugin 2"
+msgstr "Dummy plugin 2"
+
+msgid "Elegant Design"
+msgstr "Elegant design"
+
+msgid "Employer Widgets"
+msgstr "Arbetsgivarwidgets"
+
+msgid "Enter the Site Title"
+msgstr "Ange webbplatsens titel"
+
+msgid "Entity"
+msgstr "Enhet"
+
+msgid "Fetch Data"
+msgstr "Hämta data"
+
+msgid "Find your next star hire with AI-driven resume search"
+msgstr "Hitta din nästa stjärnanställning med AI-driven CV-sökning"
+
+msgid "Font Family"
+msgstr "Typsnittsfamilj"
+
+msgid "Font Size"
+msgstr "Fontstorlek"
+
+msgid "Font Style"
+msgstr "Typsnittsstil"
+
+msgid "Font Weight"
+msgstr "Teckensnittsvikt"
+
+msgid "Go To Dashboard"
+msgstr "Gå till instrumentpanelen"
+
+msgid "Import Data Report"
+msgstr "Importera datarapport"
+
+msgid "Import Third Party Data"
+msgstr "Importera data från tredje part"
+
+msgid "Import demo data to populate your site with example companies, jobs, resumes, and applications."
+msgstr "Importera demodata för att fylla din webbplats med exempelföretag, jobb, meritförteckningar och applikationer."
+
+msgid "Imported"
+msgstr "Importerad"
+
+msgid "Infi Icon"
+msgstr "Infi ikon"
+
+msgid "Info"
+msgstr "Info"
+
+msgid "Info Icon"
+msgstr "Informationsikon"
+
+msgid "Invalid server response"
+msgstr "Ogiltigt serversvar"
+
+msgid "Italic"
+msgstr "Kursiv"
+
+msgid "Job Alert Time"
+msgstr "Jobbvarningstid"
+
+msgid "Job Detail"
+msgstr "Jobbdetalj"
+
+msgid "Job Seeker Links"
+msgstr "Länkar för arbetssökande"
+
+msgid "Job Seeker Settings"
+msgstr "Inställningar för arbetssökande"
+
+msgid "Job Seeker Widgets"
+msgstr "Widgets för arbetssökande"
+
+msgid "Jobs by Category"
+msgstr "Jobb efter kategori"
+
+msgid "Layout"
+msgstr "Layout"
+
+msgid "Letter Spacing"
+msgstr "Bokstavsavstånd"
+
+msgid "Line Height"
+msgstr "Linjehöjd"
+
+msgid "Live Preview Not available at the moment !"
+msgstr "Live Preview Ej tillgängligt för tillfället!"
+
+msgid "Login/Register"
+msgstr "Logga in/registrera dig"
+
+msgid "Lowercase"
+msgstr "Små bokstäver"
+
+msgid "Manage Documents"
+msgstr "Hantera dokument"
+
+msgid "Manage Jobs"
+msgstr "Hantera jobb"
+
+msgid "Manage Unused Keys"
+msgstr "Hantera oanvända nycklar"
+
+msgid "More Actions"
+msgstr "Fler åtgärder"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans."
+msgstr "Mitt abonnemang ger användarna en översikt över deras aktiva prenumerationer, vilket möjliggör enkel hantering och spårning av deras plan för jobbannonsering."
+
+msgid "New Jobs"
+msgstr "Nya jobb"
+
+msgid "Next Setup"
+msgstr "Nästa installation"
+
+msgid "No Addon Installed!"
+msgstr "Inget tillägg installerat!"
+
+msgid "No unused keys were found."
+msgstr "Inga oanvända nycklar hittades."
+
+msgid "None"
+msgstr "Ingen"
+
+msgid "Not Imported"
+msgstr "Ej importerad"
+
+msgid "Oblique"
+msgstr "Sned"
+
+msgid "Only job seekers can register. Jobs and companies are managed by the admin."
+msgstr "Endast arbetssökande kan registrera sig. Jobb och företag sköts av admin."
+
+msgid "Paid access Only"
+msgstr "Endast betald tillgång"
+
+msgid "Pay For Featured Resume"
+msgstr "Betala för utvalda CV"
+
+msgid "Pay For Resume"
+msgstr "Betala för CV"
+
+msgid "Pay per listing price to publish your"
+msgstr "Betala per noteringspris för att publicera din"
+
+msgid "Please Insert Your Activation Key"
+msgstr "Vänligen sätt i din aktiveringsnyckel"
+
+msgid "Please log in to register to continue."
+msgstr "Logga in för att registrera dig för att fortsätta."
+
+msgid "Please select at least one addon!"
+msgstr "Välj minst ett tillägg!"
+
+msgid "Please verify Locations and salaries for imported data entities"
+msgstr "Vänligen verifiera platser och löner för importerade dataenheter"
+
+msgid "Plugin not installed"
+msgstr "Plugin inte installerad"
+
+msgid "Price for a job seeker to view a company's contact details"
+msgstr "Pris för en arbetssökande för att se ett företags kontaktuppgifter"
+
+msgid "Price for an employer to view a resume's contact details"
+msgstr "Pris för en arbetsgivare för att se ett CVs kontaktuppgifter"
+
+msgid "Quick Configuration"
+msgstr "Snabb konfiguration"
+
+msgid "Ready to find your dream job? Let's get started"
+msgstr "Är du redo att hitta ditt drömjobb? Låt oss börja"
+
+msgid "Ready to find your potential employee? Let's get started"
+msgstr "Är du redo att hitta din potentiella medarbetare? Låt oss börja"
+
+msgid "Search Jobs"
+msgstr "Sök jobb"
+
+msgid "Search Resumes"
+msgstr "Sök CV"
+
+msgid "Search smarter – just type anything you know about the job: title, category, type, skills, or even a description!"
+msgstr "Sök smartare – skriv bara allt du vet om jobbet: titel, kategori, typ, färdigheter eller till och med en beskrivning!"
+
+msgid "Section Title Styling"
+msgstr "Avsnittstitel Styling"
+
+msgid "Select Addons to Update with New Activation Key"
+msgstr "Välj Tillägg att uppdatera med ny aktiveringsnyckel"
+
+msgid "Select Company"
+msgstr "Välj Företag"
+
+msgid "Select Job Category"
+msgstr "Välj Jobbkategori"
+
+msgid "Select Job Status"
+msgstr "Välj Jobbstatus"
+
+msgid "Select Job Type"
+msgstr "Välj Jobbtyp"
+
+msgid "Select Page To Show"
+msgstr "Välj sida att visa"
+
+msgid "Select Plugin Setting for WP Job Portal"
+msgstr "Välj Plugin-inställning för WP Job Portal"
+
+msgid "Select packages pack so that user can purchase them"
+msgstr "Välj paketpaket så att användaren kan köpa dem"
+
+msgid "Select who can view company contact details."
+msgstr "Välj vem som kan se företagets kontaktuppgifter."
+
+msgid "Settings you applied have been successfully saved"
+msgstr "Inställningar som du tillämpade har sparats"
+
+msgid "Setup Complete"
+msgstr "Installationen är klar"
+
+msgid "Show Advanced Search Button"
+msgstr "Visa knappen för avancerad sökning"
+
+msgid "Show Employers"
+msgstr "Visa arbetsgivare"
+
+msgid "Show Everyone"
+msgstr "Visa alla"
+
+msgid "Show Job seekers"
+msgstr "Visa arbetssökande"
+
+msgid "Show Labels"
+msgstr "Visa etiketter"
+
+msgid "Show No One"
+msgstr "Visa ingen"
+
+msgid "Show Placeholders"
+msgstr "Visa platshållare"
+
+msgid "Show Resume Status Section"
+msgstr "Visa avsnittet om CV-status"
+
+msgid "Show a box with applied jobs on the job seeker's dashboard"
+msgstr "Visa en ruta med sökta jobb på den arbetssökandes instrumentpanel"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard"
+msgstr "Visa en ruta med de senaste jobben på den arbetssökandes instrumentpanel"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard to visitor"
+msgstr "Visa en ruta med de senaste jobben på den arbetssökandes instrumentpanel för besökaren"
+
+msgid "Show a box with recent resumes on the employer's dashboard"
+msgstr "Visa en ruta med senaste meritförteckningar på arbetsgivarens instrumentpanel"
+
+msgid "Show a box with recent resumes on the employer's dashboard to visitor"
+msgstr "Visa en ruta med senaste meritförteckningar på arbetsgivarens instrumentpanel för besökaren"
+
+msgid "Show a graph of job statistics in the employer's dashboard"
+msgstr "Visa en graf över jobbstatistik i arbetsgivarens instrumentpanel"
+
+msgid "Show a graph of job statistics in the employer's dashboard to visitor"
+msgstr "Visa en graf över jobbstatistik i arbetsgivarens instrumentpanel för besökare"
+
+msgid "Show a graph of job statistics in the job seeker's dashboard"
+msgstr "Visa en graf över jobbstatistik i den arbetssökandes instrumentpanel"
+
+msgid "Show a graph of job statistics in the job seeker's dashboard to visitor"
+msgstr "Visa en graf över jobbstatistik i den arbetssökandes instrumentpanel för besökaren"
+
+msgid "Show a link to active subscriptions in the employer's dashboard"
+msgstr "Visa en länk till aktiva prenumerationer i arbetsgivarens instrumentpanel"
+
+msgid "Show a link to active subscriptions in the job seeker's dashboard"
+msgstr "Visa en länk till aktiva prenumerationer i den arbetssökandes instrumentpanel"
+
+msgid "Show a link to the packages page in the employer's dashboard"
+msgstr "Visa en länk till paketsidan i arbetsgivarens instrumentpanel"
+
+msgid "Show a link to the packages page in the job seeker's dashboard"
+msgstr "Visa en länk till paketsidan i den arbetssökandes instrumentpanel"
+
+msgid "Show a link to the purchase history/invoices in the employer's dashboard"
+msgstr "Visa länk till köphistorik/fakturor i arbetsgivarens instrumentpanel"
+
+msgid "Show a link to the purchase history/invoices in the job seeker's dashboard"
+msgstr "Visa en länk till köphistoriken/fakturorna i den arbetssökandes instrumentpanel"
+
+msgid "Show a link to the user's purchased packages in their dashboard"
+msgstr "Visa en länk till användarens köpta paket i deras instrumentpanel"
+
+msgid "Show an 'AI Suggested Jobs' button on the 'My Resumes' page for job seekers"
+msgstr "Visa en \"AI-föreslagna jobb\"-knapp på sidan \"Mina CV\" för arbetssökande"
+
+msgid "Show an 'AI Suggested Resumes' button on the 'My Jobs' page for employers"
+msgstr "Visa en \"AI-föreslagna CV\"-knapp på sidan \"Mina jobb\" för arbetsgivare"
+
+msgid "Show or hide the profile section on the employer's control panel"
+msgstr "Visa eller dölj profildelen på arbetsgivarens kontrollpanel"
+
+msgid "Show or hide the profile section on the job seeker's control panel"
+msgstr "Visa eller dölj profildelen på den arbetssökandes kontrollpanel"
+
+msgid "Show resume status section on the job seeker's dashboard"
+msgstr "Visa avsnittet om CV-status på den arbetssökandes instrumentpanel"
+
+msgid "Show statistics boxes on the employer's dashboard"
+msgstr "Visa statistikrutor på arbetsgivarens instrumentpanel"
+
+msgid "Show statistics boxes on the job seeker's dashboard"
+msgstr "Visa statistikrutor på den arbetssökandes instrumentpanel"
+
+msgid "Show the 'Quick Apply' form to logged-in users on the job detail page"
+msgstr "Visa formuläret \"Snabbansökan\" för inloggade användare på jobbdetaljsidan"
+
+msgid "Show the 'Quick Apply' form to visitors on the job detail page"
+msgstr "Visa formuläret \"Snabbansökan\" för besökare på jobbdetaljsidan"
+
+msgid "Similar Found"
+msgstr "Liknande hittades"
+
+msgid "Start typing what you know – our AI will help you find the best matching jobs."
+msgstr "Börja skriva det du vet – vår AI hjälper dig att hitta de bästa matchande jobben."
+
+msgid "Start typing what you know – our AI will help you find the best matching resumes."
+msgstr "Börja skriva det du vet – vår AI hjälper dig att hitta de bästa matchande meritförteckningarna."
+
+msgid "Step 1 of 5"
+msgstr "Steg 1 av 5"
+
+msgid "Step 2 of 4"
+msgstr "Steg 2 av 4"
+
+msgid "Step 2 of 5"
+msgstr "Steg 2 av 5"
+
+msgid "Step 3 of 4"
+msgstr "Steg 3 av 4"
+
+msgid "Step 3 of 5"
+msgstr "Steg 3 av 5"
+
+msgid "Step 4 of 4"
+msgstr "Steg 4 av 4"
+
+msgid "Step 4 of 5"
+msgstr "Steg 4 av 5"
+
+msgid "Step 5 of 5"
+msgstr "Steg 5 av 5"
+
+msgid "Subscriptions"
+msgstr "Prenumerationer"
+
+msgid "Sugeested Jobs"
+msgstr "Föreslagna jobb"
+
+msgid "Suggested Jobs"
+msgstr "Föreslagna jobb"
+
+msgid "Suggested Resumes"
+msgstr "Föreslagna CV"
+
+msgid "System"
+msgstr "System"
+
+msgid "System Error Log"
+msgstr "Systemfellogg"
+
+msgid "Text Transform"
+msgstr "Textomvandling"
+
+msgid "The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "Arbetsgivarkontrollpanelen är ett strömlinjeformat gränssnitt som gör det möjligt för arbetsgivare att hantera jobbannonser, spåra ansökningar, kommunicera med kandidater och analysera anställningsstatistik effektivt."
+
+msgid "The highlighted addons are not included in your current license. Please adjust your selection accordingly."
+msgstr "De markerade tilläggen ingår inte i din nuvarande licens. Justera ditt val därefter."
+
+msgid "This add-on will change the Job Portal pages to a simple yet powerful and rich web design that involves focusing on clean aesthetics, intuitive navigation, and functional elements while ensuring performance and responsiveness."
+msgstr "Detta tillägg kommer att ändra jobbportalsidorna till en enkel men kraftfull och rik webbdesign som involverar fokus på ren estetik, intuitiv navigering och funktionella element samtidigt som prestanda och lyhördhet säkerställs."
+
+msgid "This will replace the old key with the new one."
+msgstr "Detta kommer att ersätta den gamla nyckeln med den nya."
+
+msgid "Today Stats"
+msgstr "Dagens statistik"
+
+msgid "Unlock your career potential with AI-driven job search"
+msgstr "Lås upp din karriärpotential med AI-drivet jobbsökande"
+
+msgid "Update Key"
+msgstr "Uppdatera nyckel"
+
+msgid "Update Now"
+msgstr "Uppdatera nu"
+
+msgid "Updating Database, please wait..."
+msgstr "Uppdaterar databas, vänta..."
+
+msgid "Uppercase"
+msgstr "Versal"
+
+msgid "Use Default Color For Color 1"
+msgstr "Använd standardfärg för färg 1"
+
+msgid "Use Icons for Buttons"
+msgstr "Använd ikoner för knappar"
+
+msgid "View All Resumes"
+msgstr "Visa alla CV"
+
+msgid "View Company Contact Detail"
+msgstr "Visa företagskontaktinformation"
+
+msgid "Visitor Show"
+msgstr "Besöksutställning"
+
+msgid "Visitor Show Active Jobs Graph"
+msgstr "Besökare Visa aktiva jobb graf"
+
+msgid "Visitor Show Applied Jobs Section"
+msgstr "Besökare Visa tillämpade jobb avsnitt"
+
+msgid "Visitor Show Applied Resumes Section"
+msgstr "Besökare Visa tillämpade meritförteckningar"
+
+msgid "Visitor Show Credits Log Section"
+msgstr "Besökare Visa Credits Log Sektion"
+
+msgid "Visitor Show Jobs Graph"
+msgstr "Visitor Show Jobs Graph"
+
+msgid "Visitor Show Jobs Graph Section"
+msgstr "Visitor Show Jobb Graf Sektion"
+
+msgid "Visitor Show Newest Jobs Box"
+msgstr "Besökare Visa nyaste jobb Box"
+
+msgid "Visitor Show Newest Jobs Section"
+msgstr "Besökare Visa senaste jobbsektionen"
+
+msgid "Visitor Show Newest Resumes Section"
+msgstr "Besökare Visa senaste CV-sektionen"
+
+msgid "Visitor Show Purchase History Section"
+msgstr "Besöksvisningssektionen Köphistorik"
+
+msgid "Visitor Show Recent Resumes Box"
+msgstr "Visitor Show Recent CV Box"
+
+msgid "Visitor Show Saved Searches Section"
+msgstr "Besökare Visa avsnittet Sparade sökningar"
+
+msgid "Visitor Show Shortlisted Jobs Section"
+msgstr "Visitor Show Shortlisted Jobs Sektionen"
+
+msgid "Visitor Show Stats Graph Section"
+msgstr "Besökare Visa Stats Graph Sektion"
+
+msgid "Visitor Show Useful Links Section"
+msgstr "Besökare Visa användbara länkar avsnitt"
+
+msgid "WP Job Manager"
+msgstr "WP Job Manager"
+
+msgid "WP Job Portal Activation Key"
+msgstr "WP Job Portal Aktiveringsnyckel"
+
+msgid "WP Job Portal Import Data"
+msgstr "WP Job Portal Importera data"
+
+msgid "WP Job Portal Packages"
+msgstr "WP jobbportalpaket"
+
+msgid "Welcome to WP Job Portal Addon Installer"
+msgstr "Välkommen till WP Job Portal Addon Installer"
+
+msgid "Welcome, Visitor"
+msgstr "Välkommen, besökare"
+
+msgid "Who can search resume."
+msgstr "Vem kan söka CV."
+
+msgid "Who can view resume contact details"
+msgstr "Vem kan se kontaktuppgifter för CV"
+
+msgid "You Already Applied to this job"
+msgstr "Du har redan ansökt till det här jobbet"
+
+msgid "You have"
+msgstr "Du har"
+
+msgid "Your WP Job Portal license key has expired or is invalid. Please update it to continue receiving support and updates."
+msgstr "Din WP Job Portal-licensnyckel har löpt ut eller är ogiltig. Uppdatera den för att fortsätta få support och uppdateringar."
+
+msgid "failed."
+msgstr "misslyckades."
+
+msgid "found"
+msgstr "hittade"
+
+msgid "icon"
+msgstr "ikon"
+
+msgid "imported."
+msgstr "importeras."
+
+msgid "skipped."
+msgstr "hoppade över."
+
+msgid "unused key has been deleted successfully!"
+msgstr "oanvänd nyckel har raderats!"
+
+msgid "unused key(s) that can be safely removed."
+msgstr "oanvänd(a) nyckel(ar) som säkert kan tas bort."
+
+msgid "unused keys have been deleted successfully!"
+msgstr "oanvända nycklar har raderats!"

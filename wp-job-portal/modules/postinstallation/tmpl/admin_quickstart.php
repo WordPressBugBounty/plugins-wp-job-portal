@@ -75,7 +75,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                 </div>
                 <div class="wpjobportal-post-head-rightbtns-wrp">
                     <span class="wpjobportal-post-head-pagestep"><?php echo esc_html(__('Step 1 of 5','wp-job-portal'));?></span>
-                    <a class="wpjobportal-post-head-closebtn" href="admin.php?page=wpjobportal"title="<?php echo esc_html(__('Close','wp-job-portal'));?>">
+                    <a class="wpjobportal-post-head-closebtn" href="admin.php?page=wpjobportal"title="<?php echo esc_attr(__('Close','wp-job-portal'));?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/close.png" />
                     </a>
                 </div>
@@ -132,11 +132,11 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
 
                 <div class="wpjobportal-post-action-btn" style="text-align: center;">
                     <?php /* ?>
-                    <a class="back-step wpjobportal-post-act-btn" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_html(__('back','wp-job-portal')); ?>">
+                    <a class="back-step wpjobportal-post-act-btn" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('back','wp-job-portal')); ?>">
                         <?php echo esc_html(__('Back','wp-job-portal')); ?>
                     </a>
                     <?php */ ?>
-                    <a class="next-step wpjobportal-post-act-btn" href="javascript:void();" onclick="document.getElementById('wpjobportal-form-ins').submit();"  title="<?php echo esc_html(__('next','wp-job-portal')); ?>" style="float: none;">
+                    <a class="next-step wpjobportal-post-act-btn" href="javascript:void();" onclick="document.getElementById('wpjobportal-form-ins').submit();"  title="<?php echo esc_attr(__('next','wp-job-portal')); ?>" style="float: none;">
                         <?php echo esc_html(__('Next Setup','wp-job-portal')); ?>
                     </a>
                 </div>
@@ -155,7 +155,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
 
             jQuery( document ).ready(function() {
                 jQuery('#wpjobportal-post-employer-mode-job-board-btn').click(function(){
@@ -196,7 +196,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                 });
               });
             ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 
 
 ?>

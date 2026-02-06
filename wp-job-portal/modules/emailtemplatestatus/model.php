@@ -5,63 +5,63 @@ if (!defined('ABSPATH'))
 
 class WPJOBPORTALemailtemplatestatusModel {
 
-    function sendEmailModel($id, $actionfor) {
-        if (empty($id))
+    function sendEmailModel($wpjobportal_id, $wpjobportal_actionfor) {
+        if (empty($wpjobportal_id))
             return false;
-        if (!is_numeric($actionfor))
+        if (!is_numeric($wpjobportal_actionfor))
             return false;
 
-        $row = WPJOBPORTALincluder::getJSTable('emailtemplateconfig');
-        $value = 1;
+        $wpjobportal_row = WPJOBPORTALincluder::getJSTable('emailtemplateconfig');
+        $wpjobportal_value = 1;
 
-        switch ($actionfor) {
+        switch ($wpjobportal_actionfor) {
             case 1: //updation for employer send email
-                $row->update(array('id' => $id, 'employer' => $value));
+                $wpjobportal_row->update(array('id' => $wpjobportal_id, 'employer' => $wpjobportal_value));
                 break;
             case 2: //updation for jobseeker send email
-                $row->update(array('id' => $id, 'jobseeker' => $value));
+                $wpjobportal_row->update(array('id' => $wpjobportal_id, 'jobseeker' => $wpjobportal_value));
 
                 break;
             case 3: //updation for admin send email
-                $row->update(array('id' => $id, 'admin' => $value));
+                $wpjobportal_row->update(array('id' => $wpjobportal_id, 'admin' => $wpjobportal_value));
                 break;
             case 4: //updation for jobseeker visitor send email
-                $row->update(array('id' => $id, 'jobseeker_visitor' => $value));
+                $wpjobportal_row->update(array('id' => $wpjobportal_id, 'jobseeker_visitor' => $wpjobportal_value));
                 break;
             case 5: //updation for employer visitor send email
-                $row->update(array('id' => $id, 'employer_visitor' => $value));
+                $wpjobportal_row->update(array('id' => $wpjobportal_id, 'employer_visitor' => $wpjobportal_value));
         }
     }
 
-    function noSendEmailModel($id, $actionfor) {
-        if (empty($id))
+    function noSendEmailModel($wpjobportal_id, $wpjobportal_actionfor) {
+        if (empty($wpjobportal_id))
             return false;
-        if (!is_numeric($actionfor))
+        if (!is_numeric($wpjobportal_actionfor))
             return false;
 
-        $row = WPJOBPORTALincluder::getJSTable('emailtemplateconfig');
-        $value = 0;
+        $wpjobportal_row = WPJOBPORTALincluder::getJSTable('emailtemplateconfig');
+        $wpjobportal_value = 0;
 
-        switch ($actionfor) {
+        switch ($wpjobportal_actionfor) {
             case 1: //updation for employer not send email
-                $row->update(array('id' => $id, 'employer' => $value));
+                $wpjobportal_row->update(array('id' => $wpjobportal_id, 'employer' => $wpjobportal_value));
                 break;
             case 2: //updation for jobseeker not send email
-                $row->update(array('id' => $id, 'jobseeker' => $value));
+                $wpjobportal_row->update(array('id' => $wpjobportal_id, 'jobseeker' => $wpjobportal_value));
                 break;
             case 3: //updation for admin not send email
-                $row->update(array('id' => $id, 'admin' => $value));
+                $wpjobportal_row->update(array('id' => $wpjobportal_id, 'admin' => $wpjobportal_value));
                 break;
             case 4: //updation for jobseeker visitor not send email
-                $row->update(array('id' => $id, 'jobseeker_visitor' => $value));
+                $wpjobportal_row->update(array('id' => $wpjobportal_id, 'jobseeker_visitor' => $wpjobportal_value));
                 break;
             case 5: //updation for employer visitor not send email
-                $row->update(array('id' => $id, 'employer_visitor' => $value));
+                $wpjobportal_row->update(array('id' => $wpjobportal_id, 'employer_visitor' => $wpjobportal_value));
         }
     }
 
-    function getLanguageForEmail($keyword) {
-        switch ($keyword) {
+    function getLanguageForEmail($wpjobportal_keyword) {
+        switch ($wpjobportal_keyword) {
             case 'add_new_company':
                 $lanng = esc_html(__('Add','wp-job-portal')). esc_html(__('new','wp-job-portal')).esc_html(__('company', 'wp-job-portal'));
                 return $lanng;
@@ -168,30 +168,30 @@ class WPJOBPORTALemailtemplatestatusModel {
     function getEmailTemplateStatusData() {
         $query = "SELECT * FROM " . wpjobportal::$_db->prefix . "wj_portal_emailtemplates_config";
         wpjobportal::$_data[0] = wpjobportaldb::get_results($query);
-        $newdata = array();
-        foreach (wpjobportal::$_data[0] as $data) {
-            $newdata[$data->emailfor] = array(
-                'tempid' => $data->id,
-                'tempname' => $data->emailfor,
-                'admin' => $data->admin,
-                'employer' => $data->employer,
-                'jobseeker' => $data->jobseeker,
-                'jobseeker_vis' => $data->jobseeker_visitor,
-                'employer_vis' => $data->employer_visitor
+        $wpjobportal_newdata = array();
+        foreach (wpjobportal::$_data[0] as $wpjobportal_data) {
+            $wpjobportal_newdata[$wpjobportal_data->emailfor] = array(
+                'tempid' => $wpjobportal_data->id,
+                'tempname' => $wpjobportal_data->emailfor,
+                'admin' => $wpjobportal_data->admin,
+                'employer' => $wpjobportal_data->employer,
+                'jobseeker' => $wpjobportal_data->jobseeker,
+                'jobseeker_vis' => $wpjobportal_data->jobseeker_visitor,
+                'employer_vis' => $wpjobportal_data->employer_visitor
             );
         }
-        wpjobportal::$_data[0] = $newdata;
+        wpjobportal::$_data[0] = $wpjobportal_newdata;
     }
 
-    function getEmailTemplateStatus($template_name) {
+    function getEmailTemplateStatus($wpjobportal_template_name) {
         $query = "SELECT emc.admin,emc.employer,emc.jobseeker,emc.employer_visitor,emc.jobseeker_visitor
                 FROM " . wpjobportal::$_db->prefix . "wj_portal_emailtemplates_config AS emc
-                where  emc.emailfor = '" . esc_sql($template_name) . "'";
-        $templatestatus = wpjobportaldb::get_row($query);
-        return $templatestatus;
+                where  emc.emailfor = '" . esc_sql($wpjobportal_template_name) . "'";
+        $wpjobportal_templatestatus = wpjobportaldb::get_row($query);
+        return $wpjobportal_templatestatus;
     }
     function getMessagekey(){
-        $key = 'emailtemplatestatus';if(wpjobportal::$_common->wpjp_isadmin()){$key = 'admin_'.$key;}return $key;
+        $wpjobportal_key = 'emailtemplatestatus';if(wpjobportal::$_common->wpjp_isadmin()){$wpjobportal_key = 'admin_'.$wpjobportal_key;}return $wpjobportal_key;
     }
 
 

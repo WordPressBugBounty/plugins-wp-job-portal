@@ -16,76 +16,76 @@ class WPJOBPORTALsalaryrangetypeModel {
     function getAllSalaryRangeType() {
         //Filters
         $title = wpjobportal::$_search['range']['title'];
-        $status = wpjobportal::$_search['range']['status'];
+        $wpjobportal_status = wpjobportal::$_search['range']['status'];
         $pagesize = absint(WPJOBPORTALrequest::getVar('pagesize'));
-        $formsearch = WPJOBPORTALrequest::getVar('WPJOBPORTAL_form_search', 'post');
-        if ($formsearch == 'WPJOBPORTAL_SEARCH') {
+        $wpjobportal_formsearch = WPJOBPORTALrequest::getVar('WPJOBPORTAL_form_search', 'post');
+        if ($wpjobportal_formsearch == 'WPJOBPORTAL_SEARCH') {
             update_option( 'wpjobportal_page_size', $pagesize);
         }
         if(get_option( 'wpjobportal_page_size', '' ) != ''){
             $pagesize = get_option( 'wpjobportal_page_size');
         }
-        $inquery = '';
+        $wpjobportal_inquery = '';
         $clause = ' WHERE ';
         if ($title != null) {
-            $inquery .= esc_sql($clause) . "title LIKE '%" . esc_sql($title) . "%'";
+            $wpjobportal_inquery .= esc_sql($clause) . "title LIKE '%" . esc_sql($title) . "%'";
             $clause = ' AND ';
         }
-        if ($status != null)
-            $inquery .=esc_sql($clause) . " status = '" . esc_sql($status) . "'";
+        if ($wpjobportal_status != null)
+            $wpjobportal_inquery .=esc_sql($clause) . " status = '" . esc_sql($wpjobportal_status) . "'";
 
         wpjobportal::$_data['filter']['title'] = $title;
-        wpjobportal::$_data['filter']['status'] = $status;
+        wpjobportal::$_data['filter']['status'] = $wpjobportal_status;
         wpjobportal::$_data['filter']['pagesize'] = $pagesize;
         //Pagination
         if($pagesize){
            WPJOBPORTALpagination::setLimit($pagesize);
         }
-        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` $inquery";
-        $total = wpjobportaldb::get_var($query);
-        wpjobportal::$_data['total'] = $total;
-        wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($total);
+        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` $wpjobportal_inquery";
+        $wpjobportal_total = wpjobportaldb::get_var($query);
+        wpjobportal::$_data['total'] = $wpjobportal_total;
+        wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($wpjobportal_total);
         //Data
-        $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` $inquery";
+        $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` $wpjobportal_inquery";
         $query .= " ORDER BY ordering ASC LIMIT " . WPJOBPORTALpagination::$_offset . "," . WPJOBPORTALpagination::$_limit;
         wpjobportal::$_data[0] = wpjobportaldb::get_results($query);
         return;
     }
 
-    function updateIsDefault($id) {
-        if (!is_numeric($id))
+    function updateIsDefault($wpjobportal_id) {
+        if (!is_numeric($wpjobportal_id))
             return false;
         // DB class limitation
-        $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` SET isdefault = 0 WHERE id != " . esc_sql($id);
+        $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` SET isdefault = 0 WHERE id != " . esc_sql($wpjobportal_id);
         wpjobportaldb::query($query);
     }
 
-    function validateFormData(&$data) {
+    function validateFormData(&$wpjobportal_data) {
         $canupdate = false;
-        if ($data['id'] == '') {
-            $result = $this->isSalaryRangeTypeExist($data['title']);
-            if ($result == true) {
+        if ($wpjobportal_data['id'] == '') {
+            $wpjobportal_result = $this->isSalaryRangeTypeExist($wpjobportal_data['title']);
+            if ($wpjobportal_result == true) {
                 return WPJOBPORTAL_ALREADY_EXIST;
             } else {
                 $query = "SELECT max(ordering)+1 AS maxordering FROM " . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes";
-                $data['ordering'] = wpjobportaldb::get_var($query);
+                $wpjobportal_data['ordering'] = wpjobportaldb::get_var($query);
             }
-            if ($data['status'] == 0) {
-                $data['isdefault'] = 0;
+            if ($wpjobportal_data['status'] == 0) {
+                $wpjobportal_data['isdefault'] = 0;
             } else {
-                if ($data['isdefault'] == 1) {
+                if ($wpjobportal_data['isdefault'] == 1) {
                     $canupdate = true;
                 }
             }
         } else {
-            if ($data['wpjobportal_isdefault'] == 1) {
-                $data['isdefault'] = 1;
-                $data['status'] = 1;
+            if ($wpjobportal_data['wpjobportal_isdefault'] == 1) {
+                $wpjobportal_data['isdefault'] = 1;
+                $wpjobportal_data['status'] = 1;
             } else {
-                if ($data['status'] == 0) {
-                    $data['isdefault'] = 0;
+                if ($wpjobportal_data['status'] == 0) {
+                    $wpjobportal_data['isdefault'] = 0;
                 } else {
-                    if ($data['isdefault'] == 1) {
+                    if ($wpjobportal_data['isdefault'] == 1) {
                         $canupdate = true;
                     }
                 }
@@ -94,116 +94,116 @@ class WPJOBPORTALsalaryrangetypeModel {
         return $canupdate;
     }
 
-    function storeSalaryRangeType($data) {
-        if (empty($data))
+    function storeSalaryRangeType($wpjobportal_data) {
+        if (empty($wpjobportal_data))
             return false;
 
-        $canupdate = $this->validateFormData($data);
+        $canupdate = $this->validateFormData($wpjobportal_data);
         if ($canupdate === WPJOBPORTAL_ALREADY_EXIST)
             return WPJOBPORTAL_ALREADY_EXIST;
 
-        $row = WPJOBPORTALincluder::getJSTable('salaryrangetype');
-        $data = wpjobportal::wpjobportal_sanitizeData($data);
-        $data = WPJOBPORTALincluder::getJSmodel('common')->stripslashesFull($data);// remove slashes with quotes.
-        if (!$row->bind($data)) {
+        $wpjobportal_row = WPJOBPORTALincluder::getJSTable('salaryrangetype');
+        $wpjobportal_data = wpjobportal::wpjobportal_sanitizeData($wpjobportal_data);
+        $wpjobportal_data = WPJOBPORTALincluder::getJSmodel('common')->stripslashesFull($wpjobportal_data);// remove slashes with quotes.
+        if (!$wpjobportal_row->bind($wpjobportal_data)) {
             return WPJOBPORTAL_SAVE_ERROR;
         }
-        if (!$row->store()) {
+        if (!$wpjobportal_row->store()) {
             return WPJOBPORTAL_SAVE_ERROR;
         }
         if ($canupdate) {
-            $this->updateIsDefault($row->id);
+            $this->updateIsDefault($wpjobportal_row->id);
         }
 
         return WPJOBPORTAL_SAVED;
     }
 
-    function deleteSalaryRangesType($ids) {
-        if (empty($ids))
+    function deleteSalaryRangesType($wpjobportal_ids) {
+        if (empty($wpjobportal_ids))
             return false;
-        $row = WPJOBPORTALincluder::getJSTable('salaryrangetype');
-        $notdeleted = 0;
-        foreach ($ids as $id) {
-            if ($this->salaryRangeTypeCanDelete($id) == true) {
-                if (!$row->delete($id)) {
-                    $notdeleted += 1;
+        $wpjobportal_row = WPJOBPORTALincluder::getJSTable('salaryrangetype');
+        $wpjobportal_notdeleted = 0;
+        foreach ($wpjobportal_ids as $wpjobportal_id) {
+            if ($this->salaryRangeTypeCanDelete($wpjobportal_id) == true) {
+                if (!$wpjobportal_row->delete($wpjobportal_id)) {
+                    $wpjobportal_notdeleted += 1;
                 }
             } else {
-                $notdeleted += 1;
+                $wpjobportal_notdeleted += 1;
             }
         }
-        if ($notdeleted == 0) {
-            WPJOBPORTALMessages::$counter = false;
+        if ($wpjobportal_notdeleted == 0) {
+            WPJOBPORTALMessages::$wpjobportal_counter = false;
             return WPJOBPORTAL_DELETED;
         } else {
-            WPJOBPORTALMessages::$counter = $notdeleted;
+            WPJOBPORTALMessages::$wpjobportal_counter = $wpjobportal_notdeleted;
             return WPJOBPORTAL_DELETE_ERROR;
         }
     }
 
-    function publishUnpublish($ids, $status) {
-        if (empty($ids))
+    function publishUnpublish($wpjobportal_ids, $wpjobportal_status) {
+        if (empty($wpjobportal_ids))
             return false;
-        if (!is_numeric($status))
+        if (!is_numeric($wpjobportal_status))
             return false;
 
-        $row = WPJOBPORTALincluder::getJSTable('salaryrangetype');
-        $total = 0;
-        if ($status == 1) {
-            foreach ($ids as $id) {
-                if (!$row->update(array('id' => $id, 'status' => $status))) {
-                    $total += 1;
+        $wpjobportal_row = WPJOBPORTALincluder::getJSTable('salaryrangetype');
+        $wpjobportal_total = 0;
+        if ($wpjobportal_status == 1) {
+            foreach ($wpjobportal_ids as $wpjobportal_id) {
+                if (!$wpjobportal_row->update(array('id' => $wpjobportal_id, 'status' => $wpjobportal_status))) {
+                    $wpjobportal_total += 1;
                 }
             }
         } else {
-            foreach ($ids as $id) {
-                if ($this->salaryRangeTypeCanUnpublish($id)) {
-                    if (!$row->update(array('id' => $id, 'status' => $status))) {
-                        $total += 1;
+            foreach ($wpjobportal_ids as $wpjobportal_id) {
+                if ($this->salaryRangeTypeCanUnpublish($wpjobportal_id)) {
+                    if (!$wpjobportal_row->update(array('id' => $wpjobportal_id, 'status' => $wpjobportal_status))) {
+                        $wpjobportal_total += 1;
                     }
                 } else {
-                    $total += 1;
+                    $wpjobportal_total += 1;
                 }
             }
         }
-        if ($total == 0) {
-            WPJOBPORTALMessages::$counter = false;
-            if ($status == 1)
+        if ($wpjobportal_total == 0) {
+            WPJOBPORTALMessages::$wpjobportal_counter = false;
+            if ($wpjobportal_status == 1)
                 return WPJOBPORTAL_PUBLISHED;
             else
                 return WPJOBPORTAL_UN_PUBLISHED;
         }else {
-            WPJOBPORTALMessages::$counter = $total;
-            if ($status == 1)
+            WPJOBPORTALMessages::$wpjobportal_counter = $wpjobportal_total;
+            if ($wpjobportal_status == 1)
                 return WPJOBPORTAL_PUBLISH_ERROR;
             else
                 return WPJOBPORTAL_UN_PUBLISH_ERROR;
         }
     }
 
-    function salaryRangeTypeCanUnpublish($id) {
-        if (!is_numeric($id))
+    function salaryRangeTypeCanUnpublish($wpjobportal_id) {
+        if (!is_numeric($wpjobportal_id))
             return false;
         $query = "SELECT
-                    ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` WHERE id = " . esc_sql($id) . " AND isdefault = 1)
+                    ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` WHERE id = " . esc_sql($wpjobportal_id) . " AND isdefault = 1)
                     AS total ";
-        $total = wpjobportaldb::get_var($query);
-        if ($total > 0)
+        $wpjobportal_total = wpjobportaldb::get_var($query);
+        if ($wpjobportal_total > 0)
             return false;
         else
             return true;
     }
 
-    function salaryRangeTypeCanDelete($id) {
-        if (!is_numeric($id))
+    function salaryRangeTypeCanDelete($wpjobportal_id) {
+        if (!is_numeric($wpjobportal_id))
             return false;
         $query = "SELECT
-                    ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE  salaryduration = " . esc_sql($id) . ")
-                    + ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` WHERE id = " . esc_sql($id) . " AND isdefault = 1)
+                    ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE  salaryduration = " . esc_sql($wpjobportal_id) . ")
+                    + ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` WHERE id = " . esc_sql($wpjobportal_id) . " AND isdefault = 1)
                     AS total ";
-        $total = wpjobportaldb::get_var($query);
+        $wpjobportal_total = wpjobportaldb::get_var($query);
 
-        if ($total > 0)
+        if ($wpjobportal_total > 0)
             return false;
         else
             return true;
@@ -212,27 +212,27 @@ class WPJOBPORTALsalaryrangetypeModel {
     function getSalaryRangeTypesForCombo() {
 
         $query = "SELECT id, title AS text FROM `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` WHERE status = 1 ORDER BY ordering ASC ";
-        $rows = wpjobportaldb::get_results($query);
+        $wpjobportal_rows = wpjobportaldb::get_results($query);
         if (wpjobportal::$_db->last_error != null) {
             return false;
         }
-        return $rows;
+        return $wpjobportal_rows;
     }
 
-    function getTitleByid($id) {
-        if (! is_numeric($id))
+    function getTitleByid($wpjobportal_id) {
+        if (! is_numeric($wpjobportal_id))
             return false;
-        $query = "SELECT title FROM " . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes WHERE id = '" . esc_sql($id) . "'";
-        $result = wpjobportaldb::get_var($query);
-        return $result;
+        $query = "SELECT title FROM " . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes WHERE id = '" . esc_sql($wpjobportal_id) . "'";
+        $wpjobportal_result = wpjobportaldb::get_var($query);
+        return $wpjobportal_result;
     }
 
     function isSalaryRangeTypeExist($title) {
         if (!$title)
             return false;
         $query = "SELECT COUNT(id) FROM " . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes WHERE title = '" . esc_sql($title) . "'";
-        $result = wpjobportaldb::get_var($query);
-        if ($result > 0)
+        $wpjobportal_result = wpjobportaldb::get_var($query);
+        if ($wpjobportal_result > 0)
             return true;
         else
             return false;
@@ -240,38 +240,38 @@ class WPJOBPORTALsalaryrangetypeModel {
 
     function getDefaultSalaryRangeTypeId() {
         $query = "SELECT id FROM " . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes WHERE isdefault = 1";
-        $id = wpjobportaldb::get_var($query);
+        $wpjobportal_id = wpjobportaldb::get_var($query);
 
-        return $id;
+        return $wpjobportal_id;
     }
     function getMessagekey(){
-        $key = 'salaryrangetype';if(wpjobportal::$_common->wpjp_isadmin()){$key = 'admin_'.$key;}return $key;
+        $wpjobportal_key = 'salaryrangetype';if(wpjobportal::$_common->wpjp_isadmin()){$wpjobportal_key = 'admin_'.$wpjobportal_key;}return $wpjobportal_key;
     }
 
     //  WE will Save the Ordering system in this Function
-    function storeOrderingFromPage($data) {//
-        if (empty($data)) {
+    function storeOrderingFromPage($wpjobportal_data) {//
+        if (empty($wpjobportal_data)) {
             return false;
         }
         $sorted_array = array();
-        wpjobportalphplib::wpJP_parse_str($data['fields_ordering_new'],$sorted_array);
+        wpjobportalphplib::wpJP_parse_str($wpjobportal_data['fields_ordering_new'],$sorted_array);
         $sorted_array = reset($sorted_array);
         if(!empty($sorted_array)){
-            $row = WPJOBPORTALincluder::getJSTable('salaryrangetype');
+            $wpjobportal_row = WPJOBPORTALincluder::getJSTable('salaryrangetype');
             $ordering_coloumn = 'ordering';
         }
         $page_multiplier = 0;
-        $pagenum = WPJOBPORTALrequest::getVar('pagenum');
-        if (isset($pagenum)) {
-            $page_multiplier = $pagenum - 1;
+        $wpjobportal_pagenum = WPJOBPORTALrequest::getVar('pagenum');
+        if (isset($wpjobportal_pagenum)) {
+            $page_multiplier = $wpjobportal_pagenum - 1;
         }
         $pagesize = get_option( 'wpjobportal_page_size');
         if ($pagesize == 0) {
             $pagesize = wpjobportal::$_configuration['pagination_default_page_size'];
         }
         $page_multiplier = $pagesize * $page_multiplier;
-        for ($i=0; $i < count($sorted_array) ; $i++) {
-            $row->update(array('id' => $sorted_array[$i], $ordering_coloumn => $page_multiplier + $i));
+        for ($wpjobportal_i=0; $wpjobportal_i < count($sorted_array) ; $wpjobportal_i++) {
+            $wpjobportal_row->update(array('id' => $sorted_array[$wpjobportal_i], $ordering_coloumn => $page_multiplier + $wpjobportal_i));
         }
         WPJOBPORTALMessages::setLayoutMessage(esc_html(__('Ordering updated', 'wp-job-portal')), 'updated', $this->getMessagekey());
         return ;
@@ -281,15 +281,15 @@ class WPJOBPORTALsalaryrangetypeModel {
     // setcookies for search form data
     //search cookies data
     function getSearchFormData(){
-        $jsjp_search_array = array();
-        $jsjp_search_array['title'] = WPJOBPORTALrequest::getVar("title");
-        $jsjp_search_array['status'] = WPJOBPORTALrequest::getVar("status");
-        $jsjp_search_array['search_from_salaryrangetype'] = 1;
-        return $jsjp_search_array;
+        $wpjobportal_jsjp_search_array = array();
+        $wpjobportal_jsjp_search_array['title'] = WPJOBPORTALrequest::getVar("title");
+        $wpjobportal_jsjp_search_array['status'] = WPJOBPORTALrequest::getVar("status");
+        $wpjobportal_jsjp_search_array['search_from_salaryrangetype'] = 1;
+        return $wpjobportal_jsjp_search_array;
     }
 
     function getSavedCookiesDataForSearch(){
-        $jsjp_search_array = array();
+        $wpjobportal_jsjp_search_array = array();
         $wpjp_search_cookie_data = '';
         if(isset($_COOKIE['jsjp_jobportal_search_data'])){
             $wpjp_search_cookie_data = wpjobportal::wpjobportal_sanitizeData($_COOKIE['jsjp_jobportal_search_data']);
@@ -297,15 +297,15 @@ class WPJOBPORTALsalaryrangetypeModel {
             $wpjp_search_cookie_data = json_decode( $wpjp_search_cookie_data , true );
         }
         if($wpjp_search_cookie_data != '' && isset($wpjp_search_cookie_data['search_from_salaryrangetype']) && $wpjp_search_cookie_data['search_from_salaryrangetype'] == 1){
-            $jsjp_search_array['title'] = $wpjp_search_cookie_data['title'];
-            $jsjp_search_array['status'] = $wpjp_search_cookie_data['status'];
+            $wpjobportal_jsjp_search_array['title'] = $wpjp_search_cookie_data['title'];
+            $wpjobportal_jsjp_search_array['status'] = $wpjp_search_cookie_data['status'];
         }
-        return $jsjp_search_array;
+        return $wpjobportal_jsjp_search_array;
     }
 
-    function setSearchVariableForSearch($jsjp_search_array){
-        wpjobportal::$_search['range']['title'] = isset($jsjp_search_array['title']) ? $jsjp_search_array['title'] : '';
-        wpjobportal::$_search['range']['status'] = isset($jsjp_search_array['status']) ? $jsjp_search_array['status'] : '';
+    function setSearchVariableForSearch($wpjobportal_jsjp_search_array){
+        wpjobportal::$_search['range']['title'] = isset($wpjobportal_jsjp_search_array['title']) ? $wpjobportal_jsjp_search_array['title'] : '';
+        wpjobportal::$_search['range']['status'] = isset($wpjobportal_jsjp_search_array['status']) ? $wpjobportal_jsjp_search_array['status'] : '';
     }
 }
 

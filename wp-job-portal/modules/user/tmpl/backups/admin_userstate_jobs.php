@@ -17,30 +17,30 @@ if (!empty(wpjobportal::$_data[0])) {
         </thead>
         <tbody>
             <?php
-            $k = 0;
-            for ($i = 0, $n = count(wpjobportal::$_data[0]); $i < $n; $i++) {
-                $row = wpjobportal::$_data[0][$i];
+            $wpjobportal_k = 0;
+            for ($wpjobportal_i = 0, $wpjobportal_n = count(wpjobportal::$_data[0]); $wpjobportal_i < $wpjobportal_n; $wpjobportal_i++) {
+                $wpjobportal_row = wpjobportal::$_data[0][$wpjobportal_i];
                 ?>
                 <tr valign="top">
-                    <td class="left-row"><?php echo esc_html($row->title); ?></td>
-                    <td><?php echo esc_html($row->companyname); ?></td>
-                    <td><?php echo esc_html($row->cat_title); ?></td>
-                    <td><?php echo esc_html($row->startpublishing); ?></td>
-                    <td><?php echo esc_html($row->stoppublishing); ?></td>
-                    <td><?php echo esc_html(date_i18n($this->config['date_format'], strtotime($row->created))); ?></td>
+                    <td class="left-row"><?php echo esc_html($wpjobportal_row->title); ?></td>
+                    <td><?php echo esc_html($wpjobportal_row->companyname); ?></td>
+                    <td><?php echo esc_html($wpjobportal_row->cat_title); ?></td>
+                    <td><?php echo esc_html($wpjobportal_row->startpublishing); ?></td>
+                    <td><?php echo esc_html($wpjobportal_row->stoppublishing); ?></td>
+                    <td><?php echo esc_html(date_i18n($this->config['date_format'], strtotime($wpjobportal_row->created))); ?></td>
                     <td style="text-align: center;">
                         <?php
-                        if ($row->status == 1)
-                            echo "<font color='green'>" . esc_html($status[$row->status]) . "</font>";
-                        elseif ($row->status == -1)
-                            echo "<font color='red'>" . esc_html($status[$row->status]) . "</font>";
+                        if ($wpjobportal_row->status == 1)
+                            echo "<font color='green'>" . esc_html($wpjobportal_status[$wpjobportal_row->status]) . "</font>";
+                        elseif ($wpjobportal_row->status == -1)
+                            echo "<font color='red'>" . esc_html($wpjobportal_status[$wpjobportal_row->status]) . "</font>";
                         else
-                            echo "<font color='blue'>" . esc_html($status[$row->status]) . "</font>";
+                            echo "<font color='blue'>" . esc_html($wpjobportal_status[$wpjobportal_row->status]) . "</font>";
                         ?>
                     </td>
                 </tr>
                 <?php
-                $k = 1 - $k;
+                $wpjobportal_k = 1 - $wpjobportal_k;
             }
             ?>
         </tbody>
@@ -50,7 +50,7 @@ if (!empty(wpjobportal::$_data[0])) {
         echo '<div class="tablenav"><div class="tablenav-pages">' . wp_kses_post(wpjobportal::$_data[1]) . '</div></div>';
     }
 } else {
-    $msg = esc_html(__('No record found','wp-job-portal'));
-    WPJOBPORTALlayout::getNoRecordFound($msg);
+    $wpjobportal_msg = esc_html(__('No record found','wp-job-portal'));
+    WPJOBPORTALlayout::getNoRecordFound($wpjobportal_msg);
 }
 ?>

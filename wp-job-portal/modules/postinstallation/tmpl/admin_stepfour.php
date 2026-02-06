@@ -5,7 +5,7 @@ if (!defined('ABSPATH')) die('Restricted Access');
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
         jQuery(document).ready(function() {
           jQuery('.wpjobportal-userselect').chosen({
             placeholder_text_single: 'Select User',
@@ -84,9 +84,9 @@ if (!defined('ABSPATH')) die('Restricted Access');
           });
                
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 
-$yesno = array((object) array('id' => 1, 'text' => esc_html(__('Yes', 'wp-job-portal')))
+$wpjobportal_yesno = array((object) array('id' => 1, 'text' => esc_html(__('Yes', 'wp-job-portal')))
                     , (object) array('id' => 0, 'text' => esc_html(__('No', 'wp-job-portal'))));
 ?>
 <div id="wpjobportaladmin-wrapper" class="wpjobportal-post-installation-wrp">
@@ -176,7 +176,7 @@ $yesno = array((object) array('id' => 1, 'text' => esc_html(__('Yes', 'wp-job-po
                         }
                         ?>
                     </span>
-                    <a class="wpjobportal-post-head-closebtn" href="admin.php?page=wpjobportal"title="<?php echo esc_html(__('Close','wp-job-portal'));?>">
+                    <a class="wpjobportal-post-head-closebtn" href="admin.php?page=wpjobportal"title="<?php echo esc_attr(__('Close','wp-job-portal'));?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/close.png" />
                     </a>
                 </div>
@@ -187,9 +187,9 @@ $yesno = array((object) array('id' => 1, 'text' => esc_html(__('Yes', 'wp-job-po
                         <?php echo esc_html(__('Insert Sample Data','wp-job-portal')); ?>
                     </div>
                     <div class="wpjobportal-post-val">
-                        <?php echo wp_kses(WPJOBPORTALformfield::select('sampledata', $yesno,1,'',array('class' => 'inputbox','onchange' => 'showHideUserForm()')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                        <?php echo wp_kses(WPJOBPORTALformfield::select('sampledata', $wpjobportal_yesno,1,'',array('class' => 'inputbox','onchange' => 'showHideUserForm()')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                         <div class="wpjobportal-post-smpledata-infowrp">
-                            <img alt="<?php echo esc_html(__('Info Icon','wp-job-portal')); ?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/info-icon.png" />
+                            <img alt="<?php echo esc_attr(__('Info Icon','wp-job-portal')); ?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/info-icon.png" />
                             <?php echo esc_html(__('Import demo data to populate your site with example companies, jobs, resumes, and applications.','wp-job-portal')); ?>
                         </div>
                     </div>
@@ -201,8 +201,8 @@ $yesno = array((object) array('id' => 1, 'text' => esc_html(__('Yes', 'wp-job-po
                     </div>
                     <div class="wpjobportal-post-val wpjobportal-post-val-user-list">
                         <?php echo wp_kses(WPJOBPORTALformfield::select('employer_list', WPJOBPORTALincluder::getJSModel('postinstallation')->getWpUsersList(),1,'',array('class' => 'inputbox wpjobportal-userselect' , 'onchange' => 'setValueForEmployer()')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                        <span class="wpjobportal-post-refresh-btn" onclick="refreshList()" title="<?php echo esc_html(__('refresh','wp-job-portal'));?>"><?php echo esc_html(__('Refresh','wp-job-portal')); ?></span>
-                        <a target="_blank" class="wpjobportal-post-create-user-btn" href="<?php echo esc_url( admin_url( 'user-new.php' ) ); ?>" title="<?php echo esc_html(__('create user','wp-job-portal'));?>"><?php echo esc_html(__('Create user','wp-job-portal')); ?></a>
+                        <span class="wpjobportal-post-refresh-btn" onclick="refreshList()" title="<?php echo esc_attr(__('refresh','wp-job-portal'));?>"><?php echo esc_html(__('Refresh','wp-job-portal')); ?></span>
+                        <a target="_blank" class="wpjobportal-post-create-user-btn" href="<?php echo esc_url( admin_url( 'user-new.php' ) ); ?>" title="<?php echo esc_attr(__('create user','wp-job-portal'));?>"><?php echo esc_html(__('Create user','wp-job-portal')); ?></a>
                     </div>
                 </div>
 
@@ -212,12 +212,12 @@ $yesno = array((object) array('id' => 1, 'text' => esc_html(__('Yes', 'wp-job-po
                     </div>
                     <div class="wpjobportal-post-val wpjobportal-post-val-user-list">
                         <?php echo wp_kses(WPJOBPORTALformfield::select('jobseeker_list', WPJOBPORTALincluder::getJSModel('postinstallation')->getWpUsersList(),1,'',array('class' => 'inputbox wpjobportal-userselect' , 'onchange' => 'setValueForJobSeeker()')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                        <span class="wpjobportal-post-refresh-btn" onclick="refreshList()" title="<?php echo esc_html(__('refresh','wp-job-portal'));?>"><?php echo esc_html(__('Refresh','wp-job-portal')); ?></span>
-                        <a target="_blank" class="wpjobportal-post-create-user-btn" href="<?php echo esc_url( admin_url( 'user-new.php' ) ); ?>" title="<?php echo esc_html(__('create user','wp-job-portal'));?>"><?php echo esc_html(__('Create user','wp-job-portal')); ?></a>
+                        <span class="wpjobportal-post-refresh-btn" onclick="refreshList()" title="<?php echo esc_attr(__('refresh','wp-job-portal'));?>"><?php echo esc_html(__('Refresh','wp-job-portal')); ?></span>
+                        <a target="_blank" class="wpjobportal-post-create-user-btn" href="<?php echo esc_url( admin_url( 'user-new.php' ) ); ?>" title="<?php echo esc_attr(__('create user','wp-job-portal'));?>"><?php echo esc_html(__('Create user','wp-job-portal')); ?></a>
                     </div>
                 </div>
 
-                <?php if(wpjobportal::$theme_chk == 0){ ?>
+                <?php if(wpjobportal::$wpjobportal_theme_chk == 0){ ?>
                     <div class="wpjobportal-post-heading">
                         <?php echo esc_html(__('Menu','wp-job-portal'));?>
                     </div>
@@ -226,7 +226,7 @@ $yesno = array((object) array('id' => 1, 'text' => esc_html(__('Yes', 'wp-job-po
                             <?php echo esc_html(__('Job Seeker Menu','wp-job-portal')); ?>
                         </div>
                         <div class="wpjobportal-post-val">
-                            <?php echo wp_kses(WPJOBPORTALformfield::select('jsmenu', $yesno,1,'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                            <?php echo wp_kses(WPJOBPORTALformfield::select('jsmenu', $wpjobportal_yesno,1,'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                         </div>
                     </div>
                     <?php if($wpjobportal_multiple_employers == 1){?>
@@ -235,7 +235,7 @@ $yesno = array((object) array('id' => 1, 'text' => esc_html(__('Yes', 'wp-job-po
                                 <?php echo esc_html(__('Employer Menu','wp-job-portal')); ?>
                             </div>
                             <div class="wpjobportal-post-val">
-                                <?php echo wp_kses(WPJOBPORTALformfield::select('empmenu', $yesno,1,'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                <?php echo wp_kses(WPJOBPORTALformfield::select('empmenu', $wpjobportal_yesno,1,'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                             </div>
                         </div>
                     <?php }else{ ?>
@@ -244,23 +244,23 @@ $yesno = array((object) array('id' => 1, 'text' => esc_html(__('Yes', 'wp-job-po
                                 <?php echo esc_html(__('Jobs Listing Menu','wp-job-portal')); ?>
                             </div>
                             <div class="wpjobportal-post-val">
-                                <?php echo wp_kses(WPJOBPORTALformfield::select('job_listing_menu', $yesno,1,'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                <?php echo wp_kses(WPJOBPORTALformfield::select('job_listing_menu', $wpjobportal_yesno,1,'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                             </div>
                         </div>
                     <?php } ?>
-                <?php  } elseif(wpjobportal::$theme_chk != 1){ ?>
+                <?php  } elseif(wpjobportal::$wpjobportal_theme_chk != 1){ ?>
                         <div class="pic-config temp-demo-data">
                             <div class="wpjobportal-post-tit">
                                 <?php     echo esc_html(__('Job Hub Sample Data','wp-job-portal')); ?>
                             </div>
                             <div class="wpjobportal-post-val">
-                                <?php echo wp_kses(WPJOBPORTALformfield::select('temp_data', $yesno,1,'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                <?php echo wp_kses(WPJOBPORTALformfield::select('temp_data', $wpjobportal_yesno,1,'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                             </div>
                             <div class="desc"><?php echo esc_html(__('if yes is selected then pages and menus of job manager template will be cretaed and published.','wp-job-portal'));?>. </div>
                         </div>
                 <?php } ?>
                 <div class="wpjobportal-post-action-btn" style="text-align: center;">
-                    <a class="next-step wpjobportal-post-act-btn" href="javascript:void();" onclick="document.getElementById('wpjobportal-form-ins').submit();"  title="<?php echo esc_html(__('next','wp-job-portal')); ?>" style="float: none;">
+                    <a class="next-step wpjobportal-post-act-btn" href="javascript:void();" onclick="document.getElementById('wpjobportal-form-ins').submit();"  title="<?php echo esc_attr(__('next','wp-job-portal')); ?>" style="float: none;">
                         <?php echo esc_html(__('Next Setup','wp-job-portal')); ?>
                     </a>
                 </div>

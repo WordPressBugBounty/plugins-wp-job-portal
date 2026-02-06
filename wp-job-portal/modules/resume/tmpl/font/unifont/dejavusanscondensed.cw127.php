@@ -1,9 +1,9 @@
 <?php
-$rangeid=122;
-$prevcid=126;
-$prevwidth=754;
-$interval=false;
-$range=array (
+$wpjobportal_rangeid=122;
+$wpjobportal_prevcid=126;
+$wpjobportal_prevwidth=754;
+$wpjobportal_interval=false;
+$wpjobportal_range=array (
   32 => 
   array (
     0 => 286,

@@ -45,9 +45,9 @@
                             .remove();
                 });
             },
-            _setInlineErrorMessage = function ($input, mess, conf, $messageContainer) {
-                var custom = _getInlineErrorElement($input);
-                var $parent = $input.parent();
+            _setInlineErrorMessage = function ($wpjobportal_input, mess, conf, $messageContainer) {
+                var custom = _getInlineErrorElement($wpjobportal_input);
+                var $parent = $wpjobportal_input.parent();
                 if ($parent.hasClass("input-group"))
                     $parent = $parent.parent();
                 if (custom) {
@@ -56,7 +56,7 @@
                 else if (typeof $messageContainer == 'object') {
                     var $found = false;
                     $messageContainer.find('.' + conf.errorMessageClass).each(function () {
-                        if (this.inputReferer == $input[0]) {
+                        if (this.inputReferer == $wpjobportal_input[0]) {
                             $found = $(this);
                             return false;
                         }
@@ -69,7 +69,7 @@
                         }
                     } else {
                         var $mess = $('<div class="' + conf.errorMessageClass + '">' + mess + '</div>');
-                        $mess[0].inputReferer = $input[0];
+                        $mess[0].inputReferer = $wpjobportal_input[0];
                         $messageContainer.prepend($mess);
                     }
                 }
@@ -82,10 +82,10 @@
                     $mess.html(mess);
                 }
             },
-            _getInlineErrorElement = function ($input, conf) {
-                return document.getElementById($input.attr('name') + '_err_msg');
+            _getInlineErrorElement = function ($wpjobportal_input, conf) {
+                return document.getElementById($wpjobportal_input.attr('name') + '_err_msg');
             },
-            _templateMessage = function ($form, title, errorMessages, conf) {
+            _templateMessage = function ($wpjobportal_form, title, errorMessages, conf) {
                 var messages = conf.errorMessageTemplate.messages.replace(/\{errorTitle\}/g, title);
                 var fields = [];
                 $.each(errorMessages, function (i, msg) {
@@ -94,7 +94,7 @@
                 messages = messages.replace(/\{fields\}/g, fields.join(''));
                 var container = conf.errorMessageTemplate.container.replace(/\{errorMessageClass\}/g, conf.errorMessageClass);
                 container = container.replace(/\{messages\}/g, messages);
-                $form.children().eq(0).before(container);
+                $wpjobportal_form.children().eq(0).before(container);
             };
 
     /**
@@ -224,13 +224,13 @@
         language = $.extend({}, $.formUtils.LANG, language || {});
         _removeErrorStyle(this, conf);
         var $elem = this,
-                $form = $elem.closest("form"),
+                $wpjobportal_form = $elem.closest("form"),
                 validationRule = $elem.attr(conf.validationRuleAttribute),
                 validation = $.formUtils.validateInput(
                         $elem,
                         language,
                         $.extend({}, conf, {errorMessagePosition: 'element'}),
-                        $form,
+                        $wpjobportal_form,
                         eventType
                         );
 
@@ -287,9 +287,9 @@
     $.fn.isValid = function (language, conf, displayError) {
 
         if ($.formUtils.isLoadingModules) {
-            var $self = this;
+            var $wpjobportal_self = this;
             setTimeout(function () {
-                $self.isValid(language, conf, displayError);
+                $wpjobportal_self.isValid(language, conf, displayError);
             }, 200);
             return null;
         }
@@ -324,7 +324,7 @@
                 /** Input elements which value was not valid */
                 errorInputs = [],
                 /** Form instance */
-                $form = this,
+                $wpjobportal_form = this,
                 /**
                  * Tells whether or not to validate element with this name and of this type
                  *
@@ -341,12 +341,12 @@
 
         // Reset style and remove error class
         if (displayError) {
-            $form.find('.' + conf.errorMessageClass + '.alert').remove();
-            _removeErrorStyle($form.find('.' + conf.errorElementClass + ',.valid'), conf);
+            $wpjobportal_form.find('.' + conf.errorMessageClass + '.alert').remove();
+            _removeErrorStyle($wpjobportal_form.find('.' + conf.errorElementClass + ',.valid'), conf);
         }
 
         // Validate element values
-        $form.find('input,textarea,select').filter(':not([type="submit"],[type="button"])').each(function () {
+        $wpjobportal_form.find('input,textarea,select').filter(':not([type="submit"],[type="button"])').each(function () {
             var $elem = $(this);
             var elementType = $elem.attr('type');
             if (!ignoreInput($elem.attr('name'), elementType)) {
@@ -355,13 +355,13 @@
                         $elem,
                         language,
                         conf,
-                        $form,
+                        $wpjobportal_form,
                         'submit'
                         );
 
                 // Run element validation callback
                 if (typeof conf.onElementValidate == 'function') {
-                    conf.onElementValidate((validation === true), $elem, $form, validation);
+                    conf.onElementValidate((validation === true), $elem, $wpjobportal_form, validation);
                 }
 
                 if (validation !== true) {
@@ -379,7 +379,7 @@
 
         // Run validation callback
         if (typeof conf.onValidate == 'function') {
-            var errors = conf.onValidate($form);
+            var errors = conf.onValidate($wpjobportal_form);
             if ($.isArray(errors)) {
                 $.each(errors, function (i, err) {
                     addErrorMessage(err.message, err.element);
@@ -399,23 +399,23 @@
             if (displayError) {
                 // display all error messages in top of form
                 if (conf.errorMessagePosition === 'top') {
-                    _templateMessage($form, language.errorTitle, errorMessages, conf);
+                    _templateMessage($wpjobportal_form, language.errorTitle, errorMessages, conf);
                 }
                 // Customize display message
                 else if (conf.errorMessagePosition === 'custom') {
                     if (typeof conf.errorMessageCustom === 'function') {
-                        conf.errorMessageCustom($form, language.errorTitle, errorMessages, conf);
+                        conf.errorMessageCustom($wpjobportal_form, language.errorTitle, errorMessages, conf);
                     }
                 }
                 // Display error message below input field or in defined container
                 else {
-                    $.each(errorInputs, function (i, $input) {
-                        _setInlineErrorMessage($input, $input.attr('current-error'), conf, conf.errorMessagePosition);
+                    $.each(errorInputs, function (i, $wpjobportal_input) {
+                        _setInlineErrorMessage($wpjobportal_input, $wpjobportal_input.attr('current-error'), conf, conf.errorMessagePosition);
                     });
                 }
 
                 if (conf.scrollToTopOnError) {
-                    $window.scrollTop($form.offset().top - 20);
+                    $window.scrollTop($wpjobportal_form.offset().top - 20);
                 }
             }
 
@@ -454,13 +454,13 @@
     $.fn.addSuggestions = function (settings) {
         var sugs = false;
         this.find('input').each(function () {
-            var $field = $(this);
+            var $wpjobportal_field = $(this);
 
-            sugs = $.split($field.attr('data-suggestions'));
+            sugs = $.split($wpjobportal_field.attr('data-suggestions'));
 
-            if (sugs.length > 0 && !$field.hasClass('has-suggestions')) {
-                $.formUtils.suggest($field, sugs, settings);
-                $field.addClass('has-suggestions');
+            if (sugs.length > 0 && !$wpjobportal_field.hasClass('has-suggestions')) {
+                $.formUtils.suggest($wpjobportal_field, sugs, settings);
+                $wpjobportal_field.addClass('has-suggestions');
             }
         });
         return this;
@@ -525,14 +525,14 @@
         // Add validation to forms
         $(conf.form).each(function (i, form) {
 
-            var $form = $(form);
-            $window.trigger('formValidationSetup', [$form]);
+            var $wpjobportal_form = $(form);
+            $window.trigger('formValidationSetup', [$wpjobportal_form]);
 
             // Remove all event listeners previously added
-            $form.find('.has-help-txt')
+            $wpjobportal_form.find('.has-help-txt')
                     .unbind('focus.validation')
                     .unbind('blur.validation');
-            $form
+            $wpjobportal_form
                     .removeClass('has-validation-callback')
                     .unbind('submit.validation')
                     .unbind('reset.validation')
@@ -540,22 +540,22 @@
                     .unbind('blur.validation');
 
             // Validate when submitted
-            $form.bind('submit.validation', function () {
-                var $form = $(this);
+            $wpjobportal_form.bind('submit.validation', function () {
+                var $wpjobportal_form = $(this);
 
                 if ($.formUtils.isLoadingModules) {
                     setTimeout(function () {
-                        $form.trigger('submit.validation');
+                        $wpjobportal_form.trigger('submit.validation');
                     }, 200);
                     return false;
                 }
-                var valid = $form.isValid(conf.language, conf);
+                var valid = $wpjobportal_form.isValid(conf.language, conf);
                 if (valid && typeof conf.onSuccess == 'function') {
-                    var callbackResponse = conf.onSuccess($form);
+                    var callbackResponse = conf.onSuccess($wpjobportal_form);
                     if (callbackResponse === false)
                         return false;
                 } else if (!valid && typeof conf.onError == 'function') {
-                    conf.onError($form);
+                    conf.onError($wpjobportal_form);
                     return false;
                 } else {
                     return valid;
@@ -569,19 +569,19 @@
                     .addClass('has-validation-callback');
 
             if (conf.showHelpOnFocus) {
-                $form.showHelpOnFocus();
+                $wpjobportal_form.showHelpOnFocus();
             }
             if (conf.addSuggestions) {
-                $form.addSuggestions();
+                $wpjobportal_form.addSuggestions();
             }
             if (conf.validateOnBlur) {
-                $form.validateOnBlur(conf.language, conf);
-                $form.bind('html5ValidationAttrsFound', function () {
-                    $form.validateOnBlur(conf.language, conf);
+                $wpjobportal_form.validateOnBlur(conf.language, conf);
+                $wpjobportal_form.bind('html5ValidationAttrsFound', function () {
+                    $wpjobportal_form.validateOnBlur(conf.language, conf);
                 })
             }
             if (conf.validateOnEvent) {
-                $form.validateOnEvent(conf.language, conf);
+                $wpjobportal_form.validateOnEvent(conf.language, conf);
             }
 
         });
@@ -785,11 +785,11 @@
          * @param {jQuery} $elem
          * @param {Object} language ($.formUtils.LANG)
          * @param {Object} conf
-         * @param {jQuery} $form
+         * @param {jQuery} $wpjobportal_form
          * @param {String} [eventContext]
          * @return {String|Boolean}
          */
-        validateInput: function ($elem, language, conf, $form, eventContext) {
+        validateInput: function ($elem, language, conf, $wpjobportal_form, eventContext) {
 
             if ($elem.attr('disabled'))
                 return null; // returning null will prevent that the valid class gets applied to the element
@@ -813,7 +813,7 @@
                 validationDependsOnCheckedInput = true;
 
                 // select the checkbox type element in this form
-                validateIfCheckedElement = $form.find('input[name="' + validateIfCheckedElementName + '"]');
+                validateIfCheckedElement = $wpjobportal_form.find('input[name="' + validateIfCheckedElementName + '"]');
 
                 // test if it's property "checked" is checked
                 if (validateIfCheckedElement.prop('checked')) {
@@ -853,7 +853,7 @@
 
                     var isValid = null;
                     if (eventContext != 'keyup' || validator.validateOnKeyUp) {
-                        isValid = validator.validatorFunction(value, $elem, conf, language, $form);
+                        isValid = validator.validatorFunction(value, $elem, conf, language, $wpjobportal_form);
                     }
 
                     if (!isValid) {
@@ -961,35 +961,35 @@
         /**
          * Restrict input length
          *
-         * @param {jQuery} $inputElement Jquery Html object
-         * @param {jQuery} $maxLengthElement jQuery Html Object
+         * @param {jQuery} $wpjobportal_inputElement Jquery Html object
+         * @param {jQuery} $wpjobportal_maxLengthElement jQuery Html Object
          * @return void
          */
-        lengthRestriction: function ($inputElement, $maxLengthElement) {
+        lengthRestriction: function ($wpjobportal_inputElement, $wpjobportal_maxLengthElement) {
             // read maxChars from counter display initial text value
-            var maxChars = parseInt($maxLengthElement.text(), 10),
+            var maxChars = parseInt($wpjobportal_maxLengthElement.text(), 10),
                     charsLeft = 0,
                     // internal function does the counting and sets display value
                     countCharacters = function () {
-                        var numChars = $inputElement.val().length;
+                        var numChars = $wpjobportal_inputElement.val().length;
                         if (numChars > maxChars) {
                             // get current scroll bar position
-                            var currScrollTopPos = $inputElement.scrollTop();
+                            var currScrollTopPos = $wpjobportal_inputElement.scrollTop();
                             // trim value to max length
-                            $inputElement.val($inputElement.val().substring(0, maxChars));
-                            $inputElement.scrollTop(currScrollTopPos);
+                            $wpjobportal_inputElement.val($wpjobportal_inputElement.val().substring(0, maxChars));
+                            $wpjobportal_inputElement.scrollTop(currScrollTopPos);
                         }
                         charsLeft = maxChars - numChars;
                         if (charsLeft < 0)
                             charsLeft = 0;
 
                         // set counter text
-                        $maxLengthElement.text(charsLeft);
+                        $wpjobportal_maxLengthElement.text(charsLeft);
                     };
 
             // bind events to this element
             // setTimeout is needed, cut or paste fires before val is available
-            $($inputElement).bind('keydown keyup keypress focus blur', countCharacters)
+            $($wpjobportal_inputElement).bind('keydown keyup keypress focus blur', countCharacters)
                     .bind('cut paste', function () {
                         setTimeout(countCharacters, 100);
                     });
@@ -1000,8 +1000,8 @@
         /**
          * Test numeric against allowed range
          *
-         * @param $value int
-         * @param $rangeAllowed str; (1-2, min1, max2)
+         * @param $wpjobportal_value int
+         * @param $wpjobportal_rangeAllowed str; (1-2, min1, max2)
          * @return array 
          */
         numericRangeCheck: function (value, rangeAllowed)
@@ -1054,12 +1054,12 @@
                     background: '#E9E9E9'
                 }
             },
-            setSuggsetionPosition = function ($suggestionContainer, $input) {
-                var offset = $input.offset();
-                $suggestionContainer.css({
-                    width: $input.outerWidth(),
+            setSuggsetionPosition = function ($wpjobportal_suggestionContainer, $wpjobportal_input) {
+                var offset = $wpjobportal_input.offset();
+                $wpjobportal_suggestionContainer.css({
+                    width: $wpjobportal_input.outerWidth(),
                     left: offset.left + 'px',
-                    top: (offset.top + $input.outerHeight()) + 'px'
+                    top: (offset.top + $wpjobportal_input.outerHeight()) + 'px'
                 });
             };
 
@@ -1100,9 +1100,9 @@
                     })
                     .unbind('keyup.suggest')
                     .bind('keyup.suggest', function () {
-                        var $input = $(this),
+                        var $wpjobportal_input = $(this),
                                 foundSuggestions = [],
-                                val = $.trim($input.val()).toLocaleLowerCase();
+                                val = $.trim($wpjobportal_input.val()).toLocaleLowerCase();
 
                         if (val == $.formUtils._previousTypedVal) {
                             return;
@@ -1112,15 +1112,15 @@
                         }
 
                         var hasTypedSuggestion = false,
-                                suggestionId = $input.valAttr('suggestion-nr'),
-                                $suggestionContainer = $('.jquery-form-suggestion-' + suggestionId);
+                                suggestionId = $wpjobportal_input.valAttr('suggestion-nr'),
+                                $wpjobportal_suggestionContainer = $('.jquery-form-suggestion-' + suggestionId);
 
-                        $suggestionContainer.scrollTop(0);
+                        $wpjobportal_suggestionContainer.scrollTop(0);
 
                         // Find the right suggestions
                         if (val != '') {
                             var findPartial = val.length > 2;
-                            $.each($input.data('suggestions'), function (i, suggestion) {
+                            $.each($wpjobportal_input.data('suggestions'), function (i, suggestion) {
                                 var lowerCaseVal = suggestion.toLocaleLowerCase();
                                 if (lowerCaseVal == val) {
                                     foundSuggestions.push('<strong>' + suggestion + '</strong>');
@@ -1133,33 +1133,33 @@
                         }
 
                         // Hide suggestion container
-                        if (hasTypedSuggestion || (foundSuggestions.length == 0 && $suggestionContainer.length > 0)) {
-                            $suggestionContainer.hide();
+                        if (hasTypedSuggestion || (foundSuggestions.length == 0 && $wpjobportal_suggestionContainer.length > 0)) {
+                            $wpjobportal_suggestionContainer.hide();
                         }
 
                         // Create suggestion container if not already exists
-                        else if (foundSuggestions.length > 0 && $suggestionContainer.length == 0) {
-                            $suggestionContainer = $('<div></div>').css(conf.css).appendTo('body');
+                        else if (foundSuggestions.length > 0 && $wpjobportal_suggestionContainer.length == 0) {
+                            $wpjobportal_suggestionContainer = $('<div></div>').css(conf.css).appendTo('body');
                             $elem.addClass('suggestions-' + suggestionId);
-                            $suggestionContainer
+                            $wpjobportal_suggestionContainer
                                     .attr('data-suggest-container', suggestionId)
                                     .addClass('jquery-form-suggestions')
                                     .addClass('jquery-form-suggestion-' + suggestionId);
                         }
 
                         // Show hidden container
-                        else if (foundSuggestions.length > 0 && !$suggestionContainer.is(':visible')) {
-                            $suggestionContainer.show();
+                        else if (foundSuggestions.length > 0 && !$wpjobportal_suggestionContainer.is(':visible')) {
+                            $wpjobportal_suggestionContainer.show();
                         }
 
                         // add suggestions
                         if (foundSuggestions.length > 0 && val.length != foundSuggestions[0].length) {
 
                             // put container in place every time, just in case
-                            setSuggsetionPosition($suggestionContainer, $input);
+                            setSuggsetionPosition($wpjobportal_suggestionContainer, $wpjobportal_input);
 
                             // Add suggestions HTML to container
-                            $suggestionContainer.html('');
+                            $wpjobportal_suggestionContainer.html('');
                             $.each(foundSuggestions, function (i, text) {
                                 $('<div></div>')
                                         .append(text)
@@ -1170,11 +1170,11 @@
                                             padding: '5px'
                                         })
                                         .addClass('form-suggest-element')
-                                        .appendTo($suggestionContainer)
+                                        .appendTo($wpjobportal_suggestionContainer)
                                         .click(function () {
-                                            $input.focus();
-                                            $input.val($(this).text());
-                                            onSelectSuggestion($input);
+                                            $wpjobportal_input.focus();
+                                            $wpjobportal_input.val($(this).text());
+                                            onSelectSuggestion($wpjobportal_input);
                                         });
                             });
                         }
@@ -1183,53 +1183,53 @@
                     .bind('keydown.validation', function (e) {
                         var code = (e.keyCode ? e.keyCode : e.which),
                                 suggestionId,
-                                $suggestionContainer,
-                                $input = $(this);
+                                $wpjobportal_suggestionContainer,
+                                $wpjobportal_input = $(this);
 
                         if (code == 13 && $.formUtils._selectedSuggestion !== null) {
-                            suggestionId = $input.valAttr('suggestion-nr');
-                            $suggestionContainer = $('.jquery-form-suggestion-' + suggestionId);
-                            if ($suggestionContainer.length > 0) {
-                                var newText = $suggestionContainer.find('div').eq($.formUtils._selectedSuggestion).text();
-                                $input.val(newText);
-                                onSelectSuggestion($input);
+                            suggestionId = $wpjobportal_input.valAttr('suggestion-nr');
+                            $wpjobportal_suggestionContainer = $('.jquery-form-suggestion-' + suggestionId);
+                            if ($wpjobportal_suggestionContainer.length > 0) {
+                                var newText = $wpjobportal_suggestionContainer.find('div').eq($.formUtils._selectedSuggestion).text();
+                                $wpjobportal_input.val(newText);
+                                onSelectSuggestion($wpjobportal_input);
                                 e.preventDefault();
                             }
                         }
                         else {
-                            suggestionId = $input.valAttr('suggestion-nr');
-                            $suggestionContainer = $('.jquery-form-suggestion-' + suggestionId);
-                            var $suggestions = $suggestionContainer.children();
-                            if ($suggestions.length > 0 && $.inArray(code, [38, 40]) > -1) {
+                            suggestionId = $wpjobportal_input.valAttr('suggestion-nr');
+                            $wpjobportal_suggestionContainer = $('.jquery-form-suggestion-' + suggestionId);
+                            var $wpjobportal_suggestions = $wpjobportal_suggestionContainer.children();
+                            if ($wpjobportal_suggestions.length > 0 && $.inArray(code, [38, 40]) > -1) {
                                 if (code == 38) { // key up
                                     if ($.formUtils._selectedSuggestion === null)
-                                        $.formUtils._selectedSuggestion = $suggestions.length - 1;
+                                        $.formUtils._selectedSuggestion = $wpjobportal_suggestions.length - 1;
                                     else
                                         $.formUtils._selectedSuggestion--;
                                     if ($.formUtils._selectedSuggestion < 0)
-                                        $.formUtils._selectedSuggestion = $suggestions.length - 1;
+                                        $.formUtils._selectedSuggestion = $wpjobportal_suggestions.length - 1;
                                 }
                                 else if (code == 40) { // key down
                                     if ($.formUtils._selectedSuggestion === null)
                                         $.formUtils._selectedSuggestion = 0;
                                     else
                                         $.formUtils._selectedSuggestion++;
-                                    if ($.formUtils._selectedSuggestion > ($suggestions.length - 1))
+                                    if ($.formUtils._selectedSuggestion > ($wpjobportal_suggestions.length - 1))
                                         $.formUtils._selectedSuggestion = 0;
 
                                 }
 
                                 // Scroll in suggestion window
-                                var containerInnerHeight = $suggestionContainer.innerHeight(),
-                                        containerScrollTop = $suggestionContainer.scrollTop(),
-                                        suggestionHeight = $suggestionContainer.children().eq(0).outerHeight(),
+                                var containerInnerHeight = $wpjobportal_suggestionContainer.innerHeight(),
+                                        containerScrollTop = $wpjobportal_suggestionContainer.scrollTop(),
+                                        suggestionHeight = $wpjobportal_suggestionContainer.children().eq(0).outerHeight(),
                                         activeSuggestionPosY = suggestionHeight * ($.formUtils._selectedSuggestion);
 
                                 if (activeSuggestionPosY < containerScrollTop || activeSuggestionPosY > (containerScrollTop + containerInnerHeight)) {
-                                    $suggestionContainer.scrollTop(activeSuggestionPosY);
+                                    $wpjobportal_suggestionContainer.scrollTop(activeSuggestionPosY);
                                 }
 
-                                $suggestions
+                                $wpjobportal_suggestions
                                         .removeClass('active-suggestion')
                                         .css('background', 'none')
                                         .eq($.formUtils._selectedSuggestion)
@@ -1318,7 +1318,7 @@
      */
     $.formUtils.addValidator({
         name: 'domain',
-        validatorFunction: function (val, $input) {
+        validatorFunction: function (val, $wpjobportal_input) {
 
             var topDomains = ['.ac', '.ad', '.ae', '.aero', '.af', '.ag', '.ai', '.al', '.am', '.an', '.ao',
                 '.aq', '.ar', '.arpa', '.as', '.asia', '.at', '.au', '.aw', '.ax', '.az', '.ba', '.bb',
@@ -1402,8 +1402,8 @@
                 }
             }
 
-            if (typeof $input !== 'undefined') {
-                $input.val(val);
+            if (typeof $wpjobportal_input !== 'undefined') {
+                $wpjobportal_input.val(val);
             }
 
             return true;
@@ -1417,12 +1417,12 @@
      */
     $.formUtils.addValidator({
         name: 'required',
-        validatorFunction: function (val, $el, config, language, $form) {
+        validatorFunction: function (val, $el, config, language, $wpjobportal_form) {
             switch ($el.attr('type')) {
                 case 'checkbox':
                     return $el.is(':checked');
                 case 'radio':
-                    return $form.find('input[name="' + $el.attr('name') + '"]').filter(':checked').length > 0;
+                    return $wpjobportal_form.find('input[name="' + $el.attr('name') + '"]').filter(':checked').length > 0;
                 default:
                     return $.trim(val) !== '';
             }
@@ -1630,13 +1630,13 @@
      */
     $.formUtils.addValidator({
         name: 'checkbox_group',
-        validatorFunction: function (val, $el, conf, lang, $form)
+        validatorFunction: function (val, $el, conf, lang, $wpjobportal_form)
         {   // preset return var
             var checkResult = true;
             // get name of element. since it is a checkbox group, all checkboxes will have same name
             var elname = $el.attr('name');
             // get count of checked checkboxes with this name
-            var checkedCount = $("input[type=checkbox][name^='" + elname + "']:checked", $form).length;
+            var checkedCount = $("input[type=checkbox][name^='" + elname + "']:checked", $wpjobportal_form).length;
             // get el attr that specs qty required / allowed
             var qtyAllowed = $el.valAttr('qty');
             if (qtyAllowed == undefined) {

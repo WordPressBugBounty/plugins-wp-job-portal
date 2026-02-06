@@ -5,111 +5,111 @@ if (!defined('ABSPATH'))
 
 class WPJOBPORTALUserCredits {
 
-    function doAction($actionname) {
-        $nonce = WPJOBPORTALrequest::getVar('js_nonce');
-        if (! wp_verify_nonce( $nonce, 'wp-job-portal-nonce') ) {
+    function doAction($wpjobportal_actionname) {
+        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('js_nonce');
+        if (! wp_verify_nonce( $wpjobportal_nonce, 'wp-job-portal-nonce') ) {
             die( 'Security check Failed' );
         }
-        $result = false;
-        $id = WPJOBPORTALRequest::getVar('id');
-        $payment = WPJOBPORTALRequest::getVar('payment');
-        $actionid = WPJOBPORTALRequest::getVar('actiona');
-        switch ($actionname) {
+        $wpjobportal_result = false;
+        $wpjobportal_id = WPJOBPORTALRequest::getVar('id');
+        $wpjobportal_payment = WPJOBPORTALRequest::getVar('payment');
+        $wpjobportal_actionid = WPJOBPORTALRequest::getVar('actiona');
+        switch ($wpjobportal_actionname) {
             case 'featured_company':
-            $result = apply_filters('wp_job_portal_addons_company_credit_featurecompany',$id,$actionid,false,$payment);
+            $wpjobportal_result = apply_filters('wpjobportal_addons_company_credit_featurecompany',$wpjobportal_id,$wpjobportal_actionid,false,$wpjobportal_payment);
                 break;
             case 'featured_job':
-                $result = apply_filters('wpjobportal_addons_admin_feature_credit_popupaction',$id,$actionid,false,$payment);
+                $wpjobportal_result = apply_filters('wpjobportal_addons_admin_feature_credit_popupaction',$wpjobportal_id,$wpjobportal_actionid,false,$wpjobportal_payment);
                 break;
             case 'featured_resume':
-                $result = apply_filters('wpjobportal_resume_feauture_action_bottom',$id,$actionid,false,$payment);
+                $wpjobportal_result = apply_filters('wpjobportal_resume_feauture_action_bottom',$wpjobportal_id,$wpjobportal_actionid,false,$wpjobportal_payment);
                 break;
             case 'copy_job': // here we use the add job just for the copy job functionality
-                $result = apply_filters('wp_job_portal_addon_action_credit_copyjob',$id,$actionid,false);
+                $wpjobportal_result = apply_filters('wpjobportal_addon_action_credit_copyjob',$wpjobportal_id,$wpjobportal_actionid,false);
                 break;
         }
-        return $result;
+        return $wpjobportal_result;
     }
 
-    function getUserCreditsDetailForAction($actionname) {
-        $nonce = WPJOBPORTALrequest::getVar('js_nonce');
-        if (! wp_verify_nonce( $nonce, 'wp-job-portal-nonce') ) {
+    function getUserCreditsDetailForAction($wpjobportal_actionname) {
+        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('js_nonce');
+        if (! wp_verify_nonce( $wpjobportal_nonce, 'wp-job-portal-nonce') ) {
             die( 'Security check Failed' );
         }
-        $isadmin = WPJOBPORTALrequest::getVar('isadmin');
-        $id = WPJOBPORTALrequest::getVar('id');
-        $themecall = WPJOBPORTALrequest::getVar('themecall');
+        $wpjobportal_isadmin = WPJOBPORTALrequest::getVar('isadmin');
+        $wpjobportal_id = WPJOBPORTALrequest::getVar('id');
+        $wpjobportal_themecall = WPJOBPORTALrequest::getVar('themecall');
         $wpjobportal_pageid = WPJOBPORTALrequest::getVar('wpjobportal_pageid');
-        if($isadmin != 1){
-            $uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
-            if ($uid == 0)
+        if($wpjobportal_isadmin != 1){
+            $wpjobportal_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
+            if ($wpjobportal_uid == 0)
                 return false;
-            $result = false; // by default action is not default if case is not found
-            switch ($actionname) {
+            $wpjobportal_result = false; // by default action is not default if case is not found
+            switch ($wpjobportal_actionname) {
                 case 'featured_company':
-                    $result = $this->getValidate($uid, 'featuredcompany', 'canAddFeaturedCompany');
+                    $wpjobportal_result = $this->getValidate($wpjobportal_uid, 'featuredcompany', 'canAddFeaturedCompany');
                     break;
                 case 'featured_job':
-                    $result = $this->getValidate($uid, 'featuredjob', 'canAddFeaturedJob');
+                    $wpjobportal_result = $this->getValidate($wpjobportal_uid, 'featuredjob', 'canAddFeaturedJob');
                     break;
                 case 'featured_resume':
-                    $result = $this->getValidate($uid, 'featureresume', 'canAddFeaturedResume');
+                    $wpjobportal_result = $this->getValidate($wpjobportal_uid, 'featureresume', 'canAddFeaturedResume');
                     break;
                 case 'view_company_contact_detail':
-                    $result = true; // always set to true b/c if company contact detail is allowed then this button show contact detail not be shown
+                    $wpjobportal_result = true; // always set to true b/c if company contact detail is allowed then this button show contact detail not be shown
                     break;
                 case 'view_resume_contact_detail':
-                    $result = true; // always set to true b/c if company contact detail is allowed then this button show contact detail not be shown
+                    $wpjobportal_result = true; // always set to true b/c if company contact detail is allowed then this button show contact detail not be shown
                     break;
                 case 'resume_save_search':
                     if(in_array('resumesearch', wpjobportal::$_active_addons)){
-                        $result = apply_filters('wpjobportal_addons_admin_resume_save_search',false);  // always set to true b/c if company contact detail is allowed then this button show contact detail not be shown
+                        $wpjobportal_result = apply_filters('wpjobportal_addons_admin_resume_save_search',false);  // always set to true b/c if company contact detail is allowed then this button show contact detail not be shown
                     }
                     break;
                 case 'add_department':
-                    $result = $this->getValidate($uid, 'departments', 'canAddDepartment');
+                    $wpjobportal_result = $this->getValidate($wpjobportal_uid, 'departments', 'canAddDepartment');
                     break;
                 case 'add_job':
                 case 'copy_job':
-                    $result = $this->getValidate($uid, 'job', 'canAddJob',$id);
+                    $wpjobportal_result = $this->getValidate($wpjobportal_uid, 'job', 'canAddJob',$wpjobportal_id);
                     break;
                 case 'add_company':
-                    $result = $this->getValidate($uid, 'company', 'canAddCompany');
+                    $wpjobportal_result = $this->getValidate($wpjobportal_uid, 'company', 'canAddCompany');
                     break;
                 case 'add_resume':
-                    $result = $this->getValidate($uid, 'resume', 'canAddResume');
+                    $wpjobportal_result = $this->getValidate($wpjobportal_uid, 'resume', 'canAddResume');
                     break;
                 case 'add_job_alert':
-                   $result = $this->getValidate($uid, 'jobalert', 'canAddJobAlert');
+                   $wpjobportal_result = $this->getValidate($wpjobportal_uid, 'jobalert', 'canAddJobAlert');
                     break;
                 case 'job_apply':
-                    $result = $this->getValidate($uid, 'jobapply', 'canApplyOnJob',$id);
+                    $wpjobportal_result = $this->getValidate($wpjobportal_uid, 'jobapply', 'canApplyOnJob',$wpjobportal_id);
                     break;
             }
         }else{
-            $result = true;
+            $wpjobportal_result = true;
         }
-        if ($result === true) {
-            if($isadmin == 1){
-                $html = WPJOBPORTALincluder::getObjectClass('popup')->getPopupForAdmin($actionname,$themecall,$wpjobportal_pageid);
+        if ($wpjobportal_result === true) {
+            if($wpjobportal_isadmin == 1){
+                $wpjobportal_html = WPJOBPORTALincluder::getObjectClass('popup')->getPopupForAdmin($wpjobportal_actionname,$wpjobportal_themecall,$wpjobportal_pageid);
             }else{
-                $html = WPJOBPORTALincluder::getObjectClass('popup')->getPopupFor($actionname,$themecall,$wpjobportal_pageid);
+                $wpjobportal_html = WPJOBPORTALincluder::getObjectClass('popup')->getPopupFor($wpjobportal_actionname,$wpjobportal_themecall,$wpjobportal_pageid);
             }
         } else {
-            $html = WPJOBPORTALincluder::getObjectClass('popup')->getErrorPopupFor($actionname,$wpjobportal_pageid,$themecall,$result);// fourth parameter ($result) is to manager already applied on a job case.
+            $wpjobportal_html = WPJOBPORTALincluder::getObjectClass('popup')->getErrorPopupFor($wpjobportal_actionname,$wpjobportal_pageid,$wpjobportal_themecall,$wpjobportal_result);// fourth parameter ($wpjobportal_result) is to manager already applied on a job case.
         }
-        return $html;
+        return $wpjobportal_html;
     }
 
-    private function getValidate($uid, $model, $function,$id=0) {
-        if (!is_numeric($uid))
+    private function getValidate($wpjobportal_uid, $wpjobportal_model, $function,$wpjobportal_id=0) {
+        if (!is_numeric($wpjobportal_uid))
             return false;
-        if($id == 0){
-            $result = WPJOBPORTALincluder::getJSModel($model)->$function($uid);
+        if($wpjobportal_id == 0){
+            $wpjobportal_result = WPJOBPORTALincluder::getJSModel($wpjobportal_model)->$function($wpjobportal_uid);
         }else{// to handle job appply case
-            $result = WPJOBPORTALincluder::getJSModel($model)->$function($id,$uid);
+            $wpjobportal_result = WPJOBPORTALincluder::getJSModel($wpjobportal_model)->$function($wpjobportal_id,$wpjobportal_uid);
         }
-        return $result;
+        return $wpjobportal_result;
     }
 }
 

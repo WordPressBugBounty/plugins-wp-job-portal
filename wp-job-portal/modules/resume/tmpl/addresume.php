@@ -4,8 +4,8 @@ if (!defined('ABSPATH'))
 ?>
 <div class="wjportal-main-up-wrapper">
 <?php
-wpjobportal::$_data['resumeid'] = isset(wpjobportal::$_data['resumeid']) ? wpjobportal::$_data['resumeid'] : '';
-echo wp_kses(WPJOBPORTALformfield::hidden('resume_temp', wpjobportal::$_data['resumeid']),WPJOBPORTAL_ALLOWED_TAGS);
+wpjobportal::$wpjobportal_data['resumeid'] = isset(wpjobportal::$wpjobportal_data['resumeid']) ? wpjobportal::$wpjobportal_data['resumeid'] : '';
+echo wp_kses(WPJOBPORTALformfield::hidden('resume_temp', wpjobportal::$wpjobportal_data['resumeid']),WPJOBPORTAL_ALLOWED_TAGS);
     ?>
     <div id="resume-wating" class="loading"></div>
     <div id="black_wrapper_jobapply" style="display:none;"></div>
@@ -31,16 +31,16 @@ echo wp_kses(WPJOBPORTALformfield::hidden('resume_temp', wpjobportal::$_data['re
         </div>
     </div>
     <div class="wjportal-main-wrapper wjportal-clearfix" <?php if (isset($_COOKIE['wpjobportal_apply_visitor'])) echo 'style="padding-bottom:63px;"'; ?>>
-        <?php $msg = isset(wpjobportal::$_data[0]) ? esc_html(__('Edit Resume', 'wp-job-portal')) : esc_html(__('Add New Resume', 'wp-job-portal'));
+        <?php $wpjobportal_msg = isset(wpjobportal::$_data[0]) ? esc_html(__('Edit Resume', 'wp-job-portal')) : esc_html(__('Add New Resume', 'wp-job-portal'));
             if(isset($_COOKIE['wpjobportal_apply_visitor'])){
                 if (!is_user_logged_in()) {
-                    $msg = esc_html(__('Job Apply', 'wp-job-portal'));
+                    $wpjobportal_msg = esc_html(__('Job Apply', 'wp-job-portal'));
                 }
             }
         ?>
         <div class="wjportal-page-header">
             <?php
-               WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('module' => 'resume','layout'=>'myresume','msg'=> $msg));
+               WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('wpjobportal_module' => 'resume','wpjobportal_layout'=>'myresume','wpjobportal_msg'=> $wpjobportal_msg));
                 if(in_array('credits', wpjobportal::$_active_addons) && wpjobportal::$_config->getConfigValue('submission_type') ==3 && isset(wpjobportal::$_data['package'])){
                     # Package Inclder
                     do_action('wpjobportal_addons_module_packagesdetail',wpjobportal::$_data['package'],'multiresume');
@@ -48,20 +48,20 @@ echo wp_kses(WPJOBPORTALformfield::hidden('resume_temp', wpjobportal::$_data['re
             ?>
         </div>
         <?php
-        if ( !WPJOBPORTALincluder::getTemplate('templates/header',array('module' => 'resume'))) {
+        if ( !WPJOBPORTALincluder::getTemplate('templates/header',array('wpjobportal_module' => 'resume'))) {
             return;
         }
         ?>
         <?php
         if(isset($_COOKIE['wpjobportal_apply_visitor']) && in_array('visitorapplyjob', wpjobportal::$_active_addons)){
             if (!is_user_logged_in()) {
-                $visitorJobInfo = apply_filters('wpjobaddnos_visitor_apply_job',false,sanitize_key($_COOKIE['wpjobportal_apply_visitor']),wpjobportal::$_data['jobinfo'],wpjobportal::$_configuration['labelinlisting']);
+                $wpjobportal_visitorJobInfo = apply_filters('wpjobportal_wpjobaddnos_visitor_apply_job',false,sanitize_key($_COOKIE['wpjobportal_apply_visitor']),wpjobportal::$_data['jobinfo'],wpjobportal::$_configuration['labelinlisting']);
             }
         }
         ////***For Calling Input Parameter***///
-            $layouts="resumeformlayout";
-            WPJOBPORTALincluder::getTemplate('resume/form-field',$layout=array(
-                'layouts' => $layouts
+            $wpjobportal_layouts="resumeformlayout";
+            WPJOBPORTALincluder::getTemplate('resume/form-field',$wpjobportal_layout=array(
+                'wpjobportal_layouts' => $wpjobportal_layouts
             ));
         ?>
     </div>

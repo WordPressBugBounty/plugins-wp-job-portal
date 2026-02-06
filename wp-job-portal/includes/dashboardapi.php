@@ -17,9 +17,9 @@ add_action('wp_dashboard_setup', 'wpjobportal_dashboard_widgets_totalstats');
 
 function wpjobportal_dashboard_widget_function_totalstats() {
     wpjobportal::wpjobportal_addStyleSheets();
-    $data = WPJOBPORTALincluder::getJSModel('wpjobportal')->widgetTotalStatsData();
-    if ($data == true) {
-        $html = '<div id="wp-job-portal-widget-wrapper">
+    $wpjobportal_data = WPJOBPORTALincluder::getJSModel('wpjobportal')->widgetTotalStatsData();
+    if ($wpjobportal_data == true) {
+        $wpjobportal_html = '<div id="wp-job-portal-widget-wrapper">
 					<div class="total-stats-widget-data">
 						<img class="total-jobs" src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/control_panel/admin-widgets/job.png"/>
 						<div class="widget-data-right">
@@ -76,10 +76,10 @@ function wpjobportal_dashboard_widget_function_totalstats() {
 						</div>
 					</div>
 				</div>';
-        echo wp_kses($html, WPJOBPORTAL_ALLOWED_TAGS);
+        echo wp_kses($wpjobportal_html, WPJOBPORTAL_ALLOWED_TAGS);
     } else {
-    	$msg = esc_html(__('No record found','wp-job-portal'));
-        WPJOBPORTALlayout::getNoRecordFound($msg);
+    	$wpjobportal_msg = esc_html(__('No record found','wp-job-portal'));
+        WPJOBPORTALlayout::getNoRecordFound($wpjobportal_msg);
     }
 }
 

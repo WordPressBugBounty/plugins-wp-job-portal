@@ -10410,3 +10410,2486 @@ msgstr ""
 
 msgid "We would love to hear from You."
 msgstr ""
+
+# New Strings
+msgid "Welcome back!"
+msgstr ""
+
+msgid "Here's a snapshot of your job board's performance."
+msgstr ""
+
+msgid "Customize Your Dashboard"
+msgstr ""
+
+msgid "Core Components"
+msgstr ""
+
+msgid "Quick Actions"
+msgstr ""
+
+msgid "Recent Jobs"
+msgstr ""
+
+msgid "Quick Stats"
+msgstr ""
+
+msgid "Visualizations"
+msgstr ""
+
+msgid "Platform Growth"
+msgstr ""
+
+msgid "Jobs by Status"
+msgstr ""
+
+msgid "Top Categories"
+msgstr ""
+
+msgid "Activity & System Feeds"
+msgstr ""
+
+msgid "Latest Applies"
+msgstr ""
+
+msgid "User & Financials"
+msgstr ""
+
+msgid "Job Seekers"
+msgstr ""
+
+msgid "Payments"
+msgstr ""
+
+msgid "Reset to Defaults"
+msgstr ""
+
+msgid "Apply Changes"
+msgstr ""
+
+msgid "Approve Jobs"
+msgstr ""
+
+msgid "Manage Users"
+msgstr ""
+
+msgid "View Reports"
+msgstr ""
+
+msgid "Analytics"
+msgstr ""
+
+msgid "Manage Plans"
+msgstr ""
+
+msgid "Platform Config"
+msgstr ""
+
+msgid "Applications"
+msgstr ""
+
+msgid "Pending Jobs"
+msgstr ""
+
+msgid "New Applicants"
+msgstr ""
+
+msgid "Active Subscriptions"
+msgstr ""
+
+msgid "Total Users"
+msgstr ""
+
+msgid "Closed Jobs"
+msgstr ""
+
+msgid "Monthly Revenue"
+msgstr ""
+
+msgid "Recent Job Postings"
+msgstr ""
+
+msgid "Date Posted"
+msgstr ""
+
+msgid "Actions"
+msgstr ""
+
+msgid "No recent job postings found."
+msgstr ""
+
+msgid "Top Job Categories"
+msgstr ""
+
+msgid "Latest Job Applies"
+msgstr ""
+
+msgid "applied for"
+msgstr ""
+
+msgid "at"
+msgstr ""
+
+msgid "View App"
+msgstr ""
+
+msgid "No recent job applications to display."
+msgstr ""
+
+msgid "No new resumes have been added recently."
+msgstr ""
+
+msgid "Latest Package Subscriptions"
+msgstr ""
+
+msgid "subscribed to"
+msgstr ""
+
+msgid "No new subscriptions found."
+msgstr ""
+
+msgid "Latest Payments"
+msgstr ""
+
+msgid "No recent payments to display."
+msgstr ""
+
+msgid "Latest Activity"
+msgstr ""
+
+msgid "Hooray! No system errors to report."
+msgstr ""
+
+msgid "Latest Job Seekers"
+msgstr ""
+
+msgid "Joined"
+msgstr ""
+
+msgid "No new job seekers have registered."
+msgstr ""
+
+msgid "Latest Employers"
+msgstr ""
+
+msgid "No new employers have registered."
+msgstr ""
+
+
+##########################################################
+# Configurarion layout new strings
+##########################################################
+msgid "Not allowed"
+msgstr ""
+
+msgid "Allowed to all"
+msgstr ""
+
+msgid "employers, job seekers and visitors"
+msgstr ""
+
+msgid "Allowed only to employers"
+msgstr ""
+
+msgid "City, State, Country"
+msgstr ""
+
+msgid "City, State"
+msgstr ""
+
+msgid "City, Country"
+msgstr ""
+
+msgid "Minutes"
+msgstr ""
+
+msgid "Hour"
+msgstr ""
+
+msgid "Hours"
+msgstr ""
+
+msgid "Week"
+msgstr ""
+
+msgid "System & Site"
+msgstr ""
+
+msgid "Site & System"
+msgstr ""
+
+msgid "Core details about your job portal, its status, and default behaviors"
+msgstr ""
+
+msgid "Site Title"
+msgstr ""
+
+msgid "The main title for your job portal"
+msgstr ""
+
+msgid "Site Offline"
+msgstr ""
+
+msgid "Take the site offline for maintenance"
+msgstr ""
+
+msgid "The message shown to visitors when the site is offline"
+msgstr ""
+
+msgid "Default Page"
+msgstr ""
+
+msgid "Select the main WordPress page for the job portal"
+msgstr ""
+
+msgid "Email links and support icons may not work if this is not set"
+msgstr ""
+
+msgid "Date Format"
+msgstr ""
+
+msgid "Set the date format used throughout the plugin"
+msgstr ""
+
+msgid "Default Address Display Style"
+msgstr ""
+
+msgid "Select the default format for displaying addresses"
+msgstr ""
+
+msgid "Registration & Login"
+msgstr ""
+
+msgid "Control user registration flows and login/logout redirects"
+msgstr ""
+
+msgid "Set Register Link"
+msgstr ""
+
+msgid "Set the main registration page for the site"
+msgstr ""
+
+msgid "Custom Register Redirect Link"
+msgstr ""
+
+msgid "Enter the custom URL for registration if"
+msgstr ""
+
+msgid "is selected above"
+msgstr ""
+
+msgid "Set the main login page for the site"
+msgstr ""
+
+msgid "Custom Login Redirect Link"
+msgstr ""
+
+msgid "Enter the custom URL for login if"
+msgstr ""
+
+msgid "Redirect Link For Non-Portal WP User"
+msgstr ""
+
+msgid "Redirect WordPress users who do not have a role in WP Job Portal to this link after login"
+msgstr ""
+
+msgid "Terms & Conditions"
+msgstr ""
+
+msgid "Assign specific Terms & Conditions pages for different submission types"
+msgstr ""
+
+msgid "Company Terms Page"
+msgstr ""
+
+msgid "Select the"
+msgstr ""
+
+msgid "page for company submissions"
+msgstr ""
+
+msgid "Job Terms Page"
+msgstr ""
+
+msgid "page for job submissions"
+msgstr ""
+
+msgid "Resume Terms Page"
+msgstr ""
+
+msgid "page for resume submissions"
+msgstr ""
+
+msgid "Content & Display"
+msgstr ""
+
+msgid "Taxonomy & Categories"
+msgstr ""
+
+msgid "Manage how content like categories and tags are handled"
+msgstr ""
+
+msgid "Even if Empty"
+msgstr ""
+
+msgid "If no is selected then only categories that have jobs or resumes will be shown"
+msgstr ""
+
+msgid "Categories Per Row"
+msgstr ""
+
+msgid "Number of categories to display per row on category listing pages"
+msgstr ""
+
+msgid "Sub-categories Limit"
+msgstr ""
+
+msgid "How many sub-categories to show in the popup on category pages"
+msgstr ""
+
+msgid "User Can Add New Tags"
+msgstr ""
+
+msgid "Allow users to create new tags in the system when posting"
+msgstr ""
+
+msgid "Default Pagination Size"
+msgstr ""
+
+msgid "Maximum number of records to show per page"
+msgstr ""
+
+msgid "Show Breadcrumbs"
+msgstr ""
+
+msgid "Show WP Job Portal Page Title"
+msgstr ""
+
+msgid "File Uploads & Defaults"
+msgstr ""
+
+msgid "Manage file uploads and default placeholder images"
+msgstr ""
+
+msgid "Data Directory"
+msgstr ""
+
+msgid "System will upload all user files into this folder within the WordPress uploads directory"
+msgstr ""
+
+msgid "Default Image"
+msgstr ""
+
+msgid "This image will be shown as the default for entities & users if no other image is provided"
+msgstr ""
+
+msgid "Allowed Image Extensions"
+msgstr ""
+
+msgid "Comma-separated list of allowed image file extensions"
+msgstr ""
+
+msgid "Max Image Size"
+msgstr ""
+
+msgid "Maximum file size for general image uploads in kilobytes"
+msgstr ""
+
+msgid "URL & SEO"
+msgstr ""
+
+msgid "URL Structure"
+msgstr ""
+
+msgid "Configure the URL structure"
+msgstr ""
+
+msgid "permalinks"
+msgstr ""
+
+msgid "for detail pages"
+msgstr ""
+
+msgid "Job Detail URL Structure"
+msgstr ""
+
+msgid "Click on the available tags below to build the URL structure for job detail pages"
+msgstr ""
+
+msgid "Company Detail URL Structure"
+msgstr ""
+
+msgid "Click on the available tags below to build the URL structure for company detail pages"
+msgstr ""
+
+msgid "Resume Detail URL Structure"
+msgstr ""
+
+msgid "Click on the available tags below to build the URL structure for resume detail pages"
+msgstr ""
+
+msgid "Registration & Access"
+msgstr ""
+
+msgid "If no then front end employer area is not accessible"
+msgstr ""
+
+msgid "Allow Registration as Employer"
+msgstr ""
+
+msgid "Show the option to register as an employer on the registration form"
+msgstr ""
+
+msgid "Employer Default Role"
+msgstr ""
+
+msgid "Employer Can View Job Seeker Area"
+msgstr ""
+
+msgid "Allow logged-in employers to view the job seeker control panel"
+msgstr ""
+
+msgid "Set Employer After-Register Link"
+msgstr ""
+
+msgid "Employer After-Registration Page"
+msgstr ""
+
+msgid "Employer Custom After-Registration Link"
+msgstr ""
+
+msgid "Custom Empolyer After Regitser Link"
+msgstr ""
+
+msgid "Layout & Widgets"
+msgstr ""
+
+msgid "Control the visibility of main sections and widgets in the logged-in employer dashboard"
+msgstr ""
+
+msgid "Show Profile Section"
+msgstr ""
+
+msgid "Show Stat Boxes"
+msgstr ""
+
+msgid "Show Recent Resumes Box"
+msgstr ""
+
+msgid "Show Stats Graph"
+msgstr ""
+
+msgid "Setting to show the stats graph on the employer dashboard"
+msgstr ""
+
+msgid "Show Useful Links"
+msgstr ""
+
+msgid "Setting to show the useful links section"
+msgstr ""
+
+msgid "Show Applied Resumes"
+msgstr ""
+
+msgid "Setting to show the applied resumes section"
+msgstr ""
+
+msgid "Show Saved Searches"
+msgstr ""
+
+msgid "Setting to show the saved searches section"
+msgstr ""
+
+msgid "Show Newest Resumes"
+msgstr ""
+
+msgid "Setting to show the newest resumes section"
+msgstr ""
+
+msgid "Navigation Links"
+msgstr ""
+
+msgid "Control which navigation links are visible in the logged-in employer dashboard menu"
+msgstr ""
+
+msgid "link in the employer dashboard"
+msgstr ""
+
+msgid "RSS Feedback"
+msgstr ""
+
+msgid "Job Seekers"
+msgstr ""
+
+msgid "Job Seeker Default Role"
+msgstr ""
+
+msgid "Set Job Seeker After-Register Link"
+msgstr ""
+
+msgid "Job Seeker After-Registration Page"
+msgstr ""
+
+msgid "Job Seeker Custom After-Registration Link"
+msgstr ""
+
+msgid "Custom Job seeker After Regitser Link"
+msgstr ""
+
+msgid "Enable Job Shortlisting"
+msgstr ""
+
+msgid "Allow job seekers to shortlist jobs"
+msgstr ""
+
+msgid "This affects the job detail page"
+msgstr ""
+
+msgid "Enable Tell a Friend"
+msgstr ""
+
+msgid "Enable the"
+msgstr ""
+
+msgid "feature on job listing pages"
+msgstr ""
+
+msgid "Control the visibility of main sections and widgets in the logged-in job seeker dashboard"
+msgstr ""
+
+msgid "Show Applied Jobs Box"
+msgstr ""
+
+msgid "Show Newest Jobs Box"
+msgstr ""
+
+msgid "Show Jobs Graph"
+msgstr ""
+
+msgid "Setting to show the jobs graph on the job seeker dashboard"
+msgstr ""
+
+msgid "Show Applied Jobs"
+msgstr ""
+
+msgid "Setting to show the applied jobs section"
+msgstr ""
+
+msgid "Show Shortlisted Jobs"
+msgstr ""
+
+msgid "Setting to show the shortlisted jobs section"
+msgstr ""
+
+msgid "Show Newest Jobs"
+msgstr ""
+
+msgid "Setting to show the newest jobs section"
+msgstr ""
+
+msgid "Control which navigation links are visible in the logged-in job seeker dashboard menu"
+msgstr ""
+
+msgid "link in the job seeker dashboard"
+msgstr ""
+
+msgid "Visitors"
+msgstr ""
+
+msgid "General Permissions"
+msgstr ""
+
+msgid "Define what non-logged-in users are allowed to do on the site"
+msgstr ""
+
+msgid "Visitor Can Post Job"
+msgstr ""
+
+msgid "Allow non-logged-in users to post jobs"
+msgstr ""
+
+msgid "Visitor Can Add Job"
+msgstr ""
+
+msgid "Visitor Job Post Redirect Page"
+msgstr ""
+
+msgid "A visitor will be redirected to this page after posting a job"
+msgstr ""
+
+msgid "Visitor Can Apply to Job"
+msgstr ""
+
+msgid "Allow non-logged-in users to apply for jobs"
+msgstr ""
+
+msgid "Visitor Can Add Resume"
+msgstr ""
+
+msgid "Allow non-logged-in users to add a resume"
+msgstr ""
+
+msgid "Visitor Resume Post Redirect Page"
+msgstr ""
+
+msgid "A visitor will be redirected to this page after posting a resume"
+msgstr ""
+
+msgid "Visitor Can Edit Job"
+msgstr ""
+
+msgid "Allow non-logged-in users to edit jobs they have posted"
+msgstr ""
+
+msgid "Page & Link Access"
+msgstr ""
+
+msgid "Control which pages and links are visible to non-logged-in users"
+msgstr ""
+
+msgid "Allow visitors to view the employer control panel links"
+msgstr ""
+
+msgid "Allow visitors to view the resume categories page"
+msgstr ""
+
+msgid "Allow visitors to access the resume search functionality"
+msgstr ""
+
+msgid "Allow visitors to view company detail pages"
+msgstr ""
+
+msgid "Allow visitors to view job detail pages"
+msgstr ""
+
+msgid "Allow visitors to view resume detail pages"
+msgstr ""
+
+msgid "Allow visitors to view the job seeker control panel links"
+msgstr ""
+
+msgid "Allow visitors to view the jobs by category page"
+msgstr ""
+
+msgid "Allow visitors to use the job search functionality"
+msgstr ""
+
+msgid "Allow visitors to see job search result listings"
+msgstr ""
+
+msgid "Allow visitors to see the newest jobs page"
+msgstr ""
+
+msgid "Job Posting & Management"
+msgstr ""
+
+msgid "Manage how jobs are posted, their lifecycle, and related features"
+msgstr ""
+
+msgid "Job Auto Approve"
+msgstr ""
+
+msgid "Automatically approve new jobs upon submission"
+msgstr ""
+
+msgid "Job Expiry Days"
+msgstr ""
+
+msgid "Number of days until a freely posted job expires"
+msgstr ""
+
+msgid "Number of days until a paid"
+msgstr ""
+
+msgid "job expires"
+msgstr ""
+
+msgid "Job Display & Listings"
+msgstr ""
+
+msgid "Control how job-related pages and information are displayed to users"
+msgstr ""
+
+msgid "Show Country on Jobs by Cities Page"
+msgstr ""
+
+msgid "Display the country name next to the city"
+msgstr ""
+
+msgid "Show Count on Jobs by Cities Page"
+msgstr ""
+
+msgid "Display the total number of jobs available in each city"
+msgstr ""
+
+msgid "Show Count in Job Categories"
+msgstr ""
+
+msgid "Display the total number of jobs for each category"
+msgstr ""
+
+msgid "Show Count on Jobs by Types Page"
+msgstr ""
+
+msgid "Display the total number of jobs for each job type"
+msgstr ""
+
+msgid "Job Types Per Row"
+msgstr ""
+
+msgid "How many job types to display per row on the"
+msgstr ""
+
+msgid "Job by Type"
+msgstr ""
+
+msgid "Show Jobs Graph for Employer"
+msgstr ""
+
+msgid "Show Active Jobs Graph for Job Seeker"
+msgstr ""
+
+msgid "Company Profile Display"
+msgstr ""
+
+msgid "Control which company details are visible on listings and company pages"
+msgstr ""
+
+msgid "Show Company Name"
+msgstr ""
+
+msgid "Show Company Description"
+msgstr ""
+
+msgid "Show Company Email Address"
+msgstr ""
+
+msgid "Show Company City"
+msgstr ""
+
+msgid "Show Company URL"
+msgstr ""
+
+msgid "Show Company Contact Detail by Default"
+msgstr ""
+
+msgid "If disabled, credits may be required to view contact details"
+msgstr ""
+
+msgid "General settings for company profiles"
+msgstr ""
+
+msgid "Company Logo Maximum Size"
+msgstr ""
+
+msgid "Set the maximum file size for company logo uploads in kilobytes"
+msgstr ""
+
+msgid "Company Auto Approve"
+msgstr ""
+
+msgid "Automatically approve new company profiles upon submission"
+msgstr ""
+
+msgid "Control resume submissions, visibility, and search functionality"
+msgstr ""
+
+msgid "Resume Auto Approve"
+msgstr ""
+
+msgid "Automatically approve new resumes upon submission"
+msgstr ""
+
+msgid "Show Resume Contact Detail by Default"
+msgstr ""
+
+msgid "If disabled, credits may be required to view resume contact details"
+msgstr ""
+
+msgid "Show Count in Resume Categories"
+msgstr ""
+
+msgid "Display the total number of resumes for each category"
+msgstr ""
+
+msgid "Allow Resume Search"
+msgstr ""
+
+msgid "Define who is allowed to search for resumes"
+msgstr ""
+
+msgid "Allow Users to Save Resume Searches"
+msgstr ""
+
+msgid "Allow users to save their resume search criteria for later use"
+msgstr ""
+
+msgid "Resume Files & Builder"
+msgstr ""
+
+msgid "Define limits and allowed types for resume file uploads and advanced builder sections"
+msgstr ""
+
+msgid "Resume Photo Maximum Size"
+msgstr ""
+
+msgid "Maximum file size for resume photos in kilobytes"
+msgstr ""
+
+msgid "Resume Document Maximum Size"
+msgstr ""
+
+msgid "System will not upload if resume file size exceeds the given size"
+msgstr ""
+
+msgid "Allowed Document Extensions"
+msgstr ""
+
+msgid "Comma-separated list of allowed document file extensions"
+msgstr ""
+
+msgid "Maximum Number of Files for Resume"
+msgstr ""
+
+msgid "Maximum number of files a job seeker can upload with their resume"
+msgstr ""
+
+msgid "Max Employers in Resume Builder"
+msgstr ""
+
+msgid "Maximum number of employers allowed in the resume builder"
+msgstr ""
+
+msgid "Max Institutes in Resume Builder"
+msgstr ""
+
+msgid "Maximum number of institutes allowed in the resume builder"
+msgstr ""
+
+msgid "Max Languages in Resume Builder"
+msgstr ""
+
+msgid "Maximum number of languages allowed in the resume builder"
+msgstr ""
+
+msgid "Max Addresses in Resume Builder"
+msgstr ""
+
+msgid "Maximum number of addresses allowed in the resume builder"
+msgstr ""
+
+msgid "Applications"
+msgstr ""
+
+msgid "Job Applications"
+msgstr ""
+
+msgid "Configure the job application process and related notifications"
+msgstr ""
+
+msgid "Show Apply Now Button"
+msgstr ""
+
+msgid "Enable Quick Apply for Logged-in Users"
+msgstr ""
+
+msgid "Enable Quick Apply for Visitors"
+msgstr ""
+
+msgid "Show Applied Resume Status to Job Seeker"
+msgstr ""
+
+msgid "Resume Data in Email"
+msgstr ""
+
+msgid "Sections"
+msgstr ""
+
+msgid "Choose whether to include all resume sections or only filled ones in the application email to employers"
+msgstr ""
+
+msgid "Choose whether to include all fields or only filled fields in the application email"
+msgstr ""
+
+msgid "Auto-Approve Rules"
+msgstr ""
+
+msgid "Set auto-approval rules for various user-submitted content"
+msgstr ""
+
+msgid "Featured Resume Auto Approve"
+msgstr ""
+
+msgid "Automatically approve resumes marked as featured"
+msgstr ""
+
+msgid "Featured Company Auto Approve"
+msgstr ""
+
+msgid "Automatically approve companies marked as featured"
+msgstr ""
+
+msgid "Featured Job Auto Approve"
+msgstr ""
+
+msgid "Automatically approve jobs marked as featured"
+msgstr ""
+
+msgid "Cover Letter Auto Approve"
+msgstr ""
+
+msgid "Automatically approve cover letters submitted by job seekers"
+msgstr ""
+
+msgid "Folder Auto Approve"
+msgstr ""
+
+msgid "Automatically approve new folders created by employers"
+msgstr ""
+
+msgid "Department Auto Approve"
+msgstr ""
+
+msgid "Automatically approve new departments created by employers"
+msgstr ""
+
+msgid "Message Auto Approve"
+msgstr ""
+
+msgid "Automatically approve messages between job seekers and employers"
+msgstr ""
+
+msgid "Conflict Message Auto Approve"
+msgstr ""
+
+msgid "Automatically approve conflicted messages"
+msgstr ""
+
+msgid "Email & Alerts"
+msgstr ""
+
+msgid "Email Sender Identity"
+msgstr ""
+
+msgid "Configure sender details for all outgoing system emails"
+msgstr ""
+
+msgid "Admin Email Address"
+msgstr ""
+
+msgid "Admin will receive email notifications at this address"
+msgstr ""
+
+msgid "Sender Email Address"
+msgstr ""
+
+msgid "The email address that will be used to send system emails"
+msgstr ""
+
+msgid "The sender name that will be used in system emails"
+msgstr ""
+
+msgid "Job Alerts"
+msgstr ""
+
+msgid "Configure settings for job alert emails and forms"
+msgstr ""
+
+msgid "Show Job Alert Link"
+msgstr ""
+
+msgid "Show the Job Alert link in the job seeker control panel"
+msgstr ""
+
+msgid "Enable Job Alerts for Visitors"
+msgstr ""
+
+msgid "Allow non-logged-in users to sign up for job alerts"
+msgstr ""
+
+msgid "Job Alert Auto Approve"
+msgstr ""
+
+msgid "Automatically approve new job alerts upon creation"
+msgstr ""
+
+msgid "Captcha on Visitor Job Alert Form"
+msgstr ""
+
+msgid "Show a captcha on the job alert sign-up form for visitors"
+msgstr ""
+
+msgid "Allow users to save their search queries for jobs and resumes"
+msgstr ""
+
+msgid "Show Saved Searches for Job Seekers"
+msgstr ""
+
+msgid "Allow job seekers to save their job searches"
+msgstr ""
+
+msgid "Show Saved Searches for Employers"
+msgstr ""
+
+msgid "Allow employers to save their resume searches"
+msgstr ""
+
+msgid "Feeds & AI"
+msgstr ""
+
+msgid "RSS Feeds"
+msgstr ""
+
+msgid "Configure the RSS feed for jobs"
+msgstr ""
+
+msgid "Enable Jobs RSS Feed"
+msgstr ""
+
+msgid "Enable the main RSS feed for new jobs"
+msgstr ""
+
+msgid "Job Feed Title"
+msgstr ""
+
+msgid "The title for the job RSS feed"
+msgstr ""
+
+msgid "Job Feed Description"
+msgstr ""
+
+msgid "The description for the job RSS feed"
+msgstr ""
+
+msgid "Job Feed Copyright"
+msgstr ""
+
+msgid "Copyright notice for the job feed"
+msgstr ""
+
+msgid "Job Feed Editor"
+msgstr ""
+
+msgid "The person responsible for editorial content"
+msgstr ""
+
+msgid "Job Feed Webmaster"
+msgstr ""
+
+msgid "The person responsible for technical issues"
+msgstr ""
+
+msgid "Job Feed TTL"
+msgstr ""
+
+msgid "Time to Live"
+msgstr ""
+
+msgid "Number of minutes the feed can be cached before refreshing"
+msgstr ""
+
+msgid "Show Categories in Job Feed"
+msgstr ""
+
+msgid "Include categories in the job feed items"
+msgstr ""
+
+msgid "Show Company Image in Job Feed"
+msgstr ""
+
+msgid "Include the company logo in the job feed items"
+msgstr ""
+
+msgid "Configure the RSS feed for resumes"
+msgstr ""
+
+msgid "Enable Resumes RSS Feed"
+msgstr ""
+
+msgid "Enable the main RSS feed for new resumes"
+msgstr ""
+
+msgid "Resume Feed Title"
+msgstr ""
+
+msgid "The title for the resume RSS feed"
+msgstr ""
+
+msgid "Resume Feed Description"
+msgstr ""
+
+msgid "The description for the resume RSS feed"
+msgstr ""
+
+msgid "Resume Feed Copyright"
+msgstr ""
+
+msgid "Copyright notice for the resume feed"
+msgstr ""
+
+msgid "Resume Feed Editor"
+msgstr ""
+
+msgid "Resume Feed Webmaster"
+msgstr ""
+
+msgid "Resume Feed TTL"
+msgstr ""
+
+msgid "Show Categories in Resume Feed"
+msgstr ""
+
+msgid "Include categories in the resume feed items"
+msgstr ""
+
+msgid "Show Resume File in Resume Feed"
+msgstr ""
+
+msgid "Make resume files downloadable from the feed"
+msgstr ""
+
+msgid "AI Suggested Matches"
+msgstr ""
+
+msgid "Configure AI-powered job and resume suggestion features"
+msgstr ""
+
+msgid "AI Search On Job Search Page"
+msgstr ""
+
+msgid "Show the AI search field on the main job search form"
+msgstr ""
+
+msgid "AI Job Search"
+msgstr ""
+
+msgid "AI Search Filter On Job Listing"
+msgstr ""
+
+msgid "Show the AI search field as a filter on the job listing page"
+msgstr ""
+
+msgid "AI Search On Resume Search Page"
+msgstr ""
+
+msgid "Show the AI search field on the main resume search form"
+msgstr ""
+
+msgid "AI Resume Search"
+msgstr ""
+
+msgid "AI Search Filter On Resume Listing"
+msgstr ""
+
+msgid "Show the AI search field as a filter on the resume listing page"
+msgstr ""
+
+msgid "Show AI Suggested Jobs Button"
+msgstr ""
+
+msgid "AI Suggested Jobs"
+msgstr ""
+
+msgid "Show AI Suggested Jobs on Dashboard"
+msgstr ""
+
+msgid "Show a list of AI-suggested jobs on the job seeker dashboard"
+msgstr ""
+
+msgid "Show AI Suggested Resumes Button"
+msgstr ""
+
+msgid "AI Suggested Resumes"
+msgstr ""
+
+msgid "Show AI Suggested Resumes on Dashboard"
+msgstr ""
+
+msgid "Show a list of AI-suggested resumes on the employer dashboard"
+msgstr ""
+
+msgid "Integrations"
+msgstr ""
+
+msgid "Allow users to register and log in with their social media accounts"
+msgstr ""
+
+msgid "Login with Facebook"
+msgstr ""
+
+msgid "Allow users to log in using their Facebook account"
+msgstr ""
+
+msgid "Apply with Facebook"
+msgstr ""
+
+msgid "Allow users to apply for jobs using their Facebook profile"
+msgstr ""
+
+msgid "Facebook App ID"
+msgstr ""
+
+msgid "Enter your Facebook App ID"
+msgstr ""
+
+msgid "Facebook App Secret"
+msgstr ""
+
+msgid "Enter your Facebook App Secret"
+msgstr ""
+
+msgid "Valid OAuth URI"
+msgstr ""
+
+msgid "Apply"
+msgstr ""
+
+msgid "Login with LinkedIn"
+msgstr ""
+
+msgid "Allow users to log in using their LinkedIn account"
+msgstr ""
+
+msgid "Apply with LinkedIn"
+msgstr ""
+
+msgid "Allow users to apply for jobs using their LinkedIn profile"
+msgstr ""
+
+msgid "LinkedIn Client ID"
+msgstr ""
+
+msgid "Enter your LinkedIn Client ID"
+msgstr ""
+
+msgid "API Key"
+msgstr ""
+
+msgid "LinkedIn Client Secret"
+msgstr ""
+
+msgid "Enter your LinkedIn Client Secret"
+msgstr ""
+
+msgid "Social Sharing"
+msgstr ""
+
+msgid "Enable social sharing buttons on your pages"
+msgstr ""
+
+msgid "Enable Facebook Likes"
+msgstr ""
+
+msgid "Show Facebook like button"
+msgstr ""
+
+msgid "Enable Facebook Share"
+msgstr ""
+
+msgid "Show Facebook share button"
+msgstr ""
+
+msgid "Enable Facebook Comments"
+msgstr ""
+
+msgid "Show Facebook comments widget"
+msgstr ""
+
+msgid "Enable Twitter Share"
+msgstr ""
+
+msgid "Show Twitter share button"
+msgstr ""
+
+msgid "Enable LinkedIn Share"
+msgstr ""
+
+msgid "Show LinkedIn share button"
+msgstr ""
+
+msgid "Enable Blogger Share"
+msgstr ""
+
+msgid "Show Blogger share button"
+msgstr ""
+
+msgid "Enable Digg Share"
+msgstr ""
+
+msgid "Show Digg share button"
+msgstr ""
+
+msgid "Enable Myspace Share"
+msgstr ""
+
+msgid "Show Myspace share button"
+msgstr ""
+
+msgid "Enable Yahoo Share"
+msgstr ""
+
+msgid "Show Yahoo share button"
+msgstr ""
+
+msgid "Mapping & Geolocation"
+msgstr ""
+
+msgid "Configure map services and location-based features"
+msgstr ""
+
+msgid "Choose between Google Maps and OpenStreetMap for map displays"
+msgstr ""
+
+msgid "Google Map API Key"
+msgstr ""
+
+msgid "Enter your Google Maps API key"
+msgstr ""
+
+msgid "Map Height"
+msgstr ""
+
+msgid "Set the height for maps displayed in the plugin, in pixels"
+msgstr ""
+
+msgid "Default Longitude"
+msgstr ""
+
+msgid "Default longitude for map centering"
+msgstr ""
+
+msgid "Default Latitude"
+msgstr ""
+
+msgid "Default latitude for map centering"
+msgstr ""
+
+msgid "Default Map Radius Type"
+msgstr ""
+
+msgid "Default unit for map radius calculations"
+msgstr ""
+
+msgid "Max Records for City Field"
+msgstr ""
+
+msgid "Set the number of cities to show in the location autocomplete results"
+msgstr ""
+
+msgid "Max Records for Tag Field"
+msgstr ""
+
+msgid "Set the number of tags to show in the tag autocomplete results"
+msgstr ""
+
+msgid "Security & Captcha"
+msgstr ""
+
+msgid "Captcha Options"
+msgstr ""
+
+msgid "Enable captcha on various forms to prevent spam"
+msgstr ""
+
+msgid "Default Captcha Type"
+msgstr ""
+
+msgid "Select the default captcha to use throughout the plugin"
+msgstr ""
+
+msgid "Captcha on Registration Form"
+msgstr ""
+
+msgid "Show a captcha on the WP Job Portal registration form"
+msgstr ""
+
+msgid "Captcha on Visitor Quick Apply"
+msgstr ""
+
+msgid "Show captcha to visitors on the quick apply form"
+msgstr ""
+
+msgid "Captcha on Visitor Job Form"
+msgstr ""
+
+msgid "Show captcha on the job submission form for visitors"
+msgstr ""
+
+msgid "Captcha on Visitor Resume Form"
+msgstr ""
+
+msgid "Show captcha on the resume submission form for visitors"
+msgstr ""
+
+msgid "Captcha on Tell a Friend Popup"
+msgstr ""
+
+msgid "Show captcha on the"
+msgstr ""
+
+msgid "popup for visitors"
+msgstr ""
+
+msgid "WP Job Portal Captcha"
+msgstr ""
+
+msgid "Settings for the built-in mathematical captcha"
+msgstr ""
+
+msgid "Calculation Type"
+msgstr ""
+
+msgid "Select the type of math problem for the captcha"
+msgstr ""
+
+msgid "Addition or Subtraction"
+msgstr ""
+
+msgid "Answer Always Positive"
+msgstr ""
+
+msgid "Ensure that subtraction problems always result in a positive answer"
+msgstr ""
+
+msgid "Number of Operands"
+msgstr ""
+
+msgid "Choose the number of operands for the math problem"
+msgstr ""
+
+msgid "Google reCAPTCHA"
+msgstr ""
+
+msgid "Configure Google reCAPTCHA v2 or v3"
+msgstr ""
+
+msgid "Select which version of Google reCAPTCHA to use"
+msgstr ""
+
+msgid "Enter the site key from your Google reCAPTCHA admin console"
+msgstr ""
+
+msgid "Google reCaptcha Secret Key"
+msgstr ""
+
+msgid "Enter the secret key from your Google reCAPTCHA admin console"
+msgstr ""
+
+msgid "Monetization"
+msgstr ""
+
+msgid "General Monetization"
+msgstr ""
+
+msgid "Core settings for handling payments and packages"
+msgstr ""
+
+msgid "Choose the monetization model for submissions"
+msgstr ""
+
+msgid "Free, Per Listing, or Membership-based"
+msgstr ""
+
+msgid "Default Currency Symbol"
+msgstr ""
+
+msgid "The currency symbol to be used across the site"
+msgstr ""
+
+msgid "Currency Symbol Position"
+msgstr ""
+
+msgid "Packages & Featured Listings"
+msgstr ""
+
+msgid "Manage free packages and enable featured listings"
+msgstr ""
+
+msgid "Auto-assign Free Package to New User"
+msgstr ""
+
+msgid "Automatically give new users a free package if one exists"
+msgstr ""
+
+msgid "Free Package Purchase Auto Approve"
+msgstr ""
+
+msgid "Automatically approve the purchase of free packages"
+msgstr ""
+
+msgid "Purchase Free Package Only Once"
+msgstr ""
+
+msgid "Prevent users from acquiring a free package more than once"
+msgstr ""
+
+msgid "Enable Featured Companies"
+msgstr ""
+
+msgid "Allow companies to be marked as"
+msgstr ""
+
+msgid "Enable Featured Jobs"
+msgstr ""
+
+msgid "Allow jobs to be marked as"
+msgstr ""
+
+msgid "Enable Featured Resumes"
+msgstr ""
+
+msgid "Allow resumes to be marked as"
+msgstr ""
+
+msgid "Per Listing Prices"
+msgstr ""
+
+msgid "Set prices for various actions when using the"
+msgstr ""
+
+msgid "submission type"
+msgstr ""
+
+msgid "Submission"
+msgstr ""
+
+msgid "Price to submit a single company profile"
+msgstr ""
+
+msgid "Additional price to make a company"
+msgstr ""
+
+msgid "Days Until Featured Company Expires"
+msgstr ""
+
+msgid "Number of days a"
+msgstr ""
+
+msgid "per-listing"
+msgstr ""
+
+msgid "featured company remains active"
+msgstr ""
+
+msgid "free"
+msgstr ""
+
+msgid "Price to submit a single job"
+msgstr ""
+
+msgid "Additional price to make a job"
+msgstr ""
+
+msgid "Days Until Featured Job Expires"
+msgstr ""
+
+msgid "featured job remains active"
+msgstr ""
+
+msgid "Price to submit a single resume"
+msgstr ""
+
+msgid "Additional price to make a resume"
+msgstr ""
+
+msgid "Days Until Featured Resume Expires"
+msgstr ""
+
+msgid "featured resume remains active"
+msgstr ""
+
+msgid "Price per Job Apply"
+msgstr ""
+
+msgid "Price for a job seeker to apply for a job"
+msgstr ""
+
+msgid "Price to View Resume Contact"
+msgstr ""
+
+msgid "Price to View Company Contact"
+msgstr ""
+
+msgid "Price to submit a department"
+msgstr ""
+
+msgid "Price to submit a cover letter"
+msgstr ""
+
+msgid "Price to create a job alert"
+msgstr ""
+
+msgid "Dashboard Monetization Links"
+msgstr ""
+
+msgid "Control the visibility of monetization-related links in user dashboards"
+msgstr ""
+
+msgid "Employer Show Invoice History"
+msgstr ""
+
+msgid "Setting to show the invoice/purchase history section"
+msgstr ""
+
+msgid "Job Seeker Show Invoice History"
+msgstr ""
+
+msgid "Job Seeker Show Credits Log"
+msgstr ""
+
+msgid "Setting to show the credits log section"
+msgstr ""
+
+msgid "Payment Gateways"
+msgstr ""
+
+msgid "Configure PayPal payment gateway settings for API integration"
+msgstr ""
+
+msgid "Enable PayPal"
+msgstr ""
+
+msgid "Enable or disable PayPal as a payment option"
+msgstr ""
+
+msgid "Your PayPal API Username"
+msgstr ""
+
+msgid "Your PayPal API Password"
+msgstr ""
+
+msgid "Your PayPal API Signature"
+msgstr ""
+
+msgid "A URL to your logo image to display on the PayPal checkout page"
+msgstr ""
+
+msgid "Cancel URL"
+msgstr ""
+
+msgid "The URL users are sent to if they cancel the payment"
+msgstr ""
+
+msgid "Notify URL"
+msgstr ""
+
+msgid "Sandbox"
+msgstr ""
+
+msgid "Enable PayPal Sandbox for testing purposes"
+msgstr ""
+
+msgid "Please enter language code, for example"
+msgstr ""
+
+msgid "Subscription IPN URL"
+msgstr ""
+
+msgid "Configure Stripe payment gateway settings"
+msgstr ""
+
+msgid "Enable Stripe"
+msgstr ""
+
+msgid "Enable or disable Stripe as a payment option"
+msgstr ""
+
+msgid "Publishable Key"
+msgstr ""
+
+msgid "Enter your Stripe Publishable Key"
+msgstr ""
+
+msgid "Secret Key"
+msgstr ""
+
+msgid "Enter your Stripe Secret Key"
+msgstr ""
+
+msgid "Subscription Webhook URL"
+msgstr ""
+
+msgid "WooCommerce"
+msgstr ""
+
+msgid "Use WooCommerce to handle payments"
+msgstr ""
+
+msgid "Enable WooCommerce"
+msgstr ""
+
+msgid "Enable or disable WooCommerce as a payment option"
+msgstr ""
+
+msgid "Home Page"
+msgstr ""
+
+msgid "WordPress Default"
+msgstr ""
+
+msgid "Blog"
+msgstr ""
+
+msgid "This feature is part of a premium addon"
+msgstr ""
+
+msgid "Available tags"
+msgstr ""
+
+msgid "This image will be shown as the default image for entities & users if no other image is provided"
+msgstr ""
+
+msgid "Discard"
+msgstr ""
+
+msgid "Save Changes"
+msgstr ""
+
+msgid "Quickly find any setting"
+msgstr ""
+
+msgid "Search by setting title or tooltip description"
+msgstr ""
+
+msgid "Unlock"
+msgstr ""
+
+msgid "This and other powerful features are available in the"
+msgstr ""
+
+msgid "Upgrade Now"
+msgstr ""
+
+msgid "No settings found for your search"
+msgstr ""
+
+msgid "Copied to clipboard"
+msgstr ""
+
+msgid "Search results for"
+msgstr ""
+
+msgid "Unlock with"
+msgstr ""
+
+msgid "Settings related to employer accounts, registration, and permissions"
+msgstr ""
+
+msgid "Settings related to job seeker accounts and registration"
+msgstr ""
+
+msgid "Visitor Can View Employer's Control Panel Links"
+msgstr ""
+
+msgid "Visitor Can View Resume Categories"
+msgstr ""
+
+msgid "Visitor Can Search Resumes"
+msgstr ""
+
+msgid "Visitor Can View Company Details"
+msgstr ""
+
+msgid "Visitor Can View Job Details"
+msgstr ""
+
+msgid "Visitor Can View Resume Details"
+msgstr ""
+
+msgid "Visitor Can View Job Seeker's Control Panel Links"
+msgstr ""
+
+msgid "Visitor Can View Jobs by Categories"
+msgstr ""
+
+msgid "Visitor Can Search Jobs"
+msgstr ""
+
+msgid "Visitor Can View Newest Jobs"
+msgstr ""
+
+msgid "Visitor Can View Job Search Results"
+msgstr ""
+
+################################################################
+# version 2.3.9
+################################################################
+msgid "1 Column"
+msgstr ""
+
+msgid "10254 Departments found"
+msgstr ""
+
+msgid "2 Columns"
+msgstr ""
+
+msgid "3 Columns"
+msgstr ""
+
+msgid "4 Columns"
+msgstr ""
+
+msgid "5 Columns"
+msgstr ""
+
+msgid "A critical update for WP Job Portal is required to maintain performance and prevent issues. Please update now."
+msgstr ""
+
+msgid "AI Search"
+msgstr ""
+
+msgid "AI Search Job"
+msgstr ""
+
+msgid "AI Settings"
+msgstr ""
+
+msgid "AI settings"
+msgstr ""
+
+msgid "About"
+msgstr ""
+
+msgid "Account & Billing"
+msgstr ""
+
+msgid "Activation failed"
+msgstr ""
+
+msgid "Add-ons for WP Job Portal have been installed and activated successfully."
+msgstr ""
+
+msgid "Addon Installer"
+msgstr ""
+
+msgid "Addon not installed please install addon first."
+msgstr ""
+
+msgid "Addon will automatically update to the newest version"
+msgstr ""
+
+msgid "Addon(s) Installed successfully!"
+msgstr ""
+
+msgid "Address display style for plugin"
+msgstr ""
+
+msgid "Advanced Resume Builder Addon missing, resume sections data will not be imported!"
+msgstr ""
+
+msgid "All selected add-ons are now active."
+msgstr ""
+
+msgid "Allow employers and job Seekers to register on the site."
+msgstr ""
+
+msgid "Allow search resume"
+msgstr ""
+
+msgid "Allowed to all (employers, job seekers and visitors)"
+msgstr ""
+
+msgid "Auto Update: Off"
+msgstr ""
+
+msgid "Auto Update: On"
+msgstr ""
+
+msgid "Back to listing"
+msgstr ""
+
+msgid "Basic Info"
+msgstr ""
+
+msgid "Buttons Styling"
+msgstr ""
+
+msgid "Capitalize"
+msgstr ""
+
+msgid "Check if you want to use WP Job Portal packages"
+msgstr ""
+
+msgid "City name"
+msgstr ""
+
+msgid "Columns per Row"
+msgstr ""
+
+msgid "Comma separated list of job types i.e JTFT, JTPT, JTFP, JTCT, JTIN"
+msgstr ""
+
+msgid "Communication"
+msgstr ""
+
+msgid "Company Management"
+msgstr ""
+
+msgid "Complete Your Resume"
+msgstr ""
+
+msgid "Content Access"
+msgstr ""
+
+msgid "Content Styling"
+msgstr ""
+
+msgid "Control which employer dashboard navigation links are visible to visitors"
+msgstr ""
+
+msgid "Control which employer dashboard widgets and sections are visible to visitors"
+msgstr ""
+
+msgid "Control which job seeker dashboard navigation links are visible to visitors"
+msgstr ""
+
+msgid "Control which job seeker dashboard widgets and sections are visible to visitors"
+msgstr ""
+
+msgid "Control which pages and content areas are visible to non-logged-in users"
+msgstr ""
+
+msgid "Custom Field Class"
+msgstr ""
+
+msgid "Database Update Needed"
+msgstr ""
+
+msgid "Database update completed"
+msgstr ""
+
+msgid "Delete All Unused Keys"
+msgstr ""
+
+msgid "Discover"
+msgstr ""
+
+msgid "Display the status of applications to the job seeker"
+msgstr ""
+
+msgid "Dummy Plugin"
+msgstr ""
+
+msgid "Dummy Plugin 2"
+msgstr ""
+
+msgid "Elegant Design"
+msgstr ""
+
+msgid "Employer Widgets"
+msgstr ""
+
+msgid "Enter the Site Title"
+msgstr ""
+
+msgid "Entity"
+msgstr ""
+
+msgid "Fetch Data"
+msgstr ""
+
+msgid "Find your next star hire with AI-driven resume search"
+msgstr ""
+
+msgid "Font Family"
+msgstr ""
+
+msgid "Font Size"
+msgstr ""
+
+msgid "Font Style"
+msgstr ""
+
+msgid "Font Weight"
+msgstr ""
+
+msgid "Go To Dashboard"
+msgstr ""
+
+msgid "Import Data Report"
+msgstr ""
+
+msgid "Import Third Party Data"
+msgstr ""
+
+msgid "Import demo data to populate your site with example companies, jobs, resumes, and applications."
+msgstr ""
+
+msgid "Imported"
+msgstr ""
+
+msgid "Infi Icon"
+msgstr ""
+
+msgid "Info"
+msgstr ""
+
+msgid "Info Icon"
+msgstr ""
+
+msgid "Invalid server response"
+msgstr ""
+
+msgid "Italic"
+msgstr ""
+
+msgid "Job Alert Time"
+msgstr ""
+
+msgid "Job Detail"
+msgstr ""
+
+msgid "Job Seeker Links"
+msgstr ""
+
+msgid "Job Seeker Settings"
+msgstr ""
+
+msgid "Job Seeker Widgets"
+msgstr ""
+
+msgid "Jobs by Category"
+msgstr ""
+
+msgid "Layout"
+msgstr ""
+
+msgid "Letter Spacing"
+msgstr ""
+
+msgid "Line Height"
+msgstr ""
+
+msgid "Live Preview Not available at the moment !"
+msgstr ""
+
+msgid "Login/Register"
+msgstr ""
+
+msgid "Lowercase"
+msgstr ""
+
+msgid "Manage Documents"
+msgstr ""
+
+msgid "Manage Jobs"
+msgstr ""
+
+msgid "Manage Unused Keys"
+msgstr ""
+
+msgid "More Actions"
+msgstr ""
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans."
+msgstr ""
+
+msgid "New Jobs"
+msgstr ""
+
+msgid "Next Setup"
+msgstr ""
+
+msgid "No Addon Installed!"
+msgstr ""
+
+msgid "No unused keys were found."
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "Not Imported"
+msgstr ""
+
+msgid "Oblique"
+msgstr ""
+
+msgid "Only job seekers can register. Jobs and companies are managed by the admin."
+msgstr ""
+
+msgid "Paid access Only"
+msgstr ""
+
+msgid "Pay For Featured Resume"
+msgstr ""
+
+msgid "Pay For Resume"
+msgstr ""
+
+msgid "Pay per listing price to publish your"
+msgstr ""
+
+msgid "Please Insert Your Activation Key"
+msgstr ""
+
+msgid "Please log in to register to continue."
+msgstr ""
+
+msgid "Please select at least one addon!"
+msgstr ""
+
+msgid "Please verify Locations and salaries for imported data entities"
+msgstr ""
+
+msgid "Plugin not installed"
+msgstr ""
+
+msgid "Price for a job seeker to view a company's contact details"
+msgstr ""
+
+msgid "Price for an employer to view a resume's contact details"
+msgstr ""
+
+msgid "Quick Configuration"
+msgstr ""
+
+msgid "Ready to find your dream job? Let's get started"
+msgstr ""
+
+msgid "Ready to find your potential employee? Let's get started"
+msgstr ""
+
+msgid "Search Jobs"
+msgstr ""
+
+msgid "Search Resumes"
+msgstr ""
+
+msgid "Search smarter – just type anything you know about the job: title, category, type, skills, or even a description!"
+msgstr ""
+
+msgid "Section Title Styling"
+msgstr ""
+
+msgid "Select Addons to Update with New Activation Key"
+msgstr ""
+
+msgid "Select Company"
+msgstr ""
+
+msgid "Select Job Category"
+msgstr ""
+
+msgid "Select Job Status"
+msgstr ""
+
+msgid "Select Job Type"
+msgstr ""
+
+msgid "Select Page To Show"
+msgstr ""
+
+msgid "Select Plugin Setting for WP Job Portal"
+msgstr ""
+
+msgid "Select packages pack so that user can purchase them"
+msgstr ""
+
+msgid "Select who can view company contact details."
+msgstr ""
+
+msgid "Settings you applied have been successfully saved"
+msgstr ""
+
+msgid "Setup Complete"
+msgstr ""
+
+msgid "Show Advanced Search Button"
+msgstr ""
+
+msgid "Show Employers"
+msgstr ""
+
+msgid "Show Everyone"
+msgstr ""
+
+msgid "Show Job seekers"
+msgstr ""
+
+msgid "Show Labels"
+msgstr ""
+
+msgid "Show No One"
+msgstr ""
+
+msgid "Show Placeholders"
+msgstr ""
+
+msgid "Show Resume Status Section"
+msgstr ""
+
+msgid "Show a box with applied jobs on the job seeker's dashboard"
+msgstr ""
+
+msgid "Show a box with newest jobs on the job seeker's dashboard"
+msgstr ""
+
+msgid "Show a box with newest jobs on the job seeker's dashboard to visitor"
+msgstr ""
+
+msgid "Show a box with recent resumes on the employer's dashboard"
+msgstr ""
+
+msgid "Show a box with recent resumes on the employer's dashboard to visitor"
+msgstr ""
+
+msgid "Show a graph of job statistics in the employer's dashboard"
+msgstr ""
+
+msgid "Show a graph of job statistics in the employer's dashboard to visitor"
+msgstr ""
+
+msgid "Show a graph of job statistics in the job seeker's dashboard"
+msgstr ""
+
+msgid "Show a graph of job statistics in the job seeker's dashboard to visitor"
+msgstr ""
+
+msgid "Show a link to active subscriptions in the employer's dashboard"
+msgstr ""
+
+msgid "Show a link to active subscriptions in the job seeker's dashboard"
+msgstr ""
+
+msgid "Show a link to the packages page in the employer's dashboard"
+msgstr ""
+
+msgid "Show a link to the packages page in the job seeker's dashboard"
+msgstr ""
+
+msgid "Show a link to the purchase history/invoices in the employer's dashboard"
+msgstr ""
+
+msgid "Show a link to the purchase history/invoices in the job seeker's dashboard"
+msgstr ""
+
+msgid "Show a link to the user's purchased packages in their dashboard"
+msgstr ""
+
+msgid "Show an 'AI Suggested Jobs' button on the 'My Resumes' page for job seekers"
+msgstr ""
+
+msgid "Show an 'AI Suggested Resumes' button on the 'My Jobs' page for employers"
+msgstr ""
+
+msgid "Show or hide the profile section on the employer's control panel"
+msgstr ""
+
+msgid "Show or hide the profile section on the job seeker's control panel"
+msgstr ""
+
+msgid "Show resume status section on the job seeker's dashboard"
+msgstr ""
+
+msgid "Show statistics boxes on the employer's dashboard"
+msgstr ""
+
+msgid "Show statistics boxes on the job seeker's dashboard"
+msgstr ""
+
+msgid "Show the 'Quick Apply' form to logged-in users on the job detail page"
+msgstr ""
+
+msgid "Show the 'Quick Apply' form to visitors on the job detail page"
+msgstr ""
+
+msgid "Similar Found"
+msgstr ""
+
+msgid "Start typing what you know – our AI will help you find the best matching jobs."
+msgstr ""
+
+msgid "Start typing what you know – our AI will help you find the best matching resumes."
+msgstr ""
+
+msgid "Step 1 of 5"
+msgstr ""
+
+msgid "Step 2 of 4"
+msgstr ""
+
+msgid "Step 2 of 5"
+msgstr ""
+
+msgid "Step 3 of 4"
+msgstr ""
+
+msgid "Step 3 of 5"
+msgstr ""
+
+msgid "Step 4 of 4"
+msgstr ""
+
+msgid "Step 4 of 5"
+msgstr ""
+
+msgid "Step 5 of 5"
+msgstr ""
+
+msgid "Subscriptions"
+msgstr ""
+
+msgid "Sugeested Jobs"
+msgstr ""
+
+msgid "Suggested Jobs"
+msgstr ""
+
+msgid "Suggested Resumes"
+msgstr ""
+
+msgid "System"
+msgstr ""
+
+msgid "System Error Log"
+msgstr ""
+
+msgid "Text Transform"
+msgstr ""
+
+msgid "The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr ""
+
+msgid "The highlighted addons are not included in your current license. Please adjust your selection accordingly."
+msgstr ""
+
+msgid "This add-on will change the Job Portal pages to a simple yet powerful and rich web design that involves focusing on clean aesthetics, intuitive navigation, and functional elements while ensuring performance and responsiveness."
+msgstr ""
+
+msgid "This will replace the old key with the new one."
+msgstr ""
+
+msgid "Today Stats"
+msgstr ""
+
+msgid "Unlock your career potential with AI-driven job search"
+msgstr ""
+
+msgid "Update Key"
+msgstr ""
+
+msgid "Update Now"
+msgstr ""
+
+msgid "Updating Database, please wait..."
+msgstr ""
+
+msgid "Uppercase"
+msgstr ""
+
+msgid "Use Default Color For Color 1"
+msgstr ""
+
+msgid "Use Icons for Buttons"
+msgstr ""
+
+msgid "View All Resumes"
+msgstr ""
+
+msgid "View Company Contact Detail"
+msgstr ""
+
+msgid "Visitor Show"
+msgstr ""
+
+msgid "Visitor Show Active Jobs Graph"
+msgstr ""
+
+msgid "Visitor Show Applied Jobs Section"
+msgstr ""
+
+msgid "Visitor Show Applied Resumes Section"
+msgstr ""
+
+msgid "Visitor Show Credits Log Section"
+msgstr ""
+
+msgid "Visitor Show Jobs Graph"
+msgstr ""
+
+msgid "Visitor Show Jobs Graph Section"
+msgstr ""
+
+msgid "Visitor Show Newest Jobs Box"
+msgstr ""
+
+msgid "Visitor Show Newest Jobs Section"
+msgstr ""
+
+msgid "Visitor Show Newest Resumes Section"
+msgstr ""
+
+msgid "Visitor Show Purchase History Section"
+msgstr ""
+
+msgid "Visitor Show Recent Resumes Box"
+msgstr ""
+
+msgid "Visitor Show Saved Searches Section"
+msgstr ""
+
+msgid "Visitor Show Shortlisted Jobs Section"
+msgstr ""
+
+msgid "Visitor Show Stats Graph Section"
+msgstr ""
+
+msgid "Visitor Show Useful Links Section"
+msgstr ""
+
+msgid "WP Job Manager"
+msgstr ""
+
+msgid "WP Job Portal Activation Key"
+msgstr ""
+
+msgid "WP Job Portal Import Data"
+msgstr ""
+
+msgid "WP Job Portal Packages"
+msgstr ""
+
+msgid "Welcome to WP Job Portal Addon Installer"
+msgstr ""
+
+msgid "Welcome, Visitor"
+msgstr ""
+
+msgid "Who can search resume."
+msgstr ""
+
+msgid "Who can view resume contact details"
+msgstr ""
+
+msgid "You Already Applied to this job"
+msgstr ""
+
+msgid "You have"
+msgstr ""
+
+msgid "Your WP Job Portal license key has expired or is invalid. Please update it to continue receiving support and updates."
+msgstr ""
+
+msgid "failed."
+msgstr ""
+
+msgid "found"
+msgstr ""
+
+msgid "icon"
+msgstr ""
+
+msgid "imported."
+msgstr ""
+
+msgid "skipped."
+msgstr ""
+
+msgid "unused key has been deleted successfully!"
+msgstr ""
+
+msgid "unused key(s) that can be safely removed."
+msgstr ""
+
+msgid "unused keys have been deleted successfully!"
+msgstr ""

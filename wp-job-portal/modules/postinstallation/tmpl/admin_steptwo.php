@@ -1,12 +1,12 @@
 <?php if (!defined('ABSPATH')) die('Restricted Access'); ?>
 <?php
 global $wp_roles;
-$roles = $wp_roles->get_names();
-$userroles = array();
-foreach ($roles as $key => $value) {
-    $userroles[] = (object) array('id' => $key, 'text' => $value);
+$wpjobportal_roles = $wp_roles->get_names();
+$wpjobportal_userroles = array();
+foreach ($wpjobportal_roles as $wpjobportal_key => $wpjobportal_value) {
+    $wpjobportal_userroles[] = (object) array('id' => $wpjobportal_key, 'text' => $wpjobportal_value);
 }
-$yesno = array((object) array('id' => 1, 'text' => esc_html(__('Yes', 'wp-job-portal')))
+$wpjobportal_yesno = array((object) array('id' => 1, 'text' => esc_html(__('Yes', 'wp-job-portal')))
                     , (object) array('id' => 0, 'text' => esc_html(__('No', 'wp-job-portal'))));
 if (!defined('ABSPATH')) die('Restricted Access'); ?>
 <div id="wpjobportaladmin-wrapper" class="wpjobportal-post-installation-wrp">
@@ -84,7 +84,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                 </div>
                 <div class="wpjobportal-post-head-rightbtns-wrp">
                     <span class="wpjobportal-post-head-pagestep"><?php echo esc_html(__('Step 3 of 5','wp-job-portal'));?></span>
-                    <a class="wpjobportal-post-head-closebtn" href="admin.php?page=wpjobportal"title="<?php echo esc_html(__('Close','wp-job-portal'));?>">
+                    <a class="wpjobportal-post-head-closebtn" href="admin.php?page=wpjobportal"title="<?php echo esc_attr(__('Close','wp-job-portal'));?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/close.png" />
                     </a>
                 </div>
@@ -95,7 +95,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                         <?php echo esc_html(__('Enable Employer Area','wp-job-portal')); ?>
                     </div>
                     <div class="wpjobportal-post-val">
-                        <?php echo wp_kses(WPJOBPORTALformfield::select('disable_employer', $yesno,wpjobportal::$_data[0]['disable_employer'],'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                        <?php echo wp_kses(WPJOBPORTALformfield::select('disable_employer', $wpjobportal_yesno,wpjobportal::$_data[0]['disable_employer'],'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                         <div class="wpjobportal-post-help-text">
                             <?php echo esc_html(__('If no then front end employer area is not accessable','wp-job-portal'));?>
                         </div>
@@ -106,7 +106,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                         <?php echo esc_html(__('Allow user register as employer','wp-job-portal')); ?>
                     </div>
                     <div class="wpjobportal-post-val">
-                        <?php echo wp_kses(WPJOBPORTALformfield::select('showemployerlink', $yesno,wpjobportal::$_data[0]['showemployerlink'],'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                        <?php echo wp_kses(WPJOBPORTALformfield::select('showemployerlink', $wpjobportal_yesno,wpjobportal::$_data[0]['showemployerlink'],'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                         <div class="wpjobportal-post-help-text">
                             <?php echo esc_html(__('Effects on user registration','wp-job-portal'));?>
                         </div>
@@ -117,7 +117,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                         <?php echo esc_html(__('Employer default role','wp-job-portal')); ?>
                     </div>
                     <div class="wpjobportal-post-val">
-                        <?php echo wp_kses(WPJOBPORTALformfield::select('employer_defaultgroup', $userroles,wpjobportal::$_data[0]['employer_defaultgroup'],'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                        <?php echo wp_kses(WPJOBPORTALformfield::select('employer_defaultgroup', $wpjobportal_userroles,wpjobportal::$_data[0]['employer_defaultgroup'],'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                         <div class="wpjobportal-post-help-text">
                             <?php echo esc_html(__('This role will auto assign to new employer','wp-job-portal'));?>
                         </div>
@@ -129,7 +129,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                         <?php echo esc_html(__('Company auto approve','wp-job-portal')); ?>
                     </div>
                     <div class="wpjobportal-post-val">
-                        <?php echo wp_kses(WPJOBPORTALformfield::select('companyautoapprove', $yesno,wpjobportal::$_data[0]['companyautoapprove'],'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                        <?php echo wp_kses(WPJOBPORTALformfield::select('companyautoapprove', $wpjobportal_yesno,wpjobportal::$_data[0]['companyautoapprove'],'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                     </div>
                 </div>
                 <div class="wpjobportal-post-data-row">
@@ -137,7 +137,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                         <?php echo esc_html(__('Job auto approve','wp-job-portal')); ?>
                     </div>
                     <div class="wpjobportal-post-val">
-                        <?php echo wp_kses(WPJOBPORTALformfield::select('jobautoapprove', $yesno,wpjobportal::$_data[0]['jobautoapprove'],'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                        <?php echo wp_kses(WPJOBPORTALformfield::select('jobautoapprove', $wpjobportal_yesno,wpjobportal::$_data[0]['jobautoapprove'],'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                     </div>
                 </div>
                 <div class="wpjobportal-post-data-row">
@@ -146,8 +146,8 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                     </div>
                     <div class="wpjobportal-post-val">
                         <?php
-                        $search_resume = array((object) array('id' => 0, 'text' => esc_html(__('Not allowed', 'wp-job-portal'))), (object) array('id' => 1, 'text' => esc_html(__('Allowed to all (employers, job seekers and visitors)', 'wp-job-portal'))), (object) array('id' => 2, 'text' => esc_html(__('Allowed only to employers', 'wp-job-portal'))));
-                        echo wp_kses(WPJOBPORTALformfield::select('allow_search_resume', $search_resume, wpjobportal::$_data[0]['allow_search_resume']),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                        $wpjobportal_search_resume = array((object) array('id' => 0, 'text' => esc_html(__('Not allowed', 'wp-job-portal'))), (object) array('id' => 1, 'text' => esc_html(__('Allowed to all (employers, job seekers and visitors)', 'wp-job-portal'))), (object) array('id' => 2, 'text' => esc_html(__('Allowed only to employers', 'wp-job-portal'))));
+                        echo wp_kses(WPJOBPORTALformfield::select('allow_search_resume', $wpjobportal_search_resume, wpjobportal::$_data[0]['allow_search_resume']),WPJOBPORTAL_ALLOWED_TAGS); ?>
                         <div class="wpjobportal-post-help-text">
                             <?php echo esc_html(__('Who can search resume.', 'wp-job-portal')); ?>
                         </div>
@@ -159,11 +159,11 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                         <?php echo esc_html(__('Employer can view job seeker area','wp-job-portal')); ?>
                     </div>
                     <div class="wpjobportal-post-val">
-                        <?php echo wp_kses(WPJOBPORTALformfield::select('employerview_js_controlpanel', $yesno,wpjobportal::$_data[0]['employerview_js_controlpanel'],'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                        <?php echo wp_kses(WPJOBPORTALformfield::select('employerview_js_controlpanel', $wpjobportal_yesno,wpjobportal::$_data[0]['employerview_js_controlpanel'],'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                     </div>
                 </div>
                 <div class="wpjobportal-post-action-btn">
-                    <a class="next-step wpjobportal-post-act-btn" href="javascript:void();"  onclick="document.getElementById('wpjobportal-form-ins').submit();" title="<?php echo esc_html(__('next','wp-job-portal')); ?>">
+                    <a class="next-step wpjobportal-post-act-btn" href="javascript:void();"  onclick="document.getElementById('wpjobportal-form-ins').submit();" title="<?php echo esc_attr(__('next','wp-job-portal')); ?>">
                         <?php echo esc_html(__('Next','wp-job-portal')); ?>
                     </a>
                 </div>
@@ -179,7 +179,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
     jQuery(document).ready(function () {
         jQuery('.inputbox').on('focus', function () {
         jQuery(this)
@@ -195,5 +195,5 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
         });
     });
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>

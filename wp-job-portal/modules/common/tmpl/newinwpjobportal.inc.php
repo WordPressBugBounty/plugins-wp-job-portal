@@ -6,10 +6,10 @@ if (!defined('ABSPATH'))
 wp_register_script( 'wpjobportal-inline-handle', '' );
 wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-$inline_js_script = "
+$wpjobportal_inline_js_script = "
     jQuery(document).ready(function ($) {
         $.validate();
     });
     ";
-wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>

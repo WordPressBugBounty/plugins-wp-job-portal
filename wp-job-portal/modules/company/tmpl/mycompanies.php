@@ -1,14 +1,14 @@
 <?php
 if (!defined('ABSPATH')) die('Restricted Access');
 
-$companies = isset(wpjobportal::$_data[0]) && is_array(wpjobportal::$_data[0]) ? wpjobportal::$_data[0] : array();
+$wpjobportal_companies = isset(wpjobportal::$_data[0]) && is_array(wpjobportal::$_data[0]) ? wpjobportal::$_data[0] : array();
 ?>
 <div class="wjportal-main-up-wrapper">
 <div class="wjportal-main-wrapper wjportal-clearfix">
     <div class="wjportal-page-header">
         <div class="wjportal-page-header-cnt">
             <?php 
-                if (!WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('module' => 'company','layout' => 'mycompany'))){
+                if (!WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('wpjobportal_module' => 'company','wpjobportal_layout' => 'mycompany'))){
                     return;
                 }
                 
@@ -28,36 +28,36 @@ $companies = isset(wpjobportal::$_data[0]) && is_array(wpjobportal::$_data[0]) ?
             </div>
         </div>
         <?php
-        if ( !WPJOBPORTALincluder::getTemplate('templates/header',array('module' => 'company')) ) {
+        if ( !WPJOBPORTALincluder::getTemplate('templates/header',array('wpjobportal_module' => 'company')) ) {
                 return;
         }
         ?>
     </div>
     <div class="wjportal-company-list-wrapper wjportal-my-company-wrp">
         <?php
-        if (!empty($companies)) {
+        if (!empty($wpjobportal_companies)) {
             //////******Data Listing*********//////
-            foreach ($companies AS $company) {
+            foreach ($wpjobportal_companies AS $wpjobportal_company) {
                WPJOBPORTALincluder::getTemplate('company/views/frontend/companylist', array(
-                   'company' => $company,
-                   'module' => 'company',
-                   'layout' => 'control'
+                   'wpjobportal_company' => $wpjobportal_company,
+                   'wpjobportal_module' => 'company',
+                   'wpjobportal_layout' => 'control'
                 ));
             }
             ///**pagination Calling*******///
             if (wpjobportal::$_data[1]) {
                 WPJOBPORTALincluder::getTemplate('templates/pagination',array(
                     'pagination' => wpjobportal::$_data[1],
-                    'module' => 'multicompany'
+                    'wpjobportal_module' => 'multicompany'
                 ));
             }
         }else{
-            $msg = esc_html(__('No record found','wp-job-portal'));
-            $linkcompany[] = array(
+            $wpjobportal_msg = esc_html(__('No record found','wp-job-portal'));
+            $wpjobportal_linkcompany[] = array(
                 'link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'addcompany')),
                 'text' => esc_html(__('Add New','wp-job-portal')) .' '. esc_html(__('Company', 'wp-job-portal'))
             );
-            WPJOBPORTALlayout::getNoRecordFound($msg, $linkcompany);
+            WPJOBPORTALlayout::getNoRecordFound($wpjobportal_msg, $wpjobportal_linkcompany);
         }
         ?>
     </div>

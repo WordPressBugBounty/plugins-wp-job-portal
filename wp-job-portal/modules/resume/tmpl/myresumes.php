@@ -5,26 +5,26 @@ die('Restricted Access');
 <div class="wjportal-main-up-wrapper">
 <?php
 wp_enqueue_style('status-graph', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/status_graph.css');
-$subtype = wpjobportal::$_config->getConfigValue('submission_type');
+$wpjobportal_subtype = wpjobportal::$_config->getConfigValue('submission_type');
 ?>
 <div class="wjportal-main-wrapper wjportal-clearfix">
         <div class="wjportal-page-header">
             <div class="wjportal-page-header-cnt">
-                <?php WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('module' => 'resume','layout' => 'multiresumeadd'));
+                <?php WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('wpjobportal_module' => 'resume','wpjobportal_layout' => 'multiresumeadd'));
                 ?>
             </div>
             <?php if (wpjobportal::$_error_flag == null) { ?>
             <div class="wjportal-header-actions">
                 <div class="wjportal-filter-wrp">
                     <?php
-                        $image1 = esc_url(WPJOBPORTAL_PLUGIN_URL) . "includes/images/sort-up.png";
-                        $image2 = esc_url(WPJOBPORTAL_PLUGIN_URL) . "includes/images/sort-down.png";
+                        $wpjobportal_image1 = esc_url(WPJOBPORTAL_PLUGIN_URL) . "includes/images/sort-up.png";
+                        $wpjobportal_image2 = esc_url(WPJOBPORTAL_PLUGIN_URL) . "includes/images/sort-down.png";
                         if (wpjobportal::$_data['sortby'] == 1) {
-                            $image = $image1;
+                            $wpjobportal_image = $wpjobportal_image1;
                         } else {
-                            $image = $image2;
+                            $wpjobportal_image = $wpjobportal_image2;
                         }
-                        $categoryarray = array(
+                        $wpjobportal_categoryarray = array(
                             (object) array('id' => 1, 'text' => esc_html(__('Application title', 'wp-job-portal'))),
                             (object) array('id' => 2, 'text' => esc_html(__('First name', 'wp-job-portal'))),
                             (object) array('id' => 3, 'text' => esc_html(__('Category', 'wp-job-portal'))),
@@ -35,11 +35,11 @@ $subtype = wpjobportal::$_config->getConfigValue('submission_type');
                         );
                         // resume filters
                         WPJOBPORTALincluder::getTemplate('resume/views/frontend/filter',array(
-                            'sortbylist' => $categoryarray,
-                            'filter' => 'resume',
-                            'image' => $image,
-                            'image1' => $image1,
-                            'image2' => $image2
+                            'wpjobportal_sortbylist' => $wpjobportal_categoryarray,
+                            'wpjobportal_filter' => 'resume',
+                            'wpjobportal_image' => $wpjobportal_image,
+                            'wpjobportal_image1' => $wpjobportal_image1,
+                            'wpjobportal_image2' => $wpjobportal_image2
                         ));
                     ?>
                 </div>
@@ -49,7 +49,7 @@ $subtype = wpjobportal::$_config->getConfigValue('submission_type');
             </div>
         <?php } ?>
         <?php
-        if(!WPJOBPORTALincluder::getTemplate('templates/header',array('module'=>'resume'))){
+        if(!WPJOBPORTALincluder::getTemplate('templates/header',array('wpjobportal_module'=>'resume'))){
                     return;
         } ?>
         </div>
@@ -58,29 +58,29 @@ $subtype = wpjobportal::$_config->getConfigValue('submission_type');
             if(!empty(wpjobportal::$_data[0])){ ?>
                 <form id="resume_form" method="post" action="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume','wpjobportallt'=>'myresumes','wpjobportalpageid' =>wpjobportal::wpjobportal_getPageid()))); ?>">
                 <?php
-                    $dateformat = wpjobportal::$_configuration['date_format'];
-                    foreach (wpjobportal::$_data[0] AS $myresume) {
+                    $wpjobportal_dateformat = wpjobportal::$_configuration['date_format'];
+                    foreach (wpjobportal::$_data[0] AS $wpjobportal_myresume) {
 
                         // to show resume as 100% when advanced resume builder is not installed.
                          if(!in_array('advanceresumebuilder', wpjobportal::$_active_addons)){
-                            $status_array = array();
-                            $status_array['percentage'] = 100;
-                            $percentage = 100;
+                            $wpjobportal_status_array = array();
+                            $wpjobportal_status_array['percentage'] = 100;
+                            $wpjobportal_percentage = 100;
                          }else{
-                            $status_array = WPJOBPORTALincluder::getJSModel('resume')->getResumePercentage($myresume->id);
-                            $percentage = $status_array['percentage'];
+                            $wpjobportal_status_array = WPJOBPORTALincluder::getJSModel('resume')->getResumePercentage($wpjobportal_myresume->id);
+                            $wpjobportal_percentage = $wpjobportal_status_array['percentage'];
                          }
                             WPJOBPORTALincluder::getTemplate('resume/views/frontend/resumelist',array(
-                            'myresume' => $myresume,
-                            'percentage' => $status_array['percentage'],
-                            'dateformat' => $dateformat,
-                            'control' => 'myresumes',
-                            'module' => 'myresumes'
+                            'wpjobportal_myresume' => $wpjobportal_myresume,
+                            'wpjobportal_percentage' => $wpjobportal_status_array['percentage'],
+                            'wpjobportal_dateformat' => $wpjobportal_dateformat,
+                            'wpjobportal_control' => 'myresumes',
+                            'wpjobportal_module' => 'myresumes'
                          ));
 
                     }
                     if (wpjobportal::$_data[1]) {
-                        WPJOBPORTALincluder::getTemplate('templates/pagination',array('module' => 'resume','pagination' => wpjobportal::$_data[1]));
+                        WPJOBPORTALincluder::getTemplate('templates/pagination',array('wpjobportal_module' => 'resume','pagination' => wpjobportal::$_data[1]));
                     }
                     echo wp_kses(WPJOBPORTALformfield::hidden('sortby', wpjobportal::$_data['sortby']),WPJOBPORTAL_ALLOWED_TAGS);
                     echo wp_kses(WPJOBPORTALformfield::hidden('sorton', wpjobportal::$_data['sorton']),WPJOBPORTAL_ALLOWED_TAGS);
@@ -90,17 +90,17 @@ $subtype = wpjobportal::$_config->getConfigValue('submission_type');
                 </form>
             <?php
             } else {
-                $msg = esc_html(__('No record found','wp-job-portal'));
+                $wpjobportal_msg = esc_html(__('No record found','wp-job-portal'));
                 if(in_array('multiresume', wpjobportal::$_active_addons)){
-                    $mod = "multiresume";
+                    $wpjobportal_mod = "multiresume";
                 }else{
-                    $mod = "resume";
+                    $wpjobportal_mod = "resume";
                 }
-                $links[] = array(
-                        'link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$mod, 'wpjobportallt'=>'addresume', 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid())),
+                $wpjobportal_links[] = array(
+                        'link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$wpjobportal_mod, 'wpjobportallt'=>'addresume', 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid())),
                         'text' => esc_html(__('Add New','wp-job-portal')) .' '. esc_html(__('Resume', 'wp-job-portal'))
                     );
-                WPJOBPORTALlayout::getNoRecordFound($msg,$links);
+                WPJOBPORTALlayout::getNoRecordFound($wpjobportal_msg,$wpjobportal_links);
             }?>
         </div>
 

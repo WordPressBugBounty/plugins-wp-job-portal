@@ -2,19 +2,18 @@
 if (!defined('ABSPATH'))
 die('Restricted Access');
 wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js');
-if (!WPJOBPORTALincluder::getTemplate('templates/admin/header',array('module' => 'careerlevel'))){
+if (!WPJOBPORTALincluder::getTemplate('templates/admin/header',array('wpjobportal_module' => 'careerlevel'))){
     return;
 }
 ?>
 <?php 
 wp_enqueue_script('jquery-ui-sortable');
-$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-wp_enqueue_style('jquery-ui-css', $protocol.'ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css');
+wp_enqueue_style('wp-jquery-ui-dialog');
 
 wp_register_script( 'wpjobportal-inline-handle', '' );
 wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-$inline_js_script = "
+$wpjobportal_inline_js_script = "
  jQuery(document).ready(function () {
         jQuery('table#wpjobportal-table tbody').sortable({ 
             handle : '.wpjobportal-order-grab-column',
@@ -26,13 +25,13 @@ $inline_js_script = "
         });
     });
     ";
-wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>
 <!-- main wrapper -->
 <div id="wpjobportaladmin-wrapper">
     <!-- left menu -->
     <div id="wpjobportaladmin-leftmenu">
-        <?php  WPJOBPORTALincluder::getTemplate('templates/admin/leftmenue',array('module' => 'careerlevel')); ?>
+        <?php  WPJOBPORTALincluder::getTemplate('templates/admin/leftmenue',array('wpjobportal_module' => 'careerlevel')); ?>
     </div>
     <div id="wpjobportaladmin-data">
         <!-- top bar -->
@@ -41,7 +40,7 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_html(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -51,12 +50,12 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
             </div>
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_html(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_html(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -67,20 +66,20 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
             </div>
         </div>
         <!-- top head -->
-        <?php  WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('module' => 'careerlevel','layouts' => 'careerlevel')); ?>
+        <?php  WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('wpjobportal_module' => 'careerlevel','wpjobportal_layouts' => 'careerlevel')); ?>
         <!-- page content -->
         <div id="wpjobportal-admin-wrapper" class="p0 bg-n bs-n">
             <!-- quick actions -->
             <?php  WPJOBPORTALincluder::getTemplate('careerlevel/views/multioperation'); ?>
             <?php
-                $inline_js_script = '
+                $wpjobportal_inline_js_script = '
                     function resetFrom() {
                         jQuery("input#title").val("");
                         jQuery("select#status").val("");
                         jQuery("form#wpjobportalform").submit();
                     }
                 ';
-                wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+                wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
             ?>
             <!-- filter form -->
             <form class="wpjobportal-filter-form" name="wpjobportalform" id="wpjobportalform" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_careerlevel")); ?>">
@@ -116,18 +115,18 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
                             </thead>
                             <tbody>
                                 <?php
-                                    $pagenum = WPJOBPORTALrequest::getVar('pagenum', 'get', 1);
-                                    $pageid = ($pagenum > 1) ? '&pagenum=' . $pagenum : '';
-                                    for ($i = 0, $n = count(wpjobportal::$_data[0]); $i < $n; $i++) {
-                                        $row = wpjobportal::$_data[0][$i];
-                                        WPJOBPORTALincluder::getTemplate('careerlevel/views/main',array('row' => $row,'i' => $i ,'pagenum' => $pagenum ,'n' => $n ,'pageid' => $pageid ));
+                                    $wpjobportal_pagenum = WPJOBPORTALrequest::getVar('pagenum', 'get', 1);
+                                    $wpjobportal_pageid = ($wpjobportal_pagenum > 1) ? '&pagenum=' . $wpjobportal_pagenum : '';
+                                    for ($wpjobportal_i = 0, $wpjobportal_n = count(wpjobportal::$_data[0]); $wpjobportal_i < $wpjobportal_n; $wpjobportal_i++) {
+                                        $wpjobportal_row = wpjobportal::$_data[0][$wpjobportal_i];
+                                        WPJOBPORTALincluder::getTemplate('careerlevel/views/main',array('wpjobportal_row' => $wpjobportal_row,'wpjobportal_i' => $wpjobportal_i ,'wpjobportal_pagenum' => $wpjobportal_pagenum ,'wpjobportal_n' => $wpjobportal_n ,'wpjobportal_pageid' => $wpjobportal_pageid ));
                                         }?>
                             </tbody>
                         </table>
                         <?php echo wp_kses(WPJOBPORTALformfield::hidden('fields_ordering_new', '123'),WPJOBPORTAL_ALLOWED_TAGS); ?>
                         <?php echo wp_kses(WPJOBPORTALformfield::hidden('action', 'careerlevel_remove'),WPJOBPORTAL_ALLOWED_TAGS); ?>
                         <?php echo wp_kses(WPJOBPORTALformfield::hidden('task', ''),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                        <?php echo wp_kses(WPJOBPORTALformfield::hidden('pagenum', ($pagenum > 1) ? esc_html($pagenum) : ''),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                        <?php echo wp_kses(WPJOBPORTALformfield::hidden('pagenum', ($wpjobportal_pagenum > 1) ? esc_html($wpjobportal_pagenum) : ''),WPJOBPORTAL_ALLOWED_TAGS); ?>
                         <?php echo wp_kses(WPJOBPORTALformfield::hidden('form_request', 'wpjobportal'),WPJOBPORTAL_ALLOWED_TAGS); ?>
                         <?php echo wp_kses(WPJOBPORTALformfield::hidden('_wpnonce', esc_html(wp_create_nonce('wpjobportal_careerlevel_nonce'))),WPJOBPORTAL_ALLOWED_TAGS); ?>
                         
@@ -139,15 +138,15 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
                     </form>
                 <?php
                     if (wpjobportal::$_data[1]) {
-                       WPJOBPORTALincluder::getTemplate('templates/admin/pagination',array('module' => 'careerlevel' , 'pagination' => wpjobportal::$_data[1]));
+                       WPJOBPORTALincluder::getTemplate('templates/admin/pagination',array('wpjobportal_module' => 'careerlevel' , 'pagination' => wpjobportal::$_data[1]));
                     }
                 } else {
-                $msg = esc_html(__('No record found','wp-job-portal'));
-                $link[] = array(
+                $wpjobportal_msg = esc_html(__('No record found','wp-job-portal'));
+                $wpjobportal_link[] = array(
                             'link' => 'admin.php?page=wpjobportal_careerlevel&wpjobportallt=formcareerlevels',
                             'text' => esc_html(__('Add New','wp-job-portal')) .' '. esc_html(__('Career Level','wp-job-portal'))
                         );
-                WPJOBPORTALlayout::getNoRecordFound($msg, $link);
+                WPJOBPORTALlayout::getNoRecordFound($wpjobportal_msg, $wpjobportal_link);
                 }
             ?>
         </div>

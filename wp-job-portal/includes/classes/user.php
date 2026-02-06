@@ -36,16 +36,16 @@ class WPJOBPORTALuser {
 
     function getEmployerProfile(){
         //if($this->isemployer()==true){
-        $id  = $this->currentuser->uid;
-        $string = "users.uid";
+        $wpjobportal_id  = $this->currentuser->uid;
+        $wpjobportal_string = "users.uid";
         if (isset($_COOKIE['wpjobportal-socialid']) && !empty($_COOKIE['wpjobportal-socialid'])) { // social user is logged in
-            $id  = $this->currentuser->id;
-            $string = "users.id";
+            $wpjobportal_id  = $this->currentuser->id;
+            $wpjobportal_string = "users.id";
         }
-        if(is_numeric($id)){
+        if(is_numeric($wpjobportal_id)){
             $query = "SELECT users.id,users.uid,users.first_name,users.photo,users.emailaddress,users.last_name,users.socialmedia
             FROM " . wpjobportal::$_db->prefix . "wj_portal_users AS users  
-            WHERE users.id != 0 AND ".esc_sql($string)."=".esc_sql($id) ."  LIMIT 1 ";
+            WHERE users.id != 0 AND ".esc_sql($wpjobportal_string)."=".esc_sql($wpjobportal_id) ."  LIMIT 1 ";
             return wpjobportal::$_db->get_row($query);
         }
         
@@ -57,16 +57,16 @@ class WPJOBPORTALuser {
 
     function getJobSeekerProfile(){
         if($this->isjobseeker()==true){
-            $id  = $this->currentuser->uid;
-            $string = "users.uid";
+            $wpjobportal_id  = $this->currentuser->uid;
+            $wpjobportal_string = "users.uid";
             if (isset($_COOKIE['wpjobportal-socialid']) && !empty($_COOKIE['wpjobportal-socialid'])) { // social user is logged in
-                $id  = $this->currentuser->id;
-                $string = "users.id";
+                $wpjobportal_id  = $this->currentuser->id;
+                $wpjobportal_string = "users.id";
             }
-            if(is_numeric($id)){
+            if(is_numeric($wpjobportal_id)){
                 $query = "SELECT users.id,users.uid,users.first_name,users.photo,users.emailaddress,users.last_name,users.socialmedia
                 FROM " . wpjobportal::$_db->prefix . "wj_portal_users AS users
-                WHERE users.id != 0 AND ".esc_sql($string)."=".esc_sql($id) ."  LIMIT 1 ";
+                WHERE users.id != 0 AND ".esc_sql($wpjobportal_string)."=".esc_sql($wpjobportal_id) ."  LIMIT 1 ";
                 return wpjobportal::$_db->get_row($query);
             }else{
                 return false;
@@ -82,8 +82,8 @@ class WPJOBPORTALuser {
             if (!is_numeric($wpuserid))
                 return false;
             $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE uid = " . esc_sql($wpuserid);
-            $result = wpjobportal::$_db->get_var($query);
-            if ($result > 0) {
+            $wpjobportal_result = wpjobportal::$_db->get_var($query);
+            if ($wpjobportal_result > 0) {
                 return true;
             } else {
                 return false;
@@ -91,8 +91,8 @@ class WPJOBPORTALuser {
         } else {
             if (isset($_COOKIE['wpjobportal-socialid']) && !empty($_COOKIE['wpjobportal-socialid'])) { // social user is logged in
                 $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE socialid = '" . sanitize_key($_COOKIE['wpjobportal-socialid']) . "'";
-                $result = wpjobportal::$_db->get_var($query);
-                if ($result > 0) {
+                $wpjobportal_result = wpjobportal::$_db->get_var($query);
+                if ($wpjobportal_result > 0) {
                     return true;
                 } else {
                     return false;
@@ -143,9 +143,9 @@ class WPJOBPORTALuser {
         }
     }
 
-    function roleid($uid=0){
-        if(is_numeric($uid) && $uid != 0){
-            $query = "SELECT roleid FROM ".wpjobportal::$_db->prefix."wj_portal_users WHERE id = ".esc_sql($uid);
+    function roleid($wpjobportal_uid=0){
+        if(is_numeric($wpjobportal_uid) && $wpjobportal_uid != 0){
+            $query = "SELECT roleid FROM ".wpjobportal::$_db->prefix."wj_portal_users WHERE id = ".esc_sql($wpjobportal_uid);
             return wpjobportaldb::get_var($query); 
         }elseif($this->currentuser != null) {
             return $this->currentuser->roleid;
@@ -184,18 +184,18 @@ class WPJOBPORTALuser {
         }
     }
 
-    function fullname($uid='') {
-        if($uid==''){ 
+    function fullname($wpjobportal_uid='') {
+        if($wpjobportal_uid==''){
             if ($this->currentuser == null) { // current user is guest
                 return false;
             } else {
-                $name = $this->currentuser->first_name . ' ' . $this->currentuser->last_name;
-                return $name;
+                $wpjobportal_name = $this->currentuser->first_name . ' ' . $this->currentuser->last_name;
+                return $wpjobportal_name;
             }
         }else{
-            if(is_numeric($uid)){
+            if(is_numeric($wpjobportal_uid)){
                 if(wpjobportal::$_common->wpjp_isadmin()){
-                    $query = "SELECT CONCAT(first_name,' ',last_name) FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE `ID` = " . esc_sql($uid);
+                    $query = "SELECT CONCAT(first_name,' ',last_name) FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE `ID` = " . esc_sql($wpjobportal_uid);
                     return wpjobportal::$_db->get_var($query);
                 }else{
                     return '';
@@ -207,22 +207,22 @@ class WPJOBPORTALuser {
     }
 
     function getAvailableCredits() {
-        $isadmin = WPJOBPORTALrequest::getVar('isadmin');
-        $userid = WPJOBPORTALrequest::getVar('userid');
-        if($isadmin && is_numeric($userid)){
-            $uid = $userid;
+        $wpjobportal_isadmin = WPJOBPORTALrequest::getVar('isadmin');
+        $wpjobportal_userid = WPJOBPORTALrequest::getVar('userid');
+        if($wpjobportal_isadmin && is_numeric($wpjobportal_userid)){
+            $wpjobportal_uid = $wpjobportal_userid;
         }else{
-            $uid = $this->uid();            
+            $wpjobportal_uid = $this->uid();
         }
-        $credits = WPJOBPORTALIncluder::getJSModel('user')->getMyAvailableCredits($uid);
-        return $credits;
+        $wpjobportal_credits = WPJOBPORTALIncluder::getJSModel('user')->getMyAvailableCredits($wpjobportal_uid);
+        return $wpjobportal_credits;
     }
 
-    function getAvailableCreditsForUser($uid) {
-        if (!is_numeric($uid))
+    function getAvailableCreditsForUser($wpjobportal_uid) {
+        if (!is_numeric($wpjobportal_uid))
             return false;
-        $credits = WPJOBPORTALIncluder::getJSModel('user')->getMyAvailableCredits($uid);
-        return $credits;
+        $wpjobportal_credits = WPJOBPORTALIncluder::getJSModel('user')->getMyAvailableCredits($wpjobportal_uid);
+        return $wpjobportal_credits;
     }
 
     function isWPJOBPortalUser() {
@@ -231,8 +231,8 @@ class WPJOBPORTALuser {
             if (!is_numeric($wpuserid))
                 return false;
             $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE uid = " . esc_sql($wpuserid);
-            $result = wpjobportal::$_db->get_var($query);
-            if ($result > 0) {
+            $wpjobportal_result = wpjobportal::$_db->get_var($query);
+            if ($wpjobportal_result > 0) {
                 return true;
             } else {
                 return false;
@@ -240,8 +240,8 @@ class WPJOBPORTALuser {
         } else {
             if (isset($_COOKIE['wpjobportal-socialid']) && !empty($_COOKIE['wpjobportal-socialid'])) { // social user is logged in
                 $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE socialid = '" . sanitize_key($_COOKIE['wpjobportal-socialid']) . "'";
-                $result = wpjobportal::$_db->get_var($query);
-                if ($result > 0) {
+                $wpjobportal_result = wpjobportal::$_db->get_var($query);
+                if ($wpjobportal_result > 0) {
                     return true;
                 } else {
                     return false;
@@ -258,11 +258,11 @@ class WPJOBPORTALuser {
         }
     }
     
-    function getwpjobportaluidbyuserid($userid){
-        if(!is_numeric($userid)) return false;
-        $query = "SELECT id FROM `".wpjobportal::$_db->prefix."wj_portal_users` WHERE uid = ".esc_sql($userid);
-        $uid = wpjobportal::$_db->get_var($query);
-        return $uid;
+    function getwpjobportaluidbyuserid($wpjobportal_userid){
+        if(!is_numeric($wpjobportal_userid)) return false;
+        $query = "SELECT id FROM `".wpjobportal::$_db->prefix."wj_portal_users` WHERE uid = ".esc_sql($wpjobportal_userid);
+        $wpjobportal_uid = wpjobportal::$_db->get_var($query);
+        return $wpjobportal_uid;
     }
 
 }

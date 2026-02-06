@@ -2,25 +2,25 @@
 if (!defined('ABSPATH'))
     die('Restricted Access');
 wp_enqueue_style('wpjobportal-wpjobportalrating', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportalrating.css');
-if (!WPJOBPORTALincluder::getTemplate('templates/admin/header',array('module' => 'jobapply'))){
+if (!WPJOBPORTALincluder::getTemplate('templates/admin/header',array('wpjobportal_module' => 'jobapply'))){
     return;
 }
-$nationality = WPJOBPORTALincluder::getJSModel('country')->getCountriesForCombo();
-$job_type = WPJOBPORTALincluder::getJSModel('jobtype')->getJobTypeForCombo();
-$heighesteducation = WPJOBPORTALincluder::getJSModel('highesteducation')->getHighestEducationForCombo();
-$job_categories = WPJOBPORTALincluder::getJSModel('category')->getCategoriesForCombo();
-$gender = array(
+$wpjobportal_nationality = WPJOBPORTALincluder::getJSModel('country')->getCountriesForCombo();
+$wpjobportal_job_type = WPJOBPORTALincluder::getJSModel('jobtype')->getJobTypeForCombo();
+$wpjobportal_heighesteducation = WPJOBPORTALincluder::getJSModel('highesteducation')->getHighestEducationForCombo();
+$wpjobportal_job_categories = WPJOBPORTALincluder::getJSModel('category')->getCategoriesForCombo();
+$wpjobportal_gender = array(
     (object) array('id' => '', 'text' => esc_html(__('Search All', 'wp-job-portal'))),
     (object) array('id' => 1, 'text' => esc_html(__('Male', 'wp-job-portal'))),
     (object) array('id' => 2, 'text' => esc_html(__('Female', 'wp-job-portal'))));
 ?>
 <?php
     // to handle the email candidate case
-    $jobid = WPJOBPORTALrequest::getVar('jobid','','');
+    $wpjobportal_jobid = WPJOBPORTALrequest::getVar('jobid','','');
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
         function sendMessageToCandidate(resumeid, jobseekerid, jobid, name, employerid) {
             jQuery('span#popup_title.message').html(name);
             jQuery('input#resumeid').val(resumeid);
@@ -204,8 +204,8 @@ $gender = array(
             return true;
         }";
 
-        wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
-        $inline_js_script = "
+        wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
+        $wpjobportal_inline_js_script = "
         function changeStatusOfResume(id, resumeid, aid) {
             var ajaxurl = \"". esc_url_raw(admin_url('admin-ajax.php')) ."\";
             jQuery.post(ajaxurl, {action: 'wpjobportal_ajax', wpjobportalme: 'resumeaction', task: 'updateJobApplyResumeStatus', jobapplyid: id, actionid: aid, '_wpnonce':'". esc_attr(wp_create_nonce("update-job-apply-resume-status"))."'}, function (data) {
@@ -374,7 +374,7 @@ $gender = array(
             });
         }
         function getEmailFields(emailid, resumeid) {
-            var jobid = ".$jobid.";// needed to get employer email address
+            var jobid = ".$wpjobportal_jobid.";// needed to get employer email address
             var ajaxurl = \"". esc_url_raw(admin_url('admin-ajax.php')) ."\";
             jQuery.post(ajaxurl, {action: 'wpjobportal_ajax', wpjobportalme: 'jobapply', task: 'getEmailFields', em: emailid,resumeid: resumeid, jobid:jobid, '_wpnonce':'". esc_attr(wp_create_nonce("get-email-fields"))."'}, function (data) {
                 if (data) {
@@ -399,7 +399,7 @@ $gender = array(
             });
         }
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 
 ?>
 <!-- main wrapper -->
@@ -429,7 +429,7 @@ $gender = array(
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_html(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -439,7 +439,7 @@ $gender = array(
             </div>    
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_html(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
@@ -451,9 +451,10 @@ $gender = array(
         </div>
         <!-- top head -->
         <?php
-            if(!WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('module' => 'jobapply','layouts' => 'jobapply'))){
+            if(!WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('wpjobportal_module' => 'jobapply','wpjobportal_layouts' => 'jobapply'))){
                 return;
             }
+            wpjobportal::$wpjobportal_data['is_admin_layout_check'] = 1;
         ?>
         <!-- page content -->
         <div id="wpjobportal-admin-wrapper">
@@ -465,16 +466,16 @@ $gender = array(
             if(isset(wpjobportal::$_data[4]['jobinfo'][0]) && !empty(wpjobportal::$_data[4]['jobinfo'][0])){
 
                 WPJOBPORTALincluder::getTemplate('job/views/admin/joblist',array(
-                    'job' => wpjobportal::$_data[4]['jobinfo'][0],
-                    'layout' => '',
-                    'logo' => 'logo'
+                    'wpjobportal_job' => wpjobportal::$_data[4]['jobinfo'][0],
+                    'wpjobportal_layout' => '',
+                    'wpjobportal_logo' => 'logo'
                 ));
             }
             ?>
            <div id="wpjobportal-applied-tabs-container">
                 <?php
-                    $ta = WPJOBPORTALrequest::getVar('ta', null, 1);
-                    do_action('wpjobportal_addons_resume_top_buttons_actions_admin',wpjobportal::$_data[0],$ta);
+                    $wpjobportal_ta = WPJOBPORTALrequest::getVar('ta', null, 1);
+                    do_action('wpjobportal_addons_resume_top_buttons_actions_admin',wpjobportal::$_data[0],$wpjobportal_ta);
                     do_action('wpjobportal_addons_resume_top_buttons_actions_export_admin',wpjobportal::$_data['jobid']); 
                     //do_action('wpjobportal_addons_popup_main_outer_admin');
                 ?>   
@@ -484,18 +485,18 @@ $gender = array(
             <?php
 
                 if (!empty(wpjobportal::$_data[0]['data'])) {
-                    foreach (wpjobportal::$_data[0]['data'] as $data) {
-                        WPJOBPORTALincluder::getTemplate('jobapply/views/admin/detail',array('data' => $data ));
+                    foreach (wpjobportal::$_data[0]['data'] as $wpjobportal_data) {
+                        WPJOBPORTALincluder::getTemplate('jobapply/views/admin/detail',array('wpjobportal_data' => $wpjobportal_data ));
                       
                     } // loop End
                     if (wpjobportal::$_data[1]) {
-                        if(!WPJOBPORTALincluder::getTemplate('templates/admin/pagination',array('module' => 'jobapply' ,'pagination' =>wpjobportal::$_data[1] ))){
+                        if(!WPJOBPORTALincluder::getTemplate('templates/admin/pagination',array('wpjobportal_module' => 'jobapply' ,'pagination' =>wpjobportal::$_data[1] ))){
                             return;
                         }
                     }
-                    $jobapplyid = wpjobportal::$_data[0]['data'][0]->jobapplyid;
+                    $wpjobportal_jobapplyid = wpjobportal::$_data[0]['data'][0]->jobapplyid;
                     echo wp_kses(WPJOBPORTALformfield::hidden('id', ''),WPJOBPORTAL_ALLOWED_TAGS);
-                    echo wp_kses(WPJOBPORTALformfield::hidden('jobapplyid', $jobapplyid ),WPJOBPORTAL_ALLOWED_TAGS);
+                    echo wp_kses(WPJOBPORTALformfield::hidden('jobapplyid', $wpjobportal_jobapplyid ),WPJOBPORTAL_ALLOWED_TAGS);
                     echo wp_kses(WPJOBPORTALformfield::hidden('task', 'actionresume'),WPJOBPORTAL_ALLOWED_TAGS);
                     echo wp_kses(WPJOBPORTALformfield::hidden('action', ''),WPJOBPORTAL_ALLOWED_TAGS);
                     echo wp_kses(WPJOBPORTALformfield::hidden('action_status', ''),WPJOBPORTAL_ALLOWED_TAGS);
@@ -505,15 +506,15 @@ $gender = array(
                     echo wp_kses(WPJOBPORTALformfield::hidden('ta', wpjobportal::$_data[0]['ta']),WPJOBPORTAL_ALLOWED_TAGS);
                     echo wp_kses(WPJOBPORTALformfield::hidden('form_request', 'wpjobportal'),WPJOBPORTAL_ALLOWED_TAGS);
                 } else {
-                    $msg = esc_html(__('No record found','wp-job-portal'));
-                    WPJOBPORTALlayout::getNoRecordFound($msg);
+                    $wpjobportal_msg = esc_html(__('No record found','wp-job-portal'));
+                    WPJOBPORTALlayout::getNoRecordFound($wpjobportal_msg);
                 }
             ?>
         </div>
     </div>
 </div>
 <?php
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
         jQuery(document).ready(function () {
             jQuery('a#print-link').click(function (e) {
                 e.preventDefault();
@@ -522,5 +523,5 @@ $gender = array(
             });
         });
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>

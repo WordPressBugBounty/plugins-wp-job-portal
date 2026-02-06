@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Delete"
 msgstr "Verwijderen"
@@ -10273,3 +10273,2472 @@ msgstr "U hebt geen overblijfselen van Save Serch"
 
 msgid "We would love to hear from You."
 msgstr "We zouden graag van je horen."
+
+msgid "Welcome back!"
+msgstr "Welkom terug!"
+
+msgid "Here's a snapshot of your job board's performance."
+msgstr "Hier is een momentopname van de prestaties van uw vacature."
+
+msgid "Customize Your Dashboard"
+msgstr "Pas uw dashboard aan"
+
+msgid "Core Components"
+msgstr "Kerncomponenten"
+
+msgid "Quick Actions"
+msgstr "Snelle acties"
+
+msgid "Recent Jobs"
+msgstr "Recente banen"
+
+msgid "Quick Stats"
+msgstr "Snelle statistieken"
+
+msgid "Visualizations"
+msgstr "Visualisaties"
+
+msgid "Platform Growth"
+msgstr "Platformgroei"
+
+msgid "Jobs by Status"
+msgstr "Jobs per status"
+
+msgid "Top Categories"
+msgstr "Topcategorieën"
+
+msgid "Activity & System Feeds"
+msgstr "Activiteit en systeemfeeds"
+
+msgid "Latest Applies"
+msgstr "Laatste is van toepassing"
+
+msgid "User & Financials"
+msgstr "Gebruikers en financiële middelen"
+
+msgid "Job Seekers"
+msgstr "Werkzoekenden"
+
+msgid "Payments"
+msgstr "Betalingen"
+
+msgid "Reset to Defaults"
+msgstr "Reset naar standaardwaarden"
+
+msgid "Apply Changes"
+msgstr "Wijzigingen toepassen"
+
+msgid "Approve Jobs"
+msgstr "Jobs goedkeuren"
+
+msgid "Manage Users"
+msgstr "Beheer gebruikers"
+
+msgid "View Reports"
+msgstr "Bekijk rapporten"
+
+msgid "Analytics"
+msgstr "Analyse"
+
+msgid "Manage Plans"
+msgstr "Beheer plannen"
+
+msgid "Platform Config"
+msgstr "Platformconfiguratie"
+
+msgid "Applications"
+msgstr "Toepassingen"
+
+msgid "Pending Jobs"
+msgstr "In afwachting van banen"
+
+msgid "New Applicants"
+msgstr "Nieuwe aanvragers"
+
+msgid "Active Subscriptions"
+msgstr "Actieve abonnementen"
+
+msgid "Total Users"
+msgstr "Totale gebruikers"
+
+msgid "Closed Jobs"
+msgstr "Gesloten banen"
+
+msgid "Monthly Revenue"
+msgstr "Maandelijkse inkomsten"
+
+msgid "Recent Job Postings"
+msgstr "Recente vacatures"
+
+msgid "Date Posted"
+msgstr "Geplaatst datum"
+
+msgid "Actions"
+msgstr "Acties"
+
+msgid "No recent job postings found."
+msgstr "Geen recente vacatures gevonden."
+
+msgid "Top Job Categories"
+msgstr "Topwerkcategorieën"
+
+msgid "Latest Job Applies"
+msgstr "Laatste Job is van toepassing"
+
+msgid "applied for"
+msgstr "aangevraagd"
+
+msgid "at"
+msgstr "bij"
+
+msgid "View App"
+msgstr "Bekijk app"
+
+msgid "No recent job applications to display."
+msgstr "Geen recente sollicitaties om weer te geven."
+
+msgid "No new resumes have been added recently."
+msgstr "Er zijn recent geen nieuwe cv's toegevoegd."
+
+msgid "Latest Package Subscriptions"
+msgstr "Nieuwste pakketabonnementen"
+
+msgid "subscribed to"
+msgstr "geabonneerd op"
+
+msgid "No new subscriptions found."
+msgstr "Geen nieuwe abonnementen gevonden."
+
+msgid "Latest Payments"
+msgstr "Laatste betalingen"
+
+msgid "No recent payments to display."
+msgstr "Geen recente betalingen om weer te geven."
+
+msgid "Latest Activity"
+msgstr "Laatste activiteit"
+
+msgid "Hooray! No system errors to report."
+msgstr "Hoera! Geen systeemfouten om te rapporteren."
+
+msgid "Latest Job Seekers"
+msgstr "Laatste werkzoekenden"
+
+msgid "Joined"
+msgstr "Samengevoegd"
+
+msgid "No new job seekers have registered."
+msgstr "Geen nieuwe werkzoekenden hebben zich geregistreerd."
+
+msgid "Latest Employers"
+msgstr "Laatste werkgevers"
+
+msgid "No new employers have registered."
+msgstr "Geen nieuwe werkgevers hebben zich geregistreerd."
+
+msgid "Not allowed"
+msgstr "Niet toegestaan"
+
+msgid "Allowed to all"
+msgstr "Toegestaan ​​aan iedereen"
+
+msgid "employers, job seekers and visitors"
+msgstr "werkgevers, werkzoekenden en bezoekers"
+
+msgid "Allowed only to employers"
+msgstr "Alleen toegestaan ​​voor werkgevers"
+
+msgid "City, State, Country"
+msgstr "Stad, staat, land"
+
+msgid "City, State"
+msgstr "Stad, staat"
+
+msgid "City, Country"
+msgstr "Stad, land"
+
+msgid "Minutes"
+msgstr "Notulen"
+
+msgid "Hour"
+msgstr "Uur"
+
+msgid "Hours"
+msgstr "Uur"
+
+msgid "Week"
+msgstr "Week"
+
+msgid "System & Site"
+msgstr "Systeem en locatie"
+
+msgid "Site & System"
+msgstr "Locatie en systeem"
+
+msgid "Core details about your job portal, its status, and default behaviors"
+msgstr "Kerngegevens over uw vacatureportaal, de status ervan en het standaardgedrag"
+
+msgid "Site Title"
+msgstr "Sitetitel"
+
+msgid "The main title for your job portal"
+msgstr "De hoofdtitel voor uw vacatureportaal"
+
+msgid "Site Offline"
+msgstr "Website offline"
+
+msgid "Take the site offline for maintenance"
+msgstr "Haal de site offline voor onderhoud"
+
+msgid "The message shown to visitors when the site is offline"
+msgstr "Het bericht dat aan bezoekers wordt getoond wanneer de site offline is"
+
+msgid "Default Page"
+msgstr "Standaardpagina"
+
+msgid "Select the main WordPress page for the job portal"
+msgstr "Selecteer de hoofdpagina van WordPress voor het banenportaal"
+
+msgid "Email links and support icons may not work if this is not set"
+msgstr "E-maillinks en ondersteuningspictogrammen werken mogelijk niet als dit niet is ingesteld"
+
+msgid "Date Format"
+msgstr "Datumnotatie"
+
+msgid "Set the date format used throughout the plugin"
+msgstr "Stel het datumformaat in dat in de plug-in wordt gebruikt"
+
+msgid "Default Address Display Style"
+msgstr "Standaard adresweergavestijl"
+
+msgid "Select the default format for displaying addresses"
+msgstr "Selecteer het standaardformaat voor het weergeven van adressen"
+
+msgid "Registration & Login"
+msgstr "Registratie en inloggen"
+
+msgid "Control user registration flows and login/logout redirects"
+msgstr "Beheer gebruikersregistratiestromen en in-/uitlogomleidingen"
+
+msgid "Set Register Link"
+msgstr "Stel de registratielink in"
+
+msgid "Set the main registration page for the site"
+msgstr "Stel de hoofdregistratiepagina voor de site in"
+
+msgid "Custom Register Redirect Link"
+msgstr "Aangepaste registratie-omleidingslink"
+
+msgid "Enter the custom URL for registration if"
+msgstr "Voer de aangepaste URL voor registratie in als"
+
+msgid "is selected above"
+msgstr "is hierboven geselecteerd"
+
+msgid "Set the main login page for the site"
+msgstr "Stel de hoofdinlogpagina voor de site in"
+
+msgid "Custom Login Redirect Link"
+msgstr "Aangepaste login-omleidingslink"
+
+msgid "Enter the custom URL for login if"
+msgstr "Voer de aangepaste URL in om in te loggen als"
+
+msgid "Redirect Link For Non-Portal WP User"
+msgstr "Omleidingslink voor niet-Portal WP-gebruikers"
+
+msgid "Redirect WordPress users who do not have a role in WP Job Portal to this link after login"
+msgstr "Verwijs WordPress-gebruikers die geen rol hebben in WP Job Portal na het inloggen door naar deze link"
+
+msgid "Terms & Conditions"
+msgstr "Algemene voorwaarden"
+
+msgid "Assign specific Terms & Conditions pages for different submission types"
+msgstr "Wijs specifieke pagina's met algemene voorwaarden toe voor verschillende inzendingstypen"
+
+msgid "Company Terms Page"
+msgstr "Pagina Bedrijfsvoorwaarden"
+
+msgid "Select the"
+msgstr "Selecteer de"
+
+msgid "page for company submissions"
+msgstr "pagina voor bedrijfsinzendingen"
+
+msgid "Job Terms Page"
+msgstr "Pagina Functievoorwaarden"
+
+msgid "page for job submissions"
+msgstr "pagina voor het indienen van vacatures"
+
+msgid "Resume Terms Page"
+msgstr "Pagina met CV-voorwaarden"
+
+msgid "page for resume submissions"
+msgstr "pagina voor CV-inzendingen"
+
+msgid "Content & Display"
+msgstr "Inhoud en weergave"
+
+msgid "Taxonomy & Categories"
+msgstr "Taxonomie en categorieën"
+
+msgid "Manage how content like categories and tags are handled"
+msgstr "Beheer hoe inhoud zoals categorieën en tags wordt afgehandeld"
+
+msgid "Even if Empty"
+msgstr "Zelfs als het leeg is"
+
+msgid "If no is selected then only categories that have jobs or resumes will be shown"
+msgstr "Als nee is geselecteerd, worden alleen categorieën met vacatures of cv's weergegeven"
+
+msgid "Categories Per Row"
+msgstr "Categorieën per rij"
+
+msgid "Number of categories to display per row on category listing pages"
+msgstr "Aantal categorieën dat per rij moet worden weergegeven op pagina's met categorieoverzichten"
+
+msgid "Sub-categories Limit"
+msgstr "Subcategorieën Limiet"
+
+msgid "How many sub-categories to show in the popup on category pages"
+msgstr "Hoeveel subcategorieën moeten worden weergegeven in de pop-up op categoriepagina's"
+
+msgid "User Can Add New Tags"
+msgstr "Gebruiker kan nieuwe tags toevoegen"
+
+msgid "Allow users to create new tags in the system when posting"
+msgstr "Sta gebruikers toe nieuwe tags in het systeem te maken wanneer ze posten"
+
+msgid "Default Pagination Size"
+msgstr "Standaard pagineringgrootte"
+
+msgid "Maximum number of records to show per page"
+msgstr "Maximaal aantal records dat per pagina kan worden weergegeven"
+
+msgid "Show Breadcrumbs"
+msgstr "Toon broodkruimels"
+
+msgid "Show WP Job Portal Page Title"
+msgstr "Toon WP Job Portal-paginatitel"
+
+msgid "File Uploads & Defaults"
+msgstr "Bestandsuploads en standaardinstellingen"
+
+msgid "Manage file uploads and default placeholder images"
+msgstr "Beheer bestandsuploads en standaardplaatsaanduidingsafbeeldingen"
+
+msgid "Data Directory"
+msgstr "Gegevensmap"
+
+msgid "System will upload all user files into this folder within the WordPress uploads directory"
+msgstr "Het systeem uploadt alle gebruikersbestanden naar deze map in de WordPress-uploadmap"
+
+msgid "Default Image"
+msgstr "Standaardafbeelding"
+
+msgid "This image will be shown as the default for entities & users if no other image is provided"
+msgstr "Deze afbeelding wordt standaard weergegeven voor entiteiten en gebruikers als er geen andere afbeelding is opgegeven"
+
+msgid "Allowed Image Extensions"
+msgstr "Toegestane afbeeldingsextensies"
+
+msgid "Comma-separated list of allowed image file extensions"
+msgstr "Door komma's gescheiden lijst met toegestane afbeeldingsbestandsextensies"
+
+msgid "Max Image Size"
+msgstr "Maximale afbeeldingsgrootte"
+
+msgid "Maximum file size for general image uploads in kilobytes"
+msgstr "Maximale bestandsgrootte voor algemene afbeeldingsuploads in kilobytes"
+
+msgid "URL & SEO"
+msgstr "URL en SEO"
+
+msgid "URL Structure"
+msgstr "URL-structuur"
+
+msgid "Configure the URL structure"
+msgstr "Configureer de URL-structuur"
+
+msgid "permalinks"
+msgstr "permalinks"
+
+msgid "for detail pages"
+msgstr "voor detailpagina's"
+
+msgid "Job Detail URL Structure"
+msgstr "URL-structuur taakdetail"
+
+msgid "Click on the available tags below to build the URL structure for job detail pages"
+msgstr "Klik op de beschikbare tags hieronder om de URL-structuur voor vacaturedetailpagina's op te bouwen"
+
+msgid "Company Detail URL Structure"
+msgstr "Bedrijfsdetails URL-structuur"
+
+msgid "Click on the available tags below to build the URL structure for company detail pages"
+msgstr "Klik op de beschikbare tags hieronder om de URL-structuur voor bedrijfsgegevenspagina's op te bouwen"
+
+msgid "Resume Detail URL Structure"
+msgstr "CV-detail URL-structuur"
+
+msgid "Click on the available tags below to build the URL structure for resume detail pages"
+msgstr "Klik op de beschikbare tags hieronder om de URL-structuur voor cv-detailpagina's op te bouwen"
+
+msgid "Registration & Access"
+msgstr "Registratie en toegang"
+
+msgid "If no then front end employer area is not accessible"
+msgstr "Als dit niet het geval is, is het front-end werkgeversgedeelte niet toegankelijk"
+
+msgid "Allow Registration as Employer"
+msgstr "Registratie als werkgever toestaan"
+
+msgid "Show the option to register as an employer on the registration form"
+msgstr "Toon op het inschrijfformulier de mogelijkheid om je als werkgever te registreren"
+
+msgid "Employer Default Role"
+msgstr "Standaardrol werkgever"
+
+msgid "Employer Can View Job Seeker Area"
+msgstr "Werkgever kan het werkzoekende gebied bekijken"
+
+msgid "Allow logged-in employers to view the job seeker control panel"
+msgstr "Sta ingelogde werkgevers toe het werkzoekende controlepaneel te bekijken"
+
+msgid "Set Employer After-Register Link"
+msgstr "Stel de werkgever-na-registratielink in"
+
+msgid "Employer After-Registration Page"
+msgstr "Werkgever na-registratiepagina"
+
+msgid "Employer Custom After-Registration Link"
+msgstr "Aangepaste na-registratielink voor werkgever"
+
+msgid "Custom Empolyer After Regitser Link"
+msgstr "Aangepaste werkgever na registratielink"
+
+msgid "Layout & Widgets"
+msgstr "Indeling en widgets"
+
+msgid "Control the visibility of main sections and widgets in the logged-in employer dashboard"
+msgstr "Beheer de zichtbaarheid van de belangrijkste secties en widgets in het ingelogde werkgeversdashboard"
+
+msgid "Show Profile Section"
+msgstr "Profielsectie tonen"
+
+msgid "Show Stat Boxes"
+msgstr "Statistische vakken weergeven"
+
+msgid "Show Recent Resumes Box"
+msgstr "Toon het vak Recente CV's"
+
+msgid "Show Stats Graph"
+msgstr "Statistiekengrafiek weergeven"
+
+msgid "Setting to show the stats graph on the employer dashboard"
+msgstr "Instelling om de statistiekengrafiek op het werkgeversdashboard weer te geven"
+
+msgid "Show Useful Links"
+msgstr "Toon nuttige links"
+
+msgid "Setting to show the useful links section"
+msgstr "Instelling om de sectie met nuttige links weer te geven"
+
+msgid "Show Applied Resumes"
+msgstr "Toon toegepaste cv's"
+
+msgid "Setting to show the applied resumes section"
+msgstr "Instelling om de sectie met toegepaste cv's weer te geven"
+
+msgid "Show Saved Searches"
+msgstr "Toon opgeslagen zoekopdrachten"
+
+msgid "Setting to show the saved searches section"
+msgstr "Instelling om de sectie met opgeslagen zoekopdrachten weer te geven"
+
+msgid "Show Newest Resumes"
+msgstr "Toon nieuwste cv's"
+
+msgid "Setting to show the newest resumes section"
+msgstr "Instelling om de nieuwste cv-sectie weer te geven"
+
+msgid "Navigation Links"
+msgstr "Navigatielinks"
+
+msgid "Control which navigation links are visible in the logged-in employer dashboard menu"
+msgstr "Bepaal welke navigatielinks zichtbaar zijn in het ingelogde werkgeversdashboardmenu"
+
+msgid "link in the employer dashboard"
+msgstr "link in het werkgeversdashboard"
+
+msgid "RSS Feedback"
+msgstr "RSS-feedback"
+
+msgid "Job Seeker Default Role"
+msgstr "Standaardrol werkzoekende"
+
+msgid "Set Job Seeker After-Register Link"
+msgstr "Stel de naregistratielink voor werkzoekenden in"
+
+msgid "Job Seeker After-Registration Page"
+msgstr "Na-registratiepagina voor werkzoekenden"
+
+msgid "Job Seeker Custom After-Registration Link"
+msgstr "Aangepaste na-registratielink voor werkzoekenden"
+
+msgid "Custom Job seeker After Regitser Link"
+msgstr "Aangepaste werkzoekende na registratielink"
+
+msgid "Enable Job Shortlisting"
+msgstr "Schakel het maken van een shortlist voor vacatures in"
+
+msgid "Allow job seekers to shortlist jobs"
+msgstr "Geef werkzoekenden de mogelijkheid om vacatures op de shortlist te zetten"
+
+msgid "This affects the job detail page"
+msgstr "Dit heeft invloed op de vacaturedetailpagina"
+
+msgid "Enable Tell a Friend"
+msgstr "Schakel 'Vertel een vriend' in"
+
+msgid "Enable the"
+msgstr "Schakel de"
+
+msgid "feature on job listing pages"
+msgstr "functie op vacaturepagina's"
+
+msgid "Control the visibility of main sections and widgets in the logged-in job seeker dashboard"
+msgstr "Beheer de zichtbaarheid van de belangrijkste secties en widgets in het dashboard van ingelogde werkzoekenden"
+
+msgid "Show Applied Jobs Box"
+msgstr "Vak met toegepaste vacatures weergeven"
+
+msgid "Show Newest Jobs Box"
+msgstr "Toon het vak Nieuwste vacatures"
+
+msgid "Show Jobs Graph"
+msgstr "Toon banengrafiek"
+
+msgid "Setting to show the jobs graph on the job seeker dashboard"
+msgstr "Instelling om de banengrafiek op het werkzoekendashboard weer te geven"
+
+msgid "Show Applied Jobs"
+msgstr "Toon toegepaste vacatures"
+
+msgid "Setting to show the applied jobs section"
+msgstr "Instelling om de sectie met toegepaste vacatures weer te geven"
+
+msgid "Show Shortlisted Jobs"
+msgstr "Toon vacatures op de shortlist"
+
+msgid "Setting to show the shortlisted jobs section"
+msgstr "Instelling om de sectie met vacatures op de shortlist weer te geven"
+
+msgid "Show Newest Jobs"
+msgstr "Toon nieuwste vacatures"
+
+msgid "Setting to show the newest jobs section"
+msgstr "Instelling om de nieuwste vacaturessectie weer te geven"
+
+msgid "Control which navigation links are visible in the logged-in job seeker dashboard menu"
+msgstr "Bepaal welke navigatielinks zichtbaar zijn in het dashboardmenu van ingelogde werkzoekenden"
+
+msgid "link in the job seeker dashboard"
+msgstr "link in het werkzoekendashboard"
+
+msgid "Visitors"
+msgstr "Bezoekers"
+
+msgid "General Permissions"
+msgstr "Algemene machtigingen"
+
+msgid "Define what non-logged-in users are allowed to do on the site"
+msgstr "Bepaal wat niet-ingelogde gebruikers op de site mogen doen"
+
+msgid "Visitor Can Post Job"
+msgstr "Bezoeker kan vacature plaatsen"
+
+msgid "Allow non-logged-in users to post jobs"
+msgstr "Laat niet-ingelogde gebruikers vacatures plaatsen"
+
+msgid "Visitor Can Add Job"
+msgstr "Bezoeker kan taak toevoegen"
+
+msgid "Visitor Job Post Redirect Page"
+msgstr "Bezoeker vacature-omleidingspagina"
+
+msgid "A visitor will be redirected to this page after posting a job"
+msgstr "Een bezoeker wordt na het plaatsen van een vacature doorgestuurd naar deze pagina"
+
+msgid "Visitor Can Apply to Job"
+msgstr "Bezoeker kan solliciteren op een baan"
+
+msgid "Allow non-logged-in users to apply for jobs"
+msgstr "Sta niet-ingelogde gebruikers toe om te solliciteren"
+
+msgid "Visitor Can Add Resume"
+msgstr "Bezoeker kan CV toevoegen"
+
+msgid "Allow non-logged-in users to add a resume"
+msgstr "Sta niet-ingelogde gebruikers toe een CV toe te voegen"
+
+msgid "Visitor Resume Post Redirect Page"
+msgstr "Bezoeker CV bericht omleidingspagina"
+
+msgid "A visitor will be redirected to this page after posting a resume"
+msgstr "Een bezoeker wordt na het plaatsen van een CV doorgestuurd naar deze pagina"
+
+msgid "Visitor Can Edit Job"
+msgstr "Bezoeker kan vacature bewerken"
+
+msgid "Allow non-logged-in users to edit jobs they have posted"
+msgstr "Sta niet-ingelogde gebruikers toe om vacatures die zij hebben geplaatst te bewerken"
+
+msgid "Page & Link Access"
+msgstr "Pagina- en linktoegang"
+
+msgid "Control which pages and links are visible to non-logged-in users"
+msgstr "Bepaal welke pagina's en links zichtbaar zijn voor niet-ingelogde gebruikers"
+
+msgid "Allow visitors to view the employer control panel links"
+msgstr "Geef bezoekers de mogelijkheid om de links naar het werkgeversdashboard te bekijken"
+
+msgid "Allow visitors to view the resume categories page"
+msgstr "Sta bezoekers toe de pagina met cv-categorieën te bekijken"
+
+msgid "Allow visitors to access the resume search functionality"
+msgstr "Geef bezoekers toegang tot de cv-zoekfunctie"
+
+msgid "Allow visitors to view company detail pages"
+msgstr "Geef bezoekers de mogelijkheid om bedrijfsgegevenspagina's te bekijken"
+
+msgid "Allow visitors to view job detail pages"
+msgstr "Geef bezoekers de mogelijkheid om vacaturedetailpagina's te bekijken"
+
+msgid "Allow visitors to view resume detail pages"
+msgstr "Sta bezoekers toe CV-detailpagina's te bekijken"
+
+msgid "Allow visitors to view the job seeker control panel links"
+msgstr "Laat bezoekers de links naar het configuratiescherm voor werkzoekenden bekijken"
+
+msgid "Allow visitors to view the jobs by category page"
+msgstr "Geef bezoekers de mogelijkheid om de vacatures per categoriepagina te bekijken"
+
+msgid "Allow visitors to use the job search functionality"
+msgstr "Geef bezoekers de mogelijkheid om de zoekfunctie voor vacatures te gebruiken"
+
+msgid "Allow visitors to see job search result listings"
+msgstr "Laat bezoekers de zoekresultaten van vacatures zien"
+
+msgid "Allow visitors to see the newest jobs page"
+msgstr "Laat bezoekers de nieuwste vacaturespagina zien"
+
+msgid "Job Posting & Management"
+msgstr "Vacatures plaatsen en beheren"
+
+msgid "Manage how jobs are posted, their lifecycle, and related features"
+msgstr "Beheer hoe vacatures worden geplaatst, hun levenscyclus en gerelateerde functies"
+
+msgid "Job Auto Approve"
+msgstr "Taak automatisch goedkeuren"
+
+msgid "Automatically approve new jobs upon submission"
+msgstr "Keur automatisch nieuwe vacatures goed bij indiening"
+
+msgid "Job Expiry Days"
+msgstr "Dagen waarop de baan vervalt"
+
+msgid "Number of days until a freely posted job expires"
+msgstr "Aantal dagen totdat een vrij geplaatste vacature vervalt"
+
+msgid "Number of days until a paid"
+msgstr "Aantal dagen tot een betaald"
+
+msgid "job expires"
+msgstr "baan vervalt"
+
+msgid "Job Display & Listings"
+msgstr "Vacatureweergave en vermeldingen"
+
+msgid "Control how job-related pages and information are displayed to users"
+msgstr "Bepaal hoe taakgerelateerde pagina's en informatie aan gebruikers worden weergegeven"
+
+msgid "Show Country on Jobs by Cities Page"
+msgstr "Toon land op de pagina Vacatures per stad"
+
+msgid "Display the country name next to the city"
+msgstr "Geef de landnaam weer naast de stad"
+
+msgid "Show Count on Jobs by Cities Page"
+msgstr "Toon het aantal banen op de pagina Steden"
+
+msgid "Display the total number of jobs available in each city"
+msgstr "Geef het totale aantal beschikbare banen in elke stad weer"
+
+msgid "Show Count in Job Categories"
+msgstr "Toon telling in taakcategorieën"
+
+msgid "Display the total number of jobs for each category"
+msgstr "Geef het totale aantal taken voor elke categorie weer"
+
+msgid "Show Count on Jobs by Types Page"
+msgstr "Toon het aantal opdrachten per typepagina"
+
+msgid "Display the total number of jobs for each job type"
+msgstr "Geef het totale aantal taken voor elk taaktype weer"
+
+msgid "Job Types Per Row"
+msgstr "Taaktypen per rij"
+
+msgid "How many job types to display per row on the"
+msgstr "Hoeveel taaktypen er per rij op het scherm moeten worden weergegeven"
+
+msgid "Job by Type"
+msgstr "Taak op type"
+
+msgid "Show Jobs Graph for Employer"
+msgstr "Toon banengrafiek voor werkgever"
+
+msgid "Show Active Jobs Graph for Job Seeker"
+msgstr "Toon actieve banengrafiek voor werkzoekende"
+
+msgid "Company Profile Display"
+msgstr "Bedrijfsprofielweergave"
+
+msgid "Control which company details are visible on listings and company pages"
+msgstr "Beheer welke bedrijfsgegevens zichtbaar zijn op vermeldingen en bedrijfspagina's"
+
+msgid "Show Company Name"
+msgstr "Toon bedrijfsnaam"
+
+msgid "Show Company Description"
+msgstr "Toon bedrijfsbeschrijving"
+
+msgid "Show Company Email Address"
+msgstr "Toon het e-mailadres van het bedrijf"
+
+msgid "Show Company City"
+msgstr "Toon bedrijfsstad"
+
+msgid "Show Company URL"
+msgstr "Toon bedrijfs-URL"
+
+msgid "Show Company Contact Detail by Default"
+msgstr "Toon standaard bedrijfscontactgegevens"
+
+msgid "If disabled, credits may be required to view contact details"
+msgstr "Indien uitgeschakeld, zijn mogelijk tegoeden vereist om contactgegevens te bekijken"
+
+msgid "General settings for company profiles"
+msgstr "Algemene instellingen voor bedrijfsprofielen"
+
+msgid "Company Logo Maximum Size"
+msgstr "Bedrijfslogo Maximale grootte"
+
+msgid "Set the maximum file size for company logo uploads in kilobytes"
+msgstr "Stel de maximale bestandsgrootte voor bedrijfslogo-uploads in kilobytes in"
+
+msgid "Company Auto Approve"
+msgstr "Bedrijf automatisch goedkeuren"
+
+msgid "Automatically approve new company profiles upon submission"
+msgstr "Keur automatisch nieuwe bedrijfsprofielen goed na indiening"
+
+msgid "Control resume submissions, visibility, and search functionality"
+msgstr "Beheer cv-inzendingen, zichtbaarheid en zoekfunctionaliteit"
+
+msgid "Resume Auto Approve"
+msgstr "Automatische goedkeuring hervatten"
+
+msgid "Automatically approve new resumes upon submission"
+msgstr "Keur automatisch nieuwe cv's goed na indiening"
+
+msgid "Show Resume Contact Detail by Default"
+msgstr "Toon CV-contactgegevens standaard"
+
+msgid "If disabled, credits may be required to view resume contact details"
+msgstr "Indien uitgeschakeld, zijn er mogelijk tegoeden nodig om de contactgegevens van uw cv te bekijken"
+
+msgid "Show Count in Resume Categories"
+msgstr "Toon telling in cv-categorieën"
+
+msgid "Display the total number of resumes for each category"
+msgstr "Geef het totale aantal cv's voor elke categorie weer"
+
+msgid "Allow Resume Search"
+msgstr "CV zoeken toestaan"
+
+msgid "Define who is allowed to search for resumes"
+msgstr "Bepaal wie naar cv's mag zoeken"
+
+msgid "Allow Users to Save Resume Searches"
+msgstr "Sta gebruikers toe cv-zoekopdrachten op te slaan"
+
+msgid "Allow users to save their resume search criteria for later use"
+msgstr "Sta gebruikers toe hun cv-zoekcriteria op te slaan voor later gebruik"
+
+msgid "Resume Files & Builder"
+msgstr "CV-bestanden en bouwer"
+
+msgid "Define limits and allowed types for resume file uploads and advanced builder sections"
+msgstr "Definieer limieten en toegestane typen voor het uploaden van cv-bestanden en geavanceerde bouwersecties"
+
+msgid "Resume Photo Maximum Size"
+msgstr "Maximale fotogrootte hervatten"
+
+msgid "Maximum file size for resume photos in kilobytes"
+msgstr "Maximale bestandsgrootte voor CV-foto's in kilobytes"
+
+msgid "Resume Document Maximum Size"
+msgstr "Maximale documentgrootte hervatten"
+
+msgid "System will not upload if resume file size exceeds the given size"
+msgstr "Het systeem zal niet uploaden als de CV-bestandsgrootte de opgegeven grootte overschrijdt"
+
+msgid "Allowed Document Extensions"
+msgstr "Toegestane documentextensies"
+
+msgid "Comma-separated list of allowed document file extensions"
+msgstr "Door komma's gescheiden lijst met toegestane documentbestandsextensies"
+
+msgid "Maximum Number of Files for Resume"
+msgstr "Maximaal aantal bestanden voor CV"
+
+msgid "Maximum number of files a job seeker can upload with their resume"
+msgstr "Maximaal aantal bestanden dat een werkzoekende kan uploaden met zijn cv"
+
+msgid "Max Employers in Resume Builder"
+msgstr "Max. werkgevers in CV Builder"
+
+msgid "Maximum number of employers allowed in the resume builder"
+msgstr "Maximaal aantal werkgevers toegestaan ​​in de CV-bouwer"
+
+msgid "Max Institutes in Resume Builder"
+msgstr "Max Instituten in CV Builder"
+
+msgid "Maximum number of institutes allowed in the resume builder"
+msgstr "Maximaal aantal instituten toegestaan ​​in de CV-bouwer"
+
+msgid "Max Languages in Resume Builder"
+msgstr "Maximaal aantal talen in CV Builder"
+
+msgid "Maximum number of languages allowed in the resume builder"
+msgstr "Maximaal aantal toegestane talen in de CV-builder"
+
+msgid "Max Addresses in Resume Builder"
+msgstr "Max. adressen in CV Builder"
+
+msgid "Maximum number of addresses allowed in the resume builder"
+msgstr "Maximaal aantal adressen toegestaan ​​in de cv-builder"
+
+msgid "Job Applications"
+msgstr "Sollicitaties"
+
+msgid "Configure the job application process and related notifications"
+msgstr "Configureer het sollicitatieproces en de bijbehorende meldingen"
+
+msgid "Show Apply Now Button"
+msgstr "Knop Nu toepassen weergeven"
+
+msgid "Enable Quick Apply for Logged-in Users"
+msgstr "Schakel Snel solliciteren in voor ingelogde gebruikers"
+
+msgid "Enable Quick Apply for Visitors"
+msgstr "Schakel Snel solliciteren voor bezoekers in"
+
+msgid "Show Applied Resume Status to Job Seeker"
+msgstr "Toon toegepaste cv-status aan werkzoekende"
+
+msgid "Resume Data in Email"
+msgstr "Gegevens hervatten in e-mail"
+
+msgid "Sections"
+msgstr "Secties"
+
+msgid "Choose whether to include all resume sections or only filled ones in the application email to employers"
+msgstr "Kies of u alle cv-secties of alleen de ingevulde secties wilt opnemen in de sollicitatie-e-mail aan werkgevers"
+
+msgid "Choose whether to include all fields or only filled fields in the application email"
+msgstr "Kies of u alle velden of alleen ingevulde velden in de sollicitatie-e-mail wilt opnemen"
+
+msgid "Auto-Approve Rules"
+msgstr "Regels voor automatische goedkeuring"
+
+msgid "Set auto-approval rules for various user-submitted content"
+msgstr "Stel regels voor automatische goedkeuring in voor verschillende door gebruikers ingediende inhoud"
+
+msgid "Featured Resume Auto Approve"
+msgstr "Aanbevolen CV automatisch goedkeuren"
+
+msgid "Automatically approve resumes marked as featured"
+msgstr "Keur automatisch cv's goed die zijn gemarkeerd als aanbevolen"
+
+msgid "Featured Company Auto Approve"
+msgstr "Aanbevolen bedrijf automatisch goedkeuren"
+
+msgid "Automatically approve companies marked as featured"
+msgstr "Keur automatisch bedrijven goed die zijn gemarkeerd als aanbevolen"
+
+msgid "Featured Job Auto Approve"
+msgstr "Aanbevolen taak automatisch goedkeuren"
+
+msgid "Automatically approve jobs marked as featured"
+msgstr "Keur automatisch taken goed die zijn gemarkeerd als aanbevolen"
+
+msgid "Cover Letter Auto Approve"
+msgstr "Sollicitatiebrief automatisch goedkeuren"
+
+msgid "Automatically approve cover letters submitted by job seekers"
+msgstr "Automatisch sollicitatiebrieven goedkeuren die zijn ingediend door werkzoekenden"
+
+msgid "Folder Auto Approve"
+msgstr "Map automatisch goedkeuren"
+
+msgid "Automatically approve new folders created by employers"
+msgstr "Keur automatisch nieuwe mappen goed die door werkgevers zijn gemaakt"
+
+msgid "Department Auto Approve"
+msgstr "Afdeling automatisch goedkeuren"
+
+msgid "Automatically approve new departments created by employers"
+msgstr "Keur automatisch nieuwe afdelingen goed die door werkgevers zijn aangemaakt"
+
+msgid "Message Auto Approve"
+msgstr "Bericht automatisch goedkeuren"
+
+msgid "Automatically approve messages between job seekers and employers"
+msgstr "Automatisch berichten tussen werkzoekenden en werkgevers goedkeuren"
+
+msgid "Conflict Message Auto Approve"
+msgstr "Conflictbericht automatisch goedkeuren"
+
+msgid "Automatically approve conflicted messages"
+msgstr "Keur conflicterende berichten automatisch goed"
+
+msgid "Email & Alerts"
+msgstr "E-mail en waarschuwingen"
+
+msgid "Email Sender Identity"
+msgstr "Identiteit van de afzender van de e-mail"
+
+msgid "Configure sender details for all outgoing system emails"
+msgstr "Configureer afzendergegevens voor alle uitgaande systeem-e-mails"
+
+msgid "Admin Email Address"
+msgstr "E-mailadres beheerder"
+
+msgid "Admin will receive email notifications at this address"
+msgstr "De beheerder ontvangt e-mailmeldingen op dit adres"
+
+msgid "Sender Email Address"
+msgstr "E-mailadres afzender"
+
+msgid "The email address that will be used to send system emails"
+msgstr "Het e-mailadres dat wordt gebruikt om systeem-e-mails te verzenden"
+
+msgid "The sender name that will be used in system emails"
+msgstr "De afzendernaam die wordt gebruikt in systeem-e-mails"
+
+msgid "Job Alerts"
+msgstr "Vacaturewaarschuwingen"
+
+msgid "Configure settings for job alert emails and forms"
+msgstr "Configureer instellingen voor e-mails met vacaturewaarschuwingen en formulieren"
+
+msgid "Show Job Alert Link"
+msgstr "Vacaturewaarschuwingslink tonen"
+
+msgid "Show the Job Alert link in the job seeker control panel"
+msgstr "Toon de link Job Alert in het configuratiescherm voor werkzoekenden"
+
+msgid "Enable Job Alerts for Visitors"
+msgstr "Schakel vacature-alerts voor bezoekers in"
+
+msgid "Allow non-logged-in users to sign up for job alerts"
+msgstr "Sta niet-ingelogde gebruikers toe zich aan te melden voor vacature-alerts"
+
+msgid "Job Alert Auto Approve"
+msgstr "Vacaturewaarschuwing automatisch goedkeuren"
+
+msgid "Automatically approve new job alerts upon creation"
+msgstr "Keur automatisch nieuwe vacature-alerts goed bij het aanmaken ervan"
+
+msgid "Captcha on Visitor Job Alert Form"
+msgstr "Captcha op bezoekerstaakwaarschuwingsformulier"
+
+msgid "Show a captcha on the job alert sign-up form for visitors"
+msgstr "Toon een captcha op het aanmeldingsformulier voor vacature-alerts voor bezoekers"
+
+msgid "Allow users to save their search queries for jobs and resumes"
+msgstr "Sta gebruikers toe hun zoekopdrachten voor vacatures en cv's op te slaan"
+
+msgid "Show Saved Searches for Job Seekers"
+msgstr "Toon opgeslagen zoekopdrachten voor werkzoekenden"
+
+msgid "Allow job seekers to save their job searches"
+msgstr "Sta werkzoekenden toe hun zoekopdrachten naar vacatures op te slaan"
+
+msgid "Show Saved Searches for Employers"
+msgstr "Toon opgeslagen zoekopdrachten voor werkgevers"
+
+msgid "Allow employers to save their resume searches"
+msgstr "Laat werkgevers hun cv-zoekopdrachten opslaan"
+
+msgid "Feeds & AI"
+msgstr "Feeds en AI"
+
+msgid "RSS Feeds"
+msgstr "RSS-feeds"
+
+msgid "Configure the RSS feed for jobs"
+msgstr "Configureer de RSS-feed voor vacatures"
+
+msgid "Enable Jobs RSS Feed"
+msgstr "Schakel RSS-feed voor vacatures in"
+
+msgid "Enable the main RSS feed for new jobs"
+msgstr "Schakel de hoofd-RSS-feed in voor nieuwe vacatures"
+
+msgid "Job Feed Title"
+msgstr "Titel vacaturefeed"
+
+msgid "The title for the job RSS feed"
+msgstr "De titel voor de RSS-feed van de vacature"
+
+msgid "Job Feed Description"
+msgstr "Beschrijving vacaturefeed"
+
+msgid "The description for the job RSS feed"
+msgstr "De beschrijving van de vacature-RSS-feed"
+
+msgid "Job Feed Copyright"
+msgstr "Auteursrecht vacaturefeed"
+
+msgid "Copyright notice for the job feed"
+msgstr "Copyrightvermelding voor de vacaturefeed"
+
+msgid "Job Feed Editor"
+msgstr "Editor voor vacaturefeeds"
+
+msgid "The person responsible for editorial content"
+msgstr "De persoon die verantwoordelijk is voor de redactionele inhoud"
+
+msgid "Job Feed Webmaster"
+msgstr "Webmaster vacaturefeed"
+
+msgid "The person responsible for technical issues"
+msgstr "De persoon die verantwoordelijk is voor technische problemen"
+
+msgid "Job Feed TTL"
+msgstr "TTL van taakfeed"
+
+msgid "Time to Live"
+msgstr "Tijd om te leven"
+
+msgid "Number of minutes the feed can be cached before refreshing"
+msgstr "Aantal minuten dat de feed in de cache kan worden opgeslagen voordat deze wordt vernieuwd"
+
+msgid "Show Categories in Job Feed"
+msgstr "Categorieën weergeven in vacaturefeed"
+
+msgid "Include categories in the job feed items"
+msgstr "Neem categorieën op in de vacaturefeeditems"
+
+msgid "Show Company Image in Job Feed"
+msgstr "Toon bedrijfsafbeelding in vacaturefeed"
+
+msgid "Include the company logo in the job feed items"
+msgstr "Neem het bedrijfslogo op in de vacaturefeeditems"
+
+msgid "Configure the RSS feed for resumes"
+msgstr "Configureer de RSS-feed voor cv's"
+
+msgid "Enable Resumes RSS Feed"
+msgstr "RSS-feed voor cv's inschakelen"
+
+msgid "Enable the main RSS feed for new resumes"
+msgstr "Schakel de hoofd-RSS-feed in voor nieuwe cv's"
+
+msgid "Resume Feed Title"
+msgstr "Titel van feed hervatten"
+
+msgid "The title for the resume RSS feed"
+msgstr "De titel voor de RSS-feed voor het cv"
+
+msgid "Resume Feed Description"
+msgstr "Beschrijving van de feed hervatten"
+
+msgid "The description for the resume RSS feed"
+msgstr "De beschrijving voor de CV RSS-feed"
+
+msgid "Resume Feed Copyright"
+msgstr "Auteursrecht op feed hervatten"
+
+msgid "Copyright notice for the resume feed"
+msgstr "Copyrightvermelding voor de CV-feed"
+
+msgid "Resume Feed Editor"
+msgstr "CV-feededitor"
+
+msgid "Resume Feed Webmaster"
+msgstr "CV-feed Webmaster"
+
+msgid "Resume Feed TTL"
+msgstr "Feed TTL hervatten"
+
+msgid "Show Categories in Resume Feed"
+msgstr "Categorieën weergeven in CV-feed"
+
+msgid "Include categories in the resume feed items"
+msgstr "Neem categorieën op in de cv-feeditems"
+
+msgid "Show Resume File in Resume Feed"
+msgstr "Toon CV-bestand in CV-feed"
+
+msgid "Make resume files downloadable from the feed"
+msgstr "Maak cv-bestanden downloadbaar vanuit de feed"
+
+msgid "AI Suggested Matches"
+msgstr "Door AI voorgestelde overeenkomsten"
+
+msgid "Configure AI-powered job and resume suggestion features"
+msgstr "Configureer AI-aangedreven functies voor suggesties voor vacatures en cv's"
+
+msgid "AI Search On Job Search Page"
+msgstr "AI-zoekopdracht op de zoekpagina voor vacatures"
+
+msgid "Show the AI search field on the main job search form"
+msgstr "Toon het AI-zoekveld op het hoofdzoekformulier voor vacatures"
+
+msgid "AI Job Search"
+msgstr "AI-banen zoeken"
+
+msgid "AI Search Filter On Job Listing"
+msgstr "AI-zoekfilter op vacatures"
+
+msgid "Show the AI search field as a filter on the job listing page"
+msgstr "Toon het AI-zoekveld als filter op de vacaturepagina"
+
+msgid "AI Search On Resume Search Page"
+msgstr "AI-zoekopdracht op de CV-zoekpagina"
+
+msgid "Show the AI search field on the main resume search form"
+msgstr "Toon het AI-zoekveld op het hoofdformulier voor het zoeken naar cv's"
+
+msgid "AI Resume Search"
+msgstr "AI CV zoeken"
+
+msgid "AI Search Filter On Resume Listing"
+msgstr "AI-zoekfilter op CV-lijst"
+
+msgid "Show the AI search field as a filter on the resume listing page"
+msgstr "Toon het AI-zoekveld als filter op de CV-pagina"
+
+msgid "Show AI Suggested Jobs Button"
+msgstr "Knop AI-voorgestelde taken weergeven"
+
+msgid "AI Suggested Jobs"
+msgstr "AI voorgestelde banen"
+
+msgid "Show AI Suggested Jobs on Dashboard"
+msgstr "Toon door AI voorgestelde taken op het dashboard"
+
+msgid "Show a list of AI-suggested jobs on the job seeker dashboard"
+msgstr "Toon een lijst met door AI voorgestelde vacatures op het werkzoekendashboard"
+
+msgid "Show AI Suggested Resumes Button"
+msgstr "Knop AI-voorgestelde cv's weergeven"
+
+msgid "AI Suggested Resumes"
+msgstr "AI voorgestelde cv's"
+
+msgid "Show AI Suggested Resumes on Dashboard"
+msgstr "Toon door AI voorgestelde cv's op het dashboard"
+
+msgid "Show a list of AI-suggested resumes on the employer dashboard"
+msgstr "Toon een lijst met door AI voorgestelde cv's op het werkgeversdashboard"
+
+msgid "Integrations"
+msgstr "Integraties"
+
+msgid "Allow users to register and log in with their social media accounts"
+msgstr "Sta gebruikers toe zich te registreren en in te loggen met hun sociale media-accounts"
+
+msgid "Login with Facebook"
+msgstr "Inloggen met Facebook"
+
+msgid "Allow users to log in using their Facebook account"
+msgstr "Sta gebruikers toe om in te loggen met hun Facebook-account"
+
+msgid "Apply with Facebook"
+msgstr "Solliciteer met Facebook"
+
+msgid "Allow users to apply for jobs using their Facebook profile"
+msgstr "Sta gebruikers toe te solliciteren op vacatures via hun Facebook-profiel"
+
+msgid "Facebook App ID"
+msgstr "Facebook-app-ID"
+
+msgid "Enter your Facebook App ID"
+msgstr "Voer uw Facebook-app-ID in"
+
+msgid "Facebook App Secret"
+msgstr "Facebook-appgeheim"
+
+msgid "Enter your Facebook App Secret"
+msgstr "Voer uw Facebook-appgeheim in"
+
+msgid "Valid OAuth URI"
+msgstr "Geldige OAuth-URI"
+
+msgid "Apply"
+msgstr "Toepassen"
+
+msgid "Login with LinkedIn"
+msgstr "Inloggen met LinkedIn"
+
+msgid "Allow users to log in using their LinkedIn account"
+msgstr "Sta gebruikers toe om in te loggen met hun LinkedIn-account"
+
+msgid "Apply with LinkedIn"
+msgstr "Solliciteer met LinkedIn"
+
+msgid "Allow users to apply for jobs using their LinkedIn profile"
+msgstr "Sta gebruikers toe te solliciteren op vacatures via hun LinkedIn-profiel"
+
+msgid "LinkedIn Client ID"
+msgstr "LinkedIn-klant-ID"
+
+msgid "Enter your LinkedIn Client ID"
+msgstr "Voer uw LinkedIn-klant-ID in"
+
+msgid "API Key"
+msgstr "API-sleutel"
+
+msgid "LinkedIn Client Secret"
+msgstr "LinkedIn-klantgeheim"
+
+msgid "Enter your LinkedIn Client Secret"
+msgstr "Voer uw LinkedIn-klantgeheim in"
+
+msgid "Social Sharing"
+msgstr "Sociaal delen"
+
+msgid "Enable social sharing buttons on your pages"
+msgstr "Schakel knoppen voor sociaal delen in op uw pagina's"
+
+msgid "Enable Facebook Likes"
+msgstr "Schakel Facebook-likes in"
+
+msgid "Show Facebook like button"
+msgstr "Toon Facebook-like-knop"
+
+msgid "Enable Facebook Share"
+msgstr "Schakel Facebook delen in"
+
+msgid "Show Facebook share button"
+msgstr "Toon Facebook-deelknop"
+
+msgid "Enable Facebook Comments"
+msgstr "Schakel Facebook-opmerkingen in"
+
+msgid "Show Facebook comments widget"
+msgstr "Toon Facebook-opmerkingenwidget"
+
+msgid "Enable Twitter Share"
+msgstr "Schakel Twitter-aandeel in"
+
+msgid "Show Twitter share button"
+msgstr "Toon Twitter-deelknop"
+
+msgid "Enable LinkedIn Share"
+msgstr "Schakel LinkedIn delen in"
+
+msgid "Show LinkedIn share button"
+msgstr "Toon LinkedIn-deelknop"
+
+msgid "Enable Blogger Share"
+msgstr "Schakel Blogger delen in"
+
+msgid "Show Blogger share button"
+msgstr "Toon de Blogger-deelknop"
+
+msgid "Enable Digg Share"
+msgstr "Schakel Digg Share in"
+
+msgid "Show Digg share button"
+msgstr "Toon de Digg-deelknop"
+
+msgid "Enable Myspace Share"
+msgstr "Schakel Myspace Share in"
+
+msgid "Show Myspace share button"
+msgstr "Toon Myspace-deelknop"
+
+msgid "Enable Yahoo Share"
+msgstr "Schakel Yahoo Share in"
+
+msgid "Show Yahoo share button"
+msgstr "Toon Yahoo-deelknop"
+
+msgid "Mapping & Geolocation"
+msgstr "Mapping en geolocatie"
+
+msgid "Configure map services and location-based features"
+msgstr "Configureer kaartservices en locatiegebaseerde functies"
+
+msgid "Choose between Google Maps and OpenStreetMap for map displays"
+msgstr "Kies tussen Google Maps en OpenStreetMap voor kaartweergave"
+
+msgid "Google Map API Key"
+msgstr "API-sleutel van Google Maps"
+
+msgid "Enter your Google Maps API key"
+msgstr "Voer uw Google Maps API-sleutel in"
+
+msgid "Map Height"
+msgstr "Kaart Hoogte"
+
+msgid "Set the height for maps displayed in the plugin, in pixels"
+msgstr "Stel de hoogte in pixels in voor kaarten die in de plug-in worden weergegeven"
+
+msgid "Default Longitude"
+msgstr "Standaard lengtegraad"
+
+msgid "Default longitude for map centering"
+msgstr "Standaardlengtegraad voor kaartcentrering"
+
+msgid "Default Latitude"
+msgstr "Standaardbreedtegraad"
+
+msgid "Default latitude for map centering"
+msgstr "Standaardbreedtegraad voor kaartcentrering"
+
+msgid "Default Map Radius Type"
+msgstr "Standaard kaartradiustype"
+
+msgid "Default unit for map radius calculations"
+msgstr "Standaardeenheid voor berekeningen van kaartradius"
+
+msgid "Max Records for City Field"
+msgstr "Max. records voor stadsveld"
+
+msgid "Set the number of cities to show in the location autocomplete results"
+msgstr "Stel het aantal steden in dat moet worden weergegeven in de resultaten voor automatisch aanvullen van de locatie"
+
+msgid "Max Records for Tag Field"
+msgstr "Max. aantal records voor tagveld"
+
+msgid "Set the number of tags to show in the tag autocomplete results"
+msgstr "Stel het aantal tags in dat moet worden weergegeven in de resultaten voor het automatisch aanvullen van tags"
+
+msgid "Security & Captcha"
+msgstr "Beveiliging en captcha"
+
+msgid "Captcha Options"
+msgstr "Captcha-opties"
+
+msgid "Enable captcha on various forms to prevent spam"
+msgstr "Schakel captcha in op verschillende formulieren om spam te voorkomen"
+
+msgid "Default Captcha Type"
+msgstr "Standaard Captcha-type"
+
+msgid "Select the default captcha to use throughout the plugin"
+msgstr "Selecteer de standaardcaptcha die u in de plug-in wilt gebruiken"
+
+msgid "Captcha on Registration Form"
+msgstr "Captcha op het registratieformulier"
+
+msgid "Show a captcha on the WP Job Portal registration form"
+msgstr "Toon een captcha op het WP Job Portal-registratieformulier"
+
+msgid "Captcha on Visitor Quick Apply"
+msgstr "Captcha op Visitor Quick Apply"
+
+msgid "Show captcha to visitors on the quick apply form"
+msgstr "Toon captcha aan bezoekers op het snelle sollicitatieformulier"
+
+msgid "Captcha on Visitor Job Form"
+msgstr "Captcha op bezoekerstaakformulier"
+
+msgid "Show captcha on the job submission form for visitors"
+msgstr "Toon captcha op het vacature-inzendingsformulier voor bezoekers"
+
+msgid "Captcha on Visitor Resume Form"
+msgstr "Captcha op bezoekerscv-formulier"
+
+msgid "Show captcha on the resume submission form for visitors"
+msgstr "Toon captcha op het cv-inzendingsformulier voor bezoekers"
+
+msgid "Captcha on Tell a Friend Popup"
+msgstr "Captcha op Vertel een vriend pop-up"
+
+msgid "Show captcha on the"
+msgstr "Captcha weergeven op de"
+
+msgid "popup for visitors"
+msgstr "pop-up voor bezoekers"
+
+msgid "WP Job Portal Captcha"
+msgstr "WP Jobportaal Captcha"
+
+msgid "Settings for the built-in mathematical captcha"
+msgstr "Instellingen voor de ingebouwde wiskundige captcha"
+
+msgid "Calculation Type"
+msgstr "Berekeningstype"
+
+msgid "Select the type of math problem for the captcha"
+msgstr "Selecteer het type wiskundeprobleem voor de captcha"
+
+msgid "Addition or Subtraction"
+msgstr "Optellen of aftrekken"
+
+msgid "Answer Always Positive"
+msgstr "Antwoord altijd positief"
+
+msgid "Ensure that subtraction problems always result in a positive answer"
+msgstr "Zorg ervoor dat aftrekkingsproblemen altijd een positief antwoord opleveren"
+
+msgid "Number of Operands"
+msgstr "Aantal operanden"
+
+msgid "Choose the number of operands for the math problem"
+msgstr "Kies het aantal operanden voor het wiskundeprobleem"
+
+msgid "Google reCAPTCHA"
+msgstr "Google reCAPTCHA"
+
+msgid "Configure Google reCAPTCHA v2 or v3"
+msgstr "Configureer Google reCAPTCHA v2 of v3"
+
+msgid "Select which version of Google reCAPTCHA to use"
+msgstr "Selecteer welke versie van Google reCAPTCHA u wilt gebruiken"
+
+msgid "Enter the site key from your Google reCAPTCHA admin console"
+msgstr "Voer de sitesleutel in vanuit uw Google reCAPTCHA-beheerdersconsole"
+
+msgid "Google reCaptcha Secret Key"
+msgstr "Google reCaptcha geheime sleutel"
+
+msgid "Enter the secret key from your Google reCAPTCHA admin console"
+msgstr "Voer de geheime sleutel in via uw Google reCAPTCHA-beheerdersconsole"
+
+msgid "Monetization"
+msgstr "Inkomsten genereren"
+
+msgid "General Monetization"
+msgstr "Algemene monetisering"
+
+msgid "Core settings for handling payments and packages"
+msgstr "Kerninstellingen voor het afhandelen van betalingen en pakketten"
+
+msgid "Choose the monetization model for submissions"
+msgstr "Kies het model voor het genereren van inkomsten voor inzendingen"
+
+msgid "Free, Per Listing, or Membership-based"
+msgstr "Gratis, per advertentie of op basis van lidmaatschap"
+
+msgid "Default Currency Symbol"
+msgstr "Standaard valutasymbool"
+
+msgid "The currency symbol to be used across the site"
+msgstr "Het valutasymbool dat op de hele site moet worden gebruikt"
+
+msgid "Currency Symbol Position"
+msgstr "Valutasymboolpositie"
+
+msgid "Packages & Featured Listings"
+msgstr "Pakketten en aanbevolen aanbiedingen"
+
+msgid "Manage free packages and enable featured listings"
+msgstr "Beheer gratis pakketten en schakel aanbevolen vermeldingen in"
+
+msgid "Auto-assign Free Package to New User"
+msgstr "Wijs gratis pakket automatisch toe aan nieuwe gebruiker"
+
+msgid "Automatically give new users a free package if one exists"
+msgstr "Geef nieuwe gebruikers automatisch een gratis pakket als dat bestaat"
+
+msgid "Free Package Purchase Auto Approve"
+msgstr "Gratis pakketaankoop automatisch goedkeuren"
+
+msgid "Automatically approve the purchase of free packages"
+msgstr "Keur automatisch de aankoop van gratis pakketten goed"
+
+msgid "Purchase Free Package Only Once"
+msgstr "Koop slechts één keer een gratis pakket"
+
+msgid "Prevent users from acquiring a free package more than once"
+msgstr "Voorkom dat gebruikers meerdere keren een gratis pakket aanschaffen"
+
+msgid "Enable Featured Companies"
+msgstr "Schakel aanbevolen bedrijven in"
+
+msgid "Allow companies to be marked as"
+msgstr "Sta toe dat bedrijven worden gemarkeerd als"
+
+msgid "Enable Featured Jobs"
+msgstr "Schakel aanbevolen taken in"
+
+msgid "Allow jobs to be marked as"
+msgstr "Sta toe dat taken worden gemarkeerd als"
+
+msgid "Enable Featured Resumes"
+msgstr "Schakel aanbevolen cv's in"
+
+msgid "Allow resumes to be marked as"
+msgstr "Toestaan ​​dat cv's worden gemarkeerd als"
+
+msgid "Per Listing Prices"
+msgstr "Per aanbiedingsprijzen"
+
+msgid "Set prices for various actions when using the"
+msgstr "Stel prijzen in voor verschillende acties bij gebruik van de"
+
+msgid "submission type"
+msgstr "soort inzending"
+
+msgid "Submission"
+msgstr "Dwang"
+
+msgid "Price to submit a single company profile"
+msgstr "Prijs voor het indienen van één bedrijfsprofiel"
+
+msgid "Additional price to make a company"
+msgstr "Meerprijs om een ​​bedrijf te maken"
+
+msgid "Days Until Featured Company Expires"
+msgstr "Dagen tot het uitgelichte bedrijf vervalt"
+
+msgid "Number of days a"
+msgstr "Aantal dagen"
+
+msgid "per-listing"
+msgstr "per vermelding"
+
+msgid "featured company remains active"
+msgstr "aanbevolen bedrijf blijft actief"
+
+msgid "free"
+msgstr "vrij"
+
+msgid "Price to submit a single job"
+msgstr "Prijs voor het indienen van één taak"
+
+msgid "Additional price to make a job"
+msgstr "Meerprijs om een ​​klus te maken"
+
+msgid "Days Until Featured Job Expires"
+msgstr "Dagen totdat de aanbevolen taak verloopt"
+
+msgid "featured job remains active"
+msgstr "aanbevolen baan blijft actief"
+
+msgid "Price to submit a single resume"
+msgstr "Prijs voor het indienen van één CV"
+
+msgid "Additional price to make a resume"
+msgstr "Meerprijs voor het maken van een CV"
+
+msgid "Days Until Featured Resume Expires"
+msgstr "Dagen totdat het aanbevolen CV vervalt"
+
+msgid "featured resume remains active"
+msgstr "aanbevolen cv blijft actief"
+
+msgid "Price per Job Apply"
+msgstr "Prijs per vacature. Solliciteren"
+
+msgid "Price for a job seeker to apply for a job"
+msgstr "Prijs voor een werkzoekende om te solliciteren naar een baan"
+
+msgid "Price to View Resume Contact"
+msgstr "Prijs om CV-contact te bekijken"
+
+msgid "Price to View Company Contact"
+msgstr "Prijs om bedrijfscontact te bekijken"
+
+msgid "Price to submit a department"
+msgstr "Prijs voor het indienen van een afdeling"
+
+msgid "Price to submit a cover letter"
+msgstr "Prijs voor het indienen van een sollicitatiebrief"
+
+msgid "Price to create a job alert"
+msgstr "Prijs om een ​​vacature-alert aan te maken"
+
+msgid "Dashboard Monetization Links"
+msgstr "Links naar dashboard-inkomsten genereren"
+
+msgid "Control the visibility of monetization-related links in user dashboards"
+msgstr "Beheer de zichtbaarheid van links die verband houden met het genereren van inkomsten in gebruikersdashboards"
+
+msgid "Employer Show Invoice History"
+msgstr "Werkgever Toon factuurgeschiedenis"
+
+msgid "Setting to show the invoice/purchase history section"
+msgstr "Instelling om het gedeelte met de factuur-/aankoopgeschiedenis weer te geven"
+
+msgid "Job Seeker Show Invoice History"
+msgstr "Werkzoekende Factuurgeschiedenis weergeven"
+
+msgid "Job Seeker Show Credits Log"
+msgstr "Werkzoekende Toon creditlogboek"
+
+msgid "Setting to show the credits log section"
+msgstr "Instelling om het creditlogboekgedeelte weer te geven"
+
+msgid "Payment Gateways"
+msgstr "Betalingsgateways"
+
+msgid "Configure PayPal payment gateway settings for API integration"
+msgstr "Configureer PayPal-betalingsgateway-instellingen voor API-integratie"
+
+msgid "Enable PayPal"
+msgstr "Schakel PayPal in"
+
+msgid "Enable or disable PayPal as a payment option"
+msgstr "Schakel PayPal als betalingsoptie in of uit"
+
+msgid "Your PayPal API Username"
+msgstr "Uw PayPal API-gebruikersnaam"
+
+msgid "Your PayPal API Password"
+msgstr "Uw PayPal API-wachtwoord"
+
+msgid "Your PayPal API Signature"
+msgstr "Uw PayPal API-handtekening"
+
+msgid "A URL to your logo image to display on the PayPal checkout page"
+msgstr "Een URL naar uw logoafbeelding die moet worden weergegeven op de PayPal-betaalpagina"
+
+msgid "Cancel URL"
+msgstr "URL annuleren"
+
+msgid "The URL users are sent to if they cancel the payment"
+msgstr "De URL waar gebruikers naartoe worden gestuurd als ze de betaling annuleren"
+
+msgid "Notify URL"
+msgstr "Waarschuw URL"
+
+msgid "Sandbox"
+msgstr "Zandbak"
+
+msgid "Enable PayPal Sandbox for testing purposes"
+msgstr "Schakel PayPal Sandbox in voor testdoeleinden"
+
+msgid "Please enter language code, for example"
+msgstr "Voer bijvoorbeeld de taalcode in"
+
+msgid "Subscription IPN URL"
+msgstr "IPN-URL voor abonnement"
+
+msgid "Configure Stripe payment gateway settings"
+msgstr "Configureer de Stripe-betalingsgateway-instellingen"
+
+msgid "Enable Stripe"
+msgstr "Streep inschakelen"
+
+msgid "Enable or disable Stripe as a payment option"
+msgstr "Schakel Stripe in of uit als betalingsoptie"
+
+msgid "Publishable Key"
+msgstr "Publiceerbare sleutel"
+
+msgid "Enter your Stripe Publishable Key"
+msgstr "Voer uw Stripe-publiceerbare sleutel in"
+
+msgid "Secret Key"
+msgstr "Geheime sleutel"
+
+msgid "Enter your Stripe Secret Key"
+msgstr "Voer uw Stripe geheime sleutel in"
+
+msgid "Subscription Webhook URL"
+msgstr "Webhook-URL voor abonnement"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Use WooCommerce to handle payments"
+msgstr "Gebruik WooCommerce om betalingen af ​​te handelen"
+
+msgid "Enable WooCommerce"
+msgstr "Schakel WooCommerce in"
+
+msgid "Enable or disable WooCommerce as a payment option"
+msgstr "Schakel WooCommerce in of uit als betalingsoptie"
+
+msgid "Home Page"
+msgstr "Startpagina"
+
+msgid "WordPress Default"
+msgstr "WordPress-standaard"
+
+msgid "Blog"
+msgstr "Bloggen"
+
+msgid "This feature is part of a premium addon"
+msgstr "Deze functie maakt deel uit van een premium add-on"
+
+msgid "Available tags"
+msgstr "Beschikbare labels"
+
+msgid "This image will be shown as the default image for entities & users if no other image is provided"
+msgstr "Deze afbeelding wordt weergegeven als de standaardafbeelding voor entiteiten en gebruikers als er geen andere afbeelding is opgegeven"
+
+msgid "Discard"
+msgstr "Weggooien"
+
+msgid "Save Changes"
+msgstr "Wijzigingen opslaan"
+
+msgid "Quickly find any setting"
+msgstr "Vind snel elke instelling"
+
+msgid "Search by setting title or tooltip description"
+msgstr "Zoek op instellingstitel of tooltipbeschrijving"
+
+msgid "Unlock"
+msgstr "Ontgrendelen"
+
+msgid "This and other powerful features are available in the"
+msgstr "Deze en andere krachtige functies zijn beschikbaar in de"
+
+msgid "Upgrade Now"
+msgstr "Upgrade nu"
+
+msgid "No settings found for your search"
+msgstr "Er zijn geen instellingen gevonden voor uw zoekopdracht"
+
+msgid "Copied to clipboard"
+msgstr "Gekopieerd naar klembord"
+
+msgid "Search results for"
+msgstr "Zoekresultaten voor"
+
+msgid "Unlock with"
+msgstr "Ontgrendel met"
+
+msgid "Settings related to employer accounts, registration, and permissions"
+msgstr "Instellingen met betrekking tot werkgeversaccounts, registratie en machtigingen"
+
+msgid "Settings related to job seeker accounts and registration"
+msgstr "Instellingen met betrekking tot accounts en registratie van werkzoekenden"
+
+msgid "Visitor Can View Employer's Control Panel Links"
+msgstr "Bezoeker kan links naar het configuratiescherm van de werkgever bekijken"
+
+msgid "Visitor Can View Resume Categories"
+msgstr "Bezoeker kan CV-categorieën bekijken"
+
+msgid "Visitor Can Search Resumes"
+msgstr "Bezoeker kan CV's doorzoeken"
+
+msgid "Visitor Can View Company Details"
+msgstr "Bezoeker kan bedrijfsgegevens bekijken"
+
+msgid "Visitor Can View Job Details"
+msgstr "Bezoeker kan vacaturedetails bekijken"
+
+msgid "Visitor Can View Resume Details"
+msgstr "Bezoeker kan CV-details bekijken"
+
+msgid "Visitor Can View Job Seeker's Control Panel Links"
+msgstr "Bezoeker kan links naar het configuratiescherm van werkzoekenden bekijken"
+
+msgid "Visitor Can View Jobs by Categories"
+msgstr "Bezoeker kan vacatures per categorie bekijken"
+
+msgid "Visitor Can Search Jobs"
+msgstr "Bezoeker kan vacatures zoeken"
+
+msgid "Visitor Can View Newest Jobs"
+msgstr "Bezoeker kan de nieuwste vacatures bekijken"
+
+msgid "Visitor Can View Job Search Results"
+msgstr "Bezoeker kan zoekresultaten voor vacatures bekijken"
+
+msgid "1 Column"
+msgstr "1 kolom"
+
+msgid "10254 Departments found"
+msgstr "10254 Afdelingen gevonden"
+
+msgid "2 Columns"
+msgstr "2 Kolommen"
+
+msgid "3 Columns"
+msgstr "3 Kolommen"
+
+msgid "4 Columns"
+msgstr "4 Kolommen"
+
+msgid "5 Columns"
+msgstr "5 Kolommen"
+
+msgid "A critical update for WP Job Portal is required to maintain performance and prevent issues. Please update now."
+msgstr "Een cruciale update voor WP Job Portal is vereist om de prestaties op peil te houden en problemen te voorkomen. Update nu alstublieft."
+
+msgid "AI Search"
+msgstr "AI-zoekopdracht"
+
+msgid "AI Search Job"
+msgstr "AI-zoektaak"
+
+msgid "AI Settings"
+msgstr "AI-instellingen"
+
+msgid "AI settings"
+msgstr "AI-instellingen"
+
+msgid "About"
+msgstr "Over"
+
+msgid "Account & Billing"
+msgstr "Account en facturering"
+
+msgid "Activation failed"
+msgstr "Activering mislukt"
+
+msgid "Add-ons for WP Job Portal have been installed and activated successfully."
+msgstr "Add-ons voor WP Job Portal zijn succesvol geïnstalleerd en geactiveerd."
+
+msgid "Addon Installer"
+msgstr "Addon-installatieprogramma"
+
+msgid "Addon not installed please install addon first."
+msgstr "Add-on niet geïnstalleerd, installeer eerst de add-on."
+
+msgid "Addon will automatically update to the newest version"
+msgstr "Addon wordt automatisch bijgewerkt naar de nieuwste versie"
+
+msgid "Addon(s) Installed successfully!"
+msgstr "Add-on(s) succesvol geïnstalleerd!"
+
+msgid "Address display style for plugin"
+msgstr "Adresweergavestijl voor plug-in"
+
+msgid "Advanced Resume Builder Addon missing, resume sections data will not be imported!"
+msgstr "Advanced Resume Builder Addon ontbreekt, gegevens van cv-secties worden niet geïmporteerd!"
+
+msgid "All selected add-ons are now active."
+msgstr "Alle geselecteerde add-ons zijn nu actief."
+
+msgid "Allow employers and job Seekers to register on the site."
+msgstr "Geef werkgevers en werkzoekenden de mogelijkheid zich op de site te registreren."
+
+msgid "Allow search resume"
+msgstr "Zoekhervatting toestaan"
+
+msgid "Allowed to all (employers, job seekers and visitors)"
+msgstr "Toegestaan ​​voor iedereen (werkgevers, werkzoekenden en bezoekers)"
+
+msgid "Auto Update: Off"
+msgstr "Automatische update: Uit"
+
+msgid "Auto Update: On"
+msgstr "Automatische update: Aan"
+
+msgid "Back to listing"
+msgstr "Terug naar de lijst"
+
+msgid "Basic Info"
+msgstr "Basisinformatie"
+
+msgid "Buttons Styling"
+msgstr "Knopen-styling"
+
+msgid "Capitalize"
+msgstr "Kapitaliseren"
+
+msgid "Check if you want to use WP Job Portal packages"
+msgstr "Vink aan of u WP Job Portal-pakketten wilt gebruiken"
+
+msgid "City name"
+msgstr "Naam van de stad"
+
+msgid "Columns per Row"
+msgstr "Kolommen per rij"
+
+msgid "Comma separated list of job types i.e JTFT, JTPT, JTFP, JTCT, JTIN"
+msgstr "Door komma's gescheiden lijst met taaktypen, dwz JTFT, JTPT, JTFP, JTCT, JTIN"
+
+msgid "Communication"
+msgstr "Mededeling"
+
+msgid "Company Management"
+msgstr "Bedrijfsbeheer"
+
+msgid "Complete Your Resume"
+msgstr "Voltooi je CV"
+
+msgid "Content Access"
+msgstr "Toegang tot inhoud"
+
+msgid "Content Styling"
+msgstr "Inhoudstyling"
+
+msgid "Control which employer dashboard navigation links are visible to visitors"
+msgstr "Bepaal welke navigatielinks op het werkgeversdashboard zichtbaar zijn voor bezoekers"
+
+msgid "Control which employer dashboard widgets and sections are visible to visitors"
+msgstr "Bepaal welke werkgeversdashboardwidgets en secties zichtbaar zijn voor bezoekers"
+
+msgid "Control which job seeker dashboard navigation links are visible to visitors"
+msgstr "Bepaal welke navigatielinks op het dashboard van werkzoekenden zichtbaar zijn voor bezoekers"
+
+msgid "Control which job seeker dashboard widgets and sections are visible to visitors"
+msgstr "Bepaal welke dashboardwidgets en secties voor werkzoekenden zichtbaar zijn voor bezoekers"
+
+msgid "Control which pages and content areas are visible to non-logged-in users"
+msgstr "Bepaal welke pagina's en inhoudsgebieden zichtbaar zijn voor niet-ingelogde gebruikers"
+
+msgid "Custom Field Class"
+msgstr "Aangepaste veldklasse"
+
+msgid "Database Update Needed"
+msgstr "Database-update vereist"
+
+msgid "Database update completed"
+msgstr "Database-update voltooid"
+
+msgid "Delete All Unused Keys"
+msgstr "Verwijder alle ongebruikte sleutels"
+
+msgid "Discover"
+msgstr "Ontdekken"
+
+msgid "Display the status of applications to the job seeker"
+msgstr "Geef de status van sollicitaties weer aan de werkzoekende"
+
+msgid "Dummy Plugin"
+msgstr "Dummy-plug-in"
+
+msgid "Dummy Plugin 2"
+msgstr "Dummy-plug-in 2"
+
+msgid "Elegant Design"
+msgstr "Elegant ontwerp"
+
+msgid "Employer Widgets"
+msgstr "Werkgeverwidgets"
+
+msgid "Enter the Site Title"
+msgstr "Voer de sitetitel in"
+
+msgid "Entity"
+msgstr "Entiteit"
+
+msgid "Fetch Data"
+msgstr "Gegevens ophalen"
+
+msgid "Find your next star hire with AI-driven resume search"
+msgstr "Vind uw volgende ster met een AI-gestuurde cv-zoekopdracht"
+
+msgid "Font Family"
+msgstr "Lettertypefamilie"
+
+msgid "Font Size"
+msgstr "Lettergrootte"
+
+msgid "Font Style"
+msgstr "Lettertypestijl"
+
+msgid "Font Weight"
+msgstr "Lettertype gewicht"
+
+msgid "Go To Dashboard"
+msgstr "Ga naar Dashboard"
+
+msgid "Import Data Report"
+msgstr "Gegevensrapport importeren"
+
+msgid "Import Third Party Data"
+msgstr "Importeer gegevens van derden"
+
+msgid "Import demo data to populate your site with example companies, jobs, resumes, and applications."
+msgstr "Importeer demogegevens om uw site te vullen met voorbeeldbedrijven, vacatures, cv's en sollicitaties."
+
+msgid "Imported"
+msgstr "Geïmporteerd"
+
+msgid "Infi Icon"
+msgstr "Infi-icoon"
+
+msgid "Info"
+msgstr "Info"
+
+msgid "Info Icon"
+msgstr "Info-pictogram"
+
+msgid "Invalid server response"
+msgstr "Ongeldige serverreactie"
+
+msgid "Italic"
+msgstr "Cursief"
+
+msgid "Job Alert Time"
+msgstr "Taakwaarschuwingstijd"
+
+msgid "Job Detail"
+msgstr "Taakdetail"
+
+msgid "Job Seeker Links"
+msgstr "Links naar werkzoekenden"
+
+msgid "Job Seeker Settings"
+msgstr "Instellingen voor werkzoekenden"
+
+msgid "Job Seeker Widgets"
+msgstr "Widgets voor werkzoekenden"
+
+msgid "Jobs by Category"
+msgstr "Vacatures per categorie"
+
+msgid "Layout"
+msgstr "Indeling"
+
+msgid "Letter Spacing"
+msgstr "Letterafstand"
+
+msgid "Line Height"
+msgstr "Lijn hoogte"
+
+msgid "Live Preview Not available at the moment !"
+msgstr "Live Preview Momenteel niet beschikbaar!"
+
+msgid "Login/Register"
+msgstr "Inloggen/Registreren"
+
+msgid "Lowercase"
+msgstr "Kleine letters"
+
+msgid "Manage Documents"
+msgstr "Beheer documenten"
+
+msgid "Manage Jobs"
+msgstr "Beheer vacatures"
+
+msgid "Manage Unused Keys"
+msgstr "Beheer ongebruikte sleutels"
+
+msgid "More Actions"
+msgstr "Meer acties"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans."
+msgstr "Mijn abonnement biedt gebruikers een overzicht van hun actieve abonnementen, waardoor hun vacatureplannen eenvoudig kunnen worden beheerd en gevolgd."
+
+msgid "New Jobs"
+msgstr "Nieuwe banen"
+
+msgid "Next Setup"
+msgstr "Volgende installatie"
+
+msgid "No Addon Installed!"
+msgstr "Geen add-on geïnstalleerd!"
+
+msgid "No unused keys were found."
+msgstr "Er zijn geen ongebruikte sleutels gevonden."
+
+msgid "None"
+msgstr "Geen"
+
+msgid "Not Imported"
+msgstr "Niet geïmporteerd"
+
+msgid "Oblique"
+msgstr "Schuin"
+
+msgid "Only job seekers can register. Jobs and companies are managed by the admin."
+msgstr "Enkel werkzoekenden kunnen zich inschrijven. Banen en bedrijven worden beheerd door de beheerder."
+
+msgid "Paid access Only"
+msgstr "Alleen betaalde toegang"
+
+msgid "Pay For Featured Resume"
+msgstr "Betaal voor aanbevolen CV"
+
+msgid "Pay For Resume"
+msgstr "Betaal voor CV"
+
+msgid "Pay per listing price to publish your"
+msgstr "Betaal per aanbiedingsprijs om uw advertentie te publiceren"
+
+msgid "Please Insert Your Activation Key"
+msgstr "Voer uw activeringssleutel in"
+
+msgid "Please log in to register to continue."
+msgstr "Log in om te registreren om door te gaan."
+
+msgid "Please select at least one addon!"
+msgstr "Selecteer minimaal één add-on!"
+
+msgid "Please verify Locations and salaries for imported data entities"
+msgstr "Controleer locaties en salarissen voor geïmporteerde gegevensentiteiten"
+
+msgid "Plugin not installed"
+msgstr "Plug-in niet geïnstalleerd"
+
+msgid "Price for a job seeker to view a company's contact details"
+msgstr "Prijs voor een werkzoekende om de contactgegevens van een bedrijf te bekijken"
+
+msgid "Price for an employer to view a resume's contact details"
+msgstr "Prijs voor een werkgever om de contactgegevens van een cv te bekijken"
+
+msgid "Quick Configuration"
+msgstr "Snelle configuratie"
+
+msgid "Ready to find your dream job? Let's get started"
+msgstr "Klaar om jouw droombaan te vinden? Laten we beginnen"
+
+msgid "Ready to find your potential employee? Let's get started"
+msgstr "Klaar om uw potentiële werknemer te vinden? Laten we beginnen"
+
+msgid "Search Jobs"
+msgstr "Zoek vacatures"
+
+msgid "Search Resumes"
+msgstr "Zoek CV's"
+
+msgid "Search smarter – just type anything you know about the job: title, category, type, skills, or even a description!"
+msgstr "Zoek slimmer – typ gewoon alles wat u over de functie weet: titel, categorie, type, vaardigheden of zelfs een beschrijving!"
+
+msgid "Section Title Styling"
+msgstr "Sectietitel opmaak"
+
+msgid "Select Addons to Update with New Activation Key"
+msgstr "Selecteer Add-ons om bij te werken met een nieuwe activeringssleutel"
+
+msgid "Select Company"
+msgstr "Selecteer Bedrijf"
+
+msgid "Select Job Category"
+msgstr "Selecteer Taakcategorie"
+
+msgid "Select Job Status"
+msgstr "Selecteer Taakstatus"
+
+msgid "Select Job Type"
+msgstr "Selecteer Taaktype"
+
+msgid "Select Page To Show"
+msgstr "Selecteer Pagina om weer te geven"
+
+msgid "Select Plugin Setting for WP Job Portal"
+msgstr "Selecteer Plug-in-instelling voor WP Job Portal"
+
+msgid "Select packages pack so that user can purchase them"
+msgstr "Selecteer pakketten zodat de gebruiker deze kan kopen"
+
+msgid "Select who can view company contact details."
+msgstr "Selecteer wie de contactgegevens van het bedrijf kan bekijken."
+
+msgid "Settings you applied have been successfully saved"
+msgstr "De door u toegepaste instellingen zijn succesvol opgeslagen"
+
+msgid "Setup Complete"
+msgstr "Installatie voltooid"
+
+msgid "Show Advanced Search Button"
+msgstr "Knop Geavanceerd zoeken weergeven"
+
+msgid "Show Employers"
+msgstr "Toon werkgevers"
+
+msgid "Show Everyone"
+msgstr "Laat iedereen zien"
+
+msgid "Show Job seekers"
+msgstr "Toon werkzoekenden"
+
+msgid "Show Labels"
+msgstr "Etiketten tonen"
+
+msgid "Show No One"
+msgstr "Laat niemand zien"
+
+msgid "Show Placeholders"
+msgstr "Tijdelijke aanduidingen tonen"
+
+msgid "Show Resume Status Section"
+msgstr "Sectie CV-status weergeven"
+
+msgid "Show a box with applied jobs on the job seeker's dashboard"
+msgstr "Toon een vak met gesolliciteerde vacatures op het dashboard van de werkzoekende"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard"
+msgstr "Toon een vak met de nieuwste vacatures op het dashboard van de werkzoekende"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard to visitor"
+msgstr "Toon een vak met de nieuwste vacatures op het dashboard van de werkzoekende aan de bezoeker"
+
+msgid "Show a box with recent resumes on the employer's dashboard"
+msgstr "Toon een vak met recente cv's op het werkgeversdashboard"
+
+msgid "Show a box with recent resumes on the employer's dashboard to visitor"
+msgstr "Toon een vak met recente cv's op het werkgeversdashboard aan de bezoeker"
+
+msgid "Show a graph of job statistics in the employer's dashboard"
+msgstr "Toon een grafiek met functiestatistieken in het werkgeversdashboard"
+
+msgid "Show a graph of job statistics in the employer's dashboard to visitor"
+msgstr "Toon een grafiek met functiestatistieken in het werkgeversdashboard aan de bezoeker"
+
+msgid "Show a graph of job statistics in the job seeker's dashboard"
+msgstr "Toon een grafiek met functiestatistieken op het dashboard van de werkzoekende"
+
+msgid "Show a graph of job statistics in the job seeker's dashboard to visitor"
+msgstr "Toon een grafiek met functiestatistieken op het dashboard van de werkzoekende aan de bezoeker"
+
+msgid "Show a link to active subscriptions in the employer's dashboard"
+msgstr "Toon een link naar actieve abonnementen in het werkgeversdashboard"
+
+msgid "Show a link to active subscriptions in the job seeker's dashboard"
+msgstr "Toon een link naar actieve abonnementen in het dashboard van de werkzoekende"
+
+msgid "Show a link to the packages page in the employer's dashboard"
+msgstr "Toon een link naar de pakkettenpagina in het werkgeversdashboard"
+
+msgid "Show a link to the packages page in the job seeker's dashboard"
+msgstr "Toon een link naar de pakkettenpagina in het dashboard van de werkzoekende"
+
+msgid "Show a link to the purchase history/invoices in the employer's dashboard"
+msgstr "Toon een link naar de aankoophistorie/facturen in het werkgeversdashboard"
+
+msgid "Show a link to the purchase history/invoices in the job seeker's dashboard"
+msgstr "Toon een link naar de aankoopgeschiedenis/facturen in het dashboard van de werkzoekende"
+
+msgid "Show a link to the user's purchased packages in their dashboard"
+msgstr "Toon een link naar de door de gebruiker gekochte pakketten in zijn dashboard"
+
+msgid "Show an 'AI Suggested Jobs' button on the 'My Resumes' page for job seekers"
+msgstr "Toon een knop 'AI Suggested Jobs' op de pagina 'Mijn CV' voor werkzoekenden"
+
+msgid "Show an 'AI Suggested Resumes' button on the 'My Jobs' page for employers"
+msgstr "Toon een knop 'AI Suggested CV' op de pagina 'Mijn vacatures' voor werkgevers"
+
+msgid "Show or hide the profile section on the employer's control panel"
+msgstr "Toon of verberg het profielgedeelte op het controlepaneel van de werkgever"
+
+msgid "Show or hide the profile section on the job seeker's control panel"
+msgstr "Toon of verberg het profielgedeelte op het configuratiescherm van de werkzoekende"
+
+msgid "Show resume status section on the job seeker's dashboard"
+msgstr "Toon het CV-statusgedeelte op het dashboard van de werkzoekende"
+
+msgid "Show statistics boxes on the employer's dashboard"
+msgstr "Toon statistiekenvakken op het werkgeversdashboard"
+
+msgid "Show statistics boxes on the job seeker's dashboard"
+msgstr "Toon statistiekenvakken op het dashboard van de werkzoekende"
+
+msgid "Show the 'Quick Apply' form to logged-in users on the job detail page"
+msgstr "Toon het formulier 'Snel solliciteren' aan ingelogde gebruikers op de vacaturedetailpagina"
+
+msgid "Show the 'Quick Apply' form to visitors on the job detail page"
+msgstr "Toon het formulier 'Snel solliciteren' aan bezoekers op de vacaturedetailpagina"
+
+msgid "Similar Found"
+msgstr "Gelijkaardig gevonden"
+
+msgid "Start typing what you know – our AI will help you find the best matching jobs."
+msgstr "Begin met typen wat u weet. Onze AI helpt u de best passende vacatures te vinden."
+
+msgid "Start typing what you know – our AI will help you find the best matching resumes."
+msgstr "Begin met typen wat u weet. Onze AI helpt u de best passende cv's te vinden."
+
+msgid "Step 1 of 5"
+msgstr "Stap 1 van 5"
+
+msgid "Step 2 of 4"
+msgstr "Stap 2 van 4"
+
+msgid "Step 2 of 5"
+msgstr "Stap 2 van 5"
+
+msgid "Step 3 of 4"
+msgstr "Stap 3 van 4"
+
+msgid "Step 3 of 5"
+msgstr "Stap 3 van 5"
+
+msgid "Step 4 of 4"
+msgstr "Stap 4 van 4"
+
+msgid "Step 4 of 5"
+msgstr "Stap 4 van 5"
+
+msgid "Step 5 of 5"
+msgstr "Stap 5 van 5"
+
+msgid "Subscriptions"
+msgstr "Abonnementen"
+
+msgid "Sugeested Jobs"
+msgstr "Voorgestelde banen"
+
+msgid "Suggested Jobs"
+msgstr "Voorgestelde banen"
+
+msgid "Suggested Resumes"
+msgstr "Voorgestelde CV's"
+
+msgid "System"
+msgstr "Systeem"
+
+msgid "System Error Log"
+msgstr "Systeemfoutenlogboek"
+
+msgid "Text Transform"
+msgstr "Teksttransformatie"
+
+msgid "The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "Het Employer Control Panel is een gestroomlijnde interface waarmee werkgevers vacatures kunnen beheren, sollicitaties kunnen volgen, met kandidaten kunnen communiceren en de wervingsgegevens efficiënt kunnen analyseren."
+
+msgid "The highlighted addons are not included in your current license. Please adjust your selection accordingly."
+msgstr "De gemarkeerde add-ons zijn niet inbegrepen in uw huidige licentie. Pas uw selectie dienovereenkomstig aan."
+
+msgid "This add-on will change the Job Portal pages to a simple yet powerful and rich web design that involves focusing on clean aesthetics, intuitive navigation, and functional elements while ensuring performance and responsiveness."
+msgstr "Deze add-on verandert de Job Portal-pagina's in een eenvoudig maar krachtig en rijk webontwerp waarbij de nadruk ligt op strakke esthetiek, intuïtieve navigatie en functionele elementen, terwijl prestaties en reactievermogen worden gegarandeerd."
+
+msgid "This will replace the old key with the new one."
+msgstr "Hiermee wordt de oude sleutel vervangen door de nieuwe."
+
+msgid "Today Stats"
+msgstr "Vandaag statistieken"
+
+msgid "Unlock your career potential with AI-driven job search"
+msgstr "Ontgrendel uw carrièrepotentieel met AI-gestuurd zoeken naar vacatures"
+
+msgid "Update Key"
+msgstr "Sleutel bijwerken"
+
+msgid "Update Now"
+msgstr "Nu bijwerken"
+
+msgid "Updating Database, please wait..."
+msgstr "Database bijwerken, even geduld a.u.b...."
+
+msgid "Uppercase"
+msgstr "Hoofdletters"
+
+msgid "Use Default Color For Color 1"
+msgstr "Gebruik standaardkleur voor kleur 1"
+
+msgid "Use Icons for Buttons"
+msgstr "Gebruik pictogrammen voor knoppen"
+
+msgid "View All Resumes"
+msgstr "Bekijk alle CV's"
+
+msgid "View Company Contact Detail"
+msgstr "Bekijk de contactgegevens van het bedrijf"
+
+msgid "Visitor Show"
+msgstr "Bezoekersshow"
+
+msgid "Visitor Show Active Jobs Graph"
+msgstr "Bezoeker Toon actieve banengrafiek"
+
+msgid "Visitor Show Applied Jobs Section"
+msgstr "Bezoekersshow sectie met toegepaste vacatures"
+
+msgid "Visitor Show Applied Resumes Section"
+msgstr "Bezoekersshow sectie met toegepaste cv's"
+
+msgid "Visitor Show Credits Log Section"
+msgstr "Bezoekersshow Creditslogboeksectie"
+
+msgid "Visitor Show Jobs Graph"
+msgstr "Bezoeker Toon banengrafiek"
+
+msgid "Visitor Show Jobs Graph Section"
+msgstr "Bezoeker Toon banengrafieksectie"
+
+msgid "Visitor Show Newest Jobs Box"
+msgstr "Bezoeker Toon nieuwste banenbox"
+
+msgid "Visitor Show Newest Jobs Section"
+msgstr "Bezoeker Toon nieuwste banensectie"
+
+msgid "Visitor Show Newest Resumes Section"
+msgstr "Bezoeker Toon nieuwste CV-sectie"
+
+msgid "Visitor Show Purchase History Section"
+msgstr "Bezoekersshow Aankoopgeschiedenissectie"
+
+msgid "Visitor Show Recent Resumes Box"
+msgstr "Bezoeker toont vak met recente cv's"
+
+msgid "Visitor Show Saved Searches Section"
+msgstr "Bezoeker Sectie Opgeslagen zoekopdrachten weergeven"
+
+msgid "Visitor Show Shortlisted Jobs Section"
+msgstr "Bezoekersshow sectie met vacatures op de shortlist"
+
+msgid "Visitor Show Stats Graph Section"
+msgstr "Bezoekersshow Statistieken Grafieksectie"
+
+msgid "Visitor Show Useful Links Section"
+msgstr "Bezoeker Toon nuttige links sectie"
+
+msgid "WP Job Manager"
+msgstr "WP Jobmanager"
+
+msgid "WP Job Portal Activation Key"
+msgstr "WP Job Portal-activeringssleutel"
+
+msgid "WP Job Portal Import Data"
+msgstr "WP Job Portal importgegevens"
+
+msgid "WP Job Portal Packages"
+msgstr "WP Job Portal-pakketten"
+
+msgid "Welcome to WP Job Portal Addon Installer"
+msgstr "Welkom bij het WP Job Portal Addon-installatieprogramma"
+
+msgid "Welcome, Visitor"
+msgstr "Welkom, bezoeker"
+
+msgid "Who can search resume."
+msgstr "Wie kan CV zoeken."
+
+msgid "Who can view resume contact details"
+msgstr "Wie kan de contactgegevens van het cv bekijken"
+
+msgid "You Already Applied to this job"
+msgstr "Je hebt al op deze baan gesolliciteerd"
+
+msgid "You have"
+msgstr "Je hebt"
+
+msgid "Your WP Job Portal license key has expired or is invalid. Please update it to continue receiving support and updates."
+msgstr "Uw WP Job Portal-licentiesleutel is verlopen of ongeldig. Update het om ondersteuning en updates te blijven ontvangen."
+
+msgid "failed."
+msgstr "mislukt."
+
+msgid "found"
+msgstr "gevonden"
+
+msgid "icon"
+msgstr "icon"
+
+msgid "imported."
+msgstr "geïmporteerd."
+
+msgid "skipped."
+msgstr "overgeslagen."
+
+msgid "unused key has been deleted successfully!"
+msgstr "ongebruikte sleutel is succesvol verwijderd!"
+
+msgid "unused key(s) that can be safely removed."
+msgstr "ongebruikte sleutel(s) die veilig verwijderd kunnen worden."
+
+msgid "unused keys have been deleted successfully!"
+msgstr "ongebruikte sleutels zijn succesvol verwijderd!"

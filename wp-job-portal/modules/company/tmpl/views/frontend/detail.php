@@ -6,96 +6,111 @@ if (!defined('ABSPATH'))
 * Company => Detail via Template 
 * redirection's 
 */
-$dateformat = wpjobportal::$_configuration['date_format'];
+$wpjobportal_dateformat = wpjobportal::$_configuration['date_format'];
 
 /**
 * @param wp job portal
 * # company list 
 * generic module for cases
 */
-$listing_fields = WPJOBPORTALincluder::getJSModel('fieldordering')->getFieldOrderingDataForListing(1);
+$wpjobportal_listing_fields = WPJOBPORTALincluder::getJSModel('fieldordering')->getFieldOrderingDataForListing(1);
  if(in_array('multicompany', wpjobportal::$_active_addons)){
-    $mod = "multicompany";
+    $wpjobportal_mod = "multicompany";
 }else{
-    $mod = "company";
+    $wpjobportal_mod = "company";
 } 
 ?>
 <?php
-switch ($layout) {
+switch ($wpjobportal_layout) {
     case 'companydetail':
-        ?>
-        <div class="wjportal-company-data-wrp">
-            <?php if (wpjobportal::$_data['companycontactdetail'] == true){?>
-                <div class="wjportal-company-sec-title">
-                    <?php echo esc_html(__('Company Info','wp-job-portal')); ?>
-                </div>
-            <?php } 
-                $dateformat = wpjobportal::$_configuration['date_format'];
-                $description_field_label = '';
-                foreach (wpjobportal::$_data[2] AS $key => $val) {
-                    switch ($key) {
-                        case 'contactemail':
-                            if (wpjobportal::$_data['companycontactdetail'] == true)
-                                if ($config_array['comp_email_address'] == 1)
-                                    if(isset( wpjobportal::$_data[0]) && !empty( wpjobportal::$_data[0]->contactemail)){
-                                        echo wp_kses(getDataRow(wpjobportal::wpjobportal_getVariableValue($val), wpjobportal::$_data[0]->contactemail), WPJOBPORTAL_ALLOWED_TAGS);
-                                    }
-                                    
-                            break;
-                        case 'address1':
-                            if (wpjobportal::$_data['companycontactdetail'] == true)
-                                if(isset( wpjobportal::$_data[0]) && !empty( wpjobportal::$_data[0]->address1)){
-                                    echo wp_kses(getDataRow(wpjobportal::wpjobportal_getVariableValue($val), wpjobportal::$_data[0]->address1), WPJOBPORTAL_ALLOWED_TAGS);
-                                }
-                            break;
-                        case 'address2':
-                            if (wpjobportal::$_data['companycontactdetail'] == true)
-                                if(isset( wpjobportal::$_data[0]) && !empty( wpjobportal::$_data[0]->address2)){
-                                    echo wp_kses(getDataRow(wpjobportal::wpjobportal_getVariableValue($val), wpjobportal::$_data[0]->address2), WPJOBPORTAL_ALLOWED_TAGS);
-                                }
-                            break;
-                        default: // handle the user fields data
-                            if($key == 'description'){// show description field based of field ordering & show dynamic field title
-                                $description_field_label = $val;
-                            }
-                            $customfields = WPJOBPORTALincluder::getObjectClass('customfields')->userFieldsData(1);
-                                foreach($customfields AS $field){
-                                    if($key == $field->field){
-                                        $showCustom =  wpjobportal::$_wpjpcustomfield->showCustomFields($field,5,wpjobportal::$_data[0]->params,'company',wpjobportal::$_data[0]->id);
-                                        echo wp_kses($showCustom, WPJOBPORTAL_ALLOWED_TAGS);
-                                    }
-                                }
-                           
-                        break;
+        $wpjobportal_config_array = wpjobportal::$_data['config'];
+        $wpjobportal_dateformat = wpjobportal::$_configuration['date_format'];
+        $wpjobportal_description_field_label = '';
+        $wpjobportal_company_content = ''; // collect valid rows
+        $wpjobportal_company_content_heading = ''; // collect valid rows
+
+        if (wpjobportal::$_data['companycontactdetail'] == true) {
+            $wpjobportal_company_content_heading .= '<div class="wjportal-company-sec-title">'
+                . esc_html(__('Company Info','wp-job-portal'))
+                . '</div>';
+        }
+
+        foreach (wpjobportal::$_data[2] as $wpjobportal_key => $wpjobportal_val) {
+
+            switch ($wpjobportal_key) {
+                case 'contactemail':
+                    if (wpjobportal::$_data['companycontactdetail'] == true && !empty($wpjobportal_config_array['comp_email_address'])&& isset(wpjobportal::$_data[0]->contactemail) && wpjobportal::$_data[0]->contactemail !== '') {
+                        $wpjobportal_company_content .= wp_kses(
+                            wpjobportal_getDataRow(wpjobportal::wpjobportal_getVariableValue($wpjobportal_val), wpjobportal::$_data[0]->contactemail),
+                            WPJOBPORTAL_ALLOWED_TAGS
+                        );
                     }
-                }
-            ?>
-        </div>
-        <?php 
-        $config_array = wpjobportal::$_data['config'];
-        if($description_field_label != '' && $config_array['comp_description'] == 1){
-        ?>
-            <div class="wjportal-company-data-wrp">
-                <div class="wjportal-company-sec-title">
-                    <?php echo esc_html( wpjobportal::wpjobportal_getVariableValue($description_field_label)); ?>
-                </div>
-                <div class="wjportal-company-desc">
-                    <?php echo wp_kses(wpjobportal::$_data[0]->description, WPJOBPORTAL_ALLOWED_TAGS); ?>
-                </div>
-            </div>
-        <?php } ?>
-        <?php
-            do_action('wpjobportal_addons_company_contact_detail',wpjobportal::$_data[0],wpjobportal::$_data['companycontactdetail']);
-        break;
+                    break;
+
+                case 'address1':
+                    if (wpjobportal::$_data['companycontactdetail'] == true && !empty(wpjobportal::$_data[0]->address1)) {
+                        $wpjobportal_company_content .= wp_kses(
+                            wpjobportal_getDataRow(wpjobportal::wpjobportal_getVariableValue($wpjobportal_val), wpjobportal::$_data[0]->address1),
+                            WPJOBPORTAL_ALLOWED_TAGS
+                        );
+                    }
+                    break;
+
+                case 'address2':
+                    if (wpjobportal::$_data['companycontactdetail'] == true && !empty(wpjobportal::$_data[0]->address2) ) {
+                        $wpjobportal_company_content .= wp_kses(
+                            wpjobportal_getDataRow(wpjobportal::wpjobportal_getVariableValue($wpjobportal_val), wpjobportal::$_data[0]->address2),
+                            WPJOBPORTAL_ALLOWED_TAGS
+                        );
+                    }
+                    break;
+
+                default: // handle custom/user fields
+                    if ($wpjobportal_key == 'description') {
+                        $wpjobportal_description_field_label = $wpjobportal_val;
+                    }
+
+                    $wpjobportal_customfields = WPJOBPORTALincluder::getObjectClass('customfields')->userFieldsData(1);
+                    foreach ($wpjobportal_customfields as $wpjobportal_field) {
+                        if ($wpjobportal_key == $wpjobportal_field->field) {
+                            $wpjobportal_showCustom = wpjobportal::$_wpjpcustomfield->showCustomFields($wpjobportal_field, 5, wpjobportal::$_data[0]->params, 'company', wpjobportal::$_data[0]->id );
+                            if (trim($wpjobportal_showCustom) !== '') {
+                                $wpjobportal_company_content .= wp_kses($wpjobportal_showCustom, WPJOBPORTAL_ALLOWED_TAGS);
+                            }
+                        }
+                    }
+                    break;
+            }
+        }
+
+        // Output company info section only if not empty
+
+        if (trim($wpjobportal_company_content) !== '') {
+            echo '<div class="wjportal-company-data-wrp">' .wp_kses($wpjobportal_company_content_heading,WPJOBPORTAL_ALLOWED_TAGS) . wp_kses($wpjobportal_company_content,WPJOBPORTAL_ALLOWED_TAGS) . '</div>';
+        }
+
+        // Handle description separately
+        if ( $wpjobportal_description_field_label !== '' &&  !empty($wpjobportal_config_array['comp_description']) && !empty(wpjobportal::$_data[0]->description)) {
+            echo '<div class="wjportal-company-data-wrp">
+                    <div class="wjportal-company-sec-title">' .
+                        esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_description_field_label)) .
+                    '</div>
+                    <div class="wjportal-company-desc">' .
+                        wp_kses(wpjobportal::$_data[0]->description, WPJOBPORTAL_ALLOWED_TAGS) .
+                    '</div>
+                </div>';
+        }
+
+    break;
     case 'detail':
-     $config_array = wpjobportal::$_data['config']; ?>
+     $wpjobportal_config_array = wpjobportal::$_data['config']; ?>
         <div class="wjportal-company-cnt-wrp">
             <div class="wjportal-company-middle-wrp">
-                <?php if(isset($listing_fields['url']) && $listing_fields['url'] !='' ){ ?>
-                    <?php if( $config_array['comp_show_url'] == 1): ?>
+                <?php if(isset($wpjobportal_listing_fields['url']) && $wpjobportal_listing_fields['url'] !='' ){ ?>
+                    <?php if( $wpjobportal_config_array['comp_show_url'] == 1): ?>
                             <div class="wjportal-company-data">
                                 <span class="wjportal-companyname">
-                                    <?php echo esc_html($company->url); ?>
+                                    <?php echo esc_html($wpjobportal_company->url); ?>
                                 </span>
                             </div>
                     <?php endif; ?>
@@ -106,88 +121,100 @@ switch ($layout) {
                         if(empty(wpjobportal::$_data['shortcode_option_hide_company_name'])){
                             if (wpjobportal::$_config->getConfigValue('comp_name')) { ?>
                                 <span class="wjportal-company-title">
-                                    <a href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$company->aliasid))); ?>">
-                                        <?php echo esc_html($company->name); ?>
+                                    <a href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$wpjobportal_mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$wpjobportal_company->aliasid))); ?>">
+                                        <?php echo esc_html($wpjobportal_company->name); ?>
                                     </a>
                                 </span>
                                 <?php
                             }
                         }
                         // to show featured tag on all companies layout
-                        if(WPJOBPORTALincluder::getObjectClass('user')->isemployer() || (isset($companies_layout) && $companies_layout == 'companies')){
-                            do_action('wpjobportal_addons_lable_comp_feature',$company);
+                        if(WPJOBPORTALincluder::getObjectClass('user')->isemployer() || (isset($wpjobportal_companies_layout) && $wpjobportal_companies_layout == 'companies')){
+                            do_action('wpjobportal_addons_lable_comp_feature',$wpjobportal_company);
                         }
                     ?>
                 </div>
                 <div class="wjportal-company-data">
-                    <?php if(!isset($showcreated) || $showcreated): ?>
-                        <div class="wjportal-company-data-text">
+                    <?php if(!isset($wpjobportal_showcreated) || $wpjobportal_showcreated): ?>
+                        <div class="wjportal-company-data-text wjportal-company-data-text-created">
                             <span class="wjportal-company-data-title">
                                 <?php echo esc_html(__('Created', 'wp-job-portal')) . ':'; ?>
                             </span>
                             <span class="wjportal-company-data-value">
-                                <?php echo esc_html(human_time_diff(strtotime($company->created),strtotime(date_i18n("Y-m-d H:i:s")))).' '.esc_html(__("Ago",'wp-job-portal')); ?>
+                                <?php echo esc_html(human_time_diff(strtotime($wpjobportal_company->created),strtotime(date_i18n("Y-m-d H:i:s")))).' '.esc_html(__("Ago",'wp-job-portal')); ?>
                             </span>
                         </div>
                     <?php endif; ?>
 
                     <?php if(WPJOBPORTALincluder::getObjectClass('user')->isemployer()){ ?>
-                    <div class="wjportal-company-data-text">
+                    <div class="wjportal-company-data-text wjportal-company-data-status">
                         <span class="wjportal-company-data-title">
                             <?php echo esc_html(__('Status', 'wp-job-portal')) . ':'; ?>
                         </span>
                         <?php
-                            $color = ($company->status == 1) ? "green" : "red";
-                            if ($company->status == 1) {
-                                $statusCheck = esc_html(__('Approved', 'wp-job-portal'));
-                            } elseif ($company->status == 0) {
-                                $statusCheck = esc_html(__('Waiting for approval', 'wp-job-portal'));
-                            }elseif($company->status == 2){
-                                 $statusCheck = esc_html(__('Pending For Approval of Payment', 'wp-job-portal'));
-                            }elseif ($company->status == 3) {
-                                $statusCheck = esc_html(__('Pending Due To Payment', 'wp-job-portal'));
+                            $wpjobportal_color = ($wpjobportal_company->status == 1) ? "green" : "red";
+                            if ($wpjobportal_company->status == 1) {
+                                $wpjobportal_statusCheck = esc_html(__('Approved', 'wp-job-portal'));
+                            } elseif ($wpjobportal_company->status == 0) {
+                                $wpjobportal_statusCheck = esc_html(__('Waiting for approval', 'wp-job-portal'));
+                            }elseif($wpjobportal_company->status == 2){
+                                 $wpjobportal_statusCheck = esc_html(__('Pending For Approval of Payment', 'wp-job-portal'));
+                            }elseif ($wpjobportal_company->status == 3) {
+                                $wpjobportal_statusCheck = esc_html(__('Pending Due To Payment', 'wp-job-portal'));
                             }else {
-                                $statusCheck = esc_html(__('Rejected', 'wp-job-portal'));
+                                $wpjobportal_statusCheck = esc_html(__('Rejected', 'wp-job-portal'));
                             }
                         ?>
-                        <span class="wjportal-company-data-value <?php echo esc_attr($color); ?>">
-                            <?php echo esc_html($statusCheck); ?>
+                        <span class="wjportal-company-data-value <?php echo esc_attr($wpjobportal_color); ?>">
+                            <?php echo esc_html($wpjobportal_statusCheck); ?>
                         </span>
                     </div>
                     <?php }
                     if(empty(wpjobportal::$_data['shortcode_option_hide_company_location'])){
-                        if(isset($company) && !empty($company->location) && $config_array['comp_city'] == 1):
-                             if(isset($listing_fields['city']) && $listing_fields['city'] !='' ){ ?>
-                                <div class="wjportal-company-data-text">
+                        if(isset($wpjobportal_company) && !empty($wpjobportal_company->location) && $wpjobportal_config_array['comp_city'] == 1):
+                             if(isset($wpjobportal_listing_fields['city']) && $wpjobportal_listing_fields['city'] !='' ){ ?>
+                                <div class="wjportal-company-data-text wjportal-company-data-location">
                                     <span class="wjportal-company-data-title">
-                                        <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($listing_fields['city'])) . ':'; ?>
+                                        <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_listing_fields['city'])) . ':'; ?>
                                     </span>
                                     <span class="wjportal-company-data-value">
-                                        <?php echo esc_html($company->location); ?>
+                                        <?php echo esc_html($wpjobportal_company->location); ?>
                                     </span>
                                 </div><?php
                             }
                          endif;
                     } ?>
                 </div>
+
+                <!-- custom fields -->
+                <?php
+                if(isset($wpjobportal_listing_fields['description']) && $wpjobportal_listing_fields['description'] !='' ){ ?>
+                    <div class="wjportal-company-listing-data-description">
+                        <?php
+                            echo esc_html( wp_trim_words( $wpjobportal_company->description, 30, '...' ) )
+                        ?>
+                    </div>
+                <?php } ?>
                 <!-- custom fields -->
                 <div class="wjportal-custom-field-wrp">
                     <?php
-                        $customfields = WPJOBPORTALincluder::getObjectClass('customfields')->userFieldsData(1,1);
-                            foreach ($customfields as $field) {
-                                $showCustom =  wpjobportal::$_wpjpcustomfield->showCustomFields($field,8,$company->params);
-                                echo wp_kses($showCustom, WPJOBPORTAL_ALLOWED_TAGS);
+                        $wpjobportal_customfields = WPJOBPORTALincluder::getObjectClass('customfields')->userFieldsData(1,1);
+                            foreach ($wpjobportal_customfields as $wpjobportal_field) {
+                                $wpjobportal_showCustom =  wpjobportal::$_wpjpcustomfield->showCustomFields($wpjobportal_field,8,$wpjobportal_company->params);
+                                echo wp_kses($wpjobportal_showCustom, WPJOBPORTAL_ALLOWED_TAGS);
                             }
                     ?>
                 </div>
             </div>
+            <?php /*
             <div class="wjportal-company-right-wrp">
                 <div class="wjportal-company-action">
-                    <a class="wjportal-company-act-btn" href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$company->aliasid))); ?>" title="<?php echo esc_html(__('View company','wp-job-portal')); ?>">
+                    <a class="wjportal-company-act-btn" href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$wpjobportal_mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$wpjobportal_company->aliasid))); ?>" title="<?php echo esc_attr(__('View company','wp-job-portal')); ?>">
                         <?php echo esc_html(__('View Company','wp-job-portal')); ?>
                     </a>
                 </div>
             </div>
+            */ ?>
         </div>
         <?php
     break;

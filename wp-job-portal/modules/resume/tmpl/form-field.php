@@ -6,6 +6,6 @@
 */
 ?>
 <?php
-	$resumelayout = WPJOBPORTALincluder::getObjectClass($layouts);
-	$resumelayout->printResume();
+	$wpjobportal_resumelayout = WPJOBPORTALincluder::getObjectClass($wpjobportal_layouts);
+	$wpjobportal_resumelayout->printResume();
 ?>

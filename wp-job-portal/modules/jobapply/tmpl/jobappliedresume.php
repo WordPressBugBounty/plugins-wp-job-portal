@@ -4,12 +4,12 @@ if (!defined('ABSPATH'))
 ?>
 <div class="wjportal-main-up-wrapper">
 <?php
-if ( !WPJOBPORTALincluder::getTemplate('templates/header',array('module' => 'jobapply'))) {
+if ( !WPJOBPORTALincluder::getTemplate('templates/header',array('wpjobportal_module' => 'jobapply'))) {
     return;
 }
 if (wpjobportal::$_error_flag == null) {
-    $ids=WPJOBPORTALrequest::getVar('jobid');
-    $id=isset($ids) ? $ids : null;
+    $wpjobportal_ids=WPJOBPORTALrequest::getVar('jobid');
+    $wpjobportal_id=isset($wpjobportal_ids) ? $wpjobportal_ids : null;
     ?>
     <div class="wjportal-main-wrapper wjportal-clearfix">
         <?php do_action('wpjobportal_addons_sendmessage_popup_main_outer'); ?>
@@ -17,21 +17,21 @@ if (wpjobportal::$_error_flag == null) {
         <div class="wjportal-page-header">
             <div class="wjportal-page-header-cnt">
                 <?php
-                    if(!WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('module' => 'jobapply','layout' =>'appliedres'))){
+                    if(!WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('wpjobportal_module' => 'jobapply','wpjobportal_layout' =>'appliedres'))){
                         return;
                     }
                 ?>
             </div>
             <div class="wjportal-header-actions">
                 <?php
-                $image1 = esc_url(WPJOBPORTAL_PLUGIN_URL) . "includes/images/sort-up.png";
-                $image2 = esc_url(WPJOBPORTAL_PLUGIN_URL) . "includes/images/sort-down.png";
+                $wpjobportal_image1 = esc_url(WPJOBPORTAL_PLUGIN_URL) . "includes/images/sort-up.png";
+                $wpjobportal_image2 = esc_url(WPJOBPORTAL_PLUGIN_URL) . "includes/images/sort-down.png";
                 if (wpjobportal::$_data['sortby'] == 1) {
-                    $image = $image1;
+                    $wpjobportal_image = $wpjobportal_image1;
                 } else {
-                    $image = $image2;
+                    $wpjobportal_image = $wpjobportal_image2;
                 }
-                $categoryarray = array(
+                $wpjobportal_categoryarray = array(
                     (object) array('id' => 1, 'text' => esc_html(__('Application title', 'wp-job-portal'))),
                     (object) array('id' => 2, 'text' => esc_html(__('First name', 'wp-job-portal'))),
                     (object) array('id' => 3, 'text' => esc_html(__('Category', 'wp-job-portal'))),
@@ -41,35 +41,35 @@ if (wpjobportal::$_error_flag == null) {
                 );
             // resume filters
                 WPJOBPORTALincluder::getTemplate('jobapply/views/frontend/filter',array(
-                    'sortbylist' => $categoryarray,
-                    'layout' => 'sortby',
-                    'image' => $image,
-                    'image1' => $image1,
-                    'image2' => $image2
+                    'wpjobportal_sortbylist' => $wpjobportal_categoryarray,
+                    'wpjobportal_layout' => 'sortby',
+                    'wpjobportal_image' => $wpjobportal_image,
+                    'wpjobportal_image1' => $wpjobportal_image1,
+                    'wpjobportal_image2' => $wpjobportal_image2
                 ));
             ?>
 
             </div>
         </div>
-        <form class="wjportal-form" id="job_form" method="post" action="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobapply','wpjobportallt'=>'jobappliedresume', 'jobid'=>$id))); ?>">
+        <form class="wjportal-form" id="job_form" method="post" action="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobapply','wpjobportallt'=>'jobappliedresume', 'jobid'=>$wpjobportal_id))); ?>">
             <div id="job-applied-resume-wrapper" class="wjportal-job-applied-resume">
                 <div class="wjportal-section-heading">
                     <?php echo esc_html(__('Job Info','wp-job-portal')); ?>
                 </div>
                 <?php
                    if (isset(wpjobportal::$_data[4]['jobinfo']) && !empty(wpjobportal::$_data[4]['jobinfo'])) {
-                        WPJOBPORTALincluder::getTemplate('job/views/frontend/joblist',array('job'=>wpjobportal::$_data[4]['jobinfo'][0],'labelflag' => true,'control'=>''));
+                        WPJOBPORTALincluder::getTemplate('job/views/frontend/joblist',array('wpjobportal_job'=>wpjobportal::$_data[4]['jobinfo'][0],'wpjobportal_labelflag' => true,'wpjobportal_control'=>''));
                     }
                 ?>
                 <?php
                     //Resume Action's For Addons
-                    $tab = WPJOBPORTALrequest::getVar('ta',"","1");
-                    $ta = WPJOBPORTALrequest::getVar('ta', null, 1);
+                    $wpjobportal_tab = WPJOBPORTALrequest::getVar('ta',"","1");
+                    $wpjobportal_ta = WPJOBPORTALrequest::getVar('ta', null, 1);
                 ?>
                 <div class="wjportal-job-applied-resume-actions">
                     <ul>
                         <?php //ADDONS FOR MESSAGE
-                            do_action('wpjobportal_addons_resume_top_buttons_actions',wpjobportal::$_data[0],$ta,$tab);
+                            do_action('wpjobportal_addons_resume_top_buttons_actions',wpjobportal::$_data[0],$wpjobportal_ta,$wpjobportal_tab);
                              do_action('wpjobportal_addons_resume_top_buttons_actions_export',wpjobportal::$_data['jobid']);
                         ?>
                     </ul>
@@ -81,19 +81,19 @@ if (wpjobportal::$_error_flag == null) {
                     </div>
                     <?php
                         if (isset(wpjobportal::$_data[0]['data']) && !empty(wpjobportal::$_data[0]['data'])) {
-                            foreach (wpjobportal::$_data[0]['data'] AS $resume) {
+                            foreach (wpjobportal::$_data[0]['data'] AS $wpjobportal_resume) {
 
                                 WPJOBPORTALincluder::getTemplate('resume/views/frontend/resumelist',array(
-                                    'myresume' => $resume,
-                                    'module' => 'jobappliedresume',
-                                    'control' => 'jobapply',
-                                    'percentage' => ''
+                                    'wpjobportal_myresume' => $wpjobportal_resume,
+                                    'wpjobportal_module' => 'jobappliedresume',
+                                    'wpjobportal_control' => 'jobapply',
+                                    'wpjobportal_percentage' => ''
                                 ));
                             }
                             if (wpjobportal::$_data[1]) {
                                 WPJOBPORTALincluder::getTemplate('templates/pagination',array(
-                                    'pagination' => wpjobportal::$_data[1],
-                                    'module' => 'jobapply'
+                                    'wpjobportal_pagination' => wpjobportal::$_data[1],
+                                    'wpjobportal_module' => 'jobapply'
                                 ));
                             }
                         echo wp_kses(WPJOBPORTALformfield::hidden('sortby', wpjobportal::$_data['sortby']),WPJOBPORTAL_ALLOWED_TAGS);

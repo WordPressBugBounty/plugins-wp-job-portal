@@ -51,15 +51,15 @@ class WPJOBPORTALshortcodes {
 
     }
 
-    function show_employer_controlpanel($raw_args, $content = null) {
+    function show_employer_controlpanel($raw_args, $wpjobportal_content = null) {
         //default set of parameters for the front end shortcodes
         ob_start();
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'wpjobportalme' => 'employer',
             'wpjobportallt' => 'controlpanel',
         );
 
-        $default_short_code_options = array(
+        $wpjobportal_default_short_code_options = array(
             'hide_profile_section' => '',
             'hide_graph' => '',
             'hide_recent_applications' => '',
@@ -67,12 +67,12 @@ class WPJOBPORTALshortcodes {
             'hide_invoices' => '',
         );
 
-        $sanitized_args = shortcode_atts($defaults, $raw_args);
-        $shortcode_options = shortcode_atts($default_short_code_options, $raw_args);
+        $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $raw_args);
+        $shortcode_options = shortcode_atts($wpjobportal_default_short_code_options, $raw_args);
         if(isset(wpjobportal::$_data['sanitized_args']) && !empty(wpjobportal::$_data['sanitized_args'])){
-            wpjobportal::$_data['sanitized_args'] += $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] += $wpjobportal_sanitized_args;
         }else{
-            wpjobportal::$_data['sanitized_args'] = $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] = $wpjobportal_sanitized_args;
         }
 
         if(isset(wpjobportal::$_data['shortcode_options']) && !empty(wpjobportal::$_data['shortcode_options'])){
@@ -81,8 +81,8 @@ class WPJOBPORTALshortcodes {
             wpjobportal::$_data['shortcode_options'] = $shortcode_options;
         }
 
-        $pageid = get_the_ID();
-        wpjobportal::wpjobportal_setPageID($pageid);
+        $wpjobportal_pageid = get_the_ID();
+        wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
@@ -90,32 +90,32 @@ class WPJOBPORTALshortcodes {
         } elseif (WPJOBPORTALincluder::getObjectClass('user')->isdisabled()) { // handling for the user disabled
             WPJOBPORTALlayout::getUserDisabledMsg();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'employer');
-            $layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'controlpanel');
-            $employerarray = array('addcompany', 'mycompanies', 'adddepartment', 'mydepartments', 'addfolder', 'myfolders', 'addjob', 'myjobs');
-            $isouruser = WPJOBPORTALincluder::getObjectClass('user')->isWPJOBPortalUser();
-            $isguest = WPJOBPORTALincluder::getObjectClass('user')->isguest();
-            if (in_array($layout, $employerarray) && $isouruser == false && $isguest == false) {
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'employer');
+            $wpjobportal_layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'controlpanel');
+            $wpjobportal_employerarray = array('addcompany', 'mycompanies', 'adddepartment', 'mydepartments', 'addfolder', 'myfolders', 'addjob', 'myjobs');
+            $wpjobportal_isouruser = WPJOBPORTALincluder::getObjectClass('user')->isWPJOBPortalUser();
+            $wpjobportal_isguest = WPJOBPORTALincluder::getObjectClass('user')->isguest();
+            if (in_array($wpjobportal_layout, $wpjobportal_employerarray) && $wpjobportal_isouruser == false && $wpjobportal_isguest == false) {
                 WPJOBPORTALincluder::include_file('newinwpjobportal', 'common');
             } else {
                 wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-                WPJOBPORTALincluder::include_file($module);
+                WPJOBPORTALincluder::include_file($wpjobportal_module);
             }
         }
                 unset(wpjobportal::$_data['sanitized_args']);
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_jobseeker_controlpanel($raw_args, $content = null) {
+    function show_jobseeker_controlpanel($raw_args, $wpjobportal_content = null) {
         //default set of parameters for the front end shortcodes
         ob_start();
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'wpjobportalme' => 'jobseeker',
             'wpjobportallt' => 'controlpanel',
         );
 
-        $default_short_code_options = array(
+        $wpjobportal_default_short_code_options = array(
             'hide_profile_section' => '',
             'hide_graph' => '',
             'hide_job_applies' => '',
@@ -124,12 +124,12 @@ class WPJOBPORTALshortcodes {
             'hide_invoices' => '',
         );
 
-        $sanitized_args = shortcode_atts($defaults, $raw_args);
-        $shortcode_options = shortcode_atts($default_short_code_options, $raw_args);
+        $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $raw_args);
+        $shortcode_options = shortcode_atts($wpjobportal_default_short_code_options, $raw_args);
         if(isset(wpjobportal::$_data['sanitized_args']) && !empty(wpjobportal::$_data['sanitized_args'])){
-            wpjobportal::$_data['sanitized_args'] += $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] += $wpjobportal_sanitized_args;
         }else{
-            wpjobportal::$_data['sanitized_args'] = $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] = $wpjobportal_sanitized_args;
         }
 
         if(isset(wpjobportal::$_data['shortcode_options']) && !empty(wpjobportal::$_data['shortcode_options'])){
@@ -138,8 +138,8 @@ class WPJOBPORTALshortcodes {
             wpjobportal::$_data['shortcode_options'] = $shortcode_options;
         }
 
-        $pageid = get_the_ID();
-        wpjobportal::wpjobportal_setPageID($pageid);
+        $wpjobportal_pageid = get_the_ID();
+        wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
@@ -147,38 +147,38 @@ class WPJOBPORTALshortcodes {
         } elseif (WPJOBPORTALincluder::getObjectClass('user')->isdisabled()) { // handling for the user disabled
             WPJOBPORTALlayout::getUserDisabledMsg();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'jobseeker');
-            $layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'controlpanel');
-            $jobseekerarray = array('myresumes','myappliedjobs');
-            $isouruser = WPJOBPORTALincluder::getObjectClass('user')->isWPJOBPortalUser();
-            $isguest = WPJOBPORTALincluder::getObjectClass('user')->isguest();
-            if (in_array($layout, $jobseekerarray) && $isouruser == false && $isguest == false) {
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'jobseeker');
+            $wpjobportal_layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'controlpanel');
+            $wpjobportal_jobseekerarray = array('myresumes','myappliedjobs');
+            $wpjobportal_isouruser = WPJOBPORTALincluder::getObjectClass('user')->isWPJOBPortalUser();
+            $wpjobportal_isguest = WPJOBPORTALincluder::getObjectClass('user')->isguest();
+            if (in_array($wpjobportal_layout, $wpjobportal_jobseekerarray) && $wpjobportal_isouruser == false && $wpjobportal_isguest == false) {
                 WPJOBPORTALincluder::include_file('newinwpjobportal', 'common');
             } else {
                 wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-                WPJOBPORTALincluder::include_file($module);
+                WPJOBPORTALincluder::include_file($wpjobportal_module);
             }
         }
         unset(wpjobportal::$_data['sanitized_args']);
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_job_search($raw_args, $content = null) {
+    function show_job_search($raw_args, $wpjobportal_content = null) {
         //default set of parameters for the front end shortcodes
         ob_start();
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'wpjobportalme' => 'jobsearch',
             'wpjobportallt' => 'jobsearch',
         );
-        $sanitized_args = shortcode_atts($defaults, $raw_args);
+        $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $raw_args);
         if(isset(wpjobportal::$_data['sanitized_args']) && !empty(wpjobportal::$_data['sanitized_args'])){
-            wpjobportal::$_data['sanitized_args'] += $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] += $wpjobportal_sanitized_args;
         }else{
-            wpjobportal::$_data['sanitized_args'] = $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] = $wpjobportal_sanitized_args;
         }
-        $pageid = get_the_ID();
-        wpjobportal::wpjobportal_setPageID($pageid);
+        $wpjobportal_pageid = get_the_ID();
+        wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
@@ -186,25 +186,25 @@ class WPJOBPORTALshortcodes {
         } elseif (WPJOBPORTALincluder::getObjectClass('user')->isdisabled()) { // handling for the user disabled
             WPJOBPORTALlayout::getUserDisabledMsg();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'jobsearch');
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'jobsearch');
             wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-            WPJOBPORTALincluder::include_file($module);
+            WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
         unset(wpjobportal::$_data['sanitized_args']);
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_job($raw_args, $content = null) {
+    function show_job($raw_args, $wpjobportal_content = null) {
         //default set of parameters for the front end shortcodes
         ob_start();
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'wpjobportalme' => 'job',
             'wpjobportallt' => 'jobs',
             'show_only_featured_jobs' => '0',
         );
 
-        $default_short_code_options = array(
+        $wpjobportal_default_short_code_options = array(
             'no_of_jobs' => '',
             'hide_filter' => '',
             'hide_filter_job_title' => '',
@@ -223,12 +223,12 @@ class WPJOBPORTALshortcodes {
             'sorting' => '',
         );
 
-        $sanitized_args = shortcode_atts($defaults, $raw_args);
-        $shortcode_options = shortcode_atts($default_short_code_options, $raw_args);
+        $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $raw_args);
+        $shortcode_options = shortcode_atts($wpjobportal_default_short_code_options, $raw_args);
         if(isset(wpjobportal::$_data['sanitized_args']) && !empty(wpjobportal::$_data['sanitized_args'])){
-            wpjobportal::$_data['sanitized_args'] += $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] += $wpjobportal_sanitized_args;
         }else{
-            wpjobportal::$_data['sanitized_args'] = $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] = $wpjobportal_sanitized_args;
         }
 
         if(isset(wpjobportal::$_data['shortcode_options']) && !empty(wpjobportal::$_data['shortcode_options'])){
@@ -237,8 +237,8 @@ class WPJOBPORTALshortcodes {
             wpjobportal::$_data['shortcode_options'] = $shortcode_options;
         }
 
-        $pageid = get_the_ID();
-        wpjobportal::wpjobportal_setPageID($pageid);
+        $wpjobportal_pageid = get_the_ID();
+        wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
@@ -246,30 +246,30 @@ class WPJOBPORTALshortcodes {
         } elseif (WPJOBPORTALincluder::getObjectClass('user')->isdisabled()) { // handling for the user disabled
             WPJOBPORTALlayout::getUserDisabledMsg();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'job');
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'job');
             wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-            WPJOBPORTALincluder::include_file($module);
+            WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
         unset(wpjobportal::$_data['sanitized_args']);
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_job_categories($raw_args, $content = null) {
+    function show_job_categories($raw_args, $wpjobportal_content = null) {
         //default set of parameters for the front end shortcodes
         ob_start();
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'wpjobportalme' => 'job',
             'wpjobportallt' => 'jobsbycategories',
         );
-        $sanitized_args = shortcode_atts($defaults, $raw_args);
+        $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $raw_args);
         if(isset(wpjobportal::$_data['sanitized_args']) && !empty(wpjobportal::$_data['sanitized_args'])){
-            wpjobportal::$_data['sanitized_args'] += $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] += $wpjobportal_sanitized_args;
         }else{
-            wpjobportal::$_data['sanitized_args'] = $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] = $wpjobportal_sanitized_args;
         }
-        $pageid = get_the_ID();
-        wpjobportal::wpjobportal_setPageID($pageid);
+        $wpjobportal_pageid = get_the_ID();
+        wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
@@ -277,30 +277,30 @@ class WPJOBPORTALshortcodes {
         } elseif (WPJOBPORTALincluder::getObjectClass('user')->isdisabled()) { // handling for the user disabled
             WPJOBPORTALlayout::getUserDisabledMsg();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'job');
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'job');
             wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-            WPJOBPORTALincluder::include_file($module);
+            WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_job_types($raw_args, $content = null) {
+    function show_job_types($raw_args, $wpjobportal_content = null) {
         //default set of parameters for the front end shortcodes
         ob_start();
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'wpjobportalme' => 'job',
             'wpjobportallt' => 'jobsbytypes',
         );
-        $sanitized_args = shortcode_atts($defaults, $raw_args);
+        $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $raw_args);
         if(isset(wpjobportal::$_data['sanitized_args']) && !empty(wpjobportal::$_data['sanitized_args'])){
-            wpjobportal::$_data['sanitized_args'] += $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] += $wpjobportal_sanitized_args;
         }else{
-            wpjobportal::$_data['sanitized_args'] = $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] = $wpjobportal_sanitized_args;
         }
-        $pageid = get_the_ID();
-        wpjobportal::wpjobportal_setPageID($pageid);
+        $wpjobportal_pageid = get_the_ID();
+        wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
@@ -308,30 +308,30 @@ class WPJOBPORTALshortcodes {
         } elseif (WPJOBPORTALincluder::getObjectClass('user')->isdisabled()) { // handling for the user disabled
             WPJOBPORTALlayout::getUserDisabledMsg();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'job');
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'job');
             wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-            WPJOBPORTALincluder::include_file($module);
+            WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_my_appliedjobs($raw_args, $content = null) {
+    function show_my_appliedjobs($raw_args, $wpjobportal_content = null) {
         //default set of parameters for the front end shortcodes
         ob_start();
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'wpjobportalme' => 'jobapply',
             'wpjobportallt' => 'myappliedjobs',
         );
-        $sanitized_args = shortcode_atts($defaults, $raw_args);
+        $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $raw_args);
         if(isset(wpjobportal::$_data['sanitized_args']) && !empty(wpjobportal::$_data['sanitized_args'])){
-            wpjobportal::$_data['sanitized_args'] += $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] += $wpjobportal_sanitized_args;
         }else{
-            wpjobportal::$_data['sanitized_args'] = $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] = $wpjobportal_sanitized_args;
         }
-        $pageid = get_the_ID();
-        wpjobportal::wpjobportal_setPageID($pageid);
+        $wpjobportal_pageid = get_the_ID();
+        wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
@@ -339,35 +339,35 @@ class WPJOBPORTALshortcodes {
         } elseif (WPJOBPORTALincluder::getObjectClass('user')->isdisabled()) { // handling for the user disabled
             WPJOBPORTALlayout::getUserDisabledMsg();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'jobapply');
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'jobapply');
             wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-            WPJOBPORTALincluder::include_file($module);
+            WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_my_companies($raw_args, $content = null) {
+    function show_my_companies($raw_args, $wpjobportal_content = null) {
         //default set of parameters for the front end shortcodes
         ob_start();
         if(in_array('multicompany', wpjobportal::$_active_addons)){
-            $mod = "multicompany";
+            $wpjobportal_mod = "multicompany";
         }else{
-            $mod = "company";
+            $wpjobportal_mod = "company";
         }
-        $defaults = array(
-            'wpjobportalme' => $mod,
+        $wpjobportal_defaults = array(
+            'wpjobportalme' => $wpjobportal_mod,
             'wpjobportallt' => 'mycompanies',
         );
-        $sanitized_args = shortcode_atts($defaults, $raw_args);
+        $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $raw_args);
         if(isset(wpjobportal::$_data['sanitized_args']) && !empty(wpjobportal::$_data['sanitized_args'])){
-            wpjobportal::$_data['sanitized_args'] += $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] += $wpjobportal_sanitized_args;
         }else{
-            wpjobportal::$_data['sanitized_args'] = $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] = $wpjobportal_sanitized_args;
         }
-        $pageid = get_the_ID();
-        wpjobportal::wpjobportal_setPageID($pageid);
+        $wpjobportal_pageid = get_the_ID();
+        wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
@@ -375,31 +375,31 @@ class WPJOBPORTALshortcodes {
         } elseif (WPJOBPORTALincluder::getObjectClass('user')->isdisabled()) { // handling for the user disabled
             WPJOBPORTALlayout::getUserDisabledMsg();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'company');
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'company');
             wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-            WPJOBPORTALincluder::include_file($module);
+            WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
 
-    function show_my_departments($raw_args, $content = null) {
+    function show_my_departments($raw_args, $wpjobportal_content = null) {
         //default set of parameters for the front end shortcodes
         ob_start();
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'wpjobportalme' => 'departments',
             'wpjobportallt' => 'mydepartments',
         );
-        $sanitized_args = shortcode_atts($defaults, $raw_args);
+        $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $raw_args);
         if(isset(wpjobportal::$_data['sanitized_args']) && !empty(wpjobportal::$_data['sanitized_args'])){
-            wpjobportal::$_data['sanitized_args'] += $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] += $wpjobportal_sanitized_args;
         }else{
-            wpjobportal::$_data['sanitized_args'] = $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] = $wpjobportal_sanitized_args;
         }
-        $pageid = get_the_ID();
-        wpjobportal::wpjobportal_setPageID($pageid);
+        $wpjobportal_pageid = get_the_ID();
+        wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
@@ -407,30 +407,30 @@ class WPJOBPORTALshortcodes {
         } elseif (WPJOBPORTALincluder::getObjectClass('user')->isdisabled()) { // handling for the user disabled
             WPJOBPORTALlayout::getUserDisabledMsg();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'departments');
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'departments');
             wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-            WPJOBPORTALincluder::include_file($module);
+            WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_my_jobs($raw_args, $content = null) {
+    function show_my_jobs($raw_args, $wpjobportal_content = null) {
         //default set of parameters for the front end shortcodes
         ob_start();
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'wpjobportalme' => 'job',
             'wpjobportallt' => 'myjobs',
         );
-        $sanitized_args = shortcode_atts($defaults, $raw_args);
+        $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $raw_args);
         if(isset(wpjobportal::$_data['sanitized_args']) && !empty(wpjobportal::$_data['sanitized_args'])){
-            wpjobportal::$_data['sanitized_args'] += $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] += $wpjobportal_sanitized_args;
         }else{
-            wpjobportal::$_data['sanitized_args'] = $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] = $wpjobportal_sanitized_args;
         }
-        $pageid = get_the_ID();
-        wpjobportal::wpjobportal_setPageID($pageid);
+        $wpjobportal_pageid = get_the_ID();
+        wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
@@ -438,30 +438,30 @@ class WPJOBPORTALshortcodes {
         } elseif (WPJOBPORTALincluder::getObjectClass('user')->isdisabled()) { // handling for the user disabled
             WPJOBPORTALlayout::getUserDisabledMsg();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'job');
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'job');
             wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-            WPJOBPORTALincluder::include_file($module);
+            WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_my_resumes($raw_args, $content = null) {
+    function show_my_resumes($raw_args, $wpjobportal_content = null) {
         //default set of parameters for the front end shortcodes
         ob_start();
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'wpjobportalme' => 'resume',
             'wpjobportallt' => 'myresumes',
         );
-        $sanitized_args = shortcode_atts($defaults, $raw_args);
+        $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $raw_args);
         if(isset(wpjobportal::$_data['sanitized_args']) && !empty(wpjobportal::$_data['sanitized_args'])){
-            wpjobportal::$_data['sanitized_args'] += $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] += $wpjobportal_sanitized_args;
         }else{
-            wpjobportal::$_data['sanitized_args'] = $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] = $wpjobportal_sanitized_args;
         }
-        $pageid = get_the_ID();
-        wpjobportal::wpjobportal_setPageID($pageid);
+        $wpjobportal_pageid = get_the_ID();
+        wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
@@ -469,35 +469,35 @@ class WPJOBPORTALshortcodes {
         } elseif (WPJOBPORTALincluder::getObjectClass('user')->isdisabled()) { // handling for the user disabled
             WPJOBPORTALlayout::getUserDisabledMsg();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'resume');
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'resume');
             wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-            WPJOBPORTALincluder::include_file($module);
+            WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_add_company($raw_args, $content = null) {
+    function show_add_company($raw_args, $wpjobportal_content = null) {
         //default set of parameters for the front end shortcodes
         ob_start();
         if(in_array('multicompany', wpjobportal::$_active_addons)){
-            $mod = "multicompany";
+            $wpjobportal_mod = "multicompany";
         }else{
-            $mod = "company";
+            $wpjobportal_mod = "company";
         }
-        $defaults = array(
-            'wpjobportalme' => $mod,
+        $wpjobportal_defaults = array(
+            'wpjobportalme' => $wpjobportal_mod,
             'wpjobportallt' => 'addcompany',
         );
-        $sanitized_args = shortcode_atts($defaults, $raw_args);
+        $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $raw_args);
         if(isset(wpjobportal::$_data['sanitized_args']) && !empty(wpjobportal::$_data['sanitized_args'])){
-            wpjobportal::$_data['sanitized_args'] += $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] += $wpjobportal_sanitized_args;
         }else{
-            wpjobportal::$_data['sanitized_args'] = $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] = $wpjobportal_sanitized_args;
         }
-        $pageid = get_the_ID();
-        wpjobportal::wpjobportal_setPageID($pageid);
+        $wpjobportal_pageid = get_the_ID();
+        wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
@@ -505,32 +505,32 @@ class WPJOBPORTALshortcodes {
         } elseif (WPJOBPORTALincluder::getObjectClass('user')->isdisabled()) { // handling for the user disabled
             WPJOBPORTALlayout::getUserDisabledMsg();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'company');
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'company');
             wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-            WPJOBPORTALincluder::include_file($module);
+            WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
 
 
-    function show_add_department($raw_args, $content = null) {
+    function show_add_department($raw_args, $wpjobportal_content = null) {
         //default set of parameters for the front end shortcodes
         ob_start();
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'wpjobportalme' => 'departments',
             'wpjobportallt' => 'adddepartment',
         );
-        $sanitized_args = shortcode_atts($defaults, $raw_args);
+        $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $raw_args);
         if(isset(wpjobportal::$_data['sanitized_args']) && !empty(wpjobportal::$_data['sanitized_args'])){
-            wpjobportal::$_data['sanitized_args'] += $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] += $wpjobportal_sanitized_args;
         }else{
-            wpjobportal::$_data['sanitized_args'] = $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] = $wpjobportal_sanitized_args;
         }
-        $pageid = get_the_ID();
-        wpjobportal::wpjobportal_setPageID($pageid);
+        $wpjobportal_pageid = get_the_ID();
+        wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
@@ -538,30 +538,30 @@ class WPJOBPORTALshortcodes {
         } elseif (WPJOBPORTALincluder::getObjectClass('user')->isdisabled()) { // handling for the user disabled
             WPJOBPORTALlayout::getUserDisabledMsg();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'departments');
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'departments');
             wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-            WPJOBPORTALincluder::include_file($module);
+            WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_add_job($raw_args, $content = null) {
+    function show_add_job($raw_args, $wpjobportal_content = null) {
         //default set of parameters for the front end shortcodes
         ob_start();
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'wpjobportalme' => 'job',
             'wpjobportallt' => 'addjob',
         );
-        $sanitized_args = shortcode_atts($defaults, $raw_args);
+        $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $raw_args);
         if(isset(wpjobportal::$_data['sanitized_args']) && !empty(wpjobportal::$_data['sanitized_args'])){
-            wpjobportal::$_data['sanitized_args'] += $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] += $wpjobportal_sanitized_args;
         }else{
-            wpjobportal::$_data['sanitized_args'] = $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] = $wpjobportal_sanitized_args;
         }
-        $pageid = get_the_ID();
-        wpjobportal::wpjobportal_setPageID($pageid);
+        $wpjobportal_pageid = get_the_ID();
+        wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
@@ -569,35 +569,35 @@ class WPJOBPORTALshortcodes {
         } elseif (WPJOBPORTALincluder::getObjectClass('user')->isdisabled()) { // handling for the user disabled
             WPJOBPORTALlayout::getUserDisabledMsg();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'job');
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'job');
             wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-            WPJOBPORTALincluder::include_file($module);
+            WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_add_resume($raw_args, $content = null) {
+    function show_add_resume($raw_args, $wpjobportal_content = null) {
         //default set of parameters for the front end shortcodes
         ob_start();
         if(in_array('multiresume', wpjobportal::$_active_addons)){
-            $mod = "multiresume";
+            $wpjobportal_mod = "multiresume";
         }else{
-            $mod = "resume";
+            $wpjobportal_mod = "resume";
         }
-        $defaults = array(
-            'wpjobportalme' => $mod,
+        $wpjobportal_defaults = array(
+            'wpjobportalme' => $wpjobportal_mod,
             'wpjobportallt' => 'addresume',
         );
-        $sanitized_args = shortcode_atts($defaults, $raw_args);
+        $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $raw_args);
         if(isset(wpjobportal::$_data['sanitized_args']) && !empty(wpjobportal::$_data['sanitized_args'])){
-            wpjobportal::$_data['sanitized_args'] += $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] += $wpjobportal_sanitized_args;
         }else{
-            wpjobportal::$_data['sanitized_args'] = $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] = $wpjobportal_sanitized_args;
         }
-        $pageid = get_the_ID();
-        wpjobportal::wpjobportal_setPageID($pageid);
+        $wpjobportal_pageid = get_the_ID();
+        wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
@@ -605,32 +605,32 @@ class WPJOBPORTALshortcodes {
         } elseif (WPJOBPORTALincluder::getObjectClass('user')->isdisabled()) { // handling for the user disabled
             WPJOBPORTALlayout::getUserDisabledMsg();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'resume');
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'resume');
             wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-            WPJOBPORTALincluder::include_file($module);
+            WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
 
 
-    function show_employer_registration($raw_args, $content = null) {
+    function show_employer_registration($raw_args, $wpjobportal_content = null) {
         //default set of parameters for the front end shortcodes
         ob_start();
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'wpjobportalme' => 'user',
             'wpjobportallt' => 'regemployer',
         );
-        $sanitized_args = shortcode_atts($defaults, $raw_args);
+        $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $raw_args);
         if(isset(wpjobportal::$_data['sanitized_args']) && !empty(wpjobportal::$_data['sanitized_args'])){
-            wpjobportal::$_data['sanitized_args'] += $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] += $wpjobportal_sanitized_args;
         }else{
-            wpjobportal::$_data['sanitized_args'] = $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] = $wpjobportal_sanitized_args;
         }
-        $pageid = get_the_ID();
-        wpjobportal::wpjobportal_setPageID($pageid);
+        $wpjobportal_pageid = get_the_ID();
+        wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
@@ -638,30 +638,30 @@ class WPJOBPORTALshortcodes {
         } elseif (WPJOBPORTALincluder::getObjectClass('user')->isdisabled()) { // handling for the user disabled
             WPJOBPORTALlayout::getUserDisabledMsg();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'user');
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'user');
             wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-            WPJOBPORTALincluder::include_file($module);
+            WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_registration($raw_args, $content = null) {
+    function show_registration($raw_args, $wpjobportal_content = null) {
         //default set of parameters for the front end shortcodes
         ob_start();
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'wpjobportalme' => 'user',
             'wpjobportallt' => 'userregister',
         );
-        $sanitized_args = shortcode_atts($defaults, $raw_args);
+        $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $raw_args);
         if(isset(wpjobportal::$_data['sanitized_args']) && !empty(wpjobportal::$_data['sanitized_args'])){
-            wpjobportal::$_data['sanitized_args'] += $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] += $wpjobportal_sanitized_args;
         }else{
-            wpjobportal::$_data['sanitized_args'] = $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] = $wpjobportal_sanitized_args;
         }
-        $pageid = get_the_ID();
-        wpjobportal::wpjobportal_setPageID($pageid);
+        $wpjobportal_pageid = get_the_ID();
+        wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
@@ -669,30 +669,30 @@ class WPJOBPORTALshortcodes {
         } elseif (WPJOBPORTALincluder::getObjectClass('user')->isdisabled()) { // handling for the user disabled
             WPJOBPORTALlayout::getUserDisabledMsg();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'user');
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'user');
             wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-            WPJOBPORTALincluder::include_file($module);
+            WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
         unset(wpjobportal::$_data['sanitized_args']);
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_jobseeker_registration($raw_args, $content = null) {
+    function show_jobseeker_registration($raw_args, $wpjobportal_content = null) {
         //default set of parameters for the front end shortcodes
         ob_start();
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'wpjobportalme' => 'user',
             'wpjobportallt' => 'regjobseeker',
         );
-        $sanitized_args = shortcode_atts($defaults, $raw_args);
+        $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $raw_args);
         if(isset(wpjobportal::$_data['sanitized_args']) && !empty(wpjobportal::$_data['sanitized_args'])){
-            wpjobportal::$_data['sanitized_args'] += $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] += $wpjobportal_sanitized_args;
         }else{
-            wpjobportal::$_data['sanitized_args'] = $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] = $wpjobportal_sanitized_args;
         }
-        $pageid = get_the_ID();
-        wpjobportal::wpjobportal_setPageID($pageid);
+        $wpjobportal_pageid = get_the_ID();
+        wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
@@ -700,30 +700,30 @@ class WPJOBPORTALshortcodes {
         } elseif (WPJOBPORTALincluder::getObjectClass('user')->isdisabled()) { // handling for the user disabled
             WPJOBPORTALlayout::getUserDisabledMsg();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'user');
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'user');
             wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-            WPJOBPORTALincluder::include_file($module);
+            WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_jobseeker_my_stats($raw_args, $content = null){
+    function show_jobseeker_my_stats($raw_args, $wpjobportal_content = null){
         //default set of parameters for the front end shortcodes
         ob_start();
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'wpjobportalme' => 'jobseeker',
             'wpjobportallt' => 'mystats',
         );
-        $sanitized_args = shortcode_atts($defaults, $raw_args);
+        $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $raw_args);
         if(isset(wpjobportal::$_data['sanitized_args']) && !empty(wpjobportal::$_data['sanitized_args'])){
-            wpjobportal::$_data['sanitized_args'] += $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] += $wpjobportal_sanitized_args;
         }else{
-            wpjobportal::$_data['sanitized_args'] = $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] = $wpjobportal_sanitized_args;
         }
-        $pageid = get_the_ID();
-        wpjobportal::wpjobportal_setPageID($pageid);
+        $wpjobportal_pageid = get_the_ID();
+        wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
@@ -731,26 +731,26 @@ class WPJOBPORTALshortcodes {
         } elseif (WPJOBPORTALincluder::getObjectClass('user')->isdisabled()) { // handling for the user disabled
             WPJOBPORTALlayout::getUserDisabledMsg();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'jobseeker');
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'jobseeker');
             wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-            WPJOBPORTALincluder::include_file($module);
+            WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_employer_my_stats($raw_args, $content = null){
+    function show_employer_my_stats($raw_args, $wpjobportal_content = null){
         //default set of parameters for the front end shortcodes
         ob_start();
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'wpjobportalme' => 'employer',
             'wpjobportallt' => 'mystats',
         );
-        $sanitized_args = shortcode_atts($defaults, $raw_args);
-        wpjobportal::$_data['sanitized_args'] = $sanitized_args;
-        $pageid = get_the_ID();
-        wpjobportal::wpjobportal_setPageID($pageid);
+        $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $raw_args);
+        wpjobportal::$_data['sanitized_args'] = $wpjobportal_sanitized_args;
+        $wpjobportal_pageid = get_the_ID();
+        wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
@@ -758,30 +758,30 @@ class WPJOBPORTALshortcodes {
         } elseif (WPJOBPORTALincluder::getObjectClass('user')->isdisabled()) { // handling for the user disabled
             WPJOBPORTALlayout::getUserDisabledMsg();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'employer');
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'employer');
             wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-            WPJOBPORTALincluder::include_file($module);
+            WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_login_page($raw_args, $content = null){
+    function show_login_page($raw_args, $wpjobportal_content = null){
         //default set of parameters for the front end shortcodes
         ob_start();
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'wpjobportalme' => 'wpjobportal',
             'wpjobportallt' => 'login',
         );
-        $sanitized_args = shortcode_atts($defaults, $raw_args);
+        $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $raw_args);
         if(isset(wpjobportal::$_data['sanitized_args']) && !empty(wpjobportal::$_data['sanitized_args'])){
-            wpjobportal::$_data['sanitized_args'] += $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] += $wpjobportal_sanitized_args;
         }else{
-            wpjobportal::$_data['sanitized_args'] = $sanitized_args;
+            wpjobportal::$_data['sanitized_args'] = $wpjobportal_sanitized_args;
         }
-        $pageid = get_the_ID();
-        wpjobportal::wpjobportal_setPageID($pageid);
+        $wpjobportal_pageid = get_the_ID();
+        wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
@@ -789,20 +789,20 @@ class WPJOBPORTALshortcodes {
         } elseif (WPJOBPORTALincluder::getObjectClass('user')->isdisabled()) { // handling for the user disabled
             WPJOBPORTALlayout::getUserDisabledMsg();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'wpjobportal');
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'wpjobportal');
             wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-            WPJOBPORTALincluder::include_file($module);
+            WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_searchjob($raw_args, $content = null) {
+    function show_searchjob($raw_args, $wpjobportal_content = null) {
 
         ob_start();
 
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'title' => esc_html(__('Search job', 'wp-job-portal')),
             'showtitle' => '1',
             'jobtitle' => '1',
@@ -819,35 +819,35 @@ class WPJOBPORTALshortcodes {
             'columnperrow' => '1',
         );
 
-        $arr = (object) shortcode_atts($defaults, $raw_args);
+        $wpjobportal_arr = (object) shortcode_atts($wpjobportal_defaults, $raw_args);
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
             WPJOBPORTALlayout::getSystemOffline();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme');
-            if($module != null){
-                $pageid = get_the_ID();
-                wpjobportal::wpjobportal_setPageID($pageid);
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme');
+            if($wpjobportal_module != null){
+                $wpjobportal_pageid = get_the_ID();
+                wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
                 wpjobportal::wpjobportal_addStyleSheets();
                 wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-                WPJOBPORTALincluder::include_file($module);
-                $content .= ob_get_clean();
-                return $content;
+                WPJOBPORTALincluder::include_file($wpjobportal_module);
+                $wpjobportal_content .= ob_get_clean();
+                return $wpjobportal_content;
             }
-            $modules_html = WPJOBPORTALincluder::getJSModel('jobsearch')->getSearchJobs_Widget($arr->title, $arr->showtitle, $arr->jobtitle, $arr->category, $arr->jobtype, $arr->jobstatus, $arr->salaryrange, $arr->shift, $arr->duration, $arr->startpublishing, $arr->stoppublishing, $arr->company, $arr->address, $arr->columnperrow);
-            echo wp_kses($modules_html, WPJOBPORTAL_ALLOWED_TAGS);
+            $wpjobportal_modules_html = WPJOBPORTALincluder::getJSModel('jobsearch')->getSearchJobs_Widget($wpjobportal_arr->title, $wpjobportal_arr->showtitle, $wpjobportal_arr->jobtitle, $wpjobportal_arr->category, $wpjobportal_arr->jobtype, $wpjobportal_arr->jobstatus, $wpjobportal_arr->salaryrange, $wpjobportal_arr->shift, $wpjobportal_arr->duration, $wpjobportal_arr->startpublishing, $wpjobportal_arr->stoppublishing, $wpjobportal_arr->company, $wpjobportal_arr->address, $wpjobportal_arr->columnperrow);
+            echo wp_kses($wpjobportal_modules_html, WPJOBPORTAL_ALLOWED_TAGS);
         }
         unset(wpjobportal::$_data['sanitized_args']);
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_resumes($raw_args, $content = null) {
+    function show_resumes($raw_args, $wpjobportal_content = null) {
 
         ob_start();
 
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'title' => esc_html(__('Resumes', 'wp-job-portal')),
             'typeofresume' => '1',
             'showtitle' => '1',
@@ -882,71 +882,71 @@ class WPJOBPORTALshortcodes {
             'datavaluecolor' => '',
         );
 
-        $arr = (object) shortcode_atts($defaults, $raw_args);
-        $arr->subcategory = 0;
+        $wpjobportal_arr = (object) shortcode_atts($wpjobportal_defaults, $raw_args);
+        $wpjobportal_arr->subcategory = 0;
 
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
             WPJOBPORTALlayout::getSystemOffline();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme');
-            if($module != null){
-                $pageid = get_the_ID();
-                wpjobportal::wpjobportal_setPageID($pageid);
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme');
+            if($wpjobportal_module != null){
+                $wpjobportal_pageid = get_the_ID();
+                wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
                 wpjobportal::wpjobportal_addStyleSheets();
                 wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-                WPJOBPORTALincluder::include_file($module);
-                $content .= ob_get_clean();
-                return $content;
+                WPJOBPORTALincluder::include_file($wpjobportal_module);
+                $wpjobportal_content .= ob_get_clean();
+                return $wpjobportal_content;
             }
             //Frontend HTML starts -----------
-            $mod = 'fd';
-            if ($arr->typeofresume == 1) {
-                $mod = 'newestresume';
-            } elseif ($arr->typeofresume == 2) {
-                $mod = 'topresume';
-            }  elseif ($arr->typeofresume == 4) {
-                $mod = 'featuredresume';
+            $wpjobportal_mod = 'fd';
+            if ($wpjobportal_arr->typeofresume == 1) {
+                $wpjobportal_mod = 'newestresume';
+            } elseif ($wpjobportal_arr->typeofresume == 2) {
+                $wpjobportal_mod = 'topresume';
+            }  elseif ($wpjobportal_arr->typeofresume == 4) {
+                $wpjobportal_mod = 'featuredresume';
             }
 
-            $layoutName = $mod . uniqid();
+            $wpjobportal_layoutName = $wpjobportal_mod . uniqid();
 
-            if ($arr->typeofresume != 0) {
+            if ($wpjobportal_arr->typeofresume != 0) {
 
-                $resumes = WPJOBPORTALincluder::getJSModel('resume')->getResumes_Widget($arr->typeofresume, $arr->noofresume);
+                $wpjobportal_resumes = WPJOBPORTALincluder::getJSModel('resume')->getResumes_Widget($wpjobportal_arr->typeofresume, $wpjobportal_arr->noofresume);
                 // parameters [for later use]
                 $speedTest = '';
                 $sliding = '';
                 $consecutivesliding = '';
                 $slidingdirection = '';
-                $separator = '';
+                $wpjobportal_separator = '';
 
-                $modules_html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->listModuleResumes($layoutName, $resumes, $arr->noofresume, $arr->applicationtitle, $arr->name, $arr->experience, $arr->available, $arr->gender, $arr->nationality, $arr->location, $arr->category, $arr->subcategory, $arr->jobtype, $arr->posted, $separator, $arr->moduleheight, $arr->resumeheight, $arr->topmargin, $arr->leftmargin, $arr->logowidth, $arr->logoheight, $arr->fieldcolumn, $arr->listingstyle, $arr->title, $arr->showtitle, $speedTest, $sliding, $consecutivesliding, $slidingdirection, $arr->resumephoto, $arr->nofresumedesktop, $arr->nofresumetablet, $arr->boxstyle);
-                echo wp_kses($modules_html, WPJOBPORTAL_ALLOWED_TAGS);
-                $classname = $layoutName;
+                $wpjobportal_modules_html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->listModuleResumes($wpjobportal_layoutName, $wpjobportal_resumes, $wpjobportal_arr->noofresume, $wpjobportal_arr->applicationtitle, $wpjobportal_arr->name, $wpjobportal_arr->experience, $wpjobportal_arr->available, $wpjobportal_arr->gender, $wpjobportal_arr->nationality, $wpjobportal_arr->location, $wpjobportal_arr->category, $wpjobportal_arr->subcategory, $wpjobportal_arr->jobtype, $wpjobportal_arr->posted, $wpjobportal_separator, $wpjobportal_arr->moduleheight, $wpjobportal_arr->resumeheight, $wpjobportal_arr->topmargin, $wpjobportal_arr->leftmargin, $wpjobportal_arr->logowidth, $wpjobportal_arr->logoheight, $wpjobportal_arr->fieldcolumn, $wpjobportal_arr->listingstyle, $wpjobportal_arr->title, $wpjobportal_arr->showtitle, $speedTest, $sliding, $consecutivesliding, $slidingdirection, $wpjobportal_arr->resumephoto, $wpjobportal_arr->nofresumedesktop, $wpjobportal_arr->nofresumetablet, $wpjobportal_arr->boxstyle);
+                echo wp_kses($wpjobportal_modules_html, WPJOBPORTAL_ALLOWED_TAGS);
+                $wpjobportal_classname = $wpjobportal_layoutName;
 
-                $color1 = $arr->titlecolor;
-                $color2 = $arr->titleborderbottom;
-                $color3 = $arr->backgroundcolor;
-                $color4 = $arr->bordercolor;
-                $color5 = $arr->datalabelcolor;
-                $color6 = $arr->datavaluecolor;
+                $wpjobportal_color1 = $wpjobportal_arr->titlecolor;
+                $wpjobportal_color2 = $wpjobportal_arr->titleborderbottom;
+                $wpjobportal_color3 = $wpjobportal_arr->backgroundcolor;
+                $wpjobportal_color4 = $wpjobportal_arr->bordercolor;
+                $wpjobportal_color5 = $wpjobportal_arr->datalabelcolor;
+                $wpjobportal_color6 = $wpjobportal_arr->datavaluecolor;
 
-                $echo_style = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->perpareStyleSheet($classname , $color1 , $color2 , $color3 , $color4 , $color5 , $color6 );
+                $echo_style = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->perpareStyleSheet($wpjobportal_classname , $wpjobportal_color1 , $wpjobportal_color2 , $wpjobportal_color3 , $wpjobportal_color4 , $wpjobportal_color5 , $wpjobportal_color6 );
                 echo wp_kses($echo_style, WPJOBPORTAL_ALLOWED_TAGS);
             }
         }
 
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_companies($raw_args, $content = null) {
+    function show_companies($raw_args, $wpjobportal_content = null) {
 
         ob_start();
 
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'title' => esc_html(__('Companies', 'wp-job-portal')),
             'companytype' => '1',
             'showtitle' => '1',
@@ -974,66 +974,66 @@ class WPJOBPORTALshortcodes {
             'datavaluecolor' => '',
         );
 
-        $arr = (object) shortcode_atts($defaults, $raw_args);
+        $wpjobportal_arr = (object) shortcode_atts($wpjobportal_defaults, $raw_args);
 
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
             WPJOBPORTALlayout::getSystemOffline();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme');
-            if($module != null){
-                $pageid = get_the_ID();
-                wpjobportal::wpjobportal_setPageID($pageid);
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme');
+            if($wpjobportal_module != null){
+                $wpjobportal_pageid = get_the_ID();
+                wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
                 wpjobportal::wpjobportal_addStyleSheets();
                 wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-                WPJOBPORTALincluder::include_file($module);
-                $content .= ob_get_clean();
-                return $content;
+                WPJOBPORTALincluder::include_file($wpjobportal_module);
+                $wpjobportal_content .= ob_get_clean();
+                return $wpjobportal_content;
             }
-            $mod = 'abc';
-            if ($arr->companytype == 2) {
-                $mod = 'featuredcompany';
+            $wpjobportal_mod = 'abc';
+            if ($wpjobportal_arr->companytype == 2) {
+                $wpjobportal_mod = 'featuredcompany';
             }
-            $layoutName = $mod . uniqid();
+            $wpjobportal_layoutName = $wpjobportal_mod . uniqid();
 
-            if ($arr->companytype != 0) {
+            if ($wpjobportal_arr->companytype != 0) {
 
-                $companies = WPJOBPORTALincluder::getJSModel('company')->getCompanies_Widget($arr->companytype, $arr->noofcompanies);
+                $wpjobportal_companies = WPJOBPORTALincluder::getJSModel('company')->getCompanies_Widget($wpjobportal_arr->companytype, $wpjobportal_arr->noofcompanies);
                 //parameters [for later use]
-                $theme = '';
-                $jobwidth = '';
-                $jobfloat = '';
+                $wpjobportal_theme = '';
+                $wpjobportal_jobwidth = '';
+                $wpjobportal_jobfloat = '';
                 $speedTest = '';
                 $sliding = '';
                 $slidingdirection = '';
                 $consecutivesliding = '';
 
-                $modules_html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->listModuleCompanies($layoutName, $companies, $arr->noofcompanies, $arr->category, $arr->posted, $arr->listingstyle, $theme, $arr->location, $arr->moduleheight, $jobwidth, $arr->companyheight, $jobfloat, $arr->topmargin, $arr->leftmargin, $arr->companylogo, $arr->complogowidth, $arr->complogoheight, $arr->fieldcolumn, $arr->listingstyle, $arr->title, $arr->showtitle, $speedTest, $sliding, $slidingdirection, $consecutivesliding, $arr->nofcompanies, $arr->nofcompaniesrowtab, $arr->boxstyle);
+                $wpjobportal_modules_html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->listModuleCompanies($wpjobportal_layoutName, $wpjobportal_companies, $wpjobportal_arr->noofcompanies, $wpjobportal_arr->category, $wpjobportal_arr->posted, $wpjobportal_arr->listingstyle, $wpjobportal_theme, $wpjobportal_arr->location, $wpjobportal_arr->moduleheight, $wpjobportal_jobwidth, $wpjobportal_arr->companyheight, $wpjobportal_jobfloat, $wpjobportal_arr->topmargin, $wpjobportal_arr->leftmargin, $wpjobportal_arr->companylogo, $wpjobportal_arr->complogowidth, $wpjobportal_arr->complogoheight, $wpjobportal_arr->fieldcolumn, $wpjobportal_arr->listingstyle, $wpjobportal_arr->title, $wpjobportal_arr->showtitle, $speedTest, $sliding, $slidingdirection, $consecutivesliding, $wpjobportal_arr->nofcompanies, $wpjobportal_arr->nofcompaniesrowtab, $wpjobportal_arr->boxstyle);
 
-                echo wp_kses($modules_html, WPJOBPORTAL_ALLOWED_TAGS);
-                $classname = $layoutName;
+                echo wp_kses($wpjobportal_modules_html, WPJOBPORTAL_ALLOWED_TAGS);
+                $wpjobportal_classname = $wpjobportal_layoutName;
 
-                $color1 = $arr->titlecolor;
-                $color2 = $arr->titleborderbottom;
-                $color3 = $arr->backgroundcolor;
-                $color4 = $arr->bordercolor;
-                $color5 = $arr->datalabelcolor;
-                $color6 = $arr->datavaluecolor;
+                $wpjobportal_color1 = $wpjobportal_arr->titlecolor;
+                $wpjobportal_color2 = $wpjobportal_arr->titleborderbottom;
+                $wpjobportal_color3 = $wpjobportal_arr->backgroundcolor;
+                $wpjobportal_color4 = $wpjobportal_arr->bordercolor;
+                $wpjobportal_color5 = $wpjobportal_arr->datalabelcolor;
+                $wpjobportal_color6 = $wpjobportal_arr->datavaluecolor;
 
-                $echo_style = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->perpareStyleSheet($classname , $color1 , $color2 , $color3 , $color4 , $color5 , $color6 );
+                $echo_style = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->perpareStyleSheet($wpjobportal_classname , $wpjobportal_color1 , $wpjobportal_color2 , $wpjobportal_color3 , $wpjobportal_color4 , $wpjobportal_color5 , $wpjobportal_color6 );
                 echo wp_kses($echo_style, WPJOBPORTAL_ALLOWED_TAGS);
             }
         }
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_searchresume($raw_args, $content = null) {
+    function show_searchresume($raw_args, $wpjobportal_content = null) {
 
         ob_start();
 
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'title' => esc_html(__('Search Resume', 'wp-job-portal')),
             'showtitle' => '1',
             'apptitle' => '1',
@@ -1049,36 +1049,36 @@ class WPJOBPORTALshortcodes {
             'columnperrow' => '1',
         );
 
-        $arr = (object) shortcode_atts($defaults, $raw_args);
+        $wpjobportal_arr = (object) shortcode_atts($wpjobportal_defaults, $raw_args);
 
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
             WPJOBPORTALlayout::getSystemOffline();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme');
-            if($module != null){
-                $pageid = get_the_ID();
-                wpjobportal::wpjobportal_setPageID($pageid);
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme');
+            if($wpjobportal_module != null){
+                $wpjobportal_pageid = get_the_ID();
+                wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
                 wpjobportal::wpjobportal_addStyleSheets();
                 wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-                WPJOBPORTALincluder::include_file($module);
-                $content .= ob_get_clean();
-                return $content;
+                WPJOBPORTALincluder::include_file($wpjobportal_module);
+                $wpjobportal_content .= ob_get_clean();
+                return $wpjobportal_content;
             }
-            $modules_html = WPJOBPORTALincluder::getJSModel('resumesearch')->getSearchResume_Widget($arr->title, $arr->showtitle, $arr->apptitle, $arr->name, $arr->natinality, $arr->gender, $arr->iamavailable, $arr->category, $arr->jobtype, $arr->salaryrange, $arr->heighesteducation, $arr->columnperrow, $arr->experience);
-            echo wp_kses($modules_html, WPJOBPORTAL_ALLOWED_TAGS);
+            $wpjobportal_modules_html = WPJOBPORTALincluder::getJSModel('resumesearch')->getSearchResume_Widget($wpjobportal_arr->title, $wpjobportal_arr->showtitle, $wpjobportal_arr->apptitle, $wpjobportal_arr->name, $wpjobportal_arr->natinality, $wpjobportal_arr->gender, $wpjobportal_arr->iamavailable, $wpjobportal_arr->category, $wpjobportal_arr->jobtype, $wpjobportal_arr->salaryrange, $wpjobportal_arr->heighesteducation, $wpjobportal_arr->columnperrow, $wpjobportal_arr->experience);
+            echo wp_kses($wpjobportal_modules_html, WPJOBPORTAL_ALLOWED_TAGS);
         }
 
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_jobbycategory($raw_args, $content = null) {
+    function show_jobbycategory($raw_args, $wpjobportal_content = null) {
 
         ob_start();
 
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'title' => esc_html(__('Jobs By Categories', 'wp-job-portal')),
             'showtitle' => '1',
             'maximumrecords' => '20',
@@ -1090,7 +1090,7 @@ class WPJOBPORTALshortcodes {
             'bordercolor' => '',
         );
 
-        $arr = (object) shortcode_atts($defaults, $raw_args);
+        $wpjobportal_arr = (object) shortcode_atts($wpjobportal_defaults, $raw_args);
 
         wpjobportal::wpjobportal_addStyleSheets();
 
@@ -1098,41 +1098,41 @@ class WPJOBPORTALshortcodes {
         if ($offline == 1) {
             WPJOBPORTALlayout::getSystemOffline();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme');
-            if($module != null){
-                $pageid = get_the_ID();
-                wpjobportal::wpjobportal_setPageID($pageid);
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme');
+            if($wpjobportal_module != null){
+                $wpjobportal_pageid = get_the_ID();
+                wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
                 wpjobportal::wpjobportal_addStyleSheets();
                 wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-                WPJOBPORTALincluder::include_file($module);
-                $content .= ob_get_clean();
-                return $content;
+                WPJOBPORTALincluder::include_file($wpjobportal_module);
+                $wpjobportal_content .= ob_get_clean();
+                return $wpjobportal_content;
             }
-            $classname = 'category' . uniqid();
+            $wpjobportal_classname = 'category' . uniqid();
 
-            $color1 = $arr->titlecolor;
-            $color2 = $arr->backgroundcolor;
-            $color3 = $arr->bordercolor;
+            $wpjobportal_color1 = $wpjobportal_arr->titlecolor;
+            $wpjobportal_color2 = $wpjobportal_arr->backgroundcolor;
+            $wpjobportal_color3 = $wpjobportal_arr->bordercolor;
 
-            $categories = WPJOBPORTALincluder::getJSModel('job')->getJobsBycategory_Widget($arr->showallcats, $arr->haverecords, $arr->maximumrecords);
+            $wpjobportal_categories = WPJOBPORTALincluder::getJSModel('job')->getJobsBycategory_Widget($wpjobportal_arr->showallcats, $wpjobportal_arr->haverecords, $wpjobportal_arr->maximumrecords);
 
-            $html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->listModuleByJobcatOrType($categories, $classname, $arr->showtitle, $arr->title, $arr->columnperrow, 2 );
-            echo wp_kses($html, WPJOBPORTAL_ALLOWED_TAGS);
+            $wpjobportal_html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->listModuleByJobcatOrType($wpjobportal_categories, $wpjobportal_classname, $wpjobportal_arr->showtitle, $wpjobportal_arr->title, $wpjobportal_arr->columnperrow, 2 );
+            echo wp_kses($wpjobportal_html, WPJOBPORTAL_ALLOWED_TAGS);
 
-            $echo_style = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->prepareStyleForBlocks($classname, $color1, $color2, $color3);
+            $echo_style = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->prepareStyleForBlocks($wpjobportal_classname, $wpjobportal_color1, $wpjobportal_color2, $wpjobportal_color3);
             echo wp_kses($echo_style, WPJOBPORTAL_ALLOWED_TAGS);
 
         }
 
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_jobbytypes($raw_args, $content = null) {
+    function show_jobbytypes($raw_args, $wpjobportal_content = null) {
 
         ob_start();
 
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'title' => esc_html(__('Jobs By Types', 'wp-job-portal')),
             'showtitle' => '1',
             'maximumrecords' => '20',
@@ -1144,47 +1144,47 @@ class WPJOBPORTALshortcodes {
             'bordercolor' => '',
         );
 
-        $arr = (object) shortcode_atts($defaults, $raw_args);
+        $wpjobportal_arr = (object) shortcode_atts($wpjobportal_defaults, $raw_args);
 
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
             WPJOBPORTALlayout::getSystemOffline();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme');
-            if($module != null){
-                $pageid = get_the_ID();
-                wpjobportal::wpjobportal_setPageID($pageid);
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme');
+            if($wpjobportal_module != null){
+                $wpjobportal_pageid = get_the_ID();
+                wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
                 wpjobportal::wpjobportal_addStyleSheets();
                 wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-                WPJOBPORTALincluder::include_file($module);
-                $content .= ob_get_clean();
-                return $content;
+                WPJOBPORTALincluder::include_file($wpjobportal_module);
+                $wpjobportal_content .= ob_get_clean();
+                return $wpjobportal_content;
             }
-            $classname = 'jobtype' . uniqid();
-            $color1 = $arr->titlecolor;
-            $color2 = $arr->backgroundcolor;
-            $color3 = $arr->bordercolor;
+            $wpjobportal_classname = 'jobtype' . uniqid();
+            $wpjobportal_color1 = $wpjobportal_arr->titlecolor;
+            $wpjobportal_color2 = $wpjobportal_arr->backgroundcolor;
+            $wpjobportal_color3 = $wpjobportal_arr->bordercolor;
 
-            $types = WPJOBPORTALincluder::getJSModel('job')->getJobsByTypes_Widget($arr->showallcats, $arr->haverecords, $arr->maximumrecords);
+            $types = WPJOBPORTALincluder::getJSModel('job')->getJobsByTypes_Widget($wpjobportal_arr->showallcats, $wpjobportal_arr->haverecords, $wpjobportal_arr->maximumrecords);
 
-            $html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->listModuleByJobcatOrType($types, $classname, $arr->showtitle, $arr->title, $arr->columnperrow, 1 );
-            echo wp_kses($html, WPJOBPORTAL_ALLOWED_TAGS);
+            $wpjobportal_html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->listModuleByJobcatOrType($types, $wpjobportal_classname, $wpjobportal_arr->showtitle, $wpjobportal_arr->title, $wpjobportal_arr->columnperrow, 1 );
+            echo wp_kses($wpjobportal_html, WPJOBPORTAL_ALLOWED_TAGS);
 
-            $echo_style = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->prepareStyleForBlocks($classname, $color1, $color2, $color3);
+            $echo_style = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->prepareStyleForBlocks($wpjobportal_classname, $wpjobportal_color1, $wpjobportal_color2, $wpjobportal_color3);
             echo wp_kses($echo_style, WPJOBPORTAL_ALLOWED_TAGS);
 
         }
 
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_jobsonmap($raw_args, $content = null) {
+    function show_jobsonmap($raw_args, $wpjobportal_content = null) {
 
         ob_start();
 
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'title' => esc_html(__('Hot jobs', 'wp-job-portal')),
             'showtitle' => 1,
             'numberofjobs' => 20,
@@ -1194,37 +1194,37 @@ class WPJOBPORTALshortcodes {
             'mapzoom' => 10,
         );
 
-        $arr = (object) shortcode_atts($defaults, $raw_args);
+        $wpjobportal_arr = (object) shortcode_atts($wpjobportal_defaults, $raw_args);
 
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
             WPJOBPORTALlayout::getSystemOffline();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme');
-            if($module != null){
-                $pageid = get_the_ID();
-                wpjobportal::wpjobportal_setPageID($pageid);
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme');
+            if($wpjobportal_module != null){
+                $wpjobportal_pageid = get_the_ID();
+                wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
                 wpjobportal::wpjobportal_addStyleSheets();
                 wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-                WPJOBPORTALincluder::include_file($module);
-                $content .= ob_get_clean();
-                return $content;
+                WPJOBPORTALincluder::include_file($wpjobportal_module);
+                $wpjobportal_content .= ob_get_clean();
+                return $wpjobportal_content;
             }
-            $jobs = WPJOBPORTALincluder::getJSModel('job')->getNewestJobsForMap_Widget($arr->numberofjobs);
-            $html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->listModuleJobsForMap($jobs, $arr->title, $arr->showtitle, $arr->company, $arr->category, $arr->moduleheight, $arr->mapzoom);
-            echo wp_kses($html, WPJOBPORTAL_ALLOWED_TAGS);
+            $wpjobportal_jobs = WPJOBPORTALincluder::getJSModel('job')->getNewestJobsForMap_Widget($wpjobportal_arr->numberofjobs);
+            $wpjobportal_html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->listModuleJobsForMap($wpjobportal_jobs, $wpjobportal_arr->title, $wpjobportal_arr->showtitle, $wpjobportal_arr->company, $wpjobportal_arr->category, $wpjobportal_arr->moduleheight, $wpjobportal_arr->mapzoom);
+            echo wp_kses($wpjobportal_html, WPJOBPORTAL_ALLOWED_TAGS);
         }
 
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_jobstats($raw_args, $content = null) {
+    function show_jobstats($raw_args, $wpjobportal_content = null) {
 
         ob_start();
 
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'title' => esc_html(__('Stats', 'wp-job-portal')),
             'showtitle' => '1',
             'employer' => '1',
@@ -1239,45 +1239,45 @@ class WPJOBPORTALshortcodes {
             'bordercolor' => '',
         );
 
-        $arr = (object) shortcode_atts($defaults, $raw_args);
+        $wpjobportal_arr = (object) shortcode_atts($wpjobportal_defaults, $raw_args);
 
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
             WPJOBPORTALlayout::getSystemOffline();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme');
-            if($module != null){
-                $pageid = get_the_ID();
-                wpjobportal::wpjobportal_setPageID($pageid);
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme');
+            if($wpjobportal_module != null){
+                $wpjobportal_pageid = get_the_ID();
+                wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
                 wpjobportal::wpjobportal_addStyleSheets();
                 wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-                WPJOBPORTALincluder::include_file($module);
-                $content .= ob_get_clean();
-                return $content;
+                WPJOBPORTALincluder::include_file($wpjobportal_module);
+                $wpjobportal_content .= ob_get_clean();
+                return $wpjobportal_content;
             }
-            $classname = 'stats' . uniqid();
-            $data = WPJOBPORTALincluder::getJSModel('common')->getJobsStats_Widget($classname, $arr->title, $arr->showtitle, $arr->employer, $arr->jobseeker, $arr->jobs, $arr->companies, $arr->activejobs, $arr->resumes, $arr->todaystats);
-            $modules_html = WPJOBPORTALincluder::getJSModel('common')->listModuleJobsStats($classname, $arr->title, $arr->showtitle, $arr->employer, $arr->jobseeker, $arr->jobs, $arr->companies, $arr->activejobs, $arr->resumes, $arr->todaystats,$data);
-            echo wp_kses($modules_html, WPJOBPORTAL_ALLOWED_TAGS);
+            $wpjobportal_classname = 'stats' . uniqid();
+            $wpjobportal_data = WPJOBPORTALincluder::getJSModel('common')->getJobsStats_Widget($wpjobportal_classname, $wpjobportal_arr->title, $wpjobportal_arr->showtitle, $wpjobportal_arr->employer, $wpjobportal_arr->jobseeker, $wpjobportal_arr->jobs, $wpjobportal_arr->companies, $wpjobportal_arr->activejobs, $wpjobportal_arr->resumes, $wpjobportal_arr->todaystats);
+            $wpjobportal_modules_html = WPJOBPORTALincluder::getJSModel('common')->listModuleJobsStats($wpjobportal_classname, $wpjobportal_arr->title, $wpjobportal_arr->showtitle, $wpjobportal_arr->employer, $wpjobportal_arr->jobseeker, $wpjobportal_arr->jobs, $wpjobportal_arr->companies, $wpjobportal_arr->activejobs, $wpjobportal_arr->resumes, $wpjobportal_arr->todaystats,$wpjobportal_data);
+            echo wp_kses($wpjobportal_modules_html, WPJOBPORTAL_ALLOWED_TAGS);
 
-            $color1 = $arr->titlecolor;
-            $color2 = $arr->backgroundcolor;
-            $color3 = $arr->bordercolor;
+            $wpjobportal_color1 = $wpjobportal_arr->titlecolor;
+            $wpjobportal_color2 = $wpjobportal_arr->backgroundcolor;
+            $wpjobportal_color3 = $wpjobportal_arr->bordercolor;
 
-            $echo_style = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->prepareStyleForStats($classname, $color1, $color2, $color3);
+            $echo_style = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->prepareStyleForStats($wpjobportal_classname, $wpjobportal_color1, $wpjobportal_color2, $wpjobportal_color3);
             echo wp_kses($echo_style, WPJOBPORTAL_ALLOWED_TAGS);
         }
 
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_jobsbycity($raw_args, $content = null) {
+    function show_jobsbycity($raw_args, $wpjobportal_content = null) {
 
         ob_start();
 
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'title' => esc_html(__('Jobs by cities', 'wp-job-portal')),
             'showtitle' => '1',
             'maximumrecords' => '20',
@@ -1288,54 +1288,54 @@ class WPJOBPORTALshortcodes {
             'bordercolor' => '',
         );
 
-        $showjobsby = 1; //for cities
+        $wpjobportal_showjobsby = 1; //for cities
 
-        $arr = (object) shortcode_atts($defaults, $raw_args);
+        $wpjobportal_arr = (object) shortcode_atts($wpjobportal_defaults, $raw_args);
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
             WPJOBPORTALlayout::getSystemOffline();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme');
-            if($module != null){
-                $pageid = get_the_ID();
-                wpjobportal::wpjobportal_setPageID($pageid);
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme');
+            if($wpjobportal_module != null){
+                $wpjobportal_pageid = get_the_ID();
+                wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
                 wpjobportal::wpjobportal_addStyleSheets();
                 wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-                WPJOBPORTALincluder::include_file($module);
-                $content .= ob_get_clean();
-                return $content;
+                WPJOBPORTALincluder::include_file($wpjobportal_module);
+                $wpjobportal_content .= ob_get_clean();
+                return $wpjobportal_content;
             }
-            if ($showjobsby != 0) {
+            if ($wpjobportal_showjobsby != 0) {
 
-                $jobs = WPJOBPORTALincluder::getJSModel('job')->getJobsBylocation_Widget($showjobsby, $arr->haverecords, $arr->maximumrecords);
+                $wpjobportal_jobs = WPJOBPORTALincluder::getJSModel('job')->getJobsBylocation_Widget($wpjobportal_showjobsby, $wpjobportal_arr->haverecords, $wpjobportal_arr->maximumrecords);
 
-                $classname = 'city' . uniqid();
+                $wpjobportal_classname = 'city' . uniqid();
 
-                $html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->listModuleLocation($jobs, $classname, $arr->showtitle, $arr->title, $arr->columnperrow, $showjobsby);
+                $wpjobportal_html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->listModuleLocation($wpjobportal_jobs, $wpjobportal_classname, $wpjobportal_arr->showtitle, $wpjobportal_arr->title, $wpjobportal_arr->columnperrow, $wpjobportal_showjobsby);
 
-                echo wp_kses($html, WPJOBPORTAL_ALLOWED_TAGS);
+                echo wp_kses($wpjobportal_html, WPJOBPORTAL_ALLOWED_TAGS);
 
-                $color1 = $arr->titlecolor;
-                $color2 = $arr->backgroundcolor;
-                $color3 = $arr->bordercolor;
+                $wpjobportal_color1 = $wpjobportal_arr->titlecolor;
+                $wpjobportal_color2 = $wpjobportal_arr->backgroundcolor;
+                $wpjobportal_color3 = $wpjobportal_arr->bordercolor;
 
-                $echo_style = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->prepareStyleForBlocks($classname, $color1, $color2, $color3);
+                $echo_style = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->prepareStyleForBlocks($wpjobportal_classname, $wpjobportal_color1, $wpjobportal_color2, $wpjobportal_color3);
 
                 echo wp_kses($echo_style, WPJOBPORTAL_ALLOWED_TAGS);
 
             }
         }
 
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_jobsbystate($raw_args, $content = null) {
+    function show_jobsbystate($raw_args, $wpjobportal_content = null) {
 
         ob_start();
 
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'title' => esc_html(__('Jobs by state', 'wp-job-portal')),
             'showtitle' => '1',
             'maximumrecords' => '20',
@@ -1346,55 +1346,55 @@ class WPJOBPORTALshortcodes {
             'bordercolor' => '',
         );
 
-        $showjobsby = 2; //for state
+        $wpjobportal_showjobsby = 2; //for state
 
-        $arr = (object) shortcode_atts($defaults, $raw_args);
+        $wpjobportal_arr = (object) shortcode_atts($wpjobportal_defaults, $raw_args);
 
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
             WPJOBPORTALlayout::getSystemOffline();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme');
-            if($module != null){
-                $pageid = get_the_ID();
-                wpjobportal::wpjobportal_setPageID($pageid);
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme');
+            if($wpjobportal_module != null){
+                $wpjobportal_pageid = get_the_ID();
+                wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
                 wpjobportal::wpjobportal_addStyleSheets();
                 wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-                WPJOBPORTALincluder::include_file($module);
-                $content .= ob_get_clean();
-                return $content;
+                WPJOBPORTALincluder::include_file($wpjobportal_module);
+                $wpjobportal_content .= ob_get_clean();
+                return $wpjobportal_content;
             }
-            $jobs = '';
-            if ($showjobsby != 0) {
+            $wpjobportal_jobs = '';
+            if ($wpjobportal_showjobsby != 0) {
 
-                $jobs = WPJOBPORTALincluder::getJSModel('job')->getJobsBylocation_Widget($showjobsby, $arr->haverecords, $arr->maximumrecords);
+                $wpjobportal_jobs = WPJOBPORTALincluder::getJSModel('job')->getJobsBylocation_Widget($wpjobportal_showjobsby, $wpjobportal_arr->haverecords, $wpjobportal_arr->maximumrecords);
 
-                $classname = 'state' . uniqid();
+                $wpjobportal_classname = 'state' . uniqid();
 
-                $html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->listModuleLocation($jobs, $classname, $arr->showtitle, $arr->title, $arr->columnperrow, $showjobsby);
+                $wpjobportal_html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->listModuleLocation($wpjobportal_jobs, $wpjobportal_classname, $wpjobportal_arr->showtitle, $wpjobportal_arr->title, $wpjobportal_arr->columnperrow, $wpjobportal_showjobsby);
 
-                echo wp_kses($html, WPJOBPORTAL_ALLOWED_TAGS);
+                echo wp_kses($wpjobportal_html, WPJOBPORTAL_ALLOWED_TAGS);
 
-                $color1 = $arr->titlecolor;
-                $color2 = $arr->backgroundcolor;
-                $color3 = $arr->bordercolor;
+                $wpjobportal_color1 = $wpjobportal_arr->titlecolor;
+                $wpjobportal_color2 = $wpjobportal_arr->backgroundcolor;
+                $wpjobportal_color3 = $wpjobportal_arr->bordercolor;
 
-                $echo_style = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->prepareStyleForBlocks($classname, $color1, $color2, $color3);
+                $echo_style = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->prepareStyleForBlocks($wpjobportal_classname, $wpjobportal_color1, $wpjobportal_color2, $wpjobportal_color3);
 
                 echo wp_kses($echo_style, WPJOBPORTAL_ALLOWED_TAGS);
             }
         }
 
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 
-    function show_jobsbycountries($raw_args, $content = null) {
+    function show_jobsbycountries($raw_args, $wpjobportal_content = null) {
 
         ob_start();
 
-        $defaults = array(
+        $wpjobportal_defaults = array(
             'title' => esc_html(__('Jobs by countries', 'wp-job-portal')),
             'showtitle' => '1',
             'maximumrecords' => '20',
@@ -1405,55 +1405,55 @@ class WPJOBPORTALshortcodes {
             'bordercolor' => '',
         );
 
-        $showjobsby = 3; //for countries
+        $wpjobportal_showjobsby = 3; //for countries
 
-        $arr = (object) shortcode_atts($defaults, $raw_args);
+        $wpjobportal_arr = (object) shortcode_atts($wpjobportal_defaults, $raw_args);
 
         wpjobportal::wpjobportal_addStyleSheets();
         $offline = wpjobportal::$_config->getConfigurationByConfigName('offline');
         if ($offline == 1) {
             WPJOBPORTALlayout::getSystemOffline();
         } else {
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme');
-            if($module != null){
-                $pageid = get_the_ID();
-                wpjobportal::wpjobportal_setPageID($pageid);
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme');
+            if($wpjobportal_module != null){
+                $wpjobportal_pageid = get_the_ID();
+                wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
                 wpjobportal::wpjobportal_addStyleSheets();
                 wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-                WPJOBPORTALincluder::include_file($module);
-                $content .= ob_get_clean();
-                return $content;
+                WPJOBPORTALincluder::include_file($wpjobportal_module);
+                $wpjobportal_content .= ob_get_clean();
+                return $wpjobportal_content;
             }
-            $jobs = '';
-            if ($showjobsby != 0) {
+            $wpjobportal_jobs = '';
+            if ($wpjobportal_showjobsby != 0) {
 
-                $jobs = WPJOBPORTALincluder::getJSModel('job')->getJobsBylocation_Widget($showjobsby, $arr->haverecords, $arr->maximumrecords);
+                $wpjobportal_jobs = WPJOBPORTALincluder::getJSModel('job')->getJobsBylocation_Widget($wpjobportal_showjobsby, $wpjobportal_arr->haverecords, $wpjobportal_arr->maximumrecords);
 
-                $classname = 'country' . uniqid();
+                $wpjobportal_classname = 'country' . uniqid();
 
-                $html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->listModuleLocation($jobs, $classname, $arr->showtitle, $arr->title, $arr->columnperrow, $showjobsby);
+                $wpjobportal_html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->listModuleLocation($wpjobportal_jobs, $wpjobportal_classname, $wpjobportal_arr->showtitle, $wpjobportal_arr->title, $wpjobportal_arr->columnperrow, $wpjobportal_showjobsby);
 
-                echo wp_kses($html, WPJOBPORTAL_ALLOWED_TAGS);
+                echo wp_kses($wpjobportal_html, WPJOBPORTAL_ALLOWED_TAGS);
 
-                $color1 = $arr->titlecolor;
-                $color2 = $arr->backgroundcolor;
-                $color3 = $arr->bordercolor;
+                $wpjobportal_color1 = $wpjobportal_arr->titlecolor;
+                $wpjobportal_color2 = $wpjobportal_arr->backgroundcolor;
+                $wpjobportal_color3 = $wpjobportal_arr->bordercolor;
 
-                $echo_style = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->prepareStyleForBlocks($classname, $color1, $color2, $color3);
+                $echo_style = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->prepareStyleForBlocks($wpjobportal_classname, $wpjobportal_color1, $wpjobportal_color2, $wpjobportal_color3);
 
                 echo wp_kses($echo_style, WPJOBPORTAL_ALLOWED_TAGS);
             }
         }
 
-        $content .= ob_get_clean();
-        return $content;
+        $wpjobportal_content .= ob_get_clean();
+        return $wpjobportal_content;
     }
 }
 
-$shortcodes = new WPJOBPORTALshortcodes();
-add_action( 'init', 'js_wpjobportal_jobs_block' );
+$wpjobportal_shortcodes = new WPJOBPORTALshortcodes();
+add_action( 'init', 'wpjobportal_jobs_block' );
 
-function js_wpjobportal_jobs_block(){
+function wpjobportal_jobs_block(){
     if(!function_exists("register_block_type")){
         return;
     }
@@ -1485,13 +1485,13 @@ function js_wpjobportal_jobs_block(){
                 'default' => ''
             ),
         ),
-        'render_callback' => 'js_wpjobportal_jobs_block_widgets',
+        'render_callback' => 'wpjobportal_jobs_block_widgets',
         'editor_script' => 'wpjobportaljobsblock',
     ) );
 }
 
-function js_wpjobportal_jobs_block_widgets($attributes, $content){
-    $defaults = array(
+function wpjobportal_jobs_block_widgets($attributes, $wpjobportal_content){
+    $wpjobportal_defaults = array(
         'wpjobportalpageid' => '0',
         'title' => esc_html(__('Newest jobs','wp-job-portal')),
         'typeofjobs' => '1',
@@ -1500,54 +1500,54 @@ function js_wpjobportal_jobs_block_widgets($attributes, $content){
         'listingstyle' => '0',
     );
 
-    $sanitized_args = shortcode_atts($defaults, $attributes);
-    if($sanitized_args['fieldcolumn'] == '' || $sanitized_args['fieldcolumn'] == 0){
-        $sanitized_args['fieldcolumn'] = 1;
+    $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $attributes);
+    if($wpjobportal_sanitized_args['fieldcolumn'] == '' || $wpjobportal_sanitized_args['fieldcolumn'] == 0){
+        $wpjobportal_sanitized_args['fieldcolumn'] = 1;
     }
-    if($sanitized_args['noofjobs'] == '' || $sanitized_args['noofjobs'] == 0){
-        $sanitized_args['noofjobs'] = 1;
+    if($wpjobportal_sanitized_args['noofjobs'] == '' || $wpjobportal_sanitized_args['noofjobs'] == 0){
+        $wpjobportal_sanitized_args['noofjobs'] = 1;
     }
-    if($sanitized_args['title'] == ''){
-        $sanitized_args['title'] = 'Latest Jobs';
+    if($wpjobportal_sanitized_args['title'] == ''){
+        $wpjobportal_sanitized_args['title'] = 'Latest Jobs';
     }
-    if($sanitized_args['wpjobportalpageid'] == '' || $sanitized_args['wpjobportalpageid'] == 0){
-        $sanitized_args['wpjobportalpageid'] = wpjobportal::wpjobportal_getPageid();
+    if($wpjobportal_sanitized_args['wpjobportalpageid'] == '' || $wpjobportal_sanitized_args['wpjobportalpageid'] == 0){
+        $wpjobportal_sanitized_args['wpjobportalpageid'] = wpjobportal::wpjobportal_getPageid();
     }
-    if($sanitized_args['typeofjobs'] == '' || $sanitized_args['typeofjobs'] == 0){
-        $sanitized_args['typeofjobs'] = 1;
+    if($wpjobportal_sanitized_args['typeofjobs'] == '' || $wpjobportal_sanitized_args['typeofjobs'] == 0){
+        $wpjobportal_sanitized_args['typeofjobs'] = 1;
     }
-    if($sanitized_args['listingstyle'] == ''){
-        $sanitized_args['listingstyle'] = 1;
+    if($wpjobportal_sanitized_args['listingstyle'] == ''){
+        $wpjobportal_sanitized_args['listingstyle'] = 1;
     }
 
-    $jobs = WPJOBPORTALincluder::getJSModel('job')->getJobs_Widget($sanitized_args['typeofjobs'], $sanitized_args['noofjobs']);
+    $wpjobportal_jobs = WPJOBPORTALincluder::getJSModel('job')->getJobs_Widget($wpjobportal_sanitized_args['typeofjobs'], $wpjobportal_sanitized_args['noofjobs']);
     //Frontend HTML starts -----------
-    $mod = 'newestjobs';
-    if ($sanitized_args['typeofjobs'] == 1) {
-        $mod = 'newestjobs';
-    } elseif ($sanitized_args['typeofjobs'] == 2) {
-        $mod = 'topjobs';
-    } elseif ($sanitized_args['typeofjobs'] == 3) {
-        $mod = 'hotjobs';
-    }  elseif ($sanitized_args['typeofjobs'] == 5) {
-        $mod = 'featuredjobs';
+    $wpjobportal_mod = 'newestjobs';
+    if ($wpjobportal_sanitized_args['typeofjobs'] == 1) {
+        $wpjobportal_mod = 'newestjobs';
+    } elseif ($wpjobportal_sanitized_args['typeofjobs'] == 2) {
+        $wpjobportal_mod = 'topjobs';
+    } elseif ($wpjobportal_sanitized_args['typeofjobs'] == 3) {
+        $wpjobportal_mod = 'hotjobs';
+    }  elseif ($wpjobportal_sanitized_args['typeofjobs'] == 5) {
+        $wpjobportal_mod = 'featuredjobs';
     }
-    $layoutName = $mod . uniqid();
+    $wpjobportal_layoutName = $wpjobportal_mod . uniqid();
     // parameeters to be use later
-    $html = '';
-    if ($jobs != '') {
-        $html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->getJOBSWidgetHTML($jobs,$sanitized_args['wpjobportalpageid'],$sanitized_args['title'],$sanitized_args['fieldcolumn'],$layoutName,$sanitized_args['listingstyle'],$sanitized_args['typeofjobs']);
+    $wpjobportal_html = '';
+    if ($wpjobportal_jobs != '') {
+        $wpjobportal_html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->getJOBSWidgetHTML($wpjobportal_jobs,$wpjobportal_sanitized_args['wpjobportalpageid'],$wpjobportal_sanitized_args['title'],$wpjobportal_sanitized_args['fieldcolumn'],$wpjobportal_layoutName,$wpjobportal_sanitized_args['listingstyle'],$wpjobportal_sanitized_args['typeofjobs']);
     }
     wp_enqueue_style('wpjobportal-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/style.css');
     if (is_rtl()) {
         wp_enqueue_style('wpjobportal-site-rtl', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/stylertl.css');
     }
-    return $html;
+    return $wpjobportal_html;
 }
 
-add_action( 'init', 'js_wpjobportal_companies_block');
+add_action( 'init', 'wpjobportal_companies_block');
 
-function js_wpjobportal_companies_block(){
+function wpjobportal_companies_block(){
     if(!function_exists("register_block_type")){
         return;
     }
@@ -1579,13 +1579,13 @@ function js_wpjobportal_companies_block(){
                 'default' => ''
             ),
         ),
-        'render_callback' => 'js_wpjobportal_companies_block_widgets',
+        'render_callback' => 'wpjobportal_companies_block_widgets',
         'editor_script' => 'wpjobportalcompaniesblock'
     ) );
 }
 
-function js_wpjobportal_companies_block_widgets($attributes, $content){
-    $defaults = array(
+function wpjobportal_companies_block_widgets($attributes, $wpjobportal_content){
+    $wpjobportal_defaults = array(
         'wpjobportalpageid' => '0',
         'title' => esc_html(__('Companies','wp-job-portal')),
         'companytype' => '1',
@@ -1593,44 +1593,44 @@ function js_wpjobportal_companies_block_widgets($attributes, $content){
         'listingstyle' => '0',
         'noofcompanies' => '1',
     );
-    $sanitized_args = shortcode_atts($defaults, $attributes);
-    if($sanitized_args['fieldcolumn'] == '' || $sanitized_args['fieldcolumn'] == 0){
-        $sanitized_args['fieldcolumn'] = 1;
+    $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $attributes);
+    if($wpjobportal_sanitized_args['fieldcolumn'] == '' || $wpjobportal_sanitized_args['fieldcolumn'] == 0){
+        $wpjobportal_sanitized_args['fieldcolumn'] = 1;
     }
-    if($sanitized_args['title'] == ''){
-        $sanitized_args['title'] = 'Companies';
+    if($wpjobportal_sanitized_args['title'] == ''){
+        $wpjobportal_sanitized_args['title'] = 'Companies';
     }
-    if($sanitized_args['wpjobportalpageid'] == '' || $sanitized_args['wpjobportalpageid'] == 0){
-        $sanitized_args['wpjobportalpageid'] = wpjobportal::wpjobportal_getPageid();
+    if($wpjobportal_sanitized_args['wpjobportalpageid'] == '' || $wpjobportal_sanitized_args['wpjobportalpageid'] == 0){
+        $wpjobportal_sanitized_args['wpjobportalpageid'] = wpjobportal::wpjobportal_getPageid();
     }
-    if($sanitized_args['companytype'] == '' || $sanitized_args['companytype'] == 0){
-        $sanitized_args['companytype'] = 2;
+    if($wpjobportal_sanitized_args['companytype'] == '' || $wpjobportal_sanitized_args['companytype'] == 0){
+        $wpjobportal_sanitized_args['companytype'] = 2;
     }
-    if($sanitized_args['noofcompanies'] == '' || $sanitized_args['noofcompanies'] == 0){
-        $sanitized_args['noofcompanies'] = 1;
+    if($wpjobportal_sanitized_args['noofcompanies'] == '' || $wpjobportal_sanitized_args['noofcompanies'] == 0){
+        $wpjobportal_sanitized_args['noofcompanies'] = 1;
     }
-    if($sanitized_args['listingstyle'] == ''){
-        $sanitized_args['listingstyle'] = 1;
+    if($wpjobportal_sanitized_args['listingstyle'] == ''){
+        $wpjobportal_sanitized_args['listingstyle'] = 1;
     }
 
 
-    if ($sanitized_args['companytype'] == 2) {
-        $mod = 'featuredcompany';
+    if ($wpjobportal_sanitized_args['companytype'] == 2) {
+        $wpjobportal_mod = 'featuredcompany';
     }
-    $layoutName = $mod . uniqid();
-    $html = '';
-    $companies = WPJOBPORTALincluder::getJSModel('company')->getCompanies_Widget($sanitized_args['companytype'], $sanitized_args['noofcompanies']);
-    $html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->getCompanies_WidgetHtml($sanitized_args['title'],$layoutName, $companies, $sanitized_args['noofcompanies'], $sanitized_args['listingstyle'],$sanitized_args['companytype'],$sanitized_args['fieldcolumn']);
+    $wpjobportal_layoutName = $wpjobportal_mod . uniqid();
+    $wpjobportal_html = '';
+    $wpjobportal_companies = WPJOBPORTALincluder::getJSModel('company')->getCompanies_Widget($wpjobportal_sanitized_args['companytype'], $wpjobportal_sanitized_args['noofcompanies']);
+    $wpjobportal_html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->getCompanies_WidgetHtml($wpjobportal_sanitized_args['title'],$wpjobportal_layoutName, $wpjobportal_companies, $wpjobportal_sanitized_args['noofcompanies'], $wpjobportal_sanitized_args['listingstyle'],$wpjobportal_sanitized_args['companytype'],$wpjobportal_sanitized_args['fieldcolumn']);
     wp_enqueue_style('wpjobportal-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/style.css');
     if (is_rtl()) {
         wp_enqueue_style('wpjobportal-site-rtl', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/stylertl.css');
     }
-    return $html;
+    return $wpjobportal_html;
 }
 
-add_action( 'init', 'js_wpjobportal_resumes_block');
+add_action( 'init', 'wpjobportal_resumes_block');
 
-function js_wpjobportal_resumes_block(){
+function wpjobportal_resumes_block(){
     if(!function_exists("register_block_type")){
         return;
     }
@@ -1662,13 +1662,13 @@ function js_wpjobportal_resumes_block(){
                 'default' => ''
             ),
         ),
-        'render_callback' => 'js_wpjobportal_resumes_block_widgets',
+        'render_callback' => 'wpjobportal_resumes_block_widgets',
         'editor_script' => 'wpjobportalresumesblock'
     ) );
 }
 
-function js_wpjobportal_resumes_block_widgets($attributes, $content){
-    $defaults = array(
+function wpjobportal_resumes_block_widgets($attributes, $wpjobportal_content){
+    $wpjobportal_defaults = array(
         'wpjobportalpageid' => '0',
         'title' => esc_html(__('Latest Resumes','wp-job-portal')),
         'typeofresume' => '1',
@@ -1676,48 +1676,48 @@ function js_wpjobportal_resumes_block_widgets($attributes, $content){
         'listingstyle' => '0',
         'noofresumes' => '1',
     );
-    $sanitized_args = shortcode_atts($defaults, $attributes);
-    if($sanitized_args['fieldcolumn'] == '' || $sanitized_args['fieldcolumn'] == 0){
-        $sanitized_args['fieldcolumn'] = 1;
+    $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $attributes);
+    if($wpjobportal_sanitized_args['fieldcolumn'] == '' || $wpjobportal_sanitized_args['fieldcolumn'] == 0){
+        $wpjobportal_sanitized_args['fieldcolumn'] = 1;
     }
-    if($sanitized_args['title'] == ''){
-        $sanitized_args['title'] = 'Latest Resumes';
+    if($wpjobportal_sanitized_args['title'] == ''){
+        $wpjobportal_sanitized_args['title'] = 'Latest Resumes';
     }
-    if($sanitized_args['wpjobportalpageid'] == '' || $sanitized_args['wpjobportalpageid'] == 0){
-        $sanitized_args['wpjobportalpageid'] = wpjobportal::wpjobportal_getPageid();
+    if($wpjobportal_sanitized_args['wpjobportalpageid'] == '' || $wpjobportal_sanitized_args['wpjobportalpageid'] == 0){
+        $wpjobportal_sanitized_args['wpjobportalpageid'] = wpjobportal::wpjobportal_getPageid();
     }
-    if($sanitized_args['typeofresume'] == '' || $sanitized_args['typeofresume'] == 0){
-        $sanitized_args['typeofresume'] = 1;
+    if($wpjobportal_sanitized_args['typeofresume'] == '' || $wpjobportal_sanitized_args['typeofresume'] == 0){
+        $wpjobportal_sanitized_args['typeofresume'] = 1;
     }
-    if($sanitized_args['noofresumes'] == '' || $sanitized_args['noofresumes'] == 0){
-        $sanitized_args['noofresumes'] = 1;
+    if($wpjobportal_sanitized_args['noofresumes'] == '' || $wpjobportal_sanitized_args['noofresumes'] == 0){
+        $wpjobportal_sanitized_args['noofresumes'] = 1;
     }
-    if($sanitized_args['listingstyle'] == ''){
-        $sanitized_args['listingstyle'] = 1;
+    if($wpjobportal_sanitized_args['listingstyle'] == ''){
+        $wpjobportal_sanitized_args['listingstyle'] = 1;
     }
 
-    $mod = 'newestresume';
-    if ($sanitized_args['typeofresume'] == 1) {
-        $mod = 'newestresume';
-    } elseif ($sanitized_args['typeofresume'] == 2) {
-        $mod = 'topresume';
-    } elseif ($sanitized_args['typeofresume'] == 4) {
-        $mod = 'featuredresume';
+    $wpjobportal_mod = 'newestresume';
+    if ($wpjobportal_sanitized_args['typeofresume'] == 1) {
+        $wpjobportal_mod = 'newestresume';
+    } elseif ($wpjobportal_sanitized_args['typeofresume'] == 2) {
+        $wpjobportal_mod = 'topresume';
+    } elseif ($wpjobportal_sanitized_args['typeofresume'] == 4) {
+        $wpjobportal_mod = 'featuredresume';
     }
-    $layoutName = $mod . uniqid();
-    $html = '';
-    $resumes = WPJOBPORTALincluder::getJSModel('resume')->getResumes_Widget($sanitized_args['typeofresume'], $sanitized_args['noofresumes']);
-    $html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->getResume_WidgetHtml($sanitized_args['title'],$layoutName, $resumes, $sanitized_args['noofresumes'], $sanitized_args['listingstyle'],$sanitized_args['typeofresume'],$sanitized_args['fieldcolumn']);
+    $wpjobportal_layoutName = $wpjobportal_mod . uniqid();
+    $wpjobportal_html = '';
+    $wpjobportal_resumes = WPJOBPORTALincluder::getJSModel('resume')->getResumes_Widget($wpjobportal_sanitized_args['typeofresume'], $wpjobportal_sanitized_args['noofresumes']);
+    $wpjobportal_html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->getResume_WidgetHtml($wpjobportal_sanitized_args['title'],$wpjobportal_layoutName, $wpjobportal_resumes, $wpjobportal_sanitized_args['noofresumes'], $wpjobportal_sanitized_args['listingstyle'],$wpjobportal_sanitized_args['typeofresume'],$wpjobportal_sanitized_args['fieldcolumn']);
     wp_enqueue_style('wpjobportal-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/style.css');
     if (is_rtl()) {
         wp_enqueue_style('wpjobportal-site-rtl', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/stylertl.css');
     }
-    return $html;
+    return $wpjobportal_html;
 }
 
-add_action( 'init', 'js_wpjobportal_jobsearch_block');
+add_action( 'init', 'wpjobportal_jobsearch_block');
 
-function js_wpjobportal_jobsearch_block(){
+function wpjobportal_jobsearch_block(){
     if(!function_exists("register_block_type")){
         return;
     }
@@ -1781,13 +1781,13 @@ function js_wpjobportal_jobsearch_block(){
                 'default' => ''
             ),
         ),
-        'render_callback' => 'js_wpjobportal_jobsearch_block_widgets',
+        'render_callback' => 'wpjobportal_jobsearch_block_widgets',
         'editor_script' => 'wpjobportaljobsearchblock'
     ) );
 }
 
-function js_wpjobportal_jobsearch_block_widgets($attributes, $content){
-    $defaults = array(
+function wpjobportal_jobsearch_block_widgets($attributes, $wpjobportal_content){
+    $wpjobportal_defaults = array(
         'wpjobportalpageid' => '0',
         'title' => esc_html(__('Job Search','wp-job-portal')),
         'showtitle' => '1',
@@ -1804,61 +1804,61 @@ function js_wpjobportal_jobsearch_block_widgets($attributes, $content){
         'address' => '1',
         'columnperrow' => '1',
     );
-    $sanitized_args = shortcode_atts($defaults, $attributes);
-    if($sanitized_args['wpjobportalpageid'] == '' || $sanitized_args['wpjobportalpageid'] == 0){
-        $sanitized_args['wpjobportalpageid'] = wpjobportal::wpjobportal_getPageid();
+    $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $attributes);
+    if($wpjobportal_sanitized_args['wpjobportalpageid'] == '' || $wpjobportal_sanitized_args['wpjobportalpageid'] == 0){
+        $wpjobportal_sanitized_args['wpjobportalpageid'] = wpjobportal::wpjobportal_getPageid();
     }
-    if($sanitized_args['title'] == ''){
-        $sanitized_args['title'] = 'Job Search';
+    if($wpjobportal_sanitized_args['title'] == ''){
+        $wpjobportal_sanitized_args['title'] = 'Job Search';
     }
-    if($sanitized_args['showtitle'] == ''){
-        $sanitized_args['showtitle'] = 1;
+    if($wpjobportal_sanitized_args['showtitle'] == ''){
+        $wpjobportal_sanitized_args['showtitle'] = 1;
     }
-    if($sanitized_args['jobtitle'] == ''){
-        $sanitized_args['jobtitle'] = 1;
+    if($wpjobportal_sanitized_args['jobtitle'] == ''){
+        $wpjobportal_sanitized_args['jobtitle'] = 1;
     }
-    if($sanitized_args['category'] == ''){
-        $sanitized_args['category'] = 1;
+    if($wpjobportal_sanitized_args['category'] == ''){
+        $wpjobportal_sanitized_args['category'] = 1;
     }
-    if($sanitized_args['jobtype'] == ''){
-        $sanitized_args['jobtype'] = 1;
+    if($wpjobportal_sanitized_args['jobtype'] == ''){
+        $wpjobportal_sanitized_args['jobtype'] = 1;
     }
-    if($sanitized_args['jobstatus'] == ''){
-        $sanitized_args['jobstatus'] = 1;
+    if($wpjobportal_sanitized_args['jobstatus'] == ''){
+        $wpjobportal_sanitized_args['jobstatus'] = 1;
     }
-    if($sanitized_args['salaryrange'] == ''){
-        $sanitized_args['salaryrange'] = 1;
+    if($wpjobportal_sanitized_args['salaryrange'] == ''){
+        $wpjobportal_sanitized_args['salaryrange'] = 1;
     }
-    if($sanitized_args['shift'] == ''){
-        $sanitized_args['shift'] = 1;
+    if($wpjobportal_sanitized_args['shift'] == ''){
+        $wpjobportal_sanitized_args['shift'] = 1;
     }
-    if($sanitized_args['duration'] == ''){
-        $sanitized_args['duration'] = 1;
+    if($wpjobportal_sanitized_args['duration'] == ''){
+        $wpjobportal_sanitized_args['duration'] = 1;
     }
-    if($sanitized_args['startpublishing'] == ''){
-        $sanitized_args['startpublishing'] = 1;
+    if($wpjobportal_sanitized_args['startpublishing'] == ''){
+        $wpjobportal_sanitized_args['startpublishing'] = 1;
     }
-    if($sanitized_args['stoppublishing'] == ''){
-        $sanitized_args['stoppublishing'] = 1;
+    if($wpjobportal_sanitized_args['stoppublishing'] == ''){
+        $wpjobportal_sanitized_args['stoppublishing'] = 1;
     }
-    if($sanitized_args['company'] == ''){
-        $sanitized_args['company'] = 1;
+    if($wpjobportal_sanitized_args['company'] == ''){
+        $wpjobportal_sanitized_args['company'] = 1;
     }
-    if($sanitized_args['address'] == ''){
-        $sanitized_args['address'] = 1;
+    if($wpjobportal_sanitized_args['address'] == ''){
+        $wpjobportal_sanitized_args['address'] = 1;
     }
-    if($sanitized_args['columnperrow'] == '' || $sanitized_args['columnperrow'] == ''){
-        $sanitized_args['columnperrow'] = 1;
+    if($wpjobportal_sanitized_args['columnperrow'] == '' || $wpjobportal_sanitized_args['columnperrow'] == ''){
+        $wpjobportal_sanitized_args['columnperrow'] = 1;
     }
 
-    $html = '';
-    $html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->getSearchJobs_WidgetHTML($sanitized_args['title'], $sanitized_args['showtitle'], $sanitized_args['jobtitle'], $sanitized_args['category'], $sanitized_args['jobtype'], $sanitized_args['jobstatus'], $sanitized_args['salaryrange'], $sanitized_args['shift'], $sanitized_args['duration'], $sanitized_args['startpublishing'], $sanitized_args['stoppublishing'], $sanitized_args['company'], $sanitized_args['address'], $sanitized_args['columnperrow']);
+    $wpjobportal_html = '';
+    $wpjobportal_html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->getSearchJobs_WidgetHTML($wpjobportal_sanitized_args['title'], $wpjobportal_sanitized_args['showtitle'], $wpjobportal_sanitized_args['jobtitle'], $wpjobportal_sanitized_args['category'], $wpjobportal_sanitized_args['jobtype'], $wpjobportal_sanitized_args['jobstatus'], $wpjobportal_sanitized_args['salaryrange'], $wpjobportal_sanitized_args['shift'], $wpjobportal_sanitized_args['duration'], $wpjobportal_sanitized_args['startpublishing'], $wpjobportal_sanitized_args['stoppublishing'], $wpjobportal_sanitized_args['company'], $wpjobportal_sanitized_args['address'], $wpjobportal_sanitized_args['columnperrow']);
     wp_enqueue_style('wpjobportal-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/style.css');
     wp_enqueue_style('wpjobportal-tokeninput', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/tokeninput.css');
     wp_enqueue_script('wpjobportal-tokeninput', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/jquery.tokeninput.js');
     if (is_rtl()) {
         wp_enqueue_style('wpjobportal-site-rtl', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/stylertl.css');
     }
-    return $html;
+    return $wpjobportal_html;
 }
 ?>

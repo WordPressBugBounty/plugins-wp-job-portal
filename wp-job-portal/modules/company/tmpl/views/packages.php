@@ -7,29 +7,29 @@ if (!defined('ABSPATH'))
 */
 ?>
 <?php
-if(isset($packages)){ 
-    if (wpjobportal::$theme_chk == 1) { ?>
+if(isset($wpjobportal_packages)){
+    if (wpjobportal::$wpjobportal_theme_chk == 1) { ?>
     <div class="wpj-jp-pkg-list">
         <div class="wpj-jp-pkg-list-top">
             <div class="wpj-jp-pkg-list-title">
                 <h4 class="wpj-jp-pkg-list-title-txt">
-                    <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($packages->title)); ?>
+                    <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_packages->title)); ?>
                 </h4>
             </div>
         </div>
         <div class="wpj-jp-pkg-list-mid">
-            <?php if(isset($packages)){?>
+            <?php if(isset($wpjobportal_packages)){?>
                 <div class="wpj-jp-pkg-list-data">
                     <span class="wpj-jp-pkg-list-laebl">
                         <?php echo esc_html__("Total Company","wp-job-portal")." : "; ?>
                     </span>
-                    <?php echo $packages->companies==-1 ? esc_html__('Unlimited','wp-job-portal') : esc_html($packages->companies); ?>
+                    <?php echo $wpjobportal_packages->companies==-1 ? esc_html__('Unlimited','wp-job-portal') : esc_html($wpjobportal_packages->companies); ?>
                 </div>
                 <div class="wpj-jp-pkg-list-data">
                     <span class="wpj-jp-pkg-list-laebl">
                         <?php echo esc_html__("Remaining Company","wp-job-portal")." : "; ?>
                     </span>
-                    <?php echo $packages->companies==-1 ? esc_html__('Unlimited','wp-job-portal') : esc_html($packages->remcompany); ?>
+                    <?php echo $wpjobportal_packages->companies==-1 ? esc_html__('Unlimited','wp-job-portal') : esc_html($wpjobportal_packages->remcompany); ?>
                 </div>
             <?php } ?>
         </div>
@@ -50,19 +50,19 @@ if(isset($packages)){
             <div class="wjportal-pkg-list-item-top">
                 <div class="wjportal-pkg-list-item-title">
                     <div class="wjportal-pkg-list-item-title-txt">
-                        <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($packages->title)); ?>
+                        <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_packages->title)); ?>
                     </div>
                 </div>
             </div>
             <div class="wjportal-pkg-list-item-mid">
                 <div class="wjportal-pkg-list-item-data">
-                    <?php if(isset($packages)){?>
+                    <?php if(isset($wpjobportal_packages)){?>
                         <div class="wjportal-pkg-list-item-row">
                             <span class="wjportal-pkg-list-item-row-tit">
                                 <?php echo esc_html(__('Total Company','wp-job-portal')). ' : '; ?>
                             </span>
                             <span class="wjportal-pkg-list-item-row-val">
-                                <?php echo ($packages->companies==-1 ? esc_html(__('Unlimited','wp-job-portal')) : esc_html(wpjobportal::wpjobportal_getVariableValue($packages->companies))); ?>
+                                <?php echo ($wpjobportal_packages->companies==-1 ? esc_html(__('Unlimited','wp-job-portal')) : esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_packages->companies))); ?>
                             </span>
                         </div>
                         <div class="wjportal-pkg-list-item-row">
@@ -70,20 +70,24 @@ if(isset($packages)){
                                 <?php echo esc_html(__('Remaining Company','wp-job-portal')). ' : '; ?>
                             </span>
                             <span class="wjportal-pkg-list-item-row-val">
-                                <?php echo ($packages->companies==-1 ? esc_html(__('Unlimited','wp-job-portal')) : esc_html(wpjobportal::wpjobportal_getVariableValue($packages->remcompany))); ?>
+                                <?php echo ($wpjobportal_packages->companies==-1 ? esc_html(__('Unlimited','wp-job-portal')) : esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_packages->remcompany))); ?>
                             </span>
                         </div>
                     <?php } ?>
                 </div>
             </div>
             <div class="wjportal-pkg-list-item-btm">
-                <div class="wjportal-pkg-list-item-action-wrp">
-                    <a href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'multicompany','wpjobportallt'=>'addcompany'))); ?>" class="wjportal-pkg-list-item-act-btn" title="<?php echo esc_attr(__('change package','wp-job-portal')); ?>">
-                        <?php echo esc_html(__('Change Package','wp-job-portal')); ?>
-                    </a>
-                </div>
+                <?php
+                // dont show change package button if user only has 1 package
+                if(WPJOBPORTALincluder::getJSModel('purchasehistory')->showChangePackageButtonToUser()){ ?>
+                    <div class="wjportal-pkg-list-item-action-wrp">
+                        <a href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'multicompany','wpjobportallt'=>'addcompany'))); ?>" class="wjportal-pkg-list-item-act-btn" title="<?php echo esc_attr(__('change package','wp-job-portal')); ?>">
+                            <?php echo esc_html(__('Change Package','wp-job-portal')); ?>
+                        </a>
+                    </div>
+                <?php } ?>
                 <div class="wjportal-pkg-list-item-exp-date">
-                    <?php echo esc_html(__('Ends On','wp-job-portal')).': '.esc_html(date_i18n(wpjobportal::$_configuration['date_format'],strtotime($packages->enddate))); ?>
+                    <?php echo esc_html(__('Ends On','wp-job-portal')).': '.esc_html(date_i18n(wpjobportal::$_configuration['date_format'],strtotime($wpjobportal_packages->enddate))); ?>
                 </div>
             </div>
         </div>

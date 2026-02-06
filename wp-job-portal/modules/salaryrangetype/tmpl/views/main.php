@@ -6,11 +6,11 @@
 ?>
 <?php
   WPJOBPORTALincluder::getTemplate('salaryrangetype/views/detail',array(
- 	'row' => $row,
- 	'i' => $i ,
- 	'pagenum' => $pagenum ,
- 	'n' => $n ,
- 	'pageid' => $pageid ,
- 	'islastordershow' => $islastordershow
+ 	'wpjobportal_row' => $wpjobportal_row,
+ 	'wpjobportal_i' => $wpjobportal_i ,
+ 	'wpjobportal_pagenum' => $wpjobportal_pagenum ,
+ 	'wpjobportal_n' => $wpjobportal_n ,
+ 	'wpjobportal_pageid' => $wpjobportal_pageid ,
+ 	'wpjobportal_islastordershow' => $wpjobportal_islastordershow
  ));
 ?>

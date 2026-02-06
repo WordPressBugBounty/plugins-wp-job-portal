@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Delete"
 msgstr "Supprimer"
@@ -10276,3 +10276,2472 @@ msgstr "Vous n'avez pas de sauvegarde serch restant"
 
 msgid "We would love to hear from You."
 msgstr "Nous serions ravis de vous entendre."
+
+msgid "Welcome back!"
+msgstr "Content de te revoir!"
+
+msgid "Here's a snapshot of your job board's performance."
+msgstr "Voici un instantané des performances de votre conseil d'emploi."
+
+msgid "Customize Your Dashboard"
+msgstr "Personnalisez votre tableau de bord"
+
+msgid "Core Components"
+msgstr "Composants de base"
+
+msgid "Quick Actions"
+msgstr "Actions rapides"
+
+msgid "Recent Jobs"
+msgstr "Emplois récents"
+
+msgid "Quick Stats"
+msgstr "Statistiques rapides"
+
+msgid "Visualizations"
+msgstr "Visualisations"
+
+msgid "Platform Growth"
+msgstr "Croissance de la plate-forme"
+
+msgid "Jobs by Status"
+msgstr "Emplois par statut"
+
+msgid "Top Categories"
+msgstr "Catégories supérieures"
+
+msgid "Activity & System Feeds"
+msgstr "Activité et flux de systèmes"
+
+msgid "Latest Applies"
+msgstr "Dernier s'applique"
+
+msgid "User & Financials"
+msgstr "Utilisateur et financier"
+
+msgid "Job Seekers"
+msgstr "Demandeurs d'emploi"
+
+msgid "Payments"
+msgstr "Paiements"
+
+msgid "Reset to Defaults"
+msgstr "Réinitialiser les valeurs par défaut"
+
+msgid "Apply Changes"
+msgstr "Appliquer les modifications"
+
+msgid "Approve Jobs"
+msgstr "Approuver les emplois"
+
+msgid "Manage Users"
+msgstr "Gérer les utilisateurs"
+
+msgid "View Reports"
+msgstr "Afficher les rapports"
+
+msgid "Analytics"
+msgstr "Analytique"
+
+msgid "Manage Plans"
+msgstr "Gérer les plans"
+
+msgid "Platform Config"
+msgstr "Configuration de la plate-forme"
+
+msgid "Applications"
+msgstr "Applications"
+
+msgid "Pending Jobs"
+msgstr "Emplois en attente"
+
+msgid "New Applicants"
+msgstr "Nouveaux candidats"
+
+msgid "Active Subscriptions"
+msgstr "Abonnements actifs"
+
+msgid "Total Users"
+msgstr "Total utilisateurs"
+
+msgid "Closed Jobs"
+msgstr "Emplois fermés"
+
+msgid "Monthly Revenue"
+msgstr "Revenus mensuels"
+
+msgid "Recent Job Postings"
+msgstr "Dostings récents"
+
+msgid "Date Posted"
+msgstr "Date publiée"
+
+msgid "Actions"
+msgstr "Actes"
+
+msgid "No recent job postings found."
+msgstr "Aucun poste d'emploi récent trouvé."
+
+msgid "Top Job Categories"
+msgstr "Catégories d'emplois supérieurs"
+
+msgid "Latest Job Applies"
+msgstr "Le dernier travail s'applique"
+
+msgid "applied for"
+msgstr "demander"
+
+msgid "at"
+msgstr "à"
+
+msgid "View App"
+msgstr "Afficher l'application"
+
+msgid "No recent job applications to display."
+msgstr "Aucune demande d'emploi récente à afficher."
+
+msgid "No new resumes have been added recently."
+msgstr "Aucun nouveau CV n'a été ajouté récemment."
+
+msgid "Latest Package Subscriptions"
+msgstr "Dernier package abonnements"
+
+msgid "subscribed to"
+msgstr "souscrit à"
+
+msgid "No new subscriptions found."
+msgstr "Aucun nouvel abonnements trouvé."
+
+msgid "Latest Payments"
+msgstr "Derniers paiements"
+
+msgid "No recent payments to display."
+msgstr "Aucun paiement récent à afficher."
+
+msgid "Latest Activity"
+msgstr "Dernière activité"
+
+msgid "Hooray! No system errors to report."
+msgstr "Hourra! Aucune erreur système à signaler."
+
+msgid "Latest Job Seekers"
+msgstr "Derniers demandeurs d'emploi"
+
+msgid "Joined"
+msgstr "Joint"
+
+msgid "No new job seekers have registered."
+msgstr "Aucun nouveau travail de travail ne s'est inscrit."
+
+msgid "Latest Employers"
+msgstr "Derniers employeurs"
+
+msgid "No new employers have registered."
+msgstr "Aucun nouvel employeur ne s'est inscrit."
+
+msgid "Not allowed"
+msgstr "Non autorisé"
+
+msgid "Allowed to all"
+msgstr "Autorisé à tous"
+
+msgid "employers, job seekers and visitors"
+msgstr "employeurs, demandeurs d'emploi et visiteurs"
+
+msgid "Allowed only to employers"
+msgstr "Autorisé uniquement aux employeurs"
+
+msgid "City, State, Country"
+msgstr "Ville, État, Pays"
+
+msgid "City, State"
+msgstr "Ville, État"
+
+msgid "City, Country"
+msgstr "Ville, Pays"
+
+msgid "Minutes"
+msgstr "Minutes"
+
+msgid "Hour"
+msgstr "Heure"
+
+msgid "Hours"
+msgstr "Heures"
+
+msgid "Week"
+msgstr "Semaine"
+
+msgid "System & Site"
+msgstr "Système et site"
+
+msgid "Site & System"
+msgstr "Site et système"
+
+msgid "Core details about your job portal, its status, and default behaviors"
+msgstr "Détails de base sur votre portail d'emploi, son statut et ses comportements par défaut"
+
+msgid "Site Title"
+msgstr "Titre du site"
+
+msgid "The main title for your job portal"
+msgstr "Le titre principal de votre portail d'emploi"
+
+msgid "Site Offline"
+msgstr "Site hors ligne"
+
+msgid "Take the site offline for maintenance"
+msgstr "Mettre le site hors ligne pour maintenance"
+
+msgid "The message shown to visitors when the site is offline"
+msgstr "Le message affiché aux visiteurs lorsque le site est hors ligne"
+
+msgid "Default Page"
+msgstr "Page par défaut"
+
+msgid "Select the main WordPress page for the job portal"
+msgstr "Sélectionnez la page WordPress principale du portail d'emploi"
+
+msgid "Email links and support icons may not work if this is not set"
+msgstr "Les liens de courrier électronique et les icônes d'assistance peuvent ne pas fonctionner si cela n'est pas défini"
+
+msgid "Date Format"
+msgstr "Format des dates"
+
+msgid "Set the date format used throughout the plugin"
+msgstr "Définir le format de date utilisé dans tout le plugin"
+
+msgid "Default Address Display Style"
+msgstr "Style d'affichage de l'adresse par défaut"
+
+msgid "Select the default format for displaying addresses"
+msgstr "Sélectionnez le format par défaut pour afficher les adresses"
+
+msgid "Registration & Login"
+msgstr "Inscription et connexion"
+
+msgid "Control user registration flows and login/logout redirects"
+msgstr "Contrôlez les flux d’enregistrement des utilisateurs et les redirections de connexion/déconnexion"
+
+msgid "Set Register Link"
+msgstr "Définir le lien d'enregistrement"
+
+msgid "Set the main registration page for the site"
+msgstr "Définir la page d'inscription principale du site"
+
+msgid "Custom Register Redirect Link"
+msgstr "Lien de redirection de registre personnalisé"
+
+msgid "Enter the custom URL for registration if"
+msgstr "Entrez l'URL personnalisée pour l'enregistrement si"
+
+msgid "is selected above"
+msgstr "est sélectionné ci-dessus"
+
+msgid "Set the main login page for the site"
+msgstr "Définir la page de connexion principale du site"
+
+msgid "Custom Login Redirect Link"
+msgstr "Lien de redirection de connexion personnalisé"
+
+msgid "Enter the custom URL for login if"
+msgstr "Entrez l'URL personnalisée pour la connexion si"
+
+msgid "Redirect Link For Non-Portal WP User"
+msgstr "Lien de redirection pour les utilisateurs WP non-portail"
+
+msgid "Redirect WordPress users who do not have a role in WP Job Portal to this link after login"
+msgstr "Redirigez les utilisateurs de WordPress qui n'ont pas de rôle dans WP Job Portal vers ce lien après la connexion"
+
+msgid "Terms & Conditions"
+msgstr "Conditions générales"
+
+msgid "Assign specific Terms & Conditions pages for different submission types"
+msgstr "Attribuez des pages de conditions générales spécifiques pour différents types de soumission"
+
+msgid "Company Terms Page"
+msgstr "Page des conditions de l'entreprise"
+
+msgid "Select the"
+msgstr "Sélectionnez le"
+
+msgid "page for company submissions"
+msgstr "page pour les soumissions des entreprises"
+
+msgid "Job Terms Page"
+msgstr "Page des conditions d'emploi"
+
+msgid "page for job submissions"
+msgstr "page pour les soumissions d'emplois"
+
+msgid "Resume Terms Page"
+msgstr "Page des conditions de reprise"
+
+msgid "page for resume submissions"
+msgstr "page pour les soumissions de curriculum vitae"
+
+msgid "Content & Display"
+msgstr "Contenu et affichage"
+
+msgid "Taxonomy & Categories"
+msgstr "Taxonomie et catégories"
+
+msgid "Manage how content like categories and tags are handled"
+msgstr "Gérer la manière dont le contenu tel que les catégories et les balises est géré"
+
+msgid "Even if Empty"
+msgstr "Même si vide"
+
+msgid "If no is selected then only categories that have jobs or resumes will be shown"
+msgstr "Si non est sélectionné, seules les catégories comportant des emplois ou des CV seront affichées."
+
+msgid "Categories Per Row"
+msgstr "Catégories par ligne"
+
+msgid "Number of categories to display per row on category listing pages"
+msgstr "Nombre de catégories à afficher par ligne sur les pages de liste de catégories"
+
+msgid "Sub-categories Limit"
+msgstr "Limite des sous-catégories"
+
+msgid "How many sub-categories to show in the popup on category pages"
+msgstr "Combien de sous-catégories afficher dans la fenêtre contextuelle des pages de catégories"
+
+msgid "User Can Add New Tags"
+msgstr "L'utilisateur peut ajouter de nouvelles balises"
+
+msgid "Allow users to create new tags in the system when posting"
+msgstr "Autoriser les utilisateurs à créer de nouvelles balises dans le système lors de la publication"
+
+msgid "Default Pagination Size"
+msgstr "Taille de pagination par défaut"
+
+msgid "Maximum number of records to show per page"
+msgstr "Nombre maximum d'enregistrements à afficher par page"
+
+msgid "Show Breadcrumbs"
+msgstr "Afficher le fil d'Ariane"
+
+msgid "Show WP Job Portal Page Title"
+msgstr "Afficher le titre de la page du portail d'emploi WP"
+
+msgid "File Uploads & Defaults"
+msgstr "Téléchargements de fichiers et valeurs par défaut"
+
+msgid "Manage file uploads and default placeholder images"
+msgstr "Gérer les téléchargements de fichiers et les images d'espace réservé par défaut"
+
+msgid "Data Directory"
+msgstr "Répertoire de données"
+
+msgid "System will upload all user files into this folder within the WordPress uploads directory"
+msgstr "Le système téléchargera tous les fichiers utilisateur dans ce dossier dans le répertoire de téléchargement WordPress"
+
+msgid "Default Image"
+msgstr "Image par défaut"
+
+msgid "This image will be shown as the default for entities & users if no other image is provided"
+msgstr "Cette image sera affichée par défaut pour les entités et les utilisateurs si aucune autre image n'est fournie."
+
+msgid "Allowed Image Extensions"
+msgstr "Extensions d'images autorisées"
+
+msgid "Comma-separated list of allowed image file extensions"
+msgstr "Liste des extensions de fichiers image autorisées, séparées par des virgules"
+
+msgid "Max Image Size"
+msgstr "Taille maximale de l'image"
+
+msgid "Maximum file size for general image uploads in kilobytes"
+msgstr "Taille de fichier maximale pour les téléchargements d'images généraux en kilo-octets"
+
+msgid "URL & SEO"
+msgstr "URL et référencement"
+
+msgid "URL Structure"
+msgstr "Structure des URL"
+
+msgid "Configure the URL structure"
+msgstr "Configurer la structure de l'URL"
+
+msgid "permalinks"
+msgstr "permaliens"
+
+msgid "for detail pages"
+msgstr "pour les pages de détails"
+
+msgid "Job Detail URL Structure"
+msgstr "Structure de l'URL des détails de la tâche"
+
+msgid "Click on the available tags below to build the URL structure for job detail pages"
+msgstr "Cliquez sur les balises disponibles ci-dessous pour créer la structure d'URL des pages de détail des tâches."
+
+msgid "Company Detail URL Structure"
+msgstr "Structure de l'URL des détails de l'entreprise"
+
+msgid "Click on the available tags below to build the URL structure for company detail pages"
+msgstr "Cliquez sur les balises disponibles ci-dessous pour créer la structure d'URL des pages de détails de l'entreprise."
+
+msgid "Resume Detail URL Structure"
+msgstr "Structure de l'URL des détails du CV"
+
+msgid "Click on the available tags below to build the URL structure for resume detail pages"
+msgstr "Cliquez sur les balises disponibles ci-dessous pour créer la structure d'URL des pages de détail du CV"
+
+msgid "Registration & Access"
+msgstr "Inscription et accès"
+
+msgid "If no then front end employer area is not accessible"
+msgstr "Si non, la zone employeur frontale n’est pas accessible"
+
+msgid "Allow Registration as Employer"
+msgstr "Autoriser l'inscription en tant qu'employeur"
+
+msgid "Show the option to register as an employer on the registration form"
+msgstr "Afficher la possibilité de s'inscrire en tant qu'employeur sur le formulaire d'inscription"
+
+msgid "Employer Default Role"
+msgstr "Rôle par défaut de l'employeur"
+
+msgid "Employer Can View Job Seeker Area"
+msgstr "L'employeur peut consulter la zone des demandeurs d'emploi"
+
+msgid "Allow logged-in employers to view the job seeker control panel"
+msgstr "Autoriser les employeurs connectés à afficher le panneau de contrôle des demandeurs d'emploi"
+
+msgid "Set Employer After-Register Link"
+msgstr "Définir le lien d'après-inscription de l'employeur"
+
+msgid "Employer After-Registration Page"
+msgstr "Page d'après-inscription de l'employeur"
+
+msgid "Employer Custom After-Registration Link"
+msgstr "Lien personnalisé après inscription de l'employeur"
+
+msgid "Custom Empolyer After Regitser Link"
+msgstr "Lien d'employeur personnalisé après l'inscription"
+
+msgid "Layout & Widgets"
+msgstr "Mise en page et widgets"
+
+msgid "Control the visibility of main sections and widgets in the logged-in employer dashboard"
+msgstr "Contrôlez la visibilité des sections principales et des widgets dans le tableau de bord de l'employeur connecté"
+
+msgid "Show Profile Section"
+msgstr "Afficher la section Profil"
+
+msgid "Show Stat Boxes"
+msgstr "Afficher les cases de statistiques"
+
+msgid "Show Recent Resumes Box"
+msgstr "Afficher la boîte de CV récents"
+
+msgid "Show Stats Graph"
+msgstr "Afficher le graphique des statistiques"
+
+msgid "Setting to show the stats graph on the employer dashboard"
+msgstr "Paramètre pour afficher le graphique des statistiques sur le tableau de bord de l'employeur"
+
+msgid "Show Useful Links"
+msgstr "Afficher les liens utiles"
+
+msgid "Setting to show the useful links section"
+msgstr "Paramètre pour afficher la section des liens utiles"
+
+msgid "Show Applied Resumes"
+msgstr "Afficher les CV appliqués"
+
+msgid "Setting to show the applied resumes section"
+msgstr "Paramètre pour afficher la section des CV appliqués"
+
+msgid "Show Saved Searches"
+msgstr "Afficher les recherches enregistrées"
+
+msgid "Setting to show the saved searches section"
+msgstr "Paramètre pour afficher la section des recherches enregistrées"
+
+msgid "Show Newest Resumes"
+msgstr "Afficher les CV les plus récents"
+
+msgid "Setting to show the newest resumes section"
+msgstr "Paramètre pour afficher la section des CV les plus récents"
+
+msgid "Navigation Links"
+msgstr "Liens de navigation"
+
+msgid "Control which navigation links are visible in the logged-in employer dashboard menu"
+msgstr "Contrôler quels liens de navigation sont visibles dans le menu du tableau de bord de l'employeur connecté"
+
+msgid "link in the employer dashboard"
+msgstr "lien dans le tableau de bord de l'employeur"
+
+msgid "RSS Feedback"
+msgstr "Commentaires RSS"
+
+msgid "Job Seeker Default Role"
+msgstr "Rôle par défaut du demandeur d'emploi"
+
+msgid "Set Job Seeker After-Register Link"
+msgstr "Définir le lien après l'inscription du demandeur d'emploi"
+
+msgid "Job Seeker After-Registration Page"
+msgstr "Page après inscription du demandeur d’emploi"
+
+msgid "Job Seeker Custom After-Registration Link"
+msgstr "Lien personnalisé après inscription du demandeur d’emploi"
+
+msgid "Custom Job seeker After Regitser Link"
+msgstr "Chercheur d'emploi personnalisé après lien d'inscription"
+
+msgid "Enable Job Shortlisting"
+msgstr "Activer la présélection d'emplois"
+
+msgid "Allow job seekers to shortlist jobs"
+msgstr "Permettre aux demandeurs d'emploi de présélectionner des emplois"
+
+msgid "This affects the job detail page"
+msgstr "Cela affecte la page de détails du travail"
+
+msgid "Enable Tell a Friend"
+msgstr "Activer Parler à un ami"
+
+msgid "Enable the"
+msgstr "Activer le"
+
+msgid "feature on job listing pages"
+msgstr "fonctionnalité sur les pages d'offres d'emploi"
+
+msgid "Control the visibility of main sections and widgets in the logged-in job seeker dashboard"
+msgstr "Contrôlez la visibilité des sections principales et des widgets dans le tableau de bord des demandeurs d'emploi connectés"
+
+msgid "Show Applied Jobs Box"
+msgstr "Afficher la boîte des tâches appliquées"
+
+msgid "Show Newest Jobs Box"
+msgstr "Afficher la boîte d'emplois les plus récents"
+
+msgid "Show Jobs Graph"
+msgstr "Afficher le graphique des tâches"
+
+msgid "Setting to show the jobs graph on the job seeker dashboard"
+msgstr "Paramètre pour afficher le graphique des emplois sur le tableau de bord du demandeur d'emploi"
+
+msgid "Show Applied Jobs"
+msgstr "Afficher les tâches appliquées"
+
+msgid "Setting to show the applied jobs section"
+msgstr "Paramètre pour afficher la section des tâches appliquées"
+
+msgid "Show Shortlisted Jobs"
+msgstr "Afficher les emplois présélectionnés"
+
+msgid "Setting to show the shortlisted jobs section"
+msgstr "Paramètre pour afficher la section des emplois présélectionnés"
+
+msgid "Show Newest Jobs"
+msgstr "Afficher les emplois les plus récents"
+
+msgid "Setting to show the newest jobs section"
+msgstr "Paramètre pour afficher la section des emplois les plus récents"
+
+msgid "Control which navigation links are visible in the logged-in job seeker dashboard menu"
+msgstr "Contrôler quels liens de navigation sont visibles dans le menu du tableau de bord des demandeurs d'emploi connectés"
+
+msgid "link in the job seeker dashboard"
+msgstr "lien dans le tableau de bord des demandeurs d'emploi"
+
+msgid "Visitors"
+msgstr "Visiteurs"
+
+msgid "General Permissions"
+msgstr "Autorisations générales"
+
+msgid "Define what non-logged-in users are allowed to do on the site"
+msgstr "Définir ce que les utilisateurs non connectés sont autorisés à faire sur le site"
+
+msgid "Visitor Can Post Job"
+msgstr "Le visiteur peut publier une offre d'emploi"
+
+msgid "Allow non-logged-in users to post jobs"
+msgstr "Autoriser les utilisateurs non connectés à publier des offres d'emploi"
+
+msgid "Visitor Can Add Job"
+msgstr "Le visiteur peut ajouter un emploi"
+
+msgid "Visitor Job Post Redirect Page"
+msgstr "Page de redirection des offres d'emploi des visiteurs"
+
+msgid "A visitor will be redirected to this page after posting a job"
+msgstr "Un visiteur sera redirigé vers cette page après avoir publié une offre d'emploi"
+
+msgid "Visitor Can Apply to Job"
+msgstr "Le visiteur peut postuler à un emploi"
+
+msgid "Allow non-logged-in users to apply for jobs"
+msgstr "Autoriser les utilisateurs non connectés à postuler à des emplois"
+
+msgid "Visitor Can Add Resume"
+msgstr "Le visiteur peut ajouter un CV"
+
+msgid "Allow non-logged-in users to add a resume"
+msgstr "Autoriser les utilisateurs non connectés à ajouter un CV"
+
+msgid "Visitor Resume Post Redirect Page"
+msgstr "Page de redirection de publication de CV de visiteur"
+
+msgid "A visitor will be redirected to this page after posting a resume"
+msgstr "Un visiteur sera redirigé vers cette page après avoir publié un CV"
+
+msgid "Visitor Can Edit Job"
+msgstr "Le visiteur peut modifier le travail"
+
+msgid "Allow non-logged-in users to edit jobs they have posted"
+msgstr "Autoriser les utilisateurs non connectés à modifier les offres d'emploi qu'ils ont publiées"
+
+msgid "Page & Link Access"
+msgstr "Accès aux pages et aux liens"
+
+msgid "Control which pages and links are visible to non-logged-in users"
+msgstr "Contrôlez quelles pages et quels liens sont visibles pour les utilisateurs non connectés"
+
+msgid "Allow visitors to view the employer control panel links"
+msgstr "Permettre aux visiteurs de consulter les liens du panneau de contrôle de l'employeur"
+
+msgid "Allow visitors to view the resume categories page"
+msgstr "Autoriser les visiteurs à afficher la page des catégories de CV"
+
+msgid "Allow visitors to access the resume search functionality"
+msgstr "Autoriser les visiteurs à accéder à la fonctionnalité de recherche de CV"
+
+msgid "Allow visitors to view company detail pages"
+msgstr "Autoriser les visiteurs à consulter les pages de détails de l'entreprise"
+
+msgid "Allow visitors to view job detail pages"
+msgstr "Autoriser les visiteurs à afficher les pages de détails du travail"
+
+msgid "Allow visitors to view resume detail pages"
+msgstr "Autoriser les visiteurs à afficher les pages de détails du CV"
+
+msgid "Allow visitors to view the job seeker control panel links"
+msgstr "Autoriser les visiteurs à afficher les liens du panneau de contrôle des demandeurs d'emploi"
+
+msgid "Allow visitors to view the jobs by category page"
+msgstr "Autoriser les visiteurs à visualiser les emplois par page de catégorie"
+
+msgid "Allow visitors to use the job search functionality"
+msgstr "Autoriser les visiteurs à utiliser la fonctionnalité de recherche d'emploi"
+
+msgid "Allow visitors to see job search result listings"
+msgstr "Permettre aux visiteurs de voir les listes de résultats de recherche d'emploi"
+
+msgid "Allow visitors to see the newest jobs page"
+msgstr "Permettre aux visiteurs de voir la page d'emplois la plus récente"
+
+msgid "Job Posting & Management"
+msgstr "Publication et gestion des offres d'emploi"
+
+msgid "Manage how jobs are posted, their lifecycle, and related features"
+msgstr "Gérer la manière dont les offres d'emploi sont publiées, leur cycle de vie et les fonctionnalités associées"
+
+msgid "Job Auto Approve"
+msgstr "Approbation automatique du travail"
+
+msgid "Automatically approve new jobs upon submission"
+msgstr "Approuver automatiquement les nouveaux travaux lors de leur soumission"
+
+msgid "Job Expiry Days"
+msgstr "Jours d'expiration du travail"
+
+msgid "Number of days until a freely posted job expires"
+msgstr "Nombre de jours avant l'expiration d'un emploi publié gratuitement"
+
+msgid "Number of days until a paid"
+msgstr "Nombre de jours jusqu'à un paiement"
+
+msgid "job expires"
+msgstr "le travail expire"
+
+msgid "Job Display & Listings"
+msgstr "Affichage et listes d'emplois"
+
+msgid "Control how job-related pages and information are displayed to users"
+msgstr "Contrôler la façon dont les pages et les informations liées au travail sont affichées aux utilisateurs"
+
+msgid "Show Country on Jobs by Cities Page"
+msgstr "Afficher le pays sur la page Emplois par villes"
+
+msgid "Display the country name next to the city"
+msgstr "Afficher le nom du pays à côté de la ville"
+
+msgid "Show Count on Jobs by Cities Page"
+msgstr "Page Afficher le nombre d'emplois par ville"
+
+msgid "Display the total number of jobs available in each city"
+msgstr "Afficher le nombre total d'emplois disponibles dans chaque ville"
+
+msgid "Show Count in Job Categories"
+msgstr "Afficher le nombre dans les catégories d'emploi"
+
+msgid "Display the total number of jobs for each category"
+msgstr "Afficher le nombre total d'emplois pour chaque catégorie"
+
+msgid "Show Count on Jobs by Types Page"
+msgstr "Page Afficher le nombre de travaux par types"
+
+msgid "Display the total number of jobs for each job type"
+msgstr "Afficher le nombre total de tâches pour chaque type de tâche"
+
+msgid "Job Types Per Row"
+msgstr "Types de tâches par ligne"
+
+msgid "How many job types to display per row on the"
+msgstr "Combien de types de tâches afficher par ligne sur le"
+
+msgid "Job by Type"
+msgstr "Emploi par type"
+
+msgid "Show Jobs Graph for Employer"
+msgstr "Afficher le graphique des emplois pour l'employeur"
+
+msgid "Show Active Jobs Graph for Job Seeker"
+msgstr "Afficher le graphique des emplois actifs pour les demandeurs d'emploi"
+
+msgid "Company Profile Display"
+msgstr "Affichage du profil de l'entreprise"
+
+msgid "Control which company details are visible on listings and company pages"
+msgstr "Contrôlez quels détails de l'entreprise sont visibles sur les listes et les pages de l'entreprise"
+
+msgid "Show Company Name"
+msgstr "Afficher le nom de l'entreprise"
+
+msgid "Show Company Description"
+msgstr "Afficher la description de l'entreprise"
+
+msgid "Show Company Email Address"
+msgstr "Afficher l'adresse e-mail de l'entreprise"
+
+msgid "Show Company City"
+msgstr "Afficher la ville de l'entreprise"
+
+msgid "Show Company URL"
+msgstr "Afficher l'URL de l'entreprise"
+
+msgid "Show Company Contact Detail by Default"
+msgstr "Afficher les coordonnées de l'entreprise par défaut"
+
+msgid "If disabled, credits may be required to view contact details"
+msgstr "S'il est désactivé, des crédits peuvent être nécessaires pour afficher les coordonnées"
+
+msgid "General settings for company profiles"
+msgstr "Paramètres généraux des profils d'entreprise"
+
+msgid "Company Logo Maximum Size"
+msgstr "Taille maximale du logo de l'entreprise"
+
+msgid "Set the maximum file size for company logo uploads in kilobytes"
+msgstr "Définir la taille maximale du fichier pour les téléchargements du logo de l'entreprise en kilo-octets"
+
+msgid "Company Auto Approve"
+msgstr "Approbation automatique de l'entreprise"
+
+msgid "Automatically approve new company profiles upon submission"
+msgstr "Approuvez automatiquement les nouveaux profils d’entreprise lors de leur soumission"
+
+msgid "Control resume submissions, visibility, and search functionality"
+msgstr "Contrôlez les soumissions de CV, la visibilité et la fonctionnalité de recherche"
+
+msgid "Resume Auto Approve"
+msgstr "Reprendre l'approbation automatique"
+
+msgid "Automatically approve new resumes upon submission"
+msgstr "Approuver automatiquement les nouveaux CV dès leur soumission"
+
+msgid "Show Resume Contact Detail by Default"
+msgstr "Afficher les détails du contact du CV par défaut"
+
+msgid "If disabled, credits may be required to view resume contact details"
+msgstr "S'il est désactivé, des crédits peuvent être requis pour afficher les coordonnées du CV"
+
+msgid "Show Count in Resume Categories"
+msgstr "Afficher le nombre dans les catégories de CV"
+
+msgid "Display the total number of resumes for each category"
+msgstr "Afficher le nombre total de CV pour chaque catégorie"
+
+msgid "Allow Resume Search"
+msgstr "Autoriser la reprise de la recherche"
+
+msgid "Define who is allowed to search for resumes"
+msgstr "Définir qui est autorisé à rechercher des CV"
+
+msgid "Allow Users to Save Resume Searches"
+msgstr "Autoriser les utilisateurs à enregistrer les recherches de CV"
+
+msgid "Allow users to save their resume search criteria for later use"
+msgstr "Autoriser les utilisateurs à enregistrer leurs critères de recherche de CV pour une utilisation ultérieure"
+
+msgid "Resume Files & Builder"
+msgstr "Reprendre les fichiers et le générateur"
+
+msgid "Define limits and allowed types for resume file uploads and advanced builder sections"
+msgstr "Définir les limites et les types autorisés pour les téléchargements de fichiers de CV et les sections de création avancées"
+
+msgid "Resume Photo Maximum Size"
+msgstr "Reprendre la taille maximale de la photo"
+
+msgid "Maximum file size for resume photos in kilobytes"
+msgstr "Taille maximale du fichier pour les photos de reprise en kilo-octets"
+
+msgid "Resume Document Maximum Size"
+msgstr "Reprendre la taille maximale du document"
+
+msgid "System will not upload if resume file size exceeds the given size"
+msgstr "Le système ne téléchargera pas si la taille du fichier de reprise dépasse la taille donnée"
+
+msgid "Allowed Document Extensions"
+msgstr "Extensions de documents autorisées"
+
+msgid "Comma-separated list of allowed document file extensions"
+msgstr "Liste des extensions de fichiers de documents autorisées, séparées par des virgules"
+
+msgid "Maximum Number of Files for Resume"
+msgstr "Nombre maximum de fichiers pour un CV"
+
+msgid "Maximum number of files a job seeker can upload with their resume"
+msgstr "Nombre maximum de fichiers qu'un demandeur d'emploi peut télécharger avec son CV"
+
+msgid "Max Employers in Resume Builder"
+msgstr "Nombre maximum d'employeurs dans Resume Builder"
+
+msgid "Maximum number of employers allowed in the resume builder"
+msgstr "Nombre maximum d'employeurs autorisés dans le générateur de CV"
+
+msgid "Max Institutes in Resume Builder"
+msgstr "Max Institutes dans CV Builder"
+
+msgid "Maximum number of institutes allowed in the resume builder"
+msgstr "Nombre maximum d'instituts autorisés dans le générateur de CV"
+
+msgid "Max Languages in Resume Builder"
+msgstr "Nombre maximum de langues dans Resume Builder"
+
+msgid "Maximum number of languages allowed in the resume builder"
+msgstr "Nombre maximum de langues autorisées dans le générateur de CV"
+
+msgid "Max Addresses in Resume Builder"
+msgstr "Nombre maximum d'adresses dans Resume Builder"
+
+msgid "Maximum number of addresses allowed in the resume builder"
+msgstr "Nombre maximum d'adresses autorisées dans le générateur de CV"
+
+msgid "Job Applications"
+msgstr "Demandes d'emploi"
+
+msgid "Configure the job application process and related notifications"
+msgstr "Configurer le processus de candidature à un emploi et les notifications associées"
+
+msgid "Show Apply Now Button"
+msgstr "Afficher le bouton Appliquer maintenant"
+
+msgid "Enable Quick Apply for Logged-in Users"
+msgstr "Activer l'application rapide pour les utilisateurs connectés"
+
+msgid "Enable Quick Apply for Visitors"
+msgstr "Activer l'application rapide pour les visiteurs"
+
+msgid "Show Applied Resume Status to Job Seeker"
+msgstr "Afficher le statut du CV appliqué au demandeur d'emploi"
+
+msgid "Resume Data in Email"
+msgstr "Reprendre les données dans l'e-mail"
+
+msgid "Sections"
+msgstr "Sections"
+
+msgid "Choose whether to include all resume sections or only filled ones in the application email to employers"
+msgstr "Choisissez d'inclure toutes les sections du CV ou uniquement celles remplies dans l'e-mail de candidature adressé aux employeurs."
+
+msgid "Choose whether to include all fields or only filled fields in the application email"
+msgstr "Choisissez d'inclure tous les champs ou uniquement les champs remplis dans l'e-mail de candidature."
+
+msgid "Auto-Approve Rules"
+msgstr "Règles d'approbation automatique"
+
+msgid "Set auto-approval rules for various user-submitted content"
+msgstr "Définir des règles d'approbation automatique pour divers contenus soumis par les utilisateurs"
+
+msgid "Featured Resume Auto Approve"
+msgstr "Approbation automatique du CV en vedette"
+
+msgid "Automatically approve resumes marked as featured"
+msgstr "Approuver automatiquement les CV marqués comme présentés"
+
+msgid "Featured Company Auto Approve"
+msgstr "Approbation automatique de l’entreprise en vedette"
+
+msgid "Automatically approve companies marked as featured"
+msgstr "Approuver automatiquement les entreprises marquées comme mises en avant"
+
+msgid "Featured Job Auto Approve"
+msgstr "Approbation automatique des travaux en vedette"
+
+msgid "Automatically approve jobs marked as featured"
+msgstr "Approuver automatiquement les tâches marquées comme mises en avant"
+
+msgid "Cover Letter Auto Approve"
+msgstr "Approbation automatique de la lettre de motivation"
+
+msgid "Automatically approve cover letters submitted by job seekers"
+msgstr "Approuver automatiquement les lettres de motivation soumises par les demandeurs d'emploi"
+
+msgid "Folder Auto Approve"
+msgstr "Approbation automatique du dossier"
+
+msgid "Automatically approve new folders created by employers"
+msgstr "Approuver automatiquement les nouveaux dossiers créés par les employeurs"
+
+msgid "Department Auto Approve"
+msgstr "Approbation automatique du département"
+
+msgid "Automatically approve new departments created by employers"
+msgstr "Approuver automatiquement les nouveaux départements créés par les employeurs"
+
+msgid "Message Auto Approve"
+msgstr "Approbation automatique du message"
+
+msgid "Automatically approve messages between job seekers and employers"
+msgstr "Approuver automatiquement les messages entre les demandeurs d'emploi et les employeurs"
+
+msgid "Conflict Message Auto Approve"
+msgstr "Approbation automatique du message de conflit"
+
+msgid "Automatically approve conflicted messages"
+msgstr "Approuver automatiquement les messages conflictuels"
+
+msgid "Email & Alerts"
+msgstr "E-mail et alertes"
+
+msgid "Email Sender Identity"
+msgstr "Identité de l'expéditeur de l'e-mail"
+
+msgid "Configure sender details for all outgoing system emails"
+msgstr "Configurer les détails de l'expéditeur pour tous les e-mails système sortants"
+
+msgid "Admin Email Address"
+msgstr "Adresse e-mail de l'administrateur"
+
+msgid "Admin will receive email notifications at this address"
+msgstr "L'administrateur recevra des notifications par e-mail à cette adresse"
+
+msgid "Sender Email Address"
+msgstr "Adresse e-mail de l'expéditeur"
+
+msgid "The email address that will be used to send system emails"
+msgstr "L'adresse e-mail qui sera utilisée pour envoyer les e-mails du système"
+
+msgid "The sender name that will be used in system emails"
+msgstr "Le nom de l'expéditeur qui sera utilisé dans les e-mails du système"
+
+msgid "Job Alerts"
+msgstr "Alertes emploi"
+
+msgid "Configure settings for job alert emails and forms"
+msgstr "Configurer les paramètres des e-mails et des formulaires d'alerte d'emploi"
+
+msgid "Show Job Alert Link"
+msgstr "Afficher le lien d'alerte d'emploi"
+
+msgid "Show the Job Alert link in the job seeker control panel"
+msgstr "Afficher le lien Alerte emploi dans le panneau de configuration du demandeur d'emploi"
+
+msgid "Enable Job Alerts for Visitors"
+msgstr "Activer les alertes d'emploi pour les visiteurs"
+
+msgid "Allow non-logged-in users to sign up for job alerts"
+msgstr "Autoriser les utilisateurs non connectés à s'inscrire aux alertes d'emploi"
+
+msgid "Job Alert Auto Approve"
+msgstr "Approbation automatique de l'alerte d'emploi"
+
+msgid "Automatically approve new job alerts upon creation"
+msgstr "Approuver automatiquement les nouvelles alertes d'emploi lors de leur création"
+
+msgid "Captcha on Visitor Job Alert Form"
+msgstr "Captcha sur le formulaire d'alerte d'emploi des visiteurs"
+
+msgid "Show a captcha on the job alert sign-up form for visitors"
+msgstr "Afficher un captcha sur le formulaire d'inscription à l'alerte emploi pour les visiteurs"
+
+msgid "Allow users to save their search queries for jobs and resumes"
+msgstr "Autoriser les utilisateurs à enregistrer leurs requêtes de recherche d'emplois et de CV"
+
+msgid "Show Saved Searches for Job Seekers"
+msgstr "Afficher les recherches enregistrées pour les demandeurs d'emploi"
+
+msgid "Allow job seekers to save their job searches"
+msgstr "Permettre aux demandeurs d'emploi de sauvegarder leurs recherches d'emploi"
+
+msgid "Show Saved Searches for Employers"
+msgstr "Afficher les recherches enregistrées pour les employeurs"
+
+msgid "Allow employers to save their resume searches"
+msgstr "Permettre aux employeurs de sauvegarder leurs recherches de CV"
+
+msgid "Feeds & AI"
+msgstr "Flux et IA"
+
+msgid "RSS Feeds"
+msgstr "Flux RSS"
+
+msgid "Configure the RSS feed for jobs"
+msgstr "Configurer le flux RSS des offres d'emploi"
+
+msgid "Enable Jobs RSS Feed"
+msgstr "Activer le flux RSS des offres d'emploi"
+
+msgid "Enable the main RSS feed for new jobs"
+msgstr "Activer le flux RSS principal pour les nouveaux emplois"
+
+msgid "Job Feed Title"
+msgstr "Titre du flux d'offres d'emploi"
+
+msgid "The title for the job RSS feed"
+msgstr "Le titre du poste Flux RSS"
+
+msgid "Job Feed Description"
+msgstr "Description du flux de tâches"
+
+msgid "The description for the job RSS feed"
+msgstr "La description du poste Flux RSS"
+
+msgid "Job Feed Copyright"
+msgstr "Copyright du flux d’emploi"
+
+msgid "Copyright notice for the job feed"
+msgstr "Avis de droits d'auteur pour le flux d'emplois"
+
+msgid "Job Feed Editor"
+msgstr "Éditeur de flux d'emploi"
+
+msgid "The person responsible for editorial content"
+msgstr "La personne responsable du contenu éditorial"
+
+msgid "Job Feed Webmaster"
+msgstr "Webmaster du flux d'emploi"
+
+msgid "The person responsible for technical issues"
+msgstr "La personne responsable des problèmes techniques"
+
+msgid "Job Feed TTL"
+msgstr "Durée de vie du flux de tâches"
+
+msgid "Time to Live"
+msgstr "Il est temps de vivre"
+
+msgid "Number of minutes the feed can be cached before refreshing"
+msgstr "Nombre de minutes pendant lesquelles le flux peut être mis en cache avant d'être actualisé"
+
+msgid "Show Categories in Job Feed"
+msgstr "Afficher les catégories dans le flux d'offres d'emploi"
+
+msgid "Include categories in the job feed items"
+msgstr "Inclure des catégories dans les éléments du flux de tâches"
+
+msgid "Show Company Image in Job Feed"
+msgstr "Afficher l’image de l’entreprise dans le fil d’emploi"
+
+msgid "Include the company logo in the job feed items"
+msgstr "Inclure le logo de l'entreprise dans les éléments du flux d'offres d'emploi"
+
+msgid "Configure the RSS feed for resumes"
+msgstr "Configurer le flux RSS des CV"
+
+msgid "Enable Resumes RSS Feed"
+msgstr "Activer le flux RSS des CV"
+
+msgid "Enable the main RSS feed for new resumes"
+msgstr "Activer le flux RSS principal pour les nouveaux CV"
+
+msgid "Resume Feed Title"
+msgstr "Titre du flux de reprise"
+
+msgid "The title for the resume RSS feed"
+msgstr "Le titre du CV Flux RSS"
+
+msgid "Resume Feed Description"
+msgstr "Reprendre la description du flux"
+
+msgid "The description for the resume RSS feed"
+msgstr "La description du flux RSS du CV"
+
+msgid "Resume Feed Copyright"
+msgstr "Reprendre le droit d'auteur du flux"
+
+msgid "Copyright notice for the resume feed"
+msgstr "Avis de droits d'auteur pour le flux de CV"
+
+msgid "Resume Feed Editor"
+msgstr "Reprendre l'éditeur de flux de CV"
+
+msgid "Resume Feed Webmaster"
+msgstr "Webmaster du flux de reprise"
+
+msgid "Resume Feed TTL"
+msgstr "Reprendre le flux TTL"
+
+msgid "Show Categories in Resume Feed"
+msgstr "Afficher les catégories dans le flux de CV"
+
+msgid "Include categories in the resume feed items"
+msgstr "Inclure des catégories dans les éléments du flux de CV"
+
+msgid "Show Resume File in Resume Feed"
+msgstr "Afficher le fichier de CV dans le flux de CV"
+
+msgid "Make resume files downloadable from the feed"
+msgstr "Rendre les fichiers de CV téléchargeables à partir du flux"
+
+msgid "AI Suggested Matches"
+msgstr "Correspondances suggérées par l'IA"
+
+msgid "Configure AI-powered job and resume suggestion features"
+msgstr "Configurer les fonctionnalités de suggestion de travail et de reprise basées sur l'IA"
+
+msgid "AI Search On Job Search Page"
+msgstr "Recherche AI ​​sur la page de recherche d'emploi"
+
+msgid "Show the AI search field on the main job search form"
+msgstr "Afficher le champ de recherche IA sur le formulaire de recherche d'emploi principal"
+
+msgid "AI Job Search"
+msgstr "Recherche d'emploi en IA"
+
+msgid "AI Search Filter On Job Listing"
+msgstr "Filtre de recherche AI ​​sur les offres d'emploi"
+
+msgid "Show the AI search field as a filter on the job listing page"
+msgstr "Afficher le champ de recherche AI ​​comme filtre sur la page d'offre d'emploi"
+
+msgid "AI Search On Resume Search Page"
+msgstr "Recherche AI ​​sur la page de recherche de CV"
+
+msgid "Show the AI search field on the main resume search form"
+msgstr "Afficher le champ de recherche AI ​​sur le formulaire de recherche de CV principal"
+
+msgid "AI Resume Search"
+msgstr "Recherche de CV par l'IA"
+
+msgid "AI Search Filter On Resume Listing"
+msgstr "Filtre de recherche AI ​​sur la liste de CV"
+
+msgid "Show the AI search field as a filter on the resume listing page"
+msgstr "Afficher le champ de recherche AI ​​comme filtre sur la page de liste de CV"
+
+msgid "Show AI Suggested Jobs Button"
+msgstr "Afficher le bouton de tâches suggérées par l'IA"
+
+msgid "AI Suggested Jobs"
+msgstr "Emplois suggérés par l'IA"
+
+msgid "Show AI Suggested Jobs on Dashboard"
+msgstr "Afficher les tâches suggérées par l'IA sur le tableau de bord"
+
+msgid "Show a list of AI-suggested jobs on the job seeker dashboard"
+msgstr "Afficher une liste des emplois suggérés par l'IA sur le tableau de bord des demandeurs d'emploi"
+
+msgid "Show AI Suggested Resumes Button"
+msgstr "Afficher le bouton de CV suggéré par l'IA"
+
+msgid "AI Suggested Resumes"
+msgstr "CV suggérés par l'IA"
+
+msgid "Show AI Suggested Resumes on Dashboard"
+msgstr "Afficher les CV suggérés par l'IA sur le tableau de bord"
+
+msgid "Show a list of AI-suggested resumes on the employer dashboard"
+msgstr "Afficher une liste de CV suggérés par l'IA sur le tableau de bord de l'employeur"
+
+msgid "Integrations"
+msgstr "Intégrations"
+
+msgid "Allow users to register and log in with their social media accounts"
+msgstr "Autoriser les utilisateurs à s'inscrire et à se connecter avec leurs comptes de réseaux sociaux"
+
+msgid "Login with Facebook"
+msgstr "Connectez-vous avec Facebook"
+
+msgid "Allow users to log in using their Facebook account"
+msgstr "Autoriser les utilisateurs à se connecter en utilisant leur compte Facebook"
+
+msgid "Apply with Facebook"
+msgstr "Postuler avec Facebook"
+
+msgid "Allow users to apply for jobs using their Facebook profile"
+msgstr "Autoriser les utilisateurs à postuler à des emplois en utilisant leur profil Facebook"
+
+msgid "Facebook App ID"
+msgstr "Identifiant de l'application Facebook"
+
+msgid "Enter your Facebook App ID"
+msgstr "Entrez votre identifiant d'application Facebook"
+
+msgid "Facebook App Secret"
+msgstr "Secret de l'application Facebook"
+
+msgid "Enter your Facebook App Secret"
+msgstr "Entrez le secret de votre application Facebook"
+
+msgid "Valid OAuth URI"
+msgstr "URI OAuth valide"
+
+msgid "Apply"
+msgstr "Appliquer"
+
+msgid "Login with LinkedIn"
+msgstr "Connectez-vous avec LinkedIn"
+
+msgid "Allow users to log in using their LinkedIn account"
+msgstr "Autoriser les utilisateurs à se connecter en utilisant leur compte LinkedIn"
+
+msgid "Apply with LinkedIn"
+msgstr "Postuler avec LinkedIn"
+
+msgid "Allow users to apply for jobs using their LinkedIn profile"
+msgstr "Autoriser les utilisateurs à postuler à des emplois en utilisant leur profil LinkedIn"
+
+msgid "LinkedIn Client ID"
+msgstr "Identifiant client LinkedIn"
+
+msgid "Enter your LinkedIn Client ID"
+msgstr "Entrez votre identifiant client LinkedIn"
+
+msgid "API Key"
+msgstr "Clé API"
+
+msgid "LinkedIn Client Secret"
+msgstr "Secret client LinkedIn"
+
+msgid "Enter your LinkedIn Client Secret"
+msgstr "Entrez votre secret client LinkedIn"
+
+msgid "Social Sharing"
+msgstr "Partage social"
+
+msgid "Enable social sharing buttons on your pages"
+msgstr "Activez les boutons de partage social sur vos pages"
+
+msgid "Enable Facebook Likes"
+msgstr "Activer les likes Facebook"
+
+msgid "Show Facebook like button"
+msgstr "Afficher le bouton J'aime de Facebook"
+
+msgid "Enable Facebook Share"
+msgstr "Activer le partage Facebook"
+
+msgid "Show Facebook share button"
+msgstr "Afficher le bouton de partage Facebook"
+
+msgid "Enable Facebook Comments"
+msgstr "Activer les commentaires Facebook"
+
+msgid "Show Facebook comments widget"
+msgstr "Afficher le widget de commentaires Facebook"
+
+msgid "Enable Twitter Share"
+msgstr "Activer le partage Twitter"
+
+msgid "Show Twitter share button"
+msgstr "Afficher le bouton de partage Twitter"
+
+msgid "Enable LinkedIn Share"
+msgstr "Activer le partage LinkedIn"
+
+msgid "Show LinkedIn share button"
+msgstr "Afficher le bouton de partage LinkedIn"
+
+msgid "Enable Blogger Share"
+msgstr "Activer le partage Blogger"
+
+msgid "Show Blogger share button"
+msgstr "Afficher le bouton de partage Blogger"
+
+msgid "Enable Digg Share"
+msgstr "Activer le partage Digg"
+
+msgid "Show Digg share button"
+msgstr "Afficher le bouton de partage Digg"
+
+msgid "Enable Myspace Share"
+msgstr "Activer le partage Myspace"
+
+msgid "Show Myspace share button"
+msgstr "Afficher le bouton de partage Myspace"
+
+msgid "Enable Yahoo Share"
+msgstr "Activer le partage Yahoo"
+
+msgid "Show Yahoo share button"
+msgstr "Afficher le bouton de partage Yahoo"
+
+msgid "Mapping & Geolocation"
+msgstr "Cartographie et géolocalisation"
+
+msgid "Configure map services and location-based features"
+msgstr "Configurer les services de carte et les fonctionnalités basées sur la localisation"
+
+msgid "Choose between Google Maps and OpenStreetMap for map displays"
+msgstr "Choisissez entre Google Maps et OpenStreetMap pour l'affichage des cartes"
+
+msgid "Google Map API Key"
+msgstr "Clé API Google Map"
+
+msgid "Enter your Google Maps API key"
+msgstr "Entrez votre clé API Google Maps"
+
+msgid "Map Height"
+msgstr "Hauteur de la carte"
+
+msgid "Set the height for maps displayed in the plugin, in pixels"
+msgstr "Définir la hauteur des cartes affichées dans le plugin, en pixels"
+
+msgid "Default Longitude"
+msgstr "Longitude par défaut"
+
+msgid "Default longitude for map centering"
+msgstr "Longitude par défaut pour le centrage de la carte"
+
+msgid "Default Latitude"
+msgstr "Latitude par défaut"
+
+msgid "Default latitude for map centering"
+msgstr "Latitude par défaut pour le centrage de la carte"
+
+msgid "Default Map Radius Type"
+msgstr "Type de rayon de carte par défaut"
+
+msgid "Default unit for map radius calculations"
+msgstr "Unité par défaut pour les calculs de rayon de carte"
+
+msgid "Max Records for City Field"
+msgstr "Nombre maximal d'enregistrements pour le champ de la ville"
+
+msgid "Set the number of cities to show in the location autocomplete results"
+msgstr "Définir le nombre de villes à afficher dans les résultats de saisie semi-automatique de localisation"
+
+msgid "Max Records for Tag Field"
+msgstr "Nombre maximum d'enregistrements pour le champ de balise"
+
+msgid "Set the number of tags to show in the tag autocomplete results"
+msgstr "Définir le nombre de balises à afficher dans les résultats de saisie semi-automatique des balises"
+
+msgid "Security & Captcha"
+msgstr "Sécurité et captcha"
+
+msgid "Captcha Options"
+msgstr "Options de captcha"
+
+msgid "Enable captcha on various forms to prevent spam"
+msgstr "Activez le captcha sur divers formulaires pour éviter le spam"
+
+msgid "Default Captcha Type"
+msgstr "Type de captcha par défaut"
+
+msgid "Select the default captcha to use throughout the plugin"
+msgstr "Sélectionnez le captcha par défaut à utiliser dans tout le plugin"
+
+msgid "Captcha on Registration Form"
+msgstr "Captcha sur le formulaire d'inscription"
+
+msgid "Show a captcha on the WP Job Portal registration form"
+msgstr "Afficher un captcha sur le formulaire d'inscription du WP Job Portal"
+
+msgid "Captcha on Visitor Quick Apply"
+msgstr "Captcha sur l'application rapide du visiteur"
+
+msgid "Show captcha to visitors on the quick apply form"
+msgstr "Afficher le captcha aux visiteurs sur le formulaire de candidature rapide"
+
+msgid "Captcha on Visitor Job Form"
+msgstr "Captcha sur le formulaire d'emploi du visiteur"
+
+msgid "Show captcha on the job submission form for visitors"
+msgstr "Afficher le captcha sur le formulaire de soumission d'emploi pour les visiteurs"
+
+msgid "Captcha on Visitor Resume Form"
+msgstr "Captcha sur le formulaire de CV du visiteur"
+
+msgid "Show captcha on the resume submission form for visitors"
+msgstr "Afficher le captcha sur le formulaire de soumission de CV pour les visiteurs"
+
+msgid "Captcha on Tell a Friend Popup"
+msgstr "Captcha sur le popup Parler à un ami"
+
+msgid "Show captcha on the"
+msgstr "Afficher le captcha sur le"
+
+msgid "popup for visitors"
+msgstr "popup pour les visiteurs"
+
+msgid "WP Job Portal Captcha"
+msgstr "Captcha du portail d'emploi WP"
+
+msgid "Settings for the built-in mathematical captcha"
+msgstr "Paramètres du captcha mathématique intégré"
+
+msgid "Calculation Type"
+msgstr "Type de calcul"
+
+msgid "Select the type of math problem for the captcha"
+msgstr "Sélectionnez le type de problème mathématique pour le captcha"
+
+msgid "Addition or Subtraction"
+msgstr "Addition ou soustraction"
+
+msgid "Answer Always Positive"
+msgstr "Répondez toujours positivement"
+
+msgid "Ensure that subtraction problems always result in a positive answer"
+msgstr "Assurez-vous que les problèmes de soustraction aboutissent toujours à une réponse positive"
+
+msgid "Number of Operands"
+msgstr "Nombre d'opérandes"
+
+msgid "Choose the number of operands for the math problem"
+msgstr "Choisissez le nombre d'opérandes pour le problème mathématique"
+
+msgid "Google reCAPTCHA"
+msgstr "Google reCAPTCHA"
+
+msgid "Configure Google reCAPTCHA v2 or v3"
+msgstr "Configurer Google reCAPTCHA v2 ou v3"
+
+msgid "Select which version of Google reCAPTCHA to use"
+msgstr "Sélectionnez la version de Google reCAPTCHA à utiliser"
+
+msgid "Enter the site key from your Google reCAPTCHA admin console"
+msgstr "Saisissez la clé du site depuis votre console d'administration Google reCAPTCHA"
+
+msgid "Google reCaptcha Secret Key"
+msgstr "Clé secrète Google reCaptcha"
+
+msgid "Enter the secret key from your Google reCAPTCHA admin console"
+msgstr "Saisissez la clé secrète depuis votre console d'administration Google reCAPTCHA"
+
+msgid "Monetization"
+msgstr "Monétisation"
+
+msgid "General Monetization"
+msgstr "Monétisation générale"
+
+msgid "Core settings for handling payments and packages"
+msgstr "Paramètres de base pour le traitement des paiements et des colis"
+
+msgid "Choose the monetization model for submissions"
+msgstr "Choisissez le modèle de monétisation pour les soumissions"
+
+msgid "Free, Per Listing, or Membership-based"
+msgstr "Gratuit, par annonce ou par adhésion"
+
+msgid "Default Currency Symbol"
+msgstr "Symbole monétaire par défaut"
+
+msgid "The currency symbol to be used across the site"
+msgstr "Le symbole monétaire à utiliser sur tout le site"
+
+msgid "Currency Symbol Position"
+msgstr "Position du symbole monétaire"
+
+msgid "Packages & Featured Listings"
+msgstr "Forfaits et annonces en vedette"
+
+msgid "Manage free packages and enable featured listings"
+msgstr "Gérez les packages gratuits et activez les listes en vedette"
+
+msgid "Auto-assign Free Package to New User"
+msgstr "Attribuer automatiquement le package gratuit au nouvel utilisateur"
+
+msgid "Automatically give new users a free package if one exists"
+msgstr "Offrez automatiquement aux nouveaux utilisateurs un package gratuit s'il en existe un"
+
+msgid "Free Package Purchase Auto Approve"
+msgstr "Approbation automatique d'achat de forfait gratuit"
+
+msgid "Automatically approve the purchase of free packages"
+msgstr "Approuver automatiquement l'achat de forfaits gratuits"
+
+msgid "Purchase Free Package Only Once"
+msgstr "Achetez le forfait gratuit une seule fois"
+
+msgid "Prevent users from acquiring a free package more than once"
+msgstr "Empêcher les utilisateurs d'acquérir un forfait gratuit plus d'une fois"
+
+msgid "Enable Featured Companies"
+msgstr "Activer les entreprises en vedette"
+
+msgid "Allow companies to be marked as"
+msgstr "Permettre aux entreprises d'être marquées comme"
+
+msgid "Enable Featured Jobs"
+msgstr "Activer les emplois en vedette"
+
+msgid "Allow jobs to be marked as"
+msgstr "Autoriser les tâches à être marquées comme"
+
+msgid "Enable Featured Resumes"
+msgstr "Activer les CV en vedette"
+
+msgid "Allow resumes to be marked as"
+msgstr "Autoriser le marquage des CV comme"
+
+msgid "Per Listing Prices"
+msgstr "Prix ​​par annonce"
+
+msgid "Set prices for various actions when using the"
+msgstr "Fixez les prix de diverses actions lors de l'utilisation du"
+
+msgid "submission type"
+msgstr "type de soumission"
+
+msgid "Submission"
+msgstr "Soumission"
+
+msgid "Price to submit a single company profile"
+msgstr "Prix ​​pour soumettre un seul profil d'entreprise"
+
+msgid "Additional price to make a company"
+msgstr "Prix ​​supplémentaire pour créer une entreprise"
+
+msgid "Days Until Featured Company Expires"
+msgstr "Jours avant l'expiration de l'entreprise en vedette"
+
+msgid "Number of days a"
+msgstr "Nombre de jours par"
+
+msgid "per-listing"
+msgstr "par annonce"
+
+msgid "featured company remains active"
+msgstr "l'entreprise en vedette reste active"
+
+msgid "free"
+msgstr "gratuit"
+
+msgid "Price to submit a single job"
+msgstr "Prix ​​pour soumettre un seul travail"
+
+msgid "Additional price to make a job"
+msgstr "Prix ​​supplémentaire pour réaliser un travail"
+
+msgid "Days Until Featured Job Expires"
+msgstr "Jours avant l'expiration de l'offre en vedette"
+
+msgid "featured job remains active"
+msgstr "l'emploi en vedette reste actif"
+
+msgid "Price to submit a single resume"
+msgstr "Prix ​​pour soumettre un seul CV"
+
+msgid "Additional price to make a resume"
+msgstr "Prix ​​supplémentaire pour faire un CV"
+
+msgid "Days Until Featured Resume Expires"
+msgstr "Jours avant l'expiration du CV en vedette"
+
+msgid "featured resume remains active"
+msgstr "Le CV en vedette reste actif"
+
+msgid "Price per Job Apply"
+msgstr "Prix ​​par emploi Postuler"
+
+msgid "Price for a job seeker to apply for a job"
+msgstr "Prix ​​pour un demandeur d'emploi pour postuler à un emploi"
+
+msgid "Price to View Resume Contact"
+msgstr "Prix ​​pour voir CV Contact"
+
+msgid "Price to View Company Contact"
+msgstr "Prix ​​à voir Entreprise Contact"
+
+msgid "Price to submit a department"
+msgstr "Prix ​​pour soumettre un département"
+
+msgid "Price to submit a cover letter"
+msgstr "Prix ​​pour soumettre une lettre de motivation"
+
+msgid "Price to create a job alert"
+msgstr "Prix ​​pour créer une alerte emploi"
+
+msgid "Dashboard Monetization Links"
+msgstr "Liens de monétisation du tableau de bord"
+
+msgid "Control the visibility of monetization-related links in user dashboards"
+msgstr "Contrôler la visibilité des liens liés à la monétisation dans les tableaux de bord des utilisateurs"
+
+msgid "Employer Show Invoice History"
+msgstr "Employeur Afficher l'historique des factures"
+
+msgid "Setting to show the invoice/purchase history section"
+msgstr "Paramètre pour afficher la section historique des factures/achats"
+
+msgid "Job Seeker Show Invoice History"
+msgstr "Demandeur d'emploi Afficher l'historique des factures"
+
+msgid "Job Seeker Show Credits Log"
+msgstr "Journal des crédits d'affichage des demandeurs d'emploi"
+
+msgid "Setting to show the credits log section"
+msgstr "Paramètre pour afficher la section du journal des crédits"
+
+msgid "Payment Gateways"
+msgstr "Passerelles de paiement"
+
+msgid "Configure PayPal payment gateway settings for API integration"
+msgstr "Configurer les paramètres de la passerelle de paiement PayPal pour l'intégration de l'API"
+
+msgid "Enable PayPal"
+msgstr "Activer PayPal"
+
+msgid "Enable or disable PayPal as a payment option"
+msgstr "Activer ou désactiver PayPal comme option de paiement"
+
+msgid "Your PayPal API Username"
+msgstr "Votre nom d'utilisateur de l'API PayPal"
+
+msgid "Your PayPal API Password"
+msgstr "Votre mot de passe API PayPal"
+
+msgid "Your PayPal API Signature"
+msgstr "Votre signature API PayPal"
+
+msgid "A URL to your logo image to display on the PayPal checkout page"
+msgstr "Une URL vers l'image de votre logo à afficher sur la page de paiement PayPal"
+
+msgid "Cancel URL"
+msgstr "Annuler l'URL"
+
+msgid "The URL users are sent to if they cancel the payment"
+msgstr "L'URL vers laquelle les utilisateurs sont envoyés s'ils annulent le paiement"
+
+msgid "Notify URL"
+msgstr "URL de notification"
+
+msgid "Sandbox"
+msgstr "Bac à sable"
+
+msgid "Enable PayPal Sandbox for testing purposes"
+msgstr "Activer PayPal Sandbox à des fins de test"
+
+msgid "Please enter language code, for example"
+msgstr "Veuillez saisir le code de langue, par exemple"
+
+msgid "Subscription IPN URL"
+msgstr "URL IPN d'abonnement"
+
+msgid "Configure Stripe payment gateway settings"
+msgstr "Configurer les paramètres de la passerelle de paiement Stripe"
+
+msgid "Enable Stripe"
+msgstr "Activer Stripe"
+
+msgid "Enable or disable Stripe as a payment option"
+msgstr "Activer ou désactiver Stripe comme option de paiement"
+
+msgid "Publishable Key"
+msgstr "Clé publiable"
+
+msgid "Enter your Stripe Publishable Key"
+msgstr "Entrez votre clé publiable Stripe"
+
+msgid "Secret Key"
+msgstr "Clé secrète"
+
+msgid "Enter your Stripe Secret Key"
+msgstr "Entrez votre clé secrète Stripe"
+
+msgid "Subscription Webhook URL"
+msgstr "URL du webhook d’abonnement"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Use WooCommerce to handle payments"
+msgstr "Utilisez WooCommerce pour gérer les paiements"
+
+msgid "Enable WooCommerce"
+msgstr "Activer WooCommerce"
+
+msgid "Enable or disable WooCommerce as a payment option"
+msgstr "Activer ou désactiver WooCommerce comme option de paiement"
+
+msgid "Home Page"
+msgstr "Page d'accueil"
+
+msgid "WordPress Default"
+msgstr "WordPress par défaut"
+
+msgid "Blog"
+msgstr "Blogue"
+
+msgid "This feature is part of a premium addon"
+msgstr "Cette fonctionnalité fait partie d'un module complémentaire premium"
+
+msgid "Available tags"
+msgstr "Balises disponibles"
+
+msgid "This image will be shown as the default image for entities & users if no other image is provided"
+msgstr "Cette image sera affichée comme image par défaut pour les entités et les utilisateurs si aucune autre image n'est fournie."
+
+msgid "Discard"
+msgstr "Jeter"
+
+msgid "Save Changes"
+msgstr "Enregistrer les modifications"
+
+msgid "Quickly find any setting"
+msgstr "Trouvez rapidement n'importe quel paramètre"
+
+msgid "Search by setting title or tooltip description"
+msgstr "Rechercher en définissant le titre ou la description de l'info-bulle"
+
+msgid "Unlock"
+msgstr "Ouvrir"
+
+msgid "This and other powerful features are available in the"
+msgstr "Ceci et d'autres fonctionnalités puissantes sont disponibles dans le"
+
+msgid "Upgrade Now"
+msgstr "Mettre à niveau maintenant"
+
+msgid "No settings found for your search"
+msgstr "Aucun paramètre trouvé pour votre recherche"
+
+msgid "Copied to clipboard"
+msgstr "Copié dans le presse-papiers"
+
+msgid "Search results for"
+msgstr "Résultats de la recherche pour"
+
+msgid "Unlock with"
+msgstr "Débloquez avec"
+
+msgid "Settings related to employer accounts, registration, and permissions"
+msgstr "Paramètres liés aux comptes d'employeur, à l'inscription et aux autorisations"
+
+msgid "Settings related to job seeker accounts and registration"
+msgstr "Paramètres liés aux comptes des demandeurs d'emploi et à l'inscription"
+
+msgid "Visitor Can View Employer's Control Panel Links"
+msgstr "Le visiteur peut consulter les liens du panneau de contrôle de l'employeur"
+
+msgid "Visitor Can View Resume Categories"
+msgstr "Le visiteur peut afficher les catégories de CV"
+
+msgid "Visitor Can Search Resumes"
+msgstr "Le visiteur peut rechercher des CV"
+
+msgid "Visitor Can View Company Details"
+msgstr "Le visiteur peut voir les détails de l'entreprise"
+
+msgid "Visitor Can View Job Details"
+msgstr "Le visiteur peut voir les détails du travail"
+
+msgid "Visitor Can View Resume Details"
+msgstr "Le visiteur peut voir les détails du CV"
+
+msgid "Visitor Can View Job Seeker's Control Panel Links"
+msgstr "Le visiteur peut consulter les liens du panneau de configuration du demandeur d'emploi"
+
+msgid "Visitor Can View Jobs by Categories"
+msgstr "Le visiteur peut afficher les emplois par catégories"
+
+msgid "Visitor Can Search Jobs"
+msgstr "Le visiteur peut rechercher un emploi"
+
+msgid "Visitor Can View Newest Jobs"
+msgstr "Le visiteur peut voir les emplois les plus récents"
+
+msgid "Visitor Can View Job Search Results"
+msgstr "Le visiteur peut consulter les résultats de la recherche d'emploi"
+
+msgid "1 Column"
+msgstr "1 colonne"
+
+msgid "10254 Departments found"
+msgstr "10254 Départements trouvés"
+
+msgid "2 Columns"
+msgstr "2 colonnes"
+
+msgid "3 Columns"
+msgstr "3 colonnes"
+
+msgid "4 Columns"
+msgstr "4 colonnes"
+
+msgid "5 Columns"
+msgstr "5 colonnes"
+
+msgid "A critical update for WP Job Portal is required to maintain performance and prevent issues. Please update now."
+msgstr "Une mise à jour critique pour WP Job Portal est requise pour maintenir les performances et éviter les problèmes. Veuillez mettre à jour maintenant."
+
+msgid "AI Search"
+msgstr "Recherche IA"
+
+msgid "AI Search Job"
+msgstr "Emploi de recherche d'IA"
+
+msgid "AI Settings"
+msgstr "Paramètres IA"
+
+msgid "AI settings"
+msgstr "Paramètres de l'IA"
+
+msgid "About"
+msgstr "À propos"
+
+msgid "Account & Billing"
+msgstr "Compte et facturation"
+
+msgid "Activation failed"
+msgstr "L'activation a échoué"
+
+msgid "Add-ons for WP Job Portal have been installed and activated successfully."
+msgstr "Les modules complémentaires pour WP Job Portal ont été installés et activés avec succès."
+
+msgid "Addon Installer"
+msgstr "Installateur de modules complémentaires"
+
+msgid "Addon not installed please install addon first."
+msgstr "Le module complémentaire n'est pas installé, veuillez d'abord installer le module complémentaire."
+
+msgid "Addon will automatically update to the newest version"
+msgstr "Le module complémentaire sera automatiquement mis à jour vers la version la plus récente"
+
+msgid "Addon(s) Installed successfully!"
+msgstr "Module(s) complémentaire(s) installé(s) avec succès !"
+
+msgid "Address display style for plugin"
+msgstr "Style d'affichage de l'adresse pour le plugin"
+
+msgid "Advanced Resume Builder Addon missing, resume sections data will not be imported!"
+msgstr "Module complémentaire Advanced Resume Builder manquant, les données des sections de CV ne seront pas importées !"
+
+msgid "All selected add-ons are now active."
+msgstr "Tous les modules complémentaires sélectionnés sont désormais actifs."
+
+msgid "Allow employers and job Seekers to register on the site."
+msgstr "Permettez aux employeurs et aux demandeurs d’emploi de s’inscrire sur le site."
+
+msgid "Allow search resume"
+msgstr "Autoriser la reprise de la recherche"
+
+msgid "Allowed to all (employers, job seekers and visitors)"
+msgstr "Autorisé à tous (employeurs, demandeurs d'emploi et visiteurs)"
+
+msgid "Auto Update: Off"
+msgstr "Mise à jour automatique : désactivée"
+
+msgid "Auto Update: On"
+msgstr "Mise à jour automatique : activée"
+
+msgid "Back to listing"
+msgstr "Retour à la liste"
+
+msgid "Basic Info"
+msgstr "Informations de base"
+
+msgid "Buttons Styling"
+msgstr "Style des boutons"
+
+msgid "Capitalize"
+msgstr "Capitaliser"
+
+msgid "Check if you want to use WP Job Portal packages"
+msgstr "Vérifiez si vous souhaitez utiliser les packages WP Job Portal"
+
+msgid "City name"
+msgstr "Nom de la ville"
+
+msgid "Columns per Row"
+msgstr "Colonnes par ligne"
+
+msgid "Comma separated list of job types i.e JTFT, JTPT, JTFP, JTCT, JTIN"
+msgstr "Liste de types de travaux séparés par des virgules, par exemple JTFT, JTPT, JTFP, JTCT, JTIN"
+
+msgid "Communication"
+msgstr "Communication"
+
+msgid "Company Management"
+msgstr "Gestion de l'entreprise"
+
+msgid "Complete Your Resume"
+msgstr "Complétez votre CV"
+
+msgid "Content Access"
+msgstr "Accès au contenu"
+
+msgid "Content Styling"
+msgstr "Style de contenu"
+
+msgid "Control which employer dashboard navigation links are visible to visitors"
+msgstr "Contrôler quels liens de navigation du tableau de bord de l'employeur sont visibles pour les visiteurs"
+
+msgid "Control which employer dashboard widgets and sections are visible to visitors"
+msgstr "Contrôlez quels widgets et sections du tableau de bord de l'employeur sont visibles pour les visiteurs"
+
+msgid "Control which job seeker dashboard navigation links are visible to visitors"
+msgstr "Contrôlez quels liens de navigation dans le tableau de bord des demandeurs d'emploi sont visibles pour les visiteurs"
+
+msgid "Control which job seeker dashboard widgets and sections are visible to visitors"
+msgstr "Contrôlez quels widgets et sections du tableau de bord des demandeurs d'emploi sont visibles pour les visiteurs"
+
+msgid "Control which pages and content areas are visible to non-logged-in users"
+msgstr "Contrôlez quelles pages et zones de contenu sont visibles pour les utilisateurs non connectés"
+
+msgid "Custom Field Class"
+msgstr "Classe de champ personnalisé"
+
+msgid "Database Update Needed"
+msgstr "Mise à jour de la base de données nécessaire"
+
+msgid "Database update completed"
+msgstr "Mise à jour de la base de données terminée"
+
+msgid "Delete All Unused Keys"
+msgstr "Supprimer toutes les clés inutilisées"
+
+msgid "Discover"
+msgstr "Découvrir"
+
+msgid "Display the status of applications to the job seeker"
+msgstr "Afficher l'état des candidatures au demandeur d'emploi"
+
+msgid "Dummy Plugin"
+msgstr "Plugin factice"
+
+msgid "Dummy Plugin 2"
+msgstr "Plugin factice 2"
+
+msgid "Elegant Design"
+msgstr "Conception élégante"
+
+msgid "Employer Widgets"
+msgstr "Widgets Employeur"
+
+msgid "Enter the Site Title"
+msgstr "Entrez le titre du site"
+
+msgid "Entity"
+msgstr "Entité"
+
+msgid "Fetch Data"
+msgstr "Récupérer des données"
+
+msgid "Find your next star hire with AI-driven resume search"
+msgstr "Trouvez votre prochaine recrue vedette grâce à la recherche de CV basée sur l'IA"
+
+msgid "Font Family"
+msgstr "Famille de polices"
+
+msgid "Font Size"
+msgstr "Taille de la police"
+
+msgid "Font Style"
+msgstr "Style de police"
+
+msgid "Font Weight"
+msgstr "Poids de la police"
+
+msgid "Go To Dashboard"
+msgstr "Aller au tableau de bord"
+
+msgid "Import Data Report"
+msgstr "Rapport de données d'importation"
+
+msgid "Import Third Party Data"
+msgstr "Importer des données tierces"
+
+msgid "Import demo data to populate your site with example companies, jobs, resumes, and applications."
+msgstr "Importez des données de démonstration pour remplir votre site avec des exemples d'entreprises, d'emplois, de CV et de candidatures."
+
+msgid "Imported"
+msgstr "Importé"
+
+msgid "Infi Icon"
+msgstr "Icône Infi"
+
+msgid "Info"
+msgstr "Informations"
+
+msgid "Info Icon"
+msgstr "Icône d'informations"
+
+msgid "Invalid server response"
+msgstr "Réponse du serveur invalide"
+
+msgid "Italic"
+msgstr "Italique"
+
+msgid "Job Alert Time"
+msgstr "Heure d’alerte emploi"
+
+msgid "Job Detail"
+msgstr "Détails du travail"
+
+msgid "Job Seeker Links"
+msgstr "Liens pour les chercheurs d'emploi"
+
+msgid "Job Seeker Settings"
+msgstr "Paramètres du demandeur d'emploi"
+
+msgid "Job Seeker Widgets"
+msgstr "Widgets de recherche d'emploi"
+
+msgid "Jobs by Category"
+msgstr "Emplois par catégorie"
+
+msgid "Layout"
+msgstr "Mise en page"
+
+msgid "Letter Spacing"
+msgstr "Espacement des lettres"
+
+msgid "Line Height"
+msgstr "Hauteur de ligne"
+
+msgid "Live Preview Not available at the moment !"
+msgstr "Aperçu en direct Non disponible pour le moment !"
+
+msgid "Login/Register"
+msgstr "Connexion/Inscription"
+
+msgid "Lowercase"
+msgstr "Minuscule"
+
+msgid "Manage Documents"
+msgstr "Gérer les documents"
+
+msgid "Manage Jobs"
+msgstr "Gérer les tâches"
+
+msgid "Manage Unused Keys"
+msgstr "Gérer les clés inutilisées"
+
+msgid "More Actions"
+msgstr "Plus de mesures"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans."
+msgstr "Mon abonnement fournit aux utilisateurs un aperçu de leurs abonnements actifs, permettant une gestion et un suivi faciles de leurs projets d'offres d'emploi."
+
+msgid "New Jobs"
+msgstr "Nouveaux emplois"
+
+msgid "Next Setup"
+msgstr "Configuration suivante"
+
+msgid "No Addon Installed!"
+msgstr "Aucun module complémentaire installé !"
+
+msgid "No unused keys were found."
+msgstr "Aucune clé inutilisée n'a été trouvée."
+
+msgid "None"
+msgstr "Aucun"
+
+msgid "Not Imported"
+msgstr "Non importé"
+
+msgid "Oblique"
+msgstr "Oblique"
+
+msgid "Only job seekers can register. Jobs and companies are managed by the admin."
+msgstr "Seuls les demandeurs d'emploi peuvent s'inscrire. Les emplois et les entreprises sont gérés par l'administrateur."
+
+msgid "Paid access Only"
+msgstr "Accès payant uniquement"
+
+msgid "Pay For Featured Resume"
+msgstr "Payer pour un CV en vedette"
+
+msgid "Pay For Resume"
+msgstr "Payer pour un CV"
+
+msgid "Pay per listing price to publish your"
+msgstr "Payez par prix d'inscription pour publier votre"
+
+msgid "Please Insert Your Activation Key"
+msgstr "Veuillez insérer votre clé d'activation"
+
+msgid "Please log in to register to continue."
+msgstr "Veuillez vous connecter pour vous inscrire et continuer."
+
+msgid "Please select at least one addon!"
+msgstr "Veuillez sélectionner au moins un module complémentaire !"
+
+msgid "Please verify Locations and salaries for imported data entities"
+msgstr "Veuillez vérifier les emplacements et les salaires des entités de données importées"
+
+msgid "Plugin not installed"
+msgstr "Plugin non installé"
+
+msgid "Price for a job seeker to view a company's contact details"
+msgstr "Tarif pour un demandeur d'emploi pour consulter les coordonnées d'une entreprise"
+
+msgid "Price for an employer to view a resume's contact details"
+msgstr "Prix ​​pour qu'un employeur puisse consulter les coordonnées d'un CV"
+
+msgid "Quick Configuration"
+msgstr "Configuration rapide"
+
+msgid "Ready to find your dream job? Let's get started"
+msgstr "Prêt à trouver l'emploi de vos rêves ? Commençons"
+
+msgid "Ready to find your potential employee? Let's get started"
+msgstr "Prêt à trouver votre employé potentiel ? Commençons"
+
+msgid "Search Jobs"
+msgstr "Rechercher des emplois"
+
+msgid "Search Resumes"
+msgstr "Rechercher des CV"
+
+msgid "Search smarter – just type anything you know about the job: title, category, type, skills, or even a description!"
+msgstr "Recherchez plus intelligemment : saisissez simplement tout ce que vous savez sur le poste : titre, catégorie, type, compétences ou même une description !"
+
+msgid "Section Title Styling"
+msgstr "Style du titre de section"
+
+msgid "Select Addons to Update with New Activation Key"
+msgstr "Sélectionnez les modules complémentaires à mettre à jour avec une nouvelle clé d'activation"
+
+msgid "Select Company"
+msgstr "Sélectionnez une entreprise"
+
+msgid "Select Job Category"
+msgstr "Sélectionnez la catégorie d'emploi"
+
+msgid "Select Job Status"
+msgstr "Sélectionnez le statut du travail"
+
+msgid "Select Job Type"
+msgstr "Sélectionnez le type de travail"
+
+msgid "Select Page To Show"
+msgstr "Sélectionnez la page à afficher"
+
+msgid "Select Plugin Setting for WP Job Portal"
+msgstr "Sélectionnez le paramètre de plugin pour WP Job Portal"
+
+msgid "Select packages pack so that user can purchase them"
+msgstr "Sélectionnez le pack de packages pour que l'utilisateur puisse les acheter"
+
+msgid "Select who can view company contact details."
+msgstr "Sélectionnez qui peut afficher les coordonnées de l’entreprise."
+
+msgid "Settings you applied have been successfully saved"
+msgstr "Les paramètres que vous avez appliqués ont été enregistrés avec succès"
+
+msgid "Setup Complete"
+msgstr "Configuration terminée"
+
+msgid "Show Advanced Search Button"
+msgstr "Afficher le bouton de recherche avancée"
+
+msgid "Show Employers"
+msgstr "Afficher les employeurs"
+
+msgid "Show Everyone"
+msgstr "Montrer à tout le monde"
+
+msgid "Show Job seekers"
+msgstr "Afficher les demandeurs d'emploi"
+
+msgid "Show Labels"
+msgstr "Afficher les étiquettes"
+
+msgid "Show No One"
+msgstr "Ne montrer personne"
+
+msgid "Show Placeholders"
+msgstr "Afficher les espaces réservés"
+
+msgid "Show Resume Status Section"
+msgstr "Afficher la section Statut de reprise"
+
+msgid "Show a box with applied jobs on the job seeker's dashboard"
+msgstr "Afficher une boîte avec les offres d'emploi postulées sur le tableau de bord du demandeur d'emploi"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard"
+msgstr "Afficher une boîte avec les offres les plus récentes sur le tableau de bord du demandeur d'emploi"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard to visitor"
+msgstr "Afficher une boîte avec les offres les plus récentes sur le tableau de bord du demandeur d'emploi au visiteur"
+
+msgid "Show a box with recent resumes on the employer's dashboard"
+msgstr "Afficher une boîte avec des CV récents sur le tableau de bord de l'employeur"
+
+msgid "Show a box with recent resumes on the employer's dashboard to visitor"
+msgstr "Afficher une boîte avec des CV récents sur le tableau de bord de l'employeur au visiteur"
+
+msgid "Show a graph of job statistics in the employer's dashboard"
+msgstr "Afficher un graphique des statistiques d'emploi dans le tableau de bord de l'employeur"
+
+msgid "Show a graph of job statistics in the employer's dashboard to visitor"
+msgstr "Afficher un graphique des statistiques d'emploi dans le tableau de bord de l'employeur au visiteur"
+
+msgid "Show a graph of job statistics in the job seeker's dashboard"
+msgstr "Afficher un graphique des statistiques d'emploi dans le tableau de bord du demandeur d'emploi"
+
+msgid "Show a graph of job statistics in the job seeker's dashboard to visitor"
+msgstr "Afficher un graphique des statistiques d'emploi dans le tableau de bord du demandeur d'emploi au visiteur"
+
+msgid "Show a link to active subscriptions in the employer's dashboard"
+msgstr "Afficher un lien vers les abonnements actifs dans le tableau de bord de l'employeur"
+
+msgid "Show a link to active subscriptions in the job seeker's dashboard"
+msgstr "Afficher un lien vers les abonnements actifs dans le tableau de bord du demandeur d'emploi"
+
+msgid "Show a link to the packages page in the employer's dashboard"
+msgstr "Afficher un lien vers la page des forfaits dans le tableau de bord de l'employeur"
+
+msgid "Show a link to the packages page in the job seeker's dashboard"
+msgstr "Afficher un lien vers la page des packages dans le tableau de bord du demandeur d'emploi"
+
+msgid "Show a link to the purchase history/invoices in the employer's dashboard"
+msgstr "Afficher un lien vers l'historique des achats/les factures dans le tableau de bord de l'employeur"
+
+msgid "Show a link to the purchase history/invoices in the job seeker's dashboard"
+msgstr "Afficher un lien vers l'historique des achats/les factures dans le tableau de bord du demandeur d'emploi"
+
+msgid "Show a link to the user's purchased packages in their dashboard"
+msgstr "Afficher un lien vers les packages achetés par l'utilisateur dans son tableau de bord"
+
+msgid "Show an 'AI Suggested Jobs' button on the 'My Resumes' page for job seekers"
+msgstr "Afficher un bouton « Emplois suggérés par l'IA » sur la page « Mes CV » pour les demandeurs d'emploi"
+
+msgid "Show an 'AI Suggested Resumes' button on the 'My Jobs' page for employers"
+msgstr "Afficher un bouton « CV suggérés par l'IA » sur la page « Mes emplois » pour les employeurs"
+
+msgid "Show or hide the profile section on the employer's control panel"
+msgstr "Afficher ou masquer la section profil sur le panneau de contrôle de l'employeur"
+
+msgid "Show or hide the profile section on the job seeker's control panel"
+msgstr "Afficher ou masquer la section profil sur le panneau de contrôle du demandeur d'emploi"
+
+msgid "Show resume status section on the job seeker's dashboard"
+msgstr "Afficher la section d'état du CV sur le tableau de bord du demandeur d'emploi"
+
+msgid "Show statistics boxes on the employer's dashboard"
+msgstr "Afficher les cases de statistiques sur le tableau de bord de l'employeur"
+
+msgid "Show statistics boxes on the job seeker's dashboard"
+msgstr "Afficher les cases de statistiques sur le tableau de bord du demandeur d'emploi"
+
+msgid "Show the 'Quick Apply' form to logged-in users on the job detail page"
+msgstr "Afficher le formulaire « Candidature rapide » aux utilisateurs connectés sur la page de détail de l'emploi"
+
+msgid "Show the 'Quick Apply' form to visitors on the job detail page"
+msgstr "Afficher le formulaire « Candidature rapide » aux visiteurs sur la page de détail de l'emploi"
+
+msgid "Similar Found"
+msgstr "Similaire trouvé"
+
+msgid "Start typing what you know – our AI will help you find the best matching jobs."
+msgstr "Commencez à taper ce que vous savez – notre IA vous aidera à trouver les emplois les mieux adaptés."
+
+msgid "Start typing what you know – our AI will help you find the best matching resumes."
+msgstr "Commencez à taper ce que vous savez – notre IA vous aidera à trouver les CV les mieux adaptés."
+
+msgid "Step 1 of 5"
+msgstr "Étape 1 sur 5"
+
+msgid "Step 2 of 4"
+msgstr "Étape 2 sur 4"
+
+msgid "Step 2 of 5"
+msgstr "Étape 2 sur 5"
+
+msgid "Step 3 of 4"
+msgstr "Étape 3 sur 4"
+
+msgid "Step 3 of 5"
+msgstr "Étape 3 sur 5"
+
+msgid "Step 4 of 4"
+msgstr "Étape 4 sur 4"
+
+msgid "Step 4 of 5"
+msgstr "Étape 4 sur 5"
+
+msgid "Step 5 of 5"
+msgstr "Étape 5 sur 5"
+
+msgid "Subscriptions"
+msgstr "Abonnements"
+
+msgid "Sugeested Jobs"
+msgstr "Emplois suggérés"
+
+msgid "Suggested Jobs"
+msgstr "Emplois suggérés"
+
+msgid "Suggested Resumes"
+msgstr "CV suggérés"
+
+msgid "System"
+msgstr "Système"
+
+msgid "System Error Log"
+msgstr "Journal des erreurs système"
+
+msgid "Text Transform"
+msgstr "Transformation de texte"
+
+msgid "The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "Le panneau de contrôle des employeurs est une interface simplifiée qui permet aux employeurs de gérer les offres d'emploi, de suivre les candidatures, de communiquer avec les candidats et d'analyser efficacement les indicateurs d'embauche."
+
+msgid "The highlighted addons are not included in your current license. Please adjust your selection accordingly."
+msgstr "Les modules complémentaires mis en évidence ne sont pas inclus dans votre licence actuelle. Veuillez ajuster votre sélection en conséquence."
+
+msgid "This add-on will change the Job Portal pages to a simple yet powerful and rich web design that involves focusing on clean aesthetics, intuitive navigation, and functional elements while ensuring performance and responsiveness."
+msgstr "Ce module complémentaire modifiera les pages du portail d'emploi en une conception Web simple mais puissante et riche qui implique de se concentrer sur une esthétique épurée, une navigation intuitive et des éléments fonctionnels tout en garantissant performances et réactivité."
+
+msgid "This will replace the old key with the new one."
+msgstr "Cela remplacera l'ancienne clé par la nouvelle."
+
+msgid "Today Stats"
+msgstr "Statistiques du jour"
+
+msgid "Unlock your career potential with AI-driven job search"
+msgstr "Libérez votre potentiel de carrière grâce à la recherche d'emploi basée sur l'IA"
+
+msgid "Update Key"
+msgstr "Clé de mise à jour"
+
+msgid "Update Now"
+msgstr "Mettre à jour maintenant"
+
+msgid "Updating Database, please wait..."
+msgstr "Mise à jour de la base de données, veuillez patienter..."
+
+msgid "Uppercase"
+msgstr "Majuscule"
+
+msgid "Use Default Color For Color 1"
+msgstr "Utiliser la couleur par défaut pour la couleur 1"
+
+msgid "Use Icons for Buttons"
+msgstr "Utiliser des icônes pour les boutons"
+
+msgid "View All Resumes"
+msgstr "Voir tous les CV"
+
+msgid "View Company Contact Detail"
+msgstr "Voir les coordonnées de l'entreprise"
+
+msgid "Visitor Show"
+msgstr "Spectacle des visiteurs"
+
+msgid "Visitor Show Active Jobs Graph"
+msgstr "Visiteur Afficher le graphique des emplois actifs"
+
+msgid "Visitor Show Applied Jobs Section"
+msgstr "Section des emplois appliqués au salon des visiteurs"
+
+msgid "Visitor Show Applied Resumes Section"
+msgstr "Section des CV appliqués pour l'exposition des visiteurs"
+
+msgid "Visitor Show Credits Log Section"
+msgstr "Section du journal des crédits du spectacle des visiteurs"
+
+msgid "Visitor Show Jobs Graph"
+msgstr "Graphique des emplois pour les visiteurs"
+
+msgid "Visitor Show Jobs Graph Section"
+msgstr "Section graphique des offres d'emploi pour les visiteurs"
+
+msgid "Visitor Show Newest Jobs Box"
+msgstr "Visiteur Afficher la boîte d'emplois les plus récents"
+
+msgid "Visitor Show Newest Jobs Section"
+msgstr "Visiteur Afficher la section des emplois les plus récents"
+
+msgid "Visitor Show Newest Resumes Section"
+msgstr "Visiteur Afficher la section des CV les plus récents"
+
+msgid "Visitor Show Purchase History Section"
+msgstr "Section Historique des achats du salon des visiteurs"
+
+msgid "Visitor Show Recent Resumes Box"
+msgstr "Boîte de CV récents pour les visiteurs"
+
+msgid "Visitor Show Saved Searches Section"
+msgstr "Visiteur Afficher la section des recherches enregistrées"
+
+msgid "Visitor Show Shortlisted Jobs Section"
+msgstr "Section des emplois présélectionnés pour les visiteurs"
+
+msgid "Visitor Show Stats Graph Section"
+msgstr "Section graphique des statistiques d'affichage des visiteurs"
+
+msgid "Visitor Show Useful Links Section"
+msgstr "Section des liens utiles pour l'exposition des visiteurs"
+
+msgid "WP Job Manager"
+msgstr "Gestionnaire de tâches WP"
+
+msgid "WP Job Portal Activation Key"
+msgstr "Clé d'activation du portail d'emploi WP"
+
+msgid "WP Job Portal Import Data"
+msgstr "Données d'importation du portail d'emploi WP"
+
+msgid "WP Job Portal Packages"
+msgstr "Forfaits du portail d'emploi WP"
+
+msgid "Welcome to WP Job Portal Addon Installer"
+msgstr "Bienvenue dans le programme d'installation du module complémentaire WP Job Portal"
+
+msgid "Welcome, Visitor"
+msgstr "Bienvenue, Visiteur"
+
+msgid "Who can search resume."
+msgstr "Qui peut rechercher un CV."
+
+msgid "Who can view resume contact details"
+msgstr "Qui peut voir les coordonnées du CV"
+
+msgid "You Already Applied to this job"
+msgstr "Vous avez déjà postulé à cet emploi"
+
+msgid "You have"
+msgstr "Tu as"
+
+msgid "Your WP Job Portal license key has expired or is invalid. Please update it to continue receiving support and updates."
+msgstr "Votre clé de licence WP Job Portal a expiré ou n'est pas valide. Veuillez le mettre à jour pour continuer à recevoir de l'assistance et des mises à jour."
+
+msgid "failed."
+msgstr "échoué."
+
+msgid "found"
+msgstr "trouvé"
+
+msgid "icon"
+msgstr "icône"
+
+msgid "imported."
+msgstr "importé."
+
+msgid "skipped."
+msgstr "sauté."
+
+msgid "unused key has been deleted successfully!"
+msgstr "la clé inutilisée a été supprimée avec succès !"
+
+msgid "unused key(s) that can be safely removed."
+msgstr "clé(s) inutilisée(s) qui peuvent être retirées en toute sécurité."
+
+msgid "unused keys have been deleted successfully!"
+msgstr "les clés inutilisées ont été supprimées avec succès !"

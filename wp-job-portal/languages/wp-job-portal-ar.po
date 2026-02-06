@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Delete"
 msgstr "حذف"
@@ -10273,3 +10273,2472 @@ msgstr "ليس لديك أي حفظ Serch المتبقية"
 
 msgid "We would love to hear from You."
 msgstr "نود أن نسمع منك."
+
+msgid "Welcome back!"
+msgstr "مرحبًا بعودتك!"
+
+msgid "Here's a snapshot of your job board's performance."
+msgstr "إليك لقطة لأداء لوحة العمل الخاصة بك."
+
+msgid "Customize Your Dashboard"
+msgstr "تخصيص لوحة القيادة الخاصة بك"
+
+msgid "Core Components"
+msgstr "المكونات الأساسية"
+
+msgid "Quick Actions"
+msgstr "إجراءات سريعة"
+
+msgid "Recent Jobs"
+msgstr "الوظائف الأخيرة"
+
+msgid "Quick Stats"
+msgstr "إحصائيات سريعة"
+
+msgid "Visualizations"
+msgstr "التصورات"
+
+msgid "Platform Growth"
+msgstr "نمو المنصة"
+
+msgid "Jobs by Status"
+msgstr "وظائف حسب الوضع"
+
+msgid "Top Categories"
+msgstr "الفئات العليا"
+
+msgid "Activity & System Feeds"
+msgstr "النشاط والغذاء النظام"
+
+msgid "Latest Applies"
+msgstr "ينطبق الأحدث"
+
+msgid "User & Financials"
+msgstr "المستخدم والمالي"
+
+msgid "Job Seekers"
+msgstr "الباحثون عن عمل"
+
+msgid "Payments"
+msgstr "المدفوعات"
+
+msgid "Reset to Defaults"
+msgstr "إعادة ضبط على الافتراضات"
+
+msgid "Apply Changes"
+msgstr "تطبيق التغييرات"
+
+msgid "Approve Jobs"
+msgstr "الموافقة على الوظائف"
+
+msgid "Manage Users"
+msgstr "إدارة المستخدمين"
+
+msgid "View Reports"
+msgstr "عرض التقارير"
+
+msgid "Analytics"
+msgstr "التحليلات"
+
+msgid "Manage Plans"
+msgstr "إدارة الخطط"
+
+msgid "Platform Config"
+msgstr "تكوين النظام الأساسي"
+
+msgid "Applications"
+msgstr "التطبيقات"
+
+msgid "Pending Jobs"
+msgstr "وظائف معلقة"
+
+msgid "New Applicants"
+msgstr "المتقدمون الجدد"
+
+msgid "Active Subscriptions"
+msgstr "اشتراكات نشطة"
+
+msgid "Total Users"
+msgstr "إجمالي المستخدمين"
+
+msgid "Closed Jobs"
+msgstr "وظائف مغلقة"
+
+msgid "Monthly Revenue"
+msgstr "الإيرادات الشهرية"
+
+msgid "Recent Job Postings"
+msgstr "وظائف حديثة"
+
+msgid "Date Posted"
+msgstr "التاريخ المنشور"
+
+msgid "Actions"
+msgstr "الإجراءات"
+
+msgid "No recent job postings found."
+msgstr "لم يتم العثور على وظائف حديثة."
+
+msgid "Top Job Categories"
+msgstr "أعلى فئات الوظائف"
+
+msgid "Latest Job Applies"
+msgstr "أحدث وظيفة تنطبق"
+
+msgid "applied for"
+msgstr "تقدم بطلب"
+
+msgid "at"
+msgstr "في"
+
+msgid "View App"
+msgstr "عرض التطبيق"
+
+msgid "No recent job applications to display."
+msgstr "لا توجد تطبيقات عمل حديثة لعرضها."
+
+msgid "No new resumes have been added recently."
+msgstr "لم تتم إضافة استئناف جديدة مؤخرًا."
+
+msgid "Latest Package Subscriptions"
+msgstr "أحدث اشتراكات الحزمة"
+
+msgid "subscribed to"
+msgstr "اشتركت في"
+
+msgid "No new subscriptions found."
+msgstr "لم يتم العثور على اشتراكات جديدة."
+
+msgid "Latest Payments"
+msgstr "أحدث المدفوعات"
+
+msgid "No recent payments to display."
+msgstr "لا توجد مدفوعات حديثة لعرضها."
+
+msgid "Latest Activity"
+msgstr "أحدث نشاط"
+
+msgid "Hooray! No system errors to report."
+msgstr "الصيحة! لا توجد أخطاء في النظام للتقرير."
+
+msgid "Latest Job Seekers"
+msgstr "آخر الباحثين عن عمل"
+
+msgid "Joined"
+msgstr "انضم"
+
+msgid "No new job seekers have registered."
+msgstr "لم يسجل الباحثون عن عمل جدد."
+
+msgid "Latest Employers"
+msgstr "أحدث أصحاب العمل"
+
+msgid "No new employers have registered."
+msgstr "لم يسجل أصحاب العمل الجدد."
+
+msgid "Not allowed"
+msgstr "غير مسموح"
+
+msgid "Allowed to all"
+msgstr "مسموح للجميع"
+
+msgid "employers, job seekers and visitors"
+msgstr "أصحاب العمل والباحثين عن عمل والزوار"
+
+msgid "Allowed only to employers"
+msgstr "مسموح به فقط لأصحاب العمل"
+
+msgid "City, State, Country"
+msgstr "المدينة، الولاية، الدولة"
+
+msgid "City, State"
+msgstr "المدينة، الولاية"
+
+msgid "City, Country"
+msgstr "المدينة، البلد"
+
+msgid "Minutes"
+msgstr "دقائق"
+
+msgid "Hour"
+msgstr "ساعة"
+
+msgid "Hours"
+msgstr "ساعات"
+
+msgid "Week"
+msgstr "أسبوع"
+
+msgid "System & Site"
+msgstr "النظام والموقع"
+
+msgid "Site & System"
+msgstr "الموقع والنظام"
+
+msgid "Core details about your job portal, its status, and default behaviors"
+msgstr "التفاصيل الأساسية حول بوابة الوظائف الخاصة بك وحالتها وسلوكياتها الافتراضية"
+
+msgid "Site Title"
+msgstr "عنوان الموقع"
+
+msgid "The main title for your job portal"
+msgstr "العنوان الرئيسي لبوابة عملك"
+
+msgid "Site Offline"
+msgstr "الموقع غير متصل"
+
+msgid "Take the site offline for maintenance"
+msgstr "قم بإيقاف تشغيل الموقع للصيانة"
+
+msgid "The message shown to visitors when the site is offline"
+msgstr "الرسالة التي تظهر للزوار عندما يكون الموقع غير متصل بالإنترنت"
+
+msgid "Default Page"
+msgstr "الصفحة الافتراضية"
+
+msgid "Select the main WordPress page for the job portal"
+msgstr "حدد صفحة WordPress الرئيسية لبوابة الوظائف"
+
+msgid "Email links and support icons may not work if this is not set"
+msgstr "قد لا تعمل روابط البريد الإلكتروني وأيقونات الدعم إذا لم يتم تعيين ذلك"
+
+msgid "Date Format"
+msgstr "تنسيق التاريخ"
+
+msgid "Set the date format used throughout the plugin"
+msgstr "قم بتعيين تنسيق التاريخ المستخدم في البرنامج المساعد"
+
+msgid "Default Address Display Style"
+msgstr "نمط عرض العنوان الافتراضي"
+
+msgid "Select the default format for displaying addresses"
+msgstr "حدد التنسيق الافتراضي لعرض العناوين"
+
+msgid "Registration & Login"
+msgstr "التسجيل وتسجيل الدخول"
+
+msgid "Control user registration flows and login/logout redirects"
+msgstr "التحكم في تدفقات تسجيل المستخدم وعمليات إعادة توجيه تسجيل الدخول/الخروج"
+
+msgid "Set Register Link"
+msgstr "تعيين رابط التسجيل"
+
+msgid "Set the main registration page for the site"
+msgstr "تعيين صفحة التسجيل الرئيسية للموقع"
+
+msgid "Custom Register Redirect Link"
+msgstr "رابط إعادة توجيه التسجيل المخصص"
+
+msgid "Enter the custom URL for registration if"
+msgstr "أدخل عنوان URL المخصص للتسجيل إذا"
+
+msgid "is selected above"
+msgstr "تم تحديده أعلاه"
+
+msgid "Set the main login page for the site"
+msgstr "ضبط صفحة الدخول الرئيسية للموقع"
+
+msgid "Custom Login Redirect Link"
+msgstr "رابط إعادة توجيه تسجيل الدخول المخصص"
+
+msgid "Enter the custom URL for login if"
+msgstr "أدخل عنوان URL المخصص لتسجيل الدخول إذا"
+
+msgid "Redirect Link For Non-Portal WP User"
+msgstr "رابط إعادة التوجيه لمستخدمي WP غير البوابة الإلكترونية"
+
+msgid "Redirect WordPress users who do not have a role in WP Job Portal to this link after login"
+msgstr "قم بإعادة توجيه مستخدمي WordPress الذين ليس لديهم دور في WP Job Portal إلى هذا الرابط بعد تسجيل الدخول"
+
+msgid "Terms & Conditions"
+msgstr "الشروط والأحكام"
+
+msgid "Assign specific Terms & Conditions pages for different submission types"
+msgstr "قم بتعيين صفحات شروط وأحكام محددة لأنواع التقديم المختلفة"
+
+msgid "Company Terms Page"
+msgstr "صفحة شروط الشركة"
+
+msgid "Select the"
+msgstr "حدد"
+
+msgid "page for company submissions"
+msgstr "صفحة لتقديم طلبات الشركة"
+
+msgid "Job Terms Page"
+msgstr "صفحة شروط الوظيفة"
+
+msgid "page for job submissions"
+msgstr "صفحة لتقديم الوظائف"
+
+msgid "Resume Terms Page"
+msgstr "صفحة شروط السيرة الذاتية"
+
+msgid "page for resume submissions"
+msgstr "صفحة لتقديم السيرة الذاتية"
+
+msgid "Content & Display"
+msgstr "المحتوى والعرض"
+
+msgid "Taxonomy & Categories"
+msgstr "التصنيف والفئات"
+
+msgid "Manage how content like categories and tags are handled"
+msgstr "إدارة كيفية التعامل مع المحتوى مثل الفئات والعلامات"
+
+msgid "Even if Empty"
+msgstr "حتى لو كانت فارغة"
+
+msgid "If no is selected then only categories that have jobs or resumes will be shown"
+msgstr "إذا تم تحديد لا، فسيتم عرض الفئات التي تحتوي على وظائف أو سير ذاتية فقط"
+
+msgid "Categories Per Row"
+msgstr "الفئات لكل صف"
+
+msgid "Number of categories to display per row on category listing pages"
+msgstr "عدد الفئات التي سيتم عرضها لكل صف في صفحات قائمة الفئات"
+
+msgid "Sub-categories Limit"
+msgstr "الفئات الفرعية الحد"
+
+msgid "How many sub-categories to show in the popup on category pages"
+msgstr "عدد الفئات الفرعية التي سيتم عرضها في النافذة المنبثقة على صفحات الفئات"
+
+msgid "User Can Add New Tags"
+msgstr "يمكن للمستخدم إضافة علامات جديدة"
+
+msgid "Allow users to create new tags in the system when posting"
+msgstr "السماح للمستخدمين بإنشاء علامات جديدة في النظام عند النشر"
+
+msgid "Default Pagination Size"
+msgstr "الحجم الافتراضي للصفحات"
+
+msgid "Maximum number of records to show per page"
+msgstr "الحد الأقصى لعدد السجلات التي سيتم عرضها في كل صفحة"
+
+msgid "Show Breadcrumbs"
+msgstr "إظهار فتات الخبز"
+
+msgid "Show WP Job Portal Page Title"
+msgstr "إظهار عنوان صفحة بوابة وظائف WP"
+
+msgid "File Uploads & Defaults"
+msgstr "تحميلات الملفات والافتراضيات"
+
+msgid "Manage file uploads and default placeholder images"
+msgstr "إدارة تحميلات الملفات والصور النائبة الافتراضية"
+
+msgid "Data Directory"
+msgstr "دليل البيانات"
+
+msgid "System will upload all user files into this folder within the WordPress uploads directory"
+msgstr "سيقوم النظام بتحميل جميع ملفات المستخدم إلى هذا المجلد داخل دليل تحميلات WordPress"
+
+msgid "Default Image"
+msgstr "الصورة الافتراضية"
+
+msgid "This image will be shown as the default for entities & users if no other image is provided"
+msgstr "سيتم عرض هذه الصورة كصورة افتراضية للكيانات والمستخدمين إذا لم يتم توفير صورة أخرى"
+
+msgid "Allowed Image Extensions"
+msgstr "ملحقات الصور المسموح بها"
+
+msgid "Comma-separated list of allowed image file extensions"
+msgstr "قائمة مفصولة بفواصل لامتدادات ملفات الصور المسموح بها"
+
+msgid "Max Image Size"
+msgstr "الحد الأقصى لحجم الصورة"
+
+msgid "Maximum file size for general image uploads in kilobytes"
+msgstr "الحد الأقصى لحجم الملف لتحميلات الصور العامة بالكيلوبايت"
+
+msgid "URL & SEO"
+msgstr "عنوان URL وكبار المسئولين الاقتصاديين"
+
+msgid "URL Structure"
+msgstr "هيكل URL"
+
+msgid "Configure the URL structure"
+msgstr "تكوين بنية URL"
+
+msgid "permalinks"
+msgstr "الروابط الدائمة"
+
+msgid "for detail pages"
+msgstr "لصفحات التفاصيل"
+
+msgid "Job Detail URL Structure"
+msgstr "هيكل عنوان URL لتفاصيل الوظيفة"
+
+msgid "Click on the available tags below to build the URL structure for job detail pages"
+msgstr "انقر على العلامات المتاحة أدناه لإنشاء بنية عنوان URL لصفحات تفاصيل الوظيفة"
+
+msgid "Company Detail URL Structure"
+msgstr "هيكل عنوان URL لتفاصيل الشركة"
+
+msgid "Click on the available tags below to build the URL structure for company detail pages"
+msgstr "انقر على العلامات المتاحة أدناه لإنشاء بنية عنوان URL لصفحات تفاصيل الشركة"
+
+msgid "Resume Detail URL Structure"
+msgstr "استئناف هيكل عنوان URL التفصيلي"
+
+msgid "Click on the available tags below to build the URL structure for resume detail pages"
+msgstr "انقر على العلامات المتاحة أدناه لإنشاء بنية عنوان URL لصفحات تفاصيل السيرة الذاتية"
+
+msgid "Registration & Access"
+msgstr "التسجيل والوصول"
+
+msgid "If no then front end employer area is not accessible"
+msgstr "إذا لم يكن الأمر كذلك، فلن يكون من الممكن الوصول إلى منطقة صاحب العمل الأمامية"
+
+msgid "Allow Registration as Employer"
+msgstr "السماح بالتسجيل كصاحب عمل"
+
+msgid "Show the option to register as an employer on the registration form"
+msgstr "إظهار خيار التسجيل كصاحب عمل في استمارة التسجيل"
+
+msgid "Employer Default Role"
+msgstr "الدور الافتراضي لصاحب العمل"
+
+msgid "Employer Can View Job Seeker Area"
+msgstr "يمكن لصاحب العمل عرض منطقة الباحث عن عمل"
+
+msgid "Allow logged-in employers to view the job seeker control panel"
+msgstr "السماح لأصحاب العمل الذين قاموا بتسجيل الدخول بالاطلاع على لوحة تحكم الباحث عن عمل"
+
+msgid "Set Employer After-Register Link"
+msgstr "قم بتعيين رابط صاحب العمل بعد التسجيل"
+
+msgid "Employer After-Registration Page"
+msgstr "صفحة صاحب العمل بعد التسجيل"
+
+msgid "Employer Custom After-Registration Link"
+msgstr "رابط صاحب العمل المخصص بعد التسجيل"
+
+msgid "Custom Empolyer After Regitser Link"
+msgstr "صاحب العمل المخصص بعد رابط التسجيل"
+
+msgid "Layout & Widgets"
+msgstr "التخطيط والحاجيات"
+
+msgid "Control the visibility of main sections and widgets in the logged-in employer dashboard"
+msgstr "التحكم في رؤية الأقسام الرئيسية والأدوات في لوحة معلومات صاحب العمل الذي قام بتسجيل الدخول"
+
+msgid "Show Profile Section"
+msgstr "إظهار قسم الملف الشخصي"
+
+msgid "Show Stat Boxes"
+msgstr "إظهار صناديق الإحصائيات"
+
+msgid "Show Recent Resumes Box"
+msgstr "إظهار مربع السيرة الذاتية الأخيرة"
+
+msgid "Show Stats Graph"
+msgstr "عرض الرسم البياني للإحصائيات"
+
+msgid "Setting to show the stats graph on the employer dashboard"
+msgstr "الإعداد لإظهار الرسم البياني للإحصائيات على لوحة معلومات صاحب العمل"
+
+msgid "Show Useful Links"
+msgstr "عرض الروابط المفيدة"
+
+msgid "Setting to show the useful links section"
+msgstr "الإعداد لإظهار قسم الروابط المفيدة"
+
+msgid "Show Applied Resumes"
+msgstr "عرض السيرة الذاتية التطبيقية"
+
+msgid "Setting to show the applied resumes section"
+msgstr "إعداد لإظهار قسم السير الذاتية المطبقة"
+
+msgid "Show Saved Searches"
+msgstr "إظهار عمليات البحث المحفوظة"
+
+msgid "Setting to show the saved searches section"
+msgstr "الإعداد لإظهار قسم عمليات البحث المحفوظة"
+
+msgid "Show Newest Resumes"
+msgstr "عرض أحدث السيرة الذاتية"
+
+msgid "Setting to show the newest resumes section"
+msgstr "الإعداد لإظهار أحدث قسم للسير الذاتية"
+
+msgid "Navigation Links"
+msgstr "روابط الملاحة"
+
+msgid "Control which navigation links are visible in the logged-in employer dashboard menu"
+msgstr "التحكم في روابط التنقل التي تظهر في قائمة لوحة معلومات صاحب العمل الذي قام بتسجيل الدخول"
+
+msgid "link in the employer dashboard"
+msgstr "الرابط في لوحة تحكم صاحب العمل"
+
+msgid "RSS Feedback"
+msgstr "ردود الفعل آر إس إس"
+
+msgid "Job Seeker Default Role"
+msgstr "الدور الافتراضي للباحث عن عمل"
+
+msgid "Set Job Seeker After-Register Link"
+msgstr "قم بتعيين رابط ما بعد التسجيل للباحث عن عمل"
+
+msgid "Job Seeker After-Registration Page"
+msgstr "صفحة ما بعد التسجيل للباحث عن عمل"
+
+msgid "Job Seeker Custom After-Registration Link"
+msgstr "رابط مخصص للباحث عن عمل بعد التسجيل"
+
+msgid "Custom Job seeker After Regitser Link"
+msgstr "باحث عن عمل مخصص بعد رابط التسجيل"
+
+msgid "Enable Job Shortlisting"
+msgstr "تمكين القائمة المختصرة للوظيفة"
+
+msgid "Allow job seekers to shortlist jobs"
+msgstr "السماح للباحثين عن عمل بوضع قائمة مختصرة للوظائف"
+
+msgid "This affects the job detail page"
+msgstr "يؤثر هذا على صفحة تفاصيل الوظيفة"
+
+msgid "Enable Tell a Friend"
+msgstr "تمكين أخبر صديق"
+
+msgid "Enable the"
+msgstr "تمكين"
+
+msgid "feature on job listing pages"
+msgstr "ميزة على صفحات قائمة الوظائف"
+
+msgid "Control the visibility of main sections and widgets in the logged-in job seeker dashboard"
+msgstr "التحكم في رؤية الأقسام الرئيسية والأدوات في لوحة تحكم الباحث عن عمل الذي قام بتسجيل الدخول"
+
+msgid "Show Applied Jobs Box"
+msgstr "إظهار صندوق الوظائف التطبيقية"
+
+msgid "Show Newest Jobs Box"
+msgstr "عرض أحدث صندوق الوظائف"
+
+msgid "Show Jobs Graph"
+msgstr "عرض الرسم البياني للوظائف"
+
+msgid "Setting to show the jobs graph on the job seeker dashboard"
+msgstr "إعداد لإظهار الرسم البياني للوظائف في لوحة تحكم الباحث عن عمل"
+
+msgid "Show Applied Jobs"
+msgstr "عرض الوظائف التطبيقية"
+
+msgid "Setting to show the applied jobs section"
+msgstr "إعداد لإظهار قسم الوظائف التطبيقية"
+
+msgid "Show Shortlisted Jobs"
+msgstr "عرض الوظائف المختصرة"
+
+msgid "Setting to show the shortlisted jobs section"
+msgstr "الإعداد لإظهار قسم الوظائف في القائمة المختصرة"
+
+msgid "Show Newest Jobs"
+msgstr "عرض أحدث الوظائف"
+
+msgid "Setting to show the newest jobs section"
+msgstr "الإعداد لإظهار قسم الوظائف الأحدث"
+
+msgid "Control which navigation links are visible in the logged-in job seeker dashboard menu"
+msgstr "التحكم في روابط التنقل التي تظهر في قائمة لوحة تحكم الباحث عن عمل الذي قام بتسجيل الدخول"
+
+msgid "link in the job seeker dashboard"
+msgstr "الرابط في لوحة تحكم الباحث عن عمل"
+
+msgid "Visitors"
+msgstr "الزوار"
+
+msgid "General Permissions"
+msgstr "الأذونات العامة"
+
+msgid "Define what non-logged-in users are allowed to do on the site"
+msgstr "تحديد ما يُسمح للمستخدمين غير المسجلين بالقيام به على الموقع"
+
+msgid "Visitor Can Post Job"
+msgstr "يمكن للزائر نشر الوظيفة"
+
+msgid "Allow non-logged-in users to post jobs"
+msgstr "السماح للمستخدمين غير المسجلين بنشر الوظائف"
+
+msgid "Visitor Can Add Job"
+msgstr "يمكن للزائر إضافة وظيفة"
+
+msgid "Visitor Job Post Redirect Page"
+msgstr "صفحة إعادة توجيه منشور وظيفة الزائر"
+
+msgid "A visitor will be redirected to this page after posting a job"
+msgstr "سيتم إعادة توجيه الزائر إلى هذه الصفحة بعد نشر الوظيفة"
+
+msgid "Visitor Can Apply to Job"
+msgstr "يمكن للزائر التقدم إلى الوظيفة"
+
+msgid "Allow non-logged-in users to apply for jobs"
+msgstr "السماح للمستخدمين غير المسجلين بالتقدم للوظائف"
+
+msgid "Visitor Can Add Resume"
+msgstr "يمكن للزائر إضافة السيرة الذاتية"
+
+msgid "Allow non-logged-in users to add a resume"
+msgstr "السماح للمستخدمين غير المسجلين بإضافة سيرة ذاتية"
+
+msgid "Visitor Resume Post Redirect Page"
+msgstr "صفحة إعادة توجيه منشور السيرة الذاتية للزائر"
+
+msgid "A visitor will be redirected to this page after posting a resume"
+msgstr "سيتم إعادة توجيه الزائر إلى هذه الصفحة بعد نشر السيرة الذاتية"
+
+msgid "Visitor Can Edit Job"
+msgstr "يمكن للزائر تعديل الوظيفة"
+
+msgid "Allow non-logged-in users to edit jobs they have posted"
+msgstr "السماح للمستخدمين غير المسجلين بتعديل الوظائف التي قاموا بنشرها"
+
+msgid "Page & Link Access"
+msgstr "الوصول إلى الصفحة والرابط"
+
+msgid "Control which pages and links are visible to non-logged-in users"
+msgstr "التحكم في الصفحات والروابط التي تكون مرئية للمستخدمين غير المسجلين"
+
+msgid "Allow visitors to view the employer control panel links"
+msgstr "السماح للزوار بالاطلاع على روابط لوحة تحكم صاحب العمل"
+
+msgid "Allow visitors to view the resume categories page"
+msgstr "السماح للزوار بمشاهدة صفحة فئات السيرة الذاتية"
+
+msgid "Allow visitors to access the resume search functionality"
+msgstr "السماح للزوار بالوصول إلى وظيفة البحث عن السيرة الذاتية"
+
+msgid "Allow visitors to view company detail pages"
+msgstr "السماح للزوار بمشاهدة صفحات تفاصيل الشركة"
+
+msgid "Allow visitors to view job detail pages"
+msgstr "السماح للزوار بمشاهدة صفحات تفاصيل الوظيفة"
+
+msgid "Allow visitors to view resume detail pages"
+msgstr "السماح للزوار بمشاهدة صفحات تفاصيل السيرة الذاتية"
+
+msgid "Allow visitors to view the job seeker control panel links"
+msgstr "السماح للزوار بالاطلاع على روابط لوحة تحكم الباحث عن عمل"
+
+msgid "Allow visitors to view the jobs by category page"
+msgstr "السماح للزوار بمشاهدة الوظائف حسب صفحة الفئة"
+
+msgid "Allow visitors to use the job search functionality"
+msgstr "السماح للزوار باستخدام وظيفة البحث عن وظيفة"
+
+msgid "Allow visitors to see job search result listings"
+msgstr "السماح للزائرين برؤية قوائم نتائج البحث عن الوظائف"
+
+msgid "Allow visitors to see the newest jobs page"
+msgstr "السماح للزائرين برؤية أحدث صفحة الوظائف"
+
+msgid "Job Posting & Management"
+msgstr "نشر الوظائف وإدارتها"
+
+msgid "Manage how jobs are posted, their lifecycle, and related features"
+msgstr "إدارة كيفية نشر الوظائف ودورة حياتها والميزات ذات الصلة"
+
+msgid "Job Auto Approve"
+msgstr "الموافقة التلقائية على الوظيفة"
+
+msgid "Automatically approve new jobs upon submission"
+msgstr "الموافقة تلقائيًا على الوظائف الجديدة عند التقديم"
+
+msgid "Job Expiry Days"
+msgstr "أيام انتهاء الوظيفة"
+
+msgid "Number of days until a freely posted job expires"
+msgstr "عدد الأيام حتى تنتهي صلاحية الوظيفة المنشورة مجانًا"
+
+msgid "Number of days until a paid"
+msgstr "عدد الأيام حتى يتم الدفع"
+
+msgid "job expires"
+msgstr "تنتهي المهمة"
+
+msgid "Job Display & Listings"
+msgstr "عرض الوظائف والقوائم"
+
+msgid "Control how job-related pages and information are displayed to users"
+msgstr "التحكم في كيفية عرض الصفحات والمعلومات المتعلقة بالوظيفة للمستخدمين"
+
+msgid "Show Country on Jobs by Cities Page"
+msgstr "إظهار الدولة على صفحة الوظائف حسب المدن"
+
+msgid "Display the country name next to the city"
+msgstr "عرض اسم البلد بجوار المدينة"
+
+msgid "Show Count on Jobs by Cities Page"
+msgstr "عرض عدد الوظائف حسب صفحة المدن"
+
+msgid "Display the total number of jobs available in each city"
+msgstr "عرض إجمالي عدد الوظائف المتاحة في كل مدينة"
+
+msgid "Show Count in Job Categories"
+msgstr "إظهار العدد في فئات الوظائف"
+
+msgid "Display the total number of jobs for each category"
+msgstr "عرض إجمالي عدد الوظائف لكل فئة"
+
+msgid "Show Count on Jobs by Types Page"
+msgstr "إظهار عدد الوظائف حسب صفحة الأنواع"
+
+msgid "Display the total number of jobs for each job type"
+msgstr "عرض إجمالي عدد الوظائف لكل نوع وظيفة"
+
+msgid "Job Types Per Row"
+msgstr "أنواع الوظائف لكل صف"
+
+msgid "How many job types to display per row on the"
+msgstr "كم عدد أنواع الوظائف التي سيتم عرضها في كل صف على"
+
+msgid "Job by Type"
+msgstr "الوظيفة حسب النوع"
+
+msgid "Show Jobs Graph for Employer"
+msgstr "عرض الرسم البياني للوظائف لصاحب العمل"
+
+msgid "Show Active Jobs Graph for Job Seeker"
+msgstr "إظهار الرسم البياني للوظائف النشطة للباحث عن عمل"
+
+msgid "Company Profile Display"
+msgstr "عرض ملف الشركة"
+
+msgid "Control which company details are visible on listings and company pages"
+msgstr "التحكم في تفاصيل الشركة التي تظهر في القوائم وصفحات الشركة"
+
+msgid "Show Company Name"
+msgstr "إظهار اسم الشركة"
+
+msgid "Show Company Description"
+msgstr "عرض وصف الشركة"
+
+msgid "Show Company Email Address"
+msgstr "إظهار عنوان البريد الإلكتروني للشركة"
+
+msgid "Show Company City"
+msgstr "عرض مدينة الشركة"
+
+msgid "Show Company URL"
+msgstr "إظهار عنوان URL الخاص بالشركة"
+
+msgid "Show Company Contact Detail by Default"
+msgstr "إظهار تفاصيل الاتصال بالشركة بشكل افتراضي"
+
+msgid "If disabled, credits may be required to view contact details"
+msgstr "في حالة التعطيل، قد تكون هناك حاجة إلى أرصدة لعرض تفاصيل الاتصال"
+
+msgid "General settings for company profiles"
+msgstr "الإعدادات العامة لملفات تعريف الشركة"
+
+msgid "Company Logo Maximum Size"
+msgstr "شعار الشركة الحد الأقصى للحجم"
+
+msgid "Set the maximum file size for company logo uploads in kilobytes"
+msgstr "قم بتعيين الحد الأقصى لحجم الملف لتحميلات شعار الشركة بالكيلوبايت"
+
+msgid "Company Auto Approve"
+msgstr "الموافقة التلقائية للشركة"
+
+msgid "Automatically approve new company profiles upon submission"
+msgstr "الموافقة تلقائيًا على الملفات التعريفية الجديدة للشركة عند تقديمها"
+
+msgid "Control resume submissions, visibility, and search functionality"
+msgstr "التحكم في عمليات إرسال السيرة الذاتية والرؤية ووظيفة البحث"
+
+msgid "Resume Auto Approve"
+msgstr "استئناف الموافقة التلقائية"
+
+msgid "Automatically approve new resumes upon submission"
+msgstr "الموافقة تلقائيًا على السير الذاتية الجديدة عند التقديم"
+
+msgid "Show Resume Contact Detail by Default"
+msgstr "إظهار تفاصيل الاتصال بالسيرة الذاتية بشكل افتراضي"
+
+msgid "If disabled, credits may be required to view resume contact details"
+msgstr "في حالة التعطيل، قد تكون هناك حاجة إلى أرصدة لعرض تفاصيل الاتصال بالسيرة الذاتية"
+
+msgid "Show Count in Resume Categories"
+msgstr "إظهار العدد في فئات السيرة الذاتية"
+
+msgid "Display the total number of resumes for each category"
+msgstr "عرض العدد الإجمالي للسير الذاتية لكل فئة"
+
+msgid "Allow Resume Search"
+msgstr "السماح باستئناف البحث"
+
+msgid "Define who is allowed to search for resumes"
+msgstr "تحديد من يسمح له بالبحث عن السير الذاتية"
+
+msgid "Allow Users to Save Resume Searches"
+msgstr "السماح للمستخدمين بحفظ عمليات البحث عن السيرة الذاتية"
+
+msgid "Allow users to save their resume search criteria for later use"
+msgstr "السماح للمستخدمين بحفظ معايير البحث عن سيرتهم الذاتية لاستخدامها لاحقًا"
+
+msgid "Resume Files & Builder"
+msgstr "استئناف الملفات والمنشئ"
+
+msgid "Define limits and allowed types for resume file uploads and advanced builder sections"
+msgstr "حدد الحدود والأنواع المسموح بها لتحميلات ملفات السيرة الذاتية وأقسام الإنشاء المتقدمة"
+
+msgid "Resume Photo Maximum Size"
+msgstr "استئناف الصورة بالحجم الأقصى"
+
+msgid "Maximum file size for resume photos in kilobytes"
+msgstr "الحد الأقصى لحجم الملف لصور السيرة الذاتية بالكيلوبايت"
+
+msgid "Resume Document Maximum Size"
+msgstr "استئناف الحد الأقصى لحجم المستند"
+
+msgid "System will not upload if resume file size exceeds the given size"
+msgstr "لن يتم تحميل النظام إذا تجاوز حجم ملف السيرة الذاتية الحجم المحدد"
+
+msgid "Allowed Document Extensions"
+msgstr "ملحقات الوثيقة المسموح بها"
+
+msgid "Comma-separated list of allowed document file extensions"
+msgstr "قائمة مفصولة بفواصل لامتدادات ملفات المستندات المسموح بها"
+
+msgid "Maximum Number of Files for Resume"
+msgstr "الحد الأقصى لعدد الملفات للسيرة الذاتية"
+
+msgid "Maximum number of files a job seeker can upload with their resume"
+msgstr "الحد الأقصى لعدد الملفات التي يمكن للباحث عن عمل تحميلها مع سيرته الذاتية"
+
+msgid "Max Employers in Resume Builder"
+msgstr "الحد الأقصى لأصحاب العمل في منشئ السيرة الذاتية"
+
+msgid "Maximum number of employers allowed in the resume builder"
+msgstr "الحد الأقصى لعدد أصحاب العمل المسموح به في منشئ السيرة الذاتية"
+
+msgid "Max Institutes in Resume Builder"
+msgstr "معاهد ماكس في منشئ السيرة الذاتية"
+
+msgid "Maximum number of institutes allowed in the resume builder"
+msgstr "الحد الأقصى لعدد المعاهد المسموح بها في منشئ السيرة الذاتية"
+
+msgid "Max Languages in Resume Builder"
+msgstr "الحد الأقصى للغات في منشئ السيرة الذاتية"
+
+msgid "Maximum number of languages allowed in the resume builder"
+msgstr "الحد الأقصى لعدد اللغات المسموح بها في منشئ السيرة الذاتية"
+
+msgid "Max Addresses in Resume Builder"
+msgstr "الحد الأقصى للعناوين في منشئ السيرة الذاتية"
+
+msgid "Maximum number of addresses allowed in the resume builder"
+msgstr "الحد الأقصى لعدد العناوين المسموح بها في منشئ السيرة الذاتية"
+
+msgid "Job Applications"
+msgstr "طلبات العمل"
+
+msgid "Configure the job application process and related notifications"
+msgstr "تكوين عملية التقدم للوظيفة والإخطارات ذات الصلة"
+
+msgid "Show Apply Now Button"
+msgstr "إظهار زر \"تطبيق الآن\"."
+
+msgid "Enable Quick Apply for Logged-in Users"
+msgstr "تمكين التطبيق السريع للمستخدمين الذين قاموا بتسجيل الدخول"
+
+msgid "Enable Quick Apply for Visitors"
+msgstr "تمكين التقديم السريع للزوار"
+
+msgid "Show Applied Resume Status to Job Seeker"
+msgstr "إظهار حالة السيرة الذاتية المطبقة للباحث عن عمل"
+
+msgid "Resume Data in Email"
+msgstr "استئناف البيانات في البريد الإلكتروني"
+
+msgid "Sections"
+msgstr "الأقسام"
+
+msgid "Choose whether to include all resume sections or only filled ones in the application email to employers"
+msgstr "اختر ما إذا كنت تريد تضمين جميع أقسام السيرة الذاتية أو الأجزاء المملوءة فقط في رسالة البريد الإلكتروني الخاصة بالطلب إلى أصحاب العمل"
+
+msgid "Choose whether to include all fields or only filled fields in the application email"
+msgstr "اختر ما إذا كنت تريد تضمين جميع الحقول أو الحقول المملوءة فقط في البريد الإلكتروني للتطبيق"
+
+msgid "Auto-Approve Rules"
+msgstr "قواعد الموافقة التلقائية"
+
+msgid "Set auto-approval rules for various user-submitted content"
+msgstr "قم بتعيين قواعد الموافقة التلقائية لمختلف المحتويات المقدمة من قبل المستخدم"
+
+msgid "Featured Resume Auto Approve"
+msgstr "الموافقة التلقائية على السيرة الذاتية المميزة"
+
+msgid "Automatically approve resumes marked as featured"
+msgstr "الموافقة تلقائيًا على السير الذاتية التي تم وضع علامة عليها كمميزة"
+
+msgid "Featured Company Auto Approve"
+msgstr "الموافقة التلقائية للشركة المميزة"
+
+msgid "Automatically approve companies marked as featured"
+msgstr "الموافقة تلقائيًا على الشركات التي تم وضع علامة عليها كمميزة"
+
+msgid "Featured Job Auto Approve"
+msgstr "الموافقة التلقائية على الوظيفة المميزة"
+
+msgid "Automatically approve jobs marked as featured"
+msgstr "الموافقة تلقائيًا على الوظائف التي تم وضع علامة عليها كمميزة"
+
+msgid "Cover Letter Auto Approve"
+msgstr "خطاب تقديمي للموافقة التلقائية"
+
+msgid "Automatically approve cover letters submitted by job seekers"
+msgstr "الموافقة تلقائيًا على خطابات التقديم المقدمة من الباحثين عن عمل"
+
+msgid "Folder Auto Approve"
+msgstr "الموافقة التلقائية على المجلد"
+
+msgid "Automatically approve new folders created by employers"
+msgstr "الموافقة تلقائيًا على المجلدات الجديدة التي أنشأها أصحاب العمل"
+
+msgid "Department Auto Approve"
+msgstr "الموافقة التلقائية للقسم"
+
+msgid "Automatically approve new departments created by employers"
+msgstr "الموافقة تلقائيًا على الأقسام الجديدة التي أنشأها أصحاب العمل"
+
+msgid "Message Auto Approve"
+msgstr "رسالة الموافقة التلقائية"
+
+msgid "Automatically approve messages between job seekers and employers"
+msgstr "الموافقة تلقائيًا على الرسائل بين الباحثين عن عمل وأصحاب العمل"
+
+msgid "Conflict Message Auto Approve"
+msgstr "الموافقة التلقائية على رسالة التعارض"
+
+msgid "Automatically approve conflicted messages"
+msgstr "الموافقة تلقائيًا على الرسائل المتعارضة"
+
+msgid "Email & Alerts"
+msgstr "البريد الإلكتروني والتنبيهات"
+
+msgid "Email Sender Identity"
+msgstr "هوية مرسل البريد الإلكتروني"
+
+msgid "Configure sender details for all outgoing system emails"
+msgstr "تكوين تفاصيل المرسل لجميع رسائل البريد الإلكتروني الصادرة للنظام"
+
+msgid "Admin Email Address"
+msgstr "عنوان البريد الإلكتروني للمسؤول"
+
+msgid "Admin will receive email notifications at this address"
+msgstr "سوف يتلقى المشرف إشعارات البريد الإلكتروني على هذا العنوان"
+
+msgid "Sender Email Address"
+msgstr "عنوان البريد الإلكتروني للمرسل"
+
+msgid "The email address that will be used to send system emails"
+msgstr "عنوان البريد الإلكتروني الذي سيتم استخدامه لإرسال رسائل البريد الإلكتروني للنظام"
+
+msgid "The sender name that will be used in system emails"
+msgstr "اسم المرسل الذي سيتم استخدامه في رسائل البريد الإلكتروني للنظام"
+
+msgid "Job Alerts"
+msgstr "تنبيهات الوظيفة"
+
+msgid "Configure settings for job alert emails and forms"
+msgstr "قم بتكوين الإعدادات لرسائل البريد الإلكتروني والنماذج الخاصة بتنبيهات الوظائف"
+
+msgid "Show Job Alert Link"
+msgstr "عرض رابط التنبيه الوظيفي"
+
+msgid "Show the Job Alert link in the job seeker control panel"
+msgstr "إظهار رابط التنبيه الوظيفي في لوحة تحكم الباحث عن عمل"
+
+msgid "Enable Job Alerts for Visitors"
+msgstr "تمكين تنبيهات الوظائف للزوار"
+
+msgid "Allow non-logged-in users to sign up for job alerts"
+msgstr "السماح للمستخدمين غير المسجلين بالتسجيل للحصول على تنبيهات الوظائف"
+
+msgid "Job Alert Auto Approve"
+msgstr "الموافقة التلقائية على تنبيه الوظيفة"
+
+msgid "Automatically approve new job alerts upon creation"
+msgstr "الموافقة تلقائيًا على تنبيهات الوظائف الجديدة عند الإنشاء"
+
+msgid "Captcha on Visitor Job Alert Form"
+msgstr "Captcha على نموذج تنبيه وظيفة الزائر"
+
+msgid "Show a captcha on the job alert sign-up form for visitors"
+msgstr "أظهر كلمة التحقق في نموذج الاشتراك في التنبيه الوظيفي للزائرين"
+
+msgid "Allow users to save their search queries for jobs and resumes"
+msgstr "السماح للمستخدمين بحفظ استعلامات البحث الخاصة بهم عن الوظائف والسير الذاتية"
+
+msgid "Show Saved Searches for Job Seekers"
+msgstr "إظهار عمليات البحث المحفوظة للباحثين عن عمل"
+
+msgid "Allow job seekers to save their job searches"
+msgstr "السماح للباحثين عن عمل بحفظ عمليات البحث عن عمل"
+
+msgid "Show Saved Searches for Employers"
+msgstr "عرض عمليات البحث المحفوظة لأصحاب العمل"
+
+msgid "Allow employers to save their resume searches"
+msgstr "السماح لأصحاب العمل بحفظ عمليات البحث عن سيرتهم الذاتية"
+
+msgid "Feeds & AI"
+msgstr "الخلاصات والذكاء الاصطناعي"
+
+msgid "RSS Feeds"
+msgstr "خلاصات RSS"
+
+msgid "Configure the RSS feed for jobs"
+msgstr "تكوين موجز RSS للوظائف"
+
+msgid "Enable Jobs RSS Feed"
+msgstr "تمكين موجز RSS للوظائف"
+
+msgid "Enable the main RSS feed for new jobs"
+msgstr "تمكين موجز RSS الرئيسي للوظائف الجديدة"
+
+msgid "Job Feed Title"
+msgstr "عنوان خلاصة الوظيفة"
+
+msgid "The title for the job RSS feed"
+msgstr "عنوان موجز RSS للوظيفة"
+
+msgid "Job Feed Description"
+msgstr "وصف موجز الوظيفة"
+
+msgid "The description for the job RSS feed"
+msgstr "وصف موجز RSS للمهمة"
+
+msgid "Job Feed Copyright"
+msgstr "حقوق الطبع والنشر لخلاصة الوظائف"
+
+msgid "Copyright notice for the job feed"
+msgstr "إشعار حقوق النشر لخلاصة الوظيفة"
+
+msgid "Job Feed Editor"
+msgstr "محرر موجز الوظائف"
+
+msgid "The person responsible for editorial content"
+msgstr "الشخص المسؤول عن المحتوى التحريري"
+
+msgid "Job Feed Webmaster"
+msgstr "وظيفة تغذية مشرف الموقع"
+
+msgid "The person responsible for technical issues"
+msgstr "الشخص المسؤول عن المسائل الفنية"
+
+msgid "Job Feed TTL"
+msgstr "موجز الوظائف TTL"
+
+msgid "Time to Live"
+msgstr "الوقت للعيش"
+
+msgid "Number of minutes the feed can be cached before refreshing"
+msgstr "عدد الدقائق التي يمكن تخزين الخلاصة فيها مؤقتًا قبل التحديث"
+
+msgid "Show Categories in Job Feed"
+msgstr "إظهار الفئات في موجز الوظائف"
+
+msgid "Include categories in the job feed items"
+msgstr "قم بتضمين الفئات في عناصر موجز الوظائف"
+
+msgid "Show Company Image in Job Feed"
+msgstr "إظهار صورة الشركة في موجز الوظائف"
+
+msgid "Include the company logo in the job feed items"
+msgstr "قم بتضمين شعار الشركة في عناصر موجز الوظائف"
+
+msgid "Configure the RSS feed for resumes"
+msgstr "تكوين موجز RSS للسير الذاتية"
+
+msgid "Enable Resumes RSS Feed"
+msgstr "تمكين استئناف تغذية RSS"
+
+msgid "Enable the main RSS feed for new resumes"
+msgstr "تمكين موجز RSS الرئيسي للسير الذاتية الجديدة"
+
+msgid "Resume Feed Title"
+msgstr "استئناف عنوان الخلاصة"
+
+msgid "The title for the resume RSS feed"
+msgstr "عنوان خلاصة RSS للسيرة الذاتية"
+
+msgid "Resume Feed Description"
+msgstr "استئناف وصف الخلاصة"
+
+msgid "The description for the resume RSS feed"
+msgstr "وصف لخلاصة RSS للسيرة الذاتية"
+
+msgid "Resume Feed Copyright"
+msgstr "استئناف حقوق الطبع والنشر للخلاصة"
+
+msgid "Copyright notice for the resume feed"
+msgstr "إشعار حقوق النشر لخلاصة السيرة الذاتية"
+
+msgid "Resume Feed Editor"
+msgstr "استئناف محرر الخلاصة"
+
+msgid "Resume Feed Webmaster"
+msgstr "استئناف تغذية مشرف الموقع"
+
+msgid "Resume Feed TTL"
+msgstr "استئناف تغذية TTL"
+
+msgid "Show Categories in Resume Feed"
+msgstr "إظهار الفئات في خلاصة السيرة الذاتية"
+
+msgid "Include categories in the resume feed items"
+msgstr "قم بتضمين الفئات في عناصر خلاصة السيرة الذاتية"
+
+msgid "Show Resume File in Resume Feed"
+msgstr "إظهار ملف السيرة الذاتية في موجز السيرة الذاتية"
+
+msgid "Make resume files downloadable from the feed"
+msgstr "اجعل ملفات السيرة الذاتية قابلة للتنزيل من الخلاصة"
+
+msgid "AI Suggested Matches"
+msgstr "التطابقات المقترحة بواسطة الذكاء الاصطناعي"
+
+msgid "Configure AI-powered job and resume suggestion features"
+msgstr "قم بتكوين وظائف مدعومة بالذكاء الاصطناعي واستئناف ميزات الاقتراح"
+
+msgid "AI Search On Job Search Page"
+msgstr "بحث الذكاء الاصطناعي في صفحة البحث عن الوظائف"
+
+msgid "Show the AI search field on the main job search form"
+msgstr "إظهار حقل البحث بالذكاء الاصطناعي في نموذج البحث عن الوظيفة الرئيسي"
+
+msgid "AI Job Search"
+msgstr "البحث عن وظائف الذكاء الاصطناعي"
+
+msgid "AI Search Filter On Job Listing"
+msgstr "مرشح بحث الذكاء الاصطناعي في قائمة الوظائف"
+
+msgid "Show the AI search field as a filter on the job listing page"
+msgstr "أظهر حقل بحث الذكاء الاصطناعي كمرشح في صفحة قائمة الوظائف"
+
+msgid "AI Search On Resume Search Page"
+msgstr "بحث AI في صفحة البحث عن السيرة الذاتية"
+
+msgid "Show the AI search field on the main resume search form"
+msgstr "إظهار حقل بحث الذكاء الاصطناعي في نموذج البحث الرئيسي للسيرة الذاتية"
+
+msgid "AI Resume Search"
+msgstr "البحث عن السيرة الذاتية بالذكاء الاصطناعي"
+
+msgid "AI Search Filter On Resume Listing"
+msgstr "مرشح بحث الذكاء الاصطناعي في قائمة السيرة الذاتية"
+
+msgid "Show the AI search field as a filter on the resume listing page"
+msgstr "أظهر حقل بحث الذكاء الاصطناعي كمرشح في صفحة قائمة السيرة الذاتية"
+
+msgid "Show AI Suggested Jobs Button"
+msgstr "إظهار زر الوظائف المقترحة بواسطة الذكاء الاصطناعي"
+
+msgid "AI Suggested Jobs"
+msgstr "وظائف الذكاء الاصطناعي المقترحة"
+
+msgid "Show AI Suggested Jobs on Dashboard"
+msgstr "عرض الوظائف المقترحة بواسطة الذكاء الاصطناعي على لوحة التحكم"
+
+msgid "Show a list of AI-suggested jobs on the job seeker dashboard"
+msgstr "إظهار قائمة الوظائف المقترحة بواسطة الذكاء الاصطناعي على لوحة تحكم الباحث عن عمل"
+
+msgid "Show AI Suggested Resumes Button"
+msgstr "إظهار زر السير الذاتية المقترحة بواسطة الذكاء الاصطناعي"
+
+msgid "AI Suggested Resumes"
+msgstr "السيرة الذاتية المقترحة لمنظمة العفو الدولية"
+
+msgid "Show AI Suggested Resumes on Dashboard"
+msgstr "عرض السير الذاتية المقترحة بواسطة الذكاء الاصطناعي على لوحة المعلومات"
+
+msgid "Show a list of AI-suggested resumes on the employer dashboard"
+msgstr "اعرض قائمة بالسير الذاتية المقترحة بواسطة الذكاء الاصطناعي على لوحة معلومات صاحب العمل"
+
+msgid "Integrations"
+msgstr "التكامل"
+
+msgid "Allow users to register and log in with their social media accounts"
+msgstr "السماح للمستخدمين بالتسجيل وتسجيل الدخول باستخدام حساباتهم على وسائل التواصل الاجتماعي"
+
+msgid "Login with Facebook"
+msgstr "تسجيل الدخول مع الفيسبوك"
+
+msgid "Allow users to log in using their Facebook account"
+msgstr "السماح للمستخدمين بتسجيل الدخول باستخدام حساب الفيسبوك الخاص بهم"
+
+msgid "Apply with Facebook"
+msgstr "تنطبق مع الفيسبوك"
+
+msgid "Allow users to apply for jobs using their Facebook profile"
+msgstr "السماح للمستخدمين بالتقدم للوظائف باستخدام ملفهم الشخصي على فيسبوك"
+
+msgid "Facebook App ID"
+msgstr "معرف تطبيق فيسبوك"
+
+msgid "Enter your Facebook App ID"
+msgstr "أدخل معرف تطبيق فيسبوك الخاص بك"
+
+msgid "Facebook App Secret"
+msgstr "سر تطبيق الفيسبوك"
+
+msgid "Enter your Facebook App Secret"
+msgstr "أدخل سر تطبيق فيسبوك الخاص بك"
+
+msgid "Valid OAuth URI"
+msgstr "عنوان URI صالح لـ OAuth"
+
+msgid "Apply"
+msgstr "يتقدم"
+
+msgid "Login with LinkedIn"
+msgstr "تسجيل الدخول مع لينكد إن"
+
+msgid "Allow users to log in using their LinkedIn account"
+msgstr "السماح للمستخدمين بتسجيل الدخول باستخدام حساباتهم على LinkedIn"
+
+msgid "Apply with LinkedIn"
+msgstr "تقدم بطلبك عبر LinkedIn"
+
+msgid "Allow users to apply for jobs using their LinkedIn profile"
+msgstr "السماح للمستخدمين بالتقدم للوظائف باستخدام ملفهم الشخصي على LinkedIn"
+
+msgid "LinkedIn Client ID"
+msgstr "معرف عميل LinkedIn"
+
+msgid "Enter your LinkedIn Client ID"
+msgstr "أدخل معرف عميل LinkedIn الخاص بك"
+
+msgid "API Key"
+msgstr "مفتاح واجهة برمجة التطبيقات"
+
+msgid "LinkedIn Client Secret"
+msgstr "سر عميل لينكد إن"
+
+msgid "Enter your LinkedIn Client Secret"
+msgstr "أدخل سر عميل LinkedIn الخاص بك"
+
+msgid "Social Sharing"
+msgstr "المشاركة الاجتماعية"
+
+msgid "Enable social sharing buttons on your pages"
+msgstr "تمكين أزرار المشاركة الاجتماعية على صفحاتك"
+
+msgid "Enable Facebook Likes"
+msgstr "تمكين الإعجابات على الفيسبوك"
+
+msgid "Show Facebook like button"
+msgstr "إظهار زر الإعجاب بالفيسبوك"
+
+msgid "Enable Facebook Share"
+msgstr "تمكين مشاركة الفيسبوك"
+
+msgid "Show Facebook share button"
+msgstr "إظهار زر مشاركة الفيسبوك"
+
+msgid "Enable Facebook Comments"
+msgstr "تمكين تعليقات الفيسبوك"
+
+msgid "Show Facebook comments widget"
+msgstr "إظهار أداة تعليقات الفيسبوك"
+
+msgid "Enable Twitter Share"
+msgstr "تمكين مشاركة تويتر"
+
+msgid "Show Twitter share button"
+msgstr "إظهار زر مشاركة تويتر"
+
+msgid "Enable LinkedIn Share"
+msgstr "تمكين مشاركة LinkedIn"
+
+msgid "Show LinkedIn share button"
+msgstr "إظهار زر مشاركة LinkedIn"
+
+msgid "Enable Blogger Share"
+msgstr "تمكين مشاركة بلوجر"
+
+msgid "Show Blogger share button"
+msgstr "إظهار زر المشاركة في Blogger"
+
+msgid "Enable Digg Share"
+msgstr "تمكين مشاركة Digg"
+
+msgid "Show Digg share button"
+msgstr "إظهار زر مشاركة Digg"
+
+msgid "Enable Myspace Share"
+msgstr "تمكين مشاركة ماي سبيس"
+
+msgid "Show Myspace share button"
+msgstr "إظهار زر مشاركة ماي سبيس"
+
+msgid "Enable Yahoo Share"
+msgstr "تمكين مشاركة ياهو"
+
+msgid "Show Yahoo share button"
+msgstr "إظهار زر مشاركة ياهو"
+
+msgid "Mapping & Geolocation"
+msgstr "رسم الخرائط وتحديد الموقع الجغرافي"
+
+msgid "Configure map services and location-based features"
+msgstr "تكوين خدمات الخريطة والميزات المستندة إلى الموقع"
+
+msgid "Choose between Google Maps and OpenStreetMap for map displays"
+msgstr "اختر بين خرائط Google وOpenStreetMap لعرض الخرائط"
+
+msgid "Google Map API Key"
+msgstr "مفتاح API لخريطة جوجل"
+
+msgid "Enter your Google Maps API key"
+msgstr "أدخل مفتاح API لخرائط Google"
+
+msgid "Map Height"
+msgstr "ارتفاع الخريطة"
+
+msgid "Set the height for maps displayed in the plugin, in pixels"
+msgstr "قم بتعيين ارتفاع الخرائط المعروضة في البرنامج المساعد بالبكسل"
+
+msgid "Default Longitude"
+msgstr "خط الطول الافتراضي"
+
+msgid "Default longitude for map centering"
+msgstr "خط الطول الافتراضي لتوسيط الخريطة"
+
+msgid "Default Latitude"
+msgstr "خط العرض الافتراضي"
+
+msgid "Default latitude for map centering"
+msgstr "خط العرض الافتراضي لتوسيط الخريطة"
+
+msgid "Default Map Radius Type"
+msgstr "نوع نصف قطر الخريطة الافتراضي"
+
+msgid "Default unit for map radius calculations"
+msgstr "الوحدة الافتراضية لحسابات نصف قطر الخريطة"
+
+msgid "Max Records for City Field"
+msgstr "ماكس السجلات لميدان المدينة"
+
+msgid "Set the number of cities to show in the location autocomplete results"
+msgstr "قم بتعيين عدد المدن التي ستظهر في نتائج الإكمال التلقائي للموقع"
+
+msgid "Max Records for Tag Field"
+msgstr "ماكس السجلات لحقل العلامة"
+
+msgid "Set the number of tags to show in the tag autocomplete results"
+msgstr "قم بتعيين عدد العلامات التي سيتم عرضها في نتائج الإكمال التلقائي للعلامة"
+
+msgid "Security & Captcha"
+msgstr "الأمن وكابتشا"
+
+msgid "Captcha Options"
+msgstr "خيارات كلمة التحقق"
+
+msgid "Enable captcha on various forms to prevent spam"
+msgstr "قم بتمكين كلمة التحقق في أشكال مختلفة لمنع البريد العشوائي"
+
+msgid "Default Captcha Type"
+msgstr "نوع كلمة التحقق الافتراضي"
+
+msgid "Select the default captcha to use throughout the plugin"
+msgstr "حدد كلمة التحقق الافتراضية لاستخدامها في البرنامج المساعد"
+
+msgid "Captcha on Registration Form"
+msgstr "كلمة التحقق في نموذج التسجيل"
+
+msgid "Show a captcha on the WP Job Portal registration form"
+msgstr "أظهر كلمة التحقق في نموذج التسجيل في WP Job Portal"
+
+msgid "Captcha on Visitor Quick Apply"
+msgstr "Captcha على التطبيق السريع للزائر"
+
+msgid "Show captcha to visitors on the quick apply form"
+msgstr "أظهر كلمة التحقق للزوار في نموذج التقديم السريع"
+
+msgid "Captcha on Visitor Job Form"
+msgstr "Captcha على نموذج وظيفة الزائر"
+
+msgid "Show captcha on the job submission form for visitors"
+msgstr "إظهار كلمة التحقق في نموذج تقديم الوظيفة للزوار"
+
+msgid "Captcha on Visitor Resume Form"
+msgstr "Captcha على نموذج السيرة الذاتية للزائر"
+
+msgid "Show captcha on the resume submission form for visitors"
+msgstr "إظهار كلمة التحقق في نموذج تقديم السيرة الذاتية للزوار"
+
+msgid "Captcha on Tell a Friend Popup"
+msgstr "Captcha على أخبر صديقًا منبثقًا"
+
+msgid "Show captcha on the"
+msgstr "إظهار كلمة التحقق على"
+
+msgid "popup for visitors"
+msgstr "المنبثقة للزوار"
+
+msgid "WP Job Portal Captcha"
+msgstr "WP Job Portal Captcha"
+
+msgid "Settings for the built-in mathematical captcha"
+msgstr "إعدادات كلمة التحقق الرياضية المضمنة"
+
+msgid "Calculation Type"
+msgstr "نوع الحساب"
+
+msgid "Select the type of math problem for the captcha"
+msgstr "حدد نوع المسألة الرياضية لرمز التحقق"
+
+msgid "Addition or Subtraction"
+msgstr "الجمع أو الطرح"
+
+msgid "Answer Always Positive"
+msgstr "الإجابة دائما إيجابية"
+
+msgid "Ensure that subtraction problems always result in a positive answer"
+msgstr "تأكد من أن مسائل الطرح تؤدي دائمًا إلى إجابة إيجابية"
+
+msgid "Number of Operands"
+msgstr "عدد المعاملات"
+
+msgid "Choose the number of operands for the math problem"
+msgstr "اختر عدد المعاملات للمسألة الرياضية"
+
+msgid "Google reCAPTCHA"
+msgstr "جوجل ريكابتشا"
+
+msgid "Configure Google reCAPTCHA v2 or v3"
+msgstr "قم بتكوين Google reCAPTCHA v2 أو v3"
+
+msgid "Select which version of Google reCAPTCHA to use"
+msgstr "حدد إصدار Google reCAPTCHA الذي تريد استخدامه"
+
+msgid "Enter the site key from your Google reCAPTCHA admin console"
+msgstr "أدخل مفتاح الموقع من وحدة تحكم مشرف Google reCAPTCHA"
+
+msgid "Google reCaptcha Secret Key"
+msgstr "مفتاح جوجل reCaptcha السري"
+
+msgid "Enter the secret key from your Google reCAPTCHA admin console"
+msgstr "أدخل المفتاح السري من وحدة تحكم مشرف Google reCAPTCHA"
+
+msgid "Monetization"
+msgstr "تحقيق الدخل"
+
+msgid "General Monetization"
+msgstr "تحقيق الدخل العام"
+
+msgid "Core settings for handling payments and packages"
+msgstr "الإعدادات الأساسية للتعامل مع المدفوعات والطرود"
+
+msgid "Choose the monetization model for submissions"
+msgstr "اختر نموذج تحقيق الدخل لعمليات الإرسال"
+
+msgid "Free, Per Listing, or Membership-based"
+msgstr "مجاني، لكل قائمة، أو على أساس العضوية"
+
+msgid "Default Currency Symbol"
+msgstr "رمز العملة الافتراضية"
+
+msgid "The currency symbol to be used across the site"
+msgstr "رمز العملة الذي سيتم استخدامه عبر الموقع"
+
+msgid "Currency Symbol Position"
+msgstr "موقف رمز العملة"
+
+msgid "Packages & Featured Listings"
+msgstr "الحزم والقوائم المميزة"
+
+msgid "Manage free packages and enable featured listings"
+msgstr "إدارة الحزم المجانية وتمكين القوائم المميزة"
+
+msgid "Auto-assign Free Package to New User"
+msgstr "تعيين الحزمة المجانية تلقائيًا لمستخدم جديد"
+
+msgid "Automatically give new users a free package if one exists"
+msgstr "منح المستخدمين الجدد حزمة مجانية تلقائيًا في حالة وجودها"
+
+msgid "Free Package Purchase Auto Approve"
+msgstr "الموافقة التلقائية على شراء الحزمة المجانية"
+
+msgid "Automatically approve the purchase of free packages"
+msgstr "الموافقة تلقائيًا على شراء الحزم المجانية"
+
+msgid "Purchase Free Package Only Once"
+msgstr "قم بشراء الباقة المجانية مرة واحدة فقط"
+
+msgid "Prevent users from acquiring a free package more than once"
+msgstr "منع المستخدمين من الحصول على باقة مجانية أكثر من مرة"
+
+msgid "Enable Featured Companies"
+msgstr "تمكين الشركات المميزة"
+
+msgid "Allow companies to be marked as"
+msgstr "السماح بوضع علامة على الشركات على أنها"
+
+msgid "Enable Featured Jobs"
+msgstr "تمكين الوظائف المميزة"
+
+msgid "Allow jobs to be marked as"
+msgstr "السماح بوضع علامة على الوظائف على أنها"
+
+msgid "Enable Featured Resumes"
+msgstr "تمكين السيرة الذاتية المميزة"
+
+msgid "Allow resumes to be marked as"
+msgstr "السماح بوضع علامة على السير الذاتية على أنها"
+
+msgid "Per Listing Prices"
+msgstr "لكل قائمة الأسعار"
+
+msgid "Set prices for various actions when using the"
+msgstr "قم بتعيين الأسعار لمختلف الإجراءات عند استخدام"
+
+msgid "submission type"
+msgstr "نوع التقديم"
+
+msgid "Submission"
+msgstr "استسلام"
+
+msgid "Price to submit a single company profile"
+msgstr "السعر لتقديم ملف تعريف شركة واحدة"
+
+msgid "Additional price to make a company"
+msgstr "سعر إضافي لإنشاء شركة"
+
+msgid "Days Until Featured Company Expires"
+msgstr "أيام حتى انتهاء صلاحية الشركة المميزة"
+
+msgid "Number of days a"
+msgstr "عدد الأيام أ"
+
+msgid "per-listing"
+msgstr "لكل قائمة"
+
+msgid "featured company remains active"
+msgstr "تظل الشركة المميزة نشطة"
+
+msgid "free"
+msgstr "حر"
+
+msgid "Price to submit a single job"
+msgstr "السعر لتقديم وظيفة واحدة"
+
+msgid "Additional price to make a job"
+msgstr "سعر إضافي للقيام بعمل"
+
+msgid "Days Until Featured Job Expires"
+msgstr "الأيام المتبقية على انتهاء صلاحية الوظيفة المميزة"
+
+msgid "featured job remains active"
+msgstr "تظل الوظيفة المميزة نشطة"
+
+msgid "Price to submit a single resume"
+msgstr "سعر تقديم سيرة ذاتية واحدة"
+
+msgid "Additional price to make a resume"
+msgstr "سعر إضافي لتقديم السيرة الذاتية"
+
+msgid "Days Until Featured Resume Expires"
+msgstr "الأيام المتبقية على انتهاء صلاحية السيرة الذاتية المميزة"
+
+msgid "featured resume remains active"
+msgstr "تظل السيرة الذاتية المميزة نشطة"
+
+msgid "Price per Job Apply"
+msgstr "السعر لكل وظيفة تنطبق"
+
+msgid "Price for a job seeker to apply for a job"
+msgstr "سعر للباحث عن عمل للتقدم للحصول على وظيفة"
+
+msgid "Price to View Resume Contact"
+msgstr "السعر لعرض استئناف الاتصال"
+
+msgid "Price to View Company Contact"
+msgstr "السعر لعرض الاتصال بالشركة"
+
+msgid "Price to submit a department"
+msgstr "السعر لتقديم القسم"
+
+msgid "Price to submit a cover letter"
+msgstr "سعر تقديم خطاب تغطية"
+
+msgid "Price to create a job alert"
+msgstr "السعر لإنشاء تنبيه وظيفي"
+
+msgid "Dashboard Monetization Links"
+msgstr "روابط تحقيق الدخل من لوحة التحكم"
+
+msgid "Control the visibility of monetization-related links in user dashboards"
+msgstr "التحكم في رؤية الروابط المتعلقة بتحقيق الدخل في لوحات معلومات المستخدم"
+
+msgid "Employer Show Invoice History"
+msgstr "صاحب العمل عرض تاريخ الفاتورة"
+
+msgid "Setting to show the invoice/purchase history section"
+msgstr "الإعداد لإظهار قسم الفاتورة/سجل الشراء"
+
+msgid "Job Seeker Show Invoice History"
+msgstr "الباحث عن عمل يعرض تاريخ الفاتورة"
+
+msgid "Job Seeker Show Credits Log"
+msgstr "الباحث عن عمل عرض سجل الاعتمادات"
+
+msgid "Setting to show the credits log section"
+msgstr "الإعداد لإظهار قسم سجل الاعتمادات"
+
+msgid "Payment Gateways"
+msgstr "بوابات الدفع"
+
+msgid "Configure PayPal payment gateway settings for API integration"
+msgstr "قم بتكوين إعدادات بوابة الدفع PayPal لتكامل واجهة برمجة التطبيقات (API)."
+
+msgid "Enable PayPal"
+msgstr "تمكين باي بال"
+
+msgid "Enable or disable PayPal as a payment option"
+msgstr "تمكين أو تعطيل PayPal كخيار للدفع"
+
+msgid "Your PayPal API Username"
+msgstr "اسم مستخدم واجهة برمجة تطبيقات PayPal الخاصة بك"
+
+msgid "Your PayPal API Password"
+msgstr "كلمة مرور واجهة برمجة تطبيقات PayPal الخاصة بك"
+
+msgid "Your PayPal API Signature"
+msgstr "توقيع PayPal API الخاص بك"
+
+msgid "A URL to your logo image to display on the PayPal checkout page"
+msgstr "عنوان URL لصورة الشعار الخاص بك لعرضه على صفحة الدفع عبر PayPal"
+
+msgid "Cancel URL"
+msgstr "إلغاء عنوان URL"
+
+msgid "The URL users are sent to if they cancel the payment"
+msgstr "يتم إرسال مستخدمي URL إلى إذا قاموا بإلغاء الدفع"
+
+msgid "Notify URL"
+msgstr "إعلام URL"
+
+msgid "Sandbox"
+msgstr "رمل"
+
+msgid "Enable PayPal Sandbox for testing purposes"
+msgstr "قم بتمكين PayPal Sandbox لأغراض الاختبار"
+
+msgid "Please enter language code, for example"
+msgstr "الرجاء إدخال رمز اللغة، على سبيل المثال"
+
+msgid "Subscription IPN URL"
+msgstr "عنوان URL للاشتراك في IPN"
+
+msgid "Configure Stripe payment gateway settings"
+msgstr "قم بتكوين إعدادات بوابة الدفع Stripe"
+
+msgid "Enable Stripe"
+msgstr "تمكين الشريط"
+
+msgid "Enable or disable Stripe as a payment option"
+msgstr "تمكين أو تعطيل Stripe كخيار للدفع"
+
+msgid "Publishable Key"
+msgstr "مفتاح قابل للنشر"
+
+msgid "Enter your Stripe Publishable Key"
+msgstr "أدخل مفتاح Stripe القابل للنشر"
+
+msgid "Secret Key"
+msgstr "المفتاح السري"
+
+msgid "Enter your Stripe Secret Key"
+msgstr "أدخل مفتاحك السري الشريطي"
+
+msgid "Subscription Webhook URL"
+msgstr "عنوان URL للاشتراك على الويب"
+
+msgid "WooCommerce"
+msgstr "ووكومرس"
+
+msgid "Use WooCommerce to handle payments"
+msgstr "استخدم WooCommerce للتعامل مع المدفوعات"
+
+msgid "Enable WooCommerce"
+msgstr "تمكين ووكومرس"
+
+msgid "Enable or disable WooCommerce as a payment option"
+msgstr "تمكين أو تعطيل WooCommerce كخيار للدفع"
+
+msgid "Home Page"
+msgstr "الصفحة الرئيسية"
+
+msgid "WordPress Default"
+msgstr "ووردبريس الافتراضي"
+
+msgid "Blog"
+msgstr "مدونة"
+
+msgid "This feature is part of a premium addon"
+msgstr "هذه الميزة جزء من ملحق متميز"
+
+msgid "Available tags"
+msgstr "العلامات المتاحة"
+
+msgid "This image will be shown as the default image for entities & users if no other image is provided"
+msgstr "سيتم عرض هذه الصورة كصورة افتراضية للكيانات والمستخدمين في حالة عدم توفير صورة أخرى"
+
+msgid "Discard"
+msgstr "ينبذ"
+
+msgid "Save Changes"
+msgstr "حفظ التغييرات"
+
+msgid "Quickly find any setting"
+msgstr "العثور بسرعة على أي إعداد"
+
+msgid "Search by setting title or tooltip description"
+msgstr "البحث عن طريق تحديد العنوان أو وصف تلميح الأداة"
+
+msgid "Unlock"
+msgstr "فتح"
+
+msgid "This and other powerful features are available in the"
+msgstr "هذه وغيرها من الميزات القوية متوفرة في"
+
+msgid "Upgrade Now"
+msgstr "الترقية الآن"
+
+msgid "No settings found for your search"
+msgstr "لم يتم العثور على إعدادات لبحثك"
+
+msgid "Copied to clipboard"
+msgstr "تم النسخ إلى الحافظة"
+
+msgid "Search results for"
+msgstr "نتائج البحث عن"
+
+msgid "Unlock with"
+msgstr "فتح مع"
+
+msgid "Settings related to employer accounts, registration, and permissions"
+msgstr "الإعدادات المتعلقة بحسابات أصحاب العمل والتسجيل والأذونات"
+
+msgid "Settings related to job seeker accounts and registration"
+msgstr "الإعدادات المتعلقة بحسابات الباحثين عن عمل وتسجيلهم"
+
+msgid "Visitor Can View Employer's Control Panel Links"
+msgstr "يمكن للزائر الاطلاع على روابط لوحة التحكم الخاصة بصاحب العمل"
+
+msgid "Visitor Can View Resume Categories"
+msgstr "يمكن للزائر عرض فئات السيرة الذاتية"
+
+msgid "Visitor Can Search Resumes"
+msgstr "يمكن للزائر البحث في السيرة الذاتية"
+
+msgid "Visitor Can View Company Details"
+msgstr "يمكن للزائر الاطلاع على تفاصيل الشركة"
+
+msgid "Visitor Can View Job Details"
+msgstr "يمكن للزائر الاطلاع على تفاصيل الوظيفة"
+
+msgid "Visitor Can View Resume Details"
+msgstr "يمكن للزائر الاطلاع على تفاصيل السيرة الذاتية"
+
+msgid "Visitor Can View Job Seeker's Control Panel Links"
+msgstr "يمكن للزائر الاطلاع على روابط لوحة التحكم الخاصة بالباحث عن عمل"
+
+msgid "Visitor Can View Jobs by Categories"
+msgstr "يمكن للزائر عرض الوظائف حسب الفئات"
+
+msgid "Visitor Can Search Jobs"
+msgstr "يمكن للزائر البحث عن وظائف"
+
+msgid "Visitor Can View Newest Jobs"
+msgstr "يمكن للزائر عرض أحدث الوظائف"
+
+msgid "Visitor Can View Job Search Results"
+msgstr "يمكن للزائر عرض نتائج البحث عن الوظائف"
+
+msgid "1 Column"
+msgstr "1 عمود"
+
+msgid "10254 Departments found"
+msgstr "تم العثور على 10254 الأقسام"
+
+msgid "2 Columns"
+msgstr "2 عمود"
+
+msgid "3 Columns"
+msgstr "3 أعمدة"
+
+msgid "4 Columns"
+msgstr "4 أعمدة"
+
+msgid "5 Columns"
+msgstr "5 أعمدة"
+
+msgid "A critical update for WP Job Portal is required to maintain performance and prevent issues. Please update now."
+msgstr "مطلوب تحديث مهم لـ WP Job Portal للحفاظ على الأداء ومنع المشكلات. يرجى التحديث الآن."
+
+msgid "AI Search"
+msgstr "بحث الذكاء الاصطناعي"
+
+msgid "AI Search Job"
+msgstr "وظيفة بحث الذكاء الاصطناعي"
+
+msgid "AI Settings"
+msgstr "إعدادات الذكاء الاصطناعي"
+
+msgid "AI settings"
+msgstr "إعدادات الذكاء الاصطناعي"
+
+msgid "About"
+msgstr "عن"
+
+msgid "Account & Billing"
+msgstr "الحساب والفواتير"
+
+msgid "Activation failed"
+msgstr "فشل التنشيط"
+
+msgid "Add-ons for WP Job Portal have been installed and activated successfully."
+msgstr "تم تثبيت وتفعيل الوظائف الإضافية لـ WP Job Portal بنجاح."
+
+msgid "Addon Installer"
+msgstr "مثبت الملحق"
+
+msgid "Addon not installed please install addon first."
+msgstr "الإضافة غير مثبتة، يرجى تثبيت الإضافة أولا."
+
+msgid "Addon will automatically update to the newest version"
+msgstr "سيتم تحديث الملحق تلقائيًا إلى الإصدار الأحدث"
+
+msgid "Addon(s) Installed successfully!"
+msgstr "تم تثبيت الإضافة (الإضافات) بنجاح!"
+
+msgid "Address display style for plugin"
+msgstr "أسلوب عرض العنوان للمكون الإضافي"
+
+msgid "Advanced Resume Builder Addon missing, resume sections data will not be imported!"
+msgstr "الملحق المتقدم لمنشئ السيرة الذاتية مفقود، لن يتم استيراد بيانات أقسام السيرة الذاتية!"
+
+msgid "All selected add-ons are now active."
+msgstr "جميع الوظائف الإضافية المحددة نشطة الآن."
+
+msgid "Allow employers and job Seekers to register on the site."
+msgstr "السماح لأصحاب العمل والباحثين عن عمل بالتسجيل في الموقع."
+
+msgid "Allow search resume"
+msgstr "السماح باستئناف البحث"
+
+msgid "Allowed to all (employers, job seekers and visitors)"
+msgstr "مسموح للجميع (أصحاب العمل والباحثين عن عمل والزوار)"
+
+msgid "Auto Update: Off"
+msgstr "التحديث التلقائي: متوقف"
+
+msgid "Auto Update: On"
+msgstr "التحديث التلقائي: تشغيل"
+
+msgid "Back to listing"
+msgstr "العودة إلى القائمة"
+
+msgid "Basic Info"
+msgstr "معلومات أساسية"
+
+msgid "Buttons Styling"
+msgstr "تصميم الأزرار"
+
+msgid "Capitalize"
+msgstr "الاستفادة من الحروف الكبيرة"
+
+msgid "Check if you want to use WP Job Portal packages"
+msgstr "تحقق مما إذا كنت تريد استخدام حزم WP Job Portal"
+
+msgid "City name"
+msgstr "اسم المدينة"
+
+msgid "Columns per Row"
+msgstr "أعمدة لكل صف"
+
+msgid "Comma separated list of job types i.e JTFT, JTPT, JTFP, JTCT, JTIN"
+msgstr "قائمة مفصولة بفواصل لأنواع الوظائف، مثل JTFT وJTPT وJTFP وJTCT وJTIN"
+
+msgid "Communication"
+msgstr "تواصل"
+
+msgid "Company Management"
+msgstr "إدارة الشركة"
+
+msgid "Complete Your Resume"
+msgstr "أكمل سيرتك الذاتية"
+
+msgid "Content Access"
+msgstr "الوصول إلى المحتوى"
+
+msgid "Content Styling"
+msgstr "تصميم المحتوى"
+
+msgid "Control which employer dashboard navigation links are visible to visitors"
+msgstr "التحكم في روابط التنقل في لوحة معلومات صاحب العمل التي تكون مرئية للزوار"
+
+msgid "Control which employer dashboard widgets and sections are visible to visitors"
+msgstr "التحكم في عناصر واجهة المستخدم والأقسام الخاصة بلوحة تحكم صاحب العمل التي تكون مرئية للزوار"
+
+msgid "Control which job seeker dashboard navigation links are visible to visitors"
+msgstr "التحكم في روابط التنقل في لوحة تحكم الباحث عن عمل التي تكون مرئية للزوار"
+
+msgid "Control which job seeker dashboard widgets and sections are visible to visitors"
+msgstr "التحكم في عناصر واجهة المستخدم والأقسام الموجودة بلوحة تحكم الباحث عن عمل والتي تكون مرئية للزوار"
+
+msgid "Control which pages and content areas are visible to non-logged-in users"
+msgstr "التحكم في الصفحات ومناطق المحتوى التي تكون مرئية للمستخدمين غير المسجلين"
+
+msgid "Custom Field Class"
+msgstr "فئة الحقل المخصص"
+
+msgid "Database Update Needed"
+msgstr "تحديث قاعدة البيانات مطلوب"
+
+msgid "Database update completed"
+msgstr "تم الانتهاء من تحديث قاعدة البيانات"
+
+msgid "Delete All Unused Keys"
+msgstr "حذف كافة المفاتيح غير المستخدمة"
+
+msgid "Discover"
+msgstr "يكتشف"
+
+msgid "Display the status of applications to the job seeker"
+msgstr "عرض حالة الطلبات للباحث عن عمل"
+
+msgid "Dummy Plugin"
+msgstr "البرنامج المساعد الوهمي"
+
+msgid "Dummy Plugin 2"
+msgstr "البرنامج المساعد الوهمي 2"
+
+msgid "Elegant Design"
+msgstr "تصميم أنيق"
+
+msgid "Employer Widgets"
+msgstr "الحاجيات صاحب العمل"
+
+msgid "Enter the Site Title"
+msgstr "أدخل عنوان الموقع"
+
+msgid "Entity"
+msgstr "كيان"
+
+msgid "Fetch Data"
+msgstr "جلب البيانات"
+
+msgid "Find your next star hire with AI-driven resume search"
+msgstr "ابحث عن نجمك التالي من خلال البحث عن السيرة الذاتية المعتمد على الذكاء الاصطناعي"
+
+msgid "Font Family"
+msgstr "عائلة الخطوط"
+
+msgid "Font Size"
+msgstr "حجم الخط"
+
+msgid "Font Style"
+msgstr "نمط الخط"
+
+msgid "Font Weight"
+msgstr "وزن الخط"
+
+msgid "Go To Dashboard"
+msgstr "انتقل إلى لوحة القيادة"
+
+msgid "Import Data Report"
+msgstr "استيراد تقرير البيانات"
+
+msgid "Import Third Party Data"
+msgstr "استيراد بيانات الطرف الثالث"
+
+msgid "Import demo data to populate your site with example companies, jobs, resumes, and applications."
+msgstr "قم باستيراد البيانات التجريبية لملء موقعك بأمثلة عن الشركات والوظائف والسير الذاتية والتطبيقات."
+
+msgid "Imported"
+msgstr "مستورد"
+
+msgid "Infi Icon"
+msgstr "أيقونة إنفي"
+
+msgid "Info"
+msgstr "معلومات"
+
+msgid "Info Icon"
+msgstr "أيقونة المعلومات"
+
+msgid "Invalid server response"
+msgstr "استجابة الخادم غير صالحة"
+
+msgid "Italic"
+msgstr "مائل"
+
+msgid "Job Alert Time"
+msgstr "وقت التنبيه الوظيفي"
+
+msgid "Job Detail"
+msgstr "تفاصيل الوظيفة"
+
+msgid "Job Seeker Links"
+msgstr "روابط الباحثين عن عمل"
+
+msgid "Job Seeker Settings"
+msgstr "إعدادات الباحث عن عمل"
+
+msgid "Job Seeker Widgets"
+msgstr "الحاجيات الباحث عن عمل"
+
+msgid "Jobs by Category"
+msgstr "وظائف حسب الفئة"
+
+msgid "Layout"
+msgstr "تَخطِيط"
+
+msgid "Letter Spacing"
+msgstr "تباعد الحروف"
+
+msgid "Line Height"
+msgstr "ارتفاع الخط"
+
+msgid "Live Preview Not available at the moment !"
+msgstr "المعاينة المباشرة غير متوفرة في الوقت الحالي!"
+
+msgid "Login/Register"
+msgstr "تسجيل الدخول / التسجيل"
+
+msgid "Lowercase"
+msgstr "أحرف صغيرة"
+
+msgid "Manage Documents"
+msgstr "إدارة المستندات"
+
+msgid "Manage Jobs"
+msgstr "إدارة الوظائف"
+
+msgid "Manage Unused Keys"
+msgstr "إدارة المفاتيح غير المستخدمة"
+
+msgid "More Actions"
+msgstr "المزيد من الإجراءات"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans."
+msgstr "يوفر اشتراكي للمستخدمين نظرة عامة على اشتراكاتهم النشطة، مما يسمح بسهولة إدارة وتتبع خطط نشر الوظائف الخاصة بهم."
+
+msgid "New Jobs"
+msgstr "وظائف جديدة"
+
+msgid "Next Setup"
+msgstr "الإعداد التالي"
+
+msgid "No Addon Installed!"
+msgstr "لم يتم تثبيت الملحق!"
+
+msgid "No unused keys were found."
+msgstr "لم يتم العثور على مفاتيح غير مستخدمة."
+
+msgid "None"
+msgstr "لا أحد"
+
+msgid "Not Imported"
+msgstr "غير مستوردة"
+
+msgid "Oblique"
+msgstr "منحرف"
+
+msgid "Only job seekers can register. Jobs and companies are managed by the admin."
+msgstr "يمكن للباحثين عن عمل فقط التسجيل. تتم إدارة الوظائف والشركات من قبل المشرف."
+
+msgid "Paid access Only"
+msgstr "الوصول المدفوع فقط"
+
+msgid "Pay For Featured Resume"
+msgstr "ادفع مقابل السيرة الذاتية المميزة"
+
+msgid "Pay For Resume"
+msgstr "الدفع مقابل السيرة الذاتية"
+
+msgid "Pay per listing price to publish your"
+msgstr "ادفع لكل سعر قائمة لنشر ملفك"
+
+msgid "Please Insert Your Activation Key"
+msgstr "الرجاء إدخال مفتاح التنشيط الخاص بك"
+
+msgid "Please log in to register to continue."
+msgstr "الرجاء تسجيل الدخول للتسجيل للمتابعة."
+
+msgid "Please select at least one addon!"
+msgstr "الرجاء تحديد ملحق واحد على الأقل!"
+
+msgid "Please verify Locations and salaries for imported data entities"
+msgstr "يرجى التحقق من المواقع والرواتب لكيانات البيانات المستوردة"
+
+msgid "Plugin not installed"
+msgstr "البرنامج المساعد غير مثبت"
+
+msgid "Price for a job seeker to view a company's contact details"
+msgstr "السعر للباحث عن عمل للاطلاع على تفاصيل الاتصال بالشركة"
+
+msgid "Price for an employer to view a resume's contact details"
+msgstr "السعر الذي يدفعه صاحب العمل لعرض تفاصيل الاتصال بالسيرة الذاتية"
+
+msgid "Quick Configuration"
+msgstr "التكوين السريع"
+
+msgid "Ready to find your dream job? Let's get started"
+msgstr "هل أنت مستعد للعثور على وظيفة أحلامك؟ دعونا نبدأ"
+
+msgid "Ready to find your potential employee? Let's get started"
+msgstr "هل أنت مستعد للعثور على موظفك المحتمل؟ دعونا نبدأ"
+
+msgid "Search Jobs"
+msgstr "وظائف البحث"
+
+msgid "Search Resumes"
+msgstr "بحث في السيرة الذاتية"
+
+msgid "Search smarter – just type anything you know about the job: title, category, type, skills, or even a description!"
+msgstr "ابحث بشكل أكثر ذكاءً - ما عليك سوى كتابة أي شيء تعرفه عن الوظيفة: المسمى الوظيفي أو الفئة أو النوع أو المهارات أو حتى الوصف!"
+
+msgid "Section Title Styling"
+msgstr "تصميم عنوان القسم"
+
+msgid "Select Addons to Update with New Activation Key"
+msgstr "حدد الوظائف الإضافية للتحديث باستخدام مفتاح التنشيط الجديد"
+
+msgid "Select Company"
+msgstr "اختر الشركة"
+
+msgid "Select Job Category"
+msgstr "حدد فئة الوظيفة"
+
+msgid "Select Job Status"
+msgstr "حدد حالة الوظيفة"
+
+msgid "Select Job Type"
+msgstr "حدد نوع الوظيفة"
+
+msgid "Select Page To Show"
+msgstr "حدد الصفحة المراد إظهارها"
+
+msgid "Select Plugin Setting for WP Job Portal"
+msgstr "حدد إعداد البرنامج المساعد لـ WP Job Portal"
+
+msgid "Select packages pack so that user can purchase them"
+msgstr "حدد حزمة الحزم حتى يتمكن المستخدم من شرائها"
+
+msgid "Select who can view company contact details."
+msgstr "حدد من يمكنه عرض تفاصيل الاتصال بالشركة."
+
+msgid "Settings you applied have been successfully saved"
+msgstr "تم حفظ الإعدادات التي طبقتها بنجاح"
+
+msgid "Setup Complete"
+msgstr "اكتمل الإعداد"
+
+msgid "Show Advanced Search Button"
+msgstr "إظهار زر البحث المتقدم"
+
+msgid "Show Employers"
+msgstr "إظهار أصحاب العمل"
+
+msgid "Show Everyone"
+msgstr "أظهر للجميع"
+
+msgid "Show Job seekers"
+msgstr "عرض الباحثين عن عمل"
+
+msgid "Show Labels"
+msgstr "إظهار التسميات"
+
+msgid "Show No One"
+msgstr "إظهار لا أحد"
+
+msgid "Show Placeholders"
+msgstr "إظهار العناصر النائبة"
+
+msgid "Show Resume Status Section"
+msgstr "إظهار قسم حالة السيرة الذاتية"
+
+msgid "Show a box with applied jobs on the job seeker's dashboard"
+msgstr "إظهار خانة الوظائف التطبيقية على لوحة تحكم الباحث عن عمل"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard"
+msgstr "إظهار خانة الوظائف الجديدة في لوحة تحكم الباحث عن عمل"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard to visitor"
+msgstr "إظهار مربع بأحدث الوظائف في لوحة تحكم الباحث عن عمل للزائر"
+
+msgid "Show a box with recent resumes on the employer's dashboard"
+msgstr "أظهر مربعًا يحتوي على السير الذاتية الحديثة على لوحة معلومات صاحب العمل"
+
+msgid "Show a box with recent resumes on the employer's dashboard to visitor"
+msgstr "اعرض مربعًا يحتوي على السير الذاتية الحديثة على لوحة معلومات صاحب العمل للزائر"
+
+msgid "Show a graph of job statistics in the employer's dashboard"
+msgstr "إظهار رسم بياني لإحصائيات الوظائف في لوحة معلومات صاحب العمل"
+
+msgid "Show a graph of job statistics in the employer's dashboard to visitor"
+msgstr "إظهار رسم بياني لإحصائيات الوظائف في لوحة معلومات صاحب العمل للزائر"
+
+msgid "Show a graph of job statistics in the job seeker's dashboard"
+msgstr "إظهار رسم بياني لإحصائيات الوظائف في لوحة تحكم الباحث عن عمل"
+
+msgid "Show a graph of job statistics in the job seeker's dashboard to visitor"
+msgstr "إظهار رسم بياني لإحصائيات الوظائف في لوحة تحكم الباحث عن عمل للزائر"
+
+msgid "Show a link to active subscriptions in the employer's dashboard"
+msgstr "إظهار رابط للاشتراكات النشطة في لوحة معلومات صاحب العمل"
+
+msgid "Show a link to active subscriptions in the job seeker's dashboard"
+msgstr "إظهار رابط للاشتراكات النشطة في لوحة تحكم الباحث عن عمل"
+
+msgid "Show a link to the packages page in the employer's dashboard"
+msgstr "إظهار رابط لصفحة الباقات في لوحة تحكم صاحب العمل"
+
+msgid "Show a link to the packages page in the job seeker's dashboard"
+msgstr "إظهار رابط صفحة الباقات في لوحة تحكم الباحث عن عمل"
+
+msgid "Show a link to the purchase history/invoices in the employer's dashboard"
+msgstr "إظهار رابط لسجل/فواتير الشراء في لوحة معلومات صاحب العمل"
+
+msgid "Show a link to the purchase history/invoices in the job seeker's dashboard"
+msgstr "إظهار رابط لسجل المشتريات/الفواتير في لوحة التحكم الخاصة بالباحث عن عمل"
+
+msgid "Show a link to the user's purchased packages in their dashboard"
+msgstr "اعرض رابطًا للحزم التي اشتراها المستخدم في لوحة التحكم الخاصة به"
+
+msgid "Show an 'AI Suggested Jobs' button on the 'My Resumes' page for job seekers"
+msgstr "أظهر زر \"الوظائف المقترحة بواسطة الذكاء الاصطناعي\" في صفحة \"سيرتي الذاتية\" للباحثين عن عمل"
+
+msgid "Show an 'AI Suggested Resumes' button on the 'My Jobs' page for employers"
+msgstr "اعرض زر \"السير الذاتية المقترحة بواسطة الذكاء الاصطناعي\" في صفحة \"وظائفي\" لأصحاب العمل"
+
+msgid "Show or hide the profile section on the employer's control panel"
+msgstr "إظهار أو إخفاء قسم الملف الشخصي في لوحة تحكم صاحب العمل"
+
+msgid "Show or hide the profile section on the job seeker's control panel"
+msgstr "إظهار أو إخفاء قسم الملف الشخصي في لوحة تحكم الباحث عن عمل"
+
+msgid "Show resume status section on the job seeker's dashboard"
+msgstr "إظهار قسم حالة السيرة الذاتية في لوحة تحكم الباحث عن عمل"
+
+msgid "Show statistics boxes on the employer's dashboard"
+msgstr "إظهار مربعات الإحصائيات على لوحة تحكم صاحب العمل"
+
+msgid "Show statistics boxes on the job seeker's dashboard"
+msgstr "إظهار مربعات الإحصائيات في لوحة تحكم الباحث عن عمل"
+
+msgid "Show the 'Quick Apply' form to logged-in users on the job detail page"
+msgstr "اعرض نموذج \"التقديم السريع\" للمستخدمين الذين قاموا بتسجيل الدخول في صفحة تفاصيل الوظيفة"
+
+msgid "Show the 'Quick Apply' form to visitors on the job detail page"
+msgstr "اعرض نموذج \"التقديم السريع\" للزائرين في صفحة تفاصيل الوظيفة"
+
+msgid "Similar Found"
+msgstr "وجدت مماثلة"
+
+msgid "Start typing what you know – our AI will help you find the best matching jobs."
+msgstr "ابدأ بكتابة ما تعرفه - سيساعدك الذكاء الاصطناعي لدينا في العثور على أفضل الوظائف المطابقة."
+
+msgid "Start typing what you know – our AI will help you find the best matching resumes."
+msgstr "ابدأ بكتابة ما تعرفه - سيساعدك الذكاء الاصطناعي لدينا في العثور على أفضل السير الذاتية المطابقة."
+
+msgid "Step 1 of 5"
+msgstr "الخطوة 1 من 5"
+
+msgid "Step 2 of 4"
+msgstr "الخطوة 2 من 4"
+
+msgid "Step 2 of 5"
+msgstr "الخطوة 2 من 5"
+
+msgid "Step 3 of 4"
+msgstr "الخطوة 3 من 4"
+
+msgid "Step 3 of 5"
+msgstr "الخطوة 3 من 5"
+
+msgid "Step 4 of 4"
+msgstr "الخطوة 4 من 4"
+
+msgid "Step 4 of 5"
+msgstr "الخطوة 4 من 5"
+
+msgid "Step 5 of 5"
+msgstr "الخطوة 5 من 5"
+
+msgid "Subscriptions"
+msgstr "الاشتراكات"
+
+msgid "Sugeested Jobs"
+msgstr "الوظائف المقترحة"
+
+msgid "Suggested Jobs"
+msgstr "الوظائف المقترحة"
+
+msgid "Suggested Resumes"
+msgstr "السير الذاتية المقترحة"
+
+msgid "System"
+msgstr "نظام"
+
+msgid "System Error Log"
+msgstr "سجل أخطاء النظام"
+
+msgid "Text Transform"
+msgstr "تحويل النص"
+
+msgid "The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "لوحة تحكم صاحب العمل هي واجهة مبسطة تسمح لأصحاب العمل بإدارة إعلانات الوظائف وتتبع الطلبات والتواصل مع المرشحين وتحليل مقاييس التوظيف بكفاءة."
+
+msgid "The highlighted addons are not included in your current license. Please adjust your selection accordingly."
+msgstr "لم يتم تضمين الوظائف الإضافية المميزة في ترخيصك الحالي. يرجى تعديل اختيارك وفقا لذلك."
+
+msgid "This add-on will change the Job Portal pages to a simple yet powerful and rich web design that involves focusing on clean aesthetics, intuitive navigation, and functional elements while ensuring performance and responsiveness."
+msgstr "ستعمل هذه الوظيفة الإضافية على تغيير صفحات بوابة الوظائف إلى تصميم ويب بسيط ولكنه قوي وغني يتضمن التركيز على الجماليات النظيفة والتنقل البديهي والعناصر الوظيفية مع ضمان الأداء والاستجابة."
+
+msgid "This will replace the old key with the new one."
+msgstr "سيؤدي هذا إلى استبدال المفتاح القديم بالمفتاح الجديد."
+
+msgid "Today Stats"
+msgstr "احصائيات اليوم"
+
+msgid "Unlock your career potential with AI-driven job search"
+msgstr "أطلق العنان لإمكانياتك المهنية من خلال البحث عن الوظائف المعتمد على الذكاء الاصطناعي"
+
+msgid "Update Key"
+msgstr "مفتاح التحديث"
+
+msgid "Update Now"
+msgstr "التحديث الآن"
+
+msgid "Updating Database, please wait..."
+msgstr "جارٍ تحديث قاعدة البيانات، يرجى الانتظار..."
+
+msgid "Uppercase"
+msgstr "أحرف كبيرة"
+
+msgid "Use Default Color For Color 1"
+msgstr "استخدم اللون الافتراضي للون 1"
+
+msgid "Use Icons for Buttons"
+msgstr "استخدم الرموز للأزرار"
+
+msgid "View All Resumes"
+msgstr "عرض جميع السير الذاتية"
+
+msgid "View Company Contact Detail"
+msgstr "عرض تفاصيل الاتصال بالشركة"
+
+msgid "Visitor Show"
+msgstr "عرض الزائر"
+
+msgid "Visitor Show Active Jobs Graph"
+msgstr "عرض الزائر الرسم البياني للوظائف النشطة"
+
+msgid "Visitor Show Applied Jobs Section"
+msgstr "معرض الزوار قسم الوظائف التطبيقية"
+
+msgid "Visitor Show Applied Resumes Section"
+msgstr "عرض الزوار قسم السيرة الذاتية التطبيقية"
+
+msgid "Visitor Show Credits Log Section"
+msgstr "قسم سجل الاعتمادات لعرض الزوار"
+
+msgid "Visitor Show Jobs Graph"
+msgstr "الرسم البياني لوظائف عرض الزائرين"
+
+msgid "Visitor Show Jobs Graph Section"
+msgstr "قسم الرسم البياني لوظائف عرض الزوار"
+
+msgid "Visitor Show Newest Jobs Box"
+msgstr "عرض الزوار أحدث صندوق الوظائف"
+
+msgid "Visitor Show Newest Jobs Section"
+msgstr "عرض الزوار قسم أحدث الوظائف"
+
+msgid "Visitor Show Newest Resumes Section"
+msgstr "عرض الزوار قسم أحدث السيرة الذاتية"
+
+msgid "Visitor Show Purchase History Section"
+msgstr "عرض الزوار قسم تاريخ الشراء"
+
+msgid "Visitor Show Recent Resumes Box"
+msgstr "يعرض الزائر صندوق السيرة الذاتية الأخيرة"
+
+msgid "Visitor Show Saved Searches Section"
+msgstr "عرض الزوار قسم عمليات البحث المحفوظة"
+
+msgid "Visitor Show Shortlisted Jobs Section"
+msgstr "عرض الزوار قسم الوظائف المختصرة"
+
+msgid "Visitor Show Stats Graph Section"
+msgstr "قسم الرسم البياني لإحصائيات عرض الزوار"
+
+msgid "Visitor Show Useful Links Section"
+msgstr "قسم عرض الزوار للروابط المفيدة"
+
+msgid "WP Job Manager"
+msgstr "مدير وظائف الفسفور الأبيض"
+
+msgid "WP Job Portal Activation Key"
+msgstr "مفتاح تفعيل بوابة الوظيفة WP"
+
+msgid "WP Job Portal Import Data"
+msgstr "استيراد بيانات بوابة الوظائف WP"
+
+msgid "WP Job Portal Packages"
+msgstr "حزم بوابة الوظائف WP"
+
+msgid "Welcome to WP Job Portal Addon Installer"
+msgstr "مرحبًا بك في برنامج تثبيت الملحق الإضافي لـ WP Job Portal"
+
+msgid "Welcome, Visitor"
+msgstr "مرحباً أيها الزائر"
+
+msgid "Who can search resume."
+msgstr "من يمكنه البحث في السيرة الذاتية."
+
+msgid "Who can view resume contact details"
+msgstr "من يمكنه عرض تفاصيل الاتصال بالسيرة الذاتية"
+
+msgid "You Already Applied to this job"
+msgstr "لقد تقدمت بالفعل لهذه الوظيفة"
+
+msgid "You have"
+msgstr "لديك"
+
+msgid "Your WP Job Portal license key has expired or is invalid. Please update it to continue receiving support and updates."
+msgstr "انتهت صلاحية مفتاح ترخيص WP Job Portal الخاص بك أو أنه غير صالح. يرجى تحديثه لمواصلة تلقي الدعم والتحديثات."
+
+msgid "failed."
+msgstr "فشل."
+
+msgid "found"
+msgstr "وجد"
+
+msgid "icon"
+msgstr "رمز"
+
+msgid "imported."
+msgstr "مستورد."
+
+msgid "skipped."
+msgstr "تم تخطيه."
+
+msgid "unused key has been deleted successfully!"
+msgstr "تم حذف المفتاح غير المستخدم بنجاح!"
+
+msgid "unused key(s) that can be safely removed."
+msgstr "المفتاح (المفاتيح) غير المستخدمة التي يمكن إزالتها بأمان."
+
+msgid "unused keys have been deleted successfully!"
+msgstr "تم حذف المفاتيح غير المستخدمة بنجاح!"

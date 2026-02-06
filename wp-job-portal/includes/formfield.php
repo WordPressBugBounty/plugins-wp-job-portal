@@ -7,147 +7,147 @@ class WPJOBPORTALformfield {
     /*
      * Create the form text field
      */
-    static function resumetext($fieldName, $value,$section, $extraattr = array(),$over_limit = 0) {
-        $name = $section.'['.$fieldName.']';        
-        $textfield = '<input type="text" name="' . $name . '" id="' . $fieldName . '" 
-        value="' .  wpjobportalphplib::wpJP_htmlspecialchars($value) . '" ';
-        if (!empty($extraattr))
-            foreach ($extraattr AS $key => $val)
-                $textfield .= ' ' . $key . '="' . $val . '"';
-        if($over_limit == 0){
-            $textfield .= ' maxlength="255" ';
+    static function resumetext($wpjobportal_fieldName, $wpjobportal_value,$wpjobportal_section, $wpjobportal_extraattr = array(),$wpjobportal_over_limit = 0) {
+        $wpjobportal_name = $wpjobportal_section.'['.$wpjobportal_fieldName.']';
+        $wpjobportal_textfield = '<input type="text" name="' . $wpjobportal_name . '" id="' . $wpjobportal_fieldName . '"
+        value="' .  wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_value) . '" ';
+        if (!empty($wpjobportal_extraattr))
+            foreach ($wpjobportal_extraattr AS $wpjobportal_key => $wpjobportal_val)
+                $wpjobportal_textfield .= ' ' . $wpjobportal_key . '="' . $wpjobportal_val . '"';
+        if($wpjobportal_over_limit == 0){
+            $wpjobportal_textfield .= ' maxlength="255" ';
         }
-        $textfield .= ' />';
-        return $textfield;
+        $wpjobportal_textfield .= ' />';
+        return $wpjobportal_textfield;
     }
 
-    static function text($name, $value, $extraattr = array(),$over_limit = 0) {
-        $textfield = '<input type="text" name="' . $name . '" id="' . $name . '"
-        value="' .  wpjobportalphplib::wpJP_htmlspecialchars($value) . '" ';
-        if (!empty($extraattr))
-            foreach ($extraattr AS $key => $val)
-                $textfield .= ' ' . $key . '="' . $val . '"';
-        if($over_limit == 0){
-            $textfield .= ' maxlength="255" ';
+    static function text($wpjobportal_name, $wpjobportal_value, $wpjobportal_extraattr = array(),$wpjobportal_over_limit = 0) {
+        $wpjobportal_textfield = '<input type="text" name="' . $wpjobportal_name . '" id="' . $wpjobportal_name . '"
+        value="' .  wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_value) . '" ';
+        if (!empty($wpjobportal_extraattr))
+            foreach ($wpjobportal_extraattr AS $wpjobportal_key => $wpjobportal_val)
+                $wpjobportal_textfield .= ' ' . $wpjobportal_key . '="' . $wpjobportal_val . '"';
+        if($wpjobportal_over_limit == 0){
+            $wpjobportal_textfield .= ' maxlength="255" ';
         }
-        $textfield .= ' />';
+        $wpjobportal_textfield .= ' />';
 
-        return $textfield;
+        return $wpjobportal_textfield;
     }
 
-    static function email($name, $value, $extraattr = array()) {
-        $textfield = '<input type="email" name="' . $name . '" id="' . $name . '" 
-        value="' .  wpjobportalphplib::wpJP_htmlspecialchars($value) . '" ';
-        if (!empty($extraattr))
-            foreach ($extraattr AS $key => $val)
-                $textfield .= ' ' . $key . '="' . $val . '"';
-        $textfield .= ' />';
-        return $textfield;
+    static function email($wpjobportal_name, $wpjobportal_value, $wpjobportal_extraattr = array()) {
+        $wpjobportal_textfield = '<input type="email" name="' . $wpjobportal_name . '" id="' . $wpjobportal_name . '"
+        value="' .  wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_value) . '" ';
+        if (!empty($wpjobportal_extraattr))
+            foreach ($wpjobportal_extraattr AS $wpjobportal_key => $wpjobportal_val)
+                $wpjobportal_textfield .= ' ' . $wpjobportal_key . '="' . $wpjobportal_val . '"';
+        $wpjobportal_textfield .= ' />';
+        return $wpjobportal_textfield;
     }
 
     /*
      * Create the form password field
      */
 
-    static function password($name, $value, $extraattr = array()) {
-        $textfield = '<input type="password" name="' . $name . '" id="' . $name . '" value="' .  wpjobportalphplib::wpJP_htmlspecialchars($value) . '" ';
-        if (!empty($extraattr))
-            foreach ($extraattr AS $key => $val)
-                $textfield .= ' ' . $key . '="' . $val . '"';
-        $textfield .= ' />';
-        return $textfield;
+    static function password($wpjobportal_name, $wpjobportal_value, $wpjobportal_extraattr = array()) {
+        $wpjobportal_textfield = '<input type="password" name="' . $wpjobportal_name . '" id="' . $wpjobportal_name . '" value="' .  wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_value) . '" ';
+        if (!empty($wpjobportal_extraattr))
+            foreach ($wpjobportal_extraattr AS $wpjobportal_key => $wpjobportal_val)
+                $wpjobportal_textfield .= ' ' . $wpjobportal_key . '="' . $wpjobportal_val . '"';
+        $wpjobportal_textfield .= ' />';
+        return $wpjobportal_textfield;
     }
 
     /*
      * Create the form text area
      */
 
-    static function textarea($name, $value, $extraattr = array()) {
-        $textarea = '<textarea name="' . $name . '" id="' . $name . '" ';
-        if (!empty($extraattr))
-            foreach ($extraattr AS $key => $val)
-                $textarea .= ' ' . $key . '="' . $val . '"';
-        $textarea .= ' >' . $value . '</textarea>';
-        return $textarea;
+    static function textarea($wpjobportal_name, $wpjobportal_value, $wpjobportal_extraattr = array()) {
+        $wpjobportal_textarea = '<textarea name="' . $wpjobportal_name . '" id="' . $wpjobportal_name . '" ';
+        if (!empty($wpjobportal_extraattr))
+            foreach ($wpjobportal_extraattr AS $wpjobportal_key => $wpjobportal_val)
+                $wpjobportal_textarea .= ' ' . $wpjobportal_key . '="' . $wpjobportal_val . '"';
+        $wpjobportal_textarea .= ' >' . $wpjobportal_value . '</textarea>';
+        return $wpjobportal_textarea;
     }
 
     /*
      * Create the form hidden field
      */
 
-    static function hidden($name, $value, $extraattr = array(),$id='') {
-        $textfield = '';
-        if($id == ''){
-            $id = $name;
+    static function hidden($wpjobportal_name, $wpjobportal_value, $wpjobportal_extraattr = array(),$wpjobportal_id='') {
+        $wpjobportal_textfield = '';
+        if($wpjobportal_id == ''){
+            $wpjobportal_id = $wpjobportal_name;
         }
-        if(is_array($value)){
-            if(wpjobportalphplib::wpJP_strstr($name, '[]')){
-                for ($i=0; $i < count($value) ; $i++) { 
-                    $textfield .= "<input type='hidden' name='" . $name . "' id='" . $id . "' value='" .  wpjobportalphplib::wpJP_htmlspecialchars($value[$i]) . "' /> ";
+        if(is_array($wpjobportal_value)){
+            if(wpjobportalphplib::wpJP_strstr($wpjobportal_name, '[]')){
+                for ($wpjobportal_i=0; $wpjobportal_i < count($wpjobportal_value) ; $wpjobportal_i++) {
+                    $wpjobportal_textfield .= "<input type='hidden' name='" . $wpjobportal_name . "' id='" . $wpjobportal_id . "' value='" .  wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_value[$wpjobportal_i]) . "' /> ";
                 }
-                return $textfield;
+                return $wpjobportal_textfield;
             }
         }
-        $textfield = "<input type='hidden' name='" . $name . "' id='" . $id . "' value='" . sanitize_text_field( wpjobportalphplib::wpJP_htmlspecialchars($value)) . "'" ;
+        $wpjobportal_textfield = "<input type='hidden' name='" . $wpjobportal_name . "' id='" . $wpjobportal_id . "' value='" . sanitize_text_field( wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_value)) . "'" ;
         
-        if (!empty($extraattr))
-            foreach ($extraattr AS $key => $val)
-                $textfield .= " " . $key . "='" . $val . "'";
-        $textfield .= " />";
-        return $textfield;
+        if (!empty($wpjobportal_extraattr))
+            foreach ($wpjobportal_extraattr AS $wpjobportal_key => $wpjobportal_val)
+                $wpjobportal_textfield .= " " . $wpjobportal_key . "='" . $wpjobportal_val . "'";
+        $wpjobportal_textfield .= " />";
+        return $wpjobportal_textfield;
     }
 
     /*
      * Create the form submitbutton
      */
 
-    static function submitbutton($name, $value, $extraattr = array()) {
-        $textfield = '<input type="submit" name="' . $name . '" id="' . $name . '" value="' .  wpjobportalphplib::wpJP_htmlspecialchars($value) . '" ';
-        if (!empty($extraattr))
-            foreach ($extraattr AS $key => $val)
-                $textfield .= ' ' . $key . '="' . $val . '"';
-        $textfield .= ' />';
-        return $textfield;
+    static function submitbutton($wpjobportal_name, $wpjobportal_value, $wpjobportal_extraattr = array()) {
+        $wpjobportal_textfield = '<input type="submit" name="' . $wpjobportal_name . '" id="' . $wpjobportal_name . '" value="' .  wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_value) . '" ';
+        if (!empty($wpjobportal_extraattr))
+            foreach ($wpjobportal_extraattr AS $wpjobportal_key => $wpjobportal_val)
+                $wpjobportal_textfield .= ' ' . $wpjobportal_key . '="' . $wpjobportal_val . '"';
+        $wpjobportal_textfield .= ' />';
+        return $wpjobportal_textfield;
     }
 
     /*
      * Create the form button
      */
 
-    static function button($name, $value, $extraattr = array()) {
-        $textfield = '<input type="button" name="' . $name . '" id="' . $name . '" value="' .  wpjobportalphplib::wpJP_htmlspecialchars($value) . '" ';
-        if (!empty($extraattr))
-            foreach ($extraattr AS $key => $val)
-                $textfield .= ' ' . $key . '="' . $val . '"';
-        $textfield .= ' />';
-        return $textfield;
+    static function button($wpjobportal_name, $wpjobportal_value, $wpjobportal_extraattr = array()) {
+        $wpjobportal_textfield = '<input type="button" name="' . $wpjobportal_name . '" id="' . $wpjobportal_name . '" value="' .  wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_value) . '" ';
+        if (!empty($wpjobportal_extraattr))
+            foreach ($wpjobportal_extraattr AS $wpjobportal_key => $wpjobportal_val)
+                $wpjobportal_textfield .= ' ' . $wpjobportal_key . '="' . $wpjobportal_val . '"';
+        $wpjobportal_textfield .= ' />';
+        return $wpjobportal_textfield;
     }
 
-    static function resumeSelect($fieldName, $list, $defaultvalue,$section,$title = '', $extraattr = array()) {
-        $name = $section.'['.$fieldName.']';
+    static function resumeSelect($wpjobportal_fieldName, $list, $wpjobportal_defaultvalue,$wpjobportal_section,$title = '', $wpjobportal_extraattr = array()) {
+        $wpjobportal_name = $wpjobportal_section.'['.$wpjobportal_fieldName.']';
 
-        $selectfield = '<select name="' . $name . '" id="' . $fieldName . '" ';
-        if (!empty($extraattr))
-            foreach ($extraattr AS $key => $val) {
-                $selectfield .= ' ' . $key . '="' .  wpjobportalphplib::wpJP_htmlspecialchars($val) . '"';
+        $wpjobportal_selectfield = '<select name="' . $wpjobportal_name . '" id="' . $wpjobportal_fieldName . '" ';
+        if (!empty($wpjobportal_extraattr))
+            foreach ($wpjobportal_extraattr AS $wpjobportal_key => $wpjobportal_val) {
+                $wpjobportal_selectfield .= ' ' . $wpjobportal_key . '="' .  wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_val) . '"';
             }
-        $selectfield .= ' >';
+        $wpjobportal_selectfield .= ' >';
         if ($title != '') {
-            $selectfield .= '<option value="">' . $title . '</option>';
+            $wpjobportal_selectfield .= '<option value="">' . $title . '</option>';
         }
-        if($defaultvalue == ''){
-            $defaultvalue = -9999; // B/c '' == 0 in php 
+        if($wpjobportal_defaultvalue == ''){
+            $wpjobportal_defaultvalue = -9999; // B/c '' == 0 in php
         }
         if (!empty($list))
             foreach ($list AS $record) {
-                if ((is_array($defaultvalue) && in_array($record->id, $defaultvalue)) || $defaultvalue == $record->id)
-                    $selectfield .= '<option selected="selected" value="' . $record->id . '">' . wpjobportal::wpjobportal_getVariableValue($record->text) . '</option>';
+                if ((is_array($wpjobportal_defaultvalue) && in_array($record->id, $wpjobportal_defaultvalue)) || $wpjobportal_defaultvalue == $record->id)
+                    $wpjobportal_selectfield .= '<option selected="selected" value="' . $record->id . '">' . wpjobportal::wpjobportal_getVariableValue($record->text) . '</option>';
                 else
-                    $selectfield .= '<option value="' . $record->id . '">' . wpjobportal::wpjobportal_getVariableValue($record->text) . '</option>';
+                    $wpjobportal_selectfield .= '<option value="' . $record->id . '">' . wpjobportal::wpjobportal_getVariableValue($record->text) . '</option>';
             }
 
-        $selectfield .= '</select>';
-        return $selectfield;
+        $wpjobportal_selectfield .= '</select>';
+        return $wpjobportal_selectfield;
     }
 
 
@@ -156,53 +156,53 @@ class WPJOBPORTALformfield {
      * Create the form select field
      */
 
-    static function select($name, $list, $defaultvalue, $title = '', $extraattr = array()) {
-        $selectfield = '<select name="' . $name . '" id="' . $name . '" ';
-        if (!empty($extraattr))
-            foreach ($extraattr AS $key => $val) {
-                $selectfield .= ' ' . $key . '="' .  wpjobportalphplib::wpJP_htmlspecialchars($val) . '"';
+    static function select($wpjobportal_name, $list, $wpjobportal_defaultvalue, $title = '', $wpjobportal_extraattr = array()) {
+        $wpjobportal_selectfield = '<select name="' . $wpjobportal_name . '" id="' . $wpjobportal_name . '" ';
+        if (!empty($wpjobportal_extraattr))
+            foreach ($wpjobportal_extraattr AS $wpjobportal_key => $wpjobportal_val) {
+                $wpjobportal_selectfield .= ' ' . $wpjobportal_key . '="' .  wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_val) . '"';
             }
-        $selectfield .= ' >';
+        $wpjobportal_selectfield .= ' >';
         if ($title != '') {
-            $selectfield .= '<option value="">' . $title . '</option>';
+            $wpjobportal_selectfield .= '<option value="">' . $title . '</option>';
         }
-        if($defaultvalue == ''){
-            $defaultvalue = -9999; // B/c '' == 0 in php 
+        if($wpjobportal_defaultvalue == ''){
+            $wpjobportal_defaultvalue = -9999; // B/c '' == 0 in php
         }
         if (!empty($list))
             foreach ($list AS $record) {
-                $class=isset($record->class)?$record->class:"";
-                if ((is_array($defaultvalue) && in_array($record->id, $defaultvalue)) || $defaultvalue == $record->id)
-                    $selectfield .= '<option class="' . $class . '"  selected="selected" value="' . $record->id . '">' . wpjobportal::wpjobportal_getVariableValue($record->text) . '</option>';
+                $wpjobportal_class=isset($record->class)?$record->class:"";
+                if ((is_array($wpjobportal_defaultvalue) && in_array($record->id, $wpjobportal_defaultvalue)) || $wpjobportal_defaultvalue == $record->id)
+                    $wpjobportal_selectfield .= '<option class="' . $wpjobportal_class . '"  selected="selected" value="' . $record->id . '">' . wpjobportal::wpjobportal_getVariableValue($record->text) . '</option>';
                 else
-                    $selectfield .= '<option class="' . $class . '" value="' . $record->id . '">' . wpjobportal::wpjobportal_getVariableValue($record->text) . '</option>';
+                    $wpjobportal_selectfield .= '<option class="' . $wpjobportal_class . '" value="' . $record->id . '">' . wpjobportal::wpjobportal_getVariableValue($record->text) . '</option>';
             }
 
-        $selectfield .= '</select>';
-        return $selectfield;
+        $wpjobportal_selectfield .= '</select>';
+        return $wpjobportal_selectfield;
     }
 
     /*
      * Create the form radio button
      */
 
-    static function radiobutton($name, $list, $defaultvalue, $extraattr = array()) {
+    static function radiobutton($wpjobportal_name, $list, $wpjobportal_defaultvalue, $wpjobportal_extraattr = array()) {
         $radiobutton = '';
-        $count = 1;
-        foreach ($list AS $value => $label) {
+        $wpjobportal_count = 1;
+        foreach ($list AS $wpjobportal_value => $wpjobportal_label) {
             //for admin forms added field wrapper
             $radiobutton .= '<span class="wpjobportal-form-radio-field" >';
-            $radiobutton .= '<input type="radio" name="' . $name . '" id="' . $name . $count . '" value="' .  wpjobportalphplib::wpJP_htmlspecialchars($value) . '"';
-            if ($defaultvalue == $value)
+            $radiobutton .= '<input type="radio" name="' . $wpjobportal_name . '" id="' . $wpjobportal_name . $wpjobportal_count . '" value="' .  wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_value) . '"';
+            if ($wpjobportal_defaultvalue == $wpjobportal_value)
                 $radiobutton .= ' checked="checked"';
 
-            if (!empty($extraattr))
-                foreach ($extraattr AS $key => $val) {
-                    $radiobutton .= ' ' . $key . '="' . $val . '"';
+            if (!empty($wpjobportal_extraattr))
+                foreach ($wpjobportal_extraattr AS $wpjobportal_key => $wpjobportal_val) {
+                    $radiobutton .= ' ' . $wpjobportal_key . '="' . $wpjobportal_val . '"';
                 }
-            $radiobutton .= '/><label id="for' . $name . '" for="' . $name . $count . '">' . $label . '</label>';
+            $radiobutton .= '/><label id="for' . $wpjobportal_name . '" for="' . $wpjobportal_name . $wpjobportal_count . '">' . $wpjobportal_label . '</label>';
             $radiobutton .= '</span>';
-            $count++;
+            $wpjobportal_count++;
         }
         return $radiobutton;
     }
@@ -211,33 +211,33 @@ class WPJOBPORTALformfield {
      * Create the form checkbox
      */
 
-    static function checkbox($name, $list, $defaultvalue, $extraattr = array()) {
-        $checkbox = '';
-        $count = 1;
-        foreach ($list AS $value => $label) {
+    static function checkbox($wpjobportal_name, $list, $wpjobportal_defaultvalue, $wpjobportal_extraattr = array()) {
+        $wpjobportal_checkbox = '';
+        $wpjobportal_count = 1;
+        foreach ($list AS $wpjobportal_value => $wpjobportal_label) {
             //for admin forms added field wrapper
-            $checkbox .= '<span class="wpjobportal-form-chkbox-field" >';
-            $checkbox .= '<input type="checkbox" name="' . $name . '" id="' . $name . $count . '" value="' .  wpjobportalphplib::wpJP_htmlspecialchars($value) . '"';
-            if ($defaultvalue == $value)
-                $checkbox .= ' checked="checked"';
-            if (!empty($extraattr))
-                foreach ($extraattr AS $key => $val) {
-                    $checkbox .= ' ' . $key . '="' . $val . '"';
+            $wpjobportal_checkbox .= '<span class="wpjobportal-form-chkbox-field" >';
+            $wpjobportal_checkbox .= '<input type="checkbox" name="' . $wpjobportal_name . '" id="' . $wpjobportal_name . $wpjobportal_count . '" value="' .  wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_value) . '"';
+            if ($wpjobportal_defaultvalue == $wpjobportal_value)
+                $wpjobportal_checkbox .= ' checked="checked"';
+            if (!empty($wpjobportal_extraattr))
+                foreach ($wpjobportal_extraattr AS $wpjobportal_key => $wpjobportal_val) {
+                    $wpjobportal_checkbox .= ' ' . $wpjobportal_key . '="' . $wpjobportal_val . '"';
                 }
-            $checkbox .= '/><label id="for' . $name . '" for="' . $name . $count . '">' . $label . '</label>';
-            $checkbox .= '</span>';
-            $count++;
+            $wpjobportal_checkbox .= '/><label id="for' . $wpjobportal_name . '" for="' . $wpjobportal_name . $wpjobportal_count . '">' . $wpjobportal_label . '</label>';
+            $wpjobportal_checkbox .= '</span>';
+            $wpjobportal_count++;
         }
-        return $checkbox;
+        return $wpjobportal_checkbox;
     }
 
     /*
      * Create the form wp editor
      */
 
-    static function editor($name, $defaultvalue='') {
-        $settings = array(
-            //'textarea_name' => isset( $field['name'] ) ? $field['name'] : $key,
+    static function editor($wpjobportal_name, $wpjobportal_defaultvalue='') {
+        $wpjobportal_settings = array(
+            //'textarea_name' => isset( $wpjobportal_field['name'] ) ? $wpjobportal_field['name'] : $wpjobportal_key,
             'media_buttons' => false,
             'textarea_rows' => 8,
             'quicktags'     => false,
@@ -256,7 +256,7 @@ class WPJOBPORTALformfield {
             ),
         );
         ob_start();
-        wp_editor( !empty($defaultvalue) ? wp_kses_post($defaultvalue) : '', $name, $settings);
+        wp_editor( !empty($wpjobportal_defaultvalue) ? wp_kses_post($wpjobportal_defaultvalue) : '', $wpjobportal_name, $wpjobportal_settings);
         return ob_get_clean();
     }
 

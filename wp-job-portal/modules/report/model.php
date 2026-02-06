@@ -6,166 +6,166 @@ if (!defined('ABSPATH'))
 class WPJOBPORTALReportModel {
 
     function getChartColor() {
-        $colors = array('#3366CC', '#DC3912', '#FF9900', '#109618', '#990099', '#B77322', '#8B0707', '#AAAA11', '#316395', '#DD4477', '#3B3EAC', '#ADD042', '#9D98CA', '#ED3237', '#585570', '#4E5A62', '#5CC6D0');
-        return $colors;
+        $wpjobportal_colors = array('#3366CC', '#DC3912', '#FF9900', '#109618', '#990099', '#B77322', '#8B0707', '#AAAA11', '#316395', '#DD4477', '#3B3EAC', '#ADD042', '#9D98CA', '#ED3237', '#585570', '#4E5A62', '#5CC6D0');
+        return $wpjobportal_colors;
     }
 
     function getOverallReports() {
         //Line Chart Data
-        $curdate = gmdate('Y-m-d');
-        $dates = '';
+        $wpjobportal_curdate = gmdate('Y-m-d');
+        $wpjobportal_dates = '';
         $fromdate = gmdate('Y-m-d', strtotime("now -1 month"));
-        $nextdate = $curdate;
+        $wpjobportal_nextdate = $wpjobportal_curdate;
         //Query to get Data
-        $query = "SELECT created FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE date(created) >= '" . esc_sql($fromdate) . "' AND date(created) <= '" . esc_sql($curdate) . "'";
-        $jobs = wpjobportal::$_db->get_results($query);
+        $query = "SELECT created FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE date(created) >= '" . esc_sql($fromdate) . "' AND date(created) <= '" . esc_sql($wpjobportal_curdate) . "'";
+        $wpjobportal_jobs = wpjobportal::$_db->get_results($query);
 
         $query = "SELECT created FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs`";
         wpjobportal::$_data['tot_jobs'] =  wpjobportal::$_db->get_results($query);
 
-        $query = "SELECT created FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE date(created) >= '" . esc_sql($fromdate) . "' AND date(created) <= '" . esc_sql($curdate) . "'";
-        $resume = wpjobportal::$_db->get_results($query);
+        $query = "SELECT created FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE date(created) >= '" . esc_sql($fromdate) . "' AND date(created) <= '" . esc_sql($wpjobportal_curdate) . "'";
+        $wpjobportal_resume = wpjobportal::$_db->get_results($query);
 
          $query = "SELECT count(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE status = 1 ";
         wpjobportal::$_data['presume'] = wpjobportal::$_db->get_var($query);
 
-        $query = "SELECT created FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` WHERE date(created) >= '" . esc_sql($fromdate) . "' AND date(created) <= '" . esc_sql($curdate) . "'";
-        $companies = wpjobportal::$_db->get_results($query);
+        $query = "SELECT created FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` WHERE date(created) >= '" . esc_sql($fromdate) . "' AND date(created) <= '" . esc_sql($wpjobportal_curdate) . "'";
+        $wpjobportal_companies = wpjobportal::$_db->get_results($query);
 
          $query = "SELECT count(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` ";
         wpjobportal::$_data['tot_comp'] = wpjobportal::$_db->get_var($query);
 
-        $query = "SELECT apply_date FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE date(apply_date) >= '" . esc_sql($fromdate) . "' AND date(apply_date) <= '" . esc_sql($curdate) . "'";
-        $appliedresume = wpjobportal::$_db->get_results($query);
+        $query = "SELECT apply_date FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE date(apply_date) >= '" . esc_sql($fromdate) . "' AND date(apply_date) <= '" . esc_sql($wpjobportal_curdate) . "'";
+        $wpjobportal_appliedresume = wpjobportal::$_db->get_results($query);
 
-        $date_jobs = array();
-        $date_companies = array();
-        $date_resume = array();
-        $date_appliedresume = array();
-        foreach ($jobs AS $job) {
-            if (!isset($date_jobs[date_i18n('Y-m-d', strtotime($job->created))]))
-                $date_jobs[date_i18n('Y-m-d', strtotime($job->created))] = 0;
-            $date_jobs[date_i18n('Y-m-d', strtotime($job->created))] = $date_jobs[date_i18n('Y-m-d', strtotime($job->created))] + 1;
+        $wpjobportal_date_jobs = array();
+        $wpjobportal_date_companies = array();
+        $wpjobportal_date_resume = array();
+        $wpjobportal_date_appliedresume = array();
+        foreach ($wpjobportal_jobs AS $wpjobportal_job) {
+            if (!isset($wpjobportal_date_jobs[date_i18n('Y-m-d', strtotime($wpjobportal_job->created))]))
+                $wpjobportal_date_jobs[date_i18n('Y-m-d', strtotime($wpjobportal_job->created))] = 0;
+            $wpjobportal_date_jobs[date_i18n('Y-m-d', strtotime($wpjobportal_job->created))] = $wpjobportal_date_jobs[date_i18n('Y-m-d', strtotime($wpjobportal_job->created))] + 1;
         }
-        foreach ($resume AS $rs) {
-            if (!isset($date_resume[date_i18n('Y-m-d', strtotime($rs->created))]))
-                $date_resume[date_i18n('Y-m-d', strtotime($rs->created))] = 0;
-            $date_resume[date_i18n('Y-m-d', strtotime($rs->created))] = $date_resume[date_i18n('Y-m-d', strtotime($rs->created))] + 1;
+        foreach ($wpjobportal_resume AS $rs) {
+            if (!isset($wpjobportal_date_resume[date_i18n('Y-m-d', strtotime($rs->created))]))
+                $wpjobportal_date_resume[date_i18n('Y-m-d', strtotime($rs->created))] = 0;
+            $wpjobportal_date_resume[date_i18n('Y-m-d', strtotime($rs->created))] = $wpjobportal_date_resume[date_i18n('Y-m-d', strtotime($rs->created))] + 1;
         }
-        foreach ($companies AS $company) {
-            if (!isset($date_companies[date_i18n('Y-m-d', strtotime($company->created))]))
-                $date_companies[date_i18n('Y-m-d', strtotime($company->created))] = 0;
-            $date_companies[date_i18n('Y-m-d', strtotime($company->created))] = $date_companies[date_i18n('Y-m-d', strtotime($company->created))] + 1;
+        foreach ($wpjobportal_companies AS $wpjobportal_company) {
+            if (!isset($wpjobportal_date_companies[date_i18n('Y-m-d', strtotime($wpjobportal_company->created))]))
+                $wpjobportal_date_companies[date_i18n('Y-m-d', strtotime($wpjobportal_company->created))] = 0;
+            $wpjobportal_date_companies[date_i18n('Y-m-d', strtotime($wpjobportal_company->created))] = $wpjobportal_date_companies[date_i18n('Y-m-d', strtotime($wpjobportal_company->created))] + 1;
         }
-        foreach ($appliedresume AS $ar) {
-            if (!isset($date_appliedresume[date_i18n('Y-m-d', strtotime($ar->apply_date))]))
-                $date_appliedresume[date_i18n('Y-m-d', strtotime($ar->apply_date))] = 0;
-            $date_appliedresume[date_i18n('Y-m-d', strtotime($ar->apply_date))] = $date_appliedresume[date_i18n('Y-m-d', strtotime($ar->apply_date))] + 1;
+        foreach ($wpjobportal_appliedresume AS $ar) {
+            if (!isset($wpjobportal_date_appliedresume[date_i18n('Y-m-d', strtotime($ar->apply_date))]))
+                $wpjobportal_date_appliedresume[date_i18n('Y-m-d', strtotime($ar->apply_date))] = 0;
+            $wpjobportal_date_appliedresume[date_i18n('Y-m-d', strtotime($ar->apply_date))] = $wpjobportal_date_appliedresume[date_i18n('Y-m-d', strtotime($ar->apply_date))] + 1;
         }
-        $job_s = 0;
-        $company_s = 0;
-        $resume_s = 0;
-        $appliedresume_s = 0;
-        $json_array = "";
+        $wpjobportal_job_s = 0;
+        $wpjobportal_company_s = 0;
+        $wpjobportal_resume_s = 0;
+        $wpjobportal_appliedresume_s = 0;
+        $wpjobportal_json_array = "";
 
         do {
-            $year = date_i18n('Y', strtotime($nextdate));
-            $month = date_i18n('m', strtotime($nextdate));
-            $month = $month - 1; //js month are 0 based
-            $day = date_i18n('d', strtotime($nextdate));
-            $job_tmp = isset($date_jobs[$nextdate]) ? $date_jobs[$nextdate] : 0;
-            $resume_tmp = isset($date_resume[$nextdate]) ? $date_resume[$nextdate] : 0;
-            $company_tmp = isset($date_companies[$nextdate]) ? $date_companies[$nextdate] : 0;
-            $appliedresume_tmp = isset($date_appliedresume[$nextdate]) ? $date_appliedresume[$nextdate] : 0;
-            $json_array .= "[new Date($year,$month,$day),$job_tmp,$resume_tmp,$company_tmp,$appliedresume_tmp],";
-            $job_s += $job_tmp;
-            $company_s += $company_tmp;
-            $resume_s += $resume_tmp;
-            $appliedresume_s += $appliedresume_tmp;
-            if($nextdate == $fromdate){
+            $year = date_i18n('Y', strtotime($wpjobportal_nextdate));
+            $wpjobportal_month = date_i18n('m', strtotime($wpjobportal_nextdate));
+            $wpjobportal_month = $wpjobportal_month - 1; //js month are 0 based
+            $wpjobportal_day = date_i18n('d', strtotime($wpjobportal_nextdate));
+            $wpjobportal_job_tmp = isset($wpjobportal_date_jobs[$wpjobportal_nextdate]) ? $wpjobportal_date_jobs[$wpjobportal_nextdate] : 0;
+            $wpjobportal_resume_tmp = isset($wpjobportal_date_resume[$wpjobportal_nextdate]) ? $wpjobportal_date_resume[$wpjobportal_nextdate] : 0;
+            $wpjobportal_company_tmp = isset($wpjobportal_date_companies[$wpjobportal_nextdate]) ? $wpjobportal_date_companies[$wpjobportal_nextdate] : 0;
+            $wpjobportal_appliedresume_tmp = isset($wpjobportal_date_appliedresume[$wpjobportal_nextdate]) ? $wpjobportal_date_appliedresume[$wpjobportal_nextdate] : 0;
+            $wpjobportal_json_array .= "[new Date($year,$wpjobportal_month,$wpjobportal_day),$wpjobportal_job_tmp,$wpjobportal_resume_tmp,$wpjobportal_company_tmp,$wpjobportal_appliedresume_tmp],";
+            $wpjobportal_job_s += $wpjobportal_job_tmp;
+            $wpjobportal_company_s += $wpjobportal_company_tmp;
+            $wpjobportal_resume_s += $wpjobportal_resume_tmp;
+            $wpjobportal_appliedresume_s += $wpjobportal_appliedresume_tmp;
+            if($wpjobportal_nextdate == $fromdate){
                 break;
             }
-            $nextdate = date_i18n('Y-m-d', strtotime($nextdate . " -1 days"));
-        } while ($nextdate != $fromdate);
+            $wpjobportal_nextdate = date_i18n('Y-m-d', strtotime($wpjobportal_nextdate . " -1 days"));
+        } while ($wpjobportal_nextdate != $fromdate);
 
-        wpjobportal::$_data['totaljobs'] = $job_s;
-        wpjobportal::$_data['totalcompany'] = $company_s;
-        wpjobportal::$_data['totalresume'] = $resume_s;
-        wpjobportal::$_data['totalappliedresume'] = $appliedresume_s;
+        wpjobportal::$_data['totaljobs'] = $wpjobportal_job_s;
+        wpjobportal::$_data['totalcompany'] = $wpjobportal_company_s;
+        wpjobportal::$_data['totalresume'] = $wpjobportal_resume_s;
+        wpjobportal::$_data['totalappliedresume'] = $wpjobportal_appliedresume_s;
 
-        wpjobportal::$_data['line_chart_json_array'] = $json_array;
+        wpjobportal::$_data['line_chart_json_array'] = $wpjobportal_json_array;
 
         $query = "SELECT cat.cat_title,(SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE jobcategory = cat.id) AS jobs
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat
                     ORDER BY jobs DESC LIMIT 5";
-        $jobs = wpjobportal::$_db->get_results($query);
+        $wpjobportal_jobs = wpjobportal::$_db->get_results($query);
         /*$query = "SELECT cat.cat_title,(SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` ) AS companies
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat
                     ORDER BY companies DESC LIMIT 5";*/
-       // $companies = wpjobportal::$_db->get_results($query);
+       // $wpjobportal_companies = wpjobportal::$_db->get_results($query);
         $query = "SELECT cat.cat_title,(SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE job_category = cat.id) AS resumes
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat
                     ORDER BY resumes DESC LIMIT 5";
-        $resume = wpjobportal::$_db->get_results($query);
+        $wpjobportal_resume = wpjobportal::$_db->get_results($query);
         wpjobportal::$_data['catbar1'] = '';
         wpjobportal::$_data['catbar2'] = '';
         wpjobportal::$_data['catpie'] = '';
-        $colors = $this->getChartColor();
-        for ($i = 0; $i < 5; $i++) {
-            $job = $jobs[$i];
-            /*$company = $companies[$i];*/
-            $resum = $resume[$i];
-            wpjobportal::$_data['catbar1'] .= "['" . wpjobportalphplib::wpJP_htmlspecialchars($job->cat_title) . "', " . $job->jobs . ", '" . $colors[$i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
-            wpjobportal::$_data['catbar2'] .= "['" . wpjobportalphplib::wpJP_htmlspecialchars($resum->cat_title) . "', " . $resum->resumes . ", '" . $colors[$i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
-            /*wpjobportal::$_data['catpie'] .= "['" . $company->cat_title . "', " . $company->companies . "],";*/
+        $wpjobportal_colors = $this->getChartColor();
+        for ($wpjobportal_i = 0; $wpjobportal_i < 5; $wpjobportal_i++) {
+            $wpjobportal_job = $wpjobportal_jobs[$wpjobportal_i];
+            /*$wpjobportal_company = $wpjobportal_companies[$wpjobportal_i];*/
+            $resum = $wpjobportal_resume[$wpjobportal_i];
+            wpjobportal::$_data['catbar1'] .= "['" . wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_job->cat_title) . "', " . $wpjobportal_job->jobs . ", '" . $wpjobportal_colors[$wpjobportal_i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
+            wpjobportal::$_data['catbar2'] .= "['" . wpjobportalphplib::wpJP_htmlspecialchars($resum->cat_title) . "', " . $resum->resumes . ", '" . $wpjobportal_colors[$wpjobportal_i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
+            /*wpjobportal::$_data['catpie'] .= "['" . $wpjobportal_company->cat_title . "', " . $wpjobportal_company->companies . "],";*/
         }
 
         $query = "SELECT city.name,(SELECT COUNT(jobid) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobcities` WHERE cityid = city.id ) AS jobs
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city
                     ORDER BY jobs DESC LIMIT 5";
-        $jobs = wpjobportal::$_db->get_results($query);
+        $wpjobportal_jobs = wpjobportal::$_db->get_results($query);
         $query = "SELECT city.name,(SELECT COUNT(companyid) FROM `" . wpjobportal::$_db->prefix . "wj_portal_companycities` WHERE cityid = city.id) AS companies
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city
                     ORDER BY companies DESC LIMIT 5";
-        $companies = wpjobportal::$_db->get_results($query);
+        $wpjobportal_companies = wpjobportal::$_db->get_results($query);
         $query = "SELECT city.name,(SELECT COUNT(resumeid) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` WHERE address_city = city.id) AS resumes
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city
                     ORDER BY resumes DESC LIMIT 5";
-        $resume = wpjobportal::$_db->get_results($query);
+        $wpjobportal_resume = wpjobportal::$_db->get_results($query);
         wpjobportal::$_data['citybar1'] = '';
         wpjobportal::$_data['citybar2'] = '';
         wpjobportal::$_data['citypie'] = '';
-        for ($i = 0; $i < 5; $i++) {
-            $job = $jobs[$i];
-            $company = $companies[$i];
-            $resum = $resume[$i];
-            wpjobportal::$_data['citybar1'] .= "['" . wpjobportalphplib::wpJP_htmlspecialchars($job->name) . "', " . $job->jobs . ", '" . $colors[$i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
-            wpjobportal::$_data['citybar2'] .= "['" . wpjobportalphplib::wpJP_htmlspecialchars($resum->name) . "', " . $resum->resumes . ", '" . $colors[$i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
-            wpjobportal::$_data['citypie'] .= "['" . wpjobportalphplib::wpJP_htmlspecialchars($company->name) . "', " . $company->companies . "],";
+        for ($wpjobportal_i = 0; $wpjobportal_i < 5; $wpjobportal_i++) {
+            $wpjobportal_job = $wpjobportal_jobs[$wpjobportal_i];
+            $wpjobportal_company = $wpjobportal_companies[$wpjobportal_i];
+            $resum = $wpjobportal_resume[$wpjobportal_i];
+            wpjobportal::$_data['citybar1'] .= "['" . wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_job->name) . "', " . $wpjobportal_job->jobs . ", '" . $wpjobportal_colors[$wpjobportal_i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
+            wpjobportal::$_data['citybar2'] .= "['" . wpjobportalphplib::wpJP_htmlspecialchars($resum->name) . "', " . $resum->resumes . ", '" . $wpjobportal_colors[$wpjobportal_i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
+            wpjobportal::$_data['citypie'] .= "['" . wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_company->name) . "', " . $wpjobportal_company->companies . "],";
         }
 
         $query = "SELECT jobtype.title,(SELECT COUNT(jobid) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE jobtype = jobtype.id ) AS jobs
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype
                     ORDER BY jobs DESC LIMIT 5";
-        $jobs = wpjobportal::$_db->get_results($query);
+        $wpjobportal_jobs = wpjobportal::$_db->get_results($query);
         $query = "SELECT jobtype.title,(SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE jobtype = jobtype.id) AS resumes
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype
                     ORDER BY resumes DESC LIMIT 5";
-        $resume = wpjobportal::$_db->get_results($query);
+        $wpjobportal_resume = wpjobportal::$_db->get_results($query);
         wpjobportal::$_data['jobtypebar1'] = '';
         wpjobportal::$_data['jobtypebar2'] = '';
-        for ($i = 0; $i < 5; $i++) {
-            if (isset($jobs[$i]) && isset($jobs[$i])) {
-                $job = $jobs[$i];
-                $resum = $resume[$i];
-                wpjobportal::$_data['jobtypebar1'] .= "['" . wpjobportalphplib::wpJP_htmlspecialchars($job->title) . "', " . $job->jobs . ", '" . $colors[$i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
-                wpjobportal::$_data['jobtypebar2'] .= "['" . wpjobportalphplib::wpJP_htmlspecialchars($resum->title) . "', " . $resum->resumes . ", '" . $colors[$i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
+        for ($wpjobportal_i = 0; $wpjobportal_i < 5; $wpjobportal_i++) {
+            if (isset($wpjobportal_jobs[$wpjobportal_i]) && isset($wpjobportal_jobs[$wpjobportal_i])) {
+                $wpjobportal_job = $wpjobportal_jobs[$wpjobportal_i];
+                $resum = $wpjobportal_resume[$wpjobportal_i];
+                wpjobportal::$_data['jobtypebar1'] .= "['" . wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_job->title) . "', " . $wpjobportal_job->jobs . ", '" . $wpjobportal_colors[$wpjobportal_i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
+                wpjobportal::$_data['jobtypebar2'] .= "['" . wpjobportalphplib::wpJP_htmlspecialchars($resum->title) . "', " . $resum->resumes . ", '" . $wpjobportal_colors[$wpjobportal_i] . "', '" . esc_html(__('Jobs', 'wp-job-portal')) . "' ],";
             }
         }
     }
 
     function getMessagekey(){
-        $key = 'report';if(wpjobportal::$_common->wpjp_isadmin()){$key = 'admin_'.$key;}return $key;
+        $wpjobportal_key = 'report';if(wpjobportal::$_common->wpjp_isadmin()){$wpjobportal_key = 'admin_'.$wpjobportal_key;}return $wpjobportal_key;
     }
 
 

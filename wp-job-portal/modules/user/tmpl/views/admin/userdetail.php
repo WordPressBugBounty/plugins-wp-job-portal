@@ -5,22 +5,22 @@
 */
 ?>
 <?php
-	switch ($layout) {
+	switch ($wpjobportal_layout) {
 		case 'user':
 			?>
 			<div class="wpjobportal-user-cnt-wrp">
-				<div class="wpjobportal-user-middle-wrp wpjob-portal-role-info-uid-<?php echo esc_attr($user->id);?>">
+				<div class="wpjobportal-user-middle-wrp wpjob-portal-role-info-uid-<?php echo esc_attr($wpjobportal_user->id);?>">
 					<div class="wpjobportal-user-data">
-						<a class="wpjobportal-user-name" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userdetail&id='.esc_attr($user->id))); ?>" title="<?php echo esc_html(__('user name','wp-job-portal')); ?>">
-			            	<?php echo esc_html($user->first_name) . ' ' . esc_html($user->last_name); ?>
+						<a class="wpjobportal-user-name" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userdetail&id='.esc_attr($wpjobportal_user->id))); ?>" title="<?php echo esc_attr(__('user name','wp-job-portal')); ?>">
+			            	<?php echo esc_html($wpjobportal_user->first_name) . ' ' . esc_html($wpjobportal_user->last_name); ?>
 			            </a>
 					</div>
 					<div class="wpjobportal-user-data">
-						<span class="wpjobportal-user-role role-<?php echo ($user->roleid == 1) ? 'empl' : 'jobs'; ?>">
+						<span class="wpjobportal-user-role role-<?php echo ($wpjobportal_user->roleid == 1) ? 'empl' : 'jobs'; ?>">
 			                <?php
-				                if($user->roleid == 1){
+				                if($wpjobportal_user->roleid == 1){
 				                    echo esc_html(__('Employer','wp-job-portal'));
-				                }elseif($user->roleid == 2){
+				                }elseif($wpjobportal_user->roleid == 2){
 				                    echo esc_html(__('Job seeker','wp-job-portal'));
 				                }
 			                ?>
@@ -32,28 +32,28 @@
 					        	<?php echo esc_html(__('ID', 'wp-job-portal')) . ': '; ?>
 					        </span>
 				        	<span class="wpjobportal-user-data-value">
-				        		<?php echo esc_html($user->id); ?>
+				        		<?php echo esc_html($wpjobportal_user->id); ?>
 				        	</span>
 					    </div>
 
 					    <?php
 					    /*
-					    if($user->roleid == 2){ ?>
+					    if($wpjobportal_user->roleid == 2){ ?>
 						    <div class="wpjobportal-user-data-text">
 						        <span class="wpjobportal-user-data-title">
 						        	<?php echo esc_html(__('Resume', 'wp-job-portal')) . ': '; ?>
 						        </span>
 					        	<span class="wpjobportal-user-data-value">
-					        		<?php echo esc_html($user->resume_first_name) . ' ' . esc_html($user->resume_last_name); ?>
+					        		<?php echo esc_html($wpjobportal_user->resume_first_name) . ' ' . esc_html($wpjobportal_user->resume_last_name); ?>
 					        	</span>
 						    </div>
-					    <?php }elseif($user->roleid == 1){ ?>
+					    <?php }elseif($wpjobportal_user->roleid == 1){ ?>
 						    <div class="wpjobportal-user-data-text">
 						        <span class="wpjobportal-user-data-title">
 						        	<?php echo esc_html(__('Company', 'wp-job-portal')) . ': '; ?>
 						        </span>
 						        <span class="wpjobportal-user-data-value">
-						        	<?php echo esc_html($user->companyname); ?>
+						        	<?php echo esc_html($wpjobportal_user->companyname); ?>
 						        </span>
 						    </div>
 					    <?php } */?>
@@ -63,7 +63,7 @@
 					        	<?php echo esc_html(__('Group', 'wp-job-portal')) . ': '; ?>
 					        </span>
 				        	<span class="wpjobportal-user-data-value">
-				        		<?php echo esc_html(WPJOBPORTALincluder::getJSModel('user')->getWPRoleNameById($user->wpuid)); ?>
+				        		<?php echo esc_html(WPJOBPORTALincluder::getJSModel('user')->getWPRoleNameById($wpjobportal_user->wpuid)); ?>
 				        	</span>
 					    </div>
 					    <div class="wpjobportal-user-data-text">
@@ -71,13 +71,13 @@
 					        	<?php echo esc_html(__('User Name', 'wp-job-portal')) . ': '; ?>
 					        </span>
 				        	<span class="wpjobportal-user-data-value">
-				        		<?php echo esc_html($user->user_login); ?>
+				        		<?php echo esc_html($wpjobportal_user->user_login); ?>
 				        	</span>
 					    </div>
 					    <div class="wpjobportal-user-data-text-role-info wpjobportal-user-data-text" >
 					    </div>
 					    <div class="wpjobportal-user-data-text">
-					        <a href="#" class="wpjobportal-user-data-text-role-info-btn" onclick="getUserRoleBasedInfo(<?php echo esc_attr($user->roleid);?>,<?php echo esc_attr($user->id);?>)"><?php echo esc_html(__('Show Info', 'wp-job-portal'));?></a>
+					        <a href="#" class="wpjobportal-user-data-text-role-info-btn" onclick="getUserRoleBasedInfo(<?php echo esc_js($wpjobportal_user->roleid);?>,<?php echo esc_js($wpjobportal_user->id);?>)"><?php echo esc_html(__('Show Info', 'wp-job-portal'));?></a>
 					    </div>
 					</div>
 				</div>
@@ -90,14 +90,14 @@
 			 		<div class="wpjobportal-user-middle-wrp">
 			            <div class="wpjobportal-user-data">
 			                <span class="wpjobportal-user-name">
-			                	<?php echo esc_html($user->first_name).' '.esc_html($user->last_name); ?>
+			                	<?php echo esc_html($wpjobportal_user->first_name).' '.esc_html($wpjobportal_user->last_name); ?>
 			                </span>
 		             	</div>
 			            <div class="wpjobportal-user-data">
-			            	<span class="wpjobportal-user-role role-<?php echo ($user->roleid == 1) ? 'empl' : 'jobs'; ?>">
-		                        <?php if($user->roleid == 1){
+			            	<span class="wpjobportal-user-role role-<?php echo ($wpjobportal_user->roleid == 1) ? 'empl' : 'jobs'; ?>">
+		                        <?php if($wpjobportal_user->roleid == 1){
 		                            echo esc_html(__('Employer','wp-job-portal'));
-		                            }elseif($user->roleid == 2){
+		                            }elseif($wpjobportal_user->roleid == 2){
 		                                echo esc_html(__('Job seeker','wp-job-portal'));
 		                            }
 	                            ?>
@@ -109,7 +109,7 @@
 			                    	<?php echo esc_html(__('ID','wp-job-portal')); ?> :
 			                    </span>
 			                    <span class="wpjobportal-user-data-value">
-			                    	<?php echo esc_html($user->id); ?>
+			                    	<?php echo esc_html($wpjobportal_user->id); ?>
 			                    </span>
 			                </div>
 			                <div class="wpjobportal-user-data-text">
@@ -117,7 +117,7 @@
 			                    	<?php echo esc_html(__('Email','wp-job-portal')); ?> :
 			                    </span>
 			                    <span class="wpjobportal-user-data-value">
-			                    	<?php echo esc_html($user->emailaddress); ?>
+			                    	<?php echo esc_html($wpjobportal_user->emailaddress); ?>
 			                    </span>
 			                </div>
 			                <div class="wpjobportal-user-data-text">
@@ -125,7 +125,7 @@
 			                    	<?php echo esc_html(__('Group','wp-job-portal')); ?> :
 			                    </span>
 			                    <span class="wpjobportal-user-data-value">
-			                    	<?php echo esc_html(WPJOBPORTALincluder::getJSModel('user')->getWPRoleNameById($user->uid));  ?>
+			                    	<?php echo esc_html(WPJOBPORTALincluder::getJSModel('user')->getWPRoleNameById($wpjobportal_user->uid));  ?>
 			                    </span>
 			                </div>
 			                <div class="wpjobportal-user-data-text">
@@ -133,15 +133,15 @@
 			                    	<?php echo esc_html(__('Created','wp-job-portal')); ?> :
 			                    </span>
 			                    <span class="wpjobportal-user-data-value">
-			                    	<?php echo esc_html(date_i18n(wpjobportal::$_configuration['date_format'], strtotime($user->created) )); ?>
+			                    	<?php echo esc_html(date_i18n(wpjobportal::$_configuration['date_format'], strtotime($wpjobportal_user->created) )); ?>
 			                    </span>
 			                </div>
 			                <div class="wjportal-custom-field-wrp">
 			                    <?php
-			                        $customfields = WPJOBPORTALincluder::getObjectClass('customfields')->userFieldsData(4);
-			                            foreach ($customfields as $field) {
-			                                $showCustom =  wpjobportal::$_wpjpcustomfield->showCustomFields($field,12,$user->params);
-			                                echo wp_kses($showCustom, WPJOBPORTAL_ALLOWED_TAGS);
+			                        $wpjobportal_customfields = WPJOBPORTALincluder::getObjectClass('customfields')->userFieldsData(4);
+			                            foreach ($wpjobportal_customfields as $wpjobportal_field) {
+			                                $wpjobportal_showCustom =  wpjobportal::$_wpjpcustomfield->showCustomFields($wpjobportal_field,12,$wpjobportal_user->params);
+			                                echo wp_kses($wpjobportal_showCustom, WPJOBPORTAL_ALLOWED_TAGS);
 			                            }
 			                    ?>
 			                </div>

@@ -11,8 +11,8 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
     </div>
     <div id="wpjobportaladmin-data">
         <?php
-            $msgkey = WPJOBPORTALincluder::getJSModel('systemerror')->getMessagekey();
-            WPJOBPORTALMessages::getLayoutMessage($msgkey);
+            $wpjobportal_msgkey = WPJOBPORTALincluder::getJSModel('systemerror')->getMessagekey();
+            WPJOBPORTALMessages::getLayoutMessage($wpjobportal_msgkey);
         ?>
         <!-- top bar -->
         <div id="wpjobportal-wrapper-top">
@@ -20,7 +20,7 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_html(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -30,12 +30,12 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
             </div>
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_html(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_html(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -46,7 +46,7 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
             </div>
         </div>
         <!-- top head -->
-        <?php WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('module' => 'systemerror' , 'layouts' => 'systemerror')); ?>
+        <?php WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('wpjobportal_module' => 'systemerror' , 'wpjobportal_layouts' => 'systemerror')); ?>
         <!-- page content -->
         <div id="wpjobportal-admin-wrapper" class="p0">
             <?php
@@ -68,19 +68,19 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                         </thead>
                         <tbody>
                             <?php
-                                foreach (wpjobportal::$_data[0] AS $systemerror) {
-                                    $isview = ($systemerror->isview == 1) ? 'close.png' : 'good.png';
+                                foreach (wpjobportal::$_data[0] AS $wpjobportal_systemerror) {
+                                    $wpjobportal_isview = ($wpjobportal_systemerror->isview == 1) ? 'close.png' : 'good.png';
                                     ?>
                                     <tr>
                                         <td class="wpjobportal-text-left w70">
-                                            <?php echo esc_html($systemerror->error); ?>
+                                            <?php echo esc_html($wpjobportal_systemerror->error); ?>
                                         </td>
                                         <td>
-                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/<?php echo esc_attr($isview); ?>" />
+                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/<?php echo esc_attr($wpjobportal_isview); ?>" />
                                         </td>
                                         <td>
                                             <?php
-                                                echo esc_html(date_i18n(wpjobportal::$_configuration['date_format'], strtotime($systemerror->created)));
+                                                echo esc_html(date_i18n(wpjobportal::$_configuration['date_format'], strtotime($wpjobportal_systemerror->created)));
                                             ?>
                                         </td>
                                     </tr>
@@ -94,8 +94,8 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                         echo '<div class="tablenav"><div class="tablenav-pages">' . wp_kses_post(wpjobportal::$_data[1]) . '</div></div>';
                     }
                 } else {
-                    $msg = esc_html(__('No record found','wp-job-portal'));
-                    WPJOBPORTALlayout::getNoRecordFound($msg);
+                    $wpjobportal_msg = esc_html(__('No record found','wp-job-portal'));
+                    WPJOBPORTALlayout::getNoRecordFound($wpjobportal_msg);
                 }
             ?>
         </div>

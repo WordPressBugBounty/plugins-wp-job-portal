@@ -5,21 +5,21 @@ if (!defined('ABSPATH'))
 <div id="listjobs">
     <h3 class="js-job-configuration-heading-main"><?php echo esc_html(__('Listing Style', 'wp-job-portal')); ?></h3>
     <div class="left">
-        <?php if($theme_chk == 0){ ?>
+        <?php if($wpjobportal_theme_chk == 0){ ?>
             <div class="js-col-xs-12 js-col-md-12 js-job-configuration-row">
                 <div class="js-col-xs-12  js-job-configuration-title"><?php echo esc_html(__('Search icon position', 'wp-job-portal')); ?></div>
-                <div class="js-col-xs-12  js-job-configuration-value"><?php echo wp_kses(WPJOBPORTALformfield::select('searchjobtag', $searchjobtag, wpjobportal::$_data[0]['searchjobtag']),WPJOBPORTAL_ALLOWED_TAGS); ?></div>
+                <div class="js-col-xs-12  js-job-configuration-value"><?php echo wp_kses(WPJOBPORTALformfield::select('searchjobtag', $wpjobportal_searchjobtag, wpjobportal::$_data[0]['searchjobtag']),WPJOBPORTAL_ALLOWED_TAGS); ?></div>
                 <div class="js-col-xs-12  js-job-configuration-description"><small><?php echo esc_html(__('Postion for search icon on jobs listing page.', 'wp-job-portal')); ?></small></div>
             </div>
         <?php } ?>
         <div class="js-col-xs-12 js-col-md-12 js-job-configuration-row">
             <div class="js-col-xs-12  js-job-configuration-title"><?php echo esc_html(__('Show featured jobs', 'wp-job-portal')); ?><font style="color:#1C6288;font-size:20px;margin:0px 5px;">*</font></div>
-            <div class="js-col-xs-12  js-job-configuration-value"><?php echo wp_kses(WPJOBPORTALformfield::select('showfeaturedjobsinlistjobs', $yesno, wpjobportal::$_data[0]['showfeaturedjobsinlistjobs']),WPJOBPORTAL_ALLOWED_TAGS); ?></div>
+            <div class="js-col-xs-12  js-job-configuration-value"><?php echo wp_kses(WPJOBPORTALformfield::select('showfeaturedjobsinlistjobs', $wpjobportal_yesno, wpjobportal::$_data[0]['showfeaturedjobsinlistjobs']),WPJOBPORTAL_ALLOWED_TAGS); ?></div>
             <div class="js-col-xs-12  js-job-configuration-description"><small><?php echo esc_html(__('Show featured jobs in jobs lising page', 'wp-job-portal')); ?></small></div>
         </div>
         <div class="js-col-xs-12 js-col-md-12 js-job-configuration-row">
             <div class="js-col-xs-12  js-job-configuration-title"><?php echo esc_html(__('Show Total Number Of jobs', 'wp-job-portal')); ?></div>
-            <div class="js-col-xs-12  js-job-configuration-value"><?php echo wp_kses(WPJOBPORTALformfield::select('show_total_number_of_jobs', $yesno, wpjobportal::$_data[0]['show_total_number_of_jobs']),WPJOBPORTAL_ALLOWED_TAGS); ?></div>
+            <div class="js-col-xs-12  js-job-configuration-value"><?php echo wp_kses(WPJOBPORTALformfield::select('show_total_number_of_jobs', $wpjobportal_yesno, wpjobportal::$_data[0]['show_total_number_of_jobs']),WPJOBPORTAL_ALLOWED_TAGS); ?></div>
             <div class="js-col-xs-12  js-job-configuration-description"><small><?php echo esc_html(__('Show total number of jobs in jobs lising page', 'wp-job-portal')); ?></small></div>
         </div>
     </div>
@@ -29,10 +29,10 @@ if (!defined('ABSPATH'))
             <div class="js-col-xs-12  js-job-configuration-value"><?php echo wp_kses(WPJOBPORTALformfield::text('nooffeaturedjobsinlisting', wpjobportal::$_data[0]['nooffeaturedjobsinlisting'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?></div>
             <div class="js-col-xs-12  js-job-configuration-description"><small><?php echo esc_html(__('Number of featured job show per scroll', 'wp-job-portal')); ?></small></div>
         </div>
-        <?php if($theme_chk == 0){ ?>
+        <?php if($wpjobportal_theme_chk == 0){ ?>
             <div class="js-col-xs-12 js-col-md-12 js-job-configuration-row">
                 <div class="js-col-xs-12  js-job-configuration-title"><?php echo esc_html(__('Show labels in jobs listing', 'wp-job-portal')); ?></div>
-                <div class="js-col-xs-12  js-job-configuration-value"><?php echo wp_kses(WPJOBPORTALformfield::select('labelinlisting', $yesno, wpjobportal::$_data[0]['labelinlisting']),WPJOBPORTAL_ALLOWED_TAGS); ?></div>
+                <div class="js-col-xs-12  js-job-configuration-value"><?php echo wp_kses(WPJOBPORTALformfield::select('labelinlisting', $wpjobportal_yesno, wpjobportal::$_data[0]['labelinlisting']),WPJOBPORTAL_ALLOWED_TAGS); ?></div>
                 <div class="js-col-xs-12  js-job-configuration-description"><small><?php echo esc_html(__('Show labels in jobs listings, my jobs etc', 'wp-job-portal')); ?></small></div>
             </div>
         <?php } ?>
@@ -41,7 +41,7 @@ if (!defined('ABSPATH'))
     <div class="left">
         <div class="js-col-xs-12 js-col-md-12 js-job-configuration-row">
             <div class="js-col-xs-12 js-col-md-2 js-job-configuration-title"><?php echo esc_html(__('Show Indeed jobs on jobs listings', 'wp-job-portal')); ?><font style="color:#1C6288;font-size:20px;margin:0px 5px;">*</font></div>
-            <div class="js-col-xs-12  js-job-configuration-value"><?php echo wp_kses(WPJOBPORTALformfield::select('indeedjob_enabled', $yesno, wpjobportal::$_data[0]['indeedjob_enabled']),WPJOBPORTAL_ALLOWED_TAGS); ?><div><small><?php echo esc_html(__('Show company logo with job feeds', 'wp-job-portal')); ?></small></div></div>
+            <div class="js-col-xs-12  js-job-configuration-value"><?php echo wp_kses(WPJOBPORTALformfield::select('indeedjob_enabled', $wpjobportal_yesno, wpjobportal::$_data[0]['indeedjob_enabled']),WPJOBPORTAL_ALLOWED_TAGS); ?><div><small><?php echo esc_html(__('Show company logo with job feeds', 'wp-job-portal')); ?></small></div></div>
         </div>
         <div class="js-col-xs-12 js-col-md-12 js-job-configuration-row">
             <div class="js-col-xs-12 js-col-md-2 js-job-configuration-title"><?php echo esc_html(__('API key', 'wp-job-portal')); ?><font style="color:#1C6288;font-size:20px;margin:0px 5px;">*</font></div>
@@ -79,7 +79,7 @@ if (!defined('ABSPATH'))
     <div class="left">
         <div class="js-col-xs-12 js-col-md-12 js-job-configuration-row">
             <div class="js-col-xs-12 js-col-md-2 js-job-configuration-title"><?php echo esc_html(__('Show Career Builder jobs in job listings', 'wp-job-portal')); ?><font style="color:#1C6288;font-size:20px;margin:0px 5px;">*</font></div>
-            <div class="js-col-xs-12  js-job-configuration-value"><?php echo wp_kses(WPJOBPORTALformfield::select('careerbuilder_enabled', $yesno, wpjobportal::$_data[0]['careerbuilder_enabled']),WPJOBPORTAL_ALLOWED_TAGS); ?><div><small><?php echo esc_html(__('Use rss categories with our job categories', 'wp-job-portal')); ?></small></div></div>
+            <div class="js-col-xs-12  js-job-configuration-value"><?php echo wp_kses(WPJOBPORTALformfield::select('careerbuilder_enabled', $wpjobportal_yesno, wpjobportal::$_data[0]['careerbuilder_enabled']),WPJOBPORTAL_ALLOWED_TAGS); ?><div><small><?php echo esc_html(__('Use rss categories with our job categories', 'wp-job-portal')); ?></small></div></div>
         </div>
         <div class="js-col-xs-12 js-col-md-12 js-job-configuration-row">
             <div class="js-col-xs-12 js-col-md-2 js-job-configuration-title"><?php echo esc_html(__('API key', 'wp-job-portal')); ?><font style="color:#1C6288;font-size:20px;margin:0px 5px;">*</font></div>

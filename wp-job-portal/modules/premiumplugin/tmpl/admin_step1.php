@@ -12,7 +12,7 @@ delete_option( 'wpjobportal_addon_install_data' );
                     <div id="wpjobportal-breadcrumbs">
                         <ul>
                             <li>
-                                <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_html(__('Dashboard','wp-job-portal')); ?>">
+                                <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('Dashboard','wp-job-portal')); ?>">
                                     <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                                 </a>
                             </li>
@@ -22,12 +22,12 @@ delete_option( 'wpjobportal_addon_install_data' );
                 </div>
                 <div id="wpjobportal-wrapper-top-right">
                     <div id="wpjobportal-config-btn">
-                        <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_html(__('configuration','wp-job-portal')); ?>">
+                        <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
                             <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                        </a>
                     </div>
                     <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                        <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_html(__('help','wp-job-portal')); ?>">
+                        <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
                             <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                        </a>
                     </div>
@@ -59,7 +59,7 @@ delete_option( 'wpjobportal_addon_install_data' );
                                             <?php echo esc_html(__('Welcome to WP Job Portal Addon Installer','wp-job-portal'));?>
                                         </div>
                                         <div class="wpjobportal-addon-installer-right-section-btn-wrp">
-                                            <a class="wpjobportal-addon-installer-right-section-head-closebtn" href="admin.php?page=wpjobportal"title="<?php echo esc_html(__('Close','wp-job-portal'));?>">
+                                            <a class="wpjobportal-addon-installer-right-section-head-closebtn" href="admin.php?page=wpjobportal"title="<?php echo esc_attr(__('Close','wp-job-portal'));?>">
                                                 <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/close.png" />
                                             </a>
                                         </div>
@@ -69,22 +69,22 @@ delete_option( 'wpjobportal_addon_install_data' );
                                     </div>
                                     <div class="wpjobportal-addon-installer-right-key-section" >
                                         <?php
-                                        $error_message = '';
-                                        $transactionkey = '';
+                                        $wpjobportal_error_message = '';
+                                        $wpjobportal_transactionkey = '';
                                         if(get_option( 'wpjobportal_addon_return_data', '' ) != ''){
                                             $wpjobportal_addon_return_data = json_decode(get_option( 'wpjobportal_addon_return_data' ),true);
                                             if(isset($wpjobportal_addon_return_data['status']) && $wpjobportal_addon_return_data['status'] == 0){
-                                                $error_message = $wpjobportal_addon_return_data['message'];
-                                                $transactionkey = $wpjobportal_addon_return_data['transactionkey'];
+                                                $wpjobportal_error_message = $wpjobportal_addon_return_data['message'];
+                                                $wpjobportal_transactionkey = $wpjobportal_addon_return_data['transactionkey'];
                                             }
                                             delete_option( 'wpjobportal_addon_return_data' );
                                         }
 
                                         ?>
                                         <div class="wpjobportal-addon-installer-right-key-field" >
-                                            <input type="text" name="transactionkey" id="transactionkey" class="wpjobportal_key_field" value="<?php echo esc_attr($transactionkey);?>"/>
-                                            <?php if($error_message != '' ){ ?>
-                                                <div class="wpjobportal-addon-installer-right-key-field-message" > <img alt="image" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/icon.png" /> <?php echo esc_html($error_message) ;?></div>
+                                            <input type="text" name="transactionkey" id="transactionkey" class="wpjobportal_key_field" value="<?php echo esc_attr($wpjobportal_transactionkey);?>"/>
+                                            <?php if($wpjobportal_error_message != '' ){ ?>
+                                                <div class="wpjobportal-addon-installer-right-key-field-message" > <img alt="image" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/icon.png" /> <?php echo esc_html($wpjobportal_error_message) ;?></div>
                                             <?php } ?>
                                         </div>
                                         <div class="wpjobportal-addon-installer-right-key-button" >
@@ -109,7 +109,7 @@ delete_option( 'wpjobportal_addon_install_data' );
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
         jQuery(document).ready(function(){
             jQuery('#wpjobportalfrom').on('submit', function() {
                 jsShowLoading();
@@ -121,5 +121,5 @@ delete_option( 'wpjobportal_addon_install_data' );
             jQuery('div#jstran_loading').show();
         }
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>

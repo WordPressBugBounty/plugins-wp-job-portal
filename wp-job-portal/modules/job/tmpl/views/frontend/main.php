@@ -3,17 +3,17 @@
 /**
  * @param job      job object - optional
  */
-if(!isset($labelflag)){
-	$labelflag = '';
+if(!isset($wpjobportal_labelflag)){
+	$wpjobportal_labelflag = '';
 }
 ?>
 <div class="wjportal-jobs-cnt-wrp">
 	<?php 
 		WPJOBPORTALincluder::getTemplate('job/views/frontend/title',array(
-		    'layout' => 'job',
-		    'job' => $job,
-		    'labelflag' => $labelflag,
-		    'control' => $control
+		    'wpjobportal_layout' => 'job',
+		    'wpjobportal_job' => $wpjobportal_job,
+		    'wpjobportal_labelflag' => $wpjobportal_labelflag,
+		    'wpjobportal_control' => $wpjobportal_control
 		)); 
 	?>
 </div>

@@ -3,21 +3,21 @@
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
         function resetFrom() {
             document.getElementById('searchname').value = '';
             document.getElementById('searchusername').value = '';
             document.getElementById('wpjobportalform').submit();
         }
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>
 <div id="wpjobportaladmin-wrapper">
 	<div id="wpjobportaladmin-leftmenu">
         <?php  WPJOBPORTALincluder::getClassesInclude('wpjobportaladminsidemenu'); ?>
     </div>
     <div id="wpjobportaladmin-data">
-    <?php wpjobportal::$_data['filter']['categoryid'] = 0; ?>
+    <?php wpjobportal::$wpjobportal_data['filter']['categoryid'] = 0; ?>
     <span class="js-admin-title">
         <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/back-icon.png" /></a>
         <?php echo esc_html(__('User Stats', 'wp-job-portal')) ?>
@@ -46,24 +46,24 @@
             </thead>
             <tbody>
                 <?php
-                $k = 0;
-                for ($i = 0, $n = count(wpjobportal::$_data[0]); $i < $n; $i++) {
-                    $row = wpjobportal::$_data[0][$i];
+                $wpjobportal_k = 0;
+                for ($wpjobportal_i = 0, $wpjobportal_n = count(wpjobportal::$_data[0]); $wpjobportal_i < $wpjobportal_n; $wpjobportal_i++) {
+                    $wpjobportal_row = wpjobportal::$_data[0][$wpjobportal_i];
                     ?>
                     <tr>
-                        <td><?php echo esc_html($row->name); ?></td>
-                        <td><?php echo esc_html($row->username); ?>	</td>
-                        <td><?php echo esc_html($row->companyname); ?>	</td>
-                        <td><?php echo esc_html($row->resumename); ?>	</td>
+                        <td><?php echo esc_html($wpjobportal_row->name); ?></td>
+                        <td><?php echo esc_html($wpjobportal_row->username); ?>	</td>
+                        <td><?php echo esc_html($wpjobportal_row->companyname); ?>	</td>
+                        <td><?php echo esc_html($wpjobportal_row->resumename); ?>	</td>
 
-                        <?php if ($row->rolefor == 1) { // employer ?>
-                            <td><a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userstate_companies&md='.$row->id)); ?>"><strong><?php echo esc_html($row->companies); ?></strong></a></td>
-                            <td><a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userstate_jobs&bd='.$row->id)); ?>"><strong><?php echo esc_html($row->jobs); ?></a></strong></td>
+                        <?php if ($wpjobportal_row->rolefor == 1) { // employer ?>
+                            <td><a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userstate_companies&md='.$wpjobportal_row->id)); ?>"><strong><?php echo esc_html($wpjobportal_row->companies); ?></strong></a></td>
+                            <td><a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userstate_jobs&bd='.$wpjobportal_row->id)); ?>"><strong><?php echo esc_html($wpjobportal_row->jobs); ?></a></strong></td>
                             <td><strong>-</strong></td>
-                        <?php } elseif ($row->rolefor == 2) { //jobseeker ?>
+                        <?php } elseif ($wpjobportal_row->rolefor == 2) { //jobseeker ?>
                             <td><strong>-</strong></td>
                             <td><strong>-</strong></td>
-                            <td><a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userstate_resumes&ruid='.$row->id)); ?>"><strong><?php echo esc_html($row->resumes); ?></a></strong></td>
+                            <td><a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userstate_resumes&ruid='.$wpjobportal_row->id)); ?>"><strong><?php echo esc_html($wpjobportal_row->resumes); ?></a></strong></td>
                         <?php } else { ?>
                             <td><strong>-</strong></td>
                             <td><strong>-</strong></td>
@@ -80,8 +80,8 @@
             echo '<div class="tablenav"><div class="tablenav-pages">' . wp_kses_post(wpjobportal::$_data[1]) . '</div></div>';
         }
     } else {
-        $msg = esc_html(__('No record found','wp-job-portal'));
-        WPJOBPORTALlayout::getNoRecordFound($msg);
+        $wpjobportal_msg = esc_html(__('No record found','wp-job-portal'));
+        WPJOBPORTALlayout::getNoRecordFound($wpjobportal_msg);
     }
     ?>
     </div>

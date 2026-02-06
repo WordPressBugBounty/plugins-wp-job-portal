@@ -6,56 +6,56 @@ if (!defined('ABSPATH'))
 do_action('wpjobportal_load_wp_plugin_file');
 // check for plugin using plugin name
 if (is_plugin_active('wp-job-portal/wp-job-portal.php')) {
-	$query = "SELECT * FROM `".wpjobportal::$_db->prefix."wj_portal_config` WHERE configname = 'versioncode' OR configname = 'last_version' OR configname = 'last_step_updater'";
-	$result = wpjobportal::$_db->get_results($query);
-	$config = array();
-	foreach($result AS $rs){
-		$config[$rs->configname] = $rs->configvalue;
+	$wpjobportal_query = "SELECT * FROM `".wpjobportal::$_db->prefix."wj_portal_config` WHERE configname = 'versioncode' OR configname = 'last_version' OR configname = 'last_step_updater'";
+	$wpjobportal_result = wpjobportal::$_db->get_results($wpjobportal_query);
+	$wpjobportal_config = array();
+	foreach($wpjobportal_result AS $wpjobportal_rs){
+		$wpjobportal_config[$wpjobportal_rs->configname] = $wpjobportal_rs->configvalue;
 	}
-	$config['versioncode'] = wpjobportalphplib::wpJP_str_replace('.', '', $config['versioncode']);
+	$wpjobportal_config['versioncode'] = wpjobportalphplib::wpJP_str_replace('.', '', $wpjobportal_config['versioncode']);
 
     if ( ! function_exists( 'WP_Filesystem' ) ) {
             require_once ABSPATH . 'wp-admin/includes/file.php';
         }
         global $wp_filesystem;
     if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-        $creds = request_filesystem_credentials( site_url() );
-        wp_filesystem( $creds );
+        $wpjobportal_creds = request_filesystem_credentials( site_url() );
+        wp_filesystem( $wpjobportal_creds );
     }
 
-	if(!empty($config['last_version']) && $config['last_version'] != '' && $config['last_version'] < $config['versioncode']){
-		$last_version = $config['last_version'] + 1; // files execute from the next version
-		$currentversion = $config['versioncode'];
-		for($i = $last_version; $i <= $currentversion; $i++){
-			$path = WPJOBPORTAL_PLUGIN_PATH.'includes/updater/files/'.$i.'.php';
-			if($wp_filesystem->exists($path)){
-				include_once($path);
+	if(!empty($wpjobportal_config['last_version']) && $wpjobportal_config['last_version'] != '' && $wpjobportal_config['last_version'] < $wpjobportal_config['versioncode']){
+		$wpjobportal_last_version = $wpjobportal_config['last_version'] + 1; // files execute from the next version
+		$wpjobportal_currentversion = $wpjobportal_config['versioncode'];
+		for($wpjobportal_i = $wpjobportal_last_version; $wpjobportal_i <= $wpjobportal_currentversion; $wpjobportal_i++){
+			$wpjobportal_path = WPJOBPORTAL_PLUGIN_PATH.'includes/updater/files/'.$wpjobportal_i.'.php';
+			if($wp_filesystem->exists($wpjobportal_path)){
+				include_once($wpjobportal_path);
 			}
 		}
 	}
-	$mainfile = WPJOBPORTAL_PLUGIN_URL.'wp-job-portal.php';
-	$contents_file = wp_remote_get($mainfile);
-    if (is_wp_error($contents_file)) {
-    	$contents = '';
+	$wpjobportal_mainfile = WPJOBPORTAL_PLUGIN_URL.'wp-job-portal.php';
+	$wpjobportal_contents_file = wp_remote_get($wpjobportal_mainfile);
+    if (is_wp_error($wpjobportal_contents_file)) {
+    	$wpjobportal_contents = '';
     }else{
-    	$contents = $contents_file['body'];
+    	$wpjobportal_contents = $wpjobportal_contents_file['body'];
     }
-	$contents = wpjobportalphplib::wpJP_str_replace("include_once 'includes/updater/updater.php';", '', $contents);
+	$wpjobportal_contents = wpjobportalphplib::wpJP_str_replace("include_once 'includes/updater/updater.php';", '', $wpjobportal_contents);
 	if ( ! function_exists( 'WP_Filesystem' ) ) {
             require_once ABSPATH . 'wp-admin/includes/file.php';
         }
         global $wp_filesystem;
     if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-        $creds = request_filesystem_credentials( site_url() );
-        wp_filesystem( $creds );
+        $wpjobportal_creds = request_filesystem_credentials( site_url() );
+        wp_filesystem( $wpjobportal_creds );
     }
-    $wp_filesystem->put_contents( $mainfile, $contents);
+    $wp_filesystem->put_contents( $wpjobportal_mainfile, $wpjobportal_contents);
 
-	function recursiveremove($dir) {
-		$structure = glob(rtrim($dir, "/").'/*');
-		if (is_array($structure)) {
-			foreach($structure as $file) {
-				if (is_dir($file)) recursiveremove($file);
+	function wpjobportal_recursiveremove($wpjobportal_dir) {
+		$wpjobportal_structure = glob(rtrim($wpjobportal_dir, "/").'/*');
+		if (is_array($wpjobportal_structure)) {
+			foreach($wpjobportal_structure as $file) {
+				if (is_dir($file)) wpjobportal_recursiveremove($file);
 				elseif (is_file($file)) wp_delete_file($file);
 			}
 		}
@@ -64,13 +64,13 @@ if (is_plugin_active('wp-job-portal/wp-job-portal.php')) {
         }
         global $wp_filesystem;
         if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-            $creds = request_filesystem_credentials( site_url() );
-            wp_filesystem( $creds );
+            $wpjobportal_creds = request_filesystem_credentials( site_url() );
+            wp_filesystem( $wpjobportal_creds );
         }
-        $wp_filesystem->rmdir($dir);
+        $wp_filesystem->rmdir($wpjobportal_dir);
 	}            	
-	$dir = WPJOBPORTAL_PLUGIN_PATH.'includes/updater';
-	recursiveremove($dir);
+	$wpjobportal_dir = WPJOBPORTAL_PLUGIN_PATH.'includes/updater';
+	wpjobportal_recursiveremove($wpjobportal_dir);
 
 }
 

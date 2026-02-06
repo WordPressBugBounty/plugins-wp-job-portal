@@ -7,7 +7,7 @@ if (!defined('ABSPATH'))
 ?>
 <?php
 
-switch ($layouts) {
+switch ($wpjobportal_layouts) {
     case 'viewcomp_uppersection': ?>
         <div class="wjportal-companyinfo-wrp">
             <?php if(wpjobportal::$_data[0]->status == 3){ ?>
@@ -15,17 +15,17 @@ switch ($layouts) {
                         <span class="wjportal-comp-status"><?php echo esc_html(__('Pending Payment','wp-job-portal')); ?></span>
                     </div>
             <?php } ?>
-            <?php if (isset(wpjobportal::$_data[2]['url']) && wpjobportal::$_data['companycontactdetail'] == true && $config_array['comp_show_url'] == 1 && wpjobportal::$_data[0]->url != '') { ?>
+            <?php if (isset(wpjobportal::$_data[2]['url']) && wpjobportal::$_data['companycontactdetail'] == true && $wpjobportal_config_array['comp_show_url'] == 1 && wpjobportal::$_data[0]->url != '') { ?>
                     <div class="wjportal-companyinfo">
                         <a class="wjportal-companyinfo-link" href="<?php echo esc_url(wpjobportal::$_data[0]->url); ?>" target="_blank">
-                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/website.png" alt="<?php echo esc_html(__('website','wp-job-portal')); ?>" title="<?php echo esc_html(__('website','wp-job-portal')); ?>">
+                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/website.png" alt="<?php echo esc_attr(__('website','wp-job-portal')); ?>" title="<?php echo esc_attr(__('website','wp-job-portal')); ?>">
                             <?php echo esc_html( wpjobportal::$_data[0]->url); ?>
                         </a>
                     </div>
             <?php } ?>
-            <?php if (isset(wpjobportal::$_data[2]['city']) && !empty(wpjobportal::$_data[0]->location) && $config_array['comp_city'] == 1) { ?>
+            <?php if (isset(wpjobportal::$_data[2]['city']) && !empty(wpjobportal::$_data[0]->location) && $wpjobportal_config_array['comp_city'] == 1) { ?>
                 <div class="wjportal-companyinfo">
-                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/location.png" alt="<?php echo esc_html(__('location','wp-job-portal')); ?>" title="<?php echo esc_html(__('location','wp-job-portal')); ?>">
+                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/location.png" alt="<?php echo esc_attr(__('location','wp-job-portal')); ?>" title="<?php echo esc_attr(__('location','wp-job-portal')); ?>">
                     <span class="wjportal-companyinfo-data"><?php echo esc_html(wpjobportal::$_data[0]->location); ?></span>
                 </div>
             <?php } ?>

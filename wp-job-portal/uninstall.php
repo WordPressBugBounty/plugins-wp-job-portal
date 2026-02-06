@@ -18,18 +18,18 @@ global $wpdb;
 include_once 'includes/deactivation.php';
 
 if(function_exists('is_multisite') && is_multisite()){
-    $blogs = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
-    foreach($blogs as $blog_id){
-        switch_to_blog( $blog_id );
-        $tablestodrop = WPJOBPORTALdeactivation::wpjobportal_tables_to_drop();
-        foreach($tablestodrop as $tablename){
-            $wpdb->query( "DROP TABLE IF EXISTS ".esc_sql($tablename) );
+    $wpjobportal_blogs = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
+    foreach($wpjobportal_blogs as $wpjobportal_blog_id){
+        switch_to_blog( $wpjobportal_blog_id );
+        $wpjobportal_tablestodrop = WPJOBPORTALdeactivation::wpjobportal_tables_to_drop();
+        foreach($wpjobportal_tablestodrop as $wpjobportal_tablename){
+            $wpdb->query( "DROP TABLE IF EXISTS ".esc_sql($wpjobportal_tablename) );
         }
         restore_current_blog();
     }
 }else{
-    $tablestodrop = WPJOBPORTALdeactivation::wpjobportal_tables_to_drop();
-    foreach($tablestodrop as $tablename){
-        $wpdb->query( "DROP TABLE IF EXISTS ".esc_sql($tablename) );
+    $wpjobportal_tablestodrop = WPJOBPORTALdeactivation::wpjobportal_tables_to_drop();
+    foreach($wpjobportal_tablestodrop as $wpjobportal_tablename){
+        $wpdb->query( "DROP TABLE IF EXISTS ".esc_sql($wpjobportal_tablename) );
     }
 }

@@ -9,8 +9,8 @@
         <div id="wpjobportal-content">
             <h1 class="wpjobportal-missing-addon-message" >
                 <?php
-                $addon_name = WPJOBPORTALrequest::getVar('page');
-                echo esc_html(wpjobportalphplib::wpJP_ucfirst($addon_name)).' ';
+                $wpjobportal_addon_name = WPJOBPORTALrequest::getVar('page');
+                echo esc_html(wpjobportalphplib::wpJP_ucfirst($wpjobportal_addon_name)).' ';
                 echo esc_html(__('addon in no longer active','wp-job-portal')).'!';
                 ?>
 

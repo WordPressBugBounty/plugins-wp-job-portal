@@ -4,7 +4,7 @@ if (!defined('ABSPATH'))
 ?>
 <div class="wjportal-main-up-wrapper">
 <?php
-if ( !WPJOBPORTALincluder::getTemplate('templates/header', array('module' => 'common') )) {
+if ( !WPJOBPORTALincluder::getTemplate('templates/header', array('wpjobportal_module' => 'common') )) {
     return;
 }
 if (wpjobportal::$_error_flag == null) {

@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Delete"
 msgstr "Șterge"
@@ -10276,3 +10276,2472 @@ msgstr "Nu mai aveți niciun șerci de salvare rămase"
 
 msgid "We would love to hear from You."
 msgstr "Ne -ar plăcea să auzim de la tine."
+
+msgid "Welcome back!"
+msgstr "Bine ai revenit!"
+
+msgid "Here's a snapshot of your job board's performance."
+msgstr "Iată o imagine a performanței consiliului de muncă."
+
+msgid "Customize Your Dashboard"
+msgstr "Personalizați -vă tabloul de bord"
+
+msgid "Core Components"
+msgstr "Componente de bază"
+
+msgid "Quick Actions"
+msgstr "Acțiuni rapide"
+
+msgid "Recent Jobs"
+msgstr "Locuri de muncă recente"
+
+msgid "Quick Stats"
+msgstr "Statistici rapide"
+
+msgid "Visualizations"
+msgstr "Vizualizări"
+
+msgid "Platform Growth"
+msgstr "Creșterea platformei"
+
+msgid "Jobs by Status"
+msgstr "Locuri de muncă după statut"
+
+msgid "Top Categories"
+msgstr "Categorii de top"
+
+msgid "Activity & System Feeds"
+msgstr "Alimente de activitate și sistem"
+
+msgid "Latest Applies"
+msgstr "Ultimele se aplică"
+
+msgid "User & Financials"
+msgstr "Utilizator și financiar"
+
+msgid "Job Seekers"
+msgstr "Căutători de locuri de muncă"
+
+msgid "Payments"
+msgstr "Plăți"
+
+msgid "Reset to Defaults"
+msgstr "Resetați la valorile implicite"
+
+msgid "Apply Changes"
+msgstr "Aplicați modificări"
+
+msgid "Approve Jobs"
+msgstr "Aprobă locurile de muncă"
+
+msgid "Manage Users"
+msgstr "Gestionați utilizatorii"
+
+msgid "View Reports"
+msgstr "Vizualizați rapoartele"
+
+msgid "Analytics"
+msgstr "Analitică"
+
+msgid "Manage Plans"
+msgstr "Gestionați planurile"
+
+msgid "Platform Config"
+msgstr "Configurarea platformei"
+
+msgid "Applications"
+msgstr "Aplicații"
+
+msgid "Pending Jobs"
+msgstr "În așteptarea locurilor de muncă"
+
+msgid "New Applicants"
+msgstr "Solicitanți noi"
+
+msgid "Active Subscriptions"
+msgstr "Abonamente active"
+
+msgid "Total Users"
+msgstr "Total utilizatori"
+
+msgid "Closed Jobs"
+msgstr "Locuri de muncă închise"
+
+msgid "Monthly Revenue"
+msgstr "Venituri lunare"
+
+msgid "Recent Job Postings"
+msgstr "Postări recente de locuri de muncă"
+
+msgid "Date Posted"
+msgstr "Data postată"
+
+msgid "Actions"
+msgstr "Acțiuni"
+
+msgid "No recent job postings found."
+msgstr "Nu s -au găsit nicio postare recentă de locuri de muncă."
+
+msgid "Top Job Categories"
+msgstr "Categorii de locuri de muncă de top"
+
+msgid "Latest Job Applies"
+msgstr "Ultima job se aplică"
+
+msgid "applied for"
+msgstr "aplicat pentru"
+
+msgid "at"
+msgstr "la"
+
+msgid "View App"
+msgstr "Vizualizați aplicația"
+
+msgid "No recent job applications to display."
+msgstr "Nu există aplicații de muncă recente pentru afișare."
+
+msgid "No new resumes have been added recently."
+msgstr "Nu s -au adăugat noi CV -uri noi."
+
+msgid "Latest Package Subscriptions"
+msgstr "Ultimele abonamente la pachete"
+
+msgid "subscribed to"
+msgstr "subscris la"
+
+msgid "No new subscriptions found."
+msgstr "Nu au fost găsite noi abonamente."
+
+msgid "Latest Payments"
+msgstr "Ultimele plăți"
+
+msgid "No recent payments to display."
+msgstr "Nu există plăți recente de afișat."
+
+msgid "Latest Activity"
+msgstr "Ultima activitate"
+
+msgid "Hooray! No system errors to report."
+msgstr "Pur! Nu există erori de sistem de raportat."
+
+msgid "Latest Job Seekers"
+msgstr "Ultimii solicitanți de locuri de muncă"
+
+msgid "Joined"
+msgstr "S -a alăturat"
+
+msgid "No new job seekers have registered."
+msgstr "Nu s -au înregistrat noi solicitanți de locuri de muncă."
+
+msgid "Latest Employers"
+msgstr "Ultimii angajatori"
+
+msgid "No new employers have registered."
+msgstr "Nu s -au înregistrat noi angajatori."
+
+msgid "Not allowed"
+msgstr "Nu este permis"
+
+msgid "Allowed to all"
+msgstr "Permis tuturor"
+
+msgid "employers, job seekers and visitors"
+msgstr "angajatori, solicitanți de locuri de muncă și vizitatori"
+
+msgid "Allowed only to employers"
+msgstr "Permis doar angajatorilor"
+
+msgid "City, State, Country"
+msgstr "Oraș, stat, țară"
+
+msgid "City, State"
+msgstr "Oraș, stat"
+
+msgid "City, Country"
+msgstr "Oraș, țară"
+
+msgid "Minutes"
+msgstr "Minute"
+
+msgid "Hour"
+msgstr "Oră"
+
+msgid "Hours"
+msgstr "Ore"
+
+msgid "Week"
+msgstr "Săptămână"
+
+msgid "System & Site"
+msgstr "Sistem și site"
+
+msgid "Site & System"
+msgstr "Site și sistem"
+
+msgid "Core details about your job portal, its status, and default behaviors"
+msgstr "Detalii de bază despre portalul dvs. de locuri de muncă, starea acestuia și comportamentele implicite"
+
+msgid "Site Title"
+msgstr "Titlul site -ului"
+
+msgid "The main title for your job portal"
+msgstr "Titlul principal pentru portalul dvs. de locuri de muncă"
+
+msgid "Site Offline"
+msgstr "Site -ul offline"
+
+msgid "Take the site offline for maintenance"
+msgstr "Luați site -ul offline pentru întreținere"
+
+msgid "The message shown to visitors when the site is offline"
+msgstr "Mesajul afișat vizitatorilor atunci când site -ul este offline"
+
+msgid "Default Page"
+msgstr "Pagina implicită"
+
+msgid "Select the main WordPress page for the job portal"
+msgstr "Selectați pagina principală WordPress pentru portalul de locuri de muncă"
+
+msgid "Email links and support icons may not work if this is not set"
+msgstr "Este posibil ca linkurile de e -mail și pictogramele de asistență să nu funcționeze dacă acest lucru nu este setat"
+
+msgid "Date Format"
+msgstr "Formatul datei"
+
+msgid "Set the date format used throughout the plugin"
+msgstr "Setați formatul datei utilizat pe întregul plugin"
+
+msgid "Default Address Display Style"
+msgstr "Stilul implicit de afișare a adresei"
+
+msgid "Select the default format for displaying addresses"
+msgstr "Selectați formatul implicit pentru afișarea adreselor"
+
+msgid "Registration & Login"
+msgstr "Înregistrare și autentificare"
+
+msgid "Control user registration flows and login/logout redirects"
+msgstr "Controlați fluxurile de înregistrare a utilizatorului și redirecțiile de conectare/deconectare"
+
+msgid "Set Register Link"
+msgstr "Setați linkul de registru"
+
+msgid "Set the main registration page for the site"
+msgstr "Setați pagina principală de înregistrare pentru site"
+
+msgid "Custom Register Redirect Link"
+msgstr "Link de redirecționare a registrului personalizat"
+
+msgid "Enter the custom URL for registration if"
+msgstr "Introduceți adresa URL personalizată pentru înregistrare dacă"
+
+msgid "is selected above"
+msgstr "este selectat mai sus"
+
+msgid "Set the main login page for the site"
+msgstr "Setați pagina principală de conectare pentru site"
+
+msgid "Custom Login Redirect Link"
+msgstr "Link de redirecționare personalizat de conectare"
+
+msgid "Enter the custom URL for login if"
+msgstr "Introduceți adresa URL personalizată pentru autentificare dacă"
+
+msgid "Redirect Link For Non-Portal WP User"
+msgstr "Redirecționarea linkului pentru utilizatorul WP non-portal"
+
+msgid "Redirect WordPress users who do not have a role in WP Job Portal to this link after login"
+msgstr "Redirecționați utilizatorii WordPress care nu au un rol în portalul de locuri de muncă WP către acest link după conectare"
+
+msgid "Terms & Conditions"
+msgstr "Termeni și condiții"
+
+msgid "Assign specific Terms & Conditions pages for different submission types"
+msgstr "Alocați pagini specifice Termeni și condiții pentru diferite tipuri de trimitere"
+
+msgid "Company Terms Page"
+msgstr "Pagina Condiții Companiei"
+
+msgid "Select the"
+msgstr "Selectați"
+
+msgid "page for company submissions"
+msgstr "Pagina pentru trimiteri ale companiei"
+
+msgid "Job Terms Page"
+msgstr "Pagina Termenilor de muncă"
+
+msgid "page for job submissions"
+msgstr "pagină pentru trimiteri de locuri de muncă"
+
+msgid "Resume Terms Page"
+msgstr "Pagina de reluare a termenilor"
+
+msgid "page for resume submissions"
+msgstr "pagină pentru trimiteri de CV"
+
+msgid "Content & Display"
+msgstr "Conținut și afișare"
+
+msgid "Taxonomy & Categories"
+msgstr "Taxonomie și categorii"
+
+msgid "Manage how content like categories and tags are handled"
+msgstr "Gestionați modul în care se tratează conținutul precum categoriile și etichetele"
+
+msgid "Even if Empty"
+msgstr "Chiar dacă este gol"
+
+msgid "If no is selected then only categories that have jobs or resumes will be shown"
+msgstr "Dacă nu este selectat nu vor fi afișate doar categorii care au locuri de muncă sau CV -uri"
+
+msgid "Categories Per Row"
+msgstr "Categorii pe rând"
+
+msgid "Number of categories to display per row on category listing pages"
+msgstr "Numărul de categorii de afișat pe rând pe paginile de listare a categoriilor"
+
+msgid "Sub-categories Limit"
+msgstr "Limita sub-categoriilor"
+
+msgid "How many sub-categories to show in the popup on category pages"
+msgstr "Câte sub-categorii să se prezinte în pop-up pe paginile din categoria"
+
+msgid "User Can Add New Tags"
+msgstr "Utilizatorul poate adăuga etichete noi"
+
+msgid "Allow users to create new tags in the system when posting"
+msgstr "Permiteți utilizatorilor să creeze noi etichete în sistem la postare"
+
+msgid "Default Pagination Size"
+msgstr "Dimensiunea implicită a paginii"
+
+msgid "Maximum number of records to show per page"
+msgstr "Numărul maxim de înregistrări de afișat pe pagină"
+
+msgid "Show Breadcrumbs"
+msgstr "Afișați pesmet"
+
+msgid "Show WP Job Portal Page Title"
+msgstr "Afișați titlul paginii portalului WP"
+
+msgid "File Uploads & Defaults"
+msgstr "Încărcări de fișiere și valorile implicite"
+
+msgid "Manage file uploads and default placeholder images"
+msgstr "Gestionați încărcăturile de fișiere și imaginile implicite ale locului de loc"
+
+msgid "Data Directory"
+msgstr "Director de date"
+
+msgid "System will upload all user files into this folder within the WordPress uploads directory"
+msgstr "Sistemul va încărca toate fișierele de utilizator în acest folder din directorul WordPress Embloade"
+
+msgid "Default Image"
+msgstr "Imagine implicită"
+
+msgid "This image will be shown as the default for entities & users if no other image is provided"
+msgstr "Această imagine va fi afișată ca fiind implicită pentru entități și utilizatori, dacă nu este furnizată altă imagine"
+
+msgid "Allowed Image Extensions"
+msgstr "Extensii de imagine permise"
+
+msgid "Comma-separated list of allowed image file extensions"
+msgstr "Lista separată de virgulă a extensiilor de fișiere imagine permise"
+
+msgid "Max Image Size"
+msgstr "Dimensiunea maximă a imaginii"
+
+msgid "Maximum file size for general image uploads in kilobytes"
+msgstr "Dimensiunea maximă a fișierului pentru încărcări generale de imagine în kilobiți"
+
+msgid "URL & SEO"
+msgstr "URL & SEO"
+
+msgid "URL Structure"
+msgstr "Structura URL"
+
+msgid "Configure the URL structure"
+msgstr "Configurați structura URL"
+
+msgid "permalinks"
+msgstr "Permalinks"
+
+msgid "for detail pages"
+msgstr "pentru pagini de detaliu"
+
+msgid "Job Detail URL Structure"
+msgstr "Structura URL a detaliilor postului"
+
+msgid "Click on the available tags below to build the URL structure for job detail pages"
+msgstr "Faceți clic pe etichetele disponibile de mai jos pentru a construi structura URL pentru paginile de detaliu de lucru"
+
+msgid "Company Detail URL Structure"
+msgstr "Structura URL a detaliilor companiei"
+
+msgid "Click on the available tags below to build the URL structure for company detail pages"
+msgstr "Faceți clic pe etichetele disponibile de mai jos pentru a construi structura URL pentru paginile de detaliu ale companiei"
+
+msgid "Resume Detail URL Structure"
+msgstr "Reluați Structura URL -ului detaliat"
+
+msgid "Click on the available tags below to build the URL structure for resume detail pages"
+msgstr "Faceți clic pe etichetele disponibile de mai jos pentru a construi structura URL pentru paginile de detaliu CV"
+
+msgid "Registration & Access"
+msgstr "Înregistrare și acces"
+
+msgid "If no then front end employer area is not accessible"
+msgstr "Dacă nu, atunci zona angajatorului frontal nu este accesibilă"
+
+msgid "Allow Registration as Employer"
+msgstr "Permiteți înregistrarea ca angajator"
+
+msgid "Show the option to register as an employer on the registration form"
+msgstr "Afișați opțiunea de a vă înregistra ca angajator în formularul de înregistrare"
+
+msgid "Employer Default Role"
+msgstr "Rolul implicit al angajatorului"
+
+msgid "Employer Can View Job Seeker Area"
+msgstr "Angajatorul poate vizualiza zona de căutător de locuri de muncă"
+
+msgid "Allow logged-in employers to view the job seeker control panel"
+msgstr "Permiteți angajatorilor conectați să vizualizeze panoul de control al căutătorului de locuri de muncă"
+
+msgid "Set Employer After-Register Link"
+msgstr "Setați legătura după înregistrare a angajatorului"
+
+msgid "Employer After-Registration Page"
+msgstr "Pagina după înregistrare a angajatorului"
+
+msgid "Employer Custom After-Registration Link"
+msgstr "Link de înregistrare după înregistrare personalizată a angajatorului"
+
+msgid "Custom Empolyer After Regitser Link"
+msgstr "Angajator personalizat după legătura de registru"
+
+msgid "Layout & Widgets"
+msgstr "Aspect și widget -uri"
+
+msgid "Control the visibility of main sections and widgets in the logged-in employer dashboard"
+msgstr "Controlați vizibilitatea secțiunilor principale și a widget-urilor din tabloul de bord al angajatorului conectat"
+
+msgid "Show Profile Section"
+msgstr "Afișați secțiunea de profil"
+
+msgid "Show Stat Boxes"
+msgstr "Afișați cutii de stat"
+
+msgid "Show Recent Resumes Box"
+msgstr "Afișați caseta CV -urilor recente"
+
+msgid "Show Stats Graph"
+msgstr "Afișați graficul statisticilor"
+
+msgid "Setting to show the stats graph on the employer dashboard"
+msgstr "Setare pentru a afișa graficul de statistici de pe tabloul de bord al angajatorului"
+
+msgid "Show Useful Links"
+msgstr "Afișați legături utile"
+
+msgid "Setting to show the useful links section"
+msgstr "Setare pentru a afișa secțiunea Link -uri utile"
+
+msgid "Show Applied Resumes"
+msgstr "Afișați CV -urile aplicate"
+
+msgid "Setting to show the applied resumes section"
+msgstr "Setare pentru a afișa secțiunea CV -uri aplicate"
+
+msgid "Show Saved Searches"
+msgstr "Afișați căutări salvate"
+
+msgid "Setting to show the saved searches section"
+msgstr "Setare pentru a afișa secțiunea Căutări salvate"
+
+msgid "Show Newest Resumes"
+msgstr "Arată cele mai noi CV -uri"
+
+msgid "Setting to show the newest resumes section"
+msgstr "Setare pentru a arăta cea mai nouă secțiune CV -uri"
+
+msgid "Navigation Links"
+msgstr "Legături de navigare"
+
+msgid "Control which navigation links are visible in the logged-in employer dashboard menu"
+msgstr "Controlează ce legături de navigație sunt vizibile în meniul de bord al angajatorului conectat"
+
+msgid "link in the employer dashboard"
+msgstr "Link în tabloul de bord al angajatorului"
+
+msgid "RSS Feedback"
+msgstr "Feedback RSS"
+
+msgid "Job Seeker Default Role"
+msgstr "Rolul implicit al căutătorului de locuri de muncă"
+
+msgid "Set Job Seeker After-Register Link"
+msgstr "Setați link-ul solicitant de locuri de muncă"
+
+msgid "Job Seeker After-Registration Page"
+msgstr "Pagina de înregistrare după înregistrare"
+
+msgid "Job Seeker Custom After-Registration Link"
+msgstr "Link de înregistrare după înregistrare a căutării de locuri de muncă"
+
+msgid "Custom Job seeker After Regitser Link"
+msgstr "Căutător de locuri de muncă personalizat după linkul de înregistrare"
+
+msgid "Enable Job Shortlisting"
+msgstr "Activați lista de locuri de muncă"
+
+msgid "Allow job seekers to shortlist jobs"
+msgstr "Permiteți solicitanților de locuri de muncă să se desprindă de locuri de muncă"
+
+msgid "This affects the job detail page"
+msgstr "Acest lucru afectează pagina detaliilor postului"
+
+msgid "Enable Tell a Friend"
+msgstr "Activați spune unui prieten"
+
+msgid "Enable the"
+msgstr "Activați"
+
+msgid "feature on job listing pages"
+msgstr "Caracteristică pe paginile de listare a lucrărilor"
+
+msgid "Control the visibility of main sections and widgets in the logged-in job seeker dashboard"
+msgstr "Controlează vizibilitatea secțiunilor principale și a widget-urilor din tabloul de bord al căutătorului de locuri de muncă conectat"
+
+msgid "Show Applied Jobs Box"
+msgstr "Afișați caseta de locuri de muncă aplicate"
+
+msgid "Show Newest Jobs Box"
+msgstr "Afișați cele mai noi casete de locuri de muncă"
+
+msgid "Show Jobs Graph"
+msgstr "Afișați graficul pentru locuri de muncă"
+
+msgid "Setting to show the jobs graph on the job seeker dashboard"
+msgstr "Setare pentru a afișa graficul de locuri de muncă pe tabloul de bord al căutătorului de locuri de muncă"
+
+msgid "Show Applied Jobs"
+msgstr "Afișați locuri de muncă aplicate"
+
+msgid "Setting to show the applied jobs section"
+msgstr "Setare pentru a arăta secțiunea de locuri de muncă aplicate"
+
+msgid "Show Shortlisted Jobs"
+msgstr "Afișați locuri de muncă preselecționate"
+
+msgid "Setting to show the shortlisted jobs section"
+msgstr "Setare pentru a arăta secțiunea de locuri de muncă preselecționate"
+
+msgid "Show Newest Jobs"
+msgstr "Arată cele mai noi locuri de muncă"
+
+msgid "Setting to show the newest jobs section"
+msgstr "Setare pentru a arăta cea mai nouă secțiune de locuri de muncă"
+
+msgid "Control which navigation links are visible in the logged-in job seeker dashboard menu"
+msgstr "Controlează ce legături de navigare sunt vizibile în meniul de bord pentru căutătorul de locuri de muncă conectat"
+
+msgid "link in the job seeker dashboard"
+msgstr "Link în tabloul de bord al căutătorului de locuri de muncă"
+
+msgid "Visitors"
+msgstr "Vizitatori"
+
+msgid "General Permissions"
+msgstr "Permisiuni generale"
+
+msgid "Define what non-logged-in users are allowed to do on the site"
+msgstr "Definiți ce utilizatori care nu sunt conectați sunt permise să facă pe site"
+
+msgid "Visitor Can Post Job"
+msgstr "Vizitatorul poate posta un loc de muncă"
+
+msgid "Allow non-logged-in users to post jobs"
+msgstr "Permiteți utilizatorilor care nu sunt conectați să posteze locuri de muncă"
+
+msgid "Visitor Can Add Job"
+msgstr "Vizitatorul poate adăuga job"
+
+msgid "Visitor Job Post Redirect Page"
+msgstr "Pagina de redirecționare a postului de muncă pentru vizitatori"
+
+msgid "A visitor will be redirected to this page after posting a job"
+msgstr "Un vizitator va fi redirecționat către această pagină după ce a postat un loc de muncă"
+
+msgid "Visitor Can Apply to Job"
+msgstr "Vizitatorul se poate aplica la job"
+
+msgid "Allow non-logged-in users to apply for jobs"
+msgstr "Permiteți utilizatorilor care nu sunt conectați să solicite locuri de muncă"
+
+msgid "Visitor Can Add Resume"
+msgstr "Vizitatorul poate adăuga CV"
+
+msgid "Allow non-logged-in users to add a resume"
+msgstr "Permiteți utilizatorilor care nu sunt conectați să adauge un CV"
+
+msgid "Visitor Resume Post Redirect Page"
+msgstr "Pagina de redirecționare a reluării pentru vizitatori"
+
+msgid "A visitor will be redirected to this page after posting a resume"
+msgstr "Un vizitator va fi redirecționat către această pagină după ce a postat un CV"
+
+msgid "Visitor Can Edit Job"
+msgstr "Vizitatorul poate edita jobul"
+
+msgid "Allow non-logged-in users to edit jobs they have posted"
+msgstr "Permiteți utilizatorilor care nu sunt conectați să editeze joburi pe care le-au postat"
+
+msgid "Page & Link Access"
+msgstr "Acces la pagină și link"
+
+msgid "Control which pages and links are visible to non-logged-in users"
+msgstr "Controlează ce pagini și link-uri sunt vizibile pentru utilizatorii care nu sunt înscriși"
+
+msgid "Allow visitors to view the employer control panel links"
+msgstr "Permiteți vizitatorilor să vizualizeze legăturile panoului de control al angajatorului"
+
+msgid "Allow visitors to view the resume categories page"
+msgstr "Permiteți vizitatorilor să vizualizeze pagina categorii CV -uri"
+
+msgid "Allow visitors to access the resume search functionality"
+msgstr "Permiteți vizitatorilor să acceseze funcționalitatea de căutare a CV -ului"
+
+msgid "Allow visitors to view company detail pages"
+msgstr "Permiteți vizitatorilor să vizualizeze paginile de detaliu ale companiei"
+
+msgid "Allow visitors to view job detail pages"
+msgstr "Permiteți vizitatorilor să vizualizeze paginile de detaliu"
+
+msgid "Allow visitors to view resume detail pages"
+msgstr "Permiteți vizitatorilor să vizualizeze paginile de detaliu"
+
+msgid "Allow visitors to view the job seeker control panel links"
+msgstr "Permiteți vizitatorilor să vizualizeze legăturile panoului de control al căutătorului de locuri de muncă"
+
+msgid "Allow visitors to view the jobs by category page"
+msgstr "Permiteți vizitatorilor să vizualizeze pagina de joburi pe categorie"
+
+msgid "Allow visitors to use the job search functionality"
+msgstr "Permiteți vizitatorilor să utilizeze funcționalitatea căutării de locuri de muncă"
+
+msgid "Allow visitors to see job search result listings"
+msgstr "Permiteți vizitatorilor să vadă listele de rezultate despre căutare a locurilor de muncă"
+
+msgid "Allow visitors to see the newest jobs page"
+msgstr "Permiteți vizitatorilor să vadă cea mai nouă pagină de locuri de muncă"
+
+msgid "Job Posting & Management"
+msgstr "Posting și management de locuri de muncă"
+
+msgid "Manage how jobs are posted, their lifecycle, and related features"
+msgstr "Gestionați modul în care sunt postate locurile de muncă, ciclul lor de viață și funcțiile conexe"
+
+msgid "Job Auto Approve"
+msgstr "Aprobarea automată a joburilor"
+
+msgid "Automatically approve new jobs upon submission"
+msgstr "Aprobă automat noile lucrări la depunere"
+
+msgid "Job Expiry Days"
+msgstr "Zile de expirare a locului de muncă"
+
+msgid "Number of days until a freely posted job expires"
+msgstr "Numărul de zile până când expiră un loc de muncă postat liber"
+
+msgid "Number of days until a paid"
+msgstr "Numărul de zile până la un plătit"
+
+msgid "job expires"
+msgstr "Locul de muncă expiră"
+
+msgid "Job Display & Listings"
+msgstr "Afișare și înregistrări de joburi"
+
+msgid "Control how job-related pages and information are displayed to users"
+msgstr "Controlați modul în care paginile și informațiile legate de locuri de muncă sunt afișate utilizatorilor"
+
+msgid "Show Country on Jobs by Cities Page"
+msgstr "Afișați țara pe locuri de muncă pe orașe"
+
+msgid "Display the country name next to the city"
+msgstr "Afișați numele țării lângă oraș"
+
+msgid "Show Count on Jobs by Cities Page"
+msgstr "Afișați Pagina Contează pe locuri de muncă pe orașe"
+
+msgid "Display the total number of jobs available in each city"
+msgstr "Afișați numărul total de locuri de muncă disponibile în fiecare oraș"
+
+msgid "Show Count in Job Categories"
+msgstr "Numărul de spectacole în categoriile de locuri de muncă"
+
+msgid "Display the total number of jobs for each category"
+msgstr "Afișați numărul total de locuri de muncă pentru fiecare categorie"
+
+msgid "Show Count on Jobs by Types Page"
+msgstr "Afișați contează pe pagina de locuri de muncă după tipuri"
+
+msgid "Display the total number of jobs for each job type"
+msgstr "Afișați numărul total de locuri de muncă pentru fiecare tip de muncă"
+
+msgid "Job Types Per Row"
+msgstr "Tipuri de locuri de muncă pe rând"
+
+msgid "How many job types to display per row on the"
+msgstr "Câte tipuri de locuri de muncă de afișat pe rând pe"
+
+msgid "Job by Type"
+msgstr "Job după tip"
+
+msgid "Show Jobs Graph for Employer"
+msgstr "Afișați graficul de locuri de muncă pentru angajator"
+
+msgid "Show Active Jobs Graph for Job Seeker"
+msgstr "Afișați graficul de locuri de muncă activ pentru căutătorul de locuri de muncă"
+
+msgid "Company Profile Display"
+msgstr "Afișarea profilului companiei"
+
+msgid "Control which company details are visible on listings and company pages"
+msgstr "Controlează ce detalii ale companiei sunt vizibile pe înregistrări și pe paginile companiei"
+
+msgid "Show Company Name"
+msgstr "Afișează numele companiei"
+
+msgid "Show Company Description"
+msgstr "Afișați descrierea companiei"
+
+msgid "Show Company Email Address"
+msgstr "Afișați adresa de e -mail a companiei"
+
+msgid "Show Company City"
+msgstr "Arată compania orașului"
+
+msgid "Show Company URL"
+msgstr "Afișați URL -ul companiei"
+
+msgid "Show Company Contact Detail by Default"
+msgstr "Afișați detaliile de contact ale companiei în mod implicit"
+
+msgid "If disabled, credits may be required to view contact details"
+msgstr "Dacă sunt dezactivate, creditele pot fi necesare pentru a vizualiza datele de contact"
+
+msgid "General settings for company profiles"
+msgstr "Setări generale pentru profilurile companiei"
+
+msgid "Company Logo Maximum Size"
+msgstr "Logo -ul companiei dimensiunea maximă"
+
+msgid "Set the maximum file size for company logo uploads in kilobytes"
+msgstr "Setați dimensiunea maximă a fișierului pentru încărcarea logo -ului companiei în kilobiți"
+
+msgid "Company Auto Approve"
+msgstr "Aprobarea automată a companiei"
+
+msgid "Automatically approve new company profiles upon submission"
+msgstr "Aprobă automat noile profiluri ale companiei la depunere"
+
+msgid "Control resume submissions, visibility, and search functionality"
+msgstr "Controlează reluarea Trimiterilor, vizibilității și funcționalității căutării"
+
+msgid "Resume Auto Approve"
+msgstr "Reluați aprobarea automată"
+
+msgid "Automatically approve new resumes upon submission"
+msgstr "Aprobați automat noi CV -uri la depunere"
+
+msgid "Show Resume Contact Detail by Default"
+msgstr "Afișați în mod implicit detaliile de contact din CV"
+
+msgid "If disabled, credits may be required to view resume contact details"
+msgstr "Dacă sunt dezactivate, creditele pot fi necesare pentru a vizualiza datele de contact ale CV -ului"
+
+msgid "Show Count in Resume Categories"
+msgstr "Numărul de spectacole în categoriile CV -uri"
+
+msgid "Display the total number of resumes for each category"
+msgstr "Afișați numărul total de CV -uri pentru fiecare categorie"
+
+msgid "Allow Resume Search"
+msgstr "Permiteți căutarea CV -ului"
+
+msgid "Define who is allowed to search for resumes"
+msgstr "Definiți cine are voie să caute CV -uri"
+
+msgid "Allow Users to Save Resume Searches"
+msgstr "Permiteți utilizatorilor să salveze căutările CV -urilor"
+
+msgid "Allow users to save their resume search criteria for later use"
+msgstr "Permiteți utilizatorilor să -și salveze criteriile de căutare a CV -ului pentru utilizare ulterioară"
+
+msgid "Resume Files & Builder"
+msgstr "Reluați fișierele și constructorul"
+
+msgid "Define limits and allowed types for resume file uploads and advanced builder sections"
+msgstr "Definiți limitele și tipurile permise pentru încărcarea fișierelor de reluare și secțiuni de constructor avansate"
+
+msgid "Resume Photo Maximum Size"
+msgstr "Reluați fotografia de dimensiuni maxime"
+
+msgid "Maximum file size for resume photos in kilobytes"
+msgstr "Dimensiunea maximă a fișierului pentru fotografiile din CV în kilobiți"
+
+msgid "Resume Document Maximum Size"
+msgstr "Reluați documentul Dimensiunea maximă"
+
+msgid "System will not upload if resume file size exceeds the given size"
+msgstr "Sistemul nu se va încărca dacă dimensiunea fișierului reluat depășește dimensiunea dată"
+
+msgid "Allowed Document Extensions"
+msgstr "Extensii de documente permise"
+
+msgid "Comma-separated list of allowed document file extensions"
+msgstr "Lista separată de virgulă a extensiilor de fișiere de document permise"
+
+msgid "Maximum Number of Files for Resume"
+msgstr "Numărul maxim de fișiere pentru CV"
+
+msgid "Maximum number of files a job seeker can upload with their resume"
+msgstr "Numărul maxim de fișiere pe care un solicitant de locuri de muncă le poate încărca cu CV -ul lor"
+
+msgid "Max Employers in Resume Builder"
+msgstr "MAX angajatori în CV Builder"
+
+msgid "Maximum number of employers allowed in the resume builder"
+msgstr "Numărul maxim de angajatori permise în constructorul de CV -uri"
+
+msgid "Max Institutes in Resume Builder"
+msgstr "Max Institute în CV Builder"
+
+msgid "Maximum number of institutes allowed in the resume builder"
+msgstr "Numărul maxim de institute permise în constructorul de CV -uri"
+
+msgid "Max Languages in Resume Builder"
+msgstr "Max Limbi în CV Builder"
+
+msgid "Maximum number of languages allowed in the resume builder"
+msgstr "Numărul maxim de limbi permise în constructorul de CV -uri"
+
+msgid "Max Addresses in Resume Builder"
+msgstr "Adrese maxime în CV Builder"
+
+msgid "Maximum number of addresses allowed in the resume builder"
+msgstr "Numărul maxim de adrese permise în constructorul de CV -uri"
+
+msgid "Job Applications"
+msgstr "Aplicații de locuri de muncă"
+
+msgid "Configure the job application process and related notifications"
+msgstr "Configurați procesul de aplicare a joburilor și notificările conexe"
+
+msgid "Show Apply Now Button"
+msgstr "Afișați butonul Aplicați acum"
+
+msgid "Enable Quick Apply for Logged-in Users"
+msgstr "Activați aplicarea rapidă pentru utilizatorii conectați"
+
+msgid "Enable Quick Apply for Visitors"
+msgstr "Activați să aplicați rapid pentru vizitatori"
+
+msgid "Show Applied Resume Status to Job Seeker"
+msgstr "Afișați statutul de CV aplicat pentru căutătorul de locuri de muncă"
+
+msgid "Resume Data in Email"
+msgstr "Reluați datele în e -mail"
+
+msgid "Sections"
+msgstr "Secțiuni"
+
+msgid "Choose whether to include all resume sections or only filled ones in the application email to employers"
+msgstr "Alegeți dacă includeți toate secțiunile CV -uri sau doar cele completate în e -mailul aplicației către angajatori"
+
+msgid "Choose whether to include all fields or only filled fields in the application email"
+msgstr "Alegeți dacă includeți toate câmpurile sau numai câmpurile completate în e -mailul aplicației"
+
+msgid "Auto-Approve Rules"
+msgstr "Reguli auto-aprovizionare"
+
+msgid "Set auto-approval rules for various user-submitted content"
+msgstr "Setați reguli de aprobare automată pentru diverse conținuturi transmise de utilizator"
+
+msgid "Featured Resume Auto Approve"
+msgstr "CV -ul prezentat automat"
+
+msgid "Automatically approve resumes marked as featured"
+msgstr "Aprobă automat CV -urile marcate ca fiind prezentate"
+
+msgid "Featured Company Auto Approve"
+msgstr "Compania prezentată automată"
+
+msgid "Automatically approve companies marked as featured"
+msgstr "Aprobă automat companiile marcate ca fiind prezentate"
+
+msgid "Featured Job Auto Approve"
+msgstr "Job de muncă prezentat aprobă"
+
+msgid "Automatically approve jobs marked as featured"
+msgstr "Aprobă automat lucrările marcate ca fiind prezentate"
+
+msgid "Cover Letter Auto Approve"
+msgstr "Scrisoare de întâmpinare aprobă automat"
+
+msgid "Automatically approve cover letters submitted by job seekers"
+msgstr "Aprobați automat scrisorile de întâmpinare trimise de solicitanții de locuri de muncă"
+
+msgid "Folder Auto Approve"
+msgstr "Folder Auto aprobă"
+
+msgid "Automatically approve new folders created by employers"
+msgstr "Aprobă automat noile foldere create de angajatori"
+
+msgid "Department Auto Approve"
+msgstr "Aprobarea automată a departamentului"
+
+msgid "Automatically approve new departments created by employers"
+msgstr "Aprobă automat noile departamente create de angajatori"
+
+msgid "Message Auto Approve"
+msgstr "Aprobarea automată a mesajului"
+
+msgid "Automatically approve messages between job seekers and employers"
+msgstr "Aprobă automat mesajele dintre solicitanții de locuri de muncă și angajatori"
+
+msgid "Conflict Message Auto Approve"
+msgstr "Mesaj de conflict Aprobați automat"
+
+msgid "Automatically approve conflicted messages"
+msgstr "Aprobă automat mesajele conflictuale"
+
+msgid "Email & Alerts"
+msgstr "E -mail și alerte"
+
+msgid "Email Sender Identity"
+msgstr "E -mail identitatea expeditorului"
+
+msgid "Configure sender details for all outgoing system emails"
+msgstr "Configurați detaliile expeditorului pentru toate e -mailurile de sistem de ieșire"
+
+msgid "Admin Email Address"
+msgstr "Adresa de e -mail a administratorului"
+
+msgid "Admin will receive email notifications at this address"
+msgstr "Administratorul va primi notificări prin e -mail la această adresă"
+
+msgid "Sender Email Address"
+msgstr "Adresa de e -mail a expeditorului"
+
+msgid "The email address that will be used to send system emails"
+msgstr "Adresa de e -mail care va fi folosită pentru a trimite e -mailuri de sistem"
+
+msgid "The sender name that will be used in system emails"
+msgstr "Numele expeditorului care va fi utilizat în e -mailurile sistemului"
+
+msgid "Job Alerts"
+msgstr "Alerte de locuri de muncă"
+
+msgid "Configure settings for job alert emails and forms"
+msgstr "Configurați setările pentru e -mailuri și formulare de alertă de lucru"
+
+msgid "Show Job Alert Link"
+msgstr "Afișați linkul de alertă de lucru"
+
+msgid "Show the Job Alert link in the job seeker control panel"
+msgstr "Afișați legătura de alertă de muncă în panoul de control al căutătorului de locuri de muncă"
+
+msgid "Enable Job Alerts for Visitors"
+msgstr "Activați alerte de locuri de muncă pentru vizitatori"
+
+msgid "Allow non-logged-in users to sign up for job alerts"
+msgstr "Permiteți utilizatorilor care nu sunt conectați să se înscrie la alerte"
+
+msgid "Job Alert Auto Approve"
+msgstr "Aprobarea automată de alertă de muncă"
+
+msgid "Automatically approve new job alerts upon creation"
+msgstr "Aprobă automat noile alerte de locuri de muncă la creare"
+
+msgid "Captcha on Visitor Job Alert Form"
+msgstr "Captcha pe formularul de alertă de job pentru vizitatori"
+
+msgid "Show a captcha on the job alert sign-up form for visitors"
+msgstr "Afișați un CAPTCHA pe formularul de înscriere la alertă la locul de muncă pentru vizitatori"
+
+msgid "Allow users to save their search queries for jobs and resumes"
+msgstr "Permiteți utilizatorilor să își salveze întrebările de căutare pentru locuri de muncă și CV -uri"
+
+msgid "Show Saved Searches for Job Seekers"
+msgstr "Afișați căutări salvate pentru căutătorii de locuri de muncă"
+
+msgid "Allow job seekers to save their job searches"
+msgstr "Permiteți -i solicitanților de locuri de muncă să -și salveze căutările de locuri de muncă"
+
+msgid "Show Saved Searches for Employers"
+msgstr "Afișați căutări salvate pentru angajatori"
+
+msgid "Allow employers to save their resume searches"
+msgstr "Permiteți angajatorilor să -și salveze căutările CV -urilor"
+
+msgid "Feeds & AI"
+msgstr "Feeds & AI"
+
+msgid "RSS Feeds"
+msgstr "RSS alimentează"
+
+msgid "Configure the RSS feed for jobs"
+msgstr "Configurați fluxul RSS pentru joburi"
+
+msgid "Enable Jobs RSS Feed"
+msgstr "Activați joburi RSS Feed"
+
+msgid "Enable the main RSS feed for new jobs"
+msgstr "Activați principalele furaje RSS pentru noi locuri de muncă"
+
+msgid "Job Feed Title"
+msgstr "Titlul feedului de locuri de muncă"
+
+msgid "The title for the job RSS feed"
+msgstr "Titlul pentru funcția de feed RSS"
+
+msgid "Job Feed Description"
+msgstr "Descrierea feedului de muncă"
+
+msgid "The description for the job RSS feed"
+msgstr "Descrierea pentru fluxul RSS de lucru"
+
+msgid "Job Feed Copyright"
+msgstr "Drepturi de autor de hrană de locuri de muncă"
+
+msgid "Copyright notice for the job feed"
+msgstr "Notificare privind drepturile de autor pentru feedul de locuri de muncă"
+
+msgid "Job Feed Editor"
+msgstr "Editor de fluxuri de locuri de muncă"
+
+msgid "The person responsible for editorial content"
+msgstr "Persoana responsabilă pentru conținutul editorial"
+
+msgid "Job Feed Webmaster"
+msgstr "Webmaster de alimentare cu locuri de muncă"
+
+msgid "The person responsible for technical issues"
+msgstr "Persoana responsabilă de probleme tehnice"
+
+msgid "Job Feed TTL"
+msgstr "Feed de locuri de muncă TTL"
+
+msgid "Time to Live"
+msgstr "E timpul să trăiești"
+
+msgid "Number of minutes the feed can be cached before refreshing"
+msgstr "Numărul de minute, alimentarea poate fi memorată în cache înainte de reîmprospătare"
+
+msgid "Show Categories in Job Feed"
+msgstr "Afișați categorii în feed -uri de locuri de muncă"
+
+msgid "Include categories in the job feed items"
+msgstr "Includeți categorii în articolele de hrană"
+
+msgid "Show Company Image in Job Feed"
+msgstr "Afișați imaginea companiei în feedul de locuri de muncă"
+
+msgid "Include the company logo in the job feed items"
+msgstr "Includeți logo -ul companiei în articolele de alimentare cu locuri de muncă"
+
+msgid "Configure the RSS feed for resumes"
+msgstr "Configurați fluxul RSS pentru CV -uri"
+
+msgid "Enable Resumes RSS Feed"
+msgstr "Activați reluare furaje RSS"
+
+msgid "Enable the main RSS feed for new resumes"
+msgstr "Activați principalele furaje RSS pentru noi CV -uri"
+
+msgid "Resume Feed Title"
+msgstr "Reluați titlul de alimentare"
+
+msgid "The title for the resume RSS feed"
+msgstr "Titlul pentru reluarea RSS Feed"
+
+msgid "Resume Feed Description"
+msgstr "Reluare descrierea feedului"
+
+msgid "The description for the resume RSS feed"
+msgstr "Descrierea pentru reluarea RSS Feed"
+
+msgid "Resume Feed Copyright"
+msgstr "Reluați drepturile de autor"
+
+msgid "Copyright notice for the resume feed"
+msgstr "Notificare privind drepturile de autor pentru feedul CV -ului"
+
+msgid "Resume Feed Editor"
+msgstr "Reluați editorul de fluxuri"
+
+msgid "Resume Feed Webmaster"
+msgstr "Reluați Webmaster Feed"
+
+msgid "Resume Feed TTL"
+msgstr "Reluați hrana ttl"
+
+msgid "Show Categories in Resume Feed"
+msgstr "Afișați categoriile în reluare"
+
+msgid "Include categories in the resume feed items"
+msgstr "Includeți categorii în articolele de hrană CV"
+
+msgid "Show Resume File in Resume Feed"
+msgstr "Afișați fișierul CV în reluarea feedului"
+
+msgid "Make resume files downloadable from the feed"
+msgstr "Faceți fișierele de reluare descărcabile din feed"
+
+msgid "AI Suggested Matches"
+msgstr "AI a sugerat meciuri"
+
+msgid "Configure AI-powered job and resume suggestion features"
+msgstr "Configurați funcțiile de sugestie alimentate cu AI și reluați-vă"
+
+msgid "AI Search On Job Search Page"
+msgstr "Căutare AI pe pagina de căutare a locurilor de muncă"
+
+msgid "Show the AI search field on the main job search form"
+msgstr "Afișați câmpul de căutare AI pe principalul formular de căutare a locurilor de muncă"
+
+msgid "AI Job Search"
+msgstr "Căutare de locuri de muncă AI"
+
+msgid "AI Search Filter On Job Listing"
+msgstr "Filtru de căutare AI pe listarea lucrărilor"
+
+msgid "Show the AI search field as a filter on the job listing page"
+msgstr "Afișați câmpul de căutare AI ca un filtru pe pagina de listare a lucrărilor"
+
+msgid "AI Search On Resume Search Page"
+msgstr "Căutare AI pe pagina de căutare a CV -ului"
+
+msgid "Show the AI search field on the main resume search form"
+msgstr "Afișați câmpul de căutare AI pe formularul principal de căutare a CV -ului"
+
+msgid "AI Resume Search"
+msgstr "CV -ul AI CV"
+
+msgid "AI Search Filter On Resume Listing"
+msgstr "Filtru de căutare AI pe listarea CV -ului"
+
+msgid "Show the AI search field as a filter on the resume listing page"
+msgstr "Afișați câmpul de căutare AI ca un filtru pe pagina de listare a CV -ului"
+
+msgid "Show AI Suggested Jobs Button"
+msgstr "Afișați butonul de locuri de muncă sugerat AI"
+
+msgid "AI Suggested Jobs"
+msgstr "AI a sugerat locuri de muncă"
+
+msgid "Show AI Suggested Jobs on Dashboard"
+msgstr "Afișați joburi sugerate de AI pe tabloul de bord"
+
+msgid "Show a list of AI-suggested jobs on the job seeker dashboard"
+msgstr "Afișați o listă de locuri de muncă-sugerate AI pe tabloul de bord al căutătorului de locuri de muncă"
+
+msgid "Show AI Suggested Resumes Button"
+msgstr "Afișați butonul CV -urilor sugerate AI"
+
+msgid "AI Suggested Resumes"
+msgstr "AI a sugerat CV -uri"
+
+msgid "Show AI Suggested Resumes on Dashboard"
+msgstr "Afișați AI Sugeință CV -uri pe tabloul de bord"
+
+msgid "Show a list of AI-suggested resumes on the employer dashboard"
+msgstr "Afișați o listă de CV-uri-sugerate AI pe tabloul de bord al angajatorului"
+
+msgid "Integrations"
+msgstr "Integrări"
+
+msgid "Allow users to register and log in with their social media accounts"
+msgstr "Permiteți utilizatorilor să se înregistreze și să se conecteze la conturile lor de socializare"
+
+msgid "Login with Facebook"
+msgstr "Conectați -vă cu Facebook"
+
+msgid "Allow users to log in using their Facebook account"
+msgstr "Permiteți utilizatorilor să se conecteze folosind contul lor de Facebook"
+
+msgid "Apply with Facebook"
+msgstr "Aplicați cu Facebook"
+
+msgid "Allow users to apply for jobs using their Facebook profile"
+msgstr "Permiteți utilizatorilor să solicite locuri de muncă folosind profilul lor de Facebook"
+
+msgid "Facebook App ID"
+msgstr "ID -ul aplicației Facebook"
+
+msgid "Enter your Facebook App ID"
+msgstr "Introduceți ID -ul aplicației Facebook"
+
+msgid "Facebook App Secret"
+msgstr "Facebook App Secret"
+
+msgid "Enter your Facebook App Secret"
+msgstr "Introduceți secretul dvs. de aplicații Facebook"
+
+msgid "Valid OAuth URI"
+msgstr "Valabil OAuth Uri"
+
+msgid "Apply"
+msgstr "Aplicați"
+
+msgid "Login with LinkedIn"
+msgstr "Conectați -vă cu LinkedIn"
+
+msgid "Allow users to log in using their LinkedIn account"
+msgstr "Permiteți utilizatorilor să se conecteze folosind contul LinkedIn"
+
+msgid "Apply with LinkedIn"
+msgstr "Aplicați cu LinkedIn"
+
+msgid "Allow users to apply for jobs using their LinkedIn profile"
+msgstr "Permiteți utilizatorilor să solicite locuri de muncă folosind profilul lor LinkedIn"
+
+msgid "LinkedIn Client ID"
+msgstr "ID -ul client LinkedIn"
+
+msgid "Enter your LinkedIn Client ID"
+msgstr "Introduceți ID -ul dvs. de client LinkedIn"
+
+msgid "API Key"
+msgstr "Cheia API"
+
+msgid "LinkedIn Client Secret"
+msgstr "LinkedIn Client Secret"
+
+msgid "Enter your LinkedIn Client Secret"
+msgstr "Introduceți secretul dvs. de client LinkedIn"
+
+msgid "Social Sharing"
+msgstr "Partajare socială"
+
+msgid "Enable social sharing buttons on your pages"
+msgstr "Activați butoanele de partajare socială pe paginile dvs."
+
+msgid "Enable Facebook Likes"
+msgstr "Activați Facebook Likes"
+
+msgid "Show Facebook like button"
+msgstr "Afișați butonul Facebook Like"
+
+msgid "Enable Facebook Share"
+msgstr "Activați Facebook Share"
+
+msgid "Show Facebook share button"
+msgstr "Afișați butonul de partajare Facebook"
+
+msgid "Enable Facebook Comments"
+msgstr "Activați comentarii pe Facebook"
+
+msgid "Show Facebook comments widget"
+msgstr "Afișați widgetul Comentarii Facebook"
+
+msgid "Enable Twitter Share"
+msgstr "Activați Twitter Share"
+
+msgid "Show Twitter share button"
+msgstr "Afișați butonul de partajare Twitter"
+
+msgid "Enable LinkedIn Share"
+msgstr "Activați Share LinkedIn"
+
+msgid "Show LinkedIn share button"
+msgstr "Afișați butonul de partajare LinkedIn"
+
+msgid "Enable Blogger Share"
+msgstr "Activați Blogger Share"
+
+msgid "Show Blogger share button"
+msgstr "Afișați butonul de partajare a bloggerului"
+
+msgid "Enable Digg Share"
+msgstr "Activați acțiunea Digg"
+
+msgid "Show Digg share button"
+msgstr "Afișați butonul Digg Share"
+
+msgid "Enable Myspace Share"
+msgstr "Activați MySpace Share"
+
+msgid "Show Myspace share button"
+msgstr "Afișați butonul de partajare MySpace"
+
+msgid "Enable Yahoo Share"
+msgstr "Activați Yahoo Share"
+
+msgid "Show Yahoo share button"
+msgstr "Afișați butonul de partajare Yahoo"
+
+msgid "Mapping & Geolocation"
+msgstr "Cartografierea și geolocalizarea"
+
+msgid "Configure map services and location-based features"
+msgstr "Configurați serviciile de hartă și funcțiile bazate pe locație"
+
+msgid "Choose between Google Maps and OpenStreetMap for map displays"
+msgstr "Alegeți între Google Maps și OpenStreetMap pentru afișaje de hartă"
+
+msgid "Google Map API Key"
+msgstr "Cheia API Google MAP"
+
+msgid "Enter your Google Maps API key"
+msgstr "Introduceți cheia API Google Maps"
+
+msgid "Map Height"
+msgstr "Înălțimea hărții"
+
+msgid "Set the height for maps displayed in the plugin, in pixels"
+msgstr "Setați înălțimea pentru hărțile afișate în plugin, în pixeli"
+
+msgid "Default Longitude"
+msgstr "Longitudine implicită"
+
+msgid "Default longitude for map centering"
+msgstr "Longitudine implicită pentru centrarea hărții"
+
+msgid "Default Latitude"
+msgstr "Latitudine implicită"
+
+msgid "Default latitude for map centering"
+msgstr "Latitudine implicită pentru centrarea hărții"
+
+msgid "Default Map Radius Type"
+msgstr "Tipul implicit al razei hărții de hartă"
+
+msgid "Default unit for map radius calculations"
+msgstr "Unitate implicită pentru calcule RADIUS MAP"
+
+msgid "Max Records for City Field"
+msgstr "Înregistrări maxime pentru orașul orașului"
+
+msgid "Set the number of cities to show in the location autocomplete results"
+msgstr "Setați numărul de orașe pentru a afișa în locația rezultatele completă automat"
+
+msgid "Max Records for Tag Field"
+msgstr "Înregistrări maxime pentru câmpul de etichete"
+
+msgid "Set the number of tags to show in the tag autocomplete results"
+msgstr "Setați numărul de etichete de afișat în eticheta Rezultatele completă automată"
+
+msgid "Security & Captcha"
+msgstr "Securitate și Captcha"
+
+msgid "Captcha Options"
+msgstr "Opțiuni CAPTCHA"
+
+msgid "Enable captcha on various forms to prevent spam"
+msgstr "Activați CAPTCHA pe diverse forme pentru a preveni spamul"
+
+msgid "Default Captcha Type"
+msgstr "Tipul CAPTCHA implicit"
+
+msgid "Select the default captcha to use throughout the plugin"
+msgstr "Selectați CAPTCHA implicit pe care să îl utilizați pe tot pluginul"
+
+msgid "Captcha on Registration Form"
+msgstr "CAPTCHA în formularul de înregistrare"
+
+msgid "Show a captcha on the WP Job Portal registration form"
+msgstr "Afișați un CAPTCHA pe formularul de înregistrare a portalului WP"
+
+msgid "Captcha on Visitor Quick Apply"
+msgstr "CAPTCHA PE VISITOR APLICAȚI RAPID"
+
+msgid "Show captcha to visitors on the quick apply form"
+msgstr "Afișați Captcha vizitatorilor în formularul de aplicare rapidă"
+
+msgid "Captcha on Visitor Job Form"
+msgstr "Captcha pe formularul de muncă pentru vizitatori"
+
+msgid "Show captcha on the job submission form for visitors"
+msgstr "Afișați Captcha în formularul de depunere a postului pentru vizitatori"
+
+msgid "Captcha on Visitor Resume Form"
+msgstr "Captcha în formularul de reluare a vizitatorilor"
+
+msgid "Show captcha on the resume submission form for visitors"
+msgstr "Afișați Captcha în formularul de depunere a CV -ului pentru vizitatori"
+
+msgid "Captcha on Tell a Friend Popup"
+msgstr "CAPTCHA ON Tell A Friend Popup"
+
+msgid "Show captcha on the"
+msgstr "Arată -l pe Captcha pe"
+
+msgid "popup for visitors"
+msgstr "Popup pentru vizitatori"
+
+msgid "WP Job Portal Captcha"
+msgstr "WP Job Portal Captcha"
+
+msgid "Settings for the built-in mathematical captcha"
+msgstr "Setări pentru Captcha matematică încorporată"
+
+msgid "Calculation Type"
+msgstr "Tip de calcul"
+
+msgid "Select the type of math problem for the captcha"
+msgstr "Selectați tipul de problemă de matematică pentru CAPTCHA"
+
+msgid "Addition or Subtraction"
+msgstr "Adăugare sau scădere"
+
+msgid "Answer Always Positive"
+msgstr "Răspundeți întotdeauna pozitiv"
+
+msgid "Ensure that subtraction problems always result in a positive answer"
+msgstr "Asigurați -vă că problemele de scădere duc întotdeauna la un răspuns pozitiv"
+
+msgid "Number of Operands"
+msgstr "Numărul de operanzi"
+
+msgid "Choose the number of operands for the math problem"
+msgstr "Alegeți numărul de operanduri pentru problema matematicii"
+
+msgid "Google reCAPTCHA"
+msgstr "Google Recaptcha"
+
+msgid "Configure Google reCAPTCHA v2 or v3"
+msgstr "Configurați Google Recaptcha V2 sau v3"
+
+msgid "Select which version of Google reCAPTCHA to use"
+msgstr "Selectați ce versiune de Google Recaptcha să o utilizați"
+
+msgid "Enter the site key from your Google reCAPTCHA admin console"
+msgstr "Introduceți cheia site -ului din consola de administrare Google Recaptcha"
+
+msgid "Google reCaptcha Secret Key"
+msgstr "Google Recaptcha Cheie secretă"
+
+msgid "Enter the secret key from your Google reCAPTCHA admin console"
+msgstr "Introduceți cheia secretă din consola de administrare Google Recaptcha"
+
+msgid "Monetization"
+msgstr "Monetizare"
+
+msgid "General Monetization"
+msgstr "Monetizare generală"
+
+msgid "Core settings for handling payments and packages"
+msgstr "Setări de bază pentru gestionarea plăților și pachetelor"
+
+msgid "Choose the monetization model for submissions"
+msgstr "Alegeți modelul de monetizare pentru trimiteri"
+
+msgid "Free, Per Listing, or Membership-based"
+msgstr "Gratuit, pe listă sau bazat pe membru"
+
+msgid "Default Currency Symbol"
+msgstr "Simbolul valutar implicit"
+
+msgid "The currency symbol to be used across the site"
+msgstr "Simbolul valutar care va fi utilizat pe site"
+
+msgid "Currency Symbol Position"
+msgstr "Poziția simbolului valutar"
+
+msgid "Packages & Featured Listings"
+msgstr "Pachete și înregistrări prezentate"
+
+msgid "Manage free packages and enable featured listings"
+msgstr "Gestionați pachetele gratuite și activați listările prezentate"
+
+msgid "Auto-assign Free Package to New User"
+msgstr "Pachet gratuit de referință automată către utilizatorul nou"
+
+msgid "Automatically give new users a free package if one exists"
+msgstr "Oferiți automat utilizatorilor noi un pachet gratuit dacă există unul"
+
+msgid "Free Package Purchase Auto Approve"
+msgstr "Aprobarea automată a pachetului de pachete"
+
+msgid "Automatically approve the purchase of free packages"
+msgstr "Aprobați automat achiziționarea de pachete gratuite"
+
+msgid "Purchase Free Package Only Once"
+msgstr "Cumpărați pachet gratuit o singură dată"
+
+msgid "Prevent users from acquiring a free package more than once"
+msgstr "Împiedicați utilizatorii să achiziționeze un pachet gratuit de mai multe ori"
+
+msgid "Enable Featured Companies"
+msgstr "Activați companiile prezentate"
+
+msgid "Allow companies to be marked as"
+msgstr "Permiteți companiilor să fie marcate ca"
+
+msgid "Enable Featured Jobs"
+msgstr "Activați joburi prezentate"
+
+msgid "Allow jobs to be marked as"
+msgstr "Permiteți locurile de muncă să fie marcate ca"
+
+msgid "Enable Featured Resumes"
+msgstr "Activați CV -urile prezentate"
+
+msgid "Allow resumes to be marked as"
+msgstr "Permiteți CV -urile să fie marcate ca"
+
+msgid "Per Listing Prices"
+msgstr "Pe prețuri de listă"
+
+msgid "Set prices for various actions when using the"
+msgstr "Stabiliți prețuri pentru diverse acțiuni atunci când utilizați"
+
+msgid "submission type"
+msgstr "Tip de depunere"
+
+msgid "Submission"
+msgstr "Depunere"
+
+msgid "Price to submit a single company profile"
+msgstr "Preț pentru a depune un profil unic al companiei"
+
+msgid "Additional price to make a company"
+msgstr "Preț suplimentar pentru a face o companie"
+
+msgid "Days Until Featured Company Expires"
+msgstr "Zile până când expiră compania prezentată"
+
+msgid "Number of days a"
+msgstr "Numărul de zile A"
+
+msgid "per-listing"
+msgstr "per listare"
+
+msgid "featured company remains active"
+msgstr "Compania prezentată rămâne activă"
+
+msgid "free"
+msgstr "gratuit"
+
+msgid "Price to submit a single job"
+msgstr "Preț pentru a depune un singur loc de muncă"
+
+msgid "Additional price to make a job"
+msgstr "Preț suplimentar pentru a face un loc de muncă"
+
+msgid "Days Until Featured Job Expires"
+msgstr "Zile până la expirarea jobului prezentat"
+
+msgid "featured job remains active"
+msgstr "Jobul prezentat rămâne activ"
+
+msgid "Price to submit a single resume"
+msgstr "Preț pentru a trimite un singur CV"
+
+msgid "Additional price to make a resume"
+msgstr "Preț suplimentar pentru a face un CV"
+
+msgid "Days Until Featured Resume Expires"
+msgstr "Zile până la expirarea CV -ului"
+
+msgid "featured resume remains active"
+msgstr "CV -ul prezentat rămâne activ"
+
+msgid "Price per Job Apply"
+msgstr "Prețul pe job Aplicați"
+
+msgid "Price for a job seeker to apply for a job"
+msgstr "Preț pentru ca un solicitant de locuri de muncă să solicite un loc de muncă"
+
+msgid "Price to View Resume Contact"
+msgstr "Preț pentru a vizualiza contactul CV -ului"
+
+msgid "Price to View Company Contact"
+msgstr "Preț pentru a vizualiza contactul companiei"
+
+msgid "Price to submit a department"
+msgstr "Preț pentru a depune un departament"
+
+msgid "Price to submit a cover letter"
+msgstr "Preț pentru a trimite o scrisoare de întâmpinare"
+
+msgid "Price to create a job alert"
+msgstr "Preț pentru a crea o alertă de muncă"
+
+msgid "Dashboard Monetization Links"
+msgstr "Link -uri de monetizare a bordului"
+
+msgid "Control the visibility of monetization-related links in user dashboards"
+msgstr "Controlați vizibilitatea legăturilor legate de monetizare în tablourile de bord pentru utilizatori"
+
+msgid "Employer Show Invoice History"
+msgstr "Angajator arată istoricul facturilor"
+
+msgid "Setting to show the invoice/purchase history section"
+msgstr "Setare pentru a afișa secțiunea de factură/istoric de achiziție"
+
+msgid "Job Seeker Show Invoice History"
+msgstr "Căutătorul de locuri de muncă arată istoricul facturilor"
+
+msgid "Job Seeker Show Credits Log"
+msgstr "Jurnalul de credite pentru căutătorul de locuri de muncă"
+
+msgid "Setting to show the credits log section"
+msgstr "Setare pentru a afișa secțiunea jurnal de credite"
+
+msgid "Payment Gateways"
+msgstr "Gateway -uri de plată"
+
+msgid "Configure PayPal payment gateway settings for API integration"
+msgstr "Configurați setările Gateway PayPal pentru integrarea API"
+
+msgid "Enable PayPal"
+msgstr "Activați PayPal"
+
+msgid "Enable or disable PayPal as a payment option"
+msgstr "Activați sau dezactivați PayPal ca opțiune de plată"
+
+msgid "Your PayPal API Username"
+msgstr "Numele dvs. de utilizator API PayPal"
+
+msgid "Your PayPal API Password"
+msgstr "Parola dvs. PayPal API"
+
+msgid "Your PayPal API Signature"
+msgstr "Semnătura dvs. API PayPal"
+
+msgid "A URL to your logo image to display on the PayPal checkout page"
+msgstr "O adresă URL la imaginea logo -ului dvs. pentru a fi afișată pe pagina PayPal Checkout"
+
+msgid "Cancel URL"
+msgstr "Anulați adresa URL"
+
+msgid "The URL users are sent to if they cancel the payment"
+msgstr "Utilizatorii URL sunt trimiși dacă anulează plata"
+
+msgid "Notify URL"
+msgstr "Notificați URL -ul"
+
+msgid "Sandbox"
+msgstr "Sandbox"
+
+msgid "Enable PayPal Sandbox for testing purposes"
+msgstr "Activați PayPal Sandbox în scopuri de testare"
+
+msgid "Please enter language code, for example"
+msgstr "Vă rugăm să introduceți codul lingvistic, de exemplu"
+
+msgid "Subscription IPN URL"
+msgstr "URL IPN Abonament"
+
+msgid "Configure Stripe payment gateway settings"
+msgstr "Configurați setările gateway -ului de plată cu bandă"
+
+msgid "Enable Stripe"
+msgstr "Activați Stripe"
+
+msgid "Enable or disable Stripe as a payment option"
+msgstr "Activați sau dezactivați Stripe ca opțiune de plată"
+
+msgid "Publishable Key"
+msgstr "Cheie de publicare"
+
+msgid "Enter your Stripe Publishable Key"
+msgstr "Introduceți cheia publicabilă cu bandele"
+
+msgid "Secret Key"
+msgstr "Cheie secretă"
+
+msgid "Enter your Stripe Secret Key"
+msgstr "Introduceți cheia secretă a dungi"
+
+msgid "Subscription Webhook URL"
+msgstr "URL -ul webhook de abonament"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Use WooCommerce to handle payments"
+msgstr "Utilizați wooCommerce pentru a gestiona plățile"
+
+msgid "Enable WooCommerce"
+msgstr "Activați WooCommerce"
+
+msgid "Enable or disable WooCommerce as a payment option"
+msgstr "Activați sau dezactivați WooCommerce ca opțiune de plată"
+
+msgid "Home Page"
+msgstr "Pagina principală"
+
+msgid "WordPress Default"
+msgstr "WordPress implicit"
+
+msgid "Blog"
+msgstr "Blog"
+
+msgid "This feature is part of a premium addon"
+msgstr "Această caracteristică face parte dintr -un addon premium"
+
+msgid "Available tags"
+msgstr "Etichete disponibile"
+
+msgid "This image will be shown as the default image for entities & users if no other image is provided"
+msgstr "Această imagine va fi afișată ca imagine implicită pentru entități și utilizatori, dacă nu este furnizată altă imagine"
+
+msgid "Discard"
+msgstr "Aruncat"
+
+msgid "Save Changes"
+msgstr "Salvați modificări"
+
+msgid "Quickly find any setting"
+msgstr "Găsiți rapid orice setare"
+
+msgid "Search by setting title or tooltip description"
+msgstr "Căutați prin setarea titlului sau a descrierii instrumentului"
+
+msgid "Unlock"
+msgstr "Deblocare"
+
+msgid "This and other powerful features are available in the"
+msgstr "Aceasta și alte caracteristici puternice sunt disponibile în"
+
+msgid "Upgrade Now"
+msgstr "Actualizați acum"
+
+msgid "No settings found for your search"
+msgstr "Nu s -au găsit setări pentru căutarea dvs."
+
+msgid "Copied to clipboard"
+msgstr "Copiat în clipboard"
+
+msgid "Search results for"
+msgstr "Rezultatele căutării pentru"
+
+msgid "Unlock with"
+msgstr "Deblocați cu"
+
+msgid "Settings related to employer accounts, registration, and permissions"
+msgstr "Setări legate de conturile angajatorilor, înregistrarea și permisiunile"
+
+msgid "Settings related to job seeker accounts and registration"
+msgstr "Setări legate de conturile solicitante de locuri de muncă și înregistrare"
+
+msgid "Visitor Can View Employer's Control Panel Links"
+msgstr "Vizitatorul poate vizualiza legăturile panoului de control al angajatorului"
+
+msgid "Visitor Can View Resume Categories"
+msgstr "Vizitatorul poate vizualiza categoriile de CV -uri"
+
+msgid "Visitor Can Search Resumes"
+msgstr "Vizitatorul poate căuta CV -uri"
+
+msgid "Visitor Can View Company Details"
+msgstr "Vizitatorul poate vizualiza detaliile companiei"
+
+msgid "Visitor Can View Job Details"
+msgstr "Vizitatorul poate vizualiza detaliile postului"
+
+msgid "Visitor Can View Resume Details"
+msgstr "Vizitatorul poate vizualiza detaliile CV -ului"
+
+msgid "Visitor Can View Job Seeker's Control Panel Links"
+msgstr "Vizitatorul poate vizualiza legăturile panoului de control al căutătorului de locuri de muncă"
+
+msgid "Visitor Can View Jobs by Categories"
+msgstr "Vizitatorul poate vizualiza locuri de muncă pe categorii"
+
+msgid "Visitor Can Search Jobs"
+msgstr "Vizitatorul poate căuta locuri de muncă"
+
+msgid "Visitor Can View Newest Jobs"
+msgstr "Vizitatorul poate vizualiza cele mai noi locuri de muncă"
+
+msgid "Visitor Can View Job Search Results"
+msgstr "Vizitatorul poate vizualiza rezultatele căutării de locuri de muncă"
+
+msgid "1 Column"
+msgstr "1 coloană"
+
+msgid "10254 Departments found"
+msgstr "Au fost găsite 10254 departamente"
+
+msgid "2 Columns"
+msgstr "2 coloane"
+
+msgid "3 Columns"
+msgstr "3 coloane"
+
+msgid "4 Columns"
+msgstr "4 coloane"
+
+msgid "5 Columns"
+msgstr "5 coloane"
+
+msgid "A critical update for WP Job Portal is required to maintain performance and prevent issues. Please update now."
+msgstr "Este necesară o actualizare critică pentru WP Job Portal pentru a menține performanța și a preveni problemele. Vă rugăm să actualizați acum."
+
+msgid "AI Search"
+msgstr "Căutare AI"
+
+msgid "AI Search Job"
+msgstr "Job de căutare AI"
+
+msgid "AI Settings"
+msgstr "Setări AI"
+
+msgid "AI settings"
+msgstr "Setări AI"
+
+msgid "About"
+msgstr "Despre"
+
+msgid "Account & Billing"
+msgstr "Cont și facturare"
+
+msgid "Activation failed"
+msgstr "Activarea a eșuat"
+
+msgid "Add-ons for WP Job Portal have been installed and activated successfully."
+msgstr "Suplimentele pentru WP Job Portal au fost instalate și activate cu succes."
+
+msgid "Addon Installer"
+msgstr "Instalator de suplimente"
+
+msgid "Addon not installed please install addon first."
+msgstr "Suplimentul nu este instalat, vă rugăm să instalați mai întâi suplimentul."
+
+msgid "Addon will automatically update to the newest version"
+msgstr "Addon se va actualiza automat la cea mai nouă versiune"
+
+msgid "Addon(s) Installed successfully!"
+msgstr "Supliment(e) instalat(e) cu succes!"
+
+msgid "Address display style for plugin"
+msgstr "Stilul de afișare a adresei pentru plugin"
+
+msgid "Advanced Resume Builder Addon missing, resume sections data will not be imported!"
+msgstr "Lipsește suplimentul Advanced Resume Builder, datele secțiunilor de CV nu vor fi importate!"
+
+msgid "All selected add-ons are now active."
+msgstr "Toate suplimentele selectate sunt acum active."
+
+msgid "Allow employers and job Seekers to register on the site."
+msgstr "Permite angajatorilor și solicitanților de locuri de muncă să se înregistreze pe site."
+
+msgid "Allow search resume"
+msgstr "Permite reluarea căutării"
+
+msgid "Allowed to all (employers, job seekers and visitors)"
+msgstr "Permis tuturor (angajatorilor, solicitanților de locuri de muncă și vizitatorilor)"
+
+msgid "Auto Update: Off"
+msgstr "Actualizare automată: Dezactivată"
+
+msgid "Auto Update: On"
+msgstr "Actualizare automată: Activată"
+
+msgid "Back to listing"
+msgstr "Înapoi la listare"
+
+msgid "Basic Info"
+msgstr "Informații de bază"
+
+msgid "Buttons Styling"
+msgstr "Stilizarea butoanelor"
+
+msgid "Capitalize"
+msgstr "Valorifica"
+
+msgid "Check if you want to use WP Job Portal packages"
+msgstr "Verificați dacă doriți să utilizați pachetele WP Job Portal"
+
+msgid "City name"
+msgstr "Numele orașului"
+
+msgid "Columns per Row"
+msgstr "Coloane pe rând"
+
+msgid "Comma separated list of job types i.e JTFT, JTPT, JTFP, JTCT, JTIN"
+msgstr "Lista de tipuri de joburi separate prin virgulă, de exemplu JTFT, JTPT, JTFP, JTCT, JTIN"
+
+msgid "Communication"
+msgstr "Comunicare"
+
+msgid "Company Management"
+msgstr "Managementul companiei"
+
+msgid "Complete Your Resume"
+msgstr "Completează-ți CV-ul"
+
+msgid "Content Access"
+msgstr "Accesul la conținut"
+
+msgid "Content Styling"
+msgstr "Stilul conținutului"
+
+msgid "Control which employer dashboard navigation links are visible to visitors"
+msgstr "Controlați ce linkuri de navigare din tabloul de bord ale angajatorului sunt vizibile pentru vizitatori"
+
+msgid "Control which employer dashboard widgets and sections are visible to visitors"
+msgstr "Controlați ce widget-uri și secțiuni din tabloul de bord al angajatorului sunt vizibile pentru vizitatori"
+
+msgid "Control which job seeker dashboard navigation links are visible to visitors"
+msgstr "Controlați ce linkuri de navigare în tabloul de bord ale persoanelor în căutarea unui loc de muncă sunt vizibile pentru vizitatori"
+
+msgid "Control which job seeker dashboard widgets and sections are visible to visitors"
+msgstr "Controlați ce widget-uri și secțiuni din tabloul de bord pentru persoanele în căutarea unui loc de muncă sunt vizibile pentru vizitatori"
+
+msgid "Control which pages and content areas are visible to non-logged-in users"
+msgstr "Controlați ce pagini și zone de conținut sunt vizibile pentru utilizatorii neconectați"
+
+msgid "Custom Field Class"
+msgstr "Clasă de câmp personalizat"
+
+msgid "Database Update Needed"
+msgstr "Este necesară actualizarea bazei de date"
+
+msgid "Database update completed"
+msgstr "Actualizarea bazei de date a fost finalizată"
+
+msgid "Delete All Unused Keys"
+msgstr "Ștergeți toate cheile neutilizate"
+
+msgid "Discover"
+msgstr "Descoperi"
+
+msgid "Display the status of applications to the job seeker"
+msgstr "Afișați starea cererilor pentru solicitantul de locuri de muncă"
+
+msgid "Dummy Plugin"
+msgstr "Plugin fals"
+
+msgid "Dummy Plugin 2"
+msgstr "Plugin fals 2"
+
+msgid "Elegant Design"
+msgstr "Design elegant"
+
+msgid "Employer Widgets"
+msgstr "Widgeturi pentru angajator"
+
+msgid "Enter the Site Title"
+msgstr "Introduceți titlul site-ului"
+
+msgid "Entity"
+msgstr "Entitate"
+
+msgid "Fetch Data"
+msgstr "Preluare date"
+
+msgid "Find your next star hire with AI-driven resume search"
+msgstr "Găsește-ți următoarea angajare cu stea cu căutarea de CV-uri bazată pe inteligență artificială"
+
+msgid "Font Family"
+msgstr "Familia de fonturi"
+
+msgid "Font Size"
+msgstr "Dimensiunea fontului"
+
+msgid "Font Style"
+msgstr "Stilul fontului"
+
+msgid "Font Weight"
+msgstr "Greutatea fontului"
+
+msgid "Go To Dashboard"
+msgstr "Accesați tabloul de bord"
+
+msgid "Import Data Report"
+msgstr "Raport de import de date"
+
+msgid "Import Third Party Data"
+msgstr "Importați date de la terți"
+
+msgid "Import demo data to populate your site with example companies, jobs, resumes, and applications."
+msgstr "Importați date demonstrative pentru a vă completa site-ul cu exemple de companii, locuri de muncă, CV-uri și aplicații."
+
+msgid "Imported"
+msgstr "Importat"
+
+msgid "Infi Icon"
+msgstr "Pictograma Infi"
+
+msgid "Info"
+msgstr "Info"
+
+msgid "Info Icon"
+msgstr "Pictograma Info"
+
+msgid "Invalid server response"
+msgstr "Răspuns server nevalid"
+
+msgid "Italic"
+msgstr "Cursiv"
+
+msgid "Job Alert Time"
+msgstr "Ora alertă de locuri de muncă"
+
+msgid "Job Detail"
+msgstr "Detaliu job"
+
+msgid "Job Seeker Links"
+msgstr "Link-uri pentru căutarea unui loc de muncă"
+
+msgid "Job Seeker Settings"
+msgstr "Setări pentru căutarea unui loc de muncă"
+
+msgid "Job Seeker Widgets"
+msgstr "Widgeturi pentru căutarea unui loc de muncă"
+
+msgid "Jobs by Category"
+msgstr "Locuri de muncă pe categorii"
+
+msgid "Layout"
+msgstr "Aspect"
+
+msgid "Letter Spacing"
+msgstr "Spațiere între litere"
+
+msgid "Line Height"
+msgstr "Înălțimea liniei"
+
+msgid "Live Preview Not available at the moment !"
+msgstr "Previzualizare live Nu este disponibilă momentan!"
+
+msgid "Login/Register"
+msgstr "Autentificare/Înregistrare"
+
+msgid "Lowercase"
+msgstr "Litere mici"
+
+msgid "Manage Documents"
+msgstr "Gestionați documentele"
+
+msgid "Manage Jobs"
+msgstr "Gestionați locurile de muncă"
+
+msgid "Manage Unused Keys"
+msgstr "Gestionați cheile neutilizate"
+
+msgid "More Actions"
+msgstr "Mai multe acțiuni"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans."
+msgstr "Abonamentul meu oferă utilizatorilor o imagine de ansamblu asupra abonamentelor lor active, permițând gestionarea și urmărirea ușoară a planurilor lor de postare de locuri de muncă."
+
+msgid "New Jobs"
+msgstr "Locuri de munca noi"
+
+msgid "Next Setup"
+msgstr "Următoarea configurare"
+
+msgid "No Addon Installed!"
+msgstr "Niciun supliment instalat!"
+
+msgid "No unused keys were found."
+msgstr "Nu au fost găsite chei nefolosite."
+
+msgid "None"
+msgstr "Nici unul"
+
+msgid "Not Imported"
+msgstr "Neimportat"
+
+msgid "Oblique"
+msgstr "Oblic"
+
+msgid "Only job seekers can register. Jobs and companies are managed by the admin."
+msgstr "Doar persoanele aflate în căutarea unui loc de muncă se pot înscrie. Locuri de muncă și companii sunt gestionate de administrator."
+
+msgid "Paid access Only"
+msgstr "Numai acces plătit"
+
+msgid "Pay For Featured Resume"
+msgstr "Plătiți pentru CV-ul recomandat"
+
+msgid "Pay For Resume"
+msgstr "Plătiți pentru CV"
+
+msgid "Pay per listing price to publish your"
+msgstr "Plătiți pe preț pentru a vă publica"
+
+msgid "Please Insert Your Activation Key"
+msgstr "Vă rugăm să introduceți cheia de activare"
+
+msgid "Please log in to register to continue."
+msgstr "Vă rugăm să vă conectați pentru a vă înregistra pentru a continua."
+
+msgid "Please select at least one addon!"
+msgstr "Vă rugăm să selectați cel puțin un supliment!"
+
+msgid "Please verify Locations and salaries for imported data entities"
+msgstr "Verificați locațiile și salariile pentru entitățile de date importate"
+
+msgid "Plugin not installed"
+msgstr "Pluginul nu este instalat"
+
+msgid "Price for a job seeker to view a company's contact details"
+msgstr "Preț pentru un solicitant de locuri de muncă pentru a vedea datele de contact ale unei companii"
+
+msgid "Price for an employer to view a resume's contact details"
+msgstr "Preț pentru un angajator pentru a vedea datele de contact ale unui CV"
+
+msgid "Quick Configuration"
+msgstr "Configurare rapidă"
+
+msgid "Ready to find your dream job? Let's get started"
+msgstr "Ești gata să-ți găsești jobul de vis? Să începem"
+
+msgid "Ready to find your potential employee? Let's get started"
+msgstr "Ești gata să-ți găsești potențialul angajat? Să începem"
+
+msgid "Search Jobs"
+msgstr "Caută locuri de muncă"
+
+msgid "Search Resumes"
+msgstr "Căutați CV-uri"
+
+msgid "Search smarter – just type anything you know about the job: title, category, type, skills, or even a description!"
+msgstr "Căutați mai inteligent – ​​introduceți doar orice știți despre job: titlu, categorie, tip, abilități sau chiar o descriere!"
+
+msgid "Section Title Styling"
+msgstr "Titlul secțiunii Stil"
+
+msgid "Select Addons to Update with New Activation Key"
+msgstr "Selectați Addons pentru a actualiza cu o nouă cheie de activare"
+
+msgid "Select Company"
+msgstr "Selectați Companie"
+
+msgid "Select Job Category"
+msgstr "Selectați Categoria de locuri de muncă"
+
+msgid "Select Job Status"
+msgstr "Selectați Stare job"
+
+msgid "Select Job Type"
+msgstr "Selectați tipul locului de muncă"
+
+msgid "Select Page To Show"
+msgstr "Selectați Pagina de afișat"
+
+msgid "Select Plugin Setting for WP Job Portal"
+msgstr "Selectați Plugin Setting pentru WP Job Portal"
+
+msgid "Select packages pack so that user can purchase them"
+msgstr "Selectați pachetul de pachete, astfel încât utilizatorul să le poată cumpăra"
+
+msgid "Select who can view company contact details."
+msgstr "Selectați cine poate vedea detaliile de contact ale companiei."
+
+msgid "Settings you applied have been successfully saved"
+msgstr "Setările aplicate au fost salvate cu succes"
+
+msgid "Setup Complete"
+msgstr "Configurare finalizată"
+
+msgid "Show Advanced Search Button"
+msgstr "Afișați butonul de căutare avansată"
+
+msgid "Show Employers"
+msgstr "Arată Angajatorii"
+
+msgid "Show Everyone"
+msgstr "Arată tuturor"
+
+msgid "Show Job seekers"
+msgstr "Afișați solicitanții de locuri de muncă"
+
+msgid "Show Labels"
+msgstr "Afișați etichete"
+
+msgid "Show No One"
+msgstr "Arata Nimanui"
+
+msgid "Show Placeholders"
+msgstr "Afișați substituenți"
+
+msgid "Show Resume Status Section"
+msgstr "Afișați secțiunea Stare reluare"
+
+msgid "Show a box with applied jobs on the job seeker's dashboard"
+msgstr "Afișați o casetă cu locuri de muncă aplicate pe tabloul de bord al solicitantului de locuri de muncă"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard"
+msgstr "Afișați o casetă cu cele mai noi locuri de muncă pe tabloul de bord al solicitantului de locuri de muncă"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard to visitor"
+msgstr "Afișați vizitatorului o casetă cu cele mai noi locuri de muncă pe tabloul de bord al solicitantului de locuri de muncă"
+
+msgid "Show a box with recent resumes on the employer's dashboard"
+msgstr "Afișați o casetă cu CV-urile recente pe tabloul de bord al angajatorului"
+
+msgid "Show a box with recent resumes on the employer's dashboard to visitor"
+msgstr "Afișați vizitatorului o casetă cu CV-urile recente pe tabloul de bord al angajatorului"
+
+msgid "Show a graph of job statistics in the employer's dashboard"
+msgstr "Afișați un grafic cu statisticile locurilor de muncă în tabloul de bord al angajatorului"
+
+msgid "Show a graph of job statistics in the employer's dashboard to visitor"
+msgstr "Afișați vizitatorului un grafic cu statisticile locurilor de muncă în tabloul de bord al angajatorului"
+
+msgid "Show a graph of job statistics in the job seeker's dashboard"
+msgstr "Afișați un grafic cu statisticile locurilor de muncă în tabloul de bord al solicitantului de locuri de muncă"
+
+msgid "Show a graph of job statistics in the job seeker's dashboard to visitor"
+msgstr "Afișați vizitatorului un grafic cu statisticile locurilor de muncă în tabloul de bord al solicitantului de locuri de muncă"
+
+msgid "Show a link to active subscriptions in the employer's dashboard"
+msgstr "Afișați un link către abonamentele active în tabloul de bord al angajatorului"
+
+msgid "Show a link to active subscriptions in the job seeker's dashboard"
+msgstr "Afișați un link către abonamentele active în tabloul de bord al solicitantului de locuri de muncă"
+
+msgid "Show a link to the packages page in the employer's dashboard"
+msgstr "Afișați un link către pagina de pachete în tabloul de bord al angajatorului"
+
+msgid "Show a link to the packages page in the job seeker's dashboard"
+msgstr "Afișați un link către pagina de pachete în tabloul de bord al solicitantului de locuri de muncă"
+
+msgid "Show a link to the purchase history/invoices in the employer's dashboard"
+msgstr "Afișați un link către istoricul achizițiilor/facturi în tabloul de bord al angajatorului"
+
+msgid "Show a link to the purchase history/invoices in the job seeker's dashboard"
+msgstr "Afișați un link către istoricul achizițiilor/facturi în tabloul de bord al solicitantului de locuri de muncă"
+
+msgid "Show a link to the user's purchased packages in their dashboard"
+msgstr "Afișați un link către pachetele achiziționate de utilizator în tabloul de bord"
+
+msgid "Show an 'AI Suggested Jobs' button on the 'My Resumes' page for job seekers"
+msgstr "Afișați un buton „Locuri de muncă sugerate AI” pe pagina „Cv-urile mele” pentru cei care caută un loc de muncă"
+
+msgid "Show an 'AI Suggested Resumes' button on the 'My Jobs' page for employers"
+msgstr "Afișați un buton „Cv-uri sugerate AI” pe pagina „Locuri de muncă” pentru angajatori"
+
+msgid "Show or hide the profile section on the employer's control panel"
+msgstr "Afișează sau ascunde secțiunea de profil din panoul de control al angajatorului"
+
+msgid "Show or hide the profile section on the job seeker's control panel"
+msgstr "Afișați sau ascundeți secțiunea de profil din panoul de control al solicitantului de locuri de muncă"
+
+msgid "Show resume status section on the job seeker's dashboard"
+msgstr "Afișați secțiunea de stare a CV-ului pe tabloul de bord al solicitantului de locuri de muncă"
+
+msgid "Show statistics boxes on the employer's dashboard"
+msgstr "Afișați casetele cu statistici pe tabloul de bord al angajatorului"
+
+msgid "Show statistics boxes on the job seeker's dashboard"
+msgstr "Afișați casete cu statistici pe tabloul de bord al solicitantului de locuri de muncă"
+
+msgid "Show the 'Quick Apply' form to logged-in users on the job detail page"
+msgstr "Afișați formularul „Aplicare rapidă” utilizatorilor conectați pe pagina cu detaliile postului"
+
+msgid "Show the 'Quick Apply' form to visitors on the job detail page"
+msgstr "Afișați formularul „Aplicare rapidă” vizitatorilor pe pagina cu detaliile postului"
+
+msgid "Similar Found"
+msgstr "Găsit similar"
+
+msgid "Start typing what you know – our AI will help you find the best matching jobs."
+msgstr "Începeți să introduceți ceea ce știți – AI-ul nostru vă va ajuta să găsiți cele mai potrivite locuri de muncă."
+
+msgid "Start typing what you know – our AI will help you find the best matching resumes."
+msgstr "Începeți să introduceți ceea ce știți – AI-ul nostru vă va ajuta să găsiți cele mai potrivite CV-uri."
+
+msgid "Step 1 of 5"
+msgstr "Pasul 1 din 5"
+
+msgid "Step 2 of 4"
+msgstr "Pasul 2 din 4"
+
+msgid "Step 2 of 5"
+msgstr "Pasul 2 din 5"
+
+msgid "Step 3 of 4"
+msgstr "Pasul 3 din 4"
+
+msgid "Step 3 of 5"
+msgstr "Pasul 3 din 5"
+
+msgid "Step 4 of 4"
+msgstr "Pasul 4 din 4"
+
+msgid "Step 4 of 5"
+msgstr "Pasul 4 din 5"
+
+msgid "Step 5 of 5"
+msgstr "Pasul 5 din 5"
+
+msgid "Subscriptions"
+msgstr "Abonamente"
+
+msgid "Sugeested Jobs"
+msgstr "Locuri de muncă sugerate"
+
+msgid "Suggested Jobs"
+msgstr "Locuri de muncă sugerate"
+
+msgid "Suggested Resumes"
+msgstr "CV-uri sugerate"
+
+msgid "System"
+msgstr "Sistem"
+
+msgid "System Error Log"
+msgstr "Jurnal de erori de sistem"
+
+msgid "Text Transform"
+msgstr "Transformarea textului"
+
+msgid "The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "Panoul de control al angajatorului este o interfață simplificată care le permite angajatorilor să gestioneze afișările de locuri de muncă, să urmărească cererile, să comunice cu candidații și să analizeze eficient parametrii de angajare."
+
+msgid "The highlighted addons are not included in your current license. Please adjust your selection accordingly."
+msgstr "Suplimentele evidențiate nu sunt incluse în licența dvs. actuală. Vă rugăm să ajustați selecția în consecință."
+
+msgid "This add-on will change the Job Portal pages to a simple yet powerful and rich web design that involves focusing on clean aesthetics, intuitive navigation, and functional elements while ensuring performance and responsiveness."
+msgstr "Acest supliment va schimba paginile Portalului de locuri de muncă într-un design web simplu, dar puternic și bogat, care implică concentrarea pe o estetică curată, navigare intuitivă și elemente funcționale, asigurând în același timp performanță și receptivitate."
+
+msgid "This will replace the old key with the new one."
+msgstr "Aceasta va înlocui cheia veche cu cea nouă."
+
+msgid "Today Stats"
+msgstr "Statistici de azi"
+
+msgid "Unlock your career potential with AI-driven job search"
+msgstr "Deblocați-vă potențialul de carieră cu căutarea de locuri de muncă bazată pe inteligență artificială"
+
+msgid "Update Key"
+msgstr "Cheie de actualizare"
+
+msgid "Update Now"
+msgstr "Actualizați acum"
+
+msgid "Updating Database, please wait..."
+msgstr "Se actualizează baza de date, așteptați..."
+
+msgid "Uppercase"
+msgstr "majuscule"
+
+msgid "Use Default Color For Color 1"
+msgstr "Utilizați culoarea implicită pentru culoarea 1"
+
+msgid "Use Icons for Buttons"
+msgstr "Utilizați pictograme pentru butoane"
+
+msgid "View All Resumes"
+msgstr "Vezi toate CV-urile"
+
+msgid "View Company Contact Detail"
+msgstr "Vedeți detaliile de contact ale companiei"
+
+msgid "Visitor Show"
+msgstr "Spectacol pentru vizitatori"
+
+msgid "Visitor Show Active Jobs Graph"
+msgstr "Vizitator Afișează graficul de locuri de muncă active"
+
+msgid "Visitor Show Applied Jobs Section"
+msgstr "Vizitator Show Applied Jobs Section"
+
+msgid "Visitor Show Applied Resumes Section"
+msgstr "Secțiunea de CV-uri aplicate pentru prezentarea vizitatorilor"
+
+msgid "Visitor Show Credits Log Section"
+msgstr "Secțiunea Jurnal de credite pentru prezentarea vizitatorilor"
+
+msgid "Visitor Show Jobs Graph"
+msgstr "Graficul de locuri de muncă pentru vizitatori"
+
+msgid "Visitor Show Jobs Graph Section"
+msgstr "Secțiunea grafică a locurilor de muncă pentru vizitatori"
+
+msgid "Visitor Show Newest Jobs Box"
+msgstr "Căsuță pentru cele mai noi locuri de muncă pentru vizitatori"
+
+msgid "Visitor Show Newest Jobs Section"
+msgstr "Vizitator Afișează secțiunea Cele mai noi locuri de muncă"
+
+msgid "Visitor Show Newest Resumes Section"
+msgstr "Vizitator Show Cele mai noi secțiuni CV-uri"
+
+msgid "Visitor Show Purchase History Section"
+msgstr "Vizitator Afișează secțiunea Istoricul achizițiilor"
+
+msgid "Visitor Show Recent Resumes Box"
+msgstr "Căsuță pentru CV-uri recente pentru afișarea vizitatorilor"
+
+msgid "Visitor Show Saved Searches Section"
+msgstr "Vizitator Afișează secțiunea Căutări salvate"
+
+msgid "Visitor Show Shortlisted Jobs Section"
+msgstr "Secțiunea de locuri de muncă selectate pentru vizitatori"
+
+msgid "Visitor Show Stats Graph Section"
+msgstr "Vizitator Afișează Secțiunea Grafic statistici"
+
+msgid "Visitor Show Useful Links Section"
+msgstr "Vizitator Show Secțiunea Linkuri utile"
+
+msgid "WP Job Manager"
+msgstr "WP Job Manager"
+
+msgid "WP Job Portal Activation Key"
+msgstr "Cheie de activare WP Job Portal"
+
+msgid "WP Job Portal Import Data"
+msgstr "WP Job Portal Import date"
+
+msgid "WP Job Portal Packages"
+msgstr "Pachete WP Portal de locuri de muncă"
+
+msgid "Welcome to WP Job Portal Addon Installer"
+msgstr "Bun venit la WP Job Portal Addon Installer"
+
+msgid "Welcome, Visitor"
+msgstr "Bun venit, Vizitator"
+
+msgid "Who can search resume."
+msgstr "Cine poate căuta CV-ul."
+
+msgid "Who can view resume contact details"
+msgstr "Cine poate vedea detaliile de contact ale CV-ului"
+
+msgid "You Already Applied to this job"
+msgstr "Ați aplicat deja la acest job"
+
+msgid "You have"
+msgstr "Aveți"
+
+msgid "Your WP Job Portal license key has expired or is invalid. Please update it to continue receiving support and updates."
+msgstr "Cheia de licență WP Job Portal a expirat sau este nevalidă. Actualizați-l pentru a continua să primiți asistență și actualizări."
+
+msgid "failed."
+msgstr "a eșuat."
+
+msgid "found"
+msgstr "găsit"
+
+msgid "icon"
+msgstr "pictograma"
+
+msgid "imported."
+msgstr "importate."
+
+msgid "skipped."
+msgstr "sarit."
+
+msgid "unused key has been deleted successfully!"
+msgstr "cheia nefolosită a fost ștearsă cu succes!"
+
+msgid "unused key(s) that can be safely removed."
+msgstr "chei nefolosite care pot fi scoase în siguranță."
+
+msgid "unused keys have been deleted successfully!"
+msgstr "cheile neutilizate au fost șterse cu succes!"

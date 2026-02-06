@@ -13,20 +13,20 @@ class WPJOBPORTALCityController {
     }
 
     function handleRequest() {
-        $layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'cities');
-        if (self::canaddfile($layout)) {
-            switch ($layout) {
+        $wpjobportal_layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'cities');
+        if (self::canaddfile($wpjobportal_layout)) {
+            switch ($wpjobportal_layout) {
                 case 'admin_cities':
-                    $countryid = WPJOBPORTALrequest::getVar('countryid');
-                    $stateid = WPJOBPORTALrequest::getVar('stateid');
+                    $wpjobportal_countryid = WPJOBPORTALrequest::getVar('countryid');
+                    $wpjobportal_stateid = WPJOBPORTALrequest::getVar('stateid');
 
-                    update_option( 'wpjobportal_countryid_for_city', $countryid);
-                    update_option( 'wpjobportal_stateid_for_city', $stateid);
-                    WPJOBPORTALincluder::getJSModel('city')->getAllStatesCities($countryid, $stateid);
+                    update_option( 'wpjobportal_countryid_for_city', $wpjobportal_countryid);
+                    update_option( 'wpjobportal_stateid_for_city', $wpjobportal_stateid);
+                    WPJOBPORTALincluder::getJSModel('city')->getAllStatesCities($wpjobportal_countryid, $wpjobportal_stateid);
                     break;
                 case 'admin_formcity':
-                    $id = WPJOBPORTALrequest::getVar('wpjobportalid');
-                    WPJOBPORTALincluder::getJSModel('city')->getCitybyId($id);
+                    $wpjobportal_id = WPJOBPORTALrequest::getVar('wpjobportalid');
+                    WPJOBPORTALincluder::getJSModel('city')->getCitybyId($wpjobportal_id);
                     break;
                     case 'admin_loadaddressdata':
                         break;
@@ -36,23 +36,23 @@ class WPJOBPORTALCityController {
                  default:
                     return;
            }
-            $module = (wpjobportal::$_common->wpjp_isadmin()) ? 'page' : 'wpjobportalme';
-            $module = WPJOBPORTALrequest::getVar($module, null, 'city');
-            $module = wpjobportalphplib::wpJP_str_replace('wpjobportal_', '', $module);
+            $wpjobportal_module = (wpjobportal::$_common->wpjp_isadmin()) ? 'page' : 'wpjobportalme';
+            $wpjobportal_module = WPJOBPORTALrequest::getVar($wpjobportal_module, null, 'city');
+            $wpjobportal_module = wpjobportalphplib::wpJP_str_replace('wpjobportal_', '', $wpjobportal_module);
             wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
-            WPJOBPORTALincluder::include_file($layout, $module);
+            WPJOBPORTALincluder::include_file($wpjobportal_layout, $wpjobportal_module);
         }
     }
 
-    function canaddfile($layout) {
-        $nonce_value = WPJOBPORTALrequest::getVar('wpjobportal_nonce');
-        if ( wp_verify_nonce( $nonce_value, 'wpjobportal_nonce') ) {
+    function canaddfile($wpjobportal_layout) {
+        $wpjobportal_nonce_value = WPJOBPORTALrequest::getVar('wpjobportal_nonce');
+        if ( wp_verify_nonce( $wpjobportal_nonce_value, 'wpjobportal_nonce') ) {
             if (isset($_POST['form_request']) && $_POST['form_request'] == 'wpjobportal')
                 return false;
             elseif (isset($_GET['action']) && $_GET['action'] == 'wpjobportaltask')
                 return false;
             else{
-                if(!is_admin() && strpos($layout, 'admin_') === 0){
+                if(!is_admin() && strpos($wpjobportal_layout, 'admin_') === 0){
                     return false;
                 }
                 return true;
@@ -62,133 +62,133 @@ class WPJOBPORTALCityController {
 
     function getaddressdatabycityname() {
         $cityname = WPJOBPORTALrequest::getVar('q');
-        $result = WPJOBPORTALincluder::getJSModel('city')->getAddressDataByCityName($cityname);
-        $json_response = wp_json_encode($result);
-        echo wp_kses($json_response,WPJOBPORTAL_ALLOWED_TAGS);
+        $wpjobportal_result = WPJOBPORTALincluder::getJSModel('city')->getAddressDataByCityName($cityname);
+        $wpjobportal_json_response = wp_json_encode($wpjobportal_result);
+        echo wp_kses($wpjobportal_json_response,WPJOBPORTAL_ALLOWED_TAGS);
         exit();
     }
 
     function removecity() {
-        $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
-        if (! wp_verify_nonce( $nonce, 'wpjobportal_city_nonce') ) {
+        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_city_nonce') ) {
              die( 'Security check Failed' );
         }
         if (!current_user_can('manage_options')) { //only admin can DO it.
             return false;
         }
-        $countryid = get_option("wpjobportal_countryid_for_city" );
-        $stateid = get_option( "wpjobportal_stateid_for_city" );
+        $wpjobportal_countryid = get_option("wpjobportal_countryid_for_city" );
+        $wpjobportal_stateid = get_option( "wpjobportal_stateid_for_city" );
 
-        $ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
-        $result = WPJOBPORTALincluder::getJSModel('city')->deleteCities($ids);
-        $msg = WPJOBPORTALMessages::getMessage($result, 'city');
-        WPJOBPORTALMessages::setLayoutMessage($msg['message'], $msg['status'],$this->_msgkey);
-        $url = esc_url_raw(admin_url("admin.php?page=wpjobportal_city&wpjobportallt=cities&countryid=" . esc_attr($countryid) . "&stateid=" . esc_attr($stateid)));
-        wp_redirect($url);
+        $wpjobportal_ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
+        $wpjobportal_result = WPJOBPORTALincluder::getJSModel('city')->deleteCities($wpjobportal_ids);
+        $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'city');
+        WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
+        $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_city&wpjobportallt=cities&countryid=" . esc_attr($wpjobportal_countryid) . "&stateid=" . esc_attr($wpjobportal_stateid)));
+        wp_redirect($wpjobportal_url);
         die();
     }
 
     function publish() {
-        $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
-        if (! wp_verify_nonce( $nonce, 'wpjobportal_city_nonce') ) {
+        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_city_nonce') ) {
              die( 'Security check Failed' );
         }
         if (!current_user_can('manage_options')) { //only admin can DO it.
             return false;
         }
-        $countryid = get_option("wpjobportal_countryid_for_city" );
-        $stateid = get_option( "wpjobportal_stateid_for_city" );
+        $wpjobportal_countryid = get_option("wpjobportal_countryid_for_city" );
+        $wpjobportal_stateid = get_option( "wpjobportal_stateid_for_city" );
 
-        $pagenum = WPJOBPORTALrequest::getVar('pagenum');
-        $ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
-        $result = WPJOBPORTALincluder::getJSModel('city')->publishUnpublish($ids, 1); //  for publish
-        $msg = WPJOBPORTALMessages::getMessage($result, 'record');
-        WPJOBPORTALMessages::setLayoutMessage($msg['message'], $msg['status'],$this->_msgkey);
-        $url = esc_url_raw(admin_url("admin.php?page=wpjobportal_city&wpjobportallt=cities&countryid=" . esc_attr($countryid) . "&stateid=" . esc_attr($stateid)));
-        if ($pagenum)
-            $url .= "&pagenum=" . $pagenum;
-        wp_redirect($url);
+        $wpjobportal_pagenum = WPJOBPORTALrequest::getVar('pagenum');
+        $wpjobportal_ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
+        $wpjobportal_result = WPJOBPORTALincluder::getJSModel('city')->publishUnpublish($wpjobportal_ids, 1); //  for publish
+        $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'record');
+        WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
+        $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_city&wpjobportallt=cities&countryid=" . esc_attr($wpjobportal_countryid) . "&stateid=" . esc_attr($wpjobportal_stateid)));
+        if ($wpjobportal_pagenum)
+            $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
+        wp_redirect($wpjobportal_url);
         die();
     }
 
     function unpublish() {
-        $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
-        if (! wp_verify_nonce( $nonce, 'wpjobportal_city_nonce') ) {
+        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_city_nonce') ) {
              die( 'Security check Failed' );
         }
         if (!current_user_can('manage_options')) { //only admin can DO it.
             return false;
         }
-        $countryid = get_option("wpjobportal_countryid_for_city" );
-        $stateid = get_option( "wpjobportal_stateid_for_city" );
+        $wpjobportal_countryid = get_option("wpjobportal_countryid_for_city" );
+        $wpjobportal_stateid = get_option( "wpjobportal_stateid_for_city" );
 
-        $pagenum = WPJOBPORTALrequest::getVar('pagenum');
-        $ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
-        $result = WPJOBPORTALincluder::getJSModel('city')->publishUnpublish($ids, 0); //  for unpublish
-        $msg = WPJOBPORTALMessages::getMessage($result, 'record');
-        WPJOBPORTALMessages::setLayoutMessage($msg['message'], $msg['status'],$this->_msgkey);
-        $url = esc_url_raw(admin_url("admin.php?page=wpjobportal_city&wpjobportallt=cities&countryid=" . esc_attr($countryid) . "&stateid=" . esc_attr($stateid)));
-        if ($pagenum)
-            $url .= "&pagenum=" . $pagenum;
-        wp_redirect($url);
+        $wpjobportal_pagenum = WPJOBPORTALrequest::getVar('pagenum');
+        $wpjobportal_ids = WPJOBPORTALrequest::getVar('wpjobportal-cb');
+        $wpjobportal_result = WPJOBPORTALincluder::getJSModel('city')->publishUnpublish($wpjobportal_ids, 0); //  for unpublish
+        $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'record');
+        WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
+        $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_city&wpjobportallt=cities&countryid=" . esc_attr($wpjobportal_countryid) . "&stateid=" . esc_attr($wpjobportal_stateid)));
+        if ($wpjobportal_pagenum)
+            $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
+        wp_redirect($wpjobportal_url);
         die();
     }
 
     function savecity() {
-        $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
-        if (! wp_verify_nonce( $nonce, 'wpjobportal_city_nonce') ) {
+        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_city_nonce') ) {
              die( 'Security check Failed' );
         }
         if (!current_user_can('manage_options')) { //only admin can DO it.
             return false;
         }
-        $countryid = get_option("wpjobportal_countryid_for_city" );
-        $stateid = get_option( "wpjobportal_stateid_for_city" );
-        $url = esc_url_raw(admin_url("admin.php?page=wpjobportal_city&wpjobportallt=cities&countryid=" . esc_attr($countryid) . "&stateid=" . esc_attr($stateid)));
+        $wpjobportal_countryid = get_option("wpjobportal_countryid_for_city" );
+        $wpjobportal_stateid = get_option( "wpjobportal_stateid_for_city" );
+        $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_city&wpjobportallt=cities&countryid=" . esc_attr($wpjobportal_countryid) . "&stateid=" . esc_attr($wpjobportal_stateid)));
 
-        $data = WPJOBPORTALrequest::get('post');
-        if ($data['stateid'])
-            $stateid = $data['stateid'];
-        $result = WPJOBPORTALincluder::getJSModel('city')->storeCity($data, $countryid, $stateid);
-        $msg = WPJOBPORTALMessages::getMessage($result, 'city');
-        WPJOBPORTALMessages::setLayoutMessage($msg['message'], $msg['status'],$this->_msgkey);
-        wp_redirect($url);
+        $wpjobportal_data = WPJOBPORTALrequest::get('post');
+        if ($wpjobportal_data['stateid'])
+            $wpjobportal_stateid = $wpjobportal_data['stateid'];
+        $wpjobportal_result = WPJOBPORTALincluder::getJSModel('city')->storeCity($wpjobportal_data, $wpjobportal_countryid, $wpjobportal_stateid);
+        $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'city');
+        WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
+        wp_redirect($wpjobportal_url);
         die();
     }
 
     function loadaddressdata() {
-        $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
-        if (! wp_verify_nonce( $nonce, 'wpjobportal_address_data_nonce') ) {
+        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_address_data_nonce') ) {
              die( 'Security check Failed' );
         }
         if (!current_user_can('manage_options')) { //only admin can DO it.
             return false;
         }
-        $result = WPJOBPORTALincluder::getJSModel('city')->loadAddressData();
-        echo var_dump($result);
-        $msg = WPJOBPORTALMessages::getMessage($result, 'addressdata');
-        echo var_dump($msg);
-        WPJOBPORTALMessages::setLayoutMessage($msg['message'], $msg['status'],$this->_msgkey);
-        $url = admin_url("admin.php?page=wpjobportal_city&wpjobportallt=loadaddressdata");
-        wp_redirect($url);
+        $wpjobportal_result = WPJOBPORTALincluder::getJSModel('city')->loadAddressData();
+        // echo var_dump($wpjobportal_result);
+        $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'addressdata');
+        // echo var_dump($wpjobportal_msg);
+        WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
+        $wpjobportal_url = admin_url("admin.php?page=wpjobportal_city&wpjobportallt=loadaddressdata");
+        wp_redirect($wpjobportal_url);
         die();
     }
 
     function savecitynamesettings() {
-        $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
-        if (! wp_verify_nonce( $nonce, 'wpjobportal_address_data_nonce') ) {
+        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_address_data_nonce') ) {
              die( 'Security check Failed' );
         }
         if (!current_user_can('manage_options')) { //only admin can DO it.
             return false;
         }
-        $result = WPJOBPORTALincluder::getJSModel('city')->updateCityNameSettings();
-        echo var_dump($result);
-        $msg = WPJOBPORTALMessages::getMessage($result, 'addressdata');
-        echo var_dump($msg);
-        WPJOBPORTALMessages::setLayoutMessage($msg['message'], $msg['status'],$this->_msgkey);
-        $url = admin_url("admin.php?page=wpjobportal_city&wpjobportallt=locationnamesettings");
-        wp_redirect($url);
+        $wpjobportal_result = WPJOBPORTALincluder::getJSModel('city')->updateCityNameSettings();
+        // echo var_dump($wpjobportal_result);
+        $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'addressdata');
+        // echo var_dump($wpjobportal_msg);
+        WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
+        $wpjobportal_url = admin_url("admin.php?page=wpjobportal_city&wpjobportallt=locationnamesettings");
+        wp_redirect($wpjobportal_url);
         die();
     }
 

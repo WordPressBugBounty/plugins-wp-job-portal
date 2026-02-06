@@ -5,8 +5,8 @@
     </div>
     <div id="wpjobportaladmin-data">
     <?php
-    $msgkey = WPJOBPORTALincluder::getJSModel('report')->getMessagekey();
-    WPJOBPORTALMessages::getLayoutMessage($msgkey);
+    $wpjobportal_msgkey = WPJOBPORTALincluder::getJSModel('report')->getMessagekey();
+    WPJOBPORTALMessages::getLayoutMessage($wpjobportal_msgkey);
     ?>
     <span class="js-admin-title">
         <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/back-icon.png" /></a>

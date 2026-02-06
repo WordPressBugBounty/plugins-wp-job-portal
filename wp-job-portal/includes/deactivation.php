@@ -7,20 +7,20 @@ class WPJOBPORTALdeactivation {
 
     static function wpjobportal_deactivate() {
         wp_clear_scheduled_hook('wpjobportal_cronjobs_action');
-        $id = wpjobportal::wpjobportal_getPageid();
-        if(is_numeric($id)){
-            wpjobportal::$_db->get_var("UPDATE `" . wpjobportal::$_db->prefix . "posts` SET post_status = 'draft' WHERE ID =".esc_sql($id));
+        $wpjobportal_id = wpjobportal::wpjobportal_getPageid();
+        if(is_numeric($wpjobportal_id)){
+            wpjobportal::$_db->get_var("UPDATE `" . wpjobportal::$_db->prefix . "posts` SET post_status = 'draft' WHERE ID =".esc_sql($wpjobportal_id));
         }
 
         //Delete capabilities
-        $role = get_role( 'administrator' );
-        $role->remove_cap( 'wpjobportal' );
-        $role->remove_cap( 'wpjobportal_jobs' );
+        $wpjobportal_role = get_role( 'administrator' );
+        $wpjobportal_role->remove_cap( 'wpjobportal' );
+        $wpjobportal_role->remove_cap( 'wpjobportal_jobs' );
     }
 
      static function wpjobportal_tables_to_drop() {
         global $wpdb;
-        $tables = array(
+        $wpjobportal_tables = array(
             $wpdb->prefix."wj_portal_careerlevels",
             $wpdb->prefix."wj_portal_categories",
             $wpdb->prefix."wj_portal_cities",
@@ -57,7 +57,7 @@ class WPJOBPORTALdeactivation {
             $wpdb->prefix."wj_portal_slug",
             $wpdb->prefix."wj_portal_jswjsessiondata",
         );
-        return $tables;
+        return $wpjobportal_tables;
     }
 
 }

@@ -7,9 +7,9 @@ if (!defined('ABSPATH'))
 ?>
 <?php
 WPJOBPORTALincluder::getTemplate('country/views/detail',array(
-	'row' => $row ,
-	'pagenum' => $pagenum ,
-	'pageid' => $pageid,
-	'published' => $published
+	'wpjobportal_row' => $wpjobportal_row ,
+	'wpjobportal_pagenum' => $wpjobportal_pagenum ,
+	'wpjobportal_pageid' => $wpjobportal_pageid,
+	'wpjobportal_published' => $wpjobportal_published
 ));
 ?>

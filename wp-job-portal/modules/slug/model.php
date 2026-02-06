@@ -13,26 +13,26 @@ class WPJOBPORTALslugModel {
 
     function getSlug() {
         // Filter
-        $slug = wpjobportal::$_search['slug']['slug'];
+        $wpjobportal_slug = wpjobportal::$_search['slug']['slug'];
 
-        $inquery = '';
-        if ($slug != null){
-            $inquery .= " AND slug.slug LIKE '%".esc_sql($slug)."%'";
+        $wpjobportal_inquery = '';
+        if ($wpjobportal_slug != null){
+            $wpjobportal_inquery .= " AND slug.slug LIKE '%".esc_sql($wpjobportal_slug)."%'";
         }
-        wpjobportal::$_data['slug'] = $slug;
+        wpjobportal::$_data['slug'] = $wpjobportal_slug;
 
         //pagination
         $query = "SELECT COUNT(id) FROM ".wpjobportal::$_db->prefix."wj_portal_slug AS slug WHERE slug.status = 1 ";
-        $query .= $inquery;
-        $total = wpjobportaldb::get_var($query);
+        $query .= $wpjobportal_inquery;
+        $wpjobportal_total = wpjobportaldb::get_var($query);
 
-        wpjobportal::$_data['total'] = $total;
-        wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($total);
+        wpjobportal::$_data['total'] = $wpjobportal_total;
+        wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($wpjobportal_total);
 
         //Data
         $query = "SELECT *
                   FROM ".wpjobportal::$_db->prefix ."wj_portal_slug AS slug WHERE slug.status = 1 ";
-        $query .= $inquery;
+        $query .= $wpjobportal_inquery;
         $query .= " LIMIT " . WPJOBPORTALpagination::$_offset . " , " . WPJOBPORTALpagination::$_limit;
         wpjobportal::$_data[0] = wpjobportaldb::get_results($query);
 
@@ -40,22 +40,22 @@ class WPJOBPORTALslugModel {
     }
 
 
-    function storeSlug($data) {
-        if (empty($data)) {
+    function storeSlug($wpjobportal_data) {
+        if (empty($wpjobportal_data)) {
             return false;
         }
-        $row = WPJOBPORTALincluder::getJSTable('slug');
-        foreach ($data as $id => $slug) {
-            if($id != '' && is_numeric($id)){
-                $slug = sanitize_title($slug);
-                if($slug != ''){
+        $wpjobportal_row = WPJOBPORTALincluder::getJSTable('slug');
+        foreach ($wpjobportal_data as $wpjobportal_id => $wpjobportal_slug) {
+            if($wpjobportal_id != '' && is_numeric($wpjobportal_id)){
+                $wpjobportal_slug = sanitize_title($wpjobportal_slug);
+                if($wpjobportal_slug != ''){
                     $query = "SELECT COUNT(id) FROM " . wpjobportal::$_db->prefix . "wj_portal_slug
-                            WHERE slug = '" . esc_sql($slug)."' ";
-                    $slug_flag = wpjobportaldb::get_var($query);
-                    if($slug_flag > 0){
+                            WHERE slug = '" . esc_sql($wpjobportal_slug)."' ";
+                    $wpjobportal_slug_flag = wpjobportaldb::get_var($query);
+                    if($wpjobportal_slug_flag > 0){
                         continue;
                     }else{
-                        $row->update(array('id' => $id, 'slug' => $slug));
+                        $wpjobportal_row->update(array('id' => $wpjobportal_id, 'slug' => $wpjobportal_slug));
                     }
                 }
             }
@@ -64,16 +64,16 @@ class WPJOBPORTALslugModel {
         return WPJOBPORTAL_SAVED;
     }
 
-    function savePrefix($data) {
-        if (empty($data)) {
+    function savePrefix($wpjobportal_data) {
+        if (empty($wpjobportal_data)) {
             return false;
         }
-        $data['prefix'] = sanitize_title($data['prefix']);
-        if($data['prefix'] == ''){
+        $wpjobportal_data['prefix'] = sanitize_title($wpjobportal_data['prefix']);
+        if($wpjobportal_data['prefix'] == ''){
             return WPJOBPORTAL_SAVE_ERROR;
         }
         $query = "UPDATE " . wpjobportal::$_db->prefix . "wj_portal_config
-                    SET configvalue = '".esc_sql($data['prefix'])."'
+                    SET configvalue = '".esc_sql($wpjobportal_data['prefix'])."'
                     WHERE configname = 'slug_prefix'";
         if(wpjobportaldb::query($query)){
              update_option('rewrite_rules', '');
@@ -84,16 +84,16 @@ class WPJOBPORTALslugModel {
         }
     }
 
-    function saveHomePrefix($data) {
-        if (empty($data)) {
+    function saveHomePrefix($wpjobportal_data) {
+        if (empty($wpjobportal_data)) {
             return false;
         }
-        $data['prefix'] = sanitize_title($data['prefix']);
-        if($data['prefix'] == ''){
+        $wpjobportal_data['prefix'] = sanitize_title($wpjobportal_data['prefix']);
+        if($wpjobportal_data['prefix'] == ''){
             return WPJOBPORTAL_SAVE_ERROR;
         }
         $query = "UPDATE " . wpjobportal::$_db->prefix . "wj_portal_config
-                    SET configvalue = '".esc_sql($data['prefix'])."'
+                    SET configvalue = '".esc_sql($wpjobportal_data['prefix'])."'
                     WHERE configname = 'home_slug_prefix'";
         if(wpjobportaldb::query($query)){
             update_option('rewrite_rules', '');
@@ -118,50 +118,50 @@ class WPJOBPORTALslugModel {
 
     function getOptionsForEditSlug() {
 
-        $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
-        if (! wp_verify_nonce( $nonce, 'get-options-for-edit-slug') ) {
+        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (! wp_verify_nonce( $wpjobportal_nonce, 'get-options-for-edit-slug') ) {
             die( 'Security check Failed' );
         }
-        $slug = WPJOBPORTALrequest::getVar('slug');
-        $html = '<span class="popup-top">
+        $wpjobportal_slug = WPJOBPORTALrequest::getVar('slug');
+        $wpjobportal_html = '<span class="popup-top">
                     <span id="popup_title" >' . esc_html(__("Edit","wp-job-portal"))." ". esc_html(__("Slug", "wp-job-portal")) . '</span>
                         <img id="popup_cross" alt="popup cross" onClick="closePopup();" src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/popup-close.png"></span>';
 
-        $html .= '<div class="popup-field-wrapper">
+        $wpjobportal_html .= '<div class="popup-field-wrapper">
                     <div class="popup-field-title">' . esc_html(__('Slug','wp-job-portal')).' '. esc_html(__('Name', 'wp-job-portal')) . ' <span style="color: red;"> *</span></div>
-                         <div class="popup-field-obj">' . WPJOBPORTALformfield::text('slugedit', isset($slug) ? wpjobportalphplib::wpJP_trim($slug) : 'text', '', array('class' => 'inputbox one', 'data-validation' => 'required')) . '</div>
+                         <div class="popup-field-obj">' . WPJOBPORTALformfield::text('slugedit', isset($wpjobportal_slug) ? wpjobportalphplib::wpJP_trim($wpjobportal_slug) : 'text',  array('class' => 'inputbox one', 'data-validation' => 'required')) . '</div>
                     </div>';
-        $html .='<div class="popup-act-btn-wrp">
+        $wpjobportal_html .='<div class="popup-act-btn-wrp">
                     ' . WPJOBPORTALformfield::button('save', esc_html(__('Save', 'wp-job-portal')), array('class' => 'button savebutton popup-act-btn','onClick'=>'getFieldValue();'));
-        $html .='</div>';
-        return wp_json_encode($html);
+        $wpjobportal_html .='</div>';
+        return wp_json_encode($wpjobportal_html);
     }
 
-    function getDefaultSlugFromSlug($layout) {
-        $query = "SELECT  defaultslug FROM `".wpjobportal::$_db->prefix."wj_portal_slug` WHERE slug = '".esc_sql($layout)."'";
-        $val = wpjobportal::$_db->get_var($query);
-        return sanitize_title($val);
+    function getDefaultSlugFromSlug($wpjobportal_layout) {
+        $query = "SELECT  defaultslug FROM `".wpjobportal::$_db->prefix."wj_portal_slug` WHERE slug = '".esc_sql($wpjobportal_layout)."'";
+        $wpjobportal_val = wpjobportal::$_db->get_var($query);
+        return sanitize_title($wpjobportal_val);
     }
 
-    function getSlugFromFileName($layout,$module) {
+    function getSlugFromFileName($wpjobportal_layout,$wpjobportal_module) {
         $where_query = '';
-        if($layout == 'controlpanel'){
-            if($module == 'jobseeker'){
+        if($wpjobportal_layout == 'controlpanel'){
+            if($wpjobportal_module == 'jobseeker'){
                 $where_query = " AND defaultslug = 'jobseeker-control-panel'";
-            }elseif($module == 'employer'){
+            }elseif($wpjobportal_module == 'employer'){
                 $where_query = " AND defaultslug = 'employer-control-panel'";
             }
         }
-        if($layout == 'mystats'){
-            if($module == 'jobseeker'){
+        if($wpjobportal_layout == 'mystats'){
+            if($wpjobportal_module == 'jobseeker'){
                 $where_query = " AND defaultslug = 'jobseeker-my-stats'";
-            }elseif($module == 'employer'){
+            }elseif($wpjobportal_module == 'employer'){
                 $where_query = " AND defaultslug = 'employer-my-stats'";
             }
         }
-        $query = "SELECT slug FROM `".wpjobportal::$_db->prefix."wj_portal_slug` WHERE filename = '".esc_sql($layout)."' ".$where_query;
-        $val = wpjobportal::$_db->get_var($query);
-        return $val;
+        $query = "SELECT slug FROM `".wpjobportal::$_db->prefix."wj_portal_slug` WHERE filename = '".esc_sql($wpjobportal_layout)."' ".$where_query;
+        $wpjobportal_val = wpjobportal::$_db->get_var($query);
+        return $wpjobportal_val;
     }
 
     function getSlugString($home_page = 0) {
@@ -170,54 +170,54 @@ class WPJOBPORTALslugModel {
             global $wp_rewrite;
             $rules = wp_json_encode($wp_rewrite->rules);
             $query = "SELECT slug AS value FROM `".wpjobportal::$_db->prefix."wj_portal_slug`";
-            $val = wpjobportal::$_db->get_results($query);
-            $string = '';
+            $wpjobportal_val = wpjobportal::$_db->get_results($query);
+            $wpjobportal_string = '';
             $bstring = '';
             //$rules = wp_json_encode($rules);
-            $prefix = WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue('slug_prefix');
+            $wpjobportal_prefix = WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue('slug_prefix');
             $homeprefix = WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue('home_slug_prefix');
-            foreach ($val as $slug) {
+            foreach ($wpjobportal_val as $wpjobportal_slug) {
                     if($home_page == 1){
-                        $slug->value = $homeprefix.$slug->value;
+                        $wpjobportal_slug->value = $homeprefix.$wpjobportal_slug->value;
                     }
-                    if(wpjobportalphplib::wpJP_strpos($rules,$slug->value) === false){
-                        $string .= $bstring. $slug->value;
+                    if(wpjobportalphplib::wpJP_strpos($rules,$wpjobportal_slug->value) === false){
+                        $wpjobportal_string .= $bstring. $wpjobportal_slug->value;
                     }else{
-                        $string .= $bstring.$prefix. $slug->value;
+                        $wpjobportal_string .= $bstring.$wpjobportal_prefix. $wpjobportal_slug->value;
                     }
                 $bstring = '|';
             }
-        return $string;
+        return $wpjobportal_string;
     }
 
     function getRedirectCanonicalArray() {
         global $wp_rewrite;
-        $slug_prefix = WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue('slug_prefix');
+        $wpjobportal_slug_prefix = WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue('slug_prefix');
         $homeprefix = WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue('home_slug_prefix');
         $rules = wp_json_encode($wp_rewrite->rules);
         $query = "SELECT slug AS value FROM `".wpjobportal::$_db->prefix."wj_portal_slug`";
-        $val = wpjobportal::$_db->get_results($query);
-        $string = array();
+        $wpjobportal_val = wpjobportal::$_db->get_results($query);
+        $wpjobportal_string = array();
         $bstring = '';
-        foreach ($val as $slug) {
-            $slug->value = $homeprefix.$slug->value;
-            $string[] = $bstring.$slug->value;
+        foreach ($wpjobportal_val as $wpjobportal_slug) {
+            $wpjobportal_slug->value = $homeprefix.$wpjobportal_slug->value;
+            $wpjobportal_string[] = $bstring.$wpjobportal_slug->value;
             $bstring = '/';
         }
-        return $string;
+        return $wpjobportal_string;
     }
 
     // setcookies for search form data
     //search cookies data
     function getSearchFormData(){
-        $jsjp_search_array = array();
-        $jsjp_search_array['slug'] = WPJOBPORTALrequest::getVar("slug");
-        $jsjp_search_array['search_from_slug'] = 1;
-        return $jsjp_search_array;
+        $wpjobportal_jsjp_search_array = array();
+        $wpjobportal_jsjp_search_array['slug'] = WPJOBPORTALrequest::getVar("slug");
+        $wpjobportal_jsjp_search_array['search_from_slug'] = 1;
+        return $wpjobportal_jsjp_search_array;
     }
 
     function getSavedCookiesDataForSearch(){
-        $jsjp_search_array = array();
+        $wpjobportal_jsjp_search_array = array();
         $wpjp_search_cookie_data = '';
         if(isset($_COOKIE['jsjp_jobportal_search_data'])){
             $wpjp_search_cookie_data = wpjobportal::wpjobportal_sanitizeData($_COOKIE['jsjp_jobportal_search_data']);
@@ -225,17 +225,17 @@ class WPJOBPORTALslugModel {
             $wpjp_search_cookie_data = json_decode( $wpjp_search_cookie_data , true );
         }
         if($wpjp_search_cookie_data != '' && isset($wpjp_search_cookie_data['search_from_slug']) && $wpjp_search_cookie_data['search_from_slug'] == 1){
-            $jsjp_search_array['slug'] = $wpjp_search_cookie_data['slug'];
+            $wpjobportal_jsjp_search_array['slug'] = $wpjp_search_cookie_data['slug'];
         }
-        return $jsjp_search_array;
+        return $wpjobportal_jsjp_search_array;
     }
 
-    function setSearchVariableForSearch($jsjp_search_array){
-        wpjobportal::$_search['slug']['slug'] = isset($jsjp_search_array['slug']) ? $jsjp_search_array['slug'] : '';
+    function setSearchVariableForSearch($wpjobportal_jsjp_search_array){
+        wpjobportal::$_search['slug']['slug'] = isset($wpjobportal_jsjp_search_array['slug']) ? $wpjobportal_jsjp_search_array['slug'] : '';
     }
 
     function getMessagekey(){
-        $key = 'slug';if(wpjobportal::$_common->wpjp_isadmin()){$key = 'admin_'.$key;}return $key;
+        $wpjobportal_key = 'slug';if(wpjobportal::$_common->wpjp_isadmin()){$wpjobportal_key = 'admin_'.$wpjobportal_key;}return $wpjobportal_key;
     }
 
 

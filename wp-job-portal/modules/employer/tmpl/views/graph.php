@@ -13,7 +13,7 @@ wp_enqueue_script( 'google-charts-handle' );
 //if(WPJOBPORTALincluder::getObjectClass('user')->isemployer()){ ?>
     <div id='wpjobportal-center' class="wjportal-cp-graph-inner-wrp">
     <?php
-    $js_script = "
+    $wpjobportal_js_script = "
 
             google.charts.load('current', {'packages':['corechart']});
             google.setOnLoadCallback(drawStackChartHorizontal);
@@ -24,8 +24,8 @@ wp_enqueue_script( 'google-charts-handle' );
     	        ]);
                 var view = new google.visualization.DataView(data);
                 ";
-                if (wpjobportal::$theme_chk == 1) { 
-                    $js_script .= "
+                if (wpjobportal::$wpjobportal_theme_chk == 1) {
+                    $wpjobportal_js_script .= "
                     var options = {
                         title: '". esc_html(__('Job Apply', 'wp-job-portal')) ."',
                         'height':500,
@@ -36,12 +36,15 @@ wp_enqueue_script( 'google-charts-handle' );
                     };
                     ";
                 } else { 
-                    $js_script .= "
+                    $wpjobportal_js_script .= "
                     var options = {
                         title: '". esc_html(__('Job Apply', 'wp-job-portal')) ."',
                         'height':400,
                         'width':734,
-                        isStacked: true,
+                        curveType: 'function', // enable smooth lines
+                        areaOpacity: 0.3, // semi-transparent fill
+                        lineWidth: 3,
+                        pointSize: 5,
                         legend: {position: 'top'},
                         hAxis: {title: 'Month',  titleTextStyle: {color: '#333'}},
                         vAxis: {minValue: 0},
@@ -51,12 +54,14 @@ wp_enqueue_script( 'google-charts-handle' );
                         }
                     };";
                 } 
-                $js_script .= "
-                var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+                $wpjobportal_js_script .= "
+            
+                var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+
                 chart.draw(data, options);
             }
         ";
-         wp_add_inline_script( 'google-charts-handle', $js_script );
+         wp_add_inline_script( 'google-charts-handle', $wpjobportal_js_script );
         ?>
         <div id="chart_div" class="wjportal-cp-graph employer"></div>
     </div>

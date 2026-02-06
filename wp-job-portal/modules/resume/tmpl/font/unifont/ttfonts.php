@@ -36,13 +36,13 @@ define("GF_TWOBYTWO", (1 << 7));
 
 class TTFontFile {
 
-    var $maxUni;
+    var $wpjobportal_maxUni;
     var $_pos;
-    var $numTables;
-    var $searchRange;
-    var $entrySelector;
-    var $rangeShift;
-    var $tables;
+    var $wpjobportal_numTables;
+    var $wpjobportal_searchRange;
+    var $wpjobportal_entrySelector;
+    var $wpjobportal_rangeShift;
+    var $wpjobportal_tables;
     var $otables;
     var $filename;
     var $fh;
@@ -50,23 +50,23 @@ class TTFontFile {
     var $glyphPos;
     var $charToGlyph;
     var $ascent;
-    var $descent;
-    var $name;
+    var $wpjobportal_descent;
+    var $wpjobportal_name;
     var $familyName;
-    var $styleName;
+    var $wpjobportal_styleName;
     var $fullName;
     var $uniqueFontID;
     var $unitsPerEm;
     var $bbox;
-    var $capHeight;
-    var $stemV;
-    var $italicAngle;
+    var $wpjobportal_capHeight;
+    var $wpjobportal_stemV;
+    var $wpjobportal_italicAngle;
     var $flags;
     var $underlinePosition;
     var $underlineThickness;
     var $charWidths;
-    var $defaultWidth;
-    var $maxStrLenRead;
+    var $wpjobportal_defaultWidth;
+    var $wpjobportal_maxStrLenRead;
 
     function __construct() {
         $this->maxStrLenRead = 200000; // Maximum size of glyf table to read in as string (otherwise reads each glyph from file)
@@ -84,13 +84,13 @@ class TTFontFile {
         $this->ascent = 0;
         $this->descent = 0;
         $this->TTCFonts = array();
-        $this->version = $version = $this->read_ulong();
-        if ($version == 0x4F54544F)
+        $this->version = $wpjobportal_version = $this->read_ulong();
+        if ($wpjobportal_version == 0x4F54544F)
             die("Postscript outlines are not supported");
-        if ($version == 0x74746366)
+        if ($wpjobportal_version == 0x74746366)
             die("ERROR - TrueType Fonts Collections not supported");
-        if (!in_array($version, array(0x00010000, 0x74727565)))
-            die("Not a TrueType font: version=" . esc_html($version));
+        if (!in_array($wpjobportal_version, array(0x00010000, 0x74727565)))
+            die("Not a TrueType font: version=" . esc_html($wpjobportal_version));
         $this->readTableDirectory();
         $this->extractInfo();
         fclose($this->fh);
@@ -102,7 +102,7 @@ class TTFontFile {
         $this->entrySelector = $this->read_ushort();
         $this->rangeShift = $this->read_ushort();
         $this->tables = array();
-        for ($i = 0; $i < $this->numTables; $i++) {
+        for ($wpjobportal_i = 0; $wpjobportal_i < $this->numTables; $wpjobportal_i++) {
             $record = array();
             $record['tag'] = $this->read_tag();
             $record['checksum'] = array($this->read_ushort(), $this->read_ushort());
@@ -130,15 +130,15 @@ class TTFontFile {
         return array($reshi, $reslo);
     }
 
-    function calcChecksum($data) {
-        if (wpjobportalphplib::wpJP_strlen($data) % 4) {
-            $data .= wpjobportalphplib::wpJP_str_repeat("\0", (4 - (wpjobportalphplib::wpJP_strlen($data) % 4)));
+    function calcChecksum($wpjobportal_data) {
+        if (wpjobportalphplib::wpJP_strlen($wpjobportal_data) % 4) {
+            $wpjobportal_data .= wpjobportalphplib::wpJP_str_repeat("\0", (4 - (wpjobportalphplib::wpJP_strlen($wpjobportal_data) % 4)));
         }
         $hi = 0x0000;
         $lo = 0x0000;
-        for ($i = 0; $i < wpjobportalphplib::wpJP_strlen($data); $i+=4) {
-            $hi += (ord($data[$i]) << 8) + ord($data[$i + 1]);
-            $lo += (ord($data[$i + 2]) << 8) + ord($data[$i + 3]);
+        for ($wpjobportal_i = 0; $wpjobportal_i < wpjobportalphplib::wpJP_strlen($wpjobportal_data); $wpjobportal_i+=4) {
+            $hi += (ord($wpjobportal_data[$wpjobportal_i]) << 8) + ord($wpjobportal_data[$wpjobportal_i + 1]);
+            $lo += (ord($wpjobportal_data[$wpjobportal_i + 2]) << 8) + ord($wpjobportal_data[$wpjobportal_i + 3]);
             $hi += $lo >> 16;
             $lo = $lo & 0xFFFF;
             $hi = $hi & 0xFFFF;
@@ -146,9 +146,9 @@ class TTFontFile {
         return array($hi, $lo);
     }
 
-    function get_table_pos($tag) {
-        $offset = $this->tables[$tag]['offset'];
-        $length = $this->tables[$tag]['length'];
+    function get_table_pos($wpjobportal_tag) {
+        $offset = $this->tables[$wpjobportal_tag]['offset'];
+        $length = $this->tables[$wpjobportal_tag]['length'];
         return array($offset, $length);
     }
 
@@ -157,13 +157,13 @@ class TTFontFile {
         fseek($this->fh, $this->_pos);
     }
 
-    function skip($delta) {
-        $this->_pos = $this->_pos + $delta;
+    function skip($wpjobportal_delta) {
+        $this->_pos = $this->_pos + $wpjobportal_delta;
         fseek($this->fh, $this->_pos);
     }
 
-    function seek_table($tag, $offset_in_table = 0) {
-        $tpos = $this->get_table_pos($tag);
+    function seek_table($wpjobportal_tag, $offset_in_table = 0) {
+        $tpos = $this->get_table_pos($wpjobportal_tag);
         $this->_pos = $tpos[0] + $offset_in_table;
         fseek($this->fh, $this->_pos);
         return $this->_pos;
@@ -218,32 +218,32 @@ class TTFontFile {
         return (ord($s[0]) * 16777216) + (ord($s[1]) << 16) + (ord($s[2]) << 8) + ord($s[3]); // 	16777216  = 1<<24
     }
 
-    function pack_short($val) {
-        if ($val < 0) {
-            $val = abs($val);
-            $val = ~$val;
-            $val += 1;
+    function pack_short($wpjobportal_val) {
+        if ($wpjobportal_val < 0) {
+            $wpjobportal_val = abs($wpjobportal_val);
+            $wpjobportal_val = ~$wpjobportal_val;
+            $wpjobportal_val += 1;
         }
-        return pack("n", $val);
+        return pack("n", $wpjobportal_val);
     }
 
-    function splice($stream, $offset, $value) {
-        return wpjobportalphplib::wpJP_substr($stream, 0, $offset) . $value . wpjobportalphplib::wpJP_substr($stream, $offset + wpjobportalphplib::wpJP_strlen($value));
+    function splice($wpjobportal_stream, $offset, $wpjobportal_value) {
+        return wpjobportalphplib::wpJP_substr($wpjobportal_stream, 0, $offset) . $wpjobportal_value . wpjobportalphplib::wpJP_substr($wpjobportal_stream, $offset + wpjobportalphplib::wpJP_strlen($wpjobportal_value));
     }
 
-    function _set_ushort($stream, $offset, $value) {
-        $up = pack("n", $value);
-        return $this->splice($stream, $offset, $up);
+    function _set_ushort($wpjobportal_stream, $offset, $wpjobportal_value) {
+        $wpjobportal_up = pack("n", $wpjobportal_value);
+        return $this->splice($wpjobportal_stream, $offset, $wpjobportal_up);
     }
 
-    function _set_short($stream, $offset, $val) {
-        if ($val < 0) {
-            $val = abs($val);
-            $val = ~$val;
-            $val += 1;
+    function _set_short($wpjobportal_stream, $offset, $wpjobportal_val) {
+        if ($wpjobportal_val < 0) {
+            $wpjobportal_val = abs($wpjobportal_val);
+            $wpjobportal_val = ~$wpjobportal_val;
+            $wpjobportal_val += 1;
         }
-        $up = pack("n", $val);
-        return $this->splice($stream, $offset, $up);
+        $wpjobportal_up = pack("n", $wpjobportal_val);
+        return $this->splice($wpjobportal_stream, $offset, $wpjobportal_up);
     }
 
     function get_chunk($pos, $length) {
@@ -254,20 +254,20 @@ class TTFontFile {
         return (fread($this->fh, $length));
     }
 
-    function get_table($tag) {
-        list($pos, $length) = $this->get_table_pos($tag);
+    function get_table($wpjobportal_tag) {
+        list($pos, $length) = $this->get_table_pos($wpjobportal_tag);
         if ($length == 0) {
-            die('Truetype font (' . esc_html($this->filename) . '): error reading table: ' . esc_html($tag));
+            die('Truetype font (' . esc_html($this->filename) . '): error reading table: ' . esc_html($wpjobportal_tag));
         }
         fseek($this->fh, $pos);
         return (fread($this->fh, $length));
     }
 
-    function add($tag, $data) {
-        if ($tag == 'head') {
-            $data = $this->splice($data, 8, "\0\0\0\0");
+    function add($wpjobportal_tag, $wpjobportal_data) {
+        if ($wpjobportal_tag == 'head') {
+            $wpjobportal_data = $this->splice($wpjobportal_data, 8, "\0\0\0\0");
         }
-        $this->otables[$tag] = $data;
+        $this->otables[$wpjobportal_tag] = $wpjobportal_data;
     }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -281,28 +281,28 @@ class TTFontFile {
         $this->sFamilyClass = 0;
         $this->sFamilySubClass = 0;
 
-        $name_offset = $this->seek_table("name");
-        $format = $this->read_ushort();
-        if ($format != 0)
-            die("Unknown name table format " . esc_html($format));
-        $numRecords = $this->read_ushort();
-        $string_data_offset = $name_offset + $this->read_ushort();
-        $names = array(1 => '', 2 => '', 3 => '', 4 => '', 6 => '');
-        $K = array_keys($names);
-        $nameCount = count($names);
-        for ($i = 0; $i < $numRecords; $i++) {
+        $wpjobportal_name_offset = $this->seek_table("name");
+        $wpjobportal_format = $this->read_ushort();
+        if ($wpjobportal_format != 0)
+            die("Unknown name table format " . esc_html($wpjobportal_format));
+        $wpjobportal_numRecords = $this->read_ushort();
+        $wpjobportal_string_data_offset = $wpjobportal_name_offset + $this->read_ushort();
+        $wpjobportal_names = array(1 => '', 2 => '', 3 => '', 4 => '', 6 => '');
+        $K = array_keys($wpjobportal_names);
+        $wpjobportal_nameCount = count($wpjobportal_names);
+        for ($wpjobportal_i = 0; $wpjobportal_i < $wpjobportal_numRecords; $wpjobportal_i++) {
             $platformId = $this->read_ushort();
-            $encodingId = $this->read_ushort();
-            $languageId = $this->read_ushort();
-            $nameId = $this->read_ushort();
+            $wpjobportal_encodingId = $this->read_ushort();
+            $wpjobportal_languageId = $this->read_ushort();
+            $wpjobportal_nameId = $this->read_ushort();
             $length = $this->read_ushort();
             $offset = $this->read_ushort();
-            if (!in_array($nameId, $K))
+            if (!in_array($wpjobportal_nameId, $K))
                 continue;
             $N = '';
-            if ($platformId == 3 && $encodingId == 1 && $languageId == 0x409) { // Microsoft, Unicode, US English, PS Name
+            if ($platformId == 3 && $wpjobportal_encodingId == 1 && $wpjobportal_languageId == 0x409) { // Microsoft, Unicode, US English, PS Name
                 $opos = $this->_pos;
-                $this->seek($string_data_offset + $offset);
+                $this->seek($wpjobportal_string_data_offset + $offset);
                 if ($length % 2 != 0)
                     die("PostScript name is UTF-16BE string of odd length");
                 $length /= 2;
@@ -314,52 +314,52 @@ class TTFontFile {
                 }
                 $this->_pos = $opos;
                 $this->seek($opos);
-            } else if ($platformId == 1 && $encodingId == 0 && $languageId == 0) { // Macintosh, Roman, English, PS Name
+            } else if ($platformId == 1 && $wpjobportal_encodingId == 0 && $wpjobportal_languageId == 0) { // Macintosh, Roman, English, PS Name
                 $opos = $this->_pos;
-                $N = $this->get_chunk($string_data_offset + $offset, $length);
+                $N = $this->get_chunk($wpjobportal_string_data_offset + $offset, $length);
                 $this->_pos = $opos;
                 $this->seek($opos);
             }
-            if ($N && $names[$nameId] == '') {
-                $names[$nameId] = $N;
-                $nameCount -= 1;
-                if ($nameCount == 0)
+            if ($N && $wpjobportal_names[$wpjobportal_nameId] == '') {
+                $wpjobportal_names[$wpjobportal_nameId] = $N;
+                $wpjobportal_nameCount -= 1;
+                if ($wpjobportal_nameCount == 0)
                     break;
             }
         }
-        if ($names[6])
-            $psName = $names[6];
-        else if ($names[4])
-            $psName = wpjobportalphplib::wpJP_preg_replace('/ /', '-', $names[4]);
-        else if ($names[1])
-            $psName = wpjobportalphplib::wpJP_preg_replace('/ /', '-', $names[1]);
+        if ($wpjobportal_names[6])
+            $psName = $wpjobportal_names[6];
+        else if ($wpjobportal_names[4])
+            $psName = wpjobportalphplib::wpJP_preg_replace('/ /', '-', $wpjobportal_names[4]);
+        else if ($wpjobportal_names[1])
+            $psName = wpjobportalphplib::wpJP_preg_replace('/ /', '-', $wpjobportal_names[1]);
         else
             $psName = '';
         if (!$psName)
             die("Could not find PostScript font name");
         $this->name = $psName;
-        if ($names[1]) {
-            $this->familyName = $names[1];
+        if ($wpjobportal_names[1]) {
+            $this->familyName = $wpjobportal_names[1];
         } else {
             $this->familyName = $psName;
         }
-        if ($names[2]) {
-            $this->styleName = $names[2];
+        if ($wpjobportal_names[2]) {
+            $this->styleName = $wpjobportal_names[2];
         } else {
             $this->styleName = 'Regular';
         }
-        if ($names[4]) {
-            $this->fullName = $names[4];
+        if ($wpjobportal_names[4]) {
+            $this->fullName = $wpjobportal_names[4];
         } else {
             $this->fullName = $psName;
         }
-        if ($names[3]) {
-            $this->uniqueFontID = $names[3];
+        if ($wpjobportal_names[3]) {
+            $this->uniqueFontID = $wpjobportal_names[3];
         } else {
             $this->uniqueFontID = $psName;
         }
-        if ($names[6]) {
-            $this->fullName = $names[6];
+        if ($wpjobportal_names[6]) {
+            $this->fullName = $wpjobportal_names[6];
         }
 
         ///////////////////////////////////
@@ -376,7 +376,7 @@ class TTFontFile {
         $yMax = $this->read_short();
         $this->bbox = array(($xMin * $scale), ($yMin * $scale), ($xMax * $scale), ($yMax * $scale));
         $this->skip(3 * 2);
-        $indexToLocFormat = $this->read_ushort();
+        $wpjobportal_indexToLocFormat = $this->read_ushort();
         $glyphDataFormat = $this->read_ushort();
         if ($glyphDataFormat != 0)
             die('Unknown glyph data format ' . esc_html($glyphDataFormat));
@@ -399,7 +399,7 @@ class TTFontFile {
         ///////////////////////////////////
         if (isset($this->tables["OS/2"])) {
             $this->seek_table("OS/2");
-            $version = $this->read_ushort();
+            $wpjobportal_version = $this->read_ushort();
             $this->skip(2);
             $usWeightClass = $this->read_ushort();
             $this->skip(2);
@@ -421,7 +421,7 @@ class TTFontFile {
                 $this->ascent = ($sTypoAscender * $scale);
             if (!$this->descent)
                 $this->descent = ($sTypoDescender * $scale);
-            if ($version > 1) {
+            if ($wpjobportal_version > 1) {
                 $this->skip(16);
                 $sCapHeight = $this->read_short();
                 $this->capHeight = ($sCapHeight * $scale);
@@ -446,7 +446,7 @@ class TTFontFile {
         $this->italicAngle = $this->read_short() + $this->read_ushort() / 65536.0;
         $this->underlinePosition = $this->read_short() * $scale;
         $this->underlineThickness = $this->read_short() * $scale;
-        $isFixedPitch = $this->read_ulong();
+        $wpjobportal_isFixedPitch = $this->read_ulong();
 
         $this->flags = 4;
 
@@ -454,7 +454,7 @@ class TTFontFile {
             $this->flags = $this->flags | 64;
         if ($usWeightClass >= 600)
             $this->flags = $this->flags | 262144;
-        if ($isFixedPitch)
+        if ($wpjobportal_isFixedPitch)
             $this->flags = $this->flags | 1;
 
         ///////////////////////////////////
@@ -465,8 +465,8 @@ class TTFontFile {
         $metricDataFormat = $this->read_ushort();
         if ($metricDataFormat != 0)
             die('Unknown horizontal metric data format ' . esc_html($metricDataFormat));
-        $numberOfHMetrics = $this->read_ushort();
-        if ($numberOfHMetrics == 0)
+        $wpjobportal_numberOfHMetrics = $this->read_ushort();
+        if ($wpjobportal_numberOfHMetrics == 0)
             die('Number of horizontal metrics is 0');
 
         ///////////////////////////////////
@@ -474,7 +474,7 @@ class TTFontFile {
         ///////////////////////////////////
         $this->seek_table("maxp");
         $this->skip(4);
-        $numGlyphs = $this->read_ushort();
+        $wpjobportal_numGlyphs = $this->read_ushort();
 
 
         ///////////////////////////////////
@@ -484,20 +484,20 @@ class TTFontFile {
         $this->skip(2);
         $cmapTableCount = $this->read_ushort();
         $unicode_cmap_offset = 0;
-        for ($i = 0; $i < $cmapTableCount; $i++) {
+        for ($wpjobportal_i = 0; $wpjobportal_i < $cmapTableCount; $wpjobportal_i++) {
             $platformID = $this->read_ushort();
-            $encodingID = $this->read_ushort();
+            $wpjobportal_encodingID = $this->read_ushort();
             $offset = $this->read_ulong();
-            $save_pos = $this->_pos;
-            if (($platformID == 3 && $encodingID == 1) || $platformID == 0) { // Microsoft, Unicode
-                $format = $this->get_ushort($cmap_offset + $offset);
-                if ($format == 4) {
+            $wpjobportal_save_pos = $this->_pos;
+            if (($platformID == 3 && $wpjobportal_encodingID == 1) || $platformID == 0) { // Microsoft, Unicode
+                $wpjobportal_format = $this->get_ushort($cmap_offset + $offset);
+                if ($wpjobportal_format == 4) {
                     if (!$unicode_cmap_offset)
                         $unicode_cmap_offset = $cmap_offset + $offset;
                     break;
                 }
             }
-            $this->seek($save_pos);
+            $this->seek($wpjobportal_save_pos);
         }
         if (!$unicode_cmap_offset)
             die('Font (' . esc_html($this->filename) . ') does not have cmap for Unicode (platform 3, encoding 1, format 4, or platform 0, any encoding, format 4)');
@@ -510,14 +510,14 @@ class TTFontFile {
         ///////////////////////////////////
         // hmtx - Horizontal metrics table
         ///////////////////////////////////
-        $this->getHMTX($numberOfHMetrics, $numGlyphs, $glyphToChar, $scale);
+        $this->getHMTX($wpjobportal_numberOfHMetrics, $wpjobportal_numGlyphs, $glyphToChar, $scale);
     }
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 
 
-    function makeSubset($file, &$subset) {
+    function makeSubset($file, &$wpjobportal_subset) {
         $this->filename = $file;
         $this->fh = fopen($file, 'rb') or die('Can\'t open file ' . esc_url($file));
         $this->_pos = 0;
@@ -538,7 +538,7 @@ class TTFontFile {
         ///////////////////////////////////
         $this->seek_table("head");
         $this->skip(50);
-        $indexToLocFormat = $this->read_ushort();
+        $wpjobportal_indexToLocFormat = $this->read_ushort();
         $glyphDataFormat = $this->read_ushort();
 
         ///////////////////////////////////
@@ -547,14 +547,14 @@ class TTFontFile {
         $this->seek_table("hhea");
         $this->skip(32);
         $metricDataFormat = $this->read_ushort();
-        $orignHmetrics = $numberOfHMetrics = $this->read_ushort();
+        $wpjobportal_orignHmetrics = $wpjobportal_numberOfHMetrics = $this->read_ushort();
 
         ///////////////////////////////////
         // maxp - Maximum profile table
         ///////////////////////////////////
         $this->seek_table("maxp");
         $this->skip(4);
-        $numGlyphs = $this->read_ushort();
+        $wpjobportal_numGlyphs = $this->read_ushort();
 
 
         ///////////////////////////////////
@@ -564,19 +564,19 @@ class TTFontFile {
         $this->skip(2);
         $cmapTableCount = $this->read_ushort();
         $unicode_cmap_offset = 0;
-        for ($i = 0; $i < $cmapTableCount; $i++) {
+        for ($wpjobportal_i = 0; $wpjobportal_i < $cmapTableCount; $wpjobportal_i++) {
             $platformID = $this->read_ushort();
-            $encodingID = $this->read_ushort();
+            $wpjobportal_encodingID = $this->read_ushort();
             $offset = $this->read_ulong();
-            $save_pos = $this->_pos;
-            if (($platformID == 3 && $encodingID == 1) || $platformID == 0) { // Microsoft, Unicode
-                $format = $this->get_ushort($cmap_offset + $offset);
-                if ($format == 4) {
+            $wpjobportal_save_pos = $this->_pos;
+            if (($platformID == 3 && $wpjobportal_encodingID == 1) || $platformID == 0) { // Microsoft, Unicode
+                $wpjobportal_format = $this->get_ushort($cmap_offset + $offset);
+                if ($wpjobportal_format == 4) {
                     $unicode_cmap_offset = $cmap_offset + $offset;
                     break;
                 }
             }
-            $this->seek($save_pos);
+            $this->seek($wpjobportal_save_pos);
         }
 
         if (!$unicode_cmap_offset)
@@ -593,57 +593,57 @@ class TTFontFile {
         // hmtx - Horizontal metrics table
         ///////////////////////////////////
         $scale = 1; // not used
-        $this->getHMTX($numberOfHMetrics, $numGlyphs, $glyphToChar, $scale);
+        $this->getHMTX($wpjobportal_numberOfHMetrics, $wpjobportal_numGlyphs, $glyphToChar, $scale);
 
         ///////////////////////////////////
         // loca - Index to location
         ///////////////////////////////////
-        $this->getLOCA($indexToLocFormat, $numGlyphs);
+        $this->getLOCA($wpjobportal_indexToLocFormat, $wpjobportal_numGlyphs);
 
-        $subsetglyphs = array(0 => 0);
-        $subsetCharToGlyph = array();
-        foreach ($subset AS $code) {
+        $wpjobportal_subsetglyphs = array(0 => 0);
+        $wpjobportal_subsetCharToGlyph = array();
+        foreach ($wpjobportal_subset AS $code) {
             if (isset($this->charToGlyph[$code])) {
-                $subsetglyphs[$this->charToGlyph[$code]] = $code; // Old Glyph ID => Unicode
-                $subsetCharToGlyph[$code] = $this->charToGlyph[$code]; // Unicode to old GlyphID
+                $wpjobportal_subsetglyphs[$this->charToGlyph[$code]] = $code; // Old Glyph ID => Unicode
+                $wpjobportal_subsetCharToGlyph[$code] = $this->charToGlyph[$code]; // Unicode to old GlyphID
             }
             $this->maxUni = max($this->maxUni, $code);
         }
 
-        list($start, $dummy) = $this->get_table_pos('glyf');
+        list($wpjobportal_start, $dummy) = $this->get_table_pos('glyf');
 
         $glyphSet = array();
-        ksort($subsetglyphs);
-        $n = 0;
+        ksort($wpjobportal_subsetglyphs);
+        $wpjobportal_n = 0;
         $fsLastCharIndex = 0; // maximum Unicode index (character code) in this font, according to the cmap subtable for platform ID 3 and platform- specific encoding ID 0 or 1.
-        foreach ($subsetglyphs AS $originalGlyphIdx => $uni) {
+        foreach ($wpjobportal_subsetglyphs AS $wpjobportal_originalGlyphIdx => $uni) {
             $fsLastCharIndex = max($fsLastCharIndex, $uni);
-            $glyphSet[$originalGlyphIdx] = $n; // old glyphID to new glyphID
-            $n++;
+            $glyphSet[$wpjobportal_originalGlyphIdx] = $wpjobportal_n; // old glyphID to new glyphID
+            $wpjobportal_n++;
         }
 
-        ksort($subsetCharToGlyph);
-        foreach ($subsetCharToGlyph AS $uni => $originalGlyphIdx) {
-            $codeToGlyph[$uni] = $glyphSet[$originalGlyphIdx];
+        ksort($wpjobportal_subsetCharToGlyph);
+        foreach ($wpjobportal_subsetCharToGlyph AS $uni => $wpjobportal_originalGlyphIdx) {
+            $codeToGlyph[$uni] = $glyphSet[$wpjobportal_originalGlyphIdx];
         }
         $this->codeToGlyph = $codeToGlyph;
 
-        ksort($subsetglyphs);
-        foreach ($subsetglyphs AS $originalGlyphIdx => $uni) {
-            $this->getGlyphs($originalGlyphIdx, $start, $glyphSet, $subsetglyphs);
+        ksort($wpjobportal_subsetglyphs);
+        foreach ($wpjobportal_subsetglyphs AS $wpjobportal_originalGlyphIdx => $uni) {
+            $this->getGlyphs($wpjobportal_originalGlyphIdx, $wpjobportal_start, $glyphSet, $wpjobportal_subsetglyphs);
         }
 
-        $numGlyphs = $numberOfHMetrics = count($subsetglyphs);
+        $wpjobportal_numGlyphs = $wpjobportal_numberOfHMetrics = count($wpjobportal_subsetglyphs);
 
         //tables copied from the original
-        $tags = array('name');
-        foreach ($tags AS $tag) {
-            $this->add($tag, $this->get_table($tag));
+        $wpjobportal_tags = array('name');
+        foreach ($wpjobportal_tags AS $wpjobportal_tag) {
+            $this->add($wpjobportal_tag, $this->get_table($wpjobportal_tag));
         }
-        $tags = array('cvt ', 'fpgm', 'prep', 'gasp');
-        foreach ($tags AS $tag) {
-            if (isset($this->tables[$tag])) {
-                $this->add($tag, $this->get_table($tag));
+        $wpjobportal_tags = array('cvt ', 'fpgm', 'prep', 'gasp');
+        foreach ($wpjobportal_tags AS $wpjobportal_tag) {
+            if (isset($this->tables[$wpjobportal_tag])) {
+                $this->add($wpjobportal_tag, $this->get_table($wpjobportal_tag));
             }
         }
 
@@ -656,70 +656,70 @@ class TTFontFile {
         ksort($codeToGlyph);
         unset($codeToGlyph[0]);
         //unset($codeToGlyph[65535]);
-        $rangeid = 0;
-        $range = array();
-        $prevcid = -2;
-        $prevglidx = -1;
+        $wpjobportal_rangeid = 0;
+        $wpjobportal_range = array();
+        $wpjobportal_prevcid = -2;
+        $wpjobportal_prevglidx = -1;
         // for each character
         foreach ($codeToGlyph as $cid => $glidx) {
-            if ($cid == ($prevcid + 1) && $glidx == ($prevglidx + 1)) {
-                $range[$rangeid][] = $glidx;
+            if ($cid == ($wpjobportal_prevcid + 1) && $glidx == ($wpjobportal_prevglidx + 1)) {
+                $wpjobportal_range[$wpjobportal_rangeid][] = $glidx;
             } else {
                 // new range
-                $rangeid = $cid;
-                $range[$rangeid] = array();
-                $range[$rangeid][] = $glidx;
+                $wpjobportal_rangeid = $cid;
+                $wpjobportal_range[$wpjobportal_rangeid] = array();
+                $wpjobportal_range[$wpjobportal_rangeid][] = $glidx;
             }
-            $prevcid = $cid;
-            $prevglidx = $glidx;
+            $wpjobportal_prevcid = $cid;
+            $wpjobportal_prevglidx = $glidx;
         }
 
         // cmap - Character to glyph mapping - Format 4 (MS / )
-        $segCount = count($range) + 1; // + 1 Last segment has missing character 0xFFFF
-        $searchRange = 1;
-        $entrySelector = 0;
-        while ($searchRange * 2 <= $segCount) {
-            $searchRange = $searchRange * 2;
-            $entrySelector = $entrySelector + 1;
+        $wpjobportal_segCount = count($wpjobportal_range) + 1; // + 1 Last segment has missing character 0xFFFF
+        $wpjobportal_searchRange = 1;
+        $wpjobportal_entrySelector = 0;
+        while ($wpjobportal_searchRange * 2 <= $wpjobportal_segCount) {
+            $wpjobportal_searchRange = $wpjobportal_searchRange * 2;
+            $wpjobportal_entrySelector = $wpjobportal_entrySelector + 1;
         }
-        $searchRange = $searchRange * 2;
-        $rangeShift = $segCount * 2 - $searchRange;
-        $length = 16 + (8 * $segCount ) + ($numGlyphs + 1);
+        $wpjobportal_searchRange = $wpjobportal_searchRange * 2;
+        $wpjobportal_rangeShift = $wpjobportal_segCount * 2 - $wpjobportal_searchRange;
+        $length = 16 + (8 * $wpjobportal_segCount ) + ($wpjobportal_numGlyphs + 1);
         $cmap = array(0, 1, // Index : version, number of encoding subtables
             3, 1, // Encoding Subtable : platform (MS=3), encoding (Unicode)
             0, 12, // Encoding Subtable : offset (hi,lo)
             4, $length, 0, // Format 4 Mapping subtable: format, length, language
-            $segCount * 2,
-            $searchRange,
-            $entrySelector,
-            $rangeShift);
+            $wpjobportal_segCount * 2,
+            $wpjobportal_searchRange,
+            $wpjobportal_entrySelector,
+            $wpjobportal_rangeShift);
 
         // endCode(s)
-        foreach ($range AS $start => $subrange) {
-            $endCode = $start + (count($subrange) - 1);
-            $cmap[] = $endCode; // endCode(s)
+        foreach ($wpjobportal_range AS $wpjobportal_start => $wpjobportal_subrange) {
+            $wpjobportal_endCode = $wpjobportal_start + (count($wpjobportal_subrange) - 1);
+            $cmap[] = $wpjobportal_endCode; // endCode(s)
         }
         $cmap[] = 0xFFFF; // endCode of last Segment
         $cmap[] = 0; // reservedPad
         // startCode(s)
-        foreach ($range AS $start => $subrange) {
-            $cmap[] = $start; // startCode(s)
+        foreach ($wpjobportal_range AS $wpjobportal_start => $wpjobportal_subrange) {
+            $cmap[] = $wpjobportal_start; // startCode(s)
         }
         $cmap[] = 0xFFFF; // startCode of last Segment
         // idDelta(s) 
-        foreach ($range AS $start => $subrange) {
-            $idDelta = -($start - $subrange[0]);
-            $n += count($subrange);
-            $cmap[] = $idDelta; // idDelta(s)
+        foreach ($wpjobportal_range AS $wpjobportal_start => $wpjobportal_subrange) {
+            $wpjobportal_idDelta = -($wpjobportal_start - $wpjobportal_subrange[0]);
+            $wpjobportal_n += count($wpjobportal_subrange);
+            $cmap[] = $wpjobportal_idDelta; // idDelta(s)
         }
         $cmap[] = 1; // idDelta of last Segment
         // idRangeOffset(s) 
-        foreach ($range AS $subrange) {
+        foreach ($wpjobportal_range AS $wpjobportal_subrange) {
             $cmap[] = 0; // idRangeOffset[segCount]  	Offset in bytes to glyph indexArray, or 0
         }
         $cmap[] = 0; // idRangeOffset of last Segment
-        foreach ($range AS $subrange) {
-            foreach ($subrange AS $glidx) {
+        foreach ($wpjobportal_range AS $wpjobportal_subrange) {
+            foreach ($wpjobportal_subrange AS $glidx) {
                 $cmap[] = $glidx;
             }
         }
@@ -750,47 +750,47 @@ class TTFontFile {
         $minLeftSideBearing = 0;
         $minRightSideBearing = 0;
         $xMaxExtent = 0;
-        $maxPoints = 0;   // points in non-compound glyph
-        $maxContours = 0;   // contours in non-compound glyph
-        $maxComponentPoints = 0; // points in compound glyph
-        $maxComponentContours = 0; // contours in compound glyph
-        $maxComponentElements = 0; // number of glyphs referenced at top level
-        $maxComponentDepth = 0;  // levels of recursion, set to 0 if font has only simple glyphs
+        $wpjobportal_maxPoints = 0;   // points in non-compound glyph
+        $wpjobportal_maxContours = 0;   // contours in non-compound glyph
+        $wpjobportal_maxComponentPoints = 0; // points in compound glyph
+        $wpjobportal_maxComponentContours = 0; // contours in compound glyph
+        $wpjobportal_maxComponentElements = 0; // number of glyphs referenced at top level
+        $wpjobportal_maxComponentDepth = 0;  // levels of recursion, set to 0 if font has only simple glyphs
         $this->glyphdata = array();
 
-        foreach ($subsetglyphs AS $originalGlyphIdx => $uni) {
+        foreach ($wpjobportal_subsetglyphs AS $wpjobportal_originalGlyphIdx => $uni) {
             // hmtx - Horizontal Metrics
-            $hm = $this->getHMetric($orignHmetrics, $originalGlyphIdx);
+            $hm = $this->getHMetric($wpjobportal_orignHmetrics, $wpjobportal_originalGlyphIdx);
             $hmtxstr .= $hm;
 
             $offsets[] = $pos;
-            $glyphPos = $this->glyphPos[$originalGlyphIdx];
-            $glyphLen = $this->glyphPos[$originalGlyphIdx + 1] - $glyphPos;
+            $glyphPos = $this->glyphPos[$wpjobportal_originalGlyphIdx];
+            $glyphLen = $this->glyphPos[$wpjobportal_originalGlyphIdx + 1] - $glyphPos;
             if ($glyfLength < $this->maxStrLenRead) {
-                $data = wpjobportalphplib::wpJP_substr($glyphData, $glyphPos, $glyphLen);
+                $wpjobportal_data = wpjobportalphplib::wpJP_substr($glyphData, $glyphPos, $glyphLen);
             } else {
                 if ($glyphLen > 0)
-                    $data = $this->get_chunk($glyfOffset + $glyphPos, $glyphLen);
+                    $wpjobportal_data = $this->get_chunk($glyfOffset + $glyphPos, $glyphLen);
                 else
-                    $data = '';
+                    $wpjobportal_data = '';
             }
 
             if ($glyphLen > 0) {
-                $up = unpack("n", wpjobportalphplib::wpJP_substr($data, 0, 2));
+                $wpjobportal_up = unpack("n", wpjobportalphplib::wpJP_substr($wpjobportal_data, 0, 2));
             }
 
-            if ($glyphLen > 2 && ($up[1] & (1 << 15))) { // If number of contours <= -1 i.e. composiste glyph
+            if ($glyphLen > 2 && ($wpjobportal_up[1] & (1 << 15))) { // If number of contours <= -1 i.e. composiste glyph
                 $pos_in_glyph = 10;
                 $flags = GF_MORE;
-                $nComponentElements = 0;
+                $wpjobportal_nComponentElements = 0;
                 while ($flags & GF_MORE) {
-                    $nComponentElements += 1; // number of glyphs referenced at top level
-                    $up = unpack("n", wpjobportalphplib::wpJP_substr($data, $pos_in_glyph, 2));
-                    $flags = $up[1];
-                    $up = unpack("n", wpjobportalphplib::wpJP_substr($data, $pos_in_glyph + 2, 2));
-                    $glyphIdx = $up[1];
-                    $this->glyphdata[$originalGlyphIdx]['compGlyphs'][] = $glyphIdx;
-                    $data = $this->_set_ushort($data, $pos_in_glyph + 2, $glyphSet[$glyphIdx]);
+                    $wpjobportal_nComponentElements += 1; // number of glyphs referenced at top level
+                    $wpjobportal_up = unpack("n", wpjobportalphplib::wpJP_substr($wpjobportal_data, $pos_in_glyph, 2));
+                    $flags = $wpjobportal_up[1];
+                    $wpjobportal_up = unpack("n", wpjobportalphplib::wpJP_substr($wpjobportal_data, $pos_in_glyph + 2, 2));
+                    $glyphIdx = $wpjobportal_up[1];
+                    $this->glyphdata[$wpjobportal_originalGlyphIdx]['compGlyphs'][] = $glyphIdx;
+                    $wpjobportal_data = $this->_set_ushort($wpjobportal_data, $pos_in_glyph + 2, $glyphSet[$glyphIdx]);
                     $pos_in_glyph += 4;
                     if ($flags & GF_WORDS) {
                         $pos_in_glyph += 4;
@@ -805,15 +805,15 @@ class TTFontFile {
                         $pos_in_glyph += 8;
                     }
                 }
-                $maxComponentElements = max($maxComponentElements, $nComponentElements);
+                $wpjobportal_maxComponentElements = max($wpjobportal_maxComponentElements, $wpjobportal_nComponentElements);
             }
 
-            $glyf .= $data;
+            $glyf .= $wpjobportal_data;
             $pos += $glyphLen;
             if ($pos % 4 != 0) {
-                $padding = 4 - ($pos % 4);
-                $glyf .= wpjobportalphplib::wpJP_str_repeat("\0", $padding);
-                $pos += $padding;
+                $wpjobportal_padding = 4 - ($pos % 4);
+                $glyf .= wpjobportalphplib::wpJP_str_repeat("\0", $wpjobportal_padding);
+                $pos += $wpjobportal_padding;
             }
         }
 
@@ -826,12 +826,12 @@ class TTFontFile {
         // loca - Index to location
         $locastr = '';
         if ((($pos + 1) >> 1) > 0xFFFF) {
-            $indexToLocFormat = 1;        // long format
+            $wpjobportal_indexToLocFormat = 1;        // long format
             foreach ($offsets AS $offset) {
                 $locastr .= pack("N", $offset);
             }
         } else {
-            $indexToLocFormat = 0;        // short format
+            $wpjobportal_indexToLocFormat = 0;        // short format
             foreach ($offsets AS $offset) {
                 $locastr .= pack("n", ($offset / 2));
             }
@@ -840,19 +840,19 @@ class TTFontFile {
 
         // head - Font header
         $head = $this->get_table('head');
-        $head = $this->_set_ushort($head, 50, $indexToLocFormat);
+        $head = $this->_set_ushort($head, 50, $wpjobportal_indexToLocFormat);
         $this->add('head', $head);
 
 
         // hhea - Horizontal Header
         $hhea = $this->get_table('hhea');
-        $hhea = $this->_set_ushort($hhea, 34, $numberOfHMetrics);
+        $hhea = $this->_set_ushort($hhea, 34, $wpjobportal_numberOfHMetrics);
         $this->add('hhea', $hhea);
 
         // maxp - Maximum Profile
-        $maxp = $this->get_table('maxp');
-        $maxp = $this->_set_ushort($maxp, 4, $numGlyphs);
-        $this->add('maxp', $maxp);
+        $wpjobportal_maxp = $this->get_table('maxp');
+        $wpjobportal_maxp = $this->_set_ushort($wpjobportal_maxp, 4, $wpjobportal_numGlyphs);
+        $this->add('maxp', $wpjobportal_maxp);
 
 
         // OS/2 - OS/2
@@ -862,50 +862,50 @@ class TTFontFile {
         fclose($this->fh);
 
         // Put the TTF file together
-        $stm = '';
-        $this->endTTFile($stm);
-        return $stm;
+        $wpjobportal_stm = '';
+        $this->endTTFile($wpjobportal_stm);
+        return $wpjobportal_stm;
     }
 
     //////////////////////////////////////////////////////////////////////////////////
     // Recursively get composite glyph data
-    function getGlyphData($originalGlyphIdx, &$maxdepth, &$depth, &$points, &$contours) {
-        $depth++;
-        $maxdepth = max($maxdepth, $depth);
-        if (count($this->glyphdata[$originalGlyphIdx]['compGlyphs'])) {
-            foreach ($this->glyphdata[$originalGlyphIdx]['compGlyphs'] AS $glyphIdx) {
-                $this->getGlyphData($glyphIdx, $maxdepth, $depth, $points, $contours);
+    function getGlyphData($wpjobportal_originalGlyphIdx, &$wpjobportal_maxdepth, &$wpjobportal_depth, &$points, &$contours) {
+        $wpjobportal_depth++;
+        $wpjobportal_maxdepth = max($wpjobportal_maxdepth, $wpjobportal_depth);
+        if (count($this->glyphdata[$wpjobportal_originalGlyphIdx]['compGlyphs'])) {
+            foreach ($this->glyphdata[$wpjobportal_originalGlyphIdx]['compGlyphs'] AS $glyphIdx) {
+                $this->getGlyphData($glyphIdx, $wpjobportal_maxdepth, $wpjobportal_depth, $points, $contours);
             }
-        } else if (($this->glyphdata[$originalGlyphIdx]['nContours'] > 0) && $depth > 0) { // simple
-            $contours += $this->glyphdata[$originalGlyphIdx]['nContours'];
-            $points += $this->glyphdata[$originalGlyphIdx]['nPoints'];
+        } else if (($this->glyphdata[$wpjobportal_originalGlyphIdx]['nContours'] > 0) && $wpjobportal_depth > 0) { // simple
+            $contours += $this->glyphdata[$wpjobportal_originalGlyphIdx]['nContours'];
+            $points += $this->glyphdata[$wpjobportal_originalGlyphIdx]['nPoints'];
         }
-        $depth--;
+        $wpjobportal_depth--;
     }
 
     //////////////////////////////////////////////////////////////////////////////////
     // Recursively get composite glyphs
-    function getGlyphs($originalGlyphIdx, &$start, &$glyphSet, &$subsetglyphs) {
-        $glyphPos = $this->glyphPos[$originalGlyphIdx];
-        $glyphLen = $this->glyphPos[$originalGlyphIdx + 1] - $glyphPos;
+    function getGlyphs($wpjobportal_originalGlyphIdx, &$wpjobportal_start, &$glyphSet, &$wpjobportal_subsetglyphs) {
+        $glyphPos = $this->glyphPos[$wpjobportal_originalGlyphIdx];
+        $glyphLen = $this->glyphPos[$wpjobportal_originalGlyphIdx + 1] - $glyphPos;
         if (!$glyphLen) {
             return;
         }
-        $this->seek($start + $glyphPos);
-        $numberOfContours = $this->read_short();
-        if ($numberOfContours < 0) {
+        $this->seek($wpjobportal_start + $glyphPos);
+        $wpjobportal_numberOfContours = $this->read_short();
+        if ($wpjobportal_numberOfContours < 0) {
             $this->skip(8);
             $flags = GF_MORE;
             while ($flags & GF_MORE) {
                 $flags = $this->read_ushort();
                 $glyphIdx = $this->read_ushort();
                 if (!isset($glyphSet[$glyphIdx])) {
-                    $glyphSet[$glyphIdx] = count($subsetglyphs); // old glyphID to new glyphID
-                    $subsetglyphs[$glyphIdx] = true;
+                    $glyphSet[$glyphIdx] = count($wpjobportal_subsetglyphs); // old glyphID to new glyphID
+                    $wpjobportal_subsetglyphs[$glyphIdx] = true;
                 }
-                $savepos = ftell($this->fh);
-                $this->getGlyphs($glyphIdx, $start, $glyphSet, $subsetglyphs);
-                $this->seek($savepos);
+                $wpjobportal_savepos = ftell($this->fh);
+                $this->getGlyphs($glyphIdx, $wpjobportal_start, $glyphSet, $wpjobportal_subsetglyphs);
+                $this->seek($wpjobportal_savepos);
                 if ($flags & GF_WORDS)
                     $this->skip(4);
                 else
@@ -922,21 +922,21 @@ class TTFontFile {
 
     //////////////////////////////////////////////////////////////////////////////////
 
-    function getHMTX($numberOfHMetrics, $numGlyphs, &$glyphToChar, $scale) {
-        $start = $this->seek_table("hmtx");
+    function getHMTX($wpjobportal_numberOfHMetrics, $wpjobportal_numGlyphs, &$glyphToChar, $scale) {
+        $wpjobportal_start = $this->seek_table("hmtx");
         $aw = 0;
         $this->charWidths = str_pad('', 256 * 256 * 2, "\x00");
-        $nCharWidths = 0;
-        if (($numberOfHMetrics * 4) < $this->maxStrLenRead) {
-            $data = $this->get_chunk($start, ($numberOfHMetrics * 4));
-            $arr = unpack("n*", $data);
+        $wpjobportal_nCharWidths = 0;
+        if (($wpjobportal_numberOfHMetrics * 4) < $this->maxStrLenRead) {
+            $wpjobportal_data = $this->get_chunk($wpjobportal_start, ($wpjobportal_numberOfHMetrics * 4));
+            $wpjobportal_arr = unpack("n*", $wpjobportal_data);
         } else {
-            $this->seek($start);
+            $this->seek($wpjobportal_start);
         }
-        for ($glyph = 0; $glyph < $numberOfHMetrics; $glyph++) {
+        for ($glyph = 0; $glyph < $wpjobportal_numberOfHMetrics; $glyph++) {
 
-            if (($numberOfHMetrics * 4) < $this->maxStrLenRead) {
-                $aw = $arr[($glyph * 2) + 1];
+            if (($wpjobportal_numberOfHMetrics * 4) < $this->maxStrLenRead) {
+                $aw = $wpjobportal_arr[($glyph * 2) + 1];
             } else {
                 $aw = $this->read_ushort();
                 $lsb = $this->read_ushort();
@@ -960,17 +960,17 @@ class TTFontFile {
                         if ($char < 196608) {
                             $this->charWidths[$char * 2] = chr($w >> 8);
                             $this->charWidths[$char * 2 + 1] = chr($w & 0xFF);
-                            $nCharWidths++;
+                            $wpjobportal_nCharWidths++;
                         }
                     }
                 }
             }
         }
-        $data = $this->get_chunk(($start + $numberOfHMetrics * 4), ($numGlyphs * 2));
-        $arr = unpack("n*", $data);
-        $diff = $numGlyphs - $numberOfHMetrics;
-        for ($pos = 0; $pos < $diff; $pos++) {
-            $glyph = $pos + $numberOfHMetrics;
+        $wpjobportal_data = $this->get_chunk(($wpjobportal_start + $wpjobportal_numberOfHMetrics * 4), ($wpjobportal_numGlyphs * 2));
+        $wpjobportal_arr = unpack("n*", $wpjobportal_data);
+        $wpjobportal_diff = $wpjobportal_numGlyphs - $wpjobportal_numberOfHMetrics;
+        for ($pos = 0; $pos < $wpjobportal_diff; $pos++) {
+            $glyph = $pos + $wpjobportal_numberOfHMetrics;
             if (isset($glyphToChar[$glyph])) {
                 foreach ($glyphToChar[$glyph] AS $char) {
                     if ($char != 0 && $char != 65535) {
@@ -981,7 +981,7 @@ class TTFontFile {
                         if ($char < 196608) {
                             $this->charWidths[$char * 2] = chr($w >> 8);
                             $this->charWidths[$char * 2 + 1] = chr($w & 0xFF);
-                            $nCharWidths++;
+                            $wpjobportal_nCharWidths++;
                         }
                     }
                 }
@@ -989,41 +989,41 @@ class TTFontFile {
         }
         // NB 65535 is a set width of 0
         // First bytes define number of chars in font
-        $this->charWidths[0] = chr($nCharWidths >> 8);
-        $this->charWidths[1] = chr($nCharWidths & 0xFF);
+        $this->charWidths[0] = chr($wpjobportal_nCharWidths >> 8);
+        $this->charWidths[1] = chr($wpjobportal_nCharWidths & 0xFF);
     }
 
-    function getHMetric($numberOfHMetrics, $gid) {
-        $start = $this->seek_table("hmtx");
-        if ($gid < $numberOfHMetrics) {
-            $this->seek($start + ($gid * 4));
+    function getHMetric($wpjobportal_numberOfHMetrics, $gid) {
+        $wpjobportal_start = $this->seek_table("hmtx");
+        if ($gid < $wpjobportal_numberOfHMetrics) {
+            $this->seek($wpjobportal_start + ($gid * 4));
             $hm = fread($this->fh, 4);
         } else {
-            $this->seek($start + (($numberOfHMetrics - 1) * 4));
+            $this->seek($wpjobportal_start + (($wpjobportal_numberOfHMetrics - 1) * 4));
             $hm = fread($this->fh, 2);
-            $this->seek($start + ($numberOfHMetrics * 2) + ($gid * 2));
+            $this->seek($wpjobportal_start + ($wpjobportal_numberOfHMetrics * 2) + ($gid * 2));
             $hm .= fread($this->fh, 2);
         }
         return $hm;
     }
 
-    function getLOCA($indexToLocFormat, $numGlyphs) {
-        $start = $this->seek_table('loca');
+    function getLOCA($wpjobportal_indexToLocFormat, $wpjobportal_numGlyphs) {
+        $wpjobportal_start = $this->seek_table('loca');
         $this->glyphPos = array();
-        if ($indexToLocFormat == 0) {
-            $data = $this->get_chunk($start, ($numGlyphs * 2) + 2);
-            $arr = unpack("n*", $data);
-            for ($n = 0; $n <= $numGlyphs; $n++) {
-                $this->glyphPos[] = ($arr[$n + 1] * 2);
+        if ($wpjobportal_indexToLocFormat == 0) {
+            $wpjobportal_data = $this->get_chunk($wpjobportal_start, ($wpjobportal_numGlyphs * 2) + 2);
+            $wpjobportal_arr = unpack("n*", $wpjobportal_data);
+            for ($wpjobportal_n = 0; $wpjobportal_n <= $wpjobportal_numGlyphs; $wpjobportal_n++) {
+                $this->glyphPos[] = ($wpjobportal_arr[$wpjobportal_n + 1] * 2);
             }
-        } else if ($indexToLocFormat == 1) {
-            $data = $this->get_chunk($start, ($numGlyphs * 4) + 4);
-            $arr = unpack("N*", $data);
-            for ($n = 0; $n <= $numGlyphs; $n++) {
-                $this->glyphPos[] = ($arr[$n + 1]);
+        } else if ($wpjobportal_indexToLocFormat == 1) {
+            $wpjobportal_data = $this->get_chunk($wpjobportal_start, ($wpjobportal_numGlyphs * 4) + 4);
+            $wpjobportal_arr = unpack("N*", $wpjobportal_data);
+            for ($wpjobportal_n = 0; $wpjobportal_n <= $wpjobportal_numGlyphs; $wpjobportal_n++) {
+                $this->glyphPos[] = ($wpjobportal_arr[$wpjobportal_n + 1]);
             }
         } else
-            die('Unknown location table format ' . esc_html($indexToLocFormat));
+            die('Unknown location table format ' . esc_html($wpjobportal_indexToLocFormat));
     }
 
     // CMAP Format 4
@@ -1034,41 +1034,41 @@ class TTFontFile {
         $limit = $unicode_cmap_offset + $length;
         $this->skip(2);
 
-        $segCount = $this->read_ushort() / 2;
+        $wpjobportal_segCount = $this->read_ushort() / 2;
         $this->skip(6);
-        $endCount = array();
-        for ($i = 0; $i < $segCount; $i++) {
-            $endCount[] = $this->read_ushort();
+        $wpjobportal_endCount = array();
+        for ($wpjobportal_i = 0; $wpjobportal_i < $wpjobportal_segCount; $wpjobportal_i++) {
+            $wpjobportal_endCount[] = $this->read_ushort();
         }
         $this->skip(2);
-        $startCount = array();
-        for ($i = 0; $i < $segCount; $i++) {
-            $startCount[] = $this->read_ushort();
+        $wpjobportal_startCount = array();
+        for ($wpjobportal_i = 0; $wpjobportal_i < $wpjobportal_segCount; $wpjobportal_i++) {
+            $wpjobportal_startCount[] = $this->read_ushort();
         }
-        $idDelta = array();
-        for ($i = 0; $i < $segCount; $i++) {
-            $idDelta[] = $this->read_short();
+        $wpjobportal_idDelta = array();
+        for ($wpjobportal_i = 0; $wpjobportal_i < $wpjobportal_segCount; $wpjobportal_i++) {
+            $wpjobportal_idDelta[] = $this->read_short();
         }  // ???? was unsigned short
-        $idRangeOffset_start = $this->_pos;
-        $idRangeOffset = array();
-        for ($i = 0; $i < $segCount; $i++) {
-            $idRangeOffset[] = $this->read_ushort();
+        $wpjobportal_idRangeOffset_start = $this->_pos;
+        $wpjobportal_idRangeOffset = array();
+        for ($wpjobportal_i = 0; $wpjobportal_i < $wpjobportal_segCount; $wpjobportal_i++) {
+            $wpjobportal_idRangeOffset[] = $this->read_ushort();
         }
 
-        for ($n = 0; $n < $segCount; $n++) {
-            $endpoint = ($endCount[$n] + 1);
-            for ($unichar = $startCount[$n]; $unichar < $endpoint; $unichar++) {
-                if ($idRangeOffset[$n] == 0)
-                    $glyph = ($unichar + $idDelta[$n]) & 0xFFFF;
+        for ($wpjobportal_n = 0; $wpjobportal_n < $wpjobportal_segCount; $wpjobportal_n++) {
+            $wpjobportal_endpoint = ($wpjobportal_endCount[$wpjobportal_n] + 1);
+            for ($unichar = $wpjobportal_startCount[$wpjobportal_n]; $unichar < $wpjobportal_endpoint; $unichar++) {
+                if ($wpjobportal_idRangeOffset[$wpjobportal_n] == 0)
+                    $glyph = ($unichar + $wpjobportal_idDelta[$wpjobportal_n]) & 0xFFFF;
                 else {
-                    $offset = ($unichar - $startCount[$n]) * 2 + $idRangeOffset[$n];
-                    $offset = $idRangeOffset_start + 2 * $n + $offset;
+                    $offset = ($unichar - $wpjobportal_startCount[$wpjobportal_n]) * 2 + $wpjobportal_idRangeOffset[$wpjobportal_n];
+                    $offset = $wpjobportal_idRangeOffset_start + 2 * $wpjobportal_n + $offset;
                     if ($offset >= $limit)
                         $glyph = 0;
                     else {
                         $glyph = $this->get_ushort($offset);
                         if ($glyph != 0)
-                            $glyph = ($glyph + $idDelta[$n]) & 0xFFFF;
+                            $glyph = ($glyph + $wpjobportal_idDelta[$wpjobportal_n]) & 0xFFFF;
                     }
                 }
                 $charToGlyph[$unichar] = $glyph;
@@ -1081,53 +1081,53 @@ class TTFontFile {
     }
 
     // Put the TTF file together
-    function endTTFile(&$stm) {
-        $stm = '';
-        $numTables = count($this->otables);
-        $searchRange = 1;
-        $entrySelector = 0;
-        while ($searchRange * 2 <= $numTables) {
-            $searchRange = $searchRange * 2;
-            $entrySelector = $entrySelector + 1;
+    function endTTFile(&$wpjobportal_stm) {
+        $wpjobportal_stm = '';
+        $wpjobportal_numTables = count($this->otables);
+        $wpjobportal_searchRange = 1;
+        $wpjobportal_entrySelector = 0;
+        while ($wpjobportal_searchRange * 2 <= $wpjobportal_numTables) {
+            $wpjobportal_searchRange = $wpjobportal_searchRange * 2;
+            $wpjobportal_entrySelector = $wpjobportal_entrySelector + 1;
         }
-        $searchRange = $searchRange * 16;
-        $rangeShift = $numTables * 16 - $searchRange;
+        $wpjobportal_searchRange = $wpjobportal_searchRange * 16;
+        $wpjobportal_rangeShift = $wpjobportal_numTables * 16 - $wpjobportal_searchRange;
 
         // Header
         if (_TTF_MAC_HEADER) {
-            $stm .= (pack("Nnnnn", 0x74727565, $numTables, $searchRange, $entrySelector, $rangeShift)); // Mac
+            $wpjobportal_stm .= (pack("Nnnnn", 0x74727565, $wpjobportal_numTables, $wpjobportal_searchRange, $wpjobportal_entrySelector, $wpjobportal_rangeShift)); // Mac
         } else {
-            $stm .= (pack("Nnnnn", 0x00010000, $numTables, $searchRange, $entrySelector, $rangeShift)); // Windows
+            $wpjobportal_stm .= (pack("Nnnnn", 0x00010000, $wpjobportal_numTables, $wpjobportal_searchRange, $wpjobportal_entrySelector, $wpjobportal_rangeShift)); // Windows
         }
 
         // Table directory
-        $tables = $this->otables;
+        $wpjobportal_tables = $this->otables;
 
-        ksort($tables);
-        $offset = 12 + $numTables * 16;
-        foreach ($tables AS $tag => $data) {
-            if ($tag == 'head') {
+        ksort($wpjobportal_tables);
+        $offset = 12 + $wpjobportal_numTables * 16;
+        foreach ($wpjobportal_tables AS $wpjobportal_tag => $wpjobportal_data) {
+            if ($wpjobportal_tag == 'head') {
                 $head_start = $offset;
             }
-            $stm .= $tag;
-            $checksum = $this->calcChecksum($data);
-            $stm .= pack("nn", $checksum[0], $checksum[1]);
-            $stm .= pack("NN", $offset, wpjobportalphplib::wpJP_strlen($data));
-            $paddedLength = (wpjobportalphplib::wpJP_strlen($data) + 3) & ~3;
-            $offset = $offset + $paddedLength;
+            $wpjobportal_stm .= $wpjobportal_tag;
+            $wpjobportal_checksum = $this->calcChecksum($wpjobportal_data);
+            $wpjobportal_stm .= pack("nn", $wpjobportal_checksum[0], $wpjobportal_checksum[1]);
+            $wpjobportal_stm .= pack("NN", $offset, wpjobportalphplib::wpJP_strlen($wpjobportal_data));
+            $wpjobportal_paddedLength = (wpjobportalphplib::wpJP_strlen($wpjobportal_data) + 3) & ~3;
+            $offset = $offset + $wpjobportal_paddedLength;
         }
 
         // Table data
-        foreach ($tables AS $tag => $data) {
-            $data .= "\0\0\0";
-            $stm .= wpjobportalphplib::wpJP_substr($data, 0, (wpjobportalphplib::wpJP_strlen($data) & ~3));
+        foreach ($wpjobportal_tables AS $wpjobportal_tag => $wpjobportal_data) {
+            $wpjobportal_data .= "\0\0\0";
+            $wpjobportal_stm .= wpjobportalphplib::wpJP_substr($wpjobportal_data, 0, (wpjobportalphplib::wpJP_strlen($wpjobportal_data) & ~3));
         }
 
-        $checksum = $this->calcChecksum($stm);
-        $checksum = $this->sub32(array(0xB1B0, 0xAFBA), $checksum);
-        $chk = pack("nn", $checksum[0], $checksum[1]);
-        $stm = $this->splice($stm, ($head_start + 8), $chk);
-        return $stm;
+        $wpjobportal_checksum = $this->calcChecksum($wpjobportal_stm);
+        $wpjobportal_checksum = $this->sub32(array(0xB1B0, 0xAFBA), $wpjobportal_checksum);
+        $chk = pack("nn", $wpjobportal_checksum[0], $wpjobportal_checksum[1]);
+        $wpjobportal_stm = $this->splice($wpjobportal_stm, ($head_start + 8), $chk);
+        return $wpjobportal_stm;
     }
 
 }

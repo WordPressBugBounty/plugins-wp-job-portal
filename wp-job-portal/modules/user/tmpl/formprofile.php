@@ -4,14 +4,14 @@ if (!defined('ABSPATH'))
 ?>
 <div class="wjportal-main-up-wrapper">
     <?php
-    if ( !WPJOBPORTALincluder::getTemplate('templates/header', array('module' => 'company')) ) {
+    if ( !WPJOBPORTALincluder::getTemplate('templates/header', array('wpjobportal_module' => 'company')) ) {
         return;
     }
     ?>
     <div class="wjportal-main-wrapper wjportal-clearfix">
         <div class="wjportal-form-wrp wjportal-edit-profile-form">
             <div class="wjportal-page-header">
-                <?php WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('module' => 'user','layout'=>'update'));?>
+                <?php WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('wpjobportal_module' => 'user','wpjobportal_layout'=>'update'));?>
             </div>
             <?php
             if( wpjobportal::$_error_flag_message == null ){ ?>

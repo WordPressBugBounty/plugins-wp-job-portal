@@ -4,37 +4,37 @@ if (!defined('ABSPATH'))
 wp_enqueue_script('tinymcewpjobportal.js', site_url('wp-includes/js/tinymce/tinymce.min.js'));
 wp_enqueue_script('jquery-ui-datepicker');
 //wp_enqueue_script('multi-files-selector', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/multi-files-selector.js');
-$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+$wpjobportal_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
 
-$mappingservice = wpjobportal::$_config->getConfigValue('mappingservice');
+$wpjobportal_mappingservice = wpjobportal::$_config->getConfigValue('mappingservice');
 wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jquery-ui-smoothness.css');
 
-if($mappingservice == "gmap"){
-    wp_register_script ( 'wpjp-google-map-js', $protocol . 'maps.googleapis.com/maps/api/js?key=' . wpjobportal::$_configuration['google_map_api_key'] );
+if($wpjobportal_mappingservice == "gmap"){
+    wp_register_script ( 'wpjp-google-map-js', $wpjobportal_protocol . 'maps.googleapis.com/maps/api/js?key=' . wpjobportal::$_configuration['google_map_api_key'] );
     wp_enqueue_script ( 'wpjp-google-map-js' );
-}elseif ($mappingservice == "osm") {
+}elseif ($wpjobportal_mappingservice == "osm") {
     wp_register_script ( 'wpjp-osm-map-js', esc_url(WPJOBPORTAL_PLUGIN_URL).'/includes/js/ol.min.js' );
     wp_enqueue_script( 'wpjp-osm-map-js' );
     wp_enqueue_style( 'wpjp-osm-map-css', esc_url(WPJOBPORTAL_PLUGIN_URL).'/includes/css/ol.min.css' );
 }
-$config = wpjobportal::$_configuration;
-if ($config['date_format'] == 'm/d/Y' || $config['date_format'] == 'd/m/y' || $config['date_format'] == 'm/d/y' || $config['date_format'] == 'd/m/Y') {
-    $dash = '/';
+$wpjobportal_config = wpjobportal::$_configuration;
+if ($wpjobportal_config['date_format'] == 'm/d/Y' || $wpjobportal_config['date_format'] == 'd/m/y' || $wpjobportal_config['date_format'] == 'm/d/y' || $wpjobportal_config['date_format'] == 'd/m/Y') {
+    $wpjobportal_dash = '/';
 } else {
-    $dash = '-';
+    $wpjobportal_dash = '-';
 }
-$dateformat = $config['date_format'];
-$firstdash = wpjobportalphplib::wpJP_strpos($dateformat, $dash, 0);
-$firstvalue = wpjobportalphplib::wpJP_substr($dateformat, 0, $firstdash);
-$firstdash = $firstdash + 1;
-$seconddash = wpjobportalphplib::wpJP_strpos($dateformat, $dash, $firstdash);
-$secondvalue = wpjobportalphplib::wpJP_substr($dateformat, $firstdash, $seconddash - $firstdash);
-$seconddash = $seconddash + 1;
-$thirdvalue = wpjobportalphplib::wpJP_substr($dateformat, $seconddash, wpjobportalphplib::wpJP_strlen($dateformat) - $seconddash);
-$js_dateformat = '%' . $firstvalue . $dash . '%' . $secondvalue . $dash . '%' . $thirdvalue;
-$js_scriptdateformat = $firstvalue . $dash . $secondvalue . $dash . $thirdvalue;
-$js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy', $js_scriptdateformat);
-$resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
+$wpjobportal_dateformat = $wpjobportal_config['date_format'];
+$wpjobportal_firstdash = wpjobportalphplib::wpJP_strpos($wpjobportal_dateformat, $wpjobportal_dash, 0);
+$wpjobportal_firstvalue = wpjobportalphplib::wpJP_substr($wpjobportal_dateformat, 0, $wpjobportal_firstdash);
+$wpjobportal_firstdash = $wpjobportal_firstdash + 1;
+$wpjobportal_seconddash = wpjobportalphplib::wpJP_strpos($wpjobportal_dateformat, $wpjobportal_dash, $wpjobportal_firstdash);
+$wpjobportal_secondvalue = wpjobportalphplib::wpJP_substr($wpjobportal_dateformat, $wpjobportal_firstdash, $wpjobportal_seconddash - $wpjobportal_firstdash);
+$wpjobportal_seconddash = $wpjobportal_seconddash + 1;
+$wpjobportal_thirdvalue = wpjobportalphplib::wpJP_substr($wpjobportal_dateformat, $wpjobportal_seconddash, wpjobportalphplib::wpJP_strlen($wpjobportal_dateformat) - $wpjobportal_seconddash);
+$wpjobportal_js_dateformat = '%' . $wpjobportal_firstvalue . $wpjobportal_dash . '%' . $wpjobportal_secondvalue . $wpjobportal_dash . '%' . $wpjobportal_thirdvalue;
+$wpjobportal_js_scriptdateformat = $wpjobportal_firstvalue . $wpjobportal_dash . $wpjobportal_secondvalue . $wpjobportal_dash . $wpjobportal_thirdvalue;
+$wpjobportal_js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy', $wpjobportal_js_scriptdateformat);
+$wpjobportal_resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
 ?>
 <style type="text/css">
 .ui-datepicker{
@@ -45,7 +45,7 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
        var maindivoffsettop = 0;
         var currenttop = 0;
         jQuery(document).ready(function () {
@@ -59,7 +59,7 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
                 try { tinymce.execCommand('mceAddEditor', true, 'resume'); } catch (e){console.log(e); }
             });
             //More option
-            jQuery('body').delegate('span.wpjobportal-resume-moreoptiontitle', 'click', function(e){
+            jQuery('body').on('click', 'span.wpjobportal-resume-moreoptiontitle', function(e){
                 e.preventDefault();
                 var img = jQuery(this).find('img');
                 if (jQuery('div.wpjobportal-resume-moreoption').is(':hidden')) {
@@ -71,7 +71,7 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
                 jQuery(img).attr('src', srcimg);
             });
             //Personal files select
-        jQuery('body').delegate('span.clickablefiles', 'click', function(e){
+        jQuery('body').on('click', 'span.clickablefiles', function(e){
             jQuery('input#resumefiles').click();
             jQuery('input#resumefiles').change(function(){
                 var srcimage = jQuery('img.rs_photo');
@@ -123,10 +123,11 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
                 showResumeFilesArrayPopup();
             });
         });
-        jQuery('body').delegate('img#wjportal-form-delete-image', 'click', function(e){
+        jQuery('body').on('click', 'img#wjportal-form-delete-image', function(e){
             jQuery('.wjportal-form-image-wrp').hide();
             jQuery('input#photo').val('').clone(true);
             jQuery('span.wjportal-form-upload-btn-wrp-txt').text('');
+            jQuery('span.wjportal-form-upload-btn-wrp-txt').hide();
             var id =  jQuery('input[name=id]').val();
             // var id =  jQuery('#id').val();
             removeLogo(id);
@@ -149,9 +150,9 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
                     tokenLimit: 1,
                     prePopulate: [{id: cityid, name: cityname}],";
                     
-                    $newtyped_cities = wpjobportal::$_config->getConfigurationByConfigName('newtyped_cities');
-                    if ($newtyped_cities == 1) {
-                        $inline_js_script .= "
+                    $wpjobportal_newtyped_cities = wpjobportal::$_config->getConfigurationByConfigName('newtyped_cities');
+                    if ($wpjobportal_newtyped_cities == 1) {
+                        $wpjobportal_inline_js_script .= "
                         onResult: function(item) {
                             if (jQuery.isEmptyObject(item)){
                                 return [{id:0, name: jQuery('tester').text()}];
@@ -187,7 +188,7 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
                                 }
                             }";
                     }
-                    $inline_js_script .= "
+                    $wpjobportal_inline_js_script .= "
                         });
             }else{
                 jQuery('#' + inputfor + '_city_'+sectionid).tokenInput(citylink, {
@@ -197,9 +198,9 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
                     noResultsText: \"". esc_html(__('No Results', 'wp-job-portal'))."\",
                     searchingText: \"". esc_html(__('Searching', 'wp-job-portal'))."\",
                     tokenLimit: 1,";
-                    $newtyped_cities = wpjobportal::$_config->getConfigurationByConfigName('newtyped_cities');
-                    if ($newtyped_cities == 1) { 
-                        $inline_js_script .= "
+                    $wpjobportal_newtyped_cities = wpjobportal::$_config->getConfigurationByConfigName('newtyped_cities');
+                    if ($wpjobportal_newtyped_cities == 1) {
+                        $wpjobportal_inline_js_script .= "
                         onResult: function(item) {
                             if (jQuery.isEmptyObject(item)){
                                 return [{id:0, name: jQuery('tester').text()}];
@@ -237,7 +238,7 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
                             }
                         }";
                     }
-                    $inline_js_script .= "
+                    $wpjobportal_inline_js_script .= "
                     });
 
             }
@@ -325,19 +326,19 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
             document.getElementById('map_'+sectionid).style.visibility = 'hidden';
             document.getElementById('map_'+sectionid).style.display = 'hidden';
         }";
-        wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+        wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 
-        $inline_js_script = "
+        $wpjobportal_inline_js_script = "
         function loadMap( sectionid ) {
             ";
-            if($mappingservice == "gmap"){ 
-                    $inline_js_script .= "loadGmap(sectionid);";
-            }elseif ($mappingservice == "osm") { 
-                $inline_js_script .= "
+            if($wpjobportal_mappingservice == "gmap"){
+                    $wpjobportal_inline_js_script .= "loadGmap(sectionid);";
+            }elseif ($wpjobportal_mappingservice == "osm") {
+                $wpjobportal_inline_js_script .= "
                     //Current Bite Storage Purpose
                     loadOsmMap(sectionid);";
            }
-           $inline_js_script .= "
+           $wpjobportal_inline_js_script .= "
         }
 
 
@@ -413,7 +414,7 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
                  marker:null,
                  init: function(){
                      this.toggleMap();
-                     jQuery('#showmap1').bind('change',lmap.toggleMap);
+                     jQuery('#showmap1').on('change', lmap.toggleMap);
                  },
                  toggleMap: function(){
                      if(!jQuery('#showmap1').length || jQuery('#showmap1:checked').val()){
@@ -461,8 +462,8 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
                      if(!lmap.map){
                          return false;
                      }";
-                     if($mappingservice == 'osm'){ 
-                        $inline_js_script .= "
+                     if($wpjobportal_mappingservice == 'osm'){
+                        $wpjobportal_inline_js_script .= "
                         if(lmap.marker){
                             lmap.map.removeLayer(lmap.marker);
                         }
@@ -472,20 +473,20 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
                         document.getElementById('longitude_'+sectionid).value = latlang[0];
                         ";
                     }
-                    $inline_js_script .= "
+                    $wpjobportal_inline_js_script .= "
                  }
              };
               lmap.init();
              var latitude = document.getElementById('latitude_'+sectionid).value;
              var longitude = document.getElementById('longitude_'+sectionid).value;
              ";
-             if($mappingservice == "osm"){
-                $inline_js_script .= "
+             if($wpjobportal_mappingservice == "osm"){
+                $wpjobportal_inline_js_script .= "
                 if(latitude != '' && longitude != ''){
                     lmap.addMarker([longitude,latitude]);
                 }";
             }
-            $inline_js_script .= "
+            $wpjobportal_inline_js_script .= "
         }
 
 
@@ -546,11 +547,11 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
         var ajaxurl = \"". esc_url_raw(admin_url('admin-ajax.php')) ."\";
         var resumefiles = [];";
          if (isset(wpjobportal::$_data[0]['file_section']) && is_array(wpjobportal::$_data[0]['file_section'])) { 
-            $k = COUNT(wpjobportal::$_data[0]['file_section']); 
+            $wpjobportal_k = COUNT(wpjobportal::$_data[0]['file_section']);
         } else { 
-            $k= 0; 
+            $wpjobportal_k= 0;
         }
-        $inline_js_script .= "var k = ".$k.";
+        $wpjobportal_inline_js_script .= "var k = ".$wpjobportal_k.";
         var formvalidcheck = true;
         //Show resumefiles in the popup
         function showResumeFilesArrayPopup(){
@@ -605,7 +606,7 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
             });
         }
         //Common section add
-        jQuery('body').delegate('a.add', 'click', function(e){
+        jQuery('body').on('click', 'a.add', function(e){
             e.preventDefault();
             var anchor = jQuery(this);
             var parentDiv = jQuery(this).before();
@@ -634,7 +635,7 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
         }
 
         function addDatePicker(){
-            jQuery('.custom_date').datepicker({dateFormat: '". $js_scriptdateformat."'});
+            jQuery('.custom_date').datepicker({dateFormat: '". $wpjobportal_js_scriptdateformat."'});
         }
         jQuery(document).ready(function () {
             addDatePicker();
@@ -644,7 +645,7 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
                 jQuery('div#resume-files-popup-wrapper').fadeOut();
             });
             //More option
-            jQuery('body').delegate('span.resume-moreoptiontitle', 'click', function(e){
+            jQuery('body').on('click', 'span.resume-moreoptiontitle', function(e){
                 e.preventDefault();
                 var img = jQuery(this).find('img');
                 if (jQuery('div.resume-moreoption').is(':hidden')) {
@@ -656,14 +657,14 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
                 jQuery(img).attr('src', srcimg);
             });
             //Resume select file
-            jQuery('body').delegate('span.resume-selectfiles', 'click', function(e){
+            jQuery('body').on('click', 'span.resume-selectfiles', function(e){
                 e.preventDefault();
                 jQuery('div#black_wrapper_jobapply').show();
                 jQuery('div#resume-files-popup-wrapper').fadeIn();
                 showResumeFilesArrayPopup();
             });
             //Common section edit
-            jQuery('body').delegate('div.section_wrapper a.edit', 'click', function(e){
+            jQuery('body').on('click', 'div.section_wrapper a.edit', function(e){
                 jQuery('div#resume-wating').show();
                 e.preventDefault();
                 var div = jQuery(this).parent().parent();
@@ -679,7 +680,7 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
                 });
             });
             //Common section delete
-            jQuery('body').delegate('div.section_wrapper a.delete', 'click', function(e){
+            jQuery('body').on('click', 'div.section_wrapper a.delete', function(e){
                 e.preventDefault();
                 var confirmDelete = confirm(\"". esc_html(__("Are you sure to delete", 'wp-job-portal')).' ?'."\");
                 if (confirmDelete == false) {
@@ -705,7 +706,7 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
                 });
             });
             //Personal section edit
-            jQuery('body').delegate('a.personal_section_edit', 'click', function(e){
+            jQuery('body').on('click', 'a.personal_section_edit', function(e){
                 jQuery('div#resume-wating').show();
                 e.preventDefault();
                 var div = jQuery('div#resume-wrapper');
@@ -722,7 +723,7 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
                 });
             });
             //Skill section edit
-            jQuery('body').delegate('a.skilledit', 'click', function(e){
+            jQuery('body').on('click', 'a.skilledit', function(e){
                 e.preventDefault();
                 var div = jQuery(this).parent().next('div[data-section=\"skills\"]');
                 var section = 'skills';
@@ -739,7 +740,7 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
                 });
             });
             //Resume section edit
-            jQuery('body').delegate('a.resumeedit', 'click', function(e){
+            jQuery('body').on('click', 'a.resumeedit', function(e){
                 e.preventDefault();
                 var div = jQuery(this).parent().next('div[data-section=\"resume\"]');
                 var section = 'resume';
@@ -783,9 +784,9 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
             addValidateCustom();
         });
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
     function readURL(input, srcimage) {
         if (input.files && input.files[0]) {
             var fileext = input.files[0].name.split('.').pop();
@@ -799,10 +800,12 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
                     reader.onload = function (e) {
                     jQuery(srcimage).attr('src', e.target.result);
                     jQuery('.wjportal-form-image-wrp').show();
+                    jQuery('.wjportal-form-upload-btn-wrp-txt').show();
                     jQuery('.wjportal-form-upload-btn-wrp-txt').html(input.files[0].name);
                     jQuery('img#wjportal-form-delete-image').on('click',function(){
                         jQuery('.wjportal-form-image-wrp').hide();
                         jQuery('input#photo').val('').clone(true);
+                        jQuery('span.wjportal-form-upload-btn-wrp-txt').hide();
                         jQuery('span.wjportal-form-upload-btn-wrp-txt').text('');
                     });
                    }
@@ -917,9 +920,9 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
                     searchingText: \"". esc_html(__('Searching', 'wp-job-portal'))."\",
                     tokenLimit: 1,
                     prePopulate: [{id:city.id, name:city.name}],";
-                    $newtyped_cities = wpjobportal::$_config->getConfigurationByConfigName('newtyped_cities');
-                    if ($newtyped_cities == 1) {
-                         $inline_js_script .= "
+                    $wpjobportal_newtyped_cities = wpjobportal::$_config->getConfigurationByConfigName('newtyped_cities');
+                    if ($wpjobportal_newtyped_cities == 1) {
+                         $wpjobportal_inline_js_script .= "
 
                         onResult: function(item) {
                             if (jQuery.isEmptyObject(item)){
@@ -959,7 +962,7 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
                     }
                 }";
                 }
-                 $inline_js_script .= "
+                 $wpjobportal_inline_js_script .= "
             });
             } else {
                 jQuery('#' + fieldname).tokenInput(citylink, {
@@ -969,9 +972,9 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
                     noResultsText: \"". esc_html(__('No Results', 'wp-job-portal'))."\",
                     searchingText: \"". esc_html(__('Searching', 'wp-job-portal'))."\",
                     tokenLimit: 1,";
-                    $newtyped_cities = wpjobportal::$_config->getConfigurationByConfigName('newtyped_cities');
-                    if ($newtyped_cities == 1) {
-                        $inline_js_script .= "
+                    $wpjobportal_newtyped_cities = wpjobportal::$_config->getConfigurationByConfigName('newtyped_cities');
+                    if ($wpjobportal_newtyped_cities == 1) {
+                        $wpjobportal_inline_js_script .= "
                         onResult: function(item) {
                             if (jQuery.isEmptyObject(item)){
                                 return [{id:0, name: jQuery('tester').text()}];
@@ -1006,7 +1009,7 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
                             }
                         }";
                     }
-                    $inline_js_script .= "
+                    $wpjobportal_inline_js_script .= "
                     });
             }
 
@@ -1065,9 +1068,9 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
             var print_link = document.getElementById('print-link');
             if (print_link) {
                 ";
-                $resumeid = isset(wpjobportal::$_data[0]["personal_section"]->id) ? wpjobportal::$_data[0]["personal_section"]->id : 0; 
-                $inline_js_script .= "
-                var href = \"". esc_url_raw(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'printresume', 'wpjobportalid'=>$resumeid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid())))."\";
+                $wpjobportal_resumeid = isset(wpjobportal::$_data[0]["personal_section"]->id) ? wpjobportal::$_data[0]["personal_section"]->id : 0;
+                $wpjobportal_inline_js_script .= "
+                var href = \"". esc_url_raw(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'printresume', 'wpjobportalid'=>$wpjobportal_resumeid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid())))."\";
                 print_link.addEventListener('click', function (event) {
                     print = window.open(href, 'print_win', 'width=1024, height=800, scrollbars=yes');
                     event.preventDefault();
@@ -1085,9 +1088,9 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
                 searchingText: \"". esc_html(__('Searching', 'wp-job-portal'))."\",
                 tokenLimit: 5,
                 prePopulate: multitags,";
-                $newtyped_tags = wpjobportal::$_config->getConfigurationByConfigName('newtyped_tags');
-                if ($newtyped_tags == 1) { 
-                     $inline_js_script .= "
+                $wpjobportal_newtyped_tags = wpjobportal::$_config->getConfigurationByConfigName('newtyped_tags');
+                if ($wpjobportal_newtyped_tags == 1) {
+                     $wpjobportal_inline_js_script .= "
                     onResult: function(item) {
                         if (jQuery.isEmptyObject(item)){
                             return [{id: '', name: jQuery('tester').text()}];
@@ -1115,7 +1118,7 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
                         });
                     }";
                 }
-                 $inline_js_script .= "
+                 $wpjobportal_inline_js_script .= "
             });
         }
 
@@ -1135,13 +1138,13 @@ $resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[0]) : null;
             // submitresume();
         }
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 
     if(WPJOBPORTALincluder::getObjectClass('user')->isguest()){
-        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-        $config_array = wpjobportal::$_config->getConfigByFor('captcha');
-        if($config_array['captcha_selection'] == 1 && $config_array['recaptcha_privatekey'] ){
-            wp_enqueue_script('wpjobportal-repaptcha-script-resume', $protocol . 'www.google.com/recaptcha/api.js');
+        $wpjobportal_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+        $wpjobportal_config_array = wpjobportal::$_config->getConfigByFor('captcha');
+        if($wpjobportal_config_array['captcha_selection'] == 1 && $wpjobportal_config_array['recaptcha_privatekey'] ){
+            wp_enqueue_script('wpjobportal-repaptcha-script-resume', $wpjobportal_protocol . 'www.google.com/recaptcha/api.js');
         }
     }
 ?>

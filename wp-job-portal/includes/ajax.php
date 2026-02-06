@@ -18,13 +18,17 @@ class WPJOBPORTALajax {
 
     function ajaxhandler() {
         $fucntin_allowed = array('DataForDepandantFieldResume', 'DataForDepandantField', 'saveJobShortlist', 'saveJobShortlistJobManager', 'getQuickViewByJobId', 'getShortListViewByJobId', 'getShortListViewByJobIdJobPortal', 'getApplyNowByJobid', 'jobapply', 'jobapplyjobmanager', 'getTellaFriend', 'getTellaFriendJobManager', 'deletecompanylogo', 'deleteResumeLogo', 'getuserlistajax', 'getLogForUserById', 'getFieldsForComboByFieldFor', 'getSectionToFillValues', 'getUserIdByCompanyid', 'changeNotifyOfNotifications', 'changeViewOfNotifications', 'getOptionsForFieldEdit', 'listdepartments', 'saveTokenInputTag', 'makeJobCopyAjax', 'getsubcategorypopup', 'updateJobApplyResumeStatus', 'getResumeCommentSection', 'getFolderSection', 'saveToFolderResume', 'storeResumeComments', 'setResumeRatting', 'getResumeDetail', 'getEmailFields', 'jobapplyid', 'getFolderSection', 'getFolderSectionJobManager', 'saveToFolderResume', 'sendEmailToJobSeeker', 'setJobApplyRating', 'getResumeDetailJobManager', 'getEmailFieldsJobManager', 'hideTemplateBanner', 'getListTranslations', 'validateandshowdownloadfilename', 'getlanguagetranslation', 'getPacakageListByUid', 'canceljobapplyasvisitor', 'visitorapplyjob', 'removeResumeFileById', 'getResumeSectionAjax', 'deleteResumeSectionAjax', 'getOptionsForEditSlug', 'getAllRoleLessUsersAjax', 'getNextJobs', 'getNextTemplateJobs','savetokeninputcity','sendmessageresume', 'sendmailtofriend', 'getJobApplyDetailByid', 'setListStyleSession','sendmailtofriendJobManager', 'getResumeCommentSectionJobManager','getPaymentPopup','getPackagePopupForFeaturedCompany','getPackagePopupForFeaturedJob','getPackagePopupForFeaturedResume','getPackagePopupForJobAlert','getPackagePopupJobView','getPackagePopupForCopyJob','getPackagePopupForCompanyContactDetail','getPackagePopupForResumeContactDetail','gettagsbytagname','listDepartments','getPackagePopupForDepartment','deleteUserPhoto','getStripePlans','downloadandinstalladdonfromAjax','getChildForVisibleCombobox','isFieldRequired','getFieldsForComboBySection','getUserRoleBasedInfo','storeConfigurationSingle');
-        $task = WPJOBPORTALrequest::getVar('task');
-        if($task != '' && in_array($task, $fucntin_allowed)){
-            $module = WPJOBPORTALrequest::getVar('wpjobportalme');
-			$module = str_replace("..","",$module);
-			$module = str_replace("/","",$module);
-            $result = WPJOBPORTALincluder::getJSModel($module)->$task();
-            echo $result;
+        $wpjobportal_task = WPJOBPORTALrequest::getVar('task');
+        if($wpjobportal_task != '' && in_array($wpjobportal_task, $fucntin_allowed)){
+            $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme');
+
+            // $wpjobportal_module = str_replace("..","",$wpjobportal_module);
+			// $wpjobportal_module = str_replace("/","",$wpjobportal_module);
+            $wpjobportal_module = sanitize_key( $wpjobportal_module );
+
+            $wpjobportal_result = WPJOBPORTALincluder::getJSModel($wpjobportal_module)->$wpjobportal_task();
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Intentional raw response (AJAX / HTML)
+            echo $wpjobportal_result;
             die();
         }else{
             die('Not Allowed!');
@@ -32,38 +36,41 @@ class WPJOBPORTALajax {
     }
 
     function ajaxhandlerpopup() {
-        $task = WPJOBPORTALrequest::getVar('task');
-        $result = WPJOBPORTALincluder::getObjectClass('usercredits')->getUserCreditsDetailForAction($task);
-        echo $result;
+        $wpjobportal_task = WPJOBPORTALrequest::getVar('task');
+        $wpjobportal_result = WPJOBPORTALincluder::getObjectClass('usercredits')->getUserCreditsDetailForAction($wpjobportal_task);
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Intentional raw response (AJAX / HTML)
+        echo $wpjobportal_result;
         die();
     }
 
     function ajaxhandlerpopupaction() {
-        $task = WPJOBPORTALrequest::getVar('task');
-        $result = WPJOBPORTALincluder::getObjectClass('usercredits')->doAction($task);
-        echo $result;
+        $wpjobportal_task = WPJOBPORTALrequest::getVar('task');
+        $wpjobportal_result = WPJOBPORTALincluder::getObjectClass('usercredits')->doAction($wpjobportal_task);
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Intentional raw response (AJAX / HTML)
+        echo $wpjobportal_result;
         die();
     }
 
     function ajaxhandlerloginwith() {
-        $socialmedia = WPJOBPORTALrequest::getVar('socialmedia');
-        $task = WPJOBPORTALrequest::getVar('task');
-        switch ($socialmedia) {
+        $wpjobportal_socialmedia = WPJOBPORTALrequest::getVar('socialmedia');
+        $wpjobportal_task = WPJOBPORTALrequest::getVar('task');
+        switch ($wpjobportal_socialmedia) {
             case 'facebook':
-                $result = WPJOBPORTALincluder::getObjectClass('facebook')->$task();
+                $wpjobportal_result = WPJOBPORTALincluder::getObjectClass('facebook')->$wpjobportal_task();
                 break;
             case 'linkedin':
-                $result = WPJOBPORTALincluder::getObjectClass('linkedin')->$task();
+                $wpjobportal_result = WPJOBPORTALincluder::getObjectClass('linkedin')->$wpjobportal_task();
                 break;
             case 'xing':
-                $result = WPJOBPORTALincluder::getObjectClass('xing')->$task();
+                $wpjobportal_result = WPJOBPORTALincluder::getObjectClass('xing')->$wpjobportal_task();
                 break;
         }
-        echo $result;
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Intentional raw response (AJAX / HTML)
+        echo $wpjobportal_result;
         die();
     }
 
 }
 
-$jsajax = new WPJOBPORTALajax();
+$wpjobportal_jsajax = new WPJOBPORTALajax();
 ?>

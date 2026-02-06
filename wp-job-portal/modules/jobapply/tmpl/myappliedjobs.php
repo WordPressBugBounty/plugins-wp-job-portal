@@ -4,29 +4,29 @@ if (!defined('ABSPATH'))
 ?>
 <div class="wjportal-main-up-wrapper">
 <?php
-$labelflag = true;
-$labelinlisting = wpjobportal::$_configuration['labelinlisting'];
-if ($labelinlisting != 1) {
-    $labelflag = false;
+$wpjobportal_labelflag = true;
+$wpjobportal_labelinlisting = wpjobportal::$_configuration['labelinlisting'];
+if ($wpjobportal_labelinlisting != 1) {
+    $wpjobportal_labelflag = false;
 } ?>
 <div class="wjportal-main-wrapper wjportal-clearfix">
     <div class="wjportal-page-header">
         <div class="wjportal-page-header-cnt">
             <?php
-                WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('module' => 'jobapply','layout' => 'myapplied'));
+                WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('wpjobportal_module' => 'jobapply','wpjobportal_layout' => 'myapplied'));
             ?>
         </div>
         <div id="my-applied-jobs-wrraper" class="wjportal-header-actions">
             <div class="wjportal-filter-wrp">
                 <?php
-                    $image1 = esc_url(WPJOBPORTAL_PLUGIN_URL) . "includes/images/sort-up.png";
-                    $image2 = esc_url(WPJOBPORTAL_PLUGIN_URL) . "includes/images/sort-down.png";
+                    $wpjobportal_image1 = esc_url(WPJOBPORTAL_PLUGIN_URL) . "includes/images/sort-up.png";
+                    $wpjobportal_image2 = esc_url(WPJOBPORTAL_PLUGIN_URL) . "includes/images/sort-down.png";
                     if (isset(wpjobportal::$_data['sortby']) && wpjobportal::$_data['sortby'] == 1) {
-                        $image = $image1;
+                        $wpjobportal_image = $wpjobportal_image1;
                     } else {
-                        $image = $image2;
+                        $wpjobportal_image = $wpjobportal_image2;
                     }
-                    $categoryarray = array(
+                    $wpjobportal_categoryarray = array(
                         (object) array('id' => 1, 'text' => esc_html(__('Job Title', 'wp-job-portal'))),
                         (object) array('id' => 2, 'text' => esc_html(__('Company Name', 'wp-job-portal'))),
                         (object) array('id' => 5, 'text' => esc_html(__('Location', 'wp-job-portal'))),
@@ -37,16 +37,16 @@ if ($labelinlisting != 1) {
                     );
                     // resume filters
                      WPJOBPORTALincluder::getTemplate('jobapply/views/frontend/filter',array(
-                        'sortbylist' => $categoryarray,
-                        'layout' => 'myjobapplfilter',
-                        'image' => $image,
-                        'image1' => $image1,
-                        'image2' => $image2
+                        'wpjobportal_sortbylist' => $wpjobportal_categoryarray,
+                        'wpjobportal_layout' => 'myjobapplfilter',
+                        'wpjobportal_image' => $wpjobportal_image,
+                        'wpjobportal_image1' => $wpjobportal_image1,
+                        'wpjobportal_image2' => $wpjobportal_image2
                     ));
                 ?>
             </div>
         </div>
-        <?php if(!WPJOBPORTALincluder::getTemplate('templates/header',array('module' => 'jobapply'))){
+        <?php if(!WPJOBPORTALincluder::getTemplate('templates/header',array('wpjobportal_module' => 'jobapply'))){
             return;
         } ?>
     </div>
@@ -54,14 +54,14 @@ if ($labelinlisting != 1) {
             <form id="job_form" method="post" action="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobapply','wpjobportallt'=>'myappliedjobs'))); ?>">
                 <div class="wjportal-jobs-list-wrapper wjportal-applied-jobs-wrp">
                     <?php
-                        foreach (wpjobportal::$_data[0] AS $appliedJobs) {
-                            WPJOBPORTALincluder::getTemplate('job/views/frontend/joblist',array('job'=>$appliedJobs,'labelflag'=>$labelflag,'control'=>'resumetitle'));
+                        foreach (wpjobportal::$_data[0] AS $wpjobportal_appliedJobs) {
+                            WPJOBPORTALincluder::getTemplate('job/views/frontend/joblist',array('wpjobportal_job'=>$wpjobportal_appliedJobs,'wpjobportal_labelflag'=>$wpjobportal_labelflag,'wpjobportal_control'=>'resumetitle'));
                         }
                     ?>
                 </div>
                 <?php
                     if (wpjobportal::$_data[1]) {
-                        if(!WPJOBPORTALincluder::getTemplate('templates/pagination',array('module' => 'jobapply','pagination' => wpjobportal::$_data[1]))) {
+                        if(!WPJOBPORTALincluder::getTemplate('templates/pagination',array('wpjobportal_module' => 'jobapply','pagination' => wpjobportal::$_data[1]))) {
                             return;
                         }
                     }

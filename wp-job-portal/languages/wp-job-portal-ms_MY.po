@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Delete"
 msgstr "Padam"
@@ -10276,3 +10276,2472 @@ msgstr "Anda tidak mempunyai simpan yang tersisa"
 
 msgid "We would love to hear from You."
 msgstr "Kami ingin mendengar daripada anda."
+
+msgid "Welcome back!"
+msgstr "Selamat kembali!"
+
+msgid "Here's a snapshot of your job board's performance."
+msgstr "Berikut adalah gambaran prestasi lembaga kerja anda."
+
+msgid "Customize Your Dashboard"
+msgstr "Sesuaikan papan pemuka anda"
+
+msgid "Core Components"
+msgstr "Komponen teras"
+
+msgid "Quick Actions"
+msgstr "Tindakan cepat"
+
+msgid "Recent Jobs"
+msgstr "Pekerjaan terkini"
+
+msgid "Quick Stats"
+msgstr "Statistik cepat"
+
+msgid "Visualizations"
+msgstr "Visualisasi"
+
+msgid "Platform Growth"
+msgstr "Pertumbuhan platform"
+
+msgid "Jobs by Status"
+msgstr "Pekerjaan mengikut status"
+
+msgid "Top Categories"
+msgstr "Kategori teratas"
+
+msgid "Activity & System Feeds"
+msgstr "Aktiviti & suapan sistem"
+
+msgid "Latest Applies"
+msgstr "Terkini terpakai"
+
+msgid "User & Financials"
+msgstr "Pengguna & Kewangan"
+
+msgid "Job Seekers"
+msgstr "Pencari kerja"
+
+msgid "Payments"
+msgstr "Pembayaran"
+
+msgid "Reset to Defaults"
+msgstr "Tetapkan semula ke lalai"
+
+msgid "Apply Changes"
+msgstr "Sapukan perubahan"
+
+msgid "Approve Jobs"
+msgstr "Meluluskan pekerjaan"
+
+msgid "Manage Users"
+msgstr "Menguruskan pengguna"
+
+msgid "View Reports"
+msgstr "Lihat laporan"
+
+msgid "Analytics"
+msgstr "Analisis"
+
+msgid "Manage Plans"
+msgstr "Menguruskan rancangan"
+
+msgid "Platform Config"
+msgstr "Konfigurasi platform"
+
+msgid "Applications"
+msgstr "Aplikasi"
+
+msgid "Pending Jobs"
+msgstr "Pekerjaan yang belum selesai"
+
+msgid "New Applicants"
+msgstr "Pemohon baru"
+
+msgid "Active Subscriptions"
+msgstr "Langganan aktif"
+
+msgid "Total Users"
+msgstr "Jumlah pengguna"
+
+msgid "Closed Jobs"
+msgstr "Pekerjaan tertutup"
+
+msgid "Monthly Revenue"
+msgstr "Hasil bulanan"
+
+msgid "Recent Job Postings"
+msgstr "Penyiaran kerja baru -baru ini"
+
+msgid "Date Posted"
+msgstr "Tarikh Dihantar"
+
+msgid "Actions"
+msgstr "Tindakan"
+
+msgid "No recent job postings found."
+msgstr "Tiada catatan kerja baru -baru ini dijumpai."
+
+msgid "Top Job Categories"
+msgstr "Kategori kerja teratas"
+
+msgid "Latest Job Applies"
+msgstr "Pekerjaan terkini berlaku"
+
+msgid "applied for"
+msgstr "memohon"
+
+msgid "at"
+msgstr "pada"
+
+msgid "View App"
+msgstr "Lihat aplikasi"
+
+msgid "No recent job applications to display."
+msgstr "Tiada aplikasi kerja baru -baru ini untuk dipaparkan."
+
+msgid "No new resumes have been added recently."
+msgstr "Tiada resume baru telah ditambah baru -baru ini."
+
+msgid "Latest Package Subscriptions"
+msgstr "Langganan pakej terkini"
+
+msgid "subscribed to"
+msgstr "melanggan"
+
+msgid "No new subscriptions found."
+msgstr "Tiada langganan baru yang dijumpai."
+
+msgid "Latest Payments"
+msgstr "Pembayaran terkini"
+
+msgid "No recent payments to display."
+msgstr "Tiada pembayaran baru -baru ini untuk dipaparkan."
+
+msgid "Latest Activity"
+msgstr "Aktiviti terkini"
+
+msgid "Hooray! No system errors to report."
+msgstr "Hooray! Tiada kesilapan sistem untuk dilaporkan."
+
+msgid "Latest Job Seekers"
+msgstr "Pencari kerja terkini"
+
+msgid "Joined"
+msgstr "Bergabung"
+
+msgid "No new job seekers have registered."
+msgstr "Tiada pencari kerja baru telah mendaftar."
+
+msgid "Latest Employers"
+msgstr "Majikan terkini"
+
+msgid "No new employers have registered."
+msgstr "Tiada majikan baru telah mendaftar."
+
+msgid "Not allowed"
+msgstr "Tidak dibenarkan"
+
+msgid "Allowed to all"
+msgstr "Dibenarkan untuk semua"
+
+msgid "employers, job seekers and visitors"
+msgstr "majikan, pencari kerja dan pelawat"
+
+msgid "Allowed only to employers"
+msgstr "Hanya dibenarkan untuk majikan"
+
+msgid "City, State, Country"
+msgstr "Bandar, negeri, negara"
+
+msgid "City, State"
+msgstr "Bandar, negeri"
+
+msgid "City, Country"
+msgstr "Bandar, negara"
+
+msgid "Minutes"
+msgstr "Minit"
+
+msgid "Hour"
+msgstr "Jam"
+
+msgid "Hours"
+msgstr "Jam"
+
+msgid "Week"
+msgstr "Minggu"
+
+msgid "System & Site"
+msgstr "Sistem & Tapak"
+
+msgid "Site & System"
+msgstr "Tapak & sistem"
+
+msgid "Core details about your job portal, its status, and default behaviors"
+msgstr "Butiran teras mengenai portal pekerjaan anda, statusnya, dan tingkah laku lalai"
+
+msgid "Site Title"
+msgstr "Tajuk Tapak"
+
+msgid "The main title for your job portal"
+msgstr "Tajuk utama untuk portal pekerjaan anda"
+
+msgid "Site Offline"
+msgstr "Laman web di luar talian"
+
+msgid "Take the site offline for maintenance"
+msgstr "Ambil laman web ini untuk penyelenggaraan"
+
+msgid "The message shown to visitors when the site is offline"
+msgstr "Mesej yang ditunjukkan kepada pelawat ketika laman web ini di luar talian"
+
+msgid "Default Page"
+msgstr "Halaman lalai"
+
+msgid "Select the main WordPress page for the job portal"
+msgstr "Pilih halaman utama WordPress untuk Portal Kerja"
+
+msgid "Email links and support icons may not work if this is not set"
+msgstr "Pautan e -mel dan ikon sokongan mungkin tidak berfungsi jika ini tidak ditetapkan"
+
+msgid "Date Format"
+msgstr "Format tarikh"
+
+msgid "Set the date format used throughout the plugin"
+msgstr "Tetapkan format tarikh yang digunakan sepanjang plugin"
+
+msgid "Default Address Display Style"
+msgstr "Gaya paparan alamat lalai"
+
+msgid "Select the default format for displaying addresses"
+msgstr "Pilih format lalai untuk memaparkan alamat"
+
+msgid "Registration & Login"
+msgstr "Pendaftaran & Log masuk"
+
+msgid "Control user registration flows and login/logout redirects"
+msgstr "Kawal Aliran Pendaftaran Pengguna dan Log Masuk/Logout Redirects"
+
+msgid "Set Register Link"
+msgstr "Tetapkan pautan daftar"
+
+msgid "Set the main registration page for the site"
+msgstr "Tetapkan halaman pendaftaran utama untuk laman web ini"
+
+msgid "Custom Register Redirect Link"
+msgstr "Pautan redirect daftar tersuai"
+
+msgid "Enter the custom URL for registration if"
+msgstr "Masukkan URL tersuai untuk pendaftaran jika"
+
+msgid "is selected above"
+msgstr "dipilih di atas"
+
+msgid "Set the main login page for the site"
+msgstr "Tetapkan halaman log masuk utama untuk laman web ini"
+
+msgid "Custom Login Redirect Link"
+msgstr "Pautan redirect log masuk tersuai"
+
+msgid "Enter the custom URL for login if"
+msgstr "Masukkan URL tersuai untuk log masuk jika"
+
+msgid "Redirect Link For Non-Portal WP User"
+msgstr "Pautan mengalihkan untuk pengguna WP bukan portal"
+
+msgid "Redirect WordPress users who do not have a role in WP Job Portal to this link after login"
+msgstr "Mengalihkan pengguna WordPress yang tidak mempunyai peranan dalam portal kerja WP ke pautan ini selepas log masuk"
+
+msgid "Terms & Conditions"
+msgstr "Terma & Syarat"
+
+msgid "Assign specific Terms & Conditions pages for different submission types"
+msgstr "Berikan halaman Terma & Syarat tertentu untuk jenis penyerahan yang berbeza"
+
+msgid "Company Terms Page"
+msgstr "Halaman Terma Syarikat"
+
+msgid "Select the"
+msgstr "Pilih"
+
+msgid "page for company submissions"
+msgstr "halaman untuk penyerahan syarikat"
+
+msgid "Job Terms Page"
+msgstr "Halaman terma pekerjaan"
+
+msgid "page for job submissions"
+msgstr "halaman untuk penyerahan pekerjaan"
+
+msgid "Resume Terms Page"
+msgstr "Resume Halaman Terma"
+
+msgid "page for resume submissions"
+msgstr "halaman untuk menyambung semula penyerahan"
+
+msgid "Content & Display"
+msgstr "Kandungan & paparan"
+
+msgid "Taxonomy & Categories"
+msgstr "Taksonomi & Kategori"
+
+msgid "Manage how content like categories and tags are handled"
+msgstr "Mengurus bagaimana kandungan seperti kategori dan tag ditangani"
+
+msgid "Even if Empty"
+msgstr "Walaupun kosong"
+
+msgid "If no is selected then only categories that have jobs or resumes will be shown"
+msgstr "Sekiranya tidak dipilih maka hanya kategori yang mempunyai pekerjaan atau resume akan ditunjukkan"
+
+msgid "Categories Per Row"
+msgstr "Kategori setiap baris"
+
+msgid "Number of categories to display per row on category listing pages"
+msgstr "Bilangan kategori yang akan dipaparkan setiap baris pada halaman penyenaraian kategori"
+
+msgid "Sub-categories Limit"
+msgstr "Had sub-kategori"
+
+msgid "How many sub-categories to show in the popup on category pages"
+msgstr "Berapa banyak sub-kategori yang akan dipaparkan di halaman Popup di Kategori"
+
+msgid "User Can Add New Tags"
+msgstr "Pengguna boleh menambah tag baru"
+
+msgid "Allow users to create new tags in the system when posting"
+msgstr "Benarkan pengguna membuat tag baru dalam sistem semasa menghantar"
+
+msgid "Default Pagination Size"
+msgstr "Saiz penomboran lalai"
+
+msgid "Maximum number of records to show per page"
+msgstr "Bilangan maksimum rekod untuk dipaparkan setiap halaman"
+
+msgid "Show Breadcrumbs"
+msgstr "Tunjukkan serbuk roti"
+
+msgid "Show WP Job Portal Page Title"
+msgstr "Tunjukkan Tajuk Halaman Portal Kerja WP"
+
+msgid "File Uploads & Defaults"
+msgstr "Muat naik fail & lalai"
+
+msgid "Manage file uploads and default placeholder images"
+msgstr "Urus muat naik fail dan imej letak lalai"
+
+msgid "Data Directory"
+msgstr "Direktori Data"
+
+msgid "System will upload all user files into this folder within the WordPress uploads directory"
+msgstr "Sistem akan memuat naik semua fail pengguna ke dalam folder ini dalam direktori muat naik WordPress"
+
+msgid "Default Image"
+msgstr "Imej lalai"
+
+msgid "This image will be shown as the default for entities & users if no other image is provided"
+msgstr "Imej ini akan ditunjukkan sebagai lalai untuk entiti & pengguna jika tiada imej lain disediakan"
+
+msgid "Allowed Image Extensions"
+msgstr "Sambungan imej yang dibenarkan"
+
+msgid "Comma-separated list of allowed image file extensions"
+msgstr "Senarai yang dipisahkan koma sambungan fail imej yang dibenarkan"
+
+msgid "Max Image Size"
+msgstr "Saiz imej maks"
+
+msgid "Maximum file size for general image uploads in kilobytes"
+msgstr "Saiz fail maksimum untuk memuat naik imej umum dalam kilobytes"
+
+msgid "URL & SEO"
+msgstr "URL & SEO"
+
+msgid "URL Structure"
+msgstr "Struktur URL"
+
+msgid "Configure the URL structure"
+msgstr "Konfigurasikan struktur URL"
+
+msgid "permalinks"
+msgstr "permalinks"
+
+msgid "for detail pages"
+msgstr "untuk halaman terperinci"
+
+msgid "Job Detail URL Structure"
+msgstr "Struktur URL Perincian Kerja"
+
+msgid "Click on the available tags below to build the URL structure for job detail pages"
+msgstr "Klik pada tag yang ada di bawah untuk membina struktur URL untuk halaman terperinci pekerjaan"
+
+msgid "Company Detail URL Structure"
+msgstr "Struktur URL Perincian Syarikat"
+
+msgid "Click on the available tags below to build the URL structure for company detail pages"
+msgstr "Klik pada tag yang ada di bawah untuk membina struktur URL untuk halaman perincian syarikat"
+
+msgid "Resume Detail URL Structure"
+msgstr "Resume struktur url terperinci"
+
+msgid "Click on the available tags below to build the URL structure for resume detail pages"
+msgstr "Klik pada tag yang ada di bawah untuk membina struktur URL untuk menyambung semula halaman terperinci"
+
+msgid "Registration & Access"
+msgstr "Pendaftaran & Akses"
+
+msgid "If no then front end employer area is not accessible"
+msgstr "Sekiranya tidak maka kawasan majikan akhir depan tidak dapat diakses"
+
+msgid "Allow Registration as Employer"
+msgstr "Benarkan pendaftaran sebagai majikan"
+
+msgid "Show the option to register as an employer on the registration form"
+msgstr "Tunjukkan pilihan untuk mendaftar sebagai majikan dalam borang pendaftaran"
+
+msgid "Employer Default Role"
+msgstr "Peranan lalai majikan"
+
+msgid "Employer Can View Job Seeker Area"
+msgstr "Majikan boleh melihat kawasan pencari kerja"
+
+msgid "Allow logged-in employers to view the job seeker control panel"
+msgstr "Benarkan majikan log masuk untuk melihat panel kawalan pencari kerja"
+
+msgid "Set Employer After-Register Link"
+msgstr "Tetapkan Pautan Selepas Majikan"
+
+msgid "Employer After-Registration Page"
+msgstr "Halaman selepas pendaftaran majikan"
+
+msgid "Employer Custom After-Registration Link"
+msgstr "Pautan selepas pendaftaran adat majikan"
+
+msgid "Custom Empolyer After Regitser Link"
+msgstr "Majikan tersuai selepas pautan daftar"
+
+msgid "Layout & Widgets"
+msgstr "Susun atur & widget"
+
+msgid "Control the visibility of main sections and widgets in the logged-in employer dashboard"
+msgstr "Mengawal penglihatan bahagian utama dan widget di papan pemuka majikan yang dilog masuk"
+
+msgid "Show Profile Section"
+msgstr "Tunjukkan bahagian profil"
+
+msgid "Show Stat Boxes"
+msgstr "Tunjukkan kotak stat"
+
+msgid "Show Recent Resumes Box"
+msgstr "Tunjukkan kotak resume terkini"
+
+msgid "Show Stats Graph"
+msgstr "Tunjukkan graf statistik"
+
+msgid "Setting to show the stats graph on the employer dashboard"
+msgstr "Menetapkan untuk menunjukkan graf statistik di papan pemuka majikan"
+
+msgid "Show Useful Links"
+msgstr "Tunjukkan pautan yang berguna"
+
+msgid "Setting to show the useful links section"
+msgstr "Menetapkan untuk menunjukkan bahagian pautan berguna"
+
+msgid "Show Applied Resumes"
+msgstr "Tunjukkan resume yang digunakan"
+
+msgid "Setting to show the applied resumes section"
+msgstr "Menetapkan untuk menunjukkan bahagian resume yang digunakan"
+
+msgid "Show Saved Searches"
+msgstr "Tunjukkan carian yang disimpan"
+
+msgid "Setting to show the saved searches section"
+msgstr "Menetapkan untuk menunjukkan bahagian carian yang disimpan"
+
+msgid "Show Newest Resumes"
+msgstr "Tunjukkan resume terbaru"
+
+msgid "Setting to show the newest resumes section"
+msgstr "Menetapkan untuk menunjukkan bahagian resume terbaru"
+
+msgid "Navigation Links"
+msgstr "Pautan navigasi"
+
+msgid "Control which navigation links are visible in the logged-in employer dashboard menu"
+msgstr "Kawalan Pautan navigasi yang dapat dilihat dalam menu papan pemuka majikan yang dilog masuk"
+
+msgid "link in the employer dashboard"
+msgstr "pautan di papan pemuka majikan"
+
+msgid "RSS Feedback"
+msgstr "Maklum balas RSS"
+
+msgid "Job Seeker Default Role"
+msgstr "Peranan lalai pencari kerja"
+
+msgid "Set Job Seeker After-Register Link"
+msgstr "Tetapkan Pautan After-Register Pencari Kerja"
+
+msgid "Job Seeker After-Registration Page"
+msgstr "Halaman selepas pendaftaran Pencari Kerja"
+
+msgid "Job Seeker Custom After-Registration Link"
+msgstr "Pautan selepas pendaftaran adat pencari kerja"
+
+msgid "Custom Job seeker After Regitser Link"
+msgstr "Pencari Kerja Custom Selepas Pautan Daftar"
+
+msgid "Enable Job Shortlisting"
+msgstr "Dayakan senarai pendek kerja"
+
+msgid "Allow job seekers to shortlist jobs"
+msgstr "Benarkan pencari kerja untuk menyenaraikan pekerjaan"
+
+msgid "This affects the job detail page"
+msgstr "Ini mempengaruhi halaman perincian pekerjaan"
+
+msgid "Enable Tell a Friend"
+msgstr "Dayakan Beritahu Rakan"
+
+msgid "Enable the"
+msgstr "Dayakan"
+
+msgid "feature on job listing pages"
+msgstr "ciri di halaman penyenaraian pekerjaan"
+
+msgid "Control the visibility of main sections and widgets in the logged-in job seeker dashboard"
+msgstr "Kawal penglihatan bahagian utama dan widget di papan pemuka pencari kerja log masuk"
+
+msgid "Show Applied Jobs Box"
+msgstr "Tunjukkan kotak pekerjaan yang digunakan"
+
+msgid "Show Newest Jobs Box"
+msgstr "Tunjukkan kotak pekerjaan terbaru"
+
+msgid "Show Jobs Graph"
+msgstr "Menunjukkan graf pekerjaan"
+
+msgid "Setting to show the jobs graph on the job seeker dashboard"
+msgstr "Menetapkan untuk menunjukkan graf pekerjaan di papan pemuka pencari kerja"
+
+msgid "Show Applied Jobs"
+msgstr "Tunjukkan pekerjaan yang digunakan"
+
+msgid "Setting to show the applied jobs section"
+msgstr "Menetapkan untuk menunjukkan bahagian pekerjaan yang digunakan"
+
+msgid "Show Shortlisted Jobs"
+msgstr "Tunjukkan pekerjaan yang disenarai pendek"
+
+msgid "Setting to show the shortlisted jobs section"
+msgstr "Menetapkan untuk menunjukkan bahagian pekerjaan yang disenarai pendek"
+
+msgid "Show Newest Jobs"
+msgstr "Tunjukkan pekerjaan terbaru"
+
+msgid "Setting to show the newest jobs section"
+msgstr "Menetapkan untuk menunjukkan bahagian pekerjaan terbaru"
+
+msgid "Control which navigation links are visible in the logged-in job seeker dashboard menu"
+msgstr "Kawalan Pautan navigasi yang dapat dilihat dalam menu papan pemuka pencari kerja log masuk"
+
+msgid "link in the job seeker dashboard"
+msgstr "pautan di papan pemuka pencari kerja"
+
+msgid "Visitors"
+msgstr "Pelawat"
+
+msgid "General Permissions"
+msgstr "Kebenaran Umum"
+
+msgid "Define what non-logged-in users are allowed to do on the site"
+msgstr "Tentukan apa yang tidak dibenarkan oleh pengguna yang tidak dibenarkan untuk dilakukan di laman web ini"
+
+msgid "Visitor Can Post Job"
+msgstr "Pelawat boleh menyiarkan pekerjaan"
+
+msgid "Allow non-logged-in users to post jobs"
+msgstr "Benarkan pengguna tidak masuk masuk untuk menyiarkan pekerjaan"
+
+msgid "Visitor Can Add Job"
+msgstr "Pelawat boleh menambah pekerjaan"
+
+msgid "Visitor Job Post Redirect Page"
+msgstr "Halaman Pengalihan Pos Pelawat"
+
+msgid "A visitor will be redirected to this page after posting a job"
+msgstr "Pelawat akan dialihkan ke halaman ini setelah menghantar pekerjaan"
+
+msgid "Visitor Can Apply to Job"
+msgstr "Pelawat boleh memohon pekerjaan"
+
+msgid "Allow non-logged-in users to apply for jobs"
+msgstr "Benarkan pengguna tidak masuk masuk untuk memohon pekerjaan"
+
+msgid "Visitor Can Add Resume"
+msgstr "Pelawat boleh menambah resume"
+
+msgid "Allow non-logged-in users to add a resume"
+msgstr "Benarkan pengguna tidak masuk masuk untuk menambah resume"
+
+msgid "Visitor Resume Post Redirect Page"
+msgstr "Pelawat menyambung semula halaman redirect post"
+
+msgid "A visitor will be redirected to this page after posting a resume"
+msgstr "Pelawat akan dialihkan ke halaman ini setelah menghantar resume"
+
+msgid "Visitor Can Edit Job"
+msgstr "Pelawat boleh mengedit pekerjaan"
+
+msgid "Allow non-logged-in users to edit jobs they have posted"
+msgstr "Benarkan pengguna tidak masuk masuk untuk mengedit pekerjaan yang telah mereka hantar"
+
+msgid "Page & Link Access"
+msgstr "Akses Halaman & Pautan"
+
+msgid "Control which pages and links are visible to non-logged-in users"
+msgstr "Kawalan halaman dan pautan mana yang dapat dilihat oleh pengguna yang tidak masuk"
+
+msgid "Allow visitors to view the employer control panel links"
+msgstr "Benarkan pelawat melihat pautan panel kawalan majikan"
+
+msgid "Allow visitors to view the resume categories page"
+msgstr "Benarkan pelawat melihat halaman kategori resume"
+
+msgid "Allow visitors to access the resume search functionality"
+msgstr "Benarkan pelawat mengakses fungsi carian resume"
+
+msgid "Allow visitors to view company detail pages"
+msgstr "Benarkan pelawat melihat halaman perincian syarikat"
+
+msgid "Allow visitors to view job detail pages"
+msgstr "Benarkan pelawat melihat halaman perincian pekerjaan"
+
+msgid "Allow visitors to view resume detail pages"
+msgstr "Benarkan pelawat melihat resume halaman terperinci"
+
+msgid "Allow visitors to view the job seeker control panel links"
+msgstr "Benarkan pelawat melihat pautan panel kawalan pencari kerja"
+
+msgid "Allow visitors to view the jobs by category page"
+msgstr "Benarkan pelawat melihat halaman berdasarkan halaman kategori"
+
+msgid "Allow visitors to use the job search functionality"
+msgstr "Benarkan pelawat menggunakan fungsi carian pekerjaan"
+
+msgid "Allow visitors to see job search result listings"
+msgstr "Benarkan pelawat melihat senarai hasil carian pekerjaan"
+
+msgid "Allow visitors to see the newest jobs page"
+msgstr "Benarkan pelawat melihat halaman pekerjaan terbaru"
+
+msgid "Job Posting & Management"
+msgstr "Pengeposan & Pengurusan Pekerjaan"
+
+msgid "Manage how jobs are posted, their lifecycle, and related features"
+msgstr "Urus bagaimana pekerjaan disiarkan, kitaran hayat mereka, dan ciri -ciri yang berkaitan"
+
+msgid "Job Auto Approve"
+msgstr "Job Auto meluluskan"
+
+msgid "Automatically approve new jobs upon submission"
+msgstr "Meluluskan pekerjaan baru secara automatik semasa disampaikan"
+
+msgid "Job Expiry Days"
+msgstr "Hari tamat tempoh pekerjaan"
+
+msgid "Number of days until a freely posted job expires"
+msgstr "Bilangan hari sehingga pekerjaan yang diposkan secara bebas tamat"
+
+msgid "Number of days until a paid"
+msgstr "Bilangan hari sehingga dibayar"
+
+msgid "job expires"
+msgstr "pekerjaan tamat tempoh"
+
+msgid "Job Display & Listings"
+msgstr "Paparan & Penyenaraian Pekerjaan"
+
+msgid "Control how job-related pages and information are displayed to users"
+msgstr "Kawal bagaimana halaman dan maklumat yang berkaitan dengan pekerjaan dipaparkan kepada pengguna"
+
+msgid "Show Country on Jobs by Cities Page"
+msgstr "Tunjukkan Negara di Pekerjaan oleh Halaman Bandar"
+
+msgid "Display the country name next to the city"
+msgstr "Paparkan nama negara di sebelah bandar"
+
+msgid "Show Count on Jobs by Cities Page"
+msgstr "Tunjukkan kiraan pekerjaan dengan halaman bandar"
+
+msgid "Display the total number of jobs available in each city"
+msgstr "Paparkan jumlah pekerjaan yang terdapat di setiap bandar"
+
+msgid "Show Count in Job Categories"
+msgstr "Tunjukkan kiraan dalam kategori pekerjaan"
+
+msgid "Display the total number of jobs for each category"
+msgstr "Paparkan jumlah pekerjaan untuk setiap kategori"
+
+msgid "Show Count on Jobs by Types Page"
+msgstr "Tunjukkan kiraan di halaman Jobs by Types"
+
+msgid "Display the total number of jobs for each job type"
+msgstr "Paparkan jumlah pekerjaan untuk setiap jenis pekerjaan"
+
+msgid "Job Types Per Row"
+msgstr "Jenis Pekerjaan Setiap Baris"
+
+msgid "How many job types to display per row on the"
+msgstr "Berapa banyak jenis pekerjaan untuk dipaparkan setiap baris di"
+
+msgid "Job by Type"
+msgstr "Pekerjaan mengikut jenis"
+
+msgid "Show Jobs Graph for Employer"
+msgstr "Tunjukkan graf pekerjaan untuk majikan"
+
+msgid "Show Active Jobs Graph for Job Seeker"
+msgstr "Tunjukkan Graf Pekerjaan Aktif untuk Pencari Kerja"
+
+msgid "Company Profile Display"
+msgstr "Paparan profil syarikat"
+
+msgid "Control which company details are visible on listings and company pages"
+msgstr "Kawalan butiran syarikat mana yang dapat dilihat pada penyenaraian dan halaman syarikat"
+
+msgid "Show Company Name"
+msgstr "Tunjukkan nama syarikat"
+
+msgid "Show Company Description"
+msgstr "Tunjukkan keterangan syarikat"
+
+msgid "Show Company Email Address"
+msgstr "Tunjukkan alamat e -mel syarikat"
+
+msgid "Show Company City"
+msgstr "Tunjukkan bandar syarikat"
+
+msgid "Show Company URL"
+msgstr "Tunjukkan URL Syarikat"
+
+msgid "Show Company Contact Detail by Default"
+msgstr "Tunjukkan terperinci hubungan syarikat secara lalai"
+
+msgid "If disabled, credits may be required to view contact details"
+msgstr "Sekiranya dilumpuhkan, kredit mungkin diperlukan untuk melihat maklumat hubungan"
+
+msgid "General settings for company profiles"
+msgstr "Tetapan Am untuk Profil Syarikat"
+
+msgid "Company Logo Maximum Size"
+msgstr "Saiz maksimum logo syarikat"
+
+msgid "Set the maximum file size for company logo uploads in kilobytes"
+msgstr "Tetapkan saiz fail maksimum untuk muat naik logo syarikat dalam kilobytes"
+
+msgid "Company Auto Approve"
+msgstr "Syarikat meluluskan Auto"
+
+msgid "Automatically approve new company profiles upon submission"
+msgstr "Meluluskan profil syarikat baru apabila diserahkan"
+
+msgid "Control resume submissions, visibility, and search functionality"
+msgstr "Mengawal penyerahan, penglihatan, dan fungsi carian"
+
+msgid "Resume Auto Approve"
+msgstr "Resume Auto Lulus"
+
+msgid "Automatically approve new resumes upon submission"
+msgstr "Meluluskan resume baru secara automatik apabila diserahkan"
+
+msgid "Show Resume Contact Detail by Default"
+msgstr "Tunjukkan terperinci hubungan semula secara lalai"
+
+msgid "If disabled, credits may be required to view resume contact details"
+msgstr "Sekiranya dilumpuhkan, kredit mungkin diperlukan untuk melihat resume butiran hubungan"
+
+msgid "Show Count in Resume Categories"
+msgstr "Tunjukkan kiraan dalam kategori resume"
+
+msgid "Display the total number of resumes for each category"
+msgstr "Paparkan jumlah resume untuk setiap kategori"
+
+msgid "Allow Resume Search"
+msgstr "Benarkan Carian Resume"
+
+msgid "Define who is allowed to search for resumes"
+msgstr "Tentukan siapa yang dibenarkan mencari resume"
+
+msgid "Allow Users to Save Resume Searches"
+msgstr "Benarkan pengguna menyimpan resume carian"
+
+msgid "Allow users to save their resume search criteria for later use"
+msgstr "Benarkan pengguna menyimpan kriteria carian resume mereka untuk kegunaan kemudian"
+
+msgid "Resume Files & Builder"
+msgstr "Resume fail & pembina"
+
+msgid "Define limits and allowed types for resume file uploads and advanced builder sections"
+msgstr "Tentukan had dan jenis yang dibenarkan untuk resume muat naik fail dan bahagian pembina maju"
+
+msgid "Resume Photo Maximum Size"
+msgstr "Menyambung semula saiz maksimum foto"
+
+msgid "Maximum file size for resume photos in kilobytes"
+msgstr "Saiz fail maksimum untuk resume gambar dalam kilobytes"
+
+msgid "Resume Document Maximum Size"
+msgstr "Menyambung semula saiz maksimum dokumen"
+
+msgid "System will not upload if resume file size exceeds the given size"
+msgstr "Sistem tidak akan dimuat naik sekiranya menyambung semula saiz fail melebihi saiz yang diberikan"
+
+msgid "Allowed Document Extensions"
+msgstr "Sambungan dokumen yang dibenarkan"
+
+msgid "Comma-separated list of allowed document file extensions"
+msgstr "Senarai yang dipisahkan koma sambungan fail dokumen yang dibenarkan"
+
+msgid "Maximum Number of Files for Resume"
+msgstr "Bilangan maksimum fail untuk disambung semula"
+
+msgid "Maximum number of files a job seeker can upload with their resume"
+msgstr "Bilangan maksimum fail pencari kerja boleh dimuat naik dengan resume mereka"
+
+msgid "Max Employers in Resume Builder"
+msgstr "MAX Majikan di Resume Builder"
+
+msgid "Maximum number of employers allowed in the resume builder"
+msgstr "Bilangan maksimum majikan yang dibenarkan di pembina resume"
+
+msgid "Max Institutes in Resume Builder"
+msgstr "Max Institutes In Resume Builder"
+
+msgid "Maximum number of institutes allowed in the resume builder"
+msgstr "Bilangan maksimum institusi yang dibenarkan di pembina resume"
+
+msgid "Max Languages in Resume Builder"
+msgstr "Bahasa Maksimum di Resume Builder"
+
+msgid "Maximum number of languages allowed in the resume builder"
+msgstr "Bilangan maksimum bahasa yang dibenarkan di pembina resume"
+
+msgid "Max Addresses in Resume Builder"
+msgstr "Alamat maksimum dalam pembina resume"
+
+msgid "Maximum number of addresses allowed in the resume builder"
+msgstr "Bilangan maksimum alamat yang dibenarkan di pembina resume"
+
+msgid "Job Applications"
+msgstr "Aplikasi pekerjaan"
+
+msgid "Configure the job application process and related notifications"
+msgstr "Konfigurasikan proses permohonan pekerjaan dan pemberitahuan yang berkaitan"
+
+msgid "Show Apply Now Button"
+msgstr "Tunjukkan Butang Guna Sekarang"
+
+msgid "Enable Quick Apply for Logged-in Users"
+msgstr "Dayakan Pantas Memohon Pengguna Log masuk"
+
+msgid "Enable Quick Apply for Visitors"
+msgstr "Dayakan Pantas Permohonan Pelawat"
+
+msgid "Show Applied Resume Status to Job Seeker"
+msgstr "Tunjukkan status resume yang digunakan untuk pencari kerja"
+
+msgid "Resume Data in Email"
+msgstr "Sambung semula data dalam e -mel"
+
+msgid "Sections"
+msgstr "Bahagian"
+
+msgid "Choose whether to include all resume sections or only filled ones in the application email to employers"
+msgstr "Pilih sama ada untuk memasukkan semua bahagian resume atau hanya diisi dalam e -mel permohonan kepada majikan"
+
+msgid "Choose whether to include all fields or only filled fields in the application email"
+msgstr "Pilih sama ada untuk memasukkan semua bidang atau hanya medan yang diisi dalam e -mel aplikasi"
+
+msgid "Auto-Approve Rules"
+msgstr "Peraturan Auto-Distrove"
+
+msgid "Set auto-approval rules for various user-submitted content"
+msgstr "Tetapkan peraturan kelulusan automatik untuk pelbagai kandungan pengguna"
+
+msgid "Featured Resume Auto Approve"
+msgstr "Resume Auto Lulusan Pilihan"
+
+msgid "Automatically approve resumes marked as featured"
+msgstr "Meluluskan resume secara automatik seperti yang dipaparkan"
+
+msgid "Featured Company Auto Approve"
+msgstr "Lulusan Auto Syarikat Pilihan"
+
+msgid "Automatically approve companies marked as featured"
+msgstr "Meluluskan syarikat secara automatik seperti yang dipaparkan"
+
+msgid "Featured Job Auto Approve"
+msgstr "Pilihan Kerja Auto"
+
+msgid "Automatically approve jobs marked as featured"
+msgstr "Meluluskan pekerjaan secara automatik seperti yang dipaparkan"
+
+msgid "Cover Letter Auto Approve"
+msgstr "SURAT SURAT AUTO SURAT"
+
+msgid "Automatically approve cover letters submitted by job seekers"
+msgstr "Secara automatik meluluskan surat perlindungan yang dikemukakan oleh pencari kerja"
+
+msgid "Folder Auto Approve"
+msgstr "Folder Auto meluluskan"
+
+msgid "Automatically approve new folders created by employers"
+msgstr "Meluluskan folder baru yang dibuat oleh majikan secara automatik"
+
+msgid "Department Auto Approve"
+msgstr "Jabatan Auto meluluskan"
+
+msgid "Automatically approve new departments created by employers"
+msgstr "Meluluskan jabatan baru secara automatik oleh majikan"
+
+msgid "Message Auto Approve"
+msgstr "Mesej Auto meluluskan"
+
+msgid "Automatically approve messages between job seekers and employers"
+msgstr "Meluluskan mesej secara automatik antara pencari kerja dan majikan"
+
+msgid "Conflict Message Auto Approve"
+msgstr "Mesej Konflik Auto meluluskan"
+
+msgid "Automatically approve conflicted messages"
+msgstr "Meluluskan mesej yang bertentangan secara automatik"
+
+msgid "Email & Alerts"
+msgstr "E -mel & Makluman"
+
+msgid "Email Sender Identity"
+msgstr "Identiti pengirim e -mel"
+
+msgid "Configure sender details for all outgoing system emails"
+msgstr "Konfigurasikan butiran pengirim untuk semua e -mel sistem keluar"
+
+msgid "Admin Email Address"
+msgstr "Alamat e -mel admin"
+
+msgid "Admin will receive email notifications at this address"
+msgstr "Admin akan menerima pemberitahuan e -mel di alamat ini"
+
+msgid "Sender Email Address"
+msgstr "Alamat e -mel pengirim"
+
+msgid "The email address that will be used to send system emails"
+msgstr "Alamat e -mel yang akan digunakan untuk menghantar e -mel sistem"
+
+msgid "The sender name that will be used in system emails"
+msgstr "Nama pengirim yang akan digunakan dalam e -mel sistem"
+
+msgid "Job Alerts"
+msgstr "Makluman pekerjaan"
+
+msgid "Configure settings for job alert emails and forms"
+msgstr "Konfigurasikan tetapan untuk e -mel dan borang amaran kerja"
+
+msgid "Show Job Alert Link"
+msgstr "Tunjukkan Pautan Makluman Kerja"
+
+msgid "Show the Job Alert link in the job seeker control panel"
+msgstr "Tunjukkan pautan amaran kerja di Panel Kawalan Pencari Kerja"
+
+msgid "Enable Job Alerts for Visitors"
+msgstr "Dayakan makluman pekerjaan untuk pelawat"
+
+msgid "Allow non-logged-in users to sign up for job alerts"
+msgstr "Benarkan pengguna yang tidak masuk masuk untuk mendaftar untuk makluman pekerjaan"
+
+msgid "Job Alert Auto Approve"
+msgstr "Lulusan Auto Alert Pekerjaan"
+
+msgid "Automatically approve new job alerts upon creation"
+msgstr "Meluluskan makluman pekerjaan baru secara automatik apabila penciptaan"
+
+msgid "Captcha on Visitor Job Alert Form"
+msgstr "Captcha mengenai borang amaran kerja pelawat"
+
+msgid "Show a captcha on the job alert sign-up form for visitors"
+msgstr "Tunjukkan captcha mengenai borang pendaftaran amaran kerja untuk pelawat"
+
+msgid "Allow users to save their search queries for jobs and resumes"
+msgstr "Benarkan pengguna menyimpan pertanyaan carian mereka untuk pekerjaan dan resume"
+
+msgid "Show Saved Searches for Job Seekers"
+msgstr "Tunjukkan carian yang disimpan untuk pencari kerja"
+
+msgid "Allow job seekers to save their job searches"
+msgstr "Benarkan pencari kerja untuk menyelamatkan carian pekerjaan mereka"
+
+msgid "Show Saved Searches for Employers"
+msgstr "Tunjukkan carian yang disimpan untuk majikan"
+
+msgid "Allow employers to save their resume searches"
+msgstr "Benarkan majikan menyimpan carian resume mereka"
+
+msgid "Feeds & AI"
+msgstr "Suapan & ai"
+
+msgid "RSS Feeds"
+msgstr "Suapan RSS"
+
+msgid "Configure the RSS feed for jobs"
+msgstr "Konfigurasikan suapan RSS untuk pekerjaan"
+
+msgid "Enable Jobs RSS Feed"
+msgstr "Dayakan Pekerjaan RSS Feed"
+
+msgid "Enable the main RSS feed for new jobs"
+msgstr "Dayakan suapan RSS utama untuk pekerjaan baru"
+
+msgid "Job Feed Title"
+msgstr "Tajuk suapan pekerjaan"
+
+msgid "The title for the job RSS feed"
+msgstr "Tajuk untuk mendapatkan suapan RSS pekerjaan"
+
+msgid "Job Feed Description"
+msgstr "Penerangan suapan pekerjaan"
+
+msgid "The description for the job RSS feed"
+msgstr "Penerangan untuk makanan RSS memberi makan"
+
+msgid "Job Feed Copyright"
+msgstr "Hak Cipta Makanan Kerja"
+
+msgid "Copyright notice for the job feed"
+msgstr "Notis hak cipta untuk makanan kerja"
+
+msgid "Job Feed Editor"
+msgstr "Editor makanan kerja"
+
+msgid "The person responsible for editorial content"
+msgstr "Orang yang bertanggungjawab untuk kandungan editorial"
+
+msgid "Job Feed Webmaster"
+msgstr "Webmaster suapan kerja"
+
+msgid "The person responsible for technical issues"
+msgstr "Orang yang bertanggungjawab untuk masalah teknikal"
+
+msgid "Job Feed TTL"
+msgstr "TTL FEEL JOB"
+
+msgid "Time to Live"
+msgstr "Masa untuk hidup"
+
+msgid "Number of minutes the feed can be cached before refreshing"
+msgstr "Bilangan minit suapan boleh di -cache sebelum menyegarkan"
+
+msgid "Show Categories in Job Feed"
+msgstr "Tunjukkan kategori dalam suapan pekerjaan"
+
+msgid "Include categories in the job feed items"
+msgstr "Sertakan kategori dalam item suapan pekerjaan"
+
+msgid "Show Company Image in Job Feed"
+msgstr "Tunjukkan imej syarikat dalam suapan pekerjaan"
+
+msgid "Include the company logo in the job feed items"
+msgstr "Sertakan logo syarikat dalam item suapan pekerjaan"
+
+msgid "Configure the RSS feed for resumes"
+msgstr "Konfigurasikan suapan RSS untuk resume"
+
+msgid "Enable Resumes RSS Feed"
+msgstr "Dayakan resume RSS Feed"
+
+msgid "Enable the main RSS feed for new resumes"
+msgstr "Dayakan suapan RSS utama untuk resume baru"
+
+msgid "Resume Feed Title"
+msgstr "Resume Title Feed"
+
+msgid "The title for the resume RSS feed"
+msgstr "Tajuk Resume RSS Feed"
+
+msgid "Resume Feed Description"
+msgstr "Menyambung semula penerangan suapan"
+
+msgid "The description for the resume RSS feed"
+msgstr "Penerangan untuk resume RSS Feed"
+
+msgid "Resume Feed Copyright"
+msgstr "Resume Feed Hak Cipta"
+
+msgid "Copyright notice for the resume feed"
+msgstr "Notis hak cipta untuk suapan resume"
+
+msgid "Resume Feed Editor"
+msgstr "Menyambung semula editor suapan"
+
+msgid "Resume Feed Webmaster"
+msgstr "Resume Webmaster Feed"
+
+msgid "Resume Feed TTL"
+msgstr "Resume suapan ttl"
+
+msgid "Show Categories in Resume Feed"
+msgstr "Tunjukkan kategori dalam resume suapan"
+
+msgid "Include categories in the resume feed items"
+msgstr "Sertakan kategori dalam item suapan resume"
+
+msgid "Show Resume File in Resume Feed"
+msgstr "Tunjukkan fail resume dalam suapan resume"
+
+msgid "Make resume files downloadable from the feed"
+msgstr "Buat resume fail yang boleh dimuat turun dari suapan"
+
+msgid "AI Suggested Matches"
+msgstr "AI mencadangkan perlawanan"
+
+msgid "Configure AI-powered job and resume suggestion features"
+msgstr "Konfigurasikan pekerjaan berkuasa AI dan menyambung semula ciri cadangan"
+
+msgid "AI Search On Job Search Page"
+msgstr "Carian AI di halaman carian pekerjaan"
+
+msgid "Show the AI search field on the main job search form"
+msgstr "Tunjukkan medan carian AI di borang carian pekerjaan utama"
+
+msgid "AI Job Search"
+msgstr "AI Pekerjaan Pekerjaan"
+
+msgid "AI Search Filter On Job Listing"
+msgstr "Penapis carian AI pada penyenaraian pekerjaan"
+
+msgid "Show the AI search field as a filter on the job listing page"
+msgstr "Tunjukkan medan carian AI sebagai penapis di halaman penyenaraian pekerjaan"
+
+msgid "AI Search On Resume Search Page"
+msgstr "Carian AI di halaman carian resume"
+
+msgid "Show the AI search field on the main resume search form"
+msgstr "Tunjukkan medan carian AI di borang carian resume utama"
+
+msgid "AI Resume Search"
+msgstr "AI menyambung semula carian"
+
+msgid "AI Search Filter On Resume Listing"
+msgstr "Penapis carian AI pada penyenaraian resume"
+
+msgid "Show the AI search field as a filter on the resume listing page"
+msgstr "Tunjukkan medan carian AI sebagai penapis di halaman penyenaraian resume"
+
+msgid "Show AI Suggested Jobs Button"
+msgstr "Tunjukkan butang AI mencadangkan pekerjaan"
+
+msgid "AI Suggested Jobs"
+msgstr "AI mencadangkan pekerjaan"
+
+msgid "Show AI Suggested Jobs on Dashboard"
+msgstr "Tunjukkan AI mencadangkan pekerjaan di papan pemuka"
+
+msgid "Show a list of AI-suggested jobs on the job seeker dashboard"
+msgstr "Tunjukkan senarai pekerjaan AI-Sugested di Papan Pemuka Pencari Kerja"
+
+msgid "Show AI Suggested Resumes Button"
+msgstr "Tunjukkan butang AI yang dicadangkan resume"
+
+msgid "AI Suggested Resumes"
+msgstr "AI mencadangkan resume"
+
+msgid "Show AI Suggested Resumes on Dashboard"
+msgstr "Tunjukkan AI yang dicadangkan resume di papan pemuka"
+
+msgid "Show a list of AI-suggested resumes on the employer dashboard"
+msgstr "Tunjukkan senarai resume AI-Sugested di papan pemuka majikan"
+
+msgid "Integrations"
+msgstr "Integrasi"
+
+msgid "Allow users to register and log in with their social media accounts"
+msgstr "Benarkan pengguna mendaftar dan log masuk dengan akaun media sosial mereka"
+
+msgid "Login with Facebook"
+msgstr "Log masuk dengan Facebook"
+
+msgid "Allow users to log in using their Facebook account"
+msgstr "Benarkan pengguna log masuk menggunakan akaun Facebook mereka"
+
+msgid "Apply with Facebook"
+msgstr "Sapukan dengan Facebook"
+
+msgid "Allow users to apply for jobs using their Facebook profile"
+msgstr "Benarkan pengguna memohon pekerjaan menggunakan profil Facebook mereka"
+
+msgid "Facebook App ID"
+msgstr "ID App Facebook"
+
+msgid "Enter your Facebook App ID"
+msgstr "Masukkan ID Aplikasi Facebook anda"
+
+msgid "Facebook App Secret"
+msgstr "Rahsia Aplikasi Facebook"
+
+msgid "Enter your Facebook App Secret"
+msgstr "Masukkan Rahsia Aplikasi Facebook anda"
+
+msgid "Valid OAuth URI"
+msgstr "Sah OAUTH URI"
+
+msgid "Apply"
+msgstr "Memohon"
+
+msgid "Login with LinkedIn"
+msgstr "Log masuk dengan LinkedIn"
+
+msgid "Allow users to log in using their LinkedIn account"
+msgstr "Benarkan pengguna log masuk menggunakan akaun LinkedIn mereka"
+
+msgid "Apply with LinkedIn"
+msgstr "Memohon dengan LinkedIn"
+
+msgid "Allow users to apply for jobs using their LinkedIn profile"
+msgstr "Benarkan pengguna memohon pekerjaan menggunakan profil LinkedIn mereka"
+
+msgid "LinkedIn Client ID"
+msgstr "ID Pelanggan LinkedIn"
+
+msgid "Enter your LinkedIn Client ID"
+msgstr "Masukkan ID Pelanggan LinkedIn anda"
+
+msgid "API Key"
+msgstr "Kunci API"
+
+msgid "LinkedIn Client Secret"
+msgstr "Rahsia Pelanggan LinkedIn"
+
+msgid "Enter your LinkedIn Client Secret"
+msgstr "Masukkan rahsia pelanggan LinkedIn anda"
+
+msgid "Social Sharing"
+msgstr "Perkongsian sosial"
+
+msgid "Enable social sharing buttons on your pages"
+msgstr "Dayakan butang perkongsian sosial di halaman anda"
+
+msgid "Enable Facebook Likes"
+msgstr "Dayakan suka Facebook"
+
+msgid "Show Facebook like button"
+msgstr "Tunjukkan butang seperti Facebook"
+
+msgid "Enable Facebook Share"
+msgstr "Dayakan berkongsi Facebook"
+
+msgid "Show Facebook share button"
+msgstr "Tunjukkan Butang Kongsi Facebook"
+
+msgid "Enable Facebook Comments"
+msgstr "Dayakan komen Facebook"
+
+msgid "Show Facebook comments widget"
+msgstr "Tunjukkan Widget Komen Facebook"
+
+msgid "Enable Twitter Share"
+msgstr "Dayakan bahagian Twitter"
+
+msgid "Show Twitter share button"
+msgstr "Tunjukkan butang Kongsi Twitter"
+
+msgid "Enable LinkedIn Share"
+msgstr "Dayakan bahagian LinkedIn"
+
+msgid "Show LinkedIn share button"
+msgstr "Tunjukkan butang Kongsi LinkedIn"
+
+msgid "Enable Blogger Share"
+msgstr "Dayakan berkongsi blogger"
+
+msgid "Show Blogger share button"
+msgstr "Tunjukkan Butang Kongsi Blogger"
+
+msgid "Enable Digg Share"
+msgstr "Dayakan bahagian Digg"
+
+msgid "Show Digg share button"
+msgstr "Tunjukkan Butang Kongsi Digg"
+
+msgid "Enable Myspace Share"
+msgstr "Dayakan bahagian MySpace"
+
+msgid "Show Myspace share button"
+msgstr "Tunjukkan butang kongsi myspace"
+
+msgid "Enable Yahoo Share"
+msgstr "Dayakan kongsi Yahoo"
+
+msgid "Show Yahoo share button"
+msgstr "Tunjukkan butang kongsi yahoo"
+
+msgid "Mapping & Geolocation"
+msgstr "Pemetaan dan geolokasi"
+
+msgid "Configure map services and location-based features"
+msgstr "Konfigurasikan perkhidmatan peta dan ciri-ciri berasaskan lokasi"
+
+msgid "Choose between Google Maps and OpenStreetMap for map displays"
+msgstr "Pilih antara Peta Google dan OpenStreetMap untuk memaparkan peta"
+
+msgid "Google Map API Key"
+msgstr "Kunci API Peta Google"
+
+msgid "Enter your Google Maps API key"
+msgstr "Masukkan kekunci API Peta Google anda"
+
+msgid "Map Height"
+msgstr "Ketinggian peta"
+
+msgid "Set the height for maps displayed in the plugin, in pixels"
+msgstr "Tetapkan ketinggian untuk peta yang dipaparkan di plugin, dalam piksel"
+
+msgid "Default Longitude"
+msgstr "Bujur lalai"
+
+msgid "Default longitude for map centering"
+msgstr "Bujur lalai untuk memusatkan peta"
+
+msgid "Default Latitude"
+msgstr "Latitud lalai"
+
+msgid "Default latitude for map centering"
+msgstr "Latitud lalai untuk memusatkan peta"
+
+msgid "Default Map Radius Type"
+msgstr "Jenis jejari peta lalai"
+
+msgid "Default unit for map radius calculations"
+msgstr "Unit lalai untuk pengiraan jejari peta"
+
+msgid "Max Records for City Field"
+msgstr "Rekod Max untuk Bidang Bandar"
+
+msgid "Set the number of cities to show in the location autocomplete results"
+msgstr "Tetapkan bilangan bandar untuk dipaparkan di lokasi hasil autokomplete lokasi"
+
+msgid "Max Records for Tag Field"
+msgstr "Rekod maksimum untuk medan tag"
+
+msgid "Set the number of tags to show in the tag autocomplete results"
+msgstr "Tetapkan bilangan tag untuk dipaparkan dalam hasil autocomplete tag"
+
+msgid "Security & Captcha"
+msgstr "Keselamatan & Captcha"
+
+msgid "Captcha Options"
+msgstr "Pilihan Captcha"
+
+msgid "Enable captcha on various forms to prevent spam"
+msgstr "Dayakan Captcha dalam pelbagai bentuk untuk mengelakkan spam"
+
+msgid "Default Captcha Type"
+msgstr "Jenis captcha lalai"
+
+msgid "Select the default captcha to use throughout the plugin"
+msgstr "Pilih captcha lalai untuk digunakan sepanjang plugin"
+
+msgid "Captcha on Registration Form"
+msgstr "Captcha mengenai borang pendaftaran"
+
+msgid "Show a captcha on the WP Job Portal registration form"
+msgstr "Tunjukkan CAPTCHA di Borang Pendaftaran Portal Kerja WP"
+
+msgid "Captcha on Visitor Quick Apply"
+msgstr "Captcha pada pelawat cepat memohon"
+
+msgid "Show captcha to visitors on the quick apply form"
+msgstr "Tunjukkan captcha kepada pelawat pada borang yang cepat memohon"
+
+msgid "Captcha on Visitor Job Form"
+msgstr "Captcha dalam borang pekerjaan pelawat"
+
+msgid "Show captcha on the job submission form for visitors"
+msgstr "Tunjukkan Captcha mengenai borang penyerahan pekerjaan untuk pelawat"
+
+msgid "Captcha on Visitor Resume Form"
+msgstr "Captcha mengenai borang resume pelawat"
+
+msgid "Show captcha on the resume submission form for visitors"
+msgstr "Tunjukkan Captcha mengenai borang penyerahan resume untuk pelawat"
+
+msgid "Captcha on Tell a Friend Popup"
+msgstr "Captcha pada memberitahu rakan pop timbul"
+
+msgid "Show captcha on the"
+msgstr "Tunjukkan captcha di"
+
+msgid "popup for visitors"
+msgstr "Popup untuk pelawat"
+
+msgid "WP Job Portal Captcha"
+msgstr "Portal kerja wp captcha"
+
+msgid "Settings for the built-in mathematical captcha"
+msgstr "Tetapan untuk Captcha matematik terbina dalam"
+
+msgid "Calculation Type"
+msgstr "Jenis pengiraan"
+
+msgid "Select the type of math problem for the captcha"
+msgstr "Pilih jenis masalah matematik untuk CAPTCHA"
+
+msgid "Addition or Subtraction"
+msgstr "Penambahan atau penolakan"
+
+msgid "Answer Always Positive"
+msgstr "Jawab sentiasa positif"
+
+msgid "Ensure that subtraction problems always result in a positive answer"
+msgstr "Memastikan bahawa masalah penolakan selalu menghasilkan jawapan yang positif"
+
+msgid "Number of Operands"
+msgstr "Bilangan operan"
+
+msgid "Choose the number of operands for the math problem"
+msgstr "Pilih bilangan pengendali untuk masalah matematik"
+
+msgid "Google reCAPTCHA"
+msgstr "Google Recaptcha"
+
+msgid "Configure Google reCAPTCHA v2 or v3"
+msgstr "Konfigurasikan Google Recaptcha V2 atau V3"
+
+msgid "Select which version of Google reCAPTCHA to use"
+msgstr "Pilih versi Google Recaptcha yang akan digunakan"
+
+msgid "Enter the site key from your Google reCAPTCHA admin console"
+msgstr "Masukkan kunci tapak dari konsol admin google recaptcha anda"
+
+msgid "Google reCaptcha Secret Key"
+msgstr "Kunci Rahsia Google Recaptcha"
+
+msgid "Enter the secret key from your Google reCAPTCHA admin console"
+msgstr "Masukkan Kunci Rahsia dari Konsol Admin Google Recaptcha anda"
+
+msgid "Monetization"
+msgstr "Pengewangan"
+
+msgid "General Monetization"
+msgstr "Pengewangan Umum"
+
+msgid "Core settings for handling payments and packages"
+msgstr "Tetapan teras untuk mengendalikan pembayaran dan pakej"
+
+msgid "Choose the monetization model for submissions"
+msgstr "Pilih model pengewangan untuk penyerahan"
+
+msgid "Free, Per Listing, or Membership-based"
+msgstr "Percuma, setiap penyenaraian, atau berasaskan keahlian"
+
+msgid "Default Currency Symbol"
+msgstr "Simbol mata wang lalai"
+
+msgid "The currency symbol to be used across the site"
+msgstr "Simbol mata wang yang akan digunakan di seluruh laman web"
+
+msgid "Currency Symbol Position"
+msgstr "Kedudukan simbol mata wang"
+
+msgid "Packages & Featured Listings"
+msgstr "Pakej & Penyenaraian Pilihan"
+
+msgid "Manage free packages and enable featured listings"
+msgstr "Urus pakej percuma dan aktifkan penyenaraian yang diketengahkan"
+
+msgid "Auto-assign Free Package to New User"
+msgstr "Pakej percuma auto-diselaraskan kepada pengguna baru"
+
+msgid "Automatically give new users a free package if one exists"
+msgstr "Secara automatik memberi pengguna pakej percuma secara automatik jika ada"
+
+msgid "Free Package Purchase Auto Approve"
+msgstr "Pakej Percuma Pembelian Auto Lulus"
+
+msgid "Automatically approve the purchase of free packages"
+msgstr "Meluluskan pembelian pakej percuma secara automatik"
+
+msgid "Purchase Free Package Only Once"
+msgstr "Beli pakej percuma sekali sahaja"
+
+msgid "Prevent users from acquiring a free package more than once"
+msgstr "Mencegah pengguna memperoleh pakej percuma lebih dari sekali"
+
+msgid "Enable Featured Companies"
+msgstr "Dayakan syarikat -syarikat yang ditampilkan"
+
+msgid "Allow companies to be marked as"
+msgstr "Membenarkan syarikat ditandakan sebagai"
+
+msgid "Enable Featured Jobs"
+msgstr "Dayakan pekerjaan yang diketengahkan"
+
+msgid "Allow jobs to be marked as"
+msgstr "Membenarkan pekerjaan ditandakan sebagai"
+
+msgid "Enable Featured Resumes"
+msgstr "Dayakan resume yang dipaparkan"
+
+msgid "Allow resumes to be marked as"
+msgstr "Benarkan resume ditandakan sebagai"
+
+msgid "Per Listing Prices"
+msgstr "Setiap harga penyenaraian"
+
+msgid "Set prices for various actions when using the"
+msgstr "Tetapkan harga untuk pelbagai tindakan semasa menggunakan"
+
+msgid "submission type"
+msgstr "Jenis penyerahan"
+
+msgid "Submission"
+msgstr "Penyerahan"
+
+msgid "Price to submit a single company profile"
+msgstr "Harga untuk menghantar profil syarikat tunggal"
+
+msgid "Additional price to make a company"
+msgstr "Harga tambahan untuk menjadikan syarikat"
+
+msgid "Days Until Featured Company Expires"
+msgstr "Hari sehingga syarikat yang ditampilkan tamat"
+
+msgid "Number of days a"
+msgstr "Bilangan hari a"
+
+msgid "per-listing"
+msgstr "setiap penyenaraian"
+
+msgid "featured company remains active"
+msgstr "Syarikat Pilihan masih aktif"
+
+msgid "free"
+msgstr "percuma"
+
+msgid "Price to submit a single job"
+msgstr "Harga untuk menghantar satu pekerjaan"
+
+msgid "Additional price to make a job"
+msgstr "Harga tambahan untuk membuat pekerjaan"
+
+msgid "Days Until Featured Job Expires"
+msgstr "Hari sehingga pekerjaan yang ditampilkan tamat"
+
+msgid "featured job remains active"
+msgstr "Pekerjaan Pilihan masih aktif"
+
+msgid "Price to submit a single resume"
+msgstr "Harga untuk menghantar resume tunggal"
+
+msgid "Additional price to make a resume"
+msgstr "Harga tambahan untuk membuat resume"
+
+msgid "Days Until Featured Resume Expires"
+msgstr "Hari sehingga resume tamat tempoh"
+
+msgid "featured resume remains active"
+msgstr "Resume pilihan tetap aktif"
+
+msgid "Price per Job Apply"
+msgstr "Harga setiap pekerjaan dikenakan"
+
+msgid "Price for a job seeker to apply for a job"
+msgstr "Harga untuk pencari kerja memohon pekerjaan"
+
+msgid "Price to View Resume Contact"
+msgstr "Harga untuk melihat resume kenalan"
+
+msgid "Price to View Company Contact"
+msgstr "Harga untuk melihat kenalan syarikat"
+
+msgid "Price to submit a department"
+msgstr "Harga untuk menghantar jabatan"
+
+msgid "Price to submit a cover letter"
+msgstr "Harga untuk menghantar surat lamaran"
+
+msgid "Price to create a job alert"
+msgstr "Harga untuk membuat amaran kerja"
+
+msgid "Dashboard Monetization Links"
+msgstr "Pautan pengewangan papan pemuka"
+
+msgid "Control the visibility of monetization-related links in user dashboards"
+msgstr "Kawal penglihatan pautan yang berkaitan dengan pengewangan dalam Papan Pemuka Pengguna"
+
+msgid "Employer Show Invoice History"
+msgstr "Majikan menunjukkan sejarah invois"
+
+msgid "Setting to show the invoice/purchase history section"
+msgstr "Menetapkan untuk menunjukkan bahagian sejarah invois/pembelian"
+
+msgid "Job Seeker Show Invoice History"
+msgstr "Pencari Pekerjaan menunjukkan sejarah invois"
+
+msgid "Job Seeker Show Credits Log"
+msgstr "Pencari kerja menunjukkan log kredit"
+
+msgid "Setting to show the credits log section"
+msgstr "Menetapkan untuk menunjukkan bahagian log kredit"
+
+msgid "Payment Gateways"
+msgstr "Gerbang pembayaran"
+
+msgid "Configure PayPal payment gateway settings for API integration"
+msgstr "Konfigurasikan Tetapan Gateway Pembayaran PayPal untuk Integrasi API"
+
+msgid "Enable PayPal"
+msgstr "Dayakan PayPal"
+
+msgid "Enable or disable PayPal as a payment option"
+msgstr "Dayakan atau Lumpuhkan PayPal sebagai pilihan pembayaran"
+
+msgid "Your PayPal API Username"
+msgstr "Nama Pengguna API PayPal Anda"
+
+msgid "Your PayPal API Password"
+msgstr "Kata Laluan API Paypal Anda"
+
+msgid "Your PayPal API Signature"
+msgstr "Tandatangan API Paypal anda"
+
+msgid "A URL to your logo image to display on the PayPal checkout page"
+msgstr "URL ke imej logo anda untuk dipaparkan di halaman checkout paypal"
+
+msgid "Cancel URL"
+msgstr "Batalkan URL"
+
+msgid "The URL users are sent to if they cancel the payment"
+msgstr "Pengguna URL dihantar ke jika mereka membatalkan pembayaran"
+
+msgid "Notify URL"
+msgstr "Memberitahu URL"
+
+msgid "Sandbox"
+msgstr "Kotak pasir"
+
+msgid "Enable PayPal Sandbox for testing purposes"
+msgstr "Dayakan kotak pasir PayPal untuk tujuan ujian"
+
+msgid "Please enter language code, for example"
+msgstr "Sila masukkan kod bahasa, sebagai contoh"
+
+msgid "Subscription IPN URL"
+msgstr "Langganan IPN URL"
+
+msgid "Configure Stripe payment gateway settings"
+msgstr "Konfigurasikan tetapan gerbang pembayaran jalur"
+
+msgid "Enable Stripe"
+msgstr "Dayakan jalur"
+
+msgid "Enable or disable Stripe as a payment option"
+msgstr "Dayakan atau lumpuhkan jalur sebagai pilihan pembayaran"
+
+msgid "Publishable Key"
+msgstr "Kunci yang boleh diterbitkan"
+
+msgid "Enter your Stripe Publishable Key"
+msgstr "Masukkan kunci yang boleh diterbitkan jalur anda"
+
+msgid "Secret Key"
+msgstr "Kunci Rahsia"
+
+msgid "Enter your Stripe Secret Key"
+msgstr "Masukkan kunci rahsia jalur anda"
+
+msgid "Subscription Webhook URL"
+msgstr "Langganan Webhook URL"
+
+msgid "WooCommerce"
+msgstr "Woocommerce"
+
+msgid "Use WooCommerce to handle payments"
+msgstr "Gunakan WooCommerce untuk mengendalikan pembayaran"
+
+msgid "Enable WooCommerce"
+msgstr "Dayakan WooCommerce"
+
+msgid "Enable or disable WooCommerce as a payment option"
+msgstr "Dayakan atau Lumpuhkan WooCommerce sebagai pilihan pembayaran"
+
+msgid "Home Page"
+msgstr "Halaman rumah"
+
+msgid "WordPress Default"
+msgstr "WordPress Default"
+
+msgid "Blog"
+msgstr "Blog"
+
+msgid "This feature is part of a premium addon"
+msgstr "Ciri ini adalah sebahagian daripada addon premium"
+
+msgid "Available tags"
+msgstr "Tag yang ada"
+
+msgid "This image will be shown as the default image for entities & users if no other image is provided"
+msgstr "Imej ini akan ditunjukkan sebagai imej lalai untuk entiti & pengguna jika tiada imej lain disediakan"
+
+msgid "Discard"
+msgstr "Buang"
+
+msgid "Save Changes"
+msgstr "Simpan perubahan"
+
+msgid "Quickly find any setting"
+msgstr "Cepat mencari tetapan"
+
+msgid "Search by setting title or tooltip description"
+msgstr "Cari dengan menetapkan Tajuk atau Penerangan Tooltip"
+
+msgid "Unlock"
+msgstr "Buka kunci"
+
+msgid "This and other powerful features are available in the"
+msgstr "Ciri -ciri kuat ini dan lain -lain boleh didapati di"
+
+msgid "Upgrade Now"
+msgstr "Naik taraf sekarang"
+
+msgid "No settings found for your search"
+msgstr "Tiada tetapan yang dijumpai untuk carian anda"
+
+msgid "Copied to clipboard"
+msgstr "Disalin ke papan klip"
+
+msgid "Search results for"
+msgstr "Hasil carian untuk"
+
+msgid "Unlock with"
+msgstr "Buka kunci dengan"
+
+msgid "Settings related to employer accounts, registration, and permissions"
+msgstr "Tetapan yang berkaitan dengan akaun majikan, pendaftaran, dan kebenaran"
+
+msgid "Settings related to job seeker accounts and registration"
+msgstr "Tetapan yang berkaitan dengan akaun pencari kerja dan pendaftaran"
+
+msgid "Visitor Can View Employer's Control Panel Links"
+msgstr "Pelawat boleh melihat pautan panel kawalan majikan"
+
+msgid "Visitor Can View Resume Categories"
+msgstr "Pelawat boleh melihat kategori resume"
+
+msgid "Visitor Can Search Resumes"
+msgstr "Pelawat boleh mencari resume"
+
+msgid "Visitor Can View Company Details"
+msgstr "Pelawat boleh melihat perincian syarikat"
+
+msgid "Visitor Can View Job Details"
+msgstr "Pelawat boleh melihat butiran kerja"
+
+msgid "Visitor Can View Resume Details"
+msgstr "Pelawat boleh melihat butiran resume"
+
+msgid "Visitor Can View Job Seeker's Control Panel Links"
+msgstr "Pelawat boleh melihat pautan panel kawalan pencari kerja"
+
+msgid "Visitor Can View Jobs by Categories"
+msgstr "Pelawat boleh melihat pekerjaan mengikut kategori"
+
+msgid "Visitor Can Search Jobs"
+msgstr "Pelawat boleh mencari pekerjaan"
+
+msgid "Visitor Can View Newest Jobs"
+msgstr "Pelawat dapat melihat pekerjaan terbaru"
+
+msgid "Visitor Can View Job Search Results"
+msgstr "Pelawat dapat melihat hasil carian pekerjaan"
+
+msgid "1 Column"
+msgstr "1 lajur"
+
+msgid "10254 Departments found"
+msgstr "10254 jabatan dijumpai"
+
+msgid "2 Columns"
+msgstr "2 lajur"
+
+msgid "3 Columns"
+msgstr "3 lajur"
+
+msgid "4 Columns"
+msgstr "4 lajur"
+
+msgid "5 Columns"
+msgstr "5 lajur"
+
+msgid "A critical update for WP Job Portal is required to maintain performance and prevent issues. Please update now."
+msgstr "Kemas kini kritikal untuk portal kerja WP diperlukan untuk mengekalkan prestasi dan mencegah isu. Sila kemas kini sekarang."
+
+msgid "AI Search"
+msgstr "Carian ai"
+
+msgid "AI Search Job"
+msgstr "Pekerjaan carian AI"
+
+msgid "AI Settings"
+msgstr "Tetapan AI"
+
+msgid "AI settings"
+msgstr "Tetapan AI"
+
+msgid "About"
+msgstr "Mengenai"
+
+msgid "Account & Billing"
+msgstr "Akaun & Pengebilan"
+
+msgid "Activation failed"
+msgstr "Pengaktifan gagal"
+
+msgid "Add-ons for WP Job Portal have been installed and activated successfully."
+msgstr "Tambahan untuk Portal Kerja WP telah dipasang dan diaktifkan dengan jayanya."
+
+msgid "Addon Installer"
+msgstr "Pemasang addon"
+
+msgid "Addon not installed please install addon first."
+msgstr "Addon tidak dipasang Sila pasang Addon terlebih dahulu."
+
+msgid "Addon will automatically update to the newest version"
+msgstr "Addon akan dikemas kini secara automatik ke versi terbaru"
+
+msgid "Addon(s) Installed successfully!"
+msgstr "Addon (s) berjaya dipasang!"
+
+msgid "Address display style for plugin"
+msgstr "Gaya paparan alamat untuk plugin"
+
+msgid "Advanced Resume Builder Addon missing, resume sections data will not be imported!"
+msgstr "Advanced Resume Builder Addon Hilang, Resume Seksyen Data tidak akan diimport!"
+
+msgid "All selected add-ons are now active."
+msgstr "Semua tambahan yang dipilih kini aktif."
+
+msgid "Allow employers and job Seekers to register on the site."
+msgstr "Benarkan majikan dan pencari kerja mendaftar di laman web ini."
+
+msgid "Allow search resume"
+msgstr "Benarkan resume carian"
+
+msgid "Allowed to all (employers, job seekers and visitors)"
+msgstr "Dibenarkan kepada semua (majikan, pencari kerja dan pelawat)"
+
+msgid "Auto Update: Off"
+msgstr "Kemas kini Auto: Mati"
+
+msgid "Auto Update: On"
+msgstr "Kemas kini Auto: ON"
+
+msgid "Back to listing"
+msgstr "Kembali ke penyenaraian"
+
+msgid "Basic Info"
+msgstr "Maklumat asas"
+
+msgid "Buttons Styling"
+msgstr "Butang Gaya"
+
+msgid "Capitalize"
+msgstr "Memanfaatkan"
+
+msgid "Check if you want to use WP Job Portal packages"
+msgstr "Semak jika anda ingin menggunakan pakej Portal Kerja WP"
+
+msgid "City name"
+msgstr "Nama bandar"
+
+msgid "Columns per Row"
+msgstr "Lajur setiap baris"
+
+msgid "Comma separated list of job types i.e JTFT, JTPT, JTFP, JTCT, JTIN"
+msgstr "Senarai jenis koma yang dipisahkan jenis pekerjaan i.e JTFT, JTPT, JTFP, JTCT, JTIN"
+
+msgid "Communication"
+msgstr "Komunikasi"
+
+msgid "Company Management"
+msgstr "Pengurusan Syarikat"
+
+msgid "Complete Your Resume"
+msgstr "Lengkapkan resume anda"
+
+msgid "Content Access"
+msgstr "Akses kandungan"
+
+msgid "Content Styling"
+msgstr "Gaya kandungan"
+
+msgid "Control which employer dashboard navigation links are visible to visitors"
+msgstr "Kawalan Pautan navigasi papan pemuka majikan yang dapat dilihat oleh pelawat"
+
+msgid "Control which employer dashboard widgets and sections are visible to visitors"
+msgstr "Kawalan widget dan bahagian papan pemuka majikan yang dapat dilihat oleh pelawat"
+
+msgid "Control which job seeker dashboard navigation links are visible to visitors"
+msgstr "Kawalan Pautan Navigasi Dashboard Pencari Pekerjaan yang dapat dilihat oleh pelawat"
+
+msgid "Control which job seeker dashboard widgets and sections are visible to visitors"
+msgstr "Kawalan Widget dan Bahagian Papan Pemuka Pencari Pekerja"
+
+msgid "Control which pages and content areas are visible to non-logged-in users"
+msgstr "Kawalan halaman dan kawasan kandungan mana yang dapat dilihat oleh pengguna yang tidak masuk"
+
+msgid "Custom Field Class"
+msgstr "Kelas medan tersuai"
+
+msgid "Database Update Needed"
+msgstr "Kemas kini pangkalan data diperlukan"
+
+msgid "Database update completed"
+msgstr "Kemas kini pangkalan data selesai"
+
+msgid "Delete All Unused Keys"
+msgstr "Padamkan semua kunci yang tidak digunakan"
+
+msgid "Discover"
+msgstr "Cari"
+
+msgid "Display the status of applications to the job seeker"
+msgstr "Paparkan status permohonan kepada pencari kerja"
+
+msgid "Dummy Plugin"
+msgstr "Plugin dummy"
+
+msgid "Dummy Plugin 2"
+msgstr "Plugin Dummy 2"
+
+msgid "Elegant Design"
+msgstr "Reka bentuk yang elegan"
+
+msgid "Employer Widgets"
+msgstr "Widget Majikan"
+
+msgid "Enter the Site Title"
+msgstr "Masukkan tajuk laman web"
+
+msgid "Entity"
+msgstr "Entiti"
+
+msgid "Fetch Data"
+msgstr "Ambil data"
+
+msgid "Find your next star hire with AI-driven resume search"
+msgstr "Cari sewa bintang seterusnya anda dengan carian resume AI-Dipandu"
+
+msgid "Font Family"
+msgstr "Keluarga fon"
+
+msgid "Font Size"
+msgstr "Saiz fon"
+
+msgid "Font Style"
+msgstr "Gaya fon"
+
+msgid "Font Weight"
+msgstr "Berat fon"
+
+msgid "Go To Dashboard"
+msgstr "Pergi ke papan pemuka"
+
+msgid "Import Data Report"
+msgstr "Laporan Data Import"
+
+msgid "Import Third Party Data"
+msgstr "Import data pihak ketiga"
+
+msgid "Import demo data to populate your site with example companies, jobs, resumes, and applications."
+msgstr "Import data demo untuk mengisi laman web anda dengan contoh syarikat, pekerjaan, resume, dan aplikasi."
+
+msgid "Imported"
+msgstr "Diimport"
+
+msgid "Infi Icon"
+msgstr "Ikon infi"
+
+msgid "Info"
+msgstr "Maklumat"
+
+msgid "Info Icon"
+msgstr "Ikon Maklumat"
+
+msgid "Invalid server response"
+msgstr "Respons pelayan tidak sah"
+
+msgid "Italic"
+msgstr "Italic"
+
+msgid "Job Alert Time"
+msgstr "Waktu amaran kerja"
+
+msgid "Job Detail"
+msgstr "Perincian pekerjaan"
+
+msgid "Job Seeker Links"
+msgstr "Pautan pencari kerja"
+
+msgid "Job Seeker Settings"
+msgstr "Tetapan Pencari Kerja"
+
+msgid "Job Seeker Widgets"
+msgstr "Widget Pencari Kerja"
+
+msgid "Jobs by Category"
+msgstr "Pekerjaan mengikut kategori"
+
+msgid "Layout"
+msgstr "Susun atur"
+
+msgid "Letter Spacing"
+msgstr "Jarak huruf"
+
+msgid "Line Height"
+msgstr "Ketinggian garis"
+
+msgid "Live Preview Not available at the moment !"
+msgstr "Pratonton langsung tidak tersedia buat masa ini!"
+
+msgid "Login/Register"
+msgstr "Log masuk/daftar"
+
+msgid "Lowercase"
+msgstr "Huruf kecil"
+
+msgid "Manage Documents"
+msgstr "Menguruskan dokumen"
+
+msgid "Manage Jobs"
+msgstr "Menguruskan pekerjaan"
+
+msgid "Manage Unused Keys"
+msgstr "Mengurus kekunci yang tidak digunakan"
+
+msgid "More Actions"
+msgstr "Lebih banyak tindakan"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans."
+msgstr "Langganan saya menyediakan pengguna dengan gambaran keseluruhan langganan aktif mereka, yang membolehkan pengurusan mudah dan penjejakan rancangan pengeposan pekerjaan mereka."
+
+msgid "New Jobs"
+msgstr "Pekerjaan baru"
+
+msgid "Next Setup"
+msgstr "Persediaan seterusnya"
+
+msgid "No Addon Installed!"
+msgstr "Tiada addon dipasang!"
+
+msgid "No unused keys were found."
+msgstr "Tiada kunci yang tidak digunakan ditemui."
+
+msgid "None"
+msgstr "Tiada"
+
+msgid "Not Imported"
+msgstr "Tidak diimport"
+
+msgid "Oblique"
+msgstr "Serong"
+
+msgid "Only job seekers can register. Jobs and companies are managed by the admin."
+msgstr "Hanya pencari kerja yang boleh mendaftar. Pekerjaan dan syarikat diuruskan oleh pentadbir."
+
+msgid "Paid access Only"
+msgstr "Akses berbayar sahaja"
+
+msgid "Pay For Featured Resume"
+msgstr "Bayar untuk resume yang diketengahkan"
+
+msgid "Pay For Resume"
+msgstr "Bayar untuk resume"
+
+msgid "Pay per listing price to publish your"
+msgstr "Bayar setiap harga penyenaraian untuk menerbitkan anda"
+
+msgid "Please Insert Your Activation Key"
+msgstr "Sila masukkan kekunci pengaktifan anda"
+
+msgid "Please log in to register to continue."
+msgstr "Sila log masuk untuk mendaftar untuk meneruskan."
+
+msgid "Please select at least one addon!"
+msgstr "Sila pilih sekurang -kurangnya satu addon!"
+
+msgid "Please verify Locations and salaries for imported data entities"
+msgstr "Sila sahkan lokasi dan gaji untuk entiti data yang diimport"
+
+msgid "Plugin not installed"
+msgstr "Plugin tidak dipasang"
+
+msgid "Price for a job seeker to view a company's contact details"
+msgstr "Harga untuk pencari kerja untuk melihat maklumat hubungan syarikat"
+
+msgid "Price for an employer to view a resume's contact details"
+msgstr "Harga bagi majikan untuk melihat maklumat hubungan resume"
+
+msgid "Quick Configuration"
+msgstr "Konfigurasi cepat"
+
+msgid "Ready to find your dream job? Let's get started"
+msgstr "Bersedia untuk mencari pekerjaan impian anda? Mari bermula"
+
+msgid "Ready to find your potential employee? Let's get started"
+msgstr "Bersedia untuk mencari pekerja berpotensi anda? Mari bermula"
+
+msgid "Search Jobs"
+msgstr "Cari Pekerjaan"
+
+msgid "Search Resumes"
+msgstr "Cari resume"
+
+msgid "Search smarter – just type anything you know about the job: title, category, type, skills, or even a description!"
+msgstr "Cari lebih bijak - hanya taipkan apa sahaja yang anda tahu mengenai pekerjaan: tajuk, kategori, jenis, kemahiran, atau bahkan keterangan!"
+
+msgid "Section Title Styling"
+msgstr "Styling Tajuk Bahagian"
+
+msgid "Select Addons to Update with New Activation Key"
+msgstr "Pilih Addons untuk dikemas kini dengan kekunci pengaktifan baru"
+
+msgid "Select Company"
+msgstr "Pilih Syarikat"
+
+msgid "Select Job Category"
+msgstr "Pilih Kategori Pekerjaan"
+
+msgid "Select Job Status"
+msgstr "Pilih status pekerjaan"
+
+msgid "Select Job Type"
+msgstr "Pilih jenis pekerjaan"
+
+msgid "Select Page To Show"
+msgstr "Pilih halaman untuk ditunjukkan"
+
+msgid "Select Plugin Setting for WP Job Portal"
+msgstr "Pilih Tetapan Plugin untuk Portal Kerja WP"
+
+msgid "Select packages pack so that user can purchase them"
+msgstr "Pilih pakej pakej supaya pengguna dapat membelinya"
+
+msgid "Select who can view company contact details."
+msgstr "Pilih siapa yang boleh melihat butiran hubungan syarikat."
+
+msgid "Settings you applied have been successfully saved"
+msgstr "Tetapan yang anda gunakan telah berjaya disimpan"
+
+msgid "Setup Complete"
+msgstr "Persediaan lengkap"
+
+msgid "Show Advanced Search Button"
+msgstr "Tunjukkan butang carian lanjutan"
+
+msgid "Show Employers"
+msgstr "Tunjukkan majikan"
+
+msgid "Show Everyone"
+msgstr "Tunjukkan semua orang"
+
+msgid "Show Job seekers"
+msgstr "Tunjukkan pencari kerja"
+
+msgid "Show Labels"
+msgstr "Tunjukkan label"
+
+msgid "Show No One"
+msgstr "Tunjukkan tiada siapa"
+
+msgid "Show Placeholders"
+msgstr "Tunjukkan ruang letak"
+
+msgid "Show Resume Status Section"
+msgstr "Tunjukkan bahagian status resume"
+
+msgid "Show a box with applied jobs on the job seeker's dashboard"
+msgstr "Tunjukkan kotak dengan pekerjaan yang digunakan di papan pemuka pencari kerja"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard"
+msgstr "Tunjukkan kotak dengan pekerjaan terbaru di papan pemuka pencari kerja"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard to visitor"
+msgstr "Tunjukkan kotak dengan pekerjaan terbaru di papan pemuka pencari kerja ke pelawat"
+
+msgid "Show a box with recent resumes on the employer's dashboard"
+msgstr "Tunjukkan kotak dengan resume baru -baru ini di papan pemuka majikan"
+
+msgid "Show a box with recent resumes on the employer's dashboard to visitor"
+msgstr "Tunjukkan kotak dengan resume baru -baru ini di papan pemuka majikan ke pelawat"
+
+msgid "Show a graph of job statistics in the employer's dashboard"
+msgstr "Tunjukkan graf statistik pekerjaan di papan pemuka majikan"
+
+msgid "Show a graph of job statistics in the employer's dashboard to visitor"
+msgstr "Tunjukkan graf statistik pekerjaan di papan pemuka majikan ke pelawat"
+
+msgid "Show a graph of job statistics in the job seeker's dashboard"
+msgstr "Tunjukkan graf statistik pekerjaan di papan pemuka pencari kerja"
+
+msgid "Show a graph of job statistics in the job seeker's dashboard to visitor"
+msgstr "Tunjukkan graf statistik pekerjaan di papan pemuka pencari kerja ke pelawat"
+
+msgid "Show a link to active subscriptions in the employer's dashboard"
+msgstr "Tunjukkan pautan ke langganan aktif di papan pemuka majikan"
+
+msgid "Show a link to active subscriptions in the job seeker's dashboard"
+msgstr "Tunjukkan pautan ke langganan aktif dalam papan pemuka Pencari kerja"
+
+msgid "Show a link to the packages page in the employer's dashboard"
+msgstr "Tunjukkan pautan ke halaman pakej di papan pemuka majikan"
+
+msgid "Show a link to the packages page in the job seeker's dashboard"
+msgstr "Tunjukkan pautan ke halaman pakej di papan pemuka Pencari kerja"
+
+msgid "Show a link to the purchase history/invoices in the employer's dashboard"
+msgstr "Tunjukkan pautan ke sejarah pembelian/invois di papan pemuka majikan"
+
+msgid "Show a link to the purchase history/invoices in the job seeker's dashboard"
+msgstr "Tunjukkan pautan ke sejarah pembelian/invois di papan pemuka pencari kerja"
+
+msgid "Show a link to the user's purchased packages in their dashboard"
+msgstr "Tunjukkan pautan ke pakej yang dibeli pengguna di papan pemuka mereka"
+
+msgid "Show an 'AI Suggested Jobs' button on the 'My Resumes' page for job seekers"
+msgstr "Tunjukkan butang 'AI yang dicadangkan' pada halaman 'resume saya' untuk pencari kerja"
+
+msgid "Show an 'AI Suggested Resumes' button on the 'My Jobs' page for employers"
+msgstr "Tunjukkan butang 'AI Cadangan Resume' di halaman 'My Jobs' untuk Majikan"
+
+msgid "Show or hide the profile section on the employer's control panel"
+msgstr "Tunjukkan atau sembunyikan bahagian profil di panel kawalan majikan"
+
+msgid "Show or hide the profile section on the job seeker's control panel"
+msgstr "Tunjukkan atau sembunyikan bahagian profil di panel kawalan pencari kerja"
+
+msgid "Show resume status section on the job seeker's dashboard"
+msgstr "Tunjukkan bahagian status resume di papan pemuka pencari kerja"
+
+msgid "Show statistics boxes on the employer's dashboard"
+msgstr "Tunjukkan kotak statistik di papan pemuka majikan"
+
+msgid "Show statistics boxes on the job seeker's dashboard"
+msgstr "Tunjukkan kotak statistik di papan pemuka pencari kerja"
+
+msgid "Show the 'Quick Apply' form to logged-in users on the job detail page"
+msgstr "Tunjukkan borang 'cepat memohon' kepada pengguna log masuk pada halaman perincian kerja"
+
+msgid "Show the 'Quick Apply' form to visitors on the job detail page"
+msgstr "Tunjukkan borang 'cepat memohon' kepada pelawat di halaman perincian pekerjaan"
+
+msgid "Similar Found"
+msgstr "Sama dijumpai"
+
+msgid "Start typing what you know – our AI will help you find the best matching jobs."
+msgstr "Mula menaip apa yang anda tahu - AI kami akan membantu anda mencari pekerjaan yang paling sesuai."
+
+msgid "Start typing what you know – our AI will help you find the best matching resumes."
+msgstr "Mula menaip apa yang anda tahu - AI kami akan membantu anda mencari resume yang paling sesuai."
+
+msgid "Step 1 of 5"
+msgstr "Langkah 1 dari 5"
+
+msgid "Step 2 of 4"
+msgstr "Langkah 2 dari 4"
+
+msgid "Step 2 of 5"
+msgstr "Langkah 2 dari 5"
+
+msgid "Step 3 of 4"
+msgstr "Langkah 3 dari 4"
+
+msgid "Step 3 of 5"
+msgstr "Langkah 3 dari 5"
+
+msgid "Step 4 of 4"
+msgstr "Langkah 4 dari 4"
+
+msgid "Step 4 of 5"
+msgstr "Langkah 4 dari 5"
+
+msgid "Step 5 of 5"
+msgstr "Langkah 5 dari 5"
+
+msgid "Subscriptions"
+msgstr "Langganan"
+
+msgid "Sugeested Jobs"
+msgstr "Pekerjaan yang dicadangkan"
+
+msgid "Suggested Jobs"
+msgstr "Pekerjaan yang dicadangkan"
+
+msgid "Suggested Resumes"
+msgstr "Resume yang dicadangkan"
+
+msgid "System"
+msgstr "Sistem"
+
+msgid "System Error Log"
+msgstr "Log ralat sistem"
+
+msgid "Text Transform"
+msgstr "Transformasi teks"
+
+msgid "The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "Panel Kawalan Majikan adalah antara muka yang diselaraskan yang membolehkan majikan menguruskan penyiaran kerja, mengesan aplikasi, berkomunikasi dengan calon, dan menganalisis pengambilan metrik dengan cekap."
+
+msgid "The highlighted addons are not included in your current license. Please adjust your selection accordingly."
+msgstr "Tambahan yang diserlahkan tidak termasuk dalam lesen semasa anda. Sila sesuaikan pilihan anda dengan sewajarnya."
+
+msgid "This add-on will change the Job Portal pages to a simple yet powerful and rich web design that involves focusing on clean aesthetics, intuitive navigation, and functional elements while ensuring performance and responsiveness."
+msgstr "Tambahan ini akan mengubah halaman portal pekerjaan ke reka bentuk web yang mudah tetapi kuat dan kaya yang melibatkan fokus pada estetika bersih, navigasi intuitif, dan unsur-unsur fungsional sambil memastikan prestasi dan responsif."
+
+msgid "This will replace the old key with the new one."
+msgstr "Ini akan menggantikan kunci lama dengan yang baru."
+
+msgid "Today Stats"
+msgstr "Hari ini statistik"
+
+msgid "Unlock your career potential with AI-driven job search"
+msgstr "Buka kunci potensi kerjaya anda dengan carian pekerjaan yang didorong oleh AI"
+
+msgid "Update Key"
+msgstr "Kemas kini kunci"
+
+msgid "Update Now"
+msgstr "Kemas kini sekarang"
+
+msgid "Updating Database, please wait..."
+msgstr "Mengemas kini pangkalan data, sila tunggu ..."
+
+msgid "Uppercase"
+msgstr "Huruf besar"
+
+msgid "Use Default Color For Color 1"
+msgstr "Gunakan warna lalai untuk warna 1"
+
+msgid "Use Icons for Buttons"
+msgstr "Gunakan ikon untuk butang"
+
+msgid "View All Resumes"
+msgstr "Lihat semua resume"
+
+msgid "View Company Contact Detail"
+msgstr "Lihat Perincian Perhubungan Syarikat"
+
+msgid "Visitor Show"
+msgstr "Pertunjukan Pelawat"
+
+msgid "Visitor Show Active Jobs Graph"
+msgstr "Pelawat menunjukkan graf pekerjaan aktif"
+
+msgid "Visitor Show Applied Jobs Section"
+msgstr "Seksyen Pekerjaan Pameran Pelawat"
+
+msgid "Visitor Show Applied Resumes Section"
+msgstr "Seksyen Resume Pameran Pelawat"
+
+msgid "Visitor Show Credits Log Section"
+msgstr "Bahagian log kredit menunjukkan pelawat"
+
+msgid "Visitor Show Jobs Graph"
+msgstr "Graf Pekerjaan Pameran Pelawat"
+
+msgid "Visitor Show Jobs Graph Section"
+msgstr "Seksyen Graf Pekerjaan Pelawat"
+
+msgid "Visitor Show Newest Jobs Box"
+msgstr "Pelawat menunjukkan kotak pekerjaan terbaru"
+
+msgid "Visitor Show Newest Jobs Section"
+msgstr "Pelawat menunjukkan bahagian pekerjaan terbaru"
+
+msgid "Visitor Show Newest Resumes Section"
+msgstr "Pelawat menunjukkan bahagian resume terbaru"
+
+msgid "Visitor Show Purchase History Section"
+msgstr "Seksyen Sejarah Pembelian Pelawat"
+
+msgid "Visitor Show Recent Resumes Box"
+msgstr "Pelawat menunjukkan kotak resume baru -baru ini"
+
+msgid "Visitor Show Saved Searches Section"
+msgstr "Bahagian carian yang disimpan pelawat"
+
+msgid "Visitor Show Shortlisted Jobs Section"
+msgstr "Pelawat menunjukkan bahagian pekerjaan yang disenarai pendek"
+
+msgid "Visitor Show Stats Graph Section"
+msgstr "Seksyen Graf Statistik Pelawat"
+
+msgid "Visitor Show Useful Links Section"
+msgstr "Pelawat menunjukkan bahagian pautan yang berguna"
+
+msgid "WP Job Manager"
+msgstr "Pengurus Kerja WP"
+
+msgid "WP Job Portal Activation Key"
+msgstr "Kunci Pengaktifan Portal Pekerjaan WP"
+
+msgid "WP Job Portal Import Data"
+msgstr "Data import portal kerja wp"
+
+msgid "WP Job Portal Packages"
+msgstr "Pakej Portal Kerja WP"
+
+msgid "Welcome to WP Job Portal Addon Installer"
+msgstr "Selamat datang ke WP Job Portal Addon Installer"
+
+msgid "Welcome, Visitor"
+msgstr "Selamat datang, pelawat"
+
+msgid "Who can search resume."
+msgstr "Siapa yang boleh mencari resume."
+
+msgid "Who can view resume contact details"
+msgstr "Siapa yang boleh melihat resume maklumat hubungan"
+
+msgid "You Already Applied to this job"
+msgstr "Anda sudah memohon pekerjaan ini"
+
+msgid "You have"
+msgstr "Anda ada"
+
+msgid "Your WP Job Portal license key has expired or is invalid. Please update it to continue receiving support and updates."
+msgstr "Kunci Lesen Portal WP anda telah tamat tempoh atau tidak sah. Sila kemas kini untuk terus menerima sokongan dan kemas kini."
+
+msgid "failed."
+msgstr "gagal."
+
+msgid "found"
+msgstr "dijumpai"
+
+msgid "icon"
+msgstr "ikon"
+
+msgid "imported."
+msgstr "diimport."
+
+msgid "skipped."
+msgstr "dilangkau."
+
+msgid "unused key has been deleted successfully!"
+msgstr "Kunci yang tidak digunakan telah dihapuskan dengan jayanya!"
+
+msgid "unused key(s) that can be safely removed."
+msgstr "Kunci yang tidak digunakan yang boleh dikeluarkan dengan selamat."
+
+msgid "unused keys have been deleted successfully!"
+msgstr "Kekunci yang tidak digunakan telah dihapuskan dengan jayanya!"

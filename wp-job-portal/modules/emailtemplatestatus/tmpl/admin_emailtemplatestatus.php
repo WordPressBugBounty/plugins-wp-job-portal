@@ -11,8 +11,8 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
     </div>
     <div id="wpjobportaladmin-data">
         <?php
-            $msgkey = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getMessagekey();
-            WPJOBPORTALMessages::getLayoutMessage($msgkey);
+            $wpjobportal_msgkey = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getMessagekey();
+            WPJOBPORTALMessages::getLayoutMessage($wpjobportal_msgkey);
         ?>
         <!-- top bar -->
         <div id="wpjobportal-wrapper-top">
@@ -20,7 +20,7 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_html(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -30,12 +30,12 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
             </div>
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_html(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_html(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -85,31 +85,31 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                     </tr>
                     <tr>
                         <?php
-                            $lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['add_new_company']['tempname']);
+                            $wpjobportal_lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['add_new_company']['tempname']);
                         ?>
                         <td class="wpjobportal-text-left">
-                            <?php echo esc_html($lang); ?>
+                            <?php echo esc_html($wpjobportal_lang); ?>
                         </td>
                         <td>
                             <?php if (wpjobportal::$_data[0]['add_new_company']['employer'] == 1) { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_company']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_company']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } else { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_company']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_company']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } ?>
                         </td>
                         <td> - </td>
                         <td>
                             <?php if (wpjobportal::$_data[0]['add_new_company']['admin'] == 1) { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_company']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_company']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } else { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_company']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_company']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } ?>
                         </td>
@@ -118,19 +118,19 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                     </tr>
                     <tr>
                         <?php
-                            $lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['delete_company']['tempname']);
+                            $wpjobportal_lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['delete_company']['tempname']);
                         ?>
                         <td class="wpjobportal-text-left">
-                            <?php echo esc_html($lang); ?>
+                            <?php echo esc_html($wpjobportal_lang); ?>
                         </td>
                         <td>
                             <?php if (wpjobportal::$_data[0]['delete_company']['employer'] == 1) { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['delete_company']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['delete_company']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } else { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['delete_company']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['delete_company']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } ?>
                         </td>
@@ -141,19 +141,19 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                     </tr>
                     <tr>
                         <?php
-                            $lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['company_status']['tempname']);
+                            $wpjobportal_lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['company_status']['tempname']);
                         ?>
                         <td class="wpjobportal-text-left">
-                            <?php echo esc_html($lang); ?>
+                            <?php echo esc_html($wpjobportal_lang); ?>
                         </td>
                         <td>
                             <?php if (wpjobportal::$_data[0]['company_status']['employer'] == 1) { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['company_status']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['company_status']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } else { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['company_status']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['company_status']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } ?>
                         </td>
@@ -170,62 +170,62 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                     </tr>
                     <tr>
                         <?php
-                            $lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['add_new_job']['tempname']);
+                            $wpjobportal_lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['add_new_job']['tempname']);
                         ?>
                         <td class="wpjobportal-text-left">
-                            <?php echo esc_html($lang); ?>
+                            <?php echo esc_html($wpjobportal_lang); ?>
                         </td>
                         <td>
                             <?php if (wpjobportal::$_data[0]['add_new_job']['employer'] == 1) { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_job']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_job']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } else { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_job']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_job']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } ?>
                         </td>
                         <td> - </td>
                         <td>
                             <?php if (wpjobportal::$_data[0]['add_new_job']['admin'] == 1) { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_job']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_job']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } else { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_job']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_job']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } ?>
                         </td>
                         <td>-</td>
                         <td>
                             <?php if (wpjobportal::$_data[0]['add_new_job']['employer_vis'] == 1) { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_job']['tempid'].'&actionfor=5'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_job']['tempid'].'&actionfor=5'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } else { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_job']['tempid'].'&actionfor=5'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_job']['tempid'].'&actionfor=5'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } ?>
                         </td>
                     </tr>
                     <tr>
                         <?php
-                            $lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['delete_job']['tempname']);
+                            $wpjobportal_lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['delete_job']['tempname']);
                         ?>
                         <td class="wpjobportal-text-left">
-                            <?php echo esc_html($lang); ?>
+                            <?php echo esc_html($wpjobportal_lang); ?>
                         </td>
                         <td>
                             <?php if (wpjobportal::$_data[0]['delete_job']['employer'] == 1) { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['delete_job']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['delete_job']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } else { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['delete_job']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['delete_job']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } ?>
                         </td>
@@ -236,19 +236,19 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                     </tr>
                     <tr>
                         <?php
-                            $lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['job_status']['tempname']);
+                            $wpjobportal_lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['job_status']['tempname']);
                         ?>
                         <td class="wpjobportal-text-left">
-                            <?php echo esc_html($lang); ?>
+                            <?php echo esc_html($wpjobportal_lang); ?>
                         </td>
                         <td>
                             <?php if (wpjobportal::$_data[0]['job_status']['employer'] == 1) { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['job_status']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['job_status']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } else { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['job_status']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['job_status']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } ?>
                         </td>
@@ -257,12 +257,12 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                         <td> - </td>
                         <td>
                             <?php if (wpjobportal::$_data[0]['job_status']['employer_vis'] == 1) { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['job_status']['tempid'].'&actionfor=5'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['job_status']['tempid'].'&actionfor=5'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } else { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['job_status']['tempid'].'&actionfor=5'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['job_status']['tempid'].'&actionfor=5'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } ?>
                         </td>
@@ -275,42 +275,42 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                     </tr>
                     <tr>
                         <?php
-                            $lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['add_new_resume']['tempname']);
+                            $wpjobportal_lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['add_new_resume']['tempname']);
                         ?>
                         <td class="wpjobportal-text-left">
-                            <?php echo esc_html($lang); ?>
+                            <?php echo esc_html($wpjobportal_lang); ?>
                         </td>
                         <td>-</td>
                         <td>
                             <?php if (wpjobportal::$_data[0]['add_new_resume']['jobseeker'] == 1) { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_resume']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_resume']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } else { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_resume']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_resume']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } ?>
                         </td>
                         <td>
                             <?php if (wpjobportal::$_data[0]['add_new_resume']['admin'] == 1) { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_resume']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_resume']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } else { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_resume']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_resume']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } ?>
                         </td>
                         <td>
                             <?php if (wpjobportal::$_data[0]['add_new_resume']['jobseeker_vis'] == 1) { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_resume']['tempid'].'&actionfor=4'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_resume']['tempid'].'&actionfor=4'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } else { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_resume']['tempid'].'&actionfor=4'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_resume']['tempid'].'&actionfor=4'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } ?>
                         </td>
@@ -318,20 +318,20 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                     </tr>
                     <tr>
                         <?php
-                            $lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['resume-delete']['tempname']);
+                            $wpjobportal_lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['resume-delete']['tempname']);
                         ?>
                         <td class="wpjobportal-text-left">
-                            <?php echo esc_html($lang); ?>
+                            <?php echo esc_html($wpjobportal_lang); ?>
                         </td>
                         <td>-</td>
                         <td>
                             <?php if (wpjobportal::$_data[0]['resume-delete']['jobseeker'] == 1) { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['resume-delete']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['resume-delete']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } else { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['resume-delete']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['resume-delete']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } ?>
                         </td>
@@ -341,32 +341,32 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                     </tr>
                     <tr>
                         <?php
-                            $lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['resume_status']['tempname']);
+                            $wpjobportal_lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['resume_status']['tempname']);
                         ?>
                         <td class="wpjobportal-text-left">
-                            <?php echo esc_html($lang); ?>
+                            <?php echo esc_html($wpjobportal_lang); ?>
                         </td>
                         <td>-</td>
                         <td>
                             <?php if (wpjobportal::$_data[0]['resume_status']['jobseeker'] == 1) { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['resume_status']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['resume_status']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } else { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['resume_status']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['resume_status']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } ?>
                         </td>
                         <td>-</td>
                         <td>
                             <?php if (wpjobportal::$_data[0]['resume_status']['jobseeker_vis'] == 1) { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['resume_status']['tempid'].'&actionfor=4'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['resume_status']['tempid'].'&actionfor=4'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } else { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['resume_status']['tempid'].'&actionfor=4'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['resume_status']['tempid'].'&actionfor=4'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } ?>
                         </td>
@@ -380,31 +380,31 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                     </tr>
                     <tr>
                         <?php
-                            $lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['add_new_employer']['tempname']);
+                            $wpjobportal_lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['add_new_employer']['tempname']);
                         ?>
                         <td class="wpjobportal-text-left">
-                            <?php echo esc_html($lang); ?>
+                            <?php echo esc_html($wpjobportal_lang); ?>
                         </td>
                         <td>
                             <?php if (wpjobportal::$_data[0]['add_new_employer']['employer'] == 1) { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_employer']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_employer']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } else { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_employer']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_employer']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } ?>
                         </td>
                         <td>-</td>
                         <td>
                             <?php if (wpjobportal::$_data[0]['add_new_employer']['admin'] == 1) { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_employer']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_employer']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } else { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_employer']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_employer']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } ?>
                         </td>
@@ -419,31 +419,31 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                     </tr>
                     <tr>
                         <?php
-                            $lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['add_new_jobseeker']['tempname']);
+                            $wpjobportal_lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['add_new_jobseeker']['tempname']);
                         ?>
                         <td class="wpjobportal-text-left">
-                            <?php echo esc_html($lang); ?>
+                            <?php echo esc_html($wpjobportal_lang); ?>
                         </td>
                         <td>-</td>
                         <td>
                             <?php if (wpjobportal::$_data[0]['add_new_jobseeker']['jobseeker'] == 1) { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_jobseeker']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_jobseeker']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } else { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_jobseeker']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_jobseeker']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } ?>
                         </td>
                         <td>
                             <?php if (wpjobportal::$_data[0]['add_new_jobseeker']['admin'] == 1) { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_jobseeker']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_jobseeker']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } else { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_jobseeker']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['add_new_jobseeker']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } ?>
                         </td>
@@ -459,41 +459,41 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                     <?php if(in_array('credits', wpjobportal::$_active_addons)){ ?>
                             <tr>
                                 <?php
-                                    $lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['package_purchase']['tempname']);
+                                    $wpjobportal_lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['package_purchase']['tempname']);
                                 ?>
                                <td class="wpjobportal-text-left">
-                                    <?php echo esc_html($lang); ?>
+                                    <?php echo esc_html($wpjobportal_lang); ?>
                                 </td>
                                 <td>
                                     <?php if (wpjobportal::$_data[0]['package_purchase']['employer'] == 1) { ?>
-                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package_purchase']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package_purchase']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                         </a>
                                     <?php } else { ?>
-                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package_purchase']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package_purchase']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                         </a>
                                     <?php } ?>
                                 </td>
                                 <td>
                                     <?php if (wpjobportal::$_data[0]['package_purchase']['jobseeker'] == 1) { ?>
-                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package_purchase']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package_purchase']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                         </a>
                                     <?php } else { ?>
-                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package_purchase']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package_purchase']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                         </a>
                                     <?php } ?>
                                 </td>
                                 <td>
                                     <?php if (wpjobportal::$_data[0]['package_purchase']['admin'] == 1) { ?>
-                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package_purchase']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package_purchase']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                         </a>
                                     <?php } else { ?>
-                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package_purchase']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package_purchase']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                         </a>
                                     <?php } ?>
                                 </td>
@@ -502,41 +502,41 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                             </tr>
                             <tr>
                                 <?php
-                                    $lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['package_status']['tempname']);
+                                    $wpjobportal_lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['package_status']['tempname']);
                                 ?>
                                 <td class="wpjobportal-text-left">
-                                    <?php echo esc_html($lang); ?>
+                                    <?php echo esc_html($wpjobportal_lang); ?>
                                 </td>
                                 <td>
                                     <?php if (wpjobportal::$_data[0]['package_status']['employer'] == 1) { ?>
-                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package_status']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package_status']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                         </a>
                                     <?php } else { ?>
-                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package_status']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package_status']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                         </a>
                                     <?php } ?>
                                 </td>
                                 <td>
                                     <?php if (wpjobportal::$_data[0]['package_status']['jobseeker'] == 1) { ?>
-                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package_status']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package_status']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                         </a>
                                     <?php } else { ?>
-                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package_status']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package_status']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                         </a>
                                     <?php } ?>
                                 </td>
                                 <td>
                                     <?php if (wpjobportal::$_data[0]['package_status']['admin'] == 1) { ?>
-                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package_status']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package_status']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                         </a>
                                     <?php } else { ?>
-                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package_status']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package_status']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                         </a>
                                     <?php } ?>
                                 </td>
@@ -545,41 +545,41 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                             </tr>
                             <tr>
                                 <?php
-                                    $lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['package-purchase-admin']['tempname']);
+                                    $wpjobportal_lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['package-purchase-admin']['tempname']);
                                 ?>
                                  <td class="wpjobportal-text-left">
-                                    <?php echo esc_html($lang); ?>
+                                    <?php echo esc_html($wpjobportal_lang); ?>
                                 </td>
                                 <td>
                                     <?php if (wpjobportal::$_data[0]['package-purchase-admin']['employer'] == 1) { ?>
-                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package-purchase-admin']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package-purchase-admin']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                         </a>
                                     <?php } else { ?>
-                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package-purchase-admin']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package-purchase-admin']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                         </a>
                                     <?php } ?>
                                 </td>
                                 <td>
                                     <?php if (wpjobportal::$_data[0]['package-purchase-admin']['jobseeker'] == 1) { ?>
-                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package-purchase-admin']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package-purchase-admin']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                         </a>
                                     <?php } else { ?>
-                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package-purchase-admin']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package-purchase-admin']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                         </a>
                                     <?php } ?>
                                 </td>
                                 <td>
                                     <?php if (wpjobportal::$_data[0]['package-purchase-admin']['admin'] == 1) { ?>
-                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package-purchase-admin']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package-purchase-admin']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                         </a>
                                     <?php } else { ?>
-                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package-purchase-admin']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                        <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['package-purchase-admin']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                         </a>
                                     <?php } ?>
                                 </td>
@@ -589,41 +589,41 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                     <?php } ?>
                     <tr>
                         <?php
-                            $lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['jobapply_jobapply']['tempname']);
+                            $wpjobportal_lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['jobapply_jobapply']['tempname']);
                         ?>
                         <td class="wpjobportal-text-left">
-                            <?php echo esc_html($lang); ?>
+                            <?php echo esc_html($wpjobportal_lang); ?>
                         </td>
                         <td>
                             <?php if (wpjobportal::$_data[0]['jobapply_jobapply']['employer'] == 1) { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['jobapply_jobapply']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['jobapply_jobapply']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } else { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['jobapply_jobapply']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['jobapply_jobapply']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } ?>
                         </td>
                         <td>
                             <?php if (wpjobportal::$_data[0]['jobapply_jobapply']['jobseeker'] == 1) { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['jobapply_jobapply']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['jobapply_jobapply']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } else { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['jobapply_jobapply']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['jobapply_jobapply']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } ?>
                         </td>
                         <td>
                             <?php if (wpjobportal::$_data[0]['jobapply_jobapply']['admin'] == 1) { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['jobapply_jobapply']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['jobapply_jobapply']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } else { ?>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['jobapply_jobapply']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>">
-                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('dont send email', 'wp-job-portal')); ?>" />
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['jobapply_jobapply']['tempid'].'&actionfor=3'),'wpjobportal_emailstatus_nonce')); ?>" title="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>">
+                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('dont send email', 'wp-job-portal')); ?>" />
                                 </a>
                             <?php } ?>
                         </td>
@@ -633,17 +633,17 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                 <?php if(in_array('resumeaction', wpjobportal::$_active_addons)){ ?>
                         <tr>
                             <?php
-                                $lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['applied-resume_status']['tempname']);
+                                $wpjobportal_lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['applied-resume_status']['tempname']);
                             ?>
-                            <td class="wpjobportal-text-left"><?php echo esc_html($lang); ?></td>
+                            <td class="wpjobportal-text-left"><?php echo esc_html($wpjobportal_lang); ?></td>
                             <td>-</td>
                             <td>
                                 <?php if (wpjobportal::$_data[0]['applied-resume_status']['jobseeker'] == 1) { ?>
                                     <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['applied-resume_status']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>">
-                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('Send email', 'wp-job-portal')); ?>" /></a>
+                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('Send email', 'wp-job-portal')); ?>" /></a>
                                 <?php } else { ?>
                                     <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['applied-resume_status']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>">
-                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('Dont send email', 'wp-job-portal')); ?>" /></a>
+                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('Dont send email', 'wp-job-portal')); ?>" /></a>
                                 <?php } ?>
                             </td>
                             <td>-</td>
@@ -654,27 +654,27 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                 <?php if(in_array('message', wpjobportal::$_active_addons)){ ?>
                         <tr>
                             <?php
-                                $lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['new_message']['tempname']);
+                                $wpjobportal_lang = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getLanguageForEmail(wpjobportal::$_data[0]['new_message']['tempname']);
                             ?>
-                            <td class="wpjobportal-text-left"><?php echo esc_html($lang); ?></td>
+                            <td class="wpjobportal-text-left"><?php echo esc_html($wpjobportal_lang); ?></td>
 
                             <td>
                                 <?php if (wpjobportal::$_data[0]['new_message']['employer'] == 1) { ?>
                                     <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['new_message']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>">
-                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('Send email', 'wp-job-portal')); ?>" /></a>
+                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('Send email', 'wp-job-portal')); ?>" /></a>
                                 <?php } else { ?>
                                     <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['new_message']['tempid'].'&actionfor=1'),'wpjobportal_emailstatus_nonce')); ?>">
-                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('Dont send email', 'wp-job-portal')); ?>" /></a>
+                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('Dont send email', 'wp-job-portal')); ?>" /></a>
                                 <?php } ?>
                             </td>
 
                             <td>
                                 <?php if (wpjobportal::$_data[0]['new_message']['jobseeker'] == 1) { ?>
                                     <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=noSendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['new_message']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>">
-                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_html(__('Send email', 'wp-job-portal')); ?>" /></a>
+                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-enable.png" border="0" alt="<?php echo esc_attr(__('Send email', 'wp-job-portal')); ?>" /></a>
                                 <?php } else { ?>
                                     <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_emailtemplatestatus&task=sendEmail&action=wpjobportaltask&wpjobportalid='.wpjobportal::$_data[0]['new_message']['tempid'].'&actionfor=2'),'wpjobportal_emailstatus_nonce')); ?>">
-                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_html(__('Dont send email', 'wp-job-portal')); ?>" /></a>
+                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/view-disable.png" border="0" alt="<?php echo esc_attr(__('Dont send email', 'wp-job-portal')); ?>" /></a>
                                 <?php } ?>
                             </td>
 

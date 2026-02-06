@@ -44,7 +44,7 @@ if (!defined('ABSPATH'))
 <?php echo wp_kses(WPJOBPORTALformfield::hidden('form_request', 'wpjobportal'),WPJOBPORTAL_ALLOWED_TAGS); ?>
 <?php echo wp_kses(WPJOBPORTALformfield::hidden('_wpnonce', esc_html(wp_create_nonce('wpjobportal_country_nonce'))),WPJOBPORTAL_ALLOWED_TAGS); ?>
 <div class="wpjobportal-form-button">
-    <a id="form-cancel-button" class="wpjobportal-form-cancel-btn" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_country')); ?>" title="<?php echo esc_html(__('cancel', 'wp-job-portal')); ?>">
+    <a id="form-cancel-button" class="wpjobportal-form-cancel-btn" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_country')); ?>" title="<?php echo esc_attr(__('cancel', 'wp-job-portal')); ?>">
     	<?php echo esc_html(__('Cancel', 'wp-job-portal')); ?>
 	</a>
     <?php echo wp_kses(WPJOBPORTALformfield::submitbutton('save', esc_html(__('Save','wp-job-portal')) .' '. esc_html(__('Country', 'wp-job-portal')), array('class' => 'button wpjobportal-form-save-btn')),WPJOBPORTAL_ALLOWED_TAGS); ?>

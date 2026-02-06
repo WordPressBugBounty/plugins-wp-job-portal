@@ -2,25 +2,25 @@
 <?php
 // custom field date picker was not working without this code
 wp_enqueue_script('jquery-ui-datepicker');
-$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+$wpjobportal_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
 wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jquery-ui-smoothness.css');
-$config = wpjobportal::$_configuration;
-if ($config['date_format'] == 'm/d/Y' || $config['date_format'] == 'd/m/y' || $config['date_format'] == 'm/d/y' || $config['date_format'] == 'd/m/Y') {
-    $dash = '/';
+$wpjobportal_config = wpjobportal::$_configuration;
+if ($wpjobportal_config['date_format'] == 'm/d/Y' || $wpjobportal_config['date_format'] == 'd/m/y' || $wpjobportal_config['date_format'] == 'm/d/y' || $wpjobportal_config['date_format'] == 'd/m/Y') {
+    $wpjobportal_dash = '/';
 } else {
-    $dash = '-';
+    $wpjobportal_dash = '-';
 }
-$dateformat = $config['date_format'];
-$firstdash = wpjobportalphplib::wpJP_strpos($dateformat, $dash, 0);
-$firstvalue = wpjobportalphplib::wpJP_substr($dateformat, 0, $firstdash);
-$firstdash = $firstdash + 1;
-$seconddash = wpjobportalphplib::wpJP_strpos($dateformat, $dash, $firstdash);
-$secondvalue = wpjobportalphplib::wpJP_substr($dateformat, $firstdash, $seconddash - $firstdash);
-$seconddash = $seconddash + 1;
-$thirdvalue = wpjobportalphplib::wpJP_substr($dateformat, $seconddash, wpjobportalphplib::wpJP_strlen($dateformat) - $seconddash);
-$js_dateformat = '%' . $firstvalue . $dash . '%' . $secondvalue . $dash . '%' . $thirdvalue;
-$js_scriptdateformat = $firstvalue . $dash . $secondvalue . $dash . $thirdvalue;
-$js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy', $js_scriptdateformat);
+$wpjobportal_dateformat = $wpjobportal_config['date_format'];
+$wpjobportal_firstdash = wpjobportalphplib::wpJP_strpos($wpjobportal_dateformat, $wpjobportal_dash, 0);
+$wpjobportal_firstvalue = wpjobportalphplib::wpJP_substr($wpjobportal_dateformat, 0, $wpjobportal_firstdash);
+$wpjobportal_firstdash = $wpjobportal_firstdash + 1;
+$wpjobportal_seconddash = wpjobportalphplib::wpJP_strpos($wpjobportal_dateformat, $wpjobportal_dash, $wpjobportal_firstdash);
+$wpjobportal_secondvalue = wpjobportalphplib::wpJP_substr($wpjobportal_dateformat, $wpjobportal_firstdash, $wpjobportal_seconddash - $wpjobportal_firstdash);
+$wpjobportal_seconddash = $wpjobportal_seconddash + 1;
+$wpjobportal_thirdvalue = wpjobportalphplib::wpJP_substr($wpjobportal_dateformat, $wpjobportal_seconddash, wpjobportalphplib::wpJP_strlen($wpjobportal_dateformat) - $wpjobportal_seconddash);
+$wpjobportal_js_dateformat = '%' . $wpjobportal_firstvalue . $wpjobportal_dash . '%' . $wpjobportal_secondvalue . $wpjobportal_dash . '%' . $wpjobportal_thirdvalue;
+$wpjobportal_js_scriptdateformat = $wpjobportal_firstvalue . $wpjobportal_dash . $wpjobportal_secondvalue . $wpjobportal_dash . $wpjobportal_thirdvalue;
+$wpjobportal_js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy', $wpjobportal_js_scriptdateformat);
 ?>
 <style>
 .ui-datepicker{
@@ -31,18 +31,18 @@ $js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy', $js_script
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
         jQuery(document).ready(function ($) {
-            jQuery('.custom_date').datepicker({dateFormat: '". $js_scriptdateformat ."'});
+            jQuery('.custom_date').datepicker({dateFormat: '". $wpjobportal_js_scriptdateformat ."'});
             //Token Input
             ";
-            $multicities = "var multicities = '';";
+            $wpjobportal_multicities = "var multicities = '';";
             if(isset(wpjobportal::$_data['filter']['city'])) 
                 if(!(wpjobportal::$_data['filter']['city'] == "[]")) 
-                    $multicities = "var multicities = ". wpjobportal::$_data['filter']['city'].";";
+                    $wpjobportal_multicities = "var multicities = ". wpjobportal::$_data['filter']['city'].";";
             
-            $inline_js_script .= $multicities;
-            $inline_js_script .= "
+            $wpjobportal_inline_js_script .= $wpjobportal_multicities;
+            $wpjobportal_inline_js_script .= "
             getTokenInput(multicities);
              jQuery('a.sort-icon').click(function (e) {
                 e.preventDefault();
@@ -103,5 +103,5 @@ $js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy', $js_script
             changeSortBy();
         }
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>

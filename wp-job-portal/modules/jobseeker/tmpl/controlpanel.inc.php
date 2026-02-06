@@ -3,7 +3,7 @@
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
         jQuery(document).ready(function() {
             //for notifications
             jQuery('div.notifications').hide();
@@ -42,7 +42,7 @@
             });
         }
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>
 <?php
 wp_enqueue_script( 'jp-google-charts', esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/js/google-charts.js', array(), '1.1.1', false );
@@ -50,7 +50,7 @@ wp_register_script( 'google-charts-handle', '' );
 wp_enqueue_script( 'google-charts-handle' );
     //this code may not in use
 if(!empty(wpjobportal::$_data['stack_chart_horizontal']['data'])){
-    $js_script = "
+    $wpjobportal_js_script = "
         google.load('visualization', '1', {packages:['corechart']});
         google.setOnLoadCallback(drawChart);
         function drawChart() {
@@ -72,114 +72,114 @@ if(!empty(wpjobportal::$_data['stack_chart_horizontal']['data'])){
             chart.draw(data, options);
         }
     ";
-    wp_add_inline_script( 'google-charts', $js_script );
+    wp_add_inline_script( 'google-charts', $wpjobportal_js_script );
 }
 
 ?>
 
  <?php
 
-/*function wpjobportal_jobseekercheckLinks($name) {
+/*function wpjobportal_jobseekercheckLinks($wpjobportal_name) {
 
-    $print = false;
-    switch ($name) {
-        case 'formresume': $visname = 'vis_jsformresume';
+    $wpjobportal_print = false;
+    switch ($wpjobportal_name) {
+        case 'formresume': $wpjobportal_visname = 'vis_jsformresume';
             break;
-        case 'jobcat': $visname = 'vis_wpjobportalcat';
+        case 'jobcat': $wpjobportal_visname = 'vis_wpjobportalcat';
             break;
-        case 'myresumes': $visname = 'vis_jsmyresumes';
+        case 'myresumes': $wpjobportal_visname = 'vis_jsmyresumes';
             break;
-        case 'listnewestjobs': $visname = 'vis_jslistnewestjobs';
+        case 'listnewestjobs': $wpjobportal_visname = 'vis_jslistnewestjobs';
             break;
-        case 'listallcompanies': $visname = 'vis_jslistallcompanies';
+        case 'listallcompanies': $wpjobportal_visname = 'vis_jslistallcompanies';
             break;
-        case 'listjobbytype': $visname = 'vis_jslistjobbytype';
+        case 'listjobbytype': $wpjobportal_visname = 'vis_jslistjobbytype';
             break;
-        case 'myappliedjobs': $visname = 'vis_jsmyappliedjobs';
+        case 'myappliedjobs': $wpjobportal_visname = 'vis_jsmyappliedjobs';
             break;
-        case 'jobsearch': $visname = 'vis_wpjobportalearch';
+        case 'jobsearch': $wpjobportal_visname = 'vis_wpjobportalearch';
             break;
-        case 'my_jobsearches': $visname = 'vis_jsmy_jobsearches';
+        case 'my_jobsearches': $wpjobportal_visname = 'vis_jsmy_jobsearches';
             break;
-       case 'jscredits': $visname = 'vis_jscredits';
+       case 'jscredits': $wpjobportal_visname = 'vis_jscredits';
             break;
-        case 'jscreditlog': $visname = 'vis_jscreditlog';
+        case 'jscreditlog': $wpjobportal_visname = 'vis_jscreditlog';
             break;
-        case 'jspurchasehistory': $visname = 'vis_jspurchasehistory';
+        case 'jspurchasehistory': $wpjobportal_visname = 'vis_jspurchasehistory';
             break;
-        case 'jsratelist': $visname = 'vis_jsratelist';
+        case 'jsratelist': $wpjobportal_visname = 'vis_jsratelist';
             break;
-        case 'jsmy_stats': $visname = 'vis_jsmy_stats';
+        case 'jsmy_stats': $wpjobportal_visname = 'vis_jsmy_stats';
             break;
-        case 'jobalertsetting': $visname = 'vis_wpjobportalalertsetting';
+        case 'jobalertsetting': $wpjobportal_visname = 'vis_wpjobportalalertsetting';
             break;
-        case 'jsmessages': $visname = 'vis_jsmessages';
+        case 'jsmessages': $wpjobportal_visname = 'vis_jsmessages';
             break;
-        case 'wpjobportal_rss': $visname = 'vis_job_rss';
+        case 'wpjobportal_rss': $wpjobportal_visname = 'vis_job_rss';
             break;
-        case 'jsregister': $visname = 'vis_jsregister';
+        case 'jsregister': $wpjobportal_visname = 'vis_jsregister';
             break;
-        case 'jsactivejobs_graph': $visname = 'vis_jsactivejobs_graph';
+        case 'jsactivejobs_graph': $wpjobportal_visname = 'vis_jsactivejobs_graph';
             break;
-        case 'jssuggestedjobs_box': $visname = 'vis_jssuggestedjobs_box';
+        case 'jssuggestedjobs_box': $wpjobportal_visname = 'vis_jssuggestedjobs_box';
             break;
-        case 'jsappliedresume_box': $visname = 'vis_jsappliedresume_box';
+        case 'jsappliedresume_box': $wpjobportal_visname = 'vis_jsappliedresume_box';
             break;
-        case 'listjobshortlist': $visname = 'vis_jslistjobshortlist';
+        case 'listjobshortlist': $wpjobportal_visname = 'vis_jslistjobshortlist';
             break;
-        case 'jsmystats': $visname = 'vis_jsmystats';
+        case 'jsmystats': $wpjobportal_visname = 'vis_jsmystats';
             break;
-        case 'jobsloginlogout': $visname = 'jobsloginlogout';
+        case 'jobsloginlogout': $wpjobportal_visname = 'jobsloginlogout';
             break;
-        case 'temp_jobseeker_dashboard_jobs_graph': $visname = 'vis_temp_jobseeker_dashboard_jobs_graph';
+        case 'temp_jobseeker_dashboard_jobs_graph': $wpjobportal_visname = 'vis_temp_jobseeker_dashboard_jobs_graph';
             break;
-        case 'temp_jobseeker_dashboard_useful_links': $visname = 'vis_temp_jobseeker_dashboard_useful_links';
+        case 'temp_jobseeker_dashboard_useful_links': $wpjobportal_visname = 'vis_temp_jobseeker_dashboard_useful_links';
             break;
-        case 'temp_jobseeker_dashboard_apllied_jobs': $visname = 'vis_temp_jobseeker_dashboard_apllied_jobs';
+        case 'temp_jobseeker_dashboard_apllied_jobs': $wpjobportal_visname = 'vis_temp_jobseeker_dashboard_apllied_jobs';
             break;
-        case 'temp_jobseeker_dashboard_shortlisted_jobs': $visname = 'vis_temp_jobseeker_dashboard_shortlisted_jobs';
+        case 'temp_jobseeker_dashboard_shortlisted_jobs': $wpjobportal_visname = 'vis_temp_jobseeker_dashboard_shortlisted_jobs';
             break;
-        case 'temp_jobseeker_dashboard_credits_log': $visname = 'vis_temp_jobseeker_dashboard_credits_log';
+        case 'temp_jobseeker_dashboard_credits_log': $wpjobportal_visname = 'vis_temp_jobseeker_dashboard_credits_log';
             break;
-        case 'temp_jobseeker_dashboard_purchase_history': $visname = 'vis_temp_jobseeker_dashboard_purchase_history';
+        case 'temp_jobseeker_dashboard_purchase_history': $wpjobportal_visname = 'vis_temp_jobseeker_dashboard_purchase_history';
             break;
-        case 'temp_jobseeker_dashboard_newest_jobs': $visname = 'vis_temp_jobseeker_dashboard_newest_jobs';
+        case 'temp_jobseeker_dashboard_newest_jobs': $wpjobportal_visname = 'vis_temp_jobseeker_dashboard_newest_jobs';
             break;
-        case 'jobsbycities': $visname = 'vis_jobsbycities';
+        case 'jobsbycities': $wpjobportal_visname = 'vis_jobsbycities';
             break;
 
-        default:$visname = 'vis_js' . $name;
+        default:$wpjobportal_visname = 'vis_js' . $wpjobportal_name;
             break;
     }
-    $isouruser = WPJOBPORTALincluder::getObjectClass('user')->isisWPJobportalUser();
-    $isguest = WPJOBPORTALincluder::getObjectClass('user')->isguest();
+    $wpjobportal_isouruser = WPJOBPORTALincluder::getObjectClass('user')->isisWPJobportalUser();
+    $wpjobportal_isguest = WPJOBPORTALincluder::getObjectClass('user')->isguest();
 
     $guest = false;
 
-    if($isguest == true){
+    if($wpjobportal_isguest == true){
         $guest = true;
     }
-    if($isguest == false && $isouruser == false){
+    if($wpjobportal_isguest == false && $wpjobportal_isouruser == false){
         $guest = true;
     }
 
-    $config_array = wpjobportal::$_data['configs'];
+    $wpjobportal_config_array = wpjobportal::$_data['configs'];
     if ($guest == false) {
         if (WPJOBPORTALincluder::getObjectClass('user')->isjobseeker()) {
-            if (isset($config_array[$name]) && $config_array[$name] == 1)
-               $print = true;
+            if (isset($wpjobportal_config_array[$wpjobportal_name]) && $wpjobportal_config_array[$wpjobportal_name] == 1)
+               $wpjobportal_print = true;
         }elseif (WPJOBPORTALincluder::getObjectClass('user')->isemployer()) {
-            if ($config_array['employerview_js_controlpanel'] == 1)
-                if (isset($config_array["$visname"]) && $config_array["$visname"] == 1) {
-                    $print = true;
+            if ($wpjobportal_config_array['employerview_js_controlpanel'] == 1)
+                if (isset($wpjobportal_config_array["$wpjobportal_visname"]) && $wpjobportal_config_array["$wpjobportal_visname"] == 1) {
+                    $wpjobportal_print = true;
                 }
         }
     } else {
-        if (isset($config_array["$visname"]) && $config_array["$visname"] == 1)
-            $print = true;
+        if (isset($wpjobportal_config_array["$wpjobportal_visname"]) && $wpjobportal_config_array["$wpjobportal_visname"] == 1)
+            $wpjobportal_print = true;
         }
 
-    return $print;
+    return $wpjobportal_print;
 }*/
 
 ?>

@@ -1,0 +1,26 @@
+:root {
+        --wpjp-primary-color: #3baeda;
+        --wpjp-secondary-color: #333333;
+        --wpjp-body-font-color: #575757;
+        --wpjp-border-color: #e9ecef; /* Light Gray Border */
+        --wpjp-background-color: #f6f6f6; /* Off-white background */
+        --wpjp-card-background: #ffffff;
+        --wpjp-highlight-color: #FFC300; /* Gold Accent (repurposed from old design) */
+        --wpjp-success-color: #28a745;
+        --wpjp-warning-color: #17a2b8;
+        --wpjp-danger-color: #dc3545;
+
+        /* Font Variables (Desktop Default) */
+        --wpjp-main-heading: 32px; /* 35px approx */
+        --wpjp-second-sub-heading: 27px; /* 25px approx */
+        --wpjp-sub-heading: 22px; /* 19px approx */
+        --wpjp-body-font-size: 17px; /* 16px default */
+
+        /* Other Variables */
+        --wpjp-card-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        --wpjp-card-hover-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        --wpjp-focus-shadow-color: 0 0 0 3px rgba(98, 36, 198, 0.25);
+        --wpjp-error-color: #e53e3e;
+        --wpjp-error-focus-shadow: 0 0 0 3px rgba(229, 62, 62, 0.25);
+    }
+    

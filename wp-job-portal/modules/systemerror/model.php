@@ -6,17 +6,17 @@ if (!defined('ABSPATH'))
 class WPJOBPORTALsystemerrorModel {
 
     function getSystemErrors() {
-        $inquery = '';
+        $wpjobportal_inquery = '';
         // Pagination
         $query = "SELECT COUNT(`id`) FROM `" . wpjobportal::$_db->prefix . "wj_portal_system_errors`";
-        $query .= $inquery;
-        $total = wpjobportal::$_db->get_var($query);
-        wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($total);
+        $query .= $wpjobportal_inquery;
+        $wpjobportal_total = wpjobportal::$_db->get_var($query);
+        wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($wpjobportal_total);
 
         // Data
         $query = " SELECT systemerror.*
 					FROM `" . wpjobportal::$_db->prefix . "wj_portal_system_errors` AS systemerror ";
-        $query .= $inquery;
+        $query .= $wpjobportal_inquery;
         $query .= " ORDER BY systemerror.created DESC LIMIT " . WPJOBPORTALpagination::$_offset . ", " . WPJOBPORTALpagination::$_limit;
         wpjobportal::$_data[0] = wpjobportal::$_db->get_results($query);
         if (wpjobportal::$_db->last_error != null) {
@@ -33,17 +33,17 @@ class WPJOBPORTALsystemerrorModel {
             'created' => gmdate("Y-m-d H:i:s")
         );
 
-        $row = WPJOBPORTALincluder::getJSTable('systemerror');
-        if (!$row->bind($query_array)) {
+        $wpjobportal_row = WPJOBPORTALincluder::getJSTable('systemerror');
+        if (!$wpjobportal_row->bind($query_array)) {
             
-        } elseif (!$row->store()) {
+        } elseif (!$wpjobportal_row->store()) {
             
         }
 
         return;
     }
     function getMessagekey(){
-        $key = 'systemerror';if(wpjobportal::$_common->wpjp_isadmin()){$key = 'admin_'.$key;}return $key;
+        $wpjobportal_key = 'systemerror';if(wpjobportal::$_common->wpjp_isadmin()){$wpjobportal_key = 'admin_'.$wpjobportal_key;}return $wpjobportal_key;
     }
 
 

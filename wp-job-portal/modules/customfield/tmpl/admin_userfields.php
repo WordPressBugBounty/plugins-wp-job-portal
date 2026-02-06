@@ -10,8 +10,8 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
     <div id="wpjobportaladmin-data">
     <?php
 
-    $msgkey = WPJOBPORTALincluder::getJSModel('customfield')->getMessagekey();
-    WPJOBPORTALMessages::getLayoutMessage($msgkey);
+    $wpjobportal_msgkey = WPJOBPORTALincluder::getJSModel('customfield')->getMessagekey();
+    WPJOBPORTALMessages::getLayoutMessage($wpjobportal_msgkey);
 
     ?>
     <span class="js-admin-title">
@@ -20,13 +20,13 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
         <a class="js-button-link button" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_fieldordering&wpjobportallt=formuserfield')); ?>"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add_icon.png" /><?php echo esc_html(__('Add User Field', 'wp-job-portal')) ?></a>
     </span>
     <div class="page-actions js-row no-margin">
-        <a class="js-bulk-link button multioperation" message="<?php echo esc_attr(WPJOBPORTALMessages::getMSelectionEMessage()); ?>" data-for="remove" confirmmessage="<?php echo esc_html(__('Are you sure to delete', 'wp-job-portal')) .' ?'; ?>"  href="#"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/delete-icon.png" /><?php echo esc_html(__('Delete', 'wp-job-portal')) ?></a>
+        <a class="js-bulk-link button multioperation" message="<?php echo esc_attr(WPJOBPORTALMessages::getMSelectionEMessage()); ?>" data-for="remove" confirmmessage="<?php echo esc_attr(__('Are you sure to delete', 'wp-job-portal')) .' ?'; ?>"  href="#"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/delete-icon.png" /><?php echo esc_html(__('Delete', 'wp-job-portal')) ?></a>
     </div>
     <?php
         wp_register_script( 'wpjobportal-inline-handle', '' );
         wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-        $inline_js_script = "
+        $wpjobportal_inline_js_script = "
             function resetFrom() {
                 jQuery('input#title').val('');
                 jQuery('select#type').val('');
@@ -34,9 +34,9 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                 jQuery('form#wpjobportalform').submit();
             }
         ";
-        wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+        wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
     ?>
-    <form class="js-filter-form" name="wpjobportalform" id="wpjobportalform" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_customfield&ff=" . wpjobportal::$_data['fieldfor'])); ?>">
+    <form class="js-filter-form" name="wpjobportalform" id="wpjobportalform" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_customfield&ff=" . wpjobportal::$wpjobportal_data['fieldfor'])); ?>">
         <?php echo wp_kses(WPJOBPORTALformfield::text('title', wpjobportal::$_data['filter']['title'], array('class' => 'inputbox', 'placeholder' => esc_html(__('Title', 'wp-job-portal')))),WPJOBPORTAL_ALLOWED_TAGS); ?>
         <?php echo wp_kses(WPJOBPORTALformfield::select('type', WPJOBPORTALincluder::getJSModel('common')->getFeilds(), is_numeric(wpjobportal::$_data['filter']['type']) ? wpjobportal::$_data['filter']['type'] : '', esc_html(__('Select','wp-job-portal')) .' '. esc_html(__('Field Type', 'wp-job-portal')), array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
         <?php echo wp_kses(WPJOBPORTALformfield::select('required', WPJOBPORTALincluder::getJSModel('common')->getYesNo(), is_numeric(wpjobportal::$_data['filter']['required']) ? wpjobportal::$_data['filter']['required'] : '', esc_html(__('Required', 'wp-job-portal')), array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
@@ -64,30 +64,30 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                 </thead>
                 <tbody>
                     <?php
-                    $k = 0;
-                    for ($i = 0, $n = count(wpjobportal::$_data[0]); $i < $n; $i++) {
-                        $row = wpjobportal::$_data[0][$i];
-                        $required = ($row->required == 1) ? 'yes' : 'no';
-                        $requiredalt = ($row->required == 1) ? esc_html(__('Required', 'wp-job-portal')) : esc_html(__('Not Required', 'wp-job-portal'));
-                        $readonly = ($row->readonly == 1) ? 'yes' : 'no';
-                        $readonlyalt = ($row->readonly == 1) ? esc_html(__('Required', 'wp-job-portal')) : esc_html(__('Not Required', 'wp-job-portal'));
+                    $wpjobportal_k = 0;
+                    for ($wpjobportal_i = 0, $wpjobportal_n = count(wpjobportal::$_data[0]); $wpjobportal_i < $wpjobportal_n; $wpjobportal_i++) {
+                        $wpjobportal_row = wpjobportal::$_data[0][$wpjobportal_i];
+                        $wpjobportal_required = ($wpjobportal_row->required == 1) ? 'yes' : 'no';
+                        $wpjobportal_requiredalt = ($wpjobportal_row->required == 1) ? esc_html(__('Required', 'wp-job-portal')) : esc_html(__('Not Required', 'wp-job-portal'));
+                        $wpjobportal_readonly = ($wpjobportal_row->readonly == 1) ? 'yes' : 'no';
+                        $wpjobportal_readonlyalt = ($wpjobportal_row->readonly == 1) ? esc_html(__('Required', 'wp-job-portal')) : esc_html(__('Not Required', 'wp-job-portal'));
                         ?>
                         <tr valign="top">
                             <td class="grid-rows">
-                                <input type="checkbox" class="wpjobportal-cb" id="wpjobportal-cb" name="wpjobportal-cb[]" value="<?php echo esc_attr($row->id); ?>" />
+                                <input type="checkbox" class="wpjobportal-cb" id="wpjobportal-cb" name="wpjobportal-cb[]" value="<?php echo esc_attr($wpjobportal_row->id); ?>" />
                             </td>
-                            <td class="left-row"><a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_customfield&wpjobportallt=formuserfield&wpjobportalid='.$row->id)); ?>" title="<?php echo esc_html(__('user','wp-job-portal')); ?>"><?php echo esc_html($row->name); ?></a></td>
-                            <td><?php echo esc_html($row->title); ?></td>
-                            <td><?php echo esc_html($row->type); ?></td>
-                            <td><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/<?php echo esc_attr($required); ?>.png" alt="<?php echo esc_attr($requiredalt); ?>" title="<?php echo esc_attr($requiredalt); ?>" /></td>
-                            <td><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/<?php echo esc_attr($readonly); ?>.png" alt="<?php echo esc_attr($readonlyalt); ?>" title="<?php echo esc_attr($readonlyalt); ?>" /></td>
+                            <td class="left-row"><a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_customfield&wpjobportallt=formuserfield&wpjobportalid='.$wpjobportal_row->id)); ?>" title="<?php echo esc_attr(__('user','wp-job-portal')); ?>"><?php echo esc_html($wpjobportal_row->name); ?></a></td>
+                            <td><?php echo esc_html($wpjobportal_row->title); ?></td>
+                            <td><?php echo esc_html($wpjobportal_row->type); ?></td>
+                            <td><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/<?php echo esc_attr($wpjobportal_required); ?>.png" alt="<?php echo esc_attr($wpjobportal_requiredalt); ?>" title="<?php echo esc_attr($wpjobportal_requiredalt); ?>" /></td>
+                            <td><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/<?php echo esc_attr($wpjobportal_readonly); ?>.png" alt="<?php echo esc_attr($wpjobportal_readonlyalt); ?>" title="<?php echo esc_attr($wpjobportal_readonlyalt); ?>" /></td>
                             <td class="action">
-                                <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_customfield&wpjobportallt=formuserfield&wpjobportalid='.$row->id)); ?>" title="<?php echo esc_html(__('Edit', 'wp-job-portal')); ?>"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/edit.png" alt="<?php echo esc_html(__('Edit', 'wp-job-portal')); ?>" title="<?php echo esc_html(__('Edit', 'wp-job-portal')); ?>"></a>
-                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_customfield&task=remove&action=wpjobportaltask&wpjobportal-cb[]='.$row->id),'wpjobportal_field_nonce')); ?>" onclick='return confirmdelete("<?php echo esc_html(__('Are you sure to delete', 'wp-job-portal')).' ?'; ?>");' title="<?php echo esc_html(__('Delete', 'wp-job-portal')); ?>"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/remove.png" alt="<?php echo esc_html(__('Delete', 'wp-job-portal')); ?>" title="<?php echo esc_html(__('Delete', 'wp-job-portal')); ?>"></a>
+                                <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_customfield&wpjobportallt=formuserfield&wpjobportalid='.$wpjobportal_row->id)); ?>" title="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/edit.png" alt="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>" title="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>"></a>
+                                <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_customfield&task=remove&action=wpjobportaltask&wpjobportal-cb[]='.$wpjobportal_row->id),'wpjobportal_field_nonce')); ?>" onclick='return confirmdelete("<?php echo esc_js(__('Are you sure to delete', 'wp-job-portal')).' ?'; ?>");' title="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/remove.png" alt="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>" title="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>"></a>
                             </td>
                         </tr>
                         <?php
-                        $k = 1 - $k;
+                        $wpjobportal_k = 1 - $wpjobportal_k;
                     }
                     ?>
                 </tbody>

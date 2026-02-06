@@ -3,8 +3,8 @@ Contributors: wpjobportal
 Donate link: https://wpjobportal.com/pricing/
 Tags: job board, job listing, careers, job manager, jobs, recruiting
 Requires at least: 5.5 
-Tested up to: 6.8.2
-Stable tag: 2.3.7
+Tested up to: 6.9
+Stable tag: 2.4.6
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -259,6 +259,42 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 
 == Changelog ==
+
+= 2.4.6 =
+* Companies Widget Redesigned
+* Jobs Widget Redesigned
+* Resumes Widget Redesigned
+
+= 2.4.5 =
+* Bug fixes
+
+= 2.4.4 =
+* Color Preview Interface Implemented
+* Bug fixes
+
+= 2.4.3 =
+* Bug fixes
+
+= 2.4.2 =
+* Security fixes
+
+= 2.4.1 =
+* Security fixes
+* Wordpress widgets design updated
+* Elementor widgets design updated
+
+= 2.4.0 =
+* Default Theme design issues fixed
+
+= 2.3.9 =
+* Complete redesign with a more modern, cleaner, and intuitive interface.
+* Improved company contact detail viewing functionality.
+* Improved resume contact detail viewing functionality.
+* Added the ability to display descriptions on job and company listings.
+
+= 2.3.8 =
+* Redesigned the Configuration Interface with a Modern and Enhanced Layout
+* Added a “Back to Listing” button that preserves search criteria in the admin area
 
 = 2.3.7 =
 * Redesigned admin dashboard for a cleaner, more intuitive experience

@@ -3,42 +3,42 @@ if (!defined('ABSPATH'))
     die('Restricted Access');
 
 wp_enqueue_style('wpjobportal-ratingstyle', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportalrating.css');
-$protocol = wpjobportal::$_common->getServerProtocol();
-$default_longitude = wpjobportal::$_configuration['default_longitude'];
-$default_latitude = wpjobportal::$_configuration['default_latitude'];
-$mapfield = null;
-$mapfield2 = null;
+$wpjobportal_protocol = wpjobportal::$_common->getServerProtocol();
+$wpjobportal_default_longitude = wpjobportal::$_configuration['default_longitude'];
+$wpjobportal_default_latitude = wpjobportal::$_configuration['default_latitude'];
+$wpjobportal_mapfield = null;
+$wpjobportal_mapfield2 = null;
 
 if(isset(wpjobportal::$_data[2]))
-foreach(wpjobportal::$_data[2] AS $key => $value){
-    $value = (array) $value;
-    if(in_array('map', $value)){
-        $mapfield = $key;
+foreach(wpjobportal::$_data[2] AS $wpjobportal_key => $wpjobportal_value){
+    $wpjobportal_value = (array) $wpjobportal_value;
+    if(in_array('map', $wpjobportal_value)){
+        $wpjobportal_mapfield = $wpjobportal_key;
         break;
     }
 }
 
-if(isset(wpjobportal::$_data['fields']))
-foreach(wpjobportal::$_data['fields'] AS $key => $value){
-    $value = (array) $value;
-    if(in_array('map', $value)){
-        $mapfield2 = $key;
+if(isset(wpjobportal::$wpjobportal_data['fields']))
+foreach(wpjobportal::$wpjobportal_data['fields'] AS $wpjobportal_key => $wpjobportal_value){
+    $wpjobportal_value = (array) $wpjobportal_value;
+    if(in_array('map', $wpjobportal_value)){
+        $wpjobportal_mapfield2 = $wpjobportal_key;
         break;
     }
 }
-$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-if(isset(wpjobportal::$_data[2][$mapfield]) && wpjobportal::$_data[2][$mapfield]->published == 1){
-   wp_enqueue_script( 'mapAPI',$protocol.'maps.googleapis.com/maps/api/js?key='.wpjobportal::$_configuration['google_map_api_key']);
-}elseif($mapfield2 != null) {
-   wp_enqueue_script( 'mapAPI',$protocol.'maps.googleapis.com/maps/api/js?key='.wpjobportal::$_configuration['google_map_api_key']);
+$wpjobportal_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+if(isset(wpjobportal::$_data[2][$wpjobportal_mapfield]) && wpjobportal::$_data[2][$wpjobportal_mapfield]->published == 1){
+   wp_enqueue_script( 'mapAPI',$wpjobportal_protocol.'maps.googleapis.com/maps/api/js?key='.wpjobportal::$_configuration['google_map_api_key']);
+}elseif($wpjobportal_mapfield2 != null) {
+   wp_enqueue_script( 'mapAPI',$wpjobportal_protocol.'maps.googleapis.com/maps/api/js?key='.wpjobportal::$_configuration['google_map_api_key']);
 }
-   wp_enqueue_script( 'mapAPI',$protocol.'maps.googleapis.com/maps/api/js?key='.wpjobportal::$_configuration['google_map_api_key']);
+   wp_enqueue_script( 'mapAPI',$wpjobportal_protocol.'maps.googleapis.com/maps/api/js?key='.wpjobportal::$_configuration['google_map_api_key']);
 ?>
 <?php
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
         var ajaxurl = \"". esc_url_raw(admin_url('admin-ajax.php'))."\";
         jQuery(document).ready(function ($) {
             $('div#wpjobportal-popup-background,img#popup_cross').click(function () {
@@ -112,8 +112,8 @@ if(isset(wpjobportal::$_data[2][$mapfield]) && wpjobportal::$_data[2][$mapfield]
 
 
         // function loadMap() {
-        //     var default_latitude = '".$default_latitude."';
-        //     var default_longitude = '".$default_longitude."';
+        //     var default_latitude = '".$wpjobportal_default_latitude."';
+        //     var default_longitude = '".$wpjobportal_default_longitude."';
 
         //     var latitude = document.getElementById('latitude').value;
         //     var longitude = document.getElementById('longitude').value;
@@ -183,7 +183,7 @@ if(isset(wpjobportal::$_data[2][$mapfield]) && wpjobportal::$_data[2][$mapfield]
             jQuery('#jsre_featured_button').removeAttr('disabled');
         }
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>
 <style>
     div#wpjobportal-hide{display: none;width: 100%;}
@@ -194,7 +194,7 @@ if(isset(wpjobportal::$_data[2][$mapfield]) && wpjobportal::$_data[2][$mapfield]
     }
 </style>
 <?php
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
         jQuery(document).ready(function ($) {
             jQuery('.wpjobportal-multiselect').chosen({
                 placeholder_text_multiple: \"". esc_html(__('Select some options', 'wp-job-portal'))."\"
@@ -202,13 +202,13 @@ if(isset(wpjobportal::$_data[2][$mapfield]) && wpjobportal::$_data[2][$mapfield]
 
             //Token Input
             ";
-            $multicities = "var multicities = '';";
+            $wpjobportal_multicities = "var multicities = '';";
             if(isset(wpjobportal::$_data['filter']['city'])) 
                 if(!(wpjobportal::$_data['filter']['city'] == "[]")) 
-                    $multicities = "var multicities = ". wpjobportal::$_data['filter']['city'].";";
+                    $wpjobportal_multicities = "var multicities = ". wpjobportal::$_data['filter']['city'].";";
             
-            $inline_js_script .= $multicities;
-            $inline_js_script .= "
+            $wpjobportal_inline_js_script .= $wpjobportal_multicities;
+            $wpjobportal_inline_js_script .= "
             getTokenInput(multicities);
 
             //Validation
@@ -238,9 +238,9 @@ if(isset(wpjobportal::$_data[2][$mapfield]) && wpjobportal::$_data[2][$mapfield]
                 noResultsText: \"". esc_html(__('No Results', 'wp-job-portal'))."\",
                 searchingText: \"". esc_html(__('Searching', 'wp-job-portal'))."...\"
             });
-            jQuery('#wpjobportal-input-city').attr('placeholder', \"". esc_html(__('Type city:', 'wp-job-portal'))."\");
+            jQuery('#wpjobportal-input-city').attr('placeholder', \"". esc_html(__('City name', 'wp-job-portal'))."\");
         }
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>
 

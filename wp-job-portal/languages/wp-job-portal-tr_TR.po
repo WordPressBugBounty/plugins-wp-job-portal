@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Delete"
 msgstr "Sil"
@@ -10273,3 +10273,2472 @@ msgstr "Kalan Serch'in hiçbir kurtarma yok"
 
 msgid "We would love to hear from You."
 msgstr "Sizden haber almak isteriz."
+
+msgid "Welcome back!"
+msgstr "Tekrar hoşgeldiniz!"
+
+msgid "Here's a snapshot of your job board's performance."
+msgstr "İşte iş kurulunuzun performansının bir anlık görüntüsü."
+
+msgid "Customize Your Dashboard"
+msgstr "Gösterge Tablonuzu Özelleştirin"
+
+msgid "Core Components"
+msgstr "Çekirdek bileşenler"
+
+msgid "Quick Actions"
+msgstr "Hızlı eylemler"
+
+msgid "Recent Jobs"
+msgstr "Son İşler"
+
+msgid "Quick Stats"
+msgstr "Hızlı İstatistikler"
+
+msgid "Visualizations"
+msgstr "Görselleştirme"
+
+msgid "Platform Growth"
+msgstr "Platform büyümesi"
+
+msgid "Jobs by Status"
+msgstr "Statüye göre işler"
+
+msgid "Top Categories"
+msgstr "En iyi kategoriler"
+
+msgid "Activity & System Feeds"
+msgstr "Etkinlik ve Sistem Beslemeleri"
+
+msgid "Latest Applies"
+msgstr "En son uygulanır"
+
+msgid "User & Financials"
+msgstr "Kullanıcı ve Finansal"
+
+msgid "Job Seekers"
+msgstr "İş arayanlar"
+
+msgid "Payments"
+msgstr "Ödemeler"
+
+msgid "Reset to Defaults"
+msgstr "Varsayılanlara sıfırlayın"
+
+msgid "Apply Changes"
+msgstr "Değişiklikler uygulamak"
+
+msgid "Approve Jobs"
+msgstr "İşleri onayla"
+
+msgid "Manage Users"
+msgstr "Kullanıcıları Yönetin"
+
+msgid "View Reports"
+msgstr "Raporları Görüntüle"
+
+msgid "Analytics"
+msgstr "Analitik"
+
+msgid "Manage Plans"
+msgstr "Planları Yönetin"
+
+msgid "Platform Config"
+msgstr "Platform yapılandırması"
+
+msgid "Applications"
+msgstr "Başvuru"
+
+msgid "Pending Jobs"
+msgstr "Bekleyen İşler"
+
+msgid "New Applicants"
+msgstr "Yeni Başvuru Sahipleri"
+
+msgid "Active Subscriptions"
+msgstr "Aktif Abonelikler"
+
+msgid "Total Users"
+msgstr "Toplam kullanıcılar"
+
+msgid "Closed Jobs"
+msgstr "Kapalı işler"
+
+msgid "Monthly Revenue"
+msgstr "Aylık gelir"
+
+msgid "Recent Job Postings"
+msgstr "Son iş ilanları"
+
+msgid "Date Posted"
+msgstr "Gönderilen tarih"
+
+msgid "Actions"
+msgstr "Eylem"
+
+msgid "No recent job postings found."
+msgstr "Son iş ilanı bulunamadı."
+
+msgid "Top Job Categories"
+msgstr "En iyi iş kategorileri"
+
+msgid "Latest Job Applies"
+msgstr "Son iş geçerlidir"
+
+msgid "applied for"
+msgstr "başvurdu"
+
+msgid "at"
+msgstr "-den"
+
+msgid "View App"
+msgstr "Uygulamayı Görüntüle"
+
+msgid "No recent job applications to display."
+msgstr "Görüntülenecek yeni iş başvurusu yok."
+
+msgid "No new resumes have been added recently."
+msgstr "Son zamanlarda yeni özgeçmiş eklenmedi."
+
+msgid "Latest Package Subscriptions"
+msgstr "En son paket abonelikleri"
+
+msgid "subscribed to"
+msgstr "abone oldu"
+
+msgid "No new subscriptions found."
+msgstr "Yeni abonelik bulunamadı."
+
+msgid "Latest Payments"
+msgstr "Son Ödemeler"
+
+msgid "No recent payments to display."
+msgstr "Görüntülenecek son ödeme yok."
+
+msgid "Latest Activity"
+msgstr "En son etkinlik"
+
+msgid "Hooray! No system errors to report."
+msgstr "Yaşasın! Raporlanacak sistem hatası yok."
+
+msgid "Latest Job Seekers"
+msgstr "Son iş arayanlar"
+
+msgid "Joined"
+msgstr "Katıldı"
+
+msgid "No new job seekers have registered."
+msgstr "Hiçbir yeni iş arayan kayıt yapmadı."
+
+msgid "Latest Employers"
+msgstr "Son işverenler"
+
+msgid "No new employers have registered."
+msgstr "Yeni işveren kayıt yapmadı."
+
+msgid "Not allowed"
+msgstr "İzin verilmiyor"
+
+msgid "Allowed to all"
+msgstr "Herkese izin verildi"
+
+msgid "employers, job seekers and visitors"
+msgstr "işverenler, iş arayanlar ve ziyaretçiler"
+
+msgid "Allowed only to employers"
+msgstr "Yalnızca işverenlere izin verilir"
+
+msgid "City, State, Country"
+msgstr "Şehir, Eyalet, Ülke"
+
+msgid "City, State"
+msgstr "Şehir devleti"
+
+msgid "City, Country"
+msgstr "Şehir, Ülke"
+
+msgid "Minutes"
+msgstr "dakika"
+
+msgid "Hour"
+msgstr "Saat"
+
+msgid "Hours"
+msgstr "Saat"
+
+msgid "Week"
+msgstr "Hafta"
+
+msgid "System & Site"
+msgstr "Sistem ve Site"
+
+msgid "Site & System"
+msgstr "Site ve Sistem"
+
+msgid "Core details about your job portal, its status, and default behaviors"
+msgstr "İş portalınız, durumu ve varsayılan davranışlarıyla ilgili temel ayrıntılar"
+
+msgid "Site Title"
+msgstr "Site Başlığı"
+
+msgid "The main title for your job portal"
+msgstr "İş portalınızın ana başlığı"
+
+msgid "Site Offline"
+msgstr "Site Çevrimdışı"
+
+msgid "Take the site offline for maintenance"
+msgstr "Bakım için siteyi çevrimdışına alın"
+
+msgid "The message shown to visitors when the site is offline"
+msgstr "Site çevrimdışı olduğunda ziyaretçilere gösterilen mesaj"
+
+msgid "Default Page"
+msgstr "Varsayılan Sayfa"
+
+msgid "Select the main WordPress page for the job portal"
+msgstr "İş portalı için ana WordPress sayfasını seçin"
+
+msgid "Email links and support icons may not work if this is not set"
+msgstr "Bu ayarlanmadığı takdirde e-posta bağlantıları ve destek simgeleri çalışmayabilir"
+
+msgid "Date Format"
+msgstr "Tarih Formatı"
+
+msgid "Set the date format used throughout the plugin"
+msgstr "Eklenti genelinde kullanılan tarih formatını ayarlayın"
+
+msgid "Default Address Display Style"
+msgstr "Varsayılan Adres Görüntüleme Stili"
+
+msgid "Select the default format for displaying addresses"
+msgstr "Adresleri görüntülemek için varsayılan formatı seçin"
+
+msgid "Registration & Login"
+msgstr "Kayıt & Giriş"
+
+msgid "Control user registration flows and login/logout redirects"
+msgstr "Kullanıcı kayıt akışlarını ve giriş/çıkış yönlendirmelerini kontrol edin"
+
+msgid "Set Register Link"
+msgstr "Kayıt Bağlantısını Ayarla"
+
+msgid "Set the main registration page for the site"
+msgstr "Sitenin ana kayıt sayfasını ayarlayın"
+
+msgid "Custom Register Redirect Link"
+msgstr "Özel Kayıt Yönlendirme Bağlantısı"
+
+msgid "Enter the custom URL for registration if"
+msgstr "Aşağıdaki durumlarda kayıt için özel URL'yi girin:"
+
+msgid "is selected above"
+msgstr "yukarıda seçilmiştir"
+
+msgid "Set the main login page for the site"
+msgstr "Sitenin ana giriş sayfasını ayarlayın"
+
+msgid "Custom Login Redirect Link"
+msgstr "Özel Giriş Yönlendirme Bağlantısı"
+
+msgid "Enter the custom URL for login if"
+msgstr "Aşağıdaki durumlarda oturum açmak için özel URL'yi girin:"
+
+msgid "Redirect Link For Non-Portal WP User"
+msgstr "Portal Dışı WP Kullanıcısı İçin Yönlendirme Bağlantısı"
+
+msgid "Redirect WordPress users who do not have a role in WP Job Portal to this link after login"
+msgstr "WP Job Portal'da rolü olmayan WordPress kullanıcılarını giriş yaptıktan sonra bu bağlantıya yönlendirin"
+
+msgid "Terms & Conditions"
+msgstr "Şartlar ve Koşullar"
+
+msgid "Assign specific Terms & Conditions pages for different submission types"
+msgstr "Farklı gönderim türleri için belirli Şartlar ve Koşullar sayfaları atayın"
+
+msgid "Company Terms Page"
+msgstr "Şirket Şartları Sayfası"
+
+msgid "Select the"
+msgstr "Şunu seçin:"
+
+msgid "page for company submissions"
+msgstr "şirket başvuruları için sayfa"
+
+msgid "Job Terms Page"
+msgstr "İş Koşulları Sayfası"
+
+msgid "page for job submissions"
+msgstr "iş başvuruları için sayfa"
+
+msgid "Resume Terms Page"
+msgstr "Şartlar Sayfasına Devam Et"
+
+msgid "page for resume submissions"
+msgstr "özgeçmiş gönderimleri için sayfa"
+
+msgid "Content & Display"
+msgstr "İçerik ve Görüntüleme"
+
+msgid "Taxonomy & Categories"
+msgstr "Taksonomi ve Kategoriler"
+
+msgid "Manage how content like categories and tags are handled"
+msgstr "Kategoriler ve etiketler gibi içeriklerin nasıl işlendiğini yönetin"
+
+msgid "Even if Empty"
+msgstr "Boş Olsa Bile"
+
+msgid "If no is selected then only categories that have jobs or resumes will be shown"
+msgstr "Hayır seçilirse yalnızca işleri veya özgeçmişleri olan kategoriler gösterilecektir"
+
+msgid "Categories Per Row"
+msgstr "Satır Başına Kategoriler"
+
+msgid "Number of categories to display per row on category listing pages"
+msgstr "Kategori listeleme sayfalarında satır başına görüntülenecek kategori sayısı"
+
+msgid "Sub-categories Limit"
+msgstr "Alt Kategori Limiti"
+
+msgid "How many sub-categories to show in the popup on category pages"
+msgstr "Kategori sayfalarındaki açılır pencerede kaç alt kategori gösterilecek"
+
+msgid "User Can Add New Tags"
+msgstr "Kullanıcı Yeni Etiketler Ekleyebilir"
+
+msgid "Allow users to create new tags in the system when posting"
+msgstr "Kullanıcıların paylaşım yaparken sistemde yeni etiketler oluşturmasına izin ver"
+
+msgid "Default Pagination Size"
+msgstr "Varsayılan Sayfalandırma Boyutu"
+
+msgid "Maximum number of records to show per page"
+msgstr "Sayfa başına gösterilecek maksimum kayıt sayısı"
+
+msgid "Show Breadcrumbs"
+msgstr "İçerik Kırıntılarını Göster"
+
+msgid "Show WP Job Portal Page Title"
+msgstr "WP İş Portalı Sayfa Başlığını Göster"
+
+msgid "File Uploads & Defaults"
+msgstr "Dosya Yüklemeleri ve Varsayılanları"
+
+msgid "Manage file uploads and default placeholder images"
+msgstr "Dosya yüklemelerini ve varsayılan yer tutucu görsellerini yönetin"
+
+msgid "Data Directory"
+msgstr "Veri Dizini"
+
+msgid "System will upload all user files into this folder within the WordPress uploads directory"
+msgstr "Sistem tüm kullanıcı dosyalarını WordPress yükleme dizini içindeki bu klasöre yükleyecektir."
+
+msgid "Default Image"
+msgstr "Varsayılan Resim"
+
+msgid "This image will be shown as the default for entities & users if no other image is provided"
+msgstr "Başka bir resim sağlanmadığı takdirde bu resim varlıklar ve kullanıcılar için varsayılan olarak gösterilecektir"
+
+msgid "Allowed Image Extensions"
+msgstr "İzin Verilen Resim Uzantıları"
+
+msgid "Comma-separated list of allowed image file extensions"
+msgstr "İzin verilen resim dosyası uzantılarının virgülle ayrılmış listesi"
+
+msgid "Max Image Size"
+msgstr "Maksimum Görüntü Boyutu"
+
+msgid "Maximum file size for general image uploads in kilobytes"
+msgstr "Genel resim yüklemeleri için kilobayt cinsinden maksimum dosya boyutu"
+
+msgid "URL & SEO"
+msgstr "URL ve SEO"
+
+msgid "URL Structure"
+msgstr "URL Yapısı"
+
+msgid "Configure the URL structure"
+msgstr "URL yapısını yapılandırma"
+
+msgid "permalinks"
+msgstr "kalıcı bağlantılar"
+
+msgid "for detail pages"
+msgstr "detay sayfaları için"
+
+msgid "Job Detail URL Structure"
+msgstr "İş Ayrıntısı URL Yapısı"
+
+msgid "Click on the available tags below to build the URL structure for job detail pages"
+msgstr "İş ayrıntısı sayfalarına yönelik URL yapısını oluşturmak için aşağıdaki mevcut etiketlere tıklayın"
+
+msgid "Company Detail URL Structure"
+msgstr "Şirket Ayrıntısı URL Yapısı"
+
+msgid "Click on the available tags below to build the URL structure for company detail pages"
+msgstr "Şirket detay sayfalarına yönelik URL yapısını oluşturmak için aşağıdaki mevcut etiketlere tıklayın"
+
+msgid "Resume Detail URL Structure"
+msgstr "Ayrıntı URL Yapısını Devam Ettir"
+
+msgid "Click on the available tags below to build the URL structure for resume detail pages"
+msgstr "Özgeçmiş ayrıntı sayfalarına yönelik URL yapısını oluşturmak için aşağıdaki mevcut etiketlere tıklayın"
+
+msgid "Registration & Access"
+msgstr "Kayıt ve Erişim"
+
+msgid "If no then front end employer area is not accessible"
+msgstr "Hayırsa ön uç işveren alanına erişilemiyor demektir"
+
+msgid "Allow Registration as Employer"
+msgstr "İşveren Olarak Kayda İzin Ver"
+
+msgid "Show the option to register as an employer on the registration form"
+msgstr "Kayıt formunda işveren olarak kaydolma seçeneğini gösterin"
+
+msgid "Employer Default Role"
+msgstr "İşveren Varsayılan Rolü"
+
+msgid "Employer Can View Job Seeker Area"
+msgstr "İşveren İş Arayan Alanını Görüntüleyebilir"
+
+msgid "Allow logged-in employers to view the job seeker control panel"
+msgstr "Oturum açmış işverenlerin iş arayan kontrol panelini görüntülemesine izin ver"
+
+msgid "Set Employer After-Register Link"
+msgstr "İşveren Kayıt Sonrası Bağlantısını Ayarlayın"
+
+msgid "Employer After-Registration Page"
+msgstr "İşveren Kayıt Sonrası Sayfası"
+
+msgid "Employer Custom After-Registration Link"
+msgstr "İşverene Özel Kayıt Sonrası Bağlantı"
+
+msgid "Custom Empolyer After Regitser Link"
+msgstr "Kayıt Sonrası Özel İşveren Bağlantısı"
+
+msgid "Layout & Widgets"
+msgstr "Düzen ve Widget'lar"
+
+msgid "Control the visibility of main sections and widgets in the logged-in employer dashboard"
+msgstr "Oturum açmış işveren kontrol panelindeki ana bölümlerin ve widget'ların görünürlüğünü kontrol edin"
+
+msgid "Show Profile Section"
+msgstr "Profil Bölümünü Göster"
+
+msgid "Show Stat Boxes"
+msgstr "İstatistik Kutularını Göster"
+
+msgid "Show Recent Resumes Box"
+msgstr "Son Özgeçmiş Kutusunu Göster"
+
+msgid "Show Stats Graph"
+msgstr "İstatistik Grafiğini Göster"
+
+msgid "Setting to show the stats graph on the employer dashboard"
+msgstr "İstatistik grafiğini işveren kontrol panelinde gösterme ayarı"
+
+msgid "Show Useful Links"
+msgstr "Yararlı Bağlantıları Göster"
+
+msgid "Setting to show the useful links section"
+msgstr "Yararlı bağlantılar bölümünü gösterme ayarı"
+
+msgid "Show Applied Resumes"
+msgstr "Başvurulan Özgeçmişleri Göster"
+
+msgid "Setting to show the applied resumes section"
+msgstr "Uygulanan özgeçmiş bölümünü gösterme ayarı"
+
+msgid "Show Saved Searches"
+msgstr "Kayıtlı Aramaları Göster"
+
+msgid "Setting to show the saved searches section"
+msgstr "Kayıtlı aramalar bölümünü gösterme ayarı"
+
+msgid "Show Newest Resumes"
+msgstr "En Yeni Özgeçmişleri Göster"
+
+msgid "Setting to show the newest resumes section"
+msgstr "En yeni özgeçmiş bölümünü gösterecek ayar"
+
+msgid "Navigation Links"
+msgstr "Gezinme Bağlantıları"
+
+msgid "Control which navigation links are visible in the logged-in employer dashboard menu"
+msgstr "Oturum açmış işveren kontrol paneli menüsünde hangi gezinme bağlantılarının görüneceğini kontrol edin"
+
+msgid "link in the employer dashboard"
+msgstr "işveren kontrol panelindeki bağlantı"
+
+msgid "RSS Feedback"
+msgstr "RSS Geri Bildirimi"
+
+msgid "Job Seeker Default Role"
+msgstr "İş Arayanın Varsayılan Rolü"
+
+msgid "Set Job Seeker After-Register Link"
+msgstr "İş Arayan Kayıt Sonrası Bağlantısını Ayarla"
+
+msgid "Job Seeker After-Registration Page"
+msgstr "İş Arayan Kayıt Sonrası Sayfası"
+
+msgid "Job Seeker Custom After-Registration Link"
+msgstr "İş Arayan Kişiye Özel Kayıt Sonrası Bağlantı"
+
+msgid "Custom Job seeker After Regitser Link"
+msgstr "Kayıt Bağlantısından Sonra Özel İş Arayan"
+
+msgid "Enable Job Shortlisting"
+msgstr "İş Kısa Listesini Etkinleştir"
+
+msgid "Allow job seekers to shortlist jobs"
+msgstr "İş arayanların işleri kısa listeye almasına izin ver"
+
+msgid "This affects the job detail page"
+msgstr "Bu, iş ayrıntısı sayfasını etkiler"
+
+msgid "Enable Tell a Friend"
+msgstr "Arkadaşına Söyle'yi Etkinleştir"
+
+msgid "Enable the"
+msgstr "Etkinleştir"
+
+msgid "feature on job listing pages"
+msgstr "iş ilanı sayfalarındaki özellik"
+
+msgid "Control the visibility of main sections and widgets in the logged-in job seeker dashboard"
+msgstr "Oturum açmış iş arayanlar kontrol panelindeki ana bölümlerin ve widget'ların görünürlüğünü kontrol edin"
+
+msgid "Show Applied Jobs Box"
+msgstr "Uygulanan İşler Kutusunu Göster"
+
+msgid "Show Newest Jobs Box"
+msgstr "En Yeni İşler Kutusunu Göster"
+
+msgid "Show Jobs Graph"
+msgstr "İş Grafiğini Göster"
+
+msgid "Setting to show the jobs graph on the job seeker dashboard"
+msgstr "İş arayan kontrol panelinde iş grafiğini gösterme ayarı"
+
+msgid "Show Applied Jobs"
+msgstr "Uygulanan İşleri Göster"
+
+msgid "Setting to show the applied jobs section"
+msgstr "Uygulanan işler bölümünü gösterme ayarı"
+
+msgid "Show Shortlisted Jobs"
+msgstr "Kısa Listedeki İşleri Göster"
+
+msgid "Setting to show the shortlisted jobs section"
+msgstr "Kısa listedeki işler bölümünü gösterme ayarı"
+
+msgid "Show Newest Jobs"
+msgstr "En Yeni İşleri Göster"
+
+msgid "Setting to show the newest jobs section"
+msgstr "En yeni işler bölümünü gösterme ayarı"
+
+msgid "Control which navigation links are visible in the logged-in job seeker dashboard menu"
+msgstr "Oturum açmış iş arayanlar kontrol paneli menüsünde hangi gezinme bağlantılarının görüneceğini kontrol edin"
+
+msgid "link in the job seeker dashboard"
+msgstr "iş arayan kontrol panelindeki bağlantı"
+
+msgid "Visitors"
+msgstr "Ziyaretçiler"
+
+msgid "General Permissions"
+msgstr "Genel İzinler"
+
+msgid "Define what non-logged-in users are allowed to do on the site"
+msgstr "Oturum açmamış kullanıcıların sitede ne yapmasına izin verileceğini tanımlayın"
+
+msgid "Visitor Can Post Job"
+msgstr "Ziyaretçi İş İlanı Verebilir"
+
+msgid "Allow non-logged-in users to post jobs"
+msgstr "Oturum açmamış kullanıcıların iş ilanı göndermesine izin ver"
+
+msgid "Visitor Can Add Job"
+msgstr "Ziyaretçi İş Ekleyebilir"
+
+msgid "Visitor Job Post Redirect Page"
+msgstr "Ziyaretçi İş İlanı Yönlendirme Sayfası"
+
+msgid "A visitor will be redirected to this page after posting a job"
+msgstr "Bir ziyaretçi iş ilanı yayınladıktan sonra bu sayfaya yönlendirilecek"
+
+msgid "Visitor Can Apply to Job"
+msgstr "Ziyaretçi İşe Başvurabilir"
+
+msgid "Allow non-logged-in users to apply for jobs"
+msgstr "Oturum açmamış kullanıcıların iş başvurusu yapmasına izin ver"
+
+msgid "Visitor Can Add Resume"
+msgstr "Ziyaretçi Özgeçmiş Ekleyebilir"
+
+msgid "Allow non-logged-in users to add a resume"
+msgstr "Oturum açmamış kullanıcıların özgeçmiş eklemesine izin ver"
+
+msgid "Visitor Resume Post Redirect Page"
+msgstr "Ziyaretçi Özgeçmiş Gönderi Yönlendirme Sayfası"
+
+msgid "A visitor will be redirected to this page after posting a resume"
+msgstr "Özgeçmiş gönderdikten sonra ziyaretçi bu sayfaya yönlendirilecek"
+
+msgid "Visitor Can Edit Job"
+msgstr "Ziyaretçi İşi Düzenleyebilir"
+
+msgid "Allow non-logged-in users to edit jobs they have posted"
+msgstr "Oturum açmamış kullanıcıların yayınladıkları işleri düzenlemesine izin ver"
+
+msgid "Page & Link Access"
+msgstr "Sayfa ve Bağlantı Erişimi"
+
+msgid "Control which pages and links are visible to non-logged-in users"
+msgstr "Oturum açmamış kullanıcılar tarafından hangi sayfaların ve bağlantıların görülebileceğini kontrol edin"
+
+msgid "Allow visitors to view the employer control panel links"
+msgstr "Ziyaretçilerin işveren kontrol paneli bağlantılarını görüntülemesine izin ver"
+
+msgid "Allow visitors to view the resume categories page"
+msgstr "Ziyaretçilerin özgeçmiş kategorileri sayfasını görüntülemesine izin ver"
+
+msgid "Allow visitors to access the resume search functionality"
+msgstr "Ziyaretçilerin özgeçmiş arama işlevine erişmesine izin ver"
+
+msgid "Allow visitors to view company detail pages"
+msgstr "Ziyaretçilerin şirket detay sayfalarını görüntülemesine izin ver"
+
+msgid "Allow visitors to view job detail pages"
+msgstr "Ziyaretçilerin iş ayrıntısı sayfalarını görüntülemesine izin ver"
+
+msgid "Allow visitors to view resume detail pages"
+msgstr "Ziyaretçilerin özgeçmiş ayrıntı sayfalarını görüntülemesine izin ver"
+
+msgid "Allow visitors to view the job seeker control panel links"
+msgstr "Ziyaretçilerin iş arayan kontrol paneli bağlantılarını görüntülemesine izin ver"
+
+msgid "Allow visitors to view the jobs by category page"
+msgstr "Ziyaretçilerin işleri kategori sayfasına göre görüntülemesine izin ver"
+
+msgid "Allow visitors to use the job search functionality"
+msgstr "Ziyaretçilerin iş arama işlevini kullanmasına izin ver"
+
+msgid "Allow visitors to see job search result listings"
+msgstr "Ziyaretçilerin iş arama sonucu listelerini görmesine izin ver"
+
+msgid "Allow visitors to see the newest jobs page"
+msgstr "Ziyaretçilerin en yeni iş ilanları sayfasını görmesine izin ver"
+
+msgid "Job Posting & Management"
+msgstr "İş İlanı ve Yönetimi"
+
+msgid "Manage how jobs are posted, their lifecycle, and related features"
+msgstr "İşlerin nasıl yayınlandığını, yaşam döngülerini ve ilgili özellikleri yönetin"
+
+msgid "Job Auto Approve"
+msgstr "İş Otomatik Onayı"
+
+msgid "Automatically approve new jobs upon submission"
+msgstr "Yeni işleri gönderildikten sonra otomatik olarak onayla"
+
+msgid "Job Expiry Days"
+msgstr "İşin Sona Erme Günleri"
+
+msgid "Number of days until a freely posted job expires"
+msgstr "Serbestçe yayınlanan bir işin süresinin dolmasına kadar geçen gün sayısı"
+
+msgid "Number of days until a paid"
+msgstr "Ödemeye kalan gün sayısı"
+
+msgid "job expires"
+msgstr "işin süresi doluyor"
+
+msgid "Job Display & Listings"
+msgstr "İş Görüntüleme ve Listeleme"
+
+msgid "Control how job-related pages and information are displayed to users"
+msgstr "İşle ilgili sayfaların ve bilgilerin kullanıcılara nasıl görüntüleneceğini kontrol edin"
+
+msgid "Show Country on Jobs by Cities Page"
+msgstr "Ülkeyi Şehirlere Göre İş İlanları Sayfasında Göster"
+
+msgid "Display the country name next to the city"
+msgstr "Şehrin yanında ülke adını görüntüle"
+
+msgid "Show Count on Jobs by Cities Page"
+msgstr "Şehirlere Göre İş Sayısını Göster Sayfası"
+
+msgid "Display the total number of jobs available in each city"
+msgstr "Her şehirde mevcut toplam iş sayısını görüntüleyin"
+
+msgid "Show Count in Job Categories"
+msgstr "İş Kategorilerindeki Sayıyı Göster"
+
+msgid "Display the total number of jobs for each category"
+msgstr "Her kategori için toplam iş sayısını görüntüleyin"
+
+msgid "Show Count on Jobs by Types Page"
+msgstr "Türlere Göre İş Sayısını Göster Sayfası"
+
+msgid "Display the total number of jobs for each job type"
+msgstr "Her iş türü için toplam iş sayısını görüntüleyin"
+
+msgid "Job Types Per Row"
+msgstr "Satır Başına İş Türleri"
+
+msgid "How many job types to display per row on the"
+msgstr "Her satırda kaç iş türünün görüntüleneceği"
+
+msgid "Job by Type"
+msgstr "Türe Göre İş"
+
+msgid "Show Jobs Graph for Employer"
+msgstr "İşveren için İş Grafiğini Göster"
+
+msgid "Show Active Jobs Graph for Job Seeker"
+msgstr "İş Arayanlar İçin Aktif İş Grafiği Göster"
+
+msgid "Company Profile Display"
+msgstr "Şirket Profili Ekranı"
+
+msgid "Control which company details are visible on listings and company pages"
+msgstr "Listelerde ve şirket sayfalarında hangi şirket ayrıntılarının görüneceğini kontrol edin"
+
+msgid "Show Company Name"
+msgstr "Şirket Adını Göster"
+
+msgid "Show Company Description"
+msgstr "Şirket Açıklamasını Göster"
+
+msgid "Show Company Email Address"
+msgstr "Şirket E-posta Adresini Göster"
+
+msgid "Show Company City"
+msgstr "Şirket Şehrini Göster"
+
+msgid "Show Company URL"
+msgstr "Şirket URL'sini Göster"
+
+msgid "Show Company Contact Detail by Default"
+msgstr "Şirketin İletişim Bilgilerini Varsayılan Olarak Göster"
+
+msgid "If disabled, credits may be required to view contact details"
+msgstr "Devre dışı bırakılırsa iletişim ayrıntılarını görüntülemek için kredi gerekebilir"
+
+msgid "General settings for company profiles"
+msgstr "Şirket profilleri için genel ayarlar"
+
+msgid "Company Logo Maximum Size"
+msgstr "Şirket Logosu Maksimum Boyut"
+
+msgid "Set the maximum file size for company logo uploads in kilobytes"
+msgstr "Şirket logosu yüklemeleri için maksimum dosya boyutunu kilobayt cinsinden ayarlayın"
+
+msgid "Company Auto Approve"
+msgstr "Şirket Otomatik Onayı"
+
+msgid "Automatically approve new company profiles upon submission"
+msgstr "Yeni şirket profillerini gönderildikten sonra otomatik olarak onayla"
+
+msgid "Control resume submissions, visibility, and search functionality"
+msgstr "Özgeçmiş gönderimlerini, görünürlüğü ve arama işlevselliğini kontrol edin"
+
+msgid "Resume Auto Approve"
+msgstr "Otomatik Onayla Devam Et"
+
+msgid "Automatically approve new resumes upon submission"
+msgstr "Yeni özgeçmişleri gönderildikten sonra otomatik olarak onayla"
+
+msgid "Show Resume Contact Detail by Default"
+msgstr "Varsayılan Olarak Devam Ettirilen İletişim Bilgisini Göster"
+
+msgid "If disabled, credits may be required to view resume contact details"
+msgstr "Devre dışı bırakılırsa özgeçmiş iletişim ayrıntılarını görüntülemek için kredi gerekebilir"
+
+msgid "Show Count in Resume Categories"
+msgstr "Devam Kategorilerinde Sayıyı Göster"
+
+msgid "Display the total number of resumes for each category"
+msgstr "Her kategori için toplam özgeçmiş sayısını görüntüleyin"
+
+msgid "Allow Resume Search"
+msgstr "Aramayı Sürdürmeye İzin Ver"
+
+msgid "Define who is allowed to search for resumes"
+msgstr "Kimlerin özgeçmiş aramasına izin verileceğini tanımlayın"
+
+msgid "Allow Users to Save Resume Searches"
+msgstr "Kullanıcıların Aramaları Devam Ettirmelerini Kaydetmesine İzin Ver"
+
+msgid "Allow users to save their resume search criteria for later use"
+msgstr "Kullanıcıların daha sonra kullanmak üzere özgeçmiş arama kriterlerini kaydetmelerine izin ver"
+
+msgid "Resume Files & Builder"
+msgstr "Dosyaları ve Oluşturucuyu Devam Ettir"
+
+msgid "Define limits and allowed types for resume file uploads and advanced builder sections"
+msgstr "Özgeçmiş dosyası yüklemeleri ve gelişmiş oluşturucu bölümleri için sınırları ve izin verilen türleri tanımlayın"
+
+msgid "Resume Photo Maximum Size"
+msgstr "Fotoğraf Maksimum Boyutuna Devam Et"
+
+msgid "Maximum file size for resume photos in kilobytes"
+msgstr "Özgeçmiş fotoğrafları için kilobayt cinsinden maksimum dosya boyutu"
+
+msgid "Resume Document Maximum Size"
+msgstr "Belge Maksimum Boyutunu Devam Ettir"
+
+msgid "System will not upload if resume file size exceeds the given size"
+msgstr "Özgeçmiş dosyasının boyutu verilen boyutu aşarsa sistem yükleme yapmayacaktır"
+
+msgid "Allowed Document Extensions"
+msgstr "İzin Verilen Belge Uzantıları"
+
+msgid "Comma-separated list of allowed document file extensions"
+msgstr "İzin verilen belge dosya uzantılarının virgülle ayrılmış listesi"
+
+msgid "Maximum Number of Files for Resume"
+msgstr "Devam Edilecek Maksimum Dosya Sayısı"
+
+msgid "Maximum number of files a job seeker can upload with their resume"
+msgstr "Bir iş arayanın özgeçmişiyle birlikte yükleyebileceği maksimum dosya sayısı"
+
+msgid "Max Employers in Resume Builder"
+msgstr "Özgeçmiş Oluşturucuda Maksimum İşveren"
+
+msgid "Maximum number of employers allowed in the resume builder"
+msgstr "Özgeçmiş oluşturucuda izin verilen maksimum işveren sayısı"
+
+msgid "Max Institutes in Resume Builder"
+msgstr "Özgeçmiş Oluşturucudaki Maksimum Enstitüler"
+
+msgid "Maximum number of institutes allowed in the resume builder"
+msgstr "Özgeçmiş oluşturucuda izin verilen maksimum kurum sayısı"
+
+msgid "Max Languages in Resume Builder"
+msgstr "Özgeçmiş Oluşturucuda Maksimum Dil"
+
+msgid "Maximum number of languages allowed in the resume builder"
+msgstr "Özgeçmiş oluşturucuda izin verilen maksimum dil sayısı"
+
+msgid "Max Addresses in Resume Builder"
+msgstr "Özgeçmiş Oluşturucudaki Maksimum Adresler"
+
+msgid "Maximum number of addresses allowed in the resume builder"
+msgstr "Özgeçmiş oluşturucuda izin verilen maksimum adres sayısı"
+
+msgid "Job Applications"
+msgstr "İş Başvuruları"
+
+msgid "Configure the job application process and related notifications"
+msgstr "İş başvurusu sürecini ve ilgili bildirimleri yapılandırın"
+
+msgid "Show Apply Now Button"
+msgstr "Şimdi Uygula Düğmesini Göster"
+
+msgid "Enable Quick Apply for Logged-in Users"
+msgstr "Oturum Açmış Kullanıcılar için Hızlı Başvuruyu Etkinleştir"
+
+msgid "Enable Quick Apply for Visitors"
+msgstr "Ziyaretçiler için Hızlı Başvuruyu Etkinleştir"
+
+msgid "Show Applied Resume Status to Job Seeker"
+msgstr "Başvurulan Özgeçmiş Durumunu İş Arayanlara Göster"
+
+msgid "Resume Data in Email"
+msgstr "E-postadaki Verileri Devam Ettir"
+
+msgid "Sections"
+msgstr "Bölümler"
+
+msgid "Choose whether to include all resume sections or only filled ones in the application email to employers"
+msgstr "İşverenlere gönderilen başvuru e-postasına tüm özgeçmiş bölümlerinin mi yoksa yalnızca doldurulmuş bölümlerin mi dahil edileceğini seçin"
+
+msgid "Choose whether to include all fields or only filled fields in the application email"
+msgstr "Başvuru e-postasına tüm alanların mı yoksa yalnızca doldurulmuş alanların mı dahil edileceğini seçin"
+
+msgid "Auto-Approve Rules"
+msgstr "Otomatik Onaylama Kuralları"
+
+msgid "Set auto-approval rules for various user-submitted content"
+msgstr "Kullanıcı tarafından gönderilen çeşitli içerikler için otomatik onay kuralları ayarlayın"
+
+msgid "Featured Resume Auto Approve"
+msgstr "Öne Çıkan Devam Etme Otomatik Onayla"
+
+msgid "Automatically approve resumes marked as featured"
+msgstr "Öne çıkan olarak işaretlenen özgeçmişleri otomatik olarak onayla"
+
+msgid "Featured Company Auto Approve"
+msgstr "Öne Çıkan Şirket Otomatik Onayı"
+
+msgid "Automatically approve companies marked as featured"
+msgstr "Öne çıkan olarak işaretlenen şirketleri otomatik olarak onayla"
+
+msgid "Featured Job Auto Approve"
+msgstr "Öne Çıkan İş Otomatik Onayı"
+
+msgid "Automatically approve jobs marked as featured"
+msgstr "Öne çıkan olarak işaretlenen işleri otomatik olarak onayla"
+
+msgid "Cover Letter Auto Approve"
+msgstr "Kapak Mektubu Otomatik Onayla"
+
+msgid "Automatically approve cover letters submitted by job seekers"
+msgstr "İş arayanlar tarafından gönderilen kapak mektuplarını otomatik olarak onaylayın"
+
+msgid "Folder Auto Approve"
+msgstr "Klasör Otomatik Onayla"
+
+msgid "Automatically approve new folders created by employers"
+msgstr "İşverenler tarafından oluşturulan yeni klasörleri otomatik olarak onaylayın"
+
+msgid "Department Auto Approve"
+msgstr "Departman Otomatik Onayı"
+
+msgid "Automatically approve new departments created by employers"
+msgstr "İşverenler tarafından oluşturulan yeni departmanları otomatik olarak onaylayın"
+
+msgid "Message Auto Approve"
+msgstr "Mesaj Otomatik Onayla"
+
+msgid "Automatically approve messages between job seekers and employers"
+msgstr "İş arayanlar ve işverenler arasındaki mesajları otomatik olarak onaylayın"
+
+msgid "Conflict Message Auto Approve"
+msgstr "Çakışma Mesajını Otomatik Onayla"
+
+msgid "Automatically approve conflicted messages"
+msgstr "Çakışan mesajları otomatik olarak onayla"
+
+msgid "Email & Alerts"
+msgstr "E-posta ve Uyarılar"
+
+msgid "Email Sender Identity"
+msgstr "E-posta Gönderenin Kimliği"
+
+msgid "Configure sender details for all outgoing system emails"
+msgstr "Tüm giden sistem e-postaları için gönderen ayrıntılarını yapılandırın"
+
+msgid "Admin Email Address"
+msgstr "Yönetici E-posta Adresi"
+
+msgid "Admin will receive email notifications at this address"
+msgstr "Yönetici bu adrese e-posta bildirimleri alacak"
+
+msgid "Sender Email Address"
+msgstr "Gönderenin E-posta Adresi"
+
+msgid "The email address that will be used to send system emails"
+msgstr "Sistem e-postalarını göndermek için kullanılacak e-posta adresi"
+
+msgid "The sender name that will be used in system emails"
+msgstr "Sistem e-postalarında kullanılacak gönderenin adı"
+
+msgid "Job Alerts"
+msgstr "İş Uyarıları"
+
+msgid "Configure settings for job alert emails and forms"
+msgstr "İş uyarısı e-postaları ve formları için ayarları yapılandırma"
+
+msgid "Show Job Alert Link"
+msgstr "İş Uyarısı Bağlantısını Göster"
+
+msgid "Show the Job Alert link in the job seeker control panel"
+msgstr "İş arayan kontrol panelinde İş Uyarısı bağlantısını gösterin"
+
+msgid "Enable Job Alerts for Visitors"
+msgstr "Ziyaretçiler için İş Uyarılarını Etkinleştir"
+
+msgid "Allow non-logged-in users to sign up for job alerts"
+msgstr "Oturum açmamış kullanıcıların iş uyarılarına kaydolmasına izin ver"
+
+msgid "Job Alert Auto Approve"
+msgstr "İş Uyarısı Otomatik Onayla"
+
+msgid "Automatically approve new job alerts upon creation"
+msgstr "Yeni iş uyarılarını oluşturulduktan sonra otomatik olarak onayla"
+
+msgid "Captcha on Visitor Job Alert Form"
+msgstr "Ziyaretçi İş Uyarı Formunda Captcha"
+
+msgid "Show a captcha on the job alert sign-up form for visitors"
+msgstr "Ziyaretçiler için iş uyarısı kayıt formunda bir captcha gösterin"
+
+msgid "Allow users to save their search queries for jobs and resumes"
+msgstr "Kullanıcıların iş ve özgeçmişlere ilişkin arama sorgularını kaydetmelerine izin ver"
+
+msgid "Show Saved Searches for Job Seekers"
+msgstr "İş Arayanlar İçin Kaydedilen Aramaları Göster"
+
+msgid "Allow job seekers to save their job searches"
+msgstr "İş arayanların iş aramalarını kaydetmelerine izin ver"
+
+msgid "Show Saved Searches for Employers"
+msgstr "İşverenler için Kaydedilmiş Aramaları Göster"
+
+msgid "Allow employers to save their resume searches"
+msgstr "İşverenlerin özgeçmiş aramalarını kaydetmesine izin ver"
+
+msgid "Feeds & AI"
+msgstr "Yayınlar ve Yapay Zeka"
+
+msgid "RSS Feeds"
+msgstr "RSS Beslemeleri"
+
+msgid "Configure the RSS feed for jobs"
+msgstr "İşler için RSS akışını yapılandırma"
+
+msgid "Enable Jobs RSS Feed"
+msgstr "İşler RSS Akışını Etkinleştir"
+
+msgid "Enable the main RSS feed for new jobs"
+msgstr "Yeni işler için ana RSS akışını etkinleştirin"
+
+msgid "Job Feed Title"
+msgstr "İş Akışı Başlığı"
+
+msgid "The title for the job RSS feed"
+msgstr "İşin RSS beslemesinin başlığı"
+
+msgid "Job Feed Description"
+msgstr "İş Akışı Açıklaması"
+
+msgid "The description for the job RSS feed"
+msgstr "İşin RSS beslemesinin açıklaması"
+
+msgid "Job Feed Copyright"
+msgstr "İş Akışı Telif Hakkı"
+
+msgid "Copyright notice for the job feed"
+msgstr "İş akışına ilişkin telif hakkı bildirimi"
+
+msgid "Job Feed Editor"
+msgstr "İş Akışı Düzenleyicisi"
+
+msgid "The person responsible for editorial content"
+msgstr "Editoryal içerikten sorumlu kişi"
+
+msgid "Job Feed Webmaster"
+msgstr "İş Akışı Web Yöneticisi"
+
+msgid "The person responsible for technical issues"
+msgstr "Teknik sorunlardan sorumlu kişi"
+
+msgid "Job Feed TTL"
+msgstr "İş Akışı TTL"
+
+msgid "Time to Live"
+msgstr "Yaşama Zamanı"
+
+msgid "Number of minutes the feed can be cached before refreshing"
+msgstr "Özet akışının yenilenmeden önce önbelleğe alınabileceği dakika sayısı"
+
+msgid "Show Categories in Job Feed"
+msgstr "İş Akışında Kategorileri Göster"
+
+msgid "Include categories in the job feed items"
+msgstr "İş akışı öğelerine kategorileri dahil edin"
+
+msgid "Show Company Image in Job Feed"
+msgstr "İş Akışında Şirket Resmini Göster"
+
+msgid "Include the company logo in the job feed items"
+msgstr "İş akışı öğelerine şirket logosunu ekleyin"
+
+msgid "Configure the RSS feed for resumes"
+msgstr "Özgeçmişler için RSS akışını yapılandırma"
+
+msgid "Enable Resumes RSS Feed"
+msgstr "Devam Ettirme RSS Akışını Etkinleştir"
+
+msgid "Enable the main RSS feed for new resumes"
+msgstr "Yeni özgeçmişler için ana RSS akışını etkinleştirin"
+
+msgid "Resume Feed Title"
+msgstr "Feed Başlığını Devam Ettir"
+
+msgid "The title for the resume RSS feed"
+msgstr "Özgeçmiş RSS beslemesinin başlığı"
+
+msgid "Resume Feed Description"
+msgstr "Feed Açıklamasını Devam Ettir"
+
+msgid "The description for the resume RSS feed"
+msgstr "Özgeçmiş RSS beslemesinin açıklaması"
+
+msgid "Resume Feed Copyright"
+msgstr "Yayın Telif Hakkını Devam Ettir"
+
+msgid "Copyright notice for the resume feed"
+msgstr "Özgeçmiş feed'i için telif hakkı bildirimi"
+
+msgid "Resume Feed Editor"
+msgstr "Feed Düzenleyiciyi Devam Ettir"
+
+msgid "Resume Feed Webmaster"
+msgstr "Özet Akışı Web Yöneticisini Devam Ettir"
+
+msgid "Resume Feed TTL"
+msgstr "Feed TTL'yi Devam Ettir"
+
+msgid "Show Categories in Resume Feed"
+msgstr "Devam Akışında Kategorileri Göster"
+
+msgid "Include categories in the resume feed items"
+msgstr "Özgeçmiş akışı öğelerine kategorileri dahil et"
+
+msgid "Show Resume File in Resume Feed"
+msgstr "Devam Dosyasını Devam Akışında Göster"
+
+msgid "Make resume files downloadable from the feed"
+msgstr "Özgeçmiş dosyalarını feed'den indirilebilir hale getirin"
+
+msgid "AI Suggested Matches"
+msgstr "AI Tarafından Önerilen Eşleşmeler"
+
+msgid "Configure AI-powered job and resume suggestion features"
+msgstr "Yapay zeka destekli işi yapılandırın ve öneri özelliklerini sürdürün"
+
+msgid "AI Search On Job Search Page"
+msgstr "İş Arama Sayfasında AI Arama"
+
+msgid "Show the AI search field on the main job search form"
+msgstr "Yapay zeka arama alanını ana iş arama formunda göster"
+
+msgid "AI Job Search"
+msgstr "Yapay Zeka İş Arama"
+
+msgid "AI Search Filter On Job Listing"
+msgstr "İş İlanında AI Arama Filtresi"
+
+msgid "Show the AI search field as a filter on the job listing page"
+msgstr "Yapay zeka arama alanını iş ilanı sayfasında filtre olarak göster"
+
+msgid "AI Search On Resume Search Page"
+msgstr "Aramayı Devam Ettirme Sayfasında AI Arama"
+
+msgid "Show the AI search field on the main resume search form"
+msgstr "Ana özgeçmiş arama formunda AI arama alanını göster"
+
+msgid "AI Resume Search"
+msgstr "AI Aramayı Devam Ettir"
+
+msgid "AI Search Filter On Resume Listing"
+msgstr "Listeyi Devam Ettirirken AI Arama Filtresi"
+
+msgid "Show the AI search field as a filter on the resume listing page"
+msgstr "AI arama alanını özgeçmiş listeleme sayfasında filtre olarak göster"
+
+msgid "Show AI Suggested Jobs Button"
+msgstr "AI Tarafından Önerilen İşler Düğmesini Göster"
+
+msgid "AI Suggested Jobs"
+msgstr "Yapay Zeka Tarafından Önerilen İşler"
+
+msgid "Show AI Suggested Jobs on Dashboard"
+msgstr "Yapay Zeka Tarafından Önerilen İşleri Kontrol Panelinde Göster"
+
+msgid "Show a list of AI-suggested jobs on the job seeker dashboard"
+msgstr "İş arayan kontrol panelinde yapay zeka tarafından önerilen işlerin listesini gösterin"
+
+msgid "Show AI Suggested Resumes Button"
+msgstr "AI Tarafından Önerilen Özgeçmiş Düğmesini Göster"
+
+msgid "AI Suggested Resumes"
+msgstr "Yapay Zeka Tarafından Önerilen Özgeçmişler"
+
+msgid "Show AI Suggested Resumes on Dashboard"
+msgstr "Yapay Zeka Tarafından Önerilen Özgeçmişleri Kontrol Panelinde Göster"
+
+msgid "Show a list of AI-suggested resumes on the employer dashboard"
+msgstr "Yapay zeka tarafından önerilen özgeçmişlerin listesini işveren kontrol panelinde gösterin"
+
+msgid "Integrations"
+msgstr "Entegrasyonlar"
+
+msgid "Allow users to register and log in with their social media accounts"
+msgstr "Kullanıcıların sosyal medya hesaplarına kaydolmalarına ve giriş yapmalarına izin ver"
+
+msgid "Login with Facebook"
+msgstr "Facebook ile giriş yap"
+
+msgid "Allow users to log in using their Facebook account"
+msgstr "Kullanıcıların Facebook hesaplarını kullanarak giriş yapmalarına izin ver"
+
+msgid "Apply with Facebook"
+msgstr "Facebook ile başvur"
+
+msgid "Allow users to apply for jobs using their Facebook profile"
+msgstr "Kullanıcıların Facebook profillerini kullanarak iş başvurusunda bulunmasına izin ver"
+
+msgid "Facebook App ID"
+msgstr "Facebook Uygulama Kimliği"
+
+msgid "Enter your Facebook App ID"
+msgstr "Facebook Uygulama Kimliğinizi girin"
+
+msgid "Facebook App Secret"
+msgstr "Facebook Uygulama Sırrı"
+
+msgid "Enter your Facebook App Secret"
+msgstr "Facebook Uygulama Sırrınızı girin"
+
+msgid "Valid OAuth URI"
+msgstr "Geçerli OAuth URI'si"
+
+msgid "Apply"
+msgstr "Uygula"
+
+msgid "Login with LinkedIn"
+msgstr "LinkedIn'e giriş yapın"
+
+msgid "Allow users to log in using their LinkedIn account"
+msgstr "Kullanıcıların LinkedIn hesaplarını kullanarak oturum açmalarına izin ver"
+
+msgid "Apply with LinkedIn"
+msgstr "LinkedIn ile başvur"
+
+msgid "Allow users to apply for jobs using their LinkedIn profile"
+msgstr "Kullanıcıların LinkedIn profillerini kullanarak iş başvurusunda bulunmasına izin ver"
+
+msgid "LinkedIn Client ID"
+msgstr "LinkedIn Müşteri Kimliği"
+
+msgid "Enter your LinkedIn Client ID"
+msgstr "LinkedIn Müşteri Kimliğinizi girin"
+
+msgid "API Key"
+msgstr "API Anahtarı"
+
+msgid "LinkedIn Client Secret"
+msgstr "LinkedIn Müşteri Sırrı"
+
+msgid "Enter your LinkedIn Client Secret"
+msgstr "LinkedIn Müşteri Sırrınızı girin"
+
+msgid "Social Sharing"
+msgstr "Sosyal Paylaşım"
+
+msgid "Enable social sharing buttons on your pages"
+msgstr "Sayfalarınızda sosyal paylaşım düğmelerini etkinleştirin"
+
+msgid "Enable Facebook Likes"
+msgstr "Facebook Beğenilerini Etkinleştir"
+
+msgid "Show Facebook like button"
+msgstr "Facebook beğen düğmesini göster"
+
+msgid "Enable Facebook Share"
+msgstr "Facebook Paylaşımını Etkinleştir"
+
+msgid "Show Facebook share button"
+msgstr "Facebook paylaş düğmesini göster"
+
+msgid "Enable Facebook Comments"
+msgstr "Facebook Yorumlarını Etkinleştir"
+
+msgid "Show Facebook comments widget"
+msgstr "Facebook yorumları widget'ını göster"
+
+msgid "Enable Twitter Share"
+msgstr "Twitter Paylaşımını Etkinleştir"
+
+msgid "Show Twitter share button"
+msgstr "Twitter paylaş düğmesini göster"
+
+msgid "Enable LinkedIn Share"
+msgstr "LinkedIn Paylaşımını Etkinleştir"
+
+msgid "Show LinkedIn share button"
+msgstr "LinkedIn paylaş düğmesini göster"
+
+msgid "Enable Blogger Share"
+msgstr "Blogger Paylaşımını Etkinleştir"
+
+msgid "Show Blogger share button"
+msgstr "Blogger paylaş düğmesini göster"
+
+msgid "Enable Digg Share"
+msgstr "Digg Share'i Etkinleştir"
+
+msgid "Show Digg share button"
+msgstr "Digg paylaş düğmesini göster"
+
+msgid "Enable Myspace Share"
+msgstr "Myspace Paylaşımını Etkinleştir"
+
+msgid "Show Myspace share button"
+msgstr "Myspace paylaşım düğmesini göster"
+
+msgid "Enable Yahoo Share"
+msgstr "Yahoo Paylaşımını Etkinleştir"
+
+msgid "Show Yahoo share button"
+msgstr "Yahoo paylaş düğmesini göster"
+
+msgid "Mapping & Geolocation"
+msgstr "Haritalama ve Coğrafi Konum"
+
+msgid "Configure map services and location-based features"
+msgstr "Harita hizmetlerini ve konuma dayalı özellikleri yapılandırma"
+
+msgid "Choose between Google Maps and OpenStreetMap for map displays"
+msgstr "Harita gösterimleri için Google Haritalar ve OpenStreetMap arasında seçim yapın"
+
+msgid "Google Map API Key"
+msgstr "Google Harita API Anahtarı"
+
+msgid "Enter your Google Maps API key"
+msgstr "Google Haritalar API anahtarınızı girin"
+
+msgid "Map Height"
+msgstr "Harita Yüksekliği"
+
+msgid "Set the height for maps displayed in the plugin, in pixels"
+msgstr "Eklentide görüntülenen haritaların yüksekliğini piksel cinsinden ayarlayın"
+
+msgid "Default Longitude"
+msgstr "Varsayılan Boylam"
+
+msgid "Default longitude for map centering"
+msgstr "Harita ortalama için varsayılan boylam"
+
+msgid "Default Latitude"
+msgstr "Varsayılan Enlem"
+
+msgid "Default latitude for map centering"
+msgstr "Harita ortalama için varsayılan enlem"
+
+msgid "Default Map Radius Type"
+msgstr "Varsayılan Harita Yarıçapı Türü"
+
+msgid "Default unit for map radius calculations"
+msgstr "Harita yarıçapı hesaplamaları için varsayılan birim"
+
+msgid "Max Records for City Field"
+msgstr "City Field için Maksimum Kayıtlar"
+
+msgid "Set the number of cities to show in the location autocomplete results"
+msgstr "Konum otomatik tamamlama sonuçlarında gösterilecek şehir sayısını ayarlayın"
+
+msgid "Max Records for Tag Field"
+msgstr "Etiket Alanı için Maksimum Kayıtlar"
+
+msgid "Set the number of tags to show in the tag autocomplete results"
+msgstr "Etiket otomatik tamamlama sonuçlarında gösterilecek etiket sayısını ayarlayın"
+
+msgid "Security & Captcha"
+msgstr "Güvenlik ve Captcha"
+
+msgid "Captcha Options"
+msgstr "Captcha Seçenekleri"
+
+msgid "Enable captcha on various forms to prevent spam"
+msgstr "Spam'i önlemek için çeşitli formlarda captcha'yı etkinleştirin"
+
+msgid "Default Captcha Type"
+msgstr "Varsayılan Captcha Türü"
+
+msgid "Select the default captcha to use throughout the plugin"
+msgstr "Eklenti genelinde kullanılacak varsayılan captcha'yı seçin"
+
+msgid "Captcha on Registration Form"
+msgstr "Kayıt Formunda Captcha"
+
+msgid "Show a captcha on the WP Job Portal registration form"
+msgstr "WP İş Portalı kayıt formunda bir captcha gösterin"
+
+msgid "Captcha on Visitor Quick Apply"
+msgstr "Ziyaretçi Hızlı Başvurusunda Captcha"
+
+msgid "Show captcha to visitors on the quick apply form"
+msgstr "Hızlı başvuru formunda ziyaretçilere captcha'yı gösterin"
+
+msgid "Captcha on Visitor Job Form"
+msgstr "Ziyaretçi İş Formunda Captcha"
+
+msgid "Show captcha on the job submission form for visitors"
+msgstr "Ziyaretçiler için iş gönderim formunda captcha'yı gösterin"
+
+msgid "Captcha on Visitor Resume Form"
+msgstr "Ziyaretçi Özgeçmiş Formunda Captcha"
+
+msgid "Show captcha on the resume submission form for visitors"
+msgstr "Ziyaretçiler için özgeçmiş gönderim formunda captcha'yı göster"
+
+msgid "Captcha on Tell a Friend Popup"
+msgstr "Arkadaşına Söyle Popup'ında Captcha"
+
+msgid "Show captcha on the"
+msgstr "Captcha'yı göster"
+
+msgid "popup for visitors"
+msgstr "ziyaretçiler için açılır pencere"
+
+msgid "WP Job Portal Captcha"
+msgstr "WP İş Portalı Captcha'sı"
+
+msgid "Settings for the built-in mathematical captcha"
+msgstr "Yerleşik matematiksel captcha ayarları"
+
+msgid "Calculation Type"
+msgstr "Hesaplama Türü"
+
+msgid "Select the type of math problem for the captcha"
+msgstr "Captcha için matematik probleminin türünü seçin"
+
+msgid "Addition or Subtraction"
+msgstr "Toplama veya Çıkarma"
+
+msgid "Answer Always Positive"
+msgstr "Cevap Her Zaman Olumlu"
+
+msgid "Ensure that subtraction problems always result in a positive answer"
+msgstr "Çıkarma problemlerinin her zaman olumlu bir cevapla sonuçlanmasını sağlayın"
+
+msgid "Number of Operands"
+msgstr "İşlenen Sayısı"
+
+msgid "Choose the number of operands for the math problem"
+msgstr "Matematik problemi için işlenen sayısını seçin"
+
+msgid "Google reCAPTCHA"
+msgstr "Google reCAPTCHA"
+
+msgid "Configure Google reCAPTCHA v2 or v3"
+msgstr "Google reCAPTCHA v2 veya v3'ü yapılandırın"
+
+msgid "Select which version of Google reCAPTCHA to use"
+msgstr "Hangi Google reCAPTCHA sürümünün kullanılacağını seçin"
+
+msgid "Enter the site key from your Google reCAPTCHA admin console"
+msgstr "Google reCAPTCHA yönetici konsolunuzdan site anahtarını girin"
+
+msgid "Google reCaptcha Secret Key"
+msgstr "Google reCaptcha Gizli Anahtarı"
+
+msgid "Enter the secret key from your Google reCAPTCHA admin console"
+msgstr "Google reCAPTCHA yönetici konsolunuzdaki gizli anahtarı girin"
+
+msgid "Monetization"
+msgstr "Para kazanma"
+
+msgid "General Monetization"
+msgstr "Genel Para Kazanma"
+
+msgid "Core settings for handling payments and packages"
+msgstr "Ödemeleri ve paketleri işlemeye yönelik temel ayarlar"
+
+msgid "Choose the monetization model for submissions"
+msgstr "Gönderimler için para kazanma modelini seçin"
+
+msgid "Free, Per Listing, or Membership-based"
+msgstr "Ücretsiz, Listeleme Başına veya Üyeliğe dayalı"
+
+msgid "Default Currency Symbol"
+msgstr "Varsayılan Para Birimi Sembolü"
+
+msgid "The currency symbol to be used across the site"
+msgstr "Site genelinde kullanılacak para birimi simgesi"
+
+msgid "Currency Symbol Position"
+msgstr "Para Birimi Sembol Konumu"
+
+msgid "Packages & Featured Listings"
+msgstr "Paketler ve Öne Çıkan Listeler"
+
+msgid "Manage free packages and enable featured listings"
+msgstr "Ücretsiz paketleri yönetin ve öne çıkan listelemeleri etkinleştirin"
+
+msgid "Auto-assign Free Package to New User"
+msgstr "Ücretsiz Paketi Yeni Kullanıcıya Otomatik Ata"
+
+msgid "Automatically give new users a free package if one exists"
+msgstr "Varsa yeni kullanıcılara otomatik olarak ücretsiz bir paket verin"
+
+msgid "Free Package Purchase Auto Approve"
+msgstr "Ücretsiz Paket Satın Al Otomatik Onayla"
+
+msgid "Automatically approve the purchase of free packages"
+msgstr "Ücretsiz paketlerin satın alınmasını otomatik olarak onaylayın"
+
+msgid "Purchase Free Package Only Once"
+msgstr "Ücretsiz Paketi Yalnızca Bir Kez Satın Alın"
+
+msgid "Prevent users from acquiring a free package more than once"
+msgstr "Kullanıcıların ücretsiz bir paketi birden fazla kez almasını önleyin"
+
+msgid "Enable Featured Companies"
+msgstr "Öne Çıkan Şirketleri Etkinleştir"
+
+msgid "Allow companies to be marked as"
+msgstr "Şirketlerin şu şekilde işaretlenmesine izin ver:"
+
+msgid "Enable Featured Jobs"
+msgstr "Öne Çıkan İşleri Etkinleştir"
+
+msgid "Allow jobs to be marked as"
+msgstr "İşlerin şu şekilde işaretlenmesine izin ver:"
+
+msgid "Enable Featured Resumes"
+msgstr "Öne Çıkan Özgeçmişleri Etkinleştir"
+
+msgid "Allow resumes to be marked as"
+msgstr "Özgeçmişlerin şu şekilde işaretlenmesine izin ver:"
+
+msgid "Per Listing Prices"
+msgstr "İlan Başına Fiyatlar"
+
+msgid "Set prices for various actions when using the"
+msgstr "Kullanırken çeşitli eylemler için fiyatları ayarlayın"
+
+msgid "submission type"
+msgstr "gönderim türü"
+
+msgid "Submission"
+msgstr "Gönderim"
+
+msgid "Price to submit a single company profile"
+msgstr "Tek bir şirket profili gönderme fiyatı"
+
+msgid "Additional price to make a company"
+msgstr "Şirket kurmak için ek fiyat"
+
+msgid "Days Until Featured Company Expires"
+msgstr "Öne Çıkan Şirketin Sona Ermesine Kalan Günler"
+
+msgid "Number of days a"
+msgstr "Gün sayısı a"
+
+msgid "per-listing"
+msgstr "listeleme başına"
+
+msgid "featured company remains active"
+msgstr "öne çıkan şirket aktif kalıyor"
+
+msgid "free"
+msgstr "özgür"
+
+msgid "Price to submit a single job"
+msgstr "Tek bir iş gönderme fiyatı"
+
+msgid "Additional price to make a job"
+msgstr "Bir iş yapmak için ek fiyat"
+
+msgid "Days Until Featured Job Expires"
+msgstr "Öne Çıkan İşin Sona Ermesine Kalan Günler"
+
+msgid "featured job remains active"
+msgstr "öne çıkan iş aktif kalır"
+
+msgid "Price to submit a single resume"
+msgstr "Tek özgeçmiş gönderme fiyatı"
+
+msgid "Additional price to make a resume"
+msgstr "Özgeçmiş hazırlamak için ek fiyat"
+
+msgid "Days Until Featured Resume Expires"
+msgstr "Öne Çıkan Özgeçmişin Sona Ermesine Kalan Günler"
+
+msgid "featured resume remains active"
+msgstr "öne çıkan özgeçmiş aktif kalır"
+
+msgid "Price per Job Apply"
+msgstr "İş Başvurusu Başına Fiyat"
+
+msgid "Price for a job seeker to apply for a job"
+msgstr "İş arayanın iş başvurusu fiyatı"
+
+msgid "Price to View Resume Contact"
+msgstr "Fiyatı Görüntüle Devam Et İletişim"
+
+msgid "Price to View Company Contact"
+msgstr "Fiyatı Görüntüle Şirket İletişim"
+
+msgid "Price to submit a department"
+msgstr "Departman gönderme fiyatı"
+
+msgid "Price to submit a cover letter"
+msgstr "Kapak mektubu gönderme fiyatı"
+
+msgid "Price to create a job alert"
+msgstr "İş ilanı uyarısı oluşturma fiyatı"
+
+msgid "Dashboard Monetization Links"
+msgstr "Kontrol Panelinden Para Kazanma Bağlantıları"
+
+msgid "Control the visibility of monetization-related links in user dashboards"
+msgstr "Kullanıcı kontrol panellerinde para kazanmayla ilgili bağlantıların görünürlüğünü kontrol edin"
+
+msgid "Employer Show Invoice History"
+msgstr "İşveren Fatura Geçmişini Göster"
+
+msgid "Setting to show the invoice/purchase history section"
+msgstr "Fatura/satın alma geçmişi bölümünü gösterme ayarı"
+
+msgid "Job Seeker Show Invoice History"
+msgstr "İş Arayan Fatura Geçmişini Göster"
+
+msgid "Job Seeker Show Credits Log"
+msgstr "İş Arayan Kredi Günlüğünü Göster"
+
+msgid "Setting to show the credits log section"
+msgstr "Kredi günlüğü bölümünü gösterme ayarı"
+
+msgid "Payment Gateways"
+msgstr "Ödeme Ağ Geçitleri"
+
+msgid "Configure PayPal payment gateway settings for API integration"
+msgstr "API entegrasyonu için PayPal ödeme ağ geçidi ayarlarını yapılandırın"
+
+msgid "Enable PayPal"
+msgstr "PayPal'ı etkinleştir"
+
+msgid "Enable or disable PayPal as a payment option"
+msgstr "Ödeme seçeneği olarak PayPal'ı etkinleştirme veya devre dışı bırakma"
+
+msgid "Your PayPal API Username"
+msgstr "PayPal API Kullanıcı Adınız"
+
+msgid "Your PayPal API Password"
+msgstr "PayPal API Şifreniz"
+
+msgid "Your PayPal API Signature"
+msgstr "PayPal API İmzanız"
+
+msgid "A URL to your logo image to display on the PayPal checkout page"
+msgstr "PayPal ödeme sayfasında görüntülenecek logo resminizin URL'si"
+
+msgid "Cancel URL"
+msgstr "URL'yi iptal et"
+
+msgid "The URL users are sent to if they cancel the payment"
+msgstr "Ödemeyi iptal etmeleri durumunda kullanıcıların gönderileceği URL"
+
+msgid "Notify URL"
+msgstr "URL'yi bildir"
+
+msgid "Sandbox"
+msgstr "Korumalı alan"
+
+msgid "Enable PayPal Sandbox for testing purposes"
+msgstr "Test amacıyla PayPal Sandbox'ı etkinleştirin"
+
+msgid "Please enter language code, for example"
+msgstr "Lütfen örneğin dil kodunu girin"
+
+msgid "Subscription IPN URL"
+msgstr "Abonelik IPN URL'si"
+
+msgid "Configure Stripe payment gateway settings"
+msgstr "Stripe ödeme ağ geçidi ayarlarını yapılandırma"
+
+msgid "Enable Stripe"
+msgstr "Stripe'ı Etkinleştir"
+
+msgid "Enable or disable Stripe as a payment option"
+msgstr "Ödeme seçeneği olarak Stripe'ı etkinleştirme veya devre dışı bırakma"
+
+msgid "Publishable Key"
+msgstr "Yayınlanabilir Anahtar"
+
+msgid "Enter your Stripe Publishable Key"
+msgstr "Stripe Yayınlanabilir Anahtarınızı girin"
+
+msgid "Secret Key"
+msgstr "Gizli Anahtar"
+
+msgid "Enter your Stripe Secret Key"
+msgstr "Stripe Gizli Anahtarınızı girin"
+
+msgid "Subscription Webhook URL"
+msgstr "Abonelik Web Kancası URL'si"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Use WooCommerce to handle payments"
+msgstr "Ödemeleri yönetmek için WooCommerce'i kullanın"
+
+msgid "Enable WooCommerce"
+msgstr "WooCommerce'i etkinleştirin"
+
+msgid "Enable or disable WooCommerce as a payment option"
+msgstr "Ödeme seçeneği olarak WooCommerce'i etkinleştirme veya devre dışı bırakma"
+
+msgid "Home Page"
+msgstr "Ana Sayfa"
+
+msgid "WordPress Default"
+msgstr "WordPress Varsayılanı"
+
+msgid "Blog"
+msgstr "Blog"
+
+msgid "This feature is part of a premium addon"
+msgstr "Bu özellik premium eklentinin bir parçasıdır"
+
+msgid "Available tags"
+msgstr "Mevcut etiketler"
+
+msgid "This image will be shown as the default image for entities & users if no other image is provided"
+msgstr "Bu resim, başka bir resim sağlanmadığı takdirde varlıklar ve kullanıcılar için varsayılan resim olarak gösterilecektir"
+
+msgid "Discard"
+msgstr "At"
+
+msgid "Save Changes"
+msgstr "Değişiklikleri Kaydet"
+
+msgid "Quickly find any setting"
+msgstr "Herhangi bir ayarı hızlı bir şekilde bulun"
+
+msgid "Search by setting title or tooltip description"
+msgstr "Başlığı veya ipucu açıklamasını ayarlayarak arama yapın"
+
+msgid "Unlock"
+msgstr "Kilidi aç"
+
+msgid "This and other powerful features are available in the"
+msgstr "Bu ve diğer güçlü özellikler şu adreste mevcuttur:"
+
+msgid "Upgrade Now"
+msgstr "Şimdi Yükselt"
+
+msgid "No settings found for your search"
+msgstr "Aramanız için ayar bulunamadı"
+
+msgid "Copied to clipboard"
+msgstr "Panoya kopyalandı"
+
+msgid "Search results for"
+msgstr "Şunun için arama sonuçları:"
+
+msgid "Unlock with"
+msgstr "ile kilidini aç"
+
+msgid "Settings related to employer accounts, registration, and permissions"
+msgstr "İşveren hesapları, kayıt ve izinlerle ilgili ayarlar"
+
+msgid "Settings related to job seeker accounts and registration"
+msgstr "İş arayan hesapları ve kayıtla ilgili ayarlar"
+
+msgid "Visitor Can View Employer's Control Panel Links"
+msgstr "Ziyaretçi İşverenin Kontrol Paneli Bağlantılarını Görüntüleyebilir"
+
+msgid "Visitor Can View Resume Categories"
+msgstr "Ziyaretçi Özgeçmiş Kategorilerini Görüntüleyebilir"
+
+msgid "Visitor Can Search Resumes"
+msgstr "Ziyaretçi Özgeçmişleri Arayabilir"
+
+msgid "Visitor Can View Company Details"
+msgstr "Ziyaretçi Şirket Detaylarını Görüntüleyebilir"
+
+msgid "Visitor Can View Job Details"
+msgstr "Ziyaretçi İş Detaylarını Görüntüleyebilir"
+
+msgid "Visitor Can View Resume Details"
+msgstr "Ziyaretçi Özgeçmiş Detaylarını Görüntüleyebilir"
+
+msgid "Visitor Can View Job Seeker's Control Panel Links"
+msgstr "Ziyaretçi İş Arayanın Kontrol Paneli Bağlantılarını Görüntüleyebilir"
+
+msgid "Visitor Can View Jobs by Categories"
+msgstr "Ziyaretçi İşleri Kategorilere Göre Görüntüleyebilir"
+
+msgid "Visitor Can Search Jobs"
+msgstr "Ziyaretçi İşleri Arayabilir"
+
+msgid "Visitor Can View Newest Jobs"
+msgstr "Ziyaretçi En Yeni İşleri Görüntüleyebilir"
+
+msgid "Visitor Can View Job Search Results"
+msgstr "Ziyaretçi İş Arama Sonuçlarını Görüntüleyebilir"
+
+msgid "1 Column"
+msgstr "1 Sütun"
+
+msgid "10254 Departments found"
+msgstr "10254 Departman bulundu"
+
+msgid "2 Columns"
+msgstr "2 Sütun"
+
+msgid "3 Columns"
+msgstr "3 Sütun"
+
+msgid "4 Columns"
+msgstr "4 Sütun"
+
+msgid "5 Columns"
+msgstr "5 Sütun"
+
+msgid "A critical update for WP Job Portal is required to maintain performance and prevent issues. Please update now."
+msgstr "Performansı korumak ve sorunları önlemek için WP İş Portalı için kritik bir güncelleme gereklidir. Lütfen şimdi güncelleyin."
+
+msgid "AI Search"
+msgstr "Yapay Zeka Arama"
+
+msgid "AI Search Job"
+msgstr "Yapay Zeka Arama İşi"
+
+msgid "AI Settings"
+msgstr "Yapay Zeka Ayarları"
+
+msgid "AI settings"
+msgstr "Yapay zeka ayarları"
+
+msgid "About"
+msgstr "Hakkında"
+
+msgid "Account & Billing"
+msgstr "Hesap ve Faturalandırma"
+
+msgid "Activation failed"
+msgstr "Etkinleştirme başarısız oldu"
+
+msgid "Add-ons for WP Job Portal have been installed and activated successfully."
+msgstr "WP Job Portal eklentileri başarıyla yüklendi ve etkinleştirildi."
+
+msgid "Addon Installer"
+msgstr "Eklenti Yükleyici"
+
+msgid "Addon not installed please install addon first."
+msgstr "Eklenti yüklü değil, lütfen önce eklentiyi yükleyin."
+
+msgid "Addon will automatically update to the newest version"
+msgstr "Addon otomatik olarak en yeni sürüme güncellenecektir"
+
+msgid "Addon(s) Installed successfully!"
+msgstr "Eklenti(ler) başarıyla kuruldu!"
+
+msgid "Address display style for plugin"
+msgstr "Eklenti için adres görüntüleme stili"
+
+msgid "Advanced Resume Builder Addon missing, resume sections data will not be imported!"
+msgstr "Gelişmiş Özgeçmiş Oluşturucu Eklentisi eksik, özgeçmiş bölümleri verileri içe aktarılmayacak!"
+
+msgid "All selected add-ons are now active."
+msgstr "Seçilen tüm eklentiler artık etkin."
+
+msgid "Allow employers and job Seekers to register on the site."
+msgstr "İşverenlerin ve iş arayanların siteye kaydolmasına izin verin."
+
+msgid "Allow search resume"
+msgstr "Aramanın devam etmesine izin ver"
+
+msgid "Allowed to all (employers, job seekers and visitors)"
+msgstr "Herkese izin verilir (işverenler, iş arayanlar ve ziyaretçiler)"
+
+msgid "Auto Update: Off"
+msgstr "Otomatik Güncelleme: Kapalı"
+
+msgid "Auto Update: On"
+msgstr "Otomatik Güncelleme: Açık"
+
+msgid "Back to listing"
+msgstr "Listelemeye geri dön"
+
+msgid "Basic Info"
+msgstr "Temel Bilgiler"
+
+msgid "Buttons Styling"
+msgstr "Düğme Şekillendirme"
+
+msgid "Capitalize"
+msgstr "Büyük harfle yaz"
+
+msgid "Check if you want to use WP Job Portal packages"
+msgstr "WP Job Portal paketlerini kullanmak isteyip istemediğinizi kontrol edin"
+
+msgid "City name"
+msgstr "Şehir adı"
+
+msgid "Columns per Row"
+msgstr "Satır Başına Sütun Sayısı"
+
+msgid "Comma separated list of job types i.e JTFT, JTPT, JTFP, JTCT, JTIN"
+msgstr "JTFT, JTPT, JTFP, JTCT, JTIN gibi iş türlerinin virgülle ayrılmış listesi"
+
+msgid "Communication"
+msgstr "İletişim"
+
+msgid "Company Management"
+msgstr "Şirket Yönetimi"
+
+msgid "Complete Your Resume"
+msgstr "Özgeçmişinizi Tamamlayın"
+
+msgid "Content Access"
+msgstr "İçerik Erişimi"
+
+msgid "Content Styling"
+msgstr "İçerik Şekillendirme"
+
+msgid "Control which employer dashboard navigation links are visible to visitors"
+msgstr "Hangi işveren kontrol paneli gezinme bağlantılarının ziyaretçiler tarafından görülebileceğini kontrol edin"
+
+msgid "Control which employer dashboard widgets and sections are visible to visitors"
+msgstr "Hangi işveren kontrol paneli widget'larının ve bölümlerinin ziyaretçiler tarafından görülebileceğini kontrol edin"
+
+msgid "Control which job seeker dashboard navigation links are visible to visitors"
+msgstr "Hangi iş arayan kontrol paneli gezinme bağlantılarının ziyaretçiler tarafından görülebileceğini kontrol edin"
+
+msgid "Control which job seeker dashboard widgets and sections are visible to visitors"
+msgstr "Hangi iş arayan kontrol paneli widget'larının ve bölümlerinin ziyaretçiler tarafından görülebileceğini kontrol edin"
+
+msgid "Control which pages and content areas are visible to non-logged-in users"
+msgstr "Oturum açmamış kullanıcılar tarafından hangi sayfaların ve içerik alanlarının görülebileceğini kontrol edin"
+
+msgid "Custom Field Class"
+msgstr "Özel Alan Sınıfı"
+
+msgid "Database Update Needed"
+msgstr "Veritabanı Güncellemesi Gerekiyor"
+
+msgid "Database update completed"
+msgstr "Veritabanı güncellemesi tamamlandı"
+
+msgid "Delete All Unused Keys"
+msgstr "Kullanılmayan Tüm Anahtarları Sil"
+
+msgid "Discover"
+msgstr "Keşfetmek"
+
+msgid "Display the status of applications to the job seeker"
+msgstr "Başvuruların durumunu iş arayana gösterin"
+
+msgid "Dummy Plugin"
+msgstr "Sahte Eklenti"
+
+msgid "Dummy Plugin 2"
+msgstr "Sahte Eklenti 2"
+
+msgid "Elegant Design"
+msgstr "Zarif Tasarım"
+
+msgid "Employer Widgets"
+msgstr "İşveren Widget'ları"
+
+msgid "Enter the Site Title"
+msgstr "Site Başlığını Girin"
+
+msgid "Entity"
+msgstr "Varlık"
+
+msgid "Fetch Data"
+msgstr "Veri Getir"
+
+msgid "Find your next star hire with AI-driven resume search"
+msgstr "Yapay zeka odaklı özgeçmiş aramayla bir sonraki yıldız kiralamanızı bulun"
+
+msgid "Font Family"
+msgstr "Yazı Tipi Ailesi"
+
+msgid "Font Size"
+msgstr "Yazı Tipi Boyutu"
+
+msgid "Font Style"
+msgstr "Yazı Tipi Stili"
+
+msgid "Font Weight"
+msgstr "Yazı Tipi Ağırlığı"
+
+msgid "Go To Dashboard"
+msgstr "Kontrol Paneline Git"
+
+msgid "Import Data Report"
+msgstr "Veri Raporunu İçe Aktar"
+
+msgid "Import Third Party Data"
+msgstr "Üçüncü Taraf Verilerini İçe Aktarın"
+
+msgid "Import demo data to populate your site with example companies, jobs, resumes, and applications."
+msgstr "Sitenizi örnek şirketler, işler, özgeçmişler ve uygulamalarla doldurmak için demo verilerini içe aktarın."
+
+msgid "Imported"
+msgstr "İthal"
+
+msgid "Infi Icon"
+msgstr "Bilgi Simgesi"
+
+msgid "Info"
+msgstr "Bilgi"
+
+msgid "Info Icon"
+msgstr "Bilgi Simgesi"
+
+msgid "Invalid server response"
+msgstr "Geçersiz sunucu yanıtı"
+
+msgid "Italic"
+msgstr "İtalik"
+
+msgid "Job Alert Time"
+msgstr "İş Uyarı Süresi"
+
+msgid "Job Detail"
+msgstr "İş Detayı"
+
+msgid "Job Seeker Links"
+msgstr "İş Arayan Bağlantıları"
+
+msgid "Job Seeker Settings"
+msgstr "İş Arayan Ayarları"
+
+msgid "Job Seeker Widgets"
+msgstr "İş Arayan Widget'lar"
+
+msgid "Jobs by Category"
+msgstr "Kategoriye Göre İş İlanları"
+
+msgid "Layout"
+msgstr "Düzen"
+
+msgid "Letter Spacing"
+msgstr "Harf Aralığı"
+
+msgid "Line Height"
+msgstr "Satır Yüksekliği"
+
+msgid "Live Preview Not available at the moment !"
+msgstr "Canlı Önizleme Şu anda mevcut değil!"
+
+msgid "Login/Register"
+msgstr "Giriş yap/Kayıt ol"
+
+msgid "Lowercase"
+msgstr "Küçük harf"
+
+msgid "Manage Documents"
+msgstr "Belgeleri Yönet"
+
+msgid "Manage Jobs"
+msgstr "İşleri Yönet"
+
+msgid "Manage Unused Keys"
+msgstr "Kullanılmayan Anahtarları Yönet"
+
+msgid "More Actions"
+msgstr "Daha Fazla Eylem"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans."
+msgstr "Aboneliğim, kullanıcılara aktif aboneliklerine ilişkin genel bir bakış sunarak, iş ilanı planlarının kolay yönetimine ve takibine olanak tanır."
+
+msgid "New Jobs"
+msgstr "Yeni İşler"
+
+msgid "Next Setup"
+msgstr "Sonraki Kurulum"
+
+msgid "No Addon Installed!"
+msgstr "Hiçbir Eklenti Yüklenmedi!"
+
+msgid "No unused keys were found."
+msgstr "Kullanılmayan anahtar bulunamadı."
+
+msgid "None"
+msgstr "Hiçbiri"
+
+msgid "Not Imported"
+msgstr "İthal Edilmedi"
+
+msgid "Oblique"
+msgstr "Eğik"
+
+msgid "Only job seekers can register. Jobs and companies are managed by the admin."
+msgstr "Yalnızca iş arayanlar kayıt olabilir. İşler ve şirketler yönetici tarafından yönetilir."
+
+msgid "Paid access Only"
+msgstr "Yalnızca Ücretli Erişim"
+
+msgid "Pay For Featured Resume"
+msgstr "Öne Çıkan Özgeçmiş İçin Ödeme Yapın"
+
+msgid "Pay For Resume"
+msgstr "Özgeçmiş İçin Ödeme Yapın"
+
+msgid "Pay per listing price to publish your"
+msgstr "İlanınızı yayınlamak için liste fiyatı başına ödeme yapın"
+
+msgid "Please Insert Your Activation Key"
+msgstr "Lütfen Aktivasyon Anahtarınızı Girin"
+
+msgid "Please log in to register to continue."
+msgstr "Devam etmek için lütfen kayıt olmak üzere giriş yapın."
+
+msgid "Please select at least one addon!"
+msgstr "Lütfen en az bir eklenti seçin!"
+
+msgid "Please verify Locations and salaries for imported data entities"
+msgstr "Lütfen içe aktarılan veri varlıkları için Konumları ve maaşları doğrulayın"
+
+msgid "Plugin not installed"
+msgstr "Eklenti yüklü değil"
+
+msgid "Price for a job seeker to view a company's contact details"
+msgstr "İş arayanın bir şirketin iletişim bilgilerini görüntülemesi için fiyat"
+
+msgid "Price for an employer to view a resume's contact details"
+msgstr "Bir işverenin özgeçmişin iletişim bilgilerini görüntüleme ücreti"
+
+msgid "Quick Configuration"
+msgstr "Hızlı Yapılandırma"
+
+msgid "Ready to find your dream job? Let's get started"
+msgstr "Hayalinizdeki işi bulmaya hazır mısınız? Hadi başlayalım"
+
+msgid "Ready to find your potential employee? Let's get started"
+msgstr "Potansiyel çalışanınızı bulmaya hazır mısınız? Hadi başlayalım"
+
+msgid "Search Jobs"
+msgstr "İş Ara"
+
+msgid "Search Resumes"
+msgstr "Özgeçmişleri Ara"
+
+msgid "Search smarter – just type anything you know about the job: title, category, type, skills, or even a description!"
+msgstr "Daha akıllıca arama yapın; iş hakkında bildiğiniz her şeyi yazın: başlık, kategori, tür, beceriler ve hatta bir açıklama!"
+
+msgid "Section Title Styling"
+msgstr "Bölüm Başlığı Şekillendirme"
+
+msgid "Select Addons to Update with New Activation Key"
+msgstr "Yeni Etkinleştirme Anahtarıyla Güncellenecek Eklentileri Seçin"
+
+msgid "Select Company"
+msgstr "Şirket Seçiniz"
+
+msgid "Select Job Category"
+msgstr "İş Kategorisini Seçin"
+
+msgid "Select Job Status"
+msgstr "İş Durumunu Seçin"
+
+msgid "Select Job Type"
+msgstr "İş Türünü Seçin"
+
+msgid "Select Page To Show"
+msgstr "Gösterilecek Sayfayı Seçin"
+
+msgid "Select Plugin Setting for WP Job Portal"
+msgstr "WP İş Portalı için Eklenti Ayarını Seçin"
+
+msgid "Select packages pack so that user can purchase them"
+msgstr "Kullanıcının bunları satın alabilmesi için paket paketini seçin"
+
+msgid "Select who can view company contact details."
+msgstr "Şirketin iletişim ayrıntılarını kimlerin görüntüleyebileceğini seçin."
+
+msgid "Settings you applied have been successfully saved"
+msgstr "Uyguladığınız ayarlar başarıyla kaydedildi"
+
+msgid "Setup Complete"
+msgstr "Kurulum Tamamlandı"
+
+msgid "Show Advanced Search Button"
+msgstr "Gelişmiş Arama Düğmesini Göster"
+
+msgid "Show Employers"
+msgstr "İşverenleri Göster"
+
+msgid "Show Everyone"
+msgstr "Herkese Göster"
+
+msgid "Show Job seekers"
+msgstr "İş arayanları göster"
+
+msgid "Show Labels"
+msgstr "Etiketleri Göster"
+
+msgid "Show No One"
+msgstr "Kimseyi Gösterme"
+
+msgid "Show Placeholders"
+msgstr "Yer Tutucuları Göster"
+
+msgid "Show Resume Status Section"
+msgstr "Devam Durumu Bölümünü Göster"
+
+msgid "Show a box with applied jobs on the job seeker's dashboard"
+msgstr "İş arayanın kontrol panelinde uygulanan işlerin bulunduğu bir kutu göster"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard"
+msgstr "İş arayanın kontrol panelinde en yeni işlerin bulunduğu bir kutu göster"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard to visitor"
+msgstr "Ziyaretçiye iş arayanın kontrol panelinde en yeni işlerin bulunduğu bir kutu gösterin"
+
+msgid "Show a box with recent resumes on the employer's dashboard"
+msgstr "İşverenin kontrol panelinde en son özgeçmişlerin bulunduğu bir kutu göster"
+
+msgid "Show a box with recent resumes on the employer's dashboard to visitor"
+msgstr "Ziyaretçiye işverenin kontrol panelinde en son özgeçmişlerin bulunduğu bir kutu göster"
+
+msgid "Show a graph of job statistics in the employer's dashboard"
+msgstr "İşverenin kontrol panelinde iş istatistiklerinin bir grafiğini gösterin"
+
+msgid "Show a graph of job statistics in the employer's dashboard to visitor"
+msgstr "Ziyaretçiye işverenin kontrol panelinde iş istatistiklerinin bir grafiğini gösterin"
+
+msgid "Show a graph of job statistics in the job seeker's dashboard"
+msgstr "İş arayanın kontrol panelinde iş istatistiklerinin bir grafiğini gösterin"
+
+msgid "Show a graph of job statistics in the job seeker's dashboard to visitor"
+msgstr "İş arayanın kontrol panelinde ziyaretçiye iş istatistiklerinin bir grafiğini gösterin"
+
+msgid "Show a link to active subscriptions in the employer's dashboard"
+msgstr "İşverenin kontrol panelinde aktif aboneliklerin bağlantısını gösterin"
+
+msgid "Show a link to active subscriptions in the job seeker's dashboard"
+msgstr "İş arayanın kontrol panelinde aktif aboneliklerin bağlantısını gösterin"
+
+msgid "Show a link to the packages page in the employer's dashboard"
+msgstr "İşverenin kontrol panelinde paketler sayfasına bir bağlantı gösterin"
+
+msgid "Show a link to the packages page in the job seeker's dashboard"
+msgstr "İş arayanın kontrol panelinde paketler sayfasına bir bağlantı gösterin"
+
+msgid "Show a link to the purchase history/invoices in the employer's dashboard"
+msgstr "İşverenin kontrol panelinde satın alma geçmişine/faturalara bir bağlantı gösterin"
+
+msgid "Show a link to the purchase history/invoices in the job seeker's dashboard"
+msgstr "İş arayanın kontrol panelinde satın alma geçmişine/faturalara bir bağlantı gösterin"
+
+msgid "Show a link to the user's purchased packages in their dashboard"
+msgstr "Kullanıcının satın aldığı paketlerin bağlantısını kontrol panelinde gösterin"
+
+msgid "Show an 'AI Suggested Jobs' button on the 'My Resumes' page for job seekers"
+msgstr "İş arayanlar için 'Özgeçmişlerim' sayfasında 'Yapay Zeka Tarafından Önerilen İşler' düğmesini gösterin"
+
+msgid "Show an 'AI Suggested Resumes' button on the 'My Jobs' page for employers"
+msgstr "İşverenler için 'İşlerim' sayfasında 'Yapay Zeka Tarafından Önerilen Özgeçmişler' düğmesini gösterin"
+
+msgid "Show or hide the profile section on the employer's control panel"
+msgstr "İşverenin kontrol panelindeki profil bölümünü gösterin veya gizleyin"
+
+msgid "Show or hide the profile section on the job seeker's control panel"
+msgstr "İş arayanın kontrol panelindeki profil bölümünü gösterin veya gizleyin"
+
+msgid "Show resume status section on the job seeker's dashboard"
+msgstr "İş arayanın kontrol panelinde özgeçmiş durumu bölümünü göster"
+
+msgid "Show statistics boxes on the employer's dashboard"
+msgstr "İşverenin kontrol panelinde istatistik kutularını göster"
+
+msgid "Show statistics boxes on the job seeker's dashboard"
+msgstr "İş arayanın kontrol panelinde istatistik kutularını göster"
+
+msgid "Show the 'Quick Apply' form to logged-in users on the job detail page"
+msgstr "Giriş yapan kullanıcılara iş detayı sayfasında 'Hızlı Başvuru' formunu gösterin"
+
+msgid "Show the 'Quick Apply' form to visitors on the job detail page"
+msgstr "İş detayı sayfasında ziyaretçilere 'Hızlı Başvuru' formunu gösterin"
+
+msgid "Similar Found"
+msgstr "Benzer Bulundu"
+
+msgid "Start typing what you know – our AI will help you find the best matching jobs."
+msgstr "Bildiklerinizi yazmaya başlayın; yapay zekamız en iyi eşleşen işleri bulmanıza yardımcı olacaktır."
+
+msgid "Start typing what you know – our AI will help you find the best matching resumes."
+msgstr "Bildiklerinizi yazmaya başlayın; yapay zekamız en iyi eşleşen özgeçmişleri bulmanıza yardımcı olacaktır."
+
+msgid "Step 1 of 5"
+msgstr "Adım 1/5"
+
+msgid "Step 2 of 4"
+msgstr "Adım 2/4"
+
+msgid "Step 2 of 5"
+msgstr "Adım 2/5"
+
+msgid "Step 3 of 4"
+msgstr "Adım 3/4"
+
+msgid "Step 3 of 5"
+msgstr "Adım 3/5"
+
+msgid "Step 4 of 4"
+msgstr "Adım 4/4"
+
+msgid "Step 4 of 5"
+msgstr "Adım 4/5"
+
+msgid "Step 5 of 5"
+msgstr "Adım 5/5"
+
+msgid "Subscriptions"
+msgstr "Abonelikler"
+
+msgid "Sugeested Jobs"
+msgstr "Önerilen İşler"
+
+msgid "Suggested Jobs"
+msgstr "Önerilen İşler"
+
+msgid "Suggested Resumes"
+msgstr "Önerilen Özgeçmişler"
+
+msgid "System"
+msgstr "Sistem"
+
+msgid "System Error Log"
+msgstr "Sistem Hata Günlüğü"
+
+msgid "Text Transform"
+msgstr "Metin Dönüşümü"
+
+msgid "The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "İşveren Kontrol Paneli, işverenlerin iş ilanlarını yönetmesine, başvuruları takip etmesine, adaylarla iletişim kurmasına ve işe alım ölçümlerini verimli bir şekilde analiz etmesine olanak tanıyan geliştirilmiş bir arayüzdür."
+
+msgid "The highlighted addons are not included in your current license. Please adjust your selection accordingly."
+msgstr "Vurgulanan eklentiler mevcut lisansınıza dahil değildir. Lütfen seçiminizi buna göre ayarlayın."
+
+msgid "This add-on will change the Job Portal pages to a simple yet powerful and rich web design that involves focusing on clean aesthetics, intuitive navigation, and functional elements while ensuring performance and responsiveness."
+msgstr "Bu eklenti, İş Portalı sayfalarını, performans ve yanıt verme yeteneği sağlarken temiz estetik, sezgisel gezinme ve işlevsel öğelere odaklanmayı içeren basit ama güçlü ve zengin bir web tasarımına dönüştürecektir."
+
+msgid "This will replace the old key with the new one."
+msgstr "Bu, eski anahtarı yenisiyle değiştirecektir."
+
+msgid "Today Stats"
+msgstr "Bugünün İstatistikleri"
+
+msgid "Unlock your career potential with AI-driven job search"
+msgstr "Yapay zeka odaklı iş aramayla kariyer potansiyelinizi ortaya çıkarın"
+
+msgid "Update Key"
+msgstr "Güncelleme Anahtarı"
+
+msgid "Update Now"
+msgstr "Şimdi Güncelle"
+
+msgid "Updating Database, please wait..."
+msgstr "Veritabanı güncelleniyor, lütfen bekleyin..."
+
+msgid "Uppercase"
+msgstr "Büyük harf"
+
+msgid "Use Default Color For Color 1"
+msgstr "Renk 1 İçin Varsayılan Rengi Kullan"
+
+msgid "Use Icons for Buttons"
+msgstr "Düğmeler için Simgeleri Kullanın"
+
+msgid "View All Resumes"
+msgstr "Tüm Özgeçmişleri Görüntüle"
+
+msgid "View Company Contact Detail"
+msgstr "Şirketin İletişim Bilgilerini Görüntüle"
+
+msgid "Visitor Show"
+msgstr "Ziyaretçi Gösterisi"
+
+msgid "Visitor Show Active Jobs Graph"
+msgstr "Ziyaretçi Aktif İş Grafiğini Göster"
+
+msgid "Visitor Show Applied Jobs Section"
+msgstr "Ziyaretçi Başvurulan İşler Bölümünü Göster"
+
+msgid "Visitor Show Applied Resumes Section"
+msgstr "Ziyaretçi Başvurulan Özgeçmiş Bölümünü Göster"
+
+msgid "Visitor Show Credits Log Section"
+msgstr "Ziyaretçi Kredi Günlüğü Bölümünü Göster"
+
+msgid "Visitor Show Jobs Graph"
+msgstr "Ziyaretçi İş İlanı Grafiğini Göster"
+
+msgid "Visitor Show Jobs Graph Section"
+msgstr "Ziyaretçi İş İlanı Grafiği Bölümünü Göster"
+
+msgid "Visitor Show Newest Jobs Box"
+msgstr "Ziyaretçi En Yeni İş İlanlarını Göster Kutusu"
+
+msgid "Visitor Show Newest Jobs Section"
+msgstr "Ziyaretçi En Yeni İşler Bölümünü Göster"
+
+msgid "Visitor Show Newest Resumes Section"
+msgstr "Ziyaretçi En Yeni Özgeçmiş Bölümünü Göster"
+
+msgid "Visitor Show Purchase History Section"
+msgstr "Ziyaretçi Satın Alma Geçmişi Bölümünü Göster"
+
+msgid "Visitor Show Recent Resumes Box"
+msgstr "Ziyaretçi Son Özgeçmiş Kutusunu Göster"
+
+msgid "Visitor Show Saved Searches Section"
+msgstr "Ziyaretçi Kayıtlı Aramalar Bölümünü Göster"
+
+msgid "Visitor Show Shortlisted Jobs Section"
+msgstr "Ziyaretçi Kısa Listedeki İşler Bölümünü Göster"
+
+msgid "Visitor Show Stats Graph Section"
+msgstr "Ziyaretçi İstatistikleri Grafik Bölümünü Göster"
+
+msgid "Visitor Show Useful Links Section"
+msgstr "Ziyaretçi Faydalı Bağlantılar Bölümünü Göster"
+
+msgid "WP Job Manager"
+msgstr "WP İş Yöneticisi"
+
+msgid "WP Job Portal Activation Key"
+msgstr "WP İş Portalı Etkinleştirme Anahtarı"
+
+msgid "WP Job Portal Import Data"
+msgstr "WP İş Portalı Verileri İçe Aktarma"
+
+msgid "WP Job Portal Packages"
+msgstr "WP İş Portalı Paketleri"
+
+msgid "Welcome to WP Job Portal Addon Installer"
+msgstr "WP İş Portalı Eklenti Yükleyicisine Hoş Geldiniz"
+
+msgid "Welcome, Visitor"
+msgstr "Hoşgeldiniz, Ziyaretçi"
+
+msgid "Who can search resume."
+msgstr "Özgeçmişi kimler arayabilir?"
+
+msgid "Who can view resume contact details"
+msgstr "Özgeçmiş iletişim ayrıntılarını kimler görebilir?"
+
+msgid "You Already Applied to this job"
+msgstr "Bu işe zaten başvurdunuz"
+
+msgid "You have"
+msgstr "Var"
+
+msgid "Your WP Job Portal license key has expired or is invalid. Please update it to continue receiving support and updates."
+msgstr "WP Job Portal lisans anahtarınızın süresi dolmuş veya geçersiz. Destek ve güncelleme almaya devam etmek için lütfen güncelleyin."
+
+msgid "failed."
+msgstr "arızalı."
+
+msgid "found"
+msgstr "kurmak"
+
+msgid "icon"
+msgstr "simge"
+
+msgid "imported."
+msgstr "ithal."
+
+msgid "skipped."
+msgstr "atlandı."
+
+msgid "unused key has been deleted successfully!"
+msgstr "kullanılmayan anahtar başarıyla silindi!"
+
+msgid "unused key(s) that can be safely removed."
+msgstr "Güvenli bir şekilde kaldırılabilen kullanılmamış anahtar(lar)."
+
+msgid "unused keys have been deleted successfully!"
+msgstr "kullanılmayan anahtarlar başarıyla silindi!"

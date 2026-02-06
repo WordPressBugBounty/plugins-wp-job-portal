@@ -8,19 +8,19 @@
 // add_filter('pre_get_document_title', 'wp_job_portal_document_title', 99);
 
 // function wp_job_portal_document_title($title) {
-//     $companyid = isset(wpjobportal::$_data[0]->id) ? wpjobportal::$_data[0]->id : '';
-//     if($companyid == ''){
+//     $wpjobportal_companyid = isset(wpjobportal::$_data[0]->id) ? wpjobportal::$_data[0]->id : '';
+//     if($wpjobportal_companyid == ''){
 //         return '';
 //     }
-//     $company_title_options = get_option('wpjobportal_company_document_title_settings');
-//     $company_document_title = WPJOBPORTALincluder::getJSModel('company')->makeCompanySeoDocumentTitle($company_title_options , $companyid);
-//     return $company_document_title;
+//     $wpjobportal_company_title_options = get_option('wpjobportal_company_document_title_settings');
+//     $wpjobportal_company_document_title = WPJOBPORTALincluder::getJSModel('company')->makeCompanySeoDocumentTitle($wpjobportal_company_title_options , $wpjobportal_companyid);
+//     return $wpjobportal_company_document_title;
 // }
 
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
         var ajaxurl = \"". esc_url_raw(admin_url('admin-ajax.php')) ."\";
 
         function getPackagePopup(resumeid) {
@@ -69,5 +69,5 @@
 
     });
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>

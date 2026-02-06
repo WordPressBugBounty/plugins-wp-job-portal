@@ -10,8 +10,8 @@ class WPJOBPORTALcontroller {
     }
 
     function handleRequest() {
-        $module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'wpjobportal');
-       WPJOBPORTALincluder::include_file($module);
+        $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme', null, 'wpjobportal');
+       WPJOBPORTALincluder::include_file($wpjobportal_module);
     }
 
 }

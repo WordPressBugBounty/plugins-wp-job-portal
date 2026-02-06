@@ -15,8 +15,8 @@ class WPJOBPORTALjobssearchjobs_widget extends WP_Widget {
         );
     }
 
-    public function widget($args, $instance) {
-        $defaults = [
+    public function widget($wpjobportal_args, $wpjobportal_instance) {
+        $wpjobportal_defaults = [
             'title' => esc_html__('Search Job', 'wp-job-portal'),
             'showtitle' => 1,
             'jobtitle' => 1,
@@ -37,13 +37,13 @@ class WPJOBPORTALjobssearchjobs_widget extends WP_Widget {
             'show_labels' => 1,
             'show_placeholders' => 0,
         ];
-        $instance = wp_parse_args($instance, $defaults);
+        $wpjobportal_instance = wp_parse_args($wpjobportal_instance, $wpjobportal_defaults);
 
-        echo wp_kses($args['before_widget'], WPJOBPORTAL_ALLOWED_TAGS);
-        if (!empty($instance['title']) && $instance['showtitle']) {
-            echo wp_kses($args['before_title'], WPJOBPORTAL_ALLOWED_TAGS) .
-                 esc_html($instance['title']) .
-                 wp_kses($args['after_title'], WPJOBPORTAL_ALLOWED_TAGS);
+        echo wp_kses($wpjobportal_args['before_widget'], WPJOBPORTAL_ALLOWED_TAGS);
+        if (!empty($wpjobportal_instance['title']) && $wpjobportal_instance['showtitle']) {
+            echo wp_kses($wpjobportal_args['before_title'], WPJOBPORTAL_ALLOWED_TAGS) .
+                 esc_html($wpjobportal_instance['title']) .
+                 wp_kses($wpjobportal_args['after_title'], WPJOBPORTAL_ALLOWED_TAGS);
         }
 
         if (defined('REST_REQUEST') && REST_REQUEST) {
@@ -52,40 +52,40 @@ class WPJOBPORTALjobssearchjobs_widget extends WP_Widget {
 
         if (!locate_template('wp-job-portal/widget-searchjobs.php', true, true)) {
             wpjobportal::wpjobportal_addStyleSheets();
-            $modules_html = WPJOBPORTALincluder::getJSModel('jobsearch')->getSearchJobs_Widget(
-                $instance['title'],
-                $instance['showtitle'],
-                $instance['jobtitle'],
-                $instance['category'],
-                $instance['jobtype'],
-                $instance['jobstatus'],
-                $instance['salaryrange'],
-                $instance['shift'],
-                $instance['duration'],
+            $wpjobportal_modules_html = WPJOBPORTALincluder::getJSModel('jobsearch')->getSearchJobs_Widget(
+                $wpjobportal_instance['title'],
+                $wpjobportal_instance['showtitle'],
+                $wpjobportal_instance['jobtitle'],
+                $wpjobportal_instance['category'],
+                $wpjobportal_instance['jobtype'],
+                $wpjobportal_instance['jobstatus'],
+                $wpjobportal_instance['salaryrange'],
+                $wpjobportal_instance['shift'],
+                $wpjobportal_instance['duration'],
                 0, // startpublishing
                 0, // stoppublishing
-                $instance['company'],
-                $instance['address'],
-                $instance['columnperrow'],
-                $instance['layout'],
-                $instance['show_adv_button'],
-                $instance['use_icons_for_buttons'],
-                $instance['field_custom_class'],
-                $instance['show_labels'],
-                $instance['show_placeholders']
+                $wpjobportal_instance['company'],
+                $wpjobportal_instance['address'],
+                $wpjobportal_instance['columnperrow'],
+                $wpjobportal_instance['layout'],
+                $wpjobportal_instance['show_adv_button'],
+                $wpjobportal_instance['use_icons_for_buttons'],
+                $wpjobportal_instance['field_custom_class'],
+                $wpjobportal_instance['show_labels'],
+                $wpjobportal_instance['show_placeholders']
             );
-            echo $modules_html;
+            echo wp_kses($wpjobportal_modules_html,WPJOBPORTAL_ALLOWED_TAGS);
         }
 
         if (defined('REST_REQUEST') && REST_REQUEST) {
             return ob_get_clean();
         }
 
-        echo wp_kses($args['after_widget'], WPJOBPORTAL_ALLOWED_TAGS);
+        echo wp_kses($wpjobportal_args['after_widget'], WPJOBPORTAL_ALLOWED_TAGS);
     }
 
-    public function form($instance) {
-        $instance = wp_parse_args((array) $instance, array(
+    public function form($wpjobportal_instance) {
+        $wpjobportal_instance = wp_parse_args((array) $wpjobportal_instance, array(
             'title' => '',
             'showtitle' => 1,
             'jobtitle' => 1,
@@ -111,11 +111,11 @@ class WPJOBPORTALjobssearchjobs_widget extends WP_Widget {
             <label for="<?php echo esc_attr($this->get_field_id('title')); ?>">
                 <?php echo esc_html__('Title', 'wp-job-portal'); ?>
             </label>
-            <input class="widefat" id="<?php echo esc_attr($this->get_field_id('title')); ?>" name="<?php echo esc_attr($this->get_field_name('title')); ?>" type="text" value="<?php echo esc_attr($instance['title']); ?>" />
+            <input class="widefat" id="<?php echo esc_attr($this->get_field_id('title')); ?>" name="<?php echo esc_attr($this->get_field_name('title')); ?>" type="text" value="<?php echo esc_attr($wpjobportal_instance['title']); ?>" />
         </p>
 
         <p>
-            <input id="<?php echo esc_attr($this->get_field_id('showtitle')); ?>" name="<?php echo esc_attr($this->get_field_name('showtitle')); ?>" type="checkbox" value="1" <?php checked($instance['showtitle'], 1); ?> />
+            <input id="<?php echo esc_attr($this->get_field_id('showtitle')); ?>" name="<?php echo esc_attr($this->get_field_name('showtitle')); ?>" type="checkbox" value="1" <?php checked($wpjobportal_instance['showtitle'], 1); ?> />
             <label for="<?php echo esc_attr($this->get_field_id('showtitle')); ?>">
                 <?php echo esc_html__('Show Title', 'wp-job-portal'); ?>
             </label>
@@ -126,10 +126,10 @@ class WPJOBPORTALjobssearchjobs_widget extends WP_Widget {
                 <?php echo esc_html__('Layout', 'wp-job-portal'); ?>
             </label>
             <select class="widefat" id="<?php echo esc_attr($this->get_field_id('layout')); ?>" name="<?php echo esc_attr($this->get_field_name('layout')); ?>">
-                <option value="vertical" <?php selected($instance['layout'], 'vertical'); ?>>
+                <option value="vertical" <?php selected($wpjobportal_instance['layout'], 'vertical'); ?>>
                     <?php echo esc_html__('Vertical', 'wp-job-portal'); ?>
                 </option>
-                <option value="horizontal" <?php selected($instance['layout'], 'horizontal'); ?>>
+                <option value="horizontal" <?php selected($wpjobportal_instance['layout'], 'horizontal'); ?>>
                     <?php echo esc_html__('Horizontal', 'wp-job-portal'); ?>
                 </option>
             </select>
@@ -140,11 +140,11 @@ class WPJOBPORTALjobssearchjobs_widget extends WP_Widget {
                 <?php echo esc_html__('Columns per Row', 'wp-job-portal'); ?>
             </label>
             <select class="widefat" id="<?php echo esc_attr($this->get_field_id('columnperrow')); ?>" name="<?php echo esc_attr($this->get_field_name('columnperrow')); ?>">
-                <option value="1" <?php if (esc_attr($instance['columnperrow']) == 1) echo "selected"; ?>><?php echo esc_html(__('1 Column', 'wp-job-portal')); ?></option>
-                <option value="2" <?php if (esc_attr($instance['columnperrow']) == 2) echo "selected"; ?>><?php echo esc_html(__('2 Columns', 'wp-job-portal')); ?></option>
-                <option value="3" <?php if (esc_attr($instance['columnperrow']) == 3) echo "selected"; ?>><?php echo esc_html(__('3 Columns', 'wp-job-portal')); ?></option>
-                <option value="4" <?php if (esc_attr($instance['columnperrow']) == 4) echo "selected"; ?>><?php echo esc_html(__('4 Columns', 'wp-job-portal')); ?></option>
-                <option value="5" <?php if (esc_attr($instance['columnperrow']) == 5) echo "selected"; ?>><?php echo esc_html(__('5 Columns', 'wp-job-portal')); ?></option>
+                <option value="1" <?php if (esc_attr($wpjobportal_instance['columnperrow']) == 1) echo "selected"; ?>><?php echo esc_html(__('1 Column', 'wp-job-portal')); ?></option>
+                <option value="2" <?php if (esc_attr($wpjobportal_instance['columnperrow']) == 2) echo "selected"; ?>><?php echo esc_html(__('2 Columns', 'wp-job-portal')); ?></option>
+                <option value="3" <?php if (esc_attr($wpjobportal_instance['columnperrow']) == 3) echo "selected"; ?>><?php echo esc_html(__('3 Columns', 'wp-job-portal')); ?></option>
+                <option value="4" <?php if (esc_attr($wpjobportal_instance['columnperrow']) == 4) echo "selected"; ?>><?php echo esc_html(__('4 Columns', 'wp-job-portal')); ?></option>
+                <option value="5" <?php if (esc_attr($wpjobportal_instance['columnperrow']) == 5) echo "selected"; ?>><?php echo esc_html(__('5 Columns', 'wp-job-portal')); ?></option>
             </select>
         </p>
 
@@ -154,7 +154,7 @@ class WPJOBPORTALjobssearchjobs_widget extends WP_Widget {
 
         <?php
         // Define fields to show as checkboxes
-        $checkbox_fields = array(
+        $wpjobportal_checkbox_fields = array(
             'jobtitle' => __('Job Title', 'wp-job-portal'),
             'company' => __('Company', 'wp-job-portal'),
             'category' => __('Job Category', 'wp-job-portal'),
@@ -166,11 +166,11 @@ class WPJOBPORTALjobssearchjobs_widget extends WP_Widget {
             'show_adv_button' => __('Show Advanced Search Button', 'wp-job-portal'),
         );
 
-        foreach ($checkbox_fields as $field => $label): ?>
+        foreach ($wpjobportal_checkbox_fields as $wpjobportal_field => $wpjobportal_label): ?>
             <p>
-                <input id="<?php echo esc_attr($this->get_field_id($field)); ?>" name="<?php echo esc_attr($this->get_field_name($field)); ?>" type="checkbox" value="1" <?php checked($instance[$field], 1); ?> />
-                <label for="<?php echo esc_attr($this->get_field_id($field)); ?>">
-                    <?php echo esc_html($label); ?>
+                <input id="<?php echo esc_attr($this->get_field_id($wpjobportal_field)); ?>" name="<?php echo esc_attr($this->get_field_name($wpjobportal_field)); ?>" type="checkbox" value="1" <?php checked($wpjobportal_instance[$wpjobportal_field], 1); ?> />
+                <label for="<?php echo esc_attr($this->get_field_id($wpjobportal_field)); ?>">
+                    <?php echo esc_html($wpjobportal_label); ?>
                 </label>
             </p>
         <?php endforeach; ?>
@@ -179,33 +179,33 @@ class WPJOBPORTALjobssearchjobs_widget extends WP_Widget {
             <label for="<?php echo esc_attr($this->get_field_id('field_custom_class')); ?>">
                 <?php echo esc_html__('Custom Field Class', 'wp-job-portal'); ?>
             </label>
-            <input class="widefat" id="<?php echo esc_attr($this->get_field_id('field_custom_class')); ?>" name="<?php echo esc_attr($this->get_field_name('field_custom_class')); ?>" type="text" value="<?php echo esc_attr($instance['field_custom_class']); ?>" />
+            <input class="widefat" id="<?php echo esc_attr($this->get_field_id('field_custom_class')); ?>" name="<?php echo esc_attr($this->get_field_name('field_custom_class')); ?>" type="text" value="<?php echo esc_attr($wpjobportal_instance['field_custom_class']); ?>" />
         </p>
         <?php
     }
 
-    public function update($new_instance, $old_instance) {
-        $instance = array();
+    public function update($wpjobportal_new_instance, $old_instance) {
+        $wpjobportal_instance = array();
 
         // Text/select fields
-        $text_fields = array(
+        $wpjobportal_text_fields = array(
             'title', 'layout', 'columnperrow', 'field_custom_class'
         );
-        foreach ($text_fields as $field) {
-            $instance[$field] = !empty($new_instance[$field]) ? sanitize_text_field($new_instance[$field]) : '';
+        foreach ($wpjobportal_text_fields as $wpjobportal_field) {
+            $wpjobportal_instance[$wpjobportal_field] = !empty($wpjobportal_new_instance[$wpjobportal_field]) ? sanitize_text_field($wpjobportal_new_instance[$wpjobportal_field]) : '';
         }
 
         // Checkbox fields
-        $checkbox_fields = array(
+        $wpjobportal_checkbox_fields = array(
             'showtitle', 'jobtitle', 'category', 'jobtype', 'jobstatus',
             'salaryrange', 'shift', 'duration', 'company', 'address',
             'show_adv_button', 'use_icons_for_buttons', 'show_labels', 'show_placeholders'
         );
-        foreach ($checkbox_fields as $field) {
-            $instance[$field] = !empty($new_instance[$field]) ? 1 : 0;
+        foreach ($wpjobportal_checkbox_fields as $wpjobportal_field) {
+            $wpjobportal_instance[$wpjobportal_field] = !empty($wpjobportal_new_instance[$wpjobportal_field]) ? 1 : 0;
         }
 
-        return $instance;
+        return $wpjobportal_instance;
     }
 }
 

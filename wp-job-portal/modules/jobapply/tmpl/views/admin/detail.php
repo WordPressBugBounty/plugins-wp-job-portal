@@ -9,20 +9,20 @@
         <div class="wpjobportal-resume-list-top-wrp">
            <?php
     		 	WPJOBPORTALincluder::getTemplate('jobapply/views/admin/main',array(
-                    'data' => $data,
-                    'layout' => 'logo'
+                    'wpjobportal_data' => $wpjobportal_data,
+                    'wpjobportal_layout' => 'logo'
                 ));
 
                 WPJOBPORTALincluder::getTemplate('jobapply/views/admin/main',array(
-                    'data' => $data,
-                    'layout' => 'detail'
+                    'wpjobportal_data' => $wpjobportal_data,
+                    'wpjobportal_layout' => 'detail'
                 ));
             ?>
         </div>
         <div class="wpjobportal-resume-list-btm-wrp">
             <?php
                 WPJOBPORTALincluder::getTemplate('jobapply/views/admin/control',array(
-                    'data' => $data
+                    'wpjobportal_data' => $wpjobportal_data
                 ));
             ?>
         </div>

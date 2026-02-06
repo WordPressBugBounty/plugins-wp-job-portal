@@ -4,8 +4,6 @@
 * @param Left Menues Dashboard
 */
 ?>
-<?php if($module) {?>
-	<div id="wpjobportaladmin-leftmenu">
-    	<?php  WPJOBPORTALincluder::getClassesInclude('wpjobportaladminsidemenu'); ?>
-	</div>
+<?php if($wpjobportal_module) {?>
+    <?php  WPJOBPORTALincluder::getClassesInclude('wpjobportaladminsidemenu'); ?>
 <?php } ?>

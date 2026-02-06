@@ -7,48 +7,48 @@
  * @param content 		field html
  * @param description 	field description
  */
-if (isset($field)) {
-	if (!isset($title)) {
-		$title = $field->fieldtitle;
+if (isset($wpjobportal_field)) {
+	if (!isset($wpjobportal_title)) {
+		$wpjobportal_title = $wpjobportal_field->fieldtitle;
 	}
-	if (!isset($required)) {
-		$required = $field->required;
+	if (!isset($wpjobportal_required)) {
+		$wpjobportal_required = $wpjobportal_field->required;
 	}
-	 if (!isset($description)) {
-	 	$description = $field->description;
+	 if (!isset($wpjobportal_description)) {
+	 	$wpjobportal_description = $wpjobportal_field->description;
 	 }
 } else {
-    if (!isset($title)) {
-        $title = '';
+    if (!isset($wpjobportal_title)) {
+        $wpjobportal_title = '';
     }
-    if (!isset($required)) {
-        $required = false;
+    if (!isset($wpjobportal_required)) {
+        $wpjobportal_required = false;
     }
-    if (!isset($description)) {
-        $description = '';
+    if (!isset($wpjobportal_description)) {
+        $wpjobportal_description = '';
     }
 }
-$visibleclass = "";
-if (isset($field->visibleparams) && $field->visibleparams != ''){
-    $visibleclass = " visible js-form-custm-flds-wrp";
+$wpjobportal_visibleclass = "";
+if (isset($wpjobportal_field->visibleparams) && $wpjobportal_field->visibleparams != ''){
+    $wpjobportal_visibleclass = " visible js-form-custm-flds-wrp";
 }
 ?>
-<div class="wjportal-form-row <?php echo esc_attr($visibleclass);?>">
+<div class="wjportal-form-row <?php echo esc_attr($wpjobportal_visibleclass);?>">
     <div class="wjportal-form-title">
 
-        <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($title)); ?>
+        <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_title)); ?>
         
-        <?php if($required == 1 && WPJOBPORTALrequest::getVar('wpjobportalme') != "jobsearch"): ?>
+        <?php if($wpjobportal_required == 1 && WPJOBPORTALrequest::getVar('wpjobportalme') != "jobsearch"): ?>
         	<font>*</font>
     	<?php endif; ?>
 
     </div>
     <div class="wjportal-form-value">
 
-        <?php echo wp_kses($content, WPJOBPORTAL_ALLOWED_TAGS); ?>
+        <?php echo wp_kses($wpjobportal_content, WPJOBPORTAL_ALLOWED_TAGS); ?>
 
-        <?php if(!empty($description)): ?>
-        	<div class="wjportal-form-help-txt"><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($description)); ?></div>
+        <?php if(!empty($wpjobportal_description)): ?>
+        	<div class="wjportal-form-help-txt"><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_description)); ?></div>
         <?php endif; ?>
 
     </div>

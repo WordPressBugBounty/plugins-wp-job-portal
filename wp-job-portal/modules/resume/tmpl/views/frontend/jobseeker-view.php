@@ -6,15 +6,15 @@
 ?>
 <?php
 	WPJOBPORTALincluder::getTemplate('resume/list-view/frontend/jobseeker-title',array(
-			'myresume'	=>	$myresume,
-			'percentage'=>	$percentage
+			'wpjobportal_myresume'	=>	$wpjobportal_myresume,
+			'wpjobportal_percentage'=>	$wpjobportal_percentage
 	));
 	WPJOBPORTALincluder::getTemplate('resume/list-view/frontend/jobsekr-perc',array(
-			'myresume'	=>	$myresume,
-			'percentage'=>	$percentage
+			'wpjobportal_myresume'	=>	$wpjobportal_myresume,
+			'wpjobportal_percentage'=>	$wpjobportal_percentage
 	));
 	WPJOBPORTALincluder::getTemplate('resume/list-view/frontend/jobsekr-controls',array(
-			'myresume'	=>	$myresume
+			'wpjobportal_myresume'	=>	$wpjobportal_myresume
 	));
 ?>
                 

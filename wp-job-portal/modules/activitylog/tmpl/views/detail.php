@@ -8,18 +8,18 @@ if (!defined('ABSPATH'))
 ?>
 <tr>
 	<td>
-		<?php echo esc_html($data->id); ?>
+		<?php echo esc_html($wpjobportal_data->id); ?>
 	</td>
 	<td class="wpjobportal-text-left">
-		<?php echo esc_html($data->first_name) . ' ' . esc_html($data->last_name); ?>
+		<?php echo esc_html($wpjobportal_data->first_name) . ' ' . esc_html($wpjobportal_data->last_name); ?>
 	</td>
 	<td class="wpjobportal-text-left">
-		<?php echo wp_kses($data->description, WPJOBPORTAL_ALLOWED_TAGS); ?>
+		<?php echo wp_kses($wpjobportal_data->description, WPJOBPORTAL_ALLOWED_TAGS); ?>
 	</td>
 	<td>
-		<?php echo esc_html(wpjobportalphplib::wpJP_ucwords($data->referencefor)); ?>
+		<?php echo esc_html(wpjobportalphplib::wpJP_ucwords($wpjobportal_data->referencefor)); ?>
 	</td>
 	<td>
-		<?php echo esc_html($data->created); ?>
+		<?php echo esc_html($wpjobportal_data->created); ?>
 	</td>
 </tr>

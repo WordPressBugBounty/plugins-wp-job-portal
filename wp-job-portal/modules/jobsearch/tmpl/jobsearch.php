@@ -4,11 +4,11 @@ if (!defined('ABSPATH'))
 ?>
 <div class="wjportal-main-up-wrapper">
 <?php
-if ( !WPJOBPORTALincluder::getTemplate('templates/header',array('module' => 'jobsearch')) ) {
+if ( !WPJOBPORTALincluder::getTemplate('templates/header',array('wpjobportal_module' => 'jobsearch')) ) {
     return;
 }
 if (wpjobportal::$_error_flag == null) {
-    $radiustype = array(
+    $wpjobportal_radiustype = array(
         (object) array('id' => '0', 'text' => esc_html(__('Select One', 'wp-job-portal'))),
         (object) array('id' => '1', 'text' => esc_html(__('Meters', 'wp-job-portal'))),
         (object) array('id' => '2', 'text' => esc_html(__('Kilometers', 'wp-job-portal'))),
@@ -19,19 +19,19 @@ if (wpjobportal::$_error_flag == null) {
 
 <div class="wjportal-main-wrapper wjportal-clearfix">
     <div class="wjportal-page-header">
-        <?php WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('module' => 'jobsearch' , 'layout' => 'jobsearch')); ?>
+        <?php WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('wpjobportal_module' => 'jobsearch' , 'wpjobportal_layout' => 'jobsearch')); ?>
     </div>
     <div class="wjportal-form-wrp wjportal-search-job-form">
         <form class="wjportal-form wjportal-aisearch-form" id="job_form" method="post" action="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'jobs', 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))); ?>">
             <?php
-            $job_search_ai_form = wpjobportal::$_config->getConfigValue('job_search_ai_form');
-            if($job_search_ai_form == 0){ // show job search form without ai
-                    $formfields = WPJOBPORTALincluder::getTemplate('jobsearch/form-field',array(
-                        'fields' => wpjobportal::$_data[2],
-                        'radiustype' => $radiustype
+            $wpjobportal_job_search_ai_form = wpjobportal::$_config->getConfigValue('job_search_ai_form');
+            if($wpjobportal_job_search_ai_form == 0){ // show job search form without ai
+                    $wpjobportal_formfields = WPJOBPORTALincluder::getTemplate('jobsearch/form-field',array(
+                        'wpjobportal_fields' => wpjobportal::$_data[2],
+                        'wpjobportal_radiustype' => $wpjobportal_radiustype
                     ));
-                    foreach ($formfields as $formfield) {
-                        WPJOBPORTALincluder::getTemplate('templates/form-field', $formfield);
+                    foreach ($wpjobportal_formfields as $wpjobportal_formfield) {
+                        WPJOBPORTALincluder::getTemplate('templates/form-field', $wpjobportal_formfield);
                     }
                 ?>
                 <div class="wjportal-form-btn-wrp" id="save-button">
@@ -42,17 +42,17 @@ if (wpjobportal::$_error_flag == null) {
                 <div class="wjportal-form-wrp wjportal-search-job-aiform">
                         <div class="wjportal-filter-ai-searchfrm-wrp">
                             <div class="wjportal-ai-searchfrm-logo-wrp">
-                                <img class="wjportal-ai-searchfrm-logo" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/ai-icon.png'; ?>" alt="<?php echo esc_html(__('AI Search', 'wp-job-portal')) ?>" />
+                                <img class="wjportal-ai-searchfrm-logo" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/ai-icon.png'; ?>" alt="<?php echo esc_attr(__('AI Search', 'wp-job-portal')) ?>" />
                             </div>
                             <div class="wjportal-aifilter-search-wrp">
                                 <span class="wjportal-filter-ai-searchfrm-title"><?php echo esc_html(__('Unlock your career potential with AI-driven job search', 'wp-job-portal')) ?></span>
                                 <div class="wjportal-filter-search-field-wrp">
-                                    <?php echo  WPJOBPORTALformfield::text('aijobsearcch',isset(wpjobportal::$_data['filter']['aijobsearcch']) ? wpjobportal::$_data['filter']['aijobsearcch'] : '',array('placeholder'=>esc_html(__("Ready to find your dream job? Let's get started",'wp-job-portal')), 'class'=>'wjportal-elegant-addon-filter-search-input-field')); ?>
+                                    <?php echo  wp_kses(WPJOBPORTALformfield::text('aijobsearcch',isset(wpjobportal::$_data['filter']['aijobsearcch']) ? wpjobportal::$_data['filter']['aijobsearcch'] : '',array('placeholder'=>esc_html(__("Ready to find your dream job? Let's get started",'wp-job-portal')), 'class'=>'wjportal-elegant-addon-filter-search-input-field')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                                 </div>
                                 <span class="wjportal-filter-ai-searchfrm-discription"><?php echo esc_html(__('Search smarter – just type anything you know about the job: title, category, type, skills, or even a description!', 'wp-job-portal')) ?></span>
                                 <div class="wjportal-filter-search-btn-wrp">
                                     <button type="submit" class="wjportal-filter-search-btn">
-                                        <img class="wjportal-filter-search-field-icon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/search-icon.png'; ?>" alt="<?php echo esc_html(__('Search', 'wp-job-portal')) ?>" />
+                                        <img class="wjportal-filter-search-field-icon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL) . '/includes/images/search-icon.png'; ?>" alt="<?php echo esc_attr(__('Search', 'wp-job-portal')) ?>" />
                                         <?php echo esc_html(__("Search Jobs", 'wp-job-portal')) ?>
                                     </button>
                                 </div>

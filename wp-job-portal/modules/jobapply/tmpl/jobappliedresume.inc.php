@@ -2,11 +2,11 @@
 <?php
 
 // to handle the email candidate case
-$jobid = WPJOBPORTALrequest::getVar('jobid','','');
+$wpjobportal_jobid = WPJOBPORTALrequest::getVar('jobid','','');
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
         function tabsearch(jobid, searchtype, selected_tab) {
             var element = jQuery('#wpjobportal-applied-tabs-container .wpjobportal_appliedapplication_tab_selected');
             element.removeClass('wpjobportal_appliedapplication_tab_selected');
@@ -35,7 +35,7 @@ $jobid = WPJOBPORTALrequest::getVar('jobid','','');
                 });
             }else{
                 jQuery('span.wjportal-popup-title2').html(name);
-                jQuery('div#wjportal-popup-background').show();
+                jQuery('div#wjportal-popup-background').first().show();
                 jQuery('div#popup-main-outer.sendmessage').show();
                 jQuery('div#popup-main.sendmessage').slideDown('slow');
                 jQuery('div#wjportal-popup-background').click(function () {
@@ -378,7 +378,7 @@ $jobid = WPJOBPORTALrequest::getVar('jobid','','');
             }else{
                 jQuery('div#comments').css('display', 'inline-block');
             }
-            var jobid = ".$jobid.";// needed to get employer email address
+            var jobid = ".$wpjobportal_jobid.";// needed to get employer email address
             var ajaxurl = \"". esc_url_raw(admin_url('admin-ajax.php')) ."\";
             jQuery.post(ajaxurl, {action: 'wpjobportal_ajax', wpjobportalme: 'jobapply', task: task, em: emailid, resumeid:resumeid, jobid:jobid, '_wpnonce':'". esc_attr(wp_create_nonce("get-email-fields"))."'}, function (data) {
                 if (data) {
@@ -442,7 +442,7 @@ $jobid = WPJOBPORTALrequest::getVar('jobid','','');
 
             }else{
                 jQuery('span.wjportal-popup-title2').html(cover_letter_title);
-                jQuery('div#wjportal-popup-background.viewcoverletter').show();
+                jQuery('div#wjportal-popup-background.viewcoverletter').first().show();
                 jQuery('div#popup-main-outer.viewcoverletter').show();
                 jQuery('div#popup-main.viewcoverletter').slideDown('slow');
                 jQuery('div#popup-main.viewcoverletter .wjportal-cover-letter-desc').html(cover_letter_desc);
@@ -455,5 +455,5 @@ $jobid = WPJOBPORTALrequest::getVar('jobid','','');
             }
         }
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>

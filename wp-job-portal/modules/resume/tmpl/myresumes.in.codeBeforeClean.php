@@ -6,7 +6,7 @@ if (!defined('ABSPATH')) die('Restricted Access');
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
         var ajaxurl = \"". esc_url_raw(admin_url('admin-ajax.php'))."\";
         function makeExpiry() {
             jQuery('.goldnew').hover(function () {
@@ -62,10 +62,10 @@ if (!defined('ABSPATH')) die('Restricted Access');
             var html = '';
             if(1 ==common.theme_chk_number){
                 ";
-                $theme_image = "";
-                if(defined('JOB_PORTAL_THEME_IMAGE')) $theme_image = JOB_PORTAL_THEME_IMAGE.'/featured-icon.png'; 
-                 $inline_js_script .= "
-                html +='<img alt=\"featured\" title=\"'+ object.expiry+'\" class=\"jsjb-jm-myresume-list-featured\" src=\"" .$theme_image. "\" />';
+                $wpjobportal_theme_image = "";
+                if(defined('JOB_PORTAL_THEME_IMAGE')) $wpjobportal_theme_image = JOB_PORTAL_THEME_IMAGE.'/featured-icon.png';
+                 $wpjobportal_inline_js_script .= "
+                html +='<img alt=\"featured\" title=\"'+ object.expiry+'\" class=\"jsjb-jm-myresume-list-featured\" src=\"" .$wpjobportal_theme_image. "\" />';
                 if(jQuery('div.object_' + cid).find('div.jsjb-jm-myresume-list-top-wrap img.jsjb-jm-myresume-list-featured').length){
                     jQuery('div.object_' + cid).find('div.jsjb-jm-myresume-list-top-wrap img.jsjb-jm-myresume-list-featured').remove();
                 }
@@ -88,5 +88,5 @@ if (!defined('ABSPATH')) die('Restricted Access');
             }
         }
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>

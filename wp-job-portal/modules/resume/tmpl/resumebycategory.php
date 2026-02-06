@@ -4,7 +4,7 @@ if (!defined('ABSPATH'))
 ?>
 <div class="wjportal-main-up-wrapper">
 <?php
-if(!WPJOBPORTALincluder::getTemplate('templates/header',array('module'=>'resume'))){
+if(!WPJOBPORTALincluder::getTemplate('templates/header',array('wpjobportal_module'=>'resume'))){
     return;
 }
 ?>
@@ -12,7 +12,7 @@ if(!WPJOBPORTALincluder::getTemplate('templates/header',array('module'=>'resume'
 	<?php if (wpjobportal::$_error_flag == null) { ?>
 		<div class="wjportal-page-header">
             <?php
-                WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('module' => 'resumebycatagory','layout'=>'resumebycatagory'));
+                WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('wpjobportal_module' => 'resumebycatagory','wpjobportal_layout'=>'resumebycatagory'));
             ?>
         </div>
 	    <div id="wjportal-popup-background"></div>
@@ -27,73 +27,73 @@ if(!WPJOBPORTALincluder::getTemplate('templates/header',array('module'=>'resume'
 	    </div>
 	    <div id="wpjobportal-wrapper" class="wjportal-by-categories-main-wrp wjportal-res-by-categories-wrp">
 	        <?php
-	        	$number = 3;
+	        	$wpjobportal_number = 3;
                 if(wpjobportal::$_data['config']['categories_colsperrow'] != ''){ // to handle float value in configuration
-                    $number = ceil(wpjobportal::$_data['config']['categories_colsperrow']);
+                    $wpjobportal_number = ceil(wpjobportal::$_data['config']['categories_colsperrow']);
                 }
-		        if ($number < 1 || $number > 100) {
-		            $number = 3; // by default set to 3
+		        if ($wpjobportal_number < 1 || $wpjobportal_number > 100) {
+		            $wpjobportal_number = 3; // by default set to 3
 		        }
-		        $width = 100 / $number;
-		        $count = 0;
+		        $wpjobportal_width = 100 / $wpjobportal_number;
+		        $wpjobportal_count = 0;
 		        if (isset(wpjobportal::$_data[0]) && !empty(wpjobportal::$_data[0])) {
-		            foreach (wpjobportal::$_data[0] AS $jobsByCategories) {
-		                if (($count % $number) == 0) {
-		                    if ($count == 0)
+		            foreach (wpjobportal::$_data[0] AS $wpjobportal_jobsByCategories) {
+		                if (($wpjobportal_count % $wpjobportal_number) == 0) {
+		                    if ($wpjobportal_count == 0)
 		                        echo '<div class="wjportal-by-categories-row-wrp">';
 		                    else
 		                        echo '</div><div class="wjportal-by-categories-row-wrp">';
 		                }
 	                	?>
-		                <div class="wjportal-by-category-wrp" style="width:<?php echo esc_attr($width); ?>%;" data-id="<?php echo esc_attr($jobsByCategories->aliasid); ?>">
-		                    <a href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'resumes', 'category'=>$jobsByCategories->aliasid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))); ?>">
+		                <div class="wjportal-by-category-wrp" style="width: calc(<?php echo esc_attr($wpjobportal_width); ?>% - 10px);" data-id="<?php echo esc_attr($wpjobportal_jobsByCategories->aliasid); ?>">
+		                    <a href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'resumes', 'category'=>$wpjobportal_jobsByCategories->aliasid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))); ?>">
 		                        <div class="wjportal-by-category-item">
 		                            <span class="wjportal-by-category-item-title">
-		                            	<?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($jobsByCategories->cat_title)); ?>
+		                            	<?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_jobsByCategories->cat_title)); ?>
 		                            </span>
 		                            <?php if(wpjobportal::$_data['config']['categories_numberofresumes'] == 1){ ?>
 		                                <span class="wjportal-by-category-item-number">
-		                                	<?php echo '(' . esc_html($jobsByCategories->totaljobs + $jobsByCategories->total_sub_jobs) . ')'; ?>
+		                                	<?php echo '(' . esc_html($wpjobportal_jobsByCategories->totaljobs + $wpjobportal_jobsByCategories->total_sub_jobs) . ')'; ?>
 		                                </span>
 		                            <?php } ?>
 		                        </div>
 		                    </a>
 		                    <?php
-		                        $config_array = WPJOBPORTALincluder::getJSModel('configuration')->getConfigByFor('category');
-								$subcategory_limit = 3;
-				                if($config_array['subcategory_limit'] != ''){ // to handle float value in configuration
-				                    $subcategory_limit = ceil($config_array['subcategory_limit']);
+		                        $wpjobportal_config_array = WPJOBPORTALincluder::getJSModel('configuration')->getConfigByFor('category');
+								$wpjobportal_subcategory_limit = 3;
+				                if($wpjobportal_config_array['subcategory_limit'] != ''){ // to handle float value in configuration
+				                    $wpjobportal_subcategory_limit = ceil($wpjobportal_config_array['subcategory_limit']);
 				                }
 
-		                        if (!empty($jobsByCategories->subcat)) {
-		                            $html = '<div class="wjportal-by-sub-catagory" style="display:none;">';
-		                            $subcount = 0;
-		                            foreach ($jobsByCategories->subcat AS $cat) {
-		                                $link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'resumes', 'category'=>esc_attr($cat->aliasid), 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
-		                                $html .= '  <div class="wjportal-by-category-wrp" style="width:100%;">
-		                                                <a href="' . esc_url($link) . '">
+		                        if (!empty($wpjobportal_jobsByCategories->subcat)) {
+		                            $wpjobportal_html = '<div class="wjportal-by-sub-catagory" style="display:none;">';
+		                            $wpjobportal_subcount = 0;
+		                            foreach ($wpjobportal_jobsByCategories->subcat AS $cat) {
+		                                $wpjobportal_link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'resumes', 'category'=>esc_attr($cat->aliasid), 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
+		                                $wpjobportal_html .= '  <div class="wjportal-by-category-wrp" style="width:100%;">
+		                                                <a href="' . esc_url($wpjobportal_link) . '">
 		                                                	<div class="wjportal-by-category-item">
 		                                                    	<span class="wjportal-by-category-item-title">' . esc_html(wpjobportal::wpjobportal_getVariableValue($cat->cat_title)) . '</span>';
-								                                if($config_array['categories_numberofresumes'] == 1){
-								                                    $html .= '<span class="wjportal-by-category-item-number">(' . esc_html($cat->totaljobs) . ')</span>';
+								                                if($wpjobportal_config_array['categories_numberofresumes'] == 1){
+								                                    $wpjobportal_html .= '<span class="wjportal-by-category-item-number">(' . esc_html($cat->totaljobs) . ')</span>';
 								                                }
-		                                $html .=    '       </div>
+		                                $wpjobportal_html .=    '       </div>
 		                                                </a>
 		                                            </div>';
-		                                $subcount++;
+		                                $wpjobportal_subcount++;
 		                            }
-		                            if ($subcount >= $subcategory_limit) {
-		                                $html .= '  <div class="wjportal-by-category-item-btn-wrp">
-		                                                <a href="#" class="wjportal-by-category-item-btn" onclick="getPopupAjax(\'' . esc_attr($jobsByCategories->aliasid) . '\', \'' . esc_attr(wpjobportal::wpjobportal_getVariableValue($jobsByCategories->cat_title)) . '\');">' . __('Show More', 'wp-job-portal') . '</a>
+		                            if ($wpjobportal_subcount >= $wpjobportal_subcategory_limit) {
+		                                $wpjobportal_html .= '  <div class="wjportal-by-category-item-btn-wrp">
+		                                                <a href="#" class="wjportal-by-category-item-btn" onclick="getPopupAjax(\'' . esc_attr($wpjobportal_jobsByCategories->aliasid) . '\', \'' . esc_attr(wpjobportal::wpjobportal_getVariableValue($wpjobportal_jobsByCategories->cat_title)) . '\');">' . __('Show More', 'wp-job-portal') . '</a>
 		                                            </div>';
 		                            }
-		                            $html .= '</div>';
-		                            echo wp_kses($html, WPJOBPORTAL_ALLOWED_TAGS);
+		                            $wpjobportal_html .= '</div>';
+		                            echo wp_kses($wpjobportal_html, WPJOBPORTAL_ALLOWED_TAGS);
 		                        }
 		                    ?>
 		                </div>
 	                <?php
-	                $count++;
+	                $wpjobportal_count++;
 	            }
 	            echo '</div>';
 	        }else {

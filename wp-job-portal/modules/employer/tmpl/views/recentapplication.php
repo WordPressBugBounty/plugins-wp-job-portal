@@ -5,23 +5,23 @@
  * IF PREVIOUS ID SAME AS COMPARE TO PREVIOUS THAN SHOW SAME ELSE VARIATE
 */?>
 <?php
-if((WPJOBPORTALincluder::getObjectClass('user')->isemployer()) && count(wpjobportal::$_data[0]['jobid'])>0) {
+if((WPJOBPORTALincluder::getObjectClass('user')->isemployer()) && count(wpjobportal::$_data['employer_info']['jobid'])>0) {
     ?>
-    <div id="job-applied-resume" class="wjportal-resume-list-wrp">
+    <div  class="wjportal-resume-list-wrp">
         <?php
-            $jobtype = wpjobportal::$_data[0]['jobid'];
-            foreach ($jobtype as $key=>$value) { ?>
-                <div class="wjportal-resume-app-title" id="jobid<?php $value->jobid?>">
-                    <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($value->title)); ?>
+            $wpjobportal_jobtype = wpjobportal::$_data['employer_info']['jobid'];
+            foreach ($wpjobportal_jobtype as $wpjobportal_key=>$wpjobportal_value) { ?>
+                <div class="wjportal-resume-app-title" id="jobid<?php $wpjobportal_value->jobid?>">
+                    <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_value->title)); ?>
                 </div>
                 <?php
-                foreach (wpjobportal::$_data[0]['data'][$value->jobid] AS $resume) {
+                foreach (wpjobportal::$_data[0]['data'][$wpjobportal_value->jobid] AS $wpjobportal_resume) {
                     //Job Wise LOOP Resume's
                     WPJOBPORTALincluder::getTemplate('resume/views/frontend/resumelist',array(
-                        'myresume' => $resume,
-                        'module' => 'dashboard',
-                        'control' => '',
-                        'percentage' => ''
+                        'wpjobportal_myresume' => $wpjobportal_resume,
+                        'wpjobportal_module' => 'dashboard',
+                        'wpjobportal_control' => 'resumedashboard',
+                        'wpjobportal_percentage' => ''
                     ));
                 }
             }
@@ -29,8 +29,8 @@ if((WPJOBPORTALincluder::getObjectClass('user')->isemployer()) && count(wpjobpor
     </div>
         <?php
 } else {
-    $msg = esc_html(__('No record found','wp-job-portal'));
-    WPJOBPORTALlayout::getNoRecordFound($msg, '');
+    $wpjobportal_msg = esc_html(__('No record found','wp-job-portal'));
+    WPJOBPORTALlayout::getNoRecordFound($wpjobportal_msg, '');
   }
 ?>
 

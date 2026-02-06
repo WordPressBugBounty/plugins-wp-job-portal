@@ -8,7 +8,7 @@ wp_enqueue_script( 'google-charts-handle' );
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
         jQuery(document).ready(function() {
 
         //for notifications
@@ -42,128 +42,128 @@ wp_enqueue_script( 'google-charts-handle' );
             jQuery('div#wpjobportal-popup').show();
         }*/
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>
 <?php
 
-/*function wpjobportal_employercheckLinks($name) {
-    $print = false;
-    switch ($name) {
-        case 'formcompany': $visname = 'vis_emformcompany';
+/*function wpjobportal_employercheckLinks($wpjobportal_name) {
+    $wpjobportal_print = false;
+    switch ($wpjobportal_name) {
+        case 'formcompany': $wpjobportal_visname = 'vis_emformcompany';
         break;
-        case 'alljobsappliedapplications': $visname = 'vis_emalljobsappliedapplications';
+        case 'alljobsappliedapplications': $wpjobportal_visname = 'vis_emalljobsappliedapplications';
         break;
-        case 'mycompanies': $visname = 'vis_emmycompanies';
+        case 'mycompanies': $wpjobportal_visname = 'vis_emmycompanies';
         break;
-        case 'resumesearch': $visname = 'vis_emresumesearch';
+        case 'resumesearch': $wpjobportal_visname = 'vis_emresumesearch';
         break;
-        case 'formjob': $visname = 'vis_emformjob';
+        case 'formjob': $wpjobportal_visname = 'vis_emformjob';
         break;
-        case 'my_resumesearches': $visname = 'vis_emmy_resumesearches';
+        case 'my_resumesearches': $wpjobportal_visname = 'vis_emmy_resumesearches';
         break;
-        case 'myjobs': $visname = 'vis_emmyjobs';
+        case 'myjobs': $wpjobportal_visname = 'vis_emmyjobs';
         break;
-        case 'formdepartment': $visname = 'vis_emformdepartment';
+        case 'formdepartment': $wpjobportal_visname = 'vis_emformdepartment';
         break;
-        case 'my_stats': $visname = 'vis_emmy_stats';
+        case 'my_stats': $wpjobportal_visname = 'vis_emmy_stats';
         break;
-        case 'empresume_rss': $visname = 'vis_resume_rss';
+        case 'empresume_rss': $wpjobportal_visname = 'vis_resume_rss';
         break;
-        case 'newfolders': $visname = 'vis_emnewfolders';
+        case 'newfolders': $wpjobportal_visname = 'vis_emnewfolders';
         break;
-        case 'empregister': $visname = 'vis_emempregister';
+        case 'empregister': $wpjobportal_visname = 'vis_emempregister';
         break;
-        case 'empcredits': $visname = 'vis_empcredits';
+        case 'empcredits': $wpjobportal_visname = 'vis_empcredits';
         break;
-        case 'empcreditlog': $visname = 'vis_empcreditlog';
+        case 'empcreditlog': $wpjobportal_visname = 'vis_empcreditlog';
         break;
-        case 'emppurchasehistory': $visname = 'vis_emppurchasehistory';
+        case 'emppurchasehistory': $wpjobportal_visname = 'vis_emppurchasehistory';
         break;
-        case 'empmessages': $visname = 'vis_emmessages';
+        case 'empmessages': $wpjobportal_visname = 'vis_emmessages';
         break;
-        case 'empregister': $visname = 'vis_emregister';
+        case 'empregister': $wpjobportal_visname = 'vis_emregister';
         break;
-        case 'empratelist': $visname = 'vis_empratelist';
+        case 'empratelist': $wpjobportal_visname = 'vis_empratelist';
         break;
-        case 'jobs_graph': $visname = 'vis_jobs_graph';
+        case 'jobs_graph': $wpjobportal_visname = 'vis_jobs_graph';
         break;
-        case 'resume_graph': $visname = 'vis_resume_graph';
+        case 'resume_graph': $wpjobportal_visname = 'vis_resume_graph';
         break;
-        case 'box_newestresume': $visname = 'vis_box_newestresume';
+        case 'box_newestresume': $wpjobportal_visname = 'vis_box_newestresume';
         break;
-        case 'box_appliedresume': $visname = 'vis_box_appliedresume';
+        case 'box_appliedresume': $wpjobportal_visname = 'vis_box_appliedresume';
         break;
-        case 'emploginlogout': $visname = 'emploginlogout';
+        case 'emploginlogout': $wpjobportal_visname = 'emploginlogout';
         break;
-        case 'empmystats': $visname = 'vis_empmystats';
+        case 'empmystats': $wpjobportal_visname = 'vis_empmystats';
         break;
-        case 'emresumebycategory': $visname = 'vis_emresumebycategory';
+        case 'emresumebycategory': $wpjobportal_visname = 'vis_emresumebycategory';
         break;
-        case 'temp_employer_dashboard_stats_graph': $visname = 'vis_temp_employer_dashboard_stats_graph';
+        case 'temp_employer_dashboard_stats_graph': $wpjobportal_visname = 'vis_temp_employer_dashboard_stats_graph';
         break;
-        case 'temp_employer_dashboard_useful_links': $visname = 'vis_temp_employer_dashboard_useful_links';
+        case 'temp_employer_dashboard_useful_links': $wpjobportal_visname = 'vis_temp_employer_dashboard_useful_links';
         break;
-        case 'temp_employer_dashboard_applied_resume': $visname = 'vis_temp_employer_dashboard_applied_resume';
+        case 'temp_employer_dashboard_applied_resume': $wpjobportal_visname = 'vis_temp_employer_dashboard_applied_resume';
         break;
-        case 'temp_employer_dashboard_saved_search': $visname = 'vis_temp_employer_dashboard_saved_search';
+        case 'temp_employer_dashboard_saved_search': $wpjobportal_visname = 'vis_temp_employer_dashboard_saved_search';
         break;
-        case 'temp_employer_dashboard_credits_log': $visname = 'vis_temp_employer_dashboard_credits_log';
+        case 'temp_employer_dashboard_credits_log': $wpjobportal_visname = 'vis_temp_employer_dashboard_credits_log';
         break;
-        case 'temp_employer_dashboard_purchase_history': $visname = 'vis_temp_employer_dashboard_purchase_history';
+        case 'temp_employer_dashboard_purchase_history': $wpjobportal_visname = 'vis_temp_employer_dashboard_purchase_history';
         break;
-        case 'temp_employer_dashboard_newest_resume': $visname = 'vis_temp_employer_dashboard_newest_resume';
+        case 'temp_employer_dashboard_newest_resume': $wpjobportal_visname = 'vis_temp_employer_dashboard_newest_resume';
         break;
-        default:$visname = 'vis_em' . $name;
+        default:$wpjobportal_visname = 'vis_em' . $wpjobportal_name;
         break;
     }
 
-    $isouruser = WPJOBPORTALincluder::getObjectClass('user')->isWPJOBPortalUser();
-    $isguest = WPJOBPORTALincluder::getObjectClass('user')->isguest();
+    $wpjobportal_isouruser = WPJOBPORTALincluder::getObjectClass('user')->isWPJOBPortalUser();
+    $wpjobportal_isguest = WPJOBPORTALincluder::getObjectClass('user')->isguest();
 
     $guest = false;
 
-    if($isguest == true){
+    if($wpjobportal_isguest == true){
         $guest = true;
     }
-    if($isguest == false && $isouruser == false){
+    if($wpjobportal_isguest == false && $wpjobportal_isouruser == false){
         $guest = true;
     }
 
-    $config_array = wpjobportal::$_data['config'];
+    $wpjobportal_config_array = wpjobportal::$_data['config'];
 
     if ($guest == false) {
         if (WPJOBPORTALincluder::getObjectClass('user')->isemployer()) {
-            if ($config_array[$name] == 1){
-                $print = true;
+            if ($wpjobportal_config_array[$wpjobportal_name] == 1){
+                $wpjobportal_print = true;
             }
         }elseif (WPJOBPORTALincluder::getObjectClass('user')->isjobseeker()) {
-            if ($config_array["$visname"] == 1) {
-                $print = true;
+            if ($wpjobportal_config_array["$wpjobportal_visname"] == 1) {
+                $wpjobportal_print = true;
             }
         }
     } else {
-        if ($config_array["$visname"] == 1)
-            $print = true;
+        if ($wpjobportal_config_array["$wpjobportal_visname"] == 1)
+            $wpjobportal_print = true;
     }
-    return $print;
+    return $wpjobportal_print;
 }*/
 
-function jobWrapper($resumeid, $path, $first_name, $middle_name, $last_name, $application_title, $email_address, $Category) {
-    $html = '<div class="job-wrapper">
+function wpjobportal_jobWrapper($wpjobportal_resumeid, $wpjobportal_path, $wpjobportal_first_name, $middle_name, $last_name, $wpjobportal_application_title, $wpjobportal_email_address, $Category) {
+    $wpjobportal_html = '<div class="job-wrapper">
     <div class="img">
-        <a href="' . esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'viewresume', 'wpjobportalid'=>$resumeid))) . '">
-            <img src="' . esc_url($path) . '">
+        <a href="' . esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'viewresume', 'wpjobportalid'=>$wpjobportal_resumeid))) . '">
+            <img src="' . esc_url($wpjobportal_path) . '">
         </a>
     </div>
     <div class="detail">
        <div class="upper">
-          <a href="' . esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'viewresume', 'wpjobportalid'=>$resumeid))) . '">' . esc_html($first_name) . ' ' . esc_html($middle_name) . ' ' . esc_html($last_name) . '</a>
+          <a href="' . esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'viewresume', 'wpjobportalid'=>$wpjobportal_resumeid))) . '">' . esc_html($wpjobportal_first_name) . ' ' . esc_html($middle_name) . ' ' . esc_html($last_name) . '</a>
       </div>
       <div class="lower">
-          <div class="resume_title">(' . esc_html($application_title) . ')</div>
+          <div class="resume_title">(' . esc_html($wpjobportal_application_title) . ')</div>
           <div class="for-rtl">
              <span class="text">'. esc_html(__('Email','wp-job-portal')) .': </span>
-             <span class="get-text ">' . esc_html($email_address) . '</span>
+             <span class="get-text ">' . esc_html($wpjobportal_email_address) . '</span>
          </div>
          <div class="for-rtl">
              <span class="text">'. esc_html(__('Category','wp-job-portal')) .': </span>
@@ -172,6 +172,6 @@ function jobWrapper($resumeid, $path, $first_name, $middle_name, $last_name, $ap
      </div>
  </div>
 </div>';
-return $html;
+return $wpjobportal_html;
 }
 ?>

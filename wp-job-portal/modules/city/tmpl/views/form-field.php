@@ -2,8 +2,8 @@
 /**
 *
 */
-$countryid = get_option("wpjobportal_countryid_for_city" );
-$stateid = get_option("wpjobportal_stateid_for_city" );
+$wpjobportal_countryid = get_option("wpjobportal_countryid_for_city" );
+$wpjobportal_stateid = get_option("wpjobportal_stateid_for_city" );
 ?>
 
 <div class="wpjobportal-form-wrapper">
@@ -11,7 +11,7 @@ $stateid = get_option("wpjobportal_stateid_for_city" );
         <?php echo esc_html(__('State', 'wp-job-portal')); ?>
     </div>
 	<div class="wpjobportal-form-value">
-        <?php echo wp_kses(WPJOBPORTALformfield::select('stateid', WPJOBPORTALincluder::getJSModel('state')->getStatesForCombo(isset(wpjobportal::$_data[0]) ? wpjobportal::$_data[0]->countryid : $countryid ), isset(wpjobportal::$_data[0]) ? wpjobportal::$_data[0]->stateid : $stateid, esc_html(__('Select','wp-job-portal')) .' '. esc_html(__('State', 'wp-job-portal')), array('class' => 'inputbox one wpjobportal-form-select-field')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+        <?php echo wp_kses(WPJOBPORTALformfield::select('stateid', WPJOBPORTALincluder::getJSModel('state')->getStatesForCombo(isset(wpjobportal::$_data[0]) ? wpjobportal::$_data[0]->countryid : $wpjobportal_countryid ), isset(wpjobportal::$_data[0]) ? wpjobportal::$_data[0]->stateid : $wpjobportal_stateid, esc_html(__('Select','wp-job-portal')) .' '. esc_html(__('State', 'wp-job-portal')), array('class' => 'inputbox one wpjobportal-form-select-field')),WPJOBPORTAL_ALLOWED_TAGS); ?>
     </div>
 </div>
 
@@ -76,7 +76,7 @@ if (isset(wpjobportal::$_data[0]->id) AND ( wpjobportal::$_data[0]->id != 0)) {
 <?php echo wp_kses(WPJOBPORTALformfield::hidden('form_request', 'wp-job-portal'),WPJOBPORTAL_ALLOWED_TAGS); ?>
 <?php echo wp_kses(WPJOBPORTALformfield::hidden('_wpnonce', esc_html(wp_create_nonce('wpjobportal_city_nonce'))),WPJOBPORTAL_ALLOWED_TAGS); ?>
 <div class="wpjobportal-form-button">
-    <a id="form-cancel-button" class="wpjobportal-form-cancel-btn" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_city&countryid='.$countryid)); ?>&stateid=<?php echo esc_attr($stateid); ?>" title="<?php echo esc_html(__('cancel', 'wp-job-portal')); ?>">
+    <a id="form-cancel-button" class="wpjobportal-form-cancel-btn" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_city&countryid='.$wpjobportal_countryid)); ?>&stateid=<?php echo esc_attr($wpjobportal_stateid); ?>" title="<?php echo esc_attr(__('cancel', 'wp-job-portal')); ?>">
         <?php echo esc_html(__('Cancel', 'wp-job-portal')); ?>
     </a>
     <?php echo wp_kses(WPJOBPORTALformfield::submitbutton('save', esc_html(__('Save','wp-job-portal')) .' '. esc_html(__('City', 'wp-job-portal')), array('class' => 'button wpjobportal-form-save-btn')),WPJOBPORTAL_ALLOWED_TAGS); ?>

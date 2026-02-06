@@ -8,25 +8,25 @@
 <div class="wpjobportal-jobs-list-top-wrp">
 	<?php
 	    //$goldflag = true;
-	    do_action('wp_jobportal_addons_admin_feature_lable_for_job',$job);
+	    do_action('wpjobportal_addons_admin_feature_lable_for_job',$wpjobportal_job);
 	?>
 	<?php
 		WPJOBPORTALincluder::getTemplate('job/views/admin/logo',array(
-			'layout' => $logo,
-			'job' => $job 
+			'wpjobportal_layout' => $wpjobportal_logo,
+			'wpjobportal_job' => $wpjobportal_job
 		));
 
 		WPJOBPORTALincluder::getTemplate('job/views/admin/title',array(
-			'layout' => 'title'
-			 ,'job' => $job 
+			'wpjobportal_layout' => 'title'
+			 ,'wpjobportal_job' => $wpjobportal_job
 		));
 	?>
 </div>
 <div class="wpjobportal-jobs-list-btm-wrp">
 	<?php
 		WPJOBPORTALincluder::getTemplate('job/views/admin/control',array(
-			'layout' => $layout,
-			 'job' => $job 
+			'wpjobportal_layout' => $wpjobportal_layout,
+			 'wpjobportal_job' => $wpjobportal_job
 		));
 	?>
 </div>

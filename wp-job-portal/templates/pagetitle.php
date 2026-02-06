@@ -9,34 +9,31 @@
 //Configuration
 ?>
 <?php
-	if ($module) {
+	if ($wpjobportal_module) {
 		// allow admin to pagetitle above wpjobportal breadcrumbs
-		$show_wpjobportal_page_title  = wpjobportal::$_config->getConfigurationByConfigName('show_wpjobportal_page_title');
-		if($show_wpjobportal_page_title == 1){
+		$wpjobportal_show_wpjobportal_page_title  = wpjobportal::$_config->getConfigurationByConfigName('show_wpjobportal_page_title');
+		if($wpjobportal_show_wpjobportal_page_title == 1){
 			echo '<div class="wjportal-page-heading">';
-				switch ($layout) {
+				switch ($wpjobportal_layout) {
 					case 'company':
-						if (isset($data->name) && $config_array['comp_name'] == 1) {
-					 		echo esc_html(wpjobportal::wpjobportal_getVariableValue($data->name));
-			            }// to show tag line when company name is hidden from configuration
-			            if(isset(wpjobportal::$_data[2]) && isset(wpjobportal::$_data[2]['tagline']) && wpjobportal::$_data[2]['tagline'] != '' && !empty($data->tagline) ){
-					 		echo '<span class="wjportal-company-salogon">
-			  							-'.esc_html($data->tagline).'
-			                	</span>';
-		                }
-		                if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()){
-			                $curdate = date_i18n('Y-m-d');
-			                $featuredexpiry = date_i18n('Y-m-d', strtotime($data->endfeatureddate));
-			    			if ($data->isfeaturedcompany == 1 && $featuredexpiry >= $curdate) { ?>
+						if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()){
+                          if (isset($wpjobportal_data->name) && $wpjobportal_config_array['comp_name'] == 1) {
+						 		echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_data->name));
+				            }
+			                $wpjobportal_curdate = date_i18n('Y-m-d');
+			                $wpjobportal_featuredexpiry = date_i18n('Y-m-d', strtotime($wpjobportal_data->endfeatureddate));
+			    			if ($wpjobportal_data->isfeaturedcompany == 1 && $wpjobportal_featuredexpiry >= $wpjobportal_curdate) { ?>
 		    					<span class="wjportal-elegant-addon-featured-company">
-									<img class="wjportal-elegant-addon-filter-search-field-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL) . '/includes/images/featured.png';?> " title="<?php echo esc_html(__('Featured', 'wp-job-portal'));?>"  alt="<?php echo esc_html(__('Featured', 'wp-job-portal')) ;?>" />
+									<img class="wjportal-elegant-addon-filter-search-field-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL) . '/includes/images/featured.png';?> " title="<?php echo esc_attr(__('Featured', 'wp-job-portal'));?>"  alt="<?php echo esc_attr(__('Featured', 'wp-job-portal')) ;?>" />
 		    						<?php
-									do_action('wpjobportal_addons_lable_comp_feature', $data);
-									echo __('Featured', 'wp-job-portal') ?>
+									do_action('wpjobportal_addons_lable_comp_feature', $wpjobportal_data);
+									echo esc_html__('Featured', 'wp-job-portal') ?>
 								</span>
 								<?php
 							}
-						}
+						}else{
+                          echo esc_html(__('Company Detail', 'wp-job-portal'));
+                        }
 			        break;
 					case 'mycompany':
 				 		echo esc_html(__('My Companies', 'wp-job-portal'));
@@ -56,23 +53,23 @@
 					break;
 					case 'jobdetail':
 						if (!WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()) { 
-							echo esc_html(wpjobportal::wpjobportal_getVariableValue($jobtitle));
+							echo esc_html(__('Job Detail','wp-job-portal'));
 						} else {
-							echo esc_html(wpjobportal::wpjobportal_getVariableValue($job->title));
-							$curdate = date_i18n('Y-m-d');
-							$featuredexpiry = date_i18n('Y-m-d', strtotime($job->endfeatureddate));
-							if ($job->isfeaturedjob == 1 && $featuredexpiry >= $curdate &&WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()) { 
+							echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_job->title));
+							$wpjobportal_curdate = date_i18n('Y-m-d');
+							$wpjobportal_featuredexpiry = date_i18n('Y-m-d', strtotime($wpjobportal_job->endfeatureddate));
+							if ($wpjobportal_job->isfeaturedjob == 1 && $wpjobportal_featuredexpiry >= $wpjobportal_curdate &&WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()) {
 								?>
 								<span class="wjportal-elegant-addon-featured-job">
-									<img class="wjportal-elegant-addon-filter-search-field-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL) . '/includes/images/featured.png';?> " title="<?php echo esc_html(__('Featured', 'wp-job-portal'));?>"  alt="<?php echo esc_html(__('Featured', 'wp-job-portal')) ;?>" />
-								<?php echo __('Featured', 'wp-job-portal');?>
+									<img class="wjportal-elegant-addon-filter-search-field-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL) . '/includes/images/featured.png';?> " title="<?php echo esc_attr(__('Featured', 'wp-job-portal'));?>"  alt="<?php echo esc_attr(__('Featured', 'wp-job-portal')) ;?>" />
+								<?php echo esc_html__('Featured', 'wp-job-portal');?>
 								</span>
 								<?php
 							}
 						}
 					break;
 					case 'myapplied':
-						echo esc_html(__('My Applied Jobs','wp-job-portal'));
+						echo esc_html(__('My Applied Jobs', 'wp-job-portal'));
 					break;
 					case 'newestjob':
 						echo esc_html(__('Newest Jobs', 'wp-job-portal'));
@@ -81,7 +78,7 @@
 						echo esc_html(__('Search Job', 'wp-job-portal'));
 					break;
 					case 'companyinfo':
-						if($company) echo esc_html(__('Edit Company', 'wp-job-portal'));
+						if($wpjobportal_company) echo esc_html(__('Edit Company', 'wp-job-portal'));
 						else echo esc_html(__('Add Company', 'wp-job-portal'));
 						break;
 					case 'comp':
@@ -91,11 +88,11 @@
 						echo esc_html(__("Company Information",'wp-job-portal'));
 					break;
 					case 'addcomp':
-						if($job) echo esc_html(__('Edit Job', 'wp-job-portal'));
+						if($wpjobportal_job) echo esc_html(__('Edit Job', 'wp-job-portal'));
 						else echo esc_html(__('Post a Job', 'wp-job-portal'));
 					break;
 					case 'folder':
-						echo esc_html($msg).' '. esc_html(__("Folder", 'wp-job-portal'));
+						echo esc_html($wpjobportal_msg).' '. esc_html(__("Folder", 'wp-job-portal'));
 					break;
 					case 'myfolder':
 					 	echo esc_html(__('My Folders', 'wp-job-portal'));
@@ -114,20 +111,20 @@
 						echo esc_html(__('My Cover Letters', 'wp-job-portal'));
 					break;
 					case 'coverletter':
-						$msg = isset($coverletter) ? esc_html(__('Edit', 'wp-job-portal')) : esc_html(__('Add New', 'wp-job-portal'));
-						echo esc_html($msg) . ' ' . esc_html(__('Cover Letter', 'wp-job-portal'));
+						$wpjobportal_msg = isset($coverletter) ? esc_html(__('Edit', 'wp-job-portal')) : esc_html(__('Add New', 'wp-job-portal'));
+						echo esc_html($wpjobportal_msg) . ' ' . esc_html(__('Cover Letter', 'wp-job-portal'));
 					break;
 					case 'addjob':
-						$msg = isset($job) ? esc_html(__('Edit', 'wp-job-portal')) : esc_html(__('Add New', 'wp-job-portal'));
-						echo esc_html($msg) . ' ' . esc_html(__('Job', 'wp-job-portal'));
+						$wpjobportal_msg = isset($wpjobportal_job) ? esc_html(__('Edit', 'wp-job-portal')) : esc_html(__('Add New', 'wp-job-portal'));
+						echo esc_html($wpjobportal_msg) . ' ' . esc_html(__('Job', 'wp-job-portal'));
 					break;
 					case 'login':
-						$msg = esc_html(__('Login ', 'wp-job-portal'));
-						echo esc_html(wpjobportal::wpjobportal_getVariableValue($msg));
+						$wpjobportal_msg = esc_html(__('Login ', 'wp-job-portal'));
+						echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_msg));
 					break;
 					case 'departments':
-						$msg = isset($departments) ? esc_html(__('Edit', 'wp-job-portal')) : esc_html(__('Add New', 'wp-job-portal'));
-						echo esc_html($msg) . ' ' . esc_html(__('Department', 'wp-job-portal'));
+						$wpjobportal_msg = isset($wpjobportal_departments) ? esc_html(__('Edit', 'wp-job-portal')) : esc_html(__('Add New', 'wp-job-portal'));
+						echo esc_html($wpjobportal_msg) . ' ' . esc_html(__('Department', 'wp-job-portal'));
 					break;
 					case 'viewdepartment':
 						echo esc_html(__('Department Detail', 'wp-job-portal'));
@@ -151,28 +148,28 @@
 						echo esc_html(__('Resume By Categories', 'wp-job-portal'));
 						break;
 					case 'departmentperlisting':
-						echo esc_html(__('Pay per listing price to publish your ', 'wp-job-portal'). wpjobportal::wpjobportal_getVariableValue($name) .' '.' : '.esc_html($priceDepartmentlist));
+						echo esc_html(__('Pay per listing price to publish your ', 'wp-job-portal'). wpjobportal::wpjobportal_getVariableValue($wpjobportal_name) .' '.' : '.esc_html($wpjobportal_priceDepartmentlist));
 						break;
 					case 'coverletterperlisting':
-						echo esc_html(__('Pay per listing price to publish your ', 'wp-job-portal'). wpjobportal::wpjobportal_getVariableValue($name) .' '.' : '.esc_html($priceCoverletterlist));
+						echo esc_html(__('Pay per listing price to publish your ', 'wp-job-portal'). wpjobportal::wpjobportal_getVariableValue($wpjobportal_name) .' '.' : '.esc_html($wpjobportal_priceCoverletterlist));
 						break;
 					case 'viewresume':
-						echo esc_html(wpjobportal::wpjobportal_getVariableValue($name));
+						echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_name));
 						if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()){
-			                $dateformat = wpjobportal::$_configuration['date_format'];
-			                $curdate = date_i18n('Y-m-d');
-			                $featuredexpiry = date_i18n('Y-m-d', strtotime(wpjobportal::$_data[0]['personal_section']->endfeatureddate));
-			                if (wpjobportal::$_data[0]['personal_section']->isfeaturedresume == 1 && $featuredexpiry >= $curdate) {
-			                    $featuredflag = false;
+			                $wpjobportal_dateformat = wpjobportal::$_configuration['date_format'];
+			                $wpjobportal_curdate = date_i18n('Y-m-d');
+			                $wpjobportal_featuredexpiry = date_i18n('Y-m-d', strtotime(wpjobportal::$_data[0]['personal_section']->endfeatureddate));
+			                if (wpjobportal::$_data[0]['personal_section']->isfeaturedresume == 1 && $wpjobportal_featuredexpiry >= $wpjobportal_curdate) {
+			                    $wpjobportal_featuredflag = false;
 			                    echo '<span class="wjportal-elegant-addon-featured-resume">';
 			                    do_action('wpjobportal_addons_feature_resume_lable',wpjobportal::$_data[0]['personal_section']);
-			                    echo __('Featured', 'wp-job-portal');
+			                    echo esc_html__('Featured', 'wp-job-portal');
 			                    echo '</span>';
 			                }
 						}
 						break;
 					case 'myresume':
-						echo esc_html(wpjobportal::wpjobportal_getVariableValue($msg));
+						echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_msg));
 						break;
 					case 'multiresumeadd':
 					 	echo esc_html(__('My Resumes', 'wp-job-portal'));
@@ -188,7 +185,7 @@
 						echo esc_html(__('Job Messages','wp-job-portal'));
 						break;
 					case 'visitorcanaddjob':
-						echo esc_html($data) .' '. esc_html(__("Job", 'wp-job-portal'));
+						echo esc_html($wpjobportal_data) .' '. esc_html(__("Job", 'wp-job-portal'));
 						break;
 					case 'jobalert':
 						echo esc_html(__('Job Alert Info', 'wp-job-portal'));

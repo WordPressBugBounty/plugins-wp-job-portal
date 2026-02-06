@@ -2,35 +2,35 @@
 if (!defined('ABSPATH'))
     die('Restricted Access');
 wp_enqueue_script('jquery-ui-datepicker');
-$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+$wpjobportal_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
 wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jquery-ui-smoothness.css');
 
-$dateformat = wpjobportal::$_configuration['date_format'];
-if ($dateformat == 'm/d/Y' || $dateformat == 'd/m/y' || $dateformat == 'm/d/y' || $dateformat == 'd/m/Y') {
-    $dash = '/';
+$wpjobportal_dateformat = wpjobportal::$_configuration['date_format'];
+if ($wpjobportal_dateformat == 'm/d/Y' || $wpjobportal_dateformat == 'd/m/y' || $wpjobportal_dateformat == 'm/d/y' || $wpjobportal_dateformat == 'd/m/Y') {
+    $wpjobportal_dash = '/';
 } else {
-    $dash = '-';
+    $wpjobportal_dash = '-';
 }
-$firstdash = wpjobportalphplib::wpJP_strpos($dateformat, $dash, 0);
-$firstvalue = wpjobportalphplib::wpJP_substr($dateformat, 0, $firstdash);
-$firstdash = $firstdash + 1;
-$seconddash = wpjobportalphplib::wpJP_strpos($dateformat, $dash, $firstdash);
-$secondvalue = wpjobportalphplib::wpJP_substr($dateformat, $firstdash, $seconddash - $firstdash);
-$seconddash = $seconddash + 1;
-$thirdvalue = wpjobportalphplib::wpJP_substr($dateformat, $seconddash, wpjobportalphplib::wpJP_strlen($dateformat) - $seconddash);
-$js_dateformat = '%' . $firstvalue . $dash . '%' . $secondvalue . $dash . '%' . $thirdvalue;
-$js_scriptdateformat = $firstvalue . $dash . $secondvalue . $dash . $thirdvalue;
-$js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy', $js_scriptdateformat);
-if ( !WPJOBPORTALincluder::getTemplate('templates/admin/header', array('module' => 'company')) ) {
+$wpjobportal_firstdash = wpjobportalphplib::wpJP_strpos($wpjobportal_dateformat, $wpjobportal_dash, 0);
+$wpjobportal_firstvalue = wpjobportalphplib::wpJP_substr($wpjobportal_dateformat, 0, $wpjobportal_firstdash);
+$wpjobportal_firstdash = $wpjobportal_firstdash + 1;
+$wpjobportal_seconddash = wpjobportalphplib::wpJP_strpos($wpjobportal_dateformat, $wpjobportal_dash, $wpjobportal_firstdash);
+$wpjobportal_secondvalue = wpjobportalphplib::wpJP_substr($wpjobportal_dateformat, $wpjobportal_firstdash, $wpjobportal_seconddash - $wpjobportal_firstdash);
+$wpjobportal_seconddash = $wpjobportal_seconddash + 1;
+$wpjobportal_thirdvalue = wpjobportalphplib::wpJP_substr($wpjobportal_dateformat, $wpjobportal_seconddash, wpjobportalphplib::wpJP_strlen($wpjobportal_dateformat) - $wpjobportal_seconddash);
+$wpjobportal_js_dateformat = '%' . $wpjobportal_firstvalue . $wpjobportal_dash . '%' . $wpjobportal_secondvalue . $wpjobportal_dash . '%' . $wpjobportal_thirdvalue;
+$wpjobportal_js_scriptdateformat = $wpjobportal_firstvalue . $wpjobportal_dash . $wpjobportal_secondvalue . $wpjobportal_dash . $wpjobportal_thirdvalue;
+$wpjobportal_js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy', $wpjobportal_js_scriptdateformat);
+if ( !WPJOBPORTALincluder::getTemplate('templates/admin/header', array('wpjobportal_module' => 'company')) ) {
         return;
 }
     wp_register_script( 'wpjobportal-inline-handle', '' );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
-    $inline_js_script = "
+    $wpjobportal_inline_js_script = "
         jQuery(document).ready(function () {
             //end approval queue jquery
-            jQuery('.custom_date').datepicker({dateFormat: '". $js_scriptdateformat."'});
+            jQuery('.custom_date').datepicker({dateFormat: '". $wpjobportal_js_scriptdateformat."'});
             jQuery('div.wpjobportal-company-list').each(function () {
                 jQuery(this).hover(function () {
                     jQuery(this).find('span.selector').show();
@@ -102,7 +102,7 @@ if ( !WPJOBPORTALincluder::getTemplate('templates/admin/header', array('module' 
             jQuery(obj).find('div#wpjobportal-queue-actionsbtn').hide();
         }
     ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );
+    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 
 ?>
 
@@ -119,7 +119,7 @@ if ( !WPJOBPORTALincluder::getTemplate('templates/admin/header', array('module' 
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_html(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -129,12 +129,12 @@ if ( !WPJOBPORTALincluder::getTemplate('templates/admin/header', array('module' 
             </div>
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_html(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_html(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -146,7 +146,7 @@ if ( !WPJOBPORTALincluder::getTemplate('templates/admin/header', array('module' 
         </div>
         <!-- top head -->
         <?php
-            if ( !WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle', array('module' => 'company','layouts' => 'companyque')) ) {
+            if ( !WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle', array('wpjobportal_module' => 'company','wpjobportal_layouts' => 'companyque')) ) {
                 return;
             }
         ?>
@@ -155,7 +155,7 @@ if ( !WPJOBPORTALincluder::getTemplate('templates/admin/header', array('module' 
             <!-- quick actions -->
             <?php
             // catgegory table is no longer in query
-                $categoryarray = array(
+                $wpjobportal_categoryarray = array(
                     (object) array('id' => 1, 'text' => esc_html(__('Company Name', 'wp-job-portal'))),
                     (object) array('id' => 3, 'text' => esc_html(__('Created', 'wp-job-portal'))),
                     (object) array('id' => 4, 'text' => esc_html(__('Location', 'wp-job-portal'))),
@@ -163,10 +163,10 @@ if ( !WPJOBPORTALincluder::getTemplate('templates/admin/header', array('module' 
                 );
                 /*****Template Sortion****////
                 WPJOBPORTALincluder::getTemplate('company/views/admin/filter',array(
-                    'categoryarray' => $categoryarray,
-                    'layouts' => 'compfilter'
+                    'wpjobportal_categoryarray' => $wpjobportal_categoryarray,
+                    'wpjobportal_layouts' => 'compfilter'
                 ));
-            $inline_js_script = "
+            $wpjobportal_inline_js_script = "
                 function changeSortBy() {
                     var value = jQuery('a.sort-icon').attr('data-sortby');
                     var img = '';
@@ -190,13 +190,13 @@ if ( !WPJOBPORTALincluder::getTemplate('templates/admin/header', array('module' 
                     changeSortBy();
                 }
             ";
-            wp_add_inline_script( 'wpjobportal-inline-handle', $inline_js_script );    
+            wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
             ?>
             <!-- filter form -->
             <form class="wpjobportal-filter-form" name="wpjobportalform" id="wpjobportalform" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_company&wpjobportallt=companiesqueue")); ?>">
                 <?php
                     //Form -Filter
-                    WPJOBPORTALincluder::getTemplate('company/views/admin/filter',array('layouts' => 'que-filter'));
+                    WPJOBPORTALincluder::getTemplate('company/views/admin/filter',array('wpjobportal_layouts' => 'que-filter'));
                 ?>
             </form>
             <?php
@@ -204,12 +204,12 @@ if ( !WPJOBPORTALincluder::getTemplate('templates/admin/header', array('module' 
                     ?>
                     <form id="wpjobportal-list-form" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_company")); ?>">
                         <?php
-                            $wpdir = wp_upload_dir();
-                            foreach (wpjobportal::$_data[0] AS $company) {
-                                $class_color = '';
-                                $arr = array();
-                                if ($company->isfeaturedcompany == 0) {
-                                    if ($class_color == '') {
+                            $wpjobportal_wpdir = wp_upload_dir();
+                            foreach (wpjobportal::$_data[0] AS $wpjobportal_company) {
+                                $wpjobportal_class_color = '';
+                                $wpjobportal_arr = array();
+                                if ($wpjobportal_company->isfeaturedcompany == 0) {
+                                    if ($wpjobportal_class_color == '') {
                                          ?>
                                     <?php }
                                     /* ?>
@@ -217,23 +217,23 @@ if ( !WPJOBPORTALincluder::getTemplate('templates/admin/header', array('module' 
                                         <?php echo esc_html(__('Featured', 'wp-job-portal')); ?>
                                     </span>
                                     <?php */
-                                        $class_color = 'q-feature';
-                                        $arr['feature'] = 1;
+                                        $wpjobportal_class_color = 'q-feature';
+                                        $wpjobportal_arr['feature'] = 1;
                                 }
-                                if ($company->status == 0) {
-                                    if ($class_color == '') {
+                                if ($wpjobportal_company->status == 0) {
+                                    if ($wpjobportal_class_color == '') {
                                         ?>
                                     <?php } ?>
                                     <?php
-                                    $class_color = 'q-self';
-                                    $arr['self'] = 1;
+                                    $wpjobportal_class_color = 'q-self';
+                                    $wpjobportal_arr['self'] = 1;
                                 }
                                 WPJOBPORTALincluder::getTemplate('company/views/admin/companylist',array(
-                                    'company' => $company,
-                                    'control' => 'que-control',
-                                    'wpdir' => $wpdir,
-                                    'arr' => $arr,
-                                    'layout' => 'que-logo'
+                                    'wpjobportal_company' => $wpjobportal_company,
+                                    'wpjobportal_control' => 'que-control',
+                                    'wpjobportal_wpdir' => $wpjobportal_wpdir,
+                                    'wpjobportal_arr' => $wpjobportal_arr,
+                                    'wpjobportal_layout' => 'que-logo'
                                 ));
                             }
                         ?>
@@ -245,11 +245,11 @@ if ( !WPJOBPORTALincluder::getTemplate('templates/admin/header', array('module' 
                     </form>
                     <?php
                     if (wpjobportal::$_data[1]) {
-                       WPJOBPORTALincluder::getTemplate('templates/admin/pagination',array('module' => 'company','pagination' => wpjobportal::$_data[1]));
+                       WPJOBPORTALincluder::getTemplate('templates/admin/pagination',array('wpjobportal_module' => 'company','pagination' => wpjobportal::$_data[1]));
                     }
                 } else {
-                    $msg = esc_html(__('No record found','wp-job-portal'));
-                    WPJOBPORTALlayout::getNoRecordFound($msg);
+                    $wpjobportal_msg = esc_html(__('No record found','wp-job-portal'));
+                    WPJOBPORTALlayout::getNoRecordFound($wpjobportal_msg);
                 }
             ?>
         </div>

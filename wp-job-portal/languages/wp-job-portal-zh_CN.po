@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Delete"
 msgstr "删除"
@@ -10276,3 +10276,2472 @@ msgstr "您没有任何保存的Serch剩余"
 
 msgid "We would love to hear from You."
 msgstr "我们很想听听您的来信。"
+
+msgid "Welcome back!"
+msgstr "欢迎回来！"
+
+msgid "Here's a snapshot of your job board's performance."
+msgstr "这是您工作板表现的快照。"
+
+msgid "Customize Your Dashboard"
+msgstr "自定义仪表板"
+
+msgid "Core Components"
+msgstr "核心组件"
+
+msgid "Quick Actions"
+msgstr "快速动作"
+
+msgid "Recent Jobs"
+msgstr "最近的工作"
+
+msgid "Quick Stats"
+msgstr "快速统计"
+
+msgid "Visualizations"
+msgstr "可视化"
+
+msgid "Platform Growth"
+msgstr "平台增长"
+
+msgid "Jobs by Status"
+msgstr "逐个状态"
+
+msgid "Top Categories"
+msgstr "顶级类别"
+
+msgid "Activity & System Feeds"
+msgstr "活动和系统提要"
+
+msgid "Latest Applies"
+msgstr "最新应用"
+
+msgid "User & Financials"
+msgstr "用户和财务"
+
+msgid "Job Seekers"
+msgstr "求职者"
+
+msgid "Payments"
+msgstr "付款"
+
+msgid "Reset to Defaults"
+msgstr "重置为默认值"
+
+msgid "Apply Changes"
+msgstr "应用更改"
+
+msgid "Approve Jobs"
+msgstr "批准工作"
+
+msgid "Manage Users"
+msgstr "管理用户"
+
+msgid "View Reports"
+msgstr "查看报告"
+
+msgid "Analytics"
+msgstr "分析"
+
+msgid "Manage Plans"
+msgstr "管理计划"
+
+msgid "Platform Config"
+msgstr "平台配置"
+
+msgid "Applications"
+msgstr "申请"
+
+msgid "Pending Jobs"
+msgstr "等待工作"
+
+msgid "New Applicants"
+msgstr "新申请人"
+
+msgid "Active Subscriptions"
+msgstr "主动订阅"
+
+msgid "Total Users"
+msgstr "总用户"
+
+msgid "Closed Jobs"
+msgstr "封闭的工作"
+
+msgid "Monthly Revenue"
+msgstr "每月收入"
+
+msgid "Recent Job Postings"
+msgstr "最近的职位发布"
+
+msgid "Date Posted"
+msgstr "发布日期"
+
+msgid "Actions"
+msgstr "动作"
+
+msgid "No recent job postings found."
+msgstr "最近没有找到职位发布。"
+
+msgid "Top Job Categories"
+msgstr "顶级工作类别"
+
+msgid "Latest Job Applies"
+msgstr "最新工作适用"
+
+msgid "applied for"
+msgstr "申请"
+
+msgid "at"
+msgstr "在"
+
+msgid "View App"
+msgstr "查看应用程序"
+
+msgid "No recent job applications to display."
+msgstr "没有最近的作业应用。"
+
+msgid "No new resumes have been added recently."
+msgstr "最近没有添加新简历。"
+
+msgid "Latest Package Subscriptions"
+msgstr "最新的软件包订阅"
+
+msgid "subscribed to"
+msgstr "订阅"
+
+msgid "No new subscriptions found."
+msgstr "找不到新的订阅。"
+
+msgid "Latest Payments"
+msgstr "最新付款"
+
+msgid "No recent payments to display."
+msgstr "最近没有显示付款。"
+
+msgid "Latest Activity"
+msgstr "最新活动"
+
+msgid "Hooray! No system errors to report."
+msgstr "哇！没有系统错误要报告。"
+
+msgid "Latest Job Seekers"
+msgstr "最新的求职者"
+
+msgid "Joined"
+msgstr "加入"
+
+msgid "No new job seekers have registered."
+msgstr "没有新的求职者注册。"
+
+msgid "Latest Employers"
+msgstr "最新的雇主"
+
+msgid "No new employers have registered."
+msgstr "没有新的雇主注册。"
+
+msgid "Not allowed"
+msgstr "不允许"
+
+msgid "Allowed to all"
+msgstr "允许所有人"
+
+msgid "employers, job seekers and visitors"
+msgstr "雇主、求职者和访客"
+
+msgid "Allowed only to employers"
+msgstr "仅允许雇主"
+
+msgid "City, State, Country"
+msgstr "城市、州、国家"
+
+msgid "City, State"
+msgstr "城市、州"
+
+msgid "City, Country"
+msgstr "城市、国家"
+
+msgid "Minutes"
+msgstr "分钟"
+
+msgid "Hour"
+msgstr "小时"
+
+msgid "Hours"
+msgstr "时间"
+
+msgid "Week"
+msgstr "星期"
+
+msgid "System & Site"
+msgstr "系统及站点"
+
+msgid "Site & System"
+msgstr "站点与系统"
+
+msgid "Core details about your job portal, its status, and default behaviors"
+msgstr "有关您的职位门户、其状态和默认行为的核心详细信息"
+
+msgid "Site Title"
+msgstr "网站标题"
+
+msgid "The main title for your job portal"
+msgstr "您的求职门户的主标题"
+
+msgid "Site Offline"
+msgstr "网站离线"
+
+msgid "Take the site offline for maintenance"
+msgstr "使站点离线以进行维护"
+
+msgid "The message shown to visitors when the site is offline"
+msgstr "网站离线时向访问者显示的消息"
+
+msgid "Default Page"
+msgstr "默认页面"
+
+msgid "Select the main WordPress page for the job portal"
+msgstr "选择职位门户的 WordPress 主页面"
+
+msgid "Email links and support icons may not work if this is not set"
+msgstr "如果未设置，电子邮件链接和支持图标可能不起作用"
+
+msgid "Date Format"
+msgstr "日期格式"
+
+msgid "Set the date format used throughout the plugin"
+msgstr "设置整个插件使用的日期格式"
+
+msgid "Default Address Display Style"
+msgstr "默认地址显示样式"
+
+msgid "Select the default format for displaying addresses"
+msgstr "选择显示地址的默认格式"
+
+msgid "Registration & Login"
+msgstr "注册及登录"
+
+msgid "Control user registration flows and login/logout redirects"
+msgstr "控制用户注册流程和登录/注销重定向"
+
+msgid "Set Register Link"
+msgstr "设置注册链接"
+
+msgid "Set the main registration page for the site"
+msgstr "设置站点的主注册页面"
+
+msgid "Custom Register Redirect Link"
+msgstr "自定义注册重定向链接"
+
+msgid "Enter the custom URL for registration if"
+msgstr "如果出现以下情况，请输入用于注册的自定义 URL"
+
+msgid "is selected above"
+msgstr "上面已经选择了"
+
+msgid "Set the main login page for the site"
+msgstr "设置站点的主登录页面"
+
+msgid "Custom Login Redirect Link"
+msgstr "自定义登录重定向链接"
+
+msgid "Enter the custom URL for login if"
+msgstr "输入自定义 URL 用于登录，如果"
+
+msgid "Redirect Link For Non-Portal WP User"
+msgstr "非 Portal WP 用户重定向链接"
+
+msgid "Redirect WordPress users who do not have a role in WP Job Portal to this link after login"
+msgstr "登录后将在 WP Job Portal 中没有角色的 WordPress 用户重定向到此链接"
+
+msgid "Terms & Conditions"
+msgstr "条款及条件"
+
+msgid "Assign specific Terms & Conditions pages for different submission types"
+msgstr "为不同的提交类型分配特定的条款和条件页面"
+
+msgid "Company Terms Page"
+msgstr "公司条款页面"
+
+msgid "Select the"
+msgstr "选择"
+
+msgid "page for company submissions"
+msgstr "公司提交页面"
+
+msgid "Job Terms Page"
+msgstr "工作条款页面"
+
+msgid "page for job submissions"
+msgstr "作业提交页面"
+
+msgid "Resume Terms Page"
+msgstr "简历条款页面"
+
+msgid "page for resume submissions"
+msgstr "简历提交页面"
+
+msgid "Content & Display"
+msgstr "内容与展示"
+
+msgid "Taxonomy & Categories"
+msgstr "分类和类别"
+
+msgid "Manage how content like categories and tags are handled"
+msgstr "管理类别和标签等内容的处理方式"
+
+msgid "Even if Empty"
+msgstr "就算是空的"
+
+msgid "If no is selected then only categories that have jobs or resumes will be shown"
+msgstr "如果选择“否”，则仅显示包含工作或简历的类别"
+
+msgid "Categories Per Row"
+msgstr "每行类别"
+
+msgid "Number of categories to display per row on category listing pages"
+msgstr "类别列表页面上每行显示的类别数"
+
+msgid "Sub-categories Limit"
+msgstr "子类别限制"
+
+msgid "How many sub-categories to show in the popup on category pages"
+msgstr "在类别页面的弹出窗口中显示多少个子类别"
+
+msgid "User Can Add New Tags"
+msgstr "用户可以添加新标签"
+
+msgid "Allow users to create new tags in the system when posting"
+msgstr "允许用户在发帖时在系统中创建新标签"
+
+msgid "Default Pagination Size"
+msgstr "默认分页大小"
+
+msgid "Maximum number of records to show per page"
+msgstr "每页显示的最大记录数"
+
+msgid "Show Breadcrumbs"
+msgstr "显示面包屑"
+
+msgid "Show WP Job Portal Page Title"
+msgstr "显示 WP 求职门户页面标题"
+
+msgid "File Uploads & Defaults"
+msgstr "文件上传和默认值"
+
+msgid "Manage file uploads and default placeholder images"
+msgstr "管理文件上传和默认占位符图像"
+
+msgid "Data Directory"
+msgstr "数据目录"
+
+msgid "System will upload all user files into this folder within the WordPress uploads directory"
+msgstr "系统会将所有用户文件上传到 WordPress 上传目录中的此文件夹中"
+
+msgid "Default Image"
+msgstr "默认图片"
+
+msgid "This image will be shown as the default for entities & users if no other image is provided"
+msgstr "如果未提供其他图像，则此图像将显示为实体和用户的默认图像"
+
+msgid "Allowed Image Extensions"
+msgstr "允许的图像扩展名"
+
+msgid "Comma-separated list of allowed image file extensions"
+msgstr "允许的图像文件扩展名的逗号分隔列表"
+
+msgid "Max Image Size"
+msgstr "最大图像尺寸"
+
+msgid "Maximum file size for general image uploads in kilobytes"
+msgstr "一般图像上传的最大文件大小（以千字节为单位）"
+
+msgid "URL & SEO"
+msgstr "网址和搜索引擎优化"
+
+msgid "URL Structure"
+msgstr "网址结构"
+
+msgid "Configure the URL structure"
+msgstr "配置 URL 结构"
+
+msgid "permalinks"
+msgstr "永久链接"
+
+msgid "for detail pages"
+msgstr "对于详细页面"
+
+msgid "Job Detail URL Structure"
+msgstr "职位详细信息 URL 结构"
+
+msgid "Click on the available tags below to build the URL structure for job detail pages"
+msgstr "单击下面的可用标签来构建职位详细信息页面的 URL 结构"
+
+msgid "Company Detail URL Structure"
+msgstr "公司详细 URL 结构"
+
+msgid "Click on the available tags below to build the URL structure for company detail pages"
+msgstr "单击下面的可用标签来构建公司详细信息页面的 URL 结构"
+
+msgid "Resume Detail URL Structure"
+msgstr "简历详细 URL 结构"
+
+msgid "Click on the available tags below to build the URL structure for resume detail pages"
+msgstr "单击下面的可用标签来构建简历详细信息页面的 URL 结构"
+
+msgid "Registration & Access"
+msgstr "注册和访问"
+
+msgid "If no then front end employer area is not accessible"
+msgstr "如果否，则前端雇主区域不可访问"
+
+msgid "Allow Registration as Employer"
+msgstr "允许注册为雇主"
+
+msgid "Show the option to register as an employer on the registration form"
+msgstr "在注册表上显示注册为雇主的选项"
+
+msgid "Employer Default Role"
+msgstr "雇主默认角色"
+
+msgid "Employer Can View Job Seeker Area"
+msgstr "雇主可以查看求职者区域"
+
+msgid "Allow logged-in employers to view the job seeker control panel"
+msgstr "允许登录的雇主查看求职者控制面板"
+
+msgid "Set Employer After-Register Link"
+msgstr "设置雇主注册后链接"
+
+msgid "Employer After-Registration Page"
+msgstr "雇主注册后页面"
+
+msgid "Employer Custom After-Registration Link"
+msgstr "雇主自定义注册后链接"
+
+msgid "Custom Empolyer After Regitser Link"
+msgstr "注册后的自定义雇主链接"
+
+msgid "Layout & Widgets"
+msgstr "布局和小部件"
+
+msgid "Control the visibility of main sections and widgets in the logged-in employer dashboard"
+msgstr "控制登录雇主仪表板中主要部分和小部件的可见性"
+
+msgid "Show Profile Section"
+msgstr "显示个人资料部分"
+
+msgid "Show Stat Boxes"
+msgstr "显示统计框"
+
+msgid "Show Recent Resumes Box"
+msgstr "显示最近的简历框"
+
+msgid "Show Stats Graph"
+msgstr "显示统计图"
+
+msgid "Setting to show the stats graph on the employer dashboard"
+msgstr "设置在雇主仪表板上显示统计图表"
+
+msgid "Show Useful Links"
+msgstr "显示有用的链接"
+
+msgid "Setting to show the useful links section"
+msgstr "设置显示有用的链接部分"
+
+msgid "Show Applied Resumes"
+msgstr "显示已申请的简历"
+
+msgid "Setting to show the applied resumes section"
+msgstr "设置显示已申请的简历部分"
+
+msgid "Show Saved Searches"
+msgstr "显示已保存的搜索"
+
+msgid "Setting to show the saved searches section"
+msgstr "设置显示已保存的搜索部分"
+
+msgid "Show Newest Resumes"
+msgstr "显示最新简历"
+
+msgid "Setting to show the newest resumes section"
+msgstr "设置显示最新的简历部分"
+
+msgid "Navigation Links"
+msgstr "导航链接"
+
+msgid "Control which navigation links are visible in the logged-in employer dashboard menu"
+msgstr "控制哪些导航链接在登录的雇主仪表板菜单中可见"
+
+msgid "link in the employer dashboard"
+msgstr "雇主仪表板中的链接"
+
+msgid "RSS Feedback"
+msgstr "RSS 反馈"
+
+msgid "Job Seeker Default Role"
+msgstr "求职者默认角色"
+
+msgid "Set Job Seeker After-Register Link"
+msgstr "设置求职者注册后链接"
+
+msgid "Job Seeker After-Registration Page"
+msgstr "求职者注册后页面"
+
+msgid "Job Seeker Custom After-Registration Link"
+msgstr "求职者自定义注册后链接"
+
+msgid "Custom Job seeker After Regitser Link"
+msgstr "注册链接后自定义求职者"
+
+msgid "Enable Job Shortlisting"
+msgstr "启用职位筛选"
+
+msgid "Allow job seekers to shortlist jobs"
+msgstr "允许求职者将职位列入候选名单"
+
+msgid "This affects the job detail page"
+msgstr "这会影响职位详细信息页面"
+
+msgid "Enable Tell a Friend"
+msgstr "启用告诉朋友"
+
+msgid "Enable the"
+msgstr "启用"
+
+msgid "feature on job listing pages"
+msgstr "职位列表页面上的功能"
+
+msgid "Control the visibility of main sections and widgets in the logged-in job seeker dashboard"
+msgstr "控制登录求职者仪表板中主要部分和小部件的可见性"
+
+msgid "Show Applied Jobs Box"
+msgstr "显示申请的职位框"
+
+msgid "Show Newest Jobs Box"
+msgstr "显示最新职位框"
+
+msgid "Show Jobs Graph"
+msgstr "显示职位图"
+
+msgid "Setting to show the jobs graph on the job seeker dashboard"
+msgstr "设置在求职者仪表板上显示职位图表"
+
+msgid "Show Applied Jobs"
+msgstr "显示申请的职位"
+
+msgid "Setting to show the applied jobs section"
+msgstr "设置显示已申请的职位部分"
+
+msgid "Show Shortlisted Jobs"
+msgstr "显示入围职位"
+
+msgid "Setting to show the shortlisted jobs section"
+msgstr "设置显示入围职位部分"
+
+msgid "Show Newest Jobs"
+msgstr "显示最新职位"
+
+msgid "Setting to show the newest jobs section"
+msgstr "设置显示最新职位部分"
+
+msgid "Control which navigation links are visible in the logged-in job seeker dashboard menu"
+msgstr "控制哪些导航链接在登录的求职者仪表板菜单中可见"
+
+msgid "link in the job seeker dashboard"
+msgstr "求职者仪表板中的链接"
+
+msgid "Visitors"
+msgstr "访客"
+
+msgid "General Permissions"
+msgstr "一般权限"
+
+msgid "Define what non-logged-in users are allowed to do on the site"
+msgstr "定义允许未登录用户在网站上执行的操作"
+
+msgid "Visitor Can Post Job"
+msgstr "访客可以发布职位"
+
+msgid "Allow non-logged-in users to post jobs"
+msgstr "允许未登录用户发布职位"
+
+msgid "Visitor Can Add Job"
+msgstr "访客可以添加工作"
+
+msgid "Visitor Job Post Redirect Page"
+msgstr "访客职位发布重定向页面"
+
+msgid "A visitor will be redirected to this page after posting a job"
+msgstr "访客发布职位后将被重定向到此页面"
+
+msgid "Visitor Can Apply to Job"
+msgstr "访客可以申请工作"
+
+msgid "Allow non-logged-in users to apply for jobs"
+msgstr "允许未登录的用户申请职位"
+
+msgid "Visitor Can Add Resume"
+msgstr "访客可以添加简历"
+
+msgid "Allow non-logged-in users to add a resume"
+msgstr "允许未登录用户添加简历"
+
+msgid "Visitor Resume Post Redirect Page"
+msgstr "访客简历后重定向页面"
+
+msgid "A visitor will be redirected to this page after posting a resume"
+msgstr "访客发布简历后将被重定向到此页面"
+
+msgid "Visitor Can Edit Job"
+msgstr "访客可以编辑工作"
+
+msgid "Allow non-logged-in users to edit jobs they have posted"
+msgstr "允许未登录的用户编辑他们发布的职位"
+
+msgid "Page & Link Access"
+msgstr "页面和链接访问"
+
+msgid "Control which pages and links are visible to non-logged-in users"
+msgstr "控制哪些页面和链接对非登录用户可见"
+
+msgid "Allow visitors to view the employer control panel links"
+msgstr "允许访问者查看雇主控制面板链接"
+
+msgid "Allow visitors to view the resume categories page"
+msgstr "允许访问者查看简历类别页面"
+
+msgid "Allow visitors to access the resume search functionality"
+msgstr "允许访问者访问简历搜索功能"
+
+msgid "Allow visitors to view company detail pages"
+msgstr "允许访问者查看公司详细信息页面"
+
+msgid "Allow visitors to view job detail pages"
+msgstr "允许访问者查看职位详细信息页面"
+
+msgid "Allow visitors to view resume detail pages"
+msgstr "允许访问者查看简历详细信息页面"
+
+msgid "Allow visitors to view the job seeker control panel links"
+msgstr "允许访问者查看求职者控制面板链接"
+
+msgid "Allow visitors to view the jobs by category page"
+msgstr "允许访问者按类别页面查看职位"
+
+msgid "Allow visitors to use the job search functionality"
+msgstr "允许访问者使用职位搜索功能"
+
+msgid "Allow visitors to see job search result listings"
+msgstr "允许访问者查看职位搜索结果列表"
+
+msgid "Allow visitors to see the newest jobs page"
+msgstr "让访客看到最新的职位页面"
+
+msgid "Job Posting & Management"
+msgstr "职位发布和管理"
+
+msgid "Manage how jobs are posted, their lifecycle, and related features"
+msgstr "管理职位的发布方式、其生命周期以及相关功能"
+
+msgid "Job Auto Approve"
+msgstr "作业自动批准"
+
+msgid "Automatically approve new jobs upon submission"
+msgstr "新职位提交后自动批准"
+
+msgid "Job Expiry Days"
+msgstr "工作到期日"
+
+msgid "Number of days until a freely posted job expires"
+msgstr "免费发布的职位到期前的天数"
+
+msgid "Number of days until a paid"
+msgstr "付款前的天数"
+
+msgid "job expires"
+msgstr "工作到期"
+
+msgid "Job Display & Listings"
+msgstr "职位展示和列表"
+
+msgid "Control how job-related pages and information are displayed to users"
+msgstr "控制如何向用户显示与工作相关的页面和信息"
+
+msgid "Show Country on Jobs by Cities Page"
+msgstr "在按城市划分的职位页面上显示国家/地区"
+
+msgid "Display the country name next to the city"
+msgstr "在城市旁边显示国家/地区名称"
+
+msgid "Show Count on Jobs by Cities Page"
+msgstr "按城市页面显示职位数"
+
+msgid "Display the total number of jobs available in each city"
+msgstr "显示每个城市的职位总数"
+
+msgid "Show Count in Job Categories"
+msgstr "显示职位类别中的计数"
+
+msgid "Display the total number of jobs for each category"
+msgstr "显示每个类别的职位总数"
+
+msgid "Show Count on Jobs by Types Page"
+msgstr "按类型页面显示作业计数"
+
+msgid "Display the total number of jobs for each job type"
+msgstr "显示每种作业类型的作业总数"
+
+msgid "Job Types Per Row"
+msgstr "每行的作业类型"
+
+msgid "How many job types to display per row on the"
+msgstr "上每行显示多少个作业类型"
+
+msgid "Job by Type"
+msgstr "按类型划分的工作"
+
+msgid "Show Jobs Graph for Employer"
+msgstr "显示雇主的工作图表"
+
+msgid "Show Active Jobs Graph for Job Seeker"
+msgstr "为求职者显示活跃职位图表"
+
+msgid "Company Profile Display"
+msgstr "公司简介展示"
+
+msgid "Control which company details are visible on listings and company pages"
+msgstr "控制哪些公司详细信息在列表和公司页面上可见"
+
+msgid "Show Company Name"
+msgstr "显示公司名称"
+
+msgid "Show Company Description"
+msgstr "显示公司描述"
+
+msgid "Show Company Email Address"
+msgstr "显示公司电子邮件地址"
+
+msgid "Show Company City"
+msgstr "显示公司所在城市"
+
+msgid "Show Company URL"
+msgstr "显示公司网址"
+
+msgid "Show Company Contact Detail by Default"
+msgstr "默认显示公司联系方式"
+
+msgid "If disabled, credits may be required to view contact details"
+msgstr "如果禁用，可能需要积分才能查看联系方式"
+
+msgid "General settings for company profiles"
+msgstr "公司简介的常规设置"
+
+msgid "Company Logo Maximum Size"
+msgstr "公司徽标最大尺寸"
+
+msgid "Set the maximum file size for company logo uploads in kilobytes"
+msgstr "设置公司徽标上传的最大文件大小（以千字节为单位）"
+
+msgid "Company Auto Approve"
+msgstr "公司自动批准"
+
+msgid "Automatically approve new company profiles upon submission"
+msgstr "提交后自动批准新公司简介"
+
+msgid "Control resume submissions, visibility, and search functionality"
+msgstr "控制简历提交、可见性和搜索功能"
+
+msgid "Resume Auto Approve"
+msgstr "恢复自动批准"
+
+msgid "Automatically approve new resumes upon submission"
+msgstr "新简历提交后自动批准"
+
+msgid "Show Resume Contact Detail by Default"
+msgstr "默认显示简历联系方式"
+
+msgid "If disabled, credits may be required to view resume contact details"
+msgstr "如果禁用，可能需要积分才能查看简历联系方式"
+
+msgid "Show Count in Resume Categories"
+msgstr "显示简历类别中的计数"
+
+msgid "Display the total number of resumes for each category"
+msgstr "显示每个类别的简历总数"
+
+msgid "Allow Resume Search"
+msgstr "允许简历搜索"
+
+msgid "Define who is allowed to search for resumes"
+msgstr "定义允许谁搜索简历"
+
+msgid "Allow Users to Save Resume Searches"
+msgstr "允许用户保存简历搜索"
+
+msgid "Allow users to save their resume search criteria for later use"
+msgstr "允许用户保存简历搜索条件以供以后使用"
+
+msgid "Resume Files & Builder"
+msgstr "恢复文件和生成器"
+
+msgid "Define limits and allowed types for resume file uploads and advanced builder sections"
+msgstr "定义恢复文件上传和高级构建器部分的限制和允许的类型"
+
+msgid "Resume Photo Maximum Size"
+msgstr "简历照片最大尺寸"
+
+msgid "Maximum file size for resume photos in kilobytes"
+msgstr "简历照片的最大文件大小（以千字节为单位）"
+
+msgid "Resume Document Maximum Size"
+msgstr "简历文档最大尺寸"
+
+msgid "System will not upload if resume file size exceeds the given size"
+msgstr "如果简历文件大小超过给定大小，系统将不会上传"
+
+msgid "Allowed Document Extensions"
+msgstr "允许的文档扩展名"
+
+msgid "Comma-separated list of allowed document file extensions"
+msgstr "允许的文档文件扩展名的逗号分隔列表"
+
+msgid "Maximum Number of Files for Resume"
+msgstr "恢复的最大文件数"
+
+msgid "Maximum number of files a job seeker can upload with their resume"
+msgstr "求职者可以随简历上传的最大文件数"
+
+msgid "Max Employers in Resume Builder"
+msgstr "简历生成器中的最大雇主"
+
+msgid "Maximum number of employers allowed in the resume builder"
+msgstr "简历生成器中允许的最大雇主数量"
+
+msgid "Max Institutes in Resume Builder"
+msgstr "简历生成器中的 Max Institutes"
+
+msgid "Maximum number of institutes allowed in the resume builder"
+msgstr "简历生成器中允许的最大机构数量"
+
+msgid "Max Languages in Resume Builder"
+msgstr "简历生成器中的最大语言"
+
+msgid "Maximum number of languages allowed in the resume builder"
+msgstr "简历生成器中允许的最大语言数"
+
+msgid "Max Addresses in Resume Builder"
+msgstr "简历生成器中的最大地址"
+
+msgid "Maximum number of addresses allowed in the resume builder"
+msgstr "简历生成器中允许的最大地址数"
+
+msgid "Job Applications"
+msgstr "职位申请"
+
+msgid "Configure the job application process and related notifications"
+msgstr "配置职位申请流程和相关通知"
+
+msgid "Show Apply Now Button"
+msgstr "显示立即申请按钮"
+
+msgid "Enable Quick Apply for Logged-in Users"
+msgstr "为登录用户启用快速申请"
+
+msgid "Enable Quick Apply for Visitors"
+msgstr "为访客启用快速申请"
+
+msgid "Show Applied Resume Status to Job Seeker"
+msgstr "向求职者显示已申请的简历状态"
+
+msgid "Resume Data in Email"
+msgstr "恢复电子邮件中的数据"
+
+msgid "Sections"
+msgstr "部分"
+
+msgid "Choose whether to include all resume sections or only filled ones in the application email to employers"
+msgstr "选择是在发给雇主的申请电子邮件中包含所有简历部分还是仅包含已填写的部分"
+
+msgid "Choose whether to include all fields or only filled fields in the application email"
+msgstr "选择是在申请电子邮件中包含所有字段还是仅包含已填写的字段"
+
+msgid "Auto-Approve Rules"
+msgstr "自动批准规则"
+
+msgid "Set auto-approval rules for various user-submitted content"
+msgstr "为各种用户提交的内容设置自动批准规则"
+
+msgid "Featured Resume Auto Approve"
+msgstr "精选简历自动批准"
+
+msgid "Automatically approve resumes marked as featured"
+msgstr "自动批准标记为精选的简历"
+
+msgid "Featured Company Auto Approve"
+msgstr "特色公司自动批准"
+
+msgid "Automatically approve companies marked as featured"
+msgstr "自动批准标记为特色的公司"
+
+msgid "Featured Job Auto Approve"
+msgstr "特色职位自动批准"
+
+msgid "Automatically approve jobs marked as featured"
+msgstr "自动批准标记为特色的职位"
+
+msgid "Cover Letter Auto Approve"
+msgstr "求职信自动批准"
+
+msgid "Automatically approve cover letters submitted by job seekers"
+msgstr "自动批准求职者提交的求职信"
+
+msgid "Folder Auto Approve"
+msgstr "文件夹自动批准"
+
+msgid "Automatically approve new folders created by employers"
+msgstr "自动批准雇主创建的新文件夹"
+
+msgid "Department Auto Approve"
+msgstr "部门自动批准"
+
+msgid "Automatically approve new departments created by employers"
+msgstr "自动批准雇主创建的新部门"
+
+msgid "Message Auto Approve"
+msgstr "消息自动批准"
+
+msgid "Automatically approve messages between job seekers and employers"
+msgstr "自动批准求职者和雇主之间的消息"
+
+msgid "Conflict Message Auto Approve"
+msgstr "冲突消息自动批准"
+
+msgid "Automatically approve conflicted messages"
+msgstr "自动批准冲突消息"
+
+msgid "Email & Alerts"
+msgstr "电子邮件和警报"
+
+msgid "Email Sender Identity"
+msgstr "电子邮件发件人身份"
+
+msgid "Configure sender details for all outgoing system emails"
+msgstr "配置所有外发系统电子邮件的发件人详细信息"
+
+msgid "Admin Email Address"
+msgstr "管理员电子邮件地址"
+
+msgid "Admin will receive email notifications at this address"
+msgstr "管理员将通过该地址收到电子邮件通知"
+
+msgid "Sender Email Address"
+msgstr "发件人电子邮件地址"
+
+msgid "The email address that will be used to send system emails"
+msgstr "将用于发送系统电子邮件的电子邮件地址"
+
+msgid "The sender name that will be used in system emails"
+msgstr "将在系统电子邮件中使用的发件人姓名"
+
+msgid "Job Alerts"
+msgstr "职位提醒"
+
+msgid "Configure settings for job alert emails and forms"
+msgstr "配置职位提醒电子邮件和表单的设置"
+
+msgid "Show Job Alert Link"
+msgstr "显示职位提醒链接"
+
+msgid "Show the Job Alert link in the job seeker control panel"
+msgstr "在求职者控制面板中显示职位提醒链接"
+
+msgid "Enable Job Alerts for Visitors"
+msgstr "为访客启用职位提醒"
+
+msgid "Allow non-logged-in users to sign up for job alerts"
+msgstr "允许未登录的用户注册职位提醒"
+
+msgid "Job Alert Auto Approve"
+msgstr "职位提醒自动批准"
+
+msgid "Automatically approve new job alerts upon creation"
+msgstr "创建新职位提醒后自动批准"
+
+msgid "Captcha on Visitor Job Alert Form"
+msgstr "访客职位提醒表上的验证码"
+
+msgid "Show a captcha on the job alert sign-up form for visitors"
+msgstr "在访客的职位提醒注册表上显示验证码"
+
+msgid "Allow users to save their search queries for jobs and resumes"
+msgstr "允许用户保存职位和简历的搜索查询"
+
+msgid "Show Saved Searches for Job Seekers"
+msgstr "显示求职者保存的搜索"
+
+msgid "Allow job seekers to save their job searches"
+msgstr "允许求职者保存他们的求职信息"
+
+msgid "Show Saved Searches for Employers"
+msgstr "显示已保存的雇主搜索"
+
+msgid "Allow employers to save their resume searches"
+msgstr "允许雇主保存他们的简历搜索"
+
+msgid "Feeds & AI"
+msgstr "饲料和人工智能"
+
+msgid "RSS Feeds"
+msgstr "RSS 源"
+
+msgid "Configure the RSS feed for jobs"
+msgstr "配置作业的 RSS 源"
+
+msgid "Enable Jobs RSS Feed"
+msgstr "启用职位 RSS 源"
+
+msgid "Enable the main RSS feed for new jobs"
+msgstr "为新职位启用主 RSS 提要"
+
+msgid "Job Feed Title"
+msgstr "职位提要标题"
+
+msgid "The title for the job RSS feed"
+msgstr "职位 RSS 提要的标题"
+
+msgid "Job Feed Description"
+msgstr "职位提要描述"
+
+msgid "The description for the job RSS feed"
+msgstr "职位 RSS 源的描述"
+
+msgid "Job Feed Copyright"
+msgstr "职位动态版权"
+
+msgid "Copyright notice for the job feed"
+msgstr "职位提要的版权声明"
+
+msgid "Job Feed Editor"
+msgstr "职位信息编辑器"
+
+msgid "The person responsible for editorial content"
+msgstr "编辑内容负责人"
+
+msgid "Job Feed Webmaster"
+msgstr "职位动态网站管理员"
+
+msgid "The person responsible for technical issues"
+msgstr "技术问题负责人"
+
+msgid "Job Feed TTL"
+msgstr "职位动态 TTL"
+
+msgid "Time to Live"
+msgstr "生存时间"
+
+msgid "Number of minutes the feed can be cached before refreshing"
+msgstr "刷新前可以缓存 feed 的分钟数"
+
+msgid "Show Categories in Job Feed"
+msgstr "在职位动态中显示类别"
+
+msgid "Include categories in the job feed items"
+msgstr "在职位提要项目中包含类别"
+
+msgid "Show Company Image in Job Feed"
+msgstr "在职位动态中显示公司形象"
+
+msgid "Include the company logo in the job feed items"
+msgstr "在职位提要项目中包含公司徽标"
+
+msgid "Configure the RSS feed for resumes"
+msgstr "配置简历的 RSS 源"
+
+msgid "Enable Resumes RSS Feed"
+msgstr "启用简历 RSS 源"
+
+msgid "Enable the main RSS feed for new resumes"
+msgstr "为新简历启用主 RSS 提要"
+
+msgid "Resume Feed Title"
+msgstr "简历摘要标题"
+
+msgid "The title for the resume RSS feed"
+msgstr "简历 RSS 提要的标题"
+
+msgid "Resume Feed Description"
+msgstr "简历摘要说明"
+
+msgid "The description for the resume RSS feed"
+msgstr "简历 RSS 源的描述"
+
+msgid "Resume Feed Copyright"
+msgstr "简历提要版权"
+
+msgid "Copyright notice for the resume feed"
+msgstr "简历提要的版权声明"
+
+msgid "Resume Feed Editor"
+msgstr "简历摘要编辑器"
+
+msgid "Resume Feed Webmaster"
+msgstr "简历提要网站管理员"
+
+msgid "Resume Feed TTL"
+msgstr "恢复提要 TTL"
+
+msgid "Show Categories in Resume Feed"
+msgstr "在简历源中显示类别"
+
+msgid "Include categories in the resume feed items"
+msgstr "在简历摘要项目中包含类别"
+
+msgid "Show Resume File in Resume Feed"
+msgstr "在简历源中显示简历文件"
+
+msgid "Make resume files downloadable from the feed"
+msgstr "使简历文件可从 feed 下载"
+
+msgid "AI Suggested Matches"
+msgstr "AI推荐匹配"
+
+msgid "Configure AI-powered job and resume suggestion features"
+msgstr "配置人工智能驱动的工作和简历建议功能"
+
+msgid "AI Search On Job Search Page"
+msgstr "职位搜索页面上的人工智能搜索"
+
+msgid "Show the AI search field on the main job search form"
+msgstr "在主要求职表单上显示人工智能搜索字段"
+
+msgid "AI Job Search"
+msgstr "人工智能求职"
+
+msgid "AI Search Filter On Job Listing"
+msgstr "职位列表上的人工智能搜索过滤器"
+
+msgid "Show the AI search field as a filter on the job listing page"
+msgstr "在职位列表页面上将 AI 搜索字段显示为过滤器"
+
+msgid "AI Search On Resume Search Page"
+msgstr "简历搜索页面上的人工智能搜索"
+
+msgid "Show the AI search field on the main resume search form"
+msgstr "在主简历搜索表单上显示 AI 搜索字段"
+
+msgid "AI Resume Search"
+msgstr "人工智能简历搜索"
+
+msgid "AI Search Filter On Resume Listing"
+msgstr "人工智能搜索过滤简历列表"
+
+msgid "Show the AI search field as a filter on the resume listing page"
+msgstr "在简历列表页面上将 AI 搜索字段显示为过滤器"
+
+msgid "Show AI Suggested Jobs Button"
+msgstr "显示 AI 建议职位按钮"
+
+msgid "AI Suggested Jobs"
+msgstr "人工智能推荐职位"
+
+msgid "Show AI Suggested Jobs on Dashboard"
+msgstr "在仪表板上显示 AI 建议的职位"
+
+msgid "Show a list of AI-suggested jobs on the job seeker dashboard"
+msgstr "在求职者仪表板上显示人工智能建议的职位列表"
+
+msgid "Show AI Suggested Resumes Button"
+msgstr "显示 AI 建议的简历按钮"
+
+msgid "AI Suggested Resumes"
+msgstr "AI推荐的简历"
+
+msgid "Show AI Suggested Resumes on Dashboard"
+msgstr "在仪表板上显示 AI 建议的简历"
+
+msgid "Show a list of AI-suggested resumes on the employer dashboard"
+msgstr "在雇主仪表板上显示人工智能建议的简历列表"
+
+msgid "Integrations"
+msgstr "集成"
+
+msgid "Allow users to register and log in with their social media accounts"
+msgstr "允许用户使用其社交媒体帐户注册和登录"
+
+msgid "Login with Facebook"
+msgstr "使用 Facebook 登录"
+
+msgid "Allow users to log in using their Facebook account"
+msgstr "允许用户使用 Facebook 帐户登录"
+
+msgid "Apply with Facebook"
+msgstr "通过脸书申请"
+
+msgid "Allow users to apply for jobs using their Facebook profile"
+msgstr "允许用户使用他们的 Facebook 个人资料申请工作"
+
+msgid "Facebook App ID"
+msgstr "脸书应用程序 ID"
+
+msgid "Enter your Facebook App ID"
+msgstr "输入您的 Facebook 应用 ID"
+
+msgid "Facebook App Secret"
+msgstr "Facebook 应用程序秘密"
+
+msgid "Enter your Facebook App Secret"
+msgstr "输入您的 Facebook 应用程序密码"
+
+msgid "Valid OAuth URI"
+msgstr "有效的 OAuth URI"
+
+msgid "Apply"
+msgstr "申请"
+
+msgid "Login with LinkedIn"
+msgstr "使用 LinkedIn 登录"
+
+msgid "Allow users to log in using their LinkedIn account"
+msgstr "允许用户使用其 LinkedIn 帐户登录"
+
+msgid "Apply with LinkedIn"
+msgstr "通过 LinkedIn 申请"
+
+msgid "Allow users to apply for jobs using their LinkedIn profile"
+msgstr "允许用户使用其 LinkedIn 个人资料申请职位"
+
+msgid "LinkedIn Client ID"
+msgstr "领英客户 ID"
+
+msgid "Enter your LinkedIn Client ID"
+msgstr "输入您的 LinkedIn 客户 ID"
+
+msgid "API Key"
+msgstr "API密钥"
+
+msgid "LinkedIn Client Secret"
+msgstr "LinkedIn 客户秘密"
+
+msgid "Enter your LinkedIn Client Secret"
+msgstr "输入您的 LinkedIn 客户密码"
+
+msgid "Social Sharing"
+msgstr "社交分享"
+
+msgid "Enable social sharing buttons on your pages"
+msgstr "在页面上启用社交共享按钮"
+
+msgid "Enable Facebook Likes"
+msgstr "启用 Facebook 点赞"
+
+msgid "Show Facebook like button"
+msgstr "显示 Facebook 点赞按钮"
+
+msgid "Enable Facebook Share"
+msgstr "启用 Facebook 分享"
+
+msgid "Show Facebook share button"
+msgstr "显示 Facebook 分享按钮"
+
+msgid "Enable Facebook Comments"
+msgstr "启用 Facebook 评论"
+
+msgid "Show Facebook comments widget"
+msgstr "显示 Facebook 评论小部件"
+
+msgid "Enable Twitter Share"
+msgstr "启用 Twitter 分享"
+
+msgid "Show Twitter share button"
+msgstr "显示 Twitter 分享按钮"
+
+msgid "Enable LinkedIn Share"
+msgstr "启用 LinkedIn 分享"
+
+msgid "Show LinkedIn share button"
+msgstr "显示 LinkedIn 分享按钮"
+
+msgid "Enable Blogger Share"
+msgstr "启用 Blogger 分享"
+
+msgid "Show Blogger share button"
+msgstr "显示 Blogger 分享按钮"
+
+msgid "Enable Digg Share"
+msgstr "启用 Digg 共享"
+
+msgid "Show Digg share button"
+msgstr "显示 Digg 分享按钮"
+
+msgid "Enable Myspace Share"
+msgstr "启用 Myspace 共享"
+
+msgid "Show Myspace share button"
+msgstr "显示 Myspace 共享按钮"
+
+msgid "Enable Yahoo Share"
+msgstr "启用雅虎共享"
+
+msgid "Show Yahoo share button"
+msgstr "显示雅虎共享按钮"
+
+msgid "Mapping & Geolocation"
+msgstr "测绘和地理定位"
+
+msgid "Configure map services and location-based features"
+msgstr "配置地图服务和基于位置的功能"
+
+msgid "Choose between Google Maps and OpenStreetMap for map displays"
+msgstr "选择 Google 地图和 OpenStreetMap 进行地图显示"
+
+msgid "Google Map API Key"
+msgstr "谷歌地图 API 密钥"
+
+msgid "Enter your Google Maps API key"
+msgstr "输入您的 Google 地图 API 密钥"
+
+msgid "Map Height"
+msgstr "地图高度"
+
+msgid "Set the height for maps displayed in the plugin, in pixels"
+msgstr "设置插件中显示的地图的高度（以像素为单位）"
+
+msgid "Default Longitude"
+msgstr "默认经度"
+
+msgid "Default longitude for map centering"
+msgstr "地图居中的默认经度"
+
+msgid "Default Latitude"
+msgstr "默认纬度"
+
+msgid "Default latitude for map centering"
+msgstr "地图居中的默认纬度"
+
+msgid "Default Map Radius Type"
+msgstr "默认地图半径类型"
+
+msgid "Default unit for map radius calculations"
+msgstr "地图半径计算的默认单位"
+
+msgid "Max Records for City Field"
+msgstr "城市字段的最大记录"
+
+msgid "Set the number of cities to show in the location autocomplete results"
+msgstr "设置位置自动完成结果中显示的城市数量"
+
+msgid "Max Records for Tag Field"
+msgstr "标签字段的最大记录数"
+
+msgid "Set the number of tags to show in the tag autocomplete results"
+msgstr "设置要在标签自动完成结果中显示的标签数量"
+
+msgid "Security & Captcha"
+msgstr "安全与验证码"
+
+msgid "Captcha Options"
+msgstr "验证码选项"
+
+msgid "Enable captcha on various forms to prevent spam"
+msgstr "在各种表单上启用验证码以防止垃圾邮件"
+
+msgid "Default Captcha Type"
+msgstr "默认验证码类型"
+
+msgid "Select the default captcha to use throughout the plugin"
+msgstr "选择在整个插件中使用的默认验证码"
+
+msgid "Captcha on Registration Form"
+msgstr "注册表上的验证码"
+
+msgid "Show a captcha on the WP Job Portal registration form"
+msgstr "在 WP 就业门户注册表单上显示验证码"
+
+msgid "Captcha on Visitor Quick Apply"
+msgstr "访客快速申请验证码"
+
+msgid "Show captcha to visitors on the quick apply form"
+msgstr "在快速申请表上向访客显示验证码"
+
+msgid "Captcha on Visitor Job Form"
+msgstr "访客工作表上的验证码"
+
+msgid "Show captcha on the job submission form for visitors"
+msgstr "在访客的作业提交表单上显示验证码"
+
+msgid "Captcha on Visitor Resume Form"
+msgstr "访客简历表上的验证码"
+
+msgid "Show captcha on the resume submission form for visitors"
+msgstr "在访客的简历提交表上显示验证码"
+
+msgid "Captcha on Tell a Friend Popup"
+msgstr "“告诉朋友”弹出窗口上的验证码"
+
+msgid "Show captcha on the"
+msgstr "在上显示验证码"
+
+msgid "popup for visitors"
+msgstr "访客弹出窗口"
+
+msgid "WP Job Portal Captcha"
+msgstr "WP 求职门户 验证码"
+
+msgid "Settings for the built-in mathematical captcha"
+msgstr "内置数学验证码的设置"
+
+msgid "Calculation Type"
+msgstr "计算类型"
+
+msgid "Select the type of math problem for the captcha"
+msgstr "选择验证码的数学问题类型"
+
+msgid "Addition or Subtraction"
+msgstr "加法或减法"
+
+msgid "Answer Always Positive"
+msgstr "回答总是积极的"
+
+msgid "Ensure that subtraction problems always result in a positive answer"
+msgstr "确保减法问题始终得到正数答案"
+
+msgid "Number of Operands"
+msgstr "操作数数量"
+
+msgid "Choose the number of operands for the math problem"
+msgstr "选择数学问题的操作数数量"
+
+msgid "Google reCAPTCHA"
+msgstr "谷歌验证码"
+
+msgid "Configure Google reCAPTCHA v2 or v3"
+msgstr "配置 Google reCAPTCHA v2 或 v3"
+
+msgid "Select which version of Google reCAPTCHA to use"
+msgstr "选择要使用的 Google reCAPTCHA 版本"
+
+msgid "Enter the site key from your Google reCAPTCHA admin console"
+msgstr "从 Google reCAPTCHA 管理控制台输入站点密钥"
+
+msgid "Google reCaptcha Secret Key"
+msgstr "谷歌 reCaptcha 密钥"
+
+msgid "Enter the secret key from your Google reCAPTCHA admin console"
+msgstr "从 Google reCAPTCHA 管理控制台输入密钥"
+
+msgid "Monetization"
+msgstr "货币化"
+
+msgid "General Monetization"
+msgstr "一般货币化"
+
+msgid "Core settings for handling payments and packages"
+msgstr "处理付款和包裹的核心设置"
+
+msgid "Choose the monetization model for submissions"
+msgstr "选择提交内容的获利模式"
+
+msgid "Free, Per Listing, or Membership-based"
+msgstr "免费、按列表或基于会员资格"
+
+msgid "Default Currency Symbol"
+msgstr "默认货币符号"
+
+msgid "The currency symbol to be used across the site"
+msgstr "整个网站使用的货币符号"
+
+msgid "Currency Symbol Position"
+msgstr "货币符号位置"
+
+msgid "Packages & Featured Listings"
+msgstr "套餐和特色列表"
+
+msgid "Manage free packages and enable featured listings"
+msgstr "管理免费套餐并启用特色列表"
+
+msgid "Auto-assign Free Package to New User"
+msgstr "自动将免费套餐分配给新用户"
+
+msgid "Automatically give new users a free package if one exists"
+msgstr "如果有的话，自动为新用户提供一个免费包"
+
+msgid "Free Package Purchase Auto Approve"
+msgstr "免费套餐购买自动批准"
+
+msgid "Automatically approve the purchase of free packages"
+msgstr "自动批准购买免费套餐"
+
+msgid "Purchase Free Package Only Once"
+msgstr "仅限购买一次免费套餐"
+
+msgid "Prevent users from acquiring a free package more than once"
+msgstr "防止用户多次获取免费套餐"
+
+msgid "Enable Featured Companies"
+msgstr "启用特色公司"
+
+msgid "Allow companies to be marked as"
+msgstr "允许公司被标记为"
+
+msgid "Enable Featured Jobs"
+msgstr "启用特色职位"
+
+msgid "Allow jobs to be marked as"
+msgstr "允许将作业标记为"
+
+msgid "Enable Featured Resumes"
+msgstr "启用特色简历"
+
+msgid "Allow resumes to be marked as"
+msgstr "允许将简历标记为"
+
+msgid "Per Listing Prices"
+msgstr "按挂牌价格"
+
+msgid "Set prices for various actions when using the"
+msgstr "设置使用时的各种操作的价格"
+
+msgid "submission type"
+msgstr "提交类型"
+
+msgid "Submission"
+msgstr "提交"
+
+msgid "Price to submit a single company profile"
+msgstr "提交单个公司简介的价格"
+
+msgid "Additional price to make a company"
+msgstr "成立公司的额外费用"
+
+msgid "Days Until Featured Company Expires"
+msgstr "距精选公司到期的天数"
+
+msgid "Number of days a"
+msgstr "天数a"
+
+msgid "per-listing"
+msgstr "每个列表"
+
+msgid "featured company remains active"
+msgstr "特色公司保持活跃"
+
+msgid "free"
+msgstr "自由的"
+
+msgid "Price to submit a single job"
+msgstr "提交单个作业的价格"
+
+msgid "Additional price to make a job"
+msgstr "完成工作的额外费用"
+
+msgid "Days Until Featured Job Expires"
+msgstr "距精选职位到期的天数"
+
+msgid "featured job remains active"
+msgstr "特色工作仍然活跃"
+
+msgid "Price to submit a single resume"
+msgstr "提交一份简历的价格"
+
+msgid "Additional price to make a resume"
+msgstr "制作简历的额外费用"
+
+msgid "Days Until Featured Resume Expires"
+msgstr "精选简历到期前的天数"
+
+msgid "featured resume remains active"
+msgstr "精选简历仍然有效"
+
+msgid "Price per Job Apply"
+msgstr "每份工作的价格 申请"
+
+msgid "Price for a job seeker to apply for a job"
+msgstr "求职者申请工作的价格"
+
+msgid "Price to View Resume Contact"
+msgstr "查看价格 简历 联系方式"
+
+msgid "Price to View Company Contact"
+msgstr "价格查看公司联系方式"
+
+msgid "Price to submit a department"
+msgstr "提交部门价格"
+
+msgid "Price to submit a cover letter"
+msgstr "提交求职信的价格"
+
+msgid "Price to create a job alert"
+msgstr "创建职位提醒的价格"
+
+msgid "Dashboard Monetization Links"
+msgstr "仪表板货币化链接"
+
+msgid "Control the visibility of monetization-related links in user dashboards"
+msgstr "控制用户仪表板中与获利相关的链接的可见性"
+
+msgid "Employer Show Invoice History"
+msgstr "雇主显示发票历史记录"
+
+msgid "Setting to show the invoice/purchase history section"
+msgstr "设置显示发票/购买历史记录部分"
+
+msgid "Job Seeker Show Invoice History"
+msgstr "求职者显示发票历史记录"
+
+msgid "Job Seeker Show Credits Log"
+msgstr "求职者显示学分日志"
+
+msgid "Setting to show the credits log section"
+msgstr "设置显示制作人员名单部分"
+
+msgid "Payment Gateways"
+msgstr "支付网关"
+
+msgid "Configure PayPal payment gateway settings for API integration"
+msgstr "配置 PayPal 支付网关设置以进行 API 集成"
+
+msgid "Enable PayPal"
+msgstr "启用贝宝"
+
+msgid "Enable or disable PayPal as a payment option"
+msgstr "启用或禁用 PayPal 作为付款选项"
+
+msgid "Your PayPal API Username"
+msgstr "您的 PayPal API 用户名"
+
+msgid "Your PayPal API Password"
+msgstr "您的 PayPal API 密码"
+
+msgid "Your PayPal API Signature"
+msgstr "您的 PayPal API 签名"
+
+msgid "A URL to your logo image to display on the PayPal checkout page"
+msgstr "要在 PayPal 结帐页面上显示的徽标图像的 URL"
+
+msgid "Cancel URL"
+msgstr "取消网址"
+
+msgid "The URL users are sent to if they cancel the payment"
+msgstr "用户取消付款时发送到的 URL"
+
+msgid "Notify URL"
+msgstr "通知网址"
+
+msgid "Sandbox"
+msgstr "沙盒"
+
+msgid "Enable PayPal Sandbox for testing purposes"
+msgstr "启用 PayPal Sandbox 进行测试"
+
+msgid "Please enter language code, for example"
+msgstr "请输入语言代码，例如"
+
+msgid "Subscription IPN URL"
+msgstr "订阅 IPN 网址"
+
+msgid "Configure Stripe payment gateway settings"
+msgstr "配置 Stripe 支付网关设置"
+
+msgid "Enable Stripe"
+msgstr "启用条纹"
+
+msgid "Enable or disable Stripe as a payment option"
+msgstr "启用或禁用 Stripe 作为付款选项"
+
+msgid "Publishable Key"
+msgstr "可发布的密钥"
+
+msgid "Enter your Stripe Publishable Key"
+msgstr "输入您的 Stripe 可发布密钥"
+
+msgid "Secret Key"
+msgstr "秘密钥匙"
+
+msgid "Enter your Stripe Secret Key"
+msgstr "输入您的 Stripe 密钥"
+
+msgid "Subscription Webhook URL"
+msgstr "订阅 Webhook URL"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Use WooCommerce to handle payments"
+msgstr "使用 WooCommerce 处理付款"
+
+msgid "Enable WooCommerce"
+msgstr "启用 WooCommerce"
+
+msgid "Enable or disable WooCommerce as a payment option"
+msgstr "启用或禁用 WooCommerce 作为付款选项"
+
+msgid "Home Page"
+msgstr "主页"
+
+msgid "WordPress Default"
+msgstr "WordPress 默认值"
+
+msgid "Blog"
+msgstr "博客"
+
+msgid "This feature is part of a premium addon"
+msgstr "此功能是高级插件的一部分"
+
+msgid "Available tags"
+msgstr "可用标签"
+
+msgid "This image will be shown as the default image for entities & users if no other image is provided"
+msgstr "如果未提供其他图像，此图像将显示为实体和用户的默认图像"
+
+msgid "Discard"
+msgstr "丢弃"
+
+msgid "Save Changes"
+msgstr "保存更改"
+
+msgid "Quickly find any setting"
+msgstr "快速找到任何设置"
+
+msgid "Search by setting title or tooltip description"
+msgstr "通过设置标题或工具提示描述进行搜索"
+
+msgid "Unlock"
+msgstr "开锁"
+
+msgid "This and other powerful features are available in the"
+msgstr "此功能和其他强大的功能可在"
+
+msgid "Upgrade Now"
+msgstr "立即升级"
+
+msgid "No settings found for your search"
+msgstr "没有找到适合您搜索的设置"
+
+msgid "Copied to clipboard"
+msgstr "已复制到剪贴板"
+
+msgid "Search results for"
+msgstr "搜索结果"
+
+msgid "Unlock with"
+msgstr "解锁用"
+
+msgid "Settings related to employer accounts, registration, and permissions"
+msgstr "与雇主帐户、注册和权限相关的设置"
+
+msgid "Settings related to job seeker accounts and registration"
+msgstr "与求职者帐户和注册相关的设置"
+
+msgid "Visitor Can View Employer's Control Panel Links"
+msgstr "访客可以查看雇主的控制面板链接"
+
+msgid "Visitor Can View Resume Categories"
+msgstr "访客可以查看简历类别"
+
+msgid "Visitor Can Search Resumes"
+msgstr "访客可以搜索简历"
+
+msgid "Visitor Can View Company Details"
+msgstr "访客可以查看公司详细信息"
+
+msgid "Visitor Can View Job Details"
+msgstr "访客可以查看职位详细信息"
+
+msgid "Visitor Can View Resume Details"
+msgstr "访客可以查看简历详细信息"
+
+msgid "Visitor Can View Job Seeker's Control Panel Links"
+msgstr "访客可以查看求职者的控制面板链接"
+
+msgid "Visitor Can View Jobs by Categories"
+msgstr "访客可以按类别查看职位"
+
+msgid "Visitor Can Search Jobs"
+msgstr "访客可以搜索工作"
+
+msgid "Visitor Can View Newest Jobs"
+msgstr "访客可以查看最新职位"
+
+msgid "Visitor Can View Job Search Results"
+msgstr "访客可以查看职位搜索结果"
+
+msgid "1 Column"
+msgstr "1 栏"
+
+msgid "10254 Departments found"
+msgstr "找到 10254 个部门"
+
+msgid "2 Columns"
+msgstr "2 列"
+
+msgid "3 Columns"
+msgstr "3 列"
+
+msgid "4 Columns"
+msgstr "4 列"
+
+msgid "5 Columns"
+msgstr "5 栏"
+
+msgid "A critical update for WP Job Portal is required to maintain performance and prevent issues. Please update now."
+msgstr "需要对 WP 求职门户进行重要更新才能保持性能并防止出现问题。请立即更新。"
+
+msgid "AI Search"
+msgstr "人工智能搜索"
+
+msgid "AI Search Job"
+msgstr "人工智能搜索工作"
+
+msgid "AI Settings"
+msgstr "人工智能设置"
+
+msgid "AI settings"
+msgstr "人工智能设置"
+
+msgid "About"
+msgstr "关于"
+
+msgid "Account & Billing"
+msgstr "账户与账单"
+
+msgid "Activation failed"
+msgstr "激活失败"
+
+msgid "Add-ons for WP Job Portal have been installed and activated successfully."
+msgstr "WP Job Portal 的附加组件已成功安装并激活。"
+
+msgid "Addon Installer"
+msgstr "插件安装程序"
+
+msgid "Addon not installed please install addon first."
+msgstr "插件未安装，请先安装插件。"
+
+msgid "Addon will automatically update to the newest version"
+msgstr "Addon会自动更新到最新版本"
+
+msgid "Addon(s) Installed successfully!"
+msgstr "插件安装成功！"
+
+msgid "Address display style for plugin"
+msgstr "插件地址显示样式"
+
+msgid "Advanced Resume Builder Addon missing, resume sections data will not be imported!"
+msgstr "缺少高级简历生成器插件，简历部分数据将无法导入！"
+
+msgid "All selected add-ons are now active."
+msgstr "所有选定的附加组件现已激活。"
+
+msgid "Allow employers and job Seekers to register on the site."
+msgstr "允许雇主和求职者在网站上注册。"
+
+msgid "Allow search resume"
+msgstr "允许搜索简历"
+
+msgid "Allowed to all (employers, job seekers and visitors)"
+msgstr "允许所有人（雇主、求职者和访客）"
+
+msgid "Auto Update: Off"
+msgstr "自动更新：关闭"
+
+msgid "Auto Update: On"
+msgstr "自动更新：开"
+
+msgid "Back to listing"
+msgstr "返回列表"
+
+msgid "Basic Info"
+msgstr "基本信息"
+
+msgid "Buttons Styling"
+msgstr "按钮造型"
+
+msgid "Capitalize"
+msgstr "大写"
+
+msgid "Check if you want to use WP Job Portal packages"
+msgstr "检查您是否要使用 WP 求职门户包"
+
+msgid "City name"
+msgstr "城市名称"
+
+msgid "Columns per Row"
+msgstr "每行列数"
+
+msgid "Comma separated list of job types i.e JTFT, JTPT, JTFP, JTCT, JTIN"
+msgstr "逗号分隔的作业类型列表，即 JTFT、JTPT、JTFP、JTCT、JTIN"
+
+msgid "Communication"
+msgstr "沟通"
+
+msgid "Company Management"
+msgstr "公司管理"
+
+msgid "Complete Your Resume"
+msgstr "完成你的简历"
+
+msgid "Content Access"
+msgstr "内容访问"
+
+msgid "Content Styling"
+msgstr "内容样式"
+
+msgid "Control which employer dashboard navigation links are visible to visitors"
+msgstr "控制访问者可以看到哪些雇主仪表板导航链接"
+
+msgid "Control which employer dashboard widgets and sections are visible to visitors"
+msgstr "控制访问者可以看到哪些雇主仪表板小部件和部分"
+
+msgid "Control which job seeker dashboard navigation links are visible to visitors"
+msgstr "控制哪些求职者仪表板导航链接对访问者可见"
+
+msgid "Control which job seeker dashboard widgets and sections are visible to visitors"
+msgstr "控制哪些求职者仪表板小部件和部分对访问者可见"
+
+msgid "Control which pages and content areas are visible to non-logged-in users"
+msgstr "控制哪些页面和内容区域对非登录用户可见"
+
+msgid "Custom Field Class"
+msgstr "自定义字段类"
+
+msgid "Database Update Needed"
+msgstr "需要更新数据库"
+
+msgid "Database update completed"
+msgstr "数据库更新完成"
+
+msgid "Delete All Unused Keys"
+msgstr "删除所有未使用的密钥"
+
+msgid "Discover"
+msgstr "发现"
+
+msgid "Display the status of applications to the job seeker"
+msgstr "向求职者显示申请状态"
+
+msgid "Dummy Plugin"
+msgstr "虚拟插件"
+
+msgid "Dummy Plugin 2"
+msgstr "虚拟插件 2"
+
+msgid "Elegant Design"
+msgstr "优雅的设计"
+
+msgid "Employer Widgets"
+msgstr "雇主小工具"
+
+msgid "Enter the Site Title"
+msgstr "输入网站标题"
+
+msgid "Entity"
+msgstr "实体"
+
+msgid "Fetch Data"
+msgstr "获取数据"
+
+msgid "Find your next star hire with AI-driven resume search"
+msgstr "通过人工智能驱动的简历搜索找到您的下一个明星员工"
+
+msgid "Font Family"
+msgstr "字体家族"
+
+msgid "Font Size"
+msgstr "字体大小"
+
+msgid "Font Style"
+msgstr "字体样式"
+
+msgid "Font Weight"
+msgstr "字体粗细"
+
+msgid "Go To Dashboard"
+msgstr "转到仪表板"
+
+msgid "Import Data Report"
+msgstr "进口数据报告"
+
+msgid "Import Third Party Data"
+msgstr "导入第三方数据"
+
+msgid "Import demo data to populate your site with example companies, jobs, resumes, and applications."
+msgstr "导入演示数据，用示例公司、职位、简历和应用程序填充您的网站。"
+
+msgid "Imported"
+msgstr "进口"
+
+msgid "Infi Icon"
+msgstr "图标 (Infi Icon)"
+
+msgid "Info"
+msgstr "信息"
+
+msgid "Info Icon"
+msgstr "信息图标"
+
+msgid "Invalid server response"
+msgstr "服务器响应无效"
+
+msgid "Italic"
+msgstr "斜体"
+
+msgid "Job Alert Time"
+msgstr "工作提醒时间"
+
+msgid "Job Detail"
+msgstr "职位详情"
+
+msgid "Job Seeker Links"
+msgstr "求职者链接"
+
+msgid "Job Seeker Settings"
+msgstr "求职者设置"
+
+msgid "Job Seeker Widgets"
+msgstr "求职者小工具"
+
+msgid "Jobs by Category"
+msgstr "按类别划分的职位"
+
+msgid "Layout"
+msgstr "布局"
+
+msgid "Letter Spacing"
+msgstr "字母间距"
+
+msgid "Line Height"
+msgstr "行高"
+
+msgid "Live Preview Not available at the moment !"
+msgstr "实时预览 目前不可用！"
+
+msgid "Login/Register"
+msgstr "登录/注册"
+
+msgid "Lowercase"
+msgstr "小写"
+
+msgid "Manage Documents"
+msgstr "管理文档"
+
+msgid "Manage Jobs"
+msgstr "管理职位"
+
+msgid "Manage Unused Keys"
+msgstr "管理未使用的密钥"
+
+msgid "More Actions"
+msgstr "更多行动"
+
+msgid "My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans."
+msgstr "我的订阅为用户提供了其活跃订阅的概览，从而可以轻松管理和跟踪他们的职位发布计划。"
+
+msgid "New Jobs"
+msgstr "新职位"
+
+msgid "Next Setup"
+msgstr "下一步设置"
+
+msgid "No Addon Installed!"
+msgstr "没有安装插件！"
+
+msgid "No unused keys were found."
+msgstr "没有发现未使用的密钥。"
+
+msgid "None"
+msgstr "没有任何"
+
+msgid "Not Imported"
+msgstr "未进口"
+
+msgid "Oblique"
+msgstr "斜"
+
+msgid "Only job seekers can register. Jobs and companies are managed by the admin."
+msgstr "只有求职者才能注册。工作和公司由管理员管理。"
+
+msgid "Paid access Only"
+msgstr "仅限付费访问"
+
+msgid "Pay For Featured Resume"
+msgstr "支付特色简历费用"
+
+msgid "Pay For Resume"
+msgstr "支付简历费用"
+
+msgid "Pay per listing price to publish your"
+msgstr "按挂牌价格付费以发布您的"
+
+msgid "Please Insert Your Activation Key"
+msgstr "请插入您的激活密钥"
+
+msgid "Please log in to register to continue."
+msgstr "请登录注册以继续。"
+
+msgid "Please select at least one addon!"
+msgstr "请至少选择一个插件！"
+
+msgid "Please verify Locations and salaries for imported data entities"
+msgstr "请验证导入数据实体的位置和工资"
+
+msgid "Plugin not installed"
+msgstr "插件未安装"
+
+msgid "Price for a job seeker to view a company's contact details"
+msgstr "求职者查看公司联系方式的价格"
+
+msgid "Price for an employer to view a resume's contact details"
+msgstr "雇主查看简历联系方式的价格"
+
+msgid "Quick Configuration"
+msgstr "快速配置"
+
+msgid "Ready to find your dream job? Let's get started"
+msgstr "准备好找到你梦想的工作了吗？让我们开始吧"
+
+msgid "Ready to find your potential employee? Let's get started"
+msgstr "准备好寻找您的潜在员工了吗？让我们开始吧"
+
+msgid "Search Jobs"
+msgstr "搜索职位"
+
+msgid "Search Resumes"
+msgstr "搜索简历"
+
+msgid "Search smarter – just type anything you know about the job: title, category, type, skills, or even a description!"
+msgstr "更智能地搜索 - 只需输入您所知道的有关该职位的任何信息：职位、类别、类型、技能，甚至是描述！"
+
+msgid "Section Title Styling"
+msgstr "章节标题样式"
+
+msgid "Select Addons to Update with New Activation Key"
+msgstr "选择要使用新激活密钥更新的插件"
+
+msgid "Select Company"
+msgstr "选择公司"
+
+msgid "Select Job Category"
+msgstr "选择职位类别"
+
+msgid "Select Job Status"
+msgstr "选择工作状态"
+
+msgid "Select Job Type"
+msgstr "选择工作类型"
+
+msgid "Select Page To Show"
+msgstr "选择要显示的页面"
+
+msgid "Select Plugin Setting for WP Job Portal"
+msgstr "选择 WP 求职门户的插件设置"
+
+msgid "Select packages pack so that user can purchase them"
+msgstr "选择套餐，以便用户可以购买"
+
+msgid "Select who can view company contact details."
+msgstr "选择谁可以查看公司联系方式。"
+
+msgid "Settings you applied have been successfully saved"
+msgstr "您应用的设置已成功保存"
+
+msgid "Setup Complete"
+msgstr "设置完成"
+
+msgid "Show Advanced Search Button"
+msgstr "显示高级搜索按钮"
+
+msgid "Show Employers"
+msgstr "显示雇主"
+
+msgid "Show Everyone"
+msgstr "向大家展示"
+
+msgid "Show Job seekers"
+msgstr "显示求职者"
+
+msgid "Show Labels"
+msgstr "显示标签"
+
+msgid "Show No One"
+msgstr "不显示任何人"
+
+msgid "Show Placeholders"
+msgstr "显示占位符"
+
+msgid "Show Resume Status Section"
+msgstr "显示恢复状态部分"
+
+msgid "Show a box with applied jobs on the job seeker's dashboard"
+msgstr "在求职者的仪表板上显示包含已申请职位的框"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard"
+msgstr "在求职者的仪表板上显示包含最新职位的框"
+
+msgid "Show a box with newest jobs on the job seeker's dashboard to visitor"
+msgstr "在求职者的仪表板上向访客显示包含最新职位的框"
+
+msgid "Show a box with recent resumes on the employer's dashboard"
+msgstr "在雇主的仪表板上显示包含最近简历的框"
+
+msgid "Show a box with recent resumes on the employer's dashboard to visitor"
+msgstr "在雇主的仪表板上向访客显示包含最近简历的框"
+
+msgid "Show a graph of job statistics in the employer's dashboard"
+msgstr "在雇主的仪表板上显示工作统计图表"
+
+msgid "Show a graph of job statistics in the employer's dashboard to visitor"
+msgstr "在雇主的仪表板上向访客显示工作统计图表"
+
+msgid "Show a graph of job statistics in the job seeker's dashboard"
+msgstr "在求职者的仪表板上显示职位统计数据图表"
+
+msgid "Show a graph of job statistics in the job seeker's dashboard to visitor"
+msgstr "在求职者的仪表板中向访客显示职位统计图表"
+
+msgid "Show a link to active subscriptions in the employer's dashboard"
+msgstr "在雇主的仪表板中显示有效订阅的链接"
+
+msgid "Show a link to active subscriptions in the job seeker's dashboard"
+msgstr "在求职者的仪表板中显示有效订阅的链接"
+
+msgid "Show a link to the packages page in the employer's dashboard"
+msgstr "在雇主的仪表板上显示套餐页面的链接"
+
+msgid "Show a link to the packages page in the job seeker's dashboard"
+msgstr "在求职者的仪表板中显示套餐页面的链接"
+
+msgid "Show a link to the purchase history/invoices in the employer's dashboard"
+msgstr "在雇主的仪表板中显示购买历史记录/发票的链接"
+
+msgid "Show a link to the purchase history/invoices in the job seeker's dashboard"
+msgstr "在求职者的仪表板中显示购买历史记录/发票的链接"
+
+msgid "Show a link to the user's purchased packages in their dashboard"
+msgstr "在用户的仪表板中显示用户购买的套餐的链接"
+
+msgid "Show an 'AI Suggested Jobs' button on the 'My Resumes' page for job seekers"
+msgstr "在“我的简历”页面为求职者显示“AI推荐职位”按钮"
+
+msgid "Show an 'AI Suggested Resumes' button on the 'My Jobs' page for employers"
+msgstr "在雇主的“我的工作”页面上显示“AI 建议的简历”按钮"
+
+msgid "Show or hide the profile section on the employer's control panel"
+msgstr "显示或隐藏雇主控制面板上的个人资料部分"
+
+msgid "Show or hide the profile section on the job seeker's control panel"
+msgstr "显示或隐藏求职者控制面板上的个人资料部分"
+
+msgid "Show resume status section on the job seeker's dashboard"
+msgstr "在求职者的仪表板上显示简历状态部分"
+
+msgid "Show statistics boxes on the employer's dashboard"
+msgstr "在雇主的仪表板上显示统计框"
+
+msgid "Show statistics boxes on the job seeker's dashboard"
+msgstr "在求职者的仪表板上显示统计框"
+
+msgid "Show the 'Quick Apply' form to logged-in users on the job detail page"
+msgstr "在职位详细信息页面上向登录用户显示“快速申请”表单"
+
+msgid "Show the 'Quick Apply' form to visitors on the job detail page"
+msgstr "在职位详细信息页面上向访问者显示“快速申请”表单"
+
+msgid "Similar Found"
+msgstr "类似发现"
+
+msgid "Start typing what you know – our AI will help you find the best matching jobs."
+msgstr "开始输入您所知道的内容 - 我们的人工智能将帮助您找到最匹配的工作。"
+
+msgid "Start typing what you know – our AI will help you find the best matching resumes."
+msgstr "开始输入您所知道的内容 - 我们的人工智能将帮助您找到最匹配的简历。"
+
+msgid "Step 1 of 5"
+msgstr "第 1 步（共 5 步）"
+
+msgid "Step 2 of 4"
+msgstr "第 2 步（共 4 步）"
+
+msgid "Step 2 of 5"
+msgstr "第 2 步（共 5 步）"
+
+msgid "Step 3 of 4"
+msgstr "第 3 步（共 4 步）"
+
+msgid "Step 3 of 5"
+msgstr "第 3 步（共 5 步）"
+
+msgid "Step 4 of 4"
+msgstr "第 4 步（共 4 步）"
+
+msgid "Step 4 of 5"
+msgstr "第 4 步（共 5 步）"
+
+msgid "Step 5 of 5"
+msgstr "第 5 步（共 5 步）"
+
+msgid "Subscriptions"
+msgstr "订阅"
+
+msgid "Sugeested Jobs"
+msgstr "推荐职位"
+
+msgid "Suggested Jobs"
+msgstr "推荐职位"
+
+msgid "Suggested Resumes"
+msgstr "推荐简历"
+
+msgid "System"
+msgstr "系统"
+
+msgid "System Error Log"
+msgstr "系统错误日志"
+
+msgid "Text Transform"
+msgstr "文本转换"
+
+msgid "The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently."
+msgstr "雇主控制面板是一个简化的界面，允许雇主管理职位发布、跟踪申请、与候选人沟通并有效分析招聘指标。"
+
+msgid "The highlighted addons are not included in your current license. Please adjust your selection accordingly."
+msgstr "突出显示的插件不包含在您当前的许可证中。请相应地调整您的选择。"
+
+msgid "This add-on will change the Job Portal pages to a simple yet powerful and rich web design that involves focusing on clean aesthetics, intuitive navigation, and functional elements while ensuring performance and responsiveness."
+msgstr "该附加组件将把求职门户页面更改为简单但功能强大且丰富的网页设计，重点关注简洁的美观、直观的导航和功能元素，同时确保性能和响应能力。"
+
+msgid "This will replace the old key with the new one."
+msgstr "这将用新密钥替换旧密钥。"
+
+msgid "Today Stats"
+msgstr "今日统计"
+
+msgid "Unlock your career potential with AI-driven job search"
+msgstr "通过人工智能驱动的求职来释放您的职业潜力"
+
+msgid "Update Key"
+msgstr "更新密钥"
+
+msgid "Update Now"
+msgstr "立即更新"
+
+msgid "Updating Database, please wait..."
+msgstr "正在更新数据库，请稍候..."
+
+msgid "Uppercase"
+msgstr "大写"
+
+msgid "Use Default Color For Color 1"
+msgstr "对颜色 1 使用默认颜色"
+
+msgid "Use Icons for Buttons"
+msgstr "使用按钮图标"
+
+msgid "View All Resumes"
+msgstr "查看所有简历"
+
+msgid "View Company Contact Detail"
+msgstr "查看公司联系方式"
+
+msgid "Visitor Show"
+msgstr "参观者展示"
+
+msgid "Visitor Show Active Jobs Graph"
+msgstr "访客展示活跃职位图"
+
+msgid "Visitor Show Applied Jobs Section"
+msgstr "参观者展示应用职位部分"
+
+msgid "Visitor Show Applied Resumes Section"
+msgstr "访客展示应用简历部分"
+
+msgid "Visitor Show Credits Log Section"
+msgstr "访客显示积分日志部分"
+
+msgid "Visitor Show Jobs Graph"
+msgstr "参观者展示工作图"
+
+msgid "Visitor Show Jobs Graph Section"
+msgstr "访客展示工作图部分"
+
+msgid "Visitor Show Newest Jobs Box"
+msgstr "参观者展示最新职位框"
+
+msgid "Visitor Show Newest Jobs Section"
+msgstr "访客展示最新职位部分"
+
+msgid "Visitor Show Newest Resumes Section"
+msgstr "访客展示最新简历部分"
+
+msgid "Visitor Show Purchase History Section"
+msgstr "访客展示购买历史部分"
+
+msgid "Visitor Show Recent Resumes Box"
+msgstr "访客展示最近的简历框"
+
+msgid "Visitor Show Saved Searches Section"
+msgstr "访客显示已保存的搜索部分"
+
+msgid "Visitor Show Shortlisted Jobs Section"
+msgstr "参观者展示入围职位部分"
+
+msgid "Visitor Show Stats Graph Section"
+msgstr "访客展示统计图部分"
+
+msgid "Visitor Show Useful Links Section"
+msgstr "访客显示有用链接部分"
+
+msgid "WP Job Manager"
+msgstr "WP 工作经理"
+
+msgid "WP Job Portal Activation Key"
+msgstr "WP 就业门户激活密钥"
+
+msgid "WP Job Portal Import Data"
+msgstr "WP 就业门户导入数据"
+
+msgid "WP Job Portal Packages"
+msgstr "WP 求职门户包"
+
+msgid "Welcome to WP Job Portal Addon Installer"
+msgstr "欢迎使用 WP 求职门户插件安装程序"
+
+msgid "Welcome, Visitor"
+msgstr "欢迎，访客"
+
+msgid "Who can search resume."
+msgstr "谁可以搜索简历。"
+
+msgid "Who can view resume contact details"
+msgstr "谁可以查看简历联系方式"
+
+msgid "You Already Applied to this job"
+msgstr "您已经申请了这份工作"
+
+msgid "You have"
+msgstr "你有"
+
+msgid "Your WP Job Portal license key has expired or is invalid. Please update it to continue receiving support and updates."
+msgstr "您的 WP Job Portal 许可证密钥已过期或无效。请更新它以继续接收支持和更新。"
+
+msgid "failed."
+msgstr "失败的。"
+
+msgid "found"
+msgstr "成立"
+
+msgid "icon"
+msgstr "图标"
+
+msgid "imported."
+msgstr "进口的。"
+
+msgid "skipped."
+msgstr "跳过了。"
+
+msgid "unused key has been deleted successfully!"
+msgstr "未使用的密钥已成功删除！"
+
+msgid "unused key(s) that can be safely removed."
+msgstr "可以安全删除的未使用的密钥。"
+
+msgid "unused keys have been deleted successfully!"
+msgstr "未使用的密钥已成功删除！"

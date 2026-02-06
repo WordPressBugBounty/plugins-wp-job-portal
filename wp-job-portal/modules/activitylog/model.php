@@ -12,60 +12,60 @@ class WPJOBPORTALactivitylogModel {
         $this->_siteurl = site_url();
     }
 
-    function storeActivity($flag, $tablename, $columns, $id = null) {
-        if ($id == null) {
-            $id = $columns['id'];
+    function storeActivity($flag, $wpjobportal_tablename, $columns, $wpjobportal_id = null) {
+        if ($wpjobportal_id == null) {
+            $wpjobportal_id = $columns['id'];
         }
-        if (!is_numeric($id))
+        if (!is_numeric($wpjobportal_id))
             return false;
 
-        $uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
-        $uid = ($uid != null) ? $uid : 0;
-        $text = $this->getActivityDescription($flag, $tablename, $uid, $columns, $id);
+        $wpjobportal_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
+        $wpjobportal_uid = ($wpjobportal_uid != null) ? $wpjobportal_uid : 0;
+        $wpjobportal_text = $this->getActivityDescription($flag, $wpjobportal_tablename, $wpjobportal_uid, $columns, $wpjobportal_id);
 
-        if ($text == false) {
+        if ($wpjobportal_text == false) {
             return;
         }
-        $desc = $text[1];
-        $name = $text[0];
+        $wpjobportal_desc = $wpjobportal_text[1];
+        $wpjobportal_name = $wpjobportal_text[0];
         $created = gmdate("Y-m-d H:i:s");
 
-        $data = array();
-        $data['description'] = $desc;
-        $data['referencefor'] = $name;
-        $data['referenceid'] = $id;
-        $data['uid'] = $uid;
-        $data['created'] = $created;
+        $wpjobportal_data = array();
+        $wpjobportal_data['description'] = $wpjobportal_desc;
+        $wpjobportal_data['referencefor'] = $wpjobportal_name;
+        $wpjobportal_data['referenceid'] = $wpjobportal_id;
+        $wpjobportal_data['uid'] = $wpjobportal_uid;
+        $wpjobportal_data['created'] = $created;
 
-        wpjobportal::$_db->insert(wpjobportal::$_db->prefix.'wj_portal_activitylog',$data);
+        wpjobportal::$_db->insert(wpjobportal::$_db->prefix.'wj_portal_activitylog',$wpjobportal_data);
         return WPJOBPORTAL_SAVED;
     }
 
-    function storeActivityLogForActionDelete($text, $id) {
-        if (!is_numeric($id))
+    function storeActivityLogForActionDelete($wpjobportal_text, $wpjobportal_id) {
+        if (!is_numeric($wpjobportal_id))
             return false;
-        if ($text == false)
+        if ($wpjobportal_text == false)
             return;
-        $name = $text[0];
-        $desc = $text[1];
-        $uid = $text[2];
-        $uid = $uid != null ? $uid : 0;
+        $wpjobportal_name = $wpjobportal_text[0];
+        $wpjobportal_desc = $wpjobportal_text[1];
+        $wpjobportal_uid = $wpjobportal_text[2];
+        $wpjobportal_uid = $wpjobportal_uid != null ? $wpjobportal_uid : 0;
         $created = gmdate("Y-m-d H:i:s");
 
-        $data = array();
-        $data['description'] = $desc;
-        $data['referencefor'] = $name;
-        $data['referenceid'] = $id;
-        $data['uid'] = $uid;
-        $data['created'] = $created;
+        $wpjobportal_data = array();
+        $wpjobportal_data['description'] = $wpjobportal_desc;
+        $wpjobportal_data['referencefor'] = $wpjobportal_name;
+        $wpjobportal_data['referenceid'] = $wpjobportal_id;
+        $wpjobportal_data['uid'] = $wpjobportal_uid;
+        $wpjobportal_data['created'] = $created;
 
 
-        wpjobportal::$_db->insert(wpjobportal::$_db->prefix.'wj_portal_activitylog',$data);
+        wpjobportal::$_db->insert(wpjobportal::$_db->prefix.'wj_portal_activitylog',$wpjobportal_data);
         return WPJOBPORTAL_SAVED;
     }
 
     function sorting() {
-        $pagenum = WPJOBPORTALrequest::getVar('pagenum');
+        $wpjobportal_pagenum = WPJOBPORTALrequest::getVar('pagenum');
         wpjobportal::$_data['sorton'] = wpjobportal::$_search['jobs']['sorton'];
         wpjobportal::$_data['sortby'] = wpjobportal::$_search['jobs']['sortby'];
 
@@ -95,266 +95,266 @@ class WPJOBPORTALactivitylogModel {
     function getAllActivities() {
         $this->sorting();
 
-        $data = WPJOBPORTALrequest::getVar('filter');
+        $wpjobportal_data = WPJOBPORTALrequest::getVar('filter');
 
-        $string = '';
-        $comma = '';
-        if (isset($data['age'])) {
-            $string .= $comma . '"ages"';
-            $comma = ',';
+        $wpjobportal_string = '';
+        $wpjobportal_comma = '';
+        if (isset($wpjobportal_data['age'])) {
+            $wpjobportal_string .= $wpjobportal_comma . '"ages"';
+            $wpjobportal_comma = ',';
         }
-        if (isset($data['job'])) {
-            $string .= $comma . '"jobs"';
-            $comma = ',';
+        if (isset($wpjobportal_data['job'])) {
+            $wpjobportal_string .= $wpjobportal_comma . '"jobs"';
+            $wpjobportal_comma = ',';
         }
-        if (isset($data['coverletter'])) {
-            $string .= $comma . '"coverletters"';
-            $comma = ',';
+        if (isset($wpjobportal_data['coverletter'])) {
+            $wpjobportal_string .= $wpjobportal_comma . '"coverletters"';
+            $wpjobportal_comma = ',';
         }
-        if (isset($data['careerlevel'])) {
-            $string .= $comma . '"careerlevels"';
-            $comma = ',';
+        if (isset($wpjobportal_data['careerlevel'])) {
+            $wpjobportal_string .= $wpjobportal_comma . '"careerlevels"';
+            $wpjobportal_comma = ',';
         }
-        if (isset($data['city'])) {
-            $string .= $comma . '"cities"';
-            $comma = ',';
+        if (isset($wpjobportal_data['city'])) {
+            $wpjobportal_string .= $wpjobportal_comma . '"cities"';
+            $wpjobportal_comma = ',';
         }
-        if (isset($data['state'])) {
-            $string .= $comma . '"states"';
-            $comma = ',';
+        if (isset($wpjobportal_data['state'])) {
+            $wpjobportal_string .= $wpjobportal_comma . '"states"';
+            $wpjobportal_comma = ',';
         }
-        if (isset($data['country'])) {
-            $string .= $comma . '"countries"';
-            $comma = ',';
+        if (isset($wpjobportal_data['country'])) {
+            $wpjobportal_string .= $wpjobportal_comma . '"countries"';
+            $wpjobportal_comma = ',';
         }
-        if (isset($data['category'])) {
-            $string .= $comma . '"categories"';
-            $comma = ',';
+        if (isset($wpjobportal_data['category'])) {
+            $wpjobportal_string .= $wpjobportal_comma . '"categories"';
+            $wpjobportal_comma = ',';
         }
-        if (isset($data['currency'])) {
-            $string .= $comma . '"currencies"';
-            $comma = ',';
+        if (isset($wpjobportal_data['currency'])) {
+            $wpjobportal_string .= $wpjobportal_comma . '"currencies"';
+            $wpjobportal_comma = ',';
         }
-        if (isset($data['customfield'])) {
-            $string .= $comma . '"userfields"';
-            $comma = ',';
+        if (isset($wpjobportal_data['customfield'])) {
+            $wpjobportal_string .= $wpjobportal_comma . '"userfields"';
+            $wpjobportal_comma = ',';
         }
-        if (isset($data['emailtemplate'])) {
-            $string .= $comma . '"emailtemplates"';
-            $comma = ',';
+        if (isset($wpjobportal_data['emailtemplate'])) {
+            $wpjobportal_string .= $wpjobportal_comma . '"emailtemplates"';
+            $wpjobportal_comma = ',';
         }
-        if (isset($data['experience'])) {
-            $string .= $comma . '"experiences"';
-            $comma = ',';
+        if (isset($wpjobportal_data['experience'])) {
+            $wpjobportal_string .= $wpjobportal_comma . '"experiences"';
+            $wpjobportal_comma = ',';
         }
-        if (isset($data['highesteducation'])) {
-            $string .= $comma . '"heighesteducation"';
-            $comma = ',';
+        if (isset($wpjobportal_data['highesteducation'])) {
+            $wpjobportal_string .= $wpjobportal_comma . '"heighesteducation"';
+            $wpjobportal_comma = ',';
         }
-        if (isset($data['company'])) {
-            $string .= $comma . '"companies"';
-            $comma = ',';
+        if (isset($wpjobportal_data['company'])) {
+            $wpjobportal_string .= $wpjobportal_comma . '"companies"';
+            $wpjobportal_comma = ',';
         }
-        if (isset($data['jobstatus'])) {
-            $string .= $comma . '"jobstatus"';
-            $comma = ',';
+        if (isset($wpjobportal_data['jobstatus'])) {
+            $wpjobportal_string .= $wpjobportal_comma . '"jobstatus"';
+            $wpjobportal_comma = ',';
         }
-        if (isset($data['jobtype'])) {
-            $string .= $comma . '"jobtypes"';
-            $comma = ',';
+        if (isset($wpjobportal_data['jobtype'])) {
+            $wpjobportal_string .= $wpjobportal_comma . '"jobtypes"';
+            $wpjobportal_comma = ',';
         }
-        if (isset($data['salaryrangetype'])) {
-            $string .= $comma . '"salaryrangetypes"';
-            $comma = ',';
+        if (isset($wpjobportal_data['salaryrangetype'])) {
+            $wpjobportal_string .= $wpjobportal_comma . '"salaryrangetypes"';
+            $wpjobportal_comma = ',';
         }
-        if (isset($data['salaryrange'])) {
-            $string .= $comma . '"salaryrange"';
-            $comma = ',';
+        if (isset($wpjobportal_data['salaryrange'])) {
+            $wpjobportal_string .= $wpjobportal_comma . '"salaryrange"';
+            $wpjobportal_comma = ',';
         }
-        if (isset($data['shift'])) {
-            $string .= $comma . '"shifts"';
-            $comma = ',';
+        if (isset($wpjobportal_data['shift'])) {
+            $wpjobportal_string .= $wpjobportal_comma . '"shifts"';
+            $wpjobportal_comma = ',';
         }
-        if (isset($data['resume'])) {
-            $string .= $comma . '"resume"';
-            $comma = ',';
+        if (isset($wpjobportal_data['resume'])) {
+            $wpjobportal_string .= $wpjobportal_comma . '"resume"';
+            $wpjobportal_comma = ',';
         }
-        if (isset($data['resumesearches'])) {
-            $string .= $comma . '"resumesearches"';
-            $comma = ',';
+        if (isset($wpjobportal_data['resumesearches'])) {
+            $wpjobportal_string .= $wpjobportal_comma . '"resumesearches"';
+            $wpjobportal_comma = ',';
         }
-        if (isset($data['jobsearch'])) {
-            $string .= $comma . '"jobsearches"';
-            $comma = ',';
-        }
-
-        if (isset($data['jobapply'])) {
-            $string .= $comma . '"jobapply"';
-            $comma = ',';
+        if (isset($wpjobportal_data['jobsearch'])) {
+            $wpjobportal_string .= $wpjobportal_comma . '"jobsearches"';
+            $wpjobportal_comma = ',';
         }
 
-        if (isset($data['department'])) {
-            $string .= $comma . '"department"';
-            $comma = ',';
+        if (isset($wpjobportal_data['jobapply'])) {
+            $wpjobportal_string .= $wpjobportal_comma . '"jobapply"';
+            $wpjobportal_comma = ',';
         }
 
-        $inquery = " ";
+        if (isset($wpjobportal_data['department'])) {
+            $wpjobportal_string .= $wpjobportal_comma . '"department"';
+            $wpjobportal_comma = ',';
+        }
 
-        $searchsubmit = WPJOBPORTALrequest::getVar('searchsubmit');
-        if(!empty($searchsubmit) AND $searchsubmit == 1){
+        $wpjobportal_inquery = " ";
+
+        $wpjobportal_searchsubmit = WPJOBPORTALrequest::getVar('searchsubmit');
+        if(!empty($wpjobportal_searchsubmit) AND $wpjobportal_searchsubmit == 1){
             // $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_config`
-            //     set configvalue = '".$string."' WHERE configname = 'activity_log_filter'";
+            //     set configvalue = '".$wpjobportal_string."' WHERE configname = 'activity_log_filter'";
             // wpjobportal::$_db->query($query);
-            update_option('wp_job_portal_activity_log_filter',wp_json_encode($string));
+            update_option('wp_job_portal_activity_log_filter',wp_json_encode($wpjobportal_string));
         }
 
-        //$activity_log_filter = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('activity_log_filter');
-        $activity_log_filter = '';
-        $option_value = get_option('wp_job_portal_activity_log_filter');
-        if($option_value !=''){
-            $activity_log_filter = json_decode($option_value);
+        //$wpjobportal_activity_log_filter = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('activity_log_filter');
+        $wpjobportal_activity_log_filter = '';
+        $wpjobportal_option_value = get_option('wp_job_portal_activity_log_filter');
+        if($wpjobportal_option_value !=''){
+            $wpjobportal_activity_log_filter = json_decode($wpjobportal_option_value);
         }
 
 
-        if ($string != '') {
-            $inquery = "WHERE act.referencefor IN (".$string.") ";
-        } else if ($activity_log_filter != null) {
+        if ($wpjobportal_string != '') {
+            $wpjobportal_inquery = "WHERE act.referencefor IN (".$wpjobportal_string.") ";
+        } else if ($wpjobportal_activity_log_filter != null) {
 
-            $data = array();
-            $string = $activity_log_filter;
-            $inquery = "WHERE act.referencefor IN (".$string.") ";
+            $wpjobportal_data = array();
+            $wpjobportal_string = $wpjobportal_activity_log_filter;
+            $wpjobportal_inquery = "WHERE act.referencefor IN (".$wpjobportal_string.") ";
             //showing check boxes checked
-            $array = wpjobportalphplib::wpJP_explode(',', $string);
-            foreach ($array as $var) {
-                switch ($var) {
+            $wpjobportal_array = wpjobportalphplib::wpJP_explode(',', $wpjobportal_string);
+            foreach ($wpjobportal_array as $wpjobportal_var) {
+                switch ($wpjobportal_var) {
                     case '"ages"':
-                        $data['age'] = 1;
+                        $wpjobportal_data['age'] = 1;
                         break;
                     case '"careerlevels"':
-                        $data['careerlevel'] = 1;
+                        $wpjobportal_data['careerlevel'] = 1;
                         break;
                     case '"coverletters"':
-                        $data['coverletter'] = 1;
+                        $wpjobportal_data['coverletter'] = 1;
                         break;
                     case '"currencies"':
-                        $data['currency'] = 1;
+                        $wpjobportal_data['currency'] = 1;
                         break;
                     case '"experiences"':
-                        $data['experience'] = 1;
+                        $wpjobportal_data['experience'] = 1;
                         break;
                     case '"heighesteducation"':
-                        $data['highesteducation'] = 1;
+                        $wpjobportal_data['highesteducation'] = 1;
                         break;
                     case '"jobs"':
-                        $data['job'] = 1;
+                        $wpjobportal_data['job'] = 1;
                         break;
                     case '"jobstatus"':
-                        $data['jobstatus'] = 1;
+                        $wpjobportal_data['jobstatus'] = 1;
                         break;
                     case '"jobtypes"':
-                        $data['jobtype'] = 1;
+                        $wpjobportal_data['jobtype'] = 1;
                         break;
                     case '"salaryrangetypes"':
-                        $data['salaryrangetype'] = 1;
+                        $wpjobportal_data['salaryrangetype'] = 1;
                         break;
                     case '"userfields"':
-                        $data['customfield'] = 1;
+                        $wpjobportal_data['customfield'] = 1;
                         break;
                     case '"shifts"':
-                        $data['shift'] = 1;
+                        $wpjobportal_data['shift'] = 1;
                         break;
                     case '"emailtemplates"':
-                        $data['emailtemplate'] = 1;
+                        $wpjobportal_data['emailtemplate'] = 1;
                         break;
                     case '"companies"':
-                        $data['company'] = 1;
+                        $wpjobportal_data['company'] = 1;
                         break;
                     case '"countries"':
-                        $data['country'] = 1;
+                        $wpjobportal_data['country'] = 1;
                         break;
                     case '"states"':
-                        $data['state'] = 1;
+                        $wpjobportal_data['state'] = 1;
                         break;
                     case '"department"':
-                        $data['department'] = 1;
+                        $wpjobportal_data['department'] = 1;
                         break;
                     case '"cities"':
-                        $data['city'] = 1;
+                        $wpjobportal_data['city'] = 1;
                         break;
                     case '"resume"':
-                        $data['resume'] = 1;
+                        $wpjobportal_data['resume'] = 1;
                         break;
                     case '"jobsearches"':
-                        $data['jobsearch'] = 1;
+                        $wpjobportal_data['jobsearch'] = 1;
                         break;
                     case '"resumesearches"':
-                        $data['resumesearches'] = 1;
+                        $wpjobportal_data['resumesearches'] = 1;
                         break;
                     case '"categories"':
-                        $data['category'] = 1;
+                        $wpjobportal_data['category'] = 1;
                         break;
                     case '"salaryrange"':
-                        $data['salaryrange'] = 1;
+                        $wpjobportal_data['salaryrange'] = 1;
                         break;
                     case '"jobapply"':
-                        $data['jobapply'] = 1;
+                        $wpjobportal_data['jobapply'] = 1;
                         break;
                 }
             }
         }
 
-        wpjobportal::$_data['filter']['age'] = isset($data['age']) ? 1 : 0;
-        wpjobportal::$_data['filter']['job'] = isset($data['job']) ? 1 : 0;
-        wpjobportal::$_data['filter']['company'] = isset($data['company']) ? 1 : 0;
-        wpjobportal::$_data['filter']['careerlevel'] = isset($data['careerlevel']) ? 1 : 0;
-        wpjobportal::$_data['filter']['city'] = isset($data['city']) ? 1 : 0;
-        wpjobportal::$_data['filter']['state'] = isset($data['state']) ? 1 : 0;
-        wpjobportal::$_data['filter']['country'] = isset($data['country']) ? 1 : 0;
-        wpjobportal::$_data['filter']['category'] = isset($data['category']) ? 1 : 0;
-        wpjobportal::$_data['filter']['currency'] = isset($data['currency']) ? 1 : 0;
-        wpjobportal::$_data['filter']['customfield'] = isset($data['customfield']) ? 1 : 0;
-        wpjobportal::$_data['filter']['emailtemplate'] = isset($data['emailtemplate']) ? 1 : 0;
-        wpjobportal::$_data['filter']['experience'] = isset($data['experience']) ? 1 : 0;
-        wpjobportal::$_data['filter']['highesteducation'] = isset($data['highesteducation']) ? 1 : 0;
-        wpjobportal::$_data['filter']['coverletter'] = isset($data['coverletter']) ? 1 : 0;
-        wpjobportal::$_data['filter']['jobstatus'] = isset($data['jobstatus']) ? 1 : 0;
-        wpjobportal::$_data['filter']['jobtype'] = isset($data['jobtype']) ? 1 : 0;
-        wpjobportal::$_data['filter']['salaryrangetype'] = isset($data['salaryrangetype']) ? 1 : 0;
-        wpjobportal::$_data['filter']['salaryrange'] = isset($data['salaryrange']) ? 1 : 0;
-        wpjobportal::$_data['filter']['shift'] = isset($data['shift']) ? 1 : 0;
-        wpjobportal::$_data['filter']['department'] = isset($data['department']) ? 1 : 0;
-        wpjobportal::$_data['filter']['resume'] = isset($data['resume']) ? 1 : 0;
-        wpjobportal::$_data['filter']['resumesearches'] = isset($data['resumesearches']) ? 1 : 0;
-        wpjobportal::$_data['filter']['jobsearch'] = isset($data['jobsearch']) ? 1 : 0;
-        wpjobportal::$_data['filter']['jobapply'] = isset($data['jobapply']) ? 1 : 0;
+        wpjobportal::$_data['filter']['age'] = isset($wpjobportal_data['age']) ? 1 : 0;
+        wpjobportal::$_data['filter']['job'] = isset($wpjobportal_data['job']) ? 1 : 0;
+        wpjobportal::$_data['filter']['company'] = isset($wpjobportal_data['company']) ? 1 : 0;
+        wpjobportal::$_data['filter']['careerlevel'] = isset($wpjobportal_data['careerlevel']) ? 1 : 0;
+        wpjobportal::$_data['filter']['city'] = isset($wpjobportal_data['city']) ? 1 : 0;
+        wpjobportal::$_data['filter']['state'] = isset($wpjobportal_data['state']) ? 1 : 0;
+        wpjobportal::$_data['filter']['country'] = isset($wpjobportal_data['country']) ? 1 : 0;
+        wpjobportal::$_data['filter']['category'] = isset($wpjobportal_data['category']) ? 1 : 0;
+        wpjobportal::$_data['filter']['currency'] = isset($wpjobportal_data['currency']) ? 1 : 0;
+        wpjobportal::$_data['filter']['customfield'] = isset($wpjobportal_data['customfield']) ? 1 : 0;
+        wpjobportal::$_data['filter']['emailtemplate'] = isset($wpjobportal_data['emailtemplate']) ? 1 : 0;
+        wpjobportal::$_data['filter']['experience'] = isset($wpjobportal_data['experience']) ? 1 : 0;
+        wpjobportal::$_data['filter']['highesteducation'] = isset($wpjobportal_data['highesteducation']) ? 1 : 0;
+        wpjobportal::$_data['filter']['coverletter'] = isset($wpjobportal_data['coverletter']) ? 1 : 0;
+        wpjobportal::$_data['filter']['jobstatus'] = isset($wpjobportal_data['jobstatus']) ? 1 : 0;
+        wpjobportal::$_data['filter']['jobtype'] = isset($wpjobportal_data['jobtype']) ? 1 : 0;
+        wpjobportal::$_data['filter']['salaryrangetype'] = isset($wpjobportal_data['salaryrangetype']) ? 1 : 0;
+        wpjobportal::$_data['filter']['salaryrange'] = isset($wpjobportal_data['salaryrange']) ? 1 : 0;
+        wpjobportal::$_data['filter']['shift'] = isset($wpjobportal_data['shift']) ? 1 : 0;
+        wpjobportal::$_data['filter']['department'] = isset($wpjobportal_data['department']) ? 1 : 0;
+        wpjobportal::$_data['filter']['resume'] = isset($wpjobportal_data['resume']) ? 1 : 0;
+        wpjobportal::$_data['filter']['resumesearches'] = isset($wpjobportal_data['resumesearches']) ? 1 : 0;
+        wpjobportal::$_data['filter']['jobsearch'] = isset($wpjobportal_data['jobsearch']) ? 1 : 0;
+        wpjobportal::$_data['filter']['jobapply'] = isset($wpjobportal_data['jobapply']) ? 1 : 0;
 
         $query = "SELECT COUNT(act.id)
         FROM `" . wpjobportal::$_db->prefix . "wj_portal_activitylog` AS act
-        LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_users` AS u ON u.id = act.uid " . $inquery;
-        $total = wpjobportaldb::get_var($query);
-        wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($total);
+        LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_users` AS u ON u.id = act.uid " . $wpjobportal_inquery;
+        $wpjobportal_total = wpjobportaldb::get_var($query);
+        wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($wpjobportal_total);
 
         $query = "SELECT act.description,act.created,act.id,act.referencefor,u.first_name,u.last_name
         FROM `" . wpjobportal::$_db->prefix . "wj_portal_activitylog` AS act
-        LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_users` AS u ON u.id = act.uid " . $inquery;
+        LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_users` AS u ON u.id = act.uid " . $wpjobportal_inquery;
         $query .= "ORDER BY " . wpjobportal::$_data['sorting'];
         $query .=" LIMIT " . WPJOBPORTALpagination::$_offset . "," . WPJOBPORTALpagination::$_limit;
-        $result = wpjobportal::$_db->get_results($query);
+        $wpjobportal_result = wpjobportal::$_db->get_results($query);
 
-        wpjobportal::$_data[0] = $result;
+        wpjobportal::$_data[0] = $wpjobportal_result;
         return;
     }
 
-    function getEntityNameOrTitle($id, $text, $tablename) {
-        if (!is_numeric($id))
+    function getEntityNameOrTitle($wpjobportal_id, $wpjobportal_text, $wpjobportal_tablename) {
+        if (!is_numeric($wpjobportal_id))
             return false;
-        if ($text == '' OR $tablename == '')
+        if ($wpjobportal_text == '' OR $wpjobportal_tablename == '')
             return false;
 
-        if(!strstr($tablename, "wj_portal_") ){
+        if(!strstr($wpjobportal_tablename, "wj_portal_") ){
             return false;
         }
-        switch ($text) {
+        switch ($wpjobportal_text) {
             case 'title':
             case 'templatefor':
             case 'name':
@@ -362,9 +362,9 @@ class WPJOBPORTALactivitylogModel {
             case 'searchname':
             case 'cat_title':
             case 'rangestart':
-                $query = "SELECT $text FROM `$tablename` WHERE id = " . esc_sql($id);
-                $result = wpjobportal::$_db->get_var($query);
-                return $result;
+                $query = "SELECT $wpjobportal_text FROM `$wpjobportal_tablename` WHERE id = " . esc_sql($wpjobportal_id);
+                $wpjobportal_result = wpjobportal::$_db->get_var($query);
+                return $wpjobportal_result;
             break;
 
         }
@@ -372,361 +372,362 @@ class WPJOBPORTALactivitylogModel {
 
     }
 
-    function getJobTitleFromid($id) {
-        if (!is_numeric($id))
+    function getJobTitleFromid($wpjobportal_id) {
+        if (!is_numeric($wpjobportal_id))
             return false;
-        $query = "SELECT title FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE id =" . esc_sql($id);
-        $result = wpjobportal::$_db->get_var($query);
-        return $result;
+        $query = "SELECT title FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE id =" . esc_sql($wpjobportal_id);
+        $wpjobportal_result = wpjobportal::$_db->get_var($query);
+        return $wpjobportal_result;
     }
 
-    function getReusmeTitleFromid($id) {
-        if (!is_numeric($id))
+    function getReusmeTitleFromid($wpjobportal_id) {
+        if (!is_numeric($wpjobportal_id))
             return false;
-        $query = "SELECT CONCAT(first_name, ' ', last_name) AS Name FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE id = " . esc_sql($id);
-        $result = wpjobportal::$_db->get_var($query);
-        return $result;
+        $query = "SELECT CONCAT(first_name, ' ', last_name) AS Name FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE id = " . esc_sql($wpjobportal_id);
+        $wpjobportal_result = wpjobportal::$_db->get_var($query);
+        return $wpjobportal_result;
     }
 
-    function getEntityNameOrTitleForJobApply($id, $tablename) {
-        if (!is_numeric($id))
+    function getEntityNameOrTitleForJobApply($wpjobportal_id, $wpjobportal_tablename) {
+        if (!is_numeric($wpjobportal_id))
             return false;
-        if ($tablename == '')
+        if ($wpjobportal_tablename == '')
             return false;
-        $query = "SELECT cvid,jobid FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE id = " . esc_sql($id);
-        $result = wpjobportal::$_db->get_row($query);
-        $data = array();
-        $data[0] = $result->jobid;
-        $data[1] = $this->getJobTitleFromid($result->jobid);
-        $data[2] = $result->cvid;
-        $data[3] = $this->getReusmeTitleFromid($result->cvid);
-        return $data;
+        $query = "SELECT cvid,jobid FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE id = " . esc_sql($wpjobportal_id);
+        $wpjobportal_result = wpjobportal::$_db->get_row($query);
+        $wpjobportal_data = array();
+        $wpjobportal_data[0] = $wpjobportal_result->jobid;
+        $wpjobportal_data[1] = $this->getJobTitleFromid($wpjobportal_result->jobid);
+        $wpjobportal_data[2] = $wpjobportal_result->cvid;
+        $wpjobportal_data[3] = $this->getReusmeTitleFromid($wpjobportal_result->cvid);
+        return $wpjobportal_data;
     }
 
-    function getActivityDescription($flag, $tablename, $uid, $columns, $id) {
-        $array = wpjobportalphplib::wpJP_explode('_', $tablename);
-        if (!is_numeric($uid))
+    function getActivityDescription($flag, $wpjobportal_tablename, $wpjobportal_uid, $columns, $wpjobportal_id) {
+        $wpjobportal_array = wpjobportalphplib::wpJP_explode('_', $wpjobportal_tablename);
+        if (!is_numeric($wpjobportal_uid))
             return false;
 
-        $name = $array[count($array) - 1];
-        $target = "_blank";
-        switch ($name) {
+        $wpjobportal_name = $wpjobportal_array[count($wpjobportal_array) - 1];
+        $wpjobportal_target = "_blank";
+        switch ($wpjobportal_name) {
             //all the tables which have title as column
             case 'ages':
-                $entityname = esc_html(__('Age', 'wp-job-portal'));
-                $linktext = $flag == 1 ? $columns['title'] : $this->getEntityNameOrTitle($id, 'title', $tablename);
-                $path = "?page=wpjobportal_age&wpjobportallt=formages&wpjobportalid=$id";
-                $html = "<a href=" . esc_url($path) . " target='".esc_attr($target)."''><strong>" . esc_html($linktext) . "</strong></a>";
+                $wpjobportal_entityname = esc_html(__('Age', 'wp-job-portal'));
+                $wpjobportal_linktext = $flag == 1 ? $columns['title'] : $this->getEntityNameOrTitle($wpjobportal_id, 'title', $wpjobportal_tablename);
+                $wpjobportal_path = "?page=wpjobportal_age&wpjobportallt=formages&wpjobportalid=$wpjobportal_id";
+                $wpjobportal_html = "<a href=" . esc_url($wpjobportal_path) . " target='".esc_attr($wpjobportal_target)."''><strong>" . esc_html($wpjobportal_linktext) . "</strong></a>";
                 break;
             case 'careerlevels':
-                $entityname = esc_html(__('Career Level', 'wp-job-portal'));
-                $linktext = $flag == 1 ? $columns['title'] : $this->getEntityNameOrTitle($id, 'title', $tablename);
-                $path = "?page=wpjobportal_careerlevel&wpjobportallt=formcareerlevels&wpjobportalid=$id";
-                $html = "<a href=" . esc_url($path) . " target='".esc_attr($target)."''><strong>" . esc_html($linktext) . "</strong></a>";
+                $wpjobportal_entityname = esc_html(__('Career Level', 'wp-job-portal'));
+                $wpjobportal_linktext = $flag == 1 ? $columns['title'] : $this->getEntityNameOrTitle($wpjobportal_id, 'title', $wpjobportal_tablename);
+                $wpjobportal_path = "?page=wpjobportal_careerlevel&wpjobportallt=formcareerlevels&wpjobportalid=$wpjobportal_id";
+                $wpjobportal_html = "<a href=" . esc_url($wpjobportal_path) . " target='".esc_attr($wpjobportal_target)."''><strong>" . esc_html($wpjobportal_linktext) . "</strong></a>";
                 break;
             case 'coverletters':
-                $entityname = esc_html(__('Cover Letter', 'wp-job-portal'));
-                $linktext = $flag == 1 ? $columns['title'] : $this->getEntityNameOrTitle($id, 'title', $tablename);
-                $path = "?page=wpjobportal_coverletter&wpjobportallt=formcoverletter&wpjobportalid=$id";
-                $html = "<a href=" . esc_url($path) . " target='".esc_attr($target)."''><strong>" . esc_html($linktext) . "</strong></a>";
+                $wpjobportal_entityname = esc_html(__('Cover Letter', 'wp-job-portal'));
+                $wpjobportal_linktext = $flag == 1 ? $columns['title'] : $this->getEntityNameOrTitle($wpjobportal_id, 'title', $wpjobportal_tablename);
+                $wpjobportal_path = "?page=wpjobportal_coverletter&wpjobportallt=formcoverletter&wpjobportalid=$wpjobportal_id";
+                $wpjobportal_html = "<a href=" . esc_url($wpjobportal_path) . " target='".esc_attr($wpjobportal_target)."''><strong>" . esc_html($wpjobportal_linktext) . "</strong></a>";
                 break;
             case 'currencies':
-                $entityname = esc_html(__('Currency', 'wp-job-portal'));
-                $linktext = $flag == 1 ? $columns['title'] : $this->getEntityNameOrTitle($id, 'title', $tablename);
-                $path = "?page=wpjobportal_currency&wpjobportallt=formcurrency&wpjobportalid=$id";
-                $html = "<a href=" . esc_url($path) . " target='".esc_attr($target)."''><strong>" . esc_html($linktext) . "</strong></a>";
+                $wpjobportal_entityname = esc_html(__('Currency', 'wp-job-portal'));
+                $wpjobportal_linktext = $flag == 1 ? $columns['title'] : $this->getEntityNameOrTitle($wpjobportal_id, 'title', $wpjobportal_tablename);
+                $wpjobportal_path = "?page=wpjobportal_currency&wpjobportallt=formcurrency&wpjobportalid=$wpjobportal_id";
+                $wpjobportal_html = "<a href=" . esc_url($wpjobportal_path) . " target='".esc_attr($wpjobportal_target)."''><strong>" . esc_html($wpjobportal_linktext) . "</strong></a>";
                 break;
             case 'experiences':
-                $entityname = esc_html(__('Experience', 'wp-job-portal'));
-                $linktext = $flag == 1 ? $columns['title'] : $this->getEntityNameOrTitle($id, 'title', $tablename);
-                $path = "?page=wpjobportal_experience&wpjobportallt=formexperience&wpjobportalid=$id";
-                $html = "<a href=" . esc_url($path) . " target='".esc_attr($target)."''><strong>" . esc_html($linktext) . "</strong></a>";
+                $wpjobportal_entityname = esc_html(__('Experience', 'wp-job-portal'));
+                $wpjobportal_linktext = $flag == 1 ? $columns['title'] : $this->getEntityNameOrTitle($wpjobportal_id, 'title', $wpjobportal_tablename);
+                $wpjobportal_path = "?page=wpjobportal_experience&wpjobportallt=formexperience&wpjobportalid=$wpjobportal_id";
+                $wpjobportal_html = "<a href=" . esc_url($wpjobportal_path) . " target='".esc_attr($wpjobportal_target)."''><strong>" . esc_html($wpjobportal_linktext) . "</strong></a>";
                 break;
             case 'heighesteducation':
-                $entityname = esc_html(__('Education', 'wp-job-portal'));
-                $linktext = $flag == 1 ? $columns['title'] : $this->getEntityNameOrTitle($id, 'title', $tablename);
-                $path = "?page=wpjobportal_highesteducation&wpjobportallt=formhighesteducation&wpjobportalid=$id";
-                $html = "<a href=" . esc_url($path) . " target='".esc_attr($target)."''><strong>" . esc_html($linktext) . "</strong></a>";
+                $wpjobportal_entityname = esc_html(__('Education', 'wp-job-portal'));
+                $wpjobportal_linktext = $flag == 1 ? $columns['title'] : $this->getEntityNameOrTitle($wpjobportal_id, 'title', $wpjobportal_tablename);
+                $wpjobportal_path = "?page=wpjobportal_highesteducation&wpjobportallt=formhighesteducation&wpjobportalid=$wpjobportal_id";
+                $wpjobportal_html = "<a href=" . esc_url($wpjobportal_path) . " target='".esc_attr($wpjobportal_target)."''><strong>" . esc_html($wpjobportal_linktext) . "</strong></a>";
                 break;
             case 'jobs':
-                $entityname = esc_html(__('Job', 'wp-job-portal'));
-                $linktext = $flag == 1 ? $columns['title'] : $this->getEntityNameOrTitle($id, 'title', $tablename);
-                $path = "?page=wpjobportal_job&wpjobportallt=formjob&wpjobportalid=$id";
-                $html = "<a href=" . esc_url($path) . " target='".esc_attr($target)."''><strong>" . esc_html($linktext) . "</strong></a>";
+                $wpjobportal_entityname = esc_html(__('Job', 'wp-job-portal'));
+                $wpjobportal_linktext = $flag == 1 ? $columns['title'] : $this->getEntityNameOrTitle($wpjobportal_id, 'title', $wpjobportal_tablename);
+                $wpjobportal_path = "?page=wpjobportal_job&wpjobportallt=formjob&wpjobportalid=$wpjobportal_id";
+                $wpjobportal_html = "<a href=" . esc_url($wpjobportal_path) . " target='".esc_attr($wpjobportal_target)."''><strong>" . esc_html($wpjobportal_linktext) . "</strong></a>";
                 break;
             case 'jobstatus':
-                $entityname = esc_html(__('Job Status', 'wp-job-portal'));
-                $linktext = $flag == 1 ? $columns['title'] : $this->getEntityNameOrTitle($id, 'title', $tablename);
-                $path = "?page=wpjobportal_jobstatus&wpjobportallt=formjobstatus&wpjobportalid=$id";
-                $html = "<a href=" . esc_url($path) . " target='".esc_attr($target)."''><strong>" . esc_html($linktext) . "</strong></a>";
+                $wpjobportal_entityname = esc_html(__('Job Status', 'wp-job-portal'));
+                $wpjobportal_linktext = $flag == 1 ? $columns['title'] : $this->getEntityNameOrTitle($wpjobportal_id, 'title', $wpjobportal_tablename);
+                $wpjobportal_path = "?page=wpjobportal_jobstatus&wpjobportallt=formjobstatus&wpjobportalid=$wpjobportal_id";
+                $wpjobportal_html = "<a href=" . esc_url($wpjobportal_path) . " target='".esc_attr($wpjobportal_target)."''><strong>" . esc_html($wpjobportal_linktext) . "</strong></a>";
                 break;
             case 'jobtypes':
-                $entityname = esc_html(__('Job Type', 'wp-job-portal'));
-                $linktext = $flag == 1 ? $columns['title'] : $this->getEntityNameOrTitle($id, 'title', $tablename);
-                $path = "?page=wpjobportal_jobtype&wpjobportallt=formjobtype&wpjobportalid=$id";
-                $html = "<a href=" . esc_url($path) . " target='".esc_attr($target)."''><strong>" . esc_html($linktext) . "</strong></a>";
+                $wpjobportal_entityname = esc_html(__('Job Type', 'wp-job-portal'));
+                $wpjobportal_linktext = $flag == 1 ? $columns['title'] : $this->getEntityNameOrTitle($wpjobportal_id, 'title', $wpjobportal_tablename);
+                $wpjobportal_path = "?page=wpjobportal_jobtype&wpjobportallt=formjobtype&wpjobportalid=$wpjobportal_id";
+                $wpjobportal_html = "<a href=" . esc_url($wpjobportal_path) . " target='".esc_attr($wpjobportal_target)."''><strong>" . esc_html($wpjobportal_linktext) . "</strong></a>";
                 break;
             case 'salaryrangetypes':
-                $entityname = esc_html(__('Salary Range Type', 'wp-job-portal'));
-                $linktext = $flag == 1 ? $columns['title'] : $this->getEntityNameOrTitle($id, 'title', $tablename);
-                $path = "?page=wpjobportal_salaryrangetype&wpjobportallt=formsalaryrangetype&wpjobportalid=$id";
-                $html = "<a href=" . esc_url($path) . " target='".esc_attr($target)."''><strong>" . esc_html($linktext) . "</strong></a>";
+                $wpjobportal_entityname = esc_html(__('Salary Range Type', 'wp-job-portal'));
+                $wpjobportal_linktext = $flag == 1 ? $columns['title'] : $this->getEntityNameOrTitle($wpjobportal_id, 'title', $wpjobportal_tablename);
+                $wpjobportal_path = "?page=wpjobportal_salaryrangetype&wpjobportallt=formsalaryrangetype&wpjobportalid=$wpjobportal_id";
+                $wpjobportal_html = "<a href=" . esc_url($wpjobportal_path) . " target='".esc_attr($wpjobportal_target)."''><strong>" . esc_html($wpjobportal_linktext) . "</strong></a>";
                 break;
             case 'userfields':
-                $entityname = esc_html(__('Salary Range Type', 'wp-job-portal'));
-                $linktext = $flag == 1 ? $columns['title'] : $this->getEntityNameOrTitle($id, 'title', $tablename);
-                $path = "?page=wpjobportal_customfield&wpjobportallt=formcustomfield&wpjobportalid=$id";
-                $html = "<a href=" . esc_url($path) . " target='".esc_attr($target)."''><strong>" . esc_html($linktext) . "</strong></a>";
+                $wpjobportal_entityname = esc_html(__('Salary Range Type', 'wp-job-portal'));
+                $wpjobportal_linktext = $flag == 1 ? $columns['title'] : $this->getEntityNameOrTitle($wpjobportal_id, 'title', $wpjobportal_tablename);
+                $wpjobportal_path = "?page=wpjobportal_customfield&wpjobportallt=formcustomfield&wpjobportalid=$wpjobportal_id";
+                $wpjobportal_html = "<a href=" . esc_url($wpjobportal_path) . " target='".esc_attr($wpjobportal_target)."''><strong>" . esc_html($wpjobportal_linktext) . "</strong></a>";
                 break;
             case 'shifts':
-                $entityname = esc_html(__('Shift', 'wp-job-portal'));
-                $linktext = $flag == 1 ? $columns['title'] : $this->getEntityNameOrTitle($id, 'title', $tablename);
-                $path = "?page=wpjobportal_shift&wpjobportallt=formshift&wpjobportalid=$id";
-                $html = "<a href=" . esc_url($path) . " target='".esc_attr($target)."''><strong>" . esc_html($linktext) . "</strong></a>";
+                $wpjobportal_entityname = esc_html(__('Shift', 'wp-job-portal'));
+                $wpjobportal_linktext = $flag == 1 ? $columns['title'] : $this->getEntityNameOrTitle($wpjobportal_id, 'title', $wpjobportal_tablename);
+                $wpjobportal_path = "?page=wpjobportal_shift&wpjobportallt=formshift&wpjobportalid=$wpjobportal_id";
+                $wpjobportal_html = "<a href=" . esc_url($wpjobportal_path) . " target='".esc_attr($wpjobportal_target)."''><strong>" . esc_html($wpjobportal_linktext) . "</strong></a>";
                 break;
             case 'emailtemplates':
-                $entityname = esc_html(__('Email Template', 'wp-job-portal'));
-                $linktext = $flag == 1 ? $columns['templatefor'] : $this->getEntityNameOrTitle($id, 'templatefor', $tablename);
-                $path = "?page=wpjobportal_emailtemplate&wpjobportallt=formemailtemplte&wpjobportalid=$id";
-                $html = "<a href=" . esc_url($path) . " target='".esc_attr($target)."''><strong>" . esc_html($linktext) . "</strong></a>";
+                $wpjobportal_entityname = esc_html(__('Email Template', 'wp-job-portal'));
+                $wpjobportal_linktext = $flag == 1 ? $columns['templatefor'] : $this->getEntityNameOrTitle($wpjobportal_id, 'templatefor', $wpjobportal_tablename);
+                $wpjobportal_path = "?page=wpjobportal_emailtemplate&wpjobportallt=formemailtemplte&wpjobportalid=$wpjobportal_id";
+                $wpjobportal_html = "<strong>" . esc_html($wpjobportal_linktext) . "</strong>";
+                //$wpjobportal_html = "<a href=" . esc_url($wpjobportal_path) . " target='".esc_attr($wpjobportal_target)."''><strong>" . esc_html($wpjobportal_linktext) . "</strong></a>";
                 break;
             //tables that have name as column
             case 'companies':
-                $entityname = esc_html(__('Company', 'wp-job-portal'));
-                $linktext = $flag == 1 ? $columns['name'] : $this->getEntityNameOrTitle($id, 'name', $tablename);
-                $path = "?page=wpjobportal_company&wpjobportallt=formcompany&wpjobportalid=$id";
-                $html = "<a href=" . esc_url($path) . " target='".esc_attr($target)."''><strong>" . esc_html($linktext) . "</strong></a>";
+                $wpjobportal_entityname = esc_html(__('Company', 'wp-job-portal'));
+                $wpjobportal_linktext = $flag == 1 ? $columns['name'] : $this->getEntityNameOrTitle($wpjobportal_id, 'name', $wpjobportal_tablename);
+                $wpjobportal_path = "?page=wpjobportal_company&wpjobportallt=formcompany&wpjobportalid=$wpjobportal_id";
+                $wpjobportal_html = "<a href=" . esc_url($wpjobportal_path) . " target='".esc_attr($wpjobportal_target)."''><strong>" . esc_html($wpjobportal_linktext) . "</strong></a>";
                 break;
             case 'countries':
-                $entityname = esc_html(__('Country', 'wp-job-portal'));
-                $linktext = $flag == 1 ? $columns['name'] : $this->getEntityNameOrTitle($id, 'name', $tablename);
-                $path = "?page=wpjobportal_country&wpjobportallt=formcountry&wpjobportalid=$id";
-                $html = "<a href=" . esc_url($path) . " target='".esc_attr($target)."''><strong>" . esc_html($linktext) . "</strong></a>";
+                $wpjobportal_entityname = esc_html(__('Country', 'wp-job-portal'));
+                $wpjobportal_linktext = $flag == 1 ? $columns['name'] : $this->getEntityNameOrTitle($wpjobportal_id, 'name', $wpjobportal_tablename);
+                $wpjobportal_path = "?page=wpjobportal_country&wpjobportallt=formcountry&wpjobportalid=$wpjobportal_id";
+                $wpjobportal_html = "<a href=" . esc_url($wpjobportal_path) . " target='".esc_attr($wpjobportal_target)."''><strong>" . esc_html($wpjobportal_linktext) . "</strong></a>";
                 break;
             case 'folders':
-                $entityname = esc_html(__('Folder', 'wp-job-portal'));
-                $linktext = $flag == 1 ? $columns['name'] : $this->getEntityNameOrTitle($id, 'name', $tablename);
-                $path = "?page=wpjobportal_folder&wpjobportallt=formfolder&wpjobportalid=$id";
-                $html = "<a href=" . esc_url($path) . " target='".esc_attr($target)."''><strong>" . esc_html($linktext) . "</strong></a>";
+                $wpjobportal_entityname = esc_html(__('Folder', 'wp-job-portal'));
+                $wpjobportal_linktext = $flag == 1 ? $columns['name'] : $this->getEntityNameOrTitle($wpjobportal_id, 'name', $wpjobportal_tablename);
+                $wpjobportal_path = "?page=wpjobportal_folder&wpjobportallt=formfolder&wpjobportalid=$wpjobportal_id";
+                $wpjobportal_html = "<a href=" . esc_url($wpjobportal_path) . " target='".esc_attr($wpjobportal_target)."''><strong>" . esc_html($wpjobportal_linktext) . "</strong></a>";
                 break;
             case 'states':
-                $entityname = esc_html(__('Department', 'wp-job-portal'));
-                $linktext = $flag == 1 ? $columns['name'] : $this->getEntityNameOrTitle($id, 'name', $tablename);
-                $path = "?page=wpjobportal_state&wpjobportallt=formstate&wpjobportalid=$id";
-                $html = "<a href=" . esc_url($path) . " target='".esc_attr($target)."''><strong>" . esc_html($linktext) . "</strong></a>";
+                $wpjobportal_entityname = esc_html(__('Department', 'wp-job-portal'));
+                $wpjobportal_linktext = $flag == 1 ? $columns['name'] : $this->getEntityNameOrTitle($wpjobportal_id, 'name', $wpjobportal_tablename);
+                $wpjobportal_path = "?page=wpjobportal_state&wpjobportallt=formstate&wpjobportalid=$wpjobportal_id";
+                $wpjobportal_html = "<a href=" . esc_url($wpjobportal_path) . " target='".esc_attr($wpjobportal_target)."''><strong>" . esc_html($wpjobportal_linktext) . "</strong></a>";
                 break;
             case 'departments':
-                $entityname = esc_html(__('Department', 'wp-job-portal'));
-                $linktext = $flag == 1 ? $columns['name'] : $this->getEntityNameOrTitle($id, 'name', $tablename);
-                $path = "?page=wpjobportal_departments&wpjobportallt=formdepartment&wpjobportalid=$id";
-                $html = "<a href=" . esc_url($path) . " target='".esc_attr($target)."''><strong>" . esc_html($linktext) . "</strong></a>";
+                $wpjobportal_entityname = esc_html(__('Department', 'wp-job-portal'));
+                $wpjobportal_linktext = $flag == 1 ? $columns['name'] : $this->getEntityNameOrTitle($wpjobportal_id, 'name', $wpjobportal_tablename);
+                $wpjobportal_path = "?page=wpjobportal_departments&wpjobportallt=formdepartment&wpjobportalid=$wpjobportal_id";
+                $wpjobportal_html = "<a href=" . esc_url($wpjobportal_path) . " target='".esc_attr($wpjobportal_target)."''><strong>" . esc_html($wpjobportal_linktext) . "</strong></a>";
                 break;
             case 'cities':
-                $entityname = esc_html(__('City', 'wp-job-portal'));
-                $linktext = $flag == 1 ? $columns['name'] : $this->getEntityNameOrTitle($id, 'name', $tablename);
-                $path = "?page=wpjobportal_city&wpjobportallt=formcity&wpjobportalid=$id";
-                $html = "<a href=" . esc_url($path) . " target='".esc_attr($target)."''><strong>" . esc_html($linktext) . "</strong></a>";
+                $wpjobportal_entityname = esc_html(__('City', 'wp-job-portal'));
+                $wpjobportal_linktext = $flag == 1 ? $columns['name'] : $this->getEntityNameOrTitle($wpjobportal_id, 'name', $wpjobportal_tablename);
+                $wpjobportal_path = "?page=wpjobportal_city&wpjobportallt=formcity&wpjobportalid=$wpjobportal_id";
+                $wpjobportal_html = "<a href=" . esc_url($wpjobportal_path) . " target='".esc_attr($wpjobportal_target)."''><strong>" . esc_html($wpjobportal_linktext) . "</strong></a>";
                 break;
             //speceial case
             case 'resume':
-                $entityname = esc_html(__('Resume', 'wp-job-portal'));
-                $linktext = $this->getEntityNameOrTitle($id, "CONCAT(first_name, ' ', last_name) AS Name", wpjobportal::$_db->prefix.'wj_portal_resume');
-                $path = "?page=wpjobportal_resume&wpjobportallt=formresume&wpjobportalid=$id";
-                $html = "<a href=" . esc_url($path) . " target='".esc_attr($target)."''><strong>" . esc_html($linktext) . "</strong></a>";
+                $wpjobportal_entityname = esc_html(__('Resume', 'wp-job-portal'));
+                $wpjobportal_linktext = $this->getEntityNameOrTitle($wpjobportal_id, "CONCAT(first_name, ' ', last_name) AS Name", wpjobportal::$_db->prefix.'wj_portal_resume');
+                $wpjobportal_path = "?page=wpjobportal_resume&wpjobportallt=formresume&wpjobportalid=$wpjobportal_id";
+                $wpjobportal_html = "<a href=" . esc_url($wpjobportal_path) . " target='".esc_attr($wpjobportal_target)."''><strong>" . esc_html($wpjobportal_linktext) . "</strong></a>";
                 break;
             case 'jobsearches':
-                $entityname = esc_html(__('Job Search', 'wp-job-portal'));
-                $linktext = $flag == 1 ? $columns['searchname'] : $this->getEntityNameOrTitle($id, 'searchname', $tablename);
-                //$path = "?page=wpjobportal_jobsearch"; // layout does exsist
-                $html = "<strong>" . esc_html($linktext) . "</strong>";
+                $wpjobportal_entityname = esc_html(__('Job Search', 'wp-job-portal'));
+                $wpjobportal_linktext = $flag == 1 ? $columns['searchname'] : $this->getEntityNameOrTitle($wpjobportal_id, 'searchname', $wpjobportal_tablename);
+                //$wpjobportal_path = "?page=wpjobportal_jobsearch"; // layout does exsist
+                $wpjobportal_html = "<strong>" . esc_html($wpjobportal_linktext) . "</strong>";
                 break;
             case 'resumesearches':
-                $entityname = esc_html(__('Resume Search', 'wp-job-portal'));
-                $linktext = $flag == 1 ? $columns['searchname'] : $this->getEntityNameOrTitle($id, 'searchname', $tablename);
-                // $path = "?page=wpjobportal_resumesearch"; // layout does not exsist
-                $html = "<strong>" . esc_html($linktext) . "</strong>";
+                $wpjobportal_entityname = esc_html(__('Resume Search', 'wp-job-portal'));
+                $wpjobportal_linktext = $flag == 1 ? $columns['searchname'] : $this->getEntityNameOrTitle($wpjobportal_id, 'searchname', $wpjobportal_tablename);
+                // $wpjobportal_path = "?page=wpjobportal_resumesearch"; // layout does not exsist
+                $wpjobportal_html = "<strong>" . esc_html($wpjobportal_linktext) . "</strong>";
                 break;
             case 'categories':
-                $entityname = esc_html(__('Category', 'wp-job-portal'));
-                $linktext = $flag == 1 ? $columns['cat_title'] : $this->getEntityNameOrTitle($id, 'cat_title', $tablename);
-                $path = "?page=wpjobportal_category&wpjobportallt=formcategory&wpjobportalid=$id";
-                $html = "<a href=" . esc_url($path) . " target='".esc_attr($target)."''><strong>" . esc_html($linktext) . "</strong></a>";
+                $wpjobportal_entityname = esc_html(__('Category', 'wp-job-portal'));
+                $wpjobportal_linktext = $flag == 1 ? $columns['cat_title'] : $this->getEntityNameOrTitle($wpjobportal_id, 'cat_title', $wpjobportal_tablename);
+                $wpjobportal_path = "?page=wpjobportal_category&wpjobportallt=formcategory&wpjobportalid=$wpjobportal_id";
+                $wpjobportal_html = "<a href=" . esc_url($wpjobportal_path) . " target='".esc_attr($wpjobportal_target)."''><strong>" . esc_html($wpjobportal_linktext) . "</strong></a>";
                 break;
             case 'salaryrange':
-                $entityname = esc_html(__('Salary Range', 'wp-job-portal'));
-                $linktext = $flag == 1 ? $columns['rangestart'] : $this->getEntityNameOrTitle($id, 'rangestart', $tablename);
-                $path = "?page=wpjobportal_salaryrange&wpjobportallt=formsalaryrange&wpjobportalid=$id";
-                $html = "<a href=" . esc_url($path) . " target='".esc_attr($target)."''><strong>" . esc_html($linktext) . "</strong></a>";
+                $wpjobportal_entityname = esc_html(__('Salary Range', 'wp-job-portal'));
+                $wpjobportal_linktext = $flag == 1 ? $columns['rangestart'] : $this->getEntityNameOrTitle($wpjobportal_id, 'rangestart', $wpjobportal_tablename);
+                $wpjobportal_path = "?page=wpjobportal_salaryrange&wpjobportallt=formsalaryrange&wpjobportalid=$wpjobportal_id";
+                $wpjobportal_html = "<a href=" . esc_url($wpjobportal_path) . " target='".esc_attr($wpjobportal_target)."''><strong>" . esc_html($wpjobportal_linktext) . "</strong></a>";
                 break;
             case 'jobapply':
-                $entityname = esc_html(__('Applied for job', 'wp-job-portal'));
-                $data = $this->getEntityNameOrTitleForJobApply($id, $tablename);
+                $wpjobportal_entityname = esc_html(__('Applied for job', 'wp-job-portal'));
+                $wpjobportal_data = $this->getEntityNameOrTitleForJobApply($wpjobportal_id, $wpjobportal_tablename);
 
-                $path1 = "?page=wpjobportal_job&wpjobportallt=formjob&wpjobportalid=$data[0]";
-                $path2 = "?page=wpjobportal_resume&wpjobportallt=formresume&wpjobportalid=$data[2]";
-                $html = " ( <a href=" . esc_url($path1) . " target='".esc_attr($target)."''><strong>" . $data[1] . "</strong></a> ) ";
-                $html .= esc_html(__('With Resume', 'wp-job-portal'));
-                $html .= " ( <a href=" . esc_url($path2) . " target='".esc_attr($target)."''><strong>" . $data[3] . "</strong></a> ) ";
+                $wpjobportal_path1 = "?page=wpjobportal_job&wpjobportallt=formjob&wpjobportalid=$wpjobportal_data[0]";
+                $wpjobportal_path2 = "?page=wpjobportal_resume&wpjobportallt=formresume&wpjobportalid=$wpjobportal_data[2]";
+                $wpjobportal_html = " ( <a href=" . esc_url($wpjobportal_path1) . " target='".esc_attr($wpjobportal_target)."''><strong>" . $wpjobportal_data[1] . "</strong></a> ) ";
+                $wpjobportal_html .= esc_html(__('With Resume', 'wp-job-portal'));
+                $wpjobportal_html .= " ( <a href=" . esc_url($wpjobportal_path2) . " target='".esc_attr($wpjobportal_target)."''><strong>" . $wpjobportal_data[3] . "</strong></a> ) ";
                 break;
             default:
                 return false;
                 break;
         }
-        $username = $this->getNameFromUid($uid);
-        $path2 = esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userdetail&id='.esc_attr($uid)));
+        $wpjobportal_username = $this->getNameFromUid($wpjobportal_uid);
+        $wpjobportal_path2 = esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userdetail&id='.esc_attr($wpjobportal_uid)));
         if(current_user_can('manage_options')){
-            $html2 = esc_html(__('Administrator','wp-job-portal'));
+            $wpjobportal_html2 = esc_html(__('Administrator','wp-job-portal'));
         }else{
-            $html2 = "<a href=" . $path2 . " target='".esc_attr($target)."''><strong>" . esc_html($username) . "</strong></a>";
+            $wpjobportal_html2 = "<a href=" . $wpjobportal_path2 . " target='".esc_attr($wpjobportal_target)."''><strong>" . esc_html($wpjobportal_username) . "</strong></a>";
         }
-        $entityaction = $flag == 1 ? esc_html(__("added a new", "wp-job-portal")) : esc_html(__("Edited a existing", "wp-job-portal"));
-        $result = array();
-        $result[0] = $name;
-        if ($name == 'jobapply') {
-            $result[1] = "$html2" . "  " . $entityname . " " . $html;
-        } elseif ($name == 'jobshortlist') {
-            $result[1] = "$html2" . "  " . $entityname . " " . $html;
+        $wpjobportal_entityaction = $flag == 1 ? esc_html(__("added a new", "wp-job-portal")) : esc_html(__("Edited a existing", "wp-job-portal"));
+        $wpjobportal_result = array();
+        $wpjobportal_result[0] = $wpjobportal_name;
+        if ($wpjobportal_name == 'jobapply') {
+            $wpjobportal_result[1] = "$wpjobportal_html2" . "  " . $wpjobportal_entityname . " " . $wpjobportal_html;
+        } elseif ($wpjobportal_name == 'jobshortlist') {
+            $wpjobportal_result[1] = "$wpjobportal_html2" . "  " . $wpjobportal_entityname . " " . $wpjobportal_html;
         } else {
-            $result[1] = "$html2" . " " . $entityaction . " " . $entityname . " ( " . $html . " )";
+            $wpjobportal_result[1] = "$wpjobportal_html2" . " " . $wpjobportal_entityaction . " " . $wpjobportal_entityname . " ( " . $wpjobportal_html . " )";
         }
-        return $result;
+        return $wpjobportal_result;
     }
 
-    function getNameFromUid($uid) {
-        if (!is_numeric($uid))
+    function getNameFromUid($wpjobportal_uid) {
+        if (!is_numeric($wpjobportal_uid))
             return false;
-        if ($uid == 0) {
+        if ($wpjobportal_uid == 0) {
             return "guest";
         }
-        $query = "SELECT first_name,last_name FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE id = " . esc_sql($uid);
-        $result = wpjobportal::$_db->get_row($query);
-        $name = $result->first_name . ' ' . $result->last_name;
-        return $name;
+        $query = "SELECT first_name,last_name FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE id = " . esc_sql($wpjobportal_uid);
+        $wpjobportal_result = wpjobportal::$_db->get_row($query);
+        $wpjobportal_name = $wpjobportal_result->first_name . ' ' . $wpjobportal_result->last_name;
+        return $wpjobportal_name;
     }
 
-    function getDeleteActionDataToStore($tablename, $id) {
-        $array = wpjobportalphplib::wpJP_explode('_', $tablename);
-        $name = $array[count($array) - 1];
-        switch ($name) {
+    function getDeleteActionDataToStore($wpjobportal_tablename, $wpjobportal_id) {
+        $wpjobportal_array = wpjobportalphplib::wpJP_explode('_', $wpjobportal_tablename);
+        $wpjobportal_name = $wpjobportal_array[count($wpjobportal_array) - 1];
+        switch ($wpjobportal_name) {
             //all the tables which have title as column
             case 'ages':
-                $entityname = esc_html(__('Age', 'wp-job-portal'));
-                $linktext = $this->getEntityNameOrTitle($id, 'title', $tablename);
+                $wpjobportal_entityname = esc_html(__('Age', 'wp-job-portal'));
+                $wpjobportal_linktext = $this->getEntityNameOrTitle($wpjobportal_id, 'title', $wpjobportal_tablename);
                 break;
             case 'careerlevels':
-                $entityname = esc_html(__('Career Level', 'wp-job-portal'));
-                $linktext = $this->getEntityNameOrTitle($id, 'title', $tablename);
+                $wpjobportal_entityname = esc_html(__('Career Level', 'wp-job-portal'));
+                $wpjobportal_linktext = $this->getEntityNameOrTitle($wpjobportal_id, 'title', $wpjobportal_tablename);
                 break;
             case 'coverletters':
-                $entityname = esc_html(__('Cover Letter', 'wp-job-portal'));
-                $linktext = $this->getEntityNameOrTitle($id, 'title', $tablename);
+                $wpjobportal_entityname = esc_html(__('Cover Letter', 'wp-job-portal'));
+                $wpjobportal_linktext = $this->getEntityNameOrTitle($wpjobportal_id, 'title', $wpjobportal_tablename);
                 break;
             case 'currencies':
-                $entityname = esc_html(__('Currency', 'wp-job-portal'));
-                $linktext = $this->getEntityNameOrTitle($id, 'title', $tablename);
+                $wpjobportal_entityname = esc_html(__('Currency', 'wp-job-portal'));
+                $wpjobportal_linktext = $this->getEntityNameOrTitle($wpjobportal_id, 'title', $wpjobportal_tablename);
                 break;
             case 'experiences':
-                $entityname = esc_html(__('Experience', 'wp-job-portal'));
-                $linktext = $this->getEntityNameOrTitle($id, 'title', $tablename);
+                $wpjobportal_entityname = esc_html(__('Experience', 'wp-job-portal'));
+                $wpjobportal_linktext = $this->getEntityNameOrTitle($wpjobportal_id, 'title', $wpjobportal_tablename);
                 break;
             case 'heighesteducation':
-                $entityname = esc_html(__('Education', 'wp-job-portal'));
-                $linktext = $this->getEntityNameOrTitle($id, 'title', $tablename);
+                $wpjobportal_entityname = esc_html(__('Education', 'wp-job-portal'));
+                $wpjobportal_linktext = $this->getEntityNameOrTitle($wpjobportal_id, 'title', $wpjobportal_tablename);
                 break;
             case 'jobs':
-                $entityname = esc_html(__('Job', 'wp-job-portal'));
-                $linktext = $this->getEntityNameOrTitle($id, 'title', $tablename);
+                $wpjobportal_entityname = esc_html(__('Job', 'wp-job-portal'));
+                $wpjobportal_linktext = $this->getEntityNameOrTitle($wpjobportal_id, 'title', $wpjobportal_tablename);
                 break;
             case 'jobstatus':
-                $entityname = esc_html(__('Job Status', 'wp-job-portal'));
-                $linktext = $this->getEntityNameOrTitle($id, 'title', $tablename);
+                $wpjobportal_entityname = esc_html(__('Job Status', 'wp-job-portal'));
+                $wpjobportal_linktext = $this->getEntityNameOrTitle($wpjobportal_id, 'title', $wpjobportal_tablename);
                 break;
             case 'jobtypes':
-                $entityname = esc_html(__('Job Type', 'wp-job-portal'));
-                $linktext = $this->getEntityNameOrTitle($id, 'title', $tablename);
+                $wpjobportal_entityname = esc_html(__('Job Type', 'wp-job-portal'));
+                $wpjobportal_linktext = $this->getEntityNameOrTitle($wpjobportal_id, 'title', $wpjobportal_tablename);
                 break;
             case 'salaryrangetypes':
-                $entityname = esc_html(__('Salary Range Type', 'wp-job-portal'));
-                $linktext = $this->getEntityNameOrTitle($id, 'title', $tablename);
+                $wpjobportal_entityname = esc_html(__('Salary Range Type', 'wp-job-portal'));
+                $wpjobportal_linktext = $this->getEntityNameOrTitle($wpjobportal_id, 'title', $wpjobportal_tablename);
                 break;
             case 'userfields':
-                $entityname = esc_html(__('Salary Range Type', 'wp-job-portal'));
-                $linktext = $this->getEntityNameOrTitle($id, 'title', $tablename);
+                $wpjobportal_entityname = esc_html(__('Salary Range Type', 'wp-job-portal'));
+                $wpjobportal_linktext = $this->getEntityNameOrTitle($wpjobportal_id, 'title', $wpjobportal_tablename);
                 break;
             case 'shifts':
-                $entityname = esc_html(__('Shift', 'wp-job-portal'));
-                $linktext = $this->getEntityNameOrTitle($id, 'title', $tablename);
+                $wpjobportal_entityname = esc_html(__('Shift', 'wp-job-portal'));
+                $wpjobportal_linktext = $this->getEntityNameOrTitle($wpjobportal_id, 'title', $wpjobportal_tablename);
                 break;
             case 'emailtemplates':
-                $entityname = esc_html(__('Email Template', 'wp-job-portal'));
-                $linktext = $this->getEntityNameOrTitle($id, 'templatefor', $tablename);
+                $wpjobportal_entityname = esc_html(__('Email Template', 'wp-job-portal'));
+                $wpjobportal_linktext = $this->getEntityNameOrTitle($wpjobportal_id, 'templatefor', $wpjobportal_tablename);
                 break;
             //tables that have name as column
             case 'companies':
-                $entityname = esc_html(__('Company', 'wp-job-portal'));
-                $linktext = $this->getEntityNameOrTitle($id, 'name', $tablename);
+                $wpjobportal_entityname = esc_html(__('Company', 'wp-job-portal'));
+                $wpjobportal_linktext = $this->getEntityNameOrTitle($wpjobportal_id, 'name', $wpjobportal_tablename);
                 break;
             case 'countries':
-                $entityname = esc_html(__('Country', 'wp-job-portal'));
-                $linktext = $this->getEntityNameOrTitle($id, 'name', $tablename);
+                $wpjobportal_entityname = esc_html(__('Country', 'wp-job-portal'));
+                $wpjobportal_linktext = $this->getEntityNameOrTitle($wpjobportal_id, 'name', $wpjobportal_tablename);
                 break;
             case 'states':
-                $entityname = esc_html(__('State', 'wp-job-portal'));
-                $linktext = $this->getEntityNameOrTitle($id, 'name', $tablename);
+                $wpjobportal_entityname = esc_html(__('State', 'wp-job-portal'));
+                $wpjobportal_linktext = $this->getEntityNameOrTitle($wpjobportal_id, 'name', $wpjobportal_tablename);
                 break;
             case 'departments':
-                $entityname = esc_html(__('Department', 'wp-job-portal'));
-                $linktext = $this->getEntityNameOrTitle($id, 'name', $tablename);
+                $wpjobportal_entityname = esc_html(__('Department', 'wp-job-portal'));
+                $wpjobportal_linktext = $this->getEntityNameOrTitle($wpjobportal_id, 'name', $wpjobportal_tablename);
                 break;
             case 'cities':
-                $entityname = esc_html(__('City', 'wp-job-portal'));
-                $linktext = $this->getEntityNameOrTitle($id, 'name', $tablename);
+                $wpjobportal_entityname = esc_html(__('City', 'wp-job-portal'));
+                $wpjobportal_linktext = $this->getEntityNameOrTitle($wpjobportal_id, 'name', $wpjobportal_tablename);
                 break;
             //speceial case
             case 'resume':
-                $entityname = esc_html(__('Resume', 'wp-job-portal'));
-                $linktext = $this->getEntityNameOrTitle($id, "CONCAT(first_name, ' ', last_name) AS Name", $tablename);
+                $wpjobportal_entityname = esc_html(__('Resume', 'wp-job-portal'));
+                $wpjobportal_linktext = $this->getEntityNameOrTitle($wpjobportal_id, "CONCAT(first_name, ' ', last_name) AS Name", $wpjobportal_tablename);
                 break;
             case 'jobsearches':
-                $entityname = esc_html(__('Job Search', 'wp-job-portal'));
-                $linktext = $this->getEntityNameOrTitle($id, 'searchname', $tablename);
+                $wpjobportal_entityname = esc_html(__('Job Search', 'wp-job-portal'));
+                $wpjobportal_linktext = $this->getEntityNameOrTitle($wpjobportal_id, 'searchname', $wpjobportal_tablename);
                 break;
             case 'resumesearches':
-                $entityname = esc_html(__('Resume Search', 'wp-job-portal'));
-                $linktext = $this->getEntityNameOrTitle($id, 'searchname', $tablename);
+                $wpjobportal_entityname = esc_html(__('Resume Search', 'wp-job-portal'));
+                $wpjobportal_linktext = $this->getEntityNameOrTitle($wpjobportal_id, 'searchname', $wpjobportal_tablename);
                 break;
             case 'categories':
-                $entityname = esc_html(__('Category', 'wp-job-portal'));
-                $linktext = $this->getEntityNameOrTitle($id, 'cat_title', $tablename);
+                $wpjobportal_entityname = esc_html(__('Category', 'wp-job-portal'));
+                $wpjobportal_linktext = $this->getEntityNameOrTitle($wpjobportal_id, 'cat_title', $wpjobportal_tablename);
                 break;
             case 'salaryrange':
-                $entityname = esc_html(__('Salary Range', 'wp-job-portal'));
-                $linktext = $this->getEntityNameOrTitle($id, 'rangestart', $tablename);
+                $wpjobportal_entityname = esc_html(__('Salary Range', 'wp-job-portal'));
+                $wpjobportal_linktext = $this->getEntityNameOrTitle($wpjobportal_id, 'rangestart', $wpjobportal_tablename);
                 break;
             case 'jobapply':
-                $entityname = esc_html(__('Applied for job', 'wp-job-portal'));
-                $linktext = $this->getEntityNameOrTitleForJobApply($id, $tablename);
+                $wpjobportal_entityname = esc_html(__('Applied for job', 'wp-job-portal'));
+                $wpjobportal_linktext = $this->getEntityNameOrTitleForJobApply($wpjobportal_id, $wpjobportal_tablename);
                 break;
             default:
                 return false;
                 break;
         }
-        $target = "_blank";
-        $uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
-        $username = $this->getNameFromUid($uid);
-        $path2 = esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userdetail&id='.esc_attr($uid)));
-        $html2 = "<a href=" . $path2 . " target='".esc_attr($target)."''><strong>" . $username . "</strong></a>";
-        $entityaction = esc_html(__("Deleted a", "wp-job-portal"));
-        $result = array();
-        $result[0] = $name;
-        $result[1] = "$html2" . " " . $entityaction . " " . $entityname . " ( " . esc_html($linktext) . " )";
-        $result[2] = $uid;
+        $wpjobportal_target = "_blank";
+        $wpjobportal_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
+        $wpjobportal_username = $this->getNameFromUid($wpjobportal_uid);
+        $wpjobportal_path2 = esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userdetail&id='.esc_attr($wpjobportal_uid)));
+        $wpjobportal_html2 = "<a href=" . $wpjobportal_path2 . " target='".esc_attr($wpjobportal_target)."''><strong>" . $wpjobportal_username . "</strong></a>";
+        $wpjobportal_entityaction = esc_html(__("Deleted a", "wp-job-portal"));
+        $wpjobportal_result = array();
+        $wpjobportal_result[0] = $wpjobportal_name;
+        $wpjobportal_result[1] = "$wpjobportal_html2" . " " . $wpjobportal_entityaction . " " . $wpjobportal_entityname . " ( " . esc_html($wpjobportal_linktext) . " )";
+        $wpjobportal_result[2] = $wpjobportal_uid;
 
-        return $result;
+        return $wpjobportal_result;
     }
 
     function getMessagekey(){
-        $key = 'activitylog';if(wpjobportal::$_common->wpjp_isadmin()){$key = 'admin_'.$key;}return $key;
+        $wpjobportal_key = 'activitylog';if(wpjobportal::$_common->wpjp_isadmin()){$wpjobportal_key = 'admin_'.$wpjobportal_key;}return $wpjobportal_key;
     }
 
 
