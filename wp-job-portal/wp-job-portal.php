@@ -3,14 +3,14 @@
 /**
  * @package WP JOB PORTAL
  * @author Ahmad Bilal
- * @version 2.4.6
+ * @version 2.4.7
  */
 /*
   * Plugin Name: WP Job Portal
   * Plugin URI: https://wpjobportal.com/
   * Description: WP Job Portal is WordPress’s best job board plugin — easy to use, highly configurable, and built to support both job seekers and employers. AI-powered add-ons offers smart job & resume search, and personalized recommendations.
   * Author: WP Job Portal
-  * Version: 2.4.6
+  * Version: 2.4.7
   * Text Domain: wp-job-portal
   * Domain Path: /languages
   * Author URI: https://wpjobportal.com/
@@ -80,7 +80,7 @@ class wpjobportal {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '246';
+        self::$_currentversion = '247';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_common = WPJOBPORTALincluder::getJSModel('common');
         self::$_config = WPJOBPORTALincluder::getJSModel('configuration');
@@ -190,7 +190,7 @@ class wpjobportal {
                 if( $plugin == $our_plugin ) {
                     update_option('wpjp_currentversion', self::$_currentversion);
                     include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
-                    WPJOBPORTALupdates::checkUpdates('246');
+                    WPJOBPORTALupdates::checkUpdates('247');
 
                 	// restore colors data
 		            require(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
@@ -1099,6 +1099,8 @@ function wpjobportal_admin_register_plugin_styles() {
         wp_register_style('wpjobportal-admincss-rtl', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportaladmin_rtl.css');
         wp_enqueue_style('wpjobportal-admincss-rtl');
     }
+    wp_enqueue_style('wpjobportal-chosen-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/chosen/chosen.min.css');
+    wp_enqueue_script('chosen', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/chosen/chosen.jquery.min.js');
 }
 add_action( 'admin_enqueue_scripts', 'wpjobportal_admin_register_plugin_styles' );
 
@@ -1147,7 +1149,6 @@ function wpjobportal_add_wpjobportal_meta_tags(){
 
 add_action("wp_head","wpjobportal_socialmedia_metatags");
 function wpjobportal_socialmedia_metatags(){
-    $wpjobportal_defaultDescriptionMeta = 1;
     $wpjobportal_layout = WPJOBPORTALrequest::getVar('wpjobportallt');
     if($wpjobportal_layout == 'viewjob'){
         $wpjobportal_jobid = WPJOBPORTALrequest::getVar('wpjobportalid');
@@ -1167,7 +1168,6 @@ function wpjobportal_socialmedia_metatags(){
                 echo '<meta name="keywords" content="'.esc_html($wpjobportal_job->metakeywords).'"/>'."\n";
             }
             if(!empty($wpjobportal_description)){
-                $wpjobportal_defaultDescriptionMeta = 0;
                 echo '<meta name="description" content="'.esc_html($wpjobportal_description).'"/>'."\n";
             }
             if(!empty($wpjobportal_job->latitude) && !empty($wpjobportal_job->longitude)){
@@ -1175,12 +1175,6 @@ function wpjobportal_socialmedia_metatags(){
                 echo '<meta job="place:location:longitude" content="'.esc_html($wpjobportal_job->longitude).'">'."\n";
             }
         }
-    }
-
-    if( $wpjobportal_defaultDescriptionMeta ){
-        echo '<meta name="description" content="';
-        bloginfo('description');
-        echo '" />';
     }
 }
 
@@ -1505,7 +1499,7 @@ function wpjobportal_upgrade_completed( $wpjobportal_upgrader_object, $wpjobport
 				update_option('wpjp_currentversion', wpjobportal::$_currentversion);
 				include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
 
-				WPJOBPORTALupdates::checkUpdates('246');
+				WPJOBPORTALupdates::checkUpdates('247');
 
 
 				// restore colors data
@@ -1543,3 +1537,286 @@ function wpjobportal_show_expiry_error_notice() {
         <?php
     }
 }
+
+// function wpjobportal_load_block_editor_assets() {
+
+//     // --- NEW: Check if Block Editor is active ---
+//     $screen = get_current_screen();
+//     if (!$screen || !$screen->is_block_editor()) {
+//         return; // Don't load React script for Classic Editor
+//     }
+//     //include_once WPJOBPORTAL_PLUGIN_PATH . 'modules/zywrap/model.php';
+
+//     // Register our new script
+//     include_once WPJOBPORTAL_PLUGIN_PATH . 'modules/zywrap/model.php';
+
+//     wp_register_script(
+//         'wpjobportal-zywrap-editor',
+//         WPJOBPORTAL_PLUGIN_URL . 'includes/js/zywrap/zywrap-editor.js',
+//         array('wp-plugins', 'wp-element', 'wp-components', 'wp-data', 'wp-util'), // This dependency will now work
+//         '',
+//         true
+//     );
+//     // Get all data from our local DB tables
+//     $playground_data = WPJOBPORTALincluder::getJSModel('zywrap')->getPlaygroundData();
+//     $api_key = get_option('wpjobportal_zywrap_api_key', '');
+
+//     // Pass all data and security nonces to the JavaScript file
+//     wp_localize_script('wpjobportal-zywrap-editor', 'zywrapEditorData', array(
+//         'categories'      => $playground_data['categories'],
+//         'models'          => $playground_data['models'],
+//         'languages'       => $playground_data['languages'],
+//         'templates'       => $playground_data['templates'],
+//         'wrappers_nonce'  => wp_create_nonce('zywrap_get_wrappers'),
+//         'execute_nonce'   => wp_create_nonce('zywrap_execute_proxy'),
+//         // === ADDED: Data for Warnings ===
+//         'has_api_key'     => ($api_key),
+//         'settings_url'    => admin_url("admin.php?page=wpjobportal_zywrap&wpjobportallt=zywrap"),
+//         'warning_key'     => __('Setup Required: Please add your API Key in settings.', 'wp-job-portal'),
+//         'warning_sync'    => __('Action Needed: Please sync the Wrapper Catalog (Step 2) in settings.', 'wp-job-portal'),
+//         'plugin_url'      => WPJOBPORTAL_PLUGIN_URL // For the warning icon
+//     ));
+
+//     // Load the script
+//     wp_enqueue_script('wpjobportal-zywrap-editor');
+// }
+
+// === MODIFIED: HOOKS FOR BOTH EDITORS ===
+// Block Editor (Gutenberg)
+
+//add_action('add_meta_boxes', 'wpjobportal_render_zywrap_meta_box');
+//add_action('enqueue_block_editor_assets', 'wpjobportal_load_block_editor_assets');
+
+// Classic Editor
+add_action('media_buttons', 'wpjobportal_add_zywrap_classic_button');
+add_action('admin_footer', 'wpjobportal_add_zywrap_classic_modal');
+add_action('admin_enqueue_scripts', 'wpjobportal_load_classic_editor_assets');
+//add_action( 'admin_enqueue_scripts', 'wpjobportal_admin_register_plugin_styles' );
+
+
+/**
+     * Renders the root div for our React component to mount to.
+     * [cite: `modules/zywrap/controller.php`]
+     */
+    function wpjobportal_render_zywrap_meta_box() {
+        // This is the root element our React script will attach to.
+        echo '<div id="zywrap-editor-root"></div>';
+    }
+
+    /**
+     * Enqueues the new JavaScript file and passes all our database data
+     * (categories, models, etc.) to it.
+     * [cite: `modules/zywrap/controller.php`]
+     */
+    function wpjobportal_load_block_editor_assets() {
+
+        // --- NEW: Check if Block Editor is active ---
+        $screen = get_current_screen();
+        if (!$screen || !$screen->is_block_editor()) {
+            return; // Don't load React script for Classic Editor
+        }
+        //include_once WPJOBPORTAL_PLUGIN_PATH . 'modules/zywrap/model.php';
+
+        // Register our new script
+        include_once WPJOBPORTAL_PLUGIN_PATH . 'modules/zywrap/model.php';
+
+        wp_register_script(
+            'wpjobportal-zywrap-editor',
+            WPJOBPORTAL_PLUGIN_URL . 'includes/js/zywrap/zywrap-editor.js',
+            array('wp-plugins', 'wp-element', 'wp-components', 'wp-data', 'wp-util'), // This dependency will now work
+            wpjobportal::$_currentversion,
+            true
+        );
+        // Get all data from our local DB tables
+        $playground_data = WPJOBPORTALincluder::getJSModel('zywrap')->getPlaygroundData();
+        $api_key = get_option('wpjobportal_zywrap_api_key', '');
+
+        // Pass all data and security nonces to the JavaScript file
+        wp_localize_script('wpjobportal-zywrap-editor', 'zywrapEditorData', array(
+            'categories'      => $playground_data['categories'],
+            'models'          => $playground_data['models'],
+            'languages'       => $playground_data['languages'],
+            'templates'       => $playground_data['templates'],
+            'wrappers_nonce'  => wp_create_nonce('zywrap_get_wrappers'),
+            'execute_nonce'   => wp_create_nonce('zywrap_execute_proxy'),
+            // === ADDED: Data for Warnings ===
+            'has_api_key'     => ($api_key),
+            'settings_url'    => admin_url("admin.php?page=wpjobportal_zywrap&wpjobportallt=zywrap"),
+            'warning_key'     => __('Setup Required: Please add your API Key in settings.', 'wp-job-portal'),
+            'warning_sync'    => __('Action Needed: Please sync the Wrapper Catalog (Step 2) in settings.', 'wp-job-portal'),
+            'plugin_url'      => WPJOBPORTAL_PLUGIN_URL // For the warning icon
+        ));
+
+        // Load the script
+        wp_enqueue_script('wpjobportal-zywrap-editor');
+    }
+
+    // === NEW: CLASSIC EDITOR FUNCTIONS ===
+
+    /**
+     * Adds the "Add Zywrap Content" button next to "Add Media".
+     */
+    function wpjobportal_add_zywrap_classic_button() {
+        // === MODIFIED: Removed the API key check so the button always shows ===
+        echo '<a href="#" id="zywrap-open-modal-button" class="button" title="' . esc_attr__('AI Content Generation', 'wp-job-portal') . '">
+              <span class="dashicons dashicons-testimonial"></span>
+              ' . esc_html__('AI Content Generation', 'wp-job-portal') . '
+              </a>';
+    }
+
+    /**
+     * Loads the new jQuery script and modal styles for the Classic Editor.
+     */
+    function wpjobportal_load_classic_editor_assets($hook) {
+        // if ('post.php' != $hook && 'post-new.php' != $hook) {
+        //     return;
+        // }
+
+        // // --- NEW: Check if Classic Editor is active ---
+        // $screen = get_current_screen();
+        // if (!$screen || $screen->is_block_editor()) {
+        //     return; // Don't load for Block Editor
+        // }
+
+        // We moved your line to *after* the block editor check.
+        include_once WPJOBPORTAL_PLUGIN_PATH . 'modules/zywrap/admin_classic_modal.php';
+
+        // We must enqueue Select2 with its full path, not just by its handle.
+        // wp_enqueue_style('wpjobportal-select2css', WPJOBPORTAL_PLUGIN_URL . 'includes/css/select2.min.css', array(), wpjobportal::$_currentversion);
+        // wp_enqueue_script('wpjobportal-select2js', WPJOBPORTAL_PLUGIN_URL . 'includes/js/select2.min.js', array('jquery'), wpjobportal::$_currentversion, true);
+
+        // Register our new classic editor script
+        wp_register_script(
+            'wpjobportal-zywrap-classic-editor',
+            WPJOBPORTAL_PLUGIN_URL . 'includes/js/zywrap/zywrap-editor-classic.js',
+            array('jquery'), // This dependency will now work
+            wpjobportal::$_currentversion,
+            true
+        );
+
+        // Get all data from our local DB tables
+        $playground_data = WPJOBPORTALincluder::getJSModel('zywrap')->getPlaygroundData();
+        $api_key = get_option('wpjobportal_zywrap_api_key', '');
+
+        // Pass all data and nonces to this script
+        wp_localize_script('wpjobportal-zywrap-classic-editor', 'wpjpzywrapClassicData', array(
+            'categories'      => $playground_data['categories'],
+            'models'          => $playground_data['models'],
+            'languages'       => $playground_data['languages'],
+            'templates'       => $playground_data['templates'],
+            'wrappers_nonce'  => wp_create_nonce('zywrap_get_wrappers'),
+            'execute_nonce'   => wp_create_nonce('zywrap_execute_proxy'),
+            'wrappers_nonce'  => wp_create_nonce('zywrap_get_wrappers'),
+            'all_wrappers_nonce'  => wp_create_nonce('zywrap_get_all_wrappers'),
+            'ajax_url'        => admin_url('admin-ajax.php'),
+            'loading_text'    => esc_js(__('Loading...', 'wp-job-portal')),
+            'generating_text' => esc_js(__('Generating...', 'wp-job-portal')),
+            'run_text'        => esc_js(__('Generate', 'wp-job-portal')),
+            'error_text'      => esc_js(__('Error:', 'wp-job-portal')),
+            'validation_text' => esc_js(__('Please select a Wrapper.', 'wp-job-portal')),
+            // === ADDED: Data for Warnings ===
+            'has_api_key'     => !empty($api_key),
+            'settings_url'    => admin_url("admin.php?page=wpjobportal_zywrap&wpjobportallt=zywrap"),
+            'warning_key'     => __('Setup Required: Please add your API Key in settings.', 'wp-job-portal'),
+            'warning_sync'    => __('Action Needed: Please sync the Wrapper Catalog (Step 2) in settings.', 'wp-job-portal'),
+        ));
+        // language strings to be translated
+        wp_localize_script('wpjobportal-zywrap-classic-editor', 'wpjpZywrapStrings', array(
+            'editor_not_found'    => __('Could not find an text area to insert into.', 'wp-job-portal'),
+            'select_category_text' => __('Select Category', 'wp-job-portal'),
+            'select_wrapper_text'  => __('Select Wrapper', 'wp-job-portal'),
+            'default_text'         => __('Default', 'wp-job-portal'),
+            'search_templates_text'=> __('Search Templates', 'wp-job-portal'),
+            'close_search_text'    => __('Close Search', 'wp-job-portal'),
+            'no_records_found'     => __('No records found.', 'wp-job-portal'),
+            'records_found_text'   => __('+ records found.', 'wp-job-portal'),
+            'error_text'           => __('Error', 'wp-job-portal'),
+        ));
+
+        // Load the script
+        wp_enqueue_script('wpjobportal-zywrap-classic-editor');
+    }
+
+    /**
+     * Renders the hidden HTML for the modal popup in the admin footer.
+     */
+    function wpjobportal_add_zywrap_classic_modal() {
+        // global $pagenow;
+        // if ('post.php' == $pagenow || 'post-new.php' == $pagenow) {
+             // Only load the modal on editor pages
+             // $screen = get_current_screen();
+             // if ($screen && !$screen->is_block_editor()) {
+                WPJOBPORTALincluder::include_file('zywrap', 'admin_classic_modal');
+             //}
+        //}
+    }
+
+
+    // zwrap js
+    add_action('enqueue_block_editor_assets', function() {
+        // Enqueue the React logic
+        wp_enqueue_script(
+            'wpjobportal-zywrap-gutenberg-editor',
+            plugin_dir_url(__FILE__) . 'includes/js/zywrap/zywrap-editor.js',
+            array('wp-plugins',
+                'wp-edit-post',
+                'wp-element',
+                'wp-components',
+                'wp-compose',      // <--- Required for createHigherOrderComponent
+                'wp-block-editor', // <--- Required for BlockControls
+                'wp-hooks',        // <--- Required for addFilter
+                'jquery'
+            ),
+            filemtime(plugin_dir_path(__FILE__) . 'includes/js/zywrap/zywrap-editor.js'),
+            true
+        );
+
+        // Enqueue the jQuery Modal logic
+        wp_enqueue_script(
+            'wpjobportal-zywrap-classic-logic',
+            plugin_dir_url(__FILE__) . 'includes/js/zywrap/zywrap-editor-classic.js',
+            array('jquery'),
+            filemtime(plugin_dir_path(__FILE__) . 'includes/js/zywrap/zywrap-editor-classic.js'),
+            true
+        );
+
+        // Enqueue the standard localized data (categories, models, etc.)
+
+        // Get all data from our local DB tables
+        $playground_data = WPJOBPORTALincluder::getJSModel('zywrap')->getPlaygroundData();
+        $api_key = get_option('wpjobportal_zywrap_api_key', '');
+
+        $data_array = array(
+            'categories'      => $playground_data['categories'],
+            'models'          => $playground_data['models'],
+            'languages'       => $playground_data['languages'],
+            'templates'       => $playground_data['templates'],
+            'wrappers_nonce'  => wp_create_nonce('zywrap_get_wrappers'),
+            'execute_nonce'   => wp_create_nonce('zywrap_execute_proxy'),
+            'wrappers_nonce'  => wp_create_nonce('zywrap_get_wrappers'),
+            'all_wrappers_nonce'  => wp_create_nonce('zywrap_get_all_wrappers'),
+            'ajax_url'        => admin_url('admin-ajax.php'),
+            'loading_text'    => esc_js(__('Loading...', 'wp-job-portal')),
+            'generating_text' => esc_js(__('Generating...', 'wp-job-portal')),
+            'run_text'        => esc_js(__('Generate', 'wp-job-portal')),
+            'error_text'      => esc_js(__('Error:', 'wp-job-portal')),
+            'validation_text' => esc_js(__('Please select a Wrapper.', 'wp-job-portal')),
+            // === ADDED: Data for Warnings ===
+            'has_api_key'     => !empty($api_key),
+            'settings_url'    => admin_url("admin.php?page=wpjobportal_zywrap&wpjobportallt=zywrap"),
+            'warning_key'     => __('Setup Required: Please add your API Key in settings.', 'wp-job-portal'),
+            'warning_sync'    => __('Action Needed: Please sync the Wrapper Catalog (Step 2) in settings.', 'wp-job-portal'),
+        );
+
+        wp_localize_script('wpjobportal-zywrap-gutenberg-editor', 'zywrapEditorData', $data_array);
+        wp_localize_script('wpjobportal-zywrap-classic-logic', 'wpjpzywrapClassicData', $data_array);
+    });
+
+    // Load the modal HTML in the admin footer so it's available to JS
+    add_action('admin_footer', function() {
+        $screen = get_current_screen();
+        if ($screen && $screen->is_block_editor()) {
+            include_once plugin_dir_path(__FILE__) . 'modules/zywrap/admin_classic_modal.php';
+        }
+    });
+

@@ -12745,3 +12745,225 @@ msgstr "hindi nagamit na mga susi na maaaring ligtas na maalis."
 
 msgid "unused keys have been deleted successfully!"
 msgstr "Ang hindi nagamit na mga susi ay matagumpay na tinanggal!"
+
+msgid "AI Content Generator"
+msgstr "AI Content Generator"
+
+msgid "Search Wrapper"
+msgstr "Search Wrapper"
+
+msgid "Wrapper Template"
+msgstr "Template ng Wrapper"
+
+msgid "Reference Context"
+msgstr "Konteksto ng Sanggunian"
+
+msgid "(Source Data)"
+msgstr "(Source Data)"
+
+msgid "Paste source text or data context here..."
+msgstr "I-paste ang pinagmulang text o konteksto ng data dito..."
+
+msgid "Negative Words"
+msgstr "Mga Negatibong Salita"
+
+msgid "words to avoid..."
+msgstr "mga salitang dapat iwasan..."
+
+msgid "Instructions / Prompt"
+msgstr "Mga Tagubilin / Prompt"
+
+msgid "Optional"
+msgstr "Opsyonal"
+
+msgid "Describe exactly what you want the AI to create..."
+msgstr "Ilarawan nang eksakto kung ano ang gusto mong gawin ng AI..."
+
+msgid "Generate Output"
+msgstr "Bumuo ng Output"
+
+msgid "(Editable)"
+msgstr "(Nae-edit)"
+
+msgid "AI output will appear here..."
+msgstr "Lalabas dito ang output ng AI..."
+
+msgid "Insert into Editor"
+msgstr "Ipasok sa Editor"
+
+msgid "How to get your API Key"
+msgstr "Paano makuha ang iyong API Key"
+
+msgid "Sign Up Free"
+msgstr "Mag-sign Up nang Libre"
+
+msgid "Get Free Credits"
+msgstr "Kumuha ng Libreng Mga Kredito"
+
+msgid "You will receive"
+msgstr "Matatanggap mo"
+
+msgid "10,000 Free Credits"
+msgstr "10,000 Libreng Credits"
+
+msgid "instantly upon registration."
+msgstr "kaagad sa pagpaparehistro."
+
+msgid "Create Key"
+msgstr "Lumikha ng Key"
+
+msgid "Go to the API Keys section in your dashboard to generate your secret key."
+msgstr "Pumunta sa seksyong Mga API Key sa iyong dashboard para buuin ang iyong sikretong key."
+
+msgid "Enter your Zywrap.com API Key to connect your account."
+msgstr "Ilagay ang iyong Zywrap.com API Key upang ikonekta ang iyong account."
+
+msgid "To get your API key, log in to"
+msgstr "Upang makuha ang iyong API key, mag-log in sa"
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "at mag-navigate sa iyong Dashboard / API Keys."
+
+msgid "Get a Valid API key, log in to"
+msgstr "Kumuha ng Valid API key, mag-log in sa"
+
+msgid "Validate API Key"
+msgstr "I-validate ang API Key"
+
+msgid "Sync Status"
+msgstr "Katayuan ng Pag-sync"
+
+msgid "Not Synced"
+msgstr "Hindi Naka-sync"
+
+msgid "Synced"
+msgstr "Naka-sync"
+
+msgid "Last Sync"
+msgstr "Huling Pag-sync"
+
+msgid "Your local database must be synced with the Zywrap catalog to use the Playground and Editor tools."
+msgstr "Ang iyong lokal na database ay dapat na naka-sync sa Zywrap catalog upang magamit ang mga tool sa Playground at Editor."
+
+msgid "Download & Full Import"
+msgstr "I-download at Buong Pag-import"
+
+msgid "Get Updates"
+msgstr "Kumuha ng Mga Update"
+
+msgid "Sorted A-Z"
+msgstr "Inayos A-Z"
+
+msgid "Default Order"
+msgstr "Default na Order"
+
+msgid "Loading..."
+msgstr "Naglo-load..."
+
+msgid "Ready to generate content. Select a wrapper and click Run."
+msgstr "Handa nang bumuo ng nilalaman. Pumili ng wrapper at i-click ang Run."
+
+msgid "Copied!"
+msgstr "Kinopya!"
+
+msgid "Please generate some text first before summarizing."
+msgstr "Mangyaring bumuo muna ng ilang teksto bago magbuod."
+
+msgid "This will replace your current text in the Context field. Continue?"
+msgstr "Papalitan nito ang iyong kasalukuyang teksto sa field ng Konteksto. Magpatuloy?"
+
+msgid "Generating content... Please wait..."
+msgstr "Bumubuo ng nilalaman... Mangyaring maghintay..."
+
+msgid "Running..."
+msgstr "Tumatakbo..."
+
+msgid "Error: Wrapper is required."
+msgstr "Error: Kailangan ang wrapper."
+
+msgid "Received empty output."
+msgstr "Nakatanggap ng walang laman na output."
+
+msgid "Checking API status..."
+msgstr "Sinusuri ang katayuan ng API..."
+
+msgid "Downloading and importing... This may take several minutes."
+msgstr "Nagda-download at nag-i-import... Maaaring tumagal ito ng ilang minuto."
+
+msgid "Only new and changed data is being fetched and imported. This should take a few moments..."
+msgstr "Tanging bago at binagong data lamang ang kinukuha at ini-import. Ito ay dapat tumagal ng ilang sandali..."
+
+msgid "Checking for updates..."
+msgstr "Tinitingnan ang mga update..."
+
+msgid "Could not find an text area to insert into."
+msgstr "Hindi makahanap ng text area kung saan ilalagay."
+
+msgid "Search Templates"
+msgstr "Maghanap ng mga Template"
+
+msgid "Close Search"
+msgstr "Isara ang Paghahanap"
+
+msgid "Total API Runs (24h)"
+msgstr "Kabuuang API Runs (24h)"
+
+msgid "API Errors (24h)"
+msgstr "Mga Error sa API (24h)"
+
+msgid "Top Model Used"
+msgstr "Nangungunang Modelong Ginamit"
+
+msgid "Search by Action, User or Wrapper..."
+msgstr "Maghanap ayon sa Aksyon, User o Wrapper..."
+
+msgid "Filter by Status"
+msgstr "I-filter ayon sa Katayuan"
+
+msgid "Action & User"
+msgstr "Aksyon at User"
+
+msgid "Wrapper / Model"
+msgstr "Wrapper / Modelo"
+
+msgid "Performance & Tokens"
+msgstr "Pagganap at Mga Token"
+
+msgid "No log entries found or a database error occurred."
+msgstr "Walang nakitang log entry o nagkaroon ng error sa database."
+
+msgid "HTTP:"
+msgstr "HTTP:"
+
+msgid "Tokens:"
+msgstr "Mga token:"
+
+msgid "No tokens recorded"
+msgstr "Walang naitala na mga token"
+
+msgid "Request completed successfully. Full request/response data would be displayed here."
+msgstr "Matagumpay na nakumpleto ang kahilingan. Ang buong data ng kahilingan/tugon ay ipapakita dito."
+
+msgid "Zywrap Content Generation"
+msgstr "Pagbuo ng Nilalaman ng Zywrap"
+
+msgid "Zywrap Settings"
+msgstr "Mga Setting ng Zywrap"
+
+msgid "Zywrap Data Sync"
+msgstr "Zywrap Data Sync"
+
+msgid "Zywrap Logs"
+msgstr "Zywrap Logs"
+
+msgid "Core Settings"
+msgstr "Mga Pangunahing Setting"
+
+msgid "Use Case"
+msgstr "Use Case"
+
+msgid "-- Search Results --"
+msgstr "-- Resulta ng Paghahanap --"
+
+msgid "Console Output"
+msgstr "Output ng Console"

@@ -12739,3 +12739,225 @@ msgstr "nepoužité klíče, které lze bezpečně vyjmout."
 
 msgid "unused keys have been deleted successfully!"
 msgstr "nepoužité klíče byly úspěšně smazány!"
+
+msgid "AI Content Generator"
+msgstr "Generátor obsahu AI"
+
+msgid "Search Wrapper"
+msgstr "Hledat Wrapper"
+
+msgid "Wrapper Template"
+msgstr "Šablona obalu"
+
+msgid "Reference Context"
+msgstr "Referenční kontext"
+
+msgid "(Source Data)"
+msgstr "(zdrojová data)"
+
+msgid "Paste source text or data context here..."
+msgstr "Sem vložte zdrojový text nebo kontext dat..."
+
+msgid "Negative Words"
+msgstr "Negativní slova"
+
+msgid "words to avoid..."
+msgstr "slova, kterým se vyhnout..."
+
+msgid "Instructions / Prompt"
+msgstr "Pokyny / Výzva"
+
+msgid "Optional"
+msgstr "Volitelný"
+
+msgid "Describe exactly what you want the AI to create..."
+msgstr "Popište přesně, co chcete, aby umělá inteligence vytvořila..."
+
+msgid "Generate Output"
+msgstr "Generovat výstup"
+
+msgid "(Editable)"
+msgstr "(Upravitelné)"
+
+msgid "AI output will appear here..."
+msgstr "Zde se objeví výstup AI..."
+
+msgid "Insert into Editor"
+msgstr "Vložit do editoru"
+
+msgid "How to get your API Key"
+msgstr "Jak získat klíč API"
+
+msgid "Sign Up Free"
+msgstr "Zaregistrujte se zdarma"
+
+msgid "Get Free Credits"
+msgstr "Získejte zdarma kredity"
+
+msgid "You will receive"
+msgstr "Obdržíte"
+
+msgid "10,000 Free Credits"
+msgstr "10 000 kreditů zdarma"
+
+msgid "instantly upon registration."
+msgstr "ihned po registraci."
+
+msgid "Create Key"
+msgstr "Vytvořit klíč"
+
+msgid "Go to the API Keys section in your dashboard to generate your secret key."
+msgstr "Přejděte do sekce Klíče API na hlavním panelu a vygenerujte svůj tajný klíč."
+
+msgid "Enter your Zywrap.com API Key to connect your account."
+msgstr "Zadejte svůj klíč API Zywrap.com a připojte svůj účet."
+
+msgid "To get your API key, log in to"
+msgstr "Chcete-li získat klíč API, přihlaste se"
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "a přejděte na svůj řídicí panel / klíče API."
+
+msgid "Get a Valid API key, log in to"
+msgstr "Získejte platný klíč API, přihlaste se"
+
+msgid "Validate API Key"
+msgstr "Ověřte klíč API"
+
+msgid "Sync Status"
+msgstr "Stav synchronizace"
+
+msgid "Not Synced"
+msgstr "Nesynchronizováno"
+
+msgid "Synced"
+msgstr "Synchronizováno"
+
+msgid "Last Sync"
+msgstr "Poslední synchronizace"
+
+msgid "Your local database must be synced with the Zywrap catalog to use the Playground and Editor tools."
+msgstr "Aby bylo možné používat nástroje Playground a Editor, musí být vaše místní databáze synchronizována s katalogem Zywrap."
+
+msgid "Download & Full Import"
+msgstr "Stáhnout a úplný import"
+
+msgid "Get Updates"
+msgstr "Získejte aktualizace"
+
+msgid "Sorted A-Z"
+msgstr "Seřazeno A-Z"
+
+msgid "Default Order"
+msgstr "Výchozí objednávka"
+
+msgid "Loading..."
+msgstr "Načítání..."
+
+msgid "Ready to generate content. Select a wrapper and click Run."
+msgstr "Připraveno ke generování obsahu. Vyberte obal a klikněte na Spustit."
+
+msgid "Copied!"
+msgstr "Zkopírováno!"
+
+msgid "Please generate some text first before summarizing."
+msgstr "Před shrnutím nejprve vygenerujte nějaký text."
+
+msgid "This will replace your current text in the Context field. Continue?"
+msgstr "Tím se nahradí váš aktuální text v poli Kontext. Pokračovat?"
+
+msgid "Generating content... Please wait..."
+msgstr "Generování obsahu... Čekejte prosím..."
+
+msgid "Running..."
+msgstr "Běh..."
+
+msgid "Error: Wrapper is required."
+msgstr "Chyba: Je vyžadován obal."
+
+msgid "Received empty output."
+msgstr "Přijatý prázdný výstup."
+
+msgid "Checking API status..."
+msgstr "Kontrola stavu API..."
+
+msgid "Downloading and importing... This may take several minutes."
+msgstr "Stahování a import... Může to trvat několik minut."
+
+msgid "Only new and changed data is being fetched and imported. This should take a few moments..."
+msgstr "Načítají se a importují se pouze nová a změněná data. Mělo by to chvíli trvat..."
+
+msgid "Checking for updates..."
+msgstr "Kontrola aktualizací..."
+
+msgid "Could not find an text area to insert into."
+msgstr "Nelze najít textovou oblast, do které by bylo možné vložit."
+
+msgid "Search Templates"
+msgstr "Hledat šablony"
+
+msgid "Close Search"
+msgstr "Zavřít vyhledávání"
+
+msgid "Total API Runs (24h)"
+msgstr "Celkový počet běhů API (24 hodin)"
+
+msgid "API Errors (24h)"
+msgstr "Chyby API (24 hodin)"
+
+msgid "Top Model Used"
+msgstr "Použitý top model"
+
+msgid "Search by Action, User or Wrapper..."
+msgstr "Hledat podle akce, uživatele nebo obalu..."
+
+msgid "Filter by Status"
+msgstr "Filtrovat podle stavu"
+
+msgid "Action & User"
+msgstr "Akce a uživatel"
+
+msgid "Wrapper / Model"
+msgstr "Obal / Model"
+
+msgid "Performance & Tokens"
+msgstr "Výkon a tokeny"
+
+msgid "No log entries found or a database error occurred."
+msgstr "Nebyly nalezeny žádné položky protokolu nebo došlo k chybě databáze."
+
+msgid "HTTP:"
+msgstr "HTTP:"
+
+msgid "Tokens:"
+msgstr "Tokeny:"
+
+msgid "No tokens recorded"
+msgstr "Nebyly zaznamenány žádné tokeny"
+
+msgid "Request completed successfully. Full request/response data would be displayed here."
+msgstr "Žádost byla úspěšně dokončena. Zde by se zobrazila úplná data požadavku/odpovědi."
+
+msgid "Zywrap Content Generation"
+msgstr "Generování obsahu Zywrap"
+
+msgid "Zywrap Settings"
+msgstr "Nastavení Zywrap"
+
+msgid "Zywrap Data Sync"
+msgstr "Zywrap Data Sync"
+
+msgid "Zywrap Logs"
+msgstr "Protokoly Zywrap"
+
+msgid "Core Settings"
+msgstr "Základní nastavení"
+
+msgid "Use Case"
+msgstr "Use Case"
+
+msgid "-- Search Results --"
+msgstr "-- Výsledky hledání --"
+
+msgid "Console Output"
+msgstr "Konzolový výstup"

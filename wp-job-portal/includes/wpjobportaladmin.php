@@ -488,6 +488,21 @@ class wpjobportaladmin {
                 array($this, 'showAdminPage') // function name
         );
 
+        add_submenu_page('wpjobportal', // parent slug
+                esc_html(__('AI Content Generation', 'wp-job-portal')), // Page title
+                esc_html(__('AI Content Generation', 'wp-job-portal')), // menu title
+                'wpjobportal', // capability
+                'wpjobportal_zywrap', //menu slug
+                array($this, 'showAdminPage') // function name
+        );
+        add_submenu_page('wpjobportal_hide', // parent slug
+                esc_html(__('ZYWRAP Logs', 'wp-job-portal')), // Page title
+                esc_html(__('ZYWRAP Logs', 'wp-job-portal')), // menu title
+                'wpjobportal', // capability
+                'wpjobportal_zywraplogs', //menu slug
+                array($this, 'showAdminPage') // function name
+        );
+
     }
 
   static  function showAdminPage() {

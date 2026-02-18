@@ -12745,3 +12745,225 @@ msgstr "可以安全删除的未使用的密钥。"
 
 msgid "unused keys have been deleted successfully!"
 msgstr "未使用的密钥已成功删除！"
+
+msgid "AI Content Generator"
+msgstr "人工智能内容生成器"
+
+msgid "Search Wrapper"
+msgstr "搜索包装器"
+
+msgid "Wrapper Template"
+msgstr "包装模板"
+
+msgid "Reference Context"
+msgstr "参考上下文"
+
+msgid "(Source Data)"
+msgstr "（来源数据）"
+
+msgid "Paste source text or data context here..."
+msgstr "将源文本或数据上下文粘贴到此处..."
+
+msgid "Negative Words"
+msgstr "否定词"
+
+msgid "words to avoid..."
+msgstr "需要避免的词语..."
+
+msgid "Instructions / Prompt"
+msgstr "说明/提示"
+
+msgid "Optional"
+msgstr "选修的"
+
+msgid "Describe exactly what you want the AI to create..."
+msgstr "准确描述您希望人工智能创建什么......"
+
+msgid "Generate Output"
+msgstr "生成输出"
+
+msgid "(Editable)"
+msgstr "（可编辑）"
+
+msgid "AI output will appear here..."
+msgstr "AI输出将出现在这里..."
+
+msgid "Insert into Editor"
+msgstr "插入编辑器"
+
+msgid "How to get your API Key"
+msgstr "如何获取您的 API 密钥"
+
+msgid "Sign Up Free"
+msgstr "免费注册"
+
+msgid "Get Free Credits"
+msgstr "获得免费积分"
+
+msgid "You will receive"
+msgstr "您将收到"
+
+msgid "10,000 Free Credits"
+msgstr "10,000 个免费积分"
+
+msgid "instantly upon registration."
+msgstr "注册后立即。"
+
+msgid "Create Key"
+msgstr "创建密钥"
+
+msgid "Go to the API Keys section in your dashboard to generate your secret key."
+msgstr "转到仪表板中的 API 密钥部分以生成您的密钥。"
+
+msgid "Enter your Zywrap.com API Key to connect your account."
+msgstr "输入您的 Zywrap.com API 密钥以连接您的帐户。"
+
+msgid "To get your API key, log in to"
+msgstr "要获取您的 API 密钥，请登录"
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "并导航至您的仪表板/API 密钥。"
+
+msgid "Get a Valid API key, log in to"
+msgstr "获取有效的 API 密钥，登录"
+
+msgid "Validate API Key"
+msgstr "验证 API 密钥"
+
+msgid "Sync Status"
+msgstr "同步状态"
+
+msgid "Not Synced"
+msgstr "未同步"
+
+msgid "Synced"
+msgstr "已同步"
+
+msgid "Last Sync"
+msgstr "上次同步"
+
+msgid "Your local database must be synced with the Zywrap catalog to use the Playground and Editor tools."
+msgstr "您的本地数据库必须与 Zywrap 目录同步才能使用 Playground 和编辑器工具。"
+
+msgid "Download & Full Import"
+msgstr "下载并完全导入"
+
+msgid "Get Updates"
+msgstr "获取更新"
+
+msgid "Sorted A-Z"
+msgstr "按 A-Z 排序"
+
+msgid "Default Order"
+msgstr "默认订单"
+
+msgid "Loading..."
+msgstr "加载中..."
+
+msgid "Ready to generate content. Select a wrapper and click Run."
+msgstr "准备生成内容。选择一个包装器并单击“运行”。"
+
+msgid "Copied!"
+msgstr "复制了！"
+
+msgid "Please generate some text first before summarizing."
+msgstr "请在总结之前先生成一些文本。"
+
+msgid "This will replace your current text in the Context field. Continue?"
+msgstr "这将替换上下文字段中的当前文本。继续？"
+
+msgid "Generating content... Please wait..."
+msgstr "正在生成内容...请稍候..."
+
+msgid "Running..."
+msgstr "跑步..."
+
+msgid "Error: Wrapper is required."
+msgstr "错误：需要包装。"
+
+msgid "Received empty output."
+msgstr "收到空输出。"
+
+msgid "Checking API status..."
+msgstr "正在检查 API 状态..."
+
+msgid "Downloading and importing... This may take several minutes."
+msgstr "下载并导入...这可能需要几分钟的时间。"
+
+msgid "Only new and changed data is being fetched and imported. This should take a few moments..."
+msgstr "仅获取和导入新的和更改的数据。这应该需要一些时间..."
+
+msgid "Checking for updates..."
+msgstr "正在检查更新..."
+
+msgid "Could not find an text area to insert into."
+msgstr "找不到要插入的文本区域。"
+
+msgid "Search Templates"
+msgstr "搜索模板"
+
+msgid "Close Search"
+msgstr "关闭搜索"
+
+msgid "Total API Runs (24h)"
+msgstr "API 运行总数（24 小时）"
+
+msgid "API Errors (24h)"
+msgstr "API 错误（24 小时）"
+
+msgid "Top Model Used"
+msgstr "使用的顶级型号"
+
+msgid "Search by Action, User or Wrapper..."
+msgstr "按操作、用户或包装器搜索..."
+
+msgid "Filter by Status"
+msgstr "按状态过滤"
+
+msgid "Action & User"
+msgstr "行动与用户"
+
+msgid "Wrapper / Model"
+msgstr "包装/型号"
+
+msgid "Performance & Tokens"
+msgstr "性能与代币"
+
+msgid "No log entries found or a database error occurred."
+msgstr "未找到日志条目或发生数据库错误。"
+
+msgid "HTTP:"
+msgstr "HTTP："
+
+msgid "Tokens:"
+msgstr "代币："
+
+msgid "No tokens recorded"
+msgstr "没有记录任何令牌"
+
+msgid "Request completed successfully. Full request/response data would be displayed here."
+msgstr "请求成功完成。完整的请求/响应数据将显示在这里。"
+
+msgid "Zywrap Content Generation"
+msgstr "Zywrap 内容生成"
+
+msgid "Zywrap Settings"
+msgstr "Zywrap 设置"
+
+msgid "Zywrap Data Sync"
+msgstr "Zywrap 数据同步"
+
+msgid "Zywrap Logs"
+msgstr "Zywrap 日志"
+
+msgid "Core Settings"
+msgstr "核心设置"
+
+msgid "Use Case"
+msgstr "使用案例"
+
+msgid "-- Search Results --"
+msgstr "-- 搜索结果 --"
+
+msgid "Console Output"
+msgstr "控制台输出"

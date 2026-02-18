@@ -51,6 +51,19 @@ if(isset($wpjobportal_field->field) && $wpjobportal_field->field == 'description
     </div>
 
     <div class="wpjobportal-form-value">
+           <?php
+            if(isset($wpjobportal_field->field) && ($wpjobportal_field->field == 'description' || $wpjobportal_field->field == 'skills')  ){
+               echo '<a href="#" id="zywrap-open-modal-button" class="button" title="' . esc_attr__('AI Content Generation', 'wp-job-portal') . '">
+                     <span class="dashicons dashicons-testimonial"></span>
+                     ' . esc_html__('AI Content Generation', 'wp-job-portal') . '
+                     </a>';
+            wp_enqueue_script('media-upload');
+            wp_enqueue_script('thickbox');
+            wp_enqueue_style('thickbox');
+            echo wp_kses(WPJOBPORTALformfield::hidden('wpjobportal_content_generation_fieldfor', $wpjobportal_field->fieldfor),WPJOBPORTAL_ALLOWED_TAGS);
+
+            }
+        ?>
         <?php echo wp_kses($wpjobportal_content, WPJOBPORTAL_ALLOWED_TAGS); ?>
     </div>
         <?php if(!empty($wpjobportal_description)): ?>

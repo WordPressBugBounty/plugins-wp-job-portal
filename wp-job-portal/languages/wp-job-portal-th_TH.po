@@ -12742,3 +12742,225 @@ msgstr "คีย์ที่ไม่ได้ใช้ซึ่งสามา
 
 msgid "unused keys have been deleted successfully!"
 msgstr "ลบคีย์ที่ไม่ได้ใช้เรียบร้อยแล้ว!"
+
+msgid "AI Content Generator"
+msgstr "เครื่องกำเนิดเนื้อหา AI"
+
+msgid "Search Wrapper"
+msgstr "ค้นหา Wrapper"
+
+msgid "Wrapper Template"
+msgstr "เทมเพลต Wrapper"
+
+msgid "Reference Context"
+msgstr "บริบทอ้างอิง"
+
+msgid "(Source Data)"
+msgstr "(แหล่งข้อมูล)"
+
+msgid "Paste source text or data context here..."
+msgstr "วางข้อความต้นฉบับหรือบริบทข้อมูลที่นี่..."
+
+msgid "Negative Words"
+msgstr "คำเชิงลบ"
+
+msgid "words to avoid..."
+msgstr "คำพูดที่ควรหลีกเลี่ยง..."
+
+msgid "Instructions / Prompt"
+msgstr "คำแนะนำ/คำแนะนำ"
+
+msgid "Optional"
+msgstr "ไม่จำเป็น"
+
+msgid "Describe exactly what you want the AI to create..."
+msgstr "อธิบายว่าคุณต้องการให้ AI สร้างอะไร..."
+
+msgid "Generate Output"
+msgstr "สร้างเอาท์พุต"
+
+msgid "(Editable)"
+msgstr "(แก้ไขได้)"
+
+msgid "AI output will appear here..."
+msgstr "เอาต์พุต AI จะปรากฏที่นี่..."
+
+msgid "Insert into Editor"
+msgstr "แทรกลงในตัวแก้ไข"
+
+msgid "How to get your API Key"
+msgstr "วิธีรับคีย์ API ของคุณ"
+
+msgid "Sign Up Free"
+msgstr "ลงทะเบียนฟรี"
+
+msgid "Get Free Credits"
+msgstr "รับเครดิตฟรี"
+
+msgid "You will receive"
+msgstr "คุณจะได้รับ"
+
+msgid "10,000 Free Credits"
+msgstr "10,000 เครดิตฟรี"
+
+msgid "instantly upon registration."
+msgstr "ทันทีที่ลงทะเบียน"
+
+msgid "Create Key"
+msgstr "สร้างคีย์"
+
+msgid "Go to the API Keys section in your dashboard to generate your secret key."
+msgstr "ไปที่ส่วนคีย์ API ในแดชบอร์ดของคุณเพื่อสร้างคีย์ลับของคุณ"
+
+msgid "Enter your Zywrap.com API Key to connect your account."
+msgstr "ป้อนคีย์ API ของ Zywrap.com เพื่อเชื่อมต่อบัญชีของคุณ"
+
+msgid "To get your API key, log in to"
+msgstr "หากต้องการรับคีย์ API ของคุณ โปรดเข้าสู่ระบบ"
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "และนำทางไปยังแดชบอร์ด / คีย์ API ของคุณ"
+
+msgid "Get a Valid API key, log in to"
+msgstr "รับคีย์ API ที่ถูกต้อง เข้าสู่ระบบ"
+
+msgid "Validate API Key"
+msgstr "ตรวจสอบคีย์ API"
+
+msgid "Sync Status"
+msgstr "สถานะการซิงค์"
+
+msgid "Not Synced"
+msgstr "ไม่ซิงค์"
+
+msgid "Synced"
+msgstr "ซิงค์แล้ว"
+
+msgid "Last Sync"
+msgstr "การซิงค์ครั้งล่าสุด"
+
+msgid "Your local database must be synced with the Zywrap catalog to use the Playground and Editor tools."
+msgstr "ฐานข้อมูลท้องถิ่นของคุณจะต้องซิงค์กับแคตตาล็อก Zywrap เพื่อใช้เครื่องมือ Playground และ Editor"
+
+msgid "Download & Full Import"
+msgstr "ดาวน์โหลดและนำเข้าแบบเต็ม"
+
+msgid "Get Updates"
+msgstr "รับการอัปเดต"
+
+msgid "Sorted A-Z"
+msgstr "เรียง A-Z"
+
+msgid "Default Order"
+msgstr "คำสั่งเริ่มต้น"
+
+msgid "Loading..."
+msgstr "กำลังโหลด..."
+
+msgid "Ready to generate content. Select a wrapper and click Run."
+msgstr "พร้อมสร้างเนื้อหา เลือกกระดาษห่อแล้วคลิกเรียกใช้"
+
+msgid "Copied!"
+msgstr "คัดลอก!"
+
+msgid "Please generate some text first before summarizing."
+msgstr "โปรดสร้างข้อความก่อนที่จะสรุป"
+
+msgid "This will replace your current text in the Context field. Continue?"
+msgstr "สิ่งนี้จะแทนที่ข้อความปัจจุบันของคุณในช่องบริบท ดำเนินการต่อ?"
+
+msgid "Generating content... Please wait..."
+msgstr "กำลังสร้างเนื้อหา... กรุณารอสักครู่..."
+
+msgid "Running..."
+msgstr "วิ่ง..."
+
+msgid "Error: Wrapper is required."
+msgstr "ข้อผิดพลาด: จำเป็นต้องมี Wrapper"
+
+msgid "Received empty output."
+msgstr "ได้รับเอาต์พุตเปล่า"
+
+msgid "Checking API status..."
+msgstr "กำลังตรวจสอบสถานะ API..."
+
+msgid "Downloading and importing... This may take several minutes."
+msgstr "กำลังดาวน์โหลดและนำเข้า... ซึ่งอาจใช้เวลาหลายนาที"
+
+msgid "Only new and changed data is being fetched and imported. This should take a few moments..."
+msgstr "เฉพาะข้อมูลใหม่และข้อมูลที่เปลี่ยนแปลงเท่านั้นที่จะถูกดึงและนำเข้า การดำเนินการนี้จะใช้เวลาสักครู่..."
+
+msgid "Checking for updates..."
+msgstr "กำลังตรวจสอบการอัปเดต..."
+
+msgid "Could not find an text area to insert into."
+msgstr "ไม่พบพื้นที่ข้อความที่จะแทรก"
+
+msgid "Search Templates"
+msgstr "ค้นหาเทมเพลต"
+
+msgid "Close Search"
+msgstr "ปิดการค้นหา"
+
+msgid "Total API Runs (24h)"
+msgstr "การทำงานของ API ทั้งหมด (24 ชม.)"
+
+msgid "API Errors (24h)"
+msgstr "ข้อผิดพลาดของ API (24 ชม.)"
+
+msgid "Top Model Used"
+msgstr "รุ่นท็อปมือสอง"
+
+msgid "Search by Action, User or Wrapper..."
+msgstr "ค้นหาตามการกระทำ ผู้ใช้ หรือ Wrapper..."
+
+msgid "Filter by Status"
+msgstr "กรองตามสถานะ"
+
+msgid "Action & User"
+msgstr "การดำเนินการและผู้ใช้"
+
+msgid "Wrapper / Model"
+msgstr "กระดาษห่อ/รุ่น"
+
+msgid "Performance & Tokens"
+msgstr "ประสิทธิภาพและโทเค็น"
+
+msgid "No log entries found or a database error occurred."
+msgstr "ไม่พบรายการบันทึกหรือเกิดข้อผิดพลาดของฐานข้อมูล"
+
+msgid "HTTP:"
+msgstr "HTTP:"
+
+msgid "Tokens:"
+msgstr "โทเค็น:"
+
+msgid "No tokens recorded"
+msgstr "ไม่มีการบันทึกโทเค็น"
+
+msgid "Request completed successfully. Full request/response data would be displayed here."
+msgstr "คำขอเสร็จสมบูรณ์แล้ว ข้อมูลคำขอ/การตอบกลับแบบเต็มจะแสดงที่นี่"
+
+msgid "Zywrap Content Generation"
+msgstr "การสร้างเนื้อหา Zywrap"
+
+msgid "Zywrap Settings"
+msgstr "การตั้งค่า Zywrap"
+
+msgid "Zywrap Data Sync"
+msgstr "การซิงค์ข้อมูล Zywrap"
+
+msgid "Zywrap Logs"
+msgstr "บันทึกของ Zywrap"
+
+msgid "Core Settings"
+msgstr "การตั้งค่าหลัก"
+
+msgid "Use Case"
+msgstr "ใช้กรณี"
+
+msgid "-- Search Results --"
+msgstr "-- ผลการค้นหา --"
+
+msgid "Console Output"
+msgstr "เอาต์พุตคอนโซล"

@@ -12742,3 +12742,225 @@ msgstr "ongebruikte sleutel(s) die veilig verwijderd kunnen worden."
 
 msgid "unused keys have been deleted successfully!"
 msgstr "ongebruikte sleutels zijn succesvol verwijderd!"
+
+msgid "AI Content Generator"
+msgstr "AI-inhoudgenerator"
+
+msgid "Search Wrapper"
+msgstr "Zoek Wrapper"
+
+msgid "Wrapper Template"
+msgstr "Wrapper-sjabloon"
+
+msgid "Reference Context"
+msgstr "Referentiecontext"
+
+msgid "(Source Data)"
+msgstr "(Brongegevens)"
+
+msgid "Paste source text or data context here..."
+msgstr "Plak hier de brontekst of gegevenscontext..."
+
+msgid "Negative Words"
+msgstr "Negatieve woorden"
+
+msgid "words to avoid..."
+msgstr "woorden om te vermijden..."
+
+msgid "Instructions / Prompt"
+msgstr "Instructies/prompt"
+
+msgid "Optional"
+msgstr "Optioneel"
+
+msgid "Describe exactly what you want the AI to create..."
+msgstr "Beschrijf precies wat u wilt dat de AI creëert..."
+
+msgid "Generate Output"
+msgstr "Genereer uitvoer"
+
+msgid "(Editable)"
+msgstr "(Bewerkbaar)"
+
+msgid "AI output will appear here..."
+msgstr "AI-uitvoer verschijnt hier..."
+
+msgid "Insert into Editor"
+msgstr "Invoegen in Editor"
+
+msgid "How to get your API Key"
+msgstr "Hoe u uw API-sleutel kunt verkrijgen"
+
+msgid "Sign Up Free"
+msgstr "Meld u gratis aan"
+
+msgid "Get Free Credits"
+msgstr "Ontvang gratis tegoeden"
+
+msgid "You will receive"
+msgstr "Je zult ontvangen"
+
+msgid "10,000 Free Credits"
+msgstr "10.000 gratis tegoeden"
+
+msgid "instantly upon registration."
+msgstr "direct na inschrijving."
+
+msgid "Create Key"
+msgstr "Sleutel maken"
+
+msgid "Go to the API Keys section in your dashboard to generate your secret key."
+msgstr "Ga naar de sectie API-sleutels in uw dashboard om uw geheime sleutel te genereren."
+
+msgid "Enter your Zywrap.com API Key to connect your account."
+msgstr "Voer uw Zywrap.com API-sleutel in om uw account te verbinden."
+
+msgid "To get your API key, log in to"
+msgstr "Om uw API-sleutel te verkrijgen, logt u in op"
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "en navigeer naar uw Dashboard/API-sleutels."
+
+msgid "Get a Valid API key, log in to"
+msgstr "Zorg voor een geldige API-sleutel, log in op"
+
+msgid "Validate API Key"
+msgstr "Valideer API-sleutel"
+
+msgid "Sync Status"
+msgstr "Synchronisatiestatus"
+
+msgid "Not Synced"
+msgstr "Niet gesynchroniseerd"
+
+msgid "Synced"
+msgstr "Gesynchroniseerd"
+
+msgid "Last Sync"
+msgstr "Laatste synchronisatie"
+
+msgid "Your local database must be synced with the Zywrap catalog to use the Playground and Editor tools."
+msgstr "Uw lokale database moet worden gesynchroniseerd met de Zywrap-catalogus om de Playground- en Editor-tools te kunnen gebruiken."
+
+msgid "Download & Full Import"
+msgstr "Downloaden en volledig importeren"
+
+msgid "Get Updates"
+msgstr "Ontvang updates"
+
+msgid "Sorted A-Z"
+msgstr "Gesorteerd van A-Z"
+
+msgid "Default Order"
+msgstr "Standaardvolgorde"
+
+msgid "Loading..."
+msgstr "Laden..."
+
+msgid "Ready to generate content. Select a wrapper and click Run."
+msgstr "Klaar om inhoud te genereren. Selecteer een wrapper en klik op Uitvoeren."
+
+msgid "Copied!"
+msgstr "Gekopieerd!"
+
+msgid "Please generate some text first before summarizing."
+msgstr "Genereer eerst wat tekst voordat u gaat samenvatten."
+
+msgid "This will replace your current text in the Context field. Continue?"
+msgstr "Dit vervangt uw huidige tekst in het Context-veld. Doorgaan?"
+
+msgid "Generating content... Please wait..."
+msgstr "Inhoud genereren... Even geduld a.u.b...."
+
+msgid "Running..."
+msgstr "Rennen..."
+
+msgid "Error: Wrapper is required."
+msgstr "Fout: Wrapper is vereist."
+
+msgid "Received empty output."
+msgstr "Lege uitvoer ontvangen."
+
+msgid "Checking API status..."
+msgstr "API-status controleren..."
+
+msgid "Downloading and importing... This may take several minutes."
+msgstr "Downloaden en importeren... Dit kan enkele minuten duren."
+
+msgid "Only new and changed data is being fetched and imported. This should take a few moments..."
+msgstr "Alleen nieuwe en gewijzigde gegevens worden opgehaald en geïmporteerd. Dit zou enkele ogenblikken moeten duren..."
+
+msgid "Checking for updates..."
+msgstr "Controleren op updates..."
+
+msgid "Could not find an text area to insert into."
+msgstr "Kan geen tekstgebied vinden om in te voegen."
+
+msgid "Search Templates"
+msgstr "Zoek sjablonen"
+
+msgid "Close Search"
+msgstr "Zoekopdracht sluiten"
+
+msgid "Total API Runs (24h)"
+msgstr "Totaal aantal API-runs (24 uur)"
+
+msgid "API Errors (24h)"
+msgstr "API-fouten (24 uur)"
+
+msgid "Top Model Used"
+msgstr "Topmodel gebruikt"
+
+msgid "Search by Action, User or Wrapper..."
+msgstr "Zoeken op actie, gebruiker of wrapper..."
+
+msgid "Filter by Status"
+msgstr "Filter op status"
+
+msgid "Action & User"
+msgstr "Actie & Gebruiker"
+
+msgid "Wrapper / Model"
+msgstr "Wikkeling / Model"
+
+msgid "Performance & Tokens"
+msgstr "Prestaties en tokens"
+
+msgid "No log entries found or a database error occurred."
+msgstr "Er zijn geen logboekvermeldingen gevonden of er is een databasefout opgetreden."
+
+msgid "HTTP:"
+msgstr "HTTP:"
+
+msgid "Tokens:"
+msgstr "Tokens:"
+
+msgid "No tokens recorded"
+msgstr "Geen tokens geregistreerd"
+
+msgid "Request completed successfully. Full request/response data would be displayed here."
+msgstr "Aanvraag succesvol afgerond. Hier worden de volledige verzoek-/antwoordgegevens weergegeven."
+
+msgid "Zywrap Content Generation"
+msgstr "Zywrap-inhoud genereren"
+
+msgid "Zywrap Settings"
+msgstr "Zywrap-instellingen"
+
+msgid "Zywrap Data Sync"
+msgstr "Zywrap-gegevenssynchronisatie"
+
+msgid "Zywrap Logs"
+msgstr "Zywrap-logboeken"
+
+msgid "Core Settings"
+msgstr "Kerninstellingen"
+
+msgid "Use Case"
+msgstr "Gebruikscasus"
+
+msgid "-- Search Results --"
+msgstr "-- Zoekresultaten --"
+
+msgid "Console Output"
+msgstr "Console-uitvoer"

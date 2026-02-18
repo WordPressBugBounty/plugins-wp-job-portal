@@ -12745,3 +12745,225 @@ msgstr "안전하게 제거할 수 있는 사용되지 않은 키."
 
 msgid "unused keys have been deleted successfully!"
 msgstr "사용하지 않은 키가 성공적으로 삭제되었습니다!"
+
+msgid "AI Content Generator"
+msgstr "AI 콘텐츠 생성기"
+
+msgid "Search Wrapper"
+msgstr "검색 래퍼"
+
+msgid "Wrapper Template"
+msgstr "래퍼 템플릿"
+
+msgid "Reference Context"
+msgstr "참조 컨텍스트"
+
+msgid "(Source Data)"
+msgstr "(소스 데이터)"
+
+msgid "Paste source text or data context here..."
+msgstr "여기에 소스 텍스트나 데이터 컨텍스트를 붙여넣으세요..."
+
+msgid "Negative Words"
+msgstr "부정적인 단어"
+
+msgid "words to avoid..."
+msgstr "피해야 할 말..."
+
+msgid "Instructions / Prompt"
+msgstr "지침/프롬프트"
+
+msgid "Optional"
+msgstr "선택 과목"
+
+msgid "Describe exactly what you want the AI to create..."
+msgstr "AI가 무엇을 만들기를 원하는지 정확히 설명하세요."
+
+msgid "Generate Output"
+msgstr "출력 생성"
+
+msgid "(Editable)"
+msgstr "(편집 가능)"
+
+msgid "AI output will appear here..."
+msgstr "AI 출력이 여기에 표시됩니다..."
+
+msgid "Insert into Editor"
+msgstr "편집기에 삽입"
+
+msgid "How to get your API Key"
+msgstr "API 키를 얻는 방법"
+
+msgid "Sign Up Free"
+msgstr "무료로 가입하세요"
+
+msgid "Get Free Credits"
+msgstr "무료 크레딧 받기"
+
+msgid "You will receive"
+msgstr "당신은 받게됩니다"
+
+msgid "10,000 Free Credits"
+msgstr "10,000 무료 크레딧"
+
+msgid "instantly upon registration."
+msgstr "등록 즉시."
+
+msgid "Create Key"
+msgstr "키 생성"
+
+msgid "Go to the API Keys section in your dashboard to generate your secret key."
+msgstr "대시보드의 API 키 섹션으로 이동하여 비밀 키를 생성하세요."
+
+msgid "Enter your Zywrap.com API Key to connect your account."
+msgstr "귀하의 계정을 연결하려면 Zywrap.com API 키를 입력하세요."
+
+msgid "To get your API key, log in to"
+msgstr "API 키를 받으려면 로그인하세요."
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "대시보드/API 키로 이동합니다."
+
+msgid "Get a Valid API key, log in to"
+msgstr "유효한 API 키를 받아 로그인하세요."
+
+msgid "Validate API Key"
+msgstr "API 키 검증"
+
+msgid "Sync Status"
+msgstr "동기화 상태"
+
+msgid "Not Synced"
+msgstr "동기화되지 않음"
+
+msgid "Synced"
+msgstr "동기화됨"
+
+msgid "Last Sync"
+msgstr "마지막 동기화"
+
+msgid "Your local database must be synced with the Zywrap catalog to use the Playground and Editor tools."
+msgstr "플레이그라운드 및 편집기 도구를 사용하려면 로컬 데이터베이스를 Zywrap 카탈로그와 동기화해야 합니다."
+
+msgid "Download & Full Import"
+msgstr "다운로드 및 전체 가져오기"
+
+msgid "Get Updates"
+msgstr "업데이트 받기"
+
+msgid "Sorted A-Z"
+msgstr "A부터 Z까지 정렬됨"
+
+msgid "Default Order"
+msgstr "기본 순서"
+
+msgid "Loading..."
+msgstr "로드 중..."
+
+msgid "Ready to generate content. Select a wrapper and click Run."
+msgstr "콘텐츠를 생성할 준비가 되었습니다. 래퍼를 선택하고 실행을 클릭합니다."
+
+msgid "Copied!"
+msgstr "복사되었습니다!"
+
+msgid "Please generate some text first before summarizing."
+msgstr "요약하기 전에 먼저 텍스트를 생성해 주세요."
+
+msgid "This will replace your current text in the Context field. Continue?"
+msgstr "그러면 컨텍스트 필드의 현재 텍스트가 대체됩니다. 계속하다?"
+
+msgid "Generating content... Please wait..."
+msgstr "콘텐츠 생성 중... 잠시 기다려 주세요..."
+
+msgid "Running..."
+msgstr "달리기..."
+
+msgid "Error: Wrapper is required."
+msgstr "오류: 래퍼가 필요합니다."
+
+msgid "Received empty output."
+msgstr "빈 출력을 받았습니다."
+
+msgid "Checking API status..."
+msgstr "API 상태 확인 중..."
+
+msgid "Downloading and importing... This may take several minutes."
+msgstr "다운로드 및 가져오는 중... 몇 분 정도 걸릴 수 있습니다."
+
+msgid "Only new and changed data is being fetched and imported. This should take a few moments..."
+msgstr "새로운 데이터와 변경된 데이터만 가져오고 가져옵니다. 이 작업은 몇 분 정도 걸립니다..."
+
+msgid "Checking for updates..."
+msgstr "업데이트 확인 중..."
+
+msgid "Could not find an text area to insert into."
+msgstr "삽입할 텍스트 영역을 찾을 수 없습니다."
+
+msgid "Search Templates"
+msgstr "템플릿 검색"
+
+msgid "Close Search"
+msgstr "검색 닫기"
+
+msgid "Total API Runs (24h)"
+msgstr "총 API 실행(24시간)"
+
+msgid "API Errors (24h)"
+msgstr "API 오류(24시간)"
+
+msgid "Top Model Used"
+msgstr "사용된 상위 모델"
+
+msgid "Search by Action, User or Wrapper..."
+msgstr "작업, 사용자 또는 래퍼로 검색..."
+
+msgid "Filter by Status"
+msgstr "상태로 필터링"
+
+msgid "Action & User"
+msgstr "액션 & 사용자"
+
+msgid "Wrapper / Model"
+msgstr "래퍼/모델"
+
+msgid "Performance & Tokens"
+msgstr "성과 및 토큰"
+
+msgid "No log entries found or a database error occurred."
+msgstr "로그 항목이 없거나 데이터베이스 오류가 발생했습니다."
+
+msgid "HTTP:"
+msgstr "HTTP:"
+
+msgid "Tokens:"
+msgstr "토큰:"
+
+msgid "No tokens recorded"
+msgstr "기록된 토큰이 없습니다."
+
+msgid "Request completed successfully. Full request/response data would be displayed here."
+msgstr "요청이 성공적으로 완료되었습니다. 전체 요청/응답 데이터가 여기에 표시됩니다."
+
+msgid "Zywrap Content Generation"
+msgstr "Zywrap 콘텐츠 생성"
+
+msgid "Zywrap Settings"
+msgstr "Zywrap 설정"
+
+msgid "Zywrap Data Sync"
+msgstr "Zywrap 데이터 동기화"
+
+msgid "Zywrap Logs"
+msgstr "Zywrap 로그"
+
+msgid "Core Settings"
+msgstr "핵심 설정"
+
+msgid "Use Case"
+msgstr "사용 사례"
+
+msgid "-- Search Results --"
+msgstr "-- 검색결과 --"
+
+msgid "Console Output"
+msgstr "콘솔 출력"

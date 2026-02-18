@@ -12745,3 +12745,225 @@ msgstr "chei nefolosite care pot fi scoase în siguranță."
 
 msgid "unused keys have been deleted successfully!"
 msgstr "cheile neutilizate au fost șterse cu succes!"
+
+msgid "AI Content Generator"
+msgstr "Generator de conținut AI"
+
+msgid "Search Wrapper"
+msgstr "Căutare Wrapper"
+
+msgid "Wrapper Template"
+msgstr "Șablon Wrapper"
+
+msgid "Reference Context"
+msgstr "Context de referință"
+
+msgid "(Source Data)"
+msgstr "(Sursa datelor)"
+
+msgid "Paste source text or data context here..."
+msgstr "Lipiți aici textul sursă sau contextul datelor..."
+
+msgid "Negative Words"
+msgstr "Cuvinte negative"
+
+msgid "words to avoid..."
+msgstr "cuvinte de evitat..."
+
+msgid "Instructions / Prompt"
+msgstr "Instrucțiuni/Prompt"
+
+msgid "Optional"
+msgstr "Opțional"
+
+msgid "Describe exactly what you want the AI to create..."
+msgstr "Descrieți exact ce doriți să creeze AI..."
+
+msgid "Generate Output"
+msgstr "Generare ieșire"
+
+msgid "(Editable)"
+msgstr "(editabil)"
+
+msgid "AI output will appear here..."
+msgstr "Ieșirea AI va apărea aici..."
+
+msgid "Insert into Editor"
+msgstr "Inserați în Editor"
+
+msgid "How to get your API Key"
+msgstr "Cum să obțineți cheia API"
+
+msgid "Sign Up Free"
+msgstr "Înscrieți-vă gratuit"
+
+msgid "Get Free Credits"
+msgstr "Obțineți credite gratuite"
+
+msgid "You will receive"
+msgstr "vei primi"
+
+msgid "10,000 Free Credits"
+msgstr "10.000 de credite gratuite"
+
+msgid "instantly upon registration."
+msgstr "imediat după înregistrare."
+
+msgid "Create Key"
+msgstr "Creați cheia"
+
+msgid "Go to the API Keys section in your dashboard to generate your secret key."
+msgstr "Accesați secțiunea Chei API din tabloul de bord pentru a vă genera cheia secretă."
+
+msgid "Enter your Zywrap.com API Key to connect your account."
+msgstr "Introduceți cheia API Zywrap.com pentru a vă conecta contul."
+
+msgid "To get your API key, log in to"
+msgstr "Pentru a obține cheia API, conectați-vă la"
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "și navigați la Tabloul de bord / Cheile API."
+
+msgid "Get a Valid API key, log in to"
+msgstr "Obțineți o cheie API validă, conectați-vă la"
+
+msgid "Validate API Key"
+msgstr "Validați cheia API"
+
+msgid "Sync Status"
+msgstr "Stare de sincronizare"
+
+msgid "Not Synced"
+msgstr "Nesincronizat"
+
+msgid "Synced"
+msgstr "Sincronizat"
+
+msgid "Last Sync"
+msgstr "Ultima sincronizare"
+
+msgid "Your local database must be synced with the Zywrap catalog to use the Playground and Editor tools."
+msgstr "Baza de date locală trebuie să fie sincronizată cu catalogul Zywrap pentru a utiliza instrumentele Playground și Editor."
+
+msgid "Download & Full Import"
+msgstr "Descărcare și import complet"
+
+msgid "Get Updates"
+msgstr "Obțineți actualizări"
+
+msgid "Sorted A-Z"
+msgstr "Sortate de la A la Z"
+
+msgid "Default Order"
+msgstr "Comanda implicită"
+
+msgid "Loading..."
+msgstr "Încărcare..."
+
+msgid "Ready to generate content. Select a wrapper and click Run."
+msgstr "Gata să genereze conținut. Selectați un wrapper și faceți clic pe Run."
+
+msgid "Copied!"
+msgstr "Copiat!"
+
+msgid "Please generate some text first before summarizing."
+msgstr "Vă rugăm să generați mai întâi un text înainte de a rezuma."
+
+msgid "This will replace your current text in the Context field. Continue?"
+msgstr "Aceasta va înlocui textul dvs. curent din câmpul Context. Continua?"
+
+msgid "Generating content... Please wait..."
+msgstr "Se generează conținut... Vă rugăm să așteptați..."
+
+msgid "Running..."
+msgstr "Funcţionare..."
+
+msgid "Error: Wrapper is required."
+msgstr "Eroare: este necesar Wrapper."
+
+msgid "Received empty output."
+msgstr "Ieșire goală primită."
+
+msgid "Checking API status..."
+msgstr "Se verifică starea API-ului..."
+
+msgid "Downloading and importing... This may take several minutes."
+msgstr "Se descarcă și se importă... Aceasta poate dura câteva minute."
+
+msgid "Only new and changed data is being fetched and imported. This should take a few moments..."
+msgstr "Numai datele noi și modificate sunt preluate și importate. Acest lucru ar trebui să dureze câteva momente..."
+
+msgid "Checking for updates..."
+msgstr "Se verifică actualizările..."
+
+msgid "Could not find an text area to insert into."
+msgstr "Nu s-a putut găsi o zonă de text în care să se insereze."
+
+msgid "Search Templates"
+msgstr "Căutați șabloane"
+
+msgid "Close Search"
+msgstr "Închideți Căutare"
+
+msgid "Total API Runs (24h)"
+msgstr "Total rulări API (24 de ore)"
+
+msgid "API Errors (24h)"
+msgstr "Erori API (24h)"
+
+msgid "Top Model Used"
+msgstr "Top Model folosit"
+
+msgid "Search by Action, User or Wrapper..."
+msgstr "Căutați după acțiune, utilizator sau wrapper..."
+
+msgid "Filter by Status"
+msgstr "Filtrați după stare"
+
+msgid "Action & User"
+msgstr "Acțiune și utilizator"
+
+msgid "Wrapper / Model"
+msgstr "Ambalaj / Model"
+
+msgid "Performance & Tokens"
+msgstr "Performanță și jetoane"
+
+msgid "No log entries found or a database error occurred."
+msgstr "Nu au fost găsite intrări de jurnal sau a apărut o eroare în baza de date."
+
+msgid "HTTP:"
+msgstr "HTTP:"
+
+msgid "Tokens:"
+msgstr "Jetoane:"
+
+msgid "No tokens recorded"
+msgstr "Nu au fost înregistrate jetoane"
+
+msgid "Request completed successfully. Full request/response data would be displayed here."
+msgstr "Solicitarea a fost finalizată cu succes. Datele complete de solicitare/răspuns vor fi afișate aici."
+
+msgid "Zywrap Content Generation"
+msgstr "Generarea de conținut Zywrap"
+
+msgid "Zywrap Settings"
+msgstr "Setări Zywrap"
+
+msgid "Zywrap Data Sync"
+msgstr "Sincronizarea datelor Zywrap"
+
+msgid "Zywrap Logs"
+msgstr "Jurnalele Zywrap"
+
+msgid "Core Settings"
+msgstr "Setări de bază"
+
+msgid "Use Case"
+msgstr "Caz de utilizare"
+
+msgid "-- Search Results --"
+msgstr "-- Rezultatele căutării --"
+
+msgid "Console Output"
+msgstr "Ieșire consolă"

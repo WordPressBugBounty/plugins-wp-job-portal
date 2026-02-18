@@ -12742,3 +12742,225 @@ msgstr "未使用のキーは安全に削除できます。"
 
 msgid "unused keys have been deleted successfully!"
 msgstr "未使用のキーは正常に削除されました。"
+
+msgid "AI Content Generator"
+msgstr "AI コンテンツ ジェネレーター"
+
+msgid "Search Wrapper"
+msgstr "検索ラッパー"
+
+msgid "Wrapper Template"
+msgstr "ラッパーテンプレート"
+
+msgid "Reference Context"
+msgstr "参照コンテキスト"
+
+msgid "(Source Data)"
+msgstr "(ソースデータ)"
+
+msgid "Paste source text or data context here..."
+msgstr "ソース テキストまたはデータ コンテキストをここに貼り付けます..."
+
+msgid "Negative Words"
+msgstr "否定的な言葉"
+
+msgid "words to avoid..."
+msgstr "避けるべき言葉…"
+
+msgid "Instructions / Prompt"
+msgstr "指示/プロンプト"
+
+msgid "Optional"
+msgstr "オプション"
+
+msgid "Describe exactly what you want the AI to create..."
+msgstr "AI に作成してもらいたいものを正確に説明してください..."
+
+msgid "Generate Output"
+msgstr "出力の生成"
+
+msgid "(Editable)"
+msgstr "(編集可能)"
+
+msgid "AI output will appear here..."
+msgstr "AI 出力がここに表示されます..."
+
+msgid "Insert into Editor"
+msgstr "エディターに挿入"
+
+msgid "How to get your API Key"
+msgstr "APIキーの取得方法"
+
+msgid "Sign Up Free"
+msgstr "無料でサインアップ"
+
+msgid "Get Free Credits"
+msgstr "無料のクレジットを取得"
+
+msgid "You will receive"
+msgstr "受け取ります"
+
+msgid "10,000 Free Credits"
+msgstr "10,000 無料クレジット"
+
+msgid "instantly upon registration."
+msgstr "登録するとすぐに。"
+
+msgid "Create Key"
+msgstr "キーの作成"
+
+msgid "Go to the API Keys section in your dashboard to generate your secret key."
+msgstr "ダッシュボードの「API キー」セクションに移動して、秘密キーを生成します。"
+
+msgid "Enter your Zywrap.com API Key to connect your account."
+msgstr "Zywrap.com API キーを入力してアカウントに接続します。"
+
+msgid "To get your API key, log in to"
+msgstr "API キーを取得するには、にログインしてください"
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "ダッシュボード/API キーに移動します。"
+
+msgid "Get a Valid API key, log in to"
+msgstr "有効な API キーを取得し、ログインします。"
+
+msgid "Validate API Key"
+msgstr "APIキーを検証する"
+
+msgid "Sync Status"
+msgstr "同期ステータス"
+
+msgid "Not Synced"
+msgstr "同期されていません"
+
+msgid "Synced"
+msgstr "同期済み"
+
+msgid "Last Sync"
+msgstr "最終同期"
+
+msgid "Your local database must be synced with the Zywrap catalog to use the Playground and Editor tools."
+msgstr "Playground ツールと Editor ツールを使用するには、ローカル データベースを Zywrap カタログと同期する必要があります。"
+
+msgid "Download & Full Import"
+msgstr "ダウンロードと完全インポート"
+
+msgid "Get Updates"
+msgstr "アップデートを取得する"
+
+msgid "Sorted A-Z"
+msgstr "AからZまでのソート"
+
+msgid "Default Order"
+msgstr "デフォルトの順序"
+
+msgid "Loading..."
+msgstr "読み込み中..."
+
+msgid "Ready to generate content. Select a wrapper and click Run."
+msgstr "コンテンツを生成する準備ができました。ラッパーを選択し、「実行」をクリックします。"
+
+msgid "Copied!"
+msgstr "コピーしました！"
+
+msgid "Please generate some text first before summarizing."
+msgstr "要約する前に、まずテキストを生成してください。"
+
+msgid "This will replace your current text in the Context field. Continue?"
+msgstr "これにより、「コンテキスト」フィールドの現在のテキストが置き換えられます。続く？"
+
+msgid "Generating content... Please wait..."
+msgstr "コンテンツを生成しています...お待ちください..."
+
+msgid "Running..."
+msgstr "走っています..."
+
+msgid "Error: Wrapper is required."
+msgstr "エラー: ラッパーが必要です。"
+
+msgid "Received empty output."
+msgstr "空の出力を受け取りました。"
+
+msgid "Checking API status..."
+msgstr "API ステータスを確認しています..."
+
+msgid "Downloading and importing... This may take several minutes."
+msgstr "ダウンロードとインポート中...これには数分かかる場合があります。"
+
+msgid "Only new and changed data is being fetched and imported. This should take a few moments..."
+msgstr "新しいデータと変更されたデータのみがフェッチおよびインポートされます。これには少し時間がかかるはずです..."
+
+msgid "Checking for updates..."
+msgstr "アップデートをチェックしています..."
+
+msgid "Could not find an text area to insert into."
+msgstr "挿入するテキスト領域が見つかりませんでした。"
+
+msgid "Search Templates"
+msgstr "検索テンプレート"
+
+msgid "Close Search"
+msgstr "検索を閉じる"
+
+msgid "Total API Runs (24h)"
+msgstr "合計 API 実行数 (24 時間)"
+
+msgid "API Errors (24h)"
+msgstr "API エラー (24 時間)"
+
+msgid "Top Model Used"
+msgstr "使用されている上位モデル"
+
+msgid "Search by Action, User or Wrapper..."
+msgstr "アクション、ユーザー、またはラッパーで検索..."
+
+msgid "Filter by Status"
+msgstr "ステータスによるフィルター"
+
+msgid "Action & User"
+msgstr "アクションとユーザー"
+
+msgid "Wrapper / Model"
+msgstr "ラッパー/モデル"
+
+msgid "Performance & Tokens"
+msgstr "パフォーマンスとトークン"
+
+msgid "No log entries found or a database error occurred."
+msgstr "ログ エントリが見つからないか、データベース エラーが発生しました。"
+
+msgid "HTTP:"
+msgstr "HTTP:"
+
+msgid "Tokens:"
+msgstr "トークン:"
+
+msgid "No tokens recorded"
+msgstr "トークンが記録されていません"
+
+msgid "Request completed successfully. Full request/response data would be displayed here."
+msgstr "リクエストは正常に完了しました。完全なリクエスト/レスポンス データがここに表示されます。"
+
+msgid "Zywrap Content Generation"
+msgstr "Zywrap コンテンツの生成"
+
+msgid "Zywrap Settings"
+msgstr "Zywrap 設定"
+
+msgid "Zywrap Data Sync"
+msgstr "Zywrap データ同期"
+
+msgid "Zywrap Logs"
+msgstr "Zywrap ログ"
+
+msgid "Core Settings"
+msgstr "コア設定"
+
+msgid "Use Case"
+msgstr "使用事例"
+
+msgid "-- Search Results --"
+msgstr "-- 検索結果 --"
+
+msgid "Console Output"
+msgstr "コンソール出力"

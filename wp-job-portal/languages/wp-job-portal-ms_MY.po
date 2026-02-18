@@ -12745,3 +12745,225 @@ msgstr "Kunci yang tidak digunakan yang boleh dikeluarkan dengan selamat."
 
 msgid "unused keys have been deleted successfully!"
 msgstr "Kekunci yang tidak digunakan telah dihapuskan dengan jayanya!"
+
+msgid "AI Content Generator"
+msgstr "Penjana Kandungan AI"
+
+msgid "Search Wrapper"
+msgstr "Pembungkus Carian"
+
+msgid "Wrapper Template"
+msgstr "Templat Pembungkus"
+
+msgid "Reference Context"
+msgstr "Konteks Rujukan"
+
+msgid "(Source Data)"
+msgstr "(Data Sumber)"
+
+msgid "Paste source text or data context here..."
+msgstr "Tampal teks sumber atau konteks data di sini..."
+
+msgid "Negative Words"
+msgstr "Perkataan Negatif"
+
+msgid "words to avoid..."
+msgstr "kata-kata yang perlu dielakkan..."
+
+msgid "Instructions / Prompt"
+msgstr "Arahan / Prompt"
+
+msgid "Optional"
+msgstr "Pilihan"
+
+msgid "Describe exactly what you want the AI to create..."
+msgstr "Terangkan dengan tepat apa yang anda mahu AI ciptakan..."
+
+msgid "Generate Output"
+msgstr "Hasilkan Output"
+
+msgid "(Editable)"
+msgstr "(Boleh diedit)"
+
+msgid "AI output will appear here..."
+msgstr "Output AI akan muncul di sini..."
+
+msgid "Insert into Editor"
+msgstr "Masukkan ke dalam Editor"
+
+msgid "How to get your API Key"
+msgstr "Bagaimana untuk mendapatkan Kunci API anda"
+
+msgid "Sign Up Free"
+msgstr "Daftar Percuma"
+
+msgid "Get Free Credits"
+msgstr "Dapatkan Kredit Percuma"
+
+msgid "You will receive"
+msgstr "Anda akan menerima"
+
+msgid "10,000 Free Credits"
+msgstr "10,000 Kredit Percuma"
+
+msgid "instantly upon registration."
+msgstr "serta-merta selepas pendaftaran."
+
+msgid "Create Key"
+msgstr "Cipta Kunci"
+
+msgid "Go to the API Keys section in your dashboard to generate your secret key."
+msgstr "Pergi ke bahagian Kunci API dalam papan pemuka anda untuk menjana kunci rahsia anda."
+
+msgid "Enter your Zywrap.com API Key to connect your account."
+msgstr "Masukkan Kunci API Zywrap.com anda untuk menyambungkan akaun anda."
+
+msgid "To get your API key, log in to"
+msgstr "Untuk mendapatkan kunci API anda, log masuk ke"
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "dan navigasi ke Papan Pemuka / Kunci API anda."
+
+msgid "Get a Valid API key, log in to"
+msgstr "Dapatkan kunci API yang Sah, log masuk ke"
+
+msgid "Validate API Key"
+msgstr "Sahkan Kunci API"
+
+msgid "Sync Status"
+msgstr "Status Penyegerakan"
+
+msgid "Not Synced"
+msgstr "Tidak Disegerakkan"
+
+msgid "Synced"
+msgstr "disegerakkan"
+
+msgid "Last Sync"
+msgstr "Penyegerakan Terakhir"
+
+msgid "Your local database must be synced with the Zywrap catalog to use the Playground and Editor tools."
+msgstr "Pangkalan data tempatan anda mesti disegerakkan dengan katalog Zywrap untuk menggunakan alatan Taman Permainan dan Editor."
+
+msgid "Download & Full Import"
+msgstr "Muat Turun & Import Penuh"
+
+msgid "Get Updates"
+msgstr "Dapatkan Kemas Kini"
+
+msgid "Sorted A-Z"
+msgstr "Diisih A-Z"
+
+msgid "Default Order"
+msgstr "Pesanan Lalai"
+
+msgid "Loading..."
+msgstr "Memuatkan..."
+
+msgid "Ready to generate content. Select a wrapper and click Run."
+msgstr "Bersedia untuk menjana kandungan. Pilih pembungkus dan klik Jalankan."
+
+msgid "Copied!"
+msgstr "disalin!"
+
+msgid "Please generate some text first before summarizing."
+msgstr "Sila jana beberapa teks dahulu sebelum meringkaskan."
+
+msgid "This will replace your current text in the Context field. Continue?"
+msgstr "Ini akan menggantikan teks semasa anda dalam medan Konteks. teruskan?"
+
+msgid "Generating content... Please wait..."
+msgstr "Menjana kandungan... Sila tunggu..."
+
+msgid "Running..."
+msgstr "Berlari..."
+
+msgid "Error: Wrapper is required."
+msgstr "Ralat: Pembungkus diperlukan."
+
+msgid "Received empty output."
+msgstr "Menerima output kosong."
+
+msgid "Checking API status..."
+msgstr "Menyemak status API..."
+
+msgid "Downloading and importing... This may take several minutes."
+msgstr "Memuat turun dan mengimport... Ini mungkin mengambil masa beberapa minit."
+
+msgid "Only new and changed data is being fetched and imported. This should take a few moments..."
+msgstr "Hanya data baharu dan diubah sedang diambil dan diimport. Ini perlu mengambil masa beberapa saat..."
+
+msgid "Checking for updates..."
+msgstr "Menyemak kemas kini..."
+
+msgid "Could not find an text area to insert into."
+msgstr "Tidak dapat mencari kawasan teks untuk disisipkan."
+
+msgid "Search Templates"
+msgstr "Cari Templat"
+
+msgid "Close Search"
+msgstr "Tutup Carian"
+
+msgid "Total API Runs (24h)"
+msgstr "Jumlah Larian API (24j)"
+
+msgid "API Errors (24h)"
+msgstr "Ralat API (24j)"
+
+msgid "Top Model Used"
+msgstr "Model Teratas Digunakan"
+
+msgid "Search by Action, User or Wrapper..."
+msgstr "Cari mengikut Tindakan, Pengguna atau Pembungkus..."
+
+msgid "Filter by Status"
+msgstr "Tapis mengikut Status"
+
+msgid "Action & User"
+msgstr "Tindakan & Pengguna"
+
+msgid "Wrapper / Model"
+msgstr "Pembalut / Model"
+
+msgid "Performance & Tokens"
+msgstr "Prestasi & Token"
+
+msgid "No log entries found or a database error occurred."
+msgstr "Tiada entri log ditemui atau ralat pangkalan data berlaku."
+
+msgid "HTTP:"
+msgstr "HTTP:"
+
+msgid "Tokens:"
+msgstr "Token:"
+
+msgid "No tokens recorded"
+msgstr "Tiada token direkodkan"
+
+msgid "Request completed successfully. Full request/response data would be displayed here."
+msgstr "Permintaan berjaya diselesaikan. Data permintaan/tindak balas penuh akan dipaparkan di sini."
+
+msgid "Zywrap Content Generation"
+msgstr "Penjanaan Kandungan Zywrap"
+
+msgid "Zywrap Settings"
+msgstr "Tetapan Zywrap"
+
+msgid "Zywrap Data Sync"
+msgstr "Penyegerakan Data Zywrap"
+
+msgid "Zywrap Logs"
+msgstr "Log Zywrap"
+
+msgid "Core Settings"
+msgstr "Tetapan Teras"
+
+msgid "Use Case"
+msgstr "Use Case"
+
+msgid "-- Search Results --"
+msgstr "-- Hasil Carian --"
+
+msgid "Console Output"
+msgstr "Output Konsol"

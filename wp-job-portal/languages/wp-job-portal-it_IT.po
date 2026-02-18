@@ -12742,3 +12742,225 @@ msgstr "chiavi non utilizzate che possono essere rimosse in sicurezza."
 
 msgid "unused keys have been deleted successfully!"
 msgstr "le chiavi non utilizzate sono state cancellate con successo!"
+
+msgid "AI Content Generator"
+msgstr "Generatore di contenuti AI"
+
+msgid "Search Wrapper"
+msgstr "Cerca involucro"
+
+msgid "Wrapper Template"
+msgstr "Modello di involucro"
+
+msgid "Reference Context"
+msgstr "Contesto di riferimento"
+
+msgid "(Source Data)"
+msgstr "(Dati di origine)"
+
+msgid "Paste source text or data context here..."
+msgstr "Incolla qui il testo di origine o il contesto dei dati..."
+
+msgid "Negative Words"
+msgstr "Parole negative"
+
+msgid "words to avoid..."
+msgstr "parole da evitare..."
+
+msgid "Instructions / Prompt"
+msgstr "Istruzioni/Suggerimento"
+
+msgid "Optional"
+msgstr "Opzionale"
+
+msgid "Describe exactly what you want the AI to create..."
+msgstr "Descrivi esattamente cosa vuoi che l'intelligenza artificiale crei..."
+
+msgid "Generate Output"
+msgstr "Genera output"
+
+msgid "(Editable)"
+msgstr "(Modificabile)"
+
+msgid "AI output will appear here..."
+msgstr "L'output AI apparirà qui..."
+
+msgid "Insert into Editor"
+msgstr "Inserisci nell'editor"
+
+msgid "How to get your API Key"
+msgstr "Come ottenere la chiave API"
+
+msgid "Sign Up Free"
+msgstr "Iscriviti gratuitamente"
+
+msgid "Get Free Credits"
+msgstr "Ottieni crediti gratuiti"
+
+msgid "You will receive"
+msgstr "Riceverai"
+
+msgid "10,000 Free Credits"
+msgstr "10.000 crediti gratuiti"
+
+msgid "instantly upon registration."
+msgstr "istantaneamente al momento della registrazione."
+
+msgid "Create Key"
+msgstr "Crea chiave"
+
+msgid "Go to the API Keys section in your dashboard to generate your secret key."
+msgstr "Vai alla sezione Chiavi API nella dashboard per generare la tua chiave segreta."
+
+msgid "Enter your Zywrap.com API Key to connect your account."
+msgstr "Inserisci la tua chiave API Zywrap.com per connettere il tuo account."
+
+msgid "To get your API key, log in to"
+msgstr "Per ottenere la chiave API, accedi a"
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "e vai alla dashboard/chiavi API."
+
+msgid "Get a Valid API key, log in to"
+msgstr "Ottieni una chiave API valida, accedi a"
+
+msgid "Validate API Key"
+msgstr "Convalida la chiave API"
+
+msgid "Sync Status"
+msgstr "Stato di sincronizzazione"
+
+msgid "Not Synced"
+msgstr "Non sincronizzato"
+
+msgid "Synced"
+msgstr "Sincronizzato"
+
+msgid "Last Sync"
+msgstr "Ultima sincronizzazione"
+
+msgid "Your local database must be synced with the Zywrap catalog to use the Playground and Editor tools."
+msgstr "Il tuo database locale deve essere sincronizzato con il catalogo Zywrap per utilizzare gli strumenti Playground ed Editor."
+
+msgid "Download & Full Import"
+msgstr "Download e importazione completa"
+
+msgid "Get Updates"
+msgstr "Ottieni aggiornamenti"
+
+msgid "Sorted A-Z"
+msgstr "Ordinati dalla A alla Z"
+
+msgid "Default Order"
+msgstr "Ordine predefinito"
+
+msgid "Loading..."
+msgstr "Caricamento..."
+
+msgid "Ready to generate content. Select a wrapper and click Run."
+msgstr "Pronto per generare contenuti. Selezionare un wrapper e fare clic su Esegui."
+
+msgid "Copied!"
+msgstr "Copiato!"
+
+msgid "Please generate some text first before summarizing."
+msgstr "Si prega di generare del testo prima di riassumere."
+
+msgid "This will replace your current text in the Context field. Continue?"
+msgstr "Questo sostituirà il testo corrente nel campo Contesto. Continuare?"
+
+msgid "Generating content... Please wait..."
+msgstr "Generazione contenuto in corso... Attendere prego..."
+
+msgid "Running..."
+msgstr "Corsa..."
+
+msgid "Error: Wrapper is required."
+msgstr "Errore: il wrapper è obbligatorio."
+
+msgid "Received empty output."
+msgstr "Ricevuto output vuoto."
+
+msgid "Checking API status..."
+msgstr "Controllo dello stato dell'API in corso..."
+
+msgid "Downloading and importing... This may take several minutes."
+msgstr "Download e importazione in corso... L'operazione potrebbe richiedere diversi minuti."
+
+msgid "Only new and changed data is being fetched and imported. This should take a few moments..."
+msgstr "Vengono recuperati e importati solo i dati nuovi e modificati. L'operazione dovrebbe richiedere alcuni istanti..."
+
+msgid "Checking for updates..."
+msgstr "Controllo aggiornamenti..."
+
+msgid "Could not find an text area to insert into."
+msgstr "Impossibile trovare un'area di testo in cui inserirlo."
+
+msgid "Search Templates"
+msgstr "Cerca modelli"
+
+msgid "Close Search"
+msgstr "Chiudi ricerca"
+
+msgid "Total API Runs (24h)"
+msgstr "Esecuzioni API totali (24 ore)"
+
+msgid "API Errors (24h)"
+msgstr "Errori API (24 ore)"
+
+msgid "Top Model Used"
+msgstr "Modello di punta usato"
+
+msgid "Search by Action, User or Wrapper..."
+msgstr "Cerca per azione, utente o wrapper..."
+
+msgid "Filter by Status"
+msgstr "Filtra per stato"
+
+msgid "Action & User"
+msgstr "Azione e utente"
+
+msgid "Wrapper / Model"
+msgstr "Involucro/Modello"
+
+msgid "Performance & Tokens"
+msgstr "Prestazioni e gettoni"
+
+msgid "No log entries found or a database error occurred."
+msgstr "Nessuna voce di registro trovata oppure si è verificato un errore nel database."
+
+msgid "HTTP:"
+msgstr "HTTP:"
+
+msgid "Tokens:"
+msgstr "Gettoni:"
+
+msgid "No tokens recorded"
+msgstr "Nessun token registrato"
+
+msgid "Request completed successfully. Full request/response data would be displayed here."
+msgstr "Richiesta completata con successo. I dati completi di richiesta/risposta verranno visualizzati qui."
+
+msgid "Zywrap Content Generation"
+msgstr "Generazione di contenuti Zywrap"
+
+msgid "Zywrap Settings"
+msgstr "Impostazioni di Zywrap"
+
+msgid "Zywrap Data Sync"
+msgstr "Sincronizzazione dati Zywrap"
+
+msgid "Zywrap Logs"
+msgstr "Registri Zywrap"
+
+msgid "Core Settings"
+msgstr "Impostazioni principali"
+
+msgid "Use Case"
+msgstr "Caso d'uso"
+
+msgid "-- Search Results --"
+msgstr "-- Risultati della ricerca --"
+
+msgid "Console Output"
+msgstr "Uscita della console"

@@ -12742,3 +12742,225 @@ msgstr "Güvenli bir şekilde kaldırılabilen kullanılmamış anahtar(lar)."
 
 msgid "unused keys have been deleted successfully!"
 msgstr "kullanılmayan anahtarlar başarıyla silindi!"
+
+msgid "AI Content Generator"
+msgstr "Yapay Zeka İçerik Oluşturucu"
+
+msgid "Search Wrapper"
+msgstr "Arama Paketleyici"
+
+msgid "Wrapper Template"
+msgstr "Paketleyici Şablonu"
+
+msgid "Reference Context"
+msgstr "Referans Bağlamı"
+
+msgid "(Source Data)"
+msgstr "(Kaynak Verileri)"
+
+msgid "Paste source text or data context here..."
+msgstr "Kaynak metni veya veri içeriğini buraya yapıştırın..."
+
+msgid "Negative Words"
+msgstr "Olumsuz Kelimeler"
+
+msgid "words to avoid..."
+msgstr "kaçınılması gereken sözler..."
+
+msgid "Instructions / Prompt"
+msgstr "Talimatlar / Uyarı"
+
+msgid "Optional"
+msgstr "İsteğe bağlı"
+
+msgid "Describe exactly what you want the AI to create..."
+msgstr "Yapay zekanın ne yaratmasını istediğinizi tam olarak açıklayın..."
+
+msgid "Generate Output"
+msgstr "Çıktı Oluştur"
+
+msgid "(Editable)"
+msgstr "(Düzenlenebilir)"
+
+msgid "AI output will appear here..."
+msgstr "AI çıktısı burada görünecek..."
+
+msgid "Insert into Editor"
+msgstr "Düzenleyiciye Ekle"
+
+msgid "How to get your API Key"
+msgstr "API Anahtarınızı nasıl alırsınız?"
+
+msgid "Sign Up Free"
+msgstr "Ücretsiz Kayıt Olun"
+
+msgid "Get Free Credits"
+msgstr "Ücretsiz Kredi Alın"
+
+msgid "You will receive"
+msgstr "Alacaksın"
+
+msgid "10,000 Free Credits"
+msgstr "10.000 Ücretsiz Kredi"
+
+msgid "instantly upon registration."
+msgstr "kayıt anında anında."
+
+msgid "Create Key"
+msgstr "Anahtar Oluştur"
+
+msgid "Go to the API Keys section in your dashboard to generate your secret key."
+msgstr "Gizli anahtarınızı oluşturmak için kontrol panelinizdeki API Anahtarları bölümüne gidin."
+
+msgid "Enter your Zywrap.com API Key to connect your account."
+msgstr "Hesabınıza bağlanmak için Zywrap.com API Anahtarınızı girin."
+
+msgid "To get your API key, log in to"
+msgstr "API anahtarınızı almak için şu adreste oturum açın:"
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "ve Kontrol Panelinize / API Anahtarlarınıza gidin."
+
+msgid "Get a Valid API key, log in to"
+msgstr "Geçerli bir API anahtarı alın, oturum açın"
+
+msgid "Validate API Key"
+msgstr "API Anahtarını Doğrulayın"
+
+msgid "Sync Status"
+msgstr "Senkronizasyon Durumu"
+
+msgid "Not Synced"
+msgstr "Senkronize Edilmedi"
+
+msgid "Synced"
+msgstr "Senkronize edildi"
+
+msgid "Last Sync"
+msgstr "Son Senkronizasyon"
+
+msgid "Your local database must be synced with the Zywrap catalog to use the Playground and Editor tools."
+msgstr "Playground ve Editor araçlarını kullanmak için yerel veritabanınızın Zywrap kataloğuyla senkronize edilmesi gerekir."
+
+msgid "Download & Full Import"
+msgstr "İndirme ve Tam İçe Aktarma"
+
+msgid "Get Updates"
+msgstr "Güncellemeleri Alın"
+
+msgid "Sorted A-Z"
+msgstr "A'dan Z'ye sıralanmış"
+
+msgid "Default Order"
+msgstr "Varsayılan Sıra"
+
+msgid "Loading..."
+msgstr "Yükleniyor..."
+
+msgid "Ready to generate content. Select a wrapper and click Run."
+msgstr "İçerik oluşturmaya hazır. Bir sarmalayıcı seçin ve Çalıştır'a tıklayın."
+
+msgid "Copied!"
+msgstr "Kopyalandı!"
+
+msgid "Please generate some text first before summarizing."
+msgstr "Lütfen özetlemeden önce biraz metin oluşturun."
+
+msgid "This will replace your current text in the Context field. Continue?"
+msgstr "Bu, Bağlam alanındaki mevcut metninizin yerini alacaktır. Devam etmek?"
+
+msgid "Generating content... Please wait..."
+msgstr "İçerik oluşturuluyor... Lütfen bekleyin..."
+
+msgid "Running..."
+msgstr "Koşma..."
+
+msgid "Error: Wrapper is required."
+msgstr "Hata: Sarmalayıcı gerekli."
+
+msgid "Received empty output."
+msgstr "Boş çıktı alındı."
+
+msgid "Checking API status..."
+msgstr "API durumu kontrol ediliyor..."
+
+msgid "Downloading and importing... This may take several minutes."
+msgstr "İndiriliyor ve içe aktarılıyor... Bu işlem birkaç dakika sürebilir."
+
+msgid "Only new and changed data is being fetched and imported. This should take a few moments..."
+msgstr "Yalnızca yeni ve değiştirilmiş veriler getiriliyor ve içe aktarılıyor. Bu birkaç dakika sürecektir..."
+
+msgid "Checking for updates..."
+msgstr "Güncellemeler kontrol ediliyor..."
+
+msgid "Could not find an text area to insert into."
+msgstr "Eklenecek metin alanı bulunamadı."
+
+msgid "Search Templates"
+msgstr "Şablonlarda Ara"
+
+msgid "Close Search"
+msgstr "Aramayı Kapat"
+
+msgid "Total API Runs (24h)"
+msgstr "Toplam API Çalıştırması (24 saat)"
+
+msgid "API Errors (24h)"
+msgstr "API Hataları (24 saat)"
+
+msgid "Top Model Used"
+msgstr "Kullanılan En İyi Model"
+
+msgid "Search by Action, User or Wrapper..."
+msgstr "Eyleme, Kullanıcıya veya Paketleyiciye göre arayın..."
+
+msgid "Filter by Status"
+msgstr "Duruma göre filtrele"
+
+msgid "Action & User"
+msgstr "Eylem ve Kullanıcı"
+
+msgid "Wrapper / Model"
+msgstr "Paketleyici / Model"
+
+msgid "Performance & Tokens"
+msgstr "Performans ve Jetonlar"
+
+msgid "No log entries found or a database error occurred."
+msgstr "Hiçbir günlük girişi bulunamadı veya bir veritabanı hatası oluştu."
+
+msgid "HTTP:"
+msgstr "HTTP:"
+
+msgid "Tokens:"
+msgstr "Jetonlar:"
+
+msgid "No tokens recorded"
+msgstr "Hiçbir belirteç kaydedilmedi"
+
+msgid "Request completed successfully. Full request/response data would be displayed here."
+msgstr "İstek başarıyla tamamlandı. Tam istek/yanıt verileri burada görüntülenecektir."
+
+msgid "Zywrap Content Generation"
+msgstr "Zywrap İçerik Üretimi"
+
+msgid "Zywrap Settings"
+msgstr "Zywrap Ayarları"
+
+msgid "Zywrap Data Sync"
+msgstr "Zywrap Veri Senkronizasyonu"
+
+msgid "Zywrap Logs"
+msgstr "Zywrap Günlükleri"
+
+msgid "Core Settings"
+msgstr "Temel Ayarlar"
+
+msgid "Use Case"
+msgstr "Kullanım Örneği"
+
+msgid "-- Search Results --"
+msgstr "-- Arama Sonuçları --"
+
+msgid "Console Output"
+msgstr "Konsol Çıkışı"

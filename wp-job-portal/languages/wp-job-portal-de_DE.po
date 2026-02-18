@@ -12742,3 +12742,225 @@ msgstr "unbenutzte Schlüssel, die sicher entfernt werden können."
 
 msgid "unused keys have been deleted successfully!"
 msgstr "Nicht verwendete Schlüssel wurden erfolgreich gelöscht!"
+
+msgid "AI Content Generator"
+msgstr "KI-Inhaltsgenerator"
+
+msgid "Search Wrapper"
+msgstr "Such-Wrapper"
+
+msgid "Wrapper Template"
+msgstr "Wrapper-Vorlage"
+
+msgid "Reference Context"
+msgstr "Referenzkontext"
+
+msgid "(Source Data)"
+msgstr "(Quellendaten)"
+
+msgid "Paste source text or data context here..."
+msgstr "Quelltext oder Datenkontext hier einfügen..."
+
+msgid "Negative Words"
+msgstr "Negative Worte"
+
+msgid "words to avoid..."
+msgstr "Worte, die man vermeiden sollte..."
+
+msgid "Instructions / Prompt"
+msgstr "Anweisungen / Eingabeaufforderung"
+
+msgid "Optional"
+msgstr "Optional"
+
+msgid "Describe exactly what you want the AI to create..."
+msgstr "Beschreiben Sie genau, was die KI erstellen soll ..."
+
+msgid "Generate Output"
+msgstr "Ausgabe generieren"
+
+msgid "(Editable)"
+msgstr "(Bearbeitbar)"
+
+msgid "AI output will appear here..."
+msgstr "Die KI-Ausgabe erscheint hier..."
+
+msgid "Insert into Editor"
+msgstr "In den Editor einfügen"
+
+msgid "How to get your API Key"
+msgstr "So erhalten Sie Ihren API-Schlüssel"
+
+msgid "Sign Up Free"
+msgstr "Melden Sie sich kostenlos an"
+
+msgid "Get Free Credits"
+msgstr "Erhalten Sie kostenlose Credits"
+
+msgid "You will receive"
+msgstr "Sie erhalten"
+
+msgid "10,000 Free Credits"
+msgstr "10.000 kostenlose Credits"
+
+msgid "instantly upon registration."
+msgstr "sofort nach der Anmeldung."
+
+msgid "Create Key"
+msgstr "Schlüssel erstellen"
+
+msgid "Go to the API Keys section in your dashboard to generate your secret key."
+msgstr "Gehen Sie in Ihrem Dashboard zum Abschnitt „API-Schlüssel“, um Ihren geheimen Schlüssel zu generieren."
+
+msgid "Enter your Zywrap.com API Key to connect your account."
+msgstr "Geben Sie Ihren Zywrap.com-API-Schlüssel ein, um Ihr Konto zu verbinden."
+
+msgid "To get your API key, log in to"
+msgstr "Um Ihren API-Schlüssel zu erhalten, melden Sie sich an"
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "und navigieren Sie zu Ihrem Dashboard / Ihren API-Schlüsseln."
+
+msgid "Get a Valid API key, log in to"
+msgstr "Holen Sie sich einen gültigen API-Schlüssel und melden Sie sich an"
+
+msgid "Validate API Key"
+msgstr "API-Schlüssel validieren"
+
+msgid "Sync Status"
+msgstr "Synchronisierungsstatus"
+
+msgid "Not Synced"
+msgstr "Nicht synchronisiert"
+
+msgid "Synced"
+msgstr "Synchronisiert"
+
+msgid "Last Sync"
+msgstr "Letzte Synchronisierung"
+
+msgid "Your local database must be synced with the Zywrap catalog to use the Playground and Editor tools."
+msgstr "Ihre lokale Datenbank muss mit dem Zywrap-Katalog synchronisiert werden, um die Playground- und Editor-Tools verwenden zu können."
+
+msgid "Download & Full Import"
+msgstr "Herunterladen und vollständiger Import"
+
+msgid "Get Updates"
+msgstr "Holen Sie sich Updates"
+
+msgid "Sorted A-Z"
+msgstr "Von A bis Z sortiert"
+
+msgid "Default Order"
+msgstr "Standardreihenfolge"
+
+msgid "Loading..."
+msgstr "Laden..."
+
+msgid "Ready to generate content. Select a wrapper and click Run."
+msgstr "Bereit, Inhalte zu generieren. Wählen Sie einen Wrapper aus und klicken Sie auf Ausführen."
+
+msgid "Copied!"
+msgstr "Kopiert!"
+
+msgid "Please generate some text first before summarizing."
+msgstr "Bitte generieren Sie zunächst einen Text, bevor Sie eine Zusammenfassung erstellen."
+
+msgid "This will replace your current text in the Context field. Continue?"
+msgstr "Dadurch wird Ihr aktueller Text im Feld „Kontext“ ersetzt. Weitermachen?"
+
+msgid "Generating content... Please wait..."
+msgstr "Inhalt wird generiert... Bitte warten..."
+
+msgid "Running..."
+msgstr "Läuft..."
+
+msgid "Error: Wrapper is required."
+msgstr "Fehler: Wrapper ist erforderlich."
+
+msgid "Received empty output."
+msgstr "Leere Ausgabe erhalten."
+
+msgid "Checking API status..."
+msgstr "API-Status wird überprüft..."
+
+msgid "Downloading and importing... This may take several minutes."
+msgstr "Herunterladen und Importieren... Dies kann einige Minuten dauern."
+
+msgid "Only new and changed data is being fetched and imported. This should take a few moments..."
+msgstr "Es werden nur neue und geänderte Daten abgerufen und importiert. Dies sollte einige Augenblicke dauern..."
+
+msgid "Checking for updates..."
+msgstr "Suche nach Updates..."
+
+msgid "Could not find an text area to insert into."
+msgstr "Es konnte kein Textbereich zum Einfügen gefunden werden."
+
+msgid "Search Templates"
+msgstr "Suchvorlagen"
+
+msgid "Close Search"
+msgstr "Suche schließen"
+
+msgid "Total API Runs (24h)"
+msgstr "Gesamte API-Läufe (24 Stunden)"
+
+msgid "API Errors (24h)"
+msgstr "API-Fehler (24h)"
+
+msgid "Top Model Used"
+msgstr "Topmodell gebraucht"
+
+msgid "Search by Action, User or Wrapper..."
+msgstr "Suche nach Aktion, Benutzer oder Wrapper..."
+
+msgid "Filter by Status"
+msgstr "Nach Status filtern"
+
+msgid "Action & User"
+msgstr "Aktion & Benutzer"
+
+msgid "Wrapper / Model"
+msgstr "Wrapper/Modell"
+
+msgid "Performance & Tokens"
+msgstr "Leistung und Token"
+
+msgid "No log entries found or a database error occurred."
+msgstr "Es wurden keine Protokolleinträge gefunden oder es ist ein Datenbankfehler aufgetreten."
+
+msgid "HTTP:"
+msgstr "HTTP:"
+
+msgid "Tokens:"
+msgstr "Token:"
+
+msgid "No tokens recorded"
+msgstr "Keine Token aufgezeichnet"
+
+msgid "Request completed successfully. Full request/response data would be displayed here."
+msgstr "Anfrage erfolgreich abgeschlossen. Hier werden die vollständigen Anfrage-/Antwortdaten angezeigt."
+
+msgid "Zywrap Content Generation"
+msgstr "Generierung von Zywrap-Inhalten"
+
+msgid "Zywrap Settings"
+msgstr "Zywrap-Einstellungen"
+
+msgid "Zywrap Data Sync"
+msgstr "Zywrap-Datensynchronisierung"
+
+msgid "Zywrap Logs"
+msgstr "Zywrap-Protokolle"
+
+msgid "Core Settings"
+msgstr "Kerneinstellungen"
+
+msgid "Use Case"
+msgstr "Anwendungsfall"
+
+msgid "-- Search Results --"
+msgstr "-- Suchergebnisse --"
+
+msgid "Console Output"
+msgstr "Konsolenausgabe"

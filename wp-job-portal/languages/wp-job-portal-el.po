@@ -12742,3 +12742,225 @@ msgstr "αχρησιμοποίητο(α) κλειδί(α) που μπορούν 
 
 msgid "unused keys have been deleted successfully!"
 msgstr "τα αχρησιμοποίητα κλειδιά διαγράφηκαν με επιτυχία!"
+
+msgid "AI Content Generator"
+msgstr "Γεννήτρια περιεχομένου AI"
+
+msgid "Search Wrapper"
+msgstr "Αναζήτηση Περιτύλιγμα"
+
+msgid "Wrapper Template"
+msgstr "Πρότυπο περιτυλίγματος"
+
+msgid "Reference Context"
+msgstr "Πλαίσιο αναφοράς"
+
+msgid "(Source Data)"
+msgstr "(Στοιχεία πηγής)"
+
+msgid "Paste source text or data context here..."
+msgstr "Επικολλήστε εδώ το κείμενο πηγής ή το πλαίσιο δεδομένων..."
+
+msgid "Negative Words"
+msgstr "Αρνητικές λέξεις"
+
+msgid "words to avoid..."
+msgstr "λόγια για αποφυγή..."
+
+msgid "Instructions / Prompt"
+msgstr "Οδηγίες / Προτροπή"
+
+msgid "Optional"
+msgstr "Προαιρετικός"
+
+msgid "Describe exactly what you want the AI to create..."
+msgstr "Περιγράψτε ακριβώς τι θέλετε να δημιουργήσει το AI..."
+
+msgid "Generate Output"
+msgstr "Δημιουργία εξόδου"
+
+msgid "(Editable)"
+msgstr "(Επεξεργάσιμο)"
+
+msgid "AI output will appear here..."
+msgstr "Η έξοδος AI θα εμφανιστεί εδώ..."
+
+msgid "Insert into Editor"
+msgstr "Εισαγωγή στο πρόγραμμα επεξεργασίας"
+
+msgid "How to get your API Key"
+msgstr "Πώς να αποκτήσετε το κλειδί API σας"
+
+msgid "Sign Up Free"
+msgstr "Εγγραφείτε Δωρεάν"
+
+msgid "Get Free Credits"
+msgstr "Λάβετε δωρεάν πιστώσεις"
+
+msgid "You will receive"
+msgstr "θα λάβεις"
+
+msgid "10,000 Free Credits"
+msgstr "10.000 δωρεάν πιστώσεις"
+
+msgid "instantly upon registration."
+msgstr "αμέσως μετά την εγγραφή."
+
+msgid "Create Key"
+msgstr "Δημιουργία κλειδιού"
+
+msgid "Go to the API Keys section in your dashboard to generate your secret key."
+msgstr "Μεταβείτε στην ενότητα Κλειδιά API στον πίνακα ελέγχου σας για να δημιουργήσετε το μυστικό κλειδί σας."
+
+msgid "Enter your Zywrap.com API Key to connect your account."
+msgstr "Εισαγάγετε το κλειδί API Zywrap.com για να συνδέσετε τον λογαριασμό σας."
+
+msgid "To get your API key, log in to"
+msgstr "Για να λάβετε το κλειδί API σας, συνδεθείτε στο"
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "και πλοηγηθείτε στα πλήκτρα Πίνακα ελέγχου / API."
+
+msgid "Get a Valid API key, log in to"
+msgstr "Αποκτήστε ένα έγκυρο κλειδί API, συνδεθείτε"
+
+msgid "Validate API Key"
+msgstr "Επικύρωση κλειδιού API"
+
+msgid "Sync Status"
+msgstr "Κατάσταση συγχρονισμού"
+
+msgid "Not Synced"
+msgstr "Μη συγχρονισμένο"
+
+msgid "Synced"
+msgstr "Συγχρονίστηκε"
+
+msgid "Last Sync"
+msgstr "Τελευταίος συγχρονισμός"
+
+msgid "Your local database must be synced with the Zywrap catalog to use the Playground and Editor tools."
+msgstr "Η τοπική σας βάση δεδομένων πρέπει να συγχρονιστεί με τον κατάλογο Zywrap για να χρησιμοποιήσετε τα εργαλεία Playground και Editor."
+
+msgid "Download & Full Import"
+msgstr "Λήψη & πλήρης εισαγωγή"
+
+msgid "Get Updates"
+msgstr "Λάβετε ενημερώσεις"
+
+msgid "Sorted A-Z"
+msgstr "Ταξινόμηση Α-Ω"
+
+msgid "Default Order"
+msgstr "Προεπιλεγμένη παραγγελία"
+
+msgid "Loading..."
+msgstr "Φόρτωση..."
+
+msgid "Ready to generate content. Select a wrapper and click Run."
+msgstr "Έτοιμοι να δημιουργήσουν περιεχόμενο. Επιλέξτε ένα περιτύλιγμα και κάντε κλικ στην επιλογή Εκτέλεση."
+
+msgid "Copied!"
+msgstr "Αντιγράφηκε!"
+
+msgid "Please generate some text first before summarizing."
+msgstr "Δημιουργήστε πρώτα κάποιο κείμενο πριν το συνοψίσετε."
+
+msgid "This will replace your current text in the Context field. Continue?"
+msgstr "Αυτό θα αντικαταστήσει το τρέχον κείμενό σας στο πεδίο Context. Συνεχίζω;"
+
+msgid "Generating content... Please wait..."
+msgstr "Δημιουργία περιεχομένου... Περιμένετε..."
+
+msgid "Running..."
+msgstr "Τρέξιμο..."
+
+msgid "Error: Wrapper is required."
+msgstr "Σφάλμα: Απαιτείται περιτύλιγμα."
+
+msgid "Received empty output."
+msgstr "Λήφθηκε κενό αποτέλεσμα."
+
+msgid "Checking API status..."
+msgstr "Έλεγχος κατάστασης API..."
+
+msgid "Downloading and importing... This may take several minutes."
+msgstr "Λήψη και εισαγωγή... Αυτό μπορεί να διαρκέσει αρκετά λεπτά."
+
+msgid "Only new and changed data is being fetched and imported. This should take a few moments..."
+msgstr "Γίνεται ανάκτηση και εισαγωγή μόνο νέων και αλλαγμένων δεδομένων. Αυτό πρέπει να πάρει μερικά λεπτά..."
+
+msgid "Checking for updates..."
+msgstr "Έλεγχος για ενημερώσεις..."
+
+msgid "Could not find an text area to insert into."
+msgstr "Δεν ήταν δυνατή η εύρεση μιας περιοχής κειμένου για εισαγωγή."
+
+msgid "Search Templates"
+msgstr "Αναζήτηση προτύπων"
+
+msgid "Close Search"
+msgstr "Κλείσιμο αναζήτησης"
+
+msgid "Total API Runs (24h)"
+msgstr "Συνολικές εκτελέσεις API (24 ώρες)"
+
+msgid "API Errors (24h)"
+msgstr "Σφάλματα API (24 ώρες)"
+
+msgid "Top Model Used"
+msgstr "Top Model Μεταχειρισμένο"
+
+msgid "Search by Action, User or Wrapper..."
+msgstr "Αναζήτηση ανά ενέργεια, χρήστη ή περιτύλιγμα..."
+
+msgid "Filter by Status"
+msgstr "Φιλτράρισμα κατά κατάσταση"
+
+msgid "Action & User"
+msgstr "Δράση & Χρήστης"
+
+msgid "Wrapper / Model"
+msgstr "Περιτύλιγμα / Μοντέλο"
+
+msgid "Performance & Tokens"
+msgstr "Performance & Tokens"
+
+msgid "No log entries found or a database error occurred."
+msgstr "Δεν βρέθηκαν καταχωρήσεις αρχείου καταγραφής ή παρουσιάστηκε σφάλμα βάσης δεδομένων."
+
+msgid "HTTP:"
+msgstr "HTTP:"
+
+msgid "Tokens:"
+msgstr "Διακριτικά:"
+
+msgid "No tokens recorded"
+msgstr "Δεν έχουν καταγραφεί μάρκες"
+
+msgid "Request completed successfully. Full request/response data would be displayed here."
+msgstr "Το αίτημα ολοκληρώθηκε με επιτυχία. Τα πλήρη δεδομένα αιτήματος/απόκρισης θα εμφανίζονται εδώ."
+
+msgid "Zywrap Content Generation"
+msgstr "Δημιουργία περιεχομένου Zywrap"
+
+msgid "Zywrap Settings"
+msgstr "Ρυθμίσεις Zywrap"
+
+msgid "Zywrap Data Sync"
+msgstr "Zywrap Data Sync"
+
+msgid "Zywrap Logs"
+msgstr "Αρχεία καταγραφής Zywrap"
+
+msgid "Core Settings"
+msgstr "Βασικές ρυθμίσεις"
+
+msgid "Use Case"
+msgstr "Περίπτωση χρήσης"
+
+msgid "-- Search Results --"
+msgstr "-- Αποτελέσματα αναζήτησης --"
+
+msgid "Console Output"
+msgstr "Έξοδος κονσόλας"

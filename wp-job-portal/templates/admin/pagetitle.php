@@ -340,6 +340,12 @@ if ($wpjobportal_module) {
 			case 'importresult':
 					$wpjobportal_html .='<h1 class="wpjobportal-head-text">'. esc_html(__('Import Data Report', 'wp-job-portal')).'</h1>';
 			break;
+			case 'playground':
+					$wpjobportal_html .='<h1 class="wpjobportal-head-text">'. esc_html(__('AI Content Generation', 'wp-job-portal')).'</h1>';
+			break;
+			case 'zywraplogs':
+					$wpjobportal_html .='<h1 class="wpjobportal-head-text">'. esc_html(__('ZYWRAP Logs', 'wp-job-portal')).'</h1>';
+			break;
 		}
 	$wpjobportal_html.=  '</div>';
 	echo wp_kses($wpjobportal_html, WPJOBPORTAL_ALLOWED_TAGS);

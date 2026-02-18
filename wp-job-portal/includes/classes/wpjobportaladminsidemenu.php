@@ -246,6 +246,30 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
             </li>
         </ul>
     </li>
+    <li class="treeview <?php if($wpjobportal_controller == 'wpjobportal_zywrap' || $wpjobportal_controller == 'wpjobportal_zywraplogs') echo 'active'; ?>">
+        <a href="admin.php?page=wpjobportal_zywrap" title="<?php echo esc_attr(__('Zywrap' , 'wp-job-portal')); ?>" class="wpjobportaladmin-menu-icon-class wpjobportaladmin-menu-icon-zywrap">
+            <span class="wpjobportaladmin-text">
+                <?php echo esc_html(__('AI Content Generation' , 'wp-job-portal')); ?>
+            </span>
+        </a>
+        <ul class="wpjobportaladmin-sidebar-submenu treeview-menu">
+            <li class="<?php if($wpjobportal_controller == 'wpjobportal_zywrap' && ($wpjobportal_layout == '' || $wpjobportal_layout == 'playground')) echo 'active'; ?>">
+                <a href="admin.php?page=wpjobportal_zywrap&wpjobportallt=playground" title="<?php echo esc_attr(__('AI Playground','wp-job-portal')); ?>">
+                    <?php echo esc_html(__('AI Playground','wp-job-portal')); ?>
+                </a>
+            </li>
+            <li class="<?php if($wpjobportal_controller == 'wpjobportal_zywrap' && $wpjobportal_layout == 'zywrap') echo 'active'; ?>">
+                <a href="admin.php?page=wpjobportal_zywrap&wpjobportallt=zywrap" title="<?php echo esc_attr(__('Zywrap Integration','wp-job-portal')); ?>">
+                    <?php echo esc_html(__('Integration','wp-job-portal')); ?>
+                </a>
+            </li>
+            <li class="<?php if($wpjobportal_controller == 'wpjobportal_zywraplogs' ) echo 'active'; ?>">
+                <a href="admin.php?page=wpjobportal_zywraplogs&wpjobportallt=logs" title="<?php echo esc_attr(__('Zywrap Logs','wp-job-portal')); ?>">
+                    <?php echo esc_html(__('Logs','wp-job-portal')); ?>
+                </a>
+            </li>
+        </ul>
+    </li>
     <li class="treeview <?php if($wpjobportal_controller == 'wpjobportal' && $wpjobportal_layout == 'shortcodes' ) echo 'active'; ?>">
         <a href="admin.php?page=wpjobportal&wpjobportallt=shortcodes" title="<?php echo esc_attr(__('short codes' , 'wp-job-portal')); ?>" class="wpjobportaladmin-menu-icon-class wpjobportaladmin-menu-icon-shortcodes">
             <span class="wpjobportaladmin-text">

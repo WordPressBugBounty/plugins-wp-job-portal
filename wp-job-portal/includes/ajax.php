@@ -17,7 +17,25 @@ class WPJOBPORTALajax {
     }
 
     function ajaxhandler() {
-        $fucntin_allowed = array('DataForDepandantFieldResume', 'DataForDepandantField', 'saveJobShortlist', 'saveJobShortlistJobManager', 'getQuickViewByJobId', 'getShortListViewByJobId', 'getShortListViewByJobIdJobPortal', 'getApplyNowByJobid', 'jobapply', 'jobapplyjobmanager', 'getTellaFriend', 'getTellaFriendJobManager', 'deletecompanylogo', 'deleteResumeLogo', 'getuserlistajax', 'getLogForUserById', 'getFieldsForComboByFieldFor', 'getSectionToFillValues', 'getUserIdByCompanyid', 'changeNotifyOfNotifications', 'changeViewOfNotifications', 'getOptionsForFieldEdit', 'listdepartments', 'saveTokenInputTag', 'makeJobCopyAjax', 'getsubcategorypopup', 'updateJobApplyResumeStatus', 'getResumeCommentSection', 'getFolderSection', 'saveToFolderResume', 'storeResumeComments', 'setResumeRatting', 'getResumeDetail', 'getEmailFields', 'jobapplyid', 'getFolderSection', 'getFolderSectionJobManager', 'saveToFolderResume', 'sendEmailToJobSeeker', 'setJobApplyRating', 'getResumeDetailJobManager', 'getEmailFieldsJobManager', 'hideTemplateBanner', 'getListTranslations', 'validateandshowdownloadfilename', 'getlanguagetranslation', 'getPacakageListByUid', 'canceljobapplyasvisitor', 'visitorapplyjob', 'removeResumeFileById', 'getResumeSectionAjax', 'deleteResumeSectionAjax', 'getOptionsForEditSlug', 'getAllRoleLessUsersAjax', 'getNextJobs', 'getNextTemplateJobs','savetokeninputcity','sendmessageresume', 'sendmailtofriend', 'getJobApplyDetailByid', 'setListStyleSession','sendmailtofriendJobManager', 'getResumeCommentSectionJobManager','getPaymentPopup','getPackagePopupForFeaturedCompany','getPackagePopupForFeaturedJob','getPackagePopupForFeaturedResume','getPackagePopupForJobAlert','getPackagePopupJobView','getPackagePopupForCopyJob','getPackagePopupForCompanyContactDetail','getPackagePopupForResumeContactDetail','gettagsbytagname','listDepartments','getPackagePopupForDepartment','deleteUserPhoto','getStripePlans','downloadandinstalladdonfromAjax','getChildForVisibleCombobox','isFieldRequired','getFieldsForComboBySection','getUserRoleBasedInfo','storeConfigurationSingle');
+        $fucntin_allowed = array('DataForDepandantFieldResume', 'DataForDepandantField', 'saveJobShortlist', 'saveJobShortlistJobManager',
+                                'getQuickViewByJobId', 'getShortListViewByJobId', 'getShortListViewByJobIdJobPortal', 'getApplyNowByJobid',
+                                'jobapply', 'jobapplyjobmanager', 'getTellaFriend', 'getTellaFriendJobManager', 'deletecompanylogo', 'deleteResumeLogo',
+                                'getuserlistajax', 'getLogForUserById', 'getFieldsForComboByFieldFor', 'getSectionToFillValues', 'getUserIdByCompanyid',
+                                'changeNotifyOfNotifications', 'changeViewOfNotifications', 'getOptionsForFieldEdit', 'listdepartments',
+                                'saveTokenInputTag', 'makeJobCopyAjax', 'getsubcategorypopup', 'updateJobApplyResumeStatus', 'getResumeCommentSection',
+                                'getFolderSection', 'saveToFolderResume', 'storeResumeComments', 'setResumeRatting', 'getResumeDetail', 'getEmailFields',
+                                'jobapplyid', 'getFolderSection', 'getFolderSectionJobManager', 'saveToFolderResume', 'sendEmailToJobSeeker',
+                                'setJobApplyRating', 'getResumeDetailJobManager', 'getEmailFieldsJobManager', 'hideTemplateBanner', 'getListTranslations',
+                                'validateandshowdownloadfilename', 'getlanguagetranslation', 'getPacakageListByUid', 'canceljobapplyasvisitor',
+                                'visitorapplyjob', 'removeResumeFileById', 'getResumeSectionAjax', 'deleteResumeSectionAjax', 'getOptionsForEditSlug',
+                                'getAllRoleLessUsersAjax', 'getNextJobs', 'getNextTemplateJobs','savetokeninputcity','sendmessageresume', 'sendmailtofriend',
+                                'getJobApplyDetailByid', 'setListStyleSession','sendmailtofriendJobManager', 'getResumeCommentSectionJobManager',
+                                'getPaymentPopup','getPackagePopupForFeaturedCompany','getPackagePopupForFeaturedJob','getPackagePopupForFeaturedResume',
+                                'getPackagePopupForJobAlert','getPackagePopupJobView','getPackagePopupForCopyJob','getPackagePopupForCompanyContactDetail',
+                                'getPackagePopupForResumeContactDetail','gettagsbytagname','listDepartments','getPackagePopupForDepartment','deleteUserPhoto',
+                                'getStripePlans','downloadandinstalladdonfromAjax','getChildForVisibleCombobox','isFieldRequired','getFieldsForComboBySection',
+                                'getUserRoleBasedInfo','storeConfigurationSingle','importZywrapData','checkZywrapApiKey','importZywrapBatchProcess',
+                                'getWrappersByCategory','executeZywrapProxy','getZywrapAllWrappers');
         $wpjobportal_task = WPJOBPORTALrequest::getVar('task');
         if($wpjobportal_task != '' && in_array($wpjobportal_task, $fucntin_allowed)){
             $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme');

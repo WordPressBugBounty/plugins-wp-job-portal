@@ -56,6 +56,14 @@ class WPJOBPORTALdeactivation {
             $wpdb->prefix."wj_portal_users",
             $wpdb->prefix."wj_portal_slug",
             $wpdb->prefix."wj_portal_jswjsessiondata",
+
+            //zywrap classes
+            $wpdb->prefix."wj_portal_zywrap_categories",
+            $wpdb->prefix."wj_portal_zywrap_languages",
+            $wpdb->prefix."wj_portal_zywrap_ai_models",
+            $wpdb->prefix."wj_portal_zywrap_wrappers",
+            $wpdb->prefix."wj_portal_zywrap_block_templates",
+            $wpdb->prefix."wj_portal_zywrap_logs",
         );
         return $wpjobportal_tables;
     }

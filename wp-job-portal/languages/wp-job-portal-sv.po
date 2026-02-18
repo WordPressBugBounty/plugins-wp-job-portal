@@ -12742,3 +12742,225 @@ msgstr "oanvänd(a) nyckel(ar) som säkert kan tas bort."
 
 msgid "unused keys have been deleted successfully!"
 msgstr "oanvända nycklar har raderats!"
+
+msgid "AI Content Generator"
+msgstr "AI Content Generator"
+
+msgid "Search Wrapper"
+msgstr "Sök Wrapper"
+
+msgid "Wrapper Template"
+msgstr "Omslagsmall"
+
+msgid "Reference Context"
+msgstr "Referenssammanhang"
+
+msgid "(Source Data)"
+msgstr "(Källdata)"
+
+msgid "Paste source text or data context here..."
+msgstr "Klistra in källtext eller datakontext här..."
+
+msgid "Negative Words"
+msgstr "Negativa ord"
+
+msgid "words to avoid..."
+msgstr "ord att undvika..."
+
+msgid "Instructions / Prompt"
+msgstr "Instruktioner/Prompt"
+
+msgid "Optional"
+msgstr "Frivillig"
+
+msgid "Describe exactly what you want the AI to create..."
+msgstr "Beskriv exakt vad du vill att AI ska skapa..."
+
+msgid "Generate Output"
+msgstr "Generera utdata"
+
+msgid "(Editable)"
+msgstr "(Redigerbar)"
+
+msgid "AI output will appear here..."
+msgstr "AI-utgång kommer att visas här..."
+
+msgid "Insert into Editor"
+msgstr "Infoga i Editor"
+
+msgid "How to get your API Key"
+msgstr "Hur du får din API-nyckel"
+
+msgid "Sign Up Free"
+msgstr "Registrera dig gratis"
+
+msgid "Get Free Credits"
+msgstr "Få gratis krediter"
+
+msgid "You will receive"
+msgstr "Du kommer att få"
+
+msgid "10,000 Free Credits"
+msgstr "10 000 gratispoäng"
+
+msgid "instantly upon registration."
+msgstr "direkt vid registrering."
+
+msgid "Create Key"
+msgstr "Skapa nyckel"
+
+msgid "Go to the API Keys section in your dashboard to generate your secret key."
+msgstr "Gå till avsnittet API-nycklar i din instrumentpanel för att generera din hemliga nyckel."
+
+msgid "Enter your Zywrap.com API Key to connect your account."
+msgstr "Ange din Zywrap.com API-nyckel för att ansluta ditt konto."
+
+msgid "To get your API key, log in to"
+msgstr "För att få din API-nyckel, logga in på"
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr "och navigera till dina Dashboard/API-nycklar."
+
+msgid "Get a Valid API key, log in to"
+msgstr "Skaffa en giltig API-nyckel, logga in på"
+
+msgid "Validate API Key"
+msgstr "Validera API-nyckel"
+
+msgid "Sync Status"
+msgstr "Synkroniseringsstatus"
+
+msgid "Not Synced"
+msgstr "Ej synkroniserad"
+
+msgid "Synced"
+msgstr "Synkroniserad"
+
+msgid "Last Sync"
+msgstr "Senaste synkronisering"
+
+msgid "Your local database must be synced with the Zywrap catalog to use the Playground and Editor tools."
+msgstr "Din lokala databas måste synkroniseras med Zywrap-katalogen för att kunna använda verktygen Playground och Editor."
+
+msgid "Download & Full Import"
+msgstr "Ladda ner och fullständig import"
+
+msgid "Get Updates"
+msgstr "Få uppdateringar"
+
+msgid "Sorted A-Z"
+msgstr "Sorterat A-Z"
+
+msgid "Default Order"
+msgstr "Standardordning"
+
+msgid "Loading..."
+msgstr "Belastning..."
+
+msgid "Ready to generate content. Select a wrapper and click Run."
+msgstr "Redo att skapa innehåll. Välj ett omslag och klicka på Kör."
+
+msgid "Copied!"
+msgstr "Kopierade!"
+
+msgid "Please generate some text first before summarizing."
+msgstr "Vänligen generera lite text innan du sammanfattar."
+
+msgid "This will replace your current text in the Context field. Continue?"
+msgstr "Detta kommer att ersätta din nuvarande text i kontextfältet. Fortsätta?"
+
+msgid "Generating content... Please wait..."
+msgstr "Genererar innehåll... Vänta..."
+
+msgid "Running..."
+msgstr "Spring..."
+
+msgid "Error: Wrapper is required."
+msgstr "Fel: Wrapper krävs."
+
+msgid "Received empty output."
+msgstr "Fick tom utgång."
+
+msgid "Checking API status..."
+msgstr "Kontrollerar API-status..."
+
+msgid "Downloading and importing... This may take several minutes."
+msgstr "Laddar ner och importerar... Detta kan ta flera minuter."
+
+msgid "Only new and changed data is being fetched and imported. This should take a few moments..."
+msgstr "Endast ny och ändrad data hämtas och importeras. Det här borde ta några ögonblick..."
+
+msgid "Checking for updates..."
+msgstr "Söker efter uppdateringar..."
+
+msgid "Could not find an text area to insert into."
+msgstr "Det gick inte att hitta ett textområde att infoga i."
+
+msgid "Search Templates"
+msgstr "Sök mallar"
+
+msgid "Close Search"
+msgstr "Stäng sökning"
+
+msgid "Total API Runs (24h)"
+msgstr "Totalt API-körningar (24 timmar)"
+
+msgid "API Errors (24h)"
+msgstr "API-fel (24h)"
+
+msgid "Top Model Used"
+msgstr "Toppmodell använd"
+
+msgid "Search by Action, User or Wrapper..."
+msgstr "Sök efter åtgärd, användare eller omslag..."
+
+msgid "Filter by Status"
+msgstr "Filtrera efter status"
+
+msgid "Action & User"
+msgstr "Action & User"
+
+msgid "Wrapper / Model"
+msgstr "Omslag / modell"
+
+msgid "Performance & Tokens"
+msgstr "Prestanda och tokens"
+
+msgid "No log entries found or a database error occurred."
+msgstr "Inga loggposter hittades eller ett databasfel uppstod."
+
+msgid "HTTP:"
+msgstr "HTTP:"
+
+msgid "Tokens:"
+msgstr "Tokens:"
+
+msgid "No tokens recorded"
+msgstr "Inga tokens registrerade"
+
+msgid "Request completed successfully. Full request/response data would be displayed here."
+msgstr "Begäran har slutförts. Fullständig begäran/svarsdata skulle visas här."
+
+msgid "Zywrap Content Generation"
+msgstr "Zywrap Content Generation"
+
+msgid "Zywrap Settings"
+msgstr "Zywrap-inställningar"
+
+msgid "Zywrap Data Sync"
+msgstr "Zywrap Data Sync"
+
+msgid "Zywrap Logs"
+msgstr "Zywrap-loggar"
+
+msgid "Core Settings"
+msgstr "Kärninställningar"
+
+msgid "Use Case"
+msgstr "Användningsfall"
+
+msgid "-- Search Results --"
+msgstr "-- Sökresultat --"
+
+msgid "Console Output"
+msgstr "Konsolutgång"

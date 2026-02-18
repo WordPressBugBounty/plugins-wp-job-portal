@@ -1115,6 +1115,7 @@ class WPJOBPORTALjobModel {
             }
         }
 
+
         if($wpjobportal_data['uid'] == false){
             $wpjobportal_data['uid'] = '';
         }
