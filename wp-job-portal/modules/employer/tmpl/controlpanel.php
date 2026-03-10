@@ -287,6 +287,17 @@ if (!defined('ABSPATH'))
                     ?>
                 </div>
             </div>
+            <?php
+
+            // --- NEW HOOK INTEGRATION START ---
+            // Blueprint: wpjobportal_employer_dashboard_loaded
+            // Executes when the employer portal initializes.
+            // Essential for third-party scripts to inject operational alerts, such as pulling external billing data from an accounting API.
+            $employer_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
+            do_action('wpjobportal_employer_dashboard_loaded', $employer_uid, wpjobportal::$_data);
+            // --- NEW HOOK INTEGRATION END ---
+
+            ?>
         </div>
     <?php
     } else {

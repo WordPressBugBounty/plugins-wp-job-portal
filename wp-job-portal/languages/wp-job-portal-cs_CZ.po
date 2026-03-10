@@ -12961,3 +12961,1008 @@ msgstr "-- Výsledky hledání --"
 
 msgid "Console Output"
 msgstr "Konzolový výstup"
+
+msgid "After Store Job"
+msgstr "Po Store Job"
+
+msgid "Fires immediately after a new job is stored in the database."
+msgstr "Spustí se okamžitě po uložení nové úlohy do databáze."
+
+msgid "The newly created job ID."
+msgstr "ID nově vytvořené úlohy."
+
+msgid "Triggered upon job creation."
+msgstr "Spuštěno při vytvoření pracovního místa."
+
+msgid "After Edit Job"
+msgstr "Po Edit Job"
+
+msgid "Fires immediately after an existing job is updated."
+msgstr "Spustí se okamžitě po aktualizaci existující úlohy."
+
+msgid "The updated job ID."
+msgstr "Aktualizované ID úlohy."
+
+msgid "Triggered upon job update."
+msgstr "Spuštěno při aktualizaci úlohy."
+
+msgid "After Delete Job"
+msgstr "Po odstranění úlohy"
+
+msgid "Fires immediately after a job is deleted."
+msgstr "Spustí se okamžitě po smazání úlohy."
+
+msgid "The deleted job ID."
+msgstr "ID smazané úlohy."
+
+msgid "Triggered upon job deletion."
+msgstr "Spuštěno při smazání úlohy."
+
+msgid "Job Published"
+msgstr "Job Publikováno"
+
+msgid "Fires when admin approved a job for publish from job listing. Essential for XML syndication to Indeed or LinkedIn."
+msgstr "Spustí se, když správce schválí úlohu k publikování ze seznamu nabídek práce. Nezbytné pro syndikaci XML do Indeed nebo LinkedIn."
+
+msgid "The job ID."
+msgstr "ID úlohy."
+
+msgid "The associated company ID."
+msgstr "ID přidružené společnosti."
+
+msgid "Full job data array."
+msgstr "Kompletní pole pracovních dat."
+
+msgid "Essential for XML syndication feeds."
+msgstr "Nezbytné pro syndikační kanály XML."
+
+msgid "Job Status Transition"
+msgstr "Přechod stavu zaměstnání"
+
+msgid "Fires when a job is approved or rejected by an admin from job que."
+msgstr "Spustí se, když je úloha schválena nebo zamítnuta správcem z fronty úloh."
+
+msgid "Old status code."
+msgstr "Starý stavový kód."
+
+msgid "New status string."
+msgstr "Nový stavový řetězec."
+
+msgid "Admin approval/rejection trigger."
+msgstr "Spouštěč schválení/odmítnutí správcem."
+
+msgid "Featured Job Activated"
+msgstr "Vybraná úloha aktivována"
+
+msgid "Fires when a job is elevated to featured status."
+msgstr "Spustí se, když je úloha povýšena na doporučený stav."
+
+msgid "User ID of the job owner."
+msgstr "ID uživatele vlastníka úlohy."
+
+msgid "Featured expiry date."
+msgstr "Doporučené datum vypršení platnosti."
+
+msgid "Triggered on featured upgrade."
+msgstr "Spuštěno při vybraném upgradu."
+
+msgid "Job Search Query Args"
+msgstr "Dotaz na hledání práce Args"
+
+msgid "Modifies the underlying SQL query for job searches."
+msgstr "Upravuje základní dotaz SQL pro hledání práce."
+
+msgid "The search SQL query."
+msgstr "Vyhledávací SQL dotaz."
+
+msgid "Search filter variables."
+msgstr "Hledat proměnné filtru."
+
+msgid "Modified SQL query string."
+msgstr "Upravený řetězec dotazu SQL."
+
+msgid "Used for modifying frontend job search behaviour."
+msgstr "Používá se k úpravě chování frontendu při hledání práce."
+
+msgid "Google Job Schema"
+msgstr "Schéma práce Google"
+
+msgid "Intercepts the structured SEO data array to inject dynamic properties (like baseSalary)."
+msgstr "Zachycuje strukturované pole dat SEO za účelem vložení dynamických vlastností (jako je baseSalary)."
+
+msgid "JSON-LD schema array."
+msgstr "Pole schématu JSON-LD."
+
+msgid "Job ID."
+msgstr "ID úlohy."
+
+msgid "Modified JSON-LD array."
+msgstr "Upravené pole JSON-LD."
+
+msgid "Crucial for SEO and Google Jobs integration."
+msgstr "Rozhodující pro integraci SEO a Google Jobs."
+
+msgid "Job Shortlisted"
+msgstr "Práce zařazena do užšího výběru"
+
+msgid "Candidate intent tracking for analytics when a job is saved or shortlisted."
+msgstr "Sledování záměru kandidáta pro analýzu, když je úloha uložena nebo zařazena do užšího výběru."
+
+msgid "Shortlist row ID."
+msgstr "ID řádku výběru."
+
+msgid "User ID."
+msgstr "ID uživatele."
+
+msgid "Extra data array."
+msgstr "Extra datové pole."
+
+msgid "Candidate intent tracking."
+msgstr "Sledování záměru kandidáta."
+
+msgid "After Store Resume"
+msgstr "Po obnovení obchodu"
+
+msgid "Fires immediately after a new resume is stored in the database."
+msgstr "Spustí se okamžitě po uložení nového životopisu do databáze."
+
+msgid "The newly created resume ID."
+msgstr "Nově vytvořené ID životopisu."
+
+msgid "Triggered upon resume creation."
+msgstr "Spuštěno při vytvoření životopisu."
+
+msgid "After Edit Resume"
+msgstr "Po Obnovení úprav"
+
+msgid "Fires immediately after an existing resume is updated."
+msgstr "Spustí se okamžitě po aktualizaci existujícího životopisu."
+
+msgid "The updated resume ID."
+msgstr "Aktualizované ID životopisu."
+
+msgid "Triggered upon resume update."
+msgstr "Spuštěno po aktualizaci životopisu."
+
+msgid "After Delete Resume"
+msgstr "Po Delete Resume"
+
+msgid "Fires immediately after a resume is deleted."
+msgstr "Spustí se okamžitě po smazání životopisu."
+
+msgid "The deleted resume ID."
+msgstr "ID smazaného životopisu."
+
+msgid "Triggered upon resume deletion."
+msgstr "Spuštěno při smazání životopisu."
+
+msgid "Resume Status Transition"
+msgstr "Obnovit přechod stavu"
+
+msgid "Fires when an administrator manually approves or rejects a resume."
+msgstr "Spustí se, když správce manuálně schválí nebo odmítne životopis."
+
+msgid "The ID of the resume."
+msgstr "ID životopisu."
+
+msgid "The previous status."
+msgstr "Předchozí stav."
+
+msgid "The new status."
+msgstr "Nový stav."
+
+msgid "Track manual admin approvals/rejections."
+msgstr "Sledujte manuální schválení/odmítnutí správce."
+
+msgid "Resume Search Query Args"
+msgstr "Obnovit argumenty vyhledávacího dotazu"
+
+msgid "Modifies the SQL WHERE clause during a frontend resume search, allowing Elasticsearch integrations."
+msgstr "Upravuje klauzuli SQL WHERE během vyhledávání obnovení frontendu, což umožňuje integraci Elasticsearch."
+
+msgid "The current SQL query string."
+msgstr "Aktuální řetězec dotazu SQL."
+
+msgid "Array of applied search filters."
+msgstr "Pole použitých vyhledávacích filtrů."
+
+msgid "Allows Elasticsearch integrations."
+msgstr "Umožňuje integraci Elasticsearch."
+
+msgid "Featured Resume Activated"
+msgstr "Aktivováno obnovení doporučeného režimu"
+
+msgid "Fires when a resume is promoted to featured status."
+msgstr "Spustí se, když je životopis povýšen na doporučený stav."
+
+msgid "Resume ID."
+msgstr "Obnovit ID."
+
+msgid "Job Seeker User ID."
+msgstr "ID uživatele uchazeče o zaměstnání."
+
+msgid "After Job Apply"
+msgstr "Po žádosti o zaměstnání"
+
+msgid "Fires immediately after a candidate successfully applies for a job."
+msgstr "Spustí se okamžitě poté, co se kandidát úspěšně uchází o práci."
+
+msgid "The job application ID."
+msgstr "ID žádosti o zaměstnání."
+
+msgid "Triggered upon successful job application."
+msgstr "Spouští se po úspěšné žádosti o zaměstnání."
+
+msgid "Application Submitted"
+msgstr "Přihláška odeslána"
+
+msgid "Standard event trigger for a logged-in user submitting a job application."
+msgstr "Standardní spouštěč události pro přihlášeného uživatele, který podává žádost o zaměstnání."
+
+msgid "ID of the application record."
+msgstr "ID záznamu aplikace."
+
+msgid "ID of the applied job."
+msgstr "ID použité úlohy."
+
+msgid "Fires for authenticated users only."
+msgstr "Spouští se pouze pro ověřené uživatele."
+
+msgid "Quick Apply Submitted"
+msgstr "Rychlá žádost odeslána"
+
+msgid "Triggers when a candidate uses the \\"
+msgstr "Spustí se, když kandidát použije \\"
+
+msgid "Application record ID."
+msgstr "ID záznamu aplikace."
+
+msgid "Submitted form data."
+msgstr "Odeslaná data formuláře."
+
+msgid "Uploaded files array."
+msgstr "Pole nahraných souborů."
+
+msgid "Handles bypass forms and attached files."
+msgstr "Zvládá obcházet formuláře a připojené soubory."
+
+msgid "Visitor Application Submitted"
+msgstr "Přihláška návštěvníka odeslána"
+
+msgid "Triggers specifically for unauthenticated (guest) applications."
+msgstr "Spouště speciálně pro neověřené (hostující) aplikace."
+
+msgid "Guest data array."
+msgstr "Pole dat hostů."
+
+msgid "Triggers specifically for unauthenticated applications."
+msgstr "Spouště speciálně pro neověřené aplikace."
+
+msgid "Candidate Status Updated"
+msgstr "Stav kandidáta aktualizován"
+
+msgid "Core ATS hook. Fires when an employer changes an applicants internal workflow state (e.g., Hired)."
+msgstr "Jádro ATS hák. Spustí se, když zaměstnavatel změní stav interního pracovního postupu žadatele (např. Najato)."
+
+msgid "Old ATS status."
+msgstr "Starý stav ATS."
+
+msgid "New ATS status."
+msgstr "Nový stav ATS."
+
+msgid "Employer User ID."
+msgstr "ID uživatele zaměstnavatele."
+
+msgid "Core ATS hook."
+msgstr "Jádro ATS hák."
+
+msgid "Application Note Saved"
+msgstr "Poznámka k aplikaci uložena"
+
+msgid "Fires when an employer adds an internal note to an application."
+msgstr "Spustí se, když zaměstnavatel přidá k žádosti interní poznámku."
+
+msgid "Note text."
+msgstr "Text poznámky."
+
+msgid "Fires on employer internal note."
+msgstr "Požáry na interní poznámku zaměstnavatele."
+
+msgid "Application Rating Updated"
+msgstr "Hodnocení aplikace aktualizováno"
+
+msgid "Fires when a candidate receives a star rating from an employer."
+msgstr "Spustí se, když kandidát obdrží od zaměstnavatele hodnocení hvězdičkami."
+
+msgid "Application ID."
+msgstr "ID aplikace."
+
+msgid "Star rating."
+msgstr "Hodnocení hvězdičkami."
+
+msgid "Fires on rating update."
+msgstr "Spustí se při aktualizaci hodnocení."
+
+msgid "After Store Company"
+msgstr "After Store Company"
+
+msgid "Fires immediately after a new company is stored in the database."
+msgstr "Spustí se okamžitě po uložení nové společnosti do databáze."
+
+msgid "The newly created company ID."
+msgstr "Nově vytvořené IČO."
+
+msgid "Triggered upon company creation."
+msgstr "Spuštěno při založení společnosti."
+
+msgid "After Edit Company"
+msgstr "Po Edit Company"
+
+msgid "Fires immediately after an existing company is updated."
+msgstr "Spustí se okamžitě po aktualizaci existující společnosti."
+
+msgid "The updated company ID."
+msgstr "Aktualizované ID společnosti."
+
+msgid "Triggered upon company update."
+msgstr "Spuštěno po aktualizaci společnosti."
+
+msgid "After Delete Company"
+msgstr "Po Delete Company"
+
+msgid "Fires immediately after a company is deleted."
+msgstr "Spustí se okamžitě po smazání společnosti."
+
+msgid "The deleted company ID."
+msgstr "Smazané ID společnosti."
+
+msgid "Triggered upon company deletion."
+msgstr "Spuštěno při smazání společnosti."
+
+msgid "Company Status Transition"
+msgstr "Přechod statusu společnosti"
+
+msgid "Fires on company approve/reject state changes."
+msgstr "Požáry společnosti schválí/odmítnou změny stavu."
+
+msgid "Company ID."
+msgstr "ID společnosti."
+
+msgid "Old status."
+msgstr "Starý stav."
+
+msgid "New status."
+msgstr "Nový stav."
+
+msgid "Fires on company state changes."
+msgstr "Požáry na změny stavu společnosti."
+
+msgid "Featured Company Activated"
+msgstr "Vybraná společnost aktivována"
+
+msgid "Fires when a company is promoted to featured status."
+msgstr "Spustí se, když je společnost povýšena na doporučený stav."
+
+msgid "Company Search Query Args"
+msgstr "Firemní vyhledávací dotaz Args"
+
+msgid "Modifies Company SQL search queries."
+msgstr "Upravuje vyhledávací dotazy společnosti SQL."
+
+msgid "Current SQL query."
+msgstr "Aktuální SQL dotaz."
+
+msgid "Search filters."
+msgstr "Hledat filtry."
+
+msgid "Modified query string."
+msgstr "Upravený řetězec dotazu."
+
+msgid "Used for modifying frontend company search behaviour."
+msgstr "Používá se k úpravě chování při vyhledávání frontendových společností."
+
+msgid "User Status Transition"
+msgstr "Přechod stavu uživatele"
+
+msgid "Fires when an admin manually suspends or activates an account."
+msgstr "Spustí se, když administrátor ručně pozastaví nebo aktivuje účet."
+
+msgid "Admin account activation/suspension."
+msgstr "Aktivace/pozastavení účtu správce."
+
+msgid "User Deleted"
+msgstr "Uživatel smazán"
+
+msgid "Crucial for GDPR compliance; alerts external systems to delete user records."
+msgstr "Rozhodující pro soulad s GDPR; upozorní externí systémy na odstranění uživatelských záznamů."
+
+msgid "Portal User ID."
+msgstr "ID uživatele portálu."
+
+msgid "WordPress User ID."
+msgstr "Uživatelské ID WordPress."
+
+msgid "User Role ID."
+msgstr "ID uživatelské role."
+
+msgid "Crucial for GDPR compliance."
+msgstr "Rozhodující pro soulad s GDPR."
+
+msgid "User Profile Saved"
+msgstr "Profil uživatele byl uložen"
+
+msgid "Fires whenever user metadata is updated."
+msgstr "Spustí se při každé aktualizaci uživatelských metadat."
+
+msgid "Profile ID."
+msgstr "ID profilu."
+
+msgid "Profile metadata."
+msgstr "Metadata profilu."
+
+msgid "Fires on metadata update."
+msgstr "Spustí se při aktualizaci metadat."
+
+msgid "AI Content Prompt"
+msgstr "Výzva k obsahu AI"
+
+msgid "Intercepts the prompt string before it hits the AI proxy. Allows insertion of mandatory EEO text."
+msgstr "Zachytí řetězec výzvy předtím, než narazí na proxy AI. Umožňuje vložení povinného textu EEO."
+
+msgid "AI Prompt."
+msgstr "Výzva AI."
+
+msgid "Context parameters."
+msgstr "Kontextové parametry."
+
+msgid "Modified AI Prompt."
+msgstr "Upravená výzva AI."
+
+msgid "Allows insertion of mandatory context."
+msgstr "Umožňuje vložení povinného kontextu."
+
+msgid "AI Generation Completed"
+msgstr "Generování AI dokončeno"
+
+msgid "Captures the AI response for logging and plagiarism scanning."
+msgstr "Zachycuje odezvu AI pro protokolování a skenování plagiátů."
+
+msgid "Status code."
+msgstr "Stavový kód."
+
+msgid "Response payload."
+msgstr "Užitečné zatížení odezvy."
+
+msgid "Original Prompt."
+msgstr "Původní výzva."
+
+msgid "Wrapper used."
+msgstr "Použitý obal."
+
+msgid "Used for logging and plagiarism checks."
+msgstr "Používá se pro protokolování a kontrolu plagiátorství."
+
+msgid "Before AI Resume Parse"
+msgstr "Před obnovením analýzy AI"
+
+msgid "Allows PII redaction from resume text before it is indexed for AI matching."
+msgstr "Umožňuje redigování PII z textu životopisu předtím, než je indexován pro shodu AI."
+
+msgid "Text string for AI indexing."
+msgstr "Textový řetězec pro indexování AI."
+
+msgid "Entity ID."
+msgstr "ID entity."
+
+msgid "Sanitized AI string."
+msgstr "Dezinfikovaný AI řetězec."
+
+msgid "Useful for Blind Hiring features."
+msgstr "Užitečné pro funkce náboru naslepo."
+
+msgid "Before AI Job Parse"
+msgstr "Před AI Job Parse"
+
+msgid "Allows modification of job text before AI indexing."
+msgstr "Umožňuje úpravu textu úlohy před indexováním AI."
+
+msgid "Modified AI string."
+msgstr "Upravený řetězec AI."
+
+msgid "AI Job to Resume Match"
+msgstr "Úloha AI pro obnovení shody"
+
+msgid "Mutates the search string the AI uses to find resumes for a job."
+msgstr "Změní vyhledávací řetězec, který AI používá k nalezení životopisů pro práci."
+
+msgid "Search string."
+msgstr "Vyhledávací řetězec."
+
+msgid "Mutated search string."
+msgstr "Mutovaný vyhledávací řetězec."
+
+msgid "Mutates the search string the AI uses."
+msgstr "Změní vyhledávací řetězec, který AI používá."
+
+msgid "AI Resume to Job Match"
+msgstr "AI Resume to Job Match"
+
+msgid "Mutates the search string the AI uses to find jobs for a resume."
+msgstr "Změní vyhledávací řetězec, který AI používá k nalezení pracovních míst pro životopis."
+
+msgid "AI Dashboard Job Suggestions"
+msgstr "Návrhy pracovních míst AI Dashboard"
+
+msgid "Captures suggested jobs calculated for the job seekers dashboard."
+msgstr "Zachycuje navrhované úlohy vypočítané pro řídicí panel uchazečů o zaměstnání."
+
+msgid "Seeker User ID."
+msgstr "ID uživatele hledajícího."
+
+msgid "Array of matched Job IDs."
+msgstr "Pole shodných ID úloh."
+
+msgid "Captures dashboard suggestions."
+msgstr "Zachycuje návrhy řídicího panelu."
+
+msgid "AI Job Suggestion Calculated"
+msgstr "Návrh úlohy AI vypočítaný"
+
+msgid "Captures suggested jobs against a specific resume ID."
+msgstr "Zachycuje navrhované úlohy podle konkrétního ID životopisu."
+
+msgid "Captures resume-specific suggestions."
+msgstr "Zachycuje návrhy specifické pro životopis."
+
+msgid "AI Dashboard Resume Suggestions"
+msgstr "Návrhy obnovení řídicího panelu AI"
+
+msgid "Captures suggested resumes calculated for the employers dashboard."
+msgstr "Zachycuje navrhované životopisy vypočítané pro řídicí panel zaměstnavatelů."
+
+msgid "Array of matched Resume IDs."
+msgstr "Pole odpovídajících ID obnovení."
+
+msgid "Captures employer dashboard suggestions."
+msgstr "Zachycuje návrhy řídicího panelu zaměstnavatele."
+
+msgid "AI Resume Suggestion Calculated"
+msgstr "Návrh obnovení AI vypočítaný"
+
+msgid "Captures suggested resumes against a specific job ID."
+msgstr "Zachycuje navrhované životopisy podle konkrétního ID úlohy."
+
+msgid "Captures job-specific suggestions."
+msgstr "Zachycuje návrhy konkrétních úkolů."
+
+msgid "Job Alert Triggered"
+msgstr "Spuštěno upozornění na úlohu"
+
+msgid "Intercepts an alert match before the email sends. Ideal for Push/SMS notifications."
+msgstr "Zachycuje shodu upozornění před odesláním e-mailu. Ideální pro Push/SMS notifikace."
+
+msgid "Person ID."
+msgstr "ID osoby."
+
+msgid "Subscriber User ID."
+msgstr "ID uživatele předplatitele."
+
+msgid "Matched jobs array."
+msgstr "Pole odpovídajících úloh."
+
+msgid "Ideal for Push/SMS notifications."
+msgstr "Ideální pro Push/SMS notifikace."
+
+msgid "Job Alert Saved"
+msgstr "Upozornění na pracovní místo uloženo"
+
+msgid "Fires when an alert preference is created or updated."
+msgstr "Spustí se při vytvoření nebo aktualizaci předvolby výstrahy."
+
+msgid "Alert record ID."
+msgstr "ID záznamu výstrahy."
+
+msgid "Subscriber Email."
+msgstr "E-mail předplatitele."
+
+msgid "Alert configuration data."
+msgstr "Výstražná konfigurační data."
+
+msgid "Fires on alert create/update."
+msgstr "Spustí se při vytvoření/aktualizaci výstrahy."
+
+msgid "Job Alert Unsubscribed"
+msgstr "Job Alert Unsubscribed"
+
+msgid "Fires when an alert is deleted."
+msgstr "Spustí se při smazání výstrahy."
+
+msgid "Deleted Alert ID."
+msgstr "Smazané ID upozornění."
+
+msgid "Membership Package Purchased"
+msgstr "Zakoupen členský balíček"
+
+msgid "Triggers on a successful checkout via Stripe or PayPal gateways."
+msgstr "Spustí se při úspěšné placení přes brány Stripe nebo PayPal."
+
+msgid "Package ID."
+msgstr "ID balíčku."
+
+msgid "Amount paid."
+msgstr "Zaplacená částka."
+
+msgid "Payment gateway."
+msgstr "Platební brána."
+
+msgid "Triggers on gateway success."
+msgstr "Spouštěče úspěchu brány."
+
+msgid "WooCommerce Order Synced"
+msgstr "Objednávka WooCommerce byla synchronizována"
+
+msgid "Executes when WP Job Portal routes a payment into the WooCommerce cart."
+msgstr "Provede se, když WP Job Portal přesměruje platbu do košíku WooCommerce."
+
+msgid "WooCommerce Post ID."
+msgstr "ID příspěvku WooCommerce."
+
+msgid "Purchase data."
+msgstr "Údaje o nákupu."
+
+msgid "Executes on Woo cart route."
+msgstr "Provádí se na trase vozíku Woo."
+
+msgid "Per Listing Purchased"
+msgstr "Zakoupeno podle nabídky"
+
+msgid "Generic action deployed across all individual purchases."
+msgstr "Obecná akce nasazená u všech jednotlivých nákupů."
+
+msgid "Entity ID (job/resume/company)."
+msgstr "ID entity (zaměstnání/životopis/společnost)."
+
+msgid "Entity type."
+msgstr "Typ entity."
+
+msgid "Gateway used."
+msgstr "Použitá brána."
+
+msgid "Deployed across individual purchases."
+msgstr "Nasazeno napříč jednotlivými nákupy."
+
+msgid "Subscription Cancelled"
+msgstr "Předplatné zrušeno"
+
+msgid "Alerts external platforms (like Discord/Active Directory) to downgrade the user."
+msgstr "Upozorňuje externí platformy (jako Discord/Active Directory) na downgrade uživatele."
+
+msgid "Gateway sub ID."
+msgstr "ID dílčí brány."
+
+msgid "Downgrade user permissions."
+msgstr "Snížit uživatelská oprávnění."
+
+msgid "Membership Purchased DB Commit"
+msgstr "Zakoupené členství DB Commit"
+
+msgid "A database-level failsafe hook that fires even if a package is manually assigned by an admin."
+msgstr "Bezpečný hák na úrovni databáze, který se spustí, i když je balíček ručně přiřazen správcem."
+
+msgid "Amount."
+msgstr "Množství."
+
+msgid "Payment Method."
+msgstr "Způsob platby."
+
+msgid "Database-level failsafe hook."
+msgstr "Bezpečný hák na úrovni databáze."
+
+msgid "Package Saved"
+msgstr "Balíček uložen"
+
+msgid "Fires when a package is updated or unpublished."
+msgstr "Spustí se, když je balíček aktualizován nebo nepublikován."
+
+msgid "Package data."
+msgstr "Údaje o balíčku."
+
+msgid "Fires on package update."
+msgstr "Spustí se při aktualizaci balíčku."
+
+msgid "Invoice Status Transition"
+msgstr "Přechod stavu faktury"
+
+msgid "Fires when an invoice moves to \\"
+msgstr "Spustí se, když se faktura přesune do \\"
+
+msgid "Invoice ID."
+msgstr "ID faktury."
+
+msgid "Old Status."
+msgstr "Starý stav."
+
+msgid "New Status."
+msgstr "Nový stav."
+
+msgid "Syncs external accounting software."
+msgstr "Synchronizuje externí účetní software."
+
+msgid "Invoice Saved"
+msgstr "Faktura uložena"
+
+msgid "Fires on invoice creation or deletion."
+msgstr "Spouští se při vytvoření nebo smazání faktury."
+
+msgid "Invoice Data."
+msgstr "Fakturační údaje."
+
+msgid "Fires on invoice creation."
+msgstr "Spustí se při vytvoření faktury."
+
+msgid "Employer Dashboard Loaded"
+msgstr "Panel zaměstnavatele načten"
+
+msgid "Fires when the employer portal initializes."
+msgstr "Spustí se při inicializaci portálu zaměstnavatele."
+
+msgid "Portal view data array."
+msgstr "Pole dat zobrazení portálu."
+
+msgid "Jobseeker Dashboard Loaded"
+msgstr "Panel uchazečů o zaměstnání načten"
+
+msgid "Fires when the candidate portal initializes."
+msgstr "Spustí se při inicializaci kandidátského portálu."
+
+msgid "Candidate User ID."
+msgstr "ID uživatele kandidáta."
+
+msgid "Admin Dashboard Loaded"
+msgstr "Admin Dashboard načten"
+
+msgid "Injects custom data into the WP Admin control panel."
+msgstr "Vloží vlastní data do ovládacího panelu správce WP."
+
+msgid "Admin data array."
+msgstr "Pole administrátorských dat."
+
+msgid "Injects data into WP Admin."
+msgstr "Vloží data do WP Admin."
+
+msgid "User Widget HTML"
+msgstr "HTML widgetu uživatele"
+
+msgid "Allows theme developers to modify member widget cards."
+msgstr "Umožňuje vývojářům motivů upravovat členské karty widgetů."
+
+msgid "HTML Content."
+msgstr "Obsah HTML."
+
+msgid "User role."
+msgstr "Uživatelská role."
+
+msgid "User data."
+msgstr "Uživatelská data."
+
+msgid "Modified HTML."
+msgstr "Upravený HTML."
+
+msgid "Modify member widget cards."
+msgstr "Upravte členské karty widgetů."
+
+msgid "Shortlist Popup HTML"
+msgstr "Shortlist Popup HTML"
+
+msgid "Modifies the HTML output of the shortlist modal."
+msgstr "Upraví výstup HTML modálu užšího výběru."
+
+msgid "Modifies shortlist modal HTML."
+msgstr "Upravuje modální HTML užšího výběru."
+
+msgid "Export Resume Raw String"
+msgstr "Exportovat Resume Raw String"
+
+msgid "Intercepts the final TSV text string for a single resume download."
+msgstr "Zachytí poslední textový řetězec TSV pro stažení jednoho životopisu."
+
+msgid "TSV String."
+msgstr "Řetězec TSV."
+
+msgid "Modified TSV string."
+msgstr "Upravený řetězec TSV."
+
+msgid "Intercepts single TSV export."
+msgstr "Zachycuje jeden export TSV."
+
+msgid "Export Resume Data Array"
+msgstr "Exportovat pole obnovení dat"
+
+msgid "Highly useful for Blind Hiring; allows programmatic removal of PII columns before TSV conversion."
+msgstr "Velmi užitečné pro najímání naslepo; umožňuje programové odstranění sloupců PII před převodem TSV."
+
+msgid "Export row array."
+msgstr "Exportovat pole řádků."
+
+msgid "DB result data."
+msgstr "Data výsledků DB."
+
+msgid "Sanitized row array."
+msgstr "Dezinfikované pole řádků."
+
+msgid "Highly useful for Blind Hiring."
+msgstr "Velmi užitečné pro najímání naslepo."
+
+msgid "Export All Resumes Raw String"
+msgstr "Exportovat všechny resumé nezpracované řetězce"
+
+msgid "Intercepts the bulk export string to append HR disclaimers or timestamps."
+msgstr "Zachycuje řetězec hromadného exportu k připojení prohlášení HR nebo časových razítek."
+
+msgid "Bulk TSV String."
+msgstr "Hromadný řetězec TSV."
+
+msgid "Modified bulk string."
+msgstr "Upravený hromadný řetězec."
+
+msgid "Intercepts bulk export string."
+msgstr "Zachycuje řetězec hromadného exportu."
+
+msgid "Resume Export Filename"
+msgstr "Pokračovat v exportu názvu souboru"
+
+msgid "Mutates the generated ZIP file name dynamically."
+msgstr "Dynamicky změní vygenerovaný název souboru ZIP."
+
+msgid "Default filename."
+msgstr "Výchozí název souboru."
+
+msgid "File extension."
+msgstr "Přípona souboru."
+
+msgid "Mutated filename."
+msgstr "Mutovaný název souboru."
+
+msgid "Mutates generated ZIP filename."
+msgstr "Mutuje vygenerovaný soubor ZIP."
+
+msgid "System Email Headers"
+msgstr "Systémové e-mailové hlavičky"
+
+msgid "Modifies outgoing SMTP headers (e.g., custom Reply-To addresses)."
+msgstr "Upravuje odchozí hlavičky SMTP (např. vlastní adresy pro odpověď)."
+
+msgid "Email headers array."
+msgstr "Pole záhlaví e-mailů."
+
+msgid "Email subject."
+msgstr "Předmět emailu."
+
+msgid "Modified headers."
+msgstr "Upravené hlavičky."
+
+msgid "Modifies outgoing SMTP headers."
+msgstr "Upravuje odchozí hlavičky SMTP."
+
+msgid "Email Notification Sent"
+msgstr "Oznámení e-mailem odesláno"
+
+msgid "Logs transactional emails immediately after wp_mail() fires."
+msgstr "Zaznamenává transakční e-maily ihned po spuštění wp_mail()."
+
+msgid "Email type string."
+msgstr "Řetězec typu e-mailu."
+
+msgid "Recipient details."
+msgstr "Podrobnosti o příjemci."
+
+msgid "Email HTML payload."
+msgstr "E-mailová data HTML."
+
+msgid "Logs transactional emails."
+msgstr "Zaznamenává transakční e-maily."
+
+msgid "Internal Message Sent"
+msgstr "Interní zpráva odeslána"
+
+msgid "Intercepts secure internal messages to push to external SMS/Slack APIs."
+msgstr "Zachycuje zabezpečené interní zprávy a odesílá je na externí SMS/Slack API."
+
+msgid "Message ID."
+msgstr "ID zprávy."
+
+msgid "Sender ID."
+msgstr "ID odesílatele."
+
+msgid "Recipient ID."
+msgstr "ID příjemce."
+
+msgid "Message Text."
+msgstr "Text zprávy."
+
+msgid "Push to external SMS/Slack APIs."
+msgstr "Push to externí SMS/Slack API."
+
+msgid "Message Status Transition"
+msgstr "Přechod stavu zprávy"
+
+msgid "Triggers when an admin resolves a flagged/conflicted message."
+msgstr "Spustí se, když správce vyřeší označenou/konfliktní zprávu."
+
+msgid "Admin flag resolution."
+msgstr "Rozlišení příznaku správce."
+
+msgid "File Uploaded (S3 Hook)"
+msgstr "Soubor nahrán (S3 Hook)"
+
+msgid "The ultimate scalability hook. Fires when a physical file is saved, allowing cloud plugins to upload to AWS S3 and delete the local instance."
+msgstr "Špičkový háček na škálovatelnost. Spustí se při uložení fyzického souboru a umožní cloudovým pluginům nahrát do AWS S3 a odstranit místní instanci."
+
+msgid "Absolute physical file path."
+msgstr "Absolutní fyzická cesta k souboru."
+
+msgid "Context type (e.g. company_logo, resume_file)."
+msgstr "Typ kontextu (např. logo_společnosti, soubor životopisu)."
+
+msgid "Associated record ID."
+msgstr "ID přidruženého záznamu."
+
+msgid "The ultimate scalability hook for S3."
+msgstr "Maximální škálovatelnost pro S3."
+
+msgid "SEO Settings Updated"
+msgstr "Nastavení SEO aktualizováno"
+
+msgid "Executes when core configs update, enabling auto-purging of caching plugins (WP Rocket)."
+msgstr "Spustí se, když se aktualizují konfigurace jádra, což umožňuje automatické čištění zásuvných modulů mezipaměti (WP Rocket)."
+
+msgid "Config data array."
+msgstr "Konfigurační datové pole."
+
+msgid "Enabling auto-purging of caching plugins."
+msgstr "Povolení automatického čištění zásuvných modulů pro ukládání do mezipaměti."
+
+msgid "Hook Reference"
+msgstr "Hook Reference"
+
+msgid "Entities"
+msgstr "Entity"
+
+msgid "Search across all actions and filters..."
+msgstr "Hledat ve všech akcích a filtrech..."
+
+msgid "Arguments"
+msgstr "Argumenty"
+
+msgid "Returns"
+msgstr "Návraty"
+
+msgid "No return (Action Hook)"
+msgstr "Žádný návrat (Action Hook)"
+
+msgid "Snippet"
+msgstr "Úryvek"
+
+msgid "Copy Code"
+msgstr "Kopírovat kód"
+
+msgid "To use this hook, please install and activate the"
+msgstr "Chcete-li použít tento háček, nainstalujte a aktivujte"
+
+msgid "addon."
+msgstr "addon."
+
+msgid "View Addon Details"
+msgstr "Zobrazit podrobnosti doplňku"
+
+msgid "No results found"
+msgstr "Nebyly nalezeny žádné výsledky"
+
+msgid "Try searching for specific keywords like \\"
+msgstr "Zkuste vyhledat konkrétní klíčová slova jako \\"
+
+msgid "Hooks"
+msgstr "Háčky"
+
+msgid "Search Results"
+msgstr "Výsledky vyhledávání"

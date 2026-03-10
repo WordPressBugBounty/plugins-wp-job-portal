@@ -33,8 +33,11 @@ class WPJOBPORTALthemeModel {
         if (empty($wpjobportal_data))
             return false;
         $wpjobportal_data = wpjobportal::wpjobportal_sanitizeData($wpjobportal_data);
-
-        $return = $this->wpjpGenerateColorVariablesFile($wpjobportal_data);
+        if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()){
+            $return = $this->wpjpGenerateColorVariablesFileElegant($wpjobportal_data);
+        }else{
+            $return = $this->wpjpGenerateColorVariablesFile($wpjobportal_data);
+        }
 
         update_option('wpjp_set_theme_colors', wp_json_encode($wpjobportal_data));
         // $return = require(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
@@ -55,33 +58,71 @@ class WPJOBPORTALthemeModel {
 
 
         // Prepare CSS content
-        $css_content = ":root {
-        --wpjp-primary-color: {$wpjobportal_data['color1']};
-        --wpjp-secondary-color: {$wpjobportal_data['color2']};
-        --wpjp-body-font-color: {$wpjobportal_data['color3']};
-        --wpjp-border-color: #e9ecef; /* Light Gray Border */
-        --wpjp-background-color: #f6f6f6; /* Off-white background */
-        --wpjp-card-background: #ffffff;
-        --wpjp-highlight-color: #FFC300; /* Gold Accent (repurposed from old design) */
-        --wpjp-success-color: #28a745;
-        --wpjp-warning-color: #17a2b8;
-        --wpjp-danger-color: #dc3545;
+        $css_content = "
+        :root {
+            --wpjp-primary-color: {$wpjobportal_data['color1']};
+            --wpjp-secondary-color: {$wpjobportal_data['color2']};
+            --wpjp-body-font-color: {$wpjobportal_data['color3']};
+            --wpjp-border-color: #e9ecef; /* Light Gray Border */
+            --wpjp-background-color: #f6f6f6; /* Off-white background */
+            --wpjp-card-background: #ffffff;
+            --wpjp-highlight-color: #FFC300; /* Gold Accent (repurposed from old design) */
+            --wpjp-success-color: #28a745;
+            --wpjp-warning-color: #17a2b8;
+            --wpjp-danger-color: #dc3545;
 
-        /* Font Variables (Desktop Default) */
-        --wpjp-main-heading: 32px; /* 35px approx */
-        --wpjp-second-sub-heading: 27px; /* 25px approx */
-        --wpjp-sub-heading: 22px; /* 19px approx */
-        --wpjp-body-font-size: 17px; /* 16px default */
+            /* Font Variables (Desktop Default) */
+            --wpjp-main-heading: 32px; /* 35px approx */
+            --wpjp-second-sub-heading: 27px; /* 25px approx */
+            --wpjp-sub-heading: 22px; /* 19px approx */
+            --wpjp-body-font-size: 17px; /* 16px default */
 
 
-        /* Other Variables */
-        --wpjp-card-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-        --wpjp-card-hover-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        --wpjp-focus-shadow-color: 0 0 0 3px rgba(98, 36, 198, 0.25);
-        --wpjp-error-color: #e53e3e;
-        --wpjp-error-focus-shadow: 0 0 0 3px rgba(229, 62, 62, 0.25);
+            /* Other Variables */
+            --wpjp-card-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --wpjp-card-hover-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            --wpjp-focus-shadow-color: 0 0 0 3px rgba(98, 36, 198, 0.25);
+            --wpjp-error-color: #e53e3e;
+            --wpjp-error-focus-shadow: 0 0 0 3px rgba(229, 62, 62, 0.25);
+        }
+        ";
+
+        // Initialize WordPress filesystem API
+        global $wp_filesystem;
+        if (empty($wp_filesystem)) {
+            require_once ABSPATH . '/wp-admin/includes/file.php';
+            WP_Filesystem();
+        }
+
+        if ($wp_filesystem) {
+            $wp_filesystem->put_contents($css_file, $css_content, FS_CHMOD_FILE);
+            return true;
+        }
     }
-    ";
+
+    function wpjpGenerateColorVariablesFileElegant($wpjobportal_data) {
+        if (empty($wpjobportal_data['color1']) || empty($wpjobportal_data['color2']) || empty($wpjobportal_data['color3'])) {
+            return false; // nothing to do
+        }
+
+        // Define the file path
+        $css_file = ELEGANTDESIGN_PLUGIN_PATH.'includes/css/elegantdesignvariables.css';
+
+
+        // Prepare CSS content
+        $css_content = "
+        /*  Variables */
+            :root {
+                --primary-color: {$wpjobportal_data['color1']};
+                --secondary-color: {$wpjobportal_data['color2']};
+                --body-color: {$wpjobportal_data['color3']};
+                --border-color: #dedede;
+                --font-size: 17px;
+                --main-title-font-size:40px;
+                --second-sub-heading:35px;
+                --sub-heading:24px;
+            }
+        ";
 
         // Initialize WordPress filesystem API
         global $wp_filesystem;

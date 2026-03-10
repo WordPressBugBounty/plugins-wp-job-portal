@@ -220,9 +220,10 @@ class WPJOBPORTALResumeModel {
             }else{
                 $wpjobportal_data['id'] = $wpjobportal_resumeid;
             }
-
+            do_action('wpjobportal_after_store_resume_hook',$wpjobportal_data);
+        }else{ // edit resume case
+            do_action('wpjobportal_after_edit_resume_hook',$wpjobportal_data);
         }
-        do_action('wpjobportal_after_store_resume_hook',$wpjobportal_data);
 
         return WPJOBPORTAL_SAVED;
     }
@@ -1543,10 +1544,14 @@ class WPJOBPORTALResumeModel {
         if (is_numeric($wpjobportal_id) == false) return false;
         $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resume');
         if($wpjobportal_row->load($wpjobportal_id)){
+            $old_status = $wpjobportal_row->status;
             $wpjobportal_row->columns['status'] = -1;
             if(!$wpjobportal_row->store()){
                 return WPJOBPORTAL_REJECT_ERROR;
             }
+            // --- NEW HOOK INTEGRATION START ---
+            do_action('wpjobportal_resume_status_transition', $wpjobportal_id, $old_status, -1);
+            // --- NEW HOOK INTEGRATION END ---
         }else{
             return WPJOBPORTAL_REJECT_ERROR;
         }
@@ -1574,10 +1579,14 @@ class WPJOBPORTALResumeModel {
             return false;
         $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resume');
         if($wpjobportal_row->load($wpjobportal_id)){
+            $old_status = $wpjobportal_row->status;
             $wpjobportal_row->columns['status'] = 1;
             if(!$wpjobportal_row->store()){
                 return WPJOBPORTAL_APPROVE_ERROR;
             }
+            // --- NEW HOOK INTEGRATION START ---
+            do_action('wpjobportal_resume_status_transition', $wpjobportal_id, $old_status, 1);
+            // --- NEW HOOK INTEGRATION END ---
         }else{
             return WPJOBPORTAL_APPROVE_ERROR;
         }
@@ -1594,9 +1603,15 @@ class WPJOBPORTALResumeModel {
             if(!$wpjobportal_row->store()){
                 return WPJOBPORTAL_APPROVE_ERROR;
             }
+            // --- NEW HOOK INTEGRATION START ---
+            // Blueprint: wpjobportal_featured_company_activated
+            $uid = isset($row->uid) ? $row->uid : 0; // Fallback if uid is not loaded
+            do_action('wpjobportal_featured_resume_activated', $id, $uid, $row->columns['endfeatureddate']);
+            // --- NEW HOOK INTEGRATION END ---
         }else{
             return WPJOBPORTAL_APPROVE_ERROR;
         }
+
         WPJOBPORTALincluder::getJSModel('emailtemplate')->sendMail(3, 4, $wpjobportal_id); //3 for resume. 4 for feature resume approve or reject
         return WPJOBPORTAL_APPROVED;
     }
@@ -2990,6 +3005,17 @@ class WPJOBPORTALResumeModel {
                 $wpjobportal_noofresumes = wpjobportal::$_data['shortcode_option_no_of_resumes'];
             }
         }
+
+        // --- NEW HOOK INTEGRATION START ---
+        // Blueprint: jobboard_search_query_args (Adapted for WP Job Portal SQL structure)
+        // Modifies the underlying SQL WHERE clause during a frontend search execution.
+        $wpjobportal_filter_array = [];
+        if(!empty( wpjobportal::$_search['resumes'])){
+            $wpjobportal_filter_array = wpjobportal::$_search['resumes'];
+        }
+        $wpjobportal_inquery = apply_filters('wpjobportal_resume_search_query_args', $wpjobportal_inquery, $wpjobportal_filter_array);
+        // --- NEW HOOK INTEGRATION END ---
+
         if($dont_prep_data == 0){
             //Pagination
             if($wpjobportal_noofresumes == ''){
@@ -3129,7 +3155,16 @@ class WPJOBPORTALResumeModel {
         if (!$wp_filesystem->exists($wpjobportal_path)) {
             WPJOBPORTALincluder::getJSModel('common')->makeDir($wpjobportal_path);
         }
+
+        // --- NEW HOOK INTEGRATION START ---
+        // Blueprint: wpjobportal_resume_export_filename
+        // Allows the naming convention to be altered programmatically (e.g., appending candidate name).
+        $wpjobportal_export_filename = apply_filters('wpjobportal_resume_export_filename', 'allresumefiles.zip', $wpjobportal_resumeid, 'zip');
+        $wpjobportal_export_filename = sanitize_file_name($wpjobportal_export_filename); // Strict security validation
+        // --- NEW HOOK INTEGRATION END ---
+
         $archive = new PclZip($wpjobportal_path . '/allresumefiles.zip');
+        $archive = new PclZip($wpjobportal_path . '/' . $wpjobportal_export_filename);
         $wpjobportal_wpdir = wp_upload_dir();
         $wpjobportal_directory = $wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . '/data/jobseeker/resume_' . $wpjobportal_resumeid . '/resume/';
         //$scanned_directory = array_diff(scandir($wpjobportal_directory), array('..', '.'));// code seems reduntant but showing error on deleted resume file downloads
@@ -3144,7 +3179,8 @@ class WPJOBPORTALResumeModel {
         if ($v_list == 0) {
             die("Error : '" . wp_kses($archive->errorInfo(),WPJOBPORTAL_ALLOWED_TAGS) . "'");
         }
-        $file = $wpjobportal_path . '/allresumefiles.zip';
+        //$file = $wpjobportal_path . '/allresumefiles.zip';
+        $file = $wpjobportal_path . '/' . $wpjobportal_export_filename;
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
         header('Content-Disposition: attachment; filename=' . wpjobportalphplib::wpJP_basename($file));
@@ -4771,6 +4807,13 @@ class WPJOBPORTALResumeModel {
                 }
             }
         }
+
+        // --- NEW HOOK INTEGRATION START ---
+        // Blueprint: wpjobportal_before_ai_resume_parse (Adapted context)
+        // Redact PII or mutate the text string before it is indexed for the AI engine.
+        $wpjobportal_resume_ai_string_main = apply_filters('wpjobportal_before_ai_resume_parse_main', trim($wpjobportal_resume_ai_string_main), $wpjobportal_data['id']);
+        $wpjobportal_resume_ai_string_desc = apply_filters('wpjobportal_before_ai_resume_parse_desc', trim($wpjobportal_resume_ai_string_desc), $wpjobportal_data['id']);
+        // --- NEW HOOK INTEGRATION END ---
 
         $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resume');
         if ($wpjobportal_row->update(array('id'=>$wpjobportal_data['id'], 'airesumesearchtext' => $wpjobportal_resume_ai_string_main, 'airesumesearchdescription' => $wpjobportal_resume_ai_string_desc))) {

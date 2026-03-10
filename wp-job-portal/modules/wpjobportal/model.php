@@ -1436,6 +1436,13 @@ class WPJOBPORTALwpjobportalModel {
         }
 
         $wpjobportal_html .= '</div>';
+
+        // --- NEW HOOK INTEGRATION START ---
+        // Blueprint: Front-End UI Filters
+        // Allows theme developers to modify user widget card layouts programmatically.
+        $wpjobportal_html = apply_filters('wpjobportal_user_widget_html', $wpjobportal_html, $wpjobportal_role, $wpjobportal_results);
+        // --- NEW HOOK INTEGRATION END ---
+
         return $wpjobportal_html;
     }
 
@@ -2233,6 +2240,13 @@ class WPJOBPORTALwpjobportalModel {
                 $error = true;
             }
         }
+
+        // --- NEW HOOK INTEGRATION START ---
+        // Blueprint: Core System Transitions
+        // Executes when core configurations and SEO settings are updated. Critical for triggering cache purging mechanisms.
+        do_action('wpjobportal_seo_settings_updated', $wpjobportal_data);
+        // --- NEW HOOK INTEGRATION END ---
+
         return WPJOBPORTAL_SAVED;
     }
 

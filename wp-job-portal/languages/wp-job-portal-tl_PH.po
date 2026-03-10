@@ -12967,3 +12967,1008 @@ msgstr "-- Resulta ng Paghahanap --"
 
 msgid "Console Output"
 msgstr "Output ng Console"
+
+msgid "After Store Job"
+msgstr "Pagkatapos ng Trabaho sa Tindahan"
+
+msgid "Fires immediately after a new job is stored in the database."
+msgstr "Sunog kaagad pagkatapos na maimbak ang isang bagong trabaho sa database."
+
+msgid "The newly created job ID."
+msgstr "Ang bagong likhang job ID."
+
+msgid "Triggered upon job creation."
+msgstr "Na-trigger sa paglikha ng trabaho."
+
+msgid "After Edit Job"
+msgstr "Pagkatapos ng I-edit ang Trabaho"
+
+msgid "Fires immediately after an existing job is updated."
+msgstr "Sunog kaagad pagkatapos ma-update ang isang kasalukuyang trabaho."
+
+msgid "The updated job ID."
+msgstr "Ang na-update na ID ng trabaho."
+
+msgid "Triggered upon job update."
+msgstr "Na-trigger sa pag-update ng trabaho."
+
+msgid "After Delete Job"
+msgstr "Pagkatapos Tanggalin ang Trabaho"
+
+msgid "Fires immediately after a job is deleted."
+msgstr "Sunog kaagad pagkatapos matanggal ang isang trabaho."
+
+msgid "The deleted job ID."
+msgstr "Ang tinanggal na ID ng trabaho."
+
+msgid "Triggered upon job deletion."
+msgstr "Na-trigger sa pagtanggal ng trabaho."
+
+msgid "Job Published"
+msgstr "Nai-publish ang Trabaho"
+
+msgid "Fires when admin approved a job for publish from job listing. Essential for XML syndication to Indeed or LinkedIn."
+msgstr "Nasibak kapag inaprubahan ng admin ang isang trabaho para sa pag-publish mula sa listahan ng trabaho. Mahalaga para sa XML syndication sa Indeed o LinkedIn."
+
+msgid "The job ID."
+msgstr "Ang ID ng trabaho."
+
+msgid "The associated company ID."
+msgstr "Ang nauugnay na ID ng kumpanya."
+
+msgid "Full job data array."
+msgstr "Buong hanay ng data ng trabaho."
+
+msgid "Essential for XML syndication feeds."
+msgstr "Mahalaga para sa XML syndication feed."
+
+msgid "Job Status Transition"
+msgstr "Paglipat ng Katayuan ng Trabaho"
+
+msgid "Fires when a job is approved or rejected by an admin from job que."
+msgstr "Mapapagana kapag ang isang trabaho ay naaprubahan o tinanggihan ng isang admin mula sa job que."
+
+msgid "Old status code."
+msgstr "Lumang status code."
+
+msgid "New status string."
+msgstr "Bagong status string."
+
+msgid "Admin approval/rejection trigger."
+msgstr "Trigger ng pag-apruba/pagtanggi ng admin."
+
+msgid "Featured Job Activated"
+msgstr "Na-activate ang Itinatampok na Trabaho"
+
+msgid "Fires when a job is elevated to featured status."
+msgstr "Masisira kapag ang isang trabaho ay itinaas sa itinatampok na katayuan."
+
+msgid "User ID of the job owner."
+msgstr "User ID ng may-ari ng trabaho."
+
+msgid "Featured expiry date."
+msgstr "Itinatampok na petsa ng pag-expire."
+
+msgid "Triggered on featured upgrade."
+msgstr "Na-trigger sa itinatampok na pag-upgrade."
+
+msgid "Job Search Query Args"
+msgstr "Args ng Query sa Paghahanap ng Trabaho"
+
+msgid "Modifies the underlying SQL query for job searches."
+msgstr "Binabago ang pinagbabatayan na query sa SQL para sa mga paghahanap ng trabaho."
+
+msgid "The search SQL query."
+msgstr "Ang query sa paghahanap sa SQL."
+
+msgid "Search filter variables."
+msgstr "Maghanap ng mga variable ng filter."
+
+msgid "Modified SQL query string."
+msgstr "Binagong SQL query string."
+
+msgid "Used for modifying frontend job search behaviour."
+msgstr "Ginagamit para sa pagbabago ng frontend na gawi sa paghahanap ng trabaho."
+
+msgid "Google Job Schema"
+msgstr "Google Job Schema"
+
+msgid "Intercepts the structured SEO data array to inject dynamic properties (like baseSalary)."
+msgstr "Hinaharang ang structured SEO data array para mag-inject ng mga dynamic na property (tulad ng baseSalary)."
+
+msgid "JSON-LD schema array."
+msgstr "JSON-LD schema array."
+
+msgid "Job ID."
+msgstr "Job ID."
+
+msgid "Modified JSON-LD array."
+msgstr "Binagong JSON-LD array."
+
+msgid "Crucial for SEO and Google Jobs integration."
+msgstr "Mahalaga para sa pagsasama ng SEO at Google Jobs."
+
+msgid "Job Shortlisted"
+msgstr "Naka-shortlist sa Trabaho"
+
+msgid "Candidate intent tracking for analytics when a job is saved or shortlisted."
+msgstr "Pagsubaybay sa layunin ng kandidato para sa analytics kapag na-save o na-shortlist ang isang trabaho."
+
+msgid "Shortlist row ID."
+msgstr "Shortlist row ID."
+
+msgid "User ID."
+msgstr "User ID."
+
+msgid "Extra data array."
+msgstr "Karagdagang data array."
+
+msgid "Candidate intent tracking."
+msgstr "Pagsubaybay sa layunin ng kandidato."
+
+msgid "After Store Resume"
+msgstr "Pagkatapos ng Store Resume"
+
+msgid "Fires immediately after a new resume is stored in the database."
+msgstr "Sunog kaagad pagkatapos maimbak ang isang bagong resume sa database."
+
+msgid "The newly created resume ID."
+msgstr "Ang bagong likhang resume ID."
+
+msgid "Triggered upon resume creation."
+msgstr "Na-trigger sa paggawa ng resume."
+
+msgid "After Edit Resume"
+msgstr "Pagkatapos ng Edit Resume"
+
+msgid "Fires immediately after an existing resume is updated."
+msgstr "Agad na gagana pagkatapos ma-update ang isang kasalukuyang resume."
+
+msgid "The updated resume ID."
+msgstr "Ang na-update na resume ID."
+
+msgid "Triggered upon resume update."
+msgstr "Na-trigger sa pag-update ng resume."
+
+msgid "After Delete Resume"
+msgstr "Pagkatapos Tanggalin ang Resume"
+
+msgid "Fires immediately after a resume is deleted."
+msgstr "Agad na gagana pagkatapos matanggal ang isang resume."
+
+msgid "The deleted resume ID."
+msgstr "Ang tinanggal na resume ID."
+
+msgid "Triggered upon resume deletion."
+msgstr "Na-trigger sa pagtanggal ng resume."
+
+msgid "Resume Status Transition"
+msgstr "Ipagpatuloy ang Paglipat ng Katayuan"
+
+msgid "Fires when an administrator manually approves or rejects a resume."
+msgstr "Mapapagana kapag manual na inaprubahan o tinanggihan ng isang administrator ang isang resume."
+
+msgid "The ID of the resume."
+msgstr "Ang ID ng resume."
+
+msgid "The previous status."
+msgstr "Ang dating status."
+
+msgid "The new status."
+msgstr "Ang bagong status."
+
+msgid "Track manual admin approvals/rejections."
+msgstr "Subaybayan ang mga manu-manong pag-apruba/pagtanggi ng admin."
+
+msgid "Resume Search Query Args"
+msgstr "Ipagpatuloy ang Search Query Args"
+
+msgid "Modifies the SQL WHERE clause during a frontend resume search, allowing Elasticsearch integrations."
+msgstr "Binabago ang SQL WHERE clause sa panahon ng isang frontend resume search, na nagpapahintulot sa Elasticsearch integrations."
+
+msgid "The current SQL query string."
+msgstr "Ang kasalukuyang string ng query sa SQL."
+
+msgid "Array of applied search filters."
+msgstr "Array ng mga inilapat na filter sa paghahanap."
+
+msgid "Allows Elasticsearch integrations."
+msgstr "Nagbibigay-daan sa mga pagsasama ng Elasticsearch."
+
+msgid "Featured Resume Activated"
+msgstr "Na-activate ang Itinatampok na Resume"
+
+msgid "Fires when a resume is promoted to featured status."
+msgstr "Mapapagana kapag ang isang resume ay na-promote sa itinatampok na katayuan."
+
+msgid "Resume ID."
+msgstr "Ipagpatuloy ang ID."
+
+msgid "Job Seeker User ID."
+msgstr "User ID ng Naghahanap ng Trabaho."
+
+msgid "After Job Apply"
+msgstr "Pagkatapos Mag-apply ng Trabaho"
+
+msgid "Fires immediately after a candidate successfully applies for a job."
+msgstr "Nasibak kaagad pagkatapos matagumpay na mag-apply ang isang kandidato para sa isang trabaho."
+
+msgid "The job application ID."
+msgstr "Ang ID ng aplikasyon sa trabaho."
+
+msgid "Triggered upon successful job application."
+msgstr "Na-trigger sa matagumpay na aplikasyon ng trabaho."
+
+msgid "Application Submitted"
+msgstr "Naisumite ang Aplikasyon"
+
+msgid "Standard event trigger for a logged-in user submitting a job application."
+msgstr "Karaniwang trigger ng kaganapan para sa isang naka-log in na user na nagsusumite ng aplikasyon sa trabaho."
+
+msgid "ID of the application record."
+msgstr "ID ng rekord ng aplikasyon."
+
+msgid "ID of the applied job."
+msgstr "ID ng inilapat na trabaho."
+
+msgid "Fires for authenticated users only."
+msgstr "Paganahin para lang sa mga na-authenticate na user."
+
+msgid "Quick Apply Submitted"
+msgstr "Mabilis na Naisumite ang Pag-aplay"
+
+msgid "Triggers when a candidate uses the \\"
+msgstr "Nagti-trigger kapag ginamit ng isang kandidato ang \\"
+
+msgid "Application record ID."
+msgstr "Application record ID."
+
+msgid "Submitted form data."
+msgstr "Nagsumite ng data ng form."
+
+msgid "Uploaded files array."
+msgstr "array ng mga na-upload na file."
+
+msgid "Handles bypass forms and attached files."
+msgstr "Pinangangasiwaan ang mga bypass form at mga naka-attach na file."
+
+msgid "Visitor Application Submitted"
+msgstr "Naisumite ang Application ng Bisita"
+
+msgid "Triggers specifically for unauthenticated (guest) applications."
+msgstr "Partikular na nag-trigger para sa mga hindi napatotohanan (panauhin) na application."
+
+msgid "Guest data array."
+msgstr "array ng data ng bisita."
+
+msgid "Triggers specifically for unauthenticated applications."
+msgstr "Partikular na nag-trigger para sa mga hindi napatotohanang application."
+
+msgid "Candidate Status Updated"
+msgstr "Na-update ang Katayuan ng Kandidato"
+
+msgid "Core ATS hook. Fires when an employer changes an applicants internal workflow state (e.g., Hired)."
+msgstr "Core ATS hook. Nasibak kapag binago ng isang employer ang estado ng internal na daloy ng trabaho ng mga aplikante (hal., Na-hire)."
+
+msgid "Old ATS status."
+msgstr "Old ATS status."
+
+msgid "New ATS status."
+msgstr "Bagong katayuan ng ATS."
+
+msgid "Employer User ID."
+msgstr "User ID ng Employer."
+
+msgid "Core ATS hook."
+msgstr "Core ATS hook."
+
+msgid "Application Note Saved"
+msgstr "Nai-save ang Tala ng Application"
+
+msgid "Fires when an employer adds an internal note to an application."
+msgstr "Nasibak kapag nagdagdag ang isang tagapag-empleyo ng panloob na tala sa isang aplikasyon."
+
+msgid "Note text."
+msgstr "Teksto ng tala."
+
+msgid "Fires on employer internal note."
+msgstr "Sunog sa panloob na tala ng employer."
+
+msgid "Application Rating Updated"
+msgstr "Na-update ang Rating ng Application"
+
+msgid "Fires when a candidate receives a star rating from an employer."
+msgstr "Masisira kapag ang isang kandidato ay nakatanggap ng star rating mula sa isang employer."
+
+msgid "Application ID."
+msgstr "Application ID."
+
+msgid "Star rating."
+msgstr "Star rating."
+
+msgid "Fires on rating update."
+msgstr "Sunog sa pag-update ng rating."
+
+msgid "After Store Company"
+msgstr "Pagkatapos ng Store Company"
+
+msgid "Fires immediately after a new company is stored in the database."
+msgstr "Sunog kaagad pagkatapos na maimbak ang isang bagong kumpanya sa database."
+
+msgid "The newly created company ID."
+msgstr "Ang bagong ginawang company ID."
+
+msgid "Triggered upon company creation."
+msgstr "Na-trigger sa paglikha ng kumpanya."
+
+msgid "After Edit Company"
+msgstr "Pagkatapos ng Edit Company"
+
+msgid "Fires immediately after an existing company is updated."
+msgstr "Sunog kaagad pagkatapos ma-update ang isang kasalukuyang kumpanya."
+
+msgid "The updated company ID."
+msgstr "Ang na-update na ID ng kumpanya."
+
+msgid "Triggered upon company update."
+msgstr "Na-trigger sa pag-update ng kumpanya."
+
+msgid "After Delete Company"
+msgstr "Pagkatapos Tanggalin ang Kumpanya"
+
+msgid "Fires immediately after a company is deleted."
+msgstr "Sunog kaagad pagkatapos matanggal ang isang kumpanya."
+
+msgid "The deleted company ID."
+msgstr "Ang tinanggal na company ID."
+
+msgid "Triggered upon company deletion."
+msgstr "Na-trigger sa pagtanggal ng kumpanya."
+
+msgid "Company Status Transition"
+msgstr "Paglipat ng Katayuan ng Kumpanya"
+
+msgid "Fires on company approve/reject state changes."
+msgstr "Ang mga sunog sa kumpanya ay aprubahan/tinatanggihan ang mga pagbabago sa estado."
+
+msgid "Company ID."
+msgstr "Company ID."
+
+msgid "Old status."
+msgstr "Lumang katayuan."
+
+msgid "New status."
+msgstr "Bagong katayuan."
+
+msgid "Fires on company state changes."
+msgstr "Mga sunog sa mga pagbabago sa estado ng kumpanya."
+
+msgid "Featured Company Activated"
+msgstr "Na-activate ang Itinatampok na Kumpanya"
+
+msgid "Fires when a company is promoted to featured status."
+msgstr "Masisira kapag ang isang kumpanya ay na-promote sa itinatampok na katayuan."
+
+msgid "Company Search Query Args"
+msgstr "Args ng Query sa Paghahanap ng Kumpanya"
+
+msgid "Modifies Company SQL search queries."
+msgstr "Binabago ang mga query sa paghahanap ng SQL ng Kumpanya."
+
+msgid "Current SQL query."
+msgstr "Kasalukuyang SQL query."
+
+msgid "Search filters."
+msgstr "Maghanap ng mga filter."
+
+msgid "Modified query string."
+msgstr "Binagong string ng query."
+
+msgid "Used for modifying frontend company search behaviour."
+msgstr "Ginagamit para sa pagbabago ng frontend na gawi sa paghahanap ng kumpanya."
+
+msgid "User Status Transition"
+msgstr "Paglipat ng Katayuan ng User"
+
+msgid "Fires when an admin manually suspends or activates an account."
+msgstr "Gumagana kapag manual na sinuspinde o ina-activate ng admin ang isang account."
+
+msgid "Admin account activation/suspension."
+msgstr "Pag-activate/pagsuspinde ng admin account."
+
+msgid "User Deleted"
+msgstr "Tinanggal ang User"
+
+msgid "Crucial for GDPR compliance; alerts external systems to delete user records."
+msgstr "Mahalaga para sa pagsunod sa GDPR; nag-aalerto sa mga panlabas na system upang tanggalin ang mga tala ng user."
+
+msgid "Portal User ID."
+msgstr "Portal User ID."
+
+msgid "WordPress User ID."
+msgstr "WordPress User ID."
+
+msgid "User Role ID."
+msgstr "User Role ID."
+
+msgid "Crucial for GDPR compliance."
+msgstr "Mahalaga para sa pagsunod sa GDPR."
+
+msgid "User Profile Saved"
+msgstr "Nai-save ang Profile ng User"
+
+msgid "Fires whenever user metadata is updated."
+msgstr "Gumagana sa tuwing ina-update ang metadata ng user."
+
+msgid "Profile ID."
+msgstr "Profile ID."
+
+msgid "Profile metadata."
+msgstr "Metadata ng profile."
+
+msgid "Fires on metadata update."
+msgstr "Gumana sa pag-update ng metadata."
+
+msgid "AI Content Prompt"
+msgstr "AI Content Prompt"
+
+msgid "Intercepts the prompt string before it hits the AI proxy. Allows insertion of mandatory EEO text."
+msgstr "Hinaharang ang prompt string bago ito tumama sa AI proxy. Nagbibigay-daan sa pagpasok ng mandatoryong EEO text."
+
+msgid "AI Prompt."
+msgstr "AI Prompt."
+
+msgid "Context parameters."
+msgstr "Mga parameter ng konteksto."
+
+msgid "Modified AI Prompt."
+msgstr "Binagong AI Prompt."
+
+msgid "Allows insertion of mandatory context."
+msgstr "Nagbibigay-daan sa pagpasok ng mandatoryong konteksto."
+
+msgid "AI Generation Completed"
+msgstr "Nakumpleto ang Pagbuo ng AI"
+
+msgid "Captures the AI response for logging and plagiarism scanning."
+msgstr "Kinukuha ang tugon ng AI para sa pag-log at pag-scan ng plagiarism."
+
+msgid "Status code."
+msgstr "Code ng katayuan."
+
+msgid "Response payload."
+msgstr "Payload ng tugon."
+
+msgid "Original Prompt."
+msgstr "Orihinal na Prompt."
+
+msgid "Wrapper used."
+msgstr "Ginamit na wrapper."
+
+msgid "Used for logging and plagiarism checks."
+msgstr "Ginagamit para sa pag-log at plagiarism check."
+
+msgid "Before AI Resume Parse"
+msgstr "Bago ang AI Resume Parse"
+
+msgid "Allows PII redaction from resume text before it is indexed for AI matching."
+msgstr "Nagbibigay-daan sa PII redaction mula sa resume text bago ito ma-index para sa AI matching."
+
+msgid "Text string for AI indexing."
+msgstr "Text string para sa AI indexing."
+
+msgid "Entity ID."
+msgstr "Entity ID."
+
+msgid "Sanitized AI string."
+msgstr "Nalinis na AI string."
+
+msgid "Useful for Blind Hiring features."
+msgstr "Kapaki-pakinabang para sa mga feature ng Blind Hiring."
+
+msgid "Before AI Job Parse"
+msgstr "Bago ang AI Job Parse"
+
+msgid "Allows modification of job text before AI indexing."
+msgstr "Nagbibigay-daan sa pagbabago ng teksto ng trabaho bago ang pag-index ng AI."
+
+msgid "Modified AI string."
+msgstr "Binagong AI string."
+
+msgid "AI Job to Resume Match"
+msgstr "AI Job to Resume Match"
+
+msgid "Mutates the search string the AI uses to find resumes for a job."
+msgstr "Pina-mute ang string ng paghahanap na ginagamit ng AI para maghanap ng mga resume para sa isang trabaho."
+
+msgid "Search string."
+msgstr "Search string."
+
+msgid "Mutated search string."
+msgstr "Na-mutate na string ng paghahanap."
+
+msgid "Mutates the search string the AI uses."
+msgstr "Pina-mute ang string ng paghahanap na ginagamit ng AI."
+
+msgid "AI Resume to Job Match"
+msgstr "AI Resume to Job Match"
+
+msgid "Mutates the search string the AI uses to find jobs for a resume."
+msgstr "Pina-mute ang string ng paghahanap na ginagamit ng AI para maghanap ng mga trabaho para sa isang resume."
+
+msgid "AI Dashboard Job Suggestions"
+msgstr "Mga Suhestiyon sa Trabaho sa Dashboard ng AI"
+
+msgid "Captures suggested jobs calculated for the job seekers dashboard."
+msgstr "Kinukuha ang mga iminungkahing trabaho na kinakalkula para sa dashboard ng mga naghahanap ng trabaho."
+
+msgid "Seeker User ID."
+msgstr "Seeker User ID."
+
+msgid "Array of matched Job IDs."
+msgstr "Array ng mga katugmang Job ID."
+
+msgid "Captures dashboard suggestions."
+msgstr "Kinukuha ang mga mungkahi sa dashboard."
+
+msgid "AI Job Suggestion Calculated"
+msgstr "Kinakalkula ang Mungkahi sa Trabaho ng AI"
+
+msgid "Captures suggested jobs against a specific resume ID."
+msgstr "Kinukuha ang mga iminungkahing trabaho laban sa isang partikular na resume ID."
+
+msgid "Captures resume-specific suggestions."
+msgstr "Kinukuha ang mga suhestyon na partikular sa resume."
+
+msgid "AI Dashboard Resume Suggestions"
+msgstr "Mga Suhestiyon sa Ipagpatuloy ng AI Dashboard"
+
+msgid "Captures suggested resumes calculated for the employers dashboard."
+msgstr "Kinukuha ang mga iminungkahing resume na kinakalkula para sa dashboard ng mga employer."
+
+msgid "Array of matched Resume IDs."
+msgstr "Array ng mga katugmang Resume ID."
+
+msgid "Captures employer dashboard suggestions."
+msgstr "Kinukuha ang mga suhestyon sa dashboard ng employer."
+
+msgid "AI Resume Suggestion Calculated"
+msgstr "AI Resume Suggestion Kinakalkula"
+
+msgid "Captures suggested resumes against a specific job ID."
+msgstr "Kinukuha ang mga iminungkahing resume laban sa isang partikular na job ID."
+
+msgid "Captures job-specific suggestions."
+msgstr "Kinukuha ang mga mungkahi na partikular sa trabaho."
+
+msgid "Job Alert Triggered"
+msgstr "Na-trigger ang Job Alert"
+
+msgid "Intercepts an alert match before the email sends. Ideal for Push/SMS notifications."
+msgstr "Hinaharang ang isang tugmang alerto bago ipadala ang email. Tamang-tama para sa mga notification ng Push/SMS."
+
+msgid "Person ID."
+msgstr "ID ng Tao."
+
+msgid "Subscriber User ID."
+msgstr "User ID ng Subscriber."
+
+msgid "Matched jobs array."
+msgstr "Katugmang hanay ng mga trabaho."
+
+msgid "Ideal for Push/SMS notifications."
+msgstr "Tamang-tama para sa mga notification ng Push/SMS."
+
+msgid "Job Alert Saved"
+msgstr "Na-save ang Alerto sa Trabaho"
+
+msgid "Fires when an alert preference is created or updated."
+msgstr "Gumagana kapag ang isang kagustuhan sa alerto ay ginawa o na-update."
+
+msgid "Alert record ID."
+msgstr "Alert record ID."
+
+msgid "Subscriber Email."
+msgstr "Email ng Subscriber."
+
+msgid "Alert configuration data."
+msgstr "Data ng configuration ng alerto."
+
+msgid "Fires on alert create/update."
+msgstr "Mga sunog sa paggawa/pag-update ng alerto."
+
+msgid "Job Alert Unsubscribed"
+msgstr "Nag-unsubscribe ang Alerto sa Trabaho"
+
+msgid "Fires when an alert is deleted."
+msgstr "Gumagana kapag ang isang alerto ay tinanggal."
+
+msgid "Deleted Alert ID."
+msgstr "Tinanggal ang Alert ID."
+
+msgid "Membership Package Purchased"
+msgstr "Binili ang Membership Package"
+
+msgid "Triggers on a successful checkout via Stripe or PayPal gateways."
+msgstr "Nagti-trigger sa matagumpay na pag-checkout sa pamamagitan ng Stripe o PayPal gateway."
+
+msgid "Package ID."
+msgstr "Package ID."
+
+msgid "Amount paid."
+msgstr "Halagang binayaran."
+
+msgid "Payment gateway."
+msgstr "Payment gateway."
+
+msgid "Triggers on gateway success."
+msgstr "Nag-trigger sa tagumpay ng gateway."
+
+msgid "WooCommerce Order Synced"
+msgstr "Naka-sync ang Order ng WooCommerce"
+
+msgid "Executes when WP Job Portal routes a payment into the WooCommerce cart."
+msgstr "Isinasagawa kapag ang WP Job Portal ay nagruta ng pagbabayad sa WooCommerce cart."
+
+msgid "WooCommerce Post ID."
+msgstr "WooCommerce Post ID."
+
+msgid "Purchase data."
+msgstr "Data ng pagbili."
+
+msgid "Executes on Woo cart route."
+msgstr "Nagsasagawa sa ruta ng Woo cart."
+
+msgid "Per Listing Purchased"
+msgstr "Bawat Listahan na Binili"
+
+msgid "Generic action deployed across all individual purchases."
+msgstr "Generic na pagkilos na naka-deploy sa lahat ng indibidwal na pagbili."
+
+msgid "Entity ID (job/resume/company)."
+msgstr "Entity ID (trabaho/resume/kumpanya)."
+
+msgid "Entity type."
+msgstr "Uri ng entity."
+
+msgid "Gateway used."
+msgstr "Ginamit ang gateway."
+
+msgid "Deployed across individual purchases."
+msgstr "Na-deploy sa mga indibidwal na pagbili."
+
+msgid "Subscription Cancelled"
+msgstr "Kinansela ang Subscription"
+
+msgid "Alerts external platforms (like Discord/Active Directory) to downgrade the user."
+msgstr "Nag-aalerto sa mga panlabas na platform (tulad ng Discord/Active Directory) upang i-downgrade ang user."
+
+msgid "Gateway sub ID."
+msgstr "Gateway sub ID."
+
+msgid "Downgrade user permissions."
+msgstr "I-downgrade ang mga pahintulot ng user."
+
+msgid "Membership Purchased DB Commit"
+msgstr "Binili ng Membership ang DB Commit"
+
+msgid "A database-level failsafe hook that fires even if a package is manually assigned by an admin."
+msgstr "Isang database-level failsafe hook na gumagana kahit na ang isang package ay manu-manong itinalaga ng isang admin."
+
+msgid "Amount."
+msgstr "Halaga."
+
+msgid "Payment Method."
+msgstr "Paraan ng Pagbabayad."
+
+msgid "Database-level failsafe hook."
+msgstr "failsafe hook sa antas ng database."
+
+msgid "Package Saved"
+msgstr "Na-save ang Package"
+
+msgid "Fires when a package is updated or unpublished."
+msgstr "Gumagana kapag ang isang package ay na-update o hindi na-publish."
+
+msgid "Package data."
+msgstr "Data ng package."
+
+msgid "Fires on package update."
+msgstr "Sunog sa pag-update ng package."
+
+msgid "Invoice Status Transition"
+msgstr "Paglipat ng Katayuan ng Invoice"
+
+msgid "Fires when an invoice moves to \\"
+msgstr "Gumagana kapag lumipat ang isang invoice sa \\"
+
+msgid "Invoice ID."
+msgstr "Invoice ID."
+
+msgid "Old Status."
+msgstr "Lumang Katayuan."
+
+msgid "New Status."
+msgstr "Bagong Katayuan."
+
+msgid "Syncs external accounting software."
+msgstr "Sini-sync ang software ng panlabas na accounting."
+
+msgid "Invoice Saved"
+msgstr "Na-save ang Invoice"
+
+msgid "Fires on invoice creation or deletion."
+msgstr "Pagana sa paggawa o pagtanggal ng invoice."
+
+msgid "Invoice Data."
+msgstr "Data ng Invoice."
+
+msgid "Fires on invoice creation."
+msgstr "Mga sunog sa paggawa ng invoice."
+
+msgid "Employer Dashboard Loaded"
+msgstr "Na-load ang Dashboard ng Employer"
+
+msgid "Fires when the employer portal initializes."
+msgstr "Masisira kapag nagsimula ang portal ng employer."
+
+msgid "Portal view data array."
+msgstr "Array ng data ng view ng portal."
+
+msgid "Jobseeker Dashboard Loaded"
+msgstr "Na-load ang Dashboard ng Jobseeker"
+
+msgid "Fires when the candidate portal initializes."
+msgstr "Magpapagana kapag nagsimula ang portal ng kandidato."
+
+msgid "Candidate User ID."
+msgstr "User ID ng Kandidato."
+
+msgid "Admin Dashboard Loaded"
+msgstr "Na-load ang Admin Dashboard"
+
+msgid "Injects custom data into the WP Admin control panel."
+msgstr "Nag-inject ng custom na data sa control panel ng WP Admin."
+
+msgid "Admin data array."
+msgstr "array ng data ng admin."
+
+msgid "Injects data into WP Admin."
+msgstr "Nag-inject ng data sa WP Admin."
+
+msgid "User Widget HTML"
+msgstr "User Widget HTML"
+
+msgid "Allows theme developers to modify member widget cards."
+msgstr "Nagbibigay-daan sa mga developer ng tema na baguhin ang mga card ng widget ng miyembro."
+
+msgid "HTML Content."
+msgstr "HTML na Nilalaman."
+
+msgid "User role."
+msgstr "Tungkulin ng user."
+
+msgid "User data."
+msgstr "Data ng gumagamit."
+
+msgid "Modified HTML."
+msgstr "Binagong HTML."
+
+msgid "Modify member widget cards."
+msgstr "Baguhin ang mga card ng widget ng miyembro."
+
+msgid "Shortlist Popup HTML"
+msgstr "Shortlist Popup HTML"
+
+msgid "Modifies the HTML output of the shortlist modal."
+msgstr "Binabago ang HTML na output ng shortlist modal."
+
+msgid "Modifies shortlist modal HTML."
+msgstr "Binabago ang shortlist modal HTML."
+
+msgid "Export Resume Raw String"
+msgstr "I-export ang Resume Raw String"
+
+msgid "Intercepts the final TSV text string for a single resume download."
+msgstr "Hinaharang ang huling TSV text string para sa isang pag-download ng resume."
+
+msgid "TSV String."
+msgstr "TSV String."
+
+msgid "Modified TSV string."
+msgstr "Binagong TSV string."
+
+msgid "Intercepts single TSV export."
+msgstr "Hinaharang ang solong pag-export ng TSV."
+
+msgid "Export Resume Data Array"
+msgstr "I-export ang Array ng Data ng Resume"
+
+msgid "Highly useful for Blind Hiring; allows programmatic removal of PII columns before TSV conversion."
+msgstr "Lubos na kapaki-pakinabang para sa Blind Hiring; nagbibigay-daan sa programmatic na pag-alis ng mga column ng PII bago ang conversion ng TSV."
+
+msgid "Export row array."
+msgstr "I-export ang hanay ng hilera."
+
+msgid "DB result data."
+msgstr "Data ng resulta ng DB."
+
+msgid "Sanitized row array."
+msgstr "Nalinis na hanay ng hilera."
+
+msgid "Highly useful for Blind Hiring."
+msgstr "Lubos na kapaki-pakinabang para sa Blind Hiring."
+
+msgid "Export All Resumes Raw String"
+msgstr "I-export ang Lahat ng Resume Raw String"
+
+msgid "Intercepts the bulk export string to append HR disclaimers or timestamps."
+msgstr "Hinaharang ang maramihang string ng pag-export para magdagdag ng mga disclaimer o timestamp ng HR."
+
+msgid "Bulk TSV String."
+msgstr "Bultuhang TSV String."
+
+msgid "Modified bulk string."
+msgstr "Binagong bulk string."
+
+msgid "Intercepts bulk export string."
+msgstr "Hinaharang ang maramihang pag-export na string."
+
+msgid "Resume Export Filename"
+msgstr "Ipagpatuloy ang Pag-export ng Filename"
+
+msgid "Mutates the generated ZIP file name dynamically."
+msgstr "Binabago ang nabuong ZIP file name nang pabago-bago."
+
+msgid "Default filename."
+msgstr "Default na filename."
+
+msgid "File extension."
+msgstr "Extension ng file."
+
+msgid "Mutated filename."
+msgstr "Na-mutate ang filename."
+
+msgid "Mutates generated ZIP filename."
+msgstr "Mutates nabuo ZIP filename."
+
+msgid "System Email Headers"
+msgstr "Mga Header ng Email ng System"
+
+msgid "Modifies outgoing SMTP headers (e.g., custom Reply-To addresses)."
+msgstr "Binabago ang papalabas na mga header ng SMTP (hal., mga custom na Reply-To address)."
+
+msgid "Email headers array."
+msgstr "array ng mga header ng email."
+
+msgid "Email subject."
+msgstr "Paksa ng email."
+
+msgid "Modified headers."
+msgstr "Binagong mga header."
+
+msgid "Modifies outgoing SMTP headers."
+msgstr "Binabago ang mga papalabas na header ng SMTP."
+
+msgid "Email Notification Sent"
+msgstr "Naipadala ang Notification sa Email"
+
+msgid "Logs transactional emails immediately after wp_mail() fires."
+msgstr "Nagla-log kaagad ng mga transaksyonal na email pagkatapos ng paggana ng wp_mail()."
+
+msgid "Email type string."
+msgstr "String ng uri ng email."
+
+msgid "Recipient details."
+msgstr "Mga detalye ng tatanggap."
+
+msgid "Email HTML payload."
+msgstr "Email HTML payload."
+
+msgid "Logs transactional emails."
+msgstr "Nag-log ng mga transaksyonal na email."
+
+msgid "Internal Message Sent"
+msgstr "Naipadala ang Panloob na Mensahe"
+
+msgid "Intercepts secure internal messages to push to external SMS/Slack APIs."
+msgstr "Hinaharang ang mga secure na panloob na mensahe upang itulak sa mga external na SMS/Slack API."
+
+msgid "Message ID."
+msgstr "ID ng Mensahe."
+
+msgid "Sender ID."
+msgstr "ID ng nagpadala."
+
+msgid "Recipient ID."
+msgstr "ID ng tatanggap."
+
+msgid "Message Text."
+msgstr "Teksto ng Mensahe."
+
+msgid "Push to external SMS/Slack APIs."
+msgstr "Push sa mga external na SMS/Slack API."
+
+msgid "Message Status Transition"
+msgstr "Paglipat ng Katayuan ng Mensahe"
+
+msgid "Triggers when an admin resolves a flagged/conflicted message."
+msgstr "Nagti-trigger kapag niresolba ng admin ang isang na-flag/nakasalungat na mensahe."
+
+msgid "Admin flag resolution."
+msgstr "Resolusyon ng bandila ng admin."
+
+msgid "File Uploaded (S3 Hook)"
+msgstr "Na-upload ang File (S3 Hook)"
+
+msgid "The ultimate scalability hook. Fires when a physical file is saved, allowing cloud plugins to upload to AWS S3 and delete the local instance."
+msgstr "Ang tunay na scalability hook. Gumagana kapag na-save ang isang pisikal na file, na nagbibigay-daan sa mga cloud plugin na mag-upload sa AWS S3 at tanggalin ang lokal na instance."
+
+msgid "Absolute physical file path."
+msgstr "Ganap na pisikal na landas ng file."
+
+msgid "Context type (e.g. company_logo, resume_file)."
+msgstr "Uri ng konteksto (hal. company_logo, resume_file)."
+
+msgid "Associated record ID."
+msgstr "Kaugnay na record ID."
+
+msgid "The ultimate scalability hook for S3."
+msgstr "Ang pinakahuling scalability hook para sa S3."
+
+msgid "SEO Settings Updated"
+msgstr "Na-update ang Mga Setting ng SEO"
+
+msgid "Executes when core configs update, enabling auto-purging of caching plugins (WP Rocket)."
+msgstr "Isinasagawa kapag nag-update ang mga core config, na nagpapagana ng auto-purging ng mga caching plugin (WP Rocket)."
+
+msgid "Config data array."
+msgstr "I-configure ang array ng data."
+
+msgid "Enabling auto-purging of caching plugins."
+msgstr "Paganahin ang auto-purging ng mga caching plugin."
+
+msgid "Hook Reference"
+msgstr "Sanggunian sa Hook"
+
+msgid "Entities"
+msgstr "Mga nilalang"
+
+msgid "Search across all actions and filters..."
+msgstr "Maghanap sa lahat ng pagkilos at filter..."
+
+msgid "Arguments"
+msgstr "Mga argumento"
+
+msgid "Returns"
+msgstr "Nagbabalik"
+
+msgid "No return (Action Hook)"
+msgstr "Walang balikan (Action Hook)"
+
+msgid "Snippet"
+msgstr "Snippet"
+
+msgid "Copy Code"
+msgstr "Kopyahin ang Code"
+
+msgid "To use this hook, please install and activate the"
+msgstr "Upang gamitin ang hook na ito, mangyaring i-install at i-activate ang"
+
+msgid "addon."
+msgstr "addon."
+
+msgid "View Addon Details"
+msgstr "Tingnan ang Mga Detalye ng Addon"
+
+msgid "No results found"
+msgstr "Walang nakitang resulta"
+
+msgid "Try searching for specific keywords like \\"
+msgstr "Subukang maghanap ng mga partikular na keyword tulad ng \\"
+
+msgid "Hooks"
+msgstr "Mga kawit"
+
+msgid "Search Results"
+msgstr "Mga Resulta ng Paghahanap"

@@ -11,7 +11,7 @@ if (is_rtl()) {
     wp_register_style('wpjobportal-style-rtl', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/stylertl.css');
     wp_enqueue_style('wpjobportal-style-rtl');
 }
-update_option( 'wpjobportalresumeeditadmin', 1 );
+// update_option( 'wpjobportalresumeeditadmin', 1 ); // extra no in use
 ?>
 <!-- main wrapper -->
 <div id="wpjobportaladmin-wrapper">

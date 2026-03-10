@@ -12964,3 +12964,1008 @@ msgstr "-- Результаты поиска --"
 
 msgid "Console Output"
 msgstr "Консольный вывод"
+
+msgid "After Store Job"
+msgstr "После работы в магазине"
+
+msgid "Fires immediately after a new job is stored in the database."
+msgstr "Срабатывает сразу после сохранения нового задания в базе данных."
+
+msgid "The newly created job ID."
+msgstr "Идентификатор вновь созданного задания."
+
+msgid "Triggered upon job creation."
+msgstr "Запускается при создании рабочих мест."
+
+msgid "After Edit Job"
+msgstr "После редактирования задания"
+
+msgid "Fires immediately after an existing job is updated."
+msgstr "Срабатывает сразу после обновления существующего задания."
+
+msgid "The updated job ID."
+msgstr "Обновленный идентификатор задания."
+
+msgid "Triggered upon job update."
+msgstr "Срабатывает при обновлении вакансии."
+
+msgid "After Delete Job"
+msgstr "После удаления задания"
+
+msgid "Fires immediately after a job is deleted."
+msgstr "Срабатывает сразу после удаления задания."
+
+msgid "The deleted job ID."
+msgstr "Идентификатор удаленного задания."
+
+msgid "Triggered upon job deletion."
+msgstr "Срабатывает при удалении задания."
+
+msgid "Job Published"
+msgstr "Работа опубликована"
+
+msgid "Fires when admin approved a job for publish from job listing. Essential for XML syndication to Indeed or LinkedIn."
+msgstr "Срабатывает, когда администратор одобрил публикацию вакансии из списка вакансий. Необходим для распространения XML в Indeed или LinkedIn."
+
+msgid "The job ID."
+msgstr "Идентификатор вакансии."
+
+msgid "The associated company ID."
+msgstr "Идентификатор связанной компании."
+
+msgid "Full job data array."
+msgstr "Полный массив данных задания."
+
+msgid "Essential for XML syndication feeds."
+msgstr "Необходим для XML-каналов синдикации."
+
+msgid "Job Status Transition"
+msgstr "Изменение статуса задания"
+
+msgid "Fires when a job is approved or rejected by an admin from job que."
+msgstr "Срабатывает, когда задание одобрено или отклонено администратором из очереди заданий."
+
+msgid "Old status code."
+msgstr "Старый код статуса."
+
+msgid "New status string."
+msgstr "Новая строка статуса."
+
+msgid "Admin approval/rejection trigger."
+msgstr "Триггер одобрения/отклонения администратором."
+
+msgid "Featured Job Activated"
+msgstr "Рекомендуемая вакансия активирована"
+
+msgid "Fires when a job is elevated to featured status."
+msgstr "Срабатывает, когда заданию присваивается статус избранного."
+
+msgid "User ID of the job owner."
+msgstr "Идентификатор пользователя владельца задания."
+
+msgid "Featured expiry date."
+msgstr "Указанный срок годности."
+
+msgid "Triggered on featured upgrade."
+msgstr "Срабатывает при рекомендуемом обновлении."
+
+msgid "Job Search Query Args"
+msgstr "Аргументы запроса на поиск работы"
+
+msgid "Modifies the underlying SQL query for job searches."
+msgstr "Изменяет базовый SQL-запрос для поиска работы."
+
+msgid "The search SQL query."
+msgstr "Поисковый SQL-запрос."
+
+msgid "Search filter variables."
+msgstr "Поиск переменных фильтра."
+
+msgid "Modified SQL query string."
+msgstr "Измененная строка запроса SQL."
+
+msgid "Used for modifying frontend job search behaviour."
+msgstr "Используется для изменения поведения при поиске работы во внешнем интерфейсе."
+
+msgid "Google Job Schema"
+msgstr "Схема вакансии Google"
+
+msgid "Intercepts the structured SEO data array to inject dynamic properties (like baseSalary)."
+msgstr "Перехватывает структурированный массив данных SEO для внедрения динамических свойств (например, baseSalary)."
+
+msgid "JSON-LD schema array."
+msgstr "Массив схемы JSON-LD."
+
+msgid "Job ID."
+msgstr "Идентификатор вакансии."
+
+msgid "Modified JSON-LD array."
+msgstr "Модифицированный массив JSON-LD."
+
+msgid "Crucial for SEO and Google Jobs integration."
+msgstr "Крайне важно для интеграции SEO и Google Jobs."
+
+msgid "Job Shortlisted"
+msgstr "Вакансия в шорт-листе"
+
+msgid "Candidate intent tracking for analytics when a job is saved or shortlisted."
+msgstr "Отслеживание намерений кандидатов для аналитики, когда вакансия сохранена или включена в короткий список."
+
+msgid "Shortlist row ID."
+msgstr "Идентификатор строки короткого списка."
+
+msgid "User ID."
+msgstr "ID пользователя."
+
+msgid "Extra data array."
+msgstr "Дополнительный массив данных."
+
+msgid "Candidate intent tracking."
+msgstr "Отслеживание намерений кандидата."
+
+msgid "After Store Resume"
+msgstr "Резюме после магазина"
+
+msgid "Fires immediately after a new resume is stored in the database."
+msgstr "Срабатывает сразу после сохранения нового резюме в базе данных."
+
+msgid "The newly created resume ID."
+msgstr "Вновь созданный идентификатор резюме."
+
+msgid "Triggered upon resume creation."
+msgstr "Активируется при создании резюме."
+
+msgid "After Edit Resume"
+msgstr "После редактирования резюме"
+
+msgid "Fires immediately after an existing resume is updated."
+msgstr "Срабатывает сразу после обновления существующего резюме."
+
+msgid "The updated resume ID."
+msgstr "Обновленный идентификатор резюме."
+
+msgid "Triggered upon resume update."
+msgstr "Срабатывает при обновлении резюме."
+
+msgid "After Delete Resume"
+msgstr "После удаления резюме"
+
+msgid "Fires immediately after a resume is deleted."
+msgstr "Срабатывает сразу после удаления резюме."
+
+msgid "The deleted resume ID."
+msgstr "Идентификатор удаленного резюме."
+
+msgid "Triggered upon resume deletion."
+msgstr "Срабатывает при удалении резюме."
+
+msgid "Resume Status Transition"
+msgstr "Возобновить переход статуса"
+
+msgid "Fires when an administrator manually approves or rejects a resume."
+msgstr "Срабатывает, когда администратор вручную утверждает или отклоняет резюме."
+
+msgid "The ID of the resume."
+msgstr "Идентификатор резюме."
+
+msgid "The previous status."
+msgstr "Предыдущий статус."
+
+msgid "The new status."
+msgstr "Новый статус."
+
+msgid "Track manual admin approvals/rejections."
+msgstr "Отслеживайте одобрения/отказы администратора вручную."
+
+msgid "Resume Search Query Args"
+msgstr "Возобновить аргументы поискового запроса"
+
+msgid "Modifies the SQL WHERE clause during a frontend resume search, allowing Elasticsearch integrations."
+msgstr "Изменяет предложение SQL WHERE во время поиска возобновления внешнего интерфейса, обеспечивая интеграцию Elasticsearch."
+
+msgid "The current SQL query string."
+msgstr "Текущая строка запроса SQL."
+
+msgid "Array of applied search filters."
+msgstr "Массив примененных поисковых фильтров."
+
+msgid "Allows Elasticsearch integrations."
+msgstr "Позволяет интеграцию Elasticsearch."
+
+msgid "Featured Resume Activated"
+msgstr "Рекомендуемое резюме активировано"
+
+msgid "Fires when a resume is promoted to featured status."
+msgstr "Срабатывает, когда резюме повышается до избранного статуса."
+
+msgid "Resume ID."
+msgstr "Идентификатор резюме."
+
+msgid "Job Seeker User ID."
+msgstr "Идентификатор пользователя соискателя работы."
+
+msgid "After Job Apply"
+msgstr "После работы подать заявку"
+
+msgid "Fires immediately after a candidate successfully applies for a job."
+msgstr "Срабатывает сразу после того, как кандидат успешно подает заявку на работу."
+
+msgid "The job application ID."
+msgstr "Идентификатор заявления о приеме на работу."
+
+msgid "Triggered upon successful job application."
+msgstr "Активируется при успешном подаче заявления о приеме на работу."
+
+msgid "Application Submitted"
+msgstr "Заявка отправлена"
+
+msgid "Standard event trigger for a logged-in user submitting a job application."
+msgstr "Стандартный триггер события для вошедшего в систему пользователя, отправляющего заявку на работу."
+
+msgid "ID of the application record."
+msgstr "Идентификатор записи приложения."
+
+msgid "ID of the applied job."
+msgstr "Идентификатор заявленного задания."
+
+msgid "Fires for authenticated users only."
+msgstr "Срабатывает только для аутентифицированных пользователей."
+
+msgid "Quick Apply Submitted"
+msgstr "Быстрая подача заявки отправлена"
+
+msgid "Triggers when a candidate uses the \\"
+msgstr "Срабатывает, когда кандидат использует \\"
+
+msgid "Application record ID."
+msgstr "Идентификатор записи приложения."
+
+msgid "Submitted form data."
+msgstr "Отправленные данные формы."
+
+msgid "Uploaded files array."
+msgstr "Массив загруженных файлов."
+
+msgid "Handles bypass forms and attached files."
+msgstr "Обрабатывает формы обхода и прикрепленные файлы."
+
+msgid "Visitor Application Submitted"
+msgstr "Заявка посетителя отправлена"
+
+msgid "Triggers specifically for unauthenticated (guest) applications."
+msgstr "Триггеры специально для неаутентифицированных (гостевых) приложений."
+
+msgid "Guest data array."
+msgstr "Массив гостевых данных."
+
+msgid "Triggers specifically for unauthenticated applications."
+msgstr "Триггеры специально для неаутентифицированных приложений."
+
+msgid "Candidate Status Updated"
+msgstr "Статус кандидата обновлен"
+
+msgid "Core ATS hook. Fires when an employer changes an applicants internal workflow state (e.g., Hired)."
+msgstr "Основной крючок ATS. Срабатывает, когда работодатель меняет внутреннее состояние рабочего процесса кандидата (например, «Нанят»)."
+
+msgid "Old ATS status."
+msgstr "Старый статус АТС."
+
+msgid "New ATS status."
+msgstr "Новый статус АТС."
+
+msgid "Employer User ID."
+msgstr "Идентификатор пользователя работодателя."
+
+msgid "Core ATS hook."
+msgstr "Основной крючок ATS."
+
+msgid "Application Note Saved"
+msgstr "Примечание по применению сохранено"
+
+msgid "Fires when an employer adds an internal note to an application."
+msgstr "Срабатывает, когда работодатель добавляет к заявке внутреннюю заметку."
+
+msgid "Note text."
+msgstr "Текст заметки."
+
+msgid "Fires on employer internal note."
+msgstr "Пожары по внутреннему требованию работодателя."
+
+msgid "Application Rating Updated"
+msgstr "Рейтинг приложения обновлен"
+
+msgid "Fires when a candidate receives a star rating from an employer."
+msgstr "Срабатывает, когда кандидат получает звездный рейтинг от работодателя."
+
+msgid "Application ID."
+msgstr "Идентификатор приложения."
+
+msgid "Star rating."
+msgstr "Звездный рейтинг."
+
+msgid "Fires on rating update."
+msgstr "Срабатывает при обновлении рейтинга."
+
+msgid "After Store Company"
+msgstr "Компания после магазина"
+
+msgid "Fires immediately after a new company is stored in the database."
+msgstr "Срабатывает сразу после сохранения новой компании в базе данных."
+
+msgid "The newly created company ID."
+msgstr "Идентификатор вновь созданной компании."
+
+msgid "Triggered upon company creation."
+msgstr "Активируется при создании компании."
+
+msgid "After Edit Company"
+msgstr "После редактирования компании"
+
+msgid "Fires immediately after an existing company is updated."
+msgstr "Срабатывает сразу после обновления существующей компании."
+
+msgid "The updated company ID."
+msgstr "Обновленный идентификатор компании."
+
+msgid "Triggered upon company update."
+msgstr "Активируется при обновлении компании."
+
+msgid "After Delete Company"
+msgstr "После удаления компании"
+
+msgid "Fires immediately after a company is deleted."
+msgstr "Срабатывает сразу после удаления компании."
+
+msgid "The deleted company ID."
+msgstr "Удаленный идентификатор компании."
+
+msgid "Triggered upon company deletion."
+msgstr "Активируется при удалении компании."
+
+msgid "Company Status Transition"
+msgstr "Переход статуса компании"
+
+msgid "Fires on company approve/reject state changes."
+msgstr "Пожары при утверждении/отклонении компанией изменений состояния."
+
+msgid "Company ID."
+msgstr "Идентификатор компании."
+
+msgid "Old status."
+msgstr "Старый статус."
+
+msgid "New status."
+msgstr "Новый статус."
+
+msgid "Fires on company state changes."
+msgstr "Пожары при изменении состояния компании."
+
+msgid "Featured Company Activated"
+msgstr "Рекомендуемая компания активирована"
+
+msgid "Fires when a company is promoted to featured status."
+msgstr "Срабатывает, когда компания получает статус избранного."
+
+msgid "Company Search Query Args"
+msgstr "Аргументы поискового запроса компании"
+
+msgid "Modifies Company SQL search queries."
+msgstr "Изменяет поисковые запросы SQL компании."
+
+msgid "Current SQL query."
+msgstr "Текущий SQL-запрос."
+
+msgid "Search filters."
+msgstr "Фильтры поиска."
+
+msgid "Modified query string."
+msgstr "Измененная строка запроса."
+
+msgid "Used for modifying frontend company search behaviour."
+msgstr "Используется для изменения поведения поиска компании во внешнем интерфейсе."
+
+msgid "User Status Transition"
+msgstr "Изменение статуса пользователя"
+
+msgid "Fires when an admin manually suspends or activates an account."
+msgstr "Срабатывает, когда администратор вручную приостанавливает или активирует учетную запись."
+
+msgid "Admin account activation/suspension."
+msgstr "Активация/приостановка учетной записи администратора."
+
+msgid "User Deleted"
+msgstr "Пользователь удален"
+
+msgid "Crucial for GDPR compliance; alerts external systems to delete user records."
+msgstr "Крайне важно для соблюдения GDPR; предупреждает внешние системы об удалении записей пользователей."
+
+msgid "Portal User ID."
+msgstr "Идентификатор пользователя портала."
+
+msgid "WordPress User ID."
+msgstr "Идентификатор пользователя WordPress."
+
+msgid "User Role ID."
+msgstr "Идентификатор роли пользователя."
+
+msgid "Crucial for GDPR compliance."
+msgstr "Крайне важно для соблюдения GDPR."
+
+msgid "User Profile Saved"
+msgstr "Профиль пользователя сохранен."
+
+msgid "Fires whenever user metadata is updated."
+msgstr "Срабатывает всякий раз, когда обновляются метаданные пользователя."
+
+msgid "Profile ID."
+msgstr "Идентификатор профиля."
+
+msgid "Profile metadata."
+msgstr "Метаданные профиля."
+
+msgid "Fires on metadata update."
+msgstr "Срабатывает при обновлении метаданных."
+
+msgid "AI Content Prompt"
+msgstr "Подсказка по содержанию AI"
+
+msgid "Intercepts the prompt string before it hits the AI proxy. Allows insertion of mandatory EEO text."
+msgstr "Перехватывает строку приглашения до того, как она попадет на прокси-сервер AI. Позволяет вставлять обязательный текст EEO."
+
+msgid "AI Prompt."
+msgstr "Подсказка ИИ."
+
+msgid "Context parameters."
+msgstr "Параметры контекста."
+
+msgid "Modified AI Prompt."
+msgstr "Модифицированная подсказка AI."
+
+msgid "Allows insertion of mandatory context."
+msgstr "Позволяет вставку обязательного контекста."
+
+msgid "AI Generation Completed"
+msgstr "Генерация ИИ завершена"
+
+msgid "Captures the AI response for logging and plagiarism scanning."
+msgstr "Захватывает реакцию ИИ для ведения журнала и сканирования на плагиат."
+
+msgid "Status code."
+msgstr "Код состояния."
+
+msgid "Response payload."
+msgstr "Полезная нагрузка ответа."
+
+msgid "Original Prompt."
+msgstr "Оригинальная подсказка."
+
+msgid "Wrapper used."
+msgstr "Использована обертка."
+
+msgid "Used for logging and plagiarism checks."
+msgstr "Используется для логирования и проверки на плагиат."
+
+msgid "Before AI Resume Parse"
+msgstr "Прежде чем ИИ возобновит анализ"
+
+msgid "Allows PII redaction from resume text before it is indexed for AI matching."
+msgstr "Позволяет удалять персональные данные из текста резюме перед его индексацией для сопоставления с ИИ."
+
+msgid "Text string for AI indexing."
+msgstr "Текстовая строка для индексации AI."
+
+msgid "Entity ID."
+msgstr "Идентификатор объекта."
+
+msgid "Sanitized AI string."
+msgstr "Обеззараженная строка AI."
+
+msgid "Useful for Blind Hiring features."
+msgstr "Полезно для функций слепого найма."
+
+msgid "Before AI Job Parse"
+msgstr "До разбора заданий ИИ"
+
+msgid "Allows modification of job text before AI indexing."
+msgstr "Позволяет изменять текст задания перед индексацией AI."
+
+msgid "Modified AI string."
+msgstr "Измененная строка AI."
+
+msgid "AI Job to Resume Match"
+msgstr "Работа ИИ для возобновления матча"
+
+msgid "Mutates the search string the AI uses to find resumes for a job."
+msgstr "Изменяет строку поиска, которую ИИ использует для поиска резюме на вакансию."
+
+msgid "Search string."
+msgstr "Строка поиска."
+
+msgid "Mutated search string."
+msgstr "Измененная строка поиска."
+
+msgid "Mutates the search string the AI uses."
+msgstr "Изменяет строку поиска, которую использует ИИ."
+
+msgid "AI Resume to Job Match"
+msgstr "AI-резюме для поиска работы"
+
+msgid "Mutates the search string the AI uses to find jobs for a resume."
+msgstr "Изменяет строку поиска, которую ИИ использует для поиска работы по резюме."
+
+msgid "AI Dashboard Job Suggestions"
+msgstr "Предложения по работе с AI Dashboard"
+
+msgid "Captures suggested jobs calculated for the job seekers dashboard."
+msgstr "Собирает предлагаемые вакансии, рассчитанные для информационной панели соискателей."
+
+msgid "Seeker User ID."
+msgstr "Идентификатор пользователя Искателя."
+
+msgid "Array of matched Job IDs."
+msgstr "Массив совпадающих идентификаторов заданий."
+
+msgid "Captures dashboard suggestions."
+msgstr "Захватывает предложения панели мониторинга."
+
+msgid "AI Job Suggestion Calculated"
+msgstr "Рассчитано предложение вакансии AI"
+
+msgid "Captures suggested jobs against a specific resume ID."
+msgstr "Сопоставляет предлагаемые вакансии с конкретным идентификатором резюме."
+
+msgid "Captures resume-specific suggestions."
+msgstr "Фиксирует предложения, относящиеся к резюме."
+
+msgid "AI Dashboard Resume Suggestions"
+msgstr "Предложения по резюме AI Dashboard"
+
+msgid "Captures suggested resumes calculated for the employers dashboard."
+msgstr "Captures предлагает резюме, рассчитанные для панели работодателей."
+
+msgid "Array of matched Resume IDs."
+msgstr "Массив совпадающих идентификаторов резюме."
+
+msgid "Captures employer dashboard suggestions."
+msgstr "Собирает предложения панели работодателя."
+
+msgid "AI Resume Suggestion Calculated"
+msgstr "Рассчитано предложение резюме AI"
+
+msgid "Captures suggested resumes against a specific job ID."
+msgstr "Собирает предлагаемые резюме по определенному идентификатору вакансии."
+
+msgid "Captures job-specific suggestions."
+msgstr "Фиксирует предложения, относящиеся к конкретной работе."
+
+msgid "Job Alert Triggered"
+msgstr "Оповещение о вакансии активировано"
+
+msgid "Intercepts an alert match before the email sends. Ideal for Push/SMS notifications."
+msgstr "Перехватывает совпадение оповещений перед отправкой электронного письма. Идеально подходит для push/SMS-уведомлений."
+
+msgid "Person ID."
+msgstr "Идентификатор человека."
+
+msgid "Subscriber User ID."
+msgstr "Идентификатор пользователя подписчика."
+
+msgid "Matched jobs array."
+msgstr "Соответствующий массив вакансий."
+
+msgid "Ideal for Push/SMS notifications."
+msgstr "Идеально подходит для push/SMS-уведомлений."
+
+msgid "Job Alert Saved"
+msgstr "Оповещение о вакансии сохранено"
+
+msgid "Fires when an alert preference is created or updated."
+msgstr "Срабатывает при создании или обновлении настройки оповещения."
+
+msgid "Alert record ID."
+msgstr "Идентификатор записи оповещения."
+
+msgid "Subscriber Email."
+msgstr "Электронная почта подписчика."
+
+msgid "Alert configuration data."
+msgstr "Данные конфигурации оповещения."
+
+msgid "Fires on alert create/update."
+msgstr "Срабатывает при создании/обновлении оповещения."
+
+msgid "Job Alert Unsubscribed"
+msgstr "Уведомление о вакансиях отписано"
+
+msgid "Fires when an alert is deleted."
+msgstr "Срабатывает при удалении оповещения."
+
+msgid "Deleted Alert ID."
+msgstr "Удален идентификатор оповещения."
+
+msgid "Membership Package Purchased"
+msgstr "Пакет членства куплен"
+
+msgid "Triggers on a successful checkout via Stripe or PayPal gateways."
+msgstr "Запускается при успешной оплате через шлюзы Stripe или PayPal."
+
+msgid "Package ID."
+msgstr "Идентификатор пакета."
+
+msgid "Amount paid."
+msgstr "Сумма уплачена."
+
+msgid "Payment gateway."
+msgstr "Платежный шлюз."
+
+msgid "Triggers on gateway success."
+msgstr "Запускается при успехе шлюза."
+
+msgid "WooCommerce Order Synced"
+msgstr "Заказ WooCommerce синхронизирован"
+
+msgid "Executes when WP Job Portal routes a payment into the WooCommerce cart."
+msgstr "Выполняется, когда портал вакансий WP направляет платеж в корзину WooCommerce."
+
+msgid "WooCommerce Post ID."
+msgstr "Идентификатор сообщения WooCommerce."
+
+msgid "Purchase data."
+msgstr "Данные о покупке."
+
+msgid "Executes on Woo cart route."
+msgstr "Выполняется по маршруту тележки Woo."
+
+msgid "Per Listing Purchased"
+msgstr "За каждый приобретенный листинг"
+
+msgid "Generic action deployed across all individual purchases."
+msgstr "Общее действие, применяемое ко всем отдельным покупкам."
+
+msgid "Entity ID (job/resume/company)."
+msgstr "Идентификатор объекта (работа/резюме/компания)."
+
+msgid "Entity type."
+msgstr "Тип сущности."
+
+msgid "Gateway used."
+msgstr "Используемый шлюз."
+
+msgid "Deployed across individual purchases."
+msgstr "Распространяется на отдельные покупки."
+
+msgid "Subscription Cancelled"
+msgstr "Подписка отменена"
+
+msgid "Alerts external platforms (like Discord/Active Directory) to downgrade the user."
+msgstr "Уведомляет внешние платформы (например, Discord/Active Directory) о необходимости понизить версию пользователя."
+
+msgid "Gateway sub ID."
+msgstr "Дополнительный идентификатор шлюза."
+
+msgid "Downgrade user permissions."
+msgstr "Понизить права пользователя."
+
+msgid "Membership Purchased DB Commit"
+msgstr "Приобретенное членство Фиксация БД"
+
+msgid "A database-level failsafe hook that fires even if a package is manually assigned by an admin."
+msgstr "Отказоустойчивый перехват на уровне базы данных, который срабатывает, даже если пакет назначен администратором вручную."
+
+msgid "Amount."
+msgstr "Количество."
+
+msgid "Payment Method."
+msgstr "Способ оплаты."
+
+msgid "Database-level failsafe hook."
+msgstr "Отказоустойчивый хук на уровне базы данных."
+
+msgid "Package Saved"
+msgstr "Пакет сохранен"
+
+msgid "Fires when a package is updated or unpublished."
+msgstr "Срабатывает, когда пакет обновляется или не публикуется."
+
+msgid "Package data."
+msgstr "Данные пакета."
+
+msgid "Fires on package update."
+msgstr "Срабатывает при обновлении пакета."
+
+msgid "Invoice Status Transition"
+msgstr "Изменение статуса счета-фактуры"
+
+msgid "Fires when an invoice moves to \\"
+msgstr "Срабатывает, когда счет перемещается в \\"
+
+msgid "Invoice ID."
+msgstr "Идентификатор счета."
+
+msgid "Old Status."
+msgstr "Старый статус."
+
+msgid "New Status."
+msgstr "Новый статус."
+
+msgid "Syncs external accounting software."
+msgstr "Синхронизирует внешнее бухгалтерское программное обеспечение."
+
+msgid "Invoice Saved"
+msgstr "Счет сохранен."
+
+msgid "Fires on invoice creation or deletion."
+msgstr "Срабатывает при создании или удалении счета."
+
+msgid "Invoice Data."
+msgstr "Данные счета-фактуры."
+
+msgid "Fires on invoice creation."
+msgstr "Срабатывает при создании счета."
+
+msgid "Employer Dashboard Loaded"
+msgstr "Панель работодателя загружена"
+
+msgid "Fires when the employer portal initializes."
+msgstr "Срабатывает при инициализации портала работодателя."
+
+msgid "Portal view data array."
+msgstr "Массив данных представления портала."
+
+msgid "Jobseeker Dashboard Loaded"
+msgstr "Панель соискателя работы загружена"
+
+msgid "Fires when the candidate portal initializes."
+msgstr "Срабатывает при инициализации портала-кандидата."
+
+msgid "Candidate User ID."
+msgstr "Идентификатор пользователя кандидата."
+
+msgid "Admin Dashboard Loaded"
+msgstr "Панель администратора загружена"
+
+msgid "Injects custom data into the WP Admin control panel."
+msgstr "Вводит пользовательские данные в панель управления администратора WP."
+
+msgid "Admin data array."
+msgstr "Массив данных администратора."
+
+msgid "Injects data into WP Admin."
+msgstr "Вводит данные в WP Admin."
+
+msgid "User Widget HTML"
+msgstr "Пользовательский виджет HTML"
+
+msgid "Allows theme developers to modify member widget cards."
+msgstr "Позволяет разработчикам тем изменять карточки виджетов участников."
+
+msgid "HTML Content."
+msgstr "HTML-контент."
+
+msgid "User role."
+msgstr "Роль пользователя."
+
+msgid "User data."
+msgstr "Данные пользователя."
+
+msgid "Modified HTML."
+msgstr "Модифицированный HTML."
+
+msgid "Modify member widget cards."
+msgstr "Изменить карточки виджетов участников."
+
+msgid "Shortlist Popup HTML"
+msgstr "HTML всплывающее окно с коротким списком"
+
+msgid "Modifies the HTML output of the shortlist modal."
+msgstr "Изменяет вывод HTML модального окна короткого списка."
+
+msgid "Modifies shortlist modal HTML."
+msgstr "Изменяет модальный HTML-код короткого списка."
+
+msgid "Export Resume Raw String"
+msgstr "Экспортировать необработанную строку резюме"
+
+msgid "Intercepts the final TSV text string for a single resume download."
+msgstr "Перехватывает окончательную текстовую строку TSV для загрузки одного резюме."
+
+msgid "TSV String."
+msgstr "Строка ТСВ."
+
+msgid "Modified TSV string."
+msgstr "Измененная строка TSV."
+
+msgid "Intercepts single TSV export."
+msgstr "Перехватывает одиночный экспорт TSV."
+
+msgid "Export Resume Data Array"
+msgstr "Экспортировать массив данных резюме"
+
+msgid "Highly useful for Blind Hiring; allows programmatic removal of PII columns before TSV conversion."
+msgstr "Очень полезно для слепого найма; позволяет программно удалять столбцы PII перед преобразованием TSV."
+
+msgid "Export row array."
+msgstr "Экспортировать массив строк."
+
+msgid "DB result data."
+msgstr "Данные результатов БД."
+
+msgid "Sanitized row array."
+msgstr "Санированный массив строк."
+
+msgid "Highly useful for Blind Hiring."
+msgstr "Очень полезно для слепого найма."
+
+msgid "Export All Resumes Raw String"
+msgstr "Экспортировать все резюме необработанной строки"
+
+msgid "Intercepts the bulk export string to append HR disclaimers or timestamps."
+msgstr "Перехватывает строку массового экспорта для добавления заявлений об отказе от ответственности или временных меток отдела кадров."
+
+msgid "Bulk TSV String."
+msgstr "Массовая строка TSV."
+
+msgid "Modified bulk string."
+msgstr "Измененная групповая строка."
+
+msgid "Intercepts bulk export string."
+msgstr "Перехватывает строку массового экспорта."
+
+msgid "Resume Export Filename"
+msgstr "Возобновить экспорт имени файла"
+
+msgid "Mutates the generated ZIP file name dynamically."
+msgstr "Динамически изменяет сгенерированное имя ZIP-файла."
+
+msgid "Default filename."
+msgstr "Имя файла по умолчанию."
+
+msgid "File extension."
+msgstr "Расширение файла."
+
+msgid "Mutated filename."
+msgstr "Измененное имя файла."
+
+msgid "Mutates generated ZIP filename."
+msgstr "Изменяет созданное имя ZIP-файла."
+
+msgid "System Email Headers"
+msgstr "Заголовки системной электронной почты"
+
+msgid "Modifies outgoing SMTP headers (e.g., custom Reply-To addresses)."
+msgstr "Изменяет исходящие заголовки SMTP (например, пользовательские адреса для ответа)."
+
+msgid "Email headers array."
+msgstr "Массив заголовков электронной почты."
+
+msgid "Email subject."
+msgstr "Тема письма."
+
+msgid "Modified headers."
+msgstr "Модифицированные заголовки."
+
+msgid "Modifies outgoing SMTP headers."
+msgstr "Изменяет исходящие заголовки SMTP."
+
+msgid "Email Notification Sent"
+msgstr "Уведомление по электронной почте отправлено"
+
+msgid "Logs transactional emails immediately after wp_mail() fires."
+msgstr "Регистрирует транзакционные электронные письма сразу после срабатывания wp_mail()."
+
+msgid "Email type string."
+msgstr "Строка типа электронной почты."
+
+msgid "Recipient details."
+msgstr "Данные получателя."
+
+msgid "Email HTML payload."
+msgstr "Полезная нагрузка HTML по электронной почте."
+
+msgid "Logs transactional emails."
+msgstr "Регистрирует транзакционные электронные письма."
+
+msgid "Internal Message Sent"
+msgstr "Внутреннее сообщение отправлено"
+
+msgid "Intercepts secure internal messages to push to external SMS/Slack APIs."
+msgstr "Перехватывает защищенные внутренние сообщения для отправки на внешние API SMS/Slack."
+
+msgid "Message ID."
+msgstr "Идентификатор сообщения."
+
+msgid "Sender ID."
+msgstr "Идентификатор отправителя."
+
+msgid "Recipient ID."
+msgstr "Идентификатор получателя."
+
+msgid "Message Text."
+msgstr "Текст сообщения."
+
+msgid "Push to external SMS/Slack APIs."
+msgstr "Отправка на внешние API SMS/Slack."
+
+msgid "Message Status Transition"
+msgstr "Изменение статуса сообщения"
+
+msgid "Triggers when an admin resolves a flagged/conflicted message."
+msgstr "Срабатывает, когда администратор разрешает помеченное/конфликтное сообщение."
+
+msgid "Admin flag resolution."
+msgstr "Разрешение флага администратора."
+
+msgid "File Uploaded (S3 Hook)"
+msgstr "Файл загружен (перехватчик S3)"
+
+msgid "The ultimate scalability hook. Fires when a physical file is saved, allowing cloud plugins to upload to AWS S3 and delete the local instance."
+msgstr "Лучший крючок масштабируемости. Срабатывает при сохранении физического файла, позволяя облачным плагинам загружать в AWS S3 и удалять локальный экземпляр."
+
+msgid "Absolute physical file path."
+msgstr "Абсолютный физический путь к файлу."
+
+msgid "Context type (e.g. company_logo, resume_file)."
+msgstr "Тип контекста (например, логотип_компании, файл_резюме)."
+
+msgid "Associated record ID."
+msgstr "Идентификатор связанной записи."
+
+msgid "The ultimate scalability hook for S3."
+msgstr "Оптимальная возможность масштабирования для S3."
+
+msgid "SEO Settings Updated"
+msgstr "Настройки SEO обновлены"
+
+msgid "Executes when core configs update, enabling auto-purging of caching plugins (WP Rocket)."
+msgstr "Выполняется при обновлении основных конфигураций, включая автоматическую очистку плагинов кеширования (WP Rocket)."
+
+msgid "Config data array."
+msgstr "Массив данных конфигурации."
+
+msgid "Enabling auto-purging of caching plugins."
+msgstr "Включение автоматической очистки плагинов кэширования."
+
+msgid "Hook Reference"
+msgstr "Справочник по крючкам"
+
+msgid "Entities"
+msgstr "Сущности"
+
+msgid "Search across all actions and filters..."
+msgstr "Поиск по всем действиям и фильтрам..."
+
+msgid "Arguments"
+msgstr "Аргументы"
+
+msgid "Returns"
+msgstr "Возврат"
+
+msgid "No return (Action Hook)"
+msgstr "Нет возврата (Action Hook)"
+
+msgid "Snippet"
+msgstr "Фрагмент"
+
+msgid "Copy Code"
+msgstr "Копировать код"
+
+msgid "To use this hook, please install and activate the"
+msgstr "Чтобы использовать этот хук, установите и активируйте"
+
+msgid "addon."
+msgstr "добавить."
+
+msgid "View Addon Details"
+msgstr "Посмотреть подробную информацию о дополнении"
+
+msgid "No results found"
+msgstr "Результаты не найдены"
+
+msgid "Try searching for specific keywords like \\"
+msgstr "Попробуйте выполнить поиск по конкретным ключевым словам, например \\"
+
+msgid "Hooks"
+msgstr "Крючки"
+
+msgid "Search Results"
+msgstr "Результаты поиска"

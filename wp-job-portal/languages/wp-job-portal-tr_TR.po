@@ -12964,3 +12964,1008 @@ msgstr "-- Arama Sonuçları --"
 
 msgid "Console Output"
 msgstr "Konsol Çıkışı"
+
+msgid "After Store Job"
+msgstr "Mağaza İşinden Sonra"
+
+msgid "Fires immediately after a new job is stored in the database."
+msgstr "Veritabanında yeni bir iş depolandıktan hemen sonra tetiklenir."
+
+msgid "The newly created job ID."
+msgstr "Yeni oluşturulan iş kimliği."
+
+msgid "Triggered upon job creation."
+msgstr "İstihdam yaratıldığında tetiklendi."
+
+msgid "After Edit Job"
+msgstr "İşi Düzenledikten Sonra"
+
+msgid "Fires immediately after an existing job is updated."
+msgstr "Mevcut bir iş güncellendikten hemen sonra tetiklenir."
+
+msgid "The updated job ID."
+msgstr "Güncellenen iş kimliği."
+
+msgid "Triggered upon job update."
+msgstr "İş güncellendiğinde tetiklendi."
+
+msgid "After Delete Job"
+msgstr "İşi Sildikten Sonra"
+
+msgid "Fires immediately after a job is deleted."
+msgstr "Bir iş silindikten hemen sonra tetiklenir."
+
+msgid "The deleted job ID."
+msgstr "Silinen iş kimliği."
+
+msgid "Triggered upon job deletion."
+msgstr "İş silindiğinde tetiklendi."
+
+msgid "Job Published"
+msgstr "İş Yayınlandı"
+
+msgid "Fires when admin approved a job for publish from job listing. Essential for XML syndication to Indeed or LinkedIn."
+msgstr "Yönetici bir işi iş listesinden yayınlamak için onayladığında tetiklenir. Indeed veya LinkedIn'e XML aktarımı için gereklidir."
+
+msgid "The job ID."
+msgstr "İş kimliği."
+
+msgid "The associated company ID."
+msgstr "İlgili şirket kimliği."
+
+msgid "Full job data array."
+msgstr "Tam iş veri dizisi."
+
+msgid "Essential for XML syndication feeds."
+msgstr "XML sendikasyon yayınları için gereklidir."
+
+msgid "Job Status Transition"
+msgstr "İş Durumu Geçişi"
+
+msgid "Fires when a job is approved or rejected by an admin from job que."
+msgstr "Bir iş, iş kuyruğundaki bir yönetici tarafından onaylandığında veya reddedildiğinde tetiklenir."
+
+msgid "Old status code."
+msgstr "Eski durum kodu."
+
+msgid "New status string."
+msgstr "Yeni durum dizesi."
+
+msgid "Admin approval/rejection trigger."
+msgstr "Yönetici onayı/reddi tetikleyicisi."
+
+msgid "Featured Job Activated"
+msgstr "Öne Çıkan İş Etkinleştirildi"
+
+msgid "Fires when a job is elevated to featured status."
+msgstr "Bir iş öne çıkan durumuna yükseltildiğinde tetiklenir."
+
+msgid "User ID of the job owner."
+msgstr "İş sahibinin kullanıcı kimliği."
+
+msgid "Featured expiry date."
+msgstr "Öne çıkan son kullanma tarihi."
+
+msgid "Triggered on featured upgrade."
+msgstr "Öne çıkan yükseltmede tetiklendi."
+
+msgid "Job Search Query Args"
+msgstr "İş Arama Sorgusu Args"
+
+msgid "Modifies the underlying SQL query for job searches."
+msgstr "İş aramaları için temeldeki SQL sorgusunu değiştirir."
+
+msgid "The search SQL query."
+msgstr "Arama SQL sorgusu."
+
+msgid "Search filter variables."
+msgstr "Filtre değişkenlerini arayın."
+
+msgid "Modified SQL query string."
+msgstr "Değiştirilmiş SQL sorgu dizesi."
+
+msgid "Used for modifying frontend job search behaviour."
+msgstr "Ön uç iş arama davranışını değiştirmek için kullanılır."
+
+msgid "Google Job Schema"
+msgstr "Google İş Şeması"
+
+msgid "Intercepts the structured SEO data array to inject dynamic properties (like baseSalary)."
+msgstr "Dinamik özellikleri (baseSalary gibi) eklemek için yapılandırılmış SEO veri dizisini keser."
+
+msgid "JSON-LD schema array."
+msgstr "JSON-LD şema dizisi."
+
+msgid "Job ID."
+msgstr "İş kimliği."
+
+msgid "Modified JSON-LD array."
+msgstr "Değiştirilmiş JSON-LD dizisi."
+
+msgid "Crucial for SEO and Google Jobs integration."
+msgstr "SEO ve Google Jobs entegrasyonu için çok önemlidir."
+
+msgid "Job Shortlisted"
+msgstr "İş Listesine Alındı"
+
+msgid "Candidate intent tracking for analytics when a job is saved or shortlisted."
+msgstr "Bir iş kaydedildiğinde veya kısa listeye alındığında analiz için aday niyetinin takibi."
+
+msgid "Shortlist row ID."
+msgstr "Kısa liste satır kimliği."
+
+msgid "User ID."
+msgstr "Kullanıcı kimliği."
+
+msgid "Extra data array."
+msgstr "Ekstra veri dizisi."
+
+msgid "Candidate intent tracking."
+msgstr "Aday niyeti takibi."
+
+msgid "After Store Resume"
+msgstr "Mağaza Devam Ettirdikten Sonra"
+
+msgid "Fires immediately after a new resume is stored in the database."
+msgstr "Veritabanında yeni bir özgeçmiş depolandıktan hemen sonra tetiklenir."
+
+msgid "The newly created resume ID."
+msgstr "Yeni oluşturulan özgeçmiş kimliği."
+
+msgid "Triggered upon resume creation."
+msgstr "Özgeçmiş oluşturulduğunda tetiklendi."
+
+msgid "After Edit Resume"
+msgstr "Özgeçmişi Düzenledikten Sonra"
+
+msgid "Fires immediately after an existing resume is updated."
+msgstr "Mevcut bir özgeçmiş güncellendikten hemen sonra tetiklenir."
+
+msgid "The updated resume ID."
+msgstr "Güncellenen özgeçmiş kimliği."
+
+msgid "Triggered upon resume update."
+msgstr "Özgeçmiş güncellendiğinde tetiklendi."
+
+msgid "After Delete Resume"
+msgstr "Devam Etmeyi Sildikten Sonra"
+
+msgid "Fires immediately after a resume is deleted."
+msgstr "Özgeçmiş silindikten hemen sonra tetiklenir."
+
+msgid "The deleted resume ID."
+msgstr "Silinen özgeçmiş kimliği."
+
+msgid "Triggered upon resume deletion."
+msgstr "Özgeçmiş silindiğinde tetiklendi."
+
+msgid "Resume Status Transition"
+msgstr "Durum Geçişini Devam Ettir"
+
+msgid "Fires when an administrator manually approves or rejects a resume."
+msgstr "Yönetici bir özgeçmişi manuel olarak onayladığında veya reddettiğinde tetiklenir."
+
+msgid "The ID of the resume."
+msgstr "Özgeçmişin kimliği."
+
+msgid "The previous status."
+msgstr "Önceki durum."
+
+msgid "The new status."
+msgstr "Yeni durum."
+
+msgid "Track manual admin approvals/rejections."
+msgstr "Manuel yönetici onaylarını/reddlerini izleyin."
+
+msgid "Resume Search Query Args"
+msgstr "Arama Sorgusu Bağımsız Değişkenlerini Devam Ettir"
+
+msgid "Modifies the SQL WHERE clause during a frontend resume search, allowing Elasticsearch integrations."
+msgstr "Ön uç özgeçmiş araması sırasında SQL WHERE yan tümcesini değiştirerek Elasticsearch entegrasyonlarına olanak tanır."
+
+msgid "The current SQL query string."
+msgstr "Geçerli SQL sorgu dizesi."
+
+msgid "Array of applied search filters."
+msgstr "Uygulanan arama filtreleri dizisi."
+
+msgid "Allows Elasticsearch integrations."
+msgstr "Elasticsearch entegrasyonlarına izin verir."
+
+msgid "Featured Resume Activated"
+msgstr "Öne Çıkan Devam Ettirme Etkinleştirildi"
+
+msgid "Fires when a resume is promoted to featured status."
+msgstr "Bir özgeçmiş öne çıkan durumuna yükseltildiğinde tetiklenir."
+
+msgid "Resume ID."
+msgstr "Kimliği devam ettir."
+
+msgid "Job Seeker User ID."
+msgstr "İş Arayan Kullanıcı Kimliği."
+
+msgid "After Job Apply"
+msgstr "İş Başvurusundan Sonra"
+
+msgid "Fires immediately after a candidate successfully applies for a job."
+msgstr "Bir adayın işe başarılı bir şekilde başvurmasının hemen ardından kovulur."
+
+msgid "The job application ID."
+msgstr "İş başvurusu kimliği."
+
+msgid "Triggered upon successful job application."
+msgstr "Başarılı iş başvurusu üzerine tetiklenir."
+
+msgid "Application Submitted"
+msgstr "Başvuru Gönderildi"
+
+msgid "Standard event trigger for a logged-in user submitting a job application."
+msgstr "Oturum açmış bir kullanıcının iş başvurusu göndermesi için standart olay tetikleyicisi."
+
+msgid "ID of the application record."
+msgstr "Uygulama kaydının kimliği."
+
+msgid "ID of the applied job."
+msgstr "Başvurulan işin kimliği."
+
+msgid "Fires for authenticated users only."
+msgstr "Yalnızca kimliği doğrulanmış kullanıcılar için tetiklenir."
+
+msgid "Quick Apply Submitted"
+msgstr "Hızlı Başvuru Gönderildi"
+
+msgid "Triggers when a candidate uses the \\"
+msgstr "Bir aday 'yi kullandığında tetiklenir"
+
+msgid "Application record ID."
+msgstr "Uygulama kayıt kimliği."
+
+msgid "Submitted form data."
+msgstr "Form verileri gönderildi."
+
+msgid "Uploaded files array."
+msgstr "Yüklenen dosyalar dizisi."
+
+msgid "Handles bypass forms and attached files."
+msgstr "Formları ve ekli dosyaları atlamayı yönetir."
+
+msgid "Visitor Application Submitted"
+msgstr "Ziyaretçi Başvurusu Yapıldı"
+
+msgid "Triggers specifically for unauthenticated (guest) applications."
+msgstr "Kimliği doğrulanmamış (misafir) uygulamalar için özel olarak tetiklenir."
+
+msgid "Guest data array."
+msgstr "Konuk veri dizisi."
+
+msgid "Triggers specifically for unauthenticated applications."
+msgstr "Kimliği doğrulanmamış uygulamalar için özel olarak tetiklenir."
+
+msgid "Candidate Status Updated"
+msgstr "Aday Durumu Güncellendi"
+
+msgid "Core ATS hook. Fires when an employer changes an applicants internal workflow state (e.g., Hired)."
+msgstr "Çekirdek ATS kancası. Bir işveren, başvuru sahibinin dahili iş akışı durumunu (ör. İşe Alındı) değiştirdiğinde tetiklenir."
+
+msgid "Old ATS status."
+msgstr "Eski ATS durumu."
+
+msgid "New ATS status."
+msgstr "Yeni ATS durumu."
+
+msgid "Employer User ID."
+msgstr "İşveren Kullanıcı Kimliği."
+
+msgid "Core ATS hook."
+msgstr "Çekirdek ATS kancası."
+
+msgid "Application Note Saved"
+msgstr "Başvuru Notu Kaydedildi"
+
+msgid "Fires when an employer adds an internal note to an application."
+msgstr "Bir işveren başvuruya dahili bir not eklediğinde tetiklenir."
+
+msgid "Note text."
+msgstr "Not metni."
+
+msgid "Fires on employer internal note."
+msgstr "İşverenin iç notunda yangınlar."
+
+msgid "Application Rating Updated"
+msgstr "Uygulama Derecelendirmesi Güncellendi"
+
+msgid "Fires when a candidate receives a star rating from an employer."
+msgstr "Bir aday, bir işverenden yıldız derecelendirmesi aldığında tetiklenir."
+
+msgid "Application ID."
+msgstr "Uygulama kimliği."
+
+msgid "Star rating."
+msgstr "Yıldız derecelendirmesi."
+
+msgid "Fires on rating update."
+msgstr "Derecelendirme güncellendiğinde etkinleşir."
+
+msgid "After Store Company"
+msgstr "Mağaza Sonrası Şirket"
+
+msgid "Fires immediately after a new company is stored in the database."
+msgstr "Veritabanında yeni bir şirket depolandıktan hemen sonra tetiklenir."
+
+msgid "The newly created company ID."
+msgstr "Yeni oluşturulan şirket kimliği."
+
+msgid "Triggered upon company creation."
+msgstr "Şirket kurulduğunda tetiklendi."
+
+msgid "After Edit Company"
+msgstr "Şirketi Düzenledikten Sonra"
+
+msgid "Fires immediately after an existing company is updated."
+msgstr "Mevcut bir şirket güncellendikten hemen sonra tetiklenir."
+
+msgid "The updated company ID."
+msgstr "Güncellenen şirket kimliği."
+
+msgid "Triggered upon company update."
+msgstr "Şirket güncellemesiyle tetiklendi."
+
+msgid "After Delete Company"
+msgstr "Şirketi Sildikten Sonra"
+
+msgid "Fires immediately after a company is deleted."
+msgstr "Bir şirket silindikten hemen sonra tetiklenir."
+
+msgid "The deleted company ID."
+msgstr "Silinen şirket kimliği."
+
+msgid "Triggered upon company deletion."
+msgstr "Şirket silindiğinde tetiklendi."
+
+msgid "Company Status Transition"
+msgstr "Şirket Durumu Geçişi"
+
+msgid "Fires on company approve/reject state changes."
+msgstr "Şirketteki yangınlar durum değişikliklerini onaylıyor/reddediyor."
+
+msgid "Company ID."
+msgstr "Şirket kimliği."
+
+msgid "Old status."
+msgstr "Eski durum."
+
+msgid "New status."
+msgstr "Yeni durum."
+
+msgid "Fires on company state changes."
+msgstr "Şirket durumu değişikliklerinde yangınlar."
+
+msgid "Featured Company Activated"
+msgstr "Öne Çıkan Şirket Etkinleştirildi"
+
+msgid "Fires when a company is promoted to featured status."
+msgstr "Bir şirket öne çıkan statüye yükseltildiğinde tetiklenir."
+
+msgid "Company Search Query Args"
+msgstr "Şirket Arama Sorgusu Args"
+
+msgid "Modifies Company SQL search queries."
+msgstr "Şirket SQL arama sorgularını değiştirir."
+
+msgid "Current SQL query."
+msgstr "Geçerli SQL sorgusu."
+
+msgid "Search filters."
+msgstr "Arama filtreleri."
+
+msgid "Modified query string."
+msgstr "Değiştirilmiş sorgu dizesi."
+
+msgid "Used for modifying frontend company search behaviour."
+msgstr "Ön uç şirket arama davranışını değiştirmek için kullanılır."
+
+msgid "User Status Transition"
+msgstr "Kullanıcı Durumu Geçişi"
+
+msgid "Fires when an admin manually suspends or activates an account."
+msgstr "Bir yönetici bir hesabı manuel olarak askıya aldığında veya etkinleştirdiğinde tetiklenir."
+
+msgid "Admin account activation/suspension."
+msgstr "Yönetici hesabının etkinleştirilmesi/askıya alınması."
+
+msgid "User Deleted"
+msgstr "Kullanıcı Silindi"
+
+msgid "Crucial for GDPR compliance; alerts external systems to delete user records."
+msgstr "GDPR uyumluluğu için çok önemlidir; Kullanıcı kayıtlarını silmek için harici sistemleri uyarır."
+
+msgid "Portal User ID."
+msgstr "Portal Kullanıcı Kimliği."
+
+msgid "WordPress User ID."
+msgstr "WordPress Kullanıcı Kimliği."
+
+msgid "User Role ID."
+msgstr "Kullanıcı Rolü Kimliği."
+
+msgid "Crucial for GDPR compliance."
+msgstr "GDPR uyumluluğu açısından çok önemlidir."
+
+msgid "User Profile Saved"
+msgstr "Kullanıcı Profili Kaydedildi"
+
+msgid "Fires whenever user metadata is updated."
+msgstr "Kullanıcı meta verileri güncellendiğinde tetiklenir."
+
+msgid "Profile ID."
+msgstr "Profil kimliği."
+
+msgid "Profile metadata."
+msgstr "Profil meta verileri."
+
+msgid "Fires on metadata update."
+msgstr "Meta veri güncellemesinde tetiklenir."
+
+msgid "AI Content Prompt"
+msgstr "Yapay Zeka İçerik İstemi"
+
+msgid "Intercepts the prompt string before it hits the AI proxy. Allows insertion of mandatory EEO text."
+msgstr "Bilgi istemi dizesini AI proxy'ye ulaşmadan önce durdurur. Zorunlu EEO metninin eklenmesine izin verir."
+
+msgid "AI Prompt."
+msgstr "AI İstemi."
+
+msgid "Context parameters."
+msgstr "Bağlam parametreleri."
+
+msgid "Modified AI Prompt."
+msgstr "Değiştirilmiş AI İstemi."
+
+msgid "Allows insertion of mandatory context."
+msgstr "Zorunlu bağlamın eklenmesine izin verir."
+
+msgid "AI Generation Completed"
+msgstr "Yapay Zeka Oluşturma Tamamlandı"
+
+msgid "Captures the AI response for logging and plagiarism scanning."
+msgstr "Günlüğe kaydetme ve intihal taraması için AI yanıtını yakalar."
+
+msgid "Status code."
+msgstr "Durum kodu."
+
+msgid "Response payload."
+msgstr "Yanıt yükü."
+
+msgid "Original Prompt."
+msgstr "Orijinal İstem."
+
+msgid "Wrapper used."
+msgstr "Sarmalayıcı kullanıldı."
+
+msgid "Used for logging and plagiarism checks."
+msgstr "Günlük kaydı ve intihal kontrolleri için kullanılır."
+
+msgid "Before AI Resume Parse"
+msgstr "AI Ayrıştırma İşlemini Sürdürmeden Önce"
+
+msgid "Allows PII redaction from resume text before it is indexed for AI matching."
+msgstr "AI eşleştirme için dizine eklenmeden önce özgeçmiş metninde PII düzenlemesine izin verir."
+
+msgid "Text string for AI indexing."
+msgstr "AI indeksleme için metin dizesi."
+
+msgid "Entity ID."
+msgstr "Varlık kimliği."
+
+msgid "Sanitized AI string."
+msgstr "Sterilize edilmiş AI dizisi."
+
+msgid "Useful for Blind Hiring features."
+msgstr "Kör İşe Alma özellikleri için kullanışlıdır."
+
+msgid "Before AI Job Parse"
+msgstr "AI İş Ayrıştırmadan Önce"
+
+msgid "Allows modification of job text before AI indexing."
+msgstr "AI indekslemeden önce iş metninin değiştirilmesine izin verir."
+
+msgid "Modified AI string."
+msgstr "Değiştirilmiş AI dizesi."
+
+msgid "AI Job to Resume Match"
+msgstr "AI İşi Eşleşmeye Devam Edecek"
+
+msgid "Mutates the search string the AI uses to find resumes for a job."
+msgstr "Yapay zekanın bir işe ilişkin özgeçmişleri bulmak için kullandığı arama dizesini değiştirir."
+
+msgid "Search string."
+msgstr "Arama dizesi."
+
+msgid "Mutated search string."
+msgstr "Mutasyona uğramış arama dizesi."
+
+msgid "Mutates the search string the AI uses."
+msgstr "Yapay zekanın kullandığı arama dizesini değiştirir."
+
+msgid "AI Resume to Job Match"
+msgstr "Yapay Zeka İş Eşleştirmeye Devam Ediyor"
+
+msgid "Mutates the search string the AI uses to find jobs for a resume."
+msgstr "Yapay zekanın özgeçmiş için iş bulmak amacıyla kullandığı arama dizesini değiştirir."
+
+msgid "AI Dashboard Job Suggestions"
+msgstr "AI Kontrol Paneli İş Önerileri"
+
+msgid "Captures suggested jobs calculated for the job seekers dashboard."
+msgstr "İş arayanlar kontrol paneli için hesaplanan önerilen işleri yakalar."
+
+msgid "Seeker User ID."
+msgstr "Arayan Kullanıcı Kimliği."
+
+msgid "Array of matched Job IDs."
+msgstr "Eşleşen İş Kimlikleri dizisi."
+
+msgid "Captures dashboard suggestions."
+msgstr "Kontrol paneli önerilerini yakalar."
+
+msgid "AI Job Suggestion Calculated"
+msgstr "Yapay Zeka İş Önerisi Hesaplandı"
+
+msgid "Captures suggested jobs against a specific resume ID."
+msgstr "Önerilen işleri belirli bir özgeçmiş kimliğine göre yakalar."
+
+msgid "Captures resume-specific suggestions."
+msgstr "Özgeçmişe özel önerileri yakalar."
+
+msgid "AI Dashboard Resume Suggestions"
+msgstr "AI Kontrol Paneli Devam Önerileri"
+
+msgid "Captures suggested resumes calculated for the employers dashboard."
+msgstr "İşveren kontrol paneli için hesaplanan önerilen özgeçmişleri yakalar."
+
+msgid "Array of matched Resume IDs."
+msgstr "Eşleşen Özgeçmiş Kimlikleri dizisi."
+
+msgid "Captures employer dashboard suggestions."
+msgstr "İşveren kontrol paneli önerilerini yakalar."
+
+msgid "AI Resume Suggestion Calculated"
+msgstr "AI Devam Önerisi Hesaplandı"
+
+msgid "Captures suggested resumes against a specific job ID."
+msgstr "Belirli bir iş kimliğine göre önerilen özgeçmişleri yakalar."
+
+msgid "Captures job-specific suggestions."
+msgstr "İşe özel önerileri yakalar."
+
+msgid "Job Alert Triggered"
+msgstr "İş Uyarısı Tetiklendi"
+
+msgid "Intercepts an alert match before the email sends. Ideal for Push/SMS notifications."
+msgstr "E-posta gönderilmeden önce bir uyarı eşleşmesini durdurur. Push/SMS bildirimleri için idealdir."
+
+msgid "Person ID."
+msgstr "Kişi kimliği."
+
+msgid "Subscriber User ID."
+msgstr "Abone Kullanıcı Kimliği."
+
+msgid "Matched jobs array."
+msgstr "Eşleşen işler dizisi."
+
+msgid "Ideal for Push/SMS notifications."
+msgstr "Push/SMS bildirimleri için idealdir."
+
+msgid "Job Alert Saved"
+msgstr "İş Uyarısı Kaydedildi"
+
+msgid "Fires when an alert preference is created or updated."
+msgstr "Bir uyarı tercihi oluşturulduğunda veya güncellendiğinde tetiklenir."
+
+msgid "Alert record ID."
+msgstr "Uyarı kaydı kimliği."
+
+msgid "Subscriber Email."
+msgstr "Abone E-postası."
+
+msgid "Alert configuration data."
+msgstr "Yapılandırma verilerini uyarın."
+
+msgid "Fires on alert create/update."
+msgstr "Uyarı oluşturma/güncelleme durumunda etkinleşir."
+
+msgid "Job Alert Unsubscribed"
+msgstr "İş Uyarısı Aboneliği İptal Edildi"
+
+msgid "Fires when an alert is deleted."
+msgstr "Bir uyarı silindiğinde etkinleşir."
+
+msgid "Deleted Alert ID."
+msgstr "Silinen Uyarı Kimliği."
+
+msgid "Membership Package Purchased"
+msgstr "Üyelik Paketi Satın Alındı"
+
+msgid "Triggers on a successful checkout via Stripe or PayPal gateways."
+msgstr "Stripe veya PayPal ağ geçitleri aracılığıyla başarılı bir ödemeyi tetikler."
+
+msgid "Package ID."
+msgstr "Paket kimliği."
+
+msgid "Amount paid."
+msgstr "Ödenen tutar."
+
+msgid "Payment gateway."
+msgstr "Ödeme ağ geçidi."
+
+msgid "Triggers on gateway success."
+msgstr "Ağ geçidi başarısını tetikler."
+
+msgid "WooCommerce Order Synced"
+msgstr "WooCommerce Siparişi Senkronize Edildi"
+
+msgid "Executes when WP Job Portal routes a payment into the WooCommerce cart."
+msgstr "WP Job Portal, bir ödemeyi WooCommerce sepetine yönlendirdiğinde yürütülür."
+
+msgid "WooCommerce Post ID."
+msgstr "WooCommerce Gönderi Kimliği."
+
+msgid "Purchase data."
+msgstr "Veri satın alın."
+
+msgid "Executes on Woo cart route."
+msgstr "Woo arabası rotasında yürütülür."
+
+msgid "Per Listing Purchased"
+msgstr "Satın Alınan İlan Başına"
+
+msgid "Generic action deployed across all individual purchases."
+msgstr "Tüm bireysel satın alma işlemlerine uygulanan genel eylem."
+
+msgid "Entity ID (job/resume/company)."
+msgstr "Varlık Kimliği (iş/özgeçmiş/şirket)."
+
+msgid "Entity type."
+msgstr "Varlık türü."
+
+msgid "Gateway used."
+msgstr "Ağ geçidi kullanıldı."
+
+msgid "Deployed across individual purchases."
+msgstr "Bireysel satın alımlarda dağıtılır."
+
+msgid "Subscription Cancelled"
+msgstr "Abonelik İptal Edildi"
+
+msgid "Alerts external platforms (like Discord/Active Directory) to downgrade the user."
+msgstr "Kullanıcının sürümünü düşürmesi için harici platformları (Discord/Active Directory gibi) uyarır."
+
+msgid "Gateway sub ID."
+msgstr "Ağ geçidi alt kimliği."
+
+msgid "Downgrade user permissions."
+msgstr "Kullanıcı izinlerini düşürün."
+
+msgid "Membership Purchased DB Commit"
+msgstr "Üyelik Satın Alındı ​​DB Taahhüdü"
+
+msgid "A database-level failsafe hook that fires even if a package is manually assigned by an admin."
+msgstr "Bir paket bir yönetici tarafından manuel olarak atansa bile tetiklenen, veritabanı düzeyinde arıza korumalı bir kanca."
+
+msgid "Amount."
+msgstr "Miktar."
+
+msgid "Payment Method."
+msgstr "Ödeme yöntemi."
+
+msgid "Database-level failsafe hook."
+msgstr "Veritabanı düzeyinde arıza korumalı kanca."
+
+msgid "Package Saved"
+msgstr "Paket Kaydedildi"
+
+msgid "Fires when a package is updated or unpublished."
+msgstr "Bir paket güncellendiğinde veya yayından kaldırıldığında tetiklenir."
+
+msgid "Package data."
+msgstr "Paket verileri."
+
+msgid "Fires on package update."
+msgstr "Paket güncellemesinde tetiklenir."
+
+msgid "Invoice Status Transition"
+msgstr "Fatura Durumu Geçişi"
+
+msgid "Fires when an invoice moves to \\"
+msgstr "Bir fatura \\ konumuna taşındığında etkinleşir"
+
+msgid "Invoice ID."
+msgstr "Fatura kimliği."
+
+msgid "Old Status."
+msgstr "Eski Durum."
+
+msgid "New Status."
+msgstr "Yeni Durum."
+
+msgid "Syncs external accounting software."
+msgstr "Harici muhasebe yazılımını senkronize eder."
+
+msgid "Invoice Saved"
+msgstr "Fatura Kaydedildi"
+
+msgid "Fires on invoice creation or deletion."
+msgstr "Fatura oluşturma veya silme sırasında etkinleşir."
+
+msgid "Invoice Data."
+msgstr "Fatura Verileri."
+
+msgid "Fires on invoice creation."
+msgstr "Fatura oluşturma sırasında yangınlar."
+
+msgid "Employer Dashboard Loaded"
+msgstr "İşveren Kontrol Paneli Yüklendi"
+
+msgid "Fires when the employer portal initializes."
+msgstr "İşveren portalı başlatıldığında tetiklenir."
+
+msgid "Portal view data array."
+msgstr "Portal görünümü veri dizisi."
+
+msgid "Jobseeker Dashboard Loaded"
+msgstr "İş Arayan Kontrol Paneli Yüklendi"
+
+msgid "Fires when the candidate portal initializes."
+msgstr "Aday portalı başlatıldığında tetiklenir."
+
+msgid "Candidate User ID."
+msgstr "Aday Kullanıcı Kimliği."
+
+msgid "Admin Dashboard Loaded"
+msgstr "Yönetici Kontrol Paneli Yüklendi"
+
+msgid "Injects custom data into the WP Admin control panel."
+msgstr "Özel verileri WP Admin kontrol paneline enjekte eder."
+
+msgid "Admin data array."
+msgstr "Yönetici veri dizisi."
+
+msgid "Injects data into WP Admin."
+msgstr "Verileri WP Admin'e enjekte eder."
+
+msgid "User Widget HTML"
+msgstr "Kullanıcı Widget'ı HTML'si"
+
+msgid "Allows theme developers to modify member widget cards."
+msgstr "Tema geliştiricilerinin üye widget kartlarını değiştirmesine olanak tanır."
+
+msgid "HTML Content."
+msgstr "HTML İçeriği."
+
+msgid "User role."
+msgstr "Kullanıcı rolü."
+
+msgid "User data."
+msgstr "Kullanıcı verileri."
+
+msgid "Modified HTML."
+msgstr "Değiştirilmiş HTML."
+
+msgid "Modify member widget cards."
+msgstr "Üye widget kartlarını değiştirin."
+
+msgid "Shortlist Popup HTML"
+msgstr "Kısa Liste Açılır HTML'si"
+
+msgid "Modifies the HTML output of the shortlist modal."
+msgstr "Kısa liste modunun HTML çıktısını değiştirir."
+
+msgid "Modifies shortlist modal HTML."
+msgstr "Kısa liste kalıcı HTML'sini değiştirir."
+
+msgid "Export Resume Raw String"
+msgstr "Devam Ham Dizesini Dışa Aktar"
+
+msgid "Intercepts the final TSV text string for a single resume download."
+msgstr "Tek bir özgeçmiş indirmesi için son TSV metin dizesini keser."
+
+msgid "TSV String."
+msgstr "TSV Dizisi."
+
+msgid "Modified TSV string."
+msgstr "Değiştirilmiş TSV dizesi."
+
+msgid "Intercepts single TSV export."
+msgstr "Tekli TSV aktarımını durdurur."
+
+msgid "Export Resume Data Array"
+msgstr "Devam Veri Dizisini Dışa Aktar"
+
+msgid "Highly useful for Blind Hiring; allows programmatic removal of PII columns before TSV conversion."
+msgstr "Kör İşe Alma için son derece faydalıdır; TSV dönüşümünden önce PII sütunlarının programlı olarak kaldırılmasına olanak tanır."
+
+msgid "Export row array."
+msgstr "Satır dizisini dışa aktar."
+
+msgid "DB result data."
+msgstr "DB sonuç verileri."
+
+msgid "Sanitized row array."
+msgstr "Sterilize edilmiş satır dizisi."
+
+msgid "Highly useful for Blind Hiring."
+msgstr "Kör İşe Alma için son derece faydalıdır."
+
+msgid "Export All Resumes Raw String"
+msgstr "Tüm Özgeçmişlerin Ham Dizesini Dışa Aktar"
+
+msgid "Intercepts the bulk export string to append HR disclaimers or timestamps."
+msgstr "İK sorumluluk reddi beyanlarını veya zaman damgalarını eklemek için toplu dışa aktarma dizesini keser."
+
+msgid "Bulk TSV String."
+msgstr "Toplu TSV Dizisi."
+
+msgid "Modified bulk string."
+msgstr "Toplu dize değiştirildi."
+
+msgid "Intercepts bulk export string."
+msgstr "Toplu dışa aktarma dizesini keser."
+
+msgid "Resume Export Filename"
+msgstr "Dosya Adını Dışa Aktarmaya Devam Et"
+
+msgid "Mutates the generated ZIP file name dynamically."
+msgstr "Oluşturulan ZIP dosyası adını dinamik olarak değiştirir."
+
+msgid "Default filename."
+msgstr "Varsayılan dosya adı."
+
+msgid "File extension."
+msgstr "Dosya uzantısı."
+
+msgid "Mutated filename."
+msgstr "Mutasyona uğramış dosya adı."
+
+msgid "Mutates generated ZIP filename."
+msgstr "Oluşturulan ZIP dosya adını değiştirir."
+
+msgid "System Email Headers"
+msgstr "Sistem E-posta Başlıkları"
+
+msgid "Modifies outgoing SMTP headers (e.g., custom Reply-To addresses)."
+msgstr "Giden SMTP başlıklarını değiştirir (örneğin, özel Yanıtla adresleri)."
+
+msgid "Email headers array."
+msgstr "E-posta üstbilgileri dizisi."
+
+msgid "Email subject."
+msgstr "E-posta konusu."
+
+msgid "Modified headers."
+msgstr "Değiştirilmiş başlıklar."
+
+msgid "Modifies outgoing SMTP headers."
+msgstr "Giden SMTP başlıklarını değiştirir."
+
+msgid "Email Notification Sent"
+msgstr "E-posta Bildirimi Gönderildi"
+
+msgid "Logs transactional emails immediately after wp_mail() fires."
+msgstr "wp_mail() tetiklendikten hemen sonra işlem e-postalarını günlüğe kaydeder."
+
+msgid "Email type string."
+msgstr "E-posta türü dizesi."
+
+msgid "Recipient details."
+msgstr "Alıcı ayrıntıları."
+
+msgid "Email HTML payload."
+msgstr "HTML yükünü e-postayla gönderin."
+
+msgid "Logs transactional emails."
+msgstr "İşlem e-postalarını günlüğe kaydeder."
+
+msgid "Internal Message Sent"
+msgstr "Dahili Mesaj Gönderildi"
+
+msgid "Intercepts secure internal messages to push to external SMS/Slack APIs."
+msgstr "Harici SMS/Slack API'lerine göndermek için güvenli dahili mesajları keser."
+
+msgid "Message ID."
+msgstr "Mesaj kimliği."
+
+msgid "Sender ID."
+msgstr "Gönderen kimliği."
+
+msgid "Recipient ID."
+msgstr "Alıcı kimliği."
+
+msgid "Message Text."
+msgstr "Mesaj Metni."
+
+msgid "Push to external SMS/Slack APIs."
+msgstr "Harici SMS/Slack API'lerine aktarın."
+
+msgid "Message Status Transition"
+msgstr "Mesaj Durumu Geçişi"
+
+msgid "Triggers when an admin resolves a flagged/conflicted message."
+msgstr "Bir yönetici işaretlenmiş/çatışmalı bir mesajı çözdüğünde tetiklenir."
+
+msgid "Admin flag resolution."
+msgstr "Yönetici bayrağı çözünürlüğü."
+
+msgid "File Uploaded (S3 Hook)"
+msgstr "Dosya Yüklendi (S3 Kancası)"
+
+msgid "The ultimate scalability hook. Fires when a physical file is saved, allowing cloud plugins to upload to AWS S3 and delete the local instance."
+msgstr "Nihai ölçeklenebilirlik kancası. Fiziksel bir dosya kaydedildiğinde etkinleşerek bulut eklentilerinin AWS S3'e yüklenmesine ve yerel örneğin silinmesine olanak tanır."
+
+msgid "Absolute physical file path."
+msgstr "Mutlak fiziksel dosya yolu."
+
+msgid "Context type (e.g. company_logo, resume_file)."
+msgstr "Bağlam türü (ör. şirket_logosu, özgeçmiş_dosyası)."
+
+msgid "Associated record ID."
+msgstr "İlişkili kayıt kimliği."
+
+msgid "The ultimate scalability hook for S3."
+msgstr "S3 için nihai ölçeklenebilirlik kancası."
+
+msgid "SEO Settings Updated"
+msgstr "SEO Ayarları Güncellendi"
+
+msgid "Executes when core configs update, enabling auto-purging of caching plugins (WP Rocket)."
+msgstr "Çekirdek yapılandırmalar güncellendiğinde yürütülür ve önbelleğe alma eklentilerinin (WP Rocket) otomatik olarak temizlenmesini sağlar."
+
+msgid "Config data array."
+msgstr "Veri dizisini yapılandırın."
+
+msgid "Enabling auto-purging of caching plugins."
+msgstr "Önbelleğe alma eklentilerinin otomatik olarak temizlenmesi etkinleştiriliyor."
+
+msgid "Hook Reference"
+msgstr "Kanca Referansı"
+
+msgid "Entities"
+msgstr "Varlıklar"
+
+msgid "Search across all actions and filters..."
+msgstr "Tüm işlemlerde ve filtrelerde arama yapın..."
+
+msgid "Arguments"
+msgstr "Argümanlar"
+
+msgid "Returns"
+msgstr "İade"
+
+msgid "No return (Action Hook)"
+msgstr "Geri dönüş yok (Eylem Kancası)"
+
+msgid "Snippet"
+msgstr "Snippet"
+
+msgid "Copy Code"
+msgstr "Kodu Kopyala"
+
+msgid "To use this hook, please install and activate the"
+msgstr "Bu kancayı kullanmak için lütfen yükleyin ve etkinleştirin."
+
+msgid "addon."
+msgstr "Ayriyeten."
+
+msgid "View Addon Details"
+msgstr "Eklenti Ayrıntılarını Görüntüle"
+
+msgid "No results found"
+msgstr "Sonuç bulunamadı"
+
+msgid "Try searching for specific keywords like \\"
+msgstr "\\ gibi belirli anahtar kelimeleri aramayı deneyin"
+
+msgid "Hooks"
+msgstr "Kancalar"
+
+msgid "Search Results"
+msgstr "Arama Sonuçları"

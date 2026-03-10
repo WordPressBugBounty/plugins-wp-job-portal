@@ -1375,12 +1375,24 @@ class WPJOBPORTALzywrapModel {
 
         // === MODIFY PROMPT WITH NEW FEATURES ===
         if (!empty($seo_keywords)) {
-            $prompt .= "\n\n[IMPORTANT] Naturally integrate the following SEO keywords into the text: " . $seo_keywords;
+            $wpjobportal_prompt .= "\n\n[IMPORTANT] Naturally integrate the following SEO keywords into the text: " . $seo_keywords;
         }
 
         if (!empty($negative_constraints)) {
-            $prompt .= "\n\n[CONSTRAINT] Do NOT use the following words or phrases: " . $negative_constraints;
+            $wpjobportal_prompt .= "\n\n[CONSTRAINT] Do NOT use the following words or phrases: " . $negative_constraints;
         }
+
+        // --- NEW HOOK INTEGRATION START ---
+        // Blueprint: wpjobportal_ai_content_generation_prompt
+        // Allows legal compliance plugins to automatically append mandatory requirements to the prompt before execution.
+        $ai_parameters = array(
+            'model' => $wpjobportal_model,
+            'wrapperCode' => $wrapper_code,
+            'context' => $context
+        );
+        $wpjobportal_prompt = apply_filters('wpjobportal_ai_content_generation_prompt', $wpjobportal_prompt, $ai_parameters);
+        // --- NEW HOOK INTEGRATION END ---
+
 
         // Build the payload
         $wpjobportal_payloadData = array(
@@ -1470,6 +1482,14 @@ class WPJOBPORTALzywrapModel {
                     'http_code' => $http_code,
                     'token_data' => $wpjobportal_token_data
                 ]);
+
+                // --- NEW HOOK INTEGRATION START ---
+                // Blueprint: wpjobportal_ai_content_generation_completed
+                // Triggered after the AI Content Generation feature produces a response.
+                // Permits developers to log AI usage metrics for internal auditing.
+                $generated_text = isset($wpjobportal_data['output']) ? $wpjobportal_data['output'] : '';
+                do_action('wpjobportal_ai_content_generation_completed', 0, $generated_text, $wpjobportal_payloadData);
+                // --- NEW HOOK INTEGRATION END ---
 
                 wp_send_json_success($wpjobportal_data);
             }else{

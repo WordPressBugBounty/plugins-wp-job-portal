@@ -12964,3 +12964,1008 @@ msgstr "-- Αποτελέσματα αναζήτησης --"
 
 msgid "Console Output"
 msgstr "Έξοδος κονσόλας"
+
+msgid "After Store Job"
+msgstr "Εργασία μετά το κατάστημα"
+
+msgid "Fires immediately after a new job is stored in the database."
+msgstr "Ενεργοποιείται αμέσως μετά την αποθήκευση μιας νέας εργασίας στη βάση δεδομένων."
+
+msgid "The newly created job ID."
+msgstr "Το αναγνωριστικό εργασίας που δημιουργήθηκε πρόσφατα."
+
+msgid "Triggered upon job creation."
+msgstr "Ενεργοποιήθηκε κατά τη δημιουργία θέσεων εργασίας."
+
+msgid "After Edit Job"
+msgstr "Μετά την επεξεργασία εργασίας"
+
+msgid "Fires immediately after an existing job is updated."
+msgstr "Πυρκαγιά αμέσως μετά την ενημέρωση μιας υπάρχουσας εργασίας."
+
+msgid "The updated job ID."
+msgstr "Το ενημερωμένο αναγνωριστικό εργασίας."
+
+msgid "Triggered upon job update."
+msgstr "Ενεργοποιήθηκε κατά την ενημέρωση εργασίας."
+
+msgid "After Delete Job"
+msgstr "Μετά τη Διαγραφή Εργασίας"
+
+msgid "Fires immediately after a job is deleted."
+msgstr "Πυροδοτείται αμέσως μετά τη διαγραφή μιας εργασίας."
+
+msgid "The deleted job ID."
+msgstr "Το αναγνωριστικό εργασίας που έχει διαγραφεί."
+
+msgid "Triggered upon job deletion."
+msgstr "Ενεργοποιήθηκε κατά τη διαγραφή εργασίας."
+
+msgid "Job Published"
+msgstr "Δημοσιεύτηκε Εργασία"
+
+msgid "Fires when admin approved a job for publish from job listing. Essential for XML syndication to Indeed or LinkedIn."
+msgstr "Πυροδοτείται όταν ο διαχειριστής ενέκρινε μια εργασία για δημοσίευση από τη λίστα εργασιών. Απαραίτητο για διανομή XML στο Indeed ή στο LinkedIn."
+
+msgid "The job ID."
+msgstr "Το αναγνωριστικό εργασίας."
+
+msgid "The associated company ID."
+msgstr "Το αναγνωριστικό της συνδεδεμένης εταιρείας."
+
+msgid "Full job data array."
+msgstr "Πλήρης συστοιχία δεδομένων εργασίας."
+
+msgid "Essential for XML syndication feeds."
+msgstr "Απαραίτητο για τροφοδοσίες διανομής XML."
+
+msgid "Job Status Transition"
+msgstr "Μετάβαση Κατάστασης Εργασίας"
+
+msgid "Fires when a job is approved or rejected by an admin from job que."
+msgstr "Πυροδοτείται όταν μια εργασία εγκρίνεται ή απορρίπτεται από έναν διαχειριστή από το job que."
+
+msgid "Old status code."
+msgstr "Παλιός κωδικός κατάστασης."
+
+msgid "New status string."
+msgstr "Νέα συμβολοσειρά κατάστασης."
+
+msgid "Admin approval/rejection trigger."
+msgstr "Ενεργοποίηση έγκρισης/απόρριψης διαχειριστή."
+
+msgid "Featured Job Activated"
+msgstr "Προτεινόμενη εργασία Ενεργοποιήθηκε"
+
+msgid "Fires when a job is elevated to featured status."
+msgstr "Πυροδοτείται όταν μια εργασία ανυψώνεται σε χαρακτηριστική κατάσταση."
+
+msgid "User ID of the job owner."
+msgstr "Αναγνωριστικό χρήστη του κατόχου της εργασίας."
+
+msgid "Featured expiry date."
+msgstr "Επιλεγμένη ημερομηνία λήξης."
+
+msgid "Triggered on featured upgrade."
+msgstr "Ενεργοποιήθηκε κατά την επιλεγμένη αναβάθμιση."
+
+msgid "Job Search Query Args"
+msgstr "Ερώτημα αναζήτησης εργασίας Args"
+
+msgid "Modifies the underlying SQL query for job searches."
+msgstr "Τροποποιεί το υποκείμενο ερώτημα SQL για αναζητήσεις εργασίας."
+
+msgid "The search SQL query."
+msgstr "Το ερώτημα αναζήτησης SQL."
+
+msgid "Search filter variables."
+msgstr "Αναζήτηση μεταβλητών φίλτρου."
+
+msgid "Modified SQL query string."
+msgstr "Τροποποιημένη συμβολοσειρά ερωτήματος SQL."
+
+msgid "Used for modifying frontend job search behaviour."
+msgstr "Χρησιμοποιείται για την τροποποίηση της συμπεριφοράς αναζήτησης εργασίας στο frontend."
+
+msgid "Google Job Schema"
+msgstr "Σχήμα εργασίας Google"
+
+msgid "Intercepts the structured SEO data array to inject dynamic properties (like baseSalary)."
+msgstr "Κλείνει τη δομημένη συστοιχία δεδομένων SEO για να εισάγει δυναμικές ιδιότητες (όπως το baseSalary)."
+
+msgid "JSON-LD schema array."
+msgstr "Συστοιχία σχημάτων JSON-LD."
+
+msgid "Job ID."
+msgstr "Ταυτότητα εργασίας."
+
+msgid "Modified JSON-LD array."
+msgstr "Τροποποιημένος πίνακας JSON-LD."
+
+msgid "Crucial for SEO and Google Jobs integration."
+msgstr "Είναι ζωτικής σημασίας για την ενσωμάτωση SEO και Google Jobs."
+
+msgid "Job Shortlisted"
+msgstr "Θέσεις εργασίας στη σύντομη λίστα"
+
+msgid "Candidate intent tracking for analytics when a job is saved or shortlisted."
+msgstr "Παρακολούθηση πρόθεσης υποψηφίου για αναλυτικά στοιχεία όταν μια εργασία αποθηκεύεται ή μπαίνει στη λίστα."
+
+msgid "Shortlist row ID."
+msgstr "Αναγνωριστικό σειράς σύντομης λίστας."
+
+msgid "User ID."
+msgstr "Αναγνωριστικό χρήστη."
+
+msgid "Extra data array."
+msgstr "Επιπλέον πίνακας δεδομένων."
+
+msgid "Candidate intent tracking."
+msgstr "Παρακολούθηση πρόθεσης υποψηφίου."
+
+msgid "After Store Resume"
+msgstr "Βιογραφικό μετά το κατάστημα"
+
+msgid "Fires immediately after a new resume is stored in the database."
+msgstr "Ενεργοποιείται αμέσως μετά την αποθήκευση ενός νέου βιογραφικού στη βάση δεδομένων."
+
+msgid "The newly created resume ID."
+msgstr "Το αναγνωριστικό βιογραφικού που δημιουργήθηκε πρόσφατα."
+
+msgid "Triggered upon resume creation."
+msgstr "Ενεργοποιήθηκε κατά τη δημιουργία βιογραφικού."
+
+msgid "After Edit Resume"
+msgstr "Μετά την επεξεργασία βιογραφικού"
+
+msgid "Fires immediately after an existing resume is updated."
+msgstr "Πυρκαγιά αμέσως μετά την ενημέρωση ενός υπάρχοντος βιογραφικού."
+
+msgid "The updated resume ID."
+msgstr "Το ενημερωμένο αναγνωριστικό βιογραφικού."
+
+msgid "Triggered upon resume update."
+msgstr "Ενεργοποιήθηκε κατά την ενημέρωση βιογραφικού."
+
+msgid "After Delete Resume"
+msgstr "Μετά τη Διαγραφή Συνέχιση"
+
+msgid "Fires immediately after a resume is deleted."
+msgstr "Ενεργοποιείται αμέσως μετά τη διαγραφή ενός βιογραφικού."
+
+msgid "The deleted resume ID."
+msgstr "Το διαγραμμένο αναγνωριστικό βιογραφικού."
+
+msgid "Triggered upon resume deletion."
+msgstr "Ενεργοποιήθηκε κατά τη διαγραφή συνέχισης."
+
+msgid "Resume Status Transition"
+msgstr "Συνέχιση μετάβασης κατάστασης"
+
+msgid "Fires when an administrator manually approves or rejects a resume."
+msgstr "Ενεργοποιείται όταν ένας διαχειριστής εγκρίνει ή απορρίπτει με μη αυτόματο τρόπο ένα βιογραφικό."
+
+msgid "The ID of the resume."
+msgstr "Το αναγνωριστικό του βιογραφικού."
+
+msgid "The previous status."
+msgstr "Το προηγούμενο καθεστώς."
+
+msgid "The new status."
+msgstr "Το νέο καθεστώς."
+
+msgid "Track manual admin approvals/rejections."
+msgstr "Παρακολουθήστε μη αυτόματες εγκρίσεις/απορρίψεις διαχειριστή."
+
+msgid "Resume Search Query Args"
+msgstr "Συνέχιση ερωτήματος αναζήτησης Args"
+
+msgid "Modifies the SQL WHERE clause during a frontend resume search, allowing Elasticsearch integrations."
+msgstr "Τροποποιεί τον όρο SQL WHERE κατά τη διάρκεια μιας αναζήτησης βιογραφικού frontend, επιτρέποντας ενσωματώσεις στο Elasticsearch."
+
+msgid "The current SQL query string."
+msgstr "Η τρέχουσα συμβολοσειρά ερωτήματος SQL."
+
+msgid "Array of applied search filters."
+msgstr "Σειρά εφαρμοσμένων φίλτρων αναζήτησης."
+
+msgid "Allows Elasticsearch integrations."
+msgstr "Επιτρέπει τις ενσωματώσεις του Elasticsearch."
+
+msgid "Featured Resume Activated"
+msgstr "Επιλεγμένο βιογραφικό Ενεργοποιήθηκε"
+
+msgid "Fires when a resume is promoted to featured status."
+msgstr "Πυρκαγιά όταν ένα βιογραφικό προωθείται σε χαρακτηριστική κατάσταση."
+
+msgid "Resume ID."
+msgstr "Αναγνωριστικό βιογραφικού."
+
+msgid "Job Seeker User ID."
+msgstr "Αναγνωριστικό χρήστη που αναζητά εργασία."
+
+msgid "After Job Apply"
+msgstr "Μετά την Αίτηση Εργασίας"
+
+msgid "Fires immediately after a candidate successfully applies for a job."
+msgstr "Πυροδοτούνται αμέσως μετά την επιτυχή υποβολή αίτησης για εργασία από έναν υποψήφιο."
+
+msgid "The job application ID."
+msgstr "Το αναγνωριστικό της αίτησης εργασίας."
+
+msgid "Triggered upon successful job application."
+msgstr "Ενεργοποιήθηκε μετά από επιτυχημένη αίτηση εργασίας."
+
+msgid "Application Submitted"
+msgstr "Η αίτηση υποβλήθηκε"
+
+msgid "Standard event trigger for a logged-in user submitting a job application."
+msgstr "Τυπική ενεργοποίηση συμβάντος για έναν συνδεδεμένο χρήστη που υποβάλλει αίτηση εργασίας."
+
+msgid "ID of the application record."
+msgstr "Αναγνωριστικό της εγγραφής της αίτησης."
+
+msgid "ID of the applied job."
+msgstr "Ταυτότητα της αίτησης εργασίας."
+
+msgid "Fires for authenticated users only."
+msgstr "Πυρκαγιές μόνο για πιστοποιημένους χρήστες."
+
+msgid "Quick Apply Submitted"
+msgstr "Υποβλήθηκε Γρήγορη Αίτηση"
+
+msgid "Triggers when a candidate uses the \\"
+msgstr "Ενεργοποιείται όταν ένας υποψήφιος χρησιμοποιεί το \\"
+
+msgid "Application record ID."
+msgstr "Αναγνωριστικό αρχείου εφαρμογής."
+
+msgid "Submitted form data."
+msgstr "Υποβληθέντα στοιχεία φόρμας."
+
+msgid "Uploaded files array."
+msgstr "Συστοιχία μεταφορτωμένων αρχείων."
+
+msgid "Handles bypass forms and attached files."
+msgstr "Χειρίζεται φόρμες παράκαμψης και συνημμένα αρχεία."
+
+msgid "Visitor Application Submitted"
+msgstr "Υποβλήθηκε Αίτηση Επισκέπτη"
+
+msgid "Triggers specifically for unauthenticated (guest) applications."
+msgstr "Ενεργοποιητές ειδικά για εφαρμογές χωρίς έλεγχο ταυτότητας (επισκέπτης)."
+
+msgid "Guest data array."
+msgstr "Συστοιχία δεδομένων επισκέπτη."
+
+msgid "Triggers specifically for unauthenticated applications."
+msgstr "Ενεργοποιητές ειδικά για εφαρμογές χωρίς έλεγχο ταυτότητας."
+
+msgid "Candidate Status Updated"
+msgstr "Ενημερώθηκε η κατάσταση υποψηφίου"
+
+msgid "Core ATS hook. Fires when an employer changes an applicants internal workflow state (e.g., Hired)."
+msgstr "Γάντζος πυρήνα ATS. Πυροδοτείται όταν ένας εργοδότης αλλάζει μια κατάσταση εσωτερικής ροής εργασίας του αιτούντος (π.χ. Προσλήφθηκε)."
+
+msgid "Old ATS status."
+msgstr "Παλιά κατάσταση ATS."
+
+msgid "New ATS status."
+msgstr "Νέα κατάσταση ATS."
+
+msgid "Employer User ID."
+msgstr "Αναγνωριστικό χρήστη εργοδότη."
+
+msgid "Core ATS hook."
+msgstr "Γάντζος πυρήνα ATS."
+
+msgid "Application Note Saved"
+msgstr "Η σημείωση της εφαρμογής αποθηκεύτηκε"
+
+msgid "Fires when an employer adds an internal note to an application."
+msgstr "Ενεργοποιείται όταν ένας εργοδότης προσθέτει μια εσωτερική σημείωση σε μια εφαρμογή."
+
+msgid "Note text."
+msgstr "Σημείωση κειμένου."
+
+msgid "Fires on employer internal note."
+msgstr "Φωτιές σε εσωτερικό σημείωμα εργοδότη."
+
+msgid "Application Rating Updated"
+msgstr "Η αξιολόγηση της εφαρμογής ενημερώθηκε"
+
+msgid "Fires when a candidate receives a star rating from an employer."
+msgstr "Πυροδοτείται όταν ένας υποψήφιος λαμβάνει βαθμολογία με αστέρια από έναν εργοδότη."
+
+msgid "Application ID."
+msgstr "Αναγνωριστικό εφαρμογής."
+
+msgid "Star rating."
+msgstr "Αξιολόγηση με αστέρια."
+
+msgid "Fires on rating update."
+msgstr "Πυρκαγιές στην ενημέρωση βαθμολογίας."
+
+msgid "After Store Company"
+msgstr "Εταιρεία After Store"
+
+msgid "Fires immediately after a new company is stored in the database."
+msgstr "Πυρκαγιά αμέσως μετά την αποθήκευση μιας νέας εταιρείας στη βάση δεδομένων."
+
+msgid "The newly created company ID."
+msgstr "Το νεοσύστατο εταιρικό ID."
+
+msgid "Triggered upon company creation."
+msgstr "Ενεργοποιήθηκε κατά τη δημιουργία της εταιρείας."
+
+msgid "After Edit Company"
+msgstr "After Edit Company"
+
+msgid "Fires immediately after an existing company is updated."
+msgstr "Πυρκαγιές αμέσως μετά την ενημέρωση μιας υπάρχουσας εταιρείας."
+
+msgid "The updated company ID."
+msgstr "Το ενημερωμένο εταιρικό αναγνωριστικό."
+
+msgid "Triggered upon company update."
+msgstr "Ενεργοποιήθηκε κατά την ενημέρωση της εταιρείας."
+
+msgid "After Delete Company"
+msgstr "Μετά τη Διαγραφή Εταιρείας"
+
+msgid "Fires immediately after a company is deleted."
+msgstr "Πυρκαγιά αμέσως μετά τη διαγραφή μιας εταιρείας."
+
+msgid "The deleted company ID."
+msgstr "Το αναγνωριστικό της εταιρείας που έχει διαγραφεί."
+
+msgid "Triggered upon company deletion."
+msgstr "Ενεργοποιήθηκε κατά τη διαγραφή της εταιρείας."
+
+msgid "Company Status Transition"
+msgstr "Μετάβαση εταιρικής κατάστασης"
+
+msgid "Fires on company approve/reject state changes."
+msgstr "Οι πυρκαγιές στην εταιρεία εγκρίνουν/απορρίπτουν αλλαγές κατάστασης."
+
+msgid "Company ID."
+msgstr "Ταυτότητα εταιρείας."
+
+msgid "Old status."
+msgstr "Παλιά κατάσταση."
+
+msgid "New status."
+msgstr "Νέα κατάσταση."
+
+msgid "Fires on company state changes."
+msgstr "Φωτιές σε αλλαγές κατάστασης της εταιρείας."
+
+msgid "Featured Company Activated"
+msgstr "Επιλεγμένη εταιρεία Ενεργοποιήθηκε"
+
+msgid "Fires when a company is promoted to featured status."
+msgstr "Πυρκαγιά όταν μια εταιρεία προωθείται σε χαρακτηριστική κατάσταση."
+
+msgid "Company Search Query Args"
+msgstr "Ερώτημα αναζήτησης εταιρείας Args"
+
+msgid "Modifies Company SQL search queries."
+msgstr "Τροποποιεί τα ερωτήματα αναζήτησης της εταιρείας SQL."
+
+msgid "Current SQL query."
+msgstr "Τρέχον ερώτημα SQL."
+
+msgid "Search filters."
+msgstr "Φίλτρα αναζήτησης."
+
+msgid "Modified query string."
+msgstr "Τροποποιημένη συμβολοσειρά ερωτήματος."
+
+msgid "Used for modifying frontend company search behaviour."
+msgstr "Χρησιμοποιείται για την τροποποίηση της συμπεριφοράς αναζήτησης εταιρείας frontend."
+
+msgid "User Status Transition"
+msgstr "Μετάβαση κατάστασης χρήστη"
+
+msgid "Fires when an admin manually suspends or activates an account."
+msgstr "Ενεργοποιείται όταν ένας διαχειριστής αναστέλλει ή ενεργοποιεί με μη αυτόματο τρόπο έναν λογαριασμό."
+
+msgid "Admin account activation/suspension."
+msgstr "Ενεργοποίηση/αναστολή λογαριασμού διαχειριστή."
+
+msgid "User Deleted"
+msgstr "Ο χρήστης διαγράφηκε"
+
+msgid "Crucial for GDPR compliance; alerts external systems to delete user records."
+msgstr "Είναι ζωτικής σημασίας για τη συμμόρφωση με τον GDPR. ειδοποιεί τα εξωτερικά συστήματα για τη διαγραφή αρχείων χρήστη."
+
+msgid "Portal User ID."
+msgstr "Αναγνωριστικό χρήστη πύλης."
+
+msgid "WordPress User ID."
+msgstr "Αναγνωριστικό χρήστη WordPress."
+
+msgid "User Role ID."
+msgstr "Αναγνωριστικό ρόλου χρήστη."
+
+msgid "Crucial for GDPR compliance."
+msgstr "Είναι ζωτικής σημασίας για τη συμμόρφωση με τον GDPR."
+
+msgid "User Profile Saved"
+msgstr "Το προφίλ χρήστη αποθηκεύτηκε"
+
+msgid "Fires whenever user metadata is updated."
+msgstr "Ενεργοποιείται κάθε φορά που ενημερώνονται τα μεταδεδομένα χρήστη."
+
+msgid "Profile ID."
+msgstr "Αναγνωριστικό προφίλ."
+
+msgid "Profile metadata."
+msgstr "Μεταδεδομένα προφίλ."
+
+msgid "Fires on metadata update."
+msgstr "Ενεργοποιεί την ενημέρωση μεταδεδομένων."
+
+msgid "AI Content Prompt"
+msgstr "Προτροπή περιεχομένου AI"
+
+msgid "Intercepts the prompt string before it hits the AI proxy. Allows insertion of mandatory EEO text."
+msgstr "Κλείνει τη συμβολοσειρά προτροπής προτού χτυπήσει τον διακομιστή μεσολάβησης AI. Επιτρέπει την εισαγωγή υποχρεωτικού κειμένου EEO."
+
+msgid "AI Prompt."
+msgstr "Προτροπή AI."
+
+msgid "Context parameters."
+msgstr "Παράμετροι περιβάλλοντος."
+
+msgid "Modified AI Prompt."
+msgstr "Τροποποιημένη προτροπή AI."
+
+msgid "Allows insertion of mandatory context."
+msgstr "Επιτρέπει την εισαγωγή υποχρεωτικού πλαισίου."
+
+msgid "AI Generation Completed"
+msgstr "Ολοκληρώθηκε η δημιουργία AI"
+
+msgid "Captures the AI response for logging and plagiarism scanning."
+msgstr "Καταγράφει την απόκριση AI για καταγραφή και σάρωση λογοκλοπής."
+
+msgid "Status code."
+msgstr "Κωδικός κατάστασης."
+
+msgid "Response payload."
+msgstr "Ωφέλιμο φορτίο απόκρισης."
+
+msgid "Original Prompt."
+msgstr "Αρχική προτροπή."
+
+msgid "Wrapper used."
+msgstr "Μεταχειρισμένο περιτύλιγμα."
+
+msgid "Used for logging and plagiarism checks."
+msgstr "Χρησιμοποιείται για καταγραφή και ελέγχους λογοκλοπής."
+
+msgid "Before AI Resume Parse"
+msgstr "Πριν από τη συνέχιση της AI Ανάλυση"
+
+msgid "Allows PII redaction from resume text before it is indexed for AI matching."
+msgstr "Επιτρέπει τη σύνταξη PII από το κείμενο βιογραφικού προτού ευρετηριαστεί για αντιστοίχιση τεχνητής νοημοσύνης."
+
+msgid "Text string for AI indexing."
+msgstr "Συμβολοσειρά κειμένου για ευρετηρίαση AI."
+
+msgid "Entity ID."
+msgstr "Αναγνωριστικό οντότητας."
+
+msgid "Sanitized AI string."
+msgstr "Απολυμασμένη χορδή AI."
+
+msgid "Useful for Blind Hiring features."
+msgstr "Χρήσιμο για δυνατότητες πρόσληψης τυφλών."
+
+msgid "Before AI Job Parse"
+msgstr "Πριν από την AI Job Parse"
+
+msgid "Allows modification of job text before AI indexing."
+msgstr "Επιτρέπει την τροποποίηση του κειμένου εργασίας πριν από την ευρετηρίαση AI."
+
+msgid "Modified AI string."
+msgstr "Τροποποιημένη συμβολοσειρά AI."
+
+msgid "AI Job to Resume Match"
+msgstr "AI Job to Resume Match"
+
+msgid "Mutates the search string the AI uses to find resumes for a job."
+msgstr "Μεταβάλλει τη συμβολοσειρά αναζήτησης που χρησιμοποιεί η τεχνητή νοημοσύνη για να βρει βιογραφικά για μια εργασία."
+
+msgid "Search string."
+msgstr "Συμβολοσειρά αναζήτησης."
+
+msgid "Mutated search string."
+msgstr "Μεταλλαγμένη συμβολοσειρά αναζήτησης."
+
+msgid "Mutates the search string the AI uses."
+msgstr "Μεταβάλλει τη συμβολοσειρά αναζήτησης που χρησιμοποιεί η τεχνητή νοημοσύνη."
+
+msgid "AI Resume to Job Match"
+msgstr "Βιογραφικό AI στο Job Match"
+
+msgid "Mutates the search string the AI uses to find jobs for a resume."
+msgstr "Μεταβάλλει τη συμβολοσειρά αναζήτησης που χρησιμοποιεί η τεχνητή νοημοσύνη για να βρει θέσεις εργασίας για ένα βιογραφικό."
+
+msgid "AI Dashboard Job Suggestions"
+msgstr "Προτάσεις εργασίας AI Dashboard"
+
+msgid "Captures suggested jobs calculated for the job seekers dashboard."
+msgstr "Καταγράφει προτεινόμενες εργασίες που υπολογίζονται για τον πίνακα ελέγχου ατόμων που αναζητούν εργασία."
+
+msgid "Seeker User ID."
+msgstr "Αναγνωριστικό χρήστη αναζητητή."
+
+msgid "Array of matched Job IDs."
+msgstr "Σειρά αντιστοιχισμένων αναγνωριστικών εργασίας."
+
+msgid "Captures dashboard suggestions."
+msgstr "Καταγράφει προτάσεις πίνακα ελέγχου."
+
+msgid "AI Job Suggestion Calculated"
+msgstr "Υπολογίστηκε η πρόταση εργασίας AI"
+
+msgid "Captures suggested jobs against a specific resume ID."
+msgstr "Καταγράφει προτεινόμενες εργασίες σε ένα συγκεκριμένο αναγνωριστικό βιογραφικού."
+
+msgid "Captures resume-specific suggestions."
+msgstr "Καταγράφει προτάσεις για συγκεκριμένα βιογραφικά."
+
+msgid "AI Dashboard Resume Suggestions"
+msgstr "Προτάσεις βιογραφικού πίνακα ελέγχου AI"
+
+msgid "Captures suggested resumes calculated for the employers dashboard."
+msgstr "Καταγράφει προτεινόμενα βιογραφικά υπολογισμένα για τον πίνακα ελέγχου εργοδοτών."
+
+msgid "Array of matched Resume IDs."
+msgstr "Σειρά αντιστοιχισμένων αναγνωριστικών βιογραφικού."
+
+msgid "Captures employer dashboard suggestions."
+msgstr "Καταγράφει τις προτάσεις του πίνακα ελέγχου εργοδότη."
+
+msgid "AI Resume Suggestion Calculated"
+msgstr "Υπολογίστηκε η πρόταση βιογραφικού AI"
+
+msgid "Captures suggested resumes against a specific job ID."
+msgstr "Καταγράφει προτεινόμενα βιογραφικά σε ένα συγκεκριμένο αναγνωριστικό εργασίας."
+
+msgid "Captures job-specific suggestions."
+msgstr "Καταγράφει προτάσεις για συγκεκριμένες εργασίες."
+
+msgid "Job Alert Triggered"
+msgstr "Ενεργοποιήθηκε η ειδοποίηση εργασίας"
+
+msgid "Intercepts an alert match before the email sends. Ideal for Push/SMS notifications."
+msgstr "Κλείνει μια αντιστοιχία ειδοποίησης πριν από την αποστολή του email. Ιδανικό για ειδοποιήσεις Push/SMS."
+
+msgid "Person ID."
+msgstr "Ταυτότητα προσώπου."
+
+msgid "Subscriber User ID."
+msgstr "Αναγνωριστικό χρήστη συνδρομητή."
+
+msgid "Matched jobs array."
+msgstr "Αντιστοιχισμένη σειρά εργασιών."
+
+msgid "Ideal for Push/SMS notifications."
+msgstr "Ιδανικό για ειδοποιήσεις Push/SMS."
+
+msgid "Job Alert Saved"
+msgstr "Η ειδοποίηση εργασίας αποθηκεύτηκε"
+
+msgid "Fires when an alert preference is created or updated."
+msgstr "Ενεργοποιείται όταν δημιουργείται ή ενημερώνεται μια προτίμηση ειδοποίησης."
+
+msgid "Alert record ID."
+msgstr "Αναγνωριστικό εγγραφής ειδοποίησης."
+
+msgid "Subscriber Email."
+msgstr "Email συνδρομητή."
+
+msgid "Alert configuration data."
+msgstr "Δεδομένα διαμόρφωσης ειδοποίησης."
+
+msgid "Fires on alert create/update."
+msgstr "Δημιουργία/ενημέρωση πυρκαγιών σε συναγερμό."
+
+msgid "Job Alert Unsubscribed"
+msgstr "Ειδοποίηση Εργασίας Κατάργηση εγγραφής"
+
+msgid "Fires when an alert is deleted."
+msgstr "Ενεργοποιείται όταν διαγράφεται μια ειδοποίηση."
+
+msgid "Deleted Alert ID."
+msgstr "Διαγραμμένο αναγνωριστικό ειδοποίησης."
+
+msgid "Membership Package Purchased"
+msgstr "Αγοράστηκε Πακέτο Συνδρομής"
+
+msgid "Triggers on a successful checkout via Stripe or PayPal gateways."
+msgstr "Ενεργοποιείται σε μια επιτυχημένη ολοκλήρωση αγοράς μέσω πυλών Stripe ή PayPal."
+
+msgid "Package ID."
+msgstr "Ταυτότητα πακέτου."
+
+msgid "Amount paid."
+msgstr "Ποσό που καταβλήθηκε."
+
+msgid "Payment gateway."
+msgstr "Πύλη πληρωμής."
+
+msgid "Triggers on gateway success."
+msgstr "Ενεργοποιήσεις για την επιτυχία της πύλης."
+
+msgid "WooCommerce Order Synced"
+msgstr "Συγχρονίστηκε η παραγγελία WooCommerce"
+
+msgid "Executes when WP Job Portal routes a payment into the WooCommerce cart."
+msgstr "Εκτελείται όταν το WP Job Portal δρομολογεί μια πληρωμή στο καλάθι του WooCommerce."
+
+msgid "WooCommerce Post ID."
+msgstr "WooCommerce Post ID."
+
+msgid "Purchase data."
+msgstr "Δεδομένα αγοράς."
+
+msgid "Executes on Woo cart route."
+msgstr "Εκτελείται στη διαδρομή Woo cart."
+
+msgid "Per Listing Purchased"
+msgstr "Ανά Καταχώρηση που αγοράστηκε"
+
+msgid "Generic action deployed across all individual purchases."
+msgstr "Γενική ενέργεια που εφαρμόζεται σε όλες τις μεμονωμένες αγορές."
+
+msgid "Entity ID (job/resume/company)."
+msgstr "Αναγνωριστικό οντότητας (εργασία/βιογραφικό/εταιρεία)."
+
+msgid "Entity type."
+msgstr "Τύπος οντότητας."
+
+msgid "Gateway used."
+msgstr "Χρησιμοποιείται πύλη."
+
+msgid "Deployed across individual purchases."
+msgstr "Αναπτύχθηκε σε μεμονωμένες αγορές."
+
+msgid "Subscription Cancelled"
+msgstr "Η συνδρομή ακυρώθηκε"
+
+msgid "Alerts external platforms (like Discord/Active Directory) to downgrade the user."
+msgstr "Ειδοποιεί τις εξωτερικές πλατφόρμες (όπως το Discord/Active Directory) για υποβάθμιση του χρήστη."
+
+msgid "Gateway sub ID."
+msgstr "Υπο ID πύλης."
+
+msgid "Downgrade user permissions."
+msgstr "Υποβάθμιση των δικαιωμάτων χρήστη."
+
+msgid "Membership Purchased DB Commit"
+msgstr "Δέσμευση DB Purchased Membership"
+
+msgid "A database-level failsafe hook that fires even if a package is manually assigned by an admin."
+msgstr "Ένα άγκιστρο ασφαλείας σε επίπεδο βάσης δεδομένων που ενεργοποιείται ακόμα και αν ένα πακέτο εκχωρηθεί με μη αυτόματο τρόπο από έναν διαχειριστή."
+
+msgid "Amount."
+msgstr "Ποσό."
+
+msgid "Payment Method."
+msgstr "Τρόπος πληρωμής."
+
+msgid "Database-level failsafe hook."
+msgstr "Άγκιστρο ασφαλείας σε επίπεδο βάσης δεδομένων."
+
+msgid "Package Saved"
+msgstr "Το πακέτο αποθηκεύτηκε"
+
+msgid "Fires when a package is updated or unpublished."
+msgstr "Ενεργοποιείται όταν ένα πακέτο ενημερώνεται ή δεν δημοσιεύεται."
+
+msgid "Package data."
+msgstr "Δεδομένα πακέτου."
+
+msgid "Fires on package update."
+msgstr "Πυρκαγιά κατά την ενημέρωση πακέτου."
+
+msgid "Invoice Status Transition"
+msgstr "Μετάβαση κατάστασης τιμολογίου"
+
+msgid "Fires when an invoice moves to \\"
+msgstr "Ενεργοποιείται όταν ένα τιμολόγιο μετακινείται στο \\"
+
+msgid "Invoice ID."
+msgstr "Αναγνωριστικό τιμολογίου."
+
+msgid "Old Status."
+msgstr "Παλιά κατάσταση."
+
+msgid "New Status."
+msgstr "Νέα Κατάσταση."
+
+msgid "Syncs external accounting software."
+msgstr "Συγχρονίζει το εξωτερικό λογιστικό λογισμικό."
+
+msgid "Invoice Saved"
+msgstr "Το τιμολόγιο αποθηκεύτηκε"
+
+msgid "Fires on invoice creation or deletion."
+msgstr "Πυρκαγιές κατά τη δημιουργία ή τη διαγραφή τιμολογίου."
+
+msgid "Invoice Data."
+msgstr "Δεδομένα τιμολογίου."
+
+msgid "Fires on invoice creation."
+msgstr "Πυρκαγιές στη δημιουργία τιμολογίων."
+
+msgid "Employer Dashboard Loaded"
+msgstr "Ο πίνακας ελέγχου εργοδότη φορτώθηκε"
+
+msgid "Fires when the employer portal initializes."
+msgstr "Ενεργοποιείται όταν αρχικοποιείται η πύλη εργοδότη."
+
+msgid "Portal view data array."
+msgstr "Συστοιχία δεδομένων προβολής πύλης."
+
+msgid "Jobseeker Dashboard Loaded"
+msgstr "Ο πίνακας ελέγχου Jobseeker έχει φορτωθεί"
+
+msgid "Fires when the candidate portal initializes."
+msgstr "Ενεργοποιείται όταν αρχικοποιείται η υποψήφια πύλη."
+
+msgid "Candidate User ID."
+msgstr "Αναγνωριστικό υποψηφίου χρήστη."
+
+msgid "Admin Dashboard Loaded"
+msgstr "Ο πίνακας ελέγχου διαχειριστή φορτώθηκε"
+
+msgid "Injects custom data into the WP Admin control panel."
+msgstr "Εισάγει προσαρμοσμένα δεδομένα στον πίνακα ελέγχου διαχειριστή του WP."
+
+msgid "Admin data array."
+msgstr "Συστοιχία δεδομένων διαχειριστή."
+
+msgid "Injects data into WP Admin."
+msgstr "Εισάγει δεδομένα στο WP Admin."
+
+msgid "User Widget HTML"
+msgstr "Γραφικό στοιχείο χρήστη HTML"
+
+msgid "Allows theme developers to modify member widget cards."
+msgstr "Επιτρέπει στους προγραμματιστές θεμάτων να τροποποιούν τις κάρτες γραφικών στοιχείων μελών."
+
+msgid "HTML Content."
+msgstr "Περιεχόμενο HTML."
+
+msgid "User role."
+msgstr "Ρόλος χρήστη."
+
+msgid "User data."
+msgstr "Δεδομένα χρήστη."
+
+msgid "Modified HTML."
+msgstr "Τροποποιημένο HTML."
+
+msgid "Modify member widget cards."
+msgstr "Τροποποίηση καρτών γραφικών στοιχείων μελών."
+
+msgid "Shortlist Popup HTML"
+msgstr "Σύντομη λίστα αναδυόμενου HTML"
+
+msgid "Modifies the HTML output of the shortlist modal."
+msgstr "Τροποποιεί την έξοδο HTML του modal shortlist."
+
+msgid "Modifies shortlist modal HTML."
+msgstr "Τροποποιεί το modal HTML σύντομης λίστας."
+
+msgid "Export Resume Raw String"
+msgstr "Εξαγωγή Βιογραφικού Ακατέργαστης συμβολοσειράς"
+
+msgid "Intercepts the final TSV text string for a single resume download."
+msgstr "Κόβει την τελική συμβολοσειρά κειμένου TSV για μία μόνο λήψη βιογραφικού."
+
+msgid "TSV String."
+msgstr "TSV String."
+
+msgid "Modified TSV string."
+msgstr "Τροποποιημένη συμβολοσειρά TSV."
+
+msgid "Intercepts single TSV export."
+msgstr "Αναχαιτίζει μεμονωμένη εξαγωγή TSV."
+
+msgid "Export Resume Data Array"
+msgstr "Εξαγωγή συστοιχίας δεδομένων βιογραφικού"
+
+msgid "Highly useful for Blind Hiring; allows programmatic removal of PII columns before TSV conversion."
+msgstr "Ιδιαίτερα χρήσιμο για προσλήψεις τυφλών. επιτρέπει την προγραμματική αφαίρεση στηλών PII πριν από τη μετατροπή TSV."
+
+msgid "Export row array."
+msgstr "Εξαγωγή πίνακα σειρών."
+
+msgid "DB result data."
+msgstr "Δεδομένα αποτελεσμάτων DB."
+
+msgid "Sanitized row array."
+msgstr "Απολυμασμένη σειρά σειρών."
+
+msgid "Highly useful for Blind Hiring."
+msgstr "Πολύ χρήσιμο για προσλήψεις τυφλών."
+
+msgid "Export All Resumes Raw String"
+msgstr "Εξαγωγή όλων των βιογραφικών Ακατέργαστη συμβολοσειρά"
+
+msgid "Intercepts the bulk export string to append HR disclaimers or timestamps."
+msgstr "Κλείνει τη συμβολοσειρά μαζικής εξαγωγής για να προσαρτήσει δηλώσεις αποποίησης ευθύνης HR ή χρονικές σημάνσεις."
+
+msgid "Bulk TSV String."
+msgstr "Μαζική συμβολοσειρά TSV."
+
+msgid "Modified bulk string."
+msgstr "Τροποποιημένη χορδή χύδην."
+
+msgid "Intercepts bulk export string."
+msgstr "Αναχαιτίζει τη συμβολοσειρά μαζικής εξαγωγής."
+
+msgid "Resume Export Filename"
+msgstr "Συνέχιση εξαγωγής ονόματος αρχείου"
+
+msgid "Mutates the generated ZIP file name dynamically."
+msgstr "Μεταβάλλει δυναμικά το όνομα του αρχείου ZIP που δημιουργήθηκε."
+
+msgid "Default filename."
+msgstr "Προεπιλεγμένο όνομα αρχείου."
+
+msgid "File extension."
+msgstr "Επέκταση αρχείου."
+
+msgid "Mutated filename."
+msgstr "Μεταλλαγμένο όνομα αρχείου."
+
+msgid "Mutates generated ZIP filename."
+msgstr "Μεταβάλλει το όνομα αρχείου ZIP που δημιουργήθηκε."
+
+msgid "System Email Headers"
+msgstr "Κεφαλίδες ηλεκτρονικού ταχυδρομείου συστήματος"
+
+msgid "Modifies outgoing SMTP headers (e.g., custom Reply-To addresses)."
+msgstr "Τροποποιεί τις εξερχόμενες κεφαλίδες SMTP (π.χ. προσαρμοσμένες διευθύνσεις απάντησης σε)."
+
+msgid "Email headers array."
+msgstr "Συστοιχία κεφαλίδων email."
+
+msgid "Email subject."
+msgstr "Θέμα email."
+
+msgid "Modified headers."
+msgstr "Τροποποιημένες κεφαλίδες."
+
+msgid "Modifies outgoing SMTP headers."
+msgstr "Τροποποιεί τις εξερχόμενες κεφαλίδες SMTP."
+
+msgid "Email Notification Sent"
+msgstr "Στάλθηκε ειδοποίηση μέσω email"
+
+msgid "Logs transactional emails immediately after wp_mail() fires."
+msgstr "Καταγράφει τα email συναλλαγών αμέσως μετά την ενεργοποίηση της wp_mail()."
+
+msgid "Email type string."
+msgstr "Συμβολοσειρά τύπου email."
+
+msgid "Recipient details."
+msgstr "Στοιχεία παραλήπτη."
+
+msgid "Email HTML payload."
+msgstr "Αποστολή ωφέλιμου φορτίου HTML."
+
+msgid "Logs transactional emails."
+msgstr "Καταγράφει μηνύματα ηλεκτρονικού ταχυδρομείου συναλλαγών."
+
+msgid "Internal Message Sent"
+msgstr "Εσωτερικό μήνυμα εστάλη"
+
+msgid "Intercepts secure internal messages to push to external SMS/Slack APIs."
+msgstr "Αναχαιτίζει ασφαλή εσωτερικά μηνύματα για προώθηση σε εξωτερικά SMS/Slack API."
+
+msgid "Message ID."
+msgstr "Αναγνωριστικό μηνύματος."
+
+msgid "Sender ID."
+msgstr "Αναγνωριστικό αποστολέα."
+
+msgid "Recipient ID."
+msgstr "Αναγνωριστικό παραλήπτη."
+
+msgid "Message Text."
+msgstr "Κείμενο μηνύματος."
+
+msgid "Push to external SMS/Slack APIs."
+msgstr "Push σε εξωτερικά SMS/Slack API."
+
+msgid "Message Status Transition"
+msgstr "Μετάβαση κατάστασης μηνύματος"
+
+msgid "Triggers when an admin resolves a flagged/conflicted message."
+msgstr "Ενεργοποιείται όταν ένας διαχειριστής επιλύει ένα μήνυμα με σημαία/διένεξη."
+
+msgid "Admin flag resolution."
+msgstr "Ανάλυση σημαίας διαχειριστή."
+
+msgid "File Uploaded (S3 Hook)"
+msgstr "Μεταφορτώθηκε αρχείο (S3 Hook)"
+
+msgid "The ultimate scalability hook. Fires when a physical file is saved, allowing cloud plugins to upload to AWS S3 and delete the local instance."
+msgstr "Το απόλυτο άγκιστρο επεκτασιμότητας. Ενεργοποιείται όταν αποθηκεύεται ένα φυσικό αρχείο, επιτρέποντας στις προσθήκες cloud να ανεβαίνουν στο AWS S3 και να διαγράφουν την τοπική παρουσία."
+
+msgid "Absolute physical file path."
+msgstr "Απόλυτη φυσική διαδρομή αρχείου."
+
+msgid "Context type (e.g. company_logo, resume_file)."
+msgstr "Τύπος περιβάλλοντος (π.χ. λογότυπο_εταιρίας, αρχείο_βιογραφικού)."
+
+msgid "Associated record ID."
+msgstr "Σχετικό αναγνωριστικό εγγραφής."
+
+msgid "The ultimate scalability hook for S3."
+msgstr "Το απόλυτο άγκιστρο επεκτασιμότητας για το S3."
+
+msgid "SEO Settings Updated"
+msgstr "Οι ρυθμίσεις SEO ενημερώθηκαν"
+
+msgid "Executes when core configs update, enabling auto-purging of caching plugins (WP Rocket)."
+msgstr "Εκτελείται κατά την ενημέρωση των ρυθμίσεων του πυρήνα, επιτρέποντας την αυτόματη εκκαθάριση των προσθηκών προσωρινής αποθήκευσης (WP Rocket)."
+
+msgid "Config data array."
+msgstr "Συστοιχία δεδομένων διαμόρφωσης."
+
+msgid "Enabling auto-purging of caching plugins."
+msgstr "Ενεργοποίηση αυτόματης εκκαθάρισης προσθηκών προσωρινής αποθήκευσης."
+
+msgid "Hook Reference"
+msgstr "Αναφορά Hook"
+
+msgid "Entities"
+msgstr "οντότητες"
+
+msgid "Search across all actions and filters..."
+msgstr "Αναζήτηση σε όλες τις ενέργειες και τα φίλτρα..."
+
+msgid "Arguments"
+msgstr "Επιχειρήματα"
+
+msgid "Returns"
+msgstr "Επιστροφές"
+
+msgid "No return (Action Hook)"
+msgstr "Χωρίς επιστροφή (Action Hook)"
+
+msgid "Snippet"
+msgstr "Απόσπασμα"
+
+msgid "Copy Code"
+msgstr "Αντιγραφή Κωδικού"
+
+msgid "To use this hook, please install and activate the"
+msgstr "Για να χρησιμοποιήσετε αυτό το άγκιστρο, εγκαταστήστε και ενεργοποιήστε το"
+
+msgid "addon."
+msgstr "πρόσθετο."
+
+msgid "View Addon Details"
+msgstr "Προβολή λεπτομερειών πρόσθετου"
+
+msgid "No results found"
+msgstr "Δεν βρέθηκαν αποτελέσματα"
+
+msgid "Try searching for specific keywords like \\"
+msgstr "Δοκιμάστε να αναζητήσετε συγκεκριμένες λέξεις-κλειδιά όπως \\"
+
+msgid "Hooks"
+msgstr "Άγκιστρα"
+
+msgid "Search Results"
+msgstr "Αποτελέσματα αναζήτησης"

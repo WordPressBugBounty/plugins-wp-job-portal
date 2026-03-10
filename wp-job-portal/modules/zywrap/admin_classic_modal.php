@@ -19,6 +19,9 @@ if (!defined('ABSPATH')) die('Restricted Access');
         --wjp-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
         box-sizing: border-box;
     }
+    #zywrap-classic-modal-wrap  { color-scheme: light; }
+    #zywrap-classic-modal-wrap * { color-scheme: light; }
+
     #zywrap-classic-modal-wrap * { box-sizing: border-box; }
 
     /* --- BACKDROP --- */
@@ -251,7 +254,7 @@ if (!defined('ABSPATH')) die('Restricted Access');
     .zywrap-advanced-toggle {
         border: 1px solid var(--wjp-border);
         border-radius: 8px;
-        overflow: hidden;
+
         background: #fff;
         flex-shrink: 0;
     }
@@ -356,11 +359,141 @@ if (!defined('ABSPATH')) die('Restricted Access');
             transform: rotate(360deg);
         }
     }
+    #zywrap-classic-modal-backdrop {display: none;position: fixed;top: 0; left: 0;width: 100%; height: 100%;background: #000;opacity: 0.7;z-index: 100000;}
+   #zywrap-classic-modal-wrap {display: none;position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%);width: 90%;max-width: 600px;max-height: 90vh;overflow-y: auto;background: #f9f9f9;border-radius: 8px;box-shadow: 0 5px 30px rgba(0,0,0,0.3);z-index: 100001;}
+   #zywrap-classic-modal-header {padding: 15px 20px;border-bottom: 1px solid #ddd;display: flex;justify-content: space-between;align-items: center;}
+   #zywrap-classic-modal-header h2 {margin: 0;font-size: 20px;}
+   #zywrap-classic-modal-close {font-size: 24px;text-decoration: none;color: #666;line-height: 1;}
+   #zywrap-classic-modal-content {padding: 20px;display: flex;flex-direction: column;gap: 15px;}
+   #zywrap-classic-modal-content label {font-weight: 600;margin-bottom: 5px;display: block;}
+   #zywrap-classic-modal-content .select2-container {width: 100% !important;}
+   #zywrap-classic-modal-content textarea {width: 100%;border-radius: 4px;border: 1px solid #ddd;}
+   #zywrap-classic-modal-overrides {padding: 10px 15px;background: #eee;border-radius: 4px;}
+   #zywrap-classic-modal-overrides-grid {display: grid;grid-template-columns: 1fr 1fr;gap: 10px;}
+   #zywrap-classic-modal-footer {padding: 15px 20px;border-top: 1px solid #ddd;text-align: right;}
+   /* Style for the new checkboxes */
+   .zywrap-classic-wpjobportal-checkbox-group {display: flex; gap: 15px; margin-top: -5px; margin-bottom: 5px; padding-left: 5px;}
+   .zywrap-classic-wpjobportal-checkbox-group label {font-weight: normal; display: flex; align-items: center; gap: 5px;margin-bottom: 0;}
+   #wpjobportal-zywrap-status-result {float: left;width: 100%;margin-top: 15px;margin-bottom: 5px;}
+   #wpjobportal-zywrap-status-result .notice{margin: 0;}
+   #wpjobportal-zywrap-sync-result {float: left;width: 100%;}
+   .zywrap-playground-grid .chosen-container-single .chosen-single {
+       background: var(--wjp-bg-card) !important;
+       border: 1px solid var(--wjp-border-color) !important;
+       border-radius: var(--wjp-border-radius-sm) !important;
+       box-shadow: var(--wjp-shadow) !important;
+       height: 40px !important;
+       line-height: 38px !important;
+       color: var(--wjp-text-dark) !important;
+       background-image: none !important; /* Removes old-school gradient */
+       transition: all 0.2s ease-in-out;
+   }
+
+   /* Dropdown Arrow Position */
+   .zywrap-playground-grid .chosen-container-single .chosen-single div b {
+       background-position: 0 10px !important;
+   }
+
+   /* Active/Focus State */
+   .zywrap-playground-grid .chosen-container-active.chosen-with-drop .chosen-single {
+       border-color: var(--wjp-color-primary) !important;
+       background: var(--wjp-bg-card) !important;
+       box-shadow: 0 0 0 3px var(--wjp-color-primary-bg) !important;
+   }
+
+   /* Dropdown Menu Style */
+   .zywrap-playground-grid .chosen-container .chosen-drop {
+       border: 1px solid var(--wjp-border-color) !important;
+       border-radius: 0 0 var(--wjp-border-radius-sm) var(--wjp-border-radius-sm) !important;
+       box-shadow: var(--wjp-shadow-lg) !important;
+       margin-top: 2px;
+       background: var(--wjp-bg-card);
+   }
+
+   /* Search Input inside the dropdown */
+   .zywrap-playground-grid .chosen-container .chosen-search input[type="text"] {
+       border: 1px solid var(--wjp-border-color) !important;
+       border-radius: 4px !important;
+       padding: 8px !important;
+   }
+
+   /* Results Hover/Highlighted */
+   .zywrap-playground-grid .chosen-container .chosen-results li.highlighted {
+       background-color: var(--wjp-color-primary) !important;
+       background-image: none !important;
+       color: var(--wjp-text-white) !important;
+   }
+
+   /* Results Padding */
+   .zywrap-playground-grid .chosen-container .chosen-results li {
+       padding: 8px 12px !important;
+       color: var(--wjp-text-medium);
+   }
+
+   /* Disabled State */
+   .zywrap-playground-grid .chosen-disabled {
+       opacity: 0.6 !important;
+   }
+
+   .zywrap-playground-grid .chosen-disabled .chosen-single {
+       background-color: var(--wjp-bg-light) !important;
+       cursor: not-allowed;
+   }
+   #filter_featured.wpjobportal-zywrap-playground-chip:hover svg{color: #fff !important;stroke: #fff !important;}
+
+
+   #wpjobportal-admin-wrapper .chosen-container-single .chosen-search input[type=text]{height: auto !important;}
+   #wpjp_zywrap_wrapper_count{font-size: 12px;color: grey;width: 100%;text-align: right;padding-top: 5px;}
+   .wpjobportal-input-group-search-case .wpjp-zywrap-jp-chosen-wrap.wpjp-zywrap-jp-chosen-wrap-search-results{
+      margin-top: 15px;
+   }
+
+   div.wpjobportaladmin-wrapper .wpjobportal-input-group.wpjobportal-input-group-search-trigger {
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      margin: 0;
+   }
+
+   .wpjobportal-input-group.wpjobportal-input-group-search-trigger div{
+      position: absolute;
+      color: #00f;
+      font-size: 14px;
+      cursor: pointer;
+      border: 1px solid var(--wjp-border-color);
+      background: #FFF;
+      padding: 5px 10px;
+      display: flex;
+   }
+
+   .wpjobportal-input-group.wpjobportal-input-group-search-trigger div:hover{
+      border: 1px solid var(--wjp-color-primary);
+   }
+
+
+   .wpjobportal-input-group.wpjobportal-input-group-search-trigger div.wpjobportal-input-group-search-trigger-close{
+      display: none;
+      background-color: #ffd8d0;
+       color: #931a1a;
+   }
+
+   .wpjobportal-input-group-search-case{
+      display: none;
+   }
+   #zywrap-classic-prompt{
+    background: #fff;
+   }
+
+   #zywrap-classic-context{
+    background: #fff;
+   }
+
+   /* button styling  */
 
 </style>
 
-<div id="zywrap-classic-modal-backdrop"></div>
-<div id="zywrap-classic-modal-wrap">
+<div id="zywrap-classic-modal-backdrop" style="display:none;"></div>
+<div id="zywrap-classic-modal-wrap" style="display:none;">
 
     <div id="zywrap-classic-modal-header">
         <h2><?php echo __( 'AI Content Generator', 'wp-job-portal' ); ?></h2>

@@ -12964,3 +12964,1008 @@ msgstr "-- Zoekresultaten --"
 
 msgid "Console Output"
 msgstr "Console-uitvoer"
+
+msgid "After Store Job"
+msgstr "Na winkeltaak"
+
+msgid "Fires immediately after a new job is stored in the database."
+msgstr "Wordt onmiddellijk geactiveerd nadat een nieuwe taak in de database is opgeslagen."
+
+msgid "The newly created job ID."
+msgstr "De nieuw gemaakte taak-ID."
+
+msgid "Triggered upon job creation."
+msgstr "Geactiveerd bij het creëren van banen."
+
+msgid "After Edit Job"
+msgstr "Na taak bewerken"
+
+msgid "Fires immediately after an existing job is updated."
+msgstr "Wordt onmiddellijk geactiveerd nadat een bestaande taak is bijgewerkt."
+
+msgid "The updated job ID."
+msgstr "De bijgewerkte taak-ID."
+
+msgid "Triggered upon job update."
+msgstr "Geactiveerd bij taakupdate."
+
+msgid "After Delete Job"
+msgstr "Na taak verwijderen"
+
+msgid "Fires immediately after a job is deleted."
+msgstr "Wordt onmiddellijk geactiveerd nadat een taak is verwijderd."
+
+msgid "The deleted job ID."
+msgstr "De verwijderde taak-ID."
+
+msgid "Triggered upon job deletion."
+msgstr "Geactiveerd bij het verwijderen van een taak."
+
+msgid "Job Published"
+msgstr "Taak gepubliceerd"
+
+msgid "Fires when admin approved a job for publish from job listing. Essential for XML syndication to Indeed or LinkedIn."
+msgstr "Wordt geactiveerd wanneer de beheerder een vacature heeft goedgekeurd voor publicatie vanuit de vacaturelijst. Essentieel voor XML-syndicatie naar Indeed of LinkedIn."
+
+msgid "The job ID."
+msgstr "De taak-ID."
+
+msgid "The associated company ID."
+msgstr "De bijbehorende bedrijfs-ID."
+
+msgid "Full job data array."
+msgstr "Volledige matrix met taakgegevens."
+
+msgid "Essential for XML syndication feeds."
+msgstr "Essentieel voor XML-syndicatiefeeds."
+
+msgid "Job Status Transition"
+msgstr "Overgang van taakstatus"
+
+msgid "Fires when a job is approved or rejected by an admin from job que."
+msgstr "Wordt geactiveerd wanneer een taak wordt goedgekeurd of afgewezen door een beheerder van de taakque."
+
+msgid "Old status code."
+msgstr "Oude statuscode."
+
+msgid "New status string."
+msgstr "Nieuwe statusreeks."
+
+msgid "Admin approval/rejection trigger."
+msgstr "Trigger voor goedkeuring/afwijzing door beheerder."
+
+msgid "Featured Job Activated"
+msgstr "Uitgelichte vacature geactiveerd"
+
+msgid "Fires when a job is elevated to featured status."
+msgstr "Wordt geactiveerd wanneer een taak wordt verhoogd naar de status Uitgelicht."
+
+msgid "User ID of the job owner."
+msgstr "Gebruikers-ID van de taakeigenaar."
+
+msgid "Featured expiry date."
+msgstr "Uitgelichte vervaldatum."
+
+msgid "Triggered on featured upgrade."
+msgstr "Geactiveerd bij aanbevolen upgrade."
+
+msgid "Job Search Query Args"
+msgstr "Zoekopdracht voor vacatures Args"
+
+msgid "Modifies the underlying SQL query for job searches."
+msgstr "Wijzigt de onderliggende SQL-query voor het zoeken naar vacatures."
+
+msgid "The search SQL query."
+msgstr "De zoek-SQL-query."
+
+msgid "Search filter variables."
+msgstr "Zoek filtervariabelen."
+
+msgid "Modified SQL query string."
+msgstr "Gewijzigde SQL-queryreeks."
+
+msgid "Used for modifying frontend job search behaviour."
+msgstr "Wordt gebruikt voor het wijzigen van het zoekgedrag van frontend-banen."
+
+msgid "Google Job Schema"
+msgstr "Google Taakschema"
+
+msgid "Intercepts the structured SEO data array to inject dynamic properties (like baseSalary)."
+msgstr "Onderschept de gestructureerde SEO-gegevensarray om dynamische eigenschappen (zoals baseSalary) te injecteren."
+
+msgid "JSON-LD schema array."
+msgstr "JSON-LD-schemaarray."
+
+msgid "Job ID."
+msgstr "Taak-ID."
+
+msgid "Modified JSON-LD array."
+msgstr "Gewijzigde JSON-LD-array."
+
+msgid "Crucial for SEO and Google Jobs integration."
+msgstr "Cruciaal voor de integratie van SEO en Google Jobs."
+
+msgid "Job Shortlisted"
+msgstr "Functie op de shortlist"
+
+msgid "Candidate intent tracking for analytics when a job is saved or shortlisted."
+msgstr "Het volgen van de intentie van kandidaten voor analyse wanneer een vacature wordt opgeslagen of op de shortlist wordt geplaatst."
+
+msgid "Shortlist row ID."
+msgstr "Shortlistrij-ID."
+
+msgid "User ID."
+msgstr "Gebruikers-ID."
+
+msgid "Extra data array."
+msgstr "Extra gegevensarray."
+
+msgid "Candidate intent tracking."
+msgstr "Volgen van de intentie van kandidaten."
+
+msgid "After Store Resume"
+msgstr "Na winkel hervatten"
+
+msgid "Fires immediately after a new resume is stored in the database."
+msgstr "Wordt onmiddellijk geactiveerd nadat een nieuw cv in de database is opgeslagen."
+
+msgid "The newly created resume ID."
+msgstr "De nieuw gemaakte CV-ID."
+
+msgid "Triggered upon resume creation."
+msgstr "Geactiveerd bij het maken van een cv."
+
+msgid "After Edit Resume"
+msgstr "Na het bewerken van CV"
+
+msgid "Fires immediately after an existing resume is updated."
+msgstr "Wordt onmiddellijk geactiveerd nadat een bestaand cv is bijgewerkt."
+
+msgid "The updated resume ID."
+msgstr "De bijgewerkte CV-ID."
+
+msgid "Triggered upon resume update."
+msgstr "Geactiveerd na CV-update."
+
+msgid "After Delete Resume"
+msgstr "Na het verwijderen van CV"
+
+msgid "Fires immediately after a resume is deleted."
+msgstr "Wordt onmiddellijk geactiveerd nadat een cv is verwijderd."
+
+msgid "The deleted resume ID."
+msgstr "De verwijderde CV-ID."
+
+msgid "Triggered upon resume deletion."
+msgstr "Geactiveerd bij het verwijderen van het cv."
+
+msgid "Resume Status Transition"
+msgstr "Statusovergang hervatten"
+
+msgid "Fires when an administrator manually approves or rejects a resume."
+msgstr "Wordt geactiveerd wanneer een beheerder een cv handmatig goedkeurt of afwijst."
+
+msgid "The ID of the resume."
+msgstr "De ID van het CV."
+
+msgid "The previous status."
+msgstr "De vorige status."
+
+msgid "The new status."
+msgstr "De nieuwe status."
+
+msgid "Track manual admin approvals/rejections."
+msgstr "Houd handmatige goedkeuringen/afwijzingen door beheerders bij."
+
+msgid "Resume Search Query Args"
+msgstr "Zoekopdrachtargumenten hervatten"
+
+msgid "Modifies the SQL WHERE clause during a frontend resume search, allowing Elasticsearch integrations."
+msgstr "Wijzigt de SQL WHERE-clausule tijdens het zoeken naar cv's in de frontend, waardoor Elasticsearch-integraties mogelijk zijn."
+
+msgid "The current SQL query string."
+msgstr "De huidige SQL-querytekenreeks."
+
+msgid "Array of applied search filters."
+msgstr "Array van toegepaste zoekfilters."
+
+msgid "Allows Elasticsearch integrations."
+msgstr "Maakt Elasticsearch-integraties mogelijk."
+
+msgid "Featured Resume Activated"
+msgstr "Aanbevolen CV geactiveerd"
+
+msgid "Fires when a resume is promoted to featured status."
+msgstr "Wordt geactiveerd wanneer een CV wordt gepromoveerd tot de status Uitgelicht."
+
+msgid "Resume ID."
+msgstr "CV-ID."
+
+msgid "Job Seeker User ID."
+msgstr "Gebruikers-ID van werkzoekende."
+
+msgid "After Job Apply"
+msgstr "Na sollicitatie"
+
+msgid "Fires immediately after a candidate successfully applies for a job."
+msgstr "Ontslaat onmiddellijk nadat een kandidaat met succes op een baan heeft gesolliciteerd."
+
+msgid "The job application ID."
+msgstr "De sollicitatie-ID."
+
+msgid "Triggered upon successful job application."
+msgstr "Geactiveerd na succesvolle sollicitatie."
+
+msgid "Application Submitted"
+msgstr "Aanvraag ingediend"
+
+msgid "Standard event trigger for a logged-in user submitting a job application."
+msgstr "Standaard gebeurtenistrigger voor een ingelogde gebruiker die een sollicitatie indient."
+
+msgid "ID of the application record."
+msgstr "ID van het aanvraagrecord."
+
+msgid "ID of the applied job."
+msgstr "ID van de toegepaste functie."
+
+msgid "Fires for authenticated users only."
+msgstr "Wordt alleen geactiveerd voor geverifieerde gebruikers."
+
+msgid "Quick Apply Submitted"
+msgstr "Snelle sollicitatie ingediend"
+
+msgid "Triggers when a candidate uses the \\"
+msgstr "Triggert wanneer een kandidaat de \\ gebruikt"
+
+msgid "Application record ID."
+msgstr "Applicatierecord-ID."
+
+msgid "Submitted form data."
+msgstr "Formuliergegevens verzonden."
+
+msgid "Uploaded files array."
+msgstr "Geüploade bestandenarray."
+
+msgid "Handles bypass forms and attached files."
+msgstr "Verwerkt bypass-formulieren en bijgevoegde bestanden."
+
+msgid "Visitor Application Submitted"
+msgstr "Bezoekersaanvraag ingediend"
+
+msgid "Triggers specifically for unauthenticated (guest) applications."
+msgstr "Triggers specifiek voor niet-geverifieerde (gast)applicaties."
+
+msgid "Guest data array."
+msgstr "Gastgegevensarray."
+
+msgid "Triggers specifically for unauthenticated applications."
+msgstr "Triggers specifiek voor niet-geverifieerde toepassingen."
+
+msgid "Candidate Status Updated"
+msgstr "Kandidaatstatus bijgewerkt"
+
+msgid "Core ATS hook. Fires when an employer changes an applicants internal workflow state (e.g., Hired)."
+msgstr "Kern ATS-haak. Wordt geactiveerd wanneer een werkgever de interne workflowstatus van een sollicitant wijzigt (bijvoorbeeld Aangeworven)."
+
+msgid "Old ATS status."
+msgstr "Oude ATS-status."
+
+msgid "New ATS status."
+msgstr "Nieuwe ATS-status."
+
+msgid "Employer User ID."
+msgstr "Gebruikers-ID werkgever."
+
+msgid "Core ATS hook."
+msgstr "Kern ATS-haak."
+
+msgid "Application Note Saved"
+msgstr "Toepassingsnotitie opgeslagen"
+
+msgid "Fires when an employer adds an internal note to an application."
+msgstr "Wordt geactiveerd wanneer een werkgever een interne notitie aan een sollicitatie toevoegt."
+
+msgid "Note text."
+msgstr "Let op tekst."
+
+msgid "Fires on employer internal note."
+msgstr "Brandt op interne opmerking van de werkgever."
+
+msgid "Application Rating Updated"
+msgstr "Applicatiebeoordeling bijgewerkt"
+
+msgid "Fires when a candidate receives a star rating from an employer."
+msgstr "Wordt geactiveerd wanneer een kandidaat een sterbeoordeling krijgt van een werkgever."
+
+msgid "Application ID."
+msgstr "Applicatie-ID."
+
+msgid "Star rating."
+msgstr "Sterrenwaardering."
+
+msgid "Fires on rating update."
+msgstr "Brandt bij beoordelingsupdate."
+
+msgid "After Store Company"
+msgstr "Na Winkelbedrijf"
+
+msgid "Fires immediately after a new company is stored in the database."
+msgstr "Wordt onmiddellijk geactiveerd nadat een nieuw bedrijf in de database is opgeslagen."
+
+msgid "The newly created company ID."
+msgstr "De nieuw aangemaakte bedrijfs-ID."
+
+msgid "Triggered upon company creation."
+msgstr "Geactiveerd bij de oprichting van het bedrijf."
+
+msgid "After Edit Company"
+msgstr "Na bedrijf bewerken"
+
+msgid "Fires immediately after an existing company is updated."
+msgstr "Brandt onmiddellijk nadat een bestaand bedrijf is bijgewerkt."
+
+msgid "The updated company ID."
+msgstr "De bijgewerkte bedrijfs-ID."
+
+msgid "Triggered upon company update."
+msgstr "Geactiveerd na bedrijfsupdate."
+
+msgid "After Delete Company"
+msgstr "Na het verwijderen van bedrijf"
+
+msgid "Fires immediately after a company is deleted."
+msgstr "Wordt onmiddellijk geactiveerd nadat een bedrijf is verwijderd."
+
+msgid "The deleted company ID."
+msgstr "De verwijderde bedrijfs-ID."
+
+msgid "Triggered upon company deletion."
+msgstr "Geactiveerd na verwijdering van het bedrijf."
+
+msgid "Company Status Transition"
+msgstr "Bedrijfsstatusovergang"
+
+msgid "Fires on company approve/reject state changes."
+msgstr "Branden in het bedrijf keuren statuswijzigingen goed/af."
+
+msgid "Company ID."
+msgstr "Bedrijfs-ID."
+
+msgid "Old status."
+msgstr "Oude status."
+
+msgid "New status."
+msgstr "Nieuwe status."
+
+msgid "Fires on company state changes."
+msgstr "Branden op staatsveranderingen van bedrijven."
+
+msgid "Featured Company Activated"
+msgstr "Uitgelicht bedrijf geactiveerd"
+
+msgid "Fires when a company is promoted to featured status."
+msgstr "Brandt wanneer een bedrijf wordt gepromoveerd tot de status Uitgelicht."
+
+msgid "Company Search Query Args"
+msgstr "Bedrijfzoekopdracht Args"
+
+msgid "Modifies Company SQL search queries."
+msgstr "Wijzigt bedrijfs-SQL-zoekopdrachten."
+
+msgid "Current SQL query."
+msgstr "Huidige SQL-query."
+
+msgid "Search filters."
+msgstr "Zoekfilters."
+
+msgid "Modified query string."
+msgstr "Gewijzigde queryreeks."
+
+msgid "Used for modifying frontend company search behaviour."
+msgstr "Wordt gebruikt voor het aanpassen van het zoekgedrag van frontend-bedrijven."
+
+msgid "User Status Transition"
+msgstr "Overgang van gebruikersstatus"
+
+msgid "Fires when an admin manually suspends or activates an account."
+msgstr "Wordt geactiveerd wanneer een beheerder een account handmatig opschort of activeert."
+
+msgid "Admin account activation/suspension."
+msgstr "Activering/opschorting van beheerdersaccount."
+
+msgid "User Deleted"
+msgstr "Gebruiker verwijderd"
+
+msgid "Crucial for GDPR compliance; alerts external systems to delete user records."
+msgstr "Cruciaal voor naleving van de AVG; waarschuwt externe systemen om gebruikersrecords te verwijderen."
+
+msgid "Portal User ID."
+msgstr "Portalgebruikers-ID."
+
+msgid "WordPress User ID."
+msgstr "WordPress-gebruikers-ID."
+
+msgid "User Role ID."
+msgstr "Gebruikersrol-ID."
+
+msgid "Crucial for GDPR compliance."
+msgstr "Cruciaal voor naleving van de AVG."
+
+msgid "User Profile Saved"
+msgstr "Gebruikersprofiel opgeslagen"
+
+msgid "Fires whenever user metadata is updated."
+msgstr "Wordt geactiveerd wanneer metagegevens van gebruikers worden bijgewerkt."
+
+msgid "Profile ID."
+msgstr "Profiel-ID."
+
+msgid "Profile metadata."
+msgstr "Metagegevens van profiel."
+
+msgid "Fires on metadata update."
+msgstr "Brandt bij update van metagegevens."
+
+msgid "AI Content Prompt"
+msgstr "AI-inhoudsprompt"
+
+msgid "Intercepts the prompt string before it hits the AI proxy. Allows insertion of mandatory EEO text."
+msgstr "Onderschept de promptstring voordat deze de AI-proxy raakt. Maakt het invoegen van verplichte EEO-tekst mogelijk."
+
+msgid "AI Prompt."
+msgstr "AI-prompt."
+
+msgid "Context parameters."
+msgstr "Contextparameters."
+
+msgid "Modified AI Prompt."
+msgstr "Gewijzigde AI-prompt."
+
+msgid "Allows insertion of mandatory context."
+msgstr "Maakt het invoegen van verplichte context mogelijk."
+
+msgid "AI Generation Completed"
+msgstr "AI-generatie voltooid"
+
+msgid "Captures the AI response for logging and plagiarism scanning."
+msgstr "Legt de AI-reactie vast voor loggen en plagiaatscannen."
+
+msgid "Status code."
+msgstr "Statuscode."
+
+msgid "Response payload."
+msgstr "Reactielading."
+
+msgid "Original Prompt."
+msgstr "Originele prompt."
+
+msgid "Wrapper used."
+msgstr "Omslagdoek gebruikt."
+
+msgid "Used for logging and plagiarism checks."
+msgstr "Wordt gebruikt voor logboekregistratie en plagiaatcontrole."
+
+msgid "Before AI Resume Parse"
+msgstr "Voordat AI het parseren hervat"
+
+msgid "Allows PII redaction from resume text before it is indexed for AI matching."
+msgstr "Maakt het redigeren van PII uit cv-tekst mogelijk voordat deze wordt geïndexeerd voor AI-matching."
+
+msgid "Text string for AI indexing."
+msgstr "Tekstreeks voor AI-indexering."
+
+msgid "Entity ID."
+msgstr "Entiteits-ID."
+
+msgid "Sanitized AI string."
+msgstr "Gezuiverde AI-reeks."
+
+msgid "Useful for Blind Hiring features."
+msgstr "Handig voor functies voor blind inhuren."
+
+msgid "Before AI Job Parse"
+msgstr "Vóór AI-taakparse"
+
+msgid "Allows modification of job text before AI indexing."
+msgstr "Maakt wijziging van de vacaturetekst mogelijk vóór AI-indexering."
+
+msgid "Modified AI string."
+msgstr "Gewijzigde AI-reeks."
+
+msgid "AI Job to Resume Match"
+msgstr "AI-taak om wedstrijd te hervatten"
+
+msgid "Mutates the search string the AI uses to find resumes for a job."
+msgstr "Muteert de zoekreeks die de AI gebruikt om cv's voor een baan te vinden."
+
+msgid "Search string."
+msgstr "Zoekreeks."
+
+msgid "Mutated search string."
+msgstr "Gemuteerde zoekreeks."
+
+msgid "Mutates the search string the AI uses."
+msgstr "Muteert de zoekreeks die de AI gebruikt."
+
+msgid "AI Resume to Job Match"
+msgstr "AI hervatten naar vacaturematch"
+
+msgid "Mutates the search string the AI uses to find jobs for a resume."
+msgstr "Muteert de zoekreeks die de AI gebruikt om vacatures voor een cv te vinden."
+
+msgid "AI Dashboard Job Suggestions"
+msgstr "Suggesties voor AI-dashboardtaken"
+
+msgid "Captures suggested jobs calculated for the job seekers dashboard."
+msgstr "Legt voorgestelde vacatures vast die zijn berekend voor het dashboard voor werkzoekenden."
+
+msgid "Seeker User ID."
+msgstr "Gebruikers-ID van zoeker."
+
+msgid "Array of matched Job IDs."
+msgstr "Array van overeenkomende taak-ID's."
+
+msgid "Captures dashboard suggestions."
+msgstr "Legt dashboardsuggesties vast."
+
+msgid "AI Job Suggestion Calculated"
+msgstr "AI-taaksuggestie berekend"
+
+msgid "Captures suggested jobs against a specific resume ID."
+msgstr "Legt voorgestelde vacatures vast op basis van een specifieke CV-ID."
+
+msgid "Captures resume-specific suggestions."
+msgstr "Legt CV-specifieke suggesties vast."
+
+msgid "AI Dashboard Resume Suggestions"
+msgstr "AI Dashboard CV-suggesties"
+
+msgid "Captures suggested resumes calculated for the employers dashboard."
+msgstr "Legt voorgestelde cv's vast die zijn berekend voor het werkgeversdashboard."
+
+msgid "Array of matched Resume IDs."
+msgstr "Array van overeenkomende CV-ID's."
+
+msgid "Captures employer dashboard suggestions."
+msgstr "Legt werkgeversdashboardsuggesties vast."
+
+msgid "AI Resume Suggestion Calculated"
+msgstr "AI-cv-suggestie berekend"
+
+msgid "Captures suggested resumes against a specific job ID."
+msgstr "Legt voorgestelde cv's vast op basis van een specifieke functie-ID."
+
+msgid "Captures job-specific suggestions."
+msgstr "Legt taakspecifieke suggesties vast."
+
+msgid "Job Alert Triggered"
+msgstr "Taakwaarschuwing geactiveerd"
+
+msgid "Intercepts an alert match before the email sends. Ideal for Push/SMS notifications."
+msgstr "Onderschept een waarschuwingsmatch voordat de e-mail wordt verzonden. Ideaal voor push-/sms-meldingen."
+
+msgid "Person ID."
+msgstr "Persoons-ID."
+
+msgid "Subscriber User ID."
+msgstr "Gebruikers-ID van abonnee."
+
+msgid "Matched jobs array."
+msgstr "Overeenkomende banenreeks."
+
+msgid "Ideal for Push/SMS notifications."
+msgstr "Ideaal voor push-/sms-meldingen."
+
+msgid "Job Alert Saved"
+msgstr "Vacaturewaarschuwing opgeslagen"
+
+msgid "Fires when an alert preference is created or updated."
+msgstr "Wordt geactiveerd wanneer een waarschuwingsvoorkeur wordt gemaakt of bijgewerkt."
+
+msgid "Alert record ID."
+msgstr "Waarschuwingsrecord-ID."
+
+msgid "Subscriber Email."
+msgstr "E-mailadres van abonnee."
+
+msgid "Alert configuration data."
+msgstr "Configuratiegegevens voor waarschuwingen."
+
+msgid "Fires on alert create/update."
+msgstr "Brandt bij waarschuwing maken/bijwerken."
+
+msgid "Job Alert Unsubscribed"
+msgstr "Vacaturemelding Uitgeschreven"
+
+msgid "Fires when an alert is deleted."
+msgstr "Wordt geactiveerd wanneer een waarschuwing wordt verwijderd."
+
+msgid "Deleted Alert ID."
+msgstr "Waarschuwings-ID verwijderd."
+
+msgid "Membership Package Purchased"
+msgstr "Lidmaatschapspakket gekocht"
+
+msgid "Triggers on a successful checkout via Stripe or PayPal gateways."
+msgstr "Activeert een succesvolle betaling via Stripe- of PayPal-gateways."
+
+msgid "Package ID."
+msgstr "Pakket-ID."
+
+msgid "Amount paid."
+msgstr "Bedrag betaald."
+
+msgid "Payment gateway."
+msgstr "Betalingsgateway."
+
+msgid "Triggers on gateway success."
+msgstr "Triggers voor gateway-succes."
+
+msgid "WooCommerce Order Synced"
+msgstr "WooCommerce-bestelling gesynchroniseerd"
+
+msgid "Executes when WP Job Portal routes a payment into the WooCommerce cart."
+msgstr "Wordt uitgevoerd wanneer WP Job Portal een betaling naar de WooCommerce-winkelwagen stuurt."
+
+msgid "WooCommerce Post ID."
+msgstr "WooCommerce bericht-ID."
+
+msgid "Purchase data."
+msgstr "Aankoopgegevens."
+
+msgid "Executes on Woo cart route."
+msgstr "Wordt uitgevoerd op de Woo-karroute."
+
+msgid "Per Listing Purchased"
+msgstr "Per gekochte aanbieding"
+
+msgid "Generic action deployed across all individual purchases."
+msgstr "Generieke actie geïmplementeerd voor alle individuele aankopen."
+
+msgid "Entity ID (job/resume/company)."
+msgstr "Entiteits-ID (functie/cv/bedrijf)."
+
+msgid "Entity type."
+msgstr "Entiteitstype."
+
+msgid "Gateway used."
+msgstr "Gateway gebruikt."
+
+msgid "Deployed across individual purchases."
+msgstr "Geïmplementeerd voor individuele aankopen."
+
+msgid "Subscription Cancelled"
+msgstr "Abonnement opgezegd"
+
+msgid "Alerts external platforms (like Discord/Active Directory) to downgrade the user."
+msgstr "Waarschuwt externe platforms (zoals Discord/Active Directory) om de gebruiker te downgraden."
+
+msgid "Gateway sub ID."
+msgstr "Gateway-sub-ID."
+
+msgid "Downgrade user permissions."
+msgstr "Downgrade gebruikersrechten."
+
+msgid "Membership Purchased DB Commit"
+msgstr "Lidmaatschap gekocht DB Commit"
+
+msgid "A database-level failsafe hook that fires even if a package is manually assigned by an admin."
+msgstr "Een failsafe hook op databaseniveau die wordt geactiveerd, zelfs als een pakket handmatig wordt toegewezen door een beheerder."
+
+msgid "Amount."
+msgstr "Hoeveelheid."
+
+msgid "Payment Method."
+msgstr "Betaalmethode."
+
+msgid "Database-level failsafe hook."
+msgstr "Failsafe hook op databaseniveau."
+
+msgid "Package Saved"
+msgstr "Pakket opgeslagen"
+
+msgid "Fires when a package is updated or unpublished."
+msgstr "Wordt geactiveerd wanneer een pakket wordt bijgewerkt of niet meer wordt gepubliceerd."
+
+msgid "Package data."
+msgstr "Pakketgegevens."
+
+msgid "Fires on package update."
+msgstr "Brandt bij pakketupdate."
+
+msgid "Invoice Status Transition"
+msgstr "Overgang factuurstatus"
+
+msgid "Fires when an invoice moves to \\"
+msgstr "Wordt geactiveerd wanneer een factuur wordt verplaatst naar \\"
+
+msgid "Invoice ID."
+msgstr "Factuur-ID."
+
+msgid "Old Status."
+msgstr "Oude staat."
+
+msgid "New Status."
+msgstr "Nieuwe status."
+
+msgid "Syncs external accounting software."
+msgstr "Synchroniseert externe boekhoudsoftware."
+
+msgid "Invoice Saved"
+msgstr "Factuur opgeslagen"
+
+msgid "Fires on invoice creation or deletion."
+msgstr "Wordt geactiveerd bij het maken of verwijderen van facturen."
+
+msgid "Invoice Data."
+msgstr "Factuurgegevens."
+
+msgid "Fires on invoice creation."
+msgstr "Brandt bij het maken van facturen."
+
+msgid "Employer Dashboard Loaded"
+msgstr "Werkgeversdashboard geladen"
+
+msgid "Fires when the employer portal initializes."
+msgstr "Wordt geactiveerd wanneer het werkgeversportaal wordt geïnitialiseerd."
+
+msgid "Portal view data array."
+msgstr "Gegevensarray voor portalweergave."
+
+msgid "Jobseeker Dashboard Loaded"
+msgstr "Dashboard voor werkzoekenden geladen"
+
+msgid "Fires when the candidate portal initializes."
+msgstr "Wordt geactiveerd wanneer het kandidatenportaal wordt geïnitialiseerd."
+
+msgid "Candidate User ID."
+msgstr "Kandidaat-gebruikers-ID."
+
+msgid "Admin Dashboard Loaded"
+msgstr "Beheerdersdashboard geladen"
+
+msgid "Injects custom data into the WP Admin control panel."
+msgstr "Injecteert aangepaste gegevens in het WP Admin-configuratiescherm."
+
+msgid "Admin data array."
+msgstr "Beheerdergegevensarray."
+
+msgid "Injects data into WP Admin."
+msgstr "Injecteert gegevens in WP Admin."
+
+msgid "User Widget HTML"
+msgstr "HTML-gebruikerswidget"
+
+msgid "Allows theme developers to modify member widget cards."
+msgstr "Hiermee kunnen thema-ontwikkelaars ledenwidgetkaarten wijzigen."
+
+msgid "HTML Content."
+msgstr "HTML-inhoud."
+
+msgid "User role."
+msgstr "Gebruikersrol."
+
+msgid "User data."
+msgstr "Gebruikersgegevens."
+
+msgid "Modified HTML."
+msgstr "Gemodificeerde HTML."
+
+msgid "Modify member widget cards."
+msgstr "Wijzig ledenwidgetkaarten."
+
+msgid "Shortlist Popup HTML"
+msgstr "Shortlist pop-up HTML"
+
+msgid "Modifies the HTML output of the shortlist modal."
+msgstr "Wijzigt de HTML-uitvoer van de shortlistmodal."
+
+msgid "Modifies shortlist modal HTML."
+msgstr "Wijzigt de modale HTML van de shortlist."
+
+msgid "Export Resume Raw String"
+msgstr "Ruwe tekenreeks voor cv exporteren"
+
+msgid "Intercepts the final TSV text string for a single resume download."
+msgstr "Onderschept de laatste TSV-tekstreeks voor een enkele CV-download."
+
+msgid "TSV String."
+msgstr "TSV-reeks."
+
+msgid "Modified TSV string."
+msgstr "Gewijzigde TSV-reeks."
+
+msgid "Intercepts single TSV export."
+msgstr "Onderschept enkele TSV-export."
+
+msgid "Export Resume Data Array"
+msgstr "Array CV-gegevens exporteren"
+
+msgid "Highly useful for Blind Hiring; allows programmatic removal of PII columns before TSV conversion."
+msgstr "Zeer nuttig voor blinde werving; maakt programmatische verwijdering van PII-kolommen mogelijk vóór TSV-conversie."
+
+msgid "Export row array."
+msgstr "Rijarray exporteren."
+
+msgid "DB result data."
+msgstr "DB-resultaatgegevens."
+
+msgid "Sanitized row array."
+msgstr "Gezuiverde rijarray."
+
+msgid "Highly useful for Blind Hiring."
+msgstr "Zeer nuttig voor blind inhuren."
+
+msgid "Export All Resumes Raw String"
+msgstr "Exporteer alle cv's onbewerkte tekenreeks"
+
+msgid "Intercepts the bulk export string to append HR disclaimers or timestamps."
+msgstr "Onderschept de bulkexportreeks om HR-disclaimers of tijdstempels toe te voegen."
+
+msgid "Bulk TSV String."
+msgstr "Bulk TSV-reeks."
+
+msgid "Modified bulk string."
+msgstr "Gewijzigde bulkreeks."
+
+msgid "Intercepts bulk export string."
+msgstr "Onderschept bulkexporttekenreeks."
+
+msgid "Resume Export Filename"
+msgstr "Hervat de exportbestandsnaam"
+
+msgid "Mutates the generated ZIP file name dynamically."
+msgstr "Muteert de gegenereerde ZIP-bestandsnaam dynamisch."
+
+msgid "Default filename."
+msgstr "Standaard bestandsnaam."
+
+msgid "File extension."
+msgstr "Bestandsextensie."
+
+msgid "Mutated filename."
+msgstr "Gemuteerde bestandsnaam."
+
+msgid "Mutates generated ZIP filename."
+msgstr "Muteert de gegenereerde ZIP-bestandsnaam."
+
+msgid "System Email Headers"
+msgstr "Systeem-e-mailheaders"
+
+msgid "Modifies outgoing SMTP headers (e.g., custom Reply-To addresses)."
+msgstr "Wijzigt uitgaande SMTP-headers (bijvoorbeeld aangepaste antwoordadressen)."
+
+msgid "Email headers array."
+msgstr "E-mailheaders-array."
+
+msgid "Email subject."
+msgstr "E-mailonderwerp."
+
+msgid "Modified headers."
+msgstr "Gewijzigde kopteksten."
+
+msgid "Modifies outgoing SMTP headers."
+msgstr "Wijzigt uitgaande SMTP-headers."
+
+msgid "Email Notification Sent"
+msgstr "E-mailmelding verzonden"
+
+msgid "Logs transactional emails immediately after wp_mail() fires."
+msgstr "Registreert transactionele e-mails onmiddellijk nadat wp_mail() is geactiveerd."
+
+msgid "Email type string."
+msgstr "Tekenreeks voor e-mailtype."
+
+msgid "Recipient details."
+msgstr "Gegevens van de ontvanger."
+
+msgid "Email HTML payload."
+msgstr "E-mail HTML-payload."
+
+msgid "Logs transactional emails."
+msgstr "Registreert transactionele e-mails."
+
+msgid "Internal Message Sent"
+msgstr "Intern bericht verzonden"
+
+msgid "Intercepts secure internal messages to push to external SMS/Slack APIs."
+msgstr "Onderschept beveiligde interne berichten om deze naar externe SMS/Slack API's te pushen."
+
+msgid "Message ID."
+msgstr "Bericht-ID."
+
+msgid "Sender ID."
+msgstr "Afzender-ID."
+
+msgid "Recipient ID."
+msgstr "Ontvanger-ID."
+
+msgid "Message Text."
+msgstr "Berichttekst."
+
+msgid "Push to external SMS/Slack APIs."
+msgstr "Push naar externe SMS/Slack API's."
+
+msgid "Message Status Transition"
+msgstr "Overgang berichtstatus"
+
+msgid "Triggers when an admin resolves a flagged/conflicted message."
+msgstr "Wordt geactiveerd wanneer een beheerder een gemarkeerd/conflicterend bericht oplost."
+
+msgid "Admin flag resolution."
+msgstr "Resolutie van beheerdersvlag."
+
+msgid "File Uploaded (S3 Hook)"
+msgstr "Bestand geüpload (S3 Hook)"
+
+msgid "The ultimate scalability hook. Fires when a physical file is saved, allowing cloud plugins to upload to AWS S3 and delete the local instance."
+msgstr "De ultieme schaalbaarheidshaak. Wordt geactiveerd wanneer een fysiek bestand wordt opgeslagen, waardoor cloudplug-ins naar AWS S3 kunnen uploaden en het lokale exemplaar kunnen verwijderen."
+
+msgid "Absolute physical file path."
+msgstr "Absoluut fysiek bestandspad."
+
+msgid "Context type (e.g. company_logo, resume_file)."
+msgstr "Contexttype (bijvoorbeeld bedrijfslogo, cv-bestand)."
+
+msgid "Associated record ID."
+msgstr "Bijbehorende record-ID."
+
+msgid "The ultimate scalability hook for S3."
+msgstr "De ultieme schaalbaarheidshaak voor S3."
+
+msgid "SEO Settings Updated"
+msgstr "SEO-instellingen bijgewerkt"
+
+msgid "Executes when core configs update, enabling auto-purging of caching plugins (WP Rocket)."
+msgstr "Wordt uitgevoerd wanneer de kernconfiguraties worden bijgewerkt, waardoor het automatisch opschonen van caching-plug-ins mogelijk wordt gemaakt (WP Rocket)."
+
+msgid "Config data array."
+msgstr "Gegevensarray configureren."
+
+msgid "Enabling auto-purging of caching plugins."
+msgstr "Automatisch opschonen van caching-plug-ins inschakelen."
+
+msgid "Hook Reference"
+msgstr "Haakreferentie"
+
+msgid "Entities"
+msgstr "Entiteiten"
+
+msgid "Search across all actions and filters..."
+msgstr "Zoek in alle acties en filters..."
+
+msgid "Arguments"
+msgstr "Argumenten"
+
+msgid "Returns"
+msgstr "Retouren"
+
+msgid "No return (Action Hook)"
+msgstr "Geen terugkeer (actiehaak)"
+
+msgid "Snippet"
+msgstr "Fragment"
+
+msgid "Copy Code"
+msgstr "Kopieer code"
+
+msgid "To use this hook, please install and activate the"
+msgstr "Om deze haak te gebruiken, installeer en activeer je de"
+
+msgid "addon."
+msgstr "add-on."
+
+msgid "View Addon Details"
+msgstr "Bekijk add-ondetails"
+
+msgid "No results found"
+msgstr "Geen resultaten gevonden"
+
+msgid "Try searching for specific keywords like \\"
+msgstr "Probeer te zoeken naar specifieke trefwoorden zoals \\"
+
+msgid "Hooks"
+msgstr "Haken"
+
+msgid "Search Results"
+msgstr "Zoekresultaten"

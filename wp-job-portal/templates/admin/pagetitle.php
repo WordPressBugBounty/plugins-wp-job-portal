@@ -346,6 +346,9 @@ if ($wpjobportal_module) {
 			case 'zywraplogs':
 					$wpjobportal_html .='<h1 class="wpjobportal-head-text">'. esc_html(__('ZYWRAP Logs', 'wp-job-portal')).'</h1>';
 			break;
+			case 'hook_reference':
+					$wpjobportal_html .='<h1 class="wpjobportal-head-text">'. esc_html(__('Hook Reference Documentation', 'wp-job-portal')).'</h1>';
+			break;
 		}
 	$wpjobportal_html.=  '</div>';
 	echo wp_kses($wpjobportal_html, WPJOBPORTAL_ALLOWED_TAGS);

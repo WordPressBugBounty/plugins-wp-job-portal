@@ -54,6 +54,8 @@ class WPJOBPORTALwpjobportalController {
                 case 'admin_shortcodes': // to avoid default case
                 case 'admin_help': // to avoid default case
                 case 'admin_pageseo': // to avoid default case
+
+                case 'admin_actionhooks': // to avoid default case
                     break;
 
                 default:

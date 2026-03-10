@@ -12964,3 +12964,1008 @@ msgstr "-- Hasil Pencarian --"
 
 msgid "Console Output"
 msgstr "Keluaran Konsol"
+
+msgid "After Store Job"
+msgstr "Setelah Pekerjaan Toko"
+
+msgid "Fires immediately after a new job is stored in the database."
+msgstr "Diaktifkan segera setelah pekerjaan baru disimpan dalam database."
+
+msgid "The newly created job ID."
+msgstr "ID pekerjaan yang baru dibuat."
+
+msgid "Triggered upon job creation."
+msgstr "Dipicu pada penciptaan lapangan kerja."
+
+msgid "After Edit Job"
+msgstr "Setelah Edit Pekerjaan"
+
+msgid "Fires immediately after an existing job is updated."
+msgstr "Diaktifkan segera setelah pekerjaan yang ada diperbarui."
+
+msgid "The updated job ID."
+msgstr "ID pekerjaan yang diperbarui."
+
+msgid "Triggered upon job update."
+msgstr "Dipicu saat pembaruan pekerjaan."
+
+msgid "After Delete Job"
+msgstr "Setelah Hapus Pekerjaan"
+
+msgid "Fires immediately after a job is deleted."
+msgstr "Diaktifkan segera setelah pekerjaan dihapus."
+
+msgid "The deleted job ID."
+msgstr "ID pekerjaan yang dihapus."
+
+msgid "Triggered upon job deletion."
+msgstr "Dipicu saat pekerjaan dihapus."
+
+msgid "Job Published"
+msgstr "Pekerjaan Diterbitkan"
+
+msgid "Fires when admin approved a job for publish from job listing. Essential for XML syndication to Indeed or LinkedIn."
+msgstr "Diaktifkan ketika admin menyetujui pekerjaan untuk dipublikasikan dari daftar pekerjaan. Penting untuk sindikasi XML ke Indeed atau LinkedIn."
+
+msgid "The job ID."
+msgstr "ID pekerjaan."
+
+msgid "The associated company ID."
+msgstr "ID perusahaan terkait."
+
+msgid "Full job data array."
+msgstr "Kumpulan data pekerjaan lengkap."
+
+msgid "Essential for XML syndication feeds."
+msgstr "Penting untuk feed sindikasi XML."
+
+msgid "Job Status Transition"
+msgstr "Transisi Status Pekerjaan"
+
+msgid "Fires when a job is approved or rejected by an admin from job que."
+msgstr "Diaktifkan ketika pekerjaan disetujui atau ditolak oleh admin dari antrian pekerjaan."
+
+msgid "Old status code."
+msgstr "Kode status lama."
+
+msgid "New status string."
+msgstr "Rangkaian status baru."
+
+msgid "Admin approval/rejection trigger."
+msgstr "Pemicu persetujuan/penolakan admin."
+
+msgid "Featured Job Activated"
+msgstr "Pekerjaan Unggulan Diaktifkan"
+
+msgid "Fires when a job is elevated to featured status."
+msgstr "Diaktifkan saat pekerjaan dinaikkan ke status unggulan."
+
+msgid "User ID of the job owner."
+msgstr "ID Pengguna pemilik pekerjaan."
+
+msgid "Featured expiry date."
+msgstr "Tanggal kedaluwarsa yang ditampilkan."
+
+msgid "Triggered on featured upgrade."
+msgstr "Dipicu pada peningkatan fitur."
+
+msgid "Job Search Query Args"
+msgstr "Argumen Kueri Pencarian Kerja"
+
+msgid "Modifies the underlying SQL query for job searches."
+msgstr "Memodifikasi kueri SQL yang mendasari pencarian pekerjaan."
+
+msgid "The search SQL query."
+msgstr "Kueri SQL pencarian."
+
+msgid "Search filter variables."
+msgstr "Variabel filter pencarian."
+
+msgid "Modified SQL query string."
+msgstr "String kueri SQL yang dimodifikasi."
+
+msgid "Used for modifying frontend job search behaviour."
+msgstr "Digunakan untuk mengubah perilaku pencarian pekerjaan frontend."
+
+msgid "Google Job Schema"
+msgstr "Skema Pekerjaan Google"
+
+msgid "Intercepts the structured SEO data array to inject dynamic properties (like baseSalary)."
+msgstr "Mencegat susunan data SEO terstruktur untuk memasukkan properti dinamis (seperti Gaji dasar)."
+
+msgid "JSON-LD schema array."
+msgstr "Array skema JSON-LD."
+
+msgid "Job ID."
+msgstr "ID Pekerjaan."
+
+msgid "Modified JSON-LD array."
+msgstr "Array JSON-LD yang dimodifikasi."
+
+msgid "Crucial for SEO and Google Jobs integration."
+msgstr "Penting untuk integrasi SEO dan Google Jobs."
+
+msgid "Job Shortlisted"
+msgstr "Pekerjaan Terpilih"
+
+msgid "Candidate intent tracking for analytics when a job is saved or shortlisted."
+msgstr "Pelacakan niat kandidat untuk analitik saat pekerjaan disimpan atau dipilih."
+
+msgid "Shortlist row ID."
+msgstr "ID baris daftar pendek."
+
+msgid "User ID."
+msgstr "ID Pengguna."
+
+msgid "Extra data array."
+msgstr "Kumpulan data ekstra."
+
+msgid "Candidate intent tracking."
+msgstr "Pelacakan niat kandidat."
+
+msgid "After Store Resume"
+msgstr "Setelah Toko Lanjutkan"
+
+msgid "Fires immediately after a new resume is stored in the database."
+msgstr "Diaktifkan segera setelah resume baru disimpan dalam database."
+
+msgid "The newly created resume ID."
+msgstr "ID resume yang baru dibuat."
+
+msgid "Triggered upon resume creation."
+msgstr "Dipicu saat pembuatan resume."
+
+msgid "After Edit Resume"
+msgstr "Setelah Edit Lanjutkan"
+
+msgid "Fires immediately after an existing resume is updated."
+msgstr "Diaktifkan segera setelah resume yang ada diperbarui."
+
+msgid "The updated resume ID."
+msgstr "ID resume yang diperbarui."
+
+msgid "Triggered upon resume update."
+msgstr "Dipicu saat melanjutkan pembaruan."
+
+msgid "After Delete Resume"
+msgstr "Setelah Hapus Lanjutkan"
+
+msgid "Fires immediately after a resume is deleted."
+msgstr "Diaktifkan segera setelah resume dihapus."
+
+msgid "The deleted resume ID."
+msgstr "ID resume yang dihapus."
+
+msgid "Triggered upon resume deletion."
+msgstr "Dipicu saat resume dihapus."
+
+msgid "Resume Status Transition"
+msgstr "Lanjutkan Transisi Status"
+
+msgid "Fires when an administrator manually approves or rejects a resume."
+msgstr "Diaktifkan ketika administrator menyetujui atau menolak resume secara manual."
+
+msgid "The ID of the resume."
+msgstr "ID resume."
+
+msgid "The previous status."
+msgstr "Status sebelumnya."
+
+msgid "The new status."
+msgstr "Status baru."
+
+msgid "Track manual admin approvals/rejections."
+msgstr "Lacak persetujuan/penolakan admin manual."
+
+msgid "Resume Search Query Args"
+msgstr "Lanjutkan Argumen Kueri Penelusuran"
+
+msgid "Modifies the SQL WHERE clause during a frontend resume search, allowing Elasticsearch integrations."
+msgstr "Memodifikasi klausa SQL WHERE selama pencarian resume frontend, memungkinkan integrasi Elasticsearch."
+
+msgid "The current SQL query string."
+msgstr "String kueri SQL saat ini."
+
+msgid "Array of applied search filters."
+msgstr "Array filter pencarian yang diterapkan."
+
+msgid "Allows Elasticsearch integrations."
+msgstr "Mengizinkan integrasi Elasticsearch."
+
+msgid "Featured Resume Activated"
+msgstr "Resume Unggulan Diaktifkan"
+
+msgid "Fires when a resume is promoted to featured status."
+msgstr "Diaktifkan saat resume dipromosikan ke status unggulan."
+
+msgid "Resume ID."
+msgstr "Lanjutkan ID."
+
+msgid "Job Seeker User ID."
+msgstr "ID Pengguna Pencari Kerja."
+
+msgid "After Job Apply"
+msgstr "Setelah Melamar Pekerjaan"
+
+msgid "Fires immediately after a candidate successfully applies for a job."
+msgstr "Diaktifkan segera setelah kandidat berhasil melamar pekerjaan."
+
+msgid "The job application ID."
+msgstr "ID lamaran pekerjaan."
+
+msgid "Triggered upon successful job application."
+msgstr "Dipicu setelah lamaran pekerjaan berhasil."
+
+msgid "Application Submitted"
+msgstr "Lamaran Dikirim"
+
+msgid "Standard event trigger for a logged-in user submitting a job application."
+msgstr "Pemicu peristiwa standar untuk pengguna yang masuk yang mengirimkan lamaran pekerjaan."
+
+msgid "ID of the application record."
+msgstr "ID catatan aplikasi."
+
+msgid "ID of the applied job."
+msgstr "ID pekerjaan yang dilamar."
+
+msgid "Fires for authenticated users only."
+msgstr "Kebakaran hanya untuk pengguna yang diautentikasi."
+
+msgid "Quick Apply Submitted"
+msgstr "Lamaran Cepat Dikirim"
+
+msgid "Triggers when a candidate uses the \\"
+msgstr "Dipicu ketika kandidat menggunakan \\"
+
+msgid "Application record ID."
+msgstr "ID catatan aplikasi."
+
+msgid "Submitted form data."
+msgstr "Data formulir yang dikirimkan."
+
+msgid "Uploaded files array."
+msgstr "Kumpulan file yang diunggah."
+
+msgid "Handles bypass forms and attached files."
+msgstr "Menangani formulir bypass dan file terlampir."
+
+msgid "Visitor Application Submitted"
+msgstr "Permohonan Pengunjung Dikirim"
+
+msgid "Triggers specifically for unauthenticated (guest) applications."
+msgstr "Pemicu khusus untuk aplikasi (tamu) yang tidak diautentikasi."
+
+msgid "Guest data array."
+msgstr "Kumpulan data tamu."
+
+msgid "Triggers specifically for unauthenticated applications."
+msgstr "Pemicu khusus untuk aplikasi yang tidak diautentikasi."
+
+msgid "Candidate Status Updated"
+msgstr "Status Kandidat Diperbarui"
+
+msgid "Core ATS hook. Fires when an employer changes an applicants internal workflow state (e.g., Hired)."
+msgstr "Kait inti ATS. Diaktifkan saat pemberi kerja mengubah status alur kerja internal pelamar (misalnya, Dipekerjakan)."
+
+msgid "Old ATS status."
+msgstr "Status ATS lama."
+
+msgid "New ATS status."
+msgstr "Status ATS baru."
+
+msgid "Employer User ID."
+msgstr "ID Pengguna Perusahaan."
+
+msgid "Core ATS hook."
+msgstr "Kait inti ATS."
+
+msgid "Application Note Saved"
+msgstr "Catatan Aplikasi Disimpan"
+
+msgid "Fires when an employer adds an internal note to an application."
+msgstr "Diaktifkan saat pemberi kerja menambahkan catatan internal ke lamaran."
+
+msgid "Note text."
+msgstr "Catatan teks."
+
+msgid "Fires on employer internal note."
+msgstr "Kebakaran pada catatan internal perusahaan."
+
+msgid "Application Rating Updated"
+msgstr "Peringkat Aplikasi Diperbarui"
+
+msgid "Fires when a candidate receives a star rating from an employer."
+msgstr "Diaktifkan saat kandidat menerima peringkat bintang dari pemberi kerja."
+
+msgid "Application ID."
+msgstr "ID Aplikasi."
+
+msgid "Star rating."
+msgstr "Peringkat bintang."
+
+msgid "Fires on rating update."
+msgstr "Diaktifkan saat pembaruan peringkat."
+
+msgid "After Store Company"
+msgstr "Setelah Perusahaan Toko"
+
+msgid "Fires immediately after a new company is stored in the database."
+msgstr "Kebakaran segera setelah perusahaan baru disimpan dalam database."
+
+msgid "The newly created company ID."
+msgstr "ID perusahaan yang baru dibuat."
+
+msgid "Triggered upon company creation."
+msgstr "Dipicu saat pendirian perusahaan."
+
+msgid "After Edit Company"
+msgstr "Setelah Edit Perusahaan"
+
+msgid "Fires immediately after an existing company is updated."
+msgstr "Kebakaran segera setelah perusahaan yang ada diperbarui."
+
+msgid "The updated company ID."
+msgstr "ID perusahaan yang diperbarui."
+
+msgid "Triggered upon company update."
+msgstr "Dipicu setelah pembaruan perusahaan."
+
+msgid "After Delete Company"
+msgstr "Setelah Hapus Perusahaan"
+
+msgid "Fires immediately after a company is deleted."
+msgstr "Kebakaran segera setelah perusahaan dihapus."
+
+msgid "The deleted company ID."
+msgstr "ID perusahaan yang dihapus."
+
+msgid "Triggered upon company deletion."
+msgstr "Dipicu setelah penghapusan perusahaan."
+
+msgid "Company Status Transition"
+msgstr "Transisi Status Perusahaan"
+
+msgid "Fires on company approve/reject state changes."
+msgstr "Kebakaran pada perusahaan menyetujui/menolak perubahan keadaan."
+
+msgid "Company ID."
+msgstr "ID Perusahaan."
+
+msgid "Old status."
+msgstr "Status lama."
+
+msgid "New status."
+msgstr "Status baru."
+
+msgid "Fires on company state changes."
+msgstr "Kebakaran pada perubahan status perusahaan."
+
+msgid "Featured Company Activated"
+msgstr "Perusahaan Unggulan Diaktifkan"
+
+msgid "Fires when a company is promoted to featured status."
+msgstr "Diaktifkan saat perusahaan dipromosikan ke status unggulan."
+
+msgid "Company Search Query Args"
+msgstr "Argumen Kueri Penelusuran Perusahaan"
+
+msgid "Modifies Company SQL search queries."
+msgstr "Memodifikasi permintaan pencarian SQL Perusahaan."
+
+msgid "Current SQL query."
+msgstr "Kueri SQL saat ini."
+
+msgid "Search filters."
+msgstr "Filter pencarian."
+
+msgid "Modified query string."
+msgstr "String kueri yang dimodifikasi."
+
+msgid "Used for modifying frontend company search behaviour."
+msgstr "Digunakan untuk mengubah perilaku pencarian perusahaan frontend."
+
+msgid "User Status Transition"
+msgstr "Transisi Status Pengguna"
+
+msgid "Fires when an admin manually suspends or activates an account."
+msgstr "Diaktifkan ketika admin menangguhkan atau mengaktifkan akun secara manual."
+
+msgid "Admin account activation/suspension."
+msgstr "Aktivasi/penangguhan akun Admin."
+
+msgid "User Deleted"
+msgstr "Pengguna Dihapus"
+
+msgid "Crucial for GDPR compliance; alerts external systems to delete user records."
+msgstr "Penting untuk kepatuhan GDPR; memperingatkan sistem eksternal untuk menghapus catatan pengguna."
+
+msgid "Portal User ID."
+msgstr "ID Pengguna Portal."
+
+msgid "WordPress User ID."
+msgstr "ID Pengguna WordPress."
+
+msgid "User Role ID."
+msgstr "ID Peran Pengguna."
+
+msgid "Crucial for GDPR compliance."
+msgstr "Penting untuk kepatuhan GDPR."
+
+msgid "User Profile Saved"
+msgstr "Profil Pengguna Disimpan"
+
+msgid "Fires whenever user metadata is updated."
+msgstr "Diaktifkan setiap kali metadata pengguna diperbarui."
+
+msgid "Profile ID."
+msgstr "ID Profil."
+
+msgid "Profile metadata."
+msgstr "Metadata profil."
+
+msgid "Fires on metadata update."
+msgstr "Diaktifkan pada pembaruan metadata."
+
+msgid "AI Content Prompt"
+msgstr "Permintaan Konten AI"
+
+msgid "Intercepts the prompt string before it hits the AI proxy. Allows insertion of mandatory EEO text."
+msgstr "Mencegat string prompt sebelum mengenai proxy AI. Memungkinkan penyisipan teks EEO wajib."
+
+msgid "AI Prompt."
+msgstr "Perintah AI."
+
+msgid "Context parameters."
+msgstr "Parameter konteks."
+
+msgid "Modified AI Prompt."
+msgstr "Perintah AI yang Dimodifikasi."
+
+msgid "Allows insertion of mandatory context."
+msgstr "Memungkinkan penyisipan konteks wajib."
+
+msgid "AI Generation Completed"
+msgstr "Generasi AI Selesai"
+
+msgid "Captures the AI response for logging and plagiarism scanning."
+msgstr "Menangkap respons AI untuk logging dan pemindaian plagiarisme."
+
+msgid "Status code."
+msgstr "Kode status."
+
+msgid "Response payload."
+msgstr "Muatan respons."
+
+msgid "Original Prompt."
+msgstr "Perintah Asli."
+
+msgid "Wrapper used."
+msgstr "Pembungkus digunakan."
+
+msgid "Used for logging and plagiarism checks."
+msgstr "Digunakan untuk pemeriksaan logging dan plagiarisme."
+
+msgid "Before AI Resume Parse"
+msgstr "Sebelum AI Melanjutkan Parse"
+
+msgid "Allows PII redaction from resume text before it is indexed for AI matching."
+msgstr "Mengizinkan redaksi PII dari teks resume sebelum diindeks untuk pencocokan AI."
+
+msgid "Text string for AI indexing."
+msgstr "String teks untuk pengindeksan AI."
+
+msgid "Entity ID."
+msgstr "ID Entitas."
+
+msgid "Sanitized AI string."
+msgstr "String AI yang disanitasi."
+
+msgid "Useful for Blind Hiring features."
+msgstr "Berguna untuk fitur Perekrutan Tunanetra."
+
+msgid "Before AI Job Parse"
+msgstr "Sebelum Parsing Pekerjaan AI"
+
+msgid "Allows modification of job text before AI indexing."
+msgstr "Mengizinkan modifikasi teks pekerjaan sebelum pengindeksan AI."
+
+msgid "Modified AI string."
+msgstr "String AI yang dimodifikasi."
+
+msgid "AI Job to Resume Match"
+msgstr "Tugas AI untuk Melanjutkan Pertandingan"
+
+msgid "Mutates the search string the AI uses to find resumes for a job."
+msgstr "Mengubah string pencarian yang digunakan AI untuk menemukan resume suatu pekerjaan."
+
+msgid "Search string."
+msgstr "Garis pencarian."
+
+msgid "Mutated search string."
+msgstr "String pencarian bermutasi."
+
+msgid "Mutates the search string the AI uses."
+msgstr "Mengubah string pencarian yang digunakan AI."
+
+msgid "AI Resume to Job Match"
+msgstr "AI Lanjutkan ke Pencocokan Pekerjaan"
+
+msgid "Mutates the search string the AI uses to find jobs for a resume."
+msgstr "Mengubah string pencarian yang digunakan AI untuk mencari pekerjaan untuk resume."
+
+msgid "AI Dashboard Job Suggestions"
+msgstr "Saran Pekerjaan Dasbor AI"
+
+msgid "Captures suggested jobs calculated for the job seekers dashboard."
+msgstr "Menangkap pekerjaan yang disarankan yang dihitung untuk dasbor pencari kerja."
+
+msgid "Seeker User ID."
+msgstr "ID Pengguna Pencari."
+
+msgid "Array of matched Job IDs."
+msgstr "Kumpulan ID Pekerjaan yang cocok."
+
+msgid "Captures dashboard suggestions."
+msgstr "Menangkap saran dasbor."
+
+msgid "AI Job Suggestion Calculated"
+msgstr "Saran Pekerjaan AI Dihitung"
+
+msgid "Captures suggested jobs against a specific resume ID."
+msgstr "Menangkap pekerjaan yang disarankan terhadap ID resume tertentu."
+
+msgid "Captures resume-specific suggestions."
+msgstr "Menangkap saran spesifik resume."
+
+msgid "AI Dashboard Resume Suggestions"
+msgstr "Saran Resume Dasbor AI"
+
+msgid "Captures suggested resumes calculated for the employers dashboard."
+msgstr "Menangkap resume yang disarankan yang dihitung untuk dasbor pemberi kerja."
+
+msgid "Array of matched Resume IDs."
+msgstr "Array ID Resume yang cocok."
+
+msgid "Captures employer dashboard suggestions."
+msgstr "Menangkap saran dasbor perusahaan."
+
+msgid "AI Resume Suggestion Calculated"
+msgstr "Saran Resume AI Dihitung"
+
+msgid "Captures suggested resumes against a specific job ID."
+msgstr "Merekam resume yang disarankan berdasarkan ID pekerjaan tertentu."
+
+msgid "Captures job-specific suggestions."
+msgstr "Menangkap saran spesifik pekerjaan."
+
+msgid "Job Alert Triggered"
+msgstr "Pemberitahuan Pekerjaan Dipicu"
+
+msgid "Intercepts an alert match before the email sends. Ideal for Push/SMS notifications."
+msgstr "Mencegat kecocokan peringatan sebelum email dikirim. Ideal untuk pemberitahuan Push/SMS."
+
+msgid "Person ID."
+msgstr "ID Orang."
+
+msgid "Subscriber User ID."
+msgstr "ID Pengguna Pelanggan."
+
+msgid "Matched jobs array."
+msgstr "Rangkaian pekerjaan yang cocok."
+
+msgid "Ideal for Push/SMS notifications."
+msgstr "Ideal untuk pemberitahuan Push/SMS."
+
+msgid "Job Alert Saved"
+msgstr "Pemberitahuan Pekerjaan Disimpan"
+
+msgid "Fires when an alert preference is created or updated."
+msgstr "Diaktifkan ketika preferensi peringatan dibuat atau diperbarui."
+
+msgid "Alert record ID."
+msgstr "ID catatan peringatan."
+
+msgid "Subscriber Email."
+msgstr "Email Pelanggan."
+
+msgid "Alert configuration data."
+msgstr "Data konfigurasi peringatan."
+
+msgid "Fires on alert create/update."
+msgstr "Kebakaran saat pembuatan/perbarui peringatan."
+
+msgid "Job Alert Unsubscribed"
+msgstr "Pemberitahuan Pekerjaan Berhenti Berlangganan"
+
+msgid "Fires when an alert is deleted."
+msgstr "Diaktifkan saat peringatan dihapus."
+
+msgid "Deleted Alert ID."
+msgstr "ID Peringatan Dihapus."
+
+msgid "Membership Package Purchased"
+msgstr "Paket Keanggotaan Dibeli"
+
+msgid "Triggers on a successful checkout via Stripe or PayPal gateways."
+msgstr "Memicu pembayaran yang berhasil melalui gateway Stripe atau PayPal."
+
+msgid "Package ID."
+msgstr "ID Paket."
+
+msgid "Amount paid."
+msgstr "Jumlah yang dibayarkan."
+
+msgid "Payment gateway."
+msgstr "Gerbang pembayaran."
+
+msgid "Triggers on gateway success."
+msgstr "Pemicu kesuksesan gateway."
+
+msgid "WooCommerce Order Synced"
+msgstr "Pesanan WooCommerce Disinkronkan"
+
+msgid "Executes when WP Job Portal routes a payment into the WooCommerce cart."
+msgstr "Dieksekusi ketika WP Job Portal merutekan pembayaran ke keranjang WooCommerce."
+
+msgid "WooCommerce Post ID."
+msgstr "ID Postingan WooCommerce."
+
+msgid "Purchase data."
+msgstr "Data pembelian."
+
+msgid "Executes on Woo cart route."
+msgstr "Dieksekusi pada rute kereta Woo."
+
+msgid "Per Listing Purchased"
+msgstr "Per Daftar yang Dibeli"
+
+msgid "Generic action deployed across all individual purchases."
+msgstr "Tindakan umum diterapkan di seluruh pembelian individual."
+
+msgid "Entity ID (job/resume/company)."
+msgstr "ID Entitas (pekerjaan/resume/perusahaan)."
+
+msgid "Entity type."
+msgstr "Tipe entitas."
+
+msgid "Gateway used."
+msgstr "Gerbang digunakan."
+
+msgid "Deployed across individual purchases."
+msgstr "Diterapkan di seluruh pembelian individu."
+
+msgid "Subscription Cancelled"
+msgstr "Langganan Dibatalkan"
+
+msgid "Alerts external platforms (like Discord/Active Directory) to downgrade the user."
+msgstr "Memberi peringatan pada platform eksternal (seperti Discord/Active Directory) untuk menurunkan versi pengguna."
+
+msgid "Gateway sub ID."
+msgstr "Sub ID gerbang."
+
+msgid "Downgrade user permissions."
+msgstr "Turunkan izin pengguna."
+
+msgid "Membership Purchased DB Commit"
+msgstr "Komitmen DB yang Dibeli Keanggotaan"
+
+msgid "A database-level failsafe hook that fires even if a package is manually assigned by an admin."
+msgstr "Kait failsafe tingkat database yang aktif meskipun sebuah paket ditetapkan secara manual oleh admin."
+
+msgid "Amount."
+msgstr "Jumlah."
+
+msgid "Payment Method."
+msgstr "Metode Pembayaran."
+
+msgid "Database-level failsafe hook."
+msgstr "Kait pengaman kegagalan tingkat database."
+
+msgid "Package Saved"
+msgstr "Paket Tersimpan"
+
+msgid "Fires when a package is updated or unpublished."
+msgstr "Diaktifkan ketika sebuah paket diperbarui atau tidak dipublikasikan."
+
+msgid "Package data."
+msgstr "Paket data."
+
+msgid "Fires on package update."
+msgstr "Kebakaran pada pembaruan paket."
+
+msgid "Invoice Status Transition"
+msgstr "Transisi Status Faktur"
+
+msgid "Fires when an invoice moves to \\"
+msgstr "Diaktifkan saat faktur dipindahkan ke \\"
+
+msgid "Invoice ID."
+msgstr "ID Faktur."
+
+msgid "Old Status."
+msgstr "Status Lama."
+
+msgid "New Status."
+msgstr "Status Baru."
+
+msgid "Syncs external accounting software."
+msgstr "Menyinkronkan perangkat lunak akuntansi eksternal."
+
+msgid "Invoice Saved"
+msgstr "Faktur Tersimpan"
+
+msgid "Fires on invoice creation or deletion."
+msgstr "Diaktifkan saat pembuatan atau penghapusan faktur."
+
+msgid "Invoice Data."
+msgstr "Data Faktur."
+
+msgid "Fires on invoice creation."
+msgstr "Kebakaran pada pembuatan faktur."
+
+msgid "Employer Dashboard Loaded"
+msgstr "Dasbor Perusahaan Dimuat"
+
+msgid "Fires when the employer portal initializes."
+msgstr "Diaktifkan saat portal perusahaan diinisialisasi."
+
+msgid "Portal view data array."
+msgstr "Array data tampilan portal."
+
+msgid "Jobseeker Dashboard Loaded"
+msgstr "Dasbor Pencari Kerja Dimuat"
+
+msgid "Fires when the candidate portal initializes."
+msgstr "Diaktifkan saat portal kandidat diinisialisasi."
+
+msgid "Candidate User ID."
+msgstr "ID Pengguna Kandidat."
+
+msgid "Admin Dashboard Loaded"
+msgstr "Dasbor Admin Dimuat"
+
+msgid "Injects custom data into the WP Admin control panel."
+msgstr "Memasukkan data khusus ke panel kontrol WP Admin."
+
+msgid "Admin data array."
+msgstr "Kumpulan data admin."
+
+msgid "Injects data into WP Admin."
+msgstr "Memasukkan data ke WP Admin."
+
+msgid "User Widget HTML"
+msgstr "HTML Widget Pengguna"
+
+msgid "Allows theme developers to modify member widget cards."
+msgstr "Memungkinkan pengembang tema untuk memodifikasi kartu widget anggota."
+
+msgid "HTML Content."
+msgstr "Konten HTML."
+
+msgid "User role."
+msgstr "Peran pengguna."
+
+msgid "User data."
+msgstr "data pengguna."
+
+msgid "Modified HTML."
+msgstr "HTML yang dimodifikasi."
+
+msgid "Modify member widget cards."
+msgstr "Ubah kartu widget anggota."
+
+msgid "Shortlist Popup HTML"
+msgstr "HTML Popup Daftar Pendek"
+
+msgid "Modifies the HTML output of the shortlist modal."
+msgstr "Memodifikasi output HTML dari modal daftar pendek."
+
+msgid "Modifies shortlist modal HTML."
+msgstr "Memodifikasi HTML modal daftar pendek."
+
+msgid "Export Resume Raw String"
+msgstr "Ekspor Lanjutkan String Mentah"
+
+msgid "Intercepts the final TSV text string for a single resume download."
+msgstr "Mencegat string teks TSV terakhir untuk satu unduhan resume."
+
+msgid "TSV String."
+msgstr "Tali TSV."
+
+msgid "Modified TSV string."
+msgstr "String TSV yang dimodifikasi."
+
+msgid "Intercepts single TSV export."
+msgstr "Mencegah ekspor TSV tunggal."
+
+msgid "Export Resume Data Array"
+msgstr "Ekspor Resume Data Array"
+
+msgid "Highly useful for Blind Hiring; allows programmatic removal of PII columns before TSV conversion."
+msgstr "Sangat berguna untuk Perekrutan Tunanetra; memungkinkan penghapusan kolom PII secara terprogram sebelum konversi TSV."
+
+msgid "Export row array."
+msgstr "Ekspor larik baris."
+
+msgid "DB result data."
+msgstr "Data hasil DB."
+
+msgid "Sanitized row array."
+msgstr "Array baris yang disanitasi."
+
+msgid "Highly useful for Blind Hiring."
+msgstr "Sangat berguna untuk Perekrutan Buta."
+
+msgid "Export All Resumes Raw String"
+msgstr "Ekspor Semua Resume String Mentah"
+
+msgid "Intercepts the bulk export string to append HR disclaimers or timestamps."
+msgstr "Mencegat string ekspor massal untuk menambahkan penafian HR atau stempel waktu."
+
+msgid "Bulk TSV String."
+msgstr "String TSV Massal."
+
+msgid "Modified bulk string."
+msgstr "String massal yang dimodifikasi."
+
+msgid "Intercepts bulk export string."
+msgstr "Mencegat string ekspor massal."
+
+msgid "Resume Export Filename"
+msgstr "Lanjutkan Ekspor Nama File"
+
+msgid "Mutates the generated ZIP file name dynamically."
+msgstr "Mengubah nama file ZIP yang dihasilkan secara dinamis."
+
+msgid "Default filename."
+msgstr "Nama file bawaan."
+
+msgid "File extension."
+msgstr "Ekstensi file."
+
+msgid "Mutated filename."
+msgstr "Nama file bermutasi."
+
+msgid "Mutates generated ZIP filename."
+msgstr "Mengubah nama file ZIP yang dihasilkan."
+
+msgid "System Email Headers"
+msgstr "Header Email Sistem"
+
+msgid "Modifies outgoing SMTP headers (e.g., custom Reply-To addresses)."
+msgstr "Memodifikasi header SMTP keluar (misalnya, alamat Balas-Ke khusus)."
+
+msgid "Email headers array."
+msgstr "Array header email."
+
+msgid "Email subject."
+msgstr "Subjek email."
+
+msgid "Modified headers."
+msgstr "Header yang dimodifikasi."
+
+msgid "Modifies outgoing SMTP headers."
+msgstr "Memodifikasi header SMTP keluar."
+
+msgid "Email Notification Sent"
+msgstr "Notifikasi Email Terkirim"
+
+msgid "Logs transactional emails immediately after wp_mail() fires."
+msgstr "Mencatat email transaksional segera setelah wp_mail() diaktifkan."
+
+msgid "Email type string."
+msgstr "String jenis email."
+
+msgid "Recipient details."
+msgstr "Detail penerima."
+
+msgid "Email HTML payload."
+msgstr "Muatan HTML email."
+
+msgid "Logs transactional emails."
+msgstr "Mencatat email transaksional."
+
+msgid "Internal Message Sent"
+msgstr "Pesan Internal Terkirim"
+
+msgid "Intercepts secure internal messages to push to external SMS/Slack APIs."
+msgstr "Mencegat pesan internal yang aman untuk dikirim ke SMS/Slack API eksternal."
+
+msgid "Message ID."
+msgstr "ID pesan."
+
+msgid "Sender ID."
+msgstr "ID pengirim."
+
+msgid "Recipient ID."
+msgstr "ID Penerima."
+
+msgid "Message Text."
+msgstr "Teks Pesan."
+
+msgid "Push to external SMS/Slack APIs."
+msgstr "Dorong ke SMS/Slack API eksternal."
+
+msgid "Message Status Transition"
+msgstr "Transisi Status Pesan"
+
+msgid "Triggers when an admin resolves a flagged/conflicted message."
+msgstr "Dipicu ketika admin menyelesaikan pesan yang ditandai/bertentangan."
+
+msgid "Admin flag resolution."
+msgstr "Resolusi bendera Admin."
+
+msgid "File Uploaded (S3 Hook)"
+msgstr "File Diunggah (Kait S3)"
+
+msgid "The ultimate scalability hook. Fires when a physical file is saved, allowing cloud plugins to upload to AWS S3 and delete the local instance."
+msgstr "Pengait skalabilitas terbaik. Diaktifkan ketika file fisik disimpan, memungkinkan plugin cloud untuk diunggah ke AWS S3 dan menghapus instans lokal."
+
+msgid "Absolute physical file path."
+msgstr "Jalur file fisik mutlak."
+
+msgid "Context type (e.g. company_logo, resume_file)."
+msgstr "Jenis konteks (misalnya logo_perusahaan, resume_file)."
+
+msgid "Associated record ID."
+msgstr "ID rekaman terkait."
+
+msgid "The ultimate scalability hook for S3."
+msgstr "Kait skalabilitas terbaik untuk S3."
+
+msgid "SEO Settings Updated"
+msgstr "Pengaturan SEO Diperbarui"
+
+msgid "Executes when core configs update, enabling auto-purging of caching plugins (WP Rocket)."
+msgstr "Dieksekusi ketika konfigurasi inti diperbarui, mengaktifkan pembersihan otomatis plugin caching (WP Rocket)."
+
+msgid "Config data array."
+msgstr "Konfigurasi susunan data."
+
+msgid "Enabling auto-purging of caching plugins."
+msgstr "Mengaktifkan pembersihan otomatis plugin caching."
+
+msgid "Hook Reference"
+msgstr "Referensi Kait"
+
+msgid "Entities"
+msgstr "Entitas"
+
+msgid "Search across all actions and filters..."
+msgstr "Telusuri seluruh tindakan dan filter..."
+
+msgid "Arguments"
+msgstr "Argumen"
+
+msgid "Returns"
+msgstr "Kembali"
+
+msgid "No return (Action Hook)"
+msgstr "Tidak dapat dikembalikan (Action Hook)"
+
+msgid "Snippet"
+msgstr "Potongan"
+
+msgid "Copy Code"
+msgstr "Salin Kode"
+
+msgid "To use this hook, please install and activate the"
+msgstr "Untuk menggunakan hook ini, silakan instal dan aktifkan"
+
+msgid "addon."
+msgstr "tambahan."
+
+msgid "View Addon Details"
+msgstr "Lihat Detail Addon"
+
+msgid "No results found"
+msgstr "Tidak ada hasil yang ditemukan"
+
+msgid "Try searching for specific keywords like \\"
+msgstr "Coba cari kata kunci spesifik seperti \\"
+
+msgid "Hooks"
+msgstr "Kait"
+
+msgid "Search Results"
+msgstr "Hasil Pencarian"

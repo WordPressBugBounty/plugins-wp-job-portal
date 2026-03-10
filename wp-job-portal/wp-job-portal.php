@@ -3,14 +3,14 @@
 /**
  * @package WP JOB PORTAL
  * @author Ahmad Bilal
- * @version 2.4.7
+ * @version 2.4.8
  */
 /*
   * Plugin Name: WP Job Portal
   * Plugin URI: https://wpjobportal.com/
   * Description: WP Job Portal is WordPress’s best job board plugin — easy to use, highly configurable, and built to support both job seekers and employers. AI-powered add-ons offers smart job & resume search, and personalized recommendations.
   * Author: WP Job Portal
-  * Version: 2.4.7
+  * Version: 2.4.8
   * Text Domain: wp-job-portal
   * Domain Path: /languages
   * Author URI: https://wpjobportal.com/
@@ -80,7 +80,7 @@ class wpjobportal {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '247';
+        self::$_currentversion = '248';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_common = WPJOBPORTALincluder::getJSModel('common');
         self::$_config = WPJOBPORTALincluder::getJSModel('configuration');
@@ -190,7 +190,7 @@ class wpjobportal {
                 if( $plugin == $our_plugin ) {
                     update_option('wpjp_currentversion', self::$_currentversion);
                     include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
-                    WPJOBPORTALupdates::checkUpdates('247');
+                    WPJOBPORTALupdates::checkUpdates('248');
 
                 	// restore colors data
 		            require(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
@@ -1499,7 +1499,7 @@ function wpjobportal_upgrade_completed( $wpjobportal_upgrader_object, $wpjobport
 				update_option('wpjp_currentversion', wpjobportal::$_currentversion);
 				include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
 
-				WPJOBPORTALupdates::checkUpdates('247');
+				WPJOBPORTALupdates::checkUpdates('248');
 
 
 				// restore colors data
@@ -1508,7 +1508,11 @@ function wpjobportal_upgrade_completed( $wpjobportal_upgrader_object, $wpjobport
                 if($wpjobportal_color_string_values != ''){
                     $wpjobportal_json_values = json_decode($wpjobportal_color_string_values,true);
                     if(is_array($wpjobportal_json_values) && !empty($wpjobportal_json_values)){
-                        WPJOBPORTALincluder::getJSModel('theme')->wpjpGenerateColorVariablesFile($wpjobportal_json_values);
+                        if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()){ // in case of elegent leave the color variable as is.
+                            WPJOBPORTALincluder::getJSModel('theme')->wpjpGenerateColorVariablesFileElegant($wpjobportal_json_values);
+                        }else{
+                            WPJOBPORTALincluder::getJSModel('theme')->wpjpGenerateColorVariablesFile($wpjobportal_json_values);
+                        }
                     }
                 }
 
@@ -1820,3 +1824,71 @@ add_action('admin_enqueue_scripts', 'wpjobportal_load_classic_editor_assets');
         }
     });
 
+// NEW: Hook specifically for Elementor Editor
+add_action('elementor/editor/after_enqueue_scripts', 'wpjobportal_load_classic_editor_assets_elementor');
+
+function wpjobportal_load_classic_editor_assets_elementor($hook) {
+    // 1. Determine if we are in Elementor
+    $is_elementor = (isset($_GET['action']) && $_GET['action'] == 'elementor') || (isset($_GET['elementor-preview']));
+
+    // 2. Determine if we are on a standard Post/Page edit screen
+    $is_post_page = ($hook === 'post.php' || $hook === 'post-new.php');
+
+    // If it's neither, don't load (to prevent errors on other admin pages)
+    if (!$is_post_page && !$is_elementor) {
+        return;
+    }
+
+    // Include the modal HTML (Required so the button has something to open)
+    include_once WPJOBPORTAL_PLUGIN_PATH . 'modules/zywrap/admin_classic_modal.php';
+
+    // Register & Enqueue your script
+    wp_enqueue_script(
+        'wpjobportal-zywrap-classic-editor',
+        WPJOBPORTAL_PLUGIN_URL . 'includes/js/zywrap/zywrap-editor-classic.js',
+        array('jquery'),
+        wpjobportal::$_currentversion,
+        true
+    );
+
+    // Get your data
+    $playground_data = WPJOBPORTALincluder::getJSModel('zywrap')->getPlaygroundData();
+    $api_key = get_option('wpjobportal_zywrap_api_key', '');
+
+    // Pass data to JS
+    wp_localize_script('wpjobportal-zywrap-classic-editor', 'wpjpzywrapClassicData', array(
+        'categories'      => $playground_data['categories'],
+        'models'          => $playground_data['models'],
+        'languages'       => $playground_data['languages'],
+        'templates'       => $playground_data['templates'],
+        'wrappers_nonce'  => wp_create_nonce('zywrap_get_wrappers'),
+        'execute_nonce'   => wp_create_nonce('zywrap_execute_proxy'),
+        'all_wrappers_nonce'  => wp_create_nonce('zywrap_get_all_wrappers'),
+        'ajax_url'        => admin_url('admin-ajax.php'),
+        'has_api_key'     => !empty($api_key),
+        // ... add other strings as needed ...
+    ));
+    wp_enqueue_style('wpjobportal-chosen-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/chosen/chosen.min.css');
+    // some specific styling for button
+    $wpjobportal_inline_css = '
+        #zywrap-open-modal-button{
+
+            cursor: pointer;
+            color: #6366f1;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            padding: 4px 5px;
+            background: #fff;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s;
+            margin: 5px 0;
+        }
+
+    ';
+
+    wp_add_inline_style('wpjobportal-chosen-style', $wpjobportal_inline_css);
+    wp_enqueue_script('chosen', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/chosen/chosen.jquery.min.js');
+}

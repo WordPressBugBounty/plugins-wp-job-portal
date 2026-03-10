@@ -54,6 +54,11 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
                     <?php echo esc_html(__('Import Third Party Data','wp-job-portal')); ?>
                 </a>
             </li>
+            <li class="<?php if($wpjobportal_controller == 'wpjobportal' && ($wpjobportal_layout == 'actionhooks' || $wpjobportal_layout == '')) echo 'active'; ?>">
+                <a href="admin.php?page=wpjobportal&wpjobportallt=actionhooks" title="<?php echo esc_attr(__('Actions and Filters','wp-job-portal')); ?>">
+                    <?php echo esc_html(__('Hooks','wp-job-portal')); ?>
+                </a>
+            </li>
             <li class="<?php if($wpjobportal_controller == 'wpjobportal_activitylog' && ($wpjobportal_layout == 'wpjobportal_activitylog' || $wpjobportal_layout == '')) echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal_activitylog" title="<?php echo esc_attr(__('activity log','wp-job-portal')); ?>">
                     <?php echo esc_html(__('Activity Log','wp-job-portal')); ?>
@@ -64,6 +69,7 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
                     <?php echo esc_html(__('Stats','wp-job-portal')); ?>
                 </a>
             </li>
+
             <?php /*<li class="<?php if($wpjobportal_controller == 'wpjobportal' && ($wpjobportal_layout == 'translations')) echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal&wpjobportallt=translations" title="<?php echo esc_attr(__('translations','wp-job-portal')); ?>">
                     <?php echo esc_html(__('Translations','wp-job-portal')); ?>

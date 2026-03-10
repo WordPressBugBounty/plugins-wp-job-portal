@@ -12964,3 +12964,1008 @@ msgstr "-- نتائج البحث --"
 
 msgid "Console Output"
 msgstr "إخراج وحدة التحكم"
+
+msgid "After Store Job"
+msgstr "بعد وظيفة المتجر"
+
+msgid "Fires immediately after a new job is stored in the database."
+msgstr "يتم التشغيل فورًا بعد تخزين مهمة جديدة في قاعدة البيانات."
+
+msgid "The newly created job ID."
+msgstr "معرف الوظيفة الذي تم إنشاؤه حديثًا."
+
+msgid "Triggered upon job creation."
+msgstr "أثار عند خلق فرص العمل."
+
+msgid "After Edit Job"
+msgstr "بعد تحرير الوظيفة"
+
+msgid "Fires immediately after an existing job is updated."
+msgstr "يتم تشغيله فورًا بعد تحديث مهمة موجودة."
+
+msgid "The updated job ID."
+msgstr "معرف الوظيفة المحدثة."
+
+msgid "Triggered upon job update."
+msgstr "يتم تشغيله عند تحديث الوظيفة."
+
+msgid "After Delete Job"
+msgstr "بعد حذف الوظيفة"
+
+msgid "Fires immediately after a job is deleted."
+msgstr "يتم تشغيله فورًا بعد حذف المهمة."
+
+msgid "The deleted job ID."
+msgstr "معرف الوظيفة المحذوفة."
+
+msgid "Triggered upon job deletion."
+msgstr "يتم تشغيله عند حذف الوظيفة."
+
+msgid "Job Published"
+msgstr "تم نشر الوظيفة"
+
+msgid "Fires when admin approved a job for publish from job listing. Essential for XML syndication to Indeed or LinkedIn."
+msgstr "يتم تشغيله عندما يوافق المسؤول على نشر وظيفة من قائمة الوظائف. ضروري لمشاركة XML في الواقع أو LinkedIn."
+
+msgid "The job ID."
+msgstr "معرف الوظيفة."
+
+msgid "The associated company ID."
+msgstr "معرف الشركة المرتبطة."
+
+msgid "Full job data array."
+msgstr "مجموعة بيانات العمل الكاملة."
+
+msgid "Essential for XML syndication feeds."
+msgstr "ضروري لخلاصات مشاركة XML."
+
+msgid "Job Status Transition"
+msgstr "انتقال الحالة الوظيفية"
+
+msgid "Fires when a job is approved or rejected by an admin from job que."
+msgstr "يتم تشغيله عند الموافقة على الوظيفة أو رفضها من قبل المسؤول من قائمة انتظار المهام."
+
+msgid "Old status code."
+msgstr "رمز الحالة القديم."
+
+msgid "New status string."
+msgstr "سلسلة الحالة الجديدة."
+
+msgid "Admin approval/rejection trigger."
+msgstr "مشغل موافقة/رفض المسؤول."
+
+msgid "Featured Job Activated"
+msgstr "تم تفعيل الوظيفة المميزة"
+
+msgid "Fires when a job is elevated to featured status."
+msgstr "يتم تشغيله عند ترقية الوظيفة إلى الحالة المميزة."
+
+msgid "User ID of the job owner."
+msgstr "معرف المستخدم لصاحب العمل."
+
+msgid "Featured expiry date."
+msgstr "تاريخ انتهاء الصلاحية المميز."
+
+msgid "Triggered on featured upgrade."
+msgstr "تم تشغيله عند الترقية المميزة."
+
+msgid "Job Search Query Args"
+msgstr "وسيطات استعلام البحث عن وظيفة"
+
+msgid "Modifies the underlying SQL query for job searches."
+msgstr "يعدل استعلام SQL الأساسي لعمليات البحث عن الوظائف."
+
+msgid "The search SQL query."
+msgstr "استعلام SQL للبحث."
+
+msgid "Search filter variables."
+msgstr "بحث في متغيرات التصفية."
+
+msgid "Modified SQL query string."
+msgstr "سلسلة استعلام SQL المعدلة."
+
+msgid "Used for modifying frontend job search behaviour."
+msgstr "يستخدم لتعديل سلوك البحث عن الوظائف في الواجهة الأمامية."
+
+msgid "Google Job Schema"
+msgstr "مخطط وظائف جوجل"
+
+msgid "Intercepts the structured SEO data array to inject dynamic properties (like baseSalary)."
+msgstr "يعترض مصفوفة بيانات تحسين محركات البحث المنظمة لإدخال خصائص ديناميكية (مثل baseSalary)."
+
+msgid "JSON-LD schema array."
+msgstr "صفيف مخطط JSON-LD."
+
+msgid "Job ID."
+msgstr "معرف الوظيفة."
+
+msgid "Modified JSON-LD array."
+msgstr "مجموعة JSON-LD المعدلة."
+
+msgid "Crucial for SEO and Google Jobs integration."
+msgstr "ضروري لتكامل SEO وGoogle Jobs."
+
+msgid "Job Shortlisted"
+msgstr "الوظيفة في القائمة المختصرة"
+
+msgid "Candidate intent tracking for analytics when a job is saved or shortlisted."
+msgstr "تتبع نية المرشح للتحليلات عند حفظ الوظيفة أو إدراجها في القائمة المختصرة."
+
+msgid "Shortlist row ID."
+msgstr "معرف صف القائمة المختصرة."
+
+msgid "User ID."
+msgstr "معرف المستخدم."
+
+msgid "Extra data array."
+msgstr "مجموعة بيانات إضافية."
+
+msgid "Candidate intent tracking."
+msgstr "تتبع نية المرشح."
+
+msgid "After Store Resume"
+msgstr "بعد استئناف المتجر"
+
+msgid "Fires immediately after a new resume is stored in the database."
+msgstr "يتم تشغيله فورًا بعد تخزين السيرة الذاتية الجديدة في قاعدة البيانات."
+
+msgid "The newly created resume ID."
+msgstr "معرف السيرة الذاتية الذي تم إنشاؤه حديثًا."
+
+msgid "Triggered upon resume creation."
+msgstr "يتم تشغيله عند إنشاء السيرة الذاتية."
+
+msgid "After Edit Resume"
+msgstr "بعد تحرير السيرة الذاتية"
+
+msgid "Fires immediately after an existing resume is updated."
+msgstr "يتم تشغيله فورًا بعد تحديث السيرة الذاتية الموجودة."
+
+msgid "The updated resume ID."
+msgstr "معرف السيرة الذاتية المحدث."
+
+msgid "Triggered upon resume update."
+msgstr "يتم تشغيله عند استئناف التحديث."
+
+msgid "After Delete Resume"
+msgstr "بعد حذف السيرة الذاتية"
+
+msgid "Fires immediately after a resume is deleted."
+msgstr "يتم تشغيله فورًا بعد حذف السيرة الذاتية."
+
+msgid "The deleted resume ID."
+msgstr "معرف السيرة الذاتية المحذوفة."
+
+msgid "Triggered upon resume deletion."
+msgstr "يتم تشغيله عند استئناف الحذف."
+
+msgid "Resume Status Transition"
+msgstr "استئناف انتقال الحالة"
+
+msgid "Fires when an administrator manually approves or rejects a resume."
+msgstr "يتم تشغيله عندما يوافق المسؤول على السيرة الذاتية أو يرفضها يدويًا."
+
+msgid "The ID of the resume."
+msgstr "معرف السيرة الذاتية."
+
+msgid "The previous status."
+msgstr "الوضع السابق."
+
+msgid "The new status."
+msgstr "الوضع الجديد."
+
+msgid "Track manual admin approvals/rejections."
+msgstr "تتبع موافقات/رفضات المشرف اليدوية."
+
+msgid "Resume Search Query Args"
+msgstr "استئناف وسائط استعلام البحث"
+
+msgid "Modifies the SQL WHERE clause during a frontend resume search, allowing Elasticsearch integrations."
+msgstr "يعدل جملة SQL WHERE أثناء البحث عن السيرة الذاتية للواجهة الأمامية، مما يسمح بعمليات تكامل Elasticsearch."
+
+msgid "The current SQL query string."
+msgstr "سلسلة استعلام SQL الحالية."
+
+msgid "Array of applied search filters."
+msgstr "مجموعة من مرشحات البحث التطبيقية."
+
+msgid "Allows Elasticsearch integrations."
+msgstr "يسمح بتكاملات Elasticsearch."
+
+msgid "Featured Resume Activated"
+msgstr "السيرة الذاتية المميزة مفعلة"
+
+msgid "Fires when a resume is promoted to featured status."
+msgstr "يتم تشغيله عند ترقية السيرة الذاتية إلى حالة مميزة."
+
+msgid "Resume ID."
+msgstr "معرف السيرة الذاتية."
+
+msgid "Job Seeker User ID."
+msgstr "معرف المستخدم الباحث عن عمل."
+
+msgid "After Job Apply"
+msgstr "بعد التقدم للوظيفة"
+
+msgid "Fires immediately after a candidate successfully applies for a job."
+msgstr "يتم إطلاق النار فورًا بعد أن يتقدم المرشح بنجاح للحصول على وظيفة."
+
+msgid "The job application ID."
+msgstr "معرف طلب الوظيفة."
+
+msgid "Triggered upon successful job application."
+msgstr "يتم تشغيله عند طلب وظيفة ناجح."
+
+msgid "Application Submitted"
+msgstr "تم تقديم الطلب"
+
+msgid "Standard event trigger for a logged-in user submitting a job application."
+msgstr "مشغل الحدث القياسي لمستخدم قام بتسجيل الدخول ويقدم طلب وظيفة."
+
+msgid "ID of the application record."
+msgstr "معرف سجل التطبيق."
+
+msgid "ID of the applied job."
+msgstr "معرف الوظيفة المتقدم عليها."
+
+msgid "Fires for authenticated users only."
+msgstr "الحرائق للمستخدمين المصادق عليهم فقط."
+
+msgid "Quick Apply Submitted"
+msgstr "تم تقديم الطلب السريع"
+
+msgid "Triggers when a candidate uses the \\"
+msgstr "يتم تشغيله عندما يستخدم أحد المرشحين \\"
+
+msgid "Application record ID."
+msgstr "معرف سجل التطبيق"
+
+msgid "Submitted form data."
+msgstr "بيانات النموذج المرسلة."
+
+msgid "Uploaded files array."
+msgstr "مجموعة الملفات المرفوعة."
+
+msgid "Handles bypass forms and attached files."
+msgstr "يتعامل مع نماذج التجاوز والملفات المرفقة."
+
+msgid "Visitor Application Submitted"
+msgstr "تم تقديم طلب الزائر"
+
+msgid "Triggers specifically for unauthenticated (guest) applications."
+msgstr "مشغلات مخصصة للتطبيقات غير المصادق عليها (الضيف)."
+
+msgid "Guest data array."
+msgstr "مصفوفة بيانات الضيف"
+
+msgid "Triggers specifically for unauthenticated applications."
+msgstr "مشغلات خصيصا للتطبيقات غير المصادق عليها."
+
+msgid "Candidate Status Updated"
+msgstr "تم تحديث حالة المرشح"
+
+msgid "Core ATS hook. Fires when an employer changes an applicants internal workflow state (e.g., Hired)."
+msgstr "خطاف ATS الأساسي. يتم تشغيله عندما يقوم صاحب العمل بتغيير حالة سير العمل الداخلية لمقدم الطلب (على سبيل المثال، مستأجر)."
+
+msgid "Old ATS status."
+msgstr "حالة ATS القديمة."
+
+msgid "New ATS status."
+msgstr "حالة ATS الجديدة."
+
+msgid "Employer User ID."
+msgstr "معرف مستخدم صاحب العمل."
+
+msgid "Core ATS hook."
+msgstr "خطاف ATS الأساسي."
+
+msgid "Application Note Saved"
+msgstr "تم حفظ ملاحظة التطبيق"
+
+msgid "Fires when an employer adds an internal note to an application."
+msgstr "يتم تشغيله عندما يقوم صاحب العمل بإضافة ملاحظة داخلية إلى الطلب."
+
+msgid "Note text."
+msgstr "ملاحظة النص."
+
+msgid "Fires on employer internal note."
+msgstr "حرائق على مذكرة داخلية لصاحب العمل."
+
+msgid "Application Rating Updated"
+msgstr "تم تحديث تقييم التطبيق"
+
+msgid "Fires when a candidate receives a star rating from an employer."
+msgstr "يتم إطلاقه عندما يحصل المرشح على تصنيف النجوم من صاحب العمل."
+
+msgid "Application ID."
+msgstr "معرف التطبيق."
+
+msgid "Star rating."
+msgstr "تصنيف النجوم."
+
+msgid "Fires on rating update."
+msgstr "حرائق عند تحديث التصنيف."
+
+msgid "After Store Company"
+msgstr "شركة ما بعد المتجر"
+
+msgid "Fires immediately after a new company is stored in the database."
+msgstr "يتم تشغيله فورًا بعد تخزين شركة جديدة في قاعدة البيانات."
+
+msgid "The newly created company ID."
+msgstr "معرف الشركة الذي تم إنشاؤه حديثًا."
+
+msgid "Triggered upon company creation."
+msgstr "أثار عند إنشاء الشركة."
+
+msgid "After Edit Company"
+msgstr "بعد تحرير الشركة"
+
+msgid "Fires immediately after an existing company is updated."
+msgstr "يتم تشغيله فورًا بعد تحديث شركة موجودة."
+
+msgid "The updated company ID."
+msgstr "معرف الشركة المحدث."
+
+msgid "Triggered upon company update."
+msgstr "تم تشغيله عند تحديث الشركة."
+
+msgid "After Delete Company"
+msgstr "بعد حذف الشركة"
+
+msgid "Fires immediately after a company is deleted."
+msgstr "يتم تشغيله فورًا بعد حذف الشركة."
+
+msgid "The deleted company ID."
+msgstr "معرف الشركة المحذوفة."
+
+msgid "Triggered upon company deletion."
+msgstr "يتم تشغيله عند حذف الشركة."
+
+msgid "Company Status Transition"
+msgstr "انتقال حالة الشركة"
+
+msgid "Fires on company approve/reject state changes."
+msgstr "حرائق على موافقة الشركة / رفض تغييرات الحالة."
+
+msgid "Company ID."
+msgstr "معرف الشركة."
+
+msgid "Old status."
+msgstr "الوضع القديم."
+
+msgid "New status."
+msgstr "الوضع الجديد."
+
+msgid "Fires on company state changes."
+msgstr "حرائق بسبب تغيرات حالة الشركة."
+
+msgid "Featured Company Activated"
+msgstr "تم تفعيل الشركة المميزة"
+
+msgid "Fires when a company is promoted to featured status."
+msgstr "يتم تشغيله عند ترقية شركة إلى حالة مميزة."
+
+msgid "Company Search Query Args"
+msgstr "وسيطات الاستعلام عن الشركة"
+
+msgid "Modifies Company SQL search queries."
+msgstr "تعديل استعلامات بحث SQL الخاصة بالشركة."
+
+msgid "Current SQL query."
+msgstr "استعلام SQL الحالي."
+
+msgid "Search filters."
+msgstr "مرشحات البحث."
+
+msgid "Modified query string."
+msgstr "سلسلة الاستعلام المعدلة."
+
+msgid "Used for modifying frontend company search behaviour."
+msgstr "يستخدم لتعديل سلوك البحث الخاص بشركة الواجهة الأمامية."
+
+msgid "User Status Transition"
+msgstr "انتقال حالة المستخدم"
+
+msgid "Fires when an admin manually suspends or activates an account."
+msgstr "يتم تشغيله عندما يقوم المسؤول بتعليق الحساب أو تنشيطه يدويًا."
+
+msgid "Admin account activation/suspension."
+msgstr "تفعيل/تعليق حساب المسؤول."
+
+msgid "User Deleted"
+msgstr "تم حذف المستخدم"
+
+msgid "Crucial for GDPR compliance; alerts external systems to delete user records."
+msgstr "أمر بالغ الأهمية للامتثال للقانون العام لحماية البيانات؛ تنبيهات الأنظمة الخارجية لحذف سجلات المستخدم."
+
+msgid "Portal User ID."
+msgstr "معرف مستخدم البوابة."
+
+msgid "WordPress User ID."
+msgstr "معرف مستخدم ووردبريس."
+
+msgid "User Role ID."
+msgstr "معرف دور المستخدم."
+
+msgid "Crucial for GDPR compliance."
+msgstr "أمر بالغ الأهمية للامتثال للقانون العام لحماية البيانات."
+
+msgid "User Profile Saved"
+msgstr "تم حفظ ملف تعريف المستخدم"
+
+msgid "Fires whenever user metadata is updated."
+msgstr "يتم تشغيله كلما تم تحديث بيانات تعريف المستخدم."
+
+msgid "Profile ID."
+msgstr "معرف الملف الشخصي."
+
+msgid "Profile metadata."
+msgstr "البيانات التعريفية للملف الشخصي."
+
+msgid "Fires on metadata update."
+msgstr "الحرائق عند تحديث البيانات التعريفية."
+
+msgid "AI Content Prompt"
+msgstr "موجه محتوى الذكاء الاصطناعي"
+
+msgid "Intercepts the prompt string before it hits the AI proxy. Allows insertion of mandatory EEO text."
+msgstr "يعترض سلسلة المطالبة قبل أن يصل إلى وكيل AI. يسمح بإدراج نص EEO الإلزامي."
+
+msgid "AI Prompt."
+msgstr "موجه الذكاء الاصطناعي."
+
+msgid "Context parameters."
+msgstr "معلمات السياق."
+
+msgid "Modified AI Prompt."
+msgstr "تعديل موجه الذكاء الاصطناعي."
+
+msgid "Allows insertion of mandatory context."
+msgstr "يسمح بإدراج السياق الإلزامي."
+
+msgid "AI Generation Completed"
+msgstr "اكتمل جيل الذكاء الاصطناعي"
+
+msgid "Captures the AI response for logging and plagiarism scanning."
+msgstr "يلتقط استجابة الذكاء الاصطناعي للتسجيل ومسح الانتحال."
+
+msgid "Status code."
+msgstr "رمز الحالة."
+
+msgid "Response payload."
+msgstr "حمولة الاستجابة."
+
+msgid "Original Prompt."
+msgstr "المطالبة الأصلية."
+
+msgid "Wrapper used."
+msgstr "المجمع المستخدم."
+
+msgid "Used for logging and plagiarism checks."
+msgstr "تستخدم لتسجيل الدخول والتحقق من الانتحال."
+
+msgid "Before AI Resume Parse"
+msgstr "قبل تحليل استئناف الذكاء الاصطناعي"
+
+msgid "Allows PII redaction from resume text before it is indexed for AI matching."
+msgstr "يسمح بتنقيح معلومات تحديد الهوية الشخصية من نص السيرة الذاتية قبل فهرسته لمطابقة الذكاء الاصطناعي."
+
+msgid "Text string for AI indexing."
+msgstr "سلسلة نصية لفهرسة الذكاء الاصطناعي."
+
+msgid "Entity ID."
+msgstr "معرف الكيان."
+
+msgid "Sanitized AI string."
+msgstr "سلسلة AI معقمة."
+
+msgid "Useful for Blind Hiring features."
+msgstr "مفيدة لميزات توظيف المكفوفين."
+
+msgid "Before AI Job Parse"
+msgstr "قبل تحليل وظيفة الذكاء الاصطناعي"
+
+msgid "Allows modification of job text before AI indexing."
+msgstr "يسمح بتعديل نص الوظيفة قبل فهرسة الذكاء الاصطناعي."
+
+msgid "Modified AI string."
+msgstr "سلسلة AI المعدلة."
+
+msgid "AI Job to Resume Match"
+msgstr "وظيفة الذكاء الاصطناعي لاستئناف المباراة"
+
+msgid "Mutates the search string the AI uses to find resumes for a job."
+msgstr "يقوم بتغيير سلسلة البحث التي يستخدمها الذكاء الاصطناعي للعثور على السير الذاتية لوظيفة ما."
+
+msgid "Search string."
+msgstr "سلسلة البحث."
+
+msgid "Mutated search string."
+msgstr "سلسلة بحث متحولة."
+
+msgid "Mutates the search string the AI uses."
+msgstr "يغير سلسلة البحث التي يستخدمها الذكاء الاصطناعي."
+
+msgid "AI Resume to Job Match"
+msgstr "استئناف الذكاء الاصطناعي لمطابقة الوظيفة"
+
+msgid "Mutates the search string the AI uses to find jobs for a resume."
+msgstr "يقوم بتغيير سلسلة البحث التي يستخدمها الذكاء الاصطناعي للعثور على وظائف للسيرة الذاتية."
+
+msgid "AI Dashboard Job Suggestions"
+msgstr "اقتراحات وظائف لوحة تحكم الذكاء الاصطناعي"
+
+msgid "Captures suggested jobs calculated for the job seekers dashboard."
+msgstr "يلتقط الوظائف المقترحة المحسوبة للوحة تحكم الباحثين عن عمل."
+
+msgid "Seeker User ID."
+msgstr "معرف المستخدم الباحث."
+
+msgid "Array of matched Job IDs."
+msgstr "مجموعة من معرفات الوظائف المتطابقة."
+
+msgid "Captures dashboard suggestions."
+msgstr "يلتقط اقتراحات لوحة القيادة."
+
+msgid "AI Job Suggestion Calculated"
+msgstr "تم حساب اقتراح وظيفة الذكاء الاصطناعي"
+
+msgid "Captures suggested jobs against a specific resume ID."
+msgstr "يلتقط الوظائف المقترحة مقابل معرف سيرة ذاتية محدد."
+
+msgid "Captures resume-specific suggestions."
+msgstr "يلتقط اقتراحات خاصة بالسيرة الذاتية."
+
+msgid "AI Dashboard Resume Suggestions"
+msgstr "اقتراحات السيرة الذاتية للوحة تحكم الذكاء الاصطناعي"
+
+msgid "Captures suggested resumes calculated for the employers dashboard."
+msgstr "يلتقط السير الذاتية المقترحة المحسوبة للوحة معلومات أصحاب العمل."
+
+msgid "Array of matched Resume IDs."
+msgstr "مجموعة من معرفات السيرة الذاتية المتطابقة."
+
+msgid "Captures employer dashboard suggestions."
+msgstr "يلتقط اقتراحات لوحة تحكم صاحب العمل."
+
+msgid "AI Resume Suggestion Calculated"
+msgstr "تم حساب اقتراح السيرة الذاتية بالذكاء الاصطناعي"
+
+msgid "Captures suggested resumes against a specific job ID."
+msgstr "يلتقط السير الذاتية المقترحة مقابل معرف وظيفة محدد."
+
+msgid "Captures job-specific suggestions."
+msgstr "يلتقط اقتراحات خاصة بالوظيفة."
+
+msgid "Job Alert Triggered"
+msgstr "تم تشغيل تنبيه الوظيفة"
+
+msgid "Intercepts an alert match before the email sends. Ideal for Push/SMS notifications."
+msgstr "يعترض تطابق التنبيه قبل إرسال البريد الإلكتروني. مثالية لإشعارات الدفع/الرسائل النصية القصيرة."
+
+msgid "Person ID."
+msgstr "معرف الشخص."
+
+msgid "Subscriber User ID."
+msgstr "معرف المستخدم المشترك."
+
+msgid "Matched jobs array."
+msgstr "مجموعة الوظائف المتطابقة."
+
+msgid "Ideal for Push/SMS notifications."
+msgstr "مثالية لإشعارات الدفع/الرسائل النصية القصيرة."
+
+msgid "Job Alert Saved"
+msgstr "تم حفظ تنبيه الوظيفة"
+
+msgid "Fires when an alert preference is created or updated."
+msgstr "يتم تشغيله عند إنشاء تفضيل تنبيه أو تحديثه."
+
+msgid "Alert record ID."
+msgstr "معرف سجل التنبيه"
+
+msgid "Subscriber Email."
+msgstr "البريد الإلكتروني للمشترك."
+
+msgid "Alert configuration data."
+msgstr "بيانات تكوين التنبيه"
+
+msgid "Fires on alert create/update."
+msgstr "حرائق عند إنشاء/تحديث التنبيه."
+
+msgid "Job Alert Unsubscribed"
+msgstr "تم إلغاء الاشتراك في تنبيه الوظيفة"
+
+msgid "Fires when an alert is deleted."
+msgstr "يتم تشغيله عند حذف التنبيه."
+
+msgid "Deleted Alert ID."
+msgstr "معرف التنبيه المحذوف."
+
+msgid "Membership Package Purchased"
+msgstr "تم شراء حزمة العضوية"
+
+msgid "Triggers on a successful checkout via Stripe or PayPal gateways."
+msgstr "يتم تفعيل عملية الدفع الناجحة عبر بوابات Stripe أو PayPal."
+
+msgid "Package ID."
+msgstr "معرف الحزمة."
+
+msgid "Amount paid."
+msgstr "المبلغ المدفوع."
+
+msgid "Payment gateway."
+msgstr "بوابة الدفع."
+
+msgid "Triggers on gateway success."
+msgstr "مشغلات على نجاح البوابة."
+
+msgid "WooCommerce Order Synced"
+msgstr "تمت مزامنة طلب WooCommerce"
+
+msgid "Executes when WP Job Portal routes a payment into the WooCommerce cart."
+msgstr "يتم تنفيذه عندما تقوم WP Job Portal بتوجيه دفعة إلى عربة WooCommerce."
+
+msgid "WooCommerce Post ID."
+msgstr "معرف مشاركة WooCommerce."
+
+msgid "Purchase data."
+msgstr "بيانات الشراء."
+
+msgid "Executes on Woo cart route."
+msgstr "يتم تنفيذه على طريق عربة Woo."
+
+msgid "Per Listing Purchased"
+msgstr "لكل قائمة تم شراؤها"
+
+msgid "Generic action deployed across all individual purchases."
+msgstr "يتم نشر الإجراء العام عبر جميع المشتريات الفردية."
+
+msgid "Entity ID (job/resume/company)."
+msgstr "معرف الجهة (الوظيفة/السيرة الذاتية/الشركة)."
+
+msgid "Entity type."
+msgstr "نوع الكيان."
+
+msgid "Gateway used."
+msgstr "البوابة المستخدمة."
+
+msgid "Deployed across individual purchases."
+msgstr "يتم نشرها عبر المشتريات الفردية."
+
+msgid "Subscription Cancelled"
+msgstr "تم إلغاء الاشتراك"
+
+msgid "Alerts external platforms (like Discord/Active Directory) to downgrade the user."
+msgstr "تنبيهات الأنظمة الأساسية الخارجية (مثل Discord/Active Directory) لخفض مستوى المستخدم."
+
+msgid "Gateway sub ID."
+msgstr "معرف البوابة الفرعية"
+
+msgid "Downgrade user permissions."
+msgstr "خفض مستوى أذونات المستخدم."
+
+msgid "Membership Purchased DB Commit"
+msgstr "العضوية المشتراة DB الالتزام"
+
+msgid "A database-level failsafe hook that fires even if a package is manually assigned by an admin."
+msgstr "خطاف آمن على مستوى قاعدة البيانات يتم تشغيله حتى إذا تم تعيين الحزمة يدويًا بواسطة المسؤول."
+
+msgid "Amount."
+msgstr "كمية."
+
+msgid "Payment Method."
+msgstr "طريقة الدفع."
+
+msgid "Database-level failsafe hook."
+msgstr "ربط آمن من الفشل على مستوى قاعدة البيانات."
+
+msgid "Package Saved"
+msgstr "تم حفظ الحزمة"
+
+msgid "Fires when a package is updated or unpublished."
+msgstr "يتم تشغيله عند تحديث الحزمة أو عدم نشرها."
+
+msgid "Package data."
+msgstr "بيانات الحزمة."
+
+msgid "Fires on package update."
+msgstr "حرائق عند تحديث الحزمة."
+
+msgid "Invoice Status Transition"
+msgstr "انتقال حالة الفاتورة"
+
+msgid "Fires when an invoice moves to \\"
+msgstr "يتم تشغيله عند انتقال الفاتورة إلى \\"
+
+msgid "Invoice ID."
+msgstr "معرف الفاتورة."
+
+msgid "Old Status."
+msgstr "الحالة القديمة."
+
+msgid "New Status."
+msgstr "الوضع الجديد."
+
+msgid "Syncs external accounting software."
+msgstr "مزامنة برامج المحاسبة الخارجية."
+
+msgid "Invoice Saved"
+msgstr "تم حفظ الفاتورة"
+
+msgid "Fires on invoice creation or deletion."
+msgstr "يتم تشغيله عند إنشاء الفاتورة أو حذفها."
+
+msgid "Invoice Data."
+msgstr "بيانات الفاتورة."
+
+msgid "Fires on invoice creation."
+msgstr "حرائق عند إنشاء الفاتورة."
+
+msgid "Employer Dashboard Loaded"
+msgstr "تم تحميل لوحة معلومات صاحب العمل"
+
+msgid "Fires when the employer portal initializes."
+msgstr "يتم تشغيله عند تهيئة بوابة صاحب العمل."
+
+msgid "Portal view data array."
+msgstr "مجموعة بيانات عرض البوابة."
+
+msgid "Jobseeker Dashboard Loaded"
+msgstr "تم تحميل لوحة تحكم الباحث عن عمل"
+
+msgid "Fires when the candidate portal initializes."
+msgstr "يتم تشغيله عند تهيئة بوابة المرشح."
+
+msgid "Candidate User ID."
+msgstr "معرف المستخدم المرشح."
+
+msgid "Admin Dashboard Loaded"
+msgstr "تم تحميل لوحة تحكم المشرف"
+
+msgid "Injects custom data into the WP Admin control panel."
+msgstr "يقوم بإدخال بيانات مخصصة في لوحة تحكم WP Admin."
+
+msgid "Admin data array."
+msgstr "مصفوفة بيانات المشرف."
+
+msgid "Injects data into WP Admin."
+msgstr "يقوم بإدخال البيانات في WP Admin."
+
+msgid "User Widget HTML"
+msgstr "HTML القطعة المستخدم"
+
+msgid "Allows theme developers to modify member widget cards."
+msgstr "يسمح لمطوري السمات بتعديل بطاقات عناصر واجهة المستخدم."
+
+msgid "HTML Content."
+msgstr "محتوى HTML."
+
+msgid "User role."
+msgstr "دور المستخدم."
+
+msgid "User data."
+msgstr "بيانات المستخدم."
+
+msgid "Modified HTML."
+msgstr "HTML المعدل."
+
+msgid "Modify member widget cards."
+msgstr "تعديل بطاقات القطعة الأعضاء."
+
+msgid "Shortlist Popup HTML"
+msgstr "القائمة المختصرة المنبثقة HTML"
+
+msgid "Modifies the HTML output of the shortlist modal."
+msgstr "يعدل إخراج HTML مشروط القائمة المختصرة."
+
+msgid "Modifies shortlist modal HTML."
+msgstr "يعدل HTML مشروط القائمة المختصرة."
+
+msgid "Export Resume Raw String"
+msgstr "تصدير السيرة الذاتية للسلسلة الأولية"
+
+msgid "Intercepts the final TSV text string for a single resume download."
+msgstr "يعترض سلسلة نص TSV النهائية لتنزيل سيرة ذاتية واحدة."
+
+msgid "TSV String."
+msgstr "سلسلة TSV."
+
+msgid "Modified TSV string."
+msgstr "سلسلة TSV المعدلة."
+
+msgid "Intercepts single TSV export."
+msgstr "يعترض تصدير TSV واحد."
+
+msgid "Export Resume Data Array"
+msgstr "تصدير صفيف بيانات السيرة الذاتية"
+
+msgid "Highly useful for Blind Hiring; allows programmatic removal of PII columns before TSV conversion."
+msgstr "مفيد للغاية لتوظيف المكفوفين؛ يسمح بالإزالة الآلية لأعمدة PII قبل تحويل TSV."
+
+msgid "Export row array."
+msgstr "تصدير مجموعة الصف."
+
+msgid "DB result data."
+msgstr "بيانات نتيجة قاعدة البيانات."
+
+msgid "Sanitized row array."
+msgstr "مجموعة صفوف معقمة."
+
+msgid "Highly useful for Blind Hiring."
+msgstr "مفيدة للغاية لتوظيف المكفوفين."
+
+msgid "Export All Resumes Raw String"
+msgstr "تصدير كافة السير الذاتية سلسلة الخام"
+
+msgid "Intercepts the bulk export string to append HR disclaimers or timestamps."
+msgstr "يعترض سلسلة التصدير المجمعة لإلحاق إخلاء مسؤولية الموارد البشرية أو الطوابع الزمنية."
+
+msgid "Bulk TSV String."
+msgstr "سلسلة TSV المجمعة."
+
+msgid "Modified bulk string."
+msgstr "سلسلة مجمعة معدلة."
+
+msgid "Intercepts bulk export string."
+msgstr "يعترض سلسلة التصدير المجمعة."
+
+msgid "Resume Export Filename"
+msgstr "استئناف اسم ملف التصدير"
+
+msgid "Mutates the generated ZIP file name dynamically."
+msgstr "يقوم بتغيير اسم ملف ZIP الذي تم إنشاؤه ديناميكيًا."
+
+msgid "Default filename."
+msgstr "اسم الملف الافتراضي."
+
+msgid "File extension."
+msgstr "امتداد الملف."
+
+msgid "Mutated filename."
+msgstr "اسم الملف المتحور."
+
+msgid "Mutates generated ZIP filename."
+msgstr "يقوم بتغيير اسم ملف ZIP الذي تم إنشاؤه."
+
+msgid "System Email Headers"
+msgstr "رؤوس البريد الإلكتروني للنظام"
+
+msgid "Modifies outgoing SMTP headers (e.g., custom Reply-To addresses)."
+msgstr "يعدل رؤوس SMTP الصادرة (على سبيل المثال، عناوين الرد المخصصة)."
+
+msgid "Email headers array."
+msgstr "مجموعة رؤوس البريد الإلكتروني."
+
+msgid "Email subject."
+msgstr "موضوع البريد الإلكتروني."
+
+msgid "Modified headers."
+msgstr "رؤوس معدلة."
+
+msgid "Modifies outgoing SMTP headers."
+msgstr "تعديل رؤوس SMTP الصادرة."
+
+msgid "Email Notification Sent"
+msgstr "تم إرسال إشعار البريد الإلكتروني"
+
+msgid "Logs transactional emails immediately after wp_mail() fires."
+msgstr "يسجل رسائل البريد الإلكتروني الخاصة بالمعاملات مباشرة بعد تشغيل wp_mail()."
+
+msgid "Email type string."
+msgstr "سلسلة نوع البريد الإلكتروني."
+
+msgid "Recipient details."
+msgstr "تفاصيل المستلم."
+
+msgid "Email HTML payload."
+msgstr "حمولة HTML للبريد الإلكتروني."
+
+msgid "Logs transactional emails."
+msgstr "يسجل رسائل البريد الإلكتروني الخاصة بالمعاملات."
+
+msgid "Internal Message Sent"
+msgstr "تم إرسال الرسالة الداخلية"
+
+msgid "Intercepts secure internal messages to push to external SMS/Slack APIs."
+msgstr "يعترض الرسائل الداخلية الآمنة للدفع إلى واجهات برمجة تطبيقات SMS/Slack الخارجية."
+
+msgid "Message ID."
+msgstr "معرف الرسالة."
+
+msgid "Sender ID."
+msgstr "معرف المرسل."
+
+msgid "Recipient ID."
+msgstr "معرف المستلم."
+
+msgid "Message Text."
+msgstr "نص الرسالة."
+
+msgid "Push to external SMS/Slack APIs."
+msgstr "ادفع إلى واجهات برمجة تطبيقات SMS/Slack الخارجية."
+
+msgid "Message Status Transition"
+msgstr "انتقال حالة الرسالة"
+
+msgid "Triggers when an admin resolves a flagged/conflicted message."
+msgstr "يتم تشغيله عندما يقوم المسؤول بحل رسالة تم وضع علامة عليها/متعارضة."
+
+msgid "Admin flag resolution."
+msgstr "قرار إشارة المشرف."
+
+msgid "File Uploaded (S3 Hook)"
+msgstr "تم تحميل الملف (S3 Hook)"
+
+msgid "The ultimate scalability hook. Fires when a physical file is saved, allowing cloud plugins to upload to AWS S3 and delete the local instance."
+msgstr "خطاف قابلية التوسع النهائي. يتم تشغيله عند حفظ ملف فعلي، مما يسمح بتحميل المكونات الإضافية السحابية إلى AWS S3 وحذف المثيل المحلي."
+
+msgid "Absolute physical file path."
+msgstr "مسار الملف الفعلي المطلق."
+
+msgid "Context type (e.g. company_logo, resume_file)."
+msgstr "نوع السياق (على سبيل المثال، شعار الشركة، ملف_ السيرة الذاتية)."
+
+msgid "Associated record ID."
+msgstr "معرف السجل المرتبط"
+
+msgid "The ultimate scalability hook for S3."
+msgstr "خطاف قابلية التوسع النهائي لـ S3."
+
+msgid "SEO Settings Updated"
+msgstr "تم تحديث إعدادات تحسين محركات البحث"
+
+msgid "Executes when core configs update, enabling auto-purging of caching plugins (WP Rocket)."
+msgstr "يتم تنفيذه عند تحديث التكوينات الأساسية، مما يتيح التطهير التلقائي لمكونات التخزين المؤقت الإضافية (WP Rocket)."
+
+msgid "Config data array."
+msgstr "مجموعة بيانات التكوين."
+
+msgid "Enabling auto-purging of caching plugins."
+msgstr "تمكين التطهير التلقائي للمكونات الإضافية للتخزين المؤقت."
+
+msgid "Hook Reference"
+msgstr "مرجع هوك"
+
+msgid "Entities"
+msgstr "الكيانات"
+
+msgid "Search across all actions and filters..."
+msgstr "البحث عبر جميع الإجراءات والمرشحات..."
+
+msgid "Arguments"
+msgstr "الحجج"
+
+msgid "Returns"
+msgstr "المرتجعات"
+
+msgid "No return (Action Hook)"
+msgstr "لا عودة (خطاف العمل)"
+
+msgid "Snippet"
+msgstr "مقتطف"
+
+msgid "Copy Code"
+msgstr "نسخ الرمز"
+
+msgid "To use this hook, please install and activate the"
+msgstr "لاستخدام هذا الخطاف، يرجى تثبيت وتنشيط"
+
+msgid "addon."
+msgstr "الملحق."
+
+msgid "View Addon Details"
+msgstr "عرض تفاصيل الملحق"
+
+msgid "No results found"
+msgstr "لم يتم العثور على نتائج"
+
+msgid "Try searching for specific keywords like \\"
+msgstr "حاول البحث عن كلمات رئيسية محددة مثل \\"
+
+msgid "Hooks"
+msgstr "خطافات"
+
+msgid "Search Results"
+msgstr "نتائج البحث"

@@ -12967,3 +12967,1008 @@ msgstr "-- Rezultatele căutării --"
 
 msgid "Console Output"
 msgstr "Ieșire consolă"
+
+msgid "After Store Job"
+msgstr "După Loc de Magazin"
+
+msgid "Fires immediately after a new job is stored in the database."
+msgstr "Se declanșează imediat după ce o nouă lucrare este stocată în baza de date."
+
+msgid "The newly created job ID."
+msgstr "ID-ul jobului nou creat."
+
+msgid "Triggered upon job creation."
+msgstr "Declanșat la crearea de locuri de muncă."
+
+msgid "After Edit Job"
+msgstr "După Editare job"
+
+msgid "Fires immediately after an existing job is updated."
+msgstr "Se declanșează imediat după actualizarea unui job existent."
+
+msgid "The updated job ID."
+msgstr "ID-ul jobului actualizat."
+
+msgid "Triggered upon job update."
+msgstr "Declanșat la actualizarea jobului."
+
+msgid "After Delete Job"
+msgstr "După ștergere job"
+
+msgid "Fires immediately after a job is deleted."
+msgstr "Se declanșează imediat după ce o lucrare este ștearsă."
+
+msgid "The deleted job ID."
+msgstr "ID-ul jobului șters."
+
+msgid "Triggered upon job deletion."
+msgstr "Declanșat la ștergerea sarcinii."
+
+msgid "Job Published"
+msgstr "Job publicat"
+
+msgid "Fires when admin approved a job for publish from job listing. Essential for XML syndication to Indeed or LinkedIn."
+msgstr "Se declanșează atunci când administratorul a aprobat un job pentru publicare din lista de locuri de muncă. Esențial pentru sindicarea XML către Indeed sau LinkedIn."
+
+msgid "The job ID."
+msgstr "ID-ul jobului."
+
+msgid "The associated company ID."
+msgstr "ID-ul companiei asociate."
+
+msgid "Full job data array."
+msgstr "Matrice completă de date despre job."
+
+msgid "Essential for XML syndication feeds."
+msgstr "Esențial pentru fluxurile de sindicare XML."
+
+msgid "Job Status Transition"
+msgstr "Tranziția statutului locului de muncă"
+
+msgid "Fires when a job is approved or rejected by an admin from job que."
+msgstr "Se declanșează atunci când un loc de muncă este aprobat sau respins de un administrator de la job que."
+
+msgid "Old status code."
+msgstr "Vechiul cod de stare."
+
+msgid "New status string."
+msgstr "Șir de stare nou."
+
+msgid "Admin approval/rejection trigger."
+msgstr "Declanșator de aprobare/respingere de administrator."
+
+msgid "Featured Job Activated"
+msgstr "Slujba recomandată activată"
+
+msgid "Fires when a job is elevated to featured status."
+msgstr "Se declanșează atunci când un loc de muncă este ridicat la statutul recomandat."
+
+msgid "User ID of the job owner."
+msgstr "ID de utilizator al proprietarului locului de muncă."
+
+msgid "Featured expiry date."
+msgstr "Data de expirare prezentată."
+
+msgid "Triggered on featured upgrade."
+msgstr "Declanșat la actualizarea recomandată."
+
+msgid "Job Search Query Args"
+msgstr "Argumente de interogare de căutare de locuri de muncă"
+
+msgid "Modifies the underlying SQL query for job searches."
+msgstr "Modifică interogarea SQL de bază pentru căutările de locuri de muncă."
+
+msgid "The search SQL query."
+msgstr "Interogarea SQL de căutare."
+
+msgid "Search filter variables."
+msgstr "Căutare variabile de filtru."
+
+msgid "Modified SQL query string."
+msgstr "Șir de interogare SQL modificat."
+
+msgid "Used for modifying frontend job search behaviour."
+msgstr "Folosit pentru modificarea comportamentului de căutare a unui loc de muncă pe front-end."
+
+msgid "Google Job Schema"
+msgstr "Schema de locuri de muncă Google"
+
+msgid "Intercepts the structured SEO data array to inject dynamic properties (like baseSalary)."
+msgstr "Interceptează matricea de date SEO structurată pentru a injecta proprietăți dinamice (cum ar fi salariul de bază)."
+
+msgid "JSON-LD schema array."
+msgstr "Matrice de schemă JSON-LD."
+
+msgid "Job ID."
+msgstr "ID job."
+
+msgid "Modified JSON-LD array."
+msgstr "Matrice JSON-LD modificată."
+
+msgid "Crucial for SEO and Google Jobs integration."
+msgstr "Esențial pentru integrarea SEO și Google Jobs."
+
+msgid "Job Shortlisted"
+msgstr "Loc de muncă pe lista scurtă"
+
+msgid "Candidate intent tracking for analytics when a job is saved or shortlisted."
+msgstr "Urmărirea intenției candidaților pentru analiză atunci când un loc de muncă este salvat sau selectat pe lista scurtă."
+
+msgid "Shortlist row ID."
+msgstr "ID-ul rândului pe lista scurtă."
+
+msgid "User ID."
+msgstr "ID-ul de utilizator."
+
+msgid "Extra data array."
+msgstr "Matrice de date suplimentară."
+
+msgid "Candidate intent tracking."
+msgstr "Urmărirea intenției candidatului."
+
+msgid "After Store Resume"
+msgstr "După reluarea magazinului"
+
+msgid "Fires immediately after a new resume is stored in the database."
+msgstr "Se declanșează imediat după ce un nou CV este stocat în baza de date."
+
+msgid "The newly created resume ID."
+msgstr "ID-ul CV-ului nou creat."
+
+msgid "Triggered upon resume creation."
+msgstr "Declanșat la crearea CV-ului."
+
+msgid "After Edit Resume"
+msgstr "După Editare Reluare"
+
+msgid "Fires immediately after an existing resume is updated."
+msgstr "Se declanșează imediat după actualizarea unui CV existent."
+
+msgid "The updated resume ID."
+msgstr "ID-ul CV-ului actualizat."
+
+msgid "Triggered upon resume update."
+msgstr "Declanșat la reluarea actualizării."
+
+msgid "After Delete Resume"
+msgstr "După ștergere reluare"
+
+msgid "Fires immediately after a resume is deleted."
+msgstr "Se declanșează imediat după ștergerea unui CV."
+
+msgid "The deleted resume ID."
+msgstr "ID-ul CV-ului șters."
+
+msgid "Triggered upon resume deletion."
+msgstr "Declanșat la reluarea ștergerii."
+
+msgid "Resume Status Transition"
+msgstr "Reluați tranziția de stare"
+
+msgid "Fires when an administrator manually approves or rejects a resume."
+msgstr "Se declanșează atunci când un administrator aprobă sau respinge manual un CV."
+
+msgid "The ID of the resume."
+msgstr "ID-ul CV-ului."
+
+msgid "The previous status."
+msgstr "Starea anterioară."
+
+msgid "The new status."
+msgstr "Noul statut."
+
+msgid "Track manual admin approvals/rejections."
+msgstr "Urmăriți aprobările/respingările manuale ale administratorului."
+
+msgid "Resume Search Query Args"
+msgstr "Reluați interogarea de căutare Args"
+
+msgid "Modifies the SQL WHERE clause during a frontend resume search, allowing Elasticsearch integrations."
+msgstr "Modifică clauza SQL WHERE în timpul unei căutări de reluare frontală, permițând integrările Elasticsearch."
+
+msgid "The current SQL query string."
+msgstr "Șirul de interogare SQL curent."
+
+msgid "Array of applied search filters."
+msgstr "Gamă de filtre de căutare aplicate."
+
+msgid "Allows Elasticsearch integrations."
+msgstr "Permite integrările Elasticsearch."
+
+msgid "Featured Resume Activated"
+msgstr "CV-ul recomandat este activat"
+
+msgid "Fires when a resume is promoted to featured status."
+msgstr "Se declanșează atunci când un CV este promovat la statutul de recomandat."
+
+msgid "Resume ID."
+msgstr "Reluați ID-ul."
+
+msgid "Job Seeker User ID."
+msgstr "ID utilizator solicitant de locuri de muncă."
+
+msgid "After Job Apply"
+msgstr "După postul de muncă"
+
+msgid "Fires immediately after a candidate successfully applies for a job."
+msgstr "Se declanșează imediat după ce un candidat aplică cu succes pentru un loc de muncă."
+
+msgid "The job application ID."
+msgstr "ID-ul cererii de angajare."
+
+msgid "Triggered upon successful job application."
+msgstr "Declanșat la cererea de angajare cu succes."
+
+msgid "Application Submitted"
+msgstr "Cerere depusă"
+
+msgid "Standard event trigger for a logged-in user submitting a job application."
+msgstr "Declanșare eveniment standard pentru un utilizator conectat care trimite o cerere de angajare."
+
+msgid "ID of the application record."
+msgstr "ID-ul înregistrării aplicației."
+
+msgid "ID of the applied job."
+msgstr "ID-ul jobului aplicat."
+
+msgid "Fires for authenticated users only."
+msgstr "Incendii numai pentru utilizatorii autentificați."
+
+msgid "Quick Apply Submitted"
+msgstr "Aplicare rapidă trimisă"
+
+msgid "Triggers when a candidate uses the \\"
+msgstr "Se declanșează atunci când un candidat folosește \\"
+
+msgid "Application record ID."
+msgstr "ID înregistrarea aplicației."
+
+msgid "Submitted form data."
+msgstr "Datele formularului trimise."
+
+msgid "Uploaded files array."
+msgstr "Matrice de fișiere încărcate."
+
+msgid "Handles bypass forms and attached files."
+msgstr "Se ocupă de formularele de ocolire și fișierele atașate."
+
+msgid "Visitor Application Submitted"
+msgstr "Cerere pentru vizitatori a fost trimisă"
+
+msgid "Triggers specifically for unauthenticated (guest) applications."
+msgstr "Declanșează special pentru aplicații neautentificate (oaspete)."
+
+msgid "Guest data array."
+msgstr "Matrice de date pentru oaspeți."
+
+msgid "Triggers specifically for unauthenticated applications."
+msgstr "Declanșează special pentru aplicațiile neautentificate."
+
+msgid "Candidate Status Updated"
+msgstr "Statutul candidatului a fost actualizat"
+
+msgid "Core ATS hook. Fires when an employer changes an applicants internal workflow state (e.g., Hired)."
+msgstr "Cârlig de bază ATS. Se declanșează atunci când un angajator schimbă starea fluxului de lucru intern al solicitantului (de exemplu, Angajat)."
+
+msgid "Old ATS status."
+msgstr "Status ATS vechi."
+
+msgid "New ATS status."
+msgstr "Statut nou ATS."
+
+msgid "Employer User ID."
+msgstr "ID utilizator angajator."
+
+msgid "Core ATS hook."
+msgstr "Cârlig de bază ATS."
+
+msgid "Application Note Saved"
+msgstr "Nota aplicației a fost salvată"
+
+msgid "Fires when an employer adds an internal note to an application."
+msgstr "Se declanșează atunci când un angajator adaugă o notă internă la o cerere."
+
+msgid "Note text."
+msgstr "Notă text."
+
+msgid "Fires on employer internal note."
+msgstr "Incendii la nota interna a angajatorului."
+
+msgid "Application Rating Updated"
+msgstr "Evaluarea aplicației a fost actualizată"
+
+msgid "Fires when a candidate receives a star rating from an employer."
+msgstr "Se declanșează atunci când un candidat primește o evaluare cu stele de la un angajator."
+
+msgid "Application ID."
+msgstr "ID aplicație."
+
+msgid "Star rating."
+msgstr "Evaluare cu stele."
+
+msgid "Fires on rating update."
+msgstr "Se declanșează la actualizarea evaluării."
+
+msgid "After Store Company"
+msgstr "After Store Company"
+
+msgid "Fires immediately after a new company is stored in the database."
+msgstr "Se declanșează imediat după ce o nouă companie este stocată în baza de date."
+
+msgid "The newly created company ID."
+msgstr "ID-ul companiei nou creat."
+
+msgid "Triggered upon company creation."
+msgstr "Declanșat la crearea companiei."
+
+msgid "After Edit Company"
+msgstr "După Edit Company"
+
+msgid "Fires immediately after an existing company is updated."
+msgstr "Se declanșează imediat după actualizarea unei companii existente."
+
+msgid "The updated company ID."
+msgstr "ID-ul companiei actualizat."
+
+msgid "Triggered upon company update."
+msgstr "Declanșat la actualizarea companiei."
+
+msgid "After Delete Company"
+msgstr "După ștergerea companiei"
+
+msgid "Fires immediately after a company is deleted."
+msgstr "Se declanșează imediat după ce o companie este ștearsă."
+
+msgid "The deleted company ID."
+msgstr "ID-ul companiei șters."
+
+msgid "Triggered upon company deletion."
+msgstr "Declanșat la ștergerea companiei."
+
+msgid "Company Status Transition"
+msgstr "Tranziția statutului companiei"
+
+msgid "Fires on company approve/reject state changes."
+msgstr "Incendiile asupra companiei aprobă/respind schimbările de stare."
+
+msgid "Company ID."
+msgstr "ID companie."
+
+msgid "Old status."
+msgstr "Statut vechi."
+
+msgid "New status."
+msgstr "Statut nou."
+
+msgid "Fires on company state changes."
+msgstr "Incendii asupra schimbărilor de stat ale companiei."
+
+msgid "Featured Company Activated"
+msgstr "Companie recomandată activată"
+
+msgid "Fires when a company is promoted to featured status."
+msgstr "Se declanșează atunci când o companie este promovată la statutul prezentat."
+
+msgid "Company Search Query Args"
+msgstr "Interogare de căutare a companiei Args"
+
+msgid "Modifies Company SQL search queries."
+msgstr "Modifică interogările de căutare SQL ale companiei."
+
+msgid "Current SQL query."
+msgstr "Interogare SQL curentă."
+
+msgid "Search filters."
+msgstr "Filtre de căutare."
+
+msgid "Modified query string."
+msgstr "Șir de interogare modificat."
+
+msgid "Used for modifying frontend company search behaviour."
+msgstr "Folosit pentru modificarea comportamentului de căutare a companiei frontend."
+
+msgid "User Status Transition"
+msgstr "Tranziția statutului utilizatorului"
+
+msgid "Fires when an admin manually suspends or activates an account."
+msgstr "Se declanșează atunci când un administrator suspendă sau activează manual un cont."
+
+msgid "Admin account activation/suspension."
+msgstr "Activarea/suspendarea contului de administrator."
+
+msgid "User Deleted"
+msgstr "Utilizatorul a fost șters"
+
+msgid "Crucial for GDPR compliance; alerts external systems to delete user records."
+msgstr "Esențial pentru conformitatea GDPR; alertează sistemele externe pentru a șterge înregistrările utilizatorilor."
+
+msgid "Portal User ID."
+msgstr "ID utilizator al portalului."
+
+msgid "WordPress User ID."
+msgstr "ID utilizator WordPress."
+
+msgid "User Role ID."
+msgstr "ID rol utilizator."
+
+msgid "Crucial for GDPR compliance."
+msgstr "Esențial pentru conformitatea GDPR."
+
+msgid "User Profile Saved"
+msgstr "Profil utilizator salvat"
+
+msgid "Fires whenever user metadata is updated."
+msgstr "Se declanșează ori de câte ori metadatele utilizatorului sunt actualizate."
+
+msgid "Profile ID."
+msgstr "ID de profil."
+
+msgid "Profile metadata."
+msgstr "Metadatele profilului."
+
+msgid "Fires on metadata update."
+msgstr "Se declanșează la actualizarea metadatelor."
+
+msgid "AI Content Prompt"
+msgstr "Solicitare de conținut AI"
+
+msgid "Intercepts the prompt string before it hits the AI proxy. Allows insertion of mandatory EEO text."
+msgstr "Interceptează șirul prompt înainte de a atinge proxy-ul AI. Permite inserarea textului EEO obligatoriu."
+
+msgid "AI Prompt."
+msgstr "Solicitare AI."
+
+msgid "Context parameters."
+msgstr "Parametrii de context."
+
+msgid "Modified AI Prompt."
+msgstr "Solicitare AI modificată."
+
+msgid "Allows insertion of mandatory context."
+msgstr "Permite inserarea contextului obligatoriu."
+
+msgid "AI Generation Completed"
+msgstr "Generarea AI finalizată"
+
+msgid "Captures the AI response for logging and plagiarism scanning."
+msgstr "Captează răspunsul AI pentru înregistrarea în jurnal și scanarea plagiatului."
+
+msgid "Status code."
+msgstr "Cod de stare."
+
+msgid "Response payload."
+msgstr "Sarcina utilă de răspuns."
+
+msgid "Original Prompt."
+msgstr "Solicitare originală."
+
+msgid "Wrapper used."
+msgstr "Folosit ambalaj."
+
+msgid "Used for logging and plagiarism checks."
+msgstr "Folosit pentru logare și verificări de plagiat."
+
+msgid "Before AI Resume Parse"
+msgstr "Înainte de AI Reluați analiza"
+
+msgid "Allows PII redaction from resume text before it is indexed for AI matching."
+msgstr "Permite redactarea informațiilor personale din textul CV-ului înainte de a fi indexat pentru potrivirea AI."
+
+msgid "Text string for AI indexing."
+msgstr "Șir de text pentru indexarea AI."
+
+msgid "Entity ID."
+msgstr "ID entitate."
+
+msgid "Sanitized AI string."
+msgstr "Snur AI igienizat."
+
+msgid "Useful for Blind Hiring features."
+msgstr "Util pentru funcțiile Blind Hiring."
+
+msgid "Before AI Job Parse"
+msgstr "Înainte de AI Job Parse"
+
+msgid "Allows modification of job text before AI indexing."
+msgstr "Permite modificarea textului lucrării înainte de indexarea AI."
+
+msgid "Modified AI string."
+msgstr "Șir AI modificat."
+
+msgid "AI Job to Resume Match"
+msgstr "Job AI pentru a relua meciul"
+
+msgid "Mutates the search string the AI uses to find resumes for a job."
+msgstr "Mutează șirul de căutare pe care AI îl folosește pentru a găsi CV-uri pentru un loc de muncă."
+
+msgid "Search string."
+msgstr "Șir de căutare."
+
+msgid "Mutated search string."
+msgstr "Șir de căutare mutat."
+
+msgid "Mutates the search string the AI uses."
+msgstr "Mutează șirul de căutare pe care îl folosește AI."
+
+msgid "AI Resume to Job Match"
+msgstr "AI Reluare la Job Match"
+
+msgid "Mutates the search string the AI uses to find jobs for a resume."
+msgstr "Mutează șirul de căutare pe care AI îl folosește pentru a găsi locuri de muncă pentru un CV."
+
+msgid "AI Dashboard Job Suggestions"
+msgstr "Sugestii de locuri de muncă din tabloul de bord AI"
+
+msgid "Captures suggested jobs calculated for the job seekers dashboard."
+msgstr "Captează locuri de muncă sugerate calculate pentru tabloul de bord pentru persoanele în căutarea unui loc de muncă."
+
+msgid "Seeker User ID."
+msgstr "ID utilizator căutător."
+
+msgid "Array of matched Job IDs."
+msgstr "Matrice de ID-uri de job potrivite."
+
+msgid "Captures dashboard suggestions."
+msgstr "Captează sugestii pentru tabloul de bord."
+
+msgid "AI Job Suggestion Calculated"
+msgstr "Sugestie de job AI calculată"
+
+msgid "Captures suggested jobs against a specific resume ID."
+msgstr "Capturează joburi sugerate cu un anumit ID de CV."
+
+msgid "Captures resume-specific suggestions."
+msgstr "Captează sugestii specifice CV-ului."
+
+msgid "AI Dashboard Resume Suggestions"
+msgstr "Sugestii de reluare a tabloului de bord AI"
+
+msgid "Captures suggested resumes calculated for the employers dashboard."
+msgstr "Captează CV-uri sugerate calculate pentru tabloul de bord al angajatorilor."
+
+msgid "Array of matched Resume IDs."
+msgstr "Gamă de ID-uri de CV potrivite."
+
+msgid "Captures employer dashboard suggestions."
+msgstr "Captează sugestiile angajatorului din tabloul de bord."
+
+msgid "AI Resume Suggestion Calculated"
+msgstr "Sugestie de reluare AI calculată"
+
+msgid "Captures suggested resumes against a specific job ID."
+msgstr "Capturează CV-uri sugerate cu un anumit ID de job."
+
+msgid "Captures job-specific suggestions."
+msgstr "Captează sugestii specifice unui loc de muncă."
+
+msgid "Job Alert Triggered"
+msgstr "Alerta de locuri de muncă declanșată"
+
+msgid "Intercepts an alert match before the email sends. Ideal for Push/SMS notifications."
+msgstr "Interceptează o potrivire de alertă înainte de trimiterea e-mailului. Ideal pentru notificări Push/SMS."
+
+msgid "Person ID."
+msgstr "ID de persoană."
+
+msgid "Subscriber User ID."
+msgstr "ID utilizator abonat."
+
+msgid "Matched jobs array."
+msgstr "Matrice de locuri de muncă potrivite."
+
+msgid "Ideal for Push/SMS notifications."
+msgstr "Ideal pentru notificări Push/SMS."
+
+msgid "Job Alert Saved"
+msgstr "Alertă de locuri de muncă salvată"
+
+msgid "Fires when an alert preference is created or updated."
+msgstr "Se declanșează când este creată sau actualizată o preferință de alertă."
+
+msgid "Alert record ID."
+msgstr "ID înregistrare alertă."
+
+msgid "Subscriber Email."
+msgstr "E-mailul abonatului."
+
+msgid "Alert configuration data."
+msgstr "Date de configurare de alertă."
+
+msgid "Fires on alert create/update."
+msgstr "Incendii la crearea/actualizarea alertei."
+
+msgid "Job Alert Unsubscribed"
+msgstr "Job Alert Dezabonat"
+
+msgid "Fires when an alert is deleted."
+msgstr "Se declanșează când o alertă este ștearsă."
+
+msgid "Deleted Alert ID."
+msgstr "ID de alertă șters."
+
+msgid "Membership Package Purchased"
+msgstr "Pachet de membru achiziționat"
+
+msgid "Triggers on a successful checkout via Stripe or PayPal gateways."
+msgstr "Declanșează o finalizare cu succes a comenzii prin intermediul gateway-urilor Stripe sau PayPal."
+
+msgid "Package ID."
+msgstr "ID pachet."
+
+msgid "Amount paid."
+msgstr "Suma plătită."
+
+msgid "Payment gateway."
+msgstr "Poarta de plată."
+
+msgid "Triggers on gateway success."
+msgstr "Declanșează succesul gateway-ului."
+
+msgid "WooCommerce Order Synced"
+msgstr "Comanda WooCommerce sincronizată"
+
+msgid "Executes when WP Job Portal routes a payment into the WooCommerce cart."
+msgstr "Se execută atunci când WP Job Portal direcționează o plată în coșul WooCommerce."
+
+msgid "WooCommerce Post ID."
+msgstr "ID-ul postării WooCommerce."
+
+msgid "Purchase data."
+msgstr "Date de achiziție."
+
+msgid "Executes on Woo cart route."
+msgstr "Se execută pe traseul căruciorului Woo."
+
+msgid "Per Listing Purchased"
+msgstr "Pe lista achiziționată"
+
+msgid "Generic action deployed across all individual purchases."
+msgstr "Acțiune generică implementată în toate achizițiile individuale."
+
+msgid "Entity ID (job/resume/company)."
+msgstr "ID entitate (post/cv/companie)."
+
+msgid "Entity type."
+msgstr "Tip de entitate."
+
+msgid "Gateway used."
+msgstr "Gateway utilizat."
+
+msgid "Deployed across individual purchases."
+msgstr "Implementat prin achiziții individuale."
+
+msgid "Subscription Cancelled"
+msgstr "Abonament anulat"
+
+msgid "Alerts external platforms (like Discord/Active Directory) to downgrade the user."
+msgstr "Avertizează platformele externe (cum ar fi Discord/Active Directory) pentru a downgrade utilizatorul."
+
+msgid "Gateway sub ID."
+msgstr "ID-ul secundar al gateway-ului."
+
+msgid "Downgrade user permissions."
+msgstr "Deplasați permisiunile utilizatorului."
+
+msgid "Membership Purchased DB Commit"
+msgstr "Calitatea de membru achiziționată DB Commit"
+
+msgid "A database-level failsafe hook that fires even if a package is manually assigned by an admin."
+msgstr "Un cârlig sigur la nivel de bază de date care se declanșează chiar dacă un pachet este atribuit manual de către un administrator."
+
+msgid "Amount."
+msgstr "Cantitate."
+
+msgid "Payment Method."
+msgstr "Modalitate de plată."
+
+msgid "Database-level failsafe hook."
+msgstr "Cârlig sigur la nivel de bază de date."
+
+msgid "Package Saved"
+msgstr "Pachet salvat"
+
+msgid "Fires when a package is updated or unpublished."
+msgstr "Se declanșează atunci când un pachet este actualizat sau nepublicat."
+
+msgid "Package data."
+msgstr "Datele pachetului."
+
+msgid "Fires on package update."
+msgstr "Se declanșează la actualizarea pachetului."
+
+msgid "Invoice Status Transition"
+msgstr "Tranziția stării facturii"
+
+msgid "Fires when an invoice moves to \\"
+msgstr "Se declanșează când o factură se mută în \\"
+
+msgid "Invoice ID."
+msgstr "ID factură."
+
+msgid "Old Status."
+msgstr "Stare Veche."
+
+msgid "New Status."
+msgstr "Stare nouă."
+
+msgid "Syncs external accounting software."
+msgstr "Sincronizează software-ul de contabilitate extern."
+
+msgid "Invoice Saved"
+msgstr "Factură salvată"
+
+msgid "Fires on invoice creation or deletion."
+msgstr "Incendii la crearea sau ștergerea facturii."
+
+msgid "Invoice Data."
+msgstr "Datele facturii."
+
+msgid "Fires on invoice creation."
+msgstr "Incendii la crearea facturii."
+
+msgid "Employer Dashboard Loaded"
+msgstr "Tabloul de bord al angajatorului a fost încărcat"
+
+msgid "Fires when the employer portal initializes."
+msgstr "Se declanșează când portalul angajatorului se inițializează."
+
+msgid "Portal view data array."
+msgstr "Vizualizare portal de date matrice."
+
+msgid "Jobseeker Dashboard Loaded"
+msgstr "Tabloul de bord pentru solicitanți de locuri de muncă este încărcat"
+
+msgid "Fires when the candidate portal initializes."
+msgstr "Se declanșează când portalul candidatului se inițializează."
+
+msgid "Candidate User ID."
+msgstr "ID utilizator candidat."
+
+msgid "Admin Dashboard Loaded"
+msgstr "Tabloul de bord de administrare a fost încărcat"
+
+msgid "Injects custom data into the WP Admin control panel."
+msgstr "Injectează date personalizate în panoul de control WP Admin."
+
+msgid "Admin data array."
+msgstr "Matrice de date admin."
+
+msgid "Injects data into WP Admin."
+msgstr "Injectează date în WP Admin."
+
+msgid "User Widget HTML"
+msgstr "HTML widget pentru utilizator"
+
+msgid "Allows theme developers to modify member widget cards."
+msgstr "Permite dezvoltatorilor de teme să modifice cardurile widget ale membrilor."
+
+msgid "HTML Content."
+msgstr "Conținut HTML."
+
+msgid "User role."
+msgstr "Rolul de utilizator."
+
+msgid "User data."
+msgstr "Datele utilizatorului."
+
+msgid "Modified HTML."
+msgstr "HTML modificat."
+
+msgid "Modify member widget cards."
+msgstr "Modificați cardurile widget pentru membri."
+
+msgid "Shortlist Popup HTML"
+msgstr "Lista scurtă pop-up HTML"
+
+msgid "Modifies the HTML output of the shortlist modal."
+msgstr "Modifică rezultatul HTML al modului listei scurte."
+
+msgid "Modifies shortlist modal HTML."
+msgstr "Modifică HTML modal pe lista scurtă."
+
+msgid "Export Resume Raw String"
+msgstr "Exportați șirul brut de reluare"
+
+msgid "Intercepts the final TSV text string for a single resume download."
+msgstr "Interceptează șirul de text final TSV pentru o singură descărcare de CV."
+
+msgid "TSV String."
+msgstr "TSV șir."
+
+msgid "Modified TSV string."
+msgstr "Șir TSV modificat."
+
+msgid "Intercepts single TSV export."
+msgstr "Interceptează un singur export TSV."
+
+msgid "Export Resume Data Array"
+msgstr "Exportați matricea de date CV"
+
+msgid "Highly useful for Blind Hiring; allows programmatic removal of PII columns before TSV conversion."
+msgstr "Foarte util pentru angajarea nevăzută; permite eliminarea programatică a coloanelor PII înainte de conversia TSV."
+
+msgid "Export row array."
+msgstr "Exportați matrice de rânduri."
+
+msgid "DB result data."
+msgstr "Date rezultate DB."
+
+msgid "Sanitized row array."
+msgstr "Matrice de rânduri igienizată."
+
+msgid "Highly useful for Blind Hiring."
+msgstr "Foarte util pentru angajarea nevăzută."
+
+msgid "Export All Resumes Raw String"
+msgstr "Exportați toate CV-urile șirul brut"
+
+msgid "Intercepts the bulk export string to append HR disclaimers or timestamps."
+msgstr "Interceptează șirul de export în bloc pentru a adăuga clauze de declinare a răspunderii pentru resurse umane sau marcaje de timp."
+
+msgid "Bulk TSV String."
+msgstr "șir TSV în vrac."
+
+msgid "Modified bulk string."
+msgstr "Șir în bloc modificat."
+
+msgid "Intercepts bulk export string."
+msgstr "Interceptează șirul de export în bloc."
+
+msgid "Resume Export Filename"
+msgstr "Reluați exportul numelui fișierului"
+
+msgid "Mutates the generated ZIP file name dynamically."
+msgstr "Mutează în mod dinamic numele fișierului ZIP generat."
+
+msgid "Default filename."
+msgstr "Nume de fișier implicit."
+
+msgid "File extension."
+msgstr "Extensie de fișier."
+
+msgid "Mutated filename."
+msgstr "Nume de fișier mutat."
+
+msgid "Mutates generated ZIP filename."
+msgstr "Modifică numele fișierului ZIP generat."
+
+msgid "System Email Headers"
+msgstr "Antete de e-mail de sistem"
+
+msgid "Modifies outgoing SMTP headers (e.g., custom Reply-To addresses)."
+msgstr "Modifică anteturile SMTP de ieșire (de exemplu, adrese personalizate pentru răspuns)."
+
+msgid "Email headers array."
+msgstr "Matrice de anteturi de e-mail."
+
+msgid "Email subject."
+msgstr "Subiectul e-mailului."
+
+msgid "Modified headers."
+msgstr "Antete modificate."
+
+msgid "Modifies outgoing SMTP headers."
+msgstr "Modifică anteturile SMTP de ieșire."
+
+msgid "Email Notification Sent"
+msgstr "Notificare prin e-mail trimisă"
+
+msgid "Logs transactional emails immediately after wp_mail() fires."
+msgstr "Înregistrează e-mailurile tranzacționale imediat după declanșarea wp_mail()."
+
+msgid "Email type string."
+msgstr "șir de tip e-mail."
+
+msgid "Recipient details."
+msgstr "Detalii despre destinatar."
+
+msgid "Email HTML payload."
+msgstr "Sarcina utilă HTML pentru e-mail."
+
+msgid "Logs transactional emails."
+msgstr "Înregistrează e-mailurile tranzacționale."
+
+msgid "Internal Message Sent"
+msgstr "Mesaj intern trimis"
+
+msgid "Intercepts secure internal messages to push to external SMS/Slack APIs."
+msgstr "Interceptează mesajele interne securizate pentru a le trimite către API-uri externe SMS/Slack."
+
+msgid "Message ID."
+msgstr "ID mesaj."
+
+msgid "Sender ID."
+msgstr "ID expeditor."
+
+msgid "Recipient ID."
+msgstr "ID-ul destinatarului."
+
+msgid "Message Text."
+msgstr "Textul mesajului."
+
+msgid "Push to external SMS/Slack APIs."
+msgstr "Push către API-uri externe SMS/Slack."
+
+msgid "Message Status Transition"
+msgstr "Tranziție stare mesaj"
+
+msgid "Triggers when an admin resolves a flagged/conflicted message."
+msgstr "Se declanșează atunci când un administrator rezolvă un mesaj semnalat/conflict."
+
+msgid "Admin flag resolution."
+msgstr "Rezoluția semnalizatorului de administrator."
+
+msgid "File Uploaded (S3 Hook)"
+msgstr "Fișier încărcat (S3 Hook)"
+
+msgid "The ultimate scalability hook. Fires when a physical file is saved, allowing cloud plugins to upload to AWS S3 and delete the local instance."
+msgstr "Cârligul de scalabilitate suprem. Se declanșează atunci când un fișier fizic este salvat, permițând pluginurilor cloud să se încarce în AWS S3 și să șteargă instanța locală."
+
+msgid "Absolute physical file path."
+msgstr "Cale fizică absolută a fișierului."
+
+msgid "Context type (e.g. company_logo, resume_file)."
+msgstr "Tip de context (de exemplu, sigla companiei, fișierul_cv)."
+
+msgid "Associated record ID."
+msgstr "ID înregistrare asociată."
+
+msgid "The ultimate scalability hook for S3."
+msgstr "Cârligul de scalabilitate suprem pentru S3."
+
+msgid "SEO Settings Updated"
+msgstr "Setări SEO actualizate"
+
+msgid "Executes when core configs update, enabling auto-purging of caching plugins (WP Rocket)."
+msgstr "Se execută când se actualizează configurațiile de bază, permițând ștergerea automată a pluginurilor de cache (WP Rocket)."
+
+msgid "Config data array."
+msgstr "Matrice de date de configurare."
+
+msgid "Enabling auto-purging of caching plugins."
+msgstr "Activarea ștergerii automate a pluginurilor de cache."
+
+msgid "Hook Reference"
+msgstr "Referință cârlig"
+
+msgid "Entities"
+msgstr "Entități"
+
+msgid "Search across all actions and filters..."
+msgstr "Căutați în toate acțiunile și filtrele..."
+
+msgid "Arguments"
+msgstr "Argumente"
+
+msgid "Returns"
+msgstr "Retururi"
+
+msgid "No return (Action Hook)"
+msgstr "Fără întoarcere (Cârlig de acțiune)"
+
+msgid "Snippet"
+msgstr "Fragment"
+
+msgid "Copy Code"
+msgstr "Copiați codul"
+
+msgid "To use this hook, please install and activate the"
+msgstr "Pentru a utiliza acest cârlig, instalați și activați"
+
+msgid "addon."
+msgstr "add-on."
+
+msgid "View Addon Details"
+msgstr "Vedeți detaliile suplimentului"
+
+msgid "No results found"
+msgstr "Nu s-au găsit rezultate"
+
+msgid "Try searching for specific keywords like \\"
+msgstr "Încercați să căutați anumite cuvinte cheie, cum ar fi \\"
+
+msgid "Hooks"
+msgstr "Cârlige"
+
+msgid "Search Results"
+msgstr "Rezultatele căutării"

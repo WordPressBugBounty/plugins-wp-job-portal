@@ -12964,3 +12964,1008 @@ msgstr "-- 検索結果 --"
 
 msgid "Console Output"
 msgstr "コンソール出力"
+
+msgid "After Store Job"
+msgstr "アフターストアジョブ"
+
+msgid "Fires immediately after a new job is stored in the database."
+msgstr "新しいジョブがデータベースに保存された直後に起動されます。"
+
+msgid "The newly created job ID."
+msgstr "新しく作成されたジョブ ID。"
+
+msgid "Triggered upon job creation."
+msgstr "ジョブの作成時にトリガーされます。"
+
+msgid "After Edit Job"
+msgstr "編集ジョブ後"
+
+msgid "Fires immediately after an existing job is updated."
+msgstr "既存のジョブが更新された直後に起動します。"
+
+msgid "The updated job ID."
+msgstr "更新されたジョブ ID。"
+
+msgid "Triggered upon job update."
+msgstr "ジョブの更新時にトリガーされます。"
+
+msgid "After Delete Job"
+msgstr "ジョブ削除後"
+
+msgid "Fires immediately after a job is deleted."
+msgstr "ジョブが削除された直後に起動されます。"
+
+msgid "The deleted job ID."
+msgstr "削除されたジョブ ID。"
+
+msgid "Triggered upon job deletion."
+msgstr "ジョブの削除時にトリガーされます。"
+
+msgid "Job Published"
+msgstr "ジョブが公開されました"
+
+msgid "Fires when admin approved a job for publish from job listing. Essential for XML syndication to Indeed or LinkedIn."
+msgstr "管理者が求人リストからの公開ジョブを承認したときに発生します。 Indeed または LinkedIn への XML シンジケーションに不可欠です。"
+
+msgid "The job ID."
+msgstr "ジョブID。"
+
+msgid "The associated company ID."
+msgstr "関連付けられた企業 ID。"
+
+msgid "Full job data array."
+msgstr "完全なジョブ データ配列。"
+
+msgid "Essential for XML syndication feeds."
+msgstr "XML シンジケーション フィードには必須です。"
+
+msgid "Job Status Transition"
+msgstr "ジョブステータスの遷移"
+
+msgid "Fires when a job is approved or rejected by an admin from job que."
+msgstr "ジョブが管理者によってジョブ キューから承認または拒否されたときに発生します。"
+
+msgid "Old status code."
+msgstr "古いステータスコード。"
+
+msgid "New status string."
+msgstr "新しいステータス文字列。"
+
+msgid "Admin approval/rejection trigger."
+msgstr "管理者の承認/拒否トリガー。"
+
+msgid "Featured Job Activated"
+msgstr "注目のジョブがアクティブになりました"
+
+msgid "Fires when a job is elevated to featured status."
+msgstr "ジョブが注目ステータスに昇格すると起動されます。"
+
+msgid "User ID of the job owner."
+msgstr "ジョブ所有者のユーザー ID。"
+
+msgid "Featured expiry date."
+msgstr "注目の有効期限。"
+
+msgid "Triggered on featured upgrade."
+msgstr "注目のアップグレードでトリガーされます。"
+
+msgid "Job Search Query Args"
+msgstr "求人検索クエリの引数"
+
+msgid "Modifies the underlying SQL query for job searches."
+msgstr "求人検索の基礎となる SQL クエリを変更します。"
+
+msgid "The search SQL query."
+msgstr "検索 SQL クエリ。"
+
+msgid "Search filter variables."
+msgstr "検索フィルター変数。"
+
+msgid "Modified SQL query string."
+msgstr "変更された SQL クエリ文字列。"
+
+msgid "Used for modifying frontend job search behaviour."
+msgstr "フロントエンドの求人検索動作を変更するために使用されます。"
+
+msgid "Google Job Schema"
+msgstr "Google ジョブスキーマ"
+
+msgid "Intercepts the structured SEO data array to inject dynamic properties (like baseSalary)."
+msgstr "構造化された SEO データ配列をインターセプトして、動的プロパティ (baseSalary など) を挿入します。"
+
+msgid "JSON-LD schema array."
+msgstr "JSON-LD スキーマ配列。"
+
+msgid "Job ID."
+msgstr "ジョブID。"
+
+msgid "Modified JSON-LD array."
+msgstr "変更された JSON-LD 配列。"
+
+msgid "Crucial for SEO and Google Jobs integration."
+msgstr "SEO と Google Jobs の統合には不可欠です。"
+
+msgid "Job Shortlisted"
+msgstr "候補者リストに掲載された仕事"
+
+msgid "Candidate intent tracking for analytics when a job is saved or shortlisted."
+msgstr "ジョブが保存されるか候補リストに登録されるときに、分析のための候補インテントを追跡します。"
+
+msgid "Shortlist row ID."
+msgstr "候補リストの行 ID。"
+
+msgid "User ID."
+msgstr "ユーザーID。"
+
+msgid "Extra data array."
+msgstr "追加のデータ配列。"
+
+msgid "Candidate intent tracking."
+msgstr "候補者の意図の追跡。"
+
+msgid "After Store Resume"
+msgstr "店舗再開後"
+
+msgid "Fires immediately after a new resume is stored in the database."
+msgstr "新しい履歴書がデータベースに保存された直後に起動されます。"
+
+msgid "The newly created resume ID."
+msgstr "新しく作成された履歴書 ID。"
+
+msgid "Triggered upon resume creation."
+msgstr "履歴書の作成時にトリガーされます。"
+
+msgid "After Edit Resume"
+msgstr "編集再開後"
+
+msgid "Fires immediately after an existing resume is updated."
+msgstr "既存の履歴書が更新された直後に起動します。"
+
+msgid "The updated resume ID."
+msgstr "更新された履歴書 ID。"
+
+msgid "Triggered upon resume update."
+msgstr "更新を再開するとトリガーされます。"
+
+msgid "After Delete Resume"
+msgstr "削除後再開"
+
+msgid "Fires immediately after a resume is deleted."
+msgstr "履歴書が削除された直後に起動します。"
+
+msgid "The deleted resume ID."
+msgstr "削除された履歴書 ID。"
+
+msgid "Triggered upon resume deletion."
+msgstr "履歴書の削除時にトリガーされます。"
+
+msgid "Resume Status Transition"
+msgstr "ステータス遷移を再開する"
+
+msgid "Fires when an administrator manually approves or rejects a resume."
+msgstr "管理者が履歴書を手動で承認または拒否したときに発生します。"
+
+msgid "The ID of the resume."
+msgstr "履歴書のID。"
+
+msgid "The previous status."
+msgstr "以前のステータス。"
+
+msgid "The new status."
+msgstr "新しいステータス。"
+
+msgid "Track manual admin approvals/rejections."
+msgstr "管理者の手動による承認/拒否を追跡します。"
+
+msgid "Resume Search Query Args"
+msgstr "検索クエリの引数を再開する"
+
+msgid "Modifies the SQL WHERE clause during a frontend resume search, allowing Elasticsearch integrations."
+msgstr "フロントエンドの再開検索中に SQL WHERE 句を変更し、Elasticsearch の統合を可能にします。"
+
+msgid "The current SQL query string."
+msgstr "現在の SQL クエリ文字列。"
+
+msgid "Array of applied search filters."
+msgstr "適用された検索フィルターの配列。"
+
+msgid "Allows Elasticsearch integrations."
+msgstr "Elasticsearch の統合を許可します。"
+
+msgid "Featured Resume Activated"
+msgstr "注目の履歴書がアクティブになりました"
+
+msgid "Fires when a resume is promoted to featured status."
+msgstr "履歴書が注目ステータスに昇格すると起動されます。"
+
+msgid "Resume ID."
+msgstr "履歴書ID。"
+
+msgid "Job Seeker User ID."
+msgstr "求職者のユーザー ID。"
+
+msgid "After Job Apply"
+msgstr "求人応募後"
+
+msgid "Fires immediately after a candidate successfully applies for a job."
+msgstr "候補者が仕事に正常に応募した直後に起動されます。"
+
+msgid "The job application ID."
+msgstr "求人応募ID。"
+
+msgid "Triggered upon successful job application."
+msgstr "求人への応募が成功するとトリガーされます。"
+
+msgid "Application Submitted"
+msgstr "申請書を提出しました"
+
+msgid "Standard event trigger for a logged-in user submitting a job application."
+msgstr "ログインユーザーが求人応募を送信するための標準イベントトリガー。"
+
+msgid "ID of the application record."
+msgstr "アプリケーションレコードのID。"
+
+msgid "ID of the applied job."
+msgstr "適用されたジョブのID。"
+
+msgid "Fires for authenticated users only."
+msgstr "認証されたユーザーに対してのみ起動されます。"
+
+msgid "Quick Apply Submitted"
+msgstr "クイック申請が送信されました"
+
+msgid "Triggers when a candidate uses the \\"
+msgstr "候補者が \\ を使用するとトリガーされます。"
+
+msgid "Application record ID."
+msgstr "アプリケーションレコードID。"
+
+msgid "Submitted form data."
+msgstr "送信されたフォームデータ。"
+
+msgid "Uploaded files array."
+msgstr "アップロードされたファイルの配列。"
+
+msgid "Handles bypass forms and attached files."
+msgstr "バイパスフォームと添付ファイルを処理します。"
+
+msgid "Visitor Application Submitted"
+msgstr "ビジター申請書を提出しました"
+
+msgid "Triggers specifically for unauthenticated (guest) applications."
+msgstr "認証されていない (ゲスト) アプリケーション専用のトリガー。"
+
+msgid "Guest data array."
+msgstr "ゲスト データ配列。"
+
+msgid "Triggers specifically for unauthenticated applications."
+msgstr "認証されていないアプリケーション専用のトリガー。"
+
+msgid "Candidate Status Updated"
+msgstr "候補者のステータスが更新されました"
+
+msgid "Core ATS hook. Fires when an employer changes an applicants internal workflow state (e.g., Hired)."
+msgstr "コアATSフック。雇用主が応募者の内部ワークフロー状態 (雇用など) を変更したときに発生します。"
+
+msgid "Old ATS status."
+msgstr "古い ATS ステータス。"
+
+msgid "New ATS status."
+msgstr "新しい ATS ステータス。"
+
+msgid "Employer User ID."
+msgstr "雇用主のユーザー ID。"
+
+msgid "Core ATS hook."
+msgstr "コアATSフック。"
+
+msgid "Application Note Saved"
+msgstr "アプリケーションノートを保存しました"
+
+msgid "Fires when an employer adds an internal note to an application."
+msgstr "雇用主がアプリケーションに内部メモを追加すると発生します。"
+
+msgid "Note text."
+msgstr "テキストに注意してください。"
+
+msgid "Fires on employer internal note."
+msgstr "雇用主の内部メモに基づいて発火。"
+
+msgid "Application Rating Updated"
+msgstr "アプリケーションの評価が更新されました"
+
+msgid "Fires when a candidate receives a star rating from an employer."
+msgstr "候補者が雇用主から星評価を受け取ったときに起動されます。"
+
+msgid "Application ID."
+msgstr "アプリケーションID。"
+
+msgid "Star rating."
+msgstr "星の評価。"
+
+msgid "Fires on rating update."
+msgstr "評価更新時に起動します。"
+
+msgid "After Store Company"
+msgstr "アフターストア会社"
+
+msgid "Fires immediately after a new company is stored in the database."
+msgstr "新しい会社がデータベースに保存された直後に起動されます。"
+
+msgid "The newly created company ID."
+msgstr "新しく作成された会社 ID。"
+
+msgid "Triggered upon company creation."
+msgstr "会社設立がきっかけ。"
+
+msgid "After Edit Company"
+msgstr "会社編集後"
+
+msgid "Fires immediately after an existing company is updated."
+msgstr "既存の会社が更新された直後に起動されます。"
+
+msgid "The updated company ID."
+msgstr "更新された会社 ID。"
+
+msgid "Triggered upon company update."
+msgstr "会社の更新時にトリガーされます。"
+
+msgid "After Delete Company"
+msgstr "会社を削除した後"
+
+msgid "Fires immediately after a company is deleted."
+msgstr "会社が削除された直後に起動されます。"
+
+msgid "The deleted company ID."
+msgstr "削除された企業 ID。"
+
+msgid "Triggered upon company deletion."
+msgstr "会社の削除によってトリガーされます。"
+
+msgid "Company Status Transition"
+msgstr "会社の地位の変遷"
+
+msgid "Fires on company approve/reject state changes."
+msgstr "会社が状態の変更を承認/拒否すると発火します。"
+
+msgid "Company ID."
+msgstr "会社ID。"
+
+msgid "Old status."
+msgstr "古いステータス。"
+
+msgid "New status."
+msgstr "新しいステータス。"
+
+msgid "Fires on company state changes."
+msgstr "会社の状態の変化に応じて発火します。"
+
+msgid "Featured Company Activated"
+msgstr "注目の企業がアクティブ化されました"
+
+msgid "Fires when a company is promoted to featured status."
+msgstr "企業が注目のステータスに昇格したときに発火します。"
+
+msgid "Company Search Query Args"
+msgstr "企業検索クエリの引数"
+
+msgid "Modifies Company SQL search queries."
+msgstr "Company SQL 検索クエリを変更します。"
+
+msgid "Current SQL query."
+msgstr "現在の SQL クエリ。"
+
+msgid "Search filters."
+msgstr "検索フィルター。"
+
+msgid "Modified query string."
+msgstr "変更されたクエリ文字列。"
+
+msgid "Used for modifying frontend company search behaviour."
+msgstr "フロントエンドの企業検索動作を変更するために使用されます。"
+
+msgid "User Status Transition"
+msgstr "ユーザーステータスの遷移"
+
+msgid "Fires when an admin manually suspends or activates an account."
+msgstr "管理者がアカウントを手動で一時停止またはアクティブ化したときに発生します。"
+
+msgid "Admin account activation/suspension."
+msgstr "管理者アカウントのアクティブ化/一時停止。"
+
+msgid "User Deleted"
+msgstr "ユーザーが削除されました"
+
+msgid "Crucial for GDPR compliance; alerts external systems to delete user records."
+msgstr "GDPR 準拠に不可欠。外部システムにユーザー レコードを削除するよう警告します。"
+
+msgid "Portal User ID."
+msgstr "ポータルのユーザー ID。"
+
+msgid "WordPress User ID."
+msgstr "ワードプレスのユーザーID。"
+
+msgid "User Role ID."
+msgstr "ユーザーの役割 ID。"
+
+msgid "Crucial for GDPR compliance."
+msgstr "GDPR コンプライアンスにとって重要です。"
+
+msgid "User Profile Saved"
+msgstr "ユーザープロファイルが保存されました"
+
+msgid "Fires whenever user metadata is updated."
+msgstr "ユーザーのメタデータが更新されるたびに起動します。"
+
+msgid "Profile ID."
+msgstr "プロフィールID。"
+
+msgid "Profile metadata."
+msgstr "プロファイルのメタデータ。"
+
+msgid "Fires on metadata update."
+msgstr "メタデータの更新時に起動されます。"
+
+msgid "AI Content Prompt"
+msgstr "AI コンテンツ プロンプト"
+
+msgid "Intercepts the prompt string before it hits the AI proxy. Allows insertion of mandatory EEO text."
+msgstr "プロンプト文字列が AI プロキシに到達する前にインターセプトします。必須の EEO テキストの挿入を許可します。"
+
+msgid "AI Prompt."
+msgstr "AIプロンプト。"
+
+msgid "Context parameters."
+msgstr "コンテキストパラメータ。"
+
+msgid "Modified AI Prompt."
+msgstr "AIプロンプトを修正しました。"
+
+msgid "Allows insertion of mandatory context."
+msgstr "必須コンテキストの挿入を許可します。"
+
+msgid "AI Generation Completed"
+msgstr "AIの生成が完了しました"
+
+msgid "Captures the AI response for logging and plagiarism scanning."
+msgstr "ログ記録と盗作スキャンのための AI 応答をキャプチャします。"
+
+msgid "Status code."
+msgstr "ステータスコード。"
+
+msgid "Response payload."
+msgstr "応答ペイロード。"
+
+msgid "Original Prompt."
+msgstr "元のプロンプト。"
+
+msgid "Wrapper used."
+msgstr "ラッパー使用。"
+
+msgid "Used for logging and plagiarism checks."
+msgstr "ロギングと盗作チェックに使用されます。"
+
+msgid "Before AI Resume Parse"
+msgstr "AI が解析を再開する前"
+
+msgid "Allows PII redaction from resume text before it is indexed for AI matching."
+msgstr "AI マッチングのためにインデックスが作成される前に、履歴書テキストから PII を編集できるようにします。"
+
+msgid "Text string for AI indexing."
+msgstr "AI インデックス作成用のテキスト文字列。"
+
+msgid "Entity ID."
+msgstr "エンティティID。"
+
+msgid "Sanitized AI string."
+msgstr "サニタイズされた AI 文字列。"
+
+msgid "Useful for Blind Hiring features."
+msgstr "ブラインド雇用機能に役立ちます。"
+
+msgid "Before AI Job Parse"
+msgstr "AIジョブ解析前"
+
+msgid "Allows modification of job text before AI indexing."
+msgstr "AI インデックス作成前にジョブ テキストを変更できるようにします。"
+
+msgid "Modified AI string."
+msgstr "変更された AI 文字列。"
+
+msgid "AI Job to Resume Match"
+msgstr "AI ジョブが試合を再開する"
+
+msgid "Mutates the search string the AI uses to find resumes for a job."
+msgstr "AI が求人の履歴書を検索するために使用する検索文字列を変更します。"
+
+msgid "Search string."
+msgstr "検索文字列。"
+
+msgid "Mutated search string."
+msgstr "変異した検索文字列。"
+
+msgid "Mutates the search string the AI uses."
+msgstr "AI が使用する検索文字列を変更します。"
+
+msgid "AI Resume to Job Match"
+msgstr "AI 履歴書と仕事のマッチング"
+
+msgid "Mutates the search string the AI uses to find jobs for a resume."
+msgstr "AI が履歴書の求人を検索するために使用する検索文字列を変更します。"
+
+msgid "AI Dashboard Job Suggestions"
+msgstr "AI ダッシュボードのジョブの提案"
+
+msgid "Captures suggested jobs calculated for the job seekers dashboard."
+msgstr "求職者ダッシュボード用に計算された提案された求人を取得します。"
+
+msgid "Seeker User ID."
+msgstr "シーカーのユーザー ID。"
+
+msgid "Array of matched Job IDs."
+msgstr "一致したジョブ ID の配列。"
+
+msgid "Captures dashboard suggestions."
+msgstr "ダッシュボードの提案をキャプチャします。"
+
+msgid "AI Job Suggestion Calculated"
+msgstr "AIが計算した仕事の提案"
+
+msgid "Captures suggested jobs against a specific resume ID."
+msgstr "特定の履歴書 ID に対して提案されたジョブを取得します。"
+
+msgid "Captures resume-specific suggestions."
+msgstr "履歴書固有の提案を取得します。"
+
+msgid "AI Dashboard Resume Suggestions"
+msgstr "AI ダッシュボードの再開の提案"
+
+msgid "Captures suggested resumes calculated for the employers dashboard."
+msgstr "雇用主のダッシュボード用に計算された推奨履歴書をキャプチャします。"
+
+msgid "Array of matched Resume IDs."
+msgstr "一致した履歴書 ID の配列。"
+
+msgid "Captures employer dashboard suggestions."
+msgstr "雇用主のダッシュボードの提案をキャプチャします。"
+
+msgid "AI Resume Suggestion Calculated"
+msgstr "AIが計算した履歴書の提案"
+
+msgid "Captures suggested resumes against a specific job ID."
+msgstr "特定のジョブ ID に対して提案された履歴書をキャプチャします。"
+
+msgid "Captures job-specific suggestions."
+msgstr "ジョブ固有の提案を取得します。"
+
+msgid "Job Alert Triggered"
+msgstr "ジョブアラートがトリガーされました"
+
+msgid "Intercepts an alert match before the email sends. Ideal for Push/SMS notifications."
+msgstr "電子メールが送信される前に、アラートの一致を傍受します。プッシュ/SMS通知に最適です。"
+
+msgid "Person ID."
+msgstr "個人ID。"
+
+msgid "Subscriber User ID."
+msgstr "購読者のユーザー ID。"
+
+msgid "Matched jobs array."
+msgstr "一致したジョブの配列。"
+
+msgid "Ideal for Push/SMS notifications."
+msgstr "プッシュ/SMS通知に最適です。"
+
+msgid "Job Alert Saved"
+msgstr "ジョブアラートが保存されました"
+
+msgid "Fires when an alert preference is created or updated."
+msgstr "アラート設定が作成または更新されるときに発生します。"
+
+msgid "Alert record ID."
+msgstr "アラートレコードID。"
+
+msgid "Subscriber Email."
+msgstr "購読者の電子メール。"
+
+msgid "Alert configuration data."
+msgstr "アラート構成データ。"
+
+msgid "Fires on alert create/update."
+msgstr "アラートの作成/更新時に発生します。"
+
+msgid "Job Alert Unsubscribed"
+msgstr "ジョブアラートの登録が解除されました"
+
+msgid "Fires when an alert is deleted."
+msgstr "アラートが削除されたときに発生します。"
+
+msgid "Deleted Alert ID."
+msgstr "削除されたアラート ID。"
+
+msgid "Membership Package Purchased"
+msgstr "購入したメンバーシップ パッケージ"
+
+msgid "Triggers on a successful checkout via Stripe or PayPal gateways."
+msgstr "Stripe または PayPal ゲートウェイ経由でチェックアウトが成功するとトリガーされます。"
+
+msgid "Package ID."
+msgstr "パッケージID。"
+
+msgid "Amount paid."
+msgstr "支払った金額。"
+
+msgid "Payment gateway."
+msgstr "支払いゲートウェイ。"
+
+msgid "Triggers on gateway success."
+msgstr "ゲートウェイの成功時にトリガーされます。"
+
+msgid "WooCommerce Order Synced"
+msgstr "WooCommerce 注文が同期されました"
+
+msgid "Executes when WP Job Portal routes a payment into the WooCommerce cart."
+msgstr "WP Job Portal が支払いを WooCommerce カートにルーティングするときに実行されます。"
+
+msgid "WooCommerce Post ID."
+msgstr "WooCommerce 投稿 ID。"
+
+msgid "Purchase data."
+msgstr "データを購入します。"
+
+msgid "Executes on Woo cart route."
+msgstr "Woo カート ルートで実行されます。"
+
+msgid "Per Listing Purchased"
+msgstr "購入したリストごとに"
+
+msgid "Generic action deployed across all individual purchases."
+msgstr "すべての個別の購入にわたって展開される一般的なアクション。"
+
+msgid "Entity ID (job/resume/company)."
+msgstr "エンティティ ID (仕事/履歴書/会社)。"
+
+msgid "Entity type."
+msgstr "エンティティのタイプ。"
+
+msgid "Gateway used."
+msgstr "使用されるゲートウェイ。"
+
+msgid "Deployed across individual purchases."
+msgstr "個々の購入全体に展開されます。"
+
+msgid "Subscription Cancelled"
+msgstr "サブスクリプションがキャンセルされました"
+
+msgid "Alerts external platforms (like Discord/Active Directory) to downgrade the user."
+msgstr "外部プラットフォーム (Discord/Active Directory など) にユーザーをダウングレードするよう警告します。"
+
+msgid "Gateway sub ID."
+msgstr "ゲートウェイのサブID。"
+
+msgid "Downgrade user permissions."
+msgstr "ユーザー権限をダウングレードします。"
+
+msgid "Membership Purchased DB Commit"
+msgstr "メンバーシップ購入済み DB コミット"
+
+msgid "A database-level failsafe hook that fires even if a package is manually assigned by an admin."
+msgstr "パッケージが管理者によって手動で割り当てられた場合でも起動されるデータベース レベルのフェールセーフ フック。"
+
+msgid "Amount."
+msgstr "額。"
+
+msgid "Payment Method."
+msgstr "支払方法。"
+
+msgid "Database-level failsafe hook."
+msgstr "データベースレベルのフェイルセーフフック。"
+
+msgid "Package Saved"
+msgstr "パッケージが保存されました"
+
+msgid "Fires when a package is updated or unpublished."
+msgstr "パッケージが更新または非公開になったときに発生します。"
+
+msgid "Package data."
+msgstr "パッケージデータ。"
+
+msgid "Fires on package update."
+msgstr "パッケージの更新時に起動します。"
+
+msgid "Invoice Status Transition"
+msgstr "請求書ステータスの遷移"
+
+msgid "Fires when an invoice moves to \\"
+msgstr "請求書が \\ に移動すると発生します。"
+
+msgid "Invoice ID."
+msgstr "請求書 ID。"
+
+msgid "Old Status."
+msgstr "古いステータス。"
+
+msgid "New Status."
+msgstr "新しいステータス。"
+
+msgid "Syncs external accounting software."
+msgstr "外部会計ソフトウェアと同期します。"
+
+msgid "Invoice Saved"
+msgstr "請求書が保存されました"
+
+msgid "Fires on invoice creation or deletion."
+msgstr "請求書の作成または削除時に発生します。"
+
+msgid "Invoice Data."
+msgstr "請求書データ。"
+
+msgid "Fires on invoice creation."
+msgstr "請求書の作成時に起動します。"
+
+msgid "Employer Dashboard Loaded"
+msgstr "雇用主ダッシュボードがロードされました"
+
+msgid "Fires when the employer portal initializes."
+msgstr "雇用主ポータルが初期化されるときに起動します。"
+
+msgid "Portal view data array."
+msgstr "ポータル ビューのデータ配列。"
+
+msgid "Jobseeker Dashboard Loaded"
+msgstr "求職者ダッシュボードがロードされました"
+
+msgid "Fires when the candidate portal initializes."
+msgstr "候補者ポータルの初期化時に発生します。"
+
+msgid "Candidate User ID."
+msgstr "候補ユーザー ID。"
+
+msgid "Admin Dashboard Loaded"
+msgstr "管理者ダッシュボードがロードされました"
+
+msgid "Injects custom data into the WP Admin control panel."
+msgstr "カスタム データを WP Admin コントロール パネルに挿入します。"
+
+msgid "Admin data array."
+msgstr "管理データ配列。"
+
+msgid "Injects data into WP Admin."
+msgstr "WP Admin にデータを挿入します。"
+
+msgid "User Widget HTML"
+msgstr "ユーザーウィジェットHTML"
+
+msgid "Allows theme developers to modify member widget cards."
+msgstr "テーマ開発者がメンバー ウィジェット カードを変更できるようにします。"
+
+msgid "HTML Content."
+msgstr "HTML コンテンツ。"
+
+msgid "User role."
+msgstr "ユーザーの役割。"
+
+msgid "User data."
+msgstr "ユーザーデータ。"
+
+msgid "Modified HTML."
+msgstr "HTMLを修正しました。"
+
+msgid "Modify member widget cards."
+msgstr "メンバーのウィジェット カードを変更します。"
+
+msgid "Shortlist Popup HTML"
+msgstr "候補リストのポップアップ HTML"
+
+msgid "Modifies the HTML output of the shortlist modal."
+msgstr "候補リストのモーダルの HTML 出力を変更します。"
+
+msgid "Modifies shortlist modal HTML."
+msgstr "候補リストのモーダル HTML を変更します。"
+
+msgid "Export Resume Raw String"
+msgstr "エクスポート再開生文字列"
+
+msgid "Intercepts the final TSV text string for a single resume download."
+msgstr "単一の再開ダウンロードの最終 TSV テキスト文字列をインターセプトします。"
+
+msgid "TSV String."
+msgstr "TSV文字列。"
+
+msgid "Modified TSV string."
+msgstr "変更された TSV 文字列。"
+
+msgid "Intercepts single TSV export."
+msgstr "単一の TSV エクスポートをインターセプトします。"
+
+msgid "Export Resume Data Array"
+msgstr "エクスポート再開データ配列"
+
+msgid "Highly useful for Blind Hiring; allows programmatic removal of PII columns before TSV conversion."
+msgstr "ブラインド雇用に非常に役立ちます。 TSV 変換前に PII 列をプログラムで削除できます。"
+
+msgid "Export row array."
+msgstr "行配列をエクスポートします。"
+
+msgid "DB result data."
+msgstr "DB結果データ。"
+
+msgid "Sanitized row array."
+msgstr "サニタイズされた行配列。"
+
+msgid "Highly useful for Blind Hiring."
+msgstr "ブラインド雇用に非常に役立ちます。"
+
+msgid "Export All Resumes Raw String"
+msgstr "すべての履歴書の生の文字列をエクスポート"
+
+msgid "Intercepts the bulk export string to append HR disclaimers or timestamps."
+msgstr "一括エクスポート文字列をインターセプトして、HR の免責事項またはタイムスタンプを追加します。"
+
+msgid "Bulk TSV String."
+msgstr "バルク TSV 文字列。"
+
+msgid "Modified bulk string."
+msgstr "変更されたバルク文字列。"
+
+msgid "Intercepts bulk export string."
+msgstr "一括エクスポート文字列をインターセプトします。"
+
+msgid "Resume Export Filename"
+msgstr "エクスポートファイル名を再開"
+
+msgid "Mutates the generated ZIP file name dynamically."
+msgstr "生成された ZIP ファイル名を動的に変更します。"
+
+msgid "Default filename."
+msgstr "デフォルトのファイル名。"
+
+msgid "File extension."
+msgstr "ファイル拡張子。"
+
+msgid "Mutated filename."
+msgstr "変更されたファイル名。"
+
+msgid "Mutates generated ZIP filename."
+msgstr "生成された ZIP ファイル名を変更します。"
+
+msgid "System Email Headers"
+msgstr "システム電子メールヘッダー"
+
+msgid "Modifies outgoing SMTP headers (e.g., custom Reply-To addresses)."
+msgstr "送信 SMTP ヘッダー (カスタム Reply-To アドレスなど) を変更します。"
+
+msgid "Email headers array."
+msgstr "電子メールのヘッダー配列。"
+
+msgid "Email subject."
+msgstr "メールの件名。"
+
+msgid "Modified headers."
+msgstr "ヘッダーを変更しました。"
+
+msgid "Modifies outgoing SMTP headers."
+msgstr "送信SMTPヘッダーを変更します。"
+
+msgid "Email Notification Sent"
+msgstr "電子メール通知を送信しました"
+
+msgid "Logs transactional emails immediately after wp_mail() fires."
+msgstr "wp_mail() が起動した直後に、トランザクション電子メールをログに記録します。"
+
+msgid "Email type string."
+msgstr "電子メールの種類の文字列。"
+
+msgid "Recipient details."
+msgstr "受信者の詳細。"
+
+msgid "Email HTML payload."
+msgstr "HTML ペイロードを電子メールで送信します。"
+
+msgid "Logs transactional emails."
+msgstr "トランザクション電子メールをログに記録します。"
+
+msgid "Internal Message Sent"
+msgstr "内部メッセージが送信されました"
+
+msgid "Intercepts secure internal messages to push to external SMS/Slack APIs."
+msgstr "安全な内部メッセージをインターセプトして、外部の SMS/Slack API にプッシュします。"
+
+msgid "Message ID."
+msgstr "メッセージID。"
+
+msgid "Sender ID."
+msgstr "送信者ID。"
+
+msgid "Recipient ID."
+msgstr "受信者ID。"
+
+msgid "Message Text."
+msgstr "メッセージテキスト。"
+
+msgid "Push to external SMS/Slack APIs."
+msgstr "外部の SMS/Slack API にプッシュします。"
+
+msgid "Message Status Transition"
+msgstr "メッセージの状態遷移"
+
+msgid "Triggers when an admin resolves a flagged/conflicted message."
+msgstr "管理者がフラグ付き/競合メッセージを解決するとトリガーされます。"
+
+msgid "Admin flag resolution."
+msgstr "管理者フラグの解決。"
+
+msgid "File Uploaded (S3 Hook)"
+msgstr "ファイルのアップロード (S3 フック)"
+
+msgid "The ultimate scalability hook. Fires when a physical file is saved, allowing cloud plugins to upload to AWS S3 and delete the local instance."
+msgstr "究極のスケーラビリティフック。物理ファイルが保存されるときに起動され、クラウド プラグインが AWS S3 にアップロードしてローカル インスタンスを削除できるようになります。"
+
+msgid "Absolute physical file path."
+msgstr "絶対物理ファイルパス。"
+
+msgid "Context type (e.g. company_logo, resume_file)."
+msgstr "コンテキスト タイプ (例: company_logo、resume_file)。"
+
+msgid "Associated record ID."
+msgstr "関連するレコード ID。"
+
+msgid "The ultimate scalability hook for S3."
+msgstr "S3 用の究極のスケーラビリティ フック。"
+
+msgid "SEO Settings Updated"
+msgstr "SEO設定が更新されました"
+
+msgid "Executes when core configs update, enabling auto-purging of caching plugins (WP Rocket)."
+msgstr "コア構成が更新されるときに実行され、キャッシュ プラグイン (WP Rocket) の自動削除が有効になります。"
+
+msgid "Config data array."
+msgstr "構成データ配列。"
+
+msgid "Enabling auto-purging of caching plugins."
+msgstr "キャッシュプラグインの自動削除を有効にします。"
+
+msgid "Hook Reference"
+msgstr "フックのリファレンス"
+
+msgid "Entities"
+msgstr "エンティティ"
+
+msgid "Search across all actions and filters..."
+msgstr "すべてのアクションとフィルターを検索します..."
+
+msgid "Arguments"
+msgstr "引数"
+
+msgid "Returns"
+msgstr "返品"
+
+msgid "No return (Action Hook)"
+msgstr "ノーリターン（アクションフック）"
+
+msgid "Snippet"
+msgstr "スニペット"
+
+msgid "Copy Code"
+msgstr "コードをコピーする"
+
+msgid "To use this hook, please install and activate the"
+msgstr "このフックを使用するには、"
+
+msgid "addon."
+msgstr "アドオン。"
+
+msgid "View Addon Details"
+msgstr "アドオンの詳細を表示"
+
+msgid "No results found"
+msgstr "結果が見つかりませんでした"
+
+msgid "Try searching for specific keywords like \\"
+msgstr "\\ のような特定のキーワードを検索してみてください。"
+
+msgid "Hooks"
+msgstr "フック"
+
+msgid "Search Results"
+msgstr "検索結果"

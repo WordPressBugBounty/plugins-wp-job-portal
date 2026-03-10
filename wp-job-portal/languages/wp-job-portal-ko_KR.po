@@ -12967,3 +12967,1008 @@ msgstr "-- 검색결과 --"
 
 msgid "Console Output"
 msgstr "콘솔 출력"
+
+msgid "After Store Job"
+msgstr "매장 작업 후"
+
+msgid "Fires immediately after a new job is stored in the database."
+msgstr "새 작업이 데이터베이스에 저장된 직후에 발생합니다."
+
+msgid "The newly created job ID."
+msgstr "새로 생성된 작업 ID입니다."
+
+msgid "Triggered upon job creation."
+msgstr "작업 생성 시 트리거됩니다."
+
+msgid "After Edit Job"
+msgstr "작업 편집 후"
+
+msgid "Fires immediately after an existing job is updated."
+msgstr "기존 작업이 업데이트된 직후에 발생합니다."
+
+msgid "The updated job ID."
+msgstr "업데이트된 작업 ID입니다."
+
+msgid "Triggered upon job update."
+msgstr "작업 업데이트 시 트리거됩니다."
+
+msgid "After Delete Job"
+msgstr "작업 삭제 후"
+
+msgid "Fires immediately after a job is deleted."
+msgstr "작업이 삭제된 직후에 발생합니다."
+
+msgid "The deleted job ID."
+msgstr "삭제된 작업 ID입니다."
+
+msgid "Triggered upon job deletion."
+msgstr "작업 삭제 시 트리거됩니다."
+
+msgid "Job Published"
+msgstr "채용 공고"
+
+msgid "Fires when admin approved a job for publish from job listing. Essential for XML syndication to Indeed or LinkedIn."
+msgstr "관리자가 채용 정보 목록에서 게시할 채용을 승인하면 발생합니다. 인디드 또는 LinkedIn에 대한 XML 신디케이션에 필수적입니다."
+
+msgid "The job ID."
+msgstr "작업 ID입니다."
+
+msgid "The associated company ID."
+msgstr "연결된 회사 ID입니다."
+
+msgid "Full job data array."
+msgstr "전체 작업 데이터 배열."
+
+msgid "Essential for XML syndication feeds."
+msgstr "XML 신디케이션 피드에 필수적입니다."
+
+msgid "Job Status Transition"
+msgstr "직무 상태 전환"
+
+msgid "Fires when a job is approved or rejected by an admin from job que."
+msgstr "작업 대기열에서 관리자가 작업을 승인하거나 거부할 때 발생합니다."
+
+msgid "Old status code."
+msgstr "이전 상태 코드."
+
+msgid "New status string."
+msgstr "새로운 상태 문자열."
+
+msgid "Admin approval/rejection trigger."
+msgstr "관리자 승인/거부 트리거."
+
+msgid "Featured Job Activated"
+msgstr "주요 채용정보가 활성화되었습니다"
+
+msgid "Fires when a job is elevated to featured status."
+msgstr "채용정보가 추천 상태로 승격되면 실행됩니다."
+
+msgid "User ID of the job owner."
+msgstr "작업 소유자의 사용자 ID입니다."
+
+msgid "Featured expiry date."
+msgstr "주요 만료일."
+
+msgid "Triggered on featured upgrade."
+msgstr "추천 업그레이드 시 트리거됩니다."
+
+msgid "Job Search Query Args"
+msgstr "취업정보 검색 쿼리 인수"
+
+msgid "Modifies the underlying SQL query for job searches."
+msgstr "채용정보 검색을 위한 기본 SQL 쿼리를 수정합니다."
+
+msgid "The search SQL query."
+msgstr "검색 SQL 쿼리입니다."
+
+msgid "Search filter variables."
+msgstr "필터 변수를 검색합니다."
+
+msgid "Modified SQL query string."
+msgstr "수정된 SQL 쿼리 문자열."
+
+msgid "Used for modifying frontend job search behaviour."
+msgstr "프런트엔드 구직 활동을 수정하는 데 사용됩니다."
+
+msgid "Google Job Schema"
+msgstr "Google 작업 스키마"
+
+msgid "Intercepts the structured SEO data array to inject dynamic properties (like baseSalary)."
+msgstr "구조화된 SEO 데이터 배열을 가로채서 동적 속성(예: baseSalary)을 주입합니다."
+
+msgid "JSON-LD schema array."
+msgstr "JSON-LD 스키마 배열."
+
+msgid "Job ID."
+msgstr "작업 ID."
+
+msgid "Modified JSON-LD array."
+msgstr "수정된 JSON-LD 배열."
+
+msgid "Crucial for SEO and Google Jobs integration."
+msgstr "SEO와 Google 채용 정보 통합에 중요합니다."
+
+msgid "Job Shortlisted"
+msgstr "채용공고"
+
+msgid "Candidate intent tracking for analytics when a job is saved or shortlisted."
+msgstr "채용 정보가 저장되거나 최종 후보로 선정될 때 분석을 위한 후보자 의도 추적."
+
+msgid "Shortlist row ID."
+msgstr "관심 목록 행 ID입니다."
+
+msgid "User ID."
+msgstr "사용자 ID."
+
+msgid "Extra data array."
+msgstr "추가 데이터 배열."
+
+msgid "Candidate intent tracking."
+msgstr "후보자 의도 추적."
+
+msgid "After Store Resume"
+msgstr "매장 재개 후"
+
+msgid "Fires immediately after a new resume is stored in the database."
+msgstr "새 이력서가 데이터베이스에 저장된 직후에 발생합니다."
+
+msgid "The newly created resume ID."
+msgstr "새로 생성된 이력서 ID입니다."
+
+msgid "Triggered upon resume creation."
+msgstr "이력서 생성 시 트리거됩니다."
+
+msgid "After Edit Resume"
+msgstr "이력서 수정 후"
+
+msgid "Fires immediately after an existing resume is updated."
+msgstr "기존 이력서가 업데이트된 직후에 발생합니다."
+
+msgid "The updated resume ID."
+msgstr "업데이트된 이력서 ID입니다."
+
+msgid "Triggered upon resume update."
+msgstr "이력서 업데이트 시 트리거됩니다."
+
+msgid "After Delete Resume"
+msgstr "이력서 삭제 후"
+
+msgid "Fires immediately after a resume is deleted."
+msgstr "이력서가 삭제된 직후에 발생합니다."
+
+msgid "The deleted resume ID."
+msgstr "삭제된 이력서 ID입니다."
+
+msgid "Triggered upon resume deletion."
+msgstr "이력서 삭제 시 트리거됩니다."
+
+msgid "Resume Status Transition"
+msgstr "상태 전환 재개"
+
+msgid "Fires when an administrator manually approves or rejects a resume."
+msgstr "관리자가 이력서를 수동으로 승인하거나 거부할 때 발생합니다."
+
+msgid "The ID of the resume."
+msgstr "이력서의 ID입니다."
+
+msgid "The previous status."
+msgstr "이전 상태입니다."
+
+msgid "The new status."
+msgstr "새로운 상태."
+
+msgid "Track manual admin approvals/rejections."
+msgstr "수동 관리자 승인/거부를 추적합니다."
+
+msgid "Resume Search Query Args"
+msgstr "검색 쿼리 인수 재개"
+
+msgid "Modifies the SQL WHERE clause during a frontend resume search, allowing Elasticsearch integrations."
+msgstr "프런트엔드 이력서 검색 중에 SQL WHERE 절을 수정하여 Elasticsearch 통합을 허용합니다."
+
+msgid "The current SQL query string."
+msgstr "현재 SQL 쿼리 문자열입니다."
+
+msgid "Array of applied search filters."
+msgstr "적용된 검색 필터의 배열입니다."
+
+msgid "Allows Elasticsearch integrations."
+msgstr "Elasticsearch 통합을 허용합니다."
+
+msgid "Featured Resume Activated"
+msgstr "추천 이력서가 활성화되었습니다"
+
+msgid "Fires when a resume is promoted to featured status."
+msgstr "이력서가 추천 상태로 승격되면 발생합니다."
+
+msgid "Resume ID."
+msgstr "이력서 아이디입니다."
+
+msgid "Job Seeker User ID."
+msgstr "구직자 사용자 ID입니다."
+
+msgid "After Job Apply"
+msgstr "입사 후 지원"
+
+msgid "Fires immediately after a candidate successfully applies for a job."
+msgstr "후보자가 직무에 성공적으로 지원한 직후에 발생합니다."
+
+msgid "The job application ID."
+msgstr "채용 지원 ID입니다."
+
+msgid "Triggered upon successful job application."
+msgstr "성공적인 채용 지원 시 트리거됩니다."
+
+msgid "Application Submitted"
+msgstr "신청서가 제출되었습니다"
+
+msgid "Standard event trigger for a logged-in user submitting a job application."
+msgstr "입사 지원서를 제출하는 로그인한 사용자에 대한 표준 이벤트 트리거입니다."
+
+msgid "ID of the application record."
+msgstr "신청 기록의 ID입니다."
+
+msgid "ID of the applied job."
+msgstr "적용된 작업의 ID입니다."
+
+msgid "Fires for authenticated users only."
+msgstr "인증된 사용자에 대해서만 실행됩니다."
+
+msgid "Quick Apply Submitted"
+msgstr "빠른 신청이 제출되었습니다."
+
+msgid "Triggers when a candidate uses the \\"
+msgstr "후보자가 \\를 사용할 때 트리거됩니다."
+
+msgid "Application record ID."
+msgstr "신청 기록 ID."
+
+msgid "Submitted form data."
+msgstr "양식 데이터를 제출했습니다."
+
+msgid "Uploaded files array."
+msgstr "업로드된 파일 배열."
+
+msgid "Handles bypass forms and attached files."
+msgstr "우회양식 및 첨부파일을 처리합니다."
+
+msgid "Visitor Application Submitted"
+msgstr "방문자 신청서가 제출되었습니다."
+
+msgid "Triggers specifically for unauthenticated (guest) applications."
+msgstr "인증되지 않은(게스트) 애플리케이션에 대해 특별히 트리거됩니다."
+
+msgid "Guest data array."
+msgstr "게스트 데이터 배열."
+
+msgid "Triggers specifically for unauthenticated applications."
+msgstr "인증되지 않은 애플리케이션에 대해 특별히 트리거됩니다."
+
+msgid "Candidate Status Updated"
+msgstr "후보자 상태가 업데이트되었습니다."
+
+msgid "Core ATS hook. Fires when an employer changes an applicants internal workflow state (e.g., Hired)."
+msgstr "코어 ATS 후크. 고용주가 지원자의 내부 워크플로 상태(예: 고용됨)를 변경할 때 발생합니다."
+
+msgid "Old ATS status."
+msgstr "이전 ATS 상태."
+
+msgid "New ATS status."
+msgstr "새로운 ATS 상태."
+
+msgid "Employer User ID."
+msgstr "고용주 사용자 ID."
+
+msgid "Core ATS hook."
+msgstr "코어 ATS 후크."
+
+msgid "Application Note Saved"
+msgstr "애플리케이션 노트가 저장되었습니다"
+
+msgid "Fires when an employer adds an internal note to an application."
+msgstr "고용주가 신청서에 내부 메모를 추가하면 실행됩니다."
+
+msgid "Note text."
+msgstr "텍스트를 참고하세요."
+
+msgid "Fires on employer internal note."
+msgstr "고용주 내부 메모에 따라 실행됩니다."
+
+msgid "Application Rating Updated"
+msgstr "애플리케이션 등급이 업데이트되었습니다."
+
+msgid "Fires when a candidate receives a star rating from an employer."
+msgstr "후보자가 고용주로부터 별 등급을 받으면 실행됩니다."
+
+msgid "Application ID."
+msgstr "애플리케이션 ID."
+
+msgid "Star rating."
+msgstr "별점."
+
+msgid "Fires on rating update."
+msgstr "등급 업데이트 시 실행됩니다."
+
+msgid "After Store Company"
+msgstr "애프터스토어컴퍼니"
+
+msgid "Fires immediately after a new company is stored in the database."
+msgstr "새 회사가 데이터베이스에 저장된 직후에 발생합니다."
+
+msgid "The newly created company ID."
+msgstr "새로 생성된 회사 ID입니다."
+
+msgid "Triggered upon company creation."
+msgstr "회사 생성 시 트리거됩니다."
+
+msgid "After Edit Company"
+msgstr "회사 수정 후"
+
+msgid "Fires immediately after an existing company is updated."
+msgstr "기존 회사가 업데이트된 직후에 발생합니다."
+
+msgid "The updated company ID."
+msgstr "업데이트된 회사 ID입니다."
+
+msgid "Triggered upon company update."
+msgstr "회사 업데이트 시 트리거됩니다."
+
+msgid "After Delete Company"
+msgstr "회사 삭제 후"
+
+msgid "Fires immediately after a company is deleted."
+msgstr "회사가 삭제된 직후에 발생합니다."
+
+msgid "The deleted company ID."
+msgstr "삭제된 회사ID입니다."
+
+msgid "Triggered upon company deletion."
+msgstr "회사 삭제 시 트리거됩니다."
+
+msgid "Company Status Transition"
+msgstr "회사 상태 전환"
+
+msgid "Fires on company approve/reject state changes."
+msgstr "회사가 상태 변경을 승인/거부할 때 발생합니다."
+
+msgid "Company ID."
+msgstr "회사 ID."
+
+msgid "Old status."
+msgstr "이전 상태."
+
+msgid "New status."
+msgstr "새로운 상태."
+
+msgid "Fires on company state changes."
+msgstr "회사 상태 변경 시 발생합니다."
+
+msgid "Featured Company Activated"
+msgstr "주요 회사 활성화"
+
+msgid "Fires when a company is promoted to featured status."
+msgstr "회사가 추천 상태로 승격되면 실행됩니다."
+
+msgid "Company Search Query Args"
+msgstr "회사 검색어 인수"
+
+msgid "Modifies Company SQL search queries."
+msgstr "회사 SQL 검색 쿼리를 수정합니다."
+
+msgid "Current SQL query."
+msgstr "현재 SQL 쿼리입니다."
+
+msgid "Search filters."
+msgstr "검색 필터."
+
+msgid "Modified query string."
+msgstr "쿼리 문자열이 수정되었습니다."
+
+msgid "Used for modifying frontend company search behaviour."
+msgstr "프런트엔드 회사 검색 동작을 수정하는 데 사용됩니다."
+
+msgid "User Status Transition"
+msgstr "사용자 상태 전환"
+
+msgid "Fires when an admin manually suspends or activates an account."
+msgstr "관리자가 계정을 수동으로 정지하거나 활성화할 때 발생합니다."
+
+msgid "Admin account activation/suspension."
+msgstr "관리자 계정 활성화/정지."
+
+msgid "User Deleted"
+msgstr "사용자가 삭제되었습니다."
+
+msgid "Crucial for GDPR compliance; alerts external systems to delete user records."
+msgstr "GDPR 준수에 중요합니다. 사용자 기록을 삭제하도록 외부 시스템에 경고합니다."
+
+msgid "Portal User ID."
+msgstr "포털 사용자 ID."
+
+msgid "WordPress User ID."
+msgstr "워드프레스 사용자 ID."
+
+msgid "User Role ID."
+msgstr "사용자 역할 ID."
+
+msgid "Crucial for GDPR compliance."
+msgstr "GDPR 준수에 중요합니다."
+
+msgid "User Profile Saved"
+msgstr "사용자 프로필이 저장되었습니다."
+
+msgid "Fires whenever user metadata is updated."
+msgstr "사용자 메타데이터가 업데이트될 때마다 실행됩니다."
+
+msgid "Profile ID."
+msgstr "프로필 ID."
+
+msgid "Profile metadata."
+msgstr "프로필 메타데이터."
+
+msgid "Fires on metadata update."
+msgstr "메타데이터 업데이트 시 발생합니다."
+
+msgid "AI Content Prompt"
+msgstr "AI 콘텐츠 프롬프트"
+
+msgid "Intercepts the prompt string before it hits the AI proxy. Allows insertion of mandatory EEO text."
+msgstr "AI 프록시에 도달하기 전에 프롬프트 문자열을 가로챕니다. 필수 EEO 텍스트 삽입을 허용합니다."
+
+msgid "AI Prompt."
+msgstr "AI 프롬프트."
+
+msgid "Context parameters."
+msgstr "컨텍스트 매개변수."
+
+msgid "Modified AI Prompt."
+msgstr "수정된 AI 프롬프트."
+
+msgid "Allows insertion of mandatory context."
+msgstr "필수 컨텍스트 삽입을 허용합니다."
+
+msgid "AI Generation Completed"
+msgstr "AI 생성 완료"
+
+msgid "Captures the AI response for logging and plagiarism scanning."
+msgstr "로깅 및 표절 스캔에 대한 AI 응답을 캡처합니다."
+
+msgid "Status code."
+msgstr "상태 코드."
+
+msgid "Response payload."
+msgstr "응답 페이로드."
+
+msgid "Original Prompt."
+msgstr "원본 프롬프트."
+
+msgid "Wrapper used."
+msgstr "래퍼가 사용되었습니다."
+
+msgid "Used for logging and plagiarism checks."
+msgstr "로깅 및 표절 검사에 사용됩니다."
+
+msgid "Before AI Resume Parse"
+msgstr "AI 이력서 분석 전"
+
+msgid "Allows PII redaction from resume text before it is indexed for AI matching."
+msgstr "AI 일치를 위해 인덱싱되기 전에 이력서 텍스트에서 PII 수정을 허용합니다."
+
+msgid "Text string for AI indexing."
+msgstr "AI 인덱싱을 위한 텍스트 문자열입니다."
+
+msgid "Entity ID."
+msgstr "엔터티 ID."
+
+msgid "Sanitized AI string."
+msgstr "AI 문자열을 삭제했습니다."
+
+msgid "Useful for Blind Hiring features."
+msgstr "블라인드 채용 기능에 유용합니다."
+
+msgid "Before AI Job Parse"
+msgstr "AI Job Parse 이전"
+
+msgid "Allows modification of job text before AI indexing."
+msgstr "AI 인덱싱 전에 작업 텍스트 수정을 허용합니다."
+
+msgid "Modified AI string."
+msgstr "AI 문자열을 수정했습니다."
+
+msgid "AI Job to Resume Match"
+msgstr "AI Job으로 경기 재개"
+
+msgid "Mutates the search string the AI uses to find resumes for a job."
+msgstr "AI가 채용 이력서를 찾는 데 사용하는 검색 문자열을 변경합니다."
+
+msgid "Search string."
+msgstr "검색 문자열."
+
+msgid "Mutated search string."
+msgstr "검색 문자열이 변경되었습니다."
+
+msgid "Mutates the search string the AI uses."
+msgstr "AI가 사용하는 검색 문자열을 변경합니다."
+
+msgid "AI Resume to Job Match"
+msgstr "AI 이력서 직업 매칭"
+
+msgid "Mutates the search string the AI uses to find jobs for a resume."
+msgstr "AI가 이력서에 필요한 일자리를 찾는 데 사용하는 검색 문자열을 변경합니다."
+
+msgid "AI Dashboard Job Suggestions"
+msgstr "AI 대시보드 직무 제안"
+
+msgid "Captures suggested jobs calculated for the job seekers dashboard."
+msgstr "구직자 대시보드에 대해 계산된 추천 채용정보를 캡처합니다."
+
+msgid "Seeker User ID."
+msgstr "탐색자 사용자 ID."
+
+msgid "Array of matched Job IDs."
+msgstr "일치하는 작업 ID의 배열입니다."
+
+msgid "Captures dashboard suggestions."
+msgstr "대시보드 제안을 캡처합니다."
+
+msgid "AI Job Suggestion Calculated"
+msgstr "AI 직업 제안 계산"
+
+msgid "Captures suggested jobs against a specific resume ID."
+msgstr "특정 이력서 ID에 대해 제안된 작업을 캡처합니다."
+
+msgid "Captures resume-specific suggestions."
+msgstr "이력서별 제안을 캡처합니다."
+
+msgid "AI Dashboard Resume Suggestions"
+msgstr "AI 대시보드 이력서 제안"
+
+msgid "Captures suggested resumes calculated for the employers dashboard."
+msgstr "고용주 대시보드에 대해 계산된 추천 이력서를 캡처합니다."
+
+msgid "Array of matched Resume IDs."
+msgstr "일치하는 이력서 ID의 배열입니다."
+
+msgid "Captures employer dashboard suggestions."
+msgstr "고용주 대시보드 제안을 캡처합니다."
+
+msgid "AI Resume Suggestion Calculated"
+msgstr "AI 이력서 제안 계산됨"
+
+msgid "Captures suggested resumes against a specific job ID."
+msgstr "특정 직무 ID에 대해 제안된 이력서를 캡처합니다."
+
+msgid "Captures job-specific suggestions."
+msgstr "직무별 제안을 포착합니다."
+
+msgid "Job Alert Triggered"
+msgstr "작업 알림이 실행됨"
+
+msgid "Intercepts an alert match before the email sends. Ideal for Push/SMS notifications."
+msgstr "이메일이 전송되기 전에 경고 일치를 차단합니다. 푸시/SMS 알림에 적합합니다."
+
+msgid "Person ID."
+msgstr "개인 ID."
+
+msgid "Subscriber User ID."
+msgstr "가입자 사용자 ID."
+
+msgid "Matched jobs array."
+msgstr "일치하는 작업 배열입니다."
+
+msgid "Ideal for Push/SMS notifications."
+msgstr "푸시/SMS 알림에 적합합니다."
+
+msgid "Job Alert Saved"
+msgstr "취업 알림이 저장되었습니다"
+
+msgid "Fires when an alert preference is created or updated."
+msgstr "알림 기본 설정이 생성되거나 업데이트되면 실행됩니다."
+
+msgid "Alert record ID."
+msgstr "경고 레코드 ID입니다."
+
+msgid "Subscriber Email."
+msgstr "구독자 이메일."
+
+msgid "Alert configuration data."
+msgstr "경고 구성 데이터."
+
+msgid "Fires on alert create/update."
+msgstr "경고 생성/업데이트 시 발생합니다."
+
+msgid "Job Alert Unsubscribed"
+msgstr "채용공고 알림이 구독 취소되었습니다."
+
+msgid "Fires when an alert is deleted."
+msgstr "경고가 삭제되면 발생합니다."
+
+msgid "Deleted Alert ID."
+msgstr "경고 ID가 삭제되었습니다."
+
+msgid "Membership Package Purchased"
+msgstr "멤버십 패키지 구매"
+
+msgid "Triggers on a successful checkout via Stripe or PayPal gateways."
+msgstr "Stripe 또는 PayPal 게이트웨이를 통한 성공적인 결제 시 트리거됩니다."
+
+msgid "Package ID."
+msgstr "패키지 ID."
+
+msgid "Amount paid."
+msgstr "지불된 금액입니다."
+
+msgid "Payment gateway."
+msgstr "결제 게이트웨이."
+
+msgid "Triggers on gateway success."
+msgstr "게이트웨이 성공 시 트리거됩니다."
+
+msgid "WooCommerce Order Synced"
+msgstr "WooCommerce 주문이 동기화되었습니다"
+
+msgid "Executes when WP Job Portal routes a payment into the WooCommerce cart."
+msgstr "WP Job Portal이 WooCommerce 장바구니로 결제를 라우팅할 때 실행됩니다."
+
+msgid "WooCommerce Post ID."
+msgstr "WooCommerce 게시물 ID."
+
+msgid "Purchase data."
+msgstr "구매 데이터."
+
+msgid "Executes on Woo cart route."
+msgstr "Woo 카트 경로에서 실행됩니다."
+
+msgid "Per Listing Purchased"
+msgstr "구매한 목록당"
+
+msgid "Generic action deployed across all individual purchases."
+msgstr "모든 개별 구매에 걸쳐 배포되는 일반 작업입니다."
+
+msgid "Entity ID (job/resume/company)."
+msgstr "엔터티 ID(직업/이력서/회사)."
+
+msgid "Entity type."
+msgstr "엔터티 유형."
+
+msgid "Gateway used."
+msgstr "사용된 게이트웨이입니다."
+
+msgid "Deployed across individual purchases."
+msgstr "개별 구매에 걸쳐 배포됩니다."
+
+msgid "Subscription Cancelled"
+msgstr "구독이 취소되었습니다"
+
+msgid "Alerts external platforms (like Discord/Active Directory) to downgrade the user."
+msgstr "사용자를 다운그레이드하도록 외부 플랫폼(예: Discord/Active Directory)에 경고합니다."
+
+msgid "Gateway sub ID."
+msgstr "게이트웨이 하위 ID."
+
+msgid "Downgrade user permissions."
+msgstr "사용자 권한을 다운그레이드합니다."
+
+msgid "Membership Purchased DB Commit"
+msgstr "멤버십 구매 DB 커밋"
+
+msgid "A database-level failsafe hook that fires even if a package is manually assigned by an admin."
+msgstr "관리자가 패키지를 수동으로 할당한 경우에도 실행되는 데이터베이스 수준의 안전 장치 후크입니다."
+
+msgid "Amount."
+msgstr "양."
+
+msgid "Payment Method."
+msgstr "결제 방법."
+
+msgid "Database-level failsafe hook."
+msgstr "데이터베이스 수준의 비상 안전 후크."
+
+msgid "Package Saved"
+msgstr "패키지가 저장되었습니다"
+
+msgid "Fires when a package is updated or unpublished."
+msgstr "패키지가 업데이트되거나 게시 취소되면 발생합니다."
+
+msgid "Package data."
+msgstr "패키지 데이터."
+
+msgid "Fires on package update."
+msgstr "패키지 업데이트 시 발생합니다."
+
+msgid "Invoice Status Transition"
+msgstr "송장 상태 전환"
+
+msgid "Fires when an invoice moves to \\"
+msgstr "송장이 \\로 이동하면 발생합니다."
+
+msgid "Invoice ID."
+msgstr "송장 ID."
+
+msgid "Old Status."
+msgstr "이전 상태."
+
+msgid "New Status."
+msgstr "새로운 상태."
+
+msgid "Syncs external accounting software."
+msgstr "외부 회계 소프트웨어를 동기화합니다."
+
+msgid "Invoice Saved"
+msgstr "송장이 저장되었습니다"
+
+msgid "Fires on invoice creation or deletion."
+msgstr "송장 생성 또는 삭제 시 발생합니다."
+
+msgid "Invoice Data."
+msgstr "송장 데이터."
+
+msgid "Fires on invoice creation."
+msgstr "송장 생성 시 발생합니다."
+
+msgid "Employer Dashboard Loaded"
+msgstr "고용주 대시보드가 ​​로드되었습니다."
+
+msgid "Fires when the employer portal initializes."
+msgstr "고용주 포털이 초기화될 때 발생합니다."
+
+msgid "Portal view data array."
+msgstr "포털 보기 데이터 배열."
+
+msgid "Jobseeker Dashboard Loaded"
+msgstr "구직자 대시보드가 ​​로드되었습니다."
+
+msgid "Fires when the candidate portal initializes."
+msgstr "후보 포털이 초기화되면 실행됩니다."
+
+msgid "Candidate User ID."
+msgstr "후보자 사용자 ID."
+
+msgid "Admin Dashboard Loaded"
+msgstr "관리 대시보드가 ​​로드되었습니다."
+
+msgid "Injects custom data into the WP Admin control panel."
+msgstr "WP 관리자 제어판에 사용자 정의 데이터를 삽입합니다."
+
+msgid "Admin data array."
+msgstr "관리 데이터 배열."
+
+msgid "Injects data into WP Admin."
+msgstr "WP Admin에 데이터를 주입합니다."
+
+msgid "User Widget HTML"
+msgstr "사용자 위젯 HTML"
+
+msgid "Allows theme developers to modify member widget cards."
+msgstr "테마 개발자가 회원 위젯 카드를 수정할 수 있습니다."
+
+msgid "HTML Content."
+msgstr "HTML 콘텐츠."
+
+msgid "User role."
+msgstr "사용자 역할."
+
+msgid "User data."
+msgstr "사용자 데이터."
+
+msgid "Modified HTML."
+msgstr "수정된 HTML."
+
+msgid "Modify member widget cards."
+msgstr "회원 위젯 카드를 수정합니다."
+
+msgid "Shortlist Popup HTML"
+msgstr "후보 목록 팝업 HTML"
+
+msgid "Modifies the HTML output of the shortlist modal."
+msgstr "후보 목록 모달의 HTML 출력을 수정합니다."
+
+msgid "Modifies shortlist modal HTML."
+msgstr "후보 목록 모달 HTML을 수정합니다."
+
+msgid "Export Resume Raw String"
+msgstr "이력서 원시 문자열 내보내기"
+
+msgid "Intercepts the final TSV text string for a single resume download."
+msgstr "단일 이력서 다운로드에 대한 최종 TSV 텍스트 문자열을 가로챕니다."
+
+msgid "TSV String."
+msgstr "TSV 문자열."
+
+msgid "Modified TSV string."
+msgstr "TSV 문자열이 수정되었습니다."
+
+msgid "Intercepts single TSV export."
+msgstr "단일 TSV 내보내기를 차단합니다."
+
+msgid "Export Resume Data Array"
+msgstr "이력서 데이터 배열 내보내기"
+
+msgid "Highly useful for Blind Hiring; allows programmatic removal of PII columns before TSV conversion."
+msgstr "블라인드 채용에 매우 유용합니다. TSV 변환 전에 PII 열을 프로그래밍 방식으로 제거할 수 있습니다."
+
+msgid "Export row array."
+msgstr "행 배열을 내보냅니다."
+
+msgid "DB result data."
+msgstr "DB 결과 데이터입니다."
+
+msgid "Sanitized row array."
+msgstr "정리된 행 배열."
+
+msgid "Highly useful for Blind Hiring."
+msgstr "블라인드 채용에 매우 유용합니다."
+
+msgid "Export All Resumes Raw String"
+msgstr "모든 이력서 원시 문자열 내보내기"
+
+msgid "Intercepts the bulk export string to append HR disclaimers or timestamps."
+msgstr "HR 고지 사항 또는 타임스탬프를 추가하기 위해 대량 내보내기 문자열을 가로챕니다."
+
+msgid "Bulk TSV String."
+msgstr "대량 TSV 문자열."
+
+msgid "Modified bulk string."
+msgstr "수정된 대량 문자열."
+
+msgid "Intercepts bulk export string."
+msgstr "대량 내보내기 문자열을 가로챕니다."
+
+msgid "Resume Export Filename"
+msgstr "이력서 내보내기 파일 이름"
+
+msgid "Mutates the generated ZIP file name dynamically."
+msgstr "생성된 ZIP 파일 이름을 동적으로 변경합니다."
+
+msgid "Default filename."
+msgstr "기본 파일 이름."
+
+msgid "File extension."
+msgstr "파일 확장자."
+
+msgid "Mutated filename."
+msgstr "파일 이름이 변경되었습니다."
+
+msgid "Mutates generated ZIP filename."
+msgstr "생성된 ZIP 파일 이름을 변경합니다."
+
+msgid "System Email Headers"
+msgstr "시스템 이메일 헤더"
+
+msgid "Modifies outgoing SMTP headers (e.g., custom Reply-To addresses)."
+msgstr "나가는 SMTP 헤더(예: 사용자 정의 회신 주소)를 수정합니다."
+
+msgid "Email headers array."
+msgstr "이메일 헤더 배열."
+
+msgid "Email subject."
+msgstr "이메일 제목."
+
+msgid "Modified headers."
+msgstr "헤더가 수정되었습니다."
+
+msgid "Modifies outgoing SMTP headers."
+msgstr "나가는 SMTP 헤더를 수정합니다."
+
+msgid "Email Notification Sent"
+msgstr "이메일 알림이 전송되었습니다."
+
+msgid "Logs transactional emails immediately after wp_mail() fires."
+msgstr "wp_mail()이 실행된 직후 트랜잭션 이메일을 기록합니다."
+
+msgid "Email type string."
+msgstr "이메일 유형 문자열."
+
+msgid "Recipient details."
+msgstr "수신자 세부정보."
+
+msgid "Email HTML payload."
+msgstr "이메일 HTML 페이로드."
+
+msgid "Logs transactional emails."
+msgstr "거래 이메일을 기록합니다."
+
+msgid "Internal Message Sent"
+msgstr "내부 메시지 전송됨"
+
+msgid "Intercepts secure internal messages to push to external SMS/Slack APIs."
+msgstr "보안 내부 메시지를 가로채 외부 SMS/Slack API로 푸시합니다."
+
+msgid "Message ID."
+msgstr "메시지 ID."
+
+msgid "Sender ID."
+msgstr "발신자 ID."
+
+msgid "Recipient ID."
+msgstr "수신자 ID."
+
+msgid "Message Text."
+msgstr "메시지 텍스트."
+
+msgid "Push to external SMS/Slack APIs."
+msgstr "외부 SMS/Slack API로 푸시합니다."
+
+msgid "Message Status Transition"
+msgstr "메시지 상태 전환"
+
+msgid "Triggers when an admin resolves a flagged/conflicted message."
+msgstr "관리자가 플래그가 지정되거나 충돌하는 메시지를 해결할 때 트리거됩니다."
+
+msgid "Admin flag resolution."
+msgstr "관리자 플래그 해결."
+
+msgid "File Uploaded (S3 Hook)"
+msgstr "파일 업로드됨(S3 후크)"
+
+msgid "The ultimate scalability hook. Fires when a physical file is saved, allowing cloud plugins to upload to AWS S3 and delete the local instance."
+msgstr "최고의 확장성 후크. 실제 파일이 저장되면 실행되어 클라우드 플러그인이 AWS S3에 업로드하고 로컬 인스턴스를 삭제할 수 있습니다."
+
+msgid "Absolute physical file path."
+msgstr "절대 실제 파일 경로입니다."
+
+msgid "Context type (e.g. company_logo, resume_file)."
+msgstr "컨텍스트 유형(예: company_logo, 이력서_파일)"
+
+msgid "Associated record ID."
+msgstr "관련 레코드 ID입니다."
+
+msgid "The ultimate scalability hook for S3."
+msgstr "S3를 위한 최고의 확장성 후크입니다."
+
+msgid "SEO Settings Updated"
+msgstr "SEO 설정이 업데이트되었습니다."
+
+msgid "Executes when core configs update, enabling auto-purging of caching plugins (WP Rocket)."
+msgstr "핵심 구성이 업데이트될 때 실행되어 캐싱 플러그인(WP Rocket)의 자동 제거를 활성화합니다."
+
+msgid "Config data array."
+msgstr "구성 데이터 배열."
+
+msgid "Enabling auto-purging of caching plugins."
+msgstr "캐싱 플러그인 자동 제거를 활성화합니다."
+
+msgid "Hook Reference"
+msgstr "후크 참조"
+
+msgid "Entities"
+msgstr "엔터티"
+
+msgid "Search across all actions and filters..."
+msgstr "모든 작업과 필터를 검색합니다..."
+
+msgid "Arguments"
+msgstr "인수"
+
+msgid "Returns"
+msgstr "보고"
+
+msgid "No return (Action Hook)"
+msgstr "반환 없음(액션 후크)"
+
+msgid "Snippet"
+msgstr "단편"
+
+msgid "Copy Code"
+msgstr "코드 복사"
+
+msgid "To use this hook, please install and activate the"
+msgstr "이 후크를 사용하려면 다음을 설치하고 활성화하십시오."
+
+msgid "addon."
+msgstr "애드온."
+
+msgid "View Addon Details"
+msgstr "애드온 세부정보 보기"
+
+msgid "No results found"
+msgstr "검색결과가 없습니다"
+
+msgid "Try searching for specific keywords like \\"
+msgstr "\\와 같은 특정 키워드를 검색해 보세요."
+
+msgid "Hooks"
+msgstr "후크"
+
+msgid "Search Results"
+msgstr "검색결과"

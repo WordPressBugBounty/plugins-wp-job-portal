@@ -349,9 +349,16 @@ class WPJOBPORTALUserModel {
         if(!is_numeric($wpjobportal_userid)) return false;
         $wpjobportal_row = WPJOBPORTALincluder::getJSTable('users');
         if($wpjobportal_row->load($wpjobportal_userid)){
-            $wpjobportal_row->columns['status'] = 1 - $wpjobportal_row->status;
+            $old_status = $wpjobportal_row->status;
+            $new_status = 1 - $old_status;
+            $wpjobportal_row->columns['status'] = $new_status;
+
             if($wpjobportal_row->store()){
-                if($wpjobportal_row->columns['status'] == 1){
+                // --- NEW HOOK INTEGRATION START ---
+                do_action('wpjobportal_user_status_transition', $wpjobportal_userid, $old_status, $new_status);
+                // --- NEW HOOK INTEGRATION END ---
+
+                if($new_status == 1){
                     return WPJOBPORTAL_ENABLED;
                 }else{
                     return WPJOBPORTAL_DISABLED;
@@ -408,6 +415,13 @@ class WPJOBPORTALUserModel {
                 if ($this->deleteOurUser($wpjobportal_uid)) {
                     do_action('wpjobportal_load_wp_users');
                     if (wp_delete_user($wp_uid)) {
+
+                        // --- NEW HOOK INTEGRATION START ---
+                        // Blueprint: Privacy and System Synchronization
+                        // Crucial for GDPR compliance and external CRM/ATS cleanup protocols.
+                        do_action('wpjobportal_user_deleted', $wpjobportal_uid, $wp_uid, $wpjobportal_roleid);
+                        // --- NEW HOOK INTEGRATION END ---
+
                         return WPJOBPORTAL_DELETED;
                     } else {
                         return WPJOBPORTAL_DELETE_ERROR;
@@ -910,6 +924,12 @@ class WPJOBPORTALUserModel {
         if(isset($wpjobportal_data['oldStatus']) && $wpjobportal_data['oldStatus']!=$wpjobportal_data['status']){
             WPJOBPORTALincluder::getJSModel('emailtemplate')->sendMail(2,2,$wpjobportal_row->id);
         }
+
+        // --- NEW HOOK INTEGRATION START ---
+        // Blueprint: Data Synchronization Action
+        // Fires whenever a user profile (metadata, name, custom fields) is created or updated.
+        do_action('wpjobportal_user_profile_saved', $wpjobportal_row->id, $wpjobportal_data);
+        // --- NEW HOOK INTEGRATION END ---
 
         return WPJOBPORTAL_SAVED;
     }

@@ -12964,3 +12964,1008 @@ msgstr "-- Risultati della ricerca --"
 
 msgid "Console Output"
 msgstr "Uscita della console"
+
+msgid "After Store Job"
+msgstr "Dopo il lavoro in negozio"
+
+msgid "Fires immediately after a new job is stored in the database."
+msgstr "Viene eseguito immediatamente dopo l'archiviazione di un nuovo lavoro nel database."
+
+msgid "The newly created job ID."
+msgstr "L'ID lavoro appena creato."
+
+msgid "Triggered upon job creation."
+msgstr "Attivato dalla creazione di posti di lavoro."
+
+msgid "After Edit Job"
+msgstr "Dopo la modifica del lavoro"
+
+msgid "Fires immediately after an existing job is updated."
+msgstr "Viene eseguito immediatamente dopo l'aggiornamento di un lavoro esistente."
+
+msgid "The updated job ID."
+msgstr "L'ID lavoro aggiornato."
+
+msgid "Triggered upon job update."
+msgstr "Attivato all'aggiornamento del lavoro."
+
+msgid "After Delete Job"
+msgstr "Dopo Elimina lavoro"
+
+msgid "Fires immediately after a job is deleted."
+msgstr "Si attiva immediatamente dopo l'eliminazione di un lavoro."
+
+msgid "The deleted job ID."
+msgstr "L'ID del lavoro eliminato."
+
+msgid "Triggered upon job deletion."
+msgstr "Attivato all'eliminazione del lavoro."
+
+msgid "Job Published"
+msgstr "Lavoro pubblicato"
+
+msgid "Fires when admin approved a job for publish from job listing. Essential for XML syndication to Indeed or LinkedIn."
+msgstr "Si attiva quando l'amministratore approva un lavoro per la pubblicazione dall'elenco dei lavori. Essenziale per la diffusione XML su Indeed o LinkedIn."
+
+msgid "The job ID."
+msgstr "L'ID del lavoro."
+
+msgid "The associated company ID."
+msgstr "L'ID dell'azienda associata."
+
+msgid "Full job data array."
+msgstr "Array completo di dati di lavoro."
+
+msgid "Essential for XML syndication feeds."
+msgstr "Essenziale per i feed di syndication XML."
+
+msgid "Job Status Transition"
+msgstr "Transizione dello stato del lavoro"
+
+msgid "Fires when a job is approved or rejected by an admin from job que."
+msgstr "Si attiva quando un lavoro viene approvato o rifiutato da un amministratore dalla coda lavori."
+
+msgid "Old status code."
+msgstr "Vecchio codice di stato."
+
+msgid "New status string."
+msgstr "Nuova stringa di stato."
+
+msgid "Admin approval/rejection trigger."
+msgstr "Trigger di approvazione/rifiuto dell'amministratore."
+
+msgid "Featured Job Activated"
+msgstr "Lavoro in primo piano attivato"
+
+msgid "Fires when a job is elevated to featured status."
+msgstr "Si attiva quando un lavoro viene elevato allo stato in primo piano."
+
+msgid "User ID of the job owner."
+msgstr "ID utente del proprietario del lavoro."
+
+msgid "Featured expiry date."
+msgstr "Data di scadenza in primo piano."
+
+msgid "Triggered on featured upgrade."
+msgstr "Attivato in caso di aggiornamento in primo piano."
+
+msgid "Job Search Query Args"
+msgstr "Argomenti query ricerca lavoro"
+
+msgid "Modifies the underlying SQL query for job searches."
+msgstr "Modifica la query SQL sottostante per le ricerche di lavoro."
+
+msgid "The search SQL query."
+msgstr "La query SQL di ricerca."
+
+msgid "Search filter variables."
+msgstr "Variabili del filtro di ricerca."
+
+msgid "Modified SQL query string."
+msgstr "Stringa di query SQL modificata."
+
+msgid "Used for modifying frontend job search behaviour."
+msgstr "Utilizzato per modificare il comportamento di ricerca di lavoro sul frontend."
+
+msgid "Google Job Schema"
+msgstr "Schema di lavoro di Google"
+
+msgid "Intercepts the structured SEO data array to inject dynamic properties (like baseSalary)."
+msgstr "Intercetta l'array di dati SEO strutturato per iniettare proprietà dinamiche (come baseSalary)."
+
+msgid "JSON-LD schema array."
+msgstr "Matrice di schemi JSON-LD."
+
+msgid "Job ID."
+msgstr "ID lavoro."
+
+msgid "Modified JSON-LD array."
+msgstr "Array JSON-LD modificato."
+
+msgid "Crucial for SEO and Google Jobs integration."
+msgstr "Fondamentale per l'integrazione SEO e Google Jobs."
+
+msgid "Job Shortlisted"
+msgstr "Lavoro selezionato"
+
+msgid "Candidate intent tracking for analytics when a job is saved or shortlisted."
+msgstr "Monitoraggio dell'intento del candidato per l'analisi quando un lavoro viene salvato o selezionato."
+
+msgid "Shortlist row ID."
+msgstr "ID riga dell'elenco selezionato."
+
+msgid "User ID."
+msgstr "ID utente."
+
+msgid "Extra data array."
+msgstr "Array di dati aggiuntivo."
+
+msgid "Candidate intent tracking."
+msgstr "Monitoraggio delle intenzioni dei candidati."
+
+msgid "After Store Resume"
+msgstr "Dopo il riavvio del negozio"
+
+msgid "Fires immediately after a new resume is stored in the database."
+msgstr "Si attiva immediatamente dopo che un nuovo curriculum viene archiviato nel database."
+
+msgid "The newly created resume ID."
+msgstr "L'ID del curriculum appena creato."
+
+msgid "Triggered upon resume creation."
+msgstr "Attivato al momento della creazione del curriculum."
+
+msgid "After Edit Resume"
+msgstr "Dopo la modifica riprendi"
+
+msgid "Fires immediately after an existing resume is updated."
+msgstr "Si attiva immediatamente dopo l'aggiornamento di un curriculum esistente."
+
+msgid "The updated resume ID."
+msgstr "L'ID del curriculum aggiornato."
+
+msgid "Triggered upon resume update."
+msgstr "Attivato all'aggiornamento del curriculum."
+
+msgid "After Delete Resume"
+msgstr "Dopo l'eliminazione riprendi"
+
+msgid "Fires immediately after a resume is deleted."
+msgstr "Si attiva immediatamente dopo l'eliminazione di un curriculum."
+
+msgid "The deleted resume ID."
+msgstr "L'ID del curriculum eliminato."
+
+msgid "Triggered upon resume deletion."
+msgstr "Attivato dopo l'eliminazione del curriculum."
+
+msgid "Resume Status Transition"
+msgstr "Riprendi la transizione di stato"
+
+msgid "Fires when an administrator manually approves or rejects a resume."
+msgstr "Si attiva quando un amministratore approva o rifiuta manualmente un curriculum."
+
+msgid "The ID of the resume."
+msgstr "L'ID del curriculum."
+
+msgid "The previous status."
+msgstr "Lo stato precedente."
+
+msgid "The new status."
+msgstr "Il nuovo stato."
+
+msgid "Track manual admin approvals/rejections."
+msgstr "Tieni traccia delle approvazioni/rifiuti manuali dell'amministratore."
+
+msgid "Resume Search Query Args"
+msgstr "Riprendi argomenti query di ricerca"
+
+msgid "Modifies the SQL WHERE clause during a frontend resume search, allowing Elasticsearch integrations."
+msgstr "Modifica la clausola SQL WHERE durante una ricerca di curriculum frontend, consentendo integrazioni Elasticsearch."
+
+msgid "The current SQL query string."
+msgstr "La stringa di query SQL corrente."
+
+msgid "Array of applied search filters."
+msgstr "Matrice di filtri di ricerca applicati."
+
+msgid "Allows Elasticsearch integrations."
+msgstr "Consente integrazioni Elasticsearch."
+
+msgid "Featured Resume Activated"
+msgstr "Curriculum in primo piano attivato"
+
+msgid "Fires when a resume is promoted to featured status."
+msgstr "Si attiva quando un curriculum viene promosso allo stato in primo piano."
+
+msgid "Resume ID."
+msgstr "Riprendi l'identità."
+
+msgid "Job Seeker User ID."
+msgstr "ID utente in cerca di lavoro."
+
+msgid "After Job Apply"
+msgstr "Dopo la candidatura al lavoro"
+
+msgid "Fires immediately after a candidate successfully applies for a job."
+msgstr "Licenzia subito dopo che un candidato ha fatto domanda con successo per un lavoro."
+
+msgid "The job application ID."
+msgstr "L'ID della domanda di lavoro."
+
+msgid "Triggered upon successful job application."
+msgstr "Attivato in seguito alla domanda di lavoro accolta."
+
+msgid "Application Submitted"
+msgstr "Domanda presentata"
+
+msgid "Standard event trigger for a logged-in user submitting a job application."
+msgstr "Trigger di evento standard per un utente registrato che invia una domanda di lavoro."
+
+msgid "ID of the application record."
+msgstr "ID del record della domanda."
+
+msgid "ID of the applied job."
+msgstr "ID del lavoro candidato."
+
+msgid "Fires for authenticated users only."
+msgstr "Si attiva solo per gli utenti autenticati."
+
+msgid "Quick Apply Submitted"
+msgstr "Applicazione rapida inviata"
+
+msgid "Triggers when a candidate uses the \\"
+msgstr "Si attiva quando un candidato utilizza \\"
+
+msgid "Application record ID."
+msgstr "ID del record dell'applicazione."
+
+msgid "Submitted form data."
+msgstr "Dati del modulo inviato."
+
+msgid "Uploaded files array."
+msgstr "Array dei file caricati."
+
+msgid "Handles bypass forms and attached files."
+msgstr "Gestisce i moduli bypass e i file allegati."
+
+msgid "Visitor Application Submitted"
+msgstr "Domanda di visitatore inviata"
+
+msgid "Triggers specifically for unauthenticated (guest) applications."
+msgstr "Trigger specifici per applicazioni (guest) non autenticate."
+
+msgid "Guest data array."
+msgstr "Matrice di dati dell'ospite."
+
+msgid "Triggers specifically for unauthenticated applications."
+msgstr "Trigger specifici per applicazioni non autenticate."
+
+msgid "Candidate Status Updated"
+msgstr "Stato del candidato aggiornato"
+
+msgid "Core ATS hook. Fires when an employer changes an applicants internal workflow state (e.g., Hired)."
+msgstr "Gancio ATS centrale. Si attiva quando un datore di lavoro modifica lo stato del flusso di lavoro interno del candidato (ad esempio, Assunto)."
+
+msgid "Old ATS status."
+msgstr "Vecchio stato ATS."
+
+msgid "New ATS status."
+msgstr "Nuovo status ATS."
+
+msgid "Employer User ID."
+msgstr "ID utente datore di lavoro."
+
+msgid "Core ATS hook."
+msgstr "Gancio ATS centrale."
+
+msgid "Application Note Saved"
+msgstr "Nota applicativa salvata"
+
+msgid "Fires when an employer adds an internal note to an application."
+msgstr "Si attiva quando un datore di lavoro aggiunge una nota interna a un'applicazione."
+
+msgid "Note text."
+msgstr "Nota il testo."
+
+msgid "Fires on employer internal note."
+msgstr "Incendi su nota interna del datore di lavoro."
+
+msgid "Application Rating Updated"
+msgstr "Valutazione dell'applicazione aggiornata"
+
+msgid "Fires when a candidate receives a star rating from an employer."
+msgstr "Si attiva quando un candidato riceve una valutazione in stelle da un datore di lavoro."
+
+msgid "Application ID."
+msgstr "ID dell'applicazione."
+
+msgid "Star rating."
+msgstr "Valutazione in stelle."
+
+msgid "Fires on rating update."
+msgstr "Si attiva all'aggiornamento della valutazione."
+
+msgid "After Store Company"
+msgstr "Dopo l'azienda del negozio"
+
+msgid "Fires immediately after a new company is stored in the database."
+msgstr "Viene eseguito immediatamente dopo l'archiviazione di una nuova società nel database."
+
+msgid "The newly created company ID."
+msgstr "L'ID azienda appena creato."
+
+msgid "Triggered upon company creation."
+msgstr "Attivato al momento della creazione della società."
+
+msgid "After Edit Company"
+msgstr "Dopo Modifica azienda"
+
+msgid "Fires immediately after an existing company is updated."
+msgstr "Viene attivato immediatamente dopo l'aggiornamento di una società esistente."
+
+msgid "The updated company ID."
+msgstr "L'ID azienda aggiornato."
+
+msgid "Triggered upon company update."
+msgstr "Attivato in seguito all'aggiornamento dell'azienda."
+
+msgid "After Delete Company"
+msgstr "Dopo Elimina azienda"
+
+msgid "Fires immediately after a company is deleted."
+msgstr "Viene attivato immediatamente dopo l'eliminazione di un'azienda."
+
+msgid "The deleted company ID."
+msgstr "L'ID azienda cancellato."
+
+msgid "Triggered upon company deletion."
+msgstr "Attivato alla cancellazione dell'azienda."
+
+msgid "Company Status Transition"
+msgstr "Transizione dello stato della società"
+
+msgid "Fires on company approve/reject state changes."
+msgstr "Si attiva quando l'azienda approva/rifiuta le modifiche allo stato."
+
+msgid "Company ID."
+msgstr "Identificativo dell'azienda."
+
+msgid "Old status."
+msgstr "Vecchio stato."
+
+msgid "New status."
+msgstr "Nuovo stato."
+
+msgid "Fires on company state changes."
+msgstr "Incendi sui cambiamenti di stato delle società."
+
+msgid "Featured Company Activated"
+msgstr "Azienda in primo piano attivata"
+
+msgid "Fires when a company is promoted to featured status."
+msgstr "Si attiva quando un'azienda viene promossa allo stato in primo piano."
+
+msgid "Company Search Query Args"
+msgstr "Argomenti query ricerca azienda"
+
+msgid "Modifies Company SQL search queries."
+msgstr "Modifica le query di ricerca SQL della società."
+
+msgid "Current SQL query."
+msgstr "Query SQL corrente."
+
+msgid "Search filters."
+msgstr "Filtri di ricerca."
+
+msgid "Modified query string."
+msgstr "Stringa di query modificata."
+
+msgid "Used for modifying frontend company search behaviour."
+msgstr "Utilizzato per modificare il comportamento di ricerca dell'azienda frontend."
+
+msgid "User Status Transition"
+msgstr "Transizione dello stato dell'utente"
+
+msgid "Fires when an admin manually suspends or activates an account."
+msgstr "Si attiva quando un amministratore sospende o attiva manualmente un account."
+
+msgid "Admin account activation/suspension."
+msgstr "Attivazione/sospensione dell'account amministratore."
+
+msgid "User Deleted"
+msgstr "Utente eliminato"
+
+msgid "Crucial for GDPR compliance; alerts external systems to delete user records."
+msgstr "Fondamentale per la conformità al GDPR; avvisa i sistemi esterni di eliminare i record degli utenti."
+
+msgid "Portal User ID."
+msgstr "ID utente del portale."
+
+msgid "WordPress User ID."
+msgstr "ID utente WordPress."
+
+msgid "User Role ID."
+msgstr "ID ruolo utente."
+
+msgid "Crucial for GDPR compliance."
+msgstr "Fondamentale per la conformità al GDPR."
+
+msgid "User Profile Saved"
+msgstr "Profilo utente salvato"
+
+msgid "Fires whenever user metadata is updated."
+msgstr "Si attiva ogni volta che i metadati dell'utente vengono aggiornati."
+
+msgid "Profile ID."
+msgstr "Identificativo del profilo."
+
+msgid "Profile metadata."
+msgstr "Metadati del profilo."
+
+msgid "Fires on metadata update."
+msgstr "Si attiva all'aggiornamento dei metadati."
+
+msgid "AI Content Prompt"
+msgstr "Richiesta contenuto AI"
+
+msgid "Intercepts the prompt string before it hits the AI proxy. Allows insertion of mandatory EEO text."
+msgstr "Intercetta la stringa del prompt prima che raggiunga il proxy AI. Consente l'inserimento del testo EEO obbligatorio."
+
+msgid "AI Prompt."
+msgstr "Richiesta AI."
+
+msgid "Context parameters."
+msgstr "Parametri di contesto."
+
+msgid "Modified AI Prompt."
+msgstr "Prompt AI modificato."
+
+msgid "Allows insertion of mandatory context."
+msgstr "Consente l'inserimento del contesto obbligatorio."
+
+msgid "AI Generation Completed"
+msgstr "Generazione IA completata"
+
+msgid "Captures the AI response for logging and plagiarism scanning."
+msgstr "Cattura la risposta dell'intelligenza artificiale per la registrazione e la scansione del plagio."
+
+msgid "Status code."
+msgstr "Codice di stato."
+
+msgid "Response payload."
+msgstr "Carico utile della risposta."
+
+msgid "Original Prompt."
+msgstr "Suggerimento originale."
+
+msgid "Wrapper used."
+msgstr "Involucro utilizzato."
+
+msgid "Used for logging and plagiarism checks."
+msgstr "Utilizzato per la registrazione e il controllo del plagio."
+
+msgid "Before AI Resume Parse"
+msgstr "Prima dell'analisi del ripristino dell'IA"
+
+msgid "Allows PII redaction from resume text before it is indexed for AI matching."
+msgstr "Consente la redazione delle PII dal testo del curriculum prima che venga indicizzato per la corrispondenza AI."
+
+msgid "Text string for AI indexing."
+msgstr "Stringa di testo per l'indicizzazione AI."
+
+msgid "Entity ID."
+msgstr "Identificativo dell'entità."
+
+msgid "Sanitized AI string."
+msgstr "Stringa AI disinfettata."
+
+msgid "Useful for Blind Hiring features."
+msgstr "Utile per le funzionalità di assunzione alla cieca."
+
+msgid "Before AI Job Parse"
+msgstr "Prima dell'analisi del lavoro AI"
+
+msgid "Allows modification of job text before AI indexing."
+msgstr "Consente la modifica del testo del lavoro prima dell'indicizzazione AI."
+
+msgid "Modified AI string."
+msgstr "Stringa AI modificata."
+
+msgid "AI Job to Resume Match"
+msgstr "Lavoro AI per riprendere la partita"
+
+msgid "Mutates the search string the AI uses to find resumes for a job."
+msgstr "Modifica la stringa di ricerca utilizzata dall'intelligenza artificiale per trovare curriculum per un lavoro."
+
+msgid "Search string."
+msgstr "Stringa di ricerca."
+
+msgid "Mutated search string."
+msgstr "Stringa di ricerca mutata."
+
+msgid "Mutates the search string the AI uses."
+msgstr "Modifica la stringa di ricerca utilizzata dall'IA."
+
+msgid "AI Resume to Job Match"
+msgstr "Riprendi AI per Job Match"
+
+msgid "Mutates the search string the AI uses to find jobs for a resume."
+msgstr "Modifica la stringa di ricerca utilizzata dall'intelligenza artificiale per trovare lavori per un curriculum."
+
+msgid "AI Dashboard Job Suggestions"
+msgstr "Suggerimenti di lavoro sulla dashboard AI"
+
+msgid "Captures suggested jobs calculated for the job seekers dashboard."
+msgstr "Cattura i lavori suggeriti calcolati per la dashboard delle persone in cerca di lavoro."
+
+msgid "Seeker User ID."
+msgstr "ID utente del cercatore."
+
+msgid "Array of matched Job IDs."
+msgstr "Matrice di ID lavoro corrispondenti."
+
+msgid "Captures dashboard suggestions."
+msgstr "Cattura i suggerimenti del dashboard."
+
+msgid "AI Job Suggestion Calculated"
+msgstr "Suggerimento di lavoro AI calcolato"
+
+msgid "Captures suggested jobs against a specific resume ID."
+msgstr "Cattura i lavori suggeriti rispetto a un ID curriculum specifico."
+
+msgid "Captures resume-specific suggestions."
+msgstr "Cattura suggerimenti specifici per il curriculum."
+
+msgid "AI Dashboard Resume Suggestions"
+msgstr "Suggerimenti per il curriculum della dashboard AI"
+
+msgid "Captures suggested resumes calculated for the employers dashboard."
+msgstr "Cattura i curriculum suggeriti calcolati per la dashboard dei datori di lavoro."
+
+msgid "Array of matched Resume IDs."
+msgstr "Matrice di ID curriculum corrispondenti."
+
+msgid "Captures employer dashboard suggestions."
+msgstr "Cattura i suggerimenti del dashboard del datore di lavoro."
+
+msgid "AI Resume Suggestion Calculated"
+msgstr "Suggerimento di curriculum AI calcolato"
+
+msgid "Captures suggested resumes against a specific job ID."
+msgstr "Acquisisce i curriculum suggeriti rispetto a un ID lavoro specifico."
+
+msgid "Captures job-specific suggestions."
+msgstr "Cattura suggerimenti specifici per il lavoro."
+
+msgid "Job Alert Triggered"
+msgstr "Avviso lavoro attivato"
+
+msgid "Intercepts an alert match before the email sends. Ideal for Push/SMS notifications."
+msgstr "Intercetta una corrispondenza di avviso prima dell'invio dell'e-mail. Ideale per notifiche Push/SMS."
+
+msgid "Person ID."
+msgstr "ID persona."
+
+msgid "Subscriber User ID."
+msgstr "ID utente abbonato."
+
+msgid "Matched jobs array."
+msgstr "Matrice di lavori corrispondenti."
+
+msgid "Ideal for Push/SMS notifications."
+msgstr "Ideale per notifiche Push/SMS."
+
+msgid "Job Alert Saved"
+msgstr "Avviso di lavoro salvato"
+
+msgid "Fires when an alert preference is created or updated."
+msgstr "Si attiva quando viene creata o aggiornata una preferenza di avviso."
+
+msgid "Alert record ID."
+msgstr "ID del record di avviso."
+
+msgid "Subscriber Email."
+msgstr "E-mail dell'abbonato."
+
+msgid "Alert configuration data."
+msgstr "Dati di configurazione degli avvisi."
+
+msgid "Fires on alert create/update."
+msgstr "Si attiva in caso di creazione/aggiornamento di avvisi."
+
+msgid "Job Alert Unsubscribed"
+msgstr "Avviso di lavoro annullato"
+
+msgid "Fires when an alert is deleted."
+msgstr "Si attiva quando un avviso viene eliminato."
+
+msgid "Deleted Alert ID."
+msgstr "ID avviso eliminato."
+
+msgid "Membership Package Purchased"
+msgstr "Pacchetto di abbonamento acquistato"
+
+msgid "Triggers on a successful checkout via Stripe or PayPal gateways."
+msgstr "Si attiva in caso di pagamento riuscito tramite Stripe o gateway PayPal."
+
+msgid "Package ID."
+msgstr "ID del pacchetto."
+
+msgid "Amount paid."
+msgstr "Importo pagato."
+
+msgid "Payment gateway."
+msgstr "Portale di pagamento."
+
+msgid "Triggers on gateway success."
+msgstr "Trigger in caso di successo del gateway."
+
+msgid "WooCommerce Order Synced"
+msgstr "Ordine WooCommerce sincronizzato"
+
+msgid "Executes when WP Job Portal routes a payment into the WooCommerce cart."
+msgstr "Viene eseguito quando WP Job Portal instrada un pagamento nel carrello WooCommerce."
+
+msgid "WooCommerce Post ID."
+msgstr "ID articolo WooCommerce."
+
+msgid "Purchase data."
+msgstr "Dati di acquisto."
+
+msgid "Executes on Woo cart route."
+msgstr "Viene eseguito sul percorso del carrello Woo."
+
+msgid "Per Listing Purchased"
+msgstr "Per annuncio acquistato"
+
+msgid "Generic action deployed across all individual purchases."
+msgstr "Azione generica distribuita su tutti i singoli acquisti."
+
+msgid "Entity ID (job/resume/company)."
+msgstr "ID entità (lavoro/curriculum/azienda)."
+
+msgid "Entity type."
+msgstr "Tipo di entità."
+
+msgid "Gateway used."
+msgstr "Gateway utilizzato."
+
+msgid "Deployed across individual purchases."
+msgstr "Distribuito tra i singoli acquisti."
+
+msgid "Subscription Cancelled"
+msgstr "Abbonamento annullato"
+
+msgid "Alerts external platforms (like Discord/Active Directory) to downgrade the user."
+msgstr "Avvisa le piattaforme esterne (come Discord/Active Directory) di eseguire il downgrade dell'utente."
+
+msgid "Gateway sub ID."
+msgstr "ID secondario del gateway."
+
+msgid "Downgrade user permissions."
+msgstr "Downgrade delle autorizzazioni utente."
+
+msgid "Membership Purchased DB Commit"
+msgstr "Appartenenza acquistata Impegno DB"
+
+msgid "A database-level failsafe hook that fires even if a package is manually assigned by an admin."
+msgstr "Un hook di sicurezza a livello di database che si attiva anche se un pacchetto viene assegnato manualmente da un amministratore."
+
+msgid "Amount."
+msgstr "Quantità."
+
+msgid "Payment Method."
+msgstr "Metodo di pagamento."
+
+msgid "Database-level failsafe hook."
+msgstr "Hook failsafe a livello di database."
+
+msgid "Package Saved"
+msgstr "Pacchetto salvato"
+
+msgid "Fires when a package is updated or unpublished."
+msgstr "Si attiva quando un pacchetto viene aggiornato o non pubblicato."
+
+msgid "Package data."
+msgstr "Dati del pacchetto."
+
+msgid "Fires on package update."
+msgstr "Si attiva all'aggiornamento del pacchetto."
+
+msgid "Invoice Status Transition"
+msgstr "Transizione dello stato della fattura"
+
+msgid "Fires when an invoice moves to \\"
+msgstr "Si attiva quando una fattura viene spostata in \\"
+
+msgid "Invoice ID."
+msgstr "ID fattura."
+
+msgid "Old Status."
+msgstr "Vecchio stato."
+
+msgid "New Status."
+msgstr "Nuovo stato."
+
+msgid "Syncs external accounting software."
+msgstr "Sincronizza il software di contabilità esterno."
+
+msgid "Invoice Saved"
+msgstr "Fattura salvata"
+
+msgid "Fires on invoice creation or deletion."
+msgstr "Si attiva alla creazione o all'eliminazione della fattura."
+
+msgid "Invoice Data."
+msgstr "Dati della fattura."
+
+msgid "Fires on invoice creation."
+msgstr "Si attiva alla creazione della fattura."
+
+msgid "Employer Dashboard Loaded"
+msgstr "Dashboard del datore di lavoro caricato"
+
+msgid "Fires when the employer portal initializes."
+msgstr "Si attiva quando viene inizializzato il portale del datore di lavoro."
+
+msgid "Portal view data array."
+msgstr "Matrice di dati della vista portale."
+
+msgid "Jobseeker Dashboard Loaded"
+msgstr "Dashboard delle persone in cerca di lavoro caricato"
+
+msgid "Fires when the candidate portal initializes."
+msgstr "Si attiva quando viene inizializzato il portale candidato."
+
+msgid "Candidate User ID."
+msgstr "ID utente candidato."
+
+msgid "Admin Dashboard Loaded"
+msgstr "Dashboard di amministrazione caricato"
+
+msgid "Injects custom data into the WP Admin control panel."
+msgstr "Inserisce dati personalizzati nel pannello di controllo di WP Admin."
+
+msgid "Admin data array."
+msgstr "Array di dati di amministrazione."
+
+msgid "Injects data into WP Admin."
+msgstr "Inserisce i dati in WP Admin."
+
+msgid "User Widget HTML"
+msgstr "Widget utente HTML"
+
+msgid "Allows theme developers to modify member widget cards."
+msgstr "Consente agli sviluppatori di temi di modificare le schede widget dei membri."
+
+msgid "HTML Content."
+msgstr "Contenuto HTML."
+
+msgid "User role."
+msgstr "Ruolo utente."
+
+msgid "User data."
+msgstr "Dati dell'utente."
+
+msgid "Modified HTML."
+msgstr "HTML modificato."
+
+msgid "Modify member widget cards."
+msgstr "Modifica le schede widget dei membri."
+
+msgid "Shortlist Popup HTML"
+msgstr "Elenco popup HTML"
+
+msgid "Modifies the HTML output of the shortlist modal."
+msgstr "Modifica l'output HTML della modale dell'elenco ristretto."
+
+msgid "Modifies shortlist modal HTML."
+msgstr "Modifica l'HTML modale dell'elenco ristretto."
+
+msgid "Export Resume Raw String"
+msgstr "Esporta la stringa grezza di ripresa"
+
+msgid "Intercepts the final TSV text string for a single resume download."
+msgstr "Intercetta la stringa di testo TSV finale per un singolo download di curriculum."
+
+msgid "TSV String."
+msgstr "Stringa TSV."
+
+msgid "Modified TSV string."
+msgstr "Stringa TSV modificata."
+
+msgid "Intercepts single TSV export."
+msgstr "Intercetta la singola esportazione TSV."
+
+msgid "Export Resume Data Array"
+msgstr "Esporta matrice di dati di curriculum"
+
+msgid "Highly useful for Blind Hiring; allows programmatic removal of PII columns before TSV conversion."
+msgstr "Molto utile per le assunzioni alla cieca; consente la rimozione programmatica delle colonne PII prima della conversione TSV."
+
+msgid "Export row array."
+msgstr "Esporta matrice di righe."
+
+msgid "DB result data."
+msgstr "Dati dei risultati DB."
+
+msgid "Sanitized row array."
+msgstr "Array di righe disinfettato."
+
+msgid "Highly useful for Blind Hiring."
+msgstr "Molto utile per le assunzioni alla cieca."
+
+msgid "Export All Resumes Raw String"
+msgstr "Esporta tutta la stringa grezza dei curriculum"
+
+msgid "Intercepts the bulk export string to append HR disclaimers or timestamps."
+msgstr "Intercetta la stringa di esportazione in blocco per aggiungere dichiarazioni di non responsabilità o timestamp HR."
+
+msgid "Bulk TSV String."
+msgstr "Stringa TSV in blocco."
+
+msgid "Modified bulk string."
+msgstr "Stringa collettiva modificata."
+
+msgid "Intercepts bulk export string."
+msgstr "Intercetta la stringa di esportazione in blocco."
+
+msgid "Resume Export Filename"
+msgstr "Riprendi l'esportazione del nome file"
+
+msgid "Mutates the generated ZIP file name dynamically."
+msgstr "Modifica dinamicamente il nome del file ZIP generato."
+
+msgid "Default filename."
+msgstr "Nome file predefinito."
+
+msgid "File extension."
+msgstr "Estensione del file."
+
+msgid "Mutated filename."
+msgstr "Nome file mutato."
+
+msgid "Mutates generated ZIP filename."
+msgstr "Modifica il nome del file ZIP generato."
+
+msgid "System Email Headers"
+msgstr "Intestazioni e-mail di sistema"
+
+msgid "Modifies outgoing SMTP headers (e.g., custom Reply-To addresses)."
+msgstr "Modifica le intestazioni SMTP in uscita (ad esempio, indirizzi di risposta personalizzati)."
+
+msgid "Email headers array."
+msgstr "Matrice di intestazioni di posta elettronica."
+
+msgid "Email subject."
+msgstr "Oggetto dell'e-mail."
+
+msgid "Modified headers."
+msgstr "Intestazioni modificate."
+
+msgid "Modifies outgoing SMTP headers."
+msgstr "Modifica le intestazioni SMTP in uscita."
+
+msgid "Email Notification Sent"
+msgstr "Notifica e-mail inviata"
+
+msgid "Logs transactional emails immediately after wp_mail() fires."
+msgstr "Registra le e-mail transazionali immediatamente dopo l'attivazione di wp_mail()."
+
+msgid "Email type string."
+msgstr "Stringa del tipo di posta elettronica."
+
+msgid "Recipient details."
+msgstr "Dettagli del destinatario."
+
+msgid "Email HTML payload."
+msgstr "Payload HTML per e-mail."
+
+msgid "Logs transactional emails."
+msgstr "Registra le email transazionali."
+
+msgid "Internal Message Sent"
+msgstr "Messaggio interno inviato"
+
+msgid "Intercepts secure internal messages to push to external SMS/Slack APIs."
+msgstr "Intercetta messaggi interni sicuri da inviare a API SMS/Slack esterne."
+
+msgid "Message ID."
+msgstr "ID del messaggio."
+
+msgid "Sender ID."
+msgstr "ID mittente."
+
+msgid "Recipient ID."
+msgstr "Identificativo del destinatario."
+
+msgid "Message Text."
+msgstr "Testo del messaggio."
+
+msgid "Push to external SMS/Slack APIs."
+msgstr "Push alle API SMS/Slack esterne."
+
+msgid "Message Status Transition"
+msgstr "Transizione dello stato del messaggio"
+
+msgid "Triggers when an admin resolves a flagged/conflicted message."
+msgstr "Si attiva quando un amministratore risolve un messaggio contrassegnato/in conflitto."
+
+msgid "Admin flag resolution."
+msgstr "Risoluzione del flag di amministrazione."
+
+msgid "File Uploaded (S3 Hook)"
+msgstr "File caricato (Hook S3)"
+
+msgid "The ultimate scalability hook. Fires when a physical file is saved, allowing cloud plugins to upload to AWS S3 and delete the local instance."
+msgstr "Il massimo gancio per la scalabilità. Si attiva quando viene salvato un file fisico, consentendo ai plug-in cloud di caricarsi su AWS S3 ed eliminare l'istanza locale."
+
+msgid "Absolute physical file path."
+msgstr "Percorso fisico assoluto del file."
+
+msgid "Context type (e.g. company_logo, resume_file)."
+msgstr "Tipo di contesto (ad esempio logo_aziendale, file_curriculum)."
+
+msgid "Associated record ID."
+msgstr "ID del record associato."
+
+msgid "The ultimate scalability hook for S3."
+msgstr "Il massimo hook di scalabilità per S3."
+
+msgid "SEO Settings Updated"
+msgstr "Impostazioni SEO aggiornate"
+
+msgid "Executes when core configs update, enabling auto-purging of caching plugins (WP Rocket)."
+msgstr "Viene eseguito quando le configurazioni principali vengono aggiornate, abilitando l'eliminazione automatica dei plug-in di memorizzazione nella cache (WP Rocket)."
+
+msgid "Config data array."
+msgstr "Matrice dei dati di configurazione."
+
+msgid "Enabling auto-purging of caching plugins."
+msgstr "Abilitazione dell'eliminazione automatica dei plug-in di memorizzazione nella cache."
+
+msgid "Hook Reference"
+msgstr "Riferimento al gancio"
+
+msgid "Entities"
+msgstr "Entità"
+
+msgid "Search across all actions and filters..."
+msgstr "Cerca in tutte le azioni e i filtri..."
+
+msgid "Arguments"
+msgstr "Argomenti"
+
+msgid "Returns"
+msgstr "Ritorni"
+
+msgid "No return (Action Hook)"
+msgstr "Nessun ritorno (Action Hook)"
+
+msgid "Snippet"
+msgstr "Frammento"
+
+msgid "Copy Code"
+msgstr "Copia codice"
+
+msgid "To use this hook, please install and activate the"
+msgstr "Per utilizzare questo hook, installare e attivare il"
+
+msgid "addon."
+msgstr "Aggiungi su."
+
+msgid "View Addon Details"
+msgstr "Visualizza i dettagli del componente aggiuntivo"
+
+msgid "No results found"
+msgstr "Nessun risultato trovato"
+
+msgid "Try searching for specific keywords like \\"
+msgstr "Prova a cercare parole chiave specifiche come \\"
+
+msgid "Hooks"
+msgstr "Ganci"
+
+msgid "Search Results"
+msgstr "Risultati della ricerca"

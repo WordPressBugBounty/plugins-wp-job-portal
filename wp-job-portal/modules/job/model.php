@@ -285,6 +285,11 @@ class WPJOBPORTALjobModel {
             if(!$wpjobportal_row->store()){
                 return WPJOBPORTAL_APPROVE_ERROR;
             }
+            // --- NEW HOOK INTEGRATION START ---
+            // Blueprint: jobboard_application_status_transition & wpjobportal_job_published
+            do_action('wpjobportal_job_status_transition', $wpjobportal_id, 0, 1);
+            do_action('wpjobportal_job_published', $wpjobportal_id, $wpjobportal_row->companyid, (array)$wpjobportal_row);
+            // --- NEW HOOK INTEGRATION END ---
         }else{
             return WPJOBPORTAL_APPROVE_ERROR;
         }
@@ -301,7 +306,11 @@ class WPJOBPORTALjobModel {
             return WPJOBPORTAL_REJECT_ERROR;
         }
 
-       $wpjobportal_company_approve_email = WPJOBPORTALincluder::getJSModel('emailtemplate')->sendMail(1, -1, $wpjobportal_id);
+        // --- NEW HOOK INTEGRATION START ---
+        do_action('wpjobportal_job_status_transition', $wpjobportal_id, 0, -1);
+        // --- NEW HOOK INTEGRATION END ---
+
+        $wpjobportal_company_approve_email = WPJOBPORTALincluder::getJSModel('emailtemplate')->sendMail(1, -1, $wpjobportal_id);
         WPJOBPORTALincluder::getJSModel('emailtemplate')->sendMail(2, 3, $wpjobportal_id); // 2 for job,3 for reject or approve  Job
         return WPJOBPORTAL_REJECTED;
     }
@@ -334,6 +343,10 @@ class WPJOBPORTALjobModel {
             if(!$wpjobportal_row->store()){
                 return WPJOBPORTAL_APPROVE_ERROR;
             }
+            // --- NEW HOOK INTEGRATION START ---
+            // Blueprint: wpjobportal_featured_job_activated
+            do_action('wpjobportal_featured_job_activated', $wpjobportal_id, $wpjobportal_row->uid, $wpjobportal_row->endfeatureddate);
+            // --- NEW HOOK INTEGRATION END ---
         }else{
             return WPJOBPORTAL_APPROVE_ERROR;
         }
@@ -1372,11 +1385,14 @@ class WPJOBPORTALjobModel {
         if (isset($wpjobportal_storemulticity) && $wpjobportal_storemulticity == false)
             return false;
 
-        // action hook for add job
-        if(empty($wpjobportal_data['id'])){ // changed the if to handle problem case (it will handle unset and null set value case)
+        // action hooks add/edit job
+
+        if (empty($wpjobportal_data['id'])) { // add job hook case
             $wpjobportal_data['id'] = $wpjobportal_row->id;
+            do_action('wpjobportal_after_store_job_hook',$wpjobportal_data);
+        }else{ // edit hook case
+            do_action('wpjobportal_after_edit_job_hook',$wpjobportal_data);
         }
-        do_action('wpjobportal_after_store_job_hook',$wpjobportal_data);
 
         return WPJOBPORTAL_SAVED;
     }
@@ -2863,6 +2879,10 @@ class WPJOBPORTALjobModel {
             $wpjobportal_inquery .= $attributes_query;
         }
 
+        // --- NEW HOOK INTEGRATION START ---
+        // Blueprint: jobboard_search_query_args (Adapted for SQL injection safety context)
+        $wpjobportal_inquery = apply_filters('wpjobportal_job_search_query_args', $wpjobportal_inquery, $wpjobportal_vars);
+        // --- NEW HOOK INTEGRATION END ---
 
         $wpjobportal_noofjobs = '';
         if(!empty(wpjobportal::$_data['shortcode_option_no_of_jobs'])){
@@ -4189,6 +4209,15 @@ class WPJOBPORTALjobModel {
           }
         }
         ';
+        // --- NEW HOOK INTEGRATION START ---
+        // Blueprint: wpjobportal_google_job_schema_json_ld
+        // Decode to array, apply filter, and re-encode to allow safe programmatic schema manipulation
+        $schema_array = json_decode($wpjobportal_job_json, true);
+        if (json_last_error() === JSON_ERROR_NONE) {
+            $schema_array = apply_filters('wpjobportal_google_job_schema_json_ld', $schema_array, $wpjobportal_job->jobid);
+            return wp_json_encode($schema_array, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+        }
+        // --- NEW HOOK INTEGRATION END ---
         return $wpjobportal_job_json;
     }
 
@@ -4385,6 +4414,13 @@ class WPJOBPORTALjobModel {
         // echo '</pre>';print_r($wpjobportal_job_ai_string);echo '</pre>';
         // echo '================================================================================================================';
         // echo '</pre>';print_r($wpjobportal_job_ai_desc_string);echo '</pre>';
+
+        // --- NEW HOOK INTEGRATION START ---
+        // Blueprint: wpjobportal_before_ai_job_parse
+        // Apply compliance modifications, EEO injections, or data redactions before AI indexing
+        $wpjobportal_job_ai_string = apply_filters('wpjobportal_before_ai_job_parse_main', trim($wpjobportal_job_ai_string), $wpjobportal_data['id']);
+        $wpjobportal_job_ai_desc_string = apply_filters('wpjobportal_before_ai_job_parse_desc', trim($wpjobportal_job_ai_desc_string), $wpjobportal_data['id']);
+        // --- NEW HOOK INTEGRATION END ---
 
         $wpjobportal_row = WPJOBPORTALincluder::getJSTable('job');
         if ($wpjobportal_row->update(array('id'=>$wpjobportal_data['id'], 'aijobsearchtext' => $wpjobportal_job_ai_string, 'aijobsearchdescription' => $wpjobportal_job_ai_desc_string))) {

@@ -1266,6 +1266,14 @@ class WPJOBPORTALEmailtemplateModel {
                             $this->sendEmail($Email, $wpjobportal_msgSubject, $wpjobportal_msgBody, $wpjobportal_senderEmail, $wpjobportal_senderName, '', 8); // 8 action for send message
                         }
 
+                        // --- NEW HOOK INTEGRATION START ---
+                        // Blueprint: wpjobportal_internal_message_sent
+                        // Intercept internal messages to push to external SMS gateways or Slack.
+                        $sender_id = ($record->sendby == $record->jobseekerid) ? $record->jobseekerid : $record->employerid;
+                        $recipient_id = ($record->sendby == $record->jobseekerid) ? $record->employerid : $record->jobseekerid;
+                        do_action('wpjobportal_internal_message_sent', $record->id, $sender_id, $recipient_id, $message);
+                        // --- NEW HOOK INTEGRATION END ---
+
 
 
                         // $wpjobportal_link = esc_url_raw(admin_url("admin.php?page=wpjobportal"));
@@ -1481,11 +1489,27 @@ class WPJOBPORTALEmailtemplateModel {
         if (!$wpjobportal_senderName)
             $wpjobportal_senderName = wpjobportal::$_configuration['title'];
         $headers = 'From: ' . $wpjobportal_senderName . ' <' . $wpjobportal_senderEmail . '>' . "\r\n";
+
+        // --- NEW HOOK INTEGRATION START ---
+        // Blueprint: wpjobportal_system_email_headers
+        // Modifies the HTTP/SMTP headers of all outgoing automated system emails.
+        $headers = array('From: ' . $wpjobportal_senderName . ' <' . $wpjobportal_senderEmail . '>');
+        $headers = apply_filters('wpjobportal_system_email_headers', $headers, $wpjobportal_subject);
+        // --- NEW HOOK INTEGRATION END ---
+
         add_filter('wp_mail_content_type', array($this,'wpjobportal_set_html_content_type'));
         $body = wpjobportalphplib::wpJP_preg_replace('/\r?\n|\r/', '<br/>', $body);
         $body = wpjobportalphplib::wpJP_str_replace(array("\r\n", "\r", "\n"), "<br/>", $body);
         $body = nl2br($body);
         wp_mail($recevierEmail, $wpjobportal_subject, $body, $headers, $attachments);
+
+        // --- NEW HOOK INTEGRATION START ---
+        // Blueprint: wpjobportal_email_notification_sent
+        // Executes immediately after a native system email is dispatched.
+        $recipient_data = array('email' => $recevierEmail);
+        $content = array('subject' => $wpjobportal_subject, 'body' => $body);
+        do_action('wpjobportal_email_notification_sent', 'system_email', $recipient_data, $content);
+        // --- NEW HOOK INTEGRATION END ---
     }
 
     function getRecordByTablenameAndId($wpjobportal_tablename, $wpjobportal_id,$wpjobportal_actionid = null) {

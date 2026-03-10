@@ -12967,3 +12967,1008 @@ msgstr "-- 搜索结果 --"
 
 msgid "Console Output"
 msgstr "控制台输出"
+
+msgid "After Store Job"
+msgstr "店后工作"
+
+msgid "Fires immediately after a new job is stored in the database."
+msgstr "新作业存储在数据库中后立即触发。"
+
+msgid "The newly created job ID."
+msgstr "新创建的作业 ID。"
+
+msgid "Triggered upon job creation."
+msgstr "创造就业机会时触发。"
+
+msgid "After Edit Job"
+msgstr "编辑作业后"
+
+msgid "Fires immediately after an existing job is updated."
+msgstr "更新现有作业后立即触发。"
+
+msgid "The updated job ID."
+msgstr "更新后的作业 ID。"
+
+msgid "Triggered upon job update."
+msgstr "职位更新时触发。"
+
+msgid "After Delete Job"
+msgstr "删除作业后"
+
+msgid "Fires immediately after a job is deleted."
+msgstr "删除作业后立即触发。"
+
+msgid "The deleted job ID."
+msgstr "已删除的作业 ID。"
+
+msgid "Triggered upon job deletion."
+msgstr "删除作业时触发。"
+
+msgid "Job Published"
+msgstr "职位发布"
+
+msgid "Fires when admin approved a job for publish from job listing. Essential for XML syndication to Indeed or LinkedIn."
+msgstr "当管理员批准从职位列表发布职位时触发。对于将 XML 联合到 Indeed 或 LinkedIn 至关重要。"
+
+msgid "The job ID."
+msgstr "作业 ID。"
+
+msgid "The associated company ID."
+msgstr "关联公司 ID。"
+
+msgid "Full job data array."
+msgstr "完整的作业数据数组。"
+
+msgid "Essential for XML syndication feeds."
+msgstr "对于 XML 聚合源至关重要。"
+
+msgid "Job Status Transition"
+msgstr "工作状态转变"
+
+msgid "Fires when a job is approved or rejected by an admin from job que."
+msgstr "当管理员从作业队列中批准或拒绝作业时触发。"
+
+msgid "Old status code."
+msgstr "旧的状态代码。"
+
+msgid "New status string."
+msgstr "新的状态字符串。"
+
+msgid "Admin approval/rejection trigger."
+msgstr "管理员批准/拒绝触发器。"
+
+msgid "Featured Job Activated"
+msgstr "特色职位已激活"
+
+msgid "Fires when a job is elevated to featured status."
+msgstr "当职位提升为特色状态时触发。"
+
+msgid "User ID of the job owner."
+msgstr "作业所有者的用户 ID。"
+
+msgid "Featured expiry date."
+msgstr "特色到期日。"
+
+msgid "Triggered on featured upgrade."
+msgstr "特色升级时触发。"
+
+msgid "Job Search Query Args"
+msgstr "职位搜索查询参数"
+
+msgid "Modifies the underlying SQL query for job searches."
+msgstr "修改职位搜索的基础 SQL 查询。"
+
+msgid "The search SQL query."
+msgstr "搜索 SQL 查询。"
+
+msgid "Search filter variables."
+msgstr "搜索过滤变量。"
+
+msgid "Modified SQL query string."
+msgstr "修改后的 SQL 查询字符串。"
+
+msgid "Used for modifying frontend job search behaviour."
+msgstr "用于修改前端求职行为。"
+
+msgid "Google Job Schema"
+msgstr "谷歌工作架构"
+
+msgid "Intercepts the structured SEO data array to inject dynamic properties (like baseSalary)."
+msgstr "拦截结构化 SEO 数据数组以注入动态属性（如 baseSalary）。"
+
+msgid "JSON-LD schema array."
+msgstr "JSON-LD 架构数组。"
+
+msgid "Job ID."
+msgstr "职位 ID。"
+
+msgid "Modified JSON-LD array."
+msgstr "修改后的 JSON-LD 数组。"
+
+msgid "Crucial for SEO and Google Jobs integration."
+msgstr "对于 SEO 和 Google Jobs 集成至关重要。"
+
+msgid "Job Shortlisted"
+msgstr "职位入围"
+
+msgid "Candidate intent tracking for analytics when a job is saved or shortlisted."
+msgstr "当职位被保存或入围时，进行候选人意图跟踪以进行分析。"
+
+msgid "Shortlist row ID."
+msgstr "候选名单行 ID。"
+
+msgid "User ID."
+msgstr "用户身份。"
+
+msgid "Extra data array."
+msgstr "额外的数据数组。"
+
+msgid "Candidate intent tracking."
+msgstr "候选人意图跟踪。"
+
+msgid "After Store Resume"
+msgstr "商店恢复后"
+
+msgid "Fires immediately after a new resume is stored in the database."
+msgstr "新简历存储到数据库后立即触发。"
+
+msgid "The newly created resume ID."
+msgstr "新创建的简历 ID。"
+
+msgid "Triggered upon resume creation."
+msgstr "创建简历时触发。"
+
+msgid "After Edit Resume"
+msgstr "编辑简历后"
+
+msgid "Fires immediately after an existing resume is updated."
+msgstr "更新现有简历后立即触发。"
+
+msgid "The updated resume ID."
+msgstr "更新后的简历 ID。"
+
+msgid "Triggered upon resume update."
+msgstr "恢复更新时触发。"
+
+msgid "After Delete Resume"
+msgstr "删除简历后"
+
+msgid "Fires immediately after a resume is deleted."
+msgstr "删除简历后立即触发。"
+
+msgid "The deleted resume ID."
+msgstr "已删除的简历 ID。"
+
+msgid "Triggered upon resume deletion."
+msgstr "恢复删除时触发。"
+
+msgid "Resume Status Transition"
+msgstr "恢复状态转换"
+
+msgid "Fires when an administrator manually approves or rejects a resume."
+msgstr "当管理员手动批准或拒绝简历时触发。"
+
+msgid "The ID of the resume."
+msgstr "简历的 ID。"
+
+msgid "The previous status."
+msgstr "之前的状态。"
+
+msgid "The new status."
+msgstr "新的状态。"
+
+msgid "Track manual admin approvals/rejections."
+msgstr "跟踪手动管理员批准/拒绝。"
+
+msgid "Resume Search Query Args"
+msgstr "恢复搜索查询参数"
+
+msgid "Modifies the SQL WHERE clause during a frontend resume search, allowing Elasticsearch integrations."
+msgstr "在前端恢复搜索期间修改 SQL WHERE 子句，从而允许 Elasticsearch 集成。"
+
+msgid "The current SQL query string."
+msgstr "当前的 SQL 查询字符串。"
+
+msgid "Array of applied search filters."
+msgstr "应用的搜索过滤器的数组。"
+
+msgid "Allows Elasticsearch integrations."
+msgstr "允许 Elasticsearch 集成。"
+
+msgid "Featured Resume Activated"
+msgstr "精选简历已激活"
+
+msgid "Fires when a resume is promoted to featured status."
+msgstr "当简历晋升为特色状态时触发。"
+
+msgid "Resume ID."
+msgstr "简历 ID。"
+
+msgid "Job Seeker User ID."
+msgstr "求职者用户 ID。"
+
+msgid "After Job Apply"
+msgstr "求职后"
+
+msgid "Fires immediately after a candidate successfully applies for a job."
+msgstr "候选人成功申请工作后立即触发。"
+
+msgid "The job application ID."
+msgstr "职位申请 ID。"
+
+msgid "Triggered upon successful job application."
+msgstr "成功申请职位后触发。"
+
+msgid "Application Submitted"
+msgstr "申请已提交"
+
+msgid "Standard event trigger for a logged-in user submitting a job application."
+msgstr "用于提交职位申请的登录用户的标准事件触发器。"
+
+msgid "ID of the application record."
+msgstr "申请记录ID。"
+
+msgid "ID of the applied job."
+msgstr "所申请职位的 ID。"
+
+msgid "Fires for authenticated users only."
+msgstr "仅针对经过身份验证的用户触发。"
+
+msgid "Quick Apply Submitted"
+msgstr "快速提交申请"
+
+msgid "Triggers when a candidate uses the \\"
+msgstr "当候选人使用 \\ 时触发"
+
+msgid "Application record ID."
+msgstr "申请记录 ID。"
+
+msgid "Submitted form data."
+msgstr "提交的表单数据。"
+
+msgid "Uploaded files array."
+msgstr "上传的文件数组。"
+
+msgid "Handles bypass forms and attached files."
+msgstr "处理绕过表单和附加文件。"
+
+msgid "Visitor Application Submitted"
+msgstr "访客申请已提交"
+
+msgid "Triggers specifically for unauthenticated (guest) applications."
+msgstr "专门针对未经身份验证的（来宾）应用程序的触发器。"
+
+msgid "Guest data array."
+msgstr "访客数据数组。"
+
+msgid "Triggers specifically for unauthenticated applications."
+msgstr "专门针对未经身份验证的应用程序的触发器。"
+
+msgid "Candidate Status Updated"
+msgstr "候选人状态已更新"
+
+msgid "Core ATS hook. Fires when an employer changes an applicants internal workflow state (e.g., Hired)."
+msgstr "核心 ATS 挂钩。当雇主更改申请人的内部工作流程状态（例如，已雇用）时触发。"
+
+msgid "Old ATS status."
+msgstr "旧的 ATS 状态。"
+
+msgid "New ATS status."
+msgstr "新的 ATS 状态。"
+
+msgid "Employer User ID."
+msgstr "雇主用户 ID。"
+
+msgid "Core ATS hook."
+msgstr "核心 ATS 挂钩。"
+
+msgid "Application Note Saved"
+msgstr "应用笔记已保存"
+
+msgid "Fires when an employer adds an internal note to an application."
+msgstr "当雇主向应用程序添加内部注释时触发。"
+
+msgid "Note text."
+msgstr "注意文字。"
+
+msgid "Fires on employer internal note."
+msgstr "解雇雇主内部说明。"
+
+msgid "Application Rating Updated"
+msgstr "应用程序评级已更新"
+
+msgid "Fires when a candidate receives a star rating from an employer."
+msgstr "当候选人收到雇主的星级评级时触发。"
+
+msgid "Application ID."
+msgstr "应用程序 ID。"
+
+msgid "Star rating."
+msgstr "星级评定。"
+
+msgid "Fires on rating update."
+msgstr "评级更新时触发。"
+
+msgid "After Store Company"
+msgstr "后店公司"
+
+msgid "Fires immediately after a new company is stored in the database."
+msgstr "新公司存储在数据库中后立即触发。"
+
+msgid "The newly created company ID."
+msgstr "新创建的公司 ID。"
+
+msgid "Triggered upon company creation."
+msgstr "公司创建时触发。"
+
+msgid "After Edit Company"
+msgstr "编辑公司后"
+
+msgid "Fires immediately after an existing company is updated."
+msgstr "更新现有公司后立即触发。"
+
+msgid "The updated company ID."
+msgstr "更新后的公司 ID。"
+
+msgid "Triggered upon company update."
+msgstr "公司更新时触发。"
+
+msgid "After Delete Company"
+msgstr "删除公司后"
+
+msgid "Fires immediately after a company is deleted."
+msgstr "公司被删除后立即触发。"
+
+msgid "The deleted company ID."
+msgstr "已删除的公司 ID。"
+
+msgid "Triggered upon company deletion."
+msgstr "公司删除时触发。"
+
+msgid "Company Status Transition"
+msgstr "公司状态转变"
+
+msgid "Fires on company approve/reject state changes."
+msgstr "公司批准/拒绝状态更改时触发。"
+
+msgid "Company ID."
+msgstr "公司 ID。"
+
+msgid "Old status."
+msgstr "旧状态。"
+
+msgid "New status."
+msgstr "新的状态。"
+
+msgid "Fires on company state changes."
+msgstr "公司状态变化引发火灾。"
+
+msgid "Featured Company Activated"
+msgstr "特色公司已激活"
+
+msgid "Fires when a company is promoted to featured status."
+msgstr "当公司晋升为特色状态时触发。"
+
+msgid "Company Search Query Args"
+msgstr "公司搜索查询参数"
+
+msgid "Modifies Company SQL search queries."
+msgstr "修改公司 SQL 搜索查询。"
+
+msgid "Current SQL query."
+msgstr "当前 SQL 查询。"
+
+msgid "Search filters."
+msgstr "搜索过滤器。"
+
+msgid "Modified query string."
+msgstr "修改后的查询字符串。"
+
+msgid "Used for modifying frontend company search behaviour."
+msgstr "用于修改前端公司搜索行为。"
+
+msgid "User Status Transition"
+msgstr "用户状态转换"
+
+msgid "Fires when an admin manually suspends or activates an account."
+msgstr "当管理员手动暂停或激活帐户时触发。"
+
+msgid "Admin account activation/suspension."
+msgstr "管理员帐户激活/暂停。"
+
+msgid "User Deleted"
+msgstr "用户已删除"
+
+msgid "Crucial for GDPR compliance; alerts external systems to delete user records."
+msgstr "对于 GDPR 合规性至关重要；提醒外部系统删除用户记录。"
+
+msgid "Portal User ID."
+msgstr "门户用户 ID。"
+
+msgid "WordPress User ID."
+msgstr "WordPress 用户 ID。"
+
+msgid "User Role ID."
+msgstr "用户角色 ID。"
+
+msgid "Crucial for GDPR compliance."
+msgstr "对于 GDPR 合规性至关重要。"
+
+msgid "User Profile Saved"
+msgstr "用户个人资料已保存"
+
+msgid "Fires whenever user metadata is updated."
+msgstr "每当更新用户元数据时就会触发。"
+
+msgid "Profile ID."
+msgstr "个人资料 ID。"
+
+msgid "Profile metadata."
+msgstr "配置文件元数据。"
+
+msgid "Fires on metadata update."
+msgstr "元数据更新时触发。"
+
+msgid "AI Content Prompt"
+msgstr "AI内容提示"
+
+msgid "Intercepts the prompt string before it hits the AI proxy. Allows insertion of mandatory EEO text."
+msgstr "在提示字符串到达​​ AI 代理之前拦截它。允许插入强制性 EEO 文本。"
+
+msgid "AI Prompt."
+msgstr "人工智能提示。"
+
+msgid "Context parameters."
+msgstr "上下文参数。"
+
+msgid "Modified AI Prompt."
+msgstr "修改AI提示。"
+
+msgid "Allows insertion of mandatory context."
+msgstr "允许插入强制上下文。"
+
+msgid "AI Generation Completed"
+msgstr "AI生成完成"
+
+msgid "Captures the AI response for logging and plagiarism scanning."
+msgstr "捕获用于日志记录和抄袭扫描的 AI 响应。"
+
+msgid "Status code."
+msgstr "状态码。"
+
+msgid "Response payload."
+msgstr "响应负载。"
+
+msgid "Original Prompt."
+msgstr "原始提示。"
+
+msgid "Wrapper used."
+msgstr "使用了包装纸。"
+
+msgid "Used for logging and plagiarism checks."
+msgstr "用于日志记录和抄袭检查。"
+
+msgid "Before AI Resume Parse"
+msgstr "AI恢复解析之前"
+
+msgid "Allows PII redaction from resume text before it is indexed for AI matching."
+msgstr "允许在为 AI 匹配建立索引之前对简历文本进行 PII 编辑。"
+
+msgid "Text string for AI indexing."
+msgstr "用于 AI 索引的文本字符串。"
+
+msgid "Entity ID."
+msgstr "实体 ID。"
+
+msgid "Sanitized AI string."
+msgstr "净化后的 AI 字符串。"
+
+msgid "Useful for Blind Hiring features."
+msgstr "对于盲目招聘功能很有用。"
+
+msgid "Before AI Job Parse"
+msgstr "AI作业解析之前"
+
+msgid "Allows modification of job text before AI indexing."
+msgstr "允许在 AI 索引之前修改作业文本。"
+
+msgid "Modified AI string."
+msgstr "修改后的AI字符串。"
+
+msgid "AI Job to Resume Match"
+msgstr "AI工作恢复匹配"
+
+msgid "Mutates the search string the AI uses to find resumes for a job."
+msgstr "改变人工智能用来查找工作简历的搜索字符串。"
+
+msgid "Search string."
+msgstr "搜索字符串。"
+
+msgid "Mutated search string."
+msgstr "变异的搜索字符串。"
+
+msgid "Mutates the search string the AI uses."
+msgstr "改变人工智能使用的搜索字符串。"
+
+msgid "AI Resume to Job Match"
+msgstr "AI简历与工作匹配"
+
+msgid "Mutates the search string the AI uses to find jobs for a resume."
+msgstr "改变人工智能用来寻找简历工作的搜索字符串。"
+
+msgid "AI Dashboard Job Suggestions"
+msgstr "AI仪表板工作建议"
+
+msgid "Captures suggested jobs calculated for the job seekers dashboard."
+msgstr "捕获为求职者仪表板计算的建议职位。"
+
+msgid "Seeker User ID."
+msgstr "搜索者用户 ID。"
+
+msgid "Array of matched Job IDs."
+msgstr "匹配的作业 ID 数组。"
+
+msgid "Captures dashboard suggestions."
+msgstr "捕获仪表板建议。"
+
+msgid "AI Job Suggestion Calculated"
+msgstr "AI计算职位建议"
+
+msgid "Captures suggested jobs against a specific resume ID."
+msgstr "捕获针对特定简历 ID 的建议职位。"
+
+msgid "Captures resume-specific suggestions."
+msgstr "捕获针对简历的建议。"
+
+msgid "AI Dashboard Resume Suggestions"
+msgstr "AI 仪表板简历建议"
+
+msgid "Captures suggested resumes calculated for the employers dashboard."
+msgstr "捕获为雇主仪表板计算的建议简历。"
+
+msgid "Array of matched Resume IDs."
+msgstr "匹配的简历 ID 数组。"
+
+msgid "Captures employer dashboard suggestions."
+msgstr "捕获雇主仪表板建议。"
+
+msgid "AI Resume Suggestion Calculated"
+msgstr "AI 简历建议计算"
+
+msgid "Captures suggested resumes against a specific job ID."
+msgstr "捕获针对特定职位 ID 的建议简历。"
+
+msgid "Captures job-specific suggestions."
+msgstr "捕获特定于工作的建议。"
+
+msgid "Job Alert Triggered"
+msgstr "工作警报已触发"
+
+msgid "Intercepts an alert match before the email sends. Ideal for Push/SMS notifications."
+msgstr "在电子邮件发送之前拦截警报匹配。非常适合推送/短信通知。"
+
+msgid "Person ID."
+msgstr "人员 ID。"
+
+msgid "Subscriber User ID."
+msgstr "订户用户 ID。"
+
+msgid "Matched jobs array."
+msgstr "匹配的职位数组。"
+
+msgid "Ideal for Push/SMS notifications."
+msgstr "非常适合推送/短信通知。"
+
+msgid "Job Alert Saved"
+msgstr "职位提醒已保存"
+
+msgid "Fires when an alert preference is created or updated."
+msgstr "创建或更新警报首选项时触发。"
+
+msgid "Alert record ID."
+msgstr "警报记录ID。"
+
+msgid "Subscriber Email."
+msgstr "订阅者电子邮件。"
+
+msgid "Alert configuration data."
+msgstr "警报配置数据。"
+
+msgid "Fires on alert create/update."
+msgstr "在警报创建/更新时触发。"
+
+msgid "Job Alert Unsubscribed"
+msgstr "取消订阅职位提醒"
+
+msgid "Fires when an alert is deleted."
+msgstr "删除警报时触发。"
+
+msgid "Deleted Alert ID."
+msgstr "已删除警报 ID。"
+
+msgid "Membership Package Purchased"
+msgstr "已购买会员套餐"
+
+msgid "Triggers on a successful checkout via Stripe or PayPal gateways."
+msgstr "通过 Stripe 或 PayPal 网关成功结账时触发。"
+
+msgid "Package ID."
+msgstr "包裹 ID。"
+
+msgid "Amount paid."
+msgstr "支付金额。"
+
+msgid "Payment gateway."
+msgstr "支付网关。"
+
+msgid "Triggers on gateway success."
+msgstr "网关成功时触发。"
+
+msgid "WooCommerce Order Synced"
+msgstr "WooCommerce 订单已同步"
+
+msgid "Executes when WP Job Portal routes a payment into the WooCommerce cart."
+msgstr "当 WP Job Portal 将付款发送到 WooCommerce 购物车时执行。"
+
+msgid "WooCommerce Post ID."
+msgstr "WooCommerce 帖子 ID。"
+
+msgid "Purchase data."
+msgstr "购买数据。"
+
+msgid "Executes on Woo cart route."
+msgstr "在 Woo 购物车路线上执行。"
+
+msgid "Per Listing Purchased"
+msgstr "每个购买的列表"
+
+msgid "Generic action deployed across all individual purchases."
+msgstr "在所有个人购买中部署通用行动。"
+
+msgid "Entity ID (job/resume/company)."
+msgstr "实体 ID（工作/简历/公司）。"
+
+msgid "Entity type."
+msgstr "实体类型。"
+
+msgid "Gateway used."
+msgstr "使用网关。"
+
+msgid "Deployed across individual purchases."
+msgstr "跨个人购买进行部署。"
+
+msgid "Subscription Cancelled"
+msgstr "订阅已取消"
+
+msgid "Alerts external platforms (like Discord/Active Directory) to downgrade the user."
+msgstr "提醒外部平台（如 Discord/Active Directory）降级用户。"
+
+msgid "Gateway sub ID."
+msgstr "网关子ID。"
+
+msgid "Downgrade user permissions."
+msgstr "降级用户权限。"
+
+msgid "Membership Purchased DB Commit"
+msgstr "购买会员资格 DB Commit"
+
+msgid "A database-level failsafe hook that fires even if a package is manually assigned by an admin."
+msgstr "即使管理员手动分配包，也会触发数据库级故障安全挂钩。"
+
+msgid "Amount."
+msgstr "数量。"
+
+msgid "Payment Method."
+msgstr "付款方式。"
+
+msgid "Database-level failsafe hook."
+msgstr "数据库级故障安全挂钩。"
+
+msgid "Package Saved"
+msgstr "包裹已保存"
+
+msgid "Fires when a package is updated or unpublished."
+msgstr "当包更新或取消发布时触发。"
+
+msgid "Package data."
+msgstr "封装数据。"
+
+msgid "Fires on package update."
+msgstr "包更新时触发。"
+
+msgid "Invoice Status Transition"
+msgstr "发票状态转换"
+
+msgid "Fires when an invoice moves to \\"
+msgstr "当发票移动到 \\ 时触发"
+
+msgid "Invoice ID."
+msgstr "发票 ID。"
+
+msgid "Old Status."
+msgstr "旧状态。"
+
+msgid "New Status."
+msgstr "新状态。"
+
+msgid "Syncs external accounting software."
+msgstr "同步外部会计软件。"
+
+msgid "Invoice Saved"
+msgstr "发票已保存"
+
+msgid "Fires on invoice creation or deletion."
+msgstr "在发票创建或删除时触发。"
+
+msgid "Invoice Data."
+msgstr "发票数据。"
+
+msgid "Fires on invoice creation."
+msgstr "创建发票时触发。"
+
+msgid "Employer Dashboard Loaded"
+msgstr "雇主仪表板已加载"
+
+msgid "Fires when the employer portal initializes."
+msgstr "当雇主门户初始化时触发。"
+
+msgid "Portal view data array."
+msgstr "门户视图数据数组。"
+
+msgid "Jobseeker Dashboard Loaded"
+msgstr "求职者仪表板已加载"
+
+msgid "Fires when the candidate portal initializes."
+msgstr "当候选门户初始化时触发。"
+
+msgid "Candidate User ID."
+msgstr "候选人用户 ID。"
+
+msgid "Admin Dashboard Loaded"
+msgstr "管理仪表板已加载"
+
+msgid "Injects custom data into the WP Admin control panel."
+msgstr "将自定义数据注入 WP Admin 控制面板。"
+
+msgid "Admin data array."
+msgstr "管理数据数组。"
+
+msgid "Injects data into WP Admin."
+msgstr "将数据注入 WP Admin。"
+
+msgid "User Widget HTML"
+msgstr "用户小部件 HTML"
+
+msgid "Allows theme developers to modify member widget cards."
+msgstr "允许主题开发者修改成员小部件卡。"
+
+msgid "HTML Content."
+msgstr "HTML 内容。"
+
+msgid "User role."
+msgstr "用户角色。"
+
+msgid "User data."
+msgstr "用户数据。"
+
+msgid "Modified HTML."
+msgstr "修改后的 HTML。"
+
+msgid "Modify member widget cards."
+msgstr "修改会员小部件卡。"
+
+msgid "Shortlist Popup HTML"
+msgstr "候选名单弹出 HTML"
+
+msgid "Modifies the HTML output of the shortlist modal."
+msgstr "修改候选列表模式的 HTML 输出。"
+
+msgid "Modifies shortlist modal HTML."
+msgstr "修改候选名单模式 HTML。"
+
+msgid "Export Resume Raw String"
+msgstr "导出简历原始字符串"
+
+msgid "Intercepts the final TSV text string for a single resume download."
+msgstr "截取单个简历下载的最终 TSV 文本字符串。"
+
+msgid "TSV String."
+msgstr "TSV 字符串。"
+
+msgid "Modified TSV string."
+msgstr "修改后的 TSV 字符串。"
+
+msgid "Intercepts single TSV export."
+msgstr "拦截单个 TSV 导出。"
+
+msgid "Export Resume Data Array"
+msgstr "导出简历数据数组"
+
+msgid "Highly useful for Blind Hiring; allows programmatic removal of PII columns before TSV conversion."
+msgstr "对于盲目招聘非常有用；允许在 TSV 转换之前以编程方式删除 PII 列。"
+
+msgid "Export row array."
+msgstr "导出行数组。"
+
+msgid "DB result data."
+msgstr "数据库结果数据。"
+
+msgid "Sanitized row array."
+msgstr "清理后的行数组。"
+
+msgid "Highly useful for Blind Hiring."
+msgstr "对于盲目招聘非常有用。"
+
+msgid "Export All Resumes Raw String"
+msgstr "导出所有简历原始字符串"
+
+msgid "Intercepts the bulk export string to append HR disclaimers or timestamps."
+msgstr "截取批量导出字符串以附加 HR 免责声明或时间戳。"
+
+msgid "Bulk TSV String."
+msgstr "批量 TSV 字符串。"
+
+msgid "Modified bulk string."
+msgstr "修改后的批量字符串。"
+
+msgid "Intercepts bulk export string."
+msgstr "拦截批量导出字符串。"
+
+msgid "Resume Export Filename"
+msgstr "恢复导出文件名"
+
+msgid "Mutates the generated ZIP file name dynamically."
+msgstr "动态改变生成的 ZIP 文件名。"
+
+msgid "Default filename."
+msgstr "默认文件名。"
+
+msgid "File extension."
+msgstr "文件扩展名。"
+
+msgid "Mutated filename."
+msgstr "变异的文件名。"
+
+msgid "Mutates generated ZIP filename."
+msgstr "改变生成的 ZIP 文件名。"
+
+msgid "System Email Headers"
+msgstr "系统电子邮件标头"
+
+msgid "Modifies outgoing SMTP headers (e.g., custom Reply-To addresses)."
+msgstr "修改传出 SMTP 标头（例如自定义回复地址）。"
+
+msgid "Email headers array."
+msgstr "电子邮件标头数组。"
+
+msgid "Email subject."
+msgstr "电子邮件主题。"
+
+msgid "Modified headers."
+msgstr "修改的标头。"
+
+msgid "Modifies outgoing SMTP headers."
+msgstr "修改传出 SMTP 标头。"
+
+msgid "Email Notification Sent"
+msgstr "已发送电子邮件通知"
+
+msgid "Logs transactional emails immediately after wp_mail() fires."
+msgstr "wp_mail() 触发后立即记录事务电子邮件。"
+
+msgid "Email type string."
+msgstr "电子邮件类型字符串。"
+
+msgid "Recipient details."
+msgstr "收件人详细信息。"
+
+msgid "Email HTML payload."
+msgstr "电子邮件 HTML 负载。"
+
+msgid "Logs transactional emails."
+msgstr "记录交易电子邮件。"
+
+msgid "Internal Message Sent"
+msgstr "内部消息已发送"
+
+msgid "Intercepts secure internal messages to push to external SMS/Slack APIs."
+msgstr "拦截安全的内部消息以推送到外部 SMS/Slack API。"
+
+msgid "Message ID."
+msgstr "消息ID。"
+
+msgid "Sender ID."
+msgstr "发件人 ID。"
+
+msgid "Recipient ID."
+msgstr "收件人 ID。"
+
+msgid "Message Text."
+msgstr "消息文本。"
+
+msgid "Push to external SMS/Slack APIs."
+msgstr "推送到外部 SMS/Slack API。"
+
+msgid "Message Status Transition"
+msgstr "消息状态转换"
+
+msgid "Triggers when an admin resolves a flagged/conflicted message."
+msgstr "当管理员解决标记/冲突的消息时触发。"
+
+msgid "Admin flag resolution."
+msgstr "管理员标志解析。"
+
+msgid "File Uploaded (S3 Hook)"
+msgstr "文件已上传（S3 挂钩）"
+
+msgid "The ultimate scalability hook. Fires when a physical file is saved, allowing cloud plugins to upload to AWS S3 and delete the local instance."
+msgstr "终极可扩展性挂钩。保存物理文件时触发，允许云插件上传到 AWS S3 并删除本地实例。"
+
+msgid "Absolute physical file path."
+msgstr "绝对物理文件路径。"
+
+msgid "Context type (e.g. company_logo, resume_file)."
+msgstr "上下文类型（例如，company_logo、resume_file）。"
+
+msgid "Associated record ID."
+msgstr "关联记录 ID。"
+
+msgid "The ultimate scalability hook for S3."
+msgstr "S3 的终极可扩展性挂钩。"
+
+msgid "SEO Settings Updated"
+msgstr "SEO 设置已更新"
+
+msgid "Executes when core configs update, enabling auto-purging of caching plugins (WP Rocket)."
+msgstr "当核心配置更新时执行，启用缓存插件的自动清除（WP Rocket）。"
+
+msgid "Config data array."
+msgstr "配置数据数组。"
+
+msgid "Enabling auto-purging of caching plugins."
+msgstr "启用缓存插件的自动清除。"
+
+msgid "Hook Reference"
+msgstr "挂钩参考"
+
+msgid "Entities"
+msgstr "实体"
+
+msgid "Search across all actions and filters..."
+msgstr "搜索所有操作和过滤器..."
+
+msgid "Arguments"
+msgstr "论点"
+
+msgid "Returns"
+msgstr "退货"
+
+msgid "No return (Action Hook)"
+msgstr "不归路（动作挂钩）"
+
+msgid "Snippet"
+msgstr "片段"
+
+msgid "Copy Code"
+msgstr "复制代码"
+
+msgid "To use this hook, please install and activate the"
+msgstr "要使用此钩子，请安装并激活"
+
+msgid "addon."
+msgstr "添加在。"
+
+msgid "View Addon Details"
+msgstr "查看插件详细信息"
+
+msgid "No results found"
+msgstr "没有找到结果"
+
+msgid "Try searching for specific keywords like \\"
+msgstr "尝试搜索特定关键字，例如 \\"
+
+msgid "Hooks"
+msgstr "挂钩"
+
+msgid "Search Results"
+msgstr "搜索结果"

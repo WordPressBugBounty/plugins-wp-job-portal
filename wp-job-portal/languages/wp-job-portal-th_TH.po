@@ -12964,3 +12964,1008 @@ msgstr "-- ผลการค้นหา --"
 
 msgid "Console Output"
 msgstr "เอาต์พุตคอนโซล"
+
+msgid "After Store Job"
+msgstr "งานหลังร้าน"
+
+msgid "Fires immediately after a new job is stored in the database."
+msgstr "เริ่มทำงานทันทีหลังจากงานใหม่ถูกจัดเก็บไว้ในฐานข้อมูล"
+
+msgid "The newly created job ID."
+msgstr "รหัสงานที่สร้างขึ้นใหม่"
+
+msgid "Triggered upon job creation."
+msgstr "เกิดขึ้นเมื่อมีการสร้างงาน"
+
+msgid "After Edit Job"
+msgstr "หลังจากแก้ไขงาน"
+
+msgid "Fires immediately after an existing job is updated."
+msgstr "เริ่มทำงานทันทีหลังจากงานที่มีอยู่ได้รับการอัปเดต"
+
+msgid "The updated job ID."
+msgstr "รหัสงานที่อัปเดตแล้ว"
+
+msgid "Triggered upon job update."
+msgstr "เกิดขึ้นเมื่อมีการอัปเดตงาน"
+
+msgid "After Delete Job"
+msgstr "หลังจากลบงาน"
+
+msgid "Fires immediately after a job is deleted."
+msgstr "เริ่มทำงานทันทีหลังจากงานถูกลบ"
+
+msgid "The deleted job ID."
+msgstr "รหัสงานที่ถูกลบ"
+
+msgid "Triggered upon job deletion."
+msgstr "เกิดขึ้นเมื่อมีการลบงาน"
+
+msgid "Job Published"
+msgstr "เผยแพร่งานแล้ว"
+
+msgid "Fires when admin approved a job for publish from job listing. Essential for XML syndication to Indeed or LinkedIn."
+msgstr "เกิดขึ้นเมื่อผู้ดูแลระบบอนุมัติงานเพื่อเผยแพร่จากรายการงาน จำเป็นสำหรับการเผยแพร่ XML ไปยัง Indeed หรือ LinkedIn"
+
+msgid "The job ID."
+msgstr "รหัสงาน"
+
+msgid "The associated company ID."
+msgstr "รหัสบริษัทที่เกี่ยวข้อง"
+
+msgid "Full job data array."
+msgstr "อาร์เรย์ข้อมูลงานแบบเต็ม"
+
+msgid "Essential for XML syndication feeds."
+msgstr "จำเป็นสำหรับฟีดการเผยแพร่ XML"
+
+msgid "Job Status Transition"
+msgstr "การเปลี่ยนสถานะงาน"
+
+msgid "Fires when a job is approved or rejected by an admin from job que."
+msgstr "เริ่มทำงานเมื่องานได้รับการอนุมัติหรือปฏิเสธโดยผู้ดูแลระบบจากคิวงาน"
+
+msgid "Old status code."
+msgstr "รหัสสถานะเก่า"
+
+msgid "New status string."
+msgstr "สตริงสถานะใหม่"
+
+msgid "Admin approval/rejection trigger."
+msgstr "ทริกเกอร์การอนุมัติ/ปฏิเสธของผู้ดูแลระบบ"
+
+msgid "Featured Job Activated"
+msgstr "เปิดใช้งานงานเด่นแล้ว"
+
+msgid "Fires when a job is elevated to featured status."
+msgstr "เริ่มทำงานเมื่องานได้รับการยกระดับเป็นสถานะเด่น"
+
+msgid "User ID of the job owner."
+msgstr "ID ผู้ใช้ของเจ้าของงาน"
+
+msgid "Featured expiry date."
+msgstr "วันหมดอายุที่โดดเด่น"
+
+msgid "Triggered on featured upgrade."
+msgstr "ทริกเกอร์เมื่อมีการอัปเกรดที่โดดเด่น"
+
+msgid "Job Search Query Args"
+msgstr "Args คำค้นหางาน"
+
+msgid "Modifies the underlying SQL query for job searches."
+msgstr "แก้ไขแบบสอบถาม SQL พื้นฐานสำหรับการค้นหางาน"
+
+msgid "The search SQL query."
+msgstr "การค้นหาแบบสอบถาม SQL"
+
+msgid "Search filter variables."
+msgstr "ค้นหาตัวแปรตัวกรอง"
+
+msgid "Modified SQL query string."
+msgstr "แก้ไขสตริงการสืบค้น SQL"
+
+msgid "Used for modifying frontend job search behaviour."
+msgstr "ใช้สำหรับแก้ไขพฤติกรรมการค้นหางานส่วนหน้า"
+
+msgid "Google Job Schema"
+msgstr "สคีมางานของ Google"
+
+msgid "Intercepts the structured SEO data array to inject dynamic properties (like baseSalary)."
+msgstr "สกัดกั้นอาร์เรย์ข้อมูล SEO ที่มีโครงสร้างเพื่อแทรกคุณสมบัติไดนามิก (เช่น baseSalary)"
+
+msgid "JSON-LD schema array."
+msgstr "อาร์เรย์สคีมา JSON-LD"
+
+msgid "Job ID."
+msgstr "รหัสงาน"
+
+msgid "Modified JSON-LD array."
+msgstr "อาร์เรย์ JSON-LD ที่แก้ไขแล้ว"
+
+msgid "Crucial for SEO and Google Jobs integration."
+msgstr "สิ่งสำคัญสำหรับการรวม SEO และ Google Jobs"
+
+msgid "Job Shortlisted"
+msgstr "งานที่ได้รับการคัดเลือก"
+
+msgid "Candidate intent tracking for analytics when a job is saved or shortlisted."
+msgstr "การติดตามความตั้งใจของผู้สมัครสำหรับการวิเคราะห์เมื่อมีการบันทึกงานหรือรายการสั้น ๆ"
+
+msgid "Shortlist row ID."
+msgstr "รหัสแถวรายการโปรด"
+
+msgid "User ID."
+msgstr "รหัสผู้ใช้"
+
+msgid "Extra data array."
+msgstr "อาร์เรย์ข้อมูลพิเศษ"
+
+msgid "Candidate intent tracking."
+msgstr "การติดตามเจตนาของผู้สมัคร"
+
+msgid "After Store Resume"
+msgstr "หลังจากประวัติย่อของร้านค้า"
+
+msgid "Fires immediately after a new resume is stored in the database."
+msgstr "เริ่มทำงานทันทีหลังจากเก็บเรซูเม่ใหม่ไว้ในฐานข้อมูล"
+
+msgid "The newly created resume ID."
+msgstr "รหัสเรซูเม่ที่สร้างขึ้นใหม่"
+
+msgid "Triggered upon resume creation."
+msgstr "ทริกเกอร์เมื่อมีการสร้างเรซูเม่"
+
+msgid "After Edit Resume"
+msgstr "หลังจากแก้ไขเรซูเม่"
+
+msgid "Fires immediately after an existing resume is updated."
+msgstr "เริ่มทำงานทันทีหลังจากอัปเดตเรซูเม่ที่มีอยู่แล้ว"
+
+msgid "The updated resume ID."
+msgstr "รหัสเรซูเม่ที่อัปเดต"
+
+msgid "Triggered upon resume update."
+msgstr "ทริกเกอร์เมื่อมีการอัปเดตประวัติย่อ"
+
+msgid "After Delete Resume"
+msgstr "หลังจากลบประวัติย่อ"
+
+msgid "Fires immediately after a resume is deleted."
+msgstr "เริ่มทำงานทันทีหลังจากลบเรซูเม่แล้ว"
+
+msgid "The deleted resume ID."
+msgstr "รหัสเรซูเม่ที่ถูกลบ"
+
+msgid "Triggered upon resume deletion."
+msgstr "ทริกเกอร์เมื่อมีการลบประวัติย่อ"
+
+msgid "Resume Status Transition"
+msgstr "ดำเนินการเปลี่ยนสถานะต่อ"
+
+msgid "Fires when an administrator manually approves or rejects a resume."
+msgstr "เริ่มทำงานเมื่อผู้ดูแลระบบอนุมัติหรือปฏิเสธเรซูเม่ด้วยตนเอง"
+
+msgid "The ID of the resume."
+msgstr "ID ของเรซูเม่"
+
+msgid "The previous status."
+msgstr "สถานะก่อนหน้านี้"
+
+msgid "The new status."
+msgstr "สถานะใหม่."
+
+msgid "Track manual admin approvals/rejections."
+msgstr "ติดตามการอนุมัติ/ปฏิเสธของผู้ดูแลระบบด้วยตนเอง"
+
+msgid "Resume Search Query Args"
+msgstr "ดำเนินการค้นหา Query Args ต่อ"
+
+msgid "Modifies the SQL WHERE clause during a frontend resume search, allowing Elasticsearch integrations."
+msgstr "แก้ไขคำสั่งย่อย SQL WHERE ในระหว่างการค้นหาเรซูเม่ส่วนหน้า ทำให้สามารถรวม Elasticsearch ได้"
+
+msgid "The current SQL query string."
+msgstr "สตริงการสืบค้น SQL ปัจจุบัน"
+
+msgid "Array of applied search filters."
+msgstr "อาร์เรย์ของตัวกรองการค้นหาที่ใช้"
+
+msgid "Allows Elasticsearch integrations."
+msgstr "อนุญาตการผสานรวม Elasticsearch"
+
+msgid "Featured Resume Activated"
+msgstr "เปิดใช้งานประวัติย่อที่โดดเด่นแล้ว"
+
+msgid "Fires when a resume is promoted to featured status."
+msgstr "เริ่มทำงานเมื่อมีการเลื่อนระดับเรซูเม่เป็นสถานะเด่น"
+
+msgid "Resume ID."
+msgstr "รหัสประวัติย่อ"
+
+msgid "Job Seeker User ID."
+msgstr "ID ผู้ใช้ผู้หางาน"
+
+msgid "After Job Apply"
+msgstr "หลังสมัครงาน"
+
+msgid "Fires immediately after a candidate successfully applies for a job."
+msgstr "ยิงทันทีหลังจากที่ผู้สมัครสมัครงานได้สำเร็จ"
+
+msgid "The job application ID."
+msgstr "รหัสการสมัครงาน"
+
+msgid "Triggered upon successful job application."
+msgstr "เกิดขึ้นเมื่อการสมัครงานสำเร็จ"
+
+msgid "Application Submitted"
+msgstr "ส่งใบสมัครแล้ว"
+
+msgid "Standard event trigger for a logged-in user submitting a job application."
+msgstr "ทริกเกอร์เหตุการณ์มาตรฐานสำหรับผู้ใช้ที่เข้าสู่ระบบและส่งใบสมัครงาน"
+
+msgid "ID of the application record."
+msgstr "ID ของบันทึกการสมัคร"
+
+msgid "ID of the applied job."
+msgstr "ID ของงานที่สมัคร"
+
+msgid "Fires for authenticated users only."
+msgstr "ไฟสำหรับผู้ใช้ที่ได้รับการรับรองความถูกต้องเท่านั้น"
+
+msgid "Quick Apply Submitted"
+msgstr "สมัครด่วน ส่งแล้ว"
+
+msgid "Triggers when a candidate uses the \\"
+msgstr "ทริกเกอร์เมื่อผู้สมัครใช้ \\"
+
+msgid "Application record ID."
+msgstr "รหัสบันทึกแอปพลิเคชัน"
+
+msgid "Submitted form data."
+msgstr "ข้อมูลแบบฟอร์มที่ส่งมา"
+
+msgid "Uploaded files array."
+msgstr "อาร์เรย์ไฟล์ที่อัปโหลด"
+
+msgid "Handles bypass forms and attached files."
+msgstr "จัดการแบบฟอร์มบายพาสและไฟล์แนบ"
+
+msgid "Visitor Application Submitted"
+msgstr "ส่งใบสมัครผู้เยี่ยมชมแล้ว"
+
+msgid "Triggers specifically for unauthenticated (guest) applications."
+msgstr "ทริกเกอร์สำหรับแอปพลิเคชันที่ไม่ได้รับการรับรองความถูกต้อง (แขก) โดยเฉพาะ"
+
+msgid "Guest data array."
+msgstr "อาร์เรย์ข้อมูลแขก"
+
+msgid "Triggers specifically for unauthenticated applications."
+msgstr "ทริกเกอร์สำหรับแอปพลิเคชันที่ไม่ผ่านการรับรองความถูกต้องโดยเฉพาะ"
+
+msgid "Candidate Status Updated"
+msgstr "อัปเดตสถานะผู้สมัครแล้ว"
+
+msgid "Core ATS hook. Fires when an employer changes an applicants internal workflow state (e.g., Hired)."
+msgstr "ตะขอแกน ATS เริ่มทำงานเมื่อนายจ้างเปลี่ยนสถานะเวิร์กโฟลว์ภายในของผู้สมัคร (เช่น ได้รับการว่าจ้าง)"
+
+msgid "Old ATS status."
+msgstr "สถานะ ATS เก่า"
+
+msgid "New ATS status."
+msgstr "สถานะ ATS ใหม่"
+
+msgid "Employer User ID."
+msgstr "รหัสผู้ใช้นายจ้าง"
+
+msgid "Core ATS hook."
+msgstr "ตะขอแกน ATS"
+
+msgid "Application Note Saved"
+msgstr "บันทึกการใช้งานแล้ว"
+
+msgid "Fires when an employer adds an internal note to an application."
+msgstr "เริ่มทำงานเมื่อนายจ้างเพิ่มบันทึกภายในลงในใบสมัคร"
+
+msgid "Note text."
+msgstr "ข้อความหมายเหตุ"
+
+msgid "Fires on employer internal note."
+msgstr "ไฟไหม้บันทึกภายในนายจ้าง"
+
+msgid "Application Rating Updated"
+msgstr "อัปเดตคะแนนแอปพลิเคชันแล้ว"
+
+msgid "Fires when a candidate receives a star rating from an employer."
+msgstr "ไล่ออกเมื่อผู้สมัครได้รับคะแนนดาวจากนายจ้าง"
+
+msgid "Application ID."
+msgstr "รหัสแอปพลิเคชัน"
+
+msgid "Star rating."
+msgstr "ระดับดาว."
+
+msgid "Fires on rating update."
+msgstr "เริ่มจากการอัพเดตเรตติ้ง"
+
+msgid "After Store Company"
+msgstr "บริษัทหลังร้าน"
+
+msgid "Fires immediately after a new company is stored in the database."
+msgstr "เริ่มทำงานทันทีหลังจากที่บริษัทใหม่ถูกจัดเก็บไว้ในฐานข้อมูล"
+
+msgid "The newly created company ID."
+msgstr "รหัสบริษัทที่สร้างขึ้นใหม่"
+
+msgid "Triggered upon company creation."
+msgstr "เกิดจากการก่อตั้งบริษัท"
+
+msgid "After Edit Company"
+msgstr "หลังจากแก้ไขบริษัท"
+
+msgid "Fires immediately after an existing company is updated."
+msgstr "เริ่มทำงานทันทีหลังจากที่บริษัทที่มีอยู่ได้รับการอัปเดต"
+
+msgid "The updated company ID."
+msgstr "รหัสบริษัทที่อัปเดต"
+
+msgid "Triggered upon company update."
+msgstr "ทริกเกอร์เมื่อมีการอัพเดตของบริษัท"
+
+msgid "After Delete Company"
+msgstr "หลังจากลบบริษัท"
+
+msgid "Fires immediately after a company is deleted."
+msgstr "เริ่มทำงานทันทีหลังจากที่บริษัทถูกลบ"
+
+msgid "The deleted company ID."
+msgstr "รหัสบริษัทที่ถูกลบ"
+
+msgid "Triggered upon company deletion."
+msgstr "เกิดขึ้นเมื่อมีการลบบริษัท"
+
+msgid "Company Status Transition"
+msgstr "การเปลี่ยนสถานะของบริษัท"
+
+msgid "Fires on company approve/reject state changes."
+msgstr "ไฟไหม้บริษัทอนุมัติ/ปฏิเสธการเปลี่ยนแปลงสถานะ"
+
+msgid "Company ID."
+msgstr "รหัสบริษัท"
+
+msgid "Old status."
+msgstr "สถานะเก่า."
+
+msgid "New status."
+msgstr "สถานะใหม่"
+
+msgid "Fires on company state changes."
+msgstr "ไฟไหม้เมื่อสถานะของบริษัทเปลี่ยนแปลง"
+
+msgid "Featured Company Activated"
+msgstr "เปิดใช้งานบริษัทที่โดดเด่นแล้ว"
+
+msgid "Fires when a company is promoted to featured status."
+msgstr "เริ่มทำงานเมื่อบริษัทได้รับการเลื่อนขั้นเป็นสถานะแนะนำ"
+
+msgid "Company Search Query Args"
+msgstr "Args คำค้นหาของบริษัท"
+
+msgid "Modifies Company SQL search queries."
+msgstr "แก้ไขคำค้นหา Company SQL"
+
+msgid "Current SQL query."
+msgstr "แบบสอบถาม SQL ปัจจุบัน"
+
+msgid "Search filters."
+msgstr "ตัวกรองการค้นหา"
+
+msgid "Modified query string."
+msgstr "สตริงการสืบค้นที่แก้ไข"
+
+msgid "Used for modifying frontend company search behaviour."
+msgstr "ใช้สำหรับแก้ไขพฤติกรรมการค้นหาของบริษัทส่วนหน้า"
+
+msgid "User Status Transition"
+msgstr "การเปลี่ยนสถานะผู้ใช้"
+
+msgid "Fires when an admin manually suspends or activates an account."
+msgstr "เริ่มทำงานเมื่อผู้ดูแลระบบระงับหรือเปิดใช้งานบัญชีด้วยตนเอง"
+
+msgid "Admin account activation/suspension."
+msgstr "การเปิดใช้งาน/ระงับบัญชีผู้ดูแลระบบ"
+
+msgid "User Deleted"
+msgstr "ลบผู้ใช้แล้ว"
+
+msgid "Crucial for GDPR compliance; alerts external systems to delete user records."
+msgstr "สิ่งสำคัญสำหรับการปฏิบัติตาม GDPR แจ้งเตือนระบบภายนอกให้ลบบันทึกผู้ใช้"
+
+msgid "Portal User ID."
+msgstr "ID ผู้ใช้พอร์ทัล"
+
+msgid "WordPress User ID."
+msgstr "รหัสผู้ใช้เวิร์ดเพรส"
+
+msgid "User Role ID."
+msgstr "ID บทบาทของผู้ใช้"
+
+msgid "Crucial for GDPR compliance."
+msgstr "สิ่งสำคัญสำหรับการปฏิบัติตาม GDPR"
+
+msgid "User Profile Saved"
+msgstr "บันทึกโปรไฟล์ผู้ใช้แล้ว"
+
+msgid "Fires whenever user metadata is updated."
+msgstr "เริ่มทำงานทุกครั้งที่มีการอัปเดตข้อมูลเมตาของผู้ใช้"
+
+msgid "Profile ID."
+msgstr "รหัสโปรไฟล์"
+
+msgid "Profile metadata."
+msgstr "ข้อมูลเมตาของโปรไฟล์"
+
+msgid "Fires on metadata update."
+msgstr "เริ่มทำงานเมื่ออัปเดตข้อมูลเมตา"
+
+msgid "AI Content Prompt"
+msgstr "พรอมต์เนื้อหา AI"
+
+msgid "Intercepts the prompt string before it hits the AI proxy. Allows insertion of mandatory EEO text."
+msgstr "สกัดกั้นสตริงพร้อมต์ก่อนที่จะกระทบกับพร็อกซี AI อนุญาตให้แทรกข้อความ EEO ที่บังคับ"
+
+msgid "AI Prompt."
+msgstr "เอไอ พรอมต์"
+
+msgid "Context parameters."
+msgstr "พารามิเตอร์บริบท"
+
+msgid "Modified AI Prompt."
+msgstr "แก้ไขพรอมต์ AI"
+
+msgid "Allows insertion of mandatory context."
+msgstr "อนุญาตให้แทรกบริบทบังคับ"
+
+msgid "AI Generation Completed"
+msgstr "การสร้าง AI เสร็จสมบูรณ์"
+
+msgid "Captures the AI response for logging and plagiarism scanning."
+msgstr "บันทึกการตอบสนองของ AI สำหรับการบันทึกและการสแกนการลอกเลียนแบบ"
+
+msgid "Status code."
+msgstr "รหัสสถานะ"
+
+msgid "Response payload."
+msgstr "เพย์โหลดการตอบสนอง"
+
+msgid "Original Prompt."
+msgstr "พรอมต์ต้นฉบับ"
+
+msgid "Wrapper used."
+msgstr "ใช้กระดาษห่อแล้ว"
+
+msgid "Used for logging and plagiarism checks."
+msgstr "ใช้สำหรับบันทึกและตรวจสอบการลอกเลียนแบบ"
+
+msgid "Before AI Resume Parse"
+msgstr "ก่อนที่ AI จะแยกวิเคราะห์ต่อ"
+
+msgid "Allows PII redaction from resume text before it is indexed for AI matching."
+msgstr "อนุญาตให้เขียน PII จากข้อความประวัติย่อก่อนที่จะจัดทำดัชนีสำหรับการจับคู่ AI"
+
+msgid "Text string for AI indexing."
+msgstr "สตริงข้อความสำหรับการจัดทำดัชนี AI"
+
+msgid "Entity ID."
+msgstr "รหัสเอนทิตี"
+
+msgid "Sanitized AI string."
+msgstr "สตริง AI ที่ผ่านการฆ่าเชื้อแล้ว"
+
+msgid "Useful for Blind Hiring features."
+msgstr "มีประโยชน์สำหรับคุณสมบัติการจ้างงานคนตาบอด"
+
+msgid "Before AI Job Parse"
+msgstr "ก่อน AI งานแยกวิเคราะห์"
+
+msgid "Allows modification of job text before AI indexing."
+msgstr "อนุญาตให้แก้ไขข้อความงานก่อนที่จะสร้างดัชนี AI"
+
+msgid "Modified AI string."
+msgstr "แก้ไขสตริง AI"
+
+msgid "AI Job to Resume Match"
+msgstr "งาน AI เพื่อดำเนินการจับคู่ต่อ"
+
+msgid "Mutates the search string the AI uses to find resumes for a job."
+msgstr "กลายพันธุ์สตริงการค้นหาที่ AI ใช้เพื่อค้นหาเรซูเม่ของงาน"
+
+msgid "Search string."
+msgstr "สตริงการค้นหา"
+
+msgid "Mutated search string."
+msgstr "สตริงการค้นหาที่กลายพันธุ์"
+
+msgid "Mutates the search string the AI uses."
+msgstr "กลายพันธุ์สตริงการค้นหาที่ AI ใช้"
+
+msgid "AI Resume to Job Match"
+msgstr "AI เรซูเม่เพื่อจับคู่งาน"
+
+msgid "Mutates the search string the AI uses to find jobs for a resume."
+msgstr "กลายพันธุ์สตริงการค้นหาที่ AI ใช้เพื่อค้นหางานสำหรับเรซูเม่"
+
+msgid "AI Dashboard Job Suggestions"
+msgstr "คำแนะนำงาน AI Dashboard"
+
+msgid "Captures suggested jobs calculated for the job seekers dashboard."
+msgstr "รวบรวมงานที่แนะนำซึ่งคำนวณสำหรับแดชบอร์ดผู้หางาน"
+
+msgid "Seeker User ID."
+msgstr "ID ผู้ใช้ผู้ค้นหา"
+
+msgid "Array of matched Job IDs."
+msgstr "อาร์เรย์ของรหัสงานที่ตรงกัน"
+
+msgid "Captures dashboard suggestions."
+msgstr "บันทึกคำแนะนำแดชบอร์ด"
+
+msgid "AI Job Suggestion Calculated"
+msgstr "คำนวณการแนะนำงาน AI"
+
+msgid "Captures suggested jobs against a specific resume ID."
+msgstr "รวบรวมงานที่แนะนำโดยเทียบกับรหัสเรซูเม่เฉพาะ"
+
+msgid "Captures resume-specific suggestions."
+msgstr "รวบรวมข้อเสนอแนะเฉพาะเรซูเม่"
+
+msgid "AI Dashboard Resume Suggestions"
+msgstr "คำแนะนำเรซูเม่แดชบอร์ด AI"
+
+msgid "Captures suggested resumes calculated for the employers dashboard."
+msgstr "รวบรวมเรซูเม่ที่แนะนำโดยคำนวณสำหรับแดชบอร์ดนายจ้าง"
+
+msgid "Array of matched Resume IDs."
+msgstr "อาร์เรย์ของรหัสเรซูเม่ที่ตรงกัน"
+
+msgid "Captures employer dashboard suggestions."
+msgstr "รวบรวมข้อเสนอแนะแดชบอร์ดนายจ้าง"
+
+msgid "AI Resume Suggestion Calculated"
+msgstr "คำนวณคำแนะนำเรซูเม่ AI"
+
+msgid "Captures suggested resumes against a specific job ID."
+msgstr "บันทึกประวัติย่อที่แนะนำโดยเทียบกับรหัสงานเฉพาะ"
+
+msgid "Captures job-specific suggestions."
+msgstr "รวบรวมข้อเสนอแนะเฉพาะงาน"
+
+msgid "Job Alert Triggered"
+msgstr "ทริกเกอร์การแจ้งเตือนงาน"
+
+msgid "Intercepts an alert match before the email sends. Ideal for Push/SMS notifications."
+msgstr "สกัดกั้นการจับคู่การแจ้งเตือนก่อนที่จะส่งอีเมล เหมาะสำหรับการแจ้งเตือนแบบ Push/SMS"
+
+msgid "Person ID."
+msgstr "รหัสบุคคล"
+
+msgid "Subscriber User ID."
+msgstr "รหัสผู้ใช้สมาชิก"
+
+msgid "Matched jobs array."
+msgstr "อาร์เรย์งานที่ตรงกัน"
+
+msgid "Ideal for Push/SMS notifications."
+msgstr "เหมาะสำหรับการแจ้งเตือนแบบ Push/SMS"
+
+msgid "Job Alert Saved"
+msgstr "บันทึกการแจ้งเตือนงานแล้ว"
+
+msgid "Fires when an alert preference is created or updated."
+msgstr "เริ่มทำงานเมื่อมีการสร้างหรืออัปเดตการตั้งค่าการแจ้งเตือน"
+
+msgid "Alert record ID."
+msgstr "ID บันทึกการแจ้งเตือน"
+
+msgid "Subscriber Email."
+msgstr "อีเมล์สมาชิก."
+
+msgid "Alert configuration data."
+msgstr "ข้อมูลการกำหนดค่าการแจ้งเตือน"
+
+msgid "Fires on alert create/update."
+msgstr "เริ่มทำงานเมื่อมีการสร้าง/อัปเดตการแจ้งเตือน"
+
+msgid "Job Alert Unsubscribed"
+msgstr "ยกเลิกการสมัครรับการแจ้งเตือนงานแล้ว"
+
+msgid "Fires when an alert is deleted."
+msgstr "เริ่มทำงานเมื่อมีการลบการแจ้งเตือน"
+
+msgid "Deleted Alert ID."
+msgstr "รหัสการแจ้งเตือนที่ถูกลบ"
+
+msgid "Membership Package Purchased"
+msgstr "ซื้อแพ็คเกจสมาชิกแล้ว"
+
+msgid "Triggers on a successful checkout via Stripe or PayPal gateways."
+msgstr "ทริกเกอร์เมื่อชำระเงินสำเร็จผ่านเกตเวย์ Stripe หรือ PayPal"
+
+msgid "Package ID."
+msgstr "รหัสแพ็กเกจ"
+
+msgid "Amount paid."
+msgstr "จำนวนเงินที่ชำระ"
+
+msgid "Payment gateway."
+msgstr "เกตเวย์การชำระเงิน"
+
+msgid "Triggers on gateway success."
+msgstr "ทริกเกอร์ความสำเร็จของเกตเวย์"
+
+msgid "WooCommerce Order Synced"
+msgstr "ซิงค์คำสั่งซื้อ WooCommerce แล้ว"
+
+msgid "Executes when WP Job Portal routes a payment into the WooCommerce cart."
+msgstr "ดำเนินการเมื่อ WP Job Portal กำหนดเส้นทางการชำระเงินไปยังตะกร้าสินค้า WooCommerce"
+
+msgid "WooCommerce Post ID."
+msgstr "รหัสโพสต์ WooCommerce"
+
+msgid "Purchase data."
+msgstr "ซื้อข้อมูล"
+
+msgid "Executes on Woo cart route."
+msgstr "ดำเนินการบนเส้นทาง Woo cart"
+
+msgid "Per Listing Purchased"
+msgstr "ต่อรายการซื้อ"
+
+msgid "Generic action deployed across all individual purchases."
+msgstr "การดำเนินการทั่วไปที่นำไปใช้กับการซื้อแต่ละรายการ"
+
+msgid "Entity ID (job/resume/company)."
+msgstr "รหัสเอนทิตี (งาน/ประวัติย่อ/บริษัท)"
+
+msgid "Entity type."
+msgstr "ประเภทเอนทิตี"
+
+msgid "Gateway used."
+msgstr "เกตเวย์ที่ใช้"
+
+msgid "Deployed across individual purchases."
+msgstr "ปรับใช้กับการซื้อแต่ละรายการ"
+
+msgid "Subscription Cancelled"
+msgstr "ยกเลิกการสมัครสมาชิกแล้ว"
+
+msgid "Alerts external platforms (like Discord/Active Directory) to downgrade the user."
+msgstr "แจ้งเตือนแพลตฟอร์มภายนอก (เช่น Discord/Active Directory) ให้ดาวน์เกรดผู้ใช้"
+
+msgid "Gateway sub ID."
+msgstr "ID ย่อยของเกตเวย์"
+
+msgid "Downgrade user permissions."
+msgstr "ดาวน์เกรดสิทธิ์ผู้ใช้"
+
+msgid "Membership Purchased DB Commit"
+msgstr "การเป็นสมาชิกซื้อ DB Commit"
+
+msgid "A database-level failsafe hook that fires even if a package is manually assigned by an admin."
+msgstr "hook ที่ไม่ปลอดภัยระดับฐานข้อมูลที่เริ่มทำงานแม้ว่าผู้ดูแลระบบจะกำหนดแพ็คเกจด้วยตนเองก็ตาม"
+
+msgid "Amount."
+msgstr "จำนวน."
+
+msgid "Payment Method."
+msgstr "วิธีการชำระเงิน."
+
+msgid "Database-level failsafe hook."
+msgstr "hook ที่ไม่ปลอดภัยระดับฐานข้อมูล"
+
+msgid "Package Saved"
+msgstr "บันทึกแพ็คเกจแล้ว"
+
+msgid "Fires when a package is updated or unpublished."
+msgstr "เริ่มทำงานเมื่อมีการอัพเดตหรือยกเลิกการเผยแพร่แพ็คเกจ"
+
+msgid "Package data."
+msgstr "ข้อมูลแพ็กเกจ"
+
+msgid "Fires on package update."
+msgstr "ไฟไหม้ในการอัพเดตแพ็คเกจ"
+
+msgid "Invoice Status Transition"
+msgstr "การเปลี่ยนสถานะใบแจ้งหนี้"
+
+msgid "Fires when an invoice moves to \\"
+msgstr "เริ่มทำงานเมื่อใบแจ้งหนี้ย้ายไปที่ \\"
+
+msgid "Invoice ID."
+msgstr "รหัสใบแจ้งหนี้"
+
+msgid "Old Status."
+msgstr "สถานะเก่า"
+
+msgid "New Status."
+msgstr "สถานะใหม่"
+
+msgid "Syncs external accounting software."
+msgstr "ซิงค์ซอฟต์แวร์บัญชีภายนอก"
+
+msgid "Invoice Saved"
+msgstr "บันทึกใบแจ้งหนี้แล้ว"
+
+msgid "Fires on invoice creation or deletion."
+msgstr "เริ่มทำงานเมื่อมีการสร้างหรือลบใบแจ้งหนี้"
+
+msgid "Invoice Data."
+msgstr "ข้อมูลใบแจ้งหนี้"
+
+msgid "Fires on invoice creation."
+msgstr "เริ่มทำงานในการสร้างใบแจ้งหนี้"
+
+msgid "Employer Dashboard Loaded"
+msgstr "โหลดแดชบอร์ดนายจ้างแล้ว"
+
+msgid "Fires when the employer portal initializes."
+msgstr "เริ่มทำงานเมื่อพอร์ทัลนายจ้างเริ่มต้น"
+
+msgid "Portal view data array."
+msgstr "อาร์เรย์ข้อมูลมุมมองพอร์ทัล"
+
+msgid "Jobseeker Dashboard Loaded"
+msgstr "โหลดแดชบอร์ดผู้หางานแล้ว"
+
+msgid "Fires when the candidate portal initializes."
+msgstr "เริ่มทำงานเมื่อพอร์ทัลผู้สมัครเริ่มต้น"
+
+msgid "Candidate User ID."
+msgstr "รหัสผู้ใช้ผู้สมัคร"
+
+msgid "Admin Dashboard Loaded"
+msgstr "โหลดแดชบอร์ดผู้ดูแลระบบแล้ว"
+
+msgid "Injects custom data into the WP Admin control panel."
+msgstr "แทรกข้อมูลที่กำหนดเองลงในแผงควบคุม WP Admin"
+
+msgid "Admin data array."
+msgstr "อาร์เรย์ข้อมูลผู้ดูแลระบบ"
+
+msgid "Injects data into WP Admin."
+msgstr "แทรกข้อมูลลงใน WP Admin"
+
+msgid "User Widget HTML"
+msgstr "วิดเจ็ตผู้ใช้ HTML"
+
+msgid "Allows theme developers to modify member widget cards."
+msgstr "อนุญาตให้นักพัฒนาธีมแก้ไขการ์ดวิดเจ็ตสมาชิก"
+
+msgid "HTML Content."
+msgstr "เนื้อหา HTML"
+
+msgid "User role."
+msgstr "บทบาทของผู้ใช้"
+
+msgid "User data."
+msgstr "ข้อมูลผู้ใช้"
+
+msgid "Modified HTML."
+msgstr "HTML ที่ได้รับการแก้ไข"
+
+msgid "Modify member widget cards."
+msgstr "แก้ไขการ์ดวิดเจ็ตสมาชิก"
+
+msgid "Shortlist Popup HTML"
+msgstr "HTML ป๊อปอัปรายการโปรด"
+
+msgid "Modifies the HTML output of the shortlist modal."
+msgstr "แก้ไขเอาต์พุต HTML ของ modal รายการตัวเลือก"
+
+msgid "Modifies shortlist modal HTML."
+msgstr "แก้ไข HTML กิริยารายการตัวเลือก"
+
+msgid "Export Resume Raw String"
+msgstr "ส่งออกสตริงดิบต่อ"
+
+msgid "Intercepts the final TSV text string for a single resume download."
+msgstr "ตัดสตริงข้อความ TSV สุดท้ายสำหรับการดาวน์โหลดเรซูเม่ครั้งเดียว"
+
+msgid "TSV String."
+msgstr "สตริง TSV"
+
+msgid "Modified TSV string."
+msgstr "แก้ไขสตริง TSV"
+
+msgid "Intercepts single TSV export."
+msgstr "สกัดกั้นการส่งออก TSV เดี่ยว"
+
+msgid "Export Resume Data Array"
+msgstr "ส่งออกอาร์เรย์ข้อมูลประวัติย่อ"
+
+msgid "Highly useful for Blind Hiring; allows programmatic removal of PII columns before TSV conversion."
+msgstr "มีประโยชน์อย่างมากสำหรับการจ้างงานคนตาบอด อนุญาตให้ลบคอลัมน์ PII โดยทางโปรแกรมก่อนการแปลง TSV"
+
+msgid "Export row array."
+msgstr "ส่งออกอาร์เรย์แถว"
+
+msgid "DB result data."
+msgstr "ข้อมูลผลลัพธ์ DB"
+
+msgid "Sanitized row array."
+msgstr "อาร์เรย์แถวที่ถูกสุขลักษณะ"
+
+msgid "Highly useful for Blind Hiring."
+msgstr "มีประโยชน์อย่างมากสำหรับการจ้างงานคนตาบอด"
+
+msgid "Export All Resumes Raw String"
+msgstr "ส่งออกสตริงดิบต่อทั้งหมด"
+
+msgid "Intercepts the bulk export string to append HR disclaimers or timestamps."
+msgstr "สกัดกั้นสตริงการส่งออกจำนวนมากเพื่อผนวกข้อจำกัดความรับผิดชอบหรือการประทับเวลาของ HR"
+
+msgid "Bulk TSV String."
+msgstr "สตริง TSV จำนวนมาก"
+
+msgid "Modified bulk string."
+msgstr "แก้ไขสตริงจำนวนมาก"
+
+msgid "Intercepts bulk export string."
+msgstr "สกัดกั้นสตริงการส่งออกจำนวนมาก"
+
+msgid "Resume Export Filename"
+msgstr "ดำเนินการส่งออกชื่อไฟล์ต่อ"
+
+msgid "Mutates the generated ZIP file name dynamically."
+msgstr "กลายพันธุ์ชื่อไฟล์ ZIP ที่สร้างขึ้นแบบไดนามิก"
+
+msgid "Default filename."
+msgstr "ชื่อไฟล์เริ่มต้น"
+
+msgid "File extension."
+msgstr "นามสกุลไฟล์."
+
+msgid "Mutated filename."
+msgstr "ชื่อไฟล์ที่กลายพันธุ์"
+
+msgid "Mutates generated ZIP filename."
+msgstr "กลายพันธุ์ชื่อไฟล์ ZIP ที่สร้างขึ้น"
+
+msgid "System Email Headers"
+msgstr "ส่วนหัวอีเมลของระบบ"
+
+msgid "Modifies outgoing SMTP headers (e.g., custom Reply-To addresses)."
+msgstr "แก้ไขส่วนหัว SMTP ขาออก (เช่น ที่อยู่ตอบกลับที่กำหนดเอง)"
+
+msgid "Email headers array."
+msgstr "อาร์เรย์ส่วนหัวของอีเมล"
+
+msgid "Email subject."
+msgstr "หัวเรื่องอีเมล."
+
+msgid "Modified headers."
+msgstr "ส่วนหัวที่แก้ไขแล้ว"
+
+msgid "Modifies outgoing SMTP headers."
+msgstr "แก้ไขส่วนหัว SMTP ขาออก"
+
+msgid "Email Notification Sent"
+msgstr "ส่งอีเมลแจ้งเตือนแล้ว"
+
+msgid "Logs transactional emails immediately after wp_mail() fires."
+msgstr "บันทึกอีเมลธุรกรรมทันทีหลังจาก wp_mail() เริ่มทำงาน"
+
+msgid "Email type string."
+msgstr "สตริงประเภทอีเมล"
+
+msgid "Recipient details."
+msgstr "รายละเอียดผู้รับ."
+
+msgid "Email HTML payload."
+msgstr "เพย์โหลด HTML ของอีเมล"
+
+msgid "Logs transactional emails."
+msgstr "บันทึกอีเมลการทำธุรกรรม"
+
+msgid "Internal Message Sent"
+msgstr "ส่งข้อความภายในแล้ว"
+
+msgid "Intercepts secure internal messages to push to external SMS/Slack APIs."
+msgstr "สกัดกั้นข้อความภายในที่ปลอดภัยเพื่อพุชไปยัง SMS/Slack API ภายนอก"
+
+msgid "Message ID."
+msgstr "รหัสข้อความ"
+
+msgid "Sender ID."
+msgstr "รหัสผู้ส่ง"
+
+msgid "Recipient ID."
+msgstr "รหัสผู้รับ"
+
+msgid "Message Text."
+msgstr "ข้อความ."
+
+msgid "Push to external SMS/Slack APIs."
+msgstr "พุชไปยัง SMS/Slack API ภายนอก"
+
+msgid "Message Status Transition"
+msgstr "การเปลี่ยนสถานะข้อความ"
+
+msgid "Triggers when an admin resolves a flagged/conflicted message."
+msgstr "ทริกเกอร์เมื่อผู้ดูแลระบบแก้ไขข้อความที่ถูกตั้งค่าสถานะ/ขัดแย้งกัน"
+
+msgid "Admin flag resolution."
+msgstr "ความละเอียดของธงผู้ดูแลระบบ"
+
+msgid "File Uploaded (S3 Hook)"
+msgstr "อัปโหลดไฟล์แล้ว (S3 Hook)"
+
+msgid "The ultimate scalability hook. Fires when a physical file is saved, allowing cloud plugins to upload to AWS S3 and delete the local instance."
+msgstr "เบ็ดขยายขีดความสามารถขั้นสูงสุด เริ่มทำงานเมื่อมีการบันทึกไฟล์จริง ทำให้ปลั๊กอินระบบคลาวด์อัปโหลดไปยัง AWS S3 และลบอินสแตนซ์ในเครื่องได้"
+
+msgid "Absolute physical file path."
+msgstr "เส้นทางไฟล์ฟิสิคัลสัมบูรณ์"
+
+msgid "Context type (e.g. company_logo, resume_file)."
+msgstr "ประเภทบริบท (เช่น company_logo, resume_file)"
+
+msgid "Associated record ID."
+msgstr "รหัสเรกคอร์ดที่เกี่ยวข้อง"
+
+msgid "The ultimate scalability hook for S3."
+msgstr "ตะขอเกี่ยวกับความสามารถในการปรับขนาดขั้นสูงสุดสำหรับ S3"
+
+msgid "SEO Settings Updated"
+msgstr "อัปเดตการตั้งค่า SEO แล้ว"
+
+msgid "Executes when core configs update, enabling auto-purging of caching plugins (WP Rocket)."
+msgstr "ดำเนินการเมื่อมีการอัปเดตการกำหนดค่าหลัก เปิดใช้งานการล้างปลั๊กอินแคชอัตโนมัติ (WP Rocket)"
+
+msgid "Config data array."
+msgstr "กำหนดค่าอาร์เรย์ข้อมูล"
+
+msgid "Enabling auto-purging of caching plugins."
+msgstr "เปิดใช้งานการล้างปลั๊กอินแคชอัตโนมัติ"
+
+msgid "Hook Reference"
+msgstr "อ้างอิงตะขอ"
+
+msgid "Entities"
+msgstr "เอนทิตี"
+
+msgid "Search across all actions and filters..."
+msgstr "ค้นหาการกระทำและตัวกรองทั้งหมด..."
+
+msgid "Arguments"
+msgstr "ข้อโต้แย้ง"
+
+msgid "Returns"
+msgstr "การส่งคืน"
+
+msgid "No return (Action Hook)"
+msgstr "ไม่มีการคืนสินค้า (Action Hook)"
+
+msgid "Snippet"
+msgstr "ตัวอย่าง"
+
+msgid "Copy Code"
+msgstr "คัดลอกรหัส"
+
+msgid "To use this hook, please install and activate the"
+msgstr "หากต้องการใช้เบ็ดนี้ โปรดติดตั้งและเปิดใช้งาน"
+
+msgid "addon."
+msgstr "ส่วนเสริม"
+
+msgid "View Addon Details"
+msgstr "ดูรายละเอียด Addon"
+
+msgid "No results found"
+msgstr "ไม่พบผลลัพธ์"
+
+msgid "Try searching for specific keywords like \\"
+msgstr "ลองค้นหาคำหลักที่เฉพาะเจาะจงเช่น \\"
+
+msgid "Hooks"
+msgstr "ตะขอ"
+
+msgid "Search Results"
+msgstr "ผลการค้นหา"

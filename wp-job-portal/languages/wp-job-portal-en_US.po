@@ -12893,3 +12893,1012 @@ msgstr ""
 
 msgid "unused keys have been deleted successfully!"
 msgstr ""
+
+# New String for hooks interface #
+msgid "After Store Job"
+msgstr ""
+
+msgid "Fires immediately after a new job is stored in the database."
+msgstr ""
+
+msgid "The newly created job ID."
+msgstr ""
+
+msgid "Triggered upon job creation."
+msgstr ""
+
+msgid "After Edit Job"
+msgstr ""
+
+msgid "Fires immediately after an existing job is updated."
+msgstr ""
+
+msgid "The updated job ID."
+msgstr ""
+
+msgid "Triggered upon job update."
+msgstr ""
+
+msgid "After Delete Job"
+msgstr ""
+
+msgid "Fires immediately after a job is deleted."
+msgstr ""
+
+msgid "The deleted job ID."
+msgstr ""
+
+msgid "Triggered upon job deletion."
+msgstr ""
+
+msgid "Job Published"
+msgstr ""
+
+msgid "Fires when admin approved a job for publish from job listing. Essential for XML syndication to Indeed or LinkedIn."
+msgstr ""
+
+msgid "The job ID."
+msgstr ""
+
+msgid "The associated company ID."
+msgstr ""
+
+msgid "Full job data array."
+msgstr ""
+
+msgid "Essential for XML syndication feeds."
+msgstr ""
+
+msgid "Job Status Transition"
+msgstr ""
+
+msgid "Fires when a job is approved or rejected by an admin from job que."
+msgstr ""
+
+msgid "Old status code."
+msgstr ""
+
+msgid "New status string."
+msgstr ""
+
+msgid "Admin approval/rejection trigger."
+msgstr ""
+
+msgid "Featured Job Activated"
+msgstr ""
+
+msgid "Fires when a job is elevated to featured status."
+msgstr ""
+
+msgid "User ID of the job owner."
+msgstr ""
+
+msgid "Featured expiry date."
+msgstr ""
+
+msgid "Triggered on featured upgrade."
+msgstr ""
+
+msgid "Job Search Query Args"
+msgstr ""
+
+msgid "Modifies the underlying SQL query for job searches."
+msgstr ""
+
+msgid "The search SQL query."
+msgstr ""
+
+msgid "Search filter variables."
+msgstr ""
+
+msgid "Modified SQL query string."
+msgstr ""
+
+msgid "Used for modifying frontend job search behaviour."
+msgstr ""
+
+msgid "Google Job Schema"
+msgstr ""
+
+msgid "Intercepts the structured SEO data array to inject dynamic properties (like baseSalary)."
+msgstr ""
+
+msgid "JSON-LD schema array."
+msgstr ""
+
+msgid "Job ID."
+msgstr ""
+
+msgid "Modified JSON-LD array."
+msgstr ""
+
+msgid "Crucial for SEO and Google Jobs integration."
+msgstr ""
+
+msgid "Job Shortlisted"
+msgstr ""
+
+msgid "Candidate intent tracking for analytics when a job is saved or shortlisted."
+msgstr ""
+
+msgid "Shortlist row ID."
+msgstr ""
+
+msgid "User ID."
+msgstr ""
+
+msgid "Extra data array."
+msgstr ""
+
+msgid "Candidate intent tracking."
+msgstr ""
+
+msgid "After Store Resume"
+msgstr ""
+
+msgid "Fires immediately after a new resume is stored in the database."
+msgstr ""
+
+msgid "The newly created resume ID."
+msgstr ""
+
+msgid "Triggered upon resume creation."
+msgstr ""
+
+msgid "After Edit Resume"
+msgstr ""
+
+msgid "Fires immediately after an existing resume is updated."
+msgstr ""
+
+msgid "The updated resume ID."
+msgstr ""
+
+msgid "Triggered upon resume update."
+msgstr ""
+
+msgid "After Delete Resume"
+msgstr ""
+
+msgid "Fires immediately after a resume is deleted."
+msgstr ""
+
+msgid "The deleted resume ID."
+msgstr ""
+
+msgid "Triggered upon resume deletion."
+msgstr ""
+
+msgid "Resume Status Transition"
+msgstr ""
+
+msgid "Fires when an administrator manually approves or rejects a resume."
+msgstr ""
+
+msgid "The ID of the resume."
+msgstr ""
+
+msgid "The previous status."
+msgstr ""
+
+msgid "The new status."
+msgstr ""
+
+msgid "Track manual admin approvals/rejections."
+msgstr ""
+
+msgid "Resume Search Query Args"
+msgstr ""
+
+msgid "Modifies the SQL WHERE clause during a frontend resume search, allowing Elasticsearch integrations."
+msgstr ""
+
+msgid "The current SQL query string."
+msgstr ""
+
+msgid "Array of applied search filters."
+msgstr ""
+
+msgid "Allows Elasticsearch integrations."
+msgstr ""
+
+msgid "Featured Resume Activated"
+msgstr ""
+
+msgid "Fires when a resume is promoted to featured status."
+msgstr ""
+
+msgid "Resume ID."
+msgstr ""
+
+msgid "Job Seeker User ID."
+msgstr ""
+
+msgid "After Job Apply"
+msgstr ""
+
+msgid "Fires immediately after a candidate successfully applies for a job."
+msgstr ""
+
+msgid "The job application ID."
+msgstr ""
+
+msgid "Triggered upon successful job application."
+msgstr ""
+
+msgid "Application Submitted"
+msgstr ""
+
+msgid "Standard event trigger for a logged-in user submitting a job application."
+msgstr ""
+
+msgid "ID of the application record."
+msgstr ""
+
+msgid "ID of the applied job."
+msgstr ""
+
+msgid "Fires for authenticated users only."
+msgstr ""
+
+msgid "Quick Apply Submitted"
+msgstr ""
+
+msgid "Triggers when a candidate uses the \"Quick Apply\" bypass form."
+msgstr ""
+
+msgid "Application record ID."
+msgstr ""
+
+msgid "Submitted form data."
+msgstr ""
+
+msgid "Uploaded files array."
+msgstr ""
+
+msgid "Handles bypass forms and attached files."
+msgstr ""
+
+msgid "Visitor Application Submitted"
+msgstr ""
+
+msgid "Triggers specifically for unauthenticated (guest) applications."
+msgstr ""
+
+msgid "Guest data array."
+msgstr ""
+
+msgid "Triggers specifically for unauthenticated applications."
+msgstr ""
+
+msgid "Candidate Status Updated"
+msgstr ""
+
+msgid "Core ATS hook. Fires when an employer changes an applicants internal workflow state (e.g., Hired)."
+msgstr ""
+
+msgid "Old ATS status."
+msgstr ""
+
+msgid "New ATS status."
+msgstr ""
+
+msgid "Employer User ID."
+msgstr ""
+
+msgid "Core ATS hook."
+msgstr ""
+
+msgid "Application Note Saved"
+msgstr ""
+
+msgid "Fires when an employer adds an internal note to an application."
+msgstr ""
+
+msgid "Note text."
+msgstr ""
+
+msgid "Fires on employer internal note."
+msgstr ""
+
+msgid "Application Rating Updated"
+msgstr ""
+
+msgid "Fires when a candidate receives a star rating from an employer."
+msgstr ""
+
+msgid "Application ID."
+msgstr ""
+
+msgid "Star rating."
+msgstr ""
+
+msgid "Fires on rating update."
+msgstr ""
+
+msgid "After Store Company"
+msgstr ""
+
+msgid "Fires immediately after a new company is stored in the database."
+msgstr ""
+
+msgid "The newly created company ID."
+msgstr ""
+
+msgid "Triggered upon company creation."
+msgstr ""
+
+msgid "After Edit Company"
+msgstr ""
+
+msgid "Fires immediately after an existing company is updated."
+msgstr ""
+
+msgid "The updated company ID."
+msgstr ""
+
+msgid "Triggered upon company update."
+msgstr ""
+
+msgid "After Delete Company"
+msgstr ""
+
+msgid "Fires immediately after a company is deleted."
+msgstr ""
+
+msgid "The deleted company ID."
+msgstr ""
+
+msgid "Triggered upon company deletion."
+msgstr ""
+
+msgid "Company Status Transition"
+msgstr ""
+
+msgid "Fires on company approve/reject state changes."
+msgstr ""
+
+msgid "Company ID."
+msgstr ""
+
+msgid "Old status."
+msgstr ""
+
+msgid "New status."
+msgstr ""
+
+msgid "Fires on company state changes."
+msgstr ""
+
+msgid "Featured Company Activated"
+msgstr ""
+
+msgid "Fires when a company is promoted to featured status."
+msgstr ""
+
+msgid "Company Search Query Args"
+msgstr ""
+
+msgid "Modifies Company SQL search queries."
+msgstr ""
+
+msgid "Current SQL query."
+msgstr ""
+
+msgid "Search filters."
+msgstr ""
+
+msgid "Modified query string."
+msgstr ""
+
+msgid "Used for modifying frontend company search behaviour."
+msgstr ""
+
+msgid "User Status Transition"
+msgstr ""
+
+msgid "Fires when an admin manually suspends or activates an account."
+msgstr ""
+
+msgid "Admin account activation/suspension."
+msgstr ""
+
+msgid "User Deleted"
+msgstr ""
+
+msgid "Crucial for GDPR compliance; alerts external systems to delete user records."
+msgstr ""
+
+msgid "Portal User ID."
+msgstr ""
+
+msgid "WordPress User ID."
+msgstr ""
+
+msgid "User Role ID."
+msgstr ""
+
+msgid "Crucial for GDPR compliance."
+msgstr ""
+
+msgid "User Profile Saved"
+msgstr ""
+
+msgid "Fires whenever user metadata is updated."
+msgstr ""
+
+msgid "Profile ID."
+msgstr ""
+
+msgid "Profile metadata."
+msgstr ""
+
+msgid "Fires on metadata update."
+msgstr ""
+
+msgid "AI Content Prompt"
+msgstr ""
+
+msgid "Intercepts the prompt string before it hits the AI proxy. Allows insertion of mandatory EEO text."
+msgstr ""
+
+msgid "AI Prompt."
+msgstr ""
+
+msgid "Context parameters."
+msgstr ""
+
+msgid "Modified AI Prompt."
+msgstr ""
+
+msgid "Allows insertion of mandatory context."
+msgstr ""
+
+msgid "AI Generation Completed"
+msgstr ""
+
+msgid "Captures the AI response for logging and plagiarism scanning."
+msgstr ""
+
+msgid "Status code."
+msgstr ""
+
+msgid "Response payload."
+msgstr ""
+
+msgid "Original Prompt."
+msgstr ""
+
+msgid "Wrapper used."
+msgstr ""
+
+msgid "Used for logging and plagiarism checks."
+msgstr ""
+
+msgid "Before AI Resume Parse"
+msgstr ""
+
+msgid "Allows PII redaction from resume text before it is indexed for AI matching."
+msgstr ""
+
+msgid "Text string for AI indexing."
+msgstr ""
+
+msgid "Entity ID."
+msgstr ""
+
+msgid "Sanitized AI string."
+msgstr ""
+
+msgid "Useful for Blind Hiring features."
+msgstr ""
+
+msgid "Before AI Job Parse"
+msgstr ""
+
+msgid "Allows modification of job text before AI indexing."
+msgstr ""
+
+msgid "Modified AI string."
+msgstr ""
+
+msgid "AI Job to Resume Match"
+msgstr ""
+
+msgid "Mutates the search string the AI uses to find resumes for a job."
+msgstr ""
+
+msgid "Search string."
+msgstr ""
+
+msgid "Mutated search string."
+msgstr ""
+
+msgid "Mutates the search string the AI uses."
+msgstr ""
+
+msgid "AI Resume to Job Match"
+msgstr ""
+
+msgid "Mutates the search string the AI uses to find jobs for a resume."
+msgstr ""
+
+msgid "AI Dashboard Job Suggestions"
+msgstr ""
+
+msgid "Captures suggested jobs calculated for the job seekers dashboard."
+msgstr ""
+
+msgid "Seeker User ID."
+msgstr ""
+
+msgid "Array of matched Job IDs."
+msgstr ""
+
+msgid "Captures dashboard suggestions."
+msgstr ""
+
+msgid "AI Job Suggestion Calculated"
+msgstr ""
+
+msgid "Captures suggested jobs against a specific resume ID."
+msgstr ""
+
+msgid "Captures resume-specific suggestions."
+msgstr ""
+
+msgid "AI Dashboard Resume Suggestions"
+msgstr ""
+
+msgid "Captures suggested resumes calculated for the employers dashboard."
+msgstr ""
+
+msgid "Array of matched Resume IDs."
+msgstr ""
+
+msgid "Captures employer dashboard suggestions."
+msgstr ""
+
+msgid "AI Resume Suggestion Calculated"
+msgstr ""
+
+msgid "Captures suggested resumes against a specific job ID."
+msgstr ""
+
+msgid "Captures job-specific suggestions."
+msgstr ""
+
+msgid "Job Alert Triggered"
+msgstr ""
+
+msgid "Intercepts an alert match before the email sends. Ideal for Push/SMS notifications."
+msgstr ""
+
+msgid "Person ID."
+msgstr ""
+
+msgid "Subscriber User ID."
+msgstr ""
+
+msgid "Matched jobs array."
+msgstr ""
+
+msgid "Ideal for Push/SMS notifications."
+msgstr ""
+
+msgid "Job Alert Saved"
+msgstr ""
+
+msgid "Fires when an alert preference is created or updated."
+msgstr ""
+
+msgid "Alert record ID."
+msgstr ""
+
+msgid "Subscriber Email."
+msgstr ""
+
+msgid "Alert configuration data."
+msgstr ""
+
+msgid "Fires on alert create/update."
+msgstr ""
+
+msgid "Job Alert Unsubscribed"
+msgstr ""
+
+msgid "Fires when an alert is deleted."
+msgstr ""
+
+msgid "Deleted Alert ID."
+msgstr ""
+
+msgid "Membership Package Purchased"
+msgstr ""
+
+msgid "Triggers on a successful checkout via Stripe or PayPal gateways."
+msgstr ""
+
+msgid "Package ID."
+msgstr ""
+
+msgid "Amount paid."
+msgstr ""
+
+msgid "Payment gateway."
+msgstr ""
+
+msgid "Triggers on gateway success."
+msgstr ""
+
+msgid "WooCommerce Order Synced"
+msgstr ""
+
+msgid "Executes when WP Job Portal routes a payment into the WooCommerce cart."
+msgstr ""
+
+msgid "WooCommerce Post ID."
+msgstr ""
+
+msgid "Purchase data."
+msgstr ""
+
+msgid "Executes on Woo cart route."
+msgstr ""
+
+msgid "Per Listing Purchased"
+msgstr ""
+
+msgid "Generic action deployed across all individual purchases."
+msgstr ""
+
+msgid "Entity ID (job/resume/company)."
+msgstr ""
+
+msgid "Entity type."
+msgstr ""
+
+msgid "Gateway used."
+msgstr ""
+
+msgid "Deployed across individual purchases."
+msgstr ""
+
+msgid "Subscription Cancelled"
+msgstr ""
+
+msgid "Alerts external platforms (like Discord/Active Directory) to downgrade the user."
+msgstr ""
+
+msgid "Gateway sub ID."
+msgstr ""
+
+msgid "Downgrade user permissions."
+msgstr ""
+
+msgid "Membership Purchased DB Commit"
+msgstr ""
+
+msgid "A database-level failsafe hook that fires even if a package is manually assigned by an admin."
+msgstr ""
+
+msgid "Amount."
+msgstr ""
+
+msgid "Payment Method."
+msgstr ""
+
+msgid "Database-level failsafe hook."
+msgstr ""
+
+msgid "Package Saved"
+msgstr ""
+
+msgid "Fires when a package is updated or unpublished."
+msgstr ""
+
+msgid "Package data."
+msgstr ""
+
+msgid "Fires on package update."
+msgstr ""
+
+msgid "Invoice Status Transition"
+msgstr ""
+
+msgid "Fires when an invoice moves to \"Paid\", syncing external accounting software."
+msgstr ""
+
+msgid "Invoice ID."
+msgstr ""
+
+msgid "Old Status."
+msgstr ""
+
+msgid "New Status."
+msgstr ""
+
+msgid "Syncs external accounting software."
+msgstr ""
+
+msgid "Invoice Saved"
+msgstr ""
+
+msgid "Fires on invoice creation or deletion."
+msgstr ""
+
+msgid "Invoice Data."
+msgstr ""
+
+msgid "Fires on invoice creation."
+msgstr ""
+
+msgid "Employer Dashboard Loaded"
+msgstr ""
+
+msgid "Fires when the employer portal initializes."
+msgstr ""
+
+msgid "Portal view data array."
+msgstr ""
+
+msgid "Jobseeker Dashboard Loaded"
+msgstr ""
+
+msgid "Fires when the candidate portal initializes."
+msgstr ""
+
+msgid "Candidate User ID."
+msgstr ""
+
+msgid "Admin Dashboard Loaded"
+msgstr ""
+
+msgid "Injects custom data into the WP Admin control panel."
+msgstr ""
+
+msgid "Admin data array."
+msgstr ""
+
+msgid "Injects data into WP Admin."
+msgstr ""
+
+msgid "User Widget HTML"
+msgstr ""
+
+msgid "Allows theme developers to modify member widget cards."
+msgstr ""
+
+msgid "HTML Content."
+msgstr ""
+
+msgid "User role."
+msgstr ""
+
+msgid "User data."
+msgstr ""
+
+msgid "Modified HTML."
+msgstr ""
+
+msgid "Modify member widget cards."
+msgstr ""
+
+msgid "Shortlist Popup HTML"
+msgstr ""
+
+msgid "Modifies the HTML output of the shortlist modal."
+msgstr ""
+
+msgid "Modifies shortlist modal HTML."
+msgstr ""
+
+msgid "Export Resume Raw String"
+msgstr ""
+
+msgid "Intercepts the final TSV text string for a single resume download."
+msgstr ""
+
+msgid "TSV String."
+msgstr ""
+
+msgid "Modified TSV string."
+msgstr ""
+
+msgid "Intercepts single TSV export."
+msgstr ""
+
+msgid "Export Resume Data Array"
+msgstr ""
+
+msgid "Highly useful for Blind Hiring; allows programmatic removal of PII columns before TSV conversion."
+msgstr ""
+
+msgid "Export row array."
+msgstr ""
+
+msgid "DB result data."
+msgstr ""
+
+msgid "Sanitized row array."
+msgstr ""
+
+msgid "Highly useful for Blind Hiring."
+msgstr ""
+
+msgid "Export All Resumes Raw String"
+msgstr ""
+
+msgid "Intercepts the bulk export string to append HR disclaimers or timestamps."
+msgstr ""
+
+msgid "Bulk TSV String."
+msgstr ""
+
+msgid "Modified bulk string."
+msgstr ""
+
+msgid "Intercepts bulk export string."
+msgstr ""
+
+msgid "Resume Export Filename"
+msgstr ""
+
+msgid "Mutates the generated ZIP file name dynamically."
+msgstr ""
+
+msgid "Default filename."
+msgstr ""
+
+msgid "File extension."
+msgstr ""
+
+msgid "Mutated filename."
+msgstr ""
+
+msgid "Mutates generated ZIP filename."
+msgstr ""
+
+msgid "System Email Headers"
+msgstr ""
+
+msgid "Modifies outgoing SMTP headers (e.g., custom Reply-To addresses)."
+msgstr ""
+
+msgid "Email headers array."
+msgstr ""
+
+msgid "Email subject."
+msgstr ""
+
+msgid "Modified headers."
+msgstr ""
+
+msgid "Modifies outgoing SMTP headers."
+msgstr ""
+
+msgid "Email Notification Sent"
+msgstr ""
+
+msgid "Logs transactional emails immediately after wp_mail() fires."
+msgstr ""
+
+msgid "Email type string."
+msgstr ""
+
+msgid "Recipient details."
+msgstr ""
+
+msgid "Email HTML payload."
+msgstr ""
+
+msgid "Logs transactional emails."
+msgstr ""
+
+msgid "Internal Message Sent"
+msgstr ""
+
+msgid "Intercepts secure internal messages to push to external SMS/Slack APIs."
+msgstr ""
+
+msgid "Message ID."
+msgstr ""
+
+msgid "Sender ID."
+msgstr ""
+
+msgid "Recipient ID."
+msgstr ""
+
+msgid "Message Text."
+msgstr ""
+
+msgid "Push to external SMS/Slack APIs."
+msgstr ""
+
+msgid "Message Status Transition"
+msgstr ""
+
+msgid "Triggers when an admin resolves a flagged/conflicted message."
+msgstr ""
+
+msgid "Admin flag resolution."
+msgstr ""
+
+msgid "File Uploaded (S3 Hook)"
+msgstr ""
+
+msgid "The ultimate scalability hook. Fires when a physical file is saved, allowing cloud plugins to upload to AWS S3 and delete the local instance."
+msgstr ""
+
+msgid "Absolute physical file path."
+msgstr ""
+
+msgid "Context type (e.g. company_logo, resume_file)."
+msgstr ""
+
+msgid "Associated record ID."
+msgstr ""
+
+msgid "The ultimate scalability hook for S3."
+msgstr ""
+
+msgid "SEO Settings Updated"
+msgstr ""
+
+msgid "Executes when core configs update, enabling auto-purging of caching plugins (WP Rocket)."
+msgstr ""
+
+msgid "Config data array."
+msgstr ""
+
+msgid "Enabling auto-purging of caching plugins."
+msgstr ""
+
+msgid "Hook Reference"
+msgstr ""
+
+msgid "Entities"
+msgstr ""
+
+msgid "Search across all actions and filters..."
+msgstr ""
+
+msgid "Arguments"
+msgstr ""
+
+msgid "Returns"
+msgstr ""
+
+msgid "No return (Action Hook)"
+msgstr ""
+
+msgid "Snippet"
+msgstr ""
+
+msgid "Copy Code"
+msgstr ""
+
+msgid "To use this hook, please install and activate the"
+msgstr ""
+
+msgid "addon."
+msgstr ""
+
+msgid "View Addon Details"
+msgstr ""
+
+msgid "No results found"
+msgstr ""
+
+msgid "Try searching for specific keywords like \"save\" or \"meta\"."
+msgstr ""
+
+msgid "Copied to clipboard"
+msgstr ""
+
+msgid "Hooks"
+msgstr ""
+
+msgid "Search Results"
+msgstr ""

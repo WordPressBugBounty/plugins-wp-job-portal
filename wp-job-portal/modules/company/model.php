@@ -948,9 +948,14 @@ class WPJOBPORTALCompanyModel {
         $wpjobportal_row = WPJOBPORTALincluder::getJSTable('company');
         if($wpjobportal_row->load($wpjobportal_id)){
             $wpjobportal_row->columns['status'] = 1;
+            $old_status = isset($wpjobportal_row->status) ? $wpjobportal_row->status : 0;
             if(!$wpjobportal_row->store()){
                 return WPJOBPORTAL_APPROVE_ERROR;
             }
+
+            // --- NEW HOOK INTEGRATION START ---
+            do_action('wpjobportal_company_status_transition', $wpjobportal_id, $old_status, 1);
+            // --- NEW HOOK INTEGRATION END ---
         }else{
             return WPJOBPORTAL_APPROVE_ERROR;
         }
@@ -985,10 +990,19 @@ class WPJOBPORTALCompanyModel {
     function rejectQueueCompanyModel($wpjobportal_id) {
         if (is_numeric($wpjobportal_id) == false)
             return false;
+
+        // --- NEW HOOK INTEGRATION START ---
+        // Retrieve old status before updating to pass context to the hook
+        $old_status_query = "SELECT status FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` WHERE id = " . esc_sql($wpjobportal_id);
+        $old_status = wpjobportal::$_db->get_var($old_status_query);
+        // --- NEW HOOK INTEGRATION END ---
         $wpjobportal_row = WPJOBPORTALincluder::getJSTable('company');
         if (!$wpjobportal_row->update(array('id' => $wpjobportal_id, 'status' => -1))) {
             return WPJOBPORTAL_REJECT_ERROR;
         }
+        // --- NEW HOOK INTEGRATION START ---
+        do_action('wpjobportal_company_status_transition', $wpjobportal_id, $old_status, -1);
+        // --- NEW HOOK INTEGRATION END ---
         //send email
         $wpjobportal_company_approve_email = WPJOBPORTALincluder::getJSModel('emailtemplate')->sendMail(1, 3, $wpjobportal_id); // 1 for company, 3 for company reject
         return WPJOBPORTAL_REJECTED;
@@ -1830,6 +1844,13 @@ class WPJOBPORTALCompanyModel {
                     $wpjobportal_noofcompanies = wpjobportal::$_data['shortcode_option_no_of_companies'];
                 }
             }
+
+            // --- NEW HOOK INTEGRATION START ---
+            // Blueprint: jobboard_search_query_args (Adapted for WP Job Portal SQL structure)
+            // Modifies the underlying SQL WHERE clause during a frontend company search execution.
+            $search_filters = isset(wpjobportal::$_search['search_filter']) ? wpjobportal::$_search['search_filter'] : array();
+            $wpjobportal_inquery = apply_filters('wpjobportal_company_search_query_args', $wpjobportal_inquery, $search_filters);
+            // --- NEW HOOK INTEGRATION END ---
 
             wpjobportal::$_data['filter']['wpjobportal-city'] = WPJOBPORTALincluder::getJSModel('common')->getCitiesForFilter($wpjobportal_city);
             wpjobportal::$_data['filter']['searchcompany'] = $wpjobportal_searchcompany;

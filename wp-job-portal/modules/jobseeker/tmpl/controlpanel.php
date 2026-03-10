@@ -415,6 +415,15 @@ if (!defined('ABSPATH'))
                     </div>
                 </div>
             </div>
+            <?php
+            // --- NEW HOOK INTEGRATION START ---
+            // Blueprint: wpjobportal_jobseeker_dashboard_loaded
+            // Fires immediately after the job seeker portal data is initialized.
+            // Developers can utilize this to query external APIs and display real-time background check statuses or inject customized modal pop-ups.
+            $jobseeker_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
+            do_action('wpjobportal_jobseeker_dashboard_loaded', $jobseeker_uid, wpjobportal::$_data);
+            // --- NEW HOOK INTEGRATION END ---
+            ?>
         </div>
     <?php
     } else {

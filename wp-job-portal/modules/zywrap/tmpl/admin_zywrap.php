@@ -212,7 +212,7 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
                                 <?php
                                 if($wpjobportal_saved_key == ''){
                                     echo esc_html(__("To get your API key, log in to", 'wp-job-portal'));
-                                    echo ' <a href="https://zywrap.com" target="_blank">'.esc_html('zywrap.com').'</a> ';
+                                    echo ' <a href="https://zywrap.com/register?utm_source=wordpress-plugin&utm_medium=wp-job-portal&utm_campaign=onboarding" target="_blank">'.esc_html('zywrap.com').'</a> ';
                                     echo esc_html(__("and navigate to your Dashboard / API Keys.", 'wp-job-portal')); ?>
                                     <?php
                                 }else{
@@ -233,7 +233,7 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
                                             </div>
                                         <?php
                                             echo esc_html(__("Get a Valid API key, log in to", 'wp-job-portal'));
-                                            echo ' <a href="https://zywrap.com" target="_blank">'.esc_html('zywrap.com').'</a> ';
+                                            echo ' <a href="https://zywrap.com/register?utm_source=wordpress-plugin&utm_medium=wp-job-portal&utm_campaign=onboarding" target="_blank">'.esc_html('zywrap.com').'</a> ';
                                             echo esc_html(__("and navigate to your Dashboard / API Keys.", 'wp-job-portal'));
                                         }
                                     }
@@ -365,6 +365,22 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
                     <? */ ?>
                 <?php endif; ?>
             <?php } ?>
+            <div class="wpjobportal-zwrap-settings-section-wrap">
+                <div class="wpjobportal-zwrap-settings-section">
+                    <div class="wpjobportal-zwrap-settings-section-title">
+                        <?php echo esc_html(__('How To Set Up', 'wp-job-portal')); ?>
+                    </div>
+                    <div class="wpjobportal-zwrap-settings-section-description">
+                        <?php echo esc_html(__('Learn how to set up your Zywrap API key in just a few steps. This video shows how to create your Zywrap account, receive 10,000 free credits, and generate your API key from the dashboard so you can quickly connect Zywrap with your applications.', 'wp-job-portal')); ?>
+                    </div>
+                </div>
+                <div class="wpjobportal-zwrap-settings-section">
+                    <a href="https://www.youtube.com/watch?v=JXpkwiW_5jE" title="<?php echo esc_html(__('How To Set Up','wp-job-portal')); ?>" target="_blank">
+                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/help-page/zywrap-how-to-set-up.jpg" width="720px">
+                    </a>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>

@@ -29,6 +29,10 @@ class WPJOBPORTALthemeController {
                     return;
             }
 
+            if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()){
+                $wpjobportal_layout  = 'admin_themes_elegant';
+            }
+
             $wpjobportal_module = (wpjobportal::$_common->wpjp_isadmin()) ? 'page' : 'wpjobportalme';
             $wpjobportal_module = WPJOBPORTALrequest::getVar($wpjobportal_module, null, 'theme');
             $wpjobportal_module = wpjobportalphplib::wpJP_str_replace('wpjobportal_', '', $wpjobportal_module);

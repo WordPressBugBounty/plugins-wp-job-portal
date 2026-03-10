@@ -12964,3 +12964,1008 @@ msgstr "-- Sökresultat --"
 
 msgid "Console Output"
 msgstr "Konsolutgång"
+
+msgid "After Store Job"
+msgstr "Efter butiksjobb"
+
+msgid "Fires immediately after a new job is stored in the database."
+msgstr "Avfyras direkt efter att ett nytt jobb har lagrats i databasen."
+
+msgid "The newly created job ID."
+msgstr "Det nyskapade jobb-ID."
+
+msgid "Triggered upon job creation."
+msgstr "Utlöst vid skapande av jobb."
+
+msgid "After Edit Job"
+msgstr "Efter Edit Job"
+
+msgid "Fires immediately after an existing job is updated."
+msgstr "Avfyras omedelbart efter att ett befintligt jobb har uppdaterats."
+
+msgid "The updated job ID."
+msgstr "Det uppdaterade jobb-ID:t."
+
+msgid "Triggered upon job update."
+msgstr "Utlöses vid jobbuppdatering."
+
+msgid "After Delete Job"
+msgstr "Efter Ta bort jobb"
+
+msgid "Fires immediately after a job is deleted."
+msgstr "Avfyras omedelbart efter att ett jobb har raderats."
+
+msgid "The deleted job ID."
+msgstr "Det raderade jobb-ID."
+
+msgid "Triggered upon job deletion."
+msgstr "Utlöses vid radering av jobb."
+
+msgid "Job Published"
+msgstr "Jobb publicerat"
+
+msgid "Fires when admin approved a job for publish from job listing. Essential for XML syndication to Indeed or LinkedIn."
+msgstr "Utlöses när administratören har godkänt ett jobb för publicering från jobbannonsen. Viktigt för XML-syndikering till Indeed eller LinkedIn."
+
+msgid "The job ID."
+msgstr "Jobbets ID."
+
+msgid "The associated company ID."
+msgstr "Det associerade företags-ID."
+
+msgid "Full job data array."
+msgstr "Full arbetsdatamatris."
+
+msgid "Essential for XML syndication feeds."
+msgstr "Viktigt för XML-syndikeringsflöden."
+
+msgid "Job Status Transition"
+msgstr "Övergång till jobbstatus"
+
+msgid "Fires when a job is approved or rejected by an admin from job que."
+msgstr "Avfyras när ett jobb godkänns eller avvisas av en administratör från jobbfrågan."
+
+msgid "Old status code."
+msgstr "Gammal statuskod."
+
+msgid "New status string."
+msgstr "Ny statussträng."
+
+msgid "Admin approval/rejection trigger."
+msgstr "Utlösare för administratörsgodkännande/avslag."
+
+msgid "Featured Job Activated"
+msgstr "Utvalda jobb aktiverat"
+
+msgid "Fires when a job is elevated to featured status."
+msgstr "Utlöses när ett jobb upphöjs till utvald status."
+
+msgid "User ID of the job owner."
+msgstr "Användar-ID för jobbägaren."
+
+msgid "Featured expiry date."
+msgstr "Utvalda utgångsdatum."
+
+msgid "Triggered on featured upgrade."
+msgstr "Utlöst vid utvald uppgradering."
+
+msgid "Job Search Query Args"
+msgstr "Jobbsökningsfråga Args"
+
+msgid "Modifies the underlying SQL query for job searches."
+msgstr "Modifierar den underliggande SQL-frågan för jobbsökningar."
+
+msgid "The search SQL query."
+msgstr "SQL-sökningen."
+
+msgid "Search filter variables."
+msgstr "Sök filtervariabler."
+
+msgid "Modified SQL query string."
+msgstr "Ändrad SQL-frågesträng."
+
+msgid "Used for modifying frontend job search behaviour."
+msgstr "Används för att modifiera frontend jobbsökningsbeteende."
+
+msgid "Google Job Schema"
+msgstr "Google jobbschema"
+
+msgid "Intercepts the structured SEO data array to inject dynamic properties (like baseSalary)."
+msgstr "Fångar upp den strukturerade SEO-datamatrisen för att injicera dynamiska egenskaper (som baseSalary)."
+
+msgid "JSON-LD schema array."
+msgstr "JSON-LD schema array."
+
+msgid "Job ID."
+msgstr "Job ID."
+
+msgid "Modified JSON-LD array."
+msgstr "Modifierad JSON-LD-array."
+
+msgid "Crucial for SEO and Google Jobs integration."
+msgstr "Avgörande för SEO och Google Jobs integration."
+
+msgid "Job Shortlisted"
+msgstr "Jobba nominerad"
+
+msgid "Candidate intent tracking for analytics when a job is saved or shortlisted."
+msgstr "Spårning av kandidatavsikter för analys när ett jobb sparas eller är nominerat."
+
+msgid "Shortlist row ID."
+msgstr "Kortlista rad-ID."
+
+msgid "User ID."
+msgstr "Användar-ID."
+
+msgid "Extra data array."
+msgstr "Extra datamatris."
+
+msgid "Candidate intent tracking."
+msgstr "Avsiktsspårning av kandidater."
+
+msgid "After Store Resume"
+msgstr "Efter återuppta butik"
+
+msgid "Fires immediately after a new resume is stored in the database."
+msgstr "Avfyras omedelbart efter att ett nytt CV har lagrats i databasen."
+
+msgid "The newly created resume ID."
+msgstr "Det nyskapade CV-ID."
+
+msgid "Triggered upon resume creation."
+msgstr "Utlöses när CV skapas."
+
+msgid "After Edit Resume"
+msgstr "Efter redigera CV"
+
+msgid "Fires immediately after an existing resume is updated."
+msgstr "Avfyras omedelbart efter att ett befintligt CV har uppdaterats."
+
+msgid "The updated resume ID."
+msgstr "Det uppdaterade CV-ID:t."
+
+msgid "Triggered upon resume update."
+msgstr "Utlöses vid återuppta uppdatering."
+
+msgid "After Delete Resume"
+msgstr "Efter Radera CV"
+
+msgid "Fires immediately after a resume is deleted."
+msgstr "Avfyras omedelbart efter att ett CV har raderats."
+
+msgid "The deleted resume ID."
+msgstr "Det raderade CV-ID:t."
+
+msgid "Triggered upon resume deletion."
+msgstr "Utlöses vid återuppta borttagning."
+
+msgid "Resume Status Transition"
+msgstr "Återuppta statusövergång"
+
+msgid "Fires when an administrator manually approves or rejects a resume."
+msgstr "Utlöses när en administratör manuellt godkänner eller avvisar ett CV."
+
+msgid "The ID of the resume."
+msgstr "CV:ts ID."
+
+msgid "The previous status."
+msgstr "Den tidigare statusen."
+
+msgid "The new status."
+msgstr "Den nya statusen."
+
+msgid "Track manual admin approvals/rejections."
+msgstr "Spåra manuella administratörsgodkännanden/avslag."
+
+msgid "Resume Search Query Args"
+msgstr "Resume Search Query Args"
+
+msgid "Modifies the SQL WHERE clause during a frontend resume search, allowing Elasticsearch integrations."
+msgstr "Modifierar SQL WHERE-satsen under en frontend-resume-sökning, vilket tillåter Elasticsearch-integrationer."
+
+msgid "The current SQL query string."
+msgstr "Den aktuella SQL-frågesträngen."
+
+msgid "Array of applied search filters."
+msgstr "En rad tillämpade sökfilter."
+
+msgid "Allows Elasticsearch integrations."
+msgstr "Tillåter Elasticsearch-integrationer."
+
+msgid "Featured Resume Activated"
+msgstr "Utvalda CV aktiverat"
+
+msgid "Fires when a resume is promoted to featured status."
+msgstr "Avfyras när ett CV befordras till utvald status."
+
+msgid "Resume ID."
+msgstr "Återuppta ID."
+
+msgid "Job Seeker User ID."
+msgstr "Arbetssökande användar-ID."
+
+msgid "After Job Apply"
+msgstr "Efter jobbansökan"
+
+msgid "Fires immediately after a candidate successfully applies for a job."
+msgstr "Brister omedelbart efter att en kandidat framgångsrikt ansökt om ett jobb."
+
+msgid "The job application ID."
+msgstr "ID för jobbansökan."
+
+msgid "Triggered upon successful job application."
+msgstr "Utlöses vid lyckad jobbansökan."
+
+msgid "Application Submitted"
+msgstr "Ansökan inlämnad"
+
+msgid "Standard event trigger for a logged-in user submitting a job application."
+msgstr "Standardhändelseutlösare för en inloggad användare som skickar in en jobbansökan."
+
+msgid "ID of the application record."
+msgstr "ID för applikationsposten."
+
+msgid "ID of the applied job."
+msgstr "ID för det sökta jobbet."
+
+msgid "Fires for authenticated users only."
+msgstr "Avfyras endast för autentiserade användare."
+
+msgid "Quick Apply Submitted"
+msgstr "Snabbansökan inskickad"
+
+msgid "Triggers when a candidate uses the \\"
+msgstr "Utlöses när en kandidat använder \\"
+
+msgid "Application record ID."
+msgstr "Applikationspost-ID."
+
+msgid "Submitted form data."
+msgstr "Inlämnade formulärdata."
+
+msgid "Uploaded files array."
+msgstr "Uppladdade filer array."
+
+msgid "Handles bypass forms and attached files."
+msgstr "Hanterar förbikopplingsformulär och bifogade filer."
+
+msgid "Visitor Application Submitted"
+msgstr "Besöksansökan inlämnad"
+
+msgid "Triggers specifically for unauthenticated (guest) applications."
+msgstr "Utlösare specifikt för oautentiserade (gäst)applikationer."
+
+msgid "Guest data array."
+msgstr "Gästdatamatris."
+
+msgid "Triggers specifically for unauthenticated applications."
+msgstr "Utlösare specifikt för oautentiserade applikationer."
+
+msgid "Candidate Status Updated"
+msgstr "Kandidatstatus uppdaterad"
+
+msgid "Core ATS hook. Fires when an employer changes an applicants internal workflow state (e.g., Hired)."
+msgstr "Core ATS krok. Avfyras när en arbetsgivare ändrar en sökandes interna arbetsflödestillstånd (t.ex. Anställd)."
+
+msgid "Old ATS status."
+msgstr "Gammal ATS-status."
+
+msgid "New ATS status."
+msgstr "Ny ATS-status."
+
+msgid "Employer User ID."
+msgstr "Arbetsgivarens användar-ID."
+
+msgid "Core ATS hook."
+msgstr "Core ATS krok."
+
+msgid "Application Note Saved"
+msgstr "Applikationsanteckning sparad"
+
+msgid "Fires when an employer adds an internal note to an application."
+msgstr "Brinner när en arbetsgivare lägger till en intern anteckning i en ansökan."
+
+msgid "Note text."
+msgstr "Notera text."
+
+msgid "Fires on employer internal note."
+msgstr "Bränder på arbetsgivarens interna anteckning."
+
+msgid "Application Rating Updated"
+msgstr "Applikationsbetyg uppdaterat"
+
+msgid "Fires when a candidate receives a star rating from an employer."
+msgstr "Avfyras när en kandidat får ett stjärnbetyg från en arbetsgivare."
+
+msgid "Application ID."
+msgstr "Applikations-ID."
+
+msgid "Star rating."
+msgstr "Stjärnbetyg."
+
+msgid "Fires on rating update."
+msgstr "Brinner vid uppdatering av betyg."
+
+msgid "After Store Company"
+msgstr "After Store Company"
+
+msgid "Fires immediately after a new company is stored in the database."
+msgstr "Avfyras direkt efter att ett nytt företag har lagrats i databasen."
+
+msgid "The newly created company ID."
+msgstr "Det nyskapade företags-ID."
+
+msgid "Triggered upon company creation."
+msgstr "Utlöses vid företagsbildning."
+
+msgid "After Edit Company"
+msgstr "Efter Edit Company"
+
+msgid "Fires immediately after an existing company is updated."
+msgstr "Brandar omedelbart efter att ett befintligt företag har uppdaterats."
+
+msgid "The updated company ID."
+msgstr "Det uppdaterade företags-ID."
+
+msgid "Triggered upon company update."
+msgstr "Utlöses vid företagsuppdatering."
+
+msgid "After Delete Company"
+msgstr "Efter Ta bort företag"
+
+msgid "Fires immediately after a company is deleted."
+msgstr "Avfyras direkt efter att ett företag raderats."
+
+msgid "The deleted company ID."
+msgstr "Det raderade företags-ID."
+
+msgid "Triggered upon company deletion."
+msgstr "Utlöses vid radering av företaget."
+
+msgid "Company Status Transition"
+msgstr "Företagsstatusövergång"
+
+msgid "Fires on company approve/reject state changes."
+msgstr "Bränder på företag godkänner/förkastar tillståndsändringar."
+
+msgid "Company ID."
+msgstr "Företags-ID."
+
+msgid "Old status."
+msgstr "Gammal status."
+
+msgid "New status."
+msgstr "Ny status."
+
+msgid "Fires on company state changes."
+msgstr "Bränder på företagsstatsförändringar."
+
+msgid "Featured Company Activated"
+msgstr "Utvalt företag aktiverat"
+
+msgid "Fires when a company is promoted to featured status."
+msgstr "Avfyras när ett företag befordras till utvald status."
+
+msgid "Company Search Query Args"
+msgstr "Företagssökning Args"
+
+msgid "Modifies Company SQL search queries."
+msgstr "Ändrar företagets SQL-sökfrågor."
+
+msgid "Current SQL query."
+msgstr "Aktuell SQL-fråga."
+
+msgid "Search filters."
+msgstr "Sökfilter."
+
+msgid "Modified query string."
+msgstr "Ändrad frågesträng."
+
+msgid "Used for modifying frontend company search behaviour."
+msgstr "Används för att modifiera frontend-företagets sökbeteende."
+
+msgid "User Status Transition"
+msgstr "Användarstatusövergång"
+
+msgid "Fires when an admin manually suspends or activates an account."
+msgstr "Utlöses när en administratör manuellt stänger av eller aktiverar ett konto."
+
+msgid "Admin account activation/suspension."
+msgstr "Aktivering/avstängning av administratörskonto."
+
+msgid "User Deleted"
+msgstr "Användare raderad"
+
+msgid "Crucial for GDPR compliance; alerts external systems to delete user records."
+msgstr "Avgörande för efterlevnad av GDPR; varnar externa system för att radera användaruppgifter."
+
+msgid "Portal User ID."
+msgstr "Portal användar-ID."
+
+msgid "WordPress User ID."
+msgstr "WordPress användar-ID."
+
+msgid "User Role ID."
+msgstr "Användarroll-ID."
+
+msgid "Crucial for GDPR compliance."
+msgstr "Avgörande för efterlevnad av GDPR."
+
+msgid "User Profile Saved"
+msgstr "Användarprofil sparad"
+
+msgid "Fires whenever user metadata is updated."
+msgstr "Utlöses när användarens metadata uppdateras."
+
+msgid "Profile ID."
+msgstr "Profil-ID."
+
+msgid "Profile metadata."
+msgstr "Profilmetadata."
+
+msgid "Fires on metadata update."
+msgstr "Utlöses vid uppdatering av metadata."
+
+msgid "AI Content Prompt"
+msgstr "AI Content Prompt"
+
+msgid "Intercepts the prompt string before it hits the AI proxy. Allows insertion of mandatory EEO text."
+msgstr "Fångar upp meddelandesträngen innan den träffar AI-proxyn. Tillåter infogning av obligatorisk EEO-text."
+
+msgid "AI Prompt."
+msgstr "AI-prompt."
+
+msgid "Context parameters."
+msgstr "Kontextparametrar."
+
+msgid "Modified AI Prompt."
+msgstr "Modifierad AI-prompt."
+
+msgid "Allows insertion of mandatory context."
+msgstr "Tillåter infogning av obligatoriskt sammanhang."
+
+msgid "AI Generation Completed"
+msgstr "AI-generering slutförd"
+
+msgid "Captures the AI response for logging and plagiarism scanning."
+msgstr "Fångar AI-svaret för loggning och plagiatskanning."
+
+msgid "Status code."
+msgstr "Statuskod."
+
+msgid "Response payload."
+msgstr "Svarsnyttolast."
+
+msgid "Original Prompt."
+msgstr "Ursprunglig uppmaning."
+
+msgid "Wrapper used."
+msgstr "Omslag används."
+
+msgid "Used for logging and plagiarism checks."
+msgstr "Används för loggning och plagiatkontroller."
+
+msgid "Before AI Resume Parse"
+msgstr "Innan AI Resume Parse"
+
+msgid "Allows PII redaction from resume text before it is indexed for AI matching."
+msgstr "Tillåter PII-redigering från CV-text innan den indexeras för AI-matchning."
+
+msgid "Text string for AI indexing."
+msgstr "Textsträng för AI-indexering."
+
+msgid "Entity ID."
+msgstr "Enhets-ID."
+
+msgid "Sanitized AI string."
+msgstr "Sanitiserad AI-sträng."
+
+msgid "Useful for Blind Hiring features."
+msgstr "Användbar för Blind Hiring-funktioner."
+
+msgid "Before AI Job Parse"
+msgstr "Innan AI Job Parse"
+
+msgid "Allows modification of job text before AI indexing."
+msgstr "Tillåter modifiering av jobbtext före AI-indexering."
+
+msgid "Modified AI string."
+msgstr "Modifierad AI-sträng."
+
+msgid "AI Job to Resume Match"
+msgstr "AI-jobb för att återuppta matchning"
+
+msgid "Mutates the search string the AI uses to find resumes for a job."
+msgstr "Muterar söksträngen som AI använder för att hitta CV för ett jobb."
+
+msgid "Search string."
+msgstr "Söksträng."
+
+msgid "Mutated search string."
+msgstr "Muterad söksträng."
+
+msgid "Mutates the search string the AI uses."
+msgstr "Muterar söksträngen som AI använder."
+
+msgid "AI Resume to Job Match"
+msgstr "AI CV till Job Match"
+
+msgid "Mutates the search string the AI uses to find jobs for a resume."
+msgstr "Muterar söksträngen som AI använder för att hitta jobb för ett CV."
+
+msgid "AI Dashboard Job Suggestions"
+msgstr "AI Dashboard Jobbförslag"
+
+msgid "Captures suggested jobs calculated for the job seekers dashboard."
+msgstr "Fångar föreslagna jobb beräknade för arbetssökandes instrumentpanel."
+
+msgid "Seeker User ID."
+msgstr "Sökande användar-ID."
+
+msgid "Array of matched Job IDs."
+msgstr "Uppsättning av matchade jobb-ID:n."
+
+msgid "Captures dashboard suggestions."
+msgstr "Fångar instrumentpanelsförslag."
+
+msgid "AI Job Suggestion Calculated"
+msgstr "AI-jobbförslag beräknat"
+
+msgid "Captures suggested jobs against a specific resume ID."
+msgstr "Fångar föreslagna jobb mot ett specifikt CV-ID."
+
+msgid "Captures resume-specific suggestions."
+msgstr "Fångar CV-specifika förslag."
+
+msgid "AI Dashboard Resume Suggestions"
+msgstr "AI Dashboard CV-förslag"
+
+msgid "Captures suggested resumes calculated for the employers dashboard."
+msgstr "Fångar föreslagna CV beräknade för arbetsgivarens instrumentpanel."
+
+msgid "Array of matched Resume IDs."
+msgstr "Matris av matchade CV-ID."
+
+msgid "Captures employer dashboard suggestions."
+msgstr "Fångar förslag från arbetsgivarens instrumentpanel."
+
+msgid "AI Resume Suggestion Calculated"
+msgstr "AI CV-förslag beräknat"
+
+msgid "Captures suggested resumes against a specific job ID."
+msgstr "Fångar föreslagna CV mot ett specifikt jobb-ID."
+
+msgid "Captures job-specific suggestions."
+msgstr "Fångar jobbspecifika förslag."
+
+msgid "Job Alert Triggered"
+msgstr "Jobblarm utlöst"
+
+msgid "Intercepts an alert match before the email sends. Ideal for Push/SMS notifications."
+msgstr "Avlyssnar en varningsmatch innan e-postmeddelandet skickas. Idealisk för Push/SMS-aviseringar."
+
+msgid "Person ID."
+msgstr "Person-ID."
+
+msgid "Subscriber User ID."
+msgstr "Användar-ID för prenumerant."
+
+msgid "Matched jobs array."
+msgstr "Matchade jobbarray."
+
+msgid "Ideal for Push/SMS notifications."
+msgstr "Idealisk för Push/SMS-aviseringar."
+
+msgid "Job Alert Saved"
+msgstr "Jobbvarning sparad"
+
+msgid "Fires when an alert preference is created or updated."
+msgstr "Utlöses när en varningsinställning skapas eller uppdateras."
+
+msgid "Alert record ID."
+msgstr "Varningspost-ID."
+
+msgid "Subscriber Email."
+msgstr "E-post för prenumerant."
+
+msgid "Alert configuration data."
+msgstr "Varningskonfigurationsdata."
+
+msgid "Fires on alert create/update."
+msgstr "Avfyras vid varning skapa/uppdatering."
+
+msgid "Job Alert Unsubscribed"
+msgstr "Job Alert Avanmälan"
+
+msgid "Fires when an alert is deleted."
+msgstr "Utlöses när en varning raderas."
+
+msgid "Deleted Alert ID."
+msgstr "Raderat varnings-ID."
+
+msgid "Membership Package Purchased"
+msgstr "Medlemspaket köpt"
+
+msgid "Triggers on a successful checkout via Stripe or PayPal gateways."
+msgstr "Utlöses vid en lyckad utcheckning via Stripe- eller PayPal-gateways."
+
+msgid "Package ID."
+msgstr "Paket-ID."
+
+msgid "Amount paid."
+msgstr "Betalt belopp."
+
+msgid "Payment gateway."
+msgstr "Betalningsgateway."
+
+msgid "Triggers on gateway success."
+msgstr "Triggers på gatewayframgång."
+
+msgid "WooCommerce Order Synced"
+msgstr "WooCommerce Order Synkroniserad"
+
+msgid "Executes when WP Job Portal routes a payment into the WooCommerce cart."
+msgstr "Körs när WP Job Portal dirigerar en betalning till WooCommerce-vagnen."
+
+msgid "WooCommerce Post ID."
+msgstr "WooCommerce Post ID."
+
+msgid "Purchase data."
+msgstr "Köpdata."
+
+msgid "Executes on Woo cart route."
+msgstr "Körs på Woo cart route."
+
+msgid "Per Listing Purchased"
+msgstr "Per köpt notering"
+
+msgid "Generic action deployed across all individual purchases."
+msgstr "Generisk åtgärd implementerad för alla individuella köp."
+
+msgid "Entity ID (job/resume/company)."
+msgstr "Enhets-ID (jobb/cv/företag)."
+
+msgid "Entity type."
+msgstr "Enhetstyp."
+
+msgid "Gateway used."
+msgstr "Gateway används."
+
+msgid "Deployed across individual purchases."
+msgstr "Utplacerad över enskilda köp."
+
+msgid "Subscription Cancelled"
+msgstr "Prenumeration avbruten"
+
+msgid "Alerts external platforms (like Discord/Active Directory) to downgrade the user."
+msgstr "Varnar externa plattformar (som Discord/Active Directory) för att nedgradera användaren."
+
+msgid "Gateway sub ID."
+msgstr "Gateway sub-ID."
+
+msgid "Downgrade user permissions."
+msgstr "Nedgradera användarbehörigheter."
+
+msgid "Membership Purchased DB Commit"
+msgstr "Medlemskap Köpt DB Commit"
+
+msgid "A database-level failsafe hook that fires even if a package is manually assigned by an admin."
+msgstr "En felsäker hook på databasnivå som aktiveras även om ett paket tilldelas manuellt av en administratör."
+
+msgid "Amount."
+msgstr "Belopp."
+
+msgid "Payment Method."
+msgstr "Betalningsmetod."
+
+msgid "Database-level failsafe hook."
+msgstr "Felsäker krok på databasnivå."
+
+msgid "Package Saved"
+msgstr "Paketet har sparats"
+
+msgid "Fires when a package is updated or unpublished."
+msgstr "Utlöses när ett paket uppdateras eller opubliceras."
+
+msgid "Package data."
+msgstr "Paketdata."
+
+msgid "Fires on package update."
+msgstr "Avfyras vid paketuppdatering."
+
+msgid "Invoice Status Transition"
+msgstr "Fakturastatusövergång"
+
+msgid "Fires when an invoice moves to \\"
+msgstr "Utlöses när en faktura flyttas till \\"
+
+msgid "Invoice ID."
+msgstr "Faktura-ID."
+
+msgid "Old Status."
+msgstr "Gammal status."
+
+msgid "New Status."
+msgstr "Ny status."
+
+msgid "Syncs external accounting software."
+msgstr "Synkroniserar extern bokföringsprogramvara."
+
+msgid "Invoice Saved"
+msgstr "Faktura sparad"
+
+msgid "Fires on invoice creation or deletion."
+msgstr "Brinner vid skapande eller radering av faktura."
+
+msgid "Invoice Data."
+msgstr "Fakturadata."
+
+msgid "Fires on invoice creation."
+msgstr "Bränder på fakturaskapande."
+
+msgid "Employer Dashboard Loaded"
+msgstr "Arbetsgivarens instrumentpanel laddad"
+
+msgid "Fires when the employer portal initializes."
+msgstr "Avfyras när arbetsgivarportalen initieras."
+
+msgid "Portal view data array."
+msgstr "Portalvy datamatris."
+
+msgid "Jobseeker Dashboard Loaded"
+msgstr "Dashboard för arbetssökande laddad"
+
+msgid "Fires when the candidate portal initializes."
+msgstr "Avfyras när kandidatportalen initieras."
+
+msgid "Candidate User ID."
+msgstr "Användar-ID för kandidat."
+
+msgid "Admin Dashboard Loaded"
+msgstr "Admin Dashboard laddad"
+
+msgid "Injects custom data into the WP Admin control panel."
+msgstr "Infogar anpassade data i WP Admin-kontrollpanelen."
+
+msgid "Admin data array."
+msgstr "Administratörsdatamatris."
+
+msgid "Injects data into WP Admin."
+msgstr "Infogar data i WP Admin."
+
+msgid "User Widget HTML"
+msgstr "Användarwidget HTML"
+
+msgid "Allows theme developers to modify member widget cards."
+msgstr "Tillåter temautvecklare att ändra medlemswidgetkort."
+
+msgid "HTML Content."
+msgstr "HTML-innehåll."
+
+msgid "User role."
+msgstr "Användarroll."
+
+msgid "User data."
+msgstr "Användardata."
+
+msgid "Modified HTML."
+msgstr "Ändrad HTML."
+
+msgid "Modify member widget cards."
+msgstr "Ändra medlemswidgetkort."
+
+msgid "Shortlist Popup HTML"
+msgstr "Shortlist Popup HTML"
+
+msgid "Modifies the HTML output of the shortlist modal."
+msgstr "Modifierar HTML-utdata för kortlistmodalen."
+
+msgid "Modifies shortlist modal HTML."
+msgstr "Ändrar modal HTML för shortlist."
+
+msgid "Export Resume Raw String"
+msgstr "Exportera rå sträng för CV"
+
+msgid "Intercepts the final TSV text string for a single resume download."
+msgstr "Fångar upp den sista TSV-textsträngen för en enda nedladdning av CV."
+
+msgid "TSV String."
+msgstr "TSV String."
+
+msgid "Modified TSV string."
+msgstr "Modifierad TSV-sträng."
+
+msgid "Intercepts single TSV export."
+msgstr "Fångar upp en enda TSV-export."
+
+msgid "Export Resume Data Array"
+msgstr "Exportera CV Data Array"
+
+msgid "Highly useful for Blind Hiring; allows programmatic removal of PII columns before TSV conversion."
+msgstr "Mycket användbar för blindhyra; tillåter programmatisk borttagning av PII-kolumner före TSV-konvertering."
+
+msgid "Export row array."
+msgstr "Exportera radmatris."
+
+msgid "DB result data."
+msgstr "DB resultatdata."
+
+msgid "Sanitized row array."
+msgstr "Saniterad raduppsättning."
+
+msgid "Highly useful for Blind Hiring."
+msgstr "Mycket användbar för blindhyra."
+
+msgid "Export All Resumes Raw String"
+msgstr "Exportera alla CV Raw String"
+
+msgid "Intercepts the bulk export string to append HR disclaimers or timestamps."
+msgstr "Fångar upp massexportsträngen för att lägga till HR-friskrivningar eller tidsstämplar."
+
+msgid "Bulk TSV String."
+msgstr "Bulk TSV String."
+
+msgid "Modified bulk string."
+msgstr "Modifierad bulksträng."
+
+msgid "Intercepts bulk export string."
+msgstr "Fångar upp massexportsträng."
+
+msgid "Resume Export Filename"
+msgstr "Återuppta exportfilnamn"
+
+msgid "Mutates the generated ZIP file name dynamically."
+msgstr "Muterar det genererade ZIP-filnamnet dynamiskt."
+
+msgid "Default filename."
+msgstr "Standard filnamn."
+
+msgid "File extension."
+msgstr "Filtillägg."
+
+msgid "Mutated filename."
+msgstr "Muterat filnamn."
+
+msgid "Mutates generated ZIP filename."
+msgstr "Muterar genererat ZIP-filnamn."
+
+msgid "System Email Headers"
+msgstr "Systemets e-postrubriker"
+
+msgid "Modifies outgoing SMTP headers (e.g., custom Reply-To addresses)."
+msgstr "Modifierar utgående SMTP-rubriker (t.ex. anpassade svarsadresser)."
+
+msgid "Email headers array."
+msgstr "Array för e-posthuvuden."
+
+msgid "Email subject."
+msgstr "E-postämne."
+
+msgid "Modified headers."
+msgstr "Ändrade rubriker."
+
+msgid "Modifies outgoing SMTP headers."
+msgstr "Modifierar utgående SMTP-rubriker."
+
+msgid "Email Notification Sent"
+msgstr "E-postmeddelande skickat"
+
+msgid "Logs transactional emails immediately after wp_mail() fires."
+msgstr "Loggar transaktionsmail omedelbart efter att wp_mail() avfyras."
+
+msgid "Email type string."
+msgstr "E-posttypsträng."
+
+msgid "Recipient details."
+msgstr "Mottagarens uppgifter."
+
+msgid "Email HTML payload."
+msgstr "E-post HTML nyttolast."
+
+msgid "Logs transactional emails."
+msgstr "Loggar transaktionsmail."
+
+msgid "Internal Message Sent"
+msgstr "Internt meddelande skickat"
+
+msgid "Intercepts secure internal messages to push to external SMS/Slack APIs."
+msgstr "Fångar upp säkra interna meddelanden för att skicka till externa SMS/Slack API:er."
+
+msgid "Message ID."
+msgstr "Meddelande-ID."
+
+msgid "Sender ID."
+msgstr "Avsändar-ID."
+
+msgid "Recipient ID."
+msgstr "Mottagarens ID."
+
+msgid "Message Text."
+msgstr "Meddelandetext."
+
+msgid "Push to external SMS/Slack APIs."
+msgstr "Push till externa SMS/Slack API:er."
+
+msgid "Message Status Transition"
+msgstr "Meddelandestatusövergång"
+
+msgid "Triggers when an admin resolves a flagged/conflicted message."
+msgstr "Utlöses när en administratör löser ett flaggat/konfliktmeddelande."
+
+msgid "Admin flag resolution."
+msgstr "Admin flaggupplösning."
+
+msgid "File Uploaded (S3 Hook)"
+msgstr "Fil uppladdad (S3 Hook)"
+
+msgid "The ultimate scalability hook. Fires when a physical file is saved, allowing cloud plugins to upload to AWS S3 and delete the local instance."
+msgstr "Den ultimata skalbarhetskroken. Avfyras när en fysisk fil sparas, vilket tillåter molnplugins att ladda upp till AWS S3 och ta bort den lokala instansen."
+
+msgid "Absolute physical file path."
+msgstr "Absolut fysisk filsökväg."
+
+msgid "Context type (e.g. company_logo, resume_file)."
+msgstr "Kontexttyp (t.ex. företagslogotyp, resume_fil)."
+
+msgid "Associated record ID."
+msgstr "Tillhörande post-ID."
+
+msgid "The ultimate scalability hook for S3."
+msgstr "Den ultimata skalbarhetskroken för S3."
+
+msgid "SEO Settings Updated"
+msgstr "SEO-inställningar uppdaterade"
+
+msgid "Executes when core configs update, enabling auto-purging of caching plugins (WP Rocket)."
+msgstr "Körs när kärnkonfigurationer uppdateras, vilket möjliggör automatisk rensning av caching-plugins (WP Rocket)."
+
+msgid "Config data array."
+msgstr "Konfigurera datamatris."
+
+msgid "Enabling auto-purging of caching plugins."
+msgstr "Aktiverar automatisk rensning av caching-plugins."
+
+msgid "Hook Reference"
+msgstr "Krokreferens"
+
+msgid "Entities"
+msgstr "Entiteter"
+
+msgid "Search across all actions and filters..."
+msgstr "Sök bland alla åtgärder och filter..."
+
+msgid "Arguments"
+msgstr "Argument"
+
+msgid "Returns"
+msgstr "Returnerar"
+
+msgid "No return (Action Hook)"
+msgstr "Ingen retur (Action Hook)"
+
+msgid "Snippet"
+msgstr "Utdrag"
+
+msgid "Copy Code"
+msgstr "Kopiera kod"
+
+msgid "To use this hook, please install and activate the"
+msgstr "För att använda denna krok, installera och aktivera"
+
+msgid "addon."
+msgstr "tillägg."
+
+msgid "View Addon Details"
+msgstr "Visa tilläggsdetaljer"
+
+msgid "No results found"
+msgstr "Inga resultat hittades"
+
+msgid "Try searching for specific keywords like \\"
+msgstr "Försök att söka efter specifika sökord som \\"
+
+msgid "Hooks"
+msgstr "Krokar"
+
+msgid "Search Results"
+msgstr "Sökresultat"

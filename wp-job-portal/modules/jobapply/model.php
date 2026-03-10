@@ -996,6 +996,18 @@ class WPJOBPORTALjobapplyModel {
         }
 
         if ($return != WPJOBPORTAL_SAVE_ERROR) {
+
+            // --- NEW HOOK INTEGRATION START ---
+            // Blueprint: wpjobportal_application_submitted & contextual routing
+            if ($quick_apply == 1) {
+                do_action('wpjobportal_quick_apply_submitted', $wpjobportal_job_apply_id, $wpjobportal_jobid, $wpjobportal_data, $_FILES);
+            } elseif (WPJOBPORTALincluder::getObjectClass('user')->isguest() && $wpjobportal_visitor_can_apply_to_job == 1) {
+                do_action('wpjobportal_visitor_application_submitted', $wpjobportal_job_apply_id, $wpjobportal_jobid, $wpjobportal_data);
+            } else {
+                do_action('wpjobportal_application_submitted', $wpjobportal_job_apply_id, $wpjobportal_jobid);
+            }
+            // --- NEW HOOK INTEGRATION END ---
+
             if($wpjobportal_submitType == 2 && in_array('credits', wpjobportal::$_active_addons)){
                 if(wpjobportal::$_config->getConfigValue('job_jobapply_price_perlisting') > 0){
                     $wpjobportal_arr = array('wpjobportalme'=>'purchasehistory','wpjobportallt'=>'payjobapply','wpjobportalid'=>$wpjobportal_row->jobid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid());
@@ -1016,6 +1028,9 @@ class WPJOBPORTALjobapplyModel {
         } else {
             $wpjobportal_msg = '<div id="notification-not-ok"><label id="popup_message"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/unpublish.png"/>' . esc_html(__("Failed while performing this action", 'wp-job-portal')) . '</label><button class="applynow-closebutton" onclick="closePopup();" ><img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'/includes/images/popupcloseicon.png"/>'.esc_html(__('Close','wp-job-portal')).'</button></div>';
         }
+
+        do_action('wpjobportal_after_job_apply_hook',$wpjobportal_data);
+
         if(null !=$wpjobportal_themecall) return $return;
         return $wpjobportal_msg;
     }

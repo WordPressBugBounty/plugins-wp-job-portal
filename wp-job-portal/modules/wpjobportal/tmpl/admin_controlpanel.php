@@ -340,21 +340,21 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                 <div id="wjp-quick-actions">
                     <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=jobqueue')); ?>" class="wjp-action-card">
                         <div class="wjp-action-icon-wrapper wjp-bg-indigo"> <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                </div>
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
                         <p class="wjp-action-title"><?php echo esc_html__('Approve Jobs', 'wp-job-portal'); ?></p>
                         <p class="wjp-action-subtitle"><?php echo esc_html(isset(wpjobportal::$_data['totalnewjobspending']) ? wpjobportal::$_data['totalnewjobspending'] : '0'); ?> <?php echo esc_html__('Pending', 'wp-job-portal'); ?></p>
                     </a>
                     <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_user')); ?>" class="wjp-action-card">
                         <div class="wjp-action-icon-wrapper wjp-bg-sky">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        </svg>
-        </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
                         <p class="wjp-action-title"><?php echo esc_html__('Manage Users', 'wp-job-portal'); ?></p>
                         <p class="wjp-action-subtitle"><?php echo esc_html(isset(wpjobportal::$_data['totaljobapply']) ? wpjobportal::$_data['totaljobapply'] : '0'); ?> <?php echo esc_html__('Total', 'wp-job-portal'); ?></p>
                     </a>
@@ -410,97 +410,97 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                     <?php if (isset($wpjobportal_wjp_options['quick_stats'])) : ?>
                     <div id="wjp-quick-stats" class="wjp-card">
                         <div class="wjp-h3"><?php echo esc_html__('Quick Stats', 'wp-job-portal'); ?></div>
-                       <div class="wjp-stats-list">
+                        <div class="wjp-stats-list">
 
-    <div class="wjp-stat-item">
-        <div class="wjp-stat-icon-wrapper wjp-bg-amber">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                <polyline points="14 2 14 8 20 8"></polyline>
-                <line x1="16" y1="13" x2="8" y2="13"></line>
-                <line x1="16" y1="17" x2="8" y2="17"></line>
-                <polyline points="10 9 9 9 8 9"></polyline>
-            </svg>
-        </div>
-        <div class="wjp-stat-info">
-            <p class="wjp-stat-label"><?php echo esc_html__('Pending Jobs', 'wp-job-portal'); ?></p>
-            <p class="wjp-stat-value"><?php echo esc_html(wpjobportal::$_data['quick_stats']['pending_jobs']); ?></p>
-        </div>
-    </div>
+                            <div class="wjp-stat-item">
+                                <div class="wjp-stat-icon-wrapper wjp-bg-amber">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                                        <polyline points="10 9 9 9 8 9"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="wjp-stat-info">
+                                    <p class="wjp-stat-label"><?php echo esc_html__('Pending Jobs', 'wp-job-portal'); ?></p>
+                                    <p class="wjp-stat-value"><?php echo esc_html(wpjobportal::$_data['quick_stats']['pending_jobs']); ?></p>
+                                </div>
+                            </div>
 
-    <div class="wjp-stat-item">
-        <div class="wjp-stat-icon-wrapper wjp-bg-sky">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="8.5" cy="7" r="4"></circle>
-                <line x1="20" y1="8" x2="20" y2="14"></line>
-                <line x1="23" y1="11" x2="17" y2="11"></line>
-            </svg>
-        </div>
-        <div class="wjp-stat-info">
-            <p class="wjp-stat-label"><?php echo esc_html__('New Applicants', 'wp-job-portal'); ?></p>
-            <p class="wjp-stat-value"><?php echo esc_html(wpjobportal::$_data['quick_stats']['new_applicants']); ?></p>
-        </div>
-    </div>
-    <?php if(in_array('credits', wpjobportal::$_active_addons)){ ?>
-        <div class="wjp-stat-item">
-            <div class="wjp-stat-icon-wrapper wjp-bg-indigo">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-                    <line x1="7" y1="7" x2="7.01" y2="7"></line>
-                </svg>
-            </div>
-            <div class="wjp-stat-info">
-                <p class="wjp-stat-label"><?php echo esc_html__('Active Subscriptions', 'wp-job-portal'); ?></p>
-                <p class="wjp-stat-value"><?php echo esc_html(wpjobportal::$_data['quick_stats']['active_subscriptions']); ?></p>
-            </div>
-        </div>
-    <?php }?>
+                            <div class="wjp-stat-item">
+                                <div class="wjp-stat-icon-wrapper wjp-bg-sky">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="8.5" cy="7" r="4"></circle>
+                                        <line x1="20" y1="8" x2="20" y2="14"></line>
+                                        <line x1="23" y1="11" x2="17" y2="11"></line>
+                                    </svg>
+                                </div>
+                                <div class="wjp-stat-info">
+                                    <p class="wjp-stat-label"><?php echo esc_html__('New Applicants', 'wp-job-portal'); ?></p>
+                                    <p class="wjp-stat-value"><?php echo esc_html(wpjobportal::$_data['quick_stats']['new_applicants']); ?></p>
+                                </div>
+                            </div>
+                            <?php if(in_array('credits', wpjobportal::$_active_addons)){ ?>
+                                <div class="wjp-stat-item">
+                                    <div class="wjp-stat-icon-wrapper wjp-bg-indigo">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                                            <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                                        </svg>
+                                    </div>
+                                    <div class="wjp-stat-info">
+                                        <p class="wjp-stat-label"><?php echo esc_html__('Active Subscriptions', 'wp-job-portal'); ?></p>
+                                        <p class="wjp-stat-value"><?php echo esc_html(wpjobportal::$_data['quick_stats']['active_subscriptions']); ?></p>
+                                    </div>
+                                </div>
+                            <?php }?>
 
-    <div class="wjp-stat-item">
-        <div class="wjp-stat-icon-wrapper wjp-bg-green">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-            </svg>
-        </div>
-        <div class="wjp-stat-info">
-            <p class="wjp-stat-label"><?php echo esc_html__('Total Users', 'wp-job-portal'); ?></p>
-            <p class="wjp-stat-value"><?php echo esc_html(wpjobportal::$_data['quick_stats']['total_users']); ?></p>
-        </div>
-    </div>
+                            <div class="wjp-stat-item">
+                                <div class="wjp-stat-icon-wrapper wjp-bg-green">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="9" cy="7" r="4"></circle>
+                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                    </svg>
+                                </div>
+                                <div class="wjp-stat-info">
+                                    <p class="wjp-stat-label"><?php echo esc_html__('Total Users', 'wp-job-portal'); ?></p>
+                                    <p class="wjp-stat-value"><?php echo esc_html(wpjobportal::$_data['quick_stats']['total_users']); ?></p>
+                                </div>
+                            </div>
 
-    <div class="wjp-stat-item">
-        <div class="wjp-stat-icon-wrapper wjp-bg-red">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="15" y1="9" x2="9" y2="15"></line>
-                <line x1="9" y1="9" x2="15" y2="15"></line>
-            </svg>
-        </div>
-        <div class="wjp-stat-info">
-            <p class="wjp-stat-label"><?php echo esc_html__('Closed Jobs', 'wp-job-portal'); ?></p>
-            <p class="wjp-stat-value"><?php echo esc_html(wpjobportal::$_data['quick_stats']['closed_jobs']); ?></p>
-        </div>
-    </div>
-    <?php if(in_array('credits', wpjobportal::$_active_addons)){ ?>
-        <div class="wjp-stat-item">
-            <div class="wjp-stat-icon-wrapper wjp-bg-emerald">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="12" y1="1" x2="12" y2="23"></line>
-                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                </svg>
-            </div>
-            <div class="wjp-stat-info">
-                <p class="wjp-stat-label"><?php echo esc_html__('Monthly Revenue', 'wp-job-portal'); ?></p>
-                <p class="wjp-stat-value">$<?php echo esc_html(number_format(wpjobportal::$_data['quick_stats']['monthly_revenue'], 2)); ?></p>
-            </div>
-        </div>
-    <?php } ?>
+                            <div class="wjp-stat-item">
+                                <div class="wjp-stat-icon-wrapper wjp-bg-red">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <line x1="15" y1="9" x2="9" y2="15"></line>
+                                        <line x1="9" y1="9" x2="15" y2="15"></line>
+                                    </svg>
+                                </div>
+                                <div class="wjp-stat-info">
+                                    <p class="wjp-stat-label"><?php echo esc_html__('Closed Jobs', 'wp-job-portal'); ?></p>
+                                    <p class="wjp-stat-value"><?php echo esc_html(wpjobportal::$_data['quick_stats']['closed_jobs']); ?></p>
+                                </div>
+                            </div>
+                            <?php if(in_array('credits', wpjobportal::$_active_addons)){ ?>
+                                <div class="wjp-stat-item">
+                                    <div class="wjp-stat-icon-wrapper wjp-bg-emerald">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="12" y1="1" x2="12" y2="23"></line>
+                                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="wjp-stat-info">
+                                        <p class="wjp-stat-label"><?php echo esc_html__('Monthly Revenue', 'wp-job-portal'); ?></p>
+                                        <p class="wjp-stat-value">$<?php echo esc_html(number_format(wpjobportal::$_data['quick_stats']['monthly_revenue'], 2)); ?></p>
+                                    </div>
+                                </div>
+                            <?php } ?>
 
-</div>
+                        </div>
                     </div>
                     <?php endif; ?>
                 </div>
@@ -621,8 +621,6 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                                                 </span>
                                              */ ?>
                                             </div>
-
-
                                             <div class="wjp-actions"><a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_jobapply&wpjobportallt=jobappliedresume&jobid='.$wpjobportal_apply->jobid)); ?>" class="wjp-btn-xs wjp-btn-indigo"><?php echo esc_html__('View Apply', 'wp-job-portal'); ?></a></div>
                                         </div>
                                     </div>
@@ -666,7 +664,7 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                     </div>
                     <?php endif; ?>
 
-                <?php if(in_array('credits', wpjobportal::$_active_addons)){ ?>
+                    <?php if(in_array('credits', wpjobportal::$_active_addons)){ ?>
 
                         <?php if (isset($wpjobportal_wjp_options['latest_subscriptions'])) : ?>
                         <div id="" class="wjp-card wjp-financials">
@@ -739,7 +737,7 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                         </div>
                         <?php endif; ?>
 
-                <?php } ?>
+                    <?php } ?>
 
                     <?php if (isset($wpjobportal_wjp_options['latest_activity'])) : ?>
                     <div id="" class="wjp-card wjp-system-logs wjp-col-span-3">
@@ -857,7 +855,15 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                     </div>
                     <?php endif; ?>
                 </div>
-                </main>
+            </main>
+            <?php
+            // --- NEW HOOK INTEGRATION START ---
+            // Blueprint: wpjobportal_admin_dashboard_loaded (Admin corollary)
+            // Allows external plugins to hook into the admin control panel initialization
+            // to inject custom queries or operational alerts.
+            do_action('wpjobportal_admin_dashboard_loaded', wpjobportal::$_data);
+            // --- NEW HOOK INTEGRATION END ---
+            ?>
         </div>
     </div>
 </div>
