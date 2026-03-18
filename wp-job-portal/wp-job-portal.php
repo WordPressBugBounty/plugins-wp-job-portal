@@ -3,14 +3,14 @@
 /**
  * @package WP JOB PORTAL
  * @author Ahmad Bilal
- * @version 2.4.8
+ * @version 2.4.9
  */
 /*
   * Plugin Name: WP Job Portal
   * Plugin URI: https://wpjobportal.com/
   * Description: WP Job Portal is WordPress’s best job board plugin — easy to use, highly configurable, and built to support both job seekers and employers. AI-powered add-ons offers smart job & resume search, and personalized recommendations.
   * Author: WP Job Portal
-  * Version: 2.4.8
+  * Version: 2.4.9
   * Text Domain: wp-job-portal
   * Domain Path: /languages
   * Author URI: https://wpjobportal.com/
@@ -80,7 +80,7 @@ class wpjobportal {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '248';
+        self::$_currentversion = '249';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_common = WPJOBPORTALincluder::getJSModel('common');
         self::$_config = WPJOBPORTALincluder::getJSModel('configuration');
@@ -190,7 +190,7 @@ class wpjobportal {
                 if( $plugin == $our_plugin ) {
                     update_option('wpjp_currentversion', self::$_currentversion);
                     include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
-                    WPJOBPORTALupdates::checkUpdates('248');
+                    WPJOBPORTALupdates::checkUpdates('249');
 
                 	// restore colors data
 		            require(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
@@ -1499,7 +1499,7 @@ function wpjobportal_upgrade_completed( $wpjobportal_upgrader_object, $wpjobport
 				update_option('wpjp_currentversion', wpjobportal::$_currentversion);
 				include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
 
-				WPJOBPORTALupdates::checkUpdates('248');
+				WPJOBPORTALupdates::checkUpdates('249');
 
 
 				// restore colors data
@@ -1712,12 +1712,16 @@ add_action('admin_enqueue_scripts', 'wpjobportal_load_classic_editor_assets');
             'execute_nonce'   => wp_create_nonce('zywrap_execute_proxy'),
             'wrappers_nonce'  => wp_create_nonce('zywrap_get_wrappers'),
             'all_wrappers_nonce'  => wp_create_nonce('zywrap_get_all_wrappers'),
+            'schema_nonce'  => wp_create_nonce('zywrap_get_schema'),
             'ajax_url'        => admin_url('admin-ajax.php'),
             'loading_text'    => esc_js(__('Loading...', 'wp-job-portal')),
             'generating_text' => esc_js(__('Generating...', 'wp-job-portal')),
             'run_text'        => esc_js(__('Generate', 'wp-job-portal')),
             'error_text'      => esc_js(__('Error:', 'wp-job-portal')),
             'validation_text' => esc_js(__('Please select a Wrapper.', 'wp-job-portal')),
+            'additional_instructions' => esc_js(__('Additional Free-form Instructions.', 'wp-job-portal')),
+            'core_inputs' => esc_js(__('Core Inputs (Optional)', 'wp-job-portal')),
+            'additional_context' => esc_js(__('Additional Context (Optional)', 'wp-job-portal')),
             // === ADDED: Data for Warnings ===
             'has_api_key'     => !empty($api_key),
             'settings_url'    => admin_url("admin.php?page=wpjobportal_zywrap&wpjobportallt=zywrap"),

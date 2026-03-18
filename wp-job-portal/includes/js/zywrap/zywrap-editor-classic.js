@@ -56,7 +56,7 @@
         const $overridesGrid = $('#zywrap-classic-overrides-grid');
         $.each(overrideMap, function(id, field) {
             var $container = $('<div>');
-            $container.append('<label class="zywrap-label">' + field.label + '</label>');
+            $container.append('<label class="wpjp-zywrap-label">' + field.label + '</label>');
             var $sel = $('<select class="wpjp-zywrap-jp-chosen zywrap-classic-override-select"></select>').attr('data-original-id', id);
             $sel.append(new Option(field.label + ' (Default)', ''));
             if (field.data) field.data.forEach(o => $sel.append(new Option(o.name, o.code)));
@@ -142,6 +142,7 @@
 
         // --- 3. CATEGORY & WRAPPER SELECTION ---
         $(document).off('change', '#zywrap-classic-category').on('change', '#zywrap-classic-category', function() {
+            $('#zywrap-classic-loader').show();
             var cat = $(this).val();
             $wrapperSelect.empty().append(new Option(loading_text, '')).prop('disabled', true).trigger('chosen:updated');
             if (!cat) return;
@@ -156,6 +157,7 @@
                     $wrapperSelect.empty().append(new Option('-- Error --', ''));
                     $wrapperSelect.trigger('chosen:updated');
                 }
+                $('#zywrap-classic-loader').hide();
             });
         });
 
@@ -187,6 +189,11 @@
             filtered.forEach(w => {
                 var opt = $('<option>', { value: w.code, text: w.name });
                 opt.data('description', w.description);
+                // Add the missing data attributes so the schema function can grab them!
+                opt.data('use_case_code', w.use_case_code); 
+                opt.data('ordering_number', w.ordering);
+                opt.data('isfeatured', w.featured);
+                opt.data('isbase', w.base);
                 $wrapperSelect.append(opt);
                 if (searchSelectedId && w.id == searchSelectedId) targetCode = w.code;
             });
@@ -250,6 +257,23 @@
                 var val = $(this).val();
                 if(val) overrides[$(this).attr('data-original-id')] = val;
             });
+            var schemaData = {}; 
+            var structuredTextParts = [];
+            $('.zywrap-classic-schema-input').each(function() {
+                var val = $(this).val().trim();
+                if (val !== '') {
+                    var key = $(this).data('key');
+                    schemaData[key] = val;
+                    structuredTextParts.push(key + ': ' + val);
+                }
+            });
+
+            var structuredText = structuredTextParts.join('\n');
+            if (finalPrompt && structuredText) {
+                finalPrompt = finalPrompt + '\n\n' + structuredText;
+            } else if (structuredText) {
+                finalPrompt = structuredText;
+            }
 
             $.post(ajax_url, {
                 action: 'wpjobportal_ajax', wpjobportalme: 'zywrap', task: 'executeZywrapProxy', _wpnonce: execute_nonce,
@@ -260,6 +284,7 @@
                 context: $('#zywrap-classic-context').val(),
                 seo_keywords: $('#zywrap-classic-seo').val(),
                 negative_constraints: $('#zywrap-classic-negative').val(),
+                schema_inputs: JSON.stringify(schemaData),
                 overrides: overrides
             }).done(function(response) {
                 if (response.success) {
@@ -352,6 +377,91 @@
             if (typeof $modalBackdrop !== 'undefined') $modalBackdrop.hide();
             if (typeof $modalWrap !== 'undefined') $modalWrap.hide();
         }
+
+        function getClassicWrapperSchema() {
+            $('#zywrap-classic-loader').show();
+            var wrapperSelect = $('#zywrap-classic-wrapper');
+            var wrapper_use_case_code = wrapperSelect.find(':selected').data('use_case_code') || '';
+
+            var schemaContainer = $('#zywrap-classic-schema-container');
+            var promptLabel = $('#zywrap-classic-prompt-label');
+
+            // Reset UI before processing
+            schemaContainer.empty();
+            promptLabel.text('Instructions / Prompt'); // Fallback string
+
+            if (wrapper_use_case_code === '') {
+                return;
+            }
+
+            $.post(ajaxurl, {
+                action: 'wpjobportal_ajax',
+                wpjobportalme: 'zywrap',
+                task: 'getSchemaByUseCode',
+                use_case_code: wrapper_use_case_code,
+                // NOTE: Ensure your PHP controller passes a schema nonce to your JS via wp_localize_script!
+                '_wpnonce': wpjpzywrapClassicData.schema_nonce || '' 
+            }, function(response) {
+
+                if (response.success && response.data && response.data.schema_data) {
+                    try {
+                        var schema = JSON.parse(response.data.schema_data);
+                        if (!schema || (!schema.req && !schema.opt)) return;
+
+                        var html = '';
+                        promptLabel.text(wpjpzywrapClassicData.additional_instructions);
+
+                        // Helper to build accordions using the Modal's native CSS classes
+                        var buildSection = function(title, data, isOpen) {
+                            if (!data || Object.keys(data).length === 0) return '';
+                            var openAttr = isOpen ? 'open' : '';
+
+                            // Use modal's 'zywrap-advanced-toggle' for a native-looking accordion
+                            var sectionHtml = '<details class="zywrap-advanced-toggle" style="margin-bottom: 12px; width: 100%; border-color: var(--wjp-border);" ' + openAttr + '>';
+                            sectionHtml += '<summary><span>' + title + '</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>';
+                            sectionHtml += '<div class="zywrap-advanced-content" style="gap: 10px;">';
+
+                            for (var key in data) {
+                                if (data.hasOwnProperty(key)) {
+                                    var def = data[key];
+                                    var isPlaceholder = def.p !== undefined ? def.p : false;
+                                    var defaultVal = def.d !== undefined ? def.d : '';
+                                    
+                                    var placeholderAttr = isPlaceholder ? ' placeholder="' + defaultVal + '"' : '';
+                                    var valueAttr = (!isPlaceholder && defaultVal) ? ' value="' + defaultVal + '"' : '';
+                                    
+                                    var label = key.replace(/([A-Z])/g, ' $1').replace(/^./, function(str){ return str.toUpperCase(); });
+
+                                    sectionHtml += '<div class="wpjp-zywrap-specx-single-field" >';
+                                    sectionHtml += '<label class="wpjp-zywrap-label">' + label + '</label>';
+                                    sectionHtml += '<input type="text" class="zywrap-classic-schema-input" data-key="' + key + '"' + placeholderAttr + valueAttr + '>';
+                                    sectionHtml += '</div>';
+                                }
+                            }
+                            sectionHtml += '</div></details>';
+                            return sectionHtml;
+                        };
+
+                        // Core Inputs open by default, Additional closed
+                        html += buildSection(wpjpzywrapClassicData.core_inputs, schema.req, true);
+                        html += buildSection(wpjpzywrapClassicData.additional_context, schema.opt, true);
+
+                        schemaContainer.html(html);
+                    } catch(e) {
+                        console.error('Error parsing schema JSON:', e);
+                    }
+                }
+                $('#zywrap-classic-loader').hide();
+            });
+        }
+
+        // Trigger schema load on wrapper change
+        $(document).on('change', '#zywrap-classic-wrapper', function() {
+            if ($(this).val() !== '') {
+                getClassicWrapperSchema();
+            }
+        });
+
 
     });
     

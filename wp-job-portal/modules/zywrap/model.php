@@ -10,6 +10,11 @@ class WPJOBPORTALzywrapModel {
                     'skipped'  => 0,
                     'failed'   => 0,
                 ],
+                'usecases' => [
+                    'imported' => 0,
+                    'skipped'  => 0,
+                    'failed'   => 0,
+                ],
                 'languages' => [
                     'imported' => 0,
                     'skipped'  => 0,
@@ -88,7 +93,7 @@ class WPJOBPORTALzywrapModel {
             $wpjobportal_url = 'https://api.zywrap.com/v1/key/check';
             $wpjobportal_args = array(
                 'method'  => 'POST',
-                'timeout' => 15,
+                'timeout' => 120,
                 'headers' => array(
                     'Content-Type' => 'application/json'
                 ),
@@ -203,153 +208,318 @@ class WPJOBPORTALzywrapModel {
     }
 
     // functino to imporo zywrap categories
+    // function importZywrapCategories( $wpjobportal_data_categories ) {
+
+    //     if ( empty( $wpjobportal_data_categories ) ) {
+    //         return;
+    //     }
+    //     // // Get max ordering
+    //     // $query = "SELECT MAX(cat.ordering)
+    //     //             FROM `" . wpjobportal::$_db->prefix . "wj_portal_zywrap_categories` AS cat";
+    //     // $ordering = (int) wpjobportal::$_db->get_var( $query );
+    //     // $ordering = $ordering + 1;
+    //     // $ordering_check = $ordering;
+    //     /*
+    //     if($ordering_check > 0){
+
+    //         // Prepare list of existing categories to avoid duplicates
+    //         $wpjobportal_existing = [];
+    //         $query = "SELECT cat.code, cat.name
+    //                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_zywrap_categories` AS cat";
+    //         $wpjobportal_results = wpjobportal::$_db->get_results( $query );
+
+    //         if ( ! empty( $wpjobportal_results ) ) {
+    //             foreach ( $wpjobportal_results as $wpjobportal_row ) {
+    //                 // Normalize for matching
+    //                 $wpjobportal_existing[] = $this->cleanStringForCompare( $wpjobportal_row->code );
+    //             }
+    //         }
+    //     }
+    //     */
+
+    //     // Loop categories from input
+    //     foreach ( $wpjobportal_data_categories as $cate => $wpjobportal_category ) {
+    //         $wpjobportal_name = $wpjobportal_category['name'];
+    //         $wpjobportal_code = $wpjobportal_category['code'];
+    //         $wpjobportal_ordering = $wpjobportal_category['ordering'];
+    //         /*
+    //         if($ordering_check > 0){
+    //             $wpjobportal_compare_code  = $this->cleanStringForCompare( $code );
+
+    //             // Skip duplicates
+    //             if (in_array( $wpjobportal_compare_code, $wpjobportal_existing ) ) {
+    //                 $this->zywrap_import_counts['categories']['skipped'] += 1;
+    //                 continue;
+    //             }
+    //         }
+    //         */
+    //         // Prepare DB row object
+    //         // $wpjobportal_row = WPJOBPORTALincluder::getJSTable('zywrapcategory');
+
+    //         // $created = date_i18n('Y-m-d H:i:s');
+    //         // $wpjobportal_updated = date_i18n('Y-m-d H:i:s');
+
+    //         // Build dataset same as job type function
+    //         $wpjobportal_data = [];
+    //         //$wpjobportal_data['id']       = '';
+    //         $wpjobportal_data['code']     = $wpjobportal_code;
+    //         $wpjobportal_data['name']     = $wpjobportal_name;
+    //         $wpjobportal_data['ordering'] = $wpjobportal_ordering;
+    //         $wpjobportal_data['status']   = 1;
+    //         // $wpjobportal_data['created']  = $created;
+    //         // $wpjobportal_data['updated']  = $wpjobportal_updated;
+
+    //         // Store into DB
+    //         // Suppress duplicate-key insert warnings during bulk import
+    //         wpjobportal::$_db->suppress_errors( true );
+
+    //         $response = wpjobportal::$_db->insert(wpjobportal::$_db->prefix.'wj_portal_zywrap_categories',$wpjobportal_data);
+    //         wpjobportal::$_db->suppress_errors( false );
+
+    //         if ($response) {
+    //             $this->zywrap_import_counts['categories']['imported'] += 1;
+    //         } else {
+    //             $this->zywrap_import_counts['categories']['failed'] += 1;
+    //             continue;
+    //         }
+
+    //         $ordering++;
+    //     }
+    // }
+
     function importZywrapCategories( $wpjobportal_data_categories ) {
 
         if ( empty( $wpjobportal_data_categories ) ) {
             return;
         }
-        // Get max ordering
-        $query = "SELECT MAX(cat.ordering)
-                    FROM `" . wpjobportal::$_db->prefix . "wj_portal_zywrap_categories` AS cat";
-        $ordering = (int) wpjobportal::$_db->get_var( $query );
-        $ordering = $ordering + 1;
-        $ordering_check = $ordering;
-        /*
-        if($ordering_check > 0){
 
-            // Prepare list of existing categories to avoid duplicates
+        $table_name = wpjobportal::$_db->prefix . 'wj_portal_zywrap_categories';
+
+        // 1. Prepare list of existing categories to handle updates
+        $wpjobportal_existing = [];
+        $query = "SELECT cat.code FROM `" . $table_name . "` AS cat";
+        $wpjobportal_results = wpjobportal::$_db->get_results( $query );
+
+        if ( ! empty( $wpjobportal_results ) ) {
+            foreach ( $wpjobportal_results as $wpjobportal_row ) {
+                // Normalize the code for reliable matching
+                $clean_code = $this->cleanStringForCompare( $wpjobportal_row->code );
+                // Store the clean code as the key, and original code as the value
+                $wpjobportal_existing[ $clean_code ] = $wpjobportal_row->code;
+            }
+        }
+
+        // 2. Loop categories from input
+        foreach ( $wpjobportal_data_categories as $cate => $wpjobportal_category ) {
+            $wpjobportal_name     = $wpjobportal_category['name'];
+            $wpjobportal_code     = $wpjobportal_category['code'];
+            $wpjobportal_ordering = $wpjobportal_category['ordering'];
+
+            // Clean the incoming code for matching against our array
+            $wpjobportal_compare_code = $this->cleanStringForCompare( $wpjobportal_code );
+
+            // Build dataset
+            $wpjobportal_data = [
+                'code'     => $wpjobportal_code,
+                'name'     => $wpjobportal_name,
+                'ordering' => $wpjobportal_ordering,
+                'status'   => 1
+            ];
+
+            // Suppress duplicate-key insert warnings during DB operations
+            wpjobportal::$_db->suppress_errors( true );
+
+            // 3. Check for matching code and perform the update or insert
+            if ( array_key_exists( $wpjobportal_compare_code, $wpjobportal_existing ) ) {
+
+                // UPDATE existing record
+                $where = [ 'code' => $wpjobportal_code ];
+                $response = wpjobportal::$_db->update( $table_name, $wpjobportal_data, $where );
+
+                if ( $response !== false ) { // update returns false on error, 0 if no rows changed
+                    $this->zywrap_import_counts['categories']['imported'] += 1;
+                } else {
+                    $this->zywrap_import_counts['categories']['failed'] += 1;
+                }
+
+            } else {
+
+                // INSERT new record
+                $response = wpjobportal::$_db->insert( $table_name, $wpjobportal_data );
+
+                if ( $response ) {
+                    $this->zywrap_import_counts['categories']['imported'] += 1;
+
+                    // Add the newly inserted record to our tracking array so if there are
+                    // duplicates within the same import payload, it updates instead of crashing
+                    $wpjobportal_existing[ $wpjobportal_compare_code ] = $wpjobportal_code;
+                } else {
+                    $this->zywrap_import_counts['categories']['failed'] += 1;
+                }
+            }
+
+            wpjobportal::$_db->suppress_errors( false );
+        }
+    }
+
+    // function to import zywrap use cases
+    function importZywrapUseCases( $wpjobportal_data_usecases ) {
+            if ( empty( $wpjobportal_data_usecases ) ) {
+                return;
+            }
+
+            $table_name = wpjobportal::$_db->prefix . 'wj_portal_zywrap_use_cases';
+
+            // 1. Prepare list of existing use cases to handle updates
             $wpjobportal_existing = [];
-            $query = "SELECT cat.code, cat.name
-                        FROM `" . wpjobportal::$_db->prefix . "wj_portal_zywrap_categories` AS cat";
+            $query = "SELECT uc.code FROM `" . $table_name . "` AS uc";
             $wpjobportal_results = wpjobportal::$_db->get_results( $query );
 
             if ( ! empty( $wpjobportal_results ) ) {
                 foreach ( $wpjobportal_results as $wpjobportal_row ) {
-                    // Normalize for matching
-                    $wpjobportal_existing[] = $this->cleanStringForCompare( $wpjobportal_row->code );
+                    // Normalize the code for reliable matching
+                    $clean_code = $this->cleanStringForCompare( $wpjobportal_row->code );
+                    $wpjobportal_existing[ $clean_code ] = $wpjobportal_row->code;
                 }
             }
-        }
-        */
 
-        // Loop categories from input
-        foreach ( $wpjobportal_data_categories as $code => $wpjobportal_category ) {
-            $wpjobportal_name = $wpjobportal_category['name'];
-            /*
-            if($ordering_check > 0){
-                $wpjobportal_compare_code  = $this->cleanStringForCompare( $code );
+            // 2. Loop use cases from input
+            foreach ( $wpjobportal_data_usecases as $code_key => $usecase ) {
+                $wpjobportal_code = $usecase['code'] ?? '';
 
-                // Skip duplicates
-                if (in_array( $wpjobportal_compare_code, $wpjobportal_existing ) ) {
-                    $this->zywrap_import_counts['categories']['skipped'] += 1;
+                // Skip if no code is provided to prevent empty matching issues
+                if ( empty( $wpjobportal_code ) ) {
+                    $this->zywrap_import_counts['usecases']['failed'] += 1;
                     continue;
                 }
+
+                $wpjobportal_compare_code = $this->cleanStringForCompare( $wpjobportal_code );
+
+                // Build base dataset (omitting ordering so updates don't reset their position)
+                $wpjobportal_data = [
+                    'code'          => $wpjobportal_code,
+                    'name'          => $usecase['name'] ?? '',
+                    'description'   => $usecase['desc'] ?? '',
+                    'category_code' => $usecase['cat'] ?? '',
+                    'ordering'      => $usecase['ordering'] ?? '',
+                    'schema_data'   => !empty($usecase['schema']) ? json_encode($usecase['schema']) : null,
+                    'status'        => 1
+                ];
+
+                // Suppress duplicate-key insert warnings during DB operations
+                wpjobportal::$_db->suppress_errors( true );
+
+                // 3. Check for matching code and perform the update or insert
+                if ( array_key_exists( $wpjobportal_compare_code, $wpjobportal_existing ) ) {
+
+                    // UPDATE existing record
+                    $where = [ 'code' => $wpjobportal_code ];
+                    $response = wpjobportal::$_db->update( $table_name, $wpjobportal_data, $where );
+
+                    if ( $response !== false ) {
+                        $this->zywrap_import_counts['usecases']['imported'] += 1;
+                    } else {
+                        $this->zywrap_import_counts['usecases']['failed'] += 1;
+                    }
+
+                } else {
+
+                    // INSERT new record
+                    $response = wpjobportal::$_db->insert( $table_name, $wpjobportal_data );
+
+                    if ( $response ) {
+                        $this->zywrap_import_counts['usecases']['imported'] += 1;
+
+                        // Add to tracking array to catch duplicates inside the payload
+                        $wpjobportal_existing[ $wpjobportal_compare_code ] = $wpjobportal_code;
+
+                        // Increment ordering for the next potential insert
+                        //$ordering++;
+                    } else {
+                        $this->zywrap_import_counts['usecases']['failed'] += 1;
+                    }
+                }
+
+                wpjobportal::$_db->suppress_errors( false );
             }
-            */
-            // Prepare DB row object
-            // $wpjobportal_row = WPJOBPORTALincluder::getJSTable('zywrapcategory');
-
-            // $created = date_i18n('Y-m-d H:i:s');
-            // $wpjobportal_updated = date_i18n('Y-m-d H:i:s');
-
-            // Build dataset same as job type function
-            $wpjobportal_data = [];
-            //$wpjobportal_data['id']       = '';
-            $wpjobportal_data['code']     = $code;
-            $wpjobportal_data['name']     = $wpjobportal_name;
-            $wpjobportal_data['ordering'] = $ordering;
-            $wpjobportal_data['status']   = 1;
-            // $wpjobportal_data['created']  = $created;
-            // $wpjobportal_data['updated']  = $wpjobportal_updated;
-
-            // Store into DB
-            // Suppress duplicate-key insert warnings during bulk import
-            wpjobportal::$_db->suppress_errors( true );
-
-            $response = wpjobportal::$_db->insert(wpjobportal::$_db->prefix.'wj_portal_zywrap_categories',$wpjobportal_data);
-            wpjobportal::$_db->suppress_errors( false );
-
-            if ($response) {
-                $this->zywrap_import_counts['categories']['imported'] += 1;
-            } else {
-                $this->zywrap_import_counts['categories']['failed'] += 1;
-                continue;
-            }
-
-            $ordering++;
         }
-    }
 
     // function to import zywrap languages
     function importZywrapLanguages( $wpjobportal_data_languages ) {
 
-        if ( empty( $wpjobportal_data_languages ) ) {
-            return;
-        }
+            if ( empty( $wpjobportal_data_languages ) ) {
+                return;
+            }
 
-        // Get max ordering
-        $query = "SELECT MAX(lang.ordering)
-                    FROM `" . wpjobportal::$_db->prefix . "wj_portal_zywrap_languages` AS lang";
-        $ordering = (int) wpjobportal::$_db->get_var( $query );
-        $ordering = $ordering + 1;
-        $ordering_check = $ordering;
-        /*
-        // Prepare existing list if ordering exists
-        if ( $ordering_check > 0 ) {
+            $table_name = wpjobportal::$_db->prefix . 'wj_portal_zywrap_languages';
 
+            // 1. Prepare list of existing languages to handle updates
             $wpjobportal_existing = [];
-            $query = "SELECT lang.code
-                        FROM `" . wpjobportal::$_db->prefix . "wj_portal_zywrap_languages` AS lang";
+            $query = "SELECT lang.code FROM `" . $table_name . "` AS lang";
             $wpjobportal_results = wpjobportal::$_db->get_results( $query );
 
             if ( ! empty( $wpjobportal_results ) ) {
                 foreach ( $wpjobportal_results as $wpjobportal_row ) {
-                    $wpjobportal_existing[] = $this->cleanStringForCompare( $wpjobportal_row->code );
+                    // Normalize the code for reliable matching
+                    $clean_code = $this->cleanStringForCompare( $wpjobportal_row->code );
+                    $wpjobportal_existing[ $clean_code ] = $wpjobportal_row->code;
                 }
             }
-        }
-        */
 
-        // Loop languages from input
-        foreach ( $wpjobportal_data_languages as $code => $wpjobportal_name ) {
-            /*
-            if ( $ordering_check > 0 ) {
-                $wpjobportal_compare_code = $this->cleanStringForCompare( $code );
+            // 2. Loop languages from input
+            foreach ( $wpjobportal_data_languages as $code_key => $wpjobportal_language ) {
+                $wpjobportal_code = $wpjobportal_language['code'] ?? '';
 
-                // Skip duplicates
-                if ( in_array( $wpjobportal_compare_code, $wpjobportal_existing ) ) {
-                    $this->zywrap_import_counts['languages']['skipped'] += 1;
+                // Skip if no code is provided to prevent empty matching issues
+                if ( empty( $wpjobportal_code ) ) {
+                    $this->zywrap_import_counts['languages']['failed'] += 1;
                     continue;
                 }
+
+                $wpjobportal_compare_code = $this->cleanStringForCompare( $wpjobportal_code );
+
+                // Build dataset (using the fallback logic from your original code)
+                $wpjobportal_data = [
+                    'code'     => $wpjobportal_code,
+                    'name'     => $wpjobportal_language['name'] ?? '',
+                    'ordering' => $wpjobportal_language['ordering'] ?? '',
+                    'status'   => $wpjobportal_language['status'] ?? ''
+                ];
+
+                // Suppress duplicate-key insert warnings during DB operations
+                wpjobportal::$_db->suppress_errors( true );
+
+                // 3. Check for matching code and perform the update or insert
+                if ( array_key_exists( $wpjobportal_compare_code, $wpjobportal_existing ) ) {
+
+                    // UPDATE existing record
+                    $where = [ 'code' => $wpjobportal_code ];
+                    $response = wpjobportal::$_db->update( $table_name, $wpjobportal_data, $where );
+
+                    if ( $response !== false ) {
+                        $this->zywrap_import_counts['languages']['imported'] += 1;
+                    } else {
+                        $this->zywrap_import_counts['languages']['failed'] += 1;
+                    }
+
+                } else {
+
+                    // INSERT new record
+                    $response = wpjobportal::$_db->insert( $table_name, $wpjobportal_data );
+
+                    if ( $response ) {
+                        $this->zywrap_import_counts['languages']['imported'] += 1;
+
+                        // Add to tracking array to catch duplicates inside the payload
+                        $wpjobportal_existing[ $wpjobportal_compare_code ] = $wpjobportal_code;
+                    } else {
+                        $this->zywrap_import_counts['languages']['failed'] += 1;
+                    }
+                }
+
+                wpjobportal::$_db->suppress_errors( false );
             }
-            */
-
-            // Prepare DB row object
-
-
-            // Build dataset
-            $wpjobportal_data = [];
-            $wpjobportal_data['code']     = $code;
-            $wpjobportal_data['name']     = $wpjobportal_name;
-            $wpjobportal_data['ordering'] = $ordering;
-            $wpjobportal_data['status'] = 1;
-
-            // Store into DB
-            // Suppress duplicate-key insert warnings during bulk import
-            wpjobportal::$_db->suppress_errors( true );
-            $response = wpjobportal::$_db->insert(wpjobportal::$_db->prefix.'wj_portal_zywrap_languages',$wpjobportal_data);
-            wpjobportal::$_db->suppress_errors( false );
-
-            if ( $response ) {
-                $this->zywrap_import_counts['languages']['imported'] += 1;
-            } else {
-                $this->zywrap_import_counts['languages']['failed'] += 1;
-                continue;
-            }
-
-            $ordering++;
         }
-    }
 
     // function to import zywrap AI models
     function importZywrapAiModels( $wpjobportal_data_ai_models ) {
@@ -358,68 +528,78 @@ class WPJOBPORTALzywrapModel {
             return;
         }
 
-        // Get max ordering
-        $query = "SELECT MAX(model.ordering)
-                    FROM `" . wpjobportal::$_db->prefix . "wj_portal_zywrap_ai_models` AS model";
-        $ordering = (int) wpjobportal::$_db->get_var( $query );
-        $ordering  = $ordering + 1;
-        $ordering_check = $ordering;
-        /*
-        // Prepare existing codes if ordering exists
-        if ( $ordering_check > 0 ) {
+        $table_name = wpjobportal::$_db->prefix . 'wj_portal_zywrap_ai_models';
 
-            $wpjobportal_existing = [];
-            $query = "SELECT model.code
-                        FROM `" . wpjobportal::$_db->prefix . "wj_portal_zywrap_ai_models` AS model";
-            $wpjobportal_results = wpjobportal::$_db->get_results( $query );
+        // 1. Prepare list of existing models to handle updates
+        $wpjobportal_existing = [];
+        $query = "SELECT model.code FROM `" . $table_name . "` AS model";
+        $wpjobportal_results = wpjobportal::$_db->get_results( $query );
 
-            if ( ! empty( $wpjobportal_results ) ) {
-                foreach ( $wpjobportal_results as $wpjobportal_row ) {
-                    $wpjobportal_existing[] = $this->cleanStringForCompare( $wpjobportal_row->code );
-                }
+        if ( ! empty( $wpjobportal_results ) ) {
+            foreach ( $wpjobportal_results as $wpjobportal_row ) {
+                // Normalize the code for reliable matching
+                $clean_code = $this->cleanStringForCompare( $wpjobportal_row->code );
+                $wpjobportal_existing[ $clean_code ] = $wpjobportal_row->code;
             }
         }
-        */
 
-        // Loop AI models from input
-        foreach ( $wpjobportal_data_ai_models as $code => $wpjobportal_model ) {
-            $wpjobportal_name       = $wpjobportal_model['name'];
-            $wpjobportal_providerId = $wpjobportal_model['provId'];
-            /*
-            if ( $ordering_check > 0 ) {
-                $wpjobportal_compare_code = $this->cleanStringForCompare( $code );
+        // 2. Loop AI models from input
+        foreach ( $wpjobportal_data_ai_models as $code_key => $wpjobportal_model ) {
+            $wpjobportal_code = $wpjobportal_model['code'] ?? '';
 
-                // Skip duplicates
-                if ( in_array( $wpjobportal_compare_code, $wpjobportal_existing ) ) {
-                    $this->zywrap_import_counts['aimodels']['skipped'] += 1;
-                    continue;
-                }
-            }
-            */
-
-            // Prepare data to bind
-            $wpjobportal_data = [];
-            $wpjobportal_data['code']        = $code;
-            $wpjobportal_data['name']        = $wpjobportal_name;
-            $wpjobportal_data['provider_id'] = $wpjobportal_providerId;
-            $wpjobportal_data['ordering']    = $ordering;
-            $wpjobportal_data['status']    = 1;
-
-            // Store into DB
-            // Suppress duplicate-key insert warnings during bulk import
-            wpjobportal::$_db->suppress_errors( true );
-
-            $response = wpjobportal::$_db->insert(wpjobportal::$_db->prefix.'wj_portal_zywrap_ai_models',$wpjobportal_data);
-            wpjobportal::$_db->suppress_errors( false );
-
-            if ( $response ) {
-                $this->zywrap_import_counts['aimodels']['imported'] += 1;
-            } else {
+            // Skip if no code is provided to prevent empty matching issues
+            if ( empty( $wpjobportal_code ) ) {
                 $this->zywrap_import_counts['aimodels']['failed'] += 1;
                 continue;
             }
 
-            $ordering++;
+            $wpjobportal_compare_code = $this->cleanStringForCompare( $wpjobportal_code );
+
+            // Extract remaining fields
+            $wpjobportal_name     = $wpjobportal_model['name'] ?? '';
+            $wpjobportal_ordering = $wpjobportal_model['ordering'] ?? '';
+            $wpjobportal_status   = (!isset($wpjobportal_model['status']) || $wpjobportal_model['status']) ? 1 : 0;
+
+            // Build dataset
+            $wpjobportal_data = [
+                'code'     => $wpjobportal_code,
+                'name'     => $wpjobportal_name,
+                'ordering' => $wpjobportal_ordering,
+                'status'   => $wpjobportal_status
+            ];
+
+            // Suppress duplicate-key insert warnings during DB operations
+            wpjobportal::$_db->suppress_errors( true );
+
+            // 3. Check for matching code and perform the update or insert
+            if ( array_key_exists( $wpjobportal_compare_code, $wpjobportal_existing ) ) {
+
+                // UPDATE existing record
+                $where = [ 'code' => $wpjobportal_code ];
+                $response = wpjobportal::$_db->update( $table_name, $wpjobportal_data, $where );
+
+                if ( $response !== false ) {
+                    $this->zywrap_import_counts['aimodels']['imported'] += 1;
+                } else {
+                    $this->zywrap_import_counts['aimodels']['failed'] += 1;
+                }
+
+            } else {
+
+                // INSERT new record
+                $response = wpjobportal::$_db->insert( $table_name, $wpjobportal_data );
+
+                if ( $response ) {
+                    $this->zywrap_import_counts['aimodels']['imported'] += 1;
+
+                    // Add to tracking array to catch duplicates inside the payload
+                    $wpjobportal_existing[ $wpjobportal_compare_code ] = $wpjobportal_code;
+                } else {
+                    $this->zywrap_import_counts['aimodels']['failed'] += 1;
+                }
+            }
+
+            wpjobportal::$_db->suppress_errors( false );
         }
     }
 
@@ -429,61 +609,89 @@ class WPJOBPORTALzywrapModel {
         if ( empty( $wpjobportal_data_templates ) ) {
             return;
         }
-        /*
-        // Load existing entries to avoid duplicates
+
+        $table_name = wpjobportal::$_db->prefix . 'wj_portal_zywrap_block_templates';
+
+        // 1. Prepare list of existing templates using a composite key (type + code)
         $wpjobportal_existing = [];
-        $query = "SELECT tpl.type, tpl.code
-                    FROM `" . wpjobportal::$_db->prefix . "wj_portal_zywrap_block_templates` AS tpl";
+        $query = "SELECT tpl.type, tpl.code FROM `" . $table_name . "` AS tpl";
         $wpjobportal_results = wpjobportal::$_db->get_results( $query );
 
         if ( ! empty( $wpjobportal_results ) ) {
             foreach ( $wpjobportal_results as $wpjobportal_row ) {
+                // Normalize the composite key for reliable matching
                 $wpjobportal_key = $this->cleanStringForCompare( $wpjobportal_row->type . '_' . $wpjobportal_row->code );
-                $wpjobportal_existing[] = $wpjobportal_key;
+                $wpjobportal_existing[ $wpjobportal_key ] = true;
             }
         }
-        */
 
-        // Loop through all template groups (types)
+        // 2. Loop through all template groups (types)
         foreach ( $wpjobportal_data_templates as $type => $wpjobportal_templates ) {
 
             if ( ! is_array( $wpjobportal_templates ) ) {
                 continue;
             }
 
-            foreach ( $wpjobportal_templates as $code => $wpjobportal_name ) {
+            foreach ( $wpjobportal_templates as $template ) {
+                // SDK CHANGE: Look for 'label' first, falling back to 'name'
+                $code = $template['code'] ?? '';
+                $name = $template['label'] ?? $template['name'] ?? '';
 
-                $wpjobportal_compare_key = $this->cleanStringForCompare( $type . '_' . $code );
-                /*
-                // Skip duplicates
-                if ( in_array( $wpjobportal_compare_key, $wpjobportal_existing ) ) {
-                    $this->zywrap_import_counts['blocktemplates']['skipped'] += 1;
-                    continue;
-                }
-                */
+                // SDK CHANGE: Status is now passed from the API
+                $status = (!isset($template['status']) || $template['status']) ? 1 : 0;
 
-                // Prepare DB row object
-                //$wpjobportal_row = WPJOBPORTALincluder::getJSTable('zywrapblocktemplate');
-
-                // Prepare bind data (no ordering or timestamps in your original)
-                $wpjobportal_data = [];
-                $wpjobportal_data['type'] = $type;
-                $wpjobportal_data['code'] = $code;
-                $wpjobportal_data['name'] = $wpjobportal_name;
-                $wpjobportal_data['status'] = 1;
-
-                // Suppress duplicate-key insert warnings during bulk import
-                wpjobportal::$_db->suppress_errors( true );
-                $response = wpjobportal::$_db->insert(wpjobportal::$_db->prefix.'wj_portal_zywrap_block_templates',$wpjobportal_data);
-                wpjobportal::$_db->suppress_errors( false );
-
-                // Attempt DB store
-                if ( $response ) {
-                    $this->zywrap_import_counts['blocktemplates']['imported'] += 1;
-                } else {
+                // Skip and count as failed if no code is provided
+                if ( empty( $code ) ) {
                     $this->zywrap_import_counts['blocktemplates']['failed'] += 1;
                     continue;
                 }
+
+                // Create the matching key for this specific iteration
+                $compare_key = $this->cleanStringForCompare( $type . '_' . $code );
+
+                // Prepare bind data
+                $wpjobportal_data = [
+                    'type'   => $type,
+                    'code'   => $code,
+                    'name'   => $name,
+                    'status' => $status
+                ];
+
+                // Suppress duplicate-key insert warnings during bulk import
+                wpjobportal::$_db->suppress_errors( true );
+
+                // 3. Check for matching composite key and perform update or insert
+                if ( array_key_exists( $compare_key, $wpjobportal_existing ) ) {
+
+                    // UPDATE existing record (matching BOTH type and code)
+                    $where = [
+                        'type' => $type,
+                        'code' => $code
+                    ];
+                    $response = wpjobportal::$_db->update( $table_name, $wpjobportal_data, $where );
+
+                    if ( $response !== false ) {
+                        $this->zywrap_import_counts['blocktemplates']['imported'] += 1;
+                    } else {
+                        $this->zywrap_import_counts['blocktemplates']['failed'] += 1;
+                    }
+
+                } else {
+
+                    // INSERT new record
+                    $response = wpjobportal::$_db->insert( $table_name, $wpjobportal_data );
+
+                    if ( $response ) {
+                        $this->zywrap_import_counts['blocktemplates']['imported'] += 1;
+
+                        // Add to tracking array to catch duplicates inside the payload
+                        $wpjobportal_existing[ $compare_key ] = true;
+                    } else {
+                        $this->zywrap_import_counts['blocktemplates']['failed'] += 1;
+                    }
+                }
+
+                wpjobportal::$_db->suppress_errors( false );
             }
         }
     }
@@ -617,11 +825,11 @@ class WPJOBPORTALzywrapModel {
             return;
         }
 
-        // Get max ordering
-        $query = "SELECT MAX(wrap.ordering)
-                  FROM `" . wpjobportal::$_db->prefix . "wj_portal_zywrap_wrappers` AS wrap";
-        $ordering = (int) wpjobportal::$_db->get_var($query);
-        $ordering_check = $ordering;
+        // // Get max ordering
+        // $query = "SELECT MAX(wrap.ordering)
+        //           FROM `" . wpjobportal::$_db->prefix . "wj_portal_zywrap_wrappers` AS wrap";
+        // $ordering = (int) wpjobportal::$_db->get_var($query);
+        // $ordering_check = $ordering;
 
         // Prepare existing wrapper codes for duplicate prevention
         // $wpjobportal_existing = [];
@@ -640,7 +848,7 @@ class WPJOBPORTALzywrapModel {
             ];
         }
 
-        $ordering = $ordering + 1;
+        // $ordering = $ordering + 1;
 
         // Loop incoming wrappers
         /*
@@ -694,33 +902,37 @@ class WPJOBPORTALzywrapModel {
 
         $table = wpjobportal::$_db->prefix . 'wj_portal_zywrap_wrappers';
 
-        foreach ($wpjobportal_data_wrappers as $code => $wrapper) {
+        foreach ($wpjobportal_data_wrappers as $wrp_code => $wrapper) {
 
             // Validate required fields
-            if (empty($code) || empty($wrapper['name'])) {
+            if (empty($wrapper['code']) || empty($wrapper['name'])) {
                 $this->zywrap_import_counts['wrappers']['failed']++;
                 continue;
             }
 
+            $wpjobportal_code = $wrapper['code'] ?? '';
             $wpjobportal_name = $wrapper['name'] ?? '';
             $wpjobportal_desc = $wrapper['desc'] ?? '';
-            $cat              = $wrapper['cat'] ?? '';
+            //$cat              = $wrapper['cat'] ?? '';
+            $usecase          = $wrapper['usecase'] ?? '';
             $featured         = (int) ($wrapper['featured'] ?? 0);
             $base             = (int) ($wrapper['base'] ?? 0);
+            $ordering             = (int) ($wrapper['ordering'] ?? 0);
 
             // Prepare escaped row
             $batch_values[] = wpjobportal::$_db->prepare(
                 "(%s, %s, %s, %s, %d, %d, %d)",
-                $code,
+                $wpjobportal_code,
                 $wpjobportal_name,
                 $wpjobportal_desc,
-                $cat,
+                //$cat,
+                $usecase,
                 $featured,
                 $base,
                 $ordering
             );
 
-            $ordering++;
+
             $batch_count++;
 
             // Execute batch when limit reached
@@ -730,7 +942,7 @@ class WPJOBPORTALzywrapModel {
                 wpjobportal::$_db->suppress_errors( true );
                 $sql = "
                     INSERT INTO {$table}
-                    (code, name, description, category_code, featured, base, ordering)
+                    (code, name, description, use_case_code, featured, base, ordering)
                     VALUES " . implode(',', $batch_values);
 
                 $result = wpjobportal::$_db->query($sql);
@@ -757,7 +969,7 @@ class WPJOBPORTALzywrapModel {
             wpjobportal::$_db->suppress_errors( true );
             $sql = "
                 INSERT INTO {$table}
-                (code, name, description, category_code, featured, base, ordering)
+                (code, name, description, use_case_code, featured, base, ordering)
                 VALUES " . implode(',', $batch_values);
 
             $result = wpjobportal::$_db->query($sql);
@@ -771,6 +983,36 @@ class WPJOBPORTALzywrapModel {
         }
     }
 
+    function deleteBatch( $table_name, $ids, $pk = 'code' ) {
+
+        if ( empty( $ids ) || ! is_array( $ids ) ) { // ids contains codes
+            return;
+        }
+
+        $has_error     = false;
+        $error_message = '';
+
+        // Suppress DB errors during the loop so we can catch them and rollback safely
+        wpjobportal::$_db->suppress_errors( true );
+
+        foreach ( $ids as $id ) {
+            $where = [ $pk => $id ];
+
+            // delete() returns the number of rows deleted, or false on error
+            $response = wpjobportal::$_db->delete( $table_name, $where );
+
+            // If false is returned, a database error occurred
+            if ( $response === false ) {
+                // $has_error     = true;
+                // $error_message = wpjobportal::$_db->last_error;
+                // break; // Stop the loop immediately on the first failure
+            }
+        }
+
+        // Restore standard error reporting
+        wpjobportal::$_db->suppress_errors( false );
+
+    }
 
     function importZywrapData() {
         if (function_exists('set_time_limit')) {
@@ -793,52 +1035,31 @@ class WPJOBPORTALzywrapModel {
         }
        $type = WPJOBPORTALrequest::getVar('actionType');
 
-        // // 1. Download the ZIP file
-        // $wpjobportal_url = 'https://api.zywrap.com/v1/sdk/download';
-        // $response = wp_remote_get($wpjobportal_url, array(
-        //     'timeout' => 300, // 5 minutes
-        //     'headers' => array('Authorization' => 'Bearer ' . $api_key)
-        // ));
-
-        // if (is_wp_error($response) || wp_remote_retrieve_response_code($response) !== 200) {
-        //     $wpjobportal_error_msg = is_wp_error($response) ? $response->get_error_message() : 'HTTP ' . wp_remote_retrieve_response_code($response);
-        //     $this->log_api_call('sync_full', 'error', ['error_message' => 'Download failed: ' . $wpjobportal_error_msg]);
-        //     wp_send_json_error(array('message' => 'Failed to download data bundle from Zywrap API.'));
-        // }
-
-        // // 2. Save and Unzip
-        // $wpjobportal_upload_dir = wp_upload_dir();
-        // $zip_file = $wpjobportal_upload_dir['path'] . '/zywrap-data.zip';
-        // $wpjobportal_json_file = $wpjobportal_upload_dir['path'] . '/zywrap-data.json';
-        // file_put_contents($zip_file, wp_remote_retrieve_body($response));
-
-        // // Use WordPress filesystem for unzipping
-        // WP_Filesystem();
-        // $unzip_result = unzip_file($zip_file, $wpjobportal_upload_dir['path']);
-        // if (is_wp_error($unzip_result)) {
-        //     wp_send_json_error(array('message' => 'Failed to unzip data bundle: ' . $unzip_result->get_error_message()));
-        // }
-
-        // if (!file_exists($wpjobportal_json_file)) {
-        //     wp_send_json_error(array('message' => 'Error: zywrap-data.json not found in ZIP.'));
-        // }
-
-        // $wpjobportal_json_data = file_get_contents($wpjobportal_json_file);
-        // 1. Download the ZIP file
-        // $wpjobportal_url = 'https://api.zywrap.com/v1/sdk/download';
-
         // new install case
-        $wpjobportal_url = 'https://api.zywrap.com/v1/sdk/export/';
-        //$wpjobportal_data_version = '';
-        $wpjobportal_data_version = get_option('wpjobportal_zywrap_version');
+        $wpjobportal_url = 'https://api.zywrap.com/v1/sdk/v1/sync';
 
-        //$wpjobportal_data_version = '2026-02-11T13:03:18.438Z';
-        $ingore_mode_section = 1;
-        if(!empty($wpjobportal_data_version)){
-            $ingore_mode_section = 0;
-            $wpjobportal_url = 'https://api.zywrap.com/v1/sdk/export/updates/';
-            $wpjobportal_url = add_query_arg('fromVersion', urlencode($wpjobportal_data_version), $wpjobportal_url);
+        //$wpjobportal_data_version = '';
+
+        // parameter is required
+        $wpjobportal_data_version = get_option('wpjobportal_zywrap_version');
+        $truncate_tables = 1;
+        //$wpjobportal_data_version = '2020-02-02T13:03:18.438Z';
+        if(empty($wpjobportal_data_version)){
+            //$wpjobportal_data_version = '2020-02-02T13:03:18.438Z';
+            $truncate_tables = 0;
         }
+
+
+        //$wpjobportal_data_version = '2026-02-25T13:03:18.438Z';
+        $ignore_mode_section = 0;
+        // if(!empty($wpjobportal_data_version)){
+        //     $ignore_mode_section = 0;
+        //     $wpjobportal_url = 'https://api.zywrap.com/v1/sdk/v1/sync';
+        //     //$wpjobportal_url = 'https://api.zywrap.com/v1/sdk/export/updates/';
+        // }
+
+        $wpjobportal_url = add_query_arg('fromVersion', urlencode($wpjobportal_data_version), $wpjobportal_url);
+
 
         $response = wp_remote_get( $wpjobportal_url, array(
             'timeout' => 300,
@@ -847,8 +1068,11 @@ class WPJOBPORTALzywrapModel {
             ),
         ) );
 
-        if ( is_wp_error( $response ) || wp_remote_retrieve_response_code( $response ) !== 200 ) {
-            $wpjobportal_error_msg = is_wp_error( $response ) ? $response->get_error_message() : 'HTTP ' . wp_remote_retrieve_response_code( $response );
+        $response_code = wp_remote_retrieve_response_code( $response );
+
+
+        if ( is_wp_error( $response ) || $response_code !== 200 ) {
+            $wpjobportal_error_msg = is_wp_error( $response ) ? $response->get_error_message() : 'HTTP ' . $response_code;
 
             $this->log_api_call( 'sync_full', 'error', array(
                 'error_message' => 'Download failed: ' . $wpjobportal_error_msg,
@@ -859,105 +1083,119 @@ class WPJOBPORTALzywrapModel {
             ) );
         }
 
-        if($ingore_mode_section == 0){
-            $respose_body = wp_remote_retrieve_body($response);
-            // MEMORY OPTIMIZATION: Decode and unset raw string immediately
-            $json_response_decoded = json_decode($respose_body, true);
+        $respose_body = wp_remote_retrieve_body($response);
+        // MEMORY OPTIMIZATION: Decode and unset raw string immediately
+        $json_response_decoded = json_decode($respose_body, true);
+        // clean memory
+        unset($respose_body);
+
+        $mode = $json_response_decoded['mode'] ?? 'UNKNOWN';
+        if ($mode === 'DELTA_UPDATE') { // update case
+            /*
+            ['metadata']['categories']
+            ['metadata']['languages']
+            ['metadata']['aiModels']
+            ['metadata']['templates']
+            ['wrappers']['upserts']
+            */
+
+            $wpjobportal_data = [];
+
+            // categories
+            if(!empty($json_response_decoded['metadata']['categories'])){
+                $wpjobportal_data['categories'] = $json_response_decoded['metadata']['categories'];
+            }
+
+            // languages
+            if(!empty($json_response_decoded['metadata']['languages'])){
+                $wpjobportal_data['languages'] = $json_response_decoded['metadata']['languages'];
+            }
+
+            // aiModels
+            if(!empty($json_response_decoded['metadata']['aiModels'])){
+                $wpjobportal_data['aiModels'] = $json_response_decoded['metadata']['aiModels'];
+            }
+
+            // templates
+            if(!empty($json_response_decoded['metadata']['templates'])){
+                $wpjobportal_data['templates'] = $json_response_decoded['metadata']['templates'];
+            }
+
+            // wrappers // only new wrappers to be inserted
+            if(!empty($json_response_decoded['wrappers']['upserts'])){
+                $wpjobportal_data['wrappers'] = $json_response_decoded['wrappers']['upserts'];
+                $wpjobportal_data['deletes']['wrappers'] = $json_response_decoded['wrappers']['deletes'];
+            }
+
+            // useCases // only new wrappers to be inserted
+            if(!empty($json_response_decoded['useCases']['upserts'])){
+                $wpjobportal_data['useCases'] = $json_response_decoded['useCases']['upserts'];
+                $wpjobportal_data['deletes']['useCases'] = $json_response_decoded['useCases']['deletes'];
+            }
+
+            // data Version
+            if (!empty($json_response_decoded['newVersion'])) {
+                $wpjobportal_data['version'] = $json_response_decoded['newVersion'];
+            }
             // clean memory
-            unset($respose_body);
+            unset($json_response_decoded);
 
-            $mode = $json_response_decoded['mode'] ?? 'UNKNOWN';
-            if ($mode === 'DELTA_UPDATE') { // update case
-                /*
-                ['metadata']['categories']
-                ['metadata']['languages']
-                ['metadata']['aiModels']
-                ['metadata']['templates']
-                ['wrappers']['upserts']
-                */
+        } elseif ($mode === 'FULL_RESET') { // Case B: Server requesting Full Reset (Too many possible changes)
 
-                $wpjobportal_data = [];
+            // The server might provide a specific download URL, or we fallback to root (fresh install case url)
 
-                // categories
-                if(!empty($json_response_decoded['metadata']['categories'])){
-                    $wpjobportal_data['categories'] = $json_response_decoded['metadata']['categories'];
-                }
+            $download_url = !empty($json_response_decoded['wrappers']['downloadUrl'])
+                                ? esc_url_raw($json_response_decoded['wrappers']['downloadUrl'])
+                                : 'https://api.zywrap.com/v1/sdk/v1/sync';
+            // clean memory
+            unset($json_response_decoded);
 
-                // languages
-                if(!empty($json_response_decoded['metadata']['languages'])){
-                    $wpjobportal_data['languages'] = $json_response_decoded['metadata']['languages'];
-                }
-
-                // aiModels
-                if(!empty($json_response_decoded['metadata']['aiModels'])){
-                    $wpjobportal_data['aiModels'] = $json_response_decoded['metadata']['aiModels'];
-                }
-
-                // templates
-                if(!empty($json_response_decoded['metadata']['templates'])){
-                    $wpjobportal_data['templates'] = $json_response_decoded['metadata']['templates'];
-                }
-
-                // wrappers // only new wrappers to be inserted
-                if(!empty($json_response_decoded['wrappers']['upserts'])){
-                    $wpjobportal_data['wrappers'] = $json_response_decoded['wrappers']['upserts'];
-                }
-
-                // data Version
-                if (!empty($json_response_decoded['newVersion'])) {
-                    $wpjobportal_data['version'] = $json_response_decoded['newVersion'];
-                }
-                // clean memory
-                unset($json_response_decoded);
-
-            } elseif ($mode === 'FULL_RESET') { // Case B: Server requesting Full Reset (Too many possible changes)
-
-                // The server might provide a specific download URL, or we fallback to root (fresh install case url)
-                $download_url = $json_response_decoded['wrappers']['downloadUrl'] ?? 'https://api.zywrap.com/v1/sdk/export/';
-                // clean memory
-                unset($json_response_decoded);
-
-                $response = wp_remote_get( $download_url, array(
-                    'timeout' => 300,
-                    'headers' => array(
-                        'Authorization' => 'Bearer ' . $api_key,
-                    ),
-                ) );
-
-                if ( is_wp_error( $response ) || wp_remote_retrieve_response_code( $response ) !== 200 ) {
-                    $wpjobportal_error_msg = is_wp_error( $response ) ? $response->get_error_message() : 'HTTP ' . wp_remote_retrieve_response_code( $response );
-
-                    $this->log_api_call( 'sync_full', 'error', array(
-                        'error_message' => 'Download failed: ' . $wpjobportal_error_msg,
-                    ) );
-
-                    wp_send_json_error( array(
-                        'message' => __( 'Failed to download data bundle from Zywrap API.', 'wp-job-portal' ),
-                    ) );
-                }
-
-                //ingore_mode_section to re use a major code block for both cases
-                $ingore_mode_section = 1;
-
-                // full reset case
-                //truncate exsisting tables.
-                global $wpdb;
-                $wpdb->query('SET FOREIGN_KEY_CHECKS = 0;');
-                $wpdb->query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_wrappers`");
-                $wpdb->query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_categories`");
-                $wpdb->query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_languages`");
-                $wpdb->query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_block_templates`");
-                $wpdb->query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_ai_models`");
-                $wpdb->query('SET FOREIGN_KEY_CHECKS = 1;');
-                //echo '<br/=====DB EMPTY+++++<br/>';
-            } // full reset if close
-        }
-
-
-        if($ingore_mode_section == 1){ // model section ignore means full install or full reset
-            // 2. Prepare file paths
             $wpjobportal_upload_dir = wp_upload_dir();
             $zip_file   = trailingslashit( $wpjobportal_upload_dir['path'] ) . 'zywrap-data.zip';
+
+            $response = wp_remote_get( $download_url, array(
+                'timeout' => 300,
+                'headers' => array(
+                    'Authorization' => 'Bearer ' . $api_key,
+                ),
+                'stream' => true,
+                'filename' => $zip_file,
+            ) );
+
+            if ( is_wp_error( $response ) || wp_remote_retrieve_response_code( $response ) !== 200 ) {
+                $wpjobportal_error_msg = is_wp_error( $response ) ? $response->get_error_message() : 'HTTP ' . wp_remote_retrieve_response_code( $response );
+
+                $this->log_api_call( 'sync_full', 'error', array(
+                    'error_message' => 'Download failed: ' . $wpjobportal_error_msg,
+                ) );
+
+                wp_send_json_error( array(
+                    'message' => __( 'Failed to download data bundle from Zywrap API.', 'wp-job-portal' ),
+                ) );
+            }
+
+            //ignore_mode_section to re use a major code block for both cases
+            $ignore_mode_section = 1;
+
+            // full reset case
+            //truncate exsisting tables.
+            global $wpdb;
+            $wpdb->query('SET FOREIGN_KEY_CHECKS = 0;');
+            $wpdb->query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_wrappers`");
+            $wpdb->query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_categories`");
+            $wpdb->query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_use_cases`");
+            $wpdb->query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_languages`");
+            $wpdb->query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_block_templates`");
+            $wpdb->query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_ai_models`");
+            $wpdb->query('SET FOREIGN_KEY_CHECKS = 1;');
+            //echo '<br/=====DB EMPTY+++++<br/>';
+
+            //}
+
+
+            //if($ignore_mode_section == 1){ // model section ignore means full install or full reset
+            // 2. Prepare file paths
+
             $wpjobportal_json_file  = trailingslashit( $wpjobportal_upload_dir['path'] ) . 'zywrap-data.json';
 
             // 3. Initialize WordPress filesystem
@@ -973,24 +1211,7 @@ class WPJOBPORTALzywrapModel {
                 ) );
             }
 
-            // 4. Write ZIP file using WP Filesystem
-            $zip_body = wp_remote_retrieve_body( $response );
-
-            // clean memory
-            unset($response);
-            if ( empty( $zip_body ) ) {
-                wp_send_json_error( array(
-                    'message' => __( 'Downloaded ZIP file is empty.', 'wp-job-portal' ),
-                ) );
-            }
-
-            $wp_filesystem->put_contents($zip_file,$zip_body,FS_CHMOD_FILE);
-
-            // clean memmory
-            unset($zip_body);
-
             // 5. Unzip using WordPress built-in safe unzipper
-            require_once ABSPATH . 'wp-admin/includes/file.php';
             $unzip_result = unzip_file( $zip_file, $wpjobportal_upload_dir['path'] );
 
             if ( is_wp_error( $unzip_result ) ) {
@@ -1017,16 +1238,54 @@ class WPJOBPORTALzywrapModel {
             $wpjobportal_data = json_decode($wpjobportal_json_data, true);
             // clean memeory
             unset($wpjobportal_json_data);
+            // remove files
+            $wp_filesystem->delete($zip_file);
+            $wp_filesystem->delete($wpjobportal_json_file);
 
-        } // ingore_mode_section if close
+            // modifyt he data to eahndle difference in case of update and reest
+            // Import Categories
 
+            if (!empty($wpjobportal_data['categories'])) {
+                $extracted = $this->extractTabular($wpjobportal_data['categories']);
+                $wpjobportal_data['categories'] = $extracted;
+            }
 
+            // Import Use Cases
+            if (!empty($wpjobportal_data['useCases'])) {
+                $extracted = $this->extractTabular($wpjobportal_data['useCases']);
+                $wpjobportal_data['useCases'] = $extracted;
+            }
 
-        // echo '<pre>';
-        // print_r($wpjobportal_data);
-        // echo '</pre>';
+            // Import Languages
+            if (!empty($wpjobportal_data['languages'])) {
+                $extracted = $this->extractTabular($wpjobportal_data['languages']);
+                $wpjobportal_data['languages'] = $extracted;
+            }
 
-        // die('after preping data 1019');
+            // Import aiModels
+            if (!empty($wpjobportal_data['aiModels'])) {
+                $extracted = $this->extractTabular($wpjobportal_data['aiModels']);
+                $wpjobportal_data['aiModels'] = $extracted;
+            }
+
+            // Import templates
+            if (!empty($wpjobportal_data['templates'])) {
+                foreach ($wpjobportal_data['templates'] as $type => $tabular) {
+                    $wpjobportal_data['templates'][$type] = $this->extractTabular($tabular);
+                }
+                // $extracted = $this->extractTabular($wpjobportal_data['templates']);
+                // $wpjobportal_data['templates'] = $extracted;
+
+            }
+            // Import wrappers
+            if (!empty($wpjobportal_data['wrappers'])) {
+                $extracted = $this->extractTabular($wpjobportal_data['wrappers']);
+                $wpjobportal_data['wrappers'] = $extracted;
+            }
+
+        } // full reset if close
+        // echo '<pre>';print_r($wpjobportal_data['templates']);
+        //  die('after preping data 1019');
 
         if (empty($wpjobportal_data)) {
             $this->log_api_call('sync_full', 'error', ['error_message' => 'Could not parse JSON data.']);
@@ -1042,6 +1301,26 @@ class WPJOBPORTALzywrapModel {
             $output_array['categories'] = count($wpjobportal_data['categories']);
             $this->importZywrapCategories($wpjobportal_data['categories']);
         }
+        // Import Use Cases
+        if (!empty($wpjobportal_data['useCases'])) {
+            $output_array['useCases'] = count($wpjobportal_data['useCases']);
+            $this->importZywrapUseCases($wpjobportal_data['useCases']);
+
+
+        }
+        /*
+    $wpjobportal_data['deletes']['wrappers']
+    $wpjobportal_data['deletes']['useCases']
+        */
+        if(!empty($wpjobportal_data['deletes']) && !empty($wpjobportal_data['deletes']['wrappers'])){
+            $table_name = wpjobportal::$_db->prefix . "wj_portal_zywrap_wrappers";
+            $this->deleteBatch( $table_name, $wpjobportal_data['deletes']['wrappers'], 'code' );
+        }
+
+        if(!empty($wpjobportal_data['deletes']) && !empty($wpjobportal_data['deletes']['useCases'])){
+            $table_name = wpjobportal::$_db->prefix . "wj_portal_zywrap_use_cases";
+            $this->deleteBatch( $table_name, $wpjobportal_data['deletes']['useCases'], 'code' );
+        }
 
         // Import Languages
         if (!empty($wpjobportal_data['languages'])) {
@@ -1055,13 +1334,14 @@ class WPJOBPORTALzywrapModel {
             $this->importZywrapAiModels($wpjobportal_data['aiModels']);
         }
 
-        // Import aiModels
+        // Import templates
         if (!empty($wpjobportal_data['templates'])) {
             $output_array['templates'] = count($wpjobportal_data['templates']);
             $this->importZywrapBlockTemplates($wpjobportal_data['templates']);
         }
         // Import wrappers
         if (!empty($wpjobportal_data['wrappers'])) {
+
             $output_array['wrappers'] = count($wpjobportal_data['wrappers']);
             $wpjobportal_result = $this->importZywrapWrappersInBatches($wpjobportal_data['wrappers'], $output_array['wrappers']);
             set_transient('wpjp_import_counts_cache', $this->zywrap_import_counts, HOUR_IN_SECONDS);
@@ -1142,6 +1422,21 @@ class WPJOBPORTALzywrapModel {
         // Clean up files
 
         wp_send_json_success(array('message' => 'Full data import complete! Version: ' . ($wpjobportal_data['version'] ?? 'N/A')));
+    }
+
+
+    /**
+         * Helper function to extract Tabular JSON Data
+         * matching the V1 API format to associative arrays
+         */
+    private function extractTabular($tabularData) {
+        if (empty($tabularData['cols']) || empty($tabularData['data'])) return [];
+        $cols = $tabularData['cols'];
+        $result = [];
+        foreach ($tabularData['data'] as $row) {
+            $result[] = array_combine($cols, $row);
+        }
+        return $result;
     }
 
     /**
@@ -1300,7 +1595,7 @@ class WPJOBPORTALzywrapModel {
             wp_send_json_error(array('message' => 'Security check failed.'));
         }
 
-        $query = "SELECT id, name, category_code FROM `" . wpjobportal::$_db->prefix . "wj_portal_zywrap_wrappers` ORDER BY ordering ASC";
+        $query = "SELECT id, name, use_case_code FROM `" . wpjobportal::$_db->prefix . "wj_portal_zywrap_wrappers` ORDER BY ordering ASC";
 
         $wpjobportal_data = wpjobportal::$_db->get_results($query, ARRAY_N);
 
@@ -1320,6 +1615,7 @@ class WPJOBPORTALzywrapModel {
         }
 
         global $wpdb;
+        //$wpjobportal_use_case_code = WPJOBPORTALrequest::getVar('use_case_code', 'post');
         $wpjobportal_category_code = WPJOBPORTALrequest::getVar('category_code', 'post');
         $wpjobportal_show_featured = WPJOBPORTALrequest::getVar('show_featured', 'post') === 'true';
         $wpjobportal_show_base = WPJOBPORTALrequest::getVar('show_base', 'post') === 'true';
@@ -1327,8 +1623,28 @@ class WPJOBPORTALzywrapModel {
         if (empty($wpjobportal_category_code)) {
             wp_send_json_success(array());
         }
+        // Table names with WordPress prefix
+        $tbl_wrappers = $wpdb->prefix . 'wj_portal_zywrap_wrappers';
+        $tbl_use_cases = $wpdb->prefix . 'wj_portal_zywrap_use_cases';
 
-        $query = $wpdb->prepare("SELECT code, name, featured, base,description,ordering,id FROM `" . $wpdb->prefix . "wj_portal_zywrap_wrappers` WHERE category_code = %s", $wpjobportal_category_code);
+        // Updated query using JOIN to match new SDK logic
+        $query = $wpdb->prepare("
+            SELECT
+                wrapper.code,
+                wrapper.name,
+                wrapper.featured,
+                wrapper.base,
+                wrapper.description,
+                wrapper.ordering,
+                wrapper.id,
+                wrapper.use_case_code
+            FROM `{$tbl_wrappers}` wrapper
+            JOIN `{$tbl_use_cases}` usecase ON wrapper.use_case_code = usecase.code
+            WHERE usecase.category_code = %s
+              AND wrapper.status = 1
+              AND usecase.status = 1
+            ORDER BY wrapper.ordering ASC
+        ", $wpjobportal_category_code);
 
         $wrappers = $wpdb->get_results($query);
 
@@ -1341,6 +1657,44 @@ class WPJOBPORTALzywrapModel {
         }
 
         wp_send_json_success(array_values($wrappers)); // Re-index array
+    }
+    /**
+     * AJAX Function: Gets wrappers for a specific category.
+     */
+    function getSchemaByUseCode() {
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(array('message' => 'Permission denied.'));
+        }
+        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (!wp_verify_nonce($wpjobportal_nonce, 'zywrap_get_schema')) {
+            wp_send_json_error(array('message' => 'Security check failed.'));
+        }
+
+        global $wpdb;
+        $wpjobportal_use_case_code = WPJOBPORTALrequest::getVar('use_case_code', 'post');
+
+
+        if (empty($wpjobportal_use_case_code)) {
+            wp_send_json_success(array());
+        }
+
+        // Table names with WordPress prefix
+        $tbl_use_cases = $wpdb->prefix . 'wj_portal_zywrap_use_cases';
+
+        // Updated query using JOIN to match new SDK logic
+        $query = $wpdb->prepare("
+            SELECT
+                usecase.schema_data
+            FROM `{$tbl_use_cases}` usecase
+            WHERE usecase.code = %s
+              AND usecase.status = 1
+
+        ", $wpjobportal_use_case_code);
+
+        $scheme_data = $wpdb->get_row($query);
+
+
+        wp_send_json_success($scheme_data); // Re-index array
     }
 
     /**
@@ -1367,6 +1721,9 @@ class WPJOBPORTALzywrapModel {
         $wpjobportal_prompt = WPJOBPORTALrequest::getVar('prompt', 'post');
         $wpjobportal_language = WPJOBPORTALrequest::getVar('language', 'post');
         $wpjobportal_overrides = WPJOBPORTALrequest::getVar('overrides', 'post');
+        // $wpjobportal_schema_inputs = WPJOBPORTALrequest::getVar('schema_inputs', 'post');
+        $raw_schema_inputs = WPJOBPORTALrequest::getVar('schema_inputs', 'post');
+        $wpjobportal_schema_inputs = !empty($raw_schema_inputs) ? json_decode(stripslashes($raw_schema_inputs), true) : array();
 
         // === NEW FEATURES INPUT ===
         $context = WPJOBPORTALrequest::getVar('context', 'post');
@@ -1393,18 +1750,75 @@ class WPJOBPORTALzywrapModel {
         $wpjobportal_prompt = apply_filters('wpjobportal_ai_content_generation_prompt', $wpjobportal_prompt, $ai_parameters);
         // --- NEW HOOK INTEGRATION END ---
 
+        // === SEND CONTEXT AS VARIABLE ===
+        // if (!empty($wpjobportal_context)) {
+        //     $wpjobportal_payloadData['variables'] = array('context' => $context);
+        // }
+
+        $api_variables = array();
+
+        // 1. Add Context if it exists
+        if (!empty($context)) {
+            $api_variables['context'] = $context;
+        }
+
+        // 2. Loop through dynamic schema inputs and add them to the variables array
+        // if (!empty($wpjobportal_schema_inputs) && is_array($wpjobportal_schema_inputs)) {
+        //     foreach ($wpjobportal_schema_inputs as $key => $value) {
+        //         // Sanitize the key and value for security
+        //         $clean_key = sanitize_text_field($key);
+        //         $clean_val = sanitize_text_field($value);
+
+        //         // Only map it if the user actually typed something in the field
+        //         if ($clean_val !== '') {
+        //             $api_variables[$clean_key] = $clean_val;
+        //         }
+        //     }
+        // }
+
+        $structuredTextParts = [];
+        $finalPrompt = $wpjobportal_prompt ?? '';
+
+        // Loop through inputs (same as your existing loop)
+        if (!empty($wpjobportal_schema_inputs) && is_array($wpjobportal_schema_inputs)) {
+            foreach ($wpjobportal_schema_inputs as $key => $value) {
+
+                $clean_key = sanitize_text_field($key);
+                $clean_val = sanitize_text_field($value);
+
+                if ($clean_val !== '') {
+                    // Same as: schemaData[key] = val;
+                    $api_variables[$clean_key] = $clean_val;
+
+                    // Same as: structuredTextParts.push(key + ': ' + val);
+                    $structuredTextParts[] = $clean_key . ': ' . $clean_val;
+                }
+            }
+        }
+
+        // Same as: structuredTextParts.join('\n')
+        $structuredText = implode("\n", $structuredTextParts);
+
+        // Same as JS condition
+        if (!empty($finalPrompt) && !empty($structuredText)) {
+            $finalPrompt .= "\n\n" . $structuredText;
+        } elseif (!empty($structuredText)) {
+            $finalPrompt = $structuredText;
+        }
+
 
         // Build the payload
         $wpjobportal_payloadData = array(
             'model' => $wpjobportal_model,
             'wrapperCodes' => array($wrapper_code),
-            'prompt' => $wpjobportal_prompt
+            'prompt' => $finalPrompt
         );
 
-        // === SEND CONTEXT AS VARIABLE ===
-        if (!empty($wpjobportal_context)) {
-            $wpjobportal_payloadData['variables'] = array('context' => $context);
+        // 3. Attach the finalized variables array to the main payload
+        if (!empty($api_variables)) {
+            $wpjobportal_payloadData['variables'] = $api_variables;
         }
+
 
         if (!empty($wpjobportal_language)) {
             $wpjobportal_payloadData['language'] = $wpjobportal_language;
@@ -1417,6 +1831,10 @@ class WPJOBPORTALzywrapModel {
             }
             $wpjobportal_payloadData = array_merge($wpjobportal_payloadData, $clean_overrides);
         }
+
+
+
+        // echo '<pre>';print_r($wpjobportal_payloadData);exit;
 
         $wpjobportal_url = 'https://api.zywrap.com/v1/proxy';
         $wpjobportal_args = array(

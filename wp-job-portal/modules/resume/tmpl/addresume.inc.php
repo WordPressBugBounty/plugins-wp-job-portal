@@ -71,8 +71,6 @@ $wpjobportal_resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[
                 jQuery(img).attr('src', srcimg);
             });
             //Personal files select
-        jQuery('body').on('click', 'span.clickablefiles', function(e){
-            jQuery('input#resumefiles').click();
             jQuery('input#resumefiles').change(function(){
                 var srcimage = jQuery('img.rs_photo');
                 var files = this.files;
@@ -122,7 +120,9 @@ $wpjobportal_resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[
                 }
                 showResumeFilesArrayPopup();
             });
-        });
+            jQuery('body').on('click', 'span.clickablefiles', function(e){
+                jQuery('input#resumefiles').click();
+            });
         jQuery('body').on('click', 'img#wjportal-form-delete-image', function(e){
             jQuery('.wjportal-form-image-wrp').hide();
             jQuery('input#photo').val('').clone(true);

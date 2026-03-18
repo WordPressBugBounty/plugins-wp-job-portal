@@ -8261,7 +8261,7 @@ div.wpjobportaladmin-wrapper .wpjobportal-checkbox-label input {accent-color: #6
 /* --- ADVANCED ACCORDION --- */
 div.wpjobportaladmin-wrapper details.modern-details {border: 1px solid #e2e8f0;border-radius: 12px;background-color: #f8fafc;}
 div.wpjobportaladmin-wrapper details.modern-details summary {background: transparent;padding: 12px 16px;font-size: 16px;font-weight: 600;color: #1e293b;cursor: pointer;list-style: none;display: flex;justify-content: space-between;align-items: center;}
-div.wpjobportaladmin-wrapper details.modern-details summary::after {content: '+';color: #64748b;font-weight: bold;}
+div.wpjobportaladmin-wrapper details.modern-details summary::after {content: '+';color: #64748b;font-weight: bold;font-size: 22px}
 div.wpjobportaladmin-wrapper details.modern-details[open] summary::after { content: '-'; }
 div.wpjobportaladmin-wrapper .details-content {padding: 16px;background: #ffffff;display: grid;grid-template-columns: 1fr;gap: 16px;border-top: 1px solid #e2e8f0;}
 /* --- BUTTONS --- */
@@ -8909,4 +8909,61 @@ div.wpjobportaladmin-wrapper .wpjobportal-input-group.wpjobportal-input-group-se
 
 div#wpjobportaladmin-data .zywrap-playground-grid button:hover svg{
    color: var(--wjp-color-primary);
+}
+
+
+
+div#wpjobportaladmin-data .zywrap-playground-grid button:hover svg{
+   color: var(--wjp-color-primary);
+}
+
+
+div.wpjobportaladmin-wrapper #zywrap-schema-container .modern-details{
+   margin-top: 10px;
+   margin-bottom: 20px;
+}
+
+div.wpjobportaladmin-wrapper #zywrap-schema-container .modern-details .wpjobportal-input-label-spexc-case{
+font-size: 18px;color: #6366f1;margin-bottom: 8px;font-weight: 600;padding-bottom: 10px;   
+}
+
+
+
+div.wpjobportaladmin-wrapper #zywrap-schema-container .details-content.wpjobportal-special-config-wrapper{
+   display: flex;
+   flex-wrap:wrap;
+   flex-direction:row;
+   gap: 15px;
+   background-color: none;
+   background-color: unset;
+   border: none;
+}
+
+div.wpjobportaladmin-wrapper #zywrap-schema-container .wpjobportal-special-config-wrapper .wpjobportal-input-group{
+   width: calc( 50% - 15px);
+   display:flex;
+   border:none !important;
+   flex-wrap:wrap;
+   flex-direction:row;
+   padding-bottom:0px ;
+   margin-bottom: 0px;
+}
+div.wpjobportaladmin-wrapper #zywrap-schema-container .wpjobportal-special-config-wrapper .wpjobportal-input-group label{
+   width:100%;
+   display:flex;
+   color: #2c3338;
+   font-size: 15px;
+   margin-bottom: 0;
+   padding-bottom: 5px;
+}
+div.wpjobportaladmin-wrapper #zywrap-schema-container .wpjobportal-special-config-wrapper .wpjobportal-input-group input{
+   width:100%;
+   display:flex;
+}
+
+#zywrap-wrapper-loader{
+   margin-top: -10px ;
+   text-align: left;
+   width: 95%;
+   display: none;
 }

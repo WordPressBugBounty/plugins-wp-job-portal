@@ -1637,3 +1637,7 @@ td.wjp-table-actions a{color: var(--wjp-color-primary); }
   font-size: 12px;
   color: #666;
 }
+
+#zywrap_prompt{
+    margin-bottom: 15px;
+}

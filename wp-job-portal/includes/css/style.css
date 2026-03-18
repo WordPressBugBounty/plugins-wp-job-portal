@@ -13977,3 +13977,24 @@ color: #fff;
 .wjportal-main-up-wrapper .js-col-md-12.js-form-wrapper.wpjobportal-terms-and-conditions-wrap{
     border:none;
 }
+
+
+.wjportal-main-up-wrapper .wjportal-form-upload .wjportal-form-upload-btn-wrp{
+    position:relative;
+}
+
+.wjportal-main-up-wrapper .wjportal-form-upload .wjportal-form-upload-btn-wrp input[type=file]{
+     position:absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    display: inline-block !important;
+    cursor: pointer;
+    opacity: 0;
+    width: 240px;
+    height: 60px;
+    margin: auto;
+}
+
+    

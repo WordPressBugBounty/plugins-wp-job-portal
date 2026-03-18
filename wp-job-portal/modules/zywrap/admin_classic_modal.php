@@ -105,7 +105,7 @@ if (!defined('ABSPATH')) die('Restricted Access');
         display: flex;
         flex: 1;
         min-height: 0;
-        overflow: hidden;
+
     }
 
     /* --- LEFT SIDEBAR --- */
@@ -129,7 +129,7 @@ if (!defined('ABSPATH')) die('Restricted Access');
         display: flex;
         flex-direction: column;
         height: 100%;
-        overflow: hidden;
+        overflow-y: auto;
     }
 
     /* Prompt Section */
@@ -178,7 +178,6 @@ if (!defined('ABSPATH')) die('Restricted Access');
     /* Response Section */
     .zywrap-workspace-response {
         flex-grow: 1;
-        min-height: 0;
         padding: 20px 30px 0 30px;
         display: flex;
         flex-direction: column;
@@ -229,14 +228,14 @@ if (!defined('ABSPATH')) die('Restricted Access');
     #zywrap-classic-insert-btn:hover { background: #059669; transform: translateY(-1px); }
 
     /* --- UI ELEMENTS --- */
-    .zywrap-label {
+    .wpjp-zywrap-label {
         display: block;
         margin-bottom: 6px;
         font-weight: 600;
         font-size: 12px;
         color: var(--wjp-text-main);
     }
-    .zywrap-label span { color: var(--wjp-text-muted); font-weight: 400; font-size: 11px; margin-left: 4px; }
+    .wpjp-zywrap-label span { color: var(--wjp-text-muted); font-weight: 400; font-size: 11px; margin-left: 4px; }
 
     /* Search */
     .zywrap-search-trigger {
@@ -487,6 +486,36 @@ if (!defined('ABSPATH')) die('Restricted Access');
    #zywrap-classic-context{
     background: #fff;
    }
+   #zywrap-classic-schema-container .zywrap-advanced-content{
+        display: flex;
+        flex-direction:row ;
+        flex-wrap: wrap;
+        gap: 8px;
+   }
+
+   #zywrap-classic-schema-container .zywrap-advanced-content .wpjp-zywrap-specx-single-field{
+        display: flex;
+        width: calc( 50% - 8px);
+        flex-direction: column;
+   }
+   #zywrap-classic-schema-container .zywrap-advanced-content .wpjp-zywrap-specx-single-field .wpjp-zywrap-label{
+        display: flex;
+        width: 100%;
+   }
+   #zywrap-classic-schema-container .zywrap-advanced-content .wpjp-zywrap-specx-single-field input{
+        display: flex;
+   }
+
+
+    #zywrap-classic-modal-wrap .zywrap-classic-body input[type="text"],#zywrap-classic-modal-wrap .zywrap-classic-body  input[type="email"],#zywrap-classic-modal-wrap .zywrap-classic-body input[type="url"], #zywrap-classic-modal-wrap .zywrap-classic-body input[type="password"], #zywrap-classic-modal-wrap .zywrap-classic-body input[type="search"], #zywrap-classic-modal-wrap .zywrap-classic-body input[type="number"], #zywrap-classic-modal-wrap .zywrap-classic-body input[type="tel"],#zywrap-classic-modal-wrap .zywrap-classic-body input[type="range"], #zywrap-classic-modal-wrap .zywrap-classic-body input[type="date"], #zywrap-classic-modal-wrap .zywrap-classic-body input[type="month"],#zywrap-classic-modal-wrap .zywrap-classic-body input[type="week"], #zywrap-classic-modal-wrap .zywrap-classic-body input[type="time"],#zywrap-classic-modal-wrap .zywrap-classic-body input[type="datetime"], #zywrap-classic-modal-wrap .zywrap-classic-body input[type="datetime-local"], #zywrap-classic-modal-wrap .zywrap-classic-body input[type="color"], #zywrap-classic-modal-wrap .zywrap-classic-body textarea, #zywrap-classic-modal-wrap .zywrap-classic-body select {
+        border-radius: 8px !important;
+        height: 45px !important;
+        color: var(--wpjp-body-font-color) !important;
+        background-color: white !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
 
    /* button styling  */
 
@@ -534,11 +563,11 @@ if (!defined('ABSPATH')) die('Restricted Access');
 
             <div id="zywrap-search-wrapper">
                 <div id="zywrap-manual-search-container" style="margin-bottom:12px;">
-                    <label class="zywrap-label"><?php echo __( 'Quick Search', 'wp-job-portal' ); ?></label>
+                    <label class="wpjp-zywrap-label"><?php echo __( 'Quick Search', 'wp-job-portal' ); ?></label>
                     <input type="text" id="zywrap-classic-search-input" placeholder="<?php echo esc_attr__( 'e.g. Blog, SEO...', 'wp-job-portal' ); ?>">
                 </div>
                 <div id="zywrap-search-results-container">
-                    <label class="zywrap-label"><?php echo __( 'Results', 'wp-job-portal' ); ?></label>
+                    <label class="wpjp-zywrap-label"><?php echo __( 'Results', 'wp-job-portal' ); ?></label>
                     <select id="zywrap-classic-search-select" class="wpjp-zywrap-jp-chosen">
                         <option value=""><?php echo __( '-- Select Result --', 'wp-job-portal' ); ?></option>
                     </select>
@@ -546,13 +575,13 @@ if (!defined('ABSPATH')) die('Restricted Access');
             </div>
 
             <div class="zywrap-input-group">
-                <label class="zywrap-label"><?php echo __( 'Category', 'wp-job-portal' ); ?></label>
+                <label class="wpjp-zywrap-label"><?php echo __( 'Category', 'wp-job-portal' ); ?></label>
                 <select id="zywrap-classic-category" class="wpjp-zywrap-jp-chosen"></select>
             </div>
 
             <div class="zywrap-input-group">
                 <div class="zywrap-header-row">
-                    <label class="zywrap-label" style="margin:0;"><?php echo __( 'Wrapper Template', 'wp-job-portal' ); ?></label>
+                    <label class="wpjp-zywrap-label" style="margin:0;"><?php echo __( 'Wrapper Template', 'wp-job-portal' ); ?></label>
 
                     <button type="button" id="zywrap-classic-sort" class="zywrap-sort-toggle" data-ordering="1">
                         <span style="opacity:0.7;"><?php echo __( 'Sort:', 'wp-job-portal' ); ?></span>
@@ -574,15 +603,16 @@ if (!defined('ABSPATH')) die('Restricted Access');
                     <option value=""><?php echo __( '-- Select Category --', 'wp-job-portal' ); ?></option>
                 </select>
                 <div style="text-align:right; font-size:11px; color:var(--wjp-text-muted); margin-top:6px;" id="zywrap-classic-wrapper-count"></div>
+                <span id="zywrap-classic-loader" class="spinner is-active"></span>
             </div>
 
             <div class="zywrap-input-group">
-                <label class="zywrap-label"><?php echo __( 'AI Model', 'wp-job-portal' ); ?></label>
+                <label class="wpjp-zywrap-label"><?php echo __( 'AI Model', 'wp-job-portal' ); ?></label>
                 <select id="zywrap-classic-model" class="wpjp-zywrap-jp-chosen"></select>
             </div>
 
             <div class="zywrap-input-group">
-                <label class="zywrap-label"><?php echo __( 'Language', 'wp-job-portal' ); ?></label>
+                <label class="wpjp-zywrap-label"><?php echo __( 'Language', 'wp-job-portal' ); ?></label>
                 <select id="zywrap-classic-language" class="wpjp-zywrap-jp-chosen"></select>
             </div>
 
@@ -594,18 +624,20 @@ if (!defined('ABSPATH')) die('Restricted Access');
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
                 </summary>
                 <div class="zywrap-advanced-content">
+                    <?php /*
                     <div>
-                        <label class="zywrap-label"><?php echo __( 'Reference Context', 'wp-job-portal' ); ?> <span><?php echo __( '(Source Data)', 'wp-job-portal' ); ?></span></label>
+                        <label class="wpjp-zywrap-label"><?php echo __( 'Reference Context', 'wp-job-portal' ); ?> <span><?php echo __( '(Source Data)', 'wp-job-portal' ); ?></span></label>
                         <textarea id="zywrap-classic-context" rows="4" placeholder="<?php echo esc_attr__( 'Paste source text or data context here...', 'wp-job-portal' ); ?>"></textarea>
                     </div>
                     <div>
-                        <label class="zywrap-label"><?php echo __( 'SEO Keywords', 'wp-job-portal' ); ?></label>
+                        <label class="wpjp-zywrap-label"><?php echo __( 'SEO Keywords', 'wp-job-portal' ); ?></label>
                         <input type="text" id="zywrap-classic-seo" placeholder="<?php echo esc_attr__( 'comma, separated, keywords', 'wp-job-portal' ); ?>">
                     </div>
                     <div>
-                        <label class="zywrap-label"><?php echo __( 'Negative Words', 'wp-job-portal' ); ?></label>
+                        <label class="wpjp-zywrap-label"><?php echo __( 'Negative Words', 'wp-job-portal' ); ?></label>
                         <input type="text" id="zywrap-classic-negative" placeholder="<?php echo esc_attr__( 'words to avoid...', 'wp-job-portal' ); ?>">
                     </div>
+                    */ ?>
                     <div id="zywrap-classic-overrides-grid" style="display:grid; gap:12px;"></div>
                 </div>
             </details>
@@ -613,14 +645,15 @@ if (!defined('ABSPATH')) die('Restricted Access');
 
         <main class="zywrap-classic-main">
             <div id="zywrap-classic-description" style="display:none; background:var(--wjp-primary-light); padding:14px 30px; border-bottom:1px solid #c7d2fe; color:var(--wjp-text-main); font-size:13px;">
-                <label class="zywrap-label"><?php echo __( 'Description:', 'wp-job-portal' ); ?> </label>
+                <label class="wpjp-zywrap-label"><?php echo __( 'Description:', 'wp-job-portal' ); ?> </label>
                 <div id="zywrap-classic-description-inner" >
                 </div>
 
             </div>
 
             <div class="zywrap-workspace-prompt">
-                <label class="zywrap-label"><?php echo __( 'Instructions / Prompt', 'wp-job-portal' ); ?> (<?php echo __( 'Optional', 'wp-job-portal' ); ?>)</label>
+                <div id="zywrap-classic-schema-container"></div>
+                <label class="wpjp-zywrap-label"><?php echo __( 'Instructions / Prompt', 'wp-job-portal' ); ?> (<?php echo __( 'Optional', 'wp-job-portal' ); ?>)</label>
                 <textarea id="zywrap-classic-prompt" placeholder="<?php echo esc_attr__( 'Describe exactly what you want the AI to create...', 'wp-job-portal' ); ?>"></textarea>
                 <div class="zywrap-action-row">
                     <button type="button" id="zywrap-classic-run"><?php echo __( 'Generate Output', 'wp-job-portal' ); ?></button>
@@ -628,7 +661,7 @@ if (!defined('ABSPATH')) die('Restricted Access');
             </div>
 
             <div class="zywrap-workspace-response">
-                <label class="zywrap-label" style="display:flex; justify-content:space-between;">
+                <label class="wpjp-zywrap-label" style="display:flex; justify-content:space-between;">
                     <?php echo __( 'Generated Output', 'wp-job-portal' ); ?> <span style="font-weight:400; font-size:11px; color:#94a3b8;"><?php echo __( '(Editable)', 'wp-job-portal' ); ?></span>
                 </label>
                 <textarea id="zywrap-classic-response-area" placeholder="<?php echo esc_attr__( 'AI output will appear here...', 'wp-job-portal' ); ?>"></textarea>

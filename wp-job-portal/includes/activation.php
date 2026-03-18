@@ -468,7 +468,7 @@ class WPJOBPORTALactivation {
               ('searchjobtag', '4', 'job', 'tag'),
               ('categories_colsperrow', '3', 'category', NULL),
               ('productcode', 'wpjobportal', 'default', NULL),
-              ('versioncode', '2.4.8', 'default', NULL),
+              ('versioncode', '2.4.9', 'default', NULL),
               ('producttype', 'free', 'default', NULL),
               ('vis_jscredits', '0', 'jscontrolpanel', 'credits'),
               ('vis_emcredits', '1', 'emcontrolpanel', NULL),
@@ -1837,20 +1837,17 @@ class WPJOBPORTALactivation {
               `code` varchar(255) NOT NULL,
               `name` varchar(255) NOT NULL,
               `description` text,
-              `category_code` varchar(255) DEFAULT NULL,
+              `use_case_code` varchar(255) DEFAULT NULL,
               `featured` tinyint(1) DEFAULT NULL,
               `base` tinyint(1) DEFAULT NULL,
-              `ordering` int(11) DEFAULT NULL,
+              `ordering` bigint DEFAULT NULL,
               `status` tinyint(1) DEFAULT 1,
-              UNIQUE KEY `code` (`code`),
-              KEY `category_code` (`category_code`),
               PRIMARY KEY (`id`),
-              CONSTRAINT `fk_jp_zywrap_wrappers_cat`
-                  FOREIGN KEY (`category_code`)
-                  REFERENCES `".wpjobportal::$_db->prefix."wj_portal_zywrap_categories` (`code`)
-                  ON DELETE SET NULL
+              UNIQUE KEY `code` (`code`),
+              KEY `use_case_code` (`use_case_code`)
           ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
-          wpjobportal::$_db->query($query);
+
+            wpjobportal::$_db->query($query);
 
 
           // Block templates table
@@ -1887,6 +1884,21 @@ class WPJOBPORTALactivation {
           ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
           wpjobportal::$_db->query($query);
 
+
+          // use cases
+          $query = "CREATE TABLE IF NOT EXISTS `".wpjobportal::$_db->prefix."wj_portal_zywrap_use_cases` (
+              `id` int(11) NOT NULL AUTO_INCREMENT,
+              `code` varchar(255) NOT NULL,
+              `name` varchar(255) NOT NULL,
+              `description` text,
+              `category_code` varchar(255) DEFAULT NULL,
+              `schema_data` json DEFAULT NULL,
+              `status` tinyint(1) DEFAULT 1,
+              `ordering` bigint DEFAULT NULL,
+              UNIQUE KEY `code` (`code`),
+              PRIMARY KEY (`id`)
+          ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
+          wpjobportal::$_db->query($query);
         }
       }
     }

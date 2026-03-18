@@ -1690,10 +1690,6 @@ class WPJOBPORTALjobModel {
         $city = WPJOBPORTALrequest::getVar('city');
         $zipcode = WPJOBPORTALrequest::getVar('zipcode');
         $currency = WPJOBPORTALrequest::getVar('currency');
-        $longitude = WPJOBPORTALrequest::getVar('longitude');
-        $latitude = WPJOBPORTALrequest::getVar('latitude');
-        $radius = WPJOBPORTALrequest::getVar('radius');
-        $radius_length_type = WPJOBPORTALrequest::getVar('radius_length_type');
         $wpjobportal_keywords = WPJOBPORTALrequest::getVar('keywords');
 
         wpjobportal::$_data['filter']['title'] = $title;
@@ -1712,10 +1708,6 @@ class WPJOBPORTALjobModel {
         wpjobportal::$_data['filter']['city'] = $city;
         wpjobportal::$_data['filter']['zipcode'] = $zipcode;
         wpjobportal::$_data['filter']['currency'] = $currency;
-        wpjobportal::$_data['filter']['longitude'] = $longitude;
-        wpjobportal::$_data['filter']['latitude'] = $latitude;
-        wpjobportal::$_data['filter']['radius'] = $radius;
-        wpjobportal::$_data['filter']['radius_length_type'] = $radius_length_type;
         wpjobportal::$_data['filter']['keywords'] = $wpjobportal_keywords;
 
         if ($wpjobportal_jobcategory != '')
@@ -1759,17 +1751,7 @@ class WPJOBPORTALjobModel {
         }
 
         $wpjobportal_issalary = '';
-        //for radius search
-        switch ($radius_length_type) {
-            case "m":$radiuslength = 6378137;
-                break;
-            case "km":$radiuslength = 6378.137;
-                break;
-            case "mile":$radiuslength = 3963.191;
-                break;
-            case "nacmiles":$radiuslength = 3441.596;
-                break;
-        }
+
         if ($wpjobportal_keywords) {// For keyword Search
             $wpjobportal_keywords = wpjobportalphplib::wpJP_explode(' ', $wpjobportal_keywords);
             $length = count($wpjobportal_keywords);
@@ -1781,11 +1763,6 @@ class WPJOBPORTALjobModel {
             for ($j = 0; $j < $wpjobportal_i; $j++) {
                 $wpjobportal_keys[] = " job.metakeywords Like '%" . esc_sql($wpjobportal_keywords[$j]) . "%'";
             }
-        }
-        $wpjobportal_selectdistance = " ";
-        if ($longitude != '' && $latitude != '' && $radius != '') {
-            $radiussearch = " acos((SIN( PI()* ".esc_sql($latitude)." /180 )*SIN( PI()*job.latitude/180 ))+(cos(PI()* ".esc_sql($latitude)." /180)*COS( PI()*job.latitude/180) *COS(PI()*job.longitude/180-PI()* ".esc_sql($longitude)." /180)))* ".esc_sql($radiuslength)." <= ".esc_sql($radius);
-            $wpjobportal_selectdistance = " ,acos((sin(PI()*".esc_sql($latitude)."/180)*sin(PI()*job.latitude/180))+(cos(PI()*".esc_sql($latitude)."/180)*cos(PI()*job.latitude/180)*cose(PI()*job.longitude/180 - PI()*".esc_sql($longitude)."/180)))*".esc_sql($radiuslength)." AS distance ";
         }
 
         $wherequery = '';
@@ -2722,42 +2699,6 @@ class WPJOBPORTALjobModel {
         }
 
         //end
-        if($wpjobportal_searchajax == null){
-            $longitude = WPJOBPORTALrequest::getVar('longitude', 'post');
-            $latitude = WPJOBPORTALrequest::getVar('latitude', 'post');
-            $radius = WPJOBPORTALrequest::getVar('radius', 'post');
-            $radius_length_type = WPJOBPORTALrequest::getVar('radiuslengthtype', 'post');
-        }else{
-            $longitude = isset($wpjobportal_searchajax['longitude']) ? $wpjobportal_searchajax['longitude'] : '';
-            $latitude = isset($wpjobportal_searchajax['latitude']) ? $wpjobportal_searchajax['latitude'] : '';
-            $radius = isset($wpjobportal_searchajax['radius']) ? $wpjobportal_searchajax['radius'] : '';
-            $radius_length_type = isset($wpjobportal_searchajax['radiuslengthtype']) ? $wpjobportal_searchajax['radiuslengthtype'] : '';
-        }
-        // php 8 issue for wpjobportalphplib::wpJP_str_replace
-        if($longitude !=''){
-            $longitude = wpjobportalphplib::wpJP_str_replace(',', '', $longitude);
-        }
-        if($latitude !=''){
-            $latitude = wpjobportalphplib::wpJP_str_replace(',', '', $latitude);
-        }
-        //for radius search
-        switch ($radius_length_type) {
-            case "1":$radiuslength = 6378137;
-                break;
-            case "2":$radiuslength = 6378.137;
-                break;
-            case "3":$radiuslength = 3963.191;
-                break;
-            case "4":$radiuslength = 3441.596;
-                break;
-        }
-        if ($longitude != '' && $latitude != '' && $radius != '' && $radiuslength != '') {
-            wpjobportal::$_data['filter']['longitude'] = $longitude;
-            wpjobportal::$_data['filter']['latitude'] = $latitude;
-            wpjobportal::$_data['filter']['radius'] = $radius;
-            wpjobportal::$_data['filter']['radiuslengthtype'] = $radius_length_type;
-            $wpjobportal_inquery .= " AND acos((SIN( PI()* ".esc_sql($latitude)." /180 )*SIN( PI()*job.latitude/180 ))+(cos(PI()* ".esc_sql($latitude)." /180)*COS( PI()*job.latitude/180) *COS(PI()*job.longitude/180-PI()* ".esc_sql($longitude)." /180)))* ".esc_sql($radiuslength)." <= ".esc_sql($radius);
-        }
         return $wpjobportal_inquery;
     }
 

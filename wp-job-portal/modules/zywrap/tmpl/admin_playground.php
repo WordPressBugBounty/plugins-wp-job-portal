@@ -176,6 +176,7 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
                                             </div>
                                             <div id="wpjp_zywrap_wrapper_count" >
                                             </div>
+                                            <span id="zywrap-wrapper-loader" class="spinner is-active"></span>
 
                                         </div>
 
@@ -281,11 +282,14 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width:20px;height:20px; color:#6366f1;">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                                                 </svg>
-                                                <?php echo esc_html(__('Input', 'wp-job-portal')); ?><span>(<?php echo esc_html(__('Optional', 'wp-job-portal')); ?>)</span>
+                                                <span id="zywrap_prompt_label_text">
+                                                    <?php echo esc_html(__('Input', 'wp-job-portal')); ?><span>(<?php echo esc_html(__('Optional', 'wp-job-portal')); ?>)</span>
+                                                </span>
                                             </div>
                                         </div>
                                         <div class="wpjobportal-input-group" style="display: flex; flex-direction: column;">
-                                            <textarea id="zywrap_prompt" class="dark-textarea" style="margin-bottom: 16px;" placeholder="Enter your main prompt here..."></textarea>
+                                            <div id="zywrap-schema-container"></div>
+                                            <textarea id="zywrap_prompt" class="dark-textarea" placeholder="Enter your main prompt here..."></textarea>
                                             <div class="zywrap-run-btn-wrapper">
                                                 <button type="button" id="zywrap-run-button" class="btn btn-primary button-hero">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:18px;height:18px;"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" /></svg>
@@ -319,6 +323,7 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
                                                     </button>
                                                 </div>
                                             </div>
+
                                             <div id="zywrap-output-container" class="output-container">
                                                 <pre id="zywrap-output"><?php echo esc_html( __('Ready to generate content. Select a wrapper and click Run.', 'wp-job-portal') ); ?></pre>
                                             </div>
@@ -407,6 +412,7 @@ jQuery(document).ready(function($) {
 
     // 1. Dependent Dropdown (Category -> Wrappers)
     function updateWrapperList() {
+        $('#zywrap-wrapper-loader').show();
         var categoryCode = $('#zywrap_category').val();
 
         var showFeatured = $('#filter_featured').attr('data-state');
@@ -426,6 +432,7 @@ jQuery(document).ready(function($) {
             action: 'wpjobportal_ajax',
             wpjobportalme: 'zywrap',
             task: 'getWrappersByCategory',
+            //use_case_code: categoryCode,
             category_code: categoryCode,
             show_featured: showFeatured,
             show_base: showBase,
@@ -443,7 +450,7 @@ jQuery(document).ready(function($) {
                     wrapperSelect.append($('<option>', {
                             value: wrapper.code,
                             text: wrapper.name
-                        }).data('description', wrapper.description).data('isfeatured', wrapper.featured).data('isbase', wrapper.base).data('ordering_number', wrapper.ordering)
+                        }).data('description', wrapper.description).data('isfeatured', wrapper.featured).data('isbase', wrapper.base).data('ordering_number', wrapper.ordering).data('use_case_code', wrapper.use_case_code)
                     );
                     if( selectwrapperid != '' && wrapper.id == selectwrapperid){
                         select_value_wrap = wrapper.code;
@@ -457,7 +464,8 @@ jQuery(document).ready(function($) {
                         name: wrapper.name,
                         isFeatured: wrapper.featured == 1,
                         isBase: wrapper.base == 1,
-                        description: wrapper.description
+                        description: wrapper.description,
+                        use_case_code: wrapper.use_case_code
                     };
                 });
                 if(select_value_wrap != ''){
@@ -470,20 +478,28 @@ jQuery(document).ready(function($) {
                 wrapperSelect.prop('disabled', false).trigger('chosen:updated');
                 // update count
                 updateRecordCounts();
-
+                $('#zywrap-wrapper-loader').hide();
             } else {
                 wrapperSelect.empty().append('<option value=\"\">". esc_html(__('-- Error Loading --', 'wp-job-portal'))."</option>').trigger('change');
             }
         });
         // wrapperSelect.on('change', function () {
-        wrapperSelect.off('change').on('change', function () {
+        // wrapperSelect.off('change').on('change', function () {
+        //     var desc = $(this).find(':selected').data('description') || '';
+        //     $('#wpjobportal-wrapper-description').text(desc).toggle(!!desc);
+        //     if(desc != ''){
+        //         $('.wpjobportal-wrapper-description-wrap').slideDown('slow');
+        //     }
+        // });
+
+        wrapperSelect.off('change.zywrapDesc').on('change.zywrapDesc', function () {
             var desc = $(this).find(':selected').data('description') || '';
             $('#wpjobportal-wrapper-description').text(desc).toggle(!!desc);
             if(desc != ''){
                 $('.wpjobportal-wrapper-description-wrap').slideDown('slow');
             }
-
         });
+
     }
 
     function updateRecordCounts(){
@@ -492,7 +508,108 @@ jQuery(document).ready(function($) {
         $('#wpjp_zywrap_wrapper_count').html('('+count+ ' " . esc_js(__('Records', 'wp-job-portal')) . ")');
     }
 
+
+    function getwrapperschema() {
+        $('#zywrap-wrapper-loader').show();
+        var wrapperSelect = $('#zywrap_wrapper');
+        var wrapper_use_case_code = wrapperSelect.find(':selected').data('use_case_code') || '';
+
+        var schemaContainer = $('#zywrap-schema-container');
+        var promptLabel = $('#zywrap_prompt_label_text');
+
+        // Reset UI before processing
+        schemaContainer.empty();
+        promptLabel.text('" . esc_js(__('Prompt / Additional Context', 'wp-job-portal')) . "');
+
+        if (wrapper_use_case_code === '') {
+            return;
+        }
+
+        $.post(ajaxurl, {
+            action: 'wpjobportal_ajax',
+            wpjobportalme: 'zywrap',
+            task: 'getSchemaByUseCode',
+            use_case_code: wrapper_use_case_code,
+            '_wpnonce': '" . esc_attr(wp_create_nonce("zywrap_get_schema")) . "'
+        }, function(response) {
+
+            // Check if response has the schema_data string
+            if (response.success && response.data && response.data.schema_data) {
+
+                try {
+                    // Parse the JSON string into a readable object!
+                    var schema = JSON.parse(response.data.schema_data);
+
+                    if (!schema || (!schema.req && !schema.opt)) return;
+
+                    var html = '';
+                    promptLabel.text('" . esc_js(__('Additional Free-form Instructions', 'wp-job-portal')) . "');
+
+                    // Helper function to build collapsible sections
+                    var buildSection = function(title, data, isOpen) {
+                        if (!data || Object.keys(data).length === 0) return '';
+
+                        // Set the open attribute if we want it expanded by default
+                        var openAttr = isOpen ? 'open' : '';
+
+                        // Reusing your existing modern-details class for the accordion layout
+                        var sectionHtml = '<details class=\"modern-details\"  ' + openAttr + '>';
+
+                        // Summary acts as the clickable header
+                        sectionHtml += '<summary class=\"wpjobportal-input-label-spexc-case\" >' + title + '</summary>';
+
+                        sectionHtml += '<div class=\"details-content wpjobportal-special-config-wrapper\" style=\"padding-top: 15px;\">';
+
+                        for (var key in data) {
+                            if (data.hasOwnProperty(key)) {
+                                var def = data[key];
+
+                                var isPlaceholder = def.p !== undefined ? def.p : false;
+                                var defaultVal = def.d !== undefined ? def.d : '';
+
+                                // 2. Set the correct HTML attributes (mirrors React's initialInputs logic)
+                                var placeholderAttr = isPlaceholder ? ' placeholder=\"' + defaultVal + '\"' : '';
+                                var valueAttr = (!isPlaceholder && defaultVal) ? ' value=\"' + defaultVal + '\"' : '';
+
+                                // Convert camelCase to Title Case
+                                var label = key.replace(/([A-Z])/g, ' $1').replace(/^./, function(str){ return str.toUpperCase(); });
+
+                                sectionHtml += '<div class=\"wpjobportal-input-group\">';
+                                sectionHtml += '<label class=\"wpjobportal-input-label-s-case\">' + label + '</label>';
+                                sectionHtml += '<input type=\"text\" class=\"dark-input wpjobportal-schema-input\" data-key=\"' + key + '\"' + placeholderAttr + valueAttr + '>';
+                                sectionHtml += '</div>';
+                            }
+                        }
+                        sectionHtml += '</div>';
+                        sectionHtml += '</details>';
+                        return sectionHtml;
+                    };
+
+                    // Core Inputs open by default (true), Additional Context closed (false)
+                    html += buildSection('" . esc_js(__('Core Inputs (Optional)', 'wp-job-portal')) . "', schema.req, true);
+                    html += buildSection('" . esc_js(__('Additional Context (Optional)', 'wp-job-portal')) . "', schema.opt, true);
+
+                    schemaContainer.html(html);
+                } catch(e) {
+                    console.error('Error parsing schema JSON:', e);
+                }
+
+            } else {
+                console.error('Schema failed to load or no schema data found');
+            }
+            $('#zywrap-wrapper-loader').hide();
+        });
+    }
+
     $('#zywrap_category').on('change', updateWrapperList);
+
+    // $('#zywrap_wrapper').on('change', getwrapperschema);
+    $(document).on('change', '#zywrap_wrapper', function() {
+        // Only run if the user actually selected a valid wrapper
+        if ($(this).val() !== '') {
+            getwrapperschema();
+        }
+    });
 
     // featured and base button
     // $('#filter_base, #filter_featured').on('click', function() {
@@ -543,7 +660,11 @@ function updateWrapperListLocal() {
             var option = $('<option>', {
                 value: wrapper.code,
                 text: wrapper.name
-            }).data('description', wrapper.description);
+            }).data('description', wrapper.description)
+                  .data('use_case_code', wrapper.use_case_code)
+                  .data('ordering_number', wrapper.ordering)
+                  .data('isfeatured', wrapper.isFeatured)
+                  .data('isbase', wrapper.isBase);
 
             wrapperSelect.append(option);
             addedCount = addedCount + 1;
@@ -629,6 +750,38 @@ function updateWrapperListLocal() {
             }
         });
 
+
+        // Collect dynamic schema input values
+        // var schemaData = {};
+        // $('.wpjobportal-schema-input').each(function() {
+        //     var val = $(this).val();
+        //     if (val) {
+        //         schemaData[$(this).data('key')] = val;
+        //     }
+        // });
+
+        // === NEW LOGIC: Dynamic schema inputs mapped to finalPrompt ===
+        var Prompt_val = $('#zywrap_prompt').val().trim();
+        var finalPrompt = $('#zywrap_prompt').val().trim();
+        var schemaData = {};
+        var structuredTextParts = [];
+
+        $('.wpjobportal-schema-input').each(function() {
+            var val = $(this).val().trim();
+            if (val !== '') {
+                var key = $(this).data('key');
+                schemaData[key] = val;
+                structuredTextParts.push(key + ': ' + val);
+            }
+        });
+//        console.log(structuredTextParts);
+        var structuredText = structuredTextParts.join('\\n');
+        if (finalPrompt && structuredText) {
+            finalPrompt = finalPrompt + '\\n\\n' + structuredText;
+        } else if (structuredText) {
+            finalPrompt = structuredText;
+        }
+
         // Collect main data
         var data = {
             action: 'wpjobportal_ajax',
@@ -642,6 +795,7 @@ function updateWrapperListLocal() {
             context: $('#zywrap_context').val(),
             seo_keywords: $('#zywrap_seo_keywords').val(),
             negative_constraints: $('#zywrap_negative_constraints').val(),
+            schema_inputs: JSON.stringify(schemaData),
             overrides: overrides
         };
 
@@ -818,11 +972,7 @@ jQuery(document).ready(function($) {
        jQuery('.wpjobportal-input-group-search-trigger-text').show();
        jQuery('.wpjobportal-input-group-search-case').slideUp();
     });
-
-
-
 });
-
 ";
 wp_register_script( 'wpjobportal-inline-handle', '' );
 wp_enqueue_script( 'wpjobportal-inline-handle' );
