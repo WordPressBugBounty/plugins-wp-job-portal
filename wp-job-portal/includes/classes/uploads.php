@@ -303,6 +303,12 @@ class WPJOBPORTALuploads {
 
         $wpjobportal_user->load(WPJOBPORTALincluder::getObjectClass('user')->uid());
         $filename = $wpjobportal_user->photo;
+        // remove traversal
+        $filename = wpjobportalphplib::wpJP_clean_file_path($filename);
+
+        // Sanitize filename safely
+        $filename = sanitize_file_name($filename);
+
         if(!empty($filename)){
             $wpjobportal_wpdir = wp_upload_dir();
             $wpjobportal_data_directory = wpjobportal::$_config->getConfigValue('data_directory');

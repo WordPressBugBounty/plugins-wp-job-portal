@@ -1557,25 +1557,45 @@ class WPJOBPORTALcustomfields {
 
     function removeFileCustom($wpjobportal_id,$wpjobportal_key,$wpjobportal_uploadfor){
         $filename = wpjobportalphplib::wpJP_str_replace(' ', '_', $wpjobportal_key);
-        $wpjobportal_maindir = wp_upload_dir();
-        $basedir = $wpjobportal_maindir['basedir'];
-        $wpjobportal_datadirectory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
 
-        $wpjobportal_path = $basedir . '/' . $wpjobportal_datadirectory. '/data';
+        // remove traversal
+        $filename = wpjobportalphplib::wpJP_clean_file_path($filename);
 
-        if($wpjobportal_uploadfor == 'company'){
-            $wpjobportal_path = $wpjobportal_path . '/employer/comp_'.$wpjobportal_id.'/custom_uploads';
-        }elseif($wpjobportal_uploadfor == 'job'){
-            $wpjobportal_path = $wpjobportal_path . '/employer/job_'.$wpjobportal_id.'/custom_uploads';
-        }elseif($wpjobportal_uploadfor == 'resume'){
-            $wpjobportal_path = $wpjobportal_path . '/jobseeker/resume_'.$wpjobportal_id.'/custom_uploads';
-        }elseif($wpjobportal_uploadfor == 'profile'){
-            $wpjobportal_path = $wpjobportal_path . '/profile/profile_'.$wpjobportal_id.'/custom_uploads';
+        // Sanitize filename safely
+        $filename = sanitize_file_name($filename);
+
+        if (empty($filename)) {
+            return false;
         }
 
+        $filetyperesult = wp_check_filetype($filename);
+        $wpjobportal_image_file_type = wpjobportal::$_config->getConfigurationByConfigName('image_file_type');
+        $document_file_type = wpjobportal::$_config->getConfigurationByConfigName('document_file_type');
 
-        $wpjobportal_userpath = $wpjobportal_path .'/'.$filename;
-        wp_delete_file($wpjobportal_userpath);
+        $allowed_file_types  = '';
+        $allowed_file_types .= $document_file_type.','.$wpjobportal_image_file_type;
+
+        if(wpjobportalphplib::wpJP_strstr($allowed_file_types, $filetyperesult['ext'])){
+            $wpjobportal_maindir = wp_upload_dir();
+            $basedir = $wpjobportal_maindir['basedir'];
+            $wpjobportal_datadirectory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
+
+            $wpjobportal_path = $basedir . '/' . $wpjobportal_datadirectory. '/data';
+
+            if($wpjobportal_uploadfor == 'company'){
+                $wpjobportal_path = $wpjobportal_path . '/employer/comp_'.$wpjobportal_id.'/custom_uploads';
+            }elseif($wpjobportal_uploadfor == 'job'){
+                $wpjobportal_path = $wpjobportal_path . '/employer/job_'.$wpjobportal_id.'/custom_uploads';
+            }elseif($wpjobportal_uploadfor == 'resume'){
+                $wpjobportal_path = $wpjobportal_path . '/jobseeker/resume_'.$wpjobportal_id.'/custom_uploads';
+            }elseif($wpjobportal_uploadfor == 'profile'){
+                $wpjobportal_path = $wpjobportal_path . '/profile/profile_'.$wpjobportal_id.'/custom_uploads';
+            }
+
+
+            $wpjobportal_userpath = $wpjobportal_path .'/'.$filename;
+            wp_delete_file($wpjobportal_userpath);
+        }
         return ;
     }
 

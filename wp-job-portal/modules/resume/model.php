@@ -3511,6 +3511,9 @@ class WPJOBPORTALResumeModel {
             wpjobportal::$_db->query($query);
             $wpjobportal_wpdir = wp_upload_dir();
             $wpjobportal_data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
+
+            // remove traversal
+            $file->filename = wpjobportalphplib::wpJP_clean_file_path($file->filename);
             $file = $wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . '/data/jobseeker/resume_' . $file->resumeid . '/resume/' . $file->filename;
             @wp_delete_file($file);
             return true;

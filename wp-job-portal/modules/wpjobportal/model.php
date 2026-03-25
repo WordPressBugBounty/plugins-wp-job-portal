@@ -1677,6 +1677,8 @@ class WPJOBPORTALwpjobportalModel {
     }
 
     function writeLanguageFile( $wpjobportal_path , $wpjobportal_url ){
+        // no longer in use
+        return;
         do_action('wpjobportal_load_wp_admin_file');
 
         $tmpfile = download_url( $wpjobportal_url);

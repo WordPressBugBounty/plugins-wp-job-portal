@@ -268,7 +268,8 @@
                 }
             });
 
-            var structuredText = structuredTextParts.join('\n');
+            var finalPrompt = $('#zywrap-classic-prompt').val();
+			var structuredText = structuredTextParts.join('\n');
             if (finalPrompt && structuredText) {
                 finalPrompt = finalPrompt + '\n\n' + structuredText;
             } else if (structuredText) {
