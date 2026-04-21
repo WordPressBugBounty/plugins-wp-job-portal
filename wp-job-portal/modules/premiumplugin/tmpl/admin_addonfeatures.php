@@ -57,6 +57,12 @@
                             <div class="add-on-txt"><?php echo esc_html(__('This add-on will change the Job Portal pages to a simple yet powerful and rich web design that involves focusing on clean aesthetics, intuitive navigation, and functional elements while ensuring performance and responsiveness.','wp-job-portal')); ?></div>
                             <a title="<?php echo esc_attr(__('buy now','wp-job-portal')); ?>" href="https://wpjobportal.com/product/elegant-design/" class="add-on-btn"><?php echo esc_html(__('buy now','wp-job-portal')); ?></a>
                         </div>
+                        <div class="add-on-item cust-fields">
+                            <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/joblisting.png" alt="<?php echo esc_attr(__('Job Listing Enhancer','wp-job-portal')); ?>" />
+                            <div class="add-on-name"><?php echo esc_html(__('Job Listing Enhancer','wp-job-portal')); ?></div>
+                            <div class="add-on-txt"><?php echo esc_html(__('Job Listing Enhancer Boosts your job board with AJAX-powered filtering and sorting, plus eye-catching New and Urgent tags to highlight important listings.','wp-job-portal')); ?></div>
+                            <a title="<?php echo esc_attr(__('buy now','wp-job-portal')); ?>" href="https://wpjobportal.com/product/job-listin-enhancer/" class="add-on-btn"><?php echo esc_html(__('buy now','wp-job-portal')); ?></a>
+                        </div>
                         <div class="add-on-item address-data">
                             <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/address-data.png" alt="<?php echo esc_attr(__('Address Data','wp-job-portal')); ?>" />
                             <div class="add-on-name"><?php echo esc_html(__('Address Data','wp-job-portal')); ?></div>

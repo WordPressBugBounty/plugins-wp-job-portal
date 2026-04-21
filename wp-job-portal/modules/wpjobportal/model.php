@@ -685,7 +685,9 @@ class WPJOBPORTALwpjobportalModel {
             'wp-job-portal-aijobsearch' => array('title' => esc_html(__('AI Job Search','wp-job-portal')), 'price' => 0, 'status' => 1),
             'wp-job-portal-airesumesearch' => array('title' => esc_html(__('AI Resume Search','wp-job-portal')), 'price' => 0, 'status' => 1),
             'wp-job-portal-aisuggestedjobs' => array('title' => esc_html(__('AI Suggested Jobs','wp-job-portal')), 'price' => 0, 'status' => 1),
-            'wp-job-portal-aisuggestedresumes' => array('title' => esc_html(__('AI Suggested Resumes','wp-job-portal')), 'price' => 0, 'status' => 1)
+            'wp-job-portal-aisuggestedresumes' => array('title' => esc_html(__('AI Suggested Resumes','wp-job-portal')), 'price' => 0, 'status' => 1),
+
+            'wp-job-portal-joblistingenhancer' => array('title' => esc_html(__('Job Listing Enhancer','wp-job-portal')), 'price' => 0, 'status' => 1)
 
         );
     }

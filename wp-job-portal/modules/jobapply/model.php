@@ -211,8 +211,9 @@ class WPJOBPORTALjobapplyModel {
             wpjobportal::$_data[4]['jobinfo'] = $this->getJobApp($wpjobportal_jobid);
         }else{
             wpjobportal::$_data[4]['jobinfo'] = $this->getMyJobs($wpjobportal_uid,$wpjobportal_jobid);
-             wpjobportal::$wpjobportal_data['fields'] = wpjobportal::$_wpjpfieldordering->getFieldsOrderingforForm(2);
-        wpjobportal::$_data['config'] = wpjobportal::$_config->getConfigByFor('job');
+            wpjobportal::$wpjobportal_data['fields'] = wpjobportal::$_wpjpfieldordering->getFieldsOrderingforForm(2);
+            wpjobportal::$_data['fields'] = wpjobportal::$_wpjpfieldordering->getFieldsOrderingforForm(2);
+            wpjobportal::$_data['config'] = wpjobportal::$_config->getConfigByFor('job');
         }
 
         //Pagination
@@ -235,7 +236,8 @@ class WPJOBPORTALjobapplyModel {
                 ,CONCAT(app.alias,'-',app.id) resumealiasid, CONCAT(job.alias,'-',job.id) AS jobaliasid
                 ,( Select rinsitute.institute From`" . wpjobportal::$_db->prefix . "wj_portal_resumeinstitutes` AS rinsitute Where rinsitute.resumeid = app.id LIMIT 1 ) AS institute
                 ,( Select rinsitute.institute_study_area From`" . wpjobportal::$_db->prefix . "wj_portal_resumeinstitutes` AS rinsitute Where rinsitute.resumeid = app.id LIMIT 1 ) AS institute_study_area
-                ,job.companyid,app.params, jobapply.coverletterid,resum_cat.cat_title AS resume_category,jobapply.apply_message,jobapply.quick_apply, app.skills ";
+                ,job.companyid,app.params, jobapply.coverletterid,resum_cat.cat_title AS resume_category,jobapply.apply_message,jobapply.quick_apply, app.skills
+                , job.workplace_type, job.is_urgent";
                 if(in_array('sociallogin', wpjobportal::$_active_addons)){
                     $query.=" ,socialprofiles.profiledata as socialprofile ";
                 }
@@ -292,7 +294,7 @@ class WPJOBPORTALjobapplyModel {
         $query = "Select Count(id) from`" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE action_status=5 AND jobid = ". esc_sql($wpjobportal_jobid) ." AND status = 1";
         wpjobportal::$_data[0]['shortlisted'] = wpjobportaldb::get_var($query);
 
-        $query = "Select job.title,jobtype.title AS jobtypetitle,LOWER(jobtype.title) AS jobtypetit
+        $query = "Select job.title,jobtype.title AS jobtypetitle,LOWER(jobtype.title) AS jobtypetit, job.workplace_type, job.is_urgent
                     FROM`" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON job.jobtype = jobtype.id
                     WHERE job.id = ". esc_sql($wpjobportal_jobid);
@@ -1437,7 +1439,8 @@ class WPJOBPORTALjobapplyModel {
                  company.id AS companyid, company.name AS companyname,company.logofilename,category.cat_title,
                  jobtype.title AS jobtypetitle, jobstatus.title AS jobstatustitle,resume.id AS resumeid,resume.salaryfixed as salary,resume.application_title,job.params,job.created,LOWER(jobtype.title) AS jobtype
                 ,jobapply.id AS id,resume.first_name,resume.last_name,job.salarytype,job.salarymin,job.salarymax,jobapply.status AS applystatus,
-                salaryrangetype.title AS srangetypetitle,jobtype.color AS jobtypecolor, jobapply.coverletterid,jobapply.apply_message
+                salaryrangetype.title AS srangetypetitle,jobtype.color AS jobtypecolor, jobapply.coverletterid
+                ,jobapply.apply_message, job.workplace_type, job.is_urgent
                  FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` AS jobapply
                  JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job ON job.id = jobapply.jobid
                  JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume ON resume.id = jobapply.cvid
@@ -1466,6 +1469,7 @@ class WPJOBPORTALjobapplyModel {
         }
         wpjobportal::$_data[0] = $wpjobportal_data;
         wpjobportal::$wpjobportal_data['fields'] = wpjobportal::$_wpjpfieldordering->getFieldsOrderingforForm(2);
+        wpjobportal::$_data['fields'] = wpjobportal::$_wpjpfieldordering->getFieldsOrderingforForm(2);
         wpjobportal::$_data['config'] = wpjobportal::$_config->getConfigByFor('job');
         return;
     }
@@ -2165,7 +2169,7 @@ class WPJOBPORTALjobapplyModel {
                 cat.cat_title, jobtype.title AS jobtypetitle,salaryrangetype.title AS srangetypetitle,
                 (SELECT count(jobapply.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` AS jobapply
                  WHERE jobapply.jobid = job.id) AS resumeapplied ,job.params,job.startpublishing,job.stoppublishing
-                 ,LOWER(jobtype.title) AS jobtypetit,jobtype.color as jobtypecolor
+                 ,LOWER(jobtype.title) AS jobtypetit,jobtype.color as jobtypecolor, job.workplace_type, job.is_urgent
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
                 ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory

@@ -155,6 +155,13 @@ class WPJOBPORTALCategoryController {
         exit;
     }
 
+    function getcategorydatabyname() {
+        $category_title = WPJOBPORTALrequest::getVar('q');
+        $wpjobportal_result = WPJOBPORTALincluder::getJSModel('category')->getCategoryDataByName($category_title);
+        $wpjobportal_json_response = wp_json_encode($wpjobportal_result);
+        echo wp_kses($wpjobportal_json_response,WPJOBPORTAL_ALLOWED_TAGS);
+        exit();
+    }
 
 }
 

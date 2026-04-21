@@ -670,6 +670,66 @@ class WPJOBPORTALCategoryModel {
         wpjobportal::$_search['category']['searchname'] = isset($wpjobportal_jsjp_search_array['searchname']) ? $wpjobportal_jsjp_search_array['searchname'] : null;
         wpjobportal::$_search['category']['status'] = isset($wpjobportal_jsjp_search_array['status']) ? $wpjobportal_jsjp_search_array['status'] : null;
     }
+
+    function getCategoryDataByName($search_term) {
+
+            if (empty($search_term)) {
+                return;
+            }
+
+            $table_name = wpjobportal::$_db->prefix . 'wj_portal_categories';
+
+            // Use an associative array keyed by ID to easily prevent duplicates
+            $all_categories = array();
+
+            // 1. Find categories where the title matches the search string %q%
+            $clean_search = esc_sql($search_term);
+            $query = "SELECT * FROM `" . $table_name . "` WHERE cat_title LIKE '%" . $clean_search . "%' AND isactive = 1";
+            $matches = wpjobportal::$_db->get_results($query);
+
+            if (!empty($matches)) {
+                foreach ($matches as $cat) {
+                    // Add the directly matched category
+                    $all_categories[$cat->id] = array(
+                        'id' => $cat->id,
+                        'name' => wpjobportal::wpjobportal_getVariableValue($cat->cat_title)
+                    );
+                    /*
+                    // 2. If it's a subcategory (has a parent), show its category (parent)
+                    if ($cat->parentid > 0) {
+                        $parent_query = "SELECT * FROM `" . $table_name . "` WHERE id = " . esc_sql($cat->parentid) . " AND isactive = 1";
+                        $parent = wpjobportal::$_db->get_row($parent_query);
+
+                        if ($parent) {
+                            $all_categories[$parent->id] = array(
+                                'id' => $parent->id,
+                                'name' => wpjobportal::wpjobportal_getVariableValue($parent->cat_title)
+                            );
+                        }
+                    }
+
+                    // 3. If it's a category, show all its subcategories using your existing function
+                    $children = array();
+                    $this->getCategoryChild($cat->id, '|-- ', $children, 1); // 1 = only active
+
+                    if (!empty($children)) {
+                        foreach ($children as $child) {
+                            $all_categories[$child->id] = array(
+                                'id' => $child->id,
+                                // getCategoryChild already formats the title and adds the prefix
+                                'name' => $child->cat_title
+                            );
+                        }
+                    }
+                    */
+                }
+            }
+
+            // Re-index the array from associative to indexed so TokenInput reads it properly
+            $categories_data = array_values($all_categories);
+            return $categories_data;
+        }
+
 }
 
 ?>

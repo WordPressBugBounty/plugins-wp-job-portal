@@ -19,7 +19,7 @@ class WPJOBPORTALpagination {
     }
 
 
-    static function getPagination($wpjobportal_total,$wpjobportal_searchlayout = null){
+    static function getPagination($wpjobportal_total,$wpjobportal_searchlayout = null,$is_possible_ajax_call = 0){
         if(!is_numeric($wpjobportal_total)) return false;
         $wpjobportal_maybe_page_num = 0;
         if(!empty(wpjobportal::$_data['sanitized_args']) && !empty(wpjobportal::$_data['sanitized_args']['backlink_pagenum'])){
@@ -42,7 +42,7 @@ class WPJOBPORTALpagination {
         self::$_currentpage = $wpjobportal_pagenum;
         $wpjobportal_num_of_pages = ceil($wpjobportal_total / self::$_limit);
         $wpjobportal_result = '';
-        if(is_admin()){
+        if(is_admin() && $is_possible_ajax_call == 0){
             $wpjobportal_result = paginate_links(array(
                 'base' => add_query_arg('pagenum', '%#%'),
                 'format' => '',

@@ -2936,7 +2936,11 @@ div#wpjobportaladmin-wrapper label#uname {
 
 }
 div#wpjobportaladmin-wrapper .wpjobportal-form-value .wpjobportal-form-value select.inputbox.wjportal-form-select-field{width: 100% !important;mask-size: unset;}
+/* old code 
 div#wpjobportaladmin-wrapper input[type=date], input[type=datetime-local], input[type=datetime], input[type=email], input[type=month], input[type=number], input[type=password], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], input[type=week],div#wpjobportaladmin-wrapper .wp-core-ui select{max-width: 100%; border: 1px solid #cbd5e1;}
+/*
+/* new code */
+div#wpjobportaladmin-wrapper input[type=date], div#wpjobportaladmin-wrapper input[type=datetime-local], div#wpjobportaladmin-wrapper input[type=datetime], div#wpjobportaladmin-wrapper input[type=email], div#wpjobportaladmin-wrapper input[type=month], div#wpjobportaladmin-wrapper input[type=number], div#wpjobportaladmin-wrapper input[type=password], div#wpjobportaladmin-wrapper input[type=search], div#wpjobportaladmin-wrapper input[type=tel], div#wpjobportaladmin-wrapper input[type=text], div#wpjobportaladmin-wrapper input[type=time], div#wpjobportaladmin-wrapper input[type=url], div#wpjobportaladmin-wrapper input[type=week],div#wpjobportaladmin-wrapper .wp-core-ui select{max-width: 100%; border: 1px solid #cbd5e1;}
 div#wpjobportaladmin-wrapper .wpjobportal-form {
     display: flex;
     flex-wrap: wrap;
@@ -5306,63 +5310,8 @@ div.wpjobportal-applied-job-actions-popup img#close-section {position: absolute;
     box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
 }
 textarea#comments{width: 100%;}
-/* --- Rich Text Editor (RTE) Placeholder Styling --- */
-/* The complex WordPress RTE structure needs focused targeting */
-
-/* Wrapper for the entire editor */
-.wp-editor-wrap {
-    margin: 0;
-    border: 1px solid #ced4da;
-    border-radius: 6px;
-    overflow: hidden;
-}
-
-/* Editor Toolbar (top area with Visual/Code buttons) */
-.wp-editor-tools {
-    padding: 8px 10px;
-    background-color: #f1f1f1; /* Slightly darker toolbar background */
-    border-bottom: 1px solid #e9ecef;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Media Button (Add Media) */
-.wp-media-buttons .button {
-    background-color: #007bff;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    padding: 6px 10px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.wp-media-buttons .button:hover {
-    background-color: #0056b3;
-}
-
-/* Visual/Code Tabs */
-.wp-editor-tabs button {
-    background-color: #f1f1f1;
-    color: #495057;
-    border: none;
-    padding: 6px 10px;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 500;
-}
-
-.wp-editor-tabs button.tmce-active, 
-.wp-editor-tabs button.switch-html[aria-pressed="true"] {
-    background-color: #ffffff; /* Active tab is white */
-    border-bottom: 2px solid #007bff; /* Blue indicator line */
-    color: #007bff;
-}
 
 /* Textarea/Content Area */
-.wp-editor-container textarea, 
 iframe#jobseekermessage_ifr {
     min-height: 200px; /* Ensure content box is visible */
     border: none !important; /* Remove individual border */
@@ -5397,12 +5346,7 @@ iframe#jobseekermessage_ifr {
     box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
 }
 
-/* Hide the invisible elements inside the editor structure for a cleaner look */
-/* Note: Targeting the specific TinyMCE classes is tricky but necessary for a full design */
-.mce-tinymce,
-.quicktags-toolbar {
-    /* If possible, style the visible toolbar elements directly instead of hiding entire complex structures */
-}
+
 /* ===================================================
    New: Note Actions Component (.wjportal-note-actions-wrp)
    =================================================== */
@@ -8966,4 +8910,104 @@ div.wpjobportaladmin-wrapper #zywrap-schema-container .wpjobportal-special-confi
    text-align: left;
    width: 95%;
    display: none;
+}
+
+
+
+#wpjobportal-admin-wrapper span.wpjp-badge-urgent-flag {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--wpjp-danger-color, #dc3545);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 800;
+    padding: 4px 14px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.3em;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+    display: flex;
+    align-items: center;
+    z-index: 10;
+}
+
+#wpjobportal-admin-wrapper span.wpjp-badge-urgent-flag svg {
+    margin-right: 4px;
+    color: #ffffff;
+}
+#wpjobportal-admin-wrapper span.wpjp-badge-urgent-flag svg *{
+    color: #ffffff;
+}
+
+div#wpjobportaladmin-wrapper .wpjobportal-jobs-list{
+    position: relative;
+}
+
+
+
+/* --- WP Job Portal: Workplace Type Badges --- */
+
+#wpjobportal-admin-wrapper .wpjp-badge-mode {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    font-size: 11px;
+    text-transform: uppercase;
+    transition: all 0.2s ease-in-out;
+    vertical-align: middle;
+    margin-left: 8px;
+    margin-bottom: 10px;
+}
+#wpjobportal-admin-wrapper .wpjp-badge-mode span{
+    display: inline-flex;
+    text-transform: unset;
+}
+
+#wpjobportal-admin-wrapper .wpjp-badge-icon {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2.5;
+    margin-right:5px;
+}
+
+
+
+#wpjobportal-admin-wrapper  .wpjp-badge-remote span{
+    color: #2563eb !important;
+}
+
+#wpjobportal-admin-wrapper  .wpjp-badge-remote svg *{
+    color: #2563eb !important;
+}
+
+/* Hybrid Variant */
+#wpjobportal-admin-wrapper  .wpjp-badge-hybrid span{
+    color: #a855f7 !important;
+}
+
+#wpjobportal-admin-wrapper  .wpjp-badge-hybrid svg *{
+    color: #a855f7 !important;
+}
+
+/* On-site Variant */
+#wpjobportal-admin-wrapper  .wpjp-badge-onsite span{
+    color: #d97706 !important;
+}
+
+#wpjobportal-admin-wrapper  .wpjp-badge-onsite svg *{
+    color: #d97706 !important;
+}
+
+.wpjp-badge-new{
+   font-weight: bold;
+   color: green;
+   font-size: 14px;
+   border: 1px solid green;
+   padding: 4px 8px;
+   border-radius: 5px;
 }

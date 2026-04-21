@@ -63,11 +63,56 @@ foreach ($wpjobportal_fields AS $wpjobportal_field) {
         case 'heighesteducation':
             $wpjobportal_content = WPJOBPORTALformfield::select('educationid[]', WPJOBPORTALincluder::getJSModel('highesteducation')->getHighestEducationForCombo(), isset(wpjobportal::$_data[0]['filter']->educationid) ? wpjobportal::$_data[0]['filter']->educationid : '', esc_html(__('Select','wp-job-portal')) .' '. esc_html(__('Education', 'wp-job-portal')), array('class' => 'inputbox wpjobportal-multiselect wjportal-form-select-field', 'multiple' => 'true'));
         break;
+        case 'workplace_type':
+            $wpjp_workplace_types = array(
+                (object) array('id' => '1', 'text' => esc_html__('On-site', 'wp-job-portal')),
+                (object) array('id' => '2', 'text' => esc_html__('Hybrid', 'wp-job-portal')),
+                (object) array('id' => '3', 'text' => esc_html__('Remote', 'wp-job-portal')),
+            );
+            $wpjobportal_content = WPJOBPORTALformfield::select(
+                'workplace_type[]',
+                $wpjp_workplace_types,
+                '',
+                //isset(wpjobportal::$_data[0]['filter']->workplace_type) ? wpjobportal::$_data[0]['filter']->workplace_type : '',
+                esc_html(__('Select','wp-job-portal')) .' '. esc_html(__('Workplace Type', 'wp-job-portal')),
+                array('class' => 'inputbox wpjobportal-multiselect wjportal-form-select-field', 'multiple' => 'true')
+            );
+            break;
+            /*
+        case 'dateposted':
+            $wpjobportal_durations = array(
+                (object) array('id' => '24h', 'text' => esc_html__('Past 24 hours', 'wp-job-portal')),
+                (object) array('id' => '7d',  'text' => esc_html__('Past Week', 'wp-job-portal')),
+                (object) array('id' => '30d', 'text' => esc_html__('Past Month', 'wp-job-portal'))
+            );
+            $wpjobportal_content = WPJOBPORTALformfield::select(
+                'dates[]',
+                $wpjobportal_durations,
+                //isset(wpjobportal::$_data[0]['filter']->dates) ? wpjobportal::$_data[0]['filter']->dates : '',
+                '',
+                esc_html(__('Select','wp-job-portal')) .' '. esc_html(__('Date Posted', 'wp-job-portal')),
+                array('class' => 'inputbox wpjobportal-multiselect wjportal-form-select-field', 'multiple' => 'true')
+            );
+            break;
+            */
+        case 'is_urgent':
+            if(in_array('joblistingenhancer', wpjobportal::$_active_addons)){
+                $wpjobportal_content = WPJOBPORTALformfield::checkbox(
+                    'is_urgent',
+                    array('1' => esc_html__('Urgent Jobs Only', 'wp-job-portal')),
+                    0,
+                    //isset($wpjobportal_job->is_urgent) ? $wpjobportal_job->is_urgent : 0,
+                    array('class' => 'checkbox wjportal-form-checkbox-field')
+                );
+            }
+            break;
         default:
             $wpjobportal_i = 0;
             $wpjobportal_content = wpjobportal::$_wpjpcustomfield->formCustomFieldsForSearch($wpjobportal_field, $wpjobportal_i, 'f_jobsearch');
             break;
     }
+    // remove description from job search page ???? only new fields that i added seem problematic.
+    //$wpjobportal_field->description ='';
 
     if (!empty($wpjobportal_content)) {
         $wpjobportal_formfields[] = array(

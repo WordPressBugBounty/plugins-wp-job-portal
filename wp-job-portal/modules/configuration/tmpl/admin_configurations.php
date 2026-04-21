@@ -145,6 +145,13 @@ $wpjobportal_resume_contact_detail_options = [
     (object) ['id' => 3, 'text' => __('Paid access Only', 'wp-job-portal')],
 ];
 
+$wpjobportal_job_new_badge_days = [
+    (object) ['id' => 0, 'text' => __('No Badge', 'wp-job-portal')],
+    (object) ['id' => 1, 'text' => __('1 Day', 'wp-job-portal')],
+    (object) ['id' => 3, 'text' => __('3 Days', 'wp-job-portal')],
+    (object) ['id' => 7, 'text' => __('7 Days', 'wp-job-portal')],
+];
+
 $wpjobportal_options_pages_list = WPJOBPORTALincluder::getJSModel('postinstallation')->getPageList();
 
 global $wp_roles;
@@ -531,11 +538,34 @@ $wpjobportal_settings_config = [
                 'title'       => __('Job Display & Listings', 'wp-job-portal'),
                 'description' => __('Control how job-related pages and information are displayed to users', 'wp-job-portal'),
                 'fields'      => [
+                    ['id' => 'show_job_listing_top_filter', 'label' => __('Show Top Filter Bar', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['show_job_listing_top_filter'], 'tooltip' => __('Show or hide the main filter bar at the top of the job listing page', 'wp-job-portal'), 'options' => $wpjobportal_options_showhide],
+                    ['id' => 'show_top_filter_title', 'label' => __('Show Title Field', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['show_top_filter_title'], 'tooltip' => __('Show the keyword/title search field in the top filter', 'wp-job-portal'), 'options' => $wpjobportal_options_showhide],
+                    ['id' => 'show_top_filter_location', 'label' => __('Show Location Field', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['show_top_filter_location'], 'tooltip' => __('Show the location search field in the top filter', 'wp-job-portal'), 'options' => $wpjobportal_options_showhide],
+                    ['id' => 'show_top_filter_category', 'label' => __('Show Category Field', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['show_top_filter_category'], 'tooltip' => __('Show the category dropdown in the top filter', 'wp-job-portal'), 'options' => $wpjobportal_options_showhide],
+                    ['id' => 'job_new_badge_days', 'label' => __('Show New Badge for Jobs Based on Posted Date', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['job_new_badge_days'], 'tooltip' => __('Display a New badge for jobs posted within the selected number of days.', 'wp-job-portal'), 'options' => $wpjobportal_job_new_badge_days],
                     ['id' => 'jobsbycities_countryname', 'label' => __('Show Country on Jobs by Cities Page', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['jobsbycities_countryname'], 'tooltip' => __('Display the country name next to the city', 'wp-job-portal'), 'options' => $wpjobportal_options_yesno],
                     ['id' => 'jobsbycities_jobcount', 'label' => __('Show Count on Jobs by Cities Page', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['jobsbycities_jobcount'], 'tooltip' => __('Display the total number of jobs available in each city', 'wp-job-portal'), 'options' => $wpjobportal_options_yesno],
                     ['id' => 'categories_numberofjobs', 'label' => __('Show Count in Job Categories', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['categories_numberofjobs'], 'tooltip' => __('Display the total number of jobs for each category', 'wp-job-portal'), 'options' => $wpjobportal_options_yesno],
                     ['id' => 'jobtype_numberofjobs', 'label' => __('Show Count on Jobs by Types Page', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['jobtype_numberofjobs'], 'tooltip' => __('Display the total number of jobs for each job type', 'wp-job-portal'), 'options' => $wpjobportal_options_yesno],
                     ['id' => 'jobtype_per_row', 'label' => __('Job Types Per Row', 'wp-job-portal'), 'type' => 'text', 'value' => wpjobportal::$_data[0]['jobtype_per_row'], 'tooltip' => __('How many job types to display per row on the', 'wp-job-portal') . ' ' . __('Job by Type', 'wp-job-portal') . ' ' . __('page', 'wp-job-portal')],
+                ]
+            ],
+            // --- NEW AJAX FILTERS CONFIGURATION (Using SEO Tags UI) ---
+            'ajax_filters' => [
+                'title'       => __('AJAX Filters & Sorting', 'wp-job-portal'),
+                'description' => __('Configure the visibility and order of AJAX filters and sorting on the job listing page.', 'wp-job-portal'),
+                'pro'         => ['slug' => 'joblistingenhancer', 'name' => __('Job Listing Pro', 'wp-job-portal')],
+                'fields'      => [
+                    ['id' => 'joblisting_ajax_show_sorting', 'label' => __('Show Sorting Dropdown', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['ajax_show_sorting'] ?? 1, 'tooltip' => __('Show or hide the "Sort By" dropdown above the job listings.', 'wp-job-portal'), 'options' => $wpjobportal_options_showhide],
+                    [
+                        'id' => 'joblisting_ajax_filter_tags',
+                        'label' => __('Active Filters & Order', 'wp-job-portal'),
+                        'type' => 'seo_tags',
+                        // Set the default visible sequence
+                        'value' => wpjobportal::$_data[0]['joblisting_ajax_filter_tags'] ?? '[company][jobtype][jobstatus][careerlevel][jobsalaryrange][dateposted]',
+                        'available_tags' => ['company', 'jobtype', 'jobstatus', 'workplacetype', 'careerlevel', 'jobsalaryrange', 'dateposted'],
+                        'tooltip' => __('Click the available tags to enable and order the AJAX filters. To disable a filter, click the X on the active tag.', 'wp-job-portal')
+                    ],
                 ]
             ]
         ]
@@ -1171,7 +1201,7 @@ function wpjobportal_wjp_render_setting_field($wpjobportal_field, $wpjobportal_c
     echo '<div class="' . esc_attr($wrapper_class) . '" ' . esc_attr($conditional_attrs) . '>';
     echo '  <div class="wjp-setting-row">';
     echo '      <div class="wjp-setting-label">';
-    echo '          <label for="' . esc_attr($wpjobportal_field_id) . '">' . esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_field['label'])) . wp_kses($wpjobportal_pro_label_indicator,WPJOBPORTAL_ALLOWED_TAGS) . wp_kses($wpjobportal_tooltip_html,WPJOBPORTAL_ALLOWED_TAGS) . '</label>';
+    echo '          <label for="' . esc_attr($wpjobportal_field_id) . '">' . esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_field['label'])) . wp_kses($wpjobportal_pro_label_indicator,WPJOBPORTAL_ALLOWED_TAGS) . $wpjobportal_tooltip_html . '</label>';
     echo '      </div>';
     echo '      <div class="wjp-setting-control" data-field-id="' . esc_attr($wpjobportal_field['id']) . '">';
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped // Admin side interface values are handled safelty

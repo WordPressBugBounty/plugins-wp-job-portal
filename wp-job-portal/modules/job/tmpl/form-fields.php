@@ -148,6 +148,22 @@ foreach($wpjobportal_fields AS $wpjobportal_field){
             $wpjobportal_content = WPJOBPORTALformfield::checkbox("jobapplylink", array('1' => esc_html__("Set Job Apply Redirect Link","wp-job-portal")), isset($wpjobportal_job->jobapplylink) && $wpjobportal_job->jobapplylink == 1 ? 1 : 0);
             $wpjobportal_content .= "<div id='input-text-joblink'>".WPJOBPORTALformfield::text('joblink', isset($wpjobportal_job->joblink) ? $wpjobportal_job->joblink : '', array('class' => 'inputbox one wjportal-form-input-field input-text-joblink', 'data-validation' => $wpjobportal_field->validation,'placeholder'=> wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->placeholder)))."</div>";
         break;
+        // --- NEW: Render the Urgent Checkbox ---
+        case 'is_urgent':
+            if(in_array('joblistingenhancer', wpjobportal::$_active_addons)){
+                $wpjobportal_content = WPJOBPORTALformfield::checkbox("is_urgent", array('1' => esc_html__("Yes, mark this job as Urgent", "wp-job-portal")), isset($wpjobportal_job->is_urgent) && $wpjobportal_job->is_urgent == 1 ? 1 : 0);
+            }
+        break;
+        // --- NEW: Render the Workplace Type Dropdown with Default Empty Option ---
+        case 'workplace_type':
+            $wpjp_workplace_options = array(
+                (object) array('id' => '', 'text' => esc_html__('Select One', 'wp-job-portal')),
+                (object) array('id' => '1', 'text' => esc_html__('On-site', 'wp-job-portal')),
+                (object) array('id' => '2', 'text' => esc_html__('Hybrid', 'wp-job-portal')),
+                (object) array('id' => '3', 'text' => esc_html__('Remote', 'wp-job-portal')),
+            );
+            $wpjobportal_content = WPJOBPORTALformfield::select('workplace_type', $wpjp_workplace_options, isset($wpjobportal_job->workplace_type) ? $wpjobportal_job->workplace_type : '', '', array('class' => 'inputbox wjportal-form-input-field', 'data-validation' => $wpjobportal_field->validation));
+        break;
         default:
             $wpjobportal_content = wpjobportal::$_wpjpcustomfield->formCustomFields($wpjobportal_field);
             break;

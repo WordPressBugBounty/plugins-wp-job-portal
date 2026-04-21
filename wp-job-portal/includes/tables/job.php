@@ -78,6 +78,10 @@ class WPJOBPORTALjobTable extends WPJOBPORTALtable {
     // AI strings
     public $aijobsearchtext = '';
     public $aijobsearchdescription = '';
+    // is_urgent
+    public $is_urgent = '';
+    // workplace_type
+    public $workplace_type = '';
 
 
     public function check() {

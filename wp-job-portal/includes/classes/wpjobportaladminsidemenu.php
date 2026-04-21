@@ -221,6 +221,13 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
                     <?php echo esc_html(__('Configuration', 'wp-job-portal')); ?>
                 </a>
             </li>
+            <?php  if(in_array('cronjob', wpjobportal::$_active_addons)){ ?>
+                <li class="<?php if($wpjobportal_controller == 'wpjobportal_cronjob') echo 'active'; ?>">
+                    <a href="admin.php?page=wpjobportal_cronjob&wpjobportallt=cronjob" title="<?php echo esc_attr(__('cronjob', 'wp-job-portal')); ?>">
+                        <?php echo esc_html(__('Cron Job', 'wp-job-portal')); ?>
+                    </a>
+                </li>
+            <?php  } ?>
         </ul>
     </li>
     <li class="treeview <?php if($wpjobportal_controller == 'wpjobportal_premiumplugin' || ($wpjobportal_controller == 'wpjobportal' && $wpjobportal_layout == 'addonstatus')) echo 'active'; ?>">

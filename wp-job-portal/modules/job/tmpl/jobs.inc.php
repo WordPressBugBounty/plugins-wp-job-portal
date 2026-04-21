@@ -49,6 +49,9 @@ if(isset(wpjobportal::$_data[2][$wpjobportal_mapfield]) && wpjobportal::$_data[2
                 jQuery('#jobtitle').removeAttr('value');
                 jQuery('#jobtype').removeAttr('value');
                 jQuery('#jobtype').val('');
+                jQuery('#jobcategory').val('');
+                jQuery('#jobcategory').removeAttr('value');
+                jQuery('select[name=\"category[]\"]').val([]).trigger('chosen:updated');
                 jQuery('.wpjobportal-job-listing-city-field').tokenInput('clear',{focus:false});
                 jQuery('#job_form').submit();
             });
