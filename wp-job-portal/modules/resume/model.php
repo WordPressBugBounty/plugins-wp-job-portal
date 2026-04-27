@@ -291,11 +291,22 @@ class WPJOBPORTALResumeModel {
             $or = '';
             if (!empty($wpjobportal_data)) {
                 $wpjobportal_inquery2 .= " AND (";
-                $wpjobportal_valarray = json_decode($wpjobportal_result->params);
+                $wpjobportal_valarray = json_decode($wpjobportal_result->params,true);// true to make sure that its array and not stdClass object
 
                 foreach ($wpjobportal_data as $uf) {
                     $wpjobportal_fieldname = $uf->field;
                     if (isset($wpjobportal_valarray->$wpjobportal_fieldname) && $wpjobportal_valarray->$wpjobportal_fieldname != null) {
+
+                        // ==========================================
+                        // SECURITY FIX: ESCAPE VALUES AT THE TOP
+                        // ==========================================
+                        // esc_sql() natively handles both strings and arrays.
+                        // If it receives an array (like in checkbox/multiple cases),
+                        // it safely loops through and escapes all nested values automatically.
+                        $wpjobportal_valarray[$uf->field] = esc_sql($wpjobportal_valarray[$uf->field]);
+                        // ==========================================
+
+
                         switch ($uf->userfieldtype) {
                             case 'text':
                             case 'email':
@@ -2924,6 +2935,16 @@ class WPJOBPORTALResumeModel {
 
                     $wpjobportal_valarray[$uf->field] = $wpjobportal_session_userfield;
                     if (isset($wpjobportal_valarray[$uf->field]) && $wpjobportal_valarray[$uf->field] != null && $wpjobportal_valarray[$uf->field] !="" ) {
+
+                        // ==========================================
+                        // SECURITY FIX: ESCAPE VALUES AT THE TOP
+                        // ==========================================
+                        // esc_sql() natively handles both strings and arrays.
+                        // If it receives an array (like in checkbox/multiple cases),
+                        // it safely loops through and escapes all nested values automatically.
+                        $wpjobportal_valarray[$uf->field] = esc_sql($wpjobportal_valarray[$uf->field]);
+                        // ==========================================
+
                         switch ($uf->userfieldtype) {
                             case 'text':
                             case 'email':

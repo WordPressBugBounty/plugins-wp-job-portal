@@ -4,7 +4,7 @@ Donate link: https://wpjobportal.com/pricing/
 Tags: job board, job listing, careers, job manager, jobs, recruiting
 Requires at least: 5.5 
 Tested up to: 6.9
-Stable tag: 2.5.1
+Stable tag: 2.5.2
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -259,6 +259,9 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 
 == Changelog ==
+
+= 2.5.2 =
+* Security fixes.
 
 = 2.5.1 =
 * Added New addon Job Listing Enhancer

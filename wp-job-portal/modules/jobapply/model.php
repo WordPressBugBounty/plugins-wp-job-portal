@@ -729,9 +729,9 @@ class WPJOBPORTALjobapplyModel {
                             if (!isset($wpjobportal_upakid)) {
                                 $wpjobportal_upakid = 0;
                             }
-                            $wpjobportal_link1 = 'href="#" onclick="jobApply(' . $wpjobportal_jobid . ',' .$wpjobportal_upakid. ','.$wpjobportal_pageid_ajax.',1);"';
+                            $wpjobportal_link1 = 'href="#" onclick="jobApply(' . $wpjobportal_jobid . ',' .esc_js($wpjobportal_upakid). ','.$wpjobportal_pageid_ajax.',1);"';
                         } else {
-                            $wpjobportal_link1 = 'href="#" onclick="jobApply(' . $wpjobportal_jobid . ',' .$wpjobportal_upakid. ','.$wpjobportal_pageid_ajax.');"';
+                            $wpjobportal_link1 = 'href="#" onclick="jobApply(' . $wpjobportal_jobid . ',' .esc_js($wpjobportal_upakid). ','.$wpjobportal_pageid_ajax.');"';
                         }
                         $wpjobportal_link2 = 'href="#" onclick="closePopup();"';
                         $wpjobportal_text1 = esc_html(__('Apply Now', 'wp-job-portal'));
@@ -1357,7 +1357,7 @@ class WPJOBPORTALjobapplyModel {
                         </div>
                         <div class="col-md-4 '.esc_attr($this->class_prefix).'-sendemail-btn-wrp">
                             <div class="form-group '.esc_attr($this->class_prefix).'-sendemail-btn-data">
-                                <input type="button" class="form-control '.esc_attr($this->class_prefix).'-sendemail-btn" value="' . esc_html(__('Send', 'wp-job-portal')) . '" onclick="sendEmail('.$wpjobportal_resumeid.')">
+                                <input type="button" class="form-control '.esc_attr($this->class_prefix).'-sendemail-btn" value="' . esc_html(__('Send', 'wp-job-portal')) . '" onclick="sendEmail(\''.esc_js($wpjobportal_resumeid).'\')">
                                 <input type="button" class="form-control '.esc_attr($this->class_prefix).'-sendemail-btn" onclick="closeSection()" value="' . esc_html(__('Cancel', 'wp-job-portal')) . '">
                             </div>
                         </div>
@@ -2310,7 +2310,7 @@ class WPJOBPORTALjobapplyModel {
             $wpjobportal_html.='<label for="jobseeker">'
                     . esc_html(__("Job Seeker", 'wp-job-portal'))
                     . ' : </label>';
-            $wpjobportal_html.='<input type="text" id="jobseeker" value="' . $wpjobportal_email . '" disabled="disabled" /></div><div class="wpj-jp-applied-resume-cnt-row"><label for="subject">'
+            $wpjobportal_html.='<input type="text" id="jobseeker" value="' . esc_attr($wpjobportal_email) . '" disabled="disabled" /></div><div class="wpj-jp-applied-resume-cnt-row"><label for="subject">'
                     . esc_html(__('Subject', 'wp-job-portal')) .
                     ' : </label>';
             $wpjobportal_html.='<input type="text" id="e-subject" />';
@@ -2318,14 +2318,14 @@ class WPJOBPORTALjobapplyModel {
             $wpjobportal_html.='<label for="sender">' . esc_html(__("Sender Email", 'wp-job-portal')) . '  : </label>';
             $wpjobportal_html.='<input type="text" id="sender" value="'.$wpjobportal_employer_email.'" disabled="disabled" /></div>';
             $wpjobportal_html.='<div class="wpj-jp-applied-resume-cnt-row"><textarea id="email-body" placeholder=' . esc_html(__('Type here', 'wp-job-portal')) . '>';
-            $wpjobportal_html.='</textarea></div> <div class="wpj-jp-applied-resume-cnt-row"><input class="wpj-jp-outline-btn" type="button" id="send" value=' . esc_html(__("Send", 'wp-job-portal')) . ' onclick="sendEmail('.$wpjobportal_resumeid.')" /></div></div>';
+            $wpjobportal_html.='</textarea></div> <div class="wpj-jp-applied-resume-cnt-row"><input class="wpj-jp-outline-btn" type="button" id="send" value=' . esc_html(__("Send", 'wp-job-portal')) . ' onclick="sendEmail(\''.esc_js($wpjobportal_resumeid).'\')" /></div></div>';
         } else {
             $wpjobportal_html.='<img id="close-section" onclick="closeSection()" src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/no.png"/>';
             $wpjobportal_html.='<div class="email-feilds wjportal-applied-job-actions-wrp wjportal-email-actions-wrp"><div class="wjportal-applied-job-actions-row">';
             $wpjobportal_html.='<label for="jobseeker">'
                     . esc_html(__('Job Seeker', 'wp-job-portal'))
                     . ' : </label>';
-            $wpjobportal_html.='<input type="text" id="jobseeker" value="' . $wpjobportal_email . '" disabled /></div><div class="wjportal-applied-job-actions-row"><label for="subject">'
+            $wpjobportal_html.='<input type="text" id="jobseeker" value="' . esc_attr($wpjobportal_email) . '" disabled /></div><div class="wjportal-applied-job-actions-row"><label for="subject">'
                     . esc_html(__('Subject', 'wp-job-portal')) .
                     ' : </label>';
             $wpjobportal_html.='<input type="text" id="e-subject" />';
@@ -2333,11 +2333,11 @@ class WPJOBPORTALjobapplyModel {
             $wpjobportal_html.='<label for="sender">' . esc_html(__('Sender Email', 'wp-job-portal')) . '  : </label>';
             $wpjobportal_html.='<input type="text" id="sender" value="'.$wpjobportal_employer_email.'" disabled="disabled"  /></div>';
             $wpjobportal_html.='<div class="wjportal-applied-job-actions-row"><textarea id="email-body" placeholder=' . esc_html(__('Type here', 'wp-job-portal')) . '>';
-            $wpjobportal_html.='</textarea></div> <div class="wjportal-job-applied-actions-btn-wrp"><input class="wjportal-job-applied-actions-btn" type="button" id="send" value=' . esc_html(__('Send', 'wp-job-portal')) . ' onclick="sendEmail('.$wpjobportal_resumeid.')" /></div></div>';
+            $wpjobportal_html.='</textarea></div> <div class="wjportal-job-applied-actions-btn-wrp"><input class="wjportal-job-applied-actions-btn" type="button" id="send" value=' . esc_html(__('Send', 'wp-job-portal')) . ' onclick="sendEmail(\''.esc_js($wpjobportal_resumeid).'\')" /></div></div>';
         }
         // added these values to handle some verifications before sending email
-        $wpjobportal_html .= '<input type="hidden" id="jobid" id="jobid" value="'.$wpjobportal_jobid.'" />';
-        $wpjobportal_html .= '<input type="hidden" id="resumeid" id="resumeid" value="'.$wpjobportal_resumeid.'" />';
+        $wpjobportal_html .= '<input type="hidden" id="jobid" id="jobid" value="'.esc_attr($wpjobportal_jobid).'" />';
+        $wpjobportal_html .= '<input type="hidden" id="resumeid" id="resumeid" value="'.esc_attr($wpjobportal_resumeid).'" />';
         return $wpjobportal_html;
     }
 

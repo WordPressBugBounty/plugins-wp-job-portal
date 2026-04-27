@@ -2740,6 +2740,16 @@ class WPJOBPORTALjobModel {
                     $wpjobportal_valarray[$uf->field] = isset($wpjobportal_searchajax[$uf->field]) ? $wpjobportal_searchajax[$uf->field] : '';
                 }
                 if (isset($wpjobportal_valarray[$uf->field]) && $wpjobportal_valarray[$uf->field] != null) {
+
+                    // ==========================================
+                    // SECURITY FIX: ESCAPE VALUES AT THE TOP
+                    // ==========================================
+                    // esc_sql() natively handles both strings and arrays.
+                    // If it receives an array (like in checkbox/multiple cases),
+                    // it safely loops through and escapes all nested values automatically.
+                    $wpjobportal_valarray[$uf->field] = esc_sql($wpjobportal_valarray[$uf->field]);
+                    // ==========================================
+
                     switch ($uf->userfieldtype) {
                         case 'text':
                         case 'email':
@@ -3315,35 +3325,7 @@ class WPJOBPORTALjobModel {
         $wpjobportal_value[(int) $cookieindex] = (int) $cookievalue;
         wpjobportalphplib::wpJP_setcookie('wp_wpjobportal_cookie', serialize($wpjobportal_value), time() + 1209600, SITECOOKIEPATH, null, false, true);
     }
-
-    function getNextJobs() {
-        $wpjobportal_searchcriteria = WPJOBPORTALrequest::getVar('ajaxsearch');
-        wpjobportal::$_data['wpjobportal_pageid'] = WPJOBPORTALrequest::getVar('wpjobportal_pageid');
-        $wpjobportal_decoded = wpjobportalphplib::wpJP_safe_decoding($wpjobportal_searchcriteria);
-        $wpjobportal_array = json_decode($wpjobportal_decoded,true);
-        //$wpjobportal_vars = $this->getjobsvar();
-        $wpjobportal_array['searchajax'] = 1;
-        $this->getJobs($wpjobportal_array);
-        $wpjobportal_jobs = WPJOBPORTALincluder::getObjectClass('jobslist');
-        $wpjobportal_jobshtml = $wpjobportal_jobs->printjobs(wpjobportal::$_data[0]);
-        echo wp_kses($wpjobportal_jobshtml, WPJOBPORTAL_ALLOWED_TAGS);
-        exit;
-    }
-
-    function getNextTemplateJobs(){
-        $wpjobportal_searchcriteria = WPJOBPORTALrequest::getVar('ajaxsearch');
-        wpjobportal::$_data['wpjobportal_pageid'] = WPJOBPORTALrequest::getVar('wpjobportal_pageid');
-
-        $wpjobportal_decoded = wpjobportalphplib::wpJP_safe_decoding($wpjobportal_searchcriteria);
-        $wpjobportal_array = json_decode($wpjobportal_decoded,true);
-        //$wpjobportal_vars = $this->getjobsvar();
-        $wpjobportal_array['searchajax'] = 1;
-        $this->getJobs($wpjobportal_array);
-        $wpjobportal_jobs = WPJOBPORTALincluder::getObjectClass('jobslist');
-        $wpjobportal_jobshtml = $wpjobportal_jobs->printtemplatejobs(wpjobportal::$_data[0]);
-        echo wp_kses($wpjobportal_jobshtml, WPJOBPORTAL_ALLOWED_TAGS);
-        exit;
-    }
+// removed extra functions
 
     function getjobsvar() {
         $wpjobportal_vars = array();
