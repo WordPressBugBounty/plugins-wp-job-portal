@@ -24,7 +24,7 @@ $wpjobportal_ff = (int) WPJOBPORTALrequest::getVar('ff','get','');
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('Dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -34,12 +34,12 @@ $wpjobportal_ff = (int) WPJOBPORTALrequest::getVar('ff','get','');
             </div>    
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('Configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('Help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -66,8 +66,8 @@ $wpjobportal_ff = (int) WPJOBPORTALrequest::getVar('ff','get','');
             if(!empty($wpjobportal_transient_val)){
                 ?>
                 <div class="wpjobportal-admin--backlink-wrap">
-                    <a id="form-back-button" class="wpjobportal-form-back-btn" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_fieldordering&ff='.$wpjobportal_ff.'&wpjobportal_restore_results='.$wpjobportal_token)); ?>" title="<?php echo esc_attr(__('Back to listing', 'wp-job-portal')); ?>">
-                        <?php echo esc_html(__('Back to listing', 'wp-job-portal')); ?>
+                    <a id="form-back-button" class="wpjobportal-form-back-btn" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_fieldordering&ff='.$wpjobportal_ff.'&wpjobportal_restore_results='.$wpjobportal_token)); ?>" title="<?php echo esc_attr(__('Back To Listing', 'wp-job-portal')); ?>">
+                        <?php echo esc_html(__('Back To Listing', 'wp-job-portal')); ?>
                     </a>
                 </div>
             <?php }?>
@@ -169,7 +169,7 @@ $wpjobportal_ff = (int) WPJOBPORTALrequest::getVar('ff','get','');
                 <?php if(!isset(wpjobportal::$_data[0]['userfield']->id) || ((wpjobportal::$_data[0]['userfield']->isuserfield == 1 || wpjobportal::$_data[0]['userfield']->cannotshowonlisting == 0) && !((wpjobportal::$_data[0]['userfield']->fieldfor == 3 && wpjobportal::$_data[0]['userfield']->section != 1 ))) || ( wpjobportal::$_data[0]['userfield']->fieldfor == 3 && wpjobportal::$_data[0]['userfield']->field == 'skills' )){ ?>
                 <div class="wpjobportal-form-wrapper">
                     <div class="wpjobportal-form-title">
-                        <?php echo esc_html(__('Show on listing', 'wp-job-portal')); ?>
+                        <?php echo esc_html(__('Show On Listing', 'wp-job-portal')); ?>
                     </div>
                     <div class="wpjobportal-form-value">
                         <?php echo wp_kses(WPJOBPORTALformfield::select('showonlisting', $wpjobportal_yesno, isset(wpjobportal::$_data[0]['userfield']->showonlisting) ? wpjobportal::$_data[0]['userfield']->showonlisting : 0, '', array('class' => 'inputbox one wpjobportal-form-select-field')),WPJOBPORTAL_ALLOWED_TAGS); ?>

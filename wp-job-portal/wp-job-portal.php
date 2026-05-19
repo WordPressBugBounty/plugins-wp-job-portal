@@ -1,22 +1,18 @@
 <?php
 
-/**
- * @package WP JOB PORTAL
- * @author Ahmad Bilal
- * @version 2.5.2
- */
 /*
   * Plugin Name: WP Job Portal
   * Plugin URI: https://wpjobportal.com/
   * Description: WP Job Portal is WordPress’s best job board plugin — easy to use, highly configurable, and built to support both job seekers and employers. AI-powered add-ons offers smart job & resume search, and personalized recommendations.
   * Author: WP Job Portal
-  * Version: 2.5.2
+  * Version: 2.5.3
   * Text Domain: wp-job-portal
   * Domain Path: /languages
   * Author URI: https://wpjobportal.com/
   * License: GPLv3
   * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  */
+
 
 if (!defined('ABSPATH'))
     die('Restricted Access');
@@ -80,7 +76,7 @@ class wpjobportal {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '252';
+        self::$_currentversion = '253';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_common = WPJOBPORTALincluder::getJSModel('common');
         self::$_config = WPJOBPORTALincluder::getJSModel('configuration');
@@ -112,7 +108,7 @@ class wpjobportal {
             add_action('wpmu_new_blog', array($this, 'wpjobportal_new_blog'), 10, 6);
         }
         add_filter('wpmu_drop_tables', array($this, 'wpjobportal_delete_site'));
-        //add_action('plugins_loaded', array($this, 'wpjobportal_load_plugin_textdomain'));
+        add_action('plugins_loaded', array($this, 'wpjobportal_load_plugin_textdomain'));
         //PDF Change
         //add_action('template_redirect', array($this, 'pdf'), 5); // Only for the pdf in wordpress
         add_action('admin_init', array($this, 'wpjobportal_activation_redirect'));//for post installation screens
@@ -190,7 +186,7 @@ class wpjobportal {
                 if( $plugin == $our_plugin ) {
                     update_option('wpjp_currentversion', self::$_currentversion);
                     include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
-                    WPJOBPORTALupdates::checkUpdates('252');
+                    WPJOBPORTALupdates::checkUpdates('253');
 
                 	// restore colors data
 		            require(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
@@ -200,26 +196,6 @@ class wpjobportal {
                 }
             }
         }
-    }
-
-    function WPJPreplaceString(&$filestring, $wpjobportal_colorNo, $wpjobportal_data) {
-        if (wpjobportalphplib::wpJP_strstr($filestring, '$wpjobportal_color' . $wpjobportal_colorNo)) {
-            $wpjobportal_path1 = wpjobportalphplib::wpJP_strpos($filestring, '$wpjobportal_color' . $wpjobportal_colorNo);
-            $wpjobportal_path2 = wpjobportalphplib::wpJP_strpos($filestring, ';', $wpjobportal_path1);
-            $filestring = substr_replace($filestring, '$wpjobportal_color' . $wpjobportal_colorNo . ' = "' . $wpjobportal_data['color' . $wpjobportal_colorNo] . '";', $wpjobportal_path1, $wpjobportal_path2 - $wpjobportal_path1 + 1);
-        }
-    }
-
-    function getWPJPCurrentTheme() {
-        $wpjobportal_optiondata = get_option('wpjp_set_theme_colors');
-        $wpjobportal_theme = array();
-        if (!empty($wpjobportal_optiondata)) {
-            $filestring = json_decode($wpjobportal_optiondata, true);
-            $wpjobportal_theme['color1'] = $filestring['color1'];
-            $wpjobportal_theme['color2'] = $filestring['color2'];
-            $wpjobportal_theme['color3'] = $filestring['color3'];
-        }
-        return $wpjobportal_theme;
     }
 
     function wpjobportal_activation_redirect(){
@@ -289,6 +265,36 @@ class wpjobportal {
     //         load_plugin_textdomain('wp-job-portal');
     //     }*/
     // }
+
+
+    public function wpjobportal_load_plugin_textdomain() {
+        $domain = 'wp-job-portal';
+        $locale = function_exists('determine_locale') ? determine_locale() : get_locale();
+        $locale = apply_filters('plugin_locale', $locale, $domain);
+
+        $candidates = array_unique(array_filter([
+            $locale,
+            strtolower((string) $locale),
+            strpos((string) $locale, '_') !== false ? substr((string) $locale, 0, 2) : '',
+        ]));
+
+        foreach ($candidates as $candidate) {
+            $global_mo = trailingslashit(WP_LANG_DIR) . 'plugins/' . $domain . '-' . $candidate . '.mo';
+            if (file_exists($global_mo) && load_textdomain($domain, $global_mo)) {
+                return;
+            }
+        }
+
+        foreach ($candidates as $candidate) {
+            $bundled_mo = trailingslashit(WPJOBPORTAL_PLUGIN_PATH) . 'languages/' . $domain . '-' . $candidate . '.mo';
+            if (file_exists($bundled_mo) && load_textdomain($domain, $bundled_mo)) {
+                return;
+            }
+        }
+
+        // Keep the standard WordPress path registration as a final fallback.
+        load_plugin_textdomain($domain, false, dirname(plugin_basename(__FILE__)) . '/languages');
+    }
 
     /*
      * function for the Style Sheets
@@ -677,7 +683,7 @@ class wpjobportal {
                 $_redirect .= '/' . $wpjobportal_args['wpjobportalredirecturl'];
             }
            return $_redirect;
-        }else{ // incase of form
+        }else{ // in case of form
             $redirect_url = add_query_arg($wpjobportal_args,$wpjobportal_permalink);
             return $redirect_url;
         }
@@ -711,13 +717,6 @@ class wpjobportal {
             $wpjobportal_tables[] = $wpjobportal_tablename;
         }
         return $wpjobportal_tables;
-    }
-
-    static function checkAddonActiveOrNot($for){
-        if(in_array($for, wpjobportal::$_active_addons)){
-            return true;
-        }
-        return false;
     }
 
     static function bjencode($wpjobportal_array){
@@ -894,6 +893,10 @@ class wpjobportal {
         wpjobportal::$_db->query('DELETE  FROM '.wpjobportal::$_db->prefix.'wj_portal_jswjsessiondata WHERE sessionexpire < "'. time() .'"');
     }
     static function wpjobportal_getVariableValue($wpjobportal_text_string){
+        if(empty($wpjobportal_text_string)){
+            return;
+        }
+        $wpjobportal_text_string = trim($wpjobportal_text_string);
         $wpjobportal_translations = get_translations_for_domain( 'wp-job-portal' );
         $wpjobportal_translation = $wpjobportal_translations->translate( $wpjobportal_text_string );
         return $wpjobportal_translation;
@@ -1499,7 +1502,7 @@ function wpjobportal_upgrade_completed( $wpjobportal_upgrader_object, $wpjobport
 				update_option('wpjp_currentversion', wpjobportal::$_currentversion);
 				include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
 
-				WPJOBPORTALupdates::checkUpdates('252');
+				WPJOBPORTALupdates::checkUpdates('253');
 
 
 				// restore colors data
@@ -1714,10 +1717,10 @@ add_action('admin_enqueue_scripts', 'wpjobportal_load_classic_editor_assets');
             'all_wrappers_nonce'  => wp_create_nonce('zywrap_get_all_wrappers'),
             'schema_nonce'  => wp_create_nonce('zywrap_get_schema'),
             'ajax_url'        => admin_url('admin-ajax.php'),
-            'loading_text'    => esc_js(__('Loading...', 'wp-job-portal')),
-            'generating_text' => esc_js(__('Generating...', 'wp-job-portal')),
+            'loading_text'    => esc_js(__('Loading', 'wp-job-portal').'...'),
+            'generating_text' => esc_js(__('Generating', 'wp-job-portal').'...'),
             'run_text'        => esc_js(__('Generate', 'wp-job-portal')),
-            'error_text'      => esc_js(__('Error:', 'wp-job-portal')),
+            'error_text'      => esc_js(__('Error', 'wp-job-portal').': '),
             'validation_text' => esc_js(__('Please select a Wrapper.', 'wp-job-portal')),
             'additional_instructions' => esc_js(__('Additional Free-form Instructions.', 'wp-job-portal')),
             'core_inputs' => esc_js(__('Core Inputs (Optional)', 'wp-job-portal')),
@@ -1736,8 +1739,8 @@ add_action('admin_enqueue_scripts', 'wpjobportal_load_classic_editor_assets');
             'default_text'         => __('Default', 'wp-job-portal'),
             'search_templates_text'=> __('Search Templates', 'wp-job-portal'),
             'close_search_text'    => __('Close Search', 'wp-job-portal'),
-            'no_records_found'     => __('No records found.', 'wp-job-portal'),
-            'records_found_text'   => __('+ records found.', 'wp-job-portal'),
+            'no_records_found'     => __('No Records Found', 'wp-job-portal'),
+            'records_found_text'   => "+ ".__('records found', 'wp-job-portal'),
             'error_text'           => __('Error', 'wp-job-portal'),
         ));
 
@@ -1804,10 +1807,10 @@ add_action('admin_enqueue_scripts', 'wpjobportal_load_classic_editor_assets');
             'wrappers_nonce'  => wp_create_nonce('zywrap_get_wrappers'),
             'all_wrappers_nonce'  => wp_create_nonce('zywrap_get_all_wrappers'),
             'ajax_url'        => admin_url('admin-ajax.php'),
-            'loading_text'    => esc_js(__('Loading...', 'wp-job-portal')),
-            'generating_text' => esc_js(__('Generating...', 'wp-job-portal')),
+            'loading_text'    => esc_js(__('Loading', 'wp-job-portal').'...'),
+            'generating_text' => esc_js(__('Generating', 'wp-job-portal').'...'),
             'run_text'        => esc_js(__('Generate', 'wp-job-portal')),
-            'error_text'      => esc_js(__('Error:', 'wp-job-portal')),
+            'error_text'      => esc_js(__('Error', 'wp-job-portal').': '),
             'validation_text' => esc_js(__('Please select a Wrapper.', 'wp-job-portal')),
             // === ADDED: Data for Warnings ===
             'has_api_key'     => !empty($api_key),

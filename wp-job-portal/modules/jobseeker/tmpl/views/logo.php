@@ -10,7 +10,7 @@
 			echo '
 				 <div class="wjportal-jobs-logo">
 					<a href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$wpjobportal_job->companyid))) .' >
-					    <img src='. esc_url(WPJOBPORTALincluder::getJSModel('company')->getLogoUrl($wpjobportal_job->companyid,$wpjobportal_job->logofilename)).' alt="'.esc_attr(__('Company logo','wp-job-portal')).'">
+					    <img src='. esc_url(WPJOBPORTALincluder::getJSModel('company')->getLogoUrl($wpjobportal_job->companyid,$wpjobportal_job->logofilename)).' alt="'.esc_attr(__('Company Logo','wp-job-portal')).'">
 					</a>
 				</div>
 				';
@@ -44,7 +44,7 @@
             echo	'</div>';
 		break;
 		default:
-			$wpjobportal_msg=esc_html(__('No Record Found','wp-job-portal')) ;
+			$wpjobportal_msg=esc_html(__('No Records Found','wp-job-portal')) ;
 			echo '
 			 	<div class="js-image">
 					'.wp_kses(WPJOBPORTALlayout::getNoRecordFound($wpjobportal_msg, esc_url($wpjobportal_linkcompany)),WPJOBPORTAL_ALLOWED_TAGS).'

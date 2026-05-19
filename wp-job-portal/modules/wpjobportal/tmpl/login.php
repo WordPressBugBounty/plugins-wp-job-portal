@@ -27,7 +27,7 @@ if (wpjobportal::$_error_flag == null) {
         </div>
         <div class="wjportal-form-wrp wjportal-login-form">
             <div class="wjportal-form-sec-heading">
-                <?php echo esc_html(__('Login into your account', 'wp-job-portal')); ?>
+                <?php echo esc_html(__('Log in to your account', 'wp-job-portal')); ?>
             </div>
             <?php
                 if (!is_user_logged_in()) { // Display WordPress login form:
@@ -37,7 +37,7 @@ if (wpjobportal::$_error_flag == null) {
                         'form_id' => 'loginform-custom',
                         'label_username' => esc_html(__('Username', 'wp-job-portal')),
                         'label_password' => esc_html(__('Password', 'wp-job-portal')),
-                        'label_remember' => esc_html(__('keep me login', 'wp-job-portal')),
+                        'label_remember' => esc_html(__('Keep me logged in', 'wp-job-portal')),
                         'label_log_in' => esc_html(__('Login', 'wp-job-portal')),
                         'remember' => true
                     );

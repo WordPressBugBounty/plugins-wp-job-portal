@@ -80,7 +80,7 @@ if (!defined('ABSPATH'))
 
                         <div class="wpjobportal-update-key-slctall-addonswrp">
                             <span class="wpjobportal-update-key-slctall-addon-title">
-                                <?php echo esc_html(__("Select Addons to Update with New Activation Key", 'wp-job-portal')); ?>
+                                <?php echo esc_html(__("Select Addons To Update With New Activation Key", 'wp-job-portal')); ?>
                             </span>
                             <div class="wpjobportal-update-key-slctall-addon-checkbox-wrp">
                                 <input class="wpjobportal-update-key-checkbox" id="select-all" type="checkbox">

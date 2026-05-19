@@ -9,290 +9,6 @@ class WPJOBPORTALwpjobportalwidgetsModel {
 
     }
 
-    function listModuleJobs($wpjobportal_layoutName, $wpjobportal_jobs, $location, $wpjobportal_showtitle, $title, $listtype, $wpjobportal_noofjobs, $wpjobportal_category, $wpjobportal_subcategory, $wpjobportal_company, $wpjobportal_jobtype, $posteddate, $wpjobportal_theme, $wpjobportal_separator, $wpjobportal_moduleheight, $wpjobportal_jobsinrow, $wpjobportal_jobsinrowtab, $wpjobportal_jobmargintop, $wpjobportal_jobmarginleft, $wpjobportal_companylogo, $wpjobportal_logodatarow, $sliding, $wpjobportal_datacolumn, $speedTest, $slidingdirection, $consecutivesliding, $wpjobportal_jobheight, $wpjobportal_companylogowidth, $wpjobportal_companylogoheight) {
-        $speed = 50;
-        if(!is_numeric($speedTest)){
-            $speedTest =0;
-        }
-        if ($speedTest < 5) {
-            for ($wpjobportal_i = 5; $wpjobportal_i > $speedTest; $wpjobportal_i--)
-                $speed += 10;
-            if ($speed > 100)
-                $speed = 100;
-        }elseif ($speedTest > 5) {
-            for ($wpjobportal_i = 5; $wpjobportal_i < $speedTest; $wpjobportal_i++)
-                $speed -= 10;
-            if ($speed < 10)
-                $speed = 10;
-        }
-        $wpjobportal_dateformat = wpjobportal::$_configuration['date_format'];
-
-        $wpjobportal_moduleName = $wpjobportal_layoutName;
-
-        $wpjobportal_contentswrapperstart = '';
-        $wpjobportal_contents = '';
-        if ($wpjobportal_jobs) {
-            if ($listtype == 0) { //list style
-                $wpjobportal_contentswrapperstart .= '<div id="wpjobportal_module_wrapper" class="' . esc_attr($wpjobportal_moduleName) . '" style="height:' . esc_attr($wpjobportal_moduleheight) . 'px;" >';
-                if ($wpjobportal_showtitle == 1) {
-
-                    $wpjobportal_contentswrapperstart .= '
-                        <div id="tp_heading" class="wjportal-mod-heading">
-                            ' . esc_html($title) . '
-                        </div>
-                    ';
-                }
-                $wpjobportal_contentswrapperstart .= '<div id="wpjobportal_modulelist_titlebar" class="' . esc_attr($wpjobportal_moduleName) . '" ><span id="whiteback"></span>';
-                //For desktop
-                $wpjobportal_desktop_w = 1;
-                if (($wpjobportal_company == 1 || $wpjobportal_company == 2 || $wpjobportal_company == 4 || $wpjobportal_company == 6) || ($wpjobportal_companylogo == 1 || $wpjobportal_companylogo == 2 || $wpjobportal_companylogo == 4 || $wpjobportal_companylogo == 6)) {
-                    $wpjobportal_desktop_w++;
-                }
-                if ($wpjobportal_category == 1 || $wpjobportal_category == 2 || $wpjobportal_category == 3 || $wpjobportal_category == 5) {
-                    $wpjobportal_desktop_w++;
-                }
-                if ($wpjobportal_jobtype == 1 || $wpjobportal_jobtype == 2 || $wpjobportal_jobtype == 3 || $wpjobportal_jobtype == 5) {
-                    $wpjobportal_desktop_w++;
-                }
-                if ($posteddate == 1 || $posteddate == 2 || $posteddate == 3 || $posteddate == 5) {
-                    $wpjobportal_desktop_w++;
-                }
-                if ($location == 1 || $location == 2 || $location == 3 || $location == 5) {
-                    $wpjobportal_desktop_w++;
-                }
-                //For tablet
-                $wpjobportal_tablet_w = 1;
-                if (($wpjobportal_company == 1 || $wpjobportal_company == 2 || $wpjobportal_company == 4 || $wpjobportal_company == 6) || ($wpjobportal_companylogo == 1 || $wpjobportal_companylogo == 2 || $wpjobportal_companylogo == 4 || $wpjobportal_companylogo == 6)) {
-                    $wpjobportal_tablet_w++;
-                }
-                if ($wpjobportal_category == 1 || $wpjobportal_category == 2 || $wpjobportal_category == 4 || $wpjobportal_category == 6) {
-                    $wpjobportal_tablet_w++;
-                }
-                if ($wpjobportal_jobtype == 1 || $wpjobportal_jobtype == 2 || $wpjobportal_jobtype == 4 || $wpjobportal_jobtype == 6) {
-                    $wpjobportal_tablet_w++;
-                }
-                if ($posteddate == 1 || $posteddate == 2 || $posteddate == 4 || $posteddate == 6) {
-                    $wpjobportal_tablet_w++;
-                }
-                if ($location == 1 || $location == 2 || $location == 4 || $location == 6) {
-                    $wpjobportal_tablet_w++;
-                }
-                //For mobile
-                $mobile_w = 1;
-                if (($wpjobportal_company == 1 || $wpjobportal_company == 2 || $wpjobportal_company == 4 || $wpjobportal_company == 6) || ($wpjobportal_companylogo == 1 || $wpjobportal_companylogo == 2 || $wpjobportal_companylogo == 4 || $wpjobportal_companylogo == 6)) {
-                    $mobile_w++;
-                }
-                if ($wpjobportal_category == 1 || $wpjobportal_category == 3 || $wpjobportal_category == 4 || $wpjobportal_category == 7) {
-                    $mobile_w++;
-                }
-                if ($wpjobportal_jobtype == 1 || $wpjobportal_jobtype == 3 || $wpjobportal_jobtype == 4 || $wpjobportal_jobtype == 7) {
-                    $mobile_w++;
-                }
-                if ($posteddate == 1 || $posteddate == 3 || $posteddate == 4 || $posteddate == 7) {
-                    $mobile_w++;
-                }
-                if ($location == 1 || $location == 3 || $location == 4 || $location == 7) {
-                    $mobile_w++;
-                }
-
-                if ($wpjobportal_company != 0 || $wpjobportal_companylogo != 0) {
-                    $wpjobportal_class = $this->getClasses($wpjobportal_companylogo);
-                    $wpjobportal_class .= $this->getClasses($wpjobportal_company);
-                    $wpjobportal_contentswrapperstart .= '<span id="wpjobportal_modulelist_titlebar" class="desktop_w-' . esc_attr($wpjobportal_desktop_w) . ' tablet_w-' . esc_attr($wpjobportal_tablet_w) . ' mobile_w-' . esc_attr($mobile_w) . ' ' . esc_attr($wpjobportal_class) . '">' . esc_html(__('Company', 'wp-job-portal')) . '</span>';
-                }
-                $wpjobportal_contentswrapperstart .= '<span id="wpjobportal_modulelist_titlebar" class="desktop_w-' . esc_attr($wpjobportal_desktop_w) . ' tablet_w-' . esc_attr($wpjobportal_tablet_w) . ' mobile_w-' . esc_attr($mobile_w) . ' visible-all">' . esc_html(__('Title', 'wp-job-portal')) . '</span>';
-                if ($wpjobportal_category != 0) {
-                    $wpjobportal_class = $this->getClasses($wpjobportal_category);
-                    $wpjobportal_contentswrapperstart .= '<span id="wpjobportal_modulelist_titlebar" class="desktop_w-' . esc_attr($wpjobportal_desktop_w) . ' tablet_w-' . esc_attr($wpjobportal_tablet_w) . ' mobile_w-' . esc_attr($mobile_w) . ' ' . esc_attr($wpjobportal_class) . '">' . esc_html(__('Category', 'wp-job-portal')) . '</span>';
-                }
-                if ($wpjobportal_jobtype == 1) {
-                    $wpjobportal_class = $this->getClasses($wpjobportal_jobtype);
-                    $wpjobportal_contentswrapperstart .= '<span id="wpjobportal_modulelist_titlebar" class="desktop_w-' . esc_attr($wpjobportal_desktop_w) . ' tablet_w-' . esc_attr($wpjobportal_tablet_w) . ' mobile_w-' . esc_attr($mobile_w) . ' ' . esc_attr($wpjobportal_class) . '">' . esc_html(__('Type', 'wp-job-portal')) . '</span>';
-                }
-                if ($location == 1) {
-                    $wpjobportal_class = $this->getClasses($location);
-                    $wpjobportal_contentswrapperstart .= '<span id="wpjobportal_modulelist_titlebar" class="desktop_w-' . esc_attr($wpjobportal_desktop_w) . ' tablet_w-' . esc_attr($wpjobportal_tablet_w) . ' mobile_w-' . esc_attr($mobile_w) . ' ' . esc_attr($wpjobportal_class) . '">' . esc_html(__('Location', 'wp-job-portal')) . '</span>';
-                }
-                if ($posteddate == 1) {
-                    $wpjobportal_class = $this->getClasses($posteddate);
-                    $wpjobportal_contentswrapperstart .= '<span id="wpjobportal_modulelist_titlebar" class="desktop_w-' . esc_attr($wpjobportal_desktop_w) . ' tablet_w-' . esc_attr($wpjobportal_tablet_w) . ' mobile_w-' . esc_attr($mobile_w) . ' ' . esc_attr($wpjobportal_class) . '">' . esc_html(__('Posted', 'wp-job-portal')) . '</span>';
-                }
-                $wpjobportal_contentswrapperstart .= '</div>';
-                $wpjobportal_wpdir = wp_upload_dir();
-                $wpjobportal_data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
-                if (isset($wpjobportal_jobs)) {
-                    foreach ($wpjobportal_jobs as $wpjobportal_job) {
-                        $wpjobportal_contents .= '<div id="wpjobportal_modulelist_databar"><span id="whiteback"></span>';
-                        if ($wpjobportal_company != 0 || $wpjobportal_companylogo != 0) {
-                            $wpjobportal_class = $this->getClasses($wpjobportal_company);
-                            $wpjobportal_class .= $this->getClasses($wpjobportal_companylogo);
-                            $wpjobportal_contents .= '<span id="wpjobportal_modulelist_databar" class="desktop_w-' . esc_attr($wpjobportal_desktop_w) . ' tablet_w-' . esc_attr($wpjobportal_tablet_w) . ' mobile_w-' . esc_attr($mobile_w) . ' ' . esc_attr($wpjobportal_class) . '">';
-                            if ($wpjobportal_companylogo != 0) {
-                                $wpjobportal_class = $this->getClasses($wpjobportal_companylogo);
-
-                                $c_l = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$wpjobportal_job->companyaliasid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
-
-                                $wpjobportal_logo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer');
-                                if($wpjobportal_job->logofilename != ''){
-                                    $wpjobportal_logo = $wpjobportal_wpdir['baseurl'] . '/' . $wpjobportal_data_directory . '/data/employer/comp_' . $wpjobportal_job->companyid . '/logo/' . $wpjobportal_job->logofilename;
-                                }
-                                $wpjobportal_contents .= '<a href=' . esc_url($c_l) . '><img  src="' . esc_url($wpjobportal_logo) . '"  /></a>';
-                            }
-                            if ($wpjobportal_company != 0) {
-                                $c_l = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$wpjobportal_job->companyaliasid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
-                                $wpjobportal_contents .= '<span id="themeanchor"><a class="anchor" href=' . esc_url($c_l) . '>' . esc_html($wpjobportal_job->companyname) . '</a></span>';
-                            }
-                            $wpjobportal_contents .= '</span>';
-                        }
-                        $an_link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'viewjob', 'wpjobportalid'=>$wpjobportal_job->jobaliasid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
-                        $wpjobportal_contents .= '<span id="wpjobportal_modulelist_databar" class="desktop_w-' . esc_attr($wpjobportal_desktop_w) . ' tablet_w-' . esc_attr($wpjobportal_tablet_w) . ' mobile_w-' . esc_attr($mobile_w) . ' visible-all">
-                                        <span id="themeanchor">
-                                            <a class="anchor" href="' . esc_url($an_link) . '">
-                                                ' . esc_html($wpjobportal_job->title) . '
-                                            </a>
-                                        </span>
-                                        </span>';
-                        if ($wpjobportal_category != 0) {
-                            $wpjobportal_class = $this->getClasses($wpjobportal_category);
-                            $wpjobportal_contents .= '<span id="wpjobportal_modulelist_databar" class="desktop_w-' . esc_attr($wpjobportal_desktop_w) . ' tablet_w-' . esc_attr($wpjobportal_tablet_w) . ' mobile_w-' . esc_attr($mobile_w) . ' ' . esc_attr($wpjobportal_class) . '">' . esc_html($wpjobportal_job->cat_title) . '</span>';
-                        }
-                        if ($wpjobportal_jobtype != 0) {
-                            $wpjobportal_class = $this->getClasses($wpjobportal_jobtype);
-                            $wpjobportal_contents .= '<span id="wpjobportal_modulelist_databar" class="desktop_w-' . esc_attr($wpjobportal_desktop_w) . ' tablet_w-' . esc_attr($wpjobportal_tablet_w) . ' mobile_w-' . esc_attr($mobile_w) . ' ' . esc_attr($wpjobportal_class) . '">' . $wpjobportal_job->jobtypetitle . '</span>';
-                        }
-                        if ($location != 0) {
-                            $wpjobportal_class = $this->getClasses($location);
-                            $wpjobportal_contents .= '<span id="wpjobportal_modulelist_databar" class="desktop_w-' . esc_attr($wpjobportal_desktop_w) . ' tablet_w-' . esc_attr($wpjobportal_tablet_w) . ' mobile_w-' . esc_attr($mobile_w) . ' ' . esc_attr($wpjobportal_class) . '">' . $wpjobportal_job->location . '</span>';
-                        }
-                        if ($posteddate != 0) {
-                            $wpjobportal_class = $this->getClasses($posteddate);
-                            $wpjobportal_contents .= '<span id="wpjobportal_modulelist_databar" class="desktop_w-' . esc_attr($wpjobportal_desktop_w) . ' tablet_w-' . esc_attr($wpjobportal_tablet_w) . ' mobile_w-' . esc_attr($mobile_w) . ' ' . esc_attr($wpjobportal_class) . '">' . date_i18n($wpjobportal_dateformat, strtotime($wpjobportal_job->created)) . '</span>';
-                        }
-                        $wpjobportal_contents .= '</div>';
-                    }
-                }
-
-                if ($sliding == 1) { // Sliding is enable
-                    $consectivecontent = '';
-                    for ($wpjobportal_i = 0; $wpjobportal_i < $consecutivesliding; $wpjobportal_i++) {
-                        $consectivecontent .= $wpjobportal_contents;
-                    }
-
-                    if ($slidingdirection == 1) { // UP
-                        $wpjobportal_contents = '<marquee id="mod_hotwpjobportal"  style="height:' . esc_attr($wpjobportal_moduleheight) . 'px;" direction="up" scrolldelay="' . $speed . '" scrollamount="1" onmouseover="this.stop();" onmouseout="this.start()";>' . $consectivecontent . '</marquee>';
-                    }
-                }
-                $wpjobportal_contentswrapperend = '</div>';
-            } else { //box style
-                $wpjobportal_jobwidthclass = "modjob" . $wpjobportal_jobsinrow;
-                $wpjobportal_jobtabwidthclass = "modjobtab" . $wpjobportal_jobsinrowtab;
-                $wpjobportal_contentswrapperstart .= '<div id="wpjobportal_module_wrapper" class="' . esc_attr($wpjobportal_moduleName) . '" >';
-                if ($wpjobportal_showtitle == 1) {
-                    $wpjobportal_contentswrapperstart .= '
-                        <div id="tp_heading" class="wjportal-mod-heading">
-                            ' . esc_html($title) . '
-                        </div>
-                    ';
-                }
-                $wpjobportal_inlineCSS = 'margin-top:' . esc_attr($wpjobportal_jobmargintop) . 'px;margin-left:' . esc_attr($wpjobportal_jobmarginleft) . 'px;';
-                $wpjobportal_wpdir = wp_upload_dir();
-                $wpjobportal_data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
-                if (isset($wpjobportal_jobs)) {
-                    foreach ($wpjobportal_jobs as $wpjobportal_job) {
-                        $wpjobportal_contents .= '<div id="wpjobportal_module_wrap" class="' . esc_attr($wpjobportal_jobwidthclass) . ' ' . esc_attr($wpjobportal_jobtabwidthclass) . ' wjportal-job-mod">
-                                      <div id="wpjobportal_module">';
-                        $an_link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'viewjob', 'wpjobportalid'=>$wpjobportal_job->jobaliasid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
-                        $wpjobportal_dataclass = 'data100';
-                        if ($wpjobportal_companylogo != 0) {
-                            $c_l = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$wpjobportal_job->companyaliasid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
-                            if ($wpjobportal_logodatarow == 1) { // Combine
-                                $wpjobportal_logoclass = "comp40";
-                                $wpjobportal_dataclass = "data60";
-                                $wpjobportal_logocss = 'width:' . esc_attr($wpjobportal_companylogowidth) . 'px;';
-                            } else {
-                                $wpjobportal_logoclass = "comp100";
-                                $wpjobportal_dataclass = "data100";
-                                $wpjobportal_logocss = 'height:' . esc_attr($wpjobportal_companylogoheight) . 'px;';
-                            }
-                            $wpjobportal_logo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer');
-                            if($wpjobportal_job->logofilename != ''){
-                                $wpjobportal_logo = $wpjobportal_wpdir['baseurl'] . '/' . $wpjobportal_data_directory . '/data/employer/comp_' . $wpjobportal_job->companyid . '/logo/' . $wpjobportal_job->logofilename;
-                            }
-
-                            /*$wpjobportal_logoclass .= $this->getClasses($wpjobportal_companylogo);
-                            $wpjobportal_contents .= '
-                                                <div id="wpjobportal_module_data_fieldwrapper" class="' . $wpjobportal_logoclass . ' wjportal-job-logo" >
-                                                    <a href=' . esc_url($c_l) . '><img  src="' . esc_url($wpjobportal_logo) . '" /></a>
-                                                </div>
-                                              ';*/
-                        }
-                        $wpjobportal_contents .= '<div class="wjportal-job-cont">';
-                        $wpjobportal_contents .= '<div id="wpjobportal_module_heading" class="wjportal-job-data wjportal-job-title">
-                                        <a class="wjportal-jobname" href="' . esc_url($an_link) . '">
-                                            ' . esc_html($wpjobportal_job->title) . '
-                                        </a>
-                                      </div>';
-                        $wpjobportal_contents .= '<div id="wpjobportal_module_data_fieldwrapper" class="' . esc_attr($wpjobportal_dataclass) . ' visible-all">';
-                        $colwidthclass = esc_attr('modcolwidth') . esc_attr($wpjobportal_datacolumn);
-                        if ($wpjobportal_company != 0) {
-                            $wpjobportal_class = $this->getClasses($wpjobportal_company);
-                            $c_l = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$wpjobportal_job->companyaliasid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
-                            $wpjobportal_contents .= '
-                                                <div id="wpjobportal_module_data_fieldwrapper" class="' . esc_attr($colwidthclass) . esc_attr($wpjobportal_class) . ' wjportal-job-data">
-                                                    <span id="wpjobportal_module_data_fieldtitle" class="wjportal-job-data-tit">' . esc_html(__('Company', 'wp-job-portal')) . ' : </span>
-                                                    <span id="wpjobportal_module_data_fieldvalue" class="wjportal-job-data-val">
-                                                        <a class="wjportal-compname" href=' . esc_url($c_l) . '>' . esc_html($wpjobportal_job->companyname) . '</a>
-                                                    </span>
-                                                </div>
-                                              ';
-                        }
-                        if ($wpjobportal_category != 0) {
-                            $wpjobportal_class = $this->getClasses($wpjobportal_category);
-                            $wpjobportal_contents .= '
-                                                <div id="wpjobportal_module_data_fieldwrapper" class="' . esc_attr($colwidthclass) . esc_attr($wpjobportal_class) . ' wjportal-job-data">
-                                                    <span id="wpjobportal_module_data_fieldtitle" class="wjportal-job-data-tit">' . esc_html(__('Category', 'wp-job-portal')) . ' : </span>
-                                                    <span id="wpjobportal_module_data_fieldvalue" class="wjportal-job-data-val">' . esc_html($wpjobportal_job->cat_title) . '</span>
-                                                </div>
-                                              ';
-                        }
-                        if ($wpjobportal_jobtype != 0) {
-                            $wpjobportal_class = $this->getClasses($wpjobportal_jobtype);
-                            $wpjobportal_contents .= '
-                                                <div id="wpjobportal_module_data_fieldwrapper" class="' . esc_attr($colwidthclass) . esc_attr($wpjobportal_class) . ' wjportal-job-data">
-                                                    <span id="wpjobportal_module_data_fieldtitle" class="wjportal-job-data-tit">' . esc_html(__('Type', 'wp-job-portal')) . ' : </span>
-                                                    <span id="wpjobportal_module_data_fieldvalue" class="wjportal-job-data-val">' . $wpjobportal_job->jobtypetitle . '</span>
-                                                </div>
-                                              ';
-                        }
-                        if ($location != 0) {
-                            $wpjobportal_contents .= '
-                                                <div id="wpjobportal_module_data_fieldwrapper" class="' . esc_attr($colwidthclass) . esc_attr($wpjobportal_class) . ' wjportal-job-data">
-                                                    <span id="wpjobportal_module_data_fieldtitle" class="wjportal-job-data-tit">' . esc_html(__('Location', 'wp-job-portal')) . ' : </span>
-                                                    <span id="wpjobportal_module_data_fieldvalue" class="wjportal-job-data-val">' . $wpjobportal_job->location . '</span>
-                                                </div>
-                                              ';
-                        }
-                        if ($posteddate != 0) {
-                            $wpjobportal_class = $this->getClasses($posteddate);
-                            $wpjobportal_contents .= '
-                                                <div id="wpjobportal_module_data_fieldwrapper" class="' . esc_attr($colwidthclass) . esc_attr($wpjobportal_class) . ' wjportal-job-data">
-                                                    <span id="wpjobportal_module_data_fieldtitle" class="wjportal-job-data-tit">' . esc_html(__('Posted', 'wp-job-portal')) . ' : </span>
-                                                    <span id="wpjobportal_module_data_fieldvalue" class="wjportal-job-data-val">' . date_i18n($wpjobportal_dateformat, strtotime($wpjobportal_job->created)) . '</span>
-                                                </div>
-                                              ';
-                        }
-                        $wpjobportal_contents .= '</div>
-                                </div>
-                            </div>
-                            </div>';
-                    }
-                }
-                $wpjobportal_contentswrapperend = '</div>';
-            }
-            return $wpjobportal_contentswrapperstart . $wpjobportal_contents . $wpjobportal_contentswrapperend;
-        }
-    }
-
     function getClasses($for) {
         $wpjobportal_class = '';
         switch ($for) {
@@ -707,7 +423,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                     $wpjobportal_contentswrapperstart .= '<span id="wpjobportal_modulelist_titlebar" class="desktop_w-' . esc_attr($wpjobportal_desktop_w) . ' tablet_w-' . esc_attr($wpjobportal_tablet_w) . ' mobile_w-' . esc_attr($mobile_w) . ' ' . esc_attr($wpjobportal_class) . '">' . esc_html(__('Photo', 'wp-job-portal')) . '</span>';
                 }
                 if ($wpjobportal_applicationtitle != 0) {
-                    $wpjobportal_contentswrapperstart .= '<span id="wpjobportal_modulelist_titlebar" class="desktop_w-' . esc_attr($wpjobportal_desktop_w) . ' tablet_w-' . esc_attr($wpjobportal_tablet_w) . ' mobile_w-' . esc_attr($mobile_w) . ' visible-all">' . esc_html(__('Application title', 'wp-job-portal')) . '</span>';
+                    $wpjobportal_contentswrapperstart .= '<span id="wpjobportal_modulelist_titlebar" class="desktop_w-' . esc_attr($wpjobportal_desktop_w) . ' tablet_w-' . esc_attr($wpjobportal_tablet_w) . ' mobile_w-' . esc_attr($mobile_w) . ' visible-all">' . esc_html(__('Application Title', 'wp-job-portal')) . '</span>';
                 }
                 if ($wpjobportal_name != 0) {
                     $wpjobportal_class = $this->getClasses($wpjobportal_name);
@@ -1017,7 +733,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                 //     $wpjobportal_html .= '<div id="tp_heading" class="wjportal-mod-heading">'.esc_html($title).'</div>';
                 // }
                 $wpjobportal_html .= '<div id="wpjobportal-data-wrapper" class="'.esc_attr($wpjobportal_classname).' wjportal-job-by">';
-                if (isset($wpjobportal_jobs)) {
+                if (isset($wpjobportal_jobs) && is_array($wpjobportal_jobs)) {
                     foreach ($wpjobportal_jobs as $wpjobportal_job) {
                         if($wpjobportal_jobfor == 1) //Types
                             $anchor = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'jobs', 'jobtype'=>$wpjobportal_job->aliasid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
@@ -1437,7 +1153,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                                                         <div class="wjportal-jobs-salary">
                                                             '. esc_html(__("0 $",'wp-job-portal')) .'
                                                             <span class="wjportal-salary-type">
-                                                                '. esc_html(__(" / Per Month", 'wp-job-portal')) .'
+                                                                '. " / " .esc_html(__("Per Month", 'wp-job-portal')) .'
                                                             </span>
                                                         </div>
                                                     </div>
@@ -1483,7 +1199,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                         if ($wpjobportal_company->status == 1) {
                             $wpjobportal_statusCheck = esc_html(__('Approved', 'wp-job-portal'));
                         } elseif ($wpjobportal_company->status == 0) {
-                            $wpjobportal_statusCheck = esc_html(__('Waiting for approval', 'wp-job-portal'));
+                            $wpjobportal_statusCheck = esc_html(__('Waiting For Approval', 'wp-job-portal'));
                         }elseif($wpjobportal_company->status == 2){
                              $wpjobportal_statusCheck = esc_html(__('Pending For Approval of Payment', 'wp-job-portal'));
                         }elseif ($wpjobportal_company->status == 3) {
@@ -1553,7 +1269,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
             $wpjobportal_html = '<div id="tp_heading">
                         <span id="tp_headingtext">
                                 <span id="tp_headingtext_left"></span>
-                                <span id="tp_headingtext_center">' . esc_html(__("No Record Found",'wp-job-portal')) . '</span>
+                                <span id="tp_headingtext_center">' . esc_html(__("No Records Found",'wp-job-portal')) . '</span>
                                 <span id="tp_headingtext_right"></span>
                         </span>
                     </div>';
@@ -1645,7 +1361,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
             $wpjobportal_html = '<div id="tp_heading">
                         <span id="tp_headingtext">
                                 <span id="tp_headingtext_left"></span>
-                                <span id="tp_headingtext_center">' . esc_html(__("No Record Found",'wp-job-portal')) . '</span>
+                                <span id="tp_headingtext_center">' . esc_html(__("No Records Found",'wp-job-portal')) . '</span>
                                 <span id="tp_headingtext_right"></span>
                         </span>
                     </div>';
@@ -1778,7 +1494,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                         </div>
                         <div class="wjportal-form-2-btn">
                             <a class="anchor wjportal-form-btn wjportal-form-cancel-btn" href="' . esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobsearch', 'wpjobportallt'=>'jobsearch', 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))) . '">
-                            ' . esc_html(__('Advance Search', 'wp-job-portal')) . '
+                            ' . esc_html(__('Advanced Search', 'wp-job-portal')) . '
                             </a>
                         </div>
                     </div>

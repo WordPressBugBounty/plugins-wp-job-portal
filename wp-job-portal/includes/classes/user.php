@@ -109,28 +109,6 @@ class WPJOBPORTALuser {
         }
     }
 
-    function getJobseekerLogo(){
-        if($this->isjobseeker()==true){
-            if(is_numeric($this->currentuser->uid)){
-                $query = "SELECT resume.id,resume.photo
-                FROM " . wpjobportal::$_db->prefix . "wj_portal_resume AS resume  
-                WHERE resume.status != 0 AND resume.uid=".esc_sql($this->currentuser->uid)." AND resume.photo !='' LIMIT 1 ";
-                return wpjobportal::$_db->get_row($query);
-            }
-        }
-        return false;
-    }
-    function getEmployerLogo(){
-        if($this->isemployer()==true){
-            if(is_numeric($this->currentuser->uid)){
-                $query = "SELECT company.id,company.name,company.logofilename
-                FROM " . wpjobportal::$_db->prefix . "wj_portal_companies AS company  
-                WHERE company.status != 0 AND company.uid=".esc_sql($this->currentuser->uid)." AND company.logofilename !='' LIMIT 1 ";
-                return wpjobportal::$_db->get_row($query);
-            }
-        }
-        return false;
-    }
     function isemployer() {
         if ($this->currentuser == null) { // current user is guest
             return false;
@@ -214,13 +192,6 @@ class WPJOBPORTALuser {
         }else{
             $wpjobportal_uid = $this->uid();
         }
-        $wpjobportal_credits = WPJOBPORTALIncluder::getJSModel('user')->getMyAvailableCredits($wpjobportal_uid);
-        return $wpjobportal_credits;
-    }
-
-    function getAvailableCreditsForUser($wpjobportal_uid) {
-        if (!is_numeric($wpjobportal_uid))
-            return false;
         $wpjobportal_credits = WPJOBPORTALIncluder::getJSModel('user')->getMyAvailableCredits($wpjobportal_uid);
         return $wpjobportal_credits;
     }

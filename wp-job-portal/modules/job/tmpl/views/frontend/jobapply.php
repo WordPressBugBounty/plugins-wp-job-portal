@@ -31,7 +31,7 @@ $wpjobportal_captcha_quick_apply  = wpjobportal::$_config->getConfigurationByCon
                 <?php  //do_action('wpjobportal_addons_quick_apply_form');
                     echo '<div class="wjportal-form-wrp wpjobportal-quickapply-form" >';
                         echo '<div class="wjportal-job-sec-title" >';
-                            echo esc_html(__('Apply to the Job', 'wp-job-portal'));
+                            echo esc_html(__('Apply On The Job', 'wp-job-portal'));
                         echo '</div>';
                         $wpjobportal_show_job_apply_redirect_link_only = 0;
                         if( !empty($wpjobportal_job) && $wpjobportal_job->jobapplylink == 1 && !empty($wpjobportal_job->joblink)){ // hadnling error in case of employer job detail
@@ -114,8 +114,8 @@ $wpjobportal_captcha_quick_apply  = wpjobportal::$_config->getConfigurationByCon
                                                     </div>';
                                                 }else{ // no cover letter message and add cover letter link
                                                     echo '<div class="job-detail-jobapply-message-wrap">';
-                                                        echo '<span class="job-detail-jobapply-message-msg"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/not-loggedin.png" />' . esc_html(__('No Cover Letter!', 'wp-job-portal')) . '</span>';
-                                                        echo '<a class="job-detail-jobapply-message-link" href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'coverletter', 'wpjobportallt'=>'addcoverletter'))).'" class="coverlettteraddlink" target="_blank">' . esc_html(__('Add Cover Lettter', 'wp-job-portal')) . '</a>';
+                                                        echo '<span class="job-detail-jobapply-message-msg"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/not-loggedin.png" />' . esc_html(__('No Cover Letter', 'wp-job-portal')) . '</span>';
+                                                        echo '<a class="job-detail-jobapply-message-link" href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'coverletter', 'wpjobportallt'=>'addcoverletter'))).'" class="coverlettteraddlink" target="_blank">' . esc_html(__('Add Cover Letter', 'wp-job-portal')) . '</a>';
                                                     echo '</div>';
                                                 }
                                             }
@@ -158,7 +158,7 @@ $wpjobportal_captcha_quick_apply  = wpjobportal::$_config->getConfigurationByCon
                                                 // Do not show any package UI or messages. Keep $wpjobportal_hide_apply_btn as-is (default behavior).
                                                 // Intentionally empty: form continues without package-related UI.
                                             } else {
-                                                // Package system exists for this role -> enforce package logic (unchanged behaviour)
+                                                // Package system exists for this role -> enforce package logic (unchanged behavior)
                                                 $wpjobportal_userpackages = array(); // array to handle user packages in select package drop down
                                                 $wpjobportal_userpackage = apply_filters('wpjobportal_addons_credit_get_Packages_user', false, $wpjobportal_uid, 'jobapply');
 
@@ -214,19 +214,19 @@ $wpjobportal_captcha_quick_apply  = wpjobportal::$_config->getConfigurationByCon
                                                     $wpjobportal_paymentconfig = wpjobportal::$_wpjppaymentconfig->getPaymentConfigFor('paypal,stripe,woocommerce',true);
                                                     $wpjobportal_default_selected_payment_method = '';
                                                     if($wpjobportal_paymentconfig['isenabled_paypal'] == 1){ // paypal as a payment method is enabled
-                                                        $wpjobportal_payment_methods_array[1] = '<img src="'. esc_url(WPJOBPORTAL_IMAGE).'/paypal.jpg" alt="'. esc_attr(__("paypal","wp-job-portal")).'" title="'. esc_attr(__("paypal","wp-job-portal")).'" /> '. esc_html(__('PayPal', 'wp-job-portal'));
+                                                        $wpjobportal_payment_methods_array[1] = '<img src="'. esc_url(WPJOBPORTAL_IMAGE).'/paypal.jpg" alt="'. esc_attr(__("PayPal","wp-job-portal")).'" title="'. esc_attr(__("PayPal","wp-job-portal")).'" /> '. esc_html(__('PayPal', 'wp-job-portal'));
                                                         $wpjobportal_default_selected_payment_method = 1;
                                                     }
                                                     if($wpjobportal_paymentconfig['isenabled_woocommerce'] == 1) { // woo commerce as a payment method is enabled
                                                         // uncomment this line
                                                         // if(class_exists( 'WooCommerce' )){
-                                                            $wpjobportal_payment_methods_array[2] = '<img src="'. esc_url(WPJOBPORTAL_IMAGE).'/woo.jpg" alt="'. esc_attr(__("woocommerce","wp-job-portal")).'" title="'. esc_attr(__("woocommerce","wp-job-portal")).'" /> '. esc_html(__('Woocommerce', 'wp-job-portal'));
+                                                            $wpjobportal_payment_methods_array[2] = '<img src="'. esc_url(WPJOBPORTAL_IMAGE).'/woo.jpg" alt="'. esc_attr(__("WooCommerce","wp-job-portal")).'" title="'. esc_attr(__("WooCommerce","wp-job-portal")).'" /> '. esc_html(__('WooCommerce', 'wp-job-portal'));
                                                             if($wpjobportal_default_selected_payment_method == '')
                                                                 $wpjobportal_default_selected_payment_method = 2;
                                                         // }
                                                     }
                                                     if($wpjobportal_paymentconfig['isenabled_stripe'] == 1) { // stripe as a payment method is enabled
-                                                        $wpjobportal_payment_methods_array[3] = '<img src="'. esc_url(WPJOBPORTAL_IMAGE).'/stripe.jpg" alt="'. esc_attr(__("stripe","wp-job-portal")).'" title="'. esc_attr(__("stripe","wp-job-portal")).'" /> '. esc_html(__('Stripe', 'wp-job-portal'));
+                                                        $wpjobportal_payment_methods_array[3] = '<img src="'. esc_url(WPJOBPORTAL_IMAGE).'/stripe.jpg" alt="'. esc_attr(__("Stripe","wp-job-portal")).'" title="'. esc_attr(__("Stripe","wp-job-portal")).'" /> '. esc_html(__('Stripe', 'wp-job-portal'));
                                                         if($wpjobportal_default_selected_payment_method == '')
                                                             $wpjobportal_default_selected_payment_method = 3;
                                                     }
@@ -249,7 +249,7 @@ $wpjobportal_captcha_quick_apply  = wpjobportal::$_config->getConfigurationByCon
                                     $wpjobportal_hide_login_and_apply_btn = 0; // show login and apply button
                                 }
                             }else{ // wp user but not job portal user
-                                echo '<div class="frontend error"><p>'.esc_html(__('You do not have any role.', 'wp-job-portal')).'</p></div>';
+                                echo '<div class="frontend error"><p>'.esc_html(__('You do not have any role', 'wp-job-portal')).'</p></div>';
                                 $wpjobportal_hide_apply_btn = 1;
                                 $wpjobportal_hide_select_role_btn = 0; // show select role button
                             }
@@ -259,7 +259,7 @@ $wpjobportal_captcha_quick_apply  = wpjobportal::$_config->getConfigurationByCon
                                 $wpjobportal_btn_label  = __('Apply Now', 'wp-job-portal');
                                 // if payment method array is not empty show select package drop down and change button text
                                 if(!empty($wpjobportal_payment_methods_array) && $wpjobportal_show_job_apply_redirect_link_only == 0){
-                                    $wpjobportal_btn_label  = __('Proceed to payment', 'wp-job-portal');
+                                    $wpjobportal_btn_label  = __('Proceed To Payment', 'wp-job-portal');
                                     echo '
                                     <div class="wjportal-form-row">
                                         <div class="wjportal-form-title">
@@ -301,7 +301,7 @@ $wpjobportal_captcha_quick_apply  = wpjobportal::$_config->getConfigurationByCon
                                     </div>';
                                     $wpjobportal_visitorapplylink = wp_nonce_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobapply', 'action'=>'wpjobportaltask', 'task'=>'jobapplyasvisitor', 'wpjobportalid-jobid'=>$wpjobportal_jobid)),'wpjobportal_job_apply_nonce') ;
                                     echo '<div class="wjportal-form-btn-wrp wjportal-apply-as-visitor-btn-wrap">
-                                        <a href="'.esc_url($wpjobportal_visitorapplylink).'" class="wjportal-apply-as-visitor-btn" >'.esc_html__('Apply as visitor', 'wp-job-portal').'</a>
+                                        <a href="'.esc_url($wpjobportal_visitorapplylink).'" class="wjportal-apply-as-visitor-btn" >'.esc_html__('Apply As Visitor', 'wp-job-portal').'</a>
                                     </div>';
                                 }
                                 $wpjobportal_btn_visible = 1;
@@ -325,7 +325,7 @@ $wpjobportal_captcha_quick_apply  = wpjobportal::$_config->getConfigurationByCon
                             if($wpjobportal_show_proceed_to_payment_button == 1){ // show proceed to payment button to handle per listing mode (mainly stripe payment case)
                                 $wpjobportal_buy_packages_link =  wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'purchasehistory','wpjobportallt'=>'payjobapply','wpjobportalid'=>$wpjobportal_jobid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
                                 echo '<div class="wjportal-form-btn-wrp wjportal-login-to-apply-btn-wrap">
-                                    <a href="'.esc_url($wpjobportal_buy_packages_link).'" target="_blank" class="wjportal-login-to-apply-btn" >'.esc_html(__('Proceed to payment', 'wp-job-portal')).'</a>
+                                    <a href="'.esc_url($wpjobportal_buy_packages_link).'" target="_blank" class="wjportal-login-to-apply-btn" >'.esc_html(__('Proceed To Payment', 'wp-job-portal')).'</a>
                                 </div>';
                                 $wpjobportal_btn_visible = 1;
                             }

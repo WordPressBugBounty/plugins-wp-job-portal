@@ -576,7 +576,7 @@ class WPJOBPORTALactivitylogModel {
         $wpjobportal_username = $this->getNameFromUid($wpjobportal_uid);
         $wpjobportal_path2 = esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userdetail&id='.esc_attr($wpjobportal_uid)));
         if(current_user_can('manage_options')){
-            $wpjobportal_html2 = esc_html(__('Administrator','wp-job-portal'));
+            $wpjobportal_html2 = esc_html(__('Admin','wp-job-portal'));
         }else{
             $wpjobportal_html2 = "<a href=" . $wpjobportal_path2 . " target='".esc_attr($wpjobportal_target)."''><strong>" . esc_html($wpjobportal_username) . "</strong></a>";
         }

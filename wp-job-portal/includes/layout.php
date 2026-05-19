@@ -38,26 +38,7 @@ class WPJOBPORTALlayout {
                         <img class="wjportal-error-msg-image" src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/errors/no-record.png" alt="'.esc_attr(__("no record", "wp-job-portal")).'" />
                     </div>
                     <div class="wjportal-error-msg-txt">
-                        '.esc_html(__("No record found !...","wp-job-portal")).'
-                    </div>
-                </div>
-        ';
-        echo wp_kses($wpjobportal_html, WPJOBPORTAL_ALLOWED_TAGS);
-    }
-
-    static function getNoRecordFoundInSpecialCase() {
-        if (is_admin()) {
-            $wpjobportal_link = 'admin.php?page=wpjobportal_wpjobportal';
-        } else {
-            $wpjobportal_link = get_the_permalink();
-        }
-        $wpjobportal_html = '
-                <div class="wjportal-error-messages-wrp">
-                    <div class="wjportal-error-msg-image-wrp">
-                        <img class="wjportal-error-msg-image" src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/errors/no-record.png" alt="'.esc_attr(__("no record", "wp-job-portal")).'" />
-                    </div>
-                    <div class="wjportal-error-msg-txt">
-                        ' . esc_html(__('No record found !...', 'wp-job-portal')) . '
+                        '.esc_html(__("No Records Found","wp-job-portal")).'
                     </div>
                 </div>
         ';
@@ -76,7 +57,7 @@ class WPJOBPORTALlayout {
                         ' . $offline_text . '
                     </div>
                     <div class="wjportal-error-msg-txt2">
-                        '.esc_html(__('Unfortunately sytem is offline for a bit of maintenance right now. But soon we will be up.','wp-job-portal')).'
+                        '.esc_html(__('Unfortunately system is offline for a bit of maintenance right now. But soon we will be up.','wp-job-portal')).'
                     </div>
                 </div>
                 </div>
@@ -119,7 +100,7 @@ class WPJOBPORTALlayout {
     static function getRegistrationDisabled() {
         $wpjobportal_html = '<div class="wjportal-error-messages-wrp">
                     <div class="wjportal-error-msg-image-wrp">
-                        <img class="wjportal-error-msg-image" src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/errors/register-banned.png" alt="'.esc_attr(__("register banned", "wp-job-portal")).'" />
+                        <img class="wjportal-error-msg-image" src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/errors/register-banned.png" alt="'.esc_attr(__("registration banned", "wp-job-portal")).'" />
                     </div>
                     <div class="wjportal-error-msg-txt">
                         ' . esc_html(__('Registration is disabled by admin, please contact to system administrator !...', 'wp-job-portal')) . '
@@ -139,7 +120,7 @@ class WPJOBPORTALlayout {
                 $wpjobportal_login_register_link = 1;
                 break;
             case '2': // User is job seeker
-                $wpjobportal_description = esc_html(__('Jobseeker not allowed to perform this action', 'wp-job-portal'));
+                $wpjobportal_description = esc_html(__('Job Seeker not allowed to perform this action', 'wp-job-portal'));
                 break;
             case '3': // User is employer
                 $wpjobportal_description = esc_html(__('Employer not allowed to perform this action', 'wp-job-portal'));
@@ -169,10 +150,10 @@ class WPJOBPORTALlayout {
                 $wpjobportal_description = esc_html(__('Buy New Package','wp-job-portal'));
                 break;
             case '16':
-                $wpjobportal_description = esc_html(__('You are not allowed to add more than one','wp-job-portal').' '.wpjobportal::wpjobportal_getVariableValue($wpjobportal_linktext).' '.esc_html__('contact adminstrator','wp-job-portal'));
+                $wpjobportal_description = esc_html(__('You are not allowed to add more than one','wp-job-portal').' '.wpjobportal::wpjobportal_getVariableValue($wpjobportal_linktext).' '.esc_html__('Contact Administrator','wp-job-portal'));
                 break;
             case '16':
-                $wpjobportal_description = esc_html(__('Payment is not made against this job contact adminstrator','wp-job-portal'));
+                $wpjobportal_description = esc_html(__('Payment is not made against this job contact administrator','wp-job-portal'));
                 break;
             case '18':
                 $wpjobportal_description = esc_html(__('Addon Page Not Found','wp-job-portal'));
@@ -188,7 +169,7 @@ class WPJOBPORTALlayout {
         $wpjobportal_html = '<div class="wjportal-main-up-wrapper">
                 <div class="wjportal-error-messages-wrp">
                     <div class="wjportal-error-msg-image-wrp">
-                        <img class="wjportal-error-msg-image" src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/errors/not-allowed.png" alt="'.esc_attr(__("not allowed", "wp-job-portal")).'" />
+                        <img class="wjportal-error-msg-image" src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/errors/not-allowed.png" alt="'.esc_attr(__("Not Allowed", "wp-job-portal")).'" />
                     </div>
                     <div class="wjportal-error-msg-txt">
                         ' . $wpjobportal_description . ' !...
@@ -226,7 +207,7 @@ class WPJOBPORTALlayout {
         $wpjobportal_html = '<div class="wjportal-main-up-wrapper">
                     <div class="wjportal-error-messages-wrp">
                         <div class="wjportal-error-msg-txt">
-                            ' . esc_html(__('You are already logged in !...', 'wp-job-portal')) . '
+                            ' . esc_html(__('You are already logged in', 'wp-job-portal')) . '
                         </div>
                         <div class="wjportal-error-msg-actions-wrp">';
         $wpjobportal_html .= '<a class="wjportal-error-msg-act-btn wjportal-error-msg-act-login-btn" href="' . esc_url($wpjobportal_link). '">' . esc_html(__('Logout','wp-job-portal')) . '</a>';

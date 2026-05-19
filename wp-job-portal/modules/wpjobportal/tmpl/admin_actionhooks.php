@@ -109,7 +109,7 @@ $hook_data = [
             ],
             'returns'     => [ 'type' => 'string', 'desc' => __( 'Modified SQL query string.', 'wp-job-portal' ) ],
             'example'     => "add_filter( 'wpjobportal_job_search_query_args', 'wpjb_custom_job_search', 10, 2 );\nfunction wpjb_custom_job_search( \$query, \$vars ) {\n    return \$query;\n}",
-            'notes'       => __( 'Used for modifying frontend job search behaviour.', 'wp-job-portal' ),
+            'notes'       => __( 'Used for modifying front end job search behavior.', 'wp-job-portal' ),
         ],
         [
             'id'          => 'google_job_schema',
@@ -212,7 +212,7 @@ $hook_data = [
             'name'        => __( 'Resume Search Query Args', 'wp-job-portal' ),
             'action'      => 'wpjobportal_resume_search_query_args',
             'type'        => 'filter',
-            'description' => __( 'Modifies the SQL WHERE clause during a frontend resume search, allowing Elasticsearch integrations.', 'wp-job-portal' ),
+            'description' => __( 'Modifies the SQL WHERE clause during a front end resume search, allowing Elasticsearch integrations.', 'wp-job-portal' ),
             'params'      => [
                 [ 'name' => '$wpjobportal_inquery', 'type' => 'string', 'desc' => __( 'The current SQL query string.', 'wp-job-portal' ) ],
                 [ 'name' => '$search_args', 'type' => 'array', 'desc' => __( 'Array of applied search filters.', 'wp-job-portal' ) ],
@@ -278,7 +278,7 @@ $hook_data = [
             'type'        => 'action',
             'description' => __( 'Triggers when a candidate uses the "Quick Apply" bypass form.', 'wp-job-portal' ),
             'params'      => [
-                [ 'name' => '$wpjobportal_job_apply_id', 'type' => 'int', 'desc' => __( 'Application record ID.', 'wp-job-portal' ) ],
+                [ 'name' => '$wpjobportal_job_apply_id', 'type' => 'int', 'desc' => __( 'Application ID.', 'wp-job-portal' ) ],
                 [ 'name' => '$wpjobportal_jobid', 'type' => 'int', 'desc' => __( 'Job ID.', 'wp-job-portal' ) ],
                 [ 'name' => '$wpjobportal_data', 'type' => 'array', 'desc' => __( 'Submitted form data.', 'wp-job-portal' ) ],
                 [ 'name' => '$_FILES', 'type' => 'array', 'desc' => __( 'Uploaded files array.', 'wp-job-portal' ) ],
@@ -295,7 +295,7 @@ $hook_data = [
             'type'        => 'action',
             'description' => __( 'Triggers specifically for unauthenticated (guest) applications.', 'wp-job-portal' ),
             'params'      => [
-                [ 'name' => '$wpjobportal_job_apply_id', 'type' => 'int', 'desc' => __( 'Application record ID.', 'wp-job-portal' ) ],
+                [ 'name' => '$wpjobportal_job_apply_id', 'type' => 'int', 'desc' => __( 'Application ID.', 'wp-job-portal' ) ],
                 [ 'name' => '$wpjobportal_jobid', 'type' => 'int', 'desc' => __( 'Job ID.', 'wp-job-portal' ) ],
                 [ 'name' => '$wpjobportal_data', 'type' => 'array', 'desc' => __( 'Guest data array.', 'wp-job-portal' ) ],
             ],
@@ -405,7 +405,7 @@ $hook_data = [
             'description' => __( 'Fires on company approve/reject state changes.', 'wp-job-portal' ),
             'params'      => [
                 [ 'name' => '$wpjobportal_id', 'type' => 'int', 'desc' => __( 'Company ID.', 'wp-job-portal' ) ],
-                [ 'name' => '$old_status', 'type' => 'string', 'desc' => __( 'Old status.', 'wp-job-portal' ) ],
+                [ 'name' => '$old_status', 'type' => 'string', 'desc' => __( 'Old Status.', 'wp-job-portal' ) ],
                 [ 'name' => '$new_status', 'type' => 'string', 'desc' => __( 'New status.', 'wp-job-portal' ) ],
             ],
             'example'     => "add_action( 'wpjobportal_company_status_transition', 'wpjb_company_status_change', 10, 3 );\nfunction wpjb_company_status_change( \$id, \$old, \$new ) {\n    // Logic\n}",
@@ -441,7 +441,7 @@ $hook_data = [
             ],
             'returns'     => [ 'type' => 'string', 'desc' => __( 'Modified query string.', 'wp-job-portal' ) ],
             'example'     => "add_filter( 'wpjobportal_company_search_query_args', 'wpjb_custom_company_search', 10, 2 );\nfunction wpjb_custom_company_search( \$query, \$filters ) {\n    return \$query;\n}",
-            'notes'       => __( 'Used for modifying frontend company search behaviour.', 'wp-job-portal' ),
+            'notes'       => __( 'Used for modifying front end company search behavior.', 'wp-job-portal' ),
         ],
     ],
 
@@ -456,7 +456,7 @@ $hook_data = [
             'description' => __( 'Fires when an admin manually suspends or activates an account.', 'wp-job-portal' ),
             'params'      => [
                 [ 'name' => '$wpjobportal_userid', 'type' => 'int', 'desc' => __( 'User ID.', 'wp-job-portal' ) ],
-                [ 'name' => '$old_status', 'type' => 'string', 'desc' => __( 'Old status.', 'wp-job-portal' ) ],
+                [ 'name' => '$old_status', 'type' => 'string', 'desc' => __( 'Old Status.', 'wp-job-portal' ) ],
                 [ 'name' => '$new_status', 'type' => 'string', 'desc' => __( 'New status.', 'wp-job-portal' ) ],
             ],
             'example'     => "add_action( 'wpjobportal_user_status_transition', 'wpjb_suspend_user_logic', 10, 3 );\nfunction wpjb_suspend_user_logic( \$user_id, \$old, \$new ) {\n    // Suspend logic\n}",
@@ -500,12 +500,12 @@ $hook_data = [
             'id'          => 'ai_generation_prompt',
             'addon'       => 'core',
             'addon_name'       => 'core',
-            'name'        => __( 'AI Content Prompt', 'wp-job-portal' ),
+            'name'        => __( 'AI Prompt', 'wp-job-portal' ),
             'action'      => 'wpjobportal_ai_content_generation_prompt',
             'type'        => 'filter',
             'description' => __( 'Intercepts the prompt string before it hits the AI proxy. Allows insertion of mandatory EEO text.', 'wp-job-portal' ),
             'params'      => [
-                [ 'name' => '$wpjobportal_prompt', 'type' => 'string', 'desc' => __( 'AI Prompt.', 'wp-job-portal' ) ],
+                [ 'name' => '$wpjobportal_prompt', 'type' => 'string', 'desc' => __( 'AI Prompt', 'wp-job-portal' ) ],
                 [ 'name' => '$ai_parameters', 'type' => 'array', 'desc' => __( 'Context parameters.', 'wp-job-portal' ) ],
             ],
             'returns'     => [ 'type' => 'string', 'desc' => __( 'Modified AI Prompt.', 'wp-job-portal' ) ],
@@ -716,7 +716,7 @@ $hook_data = [
             'params'      => [
                 [ 'name' => '$uid', 'type' => 'int', 'desc' => __( 'User ID.', 'wp-job-portal' ) ],
                 [ 'name' => '$package_id', 'type' => 'int', 'desc' => __( 'Package ID.', 'wp-job-portal' ) ],
-                [ 'name' => '$amount', 'type' => 'float', 'desc' => __( 'Amount paid.', 'wp-job-portal' ) ],
+                [ 'name' => '$amount', 'type' => 'float', 'desc' => __( 'Amount paid', 'wp-job-portal' ).'.' ],
                 [ 'name' => '$gateway', 'type' => 'string', 'desc' => __( 'Payment gateway.', 'wp-job-portal' ) ],
             ],
             'example'     => "add_action( 'wpjobportal_membership_package_purchased', 'wpjb_assign_badge', 10, 4 );\nfunction wpjb_assign_badge( \$uid, \$pkg, \$amt, \$gw ) {\n    // Unlock features\n}",
@@ -733,7 +733,7 @@ $hook_data = [
             'params'      => [
                 [ 'name' => '$postid', 'type' => 'int', 'desc' => __( 'WooCommerce Post ID.', 'wp-job-portal' ) ],
                 [ 'name' => '$uid', 'type' => 'int', 'desc' => __( 'User ID.', 'wp-job-portal' ) ],
-                [ 'name' => '$data', 'type' => 'array', 'desc' => __( 'Purchase data.', 'wp-job-portal' ) ],
+                [ 'name' => '$data', 'type' => 'array', 'desc' => __( 'Purchase data', 'wp-job-portal' ) ],
             ],
             'example'     => "add_action( 'wpjobportal_woocommerce_order_synced', 'wpjb_woo_sync_log', 10, 3 );\nfunction wpjb_woo_sync_log( \$id, \$uid, \$data ) {\n    // Logic\n}",
             'notes'       => __( 'Executes on Woo cart route.', 'wp-job-portal' ),
@@ -749,7 +749,7 @@ $hook_data = [
             'params'      => [
                 [ 'name' => '$uid', 'type' => 'int', 'desc' => __( 'User ID.', 'wp-job-portal' ) ],
                 [ 'name' => '$entity_id', 'type' => 'int', 'desc' => __( 'Entity ID (job/resume/company).', 'wp-job-portal' ) ],
-                [ 'name' => '$price', 'type' => 'float', 'desc' => __( 'Amount paid.', 'wp-job-portal' ) ],
+                [ 'name' => '$price', 'type' => 'float', 'desc' => __( 'Amount paid', 'wp-job-portal' ).'.' ],
                 [ 'name' => '$type', 'type' => 'string', 'desc' => __( 'Entity type.', 'wp-job-portal' ) ],
                 [ 'name' => '$gateway', 'type' => 'string', 'desc' => __( 'Gateway used.', 'wp-job-portal' ) ],
             ],
@@ -784,7 +784,7 @@ $hook_data = [
                 [ 'name' => '$uid', 'type' => 'int', 'desc' => __( 'User ID.', 'wp-job-portal' ) ],
                 [ 'name' => '$packageid', 'type' => 'int', 'desc' => __( 'Package ID.', 'wp-job-portal' ) ],
                 [ 'name' => '$amount', 'type' => 'float', 'desc' => __( 'Amount.', 'wp-job-portal' ) ],
-                [ 'name' => '$pay_method', 'type' => 'string', 'desc' => __( 'Payment Method.', 'wp-job-portal' ) ],
+                [ 'name' => '$pay_method', 'type' => 'string', 'desc' => __( 'Payment Methods', 'wp-job-portal' ) ],
             ],
             'example'     => "add_action( 'wpjobportal_membership_package_purchased_db_commit', 'wpjb_db_audit_log', 10, 4 );\nfunction wpjb_db_audit_log( \$uid, \$pkg, \$amt, \$method ) {\n    // Audit logic\n}",
             'notes'       => __( 'Database-level failsafe hook.', 'wp-job-portal' ),
@@ -860,7 +860,7 @@ $hook_data = [
             'id'          => 'jobseeker_dashboard_loaded',
             'addon'       => 'core',
             'addon_name'       => 'core',
-            'name'        => __( 'Jobseeker Dashboard Loaded', 'wp-job-portal' ),
+            'name'        => __( 'Job Seeker Dashboard Loaded', 'wp-job-portal' ),
             'action'      => 'wpjobportal_jobseeker_dashboard_loaded',
             'type'        => 'action',
             'description' => __( 'Fires when the candidate portal initializes.', 'wp-job-portal' ),
@@ -895,7 +895,7 @@ $hook_data = [
             'description' => __( 'Allows theme developers to modify member widget cards.', 'wp-job-portal' ),
             'params'      => [
                 [ 'name' => '$html', 'type' => 'string', 'desc' => __( 'HTML Content.', 'wp-job-portal' ) ],
-                [ 'name' => '$role', 'type' => 'string', 'desc' => __( 'User role.', 'wp-job-portal' ) ],
+                [ 'name' => '$role', 'type' => 'string', 'desc' => __('User Role', 'wp-job-portal') ],
                 [ 'name' => '$results', 'type' => 'array', 'desc' => __( 'User data.', 'wp-job-portal' ) ],
             ],
             'returns'     => [ 'type' => 'string', 'desc' => __( 'Modified HTML.', 'wp-job-portal' ) ],
@@ -1034,7 +1034,7 @@ $hook_data = [
                 [ 'name' => '$msg_id', 'type' => 'int', 'desc' => __( 'Message ID.', 'wp-job-portal' ) ],
                 [ 'name' => '$sender_id', 'type' => 'int', 'desc' => __( 'Sender ID.', 'wp-job-portal' ) ],
                 [ 'name' => '$recipient_id', 'type' => 'int', 'desc' => __( 'Recipient ID.', 'wp-job-portal' ) ],
-                [ 'name' => '$message_content', 'type' => 'string', 'desc' => __( 'Message Text.', 'wp-job-portal' ) ],
+                [ 'name' => '$message_content', 'type' => 'string', 'desc' => __( 'Message Text', 'wp-job-portal' ).'.' ],
             ],
             'example'     => "add_action( 'wpjobportal_internal_message_sent', 'wpjb_slack_notify', 10, 4 );\nfunction wpjb_slack_notify( \$msg, \$snd, \$rec, \$text ) {\n    // Push to Slack\n}",
             'notes'       => __( 'Push to external SMS/Slack APIs.', 'wp-job-portal' ),
@@ -1108,7 +1108,7 @@ $hook_data = [
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw( admin_url( 'admin.php?page=wpjobportal' ) ); ?>" title="<?php echo esc_attr( __( 'dashboard', 'wp-job-portal' ) ); ?>">
+                            <a href="<?php echo esc_url_raw( admin_url( 'admin.php?page=wpjobportal' ) ); ?>" title="<?php echo esc_attr( __('Dashboard', 'wp-job-portal' ) ); ?>">
                                 <?php echo esc_html( __( 'Dashboard', 'wp-job-portal' ) ); ?>
                             </a>
                         </li>
@@ -1119,12 +1119,12 @@ $hook_data = [
 
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr( __( 'configuration', 'wp-job-portal' ) ); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr( __('Configuration', 'wp-job-portal' ) ); ?>">
                         <img src="<?php echo esc_url( WPJOBPORTAL_PLUGIN_URL ); ?>includes/images/control_panel/dashboard/config.png">
                     </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr( __( 'help', 'wp-job-portal' ) ); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr( __( 'Help', 'wp-job-portal' ) ); ?>">
                         <img src="<?php echo esc_url( WPJOBPORTAL_PLUGIN_URL ); ?>includes/images/control_panel/dashboard/help.png">
                     </a>
                 </div>
@@ -1185,7 +1185,7 @@ $hook_data = [
                     <div class="wjp-search-card">
                         <div class="wjp-search-input-wrapper">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                            <input type="text" id="wjp-global-search" placeholder="<?php echo esc_attr__( 'Search across all actions and filters...', 'wp-job-portal' ); ?>">
+                            <input type="text" id="wjp-global-search" placeholder="<?php echo esc_attr__( 'Search Across All Actions And Filters...', 'wp-job-portal' ); ?>">
                         </div>
                     </div>
 
@@ -1265,7 +1265,7 @@ $hook_data = [
                                             <p style="margin:0; font-size: 13px; color: #991b1b;">
                                                 <?php echo esc_html__( 'To use this hook, please install and activate the', 'wp-job-portal' ); ?>
                                                 <strong><?php echo esc_html( $hook['addon_name'] ); ?></strong>
-                                                <?php echo esc_html__( 'addon.', 'wp-job-portal' ); ?>
+                                                <?php echo esc_html__( 'addon', 'wp-job-portal' ); ?>.
                                                 <a href="https://wpjobportal.com/addons/" target="_blank" style="text-decoration: underline; margin-left: 5px;">
                                                     <?php echo esc_html__( 'View Addon Details', 'wp-job-portal' ); ?>
                                                 </a>

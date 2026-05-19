@@ -61,7 +61,7 @@ $wpjobportal_js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy'
                 noResultsText: \"". esc_html(__('No Results', 'wp-job-portal'))."\",
                 searchingText: \"". esc_html(__('Searching', 'wp-job-portal'))."\"
             });
-            jQuery('#wpjobportal-input-city').attr('placeholder', \"". esc_html(__('Type city', 'wp-job-portal')).' :'."\");
+            jQuery('#wpjobportal-input-city').attr('placeholder', \"". esc_html(__('Type city:', 'wp-job-portal')).' :'."\");
         }
 
         function closePopupJobManager() {

@@ -7,7 +7,7 @@
 $wpjobportal_class = 'wpjobportal-resume-act-btn';
 ?>
  <div id="item-actions" class="wpjobportal-resume-action-wrp">
- 	<a id="view-resume" class="wpjobportal-resume-act-btn" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_resume&wpjobportallt=viewresume&wpjobportalid='.$wpjobportal_data->appid)); ?>" title="<?php echo esc_attr(__('view profile', 'wp-job-portal')); ?>">
+ 	<a id="view-resume" class="wpjobportal-resume-act-btn" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_resume&wpjobportallt=viewresume&wpjobportalid='.$wpjobportal_data->appid)); ?>" title="<?php echo esc_attr(__('View Profile', 'wp-job-portal')); ?>">
         <?php echo esc_html(__('View Profile', 'wp-job-portal')); ?>
 	</a>
 	<?php 

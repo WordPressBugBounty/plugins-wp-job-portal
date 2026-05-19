@@ -15,10 +15,6 @@ class WPJOBPORTALwpjpsession {
         $this->init();
     }
 
-    function getSessionId(){
-        return $this->sessionid;
-    }
-
     function init(){
         if (isset($_COOKIE['_wpjsjp_session_'])) {
             $cookie = wpjobportalphplib::wpJP_stripslashes(wpjobportal::wpjobportal_sanitizeData($_COOKIE['_wpjsjp_session_']));

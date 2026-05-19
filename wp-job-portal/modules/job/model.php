@@ -14,17 +14,6 @@ class WPJOBPORTALjobModel {
             }
         }
 
-        function setListStyleSession(){
-            $wpjobportal_listingstyle = WPJOBPORTALrequest::getVar('styleid');
-            if(wpjobportal::$wpjobportal_theme_chk == 1){
-                update_option( 'jsjb_jm_listing_style', $wpjobportal_listingstyle );
-            }else{
-                update_option( 'jsjb_jh_listing_style', $wpjobportal_listingstyle );
-            }
-
-            return $wpjobportal_listingstyle;
-        }
-
         function getNewestJobsForMap_Widget($wpjobportal_noofjobs) {
             if(!isset($wpjobportal_noofjobs))
                 $wpjobportal_noofjobs = 0;
@@ -75,36 +64,6 @@ class WPJOBPORTALjobModel {
     }
     function getjobType($wpjobportal_jobid){
 
-    }
-
-    function getJobInfo($wpjobportal_jobid,$wpjobportal_uid){
-        if (!is_numeric($wpjobportal_jobid))
-            return false;
-    $query = "SELECT DISTINCT job.id AS jobid,job.tags AS jobtags,job.title,job.created,job.city,
-        CONCAT(job.alias,'-',job.id) AS jobaliasid,job.noofjobs,job.isfeaturedjob,job.status,
-        cat.cat_title,company.id AS companyid,company.name AS companyname,company.logofilename, jobtype.title AS jobtypetitle,job.endfeatureddate,job.startpublishing,job.stoppublishing,
-        job.params,CONCAT(company.alias,'-',company.id) AS companyaliasid,LOWER(jobtype.title) AS jobtypetit,
-        job.salarymax,job.salarymin,job.salarytype,srtype.title AS srangetypetitle,jobtype.color AS jobtypecolor,job.currency
-        FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-        ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
-        LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
-        LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS srtype ON srtype.id = job.salaryduration
-        LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
-        LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobcities` AS jobcity ON jobcity.jobid = job.id
-        LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON city.id = jobcity.cityid
-        LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_states` AS state ON state.countryid = city.countryid
-        LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_countries` AS country ON country.id = city.countryid
-        WHERE job.id =". esc_sql($wpjobportal_jobid);
-        $wpjobportal_results = wpjobportal::$_db->get_results($query);
-        $wpjobportal_data = array();
-        foreach ($wpjobportal_results AS $d) {
-            $d->location = WPJOBPORTALincluder::getJSModel('city')->getLocationDataForView($d->city);
-             $wpjobportal_data[] = $d;
-        }
-        wpjobportal::$_data['jobinfo'] = $wpjobportal_data;
-        wpjobportal::$wpjobportal_data['fields'] = wpjobportal::$_wpjpfieldordering->getFieldsOrderingforForm(2);
-        wpjobportal::$_data['config'] = wpjobportal::$_config->getConfigByFor('job');
-        return;
     }
 
     function getJobsByTypes_Widget($wpjobportal_showalltypes, $haverecordss, $wpjobportal_maximumrecords) {
@@ -253,23 +212,6 @@ class WPJOBPORTALjobModel {
         return $wpjobportal_results;
     }
 
-    function getTopJobs() {
-
-        $wpjobportal_result = array();
-        $query = "SELECT job.id,job.title AS jobtitle,company.name AS companyname,cat.cat_title AS cattile,job.stoppublishing,
-        salaryfrom.rangestart AS salaryfrom, salaryto.rangestart AS salaryto
-        FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-        ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
-        LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON job.jobcategory = cat.id
-        LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrange` AS salaryfrom ON job.salaryrangefrom = salaryfrom.id
-        LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrange` AS salaryto ON job.salaryrangeto = salaryto.id
-        ORDER BY job.created desc LIMIT 5";
-
-        wpjobportal::$_data[0] = wpjobportaldb::get_results($query);
-
-        return;
-    }
-
     function approveQueueJobModel($wpjobportal_id) {
         if (is_numeric($wpjobportal_id) == false) return false;
 
@@ -412,78 +354,6 @@ class WPJOBPORTALjobModel {
         }
         return $wpjobportal_result;
     }
-
-    function getMultiCityData($wpjobportal_jobid) {
-        if (!is_numeric($wpjobportal_jobid))
-            return false;
-
-        $query = "SELECT mjob.*,city.id AS cityid,city.name AS cityname ,state.name AS statename,country.name AS countryname
-                FROM " . wpjobportal::$_db->prefix . "wj_portal_jobcities AS mjob
-                LEFT JOIN " . wpjobportal::$_db->prefix . "wj_portal_cities AS city on mjob.cityid=city.id
-                LEFT JOIN " . wpjobportal::$_db->prefix . "wj_portal_states AS state on city.stateid=state.id
-                LEFT JOIN " . wpjobportal::$_db->prefix . "wj_portal_countries AS country on city.countryid=country.id
-                WHERE mjob.jobid=" . esc_sql($wpjobportal_jobid);
-
-        $wpjobportal_data = wpjobportaldb::get_results($query);
-        if (is_array($wpjobportal_data) AND ! empty($wpjobportal_data)) {
-            $wpjobportal_i = 0;
-            $multicitydata = "";
-            foreach ($wpjobportal_data AS $multicity) {
-                $last_index = count($wpjobportal_data) - 1;
-                if ($wpjobportal_i == $last_index)
-                    $multicitydata.=$multicity->cityname;
-                else
-                    $multicitydata.=$multicity->cityname . " ,";
-                $wpjobportal_i++;
-            }
-            if ($multicitydata != "") {
-                $mc = esc_html(__('JS multi city', 'wp-job-portal'));
-                $multicity = (wpjobportalphplib::wpJP_strlen($multicitydata) > 35) ? $mc . wpjobportalphplib::wpJP_substr($multicitydata, 0, 35) . '...' : $multicitydata;
-                return $multicity;
-            } else
-                return;
-        }
-    }
-    // joomla code
-    // function getSearchOptions() {
-    //     $wpjobportal_searchjobconfig = wpjobportal::$_config->getConfigByFor('searchjob');
-
-    //     $wpjobportal_searchoptions = array();
-    //     $wpjobportal_companies = WPJOBPORTALincluder::getJSModel('company')->getAllCompaniesForSearchForCombo(esc_html(__('JS search all', 'wp-job-portal')));
-    //     $wpjobportal_job_type = WPJOBPORTALincluder::getJSModel('jobtype')->getJobType(esc_html(__('JS_SEARCH_ALL', 'wp-job-portal')));
-    //     $wpjobportal_jobstatus = WPJOBPORTALincluder::getJSModel('jobstatus')->getJobStatus(esc_html(__('JS_SEARCH_ALL', 'wp-job-portal')));
-    //     $wpjobportal_heighesteducation = WPJOBPORTALincluder::getJSModel('highesteducation')->getHeighestEducation(esc_html(__('JS search all', 'wp-job-portal')));
-    //     $wpjobportal_job_categories = WPJOBPORTALincluder::getJSModel('category')->getCategoriesForCombo(esc_html(__('JS search all', 'wp-job-portal')), '');
-    //     $wpjobportal_job_salaryrange = WPJOBPORTALincluder::getJSModel('salaryrange')->getJobSalaryRangeForCombo(esc_html(__('JS search all', 'wp-job-portal')), '');
-    //     $shift = WPJOBPORTALincluder::getJSModel('shift')->getShift(esc_html(__('JS search all', 'wp-job-portal')));
-    //     $wpjobportal_countries = WPJOBPORTALincluder::getJSModel('country')->getCountriesForCombo('');
-
-    //     if (!isset($this->_config)) {
-    //         $this->_config = wpjobportal::$_config->getConfig();
-    //     }
-    //     $wpjobportal_searchoptions['country'] = WPJOBPORTALformfield::select('select.genericList', $wpjobportal_countries, 'country', 'class="inputbox required" ' . 'onChange="dochange(\'state\', this.value)"', 'value', 'text', '');
-    //     if (isset($wpjobportal_states[1]))
-    //         if ($wpjobportal_states[1] != '')
-    //             $wpjobportal_searchoptions['state'] = WPJOBPORTALformfield::select('select.genericList', $wpjobportal_states, 'state', 'class="inputbox" ' . 'onChange="dochange(\'city\', this.value)"', 'value', 'text', '');
-    //     if (isset($cities[1]))
-    //         if ($cities[1] != '')
-    //             $wpjobportal_searchoptions['city'] = WPJOBPORTALformfield::select('select.genericList', $cities, 'city', 'class="inputbox" ' . '', 'value', 'text', '');
-    //     $wpjobportal_searchoptions['companies'] = WPJOBPORTALformfield::select('select.genericList', $wpjobportal_companies, 'company', 'class="inputbox" ' . '', 'value', 'text', '');
-    //     $wpjobportal_searchoptions['jobcategory'] = WPJOBPORTALformfield::select('select.genericList', $wpjobportal_job_categories, 'jobcategory', 'class="inputbox" ' . '', 'value', 'text', '');
-    //     $wpjobportal_searchoptions['jobsalaryrange'] = WPJOBPORTALformfield::select('select.genericList', $wpjobportal_job_salaryrange, 'jobsalaryrange', 'class="inputbox" ' . 'style="width:150px;"', 'value', 'text', '');
-    //     $wpjobportal_searchoptions['salaryrangefrom'] = WPJOBPORTALformfield::select('select.genericList', WPJOBPORTALincluder::getJSModel('salaryrange')->getSalaryRangeForCombo(esc_html(__('JS From', 'wp-job-portal'))), 'salaryrangefrom', 'class="inputbox" ' . 'style="width:150px;"', 'value', 'text', '');
-    //     $wpjobportal_searchoptions['salaryrangeto'] = WPJOBPORTALformfield::select('select.genericList', WPJOBPORTALincluder::getJSModel('salaryrange')->getSalaryRangeForCombo(esc_html(__('JS To', 'wp-job-portal'))), 'salaryrangeto', 'class="inputbox" ' . 'style="width:150px;"', 'value', 'text', '');
-    //     $wpjobportal_searchoptions['salaryrangetypes'] = WPJOBPORTALformfield::select('select.genericList', WPJOBPORTALincluder::getJSModel('salaryrangetype')->getSalaryRangeTypes(''), 'salaryrangetype', 'class="inputbox" ' . 'style="width:150px;"', 'value', 'text', 2);
-    //     $wpjobportal_searchoptions['jobstatus'] = WPJOBPORTALformfield::select('select.genericList', $wpjobportal_jobstatus, 'jobstatus', 'class="inputbox" ' . '', 'value', 'text', '');
-    //     $wpjobportal_searchoptions['jobtype'] = WPJOBPORTALformfield::select('select.genericList', $wpjobportal_job_type, 'jobtype', 'class="inputbox" ' . '', 'value', 'text', '');
-    //     $wpjobportal_searchoptions['heighestfinisheducation'] = WPJOBPORTALformfield::select('select.genericList', $wpjobportal_heighesteducation, 'heighestfinisheducation', 'class="inputbox" ' . '', 'value', 'text', '');
-    //     $wpjobportal_searchoptions['shift'] = WPJOBPORTALformfield::select('select.genericList', $shift, 'shift', 'class="inputbox" ' . '', 'value', 'text', '');
-    //     $wpjobportal_searchoptions['currency'] = WPJOBPORTALformfield::select('select.genericList', WPJOBPORTALincluder::getJSModel('currency')->getCurrency(), 'currency', 'class="inputbox" ' . 'style="width:150px;"', 'value', 'text', '');
-    //     $wpjobportal_result = array();
-    //     $wpjobportal_result[0] = $wpjobportal_searchoptions;
-    //     $wpjobportal_result[1] = $wpjobportal_searchjobconfig;
-    //     return $wpjobportal_result;
-    // }
 
     function getJobbyIdForView($wpjobportal_job_id) {
         ////Start's WOrking From There FRIDAY//31..2020
@@ -1294,17 +1164,8 @@ class WPJOBPORTALjobModel {
         $wpjobportal_data['currency'] = wpjobportal::$_config->getConfigValue('job_currency');
 
         $wpjobportal_data = wpjobportal::wpjobportal_sanitizeData($wpjobportal_data);
-        $wpjobportal_data['description'] = wpautop(wptexturize(wp_kses_post(wpjobportalphplib::wpJP_stripslashes(WPJOBPORTALrequest::getVar('description','post','','',1)))));
-        if(isset($wpjobportal_data['qualifications'])){
-            $wpjobportal_data['qualifications'] = wpautop(wptexturize(wp_kses_post(wpjobportalphplib::wpJP_stripslashes(sanitize_textarea_field(WPJOBPORTALrequest::getVar('qualifications','post','','',1))))));
-        }
-        if(isset($wpjobportal_data['qualifications'])){
-            $wpjobportal_data['prefferdskills'] = wpautop(wptexturize(wp_kses_post(wpjobportalphplib::wpJP_stripslashes(sanitize_textarea_field(WPJOBPORTALrequest::getVar('prefferdskills','post','','',1))))));
-        }
-        if(isset($wpjobportal_data['qualifications'])){
-            $wpjobportal_data['agreement'] = wpautop(wptexturize(wp_kses_post(wpjobportalphplib::wpJP_stripslashes(sanitize_textarea_field(WPJOBPORTALrequest::getVar('agreement','post','','',1))))));
-        }
-          // commented this code to make storing customfields same for all entites.
+
+        // commented this code to make storing customfields same for all entites.
         // //custom field code start
         // $wpjobportal_userfieldforjob = wpjobportal::$_wpjpfieldordering->getUserfieldsfor(2);
         // $params = array();
@@ -1341,6 +1202,8 @@ class WPJOBPORTALjobModel {
         }
 
     	$wpjobportal_description = WPJOBPORTALrequest::getVar('description','post','','',1);// sanitizing description data
+        // clean it first
+        $wpjobportal_description = str_ireplace(['<script', '< script'], '-', $wpjobportal_description);
         $wpjobportal_data['description'] = wpautop(wptexturize(wp_kses_post(wpjobportalphplib::wpJP_stripslashes($wpjobportal_description))));
         // remove slashes with quotes.
 
@@ -1611,18 +1474,6 @@ class WPJOBPORTALjobModel {
         return WPJOBPORTAL_DELETED;
     }
 
-    function featuredJobValidation($wpjobportal_jobid) {
-        if (!is_numeric($wpjobportal_jobid))
-            return false;
-        $query = "SELECT COUNT(job.id) FROM " . wpjobportal::$_db->prefix . "wj_portal_jobs  AS job
-                WHERE job.isfeaturedjob=1 AND job.id = " . esc_sql($wpjobportal_jobid);
-        $wpjobportal_result = wpjobportaldb::get_var($query);
-        if ($wpjobportal_result > 0)
-            return false;
-        else
-            return true;
-    }
-
     function checkCall() {
         // DB class limitations
         $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_config` SET configvalue = configvalue+1 WHERE configname = 'wpjobportalupdatecount'";
@@ -1679,229 +1530,6 @@ class WPJOBPORTALjobModel {
             }
         }while ($wpjobportal_match == 'Y');
         return $wpjobportal_jobid;
-    }
-
-    function getJobSearch() {
-    //Filters
-        $title = WPJOBPORTALrequest::getVar('title');
-        $wpjobportal_jobcategory = WPJOBPORTALrequest::getVar('jobcategory');
-        $wpjobportal_jobsubcategory = WPJOBPORTALrequest::getVar('jobsubcategory');
-        $wpjobportal_jobtype = WPJOBPORTALrequest::getVar('jobtype');
-        $wpjobportal_jobstatus = WPJOBPORTALrequest::getVar('jobstatus');
-        $wpjobportal_salaryrangefrom = WPJOBPORTALrequest::getVar('salaryrangefrom');
-        $wpjobportal_salaryrangeto = WPJOBPORTALrequest::getVar('salaryrangeto');
-        $wpjobportal_salaryrangetype = WPJOBPORTALrequest::getVar('salaryrangetype');
-        $shift = WPJOBPORTALrequest::getVar('shift');
-        $durration = WPJOBPORTALrequest::getVar('durration');
-        $wpjobportal_startpublishing = WPJOBPORTALrequest::getVar('startpublishing');
-        $wpjobportal_stoppublishing = WPJOBPORTALrequest::getVar('stoppublishing');
-        $wpjobportal_company = WPJOBPORTALrequest::getVar('company');
-        $city = WPJOBPORTALrequest::getVar('city');
-        $zipcode = WPJOBPORTALrequest::getVar('zipcode');
-        $currency = WPJOBPORTALrequest::getVar('currency');
-        $wpjobportal_keywords = WPJOBPORTALrequest::getVar('keywords');
-
-        wpjobportal::$_data['filter']['title'] = $title;
-        wpjobportal::$_data['filter']['jobcategory'] = $wpjobportal_jobcategory;
-        wpjobportal::$_data['filter']['jobsubcategory'] = $wpjobportal_jobsubcategory;
-        wpjobportal::$_data['filter']['jobtype'] = $wpjobportal_jobtype;
-        wpjobportal::$_data['filter']['jobstatus'] = $wpjobportal_jobstatus;
-        wpjobportal::$_data['filter']['salaryrangefrom'] = $wpjobportal_salaryrangefrom;
-        wpjobportal::$_data['filter']['salaryrangeto'] = $wpjobportal_salaryrangeto;
-        wpjobportal::$_data['filter']['salaryrangetype'] = $wpjobportal_salaryrangetype;
-        wpjobportal::$_data['filter']['shift'] = $shift;
-        wpjobportal::$_data['filter']['durration'] = $durration;
-        wpjobportal::$_data['filter']['startpublishing'] = $wpjobportal_startpublishing;
-        wpjobportal::$_data['filter']['stoppublishing'] = $wpjobportal_stoppublishing;
-        wpjobportal::$_data['filter']['company'] = $wpjobportal_company;
-        wpjobportal::$_data['filter']['city'] = $city;
-        wpjobportal::$_data['filter']['zipcode'] = $zipcode;
-        wpjobportal::$_data['filter']['currency'] = $currency;
-        wpjobportal::$_data['filter']['keywords'] = $wpjobportal_keywords;
-
-        if ($wpjobportal_jobcategory != '')
-            if (is_numeric($wpjobportal_jobcategory) == false)
-                return false;
-        if ($wpjobportal_jobsubcategory != '')
-            if (is_numeric($wpjobportal_jobsubcategory) == false)
-                return false;
-        if ($wpjobportal_jobtype != '')
-            if (is_numeric($wpjobportal_jobtype) == false)
-                return false;
-        if ($wpjobportal_jobstatus != '')
-            if (is_numeric($wpjobportal_jobstatus) == false)
-                return false;
-        if ($wpjobportal_salaryrangefrom != '')
-            if (is_numeric($wpjobportal_salaryrangefrom) == false)
-                return false;
-        if ($wpjobportal_salaryrangeto != '')
-            if (is_numeric($wpjobportal_salaryrangeto) == false)
-                return false;
-        if ($wpjobportal_salaryrangetype != '')
-            if (is_numeric($wpjobportal_salaryrangetype) == false)
-                return false;
-        if ($shift != '')
-            if (is_numeric($shift) == false)
-                return false;
-        if ($wpjobportal_company != '')
-            if (is_numeric($wpjobportal_company) == false)
-                return false;
-        if ($currency != '')
-            if (is_numeric($currency) == false)
-                return false;
-
-
-        $wpjobportal_dateformat = wpjobportal::$_configuration['date_format'];
-        if ($wpjobportal_startpublishing != '') {
-            $wpjobportal_startpublishing = gmdate('Y-m-d', strtotime($wpjobportal_startpublishing));
-        }
-        if ($wpjobportal_stoppublishing != '') {
-            $wpjobportal_stoppublishing = gmdate('Y-m-d', strtotime($wpjobportal_stoppublishing));
-        }
-
-        $wpjobportal_issalary = '';
-
-        if ($wpjobportal_keywords) {// For keyword Search
-            $wpjobportal_keywords = wpjobportalphplib::wpJP_explode(' ', $wpjobportal_keywords);
-            $length = count($wpjobportal_keywords);
-            if ($length <= 5) {// For Limit keywords to 5
-                $wpjobportal_i = $length;
-            } else {
-                $wpjobportal_i = 5;
-            }
-            for ($j = 0; $j < $wpjobportal_i; $j++) {
-                $wpjobportal_keys[] = " job.metakeywords Like '%" . esc_sql($wpjobportal_keywords[$j]) . "%'";
-            }
-        }
-
-        $wherequery = '';
-        if ($title != '') {
-            $title_keywords = wpjobportalphplib::wpJP_explode(' ', $title);
-            $tlength = count($title_keywords);
-            if ($tlength <= 5) {// For Limit keywords to 5
-                $r = $tlength;
-            } else {
-                $r = 5;
-            }
-            for ($wpjobportal_k = 0; $wpjobportal_k < $r; $wpjobportal_k++) {
-                $t_keywords = wpjobportalphplib::wpJP_str_replace("'", "", $title_keywords[$wpjobportal_k]);
-                $titlekeys[] = " job.title LIKE '%" . esc_sql($t_keywords) . "%'";
-            }
-        }
-        if ($wpjobportal_jobcategory != '' && is_numeric($wpjobportal_jobcategory))
-            if ($wpjobportal_jobcategory != '')
-                $wherequery .= " AND job.jobcategory = " . esc_sql($wpjobportal_jobcategory);
-        if (isset($wpjobportal_keys))
-            $wherequery .= " AND ( " . implode(' OR ', esc_sql($wpjobportal_keys)) . " )";
-        if (isset($titlekeys))
-            $wherequery .= " AND ( " . implode(' OR ', esc_sql($titlekeys)) . " )";
-        if ($wpjobportal_jobsubcategory != '' && is_numeric($wpjobportal_jobsubcategory))
-            $wherequery .= " AND job.subcategoryid = " . esc_sql($wpjobportal_jobsubcategory);
-        if ($wpjobportal_jobtype != '' && is_numeric($wpjobportal_jobtype))
-            $wherequery .= " AND job.jobtype = " . esc_sql($wpjobportal_jobtype);
-        if ($wpjobportal_jobstatus != '' && is_numeric($wpjobportal_jobstatus))
-            $wherequery .= " AND job.jobstatus = " . esc_sql($wpjobportal_jobstatus);
-        if ($wpjobportal_salaryrangefrom != '') {
-            $query = "SELECT salfrom.rangestart
-            FROM `" . wpjobportal::$_db->prefix . "wj_portal_salaryrange` AS salfrom
-            WHERE salfrom.id = " . esc_sql($wpjobportal_salaryrangefrom);
-
-            $wpjobportal_rangestart_value = wpjobportaldb::get_var($query);
-            $wherequery .= " AND salaryrangefrom.rangestart >= " . esc_sql($wpjobportal_rangestart_value);
-            $wpjobportal_issalary = 1;
-        }
-        if ($wpjobportal_salaryrangeto != '') {
-            $query = "SELECT salto.rangestart
-            FROM `" . wpjobportal::$_db->prefix . "wj_portal_salaryrange` AS salto
-            WHERE salto.id = " . esc_sql($wpjobportal_salaryrangeto);
-
-            $wpjobportal_rangeend_value = wpjobportaldb::get_var($query);
-            $wherequery .= " AND salaryrangeto.rangeend <= " . esc_sql($wpjobportal_rangeend_value);
-            $wpjobportal_issalary = 1;
-        }
-        if (($wpjobportal_issalary != '') && ($wpjobportal_salaryrangetype != '' && is_numeric($wpjobportal_salaryrangetype))) {
-            $wherequery .= " AND job.salaryrangetype = " . esc_sql($wpjobportal_salaryrangetype);
-        }
-        if ($shift != '' && is_numeric($shift))
-            $wherequery .= " AND job.shift = " . esc_sql($shift);
-        if ($durration != '')
-            $wherequery .= " AND job.duration LIKE '" . esc_sql($durration) . "'";
-        if ($wpjobportal_startpublishing != '')
-            $wherequery .= " AND job.startpublishing >= '" . esc_sql($wpjobportal_startpublishing) . "'";
-        if ($wpjobportal_stoppublishing != '')
-            $wherequery .= " AND job.stoppublishing <= '" . esc_sql($wpjobportal_stoppublishing) . "'";
-        if ($wpjobportal_company != '' && is_numeric($wpjobportal_company))
-            $wherequery .= " AND job.companyid = " . esc_sql($wpjobportal_company);
-        if ($city != '') {
-            $city_value = wpjobportalphplib::wpJP_explode(',', $city);
-            $lenght = count($city_value);
-            for ($wpjobportal_i = 0; $wpjobportal_i < $lenght; $wpjobportal_i++) {
-                if(is_numeric($city_value[$wpjobportal_i])){
-                    if ($wpjobportal_i == 0){
-                        $wherequery .= " AND ( mjob.cityid=" . esc_sql($city_value[$wpjobportal_i]);
-                    }else{
-                        $wherequery .= " OR mjob.cityid=" . esc_sql($city_value[$wpjobportal_i]);
-                    }
-                }
-            }
-            $wherequery .= ")";
-        }
-
-        if ($zipcode != '')
-            $wherequery .= " AND job.zipcode = '" . esc_sql($zipcode) . "'";
-        if (isset($radiussearch) && $radiussearch != '')
-            $wherequery .= " AND " . esc_sql($radiussearch);
-
-        //Pagination
-        $wpjobportal_curdate = gmdate('Y-m-d');
-        $query = "SELECT count(DISTINCT job.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                    LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON job.jobcategory = cat.id
-                    LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrange` AS salaryrangefrom ON job.salaryrangefrom = salaryrangefrom.id
-                    LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrange` AS salaryrangeto ON job.salaryrangeto = salaryrangeto.id";
-        $query .= " LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobcities` AS mjob ON mjob.jobid = job.id ";
-        $query .= " WHERE job.status = 1 ";
-        if ($wpjobportal_startpublishing == '')
-            $query .= " AND DATE(job.startpublishing) <= " . esc_sql($wpjobportal_curdate);
-        if ($wpjobportal_stoppublishing == '')
-            $query .= " AND DATE(job.stoppublishing) >= " . esc_sql($wpjobportal_curdate);
-        $query .= $wherequery;
-
-        $wpjobportal_total = wpjobportaldb::get_var($query);
-        wpjobportal::$_data['total'] = $wpjobportal_total;
-        wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($wpjobportal_total);
-
-        //Data
-        // company is must for job
-        $query = "SELECT DISTINCT job.*, cat.cat_title, jobtype.title AS jobtypetitle, jobstatus.title AS jobstatustitle
-                , salaryrangefrom.rangestart AS salaryfrom, salaryrangeto.rangeend AS salaryend
-                , company.name AS companyname, company.url
-                FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
-                LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON job.jobcategory = cat.id
-                LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON job.jobtype = jobtype.id
-                LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobstatus` AS jobstatus ON job.jobstatus = jobstatus.id
-                LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrange` AS salaryrangefrom ON job.salaryrangefrom = salaryrangefrom.id
-                LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrange` AS salaryrangeto ON job.salaryrangeto = salaryrangeto.id";
-        $query .= " LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobcities` AS mjob ON mjob.jobid = job.id ";
-        $query .= " WHERE  job.status = 1 ";
-        if ($wpjobportal_startpublishing == '')
-            $query .= " AND DATE(job.startpublishing) <= " . esc_sql($wpjobportal_curdate);
-        if ($wpjobportal_stoppublishing == '')
-            $query .= " AND DATE(job.stoppublishing) >= " . esc_sql($wpjobportal_curdate);
-        if ($currency != '')
-            $query.= " AND currency.id = job.currencyid ";
-        $query .= $wherequery;
-        $query.=" LIMIT " . WPJOBPORTALpagination::$_offset . "," . WPJOBPORTALpagination::$_limit;
-
-        wpjobportal::$_data[0] = wpjobportaldb::get_results($query);
-
-        foreach (wpjobportal::$_data[0] AS $wpjobportal_searchdata) {  // for multicity select
-            $multicitydata = $this->getMultiCityData($wpjobportal_searchdata->id);
-            if ($multicitydata != "")
-                $wpjobportal_searchdata->city = $multicitydata;
-        }
-
-        return;
     }
 
     function getMyJobs($wpjobportal_uid) {
@@ -2157,8 +1785,19 @@ class WPJOBPORTALjobModel {
                 }
                 break;
             case 'jobid': // new case for shortcode atttributes
-                $wpjobportal_job_id_list = implode(',', $wpjobportal_array);
-                $qa[] = "  job.id IN (" . esc_sql($wpjobportal_job_id_list) . ") ";
+                // Sanitize every item in the array to an absolute integer
+                $sanitized_ids = array_map( 'absint', $wpjobportal_array );
+
+                // Remove any 0 values (invalid/malicious inputs)
+                $sanitized_ids = array_filter( $sanitized_ids );
+
+                // Only append to the query if we have valid IDs left
+                if ( ! empty( $sanitized_ids ) ) {
+                    $wpjobportal_job_id_list = implode( ',', $sanitized_ids );
+                    $qa[] = "  job.id IN (" . $wpjobportal_job_id_list . ") ";
+                }
+                // $wpjobportal_job_id_list = implode(',', $wpjobportal_array);
+                // $qa[] = "  job.id IN (" . esc_sql($wpjobportal_job_id_list) . ") ";
                 break;
             default:
                 return false;
@@ -2166,12 +1805,6 @@ class WPJOBPORTALjobModel {
         }
         $query = implode(" OR ", $qa);
         return $query;
-    }
-
-    function isvalidJSON($wpjobportal_string) {
-        return ((is_string($wpjobportal_string) &&
-                (is_object(json_decode($wpjobportal_string)) ||
-                is_array(json_decode($wpjobportal_string))))) ? true : false;
     }
 
     function getRSSJobs() {
@@ -2992,20 +2625,6 @@ class WPJOBPORTALjobModel {
         return;
     }
 
-    function getIpAddress() {
-        //if client use the direct ip
-        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-            $wpjobportal_ip = $_SERVER['HTTP_CLIENT_IP'];
-        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            $wpjobportal_ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        } else {
-            $wpjobportal_ip = $_SERVER['REMOTE_ADDR'];
-        }
-        return $wpjobportal_ip;
-    }
-
-
-
     function canAddFeaturedJob($wpjobportal_uid) {
         if (!is_numeric($wpjobportal_uid))
             return false;
@@ -3046,7 +2665,7 @@ class WPJOBPORTALjobModel {
                         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS salaryrangetype ON salaryrangetype.id = job.salaryrangetype
                         WHERE job.id = " . esc_sql($wpjobportal_jobid);
             $wpjobportal_job = wpjobportal::$_db->get_row($query);
-            $title = esc_html(__('Job Information', 'wp-job-portal'));
+            $title = esc_html(__('Job Info', 'wp-job-portal'));
             $wpjobportal_content = '<div class="quickviewupper">';
             $wpjobportal_content .= '<span class="quickviewtitle">' . $wpjobportal_job->jobtitle . '</span>';
             $wpjobportal_comp_name = wpjobportal::$_config->getConfigurationByConfigName('comp_name');
@@ -3183,82 +2802,10 @@ class WPJOBPORTALjobModel {
                         </div>';
             $wpjobportal_content .= '</div>';
         } else {
-            $title = esc_html(__('No record found', 'wp-job-portal'));
-            $wpjobportal_content = '<h1>' . esc_html(__('No record found', 'wp-job-portal')) . '</h1>';
+            $title = esc_html(__('No Records Found', 'wp-job-portal'));
+            $wpjobportal_content = '<h1>' . esc_html(__('No Records Found', 'wp-job-portal')) . '</h1>';
         }
         $wpjobportal_array = array('title' => $title, 'wpjobportal_content' => $wpjobportal_content);
-        return wp_json_encode($wpjobportal_array);
-    }
-    function getDataForShortlistForTemplate() {
-        $wpjobportal_jobid = WPJOBPORTALrequest::getVar('jobid');
-        $wpjobportal_result = $this->getDataForShortlist($wpjobportal_jobid);
-        if($wpjobportal_result == false){
-            return false;
-        }else{
-            return wp_json_encode($wpjobportal_result);
-        }
-    }
-    function getShortListViewByJobIdJobManager(){
-        $wpjobportal_jobid = WPJOBPORTALrequest::getVar('jobid');
-        if ($wpjobportal_jobid != null && is_numeric($wpjobportal_jobid)) {
-            $wpjobportal_result = $this->getDataForShortlist($wpjobportal_jobid);
-            $wpjobportal_comment = (isset($wpjobportal_result->comments)) ? $wpjobportal_result->comments : '';
-            $wpjobportal_content='<div class="modal-content '.esc_attr($this->class_prefix).'-modal-wrp">
-                <div class="'.esc_attr($this->class_prefix).'-modal-header">
-                    <a title="close" class="close '.esc_attr($this->class_prefix).'-modal-close-icon-wrap" href="#" onclick="wpjobportalClosePopup(1);" >
-                        <img id="popup_cross" alt="popup cross" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/popup-close.png">
-                    </a>
-                    <h3 class="'.esc_attr($this->class_prefix).'-modal-title">'.esc_html(__('Add To ShortList','wp-job-portal')).'</h3>
-                </div>
-                <div class="col-md-11 col-md-offset-1 '.esc_attr($this->class_prefix).'-modal-data-wrp">
-                    <div class="'.esc_attr($this->class_prefix).'-modal-left-image-wrp">
-                        <i class="fa fa-heart '.esc_attr($this->class_prefix).'-modal-left-image" aria-hidden="true"></i>
-                    </div>
-                    <div class="modal-body '.esc_attr($this->class_prefix).'-modal-body">
-                        <div class="form '.esc_attr($this->class_prefix).'-modal-form-wrp">
-                            <div class="col-md-12 '.esc_attr($this->class_prefix).'-modal-form-row">
-                                <div class="form-group">
-                                    '.WPJOBPORTALformfield::textarea('wpjobportalcomment', $wpjobportal_comment, array('class' => 'form-control '.esc_attr($this->class_prefix).'-modal-textarea', 'placeholder' => esc_html(__('Comments', 'wp-job-portal')))).'
-                                </div>
-                            </div>
-                            <div class="'.esc_attr($this->class_prefix).'-modal-shortlist-star-wrp">';
-                                $wpjobportal_content .= '<label class="rate" for="wpjobportalrating">' . esc_html(__('Rate', 'wp-job-portal')) . '</label>';
-                                    $wpjobportal_percent = 0;
-                                    if ($wpjobportal_result)
-                                        $wpjobportal_percent = $wpjobportal_result->rate * 20;
-                                    else
-                                        $wpjobportal_percent = 0;
-                                    $wpjobportal_stars = '';
-                                    $wpjobportal_stars = '-small';
-                                    $wpjobportal_content .="
-                                        <div class=\"wpjobportal-container" . esc_attr($wpjobportal_stars) . "\">
-                                            <span id='shortlist-stars'><ul class=\"wpjobportal-stars" . esc_attr($wpjobportal_stars) . "\" >
-                                                <li id=\"rating_" . esc_attr($wpjobportal_jobid) . "\" class=\"current-rating\" style=\"width:" . (int) $wpjobportal_percent . "%;\"></li>
-                                                <li><a anchor=\"anchor\" href=\"javascript:void(null)\" onclick=\"javascript:setrating('rating_" . esc_attr($wpjobportal_jobid) . "',1);\" title=\"" . esc_html(__('Very Poor', 'wp-job-portal')) . "\" class=\"one-star\">1</a></li>
-                                                <li><a anchor=\"anchor\" href=\"javascript:void(null)\" onclick=\"javascript:setrating('rating_" . esc_attr($wpjobportal_jobid) . "',2);\" title=\"" . esc_html(__('Poor', 'wp-job-portal')) . "\" class=\"two-stars\">2</a></li>
-                                                <li><a anchor=\"anchor\" href=\"javascript:void(null)\" onclick=\"javascript:setrating('rating_" . esc_attr($wpjobportal_jobid) . "',3);\" title=\"" . esc_html(__('Regular', 'wp-job-portal')) . "\" class=\"three-stars\">3</a></li>
-                                                <li><a anchor=\"anchor\" href=\"javascript:void(null)\" onclick=\"javascript:setrating('rating_" . esc_attr($wpjobportal_jobid) . "',4);\" title=\"" . esc_html(__('Good', 'wp-job-portal')) . "\" class=\"four-stars\">4</a></li>
-                                                <li><a anchor=\"anchor\" href=\"javascript:void(null)\" onclick=\"javascript:setrating('rating_" . esc_attr($wpjobportal_jobid) . "',5);\" title=\"" . esc_html(__('Very Good', 'wp-job-portal')) . "\" class=\"five-stars\">5</a></li>
-                                            </ul></span>
-                                        </div>";
-                                $wpjobportal_content.='</div>
-                            <div class="col-md-12 '.esc_attr($this->class_prefix).'-modal-form-btn">
-                                <div class="form-group">
-                                    <input type="button" class="btn btn-primary btn-lg btn-block '.esc_attr($this->class_prefix).'-modal-form-btn-inpf" value="'.esc_html(__("Add To ShortList",'wp-job-portal')).'" onclick="saveJobShortlist(1);"  />
-                                </div>
-                            </div>
-                            '.WPJOBPORTALformfield::hidden('wpjobportalid', isset($wpjobportal_result->id) ? $wpjobportal_result->id : '').
-                            WPJOBPORTALformfield::hidden('jobid', $wpjobportal_jobid).
-                            '
-                        </div>
-                    </div>
-                </div>
-            </div>';
-        }else {
-            $title = esc_html(__('No record found', 'wp-job-portal'));
-            $wpjobportal_content = '<h1>' . esc_html(__('No record found', 'wp-job-portal')) . '</h1>';
-        }
-        $wpjobportal_array = array('title' => "", 'wpjobportal_content' => $wpjobportal_content);
         return wp_json_encode($wpjobportal_array);
     }
 
@@ -3308,8 +2855,8 @@ class WPJOBPORTALjobModel {
                         </div>';
             $wpjobportal_content .= '</div>';
         }else {
-            $title = esc_html(__('No record found', 'wp-job-portal'));
-            $wpjobportal_content = '<h1>' . esc_html(__('No record found', 'wp-job-portal')) . '</h1>';
+            $title = esc_html(__('No Records Found', 'wp-job-portal'));
+            $wpjobportal_content = '<h1>' . esc_html(__('No Records Found', 'wp-job-portal')) . '</h1>';
         }
         $wpjobportal_array = array('title' => $title, 'wpjobportal_content' => $wpjobportal_content);
         return wp_json_encode($wpjobportal_array);
@@ -3325,7 +2872,6 @@ class WPJOBPORTALjobModel {
         $wpjobportal_value[(int) $cookieindex] = (int) $cookievalue;
         wpjobportalphplib::wpJP_setcookie('wp_wpjobportal_cookie', serialize($wpjobportal_value), time() + 1209600, SITECOOKIEPATH, null, false, true);
     }
-// removed extra functions
 
     function getjobsvar() {
         $wpjobportal_vars = array();
@@ -3749,221 +3295,11 @@ class WPJOBPORTALjobModel {
             return true;
         }
     }
-    function getJobUid($wpjobportal_jobid){
-        if (!is_numeric($wpjobportal_jobid))
-            return false;
-        $query = "SELECT job.uid
-        FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-        WHERE job.id =" . esc_sql($wpjobportal_jobid);
-        $wpjobportal_result = wpjobportal::$_db->get_var($query);
-        return $wpjobportal_result;
-    }
 
     function getMessagekey(){
         $wpjobportal_key = 'job';if(wpjobportal::$_common->wpjp_isadmin()){$wpjobportal_key = 'admin_'.$wpjobportal_key;}return $wpjobportal_key;
     }
     // fucntion for app
-
-
-    function getSerachCriteriaForApp(){
-
-        $wpjobportal_vars = array();
-
-        $wpjobportal_vars['company'] = WPJOBPORTALrequest::getVar('wpjobportalapp_companyid','post');
-        $wpjobportal_vars['jobtype'] = WPJOBPORTALrequest::getVar('wpjobportalapp_jobtypeid','post');
-        $wpjobportal_vars['category'] = WPJOBPORTALrequest::getVar('wpjobportalapp_categoryid','post');
-        $wpjobportal_vars['city'] = WPJOBPORTALrequest::getVar('wpjobportalapp_cityid','post');
-        $wpjobportal_vars['carrier'] = WPJOBPORTALrequest::getVar('wpjobportalapp_carrierid','post');
-        $wpjobportal_vars['shift'] = WPJOBPORTALrequest::getVar('wpjobportalapp_shiftid','post');
-        $wpjobportal_vars['workpermit'] = WPJOBPORTALrequest::getVar('wpjobportalapp_workpermitid','post');
-        $wpjobportal_vars['jobstatus'] = WPJOBPORTALrequest::getVar('wpjobportalapp_jobstatus_id','post');
-        $wpjobportal_vars['education'] = WPJOBPORTALrequest::getVar('wpjobportalapp_educationid','post');
-        $wpjobportal_vars['jobtitle'] = WPJOBPORTALrequest::getVar('wpjobportalapp_jobtitle','post');
-        $wpjobportal_vars['duration'] = WPJOBPORTALrequest::getVar('wpjobportalapp_duration','post');
-        $wpjobportal_vars['metakeywords'] = WPJOBPORTALrequest::getVar('wpjobportalapp_metakeyword','post');
-        $wpjobportal_vars['salaryrangestart'] = WPJOBPORTALrequest::getVar('wpjobportalapp_startrangeid','post');
-        $wpjobportal_vars['salaryrangeend'] = WPJOBPORTALrequest::getVar('wpjobportalapp_endrangeid','post');
-        $wpjobportal_vars['salaryrangetype'] = WPJOBPORTALrequest::getVar('wpjobportalapp_salary_type_id','post');
-        $wpjobportal_vars['currency'] = WPJOBPORTALrequest::getVar('wpjobportalapp_currenyid','post');
-
-
-        //$wpjobportal_vars['experience'] = WPJOBPORTALrequest::getVar('wpjobportalapp_experienceid','post');
-        //$wpjobportal_vars['age'] = WPJOBPORTALrequest::getVar('wpjobportalapp_ageid','post');
-
-        $wpjobportal_vars['gender'] = WPJOBPORTALrequest::getVar('wpjobportalapp_genderid','post');
-        //$wpjobportal_vars['radiusid'] = WPJOBPORTALrequest::getVar('wpjobportalapp_radiusid','post');
-        // lat lang missing
-
-
-        $wpjobportal_inquery  = '';
-        if (isset($wpjobportal_vars['city']) && is_numeric($wpjobportal_vars['city']) && $wpjobportal_vars['city'] != 0 ) {
-            $return_data['filter']['city'] = $wpjobportal_vars['city'];
-            $wpjobportal_inquery .= " AND  job.city  LIKE '%".esc_sql($wpjobportal_vars['city'])."%'";
-        }
-        if (isset($wpjobportal_vars['metakeywords'])) {
-            wpjobportal::$_data['filter']['metakeywords'] = $wpjobportal_vars['metakeywords'];
-            $wpjobportal_vars['metakeywords'] = json_decode(wpjobportalphplib::wpJP_stripslashes($wpjobportal_vars['metakeywords']),true);
-            $res = $this->makeQueryFromArray('metakeywords', $wpjobportal_vars['metakeywords']);
-            if ($res)
-                $wpjobportal_inquery .= " AND ( " . $res . " )";
-        }
-        if (isset($wpjobportal_vars['jobtitle'])) {
-            wpjobportal::$_data['filter']['jobtitle'] = $wpjobportal_vars['jobtitle'];
-            $wpjobportal_inquery .= " AND job.title LIKE '%" . esc_sql($wpjobportal_vars['jobtitle']) . "%'";
-        }
-        if (isset($wpjobportal_vars['company'])) {
-            wpjobportal::$_data['filter']['company'] = $wpjobportal_vars['company'];
-            $wpjobportal_vars['company'] = json_decode(wpjobportalphplib::wpJP_stripslashes($wpjobportal_vars['company']),true);
-            $res = $this->makeQueryFromArray('company', $wpjobportal_vars['company']);
-            if ($res)
-                $wpjobportal_inquery .= " AND ( " . $res . " )";
-        }
-
-        if (isset($wpjobportal_vars['category'])) {
-            wpjobportal::$_data['filter']['category'] = $wpjobportal_vars['category'];
-            $wpjobportal_vars['category'] = json_decode(wpjobportalphplib::wpJP_stripslashes($wpjobportal_vars['category']),true);
-            $res = $this->makeQueryFromArray('category', $wpjobportal_vars['category']);
-            if ($res)
-                $wpjobportal_inquery .= " AND ( " . $res . " )";
-        }
-
-        if (isset($wpjobportal_vars['jobtype'])) {
-            wpjobportal::$_data['filter']['jobtype'] = $wpjobportal_vars['jobtype'];
-            $wpjobportal_vars['jobtype'] = json_decode(wpjobportalphplib::wpJP_stripslashes($wpjobportal_vars['jobtype']),true);
-            $res = $this->makeQueryFromArray('jobtype', $wpjobportal_vars['jobtype']);
-            if ($res)
-                $wpjobportal_inquery .= " AND ( " . $res . " )";
-        }
-        if (isset($wpjobportal_vars['carrier'])) {
-            wpjobportal::$_data['filter']['carrier'] = $wpjobportal_vars['carrier'];
-            $wpjobportal_vars['carrier'] = json_decode(wpjobportalphplib::wpJP_stripslashes($wpjobportal_vars['carrier']),true);
-            $res = $this->makeQueryFromArray('careerlevel', $wpjobportal_vars['carrier']);
-            if ($res)
-                $wpjobportal_inquery .= " AND ( " . $res . " )";
-        }
-        if (isset($wpjobportal_vars['gender'])) {
-            if (is_numeric($wpjobportal_vars['gender'])) {
-                $wpjobportal_inquery .= " AND job.gender = " . esc_sql($wpjobportal_vars['gender']);
-                wpjobportal::$_data['filter']['gender'] = $wpjobportal_vars['gender'];
-            }
-        }
-        if (isset($wpjobportal_vars['jobstatus'])) {
-            wpjobportal::$_data['filter']['jobstatus'] = $wpjobportal_vars['jobstatus'];
-            $wpjobportal_vars['jobstatus'] = json_decode(wpjobportalphplib::wpJP_stripslashes($wpjobportal_vars['jobstatus']),true);
-            $res = $this->makeQueryFromArray('jobstatus', $wpjobportal_vars['jobstatus']);
-            if ($res)
-                $wpjobportal_inquery .= " AND ( " . $res . " )";
-        }
-        if (isset($wpjobportal_vars['currency'])) {
-            if (is_numeric($wpjobportal_vars['currency'])) {
-                wpjobportal::$_data['filter']['currency'] = $wpjobportal_vars['currency'];
-                $wpjobportal_inquery .= " AND job.currencyid = " . esc_sql($wpjobportal_vars['currency']);
-            }
-        }
-        if (isset($wpjobportal_vars['salaryrangestart'])) {
-            if (is_numeric($wpjobportal_vars['salaryrangestart'])) {
-                wpjobportal::$_data['filter']['salaryrangestart'] = $wpjobportal_vars['salaryrangestart'];
-                $wpjobportal_inquery .= " AND job.salaryrangefrom = " . esc_sql($wpjobportal_vars['salaryrangestart']);
-            }
-        }
-        if (isset($wpjobportal_vars['salaryrangeend'])) {
-            if (is_numeric($wpjobportal_vars['salaryrangeend'])) {
-                wpjobportal::$_data['filter']['salaryrangeend'] = $wpjobportal_vars['salaryrangeend'];
-                $wpjobportal_inquery .= " AND job.salaryrangeto = " . esc_sql($wpjobportal_vars['salaryrangeend']);
-            }
-        }
-        if (isset($wpjobportal_vars['salaryrangetype'])) {
-            if (is_numeric($wpjobportal_vars['salaryrangetype'])) {
-                wpjobportal::$_data['filter']['srangetype'] = $wpjobportal_vars['salaryrangetype'];
-                $wpjobportal_inquery .= " AND job.salaryrangetype = " . esc_sql($wpjobportal_vars['salaryrangetype']);
-            }
-        }
-        if (isset($wpjobportal_vars['shift'])) {
-            wpjobportal::$_data['filter']['shift'] = $wpjobportal_vars['shift'];
-            $wpjobportal_vars['shift'] = json_decode(wpjobportalphplib::wpJP_stripslashes($wpjobportal_vars['shift']),true);
-            $res = $this->makeQueryFromArray('shift', $wpjobportal_vars['shift']);
-            if ($res)
-                $wpjobportal_inquery .= " AND ( " . $res . " )";
-        }
-        if (isset($wpjobportal_vars['education'])) {
-            wpjobportal::$_data['filter']['education'] = $wpjobportal_vars['education'];
-            $wpjobportal_vars['education'] = json_decode(wpjobportalphplib::wpJP_stripslashes($wpjobportal_vars['education']),true);
-            $res = $this->makeQueryFromArray('education', $wpjobportal_vars['education']);
-            if ($res)
-                $wpjobportal_inquery .= " AND ( " . $res . " )";
-        }
-        if (isset($wpjobportal_vars['city'])) {
-            wpjobportal::$_data['filter']['city'] = $wpjobportal_vars['city'];
-            $wpjobportal_vars['city'] = json_decode(wpjobportalphplib::wpJP_stripslashes($wpjobportal_vars['city']),true);
-            $res = $this->makeQueryFromArray('city', $wpjobportal_vars['city']);
-            if ($res)
-                $wpjobportal_inquery .= " AND ( " . $res . " )";
-        }
-        if (isset($wpjobportal_vars['tags'])) {
-            wpjobportal::$_data['filter']['tags'] = $wpjobportal_var['tags'];
-            $wpjobportal_vars['tags'] = json_decode(wpjobportalphplib::wpJP_stripslashes($wpjobportal_vars['tags']),true);
-            $res = $this->makeQueryFromArray('tags', $wpjobportal_vars['tags']);
-            if ($res)
-                $wpjobportal_inquery .= " AND ( " . $res . " )";
-
-        }
-        if (isset($wpjobportal_vars['workpermit'])) {
-            wpjobportal::$_data['filter']['workpermit'] = $wpjobportal_vars['workpermit'];
-            $wpjobportal_vars['workpermit'] = json_decode(wpjobportalphplib::wpJP_stripslashes($wpjobportal_vars['workpermit']),true);
-            $res = $this->makeQueryFromArray('workpermit', $wpjobportal_vars['workpermit']);
-            if ($res)
-                $wpjobportal_inquery .= " AND ( " . $res . " )";
-        }
-        if (isset($wpjobportal_vars['requiredtravel'])) {
-            if (is_numeric($wpjobportal_vars['requiredtravel'])) {
-                wpjobportal::$_data['filter']['requiredtravel'] = $wpjobportal_vars['requiredtravel'];
-                $wpjobportal_inquery .= " AND job.requiredtravel = " . esc_sql($wpjobportal_vars['requiredtravel']);
-            }
-        }
-        if (isset($wpjobportal_vars['duration'])) {
-            wpjobportal::$_data['filter']['duration'] = $wpjobportal_vars['duration'];
-            $wpjobportal_inquery .= " AND job.duration LIKE '%" . esc_sql($wpjobportal_vars['duration']) . "%'";
-        }
-        if (isset($wpjobportal_vars['wpjobportalapp_idfeatured']) && $wpjobportal_vars['wpjobportalapp_idfeatured'] == 1) {
-            wpjobportal::$_data['filter']['wpjobportalapp_idfeatured'] = $wpjobportal_vars['wpjobportalapp_idfeatured'];
-            $wpjobportal_inquery .= " AND job.isfeaturedjob = " . esc_sql($wpjobportal_vars['wpjobportalapp_idfeatured'])." AND job.endfeatureddate >= CURDATE() ";
-        }
-        return $wpjobportal_inquery;
-     }
-
-    function getJobListingSortingForApp(){
-        $sorton = WPJOBPORTALrequest::getVar('wpjobportalapp_sorton','post',2);
-        $sortby = WPJOBPORTALrequest::getVar('wpjobportalapp_sortby','post',2);
-        switch ($sorton) {
-            case 1: // job title
-                $sorting = ' job.title ';
-                break;
-            case 2: // created
-                $sorting = ' job.created ';
-                break;
-            case 3: // company name
-                $sorting = ' company.name ';
-                break;
-            case 4: // job type
-                $sorting = ' jobtype.title ';
-                break;
-            case 5: // category
-                $sorting = ' cat.cat_title ';
-                break;
-            // case 5: // location
-            //     $sorting = ' city.name ';
-            //     break;
-            // case 7: // status
-            //     $sorting = ' job.jobstatus ';
-            //     break;
-        }
-        if ($sortby == 1) {
-            $sorting .= ' ASC ';
-        } else {
-            $sorting .= ' DESC ';
-        }
-        return $sorting;
-    }
 
     function jobDataStructuredPost($wpjobportal_job_id){
         if(!is_numeric($wpjobportal_job_id))
@@ -4731,37 +4067,6 @@ class WPJOBPORTALjobModel {
         // function to fetch all values for jobs layout
         //setSearchVariableForJob
 
-
-        /*
-        wpjobportal::$_search['jobs']['company']
-        wpjobportal::$_search['jobs']['category']
-        wpjobportal::$_search['jobs']['jobtype']
-        wpjobportal::$_search['jobs']['careerlevel']
-        wpjobportal::$_search['jobs']['jobstatus']
-        */
-        // if(empty($filters)){
-        //     return;
-        // }
-
-
-        // if(!empty($filters['categories'])){
-        //     wpjobportal::$_search['jobs']['category'] = $filters['categories'];
-        // }
-
-        // if(!empty($filters['jobtypes'])){
-        //     wpjobportal::$_search['jobs']['jobtype'] = $filters['jobtypes'];
-        // }
-        // if(!empty($filters['jobstatuses'])){
-        //     wpjobportal::$_search['job']['jobstatus'] = $filters['jobstatuses'];
-        // }
-        // if(!empty($filters['careerlevels'])){
-        //     wpjobportal::$_search['jobs']['careerlevel'] = $filters['careerlevels'];
-        // }
-
-        // if(!empty($filters['dates'])){
-        //     wpjobportal::$_search['jobs']['postedates'] = $filters['dates'];
-        // }
-
     }
 
     function getAjaxJobs(){
@@ -4887,7 +4192,7 @@ class WPJOBPORTALjobModel {
 
     function renderNoRecordFoundHtmlForAjax(){
         ob_start();
-        $wpjobportal_msg = esc_html(__('No record found','wp-job-portal'));
+        $wpjobportal_msg = esc_html(__('No Records Found','wp-job-portal'));
         WPJOBPORTALlayout::getNoRecordFound($wpjobportal_msg);
         $html = ob_get_clean();
         return $html;

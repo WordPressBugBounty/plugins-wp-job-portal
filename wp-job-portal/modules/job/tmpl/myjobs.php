@@ -77,7 +77,7 @@ if (!defined('ABSPATH')) die('Restricted Access');
                 </div>
         <?php
             } else {
-                $wpjobportal_msg = esc_html(__('No record found','wp-job-portal'));
+                $wpjobportal_msg = esc_html(__('No Records Found','wp-job-portal'));
                 $wpjobportal_linkmyjobs[] = array(
                     'link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'addjob')),
                     'text' => esc_html(__('Add New','wp-job-portal')) .' '. esc_html(__('Job', 'wp-job-portal'))

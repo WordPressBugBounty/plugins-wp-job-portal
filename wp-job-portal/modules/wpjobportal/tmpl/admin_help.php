@@ -20,7 +20,7 @@
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('Dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -30,12 +30,12 @@
             </div>
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('Configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('Help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -56,9 +56,9 @@
                         <img alt="<?php echo esc_attr(__('Help icon','wp-job-portal')); ?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/help-page/support-icon.jpg" />
                     </div>
                     <div class="wpjobportal-help-top-left-cnt-info">
-                        <h2><?php echo esc_html(__('We Are Here to Help You','wp-job-portal')); ?></h2>
+                        <h2><?php echo esc_html(__('We Are Here To Help You','wp-job-portal')); ?></h2>
                         <p><?php echo esc_html(__('WP Job Portal is a simple yet powerful job board plugin with a step-by-step YouTube guide to ensure ease of use.','wp-job-portal')); ?></p>
-                        <a href="https://www.youtube.com/channel/UCk_qYTzV6gusKmMHxTrgU2Q" target="_blank" class="wpjobportal-help-top-middle-action" title="<?php echo esc_attr(__('View all videos','wp-job-portal')); ?>"><img alt="<?php echo esc_attr(__('Video icon','wp-job-portal')); ?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/help-page/play-icon.jpg" /><?php echo esc_html(__('View All Videos','wp-job-portal')); ?></a>
+                        <a href="https://www.youtube.com/channel/UCk_qYTzV6gusKmMHxTrgU2Q" target="_blank" class="wpjobportal-help-top-middle-action" title="<?php echo esc_attr(__('View All Videos','wp-job-portal')); ?>"><img alt="<?php echo esc_attr(__('Video icon','wp-job-portal')); ?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/help-page/play-icon.jpg" /><?php echo esc_html(__('View All Videos','wp-job-portal')); ?></a>
                     </div>
                 </div>
                 <div class="wpjobportal-help-top-right">
@@ -68,7 +68,7 @@
                     <div class="wpjobportal-help-top-right-cnt-info">
                         <h2><?php echo esc_html(__('WP Job Portal Support','wp-job-portal')); ?></h2>
                         <p><?php echo esc_html(__("WP Job Portal offers timely customer support. If you have any queries, we're here to help you every step of the way.",'wp-job-portal')); ?></p>
-                        <a target="_blank" href="https://wpjobportal.com/support/" class="wpjobportal-help-top-middle-action second" title="<?php echo esc_attr(__('Submit ticket','wp-job-portal')); ?>"><img alt="<?php echo esc_attr(__('Video icon','wp-job-portal')); ?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/help-page/ticket.png" /><?php echo esc_html(__('Submit Ticket','wp-job-portal')); ?></a>
+                        <a target="_blank" href="https://wpjobportal.com/support/" class="wpjobportal-help-top-middle-action second" title="<?php echo esc_attr(__('Submit Ticket','wp-job-portal')); ?>"><img alt="<?php echo esc_attr(__('Video icon','wp-job-portal')); ?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/help-page/ticket.png" /><?php echo esc_html(__('Submit Ticket','wp-job-portal')); ?></a>
                     </div>
                 </div>
             </div>
@@ -83,9 +83,9 @@
                     ?>
                 </div>
                 <div class="wpjobportal-help-btm-wrp">
-                    <h2 class="wpjobportal-help-btm-title"><?php echo esc_html(__('How to Setup','wp-job-portal')); ?></h2>
+                    <h2 class="wpjobportal-help-btm-title"><?php echo esc_html(__('How To Set Up','wp-job-portal')); ?></h2>
                     <?php
-                        $title = esc_html(__('How to setup WP Job Portal', 'wp-job-portal'));
+                        $title = esc_html(__('How To Set Up WP Job Portal', 'wp-job-portal'));
                         $wpjobportal_url = 'eHUMwjFuV2I';
                         wpjobportal_printVideoPlaylist($title, $wpjobportal_url);
                     ?>
@@ -110,7 +110,7 @@
                         $wpjobportal_url = 'WgAdjOC7Uoo';
                         wpjobportal_printVideoPlaylist($title, $wpjobportal_url);
 
-                        $title = esc_html(__('Visitor Create a Job', 'wp-job-portal'));
+                        $title = esc_html(__('Visitor Create A Job', 'wp-job-portal'));
                         $wpjobportal_url = 'xx2VWlbwuGw';
                         wpjobportal_printVideoPlaylist($title, $wpjobportal_url);
 
@@ -118,11 +118,11 @@
                         $wpjobportal_url = 'iaYjzbceigg';
                         wpjobportal_printVideoPlaylist($title, $wpjobportal_url);
 
-                        $title = esc_html(__('Tell a Friend', 'wp-job-portal'));
+                        $title = esc_html(__('Tell A Friend', 'wp-job-portal'));
                         $wpjobportal_url = 'DRNLvfBsbSs';
                         wpjobportal_printVideoPlaylist($title, $wpjobportal_url);
                         
-                        $title = esc_html(__('Apply as a Visitor', 'wp-job-portal'));
+                        $title = esc_html(__('Apply As Visitor', 'wp-job-portal'));
                         $wpjobportal_url = 'YiDasKFGhjY';
                         wpjobportal_printVideoPlaylist($title, $wpjobportal_url);
                     ?>
@@ -139,7 +139,7 @@
                         $wpjobportal_url = 'RQteSRpy5gM';
                         wpjobportal_printVideoPlaylist($title, $wpjobportal_url);
 
-                        $title = esc_html(__('Advance Resume', 'wp-job-portal'));
+                        $title = esc_html(__('Advanced Resume', 'wp-job-portal'));
                         $wpjobportal_url = 'B1YoPITnjPY';
                         wpjobportal_printVideoPlaylist($title, $wpjobportal_url);
 

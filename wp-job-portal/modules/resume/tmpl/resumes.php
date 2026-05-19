@@ -25,10 +25,10 @@ if (wpjobportal::$_error_flag == null) { ?>
                     $wpjobportal_image = $wpjobportal_image2;
                 }
                 $wpjobportal_categoryarray = array(
-                    (object) array('id' => 1, 'text' => esc_html(__('Application title', 'wp-job-portal'))),
-                    (object) array('id' => 2, 'text' => esc_html(__('First name', 'wp-job-portal'))),
+                    (object) array('id' => 1, 'text' => esc_html(__('Application Title', 'wp-job-portal'))),
+                    (object) array('id' => 2, 'text' => esc_html(__('First Name', 'wp-job-portal'))),
                     (object) array('id' => 3, 'text' => esc_html(__('Category', 'wp-job-portal'))),
-                    (object) array('id' => 4, 'text' => esc_html(__('Job type', 'wp-job-portal'))),
+                    (object) array('id' => 4, 'text' => esc_html(__('Job Type', 'wp-job-portal'))),
                     (object) array('id' => 5, 'text' => esc_html(__('Location', 'wp-job-portal'))),
                     (object) array('id' => 6, 'text' => esc_html(__('Created', 'wp-job-portal')))
                 );

@@ -8,7 +8,7 @@ add_filter('product_type_selector', 'wpjobportal_packages_add_product_type');
 function wpjobportal_packages_add_product_type($types) {
     $types['wpjobportal_packages'] = esc_html(__('WP JOB PORTAL Package', 'wp-job-portal'));
     # Per Listing types
-    $types['wpjobportal_perlisting'] = esc_html(__('WP JOB PORTAL Perlisting', 'wp-job-portal'));
+    $types['wpjobportal_perlisting'] = esc_html(__('WP JOB PORTAL Per Listing', 'wp-job-portal'));
     return $types;
 }
 
@@ -207,15 +207,15 @@ function wpjobportal_perlisting_add_custom_settings() {
     global $woocommerce, $post;
    $wpjobportal_perlisting = array(
     (object) array('id' => 'company_price_perlisting', 'text' => esc_html(__('Company', 'wp-job-portal')),),
-    (object) array('id' => 'company_feature_price_perlisting', 'text' => esc_html(__('Feature Company', 'wp-job-portal'))),
+    (object) array('id' => 'company_feature_price_perlisting', 'text' => esc_html(__('Featured Company', 'wp-job-portal'))),
     (object) array('id' => 'job_currency_price_perlisting', 'text' => esc_html(__('Add Job', 'wp-job-portal'))),
-    (object) array('id' => 'jobs_feature_price_perlisting', 'text' => esc_html(__('Featuer Job', 'wp-job-portal'))),
+    (object) array('id' => 'jobs_feature_price_perlisting', 'text' => esc_html(__('Featured Job', 'wp-job-portal'))),
     (object) array('id' => 'job_resume_price_perlisting', 'text' => esc_html(__('Add Resume', 'wp-job-portal'))),
-    (object) array('id' => 'job_featureresume_price_perlisting', 'text' => esc_html(__('Feature Resume', 'wp-job-portal'))),
+    (object) array('id' => 'job_featureresume_price_perlisting', 'text' => esc_html(__('Featured Resume', 'wp-job-portal'))),
     (object) array('id' => 'job_department_price_perlisting', 'text' => esc_html(__('Add Department', 'wp-job-portal'))),
     (object) array('id' => 'job_resumesavesearch_price_perlisting', 'text' => esc_html(__('Resume Save Search', 'wp-job-portal'))),
-    (object) array('id' => 'job_jobalert_price_perlisting', 'text' => esc_html(__('Job Alert Time ', 'wp-job-portal'))),
-    (object) array('id' => 'job_viewcompanycontact_price_perlisting', 'text' => esc_html(__('View Company Contact Detail ', 'wp-job-portal'))),
+    (object) array('id' => 'job_jobalert_price_perlisting', 'text' => esc_html(__('Job Alert', 'wp-job-portal'))),
+    (object) array('id' => 'job_viewcompanycontact_price_perlisting', 'text' => esc_html(__('View Company Contact Detail', 'wp-job-portal'))),
     (object) array('id' => 'job_viewresumecontact_price_perlisting', 'text' => esc_html(__('View Resume Contact Detail', 'wp-job-portal'))),
     (object) array('id' => 'job_jobapply_price_perlisting', 'text' => esc_html(__('Job Apply', 'wp-job-portal'))),
     (object) array('id' => 'job_coverletter_price_perlisting', 'text' => esc_html(__('Add Cover Letter', 'wp-job-portal')))

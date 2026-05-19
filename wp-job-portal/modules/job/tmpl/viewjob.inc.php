@@ -80,7 +80,7 @@ $wpjobportal_mappingservice = wpjobportal::$_config->getConfigValue('mappingserv
                     }
                 } else{
                     jQuery('input#resumefiles').replaceWith(jQuery('input#resumefiles').val('').clone(true));
-                    alert(\"". esc_html(__("File ext. is mismatched", 'wp-job-portal'))."\");
+                    alert(\"". esc_html(__("File extension is mismatched", 'wp-job-portal'))."\");
                 }
 
             }

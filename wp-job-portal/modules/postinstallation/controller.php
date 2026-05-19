@@ -177,37 +177,6 @@ class WPJOBPORTALpostinstallationController {
         wp_redirect($wpjobportal_url);
         exit();
     }
-
-    function importfreetoprotemplatedata(){
-        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
-        if (! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_postinstallation_nonce') ) {
-             die( 'Security check Failed' );
-        }
-        if(!wpjobportal::$_common->wpjp_isadmin())
-            return false;
-        if(wpjobportal::$wpjobportal_theme_chk == 1){// 1 for job manager
-            $wpjobportal_result = WPJOBPORTALincluder::getJSModel('postinstallation')->installFreeToProData();
-        }else{
-            $wpjobportal_result = WPJOBPORTALincluder::getJSModel('postinstallation')->installFreeToProDataJobHub();
-        }
-        $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal"));
-        wp_redirect($wpjobportal_url);
-        exit();
-    }
-
-    function installjobportaldemodata(){
-        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
-        if (! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_postinstallation_nonce') ) {
-             die( 'Security check Failed' );
-        }
-        if(!wpjobportal::$_common->wpjp_isadmin())
-            return false;
-        $wpjobportal_result = WPJOBPORTALincluder::getJSModel('postinstallation')->installSampleDataTemplateJobPortal();
-        $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal"));
-        wp_redirect($wpjobportal_url);
-        exit();
-    }
-
 }
 $WPJOBPORTALpostinstallationController = new WPJOBPORTALpostinstallationController();
 ?>

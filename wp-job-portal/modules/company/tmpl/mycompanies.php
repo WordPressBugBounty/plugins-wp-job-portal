@@ -52,7 +52,7 @@ $wpjobportal_companies = isset(wpjobportal::$_data[0]) && is_array(wpjobportal::
                 ));
             }
         }else{
-            $wpjobportal_msg = esc_html(__('No record found','wp-job-portal'));
+            $wpjobportal_msg = esc_html(__('No Records Found','wp-job-portal'));
             $wpjobportal_linkcompany[] = array(
                 'link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'addcompany')),
                 'text' => esc_html(__('Add New','wp-job-portal')) .' '. esc_html(__('Company', 'wp-job-portal'))

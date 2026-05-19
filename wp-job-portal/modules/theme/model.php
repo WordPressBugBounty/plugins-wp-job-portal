@@ -136,26 +136,6 @@ class WPJOBPORTALthemeModel {
             return true;
         }
     }
-
-
-    function getColorCode($filestring, $wpjobportal_colorNo) {
-        if (wpjobportalphplib::wpJP_strstr($filestring, '$wpjobportal_color' . $wpjobportal_colorNo)) {
-            $wpjobportal_path1 = wpjobportalphplib::wpJP_strpos($filestring, '$wpjobportal_color' . $wpjobportal_colorNo);
-            $wpjobportal_path1 = wpjobportalphplib::wpJP_strpos($filestring, '#', $wpjobportal_path1);
-            $wpjobportal_path2 = wpjobportalphplib::wpJP_strpos($filestring, ';', $wpjobportal_path1);
-            $wpjobportal_colorcode = wpjobportalphplib::wpJP_substr($filestring, $wpjobportal_path1, $wpjobportal_path2 - $wpjobportal_path1 - 1);
-            return $wpjobportal_colorcode;
-        }
-    }
-
-      function replaceString(&$filestring, $wpjobportal_colorNo, $wpjobportal_data) {
-        if (wpjobportalphplib::wpJP_strstr($filestring, '$wpjobportal_color' . $wpjobportal_colorNo)) {
-            $wpjobportal_path1 = wpjobportalphplib::wpJP_strpos($filestring, '$wpjobportal_color' . $wpjobportal_colorNo);
-            $wpjobportal_path2 = wpjobportalphplib::wpJP_strpos($filestring, ';', $wpjobportal_path1);
-            $filestring = substr_replace($filestring, '$wpjobportal_color' . $wpjobportal_colorNo . ' = "' . $wpjobportal_data['color' . $wpjobportal_colorNo] . '";', $wpjobportal_path1, $wpjobportal_path2 - $wpjobportal_path1 + 1);
-        }
-    }
-
 }
 
 ?>

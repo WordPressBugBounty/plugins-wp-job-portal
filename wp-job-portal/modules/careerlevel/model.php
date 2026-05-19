@@ -230,7 +230,7 @@ class WPJOBPORTALCareerlevelModel {
     }
 
     function isCareerlevelExist($title) {
-        $query = "SELECT COUNT(id) FROM " . wpjobportal::$_db->prefix . "wj_portal_careerlevels WHERE title ='$title'";
+        $query = "SELECT COUNT(id) FROM " . wpjobportal::$_db->prefix . "wj_portal_careerlevels WHERE title ='".esc_sql($title)."'";
         $wpjobportal_result = wpjobportaldb::get_var($query);
         if ($wpjobportal_result > 0)
             return true;

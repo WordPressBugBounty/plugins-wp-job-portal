@@ -22,7 +22,7 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('Dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -32,12 +32,12 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
             </div>
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('Configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('Help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -105,7 +105,7 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('_wpnonce', esc_html(wp_create_nonce('wpjobportal_slug_nonce'))),WPJOBPORTAL_ALLOWED_TAGS); ?>
                 <div class="wpjobportal-form-help-text">
                     <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/view-job-information.png" />
-                    <?php echo esc_html(__('This prefix will be added to slug incase of homepage links','wp-job-portal'))?>
+                    <?php echo esc_html(__('This prefix will be added to slug in case of homepage links','wp-job-portal'))?>
                 </div>
             </form>
             <!-- filter form -->
@@ -116,7 +116,7 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('_wpnonce', esc_html(wp_create_nonce('wpjobportal_slug_nonce'))),WPJOBPORTAL_ALLOWED_TAGS); ?>
                 <div class="wpjobportal-form-help-text">
                     <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/view-job-information.png" />
-                    <?php echo esc_html(__('This prefix will be added to slug incase of conflict','wp-job-portal'))?>
+                    <?php echo esc_html(__('This prefix will be added to slug in case of conflict','wp-job-portal'))?>
                 </div>
             </form>
             <!-- filter form -->
@@ -154,12 +154,12 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                                             <td class="wpjobportal-text-left" id="<?php echo 'td_'.esc_attr($wpjobportal_row->id);?>">
                                                 <?php echo esc_html($wpjobportal_row->slug);?>
                                             </td>
-                                            <td class="wpjobportal-text-left">
+                                            <td class="wpjobportal-text-left wpjobportal-slug-description-text ">
                                                 <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_row->description));?>
                                             </td>
                                             <td>
-                                                <a class="wpjobportal-table-act-btn" href="#" onclick="showPopupAndSetValues(<?php echo esc_js($wpjobportal_row->id); ?>)" title="<?php echo esc_attr(__('edit', 'wp-job-portal')); ?>">
-                                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/edit.png" alt="<?php echo esc_attr(__('edit', 'wp-job-portal')); ?>">
+                                                <a class="wpjobportal-table-act-btn" href="#" onclick="showPopupAndSetValues(<?php echo esc_js($wpjobportal_row->id); ?>)" title="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>">
+                                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/edit.png" alt="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>">
                                                 </a>
                                             </td>
                                         </tr>
@@ -186,7 +186,7 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                         echo '<div class="tablenav"><div class="tablenav-pages">' . wp_kses_post(wpjobportal::$_data[1]) . '</div></div>';
                     }
                 } else {
-                    $wpjobportal_msg = esc_html(__('No record found','wp-job-portal'));
+                    $wpjobportal_msg = esc_html(__('No Records Found','wp-job-portal'));
                     $wpjobportal_link[] = array(
                             'link' => 'admin.php?page=wpjobportal_slug&wpjobportallt=formcareerlevels',
                         );

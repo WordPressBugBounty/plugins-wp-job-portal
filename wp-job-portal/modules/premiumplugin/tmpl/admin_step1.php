@@ -22,12 +22,12 @@ delete_option( 'wpjobportal_addon_install_data' );
                 </div>
                 <div id="wpjobportal-wrapper-top-right">
                     <div id="wpjobportal-config-btn">
-                        <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
+                        <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('Configuration','wp-job-portal')); ?>">
                             <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                        </a>
                     </div>
                     <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                        <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
+                        <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('Help','wp-job-portal')); ?>">
                             <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                        </a>
                     </div>
@@ -56,7 +56,7 @@ delete_option( 'wpjobportal_addon_install_data' );
                                 <div class="wpjobportal-addon-installer-right-section-wrap" >
                                     <div class="wpjobportal-addon-installer-right-section-heading-wrp">
                                         <div class="wpjobportal-addon-installer-right-section-heading">
-                                            <?php echo esc_html(__('Welcome to WP Job Portal Addon Installer','wp-job-portal'));?>
+                                            <?php echo esc_html(__('Welcome To WP Job Portal Addon Installer','wp-job-portal'));?>
                                         </div>
                                         <div class="wpjobportal-addon-installer-right-section-btn-wrp">
                                             <a class="wpjobportal-addon-installer-right-section-head-closebtn" href="admin.php?page=wpjobportal"title="<?php echo esc_attr(__('Close','wp-job-portal'));?>">
@@ -93,7 +93,7 @@ delete_option( 'wpjobportal_addon_install_data' );
                                     </div>
                                     <div class="wpjobportal-addon-installer-right-description" >
                                         <a class="wpjobportal-addon-installer-install-btn" href="?page=wpjobportal_premiumplugin&wpjobportallt=addonfeatures" class="wpjobportal-addon-installer-addon-list-link" target="_blank" >
-                                            <?php echo esc_html(__("Add on list",'wp-job-portal')); ?>
+                                            <?php echo esc_html(__("Add On List",'wp-job-portal')); ?>
                                         </a>
                                     </div>
                                 </div>

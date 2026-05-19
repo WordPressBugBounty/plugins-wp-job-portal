@@ -15,7 +15,7 @@
             $wpjobportal_html.='</div>';
             $wpjobportal_html.= '<div class="wjportal-filter-image">';
             $wpjobportal_html.= '<a href='.esc_url( wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'myjobs','sortby' => wpjobportal::$_sortlinks['newest'], 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))) .' class='.esc_attr($wpjobportal_select).'>';
-            $wpjobportal_html.= '<img src='.esc_url(WPJOBPORTAL_PLUGIN_URL) . "includes/images/" . $wpjobportal_img .' alt='.esc_html(__('sort','wp-job-portal')).'>';
+            $wpjobportal_html.= '<img src='.esc_url(WPJOBPORTAL_PLUGIN_URL) . "includes/images/" . $wpjobportal_img .' alt='.esc_html(__('Sort','wp-job-portal')).'>';
             $wpjobportal_html.= '</a>
                   </div>';
             break;

@@ -25,10 +25,10 @@ $wpjobportal_subtype = wpjobportal::$_config->getConfigValue('submission_type');
                             $wpjobportal_image = $wpjobportal_image2;
                         }
                         $wpjobportal_categoryarray = array(
-                            (object) array('id' => 1, 'text' => esc_html(__('Application title', 'wp-job-portal'))),
-                            (object) array('id' => 2, 'text' => esc_html(__('First name', 'wp-job-portal'))),
+                            (object) array('id' => 1, 'text' => esc_html(__('Application Title', 'wp-job-portal'))),
+                            (object) array('id' => 2, 'text' => esc_html(__('First Name', 'wp-job-portal'))),
                             (object) array('id' => 3, 'text' => esc_html(__('Category', 'wp-job-portal'))),
-                            (object) array('id' => 4, 'text' => esc_html(__('Job type', 'wp-job-portal'))),
+                            (object) array('id' => 4, 'text' => esc_html(__('Job Type', 'wp-job-portal'))),
                             (object) array('id' => 5, 'text' => esc_html(__('Location', 'wp-job-portal'))),
                             (object) array('id' => 6, 'text' => esc_html(__('Created', 'wp-job-portal'))),
                             (object) array('id' => 7, 'text' => esc_html(__('Status', 'wp-job-portal')))
@@ -90,7 +90,7 @@ $wpjobportal_subtype = wpjobportal::$_config->getConfigValue('submission_type');
                 </form>
             <?php
             } else {
-                $wpjobportal_msg = esc_html(__('No record found','wp-job-portal'));
+                $wpjobportal_msg = esc_html(__('No Records Found','wp-job-portal'));
                 if(in_array('multiresume', wpjobportal::$_active_addons)){
                     $wpjobportal_mod = "multiresume";
                 }else{

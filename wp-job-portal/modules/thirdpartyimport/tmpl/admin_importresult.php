@@ -18,7 +18,7 @@ die('Restricted Access');
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('Dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -28,12 +28,12 @@ die('Restricted Access');
             </div>
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('Configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('Help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -151,15 +151,15 @@ die('Restricted Access');
                             <td><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_label)); ?></td>
 
                             <td class="wpjobportal-import-data-result-success">
-                                <?php echo esc_html( $wpjobportal_imported .' '. __('imported.','wp-job-portal') ); ?>
+                                <?php echo esc_html( $wpjobportal_imported .' '. __('Imported','wp-job-portal') ); ?>
                             </td>
 
                             <td class="wpjobportal-import-data-result-similar">
-                                <?php echo esc_html( $wpjobportal_skipped .' '. __('skipped.','wp-job-portal') ); ?>
+                                <?php echo esc_html( $wpjobportal_skipped .' '. __('Skipped','wp-job-portal') ); ?>
                             </td>
 
                             <td class="wpjobportal-import-data-result-failed">
-                                <?php echo esc_html( $wpjobportal_failed .' '. __('failed.','wp-job-portal') ); ?>
+                                <?php echo esc_html( $wpjobportal_failed .' '. __('Failed','wp-job-portal') ); ?>
                             </td>
 
                         </tr>

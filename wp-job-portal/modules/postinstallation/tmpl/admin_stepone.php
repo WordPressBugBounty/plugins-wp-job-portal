@@ -112,7 +112,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                 </div>
                 <?php /*<div class="wpjobportal-post-data-row">
                     <div class="wpjobportal-post-tit">
-                        <?php echo esc_html(__('System slug','wp-job-portal')); ?>
+                        <?php echo esc_html(__('System Slug','wp-job-portal')); ?>
                     </div>
                     <div class="wpjobportal-post-val">
                         <?php echo wp_kses(WPJOBPORTALformfield::text('system_slug',wpjobportal::$_data[0]['system_slug'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
@@ -120,7 +120,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                 </div>
                 <div class="wpjobportal-post-data-row">
                     <div class="wpjobportal-post-tit">
-                        <?php echo esc_html(__('Default page','wp-job-portal')); ?>
+                        <?php echo esc_html(__('Default Page','wp-job-portal')); ?>
                     </div>
                     <div class="wpjobportal-post-val">
                         <?php echo wp_kses(WPJOBPORTALformfield::select('default_pageid', WPJOBPORTALincluder::getJSModel('postinstallation')->getPageList(),wpjobportal::$_data[0]['default_pageid'],'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
@@ -135,7 +135,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                 */?>
                 <div class="wpjobportal-post-data-row">
                     <div class="wpjobportal-post-tit">
-                        <?php echo esc_html(__('Data directory','wp-job-portal')); ?>
+                        <?php echo esc_html(__('Data Directory','wp-job-portal')); ?>
                     </div>
                     <div class="wpjobportal-post-val">
                         <?php echo wp_kses(WPJOBPORTALformfield::text('data_directory',wpjobportal::$_data[0]['data_directory'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
@@ -149,7 +149,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                 </div>
                 <div class="wpjobportal-post-data-row">
                     <div class="wpjobportal-post-tit">
-                        <?php echo esc_html(__('Admin email address','wp-job-portal')); ?>
+                        <?php echo esc_html(__('Admin Email Address','wp-job-portal')); ?>
                     </div>
                     <div class="wpjobportal-post-val">
                         <?php echo wp_kses(WPJOBPORTALformfield::text('adminemailaddress',wpjobportal::$_data[0]['adminemailaddress'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
@@ -160,7 +160,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                 </div>
                 <div class="wpjobportal-post-data-row">
                     <div class="wpjobportal-post-tit">
-                        <?php echo esc_html(__('System email address','wp-job-portal')); ?>
+                        <?php echo esc_html(__('System Email Address','wp-job-portal')); ?>
                     </div>
                     <div class="wpjobportal-post-val">
                         <?php echo wp_kses(WPJOBPORTALformfield::text('mailfromaddress',wpjobportal::$_data[0]['mailfromaddress'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
@@ -171,7 +171,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                 </div>
                 <div class="wpjobportal-post-data-row">
                     <div class="wpjobportal-post-tit">
-                        <?php echo esc_html(__('Email from name','wp-job-portal')); ?>
+                        <?php echo esc_html(__('Email From Name','wp-job-portal')); ?>
                     </div>
                     <div class="wpjobportal-post-val">
                         <?php echo wp_kses(WPJOBPORTALformfield::text('mailfromname',wpjobportal::$_data[0]['mailfromname'], array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
@@ -182,7 +182,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                 </div>
                 <div class="wpjobportal-post-data-row">
                     <div class="wpjobportal-post-tit">
-                        <?php echo esc_html(__('Show breadcrumbs','wp-job-portal')); ?>
+                        <?php echo esc_html(__('Show Breadcrumbs','wp-job-portal')); ?>
                     </div>
                     <div class="wpjobportal-post-val">
                         <?php echo wp_kses(WPJOBPORTALformfield::select('cur_location', $wpjobportal_yesno,wpjobportal::$_data[0]['cur_location'],'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
@@ -193,7 +193,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                 </div>
                 <div class="wpjobportal-post-data-row">
                     <div class="wpjobportal-post-tit">
-                        <?php echo esc_html(__('Default date format','wp-job-portal')); ?>
+                        <?php echo esc_html(__('Default Date Format','wp-job-portal')); ?>
                     </div>
                     <div class="wpjobportal-post-val">
                         <?php echo wp_kses(WPJOBPORTALformfield::select('date_format', $wpjobportal_date_format,wpjobportal::$_data[0]['date_format'],'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
@@ -205,7 +205,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
 
                 <div class="wpjobportal-post-data-row">
                     <div class="wpjobportal-post-tit">
-                        <?php echo esc_html(__('Default address display style', 'wp-job-portal')); ?>
+                        <?php echo esc_html(__('Default Address Display Style', 'wp-job-portal')); ?>
                     </div>
                     <div class="wpjobportal-post-val">
                         <?php
@@ -218,7 +218,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                 </div>
 
                 <div class="wpjobportal-post-action-btn">
-                    <a class="next-step wpjobportal-post-act-btn" href="javascript:void();" onclick="document.getElementById('wpjobportal-form-ins').submit();"  title="<?php echo esc_attr(__('next','wp-job-portal')); ?>">
+                    <a class="next-step wpjobportal-post-act-btn" href="javascript:void();" onclick="document.getElementById('wpjobportal-form-ins').submit();"  title="<?php echo esc_attr(__('Next','wp-job-portal')); ?>">
                         <?php echo esc_html(__('Next','wp-job-portal')); ?>
                     </a>
                 </div>

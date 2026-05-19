@@ -20,7 +20,7 @@
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('Dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -30,12 +30,12 @@
             </div>
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('Configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('Help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -61,7 +61,7 @@
                     </h3>
                     <div class="wpjobportal-config-row">
                         <div class="wpjobportal-config-title">
-                            <?php echo esc_html(__('Company detail document title', 'wp-job-portal')); ?>
+                            <?php echo esc_html(__('Company Detail Document Title', 'wp-job-portal')); ?>
                         </div>
                         <div class="wpjobportal-config-value">
                             <?php echo wp_kses(WPJOBPORTALformfield::text('wpjobportal_company_document_title_settings', $wpjobportal_company_settings, array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
@@ -72,7 +72,7 @@
                     </div>
                     <div class="wpjobportal-config-row">
                         <div class="wpjobportal-config-title">
-                            <?php echo esc_html(__('Job detail document title', 'wp-job-portal')); ?>
+                            <?php echo esc_html(__('Job Detail Document Title', 'wp-job-portal')); ?>
                         </div>
                         <div class="wpjobportal-config-value">
                             <?php echo wp_kses(WPJOBPORTALformfield::text('wpjobportal_job_document_title_settings', $wpjobportal_job_settings, array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
@@ -83,7 +83,7 @@
                     </div>
                     <div class="wpjobportal-config-row">
                         <div class="wpjobportal-config-title">
-                            <?php echo esc_html(__('Resume detail document title', 'wp-job-portal')); ?>
+                            <?php echo esc_html(__('Resume Detail Document Title', 'wp-job-portal')); ?>
                         </div>
                         <div class="wpjobportal-config-value">
                             <?php echo wp_kses(WPJOBPORTALformfield::text('wpjobportal_resume_document_title_settings', $wpjobportal_resume_settings, array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>

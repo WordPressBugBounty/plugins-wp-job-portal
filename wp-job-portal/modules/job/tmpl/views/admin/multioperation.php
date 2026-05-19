@@ -16,7 +16,7 @@ if (isset($wpjobportal_job->id)) {
         <?php echo esc_html(__('Select All', 'wp-job-portal')) ?>
     </label>
     <a class="wpjobportal-page-quick-act-btn multioperation" onclick="gettoget()" message="<?php echo esc_attr(WPJOBPORTALMessages::getMSelectionEMessage()); ?>" confirmmessage="<?php echo esc_attr(__('Are you sure to delete', 'wp-job-portal')) .' ?'; ?>" data-for="remove" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_job&task=remove&action=wpjobportaltask&&callfrom=1&wpjobportal-cb[]='.$wpjobportal_jobid),'wpjobportal_job_nonce')); ?>">
-        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/forced-delete.png" alt="<?php echo esc_attr(__('delete', 'wp-job-portal')) ?>" />
+        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/forced-delete.png" alt="<?php echo esc_attr(__('Delete', 'wp-job-portal')) ?>" />
         <?php echo esc_html(__('Delete', 'wp-job-portal')) ?>
     </a>
     <?php
@@ -30,7 +30,7 @@ if (isset($wpjobportal_job->id)) {
     ?>
     <div class="wpjobportal-sorting-wrp">
         <span class="wpjobportal-sort-text">
-            <?php echo esc_html(__('Sort by', 'wp-job-portal')); ?>:
+            <?php echo esc_html(__('Sort By', 'wp-job-portal')); ?>:
         </span>
         <span class="wpjobportal-sort-field">
             <?php echo wp_kses(WPJOBPORTALformfield::select('sorting', $wpjobportal_categoryarray, wpjobportal::$_data['combosort'], '', array('class' => 'inputbox', 'onchange' => 'changeCombo();')),WPJOBPORTAL_ALLOWED_TAGS); ?>

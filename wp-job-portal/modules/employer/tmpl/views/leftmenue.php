@@ -2,7 +2,7 @@
 <?php
 /**
  * Employer Control Panel – Grouped by Section
- * Structure and logic aligned with Jobseeker Control Panel.
+ * Structure and logic aligned with Job seeker Control Panel.
  */
 
 $wpjobportal_layout = array(

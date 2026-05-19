@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH'))
+    die('Restricted Access');
 /**
 * @param field    salary field object
 * @param job      job object - optional

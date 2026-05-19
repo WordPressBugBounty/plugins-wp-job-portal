@@ -18,7 +18,7 @@ $wpjobportal_listing_fields = WPJOBPORTALincluder::getJSModel('fieldordering')->
     
 		<?php if(isset($wpjobportal_listing_fields['photo'])){ ?>
 			<a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_resume&wpjobportallt=formresume&wpjobportalid='.$wpjobportal_resume->id)); ?>">
-				<img src="<?php echo esc_url($wpjobportal_photo); ?>" alt="<?php echo esc_attr(__('logo','wp-job-portal')); ?>" />
+				<img src="<?php echo esc_url($wpjobportal_photo); ?>" alt="<?php echo esc_attr(__('Logo','wp-job-portal')); ?>" />
 			</a>
 		<?php } ?>
 		<div class="wpjobportal-resume-crt-date">

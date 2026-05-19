@@ -177,7 +177,7 @@ $wpjobportal_js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy'
                     }
                 } else{
                     jQuery('input#logo').replaceWith(jQuery('input#logo').val('').clone(true));
-                    alert(\"". esc_html(__("File ext. is mismatched", "wp-job-portal")) ."\");
+                    alert(\"". esc_html(__("File extension is mismatched", "wp-job-portal")) ."\");
                 }
             }
         }
@@ -231,7 +231,7 @@ $wpjobportal_js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy'
                                                 n_latitude = results[0].geometry.location.lat();
                                                 n_longitude = results[0].geometry.location.lng();
                                             } else {
-                                                alert(\"".  esc_html(__('Something got wrong','wp-job-portal')) .":\"+status);
+                                                alert(\"".  esc_html(__('Something went wrong','wp-job-portal')) .":\"+status);
                                             }
                                         });
                                         setTimeout(function(){ // timout is required to make sure that lat lang has value.

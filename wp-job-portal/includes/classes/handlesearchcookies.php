@@ -293,28 +293,6 @@ class WPJOBPORTALhandlesearchcookies {
         WPJOBPORTALincluder::getJSModel('common')->setSearchVariableOnlySortandOrder($this->_jsjp_search_array,$wpjobportal_jstlay);
     }
 
-    private function searchFormDataForCompanies(){
-        if($this->_callfrom == 1){
-            if(is_admin()){
-                $this->_jsjp_search_array = WPJOBPORTALincluder::getJSModel('company')->getSearchFormAdminCompanyData();
-            }else{
-                $this->_jsjp_search_array = WPJOBPORTALincluder::getJSModel('company')->getSearchFormDataMyCompany();
-            }
-            $this->_setcookies = true;
-        }elseif($this->_callfrom == 2){
-            if(is_admin()){
-                $this->_jsjp_search_array = WPJOBPORTALincluder::getJSModel('company')->getAdminCompanySavedCookies();
-            }else{
-                $this->_jsjp_search_array = WPJOBPORTALincluder::getJSModel('company')->getCookiesSavedMyCompany();
-            }
-        }
-        if(is_admin()){
-            WPJOBPORTALincluder::getJSModel('company')->setAdminCompanySearchVariable($this->_jsjp_search_array);
-        }else{
-            WPJOBPORTALincluder::getJSModel('company')->setSearchVariableMyCompany($this->_jsjp_search_array);
-        }
-    }
-
     private function searchFormDataForCareerLevel(){
         if($this->_callfrom == 1){
             $this->_jsjp_search_array = WPJOBPORTALincluder::getJSModel('careerlevel')->getSearchFormDataCareerLevel();
@@ -377,7 +355,6 @@ class WPJOBPORTALhandlesearchcookies {
 
     private function setCookiesFromTransientData(){
         $wpjobportal_user_data  =  get_transient( 'wpjobportal-social-login-data');
-        //echo 'printing tranient data from handlecookies class 248 <pre>';print_r($wpjobportal_user_data);echo '</pre>';
         if( $wpjobportal_user_data !== FALSE){ // it will be false if transient does not exsist
             if($wpjobportal_user_data != '' && is_array($wpjobportal_user_data) && !empty($wpjobportal_user_data)){
                 if (!isset($_COOKIE['wpjobportal-socialid'])){
@@ -628,10 +605,6 @@ class WPJOBPORTALhandlesearchcookies {
             $wpjobportal_key  = $this->buildKey($wpjobportal_token);
             $wpjobportal_data = get_transient($wpjobportal_key);
             return is_array($wpjobportal_data) ? $wpjobportal_data : [];
-        }
-
-        public function getSearchArray() {
-            return $this->_jsjp_search_array;
         }
 
         private function setCurrentUsertransient($wpjobportal_token, $for) {

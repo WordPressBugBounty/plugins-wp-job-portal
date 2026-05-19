@@ -345,18 +345,6 @@ class WPJOBPORTALFieldorderingModel {
         return $wpjobportal_sections;
     }
 
-    function getResumeCustomSectionsFields(){
-        $query = "SELECT field.field,field.section,field.userfieldtype
-                    FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering AS field
-                    WHERE field.fieldfor = 3
-                    AND field.is_section_headline = 1 AND field.field != 'section_resume' AND field.section > 8 ";// 8 is for language section greater then 8 means custom sections
-        if(!in_array('advanceresumebuilder', wpjobportal::$_active_addons)){
-            $query .= " AND field.field = 'section_personal'"; // for free version
-        }
-        $wpjobportal_sections = wpjobportaldb::get_results($query);
-        return $wpjobportal_sections;
-    }
-
     function getResumeCustomSectionFields($wpjobportal_section){
         if(!is_numeric($wpjobportal_section)){
             return false;
@@ -442,53 +430,6 @@ class WPJOBPORTALFieldorderingModel {
                 return WPJOBPORTAL_UN_PUBLISH_ERROR;
         }
     }
-
-    /*function fieldOrderingUp($wpjobportal_field_id) {
-        if (is_numeric($wpjobportal_field_id) == false)
-            return false;
-        $query = "UPDATE " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering AS f1, " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering AS f2
-                SET f1.ordering = f1.ordering + 1
-                WHERE f1.ordering = f2.ordering - 1
-                AND f1.fieldfor = f2.fieldfor
-                AND f2.id = " . esc_sql($wpjobportal_field_id);
-
-        if (false == wpjobportaldb::query($query)) {
-            return WPJOBPORTAL_ORDER_UP_ERROR;
-        }
-
-        $query = " UPDATE " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering
-                    SET ordering = ordering - 1
-                    WHERE id = " . esc_sql($wpjobportal_field_id);
-
-        if (false == wpjobportaldb::query($query)) {
-            return WPJOBPORTAL_ORDER_UP_ERROR;
-        }
-        return WPJOBPORTAL_ORDER_UP;
-    }
-
-    function fieldOrderingDown($wpjobportal_field_id) {
-        if (is_numeric($wpjobportal_field_id) == false)
-            return false;
-
-        $query = "UPDATE " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering AS f1, " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering AS f2
-                    SET f1.ordering = f1.ordering - 1
-                    WHERE f1.ordering = f2.ordering + 1
-                    AND f1.fieldfor = f2.fieldfor
-                    AND f2.id = " . esc_sql($wpjobportal_field_id);
-
-        if (false == wpjobportaldb::query($query)) {
-            return WPJOBPORTAL_ORDER_DOWN_ERROR;
-        }
-
-        $query = " UPDATE " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering
-                    SET ordering = ordering + 1
-                    WHERE id = " . esc_sql($wpjobportal_field_id);
-
-        if (false == wpjobportaldb::query($query)) {
-            return WPJOBPORTAL_ORDER_DOWN_ERROR;
-        }
-        return WPJOBPORTAL_ORDER_DOWN;
-    }*/
 
     function storeUserField($wpjobportal_data) {
         if (empty($wpjobportal_data)) {
@@ -834,78 +775,6 @@ class WPJOBPORTALFieldorderingModel {
         return $wpjobportal_html;
     }
 
-    /*function getOptionsForFieldEdit() {
-        $wpjobportal_field = WPJOBPORTALrequest::getVar('field');
-        $wpjobportal_yesno = array(
-            (object) array('id' => 1, 'text' => esc_html(__('Yes', 'wp-job-portal'))),
-            (object) array('id' => 0, 'text' => esc_html(__('No', 'wp-job-portal'))));
-
-        if(!is_numeric($wpjobportal_field)) return false;
-        $query = "SELECT * FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE id=" . esc_sql($wpjobportal_field);
-        $wpjobportal_data = wpjobportaldb::get_row($query);
-
-        $wpjobportal_html = '<span class="popup-top">
-                    <span id="popup_title" >
-                    ' . esc_html(__("Edit Field", "wp-job-portal")) . '
-                    </span>
-                    <img id="popup_cross" alt="popup cross" onClick="closePopup();" src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/popup-close.png">
-                </span>';
-        $wpjobportal_html .= '<form id="wpjobportal-form" class="popup-field-from" method="post" action="' . esc_url_raw(admin_url("admin.php?page=wpjobportal_fieldordering&task=saveuserfield")) . '">';
-        $wpjobportal_html .= '<div class="popup-field-wrapper">
-                    <div class="popup-field-title">' . esc_html(__('Field Title', 'wp-job-portal')) . '<font class="required-notifier">*</font></div>
-                    <div class="popup-field-obj">' . WPJOBPORTALformfield::text('fieldtitle', isset($wpjobportal_data->fieldtitle) ? $wpjobportal_data->fieldtitle : 'text', '', array('class' => 'inputbox one', 'data-validation' => 'required')) . '</div>
-                </div>';
-        if ($wpjobportal_data->cannotunpublish == 0) {
-            $wpjobportal_html .= '<div class="popup-field-wrapper">
-                        <div class="popup-field-title">' . esc_html(__('User Published', 'wp-job-portal')) . '</div>
-                        <div class="popup-field-obj">' . WPJOBPORTALformfield::select('published', $wpjobportal_yesno, isset($wpjobportal_data->published) ? $wpjobportal_data->published : 0, '', array('class' => 'inputbox one', 'data-validation' => 'required')) . '</div>
-                    </div>';
-            $wpjobportal_html .= '<div class="popup-field-wrapper">
-                        <div class="popup-field-title">' . esc_html(__('Visitor published', 'wp-job-portal')) . '</div>
-                        <div class="popup-field-obj">' . WPJOBPORTALformfield::select('isvisitorpublished', $wpjobportal_yesno, isset($wpjobportal_data->isvisitorpublished) ? $wpjobportal_data->isvisitorpublished : 0, '', array('class' => 'inputbox one', 'data-validation' => 'required')) . '</div>
-                    </div>';
-
-            $wpjobportal_html .= '<div class="popup-field-wrapper">
-                    <div class="popup-field-title">' . esc_html(__('Required', 'wp-job-portal')) . '</div>
-                    <div class="popup-field-obj">' . WPJOBPORTALformfield::select('required', $wpjobportal_yesno, isset($wpjobportal_data->required) ? $wpjobportal_data->required : 0, '', array('class' => 'inputbox one', 'data-validation' => 'required')) . '</div>
-                </div>';
-        }
-
-        if ($wpjobportal_data->cannotsearch == 0) {
-            $wpjobportal_html .= '<div class="popup-field-wrapper">
-                        <div class="popup-field-title">' . esc_html(__('User Search', 'wp-job-portal')) . '</div>
-                        <div class="popup-field-obj">' . WPJOBPORTALformfield::select('search_user', $wpjobportal_yesno, isset($wpjobportal_data->search_user) ? $wpjobportal_data->search_user : 0, '', array('class' => 'inputbox one', 'data-validation' => 'required')) . '</div>
-                    </div>';
-            $wpjobportal_html .= '<div class="popup-field-wrapper">
-                        <div class="popup-field-title">' . esc_html(__('Visitor Search', 'wp-job-portal')) . '</div>
-                        <div class="popup-field-obj">' . WPJOBPORTALformfield::select('search_visitor', $wpjobportal_yesno, isset($wpjobportal_data->search_visitor) ? $wpjobportal_data->search_visitor : 0, '', array('class' => 'inputbox one', 'data-validation' => 'required')) . '</div>
-                    </div>';
-        }
-        $wpjobportal_showonlisting = true;
-        if($wpjobportal_data->fieldfor == 3 && $wpjobportal_data->section != 1 ){
-            $wpjobportal_showonlisting = false;
-        }
-        if (($wpjobportal_data->isuserfield == 1 || $wpjobportal_data->cannotshowonlisting == 0) && $wpjobportal_showonlisting == true) {
-            $wpjobportal_html .= '<div class="popup-field-wrapper">
-                        <div class="popup-field-title">' . esc_html(__('Show On Listing', 'wp-job-portal')) . '</div>
-                        <div class="popup-field-obj">' . WPJOBPORTALformfield::select('showonlisting', $wpjobportal_yesno, isset($wpjobportal_data->showonlisting) ? $wpjobportal_data->showonlisting : 0, '', array('class' => 'inputbox one', 'data-validation' => 'required')) . '</div>
-                    </div>';
-        }
-        $wpjobportal_html .= WPJOBPORTALformfield::hidden('form_request', 'wpjobportal');
-        $wpjobportal_html .= WPJOBPORTALformfield::hidden('id', $wpjobportal_data->id);
-        $wpjobportal_html .= WPJOBPORTALformfield::hidden('isuserfield', $wpjobportal_data->isuserfield);
-        $wpjobportal_html .= WPJOBPORTALformfield::hidden('fieldfor', $wpjobportal_data->fieldfor);
-        $wpjobportal_html .='<div class="js-submit-container js-col-lg-10 js-col-md-10 js-col-md-offset-1 js-col-md-offset-1">
-                    ' . WPJOBPORTALformfield::submitbutton('save', esc_html(__('Save', 'wp-job-portal')), array('class' => 'button'));
-        if ($wpjobportal_data->isuserfield == 1) {
-            $wpjobportal_html .= '<a id="user-field-anchor" href="'.esc_url_raw(admin_url('admin.php?page=wpjobportal_fieldordering&wpjobportallt=formuserfield&wpjobportalid=' . esc_attr($wpjobportal_data->id) . '&ff='.esc_attr($wpjobportal_data->fieldfor))).'"> ' . esc_html(__('Advanced', 'wp-job-portal')) . ' </a>';
-        }
-
-        $wpjobportal_html .='</div>
-            </form>';
-        return wp_json_encode($wpjobportal_html);
-    }*/
-
     function deleteUserField($wpjobportal_id, $wpjobportal_is_section_headline=0){
         if (!is_numeric($wpjobportal_id))
            return false;
@@ -926,22 +795,6 @@ class WPJOBPORTALFieldorderingModel {
                         }
                     }
                 }
-                return WPJOBPORTAL_DELETED;
-            }
-        }
-        return WPJOBPORTAL_IN_USE;
-    }
-
-    function enforceDeleteUserField($wpjobportal_id){
-        if (is_numeric($wpjobportal_id) == false)
-           return false;
-        $query = "SELECT field,fieldfor FROM `".wpjobportal::$_db->prefix."wj_portal_fieldsordering` WHERE id = " . esc_sql($wpjobportal_id);
-        $wpjobportal_result = wpjobportaldb::get_row($query);
-        $wpjobportal_row = WPJOBPORTALincluder::getJSTable('fieldsordering');
-        if ($this->userFieldCanDelete($wpjobportal_result) == true) {
-            if (!$wpjobportal_row->delete($wpjobportal_id)) {
-                return WPJOBPORTAL_DELETE_ERROR;
-            }else{
                 return WPJOBPORTAL_DELETED;
             }
         }
@@ -1322,7 +1175,7 @@ class WPJOBPORTALFieldorderingModel {
         $wpjobportal_field = esc_sql($wpjobportal_field);
         $oldField = wpjobportalphplib::wpJP_explode(',',$wpjobportal_field);
         $wpjobportal_newField = $oldField[sizeof($oldField) - 1];
-        $query = "SELECT visible_field FROM ". wpjobportal::$_db->prefix ."wj_portal_fieldsordering WHERE  field = '". $wpjobportal_newField ."'";
+        $query = "SELECT visible_field FROM ". wpjobportal::$_db->prefix ."wj_portal_fieldsordering WHERE  field = '". esc_sql($wpjobportal_newField) ."'";
         $queryRun = wpjobportal::$_db->get_var($query);
         if (isset($queryRun) && $queryRun != '') {
             $wpjobportal_data = wpjobportalphplib::wpJP_explode(',',$queryRun);

@@ -84,7 +84,7 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                                     <line x1="9" y1="8" x2="15" y2="8"></line>
                                     <line x1="17" y1="16" x2="23" y2="16"></line>
                                 </svg>
-                                Options
+                                <?php echo esc_html__('Options', 'wp-job-portal'); ?>
                             </a>
 
                             <div id="wjp-screen-options-menu" class="wjp-so-popup">
@@ -169,7 +169,7 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                                                             <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
                                                             <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
                                                         </svg>
-                                                        <span><?php echo esc_html__('Jobs by Status', 'wp-job-portal'); ?></span>
+                                                        <span><?php echo esc_html__('Jobs By Status', 'wp-job-portal'); ?></span>
                                                     </div>
                                                     <label class="wjp-so-toggle">
                                                         <input type="checkbox" name="wjp_screen_options[jobs_by_status_chart]" <?php checked( isset($wpjobportal_wjp_options['jobs_by_status_chart']) ? $wpjobportal_wjp_options['jobs_by_status_chart'] : '', 'on' ); ?>>
@@ -321,7 +321,7 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                                     </div>
 
                                     <div class="wjp-so-footer">
-                                        <button type="submit" name="wjp_reset_options" value="1" class="wjp-btn-sm wjp-btn-reset"><?php echo esc_html__('Reset to Defaults', 'wp-job-portal'); ?></button>
+                                        <button type="submit" name="wjp_reset_options" value="1" class="wjp-btn-sm wjp-btn-reset"><?php echo esc_html__('Reset To Defaults', 'wp-job-portal'); ?></button>
                                         <button type="submit" class="wjp-btn-sm wjp-btn-primary"><?php echo esc_html__('Apply Changes', 'wp-job-portal'); ?></button>
                                     </div>
                                </form>
@@ -536,6 +536,7 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                                         <td><?php echo esc_html(human_time_diff(strtotime($wpjobportal_job->created) ,strtotime(date_i18n("Y-m-d H:i:s")))).' '.esc_html(__("Ago",'wp-job-portal')); ?></td>
                                         <td>
                                             <?php
+                                            $wpjobportal_status_label = esc_html__('Pending', 'wp-job-portal');
                                             $wpjobportal_status_class = ($wpjobportal_job->status == 1) ? 'wjp-status-active' : 'wjp-status-closed';
                                             if($wpjobportal_job->status == 1){
                                                 $wpjobportal_status_label = esc_html__('Approved', 'wp-job-portal');
@@ -543,6 +544,8 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                                                 $wpjobportal_status_label = esc_html__('Pending', 'wp-job-portal');
                                             }elseif($wpjobportal_job->status == -1){
                                                 $wpjobportal_status_label = esc_html__('Rejected', 'wp-job-portal');
+                                            }elseif($wpjobportal_job->status == 3){
+                                                $wpjobportal_status_label = esc_html__('Pending', 'wp-job-portal');
                                             }
                                             ?>
                                             <span class="wjp-status-badge <?php echo esc_attr($wpjobportal_status_class); ?>">
@@ -565,7 +568,7 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                 <div id="wjp-new-charts" class="">
                     <?php if (isset($wpjobportal_wjp_options['jobs_by_status_chart'])) : ?>
                     <div class="wjp-chart-card">
-                        <div class="wjp-h3"><?php echo esc_html__('Jobs by Status', 'wp-job-portal'); ?></div>
+                        <div class="wjp-h3"><?php echo esc_html__('Jobs By Status', 'wp-job-portal'); ?></div>
                         <div class="wjp-chart-container"><div id="jobsStatusChart"></div></div>
                     </div>
                     <?php endif; ?>
@@ -601,17 +604,17 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                                                     <p class="wjp-company-loc"><?php echo esc_html__('at', 'wp-job-portal'); ?> <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_company&wpjobportallt=formcompany&wpjobportalid='.(isset($wpjobportal_apply->companyid) ? $wpjobportal_apply->companyid : ''))); ?>"><?php echo esc_html($wpjobportal_apply->company_name); ?></a></p>
                                                 </div>
                                             </div>
-                                            <span class="wjp-timestamp"><?php echo esc_html(human_time_diff(strtotime($wpjobportal_apply->apply_date) ,strtotime(date_i18n("Y-m-d H:i:s")))).' '.esc_html(__("ago",'wp-job-portal')); ?></span>
+                                            <span class="wjp-timestamp"><?php echo esc_html(human_time_diff(strtotime($wpjobportal_apply->apply_date) ,strtotime(date_i18n("Y-m-d H:i:s")))).' '.esc_html(__("Ago",'wp-job-portal')); ?></span>
                                         </div>
                                         <div class="wjp-item-footer">
                                             <div class="wjp-tag-list">
-                                                <span class="wjp-tag wjp-tag-sky"><?php echo esc_html($wpjobportal_apply->jobtype_title); ?></span>
+                                                <span class="wjp-tag wjp-tag-sky"><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_apply->jobtype_title)); ?></span>
                                                 <span class="wjp-tag wjp-tag-slate">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                                                     <circle cx="12" cy="10" r="3"></circle>
                                                 </svg>
-                                                 <?php echo esc_html(WPJOBPORTALincluder::getJSModel('city')->getLocationDataForView($wpjobportal_apply->city)); ?></span>
+                                                 <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue(WPJOBPORTALincluder::getJSModel('city')->getLocationDataForView($wpjobportal_apply->city))); ?></span>
                                                 <?php /*
                                                 <span class="wjp-tag wjp-tag-emerald">
                                                     <?php echo esc_html(wpjobportal::$_common->getSalaryRangeView($wpjobportal_apply->salarytype, $wpjobportal_apply->salarymin, $wpjobportal_apply->salarymax,$wpjobportal_apply->currency)); ?>
@@ -649,8 +652,8 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                                         <img src="<?php echo esc_url($wpjobportal_photo); ?>" alt="<?php echo esc_attr($wpjobportal_resume->application_title); ?>" class="wjp-avatar">
                                         <div class="wjp-item-text"><p class="wjp-name"><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_resume&wpjobportallt=viewresume&wpjobportalid='.$wpjobportal_resume->id)); ?>"><?php echo esc_html($wpjobportal_resume->first_name . ' ' . $wpjobportal_resume->last_name); ?></a></p><p class="wjp-subtext"> <?php echo esc_html($wpjobportal_resume->application_title); ?></p>
                                             <div class="wjp-tag-list" style="margin-top: 0.25rem;">
-                                                <span class="wjp-tag wjp-tag-sky"><?php echo esc_html($wpjobportal_resume->jobtypetitle); ?></span>
-                                                <span class="wjp-tag wjp-tag-slate"><?php echo esc_html($wpjobportal_resume->cat_title); ?></span>
+                                                <span class="wjp-tag wjp-tag-sky"><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_resume->jobtypetitle)); ?></span>
+                                                <span class="wjp-tag wjp-tag-slate"><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_resume->cat_title)); ?></span>
                                             </div>
                                         </div>
                                     </div>
@@ -693,7 +696,7 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                                                 <span class="wjp-plan-pro"><?php echo esc_html($wpjobportal_sub->package_name); ?></span>.
                                             </p>
                                         </div>
-                                        <span class="wjp-timestamp"><?php echo esc_html(human_time_diff(strtotime($wpjobportal_sub->created) ,strtotime(date_i18n("Y-m-d H:i:s")))).' '.esc_html(__("ago",'wp-job-portal')); ?></span>
+                                        <span class="wjp-timestamp"><?php echo esc_html(human_time_diff(strtotime($wpjobportal_sub->created) ,strtotime(date_i18n("Y-m-d H:i:s")))).' '.esc_html(__("Ago",'wp-job-portal')); ?></span>
                                     </div>
                                 <?php }
                                 } else { ?>
@@ -758,7 +761,7 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                                     </div>
                                     <div class="wjp-activity-text">
                                         <p><?php echo isset($wpjobportal_log->description) ? wp_kses_post($wpjobportal_log->description) : ''; ?></p>
-                                        <p class="wjp-subtext"><?php echo isset($wpjobportal_log->created) ? esc_html(human_time_diff(strtotime($wpjobportal_log->created) ,strtotime(date_i18n("Y-m-d H:i:s")))).' '.esc_html(__("ago",'wp-job-portal')) : ''; ?></p>
+                                        <p class="wjp-subtext"><?php echo isset($wpjobportal_log->created) ? esc_html(human_time_diff(strtotime($wpjobportal_log->created) ,strtotime(date_i18n("Y-m-d H:i:s")))).' '.esc_html(__("Ago",'wp-job-portal')) : ''; ?></p>
                                     </div>
                                 </div>
                             <?php }
@@ -777,7 +780,7 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                                 <div class="wjp-list-item wjp-list-item-simple">
                                     <div class="wjp-item-text">
                                         <p class="wjp-log-text <?php echo esc_attr($wpjobportal_log_class); ?>"><?php echo esc_html($wpjobportal_log->error); ?></p>
-                                        <p class="wjp-subtext"><?php echo esc_html(human_time_diff(strtotime($wpjobportal_log->created), current_time('timestamp'))) . ' ' . esc_html__('ago', 'wp-job-portal'); ?></p>
+                                        <p class="wjp-subtext"><?php echo esc_html(human_time_diff(strtotime($wpjobportal_log->created), current_time('timestamp'))) . ' ' . esc_html__('Ago', 'wp-job-portal'); ?></p>
                                     </div>
 
                                 </div>

@@ -57,7 +57,7 @@ if (!defined('ABSPATH'))
                                     <a class="wjportal-cp-user-act-btn wjportal-cp-user-act-profile-my-companies" href="<?php echo esc_url($wpjobportal_mycompany_url) ?>" title="<?php echo esc_attr(__('My Companies', 'wp-job-portal')); ?>">
                                         <?php echo esc_html(__('My Companies', 'wp-job-portal')); ?>
                                     </a>
-                                    <a class="wjportal-cp-user-act-btn wjportal-cp-user-act-profile-edit-profile" href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'user', 'wpjobportallt'=>'formprofile'))) ?>" title="<?php echo esc_attr(__('Edit profile', 'wp-job-portal')); ?>">
+                                    <a class="wjportal-cp-user-act-btn wjportal-cp-user-act-profile-edit-profile" href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'user', 'wpjobportallt'=>'formprofile'))) ?>" title="<?php echo esc_attr(__('Edit Profile', 'wp-job-portal')); ?>">
                                         <?php echo esc_html(__('Edit Profile', 'wp-job-portal')); ?>
                                     </a>
                                 </div>
@@ -71,7 +71,7 @@ if (!defined('ABSPATH'))
                                 <div class="wjportal-cp-boxes">
                                     <div class="wjportal-cp-box box1">
                                         <div class="wjportal-cp-box-top">
-                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/employer/cp-posted-jobs.png" alt="<?php echo esc_attr(__("posted jobs",'wp-job-portal')); ?>">
+                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/employer/cp-posted-jobs.png" alt="<?php echo esc_attr(__("Posted Jobs",'wp-job-portal')); ?>">
                                             <div class="wjportal-cp-box-num">
                                                 <?php echo isset(wpjobportal::$_data['totaljobs']) ? esc_html(wpjobportal::$_data['totaljobs']) : ''; ?>
                                             </div>
@@ -80,7 +80,7 @@ if (!defined('ABSPATH'))
                                             </div>
                                         </div>
                                         <div class="wjportal-cp-box-btm clearfix">
-                                            <a href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'myjobs'))); ?>" title="View detail">
+                                            <a href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'myjobs'))); ?>" title="<?php echo esc_attr(__('View Detail','wp-job-portal')); ?>">
                                                 <span class="wjportal-cp-box-text">
                                                     <?php echo esc_html(__('View Detail','wp-job-portal')); ?>
                                                 </span>
@@ -90,7 +90,7 @@ if (!defined('ABSPATH'))
                                     </div>
                                     <div class="wjportal-cp-box box2">
                                         <div class="wjportal-cp-box-top">
-                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/employer/cp-applied-resume.png" alt="<?php echo esc_attr(__("applied resume",'wp-job-portal')); ?>">
+                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/employer/cp-applied-resume.png" alt="<?php echo esc_attr(__("Applied Resume",'wp-job-portal')); ?>">
                                             <div class="wjportal-cp-box-num">
                                                 <?php echo isset(wpjobportal::$_data['totaljobapply']) ? esc_html(wpjobportal::$_data['totaljobapply']) : ''; ?>
                                             </div>
@@ -99,7 +99,7 @@ if (!defined('ABSPATH'))
                                             </div>
                                         </div>
                                         <div class="wjportal-cp-box-btm clearfix">
-                                            <a href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'myjobs'))); ?>" title="View detail">
+                                            <a href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'myjobs'))); ?>" title="<?php echo esc_attr(__('View Detail','wp-job-portal')); ?>">
                                                 <span class="wjportal-cp-box-text">
                                                     <?php echo esc_html(__('View Detail','wp-job-portal')); ?>
                                                 </span>
@@ -116,16 +116,16 @@ if (!defined('ABSPATH'))
                                             }
                                          ?>
                                         <div class="wjportal-cp-box-top">
-                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/employer/cp-my-company.png" alt="<?php echo esc_attr(__("my company",'wp-job-portal')); ?>">
+                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/employer/cp-my-company.png" alt="<?php echo esc_attr(__("My Companies",'wp-job-portal')); ?>">
                                             <div class="wjportal-cp-box-num">
                                                 <?php echo isset(wpjobportal::$_data['totalcompanies']) ? esc_html(wpjobportal::$_data['totalcompanies']) : ''; ?>
                                             </div>
                                             <div class="wjportal-cp-box-tit">
-                                                <?php echo esc_html(__('My Company','wp-job-portal')); ?>
+                                                <?php echo esc_html(__('My Companies','wp-job-portal')); ?>
                                             </div>
                                         </div>
                                         <div class="wjportal-cp-box-btm clearfix">
-                                            <a href="<?php echo esc_url($wpjobportal_url);; ?>" title="View detail">
+                                            <a href="<?php echo esc_url($wpjobportal_url);; ?>" title="<?php echo esc_attr(__('View Detail','wp-job-portal')); ?>">
                                                 <span class="wjportal-cp-box-text">
                                                     <?php  echo esc_html(__('View Detail','wp-job-portal')); ?>
                                                 </span>
@@ -136,7 +136,7 @@ if (!defined('ABSPATH'))
                                     <?php if(in_array('resumesearch', wpjobportal::$_active_addons)){ ?>
                                         <div class="wjportal-cp-box box4">
                                             <div class="wjportal-cp-box-top">
-                                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/employer/cp-save-searches.png" alt="<?php echo esc_attr(__("save searches",'wp-job-portal')); ?>">
+                                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/employer/cp-save-searches.png" alt="<?php echo esc_attr(__("Resume Save Search",'wp-job-portal')); ?>">
                                                 <div class="wjportal-cp-box-num">
                                                     <?php echo isset( wpjobportal::$_data['totalresumesearch']) ?  esc_html(wpjobportal::$_data['totalresumesearch']) : ''; ?>
                                                 </div>
@@ -145,7 +145,7 @@ if (!defined('ABSPATH'))
                                                 </div>
                                             </div>
                                             <div class="wjportal-cp-box-btm clearfix">
-                                                <a href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resumesearch', 'wpjobportallt'=>'resumesavesearch'))); ?>" title="View detail">
+                                                <a href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resumesearch', 'wpjobportallt'=>'resumesavesearch'))); ?>" title="<?php echo esc_attr(__('View Detail','wp-job-portal')); ?>">
                                                     <span class="wjportal-cp-box-text">
                                                         <?php echo esc_html(__('View Detail','wp-job-portal')); ?>
                                                     </span>
@@ -175,7 +175,7 @@ if (!defined('ABSPATH'))
                                 <?php echo esc_html(__('Welcome, Visitor', 'wp-job-portal')); ?>!
                             </div>
                             <div class="wjportal-cp-guest-banner-middle-bottom" >
-                                <?php echo esc_html(__('Please log in to register to continue.', 'wp-job-portal')); ?>
+                                <?php echo esc_html(__('Please log in or register to continue.', 'wp-job-portal')); ?>
                             </div>
                         </div>
                         <div class="wjportal-cp-guest-banner-right" >

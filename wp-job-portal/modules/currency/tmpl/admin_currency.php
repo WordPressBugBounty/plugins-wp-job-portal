@@ -44,7 +44,7 @@ wp_enqueue_style('wp-jquery-ui-dialog');
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('Dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -54,12 +54,12 @@ wp_enqueue_style('wp-jquery-ui-dialog');
             </div>
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('Configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('Help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -79,12 +79,12 @@ wp_enqueue_style('wp-jquery-ui-dialog');
                     <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" alt="<?php echo esc_attr(__('publish', 'wp-job-portal')) ?>" />
                     <?php echo esc_html(__('Publish', 'wp-job-portal')) ?>
                 </a>
-                <a class="wpjobportal-page-quick-act-btn multioperation" message="<?php echo esc_attr(WPJOBPORTALMessages::getMSelectionEMessage()); ?>" data-for="unpublish" href="#" title="<?php echo esc_attr(__('unpublish', 'wp-job-portal')) ?>">
-                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" alt="<?php echo esc_attr(__('unpublish', 'wp-job-portal')) ?>" />
+                <a class="wpjobportal-page-quick-act-btn multioperation" message="<?php echo esc_attr(WPJOBPORTALMessages::getMSelectionEMessage()); ?>" data-for="unpublish" href="#" title="<?php echo esc_attr(__('Unpublish', 'wp-job-portal')) ?>">
+                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" alt="<?php echo esc_attr(__('Unpublish', 'wp-job-portal')) ?>" />
                     <?php echo esc_html(__('Unpublish', 'wp-job-portal')) ?>
                 </a>
-                <a class="wpjobportal-page-quick-act-btn multioperation" message="<?php echo esc_attr(WPJOBPORTALMessages::getMSelectionEMessage()); ?>" confirmmessage="<?php echo esc_attr(__('Are you sure to delete','wp-job-portal')) . ' ?'; ?>" data-for="remove" href="#" title="<?php echo esc_attr(__('delete', 'wp-job-portal')) ?>">
-                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/forced-delete.png" alt="<?php echo esc_attr(__('delete', 'wp-job-portal')) ?>" />
+                <a class="wpjobportal-page-quick-act-btn multioperation" message="<?php echo esc_attr(WPJOBPORTALMessages::getMSelectionEMessage()); ?>" confirmmessage="<?php echo esc_attr(__('Are you sure to delete','wp-job-portal')) . ' ?'; ?>" data-for="remove" href="#" title="<?php echo esc_attr(__('Delete', 'wp-job-portal')) ?>">
+                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/forced-delete.png" alt="<?php echo esc_attr(__('Delete', 'wp-job-portal')) ?>" />
                     <?php echo esc_html(__('Delete', 'wp-job-portal')) ?>
                 </a>
             </div>
@@ -108,7 +108,7 @@ wp_enqueue_style('wp-jquery-ui-dialog');
                 <?php echo wp_kses(WPJOBPORTALformfield::submitbutton('btnsubmit', esc_html(__('Search', 'wp-job-portal')), array('class' => 'button wpjobportal-form-search-btn')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                 <?php echo wp_kses(WPJOBPORTALformfield::button('reset', esc_html(__('Reset', 'wp-job-portal')), array('class' => 'button wpjobportal-form-reset-btn', 'onclick' => 'resetFrom();')),WPJOBPORTAL_ALLOWED_TAGS); ?>
 
-                <?php echo wp_kses(WPJOBPORTALformfield::select('pagesize', array((object) array('id'=>20,'text'=>20), (object) array('id'=>50,'text'=>50), (object) array('id'=>100,'text'=>100)), wpjobportal::$_data['filter']['pagesize'],esc_html(__("Records per page",'wp-job-portal')), array('class' => ' wpjobportal-form-select-field wpjobportal-right','onchange'=>'document.wpjobportalform.submit();')),WPJOBPORTAL_ALLOWED_TAGS);?>
+                <?php echo wp_kses(WPJOBPORTALformfield::select('pagesize', array((object) array('id'=>20,'text'=>20), (object) array('id'=>50,'text'=>50), (object) array('id'=>100,'text'=>100)), wpjobportal::$_data['filter']['pagesize'],esc_html(__("Records Per Page",'wp-job-portal')), array('class' => ' wpjobportal-form-select-field wpjobportal-right','onchange'=>'document.wpjobportalform.submit();')),WPJOBPORTAL_ALLOWED_TAGS);?>
 
             </form>
             <?php
@@ -164,7 +164,7 @@ wp_enqueue_style('wp-jquery-ui-dialog');
                                             </td>
 
                                             <td class="wpjobportal-text-left">
-                                                <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_currency&wpjobportallt=formcurrency&wpjobportalid='.$wpjobportal_row->id)); ?>" title="<?php echo esc_attr(__('title', 'wp-job-portal')); ?>">
+                                                <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_currency&wpjobportallt=formcurrency&wpjobportalid='.$wpjobportal_row->id)); ?>" title="<?php echo esc_attr(__('Title', 'wp-job-portal')); ?>">
                                                     <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_row->title)); ?>
                                                 </a>
                                             </td>
@@ -176,7 +176,7 @@ wp_enqueue_style('wp-jquery-ui-dialog');
                                             </td>
                                             <td>
                                                 <?php if ($wpjobportal_row->default == 1) { ?>
-                                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/default.png" alt="Default" border="0" alt="<?php echo esc_attr(__('default', 'wp-job-portal')); ?>" />
+                                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/default.png" alt="Default" border="0" alt="<?php echo esc_attr(__('Default', 'wp-job-portal')); ?>" />
                                                 <?php } else { ?>
                                                     <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_common&task=makedefault&action=wpjobportaltask&for=currencies&id='.$wpjobportal_row->id.$wpjobportal_pageid),'wpjobportal_common_entity_nonce')); ?>" title="<?php echo esc_attr(__('not default', 'wp-job-portal')); ?>">
                                                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/notdefault.png" border="0" alt="<?php echo esc_attr(__('not default', 'wp-job-portal')); ?>" />
@@ -186,20 +186,20 @@ wp_enqueue_style('wp-jquery-ui-dialog');
                                             <td>
                                                 <?php if ($wpjobportal_row->status == 1) { ?>
                                                     <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_currency&task=unpublish&action=wpjobportaltask&wpjobportal-cb[]='.$wpjobportal_row->id.$wpjobportal_pageid),'wpjobportal_currency_nonce')); ?>" title="<?php echo esc_attr(__('published', 'wp-job-portal')); ?>">
-                                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_attr(__('published', 'wp-job-portal')); ?>" />
+                                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" border="0" alt="<?php echo esc_attr(__('Published', 'wp-job-portal')); ?>" />
                                                     </a>
                                                 <?php } else { ?>
-                                                    <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_currency&task=publish&action=wpjobportaltask&wpjobportal-cb[]='.$wpjobportal_row->id.$wpjobportal_pageid),'wpjobportal_currency_nonce')); ?>" title="<?php echo esc_attr(__('not published', 'wp-job-portal')); ?>">
-                                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_attr(__('not published', 'wp-job-portal')); ?>" />
+                                                    <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_currency&task=publish&action=wpjobportaltask&wpjobportal-cb[]='.$wpjobportal_row->id.$wpjobportal_pageid),'wpjobportal_currency_nonce')); ?>" title="<?php echo esc_attr(__('Not Published', 'wp-job-portal')); ?>">
+                                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" border="0" alt="<?php echo esc_attr(__('Not Published', 'wp-job-portal')); ?>" />
                                                     </a>
                                                 <?php } ?>
                                             </td>
                                             <td>
-                                                <a class="wpjobportal-table-act-btn" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_currency&wpjobportallt=formcurrency&wpjobportalid='.$wpjobportal_row->id)); ?>" title="<?php echo esc_attr(__('edit', 'wp-job-portal')); ?>">
-                                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/edit.png" alt="<?php echo esc_attr(__('edit', 'wp-job-portal')); ?>">
+                                                <a class="wpjobportal-table-act-btn" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_currency&wpjobportallt=formcurrency&wpjobportalid='.$wpjobportal_row->id)); ?>" title="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>">
+                                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/edit.png" alt="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>">
                                                 </a>
-                                                <a class="wpjobportal-table-act-btn" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_currency&task=remove&action=wpjobportaltask&wpjobportal-cb[]='.$wpjobportal_row->id),'wpjobportal_currency_nonce')); ?>" onclick='return confirmdelete("<?php echo esc_js(__('Are you sure to delete', 'wp-job-portal')).' ?'; ?>");' title="<?php echo esc_attr(__('delete', 'wp-job-portal')); ?>">
-                                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/delete.png" alt="<?php echo esc_attr(__('delete', 'wp-job-portal')); ?>">
+                                                <a class="wpjobportal-table-act-btn" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_currency&task=remove&action=wpjobportaltask&wpjobportal-cb[]='.$wpjobportal_row->id),'wpjobportal_currency_nonce')); ?>" onclick='return confirmdelete("<?php echo esc_js(__('Are you sure to delete', 'wp-job-portal')).' ?'; ?>");' title="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>">
+                                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/delete.png" alt="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>">
                                                 </a>
                                             </td>
                                         </tr>
@@ -225,7 +225,7 @@ wp_enqueue_style('wp-jquery-ui-dialog');
                         echo '<div class="tablenav"><div class="tablenav-pages">' . wp_kses_post(wpjobportal::$_data[1]) . '</div></div>';
                     }
                     } else {
-                $wpjobportal_msg = esc_html(__('No record found','wp-job-portal'));
+                $wpjobportal_msg = esc_html(__('No Records Found','wp-job-portal'));
                 $wpjobportal_link[] = array(
                             'link' => 'admin.php?page=wpjobportal_currency&wpjobportallt=formcurrency',
                             'text' => esc_html(__('Add New','wp-job-portal')) .' '. esc_html(__('Currency','wp-job-portal'))

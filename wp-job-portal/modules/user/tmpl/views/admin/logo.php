@@ -16,7 +16,7 @@ switch ($wpjobportal_layout) {
 		}
 		$wpjobportal_html.= '<div class="wpjobportal-user-logo">
                     <a href='. esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userdetail&id='.esc_attr($wpjobportal_user->id))).'>
-                    	<img src="'. esc_url($wpjobportal_photo) .'" alt='.esc_html(__("logo","wp-job-portal")).'>
+                    	<img src="'. esc_url($wpjobportal_photo) .'" alt='.esc_html(__("Logo","wp-job-portal")).'>
                     </a>
                 </div>';
 		break;

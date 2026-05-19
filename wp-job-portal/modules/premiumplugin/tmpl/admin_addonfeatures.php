@@ -13,18 +13,18 @@
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
-                        <li><?php echo esc_html(__("Addon's List and Features",'wp-job-portal')); ?></li>
+                        <li><?php echo esc_html(__("Addon List and Features",'wp-job-portal')); ?></li>
                     </ul>
                 </div>
             </div>
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('Configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('Help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -36,15 +36,15 @@
         </div>
         <!-- top head -->
         <div id="wpjobportal-head">
-            <h1 class="wpjobportal-head-text"><?php echo esc_html(__('Add-On’s For Job Portal','wp-job-portal')); ?></h1>
+            <h1 class="wpjobportal-head-text"><?php echo esc_html(__('Add-Ons For Job Portal','wp-job-portal')); ?></h1>
         </div>
         <div id="wpjobportal-admin-wrapper" class="p0 bg-n bs-n">
             <!-- addon list -->
             <div class="wpjobportaladmin-add-on-page-wrp">
                 <div class="add-on-page-cnt">
                     <div class="add-on-sec-header">
-                        <h1 class="add-on-header-tit"><?php echo esc_html(__('Add-On’s For Job Portal','wp-job-portal')); ?></h1>
-                        <div class="add-on-header-text"><?php echo esc_html(__('Get trusted WordPress add on’s. Guaranteed to work fast, safe to use, beautifully coded, packed with features and easy to use.','wp-job-portal')); ?></div>
+                        <h1 class="add-on-header-tit"><?php echo esc_html(__('Add-Ons For Job Portal','wp-job-portal')); ?></h1>
+                        <div class="add-on-header-text"><?php echo esc_html(__('Get trusted WordPress addons. Guaranteed to work fast, safe to use, beautifully coded, packed with features and easy to use.','wp-job-portal')); ?></div>
                     </div>
                     <div class="add-on-msg">
                         <h3 class="add-on-msg-txt"><?php echo esc_html(__('Save big with an exclusive membership plan today!','wp-job-portal')); ?></h3>
@@ -71,8 +71,8 @@
                         </div>
 
                         <div class="add-on-item adv-res-builder">
-                            <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/resume-manager.png" alt="<?php echo esc_attr(__('Advance Resume Builder','wp-job-portal')); ?>" />
-                            <div class="add-on-name"><?php echo esc_html(__('Advance Resume Builder','wp-job-portal')); ?></div>
+                            <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/resume-manager.png" alt="<?php echo esc_attr(__('Advanced Resume Builder','wp-job-portal')); ?>" />
+                            <div class="add-on-name"><?php echo esc_html(__('Advanced Resume Builder','wp-job-portal')); ?></div>
                             <div class="add-on-txt"><?php echo esc_html(__('This add-on offers to job seekers create a resume with multiple options like multiple addresses, institutions, employers, references and skills.','wp-job-portal')); ?></div>
                             <a title="<?php echo esc_attr(__('buy now','wp-job-portal')); ?>" href="https://wpjobportal.com/product/advance-resume-builder/" class="add-on-btn"><?php echo esc_html(__('buy now','wp-job-portal')); ?></a>
                         </div>
@@ -96,7 +96,7 @@
                         </div>
                         <div class="add-on-item cust-fields">
                             <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/custom-field.png" alt="<?php echo esc_attr(__('Custom Field','wp-job-portal')); ?>" />
-                            <div class="add-on-name"><?php echo esc_html(__('Advance Custom Fields','wp-job-portal')); ?></div>
+                            <div class="add-on-name"><?php echo esc_html(__('Advanced Custom Fields','wp-job-portal')); ?></div>
                             <div class="add-on-txt"><?php echo esc_html(__('Advance custom fields add-on offers to admin add new custom fields like combo, checkbox, radio button, email and dependent fields.','wp-job-portal')); ?></div>
                             <a title="<?php echo esc_attr(__('buy now','wp-job-portal')); ?>" href="https://wpjobportal.com/product/advance-custom-fields/" class="add-on-btn"><?php echo esc_html(__('buy now','wp-job-portal')); ?></a>
                         </div>
@@ -115,11 +115,11 @@
                         <div class="add-on-item feat-job">
                             <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/featured-job.png" alt="<?php echo esc_attr(__('Featured Job','wp-job-portal')); ?>" />
                             <div class="add-on-name"><?php echo esc_html(__('Featured Job','wp-job-portal')); ?></div>
-                            <div class="add-on-txt"><?php echo esc_html(__('WP Job Portal offers a feature for making the jobs as Featured Job. This will help to make it easier for jobseekers to find jobs.','wp-job-portal')); ?></div>
+                            <div class="add-on-txt"><?php echo esc_html(__('WP Job Portal offers a feature for making the jobs as Featured Job. This will help to make it easier for job seekers to find jobs.','wp-job-portal')); ?></div>
                             <a title="<?php echo esc_attr(__('buy now','wp-job-portal')); ?>" href="https://wpjobportal.com/product/featured-job/" class="add-on-btn"><?php echo esc_html(__('buy now','wp-job-portal')); ?></a>
                         </div>
                         <div class="add-on-item feat-res">
-                            <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/featured-resume.png" alt="<?php echo esc_attr(__('Feature Resume','wp-job-portal')); ?>" />
+                            <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/featured-resume.png" alt="<?php echo esc_attr(__('Featured Resume','wp-job-portal')); ?>" />
                             <div class="add-on-name"><?php echo esc_html(__('Featured Resume','wp-job-portal')); ?></div>
                             <div class="add-on-txt"><?php echo esc_html(__('WP Job Portal helps employers to make the resume as Featured Resume. Employers can featured their desired resume from the resume list.','wp-job-portal')); ?></div>
                             <a title="<?php echo esc_attr(__('buy now','wp-job-portal')); ?>" href="https://wpjobportal.com/product/featured-resume/" class="add-on-btn"><?php echo esc_html(__('buy now','wp-job-portal')); ?></a>
@@ -133,13 +133,13 @@
                         <div class="add-on-item res-act">
                             <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/resume-actions.png" alt="<?php echo esc_attr(__('Resume Action','wp-job-portal')); ?>" />
                             <div class="add-on-name"><?php echo esc_html(__('Resume Action','wp-job-portal')); ?></div>
-                            <div class="add-on-txt"><?php echo esc_html(__('WP Job Portal offers a feature for employers to perform some actions on resumes. Employes have some rights to reject or accept the jobseeker resume.','wp-job-portal')); ?></div>
+                            <div class="add-on-txt"><?php echo esc_html(__('WP Job Portal offers a feature for employers to perform some actions on resumes. Employers have some rights to reject or accept the job seeker resume.','wp-job-portal')); ?></div>
                             <a title="<?php echo esc_attr(__('buy now','wp-job-portal')); ?>" href="https://wpjobportal.com/product/resume-action/" class="add-on-btn"><?php echo esc_html(__('buy now','wp-job-portal')); ?></a>
                         </div>
                         <div class="add-on-item res-srch">
                             <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/resume-search.png" alt="<?php echo esc_attr(__('Resume Search','wp-job-portal')); ?>" />
                             <div class="add-on-name"><?php echo esc_html(__('Resume Search','wp-job-portal')); ?></div>
-                            <div class="add-on-txt"><?php echo esc_html(__('WP Job Portal offers a feature for employers to perform some actions on resumes. Employes have some rights to reject or accept the jobseeker resume.','wp-job-portal')); ?></div>
+                            <div class="add-on-txt"><?php echo esc_html(__('WP Job Portal offers a feature for employers to perform some actions on resumes. Employers have some rights to reject or accept the job seeker resume.','wp-job-portal')); ?></div>
                             <a title="<?php echo esc_attr(__('buy now','wp-job-portal')); ?>" href="https://wpjobportal.com/product/resume-save-search/" class="add-on-btn"><?php echo esc_html(__('buy now','wp-job-portal')); ?></a>
                         </div>
                         <div class="add-on-item job-alert">
@@ -161,21 +161,21 @@
                             <a title="<?php echo esc_attr(__('buy now','wp-job-portal')); ?>" href="https://wpjobportal.com/product/multi_companies/" class="add-on-btn"><?php echo esc_html(__('buy now','wp-job-portal')); ?></a>
                         </div>
                         <div class="add-on-item widget">
-                            <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/widgets.png" alt="<?php echo esc_attr(__('Front-end Widgets','wp-job-portal')); ?>" />
-                            <div class="add-on-name"><?php echo esc_html(__('Front-end Widget','wp-job-portal')); ?></div>
+                            <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/widgets.png" alt="<?php echo esc_attr(__('Front-End Widgets','wp-job-portal')); ?>" />
+                            <div class="add-on-name"><?php echo esc_html(__('Front-End Widgets','wp-job-portal')); ?></div>
                             <div class="add-on-txt"><?php echo esc_html(__('Widgets in WordPress allows you to add content and features in the widgetized areas of your theme which is mostly the sidebar.','wp-job-portal')); ?></div>
                             <a title="<?php echo esc_attr(__('buy now','wp-job-portal')); ?>" href="https://wpjobportal.com/product/widget/" class="add-on-btn"><?php echo esc_html(__('buy now','wp-job-portal')); ?></a>
                         </div>
                         <div class="add-on-item multi-res">
                             <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/multi-resume.png" alt="<?php echo esc_attr(__('Multi Resume','wp-job-portal')); ?>" />
                             <div class="add-on-name"><?php echo esc_html(__('Multi Resume','wp-job-portal')); ?></div>
-                            <div class="add-on-txt"><?php echo esc_html(__('WP Job Portal offers a feature for the jobseeker to add their multi-resume. Jobseeker will be able to create a multiple resume for applying any job.','wp-job-portal')); ?></div>
+                            <div class="add-on-txt"><?php echo esc_html(__('WP Job Portal offers a feature for the job seeker to add their multi-resume. Job seeker will be able to create a multiple resume for applying any job.','wp-job-portal')); ?></div>
                             <a title="<?php echo esc_attr(__('buy now','wp-job-portal')); ?>" href="https://wpjobportal.com/product/multi-resume/" class="add-on-btn"><?php echo esc_html(__('buy now','wp-job-portal')); ?></a>
                         </div>
                         <div class="add-on-item departments">
                             <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/departments.png" alt="<?php echo esc_attr(__('Department','wp-job-portal')); ?>" />
                             <div class="add-on-name"><?php echo esc_html(__('Department','wp-job-portal')); ?></div>
-                            <div class="add-on-txt"><?php echo esc_html(__('WP Job Portal offers a feature for Employes to add multi-departments related to jobs. Jobseeker can apply to jobs related to the desired department.','wp-job-portal')); ?></div>
+                            <div class="add-on-txt"><?php echo esc_html(__('WP Job Portal offers a feature for Employers to add multi-departments related to jobs. Job seeker can apply to jobs related to the desired department.','wp-job-portal')); ?></div>
                             <a title="<?php echo esc_attr(__('buy now','wp-job-portal')); ?>" href="https://wpjobportal.com/product/multi_departments/" class="add-on-btn"><?php echo esc_html(__('buy now','wp-job-portal')); ?></a>
                         </div>
                         <div class="add-on-item pdf">
@@ -197,15 +197,15 @@
                             <a title="<?php echo esc_attr(__('buy now','wp-job-portal')); ?>" href="https://wpjobportal.com/product/reports/" class="add-on-btn"><?php echo esc_html(__('buy now','wp-job-portal')); ?></a>
                         </div>
                         <div class="add-on-item rss">
-                            <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/rss.png" alt="<?php echo esc_attr(__('Rss Feed','wp-job-portal')); ?>" />
-                            <div class="add-on-name"><?php echo esc_html(__('Rss Feed','wp-job-portal')); ?></div>
+                            <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/rss.png" alt="<?php echo esc_attr(__('RSS Feeds','wp-job-portal')); ?>" />
+                            <div class="add-on-name"><?php echo esc_html(__('RSS Feeds','wp-job-portal')); ?></div>
                             <div class="add-on-txt"><?php echo esc_html(__('WP Job Portal offers Real Simple Syndication (RSS) to set feeds for the jobs. Admin manipulates RSS settings. Employers and Job Seekers can see the Jobs RSS.','wp-job-portal')); ?></div>
                             <a title="<?php echo esc_attr(__('buy now','wp-job-portal')); ?>" href="https://wpjobportal.com/product/rss-2/" class="add-on-btn"><?php echo esc_html(__('buy now','wp-job-portal')); ?></a>
                         </div>
                         <div class="add-on-item shortlist">
                             <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/shortlist.png" alt="<?php echo esc_attr(__('Shortlist','wp-job-portal')); ?>" />
                             <div class="add-on-name"><?php echo esc_html(__('Shortlist','wp-job-portal')); ?></div>
-                            <div class="add-on-txt"><?php echo esc_html(__('WP Job Portal will help employers and jobseekers to shortlist their desired jobs. They can see their shortlisted jobs on the list.','wp-job-portal')); ?></div>
+                            <div class="add-on-txt"><?php echo esc_html(__('WP Job Portal will help employers and job seekers to shortlist their desired jobs. They can see their shortlisted jobs on the list.','wp-job-portal')); ?></div>
                             <a title="<?php echo esc_attr(__('buy now','wp-job-portal')); ?>" href="https://wpjobportal.com/product/shortlist-job/" class="add-on-btn"><?php echo esc_html(__('buy now','wp-job-portal')); ?></a>
                         </div>
                         <div class="add-on-item social-login">
@@ -227,7 +227,7 @@
                             <a title="<?php echo esc_attr(__('buy now','wp-job-portal')); ?>" href="https://wpjobportal.com/product/tags/" class="add-on-btn"><?php echo esc_html(__('buy now','wp-job-portal')); ?></a>
                         </div>
                         <div class="add-on-item tell-a-friend">
-                            <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/tell-a-friend.png" alt="<?php echo esc_attr(__('Tell Friend','wp-job-portal')); ?>" />
+                            <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/tell-a-friend.png" alt="<?php echo esc_attr(__('Tell A Friend','wp-job-portal')); ?>" />
                             <div class="add-on-name"><?php echo esc_html(__('Tell A Friend','wp-job-portal')); ?></div>
                             <div class="add-on-txt"><?php echo esc_html(__('WP Job Portal offers a feature in which Employer and Job Seekers can share and tell their friends about Jobs by sending them an email.','wp-job-portal')); ?></div>
                             <a title="<?php echo esc_attr(__('buy now','wp-job-portal')); ?>" href="https://wpjobportal.com/product/tell-a-friend/" class="add-on-btn"><?php echo esc_html(__('buy now','wp-job-portal')); ?></a>
@@ -262,7 +262,7 @@
                             <div class="add-on-bundle-pack-price">$39.00</div>
                             <div class="add-on-bundle-pack-saving-price">$10 <span><?php echo esc_html(__('Savings*','wp-job-portal')); ?></span></div>
                             <ul class="add-on-bundle-pack-feat">
-                                <li><?php echo esc_html(__('Advance Custom Fields','wp-job-portal')); ?></li>
+                                <li><?php echo esc_html(__('Advanced Custom Fields','wp-job-portal')); ?></li>
                                 <li><?php echo esc_html(__('Departments','wp-job-portal')); ?></li>
                                 <li><?php echo esc_html(__('Resume Search','wp-job-portal')); ?></li>
                                 <li><?php echo esc_html(__('Reports','wp-job-portal')); ?></li>
@@ -284,7 +284,7 @@
                             <ul class="add-on-bundle-pack-feat">
                                 <li><?php echo esc_html(__('Featured Job','wp-job-portal')); ?></li>
                                 <li><?php echo esc_html(__('Message System','wp-job-portal')); ?></li>
-                                <li><?php echo esc_html(__('Tell a Friend','wp-job-portal')); ?></li>
+                                <li><?php echo esc_html(__('Tell A Friend','wp-job-portal')); ?></li>
                                 <li><?php echo esc_html(__('Copy Job','wp-job-portal')); ?></li>
                                 <li><?php echo esc_html(__('Featured Company','wp-job-portal')); ?></li>
                                 <li><?php echo esc_html(__('PDF','wp-job-portal')); ?></li>
@@ -304,7 +304,7 @@
                             <div class="add-on-bundle-pack-saving-price">$50 <span><?php echo esc_html(__('Savings*','wp-job-portal')); ?></span></div>
                             <ul class="add-on-bundle-pack-feat">
                                 <li><?php echo esc_html(__('Visitor Apply Job','wp-job-portal')); ?></li>
-                                <li><?php echo esc_html(__('Advance Resume Builder','wp-job-portal')); ?></li>
+                                <li><?php echo esc_html(__('Advanced Resume Builder','wp-job-portal')); ?></li>
                                 <li><?php echo esc_html(__('Credit System','wp-job-portal')); ?></li>
                                 <li><?php echo esc_html(__('Resume Action','wp-job-portal')); ?></li>
                                 <li><?php echo esc_html(__('Visitor Add Job','wp-job-portal')); ?></li>

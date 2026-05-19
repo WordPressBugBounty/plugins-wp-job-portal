@@ -47,7 +47,7 @@ foreach(wpjobportal::$_data[2] AS $wpjobportal_key => $wpjobportal_value){
         jQuery(document).ready(function (jQuery) {
             addDatePicker();
             jQuery('.wpjobportal-multiselect').chosen({
-                placeholder_text_multiple: \"". esc_html(__('Select some options', 'wp-job-portal'))."\"
+                placeholder_text_multiple: \"". esc_html(__('Select Some Options', 'wp-job-portal'))."\"
             });
             //Token Input
             ";

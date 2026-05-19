@@ -73,15 +73,6 @@ class WPJOBPORTALResumeViewlayout {
         return $wpjobportal_html;
     }
 
-
-    function getAttachmentRowForViewJobManager($adminLogin) {
-        return $this->getAttachmentRowForViewForTemplate($adminLogin);
-    }
-
-    function getAttachmentRowForViewJobHub($adminLogin) {
-        return $this->getAttachmentRowForViewForTemplate($adminLogin);
-    }
-
     function getAttachmentRowForViewForTemplate($adminLogin) {
         $wpjobportal_html='<div id="'.esc_attr($this->class_prefix).'-resumedetail-attachment" class="'.esc_attr($this->class_prefix).'-resumedetail-section">
             <div class="'.esc_attr($this->class_prefix).'-resumedetail-section-title">
@@ -541,13 +532,6 @@ class WPJOBPORTALResumeViewlayout {
         if (isset(wpjobportal::$_data[2][1]['first_name']) || isset(wpjobportal::$_data[2][1]['last_name'])) {
             $wpjobportal_layout = WPJOBPORTALrequest::getVar('layout');
             $editsocialclass = '';
-            /*if ($wpjobportal_resumeformview == 0 && ($wpjobportal_layout == 'addresume' || $owner == 1)) {
-                $wpjobportal_html .= '<a class="personal_section_edit" href="#"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/edit-resume.png" /></a>';
-                $editsocialclass = 'editform';
-            }elseif($adminLogin || (!is_user_logged_in() && isset($_SESSION['wp-wpjobportal']))) {
-                $wpjobportal_html .= '<a class="personal_section_edit" href="#"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/edit-resume.png" /></a>';
-                $editsocialclass = 'editform';
-            }*/
             $wpjobportal_html .= '<div id="job-info-sociallink" class="' . $editsocialclass . '">';
             if (!empty(wpjobportal::$_data[0]['personal_section']->facebook)) {
                 if(wpjobportalphplib::wpJP_strstr(wpjobportal::$_data[0]['personal_section']->facebook, 'http') ){
@@ -595,7 +579,7 @@ class WPJOBPORTALResumeViewlayout {
                 }
             }
             if (isset(wpjobportal::$_data[2][1]['email_address'])) {
-                $wpjobportal_html .= '<div class="wjportal-resume-info"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/email.png" alt="'.esc_attr(__('email','wp-job-portal')).'" title="'.esc_attr(__('email','wp-job-portal')).'" />' . wpjobportal::$_data[0]['personal_section']->email_address . '</div>';
+                $wpjobportal_html .= '<div class="wjportal-resume-info"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/email.png" alt="'.esc_attr(__('Email','wp-job-portal')).'" title="'.esc_attr(__('Email','wp-job-portal')).'" />' . wpjobportal::$_data[0]['personal_section']->email_address . '</div>';
             }
 
             if (isset(wpjobportal::$_data[2][1]['salaryfixed'])) {
@@ -613,7 +597,7 @@ class WPJOBPORTALResumeViewlayout {
                 if(isset(wpjobportal::$_data[0]) && !empty(wpjobportal::$_data[0]['personal_section']->address)){
                     $wpjobportal_address = isset(wpjobportal::$_data[0]['address_section'][0]) ?  wpjobportal::$_data[0]['address_section'][0]->address : '';
                     $wpjobportal_country = isset(wpjobportal::$_data[0]['address_section'][0]) ? wpjobportal::$_data[0]['address_section'][0]->countryname : '';
-                    $wpjobportal_html .= '<div class="wjportal-resume-info"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/location.png" alt="'.esc_attr(__('location','wp-job-portal')).'" title="'.esc_attr(__('location','wp-job-portal')).'"/>' . $wpjobportal_address.','.$wpjobportal_country . '</div>';
+                    $wpjobportal_html .= '<div class="wjportal-resume-info"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/location.png" alt="'.esc_attr(__('Location','wp-job-portal')).'" title="'.esc_attr(__('Location','wp-job-portal')).'"/>' . $wpjobportal_address.','.$wpjobportal_country . '</div>';
                 }
             }
 
@@ -730,7 +714,7 @@ class WPJOBPORTALResumeViewlayout {
             }
         if (wpjobportal::$wpjobportal_data['resumecontactdetail'] == true || $adminLogin) {
             if (isset(wpjobportal::$_data[2][1]['email_address'])) {
-                $wpjobportal_html .= '<div class="wjportal-resume-info  wjportal-resume-info-email-address"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/email.png" alt="'.esc_attr(__('email','wp-job-portal')).'" title="'.esc_attr(__('email','wp-job-portal')).'" />' . wpjobportal::$_data[0]['personal_section']->email_address . '</div>';
+                $wpjobportal_html .= '<div class="wjportal-resume-info  wjportal-resume-info-email-address"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/email.png" alt="'.esc_attr(__('Email','wp-job-portal')).'" title="'.esc_attr(__('Email','wp-job-portal')).'" />' . wpjobportal::$_data[0]['personal_section']->email_address . '</div>';
             }
         }
 
@@ -750,7 +734,7 @@ class WPJOBPORTALResumeViewlayout {
                 if(isset(wpjobportal::$_data[0]) && !empty(wpjobportal::$_data[0]['personal_section']->address)){
                     $wpjobportal_address = isset(wpjobportal::$_data[0]['address_section'][0]) ?  wpjobportal::$_data[0]['address_section'][0]->address : '';
                     $wpjobportal_country = isset(wpjobportal::$_data[0]['address_section'][0]) ? wpjobportal::$_data[0]['address_section'][0]->countryname : '';
-                    $wpjobportal_html .= '<div class="wjportal-resume-info"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/location.png" alt="'.esc_attr(__('location','wp-job-portal')).'" title="'.esc_attr(__('location','wp-job-portal')).'"/>' . $wpjobportal_address.','.$wpjobportal_country . '</div>';
+                    $wpjobportal_html .= '<div class="wjportal-resume-info"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/location.png" alt="'.esc_attr(__('Location','wp-job-portal')).'" title="'.esc_attr(__('Location','wp-job-portal')).'"/>' . $wpjobportal_address.','.$wpjobportal_country . '</div>';
                 }
             }
         }

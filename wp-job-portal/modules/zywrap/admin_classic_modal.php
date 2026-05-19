@@ -525,7 +525,7 @@ if (!defined('ABSPATH')) die('Restricted Access');
 <div id="zywrap-classic-modal-wrap" style="display:none;">
 
     <div id="zywrap-classic-modal-header">
-        <h2><?php echo __( 'AI Content Generator', 'wp-job-portal' ); ?></h2>
+        <h2><?php echo esc_html__( 'AI Content Generator', 'wp-job-portal' ); ?></h2>
         <a href="#" id="zywrap-classic-modal-close">&times;</a>
     </div>
     <?php
@@ -558,61 +558,61 @@ if (!defined('ABSPATH')) die('Restricted Access');
         <aside class="zywrap-classic-sidebar">
             <div class="zywrap-search-trigger" id="zywrap-search-toggle-btn">
                 <span class="dashicons dashicons-search"></span>
-                <span id="zywrap-search-toggle-text"><?php echo __( 'Search Wrapper', 'wp-job-portal' ); ?></span>
+                <span id="zywrap-search-toggle-text"><?php echo esc_html__( 'Search Wrapper', 'wp-job-portal' ); ?></span>
             </div>
 
             <div id="zywrap-search-wrapper">
                 <div id="zywrap-manual-search-container" style="margin-bottom:12px;">
-                    <label class="wpjp-zywrap-label"><?php echo __( 'Quick Search', 'wp-job-portal' ); ?></label>
+                    <label class="wpjp-zywrap-label"><?php echo esc_html__( 'Quick Search', 'wp-job-portal' ); ?></label>
                     <input type="text" id="zywrap-classic-search-input" placeholder="<?php echo esc_attr__( 'e.g. Blog, SEO...', 'wp-job-portal' ); ?>">
                 </div>
                 <div id="zywrap-search-results-container">
-                    <label class="wpjp-zywrap-label"><?php echo __( 'Results', 'wp-job-portal' ); ?></label>
+                    <label class="wpjp-zywrap-label"><?php echo esc_html__( 'Results', 'wp-job-portal' ); ?></label>
                     <select id="zywrap-classic-search-select" class="wpjp-zywrap-jp-chosen">
-                        <option value=""><?php echo __( '-- Select Result --', 'wp-job-portal' ); ?></option>
+                        <option value=""><?php echo esc_html__( 'Select Result', 'wp-job-portal' ); ?></option>
                     </select>
                 </div>
             </div>
 
             <div class="zywrap-input-group">
-                <label class="wpjp-zywrap-label"><?php echo __( 'Category', 'wp-job-portal' ); ?></label>
+                <label class="wpjp-zywrap-label"><?php echo esc_html__( 'Category', 'wp-job-portal' ); ?></label>
                 <select id="zywrap-classic-category" class="wpjp-zywrap-jp-chosen"></select>
             </div>
 
             <div class="zywrap-input-group">
                 <div class="zywrap-header-row">
-                    <label class="wpjp-zywrap-label" style="margin:0;"><?php echo __( 'Wrapper Template', 'wp-job-portal' ); ?></label>
+                    <label class="wpjp-zywrap-label" style="margin:0;"><?php echo esc_html__( 'Wrapper Template', 'wp-job-portal' ); ?></label>
 
                     <button type="button" id="zywrap-classic-sort" class="zywrap-sort-toggle" data-ordering="1">
-                        <span style="opacity:0.7;"><?php echo __( 'Sort:', 'wp-job-portal' ); ?></span>
-                        <span id="zywrap-sort-text" style="font-weight:600; color:var(--wjp-text-main);"><?php echo __( 'Default', 'wp-job-portal' ); ?></span>
+                        <span style="opacity:0.7;"><?php echo esc_html__( 'Sort', 'wp-job-portal' ); ?>:</span>
+                        <span id="zywrap-sort-text" style="font-weight:600; color:var(--wjp-text-main);"><?php echo esc_html__( 'Default', 'wp-job-portal' ); ?></span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/></svg>
                     </button>
                 </div>
 
                 <div class="zywrap-chips-row">
                     <div id="filter-featured-classic" class="zywrap-chip" data-state="0">
-                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> <?php echo __( 'Featured', 'wp-job-portal' ); ?>
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> <?php echo esc_html__( 'Featured', 'wp-job-portal' ); ?>
                     </div>
                     <div id="filter-base-classic" class="zywrap-chip" data-state="0">
-                        <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg> <?php echo __( 'Base', 'wp-job-portal' ); ?>
+                        <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg> <?php echo esc_html__( 'Base', 'wp-job-portal' ); ?>
                     </div>
                 </div>
 
                 <select id="zywrap-classic-wrapper" class="wpjp-zywrap-jp-chosen" disabled>
-                    <option value=""><?php echo __( '-- Select Category --', 'wp-job-portal' ); ?></option>
+                    <option value=""><?php echo esc_html__( 'Select Category', 'wp-job-portal' ); ?></option>
                 </select>
                 <div style="text-align:right; font-size:11px; color:var(--wjp-text-muted); margin-top:6px;" id="zywrap-classic-wrapper-count"></div>
                 <span id="zywrap-classic-loader" class="spinner is-active"></span>
             </div>
 
             <div class="zywrap-input-group">
-                <label class="wpjp-zywrap-label"><?php echo __( 'AI Model', 'wp-job-portal' ); ?></label>
+                <label class="wpjp-zywrap-label"><?php echo esc_html__( 'AI Model', 'wp-job-portal' ); ?></label>
                 <select id="zywrap-classic-model" class="wpjp-zywrap-jp-chosen"></select>
             </div>
 
             <div class="zywrap-input-group">
-                <label class="wpjp-zywrap-label"><?php echo __( 'Language', 'wp-job-portal' ); ?></label>
+                <label class="wpjp-zywrap-label"><?php echo esc_html__( 'Language', 'wp-job-portal' ); ?></label>
                 <select id="zywrap-classic-language" class="wpjp-zywrap-jp-chosen"></select>
             </div>
 
@@ -620,21 +620,21 @@ if (!defined('ABSPATH')) die('Restricted Access');
 
             <details class="zywrap-advanced-toggle">
                 <summary>
-                    <span><?php echo __( 'Advanced Settings', 'wp-job-portal' ); ?></span>
+                    <span><?php echo esc_html__( 'Advanced Settings', 'wp-job-portal' ); ?></span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
                 </summary>
                 <div class="zywrap-advanced-content">
                     <?php /*
                     <div>
-                        <label class="wpjp-zywrap-label"><?php echo __( 'Reference Context', 'wp-job-portal' ); ?> <span><?php echo __( '(Source Data)', 'wp-job-portal' ); ?></span></label>
+                        <label class="wpjp-zywrap-label"><?php echo esc_html__( 'Reference Context', 'wp-job-portal' ); ?> <span><?php echo esc_html__( '(Source Data)', 'wp-job-portal' ); ?></span></label>
                         <textarea id="zywrap-classic-context" rows="4" placeholder="<?php echo esc_attr__( 'Paste source text or data context here...', 'wp-job-portal' ); ?>"></textarea>
                     </div>
                     <div>
-                        <label class="wpjp-zywrap-label"><?php echo __( 'SEO Keywords', 'wp-job-portal' ); ?></label>
+                        <label class="wpjp-zywrap-label"><?php echo esc_html__( 'SEO Keywords', 'wp-job-portal' ); ?></label>
                         <input type="text" id="zywrap-classic-seo" placeholder="<?php echo esc_attr__( 'comma, separated, keywords', 'wp-job-portal' ); ?>">
                     </div>
                     <div>
-                        <label class="wpjp-zywrap-label"><?php echo __( 'Negative Words', 'wp-job-portal' ); ?></label>
+                        <label class="wpjp-zywrap-label"><?php echo esc_html__( 'Negative Words', 'wp-job-portal' ); ?></label>
                         <input type="text" id="zywrap-classic-negative" placeholder="<?php echo esc_attr__( 'words to avoid...', 'wp-job-portal' ); ?>">
                     </div>
                     */ ?>
@@ -645,7 +645,7 @@ if (!defined('ABSPATH')) die('Restricted Access');
 
         <main class="zywrap-classic-main">
             <div id="zywrap-classic-description" style="display:none; background:var(--wjp-primary-light); padding:14px 30px; border-bottom:1px solid #c7d2fe; color:var(--wjp-text-main); font-size:13px;">
-                <label class="wpjp-zywrap-label"><?php echo __( 'Description:', 'wp-job-portal' ); ?> </label>
+                <label class="wpjp-zywrap-label"><?php echo esc_html__( 'Description', 'wp-job-portal' ); ?>: </label>
                 <div id="zywrap-classic-description-inner" >
                 </div>
 
@@ -653,16 +653,16 @@ if (!defined('ABSPATH')) die('Restricted Access');
 
             <div class="zywrap-workspace-prompt">
                 <div id="zywrap-classic-schema-container"></div>
-                <label class="wpjp-zywrap-label"><?php echo __( 'Instructions / Prompt', 'wp-job-portal' ); ?> (<?php echo __( 'Optional', 'wp-job-portal' ); ?>)</label>
+                <label class="wpjp-zywrap-label"><?php echo esc_html__( 'Instructions / Prompt', 'wp-job-portal' ); ?> (<?php echo esc_html__( 'Optional', 'wp-job-portal' ); ?>)</label>
                 <textarea id="zywrap-classic-prompt" placeholder="<?php echo esc_attr__( 'Describe exactly what you want the AI to create...', 'wp-job-portal' ); ?>"></textarea>
                 <div class="zywrap-action-row">
-                    <button type="button" id="zywrap-classic-run"><?php echo __( 'Generate Output', 'wp-job-portal' ); ?></button>
+                    <button type="button" id="zywrap-classic-run"><?php echo esc_html__( 'Generate Output', 'wp-job-portal' ); ?></button>
                 </div>
             </div>
 
             <div class="zywrap-workspace-response">
                 <label class="wpjp-zywrap-label" style="display:flex; justify-content:space-between;">
-                    <?php echo __( 'Generated Output', 'wp-job-portal' ); ?> <span style="font-weight:400; font-size:11px; color:#94a3b8;"><?php echo __( '(Editable)', 'wp-job-portal' ); ?></span>
+                    <?php echo esc_html__( 'Generated Output', 'wp-job-portal' ); ?> <span style="font-weight:400; font-size:11px; color:#94a3b8;"><?php echo esc_html__( '(Editable)', 'wp-job-portal' ); ?></span>
                 </label>
                 <textarea id="zywrap-classic-response-area" placeholder="<?php echo esc_attr__( 'AI output will appear here...', 'wp-job-portal' ); ?>"></textarea>
             </div>
@@ -671,6 +671,6 @@ if (!defined('ABSPATH')) die('Restricted Access');
 
     <div id="zywrap-classic-modal-footer">
         <span id="zywrap-classic-spinner" class="spinner" style="float:none;"></span>
-        <button type="button" id="zywrap-classic-insert-btn" style="display:none;"><?php echo __( 'Insert into Editor', 'wp-job-portal' ); ?></button>
+        <button type="button" id="zywrap-classic-insert-btn" style="display:none;"><?php echo esc_html__( 'Insert into Editor', 'wp-job-portal' ); ?></button>
     </div>
 </div>

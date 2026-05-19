@@ -49,7 +49,7 @@ switch ($wpjobportal_layout) {
                 }
                 ?>
            	    <a href="<?php echo esc_url($wpjobportal_company_url); ?>">
-               		<img src="<?php echo esc_url($wpjobportal_logopath); ?>" class="<?php echo esc_attr($wpjobportal_class);?>" alt="<?php echo esc_attr(__('Company logo','wp-job-portal')); ?>" />
+               		<img src="<?php echo esc_url($wpjobportal_logopath); ?>" class="<?php echo esc_attr($wpjobportal_class);?>" alt="<?php echo esc_attr(__('Company Logo','wp-job-portal')); ?>" />
             	</a>
             </div>
             <?php

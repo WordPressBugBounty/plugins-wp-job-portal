@@ -21,17 +21,17 @@ switch ($wpjobportal_control) {
             <?php 
                 $wpjobportal_config_array = wpjobportal::$_data['config'];
              ?>
-            <a class="wpjobportal-resume-act-btn" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_resume&task=removeresume&wpjobportal-cb[]='.esc_attr($wpjobportal_resume->id).'&action=wpjobportaltask&callfrom=1'),'wpjobportal_resume_nonce')) ;?>" onclick='return confirm("<?php echo esc_js(__('Are you sure to delete','wp-job-portal')).' ?'; ?>");' title="<?php echo esc_attr(__('delete', 'wp-job-portal')); ?>">
+            <a class="wpjobportal-resume-act-btn" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_resume&task=removeresume&wpjobportal-cb[]='.esc_attr($wpjobportal_resume->id).'&action=wpjobportaltask&callfrom=1'),'wpjobportal_resume_nonce')) ;?>" onclick='return confirm("<?php echo esc_js(__('Are you sure to delete','wp-job-portal')).' ?'; ?>");' title="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>">
                 <?php echo esc_html(__('Delete', 'wp-job-portal')); ?>
             </a>
-            <a class="wpjobportal-resume-act-btn" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_resume&task=resumeEnforceDelete&action=wpjobportaltask&resumeid='.esc_attr($wpjobportal_resume->id).'&callfrom=1'),'wpjobportal_resume_nonce')) ;?>" onclick='return confirmdelete("<?php echo esc_js(__('Are you sure to force delete', 'wp-job-portal')).' ?'; ?>");' title="<?php echo esc_attr(__('enforce delete', 'wp-job-portal')) ?>">
+            <a class="wpjobportal-resume-act-btn" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_resume&task=resumeEnforceDelete&action=wpjobportaltask&resumeid='.esc_attr($wpjobportal_resume->id).'&callfrom=1'),'wpjobportal_resume_nonce')) ;?>" onclick='return confirmdelete("<?php echo esc_js(__('Are you sure to force delete', 'wp-job-portal')).' ?'; ?>");' title="<?php echo esc_attr(__('Enforce Delete', 'wp-job-portal')) ?>">
                 <?php echo esc_html(__('Enforce Delete', 'wp-job-portal')) ?>
             </a>
             <?php do_action('wpjobportal_addons_feature_for_resume',$wpjobportal_config_array,$wpjobportal_resume,$wpjobportal_featuredflag); ?>
-            <a class="wpjobportal-resume-act-btn" href="admin.php?page=wpjobportal_resume&wpjobportallt=formresume&wpjobportalid=<?php echo esc_attr($wpjobportal_resume->id); ?>" title="<?php echo esc_attr(__('edit', 'wp-job-portal')); ?>">
+            <a class="wpjobportal-resume-act-btn" href="admin.php?page=wpjobportal_resume&wpjobportallt=formresume&wpjobportalid=<?php echo esc_attr($wpjobportal_resume->id); ?>" title="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>">
                 <?php echo esc_html(__('Edit', 'wp-job-portal')); ?>
             </a>
-            <a class="wpjobportal-resume-act-btn" href="admin.php?page=wpjobportal_resume&wpjobportallt=viewresume&wpjobportalid=<?php echo esc_attr($wpjobportal_resume->id); ?>" title="<?php echo esc_attr(__('view', 'wp-job-portal')); ?>">
+            <a class="wpjobportal-resume-act-btn" href="admin.php?page=wpjobportal_resume&wpjobportallt=viewresume&wpjobportalid=<?php echo esc_attr($wpjobportal_resume->id); ?>" title="<?php echo esc_attr(__('View', 'wp-job-portal')); ?>">
                 <?php echo esc_html(__('View', 'wp-job-portal')); ?>
             </a>
         </div>
@@ -41,10 +41,10 @@ switch ($wpjobportal_control) {
         $wpjobportal_dateformat = wpjobportal::$_configuration['date_format'];
         ?>
         <div class="wpjobportal-resume-action-wrp">
-            <a class="wpjobportal-resume-act-btn" href="admin.php?page=wpjobportal_resume&wpjobportallt=viewresume&wpjobportalid=<?php echo esc_attr($wpjobportal_resume->id); ?>" title="<?php echo esc_attr(__('view', 'wp-job-portal')); ?>">
+            <a class="wpjobportal-resume-act-btn" href="admin.php?page=wpjobportal_resume&wpjobportallt=viewresume&wpjobportalid=<?php echo esc_attr($wpjobportal_resume->id); ?>" title="<?php echo esc_attr(__('View', 'wp-job-portal')); ?>">
                 <?php echo esc_html(__('View', 'wp-job-portal')); ?>
             </a>                  
-            <a class="wpjobportal-resume-act-btn" href="admin.php?page=wpjobportal_resume&wpjobportallt=formresume&wpjobportalid=<?php echo esc_attr($wpjobportal_resume->id); ?>" title="<?php echo esc_attr(__('edit', 'wp-job-portal')); ?>">
+            <a class="wpjobportal-resume-act-btn" href="admin.php?page=wpjobportal_resume&wpjobportallt=formresume&wpjobportalid=<?php echo esc_attr($wpjobportal_resume->id); ?>" title="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>">
                 <?php echo esc_html(__('Edit', 'wp-job-portal')); ?>
             </a>
             <?php
@@ -56,15 +56,15 @@ switch ($wpjobportal_control) {
                 if ($wpjobportal_total == 1) {
                     if (isset($wpjobportal_arr['self'])) {
                         ?>
-                        <a class="wpjobportal-resume-act-btn" href="admin.php?page=wpjobportal_resume&task=approveQueueResume&id=<?php echo esc_attr($wpjobportal_resume->id); ?>&action=wpjobportaltask&_wpnonce=<?php echo esc_attr(wp_create_nonce('wpjobportal_resume_nonce'));?>" title="<?php echo esc_attr(__('approve', 'wp-job-portal')); ?>">
+                        <a class="wpjobportal-resume-act-btn" href="admin.php?page=wpjobportal_resume&task=approveQueueResume&id=<?php echo esc_attr($wpjobportal_resume->id); ?>&action=wpjobportaltask&_wpnonce=<?php echo esc_attr(wp_create_nonce('wpjobportal_resume_nonce'));?>" title="<?php echo esc_attr(__('Approve', 'wp-job-portal')); ?>">
                             <?php echo esc_html(__('Approve', 'wp-job-portal')); ?>
                         </a>
                     <?php
                     }
                     if (isset($wpjobportal_arr['feature']) && in_array('featureresume', wpjobportal::$_active_addons)) {
                         ?>
-                        <a class="wpjobportal-resume-act-btn" href="admin.php?page=wpjobportal_resume&task=approveQueueFeatureResume&id=<?php echo esc_attr($wpjobportal_resume->id); ?>&action=wpjobportaltask&_wpnonce=<?php echo esc_attr(wp_create_nonce('wpjobportal_resume_nonce'));?>" title="<?php echo esc_attr(__('feature approve', 'wp-job-portal')); ?>">
-                            <?php echo esc_html(__('Feature Approve', 'wp-job-portal')); ?>
+                        <a class="wpjobportal-resume-act-btn" href="admin.php?page=wpjobportal_resume&task=approveQueueFeatureResume&id=<?php echo esc_attr($wpjobportal_resume->id); ?>&action=wpjobportaltask&_wpnonce=<?php echo esc_attr(wp_create_nonce('wpjobportal_resume_nonce'));?>" title="<?php echo esc_attr(__('Featured Approve', 'wp-job-portal')); ?>">
+                            <?php echo esc_html(__('Featured Approve', 'wp-job-portal')); ?>
                         </a>
                     <?php
                     }
@@ -88,14 +88,14 @@ switch ($wpjobportal_control) {
                 if ($wpjobportal_total == 1) {
                     if (isset($wpjobportal_arr['self'])) {
                         ?>
-                        <a class="wpjobportal-resume-act-btn" href="admin.php?page=wpjobportal_resume&task=rejectQueueResume&id=<?php echo esc_attr($wpjobportal_resume->id); ?>&action=wpjobportaltask&_wpnonce=<?php echo esc_attr(wp_create_nonce('wpjobportal_resume_nonce'));?>" title="<?php echo esc_attr(__('reject', 'wp-job-portal')); ?>">
+                        <a class="wpjobportal-resume-act-btn" href="admin.php?page=wpjobportal_resume&task=rejectQueueResume&id=<?php echo esc_attr($wpjobportal_resume->id); ?>&action=wpjobportaltask&_wpnonce=<?php echo esc_attr(wp_create_nonce('wpjobportal_resume_nonce'));?>" title="<?php echo esc_attr(__('Reject', 'wp-job-portal')); ?>">
                             <?php echo esc_html(__('Reject', 'wp-job-portal')); ?>
                         </a>
                     <?php
                     }
                     if (isset($wpjobportal_arr['feature']) && in_array('featureresume', wpjobportal::$_active_addons)) {
                         ?>
-                        <a class="wpjobportal-resume-act-btn" href="admin.php?page=wpjobportal_resume&task=rejectQueueFeatureResume&id=<?php echo esc_attr($wpjobportal_resume->id); ?>&action=wpjobportaltask&_wpnonce=<?php echo esc_attr(wp_create_nonce('wpjobportal_resume_nonce'));?>" title="<?php echo esc_attr(__('feature reject', 'wp-job-portal')); ?>">
+                        <a class="wpjobportal-resume-act-btn" href="admin.php?page=wpjobportal_resume&task=rejectQueueFeatureResume&id=<?php echo esc_attr($wpjobportal_resume->id); ?>&action=wpjobportaltask&_wpnonce=<?php echo esc_attr(wp_create_nonce('wpjobportal_resume_nonce'));?>" title="<?php echo esc_attr(__('Feature Reject', 'wp-job-portal')); ?>">
                             <?php echo esc_html(__('Feature Reject', 'wp-job-portal')); ?>
                         </a>
                     <?php
@@ -118,10 +118,10 @@ switch ($wpjobportal_control) {
                         </div>
                     </div>
             <?php }//End Reject */ ?>
-            <a class="wpjobportal-resume-act-btn" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_resume&task=removeresume&wpjobportal-cb[]='.esc_attr($wpjobportal_resume->id)),'wpjobportal_resume_nonce')); ?>&action=wpjobportaltask&callfrom=2" onclick='return confirm("<?php echo esc_js(__('Are you sure to delete','wp-job-portal')).' ?'; ?>");' title="<?php echo esc_attr(__('delete', 'wp-job-portal')); ?>">
+            <a class="wpjobportal-resume-act-btn" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_resume&task=removeresume&wpjobportal-cb[]='.esc_attr($wpjobportal_resume->id)),'wpjobportal_resume_nonce')); ?>&action=wpjobportaltask&callfrom=2" onclick='return confirm("<?php echo esc_js(__('Are you sure to delete','wp-job-portal')).' ?'; ?>");' title="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>">
                 <?php echo esc_html(__('Delete', 'wp-job-portal')); ?>
             </a>
-            <a class="wpjobportal-resume-act-btn" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_resume&task=resumeEnforceDelete&resumeid='.esc_attr($wpjobportal_resume->id)),'wpjobportal_resume_nonce')); ?>&action=wpjobportaltask&callfrom=2" onclick='return confirmdelete("<?php echo esc_js(__('This will delete every thing about this record','wp-job-portal')).'. '.esc_html(__('Are you sure to delete','wp-job-portal')).'?'; ?>");'  title="<?php echo esc_attr(__('force delete', 'wp-job-portal')); ?>">
+            <a class="wpjobportal-resume-act-btn" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_resume&task=resumeEnforceDelete&resumeid='.esc_attr($wpjobportal_resume->id)),'wpjobportal_resume_nonce')); ?>&action=wpjobportaltask&callfrom=2" onclick='return confirmdelete("<?php echo esc_js(__('This will delete every thing about this record','wp-job-portal')).'. '.esc_html(__('Are you sure to delete','wp-job-portal')).'?'; ?>");'  title="<?php echo esc_attr(__('Force Delete', 'wp-job-portal')); ?>">
                 <?php echo esc_html(__('Force Delete', 'wp-job-portal')); ?>
             </a>
         </div>
@@ -131,7 +131,7 @@ switch ($wpjobportal_control) {
         $wpjobportal_class = 'wpjobportal-resume-act-btn';
         ?>
          <div id="item-actions" class="wpjobportal-resume-action-wrp">
-            <a id="view-resume" class="wpjobportal-resume-act-btn" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_resume&wpjobportallt=formresume&wpjobportalid='.esc_attr($wpjobportal_data->appid))); ?>" title="<?php echo esc_attr(__('view profile', 'wp-job-portal')); ?>">
+            <a id="view-resume" class="wpjobportal-resume-act-btn" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_resume&wpjobportallt=formresume&wpjobportalid='.esc_attr($wpjobportal_data->appid))); ?>" title="<?php echo esc_attr(__('View Profile', 'wp-job-portal')); ?>">
                 <?php echo esc_html(__('View Profile', 'wp-job-portal')); ?>
             </a>
             <?php 

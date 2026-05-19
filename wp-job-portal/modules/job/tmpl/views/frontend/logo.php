@@ -23,7 +23,7 @@ if(isset($wpjobportal_published_fields['logo']) && $wpjobportal_published_fields
 			        }
 					echo '<div class="wjportal-jobs-logo">
 		                    <a href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$wpjobportal_url, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$wpjobportal_job->companyid))) .'>
-		                        <img src='. esc_url($wpjobportal_path) .' alt="'.esc_attr(__('Company logo','wp-job-portal')).'" />
+		                        <img src='. esc_url($wpjobportal_path) .' alt="'.esc_attr(__('Company Logo','wp-job-portal')).'" />
 		                    </a>
 		                </div>
 						';
@@ -33,7 +33,7 @@ if(isset($wpjobportal_published_fields['logo']) && $wpjobportal_published_fields
 		case 'logo':
 			if($wpjobportal_job->companyid != '' && is_numeric($wpjobportal_job->companyid) && $wpjobportal_job->companyid > 0){
 				echo ' <div class="wjportal-job-company-logo">
-		                    <img class="wjportal-job-company-logo-image" src='. esc_url(WPJOBPORTALincluder::getJSModel('company')->getLogoUrl($wpjobportal_job->companyid,$wpjobportal_job->logofilename)) .'  alt="'.esc_attr(__('Company logo','wp-job-portal')).'">
+		                    <img class="wjportal-job-company-logo-image" src='. esc_url(WPJOBPORTALincluder::getJSModel('company')->getLogoUrl($wpjobportal_job->companyid,$wpjobportal_job->logofilename)) .'  alt="'.esc_attr(__('Company Logo','wp-job-portal')).'">
 		                </div>';
 			}
 		break;

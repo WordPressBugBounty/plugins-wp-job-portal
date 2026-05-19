@@ -119,7 +119,7 @@
 						echo esc_html($wpjobportal_msg) . ' ' . esc_html(__('Job', 'wp-job-portal'));
 					break;
 					case 'login':
-						$wpjobportal_msg = esc_html(__('Login ', 'wp-job-portal'));
+						$wpjobportal_msg = esc_html(__('Login', 'wp-job-portal'));
 						echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_msg));
 					break;
 					case 'departments':
@@ -148,10 +148,10 @@
 						echo esc_html(__('Resume By Categories', 'wp-job-portal'));
 						break;
 					case 'departmentperlisting':
-						echo esc_html(__('Pay per listing price to publish your ', 'wp-job-portal'). wpjobportal::wpjobportal_getVariableValue($wpjobportal_name) .' '.' : '.esc_html($wpjobportal_priceDepartmentlist));
+						echo esc_html(__('Pay per listing price to publish your', 'wp-job-portal').' '. wpjobportal::wpjobportal_getVariableValue($wpjobportal_name) .' '.' : '.esc_html($wpjobportal_priceDepartmentlist));
 						break;
 					case 'coverletterperlisting':
-						echo esc_html(__('Pay per listing price to publish your ', 'wp-job-portal'). wpjobportal::wpjobportal_getVariableValue($wpjobportal_name) .' '.' : '.esc_html($wpjobportal_priceCoverletterlist));
+						echo esc_html(__('Pay per listing price to publish your', 'wp-job-portal').' '. wpjobportal::wpjobportal_getVariableValue($wpjobportal_name) .' '.' : '.esc_html($wpjobportal_priceCoverletterlist));
 						break;
 					case 'viewresume':
 						echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_name));
@@ -201,10 +201,10 @@
 						 echo esc_html(__('My Packages', 'wp-job-portal'));
 						break;
 					case 'mysubscriptions':
-						  echo esc_html(__('My Subscription', 'wp-job-portal'));
+						  echo esc_html(__('My Subscriptions','wp-job-portal'));
 						break;
 					case 'mypackage':
-						echo esc_html(__(' Packages', 'wp-job-portal'));
+						echo esc_html(__('Packages', 'wp-job-portal'));
 						break;
 					case 'invoice':
 						echo esc_html(__('My Invoices', 'wp-job-portal'));

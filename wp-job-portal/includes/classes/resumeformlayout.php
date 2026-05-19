@@ -41,21 +41,6 @@ class WPJOBPORTALResumeFormlayout {
         return wpjobportal::wpjobportal_getVariableValue(wpjobportal::$wpjobportal_data['fieldtitles'][$wpjobportal_field]);
     }
 
-    function getResumeFormUserFieldJobManager($title, $wpjobportal_field,$wpjobportal_required) {
-        $wpjobportal_html = '<div class="js-col-md-12 js-form-wrapper">
-        <div class="js-col-md-12 js-form-title '.esc_attr($this->class_prefix).'-bigfont">' . esc_attr($title);
-        if($wpjobportal_required==1){
-            $wpjobportal_html .= '<span class="'.esc_attr($this->class_prefix).'-error-msg">*</span>';
-        }
-        $wpjobportal_html .= '</div>
-            <div class="js-col-md-12 js-form-value">' . $wpjobportal_field . '</div>
-        </div>';
-
-        return $wpjobportal_html;
-    }
-
-
-
     function getResumeFormUserField($wpjobportal_field, $object , $wpjobportal_section , $wpjobportal_sectionid, $wpjobportal_ishidden,$wpjobportal_themecall=null) {
         $wpjobportal_visibleclass = "";
         if (isset($wpjobportal_field->visibleparams) && $wpjobportal_field->visibleparams != ''){
@@ -137,25 +122,6 @@ class WPJOBPORTALResumeFormlayout {
                 </div>
             </div>';
         return $wpjobportal_data;
-    }
-
-    function getResumeSelectFieldJobManager($wpjobportal_fieldtitle,$wpjobportal_fieldName,$wpjobportal_fieldValue,$wpjobportal_required,$column){
-        $wpjobportal_html="";
-        if($column==4){
-            $wpjobportal_html .= '<div class="js-col-md-3 '.esc_attr($this->class_prefix).'-field-padding">';
-        }else{
-            $wpjobportal_html .= '<div class="js-col-md-12 js-form-wrapper">';
-
-        }
-        $wpjobportal_html .= '
-            <div class="js-col-md-12 js-form-title '.esc_attr($this->class_prefix).'-bigfont">' . $wpjobportal_fieldtitle;
-            if($wpjobportal_required==1){
-                $wpjobportal_html .='<span class="'.esc_attr($this->class_prefix).'-error-msg">*</span>';
-            }
-            $wpjobportal_html .='</div>
-            <div class="js-col-md-12 js-form-value">' . $wpjobportal_fieldValue . '</div>
-        </div>';
-        return $wpjobportal_html;
     }
 
     function getResumeSelectField($wpjobportal_field, $wpjobportal_fieldValue,$column=0,$wpjobportal_themecall=null) {
@@ -275,53 +241,6 @@ class WPJOBPORTALResumeFormlayout {
         return $wpjobportal_html;
     }
 
-    function getFieldForPersonalSectionJobManager($wpjobportal_fieldtitle,$wpjobportal_fieldName,$wpjobportal_fieldValue,$wpjobportal_required,$wpjobportal_extraattr,$columns = 0){
-
-        $wpjobportal_data="";
-
-        if($columns == 3){
-            $wpjobportal_data .= '<div class="js-col-md-4 '.esc_attr($this->class_prefix).'-field-padding">';
-        }else{
-            $wpjobportal_data .= '<div class="js-col-md-12 js-form-wrapper">';
-        }
-        $wpjobportal_data .= '
-            <div class="js-col-md-12 js-form-title '.esc_attr($this->class_prefix).'-bigfont">' . wpjobportal::wpjobportal_getVariableValue($wpjobportal_fieldtitle);
-            if ($wpjobportal_required == 1) {
-                $wpjobportal_data .= '<span class="'.esc_attr($this->class_prefix).'-error-msg"     color: redstyle="color: red;"> *</span>';
-            }
-            $wpjobportal_data .='</div>
-            <div class="js-col-md-12 js-form-value">';
-                $wpjobportal_data .='<input class="inputbox form-control '.esc_attr($this->class_prefix).'-input-field';
-
-                        if ($wpjobportal_required == 1 ) {
-                                $wpjobportal_data .= ' required ';
-                        }
-                        if($wpjobportal_fieldName == "date_of_birth" || $wpjobportal_fieldName == "date_start" ){
-                            $wpjobportal_data .= ' custom_date ';
-                            if($wpjobportal_fieldValue = '0000-00-00 00:00:00'){
-                                $wpjobportal_fieldValue = '';
-                            }
-                        }
-                        $wpjobportal_data .= '"';
-                        if ($wpjobportal_fieldName == "email_address") {
-                            $wpjobportal_data .= ' data-validation="email"';
-                        }
-                        if ($wpjobportal_required == 1 && $wpjobportal_fieldName != "email_address") {
-                            $wpjobportal_data .= ' data-validation="required"';
-                        }
-                $wpjobportal_name = 'sec_1['.$wpjobportal_fieldName.']';
-                $wpjobportal_data .=        ' type="text" name="' . $wpjobportal_name . '" id="' . $wpjobportal_fieldName . '" value = "' .  wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_fieldValue).'"' ;
-                if (!empty($wpjobportal_extraattr)){
-                    foreach ($wpjobportal_extraattr AS $wpjobportal_key => $wpjobportal_val){
-                        $wpjobportal_data .= ' ' . $wpjobportal_key . '="' . $wpjobportal_val . '"';
-                    }
-                }
-                $wpjobportal_data .= '" />';
-            $wpjobportal_data .='</div>
-        </div>';
-        return $wpjobportal_data;
-    }
-
     function getFieldForPersonalSection($wpjobportal_field, $wpjobportal_fieldValue, $columns = 0,$wpjobportal_extraattr=array(),$wpjobportal_themecall=null) {
 
         $wpjobportal_fieldtitle = $wpjobportal_field->fieldtitle;
@@ -433,52 +352,6 @@ class WPJOBPORTALResumeFormlayout {
             </div>';
         }
         return $wpjobportal_data;
-    }
-    function getFieldForMultiSectionJobManager($wpjobportal_fieldtitle,$wpjobportal_fieldName,$wpjobportal_required,$wpjobportal_fieldValue,$wpjobportal_field_id_for,$wpjobportal_section, $wpjobportal_sectionid, $wpjobportal_ishidden){
-            $wpjobportal_html = '<div class="js-col-md-12 js-form-wrapper">
-            <div class="js-col-md-12 js-form-title '.esc_attr($this->class_prefix).'-bigfont" for="'.$wpjobportal_field_id_for.'">' . wpjobportal::wpjobportal_getVariableValue($wpjobportal_fieldtitle);
-                if ($wpjobportal_required == 1) {
-                    $wpjobportal_html .= '<span class="'.esc_attr($this->class_prefix).'-error-msg">*</span>';
-                }
-              $wpjobportal_html .='</div>
-            <div class="js-col-md-12 js-form-value">';
-                $wpjobportal_data_required = '';
-                $wpjobportal_class_required = '';
-                if($wpjobportal_ishidden != ''){
-                    if ($wpjobportal_required == 1) {
-                        $wpjobportal_data_required = 'data-myrequired="required"';
-                    }
-                    if ($wpjobportal_fieldName == "email_address") {
-                        $wpjobportal_data_required = 'data-myrequired="required validate-email"';
-                    }
-                }else{
-                    if ($wpjobportal_required == 1) {
-                        $wpjobportal_class_required = ' required';
-                    }
-                    if ($wpjobportal_fieldName == "email_address") {
-                        $wpjobportal_class_required = ' required validate-email';
-                    }
-                }
-
-                $wpjobportal_html .= '<input class="inputbox form-control '.esc_attr($this->class_prefix).'-input-field '.$wpjobportal_class_required.'" '.$wpjobportal_data_required;
-
-                switch ($wpjobportal_section) {
-                    case '2': $wpjobportal_section = 'sec_2'; break;
-                    case '3': $wpjobportal_section = 'sec_3'; break;
-                    case '4': $wpjobportal_section = 'sec_4'; break;
-                    case '5': $wpjobportal_section = 'sec_5'; break;
-                    case '6': $wpjobportal_section = 'sec_6'; break;
-                    case '7': $wpjobportal_section = 'sec_7'; break;
-                    case '8': $wpjobportal_section = 'sec_8'; break;
-                }
-                $wpjobportal_name = $wpjobportal_section."[$wpjobportal_fieldName][$wpjobportal_sectionid]";
-
-                $wpjobportal_html .=    ' type="text" name="' . $wpjobportal_name . '" id="' . $wpjobportal_field_id_for . '" maxlength="250" value = "' .  wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_fieldValue) . '" />';
-
-            $wpjobportal_html .= '</div>
-        </div>';
-        return $wpjobportal_html;
-
     }
 
     function getFieldForMultiSection($wpjobportal_field, $wpjobportal_fieldValue, $wpjobportal_section, $wpjobportal_sectionid, $wpjobportal_ishidden,$wpjobportal_themecall ) {
@@ -690,75 +563,6 @@ class WPJOBPORTALResumeFormlayout {
                 $wpjobportal_html .= '
                 </div>';
             $wpjobportal_html .= '</div>';
-        return $wpjobportal_html;
-    }
-
-   function makeResumeSectionFields($wpjobportal_themecall=null){
-        $wpjobportal_resume="";
-        if(isset(wpjobportal::$_data[0]['personal_section'])) $wpjobportal_resume = wpjobportal::$_data[0]['personal_section'];
-        //$wpjobportal_fields_ordering = wpjobportal::$_data[1];
-
-        $wpjobportal_html = '<div id="jssection_resume" class="section_wrapper jssectionwrapper ">';
-        if(empty($wpjobportal_resume->resume)){
-            //$wpjobportal_jssection_hide = (isset(wpjobportal::$wpjobportal_data['resumeid']) && is_numeric(wpjobportal::$wpjobportal_data['resumeid']))?"": 'jssection_hide';
-            $wpjobportal_jssection_hide = 'jssection_hide';
-        }else{
-            ///$wpjobportal_jssection_hide = (isset(wpjobportal::$wpjobportal_data['resumeid']) && is_numeric(wpjobportal::$wpjobportal_data['resumeid']))?"": 'jssection_hide';
-            $wpjobportal_jssection_hide = '';
-        }
-        $wpjobportal_sectionid = 0;
-        // <div class="jsundo wjportal-resume-section-undo"><img class="jsundoimage wjportal-resume-section-undo-image" onclick="undoThisSection(this);" src="'.JURI::root().'components/com_wpjobportal/images/resume/undo-icon.png" /></div>
-        // <img class="jsdeleteimage wjportal-resume-section-delete" onclick="deleteThisSection(this);" src="'.JURI::root().'components/com_wpjobportal/images/resume/delete-icon.png" />
-        $wpjobportal_html .= '<div class="section_wrapper form wjportal-resume-section jssection_wrapper '.$wpjobportal_jssection_hide.' jssection_resume_'.esc_attr($wpjobportal_sectionid).'">';
-        foreach (wpjobportal::$_data[2][6] as $wpjobportal_field) {
-            switch ($wpjobportal_field->field) {
-                case "resume":
-                    $fvalue = isset($wpjobportal_resume->resume) ? $wpjobportal_resume->resume : '';
-                    $wpjobportal_req = ($wpjobportal_field->required ? 'required' : '');
-                    $wpjobportal_data_required = '';
-                    if($wpjobportal_jssection_hide){
-                        if($wpjobportal_req){
-                            $wpjobportal_data_required = 'data-myrequired="required"';
-                            $wpjobportal_req = '';
-                        }
-                    }
-                    $wpjobportal_html .= '
-                        <div class="wpjp-form-wrapper js-col-md-12 js-form-wrapper">
-                            <label id="" class="wpjp-form-title " for="resumeeditor">' . wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle);
-                                if ($wpjobportal_field->required == 1) {
-                                    $wpjobportal_html .= '<span class="error-msg">*</span>';
-                                }
-                    //$wpjobportal_name = 'sec_6[resume]['.esc_attr($wpjobportal_sectionid).']';
-                    $wpjobportal_name = 'resumeeditor';
-
-                    //$wpjobportal_value=wp_editor(isset($wpjobportal_resume->resume) ? $wpjobportal_resume->resume: '', 'resume', array('media_buttons' => false, 'data-validation' => $wpjobportal_req));
-                    $wpjobportal_value=isset($wpjobportal_resume->resume) ? $wpjobportal_resume->resume: '';
-                    $efield = WPJOBPORTALformfield::textarea('resume', $wpjobportal_value, array('class' => 'inputbox one resumeeditor form-control '.esc_attr($this->class_prefix).'-textarea-field', 'height'=>'270px','rows'=>'10','cols'=>'40'));
-                    $efield .= WPJOBPORTALformfield::hidden('resume_edit_val','');
-                    $wpjobportal_html .= '</label>
-                            <div class="wpjp-form-value ">
-                                '.$efield.'
-                            </div>
-                        </div>';
-                    break;
-                default:
-                    $wpjobportal_html .= $this->getResumeFormUserField($wpjobportal_field, $wpjobportal_resume , 6 , $wpjobportal_sectionid, $wpjobportal_jssection_hide,$wpjobportal_themecall);
-                break;
-            }
-        }
-        $wpjobportal_id = '';
-        $wpjobportal_deletethis = (empty($wpjobportal_resume->resume)) ? 1 : 0;
-        $wpjobportal_html .= '<input type="hidden" id="deletethis6'.esc_attr($wpjobportal_sectionid).'" class="jsdeletethissection" name="sec_6[deletethis]['.esc_attr($wpjobportal_sectionid).']" value="'. wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_deletethis).'">
-                    <input type="hidden" id="id" name="sec_6[id]['.esc_attr($wpjobportal_sectionid).']" value="'.$wpjobportal_id.'">
-            </div></div>';
-        if(empty($wpjobportal_resume->resume)){
-            if(null !=$wpjobportal_themecall){
-                $wpjobportal_html .= '<div class="wpjp-add-new-section-link wjportal-resume-add-new-section-btn" onclick="showResumeSection( this, \'resume\');"><i class="fa fa-plus"></i>'.esc_html(__('Add Resume','wp-job-portal')).'</div>';
-            }else{
-                $wpjobportal_html .= '<div class="wpjp-add-new-section-link wjportal-resume-add-new-section-btn" onclick="showResumeSection( this, \'resume\');"><i class="fa fa-plus"></i>'.esc_html(__('Add Resume','wp-job-portal')).'</div>';
-
-            }
-        }
         return $wpjobportal_html;
     }
 

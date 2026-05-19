@@ -7,19 +7,6 @@ class WPJOBPORTALformfield {
     /*
      * Create the form text field
      */
-    static function resumetext($wpjobportal_fieldName, $wpjobportal_value,$wpjobportal_section, $wpjobportal_extraattr = array(),$wpjobportal_over_limit = 0) {
-        $wpjobportal_name = $wpjobportal_section.'['.$wpjobportal_fieldName.']';
-        $wpjobportal_textfield = '<input type="text" name="' . $wpjobportal_name . '" id="' . $wpjobportal_fieldName . '"
-        value="' .  wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_value) . '" ';
-        if (!empty($wpjobportal_extraattr))
-            foreach ($wpjobportal_extraattr AS $wpjobportal_key => $wpjobportal_val)
-                $wpjobportal_textfield .= ' ' . $wpjobportal_key . '="' . $wpjobportal_val . '"';
-        if($wpjobportal_over_limit == 0){
-            $wpjobportal_textfield .= ' maxlength="255" ';
-        }
-        $wpjobportal_textfield .= ' />';
-        return $wpjobportal_textfield;
-    }
 
     static function text($wpjobportal_name, $wpjobportal_value, $wpjobportal_extraattr = array(),$wpjobportal_over_limit = 0) {
         $wpjobportal_textfield = '<input type="text" name="' . $wpjobportal_name . '" id="' . $wpjobportal_name . '"

@@ -56,6 +56,7 @@ add_action('wpjobportal_register_form', 'wpjobportal_add_registration_fields');
 
 function wpjobportal_add_registration_fields() {
     //Get and set any values already sent
+    /*
     if (isset($_SESSION['js_cpfrom'])) {
         ?>
         <div class="wjportal-form-title"><?php echo esc_html(__('User Role', 'wp-job-portal')); ?></div>
@@ -74,6 +75,7 @@ function wpjobportal_add_registration_fields() {
         </div>
     <?php
     } else {
+        */
         ?>
 
             <div class="wjportal-form-title">
@@ -87,7 +89,7 @@ function wpjobportal_add_registration_fields() {
                 $wpjobportal_showemployerlink  = wpjobportal::$_config->getConfigurationByConfigName('showemployerlink');
                 if($wpjobportal_empflag == 1 && $wpjobportal_showemployerlink == 1){ ?>
                     <select id="jobs_role" name="jobs_role" class="input form-control wjportal-form-select-field">
-                        <option value="0"><?php echo esc_html(__('Select job role', 'wp-job-portal')); ?></option>
+                        <option value="0"><?php echo esc_html(__('Select Role', 'wp-job-portal')); ?></option>
                         <option value="1"><?php echo esc_html(__('Employer', 'wp-job-portal')); ?></option>
                         <option value="2"><?php echo esc_html(__('Job seeker', 'wp-job-portal')); ?></option>
                     </select><?php
@@ -101,9 +103,10 @@ function wpjobportal_add_registration_fields() {
             <input type="hidden" name="jobs_notfromourform" value="1" />
 
         <?php
-    }
+    /*}
     if(isset($_SESSION['js_cpfrom']))
         unset($_SESSION['js_cpfrom']);
+    */
 }
 
 //2. Add validation. In this case, we make sure jobs_role is required
@@ -129,6 +132,11 @@ function wpjobportal_registration_save($wpjobportal_user_id) {
         $wpjobportal_role = wpjobportal::wpjobportal_sanitizeData(WPJOBPORTALrequest::getVar('jobs_role'));
         $wpjobportal_user_email = sanitize_email(WPJOBPORTALrequest::getVar('wpjobportal_user_email'));
         if (is_numeric($wpjobportal_role)) {
+            $wpjobportal_empflag  = wpjobportal::$_config->getConfigurationByConfigName('disable_employer');
+            $wpjobportal_allow_reg_as_emp  = wpjobportal::$_config->getConfigurationByConfigName('showemployerlink');
+            if($wpjobportal_empflag == 0 || $wpjobportal_allow_reg_as_emp == 0){
+                $wpjobportal_role = 2;
+            }
             if ($wpjobportal_role == 1) {
                 update_user_meta($wpjobportal_user_id, 'jobs_role', 'employer');
                 $wpjobportal_employer_defaultgroup = wpjobportal::$_config->getConfigurationByConfigName('employer_defaultgroup');
@@ -468,7 +476,7 @@ function wpjobportal_job_portalvcSetAsTheme() {
         );
 
         vc_map( array(
-              "name" => esc_html(__( "Jobseeker Control Panel", "wp-job-portal")),
+              "name" => esc_html(__( "Job Seeker Control Panel", "wp-job-portal")),
               "base" => "wpjobportal_jobseeker_controlpanel",
               "class" => "",
               "category" => esc_html(__( "WP JOB PORTAL Pages", "wp-job-portal")),
@@ -508,7 +516,7 @@ function wpjobportal_job_portalvcSetAsTheme() {
         );
 
         vc_map( array(
-              "name" => esc_html(__( "Jobs By Catergories", "wp-job-portal")),
+              "name" => esc_html(__( "Jobs By Categories", "wp-job-portal")),
               "base" => "wpjobportal_job_categories",
               "class" => "",
               "category" => esc_html(__( "WP JOB PORTAL Pages", "wp-job-portal")),
@@ -620,7 +628,7 @@ function wpjobportal_job_portalvcSetAsTheme() {
         );
 
         vc_map( array(
-              "name" => esc_html(__( "Jobseeker Registration", "wp-job-portal")),
+              "name" => esc_html(__( "Job Seeker Registration", "wp-job-portal")),
               "base" => "wpjobportal_jobseeker_registration",
               "class" => "",
               "category" => esc_html(__( "WP JOB PORTAL Pages", "wp-job-portal")),
@@ -691,7 +699,7 @@ function wpjobportal_job_portalvcSetAsTheme() {
         );
 
         vc_map( array(
-              "name" => esc_html(__( "Jobseeker My Stats", "wp-job-portal")),
+              "name" => esc_html(__( "Job Seeker My Stats", "wp-job-portal")),
               "base" => "wpjobportal_jobseeker_my_stats",
               "class" => "",
               "category" => esc_html(__( "WP JOB PORTAL Pages", "wp-job-portal")),
@@ -809,7 +817,7 @@ function wpjobportal_getWPJobPortalPageTitle($wpjobportal_module, $wpjobportal_l
                 $title =  esc_html(__('My Jobs', 'wp-job-portal'));
                 break;
             case 'viewjob':
-                $title =  esc_html(__('Job Information', 'wp-job-portal'));
+                $title =  esc_html(__('Job Info', 'wp-job-portal'));
                 break;
             case 'jobsbycategories':
                 $title =  esc_html(__('Jobs By Categories', 'wp-job-portal'));
@@ -887,10 +895,10 @@ function wpjobportal_getWPJobPortalPageTitle($wpjobportal_module, $wpjobportal_l
                 $title =  esc_html(__('Pay For Resume Search', 'wp-job-portal'));
                 break;
             case 'payresume':
-                $title =  esc_html(__('Pay For Resume ', 'wp-job-portal'));
+                $title =  esc_html(__('Pay For Resume', 'wp-job-portal'));
                 break;
             case 'payfeaturedresume':
-                $title =  esc_html(__('Pay For Featured Resume ', 'wp-job-portal'));
+                $title =  esc_html(__('Pay For Featured Resume', 'wp-job-portal'));
                 break;
             case 'packages':
                 $title =  esc_html(__('Package', 'wp-job-portal'));

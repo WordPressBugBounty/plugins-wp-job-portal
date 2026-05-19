@@ -803,7 +803,7 @@ class WPJOBPORTALshortcodes {
         ob_start();
 
         $wpjobportal_defaults = array(
-            'title' => esc_html(__('Search job', 'wp-job-portal')),
+            'title' => esc_html(__('Search Job', 'wp-job-portal')),
             'showtitle' => '1',
             'jobtitle' => '1',
             'category' => '1',
@@ -1185,7 +1185,7 @@ class WPJOBPORTALshortcodes {
         ob_start();
 
         $wpjobportal_defaults = array(
-            'title' => esc_html(__('Hot jobs', 'wp-job-portal')),
+            'title' => esc_html(__('Hot Jobs', 'wp-job-portal')),
             'showtitle' => 1,
             'numberofjobs' => 20,
             'company' => 1,
@@ -1278,7 +1278,7 @@ class WPJOBPORTALshortcodes {
         ob_start();
 
         $wpjobportal_defaults = array(
-            'title' => esc_html(__('Jobs by cities', 'wp-job-portal')),
+            'title' => esc_html(__('Jobs By Cities', 'wp-job-portal')),
             'showtitle' => '1',
             'maximumrecords' => '20',
             'haverecords' => '1',
@@ -1336,7 +1336,7 @@ class WPJOBPORTALshortcodes {
         ob_start();
 
         $wpjobportal_defaults = array(
-            'title' => esc_html(__('Jobs by state', 'wp-job-portal')),
+            'title' => esc_html(__('Jobs by states', 'wp-job-portal')),
             'showtitle' => '1',
             'maximumrecords' => '20',
             'haverecords' => '1',
@@ -1493,7 +1493,7 @@ function wpjobportal_jobs_block(){
 function wpjobportal_jobs_block_widgets($attributes, $wpjobportal_content){
     $wpjobportal_defaults = array(
         'wpjobportalpageid' => '0',
-        'title' => esc_html(__('Newest jobs','wp-job-portal')),
+        'title' => esc_html(__('Newest Jobs','wp-job-portal')),
         'typeofjobs' => '1',
         'noofjobs' => '5',
         'fieldcolumn' => '1',

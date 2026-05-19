@@ -20,22 +20,22 @@
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('Dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
-                        <li><?php echo esc_html(__('Short Codes','wp-job-portal')); ?></li>
+                        <li><?php echo esc_html(__('Shortcodes','wp-job-portal')); ?></li>
                     </ul>
                 </div>
             </div>
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('Configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('Help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -54,7 +54,7 @@
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('Job Seeker Control Panel','wp-job-portal')); ?>
-                        <p class="wpjobportal-shortcode-text"><?php echo esc_html(__('A shortcode designed for jobseeker, providing an easy-to-use controlpanel to manage applications, resume, and preferences directly from their dashboard.','wp-job-portal')); ?></p>
+                        <p class="wpjobportal-shortcode-text"><?php echo esc_html(__('A shortcode designed for job seeker, providing an easy-to-use control panel to manage applications, resume, and preferences directly from their dashboard.','wp-job-portal')); ?></p>
                     </div>
                     <div class="wpjobportal-shortcode-shortcodewrp">
                         <span class="wpjobportal-shortcode-title"><?php echo esc_html(__('Base Shortcode','wp-job-portal')); ?></span>
@@ -78,7 +78,7 @@
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
                         <?php echo esc_html(__('Employer Control Panel','wp-job-portal')); ?>
-                        <p class="wpjobportal-shortcode-text"><?php echo esc_html(__(' The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently.','wp-job-portal')); ?></p>
+                        <p class="wpjobportal-shortcode-text"><?php echo esc_html(__('The Employer Control Panel is a streamlined interface that allows employers to manage job postings, track applications, communicate with candidates, and analyze hiring metrics efficiently.','wp-job-portal')); ?></p>
                     </div>
                     <div class="wpjobportal-shortcode-shortcodewrp">
                         <span class="wpjobportal-shortcode-title"><?php echo esc_html(__('Base Shortcode','wp-job-portal')); ?></span>
@@ -383,7 +383,7 @@
                 <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
-                        <?php echo esc_html(__('My Resume','wp-job-portal')); ?>
+                        <?php echo esc_html(__('My Resumes','wp-job-portal')); ?>
                         <p class="wpjobportal-shortcode-text"><?php echo esc_html(__('My resume shortcode allows users to view and manage their uploaded resumes, providing a convenient way to keep their job application materials up to date.','wp-job-portal')); ?></p>
                     </div>
                     <div class="wpjobportal-shortcode-shortcodewrp">
@@ -806,8 +806,8 @@
                 <div class="wpjobportal-shortcode-image"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/shortcode.png" title="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Shortcode','wp-job-portal')); ?>"></div>
                 <div class="wpjobportal-shortcode-inner-wrapper">
                     <div class="wpjobportal-shortcode-head">
-                        <?php echo esc_html(__('My Subscription','wp-job-portal')); ?>
-                        <p class="wpjobportal-shortcode-text"><?php echo esc_html(__('My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans.  ','wp-job-portal')); ?></p>
+                        <?php echo esc_html(__('My Subscriptions','wp-job-portal')); ?>
+                        <p class="wpjobportal-shortcode-text"><?php echo esc_html(__('My subscription provides users with an overview of their active subscriptions, allowing easy management and tracking of their job posting plans.','wp-job-portal')); ?></p>
                     </div>
                     <div class="wpjobportal-shortcode-shortcodewrp">
                         <span class="wpjobportal-shortcode-title"><?php echo esc_html(__('Base Shortcode','wp-job-portal')); ?></span>

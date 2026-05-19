@@ -16,7 +16,7 @@ $wpjobportal_listing_fields = WPJOBPORTALincluder::getJSModel('fieldordering')->
         </div>
         <?php if(isset($wpjobportal_listing_fields['description'])) {?>
             <div class="wpjobportal-company-data wpjobportal-company-desc">
-                <?php echo isset($wpjobportal_company->description) ? wp_kses($wpjobportal_company->description, WPJOBPORTAL_ALLOWED_TAGS) : ''; ?>
+                <?php echo isset($wpjobportal_company->description) ? wp_kses($wpjobportal_company->description, WPJOBPORTAL_SAFE_EDITOR_TAGS) : ''; ?>
             </div>
         <?php }?>
         <div class="wpjobportal-company-data">

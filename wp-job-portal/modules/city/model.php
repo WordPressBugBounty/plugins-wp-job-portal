@@ -454,7 +454,7 @@ class WPJOBPORTALCityModel {
         } elseif ($wpjobportal_result == 4) {
             $return_value = esc_html(__('Country not found', 'wp-job-portal'));
         } elseif ($wpjobportal_result == 5) {
-            $return_value = esc_html(__('Location format is not correct please enter city in this format city name, country name', 'wp-job-portal'));
+            $return_value = esc_html(__('Location Format Is Not Correct Please Enter City In This Format City Name Country Name Or City Name State Name Country Name', 'wp-job-portal'));
         }
         echo wp_kses($return_value, WPJOBPORTAL_ALLOWED_TAGS);
         exit();

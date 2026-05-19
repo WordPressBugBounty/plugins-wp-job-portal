@@ -60,13 +60,13 @@ class WPJOBPORTALUserController {
                         } else {
                             $cpfrom = 2;
                         }
-                        $_SESSION['js_cpfrom'] = $cpfrom;
+                        // $_SESSION['js_cpfrom'] = $cpfrom;
                         $wpjobportal_layout = 'userregister';
                     }
 
                     $wpjobportal_layout = 'userregister';
                     if($cpfrom != 0){
-                        $_SESSION['js_cpfrom'] = $cpfrom;
+                        // $_SESSION['js_cpfrom'] = $cpfrom;
                     }
 
                     break;

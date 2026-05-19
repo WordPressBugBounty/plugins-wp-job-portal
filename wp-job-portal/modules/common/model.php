@@ -335,20 +335,20 @@ class WPJOBPORTALCommonModel {
     function getRequiredTravel() {
         $wpjobportal_requiredtravel = array();
         $wpjobportal_requiredtravel[] = (object) array('id' => 1, 'text' => esc_html(__('Not Required', 'wp-job-portal')));
-        $wpjobportal_requiredtravel[] = (object) array('id' => 2, 'text' => esc_html(__('25 Per', 'wp-job-portal')));
-        $wpjobportal_requiredtravel[] = (object) array('id' => 3, 'text' => esc_html(__('50 Per', 'wp-job-portal')));
-        $wpjobportal_requiredtravel[] = (object) array('id' => 4, 'text' => esc_html(__('75 Per', 'wp-job-portal')));
-        $wpjobportal_requiredtravel[] = (object) array('id' => 5, 'text' => esc_html(__('100 Per', 'wp-job-portal')));
+        $wpjobportal_requiredtravel[] = (object) array('id' => 2, 'text' => esc_html(__('25 Percent', 'wp-job-portal')));
+        $wpjobportal_requiredtravel[] = (object) array('id' => 3, 'text' => esc_html(__('50 Percent', 'wp-job-portal')));
+        $wpjobportal_requiredtravel[] = (object) array('id' => 4, 'text' => esc_html(__('75 Percent', 'wp-job-portal')));
+        $wpjobportal_requiredtravel[] = (object) array('id' => 5, 'text' => esc_html(__('100 Percent', 'wp-job-portal')));
         return $wpjobportal_requiredtravel;
     }
 
     function getRequiredTravelValue($wpjobportal_value) {
         switch ($wpjobportal_value) {
             case '1': return esc_html(__('Not Required', 'wp-job-portal')); break;
-            case '2': return esc_html(__('25 Per', 'wp-job-portal')); break;
-            case '3': return esc_html(__('50 Per', 'wp-job-portal')); break;
-            case '4': return esc_html(__('75 Per', 'wp-job-portal')); break;
-            case '5': return esc_html(__('100 Per', 'wp-job-portal')); break;
+            case '2': return esc_html(__('25 Percent', 'wp-job-portal')); break;
+            case '3': return esc_html(__('50 Percent', 'wp-job-portal')); break;
+            case '4': return esc_html(__('75 Percent', 'wp-job-portal')); break;
+            case '5': return esc_html(__('100 Percent', 'wp-job-portal')); break;
         }
     }
 
@@ -356,38 +356,6 @@ class WPJOBPORTALCommonModel {
     * @param wp job portal Function
     * @param Log Action's
     */
-
-    function getLogAction($for) {
-        $wpjobportal_logaction = array();
-        if ($for == 1) { //employer
-            $wpjobportal_logaction[] = (object) array('id' => 'add_company', 'text' => esc_html(__('New company', 'wp-job-portal')));
-            $wpjobportal_logaction[] = (object) array('id' => 'featured_company', 'text' => esc_html(__('Featured company', 'wp-job-portal')));
-            $wpjobportal_logaction[] = (object) array('id' => 'add_department', 'text' => esc_html(__('New department', 'wp-job-portal')));
-            $wpjobportal_logaction[] = (object) array('id' => 'add_job', 'text' => esc_html(__('New job', 'wp-job-portal')));
-            $wpjobportal_logaction[] = (object) array('id' => 'featured_job', 'text' => esc_html(__('Featured job', 'wp-job-portal')));
-            $wpjobportal_logaction[] = (object) array('id' => 'resume_save_search', 'text' => esc_html(__('Searched and saved resume', 'wp-job-portal')));
-            $wpjobportal_logaction[] = (object) array('id' => 'view_resume_contact_detail', 'text' => esc_html(__('Viewed resume contact details', 'wp-job-portal')));
-            $wpjobportal_logaction[] = (object) array('id' => 'featured_company_timeperiod', 'text' => esc_html(__('Featured company for time period', 'wp-job-portal')));
-        }
-        if ($for == 2) {
-            $wpjobportal_logaction[] = (object) array('id' => 'add_resume', 'text' => esc_html(__('New resume', 'wp-job-portal')));
-            $wpjobportal_logaction[] = (object) array('id' => 'featured_resume', 'text' => esc_html(__('Featured resume', 'wp-job-portal')));
-            $wpjobportal_logaction[] = (object) array('id' => 'add_cover_letter', 'text' => esc_html(__('New cover letter', 'wp-job-portal')));
-            $wpjobportal_logaction[] = (object) array('id' => 'job_alert_lifetime', 'text' => esc_html(__('Life time job alert', 'wp-job-portal')));
-            $wpjobportal_logaction[] = (object) array('id' => 'job_alert_time', 'text' => esc_html(__('Job alert', 'wp-job-portal')));
-            $wpjobportal_logaction[] = (object) array('id' => 'job_alert_timeperiod', 'text' => esc_html(__('Job alert for time', 'wp-job-portal')));
-            $wpjobportal_logaction[] = (object) array('id' => 'job_save_search', 'text' => esc_html(__('Saved a job search', 'wp-job-portal')));
-            $wpjobportal_logaction[] = (object) array('id' => 'shortlist_job', 'text' => esc_html(__('Job short listed', 'wp-job-portal')));
-            $wpjobportal_logaction[] = (object) array('id' => 'job_apply', 'text' => esc_html(__('Applied for job', 'wp-job-portal')));
-            $wpjobportal_logaction[] = (object) array('id' => 'view_job_apply_status', 'text' => esc_html(__('Viewed job status', 'wp-job-portal')));
-            $wpjobportal_logaction[] = (object) array('id' => 'view_company_contact_detail', 'text' => esc_html(__('Viewed company contact detail', 'wp-job-portal')));
-            $wpjobportal_logaction[] = (object) array('id' => 'tell_a_friend', 'text' => esc_html(__('Told a friend', 'wp-job-portal')));
-            $wpjobportal_logaction[] = (object) array('id' => 'job_save_filter', 'text' => esc_html(__('Saved a job filter', 'wp-job-portal')));
-            $wpjobportal_logaction[] = (object) array('id' => 'fb_share', 'text' => esc_html(__('Shared on social media', 'wp-job-portal')));
-        }
-        return $wpjobportal_logaction;
-    }
-
     function getMiniMax() {
         $minimax = array();
         $minimax[] = (object) array('id' => '1', 'text' => esc_html(__('Minimum', 'wp-job-portal')));
@@ -545,41 +513,8 @@ class WPJOBPORTALCommonModel {
         return $wpjobportal_values;
     }
 
-    /**
-    * @param wp job portal
-    * Radius Type
-    */
 
-    function getRadiusType() {
-        $radiustype = array(
-            (object) array('id' => '0', 'text' => esc_html(__('Select One', 'wp-job-portal'))),
-            (object) array('id' => '1', 'text' => esc_html(__('Meters', 'wp-job-portal'))),
-            (object) array('id' => '2', 'text' => esc_html(__('Kilometers', 'wp-job-portal'))),
-            (object) array('id' => '3', 'text' => esc_html(__('Miles', 'wp-job-portal'))),
-            (object) array('id' => '4', 'text' => esc_html(__('Nautical Miles', 'wp-job-portal'))),
-        );
-        return $radiustype;
-    }
-
-    /**
-    * @param wp job portal
-    * Rating
-    */
-
-     function getRating($rating){
-        if(!is_numeric($rating)){
-            $rating = 0;
-        }
-        $wpjobportal_percent = ($rating/5)*100;
-        $wpjobportal_html ="<div class=\"wjportal-container-small\"" . ( " style=\"vertical-align:middle;display:inline-block;\"" ) . ">
-            <ul class=\"wjportal-stars-small\">
-                <li class=\"current-rating\" style=\"width:" . (int) $wpjobportal_percent . "%;\"></li>
-            </ul>
-        </div>";
-        return $wpjobportal_html;
-    }
-
-       function getJobsStats_Widget($wpjobportal_classname, $title, $wpjobportal_showtitle, $wpjobportal_employers, $wpjobportal_jobseekers, $wpjobportal_jobs, $wpjobportal_companies, $wpjobportal_activejobs, $wpjobportal_resumes, $wpjobportal_todaystats) {
+   function getJobsStats_Widget($wpjobportal_classname, $title, $wpjobportal_showtitle, $wpjobportal_employers, $wpjobportal_jobseekers, $wpjobportal_jobs, $wpjobportal_companies, $wpjobportal_activejobs, $wpjobportal_resumes, $wpjobportal_todaystats) {
         //listModuleJobs
         $wpjobportal_curdate = gmdate('Y-m-d');
         $wpjobportal_data = array();
@@ -663,35 +598,6 @@ class WPJOBPORTALCommonModel {
         return $wpjobportal_data;
     }
 
-    /**
-    * @param wp job portal
-    * Image Extension's
-    */
-
-    function checkImageFileExtensions($file_name, $file_tmp, $wpjobportal_image_extension_allow) {
-        $wpjobportal_allow_image_extension = wpjobportalphplib::wpJP_explode(',', $wpjobportal_image_extension_allow);
-        if ($file_name != "" AND $file_tmp != "") {
-            $wpjobportal_ext = $this->getExtension($file_name);
-            $wpjobportal_ext = wpjobportalphplib::wpJP_strtolower($wpjobportal_ext);
-            if (in_array($wpjobportal_ext, $wpjobportal_allow_image_extension))
-                return true;
-            else
-                return false;
-        }
-    }
-
-    function checkDocumentFileExtensions($file_name, $file_tmp, $document_extension_allow) {
-        $wpjobportal_allow_document_extension = wpjobportalphplib::wpJP_explode(',', $document_extension_allow);
-        if ($file_name != '' AND $file_tmp != "") {
-            $wpjobportal_ext = $this->getExtension($file_name);
-            $wpjobportal_ext = wpjobportalphplib::wpJP_strtolower($wpjobportal_ext);
-            if (in_array($wpjobportal_ext, $wpjobportal_allow_document_extension))
-                return true;
-            else
-                return false;
-        }
-    }
-
     function getExtension($wpjobportal_str) {
         if($wpjobportal_str == ''){
             return "";
@@ -738,13 +644,6 @@ class WPJOBPORTALCommonModel {
             }
         }
         return false; // No match
-    }
-
-    function getJobtempModelFrontend() {
-        $wpjobportal_componentPath = JPATH_SITE . '/components/com_wpjobportal';
-        require_once $wpjobportal_componentPath . '/models/jobtemp.php';
-        $wpjobportal_jobtemp_model = new WPJOBPORTALModelJobtemp();
-        return $wpjobportal_jobtemp_model;
     }
 
     function getSalaryRangeView($type, $min, $wpjobportal_max, $currency=""){
@@ -856,10 +755,15 @@ class WPJOBPORTALCommonModel {
         if (empty($wpjobportal_data))
             return false;
 
-        $wpjobportal_allow_reg_as_emp = wpjobportal::$_config->getConfigurationByConfigName('showemployerlink');
-        if($wpjobportal_allow_reg_as_emp != 1){
-            $wpjobportal_data['roleid '] = 2;
+        $wpjobportal_empflag  = wpjobportal::$_config->getConfigurationByConfigName('disable_employer');
+        $wpjobportal_allow_reg_as_emp  = wpjobportal::$_config->getConfigurationByConfigName('showemployerlink');
+        if($wpjobportal_empflag == 0 || $wpjobportal_allow_reg_as_emp == 0){
+            $wpjobportal_data['roleid'] = 2;
         }
+        // if($wpjobportal_allow_reg_as_emp != 1){
+        //     $wpjobportal_data['roleid'] = 2;
+        // }
+
         if(isset($wpjobportal_data['socialmedia']) && !empty($wpjobportal_data['socialid'])){
             $wpjobportal_data['uid'] = "";
             $wpjobportal_data['socialmedia'] = $wpjobportal_data['socialmedia'];
@@ -1031,14 +935,14 @@ class WPJOBPORTALCommonModel {
             }
             if(!$cuser->isWPJOBPortalUser()){
                 $wpjobportal_link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'common', 'wpjobportallt'=>'newinwpjobportal'));
-                $wpjobportal_linktext = esc_html(__('Select role','wp-job-portal'));
+                $wpjobportal_linktext = esc_html(__('Select Role','wp-job-portal'));
                 throw new Exception( wp_kses(WPJOBPORTALLayout::setMessageFor(9 , $wpjobportal_link , $wpjobportal_linktext,1),WPJOBPORTAL_ALLOWED_TAGS) );
             }
         }
     }
 
     function getMessagesForAddMore($wpjobportal_module){
-        $wpjobportal_linktext = esc_html(__('You are Not Allowed To Add More than One','wp-job-portal').'&nbsp;'.wpjobportal::wpjobportal_getVariableValue($wpjobportal_module).' !'. __('Contact TO Adminstrator', 'wp-job-portal'));
+        $wpjobportal_linktext = esc_html(__('You are not allowed to add more than one','wp-job-portal').'&nbsp;'.wpjobportal::wpjobportal_getVariableValue($wpjobportal_module).' !'. __('Contact Administrator', 'wp-job-portal'));
         wpjobportal::$_error_flag = true;
         throw new Exception(wp_kses(WPJOBPORTALLayout::setMessageFor(16,'',$wpjobportal_module,1),WPJOBPORTAL_ALLOWED_TAGS));
     }
@@ -1800,7 +1704,7 @@ class WPJOBPORTALCommonModel {
             // Get current slice of ids (array elements)
             $current_records_to_show_array = array_slice($wpjobportal_job_id_list_arrray, $page_num_offset, $pagination_size);
             if(!empty($current_records_to_show_array)){
-                $current_records_to_show = implode(',', $current_records_to_show_array); // create comma sperated string from array
+                $current_records_to_show = implode(',', esc_sql($current_records_to_show_array)); // create comma sperated string from array
             }
         }
         return $current_records_to_show;

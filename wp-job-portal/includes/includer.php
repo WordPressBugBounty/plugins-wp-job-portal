@@ -132,14 +132,7 @@ class WPJOBPORTALincluder {
      * Static function for the controller object
      */
 
-    public static function getJSController($wpjobportal_controllername) {
-        $file_path = self::getPluginPath($wpjobportal_controllername,'controller');
 
-        include_once $file_path;
-        $wpjobportal_classname = "WPJOBPORTAL".$wpjobportal_controllername . "Controller";
-        $obj = new $wpjobportal_classname();
-        return $obj;
-    }
 /*
     public static function loadComponents($filenames){
         if(!is_array($filenames)){

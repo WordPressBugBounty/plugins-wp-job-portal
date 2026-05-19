@@ -39,7 +39,7 @@ if(isset(wpjobportal::$wpjobportal_data['admin_form_company']) && wpjobportal::$
 <div id="popup_main" style="display:none;">
     <span class="popup-top">
     	<span id="popup_title" ></span>
-    	<img id="popup_cross" alt="<?php echo esc_attr(__('popup cross','wp-job-portal')); ?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/popup-close.png">
+    	<img id="popup_cross" alt="<?php echo esc_attr(__('popup close','wp-job-portal')); ?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/popup-close.png">
     </span>
     <div class="popup-search">
         <div id="userpopupsearch">

@@ -234,7 +234,7 @@ class WPJOBPORTALbreadcrumbs {
                             break;
                         case 'mysubscriptions':
                             $wpjobportal_array[] = $wpjobportal_staticUrl;
-                            $wpjobportal_array[] = array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'purchasehistory', 'wpjobportallt'=>'mysubscriptions')), 'text' => esc_html(__('My Subscription', 'wp-job-portal')));
+                            $wpjobportal_array[] = array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'purchasehistory', 'wpjobportallt'=>'mysubscriptions')), 'text' => esc_html(__('My Subscriptions','wp-job-portal')));
                             break;
                         case 'purchasehistory':
                             $wpjobportal_array[] = $wpjobportal_staticUrl;

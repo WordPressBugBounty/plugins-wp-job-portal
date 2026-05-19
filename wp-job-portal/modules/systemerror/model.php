@@ -32,6 +32,11 @@ class WPJOBPORTALsystemerrorModel {
             'isview' => 0,
             'created' => gmdate("Y-m-d H:i:s")
         );
+        /// remove system error store from table class to avoid recursive issue.
+        // if there is error in storing system eror then it starts a infinite recursive loop.
+        wpjobportal::$_db->insert(wpjobportal::$_db->prefix.'wj_portal_system_errors',$query_array);
+        return;
+        /*
 
         $wpjobportal_row = WPJOBPORTALincluder::getJSTable('systemerror');
         if (!$wpjobportal_row->bind($query_array)) {
@@ -40,13 +45,10 @@ class WPJOBPORTALsystemerrorModel {
             
         }
 
-        return;
+        return;*/
     }
     function getMessagekey(){
         $wpjobportal_key = 'systemerror';if(wpjobportal::$_common->wpjp_isadmin()){$wpjobportal_key = 'admin_'.$wpjobportal_key;}return $wpjobportal_key;
     }
-
-
 }
-
 ?>

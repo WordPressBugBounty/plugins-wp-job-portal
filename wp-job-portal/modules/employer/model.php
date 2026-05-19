@@ -5,59 +5,6 @@ if (!defined('ABSPATH'))
 
 class WPJOBPORTALEmployerModel {
     // if not use than remove
-    function getEmployerCpTabData($wpjobportal_uid){
-        if(!is_numeric($wpjobportal_uid)) return;
-        $query="select res.id,job.title as jobtitle,job.id AS jobid,ja.action_status AS applystatus,res.application_title AS resumetitle,
-                CONCAT(res.first_name,' ',res.last_name) AS resumename ,ja.apply_date AS jobaplly ,
-                res.photo
-                from " . wpjobportal::$_db->prefix . "wj_portal_resume AS res
-                join  " . wpjobportal::$_db->prefix . "wj_portal_jobapply AS ja on res.id=ja.cvid
-                join " . wpjobportal::$_db->prefix . "wj_portal_jobs AS job on ja.jobid=job.id
-                where job.uid=".esc_sql($wpjobportal_uid)." GROUP BY job.id ORDER BY jobaplly DESC LIMIT 5 ";
-        $wpjobportal_applied_jobs = wpjobportaldb::get_results($query);
-        if(!empty($wpjobportal_applied_jobs)){
-            wpjobportal::$_data[0]['cpappliedresume'] = wpjobportaldb::get_results($query);
-        }
-        return;
-    }
-    // if not use than remove
-    function getNewestResumeForEmployer($wpjobportal_guestflag) {
-        if($wpjobportal_guestflag == false){
-            $query = "SELECT resume.id,resume.first_name,resume.last_name,resume.application_title,resume.email_address,category.cat_title,resume.created,jobtype.title AS jobtypetitle,resume.photo
-                ,resume.status,city.name AS cityname,state.name AS statename,country.name AS countryname
-                ,resume.params,resume.last_modified,LOWER(jobtype.title) AS jobtypetit
-                ,'resumeaddress' AS address_city
-                FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
-                LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category ON category.id = resume.job_category
-                LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = resume.jobtype
-                LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON city.id = (SELECT address_city FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` WHERE resumeid = resume.id LIMIT 1)
-                LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_states` AS state ON state.id = city.stateid
-                LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_countries` AS country ON country.id = city.countryid
-                WHERE resume.status = 1 ORDER BY resume.created desc LIMIT 0,5 ";
-            $wpjobportal_results = wpjobportal::$_db->get_results($query);
-            $wpjobportal_data = array();
-            foreach ($wpjobportal_results AS $d) {
-              $d->location = WPJOBPORTALincluder::getJSModel('common')->getLocationForView($d->cityname, $d->statename, $d->countryname);
-                $wpjobportal_data[] = $d;
-            }
-            wpjobportal::$_data[0]['newestresume'] = $wpjobportal_data;
-        }
-        wpjobportal::$_data['config'] = WPJOBPORTALincluder::getJSModel('configuration')->getConfigByFor('emcontrolpanel');
-    }
-    // if not use than remove
-    function getApplliedResumeBYUid($wpjobportal_uid) {
-        if (!is_numeric($wpjobportal_uid))
-            return false;
-        $query = "SELECT resume.id, resume.photo,resume.application_title , resume.email_address,resume.first_name,resume.last_name,cat.cat_title,resumeaddress.address_city,jobapply.quick_apply
-                    From " . wpjobportal::$_db->prefix . "wj_portal_jobapply AS jobapply
-                    JOIN " . wpjobportal::$_db->prefix . "wj_portal_jobs AS job ON job.id = jobapply.jobid
-                    JOIN " . wpjobportal::$_db->prefix . "wj_portal_resume AS resume ON resume.id = jobapply.cvid
-                    LEFT JOIN " . wpjobportal::$_db->prefix . "wj_portal_categories AS cat ON cat.id = resume.job_category
-                    LEFT JOIN " . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses AS resumeaddress ON resume.id=resumeaddress.resumeid
-                    WHERE job.uid = " . esc_sql($wpjobportal_uid) . " LIMIT 0,3";
-        wpjobportal::$_data[0]['appliedresume'] = wpjobportaldb::get_results($query);
-    }
-    // if not use than remove
    function getLatestResumeIdNew($wpjobportal_uid){
         if(!is_numeric($wpjobportal_uid))
             return false;

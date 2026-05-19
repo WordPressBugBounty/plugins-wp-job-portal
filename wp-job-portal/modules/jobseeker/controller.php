@@ -39,7 +39,7 @@ class WPJOBPORTALJobseekerController {
                                 throw new Exception(WPJOBPORTALLayout::setMessageFor(1 , $wpjobportal_link , $wpjobportal_linktext,1));
                             } elseif (!WPJOBPORTALincluder::getObjectClass('user')->isWPJOBPortalUser()) {
                                 $wpjobportal_link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'common', 'wpjobportallt'=>'newinwpjobportal',  'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
-                                $wpjobportal_linktext = esc_html(__('Select role','wp-job-portal'));
+                                $wpjobportal_linktext = esc_html(__('Select Role','wp-job-portal'));
                                 wpjobportal::$_error_flag_message_for=1;
                                 throw new Exception(WPJOBPORTALLayout::setMessageFor(9 , $wpjobportal_link , $wpjobportal_linktext,1));
                             }

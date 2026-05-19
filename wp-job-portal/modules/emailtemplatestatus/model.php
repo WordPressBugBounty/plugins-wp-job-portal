@@ -63,15 +63,15 @@ class WPJOBPORTALemailtemplatestatusModel {
     function getLanguageForEmail($wpjobportal_keyword) {
         switch ($wpjobportal_keyword) {
             case 'add_new_company':
-                $lanng = esc_html(__('Add','wp-job-portal')). esc_html(__('new','wp-job-portal')).esc_html(__('company', 'wp-job-portal'));
+                $lanng = esc_html(__('Add','wp-job-portal')).' '. esc_html(__('New','wp-job-portal')).' '.esc_html(__('Company', 'wp-job-portal'));
                 return $lanng;
                 break;
             case 'delete_company':
-                $lanng = esc_html(__('Delete','wp-job-portal')) .' '. esc_html(__('company', 'wp-job-portal'));
+                $lanng = esc_html(__('Delete','wp-job-portal')) .' '. esc_html(__('Company', 'wp-job-portal'));
                 return $lanng;
                 break;
             case 'company_status':
-                $lanng = esc_html(__('Company','wp-job-portal')) .' '. esc_html(__('status', 'wp-job-portal'));
+                $lanng = esc_html(__('Company','wp-job-portal')) .' '. esc_html(__('Status', 'wp-job-portal'));
                 return $lanng;
                 break;
             case 'job_status':
@@ -79,43 +79,43 @@ class WPJOBPORTALemailtemplatestatusModel {
                 return $lanng;
                 break;
             case 'add_new_job':
-                $lanng = esc_html(__('Add','wp-job-portal')) .' '. esc_html(__('new','wp-job-portal')) .' '. esc_html(__('job', 'wp-job-portal'));
+                $lanng = esc_html(__('Add','wp-job-portal')) .' '. esc_html(__('New','wp-job-portal')) .' '. esc_html(__('Job', 'wp-job-portal'));
                 return $lanng;
                 break;
             case 'add_new_resume':
-                $lanng = esc_html(__('Add','wp-job-portal')) .' '. esc_html(__('new','wp-job-portal')) .' '. esc_html(__('resume', 'wp-job-portal'));
+                $lanng = esc_html(__('Add','wp-job-portal')) .' '. esc_html(__('New','wp-job-portal')) .' '. esc_html(__('Resume', 'wp-job-portal'));
                 return $lanng;
                 break;
             case 'resume_status':
-                $lanng = esc_html(__('Resume','wp-job-portal')) .' '. esc_html(__('status', 'wp-job-portal'));
+                $lanng = esc_html(__('Resume','wp-job-portal')) .' '. esc_html(__('Status', 'wp-job-portal'));
                 return $lanng;
                 break;
             case 'employer_purchase_credits_pack':
-                $lanng = esc_html(__('Employer','wp-job-portal')) .' '. esc_html(__('buy credits pack', 'wp-job-portal'));
+                $lanng = esc_html(__('Employer','wp-job-portal')) .' '. esc_html(__('Buy Credits Pack', 'wp-job-portal'));
                 return $lanng;
                 break;
             case 'jobseeker_package_expire':
-                $lanng = esc_html(__('Job seeker','wp-job-portal')) .' '. esc_html(__('expire package', 'wp-job-portal'));
+                $lanng = esc_html(__('Job seeker','wp-job-portal')) .' '. esc_html(__('Expire Package', 'wp-job-portal'));
                 return $lanng;
                 break;
             case 'jobseeker_purchase_credits_pack':
-                $lanng = esc_html(__('Job seeker','wp-job-portal')) .' '. esc_html(__('buy credits pack', 'wp-job-portal'));
+                $lanng = esc_html(__('Job seeker','wp-job-portal')) .' '. esc_html(__('Buy Credits Pack', 'wp-job-portal'));
                 return $lanng;
                 break;
             case 'employer_package_expire':
-                $lanng = esc_html(__('Employer','wp-job-portal')) .' '. esc_html(__('expire package', 'wp-job-portal'));
+                $lanng = esc_html(__('Employer','wp-job-portal')) .' '. esc_html(__('Expire Package', 'wp-job-portal'));
                 return $lanng;
                 break;
             case 'jobapply_employer':
-                $lanng = esc_html(__('Employer','wp-job-portal')) .' '. esc_html(__('job apply', 'wp-job-portal'));
+                $lanng = esc_html(__('Employer','wp-job-portal')) .' '. esc_html(__('Job Apply', 'wp-job-portal'));
                 return $lanng;
                 break;
             case 'jobapply_jobseeker':
-                $lanng = esc_html(__('Job seeker','wp-job-portal')) .' '. esc_html(__('job apply', 'wp-job-portal'));
+                $lanng = esc_html(__('Job seeker','wp-job-portal')) .' '. esc_html(__('Job Apply', 'wp-job-portal'));
                 return $lanng;
                 break;
             case 'delete_job':
-                $lanng = esc_html(__('Delete','wp-job-portal')) .' '. esc_html(__('job', 'wp-job-portal'));
+                $lanng = esc_html(__('Delete','wp-job-portal')) .' '. esc_html(__('Job', 'wp-job-portal'));
                 return $lanng;
                 break;
             case 'add_new_employer':
@@ -127,23 +127,23 @@ class WPJOBPORTALemailtemplatestatusModel {
                 return $lanng;
                 break;
             case 'add_new_resume_visitor':
-                $lanng = esc_html(__('Add','wp-job-portal')) .' '. esc_html(__('new','wp-job-portal')) .' '. esc_html(__('resume ','wp-job-portal')) .' '. esc_html(__('by visitor', 'wp-job-portal'));
+                $lanng = esc_html(__('Add','wp-job-portal')) .' '. esc_html(__('New','wp-job-portal')) .' '. esc_html(__('Resume','wp-job-portal')) .' '. esc_html(__('by visitor', 'wp-job-portal'));
                 return $lanng;
                 break;
             case 'add_new_job_visitor':
-                $lanng = esc_html(__('Add','wp-job-portal')) .' '. esc_html(__('new','wp-job-portal')) .' '. esc_html(__('job','wp-job-portal')) .' '. esc_html(__('by visitor', 'wp-job-portal'));
+                $lanng = esc_html(__('Add','wp-job-portal')) .' '. esc_html(__('New','wp-job-portal')) .' '. esc_html(__('Job','wp-job-portal')) .' '. esc_html(__('by visitor', 'wp-job-portal'));
                 return $lanng;
                 break;
             case 'resume-delete':
-                $lanng = esc_html(__('Delete','wp-job-portal')) .' '. esc_html(__('resume', 'wp-job-portal'));
+                $lanng = esc_html(__('Delete','wp-job-portal')) .' '. esc_html(__('Resume', 'wp-job-portal'));
                 return $lanng;
                 break;
             case 'jobapply_jobapply':
-                $lanng = esc_html(__('job apply', 'wp-job-portal'));
+                $lanng = esc_html(__('Job Apply', 'wp-job-portal'));
                 return $lanng;
                 break;
             case 'applied-resume_status':
-                $lanng = esc_html(__('Applied resume status change', 'wp-job-portal'));
+                $lanng = esc_html(__('Applied Resume Status Change', 'wp-job-portal'));
                 return $lanng;
                 break;
             case 'package-purchase-admin':

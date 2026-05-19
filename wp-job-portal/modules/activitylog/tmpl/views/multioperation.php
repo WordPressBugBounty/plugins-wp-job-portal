@@ -23,7 +23,7 @@ if (!defined('ABSPATH'))
     </div>
     <div class="wpjobportal-sorting-wrp">
         <span class="wpjobportal-sort-text">
-            <?php echo esc_html(__('Sort by', 'wp-job-portal')); ?>:
+            <?php echo esc_html(__('Sort By', 'wp-job-portal')); ?>:
         </span>
         <span class="wpjobportal-sort-field">
             <?php echo wp_kses(WPJOBPORTALformfield::select('sorting', $wpjobportal_categoryarray, wpjobportal::$_data['combosort'], '', array('class' => 'inputbox', 'onchange' => 'changeCombo();')),WPJOBPORTAL_ALLOWED_TAGS); ?>

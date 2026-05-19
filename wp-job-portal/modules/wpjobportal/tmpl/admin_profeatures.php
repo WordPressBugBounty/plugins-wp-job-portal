@@ -14,7 +14,7 @@
             <div id="js_profeature_main_wrapper">
         		<div id="proheading" class="proheading">
         			<span class="headtext"><?php echo esc_html(__('WP JOB PORTAL PRO FEATURES', 'wp-job-portal'));?></span>
-        			<a class="buynow" target="_blank" href="https://wpjobportal.com/pricing/"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/pro/buy-now.png"> <?php echo esc_html(__('BUY NOW', 'wp-job-portal'));?></a>
+        			<a class="buynow" target="_blank" href="https://wpjobportal.com/pricing/"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/pro/buy-now.png"> <?php echo esc_html(__('Buy Now', 'wp-job-portal'));?></a>
         		</div>
             	<div class="topimage bgwhite"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/pro/image-1.png"></div>
             	<div class="pro_wrapper">

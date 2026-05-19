@@ -42,12 +42,6 @@ class WPJOBPORTALCompanyModel {
         return $wpjobportal_results;
     }
 
-    function getAllCompaniesForSearchForCombo() {
-        $query = "SELECT id, name AS text FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` ORDER BY name ASC ";
-        $wpjobportal_rows = wpjobportaldb::get_results($query);
-        return $wpjobportal_rows;
-    }
-
     function getCompanybyIdForView($wpjobportal_companyid) {
         if (is_numeric($wpjobportal_companyid) == false)
             return false;
@@ -560,7 +554,9 @@ class WPJOBPORTALCompanyModel {
             }
             $wpjobportal_data = wpjobportal::wpjobportal_sanitizeData($wpjobportal_data);
             if(isset($wpjobportal_data['description'])){
-                $wpjobportal_data['description'] = wpautop(wptexturize(wptexturize(wpjobportalphplib::wpJP_stripslashes($wpjobportal_tempdesc))));
+                // Clean it first
+                $wpjobportal_tempdesc = str_ireplace(['<script', '< script'], '-', $wpjobportal_tempdesc);
+                $wpjobportal_data['description'] = wpautop(wptexturize(wp_kses_post(wpjobportalphplib::wpJP_stripslashes($wpjobportal_tempdesc))));
             }
 
             if(WPJOBPORTALincluder::getJSModel('common')->checkLanguageSpecialCase()){
@@ -1779,24 +1775,7 @@ class WPJOBPORTALCompanyModel {
 
             //Front end search var
             $wpjobportal_city = isset(wpjobportal::$_search['search_filter']['wpjobportal_city']) ? wpjobportal::$_search['search_filter']['wpjobportal_city']: '';
-            // $wpjobportal_formsearch = WPJOBPORTALrequest::getVar('WPJOBPORTAL_form_search', 'post');
-            // if ($wpjobportal_formsearch == 'WPJOBPORTAL_SEARCH') {
-            //     $_SESSION['WPJOBPORTAL_SEARCH']['searchcompany'] = $wpjobportal_searchcompany;
-            //     $_SESSION['WPJOBPORTAL_SEARCH']['searchcompcategory'] = $wpjobportal_searchcompcategory;
-            //     $_SESSION['WPJOBPORTAL_SEARCH']['wpjobportal_city'] = $wpjobportal_city;
-            // }
-            // if (WPJOBPORTALrequest::getVar('pagenum', 'get', null) != null) {
-            //     $wpjobportal_searchcompany = (isset($_SESSION['WPJOBPORTAL_SEARCH']['searchcompany']) && $_SESSION['WPJOBPORTAL_SEARCH']['searchcompany'] != '') ? sanitize_key($_SESSION['WPJOBPORTAL_SEARCH']['searchcompany']) : null;
-            //     $wpjobportal_searchcompcategory = (isset($_SESSION['WPJOBPORTAL_SEARCH']['searchcompcategory']) && $_SESSION['WPJOBPORTAL_SEARCH']['searchcompcategory'] != '') ? sanitize_key($_SESSION['WPJOBPORTAL_SEARCH']['searchcompcategory']) : null;
-            //     $wpjobportal_city = (isset($_SESSION['WPJOBPORTAL_SEARCH']['wpjobportal_city']) && $_SESSION['WPJOBPORTAL_SEARCH']['wpjobportal_city'] != '') ? sanitize_key($_SESSION['WPJOBPORTAL_SEARCH']['wpjobportal_city']) : null;
-            // } elseif ($wpjobportal_formsearch !== 'WPJOBPORTAL_SEARCH') {
-            //     if (isset($_SESSION['WPJOBPORTAL_SEARCH'])) {
-            //         unset($_SESSION['WPJOBPORTAL_SEARCH']);
-            //     }
-            // }
-            // if ($wpjobportal_searchcompcategory)
-            //     if (is_numeric($wpjobportal_searchcompcategory) == false)
-            //         return false;
+
             $wpjobportal_inquery = '';
             if ($wpjobportal_searchcompany) {
                 $wpjobportal_inquery = " AND LOWER(company.name) LIKE '%".esc_sql($wpjobportal_searchcompany)."%'";

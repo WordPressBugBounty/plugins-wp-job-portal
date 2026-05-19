@@ -26,7 +26,7 @@ wp_enqueue_script('jquery-multisortable',esc_url(WPJOBPORTAL_PLUGIN_URL).'/inclu
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('Dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -36,12 +36,12 @@ wp_enqueue_script('jquery-multisortable',esc_url(WPJOBPORTAL_PLUGIN_URL).'/inclu
             </div>
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('Configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('Help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -73,7 +73,7 @@ wp_enqueue_script('jquery-multisortable',esc_url(WPJOBPORTAL_PLUGIN_URL).'/inclu
                 //     do_action('wpjobportal_addons_customFields_addUser',wpjobportal::$wpjobportal_data['fieldfor']);
                 // }else{
                 if(wpjobportal::$wpjobportal_data['fieldfor'] != 5){
-                    echo '<a class="wpjobportal-add-link button" href="?page=wpjobportal_customfield&wpjobportallt=formuserfield&ff='.esc_attr(wpjobportal::$wpjobportal_data['fieldfor']).'" title='. esc_html(__('add user fields','wp-job-portal')).'>
+                    echo '<a class="wpjobportal-add-link button" href="?page=wpjobportal_customfield&wpjobportallt=formuserfield&ff='.esc_attr(wpjobportal::$wpjobportal_data['fieldfor']).'" title='. esc_html(__('Add User Field','wp-job-portal')).'>
                             <img src='.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png>
                             '. esc_html(__('Add User Field','wp-job-portal')).'
                         </a>';
@@ -85,8 +85,8 @@ wp_enqueue_script('jquery-multisortable',esc_url(WPJOBPORTAL_PLUGIN_URL).'/inclu
         <div id="wpjobportal-admin-wrapper" class="p0 bg-n bs-n">
             <!-- quick actions -->
             <div id="wpjobportal-page-quick-actions">
-                <a class="wpjobportal-page-quick-act-btn multioperation" message="<?php echo esc_attr(WPJOBPORTALMessages::getMSelectionEMessage()); ?>" data-for="fieldpublished" href="#" title="<?php echo esc_attr(__('user publish', 'wp-job-portal')) ?>">
-                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" alt="<?php echo esc_attr(__('user publish', 'wp-job-portal')) ?>" />
+                <a class="wpjobportal-page-quick-act-btn multioperation" message="<?php echo esc_attr(WPJOBPORTALMessages::getMSelectionEMessage()); ?>" data-for="fieldpublished" href="#" title="<?php echo esc_attr(__('User Publish', 'wp-job-portal')) ?>">
+                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" alt="<?php echo esc_attr(__('User Publish', 'wp-job-portal')) ?>" />
                     <?php echo esc_html(__('User Publish', 'wp-job-portal')); ?>
                 </a>
                 <a class="wpjobportal-page-quick-act-btn multioperation" message="<?php echo esc_attr(WPJOBPORTALMessages::getMSelectionEMessage()); ?>" data-for="fieldunpublished" href="#" title="<?php echo esc_attr(__('user unpublish', 'wp-job-portal')) ?>">
@@ -95,18 +95,18 @@ wp_enqueue_script('jquery-multisortable',esc_url(WPJOBPORTAL_PLUGIN_URL).'/inclu
                 </a>
                 <a class="wpjobportal-page-quick-act-btn multioperation" message="<?php echo esc_attr(WPJOBPORTALMessages::getMSelectionEMessage()); ?>" data-for="visitorfieldpublished" href="#" title="<?php echo esc_attr(__('visitor publish', 'wp-job-portal')) ?>">
                     <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" alt="<?php echo esc_attr(__('visitor publish', 'wp-job-portal')) ?>" />
-                    <?php echo esc_html(__('Visitor Publish', 'wp-job-portal')); ?>
+                    <?php echo esc_html(__('visitor publish', 'wp-job-portal')); ?>
                 </a>
                 <a class="wpjobportal-page-quick-act-btn multioperation" message="<?php echo esc_attr(WPJOBPORTALMessages::getMSelectionEMessage()); ?>" data-for="visitorfieldunpublished" href="#" title="<?php echo esc_attr(__('visitor unpublish', 'wp-job-portal')) ?>">
                     <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" alt="<?php echo esc_attr(__('visitor unpublish', 'wp-job-portal')) ?>" />
                     <?php echo esc_html(__('Visitor Unpublished', 'wp-job-portal')); ?>
                 </a>
-                <a class="wpjobportal-page-quick-act-btn multioperation" message="<?php echo esc_attr(WPJOBPORTALMessages::getMSelectionEMessage()); ?>" data-for="fieldrequired" href="#" title="<?php echo esc_attr(__('required', 'wp-job-portal')) ?>">
-                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" alt="<?php echo esc_attr(__('required', 'wp-job-portal')) ?>" />
+                <a class="wpjobportal-page-quick-act-btn multioperation" message="<?php echo esc_attr(WPJOBPORTALMessages::getMSelectionEMessage()); ?>" data-for="fieldrequired" href="#" title="<?php echo esc_attr(__('Required', 'wp-job-portal')) ?>">
+                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" alt="<?php echo esc_attr(__('Required', 'wp-job-portal')) ?>" />
                     <?php echo esc_html(__('Required', 'wp-job-portal')) ?>
                 </a>
-                <a class="wpjobportal-page-quick-act-btn multioperation" message="<?php echo esc_attr(WPJOBPORTALMessages::getMSelectionEMessage()); ?>" data-for="fieldnotrequired" href="#" title="<?php echo esc_attr(__('not required', 'wp-job-portal')) ?>">
-                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" alt="<?php echo esc_attr(__('not required', 'wp-job-portal')) ?>" />
+                <a class="wpjobportal-page-quick-act-btn multioperation" message="<?php echo esc_attr(WPJOBPORTALMessages::getMSelectionEMessage()); ?>" data-for="fieldnotrequired" href="#" title="<?php echo esc_attr(__('Not Required', 'wp-job-portal')) ?>">
+                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" alt="<?php echo esc_attr(__('Not Required', 'wp-job-portal')) ?>" />
                     <?php echo esc_html(__('Not Required', 'wp-job-portal')) ?>
                 </a>
             </div>
@@ -171,7 +171,7 @@ wp_enqueue_script('jquery-multisortable',esc_url(WPJOBPORTAL_PLUGIN_URL).'/inclu
             <!-- filter form -->
             <form class="wpjobportal-filter-form" name="wpjobportalform" id="wpjobportalform" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_fieldordering&ff=" . wpjobportal::$wpjobportal_data['fieldfor'])); ?>">
                 <?php echo wp_kses(WPJOBPORTALformfield::text('title', wpjobportal::$_data['filter']['title'], array('class' => 'inputbox wpjobportal-form-input-field', 'placeholder' => esc_html(__('Title', 'wp-job-portal')))),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                <?php echo wp_kses(WPJOBPORTALformfield::select('ustatus', WPJOBPORTALincluder::getJSModel('common')->getStatus(), is_numeric(wpjobportal::$_data['filter']['ustatus']) ? wpjobportal::$_data['filter']['ustatus'] : '', esc_html(__('Select status', 'wp-job-portal'))/*esc_html(__('Select user status', 'wp-job-portal'))*/, array('class' => 'inputbox wpjobportal-form-select-field')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                <?php echo wp_kses(WPJOBPORTALformfield::select('ustatus', WPJOBPORTALincluder::getJSModel('common')->getStatus(), is_numeric(wpjobportal::$_data['filter']['ustatus']) ? wpjobportal::$_data['filter']['ustatus'] : '', esc_html(__('Select Status', 'wp-job-portal'))/*esc_html(__('Select user status', 'wp-job-portal'))*/, array('class' => 'inputbox wpjobportal-form-select-field')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                 <?php echo wp_kses(WPJOBPORTALformfield::select('required', WPJOBPORTALincluder::getJSModel('common')->getYesNo(), is_numeric(wpjobportal::$_data['filter']['required']) ? wpjobportal::$_data['filter']['required'] : '', esc_html(__('Required', 'wp-job-portal')), array('class' => 'inputbox wpjobportal-form-select-field')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('WPJOBPORTAL_form_search', 'WPJOBPORTAL_SEARCH'),WPJOBPORTAL_ALLOWED_TAGS); ?>
                 <?php echo wp_kses(WPJOBPORTALformfield::submitbutton('btnsubmit', esc_html(__('Search', 'wp-job-portal')), array('class' => 'button wpjobportal-form-search-btn')),WPJOBPORTAL_ALLOWED_TAGS); ?>
@@ -261,7 +261,7 @@ wp_enqueue_script('jquery-multisortable',esc_url(WPJOBPORTAL_PLUGIN_URL).'/inclu
                                                     <?php //} ?>
                                                     <td>
                                                         <?php if ($wpjobportal_row->cannotunpublish == 1) { ?>
-                                                            <img src="<?php echo esc_url_raw(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" alt="<?php echo esc_attr(__('published', 'wp-job-portal')); ?>" />
+                                                            <img src="<?php echo esc_url_raw(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" alt="<?php echo esc_attr(__('Published', 'wp-job-portal')); ?>" />
                                                         <?php
                                                             } else {
                                                                 $wpjobportal_icon_name = "close.png";
@@ -278,7 +278,7 @@ wp_enqueue_script('jquery-multisortable',esc_url(WPJOBPORTAL_PLUGIN_URL).'/inclu
                                                     </td>
                                                     <td>
                                                         <?php if ($wpjobportal_row->cannotunpublish == 1) { ?>
-                                                            <img src="<?php echo esc_url_raw(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" alt="<?php echo esc_attr(__('published', 'wp-job-portal')); ?>" />
+                                                            <img src="<?php echo esc_url_raw(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" alt="<?php echo esc_attr(__('Published', 'wp-job-portal')); ?>" />
                                                         <?php
                                                             } else {
                                                                 $wpjobportal_icon_name = "close.png";
@@ -295,7 +295,7 @@ wp_enqueue_script('jquery-multisortable',esc_url(WPJOBPORTAL_PLUGIN_URL).'/inclu
                                                     </td>
                                                     <td>
                                                         <?php /* if ($wpjobportal_row->cannotunpublish == 1) { ?>
-                                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" alt="<?php echo esc_attr(__('published', 'wp-job-portal')); ?>" />
+                                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" alt="<?php echo esc_attr(__('Published', 'wp-job-portal')); ?>" />
                                                         <?php
                                                             } else {
                                                                 $wpjobportal_icon_name = "close.png";
@@ -310,12 +310,12 @@ wp_enqueue_script('jquery-multisortable',esc_url(WPJOBPORTAL_PLUGIN_URL).'/inclu
                                                             </a>
                                                         <?php } */?>
                                                     --</td>
-                                                    <td><a class="wpjobportal-table-act-btn" href="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_fieldordering&wpjobportallt=formuserfield&ff=".wpjobportal::$wpjobportal_data['fieldfor']."&wpjobportalid=".$wpjobportal_row->id)); ?>" title="<?php echo esc_attr(__('edit', 'wp-job-portal')); ?>">
-                                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/edit.png" alt="<?php echo esc_attr(__('edit', 'wp-job-portal')); ?>">
+                                                    <td><a class="wpjobportal-table-act-btn" href="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_fieldordering&wpjobportallt=formuserfield&ff=".wpjobportal::$wpjobportal_data['fieldfor']."&wpjobportalid=".$wpjobportal_row->id)); ?>" title="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>">
+                                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/edit.png" alt="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>">
                                                         </a>
                                                         <?php if ($wpjobportal_row->isuserfield == 1) { ?>
-                                                        <a class="wpjobportal-table-act-btn" href="<?php echo esc_url_raw(wp_nonce_url(admin_url('admin.php?page=wpjobportal_fieldordering&task=remove&action=wpjobportaltask&fieldid='.$wpjobportal_row->id.'&ff='.wpjobportal::$wpjobportal_data['fieldfor'].'&is_section_headline=1'),'wpjobportal_field_nonce')); ?>" onclick='return confirmdelete("<?php echo esc_js(__('Are you sure to delete', 'wp-job-portal')).'? &nbsp;';echo esc_html(__('Deleting section will delete all its fields.', 'wp-job-portal')); ?>");' title="<?php echo esc_attr(__('delete', 'wp-job-portal')); ?>">
-                                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/delete.png" alt="<?php echo esc_attr(__('delete', 'wp-job-portal')); ?>">
+                                                        <a class="wpjobportal-table-act-btn" href="<?php echo esc_url_raw(wp_nonce_url(admin_url('admin.php?page=wpjobportal_fieldordering&task=remove&action=wpjobportaltask&fieldid='.$wpjobportal_row->id.'&ff='.wpjobportal::$wpjobportal_data['fieldfor'].'&is_section_headline=1'),'wpjobportal_field_nonce')); ?>" onclick='return confirmdelete("<?php echo esc_js(__('Are you sure to delete', 'wp-job-portal')).'? &nbsp;';echo esc_html(__('Deleting section will delete all its fields.', 'wp-job-portal')); ?>");' title="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>">
+                                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/delete.png" alt="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>">
                                                         </a>
                                                     <?php } ?>
                                                     </td>
@@ -342,7 +342,7 @@ wp_enqueue_script('jquery-multisortable',esc_url(WPJOBPORTAL_PLUGIN_URL).'/inclu
                                                 </td>
                                                 <td>
                                                     <?php if ($wpjobportal_row->cannotunpublish == 1) { ?>
-                                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" title="<?php echo esc_attr(__('Un published', 'wp-job-portal')); ?>" />
+                                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" title="<?php echo esc_attr(__('Unpublished', 'wp-job-portal')); ?>" />
                                                     <?php
                                                         } else {
                                                             $wpjobportal_icon_name = "close.png";
@@ -359,10 +359,10 @@ wp_enqueue_script('jquery-multisortable',esc_url(WPJOBPORTAL_PLUGIN_URL).'/inclu
                                                 </td>
                                                 <td>
                                                     <?php if ($wpjobportal_row->sys == 1 || $wpjobportal_row->field == 'termsandconditions') { ?>
-                                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" title="<?php echo esc_attr(__('required', 'wp-job-portal')); ?>" />
+                                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" title="<?php echo esc_attr(__('Required', 'wp-job-portal')); ?>" />
                                                         <?php // to make sure that file upload fields can not be made required
                                                     } elseif ( $wpjobportal_row->field == 'resumefiles' || $wpjobportal_row->field == 'photo' || $wpjobportal_row->field == 'logo' || $wpjobportal_row->userfieldtype == 'file') { ?>
-                                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" title="<?php echo esc_attr(__('required', 'wp-job-portal')); ?>" />
+                                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" title="<?php echo esc_attr(__('Required', 'wp-job-portal')); ?>" />
                                                         <?php
                                                     } else {
                                                         $wpjobportal_icon_name = "close.png";
@@ -378,12 +378,12 @@ wp_enqueue_script('jquery-multisortable',esc_url(WPJOBPORTAL_PLUGIN_URL).'/inclu
                                                     <?php } ?>
                                                 </td>
                                                 <td>
-                                                    <a class="wpjobportal-table-act-btn" href="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_fieldordering&wpjobportallt=formuserfield&ff=".wpjobportal::$wpjobportal_data['fieldfor']."&wpjobportalid=".$wpjobportal_row->id)); ?>" title="<?php echo esc_attr(__('edit', 'wp-job-portal')); ?>">
-                                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/edit.png" alt="<?php echo esc_attr(__('edit', 'wp-job-portal')); ?>">
+                                                    <a class="wpjobportal-table-act-btn" href="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_fieldordering&wpjobportallt=formuserfield&ff=".wpjobportal::$wpjobportal_data['fieldfor']."&wpjobportalid=".$wpjobportal_row->id)); ?>" title="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>">
+                                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/edit.png" alt="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>">
                                                     </a>
                                                     <?php if ($wpjobportal_row->isuserfield == 1) { ?>
-                                                        <a class="wpjobportal-table-act-btn" href="<?php echo esc_url_raw(wp_nonce_url(admin_url('admin.php?page=wpjobportal_fieldordering&task=remove&action=wpjobportaltask&fieldid='.$wpjobportal_row->id.'&ff='.wpjobportal::$wpjobportal_data['fieldfor']),'wpjobportal_field_nonce')); ?>" onclick='return confirmdelete("<?php echo esc_js(__('Are you sure to delete', 'wp-job-portal')).' ?'; ?>");' title="<?php echo esc_attr(__('delete', 'wp-job-portal')); ?>">
-                                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/delete.png" alt="<?php echo esc_attr(__('delete', 'wp-job-portal')); ?>">
+                                                        <a class="wpjobportal-table-act-btn" href="<?php echo esc_url_raw(wp_nonce_url(admin_url('admin.php?page=wpjobportal_fieldordering&task=remove&action=wpjobportaltask&fieldid='.$wpjobportal_row->id.'&ff='.wpjobportal::$wpjobportal_data['fieldfor']),'wpjobportal_field_nonce')); ?>" onclick='return confirmdelete("<?php echo esc_js(__('Are you sure to delete', 'wp-job-portal')).' ?'; ?>");' title="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>">
+                                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/delete.png" alt="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>">
                                                         </a>
                                                     <?php } ?>
                                                 </td>
@@ -421,7 +421,7 @@ wp_enqueue_script('jquery-multisortable',esc_url(WPJOBPORTAL_PLUGIN_URL).'/inclu
                     </div>';
                 }*/
                 } else {
-                    $wpjobportal_msg = esc_html(__('No record found','wp-job-portal'));
+                    $wpjobportal_msg = esc_html(__('No Records Found','wp-job-portal'));
                     $wpjobportal_link[] = array(
                         'link' => 'admin.php?page=wpjobportal_customfield&wpjobportallt=formuserfield&ff='.wpjobportal::$wpjobportal_data['fieldfor'],
                         'text' => esc_html(__('Add New','wp-job-portal')) .' '. esc_html(__('User Field','wp-job-portal'))

@@ -49,7 +49,7 @@ class WPJOBPORTALEmailtemplateModel {
                         }
 
                         if ($wpjobportal_status == 3) {
-                            $wpjobportal_checkstatus = esc_html(__('Pending Due to Payment', 'wp-job-portal'));
+                            $wpjobportal_checkstatus = esc_html(__('Pending Due To Payment', 'wp-job-portal'));
                         }
                         $Companyname = $record->companyname;
 
@@ -572,7 +572,7 @@ class WPJOBPORTALEmailtemplateModel {
                         }
 
                         if ($wpjobportal_status == 3) {
-                            $wpjobportal_checkstatus = esc_html(__('Pending Due to Payment', 'wp-job-portal'));
+                            $wpjobportal_checkstatus = esc_html(__('Pending Due To Payment', 'wp-job-portal'));
                        }
                         $wpjobportal_matcharray = array(
                             '{RESUME_TITLE}' => $wpjobportal_resumename,
@@ -960,7 +960,8 @@ class WPJOBPORTALEmailtemplateModel {
                         $wpjobportal_senderName = $wpjobportal_config_array['mailfromname'];
                         // package status changed  mail to User/agency
                         //if( ($record->userid ? $wpjobportal_emailstatus->agency : $wpjobportal_emailstatus->user) == 1 ){ // log error agency is undefined
-                        if(  $wpjobportal_emailstatus->user == 1 ){
+                        // ??? ...
+                        if( $wpjobportal_emailstatus->employer == 1 ||  $wpjobportal_emailstatus->jobseeker == 1 ){
                             $this->sendEmail($receiveremail, $wpjobportal_msgSubject, $wpjobportal_msgBody, $wpjobportal_senderEmail, $wpjobportal_senderName, '');
                         }
                         break;
@@ -1381,8 +1382,15 @@ class WPJOBPORTALEmailtemplateModel {
     function storeEmailTemplate($wpjobportal_data) {
         if (empty($wpjobportal_data))
             return false;
+        if (!current_user_can('manage_options')) { //only admin can change it.
+            return false;
+        }
         $wpjobportal_data = wpjobportal::wpjobportal_sanitizeData($wpjobportal_data);
-        $wpjobportal_data['body'] = wpautop(wptexturize(wpjobportalphplib::wpJP_stripslashes(WPJOBPORTALrequest::getVar('body','post','','',1))));;
+
+        $body_text = WPJOBPORTALrequest::getVar('body','post','','',1);
+        // clean it first
+        $body_text = str_ireplace(['<script', '< script'], '-', $body_text);
+        $wpjobportal_data['body'] = wpautop(wptexturize(wpjobportalphplib::wpJP_stripslashes($body_text)));;
         $wpjobportal_row = WPJOBPORTALincluder::getJSTable('emailtemplate');
         if (!$wpjobportal_row->bind($wpjobportal_data)) {
             return WPJOBPORTAL_SAVE_ERROR;
@@ -1422,7 +1430,7 @@ class WPJOBPORTALEmailtemplateModel {
             if ($wpjobportal_jobuser->jobstatus == 1)
                 $JobStatus = esc_html(__('Approved', 'wp-job-portal'));
             else
-                $JobStatus = esc_html(__('Waiting for approval', 'wp-job-portal'));
+                $JobStatus = esc_html(__('Waiting For Approval', 'wp-job-portal'));
             $EmployerEmail = $wpjobportal_jobuser->contactemail;
             $ContactName = $wpjobportal_jobuser->contactname;
             if($ContactName == ''){
@@ -1625,8 +1633,5 @@ class WPJOBPORTALEmailtemplateModel {
     function getMessagekey(){
         $wpjobportal_key = 'emailtemplate';if(wpjobportal::$_common->wpjp_isadmin()){$wpjobportal_key = 'admin_'.$wpjobportal_key;}return $wpjobportal_key;
     }
-
-
 }
-
 ?>

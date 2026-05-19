@@ -28,12 +28,12 @@ foreach ($wpjobportal_allPlugins as $wpjobportal_key => $wpjobportal_value) {
                 </div>
                 <div id="wpjobportal-wrapper-top-right">
                     <div id="wpjobportal-config-btn">
-                        <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
+                        <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('Configuration','wp-job-portal')); ?>">
                             <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                        </a>
                     </div>
                     <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                        <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
+                        <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('Help','wp-job-portal')); ?>">
                             <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                        </a>
                     </div>
@@ -56,7 +56,7 @@ foreach ($wpjobportal_allPlugins as $wpjobportal_key => $wpjobportal_value) {
                                 <div class="wpjobportal-addon-installer-right-section-wrap step2" >
                                     <div class="wpjobportal-addon-installer-right-section-heading-wrp">
                                         <div class="wpjobportal-addon-installer-right-section-heading">
-                                            <?php echo esc_html(__('Welcome to WP Job Portal Addon Installer','wp-job-portal'));?>
+                                            <?php echo esc_html(__('Welcome To WP Job Portal Addon Installer','wp-job-portal'));?>
                                         </div>
                                         <div class="wpjobportal-addon-installer-right-section-btn-wrp">
                                             <label class="wpjobportal-addon-installer-right-addon-bottom" for="wpjobportal-addon-installer-right-addon-checkall-checkbox"><input type="checkbox" class="wpjobportal-addon-installer-right-addon-checkall-checkbox" id="wpjobportal-addon-installer-right-addon-checkall-checkbox"><?php echo esc_html(__("Select All Addons",'wp-job-portal')); ?></label>

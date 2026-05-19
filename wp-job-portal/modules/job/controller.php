@@ -94,7 +94,7 @@ class WPJOBPORTALJobController {
                         wpjobportal::$_error_flag = true;
                     }elseif($flag === 3){
                         $wpjobportal_link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'common', 'wpjobportallt'=>'newinwpjobportal'));
-                        $wpjobportal_linktext = esc_html(__('Select role','wp-job-portal'));
+                        $wpjobportal_linktext = esc_html(__('Select Role','wp-job-portal'));
                         wpjobportal::$_error_flag_message = WPJOBPORTALLayout::setMessageFor(9 , $wpjobportal_link , $wpjobportal_linktext,1);
                         wpjobportal::$_error_flag_message_for=9;
                         wpjobportal::$_error_flag = true;
@@ -117,7 +117,7 @@ class WPJOBPORTALJobController {
                     $wpjobportal_submission_type = wpjobportal::$_config->getConfigValue('submission_type');
 
                     $wpjobportal_expiryflag = $wpjpjob->getJobsExpiryStatus($wpjobportal_jobid);
-                    // moved this code up to enable employer to view his own job that is not yet payment approved
+                    // moved this code ufgsp to enable employer to view his own job that is not yet payment approved
                     if($wpjpjob->getJobPay($wpjobportal_jobid)){
                         $wpjobportal_expiryflag = false;
                     }
@@ -300,12 +300,6 @@ class WPJOBPORTALJobController {
                  break;
                 case 'admin_jobqueue':
                     $wpjpjob->getAllUnapprovedJobs();
-                    break;
-                case 'admin_job_searchresult':
-                    $wpjpjob->getJobSearch();
-                    break;
-                case 'admin_jobsearch':
-                    //$wpjpjob->getSearchOptions();
                     break;
                 case 'admin_view_job':
                     $wpjobportal_id = WPJOBPORTALrequest::getVar('wpjobportalid');

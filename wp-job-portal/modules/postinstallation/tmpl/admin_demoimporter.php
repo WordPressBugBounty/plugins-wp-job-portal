@@ -112,7 +112,7 @@
 
 		function showMessage(optionid){
 			if(optionid == 1){
-				jQuery('#demo_warning').html(\"". esc_html(__('All the content of previus demo data will be deleted.','wp-job-portal'))."\");
+				jQuery('#demo_warning').html(\"". esc_html(__('All the content of previews demo data will be deleted.','wp-job-portal'))."\");
 			}else{
 				jQuery('#demo_warning').html(' ');
 			}

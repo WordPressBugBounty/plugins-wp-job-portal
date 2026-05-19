@@ -365,73 +365,6 @@ class WPJOBPORTALCategoryModel {
         return $wpjobportal_rows;
     }
 
-    function getsubcategories() {
-        $wpjobportal_categoryalias = WPJOBPORTALrequest::getVar('category');
-        $wpjobportal_categoryid = WPJOBPORTALincluder::getJSModel('job')->parseid($wpjobportal_categoryalias);
-        if (!is_numeric($wpjobportal_categoryid))
-            return false;
-        $query = "SELECT count(cat.id)
-                    FROM `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat
-                    WHERE cat.parentid = " . esc_sql($wpjobportal_categoryid);
-        $wpjobportal_count = wpjobportal::$_db->get_var($query);
-        $query = "SELECT cat.cat_title
-                    FROM `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat
-                    WHERE cat.id = " . esc_sql($wpjobportal_categoryid);
-        $cat_title = wpjobportal::$_db->get_var($query);
-        $wpjobportal_config_array = WPJOBPORTALincluder::getJSModel('configuration')->getConfigByFor('category');
-        $wpjobportal_subcategory_limit = 3;
-        if($wpjobportal_config_array['subcategory_limit'] != ''){ // to handle float value in configuration
-            $wpjobportal_subcategory_limit = ceil($wpjobportal_config_array['subcategory_limit']);
-        }
-        $query = "SELECT cat.cat_title, CONCAT(cat.alias,'-',cat.id) AS aliasid,
-                    (SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE jobcategory = cat.id) AS totaljobs
-                    FROM `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat
-                    WHERE cat.parentid = " . esc_sql($wpjobportal_categoryid) . " ORDER BY cat.ordering ASC LIMIT " . esc_sql($wpjobportal_subcategory_limit);
-        $wpjobportal_result = wpjobportal::$_db->get_results($query);
-        $wpjobportal_html = '';
-        $wpjobportal_resume = WPJOBPORTALrequest::getVar('resume');
-        if(wpjobportal::$wpjobportal_theme_chk == 2){
-            $wpjobportal_prefix = $this->class_prefix.'-';
-            $wpjobportal_main_wrap = '';
-        }else{
-            $wpjobportal_prefix = '';
-            $wpjobportal_main_wrap = 'js';
-        }
-        if (!empty($wpjobportal_result)) {
-            $wpjobportal_html .= '<div class="'.esc_attr($wpjobportal_prefix).esc_attr($wpjobportal_main_wrap).'jobs-subcategory-wrapper">';
-            foreach ($wpjobportal_result AS $cat) {
-                if ($wpjobportal_resume == 1) {
-                    $wpjobportal_link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'resumes', 'category'=>$cat->aliasid, 'wpjobportalpageid'=>WPJOBPORTALRequest::getVar('wpjobportalpageid')));
-                } else {
-                    $wpjobportal_link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'jobs', 'category'=>$cat->aliasid, 'wpjobportalpageid'=>WPJOBPORTALRequest::getVar('wpjobportalpageid')));
-                }
-                $wpjobportal_html .= '  <div class="'.esc_attr($wpjobportal_prefix).'category-wrapper" style="width:100%;">
-                                <a href="' . esc_url($wpjobportal_link) . '">
-                                <div class="'.esc_attr($wpjobportal_prefix).'jobs-by-categories-wrapper">
-                                    <span class="'.esc_attr($wpjobportal_prefix).'title">' . wpjobportal::wpjobportal_getVariableValue($cat->cat_title) . '</span>';
-                if ($wpjobportal_resume == 1) {
-                    if($wpjobportal_config_array['categories_numberofresumes'] == 1){
-                        $wpjobportal_html .= '<span class="'.esc_attr($wpjobportal_prefix).esc_html('totat-jobs">)(') . esc_html($cat->totaljobs) . ')</span>';
-                    }
-                }else{
-                    if($wpjobportal_config_array['categories_numberofjobs'] == 1){
-                        $wpjobportal_html .= '<span class="'.esc_attr($wpjobportal_prefix).'totat-jobs">(' . esc_html($cat->totaljobs) . ')</span>';
-                    }
-                }
-                $wpjobportal_html .=    '</div>
-                            </a>
-                        </div>';
-            }
-            if ($wpjobportal_count > $wpjobportal_subcategory_limit) {
-                $wpjobportal_html .= '  <div class="showmore-wrapper">
-                                <a href="#" class="showmorebutton" data-title="' . esc_attr($cat_title) . '" data-id="' . esc_attr($wpjobportal_categoryalias) . '">' . esc_html(__('Show More', 'wp-job-portal')) . '</a>
-                            </div>';
-            }
-            $wpjobportal_html .= '</div>';
-        }
-        return $wpjobportal_html;
-    }
-
     private function getAllParentListTillRoot($wpjobportal_categoryid,&$parentsarray){
         if(!is_numeric($wpjobportal_categoryid)) return false;
         $query = "SELECT id, cat_title, parentid
@@ -600,18 +533,6 @@ class WPJOBPORTALCategoryModel {
     function getMessagekey(){
         $wpjobportal_key = 'category';if(wpjobportal::$_common->wpjp_isadmin()){$wpjobportal_key = 'admin_'.$wpjobportal_key;}return $wpjobportal_key;
     }
-
-    function getTopCategories($limit){
-        $query = "SELECT category.id,category.cat_title AS title
-            ,(SELECT count(job.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                where job.jobcategory = category.id AND DATE(job.startpublishing) <= CURDATE() AND DATE(job.stoppublishing) >= CURDATE() AND job.status = 1)  AS totaljobs
-            FROM `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category
-            WHERE category.isactive = 1 having totaljobs > 0 ORDER BY totaljobs DESC LIMIT ".esc_sql($limit);
-        $wpjobportal_data = wpjobportal::$_db->get_results($query);
-        return $wpjobportal_data;
-    }
-
-
 
     // WE will Save the Ordering system in this Function
     function storeOrderingFromPage($wpjobportal_data) {//

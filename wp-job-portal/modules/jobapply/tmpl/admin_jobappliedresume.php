@@ -136,28 +136,7 @@ $wpjobportal_gender = array(
                 }
             });
         }
-        function sendmailtocandidate(jobapplyid) {
-            var src = 'resumeactionmessage_' + jobapplyid;
-            var arr = new Array();
-            var emmailaddress = document.getElementById('emmailaddress').value;
-            if (emmailaddress) {
-                var result = echeck(emmailaddress);
-                if (result == false) {
-                    alert(\"". esc_html(__("JS invalid email", 'wp-job-portal'))."\");
-                    document.getElementById('emmailaddress').focus();
-                    return false;
-                }
-                arr[0] = emmailaddress;
-                arr[1] = document.getElementById('jsmailaddress').value;
-                arr[2] = document.getElementById('jssubject').value;
-                arr[3] = document.getElementById('candidatemessage').value;
-                sendtocandidate(arr, jobapplyid);
-            } else {
-                alert(\"". esc_html(__("JS your email is required", 'wp-job-portal'))."\");
-                document.getElementById('emmailaddress').focus();
-                return false;
-            }
-        }
+
         function sendtocandidate(arr, jobapplyid) {
             var src = '#resumeactionmessage_' + jobapplyid;
             var htmlsrc = '#wpjobportal_appliedresume_data_action_message_' + jobapplyid;
@@ -295,7 +274,7 @@ $wpjobportal_gender = array(
                 var body = jQuery('textarea#email-body').val();
                 jQuery.post(ajaxurl, {action: 'wpjobportal_ajax', wpjobportalme: 'jobapply', task: 'sendEmailToJobSeeker', jobseekerid: jid, emailsubject: subject, senderid: sid, mailbody: body, jobid: jobid, resumeid: resumeid,  '_wpnonce':'". esc_attr(wp_create_nonce("send-email-to-jobseeker"))."'}, function (data) {
                     if (data) {
-                        jQuery('div#' + resumeid).html('<div id=\"notification-ok\"><label id=\"popup_message\"><img src=\"". esc_url(WPJOBPORTAL_PLUGIN_URL)."includes/images/approve.png\"/>". esc_html(__('Email has been send','wp-job-portal'))."</label></div>');
+                        jQuery('div#' + resumeid).html('<div id=\"notification-ok\"><label id=\"popup_message\"><img src=\"". esc_url(WPJOBPORTAL_PLUGIN_URL)."includes/images/approve.png\"/>". esc_html(__('Email has been sent','wp-job-portal'))."</label></div>');
                     }else{
                         jQuery('div#' + resumeid).html('<div id=\"notification-not-ok\"><label id=\"popup_message\"><img src=\"". esc_url(WPJOBPORTAL_PLUGIN_URL).">includes/images/unpublish.png\"/>". esc_html(__('Error sending email','wp-job-portal'))."</label></div>');
                     }
@@ -429,7 +408,7 @@ $wpjobportal_gender = array(
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('Dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -439,7 +418,7 @@ $wpjobportal_gender = array(
             </div>    
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('Configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
@@ -506,7 +485,7 @@ $wpjobportal_gender = array(
                     echo wp_kses(WPJOBPORTALformfield::hidden('ta', wpjobportal::$_data[0]['ta']),WPJOBPORTAL_ALLOWED_TAGS);
                     echo wp_kses(WPJOBPORTALformfield::hidden('form_request', 'wpjobportal'),WPJOBPORTAL_ALLOWED_TAGS);
                 } else {
-                    $wpjobportal_msg = esc_html(__('No record found','wp-job-portal'));
+                    $wpjobportal_msg = esc_html(__('No Records Found','wp-job-portal'));
                     WPJOBPORTALlayout::getNoRecordFound($wpjobportal_msg);
                 }
             ?>

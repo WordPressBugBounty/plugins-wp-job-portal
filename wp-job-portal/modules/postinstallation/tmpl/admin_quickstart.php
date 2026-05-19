@@ -132,12 +132,12 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
 
                 <div class="wpjobportal-post-action-btn" style="text-align: center;">
                     <?php /* ?>
-                    <a class="back-step wpjobportal-post-act-btn" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('back','wp-job-portal')); ?>">
+                    <a class="back-step wpjobportal-post-act-btn" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('Back','wp-job-portal')); ?>">
                         <?php echo esc_html(__('Back','wp-job-portal')); ?>
                     </a>
                     <?php */ ?>
-                    <a class="next-step wpjobportal-post-act-btn" href="javascript:void();" onclick="document.getElementById('wpjobportal-form-ins').submit();"  title="<?php echo esc_attr(__('next','wp-job-portal')); ?>" style="float: none;">
-                        <?php echo esc_html(__('Next Setup','wp-job-portal')); ?>
+                    <a class="next-step wpjobportal-post-act-btn" href="javascript:void();" onclick="document.getElementById('wpjobportal-form-ins').submit();"  title="<?php echo esc_attr(__('Next','wp-job-portal')); ?>" style="float: none;">
+                        <?php echo esc_html(__('Next Step','wp-job-portal')); ?>
                     </a>
                 </div>
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('enable_multiple_employers_mode', 1),WPJOBPORTAL_ALLOWED_TAGS); ?>

@@ -194,7 +194,7 @@ class WPJOBPORTALpremiumpluginController {
             if ( is_wp_error( $unzipfile ) ) {
                 $wpjobportal_addon_return_data = array();
                 $wpjobportal_addon_return_data['status'] = 0;
-                $wpjobportal_addon_return_data['message'] = esc_html(__('Addon installation failed, Directory permission error','wp-job-portal')).'!';
+                $wpjobportal_addon_return_data['message'] = esc_html(__('Addon Installation Failed','wp-job-portal').', '. __('Directory Permission Error','wp-job-portal')).'!';
                 $wpjobportal_addon_return_data['transactionkey'] = '';
                 update_option( 'wpjobportal_addon_return_data', wp_json_encode($wpjobportal_addon_return_data) );
                 $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_premiumplugin&wpjobportallt=step1"));
@@ -206,7 +206,7 @@ class WPJOBPORTALpremiumpluginController {
         }else{
             $wpjobportal_addon_return_data = array();
             $wpjobportal_addon_return_data['status'] = 0;
-            $wpjobportal_addon_return_data['message'] = esc_html(__('Addon Installation Failed, File download error','wp-job-portal')).'!';
+            $wpjobportal_addon_return_data['message'] = esc_html(__('Addon Installation Failed','wp-job-portal').', '. __('File download error','wp-job-portal')).'!';
             $wpjobportal_addon_return_data['transactionkey'] = '';
             update_option( 'wpjobportal_addon_return_data', wp_json_encode($wpjobportal_addon_return_data) );
             $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_premiumplugin&wpjobportallt=step1"));
@@ -326,7 +326,7 @@ class WPJOBPORTALpremiumpluginController {
         if ($wpjobportal_deleted === 0) {
             WPJOBPORTALMessages::setLayoutMessage(esc_html(__('No unused keys were found.', 'wp-job-portal')),'error',$this->_msgkey);
         } elseif ($wpjobportal_deleted === 1) {
-            WPJOBPORTALMessages::setLayoutMessage(esc_html($wpjobportal_deleted . ' ' . __('unused key has been deleted successfully!', 'wp-job-portal')),'updated',$this->_msgkey);
+            WPJOBPORTALMessages::setLayoutMessage(esc_html($wpjobportal_deleted . ' ' . __('unused keys have been deleted successfully!', 'wp-job-portal')),'updated',$this->_msgkey);
         } else {
             WPJOBPORTALMessages::setLayoutMessage(esc_html($wpjobportal_deleted . ' ' . __('unused keys have been deleted successfully!', 'wp-job-portal')),'updated',$this->_msgkey);
         }

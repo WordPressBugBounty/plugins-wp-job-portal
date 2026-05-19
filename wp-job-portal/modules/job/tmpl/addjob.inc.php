@@ -281,7 +281,7 @@ if($wpjobportal_mapfield):
                     //alert('abc');
                     addMarker(latlng,location.id);
                 } else {
-                    //alert(\"". esc_html(__("Something got wrong 1",'wp-job-portal')).":\");
+                    //alert(\"". esc_html(__('Something went wrong','wp-job-portal')).":\");
                 }
             }else{ // this code for adding a marker from location name. // this code is redundant but leaving it here
                 var geocoder =  new google.maps.Geocoder();
@@ -292,7 +292,7 @@ if($wpjobportal_mapfield):
                             addMarker(latlng,location.id);
                         }
                     } else {
-                        //alert(\"". esc_html(__('Something got wrong','wp-job-portal')).":\"+status);
+                        //alert(\"". esc_html(__('Something went wrong','wp-job-portal')).":\"+status);
                     }
                 });
             }
@@ -350,7 +350,7 @@ if($wpjobportal_mapfield):
                                         n_latitude = results[0].geometry.location.lat();
                                         n_longitude = results[0].geometry.location.lng();
                                     } else {
-                                        alert(\"". esc_html(__('Something got wrong','wp-job-portal')).":\"+status);
+                                        alert(\"". esc_html(__('Something went wrong','wp-job-portal')).":\"+status);
                                     }
                                 });
                                 setTimeout(function(){ // timout is required to make sure that lat lang has value.
@@ -427,7 +427,7 @@ if($wpjobportal_mapfield):
                                         n_latitude = results[0].geometry.location.lat();
                                         n_longitude = results[0].geometry.location.lng();
                                     } else {
-                                        alert(\"". esc_html(__('Something got wrong','wp-job-portal')).":\"+status);
+                                        alert(\"". esc_html(__('Something went wrong','wp-job-portal')).":\"+status);
                                     }
                                 });
                                 setTimeout(function(){ // timout is required to make sure that lat lang has value.

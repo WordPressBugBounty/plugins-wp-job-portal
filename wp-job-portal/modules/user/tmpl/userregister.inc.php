@@ -68,7 +68,7 @@
 		            }
 		        } else{
 		            jQuery('input#photo').replaceWith(jQuery('input#photo').val('').clone(true));
-		            alert(\"". esc_html(__("File ext. is mismatched", 'wp-job-portal'))."\");
+		            alert(\"". esc_html(__("File extension is mismatched", 'wp-job-portal'))."\");
 		        }
 
 			}

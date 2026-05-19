@@ -5,7 +5,7 @@
 */
 ?>
 <?php echo wp_kses(WPJOBPORTALformfield::text('searchname', wpjobportal::$_data['filter']['searchname'], array('class' => 'inputbox wpjobportal-form-input-field', 'placeholder' => esc_html(__('Name', 'wp-job-portal')))),WPJOBPORTAL_ALLOWED_TAGS); ?>
-<?php echo wp_kses(WPJOBPORTALformfield::text('searchusername', wpjobportal::$_data['filter']['searchusername'], array('class' => 'inputbox wpjobportal-form-input-field', 'placeholder' => esc_html(__('Word Press user login', 'wp-job-portal')))),WPJOBPORTAL_ALLOWED_TAGS); ?>
+<?php echo wp_kses(WPJOBPORTALformfield::text('searchusername', wpjobportal::$_data['filter']['searchusername'], array('class' => 'inputbox wpjobportal-form-input-field', 'placeholder' => esc_html(__('WordPress User Login', 'wp-job-portal')))),WPJOBPORTAL_ALLOWED_TAGS); ?>
 <?php echo wp_kses(WPJOBPORTALformfield::text('searchcompany', wpjobportal::$_data['filter']['searchcompany'], array('class' => 'inputbox wpjobportal-form-input-field default-hidden', 'placeholder' => esc_html(__('Company', 'wp-job-portal')))),WPJOBPORTAL_ALLOWED_TAGS); ?>
 <?php echo wp_kses(WPJOBPORTALformfield::text('searchresume', wpjobportal::$_data['filter']['searchresume'], array('class' => 'inputbox wpjobportal-form-input-field default-hidden', 'placeholder' => esc_html(__('Resume', 'wp-job-portal')))),WPJOBPORTAL_ALLOWED_TAGS); ?>
 <?php echo wp_kses(WPJOBPORTALformfield::select('searchrole', WPJOBPORTALincluder::getJSModel('common')->getRolesForCombo(), wpjobportal::$_data['filter']['searchrole'], esc_html(__('Select Role', 'wp-job-portal')), array('class' => 'inputbox wpjobportal-form-select-field')),WPJOBPORTAL_ALLOWED_TAGS); ?>

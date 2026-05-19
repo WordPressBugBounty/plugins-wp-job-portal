@@ -127,7 +127,7 @@ switch ($wpjobportal_control) {
         if(is_numeric($wpjobportal_uid) && $wpjobportal_uid > 0){
             $wpjobportal_applied =  WPJOBPORTALincluder::getJSmodel('jobapply')->checkAlreadyAppliedJob($wpjobportal_job->jobid,$wpjobportal_uid);
             if ($wpjobportal_applied == false) {
-                $wpjobportal_desc = __("You have Already Applied", 'wp-job-portal');
+                $wpjobportal_desc = __("You Have Already Applied", 'wp-job-portal');
                 $wpjobportal_extra_class_job_applied = 'wp-job-portal-already-applied';
             }
         }
@@ -168,7 +168,7 @@ switch ($wpjobportal_control) {
         <?php
             $wpjobportal_applied =  WPJOBPORTALincluder::getJSmodel('jobapply')->checkAlreadyAppliedJob($wpjobportal_job->jobid,WPJOBPORTALincluder::getObjectClass('user')->uid());
             if ($wpjobportal_applied == false) {
-                $wpjobportal_desc = __("You have Already Applied", 'wp-job-portal');
+                $wpjobportal_desc = __("You Have Already Applied", 'wp-job-portal');
             }else{
                 $wpjobportal_desc = __("Apply Now", 'wp-job-portal');
             }
@@ -209,7 +209,7 @@ switch ($wpjobportal_control) {
                                         if($wpjobportal_applied == true){?>
                                             <a class="wjportal-jobs-act-btn" href="#" onclick="wpjobportalPopup('job_apply', '<?php echo esc_js($wpjobportal_job->jobid); ?>',<?php echo esc_js(wpjobportal::wpjobportal_getPageid());?>)"><?php echo esc_html(__('Apply Now', 'wp-job-portal')) ?></a><?php
                                         }else{
-                                            echo'<a class="wjportal-job-jobapply-btn wjportal-jobs-act-btn" href="#" >'. esc_html(__("You have Already Applied",'wp-job-portal')) .' </a>';
+                                            echo'<a class="wjportal-job-jobapply-btn wjportal-jobs-act-btn" href="#" >'. esc_html(__("You Have Already Applied",'wp-job-portal')) .' </a>';
                                         }
                                     }elseif ($wpjobportal_submission_type == 2) {
                                         $wpjobportal_payment = WPJOBPORTALincluder::getJSmodel('jobapply')->checkjobappllystats($wpjobportal_job->jobid,WPJOBPORTALincluder::getObjectClass('user')->uid());
@@ -220,18 +220,18 @@ switch ($wpjobportal_control) {
                                         }
                                         if($wpjobportal_payment == false && $wpjobportal_applied != true){
                                                 $wpjobportal_arr = array('wpjobportalme'=>'purchasehistory','wpjobportallt'=>'payjobapply','wpjobportalid'=>$wpjobportal_job->jobid);
-                                                echo '<a class="wjportal-job-act-btn" href='. esc_url(wpjobportal::wpjobportal_makeUrl($wpjobportal_arr)).' title='. esc_attr(__('make payment','wp-job-portal')).'>
+                                                echo '<a class="wjportal-job-act-btn" href='. esc_url(wpjobportal::wpjobportal_makeUrl($wpjobportal_arr)).' title='. esc_attr(__('Make Payment','wp-job-portal')).'>
                                                  '. esc_html(__('Make Payment To Apply', 'wp-job-portal')).'
                                                  </a>';
                                         }else{
-                                                echo'<a class="wjportal-job-jobapply-btn wjportal-jobs-act-btn" href="#" >'. esc_html(__("You have Already Applied",'wp-job-portal')) .' </a>';
+                                                echo'<a class="wjportal-job-jobapply-btn wjportal-jobs-act-btn" href="#" >'. esc_html(__("You Have Already Applied",'wp-job-portal')) .' </a>';
                                         }
                                     }elseif ($wpjobportal_submission_type == 3) {
                                         if($wpjobportal_applied == true){
 
                                          echo'<a class="wjportal-job-jobapply-btn wjportal-jobs-act-btn" href="#" onclick="getPackagePopupJobView('. esc_js($wpjobportal_job->jobid) .')">'. esc_html(__("Apply On This Job",'wp-job-portal')) .' </a>';
                                         }else{
-                                            echo'<a class="wjportal-job-jobapply-btn wjportal-jobs-act-btn" href="#" >'. esc_html(__("You have Already Applied",'wp-job-portal')) .' </a>';
+                                            echo'<a class="wjportal-job-jobapply-btn wjportal-jobs-act-btn" href="#" >'. esc_html(__("You Have Already Applied",'wp-job-portal')) .' </a>';
                                         }
                                     }
                                 }else{ ?>

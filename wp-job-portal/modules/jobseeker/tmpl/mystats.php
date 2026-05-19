@@ -21,21 +21,21 @@ if (wpjobportal::$_error_flag == null) {
                 <div class="js-mainwrp js-col-xs-12 js-col-md-4">
                     <div class="resume tprow">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/stats/total-resume.png">
-                        <div class="js-headtext"><?php echo esc_html(__('Total resume','wp-job-portal')); ?></div>
+                        <div class="js-headtext"><?php echo esc_html(__('Total Resume','wp-job-portal')); ?></div>
                         <div class="js-count">(<?php echo esc_html(wpjobportal::$_data[0]['totalresume']); ?>)</div>
                     </div>
                 </div>
                 <div class="js-mainwrp js-col-xs-12 js-col-md-4">
                     <div class="coverletter tprow">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/stats/total-coverletter.png">
-                        <div class="js-headtext"><?php echo esc_html(__('Cover letter','wp-job-portal')); ?></div>
+                        <div class="js-headtext"><?php echo esc_html(__('Cover Letter','wp-job-portal')); ?></div>
                         <div class="js-count">(<?php echo esc_html(wpjobportal::$_data[0]['totalcoverletter']); ?>)</div>
                     </div>
                 </div>
                 <div class="js-mainwrp js-col-xs-12 js-col-md-4">
                     <div class="appliedjobs tprow">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/stats/applied-jobs.png">
-                        <div class="js-headtext"><?php echo esc_html(__('Applied jobs','wp-job-portal')); ?></div>
+                        <div class="js-headtext"><?php echo esc_html(__('Applied Jobs','wp-job-portal')); ?></div>
                         <div class="js-count">(<?php echo esc_html(wpjobportal::$_data[0]['totalapplied']); ?>)</div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@ if (wpjobportal::$_error_flag == null) {
         </div>
         <?php
     } else{
-        $wpjobportal_msg = esc_html(__('No record found','wp-job-portal'));
+        $wpjobportal_msg = esc_html(__('No Records Found','wp-job-portal'));
         WPJOBPORTALlayout::getNoRecordFound($wpjobportal_msg);
     }
         ?>

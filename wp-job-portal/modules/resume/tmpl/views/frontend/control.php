@@ -76,7 +76,7 @@ switch ($wpjobportal_control) {
                         <?php
                         // the below code is written in this way to accomodate the design
                             echo '
-                            <a class="wjportal-resume-act-btn wjportal-list-act-btn-view-profile" href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'viewresume', 'jobid'=>$wpjobportal_myresume->id, 'wpjobportalid'=>$wpjobportal_myresume->resumealiasid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).' title='. esc_html(__('view profile', 'wp-job-portal')) .'>
+                            <a class="wjportal-resume-act-btn wjportal-list-act-btn-view-profile" href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'viewresume', 'jobid'=>$wpjobportal_myresume->id, 'wpjobportalid'=>$wpjobportal_myresume->resumealiasid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).' title='. esc_html(__('View Profile', 'wp-job-portal')) .'>
                                 '. esc_html(__('View Profile', 'wp-job-portal')) .'
                             </a>';
                             if ( has_action( 'wpjobportal_addons_resume_bottom_action_appliedresume' ) ) {

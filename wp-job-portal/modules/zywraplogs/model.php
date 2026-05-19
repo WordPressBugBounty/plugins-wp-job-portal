@@ -67,7 +67,7 @@ class WPJOBPORTALzywraplogsModel {
         $results['summary'] = array(
             'runs'    => number_format_i18n( absint($total_runs_24h) ),
             'errors'  => number_format_i18n( absint($api_errors_24h) ),
-            'model'   => empty( $top_model_used ) ? __('N/A', $text_domain) : esc_html( $top_model_used ),
+            'model'   => empty( $top_model_used ) ? __('N/A', 'wp-job-portal') : esc_html( $top_model_used ),
         );
 
         // --- 3. Fetch Main Log Data (with Pagination) ---

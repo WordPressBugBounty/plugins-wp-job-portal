@@ -47,7 +47,7 @@ class WPJOBPORTALCompanyController {
 
                             } elseif (!WPJOBPORTALincluder::getObjectClass('user')->isWPJOBPortalUser()) {
                                 $wpjobportal_link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'common', 'wpjobportallt'=>'newinwpjobportal'));
-                                $wpjobportal_linktext = esc_html(__('Select role','wp-job-portal'));
+                                $wpjobportal_linktext = esc_html(__('Select Role','wp-job-portal'));
                                 wpjobportal::$_error_flag_message_for=9; // role is not select
                                 throw new Exception(WPJOBPORTALLayout::setMessageFor(9 , $wpjobportal_link , $wpjobportal_linktext,1));
                             }
@@ -95,7 +95,7 @@ class WPJOBPORTALCompanyController {
 
                             } elseif (!WPJOBPORTALincluder::getObjectClass('user')->isWPJOBPortalUser()) {
                                 $wpjobportal_link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'common', 'wpjobportallt'=>'newinwpjobportal'));
-                                $wpjobportal_linktext = esc_html(__('Select role','wp-job-portal'));
+                                $wpjobportal_linktext = esc_html(__('Select Role','wp-job-portal'));
                                 wpjobportal::$_error_flag_message_for=9;
                                 throw new Exception(WPJOBPORTALLayout::setMessageFor(9 , $wpjobportal_link , $wpjobportal_linktext,1));
 
@@ -171,7 +171,7 @@ class WPJOBPORTALCompanyController {
 
                             } elseif (!WPJOBPORTALincluder::getObjectClass('user')->isWPJOBPortalUser()) {
                                 $wpjobportal_link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'common', 'wpjobportallt'=>'newinwpjobportal'));
-                                $wpjobportal_linktext = esc_html(__('Select role','wp-job-portal'));
+                                $wpjobportal_linktext = esc_html(__('Select Role','wp-job-portal'));
                                 wpjobportal::$_error_flag_message_for=9;
                                 throw new Exception(WPJOBPORTALLayout::setMessageFor(9 , $wpjobportal_link , $wpjobportal_linktext,1));
 
@@ -199,7 +199,7 @@ class WPJOBPORTALCompanyController {
 
                         } elseif (!WPJOBPORTALincluder::getObjectClass('user')->isWPJOBPortalUser() && $wpjobportal_config_array['visitorview_emp_viewcompany'] != 1) {
                             $wpjobportal_link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'common', 'wpjobportallt'=>'newinwpjobportal'));
-                            $wpjobportal_linktext = esc_html(__('Select role','wp-job-portal'));
+                            $wpjobportal_linktext = esc_html(__('Select Role','wp-job-portal'));
                             wpjobportal::$_error_flag_message_for=9;
                             wpjobportal::$_error_flag_message_register_for=2;
                             throw new Exception(WPJOBPORTALLayout::setMessageFor(9 , $wpjobportal_link , $wpjobportal_linktext,1));
@@ -243,7 +243,7 @@ class WPJOBPORTALCompanyController {
 
                         } elseif (!WPJOBPORTALincluder::getObjectClass('user')->isWPJOBPortalUser() && $wpjobportal_config_array['visitorview_emp_viewcompany'] != 1) {
                             $wpjobportal_link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'common', 'wpjobportallt'=>'newinwpjobportal'));
-                            $wpjobportal_linktext = esc_html(__('Select role','wp-job-portal'));
+                            $wpjobportal_linktext = esc_html(__('Select Role','wp-job-portal'));
                             wpjobportal::$_error_flag_message_for=9;
                             wpjobportal::$_error_flag_message_register_for=2;
                             throw new Exception(WPJOBPORTALLayout::setMessageFor(9 , $wpjobportal_link , $wpjobportal_linktext,1));

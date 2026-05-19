@@ -370,5 +370,35 @@ if (!defined('WPJOBPORTAL_FILE_TYPE_ERROR')) {
             'style' => array(),),
         ' ' => array(),
     ));
+    // Safe, strict fallback layout excluding structural/interactive element triggers
+    define( 'WPJOBPORTAL_SAFE_EDITOR_TAGS', array(
+        'p'          => array( 'class' => array(), 'id' => array() ),
+        'span'       => array( 'class' => array(), 'id' => array() ),
+        'div'        => array( 'class' => array(), 'id' => array() ),
+        'br'         => array(),
+        'hr'         => array(),
+        'strong'     => array(),
+        'b'          => array(),
+        'em'         => array(),
+        'i'          => array( 'class' => array() ),
+        'small'      => array(),
+        'h1'         => array( 'class' => array(), 'id' => array() ),
+        'h2'         => array( 'class' => array(), 'id' => array() ),
+        'h3'         => array( 'class' => array(), 'id' => array() ),
+        'h4'         => array( 'class' => array(), 'id' => array() ),
+        'h5'         => array( 'class' => array(), 'id' => array() ),
+        'h6'         => array( 'class' => array(), 'id' => array() ),
+        'ul'         => array( 'class' => array() ),
+        'ol'         => array( 'class' => array() ),
+        'li'         => array( 'class' => array() ),
+        'table'      => array( 'class' => array() ),
+        'thead'      => array(),
+        'tbody'      => array(),
+        'tr'         => array(),
+        'th'         => array(),
+        'td'         => array(),
+        'img'        => array( 'src' => array(), 'alt' => array(), 'width' => array(), 'height' => array() ),
+        'a'          => array( 'href' => array(), 'title' => array(), 'target' => array() ),
+    ));
 }
 ?>

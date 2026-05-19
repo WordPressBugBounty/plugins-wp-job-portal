@@ -36,7 +36,7 @@ class WPJOBPORTALconfigurationModel {
         }
         wpjobportal::$_data[0]['config_count'] = COUNT($wpjobportal_config);
         if(in_array('credits',wpjobportal::$_active_addons)){
-            // payment method config
+            // Payment Method config
             $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_paymentmethodconfig`";
             $wpjobportal_paymentmethodconfig = wpjobportaldb::get_results($query);
             foreach ($wpjobportal_paymentmethodconfig AS $wpjobportal_configvalue) {
@@ -82,7 +82,10 @@ class WPJOBPORTALconfigurationModel {
 
         // }
         $wpjobportal_data = wpjobportal::wpjobportal_sanitizeData($wpjobportal_data);
-        $wpjobportal_data['offline_text'] = wpautop(wptexturize(wptexturize(wpjobportalphplib::wpJP_stripslashes(WPJOBPORTALrequest::getVar('offline_text','post','','',1)))));
+        $offline_text = WPJOBPORTALrequest::getVar('offline_text','post','','',1);
+        // Clean it first
+        $offline_text = str_ireplace(['<script', '< script'], '-', $offline_text);
+        $wpjobportal_data['offline_text'] = wpautop(wptexturize(wp_kses_post(wpjobportalphplib::wpJP_stripslashes($offline_text))));
 
         $error = false;
 
@@ -96,10 +99,10 @@ class WPJOBPORTALconfigurationModel {
         }
 
 
-        // payment method configs
+        // Payment Method configs
         $current_payment_configs = array();
         if(in_array('credits',wpjobportal::$_active_addons)){
-            // payment method config
+            // Payment Method config
             $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_paymentmethodconfig`";
             $wpjobportal_paymentmethodconfig = wpjobportaldb::get_results($query);
 
@@ -233,13 +236,6 @@ class WPJOBPORTALconfigurationModel {
         return $wpjobportal_configs;
     }
 
-    function getCountConfig() {
-
-        $query = "SELECT COUNT(*) FROM `" . wpjobportal::$_db->prefix . "wj_portal_config`";
-        $wpjobportal_result = wpjobportaldb::get_var($query);
-        return $wpjobportal_result;
-    }
-
     function getConfigValue($wpjobportal_configname) {
         $query = "SELECT configvalue FROM `" . wpjobportal::$_db->prefix . "wj_portal_config` WHERE configname = '" . esc_sql($wpjobportal_configname) . "'";
         //return wpjobportaldb::get_var($query);
@@ -307,7 +303,7 @@ class WPJOBPORTALconfigurationModel {
     function getConfigSideMenu(){
         $wpjobportal_html = '<ul id="wpjobportaladmin-menu-links" class="tree config-accordion accordion wpjobportaladmin-sidebar-menu "  data-widget="tree">
             <li class="treeview" id="gen_setting">
-                <a class="js-icon-left" href="#" title="'. esc_attr(__('general setting' , 'wp-job-portal')) .'">
+                <a class="js-icon-left" href="#" title="'. esc_attr(__('General Settings' , 'wp-job-portal')) .'">
                     <img src="'. esc_url(WPJOBPORTAL_PLUGIN_URL)."includes/images/control_panel/dashboard/admin-left-menu/config.png" .'"/>
                     <span class="wpjobportal_text wpjobportal-parent">'. esc_html(__("General Settings" , 'wp-job-portal')) .'</span>
                 </a>
@@ -323,12 +319,12 @@ class WPJOBPORTALconfigurationModel {
                         $wpjobportal_html .= '<li class="wpjobportal-child"><a href="?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=general_setting#googlemapadsense" class="jslm_text">'.  esc_html(__("Map" , 'wp-job-portal')) .'</a></li>';
                     }
                     $wpjobportal_html .= '<li class="wpjobportal-child"><a href="?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=general_setting#offline" class="jslm_text">'.  esc_html(__("Offline" , 'wp-job-portal')) .'</a></li>
-                    <li class="wpjobportal-child"><a href="?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=general_setting#terms" class="jslm_text">'.  esc_html(__("Term And Conditions" , 'wp-job-portal')) .'</a></li>
+                    <li class="wpjobportal-child"><a href="?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=general_setting#terms" class="jslm_text">'.  esc_html(__("Terms And Conditions" , 'wp-job-portal')) .'</a></li>
                     <li class="wpjobportal-child"><a href="?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=general_setting#url-settings" class="jslm_text">'.  esc_html(__("URL Settings" , 'wp-job-portal')) .'</a></li>
                 </ul>
             </li>
             <li class="treeview" id="emp_setting">
-                <a class="js-icon-left" href="#" title="'. esc_attr(__('employer' , 'wp-job-portal')) .'">
+                <a class="js-icon-left" href="#" title="'. esc_attr(__('Employer' , 'wp-job-portal')) .'">
                     <img src="'.  esc_url(WPJOBPORTAL_PLUGIN_URL)."includes/images/config/employer.png" .'"/>
                     <span class="jslm_text wpjobportal-parent ">'.  esc_html(__("Employer" , 'wp-job-portal')) .'</span>
                 </a>
@@ -344,7 +340,7 @@ class WPJOBPORTALconfigurationModel {
                 </ul>
             </li>
             <li class="treeview" id="js_setting">
-                <a class="js-icon-left" href="#" title="'. esc_attr(__('job seeker' , 'wp-job-portal')) .'">
+                <a class="js-icon-left" href="#" title="'. esc_attr(__('Job Seeker' , 'wp-job-portal')) .'">
                     <img src="'. esc_url(WPJOBPORTAL_PLUGIN_URL)."includes/images/config/joseeker.png" .'"/>
                     <span class="jslm_text wpjobportal-parent">'. esc_html(__("Job Seeker" , 'wp-job-portal')) .'</span>
                 </a>
@@ -369,7 +365,7 @@ class WPJOBPORTALconfigurationModel {
             <li class="treeview" id="ai_setting">
                 <a class="js-icon-left" href="#" title="'. esc_attr(__('AI Settings' , 'wp-job-portal')) .'">
                     <img src="'. esc_url(WPJOBPORTAL_PLUGIN_URL)."includes/images/config/ai-addons.png" .'"/>
-                    <span class="jslm_text wpjobportal-parent">'. esc_html(__("AI settings" , 'wp-job-portal')) .'</span>
+                    <span class="jslm_text wpjobportal-parent">'. esc_html(__("AI Settings" , 'wp-job-portal')) .'</span>
                 </a>
                 <ul class="wpjobportaladmin-sidebar-submenu treeview-menu"> ';
 
@@ -447,23 +443,23 @@ class WPJOBPORTALconfigurationModel {
 
 
             <li class="treeview" id="vis_setting">
-                <a class="js-icon-left" href="#" title="'. esc_attr(__('visitor setting' , 'wp-job-portal')) .'">
+                <a class="js-icon-left" href="#" title="'. esc_attr(__('Visitor Settings' , 'wp-job-portal')) .'">
                     <img src="'. esc_url(WPJOBPORTAL_PLUGIN_URL)."includes/images/config/user.png" .'"/>
                     <span class="jslm_text wpjobportal-parent">'. esc_html(__("Visitor Settings" , 'wp-job-portal')) .'</span>
                 </a>
                 <ul class="wpjobportaladmin-sidebar-submenu treeview-menu">
                     <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=visitor_setting#captcha_setting" class="jslm_text">'.  esc_html(__("Captcha Settings",'wp-job-portal')) .'</a></li>
                     <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=visitor_setting#visitor_setting_employer_side" class="jslm_text">'.  esc_html(__("Employer Settings" , 'wp-job-portal')) .'</a></li>
-                    <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=visitor_setting#js_visitor" class="jslm_text">'.  esc_html(__("Jobseeker Settings" , 'wp-job-portal')) .'</a></li>
+                    <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=visitor_setting#js_visitor" class="jslm_text">'.  esc_html(__("Job Seeker Settings" , 'wp-job-portal')) .'</a></li>
                     <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=visitor_setting#emp_visitorlinks" class="jslm_text">'.  esc_html(__("Employer Links" , 'wp-job-portal')) .'</a></li>
-                    <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=visitor_setting#js_memberlinks" class="jslm_text">'.  esc_html(__("Jobseeker Links" , 'wp-job-portal')) .'</a></li>
+                    <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=visitor_setting#js_memberlinks" class="jslm_text">'.  esc_html(__("Job Seeker Links" , 'wp-job-portal')) .'</a></li>
                 </ul>
             </li>
 
             ';
             if(in_array('credits', wpjobportal::$_active_addons)){
                  $wpjobportal_html .= '<li class="treeview" id="pack_setting">
-                    <a class="js-icon-left" href="#" title="'. esc_attr(__('package setting' , 'wp-job-portal')) .'">
+                    <a class="js-icon-left" href="#" title="'. esc_attr(__('Package Settings' , 'wp-job-portal')) .'">
                         <img src="'. esc_url(WPJOBPORTAL_PLUGIN_URL)."includes/images/config/package.png" .'"/>
                         <span class="jslm_text wpjobportal-parent">'. esc_html(__("Package Settings" , 'wp-job-portal')) .'</span>
                     </a>
@@ -488,9 +484,9 @@ class WPJOBPORTALconfigurationModel {
                </li>';
             }
             $wpjobportal_html .= '<li class="treeview" id="social_setting">
-                <a class="js-icon-left" href="#" title="'. esc_attr(__('social apps' , 'wp-job-portal')) .'">
+                <a class="js-icon-left" href="#" title="'. esc_attr(__('Social Apps' , 'wp-job-portal')) .'">
                     <img src="'. esc_url(WPJOBPORTAL_PLUGIN_URL)."includes/images/config/social_share.png" .'"/>
-                    <span class="jslm_text wpjobportal-parent">'. esc_html(__(" Social Apps" , 'wp-job-portal')) .'</span>
+                    <span class="jslm_text wpjobportal-parent">'. esc_html(__("Social Apps" , 'wp-job-portal')) .'</span>
                 </a>
                 <ul class="wpjobportaladmin-sidebar-submenu treeview-menu">';
                     if(in_array('socialshare', wpjobportal::$_active_addons)){
@@ -530,7 +526,7 @@ class WPJOBPORTALconfigurationModel {
             </li>';
             if(in_array('rssfeedback', wpjobportal::$_active_addons)){
                 $wpjobportal_html .= '<li class="treeview" id="rs_setting">
-                    <a class="js-icon-left" href="#" title="'. esc_attr(__('rss' , 'wp-job-portal')) .'">
+                    <a class="js-icon-left" href="#" title="'. esc_attr(__('RSS' , 'wp-job-portal')) .'">
                         <img src="'. esc_url(WPJOBPORTAL_PLUGIN_URL)."includes/images/config/rss.png" .'"/>
                         <span class="jslm_text wpjobportal-parent">'. esc_html(__("RSS" , 'wp-job-portal')) .'</span>
                     </a>
@@ -555,9 +551,9 @@ class WPJOBPORTALconfigurationModel {
                </li>';
             }
             $wpjobportal_html .= '<li class="treeview" id="lr_setting">
-                    <a class="js-icon-left" href="#" title="'. esc_attr(__('login/register' , 'wp-job-portal')) .'">
+                    <a class="js-icon-left" href="#" title="'. esc_attr(__('Login/Register' , 'wp-job-portal')) .'">
                         <img src="'. esc_url(WPJOBPORTAL_PLUGIN_URL)."includes/images/config/login.png" .'"/>
-                        <span class="jslm_text wpjobportal-parent">'. esc_html(__(" Login/Register" , 'wp-job-portal')) .'</span>
+                        <span class="jslm_text wpjobportal-parent">'. esc_html(__("Login/Register" , 'wp-job-portal')) .'</span>
                     </a>
                     <ul class="wpjobportaladmin-sidebar-submenu treeview-menu">
                         <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=login_register#login" class="jslm_text">'.  esc_html(__("Login",'wp-job-portal')) .'</a></li>
@@ -566,14 +562,14 @@ class WPJOBPORTALconfigurationModel {
                 </li>';
             if(in_array('credits', wpjobportal::$_active_addons)){
                 $wpjobportal_html .= '<li class="treeview" id="pm_setting">
-                    <a class="js-icon-left" href="#" title="'. esc_attr(__('payment method' , 'wp-job-portal')) .'">
+                    <a class="js-icon-left" href="#" title="'. esc_attr(__('Payment Method' , 'wp-job-portal')) .'">
                         <img src="'. esc_url(WPJOBPORTAL_PLUGIN_URL)."includes/images/config/payment.png" .'"/>
                         <span class="jslm_text wpjobportal-parent">'. esc_html(__("Payment Method" , 'wp-job-portal')) .'</span>
                     </a>
                     <ul class="wpjobportaladmin-sidebar-submenu treeview-menu">
                         <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_paymentmethodconfiguration&wpjpconfigid=pay_setting#paypal" class="jslm_text">'.  esc_html(__("PayPal",'wp-job-portal')) .'</a></li>
                         <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_paymentmethodconfiguration&wpjpconfigid=pay_setting#stripe" class="jslm_text">'.  esc_html(__("Stripe" , 'wp-job-portal')) .'</a></li>
-                        <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_paymentmethodconfiguration&wpjpconfigid=pay_setting#others" class="jslm_text">'.  esc_html(__("Woocommerce" , 'wp-job-portal')) .'</a></li>
+                        <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_paymentmethodconfiguration&wpjpconfigid=pay_setting#others" class="jslm_text">'.  esc_html(__("WooCommerce" , 'wp-job-portal')) .'</a></li>
                     </ul>
                 </li>';
             }
@@ -594,15 +590,15 @@ class WPJOBPORTALconfigurationModel {
             }
             if(in_array('cronjob', wpjobportal::$_active_addons)){
                 $wpjobportal_html .= '<li class="treeview" id="cj_setting">
-                    <a class="js-icon-left" href="#" title="'. esc_attr(__('cron job' , 'wp-job-portal')) .'">
+                    <a class="js-icon-left" href="#" title="'. esc_attr(__('Cron Job' , 'wp-job-portal')) .'">
                         <img src="'. esc_url(WPJOBPORTAL_PLUGIN_URL)."includes/images/config/cron_job.png" .'"/>
                         <span class="jslm_text wpjobportal-parent">'. esc_html(__("Cron Job" , 'wp-job-portal')) .'</span>
                     </a>
                     <ul class="wpjobportaladmin-sidebar-submenu treeview-menu">
                         <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_cronjob&wpjobportallt=cronjob&wpjpconfigid=cron_setting#webcrown" class="jslm_text">'.  esc_html(__("Webcrown.org",'wp-job-portal')) .'</a></li>
                         <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_cronjob&wpjobportallt=cronjob&wpjpconfigid=cron_setting#wget" class="jslm_text">'.  esc_html(__("Wget" , 'wp-job-portal')) .'</a></li>
-                        <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_cronjob&wpjobportallt=cronjob&wpjpconfigid=cron_setting#curl" class="jslm_text">'.  esc_html(__("Curl" , 'wp-job-portal')) .'</a></li>
-                        <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_cronjob&wpjobportallt=cronjob&wpjpconfigid=cron_setting#phpscript" class="jslm_text">'.  esc_html(__("Php Script" , 'wp-job-portal')) .'</a></li>
+                        <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_cronjob&wpjobportallt=cronjob&wpjpconfigid=cron_setting#curl" class="jslm_text">'.  esc_html(__("CURL" , 'wp-job-portal')) .'</a></li>
+                        <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_cronjob&wpjobportallt=cronjob&wpjpconfigid=cron_setting#phpscript" class="jslm_text">'.  esc_html(__("PHP Script" , 'wp-job-portal')) .'</a></li>
                         <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_cronjob&wpjobportallt=cronjob&wpjpconfigid=cron_setting#url" class="jslm_text">'.  esc_html(__("Website" , 'wp-job-portal')) .'</a></li>
                     </ul>
                 </li>';
@@ -624,52 +620,7 @@ class WPJOBPORTALconfigurationModel {
         $wpjobportal_html .= '</ul>';
         return $wpjobportal_html;
     }
-/* NO LONGER USED
-    // update single configuration from overview page
-    function storeConfigurationSingle() {
-        // nonce check
-        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
-        if (!wp_verify_nonce($wpjobportal_nonce, 'wpjobportal_configuration_nonce')) {
-            die('Security check Failed');
-        }
 
-        // onlyy admin can use this fucntion
-        if (!current_user_can('manage_options')) {
-            return false;
-        }
-
-        $wpjobportal_config_name = WPJOBPORTALrequest::getVar('config_name', '', '');
-        $wpjobportal_config_value = WPJOBPORTALrequest::getVar('config_value', '', '');
-
-        if($wpjobportal_config_name == ''){
-            return false;
-        }
-
-        // not sure about this if code
-        // if($wpjobportal_config_value == ''){
-        //     return false;
-        // }
-
-
-        // List of allowed configurations to avoud issues
-        $wpjobportal_allowed_configs = array(
-            'companyautoapprove',
-        );
-
-        if (!in_array($wpjobportal_config_name, $wpjobportal_allowed_configs)) {
-            return false;
-        }
-
-        $error = false;
-        $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_config`
-                  SET `configvalue` = '".esc_sql($wpjobportal_config_value)."'
-                  WHERE `configname` = '".esc_sql($wpjobportal_config_name)."'";
-        if (wpjobportaldb::query($query)) {
-            $error = true;
-        }
-        return $error;
-    }
-    */
 }
 
 ?>

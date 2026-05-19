@@ -13,31 +13,31 @@ if ($wpjobportal_module) {
 		switch ($wpjobportal_layouts) {
 			case 'controlpanel':
 				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('Dashboard', 'wp-job-portal')).'</h1>
-	        			<a class="wpjobportal-add-link orange-bg button" href="admin.php?page=wpjobportal_job&wpjobportallt=formjob" title="'. esc_attr(__('add job','wp-job-portal')).'">
-	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_html(__('plus icon','wp-job-portal')).'" />
+	        			<a class="wpjobportal-add-link orange-bg button" href="admin.php?page=wpjobportal_job&wpjobportallt=formjob" title="'. esc_attr(__('Add Job','wp-job-portal')).'">
+	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_attr(__('plus icon','wp-job-portal')).'" />
 	        				'. esc_html(__('Add Job','wp-job-portal')).'
 	        			</a>
-	        			<a class="wpjobportal-add-link button" href="admin.php?page=wpjobportal_job" title="'. esc_attr(__('all jobs','wp-job-portal')).'">
-	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/all-jobs.png" alt="'. esc_html(__('all jobs','wp-job-portal')).'" />
+	        			<a class="wpjobportal-add-link button" href="admin.php?page=wpjobportal_job" title="'. esc_attr(__('All Jobs','wp-job-portal')).'">
+	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/all-jobs.png" alt="'. esc_html(__('All Jobs','wp-job-portal')).'" />
 	        				'. esc_html(__('All Jobs','wp-job-portal')).'
 	        			</a>';
 			break;
 			case 'shortcodes':
-				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('Short Codes', 'wp-job-portal')).'</h1>';
+				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('Shortcodes', 'wp-job-portal')).'</h1>';
 			break;
 			case 'help':
 				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('Help', 'wp-job-portal')).'</h1>';
 			break;
 			case 'jobtype':
 				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('Job Types', 'wp-job-portal')).'</h1>
-	        			<a class="wpjobportal-add-link button" href='.esc_url_raw(admin_url('admin.php?page=wpjobportal_jobtype&wpjobportallt=formjobtype')).' title="'. esc_attr(__('add new job type','wp-job-portal')).'">
-	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_html(__('plus icon','wp-job-portal')).'" />
+	        			<a class="wpjobportal-add-link button" href="'.esc_url_raw(admin_url('admin.php?page=wpjobportal_jobtype&wpjobportallt=formjobtype')).'" title="'. esc_attr(__('Add New Job Type','wp-job-portal')).'">
+	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_attr(__('plus icon','wp-job-portal')).'" />
 	        				'. esc_html(__('Add New Job Type','wp-job-portal')).'
 	        			</a>';
 			break;
 			case 'slug':
 				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('Slug', 'wp-job-portal')).'</h1>
-	        			<a class="wpjobportal-add-link button" href='. wp_nonce_url(admin_url('admin.php?page=wpjobportal_slug&task=resetallslugs&action=wpjobportaltask'),'wpjobportal_slug_nonce').' title="'. esc_attr(__('reset all','wp-job-portal')).'">
+	        			<a class="wpjobportal-add-link button" href="'. wp_nonce_url(admin_url('admin.php?page=wpjobportal_slug&task=resetallslugs&action=wpjobportaltask'),'wpjobportal_slug_nonce').'" title="'. esc_attr(__('Reset All','wp-job-portal')).'">
 	        				'. esc_html(__('Reset All','wp-job-portal')).'
 	        			</a>';
 			break;
@@ -52,36 +52,36 @@ if ($wpjobportal_module) {
 			break;
 			case 'shift':
 				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('Shifts', 'wp-job-portal')).'</h1>
-	        			<a class="wpjobportal-add-link button" href='.esc_url_raw(admin_url('admin.php?page=wpjobportal_shift&wpjobportallt=formshift')).' title="'. esc_attr(__('add new shift','wp-job-portal')).'">
-	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_html(__('plus icon','wp-job-portal')).'" />
+	        			<a class="wpjobportal-add-link button" href="'.esc_url_raw(admin_url('admin.php?page=wpjobportal_shift&wpjobportallt=formshift')).' title="'. esc_attr(__('Add New Shift','wp-job-portal')).'">
+	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_attr(__('plus icon','wp-job-portal')).'" />
 	        				'. esc_html(__('Add New Shift','wp-job-portal')).'
 	        			</a>';
 			break;
 			case 'age':
 				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('Age', 'wp-job-portal')).'</h1>
-	        			<a class="wpjobportal-add-link button" href='.esc_url_raw(admin_url('admin.php?page=wpjobportal_age&wpjobportallt=formages')).' title="'. esc_attr(__('add new age','wp-job-portal')).'">
-	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_html(__('plus icon','wp-job-portal')).'" />
+	        			<a class="wpjobportal-add-link button" href="'.esc_url_raw(admin_url('admin.php?page=wpjobportal_age&wpjobportallt=formages')).'" title="'. esc_attr(__('Add New Age','wp-job-portal')).'">
+	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_attr(__('plus icon','wp-job-portal')).'" />
 	        				'. esc_html(__('Add New Age','wp-job-portal')).'
 	        			</a>';
 			break;
 			case 'experience':
 				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('Experiences', 'wp-job-portal')).'</h1>
-	        			<a class="wpjobportal-add-link button" href='. esc_url_raw(admin_url('admin.php?page=wpjobportal_experience&wpjobportallt=formexperience')).' title="'. esc_attr(__('add new experience','wp-job-portal')).'">
-	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_html(__('plus icon','wp-job-portal')).'" />
+	        			<a class="wpjobportal-add-link button" href="'. esc_url_raw(admin_url('admin.php?page=wpjobportal_experience&wpjobportallt=formexperience')).'" title="'. esc_attr(__('Add New Experience','wp-job-portal')).'">
+	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_attr(__('plus icon','wp-job-portal')).'" />
 	        				'. esc_html(__('Add New Experience','wp-job-portal')).'
 	        			</a>';
 			break;
 			case 'currency':
 				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('Currency', 'wp-job-portal')).'</h1>
-	        			<a class="wpjobportal-add-link button" href='. esc_url_raw(admin_url('admin.php?page=wpjobportal_currency&wpjobportallt=formcurrency')).' title="'. esc_attr(__('add new currency','wp-job-portal')).'">
-	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_html(__('plus icon','wp-job-portal')).'" />
+	        			<a class="wpjobportal-add-link button" href="'. esc_url_raw(admin_url('admin.php?page=wpjobportal_currency&wpjobportallt=formcurrency')).'" title="'. esc_attr(__('Add New Currency','wp-job-portal')).'">
+	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_attr(__('plus icon','wp-job-portal')).'" />
 	        				'. esc_html(__('Add New Currency','wp-job-portal')).'
 	        			</a>';
 			break;
 			case 'jobalert':
 				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('Job Alert', 'wp-job-portal')).'</h1>
-	        			<a class="wpjobportal-add-link button" href='. esc_url_raw(admin_url('admin.php?page=wpjobportal_jobalert&wpjobportallt=formjobalert')).' title="'. esc_attr(__('add new job alert','wp-job-portal')).'">
-	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_html(__('plus icon','wp-job-portal')).'" />
+	        			<a class="wpjobportal-add-link button" href="'. esc_url_raw(admin_url('admin.php?page=wpjobportal_jobalert&wpjobportallt=formjobalert')).'" title="'. esc_attr(__('Add New Job Alert','wp-job-portal')).'">
+	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_attr(__('plus icon','wp-job-portal')).'" />
 	        				'. esc_html(__('Add New Job Alert','wp-job-portal')).'
 	        			</a>';
 			break;
@@ -90,15 +90,15 @@ if ($wpjobportal_module) {
 			break;
 			case 'department':
 				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('Departments', 'wp-job-portal')) .'</h1>
-			        	<a class="wpjobportal-add-link button" href='. esc_url_raw(admin_url('admin.php?page=wpjobportal_departments&wpjobportallt=formdepartment')).' title="'. esc_attr(__('add new department','wp-job-portal')).'">
-			        		<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_html(__('plus icon','wp-job-portal')).'" />
+			        	<a class="wpjobportal-add-link button" href="'. esc_url_raw(admin_url('admin.php?page=wpjobportal_departments&wpjobportallt=formdepartment')).'" title="'. esc_attr(__('Add New Department','wp-job-portal')).'">
+			        		<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_attr(__('plus icon','wp-job-portal')).'" />
 			        		'. esc_html(__('Add New Department','wp-job-portal')).'
 		        		</a>';
 			break;
 			case 'company':
 				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'.esc_html(__('Companies', 'wp-job-portal')).'</h1>
-	    				<a class="wpjobportal-add-link button" href='. esc_url_raw(admin_url('admin.php?page=wpjobportal_company&wpjobportallt=formcompany')).' title="'. esc_attr(__('add new company','wp-job-portal')).'">
-	    					<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_html(__('plus icon','wp-job-portal')).'" />
+	    				<a class="wpjobportal-add-link button" href="'. esc_url_raw(admin_url('admin.php?page=wpjobportal_company&wpjobportallt=formcompany')).'" title="'. esc_attr(__('Add New Company','wp-job-portal')).'">
+	    					<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_attr(__('plus icon','wp-job-portal')).'" />
 	    					'. esc_html(__('Add New Company','wp-job-portal')).'
 						</a>';
 			break;
@@ -107,8 +107,8 @@ if ($wpjobportal_module) {
 			break;
 			case 'joblist':
 				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('Jobs', 'wp-job-portal')) .'</h1>
-	        			<a class="wpjobportal-add-link button" href='. esc_url_raw(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=formjob')).' title="'.esc_attr(__('add new job','wp-job-portal')).'">
-	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_html(__('plus icon','wp-job-portal')).'" />
+	        			<a class="wpjobportal-add-link button" href="'. esc_url_raw(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=formjob')).'" title="'.esc_attr(__('Add New Job','wp-job-portal')).'">
+	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_attr(__('plus icon','wp-job-portal')).'" />
 	        				'.esc_html(__('Add New Job','wp-job-portal')).'
 	    				</a>';
 			break;
@@ -124,21 +124,14 @@ if ($wpjobportal_module) {
 			case 'jobapprovalque':
 			 	$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('Jobs Approval Queue', 'wp-job-portal')) .'</h1>';
 			break;
-			case 'age':
-				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'.esc_html(__('Ages', 'wp-job-portal')).'</h1>
-	        			<a class="wpjobportal-add-link button" href='.esc_url_raw(admin_url('admin.php?page=wpjobportal_age&wpjobportallt=formages')).' title="'. esc_attr(__('add new age','wp-job-portal')).'">
-	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_html(__('plus icon','wp-job-portal')).'" />
-	        				'. esc_html(__('Add New Age','wp-job-portal')).'
-	    				</a>';
-			break;
 			case 'addnewage':
 				$wpjobportal_msg = isset(wpjobportal::$_data[0]) ? esc_html(__('Edit', 'wp-job-portal')) : esc_html(__('Add New','wp-job-portal'));
 	    		$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. $wpjobportal_msg . ' ' . esc_html(__('Age', 'wp-job-portal')).'</h1>';
 			break;
 			case 'careerlevel':
 				$wpjobportal_html.= '<h1 class="wpjobportal-head-text">'.esc_html(__('Career Levels', 'wp-job-portal')).'</h1>';
-	            $wpjobportal_html.='<a class="wpjobportal-add-link button" href='.esc_url_raw(admin_url('admin.php?page=wpjobportal_careerlevel&wpjobportallt=formcareerlevels')).' title="'. esc_attr(__('add new career level','wp-job-portal')).'">
-	            			<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_html(__('plus icon','wp-job-portal')).'" />
+	            $wpjobportal_html.='<a class="wpjobportal-add-link button" href="'.esc_url_raw(admin_url('admin.php?page=wpjobportal_careerlevel&wpjobportallt=formcareerlevels')).'" title="'. esc_attr(__('Add New Career Level','wp-job-portal')).'">
+	            			<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_attr(__('plus icon','wp-job-portal')).'" />
 	            			'. esc_html(__('Add New Career Level','wp-job-portal')).'
 	        			</a>';
 			break;
@@ -148,8 +141,8 @@ if ($wpjobportal_module) {
 			break;
 	    	case 'categories':
 	    	 	$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('Categories', 'wp-job-portal')).'</h1>';
-	        	$wpjobportal_html.='<a class="wpjobportal-add-link button" href='. esc_url_raw(admin_url('admin.php?page=wpjobportal_category&wpjobportallt=formcategory')).' title="'. esc_attr(__('add new category','wp-job-portal')).'">
-	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_html(__('plus icon','wp-job-portal')).'" />
+	        	$wpjobportal_html.='<a class="wpjobportal-add-link button" href="'. esc_url_raw(admin_url('admin.php?page=wpjobportal_category&wpjobportallt=formcategory')).'" title="'. esc_attr(__('Add New Category','wp-job-portal')).'">
+	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_attr(__('plus icon','wp-job-portal')).'" />
 	        				'. esc_html(__('Add New Category','wp-job-portal')).'
 	    				</a>';
 			break;
@@ -159,8 +152,8 @@ if ($wpjobportal_module) {
 			break;
 			case 'city':
 				$wpjobportal_html.= '<h1 class="wpjobportal-head-text">'.esc_html(__('Cities', 'wp-job-portal')).'</h1>';
-				$wpjobportal_html.='<a class="wpjobportal-add-link button" href='.esc_url_raw(admin_url('admin.php?page=wpjobportal_city&wpjobportallt=formcity')).' title="'. esc_attr(__('add new city','wp-job-portal')).'">
-							<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_html(__('plus icon','wp-job-portal')).'" />
+				$wpjobportal_html.='<a class="wpjobportal-add-link button" href="'.esc_url_raw(admin_url('admin.php?page=wpjobportal_city&wpjobportallt=formcity')).'" title="'. esc_attr(__('Add New City','wp-job-portal')).'">
+							<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_attr(__('plus icon','wp-job-portal')).'" />
 							'. esc_html(__('Add New City','wp-job-portal')).'
 						</a>';
 			break;
@@ -170,8 +163,8 @@ if ($wpjobportal_module) {
 			break;
 			case 'countries':
 	            $wpjobportal_html.='<h1 class="wpjobportal-head-text">'.esc_html(__('Countries', 'wp-job-portal')).'</h1>';
-	         	$wpjobportal_html.='<a class="wpjobportal-add-link button" href='.esc_url_raw(admin_url('admin.php?page=wpjobportal_country&wpjobportallt=formcountry')).' title="'. esc_attr(__('add new country','wp-job-portal')).'">
-	         				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_html(__('plus icon','wp-job-portal')).'" />
+	         	$wpjobportal_html.='<a class="wpjobportal-add-link button" href="'.esc_url_raw(admin_url('admin.php?page=wpjobportal_country&wpjobportallt=formcountry')).'" title="'. esc_attr(__('Add New Country','wp-job-portal')).'">
+	         				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_attr(__('plus icon','wp-job-portal')).'" />
 	         				'. esc_html(__('Add New Country','wp-job-portal')).'
 	     				</a>';
 			break;
@@ -181,8 +174,8 @@ if ($wpjobportal_module) {
 			break;
 			case 'highesteducation':
 				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('Educations', 'wp-job-portal')).'</h1>';
-	            $wpjobportal_html.='<a class="wpjobportal-add-link button" href='. esc_url_raw(admin_url('admin.php?page=wpjobportal_highesteducation&wpjobportallt=formhighesteducation')).' title="'. esc_attr(__('add new education','wp-job-portal')).'">
-	            			<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_html(__('plus icon','wp-job-portal')).'" />
+	            $wpjobportal_html.='<a class="wpjobportal-add-link button" href="'. esc_url_raw(admin_url('admin.php?page=wpjobportal_highesteducation&wpjobportallt=formhighesteducation')).'" title="'. esc_attr(__('Add New Education','wp-job-portal')).'">
+	            			<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_attr(__('plus icon','wp-job-portal')).'" />
 	            			'. esc_html(__('Add New Education','wp-job-portal')).'
 	        			</a>';
 			break;
@@ -192,8 +185,8 @@ if ($wpjobportal_module) {
 			break;
 			case 'jobstatus':
 				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('Job Status', 'wp-job-portal')).'</h1>
-	        			<a class="wpjobportal-add-link button" href="?page=wpjobportal_jobstatus&wpjobportallt=formjobstatus" title="'. esc_attr(__('add new job status','wp-job-portal')).'">
-	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_html(__('plus icon','wp-job-portal')).'" />
+	        			<a class="wpjobportal-add-link button" href="?page=wpjobportal_jobstatus&wpjobportallt=formjobstatus" title="'. esc_attr(__('Add New Job Status','wp-job-portal')).'">
+	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_attr(__('plus icon','wp-job-portal')).'" />
 	        				'. esc_html(__('Add New Job Status','wp-job-portal')).'
 	        			</a>';
 			break;
@@ -203,8 +196,8 @@ if ($wpjobportal_module) {
 			break;
 			case 'salaryrangetype':
 				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('Salary Range Type', 'wp-job-portal')).'</h1>';
-	        	$wpjobportal_html.='<a class="wpjobportal-add-link button" href='. esc_url_raw(admin_url('admin.php?page=wpjobportal_salaryrangetype&wpjobportallt=formsalaryrangetype')).' title="'. esc_attr(__('add new salary range type','wp-job-portal')).'">
-	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_html(__('plus icon','wp-job-portal')).'" />
+	        	$wpjobportal_html.='<a class="wpjobportal-add-link button" href="'. esc_url_raw(admin_url('admin.php?page=wpjobportal_salaryrangetype&wpjobportallt=formsalaryrangetype')).'" title="'. esc_attr(__('Add New Salary Range Type','wp-job-portal')).'">
+	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_attr(__('plus icon','wp-job-portal')).'" />
 	        				'. esc_html(__('Add New Salary Range Type','wp-job-portal')).'
 	    				</a>';
 			break;
@@ -214,8 +207,8 @@ if ($wpjobportal_module) {
 			break;
 			case 'state':
 				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('States', 'wp-job-portal')).'</h1>';
-	    		$wpjobportal_html.='<a class="wpjobportal-add-link button" href='.esc_url_raw(admin_url('admin.php?page=wpjobportal_state&wpjobportallt=formstate')).' title="'. esc_attr(__('add new state','wp-job-portal')).'">
-	    					<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_html(__('plus icon','wp-job-portal')).'" />
+	    		$wpjobportal_html.='<a class="wpjobportal-add-link button" href="'.esc_url_raw(admin_url('admin.php?page=wpjobportal_state&wpjobportallt=formstate')).'" title="'. esc_attr(__('Add New State','wp-job-portal')).'">
+	    					<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_attr(__('plus icon','wp-job-portal')).'" />
 	    					'. esc_html(__('Add New State','wp-job-portal')).'
 						</a>';
 			break;
@@ -227,8 +220,8 @@ if ($wpjobportal_module) {
 			break;
 			case 'addcompany':
 				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('Companies', 'wp-job-portal')).'</h1>
-	    				<a class="wpjobportal-add-link button" href='. esc_url_raw(admin_url('admin.php?page=wpjobportal_company&wpjobportallt=formcompany')).' title="'. esc_attr(__('add new company','wp-job-portal')).'">
-	    					<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_html(__('plus icon','wp-job-portal')).'" />
+	    				<a class="wpjobportal-add-link button" href="'. esc_url_raw(admin_url('admin.php?page=wpjobportal_company&wpjobportallt=formcompany')).'" title="'. esc_attr(__('Add New Company','wp-job-portal')).'">
+	    					<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_attr(__('plus icon','wp-job-portal')).'" />
 	    					'. esc_html(__('Add New Company','wp-job-portal')).'
 						</a>';
 			break;
@@ -243,9 +236,9 @@ if ($wpjobportal_module) {
 			break;
 			case 'users':
 				$wpjobportal_html.= '<h1 class="wpjobportal-head-text">'. esc_html(__('Users', 'wp-job-portal')) .'</h1>
-					    <a class="wpjobportal-add-link button" href='. esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=assignrole')).' title="'. esc_attr(__('assign role', 'wp-job-portal')) .'">
-					    	<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_html(__('plus icon','wp-job-portal')).'" />
-					    	'. esc_html(__('Assign role', 'wp-job-portal')) .'
+					    <a class="wpjobportal-add-link button" href="'. esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=assignrole')).'" title="'. esc_attr(__('Assign Role', 'wp-job-portal')) .'">
+					    	<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_attr(__('plus icon','wp-job-portal')).'" />
+					    	'. esc_html(__('Assign Role', 'wp-job-portal')) .'
 				    	</a>';
 			break;
 			case 'assignrole':
@@ -256,8 +249,8 @@ if ($wpjobportal_module) {
 	    	break;
 			case 'folder':
 				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('Folders', 'wp-job-portal')).'</h1>';
-				$wpjobportal_html.='<a class="wpjobportal-add-link button" href='. esc_url_raw(admin_url('admin.php?page=wpjobportal_folder&wpjobportallt=formfolder')).' title="'. esc_attr(__('add new folder','wp-job-portal')).'">
-							<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_html(__('plus icon','wp-job-portal')).'" />
+				$wpjobportal_html.='<a class="wpjobportal-add-link button" href="'. esc_url_raw(admin_url('admin.php?page=wpjobportal_folder&wpjobportallt=formfolder')).'" title="'. esc_attr(__('Add New Folder','wp-job-portal')).'">
+							<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_attr(__('plus icon','wp-job-portal')).'" />
 							'. esc_html(__('Add New Folder','wp-job-portal')).'
 						</a>';
 	    	break;
@@ -269,12 +262,15 @@ if ($wpjobportal_module) {
 				$wpjobportal_html .='<h1 class="wpjobportal-head-text">'. esc_html(__('Folders Approval Queue', 'wp-job-portal')).'</h1>';
 	        break;
 			case 'tag':
+				if(empty($wpjobportal_heading)){
+					$wpjobportal_heading = '';
+				}
 				$wpjobportal_html .='<h1 class="wpjobportal-head-text">'. $wpjobportal_heading . ' ' . esc_html(__('Tag', 'wp-job-portal')).'</h1>';
 			break;
 			case 'tags':
 				$wpjobportal_html .= '<h1 class="wpjobportal-head-text">'.esc_html(__('Tags', 'wp-job-portal')) .'</h1>
-	        			<a class="wpjobportal-add-link button" href='. esc_url_raw(admin_url('admin.php?page=wpjobportal_tag&wpjobportallt=formtag')) .' title="'. esc_attr(__('add new tag','wp-job-portal')).'">
-	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_html(__('plus icon','wp-job-portal')).'" />
+	        			<a class="wpjobportal-add-link button" href="'. esc_url_raw(admin_url('admin.php?page=wpjobportal_tag&wpjobportallt=formtag')) .'" title="'. esc_attr(__('Add New Tag','wp-job-portal')).'">
+	        				<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_attr(__('plus icon','wp-job-portal')).'" />
 	        				'. esc_html(__('Add New Tag','wp-job-portal')).'
 	    				</a>';
 			break;
@@ -289,8 +285,8 @@ if ($wpjobportal_module) {
 	        break;
 			case 'package':
 				$wpjobportal_html .='<h1 class="wpjobportal-head-text">'. esc_html(__('Package','wp-job-portal')).'</h1>';
-				$wpjobportal_html .= '<a class="wpjobportal-add-link" href='.esc_url_raw(admin_url('admin.php?page=wpjobportal_package&wpjobportallt=formpackage')).' title="'. esc_attr(__('add new package','wp-job-portal')).'">
-							<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_html(__('plus icon','wp-job-portal')).'" />
+				$wpjobportal_html .= '<a class="wpjobportal-add-link" href="'.esc_url_raw(admin_url('admin.php?page=wpjobportal_package&wpjobportallt=formpackage')).'" title="'. esc_attr(__('Add New Package','wp-job-portal')).'">
+							<img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png" alt="'. esc_attr(__('plus icon','wp-job-portal')).'" />
 							'. esc_html(__('Add New Package','wp-job-portal')).'
 						</a>';
 			break;
@@ -344,7 +340,7 @@ if ($wpjobportal_module) {
 					$wpjobportal_html .='<h1 class="wpjobportal-head-text">'. esc_html(__('AI Content Generation', 'wp-job-portal')).'</h1>';
 			break;
 			case 'zywraplogs':
-					$wpjobportal_html .='<h1 class="wpjobportal-head-text">'. esc_html(__('ZYWRAP Logs', 'wp-job-portal')).'</h1>';
+					$wpjobportal_html .='<h1 class="wpjobportal-head-text">'. esc_html(__('Zywrap Logs', 'wp-job-portal')).'</h1>';
 			break;
 			case 'hook_reference':
 					$wpjobportal_html .='<h1 class="wpjobportal-head-text">'. esc_html(__('Hook Reference Documentation', 'wp-job-portal')).'</h1>';

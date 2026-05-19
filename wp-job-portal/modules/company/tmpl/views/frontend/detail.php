@@ -31,7 +31,7 @@ switch ($wpjobportal_layout) {
 
         if (wpjobportal::$_data['companycontactdetail'] == true) {
             $wpjobportal_company_content_heading .= '<div class="wjportal-company-sec-title">'
-                . esc_html(__('Company Info','wp-job-portal'))
+                . esc_html(__('Company Information','wp-job-portal'))
                 . '</div>';
         }
 
@@ -96,7 +96,7 @@ switch ($wpjobportal_layout) {
                         esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_description_field_label)) .
                     '</div>
                     <div class="wjportal-company-desc">' .
-                        wp_kses(wpjobportal::$_data[0]->description, WPJOBPORTAL_ALLOWED_TAGS) .
+                        wp_kses(wpjobportal::$_data[0]->description, WPJOBPORTAL_SAFE_EDITOR_TAGS) .
                     '</div>
                 </div>';
         }
@@ -156,7 +156,7 @@ switch ($wpjobportal_layout) {
                             if ($wpjobportal_company->status == 1) {
                                 $wpjobportal_statusCheck = esc_html(__('Approved', 'wp-job-portal'));
                             } elseif ($wpjobportal_company->status == 0) {
-                                $wpjobportal_statusCheck = esc_html(__('Waiting for approval', 'wp-job-portal'));
+                                $wpjobportal_statusCheck = esc_html(__('Waiting For Approval', 'wp-job-portal'));
                             }elseif($wpjobportal_company->status == 2){
                                  $wpjobportal_statusCheck = esc_html(__('Pending For Approval of Payment', 'wp-job-portal'));
                             }elseif ($wpjobportal_company->status == 3) {
@@ -209,7 +209,7 @@ switch ($wpjobportal_layout) {
             <?php /*
             <div class="wjportal-company-right-wrp">
                 <div class="wjportal-company-action">
-                    <a class="wjportal-company-act-btn" href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$wpjobportal_mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$wpjobportal_company->aliasid))); ?>" title="<?php echo esc_attr(__('View company','wp-job-portal')); ?>">
+                    <a class="wjportal-company-act-btn" href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$wpjobportal_mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$wpjobportal_company->aliasid))); ?>" title="<?php echo esc_attr(__('View Company','wp-job-portal')); ?>">
                         <?php echo esc_html(__('View Company','wp-job-portal')); ?>
                     </a>
                 </div>

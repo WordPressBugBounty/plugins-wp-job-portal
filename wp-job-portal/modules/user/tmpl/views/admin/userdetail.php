@@ -11,7 +11,7 @@
 			<div class="wpjobportal-user-cnt-wrp">
 				<div class="wpjobportal-user-middle-wrp wpjob-portal-role-info-uid-<?php echo esc_attr($wpjobportal_user->id);?>">
 					<div class="wpjobportal-user-data">
-						<a class="wpjobportal-user-name" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userdetail&id='.esc_attr($wpjobportal_user->id))); ?>" title="<?php echo esc_attr(__('user name','wp-job-portal')); ?>">
+						<a class="wpjobportal-user-name" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userdetail&id='.esc_attr($wpjobportal_user->id))); ?>" title="<?php echo esc_attr(__('User Name','wp-job-portal')); ?>">
 			            	<?php echo esc_html($wpjobportal_user->first_name) . ' ' . esc_html($wpjobportal_user->last_name); ?>
 			            </a>
 					</div>

@@ -20,15 +20,6 @@ if (wpjobportal::$_error_flag == null) {
         return $wpjobportal_html;
     }
 
-    function wpjobportal_getHeading2($wpjobportal_value) {
-        $wpjobportal_html = '<div class="heading2">' . $wpjobportal_value . '</div>';
-        return $wpjobportal_html;
-    }
-
-    function wpjobportal_getPeragraph($wpjobportal_value) {
-        $wpjobportal_html = '<div class="peragraph">' . $wpjobportal_value . '</div>';
-        return $wpjobportal_html;
-    }
     echo '<meta property="description" content="'.esc_attr($wpjobportal_job->metadescription).'"/>';
     echo '<meta property="keywords" content="'.esc_attr($wpjobportal_job->metakeywords).'"/>';
 

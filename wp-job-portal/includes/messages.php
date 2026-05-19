@@ -96,7 +96,7 @@ class WPJOBPORTALMessages {
                 break;
             case WPJOBPORTAL_NOT_EXIST:
                 $wpjobportal_msg['status'] = "error";
-                $wpjobportal_msg['message'] = esc_html(__('Record not exist', 'wp-job-portal'));
+                $wpjobportal_msg['message'] = esc_html(__('Record Not Found', 'wp-job-portal'));
                 break;
             case WPJOBPORTAL_DELETE_ERROR:
                 $wpjobportal_msg['status'] = "error";
@@ -318,7 +318,7 @@ class WPJOBPORTALMessages {
             $wpjobportal_html = '
                     <div class="jsre-error-page-message-wrapper">
                         <div class="jsre-error-page-message-image">
-                            <img alt="'.esc_attr(__('no active package','wp-job-portal')).'" src="'.esc_url(WPJOBPORTAL_IMAGE).'/no-package.jpg'.'" />
+                            <img alt="'.esc_attr(__('No Active Package','wp-job-portal')).'" src="'.esc_url(WPJOBPORTAL_IMAGE).'/no-package.jpg'.'" />
                         </div>
                         <div class="jsre-error-page-message-text">
                             <div class="jsre-error-page-message-txt">
@@ -326,7 +326,7 @@ class WPJOBPORTALMessages {
                             </div>
                         </div>
                         <div class="jsre-error-page-message-btn">
-                            <a title="'.esc_attr(__('buy packages','wp-job-portal')).'" class="jsre-error-page-message-btn-link" href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('jsreme'=>'package', 'jsrelt'=>'packages'))).'" >'. esc_html(__('Buy Package','wp-job-portal')) .'</a>
+                            <a title="'.esc_attr(__('Buy Package','wp-job-portal')).'" class="jsre-error-page-message-btn-link" href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('jsreme'=>'package', 'jsrelt'=>'packages'))).'" >'. esc_html(__('Buy Package','wp-job-portal')) .'</a>
                         </div>
                     </div>
             ';
@@ -370,7 +370,7 @@ class WPJOBPORTALMessages {
                         }
                     }
                 break;
-            case 'featuredcompany':$wpjobportal_name = esc_html(__('Featured company', 'wp-job-portal'));
+            case 'featuredcompany':$wpjobportal_name = esc_html(__('Featured Company', 'wp-job-portal'));
                 break;
             case 'message':$wpjobportal_name = esc_html(__('Message', 'wp-job-portal'));
                 break;
@@ -389,7 +389,7 @@ class WPJOBPORTALMessages {
                 break;
             case WPJOBPORTAL_EXPERIENCE:$wpjobportal_name = esc_html(__('Experience', 'wp-job-portal'));
                 break;
-            case WPJOBPORTAL_HIGHESTEDUCATION:$wpjobportal_name = esc_html(__('Highest education', 'wp-job-portal'));
+            case WPJOBPORTAL_HIGHESTEDUCATION:$wpjobportal_name = esc_html(__('Highest Education', 'wp-job-portal'));
                 break;
             case 'job':
                 $wpjobportal_name = esc_html(__('Job', 'wp-job-portal'));
@@ -401,9 +401,9 @@ class WPJOBPORTALMessages {
                 break;
              case 'jobtype':$wpjobportal_name = esc_html(__('Job type', 'wp-job-portal'));
                 break;
-            case 'featuredjob':$wpjobportal_name = esc_html(__('Featured job', 'wp-job-portal'));
+            case 'featuredjob':$wpjobportal_name = esc_html(__('Featured Job', 'wp-job-portal'));
                 break;
-            case 'jobalert':$wpjobportal_name = esc_html(__('Job alert', 'wp-job-portal'));
+            case 'jobalert':$wpjobportal_name = esc_html(__('Job Alert', 'wp-job-portal'));
                 break;
             case 'jobstatus':$wpjobportal_name = esc_html(__('Job Status', 'wp-job-portal'));
                 break;
@@ -421,7 +421,7 @@ class WPJOBPORTALMessages {
                 break;
             case WPJOBPORTAL_USER:$wpjobportal_name = esc_html(__('User', 'wp-job-portal'));
                 break;
-            case WPJOBPORTAL_USERROLE:$wpjobportal_name = esc_html(__('User role', 'wp-job-portal'));
+            case WPJOBPORTAL_USERROLE:$wpjobportal_name = esc_html(__('User Role', 'wp-job-portal'));
                 break;
             case 'tag':$wpjobportal_name = esc_html(__('Tag', 'wp-job-portal'));
                 break;
@@ -468,7 +468,7 @@ class WPJOBPORTALMessages {
                     }
                 }
                 break;
-            case 'featuredresume':$wpjobportal_name = esc_html(__('Featured resume', 'wp-job-portal'));
+            case 'featuredresume':$wpjobportal_name = esc_html(__('Featured Resume', 'wp-job-portal'));
             case 'folder':$wpjobportal_name = esc_html(__('Folder', 'wp-job-portal'));
             break;
             case 'folderresume':$wpjobportal_name = esc_html(__('Folder Resume', 'wp-job-portal'));
@@ -486,11 +486,11 @@ class WPJOBPORTALMessages {
             break;
         case 'user':$wpjobportal_name = esc_html(__('User', 'wp-job-portal'));
                 break;
-        case 'userrole':$wpjobportal_name = esc_html(__('User role', 'wp-job-portal'));
+        case 'userrole':$wpjobportal_name = esc_html(__('User Role', 'wp-job-portal'));
             break;
          case 'configuration':$wpjobportal_name = esc_html(__('Configuration', 'wp-job-portal'));
             break;
-        case 'highesteducation':$wpjobportal_name = esc_html(__('Highest education', 'wp-job-portal'));
+        case 'highesteducation':$wpjobportal_name = esc_html(__('Highest Education', 'wp-job-portal'));
                 break;
         case 'category':$wpjobportal_name = esc_html(__('Category', 'wp-job-portal'));
                 break;
@@ -502,7 +502,7 @@ class WPJOBPORTALMessages {
                 break;
         case 'employer':$wpjobportal_name = esc_html(__('Employer', 'wp-job-portal'));
                 break;
-        case 'jobseeker':$wpjobportal_name = esc_html(__('Jobseeker', 'wp-job-portal'));
+        case 'jobseeker':$wpjobportal_name = esc_html(__('Job Seeker', 'wp-job-portal'));
                 break;
         case 'invoice':$wpjobportal_name = esc_html(__('Invoice', 'wp-job-portal'));
                 break;
@@ -513,7 +513,7 @@ class WPJOBPORTALMessages {
             $wpjobportal_name = esc_html(__('Options', 'wp-job-portal'));
                 break;
         case 'addressdata':
-            $wpjobportal_name = esc_html(__('Address data', 'wp-job-portal'));
+            $wpjobportal_name = esc_html(__('Address Data', 'wp-job-portal'));
                 break;
         }
         return $wpjobportal_name;

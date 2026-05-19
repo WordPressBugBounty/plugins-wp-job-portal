@@ -105,7 +105,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
 
                 <div class="wpjobportal-post-data-row">
                     <div class="wpjobportal-post-tit">
-                        <?php echo esc_html(__('Job Seeker default role','wp-job-portal')); ?>
+                        <?php echo esc_html(__('Job Seeker Default Role','wp-job-portal')); ?>
                     </div>
                     <div class="wpjobportal-post-val">
                         <?php echo wp_kses(WPJOBPORTALformfield::select('jobseeker_defaultgroup', $wpjobportal_userroles,wpjobportal::$_data[0]['jobseeker_defaultgroup'],'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
@@ -117,7 +117,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
 
                  <div class="wpjobportal-post-data-row">
                     <div class="wpjobportal-post-tit">
-                        <?php echo esc_html(__('Resume auto approve','wp-job-portal')); ?>
+                        <?php echo esc_html(__('Resume Auto Approve','wp-job-portal')); ?>
                     </div>
                     <div class="wpjobportal-post-val">
                         <?php echo wp_kses(WPJOBPORTALformfield::select('empautoapprove', $wpjobportal_yesno,wpjobportal::$_data[0]['empautoapprove'],'',array('class' => 'inputbox')),WPJOBPORTAL_ALLOWED_TAGS); ?>
@@ -126,7 +126,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
 
                 <div class="wpjobportal-post-data-row">
                     <div class="wpjobportal-post-tit">
-                        <?php echo esc_html(__('Enable Quick Apply for user', 'wp-job-portal')); ?>
+                        <?php echo esc_html(__('Enable Quick Apply for Logged-in Users', 'wp-job-portal')); ?>
                     </div>
                     <div class="wpjobportal-post-val">
                         <?php echo wp_kses(WPJOBPORTALformfield::select('quick_apply_for_user', $wpjobportal_yesno, wpjobportal::$_data[0]['quick_apply_for_user']),WPJOBPORTAL_ALLOWED_TAGS); ?>
@@ -138,7 +138,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
 
                 <div class="wpjobportal-post-data-row">
                     <div class="wpjobportal-post-tit">
-                        <?php echo esc_html(__('Visitor can apply to job','wp-job-portal'));
+                        <?php echo esc_html(__('Visitor Can Apply To Job','wp-job-portal'));
                         if(!in_array('visitorapplyjob', wpjobportal::$_active_addons)){ ?>
                             <strong>*</strong>
                         <?php } ?>
@@ -150,7 +150,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
 
                 <div class="wpjobportal-post-data-row">
                     <div class="wpjobportal-post-tit">
-                        <?php echo esc_html(__('Enable Quick Apply for visitor', 'wp-job-portal'));
+                        <?php echo esc_html(__('Enable Quick Apply For Visitors', 'wp-job-portal'));
                         if(!in_array('visitorapplyjob', wpjobportal::$_active_addons)){ ?>
                             <strong>*</strong>
                         <?php } ?>
@@ -170,7 +170,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                         </div>
                         <div class="wpjobportal-post-val">
                             <div class="wpjobportal-post-smpledata-infowrp">
-                                <img alt="<?php echo esc_attr(__('Infi Icon','wp-job-portal')); ?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/info-icon.png" />
+                                <img alt="<?php echo esc_attr(__('Info Icon','wp-job-portal')); ?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/info-icon.png" />
                                 <?php echo esc_html(__('* WP Job Portal Apply As Visitor addon is required for the configuration to work!','wp-job-portal')); ?>
                             </div>
                         </div>
@@ -198,7 +198,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                     }else{
                         $wpjobportal_back_url = esc_url_raw(admin_url('admin.php?page=wpjobportal_postinstallation&wpjobportallt=stepone'));
                     } ?>
-                    <a class="next-step wpjobportal-post-act-btn" href="javascript:void();" onclick="document.getElementById('wpjobportal-form-ins').submit();" title="<?php echo esc_attr(__('next','wp-job-portal')); ?>">
+                    <a class="next-step wpjobportal-post-act-btn" href="javascript:void();" onclick="document.getElementById('wpjobportal-form-ins').submit();" title="<?php echo esc_attr(__('Next','wp-job-portal')); ?>">
                         <?php echo esc_html(__('Next','wp-job-portal')); ?>
                     </a>
                 </div>

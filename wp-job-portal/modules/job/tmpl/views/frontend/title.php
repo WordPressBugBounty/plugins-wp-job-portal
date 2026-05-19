@@ -70,7 +70,7 @@ switch ($wpjobportal_layout) {
                         $wpjobportal_enddate = date_i18n('Y-m-d',strtotime($wpjobportal_job->stoppublishing));
                         $wpjobportal_curdate = date_i18n('Y-m-d');
                         if($wpjobportal_startdate > $wpjobportal_curdate){
-                            $wpjobportal_publishstatus = esc_html(__('Not publish','wp-job-portal'));
+                            $wpjobportal_publishstatus = esc_html(__('Not Published','wp-job-portal'));
                             $wpjobportal_publishstyle = 'background:#fea702;';
                         }elseif($wpjobportal_startdate <= $wpjobportal_curdate && $wpjobportal_enddate >= $wpjobportal_curdate){
                             $wpjobportal_publishstatus = esc_html(__('Publish','wp-job-portal'));
@@ -192,7 +192,7 @@ switch ($wpjobportal_layout) {
                                 if ($wpjobportal_job->status == 1) {
                                     $wpjobportal_statusCheck = esc_html(__('Approved', 'wp-job-portal'));
                                 } elseif ($wpjobportal_job->status == 0) {
-                                    $wpjobportal_statusCheck = esc_html(__('Waiting for approval', 'wp-job-portal'));
+                                    $wpjobportal_statusCheck = esc_html(__('Waiting For Approval', 'wp-job-portal'));
                                 } else {
                                     $wpjobportal_statusCheck = esc_html(__('Rejected', 'wp-job-portal'));
                                 }
@@ -309,7 +309,7 @@ switch ($wpjobportal_layout) {
                                 echo '
                                     <div class="wjportal-job-desc">
                                         <div class="wjportal-job-sec-title">'. esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_description_field_label)) .'</div>
-                                        '. wp_kses($wpjobportal_job->description, WPJOBPORTAL_ALLOWED_TAGS) .'
+                                        '. wp_kses($wpjobportal_job->description, WPJOBPORTAL_SAFE_EDITOR_TAGS) .'
                                     </div>';
                             }
 
@@ -366,7 +366,7 @@ switch ($wpjobportal_layout) {
                        if(isset($wpjobportal_job) && $wpjobportal_job->stoppublishing){
                             echo '<div class="wjportal-jobinfo-highlight  wjportal-jobinfo-right-data-close-date">
                                         <span class="wjportal-jobinfo-data ">
-                                            <img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/end-date.png" alt="'.esc_attr(__("end date",'wp-job-portal')).'" title="'.esc_attr(__("end date",'wp-job-portal')).'" />'.esc_html(__('Closes','wp-job-portal')).':
+                                            <img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/end-date.png" alt="'.esc_attr(__("End date",'wp-job-portal')).'" title="'.esc_attr(__("End date",'wp-job-portal')).'" />'.esc_html(__('Closes','wp-job-portal')).':
                                             '.esc_html(date_i18n(wpjobportal::$_configuration['date_format'],strtotime($wpjobportal_job->stoppublishing))) .'
                                          </span>
                                     </div>';
@@ -376,7 +376,7 @@ switch ($wpjobportal_layout) {
                        if(isset($wpjobportal_job) && !empty($wpjobportal_job->multicity)){
                             echo '<div class="wjportal-jobinfo  wjportal-jobinfo-right-data-location">
                                     <span class="wjportal-jobinfo-data">
-                                        <img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/locationn.png" alt="'.esc_attr(__("location",'wp-job-portal')).'" title="'.esc_attr(__("location",'wp-job-portal')).'"/>
+                                        <img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/locationn.png" alt="'.esc_attr(__("Location",'wp-job-portal')).'" title="'.esc_attr(__("Location",'wp-job-portal')).'"/>
                                         '. esc_html($wpjobportal_job->multicity) .'
                                      </span>
                                     </div>';
@@ -385,7 +385,7 @@ switch ($wpjobportal_layout) {
                     if(isset($wpjobportal_job) && !empty($wpjobportal_job->hits)){
                         echo '<div class="wjportal-jobinfo  wjportal-jobinfo-right-data-views">
                                     <span class="wjportal-jobinfo-data-view">
-                                        <img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/job-views.png" alt="'.esc_attr(__("location",'wp-job-portal')).'" title="'.esc_attr(__("location",'wp-job-portal')).'"/>
+                                        <img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/job-views.png" alt="'.esc_attr(__("Location",'wp-job-portal')).'" title="'.esc_attr(__("Location",'wp-job-portal')).'"/>
                                         '.esc_html(__('Views','wp-job-portal')).':&nbsp;'. esc_html($wpjobportal_job->hits) .'
                                     </span>
                                 </div>';

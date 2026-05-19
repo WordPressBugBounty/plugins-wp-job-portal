@@ -329,7 +329,7 @@ class WPJOBPORTALuploads {
         $filetyperesult = wp_check_filetype($file['name']);
         $wpjobportal_allowed_types  = array_map('strtolower', wpjobportalphplib::wpJP_explode(',', $wpjobportal_allowed_types));
         if( !in_array(wpjobportalphplib::wpJP_strtolower($filetyperesult['ext']), $wpjobportal_allowed_types) ){
-            return array('error'=>esc_html(__('File ext. is mismatched', 'wp-job-portal')));
+            return array('error'=>esc_html(__('File extension is mismatched', 'wp-job-portal')));
         }
         $filesize = $file['size'] / 1024;
         if( $filesize > $wpjobportal_allowed_size ){

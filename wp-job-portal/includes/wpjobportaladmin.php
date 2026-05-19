@@ -27,16 +27,16 @@ class wpjobportaladmin {
         );
 
         add_submenu_page('wpjobportal_hide', // parent slug
-                esc_html(__('Theme', 'wp-job-portal')), // Page title
-                esc_html(__('Theme', 'wp-job-portal')), // menu title
+                esc_html(__('Themes', 'wp-job-portal')), // Page title
+                esc_html(__('Themes', 'wp-job-portal')), // menu title
                 'wpjobportal', // capability
                 'wpjobportal_theme', //menu slug
                 array($this, 'showAdminPage') // function name
         );
 
         add_submenu_page('wpjobportal_hide', // parent slug
-                esc_html(__('pdf', 'wp-job-portal')), // Page title
-                esc_html(__('pdf', 'wp-job-portal')), // menu title
+                esc_html(__('PDF', 'wp-job-portal')), // Page title
+                esc_html(__('PDF', 'wp-job-portal')), // menu title
                 'wpjobportal', // capability
                 'wpjobportal_pdf', //menu slug
                 array($this, 'showAdminPage') // function name
@@ -123,8 +123,8 @@ class wpjobportaladmin {
         # Reports Addon
     if(in_array('reports', wpjobportal::$_active_addons)){
         add_submenu_page('wpjobportal_hide', // parent slug
-                esc_html(__('Jobseeker/Employer Reports', 'wp-job-portal')), // Page title
-                esc_html(__('Jobseeker/Employer Reports', 'wp-job-portal')), // menu title
+                esc_html(__('Job Seeker/Employer Reports', 'wp-job-portal')), // Page title
+                esc_html(__('Job Seeker/Employer Reports', 'wp-job-portal')), // menu title
                 'wpjobportal', // capability
                 'wpjobportal_reports', //menu slug
                 array($this, 'showAdminPage') // function name
@@ -330,15 +330,15 @@ class wpjobportaladmin {
                 array($this, 'showAdminPage') // function name
         );
         add_submenu_page('wpjobportal_hide', // parent slug
-                esc_html(__('Payment Method Configuration', 'wp-job-portal')), // Page title
-                esc_html(__('Payment Method Configuration', 'wp-job-portal')), // menu title
+                esc_html(__('Payment Method Configurations', 'wp-job-portal')), // Page title
+                esc_html(__('Payment Method Configurations', 'wp-job-portal')), // menu title
                 'wpjobportal', // capability
                 'wpjobportal_paymenthistorymethodconfiguration', //menu slug
                 array($this, 'showAdminPage') // function name
         );
         add_submenu_page('wpjobportal_hide', // parent slug
-                esc_html(__('Payment Method Configuration', 'wp-job-portal')), // Page title
-                esc_html(__('Payment Method Configuration', 'wp-job-portal')), // menu title
+                esc_html(__('Payment Method Configurations', 'wp-job-portal')), // Page title
+                esc_html(__('Payment Method Configurations', 'wp-job-portal')), // menu title
                 'wpjobportal', // capability
                 'wpjobportal_paymentmethodconfiguration', //menu slug
                 array($this, 'showAdminPage') // function name
@@ -374,8 +374,8 @@ class wpjobportaladmin {
                 array($this, 'showAdminPage') // function name
         );
         // add_submenu_page('wpjobportal_hide', // parent slug
-        //         esc_html(__('Cover letter', 'wp-job-portal')), // Page title
-        //         esc_html(__('Cover letter', 'wp-job-portal')), // menu title
+        //         esc_html(__('Cover Letter', 'wp-job-portal')), // Page title
+        //         esc_html(__('Cover Letter', 'wp-job-portal')), // menu title
         //         'wpjobportal', // capability
         //         'wpjobportal_coverletter', //menu slug
         //         array($this, 'showAdminPage') // function name
@@ -496,8 +496,8 @@ class wpjobportaladmin {
                 array($this, 'showAdminPage') // function name
         );
         add_submenu_page('wpjobportal_hide', // parent slug
-                esc_html(__('ZYWRAP Logs', 'wp-job-portal')), // Page title
-                esc_html(__('ZYWRAP Logs', 'wp-job-portal')), // menu title
+                esc_html(__('Zywrap Logs', 'wp-job-portal')), // Page title
+                esc_html(__('Zywrap Logs', 'wp-job-portal')), // menu title
                 'wpjobportal', // capability
                 'wpjobportal_zywraplogs', //menu slug
                 array($this, 'showAdminPage') // function name

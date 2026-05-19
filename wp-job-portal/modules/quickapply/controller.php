@@ -47,7 +47,7 @@ class WPJOBPORTALquickapplyController {
         $wpjobportal_result = WPJOBPORTALincluder::getJSModel('quickapply')->quickapply($wpjobportal_id,$wpjobportal_action);
 
         if($wpjobportal_result == WPJOBPORTAL_SAVED){
-           //WPJOBPORTALmessages::setLayoutMessage(__("Job copy successfully",'wp-job-portal'),'updated',$this->_msgkey);
+           //WPJOBPORTALmessages::setLayoutMessage(__('Job Copied Successfully', 'wp-job-portal'),'updated',$this->_msgkey);
         }else{
             WPJOBPORTALmessages::setLayoutMessage(__("There was some problem performing action",'wp-job-portal'),'error',$this->_msgkey);
         }

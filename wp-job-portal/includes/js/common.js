@@ -783,7 +783,6 @@ function getTellaFriend(jobid) {
 
     if (null != themecall) {
         jQuery('div#' + common.theme_chk_prefix + '-popup-background').show();
-        // task = "getTellaFriendJobManager";
     } else {
         jQuery("div#wjportal-popup-background").first().show();
     }

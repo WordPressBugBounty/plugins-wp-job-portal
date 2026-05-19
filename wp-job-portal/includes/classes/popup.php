@@ -13,25 +13,7 @@ class WPJOBPORTALpopup {
         }
     }
 
-    function canAutoSubmit($wpjobportal_result){
-        return true;
-        $wpjobportal_totalcredits = 0;
-        $wpjobportal_i = 0;
-        foreach ($wpjobportal_result AS $wpjobportal_value) {
-            $wpjobportal_totalcredits += $wpjobportal_value->credits;
-            $wpjobportal_i++;
-        }
-        if($wpjobportal_i > 1){ // show popup on multioption
-            return false;
-        }
-        if($wpjobportal_totalcredits == 0){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-     function getPopupForAdmin($wpjobportal_actionname,$wpjobportal_themecall=null,$wpjobportal_pageid=null) {
+    function getPopupForAdmin($wpjobportal_actionname,$wpjobportal_themecall=null,$wpjobportal_pageid=null) {
         $wpjobportal_uid = WPJOBPORTALRequest::getVar('userid');
         $wpjobportal_module = WPJOBPORTALRequest::getVar('module');
         if($wpjobportal_pageid == null){
@@ -532,26 +514,26 @@ class WPJOBPORTALpopup {
 
         switch ($wpjobportal_actionname) {
             case 'featured_company':
-                $return['popuptitle'] = esc_html(__('Add to','wp-job-portal')) .' '. esc_html(__('featured','wp-job-portal')) .' '. esc_html(__('company', 'wp-job-portal'));
+                $return['popuptitle'] = esc_html(__('Add to','wp-job-portal')) .' '. esc_html(__('Featured','wp-job-portal')) .' '. esc_html(__('company', 'wp-job-portal'));
                 $wpjobportal_id = WPJOBPORTALRequest::getVar('id');
                 $wpjobportal_companyname = WPJOBPORTALincluder::getJSModel('company')->getCompanynameById($wpjobportal_id);
-                $return['title-text'] = esc_html(__('Company name', 'wp-job-portal'));
+                $return['title-text'] = esc_html(__('Company Name', 'wp-job-portal'));
                 $return['title'] = $wpjobportal_companyname;
                 $return['value'] = $wpjobportal_creditsrequired;
                 break;
             case 'featured_job':
-                $return['popuptitle'] = esc_html(__('Add to','wp-job-portal')) .' '. esc_html(__('featured','wp-job-portal')) .' '. esc_html(__('job', 'wp-job-portal'));
+                $return['popuptitle'] = esc_html(__('Add to','wp-job-portal')) .' '. esc_html(__('Featured','wp-job-portal')) .' '. esc_html(__('Job', 'wp-job-portal'));
                 $wpjobportal_id = WPJOBPORTALRequest::getVar('id');
                 $wpjobportal_jobtile = WPJOBPORTALincluder::getJSModel('job')->getJobTitleById($wpjobportal_id);
-                $return['title-text'] = esc_html(__('Job title', 'wp-job-portal'));
+                $return['title-text'] = esc_html(__('Job Title', 'wp-job-portal'));
                 $return['title'] = $wpjobportal_jobtile;
                 $return['value'] = $wpjobportal_creditsrequired;
                 break;
             case 'featured_resume':
-                $return['popuptitle'] = esc_html(__('Add to','wp-job-portal')) .' '. esc_html(__('featured','wp-job-portal')) .' '. esc_html(__('resume', 'wp-job-portal'));
+                $return['popuptitle'] = esc_html(__('Add to','wp-job-portal')) .' '. esc_html(__('Featured','wp-job-portal')) .' '. esc_html(__('resume', 'wp-job-portal'));
                 $wpjobportal_id = WPJOBPORTALRequest::getVar('id');
                 $wpjobportal_resumetile = WPJOBPORTALincluder::getJSModel('resume')->getResumeTitleById($wpjobportal_id);
-                $return['title-text'] = esc_html(__('Resume title', 'wp-job-portal'));
+                $return['title-text'] = esc_html(__('Resume Title', 'wp-job-portal'));
                 $return['title'] = $wpjobportal_resumetile;
                 $return['value'] = $wpjobportal_creditsrequired;
                 break;
@@ -563,7 +545,7 @@ class WPJOBPORTALpopup {
                 break;
             case 'add_job':
                 $return['popuptitle'] = esc_html(__('Add','wp-job-portal')) .' '. esc_html(__('Job', 'wp-job-portal'));
-                $return['title-text'] = esc_html(__('Add','wp-job-portal')) .' '. esc_html(__('job', 'wp-job-portal'));
+                $return['title-text'] = esc_html(__('Add','wp-job-portal')) .' '. esc_html(__('Job', 'wp-job-portal'));
                 $return['title'] = ' ';
                 $return['value'] = $wpjobportal_creditsrequired;
                 break;
@@ -592,19 +574,19 @@ class WPJOBPORTALpopup {
                 $return['value'] = $wpjobportal_creditsrequired;
                 break;
             case 'view_company_contact_detail':
-                $return['popuptitle'] = esc_html(__('View company contact detail', 'wp-job-portal'));
+                $return['popuptitle'] = esc_html(__('View Company Contact Detail', 'wp-job-portal'));
                 $wpjobportal_id = WPJOBPORTALRequest::getVar('id');
                 $wpjobportal_companyname = WPJOBPORTALincluder::getJSModel('company')->getCompanynameById($wpjobportal_id);
-                $return['title-text'] = esc_html(__('View company contact detail', 'wp-job-portal'));
+                $return['title-text'] = esc_html(__('View Company Contact Detail', 'wp-job-portal'));
                 $return['title'] = $wpjobportal_companyname;
                 $return['value'] = $wpjobportal_creditsrequired;
                 $return['link'] = wp_nonce_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'action'=>'wpjobportaltask', 'task'=>'addviewcontactdetail', 'companyid'=>$wpjobportal_id, 'wpjobportalpageid'=>$wpjobportal_pageid)),'wpjobportal_company_nonce');
                 break;
             case 'view_resume_contact_detail':
-                $return['popuptitle'] = esc_html(__('View resume contact detail', 'wp-job-portal'));
+                $return['popuptitle'] = esc_html(__('View Resume Contact Detail', 'wp-job-portal'));
                 $wpjobportal_id = WPJOBPORTALRequest::getVar('id');
                 $wpjobportal_resumename = WPJOBPORTALincluder::getJSModel('resume')->getResumenameById($wpjobportal_id);
-                $return['title-text'] = esc_html(__('View resume contact detail', 'wp-job-portal'));
+                $return['title-text'] = esc_html(__('View Resume Contact Detail', 'wp-job-portal'));
                 $return['title'] = $wpjobportal_resumename;
                 $return['value'] = $wpjobportal_creditsrequired;
                 $return['link'] = wp_nonce_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'action'=>'wpjobportaltask', 'task'=>'addviewresumedetail', 'resumeid'=>$wpjobportal_id, 'wpjobportalpageid'=>$wpjobportal_pageid)),'wpjobportal_resume_nonce');
@@ -616,10 +598,10 @@ class WPJOBPORTALpopup {
                 $return['value'] = $wpjobportal_creditsrequired;
                 break;
             case 'job_apply':
-                $return['popuptitle'] = esc_html(__('Apply On Job', 'wp-job-portal'));
+                $return['popuptitle'] = esc_html(__('Apply On This Job', 'wp-job-portal'));
                 $wpjobportal_id = WPJOBPORTALRequest::getVar('id');
                 $wpjobportal_jobtile = WPJOBPORTALincluder::getJSModel('job')->getJobTitleById($wpjobportal_id);
-                $return['title-text'] = esc_html(__('Job title', 'wp-job-portal'));
+                $return['title-text'] = esc_html(__('Job Title', 'wp-job-portal'));
                 $return['title'] = $wpjobportal_jobtile;
                 $return['value'] = $wpjobportal_creditsrequired;
                 break;

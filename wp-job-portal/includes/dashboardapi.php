@@ -78,7 +78,7 @@ function wpjobportal_dashboard_widget_function_totalstats() {
 				</div>';
         echo wp_kses($wpjobportal_html, WPJOBPORTAL_ALLOWED_TAGS);
     } else {
-    	$wpjobportal_msg = esc_html(__('No record found','wp-job-portal'));
+    	$wpjobportal_msg = esc_html(__('No Records Found','wp-job-portal'));
         WPJOBPORTALlayout::getNoRecordFound($wpjobportal_msg);
     }
 }

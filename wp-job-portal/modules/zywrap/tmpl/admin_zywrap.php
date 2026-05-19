@@ -1,5 +1,6 @@
 <?php
-
+if (!defined('ABSPATH'))
+    die('Restricted Access');
 // global $wpdb;
 //             $wpdb->query('SET FOREIGN_KEY_CHECKS = 0;');
 //             $wpdb->query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_wrappers`");
@@ -129,7 +130,7 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_html(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_html(__('Dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -139,12 +140,12 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
             </div>
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_html(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_html(__('Configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_html(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_html(__('Help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -173,34 +174,34 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
                             <div class="wpjobportal-config-zywrap-container">
                                 <h3 class="wpjobportal-config-zywrap-title">
                                     <span class="dashicons dashicons-info wpjobportal-config-zywrap-icon"></span>
-                                    <?php echo __( 'How to get your API Key', 'wp-job-portal' ); ?>
+                                    <?php echo esc_html__( 'How to get your API Key', 'wp-job-portal' ); ?>
                                 </h3>
 
                                 <ol class="wpjobportal-config-zywrap-list">
                                     <li>
-                                        <strong><?php echo __( 'Sign Up Free', 'wp-job-portal' ); ?>:</strong>
+                                        <strong><?php echo esc_html__( 'Sign Up Free', 'wp-job-portal' ); ?>:</strong>
                                         <a href="https://zywrap.com/register?utm_source=wordpress-plugin&utm_medium=wp-job-portal&utm_campaign=onboarding" target="_blank" class="wpjobportal-config-zywrap-link">
-                                            <?php echo __( 'Zywrap.com', 'wp-job-portal' ); ?>
+                                            <?php echo esc_html__( 'Zywrap.com', 'wp-job-portal' ); ?>
                                             <span class="dashicons dashicons-external"></span>
                                         </a>
                                     </li>
                                     <li>
-                                        <strong><?php echo __( 'Get Free Credits', 'wp-job-portal' ); ?>:</strong>
-                                        <?php echo __( 'You will receive', 'wp-job-portal' ); ?>
+                                        <strong><?php echo esc_html__( 'Get Free Credits', 'wp-job-portal' ); ?>:</strong>
+                                        <?php echo esc_html__( 'You will receive', 'wp-job-portal' ); ?>
                                         <span class="wpjobportal-config-zywrap-highlight">
-                                            <?php echo __( '10,000 Free Credits', 'wp-job-portal' ); ?>
+                                            <?php echo esc_html__( '10,000 Free Credits', 'wp-job-portal' ); ?>
                                         </span>
-                                        <?php echo __( 'instantly upon registration.', 'wp-job-portal' ); ?>
+                                        <?php echo esc_html__( 'instantly upon registration.', 'wp-job-portal' ); ?>
                                     </li>
                                     <li>
-                                        <strong><?php echo __( 'Create Key', 'wp-job-portal' ); ?>:</strong>
-                                        <?php echo __( 'Go to the API Keys section in your dashboard to generate your secret key.', 'wp-job-portal' ); ?>
+                                        <strong><?php echo esc_html__( 'Create Key', 'wp-job-portal' ); ?>:</strong>
+                                        <?php echo esc_html__( 'Go to the API Keys section in your dashboard to generate your secret key.', 'wp-job-portal' ); ?>
                                     </li>
                                 </ol>
                             </div>
 
                             <p class="wpjobportal-config-zywrap-description description">
-                                <?php echo __( 'Enter your Zywrap.com API Key to connect your account.', 'wp-job-portal' ); ?>
+                                <?php echo esc_html__( 'Enter your Zywrap.com API Key to connect your account.', 'wp-job-portal' ); ?>
                             </p>
                         </div>
                         <div class="wpjobportal-config-row wpjobportal-config-row-cstm-treatment">
@@ -261,7 +262,7 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
                         </h3>
                         <div class="wpjobportal-config-auto-download-button-wrap" >
                             <button type="button" id="wpjobportal-check-zywrap-status" class="wpjobportal-table-act-btn wpjobportal-delete wpjobportal-config-download">
-                                <?php echo esc_html(__("Check API Status", 'wp-job-portal')); ?>
+                                <?php echo esc_html(__("Check API Key Status", 'wp-job-portal')); ?>
                             </button>
 
                         </div>

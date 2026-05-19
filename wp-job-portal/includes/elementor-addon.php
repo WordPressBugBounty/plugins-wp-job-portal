@@ -95,8 +95,8 @@ function wpjobportal_save_post_job_portal_shortcode_element($post_id) {
         }
 
         // set the option to use in color css generation
-        update_option('wpjp_set_theme_colors', wp_json_encode($wpjobportal_color_array));
-        $return = require(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
+        // update_option('wpjp_set_theme_colors', wp_json_encode($wpjobportal_color_array));
+        // $return = require(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
 
         // for elegent addon
         if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()){

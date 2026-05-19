@@ -33,7 +33,7 @@ if (is_rtl()) {
                     <ul>
                         <li>
                             <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>"
-                                title="<?php echo esc_attr(__('dashboard', 'wp-job-portal')); ?>">
+                                title="<?php echo esc_attr(__('Dashboard', 'wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard', 'wp-job-portal')); ?>
                             </a>
                         </li>
@@ -44,7 +44,7 @@ if (is_rtl()) {
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
                     <a href="admin.php?page=wpjobportal_configuration"
-                        title="<?php echo esc_attr(__('configuration', 'wp-job-portal')); ?>">
+                        title="<?php echo esc_attr(__('Configuration', 'wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                     </a>
                 </div>
@@ -279,7 +279,7 @@ if (is_rtl()) {
                                                     <span class="wjportal-elegant-addon-item-status" style="background:#00a859;"><?php echo esc_html(__('Publish', 'wp-job-portal')); ?></span>
                                                     <a class="wjportal-elegant-addon-companyname" href="#"><?php echo esc_html(__('Buruj Solution', 'wp-job-portal')); ?></a>
                                                     <span class="wjportal-elegant-addon-jobs-location-text">
-                                                        <img decoding="async" class="wjportal-elegant-addon-filter-search-field-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/loacation-g.png" title="Location" alt="Location">
+                                                        <img decoding="async" class="wjportal-elegant-addon-filter-search-field-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/loacation-g.png" title="<?php echo esc_attr(__('Location', 'wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Location', 'wp-job-portal')); ?>">
                                                         <?php echo esc_html(__('Santa Barbara, California, United States', 'wp-job-portal')); ?>
                                                     </span>
                                                 </div>
@@ -312,7 +312,7 @@ if (is_rtl()) {
                                         </div>
                                         <div class="wjportal-elegant-addon-jobs-logo">
                                             <a href="#">
-                                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/default_logo.png" alt="Company logo">
+                                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/default_logo.png" alt="<?php echo esc_attr(__('Company Logo', 'wp-job-portal')); ?>">
                                             </a>
                                         </div>
                                     </div>
@@ -321,19 +321,19 @@ if (is_rtl()) {
                                     </div>
                                     <div class="wjportal-elegant-addon-jobs-list-btm-wrp wjportal-elegant-addon-btn-wrp-ai">
                                         <div class="wjportal-elegant-addon-myjobs-btn-wrp">
-                                            <a class="wjportal-elegant-addon-jobs-colored-btn" title="Edit" href="#">
-                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-black-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/edit-black.png" alt="Edit">
-                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-white-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/edit-white.png" alt="Edit">
+                                            <a class="wjportal-elegant-addon-jobs-colored-btn" title="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>" href="#">
+                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-black-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/edit-black.png" alt="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>">
+                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-white-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/edit-white.png" alt="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>">
                                                 <?php echo esc_html(__('Edit Job', 'wp-job-portal')); ?>
                                             </a>
                                             <span class="wjportal-elegant-addon-jobs-feature-wrp">
-                                                <a href="#" class="wjportal-jobs-act-btn wjportal-list-act-btn-featured" title="Add featured">
+                                                <a href="#" class="wjportal-jobs-act-btn wjportal-list-act-btn-featured" title="<?php echo esc_attr(__('Add Featured', 'wp-job-portal')); ?>">
                                                     <?php echo esc_html(__('Add Featured', 'wp-job-portal')); ?>
                                                 </a>
                                             </span>
                                             <a class="wjportal-elegant-addon-jobs-act-btn" href="#">
-                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-black-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/del-black.png" title="Delete" alt="Delete">
-                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-white-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/del-white.png" title="Delete" alt="Delete">
+                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-black-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/del-black.png" title="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>">
+                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-white-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/del-white.png" title="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>">
                                                 <?php echo esc_html(__('Delete Job', 'wp-job-portal')); ?>
                                             </a>
 
@@ -343,8 +343,8 @@ if (is_rtl()) {
                                                 <?php echo esc_html(__('Resume (1)', 'wp-job-portal')); ?>
                                             </a>
                                             <a class="wjportal-elegant-addon-jobs-act-btn wjportal-elegant-addon-jobs-act-btn-ai-suggested-resumes" href="#">
-                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-white-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/ai-button-icon-white.png" title="Suggested Resumes" alt="Suggested Resumes">
-                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-black-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/ai-button-icon-white.png" title="Suggested Resumes" alt="Suggested Resumes">
+                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-white-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/ai-button-icon-white.png" title="<?php echo esc_attr(__('Suggested Resumes', 'wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Suggested Resumes', 'wp-job-portal')); ?>">
+                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-black-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/ai-button-icon-white.png" title="<?php echo esc_attr(__('Suggested Resumes', 'wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Suggested Resumes', 'wp-job-portal')); ?>">
                                                 <?php echo esc_html(__('Suggested Resumes', 'wp-job-portal')); ?>
                                             </a>
                                         </div>
@@ -359,7 +359,7 @@ if (is_rtl()) {
                                                     <span class="wjportal-elegant-addon-item-status" style="background:#00a859;"><?php echo esc_html(__('Publish', 'wp-job-portal')); ?></span>
                                                     <a class="wjportal-elegant-addon-companyname" href="#"><?php echo esc_html(__('Joom Sky', 'wp-job-portal')); ?></a>
                                                     <span class="wjportal-elegant-addon-jobs-location-text">
-                                                        <img decoding="async" class="wjportal-elegant-addon-filter-search-field-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/loacation-g.png" title="Location" alt="Location">
+                                                        <img decoding="async" class="wjportal-elegant-addon-filter-search-field-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/loacation-g.png" title="<?php echo esc_attr(__('Location', 'wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Location', 'wp-job-portal')); ?>">
                                                         <?php echo esc_html(__('Ventura, California, United States', 'wp-job-portal')); ?>
                                                     </span>
                                                 </div>
@@ -401,19 +401,19 @@ if (is_rtl()) {
                                     </div>
                                     <div class="wjportal-elegant-addon-jobs-list-btm-wrp wjportal-elegant-addon-btn-wrp-ai">
                                         <div class="wjportal-elegant-addon-myjobs-btn-wrp">
-                                            <a class="wjportal-elegant-addon-jobs-colored-btn" title="Edit" href="#">
-                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-black-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/edit-black.png" alt="Edit">
-                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-white-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/edit-white.png" alt="Edit">
+                                            <a class="wjportal-elegant-addon-jobs-colored-btn" title="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>" href="#">
+                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-black-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/edit-black.png" alt="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>">
+                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-white-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/edit-white.png" alt="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>">
                                                 <?php echo esc_html(__('Edit Job', 'wp-job-portal')); ?>
                                             </a>
                                             <span class="wjportal-elegant-addon-jobs-feature-wrp">
-                                                <a href="#" class="wjportal-jobs-act-btn wjportal-list-act-btn-featured" title="Add featured">
+                                                <a href="#" class="wjportal-jobs-act-btn wjportal-list-act-btn-featured" title="<?php echo esc_attr(__('Add Featured', 'wp-job-portal')); ?>">
                                                     <?php echo esc_html(__('Add Featured', 'wp-job-portal')); ?>
                                                 </a>
                                             </span>
                                             <a class="wjportal-elegant-addon-jobs-act-btn" href="#">
-                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-black-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/del-black.png" title="Delete" alt="Delete">
-                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-white-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/del-white.png" title="Delete" alt="Delete">
+                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-black-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/del-black.png" title="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>">
+                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-white-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/del-white.png" title="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>">
                                                 <?php echo esc_html(__('Delete Job', 'wp-job-portal')); ?>
                                             </a>
 
@@ -423,8 +423,8 @@ if (is_rtl()) {
                                                 <?php echo esc_html(__('Resume (1)', 'wp-job-portal')); ?>
                                             </a>
                                             <a class="wjportal-elegant-addon-jobs-act-btn wjportal-elegant-addon-jobs-act-btn-ai-suggested-resumes" href="#">
-                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-white-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/ai-button-icon-white.png" title="Suggested Resumes" alt="Suggested Resumes">
-                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-black-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/ai-button-icon-white.png" title="Suggested Resumes" alt="Suggested Resumes">
+                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-white-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/ai-button-icon-white.png" title="<?php echo esc_attr(__('Suggested Resumes', 'wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Suggested Resumes', 'wp-job-portal')); ?>">
+                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-black-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/ai-button-icon-white.png" title="<?php echo esc_attr(__('Suggested Resumes', 'wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Suggested Resumes', 'wp-job-portal')); ?>">
                                                 <?php echo esc_html(__('Suggested Resumes', 'wp-job-portal')); ?>
                                             </a>
                                         </div>
@@ -439,7 +439,7 @@ if (is_rtl()) {
                                                     <span class="wjportal-elegant-addon-item-status" style="background:#00a859;"><?php echo esc_html(__('Publish', 'wp-job-portal')); ?></span>
                                                     <a class="wjportal-elegant-addon-companyname" href="#"><?php echo esc_html(__('Joom Shark', 'wp-job-portal')); ?></a>
                                                     <span class="wjportal-elegant-addon-jobs-location-text">
-                                                        <img decoding="async" class="wjportal-elegant-addon-filter-search-field-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/loacation-g.png" title="Location" alt="Location">
+                                                        <img decoding="async" class="wjportal-elegant-addon-filter-search-field-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/loacation-g.png" title="<?php echo esc_attr(__('Location', 'wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Location', 'wp-job-portal')); ?>">
                                                         <?php echo esc_html(__('Leona, Kansas, United States', 'wp-job-portal')); ?>
                                                     </span>
                                                 </div>
@@ -481,19 +481,19 @@ if (is_rtl()) {
                                     </div>
                                     <div class="wjportal-elegant-addon-jobs-list-btm-wrp wjportal-elegant-addon-btn-wrp-ai">
                                         <div class="wjportal-elegant-addon-myjobs-btn-wrp">
-                                            <a class="wjportal-elegant-addon-jobs-colored-btn" title="Edit" href="#">
-                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-black-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/edit-black.png" alt="Edit">
-                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-white-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/edit-white.png" alt="Edit">
+                                            <a class="wjportal-elegant-addon-jobs-colored-btn" title="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>" href="#">
+                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-black-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/edit-black.png" alt="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>">
+                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-white-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/edit-white.png" alt="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>">
                                                 <?php echo esc_html(__('Edit Job', 'wp-job-portal')); ?>
                                             </a>
                                             <span class="wjportal-elegant-addon-jobs-feature-wrp">
-                                                <a href="#" class="wjportal-jobs-act-btn wjportal-list-act-btn-featured" title="Add featured">
+                                                <a href="#" class="wjportal-jobs-act-btn wjportal-list-act-btn-featured" title="<?php echo esc_attr(__('Add Featured', 'wp-job-portal')); ?>">
                                                     <?php echo esc_html(__('Add Featured', 'wp-job-portal')); ?>
                                                 </a>
                                             </span>
                                             <a class="wjportal-elegant-addon-jobs-act-btn" href="#">
-                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-black-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/del-black.png" title="Delete" alt="Delete">
-                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-white-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/del-white.png" title="Delete" alt="Delete">
+                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-black-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/del-black.png" title="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>">
+                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-white-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/del-white.png" title="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>">
                                                 <?php echo esc_html(__('Delete Job', 'wp-job-portal')); ?>
                                             </a>
 
@@ -503,8 +503,8 @@ if (is_rtl()) {
                                                 <?php echo esc_html(__('Resume (1)', 'wp-job-portal')); ?>
                                             </a>
                                             <a class="wjportal-elegant-addon-jobs-act-btn wjportal-elegant-addon-jobs-act-btn-ai-suggested-resumes" href="#">
-                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-white-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/ai-button-icon-white.png" title="Suggested Resumes" alt="Suggested Resumes">
-                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-black-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/ai-button-icon-white.png" title="Suggested Resumes" alt="Suggested Resumes">
+                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-white-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/ai-button-icon-white.png" title="<?php echo esc_attr(__('Suggested Resumes', 'wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Suggested Resumes', 'wp-job-portal')); ?>">
+                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-black-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/ai-button-icon-white.png" title="<?php echo esc_attr(__('Suggested Resumes', 'wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Suggested Resumes', 'wp-job-portal')); ?>">
                                                 <?php echo esc_html(__('Suggested Resumes', 'wp-job-portal')); ?>
                                             </a>
                                         </div>
@@ -519,7 +519,7 @@ if (is_rtl()) {
                                                     <span class="wjportal-elegant-addon-item-status" style="background:#00a859;"><?php echo esc_html(__('Publish', 'wp-job-portal')); ?></span>
                                                     <a class="wjportal-elegant-addon-companyname" href="#"><?php echo esc_html(__('Sample Company', 'wp-job-portal')); ?></a>
                                                     <span class="wjportal-elegant-addon-jobs-location-text">
-                                                        <img decoding="async" class="wjportal-elegant-addon-filter-search-field-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/loacation-g.png" title="Location" alt="Location">
+                                                        <img decoding="async" class="wjportal-elegant-addon-filter-search-field-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/loacation-g.png" title="<?php echo esc_attr(__('Location', 'wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Location', 'wp-job-portal')); ?>">
                                                         <?php echo esc_html(__('Sheboygan, Wisconsin, United States', 'wp-job-portal')); ?>
                                                     </span>
                                                 </div>
@@ -561,19 +561,19 @@ if (is_rtl()) {
                                     </div>
                                     <div class="wjportal-elegant-addon-jobs-list-btm-wrp wjportal-elegant-addon-btn-wrp-ai">
                                         <div class="wjportal-elegant-addon-myjobs-btn-wrp">
-                                            <a class="wjportal-elegant-addon-jobs-colored-btn" title="Edit" href="#">
-                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-black-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/edit-black.png" alt="Edit">
-                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-white-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/edit-white.png" alt="Edit">
+                                            <a class="wjportal-elegant-addon-jobs-colored-btn" title="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>" href="#">
+                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-black-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/edit-black.png" alt="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>">
+                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-white-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/edit-white.png" alt="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>">
                                                 <?php echo esc_html(__('Edit Job', 'wp-job-portal')); ?>
                                             </a>
                                             <span class="wjportal-elegant-addon-jobs-feature-wrp">
-                                                <a href="#" class="wjportal-jobs-act-btn wjportal-list-act-btn-featured" title="Add featured">
+                                                <a href="#" class="wjportal-jobs-act-btn wjportal-list-act-btn-featured" title="<?php echo esc_attr(__('Add Featured', 'wp-job-portal')); ?>">
                                                     <?php echo esc_html(__('Add Featured', 'wp-job-portal')); ?>
                                                 </a>
                                             </span>
                                             <a class="wjportal-elegant-addon-jobs-act-btn" href="#">
-                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-black-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/del-black.png" title="Delete" alt="Delete">
-                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-white-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/del-white.png" title="Delete" alt="Delete">
+                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-black-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/del-black.png" title="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>">
+                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-white-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/del-white.png" title="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>">
                                                 <?php echo esc_html(__('Delete Job', 'wp-job-portal')); ?>
                                             </a>
 
@@ -583,8 +583,8 @@ if (is_rtl()) {
                                                 <?php echo esc_html(__('Resume (1)', 'wp-job-portal')); ?>
                                             </a>
                                             <a class="wjportal-elegant-addon-jobs-act-btn wjportal-elegant-addon-jobs-act-btn-ai-suggested-resumes" href="#">
-                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-white-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/ai-button-icon-white.png" title="Suggested Resumes" alt="Suggested Resumes">
-                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-black-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/ai-button-icon-white.png" title="Suggested Resumes" alt="Suggested Resumes">
+                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-white-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/ai-button-icon-white.png" title="<?php echo esc_attr(__('Suggested Resumes', 'wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Suggested Resumes', 'wp-job-portal')); ?>">
+                                                <img decoding="async" class="wjportal-elegant-addon-myjobs-btn-black-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL); ?>includes/images/ai-button-icon-white.png" title="<?php echo esc_attr(__('Suggested Resumes', 'wp-job-portal')); ?>" alt="<?php echo esc_attr(__('Suggested Resumes', 'wp-job-portal')); ?>">
                                                 <?php echo esc_html(__('Suggested Resumes', 'wp-job-portal')); ?>
                                             </a>
                                         </div>

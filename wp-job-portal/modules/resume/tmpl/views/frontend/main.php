@@ -123,7 +123,7 @@ echo '<div class="wjportal-resume-cnt-wrp">
                             echo '<div id="cover_letter_data_title_'.esc_attr($wpjobportal_myresume->coverletterid).'" style="display:none;" >'.wp_kses($wpjobportal_cover_letter_title, WPJOBPORTAL_ALLOWED_TAGS).'</div>';
                             echo '<div id="cover_letter_data_desc_'.esc_attr($wpjobportal_myresume->coverletterid).'" style="display:none;" >'.wp_kses($wpjobportal_cover_letter_desc, WPJOBPORTAL_ALLOWED_TAGS).'</div>';
                             echo '
-                            <a class="wjportal-coverletter-act-btn" href="#" onClick="showCoverLetterData('.esc_attr($wpjobportal_myresume->coverletterid).')" title='. esc_html(__('view coverletter', 'wp-job-portal')) .'>
+                            <a class="wjportal-coverletter-act-btn" href="#" onClick="showCoverLetterData('.esc_attr($wpjobportal_myresume->coverletterid).')" title='. esc_html(__('view Cover Letter', 'wp-job-portal')) .'>
                                 '. esc_html(__('View Cover Letter', 'wp-job-portal')) .'
                             </a>';
                         }else{

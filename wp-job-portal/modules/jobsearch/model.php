@@ -180,7 +180,7 @@ class WPJOBPORTALjobSearchModel {
 
         // Buttons
         $wpjobportal_search_label = $use_icons_for_buttons ? ' <i class="fa fa-search"></i> ' : esc_html(__('Search Job', 'wp-job-portal'));
-        $adv_label = $use_icons_for_buttons ? ' <i class="fa fa-cogs"></i> ' : esc_html(__('Advance Search', 'wp-job-portal'));
+        $adv_label = $use_icons_for_buttons ? ' <i class="fa fa-cogs"></i> ' : esc_html(__('Advanced Search', 'wp-job-portal'));
 
         $wpjobportal_html .= '<div class="wjportal-form-btn-row '.esc_attr($button_wrap_class).' " style="width:' . $button_style . '%;"> ';
                 if($wpjobportal_show_labels == 1){
@@ -268,7 +268,7 @@ class WPJOBPORTALjobSearchModel {
 
         // Buttons
         $wpjobportal_search_label = $use_icons_for_buttons ? ' <i class="fa fa-search"></i> ' : esc_html(__('Search Job', 'wp-job-portal'));
-        $adv_label = $use_icons_for_buttons ? ' <i class="fa fa-cogs"></i> ' : esc_html(__('Advance Search', 'wp-job-portal'));
+        $adv_label = $use_icons_for_buttons ? ' <i class="fa fa-cogs"></i> ' : esc_html(__('Advanced Search', 'wp-job-portal'));
 
         $wpjobportal_html .= '<div class="wjportal-form-btn-row '.esc_attr($button_wrap_class).' " style="width:' . $button_style . '%;"> ';
                 if($wpjobportal_show_labels == 1){

@@ -19,7 +19,7 @@ $wpjobportal_listing_fields = WPJOBPORTALincluder::getJSModel('fieldordering')->
 			?>
 			<div class="wpjobportal-resume-logo">
                 <?php if(isset($wpjobportal_listing_fields['photo'])){ ?>
-                    <img src="<?php echo esc_url($wpjobportal_photo); ?>" alt="<?php echo esc_attr(__('logo','wp-job-portal')); ?>" />
+                    <img src="<?php echo esc_url($wpjobportal_photo); ?>" alt="<?php echo esc_attr(__('Logo','wp-job-portal')); ?>" />
                 <?php } ?>
                 <div class="wpjobportal-resume-crt-date">
                     <?php echo esc_html(date_i18n(wpjobportal::$_configuration['date_format'], strtotime($wpjobportal_data->apply_date))); ?>
@@ -143,7 +143,7 @@ $wpjobportal_listing_fields = WPJOBPORTALincluder::getJSModel('fieldordering')->
                                      echo '<div id="cover_letter_data_desc_'.esc_attr($wpjobportal_data->coverletterid).'" style="display:none;" >'.wp_kses($wpjobportal_cover_letter_desc,WPJOBPORTAL_ALLOWED_TAGS).'</div>';
 
                                      echo '
-                                     <a class="wpjobportal-viewcover-act-btn" href="#" onClick="showCoverLetterData('.esc_attr($wpjobportal_data->coverletterid).')" title='. esc_html(__('view coverletter', 'wp-job-portal')) .'>
+                                     <a class="wpjobportal-viewcover-act-btn" href="#" onClick="showCoverLetterData('.esc_attr($wpjobportal_data->coverletterid).')" title='. esc_html(__('view Cover Letter', 'wp-job-portal')) .'>
                                          '. esc_html(__('View Cover Letter', 'wp-job-portal')) .'
                                      </a>';
                                 }else{

@@ -16,7 +16,7 @@
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('Dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -26,12 +26,12 @@
             </div>    
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('Configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('Help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -52,91 +52,91 @@
             <form method="post" class="emailtemplateform" action="<?php echo esc_url_raw(admin_url("?page=wpjobportal_emailtemplate&task=saveemailtemplate")); ?>">
                 <div class="wpjobportal-email-menu">
                     <span class="wpjobportal-email-menu-link <?php if (wpjobportal::$_data[1] == 'ew-cm') echo 'selected'; ?>">
-                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=ew-cm')); ?>" title="<?php echo esc_attr(__('new company', 'wp-job-portal')); ?>">
+                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=ew-cm')); ?>" title="<?php echo esc_attr(__('New Company', 'wp-job-portal')); ?>">
                             <?php echo esc_html(__('New Company', 'wp-job-portal')); ?>
                         </a>
                     </span>
                     <span class="wpjobportal-email-menu-link <?php if (wpjobportal::$_data[1] == 'd-cm') echo 'selected'; ?>">
-                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=d-cm')); ?>" title="<?php echo esc_attr(__('delete company', 'wp-job-portal')); ?>">
+                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=d-cm')); ?>" title="<?php echo esc_attr(__('Delete Company', 'wp-job-portal')); ?>">
                             <?php echo esc_html(__('Delete Company', 'wp-job-portal')); ?>
                         </a>
                     </span>
                     <span class="wpjobportal-email-menu-link <?php if (wpjobportal::$_data[1] == 'cm-sts') echo 'selected'; ?>">
-                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=cm-sts')); ?>" title="<?php echo esc_attr(__('company status', 'wp-job-portal')); ?>">
+                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=cm-sts')); ?>" title="<?php echo esc_attr(__('Company Status', 'wp-job-portal')); ?>">
                             <?php echo esc_html(__('Company Status', 'wp-job-portal')); ?>
                         </a>
                     </span>
                     <span class="wpjobportal-email-menu-link <?php if (wpjobportal::$_data[1] == 'ew-ob') echo 'selected'; ?>">
-                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=ew-ob')); ?>" title="<?php echo esc_attr(__('new job', 'wp-job-portal')); ?>">
+                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=ew-ob')); ?>" title="<?php echo esc_attr(__('New Job', 'wp-job-portal')); ?>">
                             <?php echo esc_html(__('New Job', 'wp-job-portal')); ?>
                         </a>
                     </span>
                     <?php if(in_array('visitorcanaddjob', wpjobportal::$_active_addons)){ ?>
                                 <span class="wpjobportal-email-menu-link <?php if (wpjobportal::$_data[1] == 'ew-obv') echo 'selected'; ?>">
-                                    <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=ew-obv')); ?>" title="<?php echo esc_attr(__('new visitor job', 'wp-job-portal')); ?>">
+                                    <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=ew-obv')); ?>" title="<?php echo esc_attr(__('New Visitor Job', 'wp-job-portal')); ?>">
                                         <?php echo esc_html(__('New Visitor Job', 'wp-job-portal')); ?>
                                         
                                     </a>
                                 </span>
                         <?php } ?>
                     <span class="wpjobportal-email-menu-link <?php if (wpjobportal::$_data[1] == 'ob-sts') echo 'selected'; ?>">
-                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=ob-sts')); ?>" title="<?php echo esc_attr(__('job status', 'wp-job-portal')); ?>">
+                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=ob-sts')); ?>" title="<?php echo esc_attr(__('job Status', 'wp-job-portal')); ?>">
                             <?php echo esc_html(__('Job Status', 'wp-job-portal')); ?>
                         </a>
                     </span>
                     <span class="wpjobportal-email-menu-link <?php if (wpjobportal::$_data[1] == 'ob-d') echo 'selected'; ?>">
-                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=ob-d')); ?>" title="<?php echo esc_attr(__('job delete', 'wp-job-portal')); ?>">
+                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=ob-d')); ?>" title="<?php echo esc_attr(__('Job Delete', 'wp-job-portal')); ?>">
                             <?php echo esc_html(__('Job Delete', 'wp-job-portal')); ?>
                         </a>
                     </span>
                     <span class="wpjobportal-email-menu-link <?php if (wpjobportal::$_data[1] == 'ew-rm') echo 'selected'; ?>">
-                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=ew-rm')); ?>" title="<?php echo esc_attr(__('new resume', 'wp-job-portal')); ?>">
+                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=ew-rm')); ?>" title="<?php echo esc_attr(__('New Resume', 'wp-job-portal')); ?>">
                             <?php echo esc_html(__('New Resume', 'wp-job-portal')); ?>
                         </a>
                     </span>
                     <span class="wpjobportal-email-menu-link <?php if (wpjobportal::$_data[1] == 'ew-rmv') echo 'selected'; ?>">
-                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=ew-rmv')); ?>" title="<?php echo esc_attr(__('new visitor resume', 'wp-job-portal')); ?>">
+                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=ew-rmv')); ?>" title="<?php echo esc_attr(__('New Visitor Resume', 'wp-job-portal')); ?>">
                             <?php echo esc_html(__('New Visitor Resume', 'wp-job-portal')); ?>
                         </a>
                     </span>
                     <span class="wpjobportal-email-menu-link <?php if (wpjobportal::$_data[1] == 'rm-sts') echo 'selected'; ?>">
-                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=rm-sts')); ?>" title="<?php echo esc_attr(__('resume status', 'wp-job-portal')); ?>">
+                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=rm-sts')); ?>" title="<?php echo esc_attr(__('Resume Status', 'wp-job-portal')); ?>">
                             <?php echo esc_html(__('Resume Status', 'wp-job-portal')); ?>
                         </a>
                     </span>
                     <span class="wpjobportal-email-menu-link <?php if (wpjobportal::$_data[1] == 'd-rs') echo 'selected'; ?>">
-                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=d-rs')); ?>" title="<?php echo esc_attr(__('delete resume', 'wp-job-portal')); ?>">
+                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=d-rs')); ?>" title="<?php echo esc_attr(__('Delete Resume', 'wp-job-portal')); ?>">
                             <?php echo esc_html(__('Delete Resume', 'wp-job-portal')); ?>
                         </a>
                     </span>
                     <span class="wpjobportal-email-menu-link <?php if (wpjobportal::$_data[1] == 'em-n') echo 'selected'; ?>">
-                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=em-n')); ?>" title="<?php echo esc_attr(__('new employer', 'wp-job-portal')); ?>">
+                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=em-n')); ?>" title="<?php echo esc_attr(__('New Employer', 'wp-job-portal')); ?>">
                             <?php echo esc_html(__('New Employer', 'wp-job-portal')); ?>
                         </a>
                     </span>
                     <span class="wpjobportal-email-menu-link <?php if (wpjobportal::$_data[1] == 'obs-n') echo 'selected'; ?>">
-                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=obs-n')); ?>" title="<?php echo esc_attr(__('new job seeker', 'wp-job-portal')); ?>">
+                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=obs-n')); ?>" title="<?php echo esc_attr(__('New Job Seeker', 'wp-job-portal')); ?>">
                             <?php echo esc_html(__('New Job Seeker', 'wp-job-portal')); ?>
                         </a>
                     </span>
                     <span class="wpjobportal-email-menu-link <?php if (wpjobportal::$_data[1] == 'ad-jap') echo 'selected'; ?>">
-                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=ad-jap')); ?>" title="<?php echo esc_attr(__('job apply admin', 'wp-job-portal')); ?>">
+                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=ad-jap')); ?>" title="<?php echo esc_attr(__('Job Apply Admin', 'wp-job-portal')); ?>">
                             <?php echo esc_html(__('Job Apply Admin', 'wp-job-portal')); ?>
                         </a>
                     </span>
                     <span class="wpjobportal-email-menu-link <?php if (wpjobportal::$_data[1] == 'em-jap') echo 'selected'; ?>">
-                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=em-jap')); ?>" title="<?php echo esc_attr(__('job apply employer', 'wp-job-portal')); ?>">
+                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=em-jap')); ?>" title="<?php echo esc_attr(__('Job Apply Employer', 'wp-job-portal')); ?>">
                             <?php echo esc_html(__('Job Apply Employer', 'wp-job-portal')); ?>
                         </a>
                     </span>
                     <span class="wpjobportal-email-menu-link <?php if (wpjobportal::$_data[1] == 'js-jap') echo 'selected'; ?>">
-                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=js-jap')); ?>" title="<?php echo esc_attr(__('job apply job seeker', 'wp-job-portal')); ?>">
+                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=js-jap')); ?>" title="<?php echo esc_attr(__('Job Apply Job Seeker', 'wp-job-portal')); ?>">
                             <?php echo esc_html(__('Job Apply Job Seeker', 'wp-job-portal')); ?>
                         </a>
                     </span>
                     <?php if(in_array('resumeaction', wpjobportal::$_active_addons)){ ?>
                         <span class="wpjobportal-email-menu-link <?php if (wpjobportal::$_data[1] == 'ap-jap') echo 'selected'; ?>">
-                            <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=ap-jap')); ?>" title="<?php echo esc_attr(__('applied resume status change', 'wp-job-portal')); ?>">
+                            <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=ap-jap')); ?>" title="<?php echo esc_attr(__('Applied Resume Status Change', 'wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Applied Resume Status Change', 'wp-job-portal')); ?>
                                 
                             </a>
@@ -144,7 +144,7 @@
                     <?php } ?>
                     <?php if(in_array('message', wpjobportal::$_active_addons)){ ?>
                         <span class="wpjobportal-email-menu-link <?php if (wpjobportal::$_data[1] == 'new-msg') echo 'selected'; ?>">
-                            <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=new-msg')); ?>" title="<?php echo esc_attr(__('new message alert', 'wp-job-portal')); ?>">
+                            <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=new-msg')); ?>" title="<?php echo esc_attr(__('New Message Alert', 'wp-job-portal')); ?>">
                                 <?php echo esc_html(__('New Message Alert', 'wp-job-portal')); ?>
 
                             </a>
@@ -153,7 +153,7 @@
 
                      <?php if(in_array('resumeaction', wpjobportal::$_active_addons)){ ?>
                         <span class="wpjobportal-email-menu-link <?php if (wpjobportal::$_data[1] == 'jb-at') echo 'selected'; ?>">
-                            <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=jb-at')); ?>" title="<?php echo esc_attr(__('job alert', 'wp-job-portal')); ?>">
+                            <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=jb-at')); ?>" title="<?php echo esc_attr(__('Job Alert', 'wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Job Alert', 'wp-job-portal')); ?>
                                 
                             </a>
@@ -161,15 +161,15 @@
                     <?php } ?>
                      <?php if(in_array('tellfriend', wpjobportal::$_active_addons)){ ?>
                         <span class="wpjobportal-email-menu-link <?php if (wpjobportal::$_data[1] == 'jb-to-fri') echo 'selected'; ?>">
-                            <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=jb-to-fri')); ?>" title="<?php echo esc_attr(__('tell to friend', 'wp-job-portal')); ?>">
-                                <?php echo esc_html(__('Tell To Friend', 'wp-job-portal')); ?>
+                            <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=jb-to-fri')); ?>" title="<?php echo esc_attr(__('Tell A Friend', 'wp-job-portal')); ?>">
+                                <?php echo esc_html(__('Tell A Friend', 'wp-job-portal')); ?>
                                 
                             </a>
                         </span>
                         <?php } ?>
                    <?php if(in_array('credits', wpjobportal::$_active_addons)){ ?>
                     <span class="wpjobportal-email-menu-link <?php if (wpjobportal::$_data[1] == 'ew-pk-ad') echo 'selected'; ?>">
-                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=ew-pk-ad')); ?>" title="<?php echo esc_attr(__('Purchase Package', 'wp-job-portal')).' '.esc_html(__(' Admin', 'wp-job-portal')); ?>">
+                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=ew-pk-ad')); ?>" title="<?php echo esc_attr(__('Purchase Package', 'wp-job-portal')).' '.esc_html(__('Admin', 'wp-job-portal')); ?>">
                             <?php echo esc_html(__('Purchase Package', 'wp-job-portal')).' '.esc_html(__('Admin', 'wp-job-portal')); ?>
                             
                         </a>
@@ -207,31 +207,31 @@
                     <div class="wpjobportal-email-parameters">
                         <div class="wpjobportal-email-parameter-heading"><?php echo esc_html(__('Parameters', 'wp-job-portal')) ?></div>
                         <?php if (wpjobportal::$_data[1] == 'ew-cm') { ?>
-                            <span class="wpjobportal-email-paramater">{COMPANY_NAME}:  <?php echo esc_html(__('Company name', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{COMPANY_NAME}:  <?php echo esc_html(__('Company Name', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{EMPLOYER_NAME}:  <?php echo esc_html(__('Employer name', 'wp-job-portal')); ?></span>
-                            <span class="wpjobportal-email-paramater">{COMPANY_LINK}:  <?php echo esc_html(__('View company', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{COMPANY_LINK}:  <?php echo esc_html(__('View Company', 'wp-job-portal')); ?></span>
                             
                             <span class="wpjobportal-email-paramater">{COMPANY_STATUS}:  <?php echo esc_html(__('Company status for approve,reject,pending', 'wp-job-portal')); ?></span>
                         <?php } elseif (wpjobportal::$_data[1] == 'cm-sts') { ?>
-                            <span class="wpjobportal-email-paramater">{COMPANY_NAME}:  <?php echo esc_html(__('Company name', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{COMPANY_NAME}:  <?php echo esc_html(__('Company Name', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{EMPLOYER_NAME}:  <?php echo esc_html(__('Employer Name', 'wp-job-portal')); ?></span>
-                            <span class="wpjobportal-email-paramater">{COMPANY_LINK}:  <?php echo esc_html(__('View company', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{COMPANY_LINK}:  <?php echo esc_html(__('View Company', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{COMPANY_STATUS}:  <?php echo esc_html(__('Company approve or reject', 'wp-job-portal')).'('.esc_html(__('Gold','wp-job-portal')) .','.esc_html(__('Featured','wp-job-portal')) . ')'; ?></span>
                             
                         <?php } elseif (wpjobportal::$_data[1] == 'd-cm') { ?>
                             <span class="wpjobportal-email-paramater">{COMPANY_NAME}:  <?php echo esc_html(__('Company Name', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{COMPANY_OWNER_NAME}:  <?php echo esc_html(__('Company Owner Name', 'wp-job-portal')); ?></span>
                         <?php } elseif (wpjobportal::$_data[1] == 'd-rs') { ?>
-                            <span class="wpjobportal-email-paramater">{RESUME_TITLE}:  <?php echo esc_html(__('Resume title', 'wp-job-portal')); ?></span>
-                            <span class="wpjobportal-email-paramater">{JOBSEEKER_NAME}:  <?php echo esc_html(__('Job seeker name', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{RESUME_TITLE}:  <?php echo esc_html(__('Resume Title', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{JOBSEEKER_NAME}:  <?php echo esc_html(__('Job Seeker Name', 'wp-job-portal')); ?></span>
                         <?php } elseif (wpjobportal::$_data[1] == 'ew-ob') { ?>
-                            <span class="wpjobportal-email-paramater">{JOB_TITLE}:  <?php echo esc_html(__('Job title', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{JOB_TITLE}:  <?php echo esc_html(__('Job Title', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{EMPLOYER_NAME}:  <?php echo esc_html(__('Employer name', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{JOB_LINK}:  <?php echo esc_html(__('Job link', 'wp-job-portal')); ?></span>
                             
-                            <span class="wpjobportal-email-paramater">{COMPANY_NAME}:  <?php echo esc_html(__('Company name', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{COMPANY_NAME}:  <?php echo esc_html(__('Company Name', 'wp-job-portal')); ?></span>
                         <?php } elseif (wpjobportal::$_data[1] == 'ob-sts') { ?>
-                            <span class="wpjobportal-email-paramater">{JOB_TITLE}:  <?php echo esc_html(__('Job title', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{JOB_TITLE}:  <?php echo esc_html(__('Job Title', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{EMPLOYER_NAME}:  <?php echo esc_html(__('Employer name', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{JOB_LINK}:  <?php echo esc_html(__('Job link', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{JOB_STATUS}:  <?php echo esc_html(__('Job  approve or reject', 'wp-job-portal')).'('.esc_html(__('Gold','wp-job-portal')) .','.esc_html(__('Featured','wp-job-portal')) . ')'; ?></span>
@@ -242,61 +242,61 @@
                             <span class="wpjobportal-email-paramater">{CONTROL_PANEL_LINK}:  <?php echo esc_html(__('Employer control panel link', 'wp-job-portal')); ?></span>
                         <?php } elseif (wpjobportal::$_data[1] == 'obs-n') { ?>
                             <span class="wpjobportal-email-paramater">{USER_ROLE}:  <?php echo esc_html(__('Role for job seeker', 'wp-job-portal')); ?></span>
-                            <span class="wpjobportal-email-paramater">{USER_NAME}:  <?php echo esc_html(__('Job seeker name', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{USER_NAME}:  <?php echo esc_html(__('Job Seeker Name', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{CONTROL_PANEL_LINK}:  <?php echo esc_html(__('Job seeker control panel link', 'wp-job-portal')); ?></span>
                         <?php } elseif (wpjobportal::$_data[1] == 'ew-obv') { ?>
-                            <span class="wpjobportal-email-paramater">{JOB_TITLE}:  <?php echo esc_html(__('Job title', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{JOB_TITLE}:  <?php echo esc_html(__('Job Title', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{EMPLOYER_NAME}:  <?php echo esc_html(__('Employer name', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{JOB_LINK}:  <?php echo esc_html(__('Job link', 'wp-job-portal')); ?></span>
-                            <span class="wpjobportal-email-paramater">{COMPANY_NAME}:  <?php echo esc_html(__('Company name', 'wp-job-portal')); ?></span>    
+                            <span class="wpjobportal-email-paramater">{COMPANY_NAME}:  <?php echo esc_html(__('Company Name', 'wp-job-portal')); ?></span>
                         <?php } elseif (wpjobportal::$_data[1] == 'ob-d') { ?>
-                            <span class="wpjobportal-email-paramater">{JOB_TITLE}:  <?php echo esc_html(__('Job title', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{JOB_TITLE}:  <?php echo esc_html(__('Job Title', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{EMPLOYER_NAME}:  <?php echo esc_html(__('Employer name', 'wp-job-portal')); ?></span>
-                            <span class="wpjobportal-email-paramater">{COMPANY_NAME}:  <?php echo esc_html(__('Company name', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{COMPANY_NAME}:  <?php echo esc_html(__('Company Name', 'wp-job-portal')); ?></span>
                         <?php } elseif (wpjobportal::$_data[1] == 'em-jap') { ?>
-                            <span class="wpjobportal-email-paramater">{JOB_TITLE}:  <?php echo esc_html(__('Job title', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{JOB_TITLE}:  <?php echo esc_html(__('Job Title', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{EMPLOYER_NAME}:  <?php echo esc_html(__('Employer name', 'wp-job-portal')); ?></span>
-                            <span class="wpjobportal-email-paramater">{RESUME_TITLE}:  <?php echo esc_html(__('Resume title', 'wp-job-portal')); ?></span>
-                            <span class="wpjobportal-email-paramater">{JOBSEEKER_NAME}:  <?php echo esc_html(__('Job seeker name', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{RESUME_TITLE}:  <?php echo esc_html(__('Resume Title', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{JOBSEEKER_NAME}:  <?php echo esc_html(__('Job Seeker Name', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{RESUME_DATA}:  <?php echo esc_html(__('Resume data', 'wp-job-portal')); ?></span>
-                            <span class="wpjobportal-email-paramater">{RESUME_APPLIED_STATUS}:  <?php echo esc_html(__('Resume curent status', 'wp-job-portal')); ?></span>
-                            <span class="wpjobportal-email-paramater">{COVER_LETTER_TITLE}:  <?php echo esc_html(__('Cover letter title', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{RESUME_APPLIED_STATUS}:  <?php echo esc_html(__('Resume current status', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{COVER_LETTER_TITLE}:  <?php echo esc_html(__('Cover Letter Title', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{COVER_LETTER_DESCRIPTION}:  <?php echo esc_html(__('Cover letter description', 'wp-job-portal')); ?></span>
                         <?php } elseif (wpjobportal::$_data[1] == 'js-jap') { ?>
-                            <span class="wpjobportal-email-paramater">{JOB_TITLE}:  <?php echo esc_html(__('Job title', 'wp-job-portal')); ?></span>
-                            <span class="wpjobportal-email-paramater">{COMPANY_NAME}:  <?php echo esc_html(__('Company name', 'wp-job-portal')); ?></span>
-                            <span class="wpjobportal-email-paramater">{RESUME_TITLE}:  <?php echo esc_html(__('Resume title', 'wp-job-portal')); ?></span>
-                            <span class="wpjobportal-email-paramater">{JOBSEEKER_NAME}:  <?php echo esc_html(__('Job seeker name', 'wp-job-portal')); ?></span>
-                            <span class="wpjobportal-email-paramater">{RESUME_APPLIED_STATUS}:  <?php echo esc_html(__('Resume curent status', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{JOB_TITLE}:  <?php echo esc_html(__('Job Title', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{COMPANY_NAME}:  <?php echo esc_html(__('Company Name', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{RESUME_TITLE}:  <?php echo esc_html(__('Resume Title', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{JOBSEEKER_NAME}:  <?php echo esc_html(__('Job Seeker Name', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{RESUME_APPLIED_STATUS}:  <?php echo esc_html(__('Resume current status', 'wp-job-portal')); ?></span>
                         <?php } elseif (wpjobportal::$_data[1] == 'ew-rm') { ?>
-                            <span class="wpjobportal-email-paramater">{RESUME_TITLE}:  <?php echo esc_html(__('Resume title', 'wp-job-portal')); ?></span>
-                            <span class="wpjobportal-email-paramater">{JOBSEEKER_NAME}:  <?php echo esc_html(__('Job seeker name', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{RESUME_TITLE}:  <?php echo esc_html(__('Resume Title', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{JOBSEEKER_NAME}:  <?php echo esc_html(__('Job Seeker Name', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{RESUME_LINK}:  <?php echo esc_html(__('Resume link', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{RESUME_STATUS}:  <?php echo esc_html(__('Resume  approve or reject', 'wp-job-portal')).'('.esc_html(__('Gold','wp-job-portal')) .','.esc_html(__('Featured','wp-job-portal')) . ')'; ?></span>
                         <?php } elseif (wpjobportal::$_data[1] == 'ew-rmv') { ?>
-                            <span class="wpjobportal-email-paramater">{RESUME_TITLE}:  <?php echo esc_html(__('Resume title', 'wp-job-portal')); ?></span>
-                            <span class="wpjobportal-email-paramater">{JOBSEEKER_NAME}:  <?php echo esc_html(__('Job seeker name', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{RESUME_TITLE}:  <?php echo esc_html(__('Resume Title', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{JOBSEEKER_NAME}:  <?php echo esc_html(__('Job Seeker Name', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{RESUME_LINK}:  <?php echo esc_html(__('Resume link', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{RESUME_STATUS}:  <?php echo esc_html(__('Resume  approve or reject', 'wp-job-portal')).'('.esc_html(__('Gold','wp-job-portal')) .','.esc_html(__('Featured','wp-job-portal')) . ')'; ?></span>
                         <?php } elseif (wpjobportal::$_data[1] == 'rm-sts') { ?>
-                            <span class="wpjobportal-email-paramater">{RESUME_TITLE}:  <?php echo esc_html(__('Resume title', 'wp-job-portal')); ?></span>
-                            <span class="wpjobportal-email-paramater">{JOBSEEKER_NAME}:  <?php echo esc_html(__('Job seeker name', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{RESUME_TITLE}:  <?php echo esc_html(__('Resume Title', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{JOBSEEKER_NAME}:  <?php echo esc_html(__('Job Seeker Name', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{RESUME_LINK}:  <?php echo esc_html(__('Resume link', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{RESUME_STATUS}:  <?php echo esc_html(__('Resume  approve or reject', 'wp-job-portal')).'('.esc_html(__('Gold','wp-job-portal')) .','.esc_html(__('Featured','wp-job-portal')) . ')'; ?></span>
                         <?php } elseif (wpjobportal::$_data[1] == 'ew-ms') { ?>
-                            <span class="wpjobportal-email-paramater">{RESUME_TITLE}:  <?php echo esc_html(__('Resume title', 'wp-job-portal')); ?></span>
-                            <span class="wpjobportal-email-paramater">{JOBSEEKER_NAME}:  <?php echo esc_html(__('Job seeker name', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{RESUME_TITLE}:  <?php echo esc_html(__('Resume Title', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{JOBSEEKER_NAME}:  <?php echo esc_html(__('Job Seeker Name', 'wp-job-portal')); ?></span>
                         <?php } elseif (wpjobportal::$_data[1] == 'ad-jap') { ?>
                             <span class="wpjobportal-email-paramater">{EMPLOYER_NAME}:  <?php echo esc_html(__('Employer name', 'wp-job-portal')); ?></span>
-                            <span class="wpjobportal-email-paramater">{JOBSEEKER_NAME}:  <?php echo esc_html(__('Job seeker name', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{JOBSEEKER_NAME}:  <?php echo esc_html(__('Job Seeker Name', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{JOB_TITLE}:  <?php echo esc_html(__('Job Title', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{RESUME_LINK}:  <?php echo esc_html(__('Resume link', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{RESUME_DATA}:  <?php echo esc_html(__('Resume data', 'wp-job-portal')); ?></span>
-                            <span class="wpjobportal-email-paramater">{COVER_LETTER_TITLE}:  <?php echo esc_html(__('Cover letter title', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{COVER_LETTER_TITLE}:  <?php echo esc_html(__('Cover Letter Title', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{COVER_LETTER_DESCRIPTION}:  <?php echo esc_html(__('Cover letter description', 'wp-job-portal')); ?></span>
                         <?php } elseif (wpjobportal::$_data[1] == 'ap-jap') { ?>
-                            <span class="wpjobportal-email-paramater">{JOB_TITLE}:  <?php echo esc_html(__('Job title', 'wp-job-portal')); ?></span>
-                            <span class="wpjobportal-email-paramater">{JOBSEEKER_NAME}:  <?php echo esc_html(__('Job seeker name', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{JOB_TITLE}:  <?php echo esc_html(__('Job Title', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{JOBSEEKER_NAME}:  <?php echo esc_html(__('Job Seeker Name', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{RESUME_STATUS}:  <?php echo esc_html(__('Applied resume status', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{RESUME_LINK}:  <?php echo esc_html(__('Resume link', 'wp-job-portal')); ?></span>
                         <?php }elseif(wpjobportal::$_data[1] == 'new-msg') { ?>
@@ -306,7 +306,7 @@
                             <span class="wpjobportal-email-paramater">{MESSAGE_TEXT}:  <?php echo esc_html(__('Message Text', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{ENTITY_INFO}:  <?php echo esc_html(__('Job/Resume Info', 'wp-job-portal')); ?></span>
                         <?php }elseif(wpjobportal::$_data[1] == 'ew-pk-ad' || wpjobportal::$_data[1] == 'ew-pk' || wpjobportal::$_data[1] == 'st-pk') { ?>
-                            <span class="wpjobportal-email-paramater">{USER_NAME}:  <?php echo esc_html(__('User name', 'wp-job-portal')); ?>/<?php echo esc_html(__("Agency name",'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{USER_NAME}:  <?php echo esc_html(__('User Name', 'wp-job-portal')); ?>/<?php echo esc_html(__("Agency name",'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{PACKAGE_TITLE}:  <?php echo esc_html(__('Package title', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{PACKAGE_PRICE}:  <?php echo esc_html(__('Package price', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{PACKAGE_LINK}:  <?php echo esc_html(__('View package', 'wp-job-portal')); ?></span>

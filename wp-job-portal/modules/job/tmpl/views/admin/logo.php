@@ -18,7 +18,7 @@ switch ($wpjobportal_layout) {
 	    }
 		$wpjobportal_html.= '<div class="wpjobportal-jobs-logo">
 					<a href='. esc_url_raw(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=formjob&wpjobportalid='.esc_attr($wpjobportal_job->id))).'>
-						<img src='.$wpjobportal_logo.' alt='.esc_html(__("logo",'wp-job-portal')).'>
+						<img src='.$wpjobportal_logo.' alt='.esc_html(__("Logo",'wp-job-portal')).'>
 					</a>
 				</div>';
 		break;
@@ -34,7 +34,7 @@ switch ($wpjobportal_layout) {
         }
 		$wpjobportal_html.='<div class="wpjobportal-jobs-logo">
                     <a href='. esc_url_raw(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=formjob&wpjobportalid='.esc_attr($wpjobportal_job->id).'&isqueue=1')).'>
-                    	<img src='.$wpjobportal_path.' alt='.esc_html(__("logo",'wp-job-portal')).'>
+                    	<img src='.$wpjobportal_path.' alt='.esc_html(__("Logo",'wp-job-portal')).'>
                     </a>
                 </div>';
 		break;

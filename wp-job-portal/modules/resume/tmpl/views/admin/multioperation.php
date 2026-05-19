@@ -9,8 +9,8 @@
             <input type="checkbox" name="selectall" id="selectall" value="">
             <?php echo esc_html(__('Select All', 'wp-job-portal')) ?>
         </label>
-        <a class="wpjobportal-page-quick-act-btn multioperation" message="<?php echo esc_attr(WPJOBPORTALMessages::getMSelectionEMessage()); ?>" confirmmessage="<?php echo esc_attr(__('Are you sure to delete', 'wp-job-portal')) .' ?'; ?>" data-for="removeResume" href="#" title="<?php echo esc_attr(__('delete', 'wp-job-portal')) ?>">
-            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/forced-delete.png" alt="<?php echo esc_attr(__('delete', 'wp-job-portal')) ?>" />
+        <a class="wpjobportal-page-quick-act-btn multioperation" message="<?php echo esc_attr(WPJOBPORTALMessages::getMSelectionEMessage()); ?>" confirmmessage="<?php echo esc_attr(__('Are you sure to delete', 'wp-job-portal')) .' ?'; ?>" data-for="removeResume" href="#" title="<?php echo esc_attr(__('Delete', 'wp-job-portal')) ?>">
+            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/forced-delete.png" alt="<?php echo esc_attr(__('Delete', 'wp-job-portal')) ?>" />
             <?php echo esc_html(__('Delete', 'wp-job-portal')) ?>
         </a>
         <?php
@@ -24,7 +24,7 @@
         ?>
         <div class="wpjobportal-sorting-wrp">
             <span class="wpjobportal-sort-text">
-                <?php echo esc_html(__('Sort by', 'wp-job-portal')); ?>:
+                <?php echo esc_html(__('Sort By', 'wp-job-portal')); ?>:
             </span>
             <span class="wpjobportal-sort-field">
                 <?php echo wp_kses(WPJOBPORTALformfield::select('sorting', $wpjobportal_categoryarray, wpjobportal::$_data['combosort'], '', array('class' => 'inputbox', 'onchange' => 'changeCombo();')),WPJOBPORTAL_ALLOWED_TAGS); ?>

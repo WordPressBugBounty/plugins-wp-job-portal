@@ -1946,58 +1946,6 @@ class WPJOBPORTALPostinstallationModel {
         return;
     }
 
-    function removeJobManagerDemoData(){
-        delete_option("widget_widget_woocommerce_widget_cart");
-        delete_option("widget_search");
-        delete_option("widget_recent-posts");
-        delete_option("widget_recent-comments");
-        delete_option("widget_archives");
-        delete_option("widget_categories");
-        delete_option("widget_meta");
-        delete_option("widget_calendar");
-        delete_option("widget_widget_cm_recent_comments");
-        delete_option("widget_widget_cm_recent_posts");
-        delete_option("widget_nav_menu");
-        delete_option("widget_pages");
-        delete_option("widget_tag_cloud");
-        delete_option("widget_text");
-        delete_option("widget_widget_cm_footeraboutus");
-        delete_option("widget_widget_cm_footerusefullinks");
-        delete_option("widget_widget_cm_footervehicleimages");
-        delete_option("widget_widget_cm_footercontactus");
-
-        $widget_positions = get_option("sidebars_widgets");
-        unset($widget_positions["footer1"]);
-        unset($widget_positions["footer2"]);
-        unset($widget_positions["footer3"]);
-        unset($widget_positions["footer4"]);
-        unset($widget_positions["left-sidebar"]);
-        unset($widget_positions["right-sidebar"]);
-        unset($widget_positions["news_and_rumors"]);
-
-        update_option( "sidebars_widgets" , $widget_positions);
-
-        $menu_name = "Job Manager";
-        $wpjobportal_del_flag = wp_delete_nav_menu($menu_name);
-        $menu_exists = wp_get_nav_menu_object( $menu_name );
-
-        $pages_array = get_option('job_manager_demo_pages_ids');
-        if(!empty($pages_array) && is_array($pages_array) ){
-            foreach ($pages_array as $wpjobportal_key => $wpjobportal_value) {
-                wp_delete_post($wpjobportal_value,true);
-            }
-        }
-
-        $post_array = get_option('job_manager_demo_post_ids');
-        if(!empty($post_array) && is_array($post_array) ){
-            foreach ($post_array as $wpjobportal_key => $wpjobportal_value) {
-                wp_delete_post($wpjobportal_value,true);
-            }
-        }
-        return;
-    }
-
-
     function recursiveremove($wpjobportal_dir) {
         if ( ! function_exists( 'WP_Filesystem' ) ) {
             require_once ABSPATH . 'wp-admin/includes/file.php';

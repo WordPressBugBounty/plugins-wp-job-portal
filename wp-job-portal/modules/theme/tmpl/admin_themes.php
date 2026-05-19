@@ -25,7 +25,7 @@ if (is_rtl()) {
                     <ul>
                         <li>
                             <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>"
-                                title="<?php echo esc_attr(__('dashboard', 'wp-job-portal')); ?>">
+                                title="<?php echo esc_attr(__('Dashboard', 'wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard', 'wp-job-portal')); ?>
                             </a>
                         </li>
@@ -36,7 +36,7 @@ if (is_rtl()) {
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
                     <a href="admin.php?page=wpjobportal_configuration"
-                        title="<?php echo esc_attr(__('configuration', 'wp-job-portal')); ?>">
+                        title="<?php echo esc_attr(__('Configuration', 'wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                     </a>
                 </div>
@@ -307,8 +307,7 @@ if (is_rtl()) {
                                                     <span class="wjportal-item-status" style="background:#00a859;">
                                                         <?php echo esc_html(__('Publish', 'wp-job-portal')); ?></span>
                                                     <a class="wjportal-companyname"
-                                                        href="#"><?php echo esc_html(__('Buruj
-                                                        Solution', 'wp-job-portal')); ?></a>
+                                                        href="#"><?php echo esc_html(__('Buruj Solution', 'wp-job-portal')); ?></a>
                                                 </div>
                                                 <div class="wjportal-jobs-data">
                                                     <span class="wjportal-jobs-data-text wjportal-jobs-data-icon-class-category">
@@ -416,27 +415,13 @@ if (is_rtl()) {
                                         </div>
                                     </div>
                                     <div class="wjportal-jobs-list-btm-wrp">
-                                        <div class="wjportal-jobs-action-wrp"><a
-                                                class="wjportal-jobs-act-btn wjportal-list-act-btn-edit"
-                                                job=""
-                                                href="#/10"><?php echo esc_html(__('Edit Job', 'wp-job-portal')); ?></a>
-                                            <a href="#" data-spectype="featured" id="featuredjob10"
-                                                data-anchorid="featuredjob10"
-                                                class="wjportal-jobs-act-btn  wjportal-list-act-btn-featured"
-                                                >
-                                                <?php echo esc_html(__('Add Featured ', 'wp-job-portal')); ?></a>
-                                            <a class="wjportal-jobs-act-btn wjportal-list-act-btn-delete"
-                                                href="#"
-                                                ><?php echo esc_html(__('Delete Job', 'wp-job-portal')); ?></a>
-                                            <a class="wjportal-jobs-act-btn wjportal-list-act-btn-copy-job" href="#"
-                                                >
-                                                <?php echo esc_html(__('Copy Job', 'wp-job-portal')); ?></a>
-                                            <a class="wjportal-jobs-act-btn wjportal-jobs-apply-res wjportal-list-act-btn-applied-resumes"
-                                                title="Resume"
-                                                href="#"><?php echo esc_html(__('Resume', 'wp-job-portal')); ?>
-                                                (1)</a> <a
-                                                class="wjportal-jobs-act-btn wjportal-jobs-act-btn-ai-suggested-resumes"
-                                                href="#"><?php echo esc_html(__('Suggested Resumes', 'wp-job-portal')); ?></a>
+                                        <div class="wjportal-jobs-action-wrp">
+                                            <a class="wjportal-jobs-act-btn wjportal-list-act-btn-edit" job="" href="#/10"><?php echo esc_html(__('Edit Job', 'wp-job-portal')); ?></a>
+                                            <a href="#" data-spectype="featured" id="featuredjob10" data-anchorid="featuredjob10" class="wjportal-jobs-act-btn  wjportal-list-act-btn-featured"> <?php echo esc_html(__('Add Featured', 'wp-job-portal')); ?></a>
+                                            <a class="wjportal-jobs-act-btn wjportal-list-act-btn-delete" href="#"><?php echo esc_html(__('Delete Job', 'wp-job-portal')); ?></a>
+                                            <a class="wjportal-jobs-act-btn wjportal-list-act-btn-copy-job" href="#"><?php echo esc_html(__('Copy Job', 'wp-job-portal')); ?></a>
+                                            <a class="wjportal-jobs-act-btn wjportal-jobs-apply-res wjportal-list-act-btn-applied-resumes" title="Resume"href="#"><?php echo esc_html(__('Resume', 'wp-job-portal')); ?>(1)</a>
+                                            <a class="wjportal-jobs-act-btn wjportal-jobs-act-btn-ai-suggested-resumes" href="#"><?php echo esc_html(__('Suggested Resumes', 'wp-job-portal')); ?></a>
                                         </div>
                                     </div>
                                 </div>
@@ -586,7 +571,7 @@ if (is_rtl()) {
                                                 data-anchorid="featuredjob10"
                                                 class="wjportal-jobs-act-btn  wjportal-list-act-btn-featured"
                                                 >
-                                                <?php echo esc_html(__('Add Featured ', 'wp-job-portal')); ?></a>
+                                                <?php echo esc_html(__('Add Featured', 'wp-job-portal')); ?></a>
                                             <a class="wjportal-jobs-act-btn wjportal-list-act-btn-delete"
                                                 href="#"
                                                 ><?php echo esc_html(__('Delete Job', 'wp-job-portal')); ?></a>

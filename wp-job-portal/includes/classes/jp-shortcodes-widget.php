@@ -56,7 +56,7 @@ class WPJOBPORTAL_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 						'wpjobportal_my_resumes' => __('My Resumes', 'wp-job-portal'),
 						'wpjobportal_searchjob' => __('Search Jobs', 'wp-job-portal'),
 						'wpjobportal_searchresume' => __('Search Resumes', 'wp-job-portal'),
-						'wpjobportal_jobbycategory' => __('Jobs by Category', 'wp-job-portal'),
+						'wpjobportal_jobbycategory' => __('Jobs By Categories', 'wp-job-portal'),
 	            ],
 	            'default' => 'wpjobportal_job',
 	        ]

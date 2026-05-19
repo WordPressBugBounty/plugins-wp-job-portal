@@ -21,7 +21,7 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('Dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -31,12 +31,12 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
             </div>    
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('Configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('Help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -137,7 +137,7 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
                 </div>
                 <?php if(!isset(wpjobportal::$_data[0]['userfield']->id) || ((wpjobportal::$_data[0]['userfield']->isuserfield == 1 || wpjobportal::$_data[0]['userfield']->cannotshowonlisting == 0) && !((wpjobportal::$_data[0]['userfield']->fieldfor == 3 && wpjobportal::$_data[0]['userfield']->section != 1 )))){ ?>
                 <div class="wpjobportal-form-wrapper">
-                    <div class="wpjobportal-form-title"><?php echo esc_html(__('Show on listing', 'wp-job-portal')); ?></div>
+                    <div class="wpjobportal-form-title"><?php echo esc_html(__('Show On Listing', 'wp-job-portal')); ?></div>
                     <div class="wpjobportal-form-value"><?php echo wp_kses(WPJOBPORTALformfield::select('showonlisting', $wpjobportal_yesno, isset(wpjobportal::$_data[0]['userfield']->showonlisting) ? esc_html(wpjobportal::$_data[0]['userfield']->showonlisting) : 0, '', array('class' => 'inputbox one wpjobportal-form-select-field')),WPJOBPORTAL_ALLOWED_TAGS); ?></div>
                 </div>
                 <?php } ?>

@@ -31,7 +31,7 @@ $wpjobportal_job_listing_fields = WPJOBPORTALincluder::getJSModel('fieldordering
                 $wpjobportal_enddate = date_i18n('Y-m-d',strtotime($wpjobportal_job->stoppublishing));
                 $wpjobportal_curdate = date_i18n('Y-m-d');
                 if($wpjobportal_startdate > $wpjobportal_curdate){
-                    $wpjobportal_publishstatus = esc_html(__('Not publish','wp-job-portal'));
+                    $wpjobportal_publishstatus = esc_html(__('Not Published','wp-job-portal'));
                     $wpjobportal_publishstyle = 'background:#FEA702;color:#ffffff;border:unset;';
                 }elseif($wpjobportal_startdate <= $wpjobportal_curdate && $wpjobportal_enddate >= $wpjobportal_curdate){
                     $wpjobportal_publishstatus = esc_html(__('Publish','wp-job-portal'));

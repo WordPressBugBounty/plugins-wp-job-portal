@@ -113,7 +113,7 @@ if (!defined('ABSPATH')) die('Restricted Access');
             html += '</span>';
             html += '</span>';
             jQuery('div.object_' + cid).append(html);
-            jQuery('div.wjportal-page-header').append(\"<div class='  frontend updated'><p>". esc_html(__('Resume Has Been Feature SuccessFully', 'wp-job-portal'))."</p></div>\");
+            jQuery('div.wjportal-page-header').append(\"<div class='  frontend updated'><p>". esc_html(__('Resume has been successfully featured', 'wp-job-portal'))."</p></div>\");
         }
     }
     ";

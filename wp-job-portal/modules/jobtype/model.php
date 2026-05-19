@@ -228,23 +228,6 @@ class WPJOBPORTALJobtypeModel {
         return $wpjobportal_rows;
     }
 
-    function getJobTypeForRadio() {
-        $query = "SELECT id, title AS text FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` WHERE isactive = 1";
-        $query.= " ORDER BY ordering ASC ";
-
-        $wpjobportal_rows = wpjobportaldb::get_results($query);
-
-        $wpjobportal_comboOptions = array();
-        foreach ($wpjobportal_rows as $wpjobportal_value) {
-            $wpjobportal_comboOptions[$wpjobportal_value->id] = $wpjobportal_value->text;
-        }
-        if (wpjobportal::$_db->last_error != null) {
-
-            return false;
-        }
-        return $wpjobportal_comboOptions;
-    }
-
     function isJobTypesExist($title) {
         if (!$title)
             return false;
@@ -266,13 +249,6 @@ class WPJOBPORTALJobtypeModel {
     function getTitleByid($wpjobportal_id) {
         if(!is_numeric($wpjobportal_id)) return false;
         $query = "SELECT title FROM " . wpjobportal::$_db->prefix . "wj_portal_jobtypes WHERE id = " . esc_sql($wpjobportal_id);
-        $title = wpjobportaldb::get_var($query);
-        return $title;
-    }
-
-    function getIDByTitle($title) {
-        if($title == '') return false;
-        $query = "SELECT id FROM " . wpjobportal::$_db->prefix . "wj_portal_jobtypes WHERE title = '" . esc_sql($title) ."'";
         $title = wpjobportaldb::get_var($query);
         return $title;
     }

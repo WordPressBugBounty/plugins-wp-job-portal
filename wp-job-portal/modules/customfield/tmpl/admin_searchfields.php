@@ -91,7 +91,7 @@
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('Dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -101,12 +101,12 @@
             </div>
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('Configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('Help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -169,21 +169,21 @@
                                         </td>
                                         <td  >
                                              <?php if($wpjobportal_row->search_user == 1){ ?>
-                                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" alt="<?php echo esc_attr(__('published', 'wp-job-portal')); ?>" title="<?php echo esc_attr(__('published', 'wp-job-portal')); ?>" />
+                                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" alt="<?php echo esc_attr(__('Published', 'wp-job-portal')); ?>" title="<?php echo esc_attr(__('published', 'wp-job-portal')); ?>" />
                                              <?php }else{ ?>
-                                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" alt="<?php echo esc_attr(__('unpublished', 'wp-job-portal')); ?>" />
+                                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" alt="<?php echo esc_attr(__('Unpublished', 'wp-job-portal')); ?>" />
                                              <?php } ?>
                                         </td>
                                         <td  >
                                             <?php if($wpjobportal_row->search_visitor == 1){ ?>
-                                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" alt="<?php echo esc_attr(__('published', 'wp-job-portal')); ?>" title="<?php echo esc_attr(__('published', 'wp-job-portal')); ?>" />
+                                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/good.png" alt="<?php echo esc_attr(__('Published', 'wp-job-portal')); ?>" title="<?php echo esc_attr(__('published', 'wp-job-portal')); ?>" />
                                             <?php }else{ ?>
-                                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" alt="<?php echo esc_attr(__('unpublished', 'wp-job-portal')); ?>" title="<?php echo esc_attr(__('unpublished', 'wp-job-portal')); ?>" />
+                                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/close.png" alt="<?php echo esc_attr(__('Unpublished', 'wp-job-portal')); ?>" title="<?php echo esc_attr(__('Unpublished', 'wp-job-portal')); ?>" />
                                             <?php } ?>
                                         </td>
                                         <td>
-                                            <a class="wpjobportal-table-act-btn" href="#" onclick="showPopupAndSetValues(<?php echo esc_js($wpjobportal_row->id); ?>,'<?php echo esc_js($wpjobportal_row->fieldtitle);?>', <?php echo esc_js($wpjobportal_row->search_user);?>, <?php echo esc_js($wpjobportal_row->search_visitor);?>)" title="<?php echo esc_attr(__('edit', 'wp-job-portal')); ?>">
-                                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/edit.png" alt="<?php echo esc_attr(__('edit', 'wp-job-portal')); ?>" title="<?php echo esc_attr(__('edit', 'wp-job-portal')); ?>">
+                                            <a class="wpjobportal-table-act-btn" href="#" onclick="showPopupAndSetValues(<?php echo esc_js($wpjobportal_row->id); ?>,'<?php echo esc_js($wpjobportal_row->fieldtitle);?>', <?php echo esc_js($wpjobportal_row->search_user);?>, <?php echo esc_js($wpjobportal_row->search_visitor);?>)" title="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>">
+                                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/edit.png" alt="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>" title="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>">
                                             </a>
                                         </td>
                                     </tr>

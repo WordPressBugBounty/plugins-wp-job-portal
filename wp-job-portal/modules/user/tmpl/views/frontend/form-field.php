@@ -196,7 +196,7 @@ foreach ($wpjobportal_fieldslist AS $wpjobportal_field) {
             <?php echo esc_html(__('Password Again','wp-job-portal')); ?> <font>*</font>
         </div>
         <div class="wjportal-form-value">
-            <input name="wpjobportal_user_pass_confirm" id="password_again" data-validation="required" class="required wjportal-form-input-field" type="password" placeholder="<?php echo esc_attr(__('Password again','wp-job-portal')); ?>"/>
+            <input name="wpjobportal_user_pass_confirm" id="password_again" data-validation="required" class="required wjportal-form-input-field" type="password" placeholder="<?php echo esc_attr(__('Password Again','wp-job-portal')); ?>"/>
         </div>
     </div>
     <div class="wjportal-form-row wjportal-form-roles">

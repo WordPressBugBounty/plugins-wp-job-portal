@@ -18,7 +18,7 @@ die('Restricted Access');
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('Dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -28,12 +28,12 @@ die('Restricted Access');
             </div>
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('Configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('Help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -89,8 +89,8 @@ die('Restricted Access');
                         <span class="wpjobportal-plugins-imprt-data-plgnnme"><?php echo esc_html($plugin['name']); ?></span>
                         <?php if($wpjobportal_extr_clss != ''){ ?>
                             <span class="wpjobportal-plugins-imprt-databtn">
-                                <img class="wpjobportal-plugins-imprterror-image" alt="<?php echo esc_attr(__('icon','wp-job-portal')); ?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/imprt-icon.png" />
-                                <?php echo esc_html(__('Plugin not installed','wp-job-portal')); ?>
+                                <img class="wpjobportal-plugins-imprterror-image" alt="<?php echo esc_attr(__('Icons','wp-job-portal')); ?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/imprt-icon.png" />
+                                <?php echo esc_html(__('Plugin Not Installed','wp-job-portal')); ?>
                             </span>
                         <?php }else{ ?>
                             <a class="wpjobportal-plugins-imprt-databtn" href="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_thirdpartyimport&wpjobportallt=importdata&selected_plugin=".$plugin['internalid'])); ?>" title="<?php echo esc_attr(__('Fetch Data','wp-job-portal')); ?>"><?php echo esc_html(__('Fetch Data','wp-job-portal')); ?></a>
@@ -125,7 +125,7 @@ die('Restricted Access');
                                     }
                                     if($wpjobportal_extr_clss != ''){ ?>
                                     <span class="wpjobportal-singleplugin-imprt-data-addonnot-instll">
-                                        <img class="wpjobportal-plugins-imprterror-image" alt="<?php echo esc_attr(__('icon','wp-job-portal')); ?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/imprt-icon.png" />
+                                        <img class="wpjobportal-plugins-imprterror-image" alt="<?php echo esc_attr(__('Icons','wp-job-portal')); ?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/imprt-icon.png" />
                                         <?php echo esc_html(__('Addon not installed please install addon first.','wp-job-portal')); ?>
 
                                     </span> <?php

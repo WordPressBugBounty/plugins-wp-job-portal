@@ -29,7 +29,7 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_html(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_html(__('Dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -39,12 +39,12 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
             </div>
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_html(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_html(__('Configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_html(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_html(__('Help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -58,7 +58,7 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
         <?php WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('wpjobportal_module' => 'wpjobportal' , 'wpjobportal_layouts' => 'playground')); ?>
 
         <div id="wpjobportal-admin-wrapper" class="wpjobportal-admin-config-wrapper">
-            <div id="wpjobportaladmin-wrapper" class="wpjobportaladmin-wrapper">
+            <div  class="wpjobportaladmin-wrapper">
                 <div class="wpjobportaladmin-body-main">
 
 
@@ -121,7 +121,7 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
                                             </div>
                                             <div class="wpjp-zywrap-jp-chosen-wrap wpjp-zywrap-jp-chosen-wrap-search-results">
                                                 <select id="wpjp-search-wrapper-select" name="wpjp-search-wrapper-select" class="inputbox dark-select wpjp-zywrap-jp-chosen">
-                                                    <option value=""><?php echo esc_html(__('-- Search Results --', 'wp-job-portal')); ?></option>
+                                                    <option value=""><?php echo esc_html(__('Search Results', 'wp-job-portal')); ?></option>
                                                 </select>
                                             </div>
                                         </div>
@@ -133,7 +133,7 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
                                             </label>
                                             <div id="zywrap_category_parent">
                                                 <select id="zywrap_category" name="zywrap_category" class="inputbox dark-select wpjp-zywrap-jp-chosen">
-                                                    <option value=""><?php echo esc_html(__('-- Select Category --', 'wp-job-portal')); ?></option>
+                                                    <option value=""><?php echo esc_html(__('Select Category', 'wp-job-portal')); ?></option>
                                                     <?php foreach ($wpjobportal_categories as $wpjobportal_option) : ?>
                                                         <option value="<?php echo esc_attr($wpjobportal_option->code); ?>"><?php echo esc_html($wpjobportal_option->name); ?></option>
                                                     <?php endforeach; ?>
@@ -171,7 +171,7 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
                                             </div>
                                             <div id="zywrap_wrapper_parent">
                                                 <select id="zywrap_wrapper" name="zywrap_wrapper" class="inputbox dark-select wpjp-zywrap-jp-chosen" disabled>
-                                                    <option value=""><?php echo esc_html(__('-- Select Category First --', 'wp-job-portal')); ?></option>
+                                                    <option value=""><?php echo esc_html(__('Select Category First', 'wp-job-portal')); ?></option>
                                                 </select>
                                             </div>
                                             <div id="wpjp_zywrap_wrapper_count" >
@@ -198,7 +198,7 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
                                         </label>
                                         <div id="zywrap_model_parent">
                                             <select id="zywrap_model" name="zywrap_model" class="inputbox dark-select wpjp-zywrap-jp-chosen">
-                                                <option value=""><?php echo esc_html(__('-- Select Model --', 'wp-job-portal')); ?></option>
+                                                <option value=""><?php echo esc_html(__('Select Model', 'wp-job-portal')); ?></option>
                                                 <?php
                                                 $wpjobportal_first_model = true;
                                                 foreach ($wpjobportal_models as $wpjobportal_option) : ?>
@@ -216,7 +216,7 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
                                         <label class="input-label"><?php echo esc_html(__('Language', 'wp-job-portal')); ?><span>(<?php echo esc_html(__('Optional', 'wp-job-portal')); ?>)</span></label>
                                         <div id="zywrap_language_parent">
                                             <select id="zywrap_language" name="zywrap_language" class="inputbox dark-select wpjp-zywrap-jp-chosen">
-                                                <option value=""><?php echo esc_html(__('-- Default (English) --', 'wp-job-portal')); ?></option>
+                                                <option value=""><?php echo esc_html(__('Default (English)', 'wp-job-portal')); ?></option>
                                                 <?php foreach ($wpjobportal_languages as $wpjobportal_option) : ?>
                                                     <option value="<?php echo esc_attr($wpjobportal_option->code); ?>"><?php echo esc_html($wpjobportal_option->name); ?></option>
                                                 <?php endforeach; ?>
@@ -260,10 +260,10 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
                                                     ?>
                                                         <div id="<?php echo esc_attr($id); ?>_parent" class="wpjp-zywrap-jp-chosen-wrap">
                                                             <select id="<?php echo esc_attr($id); ?>" name="<?php echo esc_attr($id); ?>" class="inputbox wpjobportal-form-select-field wpjp-zywrap-jp-chosen">
-                                                                <option value=""><?php echo esc_html($field['label'] . ' (Default)'); ?></option>
+                                                                <option value=""><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($field['label']) . ' (Default)'); ?></option>
                                                                 <?php if(!empty($field['data']) && is_array($field['data'])): ?>
                                                                     <?php foreach ($field['data'] as $opt) : ?>
-                                                                        <option value="<?php echo esc_attr($opt['code']); ?>"><?php echo esc_html($opt['name']); ?></option>
+                                                                        <option value="<?php echo esc_attr($opt['code']); ?>"><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($opt['name'])); ?></option>
                                                                     <?php endforeach; ?>
                                                                 <?php endif; ?>
                                                             </select>
@@ -289,7 +289,7 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
                                         </div>
                                         <div class="wpjobportal-input-group" style="display: flex; flex-direction: column;">
                                             <div id="zywrap-schema-container"></div>
-                                            <textarea id="zywrap_prompt" class="dark-textarea" placeholder="Enter your main prompt here..."></textarea>
+                                            <textarea id="zywrap_prompt" class="dark-textarea" placeholder="<?php echo esc_attr__('Enter your main prompt here...', 'wp-job-portal'); ?>"></textarea>
                                             <div class="zywrap-run-btn-wrapper">
                                                 <button type="button" id="zywrap-run-button" class="btn btn-primary button-hero">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:18px;height:18px;"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" /></svg>
@@ -422,11 +422,11 @@ jQuery(document).ready(function($) {
         var wrapperSelect = $('#zywrap_wrapper');
 
         if (!categoryCode) {
-            wrapperSelect.empty().append('<option value=\"\">". esc_html(__('-- Select Category First --', 'wp-job-portal'))."</option>').prop('disabled', true).trigger('change');
+            wrapperSelect.empty().append('<option value=\"\">". esc_html(__('Select Category First', 'wp-job-portal'))."</option>').prop('disabled', true).trigger('change');
             return;
         }
 
-        wrapperSelect.prop('disabled', true).empty().append('<option value=\"\">" . esc_js(__('Loading...', 'wp-job-portal')) . "</option>').trigger('change');
+        wrapperSelect.prop('disabled', true).empty().append('<option value=\"\">" . esc_js(__('Loading', 'wp-job-portal')) . "...</option>').trigger('change');
 
         $.post(ajaxurl, {
             action: 'wpjobportal_ajax',
@@ -439,7 +439,7 @@ jQuery(document).ready(function($) {
             '_wpnonce': '" . esc_attr(wp_create_nonce("zywrap_get_wrappers")) . "'
         }, function(response) {
             if (response.success) {
-                wrapperSelect.empty().append('<option value=\"\">". esc_html(__('-- Select Wrapper --', 'wp-job-portal'))."</option>');
+                wrapperSelect.empty().append('<option value=\"\">". esc_html(__('Select Wrapper', 'wp-job-portal'))."</option>');
                 select_value_wrap = '';
                 response.data.forEach(function(wrapper) {
                     // wrapperSelect.append($('<option>', {
@@ -480,7 +480,7 @@ jQuery(document).ready(function($) {
                 updateRecordCounts();
                 $('#zywrap-wrapper-loader').hide();
             } else {
-                wrapperSelect.empty().append('<option value=\"\">". esc_html(__('-- Error Loading --', 'wp-job-portal'))."</option>').trigger('change');
+                wrapperSelect.empty().append('<option value=\"\">". esc_html(__('Error Loading', 'wp-job-portal'))."</option>').trigger('change');
             }
         });
         // wrapperSelect.on('change', function () {
@@ -543,7 +543,7 @@ jQuery(document).ready(function($) {
                     if (!schema || (!schema.req && !schema.opt)) return;
 
                     var html = '';
-                    promptLabel.text('" . esc_js(__('Additional Free-form Instructions', 'wp-job-portal')) . "');
+                    promptLabel.text('" . esc_js(__('Additional Free-form Instructions.', 'wp-job-portal')) . "');
 
                     // Helper function to build collapsible sections
                     var buildSection = function(title, data, isOpen) {
@@ -895,7 +895,7 @@ jQuery(document).ready(function($) {
             drop_down_select.empty();
             var record_count = filtered.length;
             if(record_count == 0){
-                var option_message = '" . esc_js(__("No record Found.", "wp-job-portal")) . "';
+                var option_message = '" . esc_js(__("No Records Found", "wp-job-portal")) . "';
             }else if(record_count == 100){
                 var option_message = '" . esc_js(__("100+ records Found.", "wp-job-portal")) . "';
             }else{

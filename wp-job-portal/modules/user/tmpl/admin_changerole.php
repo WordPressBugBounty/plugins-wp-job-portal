@@ -16,7 +16,7 @@ $wpjobportal_role = wpjobportal::$_data[0];
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('Dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -26,12 +26,12 @@ $wpjobportal_role = wpjobportal::$_data[0];
             </div>    
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('Configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('Help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -45,7 +45,7 @@ $wpjobportal_role = wpjobportal::$_data[0];
         <?php WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('wpjobportal_module' => 'user' ,'wpjobportal_layouts' => 'userform')); ?>
         <!-- page content -->
         <div id="wpjobportal-admin-wrapper">
-            <span class="wpjobportal-page-description" ><?php echo esc_html(__("Changing a user's role will not remove its entites from the system !","wp-job-portal")); ?> </span>
+            <span class="wpjobportal-page-description" ><?php echo esc_html(__("Changing a user's role will not remove its entities from the system !","wp-job-portal")); ?> </span>
 		    <form id="wpjobportal-form" class="wpjobportal-form" method="post" action="<?php echo esc_url(wp_nonce_url(admin_url("admin.php?page=wpjobportal_user&task=saveuserrole"),'wpjobportal_user_nonce')); ?>">
 		       <?php WPJOBPORTALincluder::getTemplate('user/views/admin/form-field',array('wpjobportal_role' => $wpjobportal_role)); ?>
 		    </form>

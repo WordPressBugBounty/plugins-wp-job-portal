@@ -105,7 +105,7 @@ $wpjobportal_resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[
                                     canupload = 1;
                                     k++;
                                 } else{
-                                    reason = \"". esc_html(__('File extension mismatch', 'wp-job-portal'))."\";
+                                    reason = \"". esc_html(__('File extension is mismatched', 'wp-job-portal'))."\";
                                 }
                             } else{
                                 reason = \"". esc_html(__('File size exceeds limit', 'wp-job-portal'))."\";
@@ -816,7 +816,7 @@ $wpjobportal_resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[
                 }
             } else{
                 jQuery('input#photo').replaceWith(jQuery('input#photo').val('').clone(true));
-                alert(\"". esc_html(__("File ext. is mismatched", 'wp-job-portal'))."\");
+                alert(\"". esc_html(__("File extension is mismatched", 'wp-job-portal'))."\");
             }
         }
     }

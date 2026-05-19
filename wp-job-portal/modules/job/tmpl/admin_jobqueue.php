@@ -139,7 +139,7 @@
                 <div id="wpjobportal-breadcrumbs">
                     <ul>
                         <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('dashboard','wp-job-portal')); ?>">
+                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('Dashboard','wp-job-portal')); ?>">
                                 <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
                             </a>
                         </li>
@@ -149,12 +149,12 @@
             </div>
             <div id="wpjobportal-wrapper-top-right">
                 <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('configuration','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('Configuration','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
                    </a>
                 </div>
                 <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('help','wp-job-portal')); ?>">
+                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('Help','wp-job-portal')); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
                    </a>
                 </div>
@@ -176,8 +176,8 @@
                     <input type="checkbox" name="selectall" id="selectall" value="">
                     <?php echo esc_html(__('Select All', 'wp-job-portal')) ?>
                 </label>
-                <a class="wpjobportal-page-quick-act-btn multioperation" message="<?php echo esc_attr(WPJOBPORTALMessages::getMSelectionEMessage()); ?>" confirmmessage="<?php echo esc_attr(__('Are you sure to delete', 'wp-job-portal')) .' ?'; ?>" data-for="remove" href="#" title="<?php echo esc_attr(__('delete', 'wp-job-portal')); ?>">
-                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/forced-delete.png" alt="<?php echo esc_attr(__('delete', 'wp-job-portal')); ?>" />
+                <a class="wpjobportal-page-quick-act-btn multioperation" message="<?php echo esc_attr(WPJOBPORTALMessages::getMSelectionEMessage()); ?>" confirmmessage="<?php echo esc_attr(__('Are you sure to delete', 'wp-job-portal')) .' ?'; ?>" data-for="remove" href="#" title="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>">
+                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/forced-delete.png" alt="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>" />
                     <?php echo esc_html(__('Delete', 'wp-job-portal')) ?>
                 </a>
                 <!-- sorting -->
@@ -192,7 +192,7 @@
                 ?>
                 <div class="wpjobportal-sorting-wrp">
                     <span class="wpjobportal-sort-text">
-                        <?php echo esc_html(__('Sort by', 'wp-job-portal')); ?>:
+                        <?php echo esc_html(__('Sort By', 'wp-job-portal')); ?>:
                     </span>
                     <span class="wpjobportal-sort-field">
                         <?php echo wp_kses(WPJOBPORTALformfield::select('sorting', $wpjobportal_categoryarray, wpjobportal::$_data['combosort'], '', array('class' => 'inputbox', 'onchange' => 'changeCombo();')),WPJOBPORTAL_ALLOWED_TAGS); ?>
@@ -280,7 +280,7 @@
                         }
                     }
                 } else {
-                    $wpjobportal_msg = esc_html(__('No record found','wp-job-portal'));
+                    $wpjobportal_msg = esc_html(__('No Records Found','wp-job-portal'));
                     WPJOBPORTALlayout::getNoRecordFound($wpjobportal_msg);
                 }
             ?>
