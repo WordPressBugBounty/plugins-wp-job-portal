@@ -400,5 +400,22 @@ if (!defined('WPJOBPORTAL_FILE_TYPE_ERROR')) {
         'img'        => array( 'src' => array(), 'alt' => array(), 'width' => array(), 'height' => array() ),
         'a'          => array( 'href' => array(), 'title' => array(), 'target' => array() ),
     ));
+
+    define(
+        'WPJOBPORTAL_DEFAULT_LANGUAGES',
+            array(
+                'ar',
+                'de_DE',
+                'el',
+                'es_ES',
+                'fr_FR',
+                'it_IT',
+                'ja_JP',
+                'pt_BR',
+                'ru_RU',
+                'zh_CN',
+            )
+    );
+
 }
 ?>

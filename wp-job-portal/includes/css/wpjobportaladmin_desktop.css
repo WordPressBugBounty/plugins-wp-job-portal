@@ -9014,3 +9014,109 @@ div#wpjobportaladmin-wrapper .wpjobportal-jobs-list{
 .wpjobportal-slug-description-text{
         text-transform: capitalize;
     }
+/* Container Spacing */
+#wpjobportal-admin-wrapper.wpjobportal-admin-system-error-layout .wjp-error-cell {
+    max-width: 650px; /* Widened slightly to give URLs more room */
+    font-size: var(--wjp-font-size-sm);
+    line-height: 1.5;
+    color: var(--text-color);
+}
+
+/* Rows & Spacing */
+#wpjobportal-admin-wrapper.wpjobportal-admin-system-error-layout .wjp-error-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+/* Badges / Pills */
+#wpjobportal-admin-wrapper.wpjobportal-admin-system-error-layout .wjp-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: var(--wjp-border-radius-sm);
+    font-size: var(--wjp-font-size-xs);
+    font-weight: var(--wjp-font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+#wpjobportal-admin-wrapper.wpjobportal-admin-system-error-layout .wjp-badge-danger {
+    background-color: var(--wjp-color-danger-bg);
+    color: var(--wjp-color-danger-text);
+}
+
+#wpjobportal-admin-wrapper.wpjobportal-admin-system-error-layout .wjp-badge-slate {
+    background-color: var(--wjp-color-slate-bg);
+    color: var(--wjp-color-slate);
+}
+
+/* Text Formatting */
+#wpjobportal-admin-wrapper.wpjobportal-admin-system-error-layout .wjp-error-text {
+    font-weight: var(--wjp-font-weight-medium);
+    color: var(--wjp-text-dark);
+}
+
+#wpjobportal-admin-wrapper.wpjobportal-admin-system-error-layout .wjp-url-text {
+    color: var(--wjp-text-light);
+    word-break: break-all;
+    margin-top: 1px;
+}
+
+/* Summary Toggle */
+#wpjobportal-admin-wrapper.wpjobportal-admin-system-error-layout .wjp-error-details summary {
+    cursor: pointer;
+    margin-top: 12px;
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    color: var(--wjp-color-primary);
+    font-weight: var(--wjp-font-weight-medium);
+    transition: color 0.2s ease;
+}
+
+#wpjobportal-admin-wrapper.wpjobportal-admin-system-error-layout .wjp-error-details summary:hover {
+    color: var(--wjp-color-primary-dark);
+}
+
+/* Expanded Box */
+#wpjobportal-admin-wrapper.wpjobportal-admin-system-error-layout .wjp-error-expanded {
+    margin-top: 10px;
+    padding: 16px;
+    background-color: var(--wjp-bg-body);
+    border: 1px solid var(--wjp-border-color);
+    border-radius: var(--wjp-border-radius);
+    box-shadow: var(--wjp-shadow);
+}
+
+/* Code Groups inside expanded area */
+#wpjobportal-admin-wrapper.wpjobportal-admin-system-error-layout .wjp-code-group {
+    margin-bottom: 12px;
+}
+#wpjobportal-admin-wrapper.wpjobportal-admin-system-error-layout .wjp-code-group:last-child {
+    margin-bottom: 0;
+}
+
+#wpjobportal-admin-wrapper.wpjobportal-admin-system-error-layout .wjp-code-title {
+    font-size: var(--wjp-font-size-xs);
+    font-weight: var(--wjp-font-weight-bold);
+    color: var(--wjp-text-medium);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+}
+
+/* Code Blocks */
+#wpjobportal-admin-wrapper.wpjobportal-admin-system-error-layout .wjp-code-block {
+    font-family: monospace;
+    font-size: 12px;
+    background-color: var(--wjp-bg-card);
+    color: var(--wjp-text-dark);
+    padding: 10px;
+    border: 1px solid var(--wjp-border-color);
+    border-radius: var(--wjp-border-radius-sm);
+    word-break: break-all;      
+    white-space: pre-wrap;      
+    max-height: 180px;          
+    overflow-y: auto;           
+}

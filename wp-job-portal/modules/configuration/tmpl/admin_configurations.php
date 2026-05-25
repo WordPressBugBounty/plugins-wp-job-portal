@@ -160,6 +160,13 @@ foreach ($wpjobportal_roles as $wpjobportal_key => $wpjobportal_value) {
     $wpjobportal_user_roles[] = (object) array('id' => $wpjobportal_key, 'text' => $wpjobportal_value);
 }
 
+$wpjobportal_options_job_alert_types = [
+    (object) ['id' => 1, 'text' => __('Daily', 'wp-job-portal')],
+    (object) ['id' => 2, 'text' => __('Weekly', 'wp-job-portal')],
+    (object) ['id' => 3, 'text' => __('Monthly', 'wp-job-portal')],
+    (object) ['id' => 4, 'text' => __('Instant (As soon as job is posted)', 'wp-job-portal')]
+];
+
 $wpjobportal_settings_config = [
 
     // ========================================================
@@ -697,6 +704,9 @@ $wpjobportal_settings_config = [
                     ['id' => 'overwrite_jobalert_settings', 'label' => __('Enable Job Alerts for Visitors', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['overwrite_jobalert_settings'], 'tooltip' => __('Allow non-logged-in users to sign up for job alerts', 'wp-job-portal'), 'options' => $wpjobportal_options_yesno],
                     ['id' => 'jobalert_auto_approve', 'label' => __('Job Alert Auto Approve', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['jobalert_auto_approve'], 'tooltip' => __('Automatically approve new job alerts upon creation', 'wp-job-portal'), 'options' => $wpjobportal_options_yesno],
                     ['id' => 'job_alert_captcha', 'label' => __('Captcha on Visitor Job Alert Form', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['job_alert_captcha'], 'tooltip' => __('Show a captcha on the job alert sign-up form for visitors', 'wp-job-portal'), 'options' => $wpjobportal_options_yesno, 'pro' => ['slug' => 'tellfriend', 'name' => __('Tell A Friend', 'wp-job-portal')]],
+                    // new configs
+                    ['id' => 'job_alert_admin_report', 'label' => __('Admin Email Report on Job Alerts', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['job_alert_admin_report'] ?? '0', 'tooltip' => __('Receive an email report when job alerts are triggered.', 'wp-job-portal'), 'options' => $wpjobportal_options_yesno, 'pro' => ['slug' => 'jobalert', 'name' => __('Job Alert', 'wp-job-portal')]],
+                    ['id' => 'job_alert_allowed_types', 'label' => __('Allowed Job Alert Types', 'wp-job-portal'), 'type' => 'multicheckbox', 'value' => wpjobportal::$_data[0]['job_alert_allowed_types'] ?? '1,2,3,4', 'tooltip' => __('Select which job alert frequency options are available to users.', 'wp-job-portal'), 'options' => $wpjobportal_options_job_alert_types, 'pro' => ['slug' => 'jobalert', 'name' => __('Job Alert', 'wp-job-portal')]],
                 ]
             ],
             // 'saved_searches' => [
@@ -1052,6 +1062,18 @@ function wpjobportal_wjp_render_setting_field($wpjobportal_field, $wpjobportal_c
                     }
                     $base_control_html = '<select class="wjp-form-select" disabled><option>' . esc_html($wpjobportal_first_option_label) . '</option></select>';
                     break;
+                case 'multicheckbox':
+                    $base_control_html = '<div class="wjp-multicheckbox-group" style="opacity: 0.6;">';
+                    if (isset($wpjobportal_field['options']) && is_array($wpjobportal_field['options'])) {
+                        foreach ($wpjobportal_field['options'] as $opt) {
+                            $opt_text = is_object($opt) ? $opt->text : (is_array($opt) ? $opt['text'] : $opt);
+                            $base_control_html .= '<label class="wjp-checkbox-label" style="display:inline-flex; align-items:center; margin-right:15px; margin-top:8px;">';
+                            $base_control_html .= '<input type="checkbox" disabled style="margin-right:5px;"> ' . esc_html($opt_text);
+                            $base_control_html .= '</label>';
+                        }
+                    }
+                    $base_control_html .= '</div>';
+                break;
                 default:
                     $base_control_html = '<input type="text" class="wjp-form-input" disabled>';
                     break;
@@ -1082,6 +1104,22 @@ function wpjobportal_wjp_render_setting_field($wpjobportal_field, $wpjobportal_c
                 <input type="hidden" name="' . $wpjobportal_field_name . '" value="0">' . '
                 <input type="checkbox" id="' . $wpjobportal_field_id . '" name="' . $wpjobportal_field_name . '" value="1" ' . $wpjobportal_checked . '><span class="wjp-toggle-slider"></span></label>';
                 break;
+            case 'multicheckbox':
+                $wpjobportal_control_html = '<div class="wjp-multicheckbox-group">';
+                $wpjobportal_control_html .= '<input type="hidden" id="' . esc_attr($wpjobportal_field_id) . '" name="' . esc_attr($wpjobportal_field_name) . '" value="' . esc_attr($wpjobportal_value) . '">';
+                $current_values = !empty($wpjobportal_value) ? explode(',', $wpjobportal_value) : [];
+                if (isset($wpjobportal_field['options']) && is_array($wpjobportal_field['options'])) {
+                    foreach ($wpjobportal_field['options'] as $opt) {
+                        $opt_id = is_object($opt) ? $opt->id : (is_array($opt) ? $opt['id'] : $opt);
+                        $opt_text = is_object($opt) ? $opt->text : (is_array($opt) ? $opt['text'] : $opt);
+                        $checked = in_array((string)$opt_id, $current_values) ? 'checked' : '';
+                        $wpjobportal_control_html .= '<label class="wjp-checkbox-label" style="display:inline-flex; align-items:center; margin-right:15px; margin-top:8px; cursor:pointer;">';
+                        $wpjobportal_control_html .= '<input type="checkbox" class="wjp-multicheck-item" value="' . esc_attr($opt_id) . '" style="margin-right:5px;" ' . $checked . '> ' . esc_html($opt_text);
+                        $wpjobportal_control_html .= '</label>';
+                    }
+                }
+                $wpjobportal_control_html .= '</div>';
+            break;
             case 'seo_tags':
                 $available_tags_json = esc_attr(json_encode($wpjobportal_field['available_tags']));
                 $wpjobportal_control_html = '
@@ -1572,7 +1610,20 @@ $wpjp_config_js = '
             let value;
 
             if ($wpjobportal_target.is("input[type=checkbox]")) {
-                value = $wpjobportal_target.is(":checked") ? "1" : "0";
+                if ($wpjobportal_target.hasClass("wjp-multicheck-item")) {
+                    // Handle the new multicheckbox type
+                    const $group = $wpjobportal_target.closest(".wjp-multicheckbox-group");
+                    const vals = [];
+                    $group.find(".wjp-multicheck-item:checked").each(function() {
+                        vals.push($(this).val());
+                    });
+                    value = vals.join(",");
+                    // Sync with the hidden input
+                    $group.find("input[type=hidden]").val(value);
+                } else {
+                    // Standard toggle switch fallback
+                    value = $wpjobportal_target.is(":checked") ? "1" : "0";
+                }
             } else if ($wpjobportal_target.is(".wjp-btn-segment")) {
                 value = $wpjobportal_target.data("value");
                 $wpjobportal_target.addClass("active").siblings().removeClass("active");

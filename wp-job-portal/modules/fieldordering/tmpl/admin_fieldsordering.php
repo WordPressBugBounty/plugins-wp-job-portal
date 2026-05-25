@@ -72,7 +72,7 @@ wp_enqueue_script('jquery-multisortable',esc_url(WPJOBPORTAL_PLUGIN_URL).'/inclu
                 // if(in_array('customfield', wpjobportal::$_active_addons)){
                 //     do_action('wpjobportal_addons_customFields_addUser',wpjobportal::$wpjobportal_data['fieldfor']);
                 // }else{
-                if(wpjobportal::$wpjobportal_data['fieldfor'] != 5){
+                if(wpjobportal::$wpjobportal_data['fieldfor'] != 5 && wpjobportal::$wpjobportal_data['fieldfor'] != 6){
                     echo '<a class="wpjobportal-add-link button" href="?page=wpjobportal_customfield&wpjobportallt=formuserfield&ff='.esc_attr(wpjobportal::$wpjobportal_data['fieldfor']).'" title='. esc_html(__('Add User Field','wp-job-portal')).'>
                             <img src='.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/plus-icon.png>
                             '. esc_html(__('Add User Field','wp-job-portal')).'

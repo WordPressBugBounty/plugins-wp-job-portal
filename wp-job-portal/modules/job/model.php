@@ -236,6 +236,12 @@ class WPJOBPORTALjobModel {
             return WPJOBPORTAL_APPROVE_ERROR;
         }
         WPJOBPORTALincluder::getJSModel('emailtemplate')->sendMail(2, 3, $wpjobportal_id); // 2 for job,3 for Approve or reject Job
+        // if job is new and status is apprvoed (instantly sending job alert implimentation)
+
+        // Do NOT send emails here. Schedule a one-time background event immediately.
+        // Pass the newly created $job_id to the background processor.
+        wp_schedule_single_event(time(), 'wpjobportal_trigger_instant_alerts', array($wpjobportal_id));
+
         return WPJOBPORTAL_APPROVED;
     }
 
@@ -1249,6 +1255,13 @@ class WPJOBPORTALjobModel {
 
         if ($wpjobportal_data['id'] == '') {
             WPJOBPORTALincluder::getJSModel('emailtemplate')->sendMail(2, 1, $wpjobportal_row->id); // 2 for Job,1 for add new Job
+            // SEND mail code is only execurted for new job case
+            // if job is new and status is apprvoed (instantly sending job alert implimentation)
+            if(!empty($wpjobportal_data['status']) && $wpjobportal_data['status'] == 1){
+                // Do NOT send emails here. Schedule a one-time background event immediately.
+                // Pass the newly created $job_id to the background processor.
+                wp_schedule_single_event(time(), 'wpjobportal_trigger_instant_alerts', array($wpjobportal_row->id));
+            }
         } else {
             $wpjobportal_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
         }

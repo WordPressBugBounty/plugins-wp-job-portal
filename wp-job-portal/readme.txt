@@ -3,8 +3,8 @@ Contributors: wpjobportal
 Donate link: https://wpjobportal.com/pricing/
 Tags: job board, job listing, careers, job manager, jobs, recruiting
 Requires at least: 5.5 
-Tested up to: 6.9
-Stable tag: 2.5.3
+Tested up to: 7.0
+Stable tag: 2.5.4
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -260,6 +260,12 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Changelog ==
 
+
+= 2.5.4 =
+* Added Job Alert Instant Job Apply Support
+* Added New Fields For Job Alert Form
+* Added Field Ordering Controls For Job Alert Form
+* Implemented Auto Down Of Language Files
 
 = 2.5.3 =
 * Enhanced multilingual compatibility

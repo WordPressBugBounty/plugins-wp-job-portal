@@ -186,6 +186,12 @@
                         </a>
                     </span>
                     <?php } ?>
+
+                    <span class="wpjobportal-email-menu-link <?php if (wpjobportal::$_data[1] == 'sys-mail') echo 'selected'; ?>">
+                        <a class="wpjobportal-email-link" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_emailtemplate&for=sys-mail')); ?>" title="<?php echo esc_attr(__('System Email', 'wp-job-portal')); ?>">
+                            <?php echo esc_html(__('System Email', 'wp-job-portal')); ?>
+                        </a>
+                    </span>
                 </div>
                 <div class="wpjobportal-email-body">
                     <div class="wpjobportal-email-form-wrapper">
@@ -311,6 +317,12 @@
                             <span class="wpjobportal-email-paramater">{PACKAGE_PRICE}:  <?php echo esc_html(__('Package price', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{PACKAGE_LINK}:  <?php echo esc_html(__('View package', 'wp-job-portal')); ?></span>
                             <span class="wpjobportal-email-paramater">{PUBLISH_STATUS}:  <?php echo esc_html(__('Publish status', 'wp-job-portal')); ?></span>
+                            <?php
+                        }elseif(wpjobportal::$_data[1] == 'sys-mail') { ?>
+                            <span class="wpjobportal-email-paramater">{SYSTEM_SUBJECT}: <?php echo esc_html(__('System subject', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{NOTIFICATION_HEADING}: <?php echo esc_html(__('Notification heading', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{USER_NAME}: <?php echo esc_html(__('User name', 'wp-job-portal')); ?></span>
+                            <span class="wpjobportal-email-paramater">{EMAIL_BODY}: <?php echo esc_html(__('Email body content', 'wp-job-portal')); ?></span>
                             <?php
                         } ?>
                     </div>

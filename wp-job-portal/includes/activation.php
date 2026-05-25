@@ -468,7 +468,7 @@ class WPJOBPORTALactivation {
               ('searchjobtag', '4', 'job', 'tag'),
               ('categories_colsperrow', '3', 'category', NULL),
               ('productcode', 'wpjobportal', 'default', NULL),
-              ('versioncode', '2.5.3', 'default', NULL),
+              ('versioncode', '2.5.4', 'default', NULL),
               ('producttype', 'free', 'default', NULL),
               ('vis_jscredits', '0', 'jscontrolpanel', 'credits'),
               ('vis_emcredits', '1', 'emcontrolpanel', NULL),
@@ -699,7 +699,9 @@ class WPJOBPORTALactivation {
               ('show_top_filter_category', 0, 'job', ''),
               ('job_new_badge_days', 3, 'job', ''),
               ('joblisting_ajax_filter_tags', '[jobtype][workplacetype][jobsalaryrange][dateposted]', 'job', 'joblistingenhancer'),
-              ('joblisting_ajax_show_sorting', '1', 'job', 'joblistingenhancer')
+              ('joblisting_ajax_show_sorting', '1', 'job', 'joblistingenhancer'),
+              ('job_alert_allowed_types', '1,2,3', 'jobalert', 'jobalert'),
+              ('job_alert_admin_report', '1', 'jobalert', 'jobalert')
               ;
               ";
             wpjobportal::$_db->query($query);
@@ -1022,6 +1024,11 @@ class WPJOBPORTALactivation {
 			(27, 0, 'new-message', NULL, 'WP Job Portal : New Message', '<div style=\"background-color: #f7f7f7; margin: 0; padding: 70px 0; width: 100%;\">\n<div style=\"border: 3px dotted #ebecec; width: 600px; display: block; margin: 0 auto; background: #fff;\">\n<div style=\"padding: 15px 20px; background: #3e4095; color: #fff; font-size: 16px; font-weight: bold; text-transform: uppercase; border-bottom: 1px solid #4b4b4d;\">Wp Job Portal</div>\n<div style=\"padding: 30px; text-align: center; font-weight: bold; background: #576cf1; color: #fff; text-transform: capitalize; font-size: 22px;\">{SITETITLE}: New Message</div>\n<div style=\"padding: 40px 20px 20px;\">\n<div style=\"padding-bottom: 20px; border-bottom: 1px solid #ebecec;\">\n<div style=\"font-weight: bold; font-size: 18px; margin-bottom: 15px; color: #4b4b4d;\">Dear {RECIPIENT_NAME},</div>\n<div style=\"color: #727376; line-height: 2;\">You have received a message from {SENDER_NAME} (<strong style=\"color: #4b4b4d;\">{SENDER_USER_ROLE}</strong>). You can view and respond to the message by clicking the below button.</div>\n</div>\n<div style=\"padding: 20px 0;\">\n</div>\n<div style=\"padding: 0 0 30px; text-align: center;\"><a style=\"display: inline-block; padding: 15px; background: #576cf1; width: 40%; text-align: center; text-decoration: none; color: #ffff; text-transform: capitalize; border-bottom: 3px solid #4b4b4d;\" href=\"{MESSAGE_LINK}\">View Message</a></div>\n<div style=\"background: #fef2ef; padding: 15px; margin-bottom: 20px; border: 1px solid #eba7a8;\">\n<div style=\"font-weight: bold; font-size: 14px; margin-bottom: 5px; color: #983133; text-transform: uppercase;\">Do not reply TO this E-Mail</div>\n<div style=\"color: #727376; line-height: 2;\">This is an automated e-mail message sent from our support system.<br />\nDo not reply to this e-mail as we cannot receive your reply!</div>\n</div>\n<div style=\"color: #727376; line-height: 2;\">This email was sent from <span style=\"color: #3e4095; display: inline-block; text-decoration: underline;\"> Wp Job Portal System </span> to <span style=\"color: #606062; display: inline-block; text-decoration: underline;\">{EMAIL}</span></div>\n</div>\n<div style=\"background: #4b4b4d; padding: 20px; color: #fff; text-align: center; border-bottom: 5px solid #576cf1;\">© {CURRENT_YEAR} All rights reserved – Wp Job Portal WordPress Plugin</div>\n</div>\n</div>\n', NULL, '0000-00-00 00:00:00');";
            wpjobportal::$_db->query($query);
 
+           $query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_emailtemplates` (`id`, `uid`, `templatefor`, `title`, `subject`, `body`, `status`, `created`) VALUES
+           (28, 0, 'system-email', NULL, 'WP Job Portal : {SYSTEM_SUBJECT}', '<div style=\"background-color: #f7f7f7; margin: 0; padding: 70px 0; width: 100%;\">\n<div style=\"border: 3px dotted #ebecec; width: 600px; display: block; margin: 0 auto; background: #fff;\">\n<div style=\"padding: 15px 20px; background: #3e4095; color: #fff; font-size: 16px; font-weight: bold; text-transform: uppercase; border-bottom: 1px solid #4b4b4d;\">Wp Job Portal</div>\n<div style=\"padding: 30px; text-align: center; font-weight: bold; background: #576cf1; color: #fff; text-transform: capitalize; font-size: 22px;\">{SITETITLE}: {NOTIFICATION_HEADING}</div>\n<div style=\"padding: 40px 20px 20px;\">\n<div style=\"padding-bottom: 20px; border-bottom: 1px solid #ebecec;\">\n<div style=\"font-weight: bold; font-size: 18px; margin-bottom: 15px; color: #4b4b4d;\">Dear {USER_NAME},</div>\n<div style=\"color: #727376; line-height: 2;\">{EMAIL_BODY}</div>\n</div>\n<div style=\"padding: 20px 0;\">\n</div>\n<div style=\"background: #fef2ef; padding: 15px; margin-bottom: 20px; border: 1px solid #eba7a8;\">\n<div style=\"font-weight: bold; font-size: 14px; margin-bottom: 5px; color: #983133; text-transform: uppercase;\">Do not reply TO this E-Mail</div>\n<div style=\"color: #727376; line-height: 2;\">This is an automated e-mail message sent from our support system.<br />\nDo not reply to this e-mail as we cannot receive your reply!</div>\n</div>\n<div style=\"color: #727376; line-height: 2;\">This email was sent from <span style=\"color: #3e4095; display: inline-block; text-decoration: underline;\"> Wp Job Portal System </span> to <span style=\"color: #606062; display: inline-block; text-decoration: underline;\">{EMAIL}</span></div>\n</div>\n<div style=\"background: #4b4b4d; padding: 20px; color: #fff; text-align: center; border-bottom: 5px solid #576cf1;\">© {CURRENT_YEAR} All rights reserved – Wp Job Portal WordPress Plugin</div>\n</div>\n</div>\n', 1, '" . current_time('mysql') . "');";
+
+           wpjobportal::$_db->query($query);
+
 
         $query = "CREATE TABLE IF NOT EXISTS `" . wpjobportal::$_db->prefix . "wj_portal_emailtemplates_config` (
               `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1227,6 +1234,23 @@ class WPJOBPORTALactivation {
             (101, 'resume', 'Resume', 5, '1', 0, NULL, NULL, 5, 1, 1, 0, 0, 0, 0, '', '', 1, 1, NULL, 0, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL)
             ; ";
         wpjobportal::$_db->query($query);
+
+        //     job alert field ordering
+        $query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_fieldsordering` ( `field`, `fieldtitle`, `ordering`, `section`, `is_section_headline`, `placeholder`, `description`, `fieldfor`, `published`, `isvisitorpublished`, `sys`, `cannotunpublish`, `required`, `isuserfield`, `userfieldtype`, `userfieldparams`, `search_user`, `search_visitor`, `search_ordering`, `cannotsearch`, `showonlisting`, `cannotshowonlisting`, `depandant_field`, `readonly`, `size`, `maxlength`, `cols`, `rows`, `j_script`, `visible_field`, `visibleparams` ) VALUES
+        ('name', 'Your Name', 1, '', 0, 'Your Name', NULL, 6, 1, 1, 1, 1, 1, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
+        ('contactemail', 'Email', 2, '', 0, 'Email Address', NULL, 6, 1, 1, 1, 1, 1, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
+        ('categoryid', 'Category', 3, '', 0, 'Category', NULL, 6, 1, 1, 1, 1, 1, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
+        ('jobtype', 'Job Type', 4, '', 0, 'Job Type', NULL, 6, 0, 0, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
+        ('workplace_type', 'Workplace Type', 5, '', 0, 'Workplace Type', NULL, 6, 0, 0, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
+        ('company', 'Company', 6, '', 0, 'Company', NULL, 6, 0, 0, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
+        ('keywords', 'Keywords', 7, '', 0, 'Keywords', NULL, 6, 1, 1, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
+        ('tags', 'Tags', 8, '', 0, 'Tags', NULL, 6, 0, 0, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
+        ('city', 'City', 9, '', 0, 'City', NULL, 6, 1, 1, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
+        ('zipcode', 'Zip Code', 10, '', 0, 'Zip Code', NULL, 6, 1, 1, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
+        ('is_urgent', 'Is Urgent', 11, '', 0, 'Is Urgent', NULL, 6, 0, 0, 0, 0, 0, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL),
+        ('alerttype', 'Frequency', 12, '', 0, 'Frequency', NULL, 6, 1, 1, 1, 1, 1, 0, '', '', 0, 0, NULL, 1, 0, 1, '', 0, 0, 0, 0, 0, '', NULL, NULL);";
+        wpjobportal::$_db->query($query);
+
 
             $query = "CREATE TABLE IF NOT EXISTS `" . wpjobportal::$_db->prefix . "wj_portal_heighesteducation` (
               `id` int(11) NOT NULL AUTO_INCREMENT,

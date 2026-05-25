@@ -48,7 +48,7 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
         <!-- top head -->
         <?php WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('wpjobportal_module' => 'systemerror' , 'wpjobportal_layouts' => 'systemerror')); ?>
         <!-- page content -->
-        <div id="wpjobportal-admin-wrapper" class="p0">
+        <div id="wpjobportal-admin-wrapper" class="p0 wpjobportal-admin-system-error-layout">
             <?php
                 if (!empty(wpjobportal::$_data[0])) {
                     ?>
@@ -68,25 +68,72 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                         </thead>
                         <tbody>
                             <?php
-                                foreach (wpjobportal::$_data[0] AS $wpjobportal_systemerror) {
-                                    $wpjobportal_isview = ($wpjobportal_systemerror->isview == 1) ? 'close.png' : 'good.png';
-                                    ?>
-                                    <tr>
-                                        <td class="wpjobportal-text-left w70">
-                                            <?php echo esc_html($wpjobportal_systemerror->error); ?>
-                                        </td>
-                                        <td>
-                                            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/<?php echo esc_attr($wpjobportal_isview); ?>" />
-                                        </td>
-                                        <td>
-                                            <?php
-                                                echo esc_html(date_i18n(wpjobportal::$_configuration['date_format'], strtotime($wpjobportal_systemerror->created)));
-                                            ?>
-                                        </td>
-                                    </tr>
+                            foreach (wpjobportal::$_data[0] AS $wpjobportal_systemerror) {
+                                $wpjobportal_isview = ($wpjobportal_systemerror->isview == 1) ? 'close.png' : 'good.png';
+                                ?>
+                                <tr>
+                                    <td class="wpjobportal-text-left w70" style="padding: 12px 15px; vertical-align: top;">
+                                        <?php
+                                        $raw_error  = $wpjobportal_systemerror->error;
+                                        $error_data = json_decode( $raw_error, true );
+
+                                        if ( is_array( $error_data ) ) :
+                                        ?>
+                                            <div class="wjp-error-cell">
+                                                <div class="wjp-error-row">
+                                                    <span class="wjp-badge wjp-badge-danger">Error</span>
+                                                    <span class="wjp-error-text"><?php echo esc_html( isset( $error_data['error'] ) ? $error_data['error'] : 'Unknown Error' ); ?></span>
+                                                </div>
+
+                                                <div class="wjp-error-row">
+                                                    <span class="wjp-badge wjp-badge-slate">URL</span>
+                                                    <span class="wjp-url-text"><?php echo esc_html( isset( $error_data['url'] ) ? $error_data['url'] : 'N/A' ); ?></span>
+                                                </div>
+
+                                                <details class="wjp-error-details">
+                                                    <summary><span class="wjp-summary-text">View Query & Trace</span></summary>
+                                                    <div class="wjp-error-expanded">
+                                                        <div class="wjp-code-group">
+                                                            <div class="wjp-code-title">Path</div>
+                                                            <div class="wjp-code-block"><?php echo esc_html( isset( $error_data['path'] ) ? $error_data['path'] : 'N/A' ); ?></div>
+                                                        </div>
+
+                                                        <div class="wjp-code-group">
+                                                            <div class="wjp-code-title">Query</div>
+                                                            <div class="wjp-code-block"><?php echo esc_html( isset( $error_data['query'] ) ? $error_data['query'] : 'N/A' ); ?></div>
+                                                        </div>
+                                                    </div>
+                                                </details>
+                                            </div>
+                                        <?php
+                                        // Fallback for plain text
+                                        elseif ( ! empty( $raw_error ) ) :
+                                        ?>
+                                            <div class="wjp-error-cell">
+                                                <div class="wjp-error-row">
+                                                    <span class="wjp-badge wjp-badge-danger">Legacy Error</span>
+                                                </div>
+                                                <div class="wjp-code-block wjp-text-danger">
+                                                    <?php echo esc_html( $raw_error ); ?>
+                                                </div>
+                                            </div>
+                                        <?php else : ?>
+                                            <span class="wjp-text-light">No error data recorded.</span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/<?php echo esc_attr($wpjobportal_isview); ?>" />
+                                    </td>
+                                    <td>
+                                        <?php
+                                            echo esc_html(date_i18n(wpjobportal::$_configuration['date_format'], strtotime($wpjobportal_systemerror->created)));
+                                        ?>
+                                    </td>
+                                </tr>
                                 <?php
-                                }
+                            }
                             ?>
+                            <style></style>
                         </tbody>
                     </table>
                     <?php

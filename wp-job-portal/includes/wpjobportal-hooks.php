@@ -370,24 +370,24 @@ function wpjobportal_add_new_member() {
                     if(is_numeric($wpjobportal_pageid) && $wpjobportal_pageid > 0){
                            if(get_post_status($wpjobportal_pageid) == 'publish'){
                                if($wpjobportal_userrole == 1){
-								   $wpjobportal_setRegisterLinkEmploye= wpjobportal::$_config->getConfigurationByConfigName('employe_set_register_link');
-								   $customeRegisterLinkForEmploye= wpjobportal::$_config->getConfigurationByConfigName('employe_register_link');
-								   if($wpjobportal_setRegisterLinkEmploye == 2){
-									   wp_redirect(esc_url($customeRegisterLinkForEmploye));// to handle the case of invalid url showing error,
-									   exit;
-								   }else{
-									$wpjobportal_url = get_the_permalink($wpjobportal_pageid);
-								   }
-							   }elseif($wpjobportal_userrole == 2){
-								   $wpjobportal_setRegisterLinkJobSeeker= wpjobportal::$_config->getConfigurationByConfigName('jobseeker_set_register_link');
-								   $customeRegisterLinkForJobSeeker= wpjobportal::$_config->getConfigurationByConfigName('jobseeker_register_link');
-								   if($wpjobportal_setRegisterLinkJobSeeker == 2){
-									  wp_redirect(esc_url($customeRegisterLinkForJobSeeker));// to handle the case of invalid url showing error,
-									  exit;
-								   }else{
-									$wpjobportal_url = get_the_permalink($wpjobportal_pageid);
-								   }
-							   }
+                                   $wpjobportal_setRegisterLinkEmploye= wpjobportal::$_config->getConfigurationByConfigName('employe_set_register_link');
+                                   $customeRegisterLinkForEmploye= wpjobportal::$_config->getConfigurationByConfigName('employe_register_link');
+                                   if($wpjobportal_setRegisterLinkEmploye == 2){
+                                       wp_redirect(esc_url($customeRegisterLinkForEmploye));// to handle the case of invalid url showing error,
+                                       exit;
+                                   }else{
+                                    $wpjobportal_url = get_the_permalink($wpjobportal_pageid);
+                                   }
+                               }elseif($wpjobportal_userrole == 2){
+                                   $wpjobportal_setRegisterLinkJobSeeker= wpjobportal::$_config->getConfigurationByConfigName('jobseeker_set_register_link');
+                                   $customeRegisterLinkForJobSeeker= wpjobportal::$_config->getConfigurationByConfigName('jobseeker_register_link');
+                                   if($wpjobportal_setRegisterLinkJobSeeker == 2){
+                                      wp_redirect(esc_url($customeRegisterLinkForJobSeeker));// to handle the case of invalid url showing error,
+                                      exit;
+                                   }else{
+                                    $wpjobportal_url = get_the_permalink($wpjobportal_pageid);
+                                   }
+                               }
                          }
                      }
                     wp_redirect($wpjobportal_url);
@@ -1026,4 +1026,222 @@ function wpjobportal_ai_search_data_sync_needed_notice() {
     wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 
 }
+
+
+add_action('plugins_loaded', 'wpjobportal_check_and_download_languages');
+
+function wpjobportal_check_and_download_languages() {
+
+    if (!current_user_can('manage_options') && !wp_doing_cron()) {
+        return; // Skip download attempt for non-privileged contexts
+    }
+
+    $locale = determine_locale();
+    if ($locale === 'en_US') return;
+
+    $status = get_option('wpjobportal_translation_status_' . $locale);
+    if ($status === 'verified' || $status === 'failed') {
+        return;
+    }
+
+    $textdomain   = 'wp-job-portal';
+    //$default_list = get_option('wh_plugin_default_locales', []);
+    $default_list = WPJOBPORTAL_DEFAULT_LANGUAGES;
+    $target_dir   = WPJOBPORTAL_PLUGIN_PATH . 'languages/';
+    $extensions   = in_array($locale, $default_list) ? ['mo'] : ['mo', 'po'];
+
+    $all_exist = true;
+    foreach ($extensions as $ext) {
+        if (!file_exists($target_dir . "{$textdomain}-{$locale}.{$ext}")) {
+            $all_exist = false;
+            break;
+        }
+    }
+
+    if ($all_exist) {
+        update_option('wpjobportal_translation_status_' . $locale, 'verified');
+        return;
+    }
+
+    wpjobportal_execute_download_process_for_languagefiles($locale, $extensions);
+}
+
+function wpjobportal_execute_download_process_for_languagefiles($locale, $extensions) {
+    global $wp_filesystem;
+
+    // Initialize WP_Filesystem safely
+    if (empty($wp_filesystem)) {
+        require_once(ABSPATH . 'wp-admin/includes/file.php');
+        if ( ! WP_Filesystem() ) {
+            return; // Exit if Filesystem credentials are required but unavailable
+        }
+    }
+
+    $textdomain = 'wp-job-portal';
+    //$cdn_base   = 'https://dev83.joomshine.com/2026/wp/jp252/wp-content/uploads/download-languages/';
+    $cdn_base   = 'https://d2cx1dgksy1tik.cloudfront.net/';
+
+    $target_dir = WPJOBPORTAL_PLUGIN_PATH . 'languages/';
+
+    $locales_to_try = [$locale];
+    $fallback_locale = wpjobportal_get_fallback_locale($locale);
+
+    if ($fallback_locale) {
+        $locales_to_try[] = $fallback_locale;
+    }
+
+    $download_successful = false;
+    $downloaded_locale = '';
+
+    foreach ($locales_to_try as $attempt_locale) {
+        $all_extensions_downloaded = true;
+
+        foreach ($extensions as $ext) {
+            $remote_filename = "{$textdomain}-{$attempt_locale}.{$ext}";
+            $local_filename  = "{$textdomain}-{$locale}.{$ext}";
+
+            // FIX: Add a timeout argument to prevent freezing the admin dashboard if CDN is slow
+            $response = wp_remote_get($cdn_base . $remote_filename, [
+                'timeout' => 15
+            ]);
+
+            if (!is_wp_error($response) && wp_remote_retrieve_response_code($response) === 200) {
+                if (!$wp_filesystem->is_dir($target_dir)) {
+                    $wp_filesystem->mkdir($target_dir, FS_CHMOD_DIR);
+                }
+                $saved = $wp_filesystem->put_contents($target_dir . $local_filename, wp_remote_retrieve_body($response));
+                if (!$saved) {
+                    $all_extensions_downloaded = false;
+                    break;
+                }
+            } else {
+                $all_extensions_downloaded = false;
+                break;
+            }
+        }
+
+        if ($all_extensions_downloaded) {
+            $download_successful = true;
+            $downloaded_locale = $attempt_locale;
+            break;
+        }
+    }
+
+    // Determine notice type and save to transient
+    if ($download_successful) {
+        update_option('wpjobportal_translation_status_' . $locale, 'verified');
+
+        $notice_type = ($downloaded_locale === $locale) ? 'exact_success' : 'fallback_success';
+        set_transient('wpjobportal_lang_notice', [
+            'type'     => $notice_type,
+            'original' => $locale,
+            'fallback' => $downloaded_locale
+        ], 60);
+
+    } else {
+        update_option('wpjobportal_translation_status_' . $locale, 'failed');
+
+        set_transient('wpjobportal_lang_notice', [
+            'type'     => 'failed',
+            'original' => $locale,
+        ], 300);
+    }
+}
+
+function wpjobportal_get_fallback_locale($locale) {
+    $base_lang = substr($locale, 0, 2);
+
+    // Comprehensive fallback map based on standard WordPress locales
+    $fallbacks = [
+        'af' => 'af',          // Afrikaans
+        'ar' => 'ar',          // Arabic
+        'bg' => 'bg_BG',       // Bulgarian
+        'bs' => 'bs_BA',       // Bosnian
+        'ca' => 'ca',          // Catalan
+        'cs' => 'cs_CZ',       // Czech
+        'da' => 'da_DK',       // Danish
+        'de' => 'de_DE',       // German
+        'el' => 'el',          // Greek
+        'en' => 'en_US',       // English
+        'es' => 'es_ES',       // Spanish
+        'et' => 'et',          // Estonian
+        'fa' => 'fa_IR',       // Persian
+        'fi' => 'fi',          // Finnish
+        'fr' => 'fr_FR',       // French
+        'he' => 'he_IL',       // Hebrew
+        'hi' => 'hi_IN',       // Hindi
+        'hr' => 'hr',          // Croatian
+        'hu' => 'hu_HU',       // Hungarian
+        'id' => 'id_ID',       // Indonesian
+        'is' => 'is_IS',       // Icelandic
+        'it' => 'it_IT',       // Italian
+        'ja' => 'ja',          // Japanese
+        'ko' => 'ko_KR',       // Korean
+        'lt' => 'lt_LT',       // Lithuanian
+        'lv' => 'lv',          // Latvian
+        'ms' => 'ms_MY',       // Malay
+        'nb' => 'nb_NO',       // Norwegian Bokmål
+        'nl' => 'nl_NL',       // Dutch
+        'pl' => 'pl_PL',       // Polish
+        'pt' => 'pt_PT',       // Portuguese (or pt_BR for Brazil)
+        'ro' => 'ro_RO',       // Romanian
+        'ru' => 'ru_RU',       // Russian
+        'sk' => 'sk_SK',       // Slovak
+        'sl' => 'sl_SI',       // Slovenian
+        'sq' => 'sq',          // Albanian
+        'sr' => 'sr_RS',       // Serbian
+        'sv' => 'sv_SE',       // Swedish
+        'th' => 'th',          // Thai
+        'tr' => 'tr_TR',       // Turkish
+        'uk' => 'uk',          // Ukrainian
+        'vi' => 'vi',          // Vietnamese
+        'zh' => 'zh_CN'        // Chinese (Simplified)
+    ];
+
+    if (isset($fallbacks[$base_lang]) && $fallbacks[$base_lang] !== $locale) {
+        return $fallbacks[$base_lang];
+    }
+
+    return false;
+}
+
+add_action('admin_notices', 'wpjobportal_display_language_download_notice');
+
+function wpjobportal_display_language_download_notice() {
+    // Only show to users who can manage the site
+    if (!current_user_can('manage_options')) {
+        return;
+    }
+
+    $notice = get_transient('wpjobportal_lang_notice');
+    if (!$notice) {
+        return;
+    }
+
+    // Clear the transient immediately so it only shows once
+    delete_transient('wpjobportal_lang_notice');
+
+    $type     = $notice['type'];
+    $original = esc_html($notice['original']);
+
+    if ($type === 'exact_success') {
+        echo '<div class="notice notice-success is-dismissible">';
+        echo '<p><strong>WP Job Portal:</strong> Language files for <code>' . $original . '</code> successfully downloaded.</p>';
+        echo '</div>';
+    }
+    elseif ($type === 'fallback_success') {
+        $fallback = esc_html($notice['fallback']);
+        echo '<div class="notice notice-warning is-dismissible">';
+        echo '<p><strong>WP Job Portal:</strong> Alternate language file downloaded. We tried to find <code>' . $original . '</code>, but downloaded <code>' . $fallback . '</code> as a fallback.</p>';
+        echo '</div>';
+    }
+  /*
+    elseif ($type === 'failed') {
+        echo '<div class="notice notice-error is-dismissible">';
+        echo '<p><strong>WP Job Portal:</strong> Locale <code>' . $original . '</code> not found on our server. The plugin will continue to function in the default language.</p>';
+        echo '</div>';
+    }
+    */
+}
+
 ?>

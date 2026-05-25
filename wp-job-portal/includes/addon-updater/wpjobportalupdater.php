@@ -167,7 +167,9 @@ class WPJOBPORTAL_JOBPORTALUpdater {
 	}
 
 	public function jsCheckUpdateNotice( ) {
-		include_once( 'views/html-update-availble.php' );
+		// the below code is for older style addon update avialble message
+		// will try to imrpove it or remove it all together in future
+		//include_once( 'views/html-update-availble.php' );
 		// if ( sizeof( $this->errors ) === 0 && ! get_option( $this->plugin_slug . '_hide_update_notice' ) ) {
 		// }
 	}

@@ -1370,6 +1370,8 @@ class WPJOBPORTALEmailtemplateModel {
                 break;
             case 'new-msg': $wpjobportal_tempatefor = 'new-message';
                 break;
+            case 'sys-mail': $wpjobportal_tempatefor = 'system-email';
+                break;
             default :
                 $wpjobportal_tempatefor = 'company-new';
                 break;
