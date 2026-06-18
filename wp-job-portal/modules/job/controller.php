@@ -333,6 +333,7 @@ class WPJOBPORTALJobController {
         if (! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_job_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin()) return false;
         $wpjobportal_id = WPJOBPORTALrequest::getVar('id');
         $wpjobportal_result = WPJOBPORTALincluder::getJSModel('job')->approveQueueJobModel($wpjobportal_id);
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'job');
@@ -347,6 +348,7 @@ class WPJOBPORTALJobController {
         if (! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_job_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin()) return false;
         $wpjobportal_id = WPJOBPORTALrequest::getVar('id');
         $wpjobportal_result = WPJOBPORTALincluder::getJSModel('job')->rejectQueueJobModel($wpjobportal_id);
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'job');
@@ -361,6 +363,7 @@ class WPJOBPORTALJobController {
         if (! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_job_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin()) return false;
         $wpjobportal_id = WPJOBPORTALrequest::getVar('id');
         $wpjobportal_result = WPJOBPORTALincluder::getJSModel('job')->approveQueueFeaturedJobModel($wpjobportal_id);
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'job');
@@ -375,6 +378,7 @@ class WPJOBPORTALJobController {
         if (! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_job_nonce') ) {
              die( 'Security check Failed' );
         }
+        if(!wpjobportal::$_common->wpjp_isadmin()) return false;
         $wpjobportal_id = WPJOBPORTALrequest::getVar('id');
         $wpjobportal_result = WPJOBPORTALincluder::getJSModel('job')->rejectQueueFeaturedJobModel($wpjobportal_id);
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'job');

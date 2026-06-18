@@ -129,8 +129,12 @@ class WPJOBPORTALjobapplyModel {
 
 
         $wpjobportal_inquery = "";
-        if ($wpjobportal_tab_action) {
-            $wpjobportal_inquery.=" AND jobapply.action_status =" . esc_sql($wpjobportal_tab_action);
+        if ($wpjobportal_tab_action !== '' && $wpjobportal_tab_action !== null) {
+            if (!is_numeric($wpjobportal_tab_action)) {
+                return false;
+            }
+            $wpjobportal_tab_action = (int) $wpjobportal_tab_action;
+            $wpjobportal_inquery .= " AND jobapply.action_status = " . $wpjobportal_tab_action;
         }
         if ($title) {
             $wpjobportal_inquery.=" AND app.application_title LIKE '%" . esc_sql($title) . "%'";
@@ -178,10 +182,7 @@ class WPJOBPORTALjobapplyModel {
         wpjobportal::$_data['filter']['heighestfinisheducation'] = $heighestfinisheducation;
 
 
-        // $wpjobportal_inquery = "";
-        if ($wpjobportal_tab_action && is_numeric($wpjobportal_tab_action) && in_array('resumeaction', wpjobportal::$_active_addons)) {
-            $wpjobportal_inquery.=" AND jobapply.action_status =" . esc_sql($wpjobportal_tab_action);
-        }
+        // $wpjobportal_tab_action is already validated and applied above.
         if(wpjobportal::$_common->wpjp_isadmin()){
             wpjobportal::$_data[4]['jobinfo'] = $this->getJobApp($wpjobportal_jobid);
         }else{
@@ -2120,11 +2121,24 @@ class WPJOBPORTALjobapplyModel {
         $wpjobportal_resumeid = WPJOBPORTALrequest::getVar('resumeid');
         $wpjobportal_jobid = WPJOBPORTALrequest::getVar('jobid');
 
-        // filliung employer email in text field and making it disabled
+        if (!is_numeric($wpjobportal_jobid) || !is_numeric($wpjobportal_resumeid)) {
+            return '';
+        }
+        $wpjobportal_jobid = (int) $wpjobportal_jobid;
+        $wpjobportal_resumeid = (int) $wpjobportal_resumeid;
+
+        $wpjobportal_job_owner = WPJOBPORTALincluder::getJSModel('job')->getIfJobOwner($wpjobportal_jobid);
+        if (!wpjobportal::$_common->wpjp_isadmin() && $wpjobportal_job_owner !== true) {
+            return '';
+        }
+
+        $wpjobportal_employer_email = '';
+
+        // filling employer email in text field and making it disabled
         $wpjobportal_employer_record =  $this->getEmployerEmailByJobId($wpjobportal_jobid);
         if(!empty($wpjobportal_employer_record)){
             $wpjobportal_employer_email = $wpjobportal_employer_record->companyuseremail;
-            if($wpjobportal_employer_email == ''){ // if comapny contact email is not set
+            if($wpjobportal_employer_email == ''){ // if company contact email is not set
                 $wpjobportal_employer_email = $wpjobportal_employer_record->useremail;
             }
         }
