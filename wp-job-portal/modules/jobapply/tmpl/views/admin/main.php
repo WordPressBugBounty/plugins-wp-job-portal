@@ -127,10 +127,20 @@ $wpjobportal_listing_fields = WPJOBPORTALincluder::getJSModel('fieldordering')->
                     <?php do_action('wpjobportal_addon_search_applied_resume'); ?>
                 </div>
                 <div class="wpjobportal-resume-right-wrp">
-                    <?php do_action('wpjobportal_addons_rating_resume_applied',$wpjobportal_data); ?>
-                    <?php  do_action('wpjobportal_addons_credit_applied_resume_ratting_admin',$wpjobportal_data); ?>
                     <?php
-                        if(in_array('coverletter', wpjobportal::$_active_addons)){
+                        /**
+                     * WP Job Portal: AI Match Score Badge
+                     */
+                    if(in_array('smartmatching', wpjobportal::$_active_addons)){
+                        $show_match_score_resume_list  = wpjobportal::$_config->getConfigurationByConfigName('show_match_score_resume_list');
+                        if (! empty($show_match_score_resume_list) && !empty($wpjobportal_data->match_score)) {
+                            $wpjobportal_ai_match_score = (int) $wpjobportal_data->match_score;
+                            do_action('wpjobportal_addon_resumelisting_match_score',$wpjobportal_ai_match_score);
+                        }
+                    }
+                    do_action('wpjobportal_addons_rating_resume_applied',$wpjobportal_data);
+                    do_action('wpjobportal_addons_credit_applied_resume_ratting_admin',$wpjobportal_data);
+                    if(in_array('coverletter', wpjobportal::$_active_addons)){
                                  $wpjobportal_cover_letter_title = '';
                                  $wpjobportal_cover_letter_desc = '';
                                  if( isset($wpjobportal_data->coverletterdata) && !empty($wpjobportal_data->coverletterdata) ){

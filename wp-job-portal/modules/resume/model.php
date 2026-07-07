@@ -2571,6 +2571,7 @@ class WPJOBPORTALResumeModel {
                     ,resume.status,city.name AS cityname
                     ,state.name AS statename,resume.params,resume.salaryfixed as salary
                     ,resume.last_modified,LOWER(jobtype.title) AS jobtypetit,jobtype.color as jobtypecolor,country.name AS countryname,resume.id as resumeid,resume.skills,resume.quick_apply
+                    ,resume.job_category, resume.jobtype
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category ON category.id = resume.job_category ";
                 if($zipCode != ''){
@@ -2605,6 +2606,22 @@ class WPJOBPORTALResumeModel {
                 $d->location = WPJOBPORTALincluder::getJSModel('common')->getLocationForView($d->cityname, $d->statename, $d->countryname);
                 $wpjobportal_data[] = $d;
             }
+
+            // ---  RESUME SCORING INTEGRATION START ---
+            if(in_array('smartmatching', wpjobportal::$_active_addons)){
+                $show_match_score_resume_list  = wpjobportal::$_config->getConfigurationByConfigName('show_match_score_resume_list');
+                if (WPJOBPORTALincluder::getObjectClass('user')->isemployer() && !empty($show_match_score_resume_list) && !empty($wpjobportal_data)) {
+                    $wpjobportal_data = WPJOBPORTALincluder::getJSModel('smartmatching')->assignScoreToResumes($wpjobportal_data);
+                }
+            }
+            // ---  RESUME SCORING INTEGRATION END ---
+            // echo '<pre>';
+            // foreach ($wpjobportal_data AS $d) {
+            //     echo var_dump($d->match_score);
+            //     echo '<br>';
+            // }
+            // exit;
+
             wpjobportal::$_data[0] = $wpjobportal_data;
         }
 
@@ -4102,6 +4119,7 @@ class WPJOBPORTALResumeModel {
                 ,resume.status,city.name AS cityname
                 ,state.name AS statename,resume.params,resume.salaryfixed as salary
                 ,resume.last_modified,LOWER(jobtype.title) AS jobtypetit,jobtype.color as jobtypecolor,country.name AS countryname,resume.id as resumeid,resume.skills,resume.quick_apply
+                ,resume.job_category, resume.jobtype
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category ON category.id = resume.job_category ";
             $query .= "
@@ -4120,6 +4138,13 @@ class WPJOBPORTALResumeModel {
             $d->location = WPJOBPORTALincluder::getJSModel('common')->getLocationForView($d->cityname, $d->statename, $d->countryname);
             $wpjobportal_data[] = $d;
         }
+        if(in_array('smartmatching', wpjobportal::$_active_addons)){
+            $show_match_score_resume_list  = wpjobportal::$_config->getConfigurationByConfigName('show_match_score_resume_list');
+            if (WPJOBPORTALincluder::getObjectClass('user')->isemployer() && !empty($show_match_score_resume_list) && !empty($wpjobportal_data)) {
+                $wpjobportal_data = WPJOBPORTALincluder::getJSModel('smartmatching')->assignScoreToResumes($wpjobportal_data);
+            }
+        }
+
         return $wpjobportal_data;
     }
 
@@ -4845,9 +4870,52 @@ class WPJOBPORTALResumeModel {
             }
         }
 
-
         $return_data = $wpjobportal_resume_custom_section_string;
         return $return_data;
     }
+
+    function getResumesDataForJobSeeker($wpjobportal_uid){
+        if (is_numeric($wpjobportal_uid) == false)
+            return false;
+        $query = "SELECT resume.id AS resumeid,
+                         resume.application_title as applicationtitle,
+                         resume.salaryfixed as salary,
+                         resume.job_category,
+                         resume.job_category as jobcategory,
+                         resume.jobtype,
+                         resume.skills
+                FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
+                WHERE resume.uid = ". esc_sql($wpjobportal_uid)." AND resume.quick_apply <> 1 ";
+        if(!in_array('multiresume', wpjobportal::$_active_addons)){
+            $query.=" ORDER BY resume.id ASC LIMIT 0,1 ";
+        }
+        $wpjobportal_results = wpjobportal::$_db->get_results($query);
+        $wpjobportal_data = array();
+        //get resume cities
+        if(in_array('advanceresumebuilder', wpjobportal::$_active_addons)){
+            foreach ($wpjobportal_results AS $d) {
+                $locationquery = "SELECT ra.address_city
+                                        FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` AS ra
+                                        WHERE ra.resumeid = " . esc_sql($d->resumeid);
+                $wpjobportal_rows = wpjobportaldb::get_results($locationquery);
+                if(!empty($wpjobportal_rows)){
+                    $wpjobportal_city_ids = array();
+
+                    foreach ($wpjobportal_rows as $row) {
+                        if(!empty($row->address_city)) {
+                            $wpjobportal_city_ids[] = $row->address_city;
+                        }
+                    }
+                    $d->city = implode(',', $wpjobportal_city_ids);
+                }
+                $wpjobportal_data[] = $d;
+            }
+        }else{
+            $wpjobportal_data = $wpjobportal_results;
+        }
+
+        return $wpjobportal_data;
+    }
+
 }
 ?>

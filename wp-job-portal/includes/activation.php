@@ -468,7 +468,7 @@ class WPJOBPORTALactivation {
               ('searchjobtag', '4', 'job', 'tag'),
               ('categories_colsperrow', '3', 'category', NULL),
               ('productcode', 'wpjobportal', 'default', NULL),
-              ('versioncode', '2.5.5', 'default', NULL),
+              ('versioncode', '2.5.6', 'default', NULL),
               ('producttype', 'free', 'default', NULL),
               ('vis_jscredits', '0', 'jscontrolpanel', 'credits'),
               ('vis_emcredits', '1', 'emcontrolpanel', NULL),
@@ -701,7 +701,16 @@ class WPJOBPORTALactivation {
               ('joblisting_ajax_filter_tags', '[jobtype][workplacetype][jobsalaryrange][dateposted]', 'job', 'joblistingenhancer'),
               ('joblisting_ajax_show_sorting', '1', 'job', 'joblistingenhancer'),
               ('job_alert_allowed_types', '1,2,3', 'jobalert', 'jobalert'),
-              ('job_alert_admin_report', '1', 'jobalert', 'jobalert')
+              ('job_alert_admin_report', '1', 'jobalert', 'jobalert'),
+              ('enable_company_copilot', '1', 'company', NULL),
+              ('enable_job_copilot', '1', 'job', NULL),
+              ('enable_resume_copilot', '1', 'resume', NULL),
+              ('enable_coverletter_copilot', '1', 'coverletter', NULL),
+              ('enable_jobapply_copilot', '1', 'jobapply', NULL),
+              ('enable_cover_letter_quick_apply', '0', 'coverletter', 'coverletter'),
+              ('show_match_score_job_list', '1', 'job', 'smartmatching'),
+              ('show_match_score_resume_list', '1', 'resume', 'smartmatching'),
+              ('show_match_score_applied_resume', '1', 'jobapply', 'smartmatching')
               ;
               ";
             wpjobportal::$_db->query($query);

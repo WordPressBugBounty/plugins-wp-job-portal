@@ -1048,7 +1048,7 @@ function wpjobportal_check_and_download_languages() {
     //$default_list = get_option('wh_plugin_default_locales', []);
     $default_list = WPJOBPORTAL_DEFAULT_LANGUAGES;
     $target_dir   = WPJOBPORTAL_PLUGIN_PATH . 'languages/';
-    $extensions   = in_array($locale, $default_list) ? ['mo'] : ['mo', 'po'];
+    $extensions   = in_array($locale, $default_list) ? ['po'] : ['mo', 'po'];
 
     $all_exist = true;
     foreach ($extensions as $ext) {

@@ -9120,3 +9120,65 @@ div#wpjobportaladmin-wrapper .wpjobportal-jobs-list{
     max-height: 180px;          
     overflow-y: auto;           
 }
+/* ==========================================================================
+    WP Job Portal - AI Match Score Badge (Option 1)
+    ========================================================================== */
+    .wpjp-ai-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 700;
+        gap: 6px;
+        border: 1px solid transparent;
+        line-height: 1;
+        white-space: nowrap;
+        transition: transform .2s ease-in-out, box-shadow .2s ease-in-out;
+    }
+
+    .wpjp-ai-badge:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0,0,0,.05);
+    }
+
+    .wpjp-ai-badge svg {
+        width: 14px;
+        height: 14px;
+        flex-shrink: 0;
+    }
+
+    /* Excellent Match (90-100) */
+    .wpjp-ai-excellent {
+        background: #ecfdf5;
+        color: #15803d;
+        border-color: #86efac;
+    }
+
+    /* Strong Match (75-89) */
+    .wpjp-ai-good {
+        background: #f0fdf4;
+        color: #166534;
+        border-color: #bbf7d0;
+    }
+
+    /* Good Match (60-74) */
+    .wpjp-ai-avg {
+        background: #fffbeb;
+        color: #b45309;
+        border-color: #fde68a;
+    }
+
+    /* Partial Match (40-59) */
+    .wpjp-ai-partial {
+        background: #fff7ed;
+        color: #c2410c;
+        border-color: #fdba74;
+    }
+
+    /* Limited Match (0-39) */
+    .wpjp-ai-poor {
+        background: #fef2f2;
+        color: #b91c1c;
+        border-color: #fecaca;
+    }

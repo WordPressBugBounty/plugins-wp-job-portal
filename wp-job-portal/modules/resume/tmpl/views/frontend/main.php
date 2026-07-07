@@ -105,6 +105,18 @@ echo '<div class="wjportal-resume-cnt-wrp">
                             <span class="wjportal-resume-job-type" style="background-color:'.esc_attr($wpjobportal_myresume->jobtypecolor).'">'.esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_myresume->jobtypetitle)) .'</span>
                         </div>';
                 }
+
+                /**
+                 * WP Job Portal: AI Match Score Badge
+                 */
+                if(in_array('smartmatching', wpjobportal::$_active_addons)){
+                    $show_match_score_resume_list  = wpjobportal::$_config->getConfigurationByConfigName('show_match_score_resume_list');
+                    if (! empty($show_match_score_resume_list) && !empty($wpjobportal_myresume->match_score)) {
+                        $wpjobportal_ai_match_score = (int) $wpjobportal_myresume->match_score;
+                        do_action('wpjobportal_addon_resumelisting_match_score',$wpjobportal_ai_match_score);
+                    }
+                }
+
                 if(isset($wpjobportal_module) && $wpjobportal_module == "jobappliedresume"){
                     echo '<div>';
                     do_action('wpjobportal_addons_credit_applied_resume_rating',$wpjobportal_myresume);

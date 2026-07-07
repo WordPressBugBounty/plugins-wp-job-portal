@@ -5,7 +5,7 @@
   * Plugin URI: https://wpjobportal.com/
   * Description: WP Job Portal is WordPress’s best job board plugin — easy to use, highly configurable, and built to support both job seekers and employers. AI-powered add-ons offers smart job & resume search, and personalized recommendations.
   * Author: WP Job Portal
-  * Version: 2.5.5
+  * Version: 2.5.6
   * Text Domain: wp-job-portal
   * Domain Path: /languages
   * Author URI: https://wpjobportal.com/
@@ -76,7 +76,7 @@ class wpjobportal {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '255';
+        self::$_currentversion = '256';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_common = WPJOBPORTALincluder::getJSModel('common');
         self::$_config = WPJOBPORTALincluder::getJSModel('configuration');
@@ -186,7 +186,7 @@ class wpjobportal {
                 if( $plugin == $our_plugin ) {
                     update_option('wpjp_currentversion', self::$_currentversion);
                     include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
-                    WPJOBPORTALupdates::checkUpdates('255');
+                    WPJOBPORTALupdates::checkUpdates('256');
 
                 	// restore colors data
 		            require(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
@@ -892,9 +892,10 @@ class wpjobportal {
     function jsjp_delete_expire_session_data(){
         wpjobportal::$_db->query('DELETE  FROM '.wpjobportal::$_db->prefix.'wj_portal_jswjsessiondata WHERE sessionexpire < "'. time() .'"');
     }
+
     static function wpjobportal_getVariableValue($wpjobportal_text_string){
         if(empty($wpjobportal_text_string)){
-            return;
+            return $wpjobportal_text_string;
         }
         $wpjobportal_text_string = trim($wpjobportal_text_string);
         $wpjobportal_translations = get_translations_for_domain( 'wp-job-portal' );
@@ -1502,7 +1503,7 @@ function wpjobportal_upgrade_completed( $wpjobportal_upgrader_object, $wpjobport
 				update_option('wpjp_currentversion', wpjobportal::$_currentversion);
 				include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
 
-				WPJOBPORTALupdates::checkUpdates('255');
+				WPJOBPORTALupdates::checkUpdates('256');
 
 
 				// restore colors data

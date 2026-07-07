@@ -4,7 +4,7 @@ Donate link: https://wpjobportal.com/pricing/
 Tags: job board, job listing, careers, job manager, jobs, recruiting
 Requires at least: 5.5 
 Tested up to: 7.0
-Stable tag: 2.5.5
+Stable tag: 2.5.6
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -259,6 +259,14 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 
 == Changelog ==
+
+= 2.5.6 =
+* Added New addon Smart Matching
+* Updated ZyWrap integration for AI Content Generation.
+* Seamless AI Content Generation For Job, Company Description.
+* Seamless AI Content Generation For Resume Skills.
+* Seamless AI Content Generation For Cover Letter.
+* Seamless AI Content Generation For Job Apply.
 
 = 2.5.5 =
 * Security fixes.

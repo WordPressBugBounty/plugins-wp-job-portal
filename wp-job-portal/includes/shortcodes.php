@@ -103,6 +103,7 @@ class WPJOBPORTALshortcodes {
             }
         }
                 unset(wpjobportal::$_data['sanitized_args']);
+        unset(wpjobportal::$_data['shortcode_options']);
         $wpjobportal_content .= ob_get_clean();
         return $wpjobportal_content;
     }
@@ -160,6 +161,7 @@ class WPJOBPORTALshortcodes {
             }
         }
         unset(wpjobportal::$_data['sanitized_args']);
+        unset(wpjobportal::$_data['shortcode_options']);
         $wpjobportal_content .= ob_get_clean();
         return $wpjobportal_content;
     }
@@ -191,6 +193,7 @@ class WPJOBPORTALshortcodes {
             WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
         unset(wpjobportal::$_data['sanitized_args']);
+        unset(wpjobportal::$_data['shortcode_options']);
         $wpjobportal_content .= ob_get_clean();
         return $wpjobportal_content;
     }
@@ -251,6 +254,7 @@ class WPJOBPORTALshortcodes {
             WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
         unset(wpjobportal::$_data['sanitized_args']);
+        unset(wpjobportal::$_data['shortcode_options']);
         $wpjobportal_content .= ob_get_clean();
         return $wpjobportal_content;
     }
@@ -282,6 +286,7 @@ class WPJOBPORTALshortcodes {
             WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
+        unset(wpjobportal::$_data['shortcode_options']);
         $wpjobportal_content .= ob_get_clean();
         return $wpjobportal_content;
     }
@@ -313,6 +318,7 @@ class WPJOBPORTALshortcodes {
             WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
+        unset(wpjobportal::$_data['shortcode_options']);
         $wpjobportal_content .= ob_get_clean();
         return $wpjobportal_content;
     }
@@ -344,6 +350,7 @@ class WPJOBPORTALshortcodes {
             WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
+        unset(wpjobportal::$_data['shortcode_options']);
         $wpjobportal_content .= ob_get_clean();
         return $wpjobportal_content;
     }
@@ -380,6 +387,7 @@ class WPJOBPORTALshortcodes {
             WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
+        unset(wpjobportal::$_data['shortcode_options']);
         $wpjobportal_content .= ob_get_clean();
         return $wpjobportal_content;
     }
@@ -412,6 +420,7 @@ class WPJOBPORTALshortcodes {
             WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
+        unset(wpjobportal::$_data['shortcode_options']);
         $wpjobportal_content .= ob_get_clean();
         return $wpjobportal_content;
     }
@@ -443,6 +452,7 @@ class WPJOBPORTALshortcodes {
             WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
+        unset(wpjobportal::$_data['shortcode_options']);
         $wpjobportal_content .= ob_get_clean();
         return $wpjobportal_content;
     }
@@ -474,6 +484,7 @@ class WPJOBPORTALshortcodes {
             WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
+        unset(wpjobportal::$_data['shortcode_options']);
         $wpjobportal_content .= ob_get_clean();
         return $wpjobportal_content;
     }
@@ -510,6 +521,7 @@ class WPJOBPORTALshortcodes {
             WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
+        unset(wpjobportal::$_data['shortcode_options']);
         $wpjobportal_content .= ob_get_clean();
         return $wpjobportal_content;
     }
@@ -543,6 +555,7 @@ class WPJOBPORTALshortcodes {
             WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
+        unset(wpjobportal::$_data['shortcode_options']);
         $wpjobportal_content .= ob_get_clean();
         return $wpjobportal_content;
     }
@@ -574,6 +587,7 @@ class WPJOBPORTALshortcodes {
             WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
+        unset(wpjobportal::$_data['shortcode_options']);
         $wpjobportal_content .= ob_get_clean();
         return $wpjobportal_content;
     }
@@ -610,6 +624,7 @@ class WPJOBPORTALshortcodes {
             WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
+        unset(wpjobportal::$_data['shortcode_options']);
         $wpjobportal_content .= ob_get_clean();
         return $wpjobportal_content;
     }
@@ -643,6 +658,7 @@ class WPJOBPORTALshortcodes {
             WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
+        unset(wpjobportal::$_data['shortcode_options']);
         $wpjobportal_content .= ob_get_clean();
         return $wpjobportal_content;
     }
@@ -674,6 +690,7 @@ class WPJOBPORTALshortcodes {
             WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
         unset(wpjobportal::$_data['sanitized_args']);
+        unset(wpjobportal::$_data['shortcode_options']);
         $wpjobportal_content .= ob_get_clean();
         return $wpjobportal_content;
     }
@@ -705,6 +722,7 @@ class WPJOBPORTALshortcodes {
             WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
+        unset(wpjobportal::$_data['shortcode_options']);
         $wpjobportal_content .= ob_get_clean();
         return $wpjobportal_content;
     }
@@ -736,6 +754,7 @@ class WPJOBPORTALshortcodes {
             WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
+        unset(wpjobportal::$_data['shortcode_options']);
         $wpjobportal_content .= ob_get_clean();
         return $wpjobportal_content;
     }
@@ -763,6 +782,7 @@ class WPJOBPORTALshortcodes {
             WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
+        unset(wpjobportal::$_data['shortcode_options']);
         $wpjobportal_content .= ob_get_clean();
         return $wpjobportal_content;
     }
@@ -794,6 +814,7 @@ class WPJOBPORTALshortcodes {
             WPJOBPORTALincluder::include_file($wpjobportal_module);
         }
                 unset(wpjobportal::$_data['sanitized_args']);
+        unset(wpjobportal::$_data['shortcode_options']);
         $wpjobportal_content .= ob_get_clean();
         return $wpjobportal_content;
     }
@@ -839,6 +860,7 @@ class WPJOBPORTALshortcodes {
             echo wp_kses($wpjobportal_modules_html, WPJOBPORTAL_ALLOWED_TAGS);
         }
         unset(wpjobportal::$_data['sanitized_args']);
+        unset(wpjobportal::$_data['shortcode_options']);
         $wpjobportal_content .= ob_get_clean();
         return $wpjobportal_content;
     }

@@ -163,6 +163,7 @@ switch ($wpjobportal_layout) {
                     <?php } ?>
 
                 </div>
+
                 <?php
 
                         $wpjobportal_print = WPJOBPORTALincluder::getJSModel('job')->checkLinks('jobsalaryrange');
@@ -199,7 +200,20 @@ switch ($wpjobportal_layout) {
                             ?>
                              <span class="wjportal-jobs-status-text <?php //echo esc_attr($wpjobportal_color); ?>"><?php //echo esc_html($wpjobportal_statusCheck); ?></span>
                         </div>
+                    <?php
+                    // --- WP Job Portal: AI Match Score Badge ---
+                    // TODO: Replace 'rand(40, 99)' with your actual backend AI score variable (e.g., $wpjobportal_job->ai_match_score)
+                    //$wpjobportal_ai_match_score = rand(40, 99);
 
+                    if(in_array('smartmatching', wpjobportal::$_active_addons)){
+                        $show_match_score_job_list  = wpjobportal::$_config->getConfigurationByConfigName('show_match_score_job_list');
+                        if (! empty($show_match_score_job_list) && !empty($wpjobportal_job->match_score)) {
+                            $wpjobportal_ai_match_score = (int) $wpjobportal_job->match_score;
+                            do_action('wpjobportal_addon_joblisting_match_score',$wpjobportal_ai_match_score);
+                        }
+                    }
+                    // -------------------------------------------
+                    ?>
             </div>
 
             <div class="wjportal-jobs-bottom-full-wrp">
@@ -209,7 +223,11 @@ switch ($wpjobportal_layout) {
                     if (isset($wpjobportal_print[0]) && $wpjobportal_print[0] == 1) { ?>
                         <div class="wjportal-job-listing-description-wrap">
                             <span class="wjportal-job-listing-description-val">
-                                <?php echo esc_html( wp_trim_words( $wpjobportal_job->description, 30, '...' ) ); ?>
+                                <?php
+                                if(!empty($wpjobportal_job->description)){
+                                    echo esc_html( wp_trim_words( $wpjobportal_job->description, 30, '...' ) );
+                                }
+                                 ?>
                             </span>
                         </div><?php
                     } ?>
@@ -523,6 +541,11 @@ switch ($wpjobportal_layout) {
                 do_action('wpjobportal_addons_newestjob_btm_btn_for_shortlist',$wpjobportal_job);
             }
         }
+
+        # Social Share
+        do_action('wpjobportal_credit_addons_social_share_links_job',$wpjobportal_job);
+        # Social Comment's
+        do_action('wpjobportal_credit_social_comments_for_jobs');
         break;
 
     case 'apply':

@@ -59,7 +59,14 @@ class WPJOBPORTALincluder {
         } else {
             $file_path = self::getPluginPath($filename,'file');
             if($wp_filesystem->exists($file_path)){
+                $wpjobportal_controller_class = 'WPJOBPORTAL' . $filename . 'Controller';
+                $wpjobportal_controller_already_loaded = class_exists($wpjobportal_controller_class, false);
+
                 include_once $file_path; //
+
+                if ($wpjobportal_controller_already_loaded && class_exists($wpjobportal_controller_class, false)) {
+                    new $wpjobportal_controller_class();
+                }
             }else{
                /* $file_path = self::getPluginPath('premiumplugin','file');
                 include_once $file_path; //*/

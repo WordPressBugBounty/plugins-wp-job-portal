@@ -55,7 +55,16 @@ foreach($wpjobportal_fields AS $wpjobportal_field){
             $wpjobportal_content = WPJOBPORTALformfield::text($wpjobportal_inputprefix.$wpjobportal_startNod.'url'.$wpjobportal_endnote, isset($wpjobportal_company->url) ? $wpjobportal_company->url : '',array('data-validation' => $wpjobportal_field->validation,'placeholder' => wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->placeholder),'class' => 'inputbox wjportal-form-input-field'));
         break;
         case 'description':
-        	$wpjobportal_content = WPJOBPORTALformfield::editor($wpjobportal_inputprefix.$wpjobportal_sys.'description', isset($wpjobportal_company->description) ? $wpjobportal_company->description : '',array('class' => 'wjportal-form-textarea-field'));
+                $wpjobportal_content = WPJOBPORTALformfield::editor($wpjobportal_inputprefix.$wpjobportal_sys.'description', isset($wpjobportal_company->description) ? $wpjobportal_company->description : '', array('class' => 'inputbox one wjportal-form-textarea-field'));
+                $api_key = get_option('wpjobportal_zywrap_api_key', '');
+                if(!empty($api_key) && !WPJOBPORTALincluder::getObjectClass('user')->isguest()){
+                    $enable_company_copilot  = wpjobportal::$_config->getConfigurationByConfigName('enable_company_copilot');
+                    if(!empty($enable_company_copilot) || current_user_can('manage_options')){
+                        $wpjobportal_content = WPJOBPORTALincluder::getTemplate('company/views/frontend/content-generation-company', array(
+                            'wpjobportal_desc_editor' => $wpjobportal_content
+                        ));
+                    }
+                }
         break;
         case 'city':
             $wpjobportal_content = WPJOBPORTALformfield::text($wpjobportal_inputprefix.$wpjobportal_sys.'city', '',array('data-validation' => $wpjobportal_field->validation,'placeholder' => wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->placeholder),'class'=>'wpjobportal-company-form-city-field'));

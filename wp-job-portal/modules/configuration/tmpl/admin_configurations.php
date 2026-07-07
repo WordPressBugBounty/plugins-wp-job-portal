@@ -656,6 +656,7 @@ $wpjobportal_settings_config = [
                 'fields'      => [
                     ['id' => 'showapplybutton', 'label' => __('Show Apply Now Button', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['showapplybutton'], 'tooltip' => __('Controls the visibility of apply now button in plugin', 'wp-job-portal'), 'options' => $wpjobportal_options_yesno],
                     ['id' => 'quick_apply_for_user', 'label' => __('Enable Quick Apply for Logged-in Users', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['quick_apply_for_user'], 'tooltip' => __("Show the 'Quick Apply' form to logged-in users on the job detail page", 'wp-job-portal'), 'options' => $wpjobportal_options_yesno],
+                    ['id' => 'enable_cover_letter_quick_apply', 'label' => __('Enable Cover Letter Quick Apply', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['enable_cover_letter_quick_apply'], 'tooltip' => __("Show cover letter selection on 'Quick Apply' form to logged-in users on the job detail page", 'wp-job-portal'), 'options' => $wpjobportal_options_yesno],
                     ['id' => 'quick_apply_for_visitor', 'label' => __('Enable Quick Apply for Visitors', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['quick_apply_for_visitor'], 'tooltip' => __("Show the 'Quick Apply' form to visitors on the job detail page", 'wp-job-portal'), 'options' => $wpjobportal_options_yesno],
                     ['id' => 'show_applied_resume_status', 'label' => __('Show Applied Resume Status to Job Seeker', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['show_applied_resume_status'], 'tooltip' => __("Display the status of applications to the job seeker", 'wp-job-portal'), 'options' => $wpjobportal_options_yesno, 'pro' => ['slug' => 'resumeaction', 'name' => __('Resume Action', 'wp-job-portal')]],
                     ['id' => 'show_only_section_that_have_value', 'label' => __('Resume Data in Email', 'wp-job-portal') . ' ' . __('Sections', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['show_only_section_that_have_value'], 'tooltip' => __('Choose whether to include all resume sections or only filled ones in the application email to employers', 'wp-job-portal'), 'options' => $wpjobportal_options_resume_email_sections],
@@ -682,6 +683,66 @@ $wpjobportal_settings_config = [
     // ========================================================
     // 11. EMAIL & ALERTS
     // ========================================================
+
+    'zywrap_ai' => [
+        'label' => __('Zywrap AI', 'wp-job-portal'),
+        'icon'  => 'dashicons-superhero', // Or 'dashicons-admin-customizer' depending on your UI preference
+        'groups' => [
+
+            // Group 1: The Visibility Matrix
+            'visibility_matrix' => [
+                'title' => __('Copilot Visibility Controls', 'wp-job-portal'),
+                'description' => __('Manage where the AI content generation interfaces are displayed on your site.', 'wp-job-portal'),
+                'fields' => [
+                    [
+                        'id'      => 'enable_job_copilot',
+                        'label'   => __('Enable Job Copilot', 'wp-job-portal'),
+                        'type'    => 'toggle',
+                        'value'   => wpjobportal::$_data[0]['enable_job_copilot'] ?? '1',
+                        'tooltip' => __('Enable the AI interface for Job Description generation.', 'wp-job-portal'),
+                        'options' => $wpjobportal_options_yesno
+                    ],
+                    [
+                        'id'      => 'enable_company_copilot',
+                        'label'   => __('Enable Company Copilot', 'wp-job-portal'),
+                        'type'    => 'toggle',
+                        'value'   => wpjobportal::$_data[0]['enable_company_copilot'] ?? '1',
+                        'tooltip' => __('Enable the AI interface for Company Profile generation.', 'wp-job-portal'),
+                        'options' => $wpjobportal_options_yesno
+                    ],
+                    [
+                        'id'      => 'enable_resume_copilot',
+                        'label'   => __('Enable Resume Copilot', 'wp-job-portal'),
+                        'type'    => 'toggle',
+                        'value'   => wpjobportal::$_data[0]['enable_resume_copilot'] ?? '1',
+                        'tooltip' => __('Enable the AI interface for Resume Skills generation.', 'wp-job-portal'),
+                        'options' => $wpjobportal_options_yesno
+                    ],
+                    [
+                        'id'      => 'enable_coverletter_copilot',
+                        'label'   => __('Enable Cover Letter Copilot', 'wp-job-portal'),
+                        'type'    => 'toggle',
+                        'value'   => wpjobportal::$_data[0]['enable_coverletter_copilot'] ?? '1',
+                        'tooltip' => __('Enable the AI interface for Cover Letter generation.', 'wp-job-portal'),
+                        'options' => $wpjobportal_options_yesno
+                    ],
+                    [
+                        'id'      => 'enable_jobapply_copilot',
+                        'label'   => __('Enable Cover Letter Copilot On Job Apply', 'wp-job-portal'),
+                        'type'    => 'toggle',
+                        'value'   => wpjobportal::$_data[0]['enable_jobapply_copilot'] ?? '1',
+                        'tooltip' => __('Enable the AI interface for Cover Letter generation during the Job Application process.', 'wp-job-portal'),
+                        'options' => $wpjobportal_options_yesno
+                    ],
+                ]
+            ]
+        ]
+    ],
+
+    // ========================================================
+    // 11. EMAIL & ALERTS
+    // ========================================================
+
     'email_alerts' => [
         'label' => __('Email & Alerts', 'wp-job-portal'),
         'icon'  => 'envelope',
@@ -776,6 +837,50 @@ $wpjobportal_settings_config = [
             ]
         ]
     ],
+
+    // ========================================================
+        // SMART MATCHING
+        // ========================================================
+        'smart_matching' => [
+            'label' => __('Smart Matching', 'wp-job-portal'),
+            'icon'  => 'chart-line', // A data/analytics icon fits best here
+            'groups' => [
+                'matching_visibility' => [
+                    'title'       => __('Match Score Visibility', 'wp-job-portal'),
+                    'description' => __('Manage where the calculated fitment scores are displayed across your platform listings.', 'wp-job-portal'),
+                    'pro'         => ['slug' => 'smartmatching', 'name' => __('Smart Matching Addon', 'wp-job-portal')],
+                    'fields' => [
+                        [
+                            'id'      => 'show_match_score_job_list',
+                            'label'   => __('Show Match Score on Job Listings', 'wp-job-portal'),
+                            'type'    => 'toggle',
+                            'value'   => wpjobportal::$_data[0]['show_match_score_job_list'] ?? '1',
+                            'tooltip' => __('Display a calculated match score on job cards by comparing job requirements with the user\'s resume data.', 'wp-job-portal'),
+                            'options' => $wpjobportal_options_showhide,
+                            'pro'     => ['slug' => 'smartmatching', 'name' => __('Smart Matching Addon', 'wp-job-portal')]
+                        ],
+                        [
+                            'id'      => 'show_match_score_resume_list',
+                            'label'   => __('Show Match Score on Resume Listings', 'wp-job-portal'),
+                            'type'    => 'toggle',
+                            'value'   => wpjobportal::$_data[0]['show_match_score_resume_list'] ?? '1',
+                            'tooltip' => __('Display a criteria-based match score on resume cards based on the employer\'s active job listings.', 'wp-job-portal'),
+                            'options' => $wpjobportal_options_showhide,
+                            'pro'     => ['slug' => 'smartmatching', 'name' => __('Smart Matching Addon', 'wp-job-portal')]
+                        ],
+                        [
+                            'id'      => 'show_match_score_applied_resume',
+                            'label'   => __('Show Match Score on Applied Resumes', 'wp-job-portal'),
+                            'type'    => 'toggle',
+                            'value'   => wpjobportal::$_data[0]['show_match_score_applied_resume'] ?? '1',
+                            'tooltip' => __('Render a fitment metric on candidate applications by benchmarking them against the target job\'s specific criteria.', 'wp-job-portal'),
+                            'options' => $wpjobportal_options_showhide,
+                            'pro'     => ['slug' => 'smartmatching', 'name' => __('Smart Matching Addon', 'wp-job-portal')]
+                        ],
+                    ]
+                ],
+            ]
+        ],
 
     // ========================================================
     // 13. INTEGRATIONS

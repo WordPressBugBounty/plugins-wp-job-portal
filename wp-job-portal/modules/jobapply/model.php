@@ -210,10 +210,12 @@ class WPJOBPORTALjobapplyModel {
                 ,(SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE jobid = job.id) AS totalapply
                 ,(SELECT address_city FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` WHERE resumeid = app.id ORDER BY created DESC LIMIT 1) AS resumecity ,app.photo AS photo,app.application_title AS applicationtitle
                 ,CONCAT(app.alias,'-',app.id) resumealiasid, CONCAT(job.alias,'-',job.id) AS jobaliasid
-                ,( Select rinsitute.institute From`" . wpjobportal::$_db->prefix . "wj_portal_resumeinstitutes` AS rinsitute Where rinsitute.resumeid = app.id LIMIT 1 ) AS institute
-                ,( Select rinsitute.institute_study_area From`" . wpjobportal::$_db->prefix . "wj_portal_resumeinstitutes` AS rinsitute Where rinsitute.resumeid = app.id LIMIT 1 ) AS institute_study_area
+                ,( Select rinsitute.institute FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeinstitutes` AS rinsitute Where rinsitute.resumeid = app.id LIMIT 1 ) AS institute
+                ,( Select rinsitute.institute_study_area FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeinstitutes` AS rinsitute Where rinsitute.resumeid = app.id LIMIT 1 ) AS institute_study_area
                 ,job.companyid,app.params, jobapply.coverletterid,resum_cat.cat_title AS resume_category,jobapply.apply_message,jobapply.quick_apply, app.skills
-                , job.workplace_type, job.is_urgent";
+                , job.workplace_type, job.is_urgent
+                , app.job_category, app.job_category as jobcategory, app.jobtype, app.salaryfixed
+                ";
                 if(in_array('sociallogin', wpjobportal::$_active_addons)){
                     $query.=" ,socialprofiles.profiledata as socialprofile ";
                 }
@@ -244,6 +246,22 @@ class WPJOBPORTALjobapplyModel {
             }
             $wpjobportal_data[] = $d;
         }
+        // SCORE MATCHING CODE START
+        if(in_array('smartmatching', wpjobportal::$_active_addons)){
+            $show_match_score_applied_resume  = wpjobportal::$_config->getConfigurationByConfigName('show_match_score_applied_resume');
+            if ((WPJOBPORTALincluder::getObjectClass('user')->isemployer() || current_user_can('manage_options')) && !empty($show_match_score_applied_resume) && !empty($wpjobportal_data)) {
+                $wpjobportal_data = WPJOBPORTALincluder::getJSModel('smartmatching')->assignScoreToResumes($wpjobportal_data,$wpjobportal_jobid);
+            }
+        }
+        // SCORE MATCHING CODE END
+
+        // echo '<pre>';
+        // foreach ($wpjobportal_data AS $d) {
+        //     echo var_dump($d->match_score);
+        //     echo '<br>';
+        // }
+        // exit;
+
         wpjobportal::$_data[0]['data'] = $wpjobportal_data;
         $query = "Select Count(id) from`" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE action_status=1 AND jobid = ". esc_sql($wpjobportal_jobid) ." AND status = 1";
         wpjobportal::$_data[0]['inbox'] = wpjobportaldb::get_var($query);
@@ -1353,7 +1371,7 @@ class WPJOBPORTALjobapplyModel {
                  jobtype.title AS jobtypetitle, jobstatus.title AS jobstatustitle,resume.id AS resumeid,resume.salaryfixed as salary,resume.application_title,job.params,job.created,LOWER(jobtype.title) AS jobtype
                 ,jobapply.id AS id,resume.first_name,resume.last_name,job.salarytype,job.salarymin,job.salarymax,jobapply.status AS applystatus,
                 salaryrangetype.title AS srangetypetitle,jobtype.color AS jobtypecolor, jobapply.coverletterid
-                ,jobapply.apply_message, job.workplace_type, job.is_urgent
+                ,jobapply.apply_message, job.workplace_type,job.is_urgent,job.jobcategory, job.jobtype, job.salaryduration
                  FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` AS jobapply
                  JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job ON job.id = jobapply.jobid
                  JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume ON resume.id = jobapply.cvid
@@ -1375,6 +1393,13 @@ class WPJOBPORTALjobapplyModel {
             }
             $wpjobportal_data[] = $d;
         }
+        if(in_array('smartmatching', wpjobportal::$_active_addons)){
+            $show_match_score_job_list  = wpjobportal::$_config->getConfigurationByConfigName('show_match_score_job_list');
+            if (WPJOBPORTALincluder::getObjectClass('user')->isjobseeker() && !empty($show_match_score_job_list) && !empty($wpjobportal_data)) {
+                $wpjobportal_data = WPJOBPORTALincluder::getJSModel('smartmatching')->assignScoreToJobs($wpjobportal_data);
+            }
+        }
+
         $wpjobportal_results = $wpjobportal_data;
         $wpjobportal_data = array();
         foreach ($wpjobportal_results AS $d) {
@@ -2238,6 +2263,24 @@ class WPJOBPORTALjobapplyModel {
 
     function applyOnJob(){
         $wpjobportal_data  = WPJOBPORTALrequest::get('post');
+
+        // modified the code accomadte ai cover letter generation from job apply form
+        // store ai cover letter in system to apply with it on job
+        if(in_array('coverletter', wpjobportal::$_active_addons)){
+            $cl_mode = WPJOBPORTALrequest::getVar('cl_mode','','');
+            if(!empty($cl_mode) && $cl_mode == 'ai'){
+                $post_array = [];
+                $post_array['id'] = '';
+                $post_array['title'] = $wpjobportal_data['coverletter_title'];
+                // below paratmeter for refrence only it will not work since editor data is fetched directly from $_POST
+                $post_array['description'] = $wpjobportal_data['coverletter_text'];
+                $cover_letter_id = WPJOBPORTALincluder::getJSModel('coverletter')->storeCoverLetter($post_array,1);// 1 as second parmeter
+                if(!empty($cover_letter_id) && is_numeric($cover_letter_id)){
+                    // returned id is for newly created cover letter set it sanitized args (no change in the next flow)
+                    wpjobportal::$_data['sanitized_args']['coverletterid']  = $cover_letter_id;
+                }
+            }
+        }
 
         $quick_apply_flag = WPJOBPORTALrequest::getVar('quickapply','','');
 

@@ -114,6 +114,16 @@ foreach($wpjobportal_fields AS $wpjobportal_field){
             break;
         case 'description':
             $wpjobportal_content = WPJOBPORTALformfield::editor('description', isset($wpjobportal_job->description) ? $wpjobportal_job->description : '', array('class' => 'inputbox one wjportal-form-textarea-field'));
+            $api_key = get_option('wpjobportal_zywrap_api_key', '');
+            if(!empty($api_key) && !WPJOBPORTALincluder::getObjectClass('user')->isguest()){
+                $enable_job_copilot  = wpjobportal::$_config->getConfigurationByConfigName('enable_job_copilot');
+                if(!empty($enable_job_copilot) || current_user_can('manage_options')){
+                    $wpjobportal_content = WPJOBPORTALincluder::getTemplate('job/views/frontend/content-generation',array(
+                        'wpjobportal_desc_editor' => $wpjobportal_content
+                    ));
+                }
+            }
+
             break;
         case 'careerlevel':
             $wpjobportal_content = WPJOBPORTALformfield::select('careerlevel', WPJOBPORTALincluder::getJSModel('careerlevel')->getCareerLevelsForCombo(), isset($wpjobportal_job->careerlevel) ? $wpjobportal_job->careerlevel : WPJOBPORTALincluder::getJSModel('careerlevel')->getDefaultCareerlevelId(), $wpjobportal_field->placeholder, array('class' => 'inputbox wjportal-form-select-field', 'data-validation' => $wpjobportal_field->validation));

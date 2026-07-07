@@ -35,7 +35,8 @@ class WPJOBPORTALajax {
                                 'getPackagePopupForResumeContactDetail','gettagsbytagname','listDepartments','deleteUserPhoto',
                                 'getStripePlans','downloadandinstalladdonfromAjax','getChildForVisibleCombobox','isFieldRequired','getFieldsForComboBySection',
                                 'getUserRoleBasedInfo','storeConfigurationSingle','importZywrapData','checkZywrapApiKey','importZywrapBatchProcess',
-                                'getWrappersByCategory','executeZywrapProxy','getZywrapAllWrappers','getSchemaByUseCode','getAjaxJobs');
+                                'getWrappersByCategory','executeZywrapProxy','getZywrapAllWrappers','getSchemaByUseCode','getAjaxJobs', 'executeCompanyCopilot',
+                                'executeJobCopilot', 'executeResumeCopilot', 'executeCoverLetterCopilot');
         $wpjobportal_task = WPJOBPORTALrequest::getVar('task');
         if($wpjobportal_task != '' && in_array($wpjobportal_task, $fucntin_allowed)){
             $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme');

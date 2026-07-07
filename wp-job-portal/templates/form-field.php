@@ -46,6 +46,7 @@ if (isset($wpjobportal_field->visibleparams) && $wpjobportal_field->visibleparam
     <div class="wjportal-form-value">
 
            <?php
+            /*
             if( (is_admin() && current_user_can( 'manage_options' )) && isset($wpjobportal_field->field) && ($wpjobportal_field->field == 'description' || $wpjobportal_field->field == 'skills')  ){
                echo '<a href="#" id="zywrap-open-modal-button" class="button" title="' . esc_attr__('AI Content Generation', 'wp-job-portal') . '">
                      <span class="dashicons dashicons-testimonial"></span>
@@ -57,6 +58,7 @@ if (isset($wpjobportal_field->visibleparams) && $wpjobportal_field->visibleparam
             echo wp_kses(WPJOBPORTALformfield::hidden('wpjobportal_content_generation_fieldfor', $wpjobportal_field->fieldfor),WPJOBPORTAL_ALLOWED_TAGS);
 
             }
+            */
         ?>
         <?php echo wp_kses($wpjobportal_content, WPJOBPORTAL_ALLOWED_TAGS); ?>
 

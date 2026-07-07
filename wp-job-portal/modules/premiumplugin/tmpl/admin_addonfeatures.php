@@ -51,11 +51,17 @@
                         <a title="<?php echo esc_attr(__('Show','wp-job-portal')); ?>" href="https://wpjobportal.com/pricing/" class="add-on-msg-btn"><i class="fa fa-cart"></i> <?php echo esc_html(__('show bundle pack','wp-job-portal')); ?></a>
                     </div>
                     <div class="add-on-list">
-                        <div class="add-on-item address-data">
+                        <div class="add-on-item apply-as-vis">
                             <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/elegant-icon.png" alt="<?php echo esc_attr(__('Address Data','wp-job-portal')); ?>" />
                             <div class="add-on-name"><?php echo esc_html(__('Elegant Design','wp-job-portal')); ?></div>
                             <div class="add-on-txt"><?php echo esc_html(__('This add-on will change the Job Portal pages to a simple yet powerful and rich web design that involves focusing on clean aesthetics, intuitive navigation, and functional elements while ensuring performance and responsiveness.','wp-job-portal')); ?></div>
                             <a title="<?php echo esc_attr(__('buy now','wp-job-portal')); ?>" href="https://wpjobportal.com/product/elegant-design/" class="add-on-btn"><?php echo esc_html(__('buy now','wp-job-portal')); ?></a>
+                        </div>
+                        <div class="add-on-item feat-comp">
+                            <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/smart-matching.png" alt="<?php echo esc_attr(__('Smart Matching','wp-job-portal')); ?>" />
+                            <div class="add-on-name"><?php echo esc_html(__('Smart Matching','wp-job-portal')); ?></div>
+                            <div class="add-on-txt"><?php echo esc_html(__('WP Job Portal offers a feature for logged in users to see match score for jobs and resume based on users data.','wp-job-portal')); ?></div>
+                            <a title="<?php echo esc_attr(__('buy now','wp-job-portal')); ?>" href="https://wpjobportal.com/product/smart-matching/" class="add-on-btn"><?php echo esc_html(__('buy now','wp-job-portal')); ?></a>
                         </div>
                         <div class="add-on-item cust-fields">
                             <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/add-on-list/joblisting.png" alt="<?php echo esc_attr(__('Job Listing Enhancer','wp-job-portal')); ?>" />

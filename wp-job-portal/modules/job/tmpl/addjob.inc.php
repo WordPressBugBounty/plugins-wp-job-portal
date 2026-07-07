@@ -49,9 +49,6 @@ $wpjobportal_js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy'
         var map = null;
     ";
     wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
-?>
-
-<?php
 
 $wpjobportal_mapfield = null;
 if(isset(wpjobportal::$_data[2]))
@@ -75,8 +72,7 @@ if($wpjobportal_mapfield):
         </style>
         <?php
         $wpjobportal_job = isset(wpjobportal::$_data[0]) ? wpjobportal::$_data[0] : null;
-        ?>
-        <?php
+
             $wpjobportal_inline_js_script = "
                 var latlang_marker_array = [];
                 if (typeof google === 'object' && typeof google.maps === 'object') {
@@ -258,10 +254,8 @@ if($wpjobportal_mapfield):
                 }
                             ";
             wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
-        ?>
-    <?php } ?>
-<?php endif; ?>
-<?php
+        }
+    endif;
 
     $wpjobportal_inline_js_script = "
         var markers = [];

@@ -685,7 +685,8 @@ class WPJOBPORTALwpjobportalModel {
             'wp-job-portal-aisuggestedjobs' => array('title' => esc_html(__('AI Suggested Jobs','wp-job-portal')), 'price' => 0, 'status' => 1),
             'wp-job-portal-aisuggestedresumes' => array('title' => esc_html(__('AI Suggested Resumes','wp-job-portal')), 'price' => 0, 'status' => 1),
 
-            'wp-job-portal-joblistingenhancer' => array('title' => esc_html(__('Job Listing Enhancer','wp-job-portal')), 'price' => 0, 'status' => 1)
+            'wp-job-portal-joblistingenhancer' => array('title' => esc_html(__('Job Listing Enhancer','wp-job-portal')), 'price' => 0, 'status' => 1),
+            'wp-job-portal-smartmatching' => array('title' => esc_html(__('Smart Matching','wp-job-portal')), 'price' => 0, 'status' => 1)
 
         );
     }
