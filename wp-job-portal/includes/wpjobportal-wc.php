@@ -551,7 +551,7 @@ add_action('woocommerce_product_options_general_product_data', 'wpjobportal_subs
 add_action( 'woocommerce_process_product_meta_subscription', 'wpjobportal_save_wpjobportalsubscription_option_fields'  );
     function wpjobportal_save_wpjobportalsubscription_option_fields( $post_id ) {
         $wpjobportal_is_wpjobportalsubscription = isset( $_POST['_wpjobportalsubscription'] ) ? 'yes' : 'no';
-        $wpjobportal_packagepack_field = $_POST['wpjobportal_packagepack_field_subscription'];
+        $wpjobportal_packagepack_field = isset($_POST['wpjobportal_packagepack_field_subscription']) ? absint($_POST['wpjobportal_packagepack_field_subscription']) : 0;
         update_post_meta( $post_id, '_wpjobportalsubscription', $wpjobportal_is_wpjobportalsubscription );
         update_post_meta( $post_id, 'is_wpjobportalsubscription', $wpjobportal_is_wpjobportalsubscription );
         update_post_meta( $post_id, 'wpjobportal_packagepack_field', $wpjobportal_packagepack_field );

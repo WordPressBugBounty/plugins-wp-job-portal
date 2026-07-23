@@ -55,7 +55,7 @@ echo wp_kses(WPJOBPORTALformfield::hidden('resume_temp', wpjobportal::$wpjobport
         <?php
         if(isset($_COOKIE['wpjobportal_apply_visitor']) && in_array('visitorapplyjob', wpjobportal::$_active_addons)){
             if (!is_user_logged_in()) {
-                $wpjobportal_visitorJobInfo = apply_filters('wpjobportal_wpjobaddnos_visitor_apply_job',false,sanitize_key($_COOKIE['wpjobportal_apply_visitor']),wpjobportal::$_data['jobinfo'],wpjobportal::$_configuration['labelinlisting']);
+                $wpjobportal_visitorJobInfo = apply_filters('wpjobportal_wpjobaddnos_visitor_apply_job',false,absint(wp_unslash($_COOKIE['wpjobportal_apply_visitor'])),wpjobportal::$_data['jobinfo'],wpjobportal::$_configuration['labelinlisting']);
             }
         }
         ////***For Calling Input Parameter***///

@@ -30,12 +30,12 @@ class WPJOBPORTALactivation {
 
         // admin email address
         $admin_email = get_option( 'admin_email' );
-        $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_config` SET `configvalue` = '".esc_sql($admin_email)."' WHERE `configname`= 'adminemailaddress'";
+        $query = wpjobportal::$_db->prepare("UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_config` SET `configvalue` = %s WHERE `configname`= 'adminemailaddress'", $admin_email);
         wpjobportaldb::query($query);
 
         // send by email address
         $wpjobportal_send_by_email = 'wordpress@' . str_replace( 'www.', '', wp_parse_url( home_url(), PHP_URL_HOST ) );
-        $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_config` SET `configvalue` = '".esc_sql($wpjobportal_send_by_email)."' WHERE `configname`= 'mailfromaddress'";
+        $query = wpjobportal::$_db->prepare("UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_config` SET `configvalue` = %s WHERE `configname`= 'mailfromaddress'", $wpjobportal_send_by_email);
         wpjobportaldb::query($query);
       }
 
@@ -52,7 +52,7 @@ class WPJOBPORTALactivation {
             $wpjobportal_pageid = wp_insert_post($post);
             if(is_numeric($wpjobportal_pageid)){
                 // insert wp job portal jobseeker control panel id to configuration
-                $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_config` SET `configvalue` = ".esc_sql($wpjobportal_pageid)." WHERE `configname`= 'default_pageid'";
+                $query = wpjobportal::$_db->prepare("UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_config` SET `configvalue` = %d WHERE `configname`= 'default_pageid'", $wpjobportal_pageid);
                 wpjobportaldb::query($query);
             }
         } else {
@@ -468,7 +468,7 @@ class WPJOBPORTALactivation {
               ('searchjobtag', '4', 'job', 'tag'),
               ('categories_colsperrow', '3', 'category', NULL),
               ('productcode', 'wpjobportal', 'default', NULL),
-              ('versioncode', '2.5.6', 'default', NULL),
+              ('versioncode', '2.5.7', 'default', NULL),
               ('producttype', 'free', 'default', NULL),
               ('vis_jscredits', '0', 'jscontrolpanel', 'credits'),
               ('vis_emcredits', '1', 'emcontrolpanel', NULL),
@@ -493,6 +493,8 @@ class WPJOBPORTALactivation {
               ('indeedjob_location', '', 'indeedjob', NULL),
               ('disable_employer', '1', 'wpjobportal', NULL),
               ('newtyped_cities', '0', 'city', 'addressdata'),
+              ('job_sitemap_enable', '0', 'seo', NULL),
+              ('job_sitemap_limit', '5000', 'seo', NULL),
               ('indeedjob_enabled', '0', 'indeedjob', NULL),
               ('indeedjob_apikey', '', 'indeedjob', NULL),
               ('indeedjob_category', '', 'indeedjob', NULL),

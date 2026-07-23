@@ -1289,7 +1289,7 @@ class WPJOBPORTALthirdpartyimportModel {
                 }
                 // education section
                 if($post_meta["_candidate_education"][0]) {
-                    $wpjobportal_educations = unserialize($post_meta["_candidate_education"][0]);
+                    $wpjobportal_educations = unserialize($post_meta["_candidate_education"][0], array('allowed_classes' => false));
                     $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resumeinstitutes');
                     foreach($wpjobportal_educations as $wpjobportal_education){
                         $wpjobportal_data = [
@@ -1312,7 +1312,7 @@ class WPJOBPORTALthirdpartyimportModel {
                 }
                 // employer section
                 if($post_meta["_candidate_experience"][0]) {
-                    $wpjobportal_experiences = unserialize($post_meta["_candidate_experience"][0]);
+                    $wpjobportal_experiences = unserialize($post_meta["_candidate_experience"][0], array('allowed_classes' => false));
                     $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resumeemployers');
                     foreach($wpjobportal_experiences as $wpjobportal_experience){
                         $wpjobportal_data = [
@@ -1384,7 +1384,7 @@ class WPJOBPORTALthirdpartyimportModel {
                     // if name not set use post title // first_name system fielf (required)
                     $filename = '';
                     if(!empty($post_meta["_attachment_file"][0])){
-                        $attachment_file = unserialize($post_meta["_attachment_file"][0]);
+                        $attachment_file = unserialize($post_meta["_attachment_file"][0], array('allowed_classes' => false));
                         $wpjobportal_resume_file = $attachment_file[0];
                     }
                     $alias = wpjobportal::$_common->stringToAlias($full_name);
@@ -1481,7 +1481,7 @@ class WPJOBPORTALthirdpartyimportModel {
             // }
             $query = "SELECT job.id
                         FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                        WHERE job.uid = ".esc_sql($wpjobportal_uid)."
+                        WHERE job.uid = " . (int) ($wpjobportal_uid)."
                         AND LOWER(job.title) ='".strtolower(esc_sql($wpjobportal_job->post_title))."';";
             $jpjob_job_id = wpjobportaldb::get_var($query);
             if(is_numeric($jpjob_job_id) && $jpjob_job_id > 0){
@@ -1925,7 +1925,7 @@ class WPJOBPORTALthirdpartyimportModel {
                 elseif($wpjobportal_key == "resume_fields"){ $wpjobportal_fieldfor = 3; $wpjobportal_section = 1; }
                 // check if field already exsists
 
-                $query = "SELECT id,field FROM `" . wpjobportal::$_db->prefix . "wj_portal_fieldsordering` WHERE isuserfield = 1 AND LOWER(fieldtitle) ='".esc_sql(strtolower($custom_field["label"]))."' AND userfieldtype ='".esc_sql($wpjobportal_fieldtype)."' AND fieldfor = " . esc_sql($wpjobportal_fieldfor);
+                $query = "SELECT id,field FROM `" . wpjobportal::$_db->prefix . "wj_portal_fieldsordering` WHERE isuserfield = 1 AND LOWER(fieldtitle) ='".esc_sql(strtolower($custom_field["label"]))."' AND userfieldtype ='".esc_sql($wpjobportal_fieldtype)."' AND fieldfor = " . (int) ($wpjobportal_fieldfor);
                 $wpjobportal_field_record = wpjobportaldb::get_row($query);
 
                 if(!empty($wpjobportal_field_record)){ // this will make sure

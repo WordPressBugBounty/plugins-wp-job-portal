@@ -1729,10 +1729,14 @@ background: linear-gradient(90deg,rgba(79, 70, 229, 1) 0%, rgba(14, 23, 199, 1) 
          */
         div#wpjobportaladmin-wrapper .wpjobportal-shortcode-notice-wrap {
             display: flex;
+            gap: 5px;
             align-items: flex-start; /* Aligns items (icon and text) to the top */
             padding: 1rem;
             border-radius: 0.75rem;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        div#wpjobportaladmin-wrapper .wpjobportal-shortcode-notice-wrap img {
+         width: 20px;
         }
 
         /*

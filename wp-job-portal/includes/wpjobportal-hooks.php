@@ -49,71 +49,167 @@ function wpjobportal_custom_css_add() {
     wp_enqueue_style('wpjobportal-menu-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/adminmenu.css');
 }
 
+/**
+ * Build and validate a signed registration shortcode context.
+ *
+ * The signed value lets the registration handler reliably enforce the role and
+ * optional redirect selected by the shortcode without trusting editable hidden fields.
+ */
+function wpjobportal_create_registration_shortcode_context($wpjobportal_role, $wpjobportal_lock_role = false, $wpjobportal_redirect_url = '') {
+    $wpjobportal_role = (int) $wpjobportal_role;
+    if (!in_array($wpjobportal_role, array(1, 2), true)) {
+        return '';
+    }
+
+    $wpjobportal_payload = array(
+        'role' => $wpjobportal_role,
+        'lock_role' => $wpjobportal_lock_role ? 1 : 0,
+        'redirect_url' => wp_validate_redirect(esc_url_raw($wpjobportal_redirect_url), ''),
+        'expires' => time() + DAY_IN_SECONDS,
+    );
+    $wpjobportal_json = wp_json_encode($wpjobportal_payload);
+    if (!$wpjobportal_json) {
+        return '';
+    }
+
+    $wpjobportal_encoded = rtrim(strtr(base64_encode($wpjobportal_json), '+/', '-_'), '=');
+    $wpjobportal_signature = hash_hmac('sha256', $wpjobportal_encoded, wp_salt('nonce'));
+    return $wpjobportal_encoded . '.' . $wpjobportal_signature;
+}
+
+function wpjobportal_get_registration_shortcode_context() {
+    static $wpjobportal_context_loaded = false;
+    static $wpjobportal_context = array();
+
+    if ($wpjobportal_context_loaded) {
+        return $wpjobportal_context;
+    }
+    $wpjobportal_context_loaded = true;
+
+    $wpjobportal_token = WPJOBPORTALrequest::getVar('wpjobportal_registration_context', 'post', '');
+    if (!is_string($wpjobportal_token) || strpos($wpjobportal_token, '.') === false) {
+        return $wpjobportal_context;
+    }
+
+    list($wpjobportal_encoded, $wpjobportal_signature) = explode('.', $wpjobportal_token, 2);
+    $wpjobportal_expected_signature = hash_hmac('sha256', $wpjobportal_encoded, wp_salt('nonce'));
+    if (!hash_equals($wpjobportal_expected_signature, $wpjobportal_signature)) {
+        return $wpjobportal_context;
+    }
+
+    $wpjobportal_padding = strlen($wpjobportal_encoded) % 4;
+    if ($wpjobportal_padding) {
+        $wpjobportal_encoded .= str_repeat('=', 4 - $wpjobportal_padding);
+    }
+    $wpjobportal_json = base64_decode(strtr($wpjobportal_encoded, '-_', '+/'), true);
+    $wpjobportal_data = json_decode((string) $wpjobportal_json, true);
+    if (!is_array($wpjobportal_data)) {
+        return $wpjobportal_context;
+    }
+
+    $wpjobportal_role = isset($wpjobportal_data['role']) ? (int) $wpjobportal_data['role'] : 0;
+    $wpjobportal_expires = isset($wpjobportal_data['expires']) ? (int) $wpjobportal_data['expires'] : 0;
+    if (!in_array($wpjobportal_role, array(1, 2), true) || $wpjobportal_expires < time()) {
+        return $wpjobportal_context;
+    }
+
+    $wpjobportal_context = array(
+        'role' => $wpjobportal_role,
+        'lock_role' => !empty($wpjobportal_data['lock_role']) ? 1 : 0,
+        'redirect_url' => !empty($wpjobportal_data['redirect_url'])
+            ? wp_validate_redirect(esc_url_raw($wpjobportal_data['redirect_url']), '')
+            : '',
+    );
+    return $wpjobportal_context;
+}
+
+function wpjobportal_get_registration_role() {
+    $wpjobportal_context = wpjobportal_get_registration_shortcode_context();
+    if (!empty($wpjobportal_context['lock_role'])) {
+        return (int) $wpjobportal_context['role'];
+    }
+
+    return wpjobportal::wpjobportal_sanitizeData(WPJOBPORTALrequest::getVar('jobs_role', 'post', ''));
+}
+
 // --------------------------WP registration from fields --------
 // 1. wp register form extra field
 add_action('register_form', 'wpjobportal_add_registration_fields');
 add_action('wpjobportal_register_form', 'wpjobportal_add_registration_fields');
 
 function wpjobportal_add_registration_fields() {
-    //Get and set any values already sent
-    /*
-    if (isset($_SESSION['js_cpfrom'])) {
-        ?>
-        <div class="wjportal-form-title"><?php echo esc_html(__('User Role', 'wp-job-portal')); ?></div>
-        <div class="wjportal-form-value">
-            <div class="wjportal-form-text">
-                <?php if ($_SESSION['js_cpfrom'] == 1) { ?>
-                    <input type="hidden" name="jobs_role" value="1" />
-                    <?php echo esc_html(__('Employer', 'wp-job-portal')); ?>
-                    <?php
-                } elseif ($_SESSION['js_cpfrom'] == 2) {
-                    ?>
-                    <input type="hidden" name="jobs_role" value="2" />
-                     <?php echo esc_html(__('Job seeker', 'wp-job-portal')); ?>
-               <?php } ?>
-            </div>
-        </div>
-    <?php
-    } else {
-        */
-        ?>
+    $wpjobportal_shortcode_options = isset(wpjobportal::$_data['shortcode_options']) && is_array(wpjobportal::$_data['shortcode_options'])
+        ? wpjobportal::$_data['shortcode_options']
+        : array();
+    $wpjobportal_is_registration_shortcode = !empty($wpjobportal_shortcode_options['registration_shortcode']);
+    $wpjobportal_hide_role = $wpjobportal_is_registration_shortcode && !empty($wpjobportal_shortcode_options['hide_role']);
+    $wpjobportal_shortcode_role = $wpjobportal_is_registration_shortcode && isset($wpjobportal_shortcode_options['registration_role'])
+        ? (int) $wpjobportal_shortcode_options['registration_role']
+        : 0;
 
-            <div class="wjportal-form-title">
-                <label for="jobs_role">
-                    <?php echo esc_html(__('Jobs Role', 'wp-job-portal')) ?>
-                </label>
-            </div>
-            <div class="wjportal-form-value">
-                <?php
-                $wpjobportal_empflag  = wpjobportal::$_config->getConfigurationByConfigName('disable_employer');
-                $wpjobportal_showemployerlink  = wpjobportal::$_config->getConfigurationByConfigName('showemployerlink');
-                if($wpjobportal_empflag == 1 && $wpjobportal_showemployerlink == 1){ ?>
-                    <select id="jobs_role" name="jobs_role" class="input form-control wjportal-form-select-field">
-                        <option value="0"><?php echo esc_html(__('Select Role', 'wp-job-portal')); ?></option>
-                        <option value="1"><?php echo esc_html(__('Employer', 'wp-job-portal')); ?></option>
-                        <option value="2"><?php echo esc_html(__('Job seeker', 'wp-job-portal')); ?></option>
-                    </select><?php
-                }else{ ?>
-                    <div class="wjportal-form-text">
-                        <input type="hidden" name="jobs_role" value="2" />
-                         <?php echo esc_html(__('Job seeker', 'wp-job-portal')); ?>
-                   </div>
-            <?php } ?>
-            </div>
-            <input type="hidden" name="jobs_notfromourform" value="1" />
-
+    if ($wpjobportal_hide_role && in_array($wpjobportal_shortcode_role, array(1, 2), true)) {
+        $wpjobportal_context = wpjobportal_create_registration_shortcode_context(
+            $wpjobportal_shortcode_role,
+            true,
+            isset($wpjobportal_shortcode_options['redirect_url']) ? $wpjobportal_shortcode_options['redirect_url'] : ''
+        );
+        ?>
+        <input type="hidden" name="jobs_role" value="<?php echo esc_attr($wpjobportal_shortcode_role); ?>" />
+        <input type="hidden" name="jobs_notfromourform" value="1" />
+        <input type="hidden" name="wpjobportal_registration_context" value="<?php echo esc_attr($wpjobportal_context); ?>" />
         <?php
-    /*}
-    if(isset($_SESSION['js_cpfrom']))
-        unset($_SESSION['js_cpfrom']);
-    */
+        return;
+    }
+
+    ?>
+    <div class="wjportal-form-title">
+        <label for="jobs_role">
+            <?php echo esc_html(__('Jobs Role', 'wp-job-portal')); ?>
+        </label>
+    </div>
+    <div class="wjportal-form-value">
+        <?php
+        $wpjobportal_empflag = wpjobportal::$_config->getConfigurationByConfigName('disable_employer');
+        $wpjobportal_showemployerlink = wpjobportal::$_config->getConfigurationByConfigName('showemployerlink');
+        if ($wpjobportal_empflag == 1 && $wpjobportal_showemployerlink == 1) {
+            $wpjobportal_selected_role = in_array($wpjobportal_shortcode_role, array(1, 2), true) ? $wpjobportal_shortcode_role : 0;
+            ?>
+            <select id="jobs_role" name="jobs_role" class="input form-control wjportal-form-select-field">
+                <option value="0"<?php selected($wpjobportal_selected_role, 0); ?>><?php echo esc_html(__('Select Role', 'wp-job-portal')); ?></option>
+                <option value="1"<?php selected($wpjobportal_selected_role, 1); ?>><?php echo esc_html(__('Employer', 'wp-job-portal')); ?></option>
+                <option value="2"<?php selected($wpjobportal_selected_role, 2); ?>><?php echo esc_html(__('Job seeker', 'wp-job-portal')); ?></option>
+            </select>
+            <?php
+        } else {
+            ?>
+            <div class="wjportal-form-text">
+                <input type="hidden" name="jobs_role" value="2" />
+                <?php echo esc_html(__('Job seeker', 'wp-job-portal')); ?>
+            </div>
+            <?php
+        }
+        ?>
+    </div>
+    <input type="hidden" name="jobs_notfromourform" value="1" />
+    <?php
+
+    if ($wpjobportal_is_registration_shortcode && in_array($wpjobportal_shortcode_role, array(1, 2), true)) {
+        $wpjobportal_context = wpjobportal_create_registration_shortcode_context(
+            $wpjobportal_shortcode_role,
+            false,
+            isset($wpjobportal_shortcode_options['redirect_url']) ? $wpjobportal_shortcode_options['redirect_url'] : ''
+        );
+        ?>
+        <input type="hidden" name="wpjobportal_registration_context" value="<?php echo esc_attr($wpjobportal_context); ?>" />
+        <?php
+    }
 }
 
 //2. Add validation. In this case, we make sure jobs_role is required
 add_filter('registration_errors', 'wpjobportal_registration_errors', 10, 3);
 
 function wpjobportal_registration_errors($errors, $wpjobportal_sanitized_user_login, $wpjobportal_user_email) {
-    $wpjobportal_jobs_role = WPJOBPORTALrequest::getVar('jobs_role','post','');
+    $wpjobportal_jobs_role = wpjobportal_get_registration_role();
     if ($wpjobportal_jobs_role == 0) {
 
         $errors->add('user_role_error','<strong>'.esc_html(__("Error","wp-job-portal")).'</strong>:'. esc_html(__('You must set jobs user role', 'wp-job-portal')).'.');
@@ -126,10 +222,10 @@ function wpjobportal_registration_errors($errors, $wpjobportal_sanitized_user_lo
 add_action('user_register', 'wpjobportal_registration_save', 10, 1);
 
 function wpjobportal_registration_save($wpjobportal_user_id) {
-    $wpjobportal_jobs_role = WPJOBPORTALrequest::getVar('jobs_role','post','');
+    $wpjobportal_jobs_role = wpjobportal_get_registration_role();
     $wpjobportal_jobs_register_nonce = WPJOBPORTALrequest::getVar('wpjobportal_jobs_register_nonce','post','');
     if ($wpjobportal_jobs_role != '' && $wpjobportal_jobs_register_nonce != '' && !wp_verify_nonce($wpjobportal_jobs_register_nonce, 'wpjobportal-jobs-register-nonce') ) {
-        $wpjobportal_role = wpjobportal::wpjobportal_sanitizeData(WPJOBPORTALrequest::getVar('jobs_role'));
+        $wpjobportal_role = wpjobportal_get_registration_role();
         $wpjobportal_user_email = sanitize_email(WPJOBPORTALrequest::getVar('wpjobportal_user_email'));
         if (is_numeric($wpjobportal_role)) {
             $wpjobportal_empflag  = wpjobportal::$_config->getConfigurationByConfigName('disable_employer');
@@ -173,6 +269,7 @@ function wpjobportal_registration_save($wpjobportal_user_id) {
 // ------------------- wpjobportal registrationFrom request handler--------
 // register a new user
 function wpjobportal_add_new_member() {
+    $wpjobportal_registration_context = wpjobportal_get_registration_shortcode_context();
     $wpjobportal_user_login  = WPJOBPORTALrequest::getVar('wpjobportal_user_login','post','');
     $wpjobportal_jobs_register_nonce  = WPJOBPORTALrequest::getVar('wpjobportal_jobs_register_nonce','post','');
     if ($wpjobportal_user_login != '' && $wpjobportal_jobs_register_nonce != '' && wp_verify_nonce($wpjobportal_jobs_register_nonce, 'wpjobportal-jobs-register-nonce')) {
@@ -301,7 +398,7 @@ function wpjobportal_add_new_member() {
                 wp_set_auth_cookie($wpjobportal_new_user_id);
                 //do_action('wp_login', $wpjobportal_user_login);
 
-                $wpjobportal_role = wpjobportal::wpjobportal_sanitizeData(WPJOBPORTALrequest::getVar('jobs_role') );
+                $wpjobportal_role = wpjobportal_get_registration_role();
 
                 if (is_numeric($wpjobportal_role)) {
                     if ($wpjobportal_role == 1) {
@@ -367,30 +464,34 @@ function wpjobportal_add_new_member() {
                     }
                     WPJOBPORTALMessages::setLayoutMessage(esc_html(__('User has been successfully created', 'wp-job-portal')), 'updated',$wpjobportal_key);
                     // $wpjobportal_url = home_url();
-                    if(is_numeric($wpjobportal_pageid) && $wpjobportal_pageid > 0){
-                           if(get_post_status($wpjobportal_pageid) == 'publish'){
-                               if($wpjobportal_userrole == 1){
-                                   $wpjobportal_setRegisterLinkEmploye= wpjobportal::$_config->getConfigurationByConfigName('employe_set_register_link');
-                                   $customeRegisterLinkForEmploye= wpjobportal::$_config->getConfigurationByConfigName('employe_register_link');
-                                   if($wpjobportal_setRegisterLinkEmploye == 2){
-                                       wp_redirect(esc_url($customeRegisterLinkForEmploye));// to handle the case of invalid url showing error,
-                                       exit;
-                                   }else{
+                    if (empty($wpjobportal_registration_context['redirect_url']) && is_numeric($wpjobportal_pageid) && $wpjobportal_pageid > 0) {
+                        if (get_post_status($wpjobportal_pageid) == 'publish') {
+                            if ($wpjobportal_userrole == 1) {
+                                $wpjobportal_setRegisterLinkEmploye = wpjobportal::$_config->getConfigurationByConfigName('employe_set_register_link');
+                                $customeRegisterLinkForEmploye = wpjobportal::$_config->getConfigurationByConfigName('employe_register_link');
+                                if ($wpjobportal_setRegisterLinkEmploye == 2) {
+                                    wp_redirect(esc_url($customeRegisterLinkForEmploye)); // to handle the case of invalid url showing error,
+                                    exit;
+                                } else {
                                     $wpjobportal_url = get_the_permalink($wpjobportal_pageid);
-                                   }
-                               }elseif($wpjobportal_userrole == 2){
-                                   $wpjobportal_setRegisterLinkJobSeeker= wpjobportal::$_config->getConfigurationByConfigName('jobseeker_set_register_link');
-                                   $customeRegisterLinkForJobSeeker= wpjobportal::$_config->getConfigurationByConfigName('jobseeker_register_link');
-                                   if($wpjobportal_setRegisterLinkJobSeeker == 2){
-                                      wp_redirect(esc_url($customeRegisterLinkForJobSeeker));// to handle the case of invalid url showing error,
-                                      exit;
-                                   }else{
+                                }
+                            } elseif ($wpjobportal_userrole == 2) {
+                                $wpjobportal_setRegisterLinkJobSeeker = wpjobportal::$_config->getConfigurationByConfigName('jobseeker_set_register_link');
+                                $customeRegisterLinkForJobSeeker = wpjobportal::$_config->getConfigurationByConfigName('jobseeker_register_link');
+                                if ($wpjobportal_setRegisterLinkJobSeeker == 2) {
+                                    wp_redirect(esc_url($customeRegisterLinkForJobSeeker)); // to handle the case of invalid url showing error,
+                                    exit;
+                                } else {
                                     $wpjobportal_url = get_the_permalink($wpjobportal_pageid);
-                                   }
-                               }
-                         }
-                     }
-                    wp_redirect($wpjobportal_url);
+                                }
+                            }
+                        }
+                    }
+                    if (!empty($wpjobportal_registration_context['redirect_url'])) {
+                        wp_safe_redirect($wpjobportal_registration_context['redirect_url']);
+                    } else {
+                        wp_redirect($wpjobportal_url);
+                    }
                     exit;
 
 

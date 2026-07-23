@@ -502,14 +502,17 @@ if (!defined('ABSPATH'))
 
                             //tags
                             ";
-                            $wpjobportal_jobtags = "var jobtags = '';";
-                            if(isset(wpjobportal::$_data[0]->jobtags)) 
-                                if(!(wpjobportal::$_data[0]->jobtags == "[]")) 
-                                    $wpjobportal_jobtags = "var jobtags = ". wpjobportal::$_data[0]->jobtags.";";
-                            
-                            $wpjobportal_inline_js_script .= $wpjobportal_jobtags;
+                            if(in_array('tag',wpjobportal::$_active_addons)){
+                                $wpjobportal_jobtags = "var jobtags = '';";
+                                if(isset(wpjobportal::$_data[0]->jobtags)) 
+                                    if(!(wpjobportal::$_data[0]->jobtags == "[]")) 
+                                        $wpjobportal_jobtags = "var jobtags = ". wpjobportal::$_data[0]->jobtags.";";
+                                
+                                $wpjobportal_inline_js_script .= $wpjobportal_jobtags;
+                                $wpjobportal_inline_js_script .= "
+                                getTokenInputTags(jobtags);";
+                            }
                             $wpjobportal_inline_js_script .= "
-                            getTokenInputTags(jobtags);
                             var map_obj = document.getElementById('map_container');
                             ";
                             if($wpjobportal_mappingservice == 'gmap'){

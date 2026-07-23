@@ -148,7 +148,7 @@ class WPJOBPORTALuploads {
         // Set everything back to normal.
         remove_filter( 'upload_dir', array($this,'wpjobportal_upload_dir'));
         if($return == 1){
-            $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_companies` SET logofilename = '".esc_sql($filename)."', logoisfile = 1 WHERE id = ".esc_sql($wpjobportal_id);
+            $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_companies` SET logofilename = '".esc_sql($filename)."', logoisfile = 1 WHERE id = " . (int) ($wpjobportal_id);
             wpjobportal::$_db->query($query);
 
             // --- NEW HOOK INTEGRATION START ---
@@ -183,7 +183,7 @@ class WPJOBPORTALuploads {
             if (@ $wp_filesystem->put_contents( $file, '', 0755 ) ) {
             }
         }else{
-            $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_companies` SET logofilename = '', logoisfile = -1 WHERE id = ".esc_sql($wpjobportal_id);
+            $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_companies` SET logofilename = '', logoisfile = -1 WHERE id = " . (int) ($wpjobportal_id);
             wpjobportal::$_db->query($query);
         }
 
@@ -255,7 +255,7 @@ class WPJOBPORTALuploads {
         $wpjobportal_result = $this->uploadImage(filter_var_array($_FILES['photo']));
         $wpjobportal_profilepath = wpjobportalphplib::wpJP_explode($wpjobportal_result['filename'], $wpjobportal_result['url']);
         if( !isset($wpjobportal_result['error']) ){
-            $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_users` SET photo = '".esc_sql($wpjobportal_result['filename'])."' WHERE uid = ".esc_sql($wpjobportal_id);
+            $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_users` SET photo = '".esc_sql($wpjobportal_result['filename'])."' WHERE uid = " . (int) ($wpjobportal_id);
             wpjobportal::$_db->query($query);
 
             // --- NEW HOOK INTEGRATION START ---
@@ -319,7 +319,7 @@ class WPJOBPORTALuploads {
             @wp_delete_file($wpjobportal_path);
             $wpjobportal_path = $filepath.'s_'.$filename;
             @wp_delete_file($wpjobportal_path);
-            $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_users` SET photo = '' WHERE uid = ".esc_sql($wpjobportal_uid);
+            $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_users` SET photo = '' WHERE uid = " . (int) ($wpjobportal_uid);
             wpjobportal::$_db->query($query);
         }
         return true;
@@ -433,7 +433,7 @@ class WPJOBPORTALuploads {
         // Set everything back to normal.
         remove_filter( 'upload_dir', array($this,'wpjobportal_upload_dir'));
         if($return == true){
-            $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_resume` SET photo = '".esc_sql($filename)."' WHERE id = ".esc_sql($wpjobportal_id);
+            $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_resume` SET photo = '".esc_sql($filename)."' WHERE id = " . (int) ($wpjobportal_id);
             wpjobportal::$_db->query($query);
 
             // --- NEW HOOK INTEGRATION START ---
@@ -525,7 +525,7 @@ class WPJOBPORTALuploads {
         // Set everything back to normal.
         remove_filter( 'upload_dir', array($this,'wpjobportal_upload_dir'));
         if($return == true){
-            $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_users` SET photo = '".esc_sql($filename)."' WHERE id = ".esc_sql($wpjobportal_id);
+            $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_users` SET photo = '".esc_sql($filename)."' WHERE id = " . (int) ($wpjobportal_id);
             wpjobportal::$_db->query($query);
 
             // --- NEW HOOK INTEGRATION START ---
@@ -587,7 +587,7 @@ class WPJOBPORTALuploads {
         $filename = '';
         $return = true;
         $wpjobportal_maxfiles = wpjobportal::$_config->getConfigurationByConfigName('document_max_files');
-        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumefiles` WHERE resumeid =". esc_sql($wpjobportal_id);
+        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumefiles` WHERE resumeid =" . (int) ($wpjobportal_id);
         $wpjobportal_totalfiles = wpjobportal::$_db->get_var($query);
         foreach($_FILES['resumefiles']['name'] AS $wpjobportal_key => $wpjobportal_value){
             if ($wpjobportal_maxfiles > $wpjobportal_totalfiles) {

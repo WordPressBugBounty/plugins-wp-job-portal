@@ -6,7 +6,7 @@ if (!defined('ABSPATH'))
 class WPJOBPORTALquickapplyModel {
    function quickapply($wpjobportal_jobid, $wpjobportal_actionid) {
         if (is_numeric($wpjobportal_jobid)) {
-            $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE id = " . esc_sql($wpjobportal_jobid);
+            $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE id = " . (int) ($wpjobportal_jobid);
             $wpjobportal_job = wpjobportaldb::get_row($query);
             $wpjobportal_data = (array) $wpjobportal_job;
             $wpjobportal_data['id'] = '';
@@ -160,7 +160,7 @@ class WPJOBPORTALquickapplyModel {
         $res = "error";
         if ($wpjobportal_jobid && is_numeric($wpjobportal_jobid)) {
             $res = "copied";
-            $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE id = " . esc_sql($wpjobportal_jobid);
+            $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE id = " . (int) ($wpjobportal_jobid);
             $wpjobportal_job = wpjobportaldb::get_row($query);
             $wpjobportal_data = (array) $wpjobportal_job;
 

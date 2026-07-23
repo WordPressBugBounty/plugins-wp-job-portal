@@ -201,7 +201,7 @@ class WPJOBPORTALconfigurationModel {
         }
 
         $error = false;
-        $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_config` SET `configvalue` = ".esc_sql($wpjobportal_configvalue)." WHERE `configname`= 'wpjobportal_addons_auto_update'";
+        $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_config` SET `configvalue` = " . (int) ($wpjobportal_configvalue)." WHERE `configname`= 'wpjobportal_addons_auto_update'";
         if (false === wpjobportaldb::query($query)) {
             $error = true;
         }

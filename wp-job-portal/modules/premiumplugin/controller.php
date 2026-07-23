@@ -114,6 +114,9 @@ class WPJOBPORTALpremiumpluginController {
         if (! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_premiumplugin_nonce') ) {
              die( 'Security check Failed' );
         }
+        if (!current_user_can('install_plugins')) {
+            wp_die(esc_html__('You do not have permission to install plugins.', 'wp-job-portal'));
+        }
         $post_data = WPJOBPORTALrequest::get('post');
 
         $wpjobportal_addons_array = $post_data;
@@ -123,10 +126,13 @@ class WPJOBPORTALpremiumpluginController {
         $wpjobportal_addon_json_array = array();
 
         foreach ($wpjobportal_addons_array as $wpjobportal_key => $wpjobportal_value) {
-            $wpjobportal_addon_json_array[] = wpjobportalphplib::wpJP_str_replace('wp-job-portal-', '', $wpjobportal_key);
+            $wpjobportal_addon_key = sanitize_key($wpjobportal_key);
+            if (preg_match('/^wp-job-portal-[a-z0-9_-]+$/', $wpjobportal_addon_key)) {
+                $wpjobportal_addon_json_array[] = wpjobportalphplib::wpJP_str_replace('wp-job-portal-', '', $wpjobportal_addon_key);
+            }
         }
 
-        $wpjobportal_token = $post_data['token'];
+        $wpjobportal_token = isset($post_data['token']) ? sanitize_text_field($post_data['token']) : '';
         if($wpjobportal_token == ''){
             $wpjobportal_addon_return_data = array();
             $wpjobportal_addon_return_data['status'] = 0;
@@ -148,13 +154,15 @@ class WPJOBPORTALpremiumpluginController {
         if ( !is_wp_error( $wpjobportal_installed ) && $wpjobportal_installed ) {
             // had to run two seprate loops to save token for all the addons even if some error is triggered by activation.
             foreach ($post_data as $wpjobportal_key => $wpjobportal_value) {
-                if(wpjobportalphplib::wpJP_strstr($wpjobportal_key, 'wp-job-portal-')){
+                $wpjobportal_key = sanitize_key($wpjobportal_key);
+                if(preg_match('/^wp-job-portal-[a-z0-9_-]+$/', $wpjobportal_key)){
                     update_option('transaction_key_for_'.$wpjobportal_key,$wpjobportal_token);
                 }
             }
 
             foreach ($post_data as $wpjobportal_key => $wpjobportal_value) {
-                if(wpjobportalphplib::wpJP_strstr($wpjobportal_key, 'wp-job-portal-')){
+                $wpjobportal_key = sanitize_key($wpjobportal_key);
+                if(preg_match('/^wp-job-portal-[a-z0-9_-]+$/', $wpjobportal_key)){
                     $wpjobportal_activate = activate_plugin( $wpjobportal_key.'/'.$wpjobportal_key.'.php' );
                     $wpjobportal_install_count++;
                 }
@@ -174,7 +182,10 @@ class WPJOBPORTALpremiumpluginController {
         wp_redirect($wpjobportal_url);
     }
 
-    function install_plugin( $wpjobportal_plugin_zip ) {// is only called from a same controler function
+    function install_plugin( $wpjobportal_plugin_zip ) {
+        if (!current_user_can('install_plugins')) {
+            return new WP_Error('wpjobportal_permission_denied', esc_html__('You do not have permission to install plugins.', 'wp-job-portal'));
+        }// is only called from a same controler function
         do_action('wpjobportal_load_wp_admin_file');
         WP_Filesystem();
         $tmpfile = download_url( $wpjobportal_plugin_zip);

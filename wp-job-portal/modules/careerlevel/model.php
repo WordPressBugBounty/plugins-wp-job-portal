@@ -9,7 +9,7 @@ class WPJOBPORTALCareerlevelModel {
         if (is_numeric($wpjobportal_id) == false)
             return false;
 
-        $query = "SELECT * FROM " . wpjobportal::$_db->prefix . "wj_portal_careerlevels WHERE id = " . esc_sql($wpjobportal_id);
+        $query = "SELECT * FROM " . wpjobportal::$_db->prefix . "wj_portal_careerlevels WHERE id = " . (int) ($wpjobportal_id);
         wpjobportal::$_data[0] = wpjobportaldb::get_row($query);
 
         return;
@@ -35,7 +35,7 @@ class WPJOBPORTALCareerlevelModel {
             $clause = ' AND ';
         }
         if (is_numeric($wpjobportal_status))
-            $wpjobportal_inquery .=esc_sql($clause) . " status = " . esc_sql($wpjobportal_status);
+            $wpjobportal_inquery .=esc_sql($clause) . " status = " . (int) ($wpjobportal_status);
 
         wpjobportal::$_data['filter']['title'] = $title;
         wpjobportal::$_data['filter']['status'] = $wpjobportal_status;
@@ -61,7 +61,7 @@ class WPJOBPORTALCareerlevelModel {
         //DB class limitations
         if (!is_numeric($wpjobportal_id))
             return false;
-        $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_careerlevels` SET isdefault = 0 WHERE id != " . esc_sql($wpjobportal_id);
+        $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_careerlevels` SET isdefault = 0 WHERE id != " . (int) ($wpjobportal_id);
         wpjobportaldb::query($query);
     }
 
@@ -190,7 +190,7 @@ class WPJOBPORTALCareerlevelModel {
     function careerLevelCanUnpublish($careerlevelid) {
         if (is_numeric($careerlevelid) == false)
             return false;
-        $query = " SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_careerlevels` WHERE id = " . esc_sql($careerlevelid) . " AND isdefault = 1 ";
+        $query = " SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_careerlevels` WHERE id = " . (int) ($careerlevelid) . " AND isdefault = 1 ";
         $wpjobportal_total = wpjobportaldb::get_var($query);
         if ($wpjobportal_total > 0)
             return false;
@@ -203,8 +203,8 @@ class WPJOBPORTALCareerlevelModel {
             return false;
 
         $query = " SELECT
-                    ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE careerlevel = " . esc_sql($careerlevelid) . ")
-                    + ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_careerlevels` WHERE id = " . esc_sql($careerlevelid) . " AND isdefault = 1)
+                    ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE careerlevel = " . (int) ($careerlevelid) . ")
+                    + ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_careerlevels` WHERE id = " . (int) ($careerlevelid) . " AND isdefault = 1)
                     AS total ";
 
         $wpjobportal_total = wpjobportaldb::get_var($query);
@@ -242,7 +242,7 @@ class WPJOBPORTALCareerlevelModel {
         if(!is_numeric($wpjobportal_id)){
             return false;
         }
-        $query = "SELECT title FROM " . wpjobportal::$_db->prefix . "wj_portal_careerlevels WHERE id =". esc_sql($wpjobportal_id);
+        $query = "SELECT title FROM " . wpjobportal::$_db->prefix . "wj_portal_careerlevels WHERE id =" . (int) ($wpjobportal_id);
         $wpjobportal_result = wpjobportaldb::get_var($query);
         return $wpjobportal_result;
     }

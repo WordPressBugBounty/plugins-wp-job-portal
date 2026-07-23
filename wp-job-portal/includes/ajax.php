@@ -37,15 +37,29 @@ class WPJOBPORTALajax {
                                 'getUserRoleBasedInfo','storeConfigurationSingle','importZywrapData','checkZywrapApiKey','importZywrapBatchProcess',
                                 'getWrappersByCategory','executeZywrapProxy','getZywrapAllWrappers','getSchemaByUseCode','getAjaxJobs', 'executeCompanyCopilot',
                                 'executeJobCopilot', 'executeResumeCopilot', 'executeCoverLetterCopilot');
-        $wpjobportal_task = WPJOBPORTALrequest::getVar('task');
-        if($wpjobportal_task != '' && in_array($wpjobportal_task, $fucntin_allowed)){
+        $wpjobportal_task = preg_replace('/[^A-Za-z0-9_]/', '', (string) WPJOBPORTALrequest::getVar('task'));
+        if($wpjobportal_task != '' && in_array($wpjobportal_task, $fucntin_allowed, true)){
             $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme');
 
             // $wpjobportal_module = str_replace("..","",$wpjobportal_module);
 			// $wpjobportal_module = str_replace("/","",$wpjobportal_module);
             $wpjobportal_module = sanitize_key( $wpjobportal_module );
-
-            $wpjobportal_result = WPJOBPORTALincluder::getJSModel($wpjobportal_module)->$wpjobportal_task();
+            if (empty($wpjobportal_module)) {
+                die('Not Allowed!');
+            }
+            $wpjobportal_model_path = WPJOBPORTALincluder::getPluginPath($wpjobportal_module, 'model');
+            if (empty($wpjobportal_model_path) || !file_exists($wpjobportal_model_path)) {
+                die('Not Allowed!');
+            }
+            $wpjobportal_model = WPJOBPORTALincluder::getJSModel($wpjobportal_module);
+            if (!is_object($wpjobportal_model) || !method_exists($wpjobportal_model, $wpjobportal_task) || !is_callable(array($wpjobportal_model, $wpjobportal_task))) {
+                die('Not Allowed!');
+            }
+            $wpjobportal_reflection = new ReflectionMethod($wpjobportal_model, $wpjobportal_task);
+            if ($wpjobportal_reflection->getNumberOfRequiredParameters() > 0) {
+                die('Not Allowed!');
+            }
+            $wpjobportal_result = $wpjobportal_model->$wpjobportal_task();
             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Intentional raw response (AJAX / HTML)
             echo $wpjobportal_result;
             die();
@@ -55,7 +69,11 @@ class WPJOBPORTALajax {
     }
 
     function ajaxhandlerpopup() {
-        $wpjobportal_task = WPJOBPORTALrequest::getVar('task');
+        $wpjobportal_task = preg_replace('/[^A-Za-z0-9_]/', '', (string) WPJOBPORTALrequest::getVar('task'));
+        $wpjobportal_allowed = array('featured_company','featured_job','featured_resume','view_company_contact_detail','view_resume_contact_detail','resume_save_search','add_department','add_job','copy_job','add_company','add_resume','add_job_alert','job_apply');
+        if (!in_array($wpjobportal_task, $wpjobportal_allowed, true)) {
+            die('Not Allowed!');
+        }
         $wpjobportal_result = WPJOBPORTALincluder::getObjectClass('usercredits')->getUserCreditsDetailForAction($wpjobportal_task);
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Intentional raw response (AJAX / HTML)
         echo $wpjobportal_result;
@@ -63,7 +81,11 @@ class WPJOBPORTALajax {
     }
 
     function ajaxhandlerpopupaction() {
-        $wpjobportal_task = WPJOBPORTALrequest::getVar('task');
+        $wpjobportal_task = preg_replace('/[^A-Za-z0-9_]/', '', (string) WPJOBPORTALrequest::getVar('task'));
+        $wpjobportal_allowed = array('featured_company','featured_job','featured_resume','copy_job');
+        if (!in_array($wpjobportal_task, $wpjobportal_allowed, true)) {
+            die('Not Allowed!');
+        }
         $wpjobportal_result = WPJOBPORTALincluder::getObjectClass('usercredits')->doAction($wpjobportal_task);
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Intentional raw response (AJAX / HTML)
         echo $wpjobportal_result;
@@ -71,19 +93,36 @@ class WPJOBPORTALajax {
     }
 
     function ajaxhandlerloginwith() {
-        $wpjobportal_socialmedia = WPJOBPORTALrequest::getVar('socialmedia');
-        $wpjobportal_task = WPJOBPORTALrequest::getVar('task');
+        $wpjobportal_socialmedia = sanitize_key(WPJOBPORTALrequest::getVar('socialmedia'));
+        $wpjobportal_task = preg_replace('/[^A-Za-z0-9_]/', '', (string) WPJOBPORTALrequest::getVar('task'));
+        $wpjobportal_allowed_tasks = array(
+            'facebook' => array('login', 'logout', 'applywithfacebook'),
+            'linkedin' => array('login', 'logout', 'applywithlinkedin'),
+            'xing' => array('login', 'logout', 'applywithxing'),
+        );
+        if (!isset($wpjobportal_allowed_tasks[$wpjobportal_socialmedia]) || !in_array($wpjobportal_task, $wpjobportal_allowed_tasks[$wpjobportal_socialmedia], true)) {
+            die('Not Allowed!');
+        }
+        $wpjobportal_result = '';
         switch ($wpjobportal_socialmedia) {
             case 'facebook':
-                $wpjobportal_result = WPJOBPORTALincluder::getObjectClass('facebook')->$wpjobportal_task();
+                $wpjobportal_object = WPJOBPORTALincluder::getObjectClass('facebook');
                 break;
             case 'linkedin':
-                $wpjobportal_result = WPJOBPORTALincluder::getObjectClass('linkedin')->$wpjobportal_task();
+                $wpjobportal_object = WPJOBPORTALincluder::getObjectClass('linkedin');
                 break;
             case 'xing':
-                $wpjobportal_result = WPJOBPORTALincluder::getObjectClass('xing')->$wpjobportal_task();
+                $wpjobportal_object = WPJOBPORTALincluder::getObjectClass('xing');
                 break;
         }
+        if (!isset($wpjobportal_object) || !method_exists($wpjobportal_object, $wpjobportal_task) || !is_callable(array($wpjobportal_object, $wpjobportal_task))) {
+            die('Not Allowed!');
+        }
+        $wpjobportal_reflection = new ReflectionMethod($wpjobportal_object, $wpjobportal_task);
+        if ($wpjobportal_reflection->getNumberOfRequiredParameters() > 0) {
+            die('Not Allowed!');
+        }
+        $wpjobportal_result = $wpjobportal_object->$wpjobportal_task();
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Intentional raw response (AJAX / HTML)
         echo $wpjobportal_result;
         die();

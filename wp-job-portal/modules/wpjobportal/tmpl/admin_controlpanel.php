@@ -290,32 +290,34 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                                                         <span class="wjp-so-slider"></span>
                                                     </label>
                                                 </div>
-                                                <div class="wjp-so-item">
-                                                    <div class="wjp-so-item-label">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-                                                            <line x1="7" y1="7" x2="7.01" y2="7"></line>
-                                                        </svg>
-                                                        <span><?php echo esc_html__('Subscriptions', 'wp-job-portal'); ?></span>
+                                                <?php if(in_array('credits', wpjobportal::$_active_addons)){ ?>
+                                                    <div class="wjp-so-item">
+                                                        <div class="wjp-so-item-label">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                                                                <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                                                            </svg>
+                                                            <span><?php echo esc_html__('Subscriptions', 'wp-job-portal'); ?></span>
+                                                        </div>
+                                                        <label class="wjp-so-toggle">
+                                                            <input type="checkbox" name="wjp_screen_options[latest_subscriptions]" <?php checked( isset($wpjobportal_wjp_options['latest_subscriptions']) ? $wpjobportal_wjp_options['latest_subscriptions'] : '', 'on' ); ?>>
+                                                            <span class="wjp-so-slider"></span>
+                                                        </label>
                                                     </div>
-                                                    <label class="wjp-so-toggle">
-                                                        <input type="checkbox" name="wjp_screen_options[latest_subscriptions]" <?php checked( isset($wpjobportal_wjp_options['latest_subscriptions']) ? $wpjobportal_wjp_options['latest_subscriptions'] : '', 'on' ); ?>>
-                                                        <span class="wjp-so-slider"></span>
-                                                    </label>
-                                                </div>
-                                                <div class="wjp-so-item">
-                                                    <div class="wjp-so-item-label">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                                                            <line x1="1" y1="10" x2="23" y2="10"></line>
-                                                        </svg>
-                                                        <span><?php echo esc_html__('Payments', 'wp-job-portal'); ?></span>
+                                                    <div class="wjp-so-item">
+                                                        <div class="wjp-so-item-label">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                                                                <line x1="1" y1="10" x2="23" y2="10"></line>
+                                                            </svg>
+                                                            <span><?php echo esc_html__('Payments', 'wp-job-portal'); ?></span>
+                                                        </div>
+                                                        <label class="wjp-so-toggle">
+                                                            <input type="checkbox" name="wjp_screen_options[latest_payments]" <?php checked( isset($wpjobportal_wjp_options['latest_payments']) ? $wpjobportal_wjp_options['latest_payments'] : '', 'on' ); ?>>
+                                                            <span class="wjp-so-slider"></span>
+                                                        </label>
                                                     </div>
-                                                    <label class="wjp-so-toggle">
-                                                        <input type="checkbox" name="wjp_screen_options[latest_payments]" <?php checked( isset($wpjobportal_wjp_options['latest_payments']) ? $wpjobportal_wjp_options['latest_payments'] : '', 'on' ); ?>>
-                                                        <span class="wjp-so-slider"></span>
-                                                    </label>
-                                                </div>
+                                                <?php } ?>
                                             </div>
                                         </div>
                                     </div>
@@ -346,7 +348,7 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                         <p class="wjp-action-title"><?php echo esc_html__('Approve Jobs', 'wp-job-portal'); ?></p>
                         <p class="wjp-action-subtitle"><?php echo esc_html(isset(wpjobportal::$_data['totalnewjobspending']) ? wpjobportal::$_data['totalnewjobspending'] : '0'); ?> <?php echo esc_html__('Pending', 'wp-job-portal'); ?></p>
                     </a>
-                    <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_user')); ?>" class="wjp-action-card">
+                    <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_job')); ?>" class="wjp-action-card">
                         <div class="wjp-action-icon-wrapper wjp-bg-sky">
                             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -355,7 +357,7 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                             </svg>
                         </div>
-                        <p class="wjp-action-title"><?php echo esc_html__('Manage Users', 'wp-job-portal'); ?></p>
+                        <p class="wjp-action-title"><?php echo esc_html__('Applied Jobs', 'wp-job-portal'); ?></p>
                         <p class="wjp-action-subtitle"><?php echo esc_html(isset(wpjobportal::$_data['totaljobapply']) ? wpjobportal::$_data['totaljobapply'] : '0'); ?> <?php echo esc_html__('Total', 'wp-job-portal'); ?></p>
                     </a>
                     <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_report&wpjobportallt=overallreports')); ?>" class="wjp-action-card">
@@ -776,10 +778,16 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                            <?php if (isset(wpjobportal::$_data[0]['latest_errors']) && !empty(wpjobportal::$_data[0]['latest_errors'])) {
                                 foreach(wpjobportal::$_data[0]['latest_errors'] as $wpjobportal_log) {
                                     $wpjobportal_log_class = wpjobportal_get_error_log_class($wpjobportal_log->error);
+                                    
+                                    $wpjobportal_error = $wpjobportal_log->error;
+                                    $decoded_error = json_decode( $wpjobportal_error );
+                                    if ( json_last_error() === JSON_ERROR_NONE && isset( $decoded_error->error ) ) {
+                                        $wpjobportal_error = $decoded_error->error;
+                                    }
                                     ?>
                                 <div class="wjp-list-item wjp-list-item-simple">
                                     <div class="wjp-item-text">
-                                        <p class="wjp-log-text <?php echo esc_attr($wpjobportal_log_class); ?>"><?php echo esc_html($wpjobportal_log->error); ?></p>
+                                        <p class="wjp-log-text <?php echo esc_attr($wpjobportal_log_class); ?>"><?php echo esc_html($wpjobportal_error); ?></p>
                                         <p class="wjp-subtext"><?php echo esc_html(human_time_diff(strtotime($wpjobportal_log->created), current_time('timestamp'))) . ' ' . esc_html__('Ago', 'wp-job-portal'); ?></p>
                                     </div>
 
@@ -807,7 +815,7 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                                         if (isset($wpjobportal_seeker->photo) && $wpjobportal_seeker->photo != '') {
                                             $wpjobportal_wpdir = wp_upload_dir();
                                             $wpjobportal_data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
-                                            $wpjobportal_photo = $wpjobportal_wpdir['baseurl'] . '/' . $wpjobportal_data_directory . '/data/profile/profile_' . esc_attr($wpjobportal_seeker->id) . '/profile/' . $wpjobportal_seeker->photo;
+                                            $wpjobportal_photo = $wpjobportal_wpdir['baseurl'] . '/' . $wpjobportal_data_directory . '/data/profile/profile_' . esc_attr($wpjobportal_seeker->uid) . '/profile/' . $wpjobportal_seeker->photo;
                                         }
                                         ?>
                                         <img src="<?php echo esc_url($wpjobportal_photo) ?>" alt="<?php echo esc_attr($wpjobportal_seeker->title); ?>" class="wjp-avatar">
@@ -839,7 +847,7 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                                         if (isset($wpjobportal_employer->photo) && $wpjobportal_employer->photo != '') {
                                             $wpjobportal_wpdir = wp_upload_dir();
                                             $wpjobportal_data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
-                                            $wpjobportal_photo = $wpjobportal_wpdir['baseurl'] . '/' . $wpjobportal_data_directory . '/data/profile/profile_' . esc_attr($wpjobportal_employer->emp_user_id) . '/profile/' . $wpjobportal_employer->photo;
+                                            $wpjobportal_photo = $wpjobportal_wpdir['baseurl'] . '/' . $wpjobportal_data_directory . '/data/profile/profile_' . esc_attr($wpjobportal_employer->uid) . '/profile/' . $wpjobportal_employer->photo;
                                         }
                                         ?>
                                         <img src="<?php echo esc_url($wpjobportal_photo) ?>" alt="<?php echo esc_attr($wpjobportal_employer->title); ?> Logo" class="wjp-logo">

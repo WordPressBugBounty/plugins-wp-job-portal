@@ -672,7 +672,7 @@
                     </div>
                     <div class="wpjobportal-shortcode-shortcodewrp">
                         <span class="wpjobportal-shortcode-title"><?php echo esc_html(__('Shortcode With All Options','wp-job-portal')); ?></span>
-                        <span class="wpjobportal-shortcode-secndshortcodetext">[wpjobportal_employer_registration]</span>
+                        <span class="wpjobportal-shortcode-secndshortcodetext">[wpjobportal_employer_registration hide_role="1" show_header="1" show_title="1" button_text="Register as Employer" redirect_url="" class=""]</span>
                     </div>
                 </div>
             </div>
@@ -689,7 +689,7 @@
                     </div>
                     <div class="wpjobportal-shortcode-shortcodewrp">
                         <span class="wpjobportal-shortcode-title"><?php echo esc_html(__('Shortcode With All Options','wp-job-portal')); ?></span>
-                        <span class="wpjobportal-shortcode-secndshortcodetext">[wpjobportal_jobseeker_registration]</span>
+                        <span class="wpjobportal-shortcode-secndshortcodetext">[wpjobportal_jobseeker_registration hide_role="1" show_header="1" show_title="1" button_text="Register as Job Seeker" redirect_url="" class=""]</span>
                     </div>
                 </div>
             </div>

@@ -9,7 +9,7 @@ class WPJOBPORTALCityModel {
         if ($wpjobportal_id) {
             if (!is_numeric($wpjobportal_id))
                 return false;
-            $query = "SELECT * FROM " . wpjobportal::$_db->prefix . "wj_portal_cities WHERE id = " . esc_sql($wpjobportal_id);
+            $query = "SELECT * FROM " . wpjobportal::$_db->prefix . "wj_portal_cities WHERE id = " . (int) ($wpjobportal_id);
             wpjobportal::$_data[0] = wpjobportaldb::get_row($query);
         }
         return;
@@ -18,7 +18,7 @@ class WPJOBPORTALCityModel {
     function getCityNamebyId($wpjobportal_id) {
         if (is_numeric($wpjobportal_id) == false)
             return false;
-        $query = "SELECT name FROM `". wpjobportal::$_db->prefix ."wj_portal_cities` WHERE id = " . esc_sql($wpjobportal_id);
+        $query = "SELECT name FROM `". wpjobportal::$_db->prefix ."wj_portal_cities` WHERE id = " . (int) ($wpjobportal_id);
         return wpjobportaldb::get_var($query);
     }
 
@@ -71,18 +71,18 @@ class WPJOBPORTALCityModel {
             $clause = ' AND ';
         }
         if (is_numeric($wpjobportal_status)) {
-            $wpjobportal_inquery .= esc_sql($clause) . " enabled = " . esc_sql($wpjobportal_status);
+            $wpjobportal_inquery .= esc_sql($clause) . " enabled = " . (int) ($wpjobportal_status);
             $clause = ' AND ';
         }
 
         if ($wpjobportal_stateid) {
             if(is_numeric($wpjobportal_stateid)){
-                $wpjobportal_inquery .=esc_sql($clause) . " stateid = " . esc_sql($wpjobportal_stateid);
+                $wpjobportal_inquery .=esc_sql($clause) . " stateid = " . (int) ($wpjobportal_stateid);
                 $clause = ' AND ';
             }
         }
         if (is_numeric($wpjobportal_countryid)) {
-            $wpjobportal_inquery .= esc_sql($clause) . "countryid = " . esc_sql($wpjobportal_countryid);
+            $wpjobportal_inquery .= esc_sql($clause) . "countryid = " . (int) ($wpjobportal_countryid);
             $clause = ' AND ';
         }
 
@@ -205,10 +205,10 @@ class WPJOBPORTALCityModel {
         if (!is_numeric($cityid))
             return false;
         $query = "SELECT
-                    ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobcities` WHERE cityid = " . esc_sql($cityid) . ")
-                    + ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_companycities` WHERE cityid = " . esc_sql($cityid) . ")
-                    + ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` WHERE address_city = " . esc_sql($cityid) . ")
-                    + ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeemployers` WHERE employer_city = " . esc_sql($cityid) . ")
+                    ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobcities` WHERE cityid = " . (int) ($cityid) . ")
+                    + ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_companycities` WHERE cityid = " . (int) ($cityid) . ")
+                    + ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` WHERE address_city = " . (int) ($cityid) . ")
+                    + ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeemployers` WHERE employer_city = " . (int) ($cityid) . ")
                         AS total ";
 
         $wpjobportal_total = wpjobportaldb::get_var($query);
@@ -225,8 +225,8 @@ class WPJOBPORTALCityModel {
         if (!is_numeric($wpjobportal_stateid))
             return false;
 
-        $query = "SELECT COUNT(id) FROM " . wpjobportal::$_db->prefix . "wj_portal_cities WHERE countryid=" . esc_sql($wpjobportal_countryid) . "
-		AND stateid=" . esc_sql($wpjobportal_stateid) . " AND LOWER(name) = '" . wpjobportalphplib::wpJP_strtolower(esc_sql($title)) . "'";
+        $query = "SELECT COUNT(id) FROM " . wpjobportal::$_db->prefix . "wj_portal_cities WHERE countryid=" . (int) ($wpjobportal_countryid) . "
+		AND stateid=" . (int) ($wpjobportal_stateid) . " AND LOWER(name) = '" . wpjobportalphplib::wpJP_strtolower(esc_sql($title)) . "'";
 
         $wpjobportal_result = wpjobportaldb::get_var($query);
         if ($wpjobportal_result > 0)
@@ -242,7 +242,7 @@ class WPJOBPORTALCityModel {
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city
                     JOIN `" . wpjobportal::$_db->prefix . "wj_portal_countries` AS country ON country.id = city.countryid
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_states` AS state ON state.id = city.stateid
-                    WHERE city.id = " . esc_sql($wpjobportal_id);
+                    WHERE city.id = " . (int) ($wpjobportal_id);
         $wpjobportal_result = wpjobportaldb::get_row($query);
         return $wpjobportal_result;
     }
@@ -331,7 +331,7 @@ class WPJOBPORTALCityModel {
         // if ($wpjobportal_id == 0)
         //     $query .= " WHERE city.name LIKE '" . esc_sql($cityname) . "%' AND country.enabled = 1 AND city.enabled = 1 LIMIT " . WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue("number_of_cities_for_autocomplete");
         // else
-        //     $query .= " WHERE city.id = ".esc_sql($wpjobportal_id)." AND country.enabled = 1 AND city.enabled = 1";
+        //     $query .= " WHERE city.id = " . (int) ($wpjobportal_id)." AND country.enabled = 1 AND city.enabled = 1";
         if ($wpjobportal_id == 0) {
             if (isset($wpjobportal_countryname)) {
                 $query .= " WHERE city.name LIKE '" . esc_sql($cityname) . "%' AND country.name LIKE '" . esc_sql($wpjobportal_countryname) . "%' AND country.enabled = 1 AND city.enabled = 1 AND IF(state.name is not null,state.enabled,1) = 1 LIMIT " . WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue("number_of_cities_for_autocomplete");
@@ -344,7 +344,7 @@ class WPJOBPORTALCityModel {
                 //$query .= " WHERE city.name LIKE '" . esc_sql($cityname) . "%' AND country.enabled = 1 AND city.enabled = 1 AND IF(state.name is not null,state.enabled,1) = 1 LIMIT " . WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue("number_of_cities_for_autocomplete");
             }
         } else {
-            $query .= " WHERE city.id = ".esc_sql($wpjobportal_id)." AND country.enabled = 1 AND city.enabled = 1";
+            $query .= " WHERE city.id = " . (int) ($wpjobportal_id)." AND country.enabled = 1 AND city.enabled = 1";
         }
         $wpjobportal_result = wpjobportaldb::get_results($query);
         if (empty($wpjobportal_result))
@@ -528,7 +528,7 @@ class WPJOBPORTALCityModel {
 
                     if(is_numeric($wpjobportal_countryid) && $wpjobportal_countryid > 0){
                         // get country cities to comapre
-                        $fetch_cities = " SELECT internationalname,stateid FROM`" . wpjobportal::$_db->prefix . "wj_portal_cities` WHERE countryid =".esc_sql($wpjobportal_countryid);
+                        $fetch_cities = " SELECT internationalname,stateid FROM`" . wpjobportal::$_db->prefix . "wj_portal_cities` WHERE countryid =" . (int) ($wpjobportal_countryid);
                         $wpjobportal_country_cities = wpjobportaldb::get_results($fetch_cities);
 
                         if(!empty($wpjobportal_country_cities)){ // means there are already cities for this country
@@ -542,7 +542,7 @@ class WPJOBPORTALCityModel {
                     $wpjobportal_countryid = wpjobportaldb::get_var($query);
                     if(is_numeric($wpjobportal_countryid) && $wpjobportal_countryid > 0){
                         // remove specific country cities
-                        $remove_cities = "DELETE FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities` WHERE countryid =".esc_sql($wpjobportal_countryid);
+                        $remove_cities = "DELETE FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities` WHERE countryid =" . (int) ($wpjobportal_countryid);
                         wpjobportaldb::query($remove_cities);
                     }
                 }elseif($wpjobportal_data['keepdata'] == 3){

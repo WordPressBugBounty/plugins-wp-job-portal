@@ -199,11 +199,21 @@ foreach ($wpjobportal_fieldslist AS $wpjobportal_field) {
             <input name="wpjobportal_user_pass_confirm" id="password_again" data-validation="required" class="required wjportal-form-input-field" type="password" placeholder="<?php echo esc_attr(__('Password Again','wp-job-portal')); ?>"/>
         </div>
     </div>
-    <div class="wjportal-form-row wjportal-form-roles">
-        <?php
+    <?php
+    $wpjobportal_shortcode_options = isset(wpjobportal::$_data['shortcode_options']) && is_array(wpjobportal::$_data['shortcode_options'])
+        ? wpjobportal::$_data['shortcode_options']
+        : array();
+    $wpjobportal_hide_role = !empty($wpjobportal_shortcode_options['registration_shortcode']) && !empty($wpjobportal_shortcode_options['hide_role']);
+    if ($wpjobportal_hide_role) {
         do_action('wpjobportal_register_form');
+    } else {
         ?>
-    </div>
+        <div class="wjportal-form-row wjportal-form-roles">
+            <?php do_action('wpjobportal_register_form'); ?>
+        </div>
+        <?php
+    }
+    ?>
     <?php
     $wpjobportal_config_array = wpjobportal::$_config->getConfigByFor('captcha');
     $wpjobportal_google_recaptcha_3 = false;
@@ -226,11 +236,16 @@ foreach ($wpjobportal_fieldslist AS $wpjobportal_field) {
     echo wp_kses(WPJOBPORTALformfield::hidden('wpjobportalpageid', wpjobportal::wpjobportal_getPageid()), WPJOBPORTAL_ALLOWED_TAGS);
     echo wp_kses(WPJOBPORTALformfield::hidden('wpjobportal_nonce', esc_html(wp_create_nonce('wpjobportal_nonce'))), WPJOBPORTAL_ALLOWED_TAGS);
     ?>
+    <?php
+    $wpjobportal_registration_button_text = !empty($wpjobportal_shortcode_options['button_text'])
+        ? $wpjobportal_shortcode_options['button_text']
+        : __('Register New Account', 'wp-job-portal');
+    ?>
     <div class="wjportal-form-btn-wrp">
         <?php if($wpjobportal_google_recaptcha_3 == false){ ?>
-            <input type="submit" id="save" class="button wjportal-form-btn wjportal-save-btn g-recaptcha" value="<?php echo esc_attr(__('Register New Account','wp-job-portal')); ?>"/>
+            <input type="submit" id="save" class="button wjportal-form-btn wjportal-save-btn g-recaptcha" value="<?php echo esc_attr($wpjobportal_registration_button_text); ?>"/>
         <?php }else{ ?>
-            <input type="submit" id="save" data-sitekey="<?php echo esc_attr($wpjobportal_config_array['recaptcha_publickey']);?>" data-callback='onSubmit' data-action='submit' class="button wjportal-form-btn wjportal-save-btn g-recaptcha" value="<?php echo esc_attr(__('Register New Account','wp-job-portal')); ?>"/>
+            <input type="submit" id="save" data-sitekey="<?php echo esc_attr($wpjobportal_config_array['recaptcha_publickey']);?>" data-callback='onSubmit' data-action='submit' class="button wjportal-form-btn wjportal-save-btn g-recaptcha" value="<?php echo esc_attr($wpjobportal_registration_button_text); ?>"/>
         <?php } ?>
     </div>
     <input type="hidden" name="wpjobportal_jobs_register_nonce" value="<?php echo esc_attr(wp_create_nonce('wpjobportal-jobs-register-nonce')); ?>"/>

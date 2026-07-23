@@ -18,7 +18,7 @@ class WPJOBPORTALFieldorderingModel {
         $wpjobportal_total = 0;
         foreach ($wpjobportal_ids as $wpjobportal_id) {
             if(is_numeric($wpjobportal_id) && is_numeric($wpjobportal_value)){
-                $query = "UPDATE " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering SET required = " . esc_sql($wpjobportal_value) . " WHERE id = " . esc_sql($wpjobportal_id) . " AND sys=0";
+                $query = "UPDATE " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering SET required = " . (int) ($wpjobportal_value) . " WHERE id = " . (int) ($wpjobportal_id) . " AND sys=0";
                 if (false === wpjobportaldb::query($query)) {
                     $wpjobportal_total += 1;
                 }
@@ -52,11 +52,11 @@ class WPJOBPORTALFieldorderingModel {
         if ($title != null)
             $wpjobportal_inquery .= " AND field.fieldtitle LIKE '%".esc_sql($title)."%'";
         if (is_numeric($ustatus))
-            $wpjobportal_inquery .= " AND field.published = ".esc_sql($ustatus);
+            $wpjobportal_inquery .= " AND field.published = " . (int) ($ustatus);
         if (is_numeric($vstatus))
-            $wpjobportal_inquery .= " AND field.isvisitorpublished = ".esc_sql($vstatus);
+            $wpjobportal_inquery .= " AND field.isvisitorpublished = " . (int) ($vstatus);
         if (is_numeric($wpjobportal_required))
-            $wpjobportal_inquery .= " AND field.required =". esc_sql($wpjobportal_required);
+            $wpjobportal_inquery .= " AND field.required =" . (int) ($wpjobportal_required);
 
         wpjobportal::$_data['filter']['title'] = $title;
         wpjobportal::$_data['filter']['ustatus'] = $ustatus;
@@ -64,7 +64,7 @@ class WPJOBPORTALFieldorderingModel {
         wpjobportal::$_data['filter']['required'] = $wpjobportal_required;
 
         //Pagination
-        $query = "SELECT COUNT(field.id) FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering AS field WHERE field.fieldfor = " . esc_sql($wpjobportal_fieldfor);
+        $query = "SELECT COUNT(field.id) FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering AS field WHERE field.fieldfor = " . (int) ($wpjobportal_fieldfor);
         $query .= $wpjobportal_inquery;
         if($wpjobportal_fieldfor == 3){
             $query .= " AND field.field NOT IN ('heighestfinisheducation','employer_supervisor','resume','section_resume')";
@@ -84,7 +84,7 @@ class WPJOBPORTALFieldorderingModel {
         //Data
         $query = "SELECT field.*
                     FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering AS field
-                    WHERE field.fieldfor = " . esc_sql($wpjobportal_fieldfor);
+                    WHERE field.fieldfor = " . (int) ($wpjobportal_fieldfor);
         $query .= $wpjobportal_inquery;
         // if(!in_array('customfield', wpjobportal::$_active_addons)){
         //     $query .= " AND (userfieldtype = '' OR userfieldtype = 'text' OR userfieldtype = 'email')";
@@ -109,7 +109,7 @@ class WPJOBPORTALFieldorderingModel {
              $wpjobportal_resumefieldsobject_arr = array();
             $query = "SELECT field.*
                         FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering AS field
-                        WHERE field.fieldfor = " . esc_sql($wpjobportal_fieldfor);
+                        WHERE field.fieldfor = " . (int) ($wpjobportal_fieldfor);
                 $query .= " AND field.is_section_headline = 1";
                 $query .= " AND field.field NOT IN ('heighestfinisheducation','employer_supervisor','resume','section_resume')";
                 if(!in_array('advanceresumebuilder', wpjobportal::$_active_addons)){
@@ -121,8 +121,8 @@ class WPJOBPORTALFieldorderingModel {
             foreach ($wpjobportal_sections as $wpjobportal_section) {
                 $query = "SELECT field.*
                             FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering AS field
-                            WHERE field.fieldfor = " . esc_sql($wpjobportal_fieldfor);
-                $query .= " AND field.section = ".$wpjobportal_section->section;
+                            WHERE field.fieldfor = " . (int) ($wpjobportal_fieldfor);
+                $query .= " AND field.section = " . (int) ($wpjobportal_section->section);
                 $query .= " AND (field.is_section_headline IS NULL  || field.is_section_headline = 0) "; // to not fetch sections again
                 $query .= $wpjobportal_inquery;
                 $query .= " AND field.field NOT IN ('heighestfinisheducation','employer_supervisor','resume','section_resume')";
@@ -168,7 +168,7 @@ class WPJOBPORTALFieldorderingModel {
         //Data
         $query = "SELECT field.fieldtitle,field.id,field.search_user,field.search_visitor,field.ordering
                     FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering AS field
-                    WHERE field.fieldfor = " . esc_sql($wpjobportal_fieldfor);
+                    WHERE field.fieldfor = " . (int) ($wpjobportal_fieldfor);
         $query .= $wpjobportal_inquery;
         // hide resume sub section fields from search
         if($wpjobportal_fieldfor == 3){
@@ -187,7 +187,7 @@ class WPJOBPORTALFieldorderingModel {
         }
         $wpjobportal_published = (WPJOBPORTALincluder::getObjectClass('user')->isguest()) ? "isvisitorpublished" : "published";
         $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_fieldsordering`
-        WHERE $wpjobportal_published = 1 AND fieldfor = " . esc_sql($wpjobportal_fieldfor) . " ORDER BY";
+        WHERE $wpjobportal_published = 1 AND fieldfor = " . (int) ($wpjobportal_fieldfor) . " ORDER BY";
         if ($wpjobportal_fieldfor == 3) // for resume it must be order by section and ordering
             $query.=" section , ";
         $query.=" ordering ASC";
@@ -201,7 +201,7 @@ class WPJOBPORTALFieldorderingModel {
             $wpjobportal_resumefields = array();
             $query = "SELECT field.*
                         FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering AS field
-                        WHERE field.fieldfor = " . esc_sql($wpjobportal_fieldfor);
+                        WHERE field.fieldfor = " . (int) ($wpjobportal_fieldfor);
             $query .= " AND field.is_section_headline = 1";
                 $query .= ' ORDER BY';
                 $query .=' field.ordering';
@@ -209,8 +209,8 @@ class WPJOBPORTALFieldorderingModel {
             foreach ($wpjobportal_sections as $wpjobportal_section) {
                 $query = "SELECT field.*
                             FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering AS field
-                            WHERE $wpjobportal_published = 1 AND field.fieldfor = " . esc_sql($wpjobportal_fieldfor);
-                $query .= " AND field.section = ".$wpjobportal_section->section;
+                            WHERE $wpjobportal_published = 1 AND field.fieldfor = " . (int) ($wpjobportal_fieldfor);
+                $query .= " AND field.section = " . (int) ($wpjobportal_section->section);
                 $query .= ' ORDER BY';
                 $query .=' field.ordering';
                 $wpjobportal_section_fields = wpjobportaldb::get_results($query);
@@ -241,7 +241,7 @@ class WPJOBPORTALFieldorderingModel {
             $wpjobportal_section_query = ' AND section = 1 ';
         }
         $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_fieldsordering`
-                 WHERE cannotsearch = 0 AND  fieldfor = " . esc_sql($wpjobportal_fieldfor) . esc_sql($wpjobportal_published) . esc_sql($wpjobportal_section_query) . " ORDER BY search_ordering ";
+                 WHERE cannotsearch = 0 AND  fieldfor = " . (int) ($wpjobportal_fieldfor) . esc_sql($wpjobportal_published) . esc_sql($wpjobportal_section_query) . " ORDER BY search_ordering ";
         $wpjobportal_rows = wpjobportaldb::get_results($query);
         return $wpjobportal_rows;
     }
@@ -251,7 +251,7 @@ class WPJOBPORTALFieldorderingModel {
             return false;
         $wpjobportal_published = (WPJOBPORTALincluder::getObjectClass('user')->isguest()) ? "isvisitorpublished" : "published";
         $query = "SELECT field,fieldtitle FROM `" . wpjobportal::$_db->prefix . "wj_portal_fieldsordering`
-                WHERE ".esc_sql($wpjobportal_published)." = 1 AND fieldfor =  " . esc_sql($wpjobportal_fieldfor) . " ORDER BY";
+                WHERE ".esc_sql($wpjobportal_published)." = 1 AND fieldfor =  " . (int) ($wpjobportal_fieldfor) . " ORDER BY";
         if ($wpjobportal_fieldfor == 3) // fields for resume
             $query.=" section ,";
         $query.=" ordering ASC";
@@ -272,7 +272,7 @@ class WPJOBPORTALFieldorderingModel {
             $wpjobportal_resumefields = array();
             $query = "SELECT field.*
                         FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering AS field
-                        WHERE field.fieldfor = " . esc_sql($wpjobportal_fieldfor);
+                        WHERE field.fieldfor = " . (int) ($wpjobportal_fieldfor);
             $query .= " AND field.is_section_headline = 1";
                 $query .= ' ORDER BY';
                 $query .=' field.ordering';
@@ -280,8 +280,8 @@ class WPJOBPORTALFieldorderingModel {
             foreach ($wpjobportal_sections as $wpjobportal_section) {
                 $query = "SELECT field.*
                             FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering AS field
-                            WHERE $wpjobportal_published = 1 AND field.fieldfor = " . esc_sql($wpjobportal_fieldfor);
-                $query .= " AND field.section = ".$wpjobportal_section->section;
+                            WHERE $wpjobportal_published = 1 AND field.fieldfor = " . (int) ($wpjobportal_fieldfor);
+                $query .= " AND field.section = " . (int) ($wpjobportal_section->section);
                 $query .= ' ORDER BY';
                 $query .=' field.ordering';
                 $wpjobportal_section_fields = wpjobportaldb::get_results($query);
@@ -352,7 +352,7 @@ class WPJOBPORTALFieldorderingModel {
         $query = "SELECT field.field,field.fieldtitle,field.section,field.is_section_headline
                     FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering AS field
                     WHERE field.fieldfor = 3
-                    AND  field.section = ".esc_sql($wpjobportal_section)." ORDER BY ordering ASC ";
+                    AND  field.section = " . (int) ($wpjobportal_section)." ORDER BY ordering ASC ";
 
         $wpjobportal_sections = wpjobportaldb::get_results($query);
         return $wpjobportal_sections;
@@ -377,7 +377,7 @@ class WPJOBPORTALFieldorderingModel {
         $wpjobportal_total = 0;
         foreach ($wpjobportal_ids as $wpjobportal_id) {
             if(is_numeric($wpjobportal_id) && is_numeric($wpjobportal_value)){
-                $query = "UPDATE " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering SET published = " . esc_sql($wpjobportal_value) . " WHERE id = " . esc_sql($wpjobportal_id) . " AND cannotunpublish=0";
+                $query = "UPDATE " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering SET published = " . (int) ($wpjobportal_value) . " WHERE id = " . (int) ($wpjobportal_id) . " AND cannotunpublish=0";
                 if (false === wpjobportaldb::query($query)) {
                     $wpjobportal_total += 1;
                 }
@@ -408,7 +408,7 @@ class WPJOBPORTALFieldorderingModel {
         $wpjobportal_total = 0;
         foreach ($wpjobportal_ids as $wpjobportal_id) {
             if(is_numeric($wpjobportal_id) && is_numeric($wpjobportal_value)){
-                $query = "UPDATE " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering SET isvisitorpublished = " . esc_sql($wpjobportal_value) . " WHERE id = " . esc_sql($wpjobportal_id) . " AND cannotunpublish=0";
+                $query = "UPDATE " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering SET isvisitorpublished = " . (int) ($wpjobportal_value) . " WHERE id = " . (int) ($wpjobportal_id) . " AND cannotunpublish=0";
                 if (false === wpjobportaldb::query($query)) {
                     $wpjobportal_total += 1;
                 }
@@ -443,11 +443,11 @@ class WPJOBPORTALFieldorderingModel {
         if ($wpjobportal_data['isuserfield'] == 1) {
             // value to add as field ordering
             if ($wpjobportal_data['id'] == '') { // only for new
-                $query = "SELECT max(ordering) FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE fieldfor = " . esc_sql($wpjobportal_data['fieldfor']);
+                $query = "SELECT max(ordering) FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE fieldfor = " . (int) ($wpjobportal_data['fieldfor']);
                 $wpjobportal_var = wpjobportaldb::get_var($query);
                 $wpjobportal_data['ordering'] = $wpjobportal_var + 1;
                 // search ordering code //
-                $query = "SELECT max(ordering) FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE fieldfor = " . esc_sql($wpjobportal_data['fieldfor']);
+                $query = "SELECT max(ordering) FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE fieldfor = " . (int) ($wpjobportal_data['fieldfor']);
                 $wpjobportal_var = wpjobportaldb::get_var($query);
                 $wpjobportal_data['search_ordering'] = $wpjobportal_var + 1;
 
@@ -556,7 +556,7 @@ class WPJOBPORTALFieldorderingModel {
                 $wpjobportal_data['visibleparams'] = wp_json_encode($wpjobportal_visible_array);
                 //$wpjobportal_data['required'] = 0;
 
-                $query = "SELECT visible_field FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE id = " . esc_sql($wpjobportal_data['visibleParent']);
+                $query = "SELECT visible_field FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE id = " . (int) ($wpjobportal_data['visibleParent']);
                 $old_fieldname = wpjobportal::$_db->get_var($query);
                 $wpjobportal_new_fieldname = $wpjobportal_fieldname;
                 if ($wpjobportal_data['id'] != '') {
@@ -566,7 +566,7 @@ class WPJOBPORTALFieldorderingModel {
                         $query_fieldname = $query_run->visible_field;
                         $query_fieldname =  wpjobportalphplib::wpJP_str_replace(','.$wpjobportal_fieldname, '', $query_fieldname);
                         $query_fieldname =  wpjobportalphplib::wpJP_str_replace($wpjobportal_fieldname, '', $query_fieldname);
-                        $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_fieldsordering` SET visible_field = '" . esc_sql($query_fieldname) . "' WHERE id = " . esc_sql($query_run->id);
+                        $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_fieldsordering` SET visible_field = '" . esc_sql($query_fieldname) . "' WHERE id = " . (int) ($query_run->id);
                         wpjobportal::$_db->query($query);
                     }
 
@@ -579,7 +579,7 @@ class WPJOBPORTALFieldorderingModel {
                 // update value
                 if(is_numeric($wpjobportal_data['visibleParent'])){
                     $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_fieldsordering` SET visible_field = '" . esc_sql($wpjobportal_new_fieldname) . "'
-                    WHERE id = " . esc_sql($wpjobportal_data['visibleParent']);
+                    WHERE id = " . (int) ($wpjobportal_data['visibleParent']);
                     wpjobportal::$_db->query($query);
                     if (wpjobportal::$_db->last_error != null) {
 
@@ -589,7 +589,7 @@ class WPJOBPORTALFieldorderingModel {
 
             } else if($wpjobportal_data['id'] != '' && is_numeric($wpjobportal_data['id'])){
                 $wpjobportal_data['visibleparams'] = '';
-                $query = "SELECT visibleparams FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE id = " . esc_sql($wpjobportal_data['id']);
+                $query = "SELECT visibleparams FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE id = " . (int) ($wpjobportal_data['id']);
                 $wpjobportal_visibleparams = wpjobportal::$_db->get_var($query);
                 if (isset($wpjobportal_visibleparams)) {
                     $wpjobportal_decodedData = json_decode($wpjobportal_visibleparams);
@@ -598,7 +598,7 @@ class WPJOBPORTALFieldorderingModel {
                     $wpjobportal_visibleParent = -1;
                 }
                 if(is_numeric($wpjobportal_visibleParent)){
-                    $query = "SELECT visible_field FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE id = " . esc_sql($wpjobportal_visibleParent);
+                    $query = "SELECT visible_field FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE id = " . (int) ($wpjobportal_visibleParent);
                     $old_fieldname = wpjobportal::$_db->get_var($query);
                     $wpjobportal_new_fieldname = $wpjobportal_fieldname;
                     $query = "SELECT id,visible_field FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE visible_field  LIKE '%".esc_sql($wpjobportal_fieldname)."%'";
@@ -607,7 +607,7 @@ class WPJOBPORTALFieldorderingModel {
                         $query_fieldname = $query_run->visible_field;
                         $query_fieldname =  wpjobportalphplib::wpJP_str_replace(','.$wpjobportal_fieldname, '', $query_fieldname);
                         $query_fieldname =  wpjobportalphplib::wpJP_str_replace($wpjobportal_fieldname, '', $query_fieldname);
-                        $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_fieldsordering` SET visible_field = '" . esc_sql($query_fieldname) . "' WHERE id = " . esc_sql($query_run->id);
+                        $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_fieldsordering` SET visible_field = '" . esc_sql($query_fieldname) . "' WHERE id = " . (int) ($query_run->id);
                         wpjobportal::$_db->query($query);
                     }
                 }
@@ -631,7 +631,7 @@ class WPJOBPORTALFieldorderingModel {
     function updateParentField($parentfield, $wpjobportal_field, $wpjobportal_fieldfor) {
         if(!is_numeric($parentfield)) return false;
         if(!is_numeric($wpjobportal_fieldfor)) return false;
-        $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_fieldsordering` SET depandant_field = '' WHERE fieldfor = ".esc_sql($wpjobportal_fieldfor)." AND depandant_field = '".esc_sql($parentfield)."'";
+        $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_fieldsordering` SET depandant_field = '' WHERE fieldfor = " . (int) ($wpjobportal_fieldfor)." AND depandant_field = '".esc_sql($parentfield)."'";
         wpjobportal::$_db->query($query);
         $wpjobportal_row = WPJOBPORTALincluder::getJSTable('fieldsordering');
         $wpjobportal_row->update(array('id' => $parentfield, 'depandant_field' => $wpjobportal_field));
@@ -682,13 +682,13 @@ class WPJOBPORTALFieldorderingModel {
         if(!is_numeric($wpjobportal_fieldfor)) return false;
         $wherequery = '';
         if($parentfield){
-            $query = "SELECT id FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE fieldfor = $wpjobportal_fieldfor AND (userfieldtype = 'radio' OR userfieldtype = 'combo' OR userfieldtype = 'depandant_field') AND depandant_field = '" . esc_sql($parentfield) . "' ";
+            $query = "SELECT id FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE fieldfor = " . (int) ($wpjobportal_fieldfor) . " AND (userfieldtype = 'radio' OR userfieldtype = 'combo' OR userfieldtype = 'depandant_field') AND depandant_field = '" . esc_sql($parentfield) . "' ";
             $parent = wpjobportaldb::get_var($query);
-            $wherequery = ' OR id = '.esc_sql($parent);
+            $wherequery = ' OR id = ' . (int) ($parent);
         }else{
             $parent = '';
         }
-        $query = "SELECT fieldtitle AS text ,id FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE fieldfor = " . esc_sql($wpjobportal_fieldfor) . " AND (userfieldtype = 'radio' OR userfieldtype = 'combo' OR userfieldtype = 'depandant_field') && ( depandant_field = '' ".esc_sql($wherequery)." ) ";
+        $query = "SELECT fieldtitle AS text ,id FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE fieldfor = " . (int) ($wpjobportal_fieldfor) . " AND (userfieldtype = 'radio' OR userfieldtype = 'combo' OR userfieldtype = 'depandant_field') && ( depandant_field = '' ".esc_sql($wherequery)." ) ";
         $wpjobportal_data = wpjobportaldb::get_results($query);
         $wpjobportal_jsFunction = 'getDataOfSelectedField();';
         $wpjobportal_html = WPJOBPORTALformfield::select('parentfield', $wpjobportal_data, $parent, esc_html(__('Select','wp-job-portal')) .' '. esc_html(__('Parent Field', 'wp-job-portal')), array('onchange' => $wpjobportal_jsFunction, 'class' => 'inputbox one'));
@@ -704,7 +704,7 @@ class WPJOBPORTALFieldorderingModel {
         $wpjobportal_sectionfor = WPJOBPORTALrequest::getVar('sectionfor');
         if(!is_numeric($wpjobportal_sectionfor)) return false;
 
-        $query = "SELECT fieldtitle AS text ,id FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE fieldfor = 3 AND userfieldtype = 'combo' AND section = ".esc_sql($wpjobportal_sectionfor);
+        $query = "SELECT fieldtitle AS text ,id FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE fieldfor = 3 AND userfieldtype = 'combo' AND section = " . (int) ($wpjobportal_sectionfor);
         $wpjobportal_data = wpjobportaldb::get_results($query);
         $wpjobportal_jsFunction = '';
 
@@ -723,7 +723,7 @@ class WPJOBPORTALFieldorderingModel {
         if(!is_numeric($wpjobportal_field)){
             return false;
         }
-        $query = "SELECT userfieldparams FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE id = ".esc_sql($wpjobportal_field);
+        $query = "SELECT userfieldparams FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE id = " . (int) ($wpjobportal_field);
         $wpjobportal_data = wpjobportaldb::get_var($query);
         $wpjobportal_datas = json_decode($wpjobportal_data);
         $wpjobportal_html = '';
@@ -778,7 +778,7 @@ class WPJOBPORTALFieldorderingModel {
     function deleteUserField($wpjobportal_id, $wpjobportal_is_section_headline=0){
         if (!is_numeric($wpjobportal_id))
            return false;
-        $query = "SELECT field,fieldfor,section FROM `".wpjobportal::$_db->prefix."wj_portal_fieldsordering` WHERE id = " . esc_sql($wpjobportal_id);
+        $query = "SELECT field,fieldfor,section FROM `".wpjobportal::$_db->prefix."wj_portal_fieldsordering` WHERE id = " . (int) ($wpjobportal_id);
         $wpjobportal_result = wpjobportaldb::get_row($query);
         $wpjobportal_row = WPJOBPORTALincluder::getJSTable('fieldsordering');
         if ($this->userFieldCanDelete($wpjobportal_result) == true) {
@@ -788,7 +788,7 @@ class WPJOBPORTALFieldorderingModel {
                 // delete fields of custom section on deleting section
                 if($wpjobportal_is_section_headline == 1){
                     if( is_numeric($wpjobportal_result->section) && $wpjobportal_result->section > 8){// making sure this code only executes for custom sections
-                        $query = "SELECT id FROM `".wpjobportal::$_db->prefix."wj_portal_fieldsordering` WHERE section = " . esc_sql($wpjobportal_result->section);
+                        $query = "SELECT id FROM `".wpjobportal::$_db->prefix."wj_portal_fieldsordering` WHERE section = " . (int) ($wpjobportal_result->section);
                         $wpjobportal_results = wpjobportaldb::get_results($query);
                         foreach ($wpjobportal_results as $wpjobportal_field) {
                             $wpjobportal_row->delete($wpjobportal_field->id);
@@ -835,9 +835,9 @@ class WPJOBPORTALFieldorderingModel {
             $wpjobportal_published = ' published = 1 ';
         }
         if ($wpjobportal_resumesection != null) {
-            $wpjobportal_published .= " AND section =". esc_sql($wpjobportal_resumesection);
+            $wpjobportal_published .= " AND section =" . (int) ($wpjobportal_resumesection);
         }
-        $query = "SELECT field,userfieldparams,userfieldtype FROM `" . wpjobportal::$_db->prefix . "wj_portal_fieldsordering` WHERE fieldfor = " . esc_sql($wpjobportal_fieldfor) . " AND isuserfield = 1 AND " . $wpjobportal_published;
+        $query = "SELECT field,userfieldparams,userfieldtype FROM `" . wpjobportal::$_db->prefix . "wj_portal_fieldsordering` WHERE fieldfor = " . (int) ($wpjobportal_fieldfor) . " AND isuserfield = 1 AND " . $wpjobportal_published;
         $wpjobportal_fields = wpjobportaldb::get_results($query);
         return $wpjobportal_fields;
     }
@@ -848,7 +848,7 @@ class WPJOBPORTALFieldorderingModel {
                 return false;
             if (is_numeric($wpjobportal_fieldfor) == false)
                 return false;
-            $query = "SELECT * FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE id = " . esc_sql($wpjobportal_id);
+            $query = "SELECT * FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE id = " . (int) ($wpjobportal_id);
             wpjobportal::$_data[0]['userfield'] = wpjobportaldb::get_row($query);
           if(isset(wpjobportal::$_data[0]['userfield']->userfieldparams) && !empty(wpjobportal::$_data[0]['userfield']->userfieldparams)){
               $params = wpjobportal::$_data[0]['userfield']->userfieldparams;
@@ -865,7 +865,7 @@ class WPJOBPORTALFieldorderingModel {
             $wpjobportal_visibleparams = json_decode($wpjobportal_visibleparams, true);
             $wpjobportal_fieldtypes = array();
             if(isset($wpjobportal_visibleparams['visibleParent']) && is_numeric($wpjobportal_visibleparams['visibleParent'])){
-                $query = "SELECT userfieldparams AS params FROM `" . wpjobportal::$_db->prefix . "wj_portal_fieldsordering` WHERE id = " . esc_sql($wpjobportal_visibleparams['visibleParent']);
+                $query = "SELECT userfieldparams AS params FROM `" . wpjobportal::$_db->prefix . "wj_portal_fieldsordering` WHERE id = " . (int) ($wpjobportal_visibleparams['visibleParent']);
                 $wpjobportal_options = wpjobportal::$_db->get_var($query);
                 $wpjobportal_options = json_decode($wpjobportal_options);
                 foreach ($wpjobportal_options as $wpjobportal_key => $wpjobportal_option) {
@@ -995,7 +995,7 @@ class WPJOBPORTALFieldorderingModel {
 
     function getFieldTitleByFieldAndFieldfor($wpjobportal_field,$wpjobportal_fieldfor){
         if(!is_numeric($wpjobportal_fieldfor)) return false;
-        $query = "SELECT fieldtitle FROM `".wpjobportal::$_db->prefix."wj_portal_fieldsordering` WHERE field = '".esc_sql($wpjobportal_field)."' AND fieldfor = ".esc_sql($wpjobportal_fieldfor);
+        $query = "SELECT fieldtitle FROM `".wpjobportal::$_db->prefix."wj_portal_fieldsordering` WHERE field = '".esc_sql($wpjobportal_field)."' AND fieldfor = " . (int) ($wpjobportal_fieldfor);
         $title = wpjobportal::$_db->get_var($query);
         return $title;
     }
@@ -1010,7 +1010,7 @@ class WPJOBPORTALFieldorderingModel {
             $wpjobportal_published = ' published = 1 ';
         }
 
-        $query = "SELECT field  FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE showonlisting = 1 AND " . esc_sql($wpjobportal_published) . " AND fieldfor =" . esc_sql($wpjobportal_fieldfor) ;
+        $query = "SELECT field  FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE showonlisting = 1 AND " . esc_sql($wpjobportal_published) . " AND fieldfor =" . (int) ($wpjobportal_fieldfor) ;
         $wpjobportal_data = wpjobportaldb::get_results($query);
         $return_array = array();
         foreach ($wpjobportal_data as $wpjobportal_field) {
@@ -1030,7 +1030,7 @@ class WPJOBPORTALFieldorderingModel {
         } else {
             $wpjobportal_published = ' published = 1 ';
         }
-        $query = "SELECT field,fieldtitle  FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE " . esc_sql($wpjobportal_published) . " AND fieldfor =" . esc_sql($wpjobportal_fieldfor) ;
+        $query = "SELECT field,fieldtitle  FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE " . esc_sql($wpjobportal_published) . " AND fieldfor =" . (int) ($wpjobportal_fieldfor) ;
         $wpjobportal_data = wpjobportaldb::get_results($query);
         $return_data = array();
         foreach ($wpjobportal_data as $wpjobportal_field) {
@@ -1049,7 +1049,7 @@ class WPJOBPORTALFieldorderingModel {
             return false;
         }
 
-        $query = "SELECT field,fieldtitle  FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE showonlisting = 1 AND " . esc_sql($wpjobportal_published) . " AND fieldfor =" . esc_sql($wpjobportal_fieldfor) ;
+        $query = "SELECT field,fieldtitle  FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE showonlisting = 1 AND " . esc_sql($wpjobportal_published) . " AND fieldfor =" . (int) ($wpjobportal_fieldfor) ;
         $wpjobportal_data = wpjobportaldb::get_results($query);
         $return_data = array();
         foreach ($wpjobportal_data as $wpjobportal_field) {
@@ -1102,23 +1102,23 @@ class WPJOBPORTALFieldorderingModel {
         }
         $wherequery = '';
         if(isset($wpjobportal_field) && $wpjobportal_field !='' ){
-            $query = "SELECT id FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE fieldfor = $wpjobportal_fieldfor AND (userfieldtype = 'combo') AND visible_field = '" . esc_sql($wpjobportal_field) . "' ";
+            $query = "SELECT id FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE fieldfor = " . (int) ($wpjobportal_fieldfor) . " AND (userfieldtype = 'combo') AND visible_field = '" . esc_sql($wpjobportal_field) . "' ";
             $parent = wpjobportal::$_db->get_var($query);
             if (is_numeric($parent)) {
-                $wherequery = ' OR id = '.esc_sql($parent);
+                $wherequery = ' OR id = ' . (int) ($parent);
             }
         }
         $wherequeryforedit = '';
         if(isset($cid) && $cid !='' && is_numeric($cid)){
-            $wherequeryforedit = ' AND id != '.esc_sql($cid);
+            $wherequeryforedit = ' AND id != ' . (int) ($cid);
         }
         // to handle resume section
         if(isset($wpjobportal_section) && $wpjobportal_section !='' && is_numeric($wpjobportal_section)){
-            $wherequeryforedit = ' AND section = '.esc_sql($wpjobportal_section);
+            $wherequeryforedit = ' AND section = ' . (int) ($wpjobportal_section);
         }
 
 
-        $query = "SELECT fieldtitle AS text ,id FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE fieldfor = ".esc_sql($wpjobportal_fieldfor)." AND userfieldtype = 'combo' ".$wherequeryforedit.$wherequery;
+        $query = "SELECT fieldtitle AS text ,id FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE fieldfor = " . (int) ($wpjobportal_fieldfor)." AND userfieldtype = 'combo' ".$wherequeryforedit.$wherequery;
         $wpjobportal_data = wpjobportal::$_db->get_results($query);
         return $wpjobportal_data;
     }
@@ -1133,10 +1133,10 @@ class WPJOBPORTALFieldorderingModel {
             return false;
         }
 
-        $query = "SELECT isuserfield, field FROM `" . wpjobportal::$_db->prefix . "wj_portal_fieldsordering` WHERE id = " . esc_sql($wpjobportal_perentid);
+        $query = "SELECT isuserfield, field FROM `" . wpjobportal::$_db->prefix . "wj_portal_fieldsordering` WHERE id = " . (int) ($wpjobportal_perentid);
         $wpjobportal_fieldType = wpjobportal::$_db->get_row($query);
         if (isset($wpjobportal_fieldType->isuserfield) && $wpjobportal_fieldType->isuserfield == 1) {
-            $query = "SELECT userfieldparams AS params FROM `" . wpjobportal::$_db->prefix . "wj_portal_fieldsordering` WHERE id = " . esc_sql($wpjobportal_perentid);
+            $query = "SELECT userfieldparams AS params FROM `" . wpjobportal::$_db->prefix . "wj_portal_fieldsordering` WHERE id = " . (int) ($wpjobportal_perentid);
             $wpjobportal_options = wpjobportal::$_db->get_var($query);
             $wpjobportal_options = json_decode($wpjobportal_options);
             foreach ($wpjobportal_options as $wpjobportal_key => $wpjobportal_option) {

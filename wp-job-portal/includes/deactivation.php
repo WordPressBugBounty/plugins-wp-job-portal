@@ -9,7 +9,7 @@ class WPJOBPORTALdeactivation {
         wp_clear_scheduled_hook('wpjobportal_cronjobs_action');
         $wpjobportal_id = wpjobportal::wpjobportal_getPageid();
         if(is_numeric($wpjobportal_id)){
-            wpjobportal::$_db->get_var("UPDATE `" . wpjobportal::$_db->prefix . "posts` SET post_status = 'draft' WHERE ID =".esc_sql($wpjobportal_id));
+            wpjobportal::$_db->get_var("UPDATE `" . wpjobportal::$_db->prefix . "posts` SET post_status = 'draft' WHERE ID =" . (int) ($wpjobportal_id));
         }
 
         //Delete capabilities

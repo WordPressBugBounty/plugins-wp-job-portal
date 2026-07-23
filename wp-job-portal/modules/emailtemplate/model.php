@@ -1421,7 +1421,7 @@ class WPJOBPORTALEmailtemplateModel {
                               ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
                               LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_users` AS user ON user.id = company.uid
                               LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
-                              WHERE job.id = " . esc_sql($wpjobportal_jobid);
+                              WHERE job.id = " . (int) ($wpjobportal_jobid);
         $wpjobportal_jobuser = wpjobportaldb::get_row($wpjobportal_jobquery);
         if ($wpjobportal_jobuser->jobstatus == 1) {
 
@@ -1533,10 +1533,10 @@ class WPJOBPORTALEmailtemplateModel {
                             , company.status AS status,company.contactemail AS companyuseremail,company.isfeaturedcompany AS featuredcompany
                             FROM `' . wpjobportal::$_db->prefix . 'wj_portal_companies` AS company
                             LEFT JOIN `' . wpjobportal::$_db->prefix . 'wj_portal_users` AS user ON user.id = company.uid
-                            WHERE company.id = ' . esc_sql($wpjobportal_id);
+                            WHERE company.id = ' . (int) ($wpjobportal_id);
                 break;
             case 'wj_portal_jobs':
-                $wpjobportal_decisionalquery = 'SELECT uid FROM `' . wpjobportal::$_db->prefix . 'wj_portal_jobs` AS job WHERE id=' . esc_sql($wpjobportal_id);
+                $wpjobportal_decisionalquery = 'SELECT uid FROM `' . wpjobportal::$_db->prefix . 'wj_portal_jobs` AS job WHERE id=' . (int) ($wpjobportal_id);
                 $wpjobportal_decisionalrecord = wpjobportal::$_db->get_row($wpjobportal_decisionalquery);
                 //query for get visitor jobs
                 if ($wpjobportal_decisionalrecord->uid == 0) {
@@ -1544,7 +1544,7 @@ class WPJOBPORTALEmailtemplateModel {
                                 ,company.contactemail AS useremail,company.uid, job.isfeaturedjob AS featuredjob,job.params
                             FROM `' . wpjobportal::$_db->prefix . 'wj_portal_jobs` AS job
                             '.wpjobportal::$_company_job_table_join.' JOIN `' . wpjobportal::$_db->prefix . 'wj_portal_companies` AS company ON job.companyid = company.id
-                            WHERE job.id = ' . esc_sql($wpjobportal_id);
+                            WHERE job.id = ' . (int) ($wpjobportal_id);
                 }
                 //query for get jobs
                 else {
@@ -1553,30 +1553,30 @@ class WPJOBPORTALEmailtemplateModel {
                             FROM `' . wpjobportal::$_db->prefix . 'wj_portal_jobs` AS job
                             '.wpjobportal::$_company_job_table_join.' JOIN `' . wpjobportal::$_db->prefix . 'wj_portal_companies` AS company ON job.companyid = company.id
                             JOIN `' . wpjobportal::$_db->prefix . 'wj_portal_users` AS user ON user.id = job.uid
-                            WHERE job.id = ' . esc_sql($wpjobportal_id);
+                            WHERE job.id = ' . (int) ($wpjobportal_id);
                 }
                 //echo $query;die;
                 break;
             case 'wj_portal_resume':
-                $wpjobportal_decisionalquery = 'SELECT uid FROM `' . wpjobportal::$_db->prefix . 'wj_portal_resume` AS rs WHERE id=' . esc_sql($wpjobportal_id);
+                $wpjobportal_decisionalquery = 'SELECT uid FROM `' . wpjobportal::$_db->prefix . 'wj_portal_resume` AS rs WHERE id=' . (int) ($wpjobportal_id);
                 $wpjobportal_decisionalrecord = wpjobportal::$_db->get_row($wpjobportal_decisionalquery);
                 if ($wpjobportal_decisionalrecord->uid == 0) {
                     //query for visitor resume
                     $query = 'SELECT rs.application_title AS resumetitle,rs.email_address AS useremail,rs.status AS resumestatus,  rs.first_name AS firstname, rs.last_name AS lastname,rs.uid, rs.isfeaturedresume AS featuredresume,rs.params
                             FROM `' . wpjobportal::$_db->prefix . 'wj_portal_resume` AS rs
-                            WHERE rs.id = ' . esc_sql($wpjobportal_id);
+                            WHERE rs.id = ' . (int) ($wpjobportal_id);
                 }
                 //query for resume
                 $query = 'SELECT rs.application_title AS resumetitle, CONCAT(user.first_name," ",user.last_name) AS username,rs.email_address AS useremailfromresume, rs.isfeaturedresume AS featuredresume,rs.params
                         ,rs.first_name AS firstname, rs.last_name AS lastname, rs.email_address AS useremail,rs.status AS resumestatus,rs.uid
                             FROM `' . wpjobportal::$_db->prefix . 'wj_portal_resume` AS rs
                             JOIN `' . wpjobportal::$_db->prefix . 'wj_portal_users` AS user ON user.id = rs.uid
-                            WHERE rs.id = ' . esc_sql($wpjobportal_id);
+                            WHERE rs.id = ' . (int) ($wpjobportal_id);
                 break;
             case 'users':
                 $query = 'SELECT CONCAT(u.first_name," ",u.last_name) AS username, u.emailaddress AS useremail, u.roleid AS userrole
                             FROM `' . wpjobportal::$_db->prefix . 'wj_portal_users` AS u
-                            WHERE u.id = ' . esc_sql($wpjobportal_id);
+                            WHERE u.id = ' . (int) ($wpjobportal_id);
                 break;
             case 'wj_portal_userpackages':
                 $query = "SELECT package.title AS packagename,invoice.amount AS price,package.isfree,invoice.currencyid,upak.status,user.first_name as username,user.emailaddress AS useremailaddress,user.id AS userid
@@ -1584,7 +1584,7 @@ class WPJOBPORTALEmailtemplateModel {
                 JOIN `" . wpjobportal::$_db->prefix . "wj_portal_packages` AS package ON package.id = upak.packageid
                 JOIN `" . wpjobportal::$_db->prefix . "wj_portal_users` AS user ON upak.uid = user.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_invoices` AS invoice ON invoice.recordid = upak.id
-                WHERE upak.id = ".esc_sql($wpjobportal_id);
+                WHERE upak.id = " . (int) ($wpjobportal_id);
                 break;
             case 'wj_portal_jobapply':
                 $query = 'SELECT rs.first_name AS firstname,rs.last_name AS lastname, jobap.action_status AS resumestatus , jobap.status AS jobapplystatus,rs.email_address AS resumeemail,job.title AS jobtitle,com.contactemail AS companycontactemail,com.name AS companyname, rs.application_title AS resumetitle, CONCAT(uforemployer.first_name," ",uforemployer.last_name) AS username, uforemployer.emailaddress AS useremailforemployer,uforjobseeker.emailaddress AS useremailforjobseeker,job.params
@@ -1594,13 +1594,13 @@ class WPJOBPORTALEmailtemplateModel {
                             JOIN ' . wpjobportal::$_db->prefix . 'wj_portal_resume AS rs ON rs.id = jobap.cvid
                             JOIN ' . wpjobportal::$_db->prefix . 'wj_portal_users AS uforemployer ON uforemployer.id = com.uid
                             JOIN ' . wpjobportal::$_db->prefix . 'wj_portal_users AS uforjobseeker ON uforjobseeker.id = jobap.uid
-                            WHERE jobap.id =' . esc_sql($wpjobportal_id);
+                            WHERE jobap.id =' . (int) ($wpjobportal_id);
                 break;
             case 'wj_portal_messages':
                 $query = "SELECT message.message, message.sendby,message.created,message.jobseekerid
                         ,message.employerid,message.id,message.status,message.replytoid, message.jobid, message.resumeid
                         FROM `" . wpjobportal::$_db->prefix . "wj_portal_messages` AS message
-                        WHERE message.id = " . esc_sql($wpjobportal_id);
+                        WHERE message.id = " . (int) ($wpjobportal_id);
                 $wpjobportal_data = wpjobportaldb::get_row($query);
 
                 if(!empty($wpjobportal_data)){
@@ -1608,14 +1608,14 @@ class WPJOBPORTALEmailtemplateModel {
                     if(isset($wpjobportal_data->jobseekerid) && $wpjobportal_data->jobseekerid > 0){
                         $query = 'SELECT CONCAT(u.first_name," ",u.last_name) AS username, u.emailaddress AS useremail, u.roleid AS userrole
                                     FROM `' . wpjobportal::$_db->prefix . 'wj_portal_users` AS u
-                                    WHERE u.id = ' . esc_sql($wpjobportal_data->jobseekerid);
+                                    WHERE u.id = ' . (int) ($wpjobportal_data->jobseekerid);
                                     $wpjobportal_jobseeker_data = wpjobportaldb::get_row($query);
                     }
                     $wpjobportal_employer_data = new stdClass();
                     if(isset($wpjobportal_data->employerid) && is_numeric($wpjobportal_data->employerid) && $wpjobportal_data->employerid > 0){
                         $query = 'SELECT CONCAT(u.first_name," ",u.last_name) AS username, u.emailaddress AS useremail, u.roleid AS userrole
                                     FROM `' . wpjobportal::$_db->prefix . 'wj_portal_users` AS u
-                                    WHERE u.id = ' . esc_sql($wpjobportal_data->employerid);
+                                    WHERE u.id = ' . (int) ($wpjobportal_data->employerid);
                                     $wpjobportal_employer_data = wpjobportaldb::get_row($query);
                     }
                     $wpjobportal_data->jobseeker_data = $wpjobportal_jobseeker_data;

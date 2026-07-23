@@ -842,10 +842,10 @@ class WPJOBPORTALwpjobportalModel {
                   LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_countries` AS country ON city.countryid=country.id";
         switch ($for) {
             case 1:
-                $query.=" where mcity.jobid=" . esc_sql($wpjobportal_id);
+                $query.=" where mcity.jobid=" . (int) ($wpjobportal_id);
                 break;
             case 2:
-                $query.=" where mcity.companyid=" . esc_sql($wpjobportal_id);
+                $query.=" where mcity.companyid=" . (int) ($wpjobportal_id);
                 break;
         }
         $query.=" ORDER BY country.name";
@@ -1741,14 +1741,21 @@ class WPJOBPORTALwpjobportalModel {
     }
 
     function downloadandinstalladdonfromAjax(){
+        if (!current_user_can('install_plugins')) {
+            wp_send_json_error(array('message' => esc_html__('Permission denied.', 'wp-job-portal')));
+        }
+
         $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
         if (! wp_verify_nonce( $wpjobportal_nonce, 'download-and-install-addon') ) {
             die( 'Security check Failed' );
         }
 
-        $wpjobportal_key = WPJOBPORTALrequest::getVar('dataFor');
-        $wpjobportal_installedversion = WPJOBPORTALrequest::getVar('currentVersion');
-        $wpjobportal_newversion = WPJOBPORTALrequest::getVar('cdnVersion');
+        $wpjobportal_key = sanitize_key(WPJOBPORTALrequest::getVar('dataFor'));
+        if (!preg_match('/^wp-job-portal-[a-z0-9_-]+$/', $wpjobportal_key)) {
+            wp_send_json_error(array('message' => esc_html__('Invalid add-on.', 'wp-job-portal')));
+        }
+        $wpjobportal_installedversion = sanitize_text_field(WPJOBPORTALrequest::getVar('currentVersion'));
+        $wpjobportal_newversion = sanitize_text_field(WPJOBPORTALrequest::getVar('cdnVersion'));
         $wpjobportal_addon_json_array = array();
 
         if($wpjobportal_key != ''){
@@ -1781,11 +1788,11 @@ class WPJOBPORTALwpjobportalModel {
         $wpjobportal_installed = $this->install_plugin($wpjobportal_url);
         if ( !is_wp_error( $wpjobportal_installed ) && $wpjobportal_installed ) {
             // had to run two seprate loops to save token for all the addons even if some error is triggered by activation.
-            if(strstr($wpjobportal_key, 'wp-job-portal-')){
+            if(preg_match('/^wp-job-portal-[a-z0-9_-]+$/', $wpjobportal_key)){
                 update_option('transaction_key_for_'.$wpjobportal_key,$wpjobportal_token);
             }
 
-            if(strstr($wpjobportal_key, 'wp-job-portal-')){
+            if(preg_match('/^wp-job-portal-[a-z0-9_-]+$/', $wpjobportal_key)){
                 $wpjobportal_activate = activate_plugin( $wpjobportal_key.'/'.$wpjobportal_key.'.php' );
                 $wpjobportal_install_count++;
             }
@@ -1987,6 +1994,9 @@ class WPJOBPORTALwpjobportalModel {
     }
 
     function install_plugin( $wpjobportal_plugin_zip ) {
+        if (!current_user_can('install_plugins')) {
+            return new WP_Error('wpjobportal_permission_denied', esc_html__('You do not have permission to install plugins.', 'wp-job-portal'));
+        }
 
         do_action('wpjobportal_load_wp_admin_file');
         WP_Filesystem();

@@ -39,7 +39,7 @@ class WPJOBPORTALEmployerModel {
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = app.job_category
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = app.jobtype
                 ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
-            WHERE jobapply.jobid = " . esc_sql($wpjobportal_key->jobid);
+            WHERE jobapply.jobid = " . (int) ($wpjobportal_key->jobid);
             $wpjobportal_result = wpjobportaldb::get_results($query);
             $wpjobportal_data = array();
             foreach ($wpjobportal_result AS $d) {
@@ -57,7 +57,7 @@ class WPJOBPORTALEmployerModel {
         $query = "SELECT COUNT(*) as record,company.id,company.name,company.logofilename,CONCAT(company.alias,'-',company.id) AS aliasid,company.created,company.serverid,company.city,company.status,company.isfeaturedcompany
                  ,company.endfeatureddate,company.tagline,company.url
                 FROM " . wpjobportal::$_db->prefix . "wj_portal_companies AS company
-                WHERE company.uid = " . esc_sql($wpjobportal_uid);
+                WHERE company.uid = " . (int) ($wpjobportal_uid);
         if(wpjobportal::$wpjobportal_theme_chk == 1){
             $query .= " ORDER BY company.created DESC LIMIT 0,5";
             // setting data to $_data[0] was causing issues
@@ -88,7 +88,7 @@ class WPJOBPORTALEmployerModel {
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON job.city = city.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS salaryrangetype ON salaryrangetype.id = job.salaryduration
-                WHERE job.uid =". esc_sql($wpjobportal_uid) ;
+                WHERE job.uid =" . (int) ($wpjobportal_uid) ;
                 # Sorting Merge In Query
                 $query.= " ORDER BY job.created DESC";
                 $query.=" LIMIT 0,5";
@@ -109,7 +109,7 @@ class WPJOBPORTALEmployerModel {
                         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume ON resume.id = m.resumeid
                         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job ON job.id = m.jobid
                         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
-                        WHERE m.status = 1 AND m.employerid = " . esc_sql($wpjobportal_uid) . " AND m.replytoid = 0 LIMIT 0,5";
+                        WHERE m.status = 1 AND m.employerid = " . (int) ($wpjobportal_uid) . " AND m.replytoid = 0 LIMIT 0,5";
                 $messages = wpjobportaldb::get_results($query);
                 wpjobportal::$_data[0]['mymessages'] = $messages;
             }
@@ -119,25 +119,25 @@ class WPJOBPORTALEmployerModel {
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` AS jobapply ON jobapply.jobid = job.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume ON jobapply.cvid = resume.id
-                WHERE jobapply.status = 1 and job.uid =". esc_sql($wpjobportal_uid) ;
+                WHERE jobapply.status = 1 and job.uid =" . (int) ($wpjobportal_uid) ;
                 # Sorting Merge In Query
                 $query.= " ORDER BY job.created DESC";
                 $query.=" LIMIT 0,5";
             $wpjobportal_myappliedresume = wpjobportaldb::get_results($query);
             wpjobportal::$_data[0]['myappliedresume'] = $wpjobportal_myappliedresume;
         }
-        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` where uid = ".esc_sql($wpjobportal_uid)." and status = 1";
+        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` where uid = " . (int) ($wpjobportal_uid)." and status = 1";
         wpjobportal::$_data['totaljobs'] = wpjobportal::$_db->get_var($query);
-        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` where `uid` = ".esc_sql($wpjobportal_uid)." AND status = 1";
+        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` where `uid` = " . (int) ($wpjobportal_uid)." AND status = 1";
         wpjobportal::$_data['totalcompanies'] = wpjobportal::$_db->get_var($query);
         if(!in_array('multicompany', wpjobportal::$_active_addons) && wpjobportal::$_data['totalcompanies'] > 1){
             wpjobportal::$_data['totalcompanies'] = 1;
         }
         $query = "SELECT count(jobapply.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` AS jobapply
-                    JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job ON jobapply.jobid = job.id AND job.uid = ".esc_sql($wpjobportal_uid)." AND jobapply.status = 1";
+                    JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job ON jobapply.jobid = job.id AND job.uid = " . (int) ($wpjobportal_uid)." AND jobapply.status = 1";
         wpjobportal::$_data['totaljobapply'] = wpjobportal::$_db->get_var($query);
         if(in_array('resumesearch', wpjobportal::$_active_addons)){
-            $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumesearches` where status = 1  and uid =". esc_sql($wpjobportal_uid);
+            $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumesearches` where status = 1  and uid =" . (int) ($wpjobportal_uid);
             wpjobportal::$_data['totalresumesearch'] = wpjobportal::$_db->get_var($query);
         }
     }
@@ -163,7 +163,7 @@ class WPJOBPORTALEmployerModel {
             JOIN `".wpjobportal::$_db->prefix."wj_portal_jobs` AS job ON job.id=jobapply.jobid
             LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_jobtypes` AS type ON job.jobtype=type.id";
             if($wpjobportal_uid){
-                $query .= " AND job.uid =". esc_sql($wpjobportal_uid);
+                $query .= " AND job.uid =" . (int) ($wpjobportal_uid);
             }
         $query .= " GROUP by MONTH(jobapply.apply_date),YEAR(jobapply.apply_date),type.id ORDER BY YEAR(jobapply.apply_date),MONTH(jobapply.apply_date) ASC";
 
@@ -218,7 +218,7 @@ class WPJOBPORTALEmployerModel {
         $query = "SELECT company.id,company.name,company.logofilename,CONCAT(company.alias,'-',company.id) AS aliasid,company.created,company.serverid,company.city,company.status,company.isfeaturedcompany
                  ,company.endfeatureddate,company.tagline,company.url
                 FROM " . wpjobportal::$_db->prefix . "wj_portal_companies AS company
-                WHERE company.uid = " . esc_sql($wpjobportal_uid);
+                WHERE company.uid = " . (int) ($wpjobportal_uid);
             $query .= " ORDER BY company.created DESC LIMIT 0,1";
             $wpjobportal_company = wpjobportaldb::get_row($query);
             return $wpjobportal_company;

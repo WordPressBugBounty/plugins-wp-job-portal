@@ -2033,10 +2033,10 @@ class WPJOBPORTALPostinstallationModel {
 
         $missingUsers = array_diff($wpUsers,$wpjobportal_jsstUsers);
         foreach ($missingUsers as $missingUser) {
-            $query = "SELECT count(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE uid = " . esc_sql($missingUser);
+            $query = "SELECT count(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE uid = " . (int) ($missingUser);
             $wpjobportal_total = wpjobportal::$_db->get_var($query);
             if ($wpjobportal_total == 0) {
-                $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "users` WHERE id = " . esc_sql($missingUser);
+                $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "users` WHERE id = " . (int) ($missingUser);
                 $wpjobportal_user = wpjobportal::$_db->get_row($query);
                 if (isset($wpjobportal_user)) {
                     $wpjobportal_row = WPJOBPORTALincluder::getJSTable('users');

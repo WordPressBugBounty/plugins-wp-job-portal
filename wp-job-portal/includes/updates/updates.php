@@ -27,7 +27,7 @@ class WPJOBPORTALupdates {
             $query = "SELECT configvalue FROM `".wpjobportal::$_db->prefix."wj_portal_config` WHERE configname='versioncode'";
             $wpjobportal_versioncode = wpjobportal::$_db->get_var($query);
             $wpjobportal_versioncode = wpjobportalphplib::wpJP_str_replace('.','',$wpjobportal_versioncode);
-            $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_config` SET configvalue = '".esc_sql($wpjobportal_versioncode)."' WHERE configname = 'last_version';";
+            $query = wpjobportal::$_db->prepare("UPDATE `".wpjobportal::$_db->prefix."wj_portal_config` SET configvalue = %s WHERE configname = 'last_version';", $wpjobportal_versioncode);
             wpjobportal::$_db->query($query);
             $from = $wpjobportal_installedversion + 1;
             $wpjobportal_to = $cversion;

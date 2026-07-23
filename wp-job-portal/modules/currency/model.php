@@ -9,7 +9,7 @@ class WPJOBPORTALcurrencyModel {
         if (is_numeric($wpjobportal_id) == false)
             return false;
 
-        $query = "SELECT * FROM " . wpjobportal::$_db->prefix . "wj_portal_currencies WHERE id = " . esc_sql($wpjobportal_id);
+        $query = "SELECT * FROM " . wpjobportal::$_db->prefix . "wj_portal_currencies WHERE id = " . (int) ($wpjobportal_id);
         wpjobportal::$_data[0] = wpjobportaldb::get_row($query);
         return;
     }
@@ -36,7 +36,7 @@ class WPJOBPORTALcurrencyModel {
         if(!is_numeric($wpjobportal_currencyid)){
             return false;
         }
-        $query = " SELECT symbol FROM `" .wpjobportal::$_db->prefix. "wj_portal_currencies` WHERE id = ".esc_sql($wpjobportal_currencyid);
+        $query = " SELECT symbol FROM `" .wpjobportal::$_db->prefix. "wj_portal_currencies` WHERE id = " . (int) ($wpjobportal_currencyid);
         $wpjobportal_defaultValue = wpjobportaldb::get_var($query);
         return $wpjobportal_defaultValue;
     }
@@ -45,7 +45,7 @@ class WPJOBPORTALcurrencyModel {
         if(!is_numeric($wpjobportal_currencyid)){
             return false;
         }
-        $query = " SELECT `smallestunit` FROM `" . wpjobportal::$_db->prefix . "wj_portal_currencies` WHERE id = ".esc_sql($wpjobportal_currencyid);
+        $query = " SELECT `smallestunit` FROM `" . wpjobportal::$_db->prefix . "wj_portal_currencies` WHERE id = " . (int) ($wpjobportal_currencyid);
         return wpjobportaldb::get_var($query);
     }
 
@@ -53,7 +53,7 @@ class WPJOBPORTALcurrencyModel {
         if(!is_numeric($wpjobportal_currencyid)){
             return false;
         }
-        $query = " SELECT `smallestunit` FROM `" .wpjobportal::$_db->prefix ."wj_portal_currencies` WHERE id = ".esc_sql($wpjobportal_currencyid);
+        $query = " SELECT `smallestunit` FROM `" .wpjobportal::$_db->prefix ."wj_portal_currencies` WHERE id = " . (int) ($wpjobportal_currencyid);
         $unit = wpjobportaldb::get_var($query);
         if(!$unit){
             $unit = 1;
@@ -82,7 +82,7 @@ class WPJOBPORTALcurrencyModel {
             $clause = ' AND ';
         }
         if (is_numeric($wpjobportal_status)){
-            $wpjobportal_inquery .= esc_sql($clause) . " status = " . esc_sql($wpjobportal_status);
+            $wpjobportal_inquery .= esc_sql($clause) . " status = " . (int) ($wpjobportal_status);
             $clause = ' AND ';
         }
         if ($code != null){
@@ -114,7 +114,7 @@ class WPJOBPORTALcurrencyModel {
         if (!is_numeric($wpjobportal_id))
             return false;
         //DB class limitations
-        $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_currencies` AS cur SET cur.default = 0 WHERE cur.id != " . esc_sql($wpjobportal_id);
+        $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_currencies` AS cur SET cur.default = 0 WHERE cur.id != " . (int) ($wpjobportal_id);
         wpjobportaldb::query($query);
     }
 
@@ -208,7 +208,7 @@ class WPJOBPORTALcurrencyModel {
             return false;
 
         $query = " SELECT
-                    ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_currencies` AS cur WHERE cur.id = " . esc_sql($wpjobportal_currencyid) . " AND cur.default =1)
+                    ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_currencies` AS cur WHERE cur.id = " . (int) ($wpjobportal_currencyid) . " AND cur.default =1)
                     AS total ";
         $wpjobportal_total = wpjobportaldb::get_var($query);
         if ($wpjobportal_total > 0)
@@ -261,7 +261,7 @@ class WPJOBPORTALcurrencyModel {
         if(!is_numeric($wpjobportal_currencyid)){
             return false;
         }
-        $query = " SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_currencies` AS cur WHERE cur.id = " . esc_sql($wpjobportal_currencyid) . " AND cur.default = 1 ";
+        $query = " SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_currencies` AS cur WHERE cur.id = " . (int) ($wpjobportal_currencyid) . " AND cur.default = 1 ";
         $wpjobportal_total = wpjobportaldb::get_var($query);
         if ($wpjobportal_total > 0)
             return false;
@@ -292,7 +292,7 @@ class WPJOBPORTALcurrencyModel {
         if(!is_numeric($wpjobportal_currencyid)){
             return false;
         }
-        $query = " SELECT `code` FROM `" .wpjobportal::$_db->prefix."wj_portal_currencies` WHERE id = ".esc_sql($wpjobportal_currencyid);
+        $query = " SELECT `code` FROM `" .wpjobportal::$_db->prefix."wj_portal_currencies` WHERE id = " . (int) ($wpjobportal_currencyid);
         return wpjobportaldb::get_var($query);
     }
 

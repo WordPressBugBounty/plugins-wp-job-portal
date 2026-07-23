@@ -52,15 +52,15 @@ class WPJOBPORTALjobapplyModel {
 
         $wpjobportal_inquery = "";
         if ($wpjobportal_searchtitle)
-            $wpjobportal_inquery .= " AND LOWER(job.title) LIKE '%" . esc_sql($wpjobportal_searchtitle) . "%'";
+            $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND LOWER(job.title) LIKE LOWER(%s)", wpjobportaldb::like($wpjobportal_searchtitle));
         if ($wpjobportal_searchcompany)
-            $wpjobportal_inquery .= " AND LOWER(company.name) LIKE '%" . esc_sql($wpjobportal_searchcompany) . "%'";
+            $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND LOWER(company.name) LIKE LOWER(%s)", wpjobportaldb::like($wpjobportal_searchcompany));
         if ($wpjobportal_searchjobcategory && is_numeric($wpjobportal_searchjobcategory))
-            $wpjobportal_inquery .= " AND job.jobcategory = " . esc_sql($wpjobportal_searchjobcategory);
+            $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND job.jobcategory = %d", $wpjobportal_searchjobcategory);
         if ($wpjobportal_searchjobtype && is_numeric($wpjobportal_searchjobtype))
-            $wpjobportal_inquery .= " AND job.jobtype = " . esc_sql($wpjobportal_searchjobtype);
+            $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND job.jobtype = %d", $wpjobportal_searchjobtype);
         if ($wpjobportal_searchjobstatus && is_numeric($wpjobportal_searchjobstatus))
-            $wpjobportal_inquery .= " AND job.jobstatus = " . esc_sql($wpjobportal_searchjobstatus);
+            $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND job.jobstatus = %d", $wpjobportal_searchjobstatus);
 
         //Pagination
         $query = "SELECT COUNT(job.id) FROM " . wpjobportal::$_db->prefix . "wj_portal_jobs AS job
@@ -83,7 +83,7 @@ class WPJOBPORTALjobapplyModel {
                 WHERE job.status <> 0";
         $query.=$wpjobportal_inquery;
         $query .= " ORDER BY job.created DESC";
-        $query.=" LIMIT " . WPJOBPORTALpagination::$_offset . "," . WPJOBPORTALpagination::$_limit;
+        $query .= wpjobportal::$_db->prepare(" LIMIT %d,%d", WPJOBPORTALpagination::$_offset, WPJOBPORTALpagination::$_limit);
         wpjobportal::$_data[0] = wpjobportaldb::get_results($query);
         return;
     }
@@ -113,7 +113,7 @@ class WPJOBPORTALjobapplyModel {
         if (!is_numeric($wpjobportal_uid))
             return false;
 
-        $query = "SELECT title FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE id = ". esc_sql($wpjobportal_jobid);
+        $query = wpjobportal::$_db->prepare("SELECT title FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE id = %d", $wpjobportal_jobid);
         wpjobportal::$_data['jobtitle'] = wpjobportal::$_db->get_var($query);
 
         $title = isset(wpjobportal::$_search['search_filter']['title']) ? wpjobportal::$_search['search_filter']['title']: '';
@@ -134,41 +134,41 @@ class WPJOBPORTALjobapplyModel {
                 return false;
             }
             $wpjobportal_tab_action = (int) $wpjobportal_tab_action;
-            $wpjobportal_inquery .= " AND jobapply.action_status = " . $wpjobportal_tab_action;
+            $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND jobapply.action_status = %d", $wpjobportal_tab_action);
         }
         if ($title) {
-            $wpjobportal_inquery.=" AND app.application_title LIKE '%" . esc_sql($title) . "%'";
+            $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND app.application_title LIKE %s", wpjobportaldb::like($title));
         }
         if ($wpjobportal_name) {
-            $wpjobportal_inquery.=" AND LOWER(app.first_name) LIKE '%" . esc_sql($wpjobportal_name) . "%'";
+            $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND LOWER(app.first_name) LIKE LOWER(%s)", wpjobportaldb::like($wpjobportal_name));
         }
 
         if (is_numeric($wpjobportal_nationality)) {
-            $wpjobportal_inquery .= " AND app.nationality = " . esc_sql($wpjobportal_nationality);
+            $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND app.nationality = %d", $wpjobportal_nationality);
         }
         if (is_numeric($wpjobportal_gender)) {
-            $wpjobportal_inquery .= " AND app.gender = " . esc_sql($wpjobportal_gender);
+            $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND app.gender = %d", $wpjobportal_gender);
         }
         if (is_numeric($wpjobportal_jobtype)) {
-            $wpjobportal_inquery .= " AND app.jobtype = " . esc_sql($wpjobportal_jobtype);
+            $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND app.jobtype = %d", $wpjobportal_jobtype);
         }
         if (is_numeric($currency)) {
-            $wpjobportal_inquery .= " AND app.currencyid = " . esc_sql($currency);
+            $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND app.currencyid = %d", $currency);
         }
         if (is_numeric($wpjobportal_jobsalaryrange)) {
-            $wpjobportal_inquery .= " AND ( ( dsalarystart.rangestart >= (SELECT rangestart FROM `" . wpjobportal::$_db->prefix . "wj_portal_salaryrange` WHERE id = " . esc_sql($wpjobportal_jobsalaryrange) . "))
-                          AND ( dsalarystart.rangeend <= (SELECT rangeend FROM `" . wpjobportal::$_db->prefix . "wj_portal_salaryrange` WHERE id = " . esc_sql($wpjobportal_jobsalaryrange) . ")) ) ";
+            $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND ( ( dsalarystart.rangestart >= (SELECT rangestart FROM `" . wpjobportal::$_db->prefix . "wj_portal_salaryrange` WHERE id = %d))
+                          AND ( dsalarystart.rangeend <= (SELECT rangeend FROM `" . wpjobportal::$_db->prefix . "wj_portal_salaryrange` WHERE id = %d)) ) ", $wpjobportal_jobsalaryrange, $wpjobportal_jobsalaryrange);
         }
         if (is_numeric($heighestfinisheducation)) {
-            $wpjobportal_inquery .= " AND app.heighestfinisheducation = " . esc_sql($heighestfinisheducation);
+            $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND app.heighestfinisheducation = %d", $heighestfinisheducation);
         }
         if (is_numeric($wpjobportal_jobcategory)) {
-            $wpjobportal_inquery .= " AND app.job_category = " . esc_sql($wpjobportal_jobcategory);
+            $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND app.job_category = %d", $wpjobportal_jobcategory);
         }
 
 
         if (!wpjobportal::$_common->wpjp_isadmin()) {
-            $wpjobportal_inquery .= " AND job.uid= " . esc_sql($wpjobportal_uid);
+            $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND job.uid = %d", $wpjobportal_uid);
         }
 
         wpjobportal::$_data['filter']['title'] = $title;
@@ -193,11 +193,11 @@ class WPJOBPORTALjobapplyModel {
         }
 
         //Pagination
-        $query = "SELECT COUNT(job.id)
+        $query = wpjobportal::$_db->prepare("SELECT COUNT(job.id)
         FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
            , `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` AS jobapply
            , `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS app
-        WHERE jobapply.jobid = job.id AND jobapply.cvid = app.id AND jobapply.jobid = ". esc_sql($wpjobportal_jobid)." AND jobapply.status = 1 ";
+        WHERE jobapply.jobid = job.id AND jobapply.cvid = app.id AND jobapply.jobid = %d AND jobapply.status = 1 ", $wpjobportal_jobid);
         $query.=$wpjobportal_inquery;
         $wpjobportal_total = wpjobportaldb::get_var($query);
         wpjobportal::$_data['total'] = $wpjobportal_total;
@@ -230,10 +230,10 @@ class WPJOBPORTALjobapplyModel {
                 if(in_array('sociallogin', wpjobportal::$_active_addons)){
                     $query.=" LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_socialprofiles` AS socialprofiles ON socialprofiles.id = jobapply.socialprofileid";
                 }
-            $query.=" WHERE jobapply.jobid = ".esc_sql($wpjobportal_jobid)." AND jobapply.status = 1 ";
+            $query .= wpjobportal::$_db->prepare(" WHERE jobapply.jobid = %d AND jobapply.status = 1 ", $wpjobportal_jobid);
         $query.= $wpjobportal_inquery;
         $query .= " ORDER BY " . wpjobportal::$_data['sorting'];
-        $query .= " LIMIT " . WPJOBPORTALpagination::$_offset . "," . WPJOBPORTALpagination::$_limit;
+        $query .= wpjobportal::$_db->prepare(" LIMIT %d,%d", WPJOBPORTALpagination::$_offset, WPJOBPORTALpagination::$_limit);
         $wpjobportal_result = wpjobportaldb::get_results($query);
         wpjobportal::$_data[0]['ta'] = $wpjobportal_jobid;
         wpjobportal::$_data[0]['tabaction'] = $wpjobportal_tab_action;
@@ -263,35 +263,35 @@ class WPJOBPORTALjobapplyModel {
         // exit;
 
         wpjobportal::$_data[0]['data'] = $wpjobportal_data;
-        $query = "Select Count(id) from`" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE action_status=1 AND jobid = ". esc_sql($wpjobportal_jobid) ." AND status = 1";
+        $query = wpjobportal::$_db->prepare("Select Count(id) from`" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE action_status=1 AND jobid = %d AND status = 1", $wpjobportal_jobid);
         wpjobportal::$_data[0]['inbox'] = wpjobportaldb::get_var($query);
 
 
-        $query = "Select Count(id) from`" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE action_status=2 AND jobid = ". esc_sql($wpjobportal_jobid) ." AND status = 1";
+        $query = wpjobportal::$_db->prepare("Select Count(id) from`" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE action_status=2 AND jobid = %d AND status = 1", $wpjobportal_jobid);
         wpjobportal::$_data[0]['spam'] = wpjobportaldb::get_var($query);
 
 
-        $query = "Select Count(id) from`" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE action_status=3 AND jobid = ". esc_sql($wpjobportal_jobid) ." AND status = 1";
+        $query = wpjobportal::$_db->prepare("Select Count(id) from`" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE action_status=3 AND jobid = %d AND status = 1", $wpjobportal_jobid);
         wpjobportal::$_data[0]['hired'] = wpjobportaldb::get_var($query);
 
-        $query = "Select Count(id) from`" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE jobid = ".esc_sql($wpjobportal_jobid)." AND status = 1 " ;
+        $query = wpjobportal::$_db->prepare("Select Count(id) from`" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE jobid = %d AND status = 1 ", $wpjobportal_jobid);
         wpjobportal::$_data[0]['applied'] = wpjobportaldb::get_var($query);
 
-        $query = "Select hits from`" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE id = ". esc_sql($wpjobportal_jobid);
+        $query = wpjobportal::$_db->prepare("Select hits from`" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE id = %d", $wpjobportal_jobid);
         wpjobportal::$_data[0]['hits'] = wpjobportaldb::get_var($query);
 
 
-        $query = "Select Count(id) from`" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE action_status=4 AND jobid = ". esc_sql($wpjobportal_jobid) ." AND status = 1";
+        $query = wpjobportal::$_db->prepare("Select Count(id) from`" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE action_status=4 AND jobid = %d AND status = 1", $wpjobportal_jobid);
         wpjobportal::$_data[0]['reject'] = wpjobportaldb::get_var($query);
 
 
-        $query = "Select Count(id) from`" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE action_status=5 AND jobid = ". esc_sql($wpjobportal_jobid) ." AND status = 1";
+        $query = wpjobportal::$_db->prepare("Select Count(id) from`" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE action_status=5 AND jobid = %d AND status = 1", $wpjobportal_jobid);
         wpjobportal::$_data[0]['shortlisted'] = wpjobportaldb::get_var($query);
 
-        $query = "Select job.title,jobtype.title AS jobtypetitle,LOWER(jobtype.title) AS jobtypetit, job.workplace_type, job.is_urgent
+        $query = wpjobportal::$_db->prepare("Select job.title,jobtype.title AS jobtypetitle,LOWER(jobtype.title) AS jobtypetit, job.workplace_type, job.is_urgent
                     FROM`" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON job.jobtype = jobtype.id
-                    WHERE job.id = ". esc_sql($wpjobportal_jobid);
+                    WHERE job.id = %d", $wpjobportal_jobid);
         $wpjobportal_job_info = wpjobportaldb::get_row($query);
         if(!empty($wpjobportal_job_info)){ // to handle log error
             wpjobportal::$_data[0]['jobtitle'] = $wpjobportal_job_info->title;
@@ -367,7 +367,7 @@ class WPJOBPORTALjobapplyModel {
         if ($wpjobportal_jobid && is_numeric($wpjobportal_jobid)) {
 
                 // redundunt code
-                // $query = "SELECT job.title FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job WHERE job.id = ". esc_sql($wpjobportal_jobid);
+                // $query = "SELECT job.title FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job WHERE job.id = " . (int) ($wpjobportal_jobid);
                 // $wpjobportal_jobtitle = wpjobportal::$_db->get_var($query);
 
                 # Credit Member Ship Type
@@ -617,7 +617,7 @@ class WPJOBPORTALjobapplyModel {
                     $wpjobportal_isjobseeker = WPJOBPORTALincluder::getObjectClass('user')->isjobseeker();
                     $wpjobportal_isemployer = WPJOBPORTALincluder::getObjectClass('user')->isemployer();
                     if (is_numeric($wpjobportal_uid) && $wpjobportal_uid != 0 && $wpjobportal_isjobseeker == true) {
-                        $query = "SELECT id,application_title,first_name,last_name FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE status = 1 AND quick_apply <> 1 AND uid = ". esc_sql($wpjobportal_uid);
+                        $query = wpjobportal::$_db->prepare("SELECT id,application_title,first_name,last_name FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE status = 1 AND quick_apply <> 1 AND uid = %d", $wpjobportal_uid);
                         // code to handle unpublished application_title
                         $wpjobportal_resume_data = wpjobportal::$_db->get_results($query);
                         $wpjobportal_resume_list = array();
@@ -982,23 +982,23 @@ class WPJOBPORTALjobapplyModel {
                 return false;
 
 
-        $wpjobportal_jobquery = "SELECT company.name AS companyname, company.contactemail AS email, job.title, job.sendemail
+        $wpjobportal_jobquery = wpjobportal::$_db->prepare("SELECT company.name AS companyname, company.contactemail AS email, job.title, job.sendemail
                         ,CONCAT(user.first_name,' ',user.last_name) AS username,user.emailaddress AS useremail
             FROM `".wpjobportal::$_db->prefix."wj_portal_jobs` AS job
             LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_companies` AS company ON company.id = job.companyid
             LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_users` AS user ON user.id = job.uid
-            WHERE job.id = ". esc_sql($wpjobportal_jobid);
+            WHERE job.id = %d", $wpjobportal_jobid);
 
         $wpjobportal_jobuser = wpjobportaldb::get_row($wpjobportal_jobquery);
 
-        $wpjobportal_userquery = "SELECT CONCAT(first_name,' ',last_name) AS name, email_address AS email,application_title FROM `".wpjobportal::$_db->prefix."wj_portal_resume`
-            WHERE id = " . esc_sql($wpjobportal_resumeid);
+        $wpjobportal_userquery = wpjobportal::$_db->prepare("SELECT CONCAT(first_name,' ',last_name) AS name, email_address AS email,application_title FROM `".wpjobportal::$_db->prefix."wj_portal_resume`
+            WHERE id = %d", $wpjobportal_resumeid);
         $wpjobportal_user = wpjobportaldb::get_row($wpjobportal_userquery);
         $wpjobportal_emailconfig = wpjobportal::$_config->getConfigByFor('email');
 
 //MAIL TO ADMIN ON JOBAPPLY
         $wpjobportal_templatefor = 'jobapply-jobapply';
-        $query = "SELECT template.* FROM `".wpjobportal::$_db->prefix."wj_portal_emailtemplates` AS template WHERE template.templatefor = '" . esc_sql($wpjobportal_templatefor) . "'";
+        $query = wpjobportal::$_db->prepare("SELECT template.* FROM `".wpjobportal::$_db->prefix."wj_portal_emailtemplates` AS template WHERE template.templatefor = %s", $wpjobportal_templatefor);
 
         $wpjobportal_template = wpjobportaldb::get_row($query);
         $wpjobportal_msgSubject = $wpjobportal_template->subject;
@@ -1036,9 +1036,9 @@ class WPJOBPORTALjobapplyModel {
         $wpjobportal_msgBody = wpjobportalphplib::wpJP_str_replace('{EMAIL}', $EmployerEmail, $wpjobportal_msgBody);
         $wpjobportal_msgBody = wpjobportalphplib::wpJP_str_replace('{CURRENT_YEAR}', gmdate('Y'), $wpjobportal_msgBody);
         if(in_array('coverletter', wpjobportal::$_active_addons)){
-            $wpjobportal_jobquery = "SELECT jobapply.coverletterid
+            $wpjobportal_jobquery = wpjobportal::$_db->prepare("SELECT jobapply.coverletterid
             FROM `".wpjobportal::$_db->prefix."wj_portal_jobapply` AS jobapply
-            WHERE jobapply.id = " . esc_sql($wpjobportal_jobapplyid);
+            WHERE jobapply.id = %d", $wpjobportal_jobapplyid);
             $coverletterid = wpjobportaldb::get_var($wpjobportal_jobquery);
             $coverletdata = WPJOBPORTALincluder::getJSModel('coverletter')->getCoverLetterTitleDescFromID($coverletterid);
             if(!empty($coverletdata) && isset($coverletdata->description)){
@@ -1079,7 +1079,7 @@ class WPJOBPORTALjobapplyModel {
         }
     //MAIL TO EMPLOYER
         $wpjobportal_templatefor = 'jobapply-employer';
-        $query = "SELECT template.* FROM `".wpjobportal::$_db->prefix."wj_portal_emailtemplates` AS template WHERE template.templatefor = '" . esc_sql($wpjobportal_templatefor) . "'";
+        $query = wpjobportal::$_db->prepare("SELECT template.* FROM `".wpjobportal::$_db->prefix."wj_portal_emailtemplates` AS template WHERE template.templatefor = %s", $wpjobportal_templatefor);
 
         $wpjobportal_template = wpjobportaldb::get_row($query);
         $wpjobportal_msgSubject = $wpjobportal_template->subject;
@@ -1104,9 +1104,9 @@ class WPJOBPORTALjobapplyModel {
         $wpjobportal_msgBody = wpjobportalphplib::wpJP_str_replace('{EMAIL}', $EmployerEmail, $wpjobportal_msgBody);
         $wpjobportal_msgBody = wpjobportalphplib::wpJP_str_replace('{CURRENT_YEAR}', gmdate('Y'), $wpjobportal_msgBody);
         if(in_array('coverletter', wpjobportal::$_active_addons)){
-            $wpjobportal_jobquery = "SELECT jobapply.coverletterid
+            $wpjobportal_jobquery = wpjobportal::$_db->prepare("SELECT jobapply.coverletterid
             FROM `".wpjobportal::$_db->prefix."wj_portal_jobapply` AS jobapply
-            WHERE jobapply.id = " . esc_sql($wpjobportal_jobapplyid);
+            WHERE jobapply.id = %d", $wpjobportal_jobapplyid);
             $coverletterid = wpjobportaldb::get_var($wpjobportal_jobquery);
             $coverletdata = WPJOBPORTALincluder::getJSModel('coverletter')->getCoverLetterTitleDescFromID($coverletterid);
             if(!empty($coverletdata) && isset($coverletdata->description)){
@@ -1127,9 +1127,9 @@ class WPJOBPORTALjobapplyModel {
         $parsed_url = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'viewresume','wpjobportalid'=>$wpjobportal_resumeid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
 
         // to handle job apply action status
-        $wpjobportal_jobquery = "SELECT jobapply.action_status
+        $wpjobportal_jobquery = wpjobportal::$_db->prepare("SELECT jobapply.action_status
             FROM `".wpjobportal::$_db->prefix."wj_portal_jobapply` AS jobapply
-            WHERE jobapply.id = " . esc_sql($wpjobportal_jobapplyid);
+            WHERE jobapply.id = %d", $wpjobportal_jobapplyid);
         $wpjobportal_job_apply_action_status = wpjobportaldb::get_var($wpjobportal_jobquery);
 
         $wpjobportal_applied_resume_status = '';
@@ -1181,15 +1181,15 @@ class WPJOBPORTALjobapplyModel {
 
     // MAIL TO JOB SEEKER
         $wpjobportal_templatefor = 'jobapply-jobseeker';
-        $query = "SELECT template.* FROM `".wpjobportal::$_db->prefix."wj_portal_emailtemplates` AS template WHERE template.templatefor = '" . esc_sql($wpjobportal_templatefor) . "'";
+        $query = wpjobportal::$_db->prepare("SELECT template.* FROM `".wpjobportal::$_db->prefix."wj_portal_emailtemplates` AS template WHERE template.templatefor = %s", $wpjobportal_templatefor);
         $wpjobportal_template = wpjobportaldb::get_row($query);
         $wpjobportal_msgSubject = $wpjobportal_template->subject;
         $wpjobportal_msgBody = $wpjobportal_template->body;
 
         $wpjobportal_applied_resume_status = '';
-        $wpjobportal_jobquery = "SELECT jobapply.action_status
+        $wpjobportal_jobquery = wpjobportal::$_db->prepare("SELECT jobapply.action_status
             FROM `".wpjobportal::$_db->prefix."wj_portal_jobapply` AS jobapply
-            WHERE jobapply.id = " . esc_sql($wpjobportal_jobapplyid);
+            WHERE jobapply.id = %d", $wpjobportal_jobapplyid);
         $wpjobportal_job_apply_action_status = wpjobportaldb::get_var($wpjobportal_jobquery);
 
         if(isset($wpjobportal_job_apply_action_status) &&  $wpjobportal_job_apply_action_status != ''){
@@ -1238,7 +1238,7 @@ class WPJOBPORTALjobapplyModel {
         if (!is_numeric($wpjobportal_uid))
             return false;
         unset($wpjobportal_result);
-        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE jobid = ". esc_sql($wpjobportal_jobid) . " AND uid = ". esc_sql($wpjobportal_uid);
+        $query = wpjobportal::$_db->prepare("SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE jobid = %d AND uid = %d", $wpjobportal_jobid, $wpjobportal_uid);
         $wpjobportal_result = wpjobportal::$_db->get_var($query);
         if ($wpjobportal_result == 0) {
             return true;
@@ -1253,7 +1253,7 @@ class WPJOBPORTALjobapplyModel {
         if (!is_numeric($wpjobportal_uid))
             return false;
         unset($wpjobportal_result);
-        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE jobid = ". esc_sql($wpjobportal_jobid) . " AND uid = " . esc_sql($wpjobportal_uid) ." and status = 3";
+        $query = wpjobportal::$_db->prepare("SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE jobid = %d AND uid = %d and status = 3", $wpjobportal_jobid, $wpjobportal_uid);
         $wpjobportal_result = wpjobportal::$_db->get_var($query);
         if ($wpjobportal_result == 0) {
             return true;
@@ -1305,20 +1305,20 @@ class WPJOBPORTALjobapplyModel {
 
         $wpjobportal_isspam = 0;
 
-        $query = "SELECT job.raf_gender AS gender, job.raf_location AS location, job.raf_education AS education, job.raf_category AS category, job.raf_experience AS experience
+        $query = wpjobportal::$_db->prepare("SELECT job.raf_gender AS gender, job.raf_location AS location, job.raf_education AS education, job.raf_category AS category, job.raf_experience AS experience
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                    WHERE job.id = ". esc_sql($wpjobportal_jobid);
+                    WHERE job.id = %d", $wpjobportal_jobid);
         $wpjobportal_job_filters = wpjobportaldb::get_row($query);
         if($wpjobportal_job_filters){
-            $query = "SELECT job.educationid,job.jobcategory,job.city
+            $query = wpjobportal::$_db->prepare("SELECT job.educationid,job.jobcategory,job.city
                     FROM `".wpjobportal::$_db->prefix."wj_portal_jobs` AS job
-                    WHERE job.id = ". esc_sql($wpjobportal_jobid);
+                    WHERE job.id = %d", $wpjobportal_jobid);
             $wpjobportal_job = wpjobportaldb::get_row($query);
 
-            $query = "SELECT resume.gender,resume.job_category,address.address_city
+            $query = wpjobportal::$_db->prepare("SELECT resume.gender,resume.job_category,address.address_city
                     FROM `".wpjobportal::$_db->prefix."wj_portal_resume` AS resume
                     LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_resumeaddresses` AS address ON resume.id = address.resumeid
-                    WHERE resume.id = " . esc_sql($cvid);
+                    WHERE resume.id = %d", $cvid);
             $wpjobportal_resume = wpjobportaldb::get_row($query);
 
             if($wpjobportal_job_filters->gender == 1){
@@ -1361,7 +1361,8 @@ class WPJOBPORTALjobapplyModel {
                  ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
                  LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category ON category.id = job.jobcategory
                  LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
-                 WHERE jobapply.uid = ". esc_sql($wpjobportal_uid);
+                 WHERE jobapply.uid = %d";
+        $query = wpjobportal::$_db->prepare($query, $wpjobportal_uid);
         $wpjobportal_total = wpjobportaldb::get_var($query);
         wpjobportal::$_data['total'] = $wpjobportal_total;
         wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($wpjobportal_total,'appliedjobs');
@@ -1381,9 +1382,10 @@ class WPJOBPORTALjobapplyModel {
                  LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON job.city = city.id
                  LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobstatus` AS jobstatus ON jobstatus.id = job.jobstatus
                  LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS salaryrangetype ON salaryrangetype.id = job.salaryduration
-                 WHERE jobapply.uid = ". esc_sql($wpjobportal_uid);
+                 WHERE jobapply.uid = %d";
+        $query = wpjobportal::$_db->prepare($query, $wpjobportal_uid);
         $query.= " ORDER BY " . wpjobportal::$_data['sorting'];
-        $query.=" LIMIT " . WPJOBPORTALpagination::$_offset . "," . WPJOBPORTALpagination::$_limit;
+        $query .= wpjobportal::$_db->prepare(" LIMIT %d,%d", WPJOBPORTALpagination::$_offset, WPJOBPORTALpagination::$_limit);
         $wpjobportal_results = wpjobportaldb::get_results($query);
         $wpjobportal_data = array();
         foreach ($wpjobportal_results AS $d) {
@@ -1999,7 +2001,8 @@ class WPJOBPORTALjobapplyModel {
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS salaryrangetype ON salaryrangetype.id = job.salaryduration
-                WHERE  job.id = ". esc_sql($wpjobportal_jobid);
+                WHERE  job.id = %d";
+        $query = wpjobportal::$_db->prepare($query, $wpjobportal_jobid);
 
         $wpjobportal_results = wpjobportaldb::get_results($query);
         $wpjobportal_data = array();
@@ -2025,8 +2028,9 @@ class WPJOBPORTALjobapplyModel {
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS salaryrangetype ON salaryrangetype.id = job.salaryduration
-                WHERE job.uid =". esc_sql($wpjobportal_uid)  ;
-                $query .= " AND job.id =".esc_sql($wpjobportal_jobid);
+                WHERE job.uid = %d";
+                $query .= " AND job.id = %d";
+                $query = wpjobportal::$_db->prepare($query, $wpjobportal_uid, $wpjobportal_jobid);
 
         # Sorting Merge In Query
         $wpjobportal_results = wpjobportaldb::get_results($query);
@@ -2210,11 +2214,11 @@ class WPJOBPORTALjobapplyModel {
     function getEmployerEmailByJobId($wpjobportal_jobid){
         if(!is_numeric($wpjobportal_jobid))
             return false;
-        $query = 'SELECT company.contactemail AS companyuseremail, user.emailaddress AS useremail
+        $query = wpjobportal::$_db->prepare('SELECT company.contactemail AS companyuseremail, user.emailaddress AS useremail
                     FROM `' . wpjobportal::$_db->prefix . 'wj_portal_jobs` AS job
                     '.wpjobportal::$_company_job_table_join.' JOIN `' . wpjobportal::$_db->prefix . 'wj_portal_companies` AS company ON job.companyid = company.id
                     LEFT JOIN `' . wpjobportal::$_db->prefix . 'wj_portal_users` AS user ON user.id = job.uid
-                    WHERE job.id = ' . esc_sql($wpjobportal_jobid);
+                    WHERE job.id = %d', $wpjobportal_jobid);
         $wpjobportal_result = wpjobportaldb::get_row($query);
         return $wpjobportal_result;
     }
@@ -2222,10 +2226,10 @@ class WPJOBPORTALjobapplyModel {
     function getJobSeekerEmailByResumeId($wpjobportal_resumeid){
         if(!is_numeric($wpjobportal_resumeid))
             return false;
-        $query = 'SELECT resume.email_address AS useremailfromresume, user.emailaddress as useremail
+        $query = wpjobportal::$_db->prepare('SELECT resume.email_address AS useremailfromresume, user.emailaddress as useremail
                     FROM `' . wpjobportal::$_db->prefix . 'wj_portal_resume` AS resume
                     JOIN `' . wpjobportal::$_db->prefix . 'wj_portal_users` AS user ON user.id = resume.uid
-                    WHERE resume.id = ' . esc_sql($wpjobportal_resumeid);
+                    WHERE resume.id = %d', $wpjobportal_resumeid);
         $wpjobportal_result = wpjobportaldb::get_row($query);
         return $wpjobportal_result;
     }
@@ -2241,7 +2245,8 @@ class WPJOBPORTALjobapplyModel {
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON job.jobtype = jobtype.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS salaryrangetype ON salaryrangetype.id = job.salaryduration
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON city.id = (SELECT cityid FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobcities` WHERE jobid = job.id ORDER BY id DESC LIMIT 1)
-                WHERE job.status != 0 AND job.id =". esc_sql($wpjobportal_jobid);
+                WHERE job.status != 0 AND job.id = %d";
+        $query = wpjobportal::$_db->prepare($query, $wpjobportal_jobid);
         $wpjobportal_result = wpjobportaldb::get_results($query);
 
         return $wpjobportal_result;
@@ -2252,7 +2257,7 @@ class WPJOBPORTALjobapplyModel {
         if (!is_numeric($cvid))
             return false;
 
-        $query = "SELECT apply_message FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE cvid = ". esc_sql($cvid);
+        $query = wpjobportal::$_db->prepare("SELECT apply_message FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE cvid = %d", $cvid);
         $wpjobportal_result = wpjobportal::$_db->get_var($query);
         return $wpjobportal_result;
     }

@@ -638,11 +638,29 @@ class WPJOBPORTALshortcodes {
             'wpjobportalme' => 'user',
             'wpjobportallt' => 'regemployer',
         );
+        $wpjobportal_default_shortcode_options = array(
+            'hide' => '0',
+            'hide_role' => '',
+            'show_header' => '1',
+            'show_title' => '1',
+            'button_text' => '',
+            'redirect_url' => '',
+            'class' => '',
+        );
         $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $raw_args);
+        $wpjobportal_shortcode_options = $this->sanitizeRegistrationShortcodeOptions(
+            shortcode_atts($wpjobportal_default_shortcode_options, $raw_args),
+            1
+        );
         if(isset(wpjobportal::$_data['sanitized_args']) && !empty(wpjobportal::$_data['sanitized_args'])){
             wpjobportal::$_data['sanitized_args'] += $wpjobportal_sanitized_args;
         }else{
             wpjobportal::$_data['sanitized_args'] = $wpjobportal_sanitized_args;
+        }
+        if(isset(wpjobportal::$_data['shortcode_options']) && !empty(wpjobportal::$_data['shortcode_options'])){
+            wpjobportal::$_data['shortcode_options'] += $wpjobportal_shortcode_options;
+        }else{
+            wpjobportal::$_data['shortcode_options'] = $wpjobportal_shortcode_options;
         }
         $wpjobportal_pageid = get_the_ID();
         wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
@@ -702,11 +720,29 @@ class WPJOBPORTALshortcodes {
             'wpjobportalme' => 'user',
             'wpjobportallt' => 'regjobseeker',
         );
+        $wpjobportal_default_shortcode_options = array(
+            'hide' => '0',
+            'hide_role' => '',
+            'show_header' => '1',
+            'show_title' => '1',
+            'button_text' => '',
+            'redirect_url' => '',
+            'class' => '',
+        );
         $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $raw_args);
+        $wpjobportal_shortcode_options = $this->sanitizeRegistrationShortcodeOptions(
+            shortcode_atts($wpjobportal_default_shortcode_options, $raw_args),
+            2
+        );
         if(isset(wpjobportal::$_data['sanitized_args']) && !empty(wpjobportal::$_data['sanitized_args'])){
             wpjobportal::$_data['sanitized_args'] += $wpjobportal_sanitized_args;
         }else{
             wpjobportal::$_data['sanitized_args'] = $wpjobportal_sanitized_args;
+        }
+        if(isset(wpjobportal::$_data['shortcode_options']) && !empty(wpjobportal::$_data['shortcode_options'])){
+            wpjobportal::$_data['shortcode_options'] += $wpjobportal_shortcode_options;
+        }else{
+            wpjobportal::$_data['shortcode_options'] = $wpjobportal_shortcode_options;
         }
         $wpjobportal_pageid = get_the_ID();
         wpjobportal::wpjobportal_setPageID($wpjobportal_pageid);
@@ -1470,6 +1506,63 @@ class WPJOBPORTALshortcodes {
         $wpjobportal_content .= ob_get_clean();
         return $wpjobportal_content;
     }
+
+    private function sanitizeRegistrationShortcodeOptions($wpjobportal_options, $wpjobportal_role_id) {
+        $wpjobportal_hide_role = $this->shortcodeBooleanValue(
+            isset($wpjobportal_options['hide_role']) && $wpjobportal_options['hide_role'] !== ''
+                ? $wpjobportal_options['hide_role']
+                : $wpjobportal_options['hide'],
+            false
+        );
+
+        $wpjobportal_class_names = array();
+        if (!empty($wpjobportal_options['class'])) {
+            foreach (preg_split('/\s+/', (string) $wpjobportal_options['class']) as $wpjobportal_class_name) {
+                $wpjobportal_class_name = sanitize_html_class($wpjobportal_class_name);
+                if ($wpjobportal_class_name !== '') {
+                    $wpjobportal_class_names[] = $wpjobportal_class_name;
+                }
+            }
+        }
+
+        $wpjobportal_redirect_url = '';
+        if (!empty($wpjobportal_options['redirect_url'])) {
+            $wpjobportal_redirect_url = wp_validate_redirect(esc_url_raw($wpjobportal_options['redirect_url']), '');
+        }
+
+        return array(
+            'registration_shortcode' => 1,
+            'registration_role' => (int) $wpjobportal_role_id,
+            'hide_role' => $wpjobportal_hide_role ? 1 : 0,
+            'show_header' => $this->shortcodeBooleanValue($wpjobportal_options['show_header'], true) ? 1 : 0,
+            'show_title' => $this->shortcodeBooleanValue($wpjobportal_options['show_title'], true) ? 1 : 0,
+            'button_text' => sanitize_text_field($wpjobportal_options['button_text']),
+            'redirect_url' => $wpjobportal_redirect_url,
+            'class' => implode(' ', array_unique($wpjobportal_class_names)),
+        );
+    }
+
+    private function shortcodeBooleanValue($wpjobportal_value, $wpjobportal_default = false) {
+        if (is_bool($wpjobportal_value)) {
+            return $wpjobportal_value;
+        }
+
+        $wpjobportal_value = strtolower(trim((string) $wpjobportal_value));
+        if ($wpjobportal_value === '') {
+            return (bool) $wpjobportal_default;
+        }
+
+        if (in_array($wpjobportal_value, array('1', 'true', 'yes', 'on'), true)) {
+            return true;
+        }
+
+        if (in_array($wpjobportal_value, array('0', 'false', 'no', 'off'), true)) {
+            return false;
+        }
+
+        return (bool) $wpjobportal_default;
+    }
+
 }
 
 $wpjobportal_shortcodes = new WPJOBPORTALshortcodes();
@@ -1882,5 +1975,6 @@ function wpjobportal_jobsearch_block_widgets($attributes, $wpjobportal_content){
         wp_enqueue_style('wpjobportal-site-rtl', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/stylertl.css');
     }
     return $wpjobportal_html;
+
 }
 ?>

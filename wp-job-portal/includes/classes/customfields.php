@@ -1434,7 +1434,7 @@ class WPJOBPORTALcustomfields {
         //$wpjobportal_inquery .= " AND (userfieldtype = 'text' OR userfieldtype = 'email')";
         $query = "SELECT field,fieldtitle,isuserfield,userfieldtype,userfieldparams
         FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering
-        WHERE isuserfield = 1 AND " . esc_sql($wpjobportal_published) . " AND fieldfor =" . esc_sql($wpjobportal_fieldfor) . $wpjobportal_inquery;
+        WHERE isuserfield = 1 AND " . esc_sql($wpjobportal_published) . " AND fieldfor =" . (int) ($wpjobportal_fieldfor) . $wpjobportal_inquery;
         $query .= " ORDER BY ordering ASC "; // to handle the case of ordering on listing layouts
         $wpjobportal_data = wpjobportaldb::get_results($query);
         return $wpjobportal_data;
@@ -1514,25 +1514,25 @@ class WPJOBPORTALcustomfields {
             //$wpjobportal_row->update(array('id' => $wpjobportal_id, 'status' => -1))
             $wpjobportal_row = WPJOBPORTALincluder::getJSTable('company');
             $wpjobportal_row->update(array('id' => $wpjobportal_id, 'params' => $params));
-            //$query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_companies` SET `params`='$params' WHERE `id` =". esc_sql($wpjobportal_id);
+            //$query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_companies` SET `params`='$params' WHERE `id` =" . (int) ($wpjobportal_id);
             //wpjobportal::$_db->query($query);
             $wpjobportal_entity_for = 'company';
         }else if($wpjobportal_entity == 2){
             $wpjobportal_row = WPJOBPORTALincluder::getJSTable('job');
             $wpjobportal_row->update(array('id' => $wpjobportal_id, 'params' => $params));
-            // $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_jobs` SET `params`='$params' WHERE `id` =". esc_sql($wpjobportal_id);
+            // $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_jobs` SET `params`='$params' WHERE `id` =" . (int) ($wpjobportal_id);
             // wpjobportal::$_db->query($query);
             $wpjobportal_entity_for = 'job';
         }else if($wpjobportal_entity == WPJOBPORTAL_RESUME){
             $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resume');
             $wpjobportal_row->update(array('id' => $wpjobportal_id, 'params' => $params));
-            // $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_resume` SET `params`='$params' WHERE `id` =". esc_sql($wpjobportal_id);
+            // $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_resume` SET `params`='$params' WHERE `id` =" . (int) ($wpjobportal_id);
             // wpjobportal::$_db->query($query);
             $wpjobportal_entity_for = 'resume';
         }elseif ($wpjobportal_entity == 4) {
             $wpjobportal_row = WPJOBPORTALincluder::getJSTable('users');
             $wpjobportal_row->update(array('id' => $wpjobportal_id, 'params' => $params));
-            // $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_users` SET `params`='$params' WHERE `id` =". esc_sql($wpjobportal_id);
+            // $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_users` SET `params`='$params' WHERE `id` =" . (int) ($wpjobportal_id);
             // wpjobportal::$_db->query($query);
             $wpjobportal_entity_for = 'user';
         }
@@ -1609,20 +1609,20 @@ class WPJOBPORTALcustomfields {
         }
         /*
 
-        //$query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_companies` SET `params`='$params' WHERE `id` =". esc_sql($wpjobportal_id);
-// $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_jobs` SET `params`='$params' WHERE `id` =". esc_sql($wpjobportal_id);
-// $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_resume` SET `params`='$params' WHERE `id` =". esc_sql($wpjobportal_id);
-// $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_users` SET `params`='$params' WHERE `id` =". esc_sql($wpjobportal_id);
+        //$query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_companies` SET `params`='$params' WHERE `id` =" . (int) ($wpjobportal_id);
+// $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_jobs` SET `params`='$params' WHERE `id` =" . (int) ($wpjobportal_id);
+// $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_resume` SET `params`='$params' WHERE `id` =" . (int) ($wpjobportal_id);
+// $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_users` SET `params`='$params' WHERE `id` =" . (int) ($wpjobportal_id);
         */
         $query = '';
         if($wpjobportal_uploadfor == 'company'){
-            $query = "SELECT params FROM `".wpjobportal::$_db->prefix."wj_portal_companies` WHERE id = ".esc_sql($wpjobportal_entity_id);
+            $query = "SELECT params FROM `".wpjobportal::$_db->prefix."wj_portal_companies` WHERE id = " . (int) ($wpjobportal_entity_id);
         }elseif($wpjobportal_uploadfor == 'job'){
-            $query = "SELECT params FROM `".wpjobportal::$_db->prefix."wj_portal_jobs` WHERE id = ".esc_sql($wpjobportal_entity_id);
+            $query = "SELECT params FROM `".wpjobportal::$_db->prefix."wj_portal_jobs` WHERE id = " . (int) ($wpjobportal_entity_id);
         }elseif($wpjobportal_uploadfor == 'resume'){
-            $query = "SELECT params FROM `".wpjobportal::$_db->prefix."wj_portal_resume` WHERE id = ".esc_sql($wpjobportal_entity_id);
+            $query = "SELECT params FROM `".wpjobportal::$_db->prefix."wj_portal_resume` WHERE id = " . (int) ($wpjobportal_entity_id);
         }elseif($wpjobportal_uploadfor == 'user'){
-            $query = "SELECT params FROM `".wpjobportal::$_db->prefix."wj_portal_users` WHERE id = ".esc_sql($wpjobportal_entity_id);
+            $query = "SELECT params FROM `".wpjobportal::$_db->prefix."wj_portal_users` WHERE id = " . (int) ($wpjobportal_entity_id);
         }
         $params = '';
         if($query != ''){
@@ -1641,22 +1641,22 @@ class WPJOBPORTALcustomfields {
         if($wpjobportal_uploadfor == 'company'){
             $wpjobportal_row = WPJOBPORTALincluder::getJSTable('company');
             $wpjobportal_row->update(array('id' => $wpjobportal_entity_id, 'params' => $params));
-            //$query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_companies` SET `params`='$params' WHERE `id` =". esc_sql($wpjobportal_id);
+            //$query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_companies` SET `params`='$params' WHERE `id` =" . (int) ($wpjobportal_id);
             //wpjobportal::$_db->query($query);
         }else if($wpjobportal_uploadfor == 'job'){
             $wpjobportal_row = WPJOBPORTALincluder::getJSTable('job');
             $wpjobportal_row->update(array('id' => $wpjobportal_entity_id, 'params' => $params));
-            // $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_jobs` SET `params`='$params' WHERE `id` =". esc_sql($wpjobportal_id);
+            // $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_jobs` SET `params`='$params' WHERE `id` =" . (int) ($wpjobportal_id);
             // wpjobportal::$_db->query($query);
         }else if($wpjobportal_uploadfor == 'resume'){
             $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resume');
             $wpjobportal_row->update(array('id' => $wpjobportal_entity_id, 'params' => $params));
-            // $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_resume` SET `params`='$params' WHERE `id` =". esc_sql($wpjobportal_id);
+            // $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_resume` SET `params`='$params' WHERE `id` =" . (int) ($wpjobportal_id);
             // wpjobportal::$_db->query($query);
         }elseif ($wpjobportal_uploadfor == 'user') {
             $wpjobportal_row = WPJOBPORTALincluder::getJSTable('users');
             $wpjobportal_row->update(array('id' => $wpjobportal_entity_id, 'params' => $params));
-            // $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_users` SET `params`='$params' WHERE `id` =". esc_sql($wpjobportal_id);
+            // $query = "UPDATE `".wpjobportal::$_db->prefix."wj_portal_users` SET `params`='$params' WHERE `id` =" . (int) ($wpjobportal_id);
             // wpjobportal::$_db->query($query);
         }
 

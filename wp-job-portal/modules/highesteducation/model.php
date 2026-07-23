@@ -8,7 +8,7 @@ class WPJOBPORTALHighesteducationModel {
     function getHighestEducationbyId($c_id) {
         if (is_numeric($c_id) == false)
             return false;
-        $query = "SELECT * FROM " . wpjobportal::$_db->prefix . "wj_portal_heighesteducation WHERE id = " . esc_sql($c_id);
+        $query = "SELECT * FROM " . wpjobportal::$_db->prefix . "wj_portal_heighesteducation WHERE id = " . (int) ($c_id);
         wpjobportal::$_data[0] = wpjobportaldb::get_row($query);
         return;
     }
@@ -34,7 +34,7 @@ class WPJOBPORTALHighesteducationModel {
             $clause = ' AND ';
         }
         if (is_numeric($wpjobportal_status))
-            $wpjobportal_inquery .=esc_sql($clause) . " isactive = " . esc_sql($wpjobportal_status);
+            $wpjobportal_inquery .=esc_sql($clause) . " isactive = " . (int) ($wpjobportal_status);
         wpjobportal::$_data['filter']['title'] = $title;
         wpjobportal::$_data['filter']['status'] = $wpjobportal_status;
         wpjobportal::$_data['filter']['pagesize'] = $pagesize;
@@ -58,7 +58,7 @@ class WPJOBPORTALHighesteducationModel {
         if (!is_numeric($wpjobportal_id))
             return false;
         //DB class limitations
-        $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_heighesteducation` SET isdefault = 0 WHERE id != " . esc_sql($wpjobportal_id);
+        $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_heighesteducation` SET isdefault = 0 WHERE id != " . (int) ($wpjobportal_id);
         wpjobportaldb::query($query);
     }
 
@@ -188,7 +188,7 @@ class WPJOBPORTALHighesteducationModel {
         if (!is_numeric($wpjobportal_educationid))
             return false;
         $query = "SELECT
-                    ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_heighesteducation` WHERE id = " . esc_sql($wpjobportal_educationid) . " AND isdefault =1)
+                    ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_heighesteducation` WHERE id = " . (int) ($wpjobportal_educationid) . " AND isdefault =1)
                     AS total ";
         $wpjobportal_total = wpjobportaldb::get_var($query);
         if ($wpjobportal_total > 0)
@@ -201,8 +201,8 @@ class WPJOBPORTALHighesteducationModel {
         if (!is_numeric($wpjobportal_educationid))
             return false;
         $query = "SELECT
-                    ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE heighestfinisheducation = " . esc_sql($wpjobportal_educationid) . " OR educationid = " . esc_sql($wpjobportal_educationid) . ")
-                    + ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_heighesteducation` WHERE id = " . esc_sql($wpjobportal_educationid) . " AND isdefault =1)
+                    ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE heighestfinisheducation = " . (int) ($wpjobportal_educationid) . " OR educationid = " . (int) ($wpjobportal_educationid) . ")
+                    + ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_heighesteducation` WHERE id = " . (int) ($wpjobportal_educationid) . " AND isdefault =1)
                     AS total ";
         $wpjobportal_total = wpjobportaldb::get_var($query);
         if ($wpjobportal_total > 0)

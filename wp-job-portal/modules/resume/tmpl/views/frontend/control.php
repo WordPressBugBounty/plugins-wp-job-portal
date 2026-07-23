@@ -91,13 +91,16 @@ switch ($wpjobportal_control) {
                                             $wpjobportal_class = 'action-links';
                                             do_action('wpjobportal_addons_resume_bottom_action_appliedresume',$wpjobportal_myresume,$wpjobportal_class);
 
-                            }else{
-                            // if resumeaction addon is missing then these two div will remain open closing them to handle that case
-                            if(!in_array('resumeaction',wpjobportal::$_active_addons)){  ?>
+                                        // quick fix
+                                        // }else{
+                                        // if resumeaction addon is missing then these two div will remain open closing them to handle that case
+                                        if(!in_array('resumeaction',wpjobportal::$_active_addons)){  ?>
                                     </div>
                                 </div>
-                            <?php   }  ?>
-                            <?php   }  ?>
+                                            <?php
+                                        }  ?>
+                                <?php
+                            }  ?>
 
 
             </div>

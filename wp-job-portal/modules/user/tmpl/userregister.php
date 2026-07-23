@@ -2,9 +2,17 @@
 if (!defined('ABSPATH'))
     die('Restricted Access');
 ?>
-<div class="wjportal-main-up-wrapper">
 <?php
-if (!WPJOBPORTALincluder::getTemplate('templates/header',array('wpjobportal_module' => 'user'))){
+$wpjobportal_shortcode_options = isset(wpjobportal::$_data['shortcode_options']) && is_array(wpjobportal::$_data['shortcode_options'])
+    ? wpjobportal::$_data['shortcode_options']
+    : array();
+$wpjobportal_show_header = !isset($wpjobportal_shortcode_options['show_header']) || !empty($wpjobportal_shortcode_options['show_header']);
+$wpjobportal_show_title = !isset($wpjobportal_shortcode_options['show_title']) || !empty($wpjobportal_shortcode_options['show_title']);
+$wpjobportal_custom_class = !empty($wpjobportal_shortcode_options['class']) ? ' ' . $wpjobportal_shortcode_options['class'] : '';
+?>
+<div class="wjportal-main-up-wrapper <?php echo esc_attr($wpjobportal_custom_class); ?>">
+<?php
+if ($wpjobportal_show_header && !WPJOBPORTALincluder::getTemplate('templates/header',array('wpjobportal_module' => 'user'))){
     return ;
 }
 if (!is_user_logged_in()) {
@@ -13,11 +21,13 @@ if (!is_user_logged_in()) {
     // only show the registration form if allowed
     if ($wpjobportal_is_enable) { ?>
         <div class="wjportal-main-wrapper wjportal-clearfix">
-            <div class="wjportal-page-header">
-                <?php
-                    WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('wpjobportal_module' => 'user','wpjobportal_layout'=>'reg'));
-                ?>
-            </div>
+            <?php if ($wpjobportal_show_title) { ?>
+                <div class="wjportal-page-header">
+                    <?php
+                        WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('wpjobportal_module' => 'user','wpjobportal_layout'=>'reg'));
+                    ?>
+                </div>
+            <?php } ?>
             <!-- registration form fields -->
             <div class="wjportal-form-wrp wjportal-register-form">
                 <?php

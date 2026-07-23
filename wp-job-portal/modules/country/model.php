@@ -33,7 +33,7 @@ class WPJOBPORTALcountryModel {
     function getCountrybyId($wpjobportal_id) {
         if (!is_numeric($wpjobportal_id))
             return false;
-        $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_countries` WHERE id = " . esc_sql($wpjobportal_id);
+        $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_countries` WHERE id = " . (int) ($wpjobportal_id);
         wpjobportal::$_data[0] = wpjobportaldb::get_row($query);
 
         return;
@@ -53,7 +53,7 @@ class WPJOBPORTALcountryModel {
             $clause = " AND ";
         }
         if (is_numeric($Status)) {
-            $wpjobportal_inquery .= esc_sql($clause) . " country.enabled = " . esc_sql($Status);
+            $wpjobportal_inquery .= esc_sql($clause) . " country.enabled = " . (int) ($Status);
             $clause = " AND ";
         }
 
@@ -165,22 +165,22 @@ class WPJOBPORTALcountryModel {
                     ( SELECT COUNT(jobcity.id)
                         FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobcities` AS jobcity
                         JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON city.id = jobcity.cityid
-                        WHERE city.countryid = " . esc_sql($wpjobportal_countryid) . ")
+                        WHERE city.countryid = " . (int) ($wpjobportal_countryid) . ")
                     + ( SELECT COUNT(companycity.id)
                             FROM `" . wpjobportal::$_db->prefix . "wj_portal_companycities` AS companycity
                             JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON city.id = companycity.cityid
-                            WHERE city.countryid = " . esc_sql($wpjobportal_countryid) . ")
-                    + ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE nationality = " . esc_sql($wpjobportal_countryid) . ")
+                            WHERE city.countryid = " . (int) ($wpjobportal_countryid) . ")
+                    + ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE nationality = " . (int) ($wpjobportal_countryid) . ")
                     + ( SELECT COUNT(resumecity.id)
                             FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` AS resumecity
                             JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON city.id = resumecity.address_city
-                            WHERE city.countryid = " . esc_sql($wpjobportal_countryid) . ")
+                            WHERE city.countryid = " . (int) ($wpjobportal_countryid) . ")
                     + ( SELECT COUNT(employeecity.id)
                             FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeemployers` AS employeecity
                             JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON city.id = employeecity.employer_city
-                            WHERE city.countryid = " . esc_sql($wpjobportal_countryid) . ")
-                    + ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_states` WHERE countryid = " . esc_sql($wpjobportal_countryid) . ")
-                    + ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities` WHERE countryid = " . esc_sql($wpjobportal_countryid) . ")
+                            WHERE city.countryid = " . (int) ($wpjobportal_countryid) . ")
+                    + ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_states` WHERE countryid = " . (int) ($wpjobportal_countryid) . ")
+                    + ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities` WHERE countryid = " . (int) ($wpjobportal_countryid) . ")
             AS total ";
         $wpjobportal_total = wpjobportaldb::get_var($query);
         if ($wpjobportal_total > 0)
@@ -237,7 +237,7 @@ class WPJOBPORTALcountryModel {
         if(!is_numeric($wpjobportal_id)){
             return false;
         }
-        $query = "SELECT name FROM `" . wpjobportal::$_db->prefix . "wj_portal_countries` WHERE id = ".esc_sql($wpjobportal_id);
+        $query = "SELECT name FROM `" . wpjobportal::$_db->prefix . "wj_portal_countries` WHERE id = " . (int) ($wpjobportal_id);
         $wpjobportal_name = wpjobportaldb::get_var($query);
         return $wpjobportal_name;
     }

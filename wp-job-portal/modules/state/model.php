@@ -8,7 +8,7 @@ class WPJOBPORTALStateModel {
     function getStatebyId($wpjobportal_id) {
         if (is_numeric($wpjobportal_id) == false)
             return false;
-        $query = "SELECT * FROM " . wpjobportal::$_db->prefix . "wj_portal_states WHERE id = " . esc_sql($wpjobportal_id);
+        $query = "SELECT * FROM " . wpjobportal::$_db->prefix . "wj_portal_states WHERE id = " . (int) ($wpjobportal_id);
         wpjobportal::$_data[0] = wpjobportaldb::get_row($query);
         return;
     }
@@ -26,7 +26,7 @@ class WPJOBPORTALStateModel {
             $wpjobportal_inquery .= " AND name LIKE '%" . esc_sql($wpjobportal_searchname) . "%'";
         }
         if (is_numeric($wpjobportal_status)) {
-            $wpjobportal_inquery .= " AND state.enabled = " . esc_sql($wpjobportal_status);
+            $wpjobportal_inquery .= " AND state.enabled = " . (int) ($wpjobportal_status);
         }
 
         if ($city == 1) {
@@ -39,14 +39,14 @@ class WPJOBPORTALStateModel {
 
 
         //Pagination
-        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_states` AS state WHERE countryid = " . esc_sql($wpjobportal_countryid);
+        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_states` AS state WHERE countryid = " . (int) ($wpjobportal_countryid);
         $query.=$wpjobportal_inquery;
         $wpjobportal_total = wpjobportaldb::get_var($query);
         wpjobportal::$_data['total'] = $wpjobportal_total;
         wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($wpjobportal_total);
 
         //Data
-        $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_states` AS state WHERE countryid = " . esc_sql($wpjobportal_countryid);
+        $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_states` AS state WHERE countryid = " . (int) ($wpjobportal_countryid);
         $query.=$wpjobportal_inquery;
         $query.=" ORDER BY name ASC LIMIT " . WPJOBPORTALpagination::$_offset . "," . WPJOBPORTALpagination::$_limit;
         wpjobportal::$_data[0] = wpjobportaldb::get_results($query);
@@ -109,25 +109,25 @@ class WPJOBPORTALStateModel {
                     ( SELECT COUNT(mcity.id)
                            FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city
                            JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobcities` AS mcity ON mcity.cityid=city.id
-                           WHERE city.stateid = " . esc_sql($wpjobportal_stateid) . "
+                           WHERE city.stateid = " . (int) ($wpjobportal_stateid) . "
                    )
                    +
                    ( SELECT COUNT(cmcity.id)
                            FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city
                            JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companycities` AS cmcity ON cmcity.cityid=city.id
-                           WHERE city.stateid = " . esc_sql($wpjobportal_stateid) . "
+                           WHERE city.stateid = " . (int) ($wpjobportal_stateid) . "
                    )
                    +
                    ( SELECT COUNT(resume.id)
                            FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city
                            JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` AS resume ON resume.address_city=city.id
-                           WHERE city.stateid = " . esc_sql($wpjobportal_stateid) . "
+                           WHERE city.stateid = " . (int) ($wpjobportal_stateid) . "
                    )
                    +
                    ( SELECT COUNT(resume.id)
                            FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city
                            JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resumeemployers` AS resume ON resume.employer_city=city.id
-                           WHERE city.stateid = " . esc_sql($wpjobportal_stateid) . "
+                           WHERE city.stateid = " . (int) ($wpjobportal_stateid) . "
                    )
                     AS total ";
         $wpjobportal_total = wpjobportaldb::get_var($query);
@@ -144,7 +144,7 @@ class WPJOBPORTALStateModel {
     function isStateExist($wpjobportal_state, $wpjobportal_countryid) {
         if (!is_numeric($wpjobportal_countryid))
             return false;
-        $query = "SELECT COUNT(id) FROM " . wpjobportal::$_db->prefix . "wj_portal_states WHERE name = '".esc_sql($wpjobportal_state)."' AND countryid = " . esc_sql($wpjobportal_countryid);
+        $query = "SELECT COUNT(id) FROM " . wpjobportal::$_db->prefix . "wj_portal_states WHERE name = '".esc_sql($wpjobportal_state)."' AND countryid = " . (int) ($wpjobportal_countryid);
         $wpjobportal_result = wpjobportaldb::get_var($query);
         if ($wpjobportal_result > 0)
             return true;
@@ -155,7 +155,7 @@ class WPJOBPORTALStateModel {
     function getStatesForCombo($wpjobportal_country) {
         if (is_null($wpjobportal_country) OR empty($wpjobportal_country) OR !is_numeric($wpjobportal_country))
             $wpjobportal_country = 0;
-        $query = "SELECT id, name AS text FROM `" . wpjobportal::$_db->prefix . "wj_portal_states` WHERE enabled = '1' AND countryid = " . esc_sql($wpjobportal_country) . " ORDER BY name ASC ";
+        $query = "SELECT id, name AS text FROM `" . wpjobportal::$_db->prefix . "wj_portal_states` WHERE enabled = '1' AND countryid = " . (int) ($wpjobportal_country) . " ORDER BY name ASC ";
         $wpjobportal_rows = wpjobportaldb::get_results($query);
         if (wpjobportal::$_db->last_error != null) {
             return false;

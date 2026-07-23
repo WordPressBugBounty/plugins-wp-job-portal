@@ -5,7 +5,7 @@
   * Plugin URI: https://wpjobportal.com/
   * Description: WP Job Portal is WordPress’s best job board plugin — easy to use, highly configurable, and built to support both job seekers and employers. AI-powered add-ons offers smart job & resume search, and personalized recommendations.
   * Author: WP Job Portal
-  * Version: 2.5.6
+  * Version: 2.5.7
   * Text Domain: wp-job-portal
   * Domain Path: /languages
   * Author URI: https://wpjobportal.com/
@@ -76,7 +76,7 @@ class wpjobportal {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '256';
+        self::$_currentversion = '257';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_common = WPJOBPORTALincluder::getJSModel('common');
         self::$_config = WPJOBPORTALincluder::getJSModel('configuration');
@@ -148,6 +148,9 @@ class wpjobportal {
         // deactivate new block editor
         add_action( 'after_setup_theme', array($this , 'phi_theme_support'), 10, 2 );
         add_filter( 'document_title', array($this, 'wpjobportalgetdocumenttitle'),1,99);
+        if (class_exists('WPJOBPORTALsitemap')) {
+            WPJOBPORTALsitemap::init();
+        }
     }
 
     function wpjobportalgetdocumenttitle($title){
@@ -186,7 +189,7 @@ class wpjobportal {
                 if( $plugin == $our_plugin ) {
                     update_option('wpjp_currentversion', self::$_currentversion);
                     include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
-                    WPJOBPORTALupdates::checkUpdates('256');
+                    WPJOBPORTALupdates::checkUpdates('257');
 
                 	// restore colors data
 		            require(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
@@ -208,12 +211,17 @@ class wpjobportal {
     function wpjobportal_activate() {
         include_once 'includes/activation.php';
         WPJOBPORTALactivation::wpjobportal_activate();
+        if (class_exists('WPJOBPORTALsitemap')) {
+            WPJOBPORTALsitemap::addRewriteRule();
+        }
+        flush_rewrite_rules();
 		add_option('wpjobportal_do_activation_redirect', true);
     }
 
     function wpjobportal_deactivate() {
         include_once 'includes/deactivation.php';
         WPJOBPORTALdeactivation::wpjobportal_deactivate();
+        flush_rewrite_rules();
     }
 
     /*
@@ -244,6 +252,7 @@ class wpjobportal {
         include_once 'includes/paramregister.php';
         include_once 'includes/breadcrumbs.php';
         include_once 'includes/dashboardapi.php';
+        include_once 'includes/sitemap.php';
         //Widgets TO include
         include_once 'includes/widgets/searchjobs.php';
         // include_once 'includes/addon-updater/wpjobportalupdater.php';
@@ -1119,7 +1128,7 @@ function wpjobportal_add_wpjobportal_meta_tags(){
             if($wpjobportal_layout == 'viewjob'){
                 $query = "SELECT job.tags,job.metakeywords
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                    WHERE job.id = " . esc_sql($wpjobportal_id);
+                    WHERE job.id = " . (int) ($wpjobportal_id);
                 $wpjobportal_data = wpjobportaldb::get_row($query);
                 if($wpjobportal_data != ''){
                     if($wpjobportal_data->metakeywords != ''){
@@ -1132,7 +1141,7 @@ function wpjobportal_add_wpjobportal_meta_tags(){
             }else{
                 $query = "SELECT resume.tags,resume.keywords
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
-                    WHERE resume.id = " . esc_sql($wpjobportal_id);
+                    WHERE resume.id = " . (int) ($wpjobportal_id);
                 $wpjobportal_data = wpjobportaldb::get_row($query);
                 if($wpjobportal_data != ''){
                     if($wpjobportal_data->keywords != ''){
@@ -1474,7 +1483,7 @@ function wpjobportal_login_redirect($redirect_to, $wpjobportal_request, $wpjobpo
        if ( in_array( 'administrator', $user->roles ) ) {
            return $redirect_to;
        } else {
-	   $query = "SELECT roleid FROM ".wpjobportal::$_db->prefix."wj_portal_users WHERE uid = " . esc_sql($user->ID);// small case id casuse notice
+	   $query = wpjobportal::$_db->prepare("SELECT roleid FROM ".wpjobportal::$_db->prefix."wj_portal_users WHERE uid = %d", $user->ID);// small case id casuse notice
            $wpjobportal_roleid = wpjobportaldb::get_var($query);
            $wpjobportal_url = $redirect_to;
            if($wpjobportal_roleid == 2){
@@ -1503,7 +1512,7 @@ function wpjobportal_upgrade_completed( $wpjobportal_upgrader_object, $wpjobport
 				update_option('wpjp_currentversion', wpjobportal::$_currentversion);
 				include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
 
-				WPJOBPORTALupdates::checkUpdates('256');
+				WPJOBPORTALupdates::checkUpdates('257');
 
 
 				// restore colors data

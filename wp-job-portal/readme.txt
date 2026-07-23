@@ -4,7 +4,7 @@ Donate link: https://wpjobportal.com/pricing/
 Tags: job board, job listing, careers, job manager, jobs, recruiting
 Requires at least: 5.5 
 Tested up to: 7.0
-Stable tag: 2.5.6
+Stable tag: 2.5.7
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -259,6 +259,10 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 
 == Changelog ==
+
+= 2.5.7 =
+* Security hardening: prepared SQL query paths for job/apply filters and related lookups.
+* SEO improvement: added native WP Job Portal jobs XML sitemap and sitemap integration hooks.
 
 = 2.5.6 =
 * Added New addon Smart Matching
@@ -603,6 +607,17 @@ Bug fixes for latest version.
 = What are common shortcodes =
 These are common shortcodes
 [wpjobportal_jobseeker_controlpanel], [wpjobportal_employer_controlpanel], [wpjobportal_job_search], [wpjobportal_job], [wpjobportal_job_categories], [wpjobportal_employer_registration], [wpjobportal_jobseeker_registration], [wpjobportal_login_page], [wpjobportal_searchjob]  
+
+= Which options are available for employer and job seeker registration shortcodes? =
+The dedicated registration shortcodes support optional role hiding, header/title visibility, custom button text, a safe post-registration redirect, and a custom wrapper class.
+
+Employer example:
+[wpjobportal_employer_registration hide_role="1" show_header="1" show_title="1" button_text="Register as Employer" redirect_url="" class=""]
+
+Job seeker example:
+[wpjobportal_jobseeker_registration hide_role="1" show_header="1" show_title="1" button_text="Register as Job Seeker" redirect_url="" class=""]
+
+The hide_role parameter hides the role selector and securely submits the correct role for the selected dedicated shortcode.
 
 = Will WP Job Portal work with my theme? =
 Yes; WP Job Portal will work with any theme.

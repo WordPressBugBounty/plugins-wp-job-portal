@@ -114,7 +114,7 @@ class WPJOBPORTALtable {
 
     function load($wpjobportal_id){
         if(!is_numeric($wpjobportal_id)) return false;
-        $query = "SELECT * FROM `".$this->tablename."` WHERE `".esc_sql($this->primarykey)."` = ".esc_sql($wpjobportal_id);
+        $query = "SELECT * FROM `".$this->tablename."` WHERE `".esc_sql($this->primarykey)."` = " . (int) ($wpjobportal_id);
         $wpjobportal_result = wpjobportal::$_db->get_row($query);
         $wpjobportal_array = get_object_vars($this);
         unset($wpjobportal_array['isnew']);

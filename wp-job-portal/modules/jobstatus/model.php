@@ -8,7 +8,7 @@ class WPJOBPORTALJobstatusModel {
     function getJobStatusbyId($c_id) {
         if (is_numeric($c_id) == false)
             return false;
-        $query = "SELECT * FROM " . wpjobportal::$_db->prefix . "wj_portal_jobstatus WHERE id = " . esc_sql($c_id);
+        $query = "SELECT * FROM " . wpjobportal::$_db->prefix . "wj_portal_jobstatus WHERE id = " . (int) ($c_id);
         wpjobportal::$_data[0] = wpjobportaldb::get_row($query);
 
         return;
@@ -57,7 +57,7 @@ class WPJOBPORTALJobstatusModel {
         if (!is_numeric($wpjobportal_id))
             return false;
         // DB class limitations
-        $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_jobstatus` SET isdefault = 0 WHERE id != " . esc_sql($wpjobportal_id);
+        $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_jobstatus` SET isdefault = 0 WHERE id != " . (int) ($wpjobportal_id);
         wpjobportaldb::query($query);
     }
 
@@ -222,7 +222,7 @@ class WPJOBPORTALJobstatusModel {
         if (!is_numeric($wpjobportal_statusid))
             return false;
         $query = "SELECT
-                    ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobstatus` WHERE id = " . esc_sql($wpjobportal_statusid) . " AND isdefault = 1)
+                    ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobstatus` WHERE id = " . (int) ($wpjobportal_statusid) . " AND isdefault = 1)
                     AS total ";
         $wpjobportal_total = wpjobportaldb::get_var($query);
 
@@ -236,8 +236,8 @@ class WPJOBPORTALJobstatusModel {
         if (!is_numeric($wpjobportal_statusid))
             return false;
         $query = "SELECT
-                    ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE jobstatus = " . esc_sql($wpjobportal_statusid) . ")
-                    + ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobstatus` WHERE id = " . esc_sql($wpjobportal_statusid) . " AND isdefault = 1)
+                    ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE jobstatus = " . (int) ($wpjobportal_statusid) . ")
+                    + ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobstatus` WHERE id = " . (int) ($wpjobportal_statusid) . " AND isdefault = 1)
                     AS total ";
         $wpjobportal_total = wpjobportaldb::get_var($query);
 
@@ -273,7 +273,7 @@ class WPJOBPORTALJobstatusModel {
         if (!is_numeric($wpjobportal_id)){
             return false;
         }
-        $query = "SELECT title FROM " . wpjobportal::$_db->prefix . "wj_portal_jobstatus WHERE id = " . esc_sql($wpjobportal_id);
+        $query = "SELECT title FROM " . wpjobportal::$_db->prefix . "wj_portal_jobstatus WHERE id = " . (int) ($wpjobportal_id);
         $wpjobportal_result = wpjobportaldb::get_var($query);
         return $wpjobportal_result;
     }

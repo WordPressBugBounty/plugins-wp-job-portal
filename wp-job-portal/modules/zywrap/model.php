@@ -1981,7 +1981,7 @@ class WPJOBPORTALzywrapModel {
         // Company Profile Context (NEW: Fetches company details if toggle is enabled)
         if (!empty($aiData['companyContext']) && !empty($aiData['companyId'])) {
             $company_id = intval($aiData['companyId']);
-            $query = "SELECT name, description, url, tagline FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` WHERE id = " . esc_sql($company_id);
+            $query = "SELECT name, description, url, tagline FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` WHERE id = " . (int) ($company_id);
             $company_info = wpjobportaldb::get_row($query);
 
             if ($company_info) {

@@ -26,13 +26,13 @@ class WPJOBPORTALJobseekerModel {
                     JOIN " . wpjobportal::$_db->prefix . "wj_portal_jobs AS job ON job.id = jobapply.jobid
                     ".wpjobportal::$_company_job_table_join." JOIN " . wpjobportal::$_db->prefix . "wj_portal_companies AS company ON company.id = job.companyid
                     LEFT JOIN " . wpjobportal::$_db->prefix . "wj_portal_categories AS jobcat ON jobcat.id = resume.job_category
-                    WHERE resume.uid = ". esc_sql($wpjobportal_uid)." GROUP BY jobapply.id LIMIT 0,5";
+                    WHERE resume.uid = " . (int) ($wpjobportal_uid)." GROUP BY jobapply.id LIMIT 0,5";
 
         wpjobportal::$_data[0]['resume'] = wpjobportaldb::get_results($query);
 
         $query = "SELECT resume.id as resumeid ,count(*) as resumeno
                     FROM " . wpjobportal::$_db->prefix . "wj_portal_resume AS resume
-                    WHERE `uid`=".esc_sql($wpjobportal_uid)."
+                    WHERE `uid`=" . (int) ($wpjobportal_uid)."
                     GROUP BY resume.id  ORDER BY resume.id ASC LIMIT 0,1 ";// ASC to change to same resume shown in my resume listing in case of missing mutlti resume addon
         wpjobportal::$_data[0]['resume']['info'] = wpjobportaldb::get_results($query);
     }
@@ -94,7 +94,7 @@ class WPJOBPORTALJobseekerModel {
                  LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
                  LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobstatus` AS jobstatus ON jobstatus.id = job.jobstatus
                  LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS salaryrangetype ON salaryrangetype.id = job.salaryduration
-                 WHERE jobapply.uid = ". esc_sql($wpjobportal_uid);
+                 WHERE jobapply.uid = " . (int) ($wpjobportal_uid);
         $query.= " ORDER BY resume.id ";
         $query.=" LIMIT  0,4";
         $wpjobportal_results = wpjobportaldb::get_results($query);
@@ -116,26 +116,26 @@ class WPJOBPORTALJobseekerModel {
         if (!is_numeric($wpjobportal_uid))
             return false;
         $query = "SELECT * FROM `".wpjobportal::$_db->prefix."wj_portal_users` as users
-        WHERE `id`=".esc_sql($wpjobportal_uid);
+        WHERE `id`=" . (int) ($wpjobportal_uid);
         $wpjobportal_data = wpjobportaldb::get_results($query);
         wpjobportal::$_data['userprofile'] = $wpjobportal_data;
          $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs`";
         wpjobportal::$_data['totaljobs'] = wpjobportal::$_db->get_var($query);
         $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies`";
         wpjobportal::$_data['totalcompanies'] = wpjobportal::$_db->get_var($query);
-        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` where uid = ".esc_sql($wpjobportal_uid)." AND status = 1";
+        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` where uid = " . (int) ($wpjobportal_uid)." AND status = 1";
         wpjobportal::$_data['totalresume'] = wpjobportal::$_db->get_var($query);
         if(!in_array('multiresume', wpjobportal::$_active_addons) && wpjobportal::$_data['totalresume'] > 1){
             wpjobportal::$_data['totalresume'] = 1;
         }
-        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` where status = 1 and uid=".esc_sql($wpjobportal_uid);
+        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` where status = 1 and uid=" . (int) ($wpjobportal_uid);
         wpjobportal::$_data['totaljobapply'] = wpjobportal::$_db->get_var($query);
         if(in_array('shortlist', wpjobportal::$_active_addons)){
             // modified the below code to make sure that the jobs that are shown on shortlisted job listing are counted for dashboard stat
             $query23 = "SELECT COUNT(shortlist.id)
                             FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobshortlist` AS shortlist
                             JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job ON  job.id = shortlist.jobid
-                            WHERE shortlist.status = 1  AND shortlist.uid =". esc_sql($wpjobportal_uid)."
+                            WHERE shortlist.status = 1  AND shortlist.uid =" . (int) ($wpjobportal_uid)."
                             AND DATE(job.startpublishing) <= CURDATE() AND DATE(job.stoppublishing) >= CURDATE()";
             wpjobportal::$_data['totalshorlistjob'] = wpjobportal::$_db->get_var($query23);
         }
@@ -163,7 +163,7 @@ class WPJOBPORTALJobseekerModel {
         if(!is_numeric($wpjobportal_uid))
             return false;
         $query="SELECT application_title as tite FROM `".wpjobportal::$_db->prefix."wj_portal_resume`
-        WHERE `uid`=".esc_sql($wpjobportal_uid)." ORDER BY ID DESC LIMIT 0,1";
+        WHERE `uid`=" . (int) ($wpjobportal_uid)." ORDER BY ID DESC LIMIT 0,1";
         $wpjobportal_data=wpjobportaldb::get_var($query);
         wpjobportal::$_data['application_title'] = $wpjobportal_data;
     }
@@ -279,7 +279,7 @@ class WPJOBPORTALJobseekerModel {
 
 
         $query = "SELECT SUM(resume.hits) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
-                    WHERE resume.uid = ". esc_sql($wpjobportal_uid)." AND resume.quick_apply <> 1 ";
+                    WHERE resume.uid = " . (int) ($wpjobportal_uid)." AND resume.quick_apply <> 1 ";
         $wpjobportal_total_hits = wpjobportal::$_db->get_var($query);
 
         $query = "SELECT resume.id,resume.first_name,resume.last_name,resume.application_title as applicationtitle,CONCAT(resume.alias,'-',resume.id) resumealiasid,resume.email_address,category.cat_title,resume.created,jobtype.title AS jobtypetitle,resume.photo,resume.salaryfixed as salary,
@@ -290,7 +290,7 @@ class WPJOBPORTALJobseekerModel {
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON city.id = (SELECT address_city FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` WHERE resumeid = resume.id LIMIT 1)
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_states` AS state ON state.id = city.stateid
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_countries` AS country ON country.id = city.countryid
-                WHERE resume.uid = ". esc_sql($wpjobportal_uid)." AND resume.quick_apply <> 1 ";
+                WHERE resume.uid = " . (int) ($wpjobportal_uid)." AND resume.quick_apply <> 1 ";
         if(in_array('multiresume', wpjobportal::$_active_addons)){
             $query.= " ORDER BY resume.created DESC LIMIT 10 "; // fetching upto 20 resumes at the moment. but will only show 5 most uncomplete onse
         }else{

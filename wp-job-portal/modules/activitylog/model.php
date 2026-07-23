@@ -362,7 +362,7 @@ class WPJOBPORTALactivitylogModel {
             case 'searchname':
             case 'cat_title':
             case 'rangestart':
-                $query = "SELECT $wpjobportal_text FROM `$wpjobportal_tablename` WHERE id = " . esc_sql($wpjobportal_id);
+                $query = "SELECT $wpjobportal_text FROM `$wpjobportal_tablename` WHERE id = " . (int) ($wpjobportal_id);
                 $wpjobportal_result = wpjobportal::$_db->get_var($query);
                 return $wpjobportal_result;
             break;
@@ -375,7 +375,7 @@ class WPJOBPORTALactivitylogModel {
     function getJobTitleFromid($wpjobportal_id) {
         if (!is_numeric($wpjobportal_id))
             return false;
-        $query = "SELECT title FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE id =" . esc_sql($wpjobportal_id);
+        $query = "SELECT title FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE id =" . (int) ($wpjobportal_id);
         $wpjobportal_result = wpjobportal::$_db->get_var($query);
         return $wpjobportal_result;
     }
@@ -383,7 +383,7 @@ class WPJOBPORTALactivitylogModel {
     function getReusmeTitleFromid($wpjobportal_id) {
         if (!is_numeric($wpjobportal_id))
             return false;
-        $query = "SELECT CONCAT(first_name, ' ', last_name) AS Name FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE id = " . esc_sql($wpjobportal_id);
+        $query = "SELECT CONCAT(first_name, ' ', last_name) AS Name FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE id = " . (int) ($wpjobportal_id);
         $wpjobportal_result = wpjobportal::$_db->get_var($query);
         return $wpjobportal_result;
     }
@@ -393,7 +393,7 @@ class WPJOBPORTALactivitylogModel {
             return false;
         if ($wpjobportal_tablename == '')
             return false;
-        $query = "SELECT cvid,jobid FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE id = " . esc_sql($wpjobportal_id);
+        $query = "SELECT cvid,jobid FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE id = " . (int) ($wpjobportal_id);
         $wpjobportal_result = wpjobportal::$_db->get_row($query);
         $wpjobportal_data = array();
         $wpjobportal_data[0] = $wpjobportal_result->jobid;
@@ -599,7 +599,7 @@ class WPJOBPORTALactivitylogModel {
         if ($wpjobportal_uid == 0) {
             return "guest";
         }
-        $query = "SELECT first_name,last_name FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE id = " . esc_sql($wpjobportal_uid);
+        $query = "SELECT first_name,last_name FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE id = " . (int) ($wpjobportal_uid);
         $wpjobportal_result = wpjobportal::$_db->get_row($query);
         $wpjobportal_name = $wpjobportal_result->first_name . ' ' . $wpjobportal_result->last_name;
         return $wpjobportal_name;

@@ -8,7 +8,7 @@ class WPJOBPORTALsalaryrangetypeModel {
     function getSalaryRangeTypebyId($c_id) {
         if (is_numeric($c_id) == false)
             return false;
-        $query = "SELECT * FROM " . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes WHERE id = " . esc_sql($c_id);
+        $query = "SELECT * FROM " . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes WHERE id = " . (int) ($c_id);
         wpjobportal::$_data[0] = wpjobportaldb::get_row($query);
         return;
     }
@@ -56,7 +56,7 @@ class WPJOBPORTALsalaryrangetypeModel {
         if (!is_numeric($wpjobportal_id))
             return false;
         // DB class limitation
-        $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` SET isdefault = 0 WHERE id != " . esc_sql($wpjobportal_id);
+        $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` SET isdefault = 0 WHERE id != " . (int) ($wpjobportal_id);
         wpjobportaldb::query($query);
     }
 
@@ -185,7 +185,7 @@ class WPJOBPORTALsalaryrangetypeModel {
         if (!is_numeric($wpjobportal_id))
             return false;
         $query = "SELECT
-                    ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` WHERE id = " . esc_sql($wpjobportal_id) . " AND isdefault = 1)
+                    ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` WHERE id = " . (int) ($wpjobportal_id) . " AND isdefault = 1)
                     AS total ";
         $wpjobportal_total = wpjobportaldb::get_var($query);
         if ($wpjobportal_total > 0)
@@ -198,8 +198,8 @@ class WPJOBPORTALsalaryrangetypeModel {
         if (!is_numeric($wpjobportal_id))
             return false;
         $query = "SELECT
-                    ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE  salaryduration = " . esc_sql($wpjobportal_id) . ")
-                    + ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` WHERE id = " . esc_sql($wpjobportal_id) . " AND isdefault = 1)
+                    ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE  salaryduration = " . (int) ($wpjobportal_id) . ")
+                    + ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` WHERE id = " . (int) ($wpjobportal_id) . " AND isdefault = 1)
                     AS total ";
         $wpjobportal_total = wpjobportaldb::get_var($query);
 

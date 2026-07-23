@@ -138,7 +138,7 @@ class WPJOBPORTALCommonModel {
                     //DB class limitations
                     $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($wpjobportal_tablename) . "` AS t SET t." . esc_sql($column) . " = 0 ";
                     wpjobportaldb::query($query);
-                    $query = "UPDATE  `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($wpjobportal_tablename) . "` AS t SET t." . esc_sql($column) . " = 1 WHERE id=" . esc_sql($wpjobportal_id);
+                    $query = "UPDATE  `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($wpjobportal_tablename) . "` AS t SET t." . esc_sql($column) . " = 1 WHERE id=" . (int) ($wpjobportal_id);
                     if (!wpjobportaldb::query($query))
                         return WPJOBPORTAL_SET_DEFAULT_ERROR;
                     else
@@ -165,7 +165,7 @@ class WPJOBPORTALCommonModel {
                 $column = "status";
                 break;
         }
-        $query = "SELECT " . esc_sql($column) . " FROM `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($wpjobportal_tablename) . "` WHERE id=" . esc_sql($wpjobportal_id);
+        $query = "SELECT " . esc_sql($column) . " FROM `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($wpjobportal_tablename) . "` WHERE id=" . (int) ($wpjobportal_id);
         $res = wpjobportaldb::get_var($query);
         if ($res == 1)
             return true;
@@ -225,23 +225,23 @@ class WPJOBPORTALCommonModel {
     //         return false;
     //     //DB class limitations
     //     if($wpjobportal_table == 'categories'){
-    //         $parentid = wpjobportal::$_db->get_var("SELECT parentid FROM `".wpjobportal::$_db->prefix."wj_portal_categories` WHERE id = ".esc_sql($wpjobportal_field_id));
+    //         $parentid = wpjobportal::$_db->get_var("SELECT parentid FROM `".wpjobportal::$_db->prefix."wj_portal_categories` WHERE id = " . (int) ($wpjobportal_field_id));
     //         $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($wpjobportal_table) . "` AS f1, `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($wpjobportal_table) . "` AS f2
     //                     SET f1.ordering = f1.ordering + 1
-    //                     WHERE f1.ordering = f2.ordering - 1 AND f1.parentid = ".esc_sql($parentid)."
-    //                     AND f2.id = " . esc_sql($wpjobportal_field_id);
+    //                     WHERE f1.ordering = f2.ordering - 1 AND f1.parentid = " . (int) ($parentid)."
+    //                     AND f2.id = " . (int) ($wpjobportal_field_id);
     //     }else{
     //         $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($wpjobportal_table) . "` AS f1, `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($wpjobportal_table) . "` AS f2
     //                     SET f1.ordering = f1.ordering + 1
     //                     WHERE f1.ordering = f2.ordering - 1
-    //                     AND f2.id = " . esc_sql($wpjobportal_field_id);
+    //                     AND f2.id = " . (int) ($wpjobportal_field_id);
     //     }
     //     if (false == wpjobportaldb::query($query)) {
     //         return WPJOBPORTAL_ORDER_UP_ERROR;
     //     }
     //     $query = " UPDATE " . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($wpjobportal_table) . "
     //                 SET ordering = ordering - 1
-    //                 WHERE id = " . esc_sql($wpjobportal_field_id);
+    //                 WHERE id = " . (int) ($wpjobportal_field_id);
 
     //     if (false == wpjobportaldb::query($query)) {
     //         return WPJOBPORTAL_ORDER_UP_ERROR;
@@ -254,16 +254,16 @@ class WPJOBPORTALCommonModel {
     //         return false;
     //     //DB class limitations
     //     if($wpjobportal_table == 'categories'){
-    //         $parentid = wpjobportal::$_db->get_var("SELECT parentid FROM `".wpjobportal::$_db->prefix."wj_portal_categories` WHERE id = ".esc_sql($wpjobportal_field_id));
+    //         $parentid = wpjobportal::$_db->get_var("SELECT parentid FROM `".wpjobportal::$_db->prefix."wj_portal_categories` WHERE id = " . (int) ($wpjobportal_field_id));
     //         $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($wpjobportal_table) . "` AS f1, `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($wpjobportal_table) . "` AS f2
     //                     SET f1.ordering = f1.ordering - 1
-    //                     WHERE f1.ordering = f2.ordering + 1 AND f1.parentid = ".esc_sql($parentid)."
-    //                     AND f2.id = " . esc_sql($wpjobportal_field_id);
+    //                     WHERE f1.ordering = f2.ordering + 1 AND f1.parentid = " . (int) ($parentid)."
+    //                     AND f2.id = " . (int) ($wpjobportal_field_id);
     //     }else{
     //         $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($wpjobportal_table) . "` AS f1, `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($wpjobportal_table) . "` AS f2
     //                     SET f1.ordering = f1.ordering - 1
     //                     WHERE f1.ordering = f2.ordering + 1
-    //                     AND f2.id = " . esc_sql($wpjobportal_field_id);
+    //                     AND f2.id = " . (int) ($wpjobportal_field_id);
     //     }
 
     //     if (false == wpjobportaldb::query($query)) {
@@ -271,7 +271,7 @@ class WPJOBPORTALCommonModel {
     //     }
     //     $query = " UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($wpjobportal_table) . "`
     //                 SET ordering = ordering + 1
-    //                 WHERE id = " . esc_sql($wpjobportal_field_id);
+    //                 WHERE id = " . (int) ($wpjobportal_field_id);
 
     //     if (false == wpjobportaldb::query($query)) {
     //         return WPJOBPORTAL_ORDER_DOWN_ERROR;
@@ -315,13 +315,13 @@ class WPJOBPORTALCommonModel {
                   LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_states` AS state on city.stateid=state.id";
         switch ($for) {
             case 1:
-                $query .= " WHERE mcity.jobid = ".esc_sql($wpjobportal_id)." AND country.enabled = 1 AND city.enabled = 1";
+                $query .= " WHERE mcity.jobid = " . (int) ($wpjobportal_id)." AND country.enabled = 1 AND city.enabled = 1";
                 break;
             case 2:
-                $query .= " WHERE mcity.companyid = ".esc_sql($wpjobportal_id)." AND country.enabled = 1 AND city.enabled = 1";
+                $query .= " WHERE mcity.companyid = " . (int) ($wpjobportal_id)." AND country.enabled = 1 AND city.enabled = 1";
                 break;
             case 3:
-                $query .= " WHERE mcity.alertid = ".esc_sql($wpjobportal_id)." AND country.enabled = 1 AND city.enabled = 1";
+                $query .= " WHERE mcity.alertid = " . (int) ($wpjobportal_id)." AND country.enabled = 1 AND city.enabled = 1";
                 break;
         }
         $wpjobportal_result = wpjobportaldb::get_results($query);
@@ -545,7 +545,7 @@ class WPJOBPORTALCommonModel {
         if ($wpjobportal_activejobs == 1) {
             $query = "SELECT count(job.id) AS totalactivejobs
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                WHERE job.status = 1 AND DATE(job.startpublishing) <= " . esc_sql($wpjobportal_curdate) . " AND DATE(job.stoppublishing) >= " . esc_sql($wpjobportal_curdate);
+                WHERE job.status = 1 AND DATE(job.startpublishing) <= " . (int) ($wpjobportal_curdate) . " AND DATE(job.stoppublishing) >= " . (int) ($wpjobportal_curdate);
             $wpjobportal_data['tatalactivejobs'] = wpjobportaldb::get_var($query);
         }
         if ($wpjobportal_resumes == 1) {
@@ -734,7 +734,7 @@ class WPJOBPORTALCommonModel {
                 $wpjobportal_table = 'wj_portal_resume';
                 break;
         }
-        $query = "SELECT uid FROM `" . wpjobportal::$_db->prefix . $wpjobportal_table . "`WHERE id = " . esc_sql($wpjobportal_id);
+        $query = "SELECT uid FROM `" . wpjobportal::$_db->prefix . $wpjobportal_table . "`WHERE id = " . (int) ($wpjobportal_id);
         $wpjobportal_result = wpjobportaldb::get_var($query);
 
         return $wpjobportal_result;
@@ -813,14 +813,16 @@ class WPJOBPORTALCommonModel {
     }
 
     function parseID($wpjobportal_id){
-        if(is_numeric($wpjobportal_id)) return $wpjobportal_id;
-        // php 8 issue explod function
-        if($wpjobportal_id == ''){
-            return $wpjobportal_id;
+        if ($wpjobportal_id === '' || $wpjobportal_id === null) {
+            return '';
         }
-        $wpjobportal_id = wpjobportalphplib::wpJP_explode('-', $wpjobportal_id);
-        $wpjobportal_id = $wpjobportal_id[count($wpjobportal_id) -1];
-        return $wpjobportal_id;
+        if (is_numeric($wpjobportal_id)) {
+            return absint($wpjobportal_id);
+        }
+        // URL aliases use the numeric id as the final dash-separated segment.
+        $wpjobportal_id_parts = wpjobportalphplib::wpJP_explode('-', (string) $wpjobportal_id);
+        $wpjobportal_id = end($wpjobportal_id_parts);
+        return absint($wpjobportal_id);
     }
 
     function sendEmail($recevierEmail, $wpjobportal_subject, $body, $wpjobportal_senderEmail, $wpjobportal_senderName, $attachments = '') {
@@ -883,7 +885,7 @@ class WPJOBPORTALCommonModel {
                         JOIN `".wpjobportal::$_db->prefix."wj_portal_countries` AS country on city.countryid=country.id
                         LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_states` AS state on city.stateid=state.id
                         WHERE country.enabled = 1 AND city.enabled = 1";
-            $query .= " AND city.id =".esc_sql($city);
+            $query .= " AND city.id =" . (int) ($city);
 
 
             $wpjobportal_result[] = wpjobportaldb::get_row($query);
