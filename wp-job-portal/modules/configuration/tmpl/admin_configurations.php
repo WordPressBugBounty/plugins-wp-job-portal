@@ -1077,13 +1077,14 @@ $wpjobportal_settings_config['payment_gateways'] = [
                 'fields' => [
                     ['id' => 'isenabled_paypal', 'label' => __('Enable PayPal', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['isenabled_paypal'], 'tooltip' => __('Enable or disable PayPal as a payment option', 'wp-job-portal'), 'options' => $wpjobportal_options_yesno],
                     ['id' => 'username_paypal', 'label' => __('Username', 'wp-job-portal'), 'type' => 'text', 'value' => wpjobportal::$_data[0]['username_paypal'], 'tooltip' => __('Your PayPal API Username', 'wp-job-portal')],
-                    ['id' => 'password_paypal', 'label' => __('Password', 'wp-job-portal'), 'type' => 'text', 'value' => wpjobportal::$_data[0]['password_paypal'], 'tooltip' => __('Your PayPal API Password', 'wp-job-portal')],
-                    ['id' => 'signature_paypal', 'label' => __('Signature', 'wp-job-portal'), 'type' => 'text', 'value' => wpjobportal::$_data[0]['signature_paypal'], 'tooltip' => __('Your PayPal API Signature', 'wp-job-portal')],
+                    ['id' => 'password_paypal', 'label' => __('Password', 'wp-job-portal'), 'type' => 'password', 'value' => wpjobportal::$_data[0]['password_paypal'], 'tooltip' => __('Your PayPal API Password', 'wp-job-portal')],
+                    ['id' => 'signature_paypal', 'label' => __('Signature', 'wp-job-portal'), 'type' => 'password', 'value' => wpjobportal::$_data[0]['signature_paypal'], 'tooltip' => __('Your PayPal API Signature', 'wp-job-portal')],
                     ['id' => 'logo_paypal', 'label' => __('Logo URL', 'wp-job-portal'), 'type' => 'text', 'value' => wpjobportal::$_data[0]['logo_paypal'], 'tooltip' => __('A URL to your logo image to display on the PayPal checkout page', 'wp-job-portal')],
                     ['id' => 'cancelurl_paypal', 'label' => __('Cancel URL', 'wp-job-portal'), 'type' => 'text', 'value' => wpjobportal::$_data[0]['cancelurl_paypal'], 'tooltip' => __('The URL users are sent to if they cancel the payment', 'wp-job-portal')],
                     ['id' => 'notifyurl_paypal', 'type' => 'info_text', 'label' => __('Notify URL', 'wp-job-portal'), 'text' => site_url('?page_id=' . wpjobportal::wpjobportal_getPageid() . wpjobportal::$_data[0]['notifyurl_paypal'])],
                     ['id' => 'testmode_paypal', 'label' => __('Test Mode', 'wp-job-portal') . ' ' . __('Sandbox', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['testmode_paypal'], 'tooltip' => __('Enable PayPal Sandbox for testing purposes', 'wp-job-portal'), 'options' => $wpjobportal_options_yesno],
                     ['id' => 'lang_paypal', 'label' => __('Language', 'wp-job-portal'), 'type' => 'text', 'value' => wpjobportal::$_data[0]['lang_paypal'], 'tooltip' => __('Please enter language code, for example', 'wp-job-portal') . ' EN'],
+                    ['id' => 'receiver_email_paypal', 'label' => __('Merchant Email', 'wp-job-portal'), 'type' => 'email', 'value' => isset(wpjobportal::$_data[0]['receiver_email_paypal']) ? wpjobportal::$_data[0]['receiver_email_paypal'] : '', 'tooltip' => __('The primary PayPal email that must receive subscription payments', 'wp-job-portal')],
                     ['id' => 'paypal_subscription_info', 'type' => 'info_text', 'label' => __('Subscription IPN URL', 'wp-job-portal'), 'text' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'purchase','action'=>'wpjobportaltask','task'=>'paypalwebhook'))],
                 ]
             ],
@@ -1094,8 +1095,9 @@ $wpjobportal_settings_config['payment_gateways'] = [
                 'fields' => [
                     ['id' => 'isenabled_stripe', 'label' => __('Enable Stripe', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['isenabled_stripe'], 'tooltip' => __('Enable or disable Stripe as a payment option', 'wp-job-portal'), 'options' => $wpjobportal_options_yesno],
                     ['id' => 'publickey_stripe', 'label' => __('Publishable Key', 'wp-job-portal'), 'type' => 'text', 'value' => wpjobportal::$_data[0]['publickey_stripe'], 'tooltip' => __('Enter your Stripe Publishable Key', 'wp-job-portal')],
-                    ['id' => 'secretkey_stripe', 'label' => __('Secret Key', 'wp-job-portal'), 'type' => 'text', 'value' => wpjobportal::$_data[0]['secretkey_stripe'], 'tooltip' => __('Enter your Stripe Secret Key', 'wp-job-portal')],
-                    ['id' => 'stripe_subscription_info', 'type' => 'info_text', 'label' => __('Subscription Webhook URL', 'wp-job-portal'), 'text' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'purchase','action'=>'wpjobportaltask','task'=>'stripewebhook'))],
+                    ['id' => 'secretkey_stripe', 'label' => __('Secret Key', 'wp-job-portal'), 'type' => 'password', 'value' => wpjobportal::$_data[0]['secretkey_stripe'], 'tooltip' => __('Enter your Stripe Secret Key', 'wp-job-portal')],
+                    ['id' => 'webhooksecret_stripe', 'label' => __('Webhook Signing Secret', 'wp-job-portal'), 'type' => 'password', 'value' => isset(wpjobportal::$_data[0]['webhooksecret_stripe']) ? wpjobportal::$_data[0]['webhooksecret_stripe'] : '', 'tooltip' => __('The Stripe endpoint signing secret (whsec_...) required to verify each webhook', 'wp-job-portal')],
+                    ['id' => 'stripe_subscription_info', 'type' => 'info_text', 'label' => __('Subscription Webhook URL', 'wp-job-portal'), 'text' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'purchase','action'=>'wpjobportaltask','task'=>'stripewebhook')) . ' — ' . __('Add the invoice.payment_succeeded event and copy this endpoint’s signing secret above.', 'wp-job-portal')],
                 ]
             ],
             'woocommerce' => [
@@ -1325,6 +1327,9 @@ function wpjobportal_wjp_render_setting_field($wpjobportal_field, $wpjobportal_c
                     <div class="wjportal-form-help-txt">' . esc_html($wpjobportal_logoformat) . '&nbsp;' . esc_html__('Maximum', 'wp-job-portal') . ' ' . esc_html($wpjobportal_maxsize) . ' Kb ' . esc_html__('This image will be shown as the default image for entities & users if no other image is provided', 'wp-job-portal') . '</div>
                 </div>
                 ';
+                break;
+            case 'password':
+                $wpjobportal_control_html = WPJOBPORTALformfield::password($wpjobportal_field_name, $wpjobportal_value, ['class' => 'wjp-form-input', 'type' => $wpjobportal_field['type'], 'id' => $wpjobportal_field_id]);
                 break;
 
             default:

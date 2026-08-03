@@ -1321,7 +1321,7 @@ class WPJOBPORTALwpjobportalModel {
                 $post_data['JVERSION'] = get_bloginfo('version');
                 $post_data['method'] = 'getTranslations';
 
-                $response = wp_remote_post( $wpjobportal_url, array('body' => $post_data,'timeout'=>7,'sslverify'=>false));
+                $response = wp_remote_post( $wpjobportal_url, array('body' => $post_data,'timeout'=>7,'sslverify'=>wpjobportal_sslverify($wpjobportal_url)));
                 if( !is_wp_error($response) && $response['response']['code'] == 200 && isset($response['body']) ){
                     $call_result = $response['body'];
                 }else{

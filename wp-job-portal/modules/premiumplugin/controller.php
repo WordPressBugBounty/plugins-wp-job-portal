@@ -66,7 +66,7 @@ class WPJOBPORTALpremiumpluginController {
 
             $wpjobportal_url = 'https://wpjobportal.com/setup/index.php';
 
-            $response = wp_remote_post( $wpjobportal_url, array('body' => $post_data,'timeout'=>7,'sslverify'=>false));
+            $response = wp_remote_post( $wpjobportal_url, array('body' => $post_data,'timeout'=>7,'sslverify'=>wpjobportal_sslverify($wpjobportal_url)));
             if( !is_wp_error($response) && $response['response']['code'] == 200 && isset($response['body']) ){
                 $wpjobportal_result = $response['body'];
                 $wpjobportal_result = json_decode($wpjobportal_result,true);
@@ -272,7 +272,7 @@ class WPJOBPORTALpremiumpluginController {
         ];
 
         $wpjobportal_url      = 'https://wpjobportal.com/setup/index.php';
-        $response = wp_remote_post($wpjobportal_url, ['body' => $wpjobportal_request_body, 'timeout' => 15, 'sslverify' => false]);
+        $response = wp_remote_post($wpjobportal_url, ['body' => $wpjobportal_request_body, 'timeout' => 15, 'sslverify' => wpjobportal_sslverify($wpjobportal_url)]);
 
         if (is_wp_error($response)) {
             WPJOBPORTALMessages::setLayoutMessage($response->get_error_message(), 'error',$this->_msgkey);

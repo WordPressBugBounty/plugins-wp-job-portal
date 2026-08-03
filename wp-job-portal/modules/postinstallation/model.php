@@ -1919,7 +1919,7 @@ class WPJOBPORTALPostinstallationModel {
         $wpjobportal_url = 'https://wpjobportal.com/setup/theme/demoimporter/demos/'.$foldername.'/democode.php';
         //$wpjobportal_url = 'http://192.168.10.20/2023/jobportaltheme/democode.php';
         $post_data = array();
-        $response = wp_remote_post( $wpjobportal_url, array('body' => $post_data,'timeout'=>7,'sslverify'=>false));
+        $response = wp_remote_post( $wpjobportal_url, array('body' => $post_data,'timeout'=>7,'sslverify'=>wpjobportal_sslverify($wpjobportal_url)));
         if( !is_wp_error($response) && $response['response']['code'] == 200 && isset($response['body']) ){
             $call_result = $response['body'];
         }else{

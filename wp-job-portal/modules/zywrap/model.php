@@ -1840,7 +1840,7 @@ class WPJOBPORTALzywrapModel {
         $wpjobportal_args = array(
             'method'  => 'POST',
             'timeout' => 300, // Longer timeout for generation
-            'sslverify'   => false,
+            'sslverify'   => wpjobportal_sslverify($wpjobportal_url),
             'headers' => array(
                 'Content-Type' => 'application/json',
                 'Authorization' => 'Bearer ' . $api_key
@@ -2032,7 +2032,7 @@ class WPJOBPORTALzywrapModel {
         $wpjobportal_args = array(
             'method'  => 'POST',
             'timeout' => 300,
-            'sslverify' => false,
+            'sslverify' => wpjobportal_sslverify($wpjobportal_url),
             'headers' => array(
                 'Content-Type' => 'application/json',
                 'Authorization' => 'Bearer ' . $api_key
@@ -2188,7 +2188,7 @@ class WPJOBPORTALzywrapModel {
         $wpjobportal_args = array(
             'method'    => 'POST',
             'timeout'   => 300,
-            'sslverify' => false,
+            'sslverify' => wpjobportal_sslverify($wpjobportal_url),
             'headers'   => array(
                 'Content-Type'  => 'application/json',
                 'Authorization' => 'Bearer ' . $api_key
@@ -2346,7 +2346,7 @@ class WPJOBPORTALzywrapModel {
         $wpjobportal_args = array(
             'method'    => 'POST',
             'timeout'   => 300,
-            'sslverify' => false,
+            'sslverify' => wpjobportal_sslverify($wpjobportal_url),
             'headers'   => array(
                 'Content-Type'  => 'application/json',
                 'Authorization' => 'Bearer ' . $api_key
@@ -2526,7 +2526,7 @@ class WPJOBPORTALzywrapModel {
         $wpjobportal_args = array(
             'method'    => 'POST',
             'timeout'   => 300,
-            'sslverify' => false,
+            'sslverify' => wpjobportal_sslverify($wpjobportal_url),
             'headers'   => array(
                 'Content-Type'  => 'application/json',
                 'Authorization' => 'Bearer ' . $api_key

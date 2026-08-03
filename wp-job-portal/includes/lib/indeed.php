@@ -39,7 +39,7 @@ class WPJOBPORTAL_Indeed{
 
         $wpjobportal_url = $wpjobportal_endpoint;
         $post_data = $wpjobportal_args;
-        $response = wp_remote_post( $wpjobportal_url, array('body' => $post_data,'timeout'=>7,'sslverify'=>false));
+        $response = wp_remote_post( $wpjobportal_url, array('body' => $post_data,'timeout'=>7,'sslverify'=>wpjobportal_sslverify($wpjobportal_url)));
         if( !is_wp_error($response) && $response['response']['code'] == 200 && isset($response['body']) ){
             $wpjobportal_result = $response['body'];
         }else{

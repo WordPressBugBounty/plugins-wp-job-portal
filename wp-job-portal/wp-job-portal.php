@@ -5,7 +5,7 @@
   * Plugin URI: https://wpjobportal.com/
   * Description: WP Job Portal is WordPress’s best job board plugin — easy to use, highly configurable, and built to support both job seekers and employers. AI-powered add-ons offers smart job & resume search, and personalized recommendations.
   * Author: WP Job Portal
-  * Version: 2.5.7
+  * Version: 2.5.8
   * Text Domain: wp-job-portal
   * Domain Path: /languages
   * Author URI: https://wpjobportal.com/
@@ -18,6 +18,8 @@ if (!defined('ABSPATH'))
     die('Restricted Access');
 
 class wpjobportal {
+
+    const LEGACY_JOB_ALERT_CRON_KEY = 'f1877c1756a68271d12db39ddc87dad7';
 
     public static $_path;
     public static $_pluginpath;
@@ -76,7 +78,7 @@ class wpjobportal {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '257';
+        self::$_currentversion = '258';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_common = WPJOBPORTALincluder::getJSModel('common');
         self::$_config = WPJOBPORTALincluder::getJSModel('configuration');
@@ -109,6 +111,7 @@ class wpjobportal {
         }
         add_filter('wpmu_drop_tables', array($this, 'wpjobportal_delete_site'));
         add_action('plugins_loaded', array($this, 'wpjobportal_load_plugin_textdomain'));
+        add_action('plugins_loaded', array($this, 'wpjobportal_ensure_job_alert_cron_secret'), 5);
         //PDF Change
         //add_action('template_redirect', array($this, 'pdf'), 5); // Only for the pdf in wordpress
         add_action('admin_init', array($this, 'wpjobportal_activation_redirect'));//for post installation screens
@@ -160,6 +163,36 @@ class wpjobportal {
         }
         return $title;
     }
+
+    /**
+     * The historical alert key was included in the distributed source. Rotate
+     * only that value (or an empty fresh-install value) so custom external cron
+     * keys remain valid after the security update.
+     */
+    function wpjobportal_ensure_job_alert_cron_secret(){
+        global $wpdb;
+        $table = $wpdb->prefix . 'wj_portal_config';
+        $key = $wpdb->get_var($wpdb->prepare(
+            "SELECT configvalue FROM `{$table}` WHERE configname = %s LIMIT 1",
+            'cron_job_alert_key'
+        ));
+
+        if (!empty($key) && !hash_equals(self::LEGACY_JOB_ALERT_CRON_KEY, (string) $key)) {
+            return;
+        }
+
+        $secret = wp_generate_password(64, false, false);
+        if (empty($secret)) {
+            return;
+        }
+
+        $wpdb->query($wpdb->prepare(
+            "UPDATE `{$table}` SET configvalue = %s WHERE configname = %s AND (configvalue = %s OR configvalue = '')",
+            $secret,
+            'cron_job_alert_key',
+            self::LEGACY_JOB_ALERT_CRON_KEY
+        ));
+    }
     // functions from advance custom fields addone
     function wpjobportal_addons_get_activeField($wpjobportal_default_val,$wpjobportal_id,$wpjobportal_id1='',$wpjobportal_id2=''){
         if($wpjobportal_id1 == '' && $wpjobportal_id2 == ''){
@@ -189,7 +222,7 @@ class wpjobportal {
                 if( $plugin == $our_plugin ) {
                     update_option('wpjp_currentversion', self::$_currentversion);
                     include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
-                    WPJOBPORTALupdates::checkUpdates('257');
+                    WPJOBPORTALupdates::checkUpdates('258');
 
                 	// restore colors data
 		            require(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
@@ -231,6 +264,7 @@ class wpjobportal {
     function wpjobportal_includes() {
         // php 8.1 issues
         require_once 'includes/wpjobportalphplib.php';
+        require_once 'includes/http.php';
         if (is_admin()) {
             include_once 'includes/wpjobportaladmin.php';
         }
@@ -1512,7 +1546,7 @@ function wpjobportal_upgrade_completed( $wpjobportal_upgrader_object, $wpjobport
 				update_option('wpjp_currentversion', wpjobportal::$_currentversion);
 				include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
 
-				WPJOBPORTALupdates::checkUpdates('257');
+				WPJOBPORTALupdates::checkUpdates('258');
 
 
 				// restore colors data

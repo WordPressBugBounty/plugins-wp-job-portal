@@ -263,13 +263,13 @@ class WPJOBPORTALconfigurationModel {
     }
 
     function checkCronKey($passkey) {
-
-        $query = "SELECT COUNT(configvalue) FROM `".wpjobportal::$_db->prefix."wj_portal_config` WHERE configname = 'cron_job_alert_key' AND configvalue = '" . esc_sql($passkey) . "'";
-        $wpjobportal_key = wpjobportaldb::get_var($query);
-        if ($wpjobportal_key == 1)
-            return true;
-        else
+        if (!is_string($passkey) || $passkey === '') {
             return false;
+        }
+
+        $query = "SELECT configvalue FROM `" . wpjobportal::$_db->prefix . "wj_portal_config` WHERE configname = %s LIMIT 1";
+        $stored_key = wpjobportaldb::get_var(wpjobportaldb::prepare($query, 'cron_job_alert_key'));
+        return is_string($stored_key) && hash_equals($stored_key, $passkey);
     }
 
     function getLoginRegisterRedirectLink($wpjobportal_defaulUrl,$redirectType) {
