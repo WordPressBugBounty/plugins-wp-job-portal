@@ -241,7 +241,7 @@ class WPJOBPORTALpremiumpluginModel {
             $wpjobportal_addonsql = $this->getAddonSqlForUpdation($wpjobportal_plugin_slug,$wpjobportal_installedversion,$wpjobportal_newversion);
             $wpjobportal_decodedata = json_decode($wpjobportal_addonsql,true);
             $wpjobportal_delimiter = ';';
-			if(isset($wpjobportal_decodedata['update_sql'])) $wpjobportal_update_sql = $wpjobportal_decodedata['update_sql']; else $wpjobportal_update_sql = "";
+            if(isset($wpjobportal_decodedata['update_sql'])) $wpjobportal_update_sql = $wpjobportal_decodedata['update_sql']; else $wpjobportal_update_sql = "";
             if(isset($wpjobportal_decodedata['verfication_status']) && $wpjobportal_update_sql != ""){
                 $lines = wpjobportalphplib::wpJP_explode(PHP_EOL, $wpjobportal_addonsql);
                 if(!empty($lines)){

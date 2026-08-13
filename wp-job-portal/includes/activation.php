@@ -82,7 +82,7 @@ class WPJOBPORTALactivation {
                   PRIMARY KEY (`configname`),
                   FULLTEXT KEY `config_name` (`configname`),
                   FULLTEXT KEY `config_for` (`configfor`)
-                ) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
         wpjobportal::$_db->query($query);
         $runConfig = wpjobportal::$_db->get_var("SELECT COUNT(configname) FROM `" . wpjobportal::$_db->prefix . "wj_portal_config`");
         if ($runConfig == 0) {
@@ -94,7 +94,7 @@ class WPJOBPORTALactivation {
               `ordering` int(11) DEFAULT NULL,
               `serverid` int(11) DEFAULT '0',
               PRIMARY KEY (`id`)
-            ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8;";
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8;";
             wpjobportal::$_db->query($query);
             $query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_careerlevels` (`id`, `title`, `status`, `isdefault`, `ordering`, `serverid`) VALUES(1, 'Student (Undergraduate)', 1, 0, 1, 0),(2, 'Student (Graduate)', 1, 0, 2, 0),(3, 'Entry Level', 1, 1, 3, 0),(4, 'Experienced (Non-Manager)', 1, 0, 4, 0),(5, 'Manager', 1, 0, 5, 0),(6, 'Executive (Department Head, SVP, VP etc)', 1, 0, 6, 0),(7, 'Senior Executive (President, CEO, etc)', 1, 0, 7, 0);";
             wpjobportal::$_db->query($query);
@@ -111,7 +111,7 @@ class WPJOBPORTALactivation {
               `parentid` int(11) NOT NULL,
               `serverid` int(11) DEFAULT NULL,
               PRIMARY KEY (`id`)
-            ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=239 ;";
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=239 ;";
             wpjobportal::$_db->query($query);
             $query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_categories` (`id`, `cat_value`, `cat_title`, `alias`, `isactive`, `isdefault`, `ordering`, `parentid`, `serverid`) VALUES (1, NULL, 'Accounting/Finance', 'accounting-finance', 1, 0, 1, 0, 0),(2, NULL, 'Administrative', 'administrative', 1, 0, 2, 0, 0),(3, NULL, 'Advertising', 'advertising', 1, 0, 3, 0, 0),(4, NULL, 'Airlines/Avionics/Aerospace', 'airlines-avionics-aerospace', 1, 0, 4, 0, 0),(5, NULL, 'Architectural', 'architectural', 1, 0, 5, 0, 0),(6, NULL, 'Automotive', 'automotive', 1, 0, 6, 0, 0),(7, NULL, 'Banking/Finance', 'banking-finance', 1, 0, 7, 0, 0),(8, NULL, 'Biotechnology', 'biotechnology', 1, 0, 8, 0, 0),(9, NULL, 'Civil/Construction', 'civil-construction', 1, 0, 9, 0, 0),(10, NULL, 'Engineering', 'engineering', 1, 0, 10, 0, 0),(11, NULL, 'Cleared Jobs', 'cleared-jobs', 1, 0, 11, 0, 0),(12, NULL, 'Communications', 'communications', 1, 0, 12, 0, 0),(13, NULL, 'Computer/IT', 'computer-it', 1, 1, 13, 0, 0),(14, NULL, 'Construction', 'construction', 1, 0, 14, 0, 0),(15, NULL, 'Consultant/Contractual', 'consultant-contractual', 1, 0, 15, 0, 0),(16, NULL, 'Customer Service', 'customer-service', 1, 0, 16, 0, 0),(17, NULL, 'Defense', 'defense', 1, 0, 17, 0, 0),(18, NULL, 'Design', 'design', 1, 0, 18, 0, 0),(19, NULL, 'Education', 'education', 1, 0, 19, 0, 0),(20, NULL, 'Electrical Engineering', 'electrical-engineering', 1, 0, 20, 0, 0),(21, NULL, 'Electronics Engineering', 'electronics-engineering', 1, 0, 21, 0, 0),(22, NULL, 'Energy', 'energy', 1, 0, 22, 0, 0),(23, NULL, 'Environmental/Safety', 'environmental-safety', 1, 0, 24, 0, 0),(24, NULL, 'Fundraising', 'fundraising', 1, 0, 25, 0, 0),(25, NULL, 'Health/Medicine', 'health-medicine', 1, 0, 26, 0, 0),(26, NULL, 'Homeland Security', 'homeland-security', 1, 0, 27, 0, 0),(27, NULL, 'Human Resources', 'human-resources', 1, 0, 28, 0, 0),(28, NULL, 'Insurance', 'insurance', 1, 0, 29, 0, 0),(29, NULL, 'Intelligence Jobs', 'intelligence-jobs', 1, 0, 30, 0, 0),(30, NULL, 'Internships/Trainees', 'internships-trainees', 1, 0, 31, 0, 0),(31, NULL, 'Legal', 'legal', 1, 0, 32, 0, 0),(32, NULL, 'Logistics/Transportation', 'logistics-transportation', 1, 0, 33, 0, 0),(33, NULL, 'Maintenance', 'maintenance', 1, 0, 34, 0, 0),(34, NULL, 'Management', 'management', 1, 0, 35, 0, 0),(35, NULL, 'Manufacturing/Warehouse', 'manufacturing-warehouse', 1, 0, 36, 0, 0),(36, NULL, 'Marketing', 'marketing', 1, 0, 37, 0, 0),(37, NULL, 'Materials Management', 'materials-management', 1, 0, 38, 0, 0),(38, NULL, 'Mechanical Engineering', 'mechanical-engineering', 1, 0, 39, 0, 0),(39, NULL, 'Mortgage/Real Estate', 'mortgage-real estate', 1, 0, 40, 0, 0),(40, NULL, 'National Security', 'national-security', 1, 0, 41, 0, 0),(41, NULL, 'Part-time/Freelance', 'part-time-freelance', 1, 0, 42, 0, 0),(42, NULL, 'Printing', 'printing', 1, 0, 43, 0, 0),(43, NULL, 'Product Design', 'product-design', 1, 0, 44, 0, 0),(44, NULL, 'Public Relations', 'public-relations', 1, 0, 45, 0, 0),(45, NULL, 'Public Safety', 'public-safety', 1, 0, 46, 0, 0),(46, NULL, 'Research', 'research', 1, 0, 47, 0, 0),(47, NULL, 'Retail', 'retail', 1, 0, 48, 0, 0),(48, NULL, 'Sales', 'sales', 1, 0, 49, 0, 0),(49, NULL, 'Scientific', 'scientific', 1, 0, 50, 0, 0),(50, NULL, 'Shipping/Distribution', 'shipping-distribution', 1, 0, 51, 0, 0),(51, NULL, 'Technicians', 'technicians', 1, 0, 52, 0, 0),(52, NULL, 'Trades', 'trades', 1, 0, 53, 0, 0),(53, NULL, 'Transportation', 'transportation', 1, 0, 54, 0, 0),(54, NULL, 'Transportation Engineering', 'transportation-engineering', 1, 0, 55, 0, 0),(55, NULL, 'Web Site Development', 'web-site-development', 1, 0, 56, 0, 0),(56, NULL, 'Cast Accounting ', 'cast-accounting-', 1, 0, 1, 1, 0),(57, NULL, 'Controllership & Accounting Managment', 'controllership-and-accounting-managment', 1, 0, 2, 1, 0),(58, NULL, 'Payroll ', 'payroll-', 1, 0, 3, 1, 0),(59, NULL, 'Corporate Finance', 'corporate-finance', 1, 0, 4, 1, 0),(60, NULL, 'Administrative Division', 'administrative-division', 1, 0, 1, 2, 0),(61, NULL, 'Autonomous Territories', 'autonomous-territories', 1, 0, 2, 2, 0),(62, NULL, 'Administrative County', 'administrative-county', 1, 0, 3, 2, 0),(63, NULL, 'Administrative Communes', 'administrative-communes', 1, 0, 4, 2, 0),(64, NULL, 'Finance Advertising ', 'finance-advertising-', 1, 0, 1, 3, 0),(65, NULL, 'Advertising-Tourism', 'advertising-tourism', 1, 0, 2, 3, 0),(66, NULL, 'Advertising Social Net', 'advertising-social-net', 1, 0, 3, 3, 0),(67, NULL, 'Distributor Marketing', 'distributor-marketing', 1, 0, 4, 3, 0),(68, NULL, 'Facebook Advertising', 'facebook-advertising', 1, 0, 5, 3, 0),(69, NULL, 'Quality Engineer ', 'quality-engineer-', 1, 0, 1, 4, 0),(70, NULL, 'Office Assistant ', 'office-assistant-', 1, 0, 2, 4, 0),(71, NULL, 'Air Host/hostess', 'air host-hostess', 1, 0, 3, 4, 0),(72, NULL, 'Ticketing/reservation', 'ticketing-reservation', 1, 0, 4, 4, 0),(73, NULL, 'Architectural Drafting', 'architectural-drafting', 1, 0, 1, 5, 0),(74, NULL, 'Enterprize Architecture', 'enterprize-architecture', 1, 0, 2, 5, 0),(75, NULL, 'Architecture Frameworks', 'architecture-frameworks', 1, 0, 3, 5, 0),(76, NULL, 'Automotive Design', 'automotive-design', 1, 0, 1, 6, 0),(77, NULL, 'Autmotive Paints', 'autmotive-paints', 1, 0, 2, 6, 0),(78, NULL, 'Automotive Equipment/Parts', 'automotive equipment-parts', 1, 0, 3, 6, 0),(79, NULL, 'Automotive Search Engine', 'automotive-search-engine', 1, 0, 4, 6, 0),(80, NULL, 'Private Banking', 'private-banking', 1, 0, 1, 7, 0),(81, NULL, 'Stock Brocker', 'stock-brocker', 1, 0, 2, 7, 0),(82, NULL, 'Fractional-reserve Banking', 'fractional-reserve-banking', 1, 0, 3, 7, 0),(83, NULL, 'Mobile Banking', 'mobile-banking', 1, 0, 4, 7, 0),(84, NULL, 'Plant Biotechnology', 'plant-biotechnology', 1, 0, 1, 8, 0),(85, NULL, 'Animal Biotechnology', 'animal-biotechnology', 1, 0, 2, 8, 0),(86, NULL, 'Biotechnology & Medicine', 'biotechnology-and-medicine', 1, 0, 3, 8, 0),(87, NULL, 'Biotechnology & Society', 'biotechnology-and-society', 1, 0, 4, 8, 0),(88, NULL, 'Industrail & Microbial Biotechnonogy', 'industrail-and-microbial-biotechnonogy', 1, 0, 5, 8, 0),(89, NULL, 'Construction (Design & Managment)', 'construction-(design-and-managment)', 1, 0, 1, 9, 0),(90, NULL, 'Construction Engineering ', 'construction-engineering-', 1, 0, 2, 9, 0),(91, NULL, 'Composite Construction', 'composite-construction', 1, 0, 3, 9, 0),(92, NULL, 'Civil Engineering', 'civil-engineering', 1, 0, 1, 10, 0),(93, NULL, 'Software Engineering', 'software-engineering', 1, 0, 2, 10, 0),(94, NULL, 'Nuclear Engineering', 'nuclear-engineering', 1, 0, 3, 10, 0),(95, NULL, 'Ocean Engingeering', 'ocean-engingeering', 1, 0, 4, 10, 0),(96, NULL, 'Transpotation Engineering', 'transpotation-engineering', 1, 0, 5, 10, 0),(97, NULL, 'Security Cleared Jobs', 'security-cleared-jobs', 1, 0, 1, 11, 0),(98, NULL, 'Security Cleared IT Jobs', 'security-cleared-it-jobs', 1, 0, 2, 11, 0),(99, NULL, 'Confidential & Secret Security Clearance Job', 'confidential-and-secret-security-clearance-job', 1, 0, 3, 11, 0),(100, NULL, 'Verbal', 'verbal', 1, 0, 1, 12, 0),(101, NULL, 'E-mail', 'e-mail', 1, 0, 2, 12, 0),(102, NULL, 'Non-verbal', 'non-verbal', 1, 0, 3, 12, 0),(103, NULL, 'Computer Consulting Services', 'computer-consulting-services', 1, 0, 1, 13, 0),(104, NULL, 'Computer Installations Services', 'computer-installations-services', 1, 0, 2, 13, 0),(105, NULL, 'Software Vendors', 'software-vendors', 1, 1, 3, 13, 0),(106, NULL, 'Renovaiton', 'renovaiton', 1, 0, 1, 14, 0),(107, NULL, 'Addition', 'addition', 1, 0, 2, 14, 0),(108, NULL, 'New Construction', 'new-construction', 1, 0, 3, 14, 0),(109, NULL, 'Organization Development', 'organization-development', 1, 0, 1, 15, 0),(110, NULL, 'Construction Management', 'construction-management', 1, 0, 2, 15, 0),(111, NULL, 'Managment Consulting ', 'managment-consulting-', 1, 0, 3, 15, 0),(112, NULL, 'High Touch Customer Service', 'high-touch-customer-service', 1, 0, 1, 16, 0),(113, NULL, 'Low Touch Customer Service', 'low-touch-customer-service', 1, 0, 2, 16, 0),(114, NULL, 'Bad Touch Customer Service', 'bad-touch-customer-service', 1, 0, 3, 16, 0),(115, NULL, 'By Using legal services for the poor', 'by-using-legal-services-for-the-poor', 1, 0, 1, 17, 0),(116, NULL, 'By Using Retained Counsel', 'by-using-retained-counsel', 1, 0, 2, 17, 0),(117, NULL, 'By Self-representation', 'by-self-representation', 1, 0, 3, 17, 0),(118, NULL, 'Project Subtype Design', 'project-subtype-design', 1, 0, 1, 18, 0),(119, NULL, 'Graphic Design', 'graphic-design', 1, 0, 2, 18, 0),(120, NULL, 'Interior Desing', 'interior-desing', 1, 0, 3, 18, 0),(121, NULL, 'IT or Engineering Education', 'it-or-engineering-education', 1, 0, 1, 19, 0),(122, NULL, 'Commerce & Managment', 'commerce-and-managment', 1, 0, 2, 19, 0),(123, NULL, 'Medical Education', 'medical-education', 1, 0, 3, 19, 0),(124, NULL, 'Power Engineering', 'power-engineering', 1, 0, 1, 20, 0),(125, NULL, 'Instrumentation', 'instrumentation', 1, 0, 2, 20, 0),(126, NULL, 'Telecommunication', 'telecommunication', 1, 0, 3, 20, 0),(127, NULL, 'Signal Processing', 'signal-processing', 1, 0, 4, 20, 0),(128, NULL, 'Electromagnetics', 'electromagnetics', 1, 0, 1, 21, 0),(129, NULL, 'Network Analysis', 'network-analysis', 1, 0, 2, 21, 0),(130, NULL, 'Control Systems', 'control-systems', 1, 0, 3, 21, 0),(131, NULL, 'Thermal Energy', 'thermal-energy', 1, 0, 1, 22, 0),(132, NULL, 'Chemical Energy', 'chemical-energy', 1, 0, 2, 22, 0),(133, NULL, 'Electrical Energy', 'electrical-energy', 1, 0, 3, 22, 0),(134, NULL, 'Nuclear Energy', 'nuclear-energy', 1, 0, 4, 22, 0),(135, NULL, 'Software Engineering ', 'software-engineering', 1, 0, 1, 23, 0),(136, NULL, 'Civil Engineering', 'civil-engineering-', 1, 0, 2, 23, 0),(137, NULL, 'Nuclear Engineering', 'nuclear-engineering', 1, 0, 3, 23, 0),(138, NULL, 'Nuclear Safety', 'nuclear-safety', 1, 0, 1, 24, 0),(139, NULL, 'Agriculture Safety', 'agriculture-safety', 1, 0, 2, 24, 0),(140, NULL, 'Occupational Health Safety', 'occupational-health-safety', 1, 0, 3, 24, 0),(141, NULL, 'Unique Fundraisers', 'unique-fundraisers', 1, 0, 1, 25, 0),(142, NULL, 'Sports Fundraiserse', 'sports-fundraiserse', 1, 0, 2, 25, 0),(143, NULL, 'Fundraisers', 'fundraisers', 1, 0, 3, 25, 0),(144, NULL, 'Staying Informed', 'staying-informed', 1, 0, 1, 26, 0),(145, NULL, 'Medical Edcuation ', 'medical-edcuation-', 1, 0, 2, 26, 0),(146, NULL, 'Managing a partucular disease', 'managing-a-partucular-disease', 1, 0, 3, 26, 0),(147, NULL, 'Customs & Border Protection', 'customs-and-border-protection', 1, 0, 1, 27, 0),(148, NULL, 'Federal Law & Enforcement', 'federal-law-and-enforcement', 1, 0, 2, 27, 0),(149, NULL, 'Nation Protection', 'nation-protection', 1, 0, 3, 27, 0),(150, NULL, 'Benefits Administrators', 'benefits-administrators', 1, 0, 1, 28, 0),(151, NULL, 'Executive Compensation Analysts', 'executive-compensation-analysts', 1, 0, 2, 28, 0),(152, NULL, 'Managment Analysts', 'managment-analysts', 1, 0, 3, 28, 0),(153, NULL, 'Health Insurance ', 'health-insurance-', 1, 0, 1, 29, 0),(154, NULL, 'Life Insurance', 'life-insurance', 1, 0, 2, 29, 0),(155, NULL, 'Vehicle Insurance', 'vehicle-insurance', 1, 0, 3, 29, 0),(156, NULL, 'Artificial Intelligence ', 'artificial-intelligence', 1, 0, 1, 30, 0),(157, NULL, 'Predictive Analytics ', 'predictive-analytics', 1, 0, 2, 30, 0),(158, NULL, 'Science & Technology', 'science-and-technology', 1, 0, 3, 30, 0),(159, NULL, 'Work Experience internship', 'work-experience-internship', 1, 0, 1, 31, 0),(160, NULL, 'Research internship', 'research-internship', 1, 0, 2, 31, 0),(161, NULL, 'Sales & Marketing Intern', 'sales-and-marketing-intern', 1, 0, 3, 31, 0),(162, NULL, 'According To Law', 'according-to-law', 1, 0, 1, 32, 0),(163, NULL, 'Defined Rule', 'defined-rule', 1, 0, 2, 32, 0),(164, NULL, 'Shipping ', 'shipping-', 1, 0, 1, 33, 0),(165, NULL, 'Transpotation Managment', 'transpotation-managment', 1, 0, 2, 33, 0),(166, NULL, 'Third-party Logistics Provider', 'third-party-logistics-provider', 1, 0, 3, 33, 0),(167, NULL, 'General Maintenance', 'general-maintenance', 1, 0, 1, 34, 0),(168, NULL, 'Automobile Maintenance', 'automobile-maintenance', 1, 0, 2, 34, 0),(169, NULL, 'Equipment Manitenance', 'equipment-manitenance', 1, 0, 3, 34, 0),(170, NULL, 'Project Managment', 'project-managment', 1, 0, 1, 35, 0),(171, NULL, 'Planning ', 'planning-', 1, 0, 2, 35, 0),(172, NULL, 'Risk Managment', 'risk-managment', 1, 0, 3, 35, 0),(173, NULL, 'Quality Assurance', 'quality-assurance', 1, 0, 1, 36, 0),(174, NULL, 'Product Manager', 'product-manager', 1, 0, 2, 36, 0),(175, NULL, 'Planning Supervisor', 'planning-supervisor', 1, 0, 3, 36, 0),(176, NULL, 'Networking ', 'networking-', 1, 0, 1, 37, 0),(177, NULL, 'Direct Mail Marketing', 'direct-mail-marketing', 1, 0, 2, 37, 0),(178, NULL, 'Media Advertising ', 'media-advertising-', 1, 0, 3, 37, 0),(179, NULL, 'Supply Chain', 'supply-chain', 1, 0, 1, 38, 0),(180, NULL, 'Hazardous Materials Management', 'hazardous-materials-management', 1, 0, 2, 38, 0),(181, NULL, 'Materials Inventory Managment', 'materials-inventory-managment', 1, 0, 3, 38, 0),(182, NULL, 'Aerospace', 'aerospace', 1, 0, 1, 39, 0),(183, NULL, 'Automotive', 'automotive', 1, 0, 2, 39, 0),(184, NULL, 'Biomedical', 'biomedical', 1, 0, 3, 39, 0),(185, NULL, 'Mechanical', 'mechanical', 1, 0, 4, 39, 0),(186, NULL, 'Naval', 'naval', 1, 0, 5, 39, 0),(187, NULL, 'Conventional Mortgage', 'conventional-mortgage', 1, 0, 1, 40, 0),(188, NULL, 'Adjustable Rate Mortgage', 'adjustable-rate-mortgage', 1, 0, 2, 40, 0),(189, NULL, 'Commercial Mortgages', 'commercial-mortgages', 1, 0, 3, 40, 0),(190, NULL, 'Economic Security', 'economic-security', 1, 0, 1, 41, 0),(191, NULL, 'Environmental Security', 'environmental-security', 1, 0, 2, 41, 0),(192, NULL, 'Military Security', 'military-security', 1, 0, 3, 41, 0),(193, NULL, 'Freelance Portfolios', 'freelance-portfolios', 1, 0, 1, 42, 0),(194, NULL, 'Freelance Freedom', 'freelance-freedom', 1, 0, 2, 42, 0),(195, NULL, 'Freelance Jobs', 'freelance-jobs', 1, 0, 3, 42, 0),(196, NULL, 'Offset Lithographp', 'offset-lithographp', 1, 0, 1, 43, 0),(197, NULL, 'Themography Raised Printing', 'themography-raised-printing', 1, 0, 2, 43, 0),(198, NULL, 'Digital Printing ', 'digital-printing-', 1, 0, 3, 43, 0),(199, NULL, 'idea Generation', 'idea-generation', 1, 0, 1, 44, 0),(200, NULL, 'Need Based Generation', 'need-based-generation', 1, 0, 2, 44, 0),(201, NULL, 'Design Solution', 'design-solution', 1, 0, 3, 44, 0),(202, NULL, 'Media Relations', 'media-relations', 1, 0, 1, 45, 0),(203, NULL, 'Media Tours ', 'media-tours-', 1, 0, 2, 45, 0),(204, NULL, 'Newsletters ', 'newsletters-', 1, 0, 3, 45, 0),(205, NULL, 'Automised Security', 'automised-security', 1, 0, 1, 46, 0),(206, NULL, 'Environmental & Social Safety', 'environmental-and-social-safety', 1, 0, 2, 46, 0),(207, NULL, 'Basic Research', 'basic-research', 1, 0, 1, 47, 0),(208, NULL, 'Applied Research', 'applied-research', 1, 0, 2, 47, 0),(209, NULL, 'Methods & Appraches', 'methods-and-appraches', 1, 0, 3, 47, 0),(210, NULL, 'Department Stores', 'department-stores', 1, 0, 1, 48, 0),(211, NULL, 'Discount Stores', 'discount-stores', 1, 0, 2, 48, 0),(212, NULL, 'Supermarkets', 'supermarkets', 1, 0, 3, 48, 0),(213, NULL, 'Sales Contracts', 'sales-contracts', 1, 0, 1, 49, 0),(214, NULL, 'Sales Forecasts', 'sales-forecasts', 1, 0, 2, 49, 0),(215, NULL, 'Sales Managment', 'sales-managment', 1, 0, 3, 49, 0),(216, NULL, 'Scientific Managment', 'scientific-managment', 1, 0, 1, 50, 0),(217, NULL, 'Scientific Research', 'scientific-research', 1, 0, 2, 50, 0),(218, NULL, 'Scientific invenctions', 'scientific-invenctions', 1, 0, 3, 50, 0),(219, NULL, 'Shppping/Distrubution Companies', 'shppping-distrubution companies', 1, 0, 1, 51, 0),(220, NULL, 'Services', 'services', 1, 0, 2, 51, 0),(221, NULL, 'Channels & Softwares', 'channels-and-softwares', 1, 0, 3, 51, 0),(222, NULL, 'Medical Technicians', 'medical-technicians', 1, 0, 1, 52, 0),(223, NULL, 'Electrical Technicians', 'electrical-technicians', 1, 0, 2, 52, 0),(224, NULL, 'Accounting Technicians', 'accounting-technicians', 1, 0, 3, 52, 0),(225, NULL, 'Construction Trade', 'construction-trade', 1, 0, 1, 53, 0),(226, NULL, 'Stock Trade', 'stock-trade', 1, 0, 2, 53, 0),(227, NULL, 'skilled Trade', 'skilled-trade', 1, 0, 3, 53, 0),(228, NULL, 'Option Trade', 'option-trade', 1, 0, 4, 53, 0),(229, NULL, 'Transpotation System', 'transpotation-system', 1, 0, 1, 54, 0),(230, NULL, 'Human-Powered', 'human-powered', 1, 0, 2, 54, 0),(231, NULL, 'Airline,Train,bus,car', 'airline-train-bus-car', 1, 0, 3, 54, 0),(232, NULL, 'Subway & Civil', 'subway-and-civil', 1, 0, 1, 55, 0),(233, NULL, 'Traffic Highway Transpotation', 'traffic-highway-transpotation', 1, 0, 2, 55, 0),(234, NULL, 'Small Business', 'small-business', 1, 0, 1, 56, 0),(235, NULL, 'E-Commerce Sites', 'e-commerce-sites', 1, 0, 2, 56, 0),(236, NULL, 'Portals', 'portals', 1, 0, 3, 56, 0),(237, NULL, 'Search Engines', 'search-engines', 1, 0, 4, 56, 0),(238, NULL, 'Personal,Commercial,Govt', 'personal-commercial-govt', 1, 0, 5, 56, 0);";
             wpjobportal::$_db->query($query);
@@ -133,7 +133,7 @@ class WPJOBPORTALactivation {
                       KEY `countryid` (`countryid`),
                       KEY `stateid` (`stateid`),
                       FULLTEXT KEY `name` (`name`)
-                    ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ";
+                    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ";
             wpjobportal::$_db->query($query);
 
             // inserting cities form file query code start
@@ -209,8 +209,9 @@ class WPJOBPORTALactivation {
                 `youtube_link` varchar(255) DEFAULT NULL,
 
                 PRIMARY KEY (`id`),
-                KEY `companies_uid` (`uid`)
-              ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;";
+                KEY `companies_uid` (`uid`),
+                KEY `companies_status_created` (`status`, `created`)
+              ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;";
             wpjobportal::$_db->query($query);
 
 
@@ -221,7 +222,7 @@ class WPJOBPORTALactivation {
               `serverid` int(11) DEFAULT NULL,
               PRIMARY KEY (`id`),
               KEY `companyid` (`companyid`)
-            ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;";
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;";
             wpjobportal::$_db->query($query);
 
           $query = "INSERT INTO  `" . wpjobportal::$_db->prefix . "wj_portal_config` (`configname`, `configvalue`, `configfor`, `addon`) VALUES
@@ -468,7 +469,8 @@ class WPJOBPORTALactivation {
               ('searchjobtag', '4', 'job', 'tag'),
               ('categories_colsperrow', '3', 'category', NULL),
               ('productcode', 'wpjobportal', 'default', NULL),
-              ('versioncode', '2.5.8', 'default', NULL),
+              ('versioncode', '2.5.9', 'default', NULL),
+              ('migration_framework_version', '1', 'default', NULL),
               ('producttype', 'free', 'default', NULL),
               ('vis_jscredits', '0', 'jscontrolpanel', 'credits'),
               ('vis_emcredits', '1', 'emcontrolpanel', NULL),
@@ -730,7 +732,7 @@ class WPJOBPORTALactivation {
               `serverid` int(11) DEFAULT NULL,
               PRIMARY KEY (`id`),
               FULLTEXT KEY `name` (`name`)
-            ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=215;";
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=215;";
             wpjobportal::$_db->query($query);
 
             $query = "
@@ -964,7 +966,7 @@ class WPJOBPORTALactivation {
               `serverid` int(11) DEFAULT NULL,
               `smallestunit` int(11) DEFAULT '100',
               PRIMARY KEY (`id`)
-            ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;";
+            ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;";
             wpjobportal::$_db->query($query);
 
           $query = "  INSERT INTO  `" . wpjobportal::$_db->prefix . "wj_portal_currencies` (`id`, `title`, `symbol`, `code`, `status`, `default`, `ordering`, `serverid`, `smallestunit`) VALUES
@@ -987,7 +989,7 @@ class WPJOBPORTALactivation {
             `status` tinyint(1) DEFAULT NULL,
             `created` datetime DEFAULT NULL,
             PRIMARY KEY (`id`)
-          ) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8; ";
+          ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8; ";
           wpjobportal::$_db->query($query);
 
         $query = " INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_emailtemplates` (`id`, `uid`, `templatefor`, `title`, `subject`, `body`, `status`, `created`) VALUES
@@ -1050,7 +1052,7 @@ class WPJOBPORTALactivation {
               `jobseeker_visitor` tinyint(1) NOT NULL,
               `employer_visitor` int(11) NOT NULL,
               PRIMARY KEY (`id`)
-            ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26;";
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26;";
 
             wpjobportal::$_db->query($query);
 
@@ -1089,7 +1091,7 @@ class WPJOBPORTALactivation {
               `created` datetime NOT NULL,
               `profileid` int(11) NOT NULL DEFAULT '0',
               PRIMARY KEY (`id`)
-            ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='latin1_swedish_ci';";
+            ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='latin1_swedish_ci';";
 
           wpjobportal::$_db->query($query);
 
@@ -1102,7 +1104,7 @@ class WPJOBPORTALactivation {
               `price` int(40) NOT NULL,
               `created` datetime NOT NULL,
               PRIMARY KEY (`id`)
-            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 
             wpjobportal::$_db->query($query);
 
@@ -1140,7 +1142,7 @@ class WPJOBPORTALactivation {
             `visible_field` varchar(255) DEFAULT NULL,
             `visibleparams` text DEFAULT NULL,
             PRIMARY KEY (`id`)
-          ) ENGINE=MyISAM AUTO_INCREMENT=430 DEFAULT CHARSET=utf8;";
+          ) ENGINE=InnoDB AUTO_INCREMENT=430 DEFAULT CHARSET=utf8;";
 
         wpjobportal::$_db->query($query);
 
@@ -1271,7 +1273,7 @@ class WPJOBPORTALactivation {
               `ordering` int(11) DEFAULT NULL,
               `serverid` int(11) DEFAULT '0',
               PRIMARY KEY (`id`)
-            ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;";
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;";
             wpjobportal::$_db->query($query);
 
             $query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_heighesteducation` (`id`, `title`, `isactive`, `isdefault`, `ordering`, `serverid`) VALUES(1, 'University', 1, 1, 1, 0),(2, 'College', 1, 0, 2, 0),(3, 'High School', 1, 0, 3, 0),(4, 'No School', 1, 0, 4, 0);";
@@ -1300,8 +1302,10 @@ class WPJOBPORTALactivation {
                 PRIMARY KEY (`id`),
                 KEY `jobapply_uid` (`uid`),
                 KEY `jobapply_jobid` (`jobid`),
-                KEY `jobapply_cvid` (`cvid`)
-              ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+                KEY `jobapply_cvid` (`cvid`),
+                KEY `jobapply_job_status` (`jobid`, `action_status`),
+                KEY `jobapply_date` (`apply_date`)
+              ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
               ;";
             wpjobportal::$_db->query($query);
 
@@ -1313,7 +1317,7 @@ class WPJOBPORTALactivation {
               PRIMARY KEY (`id`),
               KEY `jobid` (`jobid`),
               KEY `cityid` (`cityid`)
-            ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;";
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;";
             wpjobportal::$_db->query($query);
             //JOB FIELD DONE
             $query = "CREATE TABLE IF NOT EXISTS `" . wpjobportal::$_db->prefix . "wj_portal_jobs` (
@@ -1401,6 +1405,9 @@ class WPJOBPORTALactivation {
               PRIMARY KEY (`id`),
               KEY `jobcategory` (`jobcategory`),
               KEY `jobs_companyid` (`companyid`),
+              KEY `jobs_uid` (`uid`),
+              KEY `jobs_status_created` (`status`, `created`),
+              KEY `jobs_publish_window` (`startpublishing`, `stoppublishing`),
               FULLTEXT KEY `aijobsearchtext` (`aijobsearchtext`),
               FULLTEXT KEY `aijobsearchdescription` (`aijobsearchdescription`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
@@ -1416,7 +1423,7 @@ class WPJOBPORTALactivation {
               `ordering` int(11) DEFAULT NULL,
               `serverid` int(11) DEFAULT NULL,
               PRIMARY KEY (`id`)
-            ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;";
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;";
             wpjobportal::$_db->query($query);
             $query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_jobstatus` (`id`, `title`, `isactive`, `isdefault`, `ordering`, `serverid`) VALUES(1, 'Sourcing', 1, 1, 1, 0),(2, 'Interviewing', 1, 0, 2, 0),(3, 'Closed to New Applicants', 1, 0, 3, 0),(4, 'Finalists Identified', 1, 0, 4, 0),(5, 'Pending Approval', 1, 0, 5, 0),(6, 'Hold', 1, 0, 6, 0);";
             wpjobportal::$_db->query($query);
@@ -1432,7 +1439,7 @@ class WPJOBPORTALactivation {
               `serverid` int(11) DEFAULT NULL,
               `alias` varchar(300) DEFAULT NULL,
               PRIMARY KEY (`id`)
-            ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;";
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;";
             wpjobportal::$_db->query($query);
 
             $query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` (`id`, `title`, `color`, `isactive`, `isdefault`, `ordering`, `status`, `serverid`, `alias`) VALUES(1, 'Full-Time', '#00abfa', 1, 1, 1, 1, 1, 'full-time'),(2, 'Part-Time', '#b557b5', 1, 0, 2, 0, 0, 'part-time'),(3, 'Internship', '#11872d', 1, 0, 3, 0, 0, 'internship');";
@@ -1478,6 +1485,9 @@ class WPJOBPORTALactivation {
               `airesumesearchtext` MEDIUMTEXT NULL,
               `airesumesearchdescription` MEDIUMTEXT NULL,
               PRIMARY KEY (`id`),
+              KEY `resume_uid` (`uid`),
+              KEY `resume_status_searchable` (`status`, `searchable`),
+              KEY `resume_created` (`created`),
               FULLTEXT KEY `airesumesearchtext` (`airesumesearchtext`),
               FULLTEXT KEY `airesumesearchdescription` (`airesumesearchdescription`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
@@ -1497,7 +1507,7 @@ class WPJOBPORTALactivation {
                 `serverstatus` varchar(255) DEFAULT NULL,
                 `serverid` int(11) DEFAULT NULL,
                 PRIMARY KEY (`id`)
-              ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;";
+              ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;";
             wpjobportal::$_db->query($query);
 
             $query = "CREATE TABLE IF NOT EXISTS `" . wpjobportal::$_db->prefix . "wj_portal_resumeemployers` (
@@ -1517,7 +1527,7 @@ class WPJOBPORTALactivation {
               `serverstatus` varchar(255) DEFAULT NULL,
               `serverid` int(11) DEFAULT NULL,
               PRIMARY KEY (`id`)
-            ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;";
+            ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;";
             wpjobportal::$_db->query($query);
 
 
@@ -1532,7 +1542,7 @@ class WPJOBPORTALactivation {
             `serverstatus` varchar(255) DEFAULT NULL,
             `serverid` int(11) DEFAULT NULL,
             PRIMARY KEY (`id`)
-          ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;";
+          ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;";
           wpjobportal::$_db->query($query);
 
 
@@ -1550,7 +1560,7 @@ class WPJOBPORTALactivation {
             `todate` varchar(255) DEFAULT NULL,
             `params` longtext NOT NULL,
             PRIMARY KEY (`id`)
-          ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;";
+          ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;";
           wpjobportal::$_db->query($query);
 
 
@@ -1565,7 +1575,7 @@ class WPJOBPORTALactivation {
           `serverstatus` varchar(255) DEFAULT NULL,
           `serverid` int(11) DEFAULT NULL,
           PRIMARY KEY (`id`)
-        ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;";
+        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;";
           wpjobportal::$_db->query($query);
 
          $query = "CREATE TABLE IF NOT EXISTS `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` (
@@ -1576,7 +1586,7 @@ class WPJOBPORTALactivation {
               `ordering` int(11) DEFAULT NULL,
               `serverid` int(11) DEFAULT NULL,
               PRIMARY KEY (`id`)
-            ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;";
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;";
             wpjobportal::$_db->query($query);
 
 
@@ -1595,7 +1605,7 @@ class WPJOBPORTALactivation {
               PRIMARY KEY (`id`),
               KEY `countryid` (`countryid`),
               FULLTEXT KEY `name` (`name`)
-            ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=91 ;";
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=91 ;";
             wpjobportal::$_db->query($query);
 
             $query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_states` (`id`, `name`, `localname`, `internationalname`, `shortRegion`, `countryid`, `enabled`, `serverid`) VALUES
@@ -1683,7 +1693,7 @@ class WPJOBPORTALactivation {
               `uid` int(11) NOT NULL,
               `created` datetime NOT NULL,
               PRIMARY KEY (`id`)
-            ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;";
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;";
             wpjobportal::$_db->query($query);
 
             $query = "CREATE TABLE IF NOT EXISTS `" . wpjobportal::$_db->prefix . "wj_portal_system_errors` (
@@ -1693,7 +1703,7 @@ class WPJOBPORTALactivation {
               `isview` tinyint(1) DEFAULT '0',
               `created` datetime DEFAULT NULL,
               PRIMARY KEY (`id`)
-            ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;";
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;";
             wpjobportal::$_db->query($query);
 
             $query = "CREATE TABLE IF NOT EXISTS `" . wpjobportal::$_db->prefix . "wj_portal_users` (
@@ -1710,7 +1720,7 @@ class WPJOBPORTALactivation {
                 `status` tinyint(1) NOT NULL,
                 `created` datetime NOT NULL,
                 PRIMARY KEY (`id`)
-              ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;";
+              ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;";
             wpjobportal::$_db->query($query);
 
             $query = "CREATE TABLE IF NOT EXISTS `" . wpjobportal::$_db->prefix . "wj_portal_slug` (

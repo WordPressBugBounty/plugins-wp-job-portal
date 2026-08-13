@@ -50,6 +50,9 @@ if ($wpjobportal_module) {
 			case 'systemerror':
 				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('Error Log', 'wp-job-portal')).'</h1>';
 			break;
+			case 'systemstatus':
+				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('System Status', 'wp-job-portal')).'</h1>';
+			break;
 			case 'shift':
 				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('Shifts', 'wp-job-portal')).'</h1>
 	        			<a class="wpjobportal-add-link button" href="'.esc_url_raw(admin_url('admin.php?page=wpjobportal_shift&wpjobportallt=formshift')).' title="'. esc_attr(__('Add New Shift','wp-job-portal')).'">

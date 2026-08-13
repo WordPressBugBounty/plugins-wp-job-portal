@@ -29,13 +29,15 @@ class WPJOBPORTALsystemerrorModel {
     function addSystemError($possible_error_msg = '') {
         // 1. Always grab the URL for context
         $error_data = array(
-            'url' => isset($_SERVER['REQUEST_URI']) ? esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])) : 'Unknown URL'
+            'url' => isset($_SERVER['REQUEST_URI'])
+                ? WPJOBPORTAL_Redactor::redact(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])))
+                : 'Unknown URL'
         );
 
         // 2. If it's a custom error, skip the DB and backtrace stuff
         if ( $possible_error_msg !== '' ) {
 
-            $error_data['error'] = $possible_error_msg;
+            $error_data['error'] = WPJOBPORTAL_Redactor::redact($possible_error_msg);
 
         } else {
             // 3. Otherwise, it's an internal DB error: gather query, error, and trace
@@ -58,9 +60,9 @@ class WPJOBPORTALsystemerrorModel {
 
             $called_by_path = implode(' <- ', $trace_path);
 
-            $error_data['error'] = $error_msg ? $error_msg : 'Unknown DB Error';
-            $error_data['query'] = $failed_query ? $failed_query : 'No query recorded';
-            $error_data['path']  = $called_by_path;
+            $error_data['error'] = WPJOBPORTAL_Redactor::redact($error_msg ? $error_msg : 'Unknown DB Error');
+            $error_data['query'] = WPJOBPORTAL_Redactor::redact($failed_query ? $failed_query : 'No query recorded');
+            $error_data['path']  = WPJOBPORTAL_Redactor::redact($called_by_path);
         }
 
         // 4. Prepare for insertion

@@ -8961,17 +8961,20 @@ span.wjportal-pkg-list-item-price-discount {
     font-weight: 600;
     font-size: var(--wpjp-body-font-size);
     width: 100%;
+    border: 1px solid var(--wpjp-primary-color);
     background: var(--wpjp-primary-color);
     text-decoration: none;
     padding: 10px 24px;
     border-radius: 8px;
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
 
 
 .wjportal-packages-list .wjportal-pkg-list-item-act-btn:hover {
     background-color: var(--wpjp-secondary-color);
+    border-color: var(--wpjp-secondary-color);
     color: white;
 }
 

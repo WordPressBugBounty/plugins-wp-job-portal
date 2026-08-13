@@ -80,7 +80,9 @@ $wpjobportal_resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[
                     var allowedExt = \"". wpjobportal::$_config->getConfigurationByConfigName('document_file_type')."\";
                     var allowedSize = \"". wpjobportal::$_config->getConfigurationByConfigName('document_file_size')."\";
                     var maxFiles = ". wpjobportal::$_config->getConfigurationByConfigName('document_max_files').";
-                    allowedExt = allowedExt.split(',');
+                    allowedExt = allowedExt.split(',').map(function(ext) {
+                        return ext.trim().toLowerCase().replace(/^\.+/, '');
+                    }).filter(Boolean);
                     // check if the file is already inserted or not
                     var alreadyinserted = 0;
                     if (resumefiles.length > 0){
@@ -789,11 +791,13 @@ $wpjobportal_resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[
     $wpjobportal_inline_js_script = "
     function readURL(input, srcimage) {
         if (input.files && input.files[0]) {
-            var fileext = input.files[0].name.split('.').pop();
+            var fileext = input.files[0].name.split('.').pop().trim().toLowerCase();
             var filesize = (input.files[0].size / 1024);
             var allowedsize = \"". wpjobportal::$_config->getConfigurationByConfigName('resume_photofilesize')."\";
             var allowedExt = \"". wpjobportal::$_config->getConfigurationByConfigName('image_file_type')."\";
-            allowedExt = allowedExt.split(',');
+            allowedExt = allowedExt.split(',').map(function(ext) {
+                return ext.trim().toLowerCase().replace(/^\.+/, '');
+            }).filter(Boolean);
             if (jQuery.inArray(fileext, allowedExt) != - 1){
                 if (allowedsize > filesize){
                     var reader = new FileReader();

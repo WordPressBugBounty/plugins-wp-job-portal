@@ -124,7 +124,7 @@ class WPJOBPORTALuploads {
             $filetyperesult = wp_check_filetype(sanitize_file_name($_FILES['logo']['name']));
             if(!empty($filetyperesult['ext']) && !empty($filetyperesult['type'])){
                 $wpjobportal_image_file_types = wpjobportal::$_config->getConfigurationByConfigName('image_file_type');
-                if(wpjobportalphplib::wpJP_strstr($wpjobportal_image_file_types, $filetyperesult['ext'])){
+                if(WPJOBPORTAL_File_Policy_Service::is_extension_allowed($filetyperesult['ext'], $wpjobportal_image_file_types)){
                     $wpjobportal_result = wp_handle_upload($file, array('test_form' => false));
                     if ( $wpjobportal_result && ! isset( $wpjobportal_result['error'] ) ) {
                         $filename = wpjobportalphplib::wpJP_basename( $wpjobportal_result['file'] );
@@ -327,8 +327,7 @@ class WPJOBPORTALuploads {
 
     function uploadFile($file, $wpjobportal_allowed_types, $wpjobportal_allowed_size){
         $filetyperesult = wp_check_filetype($file['name']);
-        $wpjobportal_allowed_types  = array_map('strtolower', wpjobportalphplib::wpJP_explode(',', $wpjobportal_allowed_types));
-        if( !in_array(wpjobportalphplib::wpJP_strtolower($filetyperesult['ext']), $wpjobportal_allowed_types) ){
+        if(!WPJOBPORTAL_File_Policy_Service::is_extension_allowed($filetyperesult['ext'], $wpjobportal_allowed_types)){
             return array('error'=>esc_html(__('File extension is mismatched', 'wp-job-portal')));
         }
         $filesize = $file['size'] / 1024;
@@ -413,7 +412,7 @@ class WPJOBPORTALuploads {
         $filetyperesult = wp_check_filetype(sanitize_file_name($_FILES['photo']['name']));
         if(!empty($filetyperesult['ext']) && !empty($filetyperesult['type'])){
             $wpjobportal_image_file_types = wpjobportal::$_config->getConfigurationByConfigName('image_file_type');
-            if(wpjobportalphplib::wpJP_strstr($wpjobportal_image_file_types, $filetyperesult['ext'])){
+            if(WPJOBPORTAL_File_Policy_Service::is_extension_allowed($filetyperesult['ext'], $wpjobportal_image_file_types)){
                 $wpjobportal_result = wp_handle_upload($file, array('test_form' => false));
                 if ( $wpjobportal_result && ! isset( $wpjobportal_result['error'] ) ) {
                     $filename = wpjobportalphplib::wpJP_basename( $wpjobportal_result['file'] );
@@ -505,7 +504,7 @@ class WPJOBPORTALuploads {
         $filetyperesult = wp_check_filetype(sanitize_file_name($_FILES['photo']['name']));
         if(!empty($filetyperesult['ext']) && !empty($filetyperesult['type'])){
             $wpjobportal_image_file_types = wpjobportal::$_config->getConfigurationByConfigName('image_file_type');
-            if(wpjobportalphplib::wpJP_strstr($wpjobportal_image_file_types, $filetyperesult['ext'])){
+            if(WPJOBPORTAL_File_Policy_Service::is_extension_allowed($filetyperesult['ext'], $wpjobportal_image_file_types)){
                 $wpjobportal_result = wp_handle_upload($file, array('test_form' => false));
                 if ( $wpjobportal_result && ! isset( $wpjobportal_result['error'] ) ) {
                     $filename = wpjobportalphplib::wpJP_basename( $wpjobportal_result['file'] );
@@ -602,7 +601,7 @@ class WPJOBPORTALuploads {
                     $filetyperesult = wp_check_filetype(sanitize_file_name($_FILES['resumefiles']['name'][$wpjobportal_key]));
                     if(!empty($filetyperesult['ext']) && !empty($filetyperesult['type'])){
                         $document_file_types = wpjobportal::$_config->getConfigurationByConfigName('document_file_type');
-                        if(wpjobportalphplib::wpJP_strstr($document_file_types, $filetyperesult['ext'])){
+                        if(WPJOBPORTAL_File_Policy_Service::is_extension_allowed($filetyperesult['ext'], $document_file_types)){
                             $wpjobportal_result = wp_handle_upload($file, array('test_form' => false));
                             if ( $wpjobportal_result && ! isset( $wpjobportal_result['error'] ) ) {
                                 $filename = wpjobportalphplib::wpJP_basename( $wpjobportal_result['file'] );
@@ -704,7 +703,7 @@ class WPJOBPORTALuploads {
             $fileext = implode(',', $fileext);
             //$wpjobportal_image_file_types = WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue('file_extension');
             $wpjobportal_image_file_types = $fileext;
-            if(wpjobportalphplib::wpJP_strstr($wpjobportal_image_file_types, $filetyperesult['ext'])){
+            if(WPJOBPORTAL_File_Policy_Service::is_extension_allowed($filetyperesult['ext'], $wpjobportal_image_file_types)){
 
                 $wpjobportal_result = wp_handle_upload($file, array('test_form' => false));
                 if (isset( $wpjobportal_result['error'] ) ) {
@@ -768,7 +767,7 @@ class WPJOBPORTALuploads {
             $filetyperesult = wp_check_filetype(sanitize_file_name($_FILES['default_image']['name']));
             if(!empty($filetyperesult['ext']) && !empty($filetyperesult['type'])){
                 $wpjobportal_image_file_types = wpjobportal::$_config->getConfigurationByConfigName('image_file_type');
-                if(wpjobportalphplib::wpJP_strstr($wpjobportal_image_file_types, $filetyperesult['ext'])){
+                if(WPJOBPORTAL_File_Policy_Service::is_extension_allowed($filetyperesult['ext'], $wpjobportal_image_file_types)){
                     $wpjobportal_result = wp_handle_upload($file, array('test_form' => false));
                     if ( $wpjobportal_result && ! isset( $wpjobportal_result['error'] ) ) {
                         $filename = wpjobportalphplib::wpJP_basename( $wpjobportal_result['file'] );

@@ -829,11 +829,19 @@ class WPJOBPORTALCommonModel {
         if (!$wpjobportal_senderName)
             $wpjobportal_senderName = wpjobportal::$_configuration['title'];
         $headers = 'From: ' . $wpjobportal_senderName . ' <' . $wpjobportal_senderEmail . '>' . "\r\n";
-        add_filter('wp_mail_content_type', function(){return "text/html";});
+	//2.6.0 is removed it        
+//	add_filter('wp_mail_content_type', function(){return "text/html";});
         $body = wpjobportalphplib::wpJP_preg_replace('/\r?\n|\r/', '<br/>', $body);
         $body = wpjobportalphplib::wpJP_str_replace(array("\r\n", "\r", "\n"), "<br/>", $body);
         $body = nl2br($body);
-        $wpjobportal_result = wp_mail($recevierEmail, $wpjobportal_subject, $body, $headers, $attachments);
+        $wpjobportal_result = WPJOBPORTAL_Notification_Service::send(
+            $recevierEmail,
+            $wpjobportal_subject,
+            $body,
+            $headers,
+            $attachments,
+            'common'
+        );
         return $wpjobportal_result;
     }
 

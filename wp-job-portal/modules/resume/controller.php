@@ -723,7 +723,21 @@ class WPJOBPORTALResumeController {
         if (! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_resume_nonce'.$wpjobportal_resumeid) ) {
              die( 'Security check Failed' );
         }
-        WPJOBPORTALincluder::getJSModel('resume')->getAllResumeFiles();
+        if (!WPJOBPORTAL_Authorization_Service::can_download_resume_archive($wpjobportal_resumeid)) {
+            wp_die(
+                esc_html__('You are not allowed to download files for this resume.', 'wp-job-portal'),
+                esc_html__('Access denied', 'wp-job-portal'),
+                array('response' => 403)
+            );
+        }
+        $wpjobportal_result = WPJOBPORTALincluder::getJSModel('resume')->getAllResumeFiles();
+        if ($wpjobportal_result === false) {
+            wp_die(
+                esc_html__('No downloadable resume files are available.', 'wp-job-portal'),
+                esc_html__('File not found', 'wp-job-portal'),
+                array('response' => 404)
+            );
+        }
     }
 
     function getresumefiledownloadbyid() {
@@ -732,7 +746,21 @@ class WPJOBPORTALResumeController {
         if (! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_resume_nonce'.$fileid) ) {
              die( 'Security check Failed' );
         }
-        WPJOBPORTALincluder::getJSModel('resume')->getResumeFileDownloadById($fileid);
+        if (!WPJOBPORTAL_Authorization_Service::can_download_resume_file($fileid)) {
+            wp_die(
+                esc_html__('You are not allowed to download this resume file.', 'wp-job-portal'),
+                esc_html__('Access denied', 'wp-job-portal'),
+                array('response' => 403)
+            );
+        }
+        $wpjobportal_result = WPJOBPORTALincluder::getJSModel('resume')->getResumeFileDownloadById($fileid);
+        if ($wpjobportal_result === false) {
+            wp_die(
+                esc_html__('The requested resume file is not available.', 'wp-job-portal'),
+                esc_html__('File not found', 'wp-job-portal'),
+                array('response' => 404)
+            );
+        }
     }
 
     function addviewresumedetail() {

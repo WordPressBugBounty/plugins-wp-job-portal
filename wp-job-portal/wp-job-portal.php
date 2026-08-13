@@ -5,7 +5,7 @@
   * Plugin URI: https://wpjobportal.com/
   * Description: WP Job Portal is WordPress’s best job board plugin — easy to use, highly configurable, and built to support both job seekers and employers. AI-powered add-ons offers smart job & resume search, and personalized recommendations.
   * Author: WP Job Portal
-  * Version: 2.5.8
+  * Version: 2.5.9
   * Text Domain: wp-job-portal
   * Domain Path: /languages
   * Author URI: https://wpjobportal.com/
@@ -78,7 +78,7 @@ class wpjobportal {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '258';
+        self::$_currentversion = '259';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_common = WPJOBPORTALincluder::getJSModel('common');
         self::$_config = WPJOBPORTALincluder::getJSModel('configuration');
@@ -101,6 +101,18 @@ class wpjobportal {
         }else{
             self::$_wpprefixforuser = self::$_db->prefix;
         }
+        if (is_admin()) {
+            add_action('admin_init', array('WPJOBPORTAL_Migration_Service', 'reconcile_legacy_upgrade'), 5);
+            add_action('admin_init', array('WPJOBPORTAL_Database_Readiness_Service', 'maybe_apply'), 10);
+            add_action('admin_init', array('WPJOBPORTAL_Storage_Engine_Service', 'maybe_continue'), 15);
+            add_action('admin_init', array('WPJOBPORTAL_Notification_Queue_Service', 'maybe_recover'), 20);
+            add_action('admin_post_wpjobportal_storage_engine_action', array('WPJOBPORTAL_Storage_Engine_Service', 'handle_admin_action'));
+            add_action('wp_ajax_wpjobportal_notification_queue_action', array('WPJOBPORTAL_Notification_Queue_Service', 'handle_ajax_action'));
+            add_action('admin_notices', array('WPJOBPORTAL_Migration_Service', 'render_admin_notice'));
+        }
+        add_action(WPJOBPORTAL_Storage_Engine_Service::CRON_HOOK, array('WPJOBPORTAL_Storage_Engine_Service', 'run_batch'));
+        add_action(WPJOBPORTAL_Notification_Queue_Service::CRON_HOOK, array('WPJOBPORTAL_Notification_Queue_Service', 'run_batch'));
+        WPJOBPORTAL_Privacy_Service::register();
         WPJOBPORTALincluder::getJSModel('configuration')->getConfiguration();
         register_activation_hook(__FILE__, array($this, 'wpjobportal_activate'));
         register_deactivation_hook(__FILE__, array($this, 'wpjobportal_deactivate'));
@@ -133,6 +145,7 @@ class wpjobportal {
         add_action('admin_init', array($this,'jsjp_handle_search_form_data'));
         add_action('admin_init', array($this,'jsjp_handle_delete_cookies'));
         add_action('init', array($this,'jsjp_handle_search_form_data'));
+        add_action('init', array($this, 'wpjobportal_recover_job_alert_schedule'), 50);
         add_action( 'jsjp_delete_expire_session_data', array($this , 'jsjp_delete_expire_session_data') );
         if( !wp_next_scheduled( 'jsjp_delete_expire_session_data' ) ) {
             // Schedule the event
@@ -193,6 +206,31 @@ class wpjobportal {
             self::LEGACY_JOB_ALERT_CRON_KEY
         ));
     }
+
+    /**
+     * Recover a missing Job Alert schedule only when the supported add-on has
+     * registered a real worker for the event. This avoids creating an orphaned
+     * cron event from a stale active-state option.
+     */
+    function wpjobportal_recover_job_alert_schedule() {
+        if (!in_array('jobalert', (array) self::$_active_addons, true)) {
+            return;
+        }
+
+        $hook = 'wpjobportal_send_scheduled_job_alerts';
+        if (false === has_action($hook) || wp_next_scheduled($hook)) {
+            return;
+        }
+
+        $scheduled = wp_schedule_event(time() + wp_rand(60, 300), 'daily', $hook);
+        if ($scheduled && class_exists('WPJOBPORTAL_Audit_Service')) {
+            WPJOBPORTAL_Audit_Service::record(
+                'job_alert_schedule_recovered',
+                'success',
+                array('source' => 'core_recovery')
+            );
+        }
+    }
     // functions from advance custom fields addone
     function wpjobportal_addons_get_activeField($wpjobportal_default_val,$wpjobportal_id,$wpjobportal_id1='',$wpjobportal_id2=''){
         if($wpjobportal_id1 == '' && $wpjobportal_id2 == ''){
@@ -222,7 +260,7 @@ class wpjobportal {
                 if( $plugin == $our_plugin ) {
                     update_option('wpjp_currentversion', self::$_currentversion);
                     include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
-                    WPJOBPORTALupdates::checkUpdates('258');
+                    WPJOBPORTALupdates::checkUpdates('259');
 
                 	// restore colors data
 		            require(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
@@ -277,11 +315,27 @@ class wpjobportal {
         include_once 'includes/formfield.php';
         include_once 'includes/request.php';
         include_once 'includes/wpjobportal-wc.php';
+        require_once 'includes/services/class-wpjobportal-route-registry-service.php';
+        require_once 'includes/services/class-wpjobportal-core-action-policy-service.php';
+        require_once 'includes/services/class-wpjobportal-payment-service.php';
+        require_once 'includes/services/class-wpjobportal-addon-action-policy-service.php';
+        require_once 'includes/services/class-wpjobportal-authorization-service.php';
+        require_once 'includes/services/class-wpjobportal-file-policy-service.php';
+        require_once 'includes/services/class-wpjobportal-address-import-service.php';
         include_once 'includes/formhandler.php';
         include_once 'includes/ajax.php';
         require_once 'includes/constants.php';
         require_once 'includes/messages.php';
         require_once 'includes/wpjobportaldb.php';
+        require_once 'includes/services/class-wpjobportal-redactor.php';
+        require_once 'includes/services/class-wpjobportal-audit-service.php';
+        require_once 'includes/services/class-wpjobportal-notification-queue-service.php';
+        require_once 'includes/services/class-wpjobportal-notification-service.php';
+        require_once 'includes/services/class-wpjobportal-migration-service.php';
+        require_once 'includes/services/class-wpjobportal-database-readiness-service.php';
+        require_once 'includes/services/class-wpjobportal-storage-engine-service.php';
+        require_once 'includes/services/class-wpjobportal-privacy-service.php';
+        require_once 'includes/services/class-wpjobportal-diagnostics-service.php';
         include_once 'includes/shortcodes.php';
         include_once 'includes/paramregister.php';
         include_once 'includes/breadcrumbs.php';
@@ -1546,7 +1600,7 @@ function wpjobportal_upgrade_completed( $wpjobportal_upgrader_object, $wpjobport
 				update_option('wpjp_currentversion', wpjobportal::$_currentversion);
 				include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
 
-				WPJOBPORTALupdates::checkUpdates('258');
+				WPJOBPORTALupdates::checkUpdates('259');
 
 
 				// restore colors data
@@ -1719,18 +1773,17 @@ add_action('admin_enqueue_scripts', 'wpjobportal_load_classic_editor_assets');
      * Loads the new jQuery script and modal styles for the Classic Editor.
      */
     function wpjobportal_load_classic_editor_assets($hook) {
-        // if ('post.php' != $hook && 'post-new.php' != $hook) {
-        //     return;
-        // }
+        if ('post.php' !== $hook && 'post-new.php' !== $hook) {
+            return;
+        }
 
-        // // --- NEW: Check if Classic Editor is active ---
-        // $screen = get_current_screen();
-        // if (!$screen || $screen->is_block_editor()) {
-        //     return; // Don't load for Block Editor
-        // }
-
-        // We moved your line to *after* the block editor check.
-        include_once WPJOBPORTAL_PLUGIN_PATH . 'modules/zywrap/admin_classic_modal.php';
+        // Load these assets only for the Classic Editor. The modal markup is
+        // rendered later in admin_footer so enqueueing can never send output
+        // before an admin controller performs a redirect.
+        $screen = get_current_screen();
+        if (!$screen || $screen->is_block_editor()) {
+            return;
+        }
 
         // We must enqueue Select2 with its full path, not just by its handle.
         // wp_enqueue_style('wpjobportal-select2css', WPJOBPORTAL_PLUGIN_URL . 'includes/css/select2.min.css', array(), wpjobportal::$_currentversion);
@@ -1796,14 +1849,19 @@ add_action('admin_enqueue_scripts', 'wpjobportal_load_classic_editor_assets');
      * Renders the hidden HTML for the modal popup in the admin footer.
      */
     function wpjobportal_add_zywrap_classic_modal() {
-        // global $pagenow;
-        // if ('post.php' == $pagenow || 'post-new.php' == $pagenow) {
-             // Only load the modal on editor pages
-             // $screen = get_current_screen();
-             // if ($screen && !$screen->is_block_editor()) {
-                WPJOBPORTALincluder::include_file('zywrap', 'admin_classic_modal');
-             //}
-        //}
+        global $pagenow;
+
+        if ('post.php' !== $pagenow && 'post-new.php' !== $pagenow) {
+            return;
+        }
+
+        // Gutenberg has its own footer callback below.
+        $screen = get_current_screen();
+        if (!$screen || $screen->is_block_editor()) {
+            return;
+        }
+
+        WPJOBPORTALincluder::include_file('zywrap', 'admin_classic_modal');
     }
 
 
@@ -1889,9 +1947,6 @@ function wpjobportal_load_classic_editor_assets_elementor($hook) {
     if (!$is_post_page && !$is_elementor) {
         return;
     }
-
-    // Include the modal HTML (Required so the button has something to open)
-    include_once WPJOBPORTAL_PLUGIN_PATH . 'modules/zywrap/admin_classic_modal.php';
 
     // Register & Enqueue your script
     wp_enqueue_script(

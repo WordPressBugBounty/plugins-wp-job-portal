@@ -1507,19 +1507,28 @@ class WPJOBPORTALEmailtemplateModel {
         $headers = apply_filters('wpjobportal_system_email_headers', $headers, $wpjobportal_subject);
         // --- NEW HOOK INTEGRATION END ---
 
-        add_filter('wp_mail_content_type', array($this,'wpjobportal_set_html_content_type'));
+	// 2.6.0 remove it        
+	//add_filter('wp_mail_content_type', array($this,'wpjobportal_set_html_content_type'));
         $body = wpjobportalphplib::wpJP_preg_replace('/\r?\n|\r/', '<br/>', $body);
         $body = wpjobportalphplib::wpJP_str_replace(array("\r\n", "\r", "\n"), "<br/>", $body);
         $body = nl2br($body);
-        wp_mail($recevierEmail, $wpjobportal_subject, $body, $headers, $attachments);
+        $wpjobportal_result = WPJOBPORTAL_Notification_Service::send(
+            $recevierEmail,
+            $wpjobportal_subject,
+            $body,
+            $headers,
+            $attachments,
+            'email_template'
+        );
 
         // --- NEW HOOK INTEGRATION START ---
         // Blueprint: wpjobportal_email_notification_sent
-        // Executes immediately after a native system email is dispatched.
+        // Executes after a system email is accepted for direct or queued delivery.
         $recipient_data = array('email' => $recevierEmail);
         $content = array('subject' => $wpjobportal_subject, 'body' => $body);
         do_action('wpjobportal_email_notification_sent', 'system_email', $recipient_data, $content);
         // --- NEW HOOK INTEGRATION END ---
+        return $wpjobportal_result;
     }
 
     function getRecordByTablenameAndId($wpjobportal_tablename, $wpjobportal_id,$wpjobportal_actionid = null) {

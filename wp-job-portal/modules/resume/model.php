@@ -2682,6 +2682,9 @@ class WPJOBPORTALResumeModel {
         if(!is_numeric($wpjobportal_resumeid)){
             return false;
         }
+        if (!WPJOBPORTAL_Authorization_Service::can_download_resume_archive($wpjobportal_resumeid, false)) {
+            return false;
+        }
         do_action('wpjobportal_load_wp_pcl_zip');
         $wpjobportal_data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
         $wpjobportal_path = WPJOBPORTAL_PLUGIN_PATH . $wpjobportal_data_directory;
@@ -2715,18 +2718,31 @@ class WPJOBPORTALResumeModel {
         $wpjobportal_export_filename = sanitize_file_name($wpjobportal_export_filename); // Strict security validation
         // --- NEW HOOK INTEGRATION END ---
 
-        $archive = new PclZip($wpjobportal_path . '/allresumefiles.zip');
+        //$archive = new PclZip($wpjobportal_path . '/allresumefiles.zip');
         $archive = new PclZip($wpjobportal_path . '/' . $wpjobportal_export_filename);
         $wpjobportal_wpdir = wp_upload_dir();
         $wpjobportal_directory = $wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . '/data/jobseeker/resume_' . $wpjobportal_resumeid . '/resume/';
         //$scanned_directory = array_diff(scandir($wpjobportal_directory), array('..', '.'));// code seems reduntant but showing error on deleted resume file downloads
-        $filelist = '';
+        $filelist = array();
         $query = "SELECT filename FROM `".wpjobportal::$_db->prefix."wj_portal_resumefiles` WHERE resumeid = " . (int) ($wpjobportal_resumeid);
         $files = wpjobportal::$_db->get_results($query);
         foreach ($files AS $file) {
-            $filelist .= $wpjobportal_directory . '/' . $file->filename . ',';
+            $wpjobportal_filename = sanitize_file_name(
+                wpjobportalphplib::wpJP_basename(
+                    wpjobportalphplib::wpJP_clean_file_path((string) $file->filename)
+                )
+            );
+            $wpjobportal_candidate = $wpjobportal_directory . '/' . $wpjobportal_filename;
+            if ($wpjobportal_filename !== ''
+                && is_file($wpjobportal_candidate)
+                && is_readable($wpjobportal_candidate)
+            ) {
+                $filelist[] = $wpjobportal_candidate;
+            }
         }
-        $filelist = wpjobportalphplib::wpJP_substr($filelist, 0, wpjobportalphplib::wpJP_strlen($filelist) - 1);
+        if (empty($filelist)) {
+            return false;
+        }
         $v_list = $archive->create($filelist, PCLZIP_OPT_REMOVE_PATH, $wpjobportal_directory);
         if ($v_list == 0) {
             die("Error : '" . wp_kses($archive->errorInfo(),WPJOBPORTAL_ALLOWED_TAGS) . "'");
@@ -2771,14 +2787,25 @@ class WPJOBPORTALResumeModel {
 
         if (!is_numeric($fileid))
             return false;
+        if (!WPJOBPORTAL_Authorization_Service::can_download_resume_file($fileid, false)) {
+            return false;
+        }
         $query = "SELECT filename,resumeid FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumefiles` WHERE id = " . (int) ($fileid);
         $object = wpjobportal::$_db->get_row($query);
         if(empty($object) || !is_numeric($object->resumeid)){ // if the file record does not exsists.(was logging error on accesing properties for null/empty object)
-            exit;
+            return false;
+        }
+        $wpjobportal_filename = sanitize_file_name(
+            wpjobportalphplib::wpJP_basename(
+                wpjobportalphplib::wpJP_clean_file_path((string) $object->filename)
+            )
+        );
+        if ($wpjobportal_filename === '') {
+            return false;
         }
         $wpjobportal_data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
         $wpjobportal_wpdir = wp_upload_dir();
-        $file =  $wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . '/data/jobseeker/resume_' . $object->resumeid . '/resume/' . $object->filename;
+        $file =  $wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . '/data/jobseeker/resume_' . absint($object->resumeid) . '/resume/' . $wpjobportal_filename;
 
         if ( ! function_exists( 'WP_Filesystem' ) ) {
             require_once ABSPATH . 'wp-admin/includes/file.php';
@@ -2790,7 +2817,7 @@ class WPJOBPORTALResumeModel {
         }
 
         if (!$wp_filesystem->exists($file)) {// if file does not exsit then stop executing code(handling log errors)
-            exit;
+            return false;
         }
 
         header('Content-Description: File Transfer');

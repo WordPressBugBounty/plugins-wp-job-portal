@@ -1013,7 +1013,7 @@ $hook_data = [
             'name'        => __( 'Email Notification Sent', 'wp-job-portal' ),
             'action'      => 'wpjobportal_email_notification_sent',
             'type'        => 'action',
-            'description' => __( 'Logs transactional emails immediately after wp_mail() fires.', 'wp-job-portal' ),
+            'description' => __( 'Runs after a transactional email is accepted for direct or queued delivery.', 'wp-job-portal' ),
             'params'      => [
                 [ 'name' => '$type', 'type' => 'string', 'desc' => __( 'Email type string.', 'wp-job-portal' ) ],
                 [ 'name' => '$recipient_data', 'type' => 'array', 'desc' => __( 'Recipient details.', 'wp-job-portal' ) ],

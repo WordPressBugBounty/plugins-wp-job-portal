@@ -639,7 +639,7 @@ class WPJOBPORTALResumeViewlayout {
 
 
         $wpjobportal_html .= '<div class="wjportal-personal-data">';
-        if(!WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()){
+        if(current_user_can('manage_options') || !WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()){
             if($wpjobportal_is_qucik_apply == 0){ // hide photo which is not set in case of quick apply
                 if (isset(wpjobportal::$_data[2][1]['photo'])) {
                     $wpjobportal_html .= '<div class="wjportal-resume-image">';

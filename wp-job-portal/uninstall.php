@@ -25,6 +25,19 @@ if(function_exists('is_multisite') && is_multisite()){
         foreach($wpjobportal_tablestodrop as $wpjobportal_tablename){
             $wpdb->query( "DROP TABLE IF EXISTS ".esc_sql($wpjobportal_tablename) );
         }
+        delete_option('wpjobportal_notification_queue_enabled');
+        delete_option('wpjobportal_notification_queue_schema');
+        delete_option('wpjobportal_notification_queue_stats');
+        delete_option('wpjobportal_route_registry_stats');
+        delete_option('wpjobportal_authorization_stats');
+        delete_option('wpjobportal_core_action_policy_stats');
+        delete_option('wpjobportal_addon_action_policy_stats');
+        delete_option('wpjobportal_address_import_stats');
+        delete_option('wpjobportal_payment_service_stats');
+        delete_option('wpjobportal_payment_event_ledger');
+        delete_option('wpjobportal_privacy_retention');
+        delete_option('wpjobportal_privacy_stats');
+        wp_clear_scheduled_hook('wpjobportal_privacy_retention_cleanup');
         restore_current_blog();
     }
 }else{
@@ -32,4 +45,17 @@ if(function_exists('is_multisite') && is_multisite()){
     foreach($wpjobportal_tablestodrop as $wpjobportal_tablename){
         $wpdb->query( "DROP TABLE IF EXISTS ".esc_sql($wpjobportal_tablename) );
     }
+    delete_option('wpjobportal_notification_queue_enabled');
+    delete_option('wpjobportal_notification_queue_schema');
+    delete_option('wpjobportal_notification_queue_stats');
+    delete_option('wpjobportal_route_registry_stats');
+    delete_option('wpjobportal_authorization_stats');
+    delete_option('wpjobportal_core_action_policy_stats');
+    delete_option('wpjobportal_addon_action_policy_stats');
+    delete_option('wpjobportal_address_import_stats');
+    delete_option('wpjobportal_payment_service_stats');
+    delete_option('wpjobportal_payment_event_ledger');
+    delete_option('wpjobportal_privacy_retention');
+    delete_option('wpjobportal_privacy_stats');
+    wp_clear_scheduled_hook('wpjobportal_privacy_retention_cleanup');
 }

@@ -1575,7 +1575,7 @@ class WPJOBPORTALcustomfields {
         $allowed_file_types  = '';
         $allowed_file_types .= $document_file_type.','.$wpjobportal_image_file_type;
 
-        if(wpjobportalphplib::wpJP_strstr($allowed_file_types, $filetyperesult['ext'])){
+        if(WPJOBPORTAL_File_Policy_Service::is_extension_allowed($filetyperesult['ext'], $allowed_file_types)){
             $wpjobportal_maindir = wp_upload_dir();
             $basedir = $wpjobportal_maindir['basedir'];
             $wpjobportal_datadirectory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');

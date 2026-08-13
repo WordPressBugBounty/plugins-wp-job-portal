@@ -7,6 +7,22 @@ class WPJOBPORTALdeactivation {
 
     static function wpjobportal_deactivate() {
         wp_clear_scheduled_hook('wpjobportal_cronjobs_action');
+        if (class_exists('WPJOBPORTAL_Storage_Engine_Service')) {
+            WPJOBPORTAL_Storage_Engine_Service::deactivate();
+        } else {
+            wp_clear_scheduled_hook('wpjobportal_storage_engine_conversion');
+            delete_option('wpjobportal_storage_engine_conversion_lock');
+        }
+        if (class_exists('WPJOBPORTAL_Notification_Queue_Service')) {
+            WPJOBPORTAL_Notification_Queue_Service::deactivate();
+        } else {
+            wp_clear_scheduled_hook('wpjobportal_notification_queue_process');
+        }
+        if (class_exists('WPJOBPORTAL_Privacy_Service')) {
+            wp_clear_scheduled_hook(WPJOBPORTAL_Privacy_Service::CRON_HOOK);
+        } else {
+            wp_clear_scheduled_hook('wpjobportal_privacy_retention_cleanup');
+        }
         $wpjobportal_id = wpjobportal::wpjobportal_getPageid();
         if(is_numeric($wpjobportal_id)){
             wpjobportal::$_db->get_var("UPDATE `" . wpjobportal::$_db->prefix . "posts` SET post_status = 'draft' WHERE ID =" . (int) ($wpjobportal_id));
@@ -59,6 +75,8 @@ class WPJOBPORTALdeactivation {
             $wpdb->prefix."wj_portal_employer_view_resume",
             $wpdb->prefix."wj_portal_jobseeker_view_company",
             $wpdb->prefix."wj_portal_system_errors",
+            $wpdb->prefix."wj_portal_migrations",
+            $wpdb->prefix."wj_portal_notification_queue",
             $wpdb->prefix."wj_portal_users",
             $wpdb->prefix."wj_portal_slug",
             $wpdb->prefix."wj_portal_jswjsessiondata",

@@ -27,7 +27,7 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
     <img id="wpjobportaladmin-menu-toggle" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/admin-left-menu/menu.png'; ?>" />
 </div>
 <ul class="wpjobportaladmin-sidebar-menu tree" data-widget="tree" id="accordion">
-    <li class="treeview <?php if( ($wpjobportal_controller == 'wpjobportal' && $wpjobportal_layout != 'themes' && $wpjobportal_layout != 'shortcodes' && $wpjobportal_layout != 'addonstatus') || $wpjobportal_controller == 'wpjobportal_activitylog' || $wpjobportal_controller == 'wpjobportal_systemerror' || $wpjobportal_controller == 'wpjobportal_slug' ) echo 'active'; ?>">
+    <li class="treeview <?php if( ($wpjobportal_controller == 'wpjobportal' && $wpjobportal_layout != 'themes' && $wpjobportal_layout != 'shortcodes' && $wpjobportal_layout != 'addonstatus') || $wpjobportal_controller == 'wpjobportal_activitylog' || $wpjobportal_controller == 'wpjobportal_systemerror' || $wpjobportal_controller == 'wpjobportal_systemstatus' || $wpjobportal_controller == 'wpjobportal_slug' ) echo 'active'; ?>">
         <a href="admin.php?page=wpjobportal" title="<?php echo esc_attr(__('Dashboard' , 'wp-job-portal')); ?>" class="wpjobportaladmin-menu-icon-class wpjobportaladmin-menu-icon-dashboard">
             <span class="wpjobportaladmin-text">
                 <?php echo esc_html(__('Dashboard' , 'wp-job-portal')); ?>
@@ -78,6 +78,11 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
             <li class="<?php if($wpjobportal_controller == 'wpjobportal_systemerror' && ($wpjobportal_layout == 'wpjobportal_systemerror' || $wpjobportal_layout == '')) echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal_systemerror" title="<?php echo esc_attr(__('System Errors','wp-job-portal')); ?>">
                     <?php echo esc_html(__('System Errors','wp-job-portal')); ?>
+                </a>
+            </li>
+            <li class="<?php if($wpjobportal_controller == 'wpjobportal_systemstatus') echo 'active'; ?>">
+                <a href="admin.php?page=wpjobportal_systemstatus" title="<?php echo esc_attr(__('System Status','wp-job-portal')); ?>">
+                    <?php echo esc_html(__('System Status','wp-job-portal')); ?>
                 </a>
             </li>
 

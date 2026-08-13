@@ -57,7 +57,7 @@ class WPJOBPORTALthemeController {
         }
     }
 
-    static function savetheme() {
+    function savetheme() {
         $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
         if (! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_theme_nonce') ) {
              die( 'Security check Failed' );

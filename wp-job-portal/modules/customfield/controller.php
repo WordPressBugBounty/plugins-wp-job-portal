@@ -276,14 +276,26 @@ class WPJOBPORTALCustomFieldController {
         $wpjobportal_entity_id = WPJOBPORTALrequest::getVar('entity_id');// to create path for enitity directory where the file is located
         $file_name = WPJOBPORTALrequest::getVar('file_name');// to access the file and download it
 
+        if (!WPJOBPORTAL_Authorization_Service::can_download_custom_file(
+            $wpjobportal_upload_for,
+            $wpjobportal_entity_id,
+            $file_name
+        )) {
+            wp_die(
+                esc_html__('You are not allowed to download this custom-field file.', 'wp-job-portal'),
+                esc_html__('Access denied', 'wp-job-portal'),
+                array('response' => 403)
+            );
+        }
+
         $wpjobportal_result = WPJOBPORTALincluder::getJSModel('customfield')->downloadCustomUploadedFile($wpjobportal_upload_for,$file_name,$wpjobportal_entity_id);
-        $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'customfield');
-        WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_customfield&ff=".esc_attr($wpjobportal_ff)));
-        if ($wpjobportal_pagenum)
-            $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
-        wp_redirect($wpjobportal_url);
-        die();
+        if ($wpjobportal_result === false) {
+            wp_die(
+                esc_html__('The requested file is not available.', 'wp-job-portal'),
+                esc_html__('File not found', 'wp-job-portal'),
+                array('response' => 404)
+            );
+        }
     }
 
 }

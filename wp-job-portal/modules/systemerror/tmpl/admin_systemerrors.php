@@ -74,7 +74,7 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                                 <tr>
                                     <td class="wpjobportal-text-left w70" style="padding: 12px 15px; vertical-align: top;">
                                         <?php
-                                        $raw_error  = $wpjobportal_systemerror->error;
+                                        $raw_error  = WPJOBPORTAL_Redactor::redact($wpjobportal_systemerror->error);
                                         $error_data = json_decode( $raw_error, true );
 
                                         if ( is_array( $error_data ) ) :

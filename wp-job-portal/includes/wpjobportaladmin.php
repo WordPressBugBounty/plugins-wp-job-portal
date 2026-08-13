@@ -72,6 +72,14 @@ class wpjobportaladmin {
                 array($this, 'showAdminPage') // function name
         );
 
+        add_submenu_page('wpjobportal', // parent slug
+                esc_html(__('System Status', 'wp-job-portal')), // Page title
+                esc_html(__('System Status', 'wp-job-portal')), // menu title
+                'wpjobportal', // capability
+                'wpjobportal_systemstatus', //menu slug
+                array($this, 'showAdminPage') // function name
+        );
+
         if(in_array('cronjob', wpjobportal::$_active_addons)){
             add_submenu_page('wpjobportal_hide', // parent slug
                 esc_html(__('Cron Job', 'wp-job-portal')), // Page title

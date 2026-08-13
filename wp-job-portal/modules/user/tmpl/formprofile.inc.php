@@ -40,11 +40,13 @@ $wpjobportal_js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy'
 
         function readURL(input) {
             if (input.files && input.files[0]) {
-                var fileext = input.files[0].name.split('.').pop();
+                var fileext = input.files[0].name.split('.').pop().trim().toLowerCase();
                 var filesize = (input.files[0].size / 1024);
                 var allowedsize = ". WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('image_file_size').";
                 var allowedExt = '". WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('image_file_type')."';
-                allowedExt = allowedExt.split(',');
+                allowedExt = allowedExt.split(',').map(function(ext) {
+                    return ext.trim().toLowerCase().replace(/^\.+/, '');
+                }).filter(Boolean);
                 if (jQuery.inArray(fileext, allowedExt) != - 1){
                     if (allowedsize > filesize){
                         jQuery('.wjportal-form-image-wrp').show();

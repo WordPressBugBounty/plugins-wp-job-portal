@@ -690,6 +690,15 @@ class WPJOBPORTALCustomFieldModel {
         //$wpjobportal_entity_id to create path for enitity directory where the file is located
         //$file_name to access the file and download it
 
+        if (!WPJOBPORTAL_Authorization_Service::can_download_custom_file(
+            $wpjobportal_upload_for,
+            $wpjobportal_entity_id,
+            $file_name,
+            false
+        )) {
+            return false;
+        }
+
         $filename = wpjobportalphplib::wpJP_str_replace(' ', '_', $file_name);
 
         // clean file name to remove relative path
@@ -697,11 +706,11 @@ class WPJOBPORTALCustomFieldModel {
         $filename = sanitize_file_name($filename);
 
         if($filename == ''){
-            return;
+            return false;
         }
 
         if(!is_numeric($wpjobportal_entity_id)){
-            return;
+            return false;
         }
 
         $wpjobportal_maindir = wp_upload_dir();
@@ -718,10 +727,15 @@ class WPJOBPORTALCustomFieldModel {
             $wpjobportal_path = $wpjobportal_path . '/jobseeker/resume_'.$wpjobportal_entity_id.'/custom_uploads';
         }elseif($wpjobportal_upload_for == 'profile'){
             $wpjobportal_path = $wpjobportal_path . '/profile/profile_'.$wpjobportal_entity_id.'/custom_uploads';
+        }else{
+            return false;
         }
 
 
         $file = $wpjobportal_path .'/'.$filename;
+        if (!is_file($file) || !is_readable($file)) {
+            return false;
+        }
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
         header('Content-Disposition: attachment; filename=' . wpjobportalphplib::wpJP_basename($file));
