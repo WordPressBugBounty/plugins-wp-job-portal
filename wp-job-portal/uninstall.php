@@ -37,6 +37,8 @@ if(function_exists('is_multisite') && is_multisite()){
         delete_option('wpjobportal_payment_event_ledger');
         delete_option('wpjobportal_privacy_retention');
         delete_option('wpjobportal_privacy_stats');
+        delete_option('wpjobportal_product_mode');
+        delete_option('wpjobportal_product_mode_selected_at');
         wp_clear_scheduled_hook('wpjobportal_privacy_retention_cleanup');
         restore_current_blog();
     }
@@ -57,5 +59,7 @@ if(function_exists('is_multisite') && is_multisite()){
     delete_option('wpjobportal_payment_event_ledger');
     delete_option('wpjobportal_privacy_retention');
     delete_option('wpjobportal_privacy_stats');
+    delete_option('wpjobportal_product_mode');
+    delete_option('wpjobportal_product_mode_selected_at');
     wp_clear_scheduled_hook('wpjobportal_privacy_retention_cleanup');
 }

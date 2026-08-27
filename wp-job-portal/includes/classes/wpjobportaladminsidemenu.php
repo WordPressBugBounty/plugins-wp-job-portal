@@ -4,6 +4,11 @@ $wpjobportal_controller = WPJOBPORTALrequest::getVar('page',null,'wpjobportal');
 $wpjobportal_layout = WPJOBPORTALrequest::getVar('wpjobportallt');
 $wpjobportal_fieldfor = WPJOBPORTALrequest::getVar('ff');
 $wpjobportal_for = WPJOBPORTALrequest::getVar('for');
+$wpjobportal_product_mode = WPJOBPORTAL_Product_Mode_Service::get_mode();
+$wpjobportal_is_careers_mode = WPJOBPORTAL_Product_Mode_Service::MODE_CAREERS === $wpjobportal_product_mode;
+$wpjobportal_resume_menu_label = $wpjobportal_is_careers_mode ? __('Candidates', 'wp-job-portal') : __('Resume', 'wp-job-portal');
+$wpjobportal_company_menu_label = $wpjobportal_is_careers_mode ? __('Company Profile', 'wp-job-portal') : __('Companies', 'wp-job-portal');
+$wpjobportal_configuration_menu_label = $wpjobportal_is_careers_mode ? __('Hiring Settings', 'wp-job-portal') : __('Configuration', 'wp-job-portal');
 
 wp_register_script( 'wpjobportal-menu-handle', '' );
 wp_enqueue_script( 'wpjobportal-menu-handle' );
@@ -27,7 +32,7 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
     <img id="wpjobportaladmin-menu-toggle" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/admin-left-menu/menu.png'; ?>" />
 </div>
 <ul class="wpjobportaladmin-sidebar-menu tree" data-widget="tree" id="accordion">
-    <li class="treeview <?php if( ($wpjobportal_controller == 'wpjobportal' && $wpjobportal_layout != 'themes' && $wpjobportal_layout != 'shortcodes' && $wpjobportal_layout != 'addonstatus') || $wpjobportal_controller == 'wpjobportal_activitylog' || $wpjobportal_controller == 'wpjobportal_systemerror' || $wpjobportal_controller == 'wpjobportal_systemstatus' || $wpjobportal_controller == 'wpjobportal_slug' ) echo 'active'; ?>">
+    <li class="treeview <?php if( ($wpjobportal_controller == 'wpjobportal' && $wpjobportal_layout != 'themes' && $wpjobportal_layout != 'shortcodes' && $wpjobportal_layout != 'addonstatus') || $wpjobportal_controller == 'wpjobportal_activitylog' || $wpjobportal_controller == 'wpjobportal_systemerror' || $wpjobportal_controller == 'wpjobportal_systemstatus' || $wpjobportal_controller == 'wpjobportal_postinstallation' || $wpjobportal_controller == 'wpjobportal_slug' ) echo 'active'; ?>">
         <a href="admin.php?page=wpjobportal" title="<?php echo esc_attr(__('Dashboard' , 'wp-job-portal')); ?>" class="wpjobportaladmin-menu-icon-class wpjobportaladmin-menu-icon-dashboard">
             <span class="wpjobportaladmin-text">
                 <?php echo esc_html(__('Dashboard' , 'wp-job-portal')); ?>
@@ -85,6 +90,16 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
                     <?php echo esc_html(__('System Status','wp-job-portal')); ?>
                 </a>
             </li>
+            <li class="<?php if($wpjobportal_controller == 'wpjobportal_postinstallation' && $wpjobportal_layout != 'modeguide') echo 'active'; ?>">
+                <a href="admin.php?page=wpjobportal_postinstallation&amp;wpjobportallt=quickstart" title="<?php echo esc_attr(__('Setup & Mode','wp-job-portal')); ?>">
+                    <?php echo esc_html(__('Setup & Mode','wp-job-portal')); ?>
+                </a>
+            </li>
+            <li class="<?php if($wpjobportal_controller == 'wpjobportal_postinstallation' && $wpjobportal_layout == 'modeguide') echo 'active'; ?>">
+                <a href="admin.php?page=wpjobportal_postinstallation&amp;wpjobportallt=modeguide" title="<?php echo esc_attr(__('How Modes Work','wp-job-portal')); ?>">
+                    <?php echo esc_html(__('How Modes Work','wp-job-portal')); ?>
+                </a>
+            </li>
 
         </ul>
     </li>
@@ -105,11 +120,13 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
                     <?php echo esc_html(__('Add New Job', 'wp-job-portal')); ?>
                 </a>
             </li>
+            <?php if (WPJOBPORTAL_Mode_Policy_Service::is_feature_available('job_approval')) : ?>
             <li class="<?php if($wpjobportal_controller == 'wpjobportal_job' && ($wpjobportal_layout == 'jobqueue')) echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal_job&wpjobportallt=jobqueue" title="<?php echo esc_attr(__('Approval Queue', 'wp-job-portal')); ?>">
                     <?php echo esc_html(__('Approval Queue', 'wp-job-portal')); ?>
                 </a>
             </li>
+            <?php endif; ?>
             <li class="<?php if($wpjobportal_controller == 'wpjobportal_fieldordering' && ($wpjobportal_layout == '')) echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal_fieldordering&ff=2" title="<?php echo esc_attr(__('Fields', 'wp-job-portal')); ?>">
                     <?php echo esc_html(__('Fields', 'wp-job-portal')); ?>
@@ -202,11 +219,13 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
                     <?php echo esc_html(__('Add New Company', 'wp-job-portal')); ?>
                 </a>
             </li>
+            <?php if (WPJOBPORTAL_Mode_Policy_Service::is_feature_available('company_approval')) : ?>
             <li class="<?php if($wpjobportal_controller == 'wpjobportal_company' && ($wpjobportal_layout == 'companiesqueue')) echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal_company&wpjobportallt=companiesqueue" title="<?php echo esc_attr(__('Approval Queue', 'wp-job-portal')); ?>">
                     <?php echo esc_html(__('Approval Queue', 'wp-job-portal')); ?>
                 </a>
             </li>
+            <?php endif; ?>
             <li class="<?php if($wpjobportal_controller == 'wpjobportal_fieldordering' && ($wpjobportal_layout == '')) echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal_fieldordering&ff=1" title="<?php echo esc_attr(__('Fields', 'wp-job-portal')); ?>">
                     <?php echo esc_html(__('Fields', 'wp-job-portal')); ?>
@@ -468,6 +487,7 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
                 </ul>
             </li>
     <?php } ?>
+    <?php if (WPJOBPORTAL_Mode_Policy_Service::is_feature_available('credits')) : ?>
     <?php
         if(in_array('credits', wpjobportal::$_active_addons)){
             do_action('wpjobportal_addons_admin_sidemenu_package',$wpjobportal_controller,$wpjobportal_layout);
@@ -493,6 +513,7 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
                 </ul>
             </li>
     <?php } ?>
+    <?php endif; ?>
     <li class="treeview <?php if($wpjobportal_controller == 'wpjobportal_country' || $wpjobportal_controller == 'wpjobportal_addressdata' || $wpjobportal_controller == 'wpjobportal_state' || $wpjobportal_controller == 'wpjobportal_city') echo 'active'; ?>">
         <a href="admin.php?page=wpjobportal_country" title="<?php echo esc_attr(__('Countries' , 'wp-job-portal')); ?>" class="wpjobportaladmin-menu-icon-class wpjobportaladmin-menu-icon-addressdata">
             <span class="wpjobportaladmin-text">

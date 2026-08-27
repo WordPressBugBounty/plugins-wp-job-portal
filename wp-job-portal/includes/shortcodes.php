@@ -1566,25 +1566,117 @@ class WPJOBPORTALshortcodes {
 }
 
 $wpjobportal_shortcodes = new WPJOBPORTALshortcodes();
+
+/**
+ * Register the shared editor assets used by all first-party dynamic blocks.
+ * Existing block names and server render callbacks remain unchanged so saved
+ * content continues to work.
+ */
+function wpjobportal_register_block_editor_assets() {
+    if (!wp_script_is('wpjobportal-blocks-editor', 'registered')) {
+        wp_register_script(
+            'wpjobportal-blocks-editor',
+            esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/gutenberg/blocks.js',
+            array(
+                'wp-blocks',
+                'wp-element',
+                'wp-block-editor',
+                'wp-components',
+                'wp-i18n',
+                'wp-server-side-render',
+            ),
+            '2.6.0',
+            true
+        );
+
+        if (function_exists('wp_set_script_translations')) {
+            wp_set_script_translations(
+                'wpjobportal-blocks-editor',
+                'wp-job-portal',
+                WPJOBPORTAL_PLUGIN_PATH . 'languages'
+            );
+        }
+    }
+
+    if (!wp_style_is('wpjobportal-blocks-editor', 'registered')) {
+        wp_register_style(
+            'wpjobportal-blocks-editor',
+            esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportal-block-editor.css',
+            array('wp-edit-blocks'),
+            '2.6.0'
+        );
+    }
+}
+
+/**
+ * Put WP Job Portal blocks in a dedicated inserter category.
+ */
+function wpjobportal_register_block_category($categories) {
+    foreach ($categories as $category) {
+        if (isset($category['slug']) && 'wp-job-portal' === $category['slug']) {
+            return $categories;
+        }
+    }
+
+    array_unshift(
+        $categories,
+        array(
+            'slug' => 'wp-job-portal',
+            'title' => __('WP Job Portal', 'wp-job-portal'),
+            'icon' => 'businessperson',
+        )
+    );
+
+    return $categories;
+}
+add_filter('block_categories_all', 'wpjobportal_register_block_category');
+
+function wpjobportal_block_string($value, $default = '') {
+    $value = sanitize_text_field((string) $value);
+    return '' === $value ? $default : $value;
+}
+
+function wpjobportal_block_choice($value, $allowed, $default) {
+    $value = (string) $value;
+    return in_array($value, $allowed, true) ? $value : (string) $default;
+}
+
+function wpjobportal_block_number($value, $default, $minimum, $maximum) {
+    $value = absint($value);
+    if ($value < $minimum || $value > $maximum) {
+        return absint($default);
+    }
+    return $value;
+}
+
+function wpjobportal_block_wrap($html, $class_name) {
+    if ('' === trim((string) $html)) {
+        return '';
+    }
+
+    $attributes = function_exists('get_block_wrapper_attributes')
+        ? get_block_wrapper_attributes(array('class' => $class_name))
+        : 'class="' . esc_attr('wp-block-wpjobportal ' . $class_name) . '"';
+
+    return '<div ' . $attributes . '>' . $html . '</div>';
+}
+
 add_action( 'init', 'wpjobportal_jobs_block' );
 
 function wpjobportal_jobs_block(){
     if(!function_exists("register_block_type")){
         return;
     }
-    wp_register_script(
-        'wpjobportaljobsblock',
-        esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/gutenberg/jobs.js',
-        array( 'wp-blocks', 'wp-element','wp-editor' )
-    );
+    wpjobportal_register_block_editor_assets();
     register_block_type( 'wpjobportal/wpjobportaljobsblock', array(
+        'api_version' => 2,
         'attributes'      => array(
             'title'    => array(
                 'type'      => 'string',
                 'default'   => '',
             ),
             'typeofjobs'    => array(
-                'type'      => 'select',
+                'type'      => 'string',
                 'default'   => '',
             ),
             'noofjobs'    => array(
@@ -1592,16 +1684,18 @@ function wpjobportal_jobs_block(){
                 'default'   => '',
             ),
             'fieldcolumn'    => array(
-                'type'      => 'select',
+                'type'      => 'string',
                 'default'   => '',
             ),
             'listingstyle' => array(
-                'type' => 'select',
+                'type' => 'string',
                 'default' => ''
             ),
         ),
         'render_callback' => 'wpjobportal_jobs_block_widgets',
-        'editor_script' => 'wpjobportaljobsblock',
+        'editor_script' => 'wpjobportal-blocks-editor',
+        'editor_style' => 'wpjobportal-blocks-editor',
+        'supports' => array('html' => false, 'align' => array('wide', 'full')),
     ) );
 }
 
@@ -1616,6 +1710,11 @@ function wpjobportal_jobs_block_widgets($attributes, $wpjobportal_content){
     );
 
     $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $attributes);
+    $wpjobportal_sanitized_args['title'] = wpjobportal_block_string($wpjobportal_sanitized_args['title'], __('Latest Jobs', 'wp-job-portal'));
+    $wpjobportal_sanitized_args['typeofjobs'] = wpjobportal_block_choice($wpjobportal_sanitized_args['typeofjobs'], array('1', '2', '3', '5'), '1');
+    $wpjobportal_sanitized_args['noofjobs'] = wpjobportal_block_number($wpjobportal_sanitized_args['noofjobs'], 5, 1, 50);
+    $wpjobportal_sanitized_args['fieldcolumn'] = wpjobportal_block_number($wpjobportal_sanitized_args['fieldcolumn'], 1, 1, 5);
+    $wpjobportal_sanitized_args['listingstyle'] = wpjobportal_block_choice($wpjobportal_sanitized_args['listingstyle'], array('0', '1'), '1');
     if($wpjobportal_sanitized_args['fieldcolumn'] == '' || $wpjobportal_sanitized_args['fieldcolumn'] == 0){
         $wpjobportal_sanitized_args['fieldcolumn'] = 1;
     }
@@ -1657,7 +1756,7 @@ function wpjobportal_jobs_block_widgets($attributes, $wpjobportal_content){
     if (is_rtl()) {
         wp_enqueue_style('wpjobportal-site-rtl', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/stylertl.css');
     }
-    return $wpjobportal_html;
+    return wpjobportal_block_wrap($wpjobportal_html, 'wpjobportal-jobs-block');
 }
 
 add_action( 'init', 'wpjobportal_companies_block');
@@ -1666,27 +1765,24 @@ function wpjobportal_companies_block(){
     if(!function_exists("register_block_type")){
         return;
     }
-    wp_register_script(
-        'wpjobportalcompaniesblock',
-        esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/gutenberg/companies.js',
-        array( 'wp-blocks', 'wp-element','wp-editor' )
-    );
+    wpjobportal_register_block_editor_assets();
     register_block_type( 'wpjobportal/wpjobportalcompaniesblock', array(
+        'api_version' => 2,
         'attributes'      => array(
             'title' => array(
                 'type' => 'string',
                 'default' => ''
             ),
             'companytype' => array(
-                'type' => 'select',
+                'type' => 'string',
                 'default' => ''
             ),
             'listingstyle' => array(
-                'type' => 'select',
+                'type' => 'string',
                 'default' => ''
             ),
             'fieldcolumn' => array(
-                'type' => 'select',
+                'type' => 'string',
                 'default' =>''
             ),
             'noofcompanies' => array(
@@ -1695,7 +1791,9 @@ function wpjobportal_companies_block(){
             ),
         ),
         'render_callback' => 'wpjobportal_companies_block_widgets',
-        'editor_script' => 'wpjobportalcompaniesblock'
+        'editor_script' => 'wpjobportal-blocks-editor',
+        'editor_style' => 'wpjobportal-blocks-editor',
+        'supports' => array('html' => false, 'align' => array('wide', 'full')),
     ) );
 }
 
@@ -1709,6 +1807,11 @@ function wpjobportal_companies_block_widgets($attributes, $wpjobportal_content){
         'noofcompanies' => '1',
     );
     $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $attributes);
+    $wpjobportal_sanitized_args['title'] = wpjobportal_block_string($wpjobportal_sanitized_args['title'], __('Companies', 'wp-job-portal'));
+    $wpjobportal_sanitized_args['companytype'] = wpjobportal_block_choice($wpjobportal_sanitized_args['companytype'], array('2'), '2');
+    $wpjobportal_sanitized_args['noofcompanies'] = wpjobportal_block_number($wpjobportal_sanitized_args['noofcompanies'], 5, 1, 50);
+    $wpjobportal_sanitized_args['fieldcolumn'] = wpjobportal_block_number($wpjobportal_sanitized_args['fieldcolumn'], 1, 1, 5);
+    $wpjobportal_sanitized_args['listingstyle'] = wpjobportal_block_choice($wpjobportal_sanitized_args['listingstyle'], array('0', '1'), '1');
     if($wpjobportal_sanitized_args['fieldcolumn'] == '' || $wpjobportal_sanitized_args['fieldcolumn'] == 0){
         $wpjobportal_sanitized_args['fieldcolumn'] = 1;
     }
@@ -1740,7 +1843,7 @@ function wpjobportal_companies_block_widgets($attributes, $wpjobportal_content){
     if (is_rtl()) {
         wp_enqueue_style('wpjobportal-site-rtl', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/stylertl.css');
     }
-    return $wpjobportal_html;
+    return wpjobportal_block_wrap($wpjobportal_html, 'wpjobportal-companies-block');
 }
 
 add_action( 'init', 'wpjobportal_resumes_block');
@@ -1749,27 +1852,24 @@ function wpjobportal_resumes_block(){
     if(!function_exists("register_block_type")){
         return;
     }
-    wp_register_script(
-        'wpjobportalresumesblock',
-        esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/gutenberg/resumes.js',
-        array( 'wp-blocks', 'wp-element','wp-editor' )
-    );
+    wpjobportal_register_block_editor_assets();
     register_block_type( 'wpjobportal/wpjobportalresumesblock', array(
+        'api_version' => 2,
         'attributes'      => array(
             'title' => array(
                 'type' => 'string',
                 'default' => ''
             ),
             'typeofresume' => array(
-                'type' => 'select',
+                'type' => 'string',
                 'default' => ''
             ),
             'listingstyle' => array(
-                'type' => 'select',
+                'type' => 'string',
                 'default' => ''
             ),
             'fieldcolumn' => array(
-                'type' => 'select',
+                'type' => 'string',
                 'default' =>''
             ),
             'noofresumes' => array(
@@ -1778,7 +1878,9 @@ function wpjobportal_resumes_block(){
             ),
         ),
         'render_callback' => 'wpjobportal_resumes_block_widgets',
-        'editor_script' => 'wpjobportalresumesblock'
+        'editor_script' => 'wpjobportal-blocks-editor',
+        'editor_style' => 'wpjobportal-blocks-editor',
+        'supports' => array('html' => false, 'align' => array('wide', 'full')),
     ) );
 }
 
@@ -1792,6 +1894,11 @@ function wpjobportal_resumes_block_widgets($attributes, $wpjobportal_content){
         'noofresumes' => '1',
     );
     $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $attributes);
+    $wpjobportal_sanitized_args['title'] = wpjobportal_block_string($wpjobportal_sanitized_args['title'], __('Latest Resumes', 'wp-job-portal'));
+    $wpjobportal_sanitized_args['typeofresume'] = wpjobportal_block_choice($wpjobportal_sanitized_args['typeofresume'], array('1', '2', '4'), '1');
+    $wpjobportal_sanitized_args['noofresumes'] = wpjobportal_block_number($wpjobportal_sanitized_args['noofresumes'], 5, 1, 50);
+    $wpjobportal_sanitized_args['fieldcolumn'] = wpjobportal_block_number($wpjobportal_sanitized_args['fieldcolumn'], 1, 1, 5);
+    $wpjobportal_sanitized_args['listingstyle'] = wpjobportal_block_choice($wpjobportal_sanitized_args['listingstyle'], array('0', '1'), '1');
     if($wpjobportal_sanitized_args['fieldcolumn'] == '' || $wpjobportal_sanitized_args['fieldcolumn'] == 0){
         $wpjobportal_sanitized_args['fieldcolumn'] = 1;
     }
@@ -1827,7 +1934,7 @@ function wpjobportal_resumes_block_widgets($attributes, $wpjobportal_content){
     if (is_rtl()) {
         wp_enqueue_style('wpjobportal-site-rtl', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/stylertl.css');
     }
-    return $wpjobportal_html;
+    return wpjobportal_block_wrap($wpjobportal_html, 'wpjobportal-resumes-block');
 }
 
 add_action( 'init', 'wpjobportal_jobsearch_block');
@@ -1836,12 +1943,9 @@ function wpjobportal_jobsearch_block(){
     if(!function_exists("register_block_type")){
         return;
     }
-    wp_register_script(
-        'wpjobportaljobsearchblock',
-        esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/gutenberg/jobsearch.js',
-        array( 'wp-blocks', 'wp-element','wp-editor' )
-    );
+    wpjobportal_register_block_editor_assets();
     register_block_type( 'wpjobportal/wpjobportaljobsearchblock', array(
+        'api_version' => 2,
         'attributes'      => array(
             'title' => array(
                 'type' => 'string',
@@ -1852,43 +1956,47 @@ function wpjobportal_jobsearch_block(){
                 'default' => ''
             ),
             'jobtitle' => array(
-                'type' => 'select',
+                'type' => 'string',
                 'default' => ''
             ),
             'category' => array(
-                'type' => 'select',
+                'type' => 'string',
                 'default' =>''
             ),
             'jobtype' => array(
-                'type' => 'select',
+                'type' => 'string',
                 'default' =>''
             ),
             'jobstatus' => array(
-                'type' => 'select',
+                'type' => 'string',
                 'default' =>''
             ),
             'salaryrange' => array(
-                'type' => 'select',
+                'type' => 'string',
+                'default' =>''
+            ),
+            'shift' => array(
+                'type' => 'string',
                 'default' =>''
             ),
             'duration' => array(
-                'type' => 'select',
+                'type' => 'string',
                 'default' =>''
             ),
             'startpublishing' => array(
-                'type' => 'select',
+                'type' => 'string',
                 'default' =>''
             ),
             'stoppublishing' => array(
-                'type' => 'select',
+                'type' => 'string',
                 'default' =>''
             ),
             'company' => array(
-                'type' => 'select',
+                'type' => 'string',
                 'default' =>''
             ),
             'address' => array(
-                'type' => 'select',
+                'type' => 'string',
                 'default' =>''
             ),
             'columnperrow' => array(
@@ -1897,7 +2005,9 @@ function wpjobportal_jobsearch_block(){
             ),
         ),
         'render_callback' => 'wpjobportal_jobsearch_block_widgets',
-        'editor_script' => 'wpjobportaljobsearchblock'
+        'editor_script' => 'wpjobportal-blocks-editor',
+        'editor_style' => 'wpjobportal-blocks-editor',
+        'supports' => array('html' => false, 'align' => array('wide', 'full')),
     ) );
 }
 
@@ -1920,6 +2030,11 @@ function wpjobportal_jobsearch_block_widgets($attributes, $wpjobportal_content){
         'columnperrow' => '1',
     );
     $wpjobportal_sanitized_args = shortcode_atts($wpjobportal_defaults, $attributes);
+    $wpjobportal_sanitized_args['title'] = wpjobportal_block_string($wpjobportal_sanitized_args['title'], __('Job Search', 'wp-job-portal'));
+    foreach (array('showtitle', 'jobtitle', 'category', 'jobtype', 'jobstatus', 'salaryrange', 'shift', 'duration', 'startpublishing', 'stoppublishing', 'company', 'address') as $wpjobportal_toggle) {
+        $wpjobportal_sanitized_args[$wpjobportal_toggle] = wpjobportal_block_choice($wpjobportal_sanitized_args[$wpjobportal_toggle], array('0', '1'), '1');
+    }
+    $wpjobportal_sanitized_args['columnperrow'] = wpjobportal_block_number($wpjobportal_sanitized_args['columnperrow'], 1, 1, 4);
     if($wpjobportal_sanitized_args['wpjobportalpageid'] == '' || $wpjobportal_sanitized_args['wpjobportalpageid'] == 0){
         $wpjobportal_sanitized_args['wpjobportalpageid'] = wpjobportal::wpjobportal_getPageid();
     }
@@ -1974,7 +2089,7 @@ function wpjobportal_jobsearch_block_widgets($attributes, $wpjobportal_content){
     if (is_rtl()) {
         wp_enqueue_style('wpjobportal-site-rtl', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/stylertl.css');
     }
-    return $wpjobportal_html;
+    return wpjobportal_block_wrap($wpjobportal_html, 'wpjobportal-job-search-block');
 
 }
 ?>

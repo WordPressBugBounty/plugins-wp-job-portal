@@ -34,7 +34,7 @@ if (!is_user_logged_in()) {
                     // show any error messages after form submission
                     wpjobportal_show_error_messages();
                 ?>
-                <form id="wpjobportal_registration_form" class="wjportal-form" action="" method="POST" enctype="multipart/form-data">
+                <form id="wpjobportal_registration_form" class="wjportal-form wpjp-ds-form" action="" method="POST" enctype="multipart/form-data">
                     <?php WPJOBPORTALincluder::getTemplate('user/views/frontend/form-field'); ?>
                 </form>
             </div>

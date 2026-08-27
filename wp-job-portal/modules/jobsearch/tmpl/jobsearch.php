@@ -22,7 +22,7 @@ if (wpjobportal::$_error_flag == null) {
         <?php WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('wpjobportal_module' => 'jobsearch' , 'wpjobportal_layout' => 'jobsearch')); ?>
     </div>
     <div class="wjportal-form-wrp wjportal-search-job-form">
-        <form class="wjportal-form wjportal-aisearch-form" id="job_form" method="post" action="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'jobs', 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))); ?>">
+        <form class="wjportal-form wjportal-aisearch-form wpjp-ds-form" id="job_form" method="post" action="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'jobs', 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))); ?>">
             <?php
             $wpjobportal_job_search_ai_form = wpjobportal::$_config->getConfigValue('job_search_ai_form');
             if($wpjobportal_job_search_ai_form == 0){ // show job search form without ai

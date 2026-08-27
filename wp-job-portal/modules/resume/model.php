@@ -413,6 +413,41 @@ class WPJOBPORTALResumeModel {
         }
         $wpjobportal_resumeid = $wpjobportal_formdata['resumeid'];
 
+        // the resume this section is being written to is resolved server side; never trust a
+        // non numeric value here because it would be coerced further down the stack.
+        if ( ! is_numeric($wpjobportal_resumeid) || (int) $wpjobportal_resumeid < 1) {
+            return false;
+        }
+        $wpjobportal_resumeid = (int) $wpjobportal_resumeid;
+        $wpjobportal_formdata['resumeid'] = $wpjobportal_resumeid;
+
+        // prevent cross-resume section hijack on edit: an existing section id must belong to this resume.
+        // the posted id has to be a clean integer, otherwise a value such as "123abc" would skip this
+        // check and still be coerced to row 123 by MySQL in the UPDATE further down.
+        if (isset($wpjobportal_formdata['id']) && $wpjobportal_formdata['id'] !== '' && $wpjobportal_formdata['id'] !== null) {
+            $wpjobportal_posted_sectionid = $wpjobportal_formdata['id'];
+            if (is_array($wpjobportal_posted_sectionid)
+                || ! is_numeric($wpjobportal_posted_sectionid)
+                || (string) absint($wpjobportal_posted_sectionid) !== (string) $wpjobportal_posted_sectionid
+            ) {
+                return false; // malformed section id
+            }
+            $wpjobportal_posted_sectionid = absint($wpjobportal_posted_sectionid);
+            if ($wpjobportal_posted_sectionid > 0) {
+                $wpjobportal_formdata['id'] = $wpjobportal_posted_sectionid; // normalised, no string left to coerce
+                if ( ! current_user_can('manage_options') ) {
+                    $wpjobportal_owns_section = wpjobportal::$_db->get_var(
+                        "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($wpjobportal_table_name) . "` WHERE id = " . (int) ($wpjobportal_posted_sectionid) . " AND resumeid = " . (int) ($wpjobportal_resumeid)
+                    );
+                    if ($wpjobportal_owns_section == 0) {
+                        return false; // section does not belong to this resume
+                    }
+                }
+            } else {
+                $wpjobportal_formdata['id'] = ''; // 0 means a new row, not an edit
+            }
+        }
+
         //check whether form data array is empty;
             $wpjobportal_check_array = $wpjobportal_formdata;
             unset($wpjobportal_check_array['resumeid']);
@@ -616,14 +651,10 @@ class WPJOBPORTALResumeModel {
         if(!is_numeric($wpjobportal_resumeid)) return false;
         if(!is_numeric($wpjobportal_sectionid)) return false;
 
-        if ( ! current_user_can( 'manage_options' ) ) { // user is not admin check perform
-            if( ! WPJOBPORTALincluder::getObjectClass('user')->isguest()){
-                $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE id = " . (int) ($wpjobportal_resumeid)." AND uid =" . (int) ($wpjobportal_uid);
-                $wpjobportal_result = wpjobportal::$_db->get_var($query);
-                if($wpjobportal_result == 0){
-                    return false; // not your resume
-                }
-            }
+        // the caller must own the resume. this also has to hold for visitor submissions, where
+        // ownership is carried by the session rather than by a uid, so do not exempt guests.
+        if ( ! $this->isYoursResume($wpjobportal_resumeid, $wpjobportal_uid)) {
+            return false; // not your resume
         }
 
         if ($wpjobportal_sec_id == 2) {
@@ -635,7 +666,7 @@ class WPJOBPORTALResumeModel {
         if($wpjobportal_sec_id == 5 || $wpjobportal_sec_id == 6){ //skill,editor
             return true;
         }else{
-            $query = "DELETE FROM `" . wpjobportal::$_db->prefix . "wj_portal_".esc_sql($wpjobportal_table_name)."` WHERE id = " . (int) ($wpjobportal_sectionid);
+            $query = "DELETE FROM `" . wpjobportal::$_db->prefix . "wj_portal_".esc_sql($wpjobportal_table_name)."` WHERE id = " . (int) ($wpjobportal_sectionid) . " AND resumeid = " . (int) ($wpjobportal_resumeid);
             if (wpjobportaldb::query($query)) {
                 return true;
             }else{
@@ -1591,27 +1622,54 @@ class WPJOBPORTALResumeModel {
         $wpjobportal_row = null;
         switch ($wpjobportal_section) {
             case 'languages':
-                $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resumelanguage');
+                $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resumelanguages');
                 break;
             // case 'references':
-            //     $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resumereference');
+            //     $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resumereferences');
             //     break;
             case 'employers':
-                $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resumeemployer');
+                $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resumeemployers');
                 break;
             case 'institutes':
-                $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resumeinstitute');
+                $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resumeinstitutes');
                 break;
             case 'addresses':
-                $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resumeaddress');
+                $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resumeaddresses');
                 break;
         }
         $wpjobportal_msg = esc_html(__('Section has been deleted', 'wp-job-portal'));
         $wpjobportal_result = 1;
-        if ($this->isYoursResume($wpjobportal_resumeid, $wpjobportal_uid)) {
-            if (!$wpjobportal_row->delete($wpjobportal_data['sectionid'])) {
+        // the section tables all use a plural class name; an unknown section leaves $wpjobportal_row
+        // null, so bail out with an error instead of fataling on a method call against null.
+        $wpjobportal_sectiontables = array(
+            'languages'  => 'resumelanguages',
+            'employers'  => 'resumeemployers',
+            'institutes' => 'resumeinstitutes',
+            'addresses'  => 'resumeaddresses',
+        );
+        if (!is_object($wpjobportal_row) || !isset($wpjobportal_sectiontables[$wpjobportal_section])) {
+            $wpjobportal_msg = esc_html(__('Error deleting section', 'wp-job-portal'));
+            $wpjobportal_result = 0;
+        } elseif ($this->isYoursResume($wpjobportal_resumeid, $wpjobportal_uid)) {
+            // owning the parent resume is not enough: the section row itself has to belong to it,
+            // otherwise any resume owner could delete another resume's rows by id.
+            $wpjobportal_sectionid = isset($wpjobportal_data['sectionid']) ? $wpjobportal_data['sectionid'] : '';
+            if (is_array($wpjobportal_sectionid)
+                || !is_numeric($wpjobportal_sectionid)
+                || (string) absint($wpjobportal_sectionid) !== (string) $wpjobportal_sectionid
+                || absint($wpjobportal_sectionid) < 1
+                || !is_numeric($wpjobportal_resumeid)
+            ) {
                 $wpjobportal_msg = esc_html(__('Error deleting section', 'wp-job-portal'));
                 $wpjobportal_result = 0;
+            } else {
+                $wpjobportal_owns_section = wpjobportal::$_db->get_var(
+                    "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($wpjobportal_sectiontables[$wpjobportal_section]) . "` WHERE id = " . (int) ($wpjobportal_sectionid) . " AND resumeid = " . (int) ($wpjobportal_resumeid)
+                );
+                if ($wpjobportal_owns_section == 0 || !$wpjobportal_row->delete(absint($wpjobportal_sectionid))) {
+                    $wpjobportal_msg = esc_html(__('Error deleting section', 'wp-job-portal'));
+                    $wpjobportal_result = 0;
+                }
             }
         }
         $canadd = $this->canAddMoreSection($wpjobportal_uid, $wpjobportal_resumeid, $wpjobportal_section);

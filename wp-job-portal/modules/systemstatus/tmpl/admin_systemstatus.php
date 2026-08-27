@@ -18,6 +18,7 @@ $storage_maintenance_needed = !empty($storage['remaining'])
     || !empty($storage['last_error']);
 $labels = array(
     'environment' => __('Environment', 'wp-job-portal'),
+    'operational_readiness' => __('Mode and workflow readiness', 'wp-job-portal'),
     'database' => __('Database readiness', 'wp-job-portal'),
     'request_security' => __('Request security', 'wp-job-portal'),
     'privacy_payments' => __('Privacy and payments', 'wp-job-portal'),
@@ -65,8 +66,8 @@ wp_add_inline_script(
 
         <?php WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle', array('wpjobportal_module' => 'systemstatus', 'wpjobportal_layouts' => 'systemstatus')); ?>
 
-        <div id="wpjobportal-admin-wrapper" class="p0">
-            <div style="padding:20px; background-color: #FFF;border-radius: 8px;">
+        <div id="wpjobportal-admin-wrapper" class="p0 wpjobportal-admin-system-status-layout">
+            <div class="wpjobportal-system-status-inner">
                 <p>
                     <?php echo esc_html__('Diagnostics are support-safe and do not expose passwords, API keys, request payloads or candidate email addresses.', 'wp-job-portal'); ?>
                 </p>

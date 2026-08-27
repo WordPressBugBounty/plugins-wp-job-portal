@@ -235,7 +235,8 @@ if ($wpjobportal_module) {
 				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('View Resume', 'wp-job-portal')) .'</h1>';
 			break;
 			case 'formresume':
-				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. esc_html(__('Resume', 'wp-job-portal')) .'</h1>';
+				$wpjobportal_heading = isset(wpjobportal::$_data[0]) ? esc_html(__('Edit', 'wp-job-portal')) : esc_html(__('Add New', 'wp-job-portal'));
+				$wpjobportal_html.='<h1 class="wpjobportal-head-text">'. $wpjobportal_heading . ' ' . esc_html(__('Resume', 'wp-job-portal')) .'</h1>';
 			break;
 			case 'users':
 				$wpjobportal_html.= '<h1 class="wpjobportal-head-text">'. esc_html(__('Users', 'wp-job-portal')) .'</h1>
@@ -341,6 +342,15 @@ if ($wpjobportal_module) {
 			break;
 			case 'playground':
 					$wpjobportal_html .='<h1 class="wpjobportal-head-text">'. esc_html(__('AI Content Generation', 'wp-job-portal')).'</h1>';
+			break;
+			case 'zywrap':
+					$wpjobportal_html .='<h1 class="wpjobportal-head-text">'. esc_html(__('Zywrap Settings', 'wp-job-portal')).'</h1>';
+			break;
+			case 'modeguide':
+					$wpjobportal_html .='<h1 class="wpjobportal-head-text">'. esc_html(__('How WP Job Portal modes work', 'wp-job-portal')).'</h1>
+	        			<a class="wpjobportal-add-link button" href="'.esc_url_raw(admin_url('admin.php?page=wpjobportal_postinstallation&wpjobportallt=quickstart')).'" title="'. esc_attr(__('Change Mode','wp-job-portal')).'">
+	        				'. esc_html(__('Change Mode','wp-job-portal')).'
+	        			</a>';
 			break;
 			case 'zywraplogs':
 					$wpjobportal_html .='<h1 class="wpjobportal-head-text">'. esc_html(__('Zywrap Logs', 'wp-job-portal')).'</h1>';

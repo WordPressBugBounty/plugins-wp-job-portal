@@ -9,20 +9,50 @@ if(isset($wpjobportal_user)){
 
 }
 function wpjobportal_printFormField($title, $wpjobportal_field, $wpjobportal_description) {
-    $wpjobportal_html = '<div class="wjportal-form-row">
-    <div class="wjportal-form-title">' . wp_kses(wpjobportal::wpjobportal_getVariableValue($title),WPJOBPORTAL_ALLOWED_TAGS) . '</div>
-    <div class="wjportal-form-value">' . $wpjobportal_field;
+    $wpjobportal_uid = wp_unique_id('wpjp-user-field-');
+    $wpjobportal_label_id = $wpjobportal_uid . '-label';
+    $wpjobportal_help_id = !empty($wpjobportal_description) ? $wpjobportal_uid . '-help' : '';
+    $wpjobportal_required = false !== strpos((string) $title, 'required-notifier');
+    $wpjobportal_field = WPJOBPORTALformfield::prepareAccessibleContent(
+        $wpjobportal_field,
+        $wpjobportal_label_id,
+        $wpjobportal_help_id,
+        $wpjobportal_required
+    );
+    $wpjobportal_control_id = WPJOBPORTALformfield::getFirstControlId($wpjobportal_field);
+    $wpjobportal_label_open = '' !== $wpjobportal_control_id
+        ? '<label class="wjportal-form-title wpjp-ds-label" id="' . esc_attr($wpjobportal_label_id) . '" for="' . esc_attr($wpjobportal_control_id) . '">'
+        : '<span class="wjportal-form-title wpjp-ds-label" id="' . esc_attr($wpjobportal_label_id) . '">';
+    $wpjobportal_label_close = '' !== $wpjobportal_control_id ? '</label>' : '</span>';
+    $wpjobportal_html = '<div class="wjportal-form-row wpjp-ds-field">'
+        . $wpjobportal_label_open
+        . wp_kses(wpjobportal::wpjobportal_getVariableValue($title), WPJOBPORTAL_ALLOWED_TAGS)
+        . $wpjobportal_label_close
+        . '<div class="wjportal-form-value" role="group" aria-labelledby="' . esc_attr($wpjobportal_label_id) . '">'
+        . $wpjobportal_field;
     if (!empty($wpjobportal_description)) {
-        $wpjobportal_html .= '<div class="wjportal-form-help-txt">'.$wpjobportal_description.'</div>';
+        $wpjobportal_html .= '<div class="wjportal-form-help-txt wpjp-ds-help" id="' . esc_attr($wpjobportal_help_id) . '">'.$wpjobportal_description.'</div>';
     }
     $wpjobportal_html .= '</div></div>';
     return $wpjobportal_html;
 }
 function wpjobportal_getRowForForm($wpjobportal_text, $wpjobportal_value,$wpjobportal_themecall=null) {
-    $wpjobportal_html = '<div class="wjportal-form-row">
-    <div class="wjportal-form-title">' . wp_kses(wpjobportal::wpjobportal_getVariableValue($wpjobportal_text),WPJOBPORTAL_ALLOWED_TAGS) . ':</div>
-    <div class="wjportal-form-value">' . $wpjobportal_value . '</div>
-    </div>';
+    $wpjobportal_uid = wp_unique_id('wpjp-user-row-');
+    $wpjobportal_label_id = $wpjobportal_uid . '-label';
+    $wpjobportal_value = WPJOBPORTALformfield::prepareAccessibleContent($wpjobportal_value, $wpjobportal_label_id);
+    $wpjobportal_control_id = WPJOBPORTALformfield::getFirstControlId($wpjobportal_value);
+    $wpjobportal_label_open = '' !== $wpjobportal_control_id
+        ? '<label class="wjportal-form-title wpjp-ds-label" id="' . esc_attr($wpjobportal_label_id) . '" for="' . esc_attr($wpjobportal_control_id) . '">'
+        : '<span class="wjportal-form-title wpjp-ds-label" id="' . esc_attr($wpjobportal_label_id) . '">';
+    $wpjobportal_label_close = '' !== $wpjobportal_control_id ? '</label>' : '</span>';
+    $wpjobportal_html = '<div class="wjportal-form-row wpjp-ds-field">'
+        . $wpjobportal_label_open
+        . wp_kses(wpjobportal::wpjobportal_getVariableValue($wpjobportal_text), WPJOBPORTAL_ALLOWED_TAGS)
+        . ':'
+        . $wpjobportal_label_close
+        . '<div class="wjportal-form-value" role="group" aria-labelledby="' . esc_attr($wpjobportal_label_id) . '">'
+        . $wpjobportal_value
+        . '</div></div>';
     return $wpjobportal_html;
 }
 ?>
@@ -108,10 +138,10 @@ foreach ($wpjobportal_fieldslist AS $wpjobportal_field) {
             $title = wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle);
             $wpjobportal_description = $wpjobportal_field->description;
             ?>
-            <div class="wjportal-form-row">
-                <div class="wjportal-form-title" for="wjportal_user_profile">
+            <div class="wjportal-form-row wpjp-ds-field">
+                <label class="wjportal-form-title wpjp-ds-label" for="photo">
                     <?php echo esc_html($title);?>
-                </div>
+                </label>
                 <div class="wjportal-form-value">
                     <?php
                                     /////**********Use OF Field Ordering Method**********/////
@@ -183,20 +213,20 @@ foreach ($wpjobportal_fieldslist AS $wpjobportal_field) {
 ?>
 <!-- Static Input Get Validate -->
 <?php  if(!isset(wpjobportal::$_data[0])){  ?>
-    <div class="wjportal-form-row">
-        <div class="wjportal-form-title" for="password">
+    <div class="wjportal-form-row wpjp-ds-field">
+        <label class="wjportal-form-title wpjp-ds-label" for="password">
             <?php echo  esc_html(__("Password","wp-job-portal")); ?> <font>*</font>
-        </div>
+        </label>
         <div class="wjportal-form-value">
-            <input name="wpjobportal_user_pass" id="password" data-validation="required" class="required wjportal-form-input-field" type="password" placeholder="<?php echo esc_attr(__("Password",'wp-job-portal')); ?>"/>
+            <input name="wpjobportal_user_pass" id="password" data-validation="required" aria-required="true" autocomplete="new-password" class="required wjportal-form-input-field wpjp-ds-control" type="password" placeholder="<?php echo esc_attr(__("Password",'wp-job-portal')); ?>"/>
         </div>
     </div>
-    <div class="wjportal-form-row">
-        <div class="wjportal-form-title" for="password_again">
+    <div class="wjportal-form-row wpjp-ds-field">
+        <label class="wjportal-form-title wpjp-ds-label" for="password_again">
             <?php echo esc_html(__('Password Again','wp-job-portal')); ?> <font>*</font>
-        </div>
+        </label>
         <div class="wjportal-form-value">
-            <input name="wpjobportal_user_pass_confirm" id="password_again" data-validation="required" class="required wjportal-form-input-field" type="password" placeholder="<?php echo esc_attr(__('Password Again','wp-job-portal')); ?>"/>
+            <input name="wpjobportal_user_pass_confirm" id="password_again" data-validation="required" aria-required="true" autocomplete="new-password" class="required wjportal-form-input-field wpjp-ds-control" type="password" placeholder="<?php echo esc_attr(__('Password Again','wp-job-portal')); ?>"/>
         </div>
     </div>
     <?php

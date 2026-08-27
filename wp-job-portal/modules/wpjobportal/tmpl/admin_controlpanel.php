@@ -2,7 +2,7 @@
 if (!defined('ABSPATH'))
     die('Restricted Access');
 
-wp_enqueue_style('wpjobportal-redesign-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportaladmin_redesign.css');
+wp_enqueue_style('wpjobportal-redesign-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportaladmin_redesign.css', array(), wpjobportal_asset_version('includes/css/wpjobportaladmin_redesign.css'));
 // Enqueue necessary scripts and styles
 // wp_enqueue_style('wjp-font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
 // wp_enqueue_script('chart-js', 'https://cdn.jsdelivr.net/npm/chart.js');

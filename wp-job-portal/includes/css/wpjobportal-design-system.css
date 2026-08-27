@@ -1,0 +1,342 @@
+/**
+ * WP Job Portal shared design-system foundation.
+ *
+ * This file intentionally provides low-specificity foundations and opt-in
+ * components. Existing templates retain their current presentation while
+ * Release 3 pages progressively adopt the wpjp-ds-* component classes.
+ */
+
+:root {
+    /* Semantic colour aliases preserve the administrator's existing theme. */
+    --wpjp-ds-color-primary: var(--wpjp-primary-color, #6246c6);
+    --wpjp-ds-color-primary-strong: var(--wpjp-secondary-color, #391a8c);
+    --wpjp-ds-color-text: var(--wpjp-body-font-color, #3f4652);
+    --wpjp-ds-color-text-muted: #667085;
+    --wpjp-ds-color-border: var(--wpjp-border-color, #d9dee7);
+    --wpjp-ds-color-surface: var(--wpjp-card-background, #ffffff);
+    --wpjp-ds-color-canvas: var(--wpjp-background-color, #f6f7f9);
+    --wpjp-ds-color-success: var(--wpjp-success-color, #16803c);
+    --wpjp-ds-color-warning: var(--wpjp-warning-color, #a15c00);
+    --wpjp-ds-color-danger: var(--wpjp-danger-color, #c52a35);
+    --wpjp-ds-color-info: #1261a0;
+
+    /* Typography and spacing use a predictable, responsive scale. */
+    --wpjp-ds-font-family: inherit;
+    --wpjp-ds-font-size-xs: 0.75rem;
+    --wpjp-ds-font-size-sm: 0.875rem;
+    --wpjp-ds-font-size-md: 1rem;
+    --wpjp-ds-font-size-lg: 1.125rem;
+    --wpjp-ds-font-size-xl: clamp(1.25rem, 1.1rem + 0.55vw, 1.625rem);
+    --wpjp-ds-font-size-2xl: clamp(1.625rem, 1.35rem + 1vw, 2.25rem);
+    --wpjp-ds-line-height: 1.55;
+    --wpjp-ds-space-1: 0.25rem;
+    --wpjp-ds-space-2: 0.5rem;
+    --wpjp-ds-space-3: 0.75rem;
+    --wpjp-ds-space-4: 1rem;
+    --wpjp-ds-space-5: 1.25rem;
+    --wpjp-ds-space-6: 1.5rem;
+    --wpjp-ds-space-8: 2rem;
+    --wpjp-ds-space-10: 2.5rem;
+    --wpjp-ds-space-12: 3rem;
+
+    /* Shared shape, elevation, focus and layout contracts. */
+    --wpjp-ds-radius-sm: 0.375rem;
+    --wpjp-ds-radius-md: 0.625rem;
+    --wpjp-ds-radius-lg: 0.875rem;
+    --wpjp-ds-shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06);
+    --wpjp-ds-shadow-md: var(--wpjp-card-shadow, 0 4px 15px rgba(16, 24, 40, 0.08));
+    --wpjp-ds-focus-ring: var(--wpjp-focus-shadow-color, 0 0 0 3px rgba(98, 70, 198, 0.25));
+    --wpjp-ds-control-height: 2.75rem;
+    --wpjp-ds-content-width: 75rem;
+    --wpjp-ds-transition: 160ms ease;
+}
+
+/* Keep sizing and media predictable without resetting the host theme. */
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper),
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper) *,
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper) *::before,
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper) *::after {
+    box-sizing: border-box;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper) :where(img, svg, video) {
+    max-width: 100%;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper) :where(button, input, select, textarea) {
+    font: inherit;
+}
+
+/* One WCAG-visible keyboard focus treatment across old and new controls. */
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper) :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 2px solid var(--wpjp-ds-color-primary);
+    outline-offset: 2px;
+    box-shadow: var(--wpjp-ds-focus-ring);
+}
+
+/* Screen-reader utility becomes visible when keyboard users focus it. */
+.wpjp-ds-skip-link,
+.wpjp-ds-visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+.wpjp-ds-skip-link:focus {
+    position: fixed !important;
+    z-index: 100000 !important;
+    inset-block-start: var(--wpjp-ds-space-3) !important;
+    inset-inline-start: var(--wpjp-ds-space-3) !important;
+    width: auto !important;
+    height: auto !important;
+    padding: var(--wpjp-ds-space-3) var(--wpjp-ds-space-4) !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    clip: auto !important;
+    white-space: normal !important;
+    color: #ffffff !important;
+    background: var(--wpjp-ds-color-primary-strong) !important;
+    border-radius: var(--wpjp-ds-radius-md) !important;
+}
+
+/* Layout primitives shared by candidate, employer and administrator screens. */
+.wpjp-ds-container {
+    width: min(100% - 2rem, var(--wpjp-ds-content-width));
+    margin-inline: auto;
+}
+
+.wpjp-ds-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wpjp-ds-stack-gap, var(--wpjp-ds-space-4));
+}
+
+.wpjp-ds-cluster {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--wpjp-ds-cluster-gap, var(--wpjp-ds-space-3));
+}
+
+.wpjp-ds-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--wpjp-ds-grid-min, 16rem)), 1fr));
+    gap: var(--wpjp-ds-grid-gap, var(--wpjp-ds-space-5));
+}
+
+.wpjp-ds-sidebar-layout {
+    display: grid;
+    grid-template-columns: minmax(14rem, 18rem) minmax(0, 1fr);
+    gap: var(--wpjp-ds-space-6);
+    align-items: start;
+}
+
+.wpjp-ds-card {
+    min-width: 0;
+    padding: var(--wpjp-ds-space-5);
+    color: var(--wpjp-ds-color-text);
+    background: var(--wpjp-ds-color-surface);
+    border: 1px solid var(--wpjp-ds-color-border);
+    border-radius: var(--wpjp-ds-radius-lg);
+    box-shadow: var(--wpjp-ds-shadow-sm);
+}
+
+.wpjp-ds-card__header,
+.wpjp-ds-card__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--wpjp-ds-space-3);
+}
+
+.wpjp-ds-title {
+    margin: 0;
+    color: var(--wpjp-ds-color-text);
+    font-size: var(--wpjp-ds-font-size-xl);
+    line-height: 1.25;
+}
+
+.wpjp-ds-description {
+    margin: 0;
+    color: var(--wpjp-ds-color-text-muted);
+    font-size: var(--wpjp-ds-font-size-sm);
+    line-height: var(--wpjp-ds-line-height);
+}
+
+/* Form contract. Later templates can adopt this without page-specific CSS. */
+.wpjp-ds-field {
+    display: grid;
+    gap: var(--wpjp-ds-space-2);
+    min-width: 0;
+}
+
+.wpjp-ds-label {
+    color: var(--wpjp-ds-color-text);
+    font-size: var(--wpjp-ds-font-size-sm);
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.wpjp-ds-control {
+    width: 100%;
+    min-height: var(--wpjp-ds-control-height);
+    padding: 0.625rem 0.75rem;
+    color: var(--wpjp-ds-color-text);
+    background: var(--wpjp-ds-color-surface);
+    border: 1px solid var(--wpjp-ds-color-border);
+    border-radius: var(--wpjp-ds-radius-md);
+    transition: border-color var(--wpjp-ds-transition), box-shadow var(--wpjp-ds-transition);
+}
+
+textarea.wpjp-ds-control {
+    min-height: 7rem;
+    resize: vertical;
+}
+
+.wpjp-ds-control:focus {
+    border-color: var(--wpjp-ds-color-primary);
+}
+
+.wpjp-ds-control[aria-invalid="true"],
+.wpjp-ds-field.is-invalid .wpjp-ds-control {
+    border-color: var(--wpjp-ds-color-danger);
+}
+
+.wpjp-ds-help,
+.wpjp-ds-error {
+    margin: 0;
+    font-size: var(--wpjp-ds-font-size-xs);
+    line-height: 1.5;
+}
+
+.wpjp-ds-help { color: var(--wpjp-ds-color-text-muted); }
+.wpjp-ds-error { color: var(--wpjp-ds-color-danger); }
+
+/* Minimum 44px target supports WCAG 2.2 target-size guidance. */
+.wpjp-ds-button {
+    display: inline-flex;
+    min-height: var(--wpjp-ds-control-height);
+    padding: 0.625rem 1rem;
+    align-items: center;
+    justify-content: center;
+    gap: var(--wpjp-ds-space-2);
+    color: #ffffff;
+    background: var(--wpjp-ds-color-primary);
+    border: 1px solid transparent;
+    border-radius: var(--wpjp-ds-radius-md);
+    font-size: var(--wpjp-ds-font-size-sm);
+    font-weight: 600;
+    line-height: 1.25;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color var(--wpjp-ds-transition), border-color var(--wpjp-ds-transition), color var(--wpjp-ds-transition);
+}
+
+.wpjp-ds-button:hover {
+    color: #ffffff;
+    background: var(--wpjp-ds-color-primary-strong);
+}
+
+.wpjp-ds-button--secondary {
+    color: var(--wpjp-ds-color-primary-strong);
+    background: var(--wpjp-ds-color-surface);
+    border-color: var(--wpjp-ds-color-border);
+}
+
+.wpjp-ds-button--secondary:hover {
+    color: var(--wpjp-ds-color-primary-strong);
+    background: var(--wpjp-ds-color-canvas);
+    border-color: var(--wpjp-ds-color-primary);
+}
+
+.wpjp-ds-button:disabled,
+.wpjp-ds-button[aria-disabled="true"] {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.wpjp-ds-notice {
+    padding: var(--wpjp-ds-space-4);
+    color: var(--wpjp-ds-color-text);
+    background: var(--wpjp-ds-color-canvas);
+    border: 1px solid var(--wpjp-ds-color-border);
+    border-inline-start: 4px solid var(--wpjp-ds-color-info);
+    border-radius: var(--wpjp-ds-radius-md);
+}
+
+.wpjp-ds-notice--success { border-inline-start-color: var(--wpjp-ds-color-success); }
+.wpjp-ds-notice--warning { border-inline-start-color: var(--wpjp-ds-color-warning); }
+.wpjp-ds-notice--danger { border-inline-start-color: var(--wpjp-ds-color-danger); }
+
+.wpjp-ds-table-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+.wpjp-ds-empty-state {
+    display: grid;
+    justify-items: center;
+    gap: var(--wpjp-ds-space-3);
+    padding: clamp(2rem, 7vw, 4rem) var(--wpjp-ds-space-5);
+    color: var(--wpjp-ds-color-text-muted);
+    text-align: center;
+    background: var(--wpjp-ds-color-surface);
+    border: 1px dashed var(--wpjp-ds-color-border);
+    border-radius: var(--wpjp-ds-radius-lg);
+}
+
+@media (max-width: 782px) {
+    .wpjp-ds-container {
+        width: min(100% - 1.5rem, var(--wpjp-ds-content-width));
+    }
+
+    .wpjp-ds-sidebar-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .wpjp-ds-card {
+        padding: var(--wpjp-ds-space-4);
+    }
+}
+
+@media (max-width: 480px) {
+    .wpjp-ds-button--mobile-full {
+        width: 100%;
+    }
+
+    .wpjp-ds-card__header,
+    .wpjp-ds-card__footer {
+        align-items: stretch;
+        flex-direction: column;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper) *,
+    :where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper) *::before,
+    :where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper) *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+@media (forced-colors: active) {
+    .wpjp-ds-button,
+    .wpjp-ds-card,
+    .wpjp-ds-control,
+    .wpjp-ds-notice {
+        border-color: CanvasText;
+    }
+}

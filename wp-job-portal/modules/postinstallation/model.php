@@ -5,6 +5,8 @@ if (!defined('ABSPATH'))
 
 class WPJOBPORTALPostinstallationModel {
 
+    private static $wpjobportal_theme_demo_created_posts = array();
+
     function updateInstallationStatusConfiguration(){
             $flag = get_option('wpjobportal_post_installation');
             if($flag == false){
@@ -20,48 +22,33 @@ class WPJOBPORTALPostinstallationModel {
         $error = false;
         unset($wpjobportal_data['action']);
         unset($wpjobportal_data['form_request']);
-        if($wpjobportal_data['step'] == 0 ){
-            update_option("wpjobportal_multiple_employers",$wpjobportal_data['enable_multiple_employers_mode']);
-            if($wpjobportal_data['enable_multiple_employers_mode'] == 0){
+        $wpjobportal_is_mode_stage = isset($wpjobportal_data['setup_stage'])
+            && sanitize_key($wpjobportal_data['setup_stage']) === 'mode';
+        if($wpjobportal_data['step'] == 0 || $wpjobportal_is_mode_stage){
+            $wpjobportal_mode = isset($wpjobportal_data['product_mode'])
+                ? sanitize_key($wpjobportal_data['product_mode'])
+                : '';
 
-                $wpjobportal_config_array = array();
+            // Preserve compatibility with older setup forms and extensions.
+            if($wpjobportal_mode == '' && isset($wpjobportal_data['enable_multiple_employers_mode'])){
+                $wpjobportal_mode = absint($wpjobportal_data['enable_multiple_employers_mode']) === 1
+                    ? WPJOBPORTAL_Product_Mode_Service::MODE_MARKETPLACE
+                    : WPJOBPORTAL_Product_Mode_Service::MODE_CAREERS;
+            }
 
-                $wpjobportal_config_array['disable_employer'] = 0;// disable employer area
-                $wpjobportal_config_array['showemployerlink'] = 0;// disable user to register as employer
-                $wpjobportal_config_array['visitor_can_post_job'] = 0;// disbale add job for visitor
-
-                $wpjobportal_config_array['employerview_js_controlpanel'] = 1;// allow admin/employer to view job seeker side
-                $wpjobportal_config_array['companyautoapprove'] = 1;// auto approve new company
-                $wpjobportal_config_array['jobautoapprove'] = 1;// auto approve new job
-
-                $wpjobportal_config_array['visitor_can_apply_to_job'] = 1;// allow visitor to apply job
-                $wpjobportal_config_array['visitor_can_add_resume'] = 1;// allow visitor to add resume
-
-
-                $wpjobportal_config_array['quick_apply_for_user'] = 1;// enable quick apply for logged in user
-                $wpjobportal_config_array['quick_apply_for_visitor'] = 1;// enable quick apply for visitor
-                $wpjobportal_config_array['cur_location'] = 0;// hide breadcrumbs
-
-
-
-                // un require company field for form job
-                $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_fieldsordering` SET `required` = 0 WHERE `field` = 'company'";
-                if (!wpjobportaldb::query($query)) {
-                }
-
-                $query = '';
-                foreach ($wpjobportal_config_array as $wpjobportal_key => $wpjobportal_value) {
-                    $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_config` SET `configvalue` = '" . esc_sql($wpjobportal_value) . "' WHERE `configname`= '" . esc_sql($wpjobportal_key) . "'";
-                    if (!wpjobportaldb::query($query)) {
-                        $error = true;
-                    }
-                }
+            if(!WPJOBPORTAL_Product_Mode_Service::apply_mode($wpjobportal_mode)){
+                $error = true;
             }
         }else{
             unset($wpjobportal_data['step']);
+            unset($wpjobportal_data['setup_stage']);
             if(isset($wpjobportal_data['enable_multiple_employers_mode'])){
                 unset($wpjobportal_data['enable_multiple_employers_mode']);
             }
+            // Later wizard steps write whatever they are given, so the mode's
+            // locked values are re-applied here for the same reason they are in
+            // the settings screen.
+            $wpjobportal_data = WPJOBPORTAL_Mode_Policy_Service::enforce_settings($wpjobportal_data);
             foreach ($wpjobportal_data as $wpjobportal_key => $wpjobportal_value) {
                 $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_config` SET `configvalue` = '" . esc_sql($wpjobportal_value) . "' WHERE `configname`= '" . esc_sql($wpjobportal_key) . "'";
                 if (!wpjobportaldb::query($query)) {
@@ -182,6 +169,7 @@ class WPJOBPORTALPostinstallationModel {
         $wpjobportal_curdate = gmdate('Y-m-d H:i:s');
         $thirdydaydate = gmdate('Y-m-d', strtotime($wpjobportal_curdate. ' + 30 days'));
         $wpjobportal_data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue('data_directory');
+        $wpjobportal_sample_job_ids = array();
 
 
         if($wpjobportal_jsmenu == 1){
@@ -196,6 +184,9 @@ class WPJOBPORTALPostinstallationModel {
                     'post_type' => 'page'
                 );
                 $post_ID = wp_insert_post($post);
+                if (!is_wp_error($post_ID)) {
+                    WPJOBPORTAL_Sample_Data_Service::record_entity('pages', $post_ID);
+                }
             }
         }
         if($wpjobportal_empmenu == 1){
@@ -210,6 +201,9 @@ class WPJOBPORTALPostinstallationModel {
                     'post_type' => 'page'
                 );
                 $post_ID = wp_insert_post($post);
+                if (!is_wp_error($post_ID)) {
+                    WPJOBPORTAL_Sample_Data_Service::record_entity('pages', $post_ID);
+                }
             }
         }
         if($wpjobportal_joblist_menu == 1){
@@ -224,8 +218,10 @@ class WPJOBPORTALPostinstallationModel {
                     'post_type' => 'page'
                 );
                 $post_ID = wp_insert_post($post);
+                if (!is_wp_error($post_ID)) {
+                    WPJOBPORTAL_Sample_Data_Service::record_entity('pages', $post_ID);
+                }
             }
-    delete_option( 'wpjobportal_multiple_employers' );
         }
         if ( ! function_exists( 'WP_Filesystem' ) ) {
             require_once ABSPATH . 'wp-admin/includes/file.php';
@@ -237,55 +233,13 @@ class WPJOBPORTALPostinstallationModel {
         }
 
         if ($wpjobportal_insertsampledata == 1) {
-            // sample images zip
-            $basepath = ABSPATH;
             $wp_upload_dir = wp_upload_dir();
-            $wpjobportal_url = "https://d3ewuxxxzqg2dd.cloudfront.net/sample_data.zip";
-            $filepath = $basepath . "tmp/jp_sample_data.zip";
-            if(!function_exists('download_url')){
-               do_action('wpjobportal_load_wp_file');
-            }
-
-            if($wp_filesystem->exists($basepath.'tmp')){
-                $this->recursiveremove($basepath.'tmp');
-            }
-            if($wp_filesystem->exists($basepath.'tmp')){
-                $wp_filesystem->move($basepath.'tmp', $basepath.'tmp-rename');
-            }
-
-            $this->makeDir($basepath.'tmp');
-            $tmpfile = download_url( $wpjobportal_url);
-
-            if(is_wp_error($tmpfile)){ // to hanlde the case of first url not working
-                $wpjobportal_url = "https://wpjobportal-sampledata.s3.amazonaws.com/sample_data.zip";
-                $tmpfile = download_url( $wpjobportal_url);
-            }
-
             $wpjobportal_data_directory_path = $wp_upload_dir["basedir"]."/".$wpjobportal_data_directory;
-            if(!$wp_filesystem->exists($wpjobportal_data_directory_path)){
-                $this->makeDir($wpjobportal_data_directory_path);
-            }
-
-            $this->makeDir($basepath.'tmp');
-
-            if(!is_wp_error($tmpfile)){
-               // echo "<br>tmpfile: ".$tmpfile;
-                //echo "<br>filepath: ".$filepath;
-                copy( $tmpfile, $filepath );
-                @wp_delete_file( $tmpfile ); // must wp_delete_file afterwards
-
-                if ($wp_filesystem->exists($basepath . "tmp/jp_sample_data.zip")) {
-                    do_action('wpjobportal_load_wp_pcl_zip');
-                    $archive = new PclZip($basepath . "tmp/jp_sample_data.zip");
-                    $v_list = $archive->extract(PCLZIP_OPT_PATH, $wpjobportal_data_directory_path."/");
-                }
-
-                // end of sample images code
-            }
+            WPJOBPORTAL_Sample_Data_Service::install_assets($wpjobportal_data_directory_path);
             $wpjobportal_jobseeker_id = 0;
             $wpjobportal_employer_id = 0;
-            $post_jobseeker_id = WPJOBPORTALrequest::getVar('jobseeker_id','post');
-            if(isset($post_jobseeker_id) && is_numeric($post_jobseeker_id) && $post_jobseeker_id != 0){
+            $post_jobseeker_id = absint(WPJOBPORTALrequest::getVar('jobseeker_id','post'));
+            if($post_jobseeker_id > 0){
 
                 /* insert new jobseeker */
                 $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "users` where ID= ". $post_jobseeker_id;
@@ -303,8 +257,8 @@ class WPJOBPORTALPostinstallationModel {
                     $wpjobportal_jobseeker_id = $wpjobportal_jobseeker_already_exist;
                 }
             }
-            $post_employer_id = WPJOBPORTALrequest::getVar('employer_id','post');
-            if(isset($post_employer_id) && is_numeric($post_employer_id) && $post_employer_id != 0){
+            $post_employer_id = absint(WPJOBPORTALrequest::getVar('employer_id','post'));
+            if($post_employer_id > 0){
 
                 /* insert new employer */
                 $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "users` where ID= ". $post_employer_id;
@@ -347,6 +301,7 @@ class WPJOBPORTALPostinstallationModel {
                     ";
                 wpjobportaldb::query($wpjobportal_insert_company);
                 $wpjobportal_companyid = wpjobportal::$_db->insert_id;
+                WPJOBPORTAL_Sample_Data_Service::record_entity('companies', $wpjobportal_companyid);
                     // logo handling
                 if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x1")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x1",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_".$wpjobportal_companyid);
                 //Cities
@@ -362,6 +317,7 @@ class WPJOBPORTALPostinstallationModel {
                     ";
                 wpjobportaldb::query($wpjobportal_insert_company);
                 $wpjobportal_companyid1 = wpjobportal::$_db->insert_id;
+                WPJOBPORTAL_Sample_Data_Service::record_entity('companies', $wpjobportal_companyid1);
                 // logo handling
                 if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x2")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x2",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_".$wpjobportal_companyid1);
 
@@ -378,6 +334,7 @@ class WPJOBPORTALPostinstallationModel {
                     ";
                 wpjobportaldb::query($wpjobportal_insert_company);
                 $wpjobportal_companyid2 = wpjobportal::$_db->insert_id;
+                WPJOBPORTAL_Sample_Data_Service::record_entity('companies', $wpjobportal_companyid2);
                 // logo handling
                 if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x3")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x3",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_".$wpjobportal_companyid2);
 
@@ -394,6 +351,7 @@ class WPJOBPORTALPostinstallationModel {
                     ";
                 wpjobportaldb::query($wpjobportal_insert_company);
                 $wpjobportal_companyid3 = wpjobportal::$_db->insert_id;
+                WPJOBPORTAL_Sample_Data_Service::record_entity('companies', $wpjobportal_companyid3);
                 // logo handling
                 if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x4")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x4",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_".$wpjobportal_companyid3);
 
@@ -409,6 +367,7 @@ class WPJOBPORTALPostinstallationModel {
                     ";
                 wpjobportaldb::query($wpjobportal_insert_company);
                 $wpjobportal_companyid4 = wpjobportal::$_db->insert_id;
+                WPJOBPORTAL_Sample_Data_Service::record_entity('companies', $wpjobportal_companyid4);
                 // logo handling
                 if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x5")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x5",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_".$wpjobportal_companyid4);
 
@@ -424,6 +383,7 @@ class WPJOBPORTALPostinstallationModel {
 
                 wpjobportaldb::query($wpjobportal_insert_company);
                 $wpjobportal_companyid5 = wpjobportal::$_db->insert_id;
+                WPJOBPORTAL_Sample_Data_Service::record_entity('companies', $wpjobportal_companyid5);
                 // logo handling
                 if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x6")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x6",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_".$wpjobportal_companyid5);
 
@@ -440,6 +400,7 @@ class WPJOBPORTALPostinstallationModel {
                     ";
                 wpjobportaldb::query($wpjobportal_insert_company);
                 $wpjobportal_companyid6 = wpjobportal::$_db->insert_id;
+                WPJOBPORTAL_Sample_Data_Service::record_entity('companies', $wpjobportal_companyid6);
                 // logo handling
                 if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x7")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x7",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_".$wpjobportal_companyid6);
 
@@ -455,6 +416,7 @@ class WPJOBPORTALPostinstallationModel {
                     ";
                 wpjobportaldb::query($wpjobportal_insert_company);
                 $wpjobportal_companyid7 = wpjobportal::$_db->insert_id;
+                WPJOBPORTAL_Sample_Data_Service::record_entity('companies', $wpjobportal_companyid7);
                 // logo handling
                 if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x8")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x8",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_".$wpjobportal_companyid7);
 
@@ -470,6 +432,7 @@ class WPJOBPORTALPostinstallationModel {
                     ";
                 wpjobportaldb::query($wpjobportal_insert_company);
                 $wpjobportal_companyid8 = wpjobportal::$_db->insert_id;
+                WPJOBPORTAL_Sample_Data_Service::record_entity('companies', $wpjobportal_companyid8);
                 // logo handling
                 if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x9")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x9",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_".$wpjobportal_companyid8);
                 $wpjobportal_insert_companycity = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companycities` (`companyid`, `cityid`)
@@ -497,6 +460,8 @@ class WPJOBPORTALPostinstallationModel {
                     ";
                 wpjobportaldb::query($wpjobportal_insert_job);
                 $wpjobportal_jobid = wpjobportal::$_db->insert_id;
+                $wpjobportal_sample_job_ids[] = absint($wpjobportal_jobid);
+                WPJOBPORTAL_Sample_Data_Service::record_entity('jobs', $wpjobportal_jobid);
                 $wpjobportal_insetjobcities = $this->insertJobCities($wpjobportal_jobid, $cityid);
 
 
@@ -509,6 +474,8 @@ class WPJOBPORTALPostinstallationModel {
 
                 wpjobportaldb::query($wpjobportal_insert_job);
                 $wpjobportal_jobid = wpjobportal::$_db->insert_id;
+                $wpjobportal_sample_job_ids[] = absint($wpjobportal_jobid);
+                WPJOBPORTAL_Sample_Data_Service::record_entity('jobs', $wpjobportal_jobid);
                 $wpjobportal_insetjobcities = $this->insertJobCities($wpjobportal_jobid, $cityid1);
 
 
@@ -517,6 +484,8 @@ class WPJOBPORTALPostinstallationModel {
                         ('".$wpjobportal_employer_id."', '".esc_sql($wpjobportal_companyid2)."', 'Accountant', 'accountant', '13', 1, 3, 0, '<ul>\n<li>Accountant Job Duties:</li>\n<li>Prepares asset, liability, and capital account entries by compiling and analyzing account information.<br />\nDocuments financial transactions by entering account information.<br />\nRecommends financial actions by analyzing accounting options.<br />\nSummarizes current financial status by collecting information; preparing balance sheet, profit and loss statement, and other reports.<br />\nSubstantiates financial transactions by auditing documents.<br />\nMaintains accounting controls by preparing and recommending policies and procedures.<br />\nGuides accounting clerical staff by coordinating activities and answering questions.<br />\nReconciles financial discrepancies by collecting and analyzing account information.<br />\nSecures financial information by completing data base backups.<br />\nMaintains financial security by following internal controls.<br />\nPrepares payments by verifying documentation, and requesting disbursements.<br />\nAnswers accounting procedure questions by researching and interpreting accounting policy and regulations.<br />\nComplies with federal, state, and local financial legal requirements by studying existing and new legislation, enforcing adherence to requirements, and advising management on needed actions.<br />\nPrepares special financial reports by collecting, analyzing, and summarizing account information and trends.<br />\nMaintains customer confidence and protects operations by keeping financial information confidential.<br />\nMaintains professional and technical knowledge by attending educational workshops; reviewing professional publications; establishing personal networks; participating in professional societies.<br />\nAccomplishes the result by performing the duty.<br />\nContributes to team effort by accomplishing related results as needed.</li>\n</ul>\n', '', '', '', '', '".$cityid2."', '', '', '', '', '', '', '', 0, 1, '', '', '', '".$wpjobportal_curdate."', 0, '0000-00-00 00:00:00', 0, 0, 0, '".$wpjobportal_curdate."', '".$thirdydaydate."', '', 0, '', '', 0, '', 1, NULL, 'CA', 3, '', 0, '$', 'pmX6r!W27', '73.0931461', '33.7293882', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '[]', '', 0, '', 3, 4000, 4500, 2, 0, 0, 'Accountant Joom Shark Computer/IT Full-Time Closed to New Applicants 4,000 - 4,500 $ Per Month Entry Level Leona, Kansas, United States', 'Accountant Joom Shark Computer/IT Full-Time Closed to New Applicants 4,000 - 4,500 $ Per Month Entry Level Leona, Kansas, United States<ul>');";
                             wpjobportaldb::query($wpjobportal_insert_job);
                             $wpjobportal_jobid = wpjobportal::$_db->insert_id;
+                            $wpjobportal_sample_job_ids[] = absint($wpjobportal_jobid);
+                            WPJOBPORTAL_Sample_Data_Service::record_entity('jobs', $wpjobportal_jobid);
                             $wpjobportal_insetjobcities = $this->insertJobCities($wpjobportal_jobid, $cityid2);
 
 
@@ -527,6 +496,8 @@ class WPJOBPORTALPostinstallationModel {
 
                  wpjobportaldb::query($wpjobportal_insert_job);
                 $wpjobportal_jobid = wpjobportal::$_db->insert_id;
+                $wpjobportal_sample_job_ids[] = absint($wpjobportal_jobid);
+                WPJOBPORTAL_Sample_Data_Service::record_entity('jobs', $wpjobportal_jobid);
                 $wpjobportal_insetjobcities = $this->insertJobCities($wpjobportal_jobid, $cityid3);
 
                 //5th job
@@ -536,6 +507,8 @@ class WPJOBPORTALPostinstallationModel {
                         ";
                 wpjobportaldb::query($wpjobportal_insert_job);
                 $wpjobportal_jobid = wpjobportal::$_db->insert_id;
+                $wpjobportal_sample_job_ids[] = absint($wpjobportal_jobid);
+                WPJOBPORTAL_Sample_Data_Service::record_entity('jobs', $wpjobportal_jobid);
                 $wpjobportal_insetjobcities = $this->insertJobCities($wpjobportal_jobid, $cityid4);
 
 
@@ -548,6 +521,8 @@ class WPJOBPORTALPostinstallationModel {
 
                 wpjobportaldb::query($wpjobportal_insert_job);
                 $wpjobportal_jobid = wpjobportal::$_db->insert_id;
+                $wpjobportal_sample_job_ids[] = absint($wpjobportal_jobid);
+                WPJOBPORTAL_Sample_Data_Service::record_entity('jobs', $wpjobportal_jobid);
                 $wpjobportal_insetjobcities = $this->insertJobCities($wpjobportal_jobid, $cityid5);
 
 
@@ -556,6 +531,8 @@ class WPJOBPORTALPostinstallationModel {
                         ";
                 wpjobportaldb::query($wpjobportal_insert_job);
                 $wpjobportal_jobid = wpjobportal::$_db->insert_id;
+                $wpjobportal_sample_job_ids[] = absint($wpjobportal_jobid);
+                WPJOBPORTAL_Sample_Data_Service::record_entity('jobs', $wpjobportal_jobid);
                 $wpjobportal_insetjobcities = $this->insertJobCities($wpjobportal_jobid, $cityid6);
 
 
@@ -563,6 +540,8 @@ class WPJOBPORTALPostinstallationModel {
                         ('".$wpjobportal_employer_id."', '".esc_sql($wpjobportal_companyid7)."', 'Junior PHP Developer', 'junior-php-developer', '13', 1, 2, 0, '<ul>\n<li>You might be responsible for the replacement of a whole system based on the specifications provided by an IT analyst but often you&#8217;ll work with &#8216;off the shelf&#8217; software, modifying it and integrating it into the existing network. The skill in this is creating the code to link the systems together.</li>\n<li>You&#8217;ll also be responsible for:</li>\n<li>Reviewing current systems<br />\nPresenting ideas for system improvements, including cost proposals<br />\nWorking closely with analysts, designers and staff<br />\nProducing detailed specifications and writing the programme codes<br />\nTesting the product in controlled, real situations before going live<br />\nPreparation of training manuals for users<br />\nMaintaining the systems once they are up and running</li>\n</ul>\n', '', '', '', '', '".$cityid7."', '', '', '', '', '', '', '', 0, 1, '', '', '', '".$wpjobportal_curdate."', 0, '0000-00-00 00:00:00', 0, 5, 0, '".$wpjobportal_curdate."', '".$thirdydaydate."', '', 0, '', '', 0, '', 1, NULL, 'BSCS', 4, '', 0, '$', 'JZH6Nz2cm', '73.06137450000006', '33.697006', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '".$wpjobportal_startfeatureddate."', '".$wpjobportal_endfeatureddate."', '".$wpjobportal_isfeaturedjob."', 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '[]', '', 0, '', 2, 4500, 4500, 2, 0, 0, 'Junior PHP Developer Sample Company 4 Computer/IT Full-Time Interviewing 4,500 $ Per Month Experienced (Non-Manager) Rockford, Illinois, United States', 'Junior PHP Developer Sample Company 4 Computer/IT Full-Time Interviewing 4,500 $ Per Month Experienced (Non-Manager) Rockford, Illinois, United States<ul>',3);";
                 wpjobportaldb::query($wpjobportal_insert_job);
                 $wpjobportal_jobid = wpjobportal::$_db->insert_id;
+                $wpjobportal_sample_job_ids[] = absint($wpjobportal_jobid);
+                WPJOBPORTAL_Sample_Data_Service::record_entity('jobs', $wpjobportal_jobid);
                 $wpjobportal_insetjobcities = $this->insertJobCities($wpjobportal_jobid, $cityid7);
 
 
@@ -571,6 +550,8 @@ class WPJOBPORTALPostinstallationModel {
 
                 wpjobportaldb::query($wpjobportal_insert_job);
                 $wpjobportal_jobid = wpjobportal::$_db->insert_id;
+                $wpjobportal_sample_job_ids[] = absint($wpjobportal_jobid);
+                WPJOBPORTAL_Sample_Data_Service::record_entity('jobs', $wpjobportal_jobid);
                 $wpjobportal_insetjobcities = $this->insertJobCities($wpjobportal_jobid, $cityid8);
             }
 
@@ -608,6 +589,7 @@ class WPJOBPORTALPostinstallationModel {
                     ('".esc_sql($wpjobportal_jobseeker_id)."', '".esc_sql($wpjobportal_date)."', '0000-00-00', 0, 0, 'Sample Data', '340000', '', 'Sample-Data', 'First name ', 'last Name', '1', 'sampledata@info.com', '123456789', '1', 1, 'resume-photo.png', 13, 1, 1, '', 'this is some text that i have written in skills section of reusme.', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, '', 0, '', '[]', 0, 0, 'Sample Data Computer/IT Full-Time United States Male 340000Santa Barbara, California, United States', 'Sample Data Computer/IT Full-Time United States Male 340000Santa Barbara, California, United States Gujranwala 31.5166667 74.3833333 Sample data Sample data Sample 12/18/2019 12/5/2014 Sample data 2025-05-23 06:08:01 2025-05-23 06:08:01 123456789 GT ROAD TRUST PLAZA Santa Barbara, California, United States this is some text that i have written in skills section of reusme. Sample data ');";
                 wpjobportaldb::query($wpjobportal_resume_query);
                 $wpjobportal_resumeid = wpjobportal::$_db->insert_id;
+                WPJOBPORTAL_Sample_Data_Service::record_entity('resumes', $wpjobportal_resumeid);
 
                 if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x1")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x1",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_".$wpjobportal_resumeid);
 
@@ -637,6 +619,7 @@ class WPJOBPORTALPostinstallationModel {
                     ('".esc_sql($wpjobportal_jobseeker_id)."', '".esc_sql($wpjobportal_date)."', '0000-00-00', 0, 0, 'Sample Resume', '340000', '', 'sample-resume', 'John ', 'Doe', '1', 'sample@resume.com', '123456789', '1', 1, 'resume-photo.png', 13, 1, 1, '', 'this is some text that i have written in skills section of reusme.', 2, '0000-00-00 00:00:00', '".$wpjobportal_startfeatureresumeddate."', '0000-00-00 00:00:00', '".$wpjobportal_endfeatureresumeddate."', '".$wpjobportal_isfeaturedresume."', '', 0, '', '[]', 0, 0, 'Sample Resume Computer/IT Full-Time United States Male 340000Ventura, California, United States', 'Sample Resume Computer/IT Full-Time United States Male 340000Ventura, California, United States Gujranwala 31.5166667 74.3833333 this is some text that i have written in skills section of reusme. ');";
                 wpjobportaldb::query($wpjobportal_resume_query);
                 $wpjobportal_resumeid = wpjobportal::$_db->insert_id;
+                WPJOBPORTAL_Sample_Data_Service::record_entity('resumes', $wpjobportal_resumeid);
                 if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x2")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x2",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_".$wpjobportal_resumeid);
 
                 $wpjobportal_resume_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` ( `resumeid`, `address`, `address_city`,  `longitude`, `latitude`, `created`, `last_modified`, `serverstatus`, `serverid`)
@@ -648,6 +631,7 @@ class WPJOBPORTALPostinstallationModel {
                     ('".esc_sql($wpjobportal_jobseeker_id)."', '".esc_sql($wpjobportal_date)."', '0000-00-00', 0, 0, 'Sample Resume 1', '340000', '', 'sample-resume-1', 'John ', 'Doe', '1', 'sample@resume1.com', '123456789', '1', 1, 'resume-photo.png', 13, 1, 1, '', 'this is some text that i have written in skills section of reusme.', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, '', 0, '', '[]', 0, 0, 'Sample Resume 1 Computer/IT Full-Time United States Male 340000Leona, Kansas, United States ', 'Sample Resume 1 Computer/IT Full-Time United States Male 340000Leona, Kansas, United States Gujranwala 31.5166667 74.3833333 this is some text that i have written in skills section of reusme. ');";
                 wpjobportaldb::query($wpjobportal_resume_query);
                 $wpjobportal_resumeid = wpjobportal::$_db->insert_id;
+                WPJOBPORTAL_Sample_Data_Service::record_entity('resumes', $wpjobportal_resumeid);
                 if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x3")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x3",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_".$wpjobportal_resumeid);
 
                 $wpjobportal_resume_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` ( `resumeid`, `address`, `address_city`,  `longitude`, `latitude`, `created`, `last_modified`, `serverstatus`, `serverid`)
@@ -659,6 +643,7 @@ class WPJOBPORTALPostinstallationModel {
                     ('".esc_sql($wpjobportal_jobseeker_id)."', '".esc_sql($wpjobportal_date)."', '0000-00-00', 0, 0, 'Sample Resume 2', '340000', '', 'sample-resume-2', 'John ', 'Doe', '1', 'sample@resume2.com', '123456789', '1', 1, 'resume-photo.png', 13, 1, 1, '', 'this is some text that i have written in skills section of reusme.', 2, '0000-00-00 00:00:00', '".$wpjobportal_startfeatureresumeddate."', '0000-00-00 00:00:00', '".$wpjobportal_endfeatureresumeddate."', '".$wpjobportal_isfeaturedresume."', '', 0, '', '[]', 0, 0, 'Sample Resume 2 Computer/IT Full-Time United States Male 340000Sheboygan, Wisconsin, United States ', 'Sample Resume 2 Computer/IT Full-Time United States Male 340000Sheboygan, Wisconsin, United States Gujranwala 31.5166667 74.3833333 this is some text that i have written in skills section of reusme. ');";
                 wpjobportaldb::query($wpjobportal_resume_query);
                 $wpjobportal_resumeid = wpjobportal::$_db->insert_id;
+                WPJOBPORTAL_Sample_Data_Service::record_entity('resumes', $wpjobportal_resumeid);
                 if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x4")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x4",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_".$wpjobportal_resumeid);
 
                 $wpjobportal_resume_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` ( `resumeid`, `address`, `address_city`,  `longitude`, `latitude`, `created`, `last_modified`, `serverstatus`, `serverid`)
@@ -669,6 +654,7 @@ class WPJOBPORTALPostinstallationModel {
                     ('".esc_sql($wpjobportal_jobseeker_id)."', '".esc_sql($wpjobportal_date)."', '0000-00-00', 0, 0, 'Sample Resume 3', '340000', '', 'sample-resume-3', 'John ', 'Doe', '1', 'sample@resume3.com', '123456789', '1', 1, 'resume-photo.png', 13, 1, 1, '', 'this is some text that i have written in skills section of reusme.', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, '', 0, '', '[]', 0, 0, 'Sample Resume 3 Computer/IT Full-Time United States Male 340000Danville, Virginia, United States ', 'Sample Resume 3 Computer/IT Full-Time United States Male 340000Danville, Virginia, United States Gujranwala 31.5166667 74.3833333 this is some text that i have written in skills section of reusme. ');";
                     wpjobportaldb::query($wpjobportal_resume_query);
                 $wpjobportal_resumeid = wpjobportal::$_db->insert_id;
+                WPJOBPORTAL_Sample_Data_Service::record_entity('resumes', $wpjobportal_resumeid);
                 if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x5")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x5",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_".$wpjobportal_resumeid);
 
                 $wpjobportal_resume_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` ( `resumeid`, `address`, `address_city`,  `longitude`, `latitude`, `created`, `last_modified`, `serverstatus`, `serverid`)
@@ -680,6 +666,7 @@ class WPJOBPORTALPostinstallationModel {
                     ('".esc_sql($wpjobportal_jobseeker_id)."', '".esc_sql($wpjobportal_date)."', '0000-00-00', 0, 0, 'Sample Resume 4', '340000', '', 'sample-resume-4', 'John ', 'Doe', '1', 'sample@resume4.com', '123456789', '1', 1, 'resume-photo.png', 13, 1, 1, '', 'this is some text that i have written in skills section of reusme.', 2, '0000-00-00 00:00:00', '".$wpjobportal_startfeatureresumeddate."', '0000-00-00 00:00:00', '".$wpjobportal_endfeatureresumeddate."', '".$wpjobportal_isfeaturedresume."', '', 0, '', '[]', 0, 0, 'Sample Resume 4 Computer/IT Full-Time United States Male 340000Laconia, New Hampshire, United States ', 'Sample Resume 4 Computer/IT Full-Time United States Male 340000Laconia, New Hampshire, United States Gujranwala 31.5166667 74.3833333 this is some text that i have written in skills section of reusme. ');";
                 wpjobportaldb::query($wpjobportal_resume_query);
                 $wpjobportal_resumeid = wpjobportal::$_db->insert_id;
+                WPJOBPORTAL_Sample_Data_Service::record_entity('resumes', $wpjobportal_resumeid);
                 if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x6")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x6",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_".$wpjobportal_resumeid);
 
                 $wpjobportal_resume_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` ( `resumeid`, `address`, `address_city`,  `longitude`, `latitude`, `created`, `last_modified`, `serverstatus`, `serverid`)
@@ -693,6 +680,7 @@ class WPJOBPORTALPostinstallationModel {
 
                 wpjobportaldb::query($wpjobportal_resume_query);
                 $wpjobportal_resumeid = wpjobportal::$_db->insert_id;
+                WPJOBPORTAL_Sample_Data_Service::record_entity('resumes', $wpjobportal_resumeid);
                 if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x7")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x7",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_".$wpjobportal_resumeid);
 
                 $wpjobportal_resume_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` ( `resumeid`, `address`, `address_city`,  `longitude`, `latitude`, `created`, `last_modified`, `serverstatus`, `serverid`)
@@ -707,6 +695,7 @@ class WPJOBPORTALPostinstallationModel {
                     ('".esc_sql($wpjobportal_jobseeker_id)."', '".esc_sql($wpjobportal_date)."', '0000-00-00', 0, 0, 'Sample Resume 3', '340000', '', 'sample-resume-6', 'John ', 'Doe', '1', 'sample@resume6.com', '123456789', '1', 1, 'resume-photo.png', 13, 1, 1, '', 'this is some text that i have written in skills section of reusme.', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, '', 0, '', '[]', 0, 0, 'Sample Resume 3 Computer/IT Full-Time United States Male 340000Rockford, Illinois, United States ', 'Sample Resume 3 Computer/IT Full-Time United States Male 340000Rockford, Illinois, United States Gujranwala 31.5166667 74.3833333 this is some text that i have written in skills section of reusme. ');";
                  wpjobportaldb::query($wpjobportal_resume_query);
                 $wpjobportal_resumeid = wpjobportal::$_db->insert_id;
+                WPJOBPORTAL_Sample_Data_Service::record_entity('resumes', $wpjobportal_resumeid);
                 if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x8")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x8",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_".$wpjobportal_resumeid);
 
                 $wpjobportal_resume_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` ( `resumeid`, `address`, `address_city`,  `longitude`, `latitude`, `created`, `last_modified`, `serverstatus`, `serverid`)
@@ -719,6 +708,7 @@ class WPJOBPORTALPostinstallationModel {
                     ('".esc_sql($wpjobportal_jobseeker_id)."', '".esc_sql($wpjobportal_date)."', '0000-00-00', 0, 0, 'Sample Resume 7', '340000', '', 'sample-resume-7', 'John ', 'Doe', '1', 'sample@resume7.com', '123456789', '1', 1, 'resume-photo.png', 13, 1, 1, '', 'this is some text that i have written in skills section of reusme.', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, '', 0, '', '[]', 0, 0, 'Sample Resume 7 Computer/IT Full-Time United States Male 340000El Cajon, California, United States ', 'Sample Resume 7 Computer/IT Full-Time United States Male 340000El Cajon, California, United States Gujranwala 31.5166667 74.3833333 this is some text that i have written in skills section of reusme. ');";
                 wpjobportaldb::query($wpjobportal_resume_query);
                 $wpjobportal_resumeid = wpjobportal::$_db->insert_id;
+                WPJOBPORTAL_Sample_Data_Service::record_entity('resumes', $wpjobportal_resumeid);
                 if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x9")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x9",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_".$wpjobportal_resumeid);
 
                 $wpjobportal_resume_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` ( `resumeid`, `address`, `address_city`,  `longitude`, `latitude`, `created`, `last_modified`, `serverstatus`, `serverid`)
@@ -734,14 +724,14 @@ class WPJOBPORTALPostinstallationModel {
                 * * *Job Apply Code
                 **/
 
-                $wpjobportal_jobs = "SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE title='Web Designer' OR title='senior software engineer' OR title='Accountant' OR title='Android Developer' OR title='PHP Developer';";
-                $wpjobportal_jobids = wpjobportaldb::get_results($wpjobportal_jobs);
-
-
+                // Apply only to exact jobs created in this request. Title-based
+                // matching could attach sample applications to real jobs.
+                $wpjobportal_jobids = array_slice($wpjobportal_sample_job_ids, 0, 5);
                 foreach ($wpjobportal_jobids AS $wpjobportal_jobid) {
                     $wpjobportal_appliedjobs = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` (`jobid`, `uid`, `cvid`, `apply_date`, `resumeview`, `comments`, `coverletterid`, `action_status`, `serverstatus`, `serverid`,status)
-                        VALUES (" . esc_sql($wpjobportal_jobid->id) . "," . esc_sql($wpjobportal_jobseeker_id) . "," . esc_sql($wpjobportal_resumeid) . ",'" . esc_sql($wpjobportal_date) . "',0,NULL,NULL,1,NULL,NULL,1)";
+                        VALUES (" . absint($wpjobportal_jobid) . "," . esc_sql($wpjobportal_jobseeker_id) . "," . esc_sql($wpjobportal_resumeid) . ",'" . esc_sql($wpjobportal_date) . "',0,NULL,NULL,1,NULL,NULL,1)";
                     wpjobportaldb::query($wpjobportal_appliedjobs);
+                    WPJOBPORTAL_Sample_Data_Service::record_entity('applications', wpjobportal::$_db->insert_id);
                 }
             }
             // if ($wpjobportal_temp_data == 1) {
@@ -753,9 +743,8 @@ class WPJOBPORTALPostinstallationModel {
             //     }
             //     $this->installSampleDataTemplate($flag);
             // }
-
-
         }
+        WPJOBPORTAL_Sample_Data_Service::finalize_batch();
         return true;
     }
 
@@ -2063,6 +2052,7 @@ class WPJOBPORTALPostinstallationModel {
     }
 
     function installSampleDataTemplateJobPortal($wpjobportal_data_arrays) {
+        self::$wpjobportal_theme_demo_created_posts = array();
         if(isset($wpjobportal_data_arrays['plugin_pages_array'])){
             $wpjobportal_plugin_pages_array = $wpjobportal_data_arrays['plugin_pages_array'];
         }else{
@@ -2304,8 +2294,36 @@ class WPJOBPORTALPostinstallationModel {
         //$redux_option->set($wpjobportal_options); // to avoid a notice. not working ....
 
         // storing values of pages and posts
-        update_option('job_portal_theme_demo_pages_ids',$jp_pages);
-        update_option('job_portal_theme_demo_post_ids',$jp_post_ids);
+        $wpjobportal_theme_demo_batch = wp_generate_uuid4();
+        $wpjobportal_created_post_ids = array_values(array_unique(array_map(
+            'absint',
+            self::$wpjobportal_theme_demo_created_posts
+        )));
+        $wpjobportal_tracked_pages = array();
+        foreach ((array) $jp_pages as $wpjobportal_page_key => $wpjobportal_page_id) {
+            if (in_array(absint($wpjobportal_page_id), $wpjobportal_created_post_ids, true)) {
+                $wpjobportal_tracked_pages[$wpjobportal_page_key] = absint($wpjobportal_page_id);
+            }
+        }
+        $wpjobportal_tracked_posts = array_values(array_filter(array_map(
+            'absint',
+            (array) $jp_post_ids
+        ), function ($wpjobportal_post_id) use ($wpjobportal_created_post_ids) {
+            return in_array($wpjobportal_post_id, $wpjobportal_created_post_ids, true);
+        }));
+        foreach ($wpjobportal_created_post_ids as $wpjobportal_demo_post_id) {
+            if (!is_scalar($wpjobportal_demo_post_id)) {
+                continue;
+            }
+            $wpjobportal_demo_post_id = absint($wpjobportal_demo_post_id);
+            if ($wpjobportal_demo_post_id > 0 && get_post($wpjobportal_demo_post_id)) {
+                update_post_meta($wpjobportal_demo_post_id, '_wpjobportal_theme_demo_batch', $wpjobportal_theme_demo_batch);
+                update_post_meta($wpjobportal_demo_post_id, '_wpjobportal_theme_demo_signature', $this->themeDemoPostSignature($wpjobportal_demo_post_id));
+            }
+        }
+        update_option('job_portal_theme_demo_pages_ids',$wpjobportal_tracked_pages);
+        update_option('job_portal_theme_demo_post_ids',$wpjobportal_tracked_posts);
+        update_option('job_portal_theme_demo_batch',$wpjobportal_theme_demo_batch, false);
         $wpjobportal_demo_data_array = array();
         $wpjobportal_demo_data_array['color'] = isset($wpjobportal_theme_options['color']) ? $wpjobportal_theme_options['color'] : "#378AD8";
         update_option('job_portal_theme_demo_demo_specific_data',$wpjobportal_demo_data_array);
@@ -2325,53 +2343,81 @@ class WPJOBPORTALPostinstallationModel {
     }
 
     function removeJobPortalDemoData(){
-        delete_option("widget_widget_woocommerce_widget_cart");
-        delete_option("widget_search");
-        delete_option("widget_recent-posts");
-        delete_option("widget_recent-comments");
-        delete_option("widget_archives");
-        delete_option("widget_categories");
-        delete_option("widget_meta");
-        delete_option("widget_calendar");
-        delete_option("widget_widget_wpj_recent_comments");
-        delete_option("widget_widget_wpj_recent_posts");
-        delete_option("widget_nav_menu");
-        delete_option("widget_pages");
-        delete_option("widget_tag_cloud");
-        delete_option("widget_text");
-        delete_option("widget_widget_wpj_footeraboutus");
-        delete_option("widget_widget_wpj_footerusefullinks");
-        delete_option("widget_widget_wpj_footercontactus");
-
-        $widget_positions = get_option("sidebars_widgets");
-        unset($widget_positions["footer1"]);
-        unset($widget_positions["footer2"]);
-        unset($widget_positions["footer3"]);
-        unset($widget_positions["footer4"]);
-        unset($widget_positions["left-sidebar"]);
-        unset($widget_positions["right-sidebar"]);
-        unset($widget_positions["news_and_rumors"]);
-
-        update_option( "sidebars_widgets" , $widget_positions);
-
-        $menu_name = "Job Portal";
-        $wpjobportal_del_flag = wp_delete_nav_menu($menu_name);
-        $menu_exists = wp_get_nav_menu_object( $menu_name );
-
+        $wpjobportal_theme_demo_batch = (string) get_option('job_portal_theme_demo_batch', '');
+        if ('' === $wpjobportal_theme_demo_batch) {
+            return array('deleted' => 0, 'skipped' => 0);
+        }
         $pages_array = get_option('job_portal_theme_demo_pages_ids');
-        if(!empty($pages_array) && is_array($pages_array) ){
-            foreach ($pages_array as $wpjobportal_key => $wpjobportal_value) {
-                wp_delete_post($wpjobportal_value,true);
-            }
-        }
-
         $post_array = get_option('job_portal_theme_demo_post_ids');
-        if(!empty($post_array) && is_array($post_array) ){
-            foreach ($post_array as $wpjobportal_key => $wpjobportal_value) {
-                wp_delete_post($wpjobportal_value,true);
+        $wpjobportal_remaining_pages = array();
+        $wpjobportal_remaining_posts = array();
+        $wpjobportal_result = array('deleted' => 0, 'skipped' => 0);
+        foreach (array(
+            'pages' => (array) $pages_array,
+            'posts' => (array) $post_array,
+        ) as $wpjobportal_collection => $wpjobportal_values) {
+            foreach ($wpjobportal_values as $wpjobportal_key => $wpjobportal_value) {
+            if (!is_scalar($wpjobportal_value)) {
+                $wpjobportal_result['skipped']++;
+                continue;
+            }
+            $wpjobportal_value = absint($wpjobportal_value);
+            if ($wpjobportal_value <= 0 || !get_post($wpjobportal_value)) {
+                continue;
+            }
+            $wpjobportal_saved_signature = (string) get_post_meta($wpjobportal_value, '_wpjobportal_theme_demo_signature', true);
+            $wpjobportal_owned = $wpjobportal_theme_demo_batch === (string) get_post_meta($wpjobportal_value, '_wpjobportal_theme_demo_batch', true)
+                && '' !== $wpjobportal_saved_signature
+                && hash_equals($wpjobportal_saved_signature, $this->themeDemoPostSignature($wpjobportal_value));
+            if ($wpjobportal_owned && false !== wp_delete_post($wpjobportal_value, true)) {
+                $wpjobportal_result['deleted']++;
+                continue;
+            }
+
+            $wpjobportal_result['skipped']++;
+            if ('pages' === $wpjobportal_collection) {
+                $wpjobportal_remaining_pages[$wpjobportal_key] = $wpjobportal_value;
+            } else {
+                $wpjobportal_remaining_posts[$wpjobportal_key] = $wpjobportal_value;
+            }
             }
         }
-        return;
+        if (empty($wpjobportal_remaining_pages)) {
+            delete_option('job_portal_theme_demo_pages_ids');
+        } else {
+            update_option('job_portal_theme_demo_pages_ids', $wpjobportal_remaining_pages, false);
+        }
+        if (empty($wpjobportal_remaining_posts)) {
+            delete_option('job_portal_theme_demo_post_ids');
+        } else {
+            update_option('job_portal_theme_demo_post_ids', $wpjobportal_remaining_posts, false);
+        }
+        if (empty($wpjobportal_remaining_pages) && empty($wpjobportal_remaining_posts)) {
+            delete_option('job_portal_theme_demo_batch');
+        }
+        if (class_exists('WPJOBPORTAL_Audit_Service')) {
+            WPJOBPORTAL_Audit_Service::record(
+                'theme_demo_cleanup',
+                $wpjobportal_result['skipped'] > 0 ? 'warning' : 'success',
+                $wpjobportal_result
+            );
+        }
+        return $wpjobportal_result;
+    }
+
+    function themeDemoPostSignature($post_id){
+        $wpjobportal_post = get_post(absint($post_id));
+        if (!$wpjobportal_post) {
+            return '';
+        }
+        return hash('sha256', wp_json_encode(array(
+            (string) $wpjobportal_post->ID,
+            (string) $wpjobportal_post->post_type,
+            (string) $wpjobportal_post->post_status,
+            (string) $wpjobportal_post->post_name,
+            (string) $wpjobportal_post->post_title,
+            (string) $wpjobportal_post->post_content,
+        )));
     }
 
     function getMessagekey(){
@@ -2413,6 +2459,9 @@ class WPJOBPORTALPostinstallationModel {
                         "post_parent" => 0,
                 );
         $post_id = wp_insert_post($wpjobportal_new_post);
+        if (!is_wp_error($post_id) && absint($post_id) > 0) {
+            self::$wpjobportal_theme_demo_created_posts[] = absint($post_id);
+        }
         // update_post_meta($post_id, "_wp_page_template", $wpjobportal_new_page_template);
         if($file_path != ''){
             $this->wpjobportal_uploadPostFeatureImage($file_path,$post_id);
@@ -2478,18 +2527,22 @@ class WPJOBPORTALPostinstallationModel {
                 "post_parent" => 0,
         );
         $page_check = $this->getPageByTitle($page_title);
+        $wpjobportal_page_created = false;
         if(!isset($page_check->ID)){
             $page_id = wp_insert_post($wpjobportal_new_page);
+            $wpjobportal_page_created = !is_wp_error($page_id) && absint($page_id) > 0;
         }else{
             $wpjobportal_new_page["post_title"] = "Job Portal ".$page_title;
             $page_check = $this->getPageByTitle($wpjobportal_new_page["post_title"]);
             if(!isset($page_check->ID)){
                 $page_id = wp_insert_post($wpjobportal_new_page);
+                $wpjobportal_page_created = !is_wp_error($page_id) && absint($page_id) > 0;
             }else{
                 $page_id = $page_check->ID;
             }
         }
-        if(isset($page_id) && $page_id != ''){
+        if($wpjobportal_page_created){
+            self::$wpjobportal_theme_demo_created_posts[] = absint($page_id);
             update_post_meta($page_id, "jp_show_header", $wpjobportal_show_header);
             update_post_meta($page_id, "jp_headerimage_url", $file_path);
             if($page_template != ''){

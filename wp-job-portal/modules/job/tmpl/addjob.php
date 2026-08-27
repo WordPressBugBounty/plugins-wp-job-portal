@@ -19,7 +19,7 @@ $wpjobportal_msg = isset(wpjobportal::$_data[0]) ? esc_html(__('Edit', 'wp-job-p
     </div>
     <?php if (wpjobportal::$_error_flag == null) { ?>
     <div class="wjportal-form-wrp wjportal-add-job-form">
-        <form class="wjportal-form" id="wpjobportal-form" method="post" enctype="multipart/form-data" action="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'task'=>'savejob'))); ?>">
+        <form class="wjportal-form wpjp-ds-form" id="wpjobportal-form" method="post" enctype="multipart/form-data" action="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'task'=>'savejob'))); ?>">
             <?php
                 if(in_array('credits', wpjobportal::$_active_addons)){
                     $wpjobportal_submissionType = wpjobportal::$_config->getConfigValue('submission_type');

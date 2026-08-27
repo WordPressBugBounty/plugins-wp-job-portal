@@ -96,6 +96,7 @@ foreach ($wpjobportal_fields AS $wpjobportal_field) {
             break;
             */
         case 'is_urgent':
+            $wpjobportal_content = '';
             if(in_array('joblistingenhancer', wpjobportal::$_active_addons)){
                 $wpjobportal_content = WPJOBPORTALformfield::checkbox(
                     'is_urgent',

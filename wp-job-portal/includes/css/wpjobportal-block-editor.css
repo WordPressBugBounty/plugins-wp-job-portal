@@ -1,0 +1,28 @@
+.wpjobportal-block-editor-shell {
+    min-height: 80px;
+    padding: 16px;
+    border: 1px dashed #8c8f94;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.wpjobportal-block-editor-shell .components-placeholder,
+.wpjobportal-block-editor-shell .components-notice {
+    margin: 0;
+}
+
+.wpjobportal-block-editor-shell .wjportal-main-wrapper,
+.wpjobportal-block-editor-shell .wjportal-job-search-wrapper {
+    max-width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wpjobportal-block-editor-shell *,
+    .wpjobportal-block-editor-shell *::before,
+    .wpjobportal-block-editor-shell *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}

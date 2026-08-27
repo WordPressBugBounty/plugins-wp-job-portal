@@ -4,7 +4,7 @@ Donate link: https://wpjobportal.com/pricing/
 Tags: job board, job listing, careers, job manager, jobs, recruiting
 Requires at least: 5.5 
 Tested up to: 7.0
-Stable tag: 2.5.9
+Stable tag: 2.6.0
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -60,7 +60,7 @@ WP Job Portal offers powerful tools to manage fields across all entities—jobs,
 Easily tailor the look and feel of all WP Job Portal interfaces with Elementor. Use its visual builder to adjust typography, color schemes, spacing, and layouts across job listings, resumes, dashboards, and more. This ensures seamless design integration with your site.
 
 **Quick Start Wizard**
-The Quick Start Wizard streamlines the initial setup by walking the admin through essential configurations step by step. Begin by selecting your preferred site mode—Job Board or Single Employer Recruitment. Based on this choice, the wizard automatically adjusts relevant settings to fit the selected use case. Admins can also import sample data (jobs, companies, resumes, and applications) for testing or demonstration purposes. 
+The Quick Start Wizard streamlines the initial setup by walking the admin through essential configurations step by step. Begin by selecting Careers & ATS or Job Marketplace. Based on this choice, the wizard automatically adjusts relevant settings to fit the selected use case. Admins can also import sample data (jobs, companies, resumes, and applications) for testing or demonstration purposes. 
 
 **Comprehensive Shortcode Support with Customization Options**
 WP Job Portal offers a wide range of shortcodes to display jobs, resumes, companies, dashboards, and more anywhere on your site. Major shortcode's supports multiple attributes, giving you better control over layout, filters, sorting, visibility, and styling for matching your site’s structure and design needs.
@@ -259,6 +259,18 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 
 == Changelog ==
+
+= 2.6.0 =
+* Added explicit Careers & ATS and Job Marketplace setup modes.
+* Added upgrade-safe existing-site compatibility mode.
+* Added mode-aware setup steps, administrator navigation, and diagnostics.
+* Improved keyboard and screen-reader support on the setup-mode screen.
+* Aligned the first setup step with centralized mutation authorization.
+* Added a persistent, server-derived onboarding checklist with per-administrator dismissal and reopen controls.
+* Added actionable mode, page, upload, add-on, and sample-data readiness diagnostics.
+* Added durable ownership markers, exact cleanup previews, and conservative cleanup for newly installed sample records.
+* Hardened optional sample-image downloads with bounded, image-only, traversal-safe archive extraction.
+* Preserved the selected operating mode during sample-page creation and protected pre-existing or modified demo content from cleanup.
 
 = 2.5.9 =
 * Added System Status Page

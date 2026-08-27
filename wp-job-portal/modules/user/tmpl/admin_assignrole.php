@@ -75,9 +75,9 @@
             <form id="wpjobportal-form" class="wpjobportal-form" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_user&task=assignuserrole")); ?>">
                 <div class="wpjobportal-form-wrapper">
                     <div class="wpjobportal-form-title">
-                        <?php echo esc_html(__('Select User', 'wp-job-portal')) 
-                        . '<font class="required-notifier">*</font>'; ?>
-                            
+                        <?php echo esc_html(__('Select User', 'wp-job-portal')); ?>
+                        <span class="wpjp-ds-required" aria-hidden="true">*</span>
+                        <span class="wpjp-ds-visually-hidden"><?php echo esc_html__('Required', 'wp-job-portal'); ?></span>
                     </div>
                     <div class="wpjobportal-form-value">
                         <label id="uname"></label>

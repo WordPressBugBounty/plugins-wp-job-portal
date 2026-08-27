@@ -233,6 +233,9 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
             'postinstallation.save',
             'postinstallation.savesampledata',
             'postinstallation.getdemocode',
+            'postinstallation.dismissonboarding',
+            'postinstallation.reopenonboarding',
+            'postinstallation.cleansampledata',
             'premiumplugin.verifytransactionkey',
             'premiumplugin.downloadandinstalladdons',
             'premiumplugin.wpjobportalupdatetransactionkey',
@@ -454,9 +457,11 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
             'job.rejectqueuejob' => self::required_id('id'),
             'job.approvequeuefeaturedjob' => self::required_id('id'),
             'job.rejectqueuefeaturedjob' => self::required_id('id'),
+            // The company field is configurable, so it can be unpublished or
+            // left unselected. The value is still constrained when supplied.
             'job.savejob' => array(
                 'id' => array('type' => 'optional_id'),
-                'companyid' => array('type' => 'id', 'required' => true),
+                'companyid' => array('type' => 'optional_id'),
             ),
             'job.jobenforcedelete' => self::required_id('jobid'),
             'jobapply.jobapplyasvisitor' => self::required_id('wpjobportalid-jobid'),
@@ -510,7 +515,17 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
             'resume.approvequeueallresumes' => self::required_id_list('id'),
             'resume.rejectqueueallresumes' => self::required_id_list('id'),
             'resume.resumeenforcedelete' => self::required_id('resumeid'),
-            'resume.saveresume' => array('id' => array('type' => 'optional_id')),
+            'resume.saveresume' => array(
+                'id'    => array('type' => 'optional_id'),
+                'sec_1' => array('type' => 'section_ids'),
+                'sec_2' => array('type' => 'section_ids'),
+                'sec_3' => array('type' => 'section_ids'),
+                'sec_4' => array('type' => 'section_ids'),
+                'sec_5' => array('type' => 'section_ids'),
+                'sec_6' => array('type' => 'section_ids'),
+                'sec_7' => array('type' => 'section_ids'),
+                'sec_8' => array('type' => 'section_ids'),
+            ),
             'resume.removeresume' => self::required_id_list('wpjobportal-cb'),
             'resume.addviewresumedetail' => self::required_id('wpjobportalid'),
             'thirdpartyimport.importjobmanagerdata' => array(
@@ -663,6 +678,11 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
                         return false;
                     }
                     break;
+                case 'section_ids':
+                    if (!self::valid_section_ids($value)) {
+                        return false;
+                    }
+                    break;
                 case 'enum':
                     if (is_array($value)
                         || !in_array((string) $value, (array) $rule['values'], true)
@@ -725,7 +745,8 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
             $company_id = self::request_value('companyid');
             return (self::is_empty_value($id)
                     || self::owns_records('wj_portal_jobs', array($id)))
-                && self::owns_records('wj_portal_companies', array($company_id));
+                && (self::is_empty_value($company_id)
+                    || self::owns_records('wj_portal_companies', array($company_id)));
         }
         if ($resolver === 'job_remove') {
             return self::owns_records(
@@ -829,6 +850,38 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
             && is_numeric($value)
             && (string) absint($value) === (string) $value
             && absint($value) > 0;
+    }
+
+    /**
+     * A resume section is posted as sec_N[id][i], sec_N[deletethis][i] and so on. Each posted
+     * section id addresses a stored row, so it has to be either empty (a new row) or a clean
+     * positive integer. Anything else is rejected here rather than left for MySQL to coerce.
+     *
+     * @param mixed $value
+     * @return bool
+     */
+    private static function valid_section_ids($value) {
+        if (!is_array($value) || !isset($value['id'])) {
+            return true; // this section addresses no stored row
+        }
+
+        $ids = is_array($value['id']) ? $value['id'] : array($value['id']);
+        if (count($ids) > 1000) {
+            return false;
+        }
+
+        foreach ($ids as $candidate) {
+            if (self::is_empty_value($candidate)
+                || $candidate === 0
+                || $candidate === '0'
+            ) {
+                continue; // a new row carries no id
+            }
+            if (!self::valid_id($candidate)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**

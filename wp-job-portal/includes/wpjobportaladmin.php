@@ -10,6 +10,21 @@ class wpjobportaladmin {
     }
 
     function mainmenu() {
+        $wpjobportal_mode = WPJOBPORTAL_Product_Mode_Service::get_mode();
+        $wpjobportal_resume_label = WPJOBPORTAL_Product_Mode_Service::MODE_CAREERS === $wpjobportal_mode
+            ? __('Candidates', 'wp-job-portal')
+            : (WPJOBPORTAL_Product_Mode_Service::MODE_MARKETPLACE === $wpjobportal_mode
+                ? __('Resumes', 'wp-job-portal')
+                : __('Resume', 'wp-job-portal'));
+        $wpjobportal_company_label = WPJOBPORTAL_Product_Mode_Service::MODE_CAREERS === $wpjobportal_mode
+            ? __('Company Profile', 'wp-job-portal')
+            : __('Companies', 'wp-job-portal');
+        $wpjobportal_configuration_label = WPJOBPORTAL_Product_Mode_Service::MODE_CAREERS === $wpjobportal_mode
+            ? __('Hiring Settings', 'wp-job-portal')
+            : (WPJOBPORTAL_Product_Mode_Service::MODE_MARKETPLACE === $wpjobportal_mode
+                ? __('Marketplace Settings', 'wp-job-portal')
+                : __('Configurations', 'wp-job-portal'));
+
         add_menu_page(esc_html(__('Control Panel', 'wp-job-portal')), // Page title
                 esc_html(__('WP Job Portal', 'wp-job-portal')), // menu title
                 'wpjobportal', // capability
@@ -466,11 +481,11 @@ class wpjobportaladmin {
          }else{
             $this->addMissingAddonPage('tags');
         }
-        add_submenu_page('wpjobportal_hide', // parent slug
-                esc_html(__('WP Job Portal Settings', 'wp-job-portal')), // Page title
-                esc_html(__('WP Job Portal Settings', 'wp-job-portal')), // menu title
+        add_submenu_page('wpjobportal', // parent slug
+                esc_html(__('Setup & Mode', 'wp-job-portal')), // Page title
+                esc_html(__('Setup & Mode', 'wp-job-portal')), // menu title
                 'wpjobportal', // capability
-                'wpjobportal_postinstallation', //menu slug
+                'wpjobportal_postinstallation', // menu slug; layout is selected by the controller
                 array($this, 'showAdminPage') // function name
         );
         add_submenu_page('wpjobportal_hide', // parent slug

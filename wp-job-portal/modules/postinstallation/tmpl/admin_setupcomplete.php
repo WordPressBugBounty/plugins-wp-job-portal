@@ -1,5 +1,8 @@
 <?php
-if (!defined('ABSPATH')) die('Restricted Access'); ?>
+if (!defined('ABSPATH')) die('Restricted Access');
+$wpjobportal_mode_status = WPJOBPORTAL_Product_Mode_Service::get_status();
+$wpjobportal_mode_label = $wpjobportal_mode_status['label'];
+?>
 <div id="wpjobportaladmin-wrapper" class="wpjobportal-post-installation-wrp">
     <!-- content -->
     <div class="wpjobportal-post-installation">
@@ -13,7 +16,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                         <span class="wpjobportal-post-installation-lftimages-wrp">
                             <img class="wpjobportal-post-installation-lfticon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/quick-start.png" />
                             <img class="wpjobportal-post-installation-white-icon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/quick-strt-w.png" />
-                            <?php echo esc_html(__('Quick Configuration','wp-job-portal')); ?>
+                            <?php echo esc_html(__('Choose Mode','wp-job-portal')); ?>
                         </span>
                         <img class="wpjobportal-post-installation-white-arrowicon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/arrow.png" />
                     </a>
@@ -46,7 +49,7 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
                         <span class="wpjobportal-post-installation-lftimages-wrp">
                             <img class="wpjobportal-post-installation-lfticon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/jobseeker.png" />
                             <img class="wpjobportal-post-installation-white-icon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/jobseeker-w.png" />
-                            <?php echo esc_html(__('Job Seeker Settings','wp-job-portal')); ?>
+                            <?php echo esc_html(__('Candidate Settings','wp-job-portal')); ?>
                         </span>
                         <img class="wpjobportal-post-installation-white-arrowicon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/arrow.png" />
                     </a>
@@ -84,10 +87,18 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
             </div>
             <div class="wpjobportal-post-cmpletesetup-wrp">
                 <span class="wpjobportal-post-cmpletesetup-logo"><img alt="<?php echo esc_attr(__('Setup Complete','wp-job-portal'));?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/complete-setup.png" /></span>
-                <span class="wpjobportal-post-cmpletesetup-title"><?php echo esc_html(__('Settings you applied have been successfully saved','wp-job-portal'));?></span>
+                <span class="wpjobportal-mode-complete-label"><?php echo esc_html($wpjobportal_mode_label); ?></span>
+                <span class="wpjobportal-post-cmpletesetup-title">
+                    <?php
+                    echo esc_html(sprintf(
+                        __('%s setup is ready. Your settings have been saved.', 'wp-job-portal'),
+                        $wpjobportal_mode_label
+                    ));
+                    ?>
+                </span>
                 <div class="wpjobportal-post-action-btn">
                     <a class="next-step wpjobportal-post-act-btn" href="admin.php?page=wpjobportal" title="<?php echo esc_attr(__('finish','wp-job-portal')); ?>">
-                        <?php echo esc_html(__('Go To Dashboard','wp-job-portal')); ?>
+                        <?php echo esc_html(__('Open WP Job Portal Dashboard','wp-job-portal')); ?>
                     </a>
                 </div>
             </div>

@@ -61,7 +61,7 @@
                     </a>
                 </div>
             <?php }?>
-            <form id="company_form" class="wpjobportal-form" method="post" enctype="multipart/form-data" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_company&task=savecompany")); ?>">
+            <form id="company_form" class="wpjobportal-form wpjp-ds-form" method="post" enctype="multipart/form-data" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_company&task=savecompany")); ?>">
                 <?php
                     // user selection field
                     echo wp_kses(WPJOBPORTALformfield::hidden('uid', $wpjobportal_company ? $wpjobportal_company->uid : null),WPJOBPORTAL_ALLOWED_TAGS);

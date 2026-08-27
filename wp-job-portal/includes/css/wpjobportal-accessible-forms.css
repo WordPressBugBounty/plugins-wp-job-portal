@@ -1,0 +1,379 @@
+/**
+ * WP Job Portal 2.6.0 accessible, mobile-first form layer.
+ * Loaded after legacy presentation styles so the shared form contract is
+ * consistent across candidate, employer, and administrator workflows.
+ */
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form {
+    width: 100%;
+    max-width: 100%;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wjportal-form-row, .wpjobportal-form-wrapper).wpjp-ds-field {
+    display: grid;
+    grid-template-columns: minmax(10rem, 13rem) minmax(0, 1fr);
+    align-items: start;
+    gap: var(--wpjp-ds-space-3) var(--wpjp-ds-space-5);
+    width: 100%;
+    max-width: 100%;
+    margin-block-end: var(--wpjp-ds-space-5);
+    padding-block-end: var(--wpjp-ds-space-4);
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wjportal-form-title, .wpjobportal-form-title).wpjp-ds-label {
+    display: block;
+    width: auto;
+    margin: 0;
+    padding-block-start: 0.7rem;
+    color: var(--wpjp-ds-color-text);
+    font-size: var(--wpjp-ds-font-size-sm);
+    font-weight: 600;
+    line-height: 1.4;
+    text-align: start;
+}
+
+.wpjp-ds-required {
+    margin-inline-start: var(--wpjp-ds-space-1);
+    color: var(--wpjp-ds-color-danger);
+    font-weight: 700;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wjportal-form-value, .wpjobportal-form-value, .wpjobportal-form-val) {
+    min-width: 0;
+    max-width: 100%;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form .wpjp-ds-control:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]) {
+    width: 100%;
+    max-width: 100%;
+    min-height: var(--wpjp-ds-control-height);
+    padding: 0.625rem 0.75rem;
+    color: var(--wpjp-ds-color-text);
+    background-color: var(--wpjp-ds-color-surface);
+    border: 1px solid var(--wpjp-ds-color-border);
+    border-radius: var(--wpjp-ds-radius-md);
+    box-shadow: none;
+    line-height: 1.4;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form textarea.wpjp-ds-control {
+    min-height: 8rem;
+    resize: vertical;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form select.wpjp-ds-control[multiple] {
+    min-height: 8rem;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form input[type="file"].wpjp-ds-control {
+    height: auto;
+    min-height: var(--wpjp-ds-control-height);
+    padding: var(--wpjp-ds-space-2);
+    overflow-wrap: anywhere;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form input[type="file"].wpjp-ds-control::file-selector-button {
+    min-height: var(--wpjp-ds-control-height);
+    margin-inline-end: var(--wpjp-ds-space-3);
+    padding-inline: var(--wpjp-ds-space-4);
+    color: var(--wpjp-ds-color-primary-strong);
+    background: var(--wpjp-ds-color-canvas);
+    border: 1px solid var(--wpjp-ds-color-border);
+    border-radius: var(--wpjp-ds-radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wjportal-form-2-fields, .wjportal-form-3-fields, .wjportal-form-4-fields, .wjportal-form-5-fields) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+    gap: var(--wpjp-ds-space-3);
+    width: 100%;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form .wjportal-form-inner-fields {
+    float: none;
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wpjobportal-form-radio-field, .wpjobportal-form-chkbox-field) {
+    position: relative;
+    display: inline-flex;
+    min-height: var(--wpjp-ds-control-height);
+    align-items: center;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wpjobportal-form-radio-field, .wpjobportal-form-chkbox-field) input[type="radio"],
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wpjobportal-form-radio-field, .wpjobportal-form-chkbox-field) input[type="checkbox"] {
+    position: absolute;
+    display: block;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    opacity: 0;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wpjobportal-form-radio-field, .wpjobportal-form-chkbox-field) input:focus-visible + label {
+    outline: 2px solid var(--wpjp-ds-color-primary);
+    outline-offset: 3px;
+    box-shadow: var(--wpjp-ds-focus-ring);
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wpjp-ds-help, .wjportal-form-help-txt, .wpjobportal-form-description) {
+    width: 100%;
+    margin-block-start: var(--wpjp-ds-space-2);
+    padding: 0;
+    color: var(--wpjp-ds-color-text-muted);
+    font-size: var(--wpjp-ds-font-size-xs);
+    line-height: 1.5;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.form-error, .wpjp-ds-error) {
+    display: block;
+    width: 100%;
+    margin-block-start: var(--wpjp-ds-space-2);
+    color: var(--wpjp-ds-color-danger);
+    font-size: var(--wpjp-ds-font-size-sm);
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(input, select, textarea)[aria-invalid="true"] {
+    border-color: var(--wpjp-ds-color-danger) !important;
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--wpjp-ds-color-danger) 20%, transparent) !important;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form .chosen-container {
+    max-width: 100%;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form .chosen-container:focus-within {
+    outline: 2px solid var(--wpjp-ds-color-primary);
+    outline-offset: 2px;
+    box-shadow: var(--wpjp-ds-focus-ring);
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wjportal-form-btn-wrp, .wpjobportal-form-button, .wpjobportal-form-btn-wrp) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wpjp-ds-space-3);
+    align-items: center;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form .wp-editor-wrap,
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form .wp-editor-container,
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form .wjportal-form-map {
+    max-width: 100%;
+    overflow: auto;
+}
+
+@media (max-width: 782px) {
+    :where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wjportal-form-row, .wpjobportal-form-wrapper).wpjp-ds-field {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--wpjp-ds-space-2);
+        margin-block-end: var(--wpjp-ds-space-4);
+        padding-block-end: var(--wpjp-ds-space-4);
+    }
+
+    :where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wjportal-form-title, .wpjobportal-form-title).wpjp-ds-label {
+        padding-block-start: 0;
+        text-align: start;
+    }
+
+    :where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form .wpjp-ds-control:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]) {
+        min-width: 0;
+        font-size: 16px;
+    }
+
+    /* Native selects are more reliable than legacy Chosen controls on phones. */
+    :where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form select.wpjp-ds-control + .chosen-container {
+        display: none !important;
+    }
+
+    :where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form select.wpjp-ds-control {
+        position: static !important;
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        clip: auto !important;
+    }
+
+    :where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wjportal-form-btn-wrp, .wpjobportal-form-button, .wpjobportal-form-btn-wrp) > * {
+        flex: 1 1 12rem;
+        max-width: 100%;
+    }
+
+    :where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wjportal-form-btn, .wpjobportal-form-save-btn, .wpjp-ds-button) {
+        width: 100%;
+        min-height: var(--wpjp-ds-control-height);
+    }
+
+    .ui-datepicker {
+        max-width: calc(100vw - 1.5rem);
+    }
+}
+
+@media (max-width: 480px) {
+    :where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form input[type="file"].wpjp-ds-control::file-selector-button {
+        display: block;
+        width: 100%;
+        margin: 0 0 var(--wpjp-ds-space-2);
+    }
+}
+
+@media (forced-colors: active) {
+    .wpjp-ds-required,
+    :where(.form-error, .wpjp-ds-error) {
+        color: CanvasText;
+    }
+
+    :where(input, select, textarea)[aria-invalid="true"] {
+        border: 2px solid CanvasText !important;
+    }
+}
+
+/* --- Painted control for the visually hidden radio/checkbox inputs --- */
+/* The rule above clips the native control out of view so the input stays
+   focusable for assistive tech. Nothing repainted it, so these fields
+   rendered as bare label text in every admin and control-panel form.
+   Draw the control on the adjacent label instead. */
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wpjobportal-form-radio-field, .wpjobportal-form-chkbox-field) input[type="radio"] + label,
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wpjobportal-form-radio-field, .wpjobportal-form-chkbox-field) input[type="checkbox"] + label {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--wpjp-ds-space-2);
+    margin-inline: 0; /* legacy 10px offset that separated text from the native control */
+/*    padding-inline-start: 0;*/
+    cursor: pointer;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wpjobportal-form-radio-field, .wpjobportal-form-chkbox-field) input[type="radio"] + label::before,
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wpjobportal-form-radio-field, .wpjobportal-form-chkbox-field) input[type="checkbox"] + label::before {
+    content: "";
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    width: 1.125rem;
+    height: 1.125rem;
+    /* style.css sets min-width/min-height 20px on this pseudo-element for the
+       legacy control. A min-* clamps the used size whatever the specificity, so
+       without these the box resolved to 20x18 -- an oblong square, and a
+       visible ellipse once border-radius went to 50% for radios. */
+    min-width: 0;
+    min-height: 0;
+    border: 2px solid var(--wpjp-ds-color-text-muted, #667085);
+    background-color: var(--wpjp-ds-color-surface, #fff);
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wpjobportal-form-radio-field, .wpjobportal-form-chkbox-field) input[type="radio"] + label::before {
+    border-radius: 50%;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wpjobportal-form-radio-field, .wpjobportal-form-chkbox-field) input[type="checkbox"] + label::before {
+    border-radius: var(--wpjp-ds-radius-sm, 3px);
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wpjobportal-form-radio-field, .wpjobportal-form-chkbox-field) input[type="radio"]:checked + label::before,
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wpjobportal-form-radio-field, .wpjobportal-form-chkbox-field) input[type="checkbox"]:checked + label::before {
+    border-color: var(--wpjp-ds-color-primary, #2563eb);
+    background-color: var(--wpjp-ds-color-primary, #2563eb);
+}
+
+/* Radio marker: centred dot, absolutely placed so it stays out of the flex row. */
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wpjobportal-form-radio-field, .wpjobportal-form-chkbox-field) input[type="radio"]:checked + label::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    inset-inline-start: 0.5625rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: var(--wpjp-ds-color-surface, #fff);
+    transform: translate(-50%, -50%);
+}
+
+/* Checkbox marker: tick drawn from two borders. */
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wpjobportal-form-radio-field, .wpjobportal-form-chkbox-field) input[type="checkbox"]:checked + label::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    inset-inline-start: 0.5625rem;
+    width: 0.3rem;
+    height: 0.6rem;
+    border: solid var(--wpjp-ds-color-surface, #fff);
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -60%) rotate(45deg);
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wpjobportal-form-radio-field, .wpjobportal-form-chkbox-field) input:disabled + label {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* --- Salary row: keep the currency symbol at its content width --- */
+/* The grid above gives every child an equal 1fr track, so the one-character
+   currency symbol claimed as much room as a full input. The symbol wrapper
+   carries flex sizing for the admin stylesheet, which a grid parent ignores.
+   Only the salary row has a symbol, so switch just that row back to flex. */
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :is(.wjportal-form-2-fields, .wjportal-form-3-fields, .wjportal-form-4-fields, .wjportal-form-5-fields):has(> .wjportal-form-symbol-fields) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :is(.wjportal-form-2-fields, .wjportal-form-3-fields, .wjportal-form-4-fields, .wjportal-form-5-fields):has(> .wjportal-form-symbol-fields) > .wjportal-form-inner-fields:not(.wjportal-form-symbol-fields) {
+    /* Match the grid's minimum track so wrapping behaves the same. */
+    flex: 1 1 min(100%, 11rem);
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :is(.wjportal-form-2-fields, .wjportal-form-3-fields, .wjportal-form-4-fields, .wjportal-form-5-fields) > .wjportal-form-symbol-fields {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 0;
+    align-items: center;
+}
+
+/* --- Searchable field: centre the control in its bordered box --- */
+/* The wrapper is drawn as a bordered control box with its own padding, so the
+   44px tap-target min-height pushed the label off-centre (26px above, 6px
+   below). The box already supplies the target area, so centre its content
+   instead. Specificity and !important here match style.css, which sets
+   padding-top on the inner span with !important. */
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form .wjportal-searchable-wrp.checkbox-field.wpjp-form-value {
+    display: flex;
+    align-items: center;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form .wjportal-searchable-wrp.checkbox-field.wpjp-form-value span:is(.wpjobportal-form-chkbox-field, .wpjobportal-form-radio-field) {
+    min-height: 0;
+    padding-top: 0 !important;
+}
+
+/* --- Field description: line up with the control, not a fixed offset --- */
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form .wpjp-ds-field > :where(.wpjp-ds-help, .wjportal-form-help-txt, .wpjobportal-form-description) {
+    grid-column: 2;
+    min-width: 0;
+    max-width: 100%;
+    margin-inline-start: 0;
+}
+@media (max-width: 782px) {
+    /* The field collapses to a single track here, so column 2 does not exist. */
+    :where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form .wpjp-ds-field > :where(.wpjp-ds-help, .wjportal-form-help-txt, .wpjobportal-form-description) {
+        grid-column: 1;
+    }
+}
+:where(#wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper) .wpjp-ds-form .wjportal-form-symbol-fields {
+    justify-content: center;
+    padding-inline: 10px;
+}

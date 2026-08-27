@@ -4,6 +4,29 @@ if (!defined('ABSPATH'))
 
 class WPJOBPORTAL_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 
+	/**
+	 * Keep one allowlist for the editor control and frontend renderer.
+	 * The historical widget ID remains unchanged so existing Elementor pages
+	 * continue to load.
+	 */
+	public static function get_shortcode_options() {
+		return [
+			'wpjobportal_jobseeker_controlpanel' => __('Job Seeker Control Panel', 'wp-job-portal'),
+			'wpjobportal_employer_controlpanel' => __('Employer Control Panel', 'wp-job-portal'),
+			'wpjobportal_job' => __('Job Listing', 'wp-job-portal'),
+			'wpjobportal_job_categories' => __('Job Categories', 'wp-job-portal'),
+			'wpjobportal_job_types' => __('Job Types', 'wp-job-portal'),
+			'wpjobportal_my_appliedjobs' => __('My Applied Jobs', 'wp-job-portal'),
+			'wpjobportal_my_companies' => __('My Companies', 'wp-job-portal'),
+			'wpjobportal_my_departments' => __('My Departments', 'wp-job-portal'),
+			'wpjobportal_my_jobs' => __('My Jobs', 'wp-job-portal'),
+			'wpjobportal_my_resumes' => __('My Resumes', 'wp-job-portal'),
+			'wpjobportal_searchjob' => __('Search Jobs', 'wp-job-portal'),
+			'wpjobportal_searchresume' => __('Search Resumes', 'wp-job-portal'),
+			'wpjobportal_jobbycategory' => __('Jobs By Categories', 'wp-job-portal'),
+		];
+	}
+
 	public function get_name() {
 		return 'jp_shortcodes_wigdet';
 	}
@@ -43,21 +66,7 @@ class WPJOBPORTAL_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 	        [
 	            'label' => __('Select Page To Show', 'wp-job-portal'),
 	            'type' => \Elementor\Controls_Manager::SELECT,
-	            'options' => [
-						'wpjobportal_jobseeker_controlpanel' => __('Job Seeker Control Panel', 'wp-job-portal'),
-	                	'wpjobportal_employer_controlpanel' => __('Employer Control Panel', 'wp-job-portal'),
-						'wpjobportal_job' => __('Job Listing', 'wp-job-portal'),
-						'wpjobportal_job_categories' => __('Job Categories', 'wp-job-portal'),
-						'wpjobportal_job_types' => __('Job Types', 'wp-job-portal'),
-						'wpjobportal_my_appliedjobs' => __('My Applied Jobs', 'wp-job-portal'),
-						'wpjobportal_my_companies' => __('My Companies', 'wp-job-portal'),
-						'wpjobportal_my_departments' => __('My Departments', 'wp-job-portal'),
-						'wpjobportal_my_jobs' => __('My Jobs', 'wp-job-portal'),
-						'wpjobportal_my_resumes' => __('My Resumes', 'wp-job-portal'),
-						'wpjobportal_searchjob' => __('Search Jobs', 'wp-job-portal'),
-						'wpjobportal_searchresume' => __('Search Resumes', 'wp-job-portal'),
-						'wpjobportal_jobbycategory' => __('Jobs By Categories', 'wp-job-portal'),
-	            ],
+	            'options' => self::get_shortcode_options(),
 	            'default' => 'wpjobportal_job',
 	        ]
 	    );
@@ -978,10 +987,14 @@ class WPJOBPORTAL_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 	protected function render(){
 		$wpjobportal_settings = $this->get_settings_for_display();
 
-        //echo '<pre>';print_r($wpjobportal_settings);echo '</pre>';
-		if (!empty($wpjobportal_settings['jp_shortcode'])) {
-            echo '<div class="custom-shortcode-output job-portal-overrides-wrap-typo">';
-            echo do_shortcode('['.$wpjobportal_settings['jp_shortcode'].']');
+		$wpjobportal_shortcode = !empty($wpjobportal_settings['jp_shortcode'])
+			? sanitize_key($wpjobportal_settings['jp_shortcode'])
+			: '';
+		$wpjobportal_options = self::get_shortcode_options();
+
+		if ($wpjobportal_shortcode !== '' && isset($wpjobportal_options[$wpjobportal_shortcode])) {
+            echo '<div class="custom-shortcode-output job-portal-overrides-wrap-typo wpjobportal-elementor-widget" data-wpjobportal-shortcode="' . esc_attr($wpjobportal_shortcode) . '">';
+			echo do_shortcode('[' . $wpjobportal_shortcode . ']');
             echo '</div>';
         }
 

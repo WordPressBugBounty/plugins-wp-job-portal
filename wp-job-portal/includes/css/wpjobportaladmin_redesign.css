@@ -1380,7 +1380,7 @@ td.wjp-table-actions a{color: var(--wjp-color-primary); }
 #wjp-config-dashboard .wjp-setting-row:hover { background-color: var(--wjp-bg-hover); }
 #wjp-config-dashboard .wjp-setting-row .wjp-setting-label { padding-top: 2px; flex: 1 1 0%; }
 #wjp-config-dashboard .wjp-setting-row .wjp-setting-label label { font-size: var(--wjp-font-size-sm); font-weight: var(--wjp-font-weight-medium); color: var(--wjp-text-dark); display: flex; align-items: center; }
-#wjp-config-dashboard .wjp-setting-row .wjp-setting-control { flex: 2 1 0%; }
+#wjp-config-dashboard .wjp-setting-row .wjp-setting-control { flex: 2 1 0%; padding-top: 2px;}
 #wjp-config-dashboard .wjp-setting-label.is-modified > label::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background-color: var(--wjp-color-warning); margin-right: 8px; vertical-align: middle; }
 #wjp-config-dashboard .wjp-info-text { padding: 8px 12px; background-color: var(--wjp-bg-light); border-radius: 0.375rem; font-size: var(--wjp-font-size-sm); font-family: monospace; color: var(--wjp-text-medium); max-width: 500px; display: flex; justify-content: space-between; align-items: center;}
 #wjp-config-dashboard .wjp-info-text .wjp-copy-icon { cursor: pointer; color: var(--wjp-text-lighter); transition: color 0.2s; }
@@ -1643,3 +1643,252 @@ td.wjp-table-actions a{color: var(--wjp-color-primary); }
 }
 
 
+
+/* --- Mode-controlled settings ---------------------------------------------
+   Locked because of the selected product mode, not because of a licence. The
+   pro/upgrade state above uses the teal success palette plus a lock overlay;
+   this one uses the indigo primary palette and no call to action, so the two
+   never read as the same restriction. */
+#wjp-config-dashboard .wjp-mode-label-badge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 8px;
+  border: 1px solid var(--wjp-color-primary-light);
+  border-radius: 999px;
+  background-color: var(--wjp-color-primary-bg);
+  color: var(--wjp-color-primary-dark);
+  font-size: 0.7rem;
+  font-weight: var(--wjp-font-weight-semibold);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+#wjp-config-dashboard .is-mode-locked-field .wjp-setting-control > .wjp-toggle-switch,
+#wjp-config-dashboard .is-mode-locked-field .wjp-setting-control > .wjp-form-select,
+#wjp-config-dashboard .is-mode-locked-field .wjp-setting-control > .wjp-form-input {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+#wjp-config-dashboard .wjp-mode-field-explanation {
+  display: block;
+  max-width: 500px;
+  margin-top: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--wjp-color-primary-light);
+  border-left: 3px solid var(--wjp-color-primary);
+  border-radius: var(--wjp-border-radius-sm);
+  background-color: var(--wjp-color-primary-bg);
+}
+#wjp-config-dashboard .wjp-mode-field-headline {
+  display: block;
+  color: var(--wjp-color-primary-dark);
+  font-size: 0.8rem;
+  font-weight: var(--wjp-font-weight-semibold);
+}
+#wjp-config-dashboard .wjp-mode-field-detail {
+  display: block;
+  margin-top: 4px;
+  color: var(--wjp-text-light);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+#wjp-config-dashboard .wjp-mode-field-link {
+  display: inline-block;
+  margin-top: 6px;
+  color: var(--wjp-color-primary-dark);
+  font-size: 0.78rem;
+  font-weight: var(--wjp-font-weight-semibold);
+  text-decoration: underline;
+}
+
+/* --- Mode guide page ----------------------------------------------------- */
+.wjp-mode-guide {
+    background-color: #FFF;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 0 0 40px;
+    color: var(--wjp-text-dark);
+}
+.wjp-mode-guide-intro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--wjp-border-color);
+}
+.wjp-mode-guide-lede {
+  max-width: 640px;
+  margin: 0;
+  color: var(--wjp-text-light);
+  line-height: 1.6;
+}
+.wjp-mode-guide-current {
+  flex-shrink: 0;
+  min-width: 200px;
+  padding: 14px 16px;
+  border: 1px solid var(--wjp-color-primary-light);
+  border-radius: var(--wjp-border-radius-sm);
+  background-color: var(--wjp-color-primary-bg);
+}
+.wjp-mode-guide-current-label {
+  display: block;
+  color: var(--wjp-text-light);
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.wjp-mode-guide-current-value {
+  display: block;
+  margin-top: 2px;
+  color: var(--wjp-color-primary-dark);
+  font-size: var(--wjp-font-size-lg);
+}
+.wjp-mode-guide-notice {
+  margin-top: 20px;
+  padding: 12px 16px;
+  border: 1px solid var(--wjp-color-warning-bg);
+  border-left: 3px solid var(--wjp-color-warning);
+  border-radius: var(--wjp-border-radius-sm);
+  background-color: var(--wjp-color-warning-bg);
+  color: var(--wjp-color-warning-text);
+}
+.wjp-mode-guide-notice p { margin: 0; line-height: 1.6; }
+.wjp-mode-guide-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 24px;
+}
+.wjp-mode-guide-card {
+  position: relative;
+  padding: 20px;
+  border: 1px solid var(--wjp-border-color);
+  border-radius: var(--wjp-border-radius-sm);
+  background-color: var(--wjp-bg-card);
+}
+.wjp-mode-guide-card.is-current {
+  border-color: var(--wjp-color-primary);
+  box-shadow: 0 0 0 1px var(--wjp-color-primary);
+}
+.wjp-mode-guide-card h2 {
+  margin: 0 0 10px;
+  font-size: var(--wjp-font-size-lg);
+  font-weight: var(--wjp-font-weight-semibold);
+}
+.wjp-mode-guide-card p { margin: 0 0 8px; color: var(--wjp-text-light); line-height: 1.6; }
+.wjp-mode-guide-fit { font-weight: var(--wjp-font-weight-semibold); }
+.wjp-mode-guide-chip {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background-color: var(--wjp-color-primary);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: var(--wjp-font-weight-semibold);
+  text-transform: uppercase;
+}
+.wjp-mode-guide-section-title {
+  margin: 36px 0 6px;
+  font-size: var(--wjp-font-size-lg);
+  font-weight: var(--wjp-font-weight-semibold);
+}
+.wjp-mode-guide-section-intro {
+  max-width: 720px;
+  margin: 0 0 16px;
+  color: var(--wjp-text-light);
+  line-height: 1.6;
+}
+/* The table carries three columns of prose, so it scrolls in its own box
+   rather than pushing the admin page sideways on a narrow screen. */
+.wjp-mode-guide-table-wrap { overflow-x: auto; }
+.wjp-mode-guide-table {
+  width: 100%;
+  min-width: 700px;
+  border: 1px solid var(--wjp-border-color);
+  border-collapse: collapse;
+  background-color: var(--wjp-bg-card);
+}
+.wjp-mode-guide-table th,
+.wjp-mode-guide-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--wjp-border-color);
+  text-align: left;
+  vertical-align: top;
+}
+.wjp-mode-guide-table thead th {
+  background-color: var(--wjp-bg-light);
+  font-size: var(--wjp-font-size-sm);
+  font-weight: var(--wjp-font-weight-semibold);
+}
+.wjp-mode-guide-table tbody th { width: 34%; font-weight: var(--wjp-font-weight-normal); }
+.wjp-mode-guide-feature {
+  display: block;
+  color: var(--wjp-text-dark);
+  font-weight: var(--wjp-font-weight-semibold);
+}
+.wjp-mode-guide-feature-desc,
+.wjp-mode-guide-feature-menu,
+.wjp-mode-guide-note,
+.wjp-mode-guide-setting {
+  display: block;
+  margin-top: 4px;
+  color: var(--wjp-text-light);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+.wjp-mode-guide-feature-menu { color: var(--wjp-text-lighter); font-style: italic; }
+.wjp-mode-guide-state {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: var(--wjp-font-weight-semibold);
+}
+.wjp-mode-guide-table td.is-available .wjp-mode-guide-state {
+  background-color: var(--wjp-color-success-bg);
+  color: var(--wjp-color-success-text);
+}
+.wjp-mode-guide-table td.is-unavailable .wjp-mode-guide-state {
+  background-color: var(--wjp-color-primary-bg);
+  color: var(--wjp-color-primary-dark);
+}
+.wjp-mode-guide-setting {
+  margin-top: 6px;
+  padding-left: 10px;
+  border-left: 2px solid var(--wjp-border-color);
+}
+.wjp-mode-guide-reasons {
+  max-width: 760px;
+  color: var(--wjp-text-light);
+  line-height: 1.6;
+}
+.wjp-mode-guide-reasons ul { margin: 12px 0; padding-left: 20px; list-style: disc; }
+.wjp-mode-guide-reasons li { margin-bottom: 6px; }
+.wjp-mode-guide-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+.wjp-mode-guide-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  border: 1px solid var(--wjp-color-primary);
+  border-radius: var(--wjp-border-radius-sm);
+  background-color: var(--wjp-color-primary);
+  color: #fff;
+  font-size: var(--wjp-font-size-sm);
+  font-weight: var(--wjp-font-weight-semibold);
+  text-decoration: none;
+}
+.wjp-mode-guide-btn:hover,
+.wjp-mode-guide-btn:focus { background-color: var(--wjp-color-primary-dark); color: #fff; }
+.wjp-mode-guide-btn.is-secondary {
+  background-color: transparent;
+  color: var(--wjp-color-primary-dark);
+}
+.wjp-mode-guide-btn.is-secondary:hover,
+.wjp-mode-guide-btn.is-secondary:focus {
+  background-color: var(--wjp-color-primary-bg);
+  color: var(--wjp-color-primary-dark);
+}

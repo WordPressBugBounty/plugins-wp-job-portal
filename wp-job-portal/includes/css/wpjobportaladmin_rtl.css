@@ -289,6 +289,12 @@ div.wpjobportal-post-installation div.wpjobportal-post-data form div.wpjobportal
 div.wpjobportal-post-installation div.wpjobportal-post-data form div.wpjobportal-post-data-row div.wpjobportal-post-val select{float: right;}
 div.wpjobportal-post-installation div.wpjobportal-post-data form div.wpjobportal-post-data-row div.wpjobportal-post-val .wpjobportal-post-smpledata-infowrp{float: right;}
 div.wpjobportal-post-installation div.wpjobportal-post-data form div.wpjobportal-post-data-row div.wpjobportal-post-val .wpjobportal-post-smpledata-infowrp img{margin-right: 0;margin-left: 10px;}
+/* post installation - mode selection cards */
+.wpjobportal-post-employer-mode-single{float: none;}
+.wpjobportal-post-employer-mode-single-title,
+.wpjobportal-post-employer-mode-single-desc{float: none;text-align: right;}
+.wpjobportal-mode-points > span{text-align: right;}
+.wpjobportal-mode-radio-wrap{margin-left: 0;margin-right: 15px;}
 
 /* job applied resume */
 form.wpjobportal-adv-srch-filter-form input.wpjobportal-form-input-field {float: right;}

@@ -1,202 +1,322 @@
 <?php
-if (!defined('ABSPATH')) die('Restricted Access'); ?>
+if (!defined('ABSPATH')) {
+    die('Restricted Access');
+}
+
+$wpjobportal_selected_mode = WPJOBPORTAL_Product_Mode_Service::get_suggested_mode();
+$wpjobportal_is_marketplace = WPJOBPORTAL_Product_Mode_Service::MODE_MARKETPLACE === $wpjobportal_selected_mode;
+$wpjobportal_onboarding = isset(wpjobportal::$_data['onboarding']) && is_array(wpjobportal::$_data['onboarding'])
+    ? wpjobportal::$_data['onboarding']
+    : WPJOBPORTAL_Onboarding_Service::get_state();
+$wpjobportal_sample_preview = isset(wpjobportal::$_data['sample_cleanup_preview']) && is_array(wpjobportal::$_data['sample_cleanup_preview'])
+    ? wpjobportal::$_data['sample_cleanup_preview']
+    : WPJOBPORTAL_Sample_Data_Service::get_preview();
+$wpjobportal_cleanup_result = isset(wpjobportal::$_data['sample_cleanup_result']) && is_array(wpjobportal::$_data['sample_cleanup_result'])
+    ? wpjobportal::$_data['sample_cleanup_result']
+    : array();
+$wpjobportal_action_url = admin_url('admin.php?page=wpjobportal_postinstallation&action=wpjobportaltask');
+?>
 <div id="wpjobportaladmin-wrapper" class="wpjobportal-post-installation-wrp">
-    <!-- content -->
     <div class="wpjobportal-post-installation">
         <div class="wpjobportal-post-menu">
             <div class="wpjobportal-post-installation-logowrp">
-                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/quickstrt_logo.png" />
+                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/quickstrt_logo.png" alt="<?php echo esc_attr__('WP Job Portal', 'wp-job-portal'); ?>" />
             </div>
             <ul class="step-1">
                 <li class="active">
-                    <a href="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_postinstallation&wpjobportallt=quickstart")); ?>" class="tab_icon">
+                    <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_postinstallation&wpjobportallt=quickstart')); ?>" aria-current="step">
                         <span class="wpjobportal-post-installation-lftimages-wrp">
-                            <img class="wpjobportal-post-installation-lfticon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/quick-start.png" />
-                            <img class="wpjobportal-post-installation-white-icon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/quick-strt-w.png" />
-                            <?php echo esc_html(__('Quick Configuration','wp-job-portal')); ?>
+                            <img class="wpjobportal-post-installation-lfticon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/quick-start.png" alt="" />
+                            <img class="wpjobportal-post-installation-white-icon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/quick-strt-w.png" alt="" />
+                            <?php echo esc_html__('Choose Mode', 'wp-job-portal'); ?>
                         </span>
-                        <img class="wpjobportal-post-installation-white-arrowicon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/arrow.png" />
+                        <img class="wpjobportal-post-installation-white-arrowicon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/arrow.png" alt="" />
                     </a>
                 </li>
                 <li class="first-part">
-                    <a href="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_postinstallation&wpjobportallt=stepone")); ?>" class="tab_icon">
+                    <span class="wpjobportal-post-installation-pending-step">
                         <span class="wpjobportal-post-installation-lftimages-wrp">
-                            <img class="wpjobportal-post-installation-lfticon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/general-settings.png" />
-                            <img class="wpjobportal-post-installation-white-icon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/general-settings-white.png.png" />
-                            <?php echo esc_html(__('General Settings','wp-job-portal')); ?>
+                            <img class="wpjobportal-post-installation-lfticon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/general-settings.png" alt="" />
+                            <?php echo esc_html__('General Settings', 'wp-job-portal'); ?>
                         </span>
-                        <img class="wpjobportal-post-installation-white-arrowicon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/arrow.png" />
-                    </a>
+                    </span>
                 </li>
-                <li class="second-part">
-                    <a href="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_postinstallation&wpjobportallt=steptwo")); ?>" class="tab_icon">
+                <li class="second-part<?php echo $wpjobportal_is_marketplace ? '' : ' wpjobportal-mode-step-optional'; ?>">
+                    <span class="wpjobportal-post-installation-pending-step">
                         <span class="wpjobportal-post-installation-lftimages-wrp">
-                            <img class="wpjobportal-post-installation-lfticon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/employers.png" />
-                            <img class="wpjobportal-post-installation-white-icon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/general-settings-white.png" />
-                            <?php echo esc_html(__('Employer Settings','wp-job-portal')); ?>
+                            <img class="wpjobportal-post-installation-lfticon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/employers.png" alt="" />
+                            <?php echo esc_html__('Employer Settings', 'wp-job-portal'); ?>
                         </span>
-                        <img class="wpjobportal-post-installation-white-arrowicon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/arrow.png" />
-                    </a>
+                    </span>
                 </li>
                 <li class="third-part">
-                    <a href="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_postinstallation&wpjobportallt=stepthree")); ?>" class="tab_icon">
+                    <span class="wpjobportal-post-installation-pending-step">
                         <span class="wpjobportal-post-installation-lftimages-wrp">
-                            <img class="wpjobportal-post-installation-lfticon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/jobseeker.png" />
-                            <img class="wpjobportal-post-installation-white-icon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/jobseeker-w.png" />
-                            <?php echo esc_html(__('Job Seeker Settings','wp-job-portal')); ?>
+                            <img class="wpjobportal-post-installation-lfticon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/jobseeker.png" alt="" />
+                            <?php echo esc_html__('Candidate Settings', 'wp-job-portal'); ?>
                         </span>
-                        <img class="wpjobportal-post-installation-white-arrowicon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/arrow.png" />
-                    </a>
+                    </span>
                 </li>
                 <li class="fourth-part">
-                    <a href="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_postinstallation&wpjobportallt=stepfour")); ?>" class="tab_icon">
+                    <span class="wpjobportal-post-installation-pending-step">
                         <span class="wpjobportal-post-installation-lftimages-wrp">
-                            <img class="wpjobportal-post-installation-lfticon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/sample-data.png" />
-                            <img class="wpjobportal-post-installation-white-icon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/sample-data-w.png" />
-                            <?php echo esc_html(__('Sample Data','wp-job-portal')); ?>
+                            <img class="wpjobportal-post-installation-lfticon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/sample-data.png" alt="" />
+                            <?php echo esc_html__('Sample Data', 'wp-job-portal'); ?>
                         </span>
-                    </a>
+                    </span>
                 </li>
                 <li class="setup-complete">
-                    <a href="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_postinstallation&wpjobportallt=setupcomplete")); ?>" class="tab_icon">
+                    <span class="wpjobportal-post-installation-pending-step">
                         <span class="wpjobportal-post-installation-lftimages-wrp">
-                            <img class="wpjobportal-post-installation-lfticon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/finshed.png" />
-                            <img class="wpjobportal-post-installation-white-icon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/finshed-w.png" />
-                            <?php echo esc_html(__('Setup Complete','wp-job-portal')); ?>
+                            <img class="wpjobportal-post-installation-lfticon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/finshed.png" alt="" />
+                            <?php echo esc_html__('Setup Complete', 'wp-job-portal'); ?>
                         </span>
-                    </a>
+                    </span>
                 </li>
             </ul>
         </div>
+
         <div class="wpjobportal-post-data">
             <div class="wpjobportal-post-heading-wrp">
                 <div class="wpjobportal-post-heading">
-                    <?php echo esc_html(__('Select Plugin Setting for WP Job Portal','wp-job-portal'));?>
+                    <?php echo esc_html__('Choose your WP Job Portal setup', 'wp-job-portal'); ?>
                 </div>
                 <div class="wpjobportal-post-head-rightbtns-wrp">
-                    <span class="wpjobportal-post-head-pagestep"><?php echo esc_html(__('Step 1 of 5','wp-job-portal'));?></span>
-                    <a class="wpjobportal-post-head-closebtn" href="admin.php?page=wpjobportal"title="<?php echo esc_attr(__('Close','wp-job-portal'));?>">
-                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/close.png" />
+                    <span id="wpjobportal-mode-step-count" class="wpjobportal-post-head-pagestep" data-marketplace="<?php echo esc_attr__('Step 1 of 5', 'wp-job-portal'); ?>" data-careers="<?php echo esc_attr__('Step 1 of 4', 'wp-job-portal'); ?>">
+                        <?php echo esc_html($wpjobportal_is_marketplace ? __('Step 1 of 5', 'wp-job-portal') : __('Step 1 of 4', 'wp-job-portal')); ?>
+                    </span>
+                    <a class="wpjobportal-post-head-closebtn" href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr__('Close', 'wp-job-portal'); ?>">
+                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/close.png" alt="<?php echo esc_attr__('Close', 'wp-job-portal'); ?>" />
                     </a>
                 </div>
             </div>
-            <form id="wpjobportal-form-ins" class="wpjobportal-form" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_postinstallation&task=save&action=wpjobportaltask")); ?>">
-                <div class="wpjobportal-post-data-row wpjobportal-post-data-quickstart-row">
-                    <div class="wpjobportal-post-data-subtitle">
-                        <?php echo esc_html(__('Configure WP Job Portal As','wp-job-portal'));?>
+
+            <form id="wpjobportal-form-ins" class="wpjobportal-form wpjobportal-mode-form" method="post" action="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_postinstallation&task=save&action=wpjobportaltask')); ?>">
+                <?php if (absint(WPJOBPORTALrequest::getVar('wpjobportal_setup_error')) === 1) { ?>
+                    <div class="notice notice-error inline wpjobportal-mode-error" role="alert">
+                        <p><?php echo esc_html__('The setup mode could not be saved. No mode settings were applied. Please review System Status and try again.', 'wp-job-portal'); ?></p>
                     </div>
+                <?php } ?>
+                <fieldset class="wpjobportal-mode-fieldset">
+                    <legend><?php echo esc_html__('What are you building?', 'wp-job-portal'); ?></legend>
+                    <p class="wpjobportal-mode-intro">
+                        <?php echo esc_html__('This choice tailors setup and navigation. You can change it later without deleting jobs, companies, candidates, or applications.', 'wp-job-portal'); ?>
+                        <a class="wpjobportal-mode-guide-link" href="<?php echo esc_url(WPJOBPORTAL_Mode_Policy_Service::guide_url()); ?>"><?php echo esc_html__('See exactly what changes in each mode', 'wp-job-portal'); ?></a>
+                    </p>
+
                     <div class="wpjobportal-post-employer-mode-wrap">
-                        <div class="wpjobportal-post-employer-mode-single wpj-is-selected wpjobportal-pst-first">
-                            <div class="wpjobportal-post-employer-mode-single-img-wrap">
-                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/postinstallation/job-board-icon.png'; ?>"/>
-                            </div>
-                            <div class="wpjobportal-post-card-mainwrp">
-                                <div class="wpjobportal-post-card-leftclm">
-                                    <div class="wpjobportal-post-employer-mode-single-title">
-                                        <?php echo esc_html(__('Job Board','wp-job-portal'));?>
-                                    </div>
-                                    <div class="wpjobportal-post-employer-mode-single-desc">
-                                        <?php echo esc_html(__('Allow employers and job Seekers to register on the site.','wp-job-portal'));?>
-                                    </div>
-                                </div>
-                                <div class="wpjobportal-post-employer-mode-single-btn">
-                                    <button type="button" id="wpjobportal-post-employer-mode-job-board-btn" class="wpjobportal-post-employer-mode-selection-btn active">
-                                       <div class="wpjobportal-post-employer-mode-selection-circle"></div>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="wpjobportal-post-employer-mode-single wpjobportal-pst-second">
-                            <div class="wpjobportal-post-employer-mode-single-img-wrap">
-                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/postinstallation/single-company.png'; ?>"/>
-                            </div>
-                            <div class="wpjobportal-post-card-mainwrp">
-                                <div class="wpjobportal-post-card-leftclm">
-                                    <div class="wpjobportal-post-employer-mode-single-title">
-                                        <?php echo esc_html(__('Single Company','wp-job-portal'));?>
-                                    </div>
-                                    <div class="wpjobportal-post-employer-mode-single-desc">
-                                            <?php echo esc_html(__('Only job seekers can register. Jobs and companies are managed by the admin.','wp-job-portal'));?>
-                                    </div>
-                                </div>
-                                <div class="wpjobportal-post-employer-mode-single-btn">
-                                    <button type="button" id="wpjobportal-post-employer-mode-single-company-btn" class="wpjobportal-post-employer-mode-selection-btn">
-                                        <div class="wpjobportal-post-employer-mode-selection-circle"></div>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <label class="wpjobportal-post-employer-mode-single<?php echo WPJOBPORTAL_Product_Mode_Service::MODE_CAREERS === $wpjobportal_selected_mode ? ' wpj-is-selected' : ''; ?>" for="wpjobportal-product-mode-careers">
+                            <span class="wpjobportal-post-employer-mode-single-img-wrap">
+                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/single-company.png" alt="" />
+                            </span>
+                            <span class="wpjobportal-post-card-mainwrp">
+                                <span class="wpjobportal-post-card-leftclm">
+                                    <span class="wpjobportal-post-employer-mode-single-title"><?php echo esc_html__('Careers & ATS', 'wp-job-portal'); ?></span>
+                                    <span class="wpjobportal-post-employer-mode-single-desc"><?php echo esc_html__('Publish your company jobs, receive applications, and manage candidates in one hiring workspace.', 'wp-job-portal'); ?></span>
+                                    <span class="wpjobportal-mode-points">
+                                        <span><?php echo esc_html__('One company careers site', 'wp-job-portal'); ?></span>
+                                        <span><?php echo esc_html__('Admin-managed jobs and company profile', 'wp-job-portal'); ?></span>
+                                        <span><?php echo esc_html__('Candidate applications and resumes', 'wp-job-portal'); ?></span>
+                                    </span>
+                                </span>
+                                <span class="wpjobportal-mode-radio-wrap">
+                                    <input type="radio" id="wpjobportal-product-mode-careers" name="product_mode" value="<?php echo esc_attr(WPJOBPORTAL_Product_Mode_Service::MODE_CAREERS); ?>" required <?php checked(WPJOBPORTAL_Product_Mode_Service::MODE_CAREERS, $wpjobportal_selected_mode); ?> />
+                                    <span aria-hidden="true" class="wpjobportal-mode-radio-indicator"></span>
+                                    <span class="screen-reader-text"><?php echo esc_html__('Select Careers & ATS', 'wp-job-portal'); ?></span>
+                                </span>
+                            </span>
+                        </label>
 
+                        <label class="wpjobportal-post-employer-mode-single<?php echo WPJOBPORTAL_Product_Mode_Service::MODE_MARKETPLACE === $wpjobportal_selected_mode ? ' wpj-is-selected' : ''; ?>" for="wpjobportal-product-mode-marketplace">
+                            <span class="wpjobportal-post-employer-mode-single-img-wrap">
+                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/job-board-icon.png" alt="" />
+                            </span>
+                            <span class="wpjobportal-post-card-mainwrp">
+                                <span class="wpjobportal-post-card-leftclm">
+                                    <span class="wpjobportal-post-employer-mode-single-title"><?php echo esc_html__('Job Marketplace', 'wp-job-portal'); ?></span>
+                                    <span class="wpjobportal-post-employer-mode-single-desc"><?php echo esc_html__('Run a multi-employer job portal where companies register, publish jobs, and connect with candidates.', 'wp-job-portal'); ?></span>
+                                    <span class="wpjobportal-mode-points">
+                                        <span><?php echo esc_html__('Multiple employer accounts', 'wp-job-portal'); ?></span>
+                                        <span><?php echo esc_html__('Company and job moderation controls', 'wp-job-portal'); ?></span>
+                                        <span><?php echo esc_html__('Marketplace-ready listings and search', 'wp-job-portal'); ?></span>
+                                    </span>
+                                </span>
+                                <span class="wpjobportal-mode-radio-wrap">
+                                    <input type="radio" id="wpjobportal-product-mode-marketplace" name="product_mode" value="<?php echo esc_attr(WPJOBPORTAL_Product_Mode_Service::MODE_MARKETPLACE); ?>" required <?php checked(WPJOBPORTAL_Product_Mode_Service::MODE_MARKETPLACE, $wpjobportal_selected_mode); ?> />
+                                    <span aria-hidden="true" class="wpjobportal-mode-radio-indicator"></span>
+                                    <span class="screen-reader-text"><?php echo esc_html__('Select Job Marketplace', 'wp-job-portal'); ?></span>
+                                </span>
+                            </span>
+                        </label>
                     </div>
+                </fieldset>
+
+                <div class="wpjobportal-post-action-btn">
+                    <button type="submit" class="next-step wpjobportal-post-act-btn"><?php echo esc_html__('Continue setup', 'wp-job-portal'); ?></button>
                 </div>
 
-                <div class="wpjobportal-post-action-btn" style="text-align: center;">
-                    <?php /* ?>
-                    <a class="back-step wpjobportal-post-act-btn" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('Back','wp-job-portal')); ?>">
-                        <?php echo esc_html(__('Back','wp-job-portal')); ?>
-                    </a>
-                    <?php */ ?>
-                    <a class="next-step wpjobportal-post-act-btn" href="javascript:void();" onclick="document.getElementById('wpjobportal-form-ins').submit();"  title="<?php echo esc_attr(__('Next','wp-job-portal')); ?>" style="float: none;">
-                        <?php echo esc_html(__('Next Step','wp-job-portal')); ?>
-                    </a>
-                </div>
-                <?php echo wp_kses(WPJOBPORTALformfield::hidden('enable_multiple_employers_mode', 1),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                <?php echo wp_kses(WPJOBPORTALformfield::hidden('action', 'postinstallation_save'),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                <?php echo wp_kses(WPJOBPORTALformfield::hidden('form_request', 'wpjobportal'),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                <?php echo wp_kses(WPJOBPORTALformfield::hidden('step', 0),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                <?php echo wp_kses(WPJOBPORTALformfield::hidden('_wpnonce', esc_html(wp_create_nonce('wpjobportal_postinstallation_nonce'))),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                <?php echo wp_kses(WPJOBPORTALformfield::hidden('enable_multiple_employers_mode', $wpjobportal_is_marketplace ? 1 : 0), WPJOBPORTAL_ALLOWED_TAGS); ?>
+                <?php echo wp_kses(WPJOBPORTALformfield::hidden('action', 'postinstallation_save'), WPJOBPORTAL_ALLOWED_TAGS); ?>
+                <?php echo wp_kses(WPJOBPORTALformfield::hidden('form_request', 'wpjobportal'), WPJOBPORTAL_ALLOWED_TAGS); ?>
+                <?php echo wp_kses(WPJOBPORTALformfield::hidden('setup_stage', 'mode'), WPJOBPORTAL_ALLOWED_TAGS); ?>
+                <?php echo wp_kses(WPJOBPORTALformfield::hidden('step', 1), WPJOBPORTAL_ALLOWED_TAGS); ?>
+                <?php echo wp_kses(WPJOBPORTALformfield::hidden('_wpnonce', wp_create_nonce('wpjobportal_postinstallation_nonce')), WPJOBPORTAL_ALLOWED_TAGS); ?>
             </form>
+
+            <section class="wpjobportal-onboarding-card" aria-labelledby="wpjobportal-onboarding-title">
+                <?php if (!empty($wpjobportal_onboarding['dismissed'])) : ?>
+                    <div class="wpjobportal-onboarding-dismissed">
+                        <div>
+                            <h2 id="wpjobportal-onboarding-title"><?php echo esc_html__('Onboarding checklist', 'wp-job-portal'); ?></h2>
+                            <p><?php echo esc_html__('The checklist is hidden for your administrator account. Completion still reflects the real site state.', 'wp-job-portal'); ?></p>
+                        </div>
+                        <form method="post" action="<?php echo esc_url(add_query_arg('task', 'reopenonboarding', $wpjobportal_action_url)); ?>">
+                            <input type="hidden" name="form_request" value="wpjobportal" />
+                            <?php wp_nonce_field('wpjobportal_postinstallation_nonce'); ?>
+                            <button type="submit" class="button button-secondary"><?php echo esc_html__('Reopen checklist', 'wp-job-portal'); ?></button>
+                        </form>
+                    </div>
+                <?php else : ?>
+                    <div class="wpjobportal-onboarding-heading">
+                        <div>
+                            <h2 id="wpjobportal-onboarding-title"><?php echo esc_html__('Onboarding checklist', 'wp-job-portal'); ?></h2>
+                            <p>
+                                <?php
+                                echo esc_html(sprintf(
+                                    __('%1$d of %2$d steps complete for %3$s. Progress is calculated from saved settings and content.', 'wp-job-portal'),
+                                    absint($wpjobportal_onboarding['completed']),
+                                    absint($wpjobportal_onboarding['total']),
+                                    $wpjobportal_onboarding['mode_label']
+                                ));
+                                ?>
+                            </p>
+                        </div>
+                        <span class="wpjobportal-onboarding-progress" aria-label="<?php echo esc_attr(sprintf(__('Onboarding progress: %1$d of %2$d', 'wp-job-portal'), absint($wpjobportal_onboarding['completed']), absint($wpjobportal_onboarding['total']))); ?>">
+                            <?php echo esc_html(absint($wpjobportal_onboarding['completed']) . '/' . absint($wpjobportal_onboarding['total'])); ?>
+                        </span>
+                    </div>
+
+                    <ol class="wpjobportal-onboarding-list">
+                        <?php $wpjobportal_item_number = 0; ?>
+                        <?php foreach ((array) $wpjobportal_onboarding['items'] as $wpjobportal_item) : ?>
+                            <?php $wpjobportal_item_number++; ?>
+                            <li class="<?php echo !empty($wpjobportal_item['complete']) ? 'is-complete' : 'is-pending'; ?>">
+                                <span class="wpjobportal-onboarding-state" aria-hidden="true"><?php echo !empty($wpjobportal_item['complete']) ? '&#10003;' : esc_html($wpjobportal_item_number); ?></span>
+                                <div class="wpjobportal-onboarding-copy">
+                                    <h3><?php echo esc_html($wpjobportal_item['label']); ?></h3>
+                                    <p><?php echo esc_html($wpjobportal_item['description']); ?></p>
+                                    <span class="screen-reader-text">
+                                        <?php echo !empty($wpjobportal_item['complete']) ? esc_html__('Complete', 'wp-job-portal') : esc_html__('Pending', 'wp-job-portal'); ?>
+                                    </span>
+                                </div>
+                                <a class="button button-secondary" href="<?php echo esc_url($wpjobportal_item['url']); ?>"><?php echo esc_html($wpjobportal_item['action']); ?></a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ol>
+
+                    <form class="wpjobportal-onboarding-dismiss-form" method="post" action="<?php echo esc_url(add_query_arg('task', 'dismissonboarding', $wpjobportal_action_url)); ?>">
+                        <input type="hidden" name="form_request" value="wpjobportal" />
+                        <?php wp_nonce_field('wpjobportal_postinstallation_nonce'); ?>
+                        <button type="submit" class="button-link"><?php echo esc_html__('Hide checklist for my account', 'wp-job-portal'); ?></button>
+                    </form>
+                <?php endif; ?>
+            </section>
+
+            <section class="wpjobportal-sample-cleanup-card" aria-labelledby="wpjobportal-sample-cleanup-title">
+                <h2 id="wpjobportal-sample-cleanup-title"><?php echo esc_html__('Sample-data safety', 'wp-job-portal'); ?></h2>
+
+                <?php if (!empty($wpjobportal_cleanup_result)) : ?>
+                    <div class="notice <?php echo !empty($wpjobportal_cleanup_result['failed']) ? 'notice-error' : 'notice-success'; ?> inline" role="status">
+                        <p>
+                            <?php
+                            echo esc_html(sprintf(
+                                __('Cleanup result: %1$d deleted, %2$d skipped, %3$d failed.', 'wp-job-portal'),
+                                absint($wpjobportal_cleanup_result['deleted']),
+                                absint($wpjobportal_cleanup_result['skipped']),
+                                absint($wpjobportal_cleanup_result['failed'])
+                            ));
+                            ?>
+                        </p>
+                    </div>
+                <?php endif; ?>
+
+                <?php if (!empty($wpjobportal_sample_preview['has_markers'])) : ?>
+                    <p>
+                        <?php
+                        echo esc_html(sprintf(
+                            __('Cleanup preview: %1$d strongly marked records are tracked; %2$d are currently eligible and %3$d will be skipped to protect changed or dependent data.', 'wp-job-portal'),
+                            absint($wpjobportal_sample_preview['tracked']),
+                            absint($wpjobportal_sample_preview['eligible']),
+                            absint($wpjobportal_sample_preview['skipped'])
+                        ));
+                        ?>
+                    </p>
+                    <ul class="wpjobportal-sample-counts">
+                        <?php
+                        $wpjobportal_sample_labels = array(
+                            'companies' => __('Companies', 'wp-job-portal'),
+                            'jobs' => __('Jobs', 'wp-job-portal'),
+                            'resumes' => __('Resumes', 'wp-job-portal'),
+                            'applications' => __('Applications', 'wp-job-portal'),
+                            'pages' => __('Pages', 'wp-job-portal'),
+                        );
+                        foreach ($wpjobportal_sample_labels as $wpjobportal_type => $wpjobportal_label) :
+                            $wpjobportal_type_counts = isset($wpjobportal_sample_preview['counts'][$wpjobportal_type])
+                                ? $wpjobportal_sample_preview['counts'][$wpjobportal_type]
+                                : array('tracked' => 0, 'eligible' => 0, 'skipped' => 0);
+                            ?>
+                            <li>
+                                <strong><?php echo esc_html($wpjobportal_label); ?>:</strong>
+                                <?php
+                                echo esc_html(sprintf(
+                                    __('%1$d tracked, %2$d eligible, %3$d protected', 'wp-job-portal'),
+                                    absint($wpjobportal_type_counts['tracked']),
+                                    absint($wpjobportal_type_counts['eligible']),
+                                    absint($wpjobportal_type_counts['skipped'])
+                                ));
+                                ?>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <p><?php echo esc_html__('Cleanup never guesses from titles or content. It preserves unmarked historical data, users, settings, payments, credits, and uploaded files.', 'wp-job-portal'); ?></p>
+                    <?php if (current_user_can('manage_options')) : ?>
+                        <form class="wpjobportal-sample-cleanup-form" method="post" action="<?php echo esc_url(add_query_arg('task', 'cleansampledata', $wpjobportal_action_url)); ?>">
+                            <input type="hidden" name="form_request" value="wpjobportal" />
+                            <?php wp_nonce_field('wpjobportal_postinstallation_nonce'); ?>
+                            <label>
+                                <input type="checkbox" name="sample_cleanup_confirmation" value="cleanup_marked_sample_data" required />
+                                <?php echo esc_html__('I understand that only the eligible, plugin-marked records in this preview will be removed.', 'wp-job-portal'); ?>
+                            </label>
+                            <button type="submit" class="button button-secondary" <?php disabled(0, absint($wpjobportal_sample_preview['eligible'])); ?>><?php echo esc_html__('Clean marked sample data', 'wp-job-portal'); ?></button>
+                        </form>
+                    <?php else : ?>
+                        <p><?php echo esc_html__('An administrator must run sample-data cleanup.', 'wp-job-portal'); ?></p>
+                    <?php endif; ?>
+                <?php else : ?>
+                    <p><?php echo esc_html__('No strongly marked sample records are available for automatic cleanup. Historical sample-like content is preserved for manual review because ownership cannot be proven.', 'wp-job-portal'); ?></p>
+                <?php endif; ?>
+            </section>
         </div>
     </div>
-
 </div>
 
 <?php
-    wp_register_script( 'wpjobportal-inline-handle', '' );
-    wp_enqueue_script( 'wpjobportal-inline-handle' );
-
-    $wpjobportal_inline_js_script = "
-
-            jQuery( document ).ready(function() {
-                jQuery('#wpjobportal-post-employer-mode-job-board-btn').click(function(){
-                    jQuery('.wpjobportal-post-employer-mode-single').removeClass('wpj-is-selected');
-                    jQuery(this).closest('.wpjobportal-post-employer-mode-single').addClass('wpj-is-selected');
-                    jQuery('input#enable_multiple_employers_mode').val(1);
-
-                });
-                jQuery('#wpjobportal-post-employer-mode-single-company-btn').click(function(){
-                    jQuery('.wpjobportal-post-employer-mode-single').removeClass('wpj-is-selected');
-                    jQuery(this).closest('.wpjobportal-post-employer-mode-single').addClass('wpj-is-selected');
-                    jQuery('input#enable_multiple_employers_mode').val(0);
-                });
-
-            });
-            // quick start toogle
-            jQuery(document).ready(function () {
-                jQuery('.wpjobportal-post-employer-mode-selection-btn').on('click', function () {
-                  if (jQuery(this).hasClass('active')) {
-                    // Remove active and wpj-is-selected from clicked
-                    jQuery(this).removeClass('active');
-                    jQuery(this).parent().parent().parent().removeClass('wpj-is-selected');
-              
-                    // Find the other button and add active + wpj-is-selected
-                    jQuery('.wpjobportal-post-employer-mode-selection-btn').not(this).each(function () {
-                      jQuery(this).addClass('active');
-                      jQuery(this).parent().parent().parent().addClass('wpj-is-selected');
-                    });
-                  } else {
-                    // Standard toggle behavior
-                    jQuery('.wpjobportal-post-employer-mode-selection-btn').removeClass('active');
-                    jQuery('.wpjobportal-post-employer-mode-selection-btn').each(function () {
-                      jQuery(this).parent().parent().parent().removeClass('wpj-is-selected');
-                    });
-                    jQuery(this).addClass('active');
-                    jQuery(this).parent().parent().parent().addClass('wpj-is-selected');
-                  }
-                });
-              });
-            ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
-
-
+wp_register_script('wpjobportal-mode-setup', '', array('jquery'), null, true);
+wp_enqueue_script('wpjobportal-mode-setup');
+wp_add_inline_script(
+    'wpjobportal-mode-setup',
+    "jQuery(function ($) {
+        var updateMode = function () {
+            var selected = $('input[name=\"product_mode\"]:checked');
+            $('.wpjobportal-post-employer-mode-single').removeClass('wpj-is-selected');
+            selected.closest('.wpjobportal-post-employer-mode-single').addClass('wpj-is-selected');
+            $('#enable_multiple_employers_mode').val(selected.val() === 'marketplace' ? '1' : '0');
+            $('.second-part').toggleClass('wpjobportal-mode-step-optional', selected.val() !== 'marketplace');
+            var stepCount = $('#wpjobportal-mode-step-count');
+            stepCount.text(selected.val() === 'marketplace' ? stepCount.data('marketplace') : stepCount.data('careers'));
+        };
+        $('input[name=\"product_mode\"]').on('change', updateMode);
+        updateMode();
+    });"
+);
 ?>

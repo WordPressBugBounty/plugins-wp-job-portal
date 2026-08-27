@@ -15,7 +15,7 @@ if (!defined('ABSPATH'))
             </div>
             <?php
             if( wpjobportal::$_error_flag_message == null ){ ?>
-                <form id="wpjobportal-form" class="wjportal-form" method="post" action="<?php echo esc_url(wp_nonce_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'user','action'=>'wpjobportaltask','task'=>'saveuser','wpjobportal'=>wpjobportal::wpjobportal_getPageid())),'wpjobportal_user_nonce')); ?>" enctype="multipart/form-data">
+                <form id="wpjobportal-form" class="wjportal-form wpjp-ds-form" method="post" action="<?php echo esc_url(wp_nonce_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'user','action'=>'wpjobportaltask','task'=>'saveuser','wpjobportal'=>wpjobportal::wpjobportal_getPageid())),'wpjobportal_user_nonce')); ?>" enctype="multipart/form-data">
                     <?php WPJOBPORTALincluder::getTemplate('user/views/frontend/form-field',array('user' => wpjobportal::$_data[0])); ?>
                     <?php echo wp_kses(WPJOBPORTALformfield::hidden('form_request', 'wpjobportal'),WPJOBPORTAL_ALLOWED_TAGS); ?>
                     <?php echo wp_kses(WPJOBPORTALformfield::hidden('wpjobportalpageid', wpjobportal::wpjobportal_getPageid()),WPJOBPORTAL_ALLOWED_TAGS); ?>

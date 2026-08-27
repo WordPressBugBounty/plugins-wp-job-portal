@@ -102,7 +102,7 @@ $wpjobportal_yesno = array((object) array('id' => 1, 'text' => esc_html(__('Yes'
                         <span class="wpjobportal-post-installation-lftimages-wrp">
                             <img class="wpjobportal-post-installation-lfticon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/quick-start.png" />
                             <img class="wpjobportal-post-installation-white-icon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/quick-strt-w.png" />
-                            <?php echo esc_html(__('Quick Configuration','wp-job-portal')); ?>
+                            <?php echo esc_html(__('Choose Mode','wp-job-portal')); ?>
                         </span>
                         <img class="wpjobportal-post-installation-white-arrowicon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/arrow.png" />
                     </a>

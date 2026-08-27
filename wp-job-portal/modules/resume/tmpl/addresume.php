@@ -40,7 +40,9 @@ echo wp_kses(WPJOBPORTALformfield::hidden('resume_temp', wpjobportal::$wpjobport
         ?>
         <div class="wjportal-page-header">
             <?php
-               WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('wpjobportal_module' => 'resume','wpjobportal_layout'=>'myresume','wpjobportal_msg'=> $wpjobportal_msg));
+               if (!is_admin()) {
+                   WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('wpjobportal_module' => 'resume','wpjobportal_layout'=>'myresume','wpjobportal_msg'=> $wpjobportal_msg));
+               }
                 if(in_array('credits', wpjobportal::$_active_addons) && wpjobportal::$_config->getConfigValue('submission_type') ==3 && isset(wpjobportal::$_data['package'])){
                     # Package Inclder
                     do_action('wpjobportal_addons_module_packagesdetail',wpjobportal::$_data['package'],'multiresume');

@@ -45,10 +45,7 @@
 .wjportal-page-header {
     width: 100%;
     margin-bottom: 40px;
-    display: flex;
     flex-direction: column;
-    gap: 8px;
-
 }
 
 div.wjportal-breadcrumbs-wrp {
@@ -81,7 +78,6 @@ div.wjportal-breadcrumbs-wrp div.wjportal-breadcrumbs-links a.wjportal-breadcrum
 
 /* Main Header Container */
 .wjportal-page-header {
-
     display: flex;
     justify-content: space-between;
     align-items: center;

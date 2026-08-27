@@ -159,13 +159,6 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
         <?php WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('wpjobportal_module' => 'wpjobportal' , 'wpjobportal_layouts' => 'zywrap')); ?>
 
         <div id="wpjobportal-admin-wrapper" class="wpjobportal-admin-config-wrapper">
-
-            <div id="wpjobportal-head">
-                <h1 class="wpjobportal-head-text">
-                    <?php echo esc_html(__('Zywrap Settings', 'wp-job-portal')); ?>
-                </h1>
-            </div>
-
             <form id="wpjobportal-form" class="wpjobportal-configurations" method="post" action="<?php echo esc_url(wp_nonce_url(admin_url("admin.php?page=wpjobportal_zywrap&task=save_zywrap_settings"), "save-zywrap-settings")); ?>">
 
                 <div class="wpjobportal-zwrap-settings-section-wrap">

@@ -154,7 +154,7 @@ if (!defined('ABSPATH'))
                         </a>
                     </div>
                 <?php }?>
-            <form id="job_form" class="wpjobportal-form" method="post" enctype="multipart/form-data" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_job&task=savejob")); ?>">
+            <form id="job_form" class="wpjobportal-form wpjp-ds-form" method="post" enctype="multipart/form-data" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_job&task=savejob")); ?>">
                 <?php if (isset(wpjobportal::$_data[0]->msg) AND wpjobportal::$_data[0]->msg != '') { ?>
                     <span class="formMsg">
                         <font color="red">

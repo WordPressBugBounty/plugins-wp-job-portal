@@ -18,6 +18,7 @@ class WPJOBPORTAL_Diagnostics_Service {
         return array(
             'generated_at' => current_time('mysql', true),
             'environment' => self::environment_checks(),
+            'operational_readiness' => self::operational_readiness_checks(),
             'database' => self::database_checks(),
             'request_security' => self::request_security_checks(),
             'privacy_payments' => self::privacy_payment_checks(),
@@ -55,7 +56,7 @@ class WPJOBPORTAL_Diagnostics_Service {
             '',
         );
 
-        foreach (array('environment', 'database', 'request_security', 'privacy_payments', 'scheduled_tasks') as $group) {
+        foreach (array('environment', 'operational_readiness', 'database', 'request_security', 'privacy_payments', 'scheduled_tasks') as $group) {
             $lines[] = strtoupper(str_replace('_', ' ', $group));
             foreach ($status[$group] as $check) {
                 $lines[] = sprintf(
@@ -162,9 +163,73 @@ class WPJOBPORTAL_Diagnostics_Service {
         $memory_limit = ini_get('memory_limit');
         $cron_disabled = defined('DISABLE_WP_CRON') && DISABLE_WP_CRON;
         $debug_display = defined('WP_DEBUG_DISPLAY') && WP_DEBUG_DISPLAY;
+        $product_mode = WPJOBPORTAL_Product_Mode_Service::get_status();
+        $design_system_file = defined('WPJOBPORTAL_PLUGIN_PATH')
+            ? WPJOBPORTAL_PLUGIN_PATH . 'includes/css/wpjobportal-design-system.css'
+            : '';
+        $design_system_ready = '' !== $design_system_file && is_readable($design_system_file);
+        $accessible_forms_css = defined('WPJOBPORTAL_PLUGIN_PATH')
+            ? WPJOBPORTAL_PLUGIN_PATH . 'includes/css/wpjobportal-accessible-forms.css'
+            : '';
+        $accessible_forms_js = defined('WPJOBPORTAL_PLUGIN_PATH')
+            ? WPJOBPORTAL_PLUGIN_PATH . 'includes/js/wpjobportal-accessible-forms.js'
+            : '';
+        $accessible_forms_ready = '' !== $accessible_forms_css
+            && '' !== $accessible_forms_js
+            && is_readable($accessible_forms_css)
+            && is_readable($accessible_forms_js);
+        $blocks_editor_js = defined('WPJOBPORTAL_PLUGIN_PATH')
+            ? WPJOBPORTAL_PLUGIN_PATH . 'includes/js/gutenberg/blocks.js'
+            : '';
+        $blocks_editor_css = defined('WPJOBPORTAL_PLUGIN_PATH')
+            ? WPJOBPORTAL_PLUGIN_PATH . 'includes/css/wpjobportal-block-editor.css'
+            : '';
+        $elementor_integration = defined('WPJOBPORTAL_PLUGIN_PATH')
+            ? WPJOBPORTAL_PLUGIN_PATH . 'includes/elementor-addon.php'
+            : '';
+        $builder_compatibility_ready = '' !== $blocks_editor_js
+            && '' !== $blocks_editor_css
+            && '' !== $elementor_integration
+            && is_readable($blocks_editor_js)
+            && is_readable($blocks_editor_css)
+            && is_readable($elementor_integration);
 
         return array(
             self::check('good', __('WP Job Portal version', 'wp-job-portal'), self::display_version()),
+            self::check(
+                !$product_mode['selected'] ? 'info' : ($product_mode['aligned'] ? 'good' : 'warning'),
+                __('Operating mode', 'wp-job-portal'),
+                $product_mode['selected']
+                    ? ($product_mode['aligned'] ? sprintf(
+                        __('%s explicitly selected; mode-specific setup is active.', 'wp-job-portal'),
+                        $product_mode['label']
+                    ) : sprintf(
+                        __('%s is selected, but its legacy compatibility setting is out of sync; run Setup & Mode again.', 'wp-job-portal'),
+                        $product_mode['label']
+                    ))
+                    : __('Existing-site compatibility; no explicit mode is selected and current behavior is unchanged.', 'wp-job-portal')
+            ),
+            self::check(
+                $design_system_ready ? 'good' : 'critical',
+                __('Shared design system', 'wp-job-portal'),
+                $design_system_ready
+                    ? __('Shared design tokens, responsive primitives, focus treatment, and reduced-motion support are available.', 'wp-job-portal')
+                    : __('The shared design-system stylesheet is missing or unreadable.', 'wp-job-portal')
+            ),
+            self::check(
+                $accessible_forms_ready ? 'good' : 'critical',
+                __('Accessible mobile-first forms', 'wp-job-portal'),
+                $accessible_forms_ready
+                    ? __('Accessible labels, help text, required-field, validation-error, mobile-control, and keyboard-focus enhancements are available.', 'wp-job-portal')
+                    : __('The accessible form stylesheet or behavior script is missing or unreadable.', 'wp-job-portal')
+            ),
+            self::check(
+                $builder_compatibility_ready ? 'good' : 'critical',
+                __('Blocks and Elementor compatibility', 'wp-job-portal'),
+                $builder_compatibility_ready
+                    ? __('Dynamic blocks, translated editor controls, bounded attributes, and load-order-safe Elementor integration are available.', 'wp-job-portal')
+                    : __('A block editor or Elementor compatibility file is missing or unreadable.', 'wp-job-portal')
+            ),
             self::check(
                 version_compare(PHP_VERSION, '7.4', '>=') ? 'good' : 'critical',
                 __('PHP version', 'wp-job-portal'),
@@ -262,6 +327,106 @@ class WPJOBPORTAL_Diagnostics_Service {
                     )
             ),
         );
+    }
+
+    /**
+     * Mode-aware, actionable checks that remain read-only.
+     *
+     * @return array
+     */
+    private static function operational_readiness_checks() {
+        $onboarding = WPJOBPORTAL_Onboarding_Service::get_state();
+        $sample_data = WPJOBPORTAL_Sample_Data_Service::get_status();
+        $routing = WPJOBPORTAL_Route_Registry_Service::get_status();
+        $uploads = wp_upload_dir(null, false);
+        $upload_error = isset($uploads['error']) ? (string) $uploads['error'] : '';
+        $upload_writable = '' === $upload_error
+            && !empty($uploads['basedir'])
+            && (function_exists('wp_is_writable') ? wp_is_writable($uploads['basedir']) : is_writable($uploads['basedir']));
+        $portal_page = array('complete' => false, 'description' => __('The onboarding page check is unavailable.', 'wp-job-portal'));
+
+        foreach ((array) $onboarding['items'] as $item) {
+            if (isset($item['id']) && 'portal_page' === $item['id']) {
+                $portal_page = $item;
+                break;
+            }
+        }
+
+        $checks = array(
+            self::check(
+                WPJOBPORTAL_Product_Mode_Service::is_selected() ? 'good' : 'warning',
+                __('Mode-specific readiness', 'wp-job-portal'),
+                WPJOBPORTAL_Product_Mode_Service::is_selected()
+                    ? sprintf(
+                        __('%1$s is selected; %2$d of %3$d onboarding steps are complete.', 'wp-job-portal'),
+                        $onboarding['mode_label'],
+                        absint($onboarding['completed']),
+                        absint($onboarding['total'])
+                    )
+                    : __('Existing-site compatibility is active. Choose a mode from Setup & Mode when ready; no mode is selected automatically.', 'wp-job-portal')
+            ),
+            self::check(
+                !empty($portal_page['complete']) ? 'good' : 'warning',
+                __('Default portal page', 'wp-job-portal'),
+                !empty($portal_page['complete'])
+                    ? __('Published and contains WP Job Portal content.', 'wp-job-portal')
+                    : $portal_page['description'] . ' ' . __('Review the main page in WP Job Portal configuration.', 'wp-job-portal')
+            ),
+            self::check(
+                $upload_writable ? 'good' : 'critical',
+                __('Upload directory', 'wp-job-portal'),
+                $upload_writable
+                    ? __('Available and writable for WP Job Portal files.', 'wp-job-portal')
+                    : __('Unavailable or not writable. Correct the WordPress uploads configuration and permissions before accepting files.', 'wp-job-portal')
+            ),
+            self::check(
+                absint($sample_data['tracked']) > 0 && absint($sample_data['skipped']) > 0 ? 'warning' : 'info',
+                __('Marked sample data', 'wp-job-portal'),
+                absint($sample_data['tracked']) > 0
+                    ? sprintf(
+                        __('%1$d records are strongly marked; %2$d are cleanup-eligible and %3$d are protected because they changed or have dependencies.', 'wp-job-portal'),
+                        absint($sample_data['tracked']),
+                        absint($sample_data['eligible']),
+                        absint($sample_data['skipped'])
+                    )
+                    : __('No strongly marked records are available. Historical sample-like content is preserved rather than guessed.', 'wp-job-portal')
+            ),
+            self::check(
+                isset($sample_data['assets']['status']) && 'failed' === $sample_data['assets']['status'] ? 'warning' : 'info',
+                __('Sample image assets', 'wp-job-portal'),
+                isset($sample_data['assets']['status']) && 'success' === $sample_data['assets']['status']
+                    ? __('The most recent sample-image archive passed bounded path, type, entry-count and size validation.', 'wp-job-portal')
+                    : (isset($sample_data['assets']['status']) && 'failed' === $sample_data['assets']['status']
+                        ? sprintf(
+                            __('The most recent optional sample-image installation was rejected or failed safely (%s). Sample database records may still be available.', 'wp-job-portal'),
+                            $sample_data['assets']['reason']
+                        )
+                        : __('Sample image assets have not been installed during a tracked setup.', 'wp-job-portal'))
+            ),
+        );
+
+        if (!empty($routing['unknown_active_addons'])) {
+            $checks[] = self::check(
+                'warning',
+                __('Add-on compatibility', 'wp-job-portal'),
+                sprintf(
+                    __('%1$d supported add-ons are active; %2$d unknown or retired add-ons need manual compatibility review.', 'wp-job-portal'),
+                    absint($routing['supported_active_addons']),
+                    count($routing['unknown_active_addons'])
+                )
+            );
+        } else {
+            $checks[] = self::check(
+                'good',
+                __('Add-on compatibility', 'wp-job-portal'),
+                sprintf(
+                    _n('%d supported add-on is active and no unknown add-on route was detected.', '%d supported add-ons are active and no unknown add-on route was detected.', absint($routing['supported_active_addons']), 'wp-job-portal'),
+                    absint($routing['supported_active_addons'])
+                )
+            );
+        }
+
+        return $checks;
     }
 
     /**

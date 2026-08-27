@@ -8,12 +8,38 @@ if (!defined('ABSPATH'))
 
 // shortcodes widget
 function wpjobportal_register_jp_shortcodes_widget( $widgets_manager ) {
+	static $wpjobportal_registered = false;
+	if ($wpjobportal_registered) {
+		return;
+	}
+
+	if ( ! class_exists( '\\Elementor\\Widget_Base' ) ) {
+		return;
+	}
 
 	include_once 'classes/jp-shortcodes-widget.php';
 
-	$widgets_manager->register( new \WPJOBPORTAL_Shortcodes_Wigdet() );
+	$wpjobportal_widget = new \WPJOBPORTAL_Shortcodes_Wigdet();
+	if ( method_exists( $widgets_manager, 'register' ) ) {
+		$widgets_manager->register( $wpjobportal_widget );
+		$wpjobportal_registered = true;
+	} elseif ( method_exists( $widgets_manager, 'register_widget_type' ) ) {
+		// Elementor before 3.5 used this registration method.
+		$widgets_manager->register_widget_type( $wpjobportal_widget );
+		$wpjobportal_registered = true;
+	}
 }
 add_action( 'elementor/widgets/register', 'wpjobportal_register_jp_shortcodes_widget' );
+
+function wpjobportal_register_jp_shortcodes_widget_legacy() {
+	if (
+		class_exists('\\Elementor\\Plugin')
+		&& isset(\Elementor\Plugin::$instance->widgets_manager)
+	) {
+		wpjobportal_register_jp_shortcodes_widget(\Elementor\Plugin::$instance->widgets_manager);
+	}
+}
+add_action('elementor/widgets/widgets_registered', 'wpjobportal_register_jp_shortcodes_widget_legacy');
 
 
 
@@ -33,10 +59,14 @@ function wpjobportal_save_post_job_portal_shortcode_element($post_id) {
 
     // Decode Elementor JSON data
     $elements = json_decode($elementor_data, true);
+    if (!is_array($elements)) return;
 
     // Recursive function to search for a widget
     if(!function_exists('wpjobportal_find_elementor_widget')){
         function wpjobportal_find_elementor_widget($elements, $widget_name) {
+            if (!is_array($elements)) {
+                return false;
+            }
             foreach ($elements as $element) {
                 if (isset($element['widgetType']) && $element['widgetType'] === $widget_name) {
                     return $element['settings']; // Return widget settings
@@ -184,10 +214,12 @@ function wpjobportal_create_css_from_widget_settings_for_elegant($wpjobportal_se
         $creds = request_filesystem_credentials( site_url() );
         wp_filesystem( $creds );
     }
+    if ( ! defined('ELEGANTDESIGN_PLUGIN_PATH') || ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
+        return false;
+    }
     //$file = ELEGANTDESIGN_PLUGIN_PATH . 'includes/css/elegant_elementor_overrides.css';
     $file = ELEGANTDESIGN_PLUGIN_PATH . 'includes/css/elegantdesignvariables.css';
-    $wp_filesystem->put_contents( $file, '', 0755 );
-    $response = $wp_filesystem->put_contents( $file, $css_variables );
+    $wp_filesystem->put_contents( $file, $css_variables, FS_CHMOD_FILE );
 
 
 
@@ -509,21 +541,34 @@ function wpjobportal_jp_put_css_in_file($css){
         $creds = request_filesystem_credentials( site_url() );
         wp_filesystem( $creds );
     }
+    if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
+        return false;
+    }
     $file = WPJOBPORTAL_PLUGIN_PATH . 'includes/css/wpjp_elementor_overrides.css';
-    $wp_filesystem->put_contents( $file, '', 0755 );
-    $response = $wp_filesystem->put_contents( $file, $css );
+    return $wp_filesystem->put_contents( $file, $css, FS_CHMOD_FILE );
 }
 
 add_action( 'wp_enqueue_scripts', function() {
-    \Elementor\Plugin::$instance->frontend->enqueue_styles();
+    if (
+        class_exists('\\Elementor\\Plugin')
+        && isset(\Elementor\Plugin::$instance->frontend)
+        && is_object(\Elementor\Plugin::$instance->frontend)
+    ) {
+        \Elementor\Plugin::$instance->frontend->enqueue_styles();
+    }
 });
 
 
-// custom category for job portal
-add_action('elementor/init', 'wpjobportal_job_portal_elementor_category');
+// Custom category for Job Portal. This hook is stable across current Elementor
+// versions and also avoids depending on plugin load order.
+add_action('elementor/elements/categories_registered', 'wpjobportal_job_portal_elementor_category');
 
-   function wpjobportal_job_portal_elementor_category() {
-        \Elementor\Plugin::instance()->elements_manager->add_category(
+   function wpjobportal_job_portal_elementor_category($elements_manager) {
+        if (!is_object($elements_manager) || !method_exists($elements_manager, 'add_category')) {
+            return;
+        }
+
+        $elements_manager->add_category(
             'job-portal-category', // category slug
             [
                 'title' => __('WP Job Portal', 'wp-job-portal'), // title shown in Elementor

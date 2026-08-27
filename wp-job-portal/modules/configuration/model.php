@@ -82,6 +82,13 @@ class WPJOBPORTALconfigurationModel {
 
         // }
         $wpjobportal_data = wpjobportal::wpjobportal_sanitizeData($wpjobportal_data);
+
+        // Mode-controlled settings are rendered as locked controls, but a
+        // disabled control is not a boundary: it is dropped from the POST body
+        // and can be re-enabled in the browser. Re-apply the mode's values so
+        // the stored configuration matches the selected mode either way.
+        $wpjobportal_data = WPJOBPORTAL_Mode_Policy_Service::enforce_settings($wpjobportal_data);
+
         $offline_text = WPJOBPORTALrequest::getVar('offline_text','post','','',1);
         // Clean it first
         $offline_text = str_ireplace(['<script', '< script'], '-', $offline_text);

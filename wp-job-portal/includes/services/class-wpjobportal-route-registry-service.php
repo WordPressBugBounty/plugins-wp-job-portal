@@ -89,7 +89,16 @@ class WPJOBPORTAL_Route_Registry_Service {
             'jobseeker' => array(),
             'jobstatus' => array('savejobstatus', 'remove', 'publish', 'unpublish', 'saveordering'),
             'jobtype' => array('savejobtype', 'remove', 'publish', 'unpublish', 'saveordering'),
-            'postinstallation' => array('save', 'savesampledata', 'savetemplatesampledata', 'importtemplatesampledata', 'getdemocode'),
+            'postinstallation' => array(
+                'save',
+                'savesampledata',
+                'savetemplatesampledata',
+                'importtemplatesampledata',
+                'getdemocode',
+                'dismissonboarding',
+                'reopenonboarding',
+                'cleansampledata',
+            ),
             'premiumplugin' => array(
                 'verifytransactionkey',
                 'downloadandinstalladdons',

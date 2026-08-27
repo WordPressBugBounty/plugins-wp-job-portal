@@ -5,7 +5,7 @@ if (!defined('ABSPATH')) die('Restricted Access');
 wp_register_script('wjp-admin-config-js', false);
 wp_enqueue_script('wjp-admin-config-js');
 
-wp_enqueue_style('wpjobportal-redesign-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportaladmin_redesign.css');
+wp_enqueue_style('wpjobportal-redesign-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportaladmin_redesign.css', array(), wpjobportal_asset_version('includes/css/wpjobportaladmin_redesign.css'));
 // Enqueue necessary scripts and styles
 
 // ========================================================
@@ -1143,7 +1143,19 @@ function wpjobportal_wjp_render_setting_field($wpjobportal_field, $wpjobportal_c
     $wpjobportal_is_field_pro = isset($wpjobportal_field['pro']);
     $wpjobportal_is_locked = $wpjobportal_is_field_pro && !in_array($wpjobportal_field['pro']['slug'], $wpjobportal_installed_addons);
 
-    if ($wpjobportal_is_field_pro) { // This block now handles both locked and unlocked pro fields
+    // A setting the selected mode controls is presented as mode-locked even
+    // when it also belongs to a premium addon. Offering an upgrade would be
+    // misleading: buying the addon would not unlock it in this mode.
+    $wpjobportal_mode_lock = WPJOBPORTAL_Mode_Policy_Service::get_setting_lock($wpjobportal_field['id']);
+    $wpjobportal_is_mode_locked = !empty($wpjobportal_mode_lock);
+
+    if ($wpjobportal_is_mode_locked) {
+        $wpjobportal_is_locked = false;
+        $wpjobportal_value = $wpjobportal_mode_lock['value'];
+        $wpjobportal_control_html = wpjobportal_wjp_render_mode_locked_control($wpjobportal_field, $wpjobportal_value);
+    }
+
+    if ($wpjobportal_is_field_pro && !$wpjobportal_is_mode_locked) { // This block now handles both locked and unlocked pro fields
         $wpjobportal_pro_label_indicator = '<svg class="wjp-pro-label-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor">
                                   <path d="M325.8 200.7l23.5-74.4c5.3-16.7 29.1-16.7 34.4 0l23.5 74.4c5.1 16.1 17.8 28.8 33.9 33.9l74.4 23.5c16.7 5.3 16.7 29.1 0 34.4l-74.4 23.5c-16.1 5.1-28.8 17.8-33.9 33.9l-23.5 74.4c-5.3 16.7-29.1 16.7-34.4 0l-23.5-74.4c-5.1-16.1-17.8-28.8-33.9-33.9l-74.4-23.5c-16.7-5.3-16.7-29.1 0-34.4l74.4-23.5c16.1-5.1 28.8-17.8 33.9-33.9zM107.2 92l13.6-43.1c3-9.6 16.8-9.6 19.8 0l13.6 43.1c2.9 9.3 10.3 16.6 19.6 19.6l43.1 13.6c9.6 3 9.6 16.8 0 19.8l-43.1 13.6c-9.3 2.9-16.6 10.3-19.6 19.6l-13.6 43.1c-3 9.6-16.8 9.6-19.8 0l-13.6-43.1c-2.9-9.3-10.3-16.6-19.6-19.6l-43.1-13.6c-9.6-3-9.6-16.8 0-19.8l43.1-13.6c9.3-2.9 16.6-10.3 19.6-19.6zM69.8 440.6l7.9-24.9c1.7-5.5 9.7-5.5 11.4 0l7.9 24.9c1.7 5.4 5.9 9.6 11.3 11.3l24.9 7.9c5.5 1.7 5.5 9.7 0 11.4l-24.9 7.9c-5.4 1.7-9.6 5.9-11.3 11.3l-7.9 24.9c-1.7 5.5-9.7 5.5-11.4 0l-7.9-24.9c-1.7-5.4-5.9-9.6-11.3-11.3l-24.9-7.9c-5.5-1.7-5.5-9.7 0-11.4l24.9-7.9c5.4-1.7 9.6-5.9 11.3-11.3z"/>
                                 </svg>';
@@ -1204,7 +1216,7 @@ function wpjobportal_wjp_render_setting_field($wpjobportal_field, $wpjobportal_c
     }
 
     // This block now renders regular fields AND unlocked pro fields.
-    if (!$wpjobportal_is_locked) {
+    if (!$wpjobportal_is_locked && !$wpjobportal_is_mode_locked) {
         switch ($wpjobportal_field['type']) {
             case 'toggle':
                 $wpjobportal_checked = checked($wpjobportal_value, '1', false);
@@ -1345,20 +1357,108 @@ function wpjobportal_wjp_render_setting_field($wpjobportal_field, $wpjobportal_c
         </svg>
     </span>' : '';
     $conditional_attrs = !empty($wpjobportal_field['condition']) ? 'data-condition-field="' . esc_attr($wpjobportal_field['condition']['field']) . '" data-condition-value="' . esc_attr($wpjobportal_field['condition']['value']) . '"' : '';
-    $wrapper_class = 'wjp-setting-row-wrapper ' . (!empty($wpjobportal_field['condition']) ? 'wjp-conditional-field-wrapper ' : '') . ($wpjobportal_is_locked ? 'is-pro-field' : '');
+    $wrapper_class = 'wjp-setting-row-wrapper ' . (!empty($wpjobportal_field['condition']) ? 'wjp-conditional-field-wrapper ' : '') . ($wpjobportal_is_locked ? 'is-pro-field' : '') . ($wpjobportal_is_mode_locked ? ' is-mode-locked-field' : '');
+    $wpjobportal_mode_label_indicator = $wpjobportal_is_mode_locked ? wpjobportal_wjp_render_mode_lock_badge() : '';
+    $wpjobportal_mode_explanation = $wpjobportal_is_mode_locked ? wpjobportal_wjp_render_mode_lock_note($wpjobportal_mode_lock) : '';
 
     echo '<div class="' . esc_attr($wrapper_class) . '" ' . esc_attr($conditional_attrs) . '>';
     echo '  <div class="wjp-setting-row">';
     echo '      <div class="wjp-setting-label">';
-    echo '          <label for="' . esc_attr($wpjobportal_field_id) . '">' . esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_field['label'])) . wp_kses($wpjobportal_pro_label_indicator,WPJOBPORTAL_ALLOWED_TAGS) . $wpjobportal_tooltip_html . '</label>';
+    echo '          <label for="' . esc_attr($wpjobportal_field_id) . '">' . esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_field['label'])) . wp_kses($wpjobportal_pro_label_indicator,WPJOBPORTAL_ALLOWED_TAGS) . wp_kses($wpjobportal_mode_label_indicator,WPJOBPORTAL_ALLOWED_TAGS) . $wpjobportal_tooltip_html . '</label>';
     echo '      </div>';
     echo '      <div class="wjp-setting-control" data-field-id="' . esc_attr($wpjobportal_field['id']) . '">';
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped // Admin side interface values are handled safelty
     echo $wpjobportal_control_html;
     echo wp_kses($wpjobportal_pro_field_explanation,WPJOBPORTAL_ALLOWED_TAGS); // This will be empty unless the field is locked
+    echo wp_kses($wpjobportal_mode_explanation, WPJOBPORTAL_ALLOWED_TAGS); // Empty unless the mode controls this field
     echo '      </div>';
     echo '  </div>';
     echo '</div>';
+}
+
+/**
+ * Renders the read-only control shown for a setting the mode controls.
+ *
+ * The value comes from the mode policy rather than the stored row, so the
+ * screen always shows what the mode enforces even if the two ever drift.
+ *
+ * @param array  $wpjobportal_field The field configuration array.
+ * @param string $wpjobportal_value The value the mode forces.
+ * @return string
+ */
+function wpjobportal_wjp_render_mode_locked_control($wpjobportal_field, $wpjobportal_value) {
+    $wpjobportal_value = (string) $wpjobportal_value;
+
+    switch ($wpjobportal_field['type']) {
+        case 'toggle':
+            return '<label class="wjp-toggle-switch wjp-toggle-mode-locked">
+                <input type="checkbox" value="1" ' . checked($wpjobportal_value, '1', false) . ' disabled>
+                <span class="wjp-toggle-slider"></span>
+            </label>';
+        case 'select':
+            $wpjobportal_selected_label = $wpjobportal_value;
+            foreach ((array) ($wpjobportal_field['options'] ?? array()) as $wpjobportal_option_key => $wpjobportal_option) {
+                if (is_object($wpjobportal_option)) {
+                    $wpjobportal_option_id = isset($wpjobportal_option->id) ? $wpjobportal_option->id : '';
+                    $wpjobportal_option_text = isset($wpjobportal_option->text) ? $wpjobportal_option->text : '';
+                } elseif (is_array($wpjobportal_option)) {
+                    $wpjobportal_option_id = isset($wpjobportal_option['id']) ? $wpjobportal_option['id'] : '';
+                    $wpjobportal_option_text = isset($wpjobportal_option['text']) ? $wpjobportal_option['text'] : '';
+                } else {
+                    $wpjobportal_option_id = $wpjobportal_option_key;
+                    $wpjobportal_option_text = $wpjobportal_option;
+                }
+
+                if ((string) $wpjobportal_option_id === $wpjobportal_value) {
+                    $wpjobportal_selected_label = $wpjobportal_option_text;
+                    break;
+                }
+            }
+
+            return '<select class="wjp-form-select" disabled><option>' . esc_html($wpjobportal_selected_label) . '</option></select>';
+        default:
+            return '<input type="text" class="wjp-form-input" value="' . esc_attr($wpjobportal_value) . '" disabled>';
+    }
+}
+
+/**
+ * Small indicator placed beside the label of a mode-controlled setting.
+ *
+ * Deliberately unlike the premium-addon star: this is not a licensing limit.
+ * Text rather than an icon because WPJOBPORTAL_ALLOWED_TAGS, which this string
+ * is filtered through, does not permit inline SVG.
+ *
+ * @return string
+ */
+function wpjobportal_wjp_render_mode_lock_badge() {
+    return '<span class="wjp-mode-label-badge">' . esc_html__('Set by mode', 'wp-job-portal') . '</span>';
+}
+
+/**
+ * Explanation shown under a mode-controlled control.
+ *
+ * @param array $wpjobportal_lock Lock details from the mode policy service.
+ * @return string
+ */
+function wpjobportal_wjp_render_mode_lock_note($wpjobportal_lock) {
+    $wpjobportal_note = '<p class="wjp-mode-field-explanation">';
+    $wpjobportal_note .= '<span class="wjp-mode-field-headline">' . esc_html(WPJOBPORTAL_Mode_Policy_Service::lock_message()) . '</span>';
+    $wpjobportal_note .= '<span class="wjp-mode-field-detail">' . esc_html(sprintf(
+        /* translators: 1: mode name, 2: feature name. */
+        __('%1$s does not use %2$s.', 'wp-job-portal'),
+        $wpjobportal_lock['mode_label'],
+        $wpjobportal_lock['label']
+    ));
+
+    if (!empty($wpjobportal_lock['note'])) {
+        $wpjobportal_note .= ' ' . esc_html($wpjobportal_lock['note']);
+    }
+
+    $wpjobportal_note .= '</span>';
+    $wpjobportal_note .= '<a class="wjp-mode-field-link" href="' . esc_url(WPJOBPORTAL_Mode_Policy_Service::guide_url()) . '">' . esc_html__('Compare the two modes', 'wp-job-portal') . '</a>';
+    $wpjobportal_note .= '</p>';
+
+    return $wpjobportal_note;
 }
 
 $wpjobportal_msgkey = WPJOBPORTALincluder::getJSModel('configuration')->getMessagekey();

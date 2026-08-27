@@ -5,7 +5,7 @@
   * Plugin URI: https://wpjobportal.com/
   * Description: WP Job Portal is WordPress’s best job board plugin — easy to use, highly configurable, and built to support both job seekers and employers. AI-powered add-ons offers smart job & resume search, and personalized recommendations.
   * Author: WP Job Portal
-  * Version: 2.5.9
+  * Version: 2.6.0
   * Text Domain: wp-job-portal
   * Domain Path: /languages
   * Author URI: https://wpjobportal.com/
@@ -78,7 +78,7 @@ class wpjobportal {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '259';
+        self::$_currentversion = '260';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_common = WPJOBPORTALincluder::getJSModel('common');
         self::$_config = WPJOBPORTALincluder::getJSModel('configuration');
@@ -113,6 +113,9 @@ class wpjobportal {
         add_action(WPJOBPORTAL_Storage_Engine_Service::CRON_HOOK, array('WPJOBPORTAL_Storage_Engine_Service', 'run_batch'));
         add_action(WPJOBPORTAL_Notification_Queue_Service::CRON_HOOK, array('WPJOBPORTAL_Notification_Queue_Service', 'run_batch'));
         WPJOBPORTAL_Privacy_Service::register();
+        WPJOBPORTAL_Product_Mode_Service::register();
+        WPJOBPORTAL_Mode_Policy_Service::register();
+        WPJOBPORTAL_Onboarding_Service::register();
         WPJOBPORTALincluder::getJSModel('configuration')->getConfiguration();
         register_activation_hook(__FILE__, array($this, 'wpjobportal_activate'));
         register_deactivation_hook(__FILE__, array($this, 'wpjobportal_deactivate'));
@@ -260,7 +263,7 @@ class wpjobportal {
                 if( $plugin == $our_plugin ) {
                     update_option('wpjp_currentversion', self::$_currentversion);
                     include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
-                    WPJOBPORTALupdates::checkUpdates('259');
+                    WPJOBPORTALupdates::checkUpdates('260');
 
                 	// restore colors data
 		            require(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/style_color.php');
@@ -335,6 +338,10 @@ class wpjobportal {
         require_once 'includes/services/class-wpjobportal-database-readiness-service.php';
         require_once 'includes/services/class-wpjobportal-storage-engine-service.php';
         require_once 'includes/services/class-wpjobportal-privacy-service.php';
+        require_once 'includes/services/class-wpjobportal-product-mode-service.php';
+        require_once 'includes/services/class-wpjobportal-mode-policy-service.php';
+        require_once 'includes/services/class-wpjobportal-onboarding-service.php';
+        require_once 'includes/services/class-wpjobportal-sample-data-service.php';
         require_once 'includes/services/class-wpjobportal-diagnostics-service.php';
         include_once 'includes/shortcodes.php';
         include_once 'includes/paramregister.php';
@@ -344,10 +351,9 @@ class wpjobportal {
         //Widgets TO include
         include_once 'includes/widgets/searchjobs.php';
         // include_once 'includes/addon-updater/wpjobportalupdater.php';
-        // check for elementor to include intergation files
-        if ( class_exists( '\Elementor\Plugin' ) ) {
-            include_once 'includes/elementor-addon.php';
-        }
+        // Register Elementor hooks regardless of plugin load order. The
+        // integration itself checks Elementor availability before using it.
+        include_once 'includes/elementor-addon.php';
 
     }
 
@@ -413,6 +419,13 @@ class wpjobportal {
         wp_localize_script('wpjobportal-commonjs', 'common', array('ajaxurl' => esc_url_raw(admin_url('admin-ajax.php')),'js_nonce'=>$wpjobportal_nonce_value,'insufficient_credits' => esc_html(__('You have insufficient credits, you can not perform this action','wp-job-portal')),'theme_chk_prefix'=> $wpjobportal_class_prefix,'theme_chk_number'=>wpjobportal::$wpjobportal_theme_chk,'theme_chk_flag'=>wpjobportal::$wpjobportal_theme_chk_flag, 'theme_image' => WPJOBPORTAL_IMAGE,'terms_conditions' => esc_html(__('Please Accept Terms And Conditions So You Can Proceed','wp-job-portal')) ,'company_feature_text' => esc_html(__('Are You Sure You Want To Feature this Company?','wp-job-portal')),'job_feature_text' => esc_html(__('Are You Sure You Want To Feature this Job?','wp-job-portal')),'resume_feature_text' => esc_html(__('Are You Sure You Want To Feature this Resume?','wp-job-portal'))));
 
         wp_enqueue_script('wpjobportal-formvalidator', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/jquery.form-validator.js');
+        wp_enqueue_script(
+            'wpjobportal-accessible-forms',
+            esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/wpjobportal-accessible-forms.js',
+            array('wpjobportal-formvalidator'),
+            wpjobportal_asset_version('includes/js/wpjobportal-accessible-forms.js'),
+            true
+        );
         if(wpjobportal::$wpjobportal_theme_chk == 0 || wpjobportal::$_common->wpjp_isadmin()){
             wp_enqueue_script('wpjobportal-tokeninput', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/jquery.tokeninput.js');
         }else{
@@ -1146,6 +1159,29 @@ function wpjobportal_custom_init_session() {
     wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
 }
 
+/**
+ * Version string for a plugin asset, based on its last-modified time.
+ *
+ * The stylesheets and scripts below were all enqueued with a hardcoded '2.6.0'.
+ * That never changes when a file does, so browsers keep serving a cached copy
+ * and edits appear not to take effect until a manual hard refresh. Keying the
+ * version to filemtime busts the cache exactly when the file changes, and
+ * falls back to the release string if the file cannot be read.
+ *
+ * @param string $wpjobportal_relative_path Path under the plugin directory.
+ * @return string
+ */
+function wpjobportal_asset_version($wpjobportal_relative_path) {
+    $wpjobportal_full_path = WPJOBPORTAL_PLUGIN_PATH . ltrim($wpjobportal_relative_path, '/');
+    if (is_readable($wpjobportal_full_path)) {
+        $wpjobportal_mtime = filemtime($wpjobportal_full_path);
+        if (!empty($wpjobportal_mtime)) {
+            return (string) $wpjobportal_mtime;
+        }
+    }
+    return '2.6.0';
+}
+
 function wpjobportal_register_plugin_styles(){
     wp_enqueue_script('jquery');
     if(wpjobportal::$wpjobportal_theme_chk == 1){
@@ -1157,10 +1193,19 @@ function wpjobportal_register_plugin_styles(){
     $wpjobportal_nonce_value = wp_create_nonce("wp-job-portal-nonce");
     wp_localize_script('wpjobportal-commonjs', 'common', array('ajaxurl' => esc_url_raw(admin_url('admin-ajax.php')),'js_nonce'=>$wpjobportal_nonce_value,'insufficient_credits' => esc_html(__('You have insufficient credits, you can not perform this action','wp-job-portal')),'theme_chk_prefix'=> $wpjobportal_class_prefix,'theme_chk_number'=>wpjobportal::$wpjobportal_theme_chk,'theme_chk_flag'=>wpjobportal::$wpjobportal_theme_chk_flag, 'theme_image' => WPJOBPORTAL_IMAGE,'terms_conditions' => esc_html(__('Please Accept Terms And Conditions So You Can Proceed','wp-job-portal')) ,'company_feature_text' => esc_html(__('Are You Sure You Want To Feature this Company?','wp-job-portal')),'job_feature_text' => esc_html(__('Are You Sure You Want To Feature this Job?','wp-job-portal')),'resume_feature_text' => esc_html(__('Are You Sure You Want To Feature this Resume?','wp-job-portal'))));
     //wp_localize_script('wpjobportal-commonjs', 'common', array('ajaxurl' => esc_url_raw(admin_url('admin-ajax.php')),'js_nonce'=>$wpjobportal_nonce_value ,'insufficient_credits' => esc_html(__('You have insufficient credits, you can not perform this action','wp-job-portal')),'theme_chk_prefix'=> $wpjobportal_class_prefix,'theme_chk_number'=>wpjobportal::$wpjobportal_theme_chk,'pluginurl'=>WPJOBPORTAL_PLUGIN_URL,'cityajaxurl' => admin_url("admin.php?page=wpjobportal_city&action=wpjobportaltask&task=getaddressdatabycityname"),'theme_chk_flag'=>wpjobportal::$wpjobportal_theme_chk_flag, 'theme_image' => WPJOBPORTAL_IMAGE,'terms_conditions' => esc_html(__('Please Accept Terms And Conditions So You Can Proceed','wp-job-portal') )));
+    // Shared Release 3 design tokens and low-specificity component contract.
+    wp_enqueue_style('wpjobportal-design-tokens', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/job_portal_variables.css', array(), wpjobportal_asset_version('includes/css/job_portal_variables.css'));
+    wp_enqueue_style('wpjobportal-design-system', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportal-design-system.css', array('wpjobportal-design-tokens'), wpjobportal_asset_version('includes/css/wpjobportal-design-system.css'));
     //include_once 'includes/css/style_color.php';
-    wp_enqueue_style('wpjobportal-jobseeker-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jobseekercp.css');
-    wp_enqueue_style('wpjobportal-employer-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/employercp.css');
-    wp_enqueue_style('wpjobportal-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/style.css');
+    wp_enqueue_style('wpjobportal-jobseeker-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jobseekercp.css', array('wpjobportal-design-system'), wpjobportal_asset_version('includes/css/jobseekercp.css'));
+    wp_enqueue_style('wpjobportal-employer-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/employercp.css', array('wpjobportal-design-system'), wpjobportal_asset_version('includes/css/employercp.css'));
+    wp_enqueue_style('wpjobportal-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/style.css', array('wpjobportal-design-system'), wpjobportal_asset_version('includes/css/style.css'));
+    wp_enqueue_style(
+        'wpjobportal-accessible-forms',
+        esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportal-accessible-forms.css',
+        array('wpjobportal-style'),
+        wpjobportal_asset_version('includes/css/wpjobportal-accessible-forms.css')
+    );
     //wp_enqueue_style('wpjobportal-color', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/color.css');
     wp_enqueue_style('wpjobportal-star-rating', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportalrating.css');
     // wp_enqueue_style('wpjobportal-style-tablet', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/style_tablet.css',array(),'1.1.1','(max-width: 782px)');
@@ -1179,7 +1224,11 @@ function wpjobportal_register_plugin_styles(){
      // elementor overides css
     $wpjobportal_is_elementor_edit_mode = false;
 
-    if ( class_exists('\Elementor\Plugin') && \Elementor\Plugin::$instance->editor ) {
+    if (
+        class_exists('\Elementor\Plugin')
+        && isset(\Elementor\Plugin::$instance->editor)
+        && is_object(\Elementor\Plugin::$instance->editor)
+    ) {
         $wpjobportal_is_elementor_edit_mode = \Elementor\Plugin::$instance->editor->is_edit_mode();
     }
 
@@ -1192,7 +1241,15 @@ function wpjobportal_register_plugin_styles(){
 add_action( 'wp_enqueue_scripts', 'wpjobportal_register_plugin_styles' );
 
 function wpjobportal_admin_register_plugin_styles() {
-    wp_enqueue_style('wpjobportal-admin-desktop-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportaladmin_desktop.css',array(),'1.1.1','all');
+    wp_enqueue_style('wpjobportal-design-tokens', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/job_portal_variables.css', array(), wpjobportal_asset_version('includes/css/job_portal_variables.css'));
+    wp_enqueue_style('wpjobportal-design-system', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportal-design-system.css', array('wpjobportal-design-tokens'), wpjobportal_asset_version('includes/css/wpjobportal-design-system.css'));
+    wp_enqueue_style('wpjobportal-admin-desktop-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportaladmin_desktop.css',array('wpjobportal-design-system'),wpjobportal_asset_version('includes/css/wpjobportaladmin_desktop.css'),'all');
+    wp_enqueue_style(
+        'wpjobportal-accessible-forms',
+        esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportal-accessible-forms.css',
+        array('wpjobportal-admin-desktop-css'),
+        wpjobportal_asset_version('includes/css/wpjobportal-accessible-forms.css')
+    );
     // wp_enqueue_style('wpjobportal-admin-tablet-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportaladmin_tablet.css',array(),'1.1.1','(min-width: 651px) and (max-width: 782px)');
     // wp_enqueue_style('wpjobportal-admin-mobile-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportaladmin_mobile.css',array(),'1.1.1','(min-width: 481px) and (max-width: 650px)');
     // wp_enqueue_style('wpjobportal-admin-oldmobile-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportaladmin_oldmobile.css',array(),'1.1.1','(max-width: 480px)');
@@ -1600,7 +1657,7 @@ function wpjobportal_upgrade_completed( $wpjobportal_upgrader_object, $wpjobport
 				update_option('wpjp_currentversion', wpjobportal::$_currentversion);
 				include_once WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/updates.php';
 
-				WPJOBPORTALupdates::checkUpdates('259');
+				WPJOBPORTALupdates::checkUpdates('260');
 
 
 				// restore colors data

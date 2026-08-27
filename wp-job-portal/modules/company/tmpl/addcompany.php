@@ -20,7 +20,7 @@ $wpjobportal_company = isset(wpjobportal::$_data[0]) ? wpjobportal::$_data[0] : 
                 WPJOBPORTALincluder::getTemplate('company/views/packages',array('wpjobportal_module' => 'company','wpjobportal_packages'=>wpjobportal::$_data['package']));
             }
         ?>
-        <form class="wjportal-form" id="wpjobportal-form" method="post" enctype="multipart/form-data" action="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'task'=>'savecompany'))); ?>">
+        <form class="wjportal-form wpjp-ds-form" id="wpjobportal-form" method="post" enctype="multipart/form-data" action="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'task'=>'savecompany'))); ?>">
             <?php
                 $wpjobportal_formfields = WPJOBPORTALincluder::getTemplate('company/form-fields', array(
                     'wpjobportal_company' => $wpjobportal_company,
