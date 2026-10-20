@@ -29,10 +29,18 @@ class WPJOBPORTALUserController {
                     $wpjobportal_id = WPJOBPORTALrequest::getVar('id');
                     WPJOBPORTALincluder::getJSModel('user')->getUserData($wpjobportal_id);
                     break;
-                case 'admin_userstate_companies':
-                    $wpjobportal_companyuid = WPJOBPORTALrequest::getVar('md');
-                    $wpjobportal_result = WPJOBPORTALincluder::getJSModel('user')->getUserStatsCompanies($wpjobportal_companyuid);
-                    break;
+                /*
+                 * 'admin_userstate_companies' used to be handled here and is gone.
+                 *
+                 * It called getUserStatsCompanies() on the user model, which does
+                 * not define it - and nor does anything else, in this version or
+                 * the original distribution. There is no template for the layout
+                 * and nothing routes to it, so it could never have rendered and
+                 * reaching it would have fataled.
+                 *
+                 * Per-user statistics are served by the my-stats screens, which
+                 * have real models and templates behind them.
+                 */
                 case 'formprofile':
                     if( WPJOBPORTALincluder::getObjectClass('user')->isguest() ){
                         $wpjobportal_link = WPJOBPORTALincluder::getJSModel('common')->jsMakeRedirectURL('employer', $wpjobportal_layout, 1);
@@ -114,7 +122,7 @@ class WPJOBPORTALUserController {
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'userrole');
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_user&wpjobportallt=users"));
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -146,7 +154,7 @@ class WPJOBPORTALUserController {
             $wpjobportal_msg = WPJOBPORTALmessages::getMessage($wpjobportal_result, $wpjobportal_usermsgrole);
             WPJOBPORTALmessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],WPJOBPORTALincluder::getJSModel($wpjobportal_usermsgrole)->getMessagekey());
         }
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -163,7 +171,7 @@ class WPJOBPORTALUserController {
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'userrole');
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_user&wpjobportallt=users"));
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -185,7 +193,7 @@ class WPJOBPORTALUserController {
         }else{
             $wpjobportal_url = esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=users'));
         }
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -202,7 +210,7 @@ class WPJOBPORTALUserController {
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'user');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
         $wpjobportal_url = esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=users'));
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -220,7 +228,7 @@ class WPJOBPORTALUserController {
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'user');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
         $wpjobportal_url = esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=users'));
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 

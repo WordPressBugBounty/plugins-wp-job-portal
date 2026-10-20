@@ -1,3 +1,13 @@
 
 INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
-("Djibouti جيبوتي", "Djibouti جيبوتي", "Djibouti", NULL, 154, 0, 1, NULL, "11.5936903", "43.1472724");
+("Djibouti جيبوتي", "Djibouti جيبوتي", "Djibouti", NULL, 154, 0, 1, NULL, "11.5936903", "43.1472724"),
+("Alaili Dadda", "Alaili Dadda", "Alaili Dadda", NULL, 154, 0, 1, NULL, "12.4199932", "42.9039749"),
+("Ali Sabieh", "Ali Sabieh", "Ali Sabieh", NULL, 154, 0, 1, NULL, "11.1491947", "42.7124984"),
+("Arta", "Arta", "Arta", NULL, 154, 0, 1, NULL, "11.5255528", "42.8479474"),
+("Dikhil", "Dikhil", "Dikhil", NULL, 154, 0, 1, NULL, "11.1054336", "42.3704744"),
+("Dorra", "Dorra", "Dorra", NULL, 154, 0, 1, NULL, "12.1512876", "42.4761403"),
+("Galafi", "Galafi", "Galafi", NULL, 154, 0, 1, NULL, "11.720448", "41.8389632"),
+("Holhol", "Holhol", "Holhol", NULL, 154, 0, 1, NULL, "11.3078768", "42.9295323"),
+("Loyada", "Loyada", "Loyada", NULL, 154, 0, 1, NULL, "11.4631247", "43.2448963"),
+("Obock", "Obock", "Obock", NULL, 154, 0, 1, NULL, "11.9647465", "43.2884071"),
+("Tadjoura", "Tadjoura", "Tadjoura", NULL, 154, 0, 1, NULL, "11.7913106", "42.8796227");

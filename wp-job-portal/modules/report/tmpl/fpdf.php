@@ -14,13 +14,13 @@ define('FPDF_VERSION', '1.7');
 class FPDF {
 
     var $page;               // current page number
-    var $wpjobportal_n;                  // current object number
+    var $n;                  // current object number
     var $offsets;            // array of object offsets
     var $buffer;             // buffer holding in-memory PDF
     var $pages;              // array containing pages
-    var $wpjobportal_state;              // current document state
-    var $wpjobportal_compress;           // compression flag
-    var $wpjobportal_k;                  // scale factor (number of points in user unit)
+    var $state;              // current document state
+    var $compress;           // compression flag
+    var $k;                  // scale factor (number of points in user unit)
     var $DefOrientation;     // default orientation
     var $CurOrientation;     // current orientation
     var $StdPageSizes;       // standard page sizes
@@ -37,11 +37,11 @@ class FPDF {
     var $x, $y;              // current position in user unit
     var $lasth;              // height of last printed cell
     var $LineWidth;          // line width in user unit
-    var $wpjobportal_fontpath;           // path containing fonts
+    var $fontpath;           // path containing fonts
     var $CoreFonts;          // array of core font names
-    var $wpjobportal_fonts;              // array of used fonts
+    var $fonts;              // array of used fonts
     var $FontFiles;          // array of font files
-    var $wpjobportal_diffs;              // array of encoding differences
+    var $diffs;              // array of encoding differences
     var $FontFamily;         // current font family
     var $FontStyle;          // current font style
     var $underline;          // underlining flag
@@ -53,9 +53,9 @@ class FPDF {
     var $TextColor;          // commands for text color
     var $ColorFlag;          // indicates whether fill and text colors are different
     var $ws;                 // word spacing
-    var $wpjobportal_images;             // array of used images
+    var $images;             // array of used images
     var $PageLinks;          // array of links in pages
-    var $wpjobportal_links;              // array of internal links
+    var $links;              // array of internal links
     var $AutoPageBreak;      // automatic page breaking
     var $PageBreakTrigger;   // threshold used to trigger page breaks
     var $InHeader;           // flag set when processing header
@@ -63,9 +63,9 @@ class FPDF {
     var $ZoomMode;           // zoom display mode
     var $LayoutMode;         // layout display mode
     var $title;              // title
-    var $wpjobportal_subject;            // subject
+    var $subject;            // subject
     var $author;             // author
-    var $wpjobportal_keywords;           // keywords
+    var $keywords;           // keywords
     var $creator;            // creator
     var $AliasNbPages;       // alias for total number of pages
     var $PDFVersion;         // PDF version number

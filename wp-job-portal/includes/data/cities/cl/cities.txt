@@ -47,4 +47,6 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("Tocopilla", "Tocopilla", "Tocopilla", NULL, 32, 0, 1, NULL, "-22.0887189", "-70.1960657"),
 ("Calama", "Calama", "Calama", NULL, 32, 0, 1, NULL, "-22.4623917", "-68.9272181"),
 ("Iquique", "Iquique", "Iquique", NULL, 32, 0, 1, NULL, "-20.2140657", "-70.1524646"),
-("Arica", "Arica", "Arica", NULL, 32, 0, 1, NULL, "-18.4785288", "-70.3211394");
+("Arica", "Arica", "Arica", NULL, 32, 0, 1, NULL, "-18.4785288", "-70.3211394"),
+("Santiago de Chile", "Santiago de Chile", "Santiago de Chile", NULL, 32, 0, 1, NULL, "-33.4488897", "-70.6692655"),
+("Ancud", "Ancud", "Ancud", NULL, 32, 0, 1, NULL, "-41.8675003", "-73.8276965");

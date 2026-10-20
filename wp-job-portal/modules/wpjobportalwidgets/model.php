@@ -876,8 +876,8 @@ class WPJOBPORTALwpjobportalwidgetsModel {
 
         }elseif ($wpjobportal_mappingservice == "osm") {
             $wpjobportal_html = '';
-            wp_enqueue_script('wpjobportal-ol-script', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/ol.min.js');
-            wp_enqueue_style('wpjobportal-ol-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/ol.min.css');
+            wp_enqueue_script( 'wpjobportal-ol-script', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/ol.min.js', array(), wpjobportal_asset_version('includes/js/ol.min.js'), false );
+            wp_enqueue_style('wpjobportal-ol-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/ol.min.css', array(), wpjobportal_asset_version('includes/css/ol.min.css'));
         }
         $wpjobportal_default_longitude = wpjobportal::$_config->getConfigurationByConfigName('default_longitude');
         $wpjobportal_default_latitude = wpjobportal::$_config->getConfigurationByConfigName('default_latitude');
@@ -890,8 +890,9 @@ class WPJOBPORTALwpjobportalwidgetsModel {
             if ($wpjobportal_jobs) {
                 $wpjobportal_html .= '<div id="map-canvas" class="map-canvas-module" style="height:'.$wpjobportal_moduleheight.'px;width:100%;"></div>';
                 if($wpjobportal_mappingservice == "gmap"){
-                    wp_register_script( 'wpjobportal-inline-handle', '' );
+                    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
                     wp_enqueue_script( 'wpjobportal-inline-handle' );
+                    // phpcs:disable PluginCheck.CodeAnalysis.Offloading.OffloadedContent -- Google's default map marker, used only when the map has no icon of its own.
                     $wpjobportal_inline_js_script = '
                     var jobsarray = '.wp_json_encode($wpjobportal_jobs).';
                     var showCategory = '.$wpjobportal_category.';
@@ -979,7 +980,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                   wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
                   return $wpjobportal_html;
             }elseif ($wpjobportal_mappingservice == "osm") {
-                wp_register_script( 'wpjobportal-inline-handle', '' );
+                wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
                 wp_enqueue_script( 'wpjobportal-inline-handle' );
                 $wpjobportal_inline_js_script = '
                             osmMap = null;
@@ -1021,7 +1022,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                                             box = document.createElement("div");
                                             box.id = "osmmappopup";
                                         }
-                                        var html = "<div class=\'wjportal-jobs-list-map\'><div class=\'wjportal-jobs-list\'><div class=\'wjportal-jobs-logo\'><img src=\''. WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer') .'\' ></div><div class=\'wjportal-jobs-cnt\'><div class=\'wjportal-jobs-data\'><a href=\'#\' class=\'wjportal-companyname\'>Company Name</a></div><div class=\'wjportal-jobs-data\'><a href=\'#\' class=\'wjportal-job-title\'>Job Title</a></div><div class=\'wjportal-jobs-data\'><span class=\'wjportal-jobs-data-txt\'>Category</span></div></div></div></div>";
+                                        var html = "<div class=\'wjportal-jobs-list-map\'><div class=\'wjportal-jobs-list\'><div class=\'wjportal-jobs-logo\'><img src=\''. WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer') .'\' ></div><div class=\'wjportal-jobs-cnt\'><div class=\'wjportal-jobs-data\'><a href=\'#\' class=\'wjportal-companyname\'>'. esc_js(__('Company Name', 'wp-job-portal')) .'</a></div><div class=\'wjportal-jobs-data\'><a href=\'#\' class=\'wjportal-job-title\'>'. esc_js(__('Job Title', 'wp-job-portal')) .'</a></div><div class=\'wjportal-jobs-data\'><span class=\'wjportal-jobs-data-txt\'>'. esc_js(__('Category', 'wp-job-portal')) .'</span></div></div></div></div>";
                                         box.innerHTML = html;
                                         var prev_infowindow = new ol.Overlay({
                                             element: box,
@@ -1058,6 +1059,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                             return false;
                         }';
                         wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
+                    // phpcs:enable PluginCheck.CodeAnalysis.Offloading.OffloadedContent
              return $wpjobportal_html;
           }
         }
@@ -1311,11 +1313,11 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                                 $wpjobportal_contents .= '</div>';
                                 $wpjobportal_contents .= '<div class="wjportal-resume-cnt-wrp">
                                                 <div class="wjportal-resume-middle-wrp">
-                                                    <div class="wjportal-resume-data">
-                                                        <span class="wjportal-resume-job-type" style="background:'.$wpjobportal_resume->jobtypecolor.'">
+                                                    ' . (!empty($wpjobportal_resume->jobtypetitle) ? '<div class="wjportal-resume-data">
+                                                        <span class="wjportal-resume-job-type" style="--wpjp-jobtype-color:'.$wpjobportal_resume->jobtypecolor.'">
                                                             ' .esc_html( $wpjobportal_resume->jobtypetitle) . '
                                                         </span>
-                                                    </div>
+                                                    </div>' : '') . '
                                                     <div class="wjportal-resume-data">
                                                         <a class="wpjobportal-module-datalist-anchor" href="' . esc_url($c_l) . '">
                                                             <span class="wjportal-resume-name">
@@ -1504,7 +1506,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                 </form>
             </div>
 ';
-            wp_register_script( 'wpjobportal-inline-handle', '' );
+            wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
             wp_enqueue_script( 'wpjobportal-inline-handle' );
             $wpjobportal_inline_js_script = '
                 function getTokenInput() {
@@ -1683,8 +1685,10 @@ class WPJOBPORTALwpjobportalwidgetsModel {
         $wpjobportal_html .= '</div>'; // .wpjobportal-job-details
         $wpjobportal_html .= '<div class="wpjobportal-job-details-right" >'; // .wpjobportal-job-details
         $wpjobportal_html .= '<div class="wpjobportal-job-details-right-location-salary-wrap">';
-            if ($wpjobportal_show_salary && !empty($wpjobportal_job->salarytype)) {
-                $wpjobportal_salary = wpjobportal::$_common->getSalaryRangeView($wpjobportal_job->salarytype, $wpjobportal_job->salarymin, $wpjobportal_job->salarymax, isset($wpjobportal_job->currency) ? $wpjobportal_job->currency : '');
+            // A job with no salary on file has nothing for this line to say,
+            // and " / Per Month" on its own is not a salary.
+            $wpjobportal_salary = empty($wpjobportal_job->salarytype) ? '' : (string) wpjobportal::$_common->getSalaryRangeView($wpjobportal_job->salarytype, $wpjobportal_job->salarymin, $wpjobportal_job->salarymax, isset($wpjobportal_job->currency) ? $wpjobportal_job->currency : '');
+            if ($wpjobportal_show_salary && $wpjobportal_salary !== '') {
                 if (isset($wpjobportal_job->salarytype) && ($wpjobportal_job->salarytype == 3 || $wpjobportal_job->salarytype == 2)) {
                     $wpjobportal_salary .= ' / ' . esc_html(wpjobportal::wpjobportal_getVariableValue ($wpjobportal_job->srangetypetitle));
                 }

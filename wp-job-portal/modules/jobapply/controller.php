@@ -41,7 +41,14 @@ class WPJOBPORTALJobapplyController {
                                 wpjobportal::$_error_flag_message_register_for=1; // register as jobseeker
                                 throw new Exception(WPJOBPORTALLayout::setMessageFor(1 , $wpjobportal_link , $wpjobportal_linktext,1));
 
-                            } elseif (!WPJOBPORTALincluder::getObjectClass('user')->isWPJOBPortalUser()) {
+                            } elseif (wpjobportal::$_common->userBoundToAnotherArea('jobseeker')) {
+                            $wpjobportal_bound = wpjobportal::$_common->userBoundToAnotherArea('jobseeker');
+                            wpjobportal::$_error_flag_message = $wpjobportal_bound['message'];
+                            if (!empty($wpjobportal_bound['link'])) {
+                                $wpjobportal_link = $wpjobportal_bound['link'];
+                                $wpjobportal_linktext = $wpjobportal_bound['linktext'];
+                            }
+                        } elseif (!WPJOBPORTALincluder::getObjectClass('user')->isWPJOBPortalUser()) {
                                 $wpjobportal_link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'common', 'wpjobportallt'=>'newinwpjobportal'));
                                 $wpjobportal_linktext = esc_html(__('Select Role','wp-job-portal'));
                                 wpjobportal::$_error_flag_message_for=9;
@@ -69,11 +76,30 @@ class WPJOBPORTALJobapplyController {
                 case 'jobappliedresume':
                 case 'admin_jobappliedresume':
                     try {
-                        if (WPJOBPORTALincluder::getObjectClass('user')->isemployer() || wpjobportal::$_common->wpjp_isadmin()) {
+                        $wpjobportal_jobid = WPJOBPORTALrequest::getVar('jobid');
+                        $wpjobportal_extension_access = (bool) apply_filters(
+                            'wpjobportal_job_applied_resume_extension_access',
+                            false,
+                            absint($wpjobportal_jobid),
+                            get_current_user_id()
+                        );
+                        if (WPJOBPORTALincluder::getObjectClass('user')->isemployer() || wpjobportal::$_common->wpjp_isadmin() || $wpjobportal_extension_access) {
                             $wpjobportal_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
-                            $wpjobportal_jobid = WPJOBPORTALrequest::getVar('jobid');
                             $wpjobportal_tab_action = WPJOBPORTALrequest::getVar('ta', null, 1);
-                            WPJOBPORTALincluder::getJSModel('jobapply')->getJobAppliedResume($wpjobportal_tab_action, $wpjobportal_jobid, $wpjobportal_uid);
+                            /*
+                             * This screen is the applications for one job, and every
+                             * line of it - the tab counts, the filters, the list -
+                             * reads what the model loads. Reached without a job, or
+                             * with one that is not there, the model loads nothing and
+                             * says so by returning false; the screen used to draw
+                             * itself anyway and fill the page with notices about the
+                             * job that was not named.
+                             */
+                            $wpjobportal_applications = WPJOBPORTALincluder::getJSModel('jobapply')->getJobAppliedResume($wpjobportal_tab_action, $wpjobportal_jobid, $wpjobportal_uid);
+                            if ($wpjobportal_applications === false) {
+                                wpjobportal::$_error_flag_message_for = 6;
+                                throw new Exception(WPJOBPORTALLayout::setMessageFor(6, null, null, 1));
+                            }
                             wpjobportal::$_data['jobid'] = $wpjobportal_jobid;
                             wpjobportal::$_data['tab_action_value'] = $wpjobportal_tab_action;
                         } else {
@@ -88,7 +114,14 @@ class WPJOBPORTALJobapplyController {
                                 wpjobportal::$_error_flag_message_register_for=2; // register as employer
                                 throw new Exception(WPJOBPORTALLayout::setMessageFor(1 , $wpjobportal_link , $wpjobportal_linktext,1));
 
-                            } elseif (!WPJOBPORTALincluder::getObjectClass('user')->isWPJOBPortalUser()) {
+                            } elseif (wpjobportal::$_common->userBoundToAnotherArea('jobseeker')) {
+                            $wpjobportal_bound = wpjobportal::$_common->userBoundToAnotherArea('jobseeker');
+                            wpjobportal::$_error_flag_message = $wpjobportal_bound['message'];
+                            if (!empty($wpjobportal_bound['link'])) {
+                                $wpjobportal_link = $wpjobportal_bound['link'];
+                                $wpjobportal_linktext = $wpjobportal_bound['linktext'];
+                            }
+                        } elseif (!WPJOBPORTALincluder::getObjectClass('user')->isWPJOBPortalUser()) {
                                 $wpjobportal_link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'common', 'wpjobportallt'=>'newinwpjobportal'));
                                 $wpjobportal_linktext = esc_html(__('Select Role','wp-job-portal'));
                                 wpjobportal::$_error_flag_message_for=9;
@@ -163,7 +196,7 @@ class WPJOBPORTALJobapplyController {
                 $wpjobportal_url = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'addresume'));
             }
         }
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -176,7 +209,9 @@ class WPJOBPORTALJobapplyController {
         $wpjobportal_result = WPJOBPORTALincluder::getJSModel('jobapply')->applyOnJob();
         $wpjobportal_jobid = WPJOBPORTALrequest::getVar('jobid');
         $page_id = WPJOBPORTALrequest::getVar('wpjobportalpageid');
-        if($wpjobportal_result == WPJOBPORTAL_SAVE_ERROR){
+        if($wpjobportal_result === false){
+            // Refused, and the model has already said why (e.g. Incorrect Captcha code).
+        }elseif($wpjobportal_result == WPJOBPORTAL_SAVE_ERROR){
             WPJOBPORTALmessages::setLayoutMessage(__("There was some problem performing action",'wp-job-portal'),'error','job');
         }elseif($wpjobportal_result == 3){
             WPJOBPORTALmessages::setLayoutMessage(__("Make Payment To Complete The Job Apply",'wp-job-portal'),'updated','job');
@@ -193,8 +228,10 @@ class WPJOBPORTALJobapplyController {
                 if(isset(wpjobportal::$_data['job_apply_id'])){
                     $wpjobportal_id = wpjobportal::$_data['job_apply_id'];
                     $wpjobportal_paymentconfig = wpjobportal::$_wpjppaymentconfig->getPaymentConfigFor('paypal,stripe,woocommerce',true);
-                    if($wpjobportal_selected_payment_method == 1){
-                        $wpjobportal_url = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'purchase','action'=>'wpjobportaltask','task'=>'listingpaypalJobApply','wpjobportalid'=>$wpjobportal_id,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
+                    if($wpjobportal_selected_payment_method == 1 || $wpjobportal_selected_payment_method == 3){
+                        // PayPal and Stripe both check out from the pay screen. The PayPal
+                        // task this used to name no longer exists, so the button went nowhere.
+                        $wpjobportal_url =  wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'purchasehistory','wpjobportallt'=>'payjobapply','wpjobportalid'=>$wpjobportal_jobid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
                     }elseif($wpjobportal_selected_payment_method == 2) {
                         $wpjobportal_url =  wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'purchase','action'=>'wpjobportaltask','task'=>'woocommedeptrceorder','wpjobportalid'=>'job_jobapply_price_perlisting','wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid(),'moduleid'=>$wpjobportal_id));
                     }elseif($wpjobportal_selected_payment_method == 3) {
@@ -207,7 +244,7 @@ class WPJOBPORTALJobapplyController {
         // echo var_dump($wpjobportal_url);
         // die(' in job apply controller apply function ');
 
-        wp_redirect(esc_url_raw($wpjobportal_url));
+        wp_safe_redirect(esc_url_raw($wpjobportal_url));
         die();
     }
 

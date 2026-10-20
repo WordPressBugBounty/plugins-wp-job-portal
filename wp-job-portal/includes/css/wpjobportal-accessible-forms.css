@@ -205,6 +205,14 @@
         clip: auto !important;
     }
 
+    /* And the row it sits in, or "width: 100%" is 100% of a box that
+       collapsed to nothing when the control beside it was hidden. */
+    :where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form .wjportal-form-value:has(> select.wpjp-ds-control) {
+        flex: 1 1 100%;
+        min-width: 0;
+        width: 100%;
+    }
+
     :where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form :where(.wjportal-form-btn-wrp, .wpjobportal-form-button, .wpjobportal-form-btn-wrp) > * {
         flex: 1 1 12rem;
         max-width: 100%;
@@ -343,6 +351,18 @@
     align-items: center;
 }
 
+/* The same three rules by class, for browsers without :has() (Firefox before
+   121 drops a whole rule that contains it). The salary row carries the class. */
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form .wjportal-form-symbol-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form .wjportal-form-symbol-row > .wjportal-form-inner-fields:not(.wjportal-form-symbol-fields) {
+    flex: 1 1 min(100%, 11rem);
+}
+
 /* --- Searchable field: centre the control in its bordered box --- */
 /* The wrapper is drawn as a bordered control box with its own padding, so the
    44px tap-target min-height pushed the label off-centre (26px above, 6px
@@ -376,4 +396,249 @@
 :where(#wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper) .wpjp-ds-form .wjportal-form-symbol-fields {
     justify-content: center;
     padding-inline: 10px;
+}
+
+/* --- A form that is being sent --- */
+/* The button keeps its place in the submitted data - it is not disabled - so
+   the pending state is drawn, not enforced by the browser; the script refuses
+   the second send. An <input type="submit"> cannot carry a ::before, so it
+   pulses instead of growing a spinner, and only a real element gets one. */
+
+.wpjp-is-pending {
+    cursor: progress;
+}
+
+input.wpjp-is-pending {
+    animation: wpjp-pending-pulse 1.1s ease-in-out infinite;
+}
+
+button.wpjp-is-pending,
+a.wpjp-is-pending {
+    position: relative;
+    padding-inline-start: 2.25em;
+}
+
+button.wpjp-is-pending::before,
+a.wpjp-is-pending::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0.85em;
+    inset-block-start: calc(50% - 0.45em);
+    width: 0.9em;
+    height: 0.9em;
+    border: 2px solid currentColor;
+    border-block-start-color: transparent;
+    border-radius: 50%;
+    animation: wpjp-pending-spin 0.7s linear infinite;
+}
+
+@keyframes wpjp-pending-spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes wpjp-pending-pulse {
+    50% { opacity: 0.62; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    button.wpjp-is-pending::before,
+    a.wpjp-is-pending::before {
+        animation-duration: 2.4s;
+    }
+
+    input.wpjp-is-pending {
+        animation: none;
+        opacity: 0.8;
+    }
+}
+
+form[aria-busy="true"] {
+    /* Nothing on the form should look pressable while it is in flight. */
+    cursor: progress;
+}
+
+/* --- A select that Chosen has replaced --- */
+/* A select with a few hundred options in it is handed to Chosen, which hides
+   it and builds a control of its own. chosen.min.css is an unlayered third
+   party sheet, so its 25px-tall default beats everything Core says from inside
+   @layer wpjp-legacy - a control nobody can hit on a phone, and a different
+   shape from every other field in the form. This sheet is unlayered too, and
+   scoped with :where() so it carries no more weight than it needs: a look that
+   dresses the control itself still wins. */
+
+/* Chosen states 13px on the container, so the control, the search box and
+   every row of the list are three sizes down from the fields around them. */
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper, .wpj-jp-main-up-wrapper) .chosen-container {
+    font-size: var(--wpjp-body-font-size, 17px);
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper, .wpj-jp-main-up-wrapper) .chosen-container-single .chosen-single {
+    display: flex;
+    align-items: center;
+    height: auto;
+    /* The height the form's other controls are given in style.css. */
+    min-height: 55px;
+    padding: 10px 12px;
+    border: 1px solid var(--wpjp-border-color, #e3e6ee);
+    border-radius: 8px;
+    background: var(--wpjp-card-background, #fff);
+    color: var(--wpjp-body-font-color, #4d5566);
+    box-shadow: none;
+}
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper, .wpj-jp-main-up-wrapper) .chosen-container-single.chosen-container-active .chosen-single {
+    border-color: var(--wpjp-primary-color, #2e5bff);
+}
+
+/* The list hangs below the field, and the add-job form clips its own rows.
+
+   style.css gives every row in that form `overflow: hidden` - a clearfix from
+   when the row floated its fields, left behind when it became a flex
+   container. Nothing inside the row needs it any more, and a Chosen list is
+   positioned below the field it belongs to, so the row cut it off at its own
+   edge. The control opened, the search box took focus, and not one of the 238
+   categories was ever drawn. Released only for the rows that actually hold
+   such a list, so the clip stays where something may still rely on it. The
+   first selector answers style.css on its own terms: a weightless rule does
+   not outrank `div.wjportal-add-job-form .wjportal-form-value`. */
+
+div.wjportal-add-job-form .wjportal-form-value:has(.chosen-container),
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper, .wpj-jp-main-up-wrapper) .wjportal-form-value:has(.chosen-container) {
+    overflow: visible;
+}
+
+/* The same release for browsers without :has() (Firefox before 121), which
+   discard the whole rule above. wpjobportal-accessible-forms.js marks the row
+   of every Chosen control. Kept as a rule of its own: added to the list above
+   it would be discarded with it. */
+div.wjportal-add-job-form .wjportal-form-value.wpjp-has-chosen,
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper, .wpj-jp-main-up-wrapper) .wjportal-form-value.wpjp-has-chosen {
+    overflow: visible;
+}
+
+/* The row under the pointer is Chosen's own blue, which belongs to no palette
+   this plugin has. style.css already turns that row's text white and leaves
+   the fill alone, so the fill is all that is stated here. */
+
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper, .wpj-jp-main-up-wrapper) .chosen-container .chosen-results li.highlighted {
+    background: var(--wpjp-primary-color, #3baeda);
+}
+
+/* The one already chosen, when the list opens on it. Not while it is under the
+   pointer: its text is white then, and this grey would hide it. */
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper, .wpj-jp-main-up-wrapper) .chosen-container .chosen-results li.result-selected:not(.highlighted) {
+    background: var(--wpjp-background-color, #f6f6f6);
+    font-weight: 600;
+}
+
+/* Chosen's arrow is drawn from a sprite positioned for a 25px control. */
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper, .wpj-jp-main-up-wrapper) .chosen-container-single .chosen-single div {
+    display: flex;
+    align-items: center;
+}
+
+/* --- One arrow on every dropdown --- */
+/*
+ * The add-job form showed three: Core's caret on a styled select, Chosen's
+ * sprite - a small grey mark in the top corner - on Category and Company, and
+ * the browser's own chevron on any select without Core's select class, such
+ * as Workplace Type. The caret is Core's, the one style.css draws, stated once
+ * here so the add-ons' forms can use the same one by name.
+ */
+:where(.wjportal-main-up-wrapper, .wpj-jp-main-up-wrapper, .wpjp-recruit-center, .wpjobportal-candidate-portal, .wpjp-marketplace-commerce) {
+    --wpjp-select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23656575'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+}
+
+:where(.wjportal-main-up-wrapper, .wpj-jp-main-up-wrapper, .wpjp-recruit-center, .wpjobportal-candidate-portal, .wpjp-marketplace-commerce) select:not([multiple]) {
+    appearance: none;
+    background-image: var(--wpjp-select-arrow);
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 1.5em;
+    padding-inline-end: 40px;
+}
+
+/*
+ * The form's own control rule above sets both sides to 0.75rem, and it
+ * outweighs style.css's 40px, so a long option ran under the arrow.
+ */
+:where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper) .wpjp-ds-form select.wpjp-ds-control:not([multiple]):not([type="checkbox"]):not([type="radio"]) {
+    padding-inline-end: 40px;
+}
+
+/*
+ * Chosen: the same caret, where the select's would be - 16px in from the edge
+ * and centred on the field - in place of the sprite. Pointing up while the
+ * list is open, as Chosen's own does.
+ */
+:where(.wjportal-main-up-wrapper, .wpj-jp-main-up-wrapper) .chosen-container.chosen-container-single .chosen-single div {
+    width: calc(1.5em + 32px);
+    justify-content: center;
+}
+
+:where(.wjportal-main-up-wrapper, .wpj-jp-main-up-wrapper) .chosen-container.chosen-container-single .chosen-single div b {
+    width: 1.5em;
+    height: 1.5em;
+    background: var(--wpjp-select-arrow) no-repeat center / 100%;
+}
+
+:where(.wjportal-main-up-wrapper, .wpj-jp-main-up-wrapper) .chosen-container.chosen-container-active.chosen-with-drop .chosen-single div b {
+    background-position: center;
+    transform: rotate(180deg);
+}
+
+:where(.wjportal-main-up-wrapper, .wpj-jp-main-up-wrapper) .chosen-container.chosen-container-single .chosen-single {
+    padding-inline-end: calc(1.5em + 32px);
+}
+
+/*
+ * The dashboard's searchable pickers take the dashboard's chevron - the one
+ * its plain selects draw, 8px in from the edge - in place of Chosen's sprite.
+ */
+:where(#wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper) {
+    --wpjp-admin-select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23475569'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+:where(#wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper) .chosen-container.chosen-container-single .chosen-single div {
+    width: 34px;
+    justify-content: center;
+}
+
+:where(#wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper) .chosen-container.chosen-container-single .chosen-single div b {
+    width: 18px;
+    height: 18px;
+    background: var(--wpjp-admin-select-arrow) no-repeat center / 100%;
+}
+
+:where(#wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper) .chosen-container.chosen-container-active.chosen-with-drop .chosen-single div b {
+    background-position: center;
+    transform: rotate(180deg);
+}
+
+/* --- What is wrong, where it can be read --- */
+/* A field the person cannot see - a select behind its searchable stand-in, or
+   one the template renders hidden - takes its error message down with it, and
+   the form then appears to ignore the Save button. The summary says which
+   fields, at the top of the form. */
+
+.wpjp-hidden-error-summary {
+    margin-block-end: 1rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--wpjp-ds-color-danger, #c0392b);
+    border-inline-start-width: 4px;
+    border-radius: 6px;
+    background: var(--wpjp-ds-color-surface, #fff);
+    color: var(--wpjp-ds-color-text, #12172b);
+    font-size: 0.9375rem;
+}
+
+.wpjp-hidden-error-summary:focus-visible {
+    outline: 2px solid var(--wpjp-ds-color-primary, #2e5bff);
+    outline-offset: 2px;
+}
+
+/* The notice a job form shows an employer who has no company yet. */
+.wjportal-form-needs-company p {
+    margin: 0 0 0.5rem;
 }

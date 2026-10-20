@@ -8,4 +8,14 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("عاليه", "عاليه", "Aley", NULL, 117, 0, 1, NULL, "33.8082697", "35.6061181"),
 ("جونيه", "جونيه", "Jounieh", NULL, 117, 0, 1, NULL, "33.9741506", "35.6200633"),
 ("زحلة", "زحلة", "Zahle", NULL, 117, 0, 1, NULL, "33.8476479", "35.9026269"),
-("بعلبك", "بعلبك", "Baalbek", NULL, 117, 0, 1, NULL, "34.009653", "36.2117096");
+("بعلبك", "بعلبك", "Baalbek", NULL, 117, 0, 1, NULL, "34.009653", "36.2117096"),
+("Ain Ebel", "Ain Ebel", "Ain Ebel", NULL, 117, 0, 1, NULL, "33.111568", "35.4017195"),
+("Batroun", "Batroun", "Batroun", NULL, 117, 0, 1, NULL, "34.249832", "35.6642904"),
+("Bcharre", "Bcharre", "Bcharre", NULL, 117, 0, 1, NULL, "34.2506515", "36.0117322"),
+("Bhamdounel Mhatta", "Bhamdounel Mhatta", "Bhamdounel Mhatta", NULL, 117, 0, 1, NULL, "33.8088596", "35.6599267"),
+("Bhamdoun", "Bhamdoun", "Bhamdoun", NULL, 117, 0, 1, NULL, "33.8070205", "35.6580054"),
+("Habbouch", "Habbouch", "Habbouch", NULL, 117, 0, 1, NULL, "33.4074237", "35.4785881"),
+("Jbail", "Jbail", "Jbail", NULL, 117, 0, 1, NULL, "34.1230021", "35.6519282"),
+("Jounie", "Jounie", "Jounie", NULL, 117, 0, 1, NULL, "33.9842691", "35.6344491"),
+("Nabatiyeet Tahta", "Nabatiyeet Tahta", "Nabatiyeet Tahta", NULL, 117, 0, 1, NULL, "33.3771898", "35.4835902"),
+("Ras Bayrut", "Ras Bayrut", "Ras Bayrut", NULL, 117, 0, 1, NULL, "33.8925575", "35.5109932");

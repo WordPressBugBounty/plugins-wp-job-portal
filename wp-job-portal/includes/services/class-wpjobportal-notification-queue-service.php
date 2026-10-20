@@ -113,7 +113,7 @@ class WPJOBPORTAL_Notification_Queue_Service {
         global $wpdb;
 
         $table = self::table_name();
-        $found = $wpdb->get_var($wpdb->prepare('SHOW TABLES LIKE %s', $wpdb->esc_like($table)));
+        $found = wpjobportaldb_direct::get_var($wpdb->prepare('SHOW TABLES LIKE %s', $wpdb->esc_like($table)));
 
         return $found === $table;
     }
@@ -129,7 +129,7 @@ class WPJOBPORTAL_Notification_Queue_Service {
         }
 
         $table = self::table_name();
-        $columns = $wpdb->get_col("SHOW COLUMNS FROM `{$table}`", 0);
+        $columns = wpjobportaldb_direct::get_col($wpdb->prepare("SHOW COLUMNS FROM %i", $table), 0);
         $required = array(
             'id',
             'job_key',
@@ -193,7 +193,7 @@ class WPJOBPORTAL_Notification_Queue_Service {
         $job_key = self::make_job_key($source, $idempotency_key);
         $now = current_time('mysql', true);
         $table = self::table_name();
-        $inserted = $wpdb->insert(
+        $inserted = wpjobportaldb_direct::insert(
             $table,
             array(
                 'job_key' => $job_key,
@@ -214,8 +214,8 @@ class WPJOBPORTAL_Notification_Queue_Service {
         );
 
         if ($inserted === false) {
-            $existing = $wpdb->get_var(
-                $wpdb->prepare("SELECT id FROM `{$table}` WHERE job_key = %s LIMIT 1", $job_key)
+            $existing = wpjobportaldb_direct::get_var(
+                $wpdb->prepare("SELECT id FROM %i WHERE job_key = %s LIMIT 1", $table, $job_key)
             );
             if ($existing) {
                 self::record_stat('duplicates');
@@ -273,12 +273,13 @@ class WPJOBPORTAL_Notification_Queue_Service {
 
         $table = self::table_name();
         $now = current_time('mysql', true);
-        $ids = $wpdb->get_col(
+        $ids = wpjobportaldb_direct::get_col(
             $wpdb->prepare(
-                "SELECT id FROM `{$table}`
+                "SELECT id FROM %i
                  WHERE status IN ('pending','retry') AND available_at <= %s
                  ORDER BY available_at ASC, id ASC
                  LIMIT %d",
+                $table,
                 $now,
                 self::BATCH_SIZE
             )
@@ -387,12 +388,13 @@ class WPJOBPORTAL_Notification_Queue_Service {
 
         $table = self::table_name();
         $now = current_time('mysql', true);
-        $updated = $wpdb->query(
+        $updated = wpjobportaldb_direct::query(
             $wpdb->prepare(
-                "UPDATE `{$table}`
+                "UPDATE %i
                  SET status = 'retry', attempts = 0, available_at = %s,
                      locked_at = NULL, lock_token = '', last_error = '', updated_at = %s
                  WHERE status = 'failed'",
+                $table,
                 $now,
                 $now
             )
@@ -436,8 +438,8 @@ class WPJOBPORTAL_Notification_Queue_Service {
 
         if ($schema_ready) {
             $table = self::table_name();
-            $rows = $wpdb->get_results(
-                "SELECT status, COUNT(*) AS total FROM `{$table}` GROUP BY status",
+            $rows = wpjobportaldb_direct::get_results(
+                $wpdb->prepare("SELECT status, COUNT(*) AS total FROM %i GROUP BY status", $table),
                 ARRAY_A
             );
             foreach ((array) $rows as $row) {
@@ -447,8 +449,8 @@ class WPJOBPORTAL_Notification_Queue_Service {
                 }
             }
 
-            $oldest_due = (string) $wpdb->get_var(
-                "SELECT MIN(available_at) FROM `{$table}` WHERE status IN ('pending','retry')"
+            $oldest_due = (string) wpjobportaldb_direct::get_var(
+                $wpdb->prepare("SELECT MIN(available_at) FROM %i WHERE status IN ('pending','retry')", $table)
             );
         }
 
@@ -519,12 +521,13 @@ class WPJOBPORTAL_Notification_Queue_Service {
         $table = self::table_name();
         $token = hash('sha256', wp_generate_uuid4() . '|' . microtime(true));
         $now = current_time('mysql', true);
-        $claimed = $wpdb->query(
+        $claimed = wpjobportaldb_direct::query(
             $wpdb->prepare(
-                "UPDATE `{$table}`
+                "UPDATE %i
                  SET status = 'processing', locked_at = %s, lock_token = %s,
                      attempts = attempts + 1, updated_at = %s
                  WHERE id = %d AND status IN ('pending','retry') AND available_at <= %s",
+                $table,
                 $now,
                 $token,
                 $now,
@@ -536,8 +539,8 @@ class WPJOBPORTAL_Notification_Queue_Service {
             return;
         }
 
-        $job = $wpdb->get_row(
-            $wpdb->prepare("SELECT * FROM `{$table}` WHERE id = %d AND lock_token = %s LIMIT 1", $job_id, $token),
+        $job = wpjobportaldb_direct::get_row(
+            $wpdb->prepare("SELECT * FROM %i WHERE id = %d AND lock_token = %s LIMIT 1", $table, $job_id, $token),
             ARRAY_A
         );
         if (!is_array($job)) {
@@ -569,12 +572,13 @@ class WPJOBPORTAL_Notification_Queue_Service {
         }
 
         if ($result) {
-            $updated = $wpdb->query(
+            $updated = wpjobportaldb_direct::query(
                 $wpdb->prepare(
-                    "UPDATE `{$table}`
+                    "UPDATE %i
                      SET status = 'completed', payload = '', locked_at = NULL,
                          lock_token = '', last_error = '', completed_at = %s, updated_at = %s
                      WHERE id = %d AND lock_token = %s",
+                    $table,
                     $now,
                     $now,
                     $job_id,
@@ -622,12 +626,13 @@ class WPJOBPORTAL_Notification_Queue_Service {
         $now = current_time('mysql', true);
 
         if ($attempts >= $max_attempts) {
-            $wpdb->query(
+            wpjobportaldb_direct::query(
                 $wpdb->prepare(
-                    "UPDATE `{$table}`
+                    "UPDATE %i
                      SET status = 'failed', locked_at = NULL, lock_token = '',
                          last_error = %s, updated_at = %s
                      WHERE id = %d AND lock_token = %s",
+                    $table,
                     $error,
                     $now,
                     absint($job['id']),
@@ -648,12 +653,13 @@ class WPJOBPORTAL_Notification_Queue_Service {
         }
 
         $available_at = gmdate('Y-m-d H:i:s', time() + self::retry_delay($attempts));
-        $wpdb->query(
+        wpjobportaldb_direct::query(
             $wpdb->prepare(
-                "UPDATE `{$table}`
+                "UPDATE %i
                  SET status = 'retry', available_at = %s, locked_at = NULL,
                      lock_token = '', last_error = %s, updated_at = %s
                  WHERE id = %d AND lock_token = %s",
+                $table,
                 $available_at,
                 $error,
                 $now,
@@ -683,12 +689,13 @@ class WPJOBPORTAL_Notification_Queue_Service {
         $table = self::table_name();
         $stale_before = gmdate('Y-m-d H:i:s', time() - self::LOCK_TTL);
         $now = current_time('mysql', true);
-        $wpdb->query(
+        wpjobportaldb_direct::query(
             $wpdb->prepare(
-                "UPDATE `{$table}`
+                "UPDATE %i
                  SET status = 'retry', available_at = %s, locked_at = NULL,
                      lock_token = '', updated_at = %s
                  WHERE status = 'processing' AND locked_at < %s",
+                $table,
                 $now,
                 $now,
                 $stale_before
@@ -704,11 +711,12 @@ class WPJOBPORTAL_Notification_Queue_Service {
 
         $table = self::table_name();
         $cutoff = gmdate('Y-m-d H:i:s', time() - (DAY_IN_SECONDS * self::RETENTION_DAYS));
-        $wpdb->query(
+        wpjobportaldb_direct::query(
             $wpdb->prepare(
-                "DELETE FROM `{$table}`
+                "DELETE FROM %i
                  WHERE (status = 'completed' AND completed_at < %s)
                     OR (status = 'failed' AND updated_at < %s)",
+                $table,
                 $cutoff,
                 $cutoff
             )
@@ -726,8 +734,8 @@ class WPJOBPORTAL_Notification_Queue_Service {
         }
 
         $table = self::table_name();
-        $count = $wpdb->get_var(
-            "SELECT COUNT(*) FROM `{$table}` WHERE status IN ('pending','retry','processing')"
+        $count = wpjobportaldb_direct::get_var(
+            $wpdb->prepare("SELECT COUNT(*) FROM %i WHERE status IN ('pending','retry','processing')", $table)
         );
 
         return absint($count) > 0;
@@ -747,8 +755,8 @@ class WPJOBPORTAL_Notification_Queue_Service {
         }
 
         $table = self::table_name();
-        $count = $wpdb->get_var(
-            "SELECT COUNT(*) FROM `{$table}` WHERE status IN ('completed','failed')"
+        $count = wpjobportaldb_direct::get_var(
+            $wpdb->prepare("SELECT COUNT(*) FROM %i WHERE status IN ('completed','failed')", $table)
         );
 
         return absint($count) > 0;

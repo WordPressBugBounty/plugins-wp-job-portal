@@ -46,4 +46,7 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("Yagoua", "Yagoua", "Yagoua", NULL, 148, 0, 1, NULL, "10.344361", "15.226549"),
 ("Maroua", "Maroua", "Maroua", NULL, 148, 0, 1, NULL, "10.6033083", "14.3281625"),
 ("Mora", "Mora", "Mora", NULL, 148, 0, 1, NULL, "11.0484452", "14.1342835"),
-("Kousséri", "Kousséri", "Kousséri", NULL, 148, 0, 1, NULL, "12.0755638", "15.0246194");
+("Kousséri", "Kousséri", "Kousséri", NULL, 148, 0, 1, NULL, "12.0755638", "15.0246194"),
+("Evodoula", "Evodoula", "Evodoula", NULL, 148, 0, 1, NULL, "4.087552", "11.20197"),
+("Akom II", "Akom II", "Akom II", NULL, 148, 0, 1, NULL, "2.786462", "11.3048205"),
+("Akono", "Akono", "Akono", NULL, 148, 0, 1, NULL, "3.4992584", "11.3289244");

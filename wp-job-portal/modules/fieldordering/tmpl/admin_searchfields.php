@@ -1,10 +1,10 @@
 <?php
     if(!defined('ABSPATH'))
      die('Restricted Access');
-    wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js');
+    wp_enqueue_script( 'wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js', array(), wpjobportal_asset_version('includes/js/responsivetable.js'), false );
     wp_enqueue_script('jquery-ui-sortable');
-    $wpjobportal_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-    wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jquery-ui-smoothness.css');
+    $wpjobportal_protocol = is_ssl() ? "https://" : "http://";
+    wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jquery-ui-smoothness.css', array(), wpjobportal_asset_version('includes/css/jquery-ui-smoothness.css'));
     $wpjobportal_searchable_combo = array(
          (object) array('id' => 1, 'text' => esc_html(__('Enabled', 'wp-job-portal'))),
          (object) array('id' => 0, 'text' => esc_html(__('Disabled', 'wp-job-portal'))));
@@ -20,7 +20,7 @@
         <div id="popup_main" style="display:none;">
             <span class="popup-top">
                 <span id="popup_title" ></span>
-                <img id="popup_cross" alt="popup cross" onClick="closePopup();" src="<?php echo  esc_url(WPJOBPORTAL_PLUGIN_URL);?>includes/images/popup-close.png">
+                <img id="popup_cross" alt="<?php echo esc_attr__('Close', 'wp-job-portal'); ?>" onClick="closePopup();" src="<?php echo  esc_url(WPJOBPORTAL_PLUGIN_URL);?>includes/images/popup-close.png">
             </span>
             <?php $wpjobportal_ff = wpjobportal::$wpjobportal_data["fieldfor"]; ?>
             <form id="wpjobportal-form" class="popup-field-from" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_fieldordering&task=savesearchfieldordering&action=wpjobportaltask&fieldfor=$wpjobportal_ff&ff=$wpjobportal_ff"));?>">
@@ -42,7 +42,7 @@
             </form>
         </div>
         <?php
-            wp_register_script( 'wpjobportal-inline-handle', '' );
+            wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
             wp_enqueue_script( 'wpjobportal-inline-handle' );
             $wpjobportal_inline_js_script = "
                 jQuery(document).ready(function () {

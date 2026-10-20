@@ -1,0 +1,71 @@
+/**
+ * Let the shared design system wear whatever look the site is wearing.
+ *
+ * There are two palettes in this product and until now they never met.
+ *
+ *   Core        --wpjp-primary-color, --wpjp-border-color, ...
+ *               job_portal_variables.css, overridden per site by the admin
+ *               colour settings in modules/theme/model.php
+ *
+ *   Elegant     --primary-color, --secondary-color, --border-color, ...
+ *   Design      elegantdesignvariables.css - eight variables, consumed by
+ *               956 rules across the add-on
+ *
+ * The wpjp-ds-* component layer reads only the Core names. So on a site
+ * running Elegant Design, every design-system component - which is every new
+ * Recruit Suite and Marketplace Suite screen - rendered Core's purple
+ * (#3baeda) and Core's borders inside a site that is otherwise Elegant
+ * Design's blue (#2a3fca). The new pages looked foreign on the very sites
+ * that paid for the better design.
+ *
+ * This file is the join: it restates Elegant Design's eight variables under
+ * the names the design system already asks for. Nothing in Elegant Design is
+ * modified, no template is forked, and no markup moves. A new suite screen
+ * built from wpjp-ds-* components now inherits the active look for free.
+ *
+ * Loaded only when Elegant Design is active. The selector is :root:root
+ * rather than :root deliberately: enqueue order alone did not hold the
+ * mapping - Core's own token file kept winning even when this file was
+ * demonstrably later in the document - and relying on load order would
+ * anyway leave the join at the mercy of any other plugin that enqueues a
+ * stylesheet. One extra point of specificity settles it and is immune to
+ * that. The admin's own colour block is emitted inline, which still outranks
+ * this, so an administrator who has deliberately chosen colours keeps them.
+ *
+ * @see includes/css/wpjobportal-design-system.css for the component layer.
+ * @see wp-job-portal-elegantdesign/includes/css/elegantdesignvariables.css
+ */
+
+:root:root {
+    /* Colour. Elegant Design has no distinct canvas or card colour, so those
+       keep the design system's own defaults rather than being invented here. */
+    --wpjp-primary-color: var(--primary-color, #3baeda);
+    --wpjp-secondary-color: var(--secondary-color, #333333);
+    --wpjp-body-font-color: var(--body-color, #575757);
+    --wpjp-text-color: var(--body-color, #575757);
+    --wpjp-border-color: var(--border-color, #e9ecef);
+
+    /* Type. Elegant Design sets a larger body size and a much larger display
+       scale than Core; carrying both keeps a design-system heading in
+       proportion with the Elegant Design headings above and below it. */
+    --wpjp-body-font-size: var(--font-size, 17px);
+    --wpjp-main-heading: var(--main-title-font-size, 32px);
+    --wpjp-second-sub-heading: var(--second-sub-heading, 27px);
+    --wpjp-sub-heading: var(--sub-heading, 22px);
+
+    /* The focus ring is derived from the primary colour rather than left on
+       Core's hard-coded purple rgba(), which would otherwise be the one
+       visibly wrong colour on an otherwise correct page. */
+    --wpjp-focus-shadow-color: 0 0 0 3px color-mix(in srgb, var(--primary-color, #3baeda) 25%, transparent);
+}
+
+/*
+ * color-mix() is unsupported on a small number of older browsers, and an
+ * unsupported value makes the whole declaration invalid - which would leave
+ * the focus ring with no colour at all. This restates it plainly for those.
+ */
+@supports not (color: color-mix(in srgb, red 25%, transparent)) {
+    :root:root {
+        --wpjp-focus-shadow-color: 0 0 0 3px rgba(42, 63, 202, 0.25);
+    }
+}

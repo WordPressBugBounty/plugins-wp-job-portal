@@ -28,7 +28,7 @@ if(isset($wpjobportal_layout) && $wpjobportal_layout == 'control'){
 // handling featured class for main wrap
 $wpjobportal_curdate = date_i18n('Y-m-d');
 if(!empty($wpjobportal_company->isfeaturedcompany)){
-    $wpjobportal_featuredexpiry = date_i18n('Y-m-d', strtotime($wpjobportal_company->endfeatureddate));
+    $wpjobportal_featuredexpiry = date_i18n('Y-m-d', strtotime((string) $wpjobportal_company->endfeatureddate));
     if($wpjobportal_company->isfeaturedcompany == 1 && $wpjobportal_featuredexpiry >= $wpjobportal_curdate){
         $wpjobportal_list_item_status_extra_class .= ' wpjobportal-list-item-is-featured ';
     }

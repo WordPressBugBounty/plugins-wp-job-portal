@@ -207,7 +207,8 @@
                             <?php echo esc_html(__('Body', 'wp-job-portal')); ?>
                         </div>
                         <div class="wpjobportal-email-form-field">
-                            <?php wp_editor(wpjobportal::$_data[0]->body, 'body', array('media_buttons' => false)); ?>
+                            <?php // Tall enough to see a whole email layout; it can still be dragged taller.
+                            wp_editor(wpjobportal::$_data[0]->body, 'body', array('media_buttons' => false, 'editor_height' => 560)); ?>
                         </div>
                     </div>
                     <div class="wpjobportal-email-parameters">

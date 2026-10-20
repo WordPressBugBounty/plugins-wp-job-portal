@@ -18,26 +18,32 @@ if (!defined('ABSPATH'))
 //     return $wpjobportal_job_document_title;
 // }
 
-$wpjobportal_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-wp_register_script ( 'wpjp-google-map-api', $wpjobportal_protocol . 'maps.googleapis.com/maps/api/js?key=' . wpjobportal::$_configuration['google_map_api_key'] );
+$wpjobportal_protocol = is_ssl() ? "https://" : "http://";
+wp_register_script ( 'wpjp-google-map-api', $wpjobportal_protocol . 'maps.googleapis.com/maps/api/js?key=' . wpjobportal::$_configuration['google_map_api_key'], array(), WPJOBPORTAL_VERSION, false );
 wp_enqueue_script ( 'wpjp-google-map-api' );
-function wpjobportal_checkLinks($wpjobportal_name) {
-    $wpjobportal_print = false;
-    $wpjobportal_configname = $wpjobportal_name;
+// Guarded, because this is a template: it can be included more than once in a
+// request, and the socialshare feature declares the same helper so that the
+// share templates work on pages other than this one. An unguarded declaration
+// here made whichever came second a fatal error.
+if (!function_exists('wpjobportal_checkLinks')) {
+    function wpjobportal_checkLinks($wpjobportal_name) {
+        $wpjobportal_print = false;
+        $wpjobportal_configname = $wpjobportal_name;
 
-    $wpjobportal_config_array = wpjobportal::$_data['config'];
-    /*if (!(WPJOBPORTALincluder::getObjectClass('user')->isguest())) {*/
-        if ($wpjobportal_config_array["$wpjobportal_configname"] == 1) {
-            $wpjobportal_print = true;
-        }
-    /*}*/
-    return $wpjobportal_print;
+        $wpjobportal_config_array = wpjobportal::$_data['config'];
+        /*if (!(WPJOBPORTALincluder::getObjectClass('user')->isguest())) {*/
+            if (isset($wpjobportal_config_array["$wpjobportal_configname"]) && $wpjobportal_config_array["$wpjobportal_configname"] == 1) {
+                $wpjobportal_print = true;
+            }
+        /*}*/
+        return $wpjobportal_print;
+    }
 }
 $wpjobportal_job = isset(wpjobportal::$_data[0]) ? wpjobportal::$_data[0] : null;
 $wpjobportal_mappingservice = wpjobportal::$_config->getConfigValue('mappingservice');
 ?>
 <?php
-    wp_register_script( 'wpjobportal-inline-handle', '' );
+    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
     $wpjobportal_inline_js_script = "
@@ -63,7 +69,7 @@ $wpjobportal_mappingservice = wpjobportal::$_config->getConfigValue('mappingserv
             if (input.files && input.files[0]) {
                 var fileext = input.files[0].name.split('.').pop().trim().toLowerCase();
                 var filesize = (input.files[0].size / 1024);
-                var allowedsize = ". wpjobportal::$_config->getConfigValue('document_file_size').";
+                var allowedsize = ". WPJOBPORTALincluder::getJSModel('common')->configAsJsNumber('document_file_size', 3072).";
                 var allowedExt = '". wpjobportal::$_config->getConfigValue('document_file_type')."';
                 allowedExt = allowedExt.split(',');
                 allowedExt = allowedExt.map(function(ext) {
@@ -186,9 +192,9 @@ if($wpjobportal_mapfield):
         <?php if($wpjobportal_mappingservice == "gmap"){
             // wp_enqueue_script ( 'wpjp-google-map-api' );
         }elseif ($wpjobportal_mappingservice == "osm") {
-            wp_register_script ( 'wpjp-osm-map-js', esc_url(WPJOBPORTAL_PLUGIN_URL).'/includes/js/ol.min.js' );
+            wp_register_script ( 'wpjp-osm-map-js', esc_url(WPJOBPORTAL_PLUGIN_URL).'/includes/js/ol.min.js', array(), wpjobportal_asset_version('includes/js/ol.min.js'), false );
             wp_enqueue_script( 'wpjp-osm-map-js' );
-            wp_enqueue_style( 'wpjp-osm-map-css', esc_url(WPJOBPORTAL_PLUGIN_URL).'/includes/css/ol.min.css' );
+            wp_enqueue_style( 'wpjp-osm-map-css', esc_url(WPJOBPORTAL_PLUGIN_URL).'/includes/css/ol.min.css', array(), wpjobportal_asset_version('includes/css/ol.min.css') );
         } ?>
         <?php
             $wpjobportal_inline_js_script = "
@@ -401,7 +407,11 @@ if($wpjobportal_mapfield):
             /*job apply link start*/
             ";
             if($wpjobportal_mapfield && $wpjobportal_mappingservice == "gmap") {
-                    $wpjobportal_inline_js_script .= "loadMap();";
+                    $wpjobportal_inline_js_script .= "
+                    /* The map container comes from Pro's Maps module; without it
+                       (a free site) loadMap() threw and stopped this ready handler,
+                       so the terms-and-conditions check below was never attached. */
+                    if (document.getElementById('map_container') && typeof google === 'object' && typeof google.maps === 'object') { loadMap(); }";
             }elseif ($wpjobportal_mapfield && $wpjobportal_mappingservice == "osm") {
                 $wpjobportal_inline_js_script .= "
                     /*lmap working*/

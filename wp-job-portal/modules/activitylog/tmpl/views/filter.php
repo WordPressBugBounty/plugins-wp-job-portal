@@ -12,7 +12,7 @@ if (!defined('ABSPATH'))
 	    <span id="popup_title" >
 	        <?php echo esc_html(__('Settings', 'wp-job-portal')); ?>
 	    </span>
-	    <img id="popup_cross" alt="popup cross"  src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/popup-close.png">
+	    <img id="popup_cross" alt="<?php echo esc_attr__('Close', 'wp-job-portal'); ?>"  src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/popup-close.png">
 	</span>
     <div id="checkbox-popup-wrapper">
         <form id="filter_form" method="post" action="?page=wpjobportal_activitylog&wpjobportallt=activitylogs">

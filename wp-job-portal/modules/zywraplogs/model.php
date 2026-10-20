@@ -30,7 +30,7 @@ class WPJOBPORTALzywraplogsModel {
         // --- 1. Security and Pagination Setup ---
         
         // Sanitize the page number input
-        $pagenum = isset($_GET['pagenum']) ? absint( $_GET['pagenum'] ) : 1;
+        $pagenum = WPJOBPORTALrequest::has('pagenum', 'get') ? absint(WPJOBPORTALrequest::getVar('pagenum', 'get', 0)) : 1;
         if ( $pagenum < 1 ) {
             $pagenum = 1;
         }
@@ -44,23 +44,26 @@ class WPJOBPORTALzywraplogsModel {
 
         // --- 2. Calculate Summary Data (Last 24 Hours) ---
         
-        $cutoff_time = date('Y-m-d H:i:s', strtotime('-24 hours'));
+        $cutoff_time = gmdate('Y-m-d H:i:s', strtotime('-24 hours'));
         
         // Count total runs in the last 24 hours
-        $total_runs_24h = $wpdb->get_var( $wpdb->prepare( 
-            "SELECT COUNT(id) FROM $table_name WHERE timestamp >= %s", 
+        $total_runs_24h = wpjobportaldb_direct::get_var( $wpdb->prepare( 
+            "SELECT COUNT(id) FROM %i WHERE timestamp >= %s", 
+            $table_name, 
             $cutoff_time 
         ) );
         
         // Count errors (HTTP >= 400) in the last 24 hours
-        $api_errors_24h = $wpdb->get_var( $wpdb->prepare( 
-            "SELECT COUNT(id) FROM $table_name WHERE timestamp >= %s AND status >= 400", 
+        $api_errors_24h = wpjobportaldb_direct::get_var( $wpdb->prepare( 
+            "SELECT COUNT(id) FROM %i WHERE timestamp >= %s AND status >= 400", 
+            $table_name, 
             $cutoff_time 
         ) );
 
         // Find the most frequent model used, using the existing 'model_code' column
-        $top_model_used = $wpdb->get_var( $wpdb->prepare(
-            "SELECT model_code FROM $table_name WHERE timestamp >= %s GROUP BY model_code ORDER BY COUNT(model_code) DESC LIMIT 1",
+        $top_model_used = wpjobportaldb_direct::get_var( $wpdb->prepare(
+            "SELECT model_code FROM %i WHERE timestamp >= %s GROUP BY model_code ORDER BY COUNT(model_code) DESC LIMIT 1",
+            $table_name,
             $cutoff_time
         ) );
         
@@ -72,19 +75,20 @@ class WPJOBPORTALzywraplogsModel {
 
         // --- 3. Fetch Main Log Data (with Pagination) ---
         
-        $total_logs = $wpdb->get_var( "SELECT COUNT(id) FROM $table_name" );
+        $total_logs = wpjobportaldb_direct::get_var( $wpdb->prepare("SELECT COUNT(id) FROM %i", $table_name) );
         wpjobportal::$_data['total'] = $total_logs;
         wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($total_logs);
         
         // Query to get the logs: We still use SELECT * to avoid hardcoding every column name, 
         // but the presentation layer must only use columns we know exist (like model_code).
         $query = $wpdb->prepare( 
-            "SELECT * FROM $table_name ORDER BY timestamp DESC LIMIT %d OFFSET %d", 
+            "SELECT * FROM %i ORDER BY timestamp DESC LIMIT %d OFFSET %d", 
+            $table_name, 
             WPJOBPORTALpagination::$_limit,
             WPJOBPORTALpagination::$_offset
         );
         
-        $results['logs'] = $wpdb->get_results( $query, ARRAY_A );
+        $results['logs'] = wpjobportaldb_direct::get_results( $query, ARRAY_A );
         wpjobportal::$_data[0] = $results;
         return ;
     }

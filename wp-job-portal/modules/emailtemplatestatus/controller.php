@@ -39,7 +39,7 @@ class WPJOBPORTALemailtemplatestatusController {
         $wpjobportal_action = WPJOBPORTALrequest::getVar('actionfor');
         WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->sendEmailModel($wpjobportal_id, $wpjobportal_action); //  for send email
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_emailtemplatestatus"));
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -54,7 +54,7 @@ class WPJOBPORTALemailtemplatestatusController {
         $wpjobportal_action = WPJOBPORTALrequest::getVar('actionfor');
         WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->noSendEmailModel($wpjobportal_id, $wpjobportal_action); //  for notsendemail
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_emailtemplatestatus"));
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 

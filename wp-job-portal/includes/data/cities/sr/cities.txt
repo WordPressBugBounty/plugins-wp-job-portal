@@ -1,3 +1,14 @@
 
 INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
-("Paramaribo", "Paramaribo", "Paramaribo", NULL, 40, 0, 1, NULL, "5.8247628", "-55.1703941");
+("Paramaribo", "Paramaribo", "Paramaribo", NULL, 40, 0, 1, NULL, "5.8247628", "-55.1703941"),
+("Albina", "Albina", "Albina", NULL, 40, 0, 1, NULL, "5.5050681", "-54.0793451"),
+("Brownsweg", "Brownsweg", "Brownsweg", NULL, 40, 0, 1, NULL, "5.0151662", "-55.1679391"),
+("Groningen", "Groningen", "Groningen", NULL, 40, 0, 1, NULL, "5.7945432", "-55.4790109"),
+("Lelydorp", "Lelydorp", "Lelydorp", NULL, 40, 0, 1, NULL, "5.6979328", "-55.220397"),
+("Marienburg", "Marienburg", "Marienburg", NULL, 40, 0, 1, NULL, "5.8467655", "-55.0507157"),
+("Moengo", "Moengo", "Moengo", NULL, 40, 0, 1, NULL, "5.6080848", "-54.398656"),
+("Nieuw Amsterdam", "Nieuw Amsterdam", "Nieuw Amsterdam", NULL, 40, 0, 1, NULL, "5.885427", "-55.0796617"),
+("Nieuw Nickerie", "Nieuw Nickerie", "Nieuw Nickerie", NULL, 40, 0, 1, NULL, "5.9411628", "-56.9914585"),
+("Onverwacht", "Onverwacht", "Onverwacht", NULL, 40, 0, 1, NULL, "5.5922759", "-55.1955445"),
+("Totness", "Totness", "Totness", NULL, 40, 0, 1, NULL, "5.8719379", "-56.3320773"),
+("Wageningen", "Wageningen", "Wageningen", NULL, 40, 0, 1, NULL, "5.7674575", "-56.6878653");

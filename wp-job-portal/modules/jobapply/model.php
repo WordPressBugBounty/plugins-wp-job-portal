@@ -125,6 +125,10 @@ class WPJOBPORTALjobapplyModel {
         $wpjobportal_jobtype = isset(wpjobportal::$_search['search_filter']['jobtype']) ? wpjobportal::$_search['search_filter']['jobtype']: '';
         $currency = isset(wpjobportal::$_search['search_filter']['currency']) ? wpjobportal::$_search['search_filter']['currency']: '';
         $wpjobportal_jobsalaryrange = isset(wpjobportal::$_search['search_filter']['jobsalaryrange']) ? wpjobportal::$_search['search_filter']['jobsalaryrange']: '';
+        $wpjobportal_salarytype = isset(wpjobportal::$_search['search_filter']['salarytype']) ? wpjobportal::$_search['search_filter']['salarytype']: '';
+        $wpjobportal_salaryfixed = isset(wpjobportal::$_search['search_filter']['salaryfixed']) ? wpjobportal::$_search['search_filter']['salaryfixed']: '';
+        $wpjobportal_salarymin = isset(wpjobportal::$_search['search_filter']['salarymin']) ? wpjobportal::$_search['search_filter']['salarymin']: '';
+        $wpjobportal_salarymax = isset(wpjobportal::$_search['search_filter']['salarymax']) ? wpjobportal::$_search['search_filter']['salarymax']: '';
         $heighestfinisheducation = isset(wpjobportal::$_search['search_filter']['heighestfinisheducation']) ? wpjobportal::$_search['search_filter']['heighestfinisheducation']: '';
 
 
@@ -152,22 +156,71 @@ class WPJOBPORTALjobapplyModel {
         if (is_numeric($wpjobportal_jobtype)) {
             $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND app.jobtype = %d", $wpjobportal_jobtype);
         }
+        /*
+         * Currency, on the job rather than on the resume.
+         *
+         * This read app.currencyid, a column the resume table does not have -
+         * and nor does any other. A job records its currency as the symbol
+         * itself while the filter supplies a currency id, so the id is resolved
+         * through the currencies table rather than compared against a symbol.
+         */
         if (is_numeric($currency)) {
-            $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND app.currencyid = %d", $currency);
+            $wpjobportal_inquery .= wpjobportal::$_db->prepare(
+                " AND job.currency = (SELECT symbol FROM `" . wpjobportal::$_db->prefix . "wj_portal_currencies` WHERE id = %d)",
+                $currency);
         }
-        if (is_numeric($wpjobportal_jobsalaryrange)) {
-            $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND ( ( dsalarystart.rangestart >= (SELECT rangestart FROM `" . wpjobportal::$_db->prefix . "wj_portal_salaryrange` WHERE id = %d))
-                          AND ( dsalarystart.rangeend <= (SELECT rangeend FROM `" . wpjobportal::$_db->prefix . "wj_portal_salaryrange` WHERE id = %d)) ) ", $wpjobportal_jobsalaryrange, $wpjobportal_jobsalaryrange);
+        /*
+         * Salary, filtered on the job these applications are for.
+         *
+         * This replaces a clause that read rangestart/rangeend from
+         * `wj_portal_salaryrange` - a table nothing in the product creates -
+         * and compared them against a `dsalarystart` alias this query never
+         * joins. Both belonged to a data model that is gone. A job carries its
+         * own salary now: a type, then either one figure or a band.
+         *
+         * The rules are the job search's, deliberately, so that picking the
+         * same salary on either screen means the same thing:
+         *
+         *   fixed (2)  the job's figure is exactly the one asked for
+         *   range (3)  the job's band sits inside the one asked for
+         *
+         * Nothing is applied without a type, because a bare minimum would
+         * silently exclude every negotiable job.
+         */
+        if (is_numeric($wpjobportal_salarytype)) {
+            $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND job.salarytype = %d", $wpjobportal_salarytype);
+
+            if ($wpjobportal_salarytype == WPJOBPORTAL_SALARY_FIXED && is_numeric($wpjobportal_salaryfixed)) {
+                $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND job.salarymax = %d", $wpjobportal_salaryfixed);
+            }
+
+            if ($wpjobportal_salarytype == WPJOBPORTAL_SALARY_RANGE) {
+                if (is_numeric($wpjobportal_salarymin)) {
+                    $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND job.salarymin >= %d", $wpjobportal_salarymin);
+                }
+                if (is_numeric($wpjobportal_salarymax)) {
+                    $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND job.salarymax <= %d", $wpjobportal_salarymax);
+                }
+            }
         }
+        // heighestfinisheducation is a column on the job, not on the resume,
+        // and the job is already joined here - so this was the right filter
+        // pointed at the wrong alias, and every search using it failed.
         if (is_numeric($heighestfinisheducation)) {
-            $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND app.heighestfinisheducation = %d", $heighestfinisheducation);
+            $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND job.heighestfinisheducation = %d", $heighestfinisheducation);
         }
         if (is_numeric($wpjobportal_jobcategory)) {
             $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND app.job_category = %d", $wpjobportal_jobcategory);
         }
 
 
-        if (!wpjobportal::$_common->wpjp_isadmin()) {
+        $wpjobportal_restrict_to_legacy_owner = (bool) apply_filters(
+            'wpjobportal_job_applied_resume_restrict_legacy_owner',
+            !wpjobportal::$_common->wpjp_isadmin(),
+            absint($wpjobportal_jobid),
+            get_current_user_id()
+        );
+        if ($wpjobportal_restrict_to_legacy_owner) {
             $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND job.uid = %d", $wpjobportal_uid);
         }
 
@@ -179,6 +232,10 @@ class WPJOBPORTALjobapplyModel {
         wpjobportal::$_data['filter']['gender'] = $wpjobportal_gender;
         wpjobportal::$_data['filter']['jobtype'] = $wpjobportal_jobtype;
         wpjobportal::$_data['filter']['jobsalaryrange'] = $wpjobportal_jobsalaryrange;
+        wpjobportal::$_data['filter']['salarytype'] = $wpjobportal_salarytype;
+        wpjobportal::$_data['filter']['salaryfixed'] = $wpjobportal_salaryfixed;
+        wpjobportal::$_data['filter']['salarymin'] = $wpjobportal_salarymin;
+        wpjobportal::$_data['filter']['salarymax'] = $wpjobportal_salarymax;
         wpjobportal::$_data['filter']['heighestfinisheducation'] = $heighestfinisheducation;
 
 
@@ -485,12 +542,14 @@ class WPJOBPORTALjobapplyModel {
                     $wpjobportal_content .=             '</li>';
                                                 }
                                             }
-                                            if(isset($wpjobportal_listing_fields['jobsalaryrange'])){
+                                            // With no figure on file this printed "Salary: - Per Month".
+                                            $wpjobportal_salaryview = (string) wpjobportal::$_common->getSalaryRangeView($wpjobportal_job->salarytype, $wpjobportal_job->salarymin, $wpjobportal_job->salarymax,$wpjobportal_job->currency);
+                                            if(isset($wpjobportal_listing_fields['jobsalaryrange']) && $wpjobportal_salaryview !== ''){
                         $wpjobportal_content .=             '<li>';
                         $wpjobportal_content .=                  '<span class="wpj-jp-popup-list-meta-tit">';
                         $wpjobportal_content .=                       wpjobportal::wpjobportal_getVariableValue($wpjobportal_listing_fields['jobsalaryrange']). ':';
                         $wpjobportal_content .=                   '</span>';
-                        $wpjobportal_content .=                    wpjobportal::$_common->getSalaryRangeView($wpjobportal_job->salarytype, $wpjobportal_job->salarymin, $wpjobportal_job->salarymax,$wpjobportal_job->currency);
+                                                       $wpjobportal_content .= $wpjobportal_salaryview;
                                                        if($wpjobportal_job->salarytype==3 || $wpjobportal_job->salarytype==2) {
                         $wpjobportal_content .=                      ' - ' .wpjobportal::wpjobportal_getVariableValue($wpjobportal_job->srangetypetitle);
                                                        }
@@ -577,15 +636,17 @@ class WPJOBPORTALjobapplyModel {
                     $wpjobportal_content .= '<div class="wjportal-jobs-right-wrp">';
                     $wpjobportal_content .=     '<div class="wjportal-jobs-info">';
                                         // if ($wpjobportal_print[0] == 1) {
-                    $wpjobportal_content .=            '<span class="wjportal-job-type" style="background:'.$wpjobportal_job->jobtypecolor.'">';
+                    $wpjobportal_content .=            '<span class="wjportal-job-type" style="--wpjp-jobtype-color:'.$wpjobportal_job->jobtypecolor.'">';
                     $wpjobportal_content .=                 wpjobportal::wpjobportal_getVariableValue($wpjobportal_job->jobtypetitle);
                     $wpjobportal_content .=             '</span>';
                                         //}
                     $wpjobportal_content .=     '</div>';
-                    if(isset($wpjobportal_listing_fields['jobsalaryrange'])){
+                    // An empty salary card is a box with a rate suffix in it.
+                    $wpjobportal_salaryview = (string) wpjobportal::$_common->getSalaryRangeView($wpjobportal_job->salarytype, $wpjobportal_job->salarymin, $wpjobportal_job->salarymax,$wpjobportal_job->currency);
+                    if(isset($wpjobportal_listing_fields['jobsalaryrange']) && $wpjobportal_salaryview !== ''){
                         $wpjobportal_content .=     '<div class="wjportal-jobs-info">';
                         $wpjobportal_content .=         '<div class="wjportal-jobs-salary">';
-                        $wpjobportal_content .=             wpjobportal::$_common->getSalaryRangeView($wpjobportal_job->salarytype, $wpjobportal_job->salarymin, $wpjobportal_job->salarymax,$wpjobportal_job->currency);
+                        $wpjobportal_content .=             $wpjobportal_salaryview;
                                                 if($wpjobportal_job->salarytype==3 || $wpjobportal_job->salarytype==2) {
                         $wpjobportal_content .=                 '<span class="wjportal-salary-type">'. ' / ' .wpjobportal::wpjobportal_getVariableValue($wpjobportal_job->srangetypetitle).'</span>';
                                                 }
@@ -848,7 +909,7 @@ class WPJOBPORTALjobapplyModel {
         if(WPJOBPORTALincluder::getObjectClass('user')->isguest() &&  $wpjobportal_visitor_can_apply_to_job == 1){
             $wpjobportal_data['status'] = 1;// job apply status 1 in case of visitor apply on job
         }else{
-            if(in_array('credits', wpjobportal::$_active_addons)){
+            if(WPJOBPORTAL_Monetisation::usable('credits')){
                 if($wpjobportal_submitType == 2){
                     # Perlisting
                     // in case of per listing submission mode
@@ -933,6 +994,7 @@ class WPJOBPORTALjobapplyModel {
             // --- NEW HOOK INTEGRATION START ---
             // Blueprint: wpjobportal_application_submitted & contextual routing
             if ($quick_apply == 1) {
+                // phpcs:ignore WordPress.Security.NonceVerification.Missing -- handed unchanged to this action's listeners; the apply form's nonce was checked by the controller.
                 do_action('wpjobportal_quick_apply_submitted', $wpjobportal_job_apply_id, $wpjobportal_jobid, $wpjobportal_data, $_FILES);
             } elseif (WPJOBPORTALincluder::getObjectClass('user')->isguest() && $wpjobportal_visitor_can_apply_to_job == 1) {
                 do_action('wpjobportal_visitor_application_submitted', $wpjobportal_job_apply_id, $wpjobportal_jobid, $wpjobportal_data);
@@ -1044,9 +1106,9 @@ class WPJOBPORTALjobapplyModel {
             if(!empty($coverletdata) && isset($coverletdata->description)){
                 $wpjobportal_msgBody = wpjobportalphplib::wpJP_str_replace('{COVER_LETTER_DESCRIPTION}', $coverletdata->description, $wpjobportal_msgBody);
             }
-        }else{
-            $wpjobportal_msgBody = wpjobportalphplib::wpJP_str_replace('{COVER_LETTER_DESCRIPTION}', '&nbsp;', $wpjobportal_msgBody);
         }
+        // No cover letter (add-on off, or none chosen for this application): drop the placeholder.
+        $wpjobportal_msgBody = wpjobportalphplib::wpJP_str_replace('{COVER_LETTER_DESCRIPTION}', '&nbsp;', $wpjobportal_msgBody);
 
         $wpjobportal_emailstatus = WPJOBPORTALincluder::getJSModel('emailtemplatestatus')->getEmailTemplateStatus('jobapply_jobapply');
         $wpjobportal_senderName = $wpjobportal_emailconfig['mailfromname'];
@@ -1112,9 +1174,9 @@ class WPJOBPORTALjobapplyModel {
             if(!empty($coverletdata) && isset($coverletdata->description)){
                 $wpjobportal_msgBody = wpjobportalphplib::wpJP_str_replace('{COVER_LETTER_DESCRIPTION}', $coverletdata->description, $wpjobportal_msgBody);
             }
-        }else{
-            $wpjobportal_msgBody = wpjobportalphplib::wpJP_str_replace('{COVER_LETTER_DESCRIPTION}', '&nbsp;', $wpjobportal_msgBody);
         }
+        // No cover letter (add-on off, or none chosen for this application): drop the placeholder.
+        $wpjobportal_msgBody = wpjobportalphplib::wpJP_str_replace('{COVER_LETTER_DESCRIPTION}', '&nbsp;', $wpjobportal_msgBody);
 
         //$wpjobportal_msgBody['{EMAIL}'] = $EmployerEmail;
         $wpjobportal_emailconfig = wpjobportal::$_config->getConfigByFor('email');
@@ -2078,6 +2140,12 @@ class WPJOBPORTALjobapplyModel {
             case 7: // status
                 wpjobportal::$_data['sorting'] = ' app.status ';
                 break;
+            default:
+                // sorton arrives from the request and is not range-checked.
+                // Without this the column is never set and the query goes out
+                // as "ORDER BY  DESC".
+                wpjobportal::$_data['sorting'] = ' app.created ';
+                break;
         }
         if (wpjobportal::$_data['sortby'] == 1) {
             wpjobportal::$_data['sorting'] .= ' ASC ';
@@ -2238,7 +2306,15 @@ class WPJOBPORTALjobapplyModel {
     function getJobApp($wpjobportal_jobid){
         if(!is_numeric($wpjobportal_jobid))
             return false;
-        $query = "SELECT job.*, cat.cat_title, jobtype.title AS jobtypetitle, company.name AS companyname ,company.logofilename AS logo ,company.id AS companyid,salaryrangetype.title AS salaryrangetype,jobtype.color AS jobtypecolor,( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE jobid = job.id) AS totalresume
+        /*
+         * The job above an administrator's list of applications, by the names
+         * the employer's own query uses as well as the admin screen's: an
+         * administrator opening the page on the front end is given this row,
+         * and the front-end templates read logofilename, jobaliasid,
+         * srangetypetitle and location - which this did not carry ("Undefined
+         * property: stdClass::$logofilename"). The admin names stay too.
+         */
+        $query = "SELECT job.*, cat.cat_title, jobtype.title AS jobtypetitle, company.name AS companyname ,company.logofilename AS logo ,company.logofilename ,CONCAT(job.alias,'-',job.id) AS jobaliasid ,company.id AS companyid,salaryrangetype.title AS salaryrangetype,salaryrangetype.title AS srangetypetitle,jobtype.color AS jobtypecolor,( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE jobid = job.id) AS totalresume
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
                 ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON job.jobcategory = cat.id
@@ -2248,6 +2324,11 @@ class WPJOBPORTALjobapplyModel {
                 WHERE job.status != 0 AND job.id = %d";
         $query = wpjobportal::$_db->prepare($query, $wpjobportal_jobid);
         $wpjobportal_result = wpjobportaldb::get_results($query);
+        foreach ((array) $wpjobportal_result as $wpjobportal_row) {
+            if (!isset($wpjobportal_row->location)) {
+                $wpjobportal_row->location = WPJOBPORTALincluder::getJSModel('city')->getLocationDataForView($wpjobportal_row->city);
+            }
+        }
 
         return $wpjobportal_result;
     }
@@ -2299,6 +2380,10 @@ class WPJOBPORTALjobapplyModel {
         if(is_numeric($wpjobportal_store_resume_for_apply)){ // regular job apply
             return $this->jobapply(1);
         }
+        // Quick apply refused. Nothing was returned here before, which the controller took for success,
+        // so a visitor whose captcha failed also read "Successfully applied on job". false = refused
+        // with its own message already set (captcha); anything else is a save error.
+        return $wpjobportal_store_resume_for_apply === false ? false : WPJOBPORTAL_SAVE_ERROR;
     }
 
 }

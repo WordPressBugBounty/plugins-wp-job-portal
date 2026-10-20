@@ -30,9 +30,9 @@ echo wp_kses(WPJOBPORTALformfield::hidden('resume_temp', wpjobportal::$wpjobport
             </div>
         </div>
     </div>
-    <div class="wjportal-main-wrapper wjportal-clearfix" <?php if (isset($_COOKIE['wpjobportal_apply_visitor'])) echo 'style="padding-bottom:63px;"'; ?>>
+    <div class="wjportal-main-wrapper wjportal-clearfix" <?php if (WPJOBPORTALrequest::hasCookie('wpjobportal_apply_visitor')) echo 'style="padding-bottom:63px;"'; ?>>
         <?php $wpjobportal_msg = isset(wpjobportal::$_data[0]) ? esc_html(__('Edit Resume', 'wp-job-portal')) : esc_html(__('Add New Resume', 'wp-job-portal'));
-            if(isset($_COOKIE['wpjobportal_apply_visitor'])){
+            if(WPJOBPORTALrequest::hasCookie('wpjobportal_apply_visitor')){
                 if (!is_user_logged_in()) {
                     $wpjobportal_msg = esc_html(__('Job Apply', 'wp-job-portal'));
                 }
@@ -55,9 +55,9 @@ echo wp_kses(WPJOBPORTALformfield::hidden('resume_temp', wpjobportal::$wpjobport
         }
         ?>
         <?php
-        if(isset($_COOKIE['wpjobportal_apply_visitor']) && in_array('visitorapplyjob', wpjobportal::$_active_addons)){
+        if(WPJOBPORTALrequest::hasCookie('wpjobportal_apply_visitor') && in_array('visitorapplyjob', wpjobportal::$_active_addons)){
             if (!is_user_logged_in()) {
-                $wpjobportal_visitorJobInfo = apply_filters('wpjobportal_wpjobaddnos_visitor_apply_job',false,absint(wp_unslash($_COOKIE['wpjobportal_apply_visitor'])),wpjobportal::$_data['jobinfo'],wpjobportal::$_configuration['labelinlisting']);
+                $wpjobportal_visitorJobInfo = apply_filters('wpjobportal_wpjobaddnos_visitor_apply_job',false,absint(WPJOBPORTALrequest::cookie('wpjobportal_apply_visitor', '')),wpjobportal::$_data['jobinfo'],wpjobportal::$_configuration['labelinlisting']);
             }
         }
         ////***For Calling Input Parameter***///

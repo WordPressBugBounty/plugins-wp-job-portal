@@ -46,4 +46,7 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("Bourem", "Bourem", "Bourem", NULL, 171, 0, 1, NULL, "16.9575282", "-0.3468008"),
 ("Ansongo", "Ansongo", "Ansongo", NULL, 171, 0, 1, NULL, "15.6639257", "0.5067841"),
 ("Ménaka", "Ménaka", "Ménaka", NULL, 171, 0, 1, NULL, "15.9167", "2.4"),
-("Kidal", "Kidal", "Kidal", NULL, 171, 0, 1, NULL, "18.4408358", "1.4075395");
+("Kidal", "Kidal", "Kidal", NULL, 171, 0, 1, NULL, "18.4408358", "1.4075395"),
+("Araouane", "Araouane", "Araouane", NULL, 171, 0, 1, NULL, "18.904265", "-3.5275161"),
+("Kayes Ndi", "Kayes Ndi", "Kayes Ndi", NULL, 171, 0, 1, NULL, "11.3223834", "-5.6983979"),
+("Kinmparana", "Kinmparana", "Kinmparana", NULL, 171, 0, 1, NULL, "12.8371919", "-4.9221114");

@@ -42,4 +42,11 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("الأبيار", "الأبيار", "Al Abyar", NULL, 168, 0, 1, NULL, "32.1896453", "20.5945086"),
 ("المرج", "المرج", "Marj", NULL, 168, 0, 1, NULL, "32.4853167", "20.832738"),
 ("البيضاء", "البيضاء", "Bayda", NULL, 168, 0, 1, NULL, "32.7609529", "21.7577175"),
-("طبرق", "طبرق", "Tubruq", NULL, 168, 0, 1, NULL, "32.0773764", "23.9599988");
+("طبرق", "طبرق", "Tubruq", NULL, 168, 0, 1, NULL, "32.0773764", "23.9599988"),
+("Sabratah", "Sabratah", "Sabratah", NULL, 168, 0, 1, NULL, "32.7811016", "12.4495221"),
+("Al Burayqah", "Al Burayqah", "Al Burayqah", NULL, 168, 0, 1, NULL, "30.41", "19.57"),
+("Al Jadid", "Al Jadid", "Al Jadid", NULL, 168, 0, 1, NULL, "27.5666667", "41.4"),
+("Al Khums", "Al Khums", "Al Khums", NULL, 168, 0, 1, NULL, "32.6359024", "14.2570364"),
+("Al Marj", "Al Marj", "Al Marj", NULL, 168, 0, 1, NULL, "32.4982249", "20.8195292"),
+("Al Qubbah", "Al Qubbah", "Al Qubbah", NULL, 168, 0, 1, NULL, "32.7674911", "22.2324406"),
+("Al Aquriyah", "Al Aquriyah", "Al Aquriyah", NULL, 168, 0, 1, NULL, "32.7473047", "12.5642261");

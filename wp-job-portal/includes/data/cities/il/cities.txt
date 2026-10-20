@@ -38,4 +38,15 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("طمرة", "طمرة", "Tamra", NULL, 110, 0, 1, NULL, "32.8534876", "35.1978748"),
 ("سخنين", "سخنين", "Sakhnin", NULL, 110, 0, 1, NULL, "32.8638052", "35.3023184"),
 ("כרמיאל", "כרמיאל", "Carmiel", NULL, 110, 0, 1, NULL, "32.9159104", "35.293429"),
-("קצרין", "קצרין", "Katzrin", NULL, 110, 0, 1, NULL, "32.9920262", "35.6877004");
+("קצרין", "קצרין", "Katzrin", NULL, 110, 0, 1, NULL, "32.9920262", "35.6877004"),
+("Abu Ghaush", "Abu Ghaush", "Abu Ghaush", NULL, 110, 0, 1, NULL, "31.806293", "35.109193"),
+("Afula Illit", "Afula Illit", "Afula Illit", NULL, 110, 0, 1, NULL, "32.6268236", "35.3190602"),
+("Akko", "Akko", "Akko", NULL, 110, 0, 1, NULL, "32.933052", "35.082678"),
+("Ashqelon", "Ashqelon", "Ashqelon", NULL, 110, 0, 1, NULL, "31.6687885", "34.5742523"),
+("Atlit", "Atlit", "Atlit", NULL, 110, 0, 1, NULL, "32.690875", "34.942914"),
+("Azor", "Azor", "Azor", NULL, 110, 0, 1, NULL, "32.029558", "34.799648"),
+("Basmat Tabun", "Basmat Tabun", "Basmat Tabun", NULL, 110, 0, 1, NULL, "32.736287", "35.1532"),
+("Beit Jann", "Beit Jann", "Beit Jann", NULL, 110, 0, 1, NULL, "32.965655", "35.381268"),
+("Bene  Ayish", "Bene  Ayish", "Bene  Ayish", NULL, 110, 0, 1, NULL, "31.790235", "34.759291"),
+("Bene Beraq", "Bene Beraq", "Bene Beraq", NULL, 110, 0, 1, NULL, "32.084932", "34.835226"),
+("Bet Dagan", "Bet Dagan", "Bet Dagan", NULL, 110, 0, 1, NULL, "32.0017816", "34.8297087");

@@ -14,7 +14,7 @@ if(!WPJOBPORTALincluder::getTemplate('templates/header',array('wpjobportal_modul
                 WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('wpjobportal_module'=>'job','wpjobportal_layout'=>'jobcities'));
             ?>
         </div>
-        <div class="wjportal-by-type-wrp">
+        <div class="wjportal-by-type-wrp wjportal-by-cities-wrp">
             <?php
                 $wpjobportal_number = wpjobportal::$_configuration['jobcity_per_row'];
                 if ($wpjobportal_number < 1 || $wpjobportal_number > 100) {

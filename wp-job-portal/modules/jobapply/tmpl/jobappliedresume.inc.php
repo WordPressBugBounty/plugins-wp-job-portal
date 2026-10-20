@@ -3,7 +3,7 @@
 
 // to handle the email candidate case
 $wpjobportal_jobid = WPJOBPORTALrequest::getVar('jobid','','');
-    wp_register_script( 'wpjobportal-inline-handle', '' );
+    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
     $wpjobportal_inline_js_script = "
@@ -260,8 +260,10 @@ $wpjobportal_jobid = WPJOBPORTALrequest::getVar('jobid','','');
             }if(jQuery('#title').length > 0 && jQuery('#title').val() != ''){
                 document.getElementById('title').value = '';
             }
-            document.getElementById('job_form').submit();
-            document.getElementById('wpjobportalform-search').submit();
+            // The search panel sits inside the list's form, where a browser
+            // drops its own <form>; the list's form is the one that submits.
+            var wpjpListForm = document.getElementById('job_form') || document.getElementById('wpjobportalform-search');
+            if (wpjpListForm) { wpjpListForm.submit(); }
         }
 
         function setRating(src,newrating){

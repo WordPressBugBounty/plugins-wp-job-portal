@@ -9,10 +9,50 @@ if (!defined('ABSPATH'))
     }
 
 
-    if (wpjobportal::$_error_flag == null) { ?>
+    if (wpjobportal::$_error_flag == null) {
+        /**
+         * Premium extensions may claim the native dashboard content area for a
+         * role-scoped view while preserving WP Job Portal's page shell and menu.
+         */
+        $wpjobportal_extension_view_active = (bool) apply_filters(
+            'wpjobportal_employer_dashboard_extension_view_active',
+            false
+        );
+        $wpjobportal_extension_view_title = (string) apply_filters(
+            'wpjobportal_employer_dashboard_extension_view_title',
+            ''
+        );
+        ?>
         <div class="wjportal-main-wrapper wjportal-clearfix">
             <div class="wjportal-page-header">
-                <?php WPJOBPORTALincluder::getTemplate('templates/pagetitle', array('wpjobportal_module' => 'employer','wpjobportal_layout' => 'employer_cp' ));
+                <?php
+                    if ($wpjobportal_extension_view_active && $wpjobportal_extension_view_title !== '') {
+                        /*
+                         * An add-on view still needs the trail.
+                         *
+                         * templates/pagetitle draws the heading and the
+                         * breadcrumbs together, so taking the heading into our
+                         * own hands here quietly took the breadcrumbs with it,
+                         * and every Recruit Suite and Marketplace screen lost
+                         * the one way back that Core gives every other page.
+                         */
+                        echo '<div class="wjportal-page-heading">' . esc_html($wpjobportal_extension_view_title) . '</div>';
+                        if (!WPJOBPORTALincluder::renderingOverride()) {
+                            // The trail ends on the view's own title, as on any
+                            // other page, not on "Control Panel".
+                            $wpjobportal_leaf = function ($wpjobportal_crumbs) use ($wpjobportal_extension_view_title) {
+                                if (is_array($wpjobportal_crumbs) && !empty($wpjobportal_crumbs)) {
+                                    $wpjobportal_crumbs[count($wpjobportal_crumbs) - 1]['text'] = $wpjobportal_extension_view_title;
+                                }
+                                return $wpjobportal_crumbs;
+                            };
+                            add_filter('wpjobportal_breadcrumbs', $wpjobportal_leaf, 20);
+                            WPJOBPORTALbreadcrumbs::getBreadcrumbs();
+                            remove_filter('wpjobportal_breadcrumbs', $wpjobportal_leaf, 20);
+                        }
+                    } else {
+                        WPJOBPORTALincluder::getTemplate('templates/pagetitle', array('wpjobportal_module' => 'employer','wpjobportal_layout' => 'employer_cp' ));
+                    }
                     $wpjobportal_guestflag = false;
                     $wpjobportal_visitorallowed = wpjobportal::$_config->getConfigurationByConfigName('visitorview_emp_conrolpanel');
                     $wpjobportal_isouruser = WPJOBPORTALincluder::getObjectClass('user')->isWPJOBPortalUser();
@@ -27,12 +67,32 @@ if (!defined('ABSPATH'))
             </div>
             <div id="wjportal-emp-cp-wrp">
                 <?php
+                /**
+                 * A header for somebody this panel was not built for.
+                 *
+                 * The band below - the avatar, the name, Add Job and Edit
+                 * Profile - is printed only for an employer or an admin, which
+                 * is right: it is about the person who owns the account. A
+                 * recruiter on a company's team holds no portal role, so the
+                 * panel opened straight onto the content with nothing at the
+                 * top at all - no name, no company, no way back to the company
+                 * they are recruiting for.
+                 *
+                 * An extension that knows who else may be standing here can
+                 * say so. Whoever listens is responsible for deciding that the
+                 * person is theirs, and for printing nothing when they are not.
+                 *
+                 * @param array $wpjobportal_data The dashboard's own data.
+                 */
+                do_action('wpjobportal_employer_dashboard_header', wpjobportal::$_data);
+                ?>
+                <?php
                 $wpjobportal_employer_profile_section = wpjobportal::$_config->getConfigurationByConfigName('employer_profile_section');
                 $wpjobportal_print_employerstatboxes = false;
                 if(WPJOBPORTALincluder::getObjectClass('user')->isemployer()){
                     $wpjobportal_print_employerstatboxes = wpjobportal_employercheckLinks('employerstatboxes');
                 }
-                if((WPJOBPORTALincluder::getObjectClass('user')->isemployer() || wpjobportal::$_common->wpjp_isadmin()) && ($wpjobportal_employer_profile_section == 1 || $wpjobportal_print_employerstatboxes) ) { ?>
+                if(!$wpjobportal_extension_view_active && (WPJOBPORTALincluder::getObjectClass('user')->isemployer() || wpjobportal::$_common->wpjp_isadmin()) && ($wpjobportal_employer_profile_section == 1 || $wpjobportal_print_employerstatboxes) ) { ?>
                     <div class="wjportal-cp-top">
                         <?php
                         if($wpjobportal_employer_profile_section == 1 && empty(wpjobportal::$_data['shortcode_option_hide_profile_section'])){
@@ -201,6 +261,13 @@ if (!defined('ABSPATH'))
                 }
                 ?>
 		<div class="wjportal-cp-content-mainwrp">
+                <?php
+                /*
+                 * The menu stays on an add-on screen shown in this shell
+                 * (Recruiting, Marketplace) too, so the way to every other
+                 * dashboard screen is where it is everywhere else.
+                 */
+                ?>
                 <div class="wjportal-cp-left"><?php
                      ?>
                     <div class="wjportal-cp-short-links-wrp">
@@ -210,9 +277,16 @@ if (!defined('ABSPATH'))
                         <div class="wjportal-cp-short-links-list">
                             <?php
                                 //$wpjobportal_arrayList = array('1' => array('formjob','myjobs','resumesearch','resumebycategory','my_resumesearches','formcompany','mycompanies','formdepartment','mydepartment','empmessages','myfolders','newfolders','invoice','empresume_rss','empregister','emploginlogout'));
+                                /*
+                                 * The menu is folded into collapsible sections
+                                 * after it is built, so that the sections an
+                                 * add-on contributes are folded with the rest.
+                                 */
+                                ob_start();
                                 WPJOBPORTALincluder::getTemplate('employer/views/leftmenue', array(
 
                                 ));
+                                echo wpjobportal_group_control_panel_menu(ob_get_clean()); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                 // WPJOBPORTALincluder::getTemplate('employer/views/leftmenue', array(
                                 //     'layout' =>reset($wpjobportal_arrayList)
                                 // ));
@@ -223,9 +297,18 @@ if (!defined('ABSPATH'))
 
                 <div class="wjportal-cp-right">
                     <?php
+                    if ($wpjobportal_extension_view_active) {
+                        do_action(
+                            'wpjobportal_employer_dashboard_extension_view',
+                            WPJOBPORTALincluder::getObjectClass('user')->uid(),
+                            wpjobportal::$_data
+                        );
+                    } else {
                     if(empty(wpjobportal::$_data['shortcode_option_hide_graph'])){
                         $wpjobportal_print = wpjobportal_employercheckLinks('jobs_graph');
-                        if ($wpjobportal_print) { ?>
+                        // An empty frame with a heading and no chart in it is
+                        // worse than no section at all.
+                        if ($wpjobportal_print && !WPJOBPORTALincluder::getObjectClass('user')->isguest() && !empty(wpjobportal::$_data['stack_chart_horizontal']['data'])) { ?>
                         <div id="job-applied-resume-wrapper" class="wjportal-cp-graph-wrp wjportal-cp-sect-wrp">
                             <div class="wjportal-cp-sec-title">
                                 <?php echo esc_html(__('Applied Jobs','wp-job-portal')); ?>
@@ -233,13 +316,30 @@ if (!defined('ABSPATH'))
                             <?php WPJOBPORTALincluder::getTemplate('employer/views/graph'); ?>
                         </div>    <?php
                         }
+
+                    /*
+                     * Recruiting before the reading matter.
+                     *
+                     * This surface was printed last, under the graph, Recent
+                     * Applications, Suggested Resumes and the invoices - so the
+                     * one block that says what needs doing today, open tasks,
+                     * upcoming interviews, approvals waiting, unread alerts, was
+                     * the one nobody scrolled to. It goes above the lists, for the
+                     * same reason the candidate portal leads with work.
+                     */
+                    /** Native dashboard surface for employer-facing premium extensions. */
+                    do_action(
+                        'wpjobportal_employer_dashboard_extension_content',
+                        WPJOBPORTALincluder::getObjectClass('user')->uid(),
+                        wpjobportal::$_data
+                    );
                     }
                     if(empty(wpjobportal::$_data['shortcode_option_hide_recent_applications'])){
                         $wpjobportal_print = wpjobportal_employercheckLinks('employerresumebox');
                         if ($wpjobportal_print) { ?>
                             <div id="job-applied-resume-wrapper" class="wjportal-cp-sect-wrp wjportal-applied-resume-wrp">
                                 <div class="wjportal-cp-sec-title">
-                                    <?php echo esc_html(__("Recent Application's","wp-job-portal")); ?>
+                                    <?php echo esc_html(__("Recent Applications","wp-job-portal")); ?>
                                 </div>
                                 <div class="wjportal-cp-cnt">
                                     <?php WPJOBPORTALincluder::getTemplate('employer/views/recentapplication');?>
@@ -284,6 +384,8 @@ if (!defined('ABSPATH'))
                             }
                         }
                     }
+
+                    }
                     ?>
                 </div>
             </div>
@@ -293,8 +395,8 @@ if (!defined('ABSPATH'))
             // Blueprint: wpjobportal_employer_dashboard_loaded
             // Executes when the employer portal initializes.
             // Essential for third-party scripts to inject operational alerts, such as pulling external billing data from an accounting API.
-            $employer_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
-            do_action('wpjobportal_employer_dashboard_loaded', $employer_uid, wpjobportal::$_data);
+            $wpjobportal_employer_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
+            do_action('wpjobportal_employer_dashboard_loaded', $wpjobportal_employer_uid, wpjobportal::$_data);
             // --- NEW HOOK INTEGRATION END ---
 
             ?>

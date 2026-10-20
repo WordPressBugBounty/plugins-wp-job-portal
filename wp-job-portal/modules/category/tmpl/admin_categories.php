@@ -1,6 +1,6 @@
 <?php if (!defined('ABSPATH')) die('Restricted Access'); ?>
 <?php
-wp_register_script( 'wpjobportal-inline-handle', '' );
+wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
 wp_enqueue_script( 'wpjobportal-inline-handle' );
 
 $wpjobportal_inline_js_script = "
@@ -12,7 +12,7 @@ $wpjobportal_inline_js_script = "
     ";
 wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 
-    wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js');
+    wp_enqueue_script( 'wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js', array(), wpjobportal_asset_version('includes/js/responsivetable.js'), false );
     if (!WPJOBPORTALincluder::getTemplate('templates/admin/header',array('wpjobportal_module' => 'category'))){
         return;
     }

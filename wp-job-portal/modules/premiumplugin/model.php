@@ -5,11 +5,51 @@ if (!defined('ABSPATH'))
 
 class WPJOBPORTALpremiumpluginModel {
 
+    /** Where a licence message waits until there is a screen to show it on. */
+    const NOTICE_TRANSIENT = 'wpjobportal_licence_notices';
+
     private static $wpjobportal_server_url = 'https://wpjobportal.com/setup/index.php';
 
     function verfifyAddonActivation($wpjobportal_addon_name){
         $wpjobportal_option_name = 'transaction_key_for_wp-job-portal-'.$wpjobportal_addon_name;
         $wpjobportal_transaction_key = wpjobportal::$_common->getTranskey($wpjobportal_option_name);
+
+        // An add-on now sold inside a suite is unlocked by the suite's licence.
+        // Its own key still wins where there is one, so a customer who bought it
+        // separately before it joined the suite is asked to do nothing at all;
+        // only a site with no key of its own falls through. The slug has to
+        // follow the token — the server validates a Suite key against the Suite,
+        // not against the add-on it covers.
+        $wpjobportal_verify_slug = $wpjobportal_addon_name;
+
+        if (empty($wpjobportal_transaction_key) && class_exists('WPJOBPORTAL_Product_Map')) {
+            $wpjobportal_covering = WPJOBPORTAL_Product_Map::licence_key_for($wpjobportal_addon_name);
+            if (!empty($wpjobportal_covering['key'])) {
+                $wpjobportal_products = WPJOBPORTAL_Product_Map::products();
+                $wpjobportal_owner = $wpjobportal_covering['source'];
+                if (isset($wpjobportal_products[$wpjobportal_owner]['licence'])
+                    && $wpjobportal_products[$wpjobportal_owner]['licence'] !== ''
+                ) {
+                    $wpjobportal_transaction_key = $wpjobportal_covering['key'];
+                    $wpjobportal_verify_slug = $wpjobportal_products[$wpjobportal_owner]['licence'];
+                }
+            }
+        }
+
+        // Since 2.7.0 one licence key covers every product. It is kept by
+        // WPJOBPORTAL_Licence_Client, which checks it with the store and shows
+        // the result on the Licences screen. Recruit Suite and the Marketplace
+        // Suite's credits module still call this per-add-on check when they
+        // are activated; with no per-add-on key it used to report "License key
+        // not found" on a site whose licence was active. When the site has the
+        // one key, that check is the one that counts, so say nothing here.
+        if (empty($wpjobportal_transaction_key)
+            && class_exists('WPJOBPORTAL_Licence_Client')
+            && WPJOBPORTAL_Licence_Client::key() !== ''
+        ) {
+            return true;
+        }
+
         try {
             if (! $wpjobportal_transaction_key ) {
                 throw new Exception( 'License key not found' );
@@ -19,7 +59,7 @@ class WPJOBPORTALpremiumpluginModel {
             }
             $wpjobportal_activate_results = $this->activate( array(
                 'token'    => $wpjobportal_transaction_key,
-                'plugin_slug'    => $wpjobportal_addon_name
+                'plugin_slug'    => $wpjobportal_verify_slug
             ) );
             if ( false === $wpjobportal_activate_results ) {
                 throw new Exception( 'Connection failed to the server' );
@@ -30,10 +70,48 @@ class WPJOBPORTALpremiumpluginModel {
             }
             throw new Exception( 'License could not activate. Please contact support.' );
         } catch ( Exception $e ) {
-            echo '<div class="notice notice-error is-dismissible">
-                    <p>'.esc_html($e->getMessage()).'.</p>
-                </div>';
+            self::noticeLater($e->getMessage());
             return false;
+        }
+    }
+
+    /**
+     * Say it where a notice is meant to be said.
+     *
+     * This used to echo straight out of the catch block, and the licence
+     * check runs inside register_activation_hook(). Anything printed there is
+     * "unexpected output" to WordPress: it refuses to report a clean
+     * activation and tells the customer the plugin is broken, which on a site
+     * with no licence key yet - every site, the first time - is every add-on
+     * they activate. On an ordinary request the same echo lands wherever the
+     * code happened to run, above the admin header or inside a redirect.
+     *
+     * The message is worth showing, so it is held over and rendered on the
+     * next admin screen instead of thrown at the output stream.
+     */
+    public static function noticeLater($wpjobportal_message) {
+        $wpjobportal_message = trim((string) $wpjobportal_message);
+        if ($wpjobportal_message === '') {
+            return;
+        }
+        $wpjobportal_queue = get_transient(self::NOTICE_TRANSIENT);
+        $wpjobportal_queue = is_array($wpjobportal_queue) ? $wpjobportal_queue : array();
+        if (!in_array($wpjobportal_message, $wpjobportal_queue, true)) {
+            $wpjobportal_queue[] = $wpjobportal_message;
+        }
+        set_transient(self::NOTICE_TRANSIENT, array_slice($wpjobportal_queue, -5), 5 * MINUTE_IN_SECONDS);
+    }
+
+    /** Print whatever the licence check had to say, once, and forget it. */
+    public static function renderNotices() {
+        $wpjobportal_queue = get_transient(self::NOTICE_TRANSIENT);
+        if (empty($wpjobportal_queue) || !is_array($wpjobportal_queue)) {
+            return;
+        }
+        delete_transient(self::NOTICE_TRANSIENT);
+        foreach ($wpjobportal_queue as $wpjobportal_message) {
+            echo '<div class="notice notice-error is-dismissible"><p>'
+                . esc_html($wpjobportal_message) . '.</p></div>';
         }
     }
 
@@ -75,7 +153,7 @@ class WPJOBPORTALpremiumpluginModel {
         }
 
         if ( wp_remote_retrieve_response_code( $wpjobportal_request ) != 200 ) {
-            return wp_json_encode( array( 'error_code' => wp_remote_retrieve_response_code( $wpjobportal_request ), 'error' => 'Error code: ' . wp_remote_retrieve_response_code( $wpjobportal_request ) ) );
+            return wp_json_encode( array( 'error_code' => wp_remote_retrieve_response_code( $wpjobportal_request ), 'error' => __('Error code:', 'wp-job-portal') . ' ' . wp_remote_retrieve_response_code( $wpjobportal_request ) ) );
         }
         $response =  wp_remote_retrieve_body( $wpjobportal_request );
         $response = json_decode($response,true);
@@ -152,7 +230,7 @@ class WPJOBPORTALpremiumpluginModel {
         }
 
         if ( wp_remote_retrieve_response_code( $wpjobportal_request ) != 200 ) {
-            return wp_json_encode( array( 'error_code' => wp_remote_retrieve_response_code( $wpjobportal_request ), 'error' => 'Error code: ' . wp_remote_retrieve_response_code( $wpjobportal_request ) ) );
+            return wp_json_encode( array( 'error_code' => wp_remote_retrieve_response_code( $wpjobportal_request ), 'error' => __('Error code:', 'wp-job-portal') . ' ' . wp_remote_retrieve_response_code( $wpjobportal_request ) ) );
         }
 
         $response =  wp_remote_retrieve_body( $wpjobportal_request );
@@ -187,7 +265,7 @@ class WPJOBPORTALpremiumpluginModel {
         }
 
         if ( wp_remote_retrieve_response_code( $wpjobportal_request ) != 200 ) {
-            return wp_json_encode( array( 'error_code' => wp_remote_retrieve_response_code( $wpjobportal_request ), 'error' => 'Error code: ' . wp_remote_retrieve_response_code( $wpjobportal_request ) ) );
+            return wp_json_encode( array( 'error_code' => wp_remote_retrieve_response_code( $wpjobportal_request ), 'error' => __('Error code:', 'wp-job-portal') . ' ' . wp_remote_retrieve_response_code( $wpjobportal_request ) ) );
         }
 
         $response =  wp_remote_retrieve_body( $wpjobportal_request );
@@ -199,10 +277,7 @@ class WPJOBPORTALpremiumpluginModel {
             require_once ABSPATH . 'wp-admin/includes/file.php';
         }
         global $wp_filesystem;
-        if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-            $creds = request_filesystem_credentials( site_url() );
-            wp_filesystem( $creds );
-        }
+        $wp_filesystem = wpjobportal::wpjobportal_filesystem();
 
         if($wpjobportal_installedversion != "" && $wpjobportal_newversion != ""){
             for ($wpjobportal_i = ($wpjobportal_installedversion + 1); $wpjobportal_i <= $wpjobportal_newversion; $wpjobportal_i++) {
@@ -210,22 +285,27 @@ class WPJOBPORTALpremiumpluginModel {
 
                 // Check if the file exists
                 if ($wp_filesystem->exists($wpjobportal_installfile)) {
-                    $wpjobportal_delimiter = ';';
                     // Get the file contents
                     $file_contents = $wp_filesystem->get_contents($wpjobportal_installfile);
                     if ($file_contents !== false) {
-                        $lines = explode("\n", $file_contents);
-                        $query = array();
+                        /*
+                         * One splitter for every SQL file this plugin runs.
+                         *
+                         * This loop joined a statement's lines with implode() and no
+                         * separator, and ended a statement on a semicolon that merely
+                         * closed a comment, so an add-on migration written over more
+                         * than one line would have reached MySQL with its words glued
+                         * together. Core had the same reader, and its own 270.sql is
+                         * the first migration not written one statement to a line.
+                         */
+                        $wpjobportal_statements = class_exists('WPJOBPORTAL_Migration_Service')
+                            ? WPJOBPORTAL_Migration_Service::split_sql($file_contents)
+                            : array();
 
-                        foreach ($lines as $line) {
-                            $query[] = $line;
-                            if (wpjobportalphplib::wpJP_preg_match('~' . preg_quote($wpjobportal_delimiter, '~') . '\s*$~iS', end($query)) === 1) {
-                                $query_string = wpjobportalphplib::wpJP_trim(implode('', $query));
-                                $query_string = wpjobportalphplib::wpJP_str_replace("#__", wpjobportal::$_db->prefix, $query_string);
-                                if (!empty($query_string)) {
-                                    wpjobportal::$_db->query($query_string);
-                                }
-                                $query = array();
+                        foreach ($wpjobportal_statements as $query_string) {
+                            $query_string = wpjobportalphplib::wpJP_str_replace("#__", wpjobportal::$_db->prefix, $query_string);
+                            if (!empty($query_string)) {
+                                wpjobportal::$_db->query($query_string);
                             }
                         }
                     } else {
@@ -293,7 +373,7 @@ class WPJOBPORTALpremiumpluginModel {
         }
 
         if ( wp_remote_retrieve_response_code( $wpjobportal_request ) != 200 ) {
-            return wp_json_encode( array( 'error_code' => wp_remote_retrieve_response_code( $wpjobportal_request ), 'error' => 'Error code: ' . wp_remote_retrieve_response_code( $wpjobportal_request ) ) );
+            return wp_json_encode( array( 'error_code' => wp_remote_retrieve_response_code( $wpjobportal_request ), 'error' => __('Error code:', 'wp-job-portal') . ' ' . wp_remote_retrieve_response_code( $wpjobportal_request ) ) );
         }
 
         $response =  wp_remote_retrieve_body( $wpjobportal_request );

@@ -38,4 +38,15 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("Salvaleón de Higüey", "Salvaleón de Higüey", "Salvaleón de Higüey", NULL, 12, 0, 1, NULL, "18.6127983", "-68.7119822"),
 ("Punta Cana", "Punta Cana", "Punta Cana", NULL, 12, 0, 1, NULL, "18.556551", "-68.3691611"),
 ("San Fernando de Monte Cristi", "San Fernando de Monte Cristi", "San Fernando de Monte Cristi", NULL, 12, 0, 1, NULL, "19.848379", "-71.6456653"),
-("Puerto Plata", "Puerto Plata", "Puerto Plata", NULL, 12, 0, 1, NULL, "19.7893977", "-70.6940515");
+("Puerto Plata", "Puerto Plata", "Puerto Plata", NULL, 12, 0, 1, NULL, "19.7893977", "-70.6940515"),
+("Arenoso", "Arenoso", "Arenoso", NULL, 12, 0, 1, NULL, "19.1875925", "-69.8604852"),
+("Azua De Compostela", "Azua De Compostela", "Azua De Compostela", NULL, 12, 0, 1, NULL, "18.4531742", "-70.7346887"),
+("Bahoruco", "Bahoruco", "Bahoruco", NULL, 12, 0, 1, NULL, "18.4879898", "-71.4182249"),
+("Bajos De Haina", "Bajos De Haina", "Bajos De Haina", NULL, 12, 0, 1, NULL, "18.423482", "-70.03245"),
+("Banica", "Banica", "Banica", NULL, 12, 0, 1, NULL, "19.0800097", "-71.70738"),
+("Barahona", "Barahona", "Barahona", NULL, 12, 0, 1, NULL, "18.2120807", "-71.1024076"),
+("Bayaguana", "Bayaguana", "Bayaguana", NULL, 12, 0, 1, NULL, "18.7561818", "-69.636351"),
+("Bohechio", "Bohechio", "Bohechio", NULL, 12, 0, 1, NULL, "18.7743829", "-70.9888579"),
+("Cabral", "Cabral", "Cabral", NULL, 12, 0, 1, NULL, "18.2483336", "-71.2176279"),
+("Cabrera", "Cabrera", "Cabrera", NULL, 12, 0, 1, NULL, "19.6263536", "-69.9000612"),
+("Cambita Garabitos", "Cambita Garabitos", "Cambita Garabitos", NULL, 12, 0, 1, NULL, "18.4541681", "-70.1976733");

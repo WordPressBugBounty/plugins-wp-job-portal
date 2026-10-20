@@ -1,21 +1,21 @@
 <?php
 if (!defined('ABSPATH'))
     die('Restricted Access');
-wp_enqueue_script('tinymcewpjobportal.js', site_url('wp-includes/js/tinymce/tinymce.min.js'));
+wp_enqueue_script( 'tinymcewpjobportal.js', site_url('wp-includes/js/tinymce/tinymce.min.js'), array(), WPJOBPORTAL_VERSION, false );
 wp_enqueue_script('jquery-ui-datepicker');
-//wp_enqueue_script('multi-files-selector', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/multi-files-selector.js');
-$wpjobportal_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+//wp_enqueue_script( 'multi-files-selector', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/multi-files-selector.js', array(), WPJOBPORTAL_VERSION, false );
+$wpjobportal_protocol = is_ssl() ? "https://" : "http://";
 
 $wpjobportal_mappingservice = wpjobportal::$_config->getConfigValue('mappingservice');
-wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jquery-ui-smoothness.css');
+wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jquery-ui-smoothness.css', array(), wpjobportal_asset_version('includes/css/jquery-ui-smoothness.css'));
 
 if($wpjobportal_mappingservice == "gmap"){
-    wp_register_script ( 'wpjp-google-map-js', $wpjobportal_protocol . 'maps.googleapis.com/maps/api/js?key=' . wpjobportal::$_configuration['google_map_api_key'] );
+    wp_register_script ( 'wpjp-google-map-js', $wpjobportal_protocol . 'maps.googleapis.com/maps/api/js?key=' . wpjobportal::$_configuration['google_map_api_key'], array(), WPJOBPORTAL_VERSION, false );
     wp_enqueue_script ( 'wpjp-google-map-js' );
 }elseif ($wpjobportal_mappingservice == "osm") {
-    wp_register_script ( 'wpjp-osm-map-js', esc_url(WPJOBPORTAL_PLUGIN_URL).'/includes/js/ol.min.js' );
+    wp_register_script ( 'wpjp-osm-map-js', esc_url(WPJOBPORTAL_PLUGIN_URL).'/includes/js/ol.min.js', array(), wpjobportal_asset_version('includes/js/ol.min.js'), false );
     wp_enqueue_script( 'wpjp-osm-map-js' );
-    wp_enqueue_style( 'wpjp-osm-map-css', esc_url(WPJOBPORTAL_PLUGIN_URL).'/includes/css/ol.min.css' );
+    wp_enqueue_style( 'wpjp-osm-map-css', esc_url(WPJOBPORTAL_PLUGIN_URL).'/includes/css/ol.min.css', array(), wpjobportal_asset_version('includes/css/ol.min.css') );
 }
 $wpjobportal_config = wpjobportal::$_configuration;
 if ($wpjobportal_config['date_format'] == 'm/d/Y' || $wpjobportal_config['date_format'] == 'd/m/y' || $wpjobportal_config['date_format'] == 'm/d/y' || $wpjobportal_config['date_format'] == 'd/m/Y') {
@@ -42,7 +42,7 @@ $wpjobportal_resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[
 }
 </style>
 <?php
-    wp_register_script( 'wpjobportal-inline-handle', '' );
+    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
     $wpjobportal_inline_js_script = "
@@ -79,7 +79,7 @@ $wpjobportal_resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[
                     var filesize = (files[i].size / 1024);
                     var allowedExt = \"". wpjobportal::$_config->getConfigurationByConfigName('document_file_type')."\";
                     var allowedSize = \"". wpjobportal::$_config->getConfigurationByConfigName('document_file_size')."\";
-                    var maxFiles = ". wpjobportal::$_config->getConfigurationByConfigName('document_max_files').";
+                    var maxFiles = ". WPJOBPORTALincluder::getJSModel('common')->configAsJsNumber('document_max_files', 5).";
                     allowedExt = allowedExt.split(',').map(function(ext) {
                         return ext.trim().toLowerCase().replace(/^\.+/, '');
                     }).filter(Boolean);
@@ -849,7 +849,7 @@ $wpjobportal_resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[
             }
         });
         if (test == false) {
-            alert('Email is not of correct Format');
+            alert('" . esc_js(__('Email is not of correct Format', 'wp-job-portal')) . "');
         } else {
             var termsandcondtions = jQuery('div.wpjobportal-terms-and-conditions-wrap').attr('data-wpjobportal-terms-and-conditions');
             if(termsandcondtions == 1){
@@ -1145,10 +1145,10 @@ $wpjobportal_resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[
     wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 
     if(WPJOBPORTALincluder::getObjectClass('user')->isguest()){
-        $wpjobportal_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+        $wpjobportal_protocol = is_ssl() ? "https://" : "http://";
         $wpjobportal_config_array = wpjobportal::$_config->getConfigByFor('captcha');
         if($wpjobportal_config_array['captcha_selection'] == 1 && $wpjobportal_config_array['recaptcha_privatekey'] ){
-            wp_enqueue_script('wpjobportal-repaptcha-script-resume', $wpjobportal_protocol . 'www.google.com/recaptcha/api.js');
+            wp_enqueue_script( 'wpjobportal-repaptcha-script-resume', $wpjobportal_protocol . 'www.google.com/recaptcha/api.js', array(), WPJOBPORTAL_VERSION, false );
         }
     }
 ?>

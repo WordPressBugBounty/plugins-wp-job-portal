@@ -3,46 +3,40 @@
 // Prevent undefined variable warning for the editor description
 $wpjobportal_desc_editor = isset($wpjobportal_desc_editor) ? $wpjobportal_desc_editor : '';
 
-wp_enqueue_script(
-    'wpjobportal-marked-js',
-    WPJOBPORTAL_PLUGIN_URL . 'includes/js/zywrap/marked.min.js',
-    array('jquery'),
-    '',
-    true
-);
+wp_enqueue_script( 'wpjobportal-marked-js', WPJOBPORTAL_PLUGIN_URL . 'includes/js/zywrap/marked.min.js', array('jquery'), WPJOBPORTAL_VERSION, true );
 
 // Register handle for inline JS injection
-wp_register_script('wpjobportal-inline-handle', '');
+wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
 wp_enqueue_script('wpjobportal-inline-handle');
 
 // Prepare localized strings and safe variables for JS injection
-$locale_js = esc_js(get_user_locale());
-$ajax_url_js = esc_url(admin_url('admin-ajax.php'));
+$wpjobportal_locale_js = esc_js(get_user_locale());
+$wpjobportal_ajax_url_js = esc_url(admin_url('admin-ajax.php'));
 
-$str_ai_addition     = esc_html__('✨ AI ADDITION', 'wp-job-portal');
-$str_analyzing       = esc_html__('Analyzing parameters...', 'wp-job-portal');
-$str_yes             = esc_html__('Yes', 'wp-job-portal');
-$str_generated       = esc_html__('Content Generated!', 'wp-job-portal');
-$str_instructions    = esc_html__('✨ Company Copilot Instructions Applied:', 'wp-job-portal');
-$str_tone            = esc_html__('Tone:', 'wp-job-portal');
-$str_length          = esc_html__('Length:', 'wp-job-portal');
-$str_format          = esc_html__('Format:', 'wp-job-portal');
-$str_seo_target      = esc_html__('SEO Target:', 'wp-job-portal');
-$str_custom          = esc_html__('Custom:', 'wp-job-portal');
-$str_failed          = esc_html__('Generation Failed: ', 'wp-job-portal');
-$str_unknown         = esc_html__('Unknown error.', 'wp-job-portal');
-$str_server_err      = esc_html__('Server communication error. Please try again.', 'wp-job-portal');
-$str_generate_btn    = esc_html__('Generate Profile', 'wp-job-portal');
+$wpjobportal_str_ai_addition     = esc_html__('✨ AI ADDITION', 'wp-job-portal');
+$wpjobportal_str_analyzing       = esc_html__('Analyzing parameters...', 'wp-job-portal');
+$wpjobportal_str_yes             = esc_html__('Yes', 'wp-job-portal');
+$wpjobportal_str_generated       = esc_html__('Content Generated!', 'wp-job-portal');
+$wpjobportal_str_instructions    = esc_html__('✨ Company Copilot Instructions Applied:', 'wp-job-portal');
+$wpjobportal_str_tone            = esc_html__('Tone:', 'wp-job-portal');
+$wpjobportal_str_length          = esc_html__('Length:', 'wp-job-portal');
+$wpjobportal_str_format          = esc_html__('Format:', 'wp-job-portal');
+$wpjobportal_str_seo_target      = esc_html__('SEO Target:', 'wp-job-portal');
+$wpjobportal_str_custom          = esc_html__('Custom:', 'wp-job-portal');
+$wpjobportal_str_failed          = esc_html__('Generation Failed: ', 'wp-job-portal');
+$wpjobportal_str_unknown         = esc_html__('Unknown error.', 'wp-job-portal');
+$wpjobportal_str_server_err      = esc_html__('Server communication error. Please try again.', 'wp-job-portal');
+$wpjobportal_str_generate_btn    = esc_html__('Generate Profile', 'wp-job-portal');
 
 $wpjobportal_inline_js_script = '
-var wpjp_current_lang = "' . $locale_js . '";
+var wpjp_current_lang = "' . $wpjobportal_locale_js . '";
 
 jQuery(document).ready(function($) {
     window.ZywrapFormatter = {
         cleanRawMarkdown: function(text) { if (!text) return ""; return text.replace(/([^\s\n])\s+(#{1,6}\s+[A-Z])/g, "$1\n\n$2").replace(/([^\s\n])\s+(-\s+[A-Z0-9])/g, "$1\n$2"); },
         toHTML: function(markdownText) { var preppedText = this.cleanRawMarkdown(markdownText); if (typeof marked !== "undefined") { return marked.parse(preppedText, { breaks: true, gfm: true }); } return preppedText; },
         toPlainText: function(markdownText) { var html = this.toHTML(markdownText); html = html.replace(/<br\s*[\/ ]?>/gi, "\n"); html = html.replace(/<\/p>/gi, "\n\n"); html = html.replace(/<h[1-6]>(.*?)<\/h[1-6]>/gi, "\n=== $1 ===\n\n"); html = html.replace(/<li>(.*?)<\/li>/gi, " • $1\n"); html = html.replace(/<\/ul>/gi, "\n"); html = html.replace(/<\/ol>/gi, "\n"); var temp = document.createElement("div"); temp.innerHTML = html; var plainText = temp.innerText || temp.textContent; return plainText.trim().replace(/\n{3,}/g, "\n\n"); },
-        smartInsert: function(editorId, contentHtml, contentPlain) { var isVisualActive = typeof tinyMCE !== "undefined" && tinyMCE.get(editorId) && !jQuery("#wp-" + editorId + "-wrap").hasClass("html-active"); if (isVisualActive) { tinyMCE.get(editorId).execCommand("mceInsertContent", false, contentHtml); } else { var el = jQuery("#" + editorId); var currentContent = el.val().trim(); var spacer = currentContent ? "\n\n--- ' . $str_ai_addition . ' ---\n\n" : ""; el.val(currentContent + spacer + contentPlain); el.scrollTop(el[0].scrollHeight); } }
+        smartInsert: function(editorId, contentHtml, contentPlain) { var isVisualActive = typeof tinyMCE !== "undefined" && tinyMCE.get(editorId) && !jQuery("#wp-" + editorId + "-wrap").hasClass("html-active"); if (isVisualActive) { tinyMCE.get(editorId).execCommand("mceInsertContent", false, contentHtml); } else { var el = jQuery("#" + editorId); var currentContent = el.val().trim(); var spacer = currentContent ? "\n\n--- ' . $wpjobportal_str_ai_addition . ' ---\n\n" : ""; el.val(currentContent + spacer + contentPlain); el.scrollTop(el[0].scrollHeight); } }
     };
 
     const $improveWrapper = $("#ai-improve-wrapper");
@@ -95,7 +89,7 @@ jQuery(document).ready(function($) {
 
         $btn.prop("disabled", true).addClass("wjportal-ai-loading-ring");
         $icon.removeClass().addClass("dashicons dashicons-update wjportal-ai-text-white").css("animation", "spin 1s linear infinite");
-        $text.text("' . $str_analyzing . '");
+        $text.text("' . $wpjobportal_str_analyzing . '");
 
         if (typeof tinymce !== "undefined" && tinymce.get("description")) { $(tinymce.get("description").getContainer()).css("opacity", "0.6"); }
         $("#description").css("opacity", "0.6");
@@ -122,7 +116,7 @@ jQuery(document).ready(function($) {
                     val = $el.find("option:selected").text();
                 } else if ($el.is(":checkbox") || $el.is(":radio")) {
                     if (!$el.is(":checked")) return;
-                    val = $el.next("label").text() || $el.parent().text().trim() || "' . $str_yes . '";
+                    val = $el.next("label").text() || $el.parent().text().trim() || "' . $wpjobportal_str_yes . '";
                 } else {
                     val = $el.val();
                 }
@@ -161,7 +155,7 @@ jQuery(document).ready(function($) {
             highlights.push($(this).siblings(".wjportal-ai-pill-box").text());
         });
 
-        var wjp_ajaxurl = typeof ajaxurl !== "undefined" ? ajaxurl : "' . $ajax_url_js . '";
+        var wjp_ajaxurl = typeof ajaxurl !== "undefined" ? ajaxurl : "' . $wpjobportal_ajax_url_js . '";
 
         let existingContent = "";
         if (aiData.improving) {
@@ -185,15 +179,15 @@ jQuery(document).ready(function($) {
 
         $.post(wjp_ajaxurl, requestData).done(function(response) {
             if(response.success) {
-                $text.text("' . $str_generated . '");
+                $text.text("' . $wpjobportal_str_generated . '");
                 let aiOutput = response.data.output;
 
-                let metaBlock = `<div style="background: #f8fafc; padding: 1rem; border-left: 4px solid #6366f1; border-radius: 0 0.5rem 0.5rem 0; margin-bottom: 1rem; font-family: sans-serif;">
-                    <h4 style="margin-top: 0; color: #4f46e5; font-size: 14px;">' . $str_instructions . '</h4>
+                let metaBlock = `<div style="background: #f8fafc; padding: 1rem; border-left: 4px solid #6366f1; border-radius: 0 0.5rem 0.5rem 0; margin-bottom: 1rem; font-family: inherit;">
+                    <h4 style="margin-top: 0; color: #4f46e5; font-size: 14px;">' . $wpjobportal_str_instructions . '</h4>
                     <ul style="margin-bottom: 0; font-size: 13px; color: #475569; line-height: 1.5;">
-                        <li><strong>' . $str_tone . '</strong> ${aiData.tone} | <strong>' . $str_length . '</strong> ${aiData.length} | <strong>' . $str_format . '</strong> ${aiData.formatStructure}</li>
-                        ${aiData.seo ? `<li><strong>' . $str_seo_target . '</strong> ${aiData.seo}</li>` : ""}
-                        ${aiData.customPrompt ? `<li><strong>' . $str_custom . '</strong> "${aiData.customPrompt}"</li>` : ""}
+                        <li><strong>' . $wpjobportal_str_tone . '</strong> ${aiData.tone} | <strong>' . $wpjobportal_str_length . '</strong> ${aiData.length} | <strong>' . $wpjobportal_str_format . '</strong> ${aiData.formatStructure}</li>
+                        ${aiData.seo ? `<li><strong>' . $wpjobportal_str_seo_target . '</strong> ${aiData.seo}</li>` : ""}
+                        ${aiData.customPrompt ? `<li><strong>' . $wpjobportal_str_custom . '</strong> "${aiData.customPrompt}"</li>` : ""}
                     </ul>
                 </div>`;
 
@@ -207,16 +201,16 @@ jQuery(document).ready(function($) {
                 }
                 checkEditorContent();
             } else {
-                alert("' . $str_failed . '" + (response.data.message || "' . $str_unknown . '"));
+                alert("' . $wpjobportal_str_failed . '" + (response.data.message || "' . $wpjobportal_str_unknown . '"));
             }
         }).fail(function() {
-            alert("' . $str_server_err . '");
+            alert("' . $wpjobportal_str_server_err . '");
         }).always(function() {
             $btn.prop("disabled", false).removeClass("wjportal-ai-loading-ring");
             $icon.removeClass().addClass("dashicons dashicons-yes wjportal-ai-text-white").css("animation", "");
             setTimeout(function() {
                 $icon.removeClass().addClass("dashicons dashicons-lightning wjportal-ai-text-indigo-200").css("animation", "");
-                $text.text("' . $str_generate_btn . '");
+                $text.text("' . $wpjobportal_str_generate_btn . '");
             }, 2500);
 
             if (typeof tinymce !== "undefined" && tinymce.get("description")) {
@@ -232,7 +226,9 @@ wp_add_inline_script('wpjobportal-inline-handle', $wpjobportal_inline_js_script)
 // Enqueue job portal variables CSS
 wp_enqueue_style(
     'wpjobportal-variables',
-    WPJOBPORTAL_PLUGIN_URL . 'includes/css/job_portal_variables.css'
+    WPJOBPORTAL_PLUGIN_URL . 'includes/css/job_portal_variables.css',
+    array(),
+    wpjobportal_asset_version('includes/css/job_portal_variables.css')
 );
 ?>
 

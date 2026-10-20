@@ -2,4 +2,16 @@
 INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
 ("الريان", "الريان", "Al Rayyan", NULL, 128, 0, 1, NULL, "25.296619", "51.434626"),
 ("الدوحة", "الدوحة", "Doha", NULL, 128, 0, 1, NULL, "25.2856329", "51.5264162"),
-("لوسيل", "لوسيل", "Lusail", NULL, 128, 0, 1, NULL, "25.4228888", "51.5197163");
+("لوسيل", "لوسيل", "Lusail", NULL, 128, 0, 1, NULL, "25.4228888", "51.5197163"),
+("Al Ghuwayriyah", "Al Ghuwayriyah", "Al Ghuwayriyah", NULL, 128, 0, 1, NULL, "25.8447931", "51.2453739"),
+("Al Jumayliyah", "Al Jumayliyah", "Al Jumayliyah", NULL, 128, 0, 1, NULL, "25.6218514", "51.0835811"),
+("Al Khawr", "Al Khawr", "Al Khawr", NULL, 128, 0, 1, NULL, "25.6804078", "51.4968502"),
+("Al Wakrah", "Al Wakrah", "Al Wakrah", NULL, 128, 0, 1, NULL, "25.1659314", "51.5975524"),
+("Al Wukayr", "Al Wukayr", "Al Wukayr", NULL, 128, 0, 1, NULL, "25.6804078", "51.4968502"),
+("Ar Rayyan", "Ar Rayyan", "Ar Rayyan", NULL, 128, 0, 1, NULL, "25.2522551", "51.4388713"),
+("Ar Ruays", "Ar Ruays", "Ar Ruays", NULL, 128, 0, 1, NULL, "26.1301245", "51.1977605"),
+("Ash Shahaniyah", "Ash Shahaniyah", "Ash Shahaniyah", NULL, 128, 0, 1, NULL, "25.4106386", "51.1846025"),
+("Dukhan", "Dukhan", "Dukhan", NULL, 128, 0, 1, NULL, "25.4280036", "50.7833068"),
+("Fuwayrit", "Fuwayrit", "Fuwayrit", NULL, 128, 0, 1, NULL, "26.0243468", "51.3705587"),
+("Umm Salal Muhammad", "Umm Salal Muhammad", "Umm Salal Muhammad", NULL, 128, 0, 1, NULL, "25.4875242", "51.396568"),
+("Umm Bab", "Umm Bab", "Umm Bab", NULL, 128, 0, 1, NULL, "25.2091503", "50.8011897");

@@ -3,7 +3,7 @@
     die('Restricted Access');
     ////*******Script Design For Image****//////
 	wp_enqueue_script('jquery-ui-datepicker');
-	wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jquery-ui-smoothness.css');
+	wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jquery-ui-smoothness.css', array(), wpjobportal_asset_version('includes/css/jquery-ui-smoothness.css'));
 	$wpjobportal_config = wpjobportal::$_configuration;
 	if ($wpjobportal_config['date_format'] == 'm/d/Y' || $wpjobportal_config['date_format'] == 'd/m/y' || $wpjobportal_config['date_format'] == 'm/d/y' || $wpjobportal_config['date_format'] == 'd/m/Y') {
 	    $wpjobportal_dash = '/';
@@ -28,7 +28,7 @@
 }
 </style>
 <?php
-    wp_register_script( 'wpjobportal-inline-handle', '' );
+    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
     $wpjobportal_inline_js_script = "

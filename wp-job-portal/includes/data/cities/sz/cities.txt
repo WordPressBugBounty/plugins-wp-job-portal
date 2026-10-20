@@ -1,4 +1,22 @@
 
 INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
 ("Manzini", "Manzini", "Manzini", NULL, 188, 0, 1, NULL, "-26.4958706", "31.3695887"),
-("Mbabane", "Mbabane", "Mbabane", NULL, 188, 0, 1, NULL, "-26.325745", "31.144663");
+("Mbabane", "Mbabane", "Mbabane", NULL, 188, 0, 1, NULL, "-26.325745", "31.144663"),
+("Bhunya", "Bhunya", "Bhunya", NULL, 188, 0, 1, NULL, "-26.5380011", "30.9962356"),
+("Big Bend", "Big Bend", "Big Bend", NULL, 188, 0, 1, NULL, "-26.7816035", "31.9302449"),
+("Bulembu", "Bulembu", "Bulembu", NULL, 188, 0, 1, NULL, "-25.9480519", "31.1338071"),
+("Darkton", "Darkton", "Darkton", NULL, 188, 0, 1, NULL, "-26.2333329", "31.033333"),
+("Hlatikulu", "Hlatikulu", "Hlatikulu", NULL, 188, 0, 1, NULL, "-26.958983", "31.311269"),
+("Hluti", "Hluti", "Hluti", NULL, 188, 0, 1, NULL, "-27.213681", "31.57125"),
+("Kubuta", "Kubuta", "Kubuta", NULL, 188, 0, 1, NULL, "-26.8693566", "31.4634717"),
+("Kwaluseni", "Kwaluseni", "Kwaluseni", NULL, 188, 0, 1, NULL, "-26.4820262", "31.3484448"),
+("Lavumisa", "Lavumisa", "Lavumisa", NULL, 188, 0, 1, NULL, "-27.3102566", "31.8875679"),
+("Lobamba", "Lobamba", "Lobamba", NULL, 188, 0, 1, NULL, "-26.400429", "31.1824925"),
+("Malkerns", "Malkerns", "Malkerns", NULL, 188, 0, 1, NULL, "-26.5314721", "31.1882189"),
+("Mhlambanyatsi", "Mhlambanyatsi", "Mhlambanyatsi", NULL, 188, 0, 1, NULL, "-26.4527477", "31.0421102"),
+("Mhlume", "Mhlume", "Mhlume", NULL, 188, 0, 1, NULL, "-26.043518", "31.8135556"),
+("Nsoko", "Nsoko", "Nsoko", NULL, 188, 0, 1, NULL, "-27.0216494", "31.8961047"),
+("Piggs Peak", "Piggs Peak", "Piggs Peak", NULL, 188, 0, 1, NULL, "-25.9685155", "31.2483291"),
+("Sidvokodvo", "Sidvokodvo", "Sidvokodvo", NULL, 188, 0, 1, NULL, "-26.6321289", "31.4213323"),
+("Siteki", "Siteki", "Siteki", NULL, 188, 0, 1, NULL, "-26.4417804", "31.9416226"),
+("Tshaneni", "Tshaneni", "Tshaneni", NULL, 188, 0, 1, NULL, "-26.0012842", "31.7594384");

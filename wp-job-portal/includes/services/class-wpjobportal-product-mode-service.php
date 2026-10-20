@@ -112,8 +112,9 @@ class WPJOBPORTAL_Product_Mode_Service {
         $fields_table = $wpdb->prefix . 'wj_portal_fieldsordering';
 
         foreach ($profile['configuration'] as $name => $value) {
-            $result = $wpdb->query($wpdb->prepare(
-                "UPDATE `{$config_table}` SET `configvalue` = %s WHERE `configname` = %s",
+            $result = wpjobportaldb_direct::query($wpdb->prepare(
+                "UPDATE %i SET `configvalue` = %s WHERE `configname` = %s",
+                $config_table,
                 (string) $value,
                 (string) $name
             ));
@@ -123,8 +124,9 @@ class WPJOBPORTAL_Product_Mode_Service {
             }
         }
 
-        $field_result = $wpdb->query($wpdb->prepare(
-            "UPDATE `{$fields_table}` SET `required` = %d WHERE `field` = %s",
+        $field_result = wpjobportaldb_direct::query($wpdb->prepare(
+            "UPDATE %i SET `required` = %d WHERE `field` = %s",
+            $fields_table,
             absint($profile['company_required']),
             'company'
         ));
@@ -187,6 +189,14 @@ class WPJOBPORTAL_Product_Mode_Service {
     public static function filter_body_classes($classes) {
         $classes[] = 'wpjobportal-design-system';
         $classes[] = 'wpjobportal-mode-' . sanitize_html_class(self::get_mode());
+        // A page that shows the portal: style.css hides the theme's page title
+        // on it, because every portal screen prints its own heading.
+        if (is_singular()) {
+            $wpjobportal_post = get_post();
+            if ($wpjobportal_post && strpos((string) $wpjobportal_post->post_content, 'wpjobportal') !== false) {
+                $classes[] = 'wpjobportal-page';
+            }
+        }
         return array_values(array_unique($classes));
     }
 
@@ -198,7 +208,7 @@ class WPJOBPORTAL_Product_Mode_Service {
             return;
         }
 
-        $page = isset($_GET['page']) ? sanitize_key(wp_unslash($_GET['page'])) : '';
+        $page = sanitize_key((string) WPJOBPORTALrequest::getVar('page', 'get', ''));
         if ('wpjobportal' !== $page) {
             return;
         }
@@ -233,7 +243,12 @@ class WPJOBPORTAL_Product_Mode_Service {
                 'multiple_employers' => 0,
                 'company_required' => 0,
                 'configuration' => array(
-                    'disable_employer' => 0,
+                    // Despite its name, 1 means the employer area is ON: the
+                    // settings screen labels it "Enable Employer Area" and every
+                    // controller lets employers in only when it is 1. Writing 0
+                    // here switched the employer area off for every site that
+                    // picked a mode.
+                    'disable_employer' => 1,
                     'employerview_js_controlpanel' => 1,
                     'visitor_can_apply_to_job' => 1,
                     'visitor_can_add_resume' => 1,
@@ -247,7 +262,7 @@ class WPJOBPORTAL_Product_Mode_Service {
                 'multiple_employers' => 1,
                 'company_required' => 1,
                 'configuration' => array(
-                    'disable_employer' => 0,
+                    'disable_employer' => 1, // 1 = employer area on; see above
                 ),
             );
         }

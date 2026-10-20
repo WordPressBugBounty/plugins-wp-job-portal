@@ -61,7 +61,7 @@ class WPJOBPORTALCurrencyController {
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_currency&wpjobportallt=currency"));
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'currency');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -77,7 +77,7 @@ class WPJOBPORTALCurrencyController {
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'currency');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_currency&wpjobportallt=currency"));
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -96,7 +96,7 @@ class WPJOBPORTALCurrencyController {
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_currency&wpjobportallt=currency"));
         if ($wpjobportal_pagenum)
             $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -115,7 +115,7 @@ class WPJOBPORTALCurrencyController {
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_currency&wpjobportallt=currency"));
         if ($wpjobportal_pagenum)
             $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -143,7 +143,7 @@ class WPJOBPORTALCurrencyController {
         WPJOBPORTALincluder::getJSModel('currency')->storeOrderingFromPage($post);
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_currency"));
 
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         exit;
     }
 }

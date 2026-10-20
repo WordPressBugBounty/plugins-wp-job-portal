@@ -15,4 +15,16 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("Libreville", "Libreville", "Libreville", NULL, 159, 0, 1, NULL, "0.4086518", "9.4418849"),
 ("Makokou", "Makokou", "Makokou", NULL, 159, 0, 1, NULL, "0.5619085", "12.8525045"),
 ("Oyem", "Oyem", "Oyem", NULL, 159, 0, 1, NULL, "1.5997904", "11.5751003"),
-("Bitam", "Bitam", "Bitam", NULL, 159, 0, 1, NULL, "2.0786422", "11.4944412");
+("Bitam", "Bitam", "Bitam", NULL, 159, 0, 1, NULL, "2.0786422", "11.4944412"),
+("Cocobeach", "Cocobeach", "Cocobeach", NULL, 159, 0, 1, NULL, "0.9931336", "9.5770844"),
+("Fougamou", "Fougamou", "Fougamou", NULL, 159, 0, 1, NULL, "-1.2174907", "10.5886928"),
+("Lekoni", "Lekoni", "Lekoni", NULL, 159, 0, 1, NULL, "-1.5844023", "14.2657584"),
+("Mbigou", "Mbigou", "Mbigou", NULL, 159, 0, 1, NULL, "-1.9023377", "11.9062829"),
+("Mimongo", "Mimongo", "Mimongo", NULL, 159, 0, 1, NULL, "-1.8295678", "10.9609201"),
+("Mitzic", "Mitzic", "Mitzic", NULL, 159, 0, 1, NULL, "0.782292", "11.5503832"),
+("Mounana", "Mounana", "Mounana", NULL, 159, 0, 1, NULL, "-1.4008892", "13.1567337"),
+("Ndende", "Ndende", "Ndende", NULL, 159, 0, 1, NULL, "-2.4050206", "11.3572893"),
+("Ndjole", "Ndjole", "Ndjole", NULL, 159, 0, 1, NULL, "-0.1882802", "10.7605239"),
+("Ntoum", "Ntoum", "Ntoum", NULL, 159, 0, 1, NULL, "0.3740355", "9.7734455"),
+("Okondja", "Okondja", "Okondja", NULL, 159, 0, 1, NULL, "-0.6534921", "13.6767958"),
+("Omboue", "Omboue", "Omboue", NULL, 159, 0, 1, NULL, "-1.575187", "9.2591571");

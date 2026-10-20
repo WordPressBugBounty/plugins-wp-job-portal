@@ -10,7 +10,17 @@ Description: A clean, responsive, flexbox-based design for job list and detail p
 /* ----------------------------------------- */
 /* == 1. Global Styles & Variable == */
 /* ----------------------------------------- */
-@import url('job_portal_variables.css');
+/*
+ * job_portal_variables.css is not imported here; it is enqueued.
+ *
+ * An @import carries no version query, so the browser kept its own copy of
+ * the token file under a second URL that never changed. That copy is parsed
+ * as part of this sheet, which is enqueued after the real one, so the stale
+ * :root won: a site saved a new theme colour, the generated file changed,
+ * and the pages went on drawing the old one until the cache expired.
+ *
+ * The tokens are a dependency of this stylesheet and load ahead of it.
+ */
 
 :root {
     /* Palette: Slate & White */
@@ -107,3 +117,39 @@ div#wpjobportaladmin-wrapper .wpjobportal-add-link, div#wpjobportaladmin-wrapper
     div#wpjobportaladmin-wrapper .color_wrp{flex-direction: column;align-items: flex-start;}
     div#wpjobportaladmin-wrapper .color_wrp input[type="text"]{width: 100%;min-height: 55px;}
 }
+
+/* Font sizes on the Themes screen. Same shell as the colour rows, so the two
+   groups read as one panel rather than as a bolted-on section. */
+div#wpjobportaladmin-wrapper .wpjp-theme-group-title {font-size: 14px;font-weight: 700;color: #1e293b;margin: 24px 0 12px;padding-top: 20px;border-top: 1px solid #e2e8f0;}
+div#wpjobportaladmin-wrapper .color_wrp:has(.wpjp-font-size-field) {flex-direction: row;flex-wrap: nowrap;align-items: center;}
+div#wpjobportaladmin-wrapper .wpjp-font-size-field {flex: 1 1 auto;width: auto;min-width: 0;border: 0;background: transparent;box-shadow: none;outline: 0;padding: 8px 12px;font-size: 14px;color: #1e293b;}
+div#wpjobportaladmin-wrapper .wpjp-font-size-field:focus {border: 0;box-shadow: none;outline: 0;}
+div#wpjobportaladmin-wrapper .wpjp-font-size-unit {padding-right: 14px;font-size: 12px;font-weight: 600;color: var(--slate-500, #64748b);pointer-events: none;}
+/* Admin's input[type=number] rule (more specific, with !important) put a
+   second box inside the shell; the field is meant to sit flat in it. */
+div#wpjobportaladmin-wrapper .color_wrp input[type="number"].wpjp-font-size-field {border: 0;background: transparent !important;border-radius: 0 !important;box-shadow: none;}
+div#wpjobportaladmin-wrapper .wpjp-font-size-unit {padding-right: 0;padding-inline-end: 14px;}
+/* Focus shown on the shell, since the field itself has no outline. */
+div#wpjobportaladmin-wrapper .color_wrp:has(.wpjp-font-size-field:focus-visible) {border-color: var(--wjp-color-primary, #4f46e5);box-shadow: 0 0 0 1px var(--wjp-color-primary, #4f46e5);}
+/* Elegant Design's Corners and Font choices: the same flat field in the same shell. */
+div#wpjobportaladmin-wrapper .color_wrp:has(.wpjp-ed-choice) {flex-direction: row;flex-wrap: nowrap;align-items: center;}
+div#wpjobportaladmin-wrapper .color_wrp select.wpjp-ed-choice {flex: 1 1 auto;width: 100%;max-width: none;min-width: 0;border: 0;background-color: transparent;box-shadow: none;outline: 0;padding: 8px 12px;font-size: 14px;color: #1e293b;}
+div#wpjobportaladmin-wrapper .color_wrp:has(.wpjp-ed-choice:focus-visible) {border-color: var(--wjp-color-primary, #4f46e5);box-shadow: 0 0 0 1px var(--wjp-color-primary, #4f46e5);}
+
+/* The Reset beside the Font Sizes heading reads as a control, not as a link
+   dropped into the middle of a title. Kept small so it sits inside the
+   heading row rather than setting its height. */
+/*
+ * Reset takes the page's own button styling - the same height, radius and
+ * weight as Save Colors beneath it - so this is only about where it sits.
+ * Giving it a size of its own here just made it a button that matched
+ * nothing else on the screen.
+ */
+.wpjp-theme-group-title .wpjp-font-size-reset {
+    margin-inline-start: 12px;
+    vertical-align: middle;
+}
+/* Elegant Design's title and its Reset: the column is narrow, so the button
+   wraps under the title - with a gap rather than touching it. */
+div#wpjobportaladmin-wrapper .wpjp-theme-group-title-actions {display: flex;flex-wrap: wrap;align-items: center;gap: 10px 12px;}
+div#wpjobportaladmin-wrapper .wpjp-theme-group-title-actions .wpjp-font-size-reset {margin-inline-start: 0;}

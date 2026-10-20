@@ -10,6 +10,10 @@ $wpjobportal_layout = array(
     'formcompany','mycompanies','formdepartment','mydepartment','empmessages',
     'myfolders','newfolders','invoice','empresume_rss','empregister','emploginlogout'
 );
+$wpjobportal_layout = (array) apply_filters(
+    'wpjobportal_employer_dashboard_link_layout',
+    $wpjobportal_layout
+);
 
 $wpjobportal_manage_jobs      = array('formjob', 'myjobs');
 $wpjobportal_resume_access    = array('resumesearch', 'resumebycategory', 'my_resumesearches');
@@ -51,31 +55,45 @@ $wpjobportal_sections = [
     'system'          => $wpjobportal_system,
 ];
 
+/*
+ * Where an add-on's own section belongs.
+ *
+ * The extension links - the Recruiting Center, the Marketplace - used to be
+ * printed after the whole menu, which put them under System, below Register,
+ * Login and Logout. Signing out is not a feature of the portal and does not
+ * belong above one: the account links are the end of a menu everywhere else on
+ * the web, and they read as the end here too.
+ *
+ * So the add-ons get their turn immediately before System. If System is turned
+ * off entirely the loop never reaches it, so the flag below makes sure they are
+ * still printed rather than lost with it.
+ */
+$wpjobportal_extensions_printed = false;
+
 foreach ($wpjobportal_sections as $wpjobportal_section_key => $wpjobportal_section_items) {
     if (!wpjobportal_section_enabled($wpjobportal_section_items, $wpjobportal_layout)) {
         continue;
     }
 
-    switch ($wpjobportal_section_key) {
-        case 'manage_jobs':
-            echo '<h3 class="wjportal-section-title">'.esc_html(__('Manage Jobs', 'wp-job-portal')).'</h3>';
-        break;
-        case 'resume_access':
-            echo '<h3 class="wjportal-section-title">'.esc_html(__('Resumes', 'wp-job-portal')).'</h3>';
-        break;
-        case 'manage_company':
-            echo '<h3 class="wjportal-section-title">'.esc_html(__('Company Management', 'wp-job-portal')).'</h3>';
-        break;
-        case 'communication':
-            echo '<h3 class="wjportal-section-title">'.esc_html(__('Communication', 'wp-job-portal')).'</h3>';
-        break;
-        case 'account_billing':
-            echo '<h3 class="wjportal-section-title">'.esc_html(__('Account & Billing', 'wp-job-portal')).'</h3>';
-        break;
-        case 'system':
-            echo '<h3 class="wjportal-section-title">'.esc_html(__('System', 'wp-job-portal')).'</h3>';
-        break;
+    if ('system' === $wpjobportal_section_key && !$wpjobportal_extensions_printed) {
+        do_action('wpjobportal_employer_dashboard_extension_links', $wpjobportal_layout);
+        $wpjobportal_extensions_printed = true;
     }
+
+    /*
+     * A heading is printed only once its section has printed something.
+     *
+     * Whether a section has anything in it was decided up front, by
+     * wpjobportal_section_enabled(); but some of the links are not printed
+     * here at all - they are a do_action, and the add-on listening decides
+     * for itself whether this person may see them. A recruiter may not see
+     * credits or invoices, so Account & Billing announced itself and then
+     * printed nothing: a heading with empty space under it, in a menu where
+     * every other heading has links.
+     *
+     * So the links are gathered first and the heading follows them.
+     */
+    ob_start();
 
     foreach ($wpjobportal_layout as $wpjobportal_key => $wpjobportal_value) {
         if (!in_array($wpjobportal_value, $wpjobportal_section_items)) continue;
@@ -87,7 +105,7 @@ foreach ($wpjobportal_sections as $wpjobportal_section_key => $wpjobportal_secti
                 if ($wpjobportal_print) {
                     echo '<div class="wjportal-cp-list">
                             <a class="wjportal-list-anchor" href='. esc_url(wpjobportal::wpjobportal_makeUrl(['wpjobportalme'=>'job','wpjobportallt'=>'addjob'])) .' title="'. esc_attr(__('Add Job','wp-job-portal')).'">
-                                <img src='. esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/employer/add-job.png alt="'. esc_html(__('Add Job','wp-job-portal')).'">
+                                '. wp_kses(wpjobportal_cp_menu_icon('plus-square'), WPJOBPORTAL_ALLOWED_TAGS) .'
                                 <span class="wjportal-cp-link-text">'. esc_html(__('Add Job','wp-job-portal')).'</span>
                             </a>
                         </div>';
@@ -99,7 +117,7 @@ foreach ($wpjobportal_sections as $wpjobportal_section_key => $wpjobportal_secti
                 if ($wpjobportal_print) {
                     echo '<div class="wjportal-cp-list">
                             <a class="wjportal-list-anchor" href='. esc_url(wpjobportal::wpjobportal_makeUrl(['wpjobportalme'=>'job','wpjobportallt'=>'myjobs'])) .' title="'. esc_attr(__('My Jobs','wp-job-portal')).'">
-                                <img src='. esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/employer/my-job.png alt="'. esc_html(__('My Jobs','wp-job-portal')).'">
+                                '. wp_kses(wpjobportal_cp_menu_icon('briefcase'), WPJOBPORTAL_ALLOWED_TAGS) .'
                                 <span class="wjportal-cp-link-text">'. esc_html(__('My Jobs','wp-job-portal')).'</span>
                             </a>
                         </div>';
@@ -122,7 +140,7 @@ foreach ($wpjobportal_sections as $wpjobportal_section_key => $wpjobportal_secti
                 if ($wpjobportal_print) {
                     echo '<div class="wjportal-cp-list">
                             <a class="wjportal-list-anchor" href='. esc_url(wpjobportal::wpjobportal_makeUrl(['wpjobportalme'=>'resume','wpjobportallt'=>'resumebycategory'])) .' title="'. esc_attr(__('Resumes By Categories','wp-job-portal')).'">
-                                <img src='. esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/employer/resume-categories.png alt="'. esc_html(__('Resumes By Categories','wp-job-portal')).'">
+                                '. wp_kses(wpjobportal_cp_menu_icon('th-list'), WPJOBPORTAL_ALLOWED_TAGS) .'
                                 <span class="wjportal-cp-link-text">'. esc_html(__('Resumes By Categories','wp-job-portal')).'</span>
                             </a>
                         </div>';
@@ -144,14 +162,14 @@ foreach ($wpjobportal_sections as $wpjobportal_section_key => $wpjobportal_secti
                         if (!empty($wpjobportal_company) && $wpjobportal_company[0]->record > 0) {
                             echo '<div class="wjportal-cp-list">
                                     <a class="wjportal-list-anchor" href='. esc_url(wpjobportal::wpjobportal_makeUrl(['wpjobportalme'=>'company','wpjobportallt'=>'addcompany','wpjobportalid'=>$wpjobportal_company[0]->id])) .' title="'. esc_attr(__('Edit Company','wp-job-portal')).'">
-                                        <img src='. esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/employer/add-company.png alt="'. esc_html(__('Edit Company','wp-job-portal')).'">
+                                        '. wp_kses(wpjobportal_cp_menu_icon('pencil-square'), WPJOBPORTAL_ALLOWED_TAGS) .'
                                         <span class="wjportal-cp-link-text">'. esc_html(__('Edit Company','wp-job-portal')).'</span>
                                     </a>
                                 </div>';
                         } else {
                             echo '<div class="wjportal-cp-list">
                                     <a class="wjportal-list-anchor" href='. esc_url(wpjobportal::wpjobportal_makeUrl(['wpjobportalme'=>'company','wpjobportallt'=>'addcompany'])) .' title="'. esc_attr(__('Add Company','wp-job-portal')).'">
-                                        <img src='. esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/employer/add-company.png alt="'. esc_html(__('Add Company','wp-job-portal')).'">
+                                        '. wp_kses(wpjobportal_cp_menu_icon('plus-square'), WPJOBPORTAL_ALLOWED_TAGS) .'
                                         <span class="wjportal-cp-link-text">'. esc_html(__('Add Company','wp-job-portal')).'</span>
                                     </a>
                                 </div>';
@@ -168,7 +186,7 @@ foreach ($wpjobportal_sections as $wpjobportal_section_key => $wpjobportal_secti
                     if ($wpjobportal_print) {
                         echo '<div class="wjportal-cp-list">
                                 <a class="wjportal-list-anchor" href='. esc_url(wpjobportal::wpjobportal_makeUrl(['wpjobportalme'=>'company','wpjobportallt'=>$wpjobportal_value])) .' title="'. esc_attr(__('My Companies','wp-job-portal')).'">
-                                    <img src='. esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/employer/companies.png alt="'. esc_html(__('My Companies','wp-job-portal')).'">
+                                    '. wp_kses(wpjobportal_cp_menu_icon('building'), WPJOBPORTAL_ALLOWED_TAGS) .'
                                     <span class="wjportal-cp-link-text">'. esc_html(__('My Companies','wp-job-portal')).'</span>
                                 </a>
                             </div>';
@@ -209,7 +227,7 @@ foreach ($wpjobportal_sections as $wpjobportal_section_key => $wpjobportal_secti
                         $wpjobportal_lrlink = WPJOBPORTALincluder::getJSModel('configuration')->getLoginRegisterRedirectLink($wpjobportal_defaultUrl,'register');
                         echo '<div class="wjportal-cp-list">
                                 <a class="wjportal-list-anchor" href='. esc_url($wpjobportal_lrlink) .' title="'. esc_attr(__('Register','wp-job-portal')).'">
-                                    <img src='. esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/jobseeker/registers.png alt="'. esc_html(__('Register','wp-job-portal')).'">
+                                    '. wp_kses(wpjobportal_cp_menu_icon('user-plus'), WPJOBPORTAL_ALLOWED_TAGS) .'
                                     <span class="wjportal-cp-link-text">'. esc_html(__('Register','wp-job-portal')).'</span>
                                 </a>
                             </div>';
@@ -219,25 +237,25 @@ foreach ($wpjobportal_sections as $wpjobportal_section_key => $wpjobportal_secti
 
             case 'emploginlogout':
                 if (wpjobportal_employercheckLinks('emploginlogout')) {
-                    if (WPJOBPORTALincluder::getObjectClass('user')->isguest() && (!isset($_COOKIE['wpjobportal-socialmedia']) || empty($_COOKIE['wpjobportal-socialmedia']))) {
+                    if (WPJOBPORTALincluder::getObjectClass('user')->isguest() && (!WPJOBPORTALrequest::hasCookie('wpjobportal-socialmedia') || empty($_COOKIE['wpjobportal-socialmedia']))) {
                         $wpjobportal_thiscpurl = wpjobportal::wpjobportal_makeUrl(['wpjobportalme'=>'employer','wpjobportallt'=>'controlpanel','wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()]);
                         $wpjobportal_thiscpurl = wpjobportalphplib::wpJP_safe_encoding($wpjobportal_thiscpurl);
                         $wpjobportal_defaultUrl = wpjobportal::wpjobportal_makeUrl(['wpjobportalme'=>'wpjobportal','wpjobportallt'=>'login','wpjobportalredirecturl'=>$wpjobportal_thiscpurl]);
                         $wpjobportal_lrlink = WPJOBPORTALincluder::getJSModel('configuration')->getLoginRegisterRedirectLink($wpjobportal_defaultUrl,'login');
                         echo '<div class="wjportal-cp-list">
                                 <a class="wjportal-list-anchor" href='. esc_url($wpjobportal_lrlink) .' title="'. esc_attr(__('Login','wp-job-portal')).'">
-                                    <img src='. esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/jobseeker/login.png alt="'. esc_html(__('Login','wp-job-portal')).'">
+                                    '. wp_kses(wpjobportal_cp_menu_icon('sign-in'), WPJOBPORTAL_ALLOWED_TAGS) .'
                                     <span class="wjportal-cp-link-text">'. esc_html(__('Login','wp-job-portal')).'</span>
                                 </a>
                             </div>';
                     } else {
                         $wpjobportal_logout_url = wp_logout_url(get_permalink());
-                        if (isset($_COOKIE['wpjobportal-socialmedia']) && !empty($_COOKIE['wpjobportal-socialmedia'])) {
+                        if (WPJOBPORTALrequest::hasCookie('wpjobportal-socialmedia') && !empty(WPJOBPORTALrequest::cookie('wpjobportal-socialmedia'))) {
                             $wpjobportal_logout_url = wpjobportal::wpjobportal_makeUrl(['wpjobportalme'=>'sociallogin','task'=>'socialogout','action'=>'wpjobportaltask','wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()]);
                         }
                         echo '<div class="wjportal-cp-list">
                                 <a class="wjportal-list-anchor" href='. esc_url($wpjobportal_logout_url) .' title="'. esc_attr(__('Logout','wp-job-portal')).'">
-                                    <img src='. esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/employer/logout.png alt="'. esc_html(__('Logout','wp-job-portal')).'">
+                                    '. wp_kses(wpjobportal_cp_menu_icon('sign-out'), WPJOBPORTAL_ALLOWED_TAGS) .'
                                     <span class="wjportal-cp-link-text">'. esc_html(__('Logout','wp-job-portal')).'</span>
                                 </a>
                             </div>';
@@ -246,5 +264,44 @@ foreach ($wpjobportal_sections as $wpjobportal_section_key => $wpjobportal_secti
             break;
         }
     }
+    $wpjobportal_section_links = ob_get_clean();
+    if (trim($wpjobportal_section_links) === '') {
+        continue;
+    }
+
+    switch ($wpjobportal_section_key) {
+        case 'manage_jobs':
+            echo '<h3 class="wjportal-section-title">'.esc_html(__('Manage Jobs', 'wp-job-portal')).'</h3>';
+        break;
+        case 'resume_access':
+            echo '<h3 class="wjportal-section-title">'.esc_html(__('Resumes', 'wp-job-portal')).'</h3>';
+        break;
+        case 'manage_company':
+            echo '<h3 class="wjportal-section-title">'.esc_html(__('Company Management', 'wp-job-portal')).'</h3>';
+        break;
+        case 'communication':
+            echo '<h3 class="wjportal-section-title">'.esc_html(__('Communication', 'wp-job-portal')).'</h3>';
+        break;
+        case 'account_billing':
+            echo '<h3 class="wjportal-section-title">'.esc_html(__('Account & Billing', 'wp-job-portal')).'</h3>';
+        break;
+        case 'system':
+            echo '<h3 class="wjportal-section-title">'.esc_html(__('System', 'wp-job-portal')).'</h3>';
+        break;
+    }
+
+    echo $wpjobportal_section_links; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- buffered output of the escaped echoes above.
+}
+
+/**
+ * Allow premium extensions to add a native employer dashboard section.
+ * Extensions are responsible for capability checks and escaped output.
+ *
+ * Normally this has already run, just above System. It runs here only when
+ * there was no System section to run before.
+ */
+if (!$wpjobportal_extensions_printed) {
+    do_action('wpjobportal_employer_dashboard_extension_links', $wpjobportal_layout);
+    $wpjobportal_extensions_printed = true;
 }
 ?>

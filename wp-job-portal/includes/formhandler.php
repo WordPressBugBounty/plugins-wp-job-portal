@@ -42,6 +42,57 @@ class WPJOBPORTALformhandler {
      * @param string $wpjobportal_channel form or task.
      * @return void
      */
+    /**
+     * Refuse a request, and say which check refused it.
+     *
+     * Five different things end here - the wrong HTTP method, an account
+     * without the role, an expired form, a value that is not the shape it
+     * should be, and a record belonging to somebody else - and all five used
+     * to produce one sentence: "You are not allowed to perform this WP Job
+     * Portal action." A person who sees it cannot tell which, and neither can
+     * the support desk they send it to. Each reason gets its own sentence,
+     * and an administrator also gets the route and the machine-readable
+     * reason, which is what a bug report needs.
+     *
+     * @param string $reason  Machine reason from the policy service.
+     * @param string $module  Route module.
+     * @param string $task    Route task.
+     * @param bool   $addon   Whether an add-on policy refused it.
+     * @return void
+     */
+    private function refuse($reason, $module, $task, $addon = false) {
+        $reasons = array(
+            'http_method' => __('This action cannot be reached the way it was requested.', 'wp-job-portal'),
+            'capability' => __('Your account is not allowed to do this. If you should be, ask the site administrator to check your role in WP Job Portal.', 'wp-job-portal'),
+            'nonce' => __('This form has expired. Go back, reload the page, and send it again.', 'wp-job-portal'),
+            'input_schema' => __('Something in the form was not in the expected format, so it was not saved.', 'wp-job-portal'),
+            'object_ownership' => __('That record belongs to another account.', 'wp-job-portal'),
+        );
+
+        $reason = sanitize_key($reason);
+        $message = isset($reasons[$reason])
+            ? $reasons[$reason]
+            : ($addon
+                ? __('You are not allowed to perform this WP Job Portal add-on action.', 'wp-job-portal')
+                : __('You are not allowed to perform this WP Job Portal action.', 'wp-job-portal'));
+
+        $detail = '';
+        if (current_user_can('manage_options')) {
+            $detail = sprintf(
+                /* translators: 1: route, 2: machine-readable reason. */
+                __(' (%1$s - refused by: %2$s)', 'wp-job-portal'),
+                sanitize_key($module) . '.' . sanitize_key($task),
+                $reason !== '' ? $reason : 'unspecified'
+            );
+        }
+
+        wp_die(
+            esc_html($message . $detail),
+            esc_html__('Access denied', 'wp-job-portal'),
+            array('response' => 403)
+        );
+    }
+
     private function dispatch($wpjobportal_channel) {
         $wpjobportal_modulename = is_admin() ? 'page' : 'wpjobportalme';
         $wpjobportal_module = WPJOBPORTALrequest::getVar($wpjobportal_modulename);
@@ -75,10 +126,10 @@ class WPJOBPORTALformhandler {
             $wpjobportal_task,
             $wpjobportal_channel
         )) {
-            wp_die(
-                esc_html__('You are not allowed to perform this WP Job Portal action.', 'wp-job-portal'),
-                esc_html__('Access denied', 'wp-job-portal'),
-                array('response' => 403)
+            $this->refuse(
+                WPJOBPORTAL_Core_Action_Policy_Service::last_denial_reason(),
+                $wpjobportal_module,
+                $wpjobportal_task
             );
         }
 
@@ -87,10 +138,11 @@ class WPJOBPORTALformhandler {
             $wpjobportal_task,
             $wpjobportal_channel
         )) {
-            wp_die(
-                esc_html__('You are not allowed to perform this WP Job Portal add-on action.', 'wp-job-portal'),
-                esc_html__('Access denied', 'wp-job-portal'),
-                array('response' => 403)
+            $this->refuse(
+                WPJOBPORTAL_Addon_Action_Policy_Service::last_denial_reason(),
+                $wpjobportal_module,
+                $wpjobportal_task,
+                true
             );
         }
 

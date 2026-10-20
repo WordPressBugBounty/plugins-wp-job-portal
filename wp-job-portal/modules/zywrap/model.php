@@ -71,10 +71,10 @@ class WPJOBPORTALzywrapModel {
             'total_tokens'      => isset($usage_data['total_tokens']) ? (int)$usage_data['total_tokens'] : 0,
 
             // Store the full usage JSON for debugging/history
-            'token_data'    => $usage_data ? json_encode($usage_data) : null,
+            'token_data'    => $usage_data ? wp_json_encode($usage_data) : null,
         );
 
-        $wpdb->insert($wpjobportal_table_name, $wpjobportal_data);
+        wpjobportaldb_direct::insert($wpjobportal_table_name, $wpjobportal_data);
     }
 
     function storeZywrapApiKey($api_key) {
@@ -97,7 +97,7 @@ class WPJOBPORTALzywrapModel {
                 'headers' => array(
                     'Content-Type' => 'application/json'
                 ),
-                'body'    => json_encode(array('apiKey' => $api_key))
+                'body'    => wp_json_encode(array('apiKey' => $api_key))
             );
 
             $response = wp_remote_post($wpjobportal_url, $wpjobportal_args);
@@ -136,17 +136,17 @@ class WPJOBPORTALzywrapModel {
      */
     function checkZywrapApiKey() {
         if (!current_user_can('manage_options')) {
-            wp_send_json_error(array('message' => 'Permission denied.'));
+            wp_send_json_error(array('message' => __('Permission denied.', 'wp-job-portal')));
         }
 
         $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
         if (!wp_verify_nonce($wpjobportal_nonce, 'check-zywrap-key')) {
-            wp_send_json_error(array('message' => 'Security check failed.'));
+            wp_send_json_error(array('message' => __('Security check failed.', 'wp-job-portal')));
         }
 
         $api_key = WPJOBPORTALrequest::getVar('api_key','post');
         if (empty($api_key)) {
-            wp_send_json_error(array('message' => 'API Key cannot be empty.'));
+            wp_send_json_error(array('message' => __('API Key cannot be empty.', 'wp-job-portal')));
         }
 
         $wpjobportal_url = 'https://api.zywrap.com/v1/key/check';
@@ -156,14 +156,14 @@ class WPJOBPORTALzywrapModel {
             'headers' => array(
                 'Content-Type' => 'application/json'
             ),
-            'body'    => json_encode(array('apiKey' => $api_key))
+            'body'    => wp_json_encode(array('apiKey' => $api_key))
         );
 
         // Use WordPress's built-in function to make the API call
         $response = wp_remote_post($wpjobportal_url, $wpjobportal_args);
 
         if (is_wp_error($response)) {
-            wp_send_json_error(array('message' => 'Error: ' . $response->get_error_message()));
+            wp_send_json_error(array('message' => __('Error:', 'wp-job-portal') . ' ' . $response->get_error_message()));
         }
 
         $http_code = wp_remote_retrieve_response_code($response);
@@ -402,7 +402,7 @@ class WPJOBPORTALzywrapModel {
                     'description'   => $usecase['desc'] ?? '',
                     'category_code' => $usecase['cat'] ?? '',
                     'ordering'      => $usecase['ordering'] ?? '',
-                    'schema_data'   => !empty($usecase['schema']) ? json_encode($usecase['schema']) : null,
+                    'schema_data'   => !empty($usecase['schema']) ? wp_json_encode($usecase['schema']) : null,
                     'status'        => 1
                 ];
 
@@ -738,8 +738,8 @@ class WPJOBPORTALzywrapModel {
         $wpjobportal_upload_dir = wp_upload_dir();
         $zip_file = $wpjobportal_upload_dir['path'] . '/zywrap-data.zip';
         $wpjobportal_json_file = $wpjobportal_upload_dir['path'] . '/zywrap-data.json';
-        @unlink($zip_file);
-        @unlink($wpjobportal_json_file);
+        wp_delete_file($zip_file);
+        wp_delete_file($wpjobportal_json_file);
 
         // Return completion status
         return [
@@ -756,20 +756,20 @@ class WPJOBPORTALzywrapModel {
     function importZywrapBatchProcess() {
 
         if (function_exists('set_time_limit')) {
-            set_time_limit(0); // Unlimited execution time
+            set_time_limit(0); // phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged -- the AI data sync is a long admin-only job.
         }
-        @ini_set('memory_limit', '512M'); // Increase memory limit if possible
+        @ini_set('memory_limit', '512M'); // phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged -- the AI data sync is a long admin-only job.
 
 
         //  Security Checks
         if (!current_user_can('manage_options')) {
-            wp_send_json_error(array('message' => 'Permission denied.'));
+            wp_send_json_error(array('message' => __('Permission denied.', 'wp-job-portal')));
         }
 
         // Verify the same nonce used in the main import
         $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
         if (!wp_verify_nonce($wpjobportal_nonce, 'zywrap_full_import')) {
-            wp_send_json_error(array('message' => 'Security check failed.'));
+            wp_send_json_error(array('message' => __('Security check failed.', 'wp-job-portal')));
         }
 
         // 3. Retrieve Pending Data
@@ -1016,22 +1016,22 @@ class WPJOBPORTALzywrapModel {
 
     function importZywrapData() {
         if (function_exists('set_time_limit')) {
-            set_time_limit(0); // Unlimited execution time
+            set_time_limit(0); // phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged -- the AI data sync is a long admin-only job.
         }
-        @ini_set('memory_limit', '512M'); // Increase memory limit if possible
+        @ini_set('memory_limit', '512M'); // phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged -- the AI data sync is a long admin-only job.
 
         if (!current_user_can('manage_options')) {
-            wp_send_json_error(array('message' => 'Permission denied.'));
+            wp_send_json_error(array('message' => __('Permission denied.', 'wp-job-portal')));
         }
 
         $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
         if (!wp_verify_nonce($wpjobportal_nonce, 'zywrap_full_import')) {
-            wp_send_json_error(array('message' => 'Security check failed.'));
+            wp_send_json_error(array('message' => __('Security check failed.', 'wp-job-portal')));
         }
 
         $api_key = get_option('wpjobportal_zywrap_api_key');
         if (empty($api_key)) {
-            wp_send_json_error(array('message' => 'API Key is not set.'));
+            wp_send_json_error(array('message' => __('API Key is not set.', 'wp-job-portal')));
         }
        $type = WPJOBPORTALrequest::getVar('actionType');
 
@@ -1180,14 +1180,14 @@ class WPJOBPORTALzywrapModel {
             // full reset case
             //truncate exsisting tables.
             global $wpdb;
-            $wpdb->query('SET FOREIGN_KEY_CHECKS = 0;');
-            $wpdb->query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_wrappers`");
-            $wpdb->query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_categories`");
-            $wpdb->query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_use_cases`");
-            $wpdb->query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_languages`");
-            $wpdb->query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_block_templates`");
-            $wpdb->query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_ai_models`");
-            $wpdb->query('SET FOREIGN_KEY_CHECKS = 1;');
+            wpjobportaldb_direct::query('SET FOREIGN_KEY_CHECKS = 0;');
+            wpjobportaldb_direct::query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_wrappers`");
+            wpjobportaldb_direct::query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_categories`");
+            wpjobportaldb_direct::query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_use_cases`");
+            wpjobportaldb_direct::query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_languages`");
+            wpjobportaldb_direct::query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_block_templates`");
+            wpjobportaldb_direct::query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_ai_models`");
+            wpjobportaldb_direct::query('SET FOREIGN_KEY_CHECKS = 1;');
             //echo '<br/=====DB EMPTY+++++<br/>';
 
             //}
@@ -1200,10 +1200,7 @@ class WPJOBPORTALzywrapModel {
 
             // 3. Initialize WordPress filesystem
             global $wp_filesystem;
-            if ( empty( $wp_filesystem ) ) {
-                require_once ABSPATH . 'wp-admin/includes/file.php';
-                WP_Filesystem();
-            }
+            $wp_filesystem = wpjobportal::wpjobportal_filesystem();
 
             if ( ! $wp_filesystem ) {
                 wp_send_json_error( array(
@@ -1289,7 +1286,7 @@ class WPJOBPORTALzywrapModel {
 
         if (empty($wpjobportal_data)) {
             $this->log_api_call('sync_full', 'error', ['error_message' => 'Could not parse JSON data.']);
-            wp_send_json_error(array('message' => 'Error: Could not parse JSON data.'));
+            wp_send_json_error(array('message' => __('Error: Could not parse JSON data.', 'wp-job-portal')));
         }
         //set version in tranient to store on complete status
         $wpjobportal_version = $wpjobportal_data['version'] ?? 'N/A';
@@ -1411,8 +1408,8 @@ class WPJOBPORTALzywrapModel {
         // try {
 
             $this->log_api_call('sync_full', 'success', ['error_message' => 'Imported version: ' . $wpjobportal_version]);
-            @unlink($zip_file);
-            @unlink($wpjobportal_json_file);
+            wp_delete_file($zip_file);
+            wp_delete_file($wpjobportal_json_file);
 
         // } catch (Exception $e) {
         //     $this->log_api_call('sync_full', 'error', ['error_message' => 'DB error: ' . $e->getMessage()]);
@@ -1421,7 +1418,7 @@ class WPJOBPORTALzywrapModel {
 
         // Clean up files
 
-        wp_send_json_success(array('message' => 'Full data import complete! Version: ' . ($wpjobportal_data['version'] ?? 'N/A')));
+        wp_send_json_success(array('message' => __('Full data import complete! Version:', 'wp-job-portal') . ' ' . ($wpjobportal_data['version'] ?? 'N/A')));
     }
 
 
@@ -1485,24 +1482,24 @@ class WPJOBPORTALzywrapModel {
 
     //     // 3. Apply the patch
     //     global $wpdb;
-    //     $wpdb->query('SET FOREIGN_KEY_CHECKS = 0;');
+    //     wpjobportaldb_direct::query('SET FOREIGN_KEY_CHECKS = 0;');
 
     //     try {
     //         // Process Updates/Creations (UPSERT)
     //         if (!empty($patch['updates'])) {
     //             // --- Process Wrappers ---
     //             if (!empty($patch['updates']['wrappers'])) {
-    //                 foreach ($patch['updates']['wrappers'] as $wpjobportal_item) $wpdb->replace($wpdb->prefix . 'wj_portal_zywrap_wrappers', $wpjobportal_item);
+    //                 foreach ($patch['updates']['wrappers'] as $wpjobportal_item) wpjobportaldb_direct::replace($wpdb->prefix . 'wj_portal_zywrap_wrappers', $wpjobportal_item);
     //             }
     //             // --- Process Categories ---
     //             if (!empty($patch['updates']['categories'])) {
-    //                 foreach ($patch['updates']['categories'] as $wpjobportal_item) $wpdb->replace($wpdb->prefix . 'wj_portal_zywrap_categories', $wpjobportal_item);
+    //                 foreach ($patch['updates']['categories'] as $wpjobportal_item) wpjobportaldb_direct::replace($wpdb->prefix . 'wj_portal_zywrap_categories', $wpjobportal_item);
     //             }
     //             if (!empty($patch['updates']['languages'])) {
-    //                   foreach ($patch['updates']['languages'] as $wpjobportal_item) $wpdb->replace($wpdb->prefix . 'wj_portal_zywrap_languages', $wpjobportal_item);
+    //                   foreach ($patch['updates']['languages'] as $wpjobportal_item) wpjobportaldb_direct::replace($wpdb->prefix . 'wj_portal_zywrap_languages', $wpjobportal_item);
     //             }
     //             if (!empty($patch['updates']['aiModels'])) {
-    //                   foreach ($patch['updates']['aiModels'] as $wpjobportal_item) $wpdb->replace($wpdb->prefix . 'wj_portal_zywrap_ai_models', $wpjobportal_item);
+    //                   foreach ($patch['updates']['aiModels'] as $wpjobportal_item) wpjobportaldb_direct::replace($wpdb->prefix . 'wj_portal_zywrap_ai_models', $wpjobportal_item);
     //             }
 
     //             // Block Templates
@@ -1511,7 +1508,7 @@ class WPJOBPORTALzywrapModel {
     //                 if (!empty($patch['updates'][$type])) {
     //                     foreach ($patch['updates'][$type] as $wpjobportal_item) {
     //                         $wpjobportal_item['type'] = $type;
-    //                         $wpdb->replace($wpdb->prefix . 'wj_portal_zywrap_block_templates', $wpjobportal_item);
+    //                         wpjobportaldb_direct::replace($wpdb->prefix . 'wj_portal_zywrap_block_templates', $wpjobportal_item);
     //                     }
     //                 }
     //             }
@@ -1527,19 +1524,19 @@ class WPJOBPORTALzywrapModel {
     //                 if ($wpjobportal_item['type'] == 'AIModel') $wpjobportal_table_name = $wpdb->prefix . 'wj_portal_zywrap_ai_models';
 
     //                 if ($wpjobportal_table_name) {
-    //                     $wpdb->delete($wpjobportal_table_name, array('code' => $wpjobportal_item['code']));
+    //                     wpjobportaldb_direct::delete($wpjobportal_table_name, array('code' => $wpjobportal_item['code']));
     //                 }
 
     //                 if (str_ends_with($wpjobportal_item['type'], 'BlockTemplate')) {
-    //                      $wpdb->delete($wpdb->prefix . 'wj_portal_zywrap_block_templates', array('code' => $wpjobportal_item['code']));
+    //                      wpjobportaldb_direct::delete($wpdb->prefix . 'wj_portal_zywrap_block_templates', array('code' => $wpjobportal_item['code']));
     //                 }
     //             }
     //         }
 
-    //         $wpdb->query('SET FOREIGN_KEY_CHECKS = 1;');
+    //         wpjobportaldb_direct::query('SET FOREIGN_KEY_CHECKS = 1;');
 
     //     } catch (Exception $e) {
-    //         $wpdb->query('SET FOREIGN_KEY_CHECKS = 1;');
+    //         wpjobportaldb_direct::query('SET FOREIGN_KEY_CHECKS = 1;');
     //         wp_send_json_error(array('message' => 'Database error applying patch: ' . $e->getMessage()));
     //     }
 
@@ -1557,16 +1554,16 @@ class WPJOBPORTALzywrapModel {
         $wpjobportal_data = array();
 
         // Get Categories
-        $wpjobportal_data['categories'] = $wpdb->get_results("SELECT code, name FROM `" . $wpdb->prefix . "wj_portal_zywrap_categories` ORDER BY ordering ASC");
+        $wpjobportal_data['categories'] = wpjobportaldb_direct::get_results("SELECT code, name FROM `" . $wpdb->prefix . "wj_portal_zywrap_categories` ORDER BY ordering ASC");
 
         // Get AI Models
-        $wpjobportal_data['models'] = $wpdb->get_results("SELECT code, name FROM `" . $wpdb->prefix . "wj_portal_zywrap_ai_models` ORDER BY ordering ASC");
+        $wpjobportal_data['models'] = wpjobportaldb_direct::get_results("SELECT code, name FROM `" . $wpdb->prefix . "wj_portal_zywrap_ai_models` ORDER BY ordering ASC");
 
         // Get Languages
-        $wpjobportal_data['languages'] = $wpdb->get_results("SELECT code, name FROM `" . $wpdb->prefix . "wj_portal_zywrap_languages` ORDER BY ordering ASC");
+        $wpjobportal_data['languages'] = wpjobportaldb_direct::get_results("SELECT code, name FROM `" . $wpdb->prefix . "wj_portal_zywrap_languages` ORDER BY ordering ASC");
 
         // Get Block Templates (Overrides)
-        $wpjobportal_templates_raw = $wpdb->get_results("SELECT type, code, name FROM `" . $wpdb->prefix . "wj_portal_zywrap_block_templates` ORDER BY type, name ASC");
+        $wpjobportal_templates_raw = wpjobportaldb_direct::get_results("SELECT type, code, name FROM `" . $wpdb->prefix . "wj_portal_zywrap_block_templates` ORDER BY type, name ASC");
 
         // Group templates by type
         $wpjobportal_grouped_templates = [];
@@ -1580,7 +1577,7 @@ class WPJOBPORTALzywrapModel {
         // wrappers for search implimenteation
         // $query = "SELECT code, name, category_code FROM `" . $wpdb->prefix . "wj_portal_zywrap_wrappers` ORDER BY ordering ASC";
 
-        // $wpjobportal_data['wrappers'] = $wpdb->get_results($query);
+        // $wpjobportal_data['wrappers'] = wpjobportaldb_direct::get_results($query);
 
         wpjobportal::$_data['playground_data'] = $wpjobportal_data;
         return $wpjobportal_data;
@@ -1588,11 +1585,11 @@ class WPJOBPORTALzywrapModel {
 
     function getZywrapAllWrappers(){
         if (!current_user_can('manage_options')) {
-            wp_send_json_error(array('message' => 'Permission denied.'));
+            wp_send_json_error(array('message' => __('Permission denied.', 'wp-job-portal')));
         }
         $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
         if (!wp_verify_nonce($wpjobportal_nonce, 'zywrap_get_all_wrappers')) {
-            wp_send_json_error(array('message' => 'Security check failed.'));
+            wp_send_json_error(array('message' => __('Security check failed.', 'wp-job-portal')));
         }
 
         $query = "SELECT id, name, use_case_code FROM `" . wpjobportal::$_db->prefix . "wj_portal_zywrap_wrappers` ORDER BY ordering ASC";
@@ -1607,11 +1604,11 @@ class WPJOBPORTALzywrapModel {
      */
     function getWrappersByCategory() {
         if (!current_user_can('manage_options')) {
-            wp_send_json_error(array('message' => 'Permission denied.'));
+            wp_send_json_error(array('message' => __('Permission denied.', 'wp-job-portal')));
         }
         $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
         if (!wp_verify_nonce($wpjobportal_nonce, 'zywrap_get_wrappers')) {
-            wp_send_json_error(array('message' => 'Security check failed.'));
+            wp_send_json_error(array('message' => __('Security check failed.', 'wp-job-portal')));
         }
 
         global $wpdb;
@@ -1638,15 +1635,15 @@ class WPJOBPORTALzywrapModel {
                 wrapper.ordering,
                 wrapper.id,
                 wrapper.use_case_code
-            FROM `{$tbl_wrappers}` wrapper
-            JOIN `{$tbl_use_cases}` usecase ON wrapper.use_case_code = usecase.code
+            FROM %i wrapper
+            JOIN %i usecase ON wrapper.use_case_code = usecase.code
             WHERE usecase.category_code = %s
               AND wrapper.status = 1
               AND usecase.status = 1
             ORDER BY wrapper.ordering ASC
-        ", $wpjobportal_category_code);
+        ", $tbl_wrappers, $tbl_use_cases, $wpjobportal_category_code);
 
-        $wrappers = $wpdb->get_results($query);
+        $wrappers = wpjobportaldb_direct::get_results($query);
 
         // Apply filters in PHP
         if ($wpjobportal_show_featured) {
@@ -1663,11 +1660,11 @@ class WPJOBPORTALzywrapModel {
      */
     function getSchemaByUseCode() {
         if (!current_user_can('manage_options')) {
-            wp_send_json_error(array('message' => 'Permission denied.'));
+            wp_send_json_error(array('message' => __('Permission denied.', 'wp-job-portal')));
         }
         $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
         if (!wp_verify_nonce($wpjobportal_nonce, 'zywrap_get_schema')) {
-            wp_send_json_error(array('message' => 'Security check failed.'));
+            wp_send_json_error(array('message' => __('Security check failed.', 'wp-job-portal')));
         }
 
         global $wpdb;
@@ -1685,13 +1682,13 @@ class WPJOBPORTALzywrapModel {
         $query = $wpdb->prepare("
             SELECT
                 usecase.schema_data
-            FROM `{$tbl_use_cases}` usecase
+            FROM %i usecase
             WHERE usecase.code = %s
               AND usecase.status = 1
 
-        ", $wpjobportal_use_case_code);
+        ", $tbl_use_cases, $wpjobportal_use_case_code);
 
-        $scheme_data = $wpdb->get_row($query);
+        $scheme_data = wpjobportaldb_direct::get_row($query);
 
 
         wp_send_json_success($scheme_data); // Re-index array
@@ -1703,16 +1700,16 @@ class WPJOBPORTALzywrapModel {
      */
     function executeZywrapProxy() {
         if (!current_user_can('manage_options')) {
-            wp_send_json_error(array('message' => 'Permission denied.'));
+            wp_send_json_error(array('message' => __('Permission denied.', 'wp-job-portal')));
         }
         $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
         if (!wp_verify_nonce($wpjobportal_nonce, 'zywrap_execute_proxy')) {
-            wp_send_json_error(array('message' => 'Security check failed.'));
+            wp_send_json_error(array('message' => __('Security check failed.', 'wp-job-portal')));
         }
 
         $api_key = get_option('wpjobportal_zywrap_api_key');
         if (empty($api_key)) {
-            wp_send_json_error(array('message' => 'API Key is not set.'));
+            wp_send_json_error(array('message' => __('API Key is not set.', 'wp-job-portal')));
         }
 
         // Get data from AJAX request
@@ -1723,7 +1720,7 @@ class WPJOBPORTALzywrapModel {
         $wpjobportal_overrides = WPJOBPORTALrequest::getVar('overrides', 'post');
         // $wpjobportal_schema_inputs = WPJOBPORTALrequest::getVar('schema_inputs', 'post');
         $raw_schema_inputs = WPJOBPORTALrequest::getVar('schema_inputs', 'post');
-        $wpjobportal_schema_inputs = !empty($raw_schema_inputs) ? json_decode(stripslashes($raw_schema_inputs), true) : array();
+        $wpjobportal_schema_inputs = !empty($raw_schema_inputs) ? json_decode($raw_schema_inputs, true) : array();
 
         // === NEW FEATURES INPUT ===
         $context = WPJOBPORTALrequest::getVar('context', 'post');
@@ -1845,7 +1842,7 @@ class WPJOBPORTALzywrapModel {
                 'Content-Type' => 'application/json',
                 'Authorization' => 'Bearer ' . $api_key
             ),
-            'body'    => json_encode($wpjobportal_payloadData)
+            'body'    => wp_json_encode($wpjobportal_payloadData)
         );
 
         $response = wp_remote_post($wpjobportal_url, $wpjobportal_args);
@@ -1857,7 +1854,7 @@ class WPJOBPORTALzywrapModel {
                 'model_code' => $wpjobportal_model,
                 'error_message' => $wpjobportal_error_msg
             ]);
-            wp_send_json_error(array('message' => 'Error: ' . $wpjobportal_error_msg));
+            wp_send_json_error(array('message' => __('Error:', 'wp-job-portal') . ' ' . $wpjobportal_error_msg));
         }
 
         $http_code = wp_remote_retrieve_response_code($response);
@@ -1913,7 +1910,7 @@ class WPJOBPORTALzywrapModel {
             }else{
                 wp_send_json_error(array(
                     'status'  =>  'error',
-                    'message' => 'Failed to parse streaming response from Zywrap.'
+                    'message' => __('Failed to parse streaming response from Zywrap.', 'wp-job-portal')
                 ));
             }
         }
@@ -1926,18 +1923,18 @@ class WPJOBPORTALzywrapModel {
         //1. Security & Auth Checks
         $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce', 'post');
         if (!wp_verify_nonce($wpjobportal_nonce, 'wpjobportal_job_nonce')) {
-             wp_send_json_error(array('message' => 'Security check failed.'));
+             wp_send_json_error(array('message' => __('Security check failed.', 'wp-job-portal')));
         }
 
         $api_key = get_option('wpjobportal_zywrap_api_key');
         if (empty($api_key)) {
-            wp_send_json_error(array('message' => 'API Key is not set in Zywrap Settings.'));
+            wp_send_json_error(array('message' => __('API Key is not set in Zywrap Settings.', 'wp-job-portal')));
         }
 
         // check for un authorized access
         $enable_job_copilot  = wpjobportal::$_config->getConfigurationByConfigName('enable_job_copilot');
         if (!current_user_can('manage_options') && $enable_job_copilot == 0) {
-            wp_send_json_error( array( 'message' => 'Security check failed.' ) );
+            wp_send_json_error( array( 'message' => __('Security check failed.', 'wp-job-portal') ) );
         }
 
         // 2. Retrieve & Decode Payload
@@ -1946,9 +1943,9 @@ class WPJOBPORTALzywrapModel {
         $raw_highlights = WPJOBPORTALrequest::getVar('highlights', 'post');
         $existing_text  = WPJOBPORTALrequest::getVar('existing_content', 'post');
 
-        $jobData    = !empty($raw_job_data) ? json_decode(stripslashes($raw_job_data), true) : array();
-        $aiData     = !empty($raw_ai_data) ? json_decode(stripslashes($raw_ai_data), true) : array();
-        $highlights = !empty($raw_highlights) ? json_decode(stripslashes($raw_highlights), true) : array();
+        $jobData    = !empty($raw_job_data) ? json_decode($raw_job_data, true) : array();
+        $aiData     = !empty($raw_ai_data) ? json_decode($raw_ai_data, true) : array();
+        $highlights = !empty($raw_highlights) ? json_decode($raw_highlights, true) : array();
 
         // 3. Construct the Master Prompt
         $wpjobportal_prompt = "You are an expert technical recruiter and HR copywriter. Your task is to write a compelling, highly professional Job Description based EXACTLY on the parameters provided below. Format the output in clean HTML.\n\n";
@@ -2037,14 +2034,14 @@ class WPJOBPORTALzywrapModel {
                 'Content-Type' => 'application/json',
                 'Authorization' => 'Bearer ' . $api_key
             ),
-            'body'    => json_encode($wpjobportal_payloadData)
+            'body'    => wp_json_encode($wpjobportal_payloadData)
         );
 
         $response = wp_remote_post($wpjobportal_url, $wpjobportal_args);
 
         if (is_wp_error($response)) {
             $this->log_api_call('job_copilot_execute', 'error', ['error_message' => $response->get_error_message()]);
-            wp_send_json_error(array('message' => 'API Connection Error: ' . $response->get_error_message()));
+            wp_send_json_error(array('message' => __('API Connection Error:', 'wp-job-portal') . ' ' . $response->get_error_message()));
         }
 
         $http_code = wp_remote_retrieve_response_code($response);
@@ -2094,7 +2091,7 @@ class WPJOBPORTALzywrapModel {
                 $output_html = preg_replace('/^```[a-z]*\s*|\s*```$/i', '', $output_html);
                 wp_send_json_success(array('output' => $output_html));
             } else {
-                wp_send_json_error(array('message' => 'Failed to parse streaming response from Zywrap.'));
+                wp_send_json_error(array('message' => __('Failed to parse streaming response from Zywrap.', 'wp-job-portal')));
             }
         }
     }
@@ -2106,19 +2103,19 @@ class WPJOBPORTALzywrapModel {
         // 1. Security & Auth Checks
         $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce', 'post');
         if ( ! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_company_nonce' ) ) {
-            wp_send_json_error( array( 'message' => 'Security check failed.' ) );
+            wp_send_json_error( array( 'message' => __('Security check failed.', 'wp-job-portal') ) );
         }
 
         $api_key = get_option('wpjobportal_zywrap_api_key');
 
         if (empty($api_key)) {
-            wp_send_json_error(array('message' => 'API Key is not set in Zywrap Settings.'));
+            wp_send_json_error(array('message' => __('API Key is not set in Zywrap Settings.', 'wp-job-portal')));
         }
 
         // check for un authorized access
         $enable_company_copilot  = wpjobportal::$_config->getConfigurationByConfigName('enable_company_copilot');
         if (!current_user_can('manage_options') && $enable_company_copilot == 0) {
-            wp_send_json_error( array( 'message' => 'Security check failed.' ) );
+            wp_send_json_error( array( 'message' => __('Security check failed.', 'wp-job-portal') ) );
         }
 
         // Retrieve & Decode Payload
@@ -2127,9 +2124,9 @@ class WPJOBPORTALzywrapModel {
         $raw_highlights   = WPJOBPORTALrequest::getVar('highlights', 'post');
         $existing_text    = WPJOBPORTALrequest::getVar('existing_content', 'post');
 
-        $companyData = !empty($raw_company_data) ? json_decode(stripslashes($raw_company_data), true) : array();
-        $aiData      = !empty($raw_ai_data) ? json_decode(stripslashes($raw_ai_data), true) : array();
-        $highlights  = !empty($raw_highlights) ? json_decode(stripslashes($raw_highlights), true) : array();
+        $companyData = !empty($raw_company_data) ? json_decode($raw_company_data, true) : array();
+        $aiData      = !empty($raw_ai_data) ? json_decode($raw_ai_data, true) : array();
+        $highlights  = !empty($raw_highlights) ? json_decode($raw_highlights, true) : array();
 
         // Construct the Master Prompt
         $wpjobportal_prompt = "You are an expert corporate copywriter and employer branding specialist. Your task is to write a compelling, highly professional Company Profile/About Us section based EXACTLY on the parameters provided below. Format the output in clean HTML.\n\n";
@@ -2193,7 +2190,7 @@ class WPJOBPORTALzywrapModel {
                 'Content-Type'  => 'application/json',
                 'Authorization' => 'Bearer ' . $api_key
             ),
-            'body' => json_encode($wpjobportal_payloadData)
+            'body' => wp_json_encode($wpjobportal_payloadData)
         );
 
         $response = wp_remote_post($wpjobportal_url, $wpjobportal_args);
@@ -2201,7 +2198,7 @@ class WPJOBPORTALzywrapModel {
 
         if (is_wp_error($response)) {
             $this->log_api_call('company_copilot_execute', 'error', ['error_message' => $response->get_error_message()]);
-            wp_send_json_error(array('message' => 'API Connection Error: ' . $response->get_error_message()));
+            wp_send_json_error(array('message' => __('API Connection Error:', 'wp-job-portal') . ' ' . $response->get_error_message()));
         }
 
         $http_code = wp_remote_retrieve_response_code($response);
@@ -2246,7 +2243,7 @@ class WPJOBPORTALzywrapModel {
                 $output_html = preg_replace('/^```[a-z]*\s*|\s*```$/i', '', $output_html);
                 wp_send_json_success(array('output' => $output_html));
             } else {
-                wp_send_json_error(array('message' => 'Failed to parse streaming response from Zywrap.'));
+                wp_send_json_error(array('message' => __('Failed to parse streaming response from Zywrap.', 'wp-job-portal')));
             }
         }
     }
@@ -2258,18 +2255,18 @@ class WPJOBPORTALzywrapModel {
         // 1. Security & Auth Checks
         $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce', 'post');
         if ( ! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_resume_nonce' ) ) {
-            wp_send_json_error( array( 'message' => 'Security check failed.' ) );
+            wp_send_json_error( array( 'message' => __('Security check failed.', 'wp-job-portal') ) );
         }
 
         $api_key = get_option('wpjobportal_zywrap_api_key');
         if (empty($api_key)) {
-            wp_send_json_error(array('message' => 'API Key is not set in Zywrap Settings.'));
+            wp_send_json_error(array('message' => __('API Key is not set in Zywrap Settings.', 'wp-job-portal')));
         }
 
         // check for un authorized access
         $enable_resume_copilot  = wpjobportal::$_config->getConfigurationByConfigName('enable_resume_copilot');
         if (!current_user_can('manage_options') && $enable_resume_copilot == 0) {
-            wp_send_json_error( array( 'message' => 'Security check failed.' ) );
+            wp_send_json_error( array( 'message' => __('Security check failed.', 'wp-job-portal') ) );
         }
 
         // Retrieve & Decode Payload
@@ -2278,9 +2275,9 @@ class WPJOBPORTALzywrapModel {
         $raw_highlights   = WPJOBPORTALrequest::getVar('highlights', 'post');
         $existing_text    = WPJOBPORTALrequest::getVar('existing_content', 'post');
 
-        $resumeData = !empty($raw_resume_data) ? json_decode(stripslashes($raw_resume_data), true) : array();
-        $aiData     = !empty($raw_ai_data) ? json_decode(stripslashes($raw_ai_data), true) : array();
-        $highlights = !empty($raw_highlights) ? json_decode(stripslashes($raw_highlights), true) : array();
+        $resumeData = !empty($raw_resume_data) ? json_decode($raw_resume_data, true) : array();
+        $aiData     = !empty($raw_ai_data) ? json_decode($raw_ai_data, true) : array();
+        $highlights = !empty($raw_highlights) ? json_decode($raw_highlights, true) : array();
 
         // Construct the Master Prompt
         $wpjobportal_prompt = "You are an expert career coach and professional resume writer. Your task is to generate an optimized, keyword-rich 'Skills' section for a candidate's resume based EXACTLY on the parameters provided below. Provide plain text formatted as requested, do NOT use HTML unless specifically asked.\n\n";
@@ -2351,14 +2348,14 @@ class WPJOBPORTALzywrapModel {
                 'Content-Type'  => 'application/json',
                 'Authorization' => 'Bearer ' . $api_key
             ),
-            'body' => json_encode($wpjobportal_payloadData)
+            'body' => wp_json_encode($wpjobportal_payloadData)
         );
 
         $response = wp_remote_post($wpjobportal_url, $wpjobportal_args);
 
         if (is_wp_error($response)) {
             $this->log_api_call('resume_copilot_execute', 'error', ['error_message' => $response->get_error_message()]);
-            wp_send_json_error(array('message' => 'API Connection Error: ' . $response->get_error_message()));
+            wp_send_json_error(array('message' => __('API Connection Error:', 'wp-job-portal') . ' ' . $response->get_error_message()));
         }
 
         $http_code = wp_remote_retrieve_response_code($response);
@@ -2404,7 +2401,7 @@ class WPJOBPORTALzywrapModel {
                 $output_html = preg_replace('/^```[a-z]*\s*|\s*```$/i', '', $output_html);
                 wp_send_json_success(array('output' => $output_html));
             } else {
-                wp_send_json_error(array('message' => 'Failed to parse streaming response from Zywrap.'));
+                wp_send_json_error(array('message' => __('Failed to parse streaming response from Zywrap.', 'wp-job-portal')));
             }
         }
     }
@@ -2418,20 +2415,20 @@ class WPJOBPORTALzywrapModel {
         // 1. Security & Auth Checks
         $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce', 'post');
         if ( ! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_coverletter_nonce' ) ) {
-            wp_send_json_error( array( 'msg' => 'Security check failed.' ) );
+            wp_send_json_error( array( 'msg' => __('Security check failed.', 'wp-job-portal') ) );
         }
 
         $api_key = get_option('wpjobportal_zywrap_api_key');
 
         if (empty($api_key)) {
-            wp_send_json_error(array('message' => 'API Key is not set in Zywrap Settings.'));
+            wp_send_json_error(array('message' => __('API Key is not set in Zywrap Settings.', 'wp-job-portal')));
         }
 
         // check for un authorized access
         $enable_coverletter_copilot  = wpjobportal::$_config->getConfigurationByConfigName('enable_coverletter_copilot');
         $enable_cover_letter_quick_apply  = wpjobportal::$_config->getConfigurationByConfigName('enable_cover_letter_quick_apply');
         if (!current_user_can('manage_options') && $enable_coverletter_copilot == 0 && $enable_cover_letter_quick_apply == 0) {
-            wp_send_json_error( array( 'message' => 'Security check failed.' ) );
+            wp_send_json_error( array( 'message' => __('Security check failed.', 'wp-job-portal') ) );
         }
 
         // Retrieve & Decode Payload
@@ -2439,9 +2436,9 @@ class WPJOBPORTALzywrapModel {
         $raw_ai_data          = WPJOBPORTALrequest::getVar('aiData', 'post');
         $raw_highlights       = WPJOBPORTALrequest::getVar('highlights', 'post');
 
-        $coverLetterData = !empty($raw_coverletter_data) ? json_decode(stripslashes($raw_coverletter_data), true) : array();
-        $aiData          = !empty($raw_ai_data) ? json_decode(stripslashes($raw_ai_data), true) : array();
-        $highlights      = !empty($raw_highlights) ? json_decode(stripslashes($raw_highlights), true) : array();
+        $coverLetterData = !empty($raw_coverletter_data) ? json_decode($raw_coverletter_data, true) : array();
+        $aiData          = !empty($raw_ai_data) ? json_decode($raw_ai_data, true) : array();
+        $highlights      = !empty($raw_highlights) ? json_decode($raw_highlights, true) : array();
 
         // Construct the Master Prompt
         $wpjobportal_prompt = "You are an expert career strategist and executive copywriter. Your task is to write a highly persuasive, professional Cover Letter based EXACTLY on the parameters provided below. Format the output in clean HTML with paragraphs.\n\n";
@@ -2463,7 +2460,7 @@ class WPJOBPORTALzywrapModel {
         if (!empty($aiData['jobContext']) && !empty($aiData['jobId'])) {
             $job_id = intval($aiData['jobId']);
             $query = $wpdb->prepare("SELECT title, description FROM `" . $wpdb->prefix . "wj_portal_jobs` WHERE id = %d", $job_id);
-            $job_info = $wpdb->get_row($query);
+            $job_info = wpjobportaldb_direct::get_row($query);
 
             if ($job_info) {
                 $wpjobportal_prompt .= "\n--- TARGET JOB DETAILS ---\n";
@@ -2479,7 +2476,7 @@ class WPJOBPORTALzywrapModel {
         if (!empty($aiData['resumeContext']) && !empty($aiData['resumeId'])) {
             $resume_id = intval($aiData['resumeId']);
             $query = $wpdb->prepare("SELECT application_title as title, skills FROM `" . $wpdb->prefix . "wj_portal_resume` WHERE id = %d", $resume_id);
-            $resume_info = $wpdb->get_row($query);
+            $resume_info = wpjobportaldb_direct::get_row($query);
 
             if ($resume_info) {
                 $wpjobportal_prompt .= "\n--- CANDIDATE RESUME PROFILE ---\n";
@@ -2531,14 +2528,14 @@ class WPJOBPORTALzywrapModel {
                 'Content-Type'  => 'application/json',
                 'Authorization' => 'Bearer ' . $api_key
             ),
-            'body' => json_encode($wpjobportal_payloadData)
+            'body' => wp_json_encode($wpjobportal_payloadData)
         );
 
         $response = wp_remote_post($wpjobportal_url, $wpjobportal_args);
 
         if (is_wp_error($response)) {
             $this->log_api_call('cover_letter_execute', 'error', ['error_message' => $response->get_error_message()]);
-            wp_send_json_error(array('message' => 'API Connection Error: ' . $response->get_error_message()));
+            wp_send_json_error(array('message' => __('API Connection Error:', 'wp-job-portal') . ' ' . $response->get_error_message()));
         }
 
         $http_code = wp_remote_retrieve_response_code($response);
@@ -2583,7 +2580,7 @@ class WPJOBPORTALzywrapModel {
                 $output_html = preg_replace('/^```[a-z]*\s*|\s*```$/i', '', $output_html);
                 wp_send_json_success(array('output' => $output_html));
             } else {
-                wp_send_json_error(array('message' => 'Failed to parse streaming response from Zywrap.'));
+                wp_send_json_error(array('message' => __('Failed to parse streaming response from Zywrap.', 'wp-job-portal')));
             }
         }
     }

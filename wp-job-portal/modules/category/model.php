@@ -117,7 +117,7 @@ class WPJOBPORTALCategoryModel {
         return;
     }
 
-    private function getCategoryChild($parentid, $wpjobportal_prefix, &$wpjobportal_result, $for_combo = 0) {
+    private function getCategoryChild($parentid, $wpjobportal_prefix, &$wpjobportal_result, $for_combo = 0, $wpjobportal_indent = '|-- ') {
 
         if (!is_numeric($parentid))
             return false;
@@ -141,7 +141,7 @@ class WPJOBPORTALCategoryModel {
                 $wpjobportal_subrecord->isdefault = $cat->isdefault;
                 $wpjobportal_subrecord->ordering = $cat->ordering;
                 $wpjobportal_result[] = $wpjobportal_subrecord;
-                $this->getCategoryChild($cat->id, $wpjobportal_prefix . '|-- ', $wpjobportal_result, $for_combo);
+                $this->getCategoryChild($cat->id, $wpjobportal_prefix . $wpjobportal_indent, $wpjobportal_result, $for_combo, $wpjobportal_indent);
             }
             return $wpjobportal_result;
         }
@@ -149,7 +149,19 @@ class WPJOBPORTALCategoryModel {
 
     function getCategoryForCombobox($wpjobportal_themecall=null) {
         $wpjobportal_result = array();
-        $wpjobportal_prefix = '|-- ';
+        /*
+         * A child reads as "|-- Payroll" in the admin list, and read as
+         * "|&#8211; Payroll" in every combo box on the front of the site.
+         * Nothing had gone wrong with the data: a shortcode's output passes
+         * through wptexturize on its way out, and that turns a double hyphen
+         * into an en dash, so the tree marker arrived as a pipe glued to a
+         * dash - the look of a page with its encoding broken.
+         *
+         * One hyphen says the same thing and is left alone by the texturizer.
+         * The admin list is not rendered through that filter and keeps the
+         * tree it has always drawn.
+         */
+        $wpjobportal_prefix = '|- ';
         $query = "SELECT category.* from `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category
                     WHERE category.parentid = 0 AND category.isactive = 1 ORDER by category.ordering";
         $wpjobportal_knowledgebase = wpjobportal::$_db->get_results($query);
@@ -159,7 +171,7 @@ class WPJOBPORTALCategoryModel {
                 $record->id = $wpjobportal_kb->id;
                 $record->cat_title = $wpjobportal_kb->cat_title;
                 $wpjobportal_result[] = $record;
-                $this->getCategoryChild($wpjobportal_kb->id, $wpjobportal_prefix, $wpjobportal_result,1); // 4th parameter 1 is for making sure only published categories or subcategories are shown.
+                $this->getCategoryChild($wpjobportal_kb->id, $wpjobportal_prefix, $wpjobportal_result, 1, $wpjobportal_prefix); // 4th parameter 1 is for making sure only published categories or subcategories are shown.
             }
         }
         $list = array();
@@ -246,7 +258,6 @@ class WPJOBPORTALCategoryModel {
         $wpjobportal_row = WPJOBPORTALincluder::getJSTable('categories');
 
         $wpjobportal_data = wpjobportal::wpjobportal_sanitizeData($wpjobportal_data);
-        $wpjobportal_data = WPJOBPORTALincluder::getJSmodel('common')->stripslashesFull($wpjobportal_data);// remove slashes with quotes.
         if (!$wpjobportal_row->bind($wpjobportal_data)) {
             return WPJOBPORTAL_SAVE_ERROR;
         }
@@ -575,8 +586,8 @@ class WPJOBPORTALCategoryModel {
     function getCookiesSavedCategory(){
         $wpjobportal_jsjp_search_array = array();
         $wpjp_search_cookie_data = '';
-        if(isset($_COOKIE['jsjp_jobportal_search_data'])){
-            $wpjp_search_cookie_data = wpjobportal::wpjobportal_sanitizeData($_COOKIE['jsjp_jobportal_search_data']);
+        if(WPJOBPORTALrequest::hasCookie('jsjp_jobportal_search_data')){
+            $wpjp_search_cookie_data = WPJOBPORTALrequest::cookie('jsjp_jobportal_search_data');
             $wpjp_search_cookie_data = wpjobportalphplib::wpJP_safe_decoding($wpjp_search_cookie_data);
             $wpjp_search_cookie_data = json_decode( $wpjp_search_cookie_data , true );
         }

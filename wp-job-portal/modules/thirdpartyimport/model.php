@@ -169,6 +169,7 @@ class WPJOBPORTALthirdpartyimportModel {
             'orderby'        => 'ID',
             'order'          => 'ASC',
             'numberposts'    => -1, // fetch all posts
+            // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- one-off admin import; the excluded set is the already-imported posts.
             'exclude'        => wp_list_pluck(
                 get_posts([
                     'post_type'   => 'job_listing',
@@ -205,6 +206,7 @@ class WPJOBPORTALthirdpartyimportModel {
             'orderby'        => 'ID',
             'order'          => 'ASC',
             'numberposts'    => -1, // get all
+            // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- one-off admin import; the excluded set is the already-imported posts.
             'exclude'        => get_posts([
                 'post_type'   => 'job_application',
                 'post_status'=> 'auto-draft',
@@ -611,10 +613,7 @@ class WPJOBPORTALthirdpartyimportModel {
             return;
         }
         global $wp_filesystem;
-        if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-            $creds = request_filesystem_credentials( site_url() );
-            wp_filesystem( $creds );
-        }
+        $wp_filesystem = wpjobportal::wpjobportal_filesystem();
 
         // emove trailing slashes
         $full_path = untrailingslashit($full_path);
@@ -749,6 +748,7 @@ class WPJOBPORTALthirdpartyimportModel {
             'orderby'        => 'ID',
             'order'          => 'ASC',
             'numberposts'    => -1, // fetch all posts
+            // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- one-off admin import; the excluded set is the already-imported posts.
             'exclude'        => wp_list_pluck(
                 get_posts([
                     'post_type'   => 'job_listing',
@@ -1348,6 +1348,7 @@ class WPJOBPORTALthirdpartyimportModel {
             'orderby'        => 'ID',
             'order'          => 'ASC',
             'numberposts'    => -1, // get all
+            // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude -- one-off admin import; the excluded set is the already-imported posts.
             'exclude'        => get_posts([
                 'post_type'   => 'job_application',
                 'post_status'=> 'auto-draft',

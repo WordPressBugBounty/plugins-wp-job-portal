@@ -16,6 +16,23 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
     const STATS_OPTION = 'wpjobportal_core_action_policy_stats';
 
     /**
+     * Why the last refusal happened, for the message the person is shown.
+     *
+     * Every check here - method, role, nonce, input shape, ownership - ended
+     * in the same sentence: "You are not allowed to perform this WP Job Portal
+     * action." A tester reporting that has told us nothing, and neither the
+     * support desk nor the person at the screen could tell an expired form
+     * from a missing portal role. The reason was written to an option nobody
+     * reads; it is worth saying out loud.
+     */
+    private static $wpjobportal_last_reason = '';
+
+    /** The reason for the most recent refusal in this request, if any. */
+    public static function last_denial_reason() {
+        return self::$wpjobportal_last_reason;
+    }
+
+    /**
      * Authorize a registered core route when it changes application state.
      *
      * Read-only routes are intentionally absent from the policy map and retain
@@ -126,20 +143,14 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
         self::override_policy($policies, 'quickapply.addtoquickapply', 'employer_or_administrator');
         self::override_policy($policies, 'quickapply.quickapplyonjob', 'jobseeker');
 
+        self::override_policy($policies, 'jobsearch.savejobsearch', 'jobseeker');
+        self::override_policy($policies, 'jobsearch.removesavedjobsearch', 'jobseeker');
+
         self::override_policy($policies, 'resume.saveresume', 'resume_submitter', 'resume_save');
         self::override_policy($policies, 'resume.removeresume', 'resume_submitter', 'resume_remove');
         self::override_policy($policies, 'resume.addviewresumedetail', 'employer_or_administrator');
 
         self::override_policy($policies, 'user.saveuser', 'portal_user_or_administrator', 'user_self');
-
-        foreach (array(
-            'premiumplugin.verifytransactionkey',
-            'premiumplugin.downloadandinstalladdons',
-            'premiumplugin.wpjobportalupdatetransactionkey',
-            'premiumplugin.wpjobportal_remove_unused_keys',
-        ) as $route) {
-            self::override_policy($policies, $route, 'plugin_installer');
-        }
 
         /**
          * Allows narrowly scoped extensions to adjust a core policy without
@@ -222,10 +233,10 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
             'common.savenewinwpjobportal',
             'company.savecompany',
             'configuration.saveconfiguration',
-            'configuration.saveautoupdateconfiguration',
             'customfield.saveuserfield',
             'emailtemplate.saveemailtemplate',
             'fieldordering.saveuserfield',
+            'jobsearch.savejobsearch',
             'fieldordering.savesearchfieldordering',
             'fieldordering.savesearchfieldorderingfromform',
             'job.savejob',
@@ -236,10 +247,7 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
             'postinstallation.dismissonboarding',
             'postinstallation.reopenonboarding',
             'postinstallation.cleansampledata',
-            'premiumplugin.verifytransactionkey',
-            'premiumplugin.downloadandinstalladdons',
-            'premiumplugin.wpjobportalupdatetransactionkey',
-            'premiumplugin.wpjobportal_remove_unused_keys',
+            'postinstallation.assignsampleowner',
             'quickapply.quickapplyonjob',
             'resume.saveresume',
             'user.saveuserrole',
@@ -257,8 +265,7 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
         ) {
             // Some historical "save" actions are links rather than forms.
             if (in_array($route, array(
-                'configuration.saveautoupdateconfiguration',
-                'postinstallation.savetemplatesampledata',
+                    'postinstallation.savetemplatesampledata',
             ), true)) {
                 return array('GET');
             }
@@ -302,7 +309,6 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
             'jobstatus' => 'wpjobportal_job_status_nonce',
             'jobtype' => 'wpjobportal_job_type_nonce',
             'postinstallation' => 'wpjobportal_postinstallation_nonce',
-            'premiumplugin' => 'wpjobportal_premiumplugin_nonce',
             'resume' => 'wpjobportal_resume_nonce',
             'salaryrangetype' => 'wpjobportal_salary_range_type_nonce',
             'slug' => 'wpjobportal_slug_nonce',
@@ -317,7 +323,8 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
             'common.makedefault' => 'wpjobportal_common_entity_nonce',
             'common.savenewinwpjobportal' => 'wpjobportal_new_in_jobportal_nonce',
             'common.wpjobportal_synchronize_ai_search_data' => 'synchronize_ai_search_data',
-            'premiumplugin.wpjobportal_remove_unused_keys' => 'delete-transaction-key',
+            'jobsearch.savejobsearch' => 'wpjobportal_job_search_nonce',
+            'jobsearch.removesavedjobsearch' => 'wpjobportal_job_search_nonce',
             'quickapply.addtoquickapply' => 'copy-job',
             'quickapply.quickapplyonjob' => 'wpjobportal_quick_apply_nonce',
             'wpjobportal.saveordering' => 'wpjobportal_field_nonce',
@@ -467,9 +474,7 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
             'jobapply.jobapplyasvisitor' => self::required_id('wpjobportalid-jobid'),
             'jobapply.applyonjob' => self::required_id('jobid'),
             'postinstallation.save' => array(
-                // Step 0 is the quick-start screen that stores the multiple
-                // employers mode before the numbered setup steps begin.
-                'step' => array('type' => 'enum', 'required' => true, 'values' => array('0', '1', '2', '3')),
+                'step' => array('type' => 'enum', 'required' => true, 'values' => array('1', '2', '3')),
             ),
             'postinstallation.savesampledata' => array(
                 'sampledata' => array('type' => 'enum', 'required' => true, 'values' => array('0', '1')),
@@ -477,15 +482,18 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
                 'empmenu' => array('type' => 'enum', 'values' => array('0', '1')),
                 'job_listing_menu' => array('type' => 'enum', 'values' => array('0', '1')),
                 'temp_data' => array('type' => 'enum', 'values' => array('0', '1')),
+                'employer_id' => array('type' => 'optional_id'),
+                'jobseeker_id' => array('type' => 'optional_id'),
             ),
             'postinstallation.savetemplatesampledata' => array(
                 'flag' => array('type' => 'enum', 'required' => true, 'values' => array('f', 'p', 'ftp')),
             ),
-            'postinstallation.importtemplatesampledata' => array(
-                'flag' => array('type' => 'enum', 'required' => true, 'values' => array('f')),
-            ),
             'postinstallation.getdemocode' => array(
                 'demoid' => array('type' => 'safe_key', 'required' => true, 'max' => 100),
+            ),
+            'postinstallation.assignsampleowner' => array(
+                'sample_employer_owner' => array('type' => 'optional_id'),
+                'sample_jobseeker_owner' => array('type' => 'optional_id'),
             ),
             'postinstallation.cleansampledata' => array(
                 'sample_cleanup_confirmation' => array(
@@ -493,18 +501,6 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
                     'required' => true,
                     'values' => array('cleanup_marked_sample_data'),
                 ),
-            ),
-            // The activation-key routes validate an empty submission themselves
-            // and return the user to the form with a readable message, so the
-            // boundary only constrains the value when one is supplied.
-            'premiumplugin.verifytransactionkey' => array(
-                'transactionkey' => array('type' => 'optional_text', 'max' => 512),
-            ),
-            'premiumplugin.downloadandinstalladdons' => array(
-                'token' => array('type' => 'optional_text', 'max' => 512),
-            ),
-            'premiumplugin.wpjobportalupdatetransactionkey' => array(
-                'transactionkey' => array('type' => 'optional_text', 'max' => 512),
             ),
             'quickapply.addtoquickapply' => self::required_id('wpjobportalid'),
             'quickapply.quickapplyonjob' => self::required_id('jobid'),
@@ -515,17 +511,7 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
             'resume.approvequeueallresumes' => self::required_id_list('id'),
             'resume.rejectqueueallresumes' => self::required_id_list('id'),
             'resume.resumeenforcedelete' => self::required_id('resumeid'),
-            'resume.saveresume' => array(
-                'id'    => array('type' => 'optional_id'),
-                'sec_1' => array('type' => 'section_ids'),
-                'sec_2' => array('type' => 'section_ids'),
-                'sec_3' => array('type' => 'section_ids'),
-                'sec_4' => array('type' => 'section_ids'),
-                'sec_5' => array('type' => 'section_ids'),
-                'sec_6' => array('type' => 'section_ids'),
-                'sec_7' => array('type' => 'section_ids'),
-                'sec_8' => array('type' => 'section_ids'),
-            ),
+            'resume.saveresume' => array('id' => array('type' => 'optional_id')),
             'resume.removeresume' => self::required_id_list('wpjobportal-cb'),
             'resume.addviewresumedetail' => self::required_id('wpjobportalid'),
             'thirdpartyimport.importjobmanagerdata' => array(
@@ -578,9 +564,6 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
         }
         if ($role === 'administrator') {
             return current_user_can('manage_options');
-        }
-        if ($role === 'plugin_installer') {
-            return current_user_can('install_plugins');
         }
 
         $user = WPJOBPORTALincluder::getObjectClass('user');
@@ -675,11 +658,6 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
                     break;
                 case 'id_list':
                     if (!self::valid_id_or_list($value)) {
-                        return false;
-                    }
-                    break;
-                case 'section_ids':
-                    if (!self::valid_section_ids($value)) {
                         return false;
                     }
                     break;
@@ -832,13 +810,7 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
      * @return mixed
      */
     private static function request_value($field) {
-        if (isset($_POST[$field])) {
-            return wp_unslash($_POST[$field]);
-        }
-        if (isset($_GET[$field])) {
-            return wp_unslash($_GET[$field]);
-        }
-        return null;
+        return WPJOBPORTALrequest::raw($field);
     }
 
     /**
@@ -850,38 +822,6 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
             && is_numeric($value)
             && (string) absint($value) === (string) $value
             && absint($value) > 0;
-    }
-
-    /**
-     * A resume section is posted as sec_N[id][i], sec_N[deletethis][i] and so on. Each posted
-     * section id addresses a stored row, so it has to be either empty (a new row) or a clean
-     * positive integer. Anything else is rejected here rather than left for MySQL to coerce.
-     *
-     * @param mixed $value
-     * @return bool
-     */
-    private static function valid_section_ids($value) {
-        if (!is_array($value) || !isset($value['id'])) {
-            return true; // this section addresses no stored row
-        }
-
-        $ids = is_array($value['id']) ? $value['id'] : array($value['id']);
-        if (count($ids) > 1000) {
-            return false;
-        }
-
-        foreach ($ids as $candidate) {
-            if (self::is_empty_value($candidate)
-                || $candidate === 0
-                || $candidate === '0'
-            ) {
-                continue; // a new row carries no id
-            }
-            if (!self::valid_id($candidate)) {
-                return false;
-            }
-        }
-        return true;
     }
 
     /**
@@ -934,6 +874,7 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
      * @return false
      */
     private static function deny($module, $task, $channel, $reason) {
+        self::$wpjobportal_last_reason = sanitize_key($reason);
         $old = get_option(self::STATS_OPTION, array());
         if (!is_array($old)) {
             $old = array();

@@ -2,7 +2,7 @@
 if (!defined('ABSPATH'))
     die('Restricted Access');
 
-wp_enqueue_style('wpjobportal-ratingstyle', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportalrating.css');
+wp_enqueue_style('wpjobportal-ratingstyle', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportalrating.css', array(), wpjobportal_asset_version('includes/css/wpjobportalrating.css'));
 $wpjobportal_protocol = wpjobportal::$_common->getServerProtocol();
 $wpjobportal_default_longitude = wpjobportal::$_configuration['default_longitude'];
 $wpjobportal_default_latitude = wpjobportal::$_configuration['default_latitude'];
@@ -26,16 +26,16 @@ foreach(wpjobportal::$wpjobportal_data['fields'] AS $wpjobportal_key => $wpjobpo
         break;
     }
 }
-$wpjobportal_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+$wpjobportal_protocol = is_ssl() ? "https://" : "http://";
 if(isset(wpjobportal::$_data[2][$wpjobportal_mapfield]) && wpjobportal::$_data[2][$wpjobportal_mapfield]->published == 1){
-   wp_enqueue_script( 'mapAPI',$wpjobportal_protocol.'maps.googleapis.com/maps/api/js?key='.wpjobportal::$_configuration['google_map_api_key']);
+   wp_enqueue_script( 'mapAPI', $wpjobportal_protocol.'maps.googleapis.com/maps/api/js?key='.wpjobportal::$_configuration['google_map_api_key'], array(), WPJOBPORTAL_VERSION, false );
 }elseif($wpjobportal_mapfield2 != null) {
-   wp_enqueue_script( 'mapAPI',$wpjobportal_protocol.'maps.googleapis.com/maps/api/js?key='.wpjobportal::$_configuration['google_map_api_key']);
+   wp_enqueue_script( 'mapAPI', $wpjobportal_protocol.'maps.googleapis.com/maps/api/js?key='.wpjobportal::$_configuration['google_map_api_key'], array(), WPJOBPORTAL_VERSION, false );
 }
-   wp_enqueue_script( 'mapAPI',$wpjobportal_protocol.'maps.googleapis.com/maps/api/js?key='.wpjobportal::$_configuration['google_map_api_key']);
+   wp_enqueue_script( 'mapAPI', $wpjobportal_protocol.'maps.googleapis.com/maps/api/js?key='.wpjobportal::$_configuration['google_map_api_key'], array(), WPJOBPORTAL_VERSION, false );
 ?>
 <?php
-    wp_register_script( 'wpjobportal-inline-handle', '' );
+    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
     $wpjobportal_inline_js_script = "
@@ -200,7 +200,7 @@ if(isset(wpjobportal::$_data[2][$wpjobportal_mapfield]) && wpjobportal::$_data[2
     $wpjobportal_inline_js_script = "
         jQuery(document).ready(function ($) {
             jQuery('.wpjobportal-multiselect').chosen({
-                placeholder_text_multiple: \"". esc_html(__('Select Some Options', 'wp-job-portal'))."\"
+                placeholder_text_multiple: \"". esc_html(__('Any', 'wp-job-portal'))."\"
             });
 
             //Token Input

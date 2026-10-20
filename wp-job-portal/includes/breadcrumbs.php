@@ -242,39 +242,39 @@ class WPJOBPORTALbreadcrumbs {
                             break;
                         case 'paydepartment':
                             $wpjobportal_array[] = $wpjobportal_staticUrl;
-                           $wpjobportal_array[] = array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'departments', 'wpjobportallt'=>'mydepartments')), 'text' => "My Department");
-                                   $wpjobportal_array[] = array('text'=>'Select Payment');
+                           $wpjobportal_array[] = array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'departments', 'wpjobportallt'=>'mydepartments')), 'text' => esc_html(__('My Departments', 'wp-job-portal')));
+                                   $wpjobportal_array[] = array('text'=>esc_html(__('Select Payment', 'wp-job-portal')));
 
 
                             break;
                         case 'payjobapply':
                             $wpjobportal_array[] = $wpjobportal_staticUrl;
-                            $wpjobportal_array[] = array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobapply', 'wpjobportallt'=>'myappliedjobs')), 'text' => "My Applied Jobs");
-                                   $wpjobportal_array[] = array('text'=>'Select Payment');
+                            $wpjobportal_array[] = array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobapply', 'wpjobportallt'=>'myappliedjobs')), 'text' => esc_html(__('My Applied Jobs', 'wp-job-portal')));
+                                   $wpjobportal_array[] = array('text'=>esc_html(__('Select Payment', 'wp-job-portal')));
                             break;
                         case 'paycompany':
                         case 'payfeaturedcompany':
                             $wpjobportal_array[] = $wpjobportal_staticUrl;
-                            $wpjobportal_array[] = array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'multicompany', 'wpjobportallt'=>'mycompanies')), 'text' => "My Company");
-                                   $wpjobportal_array[] = array('text'=>'Select Payment');
+                            $wpjobportal_array[] = array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'multicompany', 'wpjobportallt'=>'mycompanies')), 'text' => esc_html(__('My Companies', 'wp-job-portal')));
+                                   $wpjobportal_array[] = array('text'=>esc_html(__('Select Payment', 'wp-job-portal')));
                              break;
 
                         case 'payjob':
                         case 'payfeaturedjob':
                             $wpjobportal_array[] = $wpjobportal_staticUrl;
-                            $wpjobportal_array[] = array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'myjobs')), 'text' => "My Job");
-                                   $wpjobportal_array[] = array('text'=>'Select Payment');
+                            $wpjobportal_array[] = array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'myjobs')), 'text' => esc_html(__('My Jobs', 'wp-job-portal')));
+                                   $wpjobportal_array[] = array('text'=>esc_html(__('Select Payment', 'wp-job-portal')));
                              break;
                          case 'payresumesearch':
                             $wpjobportal_array[] = $wpjobportal_staticUrl;
-                            $wpjobportal_array[] = array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resumesearch', 'wpjobportallt'=>'resumesavesearch')), 'text' => "My Resume Search");
-                                   $wpjobportal_array[] = array('text'=>'Select Payment');
+                            $wpjobportal_array[] = array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resumesearch', 'wpjobportallt'=>'resumesavesearch')), 'text' => esc_html(__('Resume Save Searches', 'wp-job-portal')));
+                                   $wpjobportal_array[] = array('text'=>esc_html(__('Select Payment', 'wp-job-portal')));
                             break;
                         case 'payresume':
                         case 'payfeaturedresume':
                             $wpjobportal_array[] = $wpjobportal_staticUrl;
-                            $wpjobportal_array[] = array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'multiresume', 'wpjobportallt'=>'myresumes')), 'text' => "My Resume ");
-                                   $wpjobportal_array[] = array('text'=>'Select Payment');
+                            $wpjobportal_array[] = array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'multiresume', 'wpjobportallt'=>'myresumes')), 'text' => esc_html(__('My Resumes', 'wp-job-portal')));
+                                   $wpjobportal_array[] = array('text'=>esc_html(__('Select Payment', 'wp-job-portal')));
                             break;
                     }
                 break;
@@ -282,7 +282,7 @@ class WPJOBPORTALbreadcrumbs {
                     switch ($wpjobportal_layout) {
                         case 'packages':
                             $wpjobportal_array[] = $wpjobportal_staticUrl;
-                            $wpjobportal_array[] = array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'package', 'wpjobportallt'=>'packages')), 'text' => esc_html(__('Package', 'wp-job-portal')));
+                            $wpjobportal_array[] = array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'package', 'wpjobportallt'=>'packages')), 'text' => esc_html(__('Packages', 'wp-job-portal')));
                             break;
                     }
 
@@ -379,7 +379,19 @@ class WPJOBPORTALbreadcrumbs {
                                 break;
                             case 'jobappliedresume':
                                 $wpjobportal_array[] = $wpjobportal_staticUrl;
-                                $wpjobportal_array[] = array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'myjobs')), 'text' => esc_html(__('My Jobs', 'wp-job-portal')));
+                                /*
+                                 * My Jobs is an employer's page - the layout
+                                 * requires isemployer() - but this one is
+                                 * reached by recruiters too, who are not
+                                 * employers. They were being handed a crumb
+                                 * that dropped them on the role-selection page,
+                                 * which reads like the site has forgotten who
+                                 * they are. They keep the step, without the link.
+                                 */
+                                $wpjobportal_myjobs_link = WPJOBPORTALincluder::getObjectClass('user')->isemployer()
+                                    ? wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'myjobs'))
+                                    : '';
+                                $wpjobportal_array[] = array('link' => $wpjobportal_myjobs_link, 'text' => esc_html(__('My Jobs', 'wp-job-portal')));
                                 $wpjobportal_array[] = array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobapply', 'wpjobportallt'=>'jobappliedresume')), 'text' => esc_html(__('Job Applied Resume', 'wp-job-portal')));
                                 break;
                         }
@@ -400,9 +412,19 @@ class WPJOBPORTALbreadcrumbs {
                                 $wpjobportal_array[] = $wpjobportal_staticUrl;
                                 $wpjobportal_array[] = array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobsearch', 'wpjobportallt'=>'jobsearch')), 'text' => esc_html(__('Job Search', 'wp-job-portal')));
                                 break;
+                            /*
+                             * Saved job searches arrived with 2.7.0 and nothing
+                             * here knew the layout, so the trail was built empty
+                             * - the wrapper rendered with no crumbs in it and the
+                             * page began at "You have not saved any searches
+                             * yet", with no way back to the dashboard. The
+                             * employer's half has said "Dashboard / Saved
+                             * Searches" all along; this is the same, for the
+                             * other side.
+                             */
                             case 'jobsavesearch':
                                 $wpjobportal_array[] = $wpjobportal_staticUrl;
-                                $wpjobportal_array[] = array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobsearch', 'wpjobportallt'=>'jobsavesearch')), 'text' => esc_html(__('Saved Searches', 'wp-job-portal')));
+                                $wpjobportal_array[] = array('link' => get_the_permalink(), 'text' => esc_html(__('Saved Searches', 'wp-job-portal')));
                                 break;
                         }
                         break;
@@ -460,6 +482,17 @@ class WPJOBPORTALbreadcrumbs {
         }
 
         if (isset($wpjobportal_array)) {
+            /*
+             * Let an add-on name the page it drew.
+             *
+             * The trail is decided from wpjobportalme and wpjobportallt, which
+             * an add-on view does not change: Recruit Suite and Marketplace
+             * both render inside employer/controlpanel, so every screen either
+             * one of them draws would end on the same "Control Panel" leaf and
+             * none of them could say where the reader actually is. They know
+             * the title of the view they just rendered; this lets them say so.
+             */
+            $wpjobportal_array = (array) apply_filters('wpjobportal_breadcrumbs', $wpjobportal_array, $wpjobportal_module, $wpjobportal_layout);
             $wpjobportal_count = count($wpjobportal_array);
             $wpjobportal_i = 0;
             echo '<div class="wjportal-breadcrumbs-wrp">';
@@ -469,6 +502,16 @@ class WPJOBPORTALbreadcrumbs {
                 } else {
                     if ($wpjobportal_i == ($wpjobportal_count - 1)) {
                         echo '<div class="wjportal-breadcrumbs-links wjportal-breadcrumbs-lastlink">' . esc_html(wpjobportal::wpjobportal_getVariableValue($obj['text'])) . '</div>';
+                    } elseif (empty($obj['link'])) {
+                        /*
+                         * A step in the trail that this visitor cannot open.
+                         *
+                         * It still belongs in the trail - it says where they
+                         * are - but offering it as a link sends them somewhere
+                         * that refuses them, which is worse than not offering
+                         * it at all.
+                         */
+                        echo '<div class="wjportal-breadcrumbs-links wjportal-breadcrumbs-firstlinks wjportal-breadcrumbs-nolink">' . esc_html(wpjobportal::wpjobportal_getVariableValue($obj['text'])) . '</div>';
                     } else {
                         echo '<div class="wjportal-breadcrumbs-links wjportal-breadcrumbs-firstlinks"><a class="wjportal-breadcrumbs-link" href="' . esc_url($obj['link']) . '">' . esc_html(wpjobportal::wpjobportal_getVariableValue($obj['text'])) . '</a></div>';
                     }

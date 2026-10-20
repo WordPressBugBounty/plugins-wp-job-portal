@@ -201,10 +201,10 @@ class WPJOBPORTAL_Diagnostics_Service {
                 __('Operating mode', 'wp-job-portal'),
                 $product_mode['selected']
                     ? ($product_mode['aligned'] ? sprintf(
-                        __('%s explicitly selected; mode-specific setup is active.', 'wp-job-portal'),
+                        /* translators: %s: product mode label */ __('%s explicitly selected; mode-specific setup is active.', 'wp-job-portal'),
                         $product_mode['label']
                     ) : sprintf(
-                        __('%s is selected, but its legacy compatibility setting is out of sync; run Setup & Mode again.', 'wp-job-portal'),
+                        /* translators: %s: product mode label */ __('%s is selected, but its legacy compatibility setting is out of sync; run Setup & Mode again.', 'wp-job-portal'),
                         $product_mode['label']
                     ))
                     : __('Existing-site compatibility; no explicit mode is selected and current behavior is unchanged.', 'wp-job-portal')
@@ -236,7 +236,7 @@ class WPJOBPORTAL_Diagnostics_Service {
                 PHP_VERSION
             ),
             self::check(
-                version_compare(get_bloginfo('version'), '5.8', '>=') ? 'good' : 'warning',
+                version_compare(get_bloginfo('version'), '6.2', '>=') ? 'good' : 'warning',
                 __('WordPress version', 'wp-job-portal'),
                 get_bloginfo('version')
             ),
@@ -268,7 +268,7 @@ class WPJOBPORTAL_Diagnostics_Service {
         global $wpdb;
 
         $pattern = $wpdb->esc_like($wpdb->prefix . 'wj_portal_') . '%';
-        $tables = $wpdb->get_results($wpdb->prepare('SHOW TABLE STATUS LIKE %s', $pattern), ARRAY_A);
+        $tables = wpjobportaldb_direct::get_results($wpdb->prepare('SHOW TABLE STATUS LIKE %s', $pattern), ARRAY_A);
         $storage = WPJOBPORTAL_Storage_Engine_Service::get_progress();
         $missing_indexes = WPJOBPORTAL_Database_Readiness_Service::get_missing_indexes();
         $migration_table = WPJOBPORTAL_Migration_Service::table_exists();
@@ -278,7 +278,7 @@ class WPJOBPORTAL_Diagnostics_Service {
             self::check(
                 count($tables) > 0 ? 'good' : 'critical',
                 __('WP Job Portal tables', 'wp-job-portal'),
-                sprintf(_n('%d table detected', '%d tables detected', count($tables), 'wp-job-portal'), count($tables))
+                sprintf(/* translators: %d: number of tables */ _n('%d table detected', '%d tables detected', count($tables), 'wp-job-portal'), count($tables))
             ),
             self::check(
                 $migration_table ? 'good' : 'critical',
@@ -299,13 +299,13 @@ class WPJOBPORTAL_Diagnostics_Service {
                 __('Core storage engines', 'wp-job-portal'),
                 !empty($storage['missing_tables'])
                     ? sprintf(
-                        __('Expected core tables are missing: %s', 'wp-job-portal'),
+                        /* translators: %s: list of storage missing tables */ __('Expected core tables are missing: %s', 'wp-job-portal'),
                         implode(', ', $storage['missing_tables'])
                     )
                     : ($storage['remaining'] === 0
                     ? __('All detected core tables use InnoDB and support transactions.', 'wp-job-portal')
                     : sprintf(
-                        _n(
+                        /* translators: 1: storage remaining, 2: storage total */ _n(
                             '%1$d of %2$d core tables awaits conversion.',
                             '%1$d of %2$d core tables await conversion.',
                             $storage['remaining'],
@@ -321,7 +321,7 @@ class WPJOBPORTAL_Diagnostics_Service {
                 empty($missing_indexes)
                     ? __('Recommended indexes are present.', 'wp-job-portal')
                     : sprintf(
-                        __('%1$d planned indexes are not present: %2$s', 'wp-job-portal'),
+                        /* translators: 1: number of missing indexes, 2: list of missing indexes */ __('%1$d planned indexes are not present: %2$s', 'wp-job-portal'),
                         count($missing_indexes),
                         implode(', ', $missing_indexes)
                     )
@@ -336,13 +336,13 @@ class WPJOBPORTAL_Diagnostics_Service {
      */
     private static function operational_readiness_checks() {
         $onboarding = WPJOBPORTAL_Onboarding_Service::get_state();
-        $sample_data = WPJOBPORTAL_Sample_Data_Service::get_status();
+        $sample_data = WPJOBPORTAL_Sample_Data_Service::get_preview();
         $routing = WPJOBPORTAL_Route_Registry_Service::get_status();
         $uploads = wp_upload_dir(null, false);
         $upload_error = isset($uploads['error']) ? (string) $uploads['error'] : '';
         $upload_writable = '' === $upload_error
             && !empty($uploads['basedir'])
-            && (function_exists('wp_is_writable') ? wp_is_writable($uploads['basedir']) : is_writable($uploads['basedir']));
+            && wp_is_writable($uploads['basedir']);
         $portal_page = array('complete' => false, 'description' => __('The onboarding page check is unavailable.', 'wp-job-portal'));
 
         foreach ((array) $onboarding['items'] as $item) {
@@ -358,7 +358,7 @@ class WPJOBPORTAL_Diagnostics_Service {
                 __('Mode-specific readiness', 'wp-job-portal'),
                 WPJOBPORTAL_Product_Mode_Service::is_selected()
                     ? sprintf(
-                        __('%1$s is selected; %2$d of %3$d onboarding steps are complete.', 'wp-job-portal'),
+                        /* translators: 1: onboarding mode label, 2: onboarding completed, 3: onboarding total */ __('%1$s is selected; %2$d of %3$d onboarding steps are complete.', 'wp-job-portal'),
                         $onboarding['mode_label'],
                         absint($onboarding['completed']),
                         absint($onboarding['total'])
@@ -384,24 +384,12 @@ class WPJOBPORTAL_Diagnostics_Service {
                 __('Marked sample data', 'wp-job-portal'),
                 absint($sample_data['tracked']) > 0
                     ? sprintf(
-                        __('%1$d records are strongly marked; %2$d are cleanup-eligible and %3$d are protected because they changed or have dependencies.', 'wp-job-portal'),
+                        /* translators: 1: sample data tracked, 2: sample data eligible, 3: sample data skipped */ __('%1$d records are strongly marked; %2$d are cleanup-eligible and %3$d are protected because they changed or have dependencies.', 'wp-job-portal'),
                         absint($sample_data['tracked']),
                         absint($sample_data['eligible']),
                         absint($sample_data['skipped'])
                     )
                     : __('No strongly marked records are available. Historical sample-like content is preserved rather than guessed.', 'wp-job-portal')
-            ),
-            self::check(
-                isset($sample_data['assets']['status']) && 'failed' === $sample_data['assets']['status'] ? 'warning' : 'info',
-                __('Sample image assets', 'wp-job-portal'),
-                isset($sample_data['assets']['status']) && 'success' === $sample_data['assets']['status']
-                    ? __('The most recent sample-image archive passed bounded path, type, entry-count and size validation.', 'wp-job-portal')
-                    : (isset($sample_data['assets']['status']) && 'failed' === $sample_data['assets']['status']
-                        ? sprintf(
-                            __('The most recent optional sample-image installation was rejected or failed safely (%s). Sample database records may still be available.', 'wp-job-portal'),
-                            $sample_data['assets']['reason']
-                        )
-                        : __('Sample image assets have not been installed during a tracked setup.', 'wp-job-portal'))
             ),
         );
 
@@ -410,7 +398,7 @@ class WPJOBPORTAL_Diagnostics_Service {
                 'warning',
                 __('Add-on compatibility', 'wp-job-portal'),
                 sprintf(
-                    __('%1$d supported add-ons are active; %2$d unknown or retired add-ons need manual compatibility review.', 'wp-job-portal'),
+                    /* translators: 1: routing supported active addons, 2: number of routing unknown active addons */ __('%1$d supported add-ons are active; %2$d unknown or retired add-ons need manual compatibility review.', 'wp-job-portal'),
                     absint($routing['supported_active_addons']),
                     count($routing['unknown_active_addons'])
                 )
@@ -420,7 +408,7 @@ class WPJOBPORTAL_Diagnostics_Service {
                 'good',
                 __('Add-on compatibility', 'wp-job-portal'),
                 sprintf(
-                    _n('%d supported add-on is active and no unknown add-on route was detected.', '%d supported add-ons are active and no unknown add-on route was detected.', absint($routing['supported_active_addons']), 'wp-job-portal'),
+                    /* translators: %d: routing supported active addons */ _n('%d supported add-on is active and no unknown add-on route was detected.', '%d supported add-ons are active and no unknown add-on route was detected.', absint($routing['supported_active_addons']), 'wp-job-portal'),
                     absint($routing['supported_active_addons'])
                 )
             );
@@ -445,7 +433,7 @@ class WPJOBPORTAL_Diagnostics_Service {
                 'good',
                 __('Core request routes', 'wp-job-portal'),
                 sprintf(
-                    __('%1$d actions across %2$d core modules are explicitly registered; unknown core controller actions are denied.', 'wp-job-portal'),
+                    /* translators: 1: routing core routes, 2: routing core modules */ __('%1$d actions across %2$d core modules are explicitly registered; unknown core controller actions are denied.', 'wp-job-portal'),
                     absint($routing['core_routes']),
                     absint($routing['core_modules'])
                 )
@@ -457,9 +445,19 @@ class WPJOBPORTAL_Diagnostics_Service {
                 'good',
                 __('Supported add-on request routes', 'wp-job-portal'),
                 sprintf(
-                    __('%1$d actions across %2$d add-on modules are explicitly registered; strict mode is enabled for %3$d active supported add-ons.', 'wp-job-portal'),
+                    /* translators: 1: routing extension routes, 2: routing extension modules, 3: routing supported active addons */ __('%1$d actions across %2$d add-on modules are explicitly registered; strict mode is enabled for %3$d active supported add-ons.', 'wp-job-portal'),
                     absint($routing['extension_routes']),
                     absint($routing['extension_modules']),
+                    absint($routing['supported_active_addons'])
+                )
+            );
+        } elseif (empty($routing['unknown_active_addons'])) {
+            $checks[] = self::check(
+                'good',
+                __('Add-on request compatibility', 'wp-job-portal'),
+                sprintf(
+                    /* translators: %d: number of supported add-ons. */
+                    __('%d supported add-ons are active. WP Job Portal Pro and the suites keep compatibility mode for add-on routes.', 'wp-job-portal'),
                     absint($routing['supported_active_addons'])
                 )
             );
@@ -468,7 +466,7 @@ class WPJOBPORTAL_Diagnostics_Service {
                 'warning',
                 __('Add-on request compatibility', 'wp-job-portal'),
                 sprintf(
-                    __('%1$d supported add-ons are active, but %2$d unknown or retired add-on(s) were detected: %3$s. Unregistered add-on routes remain in compatibility mode.', 'wp-job-portal'),
+                    /* translators: 1: routing supported active addons, 2: number of routing unknown active addons, 3: list of routing unknown active addons */ __('%1$d supported add-ons are active, but %2$d unknown or retired add-on(s) were detected: %3$s. Unregistered add-on routes remain in compatibility mode.', 'wp-job-portal'),
                     absint($routing['supported_active_addons']),
                     count($routing['unknown_active_addons']),
                     implode(', ', array_map('sanitize_key', $routing['unknown_active_addons']))
@@ -481,7 +479,7 @@ class WPJOBPORTAL_Diagnostics_Service {
                 'warning',
                 __('Denied request routes', 'wp-job-portal'),
                 sprintf(
-                    _n(
+                    /* translators: 1: routing denied, 2: routing last denied at, 3: routing last reason */ _n(
                         '%1$d request has been denied. Most recent: %2$s UTC (%3$s).',
                         '%1$d requests have been denied. Most recent: %2$s UTC (%3$s).',
                         absint($routing['denied']),
@@ -504,7 +502,7 @@ class WPJOBPORTAL_Diagnostics_Service {
             'good',
             __('Core mutation authorization', 'wp-job-portal'),
             sprintf(
-                __('%1$d state-changing core routes enforce HTTP method, role or capability and nonce policies; %2$d validate security-relevant input fields and %3$d also enforce object ownership.', 'wp-job-portal'),
+                /* translators: 1: mutation policies protected routes, 2: mutation policies schema routes, 3: mutation policies ownership routes */ __('%1$d state-changing core routes enforce HTTP method, role or capability and nonce policies; %2$d validate security-relevant input fields and %3$d also enforce object ownership.', 'wp-job-portal'),
                 absint($mutation_policies['protected_routes']),
                 absint($mutation_policies['schema_routes']),
                 absint($mutation_policies['ownership_routes'])
@@ -515,7 +513,7 @@ class WPJOBPORTAL_Diagnostics_Service {
             'good',
             __('Add-on mutation authorization', 'wp-job-portal'),
             sprintf(
-                __('%1$d state-changing add-on routes enforce centralized policies; %2$d validate target identifiers and %3$d apply record-ownership rules.', 'wp-job-portal'),
+                /* translators: 1: addon policies protected routes, 2: addon policies schema routes, 3: addon policies ownership routes */ __('%1$d state-changing add-on routes enforce centralized policies; %2$d validate target identifiers and %3$d apply record-ownership rules.', 'wp-job-portal'),
                 absint($addon_policies['protected_routes']),
                 absint($addon_policies['schema_routes']),
                 absint($addon_policies['ownership_routes'])
@@ -527,7 +525,7 @@ class WPJOBPORTAL_Diagnostics_Service {
                 'warning',
                 __('Denied add-on mutations', 'wp-job-portal'),
                 sprintf(
-                    _n(
+                    /* translators: 1: addon policies denied, 2: addon policies last denied at, 3: addon policies last module, 4: addon policies last task, 5: addon policies last reason */ _n(
                         '%1$d add-on mutation has been denied. Most recent: %2$s UTC (%3$s.%4$s: %5$s).',
                         '%1$d add-on mutations have been denied. Most recent: %2$s UTC (%3$s.%4$s: %5$s).',
                         absint($addon_policies['denied']),
@@ -547,7 +545,7 @@ class WPJOBPORTAL_Diagnostics_Service {
                 'warning',
                 __('Denied core mutations', 'wp-job-portal'),
                 sprintf(
-                    _n(
+                    /* translators: 1: mutation policies denied, 2: mutation policies last denied at, 3: mutation policies last module, 4: mutation policies last task, 5: mutation policies last reason */ _n(
                         '%1$d core mutation has been denied. Most recent: %2$s UTC (%3$s.%4$s: %5$s).',
                         '%1$d core mutations have been denied. Most recent: %2$s UTC (%3$s.%4$s: %5$s).',
                         absint($mutation_policies['denied']),
@@ -572,7 +570,7 @@ class WPJOBPORTAL_Diagnostics_Service {
             'good',
             __('Sensitive download authorization', 'wp-job-portal'),
             sprintf(
-                __('%d resume and custom-file download routes enforce server-side object authorization.', 'wp-job-portal'),
+                /* translators: %d: authorization protected routes */ __('%d resume and custom-file download routes enforce server-side object authorization.', 'wp-job-portal'),
                 absint($authorization['protected_routes'])
             )
         );
@@ -581,7 +579,7 @@ class WPJOBPORTAL_Diagnostics_Service {
             'good',
             __('File extension validation', 'wp-job-portal'),
             sprintf(
-                __('%d upload and file-management paths use trimmed, lowercase, exact extension allowlists.', 'wp-job-portal'),
+                /* translators: %d: file policy protected paths */ __('%d upload and file-management paths use trimmed, lowercase, exact extension allowlists.', 'wp-job-portal'),
                 absint($file_policy['protected_paths'])
             )
         );
@@ -590,7 +588,7 @@ class WPJOBPORTAL_Diagnostics_Service {
             'good',
             __('Address-data import validation', 'wp-job-portal'),
             sprintf(
-                __('ZIP files are read without extraction and SQL is limited to staged state/city INSERT operations (%1$s archive limit; %2$s SQL limit).', 'wp-job-portal'),
+                /* translators: 1: address import max archive size, 2: address import max sql size */ __('ZIP files are read without extraction and SQL is limited to staged state/city INSERT operations (%1$s archive limit; %2$s SQL limit).', 'wp-job-portal'),
                 size_format($address_import['max_archive_bytes']),
                 size_format($address_import['max_sql_bytes'])
             )
@@ -601,7 +599,7 @@ class WPJOBPORTAL_Diagnostics_Service {
                 'warning',
                 __('Denied sensitive downloads', 'wp-job-portal'),
                 sprintf(
-                    _n(
+                    /* translators: 1: authorization denied, 2: authorization last denied at, 3: authorization last resource, 4: authorization last reason */ _n(
                         '%1$d download has been denied. Most recent: %2$s UTC (%3$s: %4$s).',
                         '%1$d downloads have been denied. Most recent: %2$s UTC (%3$s: %4$s).',
                         absint($authorization['denied']),
@@ -643,7 +641,7 @@ class WPJOBPORTAL_Diagnostics_Service {
                 __('Privacy retention cleanup', 'wp-job-portal'),
                 !empty($privacy['next_run'])
                     ? sprintf(
-                        __('Scheduled; activity %1$d days, messages %2$d days, operational audit %3$d days.', 'wp-job-portal'),
+                        /* translators: 1: settings activity days, 2: settings message days, 3: settings audit days */ __('Scheduled; activity %1$d days, messages %2$d days, operational audit %3$d days.', 'wp-job-portal'),
                         absint($settings['activity_days']),
                         absint($settings['message_days']),
                         absint($settings['audit_days'])
@@ -654,7 +652,7 @@ class WPJOBPORTAL_Diagnostics_Service {
                 'good',
                 __('Payment service boundary', 'wp-job-portal'),
                 sprintf(
-                    _n(
+                    /* translators: %d: payments providers */ _n(
                         '%d provider is registered with normalized routing, privacy-safe outcomes and hashed event idempotency.',
                         '%d providers are registered with normalized routing, privacy-safe outcomes and hashed event idempotency.',
                         absint($payments['providers']),
@@ -667,7 +665,7 @@ class WPJOBPORTAL_Diagnostics_Service {
                 absint($payments['failed']) > 0 ? 'warning' : 'good',
                 __('Payment processing outcomes', 'wp-job-portal'),
                 sprintf(
-                    __('%1$d completed; %2$d failed; %3$d duplicate provider events suppressed; %4$d boundary rejections.', 'wp-job-portal'),
+                    /* translators: 1: payments completed, 2: payments failed, 3: payments duplicates, 4: payments rejected */ __('%1$d completed; %2$d failed; %3$d duplicate provider events suppressed; %4$d boundary rejections.', 'wp-job-portal'),
                     absint($payments['completed']),
                     absint($payments['failed']),
                     absint($payments['duplicates']),
@@ -759,7 +757,7 @@ class WPJOBPORTAL_Diagnostics_Service {
                 ? (empty($queue['worker_overdue'])
                     ? self::format_timestamp($queue['next_run'])
                     : sprintf(
-                        __('Overdue since %s; the recovery check will replace the event.', 'wp-job-portal'),
+                        /* translators: %s: wp date get option date format get option time format queue  */ __('Overdue since %s; the recovery check will replace the event.', 'wp-job-portal'),
                         wp_date(get_option('date_format') . ' ' . get_option('time_format'), $queue['next_run'])
                     ))
                 : ($queue['outstanding'] > 0
@@ -771,7 +769,7 @@ class WPJOBPORTAL_Diagnostics_Service {
             $queue['counts']['failed'] > 0 ? 'warning' : 'good',
             __('Notification queue health', 'wp-job-portal'),
             sprintf(
-                __('%1$d waiting; %2$d retrying; %3$d processing; %4$d failed.', 'wp-job-portal'),
+                /* translators: 1: queue counts pending, 2: queue counts retry, 3: queue counts processing, 4: queue counts failed */ __('%1$d waiting; %2$d retrying; %3$d processing; %4$d failed.', 'wp-job-portal'),
                 absint($queue['counts']['pending']),
                 absint($queue['counts']['retry']),
                 absint($queue['counts']['processing']),
@@ -790,7 +788,7 @@ class WPJOBPORTAL_Diagnostics_Service {
                 $mail_stats['last_result'] === 'failed' ? 'warning' : 'good',
                 __('WP Job Portal mail submissions', 'wp-job-portal'),
                 sprintf(
-                    __('%1$d attempted; %2$d accepted by wp_mail(); %3$d rejected.', 'wp-job-portal'),
+                    /* translators: 1: mail stats attempted, 2: mail stats succeeded, 3: mail stats failed */ __('%1$d attempted; %2$d accepted by wp_mail(); %3$d rejected.', 'wp-job-portal'),
                     absint($mail_stats['attempted']),
                     absint($mail_stats['succeeded']),
                     absint($mail_stats['failed'])
@@ -803,7 +801,7 @@ class WPJOBPORTAL_Diagnostics_Service {
                 $mail_stats['last_result'] === 'failed' ? 'warning' : 'info',
                 __('Most recent WP Job Portal mail error', 'wp-job-portal'),
                 sprintf(
-                    __('%1$s at %2$s', 'wp-job-portal'),
+                    /* translators: 1: mail stats last error, 2: mail stats last failure */ __('%1$s at %2$s', 'wp-job-portal'),
                     $mail_stats['last_error'],
                     $mail_stats['last_failure']
                 )
@@ -844,7 +842,7 @@ class WPJOBPORTAL_Diagnostics_Service {
      */
     private static function format_timestamp($timestamp) {
         return sprintf(
-            __('Next run: %s', 'wp-job-portal'),
+            /* translators: %s: wp date get option date format get option time format timest */ __('Next run: %s', 'wp-job-portal'),
             wp_date(get_option('date_format') . ' ' . get_option('time_format'), $timestamp)
         );
     }

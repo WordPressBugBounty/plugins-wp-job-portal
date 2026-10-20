@@ -5,6 +5,15 @@ if (!defined('ABSPATH'))
 
 class WPJOBPORTALconfigurationModel {
 
+    /*
+     * Stored payment credentials. The settings screen never prints them back
+     * (they were in the page source as input values), so an empty submit means
+     * "keep the stored one", as on the Marketplace Suite's Payment Methods.
+     */
+    static function secretPaymentFields() {
+        return array('password_paypal', 'signature_paypal', 'secretkey_stripe', 'webhooksecret_stripe');
+    }
+
     var $_data_directory = null;
     var $_comp_editor = null;
     var $_job_editor = null;
@@ -89,10 +98,29 @@ class WPJOBPORTALconfigurationModel {
         // the stored configuration matches the selected mode either way.
         $wpjobportal_data = WPJOBPORTAL_Mode_Policy_Service::enforce_settings($wpjobportal_data);
 
+        // One switch for a feature whose menu has two links. The settings page
+        // shows Departments, Folders and Cover Letters once each; the links
+        // behind them still read their own settings, so the one switch is
+        // written to both. (The package and invoice links keep a switch each,
+        // under Credits > Dashboard Monetization Links.)
+        $wpjobportal_linked_links = array(
+            'mydepartment'  => array('formdepartment'),
+            'myfolders'     => array('newfolders'),
+            'mycoverletter' => array('formcoverletter'),
+        );
+        foreach ($wpjobportal_linked_links as $wpjobportal_lead => $wpjobportal_followers) {
+            if (!isset($wpjobportal_data[$wpjobportal_lead])) {
+                continue;
+            }
+            foreach ($wpjobportal_followers as $wpjobportal_follower) {
+                $wpjobportal_data[$wpjobportal_follower] = $wpjobportal_data[$wpjobportal_lead];
+            }
+        }
+
         $offline_text = WPJOBPORTALrequest::getVar('offline_text','post','','',1);
         // Clean it first
         $offline_text = str_ireplace(['<script', '< script'], '-', $offline_text);
-        $wpjobportal_data['offline_text'] = wpautop(wptexturize(wp_kses_post(wpjobportalphplib::wpJP_stripslashes($offline_text))));
+        $wpjobportal_data['offline_text'] = wpautop(wptexturize(wp_kses_post($offline_text)));
 
         $error = false;
 
@@ -121,6 +149,9 @@ class WPJOBPORTALconfigurationModel {
 
         //DB class limitations
         foreach ($wpjobportal_data as $wpjobportal_key => $wpjobportal_value) {
+            if ($wpjobportal_value === '' && in_array($wpjobportal_key, self::secretPaymentFields(), true)) {
+                continue; // left blank: keep the stored secret
+            }
             if(isset($current_configs[$wpjobportal_key]) && ($current_configs[$wpjobportal_key]  != $wpjobportal_value)) {
 
                 if ($wpjobportal_key == 'default_image') { // ignore saving default image from here
@@ -141,10 +172,7 @@ class WPJOBPORTALconfigurationModel {
                         require_once ABSPATH . 'wp-admin/includes/file.php';
                     }
                     global $wp_filesystem;
-                    if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-                        $creds = request_filesystem_credentials( site_url() );
-                        wp_filesystem( $creds );
-                    }
+                    $wp_filesystem = wpjobportal::wpjobportal_filesystem();
 
                     if ( ! $wp_filesystem->exists($wpjobportal_path)) {
                        $wp_filesystem->mkdir($wpjobportal_path, 0755);
@@ -165,6 +193,27 @@ class WPJOBPORTALconfigurationModel {
                         $error = true;
                     }
                 }
+            }elseif($this->settingMayBeCreated($wpjobportal_key, $current_configs, $current_payment_configs)) {
+                /*
+                 * A setting on the screen with no row behind it.
+                 *
+                 * This branch used not to exist, so such a setting was dropped
+                 * here without a word and the administrator was told the save had
+                 * succeeded. Toggling it changed nothing, reloading showed it off
+                 * again, and the feature it controlled stayed invisible - which is
+                 * how eleven AI and matching settings appeared to be broken
+                 * features when they were only settings that could not be stored.
+                 *
+                 * Rows go missing because the defaults are inserted in one
+                 * statement keyed on configname: before that statement was made to
+                 * IGNORE duplicates, a setting added to it never reached a site
+                 * that already had any settings at all.
+                 */
+                $query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_config` (`configname`, `configvalue`, `configfor`, `addon`)
+                          VALUES ('" . esc_sql($wpjobportal_key) . "', '" . esc_sql($wpjobportal_value) . "', 'wpjobportal', NULL)";
+                if (false === wpjobportaldb::query($query)) {
+                    $error = true;
+                }
             }
         }
 
@@ -174,8 +223,8 @@ class WPJOBPORTALconfigurationModel {
             $this->deletedefaultImageModel();
         }
         // uploading (attaching) file
-        if(isset($_FILES['default_image'])){// min field issue
-            if ($_FILES['default_image']['size'] > 0) {
+        if (WPJOBPORTALrequest::hasFile('default_image')) {// min field issue
+            if (WPJOBPORTALrequest::fileSize('default_image') > 0) {
                 // if(!isset($wpjobportal_data['remove_default_image'])){
                 //     $this->deletedefaultImageModel();
                 // }
@@ -196,27 +245,58 @@ class WPJOBPORTALconfigurationModel {
             return WPJOBPORTAL_SAVED;
     }
 
-    function storeAutoUpdateConfig() {
 
-        if (!current_user_can('manage_options')) { //only admin can change it.
+    /**
+     * Is this posted field a setting that should be stored, but has no row?
+     *
+     * The settings form posts more than settings - the nonce, the task, the
+     * layout it came from, the flag for the default image - and none of those
+     * belong in the configuration table. Everything else on that form is a
+     * setting by construction: it was rendered from the list of settings.
+     *
+     * Deliberately conservative about the name as well. This runs only for an
+     * administrator, behind a nonce and a capability check, but a row created
+     * from a posted key is still a row created from input, so anything that does
+     * not look like a setting name is left alone.
+     *
+     * @param string $wpjobportal_key      Posted field name.
+     * @param array  $wpjobportal_configs  Settings that already have a row.
+     * @param array  $wpjobportal_payments Payment settings that already have one.
+     * @return bool
+     */
+    private function settingMayBeCreated($wpjobportal_key, $wpjobportal_configs, $wpjobportal_payments) {
+        if (isset($wpjobportal_configs[$wpjobportal_key]) || isset($wpjobportal_payments[$wpjobportal_key])) {
             return false;
         }
-        $wpjobportal_configvalue = WPJOBPORTALrequest::getVar('wpjobportal_addons_auto_update','','');
 
-        if (!is_numeric($wpjobportal_configvalue)) { //can only have numric value
+        $wpjobportal_not_settings = array(
+            '_wpnonce',
+            'action',
+            'form_request',
+            'wpjobportallt',
+            'wpjobportalme',
+            'task',
+            'page',
+            'wpjobportal_nonce',
+            'isgeneralbuttonsubmit',
+            'remove_default_image',
+            'default_image',
+            'offline_text',   // stored above, after its own filtering
+            'submit',
+            'save',
+        );
+
+        if (in_array($wpjobportal_key, $wpjobportal_not_settings, true)) {
             return false;
         }
 
-        $error = false;
-        $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_config` SET `configvalue` = " . (int) ($wpjobportal_configvalue)." WHERE `configname`= 'wpjobportal_addons_auto_update'";
-        if (false === wpjobportaldb::query($query)) {
-            $error = true;
+        // Settings are lower-case words joined by underscores, every one of them.
+        if (!preg_match('/^[a-z][a-z0-9_]*$/', $wpjobportal_key)) {
+            return false;
         }
 
-        if ($error)
-            return WPJOBPORTAL_SAVE_ERROR;
-        else
-            return WPJOBPORTAL_SAVED;
+        // A value that is not a scalar is not a setting either.
+        return true;
     }
 
     // remove default image file and configuration value
@@ -322,7 +402,9 @@ class WPJOBPORTALconfigurationModel {
                     $wpjobportal_html .= '<li class="wpjobportal-child"><a href="?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=general_setting#defaul_setting" class="jslm_text">'.  esc_html(__("Default Settings" , 'wp-job-portal')) .'</a></li>
                     <li class="wpjobportal-child"><a href="?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=general_setting#categories" class="jslm_text">'.  esc_html(__("Categories" , 'wp-job-portal')) .'</a></li>
                     <li class="wpjobportal-child"><a href="?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=general_setting#email" class="jslm_text">'.  esc_html(__("Email" , 'wp-job-portal')) .'</a></li>';
-                    if(in_array('addressdata', wpjobportal::$_active_addons)){
+                    // Map settings are worth offering when something can
+                    // actually draw a map, whichever product that is.
+                    if(has_filter('wpjobportal_credit_addons_map_load_for_jobform')){
                         $wpjobportal_html .= '<li class="wpjobportal-child"><a href="?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=general_setting#googlemapadsense" class="jslm_text">'.  esc_html(__("Map" , 'wp-job-portal')) .'</a></li>';
                     }
                     $wpjobportal_html .= '<li class="wpjobportal-child"><a href="?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=general_setting#offline" class="jslm_text">'.  esc_html(__("Offline" , 'wp-job-portal')) .'</a></li>
@@ -380,13 +462,8 @@ class WPJOBPORTALconfigurationModel {
                         $wpjobportal_html .= '<li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=ai_settings#aijobsearch" class="jslm_text">'.  esc_html(__("AI Job Search",'wp-job-portal')) .'</a></li>';
                     } else {
                         $plugininfo = wpjobportal_checkWPJPPluginInfo('wp-job-portal-aijobsearch/wp-job-portal-aijobsearch.php');
-                        if($plugininfo['availability'] == "1"){
-                            $wpjobportal_text = $plugininfo['text'];
-                            $wpjobportal_url = "plugins.php?s=wp-job-portal-aijobsearch&plugin_status=inactive";
-                        }elseif($plugininfo['availability'] == "0"){
-                            $wpjobportal_text = $plugininfo['text'];
-                            $wpjobportal_url = "https://wpjobportal.com/product/social-share/";
-                        }
+                        $wpjobportal_text = $plugininfo['text'];
+                        $wpjobportal_url = $plugininfo['url'];
                         $wpjobportal_html .= '<li class="disabled-menu">
                                     <span class="wpjobportaladmin-text">'. esc_html(__('AI Job Search' , 'wp-job-portal')).'</span>
                                     <a href="'. esc_url($wpjobportal_url).'" class="jslm_text">'. esc_html($wpjobportal_text).'</a>
@@ -397,13 +474,8 @@ class WPJOBPORTALconfigurationModel {
                         $wpjobportal_html .= '<li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=ai_settings#aisuggestedjobs" class="jslm_text">'.  esc_html(__("AI Suggested Jobs",'wp-job-portal')) .'</a></li>';
                     } else {
                         $plugininfo = wpjobportal_checkWPJPPluginInfo('wp-job-portal-aisuggestedjobs/wp-job-portal-aisuggestedjobs.php');
-                        if($plugininfo['availability'] == "1"){
-                            $wpjobportal_text = $plugininfo['text'];
-                            $wpjobportal_url = "plugins.php?s=wp-job-portal-aisuggestedjobs&plugin_status=inactive";
-                        }elseif($plugininfo['availability'] == "0"){
-                            $wpjobportal_text = $plugininfo['text'];
-                            $wpjobportal_url = "https://wpjobportal.com/product/social-share/";
-                        }
+                        $wpjobportal_text = $plugininfo['text'];
+                        $wpjobportal_url = $plugininfo['url'];
                         $wpjobportal_html .= '<li class="disabled-menu">
                                     <span class="wpjobportaladmin-text">'. esc_html(__('AI Suggested Jobs' , 'wp-job-portal')).'</span>
                                     <a href="'. esc_url($wpjobportal_url).'" class="jslm_text">'. esc_html($wpjobportal_text).'</a>
@@ -414,13 +486,8 @@ class WPJOBPORTALconfigurationModel {
                         $wpjobportal_html .= '<li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=ai_settings#airesumesearch" class="jslm_text">'.  esc_html(__("AI Resume Search",'wp-job-portal')) .'</a></li>';
                     } else {
                         $plugininfo = wpjobportal_checkWPJPPluginInfo('wp-job-portal-airesumesearch/wp-job-portal-airesumesearch.php');
-                        if($plugininfo['availability'] == "1"){
-                            $wpjobportal_text = $plugininfo['text'];
-                            $wpjobportal_url = "plugins.php?s=wp-job-portal-airesumesearch&plugin_status=inactive";
-                        }elseif($plugininfo['availability'] == "0"){
-                            $wpjobportal_text = $plugininfo['text'];
-                            $wpjobportal_url = "https://wpjobportal.com/product/social-share/";
-                        }
+                        $wpjobportal_text = $plugininfo['text'];
+                        $wpjobportal_url = $plugininfo['url'];
                         $wpjobportal_html .= '<li class="disabled-menu">
                                     <span class="wpjobportaladmin-text">'. esc_html(__('AI Resume Search' , 'wp-job-portal')).'</span>
                                     <a href="'. esc_url($wpjobportal_url).'" class="jslm_text">'. esc_html($wpjobportal_text).'</a>
@@ -431,13 +498,8 @@ class WPJOBPORTALconfigurationModel {
                         $wpjobportal_html .= '<li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=ai_settings#aisuggestedresumes" class="jslm_text">'.  esc_html(__("AI Suggested Resumes",'wp-job-portal')) .'</a></li>';
                     } else {
                         $plugininfo = wpjobportal_checkWPJPPluginInfo('wp-job-portal-aisuggestedresumes/wp-job-portal-aisuggestedresumes.php');
-                        if($plugininfo['availability'] == "1"){
-                            $wpjobportal_text = $plugininfo['text'];
-                            $wpjobportal_url = "plugins.php?s=wp-job-portal-aisuggestedresumes&plugin_status=inactive";
-                        }elseif($plugininfo['availability'] == "0"){
-                            $wpjobportal_text = $plugininfo['text'];
-                            $wpjobportal_url = "https://wpjobportal.com/product/social-share/";
-                        }
+                        $wpjobportal_text = $plugininfo['text'];
+                        $wpjobportal_url = $plugininfo['url'];
                         $wpjobportal_html .= '<li class="disabled-menu">
                                     <span class="wpjobportaladmin-text">'. esc_html(__('AI Suggested Resumes' , 'wp-job-portal')).'</span>
                                     <a href="'. esc_url($wpjobportal_url).'" class="jslm_text">'. esc_html($wpjobportal_text).'</a>
@@ -477,13 +539,8 @@ class WPJOBPORTALconfigurationModel {
                 </li>';
             } else {
                 $plugininfo = wpjobportal_checkWPJPPluginInfo('wp-job-portal-credits/wp-job-portal-credits.php');
-                if($plugininfo['availability'] == "1"){
-                    $wpjobportal_text = $plugininfo['text'];
-                    $wpjobportal_url = "plugins.php?s=wp-job-portal-credits&plugin_status=inactive";
-                }elseif($plugininfo['availability'] == "0"){
-                    $wpjobportal_text = $plugininfo['text'];
-                    $wpjobportal_url = "https://wpjobportal.com/product/credit-system/";
-                }
+                $wpjobportal_text = $plugininfo['text'];
+                $wpjobportal_url = $plugininfo['url'];
                 $wpjobportal_html .= '<li class="disabled-menu">
                     <img src="'. esc_url(WPJOBPORTAL_PLUGIN_URL)."includes/images/config/package-grey.png" .'"/>
                     <span class="wpjobportaladmin-text">'. esc_html(__('Package Settings' , 'wp-job-portal')).'</span>
@@ -500,13 +557,8 @@ class WPJOBPORTALconfigurationModel {
                         $wpjobportal_html .= '<li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=social_share#socialsharing" class="jslm_text">'.  esc_html(__("Social Links",'wp-job-portal')) .'</a></li>';
                     } else {
                         $plugininfo = wpjobportal_checkWPJPPluginInfo('wp-job-portal-socialshare/wp-job-portal-socialshare.php');
-                        if($plugininfo['availability'] == "1"){
-                            $wpjobportal_text = $plugininfo['text'];
-                            $wpjobportal_url = "plugins.php?s=wp-job-portal-socialshare&plugin_status=inactive";
-                        }elseif($plugininfo['availability'] == "0"){
-                            $wpjobportal_text = $plugininfo['text'];
-                            $wpjobportal_url = "https://wpjobportal.com/product/social-share/";
-                        }
+                        $wpjobportal_text = $plugininfo['text'];
+                        $wpjobportal_url = $plugininfo['url'];
                         $wpjobportal_html .= '<li class="disabled-menu">
                                     <span class="wpjobportaladmin-text">'. esc_html(__('Social Share' , 'wp-job-portal')).'</span>
                                     <a href="'. esc_url($wpjobportal_url).'" class="jslm_text">'. esc_html($wpjobportal_text).'</a>
@@ -517,13 +569,8 @@ class WPJOBPORTALconfigurationModel {
                         <li class="wpjobportal-child"><a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=social_share#linkedin" class="jslm_text">'.  esc_html(__("Linkedin" , 'wp-job-portal')) .'</a></li>';
                     } else {
                         $plugininfo = wpjobportal_checkWPJPPluginInfo('wp-job-portal-sociallogin/wp-job-portal-sociallogin.php');
-                        if($plugininfo['availability'] == "1"){
-                            $wpjobportal_text = $plugininfo['text'];
-                            $wpjobportal_url = "plugins.php?s=wp-job-portal-sociallogin&plugin_status=inactive";
-                        }elseif($plugininfo['availability'] == "0"){
-                            $wpjobportal_text = $plugininfo['text'];
-                            $wpjobportal_url = "https://wpjobportal.com/product/social-login/";
-                        }
+                        $wpjobportal_text = $plugininfo['text'];
+                        $wpjobportal_url = $plugininfo['url'];
                         $wpjobportal_html .= '<li class="disabled-menu">
                                     <span class="wpjobportaladmin-text">'. esc_html(__('Social Login' , 'wp-job-portal')).'</span>
                                     <a href="'. esc_url($wpjobportal_url).'" class="jslm_text">'. esc_html($wpjobportal_text).'</a>
@@ -544,13 +591,8 @@ class WPJOBPORTALconfigurationModel {
                 </li>';
             } else {
                 $plugininfo = wpjobportal_checkWPJPPluginInfo('wp-job-portal-rssfeedback/wp-job-portal-rssfeedback.php');
-                if($plugininfo['availability'] == "1"){
-                    $wpjobportal_text = $plugininfo['text'];
-                    $wpjobportal_url = "plugins.php?s=wp-job-portal-rssfeedback&plugin_status=inactive";
-                }elseif($plugininfo['availability'] == "0"){
-                    $wpjobportal_text = $plugininfo['text'];
-                    $wpjobportal_url = "https://wpjobportal.com/product/rss-2/";
-                }
+                $wpjobportal_text = $plugininfo['text'];
+                $wpjobportal_url = $plugininfo['url'];
                 $wpjobportal_html .= '<li class="disabled-menu">
                     <img src="'. esc_url(WPJOBPORTAL_PLUGIN_URL)."includes/images/config/package-grey.png" .'"/>
                     <span class="wpjobportaladmin-text">'. esc_html(__('RSS' , 'wp-job-portal')).'</span>
@@ -582,13 +624,8 @@ class WPJOBPORTALconfigurationModel {
             }
             else{
                 $plugininfo = wpjobportal_checkWPJPPluginInfo('wp-job-portal-credits/wp-job-portal-credits.php');
-                if($plugininfo['availability'] == "1"){
-                    $wpjobportal_text = $plugininfo['text'];
-                    $wpjobportal_url = "plugins.php?s=wp-job-portal-credits&plugin_status=inactive";
-                }elseif($plugininfo['availability'] == "0"){
-                    $wpjobportal_text = $plugininfo['text'];
-                    $wpjobportal_url = "https://wpjobportal.com/product/credit-system/";
-                }
+                $wpjobportal_text = $plugininfo['text'];
+                $wpjobportal_url = $plugininfo['url'];
                 $wpjobportal_html .= '<li class="disabled-menu">
                     <img src="'. esc_url(WPJOBPORTAL_PLUGIN_URL)."includes/images/config/payment_grey.png" .'"/>
                     <span class="wpjobportaladmin-text">'. esc_html(__('Payment Method' , 'wp-job-portal')).'</span>
@@ -611,13 +648,8 @@ class WPJOBPORTALconfigurationModel {
                 </li>';
             }else{
                 $plugininfo = wpjobportal_checkWPJPPluginInfo('wp-job-portal-cronjob/wp-job-portal-cronjob.php');
-                if($plugininfo['availability'] == "1"){
-                    $wpjobportal_text = $plugininfo['text'];
-                    $wpjobportal_url = "plugins.php?s=wp-job-portal-cronjob&plugin_status=inactive";
-                }elseif($plugininfo['availability'] == "0"){
-                    $wpjobportal_text = $plugininfo['text'];
-                    $wpjobportal_url = "https://wpjobportal.com/product/cron-job-copy/";
-                }
+                $wpjobportal_text = $plugininfo['text'];
+                $wpjobportal_url = $plugininfo['url'];
                 $wpjobportal_html .= '<li class="disabled-menu">
                     <img src="'. esc_url(WPJOBPORTAL_PLUGIN_URL)."includes/images/config/cron_job_grey.png" .'"/>
                     <span class="wpjobportaladmin-text">'. esc_html(__('Cron Job' , 'wp-job-portal')).'</span>

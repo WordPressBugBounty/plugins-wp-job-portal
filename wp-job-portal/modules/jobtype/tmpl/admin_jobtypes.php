@@ -1,17 +1,17 @@
 <?php
 if (!defined('ABSPATH'))
 die('Restricted Access');
-wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js');
+wp_enqueue_script( 'wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js', array(), wpjobportal_asset_version('includes/js/responsivetable.js'), false );
 if(!WPJOBPORTALincluder::getTemplate('templates/admin/header',array('wpjobportal_module'=>'jobtype'))){
     return;
 }
 
-wp_register_script( 'wpjobportal-inline-handle', '' );
+wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
 wp_enqueue_script( 'wpjobportal-inline-handle' );
 wp_enqueue_script('jquery-ui-sortable');
 wp_enqueue_style('wp-jquery-ui-dialog');
 
-    wp_register_script( 'wpjobportal-inline-handle', '' );
+    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
     $wpjobportal_inline_js_script = "

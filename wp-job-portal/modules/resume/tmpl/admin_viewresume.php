@@ -8,7 +8,7 @@ $wpjobportal_filekey = WPJOBPORTALincluder::getJSModel('common')->getGoogleMapAp
 wp_enqueue_script( 'jp-google-map', $wpjobportal_filekey, array(), '1.1.1', false );
 ?>
 <?php
-    wp_register_script( 'wpjobportal-inline-handle', '' );
+    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
     $wpjobportal_inline_js_script = "
@@ -125,17 +125,17 @@ wp_enqueue_script( 'jp-google-map', $wpjobportal_filekey, array(), '1.1.1', fals
     // css front end
     wpjobportal::wpjobportal_addStyleSheets();
     //include_once WPJOBPORTAL_PLUGIN_PATH. 'includes/css/style_color.php';
-    //wp_enqueue_style('wpjobportal-color', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/color.css');
-    wp_enqueue_style('wpjobportal-jobseeker-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jobseekercp.css');
-    wp_enqueue_style('wpjobportal-employer-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/employercp.css');
-    wp_enqueue_style('wpjobportal-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/style.css');
+    //wp_enqueue_style( 'wpjobportal-color', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/color.css', array(), WPJOBPORTAL_VERSION );
+    wp_enqueue_style('wpjobportal-jobseeker-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jobseekercp.css', array('wpjobportal-design-system'), wpjobportal_asset_version('includes/css/jobseekercp.css'));
+    wp_enqueue_style('wpjobportal-employer-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/employercp.css', array(), wpjobportal_asset_version('includes/css/employercp.css'));
+    wp_enqueue_style('wpjobportal-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/style.css', array(), wpjobportal_asset_version('includes/css/style.css'));
     wp_enqueue_style('wpjobportal-style-tablet', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/style_tablet.css',array(),'1.1.1','(min-width: 481px) and (max-width: 780px)');
     wp_enqueue_style('wpjobportal-style-mobile-landscape', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/style_mobile_landscape.css',array(),'1.1.1','(min-width: 481px) and (max-width: 650px)');
     wp_enqueue_style('wpjobportal-style-mobile', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/style_mobile.css',array(),'1.1.1','(max-width: 480px)');
-    wp_enqueue_style('wpjobportal-chosen-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/chosen/chosen.min.css');
-    wp_enqueue_style('wpjobportal-normal-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportal_normlize.css');
+    wp_enqueue_style('wpjobportal-chosen-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/chosen/chosen.min.css', array(), wpjobportal_asset_version('includes/js/chosen/chosen.min.css'));
+    wp_enqueue_style('wpjobportal-normal-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportal_normlize.css', array(), wpjobportal_asset_version('includes/css/wpjobportal_normlize.css'));
     if (is_rtl()) {
-        wp_register_style('wpjobportal-style-rtl', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/stylertl.css');
+        wp_register_style('wpjobportal-style-rtl', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/stylertl.css', array(), wpjobportal_asset_version('includes/css/stylertl.css'));
         wp_enqueue_style('wpjobportal-style-rtl');
     }
     $wpjobportal_msgkey = WPJOBPORTALincluder::getJSModel('resume')->getMessagekey();

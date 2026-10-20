@@ -28,6 +28,17 @@ class WPJOBPORTALEmployerController {
             }
             $wpjobportal_hide_error_message = 0; // to handle the case of showing two separate error layouts for same user/case
             switch ($wpjobportal_layout) {
+                case 'mystats':
+                    // Signed-in employers only: every number here is theirs.
+                    if (WPJOBPORTALincluder::getObjectClass('user')->isguest()) {
+                        $wpjobportal_link = WPJOBPORTALincluder::getJSModel('common')->jsMakeRedirectURL('employer', $wpjobportal_layout, 1);
+                        wpjobportal::$_error_flag = true;
+                        wpjobportal::$_error_flag_message_for = 1;
+                        wpjobportal::$_error_flag_message = WPJOBPORTALLayout::setMessageFor(1, $wpjobportal_link, esc_html(__('Login', 'wp-job-portal')), 1);
+                        break;
+                    }
+                    WPJOBPORTALincluder::getJSModel('employer')->getMyStats(WPJOBPORTALincluder::getObjectClass('user')->uid());
+                    break;
                 case 'employer_report':
                     break;
                 case 'controlpanel':
@@ -37,7 +48,12 @@ class WPJOBPORTALEmployerController {
                             throw new Exception(WPJOBPORTALLayout::setMessageFor(18 , '' ,'',1));
                             $wpjobportal_hide_error_message = 1;
                         }
-                        if (wpjobportal::$_common->wpjp_isadmin() || (WPJOBPORTALincluder::getObjectClass('user')->isemployer() && $wpjobportal_empflag == 1 || $wpjobportal_guestflag == true)) {
+                        $wpjobportal_extension_access = (bool) apply_filters(
+                            'wpjobportal_employer_dashboard_extension_access',
+                            false,
+                            get_current_user_id()
+                        );
+                        if (wpjobportal::$_common->wpjp_isadmin() || (WPJOBPORTALincluder::getObjectClass('user')->isemployer() && $wpjobportal_empflag == 1 || $wpjobportal_guestflag == true) || $wpjobportal_extension_access) {
                             $wpjobportal_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
                             wpjobportal::$_data['config'] = wpjobportal::$_config->getConfigByFor('emcontrolpanel');
                             WPJOBPORTALincluder::getJSModel('employer')->getLatestResumeIdNew($wpjobportal_uid);

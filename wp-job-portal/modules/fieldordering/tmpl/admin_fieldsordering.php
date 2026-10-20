@@ -1,11 +1,11 @@
 <?php
 if (!defined('ABSPATH'))
     die('Restricted Access');
-wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js');
+wp_enqueue_script( 'wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js', array(), wpjobportal_asset_version('includes/js/responsivetable.js'), false );
 wp_enqueue_script('jquery-ui-sortable');
-$wpjobportal_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jquery-ui-smoothness.css');
-wp_enqueue_script('jquery-multisortable',esc_url(WPJOBPORTAL_PLUGIN_URL).'/includes/js/jquery.multisortable.js');
+$wpjobportal_protocol = is_ssl() ? "https://" : "http://";
+wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jquery-ui-smoothness.css', array(), wpjobportal_asset_version('includes/css/jquery-ui-smoothness.css'));
+wp_enqueue_script( 'jquery-multisortable', esc_url(WPJOBPORTAL_PLUGIN_URL).'/includes/js/jquery.multisortable.js', array(), wpjobportal_asset_version('includes/js/jquery.multisortable.js'), false );
 ?>
 <!-- main wrapper -->
 <div id="wpjobportaladmin-wrapper">
@@ -111,7 +111,7 @@ wp_enqueue_script('jquery-multisortable',esc_url(WPJOBPORTAL_PLUGIN_URL).'/inclu
                 </a>
             </div>
             <?php
-                wp_register_script( 'wpjobportal-inline-handle', '' );
+                wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
                 wp_enqueue_script( 'wpjobportal-inline-handle' );
 
                 $wpjobportal_inline_js_script = "

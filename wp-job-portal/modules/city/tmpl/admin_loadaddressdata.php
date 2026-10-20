@@ -1,8 +1,8 @@
 <?php
 if (!defined('ABSPATH'))
 die('Restricted Access');
-wp_enqueue_script('wpjobportal-res-tables', WPJOBPORTAL_PLUGIN_URL . 'includes/js/responsivetable.js');
-if(!isset($_GET['case_is'])){
+wp_enqueue_script( 'wpjobportal-res-tables', WPJOBPORTAL_PLUGIN_URL . 'includes/js/responsivetable.js', array(), wpjobportal_asset_version('includes/js/responsivetable.js'), false );
+if(!WPJOBPORTALrequest::has('case_is', 'get')){
     $_GET['case_is'] = 1;
 }
 ?>
@@ -63,11 +63,32 @@ if(!isset($_GET['case_is'])){
         $wpjobportal_default_pro = 'disabled="disabled"';//
         $wpjobportal_show_buy_addon_message = 1;
         $wpjobportal_extraa_class = 'wpjobportal-wrn-cls';
-        if(in_array('addressdata', wpjobportal::$_active_addons) && $_GET['case_is'] == 1){
+        // Paid data used to be offered only when the Address Data plugin was
+        // installed. It is now offered when anything provides a dataset: the
+        // add-on on a site that still has it, Pro on a site that does not.
+        $wpjobportal_paid_from_addon = in_array('addressdata', wpjobportal::$_active_addons)
+            && absint(WPJOBPORTALrequest::getVar('case_is')) === 1;
+
+        $wpjobportal_paid_bundled = !in_array('addressdata', wpjobportal::$_active_addons)
+            && class_exists('WPJOBPORTAL_Address_Import_Service')
+            && WPJOBPORTAL_Address_Import_Service::has_bundled_dataset();
+
+        if ($wpjobportal_paid_from_addon || $wpjobportal_paid_bundled){
             $wpjobportal_default_free ='';
             $wpjobportal_default_pro ='checked="checked" ';
             $wpjobportal_show_buy_addon_message = 0;
             $wpjobportal_extraa_class = '';
+        }
+
+        // The country list has two hundred entries and no natural default, so
+        // without this it opens on whichever country happens to sort first.
+        // The site already knows roughly where it is; offer that, and let the
+        // administrator change it before importing anything.
+        $wpjobportal_detected_country = '';
+        $wpjobportal_detected_country_name = '';
+        if (class_exists('WPJOBPORTAL_Site_Country_Service')) {
+            $wpjobportal_detected_country = WPJOBPORTAL_Site_Country_Service::country_code();
+            $wpjobportal_detected_country_name = WPJOBPORTAL_Site_Country_Service::country_name();
         }
         ?>
         <!-- page content -->
@@ -79,7 +100,15 @@ if(!isset($_GET['case_is'])){
                             <?php echo esc_html__("Country", "wp-job-portal"). ': '; ?>
                         </div>
                         <div class="wpjobportal-form-value">
-                            <?php echo wp_kses(WPJOBPORTALformfield::select('country_code', WPJOBPORTALincluder::getJSModel('country')->getCountriesForComboForCityImport(), ''),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                            <?php echo wp_kses(WPJOBPORTALformfield::select('country_code', WPJOBPORTALincluder::getJSModel('country')->getCountriesForComboForCityImport(), $wpjobportal_detected_country),WPJOBPORTAL_ALLOWED_TAGS); ?>
+                            <?php if ($wpjobportal_detected_country_name !== '') { ?>
+                                <div class="wpjobportal-form-field-note">
+                                    <?php
+                                        /* translators: %s: country name taken from the site settings. */
+                                        echo esc_html(sprintf(__('Selected from your site settings: %s. Change it if this is not where you are hiring.', 'wp-job-portal'), $wpjobportal_detected_country_name));
+                                    ?>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="wpjobportal-form-wrapper">
@@ -96,6 +125,11 @@ if(!isset($_GET['case_is'])){
                                 <input type="radio" name="data_to_import" id="data_to_import2" <?php echo esc_html($wpjobportal_default_pro);?> value="pro" />
                                 <label for="data_to_import2"><?php echo esc_html__("Paid Data", "wp-job-portal"); ?>
                                 </label>
+                                <?php if ($wpjobportal_paid_bundled) { ?>
+                                    <span class="description" style="display:block;font-size:12px;opacity:.75">
+                                        <?php echo esc_html__('Included with Pro. Imports every country in one pass, from a file on this site.', 'wp-job-portal'); ?>
+                                    </span>
+                                <?php } ?>
                             </span>
                             <div class="wpjobportal-form-citycount-wrap" >
                                 <span class="wpjobportal-form-radio-field-first" >
@@ -163,10 +197,10 @@ if(!isset($_GET['case_is'])){
                             <div class="add-on-page-cnt">
                                 <div class="add-on-list">
                                     <div class="add-on-item address-data">
-                                        <div class="add-on-name"><?php echo esc_html(__('Address Data Addon To Get All The Cities And Towns','wp-job-portal')); ?></div>
+                                        <div class="add-on-name"><?php echo esc_html(__('Every City and Town, with Pro','wp-job-portal')); ?></div>
                                         <img class="add-on-img" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/addon-images/address-data-load-img.png" alt="<?php echo esc_attr(__('Address Data','wp-job-portal')); ?>" />
-                                        <div class="add-on-txt"><?php echo esc_html(__('WP Job Portal offers a feature for users to see address data for states, cities or both. Admin will upload that file.','wp-job-portal')); ?></div>
-                                        <a title="<?php echo esc_attr(__('buy now','wp-job-portal')); ?>" href="https://wpjobportal.com/product/address-data/" class="add-on-btn"><?php echo esc_html(__('buy now','wp-job-portal')); ?></a>
+                                        <div class="add-on-txt"><?php echo esc_html(__('The free plugin includes the main cities of 186 countries. Pro adds the full city and town database, imported to your own server.','wp-job-portal')); ?></div>
+                                        <a title="<?php echo esc_attr(__('See plans','wp-job-portal')); ?>" href="<?php echo esc_url(WPJOBPORTAL_Addon_Installer::plans_url()); ?>" target="_blank" rel="noopener" class="add-on-btn"><?php echo esc_html(__('See plans','wp-job-portal')); ?></a>
                                     </div>
                                 </div>
                             </div>
@@ -436,7 +470,7 @@ $wpjobportal_cities_data_count_array['za'] = array("free" => 35, "pro" => 781);
 $wpjobportal_cities_data_count_array['zm'] = array("free" => 6, "pro" => 116);
 $wpjobportal_cities_data_count_array['zw'] = array("free" => 8, "pro" => 98);
 
-wp_register_script( 'wpjobportal-inline-handle', '' );
+wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
 wp_enqueue_script( 'wpjobportal-inline-handle' );
 
 $wpjobportal_inline_js_script = "

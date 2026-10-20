@@ -1,11 +1,11 @@
 <?php if (!defined('ABSPATH')) die('Restricted Access'); ?>
 <?php
 wp_enqueue_script( 'jp-google-charts', esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/js/google-charts.js', array(), '1.1.1', false );
-wp_register_script( 'google-charts-handle', '' );
+wp_register_script( 'google-charts-handle', '', array(), WPJOBPORTAL_VERSION, false );
 wp_enqueue_script( 'google-charts-handle' );
 ?>
 <?php
-    wp_register_script( 'wpjobportal-inline-handle', '' );
+    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
     $wpjobportal_inline_js_script = "

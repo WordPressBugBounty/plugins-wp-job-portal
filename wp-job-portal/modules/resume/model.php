@@ -204,10 +204,10 @@ class WPJOBPORTALResumeModel {
             }
         }
         // visitor apply
-        if (isset($_COOKIE['wpjobportal_apply_visitor'])) {
+        if (WPJOBPORTALrequest::hasCookie('wpjobportal_apply_visitor')) {
             if (!is_user_logged_in()) {
                 $wpjobportal_url = apply_filters('wpjobportal_addons_applyjob_visitor',false);
-                wp_redirect($wpjobportal_url);
+                wp_safe_redirect($wpjobportal_url);
                 exit;
             }
         }
@@ -245,10 +245,19 @@ class WPJOBPORTALResumeModel {
             wpjobportal::$_data['filter']['first_name'] = $params['first_name'];
             $wpjobportal_inquery .= " AND resume.first_name LIKE '%" . esc_sql($params['first_name']) . "%'";
         }
-        if (isset($params['middle_name'])) {
-            wpjobportal::$_data['filter']['middle_name'] = $params['middle_name'];
-            $wpjobportal_inquery .= " AND resume.middle_name LIKE '%" . esc_sql($params['middle_name']) . "%'";
-        }
+        /*
+         * The middle_name filter used to be applied here and has been removed.
+         *
+         * resume.middle_name is a column the resume table does not have: a
+         * resume records first_name and last_name and nothing between them.
+         *
+         * This copy differed from the ones in Pro and the resume-search add-on
+         * in one way that matters - it was reachable. The parameter is read
+         * from the request, carried through the search cookie and into
+         * $_search['resumes'], so anything submitting middle_name reached a
+         * query against a column that is not there. The others were only ever
+         * dead code.
+         */
         if (isset($params['last_name'])) {
             wpjobportal::$_data['filter']['last_name'] = $params['last_name'];
             $wpjobportal_inquery .= " AND resume.last_name LIKE '%" .esc_sql( $params['last_name']) . "%'";
@@ -413,41 +422,6 @@ class WPJOBPORTALResumeModel {
         }
         $wpjobportal_resumeid = $wpjobportal_formdata['resumeid'];
 
-        // the resume this section is being written to is resolved server side; never trust a
-        // non numeric value here because it would be coerced further down the stack.
-        if ( ! is_numeric($wpjobportal_resumeid) || (int) $wpjobportal_resumeid < 1) {
-            return false;
-        }
-        $wpjobportal_resumeid = (int) $wpjobportal_resumeid;
-        $wpjobportal_formdata['resumeid'] = $wpjobportal_resumeid;
-
-        // prevent cross-resume section hijack on edit: an existing section id must belong to this resume.
-        // the posted id has to be a clean integer, otherwise a value such as "123abc" would skip this
-        // check and still be coerced to row 123 by MySQL in the UPDATE further down.
-        if (isset($wpjobportal_formdata['id']) && $wpjobportal_formdata['id'] !== '' && $wpjobportal_formdata['id'] !== null) {
-            $wpjobportal_posted_sectionid = $wpjobportal_formdata['id'];
-            if (is_array($wpjobportal_posted_sectionid)
-                || ! is_numeric($wpjobportal_posted_sectionid)
-                || (string) absint($wpjobportal_posted_sectionid) !== (string) $wpjobportal_posted_sectionid
-            ) {
-                return false; // malformed section id
-            }
-            $wpjobportal_posted_sectionid = absint($wpjobportal_posted_sectionid);
-            if ($wpjobportal_posted_sectionid > 0) {
-                $wpjobportal_formdata['id'] = $wpjobportal_posted_sectionid; // normalised, no string left to coerce
-                if ( ! current_user_can('manage_options') ) {
-                    $wpjobportal_owns_section = wpjobportal::$_db->get_var(
-                        "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($wpjobportal_table_name) . "` WHERE id = " . (int) ($wpjobportal_posted_sectionid) . " AND resumeid = " . (int) ($wpjobportal_resumeid)
-                    );
-                    if ($wpjobportal_owns_section == 0) {
-                        return false; // section does not belong to this resume
-                    }
-                }
-            } else {
-                $wpjobportal_formdata['id'] = ''; // 0 means a new row, not an edit
-            }
-        }
-
         //check whether form data array is empty;
             $wpjobportal_check_array = $wpjobportal_formdata;
             unset($wpjobportal_check_array['resumeid']);
@@ -493,9 +467,6 @@ class WPJOBPORTALResumeModel {
             $wpjobportal_formdata['created'] = gmdate('Y-m-d H:i:s');
         }
 
-        if(WPJOBPORTALincluder::getJSModel('common')->checkLanguageSpecialCase()){
-            $wpjobportal_formdata = wpjobportal::$_common->stripslashesFull($wpjobportal_formdata);// remove slashes with quotes.
-        }
 
         if($params){
             $wpjobportal_formdata['params'] = wp_json_encode($params);
@@ -606,7 +577,7 @@ class WPJOBPORTALResumeModel {
             }
 
             // ==========================================
-            // SECURITY FIX: Use $wpdb->update() to prevent 
+            // SECURITY FIX: Use wpjobportaldb_direct::update() to prevent 
             // second-order SQL injection via raw params concatenation.
             // ==========================================
             $update_data = array(
@@ -651,10 +622,14 @@ class WPJOBPORTALResumeModel {
         if(!is_numeric($wpjobportal_resumeid)) return false;
         if(!is_numeric($wpjobportal_sectionid)) return false;
 
-        // the caller must own the resume. this also has to hold for visitor submissions, where
-        // ownership is carried by the session rather than by a uid, so do not exempt guests.
-        if ( ! $this->isYoursResume($wpjobportal_resumeid, $wpjobportal_uid)) {
-            return false; // not your resume
+        if ( ! current_user_can( 'manage_options' ) ) { // user is not admin check perform
+            if( ! WPJOBPORTALincluder::getObjectClass('user')->isguest()){
+                $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE id = " . (int) ($wpjobportal_resumeid)." AND uid =" . (int) ($wpjobportal_uid);
+                $wpjobportal_result = wpjobportal::$_db->get_var($query);
+                if($wpjobportal_result == 0){
+                    return false; // not your resume
+                }
+            }
         }
 
         if ($wpjobportal_sec_id == 2) {
@@ -666,7 +641,7 @@ class WPJOBPORTALResumeModel {
         if($wpjobportal_sec_id == 5 || $wpjobportal_sec_id == 6){ //skill,editor
             return true;
         }else{
-            $query = "DELETE FROM `" . wpjobportal::$_db->prefix . "wj_portal_".esc_sql($wpjobportal_table_name)."` WHERE id = " . (int) ($wpjobportal_sectionid) . " AND resumeid = " . (int) ($wpjobportal_resumeid);
+            $query = "DELETE FROM `" . wpjobportal::$_db->prefix . "wj_portal_".esc_sql($wpjobportal_table_name)."` WHERE id = " . (int) ($wpjobportal_sectionid);
             if (wpjobportaldb::query($query)) {
                 return true;
             }else{
@@ -685,6 +660,12 @@ class WPJOBPORTALResumeModel {
         $wpjobportal_user = WPJOBPORTALincluder::getObjectClass('user');
         $wpjobportal_no_package_needed = 0;
         if (empty($wpjobportal_data['id'])) {
+            // Paid posting is on hold while old Credits is paused. A visitor's
+            // resume is part of applying, which stays open.
+            $wpjobportal_visitor = $wpjobportal_user->isguest() || !$wpjobportal_user->isWPJOBPortalUser();
+            if(!$wpjobportal_visitor && !wpjobportal::$_common->wpjp_isadmin() && WPJOBPORTAL_Monetisation::paused()){
+                return false;
+            }
             if(isset($wpjobportal_data['application_title'])){
                 $wpjobportal_data['alias'] = wpjobportalphplib::wpJP_str_replace(' ', '-', $wpjobportal_data['application_title']);
             }else{
@@ -699,7 +680,7 @@ class WPJOBPORTALResumeModel {
             $wpjobportal_data['created'] = gmdate('Y-m-d H:i:s');
             $wpjobportal_visitorcanapply = wpjobportal::$_config->getConfigurationByConfigName('visitor_can_apply_to_job');
             $wpjobportal_isguest = WPJOBPORTALincluder::getObjectClass('user')->isguest();
-            if((in_array('credits', wpjobportal::$_active_addons) && $wpjobportal_isguest && $wpjobportal_visitorcanapply != 1) || (in_array('credits', wpjobportal::$_active_addons) && !$wpjobportal_isguest)){
+            if((WPJOBPORTAL_Monetisation::usable('credits') && $wpjobportal_isguest && $wpjobportal_visitorcanapply != 1) || (WPJOBPORTAL_Monetisation::usable('credits') && !$wpjobportal_isguest)){
                 if($wpjobportal_submission_type == 1){
                     $wpjobportal_data['status'] = wpjobportal::$_config->getConfigurationByConfigName('empautoapprove');
                 }elseif ($wpjobportal_submission_type == 2) {
@@ -759,7 +740,6 @@ class WPJOBPORTALResumeModel {
 
         $wpjobportal_data = wpjobportal::wpjobportal_sanitizeData($wpjobportal_data);
 
-        $wpjobportal_data = wpjobportal::$_common->stripslashesFull($wpjobportal_data);// remove slashes with quotes.
         $return_cf = $this->makeResumeTableParams($wpjobportal_data,$wpjobportal_section);
         $wpjobportal_data['params'] = $return_cf['params'];
 
@@ -797,14 +777,20 @@ class WPJOBPORTALResumeModel {
         if(isset($wpjobportal_data['resume_logo_deleted']) && $wpjobportal_data['resume_logo_deleted'] == 1){
             $this->deleteResumeLogoModel($wpjobportal_resumeid);
         }
-        if (isset($_FILES['photo']['size']) && $_FILES['photo']['size'] > 0) {
-            if(isset($wpjobportal_data['resume_logo_deleted']) && $wpjobportal_data['resume_logo_deleted'] != 1){
-                $this->deleteResumeLogoModel($wpjobportal_resumeid);
+        if (WPJOBPORTALrequest::fileSize('photo') > 0) {
+            // Check the new file first: removing the current photo and then refusing the upload left none.
+            if (WPJOBPORTALincluder::getObjectClass('uploads')->checkImageUpload('photo') == 1) {
+                if(isset($wpjobportal_data['resume_logo_deleted']) && $wpjobportal_data['resume_logo_deleted'] != 1){
+                    $this->deleteResumeLogoModel($wpjobportal_resumeid);
+                }
+                $this->uploadPhoto($objectid);
+            } else {
+                $wpjobportal_msg = WPJOBPORTALMessages::getMessage(WPJOBPORTAL_FILE_TYPE_ERROR, '');
+                WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'], $this->getMessagekey());
             }
-            $this->uploadPhoto($objectid);
         }
 
-        if (isset($_FILES['resumefiles'])) {
+        if (WPJOBPORTALrequest::hasFile('resumefiles')) {
             $filereturnvalue = $this->uploadResume($objectid);
         }
         // upload custom files
@@ -871,8 +857,8 @@ class WPJOBPORTALResumeModel {
         //storing custom field attachments
         if(isset($wpjobportal_data_array['customflagforadd']) && $wpjobportal_data_array['customflagforadd'] == true){
             foreach ($wpjobportal_data_array['custom_field_namesforadd'] as $wpjobportal_key) {
-                if (isset($_FILES[$wpjobportal_key])) {
-                    if ($_FILES[$wpjobportal_key]['size'] > 0) { // logo
+                if (WPJOBPORTALrequest::hasFile($wpjobportal_key)) {
+                    if (WPJOBPORTALrequest::fileSize($wpjobportal_key) > 0) { // logo
                        $res = wpjobportal::$_wpjpcustomfield->uploadFileCustom($wpjobportal_resumeid,$wpjobportal_key,$wpjobportal_entity_for);
                     }
                 }
@@ -946,8 +932,9 @@ class WPJOBPORTALResumeModel {
                     //     $wpjobportal_vardata = isset($_FILES[$wpjobportal_section_id]['name'][$ufobj->field]) ? sanitize_file_name($_FILES[$wpjobportal_section_id]['name'][$ufobj->field]) : '';
                     // }else{
                         //$wpjobportal_section_id = 'sec_'.$wpjobportal_sectionid;
-                        if(isset($_FILES[$ufobj->field])){
-                            $wpjobportal_vardata = isset($_FILES[$ufobj->field]['name']) ? sanitize_file_name($_FILES[$ufobj->field]['name']) : '';
+                        $wpjobportal_uf_file = WPJOBPORTALrequest::file($ufobj->field);
+                        if($wpjobportal_uf_file){
+                            $wpjobportal_vardata = $wpjobportal_uf_file['name'];
                         }
                     //}
                 }
@@ -991,14 +978,29 @@ class WPJOBPORTALResumeModel {
         }
         $wpjobportal_resume = '';
         if ($wpjobportal_sectionName == 'personal') {
-            $query = "SELECT resume.id,resume.driving_license,resume.tags AS viewtags , resume.tags AS resumetags,resume.uid,resume.application_title, resume.first_name, resume.last_name, resume.cell, resume.email_address, resume.nationality AS nationalityid, resume.photo, resume.gender, resume.job_category, resume.experienceid, resume.home_phone, resume.work_phone, resume.date_of_birth,
-                , resume.jobsalaryrangetype, resume.skills, resume.keywords, resume.searchable, resume.iamavailable, cat.cat_title AS categorytitle, jobtype.title AS jobtypetitle, resume.date_start,resume.jobtype
-                , resume.resume, saltype.title AS rangetype,nationality.name AS nationality
+            /*
+             * This selected eight columns the resume table does not have:
+             * driving_license, experienceid, home_phone, work_phone,
+             * date_of_birth, iamavailable, date_start, and jobsalaryrangetype.
+             *
+             * They are not missing from this install - they are not in the
+             * shipped schema at all, and the archived original distribution
+             * declares the same table this one has. The query was written
+             * against a data model that predates the product, so it has never
+             * returned a row for any resume, on any site. None of the eight is
+             * a configured resume field either, so there is nowhere else to
+             * read them from and nothing to migrate.
+             *
+             * What is left is every column the table really carries, which is
+             * what the section can honestly show.
+             */
+            $query = "SELECT resume.id,resume.tags AS viewtags , resume.tags AS resumetags,resume.uid,resume.application_title, resume.first_name, resume.last_name, resume.cell, resume.email_address, resume.nationality AS nationalityid, resume.photo, resume.gender, resume.job_category
+                , resume.salaryfixed, resume.skills, resume.keywords, resume.searchable, cat.cat_title AS categorytitle, jobtype.title AS jobtypetitle, resume.jobtype
+                , resume.resume,nationality.name AS nationality
                 ,resume.params,resume.status
                         FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
                         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = resume.job_category
                         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = resume.jobtype
-                        LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS saltype ON saltype.id = resume.jobsalaryrangetype
                         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_countries` AS nationality ON nationality.id = resume.nationality
                         WHERE resume.id = " . (int) ($wpjobportal_resumeid);
 
@@ -1059,6 +1061,8 @@ class WPJOBPORTALResumeModel {
         $wpjobportal_searchjobcategory = wpjobportal::$_search['resumes']['searchjobcategory'];
         $wpjobportal_searchjobtype = wpjobportal::$_search['resumes']['searchjobtype'];
         $wpjobportal_searchjobsalaryrange = wpjobportal::$_search['resumes']['searchjobsalaryrange'];
+        $wpjobportal_searchsalarymin = isset(wpjobportal::$_search['resumes']['searchsalarymin']) ? wpjobportal::$_search['resumes']['searchsalarymin'] : '';
+        $wpjobportal_searchsalarymax = isset(wpjobportal::$_search['resumes']['searchsalarymax']) ? wpjobportal::$_search['resumes']['searchsalarymax'] : '';
         $wpjobportal_status = wpjobportal::$_search['resumes']['status'];
         $wpjobportal_datestart = wpjobportal::$_search['resumes']['datestart'];
         $wpjobportal_dateend = wpjobportal::$_search['resumes']['dateend'];
@@ -1069,6 +1073,8 @@ class WPJOBPORTALResumeModel {
         wpjobportal::$_data['filter']['searchjobcategory'] = $wpjobportal_searchjobcategory;
         wpjobportal::$_data['filter']['searchjobtype'] = $wpjobportal_searchjobtype;
         wpjobportal::$_data['filter']['searchjobsalaryrange'] = $wpjobportal_searchjobsalaryrange;
+        wpjobportal::$_data['filter']['searchsalarymin'] = $wpjobportal_searchsalarymin;
+        wpjobportal::$_data['filter']['searchsalarymax'] = $wpjobportal_searchsalarymax;
         wpjobportal::$_data['filter']['status'] = $wpjobportal_status;
         wpjobportal::$_data['filter']['datestart'] = $wpjobportal_datestart;
         wpjobportal::$_data['filter']['dateend'] = $wpjobportal_dateend;
@@ -1098,8 +1104,29 @@ class WPJOBPORTALResumeModel {
             $wpjobportal_inquery .= " AND app.job_category = " . (int) ($wpjobportal_searchjobcategory);
         if (is_numeric($wpjobportal_searchjobtype))
             $wpjobportal_inquery .= " AND app.jobtype = " . (int) ($wpjobportal_searchjobtype);
-        if (is_numeric($wpjobportal_searchjobsalaryrange)){
-            $wpjobportal_inquery .= " AND (SELECT rangestart FROM `".wpjobportal::$_db->prefix."wj_portal_salaryrange` WHERE id = " . (int) ($wpjobportal_searchjobsalaryrange).") >= salarystart.rangestart AND (SELECT rangestart FROM `".wpjobportal::$_db->prefix."wj_portal_salaryrange` WHERE id = " . (int) ($wpjobportal_searchjobsalaryrange).") <= salarystart.rangeend";
+        /*
+         * Salary, filtered on what the candidate is asking for.
+         *
+         * A resume carries one figure, salaryfixed - there is no band on a
+         * resume and never was, which is why the clause this replaces could
+         * not have worked even had `wj_portal_salaryrange` existed. So the
+         * band belongs to the searcher: show me candidates whose expected
+         * salary falls between these two numbers.
+         *
+         * salaryfixed is a varchar, so it is cast before being compared, and
+         * blank is excluded rather than being read as zero - otherwise every
+         * resume that never filled the field in would answer a minimum of any
+         * size.
+         */
+        if (is_numeric($wpjobportal_searchsalarymin) || is_numeric($wpjobportal_searchsalarymax)) {
+            $wpjobportal_inquery .= " AND app.salaryfixed <> ''";
+
+            if (is_numeric($wpjobportal_searchsalarymin)) {
+                $wpjobportal_inquery .= " AND CAST(app.salaryfixed AS DECIMAL(15,2)) >= " . (float) ($wpjobportal_searchsalarymin);
+            }
+            if (is_numeric($wpjobportal_searchsalarymax)) {
+                $wpjobportal_inquery .= " AND CAST(app.salaryfixed AS DECIMAL(15,2)) <= " . (float) ($wpjobportal_searchsalarymax);
+            }
         }
         if ($wpjobportal_status != null) {
             if (is_numeric($wpjobportal_status)) {
@@ -1175,6 +1202,12 @@ class WPJOBPORTALResumeModel {
             case 7: // status
                 wpjobportal::$_data['sorting'] = ' resume.status ';
                 break;
+            default:
+                // sorton arrives from the request and is not range-checked.
+                // Without this the column is never set and the query goes
+                // out as "ORDER BY  DESC".
+                wpjobportal::$_data['sorting'] = ' resume.created ';
+                break;
         }
         if (wpjobportal::$_data['sortby'] == 1) {
             wpjobportal::$_data['sorting'] .= ' ASC ';
@@ -1211,6 +1244,12 @@ class WPJOBPORTALResumeModel {
             case 7: // status
                 wpjobportal::$_data['sorting'] = ' app.status ';
                 break;
+            default:
+                // sorton arrives from the request and is not range-checked.
+                // Without this the column is never set and the query goes
+                // out as "ORDER BY  DESC".
+                wpjobportal::$_data['sorting'] = ' app.created ';
+                break;
         }
         if (wpjobportal::$_data['sortby'] == 1) {
             wpjobportal::$_data['sorting'] .= ' ASC ';
@@ -1228,6 +1267,8 @@ class WPJOBPORTALResumeModel {
         $wpjobportal_searchjobcategory = wpjobportal::$_search['resumes']['searchjobcategory'];
         $wpjobportal_searchjobtype = wpjobportal::$_search['resumes']['searchjobtype'];
         $wpjobportal_searchjobsalaryrange = wpjobportal::$_search['resumes']['searchjobsalaryrange'];
+        $wpjobportal_searchsalarymin = isset(wpjobportal::$_search['resumes']['searchsalarymin']) ? wpjobportal::$_search['resumes']['searchsalarymin'] : '';
+        $wpjobportal_searchsalarymax = isset(wpjobportal::$_search['resumes']['searchsalarymax']) ? wpjobportal::$_search['resumes']['searchsalarymax'] : '';
         $wpjobportal_status = wpjobportal::$_search['resumes']['status'];
         $wpjobportal_datestart = wpjobportal::$_search['resumes']['datestart'];
         $wpjobportal_dateend = wpjobportal::$_search['resumes']['dateend'];
@@ -1238,6 +1279,8 @@ class WPJOBPORTALResumeModel {
         wpjobportal::$_data['filter']['searchjobcategory'] = $wpjobportal_searchjobcategory;
         wpjobportal::$_data['filter']['searchjobtype'] = $wpjobportal_searchjobtype;
         wpjobportal::$_data['filter']['searchjobsalaryrange'] = $wpjobportal_searchjobsalaryrange;
+        wpjobportal::$_data['filter']['searchsalarymin'] = $wpjobportal_searchsalarymin;
+        wpjobportal::$_data['filter']['searchsalarymax'] = $wpjobportal_searchsalarymax;
         wpjobportal::$_data['filter']['status'] = $wpjobportal_status;
         wpjobportal::$_data['filter']['datestart'] = $wpjobportal_datestart;
         wpjobportal::$_data['filter']['dateend'] = $wpjobportal_dateend;
@@ -1267,8 +1310,24 @@ class WPJOBPORTALResumeModel {
             $wpjobportal_inquery .= " AND app.job_category = " . (int) ($wpjobportal_searchjobcategory);
         if (is_numeric($wpjobportal_searchjobtype))
             $wpjobportal_inquery .= " AND app.jobtype = " . (int) ($wpjobportal_searchjobtype);
-        if (is_numeric($wpjobportal_searchjobsalaryrange))
-            $wpjobportal_inquery .= " AND app.jobsalaryrangetype = " . (int) ($wpjobportal_searchjobsalaryrange);
+        /*
+         * This filtered on app.jobsalaryrangetype, a column no version of the
+         * product creates - so it was the same fault as the one next door,
+         * wearing a different disguise: that one named a table that does not
+         * exist, this one a column. Both were reached by picking a salary.
+         *
+         * Same replacement, on the figure a resume really carries.
+         */
+        if (is_numeric($wpjobportal_searchsalarymin) || is_numeric($wpjobportal_searchsalarymax)) {
+            $wpjobportal_inquery .= " AND app.salaryfixed <> ''";
+
+            if (is_numeric($wpjobportal_searchsalarymin)) {
+                $wpjobportal_inquery .= " AND CAST(app.salaryfixed AS DECIMAL(15,2)) >= " . (float) ($wpjobportal_searchsalarymin);
+            }
+            if (is_numeric($wpjobportal_searchsalarymax)) {
+                $wpjobportal_inquery .= " AND CAST(app.salaryfixed AS DECIMAL(15,2)) <= " . (float) ($wpjobportal_searchsalarymax);
+            }
+        }
         if ($wpjobportal_status != null) {
             if (is_numeric($wpjobportal_status))
                 $wpjobportal_inquery .= " AND app.status = " . (int) ($wpjobportal_status);
@@ -1622,54 +1681,27 @@ class WPJOBPORTALResumeModel {
         $wpjobportal_row = null;
         switch ($wpjobportal_section) {
             case 'languages':
-                $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resumelanguages');
+                $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resumelanguage');
                 break;
             // case 'references':
-            //     $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resumereferences');
+            //     $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resumereference');
             //     break;
             case 'employers':
-                $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resumeemployers');
+                $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resumeemployer');
                 break;
             case 'institutes':
-                $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resumeinstitutes');
+                $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resumeinstitute');
                 break;
             case 'addresses':
-                $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resumeaddresses');
+                $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resumeaddress');
                 break;
         }
         $wpjobportal_msg = esc_html(__('Section has been deleted', 'wp-job-portal'));
         $wpjobportal_result = 1;
-        // the section tables all use a plural class name; an unknown section leaves $wpjobportal_row
-        // null, so bail out with an error instead of fataling on a method call against null.
-        $wpjobportal_sectiontables = array(
-            'languages'  => 'resumelanguages',
-            'employers'  => 'resumeemployers',
-            'institutes' => 'resumeinstitutes',
-            'addresses'  => 'resumeaddresses',
-        );
-        if (!is_object($wpjobportal_row) || !isset($wpjobportal_sectiontables[$wpjobportal_section])) {
-            $wpjobportal_msg = esc_html(__('Error deleting section', 'wp-job-portal'));
-            $wpjobportal_result = 0;
-        } elseif ($this->isYoursResume($wpjobportal_resumeid, $wpjobportal_uid)) {
-            // owning the parent resume is not enough: the section row itself has to belong to it,
-            // otherwise any resume owner could delete another resume's rows by id.
-            $wpjobportal_sectionid = isset($wpjobportal_data['sectionid']) ? $wpjobportal_data['sectionid'] : '';
-            if (is_array($wpjobportal_sectionid)
-                || !is_numeric($wpjobportal_sectionid)
-                || (string) absint($wpjobportal_sectionid) !== (string) $wpjobportal_sectionid
-                || absint($wpjobportal_sectionid) < 1
-                || !is_numeric($wpjobportal_resumeid)
-            ) {
+        if ($this->isYoursResume($wpjobportal_resumeid, $wpjobportal_uid)) {
+            if (!$wpjobportal_row->delete($wpjobportal_data['sectionid'])) {
                 $wpjobportal_msg = esc_html(__('Error deleting section', 'wp-job-portal'));
                 $wpjobportal_result = 0;
-            } else {
-                $wpjobportal_owns_section = wpjobportal::$_db->get_var(
-                    "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_" . esc_sql($wpjobportal_sectiontables[$wpjobportal_section]) . "` WHERE id = " . (int) ($wpjobportal_sectionid) . " AND resumeid = " . (int) ($wpjobportal_resumeid)
-                );
-                if ($wpjobportal_owns_section == 0 || !$wpjobportal_row->delete(absint($wpjobportal_sectionid))) {
-                    $wpjobportal_msg = esc_html(__('Error deleting section', 'wp-job-portal'));
-                    $wpjobportal_result = 0;
-                }
             }
         }
         $canadd = $this->canAddMoreSection($wpjobportal_uid, $wpjobportal_resumeid, $wpjobportal_section);
@@ -1792,7 +1824,13 @@ class WPJOBPORTALResumeModel {
     }
 
     function getResumeById($wpjobportal_id) {
-        if (WPJOBPORTALincluder::getObjectClass('user')->isemployer() || current_user_can( 'manage_options' )) { // Current user is employer
+        $wpjobportal_extension_access = is_numeric($wpjobportal_id) && (bool) apply_filters(
+            'wpjobportal_authorization_resume',
+            false,
+            absint($wpjobportal_id),
+            get_current_user_id()
+        );
+        if (WPJOBPORTALincluder::getObjectClass('user')->isemployer() || current_user_can( 'manage_options' ) || $wpjobportal_extension_access) { // Current user is employer or an authorized extension user.
             $wpjobportal_uid = $this->getUidByResumeId($wpjobportal_id);
         } else {
 			$wpjobportal_userobject = WPJOBPORTALincluder::getObjectClass('user');
@@ -1802,7 +1840,7 @@ class WPJOBPORTALResumeModel {
                 $wpjobportal_uid = $wpjobportal_userobject->uid();
 			}
         }
-        if(isset($_COOKIE['wpjobportal_apply_visitor']) && is_numeric($_COOKIE['wpjobportal_apply_visitor']) && !is_user_logged_in()){
+        if(WPJOBPORTALrequest::hasCookie('wpjobportal_apply_visitor') && is_numeric(WPJOBPORTALrequest::cookie('wpjobportal_apply_visitor', '')) && !is_user_logged_in()){
             $query = "SELECT job.id as id,job.endfeatureddate,job.id,job.uid,job.title,job.isfeaturedjob,job.serverid,job.noofjobs,job.city,job.status,job.currency,
                 CONCAT(job.alias,'-',job.id) AS jobaliasid,job.created,job.serverid,company.name AS companyname,company.id AS companyid,company.logofilename,CONCAT(company.alias,'-',company.id) AS compnayaliasid,job.salarytype,job.salarymin,job.salarymax,salaryrangetype.title AS salarydurationtitle,
                 cat.cat_title, jobtype.title AS jobtypetitle,salaryrangetype.title AS srangetypetitle,
@@ -1813,7 +1851,7 @@ class WPJOBPORTALResumeModel {
                 ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
-                LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS salaryrangetype ON salaryrangetype.id = job.salarytype WHERE job.id = " . absint(wp_unslash($_COOKIE['wpjobportal_apply_visitor']));
+                LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS salaryrangetype ON salaryrangetype.id = job.salarytype WHERE job.id = " . absint(WPJOBPORTALrequest::cookie('wpjobportal_apply_visitor', ''));
             wpjobportal::$_data['jobinfo'] = wpjobportaldb::get_row($query);
             if(wpjobportal::$_data['jobinfo'] != ''){
                 wpjobportal::$_data['jobinfo']->location = WPJOBPORTALincluder::getJSModel('city')->getLocationDataForView(wpjobportal::$_data['jobinfo']->city);
@@ -1839,6 +1877,10 @@ class WPJOBPORTALResumeModel {
                 global $job_portal_theme_options;
                 // getting personal section
                 wpjobportal::$_data[0]['personal_section'] = $this->getResumePersonalSection($wpjobportal_id, $wpjobportal_uid);
+                if (empty(wpjobportal::$_data[0]['personal_section'])) {
+                    wpjobportal::$wpjobportal_data['resumecontactdetail'] = false;
+                    return false;
+                }
                 // getting address section
                 wpjobportal::$_data[0]['address_section'] = $this->getResumeAddressSection($wpjobportal_id, $wpjobportal_uid);
                 // getting employer section
@@ -1972,8 +2014,8 @@ class WPJOBPORTALResumeModel {
                 wpjobportal::$_db->query($query);
             }
         }
-            // allow owner and admin to view
-            if (!WPJOBPORTALincluder::getObjectClass('user')->isguest()&& (wpjobportal::$_common->wpjp_isadmin() || (isset(wpjobportal::$_data[0]['personal_section']->uid) && wpjobportal::$_data[0]['personal_section']->uid == WPJOBPORTALincluder::getObjectClass('user')->uid()))) {
+            // Allow the owner, administrators, and server-authorized extension users to view contact details.
+            if (!WPJOBPORTALincluder::getObjectClass('user')->isguest()&& (wpjobportal::$_common->wpjp_isadmin() || $wpjobportal_extension_access || (isset(wpjobportal::$_data[0]['personal_section']->uid) && wpjobportal::$_data[0]['personal_section']->uid == WPJOBPORTALincluder::getObjectClass('user')->uid()))) {
                 wpjobportal::$wpjobportal_data['resumecontactdetail'] = true;
             }
 
@@ -2009,7 +2051,7 @@ class WPJOBPORTALResumeModel {
                 }
 
             }
-        return;
+        return true;
     }
 
     function getResumePersonalSection($wpjobportal_id, $wpjobportal_uid) {
@@ -2113,8 +2155,13 @@ class WPJOBPORTALResumeModel {
     function uploadResume($wpjobportal_id) {
         if (is_numeric($wpjobportal_id) == false)
             return false;
-        WPJOBPORTALincluder::getObjectClass('uploads')->uploadResumeFiles($wpjobportal_id);
-        return;
+        $wpjobportal_result = WPJOBPORTALincluder::getObjectClass('uploads')->uploadResumeFiles($wpjobportal_id);
+        if ($wpjobportal_result === 6) {
+            // a refused file was skipped silently; tell the user like a refused photo does
+            $wpjobportal_msg = WPJOBPORTALMessages::getMessage(WPJOBPORTAL_FILE_TYPE_ERROR, '');
+            WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'], $this->getMessagekey());
+        }
+        return $wpjobportal_result;
     }
 
     function uploadPhoto($wpjobportal_id) {
@@ -2173,10 +2220,7 @@ class WPJOBPORTALResumeModel {
                     require_once ABSPATH . 'wp-admin/includes/file.php';
                 }
                 global $wp_filesystem;
-                if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-                    $creds = request_filesystem_credentials( site_url() );
-                    wp_filesystem( $creds );
-                }
+                $wp_filesystem = wpjobportal::wpjobportal_filesystem();
 
 
                 if ($wp_filesystem->exists($wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . "/data/jobseeker/resume_".$wpjobportal_id.'/resume')) {
@@ -2220,7 +2264,7 @@ class WPJOBPORTALResumeModel {
             return true;
     }
 
-    function resumeEnforceDelete($wpjobportal_resumeid, $wpjobportal_uid) {
+    function resumeEnforceDelete($wpjobportal_resumeid, $wpjobportal_uid, $wpjobportal_send_mail = true) {
         if ($wpjobportal_uid)
             if ((is_numeric($wpjobportal_uid) == false) || ($wpjobportal_uid == 0) || ($wpjobportal_uid == ''))
                 return false;
@@ -2281,10 +2325,7 @@ class WPJOBPORTALResumeModel {
             require_once ABSPATH . 'wp-admin/includes/file.php';
         }
         global $wp_filesystem;
-        if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-            $creds = request_filesystem_credentials( site_url() );
-            wp_filesystem( $creds );
-        }
+        $wp_filesystem = wpjobportal::wpjobportal_filesystem();
 
 
         if($wp_filesystem->exists($wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . "/data/jobseeker/resume_".$wpjobportal_resumeid.'/resume')) {
@@ -2297,7 +2338,10 @@ class WPJOBPORTALResumeModel {
             $wp_filesystem->rmdir($wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . "/data/jobseeker/resume_".$wpjobportal_resumeid);
         }
 
-        WPJOBPORTALincluder::getJSModel('emailtemplate')->sendMail(3, 6, $wpjobportal_resumeid,$wpjobportal_mailextradata); // 3 for resume,6 for DELETE resume
+        // Not when a whole account is being removed: removeUserData() passes false.
+        if ($wpjobportal_send_mail) {
+            WPJOBPORTALincluder::getJSModel('emailtemplate')->sendMail(3, 6, $wpjobportal_resumeid,$wpjobportal_mailextradata); // 3 for resume,6 for DELETE resume
+        }
         // action hook for delete resume
         do_action('wpjobportal_after_delete_resume_hook',$wpjobportal_resumeid);
         return WPJOBPORTAL_DELETED;
@@ -2471,10 +2515,27 @@ class WPJOBPORTALResumeModel {
                 wpjobportal::$wpjobportal_data['issearchform'] = 1;
             }
 
-            $wpjobportal_salaryRangeType = isset(wpjobportal::$_search['resumes']['salaryrangetype']) ? wpjobportal::$_search['resumes']['salaryrangetype'] : '';
-            if ($wpjobportal_salaryRangeType != '' && is_numeric($wpjobportal_salaryRangeType)) {
-                $wpjobportal_inquery .= ' AND resume.jobsalaryrangetype = ' . (int) ($wpjobportal_salaryRangeType) . '  ';
-                wpjobportal::$_data['filter']['salaryrangetype'] = $wpjobportal_salaryRangeType;
+            /*
+             * The third place resume.jobsalaryrangetype was read, and the
+             * third disguise of one fault: no version of the product creates
+             * that column. Filter on the figure a resume does carry, using the
+             * same bounds the other two searches take.
+             */
+            $wpjobportal_salarymin = isset(wpjobportal::$_search['resumes']['searchsalarymin']) ? wpjobportal::$_search['resumes']['searchsalarymin'] : '';
+            $wpjobportal_salarymax = isset(wpjobportal::$_search['resumes']['searchsalarymax']) ? wpjobportal::$_search['resumes']['searchsalarymax'] : '';
+
+            if (is_numeric($wpjobportal_salarymin) || is_numeric($wpjobportal_salarymax)) {
+                $wpjobportal_inquery .= " AND resume.salaryfixed <> ''";
+
+                if (is_numeric($wpjobportal_salarymin)) {
+                    $wpjobportal_inquery .= ' AND CAST(resume.salaryfixed AS DECIMAL(15,2)) >= ' . (float) ($wpjobportal_salarymin) . ' ';
+                    wpjobportal::$_data['filter']['searchsalarymin'] = $wpjobportal_salarymin;
+                }
+                if (is_numeric($wpjobportal_salarymax)) {
+                    $wpjobportal_inquery .= ' AND CAST(resume.salaryfixed AS DECIMAL(15,2)) <= ' . (float) ($wpjobportal_salarymax) . ' ';
+                    wpjobportal::$_data['filter']['searchsalarymax'] = $wpjobportal_salarymax;
+                }
+
                 wpjobportal::$wpjobportal_data['issearchform'] = 1;
             }
 
@@ -2616,7 +2677,13 @@ class WPJOBPORTALResumeModel {
                         FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
                         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category ON category.id = resume.job_category ";
                     if($zipCode != ''){
-                        $query .= " JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` AS address1 ON (address1.resumeid = resume.id AND address1.address_zipcode = '".esc_sql($zipCode)."' ) ";
+                        // A resume address has no postcode column - not on this install, not in
+                        // the shipped schema, and not in the original distribution. This
+                        // joined on one, so every postcode search failed outright. Until
+                        // there is somewhere to keep a postcode the address join stands on
+                        // its own and the postcode is ignored: too many resumes rather
+                        // than an error page.
+                        $query .= " JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` AS address1 ON address1.resumeid = resume.id ";
                     }elseif ($city != '') {
                         $query .= " JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` AS address1 ON address1.resumeid = resume.id ";
                     }elseif (strstr($wpjobportal_inquery, 'address1.address_city')) { // to handle shortcode option case for locations
@@ -2644,7 +2711,13 @@ class WPJOBPORTALResumeModel {
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category ON category.id = resume.job_category ";
                 if($zipCode != ''){
-                    $query .= " JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` AS address1 ON (address1.resumeid = resume.id AND address1.address_zipcode = '".esc_sql($zipCode)."' ) ";
+                    // A resume address has no postcode column - not on this install, not in
+                        // the shipped schema, and not in the original distribution. This
+                        // joined on one, so every postcode search failed outright. Until
+                        // there is somewhere to keep a postcode the address join stands on
+                        // its own and the postcode is ignored: too many resumes rather
+                        // than an error page.
+                        $query .= " JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` AS address1 ON address1.resumeid = resume.id ";
                 }elseif ($city != '') {
                     $query .= " JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` AS address1 ON address1.resumeid = resume.id ";
                 }elseif (strstr($wpjobportal_inquery, 'address1.address_city')) { // to handle shortcode option case for locations
@@ -2751,10 +2824,7 @@ class WPJOBPORTALResumeModel {
             require_once ABSPATH . 'wp-admin/includes/file.php';
         }
         global $wp_filesystem;
-        if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-            $creds = request_filesystem_credentials( site_url() );
-            wp_filesystem( $creds );
-        }
+        $wp_filesystem = wpjobportal::wpjobportal_filesystem();
 
         if (!$wp_filesystem->exists($wpjobportal_path)) {
             WPJOBPORTALincluder::getJSModel('common')->makeDir($wpjobportal_path);
@@ -2821,10 +2891,7 @@ class WPJOBPORTALResumeModel {
             require_once ABSPATH . 'wp-admin/includes/file.php';
         }
         global $wp_filesystem;
-        if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-            $creds = request_filesystem_credentials( site_url() );
-            wp_filesystem( $creds );
-        }
+        $wp_filesystem = wpjobportal::wpjobportal_filesystem();
 
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Binary file download output
         echo $wp_filesystem->get_contents($file);
@@ -2869,10 +2936,7 @@ class WPJOBPORTALResumeModel {
             require_once ABSPATH . 'wp-admin/includes/file.php';
         }
         global $wp_filesystem;
-        if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-            $creds = request_filesystem_credentials( site_url() );
-            wp_filesystem( $creds );
-        }
+        $wp_filesystem = wpjobportal::wpjobportal_filesystem();
 
         if (!$wp_filesystem->exists($file)) {// if file does not exsit then stop executing code(handling log errors)
             return false;
@@ -2898,10 +2962,7 @@ class WPJOBPORTALResumeModel {
             require_once ABSPATH . 'wp-admin/includes/file.php';
         }
         global $wp_filesystem;
-        if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-            $creds = request_filesystem_credentials( site_url() );
-            wp_filesystem( $creds );
-        }
+        $wp_filesystem = wpjobportal::wpjobportal_filesystem();
 
         $wpjobportal_match = '';
         do {
@@ -3300,7 +3361,7 @@ class WPJOBPORTALResumeModel {
                 '[separator]' => '-',
                 '[sitename]' => get_bloginfo( 'name', 'display' )
             );
-            $wpjobportal_result = $this->replaceMatches($wpjobportal_resume_seo,$wpjobportal_matcharray);
+            $wpjobportal_result = wpjobportal::$_common->tidySeoDocumentTitle($this->replaceMatches($wpjobportal_resume_seo,$wpjobportal_matcharray));
 
             //echo var_dump($wpjobportal_result);die("3499");
 
@@ -3573,7 +3634,7 @@ class WPJOBPORTALResumeModel {
                 <div id="wjportal-popup-background" style="display: none;"></div>
                 <div id="package-popup" class="wjportal-popup-wrp wjportal-packages-popup">
                     <div class="wjportal-popup-cnt">
-                        <img id="wjportal-popup-close-btn" alt="popup cross" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/popup-close.png">
+                        <img id="wjportal-popup-close-btn" alt="' . esc_attr__('Close', 'wp-job-portal') . '" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/popup-close.png">
                         <div class="wjportal-popup-title">
                             '.esc_html(__("Select Package",'wp-job-portal')).'
                             <div class="wjportal-popup-title3">
@@ -3640,7 +3701,7 @@ class WPJOBPORTALResumeModel {
             <div id="wjportal-popup-background" style="display: none;"></div>
             <div id="package-popup" class="wjportal-popup-wrp wjportal-packages-popup '.$wpjobportal_addonclass.'">
                 <div class="wjportal-popup-cnt">
-                    <img id="wjportal-popup-close-btn" alt="popup cross" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/popup-close.png">
+                    <img id="wjportal-popup-close-btn" alt="' . esc_attr__('Close', 'wp-job-portal') . '" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/popup-close.png">
                     <div class="wjportal-popup-title">
                         '.esc_html(__("Select Package",'wp-job-portal')).'
                         <div class="wjportal-popup-title3">
@@ -3774,6 +3835,8 @@ class WPJOBPORTALResumeModel {
         $wpjobportal_jsjp_search_array['searchjobcategory'] = WPJOBPORTALrequest::getVar('searchjobcategory');
         $wpjobportal_jsjp_search_array['searchjobtype'] = WPJOBPORTALrequest::getVar('searchjobtype');
         $wpjobportal_jsjp_search_array['searchjobsalaryrange'] = WPJOBPORTALrequest::getVar('searchjobsalaryrange');
+        $wpjobportal_jsjp_search_array['searchsalarymin'] = WPJOBPORTALrequest::getVar('searchsalarymin');
+        $wpjobportal_jsjp_search_array['searchsalarymax'] = WPJOBPORTALrequest::getVar('searchsalarymax');
         $wpjobportal_jsjp_search_array['status'] = WPJOBPORTALrequest::getVar('status');
         $wpjobportal_jsjp_search_array['datestart'] = WPJOBPORTALrequest::getVar('datestart');
         $wpjobportal_jsjp_search_array['dateend'] = WPJOBPORTALrequest::getVar('dateend');
@@ -3787,8 +3850,8 @@ class WPJOBPORTALResumeModel {
     function getResumeSavedCookiesData($wpjobportal_layout){
         $wpjobportal_jsjp_search_array = array();
         $wpjp_search_cookie_data = '';
-        if(isset($_COOKIE['jsjp_jobportal_search_data'])){
-            $wpjp_search_cookie_data = wpjobportal::wpjobportal_sanitizeData($_COOKIE['jsjp_jobportal_search_data']);
+        if(WPJOBPORTALrequest::hasCookie('jsjp_jobportal_search_data')){
+            $wpjp_search_cookie_data = WPJOBPORTALrequest::cookie('jsjp_jobportal_search_data');
             $wpjp_search_cookie_data = wpjobportalphplib::wpJP_safe_decoding($wpjp_search_cookie_data);
             $wpjp_search_cookie_data = json_decode( $wpjp_search_cookie_data , true );
         }
@@ -3799,6 +3862,10 @@ class WPJOBPORTALResumeModel {
                 $wpjobportal_jsjp_search_array['searchjobcategory'] = $wpjp_search_cookie_data['searchjobcategory'];
                 $wpjobportal_jsjp_search_array['searchjobtype'] = $wpjp_search_cookie_data['searchjobtype'];
                 $wpjobportal_jsjp_search_array['searchjobsalaryrange'] = $wpjp_search_cookie_data['searchjobsalaryrange'];
+                foreach (array('searchsalarymin', 'searchsalarymax') as $wpjobportal_salarykey) {
+                    $wpjobportal_jsjp_search_array[$wpjobportal_salarykey] = isset($wpjp_search_cookie_data[$wpjobportal_salarykey])
+                        ? $wpjp_search_cookie_data[$wpjobportal_salarykey] : '';
+                }
                 $wpjobportal_jsjp_search_array['status'] = $wpjp_search_cookie_data['status'];
                 $wpjobportal_jsjp_search_array['datestart'] = $wpjp_search_cookie_data['datestart'];
                 $wpjobportal_jsjp_search_array['dateend'] = $wpjp_search_cookie_data['dateend'];
@@ -4260,7 +4327,7 @@ class WPJOBPORTALResumeModel {
         $wpjobportal_results = wpjobportal::$_db->get_results($query);
 
         foreach ($wpjobportal_results AS $wpjobportal_resume) {
-            $wpjobportal_resume_data = json_decode(json_encode($wpjobportal_resume),true); // main record is in personal section (mostly)
+            $wpjobportal_resume_data = json_decode(wp_json_encode($wpjobportal_resume),true); // main record is in personal section (mostly)
             $this->importAIStringDataForResume($wpjobportal_resume_data);
         }
         return;

@@ -18,8 +18,45 @@ class WPJOBPORTALpagination {
         return (int) self::$_limit;
     }
 
+    /**
+     * The row offset for the current page.
+     *
+     * Cast, like getLimit(), so a caller concatenating it into SQL cannot end
+     * up interpolating null.
+     *
+     * @return int
+     */
+    static function getOffset(){
+        return (int) self::$_offset;
+    }
+
+    /**
+     * Give the page window a value, whatever else happens.
+     *
+     * @return void
+     */
+    static function ensureWindow(){
+        if(!self::getLimit()){
+            $wpjobportal_limit = isset(wpjobportal::$_configuration['pagination_default_page_size'])
+                ? wpjobportal::$_configuration['pagination_default_page_size']
+                : '';
+            self::setLimit($wpjobportal_limit !== '' && is_numeric($wpjobportal_limit) ? ceil($wpjobportal_limit) : 10);
+        }
+
+        if(!is_numeric(self::$_offset)){
+            self::$_offset = 0;
+        }
+    }
+
 
     static function getPagination($wpjobportal_total,$wpjobportal_searchlayout = null,$is_possible_ajax_call = 0){
+        // Establish the window before deciding whether there is anything to
+        // paginate. This used to return first, and a caller whose count query
+        // returned nothing - a failed query, a missing table - then built its
+        // next query with both statics still unset, producing "LIMIT , " and a
+        // SQL syntax error on top of whatever had already gone wrong.
+        self::ensureWindow();
+
         if(!is_numeric($wpjobportal_total)) return false;
         $wpjobportal_maybe_page_num = 0;
         if(!empty(wpjobportal::$_data['sanitized_args']) && !empty(wpjobportal::$_data['sanitized_args']['backlink_pagenum'])){

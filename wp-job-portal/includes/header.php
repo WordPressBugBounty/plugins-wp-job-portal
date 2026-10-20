@@ -63,7 +63,6 @@ if(
     ($wpjobportal_module == 'jobalert' && $wpjobportal_layout == 'jobalert') ||
     ($wpjobportal_module == 'jobapply' && $wpjobportal_layout == 'myappliedjobs') ||
     ($wpjobportal_module == 'jobsearch' && $wpjobportal_layout == 'jobsearch') ||
-    ($wpjobportal_module == 'jobsearch' && $wpjobportal_layout == 'jobsavesearch') ||
     ($wpjobportal_module == 'jobseeker' && $wpjobportal_layout == 'controlpanel') ||
     ($wpjobportal_module == 'jobseeker' && $wpjobportal_layout == 'mystats') ||
     ($wpjobportal_module == 'message' && $wpjobportal_layout == 'jobseekermessages') ||

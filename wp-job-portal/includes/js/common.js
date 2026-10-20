@@ -380,7 +380,7 @@ function wpjobportalformpopupAdmin(actionname, formid) {
         }
     });
     if (test == false) {
-        alert('Email is not of correct Format');
+        alert(common.email_format_error);
         event.preventDefault();
         return;
     }
@@ -449,6 +449,32 @@ function wpjobportalformpopup(actionname, formid) {
                 });
             } else {
                 jQuery("div#wpjobportal-popup-background").show().click(function () {
+                    wpjobportalClosePopup();
+                });
+                jQuery("img#popup_cross").click(function () {
+                    wpjobportalClosePopup();
+                });
+                jQuery("div#wpjobportal-popup").slideDown();
+                wpjobportalPopupLink();
+                //this line is added to resolve remaining credits issue in popup
+                jQuery("input[type='radio'].checkboxes").prop("checked", true);
+                jQuery("input[type='radio'].checkboxes").change(function (e) {
+                    setRemaingCredits();
+                });
+            }
+        }
+    });
+}
+
+/*
+ * These four were pasted into the middle of wpjobportalformpopup() - directly
+ * after its else branch opened a .click(function () { - which left them
+ * declared inside a callback that only ran if somebody clicked the popup
+ * background. The file still parsed, so nothing complained, and they were
+ * simply undefined everywhere: validateUploadFile, checkExtension,
+ * getExtensions and getExtension. The rest of that branch had been sitting
+ * below them all along, resuming on the same line as the last closing brace.
+ */
 function validateUploadFile(file_element, allowed_types, allowed_size){
     var file = file_element.files[0];
     var fileext = getExtensions(file.name);
@@ -525,21 +551,6 @@ function getExtensions(filename) { //from jm-jobs-pro-124 common.js
 }
 function getExtension(filename) { //from jm-jobs-pro-124 common.js
     return filename.split('.').pop().toLowerCase();
-}        wpjobportalClosePopup();
-                });
-                jQuery("img#popup_cross").click(function () {
-                    wpjobportalClosePopup();
-                });
-                jQuery("div#wpjobportal-popup").slideDown();
-                wpjobportalPopupLink();
-                //this line is added to resolve remaining credits issue in popup
-                jQuery("input[type='radio'].checkboxes").prop("checked", true);
-                jQuery("input[type='radio'].checkboxes").change(function (e) {
-                    setRemaingCredits();
-                });
-            }
-        }
-    });
 }
 
 function wpjobportalPopupResumeFormProceeds(actionid) {
@@ -794,114 +805,53 @@ function getTellaFriend(jobid) {
                 jQuery("div#" + common.theme_chk_prefix + "-popup").html('');
                 jQuery("div#" + common.theme_chk_prefix + "-popup").first().html(d.content);
                 jQuery("div#" + common.theme_chk_prefix + "-popup").slideDown();
-                if (typeof grecaptcha != 'undefined') {
-                    if (jQuery("#tell-a-friend-captcha").length) {
-                      var recaptcha_version = jQuery("div#tell-a-friend-captcha").attr('data-recaptcha-version');
-                      if(recaptcha_version == 2){
-                        grecaptcha.render("tell-a-friend-captcha", {
-                            sitekey: jQuery("div#tell-a-friend-captcha").attr('data-sitekey'),
-                            callback: function callback(response) {
-                                tell_a_friend_captcha_resp = response;
-                            }
-                        });
-                      }else{ // recaptcha version 3
-                        const siteKey = jQuery("div#tell-a-friend-captcha").attr('data-sitekey');
-
-                        var recaptchaToken = '';
-                          grecaptcha.ready(function() {
-                            grecaptcha.execute(siteKey, { action: 'submit' }).then(function(token) {
-                              // Store the token in a variable
-                              recaptchaToken = token;
-                              tell_a_friend_captcha_resp_v3 = token;
-                              // Now, you can send 'recaptchaToken' to your server using AJAX or fetch
-                              // Example AJAX request to send the token to the server
-                              var uniqueId = 'recpathc_field_v3';
-
-                              // Create the hidden field with the unique name and ID
-                              var hiddenField = jQuery('<input type="hidden">');
-                              hiddenField.attr('id', uniqueId);
-                              hiddenField.attr('name', uniqueId);
-
-                              // Set the value of the hidden field
-                              hiddenField.val(token);
-                            
-                              // Append the hidden field to the #tell-a-friend-captcha div
-                              jQuery('#tell-a-friend-captcha').append(hiddenField);
-                            });
-                        });
-                     }
-              } //
-             }
-                  
+                wpjobportalRenderPopupCaptcha(jQuery("div#" + common.theme_chk_prefix + "-popup"));
             } else {
                 jQuery("div#wjportal-listpopup div.wjportal-popup-title span.wjportal-popup-title2").html(d.title);
                 jQuery("div#wjportal-listpopup div.wjportal-popup-contentarea").html('');
                 jQuery("div#wjportal-listpopup div.wjportal-popup-contentarea").html(d.content);
                 jQuery("div#wjportal-listpopup").slideDown();
-                //     const siteKey = jQuery("div#tell-a-friend-captcha").attr('data-sitekey');
-
-                // var recaptchaToken = '';
-                //   grecaptcha.ready(function() {
-                //     grecaptcha.execute(siteKey, { action: 'submit' }).then(function(token) {
-                //       // Store the token in a variable
-                //       recaptchaToken = token;
-                //       tell_a_friend_captcha_resp_v3 = token;
-                //       // Now, you can send 'recaptchaToken' to your server using AJAX or fetch
-                //       // Example AJAX request to send the token to the server
-                //       var uniqueId = 'recpathc_field_v3';
-
-                //       // Create the hidden field with the unique name and ID
-                //       var hiddenField = jQuery('<input type="hidden">');
-                //       hiddenField.attr('id', uniqueId);
-                //       hiddenField.attr('name', uniqueId);
-
-                //       // Set the value of the hidden field
-                //       hiddenField.val(token);
-                        
-                //       // Append the hidden field to the #tell-a-friend-captcha div
-                //       jQuery('#tell-a-friend-captcha').append(hiddenField);
-                //     });
-                // });
-                if (typeof grecaptcha != 'undefined') {
-                    if (jQuery("#tell-a-friend-captcha").length) {
-                          var recaptcha_version = jQuery("div#tell-a-friend-captcha").attr('data-recaptcha-version');
-                          if(recaptcha_version == 2){
-                            grecaptcha.render("tell-a-friend-captcha", {
-                                sitekey: jQuery("div#tell-a-friend-captcha").attr('data-sitekey'),
-                                callback: function callback(response) {
-                                    tell_a_friend_captcha_resp = response;
-                                }
-                            });
-                          }else{ // recaptcha version 3
-                            const siteKey = jQuery("div#tell-a-friend-captcha").attr('data-sitekey');
-                            var recaptchaToken = '';
-                              grecaptcha.ready(function() {
-                                grecaptcha.execute(siteKey, { action: 'submit' }).then(function(token) {
-                                  // Store the token in a variable
-                                  recaptchaToken = token;
-                                  tell_a_friend_captcha_resp_v3 = token;
-                                  // Now, you can send 'recaptchaToken' to your server using AJAX or fetch
-                                  // Example AJAX request to send the token to the server
-                                  var uniqueId = 'recpathc_field_v3';
-
-                                  // Create the hidden field with the unique name and ID
-                                  var hiddenField = jQuery('<input type="hidden">');
-                                  hiddenField.attr('id', uniqueId);
-                                  hiddenField.attr('name', uniqueId);
-
-                                  // Set the value of the hidden field
-                                  hiddenField.val(token);
-                                
-                                  // Append the hidden field to the #tell-a-friend-captcha div
-                                  jQuery('#tell-a-friend-captcha').append(hiddenField);
-                                });
-                            });
-                         }
-                    } //
-                }
+                wpjobportalRenderPopupCaptcha(jQuery("div#wjportal-listpopup"));
             }
         }
     });
+}
+
+// The Tell a Friend popup arrives by AJAX, after the captcha script has looked
+// for widgets on the page, so its widget is drawn here. The page loads the
+// script (WPJOBPORTAL_Captcha_Service::enqueue_script()).
+function wpjobportalRenderPopupCaptcha(popup) {
+    var wrap = popup.find("div.tell-a-friend-captcha-wrapper");
+    var box = wrap.find(".wpjp-captcha-turnstile").get(0);
+    if (box) {
+        if (typeof turnstile != 'undefined') {
+            turnstile.render(box, { sitekey: box.getAttribute('data-sitekey'), action: box.getAttribute('data-action') });
+        }
+        return;
+    }
+    box = wrap.find(".wpjp-captcha-recaptcha").get(0);
+    if (box) {
+        if (typeof grecaptcha != 'undefined' && grecaptcha.render) {
+            grecaptcha.render(box, { sitekey: box.getAttribute('data-sitekey') });
+        }
+        return;
+    }
+    // reCAPTCHA v3: a token for this form's action, renewed before it expires (two minutes).
+    var field = wrap.find("input[name='g-recaptcha-response']").get(0);
+    if (field && typeof grecaptcha != 'undefined') {
+        var fill = function () {
+            if (!document.body.contains(field)) {
+                return;
+            }
+            grecaptcha.execute(field.getAttribute('data-sitekey'), { action: field.getAttribute('data-action') }).then(function (token) {
+                field.value = token;
+            });
+        };
+        grecaptcha.ready(function () {
+            fill();
+            setInterval(fill, 100000);
+        });
+    }
 }
 
 function emailverify(email) {
@@ -1016,8 +966,10 @@ function sendEmailToFriend() {
         return false;
     }
 
-    var captch = jQuery("div.tell-a-friend-captcha-wrapper").find('input[type="text"]').val();
-    var name = jQuery("div.tell-a-friend-captcha-wrapper").find('input[type="text"]').attr('name');
+    // Every field of the captcha goes with the message. Only its text box did,
+    // and the built-in captcha's signed timestamp lives in hidden fields, so a
+    // visitor's message was always refused as "Incorrect Captcha".
+    var captcha_fields = jQuery("div.tell-a-friend-captcha-wrapper").find('input[name], textarea[name]').serializeArray();
 
     var jobtitle = jQuery("input#jobtitle").val();
     var jobid = jQuery("input#jobid").val();
@@ -1047,15 +999,9 @@ function sendEmailToFriend() {
         jobid: jobid,
         js_nonce: common.js_nonce
     };
-    if (name != '' && name != undefined) {
-        data[name] = captch;
-    }
-    data['g-recaptcha-response'] = tell_a_friend_captcha_resp;
-  	var recaptcha_version = jQuery("div#tell-a-friend-captcha").attr('data-recaptcha-version');
-  	
-  	if(recaptcha_version == 3){
-  		data['g-recaptcha-response'] = jQuery("#recpathc_field_v3").val();
-    }
+    jQuery.each(captcha_fields, function (i, field) {
+        data[field.name] = field.value;
+    });
   jQuery.post(common.ajaxurl, data, function (rdata) {
         if (rdata) {
             if (null != themecall) {
@@ -1351,12 +1297,10 @@ function hidePackagePopupForJobApply(){
     var selected_pack = jQuery("#jsre_featured_button").attr('selected_pack');
     if (typeof selected_pack !== 'undefined' && selected_pack !== false && selected_pack != 0) {
         package = selected_pack;
-        alert(package);
         jQuery("input#upkid").val(package);
     }
     jQuery('.wjportal-apply-package-button').slideUp();
     jQuery('.wjportal-apply-package-apply-now-button').slideDown();
-    alert('done');
 
 }
 
@@ -1372,3 +1316,80 @@ function toggleFilterFields() {
         toggleBtn.val(toggleBtn.attr('data-hide-title'));
     }
 }
+
+/*
+ * Remember which control panel menu sections a person left open.
+ *
+ * The menu opens one section by default - the one holding the current page,
+ * or the first. That is the right guess for a first visit and the wrong one
+ * for every visit after it, because the section somebody actually works in
+ * is rarely the first: an employer who lives in Company Management should
+ * not reopen it every time they come back to the panel.
+ *
+ * The section holding the current page is never closed by what is stored;
+ * it is where the reader already is. Storage is wrapped throughout because
+ * a private window, or blocked site data, makes reading it throw, and a
+ * menu must still work when it cannot remember anything.
+ */
+(function () {
+    'use strict';
+
+    function wpjobportalMenuStoreKey() {
+        var wrapper = document.querySelector('#wjportal-emp-cp-wrp, #wjportal-job-cp-wrp');
+        return 'wpjp-cp-groups:' + (wrapper ? wrapper.id : 'cp');
+    }
+
+    function wpjobportalMenuRead(key) {
+        try {
+            return JSON.parse(window.localStorage.getItem(key)) || {};
+        } catch (e) {
+            return {};
+        }
+    }
+
+    function wpjobportalMenuWrite(key, state) {
+        try {
+            window.localStorage.setItem(key, JSON.stringify(state));
+        } catch (e) {
+            /* Nothing to do: the menu works either way. */
+        }
+    }
+
+    function wpjobportalMenuName(group) {
+        var name = group.querySelector('.wjportal-cp-group-name');
+        return name ? name.textContent.replace(/\s+/g, ' ').trim() : '';
+    }
+
+    function wpjobportalMenuInit() {
+        var groups = document.querySelectorAll('.wjportal-cp-group');
+        if (!groups.length) {
+            return;
+        }
+
+        var key = wpjobportalMenuStoreKey();
+        var state = wpjobportalMenuRead(key);
+
+        Array.prototype.forEach.call(groups, function (group) {
+            var name = wpjobportalMenuName(group);
+            if (!name) {
+                return;
+            }
+
+            if (Object.prototype.hasOwnProperty.call(state, name) && !group.querySelector('.is-active')) {
+                group.open = !!state[name];
+            }
+
+            group.addEventListener('toggle', function () {
+                var current = wpjobportalMenuRead(key);
+                current[name] = group.open;
+                wpjobportalMenuWrite(key, current);
+            });
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', wpjobportalMenuInit);
+    } else {
+        wpjobportalMenuInit();
+    }
+}());

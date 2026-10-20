@@ -11,7 +11,7 @@ switch ($wpjobportal_control) {
         $wpjobportal_featuredflag = true;
         $wpjobportal_dateformat = wpjobportal::$_configuration['date_format'];
         $wpjobportal_curdate = date_i18n('Y-m-d');
-        $wpjobportal_featuredexpiry = date_i18n('Y-m-d', strtotime($wpjobportal_resume->endfeatureddate));
+        $wpjobportal_featuredexpiry = date_i18n('Y-m-d', strtotime((string) $wpjobportal_resume->endfeatureddate));
         if ($wpjobportal_resume->isfeaturedresume == 1 && $wpjobportal_featuredexpiry >= $wpjobportal_curdate) {
             $wpjobportal_featuredflag = false;
         }

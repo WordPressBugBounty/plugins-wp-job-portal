@@ -1,0 +1,91 @@
+/*
+ * Basic print styles for WP Job Portal, part of the free core.
+ *
+ * Loaded with media="print", so it only applies when a page is actually being
+ * printed and never affects the screen. The aim is modest and specific: strip
+ * the page furniture a printed record does not need, keep the record itself
+ * readable in black on white, and make links useful on paper.
+ *
+ * Pro's Documents module supersedes this with a formatted print view built from
+ * its own templates; this stylesheet is not enqueued when Pro is providing
+ * printing.
+ */
+
+/* Page furniture: useful on screen, noise on paper. */
+.wjportal-cp-left-menue,
+.wjportal-filter-wrp,
+.wjportal-filter-search-wrp,
+.wjportal-pagination,
+.wjportal-list-act-btn-print,
+.wjportal-list-act-btn-print-resume,
+.wjportal-resume-act-btn,
+.wjportal-resume-adv-act-btn,
+.wjportal-act-btn,
+.wpj-jp-outline-btn,
+.wpjobportal-popup,
+.wpjobportal-modal,
+#js_jobs_main_wrapper .wjportal-cp-short-links-list {
+    display: none !important;
+}
+
+/* The record itself, on white, without a colour dependency. */
+#js_jobs_main_wrapper,
+.wjportal-main-wrp {
+    background: #fff !important;
+    color: #000 !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    float: none !important;
+}
+
+#js_jobs_main_wrapper * {
+    background-image: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+/* Keep a record from being split across a page break where it can be helped. */
+.wjportal-job-list,
+.wjportal-company-list,
+.wjportal-resume-list,
+.wjportal-detail-wrp {
+    page-break-inside: avoid;
+    border: 0 !important;
+}
+
+/* Headings should not be orphaned at the foot of a page. */
+#js_jobs_main_wrapper h1,
+#js_jobs_main_wrapper h2,
+#js_jobs_main_wrapper h3,
+#js_jobs_main_wrapper h4 {
+    page-break-after: avoid;
+    color: #000 !important;
+}
+
+/*
+ * A link is useless on paper unless its destination is printed too. Internal
+ * anchors and javascript targets are skipped, since neither says anything.
+ */
+#js_jobs_main_wrapper a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+}
+
+#js_jobs_main_wrapper a[href^="#"]::after,
+#js_jobs_main_wrapper a[href^="javascript"]::after {
+    content: "";
+}
+
+/* Images should never overflow the sheet. */
+#js_jobs_main_wrapper img {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+}
+
+@page {
+    margin: 1.5cm;
+}

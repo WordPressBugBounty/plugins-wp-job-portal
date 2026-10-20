@@ -117,7 +117,7 @@
                 }
 
                 $searchSelect.empty();
-                var msg = filtered.length === 0 ? 'No record Found.' : filtered.length + '+ records Found.';
+                var msg = filtered.length === 0 ? wpjpZywrapStrings.no_records_found : filtered.length + wpjpZywrapStrings.records_found_text;
                 $searchSelect.append('<option value="">' + msg + '</option>');
                 $.each(filtered, function(index, item) {
                     var $opt = $('<option>', { value: item[0], text: item[1], 'data-category': item[2] });
@@ -246,11 +246,11 @@
         $(document).off('click', '#zywrap-classic-run').on('click', '#zywrap-classic-run', function() {
             var btn = $(this);
             var wrapperCode = $wrapperSelect.val();
-            if (!wrapperCode) return alert('Please select a wrapper first.');
+            if (!wrapperCode) return alert(wpjpZywrapStrings.select_wrapper_first);
 
-            btn.prop('disabled', true).html('<span class="dashicons dashicons-update" style="animation: spin 2s infinite linear;"></span> Generating...');
+            btn.prop('disabled', true).html('<span class="dashicons dashicons-update" style="animation: spin 2s infinite linear;"></span> ' + wpjpZywrapStrings.generating_text);
             $('#zywrap-classic-spinner').addClass('is-active'); 
-            $responseArea.val('Generating content, please wait...').css('opacity', '0.6');
+            $responseArea.val(wpjpZywrapStrings.generating_wait_text).css('opacity', '0.6');
 
             var overrides = {};
             $('.zywrap-classic-override-select').each(function() {
@@ -293,7 +293,7 @@
                     $responseArea.val(content).css('opacity', '1');
                     $insertBtn.show();
                 } else {
-                    $responseArea.val('Error: ' + (response.data.message || 'Unknown error occurred.'));
+                    $responseArea.val(wpjpZywrapStrings.error_text + ': ' + (response.data.message || wpjpZywrapStrings.unknown_error_text));
                 }
             }).always(function() {
                 btn.prop('disabled', false).text(run_text || 'Generate Output');
@@ -330,7 +330,7 @@
 
         $(document).off('click', '#zywrap-classic-insert-btn').on('click', '#zywrap-classic-insert-btn', function() {
             var content = $responseArea.val();
-            if (!content || content.trim() === '') return alert('The output is empty.');
+            if (!content || content.trim() === '') return alert(wpjpZywrapStrings.output_empty_text);
 
             // 1. Check for Block Editor (Gutenberg)
             if (window.wp && window.wp.data && window.wp.data.dispatch('core/editor')) {

@@ -541,7 +541,7 @@ if (!defined('ABSPATH')) die('Restricted Access');
                 </div>
             <?php else:
                 global $wpdb;
-                $wpjobportal_categories = $wpdb->get_results("SELECT code, name FROM `" . $wpdb->prefix . "wj_portal_zywrap_categories` ORDER BY ordering ASC");
+                $wpjobportal_categories = wpjobportaldb_direct::get_results("SELECT code, name FROM `" . $wpdb->prefix . "wj_portal_zywrap_categories` ORDER BY ordering ASC");
                 $wpjobportal_categories_count = count($wpjobportal_categories);
                 if($wpjobportal_categories_count < 1):?>
                 <div class="wpjobportal-setup-notice">

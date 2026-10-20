@@ -3,8 +3,8 @@ if (!defined('ABSPATH'))
     die('Restricted Access');
 
 wp_enqueue_script('jquery-ui-datepicker');
-$wpjobportal_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jquery-ui-smoothness.css');
+$wpjobportal_protocol = is_ssl() ? "https://" : "http://";
+wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jquery-ui-smoothness.css', array(), wpjobportal_asset_version('includes/css/jquery-ui-smoothness.css'));
 ?>
 <style>
 .ui-datepicker{
@@ -32,7 +32,7 @@ $wpjobportal_js_scriptdateformat = $wpjobportal_firstvalue . $wpjobportal_dash .
 $wpjobportal_js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy', $wpjobportal_js_scriptdateformat);
 ?>
 <?php
-    wp_register_script( 'wpjobportal-inline-handle', '' );
+    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
     $wpjobportal_inline_js_script = "
@@ -106,7 +106,7 @@ $wpjobportal_js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy'
                 }
             });
             if (test == false) {
-                alert('Email is not of correct Format');
+                alert('" . esc_js(__('Email is not of correct Format', 'wp-job-portal')) . "');
             } else {
                 var termsandcondtions = jQuery('div.wpjobportal-terms-and-conditions-wrap').attr('data-wpjobportal-terms-and-conditions');
                 if(termsandcondtions == 1){
@@ -151,7 +151,7 @@ $wpjobportal_js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy'
             if (input.files && input.files[0]) {
                 var fileext = input.files[0].name.split('.').pop().trim().toLowerCase();
                 var filesize = (input.files[0].size / 1024);
-                var allowedsize = ". wpjobportal::$_config->getConfigurationByConfigName('company_logofilezize') .";
+                var allowedsize = ". WPJOBPORTALincluder::getJSModel('common')->configAsJsNumber('company_logofilezize', 2048) .";
                 var allowedExt = '". wpjobportal::$_config->getConfigurationByConfigName('image_file_type') ."';
                 allowedExt = allowedExt.split(',').map(function(ext) {
                     return ext.trim().toLowerCase().replace(/^\.+/, '');

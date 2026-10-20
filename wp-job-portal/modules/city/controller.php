@@ -84,7 +84,7 @@ class WPJOBPORTALCityController {
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'city');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_city&wpjobportallt=cities&countryid=" . esc_attr($wpjobportal_countryid) . "&stateid=" . esc_attr($wpjobportal_stateid)));
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -107,7 +107,7 @@ class WPJOBPORTALCityController {
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_city&wpjobportallt=cities&countryid=" . esc_attr($wpjobportal_countryid) . "&stateid=" . esc_attr($wpjobportal_stateid)));
         if ($wpjobportal_pagenum)
             $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -130,7 +130,7 @@ class WPJOBPORTALCityController {
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_city&wpjobportallt=cities&countryid=" . esc_attr($wpjobportal_countryid) . "&stateid=" . esc_attr($wpjobportal_stateid)));
         if ($wpjobportal_pagenum)
             $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -152,7 +152,7 @@ class WPJOBPORTALCityController {
         $wpjobportal_result = WPJOBPORTALincluder::getJSModel('city')->storeCity($wpjobportal_data, $wpjobportal_countryid, $wpjobportal_stateid);
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'city');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -170,7 +170,7 @@ class WPJOBPORTALCityController {
         // echo var_dump($wpjobportal_msg);
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
         $wpjobportal_url = admin_url("admin.php?page=wpjobportal_city&wpjobportallt=loadaddressdata");
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -188,7 +188,7 @@ class WPJOBPORTALCityController {
         // echo var_dump($wpjobportal_msg);
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
         $wpjobportal_url = admin_url("admin.php?page=wpjobportal_city&wpjobportallt=locationnamesettings");
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 

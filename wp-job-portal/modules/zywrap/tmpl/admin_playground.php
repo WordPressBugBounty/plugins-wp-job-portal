@@ -4,10 +4,10 @@ if (!defined('ABSPATH'))
 
 // 1. Force load WordPress Dashicons
 wp_enqueue_style('dashicons');
-wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jquery-ui-smoothness.css');
+wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jquery-ui-smoothness.css', array(), wpjobportal_asset_version('includes/css/jquery-ui-smoothness.css'));
 // We are leaving the plugin's default Select2 scripts disabled
-// wp_enqueue_style('wpjobportal-select2css', WPJOBPORTAL_PLUGIN_URL . 'includes/css/select2.min.css');
-// wp_enqueue_script('wpjobportal-select2js', WPJOBPORTAL_PLUGIN_URL . 'includes/js/select2.min.js');
+// wp_enqueue_style( 'wpjobportal-select2css', WPJOBPORTAL_PLUGIN_URL . 'includes/css/select2.min.css', array(), WPJOBPORTAL_VERSION );
+// wp_enqueue_script( 'wpjobportal-select2js', WPJOBPORTAL_PLUGIN_URL . 'includes/js/select2.min.js', array(), WPJOBPORTAL_VERSION, false );
 
 // Get all the data we loaded in the controller
 $wpjobportal_data = wpjobportal::$_data['playground_data'];
@@ -149,7 +149,7 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
                                                 </label>
 
                                                 <button type="button" class="wpjobportal-zywrap-playground-sort-toggle" id="wpjobportal-sort-btn" data-ordering-type="1" >
-                                                    <span id="wpjobportal-sort-text">Default Order</span>
+                                                    <span id="wpjobportal-sort-text"><?php echo esc_html__('Default Order', 'wp-job-portal'); ?></span>
                                                     <!-- Icon: Arrow Up Down -->
                                                     <svg style="width: 12px; height: 12px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/></svg>
                                                 </button>
@@ -244,26 +244,26 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
                                                 <!-- Advanced dropdowns mapped to grid -->
                                                 <div class="zywrap_overrides_parent_wrp">
                                                     <?php
-                                                    $override_fields = [
-                                                        'toneCode' => ['label' => 'Tone', 'data' => $wpjobportal_templates['tones'] ?? []],
-                                                        'styleCode' => ['label' => 'Style', 'data' => $wpjobportal_templates['styles'] ?? []],
-                                                        'formatCode' => ['label' => 'Format', 'data' => $wpjobportal_templates['formattings'] ?? []],
-                                                        'complexityCode' => ['label' => 'Complexity', 'data' => $wpjobportal_templates['complexities'] ?? []],
-                                                        'lengthCode' => ['label' => 'Length', 'data' => $wpjobportal_templates['lengths'] ?? []],
-                                                        'audienceCode' => ['label' => 'Audience', 'data' => $wpjobportal_templates['audienceLevels'] ?? []],
-                                                        'responseGoalCode' => ['label' => 'Goal', 'data' => $wpjobportal_templates['responseGoals'] ?? []],
-                                                        'outputCode' => ['label' => 'Output', 'data' => $wpjobportal_templates['outputTypes'] ?? []],
+                                                    $wpjobportal_override_fields = [
+                                                        'toneCode' => ['label' => __('Tone', 'wp-job-portal'), 'data' => $wpjobportal_templates['tones'] ?? []],
+                                                        'styleCode' => ['label' => __('Style', 'wp-job-portal'), 'data' => $wpjobportal_templates['styles'] ?? []],
+                                                        'formatCode' => ['label' => __('Format', 'wp-job-portal'), 'data' => $wpjobportal_templates['formattings'] ?? []],
+                                                        'complexityCode' => ['label' => __('Complexity', 'wp-job-portal'), 'data' => $wpjobportal_templates['complexities'] ?? []],
+                                                        'lengthCode' => ['label' => __('Length', 'wp-job-portal'), 'data' => $wpjobportal_templates['lengths'] ?? []],
+                                                        'audienceCode' => ['label' => __('Audience', 'wp-job-portal'), 'data' => $wpjobportal_templates['audienceLevels'] ?? []],
+                                                        'responseGoalCode' => ['label' => __('Goal', 'wp-job-portal'), 'data' => $wpjobportal_templates['responseGoals'] ?? []],
+                                                        'outputCode' => ['label' => __('Output', 'wp-job-portal'), 'data' => $wpjobportal_templates['outputTypes'] ?? []],
                                                     ];
 
-                                                    if (!empty($override_fields) && is_array($override_fields)):
-                                                        foreach($override_fields as $id => $field):
+                                                    if (!empty($wpjobportal_override_fields) && is_array($wpjobportal_override_fields)):
+                                                        foreach($wpjobportal_override_fields as $id => $wpjobportal_field):
                                                     ?>
                                                         <div id="<?php echo esc_attr($id); ?>_parent" class="wpjp-zywrap-jp-chosen-wrap">
                                                             <select id="<?php echo esc_attr($id); ?>" name="<?php echo esc_attr($id); ?>" class="inputbox wpjobportal-form-select-field wpjp-zywrap-jp-chosen">
-                                                                <option value=""><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($field['label']) . ' (Default)'); ?></option>
-                                                                <?php if(!empty($field['data']) && is_array($field['data'])): ?>
-                                                                    <?php foreach ($field['data'] as $opt) : ?>
-                                                                        <option value="<?php echo esc_attr($opt['code']); ?>"><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($opt['name'])); ?></option>
+                                                                <option value=""><?php echo esc_html($wpjobportal_field['label'] . ' (' . __('Default', 'wp-job-portal') . ')'); ?></option>
+                                                                <?php if(!empty($wpjobportal_field['data']) && is_array($wpjobportal_field['data'])): ?>
+                                                                    <?php foreach ($wpjobportal_field['data'] as $wpjobportal_opt) : ?>
+                                                                        <option value="<?php echo esc_attr($wpjobportal_opt['code']); ?>"><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_opt['name'])); ?></option>
                                                                     <?php endforeach; ?>
                                                                 <?php endif; ?>
                                                             </select>
@@ -645,7 +645,7 @@ function updateWrapperListLocal() {
     var currentSelection = wrapperSelect.val();
 
     wrapperSelect.empty();
-    wrapperSelect.append('<option value=\"\">-- Select Wrapper --</option>');
+    wrapperSelect.append('<option value=\"\">" . esc_js(__('-- Select Wrapper --', 'wp-job-portal')) . "</option>');
     var addedCount = 0;
     allWrapperOptions.forEach(function(wrapper) {
         var shouldShow = true;
@@ -974,7 +974,7 @@ jQuery(document).ready(function($) {
     });
 });
 ";
-wp_register_script( 'wpjobportal-inline-handle', '' );
+wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
 wp_enqueue_script( 'wpjobportal-inline-handle' );
 // We are no longer using wp_add_inline_script as it was causing conflicts
 wp_add_inline_script('wpjobportal-inline-handle', $wpjobportal_js);

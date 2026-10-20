@@ -1,7 +1,7 @@
 <?php
 if (!defined('ABSPATH'))
     die('Restricted Access');
-wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js');
+wp_enqueue_script( 'wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js', array(), wpjobportal_asset_version('includes/js/responsivetable.js'), false );
 ?>
 <div id="wpjobportaladmin-wrapper">
 	<div id="wpjobportaladmin-leftmenu">
@@ -23,7 +23,7 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
         <a class="js-bulk-link button multioperation" message="<?php echo esc_attr(WPJOBPORTALMessages::getMSelectionEMessage()); ?>" data-for="remove" confirmmessage="<?php echo esc_attr(__('Are you sure to delete', 'wp-job-portal')) .' ?'; ?>"  href="#"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/delete-icon.png" /><?php echo esc_html(__('Delete', 'wp-job-portal')) ?></a>
     </div>
     <?php
-        wp_register_script( 'wpjobportal-inline-handle', '' );
+        wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
         wp_enqueue_script( 'wpjobportal-inline-handle' );
 
         $wpjobportal_inline_js_script = "

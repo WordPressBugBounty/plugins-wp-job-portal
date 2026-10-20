@@ -10,4 +10,11 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("Paradise", "Paradise", "Paradise", NULL, 37, 0, 1, NULL, "6.7715775", "-57.9982911"),
 ("New Amsterdam", "New Amsterdam", "New Amsterdam", NULL, 37, 0, 1, NULL, "6.2426407", "-57.5168359"),
 ("Fort Wellington", "Fort Wellington", "Fort Wellington", NULL, 37, 0, 1, NULL, "6.3921778", "-57.5957649"),
-("Anna Regina", "Anna Regina", "Anna Regina", NULL, 37, 0, 1, NULL, "7.2623434", "-58.4823019");
+("Anna Regina", "Anna Regina", "Anna Regina", NULL, 37, 0, 1, NULL, "7.2623434", "-58.4823019"),
+("Apoteri", "Apoteri", "Apoteri", NULL, 37, 0, 1, NULL, "4.020709", "-58.591881"),
+("Kumaka", "Kumaka", "Kumaka", NULL, 37, 0, 1, NULL, "3.901511", "-58.3759687"),
+("Mahaica Village", "Mahaica Village", "Mahaica Village", NULL, 37, 0, 1, NULL, "6.6888595", "-57.9190961"),
+("Mahaicony Village", "Mahaicony Village", "Mahaicony Village", NULL, 37, 0, 1, NULL, "6.5733601", "-57.8097861"),
+("Parika", "Parika", "Parika", NULL, 37, 0, 1, NULL, "6.8602639", "-58.4201892"),
+("Rosignol", "Rosignol", "Rosignol", NULL, 37, 0, 1, NULL, "6.2792612", "-57.5391225"),
+("Skeldon", "Skeldon", "Skeldon", NULL, 37, 0, 1, NULL, "5.8700491", "-57.1492443");

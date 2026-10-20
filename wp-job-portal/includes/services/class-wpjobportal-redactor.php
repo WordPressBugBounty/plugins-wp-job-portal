@@ -41,13 +41,13 @@ class WPJOBPORTAL_Redactor {
         }
 
         $redacted = preg_replace(
-            '/([?&](?:api[_-]?key|access[_-]?token|auth|authorization|password|passwd|secret|signature|token|webhook[_-]?secret|key)=)[^&\s]*/i',
+            '/([?&](?:api[_-]?key|access[_-]?token|auth|authorization|password|passwd|secret|signature|token|webhook[_-]?secret|licen[cs]e[_-]?key|transaction[_-]?key|key)=)[^&\s]*/i',
             '$1[redacted]',
             $redacted
         );
 
         $redacted = preg_replace(
-            '/((?:api[_-]?key|access[_-]?token|authorization|password|passwd|secret|signature|token|webhook[_-]?secret)\s*["\']?\s*[:=]\s*["\']?)[^,\s"\'};]+/i',
+            '/((?:api[_-]?key|access[_-]?token|authorization|password|passwd|secret|signature|token|webhook[_-]?secret|licen[cs]e[_-]?key|transaction[_-]?key[a-z0-9_-]*)\s*["\']?\s*[:=]\s*["\']?)[^,\s"\'};]+/i',
             '$1[redacted]',
             $redacted
         );
@@ -73,7 +73,7 @@ class WPJOBPORTAL_Redactor {
         }
 
         return (bool) preg_match(
-            '/(?:api[_-]?key|access[_-]?token|authorization|password|passwd|secret|signature|private[_-]?key|webhook[_-]?secret)/i',
+            '/(?:api[_-]?key|access[_-]?token|authorization|password|passwd|secret|signature|private[_-]?key|webhook[_-]?secret|licen[cs]e[_-]?key|transaction[_-]?key)/i',
             $key
         );
     }

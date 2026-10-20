@@ -60,7 +60,7 @@ class WPJOBPORTALslugController {
 
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'slug');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         exit;
     }
 
@@ -76,7 +76,7 @@ class WPJOBPORTALslugController {
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_slug"));
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'prefix');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         exit;
     }
 
@@ -92,7 +92,7 @@ class WPJOBPORTALslugController {
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_slug"));
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'prefix');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         exit;
     }
 
@@ -108,7 +108,7 @@ class WPJOBPORTALslugController {
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_slug"));
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'slug');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         exit;
     }
 }

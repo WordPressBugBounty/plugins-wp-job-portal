@@ -18,7 +18,7 @@
 
 
 ?>
-<?php $wpjobportal_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://"; ?>
+<?php $wpjobportal_protocol = is_ssl() ? "https://" : "http://"; ?>
 <?php
     $wpjobportal_mappingservices = wpjobportal::$_config->getConfigValue('mappingservice');
     if($wpjobportal_mappingservices == "gmap"){
@@ -27,13 +27,13 @@
         wp_enqueue_script( 'jp-google-map', $wpjobportal_filekey, array(), '1.1.1', false );
     ?>
     <?php }elseif ($wpjobportal_mappingservices == "osm") {
-        wp_enqueue_script('wpjobportal-ol-script', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/ol.min.js');
-        wp_enqueue_style('wpjobportal-ol-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/ol.min.css');
+        wp_enqueue_script( 'wpjobportal-ol-script', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/ol.min.js', array(), wpjobportal_asset_version('includes/js/ol.min.js'), false );
+        wp_enqueue_style('wpjobportal-ol-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/ol.min.css', array(), wpjobportal_asset_version('includes/css/ol.min.css'));
     }
     // the extra checks are for print resume on deleted resume
 if(isset(wpjobportal::$_data[0]) && isset(wpjobportal::$_data[0]['personal_section']) && !empty(wpjobportal::$_data[0]['personal_section']) ) {
 
-    wp_register_script( 'wpjobportal-inline-handle', '' );
+    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
     $wpjobportal_inline_js_script = "

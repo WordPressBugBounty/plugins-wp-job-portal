@@ -5,65 +5,52 @@ if (!defined('ABSPATH'))
 
 class WPJOBPORTALupdates {
 
+    /**
+     * Bring the database up to the running plugin version.
+     *
+     * This used to read and execute the .sql files itself, and it read them
+     * wrongly: it joined a statement's lines with implode('') - no separator -
+     * and treated a semicolon at the end of a comment line as the end of a
+     * statement. Every migration through 260 was written one statement per
+     * line, so nothing ever glued and nothing ever showed. 270 is the first
+     * that is not, and under the old reader its multi-line statements arrived
+     * as things like "FROM DUALWHERE NOT EXISTS" - a syntax error, against a
+     * query() whose result was never checked, so the settings those statements
+     * create would simply have been missing with nothing said.
+     *
+     * The migration service is now the only thing that runs these files. It
+     * reads them correctly, records each one in a ledger with its checksum so
+     * a repeated visit cannot re-run it, and reports a failure instead of
+     * swallowing it.
+     *
+     * @param int|string|null $cversion Target version, defaults to the running one.
+     * @return void
+     */
     static function checkUpdates($cversion=null) {
         if (is_null($cversion)) {
             $cversion = wpjobportal::$_currentversion;
         }
-        if ( ! function_exists( 'WP_Filesystem' ) ) {
-            require_once ABSPATH . 'wp-admin/includes/file.php';
-        }
-        global $wp_filesystem;
-        if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-            $creds = request_filesystem_credentials( site_url() );
-            wp_filesystem( $creds );
-        }
 
         $wpjobportal_installedversion = WPJOBPORTALupdates::getInstalledVersion();
-        if ($wpjobportal_installedversion != $cversion) {
-            $query = "REPLACE INTO `".wpjobportal::$_db->prefix."wj_portal_config` (`configname`, `configvalue`, `configfor`) VALUES ('last_version','','default');";
-            wpjobportal::$_db->query($query); //old actual
-            /*wpjobportal::$_db->show_errors(false);
-            @wpjobportal::$_db->query($query);          */
-            $query = "SELECT configvalue FROM `".wpjobportal::$_db->prefix."wj_portal_config` WHERE configname='versioncode'";
-            $wpjobportal_versioncode = wpjobportal::$_db->get_var($query);
-            $wpjobportal_versioncode = wpjobportalphplib::wpJP_str_replace('.','',$wpjobportal_versioncode);
-            $query = wpjobportal::$_db->prepare("UPDATE `".wpjobportal::$_db->prefix."wj_portal_config` SET configvalue = %s WHERE configname = 'last_version';", $wpjobportal_versioncode);
-            wpjobportal::$_db->query($query);
-            $from = $wpjobportal_installedversion + 1;
-            $wpjobportal_to = $cversion;
-            if ($from != "" && $wpjobportal_to != "") {
-                for ($wpjobportal_i = $from; $wpjobportal_i <= $wpjobportal_to; $wpjobportal_i++) {
-                    $wpjobportal_installfile = WPJOBPORTAL_PLUGIN_PATH . 'includes/updates/sql/' . $wpjobportal_i . '.sql';
+        if ($wpjobportal_installedversion == $cversion) {
+            return;
+        }
 
-                    // Check if the file exists
-                    if ($wp_filesystem->exists($wpjobportal_installfile)) {
-                        $wpjobportal_delimiter = ';';
-                        // Get the file contents
-                        $file_contents = $wp_filesystem->get_contents($wpjobportal_installfile);
-                        if ($file_contents !== false) {
-                            $lines = explode("\n", $file_contents);
-                            $query = array();
+        /*
+         * Remember which version we are coming from before anything moves.
+         * The migration service reads last_version when it reconciles the
+         * migrations that predate its ledger.
+         */
+        $query = "REPLACE INTO `".wpjobportal::$_db->prefix."wj_portal_config` (`configname`, `configvalue`, `configfor`) VALUES ('last_version','','default');";
+        wpjobportal::$_db->query($query);
+        $query = "SELECT configvalue FROM `".wpjobportal::$_db->prefix."wj_portal_config` WHERE configname='versioncode'";
+        $wpjobportal_versioncode = wpjobportal::$_db->get_var($query);
+        $wpjobportal_versioncode = wpjobportalphplib::wpJP_str_replace('.','',$wpjobportal_versioncode);
+        $query = wpjobportal::$_db->prepare("UPDATE `".wpjobportal::$_db->prefix."wj_portal_config` SET configvalue = %s WHERE configname = 'last_version';", $wpjobportal_versioncode);
+        wpjobportal::$_db->query($query);
 
-                            foreach ($lines as $line) {
-                                $query[] = $line;
-                                if (preg_match('~' . preg_quote($wpjobportal_delimiter, '~') . '\s*$~iS', end($query)) === 1) {
-                                    $query_string = trim(implode('', $query));
-                                    $query_string = wpjobportalphplib::wpJP_str_replace("#__", wpjobportal::$_db->prefix, $query_string);
-                                    if (!empty($query_string)) {
-                                        wpjobportal::$_db->query($query_string);
-                                    }
-                                    $query = array();
-                                }
-                            }
-                        } else {
-                            // echo 'Failed to open file.';
-                        }
-                    } else {
-                        // echo 'File does not exist.';
-                    }
-                }
-            }
-
+        if (class_exists('WPJOBPORTAL_Migration_Service')) {
+            WPJOBPORTAL_Migration_Service::run($cversion);
         }
     }
 

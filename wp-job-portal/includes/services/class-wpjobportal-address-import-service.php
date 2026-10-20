@@ -18,6 +18,15 @@ class WPJOBPORTAL_Address_Import_Service {
     const MAX_SQL_BYTES = 134217728;
     const MAX_COMPRESSION_RATIO = 200;
 
+    /*
+     * The columns the bundled data's states rows are written for. Its INSERT
+     * names none, and the table has since gained localname and
+     * internationalname, so the six values no longer lined up and MySQL refused
+     * every row ("Column count doesn't match value count") - the paid import
+     * failed at its first statement. Cities rows name their columns already.
+     */
+    const LEGACY_STATE_COLUMNS = '(`id`, `name`, `shortRegion`, `countryid`, `enabled`, `serverid`)';
+
     public static function import_from_request() {
         if (!current_user_can('wpjobportal')
             && !current_user_can('manage_options')
@@ -72,6 +81,72 @@ class WPJOBPORTAL_Address_Import_Service {
         return defined('WPJOBPORTAL_SAVED') ? WPJOBPORTAL_SAVED : true;
     }
 
+    /**
+     * Import the bundled paid dataset, without reading the request.
+     *
+     * The legacy Address Data screen posts fileowner/datakept/datacontain and
+     * goes through import_from_request(). Core's own screen posts something
+     * else entirely, so it needs a way in that does not depend on the shape of
+     * a form that belongs to a different plugin.
+     *
+     * The caller has already checked capability and nonce for its own form;
+     * both are checked again here, because a public static method that writes
+     * to the city tables must not be safe only by convention.
+     *
+     * @param bool $keep_existing Keep rows already in the tables.
+     * @param int  $contains      1 states, 2 cities, 3 both.
+     * @return true|WP_Error|int Save constant on success.
+     */
+    public static function import_bundled($keep_existing = false, $contains = 3) {
+        if (!current_user_can('wpjobportal')
+            && !current_user_can('manage_options')
+            && !(isset(wpjobportal::$_common)
+                && is_object(wpjobportal::$_common)
+                && wpjobportal::$_common->wpjp_isadmin())
+        ) {
+            return self::failure('capability');
+        }
+
+        $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (!is_string($nonce)
+            || !wp_verify_nonce($nonce, 'wpjobportal_address_data_nonce')
+        ) {
+            return self::failure('nonce');
+        }
+
+        if (!in_array((int) $contains, array(1, 2, 3), true)) {
+            return self::failure('input_schema');
+        }
+
+        $path = self::bundled_dataset();
+        if ($path === '') {
+            return self::failure('bundled_file_missing');
+        }
+
+        $sql = self::read_sql($path, strtolower(pathinfo($path, PATHINFO_EXTENSION)));
+        if (is_wp_error($sql)) {
+            return self::failure($sql->get_error_code());
+        }
+
+        $statements = self::parse_statements($sql);
+        if (is_wp_error($statements)) {
+            return self::failure($statements->get_error_code());
+        }
+
+        $result = self::stage_and_swap($statements, (bool) $keep_existing, (int) $contains);
+        if (is_wp_error($result)) {
+            return self::failure($result->get_error_code());
+        }
+
+        self::record('completed', array(
+            'statements' => count($statements),
+            'tables' => (int) $contains === 3 ? 2 : 1,
+            'source' => 'bundled',
+        ));
+
+        return defined('WPJOBPORTAL_SAVED') ? WPJOBPORTAL_SAVED : true;
+    }
+
     public static function get_status() {
         $stats = get_option(self::STATS_OPTION, array());
         if (!is_array($stats)) {
@@ -89,27 +164,89 @@ class WPJOBPORTAL_Address_Import_Service {
         );
     }
 
+    /**
+     * The bundled paid dataset, from whatever is providing one.
+     *
+     * Core used to name the Address Data plugin's directory here. It now asks
+     * the same question the maps module asks — is anything providing this? —
+     * so the answer can come from Pro, from the standalone add-on on a site
+     * that still has it, or from neither.
+     *
+     * The path is checked against the plugins directory before it is read: a
+     * filter is a public extension point, and this one names a file that is
+     * about to be parsed as SQL.
+     *
+     * @return string Absolute path, or '' when nothing provides one.
+     */
+    public static function bundled_dataset() {
+        // Whether the add-on is *running*, not whether its files are still on
+        // disk. A deactivated plugin keeps its directory, so testing for the
+        // file meant the add-on went on answering after it had been switched
+        // off, and Pro could never take over.
+        $legacy = WP_PLUGIN_DIR . '/wp-job-portal-addressdata/includes/data/data.zip';
+        $default = (in_array('addressdata', (array) wpjobportal::$_active_addons, true)
+            && is_readable($legacy)) ? $legacy : '';
+
+        /**
+         * Filter the bundled paid city dataset.
+         *
+         * @param string $path Absolute path to a .zip or .sql file, or ''.
+         */
+        $path = (string) apply_filters('wpjobportal_bundled_address_dataset', $default);
+
+        if ($path === '') {
+            return '';
+        }
+
+        $path = wp_normalize_path($path);
+        $root = trailingslashit(wp_normalize_path(WP_PLUGIN_DIR));
+
+        // Inside the plugins directory, and nowhere else. Without this a filter
+        // could hand over any file on the server to be read and parsed.
+        if (strpos($path, $root) !== 0 || strpos($path, '..') !== false) {
+            return '';
+        }
+
+        $extension = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+        if (!in_array($extension, array('zip', 'sql'), true) || !is_readable($path)) {
+            return '';
+        }
+
+        return $path;
+    }
+
+    /**
+     * Is a paid dataset available to import?
+     *
+     * @return bool
+     */
+    public static function has_bundled_dataset() {
+        return self::bundled_dataset() !== '';
+    }
+
     private static function resolve_source($owner) {
         if ($owner === 2) {
-            $path = WP_PLUGIN_DIR . '/wp-job-portal-addressdata/includes/data/data.zip';
-            if (!is_readable($path)) {
+            $path = self::bundled_dataset();
+            if ($path === '') {
                 return new WP_Error('bundled_file_missing');
             }
             $size = filesize($path);
-            if ($size === false || $size < 1 || $size > self::MAX_ARCHIVE_BYTES) {
+            $ceiling = strtolower(pathinfo($path, PATHINFO_EXTENSION)) === 'sql'
+                ? self::MAX_SQL_BYTES
+                : self::MAX_ARCHIVE_BYTES;
+            if ($size === false || $size < 1 || $size > $ceiling) {
                 return new WP_Error('archive_size');
             }
-            return array('path' => $path, 'extension' => 'zip');
+            return array(
+                'path' => $path,
+                'extension' => strtolower(pathinfo($path, PATHINFO_EXTENSION)),
+            );
         }
 
-        if (empty($_FILES['loadaddressdata'])
-            || !is_array($_FILES['loadaddressdata'])
-            || !isset($_FILES['loadaddressdata']['error'], $_FILES['loadaddressdata']['tmp_name'], $_FILES['loadaddressdata']['name'], $_FILES['loadaddressdata']['size'])
-        ) {
+        $file = WPJOBPORTALrequest::file('loadaddressdata');
+        if (null === $file) {
             return new WP_Error('upload_missing');
         }
-
-        $file = $_FILES['loadaddressdata'];
         $extension = strtolower(pathinfo(sanitize_file_name($file['name']), PATHINFO_EXTENSION));
         if (!in_array($extension, array('zip', 'sql'), true)) {
             return new WP_Error('file_type');
@@ -156,7 +293,10 @@ class WPJOBPORTAL_Address_Import_Service {
                 $zip->close();
                 return new WP_Error('archive_entry');
             }
-            $contents = $zip->getFromIndex(0, self::MAX_SQL_BYTES);
+            // The entry's own size, already checked above: ZipArchive reserves
+            // the whole length it is given up front, so passing the 128 MB cap
+            // exhausted a 128 MB memory limit even for a 6 MB file.
+            $contents = $zip->getFromIndex(0, (int) $stat['size']);
             $zip->close();
             return is_string($contents) ? $contents : new WP_Error('archive_read');
         }
@@ -279,15 +419,15 @@ class WPJOBPORTAL_Address_Import_Service {
             $backup = substr($original, 0, 48) . '_bak_' . $token;
             $tables[$entity] = compact('original', 'stage', 'backup');
 
-            $wpdb->query("DROP TABLE IF EXISTS `{$stage}`");
-            if ($wpdb->query("CREATE TABLE `{$stage}` LIKE `{$original}`") === false
-                || $wpdb->query("ALTER TABLE `{$stage}` ENGINE=InnoDB") === false
+            wpjobportaldb_direct::query($wpdb->prepare("DROP TABLE IF EXISTS %i", $stage));
+            if (wpjobportaldb_direct::query($wpdb->prepare("CREATE TABLE %i LIKE %i", $stage, $original)) === false
+                || wpjobportaldb_direct::query($wpdb->prepare("ALTER TABLE %i ENGINE=InnoDB", $stage)) === false
             ) {
                 self::drop_staging($tables);
                 return new WP_Error('stage_create');
             }
             if ($keep_existing
-                && $wpdb->query("INSERT INTO `{$stage}` SELECT * FROM `{$original}`") === false
+                && wpjobportaldb_direct::query($wpdb->prepare("INSERT INTO %i SELECT * FROM %i", $stage, $original)) === false
             ) {
                 self::drop_staging($tables);
                 return new WP_Error('stage_copy');
@@ -310,10 +450,18 @@ class WPJOBPORTAL_Address_Import_Service {
                 $statement,
                 1
             );
+            if ($entity === 'states') {
+                $rewritten = preg_replace(
+                    '/^(INSERT\s+(?:IGNORE\s+)?INTO\s+`[^`]+`)\s*VALUES\b/i',
+                    '$1 ' . self::LEGACY_STATE_COLUMNS . ' VALUES',
+                    $rewritten,
+                    1
+                );
+            }
             if ($keep_existing && !preg_match('/^INSERT\s+IGNORE\s+/i', $rewritten)) {
                 $rewritten = preg_replace('/^INSERT\s+/i', 'INSERT IGNORE ', $rewritten, 1);
             }
-            if ($wpdb->query($rewritten) === false) {
+            if (wpjobportaldb_direct::query($rewritten) === false) {
                 self::drop_staging($tables);
                 return new WP_Error('sql_execute');
             }
@@ -328,16 +476,16 @@ class WPJOBPORTAL_Address_Import_Service {
 
         $rename = array();
         foreach ($tables as $table) {
-            $wpdb->query("DROP TABLE IF EXISTS `{$table['backup']}`");
+            wpjobportaldb_direct::query($wpdb->prepare("DROP TABLE IF EXISTS %i", $table['backup']));
             $rename[] = "`{$table['original']}` TO `{$table['backup']}`";
             $rename[] = "`{$table['stage']}` TO `{$table['original']}`";
         }
-        if ($wpdb->query('RENAME TABLE ' . implode(', ', $rename)) === false) {
+        if (wpjobportaldb_direct::query('RENAME TABLE ' . implode(', ', $rename)) === false) {
             self::drop_staging($tables);
             return new WP_Error('table_swap');
         }
         foreach ($tables as $table) {
-            $wpdb->query("DROP TABLE IF EXISTS `{$table['backup']}`");
+            wpjobportaldb_direct::query($wpdb->prepare("DROP TABLE IF EXISTS %i", $table['backup']));
         }
         return true;
     }
@@ -346,7 +494,7 @@ class WPJOBPORTAL_Address_Import_Service {
         global $wpdb;
         foreach ($tables as $table) {
             if (!empty($table['stage'])) {
-                $wpdb->query("DROP TABLE IF EXISTS `{$table['stage']}`");
+                wpjobportaldb_direct::query($wpdb->prepare("DROP TABLE IF EXISTS %i", $table['stage']));
             }
         }
     }

@@ -1,6 +1,6 @@
 <?php if (!defined('ABSPATH')) die('Restricted Access');
 
-wp_register_script( 'wpjobportal-inline-handle', '' );
+wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
 wp_enqueue_script( 'wpjobportal-inline-handle' );
 
 if(wpjobportal::$wpjobportal_theme_chk == 1){

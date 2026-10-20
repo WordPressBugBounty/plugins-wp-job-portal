@@ -4,7 +4,7 @@ if (!defined('ABSPATH'))
 ?>
 <div class="wjportal-main-up-wrapper">
     <?php
-    //$wpjobportal_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+    //$wpjobportal_protocol = is_ssl() ? "https://" : "http://";
     if ( !WPJOBPORTALincluder::getTemplate('templates/header',array('wpjobportal_module' => 'jobseeker')) ) {
         return;
     }
@@ -226,8 +226,15 @@ if (!defined('ABSPATH'))
                         </div>
                         <div class="wjportal-cp-short-links-list">
                             <?php
+                                /*
+                                 * The menu is folded into collapsible sections
+                                 * after it is built, so that the sections an
+                                 * add-on contributes are folded with the rest.
+                                 */
+                                ob_start();
                                 WPJOBPORTALincluder::getTemplate('jobseeker/views/leftmenue',array(
                                 ));
+                                echo wpjobportal_group_control_panel_menu(ob_get_clean()); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                             ?>
                         </div>
                     </div>
@@ -410,6 +417,13 @@ if (!defined('ABSPATH'))
                         }
                     }
 
+                    /** Native dashboard surface for candidate-facing premium extensions. */
+                    do_action(
+                        'wpjobportal_jobseeker_dashboard_extension_content',
+                        WPJOBPORTALincluder::getObjectClass('user')->uid(),
+                        wpjobportal::$_data
+                    );
+
 
                         ?>
                     </div>
@@ -420,8 +434,8 @@ if (!defined('ABSPATH'))
             // Blueprint: wpjobportal_jobseeker_dashboard_loaded
             // Fires immediately after the job seeker portal data is initialized.
             // Developers can utilize this to query external APIs and display real-time background check statuses or inject customized modal pop-ups.
-            $jobseeker_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
-            do_action('wpjobportal_jobseeker_dashboard_loaded', $jobseeker_uid, wpjobportal::$_data);
+            $wpjobportal_jobseeker_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
+            do_action('wpjobportal_jobseeker_dashboard_loaded', $wpjobportal_jobseeker_uid, wpjobportal::$_data);
             // --- NEW HOOK INTEGRATION END ---
             ?>
         </div>

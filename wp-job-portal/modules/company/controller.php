@@ -117,6 +117,10 @@ class WPJOBPORTALCompanyController {
                             $wpjobportal_id = WPJOBPORTALrequest::getVar('wpjobportalid');
                             $wpjobportal_actionname = 'company';
                             if($wpjobportal_id == ''){
+                                if(WPJOBPORTAL_Monetisation::paused()){
+                                    wpjobportal::$_error_flag_message_for = 19;
+                                    throw new Exception(WPJOBPORTALLayout::setMessageFor(19,null,null,1));
+                                }
                                  if(in_array('credits',wpjobportal::$_active_addons)){
                                     // Filter Package For Controller
                                     if(WPJOBPORTALincluder::getJSModel('company')->userCanAddCompany($wpjobportal_uid) == true){
@@ -328,7 +332,7 @@ class WPJOBPORTALCompanyController {
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'company');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_company&wpjobportallt=companiesqueue"));
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -344,7 +348,7 @@ class WPJOBPORTALCompanyController {
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'company');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_company&wpjobportallt=companiesqueue"));
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -360,7 +364,7 @@ class WPJOBPORTALCompanyController {
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'company');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_company&wpjobportallt=companiesqueue"));
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -376,7 +380,7 @@ class WPJOBPORTALCompanyController {
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'company');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_company&wpjobportallt=companiesqueue"));
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -393,7 +397,7 @@ class WPJOBPORTALCompanyController {
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'company');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_company&wpjobportallt=companiesqueue"));
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -410,7 +414,7 @@ class WPJOBPORTALCompanyController {
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'company');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_company&wpjobportallt=companiesqueue"));
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -449,7 +453,7 @@ class WPJOBPORTALCompanyController {
             WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
             $redirecturl = wpjobportal::wpjobportal_redirectUrl('company.fail');
         }
-        wp_redirect($redirecturl);
+        wp_safe_redirect($redirecturl);
         die();
     }
 
@@ -473,7 +477,7 @@ class WPJOBPORTALCompanyController {
         } else {
             $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_company&wpjobportallt=companiesqueue"));
         }
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -499,7 +503,7 @@ class WPJOBPORTALCompanyController {
         } else {
             $wpjobportal_url = esc_url_raw(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'mycompanies','wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid())));
         }
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -515,7 +519,7 @@ class WPJOBPORTALCompanyController {
         $wpjobportal_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
         WPJOBPORTALincluder::getJSModel('company')->addViewContactDetail($wpjobportal_id, $wpjobportal_uid);
         $wpjobportal_url = esc_url_raw(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$wpjobportal_id,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid())));
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 }

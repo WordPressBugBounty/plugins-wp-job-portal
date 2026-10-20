@@ -314,10 +314,96 @@
         });
     }
 
+    /*
+     * A complaint about a field nobody can see.
+     *
+     * The validator marks a control invalid and puts its message beside it.
+     * When that control is hidden - a select Chosen has replaced, or a field
+     * the template renders as a hidden input - the message is hidden with it,
+     * so pressing Save appears to do nothing at all. That is the single most
+     * common way a portal form "stops working".
+     *
+     * So: say it at the top of the form, where it can be read, and name the
+     * fields it is about.
+     */
+    function visibleStandIn(control) {
+        var sibling = control.nextElementSibling;
+        if (sibling && sibling.classList.contains('chosen-container')) {
+            return sibling;
+        }
+        return null;
+    }
+
+    function isOnScreen(element) {
+        return !!(element && (element.offsetWidth || element.offsetHeight || element.getClientRects().length));
+    }
+
+    function fieldLabel(control) {
+        var described = control.getAttribute('aria-labelledby');
+        var label = described ? document.getElementById(described.split(/\s+/)[0]) : null;
+        if (!label) {
+            var row = control.closest ? control.closest(rowSelector) : null;
+            label = row ? row.querySelector('label, .wjportal-form-title, .wpjp-ds-label') : null;
+        }
+        var text = label ? label.textContent : (control.name || '');
+        return text.replace(/\s+/g, ' ').replace(/[:*]\s*$/, '').trim();
+    }
+
+    function summariseHiddenErrors(form) {
+        var invalid = form.querySelectorAll('[aria-invalid="true"], input.error, select.error, textarea.error');
+        var unseen = [];
+        for (var i = 0; i < invalid.length; i++) {
+            if (isOnScreen(invalid[i]) || isOnScreen(visibleStandIn(invalid[i]))) {
+                continue;
+            }
+            var name = fieldLabel(invalid[i]);
+            if (name && unseen.indexOf(name) === -1) {
+                unseen.push(name);
+            }
+        }
+
+        var summary = form.querySelector('.wpjp-hidden-error-summary');
+        if (!unseen.length) {
+            if (summary) {
+                summary.hidden = true;
+            }
+            return;
+        }
+        if (!summary) {
+            summary = document.createElement('div');
+            summary.className = 'wpjp-hidden-error-summary';
+            summary.setAttribute('role', 'alert');
+            summary.setAttribute('tabindex', '-1');
+            form.insertBefore(summary, form.firstChild);
+        }
+        summary.hidden = false;
+        summary.textContent = l10n('needed', 'This form cannot be sent yet:') + ' ' + unseen.join(', ');
+        if (typeof summary.scrollIntoView === 'function') {
+            summary.scrollIntoView({behavior: 'smooth', block: 'center'});
+        }
+        summary.focus();
+    }
+
     function focusFirstError(form) {
         window.setTimeout(function () {
             syncErrors(form);
+            summariseHiddenErrors(form);
             var first = form.querySelector('[aria-invalid="true"], input.error, select.error, textarea.error');
+            /*
+             * A searchable select is hidden behind its Chosen container, and
+             * focusing something with display:none does nothing at all - the
+             * form would refuse to send with the cursor nowhere. Hand the
+             * focus to the control the person can actually see.
+             */
+            if (first && first.hasAttribute && first.hasAttribute('data-wpjp-searchable')) {
+                var container = first.nextElementSibling;
+                if (container && container.classList.contains('chosen-container')) {
+                    var opener = container.querySelector('input[type="text"], a.chosen-single');
+                    if (opener) {
+                        first = opener;
+                    }
+                }
+            }
             if (first && typeof first.focus === 'function') {
                 first.focus({preventScroll: true});
                 if (typeof first.scrollIntoView === 'function') {
@@ -350,8 +436,197 @@
         return scopes;
     }
 
+    function l10n(key, fallback) {
+        var strings = window.wpjobportalFormsL10n;
+        return (strings && strings[key]) ? strings[key] : fallback;
+    }
+
+    /*
+     * A form that has been sent looks exactly like a form that has not. On a
+     * slow upload - a CV is the common case - people press Apply again, and
+     * the second press either duplicates the application or races the first.
+     * The button says what it is doing, and the form refuses a second send.
+     *
+     * The button is not disabled: a disabled submit control is left out of the
+     * submitted data, which would change what the server receives.
+     */
+    function markPending(form, submitter) {
+        if (form.getAttribute('data-wpjp-submitting') === '1') {
+            return false;
+        }
+        form.setAttribute('data-wpjp-submitting', '1');
+        form.setAttribute('aria-busy', 'true');
+
+        var button = submitter;
+        if (!button || !form.contains(button)) {
+            button = form.querySelector('input[type="submit"], button[type="submit"]');
+        }
+        if (!button) {
+            return true;
+        }
+
+        var label = l10n('working', 'Working…');
+        if (button.name === 'save' && form.querySelector('input[name="jobid"], input[name="wpjobportalid-jobid"]')) {
+            label = l10n('applying', 'Applying…');
+        }
+
+        addClass(button, 'wpjp-is-pending');
+        setAttr(button, 'aria-busy', 'true');
+        if (button.tagName === 'INPUT') {
+            button.value = label;
+        } else {
+            button.textContent = label;
+        }
+        return true;
+    }
+
+    /*
+     * "Apply On This Job" at the top of a job is a link to the form further
+     * down the page. Left to the browser it jumps, and on a short job it does
+     * not move at all - the press reads as a button that did nothing. Move the
+     * page and the keyboard focus to the first thing to fill in.
+     */
+    function focusApplyForm(target) {
+        var field = target.querySelector(controlSelector + ', input[type="submit"], button');
+        if (!field || typeof field.focus !== 'function') {
+            field = target;
+            setAttr(field, 'tabindex', '-1');
+        }
+        /*
+         * Focus first and let it do the scrolling: that always moves the page,
+         * where a smooth scrollIntoView can be ignored outright. The smooth
+         * call afterwards only refines where the form sits on screen.
+         */
+        field.focus();
+        if (typeof target.scrollIntoView === 'function') {
+            target.scrollIntoView({behavior: 'smooth', block: 'start'});
+        }
+    }
+
+    /*
+     * A select with 238 options in it - job categories, on a site with the
+     * sample data - is a scroll bar and a memory test. The plugin already
+     * ships Chosen, loads it on every portal page, and both looks already
+     * style .chosen-container; nothing was ever asking for it. A long list
+     * gets a search field, a short one is left alone: a native select is
+     * better than a scripted one whenever it fits on screen.
+     */
+    var longSelectThreshold = 20;
+    var portalScopes = '#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper, .wpj-jp-main-up-wrapper';
+
+    /*
+     * Below this width the stylesheet has already decided: a native select is
+     * more reliable than a scripted one on a phone, so it hides the Chosen
+     * container and forces the real select back. Building one anyway started a
+     * tug of war - Chosen hid the select, the stylesheet un-hid it and hid
+     * Chosen, and what was left was a 26px-wide control in a row that had
+     * collapsed to nothing. One decision, taken in one place.
+     */
+    var searchableFrom = '(min-width: 783px)';
+
+    function enhanceLongSelects(root) {
+        var $ = window.jQuery;
+        if (!$ || !$.fn || !$.fn.chosen) {
+            return;
+        }
+        if (window.matchMedia && !window.matchMedia(searchableFrom).matches) {
+            return;
+        }
+        var selects = root.querySelectorAll('select:not([multiple]):not([data-wpjp-searchable])');
+        for (var i = 0; i < selects.length; i++) {
+            var select = selects[i];
+            if (select.options.length < longSelectThreshold) {
+                continue;
+            }
+            var sibling = select.nextElementSibling;
+            if (sibling && sibling.classList.contains('chosen-container')) {
+                continue;
+            }
+            if (!select.closest || !select.closest(portalScopes)) {
+                continue;
+            }
+            setAttr(select, 'data-wpjp-searchable', '1');
+            /*
+             * Chosen mirrors on a class, not on the page direction, and it
+             * reads that class once when it builds the control. Ask for the
+             * direction that is actually in force on this field - a site can
+             * set dir on <html>, on <body>, or on the portal wrapper alone.
+             */
+            if (window.getComputedStyle(select).direction === 'rtl') {
+                addClass(select, 'chosen-rtl');
+            }
+            $(select).chosen({
+                width: '100%',
+                search_contains: true,
+                no_results_text: l10n('noMatch', 'Nothing matches')
+            });
+        }
+    }
+
+    /*
+     * The form row of a Chosen control, marked so the stylesheet can let the
+     * list hang out of it. The add-job form clips its rows; the stylesheet's
+     * :has() release is lost on browsers without :has() (Firefox before 121
+     * drops the whole rule), and the list opened with nothing in it. A class
+     * works everywhere. Covers controls built before this runs (the scan) and
+     * after it (Chosen's own chosen:ready event), whoever built them.
+     */
+    function markChosenRow(container) {
+        var row = container && container.closest ? container.closest('.wjportal-form-value') : null;
+        addClass(row, 'wpjp-has-chosen');
+    }
+
+    function markChosenRows(root) {
+        var containers = root.querySelectorAll('.chosen-container');
+        for (var i = 0; i < containers.length; i++) {
+            markChosenRow(containers[i]);
+        }
+    }
+
     function init() {
+        if (window.jQuery) {
+            window.jQuery(document).on('chosen:ready', function (event) {
+                var select = event.target;
+                markChosenRow(select && select.nextElementSibling && select.nextElementSibling.classList.contains('chosen-container') ? select.nextElementSibling : select);
+            });
+        }
+        applyWithoutFeedback(function () {
+            enhanceLongSelects(document);
+            markChosenRows(document);
+        });
         enhance(document);
+
+        document.addEventListener('click', function (event) {
+            var link = event.target && event.target.closest ? event.target.closest('a[href^="#"]') : null;
+            if (!link || event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey) {
+                return;
+            }
+            var id = link.getAttribute('href').slice(1);
+            if (id.indexOf('job-apply-form') === -1) {
+                return;
+            }
+            var target = document.getElementById(id);
+            if (!target) {
+                return;
+            }
+            event.preventDefault();
+            focusApplyForm(target);
+        });
+
+        document.addEventListener('submit', function (event) {
+            var form = event.target;
+            if (!form || !form.matches || !form.matches('form') || event.defaultPrevented) {
+                return;
+            }
+            if (form.hasAttribute('data-wpjp-no-pending')) {
+                return;
+            }
+            applyWithoutFeedback(function () {
+                if (!markPending(form, event.submitter)) {
+                    event.preventDefault();
+                }
+            });
+        });
 
         document.addEventListener('submit', function (event) {
             if (event.target && event.target.matches('form')) {

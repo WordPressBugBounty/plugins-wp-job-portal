@@ -10,7 +10,7 @@ if( !empty(wpjobportal::$_data[0]) && !empty(wpjobportal::$_data[0]['personal_se
     $wpjobportal_resume_object = wpjobportal::$_data[0]['personal_section'];
     $wpjobportal_dateformat    = wpjobportal::$_configuration['date_format'];
     $wpjobportal_curdate       = date_i18n('Y-m-d');
-    $wpjobportal_featuredexpiry = date_i18n('Y-m-d', strtotime($wpjobportal_resume_object->endfeatureddate));
+    $wpjobportal_featuredexpiry = date_i18n('Y-m-d', strtotime((string) $wpjobportal_resume_object->endfeatureddate));
 
     if ($wpjobportal_resume_object->isfeaturedresume == 1 && $wpjobportal_featuredexpiry >= $wpjobportal_curdate) {
         $wpjobportal_extra_featured_class = 'wjportal-view-page-featured-flag';
@@ -138,6 +138,17 @@ if( !empty(wpjobportal::$_data[0]) && !empty(wpjobportal::$_data[0]['personal_se
     }
 
     // closing new structure right wrapper div
+    $wpjobportal_html .= '</div>';
+    /*
+     * And the two-column wrapper this opened, which was never closed.
+     *
+     * The browser closed it at the end of the page instead, so everything
+     * printed after this template - the resume tags, the per-listing payment
+     * block, and the application workflow an add-on contributes through
+     * wpjobportal_resume_detail_extensions - became a further column of the
+     * same flex row. The resume's own right-hand column was squeezed to zero
+     * width and its text painted underneath the panel beside it.
+     */
     $wpjobportal_html .= '</div>';
     // getting Data over resume class and Show
     echo wp_kses($wpjobportal_html,WPJOBPORTAL_ALLOWED_TAGS);

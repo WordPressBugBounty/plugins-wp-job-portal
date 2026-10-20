@@ -20,7 +20,7 @@ $wpjobportal_downimg = 'downarrow.png';
     </td>
     <td>
         <?php if ($wpjobportal_row->isdefault == 1) { ?>
-            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/default.png" alt="Default" border="0" alt="<?php echo esc_attr(__('Default', 'wp-job-portal')); ?>" />
+            <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/default.png" border="0" alt="<?php echo esc_attr(__('Default', 'wp-job-portal')); ?>" />
         <?php } else { ?>
             <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_common&task=makedefault&action=wpjobportaltask&for=salaryrangetypes&id='.$wpjobportal_row->id.$wpjobportal_pageid),'wpjobportal_common_entity_nonce')); ?>" title="<?php echo esc_attr(__('not default', 'wp-job-portal')); ?>">
                 <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/notdefault.png" border="0" alt="<?php echo esc_attr(__('not default', 'wp-job-portal')); ?>" />

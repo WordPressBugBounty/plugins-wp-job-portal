@@ -16,9 +16,9 @@ class WPJOBPORTALuser {
             $this->currentuser = wpjobportal::$_db->get_row($query);
         }else { // wp user is not logged in
         //sanitize_key($_SESSION['wpjobportal-socialid'])
-            if (isset($_COOKIE['wpjobportal-socialid']) && !empty($_COOKIE['wpjobportal-socialid'])) { // social user is logged in
+            if (WPJOBPORTALrequest::hasCookie('wpjobportal-socialid') && !empty(WPJOBPORTALrequest::cookie('wpjobportal-socialid'))) { // social user is logged in
             
-                $wpjobportal_socialid = sanitize_key(wp_unslash($_COOKIE['wpjobportal-socialid']));
+                $wpjobportal_socialid = sanitize_key((string) WPJOBPORTALrequest::cookie('wpjobportal-socialid', ''));
                 $query = wpjobportal::$_db->prepare("SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE socialid = %s", $wpjobportal_socialid);
                 $this->currentuser = wpjobportal::$_db->get_row($query);
             }
@@ -26,7 +26,7 @@ class WPJOBPORTALuser {
     }
 
     function isguest() {
-        if (isset($_COOKIE['wpjobportal-socialid']) && !empty($_COOKIE['wpjobportal-socialid'])) {
+        if (WPJOBPORTALrequest::hasCookie('wpjobportal-socialid') && !empty(WPJOBPORTALrequest::cookie('wpjobportal-socialid'))) {
             return false;
         } elseif ($this->currentuser == null && !is_user_logged_in()) { // current user is guest
             return true;
@@ -37,9 +37,28 @@ class WPJOBPORTALuser {
 
     function getEmployerProfile(){
         //if($this->isemployer()==true){
+        /*
+         * There may be no portal user behind the WordPress one.
+         *
+         * currentuser is the wj_portal_users row for whoever is signed in, and
+         * somebody can be signed in without having one - a Recruit Suite team
+         * member is added to a company, not registered through the portal. The
+         * isemployer() guard above used to catch that and was commented out,
+         * which left this reading ->uid off null and warning about it on every
+         * recruiter page load.
+         *
+         * The test is for the missing row rather than for the employer role,
+         * because a recruiter carries roleid 0: putting isemployer() back would
+         * stop the warning by taking the profile away from the very people who
+         * were seeing it. No row, no profile - which is what the tail of this
+         * function already answers.
+         */
+        if ($this->currentuser == null) {
+            return false;
+        }
         $wpjobportal_id  = $this->currentuser->uid;
         $wpjobportal_string = "users.uid";
-        if (isset($_COOKIE['wpjobportal-socialid']) && !empty($_COOKIE['wpjobportal-socialid'])) { // social user is logged in
+        if (WPJOBPORTALrequest::hasCookie('wpjobportal-socialid') && !empty(WPJOBPORTALrequest::cookie('wpjobportal-socialid'))) { // social user is logged in
             $wpjobportal_id  = $this->currentuser->id;
             $wpjobportal_string = "users.id";
         }
@@ -61,7 +80,7 @@ class WPJOBPORTALuser {
         if($this->isjobseeker()==true){
             $wpjobportal_id  = $this->currentuser->uid;
             $wpjobportal_string = "users.uid";
-            if (isset($_COOKIE['wpjobportal-socialid']) && !empty($_COOKIE['wpjobportal-socialid'])) { // social user is logged in
+            if (WPJOBPORTALrequest::hasCookie('wpjobportal-socialid') && !empty(WPJOBPORTALrequest::cookie('wpjobportal-socialid'))) { // social user is logged in
                 $wpjobportal_id  = $this->currentuser->id;
                 $wpjobportal_string = "users.id";
             }
@@ -92,8 +111,8 @@ class WPJOBPORTALuser {
                 return false;
             }
         } else {
-            if (isset($_COOKIE['wpjobportal-socialid']) && !empty($_COOKIE['wpjobportal-socialid'])) { // social user is logged in
-                $wpjobportal_socialid = sanitize_key(wp_unslash($_COOKIE['wpjobportal-socialid']));
+            if (WPJOBPORTALrequest::hasCookie('wpjobportal-socialid') && !empty(WPJOBPORTALrequest::cookie('wpjobportal-socialid'))) { // social user is logged in
+                $wpjobportal_socialid = sanitize_key((string) WPJOBPORTALrequest::cookie('wpjobportal-socialid', ''));
                 $query = wpjobportal::$_db->prepare("SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE socialid = %s", $wpjobportal_socialid);
                 $wpjobportal_result = wpjobportal::$_db->get_var($query);
                 if ($wpjobportal_result > 0) {
@@ -177,8 +196,21 @@ class WPJOBPORTALuser {
         }else{
             if(is_numeric($wpjobportal_uid)){
                 if(wpjobportal::$_common->wpjp_isadmin()){
-                    $query = wpjobportal::$_db->prepare("SELECT CONCAT(first_name,' ',last_name) FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE `ID` = %d", $wpjobportal_uid);
-                    return wpjobportal::$_db->get_var($query);
+                    // Accounts without a first/last name showed blank in admin lists; fall back to the WP display name, login, then email.
+                    $query = wpjobportal::$_db->prepare("SELECT TRIM(CONCAT(IFNULL(user.first_name,''),' ',IFNULL(user.last_name,''))) AS name, wpuser.display_name, wpuser.user_login, user.emailaddress
+                        FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` AS user
+                        LEFT JOIN `" . wpjobportal::$_db->users . "` AS wpuser ON wpuser.ID = user.uid
+                        WHERE user.`ID` = %d", $wpjobportal_uid);
+                    $wpjobportal_row = wpjobportal::$_db->get_row($query);
+                    if (!$wpjobportal_row) {
+                        return '';
+                    }
+                    foreach (array('name', 'display_name', 'user_login', 'emailaddress') as $wpjobportal_key) {
+                        if (!empty($wpjobportal_row->$wpjobportal_key)) {
+                            return $wpjobportal_row->$wpjobportal_key;
+                        }
+                    }
+                    return '';
                 }else{
                     return '';
                 }
@@ -213,8 +245,8 @@ class WPJOBPORTALuser {
                 return false;
             }
         } else {
-            if (isset($_COOKIE['wpjobportal-socialid']) && !empty($_COOKIE['wpjobportal-socialid'])) { // social user is logged in
-                $wpjobportal_socialid = sanitize_key(wp_unslash($_COOKIE['wpjobportal-socialid']));
+            if (WPJOBPORTALrequest::hasCookie('wpjobportal-socialid') && !empty(WPJOBPORTALrequest::cookie('wpjobportal-socialid'))) { // social user is logged in
+                $wpjobportal_socialid = sanitize_key((string) WPJOBPORTALrequest::cookie('wpjobportal-socialid', ''));
                 $query = wpjobportal::$_db->prepare("SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE socialid = %s", $wpjobportal_socialid);
                 $wpjobportal_result = wpjobportal::$_db->get_var($query);
                 if ($wpjobportal_result > 0) {
@@ -227,7 +259,7 @@ class WPJOBPORTALuser {
     }
 
     function isSocialLogin() {
-        if (isset($_COOKIE['wpjobportal-socialid']) && !empty($_COOKIE['wpjobportal-socialid'])) {
+        if (WPJOBPORTALrequest::hasCookie('wpjobportal-socialid') && !empty(WPJOBPORTALrequest::cookie('wpjobportal-socialid'))) {
             return true;
         } else {
             return false;

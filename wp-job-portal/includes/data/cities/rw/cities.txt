@@ -9,4 +9,13 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("Kigali", "Kigali", "Kigali", NULL, 180, 0, 1, NULL, "-1.950851", "30.061507"),
 ("Musanze", "Musanze", "Musanze", NULL, 180, 0, 1, NULL, "-1.50405", "29.63631"),
 ("Rwamagana", "Rwamagana", "Rwamagana", NULL, 180, 0, 1, NULL, "-1.951239", "30.434885"),
-("Gicumbi", "Gicumbi", "Gicumbi", NULL, 180, 0, 1, NULL, "-1.5762042", "30.0690008");
+("Gicumbi", "Gicumbi", "Gicumbi", NULL, 180, 0, 1, NULL, "-1.5762042", "30.0690008"),
+("Butare", "Butare", "Butare", NULL, 180, 0, 1, NULL, "-2.6077503", "29.7368128"),
+("Byumba", "Byumba", "Byumba", NULL, 180, 0, 1, NULL, "-1.5791079", "30.0694123"),
+("Cyangugu", "Cyangugu", "Cyangugu", NULL, 180, 0, 1, NULL, "-2.4756775", "28.917927"),
+("Gisenyi", "Gisenyi", "Gisenyi", NULL, 180, 0, 1, NULL, "-1.6791575", "29.2611335"),
+("Gitarama", "Gitarama", "Gitarama", NULL, 180, 0, 1, NULL, "-2.0804472", "29.7599761"),
+("Kibungo", "Kibungo", "Kibungo", NULL, 180, 0, 1, NULL, "-2.1609132", "30.5437406"),
+("Kibuye", "Kibuye", "Kibuye", NULL, 180, 0, 1, NULL, "-2.0576972", "29.3497164"),
+("Nzega", "Nzega", "Nzega", NULL, 180, 0, 1, NULL, "-4.2160791", "33.1857517"),
+("Ruhengeri", "Ruhengeri", "Ruhengeri", NULL, 180, 0, 1, NULL, "-1.5034616", "29.6325305");

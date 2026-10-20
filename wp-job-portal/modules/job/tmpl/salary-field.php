@@ -10,7 +10,7 @@ $wpjobportal_salarytypelist = array(
     (object) array('id'=>WPJOBPORTAL_SALARY_RANGE,'text'=>esc_html(__("Range",'wp-job-portal'))),
 );
 ?>
-<div class="wjportal-form-5-fields">
+<div class="wjportal-form-5-fields wjportal-form-symbol-row">
     <div class="wjportal-form-inner-fields">
         <?php echo wp_kses(WPJOBPORTALformfield::select('salarytype', $wpjobportal_salarytypelist, $wpjobportal_job ? esc_html($wpjobportal_job->salarytype) : 2, esc_html(__("Select",'wp-job-portal')).' '.esc_html(__("Salary Type",'wp-job-portal')), array('class' => 'inputbox sal wjportal-form-select-field', 'data-validation' => $wpjobportal_field->validation)),WPJOBPORTAL_ALLOWED_TAGS); ?>
     </div>
@@ -31,7 +31,7 @@ $wpjobportal_salarytypelist = array(
     </div>
 </div>
 <?php
-    wp_register_script( 'wpjobportal-inline-handle', '' );
+    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
     $wpjobportal_inline_js_script = "

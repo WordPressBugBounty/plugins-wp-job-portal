@@ -15,6 +15,11 @@ class WPJOBPORTALpostinstallationController {
         // Setup & Mode menu is opened without a layout query argument, start on
         // the mode chooser rather than bypassing it and entering step one.
         $wpjobportal_layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'quickstart');
+        // The Employer and Job Seeker settings steps were folded into
+        // Essentials; an old link or bookmark to either opens Essentials.
+        if (in_array($wpjobportal_layout, array('admin_steptwo', 'admin_stepthree'), true)) {
+            $wpjobportal_layout = 'admin_stepone';
+        }
         if($this->canaddfile($wpjobportal_layout)){
             switch ($wpjobportal_layout) {
                 case 'admin_stepone':
@@ -41,8 +46,11 @@ class WPJOBPORTALpostinstallationController {
                     if (false !== wpjobportal::$_data['sample_cleanup_result']) {
                         delete_transient($wpjobportal_cleanup_result_key);
                     }
+                    wpjobportal::$_data['sample_owner_notice'] = $this->takeSampleOwnerNotice();
                 break;
                 case 'admin_stepfour':
+                    wpjobportal::$_data['sample_owner_notice'] = $this->takeSampleOwnerNotice();
+                break;
                 case 'admin_setupcomplete':
                 break;
                 case 'admin_modeguide':
@@ -66,11 +74,11 @@ class WPJOBPORTALpostinstallationController {
             return false;
         }
 
-        if (isset($_POST['form_request']) && $_POST['form_request'] === 'wpjobportal') {
+        if (WPJOBPORTALrequest::getVar('form_request', 'post', '') === 'wpjobportal') {
             return false;
         }
 
-        if (isset($_GET['action']) && $_GET['action'] === 'wpjobportaltask') {
+        if (WPJOBPORTALrequest::getVar('action', 'get', '') === 'wpjobportaltask') {
             return false;
         }
 
@@ -130,12 +138,8 @@ class WPJOBPORTALpostinstallationController {
         if($wpjobportal_is_mode_stage){
             $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_postinstallation&wpjobportallt=stepone"));
         }elseif($wpjobportal_data['step'] == 1){
-            $wpjobportal_multiple_employers =  get_option( "wpjobportal_multiple_employers", 1 );
-            if($wpjobportal_multiple_employers == 1){
-                $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_postinstallation&wpjobportallt=steptwo"));
-            }else{
-                $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_postinstallation&wpjobportallt=stepthree"));
-            }
+            // Essentials is the only settings step now; sample data is next.
+            $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_postinstallation&wpjobportallt=stepfour"));
         }
         if(!$wpjobportal_is_mode_stage && $wpjobportal_data['step'] == 2){
             $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_postinstallation&wpjobportallt=stepthree"));
@@ -174,6 +178,24 @@ class WPJOBPORTALpostinstallationController {
             $wpjobportal_job_listing_menu = absint($wpjobportal_data['job_listing_menu']);
         }
 
+        // Sample data needs an owner for each role. Records nobody owns are
+        // refused when an employer saves a job against them and never appear
+        // in My Jobs, so importing without owners would ship that fault. The
+        // screen requires both; this is the same rule for a request that
+        // did not come from it. Nothing is written until both are sound.
+        if ($wpjobportal_sampledata == 1) {
+            $wpjobportal_employer_owner = isset($wpjobportal_data['employer_id']) ? absint($wpjobportal_data['employer_id']) : 0;
+            $wpjobportal_jobseeker_owner = isset($wpjobportal_data['jobseeker_id']) ? absint($wpjobportal_data['jobseeker_id']) : 0;
+            $wpjobportal_owner_check = ($wpjobportal_employer_owner === 0 || $wpjobportal_jobseeker_owner === 0)
+                ? new WP_Error('no_owner', __('Choose who owns the sample data: an employer and a job seeker. Add a user first if you need one, or choose No to skip the sample data.', 'wp-job-portal'))
+                : WPJOBPORTAL_Sample_Data_Service::validate_owners($wpjobportal_employer_owner, $wpjobportal_jobseeker_owner);
+            if (is_wp_error($wpjobportal_owner_check)) {
+                $this->putSampleOwnerNotice('error', $wpjobportal_owner_check->get_error_message());
+                wp_safe_redirect(admin_url('admin.php?page=wpjobportal_postinstallation&wpjobportallt=stepfour'));
+                exit();
+            }
+        }
+
         if(wpjobportal::$wpjobportal_theme_chk == 1){
             update_option( 'wpjobportal_jobs_sample_data', 1 ); // flag to messge that jobs data has been inserted.
             $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_postinstallation&wpjobportallt=demoimporter"));
@@ -182,7 +204,7 @@ class WPJOBPORTALpostinstallationController {
             $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_postinstallation&wpjobportallt=setupcomplete"));
         }
         $wpjobportal_result = WPJOBPORTALincluder::getJSModel('postinstallation')->installSampleData($wpjobportal_sampledata,$wpjobportal_jsmenu,$wpjobportal_empmenu,$wpjobportal_temp_data, $wpjobportal_job_listing_menu);
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         exit();
     }
 
@@ -196,27 +218,26 @@ class WPJOBPORTALpostinstallationController {
         $flag = WPJOBPORTALrequest::getVar('flag');
         $wpjobportal_result = WPJOBPORTALincluder::getJSModel('postinstallation')->installSampleDataTemplate($flag);
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_postinstallation&wpjobportallt=themedemodata&flag=".esc_url($wpjobportal_result)));
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         exit();
     }
 
-    function importtemplatesampledata(){
-        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
-        if (! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_postinstallation_nonce') ) {
-             die( 'Security check Failed' );
-        }
-        if(!wpjobportal::$_common->wpjp_isadmin())
-            return false;
-        $flag = WPJOBPORTALrequest::getVar('flag','',0);// zero as default value to avoid problems
-        if($flag == 'f'){
-            $wpjobportal_result = WPJOBPORTALincluder::getJSModel('postinstallation')->importTemplateSampleData($flag);
-        }else{
-            $wpjobportal_result = 0;
-        }
-        $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_postinstallation&wpjobportallt=themedemodata&flag=".esc_url($wpjobportal_result)));
-        wp_redirect($wpjobportal_url);
-        exit();
-    }
+    /*
+     * importtemplatesampledata() used to sit here and has been removed, with
+     * its route and its action-policy entry.
+     *
+     * It was a near-copy of savetemplatesampledata() above - same nonce, same
+     * admin check, same redirect - differing only in accepting the 'f' flag
+     * alone and in calling importTemplateSampleData(), which this model does
+     * not define. The model has installSampleDataTemplate(), which is what
+     * savetemplatesampledata() calls and what the Theme Demo Data screen's
+     * three buttons actually invoke.
+     *
+     * So the working task was next door the whole time and nothing linked to
+     * this one; it survived only because the route registry and the action
+     * policy still advertised it, which made it dispatchable to anyone holding
+     * a valid nonce. Importing demo data is unaffected.
+     */
 
     function getdemocode(){
         $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
@@ -230,7 +251,7 @@ class WPJOBPORTALpostinstallationController {
         $wpjobportal_demo_overwrite = WPJOBPORTALrequest::getVar('demo_overwrite');
         $wpjobportal_result = WPJOBPORTALincluder::getJSModel('postinstallation')->getDemo($wpjobportal_demoid,$foldername,$wpjobportal_demo_overwrite);
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal"));
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         exit();
     }
 
@@ -260,6 +281,86 @@ class WPJOBPORTALpostinstallationController {
             5 * MINUTE_IN_SECONDS
         );
         $this->redirectToQuickStart();
+    }
+
+    /**
+     * Give the sample data to a different employer or job seeker.
+     */
+    function assignsampleowner(){
+        $this->authorizeOnboardingAction(true);
+        $wpjobportal_employer_owner = absint(WPJOBPORTALrequest::getVar('sample_employer_owner'));
+        $wpjobportal_jobseeker_owner = absint(WPJOBPORTALrequest::getVar('sample_jobseeker_owner'));
+
+        if ($wpjobportal_employer_owner === 0 && $wpjobportal_jobseeker_owner === 0) {
+            $this->putSampleOwnerNotice('error', __('Choose a user for at least one role.', 'wp-job-portal'));
+            $this->redirectToQuickStart();
+        }
+
+        $wpjobportal_check = WPJOBPORTAL_Sample_Data_Service::validate_owners($wpjobportal_employer_owner, $wpjobportal_jobseeker_owner);
+        if (!is_wp_error($wpjobportal_check)) {
+            // Checked against the owner already in place for the role that
+            // is not changing, so one account cannot end up holding both.
+            $wpjobportal_other = $wpjobportal_employer_owner > 0
+                ? WPJOBPORTAL_Sample_Data_Service::current_owner(WPJOBPORTAL_Sample_Data_Service::ROLE_JOBSEEKER)
+                : WPJOBPORTAL_Sample_Data_Service::current_owner(WPJOBPORTAL_Sample_Data_Service::ROLE_EMPLOYER);
+            $wpjobportal_changing = $wpjobportal_employer_owner > 0 ? $wpjobportal_employer_owner : $wpjobportal_jobseeker_owner;
+            if ($wpjobportal_employer_owner > 0 && $wpjobportal_jobseeker_owner > 0) {
+                $wpjobportal_other = 0;
+            }
+            if ($wpjobportal_other > 0 && $wpjobportal_other === $wpjobportal_changing) {
+                $wpjobportal_check = new WP_Error('same_user', __('Choose different users for the employer and the job seeker. One account cannot be both.', 'wp-job-portal'));
+            }
+        }
+        if (is_wp_error($wpjobportal_check)) {
+            $this->putSampleOwnerNotice('error', $wpjobportal_check->get_error_message());
+            $this->redirectToQuickStart();
+        }
+
+        $wpjobportal_moved = 0;
+        $wpjobportal_kept = 0;
+        foreach (array(
+            WPJOBPORTAL_Sample_Data_Service::ROLE_EMPLOYER => $wpjobportal_employer_owner,
+            WPJOBPORTAL_Sample_Data_Service::ROLE_JOBSEEKER => $wpjobportal_jobseeker_owner,
+        ) as $wpjobportal_role => $wpjobportal_owner) {
+            if ($wpjobportal_owner === 0) {
+                continue;
+            }
+            $wpjobportal_result = WPJOBPORTAL_Sample_Data_Service::assign_owner($wpjobportal_role, $wpjobportal_owner);
+            if (is_wp_error($wpjobportal_result)) {
+                $this->putSampleOwnerNotice('error', $wpjobportal_result->get_error_message());
+                $this->redirectToQuickStart();
+            }
+            $wpjobportal_moved += $wpjobportal_result['moved'];
+            $wpjobportal_kept += $wpjobportal_result['kept'];
+        }
+
+        $wpjobportal_text = sprintf(
+            /* translators: %d: number of sample records. */
+            _n('%d sample record now has its new owner.', '%d sample records now have their new owner.', $wpjobportal_moved, 'wp-job-portal'),
+            $wpjobportal_moved
+        );
+        if ($wpjobportal_kept > 0) {
+            $wpjobportal_text .= ' ' . sprintf(
+                /* translators: %d: number of sample records. */
+                _n('%d you have edited kept its owner.', '%d you have edited kept their owner.', $wpjobportal_kept, 'wp-job-portal'),
+                $wpjobportal_kept
+            );
+        }
+        $this->putSampleOwnerNotice('success', $wpjobportal_text);
+        $this->redirectToQuickStart();
+    }
+
+    private function putSampleOwnerNotice($type, $text){
+        set_transient('wpjobportal_sample_owner_notice_' . get_current_user_id(), array('type' => $type, 'text' => $text), 5 * MINUTE_IN_SECONDS);
+    }
+
+    private function takeSampleOwnerNotice(){
+        $key = 'wpjobportal_sample_owner_notice_' . get_current_user_id();
+        $notice = get_transient($key);
+        if (false !== $notice) {
+            delete_transient($key);
+        }
+        return is_array($notice) ? $notice : null;
     }
 
     private function authorizeOnboardingAction($administrator_only = false){

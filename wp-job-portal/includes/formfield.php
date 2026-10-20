@@ -247,7 +247,11 @@ class WPJOBPORTALformfield {
         if (!empty($wpjobportal_extraattr))
             foreach ($wpjobportal_extraattr AS $wpjobportal_key => $wpjobportal_val)
                 $wpjobportal_textarea .= ' ' . $wpjobportal_key . '="' . $wpjobportal_val . '"';
-        $wpjobportal_textarea .= ' >' . $wpjobportal_value . '</textarea>';
+        // Escaped like every other control here. Unescaped, a front-end form (shortcode output, which
+        // wptexturize runs over and does not skip <textarea>) turned "cloud" into “cloud” on every save,
+        // and a stored </textarea> ended the field early. Entities already in the value (saves store & as
+        // &amp;) are not encoded again, so the field still shows & as it did before.
+        $wpjobportal_textarea .= ' >' . htmlspecialchars((string) $wpjobportal_value, ENT_QUOTES, 'UTF-8', false) . '</textarea>';
         return $wpjobportal_textarea;
     }
 
@@ -324,9 +328,9 @@ class WPJOBPORTALformfield {
         if (!empty($list))
             foreach ($list AS $record) {
                 if ((is_array($wpjobportal_defaultvalue) && in_array($record->id, $wpjobportal_defaultvalue)) || $wpjobportal_defaultvalue == $record->id)
-                    $wpjobportal_selectfield .= '<option selected="selected" value="' . $record->id . '">' . wpjobportal::wpjobportal_getVariableValue($record->text) . '</option>';
+                    $wpjobportal_selectfield .= '<option selected="selected" value="' .  wpjobportalphplib::wpJP_htmlspecialchars($record->id) . '">' . wpjobportal::wpjobportal_getVariableValue($record->text) . '</option>';
                 else
-                    $wpjobportal_selectfield .= '<option value="' . $record->id . '">' . wpjobportal::wpjobportal_getVariableValue($record->text) . '</option>';
+                    $wpjobportal_selectfield .= '<option value="' .  wpjobportalphplib::wpJP_htmlspecialchars($record->id) . '">' . wpjobportal::wpjobportal_getVariableValue($record->text) . '</option>';
             }
 
         $wpjobportal_selectfield .= '</select>';
@@ -357,9 +361,9 @@ class WPJOBPORTALformfield {
             foreach ($list AS $record) {
                 $wpjobportal_class=isset($record->class)?$record->class:"";
                 if ((is_array($wpjobportal_defaultvalue) && in_array($record->id, $wpjobportal_defaultvalue)) || $wpjobportal_defaultvalue == $record->id)
-                    $wpjobportal_selectfield .= '<option class="' . $wpjobportal_class . '"  selected="selected" value="' . $record->id . '">' . wpjobportal::wpjobportal_getVariableValue($record->text) . '</option>';
+                    $wpjobportal_selectfield .= '<option class="' . $wpjobportal_class . '"  selected="selected" value="' .  wpjobportalphplib::wpJP_htmlspecialchars($record->id) . '">' . wpjobportal::wpjobportal_getVariableValue($record->text) . '</option>';
                 else
-                    $wpjobportal_selectfield .= '<option class="' . $wpjobportal_class . '" value="' . $record->id . '">' . wpjobportal::wpjobportal_getVariableValue($record->text) . '</option>';
+                    $wpjobportal_selectfield .= '<option class="' . $wpjobportal_class . '" value="' .  wpjobportalphplib::wpJP_htmlspecialchars($record->id) . '">' . wpjobportal::wpjobportal_getVariableValue($record->text) . '</option>';
             }
 
         $wpjobportal_selectfield .= '</select>';

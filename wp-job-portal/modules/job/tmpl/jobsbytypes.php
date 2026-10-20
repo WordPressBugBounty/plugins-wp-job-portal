@@ -14,7 +14,7 @@ if(!WPJOBPORTALincluder::getTemplate('templates/header',array('wpjobportal_modul
                 WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('wpjobportal_module'=>'job','wpjobportal_layout'=>'jobtype'));
             ?>
         </div>
-        <div class="wjportal-by-type-wrp">
+        <div class="wjportal-by-type-wrp wjportal-by-types-wrp">
             <?php
                 $wpjobportal_number = 3;
                 if(wpjobportal::$_data['config']['jobtype_per_row'] != ''){ // to handle float value in configuration

@@ -71,26 +71,7 @@ class WPJOBPORTALtable {
                 return false;
             }
         } else { // record updated
-            $wpjobportal_pk = $this->primarykey;
-            if (!isset($this->columns[$wpjobportal_pk])) {
-                return false;
-            }
-            $wpjobportal_pkvalue = $this->columns[$wpjobportal_pk];
-            $wpjobportal_whereformat = null;
-            if ($wpjobportal_pk === 'id') {
-                // integer primary key. bind it as %d and refuse anything MySQL would silently
-                // coerce, otherwise a WHERE of '123abc' would match row 123.
-                if (is_array($wpjobportal_pkvalue)
-                    || !is_numeric($wpjobportal_pkvalue)
-                    || (string) absint($wpjobportal_pkvalue) !== (string) $wpjobportal_pkvalue
-                    || absint($wpjobportal_pkvalue) < 1
-                ) {
-                    return false;
-                }
-                $wpjobportal_pkvalue = absint($wpjobportal_pkvalue);
-                $wpjobportal_whereformat = array('%d');
-            }
-            wpjobportal::$_db->update($this->tablename, $this->columns, array($wpjobportal_pk => $wpjobportal_pkvalue), null, $wpjobportal_whereformat);
+            wpjobportal::$_db->update($this->tablename, $this->columns, array($this->primarykey => $this->columns[$this->primarykey]));
             WPJOBPORTALincluder::getJSModel('activitylog')->storeActivity(2, $this->tablename, $this->columns);
             if (wpjobportal::$_db->last_error != null) {
                 WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError();
@@ -115,21 +96,9 @@ class WPJOBPORTALtable {
     function delete($wpjobportal_id) {
         if (!is_numeric($wpjobportal_id))
             return false;
-        $wpjobportal_whereformat = null;
-        if ($this->primarykey === 'id') {
-            // same reasoning as store(): bind the integer key as %d so nothing is coerced.
-            if (is_array($wpjobportal_id)
-                || (string) absint($wpjobportal_id) !== (string) $wpjobportal_id
-                || absint($wpjobportal_id) < 1
-            ) {
-                return false;
-            }
-            $wpjobportal_id = absint($wpjobportal_id);
-            $wpjobportal_whereformat = array('%d');
-        }
         //data for delete
         $wpjobportal_data = WPJOBPORTALincluder::getJSModel('activitylog')->getDeleteActionDataToStore($this->tablename, $wpjobportal_id);
-        wpjobportal::$_db->delete($this->tablename, array($this->primarykey => $wpjobportal_id), $wpjobportal_whereformat);
+        wpjobportal::$_db->delete($this->tablename, array($this->primarykey => $wpjobportal_id));
         if (wpjobportal::$_db->last_error == null) {
             WPJOBPORTALincluder::getJSModel('activitylog')->storeActivityLogForActionDelete($wpjobportal_data, $wpjobportal_id);
             return true;

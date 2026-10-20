@@ -17,4 +17,16 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("Chiquimula", "Chiquimula", "Chiquimula", NULL, 17, 0, 1, NULL, "14.8005709", "-89.5459173"),
 ("Zacapa", "Zacapa", "Zacapa", NULL, 17, 0, 1, NULL, "14.9707219", "-89.5297411"),
 ("Puerto Barrios", "Puerto Barrios", "Puerto Barrios", NULL, 17, 0, 1, NULL, "15.7275154", "-88.5952506"),
-("Flores", "Flores", "Flores", NULL, 17, 0, 1, NULL, "16.9298524", "-89.8914817");
+("Flores", "Flores", "Flores", NULL, 17, 0, 1, NULL, "16.9298524", "-89.8914817"),
+("Antigua", "Antigua", "Antigua", NULL, 17, 0, 1, NULL, "14.5585707", "-90.729523"),
+("Boca Del Monte", "Boca Del Monte", "Boca Del Monte", NULL, 17, 0, 1, NULL, "16.4604156", "-89.4245627"),
+("Chichicastenango", "Chichicastenango", "Chichicastenango", NULL, 17, 0, 1, NULL, "14.9449723", "-91.1089244"),
+("Cuilapa", "Cuilapa", "Cuilapa", NULL, 17, 0, 1, NULL, "14.2772042", "-90.297229"),
+("Guatemala", "Guatemala", "Guatemala", NULL, 17, 0, 1, NULL, "14.6349149", "-90.5068824"),
+("Jutiapa", "Jutiapa", "Jutiapa", NULL, 17, 0, 1, NULL, "14.2744501", "-89.8785765"),
+("Quezaltenango", "Quezaltenango", "Quezaltenango", NULL, 17, 0, 1, NULL, "14.8520705", "-91.5305465"),
+("Salama", "Salama", "Salama", NULL, 17, 0, 1, NULL, "15.1052115", "-90.3160286"),
+("San Juan Sacatepequez", "San Juan Sacatepequez", "San Juan Sacatepequez", NULL, 17, 0, 1, NULL, "14.7191153", "-90.6464802"),
+("San Miguel Petapa", "San Miguel Petapa", "San Miguel Petapa", NULL, 17, 0, 1, NULL, "36.6620107", "-120.1055458"),
+("Solola", "Solola", "Solola", NULL, 17, 0, 1, NULL, "14.7666085", "-91.1785016"),
+("Villa Canales", "Villa Canales", "Villa Canales", NULL, 17, 0, 1, NULL, "14.4776003", "-90.5116066");

@@ -32,15 +32,11 @@ class WPJOBPORTALCommonModel {
 
     function getGoogleMapApiAddress() {
 
-        $wpjobportal_filekey = wp_remote_get(esc_url(WPJOBPORTAL_PLUGIN_URL).'/includes/google-map-js.inc.php');
-        if (is_wp_error($wpjobportal_filekey)) {
-            return '';
-        }
-        $file_key_string= $wpjobportal_filekey['body'];
-        //echo var_dump($file_key_string);die('comommm');
+        // The address pattern used to be fetched over HTTP from a file in the plugin; it is the same fixed text.
+        $file_key_string = '{PROTOCOL}maps.googleapis.com/maps/api/js?key={KEY}';
 
         $wpjobportal_key =wpjobportal::$_configuration['google_map_api_key'];
-        $wpjobportal_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+        $wpjobportal_protocol = is_ssl() ? "https://" : "http://";
         $wpjobportal_matcharray = array(
             '{PROTOCOL}' => $wpjobportal_protocol,
             '{KEY}' => $wpjobportal_key,
@@ -616,10 +612,7 @@ class WPJOBPORTALCommonModel {
             require_once ABSPATH . 'wp-admin/includes/file.php';
         }
         global $wp_filesystem;
-        if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-            $creds = request_filesystem_credentials( site_url() );
-            wp_filesystem( $creds );
-        }
+        $wp_filesystem = wpjobportal::wpjobportal_filesystem();
 
         if (!$wp_filesystem->exists($wpjobportal_path)) { // create directory
             $wp_filesystem->mkdir($wpjobportal_path, 0755);
@@ -633,7 +626,15 @@ class WPJOBPORTALCommonModel {
         }
     }
     function WPJPcheck_field() {
-		$autfored = WPJOBPORTALincluder::getJSModel('wpjobportal')->WPJPcheck_autfored(); 
+		$autfored = WPJOBPORTALincluder::getJSModel('wpjobportal')->WPJPcheck_autfored();
+
+        // Nothing to compare against, so nothing to encrypt: there is no key
+        // on a site that was never licensed, and encrypting against no key
+        // only ever produced a deprecation notice and a false.
+        if (!is_string($autfored) || $autfored === '') {
+            return false;
+        }
+
         $wpjobportal_encrypted_field = openssl_encrypt('ed', 'AES-128-ECB', $autfored);
         $wpjobportal_option_name = 'wjportal_ed';
         $wpjobportal_stored_data = get_option($wpjobportal_option_name);
@@ -646,46 +647,229 @@ class WPJOBPORTALCommonModel {
         return false; // No match
     }
 
+    /**
+     * May the person looking at this page see resumes?
+     *
+     * Two settings decided this between them, in two different sections of the
+     * settings screen, and they contradicted each other out of the box:
+     *
+     *   Resume Settings  "Allow Resume Search"        Allowed only to employers
+     *   Content Access   "Visitor Can Search Resumes" Yes
+     *
+     * "Allow Resume Search" ran first and won, so an administrator could read
+     * Content Access, see that visitors were allowed, and be wrong. The visitor
+     * toggle governed one page - the resume search form - and not the results,
+     * so even where it did apply the visitor reached a form that refused them,
+     * or a categories page whose every link led to "You are not allowed".
+     *
+     * Now there is one answer, given here, and the visitor toggle is what it
+     * always looked like: a sub-switch of "Allowed only to employers", asked
+     * only when that is the mode in force.
+     *
+     * @param string $wpjobportal_visitor_setting The Content Access toggle that
+     *                                            governs this particular page.
+     * @return bool
+     */
+    public function resumesAreVisible($wpjobportal_visitor_setting = 'visitorview_emp_resumesearch') {
+        $wpjobportal_allow = (int) wpjobportal::$_config->getConfigurationByConfigName('allow_search_resume');
+
+        // Nobody, and nothing overrides it.
+        if ($wpjobportal_allow === 0) {
+            return false;
+        }
+
+        if ($this->wpjp_isadmin()) {
+            return true;
+        }
+
+        // Everyone.
+        if ($wpjobportal_allow === 1) {
+            return true;
+        }
+
+        /*
+         * Employers only - which is also where an unrecognised value lands,
+         * deliberately: a value nobody expected should close the door rather
+         * than open it.
+         */
+        $wpjobportal_empflag = wpjobportal::$_config->getConfigurationByConfigName('disable_employer');
+        if (WPJOBPORTALincluder::getObjectClass('user')->isemployer() && $wpjobportal_empflag == 1) {
+            return true;
+        }
+
+        return wpjobportal::$_config->getConfigurationByConfigName($wpjobportal_visitor_setting) == 1;
+    }
+
+    /**
+     * A setting that is about to be written into JavaScript as a number.
+     *
+     * Settings reach the page by string concatenation, so a value that is not a
+     * number does not produce a wrong number - it produces a syntax error, and
+     * the whole inline script stops parsing. An empty "Maximum Number of Files
+     * for Resume" emitted `var maxFiles = ;` and took the add-resume form down
+     * with it: the file picker stopped responding, and the tag fields went with
+     * it, because everything after that point in the block never ran. The field
+     * is free text in the settings screen with nothing stopping an admin from
+     * clearing it.
+     *
+     * The fallback is used for anything that is not a positive whole number, so
+     * the page keeps working and the worst case is a limit the admin did not
+     * choose rather than a form nobody can use.
+     *
+     * @param string $wpjobportal_configname Setting to read.
+     * @param int    $wpjobportal_fallback   Used when it is unusable.
+     * @return int Always safe to concatenate into JavaScript.
+     */
+    public function configAsJsNumber($wpjobportal_configname, $wpjobportal_fallback) {
+        $wpjobportal_value = wpjobportal::$_config->getConfigurationByConfigName($wpjobportal_configname);
+
+        if (is_string($wpjobportal_value)) {
+            $wpjobportal_value = trim($wpjobportal_value);
+        }
+
+        if (!is_numeric($wpjobportal_value)) {
+            return (int) $wpjobportal_fallback;
+        }
+
+        $wpjobportal_value = (int) $wpjobportal_value;
+
+        // Zero and negatives are as unusable as a blank: a limit of none means
+        // the picker refuses every file without saying why.
+        if ($wpjobportal_value < 1) {
+            return (int) $wpjobportal_fallback;
+        }
+
+        return $wpjobportal_value;
+    }
+
+    /**
+     * Read a salary the way somebody would write one.
+     *
+     * The salary fields are plain text with the currency symbol printed beside
+     * them, so people type what they see: "$50,000", "50 000", "45,000.50".
+     * The columns are floats, which means an unparsed string was stored as 0 -
+     * a job advertised at nothing - and on a server with strict SQL mode the
+     * insert would fail outright.
+     *
+     * Returns null rather than 0 for anything that cannot be read as a number.
+     * A salary nobody can parse is a salary nobody stated, and recording it as
+     * zero would be recording something the employer never said.
+     *
+     * @param mixed $value What was typed, or what is stored.
+     * @return float|null
+     */
+    public function normaliseSalary($value) {
+        if (is_float($value) || is_int($value)) {
+            return (float) $value;
+        }
+
+        $value = trim((string) $value);
+        if ($value === '') {
+            return null;
+        }
+
+        // A letter touching a digit changes what the number means - "50k" is
+        // fifty thousand, not fifty - and there is no honest way to guess which
+        // multiplier was intended. A letter standing apart from the digits is a
+        // currency name, "USD 50,000", and can be dropped safely.
+        if (preg_match('/\d\p{L}|\p{L}\d/u', $value)) {
+            return null;
+        }
+
+        // Currency symbols, spaces, names, and anything else that is not part
+        // of the number. What is left is digits and the two characters that
+        // might be separating them.
+        $value = preg_replace('/[^0-9.,-]/', '', $value);
+        if ($value === '' || $value === '-') {
+            return null;
+        }
+
+        $dot = strrpos($value, '.');
+        $comma = strrpos($value, ',');
+
+        if ($dot !== false && $comma !== false) {
+            // Both present: whichever comes last is the decimal mark, and the
+            // other is grouping. "1.234,56" and "1,234.56" both mean the same.
+            $decimal = $dot > $comma ? '.' : ',';
+            $grouping = $decimal === '.' ? ',' : '.';
+            $value = str_replace($grouping, '', $value);
+            $value = str_replace($decimal, '.', $value);
+        } elseif ($comma !== false) {
+            // One kind of separator, so its meaning has to be guessed. Two
+            // digits after a single comma is a decimal; anything else is
+            // grouping, which is the far more common way to write a salary.
+            $value = preg_match('/^-?\d+,\d{2}$/', $value)
+                ? str_replace(',', '.', $value)
+                : str_replace(',', '', $value);
+        }
+
+        // A stray second dot, or a dash that was not a minus sign - "3000-6000"
+        // typed into a single field - leaves something that is not a number,
+        // and guessing which half was meant would be inventing a salary.
+        return is_numeric($value) ? (float) $value : null;
+    }
+
+    // Whole figures read better without a trailing ".00"; only a salary that
+    // actually has pence keeps them.
+    function formatSalaryFigure($value) {
+        if (fmod((float) $value, 1) !== 0.00) {
+            return wpjobportalphplib::wpJP_number_format((float) $value, 2);
+        }
+
+        return wpjobportalphplib::wpJP_number_format((float) $value);
+    }
+
+    // Right alignment is the deliberate choice; anything else, including a
+    // config value that was never saved, puts the symbol in front - which is
+    // what most currencies do, and better than printing no salary at all.
+    function alignSalaryCurrency($figure, $currencysymbol, $currency_align) {
+        if ($currency_align == 2) {
+            return $figure . ' ' . $currencysymbol;
+        }
+
+        return $currencysymbol . ' ' . $figure;
+    }
+
     function getSalaryRangeView($type, $min, $wpjobportal_max, $currency=""){
         $wpjobportal_salary = '';
         $currencysymbol =  isset($currency) ? $currency : wpjobportal::$_config->getConfigValue('job_currency');
         $currency_align = wpjobportal::$_config->getConfigValue('currency_align');
-        // $min = wpjobportalphplib::wpJP_number_format((float)$min,2);
-        // $wpjobportal_max = wpjobportalphplib::wpJP_number_format((float)$wpjobportal_max,2);
-    if($min){
-      if(fmod($min, 1) !== 0.00){
-            $min = wpjobportalphplib::wpJP_number_format((float)$min,2);
-        }else{
-            $min = wpjobportalphplib::wpJP_number_format((float)$min);
-        }
-    }
-      if($wpjobportal_max){
-          if(fmod($wpjobportal_max, 1) !== 0.00){
-              $wpjobportal_max = wpjobportalphplib::wpJP_number_format((float)$wpjobportal_max,2);
-          }else{
-              $wpjobportal_max = wpjobportalphplib::wpJP_number_format((float)$wpjobportal_max);
-          }
-      }
-      
+
+        // Read as numbers before anything arithmetic is done to them. fmod()
+        // on a string is a fatal error in PHP 8, and this is reached from job
+        // listings, emails, RSS, widgets and PDFs - so one unparseable salary
+        // took out every one of them.
+        $min = $this->normaliseSalary($min);
+        $wpjobportal_max = $this->normaliseSalary($wpjobportal_max);
+
+        // A job posted without a salary stores nothing, or a zero, in these
+        // columns, and formatting that anyway printed "0 $" on the card - a
+        // stated salary of nothing. A figure that is absent or zero is treated
+        // as no figure at all, and the caller is given nothing to print.
+        $has_min = ($min !== null && abs($min) > 0);
+        $has_max = ($wpjobportal_max !== null && abs($wpjobportal_max) > 0);
+
+        $min = $has_min ? $this->formatSalaryFigure($min) : '';
+        $wpjobportal_max = $has_max ? $this->formatSalaryFigure($wpjobportal_max) : '';
+
         if($type == 1){
             $wpjobportal_salary = esc_html(__("Negotiable",'wp-job-portal'));
-        }else if($type == 2){
-            if($currency_align == 1){ // Left align
-                $wpjobportal_salary = $currencysymbol . ' ' . $min;
-            }else if($currency_align == 2) { // Right align
-                $wpjobportal_salary = $min . ' ' . $currencysymbol;
+        }else if($type == 2 && $has_min){
+            $wpjobportal_salary = $this->alignSalaryCurrency($min, $currencysymbol, $currency_align);
+        }else if($type == 3 && ($has_min || $has_max)){
+            // One end of a range on its own is still worth saying; a dash with
+            // nothing after it is not.
+            if($has_min && $has_max){
+                $wpjobportal_figure = $min . ' - ' . $wpjobportal_max;
+            }else{
+                $wpjobportal_figure = $has_min ? $min : $wpjobportal_max;
             }
-        }else if($type == 3){
-            if($currency_align == 1){ // Left align
-                $wpjobportal_salary = $currencysymbol . ' ' . $min . ' - ' . $wpjobportal_max;
-            }else if($currency_align == 2){ // Right align
-                $wpjobportal_salary = $min . ' - ' . $wpjobportal_max . ' ' . $currencysymbol;
-            }
+            $wpjobportal_salary = $this->alignSalaryCurrency($wpjobportal_figure, $currencysymbol, $currency_align);
         }
 
-        if(!empty($wpjobportal_salary)){
-            return $wpjobportal_salary;
-        }
+        // Always a string: old add-on templates pass this to wp_kses(), which
+        // PHP 8 warns about when it gets null.
+        return $wpjobportal_salary;
     }
 
     function getYearMonth($wpjobportal_args=array()){
@@ -791,19 +975,19 @@ class WPJOBPORTALCommonModel {
             return WPJOBPORTAL_SAVE_ERROR;
         }
 
-	if (isset($_COOKIE['first_name'])){
+	if (WPJOBPORTALrequest::hasCookie('first_name')){
 		wpjobportalphplib::wpJP_setcookie('first_name' , '' , time() + 0 , COOKIEPATH);
 		if ( SITECOOKIEPATH != COOKIEPATH ){
 		wpjobportalphplib::wpJP_setcookie('first_name' , '' , time() + 0 , SITECOOKIEPATH);
 		}
 	}
-	if (isset($_COOKIE['last_name'])){
+	if (WPJOBPORTALrequest::hasCookie('last_name')){
 		wpjobportalphplib::wpJP_setcookie('last_name' , '', time() + 0 , COOKIEPATH);
 		if ( SITECOOKIEPATH != COOKIEPATH ){
 		wpjobportalphplib::wpJP_setcookie('last_name' , '', time() + 0 , SITECOOKIEPATH);
 		}
 	}
-	if (isset($_COOKIE['email'])){
+	if (WPJOBPORTALrequest::hasCookie('email')){
 		wpjobportalphplib::wpJP_setcookie('email' , '', time() + 0 , COOKIEPATH);
 		if ( SITECOOKIEPATH != COOKIEPATH ){
 		wpjobportalphplib::wpJP_setcookie('email' , '', time() + 0 , SITECOOKIEPATH);
@@ -925,6 +1109,42 @@ class WPJOBPORTALCommonModel {
         return $wpjobportal_input;
     }
 
+    /**
+     * Somebody who already belongs somewhere else in the product.
+     *
+     * A recruiting team member holds no portal role - membership is what
+     * grants them anything - so every "is this one of our users?" test
+     * answers no, and the job-seeker area drew the only conclusions it knew:
+     * either invite them to pick a role, or treat them as a passing visitor.
+     * A recruiter opening Add Resume was handed the visitor form and could
+     * have filed a resume of their own.
+     *
+     * An add-on that owns such a person answers this filter with
+     *
+     *     array('message' => ..., 'link' => ..., 'linktext' => ...)
+     *
+     * and the area refuses them by name instead of guessing.
+     *
+     * @return array|false
+     */
+    function userBoundToAnotherArea($wpjobportal_area = '') {
+        if (WPJOBPORTALincluder::getObjectClass('user')->isguest()) {
+            return false;
+        }
+
+        // Which area is being entered, so an add-on can answer for the ones
+        // that are not its people's - a recruiter belongs on the employer
+        // panel and must not be turned away from it.
+        $wpjobportal_bound = apply_filters(
+            'wpjobportal_user_bound_to_other_area',
+            false,
+            get_current_user_id(),
+            sanitize_key($wpjobportal_area)
+        );
+
+        return (is_array($wpjobportal_bound) && !empty($wpjobportal_bound['message'])) ? $wpjobportal_bound : false;
+    }
+
     function validateEmployerArea(){
         // first handle visitor case to show appropriate message to visitor
         $cuser = WPJOBPORTALincluder::getObjectClass('user');
@@ -997,6 +1217,17 @@ class WPJOBPORTALCommonModel {
         }
         $parse = wpjobportalphplib::wpJP_explode('-', $wpjobportal_id);
         if(empty($parse[0])){
+            return $wpjobportal_name;
+        }
+        /*
+         * An id shaped "<setting>-<record>" is what this reads. Anything else
+         * is not one of ours and has no description to give - an order id, a
+         * post id, whatever else happens to arrive in the request as `id`.
+         * Reading $parse[1] before knowing that was a warning on every
+         * WooCommerce admin order screen, which edits an order at
+         * ...&action=edit&id=123 and so hands a number with nothing to split.
+         */
+        if(!isset($parse[1]) || $parse[1] === ''){
             return $wpjobportal_name;
         }
         $wpjobportal_moduleid = $parse[1];
@@ -1105,8 +1336,8 @@ class WPJOBPORTALCommonModel {
     function getCookiesSavedOnlySortandOrder(){
         $wpjobportal_jsjp_search_array = array();
         $wpjp_search_cookie_data = '';
-        if(isset($_COOKIE['jsjp_jobportal_search_data'])){
-            $wpjp_search_cookie_data = wpjobportal::wpjobportal_sanitizeData($_COOKIE['jsjp_jobportal_search_data']);
+        if(WPJOBPORTALrequest::hasCookie('jsjp_jobportal_search_data')){
+            $wpjp_search_cookie_data = WPJOBPORTALrequest::cookie('jsjp_jobportal_search_data');
             $wpjp_search_cookie_data = wpjobportalphplib::wpJP_safe_decoding($wpjp_search_cookie_data);
             $wpjp_search_cookie_data = json_decode( $wpjp_search_cookie_data , true );
         }
@@ -1132,7 +1363,7 @@ class WPJOBPORTALCommonModel {
         if ($wpjobportal_protocol) {
             return $wpjobportal_protocol;
         }
-        $wpjobportal_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+        $wpjobportal_protocol = is_ssl() ? "https://" : "http://";
         return $wpjobportal_protocol;
     }
 
@@ -1171,6 +1402,13 @@ class WPJOBPORTALCommonModel {
         $wpjobportal_jsjp_search_array['jobtype'] = WPJOBPORTALrequest::getVar('jobtype','','');
         $wpjobportal_jsjp_search_array['currency'] = WPJOBPORTALrequest::getVar('currency','','');
         $wpjobportal_jsjp_search_array['jobsalaryrange'] = WPJOBPORTALrequest::getVar('jobsalaryrange','','');
+        // The salary a job actually carries: a type, and then either one
+        // figure or a band. Same parameter names the job search uses, so a
+        // filter means the same thing wherever it is applied.
+        $wpjobportal_jsjp_search_array['salarytype'] = WPJOBPORTALrequest::getVar('salarytype','','');
+        $wpjobportal_jsjp_search_array['salaryfixed'] = WPJOBPORTALrequest::getVar('salaryfixed','','');
+        $wpjobportal_jsjp_search_array['salarymin'] = WPJOBPORTALrequest::getVar('salarymin','','');
+        $wpjobportal_jsjp_search_array['salarymax'] = WPJOBPORTALrequest::getVar('salarymax','','');
         $wpjobportal_jsjp_search_array['heighestfinisheducation'] = WPJOBPORTALrequest::getVar('heighestfinisheducation','','');
 
         $wpjobportal_jsjp_search_array['coverlettertitle'] = WPJOBPORTALrequest::getVar('coverlettertitle','','');
@@ -1231,8 +1469,8 @@ class WPJOBPORTALCommonModel {
     function getCookiesSavedAdmin(){
         $wpjobportal_jsjp_search_array = array();
         $wpjp_search_cookie_data = '';
-        if(isset($_COOKIE['jsjp_jobportal_search_data'])){
-            $wpjp_search_cookie_data = wpjobportal::wpjobportal_sanitizeData($_COOKIE['jsjp_jobportal_search_data']);
+        if(WPJOBPORTALrequest::hasCookie('jsjp_jobportal_search_data')){
+            $wpjp_search_cookie_data = WPJOBPORTALrequest::cookie('jsjp_jobportal_search_data');
             $wpjp_search_cookie_data = wpjobportalphplib::wpJP_safe_decoding($wpjp_search_cookie_data);
             $wpjp_search_cookie_data = json_decode( $wpjp_search_cookie_data, true );
         }
@@ -1254,6 +1492,10 @@ class WPJOBPORTALCommonModel {
             $wpjobportal_jsjp_search_array['jobtype'] = $wpjp_search_cookie_data['jobtype'];
             $wpjobportal_jsjp_search_array['currency'] = $wpjp_search_cookie_data['currency'];
             $wpjobportal_jsjp_search_array['jobsalaryrange'] = $wpjp_search_cookie_data['jobsalaryrange'];
+            foreach (array('salarytype', 'salaryfixed', 'salarymin', 'salarymax') as $wpjobportal_salarykey) {
+                $wpjobportal_jsjp_search_array[$wpjobportal_salarykey] = isset($wpjp_search_cookie_data[$wpjobportal_salarykey])
+                    ? $wpjp_search_cookie_data[$wpjobportal_salarykey] : '';
+            }
             $wpjobportal_jsjp_search_array['heighestfinisheducation'] = $wpjp_search_cookie_data['heighestfinisheducation'];
 
             $wpjobportal_jsjp_search_array['coverlettertitle'] = $wpjp_search_cookie_data['coverlettertitle'];
@@ -1330,6 +1572,10 @@ class WPJOBPORTALCommonModel {
         wpjobportal::$_search['search_filter']['jobtype'] = isset($wpjobportal_jsjp_search_array['jobtype']) ? $wpjobportal_jsjp_search_array['jobtype'] : null;
         wpjobportal::$_search['search_filter']['currency'] = isset($wpjobportal_jsjp_search_array['currency']) ? $wpjobportal_jsjp_search_array['currency'] : null;
         wpjobportal::$_search['search_filter']['jobsalaryrange'] = isset($wpjobportal_jsjp_search_array['jobsalaryrange']) ? $wpjobportal_jsjp_search_array['jobsalaryrange'] : null;
+        foreach (array('salarytype', 'salaryfixed', 'salarymin', 'salarymax') as $wpjobportal_salarykey) {
+            wpjobportal::$_search['search_filter'][$wpjobportal_salarykey] = isset($wpjobportal_jsjp_search_array[$wpjobportal_salarykey])
+                ? $wpjobportal_jsjp_search_array[$wpjobportal_salarykey] : null;
+        }
         wpjobportal::$_search['search_filter']['heighestfinisheducation'] = isset($wpjobportal_jsjp_search_array['heighestfinisheducation']) ? $wpjobportal_jsjp_search_array['heighestfinisheducation'] : null;
 
         wpjobportal::$_search['search_filter']['coverlettertitle'] = isset($wpjobportal_jsjp_search_array['coverlettertitle']) ? $wpjobportal_jsjp_search_array['coverlettertitle'] : null;
@@ -1387,7 +1633,7 @@ class WPJOBPORTALCommonModel {
     function getDefaultImage($wpjobportal_role){
         // job seeker deafult image
         if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()){
-            $wpjobportal_url = ELEGANTDESIGN_PLUGIN_URL;
+            $wpjobportal_url = wpjobportal_elegant_design_url();
         } else {
             $wpjobportal_url = WPJOBPORTAL_PLUGIN_URL;
         }
@@ -1418,6 +1664,23 @@ class WPJOBPORTALCommonModel {
     function WPJobPortalGetDocumentTitle($title) {
         $wpjobportal_module = $this->module_name;
         $wpjobportal_layout = $this->file_name;
+
+        // Several slugs share one layout where only one template exists, so the
+        // layout alone cannot name the page: /jobs and /newest-jobs both render
+        // the jobs layout, and both were titled "Jobs" while the second headed
+        // itself "Newest Jobs".
+        //
+        // Read from the URL rather than from the routed arguments. This filter
+        // runs while the document head is being written, and the request's
+        // sanitized arguments are not populated at that point — checked, rather
+        // than assumed, after the routed value arrived empty here every time.
+        $wpjobportal_slug = self::requestedSlug();
+        if ($wpjobportal_slug !== '') {
+            $wpjobportal_by_slug = $this->getPageTitleBySlug($wpjobportal_slug);
+            if ($wpjobportal_by_slug !== '') {
+                return $wpjobportal_by_slug;
+            }
+        }
         // making sure our layout is being opened & making sure proper values are set
         if ($wpjobportal_module != '' && $wpjobportal_layout != '') {
             // get page title for current page
@@ -1439,6 +1702,58 @@ class WPJOBPORTALCommonModel {
             $title = $this->getPageTitleByFileName($wpjobportal_layout,$wpjobportal_module);
         }
         return $title;
+    }
+
+    /**
+     * The last path segment of the current request.
+     *
+     * A detail page ends in a record's own slug, which matches no row, so the
+     * caller falls back to the layout. Only a segment that names a portal page
+     * resolves to anything.
+     *
+     * @return string
+     */
+    private static function requestedSlug() {
+        $wpjobportal_uri = WPJOBPORTALrequest::requestUri();
+        $wpjobportal_path = (string) wp_parse_url($wpjobportal_uri, PHP_URL_PATH);
+        $wpjobportal_path = trim($wpjobportal_path, '/');
+
+        if ($wpjobportal_path === '') {
+            return '';
+        }
+
+        $wpjobportal_parts = explode('/', $wpjobportal_path);
+
+        return sanitize_title(end($wpjobportal_parts));
+    }
+
+    /**
+     * The page title recorded against a URL slug.
+     *
+     * getPageTitleByFileName() keys on the layout, which is right until two
+     * slugs share one. /jobs and /newest-jobs both render the jobs layout, so
+     * the layout cannot tell them apart and both were titled "Jobs".
+     *
+     * @param string $wpjobportal_slug Slug as it appears in the URL.
+     * @return string Empty when the slug has no title of its own.
+     */
+    function getPageTitleBySlug($wpjobportal_slug) {
+        $wpjobportal_slug = sanitize_title($wpjobportal_slug);
+        if ($wpjobportal_slug === '') {
+            return '';
+        }
+
+        $wpjobportal_query = "SELECT pagetitle FROM `" . wpjobportal::$_db->prefix . "wj_portal_slug` WHERE slug = '" . esc_sql($wpjobportal_slug) . "' OR defaultslug = '" . esc_sql($wpjobportal_slug) . "'";
+        $wpjobportal_title = (string) wpjobportal::$_db->get_var($wpjobportal_query);
+
+        if (trim($wpjobportal_title) === '') {
+            return '';
+        }
+
+        return $this->replaceMatches($wpjobportal_title, array(
+            '[separator]' => '|',
+            '[sitename]' => get_bloginfo('name', 'display'),
+        ));
     }
 
     function getPageTitleByFileName($wpjobportal_layout,$wpjobportal_module) {
@@ -1510,7 +1825,43 @@ class WPJOBPORTALCommonModel {
                     break;
             }
         }
+
+        /*
+         * Whatever the page could not answer.
+         *
+         * A resume title is configured as "[applicationtitle] [jobcategory]
+         * [separator] [sitename]", and the record it names is only read once
+         * the visitor is allowed to see it. A visitor who is not - and any
+         * request where the id never resolved - got the placeholders
+         * themselves, printed in the browser tab and in search results. The
+         * two that can always be answered are answered; the rest are dropped
+         * rather than shown.
+         */
+        if (wpjobportalphplib::wpJP_strstr($page_title_val, '[')) {
+            $page_title_val = $this->replaceMatches($page_title_val, array(
+                '[separator]' => '-',
+                '[sitename]' => get_bloginfo('name', 'display'),
+            ));
+            $page_title_val = $this->tidySeoDocumentTitle($page_title_val);
+            if ($page_title_val === '') {
+                $page_title_val = get_bloginfo('name', 'display');
+            }
+        }
+
         return $page_title_val;
+    }
+
+    /*
+     * Drops the [tokens] a title could not fill (a resume with no category,
+     * a job with no city) and the separators and spaces they leave behind.
+     * The make*SeoDocumentTitle() builders call it too, because themes call
+     * them directly and never reach the clean-up above.
+     */
+    function tidySeoDocumentTitle($wpjobportal_title) {
+        $wpjobportal_title = preg_replace('/\[[a-z0-9_]+\]/i', '', (string) $wpjobportal_title);
+        $wpjobportal_title = preg_replace('/\s+([-|,])(\s+[-|,])+(?=\s)/', ' $1', $wpjobportal_title);
+        $wpjobportal_title = trim(preg_replace('/\s{2,}/', ' ', $wpjobportal_title));
+        return trim($wpjobportal_title, " -|,");
     }
 
     function replaceMatches($wpjobportal_string, $wpjobportal_matcharray) {
@@ -1543,7 +1894,10 @@ class WPJOBPORTALCommonModel {
             return true;
         }
 
-        return false;
+        // Elegant Design is part of Pro since 2.7.0. Pro's module says so here
+        // instead of through an active plugin folder, and Pro's licence never
+        // gates a feature, so the install check above does not apply to it.
+        return (bool) apply_filters('wpjobportal_elegantdesign_provided', false);
     }
 
     function getWPJobPortalMetaDescriptionByPage($wpjobportal_module,$wpjobportal_layout){
@@ -1634,7 +1988,31 @@ class WPJOBPORTALCommonModel {
     }
 
 
-    function applyThresholdOnResults($wpjobportal_results, $highest_score, $wpjobportal_enitity_for) {
+    /**
+     * Keep the results worth showing, and drop the rest.
+     *
+     * @param array $wpjobportal_results     Scored rows, best first.
+     * @param float $highest_score           The best relevance score among them.
+     * @param int   $wpjobportal_enitity_for 1 for jobs, 2 for resumes.
+     * @param int   $wpjobportal_score_override
+     *        1 when the caller has already chosen which records these are and
+     *        only wants them scored.
+     *
+     *        Two call sites have passed this fourth argument since the feature
+     *        shipped, to a function that declared three parameters. PHP drops a
+     *        surplus argument without a word, so it had never once had an
+     *        effect. It matters on the path it was written for:
+     *        applyAIScoresToJobs() hands over the ids of the jobs already on the
+     *        page and asks what each one scores, so filtering that list by
+     *        relevance does not remove a bad suggestion - it removes the score
+     *        from a job that is on the page regardless, and the card renders
+     *        with no percentage on it. Twelve jobs in, nine scores out.
+     *
+     *        The relevance filtering below is for choosing records. When the
+     *        records are already chosen, all that is left to do is de-duplicate.
+     * @return array
+     */
+    function applyThresholdOnResults($wpjobportal_results, $highest_score, $wpjobportal_enitity_for, $wpjobportal_score_override = 0) {
         if (empty($wpjobportal_results)) {
             return $wpjobportal_results; // Return early if no results
         }
@@ -1650,15 +2028,17 @@ class WPJOBPORTALCommonModel {
         $unique_results = [];
 
         foreach ($wpjobportal_results as $wpjobportal_result) {
-            // Skip results below the threshold (except the first result)
-            if (
-                ($wpjobportal_result->custom_score <= $custom_score_threshold_value && $wpjobportal_result !== $wpjobportal_results[0]) &&
-                ($wpjobportal_result->score <= $score_threshold_value && $wpjobportal_result !== $wpjobportal_results[0])
-            ) {
-                continue;
-            }
+            if (!$wpjobportal_score_override) {
+                // Skip results below the threshold (except the first result)
+                if (
+                    ($wpjobportal_result->custom_score <= $custom_score_threshold_value && $wpjobportal_result !== $wpjobportal_results[0]) &&
+                    ($wpjobportal_result->score <= $score_threshold_value && $wpjobportal_result !== $wpjobportal_results[0])
+                ) {
+                    continue;
+                }
 
-            if($wpjobportal_result->custom_score == 0 && $wpjobportal_result->score < 1.5) continue;
+                if($wpjobportal_result->custom_score == 0 && $wpjobportal_result->score < 1.5) continue;
+            }
             // Ensure uniqueness by entitiy id, keeping the highest custom_score and then the highest score
             if($wpjobportal_enitity_for == 1){
                 $record_id = $wpjobportal_result->jobid;
@@ -1686,8 +2066,8 @@ class WPJOBPORTALCommonModel {
         if ( is_numeric($wpjobportal_uid) && $wpjobportal_uid > 0 ) {
             $wpjobportal_transient_id = 'user_' .$wpjobportal_uid;
         } else { // Fallback: generate ID from IP + User Agent
-            $wpjobportal_ip = !empty($_SERVER['REMOTE_ADDR']) ? filter_var($_SERVER['REMOTE_ADDR'], FILTER_VALIDATE_IP) : '0.0.0.0';
-            $wpjobportal_useragent = !empty($_SERVER['HTTP_USER_AGENT']) ? sanitize_text_field($_SERVER['HTTP_USER_AGENT']) : 'unknown';
+            $wpjobportal_ip = !empty($_SERVER['REMOTE_ADDR']) ? filter_var(wp_unslash($_SERVER['REMOTE_ADDR']), FILTER_VALIDATE_IP) : '0.0.0.0';
+            $wpjobportal_useragent = !empty($_SERVER['HTTP_USER_AGENT']) ? sanitize_text_field(wp_unslash($_SERVER['HTTP_USER_AGENT'])) : 'unknown';
             // $wpjobportal_transient_id = $wpjobportal_ip .'_'. $wpjobportal_useragent;
             // Create short, URL-safe string
             $hash = rtrim(strtr(base64_encode(md5($wpjobportal_ip . $wpjobportal_useragent, true)), '+/', '-_'), '=');

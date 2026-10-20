@@ -22,58 +22,7 @@ $wpjobportal_action_url = admin_url('admin.php?page=wpjobportal_postinstallation
             <div class="wpjobportal-post-installation-logowrp">
                 <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/quickstrt_logo.png" alt="<?php echo esc_attr__('WP Job Portal', 'wp-job-portal'); ?>" />
             </div>
-            <ul class="step-1">
-                <li class="active">
-                    <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_postinstallation&wpjobportallt=quickstart')); ?>" aria-current="step">
-                        <span class="wpjobportal-post-installation-lftimages-wrp">
-                            <img class="wpjobportal-post-installation-lfticon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/quick-start.png" alt="" />
-                            <img class="wpjobportal-post-installation-white-icon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/quick-strt-w.png" alt="" />
-                            <?php echo esc_html__('Choose Mode', 'wp-job-portal'); ?>
-                        </span>
-                        <img class="wpjobportal-post-installation-white-arrowicon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/arrow.png" alt="" />
-                    </a>
-                </li>
-                <li class="first-part">
-                    <span class="wpjobportal-post-installation-pending-step">
-                        <span class="wpjobportal-post-installation-lftimages-wrp">
-                            <img class="wpjobportal-post-installation-lfticon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/general-settings.png" alt="" />
-                            <?php echo esc_html__('General Settings', 'wp-job-portal'); ?>
-                        </span>
-                    </span>
-                </li>
-                <li class="second-part<?php echo $wpjobportal_is_marketplace ? '' : ' wpjobportal-mode-step-optional'; ?>">
-                    <span class="wpjobportal-post-installation-pending-step">
-                        <span class="wpjobportal-post-installation-lftimages-wrp">
-                            <img class="wpjobportal-post-installation-lfticon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/employers.png" alt="" />
-                            <?php echo esc_html__('Employer Settings', 'wp-job-portal'); ?>
-                        </span>
-                    </span>
-                </li>
-                <li class="third-part">
-                    <span class="wpjobportal-post-installation-pending-step">
-                        <span class="wpjobportal-post-installation-lftimages-wrp">
-                            <img class="wpjobportal-post-installation-lfticon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/jobseeker.png" alt="" />
-                            <?php echo esc_html__('Candidate Settings', 'wp-job-portal'); ?>
-                        </span>
-                    </span>
-                </li>
-                <li class="fourth-part">
-                    <span class="wpjobportal-post-installation-pending-step">
-                        <span class="wpjobportal-post-installation-lftimages-wrp">
-                            <img class="wpjobportal-post-installation-lfticon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/sample-data.png" alt="" />
-                            <?php echo esc_html__('Sample Data', 'wp-job-portal'); ?>
-                        </span>
-                    </span>
-                </li>
-                <li class="setup-complete">
-                    <span class="wpjobportal-post-installation-pending-step">
-                        <span class="wpjobportal-post-installation-lftimages-wrp">
-                            <img class="wpjobportal-post-installation-lfticon" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/finshed.png" alt="" />
-                            <?php echo esc_html__('Setup Complete', 'wp-job-portal'); ?>
-                        </span>
-                    </span>
-                </li>
-            </ul>
+            <?php $wpjobportal_setup_active = 'mode'; include __DIR__ . '/setup-steps.php'; ?>
         </div>
 
         <div class="wpjobportal-post-data">
@@ -82,8 +31,8 @@ $wpjobportal_action_url = admin_url('admin.php?page=wpjobportal_postinstallation
                     <?php echo esc_html__('Choose your WP Job Portal setup', 'wp-job-portal'); ?>
                 </div>
                 <div class="wpjobportal-post-head-rightbtns-wrp">
-                    <span id="wpjobportal-mode-step-count" class="wpjobportal-post-head-pagestep" data-marketplace="<?php echo esc_attr__('Step 1 of 5', 'wp-job-portal'); ?>" data-careers="<?php echo esc_attr__('Step 1 of 4', 'wp-job-portal'); ?>">
-                        <?php echo esc_html($wpjobportal_is_marketplace ? __('Step 1 of 5', 'wp-job-portal') : __('Step 1 of 4', 'wp-job-portal')); ?>
+                    <span id="wpjobportal-mode-step-count" class="wpjobportal-post-head-pagestep" data-marketplace="<?php echo esc_attr__('Step 1 of 4', 'wp-job-portal'); ?>" data-careers="<?php echo esc_attr__('Step 1 of 4', 'wp-job-portal'); ?>">
+                        <?php echo esc_html(__('Step 1 of 4', 'wp-job-portal')); ?>
                     </span>
                     <a class="wpjobportal-post-head-closebtn" href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr__('Close', 'wp-job-portal'); ?>">
                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/close.png" alt="<?php echo esc_attr__('Close', 'wp-job-portal'); ?>" />
@@ -183,7 +132,7 @@ $wpjobportal_action_url = admin_url('admin.php?page=wpjobportal_postinstallation
                             <p>
                                 <?php
                                 echo esc_html(sprintf(
-                                    __('%1$d of %2$d steps complete for %3$s. Progress is calculated from saved settings and content.', 'wp-job-portal'),
+                                    /* translators: 1: onboarding completed, 2: onboarding total, 3: onboarding mode label */ __('%1$d of %2$d steps complete for %3$s. Progress is calculated from saved settings and content.', 'wp-job-portal'),
                                     absint($wpjobportal_onboarding['completed']),
                                     absint($wpjobportal_onboarding['total']),
                                     $wpjobportal_onboarding['mode_label']
@@ -191,7 +140,7 @@ $wpjobportal_action_url = admin_url('admin.php?page=wpjobportal_postinstallation
                                 ?>
                             </p>
                         </div>
-                        <span class="wpjobportal-onboarding-progress" aria-label="<?php echo esc_attr(sprintf(__('Onboarding progress: %1$d of %2$d', 'wp-job-portal'), absint($wpjobportal_onboarding['completed']), absint($wpjobportal_onboarding['total']))); ?>">
+                        <span class="wpjobportal-onboarding-progress" aria-label="<?php echo esc_attr(sprintf(/* translators: 1: onboarding completed, 2: onboarding total */ __('Onboarding progress: %1$d of %2$d', 'wp-job-portal'), absint($wpjobportal_onboarding['completed']), absint($wpjobportal_onboarding['total']))); ?>">
                             <?php echo esc_html(absint($wpjobportal_onboarding['completed']) . '/' . absint($wpjobportal_onboarding['total'])); ?>
                         </span>
                     </div>
@@ -225,12 +174,19 @@ $wpjobportal_action_url = admin_url('admin.php?page=wpjobportal_postinstallation
             <section class="wpjobportal-sample-cleanup-card" aria-labelledby="wpjobportal-sample-cleanup-title">
                 <h2 id="wpjobportal-sample-cleanup-title"><?php echo esc_html__('Sample-data safety', 'wp-job-portal'); ?></h2>
 
+                <?php $wpjobportal_owner_notice = isset(wpjobportal::$_data['sample_owner_notice']) ? wpjobportal::$_data['sample_owner_notice'] : null; ?>
+                <?php if (!empty($wpjobportal_owner_notice['text'])) : ?>
+                    <div class="notice <?php echo $wpjobportal_owner_notice['type'] === 'success' ? 'notice-success' : 'notice-error'; ?> inline" role="status">
+                        <p><?php echo esc_html($wpjobportal_owner_notice['text']); ?></p>
+                    </div>
+                <?php endif; ?>
+
                 <?php if (!empty($wpjobportal_cleanup_result)) : ?>
                     <div class="notice <?php echo !empty($wpjobportal_cleanup_result['failed']) ? 'notice-error' : 'notice-success'; ?> inline" role="status">
                         <p>
                             <?php
                             echo esc_html(sprintf(
-                                __('Cleanup result: %1$d deleted, %2$d skipped, %3$d failed.', 'wp-job-portal'),
+                                /* translators: 1: cleanup result deleted, 2: cleanup result skipped, 3: cleanup result failed */ __('Cleanup result: %1$d deleted, %2$d skipped, %3$d failed.', 'wp-job-portal'),
                                 absint($wpjobportal_cleanup_result['deleted']),
                                 absint($wpjobportal_cleanup_result['skipped']),
                                 absint($wpjobportal_cleanup_result['failed'])
@@ -244,7 +200,7 @@ $wpjobportal_action_url = admin_url('admin.php?page=wpjobportal_postinstallation
                     <p>
                         <?php
                         echo esc_html(sprintf(
-                            __('Cleanup preview: %1$d strongly marked records are tracked; %2$d are currently eligible and %3$d will be skipped to protect changed or dependent data.', 'wp-job-portal'),
+                            /* translators: 1: sample preview tracked, 2: sample preview eligible, 3: sample preview skipped */ __('Cleanup preview: %1$d strongly marked records are tracked; %2$d are currently eligible and %3$d will be skipped to protect changed or dependent data.', 'wp-job-portal'),
                             absint($wpjobportal_sample_preview['tracked']),
                             absint($wpjobportal_sample_preview['eligible']),
                             absint($wpjobportal_sample_preview['skipped'])
@@ -269,7 +225,7 @@ $wpjobportal_action_url = admin_url('admin.php?page=wpjobportal_postinstallation
                                 <strong><?php echo esc_html($wpjobportal_label); ?>:</strong>
                                 <?php
                                 echo esc_html(sprintf(
-                                    __('%1$d tracked, %2$d eligible, %3$d protected', 'wp-job-portal'),
+                                    /* translators: 1: type counts tracked, 2: type counts eligible, 3: type counts skipped */ __('%1$d tracked, %2$d eligible, %3$d protected', 'wp-job-portal'),
                                     absint($wpjobportal_type_counts['tracked']),
                                     absint($wpjobportal_type_counts['eligible']),
                                     absint($wpjobportal_type_counts['skipped'])
@@ -292,6 +248,50 @@ $wpjobportal_action_url = admin_url('admin.php?page=wpjobportal_postinstallation
                     <?php else : ?>
                         <p><?php echo esc_html__('An administrator must run sample-data cleanup.', 'wp-job-portal'); ?></p>
                     <?php endif; ?>
+
+                    <?php
+                    // Who owns the sample data, and a way to change it. An
+                    // administrator who skipped the choice, or picked the wrong
+                    // account, should not have to import the demo again.
+                    if (current_user_can('manage_options')) :
+                        $wpjobportal_owner_roles = array(
+                            'employer' => array(WPJOBPORTAL_Sample_Data_Service::ROLE_EMPLOYER, __('Employer', 'wp-job-portal'), __('companies and jobs', 'wp-job-portal')),
+                            'jobseeker' => array(WPJOBPORTAL_Sample_Data_Service::ROLE_JOBSEEKER, __('Job seeker', 'wp-job-portal'), __('resumes and applications', 'wp-job-portal')),
+                        );
+                        ?>
+                        <form class="wpjobportal-sample-owner-form" method="post" action="<?php echo esc_url(add_query_arg('task', 'assignsampleowner', $wpjobportal_action_url)); ?>">
+                            <input type="hidden" name="form_request" value="wpjobportal" />
+                            <?php wp_nonce_field('wpjobportal_postinstallation_nonce'); ?>
+                            <h3><?php echo esc_html__('Who owns the sample data', 'wp-job-portal'); ?></h3>
+                            <?php foreach ($wpjobportal_owner_roles as $wpjobportal_owner_key => $wpjobportal_owner_role) :
+                                $wpjobportal_owner_now = WPJOBPORTAL_Sample_Data_Service::current_owner($wpjobportal_owner_role[0]);
+                                $wpjobportal_owner_user = $wpjobportal_owner_now > 0 ? get_userdata($wpjobportal_owner_now) : false;
+                                $wpjobportal_owner_list = WPJOBPORTAL_Sample_Data_Service::owner_candidates($wpjobportal_owner_role[0]);
+                                $wpjobportal_owner_list[0] = (object) array('id' => '', 'text' => __('Keep as it is', 'wp-job-portal'));
+                                $wpjobportal_owner_field = 'sample_' . $wpjobportal_owner_key . '_owner';
+                                ?>
+                                <div class="wpjobportal-sample-owner-row">
+                                    <label for="<?php echo esc_attr($wpjobportal_owner_field); ?>"><?php echo esc_html($wpjobportal_owner_role[1]); ?></label>
+                                    <p class="wpjobportal-sample-owner-now">
+                                        <?php
+                                        echo esc_html($wpjobportal_owner_user
+                                            ? sprintf(
+                                                /* translators: 1: user's name, 2: what they own. */
+                                                __('%1$s owns the sample %2$s.', 'wp-job-portal'), $wpjobportal_owner_user->display_name, $wpjobportal_owner_role[2])
+                                            : sprintf(
+                                                /* translators: %s: what is unowned. */
+                                                __('Nobody owns the sample %s yet, so no dashboard lists them.', 'wp-job-portal'), $wpjobportal_owner_role[2]));
+                                        ?>
+                                    </p>
+                                    <?php echo wp_kses(WPJOBPORTALformfield::select($wpjobportal_owner_field, $wpjobportal_owner_list, '', '', array('class' => 'inputbox')), WPJOBPORTAL_ALLOWED_TAGS); ?>
+                                </div>
+                            <?php endforeach; ?>
+                            <p class="wpjobportal-sample-owner-actions">
+                                <button type="submit" class="button button-secondary"><?php echo esc_html__('Change owner', 'wp-job-portal'); ?></button>
+                                <a href="<?php echo esc_url(admin_url('user-new.php')); ?>" target="_blank" rel="noopener"><?php echo esc_html__('Add new user', 'wp-job-portal'); ?></a>
+                            </p>
+                        </form>
+                    <?php endif; ?>
                 <?php else : ?>
                     <p><?php echo esc_html__('No strongly marked sample records are available for automatic cleanup. Historical sample-like content is preserved for manual review because ownership cannot be proven.', 'wp-job-portal'); ?></p>
                 <?php endif; ?>
@@ -301,7 +301,7 @@ $wpjobportal_action_url = admin_url('admin.php?page=wpjobportal_postinstallation
 </div>
 
 <?php
-wp_register_script('wpjobportal-mode-setup', '', array('jquery'), null, true);
+wp_register_script( 'wpjobportal-mode-setup', '', array('jquery'), WPJOBPORTAL_VERSION, true );
 wp_enqueue_script('wpjobportal-mode-setup');
 wp_add_inline_script(
     'wpjobportal-mode-setup',

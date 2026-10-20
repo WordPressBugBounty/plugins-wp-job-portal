@@ -310,24 +310,6 @@ if ($wpjobportal_module) {
 			case 'coverletterque':
 					$wpjobportal_html .='<h1 class="wpjobportal-head-text">'. esc_html(__('Cover Letter Approval Queue', 'wp-job-portal')).'</h1>';
 			break;
-			case 'addonstatus':
-					$wpjobportal_addons_auto_update = wpjobportal::$_config->getConfigValue('wpjobportal_addons_auto_update');
-					$wpjobportal_html .='
-						<div class="wpjobportal-head-addons-status-wrp">
-							<h1 class="wpjobportal-head-text">'. esc_html(__('Addons Status', 'wp-job-portal')).'</h1>
-							<div class="wpjobportal-head-addons-status-update">
-								'. esc_html(__('Addon will automatically update to the newest version', 'wp-job-portal'));
-								if($wpjobportal_addons_auto_update == 1 ){
-									$wpjobportal_html .= ' <a href="'.esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_configuration&task=saveautoupdateconfiguration&action=wpjobportaltask&wpjobportal_addons_auto_update=0'),'wpjobportal_configuration_nonce')).'" class="wpjobportal-head-addons-status-update-onbtn">'. esc_html(__('Auto Update: On', 'wp-job-portal')).'</a>';
-								}else{
-									$wpjobportal_html .= ' <a href="'.esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_configuration&task=saveautoupdateconfiguration&action=wpjobportaltask&wpjobportal_addons_auto_update=1'),'wpjobportal_configuration_nonce')).'" class="wpjobportal-head-addons-status-update-offbtn">'. esc_html(__('Auto Update: Off', 'wp-job-portal')).'</a>';
-								}
-
-							$wpjobportal_html .= '
-							</div>
-						</div>
-					';
-			break;
 			case 'seooptions':
 					$wpjobportal_html .='<h1 class="wpjobportal-head-text">'. esc_html(__('SEO', 'wp-job-portal')).'</h1>';
 			break;
@@ -351,6 +333,12 @@ if ($wpjobportal_module) {
 	        			<a class="wpjobportal-add-link button" href="'.esc_url_raw(admin_url('admin.php?page=wpjobportal_postinstallation&wpjobportallt=quickstart')).'" title="'. esc_attr(__('Change Mode','wp-job-portal')).'">
 	        				'. esc_html(__('Change Mode','wp-job-portal')).'
 	        			</a>';
+			break;
+			case 'translations':
+					$wpjobportal_html .='<h1 class="wpjobportal-head-text">'. esc_html(__('Translations', 'wp-job-portal')).'</h1>';
+			break;
+			case 'licences':
+					$wpjobportal_html .='<h1 class="wpjobportal-head-text">'. esc_html(__('Licences and add-ons', 'wp-job-portal')).'</h1>';
 			break;
 			case 'zywraplogs':
 					$wpjobportal_html .='<h1 class="wpjobportal-head-text">'. esc_html(__('Zywrap Logs', 'wp-job-portal')).'</h1>';

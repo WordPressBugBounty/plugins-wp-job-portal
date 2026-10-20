@@ -1,6 +1,6 @@
 <?php if (!defined('ABSPATH')) die('Restricted Access'); ?>
 <?php
-    wp_register_script( 'wpjobportal-inline-handle', '' );
+    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
     // removed confirm delete becasue it was not allowing to delete any state. now the function is common.js is being used which working properly.
     $wpjobportal_inline_js_script = "
@@ -14,7 +14,7 @@
     wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>
 <?php
-    wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js');
+    wp_enqueue_script( 'wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js', array(), wpjobportal_asset_version('includes/js/responsivetable.js'), false );
     if (!WPJOBPORTALincluder::getTemplate('templates/admin/header',array('wpjobportal_module' => 'state'))){
         return;
     }

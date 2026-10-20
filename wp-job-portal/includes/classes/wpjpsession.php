@@ -16,8 +16,8 @@ class WPJOBPORTALwpjpsession {
     }
 
     function init(){
-        if (isset($_COOKIE['_wpjsjp_session_'])) {
-            $cookie = wpjobportalphplib::wpJP_stripslashes(wpjobportal::wpjobportal_sanitizeData($_COOKIE['_wpjsjp_session_']));
+        if (WPJOBPORTALrequest::hasCookie('_wpjsjp_session_')) {
+            $cookie = WPJOBPORTALrequest::cookie('_wpjsjp_session_'); // unslashed there, as wpJP_stripslashes() did here
             $wpjobportal_user_cookie = wpjobportalphplib::wpJP_explode('/', $cookie);
             $this->sessionid = wpjobportalphplib::wpJP_preg_replace("/[^A-Za-z0-9_]/", '', $wpjobportal_user_cookie[0]);
             $this->sessionexpire = absint($wpjobportal_user_cookie[1]);
@@ -31,7 +31,16 @@ class WPJOBPORTALwpjpsession {
             $this->sessionid = $wpjobportal_sessionid . get_option( '_wpjsjp_session_', 0 );
             $this->jsjp_set_cookies_expiration();
         }
-        $this->jshd_set_user_cookies();
+        // Network-activated plugins are loaded before WordPress defines its
+        // cookie constants, and reading COOKIEPATH then was a fatal error on
+        // every request of the network. Set the cookie once they exist.
+        if (defined('COOKIEPATH') && defined('COOKIE_DOMAIN')) {
+            $this->jshd_set_user_cookies();
+        } else {
+            add_action('plugins_loaded', function () {
+                $this->jshd_set_user_cookies();
+            }, 0);
+        }
         return $this->sessionid;
     }
 

@@ -1,4 +1,12 @@
 
 INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
 ("སྤ་རོ", "སྤ་རོ", "Paro", NULL, 100, 0, 1, NULL, "27.4307674", "89.412987"),
-("ཐིམ་ཕུ", "ཐིམ་ཕུ", "Thimphu", NULL, 100, 0, 1, NULL, "27.4713546", "89.6336729");
+("ཐིམ་ཕུ", "ཐིམ་ཕུ", "Thimphu", NULL, 100, 0, 1, NULL, "27.4713546", "89.6336729"),
+("Daga", "Daga", "Daga", NULL, 100, 0, 1, NULL, "27.0322861", "89.8879304"),
+("Ha", "Ha", "Ha", NULL, 100, 0, 1, NULL, "27.2651669", "89.1705998"),
+("Mongar", "Mongar", "Mongar", NULL, 100, 0, 1, NULL, "27.2753739", "91.2397775"),
+("Pajo", "Pajo", "Pajo", NULL, 100, 0, 1, NULL, "27.52858", "89.87117"),
+("Panbang", "Panbang", "Panbang", NULL, 100, 0, 1, NULL, "26.8603531", "91.0897511"),
+("Phuntsholing", "Phuntsholing", "Phuntsholing", NULL, 100, 0, 1, NULL, "26.860293", "89.393793"),
+("Tashi Yangtse", "Tashi Yangtse", "Tashi Yangtse", NULL, 100, 0, 1, NULL, "27.6825285", "91.4821482"),
+("Tongsa", "Tongsa", "Tongsa", NULL, 100, 0, 1, NULL, "27.2666292", "90.5257823");

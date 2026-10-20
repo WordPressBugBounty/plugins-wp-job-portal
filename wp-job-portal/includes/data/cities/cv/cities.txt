@@ -1,4 +1,17 @@
 
 INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
 ("Praia", "Praia", "Praia", NULL, 149, 0, 1, NULL, "14.9162811", "-23.5095095"),
-("Mindelo", "Mindelo", "Mindelo", NULL, 149, 0, 1, NULL, "16.8874145", "-24.9863842");
+("Mindelo", "Mindelo", "Mindelo", NULL, 149, 0, 1, NULL, "16.8874145", "-24.9863842"),
+("Assomada", "Assomada", "Assomada", NULL, 149, 0, 1, NULL, "15.098819", "-23.6710502"),
+("Cidade Velha", "Cidade Velha", "Cidade Velha", NULL, 149, 0, 1, NULL, "14.9163748", "-23.6040974"),
+("Pombas", "Pombas", "Pombas", NULL, 149, 0, 1, NULL, "17.152756", "-25.027117"),
+("Ponta do Sol", "Ponta do Sol", "Ponta do Sol", NULL, 149, 0, 1, NULL, "17.2004826", "-25.0925624"),
+("Porto Novo", "Porto Novo", "Porto Novo", NULL, 149, 0, 1, NULL, "17.0215176", "-25.0673575"),
+("Sao Domingos", "Sao Domingos", "Sao Domingos", NULL, 149, 0, 1, NULL, "15.017878", "-23.5371368"),
+("Sao Filipe", "Sao Filipe", "Sao Filipe", NULL, 149, 0, 1, NULL, "14.8951679", "-24.4945636"),
+("Sal Rei", "Sal Rei", "Sal Rei", NULL, 149, 0, 1, NULL, "16.183349", "-22.9148168"),
+("Santa Cruz", "Santa Cruz", "Santa Cruz", NULL, 149, 0, 1, NULL, "15.1331287", "-23.5579698"),
+("Santa Maria", "Santa Maria", "Santa Maria", NULL, 149, 0, 1, NULL, "16.6000812", "-22.9103485"),
+("Tarrafal", "Tarrafal", "Tarrafal", NULL, 149, 0, 1, NULL, "15.2760578", "-23.7484077"),
+("Vila da Ribeira Brava", "Vila da Ribeira Brava", "Vila da Ribeira Brava", NULL, 149, 0, 1, NULL, "16.616129", "-24.2969999"),
+("Vila do Maio", "Vila do Maio", "Vila do Maio", NULL, 149, 0, 1, NULL, "15.1385669", "-23.2066909");

@@ -15,8 +15,8 @@ class WPJOBPORTALCommonController {
     function handleRequest() {
         $wpjobportal_layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'newinwpjobportal');
          $wpjobportal_socialUser = "";
-        if(isset($_COOKIE['wpjobportal-socialid'])){
-            $wpjobportal_socialUser = sanitize_key($_COOKIE['wpjobportal-socialid']);
+        if(WPJOBPORTALrequest::hasCookie('wpjobportal-socialid')){
+            $wpjobportal_socialUser = sanitize_key((string) WPJOBPORTALrequest::cookie('wpjobportal-socialid', ''));
         }
         if (self::canaddfile($wpjobportal_layout)) {
             switch ($wpjobportal_layout) {
@@ -63,9 +63,9 @@ class WPJOBPORTALCommonController {
     function canaddfile($wpjobportal_layout) {
         $wpjobportal_nonce_value = WPJOBPORTALrequest::getVar('wpjobportal_nonce');
         if ( wp_verify_nonce( $wpjobportal_nonce_value, 'wpjobportal_nonce') ) {
-            if (isset($_POST['form_request']) && $_POST['form_request'] == 'wpjobportal')
+            if (WPJOBPORTALrequest::getVar('form_request', 'post', '') == 'wpjobportal')
                 return false;
-            elseif (isset($_GET['action']) && $_GET['action'] == 'wpjobportaltask')
+            elseif (WPJOBPORTALrequest::getVar('action', 'get', '') == 'wpjobportaltask')
                 return false;
             else{
                 if(!is_admin() && strpos($wpjobportal_layout, 'admin_') === 0){
@@ -117,7 +117,7 @@ class WPJOBPORTALCommonController {
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_" . esc_attr($object['page']) . "&wpjobportallt=" . esc_attr($object['wpjobportallt'])));
         if ($wpjobportal_pagenum)
             $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -132,7 +132,7 @@ class WPJOBPORTALCommonController {
     //     if ($wpjobportal_pagenum)
     //         $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
     //     WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-    //     wp_redirect($wpjobportal_url);
+    //     wp_safe_redirect($wpjobportal_url);
     //     die();
     // }
 
@@ -147,7 +147,7 @@ class WPJOBPORTALCommonController {
     //     if ($wpjobportal_pagenum)
     //         $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
     //     WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-    //     wp_redirect($wpjobportal_url);
+    //     wp_safe_redirect($wpjobportal_url);
     //     die();
     // }
 
@@ -212,7 +212,7 @@ class WPJOBPORTALCommonController {
         $wpjobportal_url = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$wpjobportal_data['desired_module'], 'wpjobportallt'=>$wpjobportal_data['desired_layout']));
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'userrole');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -235,7 +235,7 @@ class WPJOBPORTALCommonController {
         $wpjobportal_url = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobseeker', 'wpjobportallt'=>'controlpanel'));
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'userrole');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],'common');
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -252,7 +252,7 @@ class WPJOBPORTALCommonController {
         $wpjobportal_msgkey = WPJOBPORTALincluder::getJSModel('wpjobportal')->getMessagekey();
         WPJOBPORTALMessages::setLayoutMessage(__('Database update completed', 'wp-job-portal'), "updated",$wpjobportal_msgkey);
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal"));
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 

@@ -104,7 +104,6 @@ class WPJOBPORTALsalaryrangetypeModel {
 
         $wpjobportal_row = WPJOBPORTALincluder::getJSTable('salaryrangetype');
         $wpjobportal_data = wpjobportal::wpjobportal_sanitizeData($wpjobportal_data);
-        $wpjobportal_data = WPJOBPORTALincluder::getJSmodel('common')->stripslashesFull($wpjobportal_data);// remove slashes with quotes.
         if (!$wpjobportal_row->bind($wpjobportal_data)) {
             return WPJOBPORTAL_SAVE_ERROR;
         }
@@ -291,8 +290,8 @@ class WPJOBPORTALsalaryrangetypeModel {
     function getSavedCookiesDataForSearch(){
         $wpjobportal_jsjp_search_array = array();
         $wpjp_search_cookie_data = '';
-        if(isset($_COOKIE['jsjp_jobportal_search_data'])){
-            $wpjp_search_cookie_data = wpjobportal::wpjobportal_sanitizeData($_COOKIE['jsjp_jobportal_search_data']);
+        if(WPJOBPORTALrequest::hasCookie('jsjp_jobportal_search_data')){
+            $wpjp_search_cookie_data = WPJOBPORTALrequest::cookie('jsjp_jobportal_search_data');
             $wpjp_search_cookie_data = wpjobportalphplib::wpJP_safe_decoding($wpjp_search_cookie_data);
             $wpjp_search_cookie_data = json_decode( $wpjp_search_cookie_data , true );
         }

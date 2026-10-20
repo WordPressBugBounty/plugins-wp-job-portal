@@ -18,22 +18,27 @@ if(!WPJOBPORTALincluder::getTemplate('templates/header',array('wpjobportal_modul
 	    <div id="wjportal-popup-background"></div>
 	    <div id="wjportal-listpopup" class="wjportal-popup-wrp wjportal-resume-by-catg-popup">
 	    	<div class="wjportal-popup-cnt">
-	        	<img id="wjportal-popup-close-btn" alt="popup cross" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/popup-close.png">
+	        	<img id="wjportal-popup-close-btn" alt="<?php echo esc_attr__('Close', 'wp-job-portal'); ?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/popup-close.png">
 		        <div class="wjportal-popup-title">
 		        	<span class="wjportal-popup-title2"></span>
 		        </div>
 		        <div class="wjportal-popup-contentarea"></div>
 	        </div>
 	    </div>
-	    <div id="wpjobportal-wrapper" class="wjportal-by-categories-main-wrp wjportal-res-by-categories-wrp">
 	        <?php
 	        	$wpjobportal_number = 3;
-                if(wpjobportal::$_data['config']['categories_colsperrow'] != ''){ // to handle float value in configuration
+                // Reached without the configuration the view usually carries -
+                // the layout is shown to somebody the model did not run for -
+                // this asked for a key that was not there. Three columns is
+                // the default anyway, so it is the answer when nobody said.
+                if (!empty(wpjobportal::$_data['config']['categories_colsperrow'])) {
                     $wpjobportal_number = ceil(wpjobportal::$_data['config']['categories_colsperrow']);
                 }
 		        if ($wpjobportal_number < 1 || $wpjobportal_number > 100) {
 		            $wpjobportal_number = 3; // by default set to 3
 		        }
+		        // The grid takes its column count from here; narrower screens cap it at two, then one.
+		        echo '<div id="wpjobportal-wrapper" class="wjportal-by-categories-main-wrp wjportal-res-by-categories-wrp" style="--wpjp-cat-cols: ' . esc_attr($wpjobportal_number) . '; --wpjp-cat-cols-md: ' . esc_attr(min($wpjobportal_number, 2)) . ';">';
 		        $wpjobportal_width = 100 / $wpjobportal_number;
 		        $wpjobportal_count = 0;
 		        if (isset(wpjobportal::$_data[0]) && !empty(wpjobportal::$_data[0])) {

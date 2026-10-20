@@ -9,7 +9,7 @@
 <?php
 switch ($wpjobportal_control) {
     case 'myjobs':
-        $wpjobportal_featuredexpiry = date_i18n('Y-m-d', strtotime($wpjobportal_job->endfeatureddate));
+        $wpjobportal_featuredexpiry = date_i18n('Y-m-d', strtotime((string) $wpjobportal_job->endfeatureddate));
         $wpjobportal_print = WPJOBPORTALincluder::getJSModel('job')->checkLinks('noofjobs');
         $wpjobportal_startdate = date_i18n('Y-m-d',strtotime($wpjobportal_job->startpublishing));
         $wpjobportal_enddate = date_i18n('Y-m-d',strtotime($wpjobportal_job->stoppublishing));
@@ -87,7 +87,18 @@ switch ($wpjobportal_control) {
 
                     <?php do_action('wpjobportal_addons_resume_action_jobapplied_status',$wpjobportal_job);
 
-                    if(in_array('coverletter', wpjobportal::$_active_addons) ){ ?>
+                    /*
+                     * Only when there is a title to show. This printed the
+                     * label and an empty value for every applied job whenever
+                     * the cover letter add-on was active, so a reader was
+                     * given "Cover Letter Title:" and nothing after it on
+                     * every row of My Applied Jobs and of the dashboard. The
+                     * block below this one, kept commented out, already
+                     * guards its value the same way.
+                     */
+                    if(in_array('coverletter', wpjobportal::$_active_addons)
+                        && isset($wpjobportal_job->coverlettertitle)
+                        && trim((string) $wpjobportal_job->coverlettertitle) !== '' ){ ?>
                         <div class="wjportal-jobs-list-resume-data">
                             <span class="wjportal-jobs-list-resume-tit">
                                 <?php echo esc_html(__('Cover Letter Title', 'wp-job-portal')).': '; ?>
@@ -272,6 +283,32 @@ switch ($wpjobportal_control) {
                     ?>
                 </div>
             </div> <?php
+        break;
+    default:
+        /*
+         * A list of jobs that belongs to an extension.
+         *
+         * Every case above is one of Core's own screens, so an extension that
+         * wanted Core's job card had no way to put its own buttons under it and
+         * built a card of its own instead - which is how the recruiter's
+         * Assigned Jobs came to be a title, a company and two links, beside a
+         * plugin that draws a logo, a category, a location, a type and a salary.
+         *
+         * The row is Core's. What goes in its action bar, on a screen Core does
+         * not own, is the extension's. Nothing is printed if nobody answers, so
+         * an unrecognised control still renders a card rather than a warning.
+         *
+         * @param string   $wpjobportal_control The screen asking.
+         * @param stdClass $wpjobportal_job     The job on this row.
+         */
+        ob_start();
+        do_action('wpjobportal_job_list_controls', $wpjobportal_control, $wpjobportal_job);
+        $wpjobportal_extension_controls = ob_get_clean();
+        if (trim($wpjobportal_extension_controls) !== '') {
+            echo '<div class="wjportal-jobs-list-btm-wrp"><div class="wjportal-jobs-action-wrp">'
+                . $wpjobportal_extension_controls // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- printed by the extension's own escaped output.
+                . '</div></div>';
+        }
         break;
 }
 

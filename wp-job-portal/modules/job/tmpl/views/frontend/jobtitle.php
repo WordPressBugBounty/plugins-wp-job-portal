@@ -10,7 +10,7 @@ wpjobportal::$wpjobportal_data['layout_values']['tags_field_enalbed'] = 0;
 <div id="wjportal-popup-background"></div>
 <div id="wjportal-listpopup" class="wjportal-popup-wrp">
     <div class="wjportal-popup-cnt">
-        <img id="wjportal-popup-close-btn" alt="popup cross" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/popup-close.png">
+        <img id="wjportal-popup-close-btn" alt="<?php echo esc_attr__('Close', 'wp-job-portal'); ?>" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/popup-close.png">
         <div class="wjportal-popup-title">
             <span class="wjportal-popup-title2"></span>
         </div>
@@ -57,20 +57,20 @@ wpjobportal::$wpjobportal_data['layout_values']['tags_field_enalbed'] = 0;
                         <?php echo esc_html($wpjobportal_job->title);
 
                         if(in_array('joblistingenhancer',wpjobportal::$_active_addons)){
-                            $new_badge_days = (int) wpjobportal::$_config->getConfigValue('job_new_badge_days');
-                            $is_new_job = false;
-                            if(!empty($new_badge_days)){ // to handle no badge case 'vakue will be zero'
+                            $wpjobportal_new_badge_days = (int) wpjobportal::$_config->getConfigValue('job_new_badge_days');
+                            $wpjobportal_is_new_job = false;
+                            if(!empty($wpjobportal_new_badge_days)){ // to handle no badge case 'vakue will be zero'
                                 if (!empty($wpjobportal_job->created)) {
-                                    $job_created_timestamp = strtotime($wpjobportal_job->created);
-                                    $current_timestamp = current_time('timestamp');
-                                    $days_old = round(($current_timestamp - $job_created_timestamp) / (60 * 60 * 24));
-                                    if ($days_old <= $new_badge_days) {
-                                        $is_new_job = true;
+                                    $wpjobportal_job_created_timestamp = strtotime($wpjobportal_job->created);
+                                    $wpjobportal_current_timestamp = current_time('timestamp');
+                                    $wpjobportal_days_old = round(($wpjobportal_current_timestamp - $wpjobportal_job_created_timestamp) / (60 * 60 * 24));
+                                    if ($wpjobportal_days_old <= $wpjobportal_new_badge_days) {
+                                        $wpjobportal_is_new_job = true;
                                     }
                                 }
 
 
-                                if ($is_new_job){ ?>
+                                if ($wpjobportal_is_new_job){ ?>
                                     <span class="wpjp-badge-new">
                                         <?php echo esc_html__('New', 'wp-job-portal'); ?>
                                     </span>
@@ -85,13 +85,13 @@ wpjobportal::$wpjobportal_data['layout_values']['tags_field_enalbed'] = 0;
 
                     // urgent badge
                     if(in_array('joblistingenhancer',wpjobportal::$_active_addons)){
-                        $is_urgent_job = false;
+                        $wpjobportal_is_urgent_job = false;
                         //  check for published field
                         if(isset($wpjobportal_job_listing_fields['is_urgent']) && $wpjobportal_job_listing_fields['is_urgent'] !='' ){
                             if (isset($wpjobportal_job->is_urgent) && $wpjobportal_job->is_urgent == 1) {
-                                $is_urgent_job = true;
+                                $wpjobportal_is_urgent_job = true;
                             }
-                            if ($is_urgent_job) { ?>
+                            if ($wpjobportal_is_urgent_job) { ?>
                             <span class="wpjp-badge-urgent-flag">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                                 <?php echo esc_html__('Urgent', 'wp-job-portal'); ?>

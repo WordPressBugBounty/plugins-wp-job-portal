@@ -12,7 +12,9 @@
 	if ($wpjobportal_module) {
 		// allow admin to pagetitle above wpjobportal breadcrumbs
 		$wpjobportal_show_wpjobportal_page_title  = wpjobportal::$_config->getConfigurationByConfigName('show_wpjobportal_page_title');
-		if($wpjobportal_show_wpjobportal_page_title == 1){
+		// A caller may leave out the heading or the trail (the registration
+		// shortcodes' show_title / show_header); every other page passes neither.
+		if($wpjobportal_show_wpjobportal_page_title == 1 && empty($wpjobportal_hide_heading)){
 			echo '<div class="wjportal-page-heading">';
 				switch ($wpjobportal_layout) {
 					case 'company':
@@ -21,10 +23,10 @@
 						 		echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_data->name));
 				            }
 			                $wpjobportal_curdate = date_i18n('Y-m-d');
-			                $wpjobportal_featuredexpiry = date_i18n('Y-m-d', strtotime($wpjobportal_data->endfeatureddate));
+			                $wpjobportal_featuredexpiry = date_i18n('Y-m-d', strtotime((string) $wpjobportal_data->endfeatureddate));
 			    			if ($wpjobportal_data->isfeaturedcompany == 1 && $wpjobportal_featuredexpiry >= $wpjobportal_curdate) { ?>
 		    					<span class="wjportal-elegant-addon-featured-company">
-									<img class="wjportal-elegant-addon-filter-search-field-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL) . '/includes/images/featured.png';?> " title="<?php echo esc_attr(__('Featured', 'wp-job-portal'));?>"  alt="<?php echo esc_attr(__('Featured', 'wp-job-portal')) ;?>" />
+									<img class="wjportal-elegant-addon-filter-search-field-icon" src="<?php echo esc_url(wpjobportal_elegant_design_url()) . '/includes/images/featured.png';?> " title="<?php echo esc_attr(__('Featured', 'wp-job-portal'));?>"  alt="<?php echo esc_attr(__('Featured', 'wp-job-portal')) ;?>" />
 		    						<?php
 									do_action('wpjobportal_addons_lable_comp_feature', $wpjobportal_data);
 									echo esc_html__('Featured', 'wp-job-portal') ?>
@@ -52,16 +54,29 @@
 					 	echo esc_html(__('Job Applied Resume', 'wp-job-portal'));
 					break;
 					case 'jobdetail':
-						if (!WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()) { 
+						/*
+						 * The Elegant Design branch below reads $wpjobportal_job, and
+						 * only Elegant Design's own copy of the job page ever passed
+						 * it - Core's viewjob.php never needed to, because Core prints
+						 * a label. Once that copy retired and Core's page rendered
+						 * under Elegant Design, this shared template read a variable
+						 * nobody had sent: seven warnings on every job page.
+						 *
+						 * So the branch now requires the job. Without one it prints
+						 * the label, and the job's own heading inside the page - which
+						 * the theme sets at display size - carries the title once,
+						 * not twice.
+						 */
+						if (empty($wpjobportal_job) || !WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()) {
 							echo esc_html(__('Job Detail','wp-job-portal'));
 						} else {
 							echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_job->title));
 							$wpjobportal_curdate = date_i18n('Y-m-d');
-							$wpjobportal_featuredexpiry = date_i18n('Y-m-d', strtotime($wpjobportal_job->endfeatureddate));
+							$wpjobportal_featuredexpiry = date_i18n('Y-m-d', strtotime((string) $wpjobportal_job->endfeatureddate));
 							if ($wpjobportal_job->isfeaturedjob == 1 && $wpjobportal_featuredexpiry >= $wpjobportal_curdate &&WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()) {
 								?>
 								<span class="wjportal-elegant-addon-featured-job">
-									<img class="wjportal-elegant-addon-filter-search-field-icon" src="<?php echo esc_url(ELEGANTDESIGN_PLUGIN_URL) . '/includes/images/featured.png';?> " title="<?php echo esc_attr(__('Featured', 'wp-job-portal'));?>"  alt="<?php echo esc_attr(__('Featured', 'wp-job-portal')) ;?>" />
+									<img class="wjportal-elegant-addon-filter-search-field-icon" src="<?php echo esc_url(wpjobportal_elegant_design_url()) . '/includes/images/featured.png';?> " title="<?php echo esc_attr(__('Featured', 'wp-job-portal'));?>"  alt="<?php echo esc_attr(__('Featured', 'wp-job-portal')) ;?>" />
 								<?php echo esc_html__('Featured', 'wp-job-portal');?>
 								</span>
 								<?php
@@ -148,10 +163,26 @@
 						echo esc_html(__('Resume By Categories', 'wp-job-portal'));
 						break;
 					case 'departmentperlisting':
-						echo esc_html(__('Pay per listing price to publish your', 'wp-job-portal').' '. wpjobportal::wpjobportal_getVariableValue($wpjobportal_name) .' '.' : '.esc_html($wpjobportal_priceDepartmentlist));
+						/* The price is appended as " : <price>", and when the site has
+						   not set one the variable still carries the currency symbol -
+						   so the heading read "...publish your Job  : $", a colon and a
+						   dollar sign with nothing between them. Said only when there
+						   is a figure to say. */
+						$wpjobportal_pricetext = (string) $wpjobportal_priceDepartmentlist;
+						$wpjobportal_pricepart = preg_match('/\d/', $wpjobportal_pricetext)
+							? ' : ' . $wpjobportal_pricetext : '';
+						echo esc_html(__('Pay per listing price to publish your', 'wp-job-portal').' '. wpjobportal::wpjobportal_getVariableValue($wpjobportal_name) . $wpjobportal_pricepart);
 						break;
 					case 'coverletterperlisting':
-						echo esc_html(__('Pay per listing price to publish your', 'wp-job-portal').' '. wpjobportal::wpjobportal_getVariableValue($wpjobportal_name) .' '.' : '.esc_html($wpjobportal_priceCoverletterlist));
+						/* The price is appended as " : <price>", and when the site has
+						   not set one the variable still carries the currency symbol -
+						   so the heading read "...publish your Job  : $", a colon and a
+						   dollar sign with nothing between them. Said only when there
+						   is a figure to say. */
+						$wpjobportal_pricetext = (string) $wpjobportal_priceCoverletterlist;
+						$wpjobportal_pricepart = preg_match('/\d/', $wpjobportal_pricetext)
+							? ' : ' . $wpjobportal_pricetext : '';
+						echo esc_html(__('Pay per listing price to publish your', 'wp-job-portal').' '. wpjobportal::wpjobportal_getVariableValue($wpjobportal_name) . $wpjobportal_pricepart);
 						break;
 					case 'viewresume':
 						echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_name));
@@ -197,6 +228,9 @@
 					case 'resumesearchlist':
 						echo esc_html(__('Resume Saved Searches', 'wp-job-portal'));
 						break;
+					case 'jobsavesearch':
+						echo esc_html(__('Saved Searches', 'wp-job-portal'));
+						break;
 					case 'purchasehistory':
 						 echo esc_html(__('My Packages', 'wp-job-portal'));
 						break;
@@ -239,7 +273,15 @@
 				}
 			echo '</div>';
 		}
-		if(!WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()){
+		/*
+		 * Elegant Design's own page templates draw their breadcrumbs
+		 * themselves, so a page that is one of those must not get a second
+		 * set here. That used to be decided by asking whether Elegant Design
+		 * was active - which stopped being the same question once its pages
+		 * began retiring: a Core page on an Elegant Design site draws none of
+		 * its own, and was left with none at all. Ask about the page instead.
+		 */
+		if(!WPJOBPORTALincluder::renderingOverride() && empty($wpjobportal_hide_breadcrumbs)){
 			WPJOBPORTALbreadcrumbs::getBreadcrumbs();
 		}
 	}

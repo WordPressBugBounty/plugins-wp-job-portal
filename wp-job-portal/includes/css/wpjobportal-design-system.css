@@ -9,7 +9,7 @@
 :root {
     /* Semantic colour aliases preserve the administrator's existing theme. */
     --wpjp-ds-color-primary: var(--wpjp-primary-color, #6246c6);
-    --wpjp-ds-color-primary-strong: var(--wpjp-secondary-color, #391a8c);
+    --wpjp-ds-color-primary-strong: var(--wpjp-secondary-color, #333333);
     --wpjp-ds-color-text: var(--wpjp-body-font-color, #3f4652);
     --wpjp-ds-color-text-muted: #667085;
     --wpjp-ds-color-border: var(--wpjp-border-color, #d9dee7);
@@ -20,14 +20,33 @@
     --wpjp-ds-color-danger: var(--wpjp-danger-color, #c52a35);
     --wpjp-ds-color-info: #1261a0;
 
-    /* Typography and spacing use a predictable, responsive scale. */
+    /*
+     * Typography follows the plugin's own scale, not a second one.
+     *
+     * The colours here have always deferred to Core - primary, text, border,
+     * surface, canvas, success, warning and danger each read a --wpjp-*
+     * variable and fall back only if it is absent. The type did not: it was a
+     * separate rem-and-clamp scale, so a site owner who set
+     * --wpjp-body-font-size to 20px saw Core's text change and every add-on
+     * screen stay at 16px. These variables are offered to site owners to
+     * change, so an add-on that ignores them is an add-on that breaks the
+     * promise.
+     *
+     * They are px, deliberately. Core states px and a rem here would be
+     * measured against the theme's root rather than the plugin's own scale,
+     * which is how the two drifted apart in the first place.
+     *
+     * xs and sm stay fixed, because the small sizes are for the quiet things -
+     * a caption, a timestamp, a helper line - and those should not grow with
+     * the body text they sit beneath.
+     */
     --wpjp-ds-font-family: inherit;
-    --wpjp-ds-font-size-xs: 0.75rem;
-    --wpjp-ds-font-size-sm: 0.875rem;
-    --wpjp-ds-font-size-md: 1rem;
-    --wpjp-ds-font-size-lg: 1.125rem;
-    --wpjp-ds-font-size-xl: clamp(1.25rem, 1.1rem + 0.55vw, 1.625rem);
-    --wpjp-ds-font-size-2xl: clamp(1.625rem, 1.35rem + 1vw, 2.25rem);
+    --wpjp-ds-font-size-xs: 13px;
+    --wpjp-ds-font-size-sm: 14px;
+    --wpjp-ds-font-size-md: var(--wpjp-body-font-size, 17px);
+    --wpjp-ds-font-size-lg: var(--wpjp-sub-heading, 22px);
+    --wpjp-ds-font-size-xl: var(--wpjp-second-sub-heading, 27px);
+    --wpjp-ds-font-size-2xl: var(--wpjp-main-heading, 32px);
     --wpjp-ds-line-height: 1.55;
     --wpjp-ds-space-1: 0.25rem;
     --wpjp-ds-space-2: 0.5rem;
@@ -272,9 +291,23 @@ textarea.wpjp-ds-control {
     border-radius: var(--wpjp-ds-radius-md);
 }
 
-.wpjp-ds-notice--success { border-inline-start-color: var(--wpjp-ds-color-success); }
-.wpjp-ds-notice--warning { border-inline-start-color: var(--wpjp-ds-color-warning); }
-.wpjp-ds-notice--danger { border-inline-start-color: var(--wpjp-ds-color-danger); }
+/* The message is a <p>; the theme's paragraph margins doubled the padding. */
+.wpjp-ds-notice > :first-child { margin-block-start: 0; }
+.wpjp-ds-notice > :last-child { margin-block-end: 0; }
+
+/* A tint of the status colour, so success does not read as a grey box. */
+.wpjp-ds-notice--success {
+    border-inline-start-color: var(--wpjp-ds-color-success);
+    background: color-mix(in srgb, var(--wpjp-ds-color-success) 8%, var(--wpjp-ds-color-surface, #fff));
+}
+.wpjp-ds-notice--warning {
+    border-inline-start-color: var(--wpjp-ds-color-warning);
+    background: color-mix(in srgb, var(--wpjp-ds-color-warning) 10%, var(--wpjp-ds-color-surface, #fff));
+}
+.wpjp-ds-notice--danger {
+    border-inline-start-color: var(--wpjp-ds-color-danger);
+    background: color-mix(in srgb, var(--wpjp-ds-color-danger) 8%, var(--wpjp-ds-color-surface, #fff));
+}
 
 .wpjp-ds-table-scroll {
     max-width: 100%;
@@ -293,6 +326,90 @@ textarea.wpjp-ds-control {
     background: var(--wpjp-ds-color-surface);
     border: 1px dashed var(--wpjp-ds-color-border);
     border-radius: var(--wpjp-ds-radius-lg);
+}
+
+/* The page-level empty state (WPJOBPORTALlayout::emptyState()). */
+.wpjp-ds-empty-state--card {
+    box-sizing: border-box;
+    width: min(100%, 760px);
+    margin: 24px auto 8px;
+    gap: 0;
+    padding: 48px 40px;
+    border: 1px solid var(--wpjp-border-color, #e9ecef);
+    border-block-start: 4px solid var(--wpjp-primary-color, #3baeda);
+    border-radius: 8px;
+    background: var(--wpjp-card-background, #fff);
+    box-shadow: var(--wpjp-card-shadow, 0 4px 15px rgba(0, 0, 0, 0.08));
+    color: var(--wpjp-body-font-color, #575757);
+}
+.wpjp-ds-empty-state__icon {
+    position: relative;
+    display: block;
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 22px;
+    border: 1px solid var(--wpjp-border-color, #e9ecef);
+    border-radius: 12px;
+    background: var(--wpjp-background-color, #f6f6f6);
+}
+.wpjp-ds-empty-state__icon::before,
+.wpjp-ds-empty-state__icon::after {
+    position: absolute;
+    inset-inline-start: 18px;
+    width: 34px;
+    height: 9px;
+    border: 2px solid var(--wpjp-primary-color, #3baeda);
+    border-radius: 5px;
+    content: "";
+}
+.wpjp-ds-empty-state__icon::before { top: 21px; }
+.wpjp-ds-empty-state__icon::after { top: 39px; width: 25px; }
+.wpjp-ds-empty-state__eyebrow {
+    margin: 0 0 8px;
+    color: var(--wpjp-primary-color, #3baeda);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+.wpjp-ds-empty-state__title {
+    margin: 0;
+    color: var(--wpjp-secondary-color, #333333);
+    font-size: clamp(20px, 3vw, 26px);
+    font-weight: 700;
+    line-height: 1.25;
+}
+.wpjp-ds-empty-state__description {
+    max-width: 570px;
+    margin: 12px auto 0;
+    font-size: 15px;
+    line-height: 1.7;
+}
+.wpjp-ds-empty-state__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 24px;
+}
+.wpjp-ds-empty-state__action {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 20px;
+    border-radius: 8px;
+    background: var(--wpjp-primary-color, #3baeda);
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+}
+.wpjp-ds-empty-state__action:hover,
+.wpjp-ds-empty-state__action:focus { color: #fff; filter: brightness(0.95); }
+/* A section's own empty note: quiet, no card. */
+.wpjp-ds-empty-state--compact { padding: 16px; }
+.wpjp-ds-empty-state--compact .wpjp-ds-empty-state__description { margin: 0; font-size: 14px; }
+@media (max-width: 480px) {
+    .wpjp-ds-empty-state--card { padding: 32px 20px; }
 }
 
 @media (max-width: 782px) {

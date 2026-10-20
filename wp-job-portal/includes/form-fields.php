@@ -71,9 +71,10 @@ foreach($wpjobportal_fields AS $wpjobportal_field){
             $wpjobportal_content = WPJOBPORTALformfield::text('experience', $wpjobportal_job ? $wpjobportal_job->experience : '', array('class' => 'inputbox wjportal-form-input-field','placeholder'=> wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->placeholder)));
         break;
         case 'map':
-            if(in_array('addressdata', wpjobportal::$_active_addons)){
-               $wpjobportal_content = apply_filters('wpjobportal_credit_addons_map_load_for_jobform',false,$wpjobportal_field,$wpjobportal_job);
-            }
+            // Whoever draws maps here — Pro, or the legacy Address Data
+            // add-on on a site that still has it. With no provider the
+            // filter returns false and no empty frame is drawn.
+            $wpjobportal_content = apply_filters('wpjobportal_credit_addons_map_load_for_jobform',false,$wpjobportal_field,$wpjobportal_job);
             break;
         case 'jobsalaryrange':
             $wpjobportal_content = WPJOBPORTALincluder::getTemplateHtml('job/salary-field', array('class' => 'inputbox wjportal-form-select-field','wpjobportal_field' => $wpjobportal_field, 'wpjobportal_job' => $wpjobportal_job));

@@ -13,6 +13,12 @@ $wpjobportal_companyname = isset(wpjobportal::$_data[0]->name) ? wpjobportal::$_
 $wpjobportal_companyid = isset(wpjobportal::$_data[0]->id) ? wpjobportal::$_data[0]->id : '';
 if (wpjobportal::$_error_flag == null) {
     function wpjobportal_getDataRow($title, $wpjobportal_value) {
+        // A field the employer left blank used to print its label and a colon
+        // with nothing after it. No answer is not an answer worth a row.
+        if (trim(wp_strip_all_tags((string) $wpjobportal_value)) === '') {
+            return '';
+        }
+
         $wpjobportal_html = '<div class="wjportal-company-data">
                     <span class="wjportal-company-data-tit">' . $title . ':</span>
                     <span class="wjportal-company-data-val">' . $wpjobportal_value . '</span>

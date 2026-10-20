@@ -2,4 +2,15 @@
 INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
 ("Bissau", "Bissau", "Bissau", NULL, 163, 0, 1, NULL, "11.861324", "-15.583055"),
 ("Gabu", "Gabu", "Gabu", NULL, 163, 0, 1, NULL, "12.2819517", "-14.2260818"),
-("Bafatá", "Bafatá", "Bafatá", NULL, 163, 0, 1, NULL, "12.1723403", "-14.6555027");
+("Bafatá", "Bafatá", "Bafatá", NULL, 163, 0, 1, NULL, "12.1723403", "-14.6555027"),
+("Bissora", "Bissora", "Bissora", NULL, 163, 0, 1, NULL, "12.2294835", "-15.4478131"),
+("Bolama", "Bolama", "Bolama", NULL, 163, 0, 1, NULL, "11.5770712", "-15.4800382"),
+("Buba", "Buba", "Buba", NULL, 163, 0, 1, NULL, "11.5920466", "-14.9943814"),
+("Bubaque", "Bubaque", "Bubaque", NULL, 163, 0, 1, NULL, "11.2987384", "-15.8378366"),
+("Cacheu", "Cacheu", "Cacheu", NULL, 163, 0, 1, NULL, "12.2732631", "-16.1669156"),
+("Canchungo", "Canchungo", "Canchungo", NULL, 163, 0, 1, NULL, "12.073469", "-16.0346285"),
+("Catio", "Catio", "Catio", NULL, 163, 0, 1, NULL, "11.2721179", "-15.2545888"),
+("Farim", "Farim", "Farim", NULL, 163, 0, 1, NULL, "12.4877272", "-15.2136302"),
+("Mansoa", "Mansoa", "Mansoa", NULL, 163, 0, 1, NULL, "12.0813122", "-15.3189726"),
+("Quebo", "Quebo", "Quebo", NULL, 163, 0, 1, NULL, "11.3410027", "-14.935965"),
+("Quinhamel", "Quinhamel", "Quinhamel", NULL, 163, 0, 1, NULL, "11.8956399", "-15.8583873");

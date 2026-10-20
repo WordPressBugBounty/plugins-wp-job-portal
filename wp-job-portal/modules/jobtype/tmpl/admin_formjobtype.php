@@ -1,10 +1,10 @@
 <?php if (!defined('ABSPATH')) die('Restricted Access'); ?>
 <?php
     wp_enqueue_script('iris');
-    wp_enqueue_script('formvalidate.js', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/jquery.form-validator.js');
+    wp_enqueue_script( 'formvalidate.js', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/jquery.form-validator.js', array(), wpjobportal_asset_version('includes/js/jquery.form-validator.js'), false );
 ?>
 <?php
-    wp_register_script( 'wpjobportal-inline-handle', '' );
+    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
     $wpjobportal_inline_js_script = "

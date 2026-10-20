@@ -1,6 +1,6 @@
 <?php if (!defined('ABSPATH')) die('Restricted Access'); ?>
 <?php
-    wp_enqueue_style('status-graph', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/status_graph.css');
+    wp_enqueue_style('status-graph', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/status_graph.css', array(), wpjobportal_asset_version('includes/css/status_graph.css'));
 ?>
 <!-- main wrapper -->
 <div id="wpjobportaladmin-wrapper">
@@ -12,7 +12,7 @@
         <?php
             $wpjobportal_msgkey = WPJOBPORTALincluder::getJSModel('report')->getMessagekey();
             WPJOBPORTALMessages::getLayoutMessage($wpjobportal_msgkey);
-            $wpjobportal_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+            $wpjobportal_protocol = is_ssl() ? "https://" : "http://";
         ?>
         <!-- top bar -->
         <div id="wpjobportal-wrapper-top">
@@ -242,7 +242,7 @@
 </div>
 <?php
 wp_enqueue_script( 'jp-google-charts', esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/js/google-charts.js', array(), '1.1.1', false );
-wp_register_script( 'google-charts-handle', '' );
+wp_register_script( 'google-charts-handle', '', array(), WPJOBPORTAL_VERSION, false );
 wp_enqueue_script( 'google-charts-handle' );
 $wpjobportal_drawChartTop_js_script = "
     google.charts.load('current', {'packages':['corechart']});
@@ -324,6 +324,8 @@ $wpjobportal_drawChartCatBar2_js_script = "
 
     google.setOnLoadCallback(drawChart);
     function drawChart() {
+    // No catpie box is printed on this page; drawing into nothing threw 'Container is not defined'.
+    if (!document.getElementById('catpie')) { return; }
     var piedata = google.visualization.arrayToDataTable([
             ['". esc_html(__('Categories', 'wp-job-portal')) ."', '". esc_html(__('Companies', 'wp-job-portal')) ."'],
     ". wpjobportal::$_data['catpie'] ."
@@ -369,6 +371,8 @@ $wpjobportal_drawChartCatBar4_js_script = "
     google.setOnLoadCallback(drawChartCityBar2);
     //4
     function drawChartCityBar2(){
+    // Its box is only printed with the resume builder add-on.
+    if (!document.getElementById('citybar2')) { return; }
     var data = google.visualization.arrayToDataTable([
             ['". esc_html(__('Cities', 'wp-job-portal')) ."', '". esc_html(__('Resume', 'wp-job-portal')) ."', { role: 'style' }, { role: 'annotation' } ],
     ". wpjobportal::$_data['citybar2'] ."

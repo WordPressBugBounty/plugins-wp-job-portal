@@ -8,7 +8,9 @@ class WPJOBPORTALEmployerModel {
    function getLatestResumeIdNew($wpjobportal_uid){
         if(!is_numeric($wpjobportal_uid))
             return false;
-        $query = "SELECT DISTINCT apply.jobid,company.id as companyid,jobs.title as title,company.uid as userid,apply.quick_apply
+        // One row per job: apply.quick_apply was in this DISTINCT list, so a job with both a normal and
+        // a quick application came back twice, filled both slots of the LIMIT and hid the other job.
+        $query = "SELECT DISTINCT apply.jobid,company.id as companyid,jobs.title as title,company.uid as userid
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` as apply
                     JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobs` as jobs on apply.jobid=jobs.id
                     ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` as company ON company.id=jobs.companyid
@@ -49,6 +51,46 @@ class WPJOBPORTALEmployerModel {
             }
             wpjobportal::$_data[0]['data'][$wpjobportal_key->jobid] = $wpjobportal_data;
         }
+    }
+
+    /**
+     * The three counts the My Stats page shows an employer.
+     *
+     * Mirrors the job seeker page: the headline numbers that employer already
+     * sees on the dashboard, on a page of their own. Same queries as the
+     * dashboard so the two cannot disagree, and the Multi Company cap is kept
+     * for the same reason the dashboard keeps it.
+     *
+     * @param int $wpjobportal_uid WP Job Portal user id.
+     * @return bool False when the id is not usable.
+     */
+    function getMyStats($wpjobportal_uid) {
+        if (!is_numeric($wpjobportal_uid)) {
+            return false;
+        }
+
+        $wpjobportal_stats = array(
+            'totaljobs' => 0,
+            'totalcompanies' => 0,
+            'totalapplied' => 0,
+        );
+
+        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE uid = " . (int) ($wpjobportal_uid) . " AND status = 1";
+        $wpjobportal_stats['totaljobs'] = (int) wpjobportal::$_db->get_var($query);
+
+        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` WHERE uid = " . (int) ($wpjobportal_uid) . " AND status = 1";
+        $wpjobportal_stats['totalcompanies'] = (int) wpjobportal::$_db->get_var($query);
+        if (!in_array('multicompany', wpjobportal::$_active_addons) && $wpjobportal_stats['totalcompanies'] > 1) {
+            $wpjobportal_stats['totalcompanies'] = 1;
+        }
+
+        $query = "SELECT COUNT(jobapply.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` AS jobapply
+                    JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job ON jobapply.jobid = job.id AND job.uid = " . (int) ($wpjobportal_uid) . " AND jobapply.status = 1";
+        $wpjobportal_stats['totalapplied'] = (int) wpjobportal::$_db->get_var($query);
+
+        wpjobportal::$_data[0] = $wpjobportal_stats;
+
+        return true;
     }
 
     function getEmployerinfo($wpjobportal_uid){
@@ -162,8 +204,49 @@ class WPJOBPORTALEmployerModel {
             FROM `".wpjobportal::$_db->prefix."wj_portal_jobapply` AS jobapply
             JOIN `".wpjobportal::$_db->prefix."wj_portal_jobs` AS job ON job.id=jobapply.jobid
             LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_jobtypes` AS type ON job.jobtype=type.id";
-            if($wpjobportal_uid){
-                $query .= " AND job.uid =" . (int) ($wpjobportal_uid);
+            /*
+             * Whose applications this chart counts.
+             *
+             * Ownership is the right answer for an employer looking at their
+             * own dashboard, and the wrong one for anybody else standing on
+             * it: a recruiter owns no jobs, so job.uid matched nothing and the
+             * chart drew twelve months of zeros under a heading that promised
+             * otherwise. Anything that knows the viewer reaches further than
+             * ownership can hand back the jobs they may see instead; an empty
+             * list means exactly that, and is not quietly widened to
+             * everything.
+             */
+            $wpjobportal_graph_jobs = apply_filters('wpjobportal_dashboard_graph_job_scope', null, $wpjobportal_uid);
+            $wpjobportal_graph_where = '';
+            if (is_array($wpjobportal_graph_jobs)) {
+                $wpjobportal_graph_jobs = array_filter(array_map('absint', $wpjobportal_graph_jobs));
+                $wpjobportal_graph_where = $wpjobportal_graph_jobs
+                    ? "job.id IN (" . implode(',', $wpjobportal_graph_jobs) . ")"
+                    : "1 = 0";
+            } elseif($wpjobportal_uid){
+                $wpjobportal_graph_where = "job.uid = " . (int) ($wpjobportal_uid);
+            } else {
+                // A visitor owns no jobs. With no filter at all the chart
+                // counted every application on the site and showed it to
+                // anyone who opened the dashboard logged out.
+                $wpjobportal_graph_where = "1 = 0";
+            }
+
+            /*
+             * In a WHERE, not on the end of the LEFT JOIN.
+             *
+             * This condition used to be appended straight after
+             * "ON job.jobtype=type.id", which made it part of the join rather
+             * than a filter: a LEFT JOIN keeps every row on its left whatever
+             * the ON clause says, so applications belonging to other people
+             * were still counted - they simply came back with type.id NULL and
+             * were dropped further down, where the results are indexed by job
+             * type. The right total by the wrong route, and it would have
+             * started returning other employers' numbers the moment that join
+             * became an INNER JOIN or a NULL job type was counted.
+             */
+            if ('' !== $wpjobportal_graph_where) {
+                $query .= " WHERE " . $wpjobportal_graph_where;
             }
         $query .= " GROUP by MONTH(jobapply.apply_date),YEAR(jobapply.apply_date),type.id ORDER BY YEAR(jobapply.apply_date),MONTH(jobapply.apply_date) ASC";
 

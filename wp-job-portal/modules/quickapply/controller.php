@@ -24,9 +24,9 @@ class WPJOBPORTALquickapplyController {
     }
 
     function canaddfile($wpjobportal_layout) {
-        if (isset($_POST['form_request']) && $_POST['form_request'] == 'wpjobportal')
+        if (WPJOBPORTALrequest::getVar('form_request', 'post', '') == 'wpjobportal')
             return false;
-        elseif (isset($_GET['action']) && $_GET['action'] == 'wpjobportaltask')
+        elseif (WPJOBPORTALrequest::getVar('action', 'get', '') == 'wpjobportaltask')
             return false;
         else{
                 if(!is_admin() && strpos($wpjobportal_layout, 'admin_') === 0){
@@ -57,7 +57,7 @@ class WPJOBPORTALquickapplyController {
             $wpjobportal_url = array('wpjobportalme'=>'job','wpjobportallt'=>'myjobs');
             $wpjobportal_url = wpjobportal::wpjobportal_makeUrl($wpjobportal_url);
         }
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -80,7 +80,7 @@ class WPJOBPORTALquickapplyController {
         $wpjobportal_url = array('wpjobportalme'=>'job','wpjobportallt'=>'viewjob','wpjobportalid'=>$wpjobportal_jobid,'wpjobportalpageid'=>$page_id);
         $wpjobportal_url = wpjobportal::wpjobportal_makeUrl($wpjobportal_url);
 
-        wp_redirect(esc_url_raw($wpjobportal_url));
+        wp_safe_redirect(esc_url_raw($wpjobportal_url));
         die();
     }
 

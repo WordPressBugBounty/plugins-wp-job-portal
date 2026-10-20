@@ -7,6 +7,21 @@ class wpjobportaladmin {
 
     function __construct() {
         add_action('admin_menu', array($this, 'mainmenu'));
+        add_action('admin_enqueue_scripts', array($this, 'design_screen_styles'));
+    }
+
+    /**
+     * The Design screen's stylesheets, in the head rather than the footer, so
+     * the page is laid out from the first paint.
+     */
+    function design_screen_styles() {
+        if (!WPJOBPORTALrequest::has('page', 'get') || sanitize_key((string) WPJOBPORTALrequest::getVar('page', 'get', '')) !== 'wpjobportal_theme') {
+            return;
+        }
+        WPJOBPORTALincluder::getJSModel('theme');
+        if (class_exists('WPJOBPORTALthemeModel')) {
+            WPJOBPORTALthemeModel::enqueueScreenStyles();
+        }
     }
 
     function mainmenu() {
@@ -42,8 +57,8 @@ class wpjobportaladmin {
         );
 
         add_submenu_page('wpjobportal_hide', // parent slug
-                esc_html(__('Themes', 'wp-job-portal')), // Page title
-                esc_html(__('Themes', 'wp-job-portal')), // menu title
+                esc_html(__('Design', 'wp-job-portal')), // Page title
+                esc_html(__('Design', 'wp-job-portal')), // menu title
                 'wpjobportal', // capability
                 'wpjobportal_theme', //menu slug
                 array($this, 'showAdminPage') // function name
@@ -103,8 +118,6 @@ class wpjobportaladmin {
                 'wpjobportal_cronjob', //menu slug
                 array($this, 'showAdminPage') // function name
             );
-        }else{
-            $this->addMissingAddonPage('cronjob');
         }
 
 
@@ -132,8 +145,6 @@ class wpjobportaladmin {
                     'wpjobportal_package', //menu slug
                     array($this, 'showAdminPage') // function name
             );
-        }else{
-            $this->addMissingAddonPage('credits');
         }
 
         add_submenu_page('wpjobportal_hide', // parent slug
@@ -152,8 +163,6 @@ class wpjobportaladmin {
                 'wpjobportal_reports', //menu slug
                 array($this, 'showAdminPage') // function name
         );
-    }else{
-     $this->addMissingAddonPage('reports');
     }
 
         if(in_array('message', wpjobportal::$_active_addons)){
@@ -164,8 +173,6 @@ class wpjobportaladmin {
                     'wpjobportal_message', //menu slug
                     array($this, 'showAdminPage') // function name
             );
-        }else{
-            $this->addMissingAddonPage('message');
         }
         if(in_array('folder', wpjobportal::$_active_addons)){
             add_submenu_page('wpjobportal_hide', // parent slug
@@ -175,8 +182,6 @@ class wpjobportaladmin {
                 'wpjobportal_folder', //menu slug
                 array($this, 'showAdminPage') // function name
             );
-        }else{
-            $this->addMissingAddonPage('folder');
         }
         add_submenu_page('wpjobportal_hide', // parent slug
                 esc_html(__('Categories', 'wp-job-portal')), // Page title
@@ -327,8 +332,6 @@ class wpjobportaladmin {
                     'wpjobportal_jobalert', //menu slug
                     array($this, 'showAdminPage') // function name
             );
-       }else{
-        $this->addMissingAddonPage('jobalert');
        }
 
         add_submenu_page('wpjobportal_hide', // parent slug
@@ -419,8 +422,6 @@ class wpjobportaladmin {
                 'wpjobportal_addressdata', //menu slug
                 array($this, 'showAdminPage') // function name
         );
-       }else{
-        $this->addMissingAddonPage('addressdata');
        }
 
         add_submenu_page('wpjobportal_hide', // parent slug
@@ -445,8 +446,6 @@ class wpjobportaladmin {
                     'wpjobportal_purchasehistory', //menu slug
                     array($this, 'showAdminPage') // function name
             );
-        }else{
-            $this->addMissingAddonPage('credits');
         }
         /* add_submenu_page('wpjobportal', // parent slug
                 esc_html(__('Translations', 'wp-job-portal')), // Page title
@@ -478,9 +477,7 @@ class wpjobportaladmin {
                     'wpjobportal_tag', //menu slug
                     array($this, 'showAdminPage') // function name
             );
-         }else{
-            $this->addMissingAddonPage('tags');
-        }
+         }
         add_submenu_page('wpjobportal', // parent slug
                 esc_html(__('Setup & Mode', 'wp-job-portal')), // Page title
                 esc_html(__('Setup & Mode', 'wp-job-portal')), // menu title
@@ -500,14 +497,6 @@ class wpjobportaladmin {
                 esc_html(__('WP Job Portal Import Data', 'wp-job-portal')), // menu title
                 'wpjobportal', // capability
                 'wpjobportal_thirdpartyimport', //menu slug
-                array($this, 'showAdminPage') // function name
-        );
-
-        add_submenu_page('wpjobportal', // parent slug
-                esc_html(__('Install Addons', 'wp-job-portal')), // Page title
-                esc_html(__('Install Addons', 'wp-job-portal')), // menu title
-                'wpjobportal', // capability
-                'wpjobportal_premiumplugin', //menu slug
                 array($this, 'showAdminPage') // function name
         );
 
@@ -535,15 +524,6 @@ class wpjobportaladmin {
         WPJOBPORTALincluder::include_file($page);
     }
 
-    function addMissingAddonPage($wpjobportal_module_name){
-        add_submenu_page('wpjobportal_hide', // parent slug
-                esc_html(__('Premium Addon', 'wp-job-portal')), // Page title
-                esc_html(__('Premium Addon', 'wp-job-portal')), // menu title
-                'wpjobportal', // capability
-                $wpjobportal_module_name, //menu slug
-                array($this, 'showMissingAddonPage') // function name
-        );
-    }
 
 }
 

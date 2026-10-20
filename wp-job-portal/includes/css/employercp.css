@@ -1,5 +1,15 @@
 
-@import url('job_portal_variables.css');
+/*
+ * job_portal_variables.css is not imported here; it is enqueued.
+ *
+ * An @import carries no version query, so the browser kept its own copy of
+ * the token file under a second URL that never changed. That copy is parsed
+ * as part of this sheet, which is enqueued after the real one, so the stale
+ * :root won: a site saved a new theme colour, the generated file changed,
+ * and the pages went on drawing the old one until the cache expired.
+ *
+ * The tokens are a dependency of this stylesheet and load ahead of it.
+ */
 
 #wjportal-emp-cp-wrp{
    display: flex;
@@ -222,7 +232,8 @@ a:hover {
 #wjportal-emp-cp-wrp #wpjobportal-center .wjportal-cp-sec-title{
     margin-bottom: 20px;
 }
-#wjportal-emp-cp-wrp h3.wjportal-section-title{
+#wjportal-emp-cp-wrp h3.wjportal-section-title,
+#wjportal-emp-cp-wrp summary.wjportal-section-title{
     font-size:var(--wpjp-body-font-size);
     color: var(--wpjp-secondary-color);
     font-weight: 600;
@@ -258,7 +269,8 @@ a:hover {
 #wjportal-emp-cp-wrp  #wpjobportal-center .wjportal-cp-sec-title{
     margin-bottom: 20px;
 }
-h3.wjportal-section-title{
+h3.wjportal-section-title,
+summary.wjportal-section-title{
     font-size:var(--wpjp-body-font-size);
     color: var(--wpjp-secondary-color);
     font-weight: 600;
@@ -310,14 +322,6 @@ h3.wjportal-section-title{
     border-radius: 8px;
 }
 
-#wjportal-emp-cp-wrp  .wjportal-list-anchor img {
-    width: 24px;
-    height: 24px;
-    filter: grayscale(1) opacity(0.6);
-}
-#wjportal-emp-cp-wrp  .wjportal-list-anchor:hover img{
-    filter: unset;
-}
 #wjportal-emp-cp-wrp span.wjportal-cp-link-text {
     text-align: left;
 }
@@ -371,8 +375,11 @@ h3.wjportal-section-title{
   #wjportal-emp-cp-wrp .wjportal-resume-list  .wjportal-resume-list-btm-wrp{
   display: none;
  }
+/* Full row here: the right column is hidden above, so style.css's "take what the right column
+   leaves" (flex: 1 1 0) left the middle 0px wide beside the full-width bottom block. */
 #wjportal-emp-cp-wrp .wjportal-resume-list-top-wrp .wjportal-resume-middle-wrp{
   width: 100%;
+  flex: 0 0 100%;
 }
 
 /* ------------------------------------------- */
@@ -380,25 +387,28 @@ h3.wjportal-section-title{
 /* ------------------------------------------- */
 
 /* 1. Large Laptops / Desktops (Max Width 1280px) */
+/*
+ * The type scale is not restated here.
+ *
+ * Five media queries used to redefine the four font tokens on :root, in em
+ * - and em on :root is read against whatever is above it, so every level
+ * that named a token shrank again against the level before. Below 1280px
+ * the control-panel menu heading came out at 13px and its links at 11px,
+ * from a token that says 17.
+ *
+ * Stating them in px would have stopped that, but not the real problem:
+ * this stylesheet is enqueued after the token file, so whatever it says
+ * about a token wins, and a size the site owner had chosen was thrown away
+ * from 1279px down. A setting that a stylesheet can overwrite is not a
+ * setting. One size, set in one place, at every width.
+ */
 @media (max-width: 1280px) {
     /* Font scaling for slightly smaller screens */
-    :root {
-        --wpjp-main-heading: 2.0em;
-        --wpjp-second-sub-heading: 1.5em;
-        --wpjp-sub-heading: 1.15em;
-        --wpjp-body-font-size: 0.95em;
-    }
 }
 
 /* 2. Tablets / Small Laptops (Max Width 1080px) - Main Layout Break */
 @media (max-width: 1080px) {
     /* Font scaling */
-    :root {
-        --wpjp-main-heading: 1.8em;
-        --wpjp-second-sub-heading: 1.4em;
-        --wpjp-sub-heading: 1.1em;
-        --wpjp-body-font-size: 0.95em;
-    }
 
     /* Stack the main dashboard container (Left/Right columns) */
     #wjportal-emp-cp-wrp {
@@ -439,12 +449,6 @@ h3.wjportal-section-title{
 /* 3. Smaller Tablets / Large Phones (Max Width 767px) */
 @media (max-width: 767px) {
     /* Font scaling */
-    :root {
-        --wpjp-main-heading: 1.6em;
-        --wpjp-second-sub-heading: 1.3em;
-        --wpjp-sub-heading: 1.0em;
-        --wpjp-body-font-size: 0.9em;
-    }
     
     /* Stats Boxes change to 2 columns */
     .wjportal-cp-boxes {
@@ -528,12 +532,6 @@ h3.wjportal-section-title{
 /* 4. Large Mobile Phones (Max Width 650px) */
 @media (max-width: 650px) {
     /* Font scaling */
-    :root {
-        --wpjp-main-heading: 1.5em;
-        --wpjp-second-sub-heading: 1.2em;
-        --wpjp-sub-heading: 1.0em;
-        --wpjp-body-font-size: 0.9em;
-    }
     
     /* Simplify button wrapping in top section */
     .wjportal-cp-user-act-btn {
@@ -556,12 +554,6 @@ h3.wjportal-section-title{
 /* 5. Small Mobile Phones (Max Width 480px) */
 @media (max-width: 480px) {
     /* Final font scaling for smallest screens */
-    :root {
-        --wpjp-main-heading: 1.4em;
-        --wpjp-second-sub-heading: 1.1em;
-        --wpjp-sub-heading: 0.95em;
-        --wpjp-body-font-size: 0.85em;
-    }
     .wjportal-cp-user{
         justify-content: center;
     }
@@ -611,7 +603,8 @@ h3.wjportal-section-title{
     }
     
     .wjportal-cp-box-num {
-        font-size: 30px;
+        /* Follows the token like everything else; see the note at the top. */
+        font-size: var(--wpjp-main-heading);
     }
     .wjportal-cp-box-tit {
         margin-top: 50px;

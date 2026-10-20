@@ -1,3 +1,7 @@
 
 INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
-("Bandar Seri Begawan", "Bandar Seri Begawan", "Bandar Seri Begawan", NULL, 101, 0, 1, NULL, "4.8895453", "114.9417574");
+("Bandar Seri Begawan", "Bandar Seri Begawan", "Bandar Seri Begawan", NULL, 101, 0, 1, NULL, "4.8895453", "114.9417574"),
+("Bangar", "Bangar", "Bangar", NULL, 101, 0, 1, NULL, "4.7127123", "115.0762536"),
+("Kuala Belait", "Kuala Belait", "Kuala Belait", NULL, 101, 0, 1, NULL, "4.5831986", "114.2212174"),
+("Seria", "Seria", "Seria", NULL, 101, 0, 1, NULL, "4.6101062", "114.3311718"),
+("Tutong", "Tutong", "Tutong", NULL, 101, 0, 1, NULL, "4.7140373", "114.6667939");

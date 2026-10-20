@@ -64,7 +64,7 @@ class WPJOBPORTALJobstatusController {
         $wpjobportal_url = esc_url_raw(admin_url('admin.php?page=wpjobportal_jobstatus&wpjobportallt=jobstatus'));
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'jobstatus');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -80,7 +80,7 @@ class WPJOBPORTALJobstatusController {
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'jobstatus');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_jobstatus&wpjobportallt=jobstatus"));
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -99,7 +99,7 @@ class WPJOBPORTALJobstatusController {
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_jobstatus&wpjobportallt=jobstatus"));
         if ($wpjobportal_pagenum)
             $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -118,7 +118,7 @@ class WPJOBPORTALJobstatusController {
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_jobstatus&wpjobportallt=jobstatus"));
         if ($wpjobportal_pagenum)
             $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -146,7 +146,7 @@ class WPJOBPORTALJobstatusController {
         }
         WPJOBPORTALincluder::getJSModel('jobstatus')->storeOrderingFromPage($post);
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_jobstatus"));
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         exit;
     }
 

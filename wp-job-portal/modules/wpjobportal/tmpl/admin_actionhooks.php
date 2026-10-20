@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     die( 'Restricted Access' );
 }
 
-$hook_data = [
+$wpjobportal_hook_data = [
     'Jobs' => [
         [
             'id'          => 'after_store_job_hook',
@@ -1090,6 +1090,22 @@ $hook_data = [
         ],
     ],
 ];
+// The keys above are ids the script matches on; these are the names shown.
+$wpjobportal_hook_entity_labels = [
+    'Jobs' => __( 'Jobs', 'wp-job-portal' ),
+    'Resumes' => __( 'Resumes', 'wp-job-portal' ),
+    'Applications & ATS Workflow' => __( 'Applications & ATS Workflow', 'wp-job-portal' ),
+    'Companies' => __( 'Companies', 'wp-job-portal' ),
+    'Users & Accounts' => __( 'Users & Accounts', 'wp-job-portal' ),
+    'AI & Match Engine' => __( 'AI & Match Engine', 'wp-job-portal' ),
+    'Job Alerts' => __( 'Job Alerts', 'wp-job-portal' ),
+    'E-Commerce & Subscriptions' => __( 'E-Commerce & Subscriptions', 'wp-job-portal' ),
+    'Billing & Invoices' => __( 'Billing & Invoices', 'wp-job-portal' ),
+    'Dashboards & UI Widgets' => __( 'Dashboards & UI Widgets', 'wp-job-portal' ),
+    'Data Exports' => __( 'Data Exports', 'wp-job-portal' ),
+    'Communications & Messaging' => __( 'Communications & Messaging', 'wp-job-portal' ),
+    'System Infrastructure' => __( 'System Infrastructure', 'wp-job-portal' ),
+];
 
 ?>
 
@@ -1145,36 +1161,36 @@ $hook_data = [
                         <?php echo esc_html__( 'Entities', 'wp-job-portal' ); ?>
                     </div>
                     <div class="wjp-sidebar-nav" id="wjp-nav-container">
-                        <?php foreach ( array_keys( $hook_data ) as $entity ) : ?>
-                            <button class="wjp-sidebar-nav-item <?php echo $entity === 'Jobs' ? 'active' : ''; ?>" data-entity="<?php echo esc_attr( $entity ); ?>">
-                                <?php if ( $entity == 'Companies' ) { ?>
+                        <?php foreach ( array_keys( $wpjobportal_hook_data ) as $wpjobportal_entity ) : ?>
+                            <button class="wjp-sidebar-nav-item <?php echo $wpjobportal_entity === 'Jobs' ? 'active' : ''; ?>" data-entity="<?php echo esc_attr( $wpjobportal_entity ); ?>">
+                                <?php if ( $wpjobportal_entity == 'Companies' ) { ?>
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="22" x2="9" y2="18"></line><line x1="15" y1="22" x2="15" y2="18"></line></svg>
-                                <?php } elseif ( $entity == 'Resumes' ) { ?>
+                                <?php } elseif ( $wpjobportal_entity == 'Resumes' ) { ?>
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                                <?php } elseif ( $entity == 'Applications & ATS Workflow' ) { ?>
+                                <?php } elseif ( $wpjobportal_entity == 'Applications & ATS Workflow' ) { ?>
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
-                                <?php } elseif ( $entity == 'Users & Accounts' ) { ?>
+                                <?php } elseif ( $wpjobportal_entity == 'Users & Accounts' ) { ?>
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                                <?php } elseif ( $entity == 'AI & Match Engine' ) { ?>
+                                <?php } elseif ( $wpjobportal_entity == 'AI & Match Engine' ) { ?>
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
-                                <?php } elseif ( $entity == 'Job Alerts' ) { ?>
+                                <?php } elseif ( $wpjobportal_entity == 'Job Alerts' ) { ?>
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                                <?php } elseif ( $entity == 'E-Commerce & Subscriptions' ) { ?>
+                                <?php } elseif ( $wpjobportal_entity == 'E-Commerce & Subscriptions' ) { ?>
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
-                                <?php } elseif ( $entity == 'Billing & Invoices' ) { ?>
+                                <?php } elseif ( $wpjobportal_entity == 'Billing & Invoices' ) { ?>
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                                <?php } elseif ( $entity == 'Dashboards & UI Widgets' ) { ?>
+                                <?php } elseif ( $wpjobportal_entity == 'Dashboards & UI Widgets' ) { ?>
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
-                                <?php } elseif ( $entity == 'Data Exports' ) { ?>
+                                <?php } elseif ( $wpjobportal_entity == 'Data Exports' ) { ?>
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                                <?php } elseif ( $entity == 'Communications & Messaging' ) { ?>
+                                <?php } elseif ( $wpjobportal_entity == 'Communications & Messaging' ) { ?>
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                                <?php } elseif ( $entity == 'System Infrastructure' ) { ?>
+                                <?php } elseif ( $wpjobportal_entity == 'System Infrastructure' ) { ?>
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
                                 <?php } else { // Default case for 'Jobs' and any missing keys ?>
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
                                 <?php } ?>
-                                <span><?php echo esc_html( wpjobportal::wpjobportal_getVariableValue($entity) ); ?></span>
+                                <span><?php echo esc_html( isset( $wpjobportal_hook_entity_labels[ $wpjobportal_entity ] ) ? $wpjobportal_hook_entity_labels[ $wpjobportal_entity ] : $wpjobportal_entity ); ?></span>
                             </button>
                         <?php endforeach; ?>
                     </div>
@@ -1190,50 +1206,50 @@ $hook_data = [
                     </div>
 
                     <div id="wjp-hook-results">
-                        <?php foreach ( $hook_data as $entity_name => $hooks ) : ?>
-                            <?php foreach ( $hooks as $hook ) : ?>
+                        <?php foreach ( $wpjobportal_hook_data as $wpjobportal_entity_name => $wpjobportal_hooks ) : ?>
+                            <?php foreach ( $wpjobportal_hooks as $wpjobportal_hook ) : ?>
                                 <div class="wjp-card wjp-hook-item"
-                                     data-entity="<?php echo esc_attr( $entity_name ); ?>"
-                                     data-action="<?php echo esc_attr( $hook['action'] ); ?>"
-                                     data-name="<?php echo esc_attr( $hook['name'] ); ?>"
-                                     data-desc="<?php echo esc_attr( $hook['description'] ); ?>"
-                                     style="<?php echo $entity_name === 'Jobs' ? '' : 'display:none;'; ?>">
+                                     data-entity="<?php echo esc_attr( $wpjobportal_entity_name ); ?>"
+                                     data-action="<?php echo esc_attr( $wpjobportal_hook['action'] ); ?>"
+                                     data-name="<?php echo esc_attr( $wpjobportal_hook['name'] ); ?>"
+                                     data-desc="<?php echo esc_attr( $wpjobportal_hook['description'] ); ?>"
+                                     style="<?php echo $wpjobportal_entity_name === 'Jobs' ? '' : 'display:none;'; ?>">
 
                                     <div class="wjp-hook-badge-row">
-                                        <span class="wjp-tag wjp-entity-indicator" style="display:none;"><?php echo esc_html( $entity_name ); ?></span>
-                                        <span class="wjp-tag <?php echo $hook['type'] === 'action' ? 'wjp-tag-indigo' : 'wjp-tag-emerald'; ?>">
-                                            <?php echo esc_html( $hook['type'] ); ?>
+                                        <span class="wjp-tag wjp-entity-indicator" style="display:none;"><?php echo esc_html( isset( $wpjobportal_hook_entity_labels[ $wpjobportal_entity_name ] ) ? $wpjobportal_hook_entity_labels[ $wpjobportal_entity_name ] : $wpjobportal_entity_name ); ?></span>
+                                        <span class="wjp-tag <?php echo $wpjobportal_hook['type'] === 'action' ? 'wjp-tag-indigo' : 'wjp-tag-emerald'; ?>">
+                                            <?php echo esc_html( $wpjobportal_hook['type'] ); ?>
                                         </span>
                                     </div>
 
                                     <div class="wjp-hook-title-group">
-                                        <h3 class="wjp-hook-name"><?php echo esc_html( $hook['name'] ); ?></h3>&nbsp;(<?php echo esc_html( $hook['action'] ); ?>)
+                                        <h3 class="wjp-hook-name"><?php echo esc_html( $wpjobportal_hook['name'] ); ?></h3>&nbsp;(<?php echo esc_html( $wpjobportal_hook['action'] ); ?>)
                                     </div>
 
-                                    <p class="wjp-hook-description"><?php echo esc_html( $hook['description'] ); ?></p>
+                                    <p class="wjp-hook-description"><?php echo esc_html( $wpjobportal_hook['description'] ); ?></p>
 
                                     <div class="wjp-details-flex">
                                         <div class="wjp-details-column">
                                             <span class="wjp-detail-heading"><?php echo esc_html__( 'Arguments', 'wp-job-portal' ); ?></span>
-                                            <?php foreach ( $hook['params'] as $param ) : ?>
-                                                <div class="wjp-param-item <?php echo esc_attr( $hook['type'] ); ?>">
+                                            <?php foreach ( $wpjobportal_hook['params'] as $wpjobportal_param ) : ?>
+                                                <div class="wjp-param-item <?php echo esc_attr( $wpjobportal_hook['type'] ); ?>">
                                                     <div class="wjp-param-meta">
-                                                        <span class="wjp-param-name"><?php echo esc_html( $param['name'] ); ?></span>
-                                                        <span class="wjp-param-type"><?php echo esc_html( $param['type'] ); ?></span>
+                                                        <span class="wjp-param-name"><?php echo esc_html( $wpjobportal_param['name'] ); ?></span>
+                                                        <span class="wjp-param-type"><?php echo esc_html( $wpjobportal_param['type'] ); ?></span>
                                                     </div>
-                                                    <p class="wjp-param-desc"><?php echo esc_html( $param['desc'] ); ?></p>
+                                                    <p class="wjp-param-desc"><?php echo esc_html( $wpjobportal_param['desc'] ); ?></p>
                                                 </div>
                                             <?php endforeach; ?>
                                         </div>
                                         <div class="wjp-details-column">
                                             <span class="wjp-detail-heading"><?php echo esc_html__( 'Returns', 'wp-job-portal' ); ?></span>
-                                            <?php if ( isset( $hook['returns'] ) ) : ?>
+                                            <?php if ( isset( $wpjobportal_hook['returns'] ) ) : ?>
                                                 <div class="wjp-return-box">
                                                     <div class="wjp-return-header">
                                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 10 20 15 15 20"></polyline><path d="M4 4v7a4 4 0 0 0 4 4h12"></path></svg>
-                                                        <span class="wjp-return-label"><?php echo esc_html( $hook['returns']['type'] ); ?></span>
+                                                        <span class="wjp-return-label"><?php echo esc_html( $wpjobportal_hook['returns']['type'] ); ?></span>
                                                     </div>
-                                                    <p class="wjp-return-desc"><?php echo esc_html( $hook['returns']['desc'] ); ?></p>
+                                                    <p class="wjp-return-desc"><?php echo esc_html( $wpjobportal_hook['returns']['desc'] ); ?></p>
                                                 </div>
                                             <?php else : ?>
                                                 <div class="wjp-no-return-placeholder">
@@ -1246,27 +1262,27 @@ $hook_data = [
                                     <div class="wjp-code-block">
                                         <div class="wjp-code-header">
                                             <span><?php echo esc_html__( 'Snippet', 'wp-job-portal' ); ?></span>
-                                            <button class="wjp-code-copy copy-trigger" data-copy="<?php echo esc_attr( $hook['example'] ); ?>"><?php echo esc_html__( 'Copy Code', 'wp-job-portal' ); ?></button>
+                                            <button class="wjp-code-copy copy-trigger" data-copy="<?php echo esc_attr( $wpjobportal_hook['example'] ); ?>"><?php echo esc_html__( 'Copy Code', 'wp-job-portal' ); ?></button>
                                         </div>
                                         <div class="wjp-code-content">
-                                            <pre><code><?php echo htmlspecialchars( $hook['example'] ); ?></code></pre>
+                                            <pre><code><?php echo esc_html( $wpjobportal_hook['example'] ); ?></code></pre>
                                         </div>
                                     </div>
 
                                     <div class="wjp-info-note">
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--wjp-color-primary)" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                                        <span><?php echo esc_html( $hook['notes'] ); ?></span>
+                                        <span><?php echo esc_html( $wpjobportal_hook['notes'] ); ?></span>
                                     </div>
                                     <?php
-                                    if ( (isset($hook['addon']) && $hook['addon'] !== 'core') && !in_array($hook['addon'], wpjobportal::$_active_addons) ) :
+                                    if ( (isset($wpjobportal_hook['addon']) && $wpjobportal_hook['addon'] !== 'core') && !in_array($wpjobportal_hook['addon'], wpjobportal::$_active_addons) ) :
                                     ?>
                                         <div class="wpjobportal-shortcode-notice-wrap wpjobportal-notice-msg" style="margin-top: 15px; padding: 10px; border-radius: 8px; display: flex; align-items: center; gap: 10px; background: #fff4f4; border: 1px solid #fecaca;">
                                             <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL . "includes/images/import-city-warning-icon.png"); ?>" style="width:20px; height:20px;">
                                             <p style="margin:0; font-size: 13px; color: #991b1b;">
                                                 <?php echo esc_html__( 'To use this hook, please install and activate the', 'wp-job-portal' ); ?>
-                                                <strong><?php echo esc_html( $hook['addon_name'] ); ?></strong>
+                                                <strong><?php echo esc_html( $wpjobportal_hook['addon_name'] ); ?></strong>
                                                 <?php echo esc_html__( 'addon', 'wp-job-portal' ); ?>.
-                                                <a href="https://wpjobportal.com/addons/" target="_blank" style="text-decoration: underline; margin-left: 5px;">
+                                                <a href="https://wpjobportal.com/pricing/" target="_blank" style="text-decoration: underline; margin-left: 5px;">
                                                     <?php echo esc_html__( 'View Addon Details', 'wp-job-portal' ); ?>
                                                 </a>
                                             </p>
@@ -1498,8 +1514,10 @@ $hook_data = [
     }
 
     @media (max-width: 1024px) {
-        #wpjobportaladmin-wrapper #wpjobportaladmin-data .wjp-hook-reference-wrap .wjp-layout-grid { flex-direction: column; }
+        #wpjobportaladmin-wrapper #wpjobportaladmin-data .wjp-hook-reference-wrap .wjp-layout-grid { flex-direction: column; align-items: stretch; }
         #wpjobportaladmin-wrapper #wpjobportaladmin-data .wjp-hook-reference-wrap #wjp-sidebar { width: 100%; position: static; }
+        /* Stacked, the content takes the column's width, not its longest line's. */
+        #wpjobportaladmin-wrapper #wpjobportaladmin-data .wjp-hook-reference-wrap .wjp-content-area { width: 100%; }
     }
 
     #wpjobportaladmin-wrapper #wpjobportaladmin-data .wjp-details-column {
@@ -1638,7 +1656,7 @@ jQuery(document).ready(function($) {
     // Global Search
     $('#wjp-global-search').on('input', function() {
         const query = $(this).val().toLowerCase().trim();
-        const $hooks = $('.wjp-hook-item');
+        const $wpjobportal_hooks = $('.wjp-hook-item');
         const $sidebarItems = $('.wjp-sidebar-nav-item');
 
         // Handle Empty Input (Backspace/Delete until empty)
@@ -1662,7 +1680,7 @@ jQuery(document).ready(function($) {
         $headerTitle.text("<?php echo esc_js( __( 'Search Results', 'wp-job-portal' ) ); ?>");
 
         let found = 0;
-        $hooks.each(function() {
+        $wpjobportal_hooks.each(function() {
             // Using .attr() or .data() depending on how you stored them
             const action = ($(this).data('action') || "").toLowerCase();
             const desc   = ($(this).data('desc')   || "").toLowerCase();

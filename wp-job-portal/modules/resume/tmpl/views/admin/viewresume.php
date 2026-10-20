@@ -10,7 +10,7 @@ if( !empty(wpjobportal::$_data[0]) && !empty(wpjobportal::$_data[0]['personal_se
     $wpjobportal_resume_object = wpjobportal::$_data[0]['personal_section'];
     $wpjobportal_dateformat    = wpjobportal::$_configuration['date_format'];
     $wpjobportal_curdate       = date_i18n('Y-m-d');
-    $wpjobportal_featuredexpiry = date_i18n('Y-m-d', strtotime($wpjobportal_resume_object->endfeatureddate));
+    $wpjobportal_featuredexpiry = date_i18n('Y-m-d', strtotime((string) $wpjobportal_resume_object->endfeatureddate));
 
     if ($wpjobportal_resume_object->isfeaturedresume == 1 && $wpjobportal_featuredexpiry >= $wpjobportal_curdate) {
         $wpjobportal_extra_featured_class = 'wjportal-view-page-featured-flag';

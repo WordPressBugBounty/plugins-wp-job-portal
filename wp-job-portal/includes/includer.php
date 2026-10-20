@@ -23,22 +23,42 @@ class WPJOBPORTALincluder {
             require_once ABSPATH . 'wp-admin/includes/file.php';
         }
         global $wp_filesystem;
-        if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-            $creds = request_filesystem_credentials( site_url() );
-            wp_filesystem( $creds );
-        }
+        $wp_filesystem = wpjobportal::wpjobportal_filesystem();
 
         if ($wpjobportal_module_name != null) {
-            wp_enqueue_style('wpjobportal-jobseeker-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jobseekercp.css');
+            /*
+             * Not when a look is installed: its layered sheet already carries
+             * jobseekercp.css, inside the legacy layer where the look can
+             * answer it. On a block theme the page content is rendered before
+             * the head, so this ran before the layered setup registered the
+             * handle without a file - and, registered here first with its
+             * file, the whole sheet was printed a second time outside any
+             * layer, where it beat the look: Elegant Design's dashboard tiles
+             * came out centred with Core's grey footer bar.
+             */
+            $wpjobportal_look = apply_filters('wpjobportal_look_provider', array());
+            if (empty($wpjobportal_look['theme']['src'])) {
+                wp_enqueue_style('wpjobportal-jobseeker-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jobseekercp.css', array('wpjobportal-design-system'), wpjobportal_asset_version('includes/css/jobseekercp.css'));
+            }
             $file_path = self::getPluginPath($wpjobportal_module_name,'file',$filename);
             if ($wp_filesystem->exists(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/inc-css/' . $wpjobportal_module_name . '-' . $filename . '.css.php')) {
                 require_once(WPJOBPORTAL_PLUGIN_PATH . 'includes/css/inc-css/' . $wpjobportal_module_name . '-' . $filename . '.css.php');
             }
             if(is_array($file_path) && $wp_filesystem->exists($file_path['tmpl_file'])){
+                // Same as the branch below. A layout that lives in an add-on
+                // plugin resolves to a tmpl_file/inc_file pair rather than a
+                // path, and only that shape was missing the call — so My
+                // Companies, Add Company, Add Department and Resume Search were
+                // the four employer screens with no document title, falling back
+                // to the WordPress page name in the browser tab and in search
+                // results.
+                WPJOBPORTALincluder::getJSModel('common')->addWPSEOHooks($wpjobportal_module_name,$filename);
                 if ($wp_filesystem->exists($file_path['inc_file'])) {
                     require_once($file_path['inc_file']);
                 }
+                self::beginRender($file_path['tmpl_file']);
                 include_once $file_path['tmpl_file'];
+                self::endRender();
             }else if($wp_filesystem->exists($file_path)){
                 $wpjobportal_incfilepath = wpjobportalphplib::wpJP_explode('.php', $file_path);
                 $wpjobportal_incfilename = $wpjobportal_incfilepath[0].'.inc.php';
@@ -47,14 +67,10 @@ class WPJOBPORTALincluder {
                 if ($wp_filesystem->exists($wpjobportal_incfilename)) {
                     require_once($wpjobportal_incfilename);
                 }
+                self::beginRender($file_path);
                 include_once $file_path; //
+                self::endRender();
             }else{
-                /*$file_path = self::getPluginPath('premiumplugin','file','missingaddon');
-                if(is_array($file_path)){
-                    include_once $file_path['tmpl_file'];
-                }else{
-                    include_once $file_path; //
-                }*/
             }
         } else {
             $file_path = self::getPluginPath($filename,'file');
@@ -68,8 +84,6 @@ class WPJOBPORTALincluder {
                     new $wpjobportal_controller_class();
                 }
             }else{
-               /* $file_path = self::getPluginPath('premiumplugin','file');
-                include_once $file_path; //*/
             }
         }
 
@@ -168,13 +182,103 @@ class WPJOBPORTALincluder {
         return WPJOBPORTAL_PLUGIN_PATH . '/components/'.$filename.'.vue.php';
     }*/
 
+    /**
+     * The templates currently being rendered, outermost first, by path.
+     *
+     * Shared templates used to ask "is Elegant Design active?" to decide
+     * things that only ever depended on "is the page I am inside one of
+     * Elegant Design's own copies?" - whether to draw breadcrumbs, whether a
+     * job was passed. The two questions parted company the day the first
+     * forked page was retired and a Core page rendered on an Elegant Design
+     * site. This answers the right one.
+     *
+     * @var string[]
+     */
+    private static $rendering = array();
+
+    private static function beginRender($path) {
+        self::$rendering[] = (string) $path;
+    }
+
+    private static function endRender() {
+        array_pop(self::$rendering);
+    }
+
+    /**
+     * Is any template on the current render stack a design add-on's copy?
+     *
+     * A page template's partials inherit the answer, which is what a shared
+     * partial needs: breadcrumbs belong to the page, not to the partial.
+     *
+     * @return bool
+     */
+    /**
+     * Should templates come from the old Elegant Design plugin's folder?
+     *
+     * Only while that plugin is active. Pro provides Elegant Design since
+     * 2.7.0 with Core's own templates, and a site that switched the old plugin
+     * off usually still has its folder on disk; checking for the files alone
+     * kept drawing the old markup under Pro's stylesheet.
+     *
+     * @return bool
+     */
+    public static function legacyElegantTemplates() {
+        return in_array('elegantdesign', wpjobportal::$_active_addons, true);
+    }
+
+    public static function renderingOverride() {
+        foreach (self::$rendering as $path) {
+            if (strpos($path, 'wp-job-portal-elegantdesign') !== false) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static function getTemplate($wpjobportal_template_name, $wpjobportal_args = array()){
         $wpjobportal_template_name = wpjobportalphplib::wpJP_clean_file_path($wpjobportal_template_name);
         $wpjobportal_template = self::locateTemplate($wpjobportal_template_name,$wpjobportal_args);
         if(!empty($wpjobportal_args) && is_array($wpjobportal_args)){
+            /*
+             * Two naming conventions reach this door.
+             *
+             * Core's templates read prefixed variables - $wpjobportal_job,
+             * $wpjobportal_control. Elegant Design's forked templates read the
+             * bare names, and its callers pass them that way: 'job' => $job,
+             * 'control' => 'newestjobs'. That was harmless while each side only
+             * ever called its own copy. It stops being harmless the moment a
+             * fork is deleted and an Elegant Design page calls a Core partial:
+             * the partial sees no $wpjobportal_job and draws nothing.
+             *
+             * It runs the other way too. Every Core caller of the company card
+             * passes 'wpjobportal_company'; Elegant Design's copy of that card
+             * reads $company, and had been rendering empty on all six screens
+             * that use it - and its resume card threw on $myresume->id the same
+             * way. So a prefixed key is also provided bare, and a bare key
+             * prefixed, unless the caller already supplied both. Around
+             * eighteen Elegant Design pages call partials one way and its
+             * partials read the other; they are being retired, and this leaves
+             * with the last of them.
+             */
+            foreach ($wpjobportal_args as $wpjobportal_key => $wpjobportal_value) {
+                if (!is_string($wpjobportal_key)) {
+                    continue;
+                }
+                if (strpos($wpjobportal_key, 'wpjobportal_') === 0) {
+                    $wpjobportal_twin = substr($wpjobportal_key, 12);
+                } else {
+                    $wpjobportal_twin = 'wpjobportal_' . $wpjobportal_key;
+                }
+                if ($wpjobportal_twin !== '' && !array_key_exists($wpjobportal_twin, $wpjobportal_args)) {
+                    $wpjobportal_args[$wpjobportal_twin] = $wpjobportal_value;
+                }
+            }
             extract($wpjobportal_args);
         }
-        return include $wpjobportal_template;
+        self::beginRender($wpjobportal_template);
+        $wpjobportal_result = include $wpjobportal_template;
+        self::endRender();
+        return $wpjobportal_result;
     }
 
     public static function getTemplateHtml($wpjobportal_template_name, $wpjobportal_args = array()){
@@ -192,7 +296,7 @@ class WPJOBPORTALincluder {
        if($wpjobportal_module_name!=null && $wpjobportal_module_name!=""){
     //To Manage Template Working IN Addons
             if(in_array($wpjobportal_args['module_name'], wpjobportal::$_active_addons)){
-				if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled() && file_exists(WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $wpjobportal_args['module_name'] . '/tmpl/views/' . $wpjobportal_template_name . '.php')){
+				if(self::legacyElegantTemplates() && file_exists(WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $wpjobportal_args['module_name'] . '/tmpl/views/' . $wpjobportal_template_name . '.php')){
 					$wpjobportal_template = WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $wpjobportal_args['module_name'] . '/tmpl/views/' . $wpjobportal_template_name . '.php';
 				}else{	
 					$wpjobportal_path = WP_PLUGIN_DIR.'/'.'wp-job-portal-'.$wpjobportal_args['module_name'].'/';
@@ -203,7 +307,7 @@ class WPJOBPORTALincluder {
             if($wpjobportal_module == 'templates'){
                 $wpjobportal_template = WPJOBPORTAL_PLUGIN_PATH.'templates/'.$wpjobportal_template_name.'.php';
             }else{
-				if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled() && file_exists(WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $wpjobportal_module . '/tmpl/' . $wpjobportal_template_name . '.php')){
+				if(self::legacyElegantTemplates() && file_exists(WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $wpjobportal_module . '/tmpl/' . $wpjobportal_template_name . '.php')){
 					$wpjobportal_template = WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/'.$wpjobportal_module.'/tmpl/'.$wpjobportal_template_name.'.php';
 				}else{	
 					$wpjobportal_template = WPJOBPORTAL_PLUGIN_PATH.'modules/'.$wpjobportal_module.'/tmpl/'.$wpjobportal_template_name.'.php';
@@ -211,11 +315,26 @@ class WPJOBPORTALincluder {
             }
         }
 
-       return $wpjobportal_template;
+        if (!isset($wpjobportal_template)) {
+            $wpjobportal_template = '';
+        }
+
+        // Allow a consolidated provider to supply a module's template without
+        // requiring its files to remain in a legacy one-feature plugin folder.
+        return apply_filters(
+            'wpjobportal_includer_template_path',
+            $wpjobportal_template,
+            ($wpjobportal_module_name !== null && $wpjobportal_module_name !== '')
+                ? $wpjobportal_module_name
+                : $wpjobportal_module,
+            $wpjobportal_template_name,
+            $wpjobportal_args
+        );
     }
 
     public static function getPluginPath($wpjobportal_module,$type,$file_name = '') {
         $wpjobportal_module = wpjobportalphplib::wpJP_clean_file_path($wpjobportal_module);
+        $file_path = '';
         if($file_name != ''){
             $file_name = wpjobportalphplib::wpJP_clean_file_path($file_name);
         }
@@ -229,9 +348,15 @@ class WPJOBPORTALincluder {
                 case 'file':
                     if($file_name != ''){
                         if (locate_template('wp-job-portal/' . $wpjobportal_module . '-' . $file_name . '.php', 0, 1)) {
+                            // PHP 8 refuses an array write onto a string. This branch returns the
+                            // inc/tmpl pair, so start from an array rather than the '' default.
+                            $file_path = array();
                             $file_path['inc_file'] = $wpjobportal_path . 'module/tmpl/' . $file_name . '.inc.php';
                             $file_path['tmpl_file'] = locate_template('wp-job-portal/' . $wpjobportal_module . '-' . $file_name . '.php', 0, 1);
-						}elseif(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled() && file_exists(WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $wpjobportal_module . '/tmpl/' . $file_name . '.php')){
+						}elseif(self::legacyElegantTemplates() && file_exists(WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $wpjobportal_module . '/tmpl/' . $file_name . '.php')){
+                            // PHP 8 refuses an array write onto a string. This branch returns the
+                            // inc/tmpl pair, so start from an array rather than the '' default.
+                            $file_path = array();
                             $file_path['inc_file'] = $wpjobportal_path . 'module/tmpl/' . $file_name . '.inc.php';
 							$file_path['tmpl_file'] = WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/'.$wpjobportal_module.'/tmpl/'.$file_name.'.php';
                         }else{
@@ -323,14 +448,23 @@ class WPJOBPORTALincluder {
                     case 'file':
                         if($file_name != ''){
                             if (locate_template('wp-job-portal/' . $wpjobportal_module . '-' . $file_name . '.php', 0, 1)) {
+                                // PHP 8 refuses an array write onto a string. This branch returns the
+                                // inc/tmpl pair, so start from an array rather than the '' default.
+                                $file_path = array();
                                 $file_path['inc_file'] = $wpjobportal_path . $wpjobportal_module.'/tmpl/' . $file_name . '.inc.php';
                                 $file_path['tmpl_file'] = locate_template('wp-job-portal/' . $wpjobportal_module . '-' . $file_name . '.php', 0, 1);
-							}elseif(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled() && file_exists(WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $wpjobportal_module . '-' . $file_name . '.php')){
+							}elseif(self::legacyElegantTemplates() && file_exists(WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $wpjobportal_module . '-' . $file_name . '.php')){
+        // PHP 8 refuses an array write onto a string. This branch returns the
+        // inc/tmpl pair, so start from an array rather than the '' default.
+        $file_path = array();
 								$file_path['inc_file'] = $wpjobportal_path . $wpjobportal_module.'/tmpl/' . $file_name . '.inc.php';
 								$file_path['tmpl_file'] = WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $wpjobportal_module . '-' . $file_name . '.php';
                             }else{
-                                if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled() && file_exists(WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $parent_module . '/'. $wpjobportal_module . '/tmpl/' . $file_name . '.php')){
+                                if(self::legacyElegantTemplates() && file_exists(WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $parent_module . '/'. $wpjobportal_module . '/tmpl/' . $file_name . '.php')){
                                     
+                                    // PHP 8 refuses an array write onto a string. This branch returns the
+                                    // inc/tmpl pair, so start from an array rather than the '' default.
+                                    $file_path = array();
                                     $file_path['inc_file'] = $wpjobportal_path . $wpjobportal_module.'/tmpl/' . $file_name . '.inc.php';
                                     $file_path['tmpl_file'] = WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $parent_module . '/'. $wpjobportal_module . '/tmpl/' . $file_name . '.php';
                                 } else {
@@ -356,7 +490,6 @@ class WPJOBPORTALincluder {
                         break;
                 }
             }else{
-               // $file_path = self::getPluginPath('premiumplugin','file');
                 }
             }else{
             $wpjobportal_path = WPJOBPORTAL_PLUGIN_PATH;
@@ -364,10 +497,16 @@ class WPJOBPORTALincluder {
                 case 'file':
                     if($file_name != ''){
                         if (locate_template('wp-job-portal/' . $wpjobportal_module . '-' . $file_name . '.php', 0, 1)) {
+                            // PHP 8 refuses an array write onto a string. This branch returns the
+                            // inc/tmpl pair, so start from an array rather than the '' default.
+                            $file_path = array();
                             $file_path['inc_file'] = $wpjobportal_path . 'modules/' . $wpjobportal_module . '/tmpl/' . $file_name . '.inc.php';
                             $file_path['tmpl_file'] = locate_template('wp-job-portal/' . $wpjobportal_module . '-' . $file_name . '.php', 0, 1);
-						}elseif(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled() && file_exists(WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $wpjobportal_module . '/tmpl/' . $file_name . '.php')){
+						}elseif(self::legacyElegantTemplates() && file_exists(WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $wpjobportal_module . '/tmpl/' . $file_name . '.php')){
 
+       // PHP 8 refuses an array write onto a string. This branch returns the
+       // inc/tmpl pair, so start from an array rather than the '' default.
+       $file_path = array();
 							$file_path['inc_file'] = $wpjobportal_path . 'modules/' . $wpjobportal_module.'/tmpl/' . $file_name . '.inc.php';
 							$file_path['tmpl_file'] = WP_PLUGIN_DIR.'/'.'wp-job-portal-elegantdesign/' . $wpjobportal_module . '/tmpl/' . $file_name . '.php';
                         }else{
@@ -392,8 +531,15 @@ class WPJOBPORTALincluder {
                     break;
             }
         }
-        //echo $file_path;exit()
-        return $file_path;
+        // Allow a consolidated provider to supply an existing module without
+        // requiring its files to remain in a legacy one-feature plugin folder.
+        return apply_filters(
+            'wpjobportal_includer_plugin_path',
+            $file_path,
+            $wpjobportal_module,
+            $type,
+            $file_name
+        );
     }
 
 

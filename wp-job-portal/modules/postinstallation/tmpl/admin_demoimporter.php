@@ -3,9 +3,18 @@
 	<div id="wpjobportaladmin-data">
 		<?php
 			$wpjobportal_over_write = array(
-							(object) array('id'=>0,'text'=>'Ignore and insert'),
-							(object) array('id'=>1,'text'=>'Remove and insert')
+							(object) array('id'=>0,'text'=>__('Ignore and insert', 'wp-job-portal')),
+							(object) array('id'=>1,'text'=>__('Remove and insert', 'wp-job-portal'))
 			);
+		/*
+		 * The demos are listed by the Job Portal Theme's companion plugin,
+		 * which asks wpjobportal.com for them. Without that plugin active, or
+		 * when the site cannot reach the server, there is no list - and this
+		 * page read one anyway, printing PHP warnings over an empty form.
+		 * It says why instead.
+		 */
+		$wpjobportal_demos = (isset(wpjobportal::$_data[1]) && is_array(wpjobportal::$_data[1])) ? wpjobportal::$_data[1] : array();
+		$wpjobportal_demo_provider = class_exists('job_portal_theme_Options_plugins');
 		$wpjobportal_demo_flag = get_option('job_portal_demno_id');
 		//$wpjobportal_demo_flag = false;
 		if(!$wpjobportal_demo_flag){
@@ -16,8 +25,17 @@
 			<?php
 			delete_option( 'wpjobportal_jobs_sample_data' );
 		}
+		if (empty($wpjobportal_demos)) { ?>
+			<div class="notice notice-warning inline"><p><?php
+				if (!$wpjobportal_demo_provider) {
+					echo esc_html(__('Demo data comes with the Job Portal Theme. Activate the theme and its "Job Portal Theme Options" plugin, then come back here to choose a demo.','wp-job-portal'));
+				} else {
+					echo esc_html(__('The list of demos could not be loaded from wpjobportal.com. Check that this site can reach the internet, then reload this page.','wp-job-portal'));
+				}
+			?></p></div>
+		<?php }
 		?>
-		<div class="wpjobportal-temp-sample-data-wrapper" >
+		<div class="wpjobportal-temp-sample-data-wrapper" <?php if (empty($wpjobportal_demos)) echo 'style="display:none;"'; ?>>
 			<div class="wpjobportal-temp-sample-data-content" >
 				<form method="post" action="<?php echo esc_url(wp_nonce_url(admin_url("admin.php?page=wpjobportal_postinstallation&task=getdemocode&action=wpjobportaltask"),'wpjobportal_postinstallation_nonce')); ?>" id="sample_data_form" >
 					<div class="wpjobportal-temp-sample-data-content-left" >
@@ -58,7 +76,7 @@
 	</div>
 </div>
 <?php
-    wp_register_script( 'wpjobportal-inline-handle', '' );
+    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
     $wpjobportal_inline_js_script = "
@@ -69,7 +87,7 @@
 		var demo_flag_js = ". $wpjobportal_demo_flag .";
 		";
 		
-			foreach (wpjobportal::$_data[1] as $wpjobportal_key => $wpjobportal_value) {
+			foreach ($wpjobportal_demos as $wpjobportal_key => $wpjobportal_value) {
 				$wpjobportal_inline_js_script .= "images['".$wpjobportal_key."'] = '".$wpjobportal_value['imagepath']."';";
 				$wpjobportal_inline_js_script .= "names['".$wpjobportal_key."'] = '".$wpjobportal_value['name']."';";
 				$wpjobportal_inline_js_script .= "descs['".$wpjobportal_key."'] = '".$wpjobportal_value['desc']."';";

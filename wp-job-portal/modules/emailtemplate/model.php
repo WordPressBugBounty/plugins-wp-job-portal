@@ -1392,7 +1392,7 @@ class WPJOBPORTALEmailtemplateModel {
         $body_text = WPJOBPORTALrequest::getVar('body','post','','',1);
         // clean it first
         $body_text = str_ireplace(['<script', '< script'], '-', $body_text);
-        $wpjobportal_data['body'] = wpautop(wptexturize(wpjobportalphplib::wpJP_stripslashes($body_text)));;
+        $wpjobportal_data['body'] = wpautop(wptexturize($body_text));;
         $wpjobportal_row = WPJOBPORTALincluder::getJSTable('emailtemplate');
         if (!$wpjobportal_row->bind($wpjobportal_data)) {
             return WPJOBPORTAL_SAVE_ERROR;

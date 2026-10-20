@@ -29,9 +29,8 @@ class WPJOBPORTALthemeController {
                     return;
             }
 
-            if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()){
-                $wpjobportal_layout  = 'admin_themes_elegant';
-            }
+            // One Colors screen for every design. Under Elegant Design it loads
+            // the design's own stylesheets, so the preview is the front end's.
 
             $wpjobportal_module = (wpjobportal::$_common->wpjp_isadmin()) ? 'page' : 'wpjobportalme';
             $wpjobportal_module = WPJOBPORTALrequest::getVar($wpjobportal_module, null, 'theme');
@@ -67,7 +66,30 @@ class WPJOBPORTALthemeController {
         $wpjobportal_data = WPJOBPORTALrequest::get('post');
         WPJOBPORTALincluder::getJSModel('theme')->storeTheme($wpjobportal_data);
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_theme&wpjobportallt=themes"));
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
+        die();
+    }
+
+    /**
+     * The design switch (tmpl/design-switch.php): hand the choice to the plugin
+     * that offers the design. Core stores nothing itself.
+     */
+    function savedesign() {
+        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_theme_nonce') ) {
+             die( 'Security check Failed' );
+        }
+        if (!current_user_can('manage_options')) {
+            return false;
+        }
+        $wpjobportal_design = WPJOBPORTALrequest::getVar('design', 'post', '');
+        $wpjobportal_url = admin_url('admin.php?page=wpjobportal_theme&wpjobportallt=themes');
+        if (in_array($wpjobportal_design, array('standard', 'alternative'), true)) {
+            do_action('wpjobportal_design_switch_save', $wpjobportal_design === 'alternative');
+            // Tells the picker to confirm the switch and offer to undo it.
+            $wpjobportal_url = add_query_arg('wpjobportal_design_switched', $wpjobportal_design, $wpjobportal_url);
+        }
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 }

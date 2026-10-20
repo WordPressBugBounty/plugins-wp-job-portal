@@ -15,6 +15,19 @@ class WPJOBPORTALJobseekerController {
         $wpjobportal_addonmissing = WPJOBPORTALrequest::getLayout('addonmissing', null, 0);
         if (self::canaddfile($wpjobportal_layout)) {
             switch ($wpjobportal_layout) {
+                case 'mystats':
+                    // Signed-in job seekers only: the page is entirely about
+                    // records this person owns.
+                    if (WPJOBPORTALincluder::getObjectClass('user')->isguest()) {
+                        $wpjobportal_link = WPJOBPORTALincluder::getJSModel('common')->jsMakeRedirectURL('jobseeker', $wpjobportal_layout, 1);
+                        wpjobportal::$_error_flag = true;
+                        wpjobportal::$_error_flag_message_for = 1;
+                        wpjobportal::$_error_flag_message_register_for = 1;
+                        wpjobportal::$_error_flag_message = WPJOBPORTALLayout::setMessageFor(1, $wpjobportal_link, esc_html(__('Login', 'wp-job-portal')), 1);
+                        break;
+                    }
+                    WPJOBPORTALincluder::getJSModel('jobseeker')->getMyStats(WPJOBPORTALincluder::getObjectClass('user')->uid());
+                    break;
                 case 'jobseeker_report':
                     break;
                 case 'controlpanel':

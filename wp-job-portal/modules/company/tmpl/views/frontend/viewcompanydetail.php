@@ -30,7 +30,7 @@ if (!defined('ABSPATH'))
             }// to show tag line when company name is hidden from configuration
             if(isset(wpjobportal::$_data[2]) && isset(wpjobportal::$_data[2]['tagline']) && wpjobportal::$_data[2]['tagline'] != '' && !empty($wpjobportal_data->tagline) ){
                 echo '<span class="wjportal-company-salogon">
-                            -'.esc_html($wpjobportal_data->tagline).'
+                            '.esc_html($wpjobportal_data->tagline).'
                     </span>';
             }
             do_action('wpjobportal_addons_lable_comp_feature',$wpjobportal_data);

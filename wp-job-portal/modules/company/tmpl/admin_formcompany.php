@@ -6,7 +6,7 @@
     if(!WPJOBPORTALincluder::getTemplate('templates/admin/header',array('wpjobportal_module' => 'company'))) {
         return;
     }
-    wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jquery-ui-smoothness.css');
+    wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jquery-ui-smoothness.css', array(), wpjobportal_asset_version('includes/css/jquery-ui-smoothness.css'));
 ?>
 <!-- main wrapper -->
 <div id="wpjobportaladmin-wrapper">
@@ -102,7 +102,7 @@
                         <?php echo esc_html(__('Cancel', 'wp-job-portal')); ?>
                     </a>
                     <?php
-                    if (isset(wpjobportal::$_data[0]->id) || (!in_array('credits',wpjobportal::$_active_addons)) ) {
+                    if (isset(wpjobportal::$_data[0]->id) || (!WPJOBPORTAL_Monetisation::usable('credits')) ) {
                         echo wp_kses(WPJOBPORTALformfield::submitbutton('save', esc_html(__('Save','wp-job-portal')) .' '. esc_html(__('Company', 'wp-job-portal')), array('class' => 'button wpjobportal-form-save-btn')),WPJOBPORTAL_ALLOWED_TAGS);// validate_url() was only checked in edit case
                     }else{
                         // handle the case of package not defined for employer role
@@ -138,7 +138,7 @@
 </div>
 
 <?php
-    wp_register_script( 'wpjobportal-inline-handle', '' );
+    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
     $wpjobportal_inline_js_script = "
@@ -227,7 +227,7 @@
             if (input.files && input.files[0]) {
                 var fileext = input.files[0].name.split('.').pop().trim().toLowerCase();
                 var filesize = (input.files[0].size / 1024);
-                var allowedsize = ". wpjobportal::$_config->getConfigurationByConfigName('company_logofilezize').";
+                var allowedsize = ". WPJOBPORTALincluder::getJSModel('common')->configAsJsNumber('company_logofilezize', 2048).";
                 var allowedExt = '". wpjobportal::$_config->getConfigurationByConfigName('image_file_type')."';
                 allowedExt = allowedExt.split(',').map(function(ext) {
                     return ext.trim().toLowerCase().replace(/^\.+/, '');

@@ -106,10 +106,7 @@ class WPJOBPORTAL_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 	            'raw'  => '
 	            <div style="border: 2px solid #D19BE5; background-color: #FAF3FF; color: #4A148C; padding: 15px; border-radius: 8px; text-align: center; width: 100%; margin: 20px auto;">
 	                <div> <img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/themes/message-1-icon.png" style="width:80px;margin-bottom:15px;"></div>
-	                <p style="font-size:17px;line-height:22px;">
-	                    Color and typography settings apply <strong>globally</strong> to all pages of the WP Job Portal. To see the changes take effect, please save or
-	                    <span style="background:#D19BE5; font-weight: bold; text-decoration: underline;">Publish the page.</span>
-	                </p>
+	                <p style="font-size:17px;line-height:22px;">' . sprintf(/* translators: 1: strong, 2: strong, 3: span style background d19be5 font weight bold text decoratio, 4: span */ esc_html__('Color and typography settings apply %1$sglobally%2$s to all pages of the WP Job Portal. To see the changes take effect, please save or %3$sPublish the page.%4$s', 'wp-job-portal'), '<strong>', '</strong>', '<span style="background:#D19BE5; font-weight: bold; text-decoration: underline;">', '</span>') . '</p>
 	            </div>
 	            ',
 	            'separator' => 'after', // Ensures it's placed below
@@ -123,13 +120,7 @@ class WPJOBPORTAL_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 	            'raw'  => '
 	            <div style="border: 2px solid #000; background-color: #FFF; color: #000; padding: 15px; border-radius: 8px; text-align: center; width: 100%; margin: 20px auto;">
 	                <div> <img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/themes/message-2-icon.png" style="width:80px;margin-bottom:15px;"></div>
-	                <p style="font-size:17px;line-height:22px;">
-	                    Color styling and typography live preview is a vailable for
-	                    Job Seeker Dashboard, but the changes will <strong>apply to all</strong>
-	                    pages of the WP Job Portal plugin.
-	                    Pages are: <br>
-	                    * Job Seeker Dashboard <br>
-	                </p>
+	                <p style="font-size:17px;line-height:22px;">' . sprintf(/* translators: 1: strong, 2: strong */ esc_html__('Color styling and typography live preview is available for Job Seeker Dashboard, but the changes will %1$sapply to all%2$s pages of the WP Job Portal plugin.', 'wp-job-portal'), '<strong>', '</strong>') . '<br>' . esc_html__('Pages are:', 'wp-job-portal') . '<br>* ' . esc_html__('Job Seeker Dashboard', 'wp-job-portal') . '<br></p>
 
 	            </div>
 	            ',
@@ -190,7 +181,7 @@ class WPJOBPORTAL_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		            'jp_primarycolor_desc',
 		            [
 		                'type' => \Elementor\Controls_Manager::RAW_HTML,
-		                'raw'  => '<p class="elementor-control-field-description">Color WP Job Portal page content</p>',
+		                'raw'  => '<p class="elementor-control-field-description">' . esc_html__('Color WP Job Portal page content', 'wp-job-portal') . '</p>',
 		                'separator' => 'after', // Ensures it's placed below
 		                'condition' => $pages_for_styling_array,
 		            ]
@@ -221,7 +212,7 @@ class WPJOBPORTAL_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		            'jp_secondarycolor_desc',
 		            [
 		                'type' => \Elementor\Controls_Manager::RAW_HTML,
-		                'raw'  => '<p class="elementor-control-field-description">Color WP Job Portal page content</p>',
+		                'raw'  => '<p class="elementor-control-field-description">' . esc_html__('Color WP Job Portal page content', 'wp-job-portal') . '</p>',
 		                'separator' => 'after', // Ensures it's placed below
 		                'condition' => $pages_for_styling_array,
 		            ]
@@ -252,7 +243,7 @@ class WPJOBPORTAL_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		            'jp_contentcolor_desc',
 		            [
 		                'type' => \Elementor\Controls_Manager::RAW_HTML,
-		                'raw'  => '<p class="elementor-control-field-description">Color WP Job Portal page content</p>',
+		                'raw'  => '<p class="elementor-control-field-description">' . esc_html__('Color WP Job Portal page content', 'wp-job-portal') . '</p>',
 		                'separator' => 'after', // Ensures it's placed below
 		                'condition' => $pages_for_styling_array,
 		            ]
@@ -264,10 +255,7 @@ class WPJOBPORTAL_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		        	            'raw'  => '
 		        	            <div style="border: 2px solid #D19BE5; background-color: #FAF3FF; color: #4A148C; padding: 15px; border-radius: 8px; text-align: center; width: 100%; margin: 20px auto;">
 		        	                <div> <img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/themes/message-1-icon.png" style="width:80px;margin-bottom:15px;"></div>
-		        	                <p style="font-size:17px;line-height:22px;">
-		        	                    Color and typography settings apply <strong>globally</strong> to all pages of the WP Job Portal. To see the changes take effect, please save or
-		        	                    <span style="background:#D19BE5; font-weight: bold; text-decoration: underline;">Publish the page.</span>
-		        	                </p>
+		        	                <p style="font-size:17px;line-height:22px;">' . sprintf(/* translators: 1: strong, 2: strong, 3: span style background d19be5 font weight bold text decoratio, 4: span */ esc_html__('Color and typography settings apply %1$sglobally%2$s to all pages of the WP Job Portal. To see the changes take effect, please save or %3$sPublish the page.%4$s', 'wp-job-portal'), '<strong>', '</strong>', '<span style="background:#D19BE5; font-weight: bold; text-decoration: underline;">', '</span>') . '</p>
 		        	            </div>
 		        	            ',
 		        	            'separator' => 'after', // Ensures it's placed below
@@ -281,13 +269,7 @@ class WPJOBPORTAL_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		        	            'raw'  => '
 		        	            <div style="border: 2px solid #000; background-color: #FFF; color: #000; padding: 15px; border-radius: 8px; text-align: center; width: 100%; margin: 20px auto;">
 		        	                <div> <img src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/themes/message-2-icon.png" style="width:80px;margin-bottom:15px;"></div>
-		        	                <p style="font-size:17px;line-height:22px;">
-		        	                    Color styling and typography live preview is a vailable for
-		        	                    Job Seeker Dashboard, but the changes will <strong>apply to all</strong>
-		        	                    pages of the WP Job Portal plugin.
-		        	                    Pages are: <br>
-		        	                    * Job Seeker Dashboard <br>
-		        	                </p>
+		        	                <p style="font-size:17px;line-height:22px;">' . sprintf(/* translators: 1: strong, 2: strong */ esc_html__('Color styling and typography live preview is available for Job Seeker Dashboard, but the changes will %1$sapply to all%2$s pages of the WP Job Portal plugin.', 'wp-job-portal'), '<strong>', '</strong>') . '<br>' . esc_html__('Pages are:', 'wp-job-portal') . '<br>* ' . esc_html__('Job Seeker Dashboard', 'wp-job-portal') . '<br></p>
 
 		        	            </div>
 		        	            ',
@@ -556,7 +538,7 @@ class WPJOBPORTAL_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		            'typography_description',
 		            [
 		                'type' => \Elementor\Controls_Manager::RAW_HTML,
-		                'raw'  => '<p class="elementor-control-field-description">Typography For WP Job Portal Page Body Content.</p>',
+		                'raw'  => '<p class="elementor-control-field-description">' . esc_html__('Typography For WP Job Portal Page Body Content.', 'wp-job-portal') . '</p>',
 		                'separator' => 'after', // Ensures it's placed below
 		                'condition' => $pages_for_styling_array,
 		            ]
@@ -753,7 +735,7 @@ class WPJOBPORTAL_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		            'typography_section_title_description',
 		            [
 		                'type' => \Elementor\Controls_Manager::RAW_HTML,
-		                'raw'  => '<p class="elementor-control-field-description">Typography For Section Titles</p>',
+		                'raw'  => '<p class="elementor-control-field-description">' . esc_html__('Typography For Section Titles', 'wp-job-portal') . '</p>',
 		                'separator' => 'after', // Ensures it's placed below
 		                'condition' => $pages_for_styling_array,
 		            ]
@@ -779,7 +761,7 @@ class WPJOBPORTAL_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 		            'typography_buttons_description',
 		            [
 		                'type' => \Elementor\Controls_Manager::RAW_HTML,
-		                'raw'  => '<p class="elementor-control-field-description">Typography For Buttons</p>',
+		                'raw'  => '<p class="elementor-control-field-description">' . esc_html__('Typography For Buttons', 'wp-job-portal') . '</p>',
 		                'separator' => 'after', // Ensures it's placed below
 		                'condition' => $pages_for_styling_array,
 		            ]

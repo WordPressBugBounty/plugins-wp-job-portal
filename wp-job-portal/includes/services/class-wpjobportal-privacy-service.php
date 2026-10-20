@@ -46,22 +46,24 @@ class WPJOBPORTAL_Privacy_Service {
         $email_address = sanitize_email($email_address);
         $page = max(1, absint($page));
         $identity = self::identity_for_email($email_address);
-        if (empty($identity['portal_uid'])) {
+        if (empty($identity['portal_uid']) && empty($identity['wp_uid'])) {
             return array('data' => array(), 'done' => true);
         }
 
         $offset = ($page - 1) * self::PAGE_SIZE;
         $uid = absint($identity['portal_uid']);
         $wp_uid = absint($identity['wp_uid']);
-        $definitions = array(
-            array('table' => 'wj_portal_users', 'where' => 'id = %d', 'value' => $uid, 'group' => 'profile', 'label' => __('Portal profile', 'wp-job-portal')),
-            array('table' => 'wj_portal_resume', 'where' => 'uid = %d', 'value' => $uid, 'group' => 'resumes', 'label' => __('Resumes', 'wp-job-portal')),
-            array('table' => 'wj_portal_companies', 'where' => 'uid = %d', 'value' => $uid, 'group' => 'companies', 'label' => __('Companies', 'wp-job-portal')),
-            array('table' => 'wj_portal_jobs', 'where' => 'uid = %d', 'value' => $uid, 'group' => 'jobs', 'label' => __('Jobs', 'wp-job-portal')),
-            array('table' => 'wj_portal_jobapply', 'where' => 'uid = %d', 'value' => $uid, 'group' => 'applications', 'label' => __('Applications', 'wp-job-portal')),
-            array('table' => 'wj_portal_activitylog', 'where' => 'uid = %d', 'value' => $uid, 'group' => 'activity', 'label' => __('Activity history', 'wp-job-portal')),
-        );
-
+        $definitions = array();
+        if ($uid > 0) {
+            $definitions = array(
+                array('table' => 'wj_portal_users', 'column' => 'id', 'value' => $uid, 'group' => 'profile', 'label' => __('Portal profile', 'wp-job-portal')),
+                array('table' => 'wj_portal_resume', 'column' => 'uid', 'value' => $uid, 'group' => 'resumes', 'label' => __('Resumes', 'wp-job-portal')),
+                array('table' => 'wj_portal_companies', 'column' => 'uid', 'value' => $uid, 'group' => 'companies', 'label' => __('Companies', 'wp-job-portal')),
+                array('table' => 'wj_portal_jobs', 'column' => 'uid', 'value' => $uid, 'group' => 'jobs', 'label' => __('Jobs', 'wp-job-portal')),
+                array('table' => 'wj_portal_jobapply', 'column' => 'uid', 'value' => $uid, 'group' => 'applications', 'label' => __('Applications', 'wp-job-portal')),
+                array('table' => 'wj_portal_activitylog', 'column' => 'uid', 'value' => $uid, 'group' => 'activity', 'label' => __('Activity history', 'wp-job-portal')),
+            );
+        }
         $data = array();
         $done = true;
         foreach ($definitions as $definition) {
@@ -70,12 +72,14 @@ class WPJOBPORTAL_Privacy_Service {
                 continue;
             }
             $query = $wpdb->prepare(
-                "SELECT * FROM `{$table}` WHERE {$definition['where']} ORDER BY id ASC LIMIT %d OFFSET %d",
+                "SELECT * FROM %i WHERE %i = %d ORDER BY id ASC LIMIT %d OFFSET %d",
+                $table,
+                $definition['column'],
                 $definition['value'],
                 self::PAGE_SIZE,
                 $offset
             );
-            $rows = $wpdb->get_results($query, ARRAY_A);
+            $rows = wpjobportaldb_direct::get_results($query, ARRAY_A);
             if (count($rows) === self::PAGE_SIZE) {
                 $done = false;
             }
@@ -102,13 +106,19 @@ class WPJOBPORTAL_Privacy_Service {
             if (!self::table_exists($table)) {
                 continue;
             }
+            $identity_value = isset($definition['identity']) && $definition['identity'] === 'wp_uid' ? $wp_uid : $uid;
+            if ($identity_value < 1) {
+                continue;
+            }
             $query = $wpdb->prepare(
-                "SELECT * FROM `{$table}` WHERE `{$definition['owner_column']}` = %d ORDER BY id ASC LIMIT %d OFFSET %d",
-                $uid,
+                "SELECT * FROM %i WHERE %i = %d ORDER BY id ASC LIMIT %d OFFSET %d",
+                $table,
+                $definition['owner_column'],
+                $identity_value,
                 self::PAGE_SIZE,
                 $offset
             );
-            $rows = $wpdb->get_results($query, ARRAY_A);
+            $rows = wpjobportaldb_direct::get_results($query, ARRAY_A);
             if (count($rows) === self::PAGE_SIZE) {
                 $done = false;
             }
@@ -145,7 +155,8 @@ class WPJOBPORTAL_Privacy_Service {
 
         $identity = self::identity_for_email($email_address);
         $uid = absint($identity['portal_uid']);
-        if ($uid < 1) {
+        $wp_uid = absint($identity['wp_uid']);
+        if ($uid < 1 && $wp_uid < 1) {
             return array(
                 'items_removed' => false,
                 'items_retained' => false,
@@ -158,8 +169,20 @@ class WPJOBPORTAL_Privacy_Service {
         $removed = false;
         $errors = array();
 
+        $removed = (bool) apply_filters('wpjobportal_privacy_erase_personal_data', $removed, $uid, $wp_uid);
+
+        if ($uid < 1) {
+            self::record('erasures', $removed ? 'completed' : 'failed');
+            return array(
+                'items_removed' => $removed,
+                'items_retained' => false,
+                'messages' => $errors,
+                'done' => true,
+            );
+        }
+
         $users = $wpdb->prefix . 'wj_portal_users';
-        $updated = $wpdb->update(
+        $updated = wpjobportaldb_direct::update(
             $users,
             array(
                 'photo' => '',
@@ -182,17 +205,19 @@ class WPJOBPORTAL_Privacy_Service {
 
         $resume_table = $wpdb->prefix . 'wj_portal_resume';
         if (self::table_exists($resume_table)) {
-            $resume_ids = $wpdb->get_col($wpdb->prepare(
-                "SELECT id FROM `{$resume_table}` WHERE uid = %d",
+            $resume_ids = wpjobportaldb_direct::get_col($wpdb->prepare(
+                "SELECT id FROM %i WHERE uid = %d",
+                $resume_table,
                 $uid
             ));
-            $wpdb->query($wpdb->prepare(
-                "UPDATE `{$resume_table}`
+            wpjobportaldb_direct::query($wpdb->prepare(
+                "UPDATE %i
                  SET first_name = %s, last_name = %s, email_address = %s,
                      cell = '', photo = '', resume = '', skills = '', params = '',
                      keywords = '', searchable = 0, airesumesearchtext = '',
                      airesumesearchdescription = ''
                  WHERE uid = %d",
+                $resume_table,
                 __('Erased', 'wp-job-portal'),
                 __('User', 'wp-job-portal'),
                 $anonymous_email,
@@ -203,15 +228,16 @@ class WPJOBPORTAL_Privacy_Service {
 
         $jobapply = $wpdb->prefix . 'wj_portal_jobapply';
         if (self::table_exists($jobapply)) {
-            $wpdb->query($wpdb->prepare(
-                "UPDATE `{$jobapply}`
+            wpjobportaldb_direct::query($wpdb->prepare(
+                "UPDATE %i
                  SET uid = 0, cvid = NULL, comments = '', apply_message = ''
                  WHERE uid = %d",
+                $jobapply,
                 $uid
             ));
         }
 
-        self::erase_addon_personal_data($uid);
+        self::erase_addon_personal_data($uid, $wp_uid);
         self::record('erasures', $removed ? 'completed' : 'failed');
 
         return array(
@@ -239,8 +265,9 @@ class WPJOBPORTAL_Privacy_Service {
         $activity_table = $wpdb->prefix . 'wj_portal_activitylog';
         if ($settings['activity_days'] > 0 && self::table_exists($activity_table)) {
             $cutoff = gmdate('Y-m-d H:i:s', time() - ($settings['activity_days'] * DAY_IN_SECONDS));
-            $result = $wpdb->query($wpdb->prepare(
-                "DELETE FROM `{$activity_table}` WHERE created < %s",
+            $result = wpjobportaldb_direct::query($wpdb->prepare(
+                "DELETE FROM %i WHERE created < %s",
+                $activity_table,
                 $cutoff
             ));
             if ($result !== false) {
@@ -251,8 +278,9 @@ class WPJOBPORTAL_Privacy_Service {
         $message_table = $wpdb->prefix . 'wj_portal_messages';
         if ($settings['message_days'] > 0 && self::table_exists($message_table)) {
             $cutoff = gmdate('Y-m-d H:i:s', time() - ($settings['message_days'] * DAY_IN_SECONDS));
-            $result = $wpdb->query($wpdb->prepare(
-                "DELETE FROM `{$message_table}` WHERE created < %s",
+            $result = wpjobportaldb_direct::query($wpdb->prepare(
+                "DELETE FROM %i WHERE created < %s",
+                $message_table,
                 $cutoff
             ));
             if ($result !== false) {
@@ -323,13 +351,15 @@ class WPJOBPORTAL_Privacy_Service {
             return array('wp_uid' => $wp_uid, 'portal_uid' => 0);
         }
         if ($wp_uid > 0) {
-            $portal_uid = $wpdb->get_var($wpdb->prepare(
-                "SELECT id FROM `{$table}` WHERE uid = %d LIMIT 1",
+            $portal_uid = wpjobportaldb_direct::get_var($wpdb->prepare(
+                "SELECT id FROM %i WHERE uid = %d LIMIT 1",
+                $table,
                 $wp_uid
             ));
         } else {
-            $portal_uid = $wpdb->get_var($wpdb->prepare(
-                "SELECT id FROM `{$table}` WHERE emailaddress = %s LIMIT 1",
+            $portal_uid = wpjobportaldb_direct::get_var($wpdb->prepare(
+                "SELECT id FROM %i WHERE emailaddress = %s LIMIT 1",
+                $table,
                 $email_address
             ));
         }
@@ -359,6 +389,7 @@ class WPJOBPORTAL_Privacy_Service {
             && preg_match('/^wj_portal_[a-z0-9_]+$/', $definition['table'])
             && !empty($definition['owner_column'])
             && preg_match('/^[a-z0-9_]+$/', $definition['owner_column'])
+            && (!isset($definition['identity']) || in_array($definition['identity'], array('portal_uid', 'wp_uid'), true))
             && !empty($definition['group'])
             && !empty($definition['label']);
     }
@@ -369,7 +400,6 @@ class WPJOBPORTAL_Privacy_Service {
         if (empty($ids)) {
             return;
         }
-        $in = implode(',', $ids);
         foreach (array(
             'wj_portal_resumeaddresses',
             'wj_portal_resumeemployers',
@@ -379,18 +409,22 @@ class WPJOBPORTAL_Privacy_Service {
         ) as $suffix) {
             $table = $wpdb->prefix . $suffix;
             if (self::table_exists($table)) {
-                $wpdb->query("DELETE FROM `{$table}` WHERE resumeid IN ({$in})");
+                wpjobportaldb_direct::query($wpdb->prepare(
+                    'DELETE FROM %i WHERE resumeid IN (' . implode(',', array_fill(0, count($ids), '%d')) . ')',
+                    ...array_merge(array($table), $ids)
+                ));
             }
         }
     }
 
-    private static function erase_addon_personal_data($uid) {
+    private static function erase_addon_personal_data($uid, $wp_uid = 0) {
         global $wpdb;
         $definitions = array(
             array('table' => 'wj_portal_coverletters', 'column' => 'uid', 'mode' => 'delete'),
             array('table' => 'wj_portal_folders', 'column' => 'uid', 'mode' => 'delete'),
             array('table' => 'wj_portal_jobshortlist', 'column' => 'uid', 'mode' => 'delete'),
             array('table' => 'wj_portal_resumesearches', 'column' => 'uid', 'mode' => 'delete'),
+            array('table' => 'wj_portal_jobsearches', 'column' => 'uid', 'mode' => 'delete'),
             array('table' => 'wj_portal_messages', 'column' => 'employerid', 'mode' => 'delete'),
             array('table' => 'wj_portal_messages', 'column' => 'jobseekerid', 'mode' => 'delete'),
         );
@@ -399,12 +433,14 @@ class WPJOBPORTAL_Privacy_Service {
             if (!self::table_exists($table)) {
                 continue;
             }
-            $wpdb->query($wpdb->prepare(
-                "DELETE FROM `{$table}` WHERE `{$definition['column']}` = %d",
+            wpjobportaldb_direct::query($wpdb->prepare(
+                "DELETE FROM %i WHERE %i = %d",
+                $table,
+                $definition['column'],
                 $uid
             ));
         }
-        do_action('wpjobportal_privacy_personal_data_erased', $uid);
+        do_action('wpjobportal_privacy_personal_data_erased', $uid, $wp_uid);
     }
 
     private static function prune_operational_audit($days) {
@@ -425,7 +461,7 @@ class WPJOBPORTAL_Privacy_Service {
 
     private static function table_exists($table) {
         global $wpdb;
-        return $wpdb->get_var($wpdb->prepare('SHOW TABLES LIKE %s', $table)) === $table;
+        return wpjobportaldb_direct::get_var($wpdb->prepare('SHOW TABLES LIKE %s', $table)) === $table;
     }
 
     private static function bounded_days($value, $maximum) {

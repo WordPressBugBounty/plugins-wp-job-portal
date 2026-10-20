@@ -188,7 +188,18 @@ switch ($wpjobportal_layout) {
 
                 <!-- custom fields -->
                 <?php
-                if(isset($wpjobportal_listing_fields['description']) && $wpjobportal_listing_fields['description'] !='' ){ ?>
+                /*
+                 * The excerpt shows when the administrator put description in
+                 * this listing's field ordering, or when the site has said
+                 * once - through show_job_description_in_list - that its list
+                 * cards carry an excerpt. The Elegant Design add-on used to
+                 * draw its own company card for exactly this, on its own
+                 * setting; one decision now covers the job card, the resume
+                 * card and this one.
+                 */
+                $wpjobportal_show_description = (isset($wpjobportal_listing_fields['description']) && $wpjobportal_listing_fields['description'] != '')
+                    || wpjobportal::$_config->getConfigurationByConfigName('show_job_description_in_list') == 1;
+                if($wpjobportal_show_description && !empty($wpjobportal_company->description)){ ?>
                     <div class="wjportal-company-listing-data-description">
                         <?php
                             echo esc_html( wp_trim_words( $wpjobportal_company->description, 30, '...' ) )

@@ -4,7 +4,7 @@ die('Restricted Access');
 ?>
 <div class="wjportal-main-up-wrapper">
 <?php
-wp_enqueue_style('status-graph', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/status_graph.css');
+wp_enqueue_style('status-graph', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/status_graph.css', array(), wpjobportal_asset_version('includes/css/status_graph.css'));
 $wpjobportal_subtype = wpjobportal::$_config->getConfigValue('submission_type');
 ?>
 <div class="wjportal-main-wrapper wjportal-clearfix">

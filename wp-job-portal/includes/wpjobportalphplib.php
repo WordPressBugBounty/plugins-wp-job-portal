@@ -207,7 +207,16 @@ class wpjobportalphplib {
     public static function wpJP_setcookie($wpjobportal_name, $wpjobportal_value = "", $wpjobportal_expires = 0, $wpjobportal_path = "", $domain = "", $wpjobportal_secure = false, $httponly = false){
         $output = null;
         if ($wpjobportal_name != null && $domain !== null) {
-          	$output = setcookie($wpjobportal_name, $wpjobportal_value, $wpjobportal_expires, $wpjobportal_path, $domain, $wpjobportal_secure, $httponly);
+            // Once output has started PHP cannot send a cookie any more and only raises a
+            // "headers already sent" warning. Skip quietly; with WP_DEBUG on, log which cookie
+            // and where the output started, so the real cause can still be found.
+            if (headers_sent($wpjobportal_file, $wpjobportal_line)) {
+                if (defined('WP_DEBUG') && WP_DEBUG) {
+                    error_log(sprintf('WP Job Portal: cookie "%s" not set, output started at %s:%d', $wpjobportal_name, $wpjobportal_file, $wpjobportal_line)); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- debug-only diagnostic
+                }
+                return false;
+            }
+            $output = setcookie($wpjobportal_name, $wpjobportal_value, $wpjobportal_expires, $wpjobportal_path, $domain, $wpjobportal_secure, $httponly);
         }
         return $output;
     }

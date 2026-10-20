@@ -81,7 +81,7 @@
                         {},
                         createElement(ToolbarButton, {
                             icon: ZywrapIcon,
-                            label: 'Open AI Studio', // Tooltip text
+                            label: wp.i18n.__('Open AI Studio', 'wp-job-portal'), // Tooltip text
                             onClick: openStudio,
                         })
                     )

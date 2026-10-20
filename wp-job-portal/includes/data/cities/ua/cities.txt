@@ -45,4 +45,8 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("Лисичанськ", "Лисичанськ", "Lysychansk", NULL, 94, 0, 1, NULL, "48.917267", "38.4285981"),
 ("Сєвєродонецьк", "Сєвєродонецьк", "Sievierodonetsk", NULL, 94, 0, 1, NULL, "48.9478698", "38.4936475"),
 ("Луганськ", "Луганськ", "Luhansk", NULL, 94, 0, 1, NULL, "48.5717084", "39.2973153"),
-("Суми", "Суми", "Sumy", NULL, 94, 0, 1, NULL, "50.9119775", "34.8027723");
+("Суми", "Суми", "Sumy", NULL, 94, 0, 1, NULL, "50.9119775", "34.8027723"),
+("Kiev", "Kiev", "Kiev", NULL, 94, 0, 1, NULL, "50.4501", "30.5234"),
+("Aleksandrovka", "Aleksandrovka", "Aleksandrovka", NULL, 94, 0, 1, NULL, "48.9627867", "32.2247366"),
+("Alupka", "Alupka", "Alupka", NULL, 94, 0, 1, NULL, "44.4209688", "34.0472685"),
+("Alushta", "Alushta", "Alushta", NULL, 94, 0, 1, NULL, "44.676383", "34.41005");

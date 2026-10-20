@@ -1,3 +1,20 @@
+# Copyright (C) 2026 WP Job Portal
+# This file is distributed under the GPLv3.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Job Portal 2.7.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-job-portal\n"
+"POT-Creation-Date: 2026-10-16 11:04+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.10\n"
+"X-Domain: wp-job-portal\n"
+
 msgid "Delete"
 msgstr ""
 
@@ -9004,7 +9021,6 @@ msgstr ""
 msgid "Install Guide"
 msgstr ""
 
-
 msgid "Month"
 msgstr ""
 
@@ -9056,16 +9072,15 @@ msgstr ""
 msgid "register an account"
 msgstr ""
 
-
-mmsgid "Full Time"
+msgid "Full Time"
 msgstr ""
 
 msgid "Parent Category"
 msgstr ""
 
-
 msgid "Folders Approval Queue"
 msgstr ""
+
 msgid "Cover Letter Section"
 msgstr ""
 
@@ -9075,7 +9090,6 @@ msgstr ""
 msgid "User Published"
 msgstr ""
 
-
 msgid "Meta"
 msgstr ""
 
@@ -9084,12 +9098,12 @@ msgstr ""
 
 msgid "user unpublish"
 msgstr ""
+
 msgid "User Publish"
 msgstr ""
 
 msgid "Normal"
 msgstr ""
-
 
 msgid "Savings"
 msgstr ""
@@ -9129,6 +9143,7 @@ msgstr ""
 
 msgid "added a new Job"
 msgstr ""
+
 msgid "Deleted a Job"
 msgstr ""
 
@@ -9185,12 +9200,12 @@ msgstr ""
 
 msgid "Expire"
 msgstr ""
+
 msgid "Price per Resume View Contact Detail (only for"
 msgstr ""
 
 msgid "this is some desc text for job rss"
 msgstr ""
-
 
 msgid "webmaster text"
 msgstr ""
@@ -9230,7 +9245,6 @@ msgstr ""
 
 msgid "March"
 msgstr ""
-
 
 msgid "April"
 msgstr ""
@@ -9358,8 +9372,6 @@ msgstr ""
 msgid "User been successfully created"
 msgstr ""
 
-# new strings 17-oct
-
 msgid "International Name"
 msgstr ""
 
@@ -9467,6 +9479,7 @@ msgstr ""
 
 msgid "Show page title above breadcrumbs"
 msgstr ""
+
 msgid "or"
 msgstr ""
 
@@ -10393,6 +10406,7 @@ msgstr ""
 
 msgid "Your email"
 msgstr ""
+
 msgid "Show the"
 msgstr ""
 
@@ -10411,7 +10425,6 @@ msgstr ""
 msgid "We would love to hear from You."
 msgstr ""
 
-# New Strings
 msgid "Welcome back!"
 msgstr ""
 
@@ -10574,10 +10587,6 @@ msgstr ""
 msgid "No new employers have registered."
 msgstr ""
 
-
-##########################################################
-# Configurarion layout new strings
-##########################################################
 msgid "Not allowed"
 msgstr ""
 
@@ -10915,9 +10924,6 @@ msgid "link in the employer dashboard"
 msgstr ""
 
 msgid "RSS Feedback"
-msgstr ""
-
-msgid "Job Seekers"
 msgstr ""
 
 msgid "Job Seeker Default Role"
@@ -11275,9 +11281,6 @@ msgid "Max Addresses in Resume Builder"
 msgstr ""
 
 msgid "Maximum number of addresses allowed in the resume builder"
-msgstr ""
-
-msgid "Applications"
 msgstr ""
 
 msgid "Job Applications"
@@ -12210,9 +12213,6 @@ msgstr ""
 msgid "Visitor Can View Job Search Results"
 msgstr ""
 
-################################################################
-# version 2.3.9
-################################################################
 msgid "1 Column"
 msgstr ""
 
@@ -12894,7 +12894,6 @@ msgstr ""
 msgid "unused keys have been deleted successfully!"
 msgstr ""
 
-# New String for hooks interface #
 msgid "After Store Job"
 msgstr ""
 
@@ -13894,11 +13893,8488 @@ msgstr ""
 msgid "Try searching for specific keywords like \"save\" or \"meta\"."
 msgstr ""
 
-msgid "Copied to clipboard"
-msgstr ""
-
 msgid "Hooks"
 msgstr ""
 
 msgid "Search Results"
+msgstr ""
+
+msgid "System Status"
+msgstr ""
+
+msgid "AI Content Generation"
+msgstr ""
+
+msgid "Zywrap Settings"
+msgstr ""
+
+msgid "How WP Job Portal modes work"
+msgstr ""
+
+msgid "Change Mode"
+msgstr ""
+
+msgid "Licences and add-ons"
+msgstr ""
+
+msgid "Zywrap Logs"
+msgstr ""
+
+msgid "Hook Reference Documentation"
+msgstr ""
+
+msgid "Unfortunately system is offline for a bit of maintenance right now. But soon we will be up."
+msgstr ""
+
+msgid "Your account is disabled. Please contact the site administrator."
+msgstr ""
+
+msgid "Please log in to access this page."
+msgstr ""
+
+msgid "registration banned"
+msgstr ""
+
+msgid "Registration is disabled. Please contact the site administrator."
+msgstr ""
+
+msgid "Job Seeker not allowed to perform this action"
+msgstr ""
+
+msgid "Contact Administrator"
+msgstr ""
+
+msgid "Payment is not made against this job contact administrator"
+msgstr ""
+
+msgid "Adding new items is temporarily unavailable. Please try again later."
+msgstr ""
+
+msgid "Not Allowed"
+msgstr ""
+
+msgid "No Active Package"
+msgstr ""
+
+msgid "Saved search"
+msgstr ""
+
+msgid "[%s] Welcome"
+msgstr ""
+
+msgid "Hi %s,"
+msgstr ""
+
+msgid "Your account on %s has been created."
+msgstr ""
+
+msgid "Username: %s"
+msgstr ""
+
+msgid "You can log in with the password you chose when you registered:"
+msgstr ""
+
+msgid "Registration is not available yet: this site has not been set up to say whether new accounts are employers or job seekers."
+msgstr ""
+
+msgid "Registration is closed on this site."
+msgstr ""
+
+msgid "Please enter a %s"
+msgstr ""
+
+msgid "%s already taken"
+msgstr ""
+
+msgid "Invalid %s"
+msgstr ""
+
+msgid "%s already registered"
+msgstr ""
+
+msgid "WP Job Portal: %s was a job seeker. Resumes and applications are personal, so they were deleted, not moved."
+msgstr ""
+
+msgid "WP Job Portal: the companies and jobs of %s were deleted, not moved - the chosen user is not an employer in the job portal."
+msgstr ""
+
+msgid "You are not allowed to remove portal data."
+msgstr ""
+
+msgid "Access denied"
+msgstr ""
+
+msgid "Job Seeker My Stats"
+msgstr ""
+
+msgid "Language files for %s successfully downloaded."
+msgstr ""
+
+msgid "Alternate language file downloaded. We tried to find %1$s, but downloaded %2$s as a fallback."
+msgstr ""
+
+msgid "This action cannot be reached the way it was requested."
+msgstr ""
+
+msgid "Your account is not allowed to do this. If you should be, ask the site administrator to check your role in WP Job Portal."
+msgstr ""
+
+msgid "This form has expired. Go back, reload the page, and send it again."
+msgstr ""
+
+msgid "Something in the form was not in the expected format, so it was not saved."
+msgstr ""
+
+msgid "That record belongs to another account."
+msgstr ""
+
+msgid "You are not allowed to perform this WP Job Portal add-on action."
+msgstr ""
+
+msgid "You are not allowed to perform this WP Job Portal action."
+msgstr ""
+
+msgid " (%1$s - refused by: %2$s)"
+msgstr ""
+
+msgid "This WP Job Portal action is not registered."
+msgstr ""
+
+msgid "Invalid request."
+msgstr ""
+
+msgid "Jobs Feed"
+msgstr ""
+
+msgid "Resumes Feed"
+msgstr ""
+
+msgid "Latest jobs from the job board."
+msgstr ""
+
+msgid "Latest searchable resumes from the job board."
+msgstr ""
+
+msgid "Summary"
+msgstr ""
+
+msgid "Number of Jobs"
+msgstr ""
+
+msgid "Closing Date"
+msgstr ""
+
+msgid "View / Apply"
+msgstr ""
+
+msgid "Full Job Description"
+msgstr ""
+
+msgid "Print this page"
+msgstr ""
+
+msgid "Job Alert Fields"
+msgstr ""
+
+msgid "Email me resume of new applicants"
+msgstr ""
+
+msgid "Resume Save Searches"
+msgstr ""
+
+msgid "Candidates"
+msgstr ""
+
+msgid "Company Profile"
+msgstr ""
+
+msgid "Hiring Settings"
+msgstr ""
+
+msgid "Actions and Filters"
+msgstr ""
+
+msgid "Setup & Mode"
+msgstr ""
+
+msgid "How Modes Work"
+msgstr ""
+
+msgid "Licences"
+msgstr ""
+
+msgid "Updates for every plugin on this site, WP Job Portal products included"
+msgstr ""
+
+msgid "WordPress updates"
+msgstr ""
+
+msgid "Zywrap"
+msgstr ""
+
+msgid "AI Playground"
+msgstr ""
+
+msgid "Zywrap Integration"
+msgstr ""
+
+msgid "Integration"
+msgstr ""
+
+msgid "Logs"
+msgstr ""
+
+msgid "File extension is mismatched"
+msgstr ""
+
+msgid "Color and typography settings apply %1$sglobally%2$s to all pages of the WP Job Portal. To see the changes take effect, please save or %3$sPublish the page.%4$s"
+msgstr ""
+
+msgid "Color styling and typography live preview is available for Job Seeker Dashboard, but the changes will %1$sapply to all%2$s pages of the WP Job Portal plugin."
+msgstr ""
+
+msgid "Pages are:"
+msgstr ""
+
+msgid "Color WP Job Portal page content"
+msgstr ""
+
+msgid "Typography For WP Job Portal Page Body Content."
+msgstr ""
+
+msgid "Typography For Section Titles"
+msgstr ""
+
+msgid "Typography For Buttons"
+msgstr ""
+
+msgid "Choose Resume File"
+msgstr ""
+
+msgid "Marketplace Settings"
+msgstr ""
+
+msgid "Job Seeker/Employer Reports"
+msgstr ""
+
+msgid "You are not allowed to convert WP Job Portal tables."
+msgstr ""
+
+msgid "No WP Job Portal core tables were detected."
+msgstr ""
+
+msgid "One or more expected core tables are missing. No tables were changed; review System Status before retrying."
+msgstr ""
+
+msgid "You are not allowed to pause WP Job Portal database maintenance."
+msgstr ""
+
+msgid "You are not allowed to manage WP Job Portal database maintenance."
+msgstr ""
+
+msgid "One or more expected core tables are missing. Conversion was stopped."
+msgstr ""
+
+msgid "InnoDB is available."
+msgstr ""
+
+msgid "The database server does not report InnoDB support. No tables were changed."
+msgstr ""
+
+msgid "The requested table is not part of the core conversion plan."
+msgstr ""
+
+msgid "Core table %s was not found."
+msgstr ""
+
+msgid "Core table %1$s uses unsupported engine %2$s."
+msgstr ""
+
+msgid "Unknown database error."
+msgstr ""
+
+msgid "Could not convert %1$s: %2$s"
+msgstr ""
+
+msgid "The database did not confirm conversion of %s."
+msgstr ""
+
+msgid "Marketplace Suite"
+msgstr ""
+
+msgid "Manage Packages"
+msgstr ""
+
+msgid "Trust & Safety"
+msgstr ""
+
+msgid "Marketplace Overview"
+msgstr ""
+
+msgid "Marketplace Reports"
+msgstr ""
+
+msgid "Open - anyone can create an account"
+msgstr ""
+
+msgid "Closed - only accounts you add"
+msgstr ""
+
+msgid "Follow WordPress \"Anyone can register\""
+msgstr ""
+
+msgid "Leave this field empty"
+msgstr ""
+
+msgid "The spam check could not be completed just now. Please try again in a moment."
+msgstr ""
+
+msgid "The spam check did not pass. Please try again."
+msgstr ""
+
+msgid "No spam-check response was submitted."
+msgstr ""
+
+msgid "The spam-check service answered with status %s."
+msgstr ""
+
+msgid "The spam-check service sent an answer that could not be read."
+msgstr ""
+
+msgid "The spam-check keys on this site are not valid."
+msgstr ""
+
+msgid "The spam-check response was issued for a different form."
+msgstr ""
+
+msgid "The spam check scored %1$s, below the %2$s this site requires."
+msgstr ""
+
+msgid "A field that should have been left empty was filled in."
+msgstr ""
+
+msgid "The form could not be verified. Please reload the page and try again."
+msgstr ""
+
+msgid "That was submitted faster than a form can be filled in."
+msgstr ""
+
+msgid "This form has been open too long. Please reload the page and try again."
+msgstr ""
+
+msgid "Deactivate old add-on"
+msgstr ""
+
+msgid "No longer supported. This add-on no longer works; you can deactivate and delete it."
+msgstr ""
+
+msgid "Now included in %s. You can delete this add-on; your data is kept."
+msgstr ""
+
+msgid "Paused. Now included in %s: deactivate this add-on to turn the feature back on. Your data and settings are kept."
+msgstr ""
+
+msgid "No longer needed: %s provides this feature now. You can deactivate and delete this add-on; your data and settings are kept."
+msgstr ""
+
+msgid "Replaced by %1$s. Install it from %2$sLicences%3$s."
+msgstr ""
+
+msgid "Paused. Replaced by %1$s: install it from %2$sLicences%3$s, then deactivate this add-on."
+msgstr ""
+
+msgid "Still running for now. Replaced by %1$s: install it from %2$sLicences%3$s; this add-on then stops and can be deactivated."
+msgstr ""
+
+msgid "WP Job Portal Pro"
+msgstr ""
+
+msgid "Recruit Suite"
+msgstr ""
+
+msgid "Matching Suite"
+msgstr ""
+
+msgid "Your site still runs old add-ons from before version 2.7.0. Install the new products included in your licence from the Licences page; the old add-ons then stop on their own and can be deactivated. Your data and settings are kept."
+msgstr ""
+
+msgid "Go to Licences"
+msgstr ""
+
+msgid "Your old add-ons are no longer needed: the new products provide their features now. Deactivate and delete them when you are ready. Your data and settings are kept."
+msgstr ""
+
+msgid "Go to Plugins"
+msgstr ""
+
+msgid "Until this is done, new jobs, companies and resumes cannot be added."
+msgstr ""
+
+msgid "WP Job Portal:"
+msgstr ""
+
+msgid "Leave unassigned"
+msgstr ""
+
+msgid "administrator"
+msgstr ""
+
+msgid "That user does not exist."
+msgstr ""
+
+msgid "%s already has a job seeker account, so cannot own the sample companies and jobs."
+msgstr ""
+
+msgid "%s already has an employer account, so cannot own the sample resumes and applications."
+msgstr ""
+
+msgid "Choose different users for the employer and the job seeker. One account cannot be both."
+msgstr ""
+
+msgid "Choose an operating mode"
+msgstr ""
+
+msgid "%s is selected."
+msgstr ""
+
+msgid "Choose Careers & ATS or Job Marketplace intentionally; existing-site compatibility remains unchanged until then."
+msgstr ""
+
+msgid "Review mode"
+msgstr ""
+
+msgid "Configure employer registration"
+msgstr ""
+
+msgid "The employer area and employer registration are enabled."
+msgstr ""
+
+msgid "Enable the employer area and decide whether employers may register."
+msgstr ""
+
+msgid "Review employer settings"
+msgstr ""
+
+msgid "Load the city list"
+msgstr ""
+
+msgid "%d city is available to choose from."
+msgid_plural "%d cities are available to choose from."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Review locations"
+msgstr ""
+
+msgid "Load address data"
+msgstr ""
+
+msgid "Approve the first company"
+msgstr ""
+
+msgid "Complete the company profile"
+msgstr ""
+
+msgid "%d approved company is available."
+msgid_plural "%d approved companies are available."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Create or approve the first employer company."
+msgstr ""
+
+msgid "Create the hiring company identity used by jobs and applications."
+msgstr ""
+
+msgid "Review companies"
+msgstr ""
+
+msgid "Configure the main portal page"
+msgstr ""
+
+msgid "The configured default page is published and contains WP Job Portal content."
+msgstr ""
+
+msgid "Review page settings"
+msgstr ""
+
+msgid "Publish the first job"
+msgstr ""
+
+msgid "%d published job is available."
+msgid_plural "%d published jobs are available."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Create and publish a real job so candidates can apply."
+msgstr ""
+
+msgid "Review jobs"
+msgstr ""
+
+msgid "Verify the application workflow"
+msgstr ""
+
+msgid "Review the candidate workflow"
+msgstr ""
+
+msgid "%d application has been received."
+msgid_plural "%d applications have been received."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "No application has been received yet. Use a separate candidate account when testing this step."
+msgstr ""
+
+msgid "Review job applications"
+msgstr ""
+
+msgid "Finish setting up WP Job Portal."
+msgstr ""
+
+msgid "%1$d of %2$d onboarding steps are complete."
+msgstr ""
+
+msgid "Open checklist"
+msgstr ""
+
+msgid "Import a city list so employers can choose a job location."
+msgstr ""
+
+msgid "Employers cannot choose a job location yet. %1$d city is ready to import for %2$s."
+msgid_plural "Employers cannot choose a job location yet. %1$d cities are ready to import for %2$s."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Choose a published WordPress page as the default WP Job Portal page."
+msgstr ""
+
+msgid "The configured default page is missing, deleted, or not published."
+msgstr ""
+
+msgid "The configured default page does not contain a WP Job Portal shortcode or block."
+msgstr ""
+
+msgid "WP Job Portal version"
+msgstr ""
+
+msgid "Operating mode"
+msgstr ""
+
+msgid "%s explicitly selected; mode-specific setup is active."
+msgstr ""
+
+msgid "%s is selected, but its legacy compatibility setting is out of sync; run Setup & Mode again."
+msgstr ""
+
+msgid "Existing-site compatibility; no explicit mode is selected and current behavior is unchanged."
+msgstr ""
+
+msgid "Shared design system"
+msgstr ""
+
+msgid "Shared design tokens, responsive primitives, focus treatment, and reduced-motion support are available."
+msgstr ""
+
+msgid "The shared design-system stylesheet is missing or unreadable."
+msgstr ""
+
+msgid "Accessible mobile-first forms"
+msgstr ""
+
+msgid "Accessible labels, help text, required-field, validation-error, mobile-control, and keyboard-focus enhancements are available."
+msgstr ""
+
+msgid "The accessible form stylesheet or behavior script is missing or unreadable."
+msgstr ""
+
+msgid "Blocks and Elementor compatibility"
+msgstr ""
+
+msgid "Dynamic blocks, translated editor controls, bounded attributes, and load-order-safe Elementor integration are available."
+msgstr ""
+
+msgid "A block editor or Elementor compatibility file is missing or unreadable."
+msgstr ""
+
+msgid "PHP version"
+msgstr ""
+
+msgid "WordPress version"
+msgstr ""
+
+msgid "Database version"
+msgstr ""
+
+msgid "WordPress Cron"
+msgstr ""
+
+msgid "Disabled; a real server cron is required."
+msgstr ""
+
+msgid "Debug display"
+msgstr ""
+
+msgid "Enabled; disable on production sites."
+msgstr ""
+
+msgid "Not exposed"
+msgstr ""
+
+msgid "PHP memory limit"
+msgstr ""
+
+msgid "Maximum upload size"
+msgstr ""
+
+msgid "Permalinks"
+msgstr ""
+
+msgid "Pretty permalinks enabled"
+msgstr ""
+
+msgid "Plain permalinks"
+msgstr ""
+
+msgid "WP Job Portal tables"
+msgstr ""
+
+msgid "%d table detected"
+msgid_plural "%d tables detected"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Migration ledger"
+msgstr ""
+
+msgid "Missing"
+msgstr ""
+
+msgid "Migration file integrity"
+msgstr ""
+
+msgid "Applied local migrations are unchanged."
+msgstr ""
+
+msgid "Core storage engines"
+msgstr ""
+
+msgid "Expected core tables are missing: %s"
+msgstr ""
+
+msgid "All detected core tables use InnoDB and support transactions."
+msgstr ""
+
+msgid "%1$d of %2$d core tables awaits conversion."
+msgid_plural "%1$d of %2$d core tables await conversion."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "High-volume indexes"
+msgstr ""
+
+msgid "Recommended indexes are present."
+msgstr ""
+
+msgid "%1$d planned indexes are not present: %2$s"
+msgstr ""
+
+msgid "The onboarding page check is unavailable."
+msgstr ""
+
+msgid "Mode-specific readiness"
+msgstr ""
+
+msgid "%1$s is selected; %2$d of %3$d onboarding steps are complete."
+msgstr ""
+
+msgid "Existing-site compatibility is active. Choose a mode from Setup & Mode when ready; no mode is selected automatically."
+msgstr ""
+
+msgid "Default portal page"
+msgstr ""
+
+msgid "Published and contains WP Job Portal content."
+msgstr ""
+
+msgid "Review the main page in WP Job Portal configuration."
+msgstr ""
+
+msgid "Upload directory"
+msgstr ""
+
+msgid "Available and writable for WP Job Portal files."
+msgstr ""
+
+msgid "Unavailable or not writable. Correct the WordPress uploads configuration and permissions before accepting files."
+msgstr ""
+
+msgid "Marked sample data"
+msgstr ""
+
+msgid "%1$d records are strongly marked; %2$d are cleanup-eligible and %3$d are protected because they changed or have dependencies."
+msgstr ""
+
+msgid "No strongly marked records are available. Historical sample-like content is preserved rather than guessed."
+msgstr ""
+
+msgid "Add-on compatibility"
+msgstr ""
+
+msgid "%1$d supported add-ons are active; %2$d unknown or retired add-ons need manual compatibility review."
+msgstr ""
+
+msgid "%d supported add-on is active and no unknown add-on route was detected."
+msgid_plural "%d supported add-ons are active and no unknown add-on route was detected."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Core request routes"
+msgstr ""
+
+msgid "%1$d actions across %2$d core modules are explicitly registered; unknown core controller actions are denied."
+msgstr ""
+
+msgid "Supported add-on request routes"
+msgstr ""
+
+msgid "%1$d actions across %2$d add-on modules are explicitly registered; strict mode is enabled for %3$d active supported add-ons."
+msgstr ""
+
+msgid "Add-on request compatibility"
+msgstr ""
+
+msgid "%d supported add-ons are active. WP Job Portal Pro and the suites keep compatibility mode for add-on routes."
+msgstr ""
+
+msgid "%1$d supported add-ons are active, but %2$d unknown or retired add-on(s) were detected: %3$s. Unregistered add-on routes remain in compatibility mode."
+msgstr ""
+
+msgid "Denied request routes"
+msgstr ""
+
+msgid "%1$d request has been denied. Most recent: %2$s UTC (%3$s)."
+msgid_plural "%1$d requests have been denied. Most recent: %2$s UTC (%3$s)."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "No denied controller-route attempts have been recorded."
+msgstr ""
+
+msgid "Core mutation authorization"
+msgstr ""
+
+msgid "%1$d state-changing core routes enforce HTTP method, role or capability and nonce policies; %2$d validate security-relevant input fields and %3$d also enforce object ownership."
+msgstr ""
+
+msgid "Add-on mutation authorization"
+msgstr ""
+
+msgid "%1$d state-changing add-on routes enforce centralized policies; %2$d validate target identifiers and %3$d apply record-ownership rules."
+msgstr ""
+
+msgid "Denied add-on mutations"
+msgstr ""
+
+msgid "%1$d add-on mutation has been denied. Most recent: %2$s UTC (%3$s.%4$s: %5$s)."
+msgid_plural "%1$d add-on mutations have been denied. Most recent: %2$s UTC (%3$s.%4$s: %5$s)."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Denied core mutations"
+msgstr ""
+
+msgid "%1$d core mutation has been denied. Most recent: %2$s UTC (%3$s.%4$s: %5$s)."
+msgid_plural "%1$d core mutations have been denied. Most recent: %2$s UTC (%3$s.%4$s: %5$s)."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "No centralized core-mutation denials have been recorded."
+msgstr ""
+
+msgid "Sensitive download authorization"
+msgstr ""
+
+msgid "%d resume and custom-file download routes enforce server-side object authorization."
+msgstr ""
+
+msgid "File extension validation"
+msgstr ""
+
+msgid "%d upload and file-management paths use trimmed, lowercase, exact extension allowlists."
+msgstr ""
+
+msgid "Address-data import validation"
+msgstr ""
+
+msgid "ZIP files are read without extraction and SQL is limited to staged state/city INSERT operations (%1$s archive limit; %2$s SQL limit)."
+msgstr ""
+
+msgid "Denied sensitive downloads"
+msgstr ""
+
+msgid "%1$d download has been denied. Most recent: %2$s UTC (%3$s: %4$s)."
+msgid_plural "%1$d downloads have been denied. Most recent: %2$s UTC (%3$s: %4$s)."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "No object-authorization denials have been recorded."
+msgstr ""
+
+msgid "WordPress privacy tools"
+msgstr ""
+
+msgid "Personal-data exporter and eraser callbacks are registered; erasure anonymizes records that must remain for relational integrity."
+msgstr ""
+
+msgid "Privacy retention cleanup"
+msgstr ""
+
+msgid "Scheduled; activity %1$d days, messages %2$d days, operational audit %3$d days."
+msgstr ""
+
+msgid "Not scheduled"
+msgstr ""
+
+msgid "Payment service boundary"
+msgstr ""
+
+msgid "%d provider is registered with normalized routing, privacy-safe outcomes and hashed event idempotency."
+msgid_plural "%d providers are registered with normalized routing, privacy-safe outcomes and hashed event idempotency."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Payment processing outcomes"
+msgstr ""
+
+msgid "%1$d completed; %2$d failed; %3$d duplicate provider events suppressed; %4$d boundary rejections."
+msgstr ""
+
+msgid "Session cleanup"
+msgstr ""
+
+msgid "Job Alert delivery"
+msgstr ""
+
+msgid "The add-on is active, but its scheduled-delivery handler is not loaded. Reactivate or reinstall the current supported Job Alert add-on."
+msgstr ""
+
+msgid "The delivery handler is loaded, but WordPress could not create its daily schedule."
+msgstr ""
+
+msgid "Add-on not active"
+msgstr ""
+
+msgid "WordPress mail function"
+msgstr ""
+
+msgid "Unavailable"
+msgstr ""
+
+msgid "WP Job Portal mail mode"
+msgstr ""
+
+msgid "Reliable queue enabled; delivery uses wp_mail() in bounded cron batches."
+msgstr ""
+
+msgid "Direct wp_mail() submission for new messages; the disabled queue is draining existing jobs."
+msgstr ""
+
+msgid "Direct wp_mail() submission; the reliable queue is not enabled."
+msgstr ""
+
+msgid "Notification queue storage"
+msgstr ""
+
+msgid "Encrypted queue table is available."
+msgstr ""
+
+msgid "Queue mode is enabled but its table is unavailable; new mail will use direct fallback."
+msgstr ""
+
+msgid "The queue table is incomplete; enable the queue to run its safe schema repair."
+msgstr ""
+
+msgid "Not initialized; enable the queue from System Status to create it."
+msgstr ""
+
+msgid "Notification queue worker"
+msgstr ""
+
+msgid "Overdue since %s; the recovery check will replace the event."
+msgstr ""
+
+msgid "No future run is scheduled; the recovery check will recreate it on the next administrator request."
+msgstr ""
+
+msgid "Idle; a worker is scheduled automatically when mail enters the queue."
+msgstr ""
+
+msgid "Notification queue health"
+msgstr ""
+
+msgid "%1$d waiting; %2$d retrying; %3$d processing; %4$d failed."
+msgstr ""
+
+msgid "WP Job Portal mail submissions"
+msgstr ""
+
+msgid "No submissions have been recorded since this build was installed."
+msgstr ""
+
+msgid "%1$d attempted; %2$d accepted by wp_mail(); %3$d rejected."
+msgstr ""
+
+msgid "Most recent WP Job Portal mail error"
+msgstr ""
+
+msgid "%1$s at %2$s"
+msgstr ""
+
+msgid "Next run: %s"
+msgstr ""
+
+msgid "wp_mail() returned false."
+msgstr ""
+
+msgid "Migration ledger is missing."
+msgstr ""
+
+msgid "WP Job Portal could not complete a database migration. Existing data was left in place."
+msgstr ""
+
+msgid "View System Status"
+msgstr ""
+
+msgid "Job approval queue"
+msgstr ""
+
+msgid "Hold submitted jobs for review before they appear on the site."
+msgstr ""
+
+msgid "Jobs → Approval Queue"
+msgstr ""
+
+msgid "In Careers & ATS you publish your own jobs from the admin, so there is nothing waiting to be moderated. Jobs are approved automatically."
+msgstr ""
+
+msgid "Company approval queue"
+msgstr ""
+
+msgid "Hold new company profiles for review before they are listed."
+msgstr ""
+
+msgid "Companies → Approval Queue"
+msgstr ""
+
+msgid "Careers & ATS runs on a single company profile that you manage yourself, so there are no third-party companies to approve."
+msgstr ""
+
+msgid "Employer accounts"
+msgstr ""
+
+msgid "Let outside employers register, own a company profile, and post their own jobs."
+msgstr ""
+
+msgid "Careers & ATS is a single-company hiring site. Employer self-registration is off so that only your team posts jobs."
+msgstr ""
+
+msgid "Credits and paid submissions"
+msgstr ""
+
+msgid "Charge employers per listing or through a membership package."
+msgstr ""
+
+msgid "There is nobody to bill in Careers & ATS because you are the only publisher, so submissions stay free."
+msgstr ""
+
+msgid "This setting is controlled by the selected WP Job Portal mode."
+msgstr ""
+
+msgid "wpjobportal.com could not be reached (%s)."
+msgstr ""
+
+msgid "The list of translations could not be read (HTTP %d)."
+msgstr ""
+
+msgid "This site does not allow plugins to install language files (DISALLOW_FILE_MODS)."
+msgstr ""
+
+msgid "The download failed (%s)."
+msgstr ""
+
+msgid "The downloaded file did not match its checksum, so it was not installed."
+msgstr ""
+
+msgid "The downloaded translation is not a valid .mo file."
+msgstr ""
+
+msgid "WordPress could not open its files for writing."
+msgstr ""
+
+msgid "The folder wp-content/languages/plugins could not be created."
+msgstr ""
+
+msgid "The folder wp-content/languages/plugins is not writable."
+msgstr ""
+
+msgid "The downloaded translation could not be opened."
+msgstr ""
+
+msgid "You are not allowed to install languages on this site."
+msgstr ""
+
+msgid "There is no translation for this language yet."
+msgstr ""
+
+msgid "WP Job Portal could not install its %s translation."
+msgstr ""
+
+msgid "It is shown in English until it is installed. %s"
+msgstr ""
+
+msgid "Try again"
+msgstr ""
+
+msgid "The notification queue table could not be created."
+msgstr ""
+
+msgid "The notification could not be added to the queue."
+msgstr ""
+
+msgid "Access denied."
+msgstr ""
+
+msgid "Invalid queue action."
+msgstr ""
+
+msgid "The notification queue table is not available."
+msgstr ""
+
+msgid "wp_mail() rejected the queued notification."
+msgstr ""
+
+msgid "The notification payload could not be encoded."
+msgstr ""
+
+msgid "No supported payload-encryption provider is available."
+msgstr ""
+
+msgid "The queued notification payload is invalid."
+msgstr ""
+
+msgid "The queued notification payload could not be decrypted."
+msgstr ""
+
+msgid "The queued notification payload is incomplete."
+msgstr ""
+
+msgid "Sample"
+msgstr ""
+
+msgid "Pro"
+msgstr ""
+
+msgid "Resume builder, cover letters, messages, PDF and export, reports, resume search and the address database."
+msgstr ""
+
+msgid "Credits and subscriptions, featured jobs, companies and resumes, multiple companies and visitor job posting."
+msgstr ""
+
+msgid "Hiring teams, pipelines, evaluations, offers, candidate portal, calendar and e-signature."
+msgstr ""
+
+msgid "Relevance-ranked job and resume search, suggestions and match scores, run on your own server."
+msgstr ""
+
+msgid "That is not a WP Job Portal product."
+msgstr ""
+
+msgid "%s is already installed."
+msgstr ""
+
+msgid "Activate your licence on this site before installing."
+msgstr ""
+
+msgid "%s is not part of your licence."
+msgstr ""
+
+msgid "%1$s could not be installed: %2$s"
+msgstr ""
+
+msgid "%s was downloaded, but the package did not contain the expected plugin. Nothing was activated."
+msgstr ""
+
+msgid "%1$s %2$s is installed but could not be activated: %3$s"
+msgstr ""
+
+msgid "%1$s %2$s is installed and active."
+msgstr ""
+
+msgid "%s is not installed."
+msgstr ""
+
+msgid "Could not check %s for updates: the licence server did not answer, or did not accept this site. Press Check again and retry."
+msgstr ""
+
+msgid "%s is already up to date."
+msgstr ""
+
+msgid "%1$s %2$s is available, but this licence does not include updates. Renew it to download."
+msgstr ""
+
+msgid "%1$s could not be updated: %2$s"
+msgstr ""
+
+msgid "%1$s is updated to %2$s."
+msgstr ""
+
+msgid "%s is no longer needed and is not activated from this screen."
+msgstr ""
+
+msgid "%s is active."
+msgstr ""
+
+msgid "This download has no published checksum to verify it against, so it was not installed. Check for updates again and retry."
+msgstr ""
+
+msgid "The downloaded file does not match its published checksum, so it was deleted and nothing was installed. Try again; if this repeats, contact support."
+msgstr ""
+
+msgid "the licence server did not answer. Try again shortly."
+msgstr ""
+
+msgid "it is not part of your licence."
+msgstr ""
+
+msgid "no release has been published yet."
+msgstr ""
+
+msgid "your licence has expired. Renew it to install new products."
+msgstr ""
+
+msgid "your licence is suspended."
+msgstr ""
+
+msgid "your licence has been revoked."
+msgstr ""
+
+msgid "this site needs to be activated again. Press Check again, then retry."
+msgstr ""
+
+msgid "too many requests. Wait a minute and try again."
+msgstr ""
+
+msgid "it needs WP Job Portal %s or later. Update WP Job Portal first."
+msgstr ""
+
+msgid "the licence server refused the request."
+msgstr ""
+
+msgid "the licence server answered for a different product."
+msgstr ""
+
+msgid "the download address is not one this site trusts."
+msgstr ""
+
+msgid "the release has no checksum to verify it against."
+msgstr ""
+
+msgid "WordPress needs FTP details to write plugin files on this server. Download the product from your account and upload it under Plugins → Add New instead."
+msgstr ""
+
+msgid "WordPress did not finish the installation."
+msgstr ""
+
+msgid "This package is sold to %s, so it cannot be added to your cart."
+msgstr ""
+
+msgid "employers"
+msgstr ""
+
+msgid "job seekers"
+msgstr ""
+
+msgid "another kind of account"
+msgstr ""
+
+msgid "WP Job Portal packages require a registered customer account; no package was granted."
+msgstr ""
+
+msgid "\"%1$s\" is sold to %2$s, and this customer is not one, so no package was granted."
+msgstr ""
+
+msgid "WP Job Portal package access was granted from the Credits catalogue."
+msgstr ""
+
+msgid "Some WP Job Portal package access could not be granted. Review the product mapping and customer role."
+msgstr ""
+
+msgid "WP Job Portal revoked %1$d unused package grant(s); %2$d used grant(s) require manual review."
+msgstr ""
+
+msgid "%d unused WP Job Portal package grant was revoked."
+msgid_plural "%d unused WP Job Portal package grants were revoked."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Included with the %s. Your existing key for this add-on is still being used."
+msgstr ""
+
+msgid "Included with the %s, and covered by your Suite licence."
+msgstr ""
+
+msgid "Included with the %s."
+msgstr ""
+
+msgid "Careers & ATS"
+msgstr ""
+
+msgid "Job Marketplace"
+msgstr ""
+
+msgid "Existing-site compatibility"
+msgstr ""
+
+msgid "Choose how you use WP Job Portal."
+msgstr ""
+
+msgid "Your existing settings are unchanged. Select Careers & ATS or Job Marketplace when you are ready to use mode-specific setup and navigation."
+msgstr ""
+
+msgid "Choose setup mode"
+msgstr ""
+
+msgid "Compare the modes"
+msgstr ""
+
+msgid "Recruiting Team"
+msgstr ""
+
+msgid "Candidate Workspace"
+msgstr ""
+
+msgid "Recruit Pipeline"
+msgstr ""
+
+msgid "Recruiting Insights"
+msgstr ""
+
+msgid "Recruiting Automation"
+msgstr ""
+
+msgid "No cities have been loaded yet."
+msgstr ""
+
+msgid "Employers cannot choose a job location until a city list exists."
+msgstr ""
+
+msgid "Import %1$d city for %2$s"
+msgid_plural "Import %1$d cities for %2$s"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Choose a different country"
+msgstr ""
+
+msgid "Not now"
+msgstr ""
+
+msgid "Choose a country to import"
+msgstr ""
+
+msgid "You are not allowed to do this."
+msgstr ""
+
+msgid "Portal profile"
+msgstr ""
+
+msgid "Activity history"
+msgstr ""
+
+msgid "Erased"
+msgstr ""
+
+msgid "The portal profile could not be anonymized."
+msgstr ""
+
+msgid "Listing, payment and application records required for site integrity are retained in anonymized form."
+msgstr ""
+
+msgid "Privacy retention settings saved."
+msgstr ""
+
+msgid "WP JOB PORTAL Per Listing"
+msgstr ""
+
+msgid "WP Job Portal package"
+msgstr ""
+
+msgid "Map this WooCommerce product to one paid package from WP Job Portal Credits. Free packages are claimed directly in WP Job Portal."
+msgstr ""
+
+msgid "Error code:"
+msgstr ""
+
+msgid "Instant (As soon as job is posted)"
+msgstr ""
+
+msgid "The following job alerts were successfully processed and sent."
+msgstr ""
+
+msgid "Alert type:"
+msgstr ""
+
+msgid "On-site"
+msgstr ""
+
+msgid "Hybrid"
+msgstr ""
+
+msgid "Remote"
+msgstr ""
+
+msgid "Invalid job alert cron secret."
+msgstr ""
+
+msgid "A job alert run is already in progress."
+msgstr ""
+
+msgid "Job alerts processed."
+msgstr ""
+
+msgid "Job alerts could not be processed."
+msgstr ""
+
+msgid "Location Format Is Not Correct. Please Enter City In This Format: City Name, Country Name OR City Name, State Name, Country Name"
+msgstr ""
+
+msgid "Yes, mark as Urgent"
+msgstr ""
+
+msgid "Company Logo"
+msgstr ""
+
+msgid "Apply As Visitor"
+msgstr ""
+
+msgid "Email has been sent"
+msgstr ""
+
+msgid "Email has not been sent"
+msgstr ""
+
+msgid "Sort"
+msgstr ""
+
+msgid "view Cover Letter"
+msgstr ""
+
+msgid "This prefix will be added to slug in case of homepage links"
+msgstr ""
+
+msgid "This prefix will be added to slug in case of conflict"
+msgstr ""
+
+msgid "Job opening: %s"
+msgstr ""
+
+msgid "X"
+msgstr ""
+
+msgid "LinkedIn"
+msgstr ""
+
+msgid "Yahoo Mail"
+msgstr ""
+
+msgid "Copy Link"
+msgstr ""
+
+msgid "Copied"
+msgstr ""
+
+msgid "Back To Listing"
+msgstr ""
+
+msgid "Selected from your site settings: %s. Change it if this is not where you are hiring."
+msgstr ""
+
+msgid "Included with Pro. Imports every country in one pass, from a file on this site."
+msgstr ""
+
+msgid "Every City and Town, with Pro"
+msgstr ""
+
+msgid "The free plugin includes the main cities of 186 countries. Pro adds the full city and town database, imported to your own server."
+msgstr ""
+
+msgid "See plans"
+msgstr ""
+
+msgid "Sort By"
+msgstr ""
+
+msgid "Icons"
+msgstr ""
+
+msgid "Plugin Not Installed"
+msgstr ""
+
+msgid "Skipped"
+msgstr ""
+
+msgid "Failed"
+msgstr ""
+
+msgid "Presets"
+msgstr ""
+
+msgid "Styles"
+msgstr ""
+
+msgid "Teal Slate"
+msgstr ""
+
+msgid "Ruby Red"
+msgstr ""
+
+msgid "Ocean Cyan"
+msgstr ""
+
+msgid "Royal Azure"
+msgstr ""
+
+msgid "Forest Lime"
+msgstr ""
+
+msgid "Rose Berry"
+msgstr ""
+
+msgid "Deep Amethyst"
+msgstr ""
+
+msgid "Midnight Mode"
+msgstr ""
+
+msgid "Customize: %s"
+msgstr ""
+
+msgid "Standard design"
+msgstr ""
+
+msgid "Customize"
+msgstr ""
+
+msgid "Border Color"
+msgstr ""
+
+msgid "Page Background"
+msgstr ""
+
+msgid "Card Background"
+msgstr ""
+
+msgid "Main Heading"
+msgstr ""
+
+msgid "Second Sub Heading"
+msgstr ""
+
+msgid "Sub Heading"
+msgstr ""
+
+msgid "Body Text"
+msgstr ""
+
+msgid "Corners"
+msgstr ""
+
+msgid "Square"
+msgstr ""
+
+msgid "Round"
+msgstr ""
+
+msgid "Font"
+msgstr ""
+
+msgid "Theme font"
+msgstr ""
+
+msgid "System font"
+msgstr ""
+
+msgid "Reset to Elegant defaults"
+msgstr ""
+
+msgid "Font Sizes"
+msgstr ""
+
+msgid "Style"
+msgstr ""
+
+msgid "Reset to defaults"
+msgstr ""
+
+msgid "Some changes may require clearing your cache to take effect."
+msgstr ""
+
+msgid "Live Preview"
+msgstr ""
+
+msgid "Light, flat layout"
+msgstr ""
+
+msgid "Blends with your WordPress theme"
+msgstr ""
+
+msgid "Fewest styles to load"
+msgstr ""
+
+msgid "Choose a design"
+msgstr ""
+
+msgid "How your job board looks to visitors. Each design keeps its own settings."
+msgstr ""
+
+msgid "%s is now live on your site."
+msgstr ""
+
+msgid "View site"
+msgstr ""
+
+msgid "Undo"
+msgstr ""
+
+msgid "Senior PHP Developer"
+msgstr ""
+
+msgid "Live on your site"
+msgstr ""
+
+msgid "Switch to %s"
+msgstr ""
+
+msgid "Visitors see it straight away. The other design keeps its settings."
+msgstr ""
+
+msgid "Advanced Search"
+msgstr ""
+
+msgid "You are not allowed to download this custom-field file."
+msgstr ""
+
+msgid "The requested file is not available."
+msgstr ""
+
+msgid "File not found"
+msgstr ""
+
+msgid "job Status"
+msgstr ""
+
+msgid "System Email"
+msgstr ""
+
+msgid "Resume current status"
+msgstr ""
+
+msgid "System subject"
+msgstr ""
+
+msgid "Notification heading"
+msgstr ""
+
+msgid "Email body content"
+msgstr ""
+
+msgid "CURL"
+msgstr ""
+
+msgid "PHP Script"
+msgstr ""
+
+msgid "Job alerts run daily through WordPress Cron. Configure an external cron only when the site has low traffic or WordPress Cron is disabled."
+msgstr ""
+
+msgid "Cron Job Name"
+msgstr ""
+
+msgid "180 Seconds If The Backup Does Not Complete"
+msgstr ""
+
+msgid "Cron Scheduling Using Wget Most Hosts"
+msgstr ""
+
+msgid "URL For Use With Your Own Scripts And Third Party Services"
+msgstr ""
+
+msgid "Under $100k"
+msgstr ""
+
+msgid "$100k - $150k"
+msgstr ""
+
+msgid "$150k+"
+msgstr ""
+
+msgid "Past 24 hours"
+msgstr ""
+
+msgid "Past Week"
+msgstr ""
+
+msgid "Past Month"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
+
+msgid "Select Duration"
+msgstr ""
+
+msgid "Posted Within"
+msgstr ""
+
+msgid "Workplace Type"
+msgstr ""
+
+msgid "Clear All Filters"
+msgstr ""
+
+msgid "Latest Posted"
+msgstr ""
+
+msgid "Oldest Posted"
+msgstr ""
+
+msgid "Highest Salary"
+msgstr ""
+
+msgid "Lowest Salary"
+msgstr ""
+
+msgid "Job Title (A-Z)"
+msgstr ""
+
+msgid "Job Title (Z-A)"
+msgstr ""
+
+msgid "Company (A-Z)"
+msgstr ""
+
+msgid "Company (Z-A)"
+msgstr ""
+
+msgid "Active Filters:"
+msgstr ""
+
+msgid "Sorted By"
+msgstr ""
+
+msgid "Urgent"
+msgstr ""
+
+msgid "Records Per Page"
+msgstr ""
+
+msgid "Deleted user"
+msgstr ""
+
+msgid "WordPress User Login"
+msgstr ""
+
+msgid "Changing a user's role will not remove its entities from the system !"
+msgstr ""
+
+msgid "City Name"
+msgstr ""
+
+msgid "Find Jobs"
+msgstr ""
+
+msgid "You Have Already Applied"
+msgstr ""
+
+msgid "Apply On The Job"
+msgstr ""
+
+msgid "✨ Create with Copilot"
+msgstr ""
+
+msgid "📁 Use Pre-Saved"
+msgstr ""
+
+msgid "Select Cover Letter"
+msgstr ""
+
+msgid "No Cover Letters found on your profile."
+msgstr ""
+
+msgid "e.g., Senior Product Owner Application"
+msgstr ""
+
+msgid "Document Title"
+msgstr ""
+
+msgid "✨ AI ADDITION"
+msgstr ""
+
+msgid "Analyzing parameters..."
+msgstr ""
+
+msgid "Compensation"
+msgstr ""
+
+msgid "Content Generated!"
+msgstr ""
+
+msgid "No specific entities found."
+msgstr ""
+
+msgid "✨ Copilot Instructions Applied:"
+msgstr ""
+
+msgid "Tone:"
+msgstr ""
+
+msgid "Length:"
+msgstr ""
+
+msgid "Format:"
+msgstr ""
+
+msgid "SEO Target:"
+msgstr ""
+
+msgid "Custom:"
+msgstr ""
+
+msgid "Generation Failed: "
+msgstr ""
+
+msgid "Unknown error."
+msgstr ""
+
+msgid "Server communication error. Please try again."
+msgstr ""
+
+msgid "Generate Description"
+msgstr ""
+
+msgid "Toggle AI Copilot"
+msgstr ""
+
+msgid "Zywrap Copilot"
+msgstr ""
+
+msgid "AI Generation"
+msgstr ""
+
+msgid "Improve existing content"
+msgstr ""
+
+msgid "Uses text currently in the editor as base context."
+msgstr ""
+
+msgid "Output Length"
+msgstr ""
+
+msgid "Concise"
+msgstr ""
+
+msgid "Detailed"
+msgstr ""
+
+msgid "Highlight & Prioritize"
+msgstr ""
+
+msgid "Role Requirements"
+msgstr ""
+
+msgid "Day-to-Day Responsibilities"
+msgstr ""
+
+msgid "Company Culture & Vibe"
+msgstr ""
+
+msgid "Growth & Career Path"
+msgstr ""
+
+msgid "Benefits & Perks"
+msgstr ""
+
+msgid "Tech Stack / Tools"
+msgstr ""
+
+msgid "Work-Life Balance"
+msgstr ""
+
+msgid "Compensation & Salary"
+msgstr ""
+
+msgid "Advanced Settings"
+msgstr ""
+
+msgid "Brand Voice & Tone"
+msgstr ""
+
+msgid "Corporate"
+msgstr ""
+
+msgid "Approachable"
+msgstr ""
+
+msgid "Technical"
+msgstr ""
+
+msgid "Auto-Attached Context"
+msgstr ""
+
+msgid "Includes company mission, culture, and core values."
+msgstr ""
+
+msgid "Job Form Meta Data"
+msgstr ""
+
+msgid "Uses location, salary, and job type from the form."
+msgstr ""
+
+msgid "Format Structure"
+msgstr ""
+
+msgid "Standard (Paragraphs & Bullet Points)"
+msgstr ""
+
+msgid "Highly Skimmable (Mostly Bullet Points)"
+msgstr ""
+
+msgid "Story-Driven (Narrative Paragraphs)"
+msgstr ""
+
+msgid "Specific Free-form Instructions"
+msgstr ""
+
+msgid "e.g., \"Must mention our 4-day work week and our specific tech stack...\" "
+msgstr ""
+
+msgid "Output Language"
+msgstr ""
+
+msgid "English (US)"
+msgstr ""
+
+msgid "English (UK)"
+msgstr ""
+
+msgid "Spanish"
+msgstr ""
+
+msgid "French"
+msgstr ""
+
+msgid "German"
+msgstr ""
+
+msgid "Optimize for SEO"
+msgstr ""
+
+msgid "Improve visibility on Google Jobs & Indeed."
+msgstr ""
+
+msgid "Target Keywords (comma separated)"
+msgstr ""
+
+msgid "Less Options"
+msgstr ""
+
+msgid "Featured Approve"
+msgstr ""
+
+msgid "Save Search"
+msgstr ""
+
+msgid "A job belongs to a company, and you have not added one yet. Add your company first, then come back and post the job."
+msgstr ""
+
+msgid "Yes, mark this job as Urgent"
+msgstr ""
+
+msgid "Grab"
+msgstr ""
+
+msgid "No Default"
+msgstr ""
+
+msgid "Choose who owns the sample data: an employer and a job seeker. Add a user first if you need one, or choose No to skip the sample data."
+msgstr ""
+
+msgid "Sample-data cleanup requires explicit confirmation."
+msgstr ""
+
+msgid "Choose a user for at least one role."
+msgstr ""
+
+msgid "%d sample record now has its new owner."
+msgid_plural "%d sample records now have their new owner."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%d you have edited kept its owner."
+msgid_plural "%d you have edited kept their owner."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "This action requires a POST request."
+msgstr ""
+
+msgid "You are not allowed to manage WP Job Portal onboarding."
+msgstr ""
+
+msgid "Security check failed."
+msgstr ""
+
+msgid "Choose Mode"
+msgstr ""
+
+msgid "Essentials"
+msgstr ""
+
+msgid "Visitor Can Apply To Job"
+msgstr ""
+
+msgid "Enable Quick Apply For Visitors"
+msgstr ""
+
+msgid "* WP Job Portal Apply As Visitor addon is required for the configuration to work!"
+msgstr ""
+
+msgid "Ignore and insert"
+msgstr ""
+
+msgid "Remove and insert"
+msgstr ""
+
+msgid "Demo data comes with the Job Portal Theme. Activate the theme and its \"Job Portal Theme Options\" plugin, then come back here to choose a demo."
+msgstr ""
+
+msgid "The list of demos could not be loaded from wpjobportal.com. Check that this site can reach the internet, then reload this page."
+msgstr ""
+
+msgid "All the content of previews demo data will be deleted."
+msgstr ""
+
+msgid "chosen as employer"
+msgstr ""
+
+msgid "chosen as job seeker"
+msgstr ""
+
+msgid "%1$s will own the sample companies and jobs, and %2$s the sample resumes and applications."
+msgstr ""
+
+msgid "Choose a user"
+msgstr ""
+
+msgid "Sample Employer"
+msgstr ""
+
+msgid "Add new user"
+msgstr ""
+
+msgid "(opens in a new tab)"
+msgstr ""
+
+msgid "Owns the sample companies and jobs, and sees them in the employer dashboard. A new user added on the WordPress Users screen appears here when you come back to this tab."
+msgstr ""
+
+msgid "Sample Job Seeker"
+msgstr ""
+
+msgid "Owns the sample resumes and applications, and sees them in the job seeker dashboard. Choose a different user from the employer; one account cannot be both."
+msgstr ""
+
+msgid "if yes is selected then pages and menus of job manager template will be created and published."
+msgstr ""
+
+msgid "Next Step"
+msgstr ""
+
+msgid "Publish New Companies"
+msgstr ""
+
+msgid "Yes: a company an employer adds is live at once. No: you approve it first, under Companies."
+msgstr ""
+
+msgid "Publish New Jobs"
+msgstr ""
+
+msgid "Yes: a job is live as soon as it is posted. No: you approve each one first, under Jobs."
+msgstr ""
+
+msgid "Publish New Resumes"
+msgstr ""
+
+msgid "Yes: a job seeker's resume is visible at once. No: you approve it first, under Resume."
+msgstr ""
+
+msgid "A few things your job board needs to know. Everything else already has a working default."
+msgstr ""
+
+msgid "Account Sign-Up"
+msgstr ""
+
+msgid "Lets employers and job seekers create their own accounts on your registration page. This is WP Job Portal's own setting; WordPress's \"Anyone can register\" is not changed."
+msgstr ""
+
+msgid "Send Notifications To"
+msgstr ""
+
+msgid "New registrations, jobs, companies and applications are reported to this address."
+msgstr ""
+
+msgid "Visitors Can Apply"
+msgstr ""
+
+msgid "Lets someone apply to a job without creating an account first."
+msgstr ""
+
+msgid "Site title, email sender, date format, user roles and every other setting are under %s, whenever you need them."
+msgstr ""
+
+msgid "%s setup is ready. Your settings have been saved."
+msgstr ""
+
+msgid "Sample data is in. Sign in as %1$s to see the employer side, or as %2$s to see the job seeker side."
+msgstr ""
+
+msgid "Sample data is in."
+msgstr ""
+
+msgid "See the sample jobs"
+msgstr ""
+
+msgid "Employer dashboard"
+msgstr ""
+
+msgid "Job seeker dashboard"
+msgstr ""
+
+msgid "Change who owns it, or remove it, any time from %s."
+msgstr ""
+
+msgid "Open WP Job Portal Dashboard"
+msgstr ""
+
+msgid "Choose your WP Job Portal setup"
+msgstr ""
+
+msgid "Step 1 of 4"
+msgstr ""
+
+msgid "The setup mode could not be saved. No mode settings were applied. Please review System Status and try again."
+msgstr ""
+
+msgid "What are you building?"
+msgstr ""
+
+msgid "This choice tailors setup and navigation. You can change it later without deleting jobs, companies, candidates, or applications."
+msgstr ""
+
+msgid "See exactly what changes in each mode"
+msgstr ""
+
+msgid "Publish your company jobs, receive applications, and manage candidates in one hiring workspace."
+msgstr ""
+
+msgid "One company careers site"
+msgstr ""
+
+msgid "Admin-managed jobs and company profile"
+msgstr ""
+
+msgid "Candidate applications and resumes"
+msgstr ""
+
+msgid "Select Careers & ATS"
+msgstr ""
+
+msgid "Run a multi-employer job portal where companies register, publish jobs, and connect with candidates."
+msgstr ""
+
+msgid "Multiple employer accounts"
+msgstr ""
+
+msgid "Company and job moderation controls"
+msgstr ""
+
+msgid "Marketplace-ready listings and search"
+msgstr ""
+
+msgid "Select Job Marketplace"
+msgstr ""
+
+msgid "Continue setup"
+msgstr ""
+
+msgid "Onboarding checklist"
+msgstr ""
+
+msgid "The checklist is hidden for your administrator account. Completion still reflects the real site state."
+msgstr ""
+
+msgid "Reopen checklist"
+msgstr ""
+
+msgid "%1$d of %2$d steps complete for %3$s. Progress is calculated from saved settings and content."
+msgstr ""
+
+msgid "Onboarding progress: %1$d of %2$d"
+msgstr ""
+
+msgid "Complete"
+msgstr ""
+
+msgid "Hide checklist for my account"
+msgstr ""
+
+msgid "Sample-data safety"
+msgstr ""
+
+msgid "Cleanup result: %1$d deleted, %2$d skipped, %3$d failed."
+msgstr ""
+
+msgid "Cleanup preview: %1$d strongly marked records are tracked; %2$d are currently eligible and %3$d will be skipped to protect changed or dependent data."
+msgstr ""
+
+msgid "Pages"
+msgstr ""
+
+msgid "%1$d tracked, %2$d eligible, %3$d protected"
+msgstr ""
+
+msgid "Cleanup never guesses from titles or content. It preserves unmarked historical data, users, settings, payments, credits, and uploaded files."
+msgstr ""
+
+msgid "I understand that only the eligible, plugin-marked records in this preview will be removed."
+msgstr ""
+
+msgid "Clean marked sample data"
+msgstr ""
+
+msgid "An administrator must run sample-data cleanup."
+msgstr ""
+
+msgid "companies and jobs"
+msgstr ""
+
+msgid "resumes and applications"
+msgstr ""
+
+msgid "Who owns the sample data"
+msgstr ""
+
+msgid "Keep as it is"
+msgstr ""
+
+msgid "%1$s owns the sample %2$s."
+msgstr ""
+
+msgid "Nobody owns the sample %s yet, so no dashboard lists them."
+msgstr ""
+
+msgid "Change owner"
+msgstr ""
+
+msgid "No strongly marked sample records are available for automatic cleanup. Historical sample-like content is preserved for manual review because ownership cannot be proven."
+msgstr ""
+
+msgid "Your mode decides which features this site needs. Features a mode does not use are hidden from the menu and their settings are set for you, so the admin only shows what applies to the site you are running."
+msgstr ""
+
+msgid "Current mode"
+msgstr ""
+
+msgid "You have not chosen a mode yet."
+msgstr ""
+
+msgid "This site runs in existing-site compatibility: nothing is hidden and no setting is locked. Choose a mode when you want the admin tailored to how you actually hire."
+msgstr ""
+
+msgid "Careers &amp; ATS"
+msgstr ""
+
+msgid "In use"
+msgstr ""
+
+msgid "One company hiring for itself. You publish your own openings from the admin, receive applications, and manage candidates in a single workspace."
+msgstr ""
+
+msgid "Choose this when the only employer on the site is you."
+msgstr ""
+
+msgid "Many employers sharing one job board. Companies register, publish their own jobs, and reach candidates, while you moderate and can charge for listings."
+msgstr ""
+
+msgid "Choose this when outside employers post to your site."
+msgstr ""
+
+msgid "What each mode includes"
+msgstr ""
+
+msgid "Everything not listed here works the same in both modes. Only these features change."
+msgstr ""
+
+msgid "Feature"
+msgstr ""
+
+msgid "Menu: %s"
+msgstr ""
+
+msgid "Not used"
+msgstr ""
+
+msgid "%1$s is fixed at %2$s"
+msgstr ""
+
+msgid "Why a menu item is missing"
+msgstr ""
+
+msgid "A hidden menu item is never a licensing limit. It means the current mode has no use for that screen, so it is kept out of the way. Two things happen together:"
+msgstr ""
+
+msgid "The menu entry is hidden, because the screen would always be empty or would not apply."
+msgstr ""
+
+msgid "Its settings are set to the value the mode needs and shown as read-only, marked \"Set by mode\" on the settings screen."
+msgstr ""
+
+msgid "Switching modes brings the menu entry back and unlocks its settings again. Your jobs, companies, candidates and applications are never deleted or reset by a mode change."
+msgstr ""
+
+msgid "Change your mode"
+msgstr ""
+
+msgid "Open settings"
+msgstr ""
+
+msgid "Differences that are not locked"
+msgstr ""
+
+msgid "Choosing a mode also sets a few sensible starting values, such as whether the employer area is enabled and whether a company is required on a job. Those are only defaults: you can change them at any time, and they are not marked \"Set by mode\"."
+msgstr ""
+
+msgid "Cloudflare Turnstile"
+msgstr ""
+
+msgid "Built-in (no keys needed, nothing for visitors to solve)"
+msgstr ""
+
+msgid "0.3 — lenient, fewer people challenged"
+msgstr ""
+
+msgid "0.5 — balanced (recommended)"
+msgstr ""
+
+msgid "0.7 — strict, more submissions blocked"
+msgstr ""
+
+msgid "ReCaptcha Version 2"
+msgstr ""
+
+msgid "ReCaptcha Version 3"
+msgstr ""
+
+msgid "No Badge"
+msgstr ""
+
+msgid "1 Day"
+msgstr ""
+
+msgid "3 Days"
+msgstr ""
+
+msgid "7 Days"
+msgstr ""
+
+msgid "Whether employers and job seekers can create their own accounts on the registration page. This is WP Job Portal's own setting; WordPress's \"Anyone can register\" is not changed."
+msgstr ""
+
+msgid "Show Log In/Out Button For Job Seeker"
+msgstr ""
+
+msgid "Custom Employer After Register Link"
+msgstr ""
+
+msgid "Show Employer Dashboard Invoices"
+msgstr ""
+
+msgid "Show Invoices on the employer's dashboard"
+msgstr ""
+
+msgid "Show Recruiting Center Box"
+msgstr ""
+
+msgid "Show the Recruiting Center box - open tasks, upcoming interviews and pending approvals - on the employer's dashboard"
+msgstr ""
+
+msgid "Links"
+msgstr ""
+
+msgid "My Departments and Add Department"
+msgstr ""
+
+msgid "My Folders and Add Folder"
+msgstr ""
+
+msgid "Recruiting"
+msgstr ""
+
+msgid "The Recruiting section. Each person still sees only the recruiting pages their company role allows."
+msgstr ""
+
+msgid "Recruiting Overview"
+msgstr ""
+
+msgid "Assigned Jobs"
+msgstr ""
+
+msgid "Assigned Candidates"
+msgstr ""
+
+msgid "Tasks & Reminders"
+msgstr ""
+
+msgid "Interviews"
+msgstr ""
+
+msgid "Scorecards"
+msgstr ""
+
+msgid "Offers"
+msgstr ""
+
+msgid "Notifications"
+msgstr ""
+
+msgid "Talent Pools"
+msgstr ""
+
+msgid "Marketplace"
+msgstr ""
+
+msgid "Company Verification and Promotion Schedule"
+msgstr ""
+
+msgid "Company Verification"
+msgstr ""
+
+msgid "Promotion Schedule"
+msgstr ""
+
+msgid "Custom Job seeker After Register Link"
+msgstr ""
+
+msgid "Advanced Resume Builder"
+msgstr ""
+
+msgid "Show Job Seeker Dashboard Invoices"
+msgstr ""
+
+msgid "Show Invoices on the job seeker's dashboard"
+msgstr ""
+
+msgid "Show Recruitment Updates Box"
+msgstr ""
+
+msgid "Show the Recruitment updates box - open requests, upcoming interviews and offers - on the job seeker's dashboard"
+msgstr ""
+
+msgid "My Cover Letters and Add Cover Letter"
+msgstr ""
+
+msgid "Recruitment Center"
+msgstr ""
+
+msgid "Recruiting Center"
+msgstr ""
+
+msgid "Visitor Can View Resume Categories and Visitor Can Search Resumes apply only when Resumes > Allow Resume Search is set to \"Allowed only to employers\". When it is \"Allowed to all\", visitors always have access."
+msgstr ""
+
+msgid "Let people who are not employers browse resume categories. Read under the same condition as the setting above, and it governs the resumes behind each category too - so the page is never shown with links that refuse the person who clicks them."
+msgstr ""
+
+msgid "Let people who are not employers search resumes. Read only when Allow Resume Search, under Resume Settings, is set to \"Allowed only to employers\" - it is already everybody on \"Allowed to all\", and nobody on \"Not Allowed\"."
+msgstr ""
+
+msgid "Visitor Show Saved Searches"
+msgstr ""
+
+msgid "Allow Visitors to save their resume searches"
+msgstr ""
+
+msgid "Manage how jobs are posted, their life cycle, and related features"
+msgstr ""
+
+msgid "Show Top Filter Bar"
+msgstr ""
+
+msgid "Show or hide the main filter bar at the top of the job listing page"
+msgstr ""
+
+msgid "Show Short Description in Job List"
+msgstr ""
+
+msgid "Show a short excerpt of the job description on each card in the job listing"
+msgstr ""
+
+msgid "Show Title Field"
+msgstr ""
+
+msgid "Show the keyword/title search field in the top filter"
+msgstr ""
+
+msgid "Show Location Field"
+msgstr ""
+
+msgid "Show the location search field in the top filter"
+msgstr ""
+
+msgid "Show Category Field"
+msgstr ""
+
+msgid "Show the category dropdown in the top filter"
+msgstr ""
+
+msgid "Show New Badge for Jobs Based on Posted Date"
+msgstr ""
+
+msgid "Display a New badge for jobs posted within the selected number of days."
+msgstr ""
+
+msgid "AJAX Filters & Sorting"
+msgstr ""
+
+msgid "Configure the visibility and order of AJAX filters and sorting on the job listing page."
+msgstr ""
+
+msgid "Job Listing Enhancer"
+msgstr ""
+
+msgid "Show Sorting Dropdown"
+msgstr ""
+
+msgid "Show or hide the \"Sort By\" dropdown above the job listings."
+msgstr ""
+
+msgid "Active Filters & Order"
+msgstr ""
+
+msgid "Click the available tags to enable and order the AJAX filters. To disable a filter, click the X on the active tag."
+msgstr ""
+
+msgid "Who may search resumes and browse resume categories. On \"Allowed only to employers\" the two visitor settings under Content Access decide whether people who are not employers may as well."
+msgstr ""
+
+msgid "Allow Users to Save Job Searches"
+msgstr ""
+
+msgid "Let job seekers name a search they have run and return to it from their dashboard, instead of filling the search form in again"
+msgstr ""
+
+msgid "Enable Cover Letter Quick Apply"
+msgstr ""
+
+msgid "Show cover letter selection on 'Quick Apply' form to logged-in users on the job detail page"
+msgstr ""
+
+msgid "Zywrap AI"
+msgstr ""
+
+msgid "Copilot Visibility Controls"
+msgstr ""
+
+msgid "Manage where the AI content generation interfaces are displayed on your site."
+msgstr ""
+
+msgid "Enable Job Copilot"
+msgstr ""
+
+msgid "Enable the AI interface for Job Description generation."
+msgstr ""
+
+msgid "Enable Company Copilot"
+msgstr ""
+
+msgid "Enable the AI interface for Company Profile generation."
+msgstr ""
+
+msgid "Enable Resume Copilot"
+msgstr ""
+
+msgid "Enable the AI interface for Resume Skills generation."
+msgstr ""
+
+msgid "Enable Cover Letter Copilot"
+msgstr ""
+
+msgid "Enable the AI interface for Cover Letter generation."
+msgstr ""
+
+msgid "Enable Cover Letter Copilot On Job Apply"
+msgstr ""
+
+msgid "Enable the AI interface for Cover Letter generation during the Job Application process."
+msgstr ""
+
+msgid "Admin Email Report on Job Alerts"
+msgstr ""
+
+msgid "Receive an email report when job alerts are triggered."
+msgstr ""
+
+msgid "Allowed Job Alert Types"
+msgstr ""
+
+msgid "Select which job alert frequency options are available to users."
+msgstr ""
+
+msgid "Smart Matching"
+msgstr ""
+
+msgid "Match Score Visibility"
+msgstr ""
+
+msgid "Manage where the calculated fitment scores are displayed across your platform listings."
+msgstr ""
+
+msgid "Smart Matching Addon"
+msgstr ""
+
+msgid "Show Match Score on Job Listings"
+msgstr ""
+
+msgid "Display a calculated match score on job cards by comparing job requirements with the user's resume data."
+msgstr ""
+
+msgid "Show Match Score on Resume Listings"
+msgstr ""
+
+msgid "Display a criteria-based match score on resume cards based on the employer's active job listings."
+msgstr ""
+
+msgid "Show Match Score on Applied Resumes"
+msgstr ""
+
+msgid "Render a fitment metric on candidate applications by benchmarking them against the target job's specific criteria."
+msgstr ""
+
+msgid "Enable X(Twitter) Share"
+msgstr ""
+
+msgid "Mapping & Geo Location"
+msgstr ""
+
+msgid "Free, and most visitors are never asked to solve anything. Get a site key and secret key from the Turnstile section of your Cloudflare dashboard."
+msgstr ""
+
+msgid "Turnstile Site Key"
+msgstr ""
+
+msgid "The public key. It appears in the page."
+msgstr ""
+
+msgid "Turnstile Secret Key"
+msgstr ""
+
+msgid "The private key. It is only ever sent from this server to Cloudflare."
+msgstr ""
+
+msgid "Built-in check"
+msgstr ""
+
+msgid "The built-in check needs no keys and asks visitors for nothing: it uses a hidden field that only automated submissions fill in, and rejects forms returned faster than a person could complete them. It replaces the arithmetic question earlier versions asked, which stopped very few bots and was an obstacle to anybody using a screen reader."
+msgstr ""
+
+msgid "reCAPTCHA v3 Score Threshold"
+msgstr ""
+
+msgid "v3 does not challenge anybody; it returns a score between 0 and 1 and this is the point below which a submission is refused. Earlier versions ignored the score entirely, which meant v3 blocked nothing at all."
+msgstr ""
+
+msgid "Client ID"
+msgstr ""
+
+msgid "The Client ID of your PayPal REST app (developer.paypal.com, Apps & Credentials)"
+msgstr ""
+
+msgid "The Secret of the same PayPal REST app"
+msgstr ""
+
+msgid "Merchant Email"
+msgstr ""
+
+msgid "The primary PayPal email that must receive subscription payments"
+msgstr ""
+
+msgid "Webhook Signing Secret"
+msgstr ""
+
+msgid "The Stripe endpoint signing secret (whsec_...) required to verify each webhook"
+msgstr ""
+
+msgid "Add the invoice.payment_succeeded event and copy this endpoint’s signing secret above."
+msgstr ""
+
+msgid "Available Tags"
+msgstr ""
+
+msgid "Preview"
+msgstr ""
+
+msgid "Stored — enter a value only to replace it"
+msgstr ""
+
+msgid "Set by mode"
+msgstr ""
+
+msgid "%1$s does not use %2$s."
+msgstr ""
+
+msgid "Compare the two modes"
+msgstr ""
+
+msgid "Quickly Find Any Setting"
+msgstr ""
+
+msgid "Show total number of jobs in jobs listing page"
+msgstr ""
+
+msgid "Number Of Featured Jobs"
+msgstr ""
+
+msgid "Use RSS categories with our job categories"
+msgstr ""
+
+msgid "Unknown Error"
+msgstr ""
+
+msgid "View Query & Trace"
+msgstr ""
+
+msgid "Path"
+msgstr ""
+
+msgid "Query"
+msgstr ""
+
+msgid "Legacy Error"
+msgstr ""
+
+msgid "No error data recorded."
+msgstr ""
+
+msgid "Display job listings with full customization."
+msgstr ""
+
+msgid "Show Job Title"
+msgstr ""
+
+msgid "Show Company Logo"
+msgstr ""
+
+msgid "Show Salary"
+msgstr ""
+
+msgid "Show Location"
+msgstr ""
+
+msgid "Show Job Type"
+msgstr ""
+
+msgid "Show Job Category"
+msgstr ""
+
+msgid "Show Career Level"
+msgstr ""
+
+msgid "Show Posted Date"
+msgstr ""
+
+msgid "Show Apply Before Date"
+msgstr ""
+
+msgid "Logo Width (px)"
+msgstr ""
+
+msgid "Logo Height (px)"
+msgstr ""
+
+msgid "Number Of Jobs to Show"
+msgstr ""
+
+msgid "List"
+msgstr ""
+
+msgid "Card"
+msgstr ""
+
+msgid "Labels For Values"
+msgstr ""
+
+msgid "Text"
+msgstr ""
+
+msgid "Resume Listings"
+msgstr ""
+
+msgid "Display resumes with simplified options."
+msgstr ""
+
+msgid "Type of Resume"
+msgstr ""
+
+msgid "Number Of Resumes"
+msgstr ""
+
+msgid "Display Style"
+msgstr ""
+
+msgid "Number of Columns"
+msgstr ""
+
+msgid "Show Labels for Values"
+msgstr ""
+
+msgid "Posted Date"
+msgstr ""
+
+msgid "View Resume Button"
+msgstr ""
+
+msgid "Photo Height"
+msgstr ""
+
+msgid "Photo Width"
+msgstr ""
+
+msgid "Background Color"
+msgstr ""
+
+msgid "Company Listings"
+msgstr ""
+
+msgid "Display company listings with full customization."
+msgstr ""
+
+msgid "Latest Companies"
+msgstr ""
+
+msgid "Show View Company Button"
+msgstr ""
+
+msgid "Show Number Of Jobs"
+msgstr ""
+
+msgid "Number Of Companies"
+msgstr ""
+
+msgid "Grid"
+msgstr ""
+
+msgid "Field Labels Display"
+msgstr ""
+
+msgid "Jobs By Location"
+msgstr ""
+
+msgid "✨ Company Copilot Instructions Applied:"
+msgstr ""
+
+msgid "Generate Profile"
+msgstr ""
+
+msgid "Company Profile AI"
+msgstr ""
+
+msgid "Mission & Vision"
+msgstr ""
+
+msgid "Core Values"
+msgstr ""
+
+msgid "Company History"
+msgstr ""
+
+msgid "Products & Services"
+msgstr ""
+
+msgid "Workplace Culture"
+msgstr ""
+
+msgid "Diversity & Inclusion"
+msgstr ""
+
+msgid "Innovative/Tech"
+msgstr ""
+
+msgid "Company Form Data"
+msgstr ""
+
+msgid "Uses location, industry, and size data from the form."
+msgstr ""
+
+msgid "e.g., \"Mention our recent Series A funding...\""
+msgstr ""
+
+msgid "Improve visibility on search engines."
+msgstr ""
+
+msgid "Buy Credits Pack"
+msgstr ""
+
+msgid "Expire Package"
+msgstr ""
+
+msgid "Do not send email"
+msgstr ""
+
+msgid "N/A (Error)"
+msgstr ""
+
+msgid "Total API Runs (24h)"
+msgstr ""
+
+msgid "API Errors (24h)"
+msgstr ""
+
+msgid "Top Model Used"
+msgstr ""
+
+msgid "Search by Action, User or Wrapper..."
+msgstr ""
+
+msgid "Filter by Status"
+msgstr ""
+
+msgid "Success"
+msgstr ""
+
+msgid "Limited"
+msgstr ""
+
+msgid "OK/Internal"
+msgstr ""
+
+msgid "Action & User"
+msgstr ""
+
+msgid "Wrapper / Model"
+msgstr ""
+
+msgid "Performance & Tokens"
+msgstr ""
+
+msgid "Time"
+msgstr ""
+
+msgid "No log entries found or a database error occurred."
+msgstr ""
+
+msgid "Guest"
+msgstr ""
+
+msgid "Request completed or details N/A."
+msgstr ""
+
+msgid "%s ago"
+msgstr ""
+
+msgid "HTTP:"
+msgstr ""
+
+msgid "User ID: %s"
+msgstr ""
+
+msgid "W:"
+msgstr ""
+
+msgid "M:"
+msgstr ""
+
+msgid "Tokens:"
+msgstr ""
+
+msgid "In: %1$s / Out: %2$s"
+msgstr ""
+
+msgid "No tokens recorded"
+msgstr ""
+
+msgid "Error details not explicitly logged."
+msgstr ""
+
+msgid "Request completed successfully. Full request/response data would be displayed here."
+msgstr ""
+
+msgid "Log ID:"
+msgstr ""
+
+msgid "Error/Detail"
+msgstr ""
+
+msgid "Filtering logs:"
+msgstr ""
+
+msgid "Simulating filter applied."
+msgstr ""
+
+msgid "25 Percent"
+msgstr ""
+
+msgid "50 Percent"
+msgstr ""
+
+msgid "75 Percent"
+msgstr ""
+
+msgid "100 Percent"
+msgstr ""
+
+msgid "Employers add companies and jobs, and search for candidates to hire."
+msgstr ""
+
+msgid "Job seekers add a resume and cover letters, search jobs, and apply to them."
+msgstr ""
+
+msgid "Language Code"
+msgstr ""
+
+msgid "You do not have permission to perform this action."
+msgstr ""
+
+msgid "You are not allowed to change licence settings."
+msgstr ""
+
+msgid "That request could not be verified. Please try again."
+msgstr ""
+
+msgid "This key is set in wp-config.php and cannot be changed from this screen."
+msgstr ""
+
+msgid "This site could not be released: the licence server did not answer. Nothing has changed. Try again shortly."
+msgstr ""
+
+msgid "Your account is not allowed to install or update plugins on this site."
+msgstr ""
+
+msgid "Everything your licence covers is already installed."
+msgstr ""
+
+msgid "Log in to your account"
+msgstr ""
+
+msgid "Keep me logged in"
+msgstr ""
+
+msgid "Used for modifying front end job search behavior."
+msgstr ""
+
+msgid "Modifies the SQL WHERE clause during a front end resume search, allowing Elasticsearch integrations."
+msgstr ""
+
+msgid "Used for modifying front end company search behavior."
+msgstr ""
+
+msgid "AI Prompt"
+msgstr ""
+
+msgid "Purchase data"
+msgstr ""
+
+msgid "Fires when employer portal initializes."
+msgstr ""
+
+msgid "Job Seeker Dashboard Loaded"
+msgstr ""
+
+msgid "Fires when candidate portal initializes."
+msgstr ""
+
+msgid "Runs after a transactional email is accepted for direct or queued delivery."
+msgstr ""
+
+msgid "Applications & ATS Workflow"
+msgstr ""
+
+msgid "Users & Accounts"
+msgstr ""
+
+msgid "AI & Match Engine"
+msgstr ""
+
+msgid "E-Commerce & Subscriptions"
+msgstr ""
+
+msgid "Billing & Invoices"
+msgstr ""
+
+msgid "Dashboards & UI Widgets"
+msgstr ""
+
+msgid "Data Exports"
+msgstr ""
+
+msgid "Communications & Messaging"
+msgstr ""
+
+msgid "System Infrastructure"
+msgstr ""
+
+msgid "Search Across All Actions And Filters..."
+msgstr ""
+
+msgid "Jobs By Status"
+msgstr ""
+
+msgid "Reset To Defaults"
+msgstr ""
+
+msgid "View Apply"
+msgstr ""
+
+msgid "Count"
+msgstr ""
+
+msgid "We Are Here To Help You"
+msgstr ""
+
+msgid "How To Set Up"
+msgstr ""
+
+msgid "How To Set Up WP Job Portal"
+msgstr ""
+
+msgid "Visitor Create A Job"
+msgstr ""
+
+msgid "Advanced Resume"
+msgstr ""
+
+msgid "Installed"
+msgstr ""
+
+msgid "Update available"
+msgstr ""
+
+msgid "Not installed yet"
+msgstr ""
+
+msgid "Could not be installed"
+msgstr ""
+
+msgid "Your own file"
+msgstr ""
+
+msgid "Included with the plugin"
+msgstr ""
+
+msgid "No translation yet"
+msgstr ""
+
+msgid "%s is installed."
+msgstr ""
+
+msgid "WordPress itself has no language pack for it, so it cannot be chosen as the site language yet."
+msgstr ""
+
+msgid "Use it for me"
+msgstr ""
+
+msgid "Use it for the whole site"
+msgstr ""
+
+msgid "Your own language is changed. The rest of the site keeps its language."
+msgstr ""
+
+msgid "Translations are up to date."
+msgstr ""
+
+msgid "Not every translation could be installed. The reason is shown beside it below."
+msgstr ""
+
+msgid "Only a site administrator can install languages. You can see what is installed here."
+msgstr ""
+
+msgid "This site does not allow plugins to install language files (DISALLOW_FILE_MODS). Download the files below and upload them to wp-content/languages/plugins/."
+msgstr ""
+
+msgid "Automatic installation is switched off on this site (WPJOBPORTAL_TRANSLATIONS_AUTO). Use Install now or Update now to install a language."
+msgstr ""
+
+msgid "This site's languages"
+msgstr ""
+
+msgid "WP Job Portal installs the translation for your site's language, and for every language WordPress has installed for your users, by itself - when it is installed or updated, when the site language changes, and once a day for improvements."
+msgstr ""
+
+msgid "This site is in English, so no translation is needed. To use another language, change the Site Language under Settings > General."
+msgstr ""
+
+msgid "Translation"
+msgstr ""
+
+msgid "%1$d%% translated, updated %2$s"
+msgstr ""
+
+msgid "Using the %s translation, the nearest there is."
+msgstr ""
+
+msgid "Until it is installed, the copy included with the plugin is used."
+msgstr ""
+
+msgid "The copy included with the plugin is used."
+msgstr ""
+
+msgid "A file someone added to wp-content/languages/plugins/. It is used as it is."
+msgstr ""
+
+msgid "Nobody has translated WP Job Portal into this language yet."
+msgstr ""
+
+msgid "Update now"
+msgstr ""
+
+msgid "Install now"
+msgstr ""
+
+msgid "Your language"
+msgstr ""
+
+msgid "Check for updates"
+msgstr ""
+
+msgid "Use English for me"
+msgstr ""
+
+msgid "Last checked %s"
+msgstr ""
+
+msgid "All translations"
+msgstr ""
+
+msgid "Install adds a language to this site - WordPress's own and WP Job Portal's - so it can be chosen for the whole site or for one person. The files are for a site that cannot download by itself, or to change the wording: the .po file is the one you edit (with Poedit or Loco Translate), the .mo file is what WordPress reads. Both go in wp-content/languages/plugins/."
+msgstr ""
+
+msgid "Translated"
+msgstr ""
+
+msgid "Install"
+msgstr ""
+
+msgid "Changing the wording"
+msgstr ""
+
+msgid "A newer translation replaces the files in wp-content/languages/plugins/, so wording you change there is lost at the next update. To keep your own wording, save it with Loco Translate in its Custom location, which updates never touch, or switch automatic updates off by adding define('WPJOBPORTAL_TRANSLATIONS_AUTO', false); to wp-config.php."
+msgstr ""
+
+msgid "Your language is missing, or a word is wrong? Contact us at wpjobportal.com - corrections go into the next update for everyone."
+msgstr ""
+
+msgid "No key"
+msgstr ""
+
+msgid "Released"
+msgstr ""
+
+msgid "Not checked"
+msgstr ""
+
+msgid "Not accepted"
+msgstr ""
+
+msgid "Add the licence key from your account to install your add-ons and receive updates."
+msgstr ""
+
+msgid "This site has been released from the licence. Your products keep working; activate the site again to install and update."
+msgstr ""
+
+msgid "The licence server could not be reached. Your products keep working; installs and update checks are paused until it answers."
+msgstr ""
+
+msgid "The licence server gave an answer this version does not understand. Nothing has changed here; try again shortly, or update WP Job Portal."
+msgstr ""
+
+msgid "This licence key was not accepted for this site."
+msgstr ""
+
+msgid "Never"
+msgstr ""
+
+msgid "%1$d of %2$d used"
+msgstr ""
+
+msgid "Not installed"
+msgstr ""
+
+msgid "In your licence. This server needs FTP details to add plugins, so download it from your account and upload it under Plugins → Add New."
+msgstr ""
+
+msgid "In your licence. Ask an administrator who can install plugins."
+msgstr ""
+
+msgid "Activate your licence to install."
+msgstr ""
+
+msgid "Version %s"
+msgstr ""
+
+msgid "Its features are part of Pro, so it does not need to be active. You can delete it from Plugins."
+msgstr ""
+
+msgid "Pro now includes this. Deactivate it from Plugins and Pro takes over, with the same look and settings."
+msgstr ""
+
+msgid "Version %s is available. Renew your licence to download it."
+msgstr ""
+
+msgid "Version %s is available on Dashboard → Updates."
+msgstr ""
+
+msgid "Not in your licence. It keeps working, without updates."
+msgstr ""
+
+msgid "Up to date."
+msgstr ""
+
+msgid "This screen"
+msgstr ""
+
+msgid "%1$s now runs on %2$s"
+msgstr ""
+
+msgid "The old add-on has stopped. Your data and settings are kept; you can deactivate and delete the old add-on from Plugins when you are ready."
+msgstr ""
+
+msgid "Open %s"
+msgstr ""
+
+msgid "%1$s is now part of %2$s"
+msgstr ""
+
+msgid "This screen still runs on an old add-on from before version 2.7.0. %s is already installed; activate it below, it takes a moment. Your data and settings are kept, and your users can keep working meanwhile."
+msgstr ""
+
+msgid "This screen still runs on an old add-on from before version 2.7.0. Add %s with your licence key; it takes a minute. Your data and settings are kept, and your users can keep working meanwhile."
+msgstr ""
+
+msgid "Installing…"
+msgstr ""
+
+msgid "Install %s"
+msgstr ""
+
+msgid "Activating…"
+msgstr ""
+
+msgid "Activate %s"
+msgstr ""
+
+msgid "This screen still runs on an old add-on from before version 2.7.0. Ask a site administrator to add %s. Until then you can keep using the old screen."
+msgstr ""
+
+msgid "This screen still runs on an old add-on from before version 2.7.0. %s cannot be added with this licence right now; check the licence below. Until then you can keep using the old screen."
+msgstr ""
+
+msgid "Continue to %s"
+msgstr ""
+
+msgid "Your licence"
+msgstr ""
+
+msgid "One key covers every product in the plan you bought."
+msgstr ""
+
+msgid "Key"
+msgstr ""
+
+msgid "Plan"
+msgstr ""
+
+msgid "Valid until"
+msgstr ""
+
+msgid "This site counts as"
+msgstr ""
+
+msgid "This key is set in wp-config.php, so it cannot be changed from here. Edit the WPJOBPORTAL_LICENCE_KEY constant to change it."
+msgstr ""
+
+msgid "Licence key"
+msgstr ""
+
+msgid "Save and activate"
+msgstr ""
+
+msgid "It is sent only to the licence server. You can also set it in wp-config.php as %s, which keeps it out of the database and out of backups."
+msgstr ""
+
+msgid "Activate this site"
+msgstr ""
+
+msgid "Checking…"
+msgstr ""
+
+msgid "Check again"
+msgstr ""
+
+msgid "Releasing…"
+msgstr ""
+
+msgid "Release this site from the licence? Installed products keep working, but installs and updates stop until it is activated again."
+msgstr ""
+
+msgid "Release this site"
+msgstr ""
+
+msgid "Replace key"
+msgstr ""
+
+msgid "New licence key"
+msgstr ""
+
+msgid "The current key releases this site first, so its slot is given back."
+msgstr ""
+
+msgid "Add-ons"
+msgstr ""
+
+msgid "Install and update what your licence covers, straight from here."
+msgstr ""
+
+msgid "Install all (%d)"
+msgstr ""
+
+msgid "Inactive"
+msgstr ""
+
+msgid "Not in your licence"
+msgstr ""
+
+msgid "In your licence"
+msgstr ""
+
+msgid "Update to %s"
+msgstr ""
+
+msgid "Updating…"
+msgstr ""
+
+msgid "Every download is checked against the checksum published with its release before it is unpacked. A file that does not match is deleted and nothing is installed."
+msgstr ""
+
+msgid "Updates also appear on %s, with automatic updates if you turn them on there."
+msgstr ""
+
+msgid "Dashboard → Updates"
+msgstr ""
+
+msgid "When a licence lapses the products you have installed keep working. Installs, updates and support stop until it is renewed, and none of your data is removed."
+msgstr ""
+
+msgid "Company Detail Document Title"
+msgstr ""
+
+msgid "Job Detail Document Title"
+msgstr ""
+
+msgid "Resume Detail Document Title"
+msgstr ""
+
+msgid "A shortcode designed for job seeker, providing an easy-to-use control panel to manage applications, resume, and preferences directly from their dashboard."
+msgstr ""
+
+msgid "hide_role: 1 hides the role choice. show_header: 1 shows the breadcrumb trail, 0 hides it. show_title: 1 shows the page heading, 0 hides it."
+msgstr ""
+
+msgid "Email has been sent to friend[s]"
+msgstr ""
+
+msgid "Send To Friends"
+msgstr ""
+
+msgid "Please log in or register to continue."
+msgstr ""
+
+msgid "Recent Applications"
+msgstr ""
+
+msgid "Applications Received"
+msgstr ""
+
+msgid "The requested resume is unavailable or you do not have permission to view it."
+msgstr ""
+
+msgid "You are not allowed to download files for this resume."
+msgstr ""
+
+msgid "No downloadable resume files are available."
+msgstr ""
+
+msgid "You are not allowed to download this resume file."
+msgstr ""
+
+msgid "The requested resume file is not available."
+msgstr ""
+
+msgid "Analyzing Profile..."
+msgstr ""
+
+msgid "Skills Generated!"
+msgstr ""
+
+msgid "Generate Skills"
+msgstr ""
+
+msgid "Resume Skills AI"
+msgstr ""
+
+msgid "Focus Areas"
+msgstr ""
+
+msgid "Core Competencies"
+msgstr ""
+
+msgid "Technical Skills"
+msgstr ""
+
+msgid "Soft Skills & Leadership"
+msgstr ""
+
+msgid "Tools & Technologies"
+msgstr ""
+
+msgid "Frameworks & Methodologies"
+msgstr ""
+
+msgid "Industry Certifications"
+msgstr ""
+
+msgid "Languages (Spoken/Written)"
+msgstr ""
+
+msgid "Voice & Tone"
+msgstr ""
+
+msgid "Creative"
+msgstr ""
+
+msgid "Highly Technical"
+msgstr ""
+
+msgid "Resume Form Data"
+msgstr ""
+
+msgid "Uses Title and Category fields to inform skill suggestions."
+msgstr ""
+
+msgid "Comma Separated (Compact)"
+msgstr ""
+
+msgid "Bulleted List (Standard)"
+msgstr ""
+
+msgid "Categorized List (e.g., Frontend:, Backend:)"
+msgstr ""
+
+msgid "Skill Matrix (Skill - Proficiency)"
+msgstr ""
+
+msgid "Narrative Summary (Paragraph)"
+msgstr ""
+
+msgid "e.g., \"Make sure to emphasize my leadership experience...\""
+msgstr ""
+
+msgid "Optimize for ATS/SEO"
+msgstr ""
+
+msgid "Ensure specific keywords are included to pass Applicant Tracking Systems."
+msgstr ""
+
+msgid "Resume has been successfully featured"
+msgstr ""
+
+msgid "An unknown error occurred."
+msgstr ""
+
+msgid "Invalid Key"
+msgstr ""
+
+msgid "Permission denied."
+msgstr ""
+
+msgid "API Key cannot be empty."
+msgstr ""
+
+msgid "Error:"
+msgstr ""
+
+msgid "No data to import."
+msgstr ""
+
+msgid "Batch processed successfully."
+msgstr ""
+
+msgid "Import completed successfully."
+msgstr ""
+
+msgid "Import process finished (No pending data)."
+msgstr ""
+
+msgid "API Key is not set."
+msgstr ""
+
+msgid "Failed to download data bundle from Zywrap API."
+msgstr ""
+
+msgid "Filesystem initialization failed."
+msgstr ""
+
+msgid "Failed to unzip data bundle"
+msgstr ""
+
+msgid "Error: zywrap-data.json not found in ZIP."
+msgstr ""
+
+msgid "Failed to read zywrap-data.json."
+msgstr ""
+
+msgid "Error: Could not parse JSON data."
+msgstr ""
+
+msgid "Full data import complete! Version:"
+msgstr ""
+
+msgid "Failed to parse streaming response from Zywrap."
+msgstr ""
+
+msgid "API Key is not set in Zywrap Settings."
+msgstr ""
+
+msgid "API Connection Error:"
+msgstr ""
+
+msgid "How to get your API Key"
+msgstr ""
+
+msgid "Sign Up Free"
+msgstr ""
+
+msgid "Zywrap.com"
+msgstr ""
+
+msgid "Get Free Credits"
+msgstr ""
+
+msgid "You will receive"
+msgstr ""
+
+msgid "10,000 Free Credits"
+msgstr ""
+
+msgid "instantly upon registration."
+msgstr ""
+
+msgid "Create Key"
+msgstr ""
+
+msgid "Go to the API Keys section in your dashboard to generate your secret key."
+msgstr ""
+
+msgid "Enter your Zywrap.com API Key to connect your account."
+msgstr ""
+
+msgid "Zywrap API Key"
+msgstr ""
+
+msgid "To get your API key, log in to"
+msgstr ""
+
+msgid "and navigate to your Dashboard / API Keys."
+msgstr ""
+
+msgid "Get a Valid API key, log in to"
+msgstr ""
+
+msgid "Save Key"
+msgstr ""
+
+msgid "Validate API Key"
+msgstr ""
+
+msgid "Zywrap Data Sync"
+msgstr ""
+
+msgid "Get the latest data (categories, wrappers, models and languages) from your Zywrap account."
+msgstr ""
+
+msgid "Sync Status"
+msgstr ""
+
+msgid "Not Synced"
+msgstr ""
+
+msgid "Synced"
+msgstr ""
+
+msgid "Last Sync"
+msgstr ""
+
+msgid "Your local database must be synced with the Zywrap catalog to use the Playground and Editor tools."
+msgstr ""
+
+msgid "Download & Full Import"
+msgstr ""
+
+msgid "Get Updates"
+msgstr ""
+
+msgid "Learn how to set up your Zywrap API key in just a few steps. This video shows how to create your Zywrap account, receive 10,000 free credits, and generate your API key from the dashboard so you can quickly connect Zywrap with your applications."
+msgstr ""
+
+msgid "Error in batch processing"
+msgstr ""
+
+msgid "Batch Error"
+msgstr ""
+
+msgid "Please enter an API key first."
+msgstr ""
+
+msgid "Checking API status..."
+msgstr ""
+
+msgid "Request Failed"
+msgstr ""
+
+msgid "Downloading and importing... This may take several minutes."
+msgstr ""
+
+msgid "Only new and changed data is being fetched and imported. This should take a few moments..."
+msgstr ""
+
+msgid "This will erase all local wrappers and perform a fresh download. This is recommended. Continue?"
+msgstr ""
+
+msgid "This will refresh everything from scratch and may take several minutes..."
+msgstr ""
+
+msgid "Action processed"
+msgstr ""
+
+msgid "Unknown error occurred"
+msgstr ""
+
+msgid "Error: The request failed or timed out. Please check your PHP logs."
+msgstr ""
+
+msgid "Checking for updates..."
+msgstr ""
+
+msgid "Zywrap Content Generation"
+msgstr ""
+
+msgid "Setup Required: Please add your API Key in settings."
+msgstr ""
+
+msgid "Action Needed: Please sync the Wrapper Catalog (Step 2) in settings."
+msgstr ""
+
+msgid "Core Settings"
+msgstr ""
+
+msgid "e.g. AI, tech, future"
+msgstr ""
+
+msgid "Use Case"
+msgstr ""
+
+msgid "Select Category"
+msgstr ""
+
+msgid "Wrapper"
+msgstr ""
+
+msgid "Default Order"
+msgstr ""
+
+msgid "Base Only"
+msgstr ""
+
+msgid "Select Category First"
+msgstr ""
+
+msgid "AI Model"
+msgstr ""
+
+msgid "Optional"
+msgstr ""
+
+msgid "Select Model"
+msgstr ""
+
+msgid "Default (English)"
+msgstr ""
+
+msgid "Advanced Constraints"
+msgstr ""
+
+msgid "Tone"
+msgstr ""
+
+msgid "Format"
+msgstr ""
+
+msgid "Complexity"
+msgstr ""
+
+msgid "Length"
+msgstr ""
+
+msgid "Audience"
+msgstr ""
+
+msgid "Goal"
+msgstr ""
+
+msgid "Output"
+msgstr ""
+
+msgid "Input"
+msgstr ""
+
+msgid "Enter your main prompt here..."
+msgstr ""
+
+msgid "Generate Content"
+msgstr ""
+
+msgid "Console Output"
+msgstr ""
+
+msgid "Copy Output"
+msgstr ""
+
+msgid "Ready to generate content. Select a wrapper and click Run."
+msgstr ""
+
+msgid "Sorted A-Z"
+msgstr ""
+
+msgid "Loading"
+msgstr ""
+
+msgid "Select Wrapper"
+msgstr ""
+
+msgid "Error Loading"
+msgstr ""
+
+msgid "Prompt / Additional Context"
+msgstr ""
+
+msgid "Additional Free-form Instructions."
+msgstr ""
+
+msgid "Core Inputs (Optional)"
+msgstr ""
+
+msgid "Additional Context (Optional)"
+msgstr ""
+
+msgid "-- Select Wrapper --"
+msgstr ""
+
+msgid "Copied!"
+msgstr ""
+
+msgid "Please generate some text first before summarizing."
+msgstr ""
+
+msgid "This will replace your current text in the Context field. Continue?"
+msgstr ""
+
+msgid "Generating content... Please wait..."
+msgstr ""
+
+msgid "Running..."
+msgstr ""
+
+msgid "Error: Wrapper is required."
+msgstr ""
+
+msgid "Received empty output."
+msgstr ""
+
+msgid "100+ records Found."
+msgstr ""
+
+msgid "records Found."
+msgstr ""
+
+msgid "AI Content Generator"
+msgstr ""
+
+msgid "Search Wrapper"
+msgstr ""
+
+msgid "Quick Search"
+msgstr ""
+
+msgid "e.g. Blog, SEO..."
+msgstr ""
+
+msgid "Results"
+msgstr ""
+
+msgid "Select Result"
+msgstr ""
+
+msgid "Wrapper Template"
+msgstr ""
+
+msgid "Base"
+msgstr ""
+
+msgid "Instructions / Prompt"
+msgstr ""
+
+msgid "Describe exactly what you want the AI to create..."
+msgstr ""
+
+msgid "Generate Output"
+msgstr ""
+
+msgid "Generated Output"
+msgstr ""
+
+msgid "(Editable)"
+msgstr ""
+
+msgid "AI output will appear here..."
+msgstr ""
+
+msgid "Insert into Editor"
+msgstr ""
+
+msgid "Saved"
+msgstr ""
+
+msgid "Run Search"
+msgstr ""
+
+msgid "You have not saved any searches yet. Run a job search, then use Save Search to keep it here."
+msgstr ""
+
+msgid "Urgent Jobs Only"
+msgstr ""
+
+msgid "You are not allowed to view WP Job Portal diagnostics."
+msgstr ""
+
+msgid "Environment"
+msgstr ""
+
+msgid "Mode and workflow readiness"
+msgstr ""
+
+msgid "Database readiness"
+msgstr ""
+
+msgid "Request security"
+msgstr ""
+
+msgid "Privacy and payments"
+msgstr ""
+
+msgid "Scheduled tasks and mail"
+msgstr ""
+
+msgid "Working…"
+msgstr ""
+
+msgid "The queue action failed."
+msgstr ""
+
+msgid "Saving…"
+msgstr ""
+
+msgid "The privacy settings could not be saved."
+msgstr ""
+
+msgid "Diagnostics are support-safe and do not expose passwords, API keys, request payloads or candidate email addresses."
+msgstr ""
+
+msgid "InnoDB conversion was scheduled. WordPress Cron will process one core table per batch."
+msgstr ""
+
+msgid "InnoDB conversion was paused. A table already being converted is allowed to finish safely."
+msgstr ""
+
+msgid "The storage-engine action could not be completed. Review the conversion status and support-safe report below."
+msgstr ""
+
+msgid "Check"
+msgstr ""
+
+msgid "Result"
+msgstr ""
+
+msgid "Privacy retention controls"
+msgstr ""
+
+msgid "Set a value from 0 to the shown maximum. Zero keeps the corresponding records until an administrator or a WordPress privacy erasure request removes them."
+msgstr ""
+
+msgid "Activity history (days)"
+msgstr ""
+
+msgid "User messages (days)"
+msgstr ""
+
+msgid "Operational audit (days)"
+msgstr ""
+
+msgid "Save retention settings"
+msgstr ""
+
+msgid "Reliable notification queue"
+msgstr ""
+
+msgid "Mode"
+msgstr ""
+
+msgid "Queue enabled"
+msgstr ""
+
+msgid "Direct mail"
+msgstr ""
+
+msgid "%1$d pending, %2$d retrying, %3$d processing, %4$d failed and %5$d recently completed."
+msgstr ""
+
+msgid "Lifetime counters: %1$d queued, %2$d delivered, %3$d retries, %4$d terminal failures, %5$d direct fallbacks and %6$d duplicates suppressed."
+msgstr ""
+
+msgid "Queued recipient, subject and message data is encrypted at rest and never shown in diagnostics. Payloads are removed after successful delivery; terminal failures are retained for manual retry for up to seven days. Messages with attachments continue using direct mail so temporary files cannot disappear before delivery."
+msgstr ""
+
+msgid "Disable queue for new mail"
+msgstr ""
+
+msgid "Enable reliable queue"
+msgstr ""
+
+msgid "Process next batch now"
+msgstr ""
+
+msgid "Retry failed notifications"
+msgstr ""
+
+msgid "Queueing is disabled for new mail, but the worker will continue draining messages already accepted into the queue."
+msgstr ""
+
+msgid "InnoDB conversion"
+msgstr ""
+
+msgid "Progress"
+msgstr ""
+
+msgid "%1$d of %2$d core tables converted (%3$d remaining)"
+msgstr ""
+
+msgid "Current table"
+msgstr ""
+
+msgid "Last table"
+msgstr ""
+
+msgid "Expected core tables are missing: %s. Conversion cannot start until the database is repaired."
+msgstr ""
+
+msgid "Back up the database before starting. Conversion is administrator-initiated, processes one core table per batch, and stops on the first database error."
+msgstr ""
+
+msgid "Pause conversion"
+msgstr ""
+
+msgid "Retry InnoDB conversion"
+msgstr ""
+
+msgid "Start InnoDB conversion"
+msgstr ""
+
+msgid "Portal data of deleted WordPress users"
+msgstr ""
+
+msgid "Removed the portal data of %d deleted user."
+msgid_plural "Removed the portal data of %d deleted users."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%d job portal profile belongs to a WordPress user that has been deleted. Its companies, jobs, resumes and applications are still stored."
+msgid_plural "%d job portal profiles belong to WordPress users that have been deleted. Their companies, jobs, resumes and applications are still stored."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Removing them deletes that data as deleting a user does now. Payment records are kept, without the payer's personal details. Back up the database first. Up to 50 profiles are removed per click."
+msgstr ""
+
+msgid "Remove portal data of deleted users"
+msgstr ""
+
+msgid "None. Every job portal profile belongs to an existing WordPress user."
+msgstr ""
+
+msgid "Operational audit"
+msgstr ""
+
+msgid "This bounded diagnostic log stores operational event names and outcomes only. It does not store recipients, email subjects, message bodies, request payloads or credentials."
+msgstr ""
+
+msgid "Event"
+msgstr ""
+
+msgid "Outcome"
+msgstr ""
+
+msgid "Recorded (UTC)"
+msgstr ""
+
+msgid "No operational events have been recorded yet."
+msgstr ""
+
+msgid "Migration history"
+msgstr ""
+
+msgid "Component"
+msgstr ""
+
+msgid "Migration"
+msgstr ""
+
+msgid "Attempts"
+msgstr ""
+
+msgid "Completed (UTC)"
+msgstr ""
+
+msgid "No migration history is available yet."
+msgstr ""
+
+msgid "Support-safe report"
+msgstr ""
+
+msgid "Copy this report when support asks for system information. Sensitive values are removed automatically."
+msgstr ""
+
+msgid "Copy system status"
+msgstr ""
+
+msgid "Working..."
+msgstr ""
+
+msgid "Applying..."
+msgstr ""
+
+msgid "Nothing matches"
+msgstr ""
+
+msgid "This form cannot be sent yet:"
+msgstr ""
+
+msgid "Your WP Job Portal licence is not active. Everything you have installed keeps working; updates and support are paused until it is renewed."
+msgstr ""
+
+msgid "Check licence"
+msgstr ""
+
+msgid "Generating"
+msgstr ""
+
+msgid "Generate"
+msgstr ""
+
+msgid "Please select a Wrapper."
+msgstr ""
+
+msgid "Could not find an text area to insert into."
+msgstr ""
+
+msgid "Search Templates"
+msgstr ""
+
+msgid "Close Search"
+msgstr ""
+
+msgid "records found"
+msgstr ""
+
+msgid "Please select a wrapper first."
+msgstr ""
+
+msgid "Generating content, please wait..."
+msgstr ""
+
+msgid "Unknown error occurred."
+msgstr ""
+
+msgid "The output is empty."
+msgstr ""
+
+msgid "WP Job Portal Pro requires WP Job Portal to be installed and active."
+msgstr ""
+
+msgid "none"
+msgstr ""
+
+msgid "WP Job Portal Pro is inactive: WP Job Portal needs updating."
+msgstr ""
+
+msgid "Pro requires WP Job Portal %1$s or later, which provides module API %2$s. This site provides: %3$s."
+msgstr ""
+
+msgid "No Pro feature is running and no database change has been made. Any WP Job Portal add-ons already installed continue to work normally. Update WP Job Portal to enable Pro."
+msgstr ""
+
+msgid "Install and activate WP Job Portal before activating WP Job Portal Pro."
+msgstr ""
+
+msgid "Plugin dependency missing"
+msgstr ""
+
+msgid "WP Job Portal Pro requires WP Job Portal %1$s or later. Update WP Job Portal first, then activate Pro. Nothing has been changed on this site."
+msgstr ""
+
+msgid "WP Job Portal is out of date"
+msgstr ""
+
+msgid "Licence verification is turned off on this build."
+msgstr ""
+
+msgid "WP Job Portal Pro has no activation key yet."
+msgstr ""
+
+msgid "The WP Job Portal Pro activation key was not accepted."
+msgstr ""
+
+msgid "Every Pro feature keeps working. Without an active licence this site will not receive updates, downloads or support."
+msgstr ""
+
+msgid "Enter your key on the Plugins screen"
+msgstr ""
+
+msgid "The requested resume is unavailable."
+msgstr ""
+
+msgid "Resume unavailable"
+msgstr ""
+
+msgid "You do not have permission to print this resume."
+msgstr ""
+
+msgid "Print resume"
+msgstr ""
+
+msgid "You do not have permission to download this resume PDF."
+msgstr ""
+
+msgid "Download resume PDF"
+msgstr ""
+
+msgid "WP Job Portal Pro: PDF documents need a font for this language."
+msgstr ""
+
+msgid "The bundled font does not cover %1$s, so PDFs are being generated with the default font and some characters may not appear."
+msgstr ""
+
+msgid "Upload a Unicode TrueType font (for example Noto Sans CJK) to %1$s and reload this page."
+msgstr ""
+
+msgid "Jobs By City"
+msgstr ""
+
+msgid "Jobs By Salary"
+msgstr ""
+
+msgid "Jobs By Company"
+msgstr ""
+
+msgid "Resume Listing Widget"
+msgstr ""
+
+msgid "Content"
+msgstr ""
+
+msgid "Enable Carousel"
+msgstr ""
+
+msgid "Show All Resumes Button"
+msgstr ""
+
+msgid "Display Fields"
+msgstr ""
+
+msgid "Show Photo"
+msgstr ""
+
+msgid "Photo Width (px)"
+msgstr ""
+
+msgid "Photo Height (px)"
+msgstr ""
+
+msgid "Resume Fields"
+msgstr ""
+
+msgid "Show View Resume Button"
+msgstr ""
+
+msgid "Carousel Settings"
+msgstr ""
+
+msgid "Autoplay"
+msgstr ""
+
+msgid "Autoplay Speed (ms)"
+msgstr ""
+
+msgid "Infinite Loop"
+msgstr ""
+
+msgid "Show Navigation Arrows"
+msgstr ""
+
+msgid "Show Pagination Dots"
+msgstr ""
+
+msgid "Single Record Styling"
+msgstr ""
+
+msgid "Border Radius"
+msgstr ""
+
+msgid "Resume Photo"
+msgstr ""
+
+msgid "Typography"
+msgstr ""
+
+msgid "Resume Meta Data"
+msgstr ""
+
+msgid "Text Color"
+msgstr ""
+
+msgid "Icon Color"
+msgstr ""
+
+msgid "Icon Size"
+msgstr ""
+
+msgid "View All Resumes Button Styling"
+msgstr ""
+
+msgid "View Resume Button Styling"
+msgstr ""
+
+msgid "Company Listing Widget"
+msgstr ""
+
+msgid "Choose Companies"
+msgstr ""
+
+msgid "Select Companies"
+msgstr ""
+
+msgid "Company Fields"
+msgstr ""
+
+msgid "Company Meta Data"
+msgstr ""
+
+msgid "Job Listing Widget"
+msgstr ""
+
+msgid "Number Of Jobs"
+msgstr ""
+
+msgid "Show View All Jobs Button"
+msgstr ""
+
+msgid "Job Fields"
+msgstr ""
+
+msgid "Show Job Apply Button"
+msgstr ""
+
+msgid "Job Meta Data"
+msgstr ""
+
+msgid "Text Color (posted and location)"
+msgstr ""
+
+msgid "Icons styling"
+msgstr ""
+
+msgid "View All Jobs Button Styling"
+msgstr ""
+
+msgid "Job Apply Button Styling"
+msgstr ""
+
+msgid "Search resume form WP Job Portal database"
+msgstr ""
+
+msgid "Show number of jobs"
+msgstr ""
+
+msgid "Field Label"
+msgstr ""
+
+msgid "Field Placeholder"
+msgstr ""
+
+msgid "AI Search jobs form WP Job Portal database"
+msgstr ""
+
+msgid "Show Label"
+msgstr ""
+
+msgid "Show Placeholder"
+msgstr ""
+
+msgid "Edit Folder"
+msgstr ""
+
+msgid "Delete Folder"
+msgstr ""
+
+msgid "View Resumes in Folder"
+msgstr ""
+
+msgid "Cover Letter Generated!"
+msgstr ""
+
+msgid "Cover Letter - "
+msgstr ""
+
+msgid "✨ Cover Letter Instructions Applied:"
+msgstr ""
+
+msgid "Generate Cover Letter"
+msgstr ""
+
+msgid "Toggle AI Configuration"
+msgstr ""
+
+msgid "AI Configuration"
+msgstr ""
+
+msgid "Short Email"
+msgstr ""
+
+msgid "Highlight & Target"
+msgstr ""
+
+msgid "Role Fitment"
+msgstr ""
+
+msgid "Core Strengths"
+msgstr ""
+
+msgid "Cultural Alignment"
+msgstr ""
+
+msgid "Technical Domain"
+msgstr ""
+
+msgid "Voice Mapping"
+msgstr ""
+
+msgid "Executive"
+msgstr ""
+
+msgid "Earnest"
+msgstr ""
+
+msgid "Auto-Harvest Context"
+msgstr ""
+
+msgid "Target Job Details"
+msgstr ""
+
+msgid "Pulls active job description metadata safely from the DB."
+msgstr ""
+
+msgid "Candidate Resume Context"
+msgstr ""
+
+msgid "Extracts skills and historical data via chosen Resume ID."
+msgstr ""
+
+msgid "Structural Framework"
+msgstr ""
+
+msgid "Standard Letter Block format"
+msgstr ""
+
+msgid "Modern Bulleted Matrix"
+msgstr ""
+
+msgid "Narrative Core-driven"
+msgstr ""
+
+msgid "Freeform Rules / Injections"
+msgstr ""
+
+msgid "e.g., \"Address the letter directly to the Technical Lead...\""
+msgstr ""
+
+msgid "ATS Keyword Alignment"
+msgstr ""
+
+msgid "Incorporate strict technical criteria to pass tracking loops."
+msgstr ""
+
+msgid "Injected terms (comma isolated)"
+msgstr ""
+
+msgid "Select Nationality"
+msgstr ""
+
+msgid "Select Gender"
+msgstr ""
+
+msgid "View Saved Search"
+msgstr ""
+
+msgid "Allowed"
+msgstr ""
+
+msgid "Search smarter – Start typing what you know, our AI will help you find the best matching resumes."
+msgstr ""
+
+msgid "Geocode was not successful for the following reason:"
+msgstr ""
+
+msgid "To Date Must Be Greater than From Date!"
+msgstr ""
+
+msgid "Resume exports require a GET request."
+msgstr ""
+
+msgid "Method not allowed"
+msgstr ""
+
+msgid "The resume export link has expired. Please return to the resume and try again."
+msgstr ""
+
+msgid "Export link expired"
+msgstr ""
+
+msgid "Export all resumes"
+msgstr ""
+
+msgid "No resume data is available for export."
+msgstr ""
+
+msgid "Nothing to export"
+msgstr ""
+
+msgid "You do not have permission to export this resume data."
+msgstr ""
+
+msgid "Read"
+msgstr ""
+
+msgid "Framed cards and soft shadows"
+msgstr ""
+
+msgid "Larger, bolder headings"
+msgstr ""
+
+msgid "Its own colours, sizes, corners and font"
+msgstr ""
+
+msgid "Elegant Design is running as its own plugin. Deactivate it in Plugins and Pro takes over; then you can switch it here."
+msgstr ""
+
+msgid "Each applicants cv will be emailed directly to you as they apply.you can also check your workspace for new applicant"
+msgstr ""
+
+msgid "Verification information was submitted for administrator review."
+msgstr ""
+
+msgid "Verification information could not be submitted. Check the company and required fields."
+msgstr ""
+
+msgid "Marketplace trust"
+msgstr ""
+
+msgid "Verify your company identity"
+msgstr ""
+
+msgid "Submit a business reference for administrator review. Do not enter passwords, payment information, identity documents, or other secrets."
+msgstr ""
+
+msgid "No company website provided"
+msgstr ""
+
+msgid "Open risk signals"
+msgstr ""
+
+msgid "Submitted"
+msgstr ""
+
+msgid "Not submitted"
+msgstr ""
+
+msgid "Verification expiry"
+msgstr ""
+
+msgid "No expiry set"
+msgstr ""
+
+msgid "Reason for rejection:"
+msgstr ""
+
+msgid "Reason for suspension:"
+msgstr ""
+
+msgid "Correct the details below and send the request again."
+msgstr ""
+
+msgid "This company is verified. Changes to its name, website, or contact email will require another review."
+msgstr ""
+
+msgid "Evidence type"
+msgstr ""
+
+msgid "Business reference"
+msgstr ""
+
+msgid "For example: public registry number, company domain, or corporate email reference. Do not submit secrets."
+msgstr ""
+
+msgid "Update verification request"
+msgstr ""
+
+msgid "Submit for verification"
+msgstr ""
+
+msgid "The featured-job promotion was scheduled and one use was reserved from the selected Credits package."
+msgstr ""
+
+msgid "The promotion was cancelled and its reserved Credits use was returned."
+msgstr ""
+
+msgid "Choose a start at least five minutes in the future."
+msgstr ""
+
+msgid "You cannot schedule promotions for that company."
+msgstr ""
+
+msgid "That job is unavailable or belongs to another company."
+msgstr ""
+
+msgid "That job already has an overlapping featured period."
+msgstr ""
+
+msgid "The selected Credits package has no featured-job use available."
+msgstr ""
+
+msgid "That featured-job use was just reserved elsewhere. Choose another Credits package."
+msgstr ""
+
+msgid "The selected package expires before this promotion would finish."
+msgstr ""
+
+msgid "The selected package expires before this start date. Choose an earlier start."
+msgstr ""
+
+msgid "That package does not say how long a featured period lasts, so one cannot be scheduled. Ask the site administrator to set the featured-job duration on it."
+msgstr ""
+
+msgid "The Credits package use could not be reserved."
+msgstr ""
+
+msgid "Only a future promotion that you manage can be cancelled."
+msgstr ""
+
+msgid "The promotion was requested and is waiting for the company to approve it. No Credits use has been reserved yet."
+msgstr ""
+
+msgid "The promotion was approved and one use was reserved from the selected Credits package."
+msgstr ""
+
+msgid "The promotion request was declined. Nothing was reserved."
+msgstr ""
+
+msgid "That promotion request is no longer waiting for an answer."
+msgstr ""
+
+msgid "Only the company owner or a company admin can answer a promotion request."
+msgstr ""
+
+msgid "That promotion was due to start before it was answered. Ask for it again with a new start time."
+msgstr ""
+
+msgid "That promotion request could not be recorded."
+msgstr ""
+
+msgid "Credits-powered promotion"
+msgstr ""
+
+msgid "Schedule a featured-job window using the same package balance shown in My Packages. There is no separate Marketplace balance."
+msgstr ""
+
+msgid "Ask for a featured-job window. The company package balance pays for it, and the company owner approves it before anything is reserved."
+msgstr ""
+
+msgid "Open My Packages"
+msgstr ""
+
+msgid "This promotion would run until %1$s, and the selected package expires on %2$s. Start it earlier, or choose a package that lasts longer."
+msgstr ""
+
+msgid "The selected package expires on %s. Choose a start before then."
+msgstr ""
+
+msgid "Approved jobs"
+msgstr ""
+
+msgid "Eligible packages"
+msgstr ""
+
+msgid "Open schedules"
+msgstr ""
+
+msgid "Schedule a featured job"
+msgstr ""
+
+msgid "The package defines the promotion duration. One featured-job use is reserved immediately and returned if you cancel before the start."
+msgstr ""
+
+msgid "The package defines the promotion duration. Nothing is reserved when you ask; a use is taken from the package only once the company approves the request."
+msgstr ""
+
+msgid "Featured Job and Credits are required"
+msgstr ""
+
+msgid "Activate both add-ons to schedule package-backed promotions."
+msgstr ""
+
+msgid "No schedulable promotion is available"
+msgstr ""
+
+msgid "You need an approved job and an active Credits package with a featured-job use remaining."
+msgstr ""
+
+msgid "This needs an approved job and a company package with a featured-job use left on it. Ask the company owner to top the package up."
+msgstr ""
+
+msgid "Choose a company"
+msgstr ""
+
+msgid "Choose a job"
+msgstr ""
+
+msgid "Credits package"
+msgstr ""
+
+msgid "Choose a package"
+msgstr ""
+
+msgid "%1$s — too little time left for a featured period"
+msgstr ""
+
+msgid "%1$s — %2$s available, latest start %3$s"
+msgstr ""
+
+msgid "%1$s — %2$s available"
+msgstr ""
+
+msgid "Starts"
+msgstr ""
+
+msgid "If the package ends before the featured period would, the promotion ends with the package."
+msgstr ""
+
+msgid "Schedule promotion"
+msgstr ""
+
+msgid "Promotion history"
+msgstr ""
+
+msgid "Scheduled, active, completed, cancelled, and failed windows remain visible for accountability."
+msgstr ""
+
+msgid "Window"
+msgstr ""
+
+msgid "No promotions have been scheduled."
+msgstr ""
+
+msgid "Deleted job #%d"
+msgstr ""
+
+msgid "Decline"
+msgstr ""
+
+msgid "Waiting for the company to approve"
+msgstr ""
+
+msgid "Trust settings saved."
+msgstr ""
+
+msgid "Trust settings could not be saved."
+msgstr ""
+
+msgid "Verification decision saved."
+msgstr ""
+
+msgid "Verification decision could not be saved. Rejection and suspension require a reason."
+msgstr ""
+
+msgid "Risk event reviewed."
+msgstr ""
+
+msgid "Risk event could not be reviewed."
+msgstr ""
+
+msgid "Current company data was evaluated."
+msgstr ""
+
+msgid "The company could not be evaluated."
+msgstr ""
+
+msgid "Review company identity, monitor privacy-safe risk signals, and control when suspicious submissions enter the existing approval queues."
+msgstr ""
+
+msgid "Marketplace accounts"
+msgstr ""
+
+msgid "Enforcement"
+msgstr ""
+
+msgid "High-risk threshold: %d"
+msgstr ""
+
+msgid "Verification cases"
+msgstr ""
+
+msgid "%d awaiting review"
+msgstr ""
+
+msgid "Verified companies"
+msgstr ""
+
+msgid "Expired verification is excluded."
+msgstr ""
+
+msgid "Open risk events"
+msgstr ""
+
+msgid "Signals contain codes, not copied listing content."
+msgstr ""
+
+msgid "Enforcement policy"
+msgstr ""
+
+msgid "Monitoring is the upgrade-safe default. Holding moves a listing into the existing Core approval queue; it never deletes content."
+msgstr ""
+
+msgid "Policy mode"
+msgstr ""
+
+msgid "High-risk threshold"
+msgstr ""
+
+msgid "Scores are bounded from 0 to 100. Recommended: 70."
+msgstr ""
+
+msgid "Save enforcement policy"
+msgstr ""
+
+msgid "Company verification queue"
+msgstr ""
+
+msgid "Verification does not publish previously held companies or jobs; use the existing approval queues for that separate decision."
+msgstr ""
+
+msgid "Review"
+msgstr ""
+
+msgid "Risk scan"
+msgstr ""
+
+msgid "No verification cases are available."
+msgstr ""
+
+msgid "Unassigned owner"
+msgstr ""
+
+msgid "%d open risk events"
+msgstr ""
+
+msgid "Decision"
+msgstr ""
+
+msgid "Verify"
+msgstr ""
+
+msgid "Suspend"
+msgstr ""
+
+msgid "Reason"
+msgstr ""
+
+msgid "Reason (required to reject/suspend)"
+msgstr ""
+
+msgid "Optional verification expiry"
+msgstr ""
+
+msgid "Save review"
+msgstr ""
+
+msgid "Scan current data"
+msgstr ""
+
+msgid "Resolve a confirmed issue or dismiss a false positive. Reviews never delete the audit event."
+msgstr ""
+
+msgid "Score"
+msgstr ""
+
+msgid "Signals"
+msgstr ""
+
+msgid "No open risk events."
+msgstr ""
+
+msgid "Risk review result"
+msgstr ""
+
+msgid "Resolved"
+msgstr ""
+
+msgid "False positive"
+msgstr ""
+
+msgid "Review note"
+msgstr ""
+
+msgid "Optional review note"
+msgstr ""
+
+msgid "Complete review"
+msgstr ""
+
+msgid "Revenue, coupon, conversion, subscription, invoice, and promotion data read from the existing Credits catalogue and WooCommerce orders."
+msgstr ""
+
+msgid "Manage packages"
+msgstr ""
+
+msgid "Reporting window"
+msgstr ""
+
+msgid "Last %d day"
+msgid_plural "Last %d days"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "This view is limited to the 500 most recent WooCommerce orders in the selected window. Export or analytics tooling is recommended for larger historical datasets."
+msgstr ""
+
+msgid "Paid revenue"
+msgstr ""
+
+msgid "%d paid package order"
+msgid_plural "%d paid package orders"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Paid conversion"
+msgstr ""
+
+msgid "%1$d paid of %2$d package orders"
+msgstr ""
+
+msgid "Coupon uses"
+msgstr ""
+
+msgid "%d refunded order"
+msgid_plural "%d refunded orders"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Promotion schedules"
+msgstr ""
+
+msgid "Scheduler is registered"
+msgstr ""
+
+msgid "Scheduler needs attention"
+msgstr ""
+
+msgid "WooCommerce package orders"
+msgstr ""
+
+msgid "Only products mapped to the existing Credits package catalogue are included."
+msgstr ""
+
+msgid "Order"
+msgstr ""
+
+msgid "No mapped package orders are available."
+msgstr ""
+
+msgid "Open order"
+msgstr ""
+
+msgid "WooCommerce subscriptions"
+msgstr ""
+
+msgid "Recurring products mapped to Credits packages are read directly from WooCommerce Subscriptions."
+msgstr ""
+
+msgid "Schedule"
+msgstr ""
+
+msgid "Next payment"
+msgstr ""
+
+msgid "No mapped package subscriptions are available."
+msgstr ""
+
+msgid "—"
+msgstr ""
+
+msgid "Featured-job schedules"
+msgstr ""
+
+msgid "Every schedule points to an existing Credits user package and transaction record."
+msgstr ""
+
+msgid "No feature schedules are available."
+msgstr ""
+
+msgid "One package catalogue, one balance system, and one WooCommerce fulfillment path. Marketplace Suite adds trust, scheduling, and reporting without duplicating Credits."
+msgstr ""
+
+msgid "Package authority"
+msgstr ""
+
+msgid "Existing package definitions and customer balances remain authoritative."
+msgstr ""
+
+msgid "WooCommerce mappings"
+msgstr ""
+
+msgid "Products mapped to the single Credits package catalogue."
+msgstr ""
+
+msgid "Verification"
+msgstr ""
+
+msgid "Review pending requests"
+msgstr ""
+
+msgid "Open reports and schedules"
+msgstr ""
+
+msgid "Where things are managed"
+msgstr ""
+
+msgid "The customer-facing package, subscription, and invoice pages continue to come from Credits. Recruit Suite remains the company-team authority. WooCommerce owns prices, coupons, taxes, checkout, orders, payments, and refunds."
+msgstr ""
+
+msgid "Customer packages"
+msgstr ""
+
+msgid "Marketplace reports"
+msgstr ""
+
+msgid "WP Job Portal Marketplace Suite has no activation key yet."
+msgstr ""
+
+msgid "The WP Job Portal Marketplace Suite activation key was not accepted."
+msgstr ""
+
+msgid "You are not allowed to view Marketplace Suite."
+msgstr ""
+
+msgid "Every five minutes"
+msgstr ""
+
+msgid "Single package catalogue"
+msgstr ""
+
+msgid "These Credits packages are the only WP Job Portal packages. Map WooCommerce products to them; Marketplace Suite does not create a second package or balance system."
+msgstr ""
+
+msgid "You are not allowed to view marketplace reports."
+msgstr ""
+
+msgid "Marketplace promotion schedules"
+msgstr ""
+
+msgid "Monitor only"
+msgstr ""
+
+msgid "Hold high-risk submissions"
+msgstr ""
+
+msgid "Hold newly saved jobs from unverified companies"
+msgstr ""
+
+msgid "Business registry reference"
+msgstr ""
+
+msgid "Company website or domain control"
+msgstr ""
+
+msgid "Corporate email reference"
+msgstr ""
+
+msgid "Other official reference"
+msgstr ""
+
+msgid "Marketplace Trust & Safety"
+msgstr ""
+
+msgid "Marketplace Trust"
+msgstr ""
+
+msgid "You are not allowed to review marketplace trust records."
+msgstr ""
+
+msgid "Marketplace verification submissions"
+msgstr ""
+
+msgid "Marketplace risk events"
+msgstr ""
+
+msgid "You are not allowed to manage marketplace trust records."
+msgstr ""
+
+msgid "Marketplace trust changes require a POST request."
+msgstr ""
+
+msgid "down hover part"
+msgstr ""
+
+msgid "Promotion changes require a POST request."
+msgstr ""
+
+msgid "You do not have permission to submit verification for a company."
+msgstr ""
+
+msgid "Verification submissions require a POST request."
+msgstr ""
+
+msgid "Install and activate a compatible WP Job Portal version before activating Marketplace Suite."
+msgstr ""
+
+msgid "Marketplace Suite requires WP Job Portal %1$s or later. Update WP Job Portal first. Nothing has been changed on this site."
+msgstr ""
+
+msgid "WP Job Portal Marketplace Suite is inactive: WP Job Portal needs updating."
+msgstr ""
+
+msgid "This suite requires WP Job Portal %1$s or later, which provides module API %2$s. This site provides: %3$s."
+msgstr ""
+
+msgid "No feature is running and no database change has been made. Update WP Job Portal to enable it."
+msgstr ""
+
+msgid "Credits packages"
+msgstr ""
+
+msgid "User authentication failed"
+msgstr ""
+
+msgid "New Department added"
+msgstr ""
+
+msgid "New Cover Letter added"
+msgstr ""
+
+msgid "New Company added"
+msgstr ""
+
+msgid "Resume Contact"
+msgstr ""
+
+msgid "New View Resume Contact added"
+msgstr ""
+
+msgid "Resume contact has been unlocked"
+msgstr ""
+
+msgid "New Feature Company added"
+msgstr ""
+
+msgid "Company has been featured"
+msgstr ""
+
+msgid "New Feature Resume added"
+msgstr ""
+
+msgid "Resume has been featured"
+msgstr ""
+
+msgid "New Job added"
+msgstr ""
+
+msgid "New Featured Job added"
+msgstr ""
+
+msgid "Job has been featured"
+msgstr ""
+
+msgid "New Resume added"
+msgstr ""
+
+msgid "Saved Resume Search"
+msgstr ""
+
+msgid "New Resume Save Search added"
+msgstr ""
+
+msgid "Resume search has been saved"
+msgstr ""
+
+msgid "Company Contact"
+msgstr ""
+
+msgid "New Company View added"
+msgstr ""
+
+msgid "Company contact has been unlocked"
+msgstr ""
+
+msgid "New Job Alert added"
+msgstr ""
+
+msgid "Job alert has been created"
+msgstr ""
+
+msgid "This item is no longer available to buy."
+msgstr ""
+
+msgid "Your payment has been received."
+msgstr ""
+
+msgid "Your payment is being confirmed. This page will show it once it is."
+msgstr ""
+
+msgid "This item (%s) has no WooCommerce product linked to it, so it cannot be bought that way yet. A site administrator needs to publish a WooCommerce product and set its \"WP Job Portal package\" field to this item. Another payment method may still be available."
+msgstr ""
+
+msgid "Are you sure to void the selected invoices"
+msgstr ""
+
+msgid "Void"
+msgstr ""
+
+msgid "Package purchased (%s)"
+msgstr ""
+
+msgid "The PayPal agreement could not be cancelled. Contact the administrator and provide agreement ID"
+msgstr ""
+
+msgid "Invalid request method."
+msgstr ""
+
+msgid "Package access has been revoked."
+msgstr ""
+
+msgid "Subscription could not be cancelled"
+msgstr ""
+
+msgid "Manage subscription"
+msgstr ""
+
+msgid "Manage"
+msgstr ""
+
+msgid "Managed in WooCommerce"
+msgstr ""
+
+msgid "Are you sure to revoke the selected package access"
+msgstr ""
+
+msgid "Revoke"
+msgstr ""
+
+msgid "Revoked"
+msgstr ""
+
+msgid "Number Of Featured Companies"
+msgstr ""
+
+msgid "Number Of Resume"
+msgstr ""
+
+msgid "Number Of Featured Resumes"
+msgstr ""
+
+msgid "Featured Resume Expiry"
+msgstr ""
+
+msgid "Number Of Resume Contact Detail Views"
+msgstr ""
+
+msgid "Number Of Job Apply"
+msgstr ""
+
+msgid "Number Of Job Alerts"
+msgstr ""
+
+msgid "Number Of Cover Letters"
+msgstr ""
+
+msgid "Number Of Company Contact Detail Views"
+msgstr ""
+
+msgid "Number Of Departments"
+msgstr ""
+
+msgid "Pay with Stripe"
+msgstr ""
+
+msgid "Number Of Job Searches"
+msgstr ""
+
+msgid "Number Of Resume Searches"
+msgstr ""
+
+msgid "Number Of Job Applications"
+msgstr ""
+
+msgid "Enter -1 For Unlimited"
+msgstr ""
+
+msgid "Section"
+msgstr ""
+
+msgid "Payment configuration changes require a POST request."
+msgstr ""
+
+msgid "Invalid request method"
+msgstr ""
+
+msgid "You are not allowed to change payment configuration."
+msgstr ""
+
+msgid "Webhook ID"
+msgstr ""
+
+msgid "From your PayPal dashboard. Subscription renewals are only recorded once this is set."
+msgstr ""
+
+msgid "Must match the PayPal email that receives subscription payments."
+msgstr ""
+
+msgid "You must add following URL to"
+msgstr ""
+
+msgid "Copy the whsec_ signing secret from this Stripe webhook endpoint."
+msgstr ""
+
+msgid "Package billing is managed by the employer account owner or company administrator."
+msgstr ""
+
+msgid "Billing access unavailable"
+msgstr ""
+
+msgid "No packages are available"
+msgstr ""
+
+msgid "There are no published packages for your account right now. You can continue using the features already available to you."
+msgstr ""
+
+msgid "You have no packages yet"
+msgstr ""
+
+msgid "Packages you purchase or receive will appear here with their remaining limits and expiry dates."
+msgstr ""
+
+msgid "You have no active subscriptions"
+msgstr ""
+
+msgid "Recurring package subscriptions will appear here after a successful subscription purchase."
+msgstr ""
+
+msgid "You have no invoices yet"
+msgstr ""
+
+msgid "Invoices are created after completed paid package purchases and will remain available for your records."
+msgstr ""
+
+msgid "This package is unavailable"
+msgstr ""
+
+msgid "The selected package may have been unpublished or removed. Return to the package list to choose another option."
+msgstr ""
+
+msgid "This payment option is unavailable"
+msgstr ""
+
+msgid "The selected item or payment option is no longer available. Return to your dashboard and try again."
+msgstr ""
+
+msgid "Nothing to show yet"
+msgstr ""
+
+msgid "New account activity will appear here when it becomes available."
+msgstr ""
+
+msgid "Return to dashboard"
+msgstr ""
+
+msgid "Browse packages"
+msgstr ""
+
+msgid "Install and activate WP Job Portal Plugin to perform further actions. Thanks"
+msgstr ""
+
+msgid "Choose a payment method"
+msgstr ""
+
+msgid "The candidate's name"
+msgstr ""
+
+msgid "The job they applied for"
+msgstr ""
+
+msgid "The hiring company"
+msgstr ""
+
+msgid "The message tables are unavailable."
+msgstr ""
+
+msgid "A message needs both a subject and a body."
+msgstr ""
+
+msgid "The message could not be saved."
+msgstr ""
+
+msgid "Write something before sending."
+msgstr ""
+
+msgid "Reply about %s"
+msgstr ""
+
+msgid "Your reply could not be saved."
+msgstr ""
+
+msgid "Send a message"
+msgstr ""
+
+msgid "That application is no longer available."
+msgstr ""
+
+msgid "That message template is not available for this company."
+msgstr ""
+
+msgid "You are not allowed to message this candidate."
+msgstr ""
+
+msgid "You are not allowed to manage templates for this company."
+msgstr ""
+
+msgid "No authorized company scope is available."
+msgstr ""
+
+msgid "Importing %s earlier application into candidate records. It runs in the background and this list fills in as it goes."
+msgid_plural "Importing %s earlier applications into candidate records. It runs in the background and this list fills in as it goes."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "The rejection could not be saved."
+msgstr ""
+
+msgid "Created from the legacy Resume Action status."
+msgstr ""
+
+msgid "You are not allowed to manage rejection reasons for this company."
+msgstr ""
+
+msgid "You are not allowed to create a talent pool for this company."
+msgstr ""
+
+msgid "That talent pool does not belong to this company."
+msgstr ""
+
+msgid "This application has no candidate identity yet."
+msgstr ""
+
+msgid "The candidate could not be added to the pool."
+msgstr ""
+
+msgid "You are not allowed to review this duplicate candidate pair."
+msgstr ""
+
+msgid "You are not allowed to undo this merge."
+msgstr ""
+
+msgid "You are not allowed to send this interview invitation."
+msgstr ""
+
+msgid "Cancelled: "
+msgstr ""
+
+msgid "Interview invitation: "
+msgstr ""
+
+msgid "Candidate interview for %s"
+msgstr ""
+
+msgid "Recruiting candidate identity links"
+msgstr ""
+
+msgid "Recruiting assignments made"
+msgstr ""
+
+msgid "Recruiting rejection decisions"
+msgstr ""
+
+msgid "Talent pool additions"
+msgstr ""
+
+msgid "Candidate source corrections"
+msgstr ""
+
+msgid "Not selected"
+msgstr ""
+
+msgid "Skills mismatch"
+msgstr ""
+
+msgid "Experience mismatch"
+msgstr ""
+
+msgid "Compensation mismatch"
+msgstr ""
+
+msgid "Location or availability"
+msgstr ""
+
+msgid "Candidate withdrew"
+msgstr ""
+
+msgid "Position closed"
+msgstr ""
+
+msgid "Duplicate application"
+msgstr ""
+
+msgid "Other"
+msgstr ""
+
+msgid "You are not allowed to manage this application."
+msgstr ""
+
+msgid "Sign in to continue."
+msgstr ""
+
+msgid "Every 15 minutes"
+msgstr ""
+
+msgid "You are not allowed to manage recruiting automation."
+msgstr ""
+
+msgid "Sign in to access recruiting notifications."
+msgstr ""
+
+msgid "You are not allowed to run recruiting automation."
+msgstr ""
+
+msgid "Recruiting task overdue"
+msgstr ""
+
+msgid "“%1$s” is overdue for %2$s."
+msgstr ""
+
+msgid "Upcoming candidate interview"
+msgstr ""
+
+msgid "%1$s for %2$s is scheduled at %3$s UTC."
+msgstr ""
+
+msgid "Offer approval waiting"
+msgstr ""
+
+msgid "The offer “%1$s” for %2$s is waiting for your decision."
+msgstr ""
+
+msgid "Candidate workflow stalled"
+msgstr ""
+
+msgid "Application #%1$d for %2$s has not moved for at least %3$d days."
+msgstr ""
+
+msgid "Interview assigned"
+msgstr ""
+
+msgid "You were assigned to %1$s for %2$s at %3$s UTC."
+msgstr ""
+
+msgid "A candidate"
+msgstr ""
+
+msgid "Candidate replied"
+msgstr ""
+
+msgid "%1$s replied about %2$s."
+msgstr ""
+
+msgid "Offer approval requested"
+msgstr ""
+
+msgid "Review “%1$s” for %2$s."
+msgstr ""
+
+msgid "Candidate action completed"
+msgstr ""
+
+msgid "“%1$s” was completed for %2$s."
+msgstr ""
+
+msgid "[%1$s] %2$s"
+msgstr ""
+
+msgid "Open candidate workspace"
+msgstr ""
+
+msgid "Sign in to update notifications."
+msgstr ""
+
+msgid "You are not allowed to update this notification."
+msgstr ""
+
+msgid "That interview could not be found."
+msgstr ""
+
+msgid "You are not allowed to download this interview calendar event."
+msgstr ""
+
+msgid "This interview is %s, so there is no appointment to add to a calendar."
+msgstr ""
+
+msgid "You are not allowed to download this offer document."
+msgstr ""
+
+msgid "Signature storage is unavailable."
+msgstr ""
+
+msgid "Signature callback payload is too large."
+msgstr ""
+
+msgid "Invalid signature callback."
+msgstr ""
+
+msgid "Invalid signature status."
+msgstr ""
+
+msgid "Signature request not found."
+msgstr ""
+
+msgid "The signature status transition is not allowed."
+msgstr ""
+
+msgid "Void the active e-signature request before recording a manual acceptance."
+msgstr ""
+
+msgid "The active e-signature request could not be voided."
+msgstr ""
+
+msgid "The signing provider did not confirm that the active request was voided."
+msgstr ""
+
+msgid "Recruiting notifications received"
+msgstr ""
+
+msgid "Offer signatures requested"
+msgstr ""
+
+msgid "Offer signature status changes"
+msgstr ""
+
+msgid "The offer document could not start because output was already sent."
+msgstr ""
+
+msgid "Dear %s,"
+msgstr ""
+
+msgid "%1$s is pleased to offer you the position of %2$s under the terms below."
+msgstr ""
+
+msgid "Employment type"
+msgstr ""
+
+msgid "Start date"
+msgstr ""
+
+msgid "To be agreed"
+msgstr ""
+
+msgid "Offer expiry"
+msgstr ""
+
+msgid "No recorded expiry"
+msgstr ""
+
+msgid "Terms"
+msgstr ""
+
+msgid "This document was generated from the approved recruiting record in WP Job Portal Recruit Suite."
+msgstr ""
+
+msgid "Candidate"
+msgstr ""
+
+msgid "Move to stage"
+msgstr ""
+
+msgid "Reject with reason"
+msgstr ""
+
+msgid "Add to talent pool"
+msgstr ""
+
+msgid "Unknown bulk action."
+msgstr ""
+
+msgid "Choose a stage to move to."
+msgstr ""
+
+msgid "That rejection reason is not available for this company."
+msgstr ""
+
+msgid "You are not allowed to manage applications."
+msgstr ""
+
+msgid "Select at most %d candidates at a time."
+msgstr ""
+
+msgid "%d candidate updated."
+msgid_plural "%d candidates updated."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%d skipped because you cannot act on it."
+msgid_plural "%d skipped because you cannot act on them."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%d could not be updated."
+msgid_plural "%d could not be updated."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Select at least one candidate first."
+msgstr ""
+
+msgid "Write a subject and a message, or choose a template."
+msgstr ""
+
+msgid "Packages are bought by your company owner, on the company account."
+msgstr ""
+
+msgid "Packages are bought by your company owner, %s, on the company account."
+msgstr ""
+
+msgid "You are signed in as a member of a recruiting team, so this area is not yours to use. Your work is in the Recruiting Centre."
+msgstr ""
+
+msgid "Recruiting Centre"
+msgstr ""
+
+msgid "Recruitment"
+msgstr ""
+
+msgid "%d item needs attention"
+msgid_plural "%d items need attention"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Recruitment updates"
+msgstr ""
+
+msgid "Open requests"
+msgstr ""
+
+msgid "Upcoming interviews"
+msgstr ""
+
+msgid "Unread updates"
+msgstr ""
+
+msgid "Open Recruitment Center"
+msgstr ""
+
+msgid "Add a company to start recruiting. The pipeline, team and recruiting tools open once the company is saved."
+msgstr ""
+
+msgid "Open tasks"
+msgstr ""
+
+msgid "Pending approvals"
+msgstr ""
+
+msgid "Unread alerts"
+msgstr ""
+
+msgid "Recruiting tools"
+msgstr ""
+
+msgid "Pipeline"
+msgstr ""
+
+msgid "Workspace"
+msgstr ""
+
+msgid "Insights"
+msgstr ""
+
+msgid "View recruitment updates"
+msgstr ""
+
+msgid "This resume has active recruitment updates."
+msgstr ""
+
+msgid "Open"
+msgstr ""
+
+msgid "Sign in with an employer or recruiting-team account to access the Recruiting Center."
+msgstr ""
+
+msgid "Recruiting Center sections"
+msgstr ""
+
+msgid "Candidate workspace"
+msgstr ""
+
+msgid "Candidates & pools"
+msgstr ""
+
+msgid "Notifications & reminders"
+msgstr ""
+
+msgid "Team"
+msgstr ""
+
+msgid "Recruiting Center (compatibility)"
+msgstr ""
+
+msgid "Legacy complete-center placement for existing sites. New recruiter workflows use the native WP Job Portal dashboard."
+msgstr ""
+
+msgid "Candidate Recruitment Portal"
+msgstr ""
+
+msgid "A secure job-seeker view for candidate requests, interviews, calendar invitations, delivered offers and signature status."
+msgstr ""
+
+msgid "Legacy-compatible single recruiter workspace for notes, tasks, candidate requests, interviews, scorecards, offers and activity."
+msgstr ""
+
+msgid "A focused, company-scoped visual candidate pipeline for authorized recruiters and hiring managers."
+msgstr ""
+
+msgid "Recruiter notifications and reminders for overdue tasks, interviews, pending approvals and stalled candidates."
+msgstr ""
+
+msgid "Company and job-scoped hiring metrics, pipeline distribution, offer outcomes, source attribution and team workload."
+msgstr ""
+
+msgid "Recruit Team"
+msgstr ""
+
+msgid "Company-administrator interface for recruiter and hiring-manager membership plus job ownership."
+msgstr ""
+
+msgid "Recruit Suite Shortcodes"
+msgstr ""
+
+msgid "Normal recruiter work is built into the WP Job Portal dashboard and application detail. These shortcodes remain for existing pages and intentional custom layouts."
+msgstr ""
+
+msgid "Recommended"
+msgstr ""
+
+msgid "New action requested"
+msgstr ""
+
+msgid "The hiring team added an action for you to complete."
+msgstr ""
+
+msgid "Action request cancelled"
+msgstr ""
+
+msgid "The hiring team cancelled an action request."
+msgstr ""
+
+msgid "Interview scheduled"
+msgstr ""
+
+msgid "A new interview has been scheduled for your application."
+msgstr ""
+
+msgid "Interview updated"
+msgstr ""
+
+msgid "Your interview status is now %s."
+msgstr ""
+
+msgid "Offer updated"
+msgstr ""
+
+msgid "Your offer status is now %s."
+msgstr ""
+
+msgid "Signature requested"
+msgstr ""
+
+msgid "An offer document is ready for your review and signature."
+msgstr ""
+
+msgid "Signature updated"
+msgstr ""
+
+msgid "Your signature request status is now %s."
+msgstr ""
+
+msgid "Application update"
+msgstr ""
+
+msgid "The hiring team updated your application: %s."
+msgstr ""
+
+msgid "[%1$s] %2$s — %3$s"
+msgstr ""
+
+msgid "Open your Recruitment Center"
+msgstr ""
+
+msgid "%d unread recruitment update"
+msgid_plural "%d unread recruitment updates"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%d action requested"
+msgid_plural "%d actions requested"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%d upcoming interview"
+msgid_plural "%d upcoming interviews"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%d offer update"
+msgid_plural "%d offer updates"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Date unavailable"
+msgstr ""
+
+msgid "Recruiting offers created"
+msgstr ""
+
+msgid "Recruiting offer decisions"
+msgstr ""
+
+msgid "Recruiting offer approvals assigned"
+msgstr ""
+
+msgid "Recruiting offer approvals requested"
+msgstr ""
+
+msgid "Removed during privacy erasure."
+msgstr ""
+
+msgid "Offer tables are unavailable."
+msgstr ""
+
+msgid "You are not allowed to manage offers for this application."
+msgstr ""
+
+msgid "Relevant experience"
+msgstr ""
+
+msgid "Role-specific skills"
+msgstr ""
+
+msgid "Problem solving"
+msgstr ""
+
+msgid "Culture contribution"
+msgstr ""
+
+msgid "Recruiting interviews created"
+msgstr ""
+
+msgid "Recruiting interviews assigned"
+msgstr ""
+
+msgid "Recruiting scorecards submitted"
+msgstr ""
+
+msgid "Evaluation tables are unavailable."
+msgstr ""
+
+msgid "You are not allowed to evaluate this application."
+msgstr ""
+
+msgid "Add a company to start recruiting"
+msgstr ""
+
+msgid "Recruitment details"
+msgstr ""
+
+msgid "Recruitment Workflow"
+msgstr ""
+
+msgid "Your assigned recruiting workload, priorities, and upcoming activity."
+msgstr ""
+
+msgid "Jobs you own or may recruit for, using the native WP Job Portal job and application routes."
+msgstr ""
+
+msgid "Authorized applications with search, assignment scope, and direct access to recruitment details."
+msgstr ""
+
+msgid "Move candidates through the company pipeline and open their native application details."
+msgstr ""
+
+msgid "Open and overdue recruiting tasks assigned to you or within your authorized jobs."
+msgstr ""
+
+msgid "Upcoming interviews for candidates and jobs you may manage."
+msgstr ""
+
+msgid "Submitted evaluations and candidate scorecard coverage."
+msgstr ""
+
+msgid "Drafts, approvals, sent offers, and candidate decisions."
+msgstr ""
+
+msgid "Recruiting alerts and reminders in one native dashboard view."
+msgstr ""
+
+msgid "Pipeline, source, workload, and time-to-hire reporting."
+msgstr ""
+
+msgid "Company talent pools and duplicate-candidate review."
+msgstr ""
+
+msgid "Recruiter and hiring-manager membership plus job ownership."
+msgstr ""
+
+msgid "Candidates Assigned To Me"
+msgstr ""
+
+msgid "Active Candidates"
+msgstr ""
+
+msgid "Open Tasks"
+msgstr ""
+
+msgid "Upcoming Interviews"
+msgstr ""
+
+msgid "View Applications (%d)"
+msgid_plural "View Applications (%d)"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Open Pipeline"
+msgstr ""
+
+msgid "Recruiter: %s"
+msgstr ""
+
+msgid "Hiring manager: %s"
+msgstr ""
+
+msgid "Unassigned"
+msgstr ""
+
+msgid "Open Recruitment Details"
+msgstr ""
+
+msgid "Candidates needing attention"
+msgstr ""
+
+msgid "View all candidates"
+msgstr ""
+
+msgid "My upcoming work"
+msgstr ""
+
+msgid "Search assigned jobs"
+msgstr ""
+
+msgid "Search job or company"
+msgstr ""
+
+msgid "No assigned jobs match this view."
+msgstr ""
+
+msgid "Assigned job pages"
+msgstr ""
+
+msgid "Search candidate, email, job, or application number"
+msgstr ""
+
+msgid "Assignment scope"
+msgstr ""
+
+msgid "Candidate pages"
+msgstr ""
+
+msgid "Nothing needs your attention right now."
+msgstr ""
+
+msgid "Nobody has assigned you a candidate yet. Choose \"All authorized candidates\" above to see the ones you can work on."
+msgstr ""
+
+msgid "Every candidate you can work on already has someone assigned to them."
+msgstr ""
+
+msgid "Nobody has applied to the jobs you can work on yet."
+msgstr ""
+
+msgid "Application #%d"
+msgstr ""
+
+msgid "Select %s"
+msgstr ""
+
+msgid "Select all on this page"
+msgstr ""
+
+msgid "Bulk action"
+msgstr ""
+
+msgid "Choose an action"
+msgstr ""
+
+msgid "Stage"
+msgstr ""
+
+msgid "Talent pool"
+msgstr ""
+
+msgid "Template"
+msgstr ""
+
+msgid "No template"
+msgstr ""
+
+msgid "Anything left blank is taken from the template."
+msgstr ""
+
+msgid "Filter recruiting work"
+msgstr ""
+
+msgid "Filter by candidate, job, company, or title"
+msgstr ""
+
+msgid "No matching recruiting work is available."
+msgstr ""
+
+msgid "Open application"
+msgstr ""
+
+msgid "Recruiting work pages"
+msgstr ""
+
+msgid "No upcoming work is assigned."
+msgstr ""
+
+msgid "Assigned to me"
+msgstr ""
+
+msgid "All authorized candidates"
+msgstr ""
+
+msgid "Unassigned candidates"
+msgstr ""
+
+msgid "Strong yes"
+msgstr ""
+
+msgid "Mixed"
+msgstr ""
+
+msgid "Strong no"
+msgstr ""
+
+msgid "Scorecard · %s"
+msgstr ""
+
+msgid "Average %s/5"
+msgstr ""
+
+msgid "Due %s"
+msgstr ""
+
+msgid "Company administrator"
+msgstr ""
+
+msgid "Recruiter"
+msgstr ""
+
+msgid "Assigned job owner"
+msgstr ""
+
+msgid "Job owner"
+msgstr ""
+
+msgid "Hiring team"
+msgstr ""
+
+msgid "Sign in to view your candidate portal."
+msgstr ""
+
+msgid "The candidate portal is temporarily unavailable."
+msgstr ""
+
+msgid "Your account is not connected to a WP Job Portal candidate profile."
+msgstr ""
+
+msgid "You are not allowed to update this request."
+msgstr ""
+
+msgid "You are not allowed to hide this request."
+msgstr ""
+
+msgid "You are not allowed to hide this offer."
+msgstr ""
+
+msgid "You are not allowed to reply on this application."
+msgstr ""
+
+msgid "You are not allowed to download this interview calendar."
+msgstr ""
+
+msgid "This scheduled interview is not available."
+msgstr ""
+
+msgid "Interview for %s"
+msgstr ""
+
+msgid "Candidate action requests received"
+msgstr ""
+
+msgid "Candidate action requests created"
+msgstr ""
+
+msgid "Under review"
+msgstr ""
+
+msgid "Interview stage"
+msgstr ""
+
+msgid "Offer stage"
+msgstr ""
+
+msgid "Candidate action storage is unavailable."
+msgstr ""
+
+msgid "That is not an answer this offer can take."
+msgstr ""
+
+msgid "You are not allowed to answer this offer."
+msgstr ""
+
+msgid "WP Job Portal Recruit Suite has no activation key yet."
+msgstr ""
+
+msgid "The WP Job Portal Recruit Suite activation key was not accepted."
+msgstr ""
+
+msgid "Recruiting company memberships"
+msgstr ""
+
+msgid "Recruiting job ownership"
+msgstr ""
+
+msgid "Recruiting pipeline activity"
+msgstr ""
+
+msgid "Team members"
+msgstr ""
+
+msgid "Last change"
+msgstr ""
+
+msgid "Teams"
+msgstr ""
+
+msgid "Owned jobs"
+msgstr ""
+
+msgid "You are not allowed to manage recruiting teams."
+msgstr ""
+
+msgid "Sign in to manage your recruiting team."
+msgstr ""
+
+msgid "Sign in with an employer or recruiting-team account to manage your recruiting team."
+msgstr ""
+
+msgid "Candidate Portal"
+msgstr ""
+
+msgid "You have been added to %1$s as %2$s."
+msgstr ""
+
+msgid "%1$s was added as %2$s. A link to set the password was emailed to %3$s."
+msgstr ""
+
+msgid "%1$s was added as %2$s."
+msgstr ""
+
+msgid "%1$s has access again, as %2$s."
+msgstr ""
+
+msgid "%1$s is now %2$s."
+msgstr ""
+
+msgid "%1$s is already on the team as %2$s."
+msgstr ""
+
+msgid "Company admin"
+msgstr ""
+
+msgid "Hiring manager"
+msgstr ""
+
+msgid "Everything a recruiter can do, and can add or remove team members and job owners for this company."
+msgstr ""
+
+msgid "Works on every job this company has posted and every application to them - notes, messages, tasks, interviews, scorecards, offers, stage moves and rejections. Being given a job below is not required."
+msgstr ""
+
+msgid "Can be assigned to candidates and named on interviews and offer approvals, but reaches jobs and candidates only through the jobs given to them below."
+msgstr ""
+
+msgid "The recruiting team tables are unavailable."
+msgstr ""
+
+msgid "User #%d"
+msgstr ""
+
+msgid "job #%d"
+msgstr ""
+
+msgid "%1$s was added as %2$s, with a new account"
+msgstr ""
+
+msgid "%1$s was added as %2$s"
+msgstr ""
+
+msgid "%1$s changed from %2$s to %3$s"
+msgstr ""
+
+msgid "%s was removed from the team"
+msgstr ""
+
+msgid "%s was removed from the team, and their job ownership with it"
+msgstr ""
+
+msgid "%1$s had their access revoked, and %2$s job handed on"
+msgid_plural "%1$s had their access revoked, and %2$s jobs handed on"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%1$s had their access revoked, leaving %2$s job without an owner"
+msgid_plural "%1$s had their access revoked, leaving %2$s jobs without an owner"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s had their access revoked"
+msgstr ""
+
+msgid "%1$s was reinstated as %2$s"
+msgstr ""
+
+msgid "%1$s took over %2$s job from somebody leaving the team"
+msgid_plural "%1$s took over %2$s jobs from somebody leaving the team"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%1$s became primary owner of %2$s"
+msgstr ""
+
+msgid "%1$s was added as a collaborator on %2$s"
+msgstr ""
+
+msgid "%1$s stopped owning %2$s"
+msgstr ""
+
+msgid "%1$s: %2$s"
+msgstr ""
+
+msgid "You are not allowed to manage candidate collaboration."
+msgstr ""
+
+msgid "Sign in to access the recruiting workspace."
+msgstr ""
+
+msgid "Sign in with an employer or recruiting-team account to access the recruiting workspace."
+msgstr ""
+
+msgid "Recruiting notes authored"
+msgstr ""
+
+msgid "Recruiting tasks created"
+msgstr ""
+
+msgid "Recruiting tasks assigned"
+msgstr ""
+
+msgid "Recruiting tasks completed"
+msgstr ""
+
+msgid "Recruiting activity"
+msgstr ""
+
+msgid "Collaboration tables are unavailable."
+msgstr ""
+
+msgid "You are not allowed to view recruiting insights."
+msgstr ""
+
+msgid "Sign in to access recruiting insights."
+msgstr ""
+
+msgid "Sign in with an employer or recruiting-team account to access recruiting insights."
+msgstr ""
+
+msgid "Sign in to export recruiting insights."
+msgstr ""
+
+msgid "No authorized recruiting scope is available."
+msgstr ""
+
+msgid "The insights export could not start because output was already sent."
+msgstr ""
+
+msgid "Metric"
+msgstr ""
+
+msgid "Value"
+msgstr ""
+
+msgid "Pipeline distribution"
+msgstr ""
+
+msgid "Open task workload"
+msgstr ""
+
+msgid "Overdue task workload"
+msgstr ""
+
+msgid "Candidate sources"
+msgstr ""
+
+msgid "Hires"
+msgstr ""
+
+msgid "Unmapped"
+msgstr ""
+
+msgid "Hire rate"
+msgstr ""
+
+msgid "Average days to hire"
+msgstr ""
+
+msgid "Average hours to first activity"
+msgstr ""
+
+msgid "Completed interviews"
+msgstr ""
+
+msgid "Average scorecard rating"
+msgstr ""
+
+msgid "Offer acceptance rate"
+msgstr ""
+
+msgid "Overdue tasks"
+msgstr ""
+
+msgid "You are not allowed to manage the recruiting pipeline."
+msgstr ""
+
+msgid "Sign in to access the recruiting pipeline."
+msgstr ""
+
+msgid "Sign in with an employer or recruiting-team account to access the recruiting pipeline."
+msgstr ""
+
+msgid "Application stage updated."
+msgstr ""
+
+msgid "Pipeline tables are unavailable."
+msgstr ""
+
+msgid "You are not allowed to move this application."
+msgstr ""
+
+msgid "Record a structured rejection reason in Candidate Workspace before moving this application to Rejected."
+msgstr ""
+
+msgid "The application stage could not be saved."
+msgstr ""
+
+msgid "The requested pipeline stage is unavailable."
+msgstr ""
+
+msgid "You are not allowed to open this pipeline."
+msgstr ""
+
+msgid "That job is no longer available."
+msgstr ""
+
+msgid "That pipeline stage is no longer available."
+msgstr ""
+
+msgid "Shortlisted"
+msgstr ""
+
+msgid "Offer"
+msgstr ""
+
+msgid "You are not allowed to manage pipeline stages."
+msgstr ""
+
+msgid "View Details"
+msgstr ""
+
+msgid "Automation settings saved."
+msgstr ""
+
+msgid "Automation scan complete. %d new notifications created."
+msgstr ""
+
+msgid "Enter a valid HTTPS signing endpoint and a shared secret of at least 24 characters."
+msgstr ""
+
+msgid "Overdue task"
+msgstr ""
+
+msgid "Upcoming interview"
+msgstr ""
+
+msgid "Pending approval"
+msgstr ""
+
+msgid "Approval requested"
+msgstr ""
+
+msgid "Stalled candidate"
+msgstr ""
+
+msgid "Action requested"
+msgstr ""
+
+msgid "Action cancelled"
+msgstr ""
+
+msgid "Interview completed"
+msgstr ""
+
+msgid "Interview cancelled"
+msgstr ""
+
+msgid "Offer sent"
+msgstr ""
+
+msgid "Offer withdrawn"
+msgstr ""
+
+msgid "Keep interviews, approvals, tasks, stalled applications, offer documents and signatures moving."
+msgstr ""
+
+msgid "Run scan now"
+msgstr ""
+
+msgid "%d unread"
+msgstr ""
+
+msgid "Reminder scan"
+msgstr ""
+
+msgid "Paused"
+msgstr ""
+
+msgid "Last run: %s"
+msgstr ""
+
+msgid "Not run yet"
+msgstr ""
+
+msgid "Email reminders"
+msgstr ""
+
+msgid "Delivered through the WordPress mail system"
+msgstr ""
+
+msgid "Notification Center"
+msgstr ""
+
+msgid "Search notifications"
+msgstr ""
+
+msgid "Notification status"
+msgstr ""
+
+msgid "All statuses"
+msgstr ""
+
+msgid "Mark %d notification read"
+msgid_plural "Mark all %d read"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Clear %d read notification"
+msgid_plural "Clear %d read notifications"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "No recruiting notifications yet."
+msgstr ""
+
+msgid "For %s"
+msgstr ""
+
+msgid "Email: %s"
+msgstr ""
+
+msgid "Mark read"
+msgstr ""
+
+msgid "Dismiss"
+msgstr ""
+
+msgid "Notification pages"
+msgstr ""
+
+msgid "Reminder and Delivery Settings"
+msgstr ""
+
+msgid "Enable scheduled recruiting reminders"
+msgstr ""
+
+msgid "Scans every 15 minutes and deduplicates notifications."
+msgstr ""
+
+msgid "Send recruiter reminder emails"
+msgstr ""
+
+msgid "Uses the reliable WP Job Portal mail path when available."
+msgstr ""
+
+msgid "Send candidate update emails"
+msgstr ""
+
+msgid "Emails candidates when actions, interviews, offers or signatures change."
+msgstr ""
+
+msgid "Automatically email calendar invitations"
+msgstr ""
+
+msgid "Sends separate RFC 5545 invitations to the candidate and interviewer when an interview is scheduled, updated, or cancelled."
+msgstr ""
+
+msgid "Upcoming interview window"
+msgstr ""
+
+msgid "Pending approval age"
+msgstr ""
+
+msgid "Stalled application age"
+msgstr ""
+
+msgid "Legacy Candidate Workspace page ID"
+msgstr ""
+
+msgid "Optional compatibility link for older recruiter pages"
+msgstr ""
+
+msgid "Candidate dashboard page ID"
+msgstr ""
+
+msgid "Optional: the page containing the job-seeker dashboard shortcode, used in emails"
+msgstr ""
+
+msgid "E-signature webhook provider"
+msgstr ""
+
+msgid "Connect DocuSign, Dropbox Sign, Adobe Acrobat Sign or another service through a secure adapter endpoint. The provider receives a one-hour offer-document URL and must return external_id and signing_url."
+msgstr ""
+
+msgid "Adapter endpoint"
+msgstr ""
+
+msgid "Shared HMAC secret"
+msgstr ""
+
+msgid "Configured — leave blank to keep"
+msgstr ""
+
+msgid "At least 24 characters"
+msgstr ""
+
+msgid "Synchronize signed/declined callbacks to offer decisions"
+msgstr ""
+
+msgid "Signed moves Sent offers to Accepted/Hired; declined moves them to Declined."
+msgstr ""
+
+msgid "Save automation settings"
+msgstr ""
+
+msgid "Recent Signature Requests"
+msgstr ""
+
+msgid "No signature requests yet."
+msgstr ""
+
+msgid "Updated %s"
+msgstr ""
+
+msgid "Open provider signing page"
+msgstr ""
+
+msgid "Candidate Management"
+msgstr ""
+
+msgid "Assign accountable team members, track the source, organize talent pools, and record a structured disposition."
+msgstr ""
+
+msgid "Application assignment"
+msgstr ""
+
+msgid "Primary recruiter"
+msgstr ""
+
+msgid "Save assignment"
+msgstr ""
+
+msgid "Who carries a candidate is set by the company owner or a company admin."
+msgstr ""
+
+msgid "Candidate source"
+msgstr ""
+
+msgid "Source type"
+msgstr ""
+
+msgid "Direct"
+msgstr ""
+
+msgid "Job board"
+msgstr ""
+
+msgid "Referral"
+msgstr ""
+
+msgid "Social"
+msgstr ""
+
+msgid "Agency"
+msgstr ""
+
+msgid "Campaign"
+msgstr ""
+
+msgid "Career site"
+msgstr ""
+
+msgid "Source name"
+msgstr ""
+
+msgid "Medium"
+msgstr ""
+
+msgid "Save source"
+msgstr ""
+
+msgid "Talent pools"
+msgstr ""
+
+msgid "No active talent pools exist for this company."
+msgstr ""
+
+msgid "Member"
+msgstr ""
+
+msgid "Tags (comma separated)"
+msgstr ""
+
+msgid "Private pool note"
+msgstr ""
+
+msgid "Add to pool"
+msgstr ""
+
+msgid "Structured rejection"
+msgstr ""
+
+msgid "Current reason: %s"
+msgstr ""
+
+msgid "Rejection reason"
+msgstr ""
+
+msgid "Select a reason"
+msgstr ""
+
+msgid "Internal note"
+msgstr ""
+
+msgid "Show this disposition in the Candidate Portal when the selected reason permits it"
+msgstr ""
+
+msgid "Candidate message"
+msgstr ""
+
+msgid "Record rejection"
+msgstr ""
+
+msgid "Talent pool created."
+msgstr ""
+
+msgid "Duplicate review saved."
+msgstr ""
+
+msgid "Candidate merge reversed. Applications and pool memberships were restored."
+msgstr ""
+
+msgid "Rejection reason created."
+msgstr ""
+
+msgid "The candidate-management change could not be saved."
+msgstr ""
+
+msgid "Candidates & talent pools"
+msgstr ""
+
+msgid "Organize reusable talent, review identity matches, and safely link duplicate applications."
+msgstr ""
+
+msgid "Create Talent Pool"
+msgstr ""
+
+msgid "Pool name"
+msgstr ""
+
+msgid "Create pool"
+msgstr ""
+
+msgid "Active Talent Pools"
+msgstr ""
+
+msgid "Recruiters can view company talent pools. Pool creation, duplicate merging, and rejection-reason configuration are limited to company administrators."
+msgstr ""
+
+msgid "No talent pools yet."
+msgstr ""
+
+msgid "Pool"
+msgstr ""
+
+msgid "Duplicate Candidate Review"
+msgstr ""
+
+msgid "Matches are suggestions based on normalized email or phone within the same company. A merge links applications to one candidate identity; it never deletes a resume or application and can be undone."
+msgstr ""
+
+msgid "No unreviewed duplicate suggestions."
+msgstr ""
+
+msgid "Candidate identity #%1$d and #%2$d"
+msgstr ""
+
+msgid "Email match"
+msgstr ""
+
+msgid "Phone match"
+msgstr ""
+
+msgid "Link as one candidate"
+msgstr ""
+
+msgid "Not a duplicate"
+msgstr ""
+
+msgid "Recent Reversible Merges"
+msgstr ""
+
+msgid "Linked identities"
+msgstr ""
+
+msgid "Undo merge"
+msgstr ""
+
+msgid "Message Templates"
+msgstr ""
+
+msgid "Reusable messages for writing to candidates, one at a time or to a whole selection. A template can be edited before it is sent, so it is a starting point rather than a fixed script."
+msgstr ""
+
+msgid "These are replaced when the message is sent:"
+msgstr ""
+
+msgid "Settings for"
+msgstr ""
+
+msgid "Show this company"
+msgstr ""
+
+msgid "Message templates and rejection reasons below belong to the company chosen here."
+msgstr ""
+
+msgid "No templates yet."
+msgstr ""
+
+msgid "Save changes"
+msgstr ""
+
+msgid "Remove this template? Messages already sent keep their text."
+msgstr ""
+
+msgid "Add a template"
+msgstr ""
+
+msgid "Interview invitation"
+msgstr ""
+
+msgid "About your application for {job_title}"
+msgstr ""
+
+msgid "Hi {candidate_name}, …"
+msgstr ""
+
+msgid "Save template"
+msgstr ""
+
+msgid "Rejection Reasons"
+msgstr ""
+
+msgid "Create company-specific reasons. Candidate visibility only permits a reason to be shared; the recruiter must still explicitly choose to show it."
+msgstr ""
+
+msgid "Reason title"
+msgstr ""
+
+msgid "Allow recruiters to share this reason with candidates"
+msgstr ""
+
+msgid "Add reason"
+msgstr ""
+
+msgid "Stage updated."
+msgstr ""
+
+msgid "Record a rejection reason under Overview before moving this candidate to Rejected."
+msgstr ""
+
+msgid "The stage could not be changed."
+msgstr ""
+
+msgid "Note added."
+msgstr ""
+
+msgid "Message sent to the candidate."
+msgstr ""
+
+msgid "The message could not be sent. A subject and a body are both needed."
+msgstr ""
+
+msgid "Note removed."
+msgstr ""
+
+msgid "Task created."
+msgstr ""
+
+msgid "Task status updated."
+msgstr ""
+
+msgid "Task deleted."
+msgstr ""
+
+msgid "Enter a note before saving."
+msgstr ""
+
+msgid "Enter a valid task and team assignee."
+msgstr ""
+
+msgid "This note cannot be removed by the current user."
+msgstr ""
+
+msgid "This task cannot be deleted by the current user."
+msgstr ""
+
+msgid "The collaboration change could not be saved."
+msgstr ""
+
+msgid "Interview scheduled."
+msgstr ""
+
+msgid "Interview status updated."
+msgstr ""
+
+msgid "Interview deleted."
+msgstr ""
+
+msgid "Scorecard saved."
+msgstr ""
+
+msgid "Enter valid interview details and an eligible interviewer."
+msgstr ""
+
+msgid "Complete every scorecard rating and recommendation."
+msgstr ""
+
+msgid "An interview with scorecards cannot be deleted."
+msgstr ""
+
+msgid "The evaluation change could not be saved."
+msgstr ""
+
+msgid "Offer draft created."
+msgstr ""
+
+msgid "Offer approval requested."
+msgstr ""
+
+msgid "Offer approval decision recorded."
+msgstr ""
+
+msgid "Offer status updated."
+msgstr ""
+
+msgid "Offer deleted."
+msgstr ""
+
+msgid "Enter valid offer, compensation and date details."
+msgstr ""
+
+msgid "Select at least one eligible offer approver."
+msgstr ""
+
+msgid "Only the assigned approver can record this pending decision."
+msgstr ""
+
+msgid "This offer status transition is not allowed."
+msgstr ""
+
+msgid "This offer cannot be deleted by the current user or in its current state."
+msgstr ""
+
+msgid "The offer change could not be saved."
+msgstr ""
+
+msgid "The approved offer was sent to the configured e-signature provider."
+msgstr ""
+
+msgid "Configure the e-signature adapter and confirm the candidate email before sending."
+msgstr ""
+
+msgid "This offer already has an active signature request."
+msgstr ""
+
+msgid "This offer cannot be sent for signature in its current state."
+msgstr ""
+
+msgid "The e-signature provider did not accept this request."
+msgstr ""
+
+msgid "The offer status was not changed because its active e-signature request could not be safely voided."
+msgstr ""
+
+msgid "Void or complete the active e-signature request before recording a manual acceptance."
+msgstr ""
+
+msgid "Candidate action request sent."
+msgstr ""
+
+msgid "Candidate action request cancelled."
+msgstr ""
+
+msgid "Enter a valid candidate action request."
+msgstr ""
+
+msgid "This application is not connected to a candidate account."
+msgstr ""
+
+msgid "The candidate action request could not be saved."
+msgstr ""
+
+msgid "Application assignment saved."
+msgstr ""
+
+msgid "Candidate source saved."
+msgstr ""
+
+msgid "Structured rejection recorded."
+msgstr ""
+
+msgid "Candidate added to the talent pool."
+msgstr ""
+
+msgid "Candidate removed from the talent pool."
+msgstr ""
+
+msgid "Calendar invitations sent."
+msgstr ""
+
+msgid "One or more calendar invitations could not be delivered."
+msgstr ""
+
+msgid "Select eligible company team members for this application."
+msgstr ""
+
+msgid "Only the company owner or a company admin can say who carries a candidate. Ask them to change the assignment."
+msgstr ""
+
+msgid "Select an available rejection reason."
+msgstr ""
+
+msgid "Select an available talent pool."
+msgstr ""
+
+msgid "Added a candidate note"
+msgstr ""
+
+msgid "Removed a candidate note"
+msgstr ""
+
+msgid "Created a recruiting task"
+msgstr ""
+
+msgid "Completed a recruiting task"
+msgstr ""
+
+msgid "Reopened a recruiting task"
+msgstr ""
+
+msgid "Deleted a recruiting task"
+msgstr ""
+
+msgid "Moved the application to another stage"
+msgstr ""
+
+msgid "Synchronized a legacy application status"
+msgstr ""
+
+msgid "Updated the legacy application note"
+msgstr ""
+
+msgid "Updated the candidate rating"
+msgstr ""
+
+msgid "Scheduled an interview"
+msgstr ""
+
+msgid "Completed an interview"
+msgstr ""
+
+msgid "Cancelled an interview"
+msgstr ""
+
+msgid "Deleted an interview"
+msgstr ""
+
+msgid "Submitted a candidate scorecard"
+msgstr ""
+
+msgid "Updated a candidate scorecard"
+msgstr ""
+
+msgid "Created an offer draft"
+msgstr ""
+
+msgid "Requested offer approval"
+msgstr ""
+
+msgid "Approved an offer"
+msgstr ""
+
+msgid "Rejected an offer approval request"
+msgstr ""
+
+msgid "Marked an offer as sent"
+msgstr ""
+
+msgid "Recorded an accepted offer"
+msgstr ""
+
+msgid "Recorded a declined offer"
+msgstr ""
+
+msgid "Withdrew an offer"
+msgstr ""
+
+msgid "Deleted an offer draft"
+msgstr ""
+
+msgid "Sent an approved offer for e-signature"
+msgstr ""
+
+msgid "Sent an offer signature request"
+msgstr ""
+
+msgid "Candidate viewed the signature request"
+msgstr ""
+
+msgid "Candidate signed the offer"
+msgstr ""
+
+msgid "Candidate declined the signature request"
+msgstr ""
+
+msgid "Voided the signature request"
+msgstr ""
+
+msgid "Sent a candidate action request"
+msgstr ""
+
+msgid "Candidate completed an action request"
+msgstr ""
+
+msgid "Cancelled a candidate action request"
+msgstr ""
+
+msgid "Updated application ownership"
+msgstr ""
+
+msgid "Updated candidate source"
+msgstr ""
+
+msgid "Recorded a structured rejection"
+msgstr ""
+
+msgid "Added candidate to a talent pool"
+msgstr ""
+
+msgid "Removed candidate from a talent pool"
+msgstr ""
+
+msgid "Team Tasks"
+msgstr ""
+
+msgid "Candidate Requests"
+msgstr ""
+
+msgid "Activity"
+msgstr ""
+
+msgid "Close this application with a recorded reason. You choose whether the candidate sees it."
+msgstr ""
+
+msgid "New task"
+msgstr ""
+
+msgid "New request"
+msgstr ""
+
+msgid "Schedule interview"
+msgstr ""
+
+msgid "Add scorecard"
+msgstr ""
+
+msgid "New offer"
+msgstr ""
+
+msgid "Reject candidate"
+msgstr ""
+
+msgid "Keep candidate notes, team mentions, assigned tasks and application history together."
+msgstr ""
+
+msgid "Application"
+msgstr ""
+
+msgid "Search by candidate, company, job or application number"
+msgstr ""
+
+msgid "No matching application"
+msgstr ""
+
+msgid "Application #%1$d"
+msgstr ""
+
+msgid "Open workspace"
+msgstr ""
+
+msgid "No approved application is available."
+msgstr ""
+
+msgid "Choose a candidate above to open their workspace. Whoever you pick is where this screen opens next time."
+msgstr ""
+
+msgid "Applied %s"
+msgstr ""
+
+msgid "Back to pipeline"
+msgstr ""
+
+msgid "Candidate workspace sections"
+msgstr ""
+
+msgid "Source"
+msgstr ""
+
+msgid "Not recorded"
+msgstr ""
+
+msgid "Next interview"
+msgstr ""
+
+msgid "None scheduled"
+msgstr ""
+
+msgid "%1$s / 5 from %2$s scorecard"
+msgid_plural "%1$s / 5 from %2$s scorecards"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "None yet"
+msgstr ""
+
+msgid "Current stage:"
+msgstr ""
+
+msgid "Move to…"
+msgstr ""
+
+msgid "Move"
+msgstr ""
+
+msgid "Recruitment sections"
+msgstr ""
+
+msgid "Candidate Notes"
+msgstr ""
+
+msgid "Add an internal note"
+msgstr ""
+
+msgid "Share context with the hiring team…"
+msgstr ""
+
+msgid "Mention an active company team member with @username. Mention events are exposed for notification integrations."
+msgstr ""
+
+msgid "Add note"
+msgstr ""
+
+msgid "No structured notes yet."
+msgstr ""
+
+msgid "Erased user"
+msgstr ""
+
+msgid "Remove note"
+msgstr ""
+
+msgid "What has been said to this candidate, and anything they have said back. Notes and tasks stay internal; everything here is visible to them."
+msgstr ""
+
+msgid "Nothing has been exchanged with this candidate yet."
+msgstr ""
+
+msgid "About %s"
+msgstr ""
+
+msgid "Send to candidate"
+msgstr ""
+
+msgid "Tasks and Due Dates"
+msgstr ""
+
+msgid "Task"
+msgstr ""
+
+msgid "Assignee"
+msgstr ""
+
+msgid "Due date"
+msgstr ""
+
+msgid "Priority"
+msgstr ""
+
+msgid "High"
+msgstr ""
+
+msgid "Low"
+msgstr ""
+
+msgid "Create task"
+msgstr ""
+
+msgid "No tasks yet."
+msgstr ""
+
+msgid "Assigned to %s"
+msgstr ""
+
+msgid "Overdue: %s"
+msgstr ""
+
+msgid "Due: %s"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
+
+msgid "Activity Timeline"
+msgstr ""
+
+msgid "No activity recorded yet."
+msgstr ""
+
+msgid "Last 30 days"
+msgstr ""
+
+msgid "Last 90 days"
+msgstr ""
+
+msgid "Last 180 days"
+msgstr ""
+
+msgid "Last 365 days"
+msgstr ""
+
+msgid "All time"
+msgstr ""
+
+msgid "Scheduled"
+msgstr ""
+
+msgid "Cancelled"
+msgstr ""
+
+msgid "Draft"
+msgstr ""
+
+msgid "Sent"
+msgstr ""
+
+msgid "Accepted"
+msgstr ""
+
+msgid "Declined"
+msgstr ""
+
+msgid "Withdrawn"
+msgstr ""
+
+msgid "Submitted in this cohort"
+msgstr ""
+
+msgid "%s%% hire rate"
+msgstr ""
+
+msgid "Time to hire"
+msgstr ""
+
+msgid "%s days"
+msgstr ""
+
+msgid "No hires yet"
+msgstr ""
+
+msgid "Average for hired applications"
+msgstr ""
+
+msgid "Available after the first hire"
+msgstr ""
+
+msgid "First activity"
+msgstr ""
+
+msgid "%s hours"
+msgstr ""
+
+msgid "Average team response"
+msgstr ""
+
+msgid "Recorded interview outcomes"
+msgstr ""
+
+msgid "Average rating: %s"
+msgstr ""
+
+msgid "No scorecards yet"
+msgstr ""
+
+msgid "Offer acceptance"
+msgstr ""
+
+msgid "Accepted versus decided offers"
+msgstr ""
+
+msgid "Offer decisions waiting"
+msgstr ""
+
+msgid "%d overdue"
+msgstr ""
+
+msgid "All authorized jobs"
+msgstr ""
+
+msgid "See hiring velocity, pipeline distribution, offer outcomes and team workload in one authorized view."
+msgstr ""
+
+msgid "Export aggregate CSV"
+msgstr ""
+
+msgid "Application cohort"
+msgstr ""
+
+msgid "Apply filters"
+msgstr ""
+
+msgid "No recruiting scope available"
+msgstr ""
+
+msgid "Ask a company administrator to add you to a recruiting team or assign you to a job."
+msgstr ""
+
+msgid "The cohort includes applications submitted during the selected period. Operational outcomes and activity are calculated for those applications through today; stage values show current distribution, not stage-to-stage conversion."
+msgstr ""
+
+msgid "Current Pipeline Distribution"
+msgstr ""
+
+msgid "No applications are present in this cohort."
+msgstr ""
+
+msgid "Interviews and Offers"
+msgstr ""
+
+msgid "Open Task Workload"
+msgstr ""
+
+msgid "Aggregate workload for the selected application cohort. Overdue status is evaluated in UTC."
+msgstr ""
+
+msgid "No open tasks are assigned in this cohort."
+msgstr ""
+
+msgid "Overdue"
+msgstr ""
+
+msgid "Candidate Sources and Hires"
+msgstr ""
+
+msgid "Aggregate attribution only; candidate names and contact details are excluded."
+msgstr ""
+
+msgid "No source data is available for this cohort."
+msgstr ""
+
+msgid "Team member saved."
+msgstr ""
+
+msgid "Account created and added to the team. We emailed a link to set the password."
+msgstr ""
+
+msgid "A new link to set the password has been emailed."
+msgstr ""
+
+msgid "A link was emailed a few minutes ago. Please wait before sending another."
+msgstr ""
+
+msgid "No account has this username. Enter an email address instead to create a new account."
+msgstr ""
+
+msgid "Enter a valid email address to create a new account."
+msgstr ""
+
+msgid "The account could not be created."
+msgstr ""
+
+msgid "Today's limit of new accounts for this company has been reached. Please try again tomorrow."
+msgstr ""
+
+msgid "Team member removed."
+msgstr ""
+
+msgid "Access revoked. The membership is kept, marked revoked, so the history stays."
+msgstr ""
+
+msgid "Access revoked, and their jobs handed to the member you chose."
+msgstr ""
+
+msgid "Job owner saved."
+msgstr ""
+
+msgid "Job owner removed."
+msgstr ""
+
+msgid "Choose an existing WordPress user and a valid recruiting role."
+msgstr ""
+
+msgid "Choose a job and an active member of the selected company."
+msgstr ""
+
+msgid "Legacy company and job owners are protected for backwards compatibility."
+msgstr ""
+
+msgid "The recruiting team change could not be saved."
+msgstr ""
+
+msgid "Recruiting Teams"
+msgstr ""
+
+msgid "All recruiting teams"
+msgstr ""
+
+msgid "Members (%s)"
+msgstr ""
+
+msgid "Job ownership (%s)"
+msgstr ""
+
+msgid "Access history (%s)"
+msgstr ""
+
+msgid "That person is not on this team"
+msgstr ""
+
+msgid "Back to the team"
+msgstr ""
+
+msgid "Revoke %s"
+msgstr ""
+
+msgid "%1$s since %2$s. The membership is kept and marked revoked, so the record of it stays."
+msgstr ""
+
+msgid "They own %s job in this company:"
+msgid_plural "They own %s jobs in this company:"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "primary owner"
+msgstr ""
+
+msgid "and %s more"
+msgstr ""
+
+msgid "Find a colleague by name or email"
+msgstr ""
+
+msgid "They own no jobs in this company, so nothing needs handing on."
+msgstr ""
+
+msgid "Hand their jobs to"
+msgstr ""
+
+msgid "Nobody — leave the jobs unowned"
+msgstr ""
+
+msgid "Revoke access"
+msgstr ""
+
+msgid "Showing %s colleagues. Search above to reach the others."
+msgstr ""
+
+msgid "No access changes have been recorded for this team since this version was installed"
+msgstr ""
+
+msgid "Add a team member"
+msgstr ""
+
+msgid "Member name or email"
+msgstr ""
+
+msgid "Owns"
+msgstr ""
+
+msgid "Since"
+msgstr ""
+
+msgid "Hasn't signed in yet"
+msgstr ""
+
+msgid "Reinstate"
+msgstr ""
+
+msgid "Send link again"
+msgstr ""
+
+msgid "No member matches this search"
+msgstr ""
+
+msgid "Nobody has had their access to this team revoked"
+msgstr ""
+
+msgid "This company has no team members yet"
+msgstr ""
+
+msgid "Search jobs"
+msgstr ""
+
+msgid "No job matches that search. Clear it to assign one of the others."
+msgstr ""
+
+msgid "No member matches that search. Clear it to assign one of the others."
+msgstr ""
+
+msgid "Add at least one team member and one job before assigning ownership."
+msgstr ""
+
+msgid "Assign a job owner"
+msgstr ""
+
+msgid "Ownership"
+msgstr ""
+
+msgid "Collaborator"
+msgstr ""
+
+msgid "Primary owner"
+msgstr ""
+
+msgid "Assign job owner"
+msgstr ""
+
+msgid "Showing %s jobs, by title."
+msgstr ""
+
+msgid "Showing %s members, by role then name."
+msgstr ""
+
+msgid "Use the search above to reach the others."
+msgstr ""
+
+msgid "Primary"
+msgstr ""
+
+msgid "No job in this company has a named owner yet"
+msgstr ""
+
+msgid "Recruiting People"
+msgstr ""
+
+msgid "People"
+msgstr ""
+
+msgid "That user no longer exists. Here are the people on recruiting teams instead."
+msgstr ""
+
+msgid "Reverse the order"
+msgstr ""
+
+msgid "Name, username or email"
+msgstr ""
+
+msgid "Any role"
+msgstr ""
+
+msgid "Person"
+msgstr ""
+
+msgid "Roles held"
+msgstr ""
+
+msgid "Open access"
+msgstr ""
+
+msgid "That page is past the end of the list"
+msgstr ""
+
+msgid "Back to the first page"
+msgstr ""
+
+msgid "Nobody on a recruiting team matches this search"
+msgstr ""
+
+msgid "Clear the filters"
+msgstr ""
+
+msgid "Nobody has had recruiting access revoked"
+msgstr ""
+
+msgid "Nobody is on a recruiting team yet"
+msgstr ""
+
+msgid "When"
+msgstr ""
+
+msgid "What changed"
+msgstr ""
+
+msgid "Changed by"
+msgstr ""
+
+msgid "Company #%d"
+msgstr ""
+
+msgid "Manager: %s"
+msgstr ""
+
+msgid "Email or username"
+msgstr ""
+
+msgid "New email? An account is created and a link to set the password is emailed."
+msgstr ""
+
+msgid "Already on the team? Saving changes their role."
+msgstr ""
+
+msgid "(optional)"
+msgstr ""
+
+msgid "Used for a new account. People already on the site keep their own name."
+msgstr ""
+
+msgid "Add to team"
+msgstr ""
+
+msgid "Showing %1$s–%2$s of %3$s"
+msgstr ""
+
+msgid "Page %1$s of %2$s"
+msgstr ""
+
+msgid "Action request marked complete."
+msgstr ""
+
+msgid "Request removed from your list. The hiring team still has it."
+msgstr ""
+
+msgid "Offer removed from your list. The hiring team still has it."
+msgstr ""
+
+msgid "The request could not be updated. Please try again."
+msgstr ""
+
+msgid "Your reply has been sent to the hiring team."
+msgstr ""
+
+msgid "You have accepted the offer. The hiring team has been told."
+msgstr ""
+
+msgid "You have declined the offer. The hiring team has been told."
+msgstr ""
+
+msgid "That offer is no longer open for an answer."
+msgstr ""
+
+msgid "This offer is waiting for your signature. Use \"Review and sign\" to accept it."
+msgstr ""
+
+msgid "The signature request on this offer could not be withdrawn, so your answer was not recorded. Please tell the hiring team."
+msgstr ""
+
+msgid "Track requests, interviews and candidate-visible offers in one secure place."
+msgstr ""
+
+msgid "You do not have an approved job application yet."
+msgstr ""
+
+msgid "View application"
+msgstr ""
+
+msgid "Action requests"
+msgstr ""
+
+msgid "Items the hiring team needs you to complete."
+msgstr ""
+
+msgid "No action requests."
+msgstr ""
+
+msgid "Mark complete"
+msgstr ""
+
+msgid "Remove from my list"
+msgstr ""
+
+msgid "No upcoming interviews."
+msgstr ""
+
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Add to calendar"
+msgstr ""
+
+msgid "No candidate-visible offers."
+msgstr ""
+
+msgid "Employment"
+msgstr ""
+
+msgid "Expires"
+msgstr ""
+
+msgid "Accept offer"
+msgstr ""
+
+msgid "Decline offer"
+msgstr ""
+
+msgid "You accepted this offer."
+msgstr ""
+
+msgid "You declined this offer."
+msgstr ""
+
+msgid "Download offer PDF"
+msgstr ""
+
+msgid "Review and sign"
+msgstr ""
+
+msgid "Signature: %s"
+msgstr ""
+
+msgid "Your conversation with the hiring team about this application."
+msgstr ""
+
+msgid "No messages yet. You can write to the hiring team below."
+msgstr ""
+
+msgid "You"
+msgstr ""
+
+msgid "Write to the hiring team"
+msgstr ""
+
+msgid "Your message"
+msgstr ""
+
+msgid "Send reply"
+msgstr ""
+
+msgid "Internal recruiter notes, team tasks, scorecards and approval comments are never shown in this portal."
+msgstr ""
+
+msgid "Updates"
+msgstr ""
+
+msgid "Mark %d update read"
+msgid_plural "Mark all %d updates read"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Clear %d read update"
+msgid_plural "Clear %d read updates"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Everything the hiring teams have sent you, across all of your applications."
+msgstr ""
+
+msgid "%d time"
+msgid_plural "%d times"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Show all %d updates"
+msgstr ""
+
+msgid "Candidate Action Requests"
+msgstr ""
+
+msgid "Use this section only for items the candidate should see. Internal recruiter tasks remain private."
+msgstr ""
+
+msgid "Request"
+msgstr ""
+
+msgid "Candidate instructions"
+msgstr ""
+
+msgid "Send action request"
+msgstr ""
+
+msgid "No candidate action requests yet."
+msgstr ""
+
+msgid "Requested by %s"
+msgstr ""
+
+msgid "Requested by an erased user"
+msgstr ""
+
+msgid "Cancel request"
+msgstr ""
+
+msgid "Approval rejected"
+msgstr ""
+
+msgid "Part time"
+msgstr ""
+
+msgid "Contract"
+msgstr ""
+
+msgid "Temporary"
+msgstr ""
+
+msgid "Annual"
+msgstr ""
+
+msgid "Hourly"
+msgstr ""
+
+msgid "Per project"
+msgstr ""
+
+msgid "Offers and Approvals"
+msgstr ""
+
+msgid "Create an internal offer record, collect team approvals, and record the delivery and candidate decision lifecycle."
+msgstr ""
+
+msgid "Offer title"
+msgstr ""
+
+msgid "Employment offer"
+msgstr ""
+
+msgid "Pay period"
+msgstr ""
+
+msgid "Offer terms and conditions"
+msgstr ""
+
+msgid "Create offer draft"
+msgstr ""
+
+msgid "Secure delivery:"
+msgstr ""
+
+msgid "Generate a PDF from the recorded offer and send approved offers through the configured e-signature provider. Candidate delivery and signing are performed by that provider."
+msgstr ""
+
+msgid "No offers created yet."
+msgstr ""
+
+msgid "Starts %s"
+msgstr ""
+
+msgid "Expires %s"
+msgstr ""
+
+msgid "View terms and summary"
+msgstr ""
+
+msgid "Erased approver"
+msgstr ""
+
+msgid "Optional decision comment"
+msgstr ""
+
+msgid "Signature history"
+msgstr ""
+
+msgid "Requested %s"
+msgstr ""
+
+msgid "Open signing page"
+msgstr ""
+
+msgid "Approvers"
+msgstr ""
+
+msgid "Request approval"
+msgstr ""
+
+msgid "Send for e-signature"
+msgstr ""
+
+msgid "Withdraw"
+msgstr ""
+
+msgid "Record accepted"
+msgstr ""
+
+msgid "Record declined"
+msgstr ""
+
+msgid "Delete offer"
+msgstr ""
+
+msgid "Unknown user"
+msgstr ""
+
+msgid "All people"
+msgstr ""
+
+msgid "WordPress profile"
+msgstr ""
+
+msgid "Teams (%s)"
+msgstr ""
+
+msgid "Owned jobs (%s)"
+msgstr ""
+
+msgid "No changes to this person's access have been recorded since this version was installed"
+msgstr ""
+
+msgid "Company #%d (deleted)"
+msgstr ""
+
+msgid "Open team"
+msgstr ""
+
+msgid "This person is not on any recruiting team"
+msgstr ""
+
+msgid "Open ownership"
+msgstr ""
+
+msgid "This person owns no jobs"
+msgstr ""
+
+msgid "That company no longer has a recruiting team you can open. Here are the teams instead."
+msgstr ""
+
+msgid "No recruiting team matches this search"
+msgstr ""
+
+msgid "No recruiting access has been revoked anywhere"
+msgstr ""
+
+msgid "No company has a recruiting team yet"
+msgstr ""
+
+msgid "Schedule candidate interviews and keep the assigned interviewer and status with the application."
+msgstr ""
+
+msgid "Interview title"
+msgstr ""
+
+msgid "First interview"
+msgstr ""
+
+msgid "Date and time"
+msgstr ""
+
+msgid "30 minutes"
+msgstr ""
+
+msgid "45 minutes"
+msgstr ""
+
+msgid "60 minutes"
+msgstr ""
+
+msgid "90 minutes"
+msgstr ""
+
+msgid "Interviewer"
+msgstr ""
+
+msgid "Location or meeting link"
+msgstr ""
+
+msgid "No interviews scheduled yet."
+msgstr ""
+
+msgid "%1$s · %2$d minutes · %3$s"
+msgstr ""
+
+msgid "Interviewer: %s"
+msgstr ""
+
+msgid "Interviewer: unassigned"
+msgstr ""
+
+msgid "Add to calendar (.ics)"
+msgstr ""
+
+msgid "Send calendar invitation"
+msgstr ""
+
+msgid "Mark scheduled"
+msgstr ""
+
+msgid "Mark completed"
+msgstr ""
+
+msgid "Structured Scorecards"
+msgstr ""
+
+msgid "%d submitted scorecard"
+msgid_plural "%d submitted scorecards"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Related interview"
+msgstr ""
+
+msgid "General candidate evaluation"
+msgstr ""
+
+msgid "Evidence for %s"
+msgstr ""
+
+msgid "Strengths"
+msgstr ""
+
+msgid "Concerns"
+msgstr ""
+
+msgid "Evaluation summary"
+msgstr ""
+
+msgid "Recommendation"
+msgstr ""
+
+msgid "Select recommendation"
+msgstr ""
+
+msgid "Save scorecard"
+msgstr ""
+
+msgid "No scorecards submitted yet."
+msgstr ""
+
+msgid "Erased evaluator"
+msgstr ""
+
+msgid "View evaluation evidence"
+msgstr ""
+
+msgid "Strengths:"
+msgstr ""
+
+msgid "Concerns:"
+msgstr ""
+
+msgid "Pipeline stage created."
+msgstr ""
+
+msgid "Pipeline stage deleted."
+msgstr ""
+
+msgid "A stage with this name already exists for the company."
+msgstr ""
+
+msgid "Enter a valid stage name."
+msgstr ""
+
+msgid "System stages and stages containing applications cannot be deleted."
+msgstr ""
+
+msgid "The pipeline stage could not be deleted."
+msgstr ""
+
+msgid "Move candidates through a company-owned hiring workflow. Legacy Resume Action statuses remain synchronized for compatibility."
+msgstr ""
+
+msgid "Find a job"
+msgstr ""
+
+msgid "Job or company name"
+msgstr ""
+
+msgid "No matching job"
+msgstr ""
+
+msgid "Open pipeline"
+msgstr ""
+
+msgid "Showing %s jobs, most recent first. Search by name to reach the others."
+msgstr ""
+
+msgid "%s job matches your search."
+msgid_plural "%s jobs match your search."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "New stage name"
+msgstr ""
+
+msgid "Stage color"
+msgstr ""
+
+msgid "Add stage"
+msgstr ""
+
+msgid "Pipeline stages are set by your company admin."
+msgstr ""
+
+msgid "Pipeline stages are set by your company admin, %s."
+msgstr ""
+
+msgid "No job matches that search. Clear it to see the most recent jobs again."
+msgstr ""
+
+msgid "Create a job before opening the recruiting pipeline."
+msgstr ""
+
+msgid "Choose a job above to open its pipeline. Whichever you pick is where this screen opens next time."
+msgstr ""
+
+msgid "No active pipeline stages are available."
+msgstr ""
+
+msgid "Pipeline scrolling controls"
+msgstr ""
+
+msgid "Previous stages"
+msgstr ""
+
+msgid "Next stages"
+msgstr ""
+
+msgid "Application pipeline"
+msgstr ""
+
+msgid "%s candidate in this stage"
+msgid_plural "%s candidates in this stage"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%1$s of %2$s"
+msgstr ""
+
+msgid "Show %s more"
+msgstr ""
+
+msgid "Delete empty stage"
+msgstr ""
+
+msgid "The application could not be moved."
+msgstr ""
+
+msgid "Loading…"
+msgstr ""
+
+msgid "Those candidates could not be loaded."
+msgstr ""
+
+msgid "Manage per-company recruiters and hiring managers without changing global WordPress roles. Existing company and job owners remain protected."
+msgstr ""
+
+msgid "Find a company"
+msgstr ""
+
+msgid "Select company"
+msgstr ""
+
+msgid "Showing %s companies, by name. Search to reach the others."
+msgstr ""
+
+msgid "No company matches that search. Clear it to see your companies again."
+msgstr ""
+
+msgid "Create a company before adding a recruiting team."
+msgstr ""
+
+msgid "Company Members"
+msgstr ""
+
+msgid "Search members"
+msgstr ""
+
+msgid "Search name or email"
+msgstr ""
+
+msgid "No member matches that search."
+msgstr ""
+
+msgid "No members found."
+msgstr ""
+
+msgid "Job Ownership"
+msgstr ""
+
+msgid "Search jobs by title"
+msgstr ""
+
+msgid "Add at least one company member and one job before assigning ownership."
+msgstr ""
+
+msgid "Showing %s jobs, by title. Use the job search below to reach the others."
+msgstr ""
+
+msgid "These are the %1$s members shown in Company Members, of %2$s on the team. Search or page that list to assign someone else."
+msgstr ""
+
+msgid "No job owners found."
+msgstr ""
+
+msgid "Install and activate WP Job Portal before activating Recruit Suite."
+msgstr ""
+
+msgid "Recruit Suite requires WP Job Portal %1$s or later. Update WP Job Portal first. Nothing has been changed on this site."
+msgstr ""
+
+msgid "WP Job Portal Recruit Suite is inactive: WP Job Portal needs updating."
+msgstr ""
+
+msgid "WP Job Portal Matching Suite requires WP Job Portal to be installed and active."
+msgstr ""
+
+msgid "WP Job Portal Matching Suite is inactive: WP Job Portal needs updating."
+msgstr ""
+
+msgid "No feature is running and no database change has been made. Any WP Job Portal add-ons already installed continue to work normally."
+msgstr ""
+
+msgid "Install and activate WP Job Portal before activating AI & Matching."
+msgstr ""
+
+msgid "WP Job Portal Matching Suite requires WP Job Portal %1$s or later. Update WP Job Portal first. Nothing has been changed on this site."
+msgstr ""
+
+msgid "WP Job Portal Matching Suite has no activation key yet."
+msgstr ""
+
+msgid "The WP Job Portal Matching Suite activation key was not accepted."
+msgstr ""
+
+msgid "Excellent Match"
+msgstr ""
+
+msgid "Strong Match"
+msgstr ""
+
+msgid "Good Match"
+msgstr ""
+
+msgid "Partial Match"
+msgstr ""
+
+msgid "Limited Match"
+msgstr ""
+
+msgid "Based on your resume and profile information"
+msgstr ""
+
+msgid "Based on your job and profile information"
+msgstr ""
+
+msgid "Open AI Studio"
+msgstr ""
+
+msgid "No matching content is available for this preview yet."
+msgstr ""
+
+msgid "Choose a value from 1 to 50."
+msgstr ""
+
+msgid "Compact"
+msgstr ""
+
+msgid "careers"
+msgstr ""
+
+msgid "Display a configurable list of jobs."
+msgstr ""
+
+msgid "Job selection"
+msgstr ""
+
+msgid "Display featured companies."
+msgstr ""
+
+msgid "Company selection"
+msgstr ""
+
+msgid "Display a configurable list of resumes."
+msgstr ""
+
+msgid "Resume selection"
+msgstr ""
+
+msgid "Newest resumes"
+msgstr ""
+
+msgid "Top resumes"
+msgstr ""
+
+msgid "Featured resumes"
+msgstr ""
+
+msgid "Search heading"
+msgstr ""
+
+msgid "Job status"
+msgstr ""
+
+msgid "Add a configurable job search form."
+msgstr ""
+
+msgid "Columns per row"
+msgstr ""
+
+msgid "Visible fields"
+msgstr ""
+
+msgid "This site has no licence key."
+msgstr ""
+
+msgid "Its licence was activated for a different site address. Activate it for this site, or release the other site first."
+msgstr ""
+
+msgid "Your licence does not include it."
+msgstr ""
+
+msgid "The licence server no longer accepts this licence for this site."
+msgstr ""
+
+msgid "The licence could not be verified for 30 days."
+msgstr ""
+
+msgid "Its licence has not been activated on this site yet."
+msgstr ""
+
+msgid "%s is not running."
+msgstr ""
+
+msgid "Your data and settings are kept and come back as soon as the licence is active."
+msgstr ""
+
+msgid "Full time"
 msgstr ""

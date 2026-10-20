@@ -255,8 +255,9 @@ class WPJOBPORTAL_Mode_Policy_Service {
             $table = $wpdb->prefix . 'wj_portal_config';
 
             foreach ($locked as $name => $value) {
-                $result = $wpdb->query($wpdb->prepare(
-                    "UPDATE `{$table}` SET `configvalue` = %s WHERE `configname` = %s AND `configvalue` <> %s",
+                $result = wpjobportaldb_direct::query($wpdb->prepare(
+                    "UPDATE %i SET `configvalue` = %s WHERE `configname` = %s AND `configvalue` <> %s",
+                    $table,
                     (string) $value,
                     (string) $name,
                     (string) $value

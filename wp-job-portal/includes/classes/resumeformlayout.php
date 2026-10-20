@@ -809,7 +809,7 @@ class WPJOBPORTALResumeFormlayout {
                 <span class="'.esc_attr($this->class_prefix).'-addresume-addfield-btn-txt"><i class="fa fa-plus-square-o" aria-hidden="true"></i>'.esc_html(__('Add New','wp-job-portal')).' '. esc_html(__('Employer','wp-job-portal')).'
                 </span></div>';
             }else{
-                $wpjobportal_html .= '<div class="wpjp-add-new-section-link wjportal-resume-add-new-section-btn " onclick="showResumeSection( this ,\'employer\');"><i class="fa fa-plus"></i>'.esc_html(__('Add New','wp-job-portal')).' '. esc_html(__('Employer').'</div>';
+                $wpjobportal_html .= '<div class="wpjp-add-new-section-link wjportal-resume-add-new-section-btn " onclick="showResumeSection( this ,\'employer\');"><i class="fa fa-plus"></i>'.esc_html(__('Add New','wp-job-portal')).' '. esc_html(__('Employer','wp-job-portal')).'</div>';
             }
         }
         return $wpjobportal_html;
@@ -927,7 +927,7 @@ class WPJOBPORTALResumeFormlayout {
                                 </div>
                                 <div class="wjportal-form-image-wrp" style="display:'.$wpjobportal_class.'">
                                     <img class="rs_photo wjportal-form-image" id="rs_photo" src="' . esc_url($wpjobportal_img) . '" alt="'.esc_attr(__('Resume image','wp-job-portal')).'"/>
-                                    <img id="wjportal-form-delete-image" alt="cross" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/no.png" />
+                                    <img id="wjportal-form-delete-image" alt="'.esc_attr__('Remove', 'wp-job-portal').'" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/no.png" />
                                 </div>';
                                 $wpjobportal_logoformat = wpjobportal::$_config->getConfigurationByConfigName('image_file_type');
                                 $wpjobportal_maxsize = wpjobportal::$_config->getConfigurationByConfigName('resume_photofilesize');
@@ -959,7 +959,7 @@ class WPJOBPORTALResumeFormlayout {
                         }
                         $wpjobportal_fieldvalue .= '</span><span class="clickablefiles wjportal-form-upload-btn">'.esc_html(__('Select Multiple Files','wp-job-portal')).'</span>';
 
-                        $wpjobportal_fieldvalue .= '<input  type="file" id="resumefiles" value="'.$file_names_string.'" placeholder="Choose Resume File" class="wjportal-form-upload-file" name="resumefiles[]" data-validation="' . $wpjobportal_req . '" multiple="true" style="display:none;" />';
+                        $wpjobportal_fieldvalue .= '<input  type="file" id="resumefiles" value="'.$file_names_string.'" placeholder="'.esc_attr__('Choose Resume File', 'wp-job-portal').'" class="wjportal-form-upload-file" name="resumefiles[]" data-validation="' . $wpjobportal_req . '" multiple="true" style="display:none;" />';
                         $wpjobportal_fieldvalue .= '</div>';
                         $wpjobportal_logoformat = wpjobportal::$_config->getConfigurationByConfigName('document_file_type');
                                 $wpjobportal_maxsize = wpjobportal::$_config->getConfigurationByConfigName('document_file_size');
@@ -996,7 +996,7 @@ class WPJOBPORTALResumeFormlayout {
                         if(in_array('tag', wpjobportal::$_active_addons)){
                             $wpjobportal_value = isset($wpjobportal_resume->resumetags) ? $wpjobportal_resume->resumetags : '';
                             $wpjobportal_data .= $this->getFieldForPersonalSection($wpjobportal_field,$wpjobportal_value,'','',$wpjobportal_themecall);
-                            wp_register_script( 'wpjobportal-inline-handle', '' );
+                            wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
                             wp_enqueue_script( 'wpjobportal-inline-handle' );
                             $wpjobportal_inline_js_script = '
                                             jQuery(document).ready(function(){
@@ -1125,8 +1125,8 @@ class WPJOBPORTALResumeFormlayout {
                 }
             }
         }
-        $wpjobportal_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-        $wpjobportal_html .= '<div class="wpjp-resume-section-button">'.wp_enqueue_script('wpjobportal-repactcha-script', $wpjobportal_protocol.'www.google.com/recaptcha/api.js');
+        $wpjobportal_protocol = is_ssl() ? "https://" : "http://";
+        $wpjobportal_html .= '<div class="wpjp-resume-section-button">'.wp_enqueue_script( 'wpjobportal-repactcha-script', $wpjobportal_protocol.'www.google.com/recaptcha/api.js', array(), WPJOBPORTAL_VERSION, false );
         if(current_user_can('manage_options')){
             $one = '';
             $two = '';
@@ -1168,7 +1168,7 @@ class WPJOBPORTALResumeFormlayout {
                 ';
         }
         $wpjobportal_isvisitor=false;
-        if(isset($_COOKIE['wpjobportal_apply_visitor'])){
+        if(WPJOBPORTALrequest::hasCookie('wpjobportal_apply_visitor')){
             if (!is_user_logged_in()) {
                 $wpjobportal_isvisitor=true;
             }

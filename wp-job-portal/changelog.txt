@@ -1,0 +1,378 @@
+=== WP Job Portal changelog ===
+
+== Changelog ==
+
+= 2.7.0 =
+Major update: the separate add-ons become four premium products, and twelve of them are now free.
+
+* New: Recruit Suite, a hiring pipeline for teams with stages, scorecards, shared notes, offers with approvals and e-signatures, and recruiting reports.
+* New: Marketplace Suite, to sell job packages, credits and subscriptions through Stripe, PayPal or WooCommerce, with paid featured jobs, companies and resumes.
+* New: Smart Search & Matching, with AI job and resume search, suggested jobs and resumes, and match scores.
+* New: Pro, with the advanced resume builder, resume search, messaging, PDF and export, reports, instant job alerts and maps.
+* New: twelve former add-ons are now free: Shortlist, Tags, Job Alert, RSS, Social Share, Print, Tell a Friend, Copy Job, Cron Job, All Companies, Job Listing Enhancer and Widgets.
+* New: four-step setup wizard and sample data that fits your site.
+* New: Account Sign-Up setting, separate from WordPress's "Anyone can register".
+* New: saved job searches for job seekers.
+* Fixed: updating from 2.6 could end on a critical error. Existing job and company links keep working after the update.
+* Fixed: the salary, currency, education and postcode filters in search.
+* Fixed: RSS feeds, Tags, Shortlisted Jobs and Job Alert on new installs.
+* Fixed: other errors on new installs and in the Insufficient Credits popup.
+
+= 2.6.0 =
+* Added explicit Careers & ATS and Job Marketplace setup modes.
+* Added upgrade-safe existing-site compatibility mode.
+* Added mode-aware setup steps, administrator navigation, and diagnostics.
+* Improved keyboard and screen-reader support on the setup-mode screen.
+* Aligned the first setup step with centralized mutation authorization.
+* Added a persistent, server-derived onboarding checklist with per-administrator dismissal and reopen controls.
+* Added actionable mode, page, upload, add-on, and sample-data readiness diagnostics.
+* Added durable ownership markers, exact cleanup previews, and conservative cleanup for newly installed sample records.
+* Hardened optional sample-image downloads with bounded, image-only, traversal-safe archive extraction.
+* Preserved the selected operating mode during sample-page creation and protected pre-existing or modified demo content from cleanup.
+* Simplified mode-specific administration labels while preserving bookmarked and direct URLs.
+
+= 2.5.9 =
+* Added System Status Page
+* Added Role-Based Validation Checks
+* Added InnoDB Conversion
+
+= 2.5.8 =
+* Improve SSL
+* Improved Credit System
+* Improved Job Alerts
+
+= 2.5.7 =
+* Security hardening: prepared SQL query paths for job/apply filters and related lookups.
+* SEO improvement: added native WP Job Portal jobs XML sitemap and sitemap integration hooks.
+
+= 2.5.6 =
+* Added New addon Smart Matching
+* Updated ZyWrap integration for AI Content Generation.
+* Seamless AI Content Generation For Job, Company Description.
+* Seamless AI Content Generation For Resume Skills.
+* Seamless AI Content Generation For Cover Letter.
+* Seamless AI Content Generation For Job Apply.
+
+= 2.5.5 =
+* Security fixes.
+
+= 2.5.4 =
+* Added Job Alert Instant Job Apply Support
+* Added New Fields For Job Alert Form
+* Added Field Ordering Controls For Job Alert Form
+* Implemented Auto Down Of Language Files
+
+= 2.5.3 =
+* Enhanced multilingual compatibility
+* Security fixes
+
+= 2.5.2 =
+* Security fixes.
+
+= 2.5.1 =
+* Added New addon Job Listing Enhancer
+* Improved Job listing top filter
+* Added WorkPlace type field for job entity.
+* Bug fixes.
+
+= 2.5.0 =
+* Security fixes.
+
+= 2.4.9 =
+* Security fixes.
+* Updated ZyWrap integration for AI content generation.
+* Bug fixes and performance improvements.
+
+= 2.4.8 =
+* Added 67 new hooks (actions and filters) to extend and customize the plugin functionality.
+* Enhanced AI content generation compatibility with Elementor.
+* Added a color preview/customization interface for the Elegant Design addon.
+
+= 2.4.7 =
+* AI Content Generation
+
+
+= 2.4.6 =
+* Companies Widget Redesigned
+* Jobs Widget Redesigned
+* Resumes Widget Redesigned
+
+= 2.4.5 =
+* Bug fixes
+
+= 2.4.4 =
+* Color Preview Interface Implemented
+* Bug fixes
+
+= 2.4.3 =
+* Bug fixes
+
+= 2.4.2 =
+* Security fixes
+
+= 2.4.1 =
+* Security fixes
+* Wordpress widgets design updated
+* Elementor widgets design updated
+
+= 2.4.0 =
+* Default Theme design issues fixed
+
+= 2.3.9 =
+* Complete redesign with a more modern, cleaner, and intuitive interface.
+* Improved company contact detail viewing functionality.
+* Improved resume contact detail viewing functionality.
+* Added the ability to display descriptions on job and company listings.
+
+= 2.3.8 =
+* Redesigned the Configuration Interface with a Modern and Enhanced Layout
+* Added a “Back to Listing” button that preserves search criteria in the admin area
+
+= 2.3.7 =
+* Redesigned admin dashboard for a cleaner, more intuitive experience
+* Added Screen Options support to the admin dashboard
+* Enhanced membership mode for packages with role-based package handling
+
+
+= 2.3.6 =
+* Added WP Job Manager import functionality
+* Added AI Job Search Widget
+* Added AI resume Search Widget
+* Improved Custom Elementor Widgets for WP Job Portal
+
+
+= 2.3.5 =
+* Improved Quick Start Interface
+* Improved Addon Installation
+* Added Custom Elementor Widgets for WP Job Portal
+* Imporoved WP Job Portal Widgets
+
+
+= 2.3.4 =
+* Addon AI Job Search Added
+* Addon AI Suggested Jobs Added
+* Addon AI Resume Search Added
+* Addon AI Suggested Resumes Added
+
+
+= 2.3.3 =
+* Resume Search visibility control improved
+* Security fixes
+* Custom field bug fixed
+* Package system functionality improved
+* Job form salary field required bug fixed
+
+
+= 2.3.2 =
+* Quick Apply upload file bug fixed
+* Custom fields bug fixed
+
+= 2.3.1 =
+* Elementor Support Added
+* Elementor widget for WP Job portal shortcodes added
+* Elementor widget to customize typography
+* Elementor widget to customize color scheme
+* Addons auto update functionality added
+
+
+= 2.3.0 =
+* Improve Job Apply
+* Add Elegant Design Addon
+
+= 2.2.9 =
+* Remove company requirement in posting a job
+* Security fixes
+* Job Seeker Dashboard Graph improved
+* Employer Dashboard Graph improved
+
+= 2.2.8 =
+* Security fixes
+
+= 2.2.7 =
+* Security fixes
+
+= 2.2.6 =
+* Security fixes
+
+= 2.2.5 =
+* Security fixes
+
+= 2.2.4 =
+* Bug fixes
+
+= 2.2.3 =
+* Improved import location data functionality
+* Added job views count on job detail
+* Added document (SEO) titles for all layouts
+* Security fixes
+
+
+= 2.2.2 =
+* Shortcode options added for job, company and resume listing shortocodes
+* Shortcode options added for job seeker & employer dashboard shortcode
+* New configuration added to control visibility of profile section on user dashboard
+* New shortcode added for User Registration
+* Open Street Map bug fixed
+* New configuration added to set default place holder image
+
+= 2.2.1 =
+* Security update
+
+
+= 2.2.0 =
+* Menu bug fix.
+
+= 2.1.9 =
+* Native language support for location data (cities, states, and countries).
+* Interface to import cities data for any country in international(English) or native language.
+* Customizable (SEO-friendly) URLs for job, resume, and company pages.
+* Customizable document (SEO) titles for company, job, and resume pages with fixed text and entity properties.
+* Wordpress title bug on WP Job Portal pages fixed.
+* Security update.
+
+= 2.1.8 =
+* Add quick apply
+* Minimize required fields
+
+= 2.1.7 =
+* Security update
+
+= 2.1.6 =
+* Security update
+
+= 2.1.5 =
+* Added new Shortcode for Featured Jobs
+* Added new Shortcode for Featured Resumes
+* Added new Shortcode for Featured Companies
+* Added new Addon for All Companies
+* Added new Addon for All Resumes
+
+
+= 2.1.4 =
+* Added new interface to optimize system as a job board or single employer
+* Security fix
+
+= 2.1.3 =
+* Added visibility control for custom fields
+* Added Cover Letter addon
+* Translation issues fixed
+* Bug fixes
+
+= 2.1.2 =
+* Added 3 New custom field types(Text area, Multi select, File upload)
+* Added Custom sections for resume
+* Bug fixes
+
+= 2.1.1 =
+* Bug fixes
+
+= 2.1.0 =
+* Apply now bug fix
+
+= 2.0.9 =
+* Security fix
+* Bug fix
+
+
+= 2.0.8 =
+* Security fix
+* Visitor Job Apply Bug fix
+
+
+= 2.0.7 =
+* Security fix
+
+= 2.0.6 =
+* Bug fix
+
+= 2.0.5 =
+* Add reCaptcha 3
+
+= 2.0.4 =
+* Security fix
+
+= 2.0.3 =
+* Bug fix
+
+= 2.0.2 =
+* Security fix
+
+= 2.0.1 =
+* Multi Language Job Apply Bug fix
+
+
+= 2.0.0 =
+* PHP 8.2 compatibility
+* Cover Letter Addon added
+* Jobs By Cities page added
+* Jobs By Types page added
+* Email notifications bug fixed
+* Search results pagination bug fixed
+
+= 1.1.9 =
+* CSS improve
+* Custom field bug fix
+
+= 1.1.8 =
+* Bug fix
+
+= 1.1.7 =
+* Bug fix
+
+= 1.1.6 =
+* Compatible with Job Portal theme
+
+= 1.1.5 =
+* Bug Fix
+
+= 1.1.4 =
+* Add Help page in admin area
+
+= 1.1.3 =
+* Add custom fields advance options
+
+= 1.1.2 =
+* Add plugin colors page
+
+= 1.1.1 =
+* Configuration base login redirect link
+* Configuration base register redirect link
+
+= 1.1.0 =
+* Bug Fix
+
+= 1.0.9 =
+* Bug Fix
+
+= 1.0.8 =
+* Sample Data Fix
+
+= 1.0.7 =
+* Security Update
+
+= 1.0.6 =
+* Fixed social login with facebook and linked
+* Fixed social apply with facebook and linked
+* Bug fixes
+
+= 1.0.5 =
+* Add Wrapper
+* Improvement in resume builder
+* Bug fixes
+
+= 1.0.4 =
+* Bug fixes
+
+= 1.0.3 =
+* Session and cookies issue resolved
+* Bug fixes
+
+= 1.0.2 =
+* Drag and drop fields ordering
+
+= 1.0.1 =
+* Custom register link for Job Seeker
+* Custom register link for Employer
+
+= 1.0.0 =
+* Just release.

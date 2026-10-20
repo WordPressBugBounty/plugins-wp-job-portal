@@ -7,6 +7,12 @@ class WPJOBPORTALdeactivation {
 
     static function wpjobportal_deactivate() {
         wp_clear_scheduled_hook('wpjobportal_cronjobs_action');
+        if (class_exists('WPJOBPORTAL_Licence_Client')) {
+            wp_clear_scheduled_hook(WPJOBPORTAL_Licence_Client::CRON_HOOK);
+        }
+        if (class_exists('WPJOBPORTAL_Translations')) {
+            WPJOBPORTAL_Translations::deactivate();
+        }
         if (class_exists('WPJOBPORTAL_Storage_Engine_Service')) {
             WPJOBPORTAL_Storage_Engine_Service::deactivate();
         } else {
@@ -81,6 +87,16 @@ class WPJOBPORTALdeactivation {
             $wpdb->prefix."wj_portal_slug",
             $wpdb->prefix."wj_portal_jswjsessiondata",
 
+            // Absorbed into Core for 2.7.0. Activation creates these, so
+            // uninstall has to remove them: without this an uninstall leaves
+            // them behind and the next install's IF NOT EXISTS silently
+            // reattaches the old shortlists, saved searches and alerts.
+            $wpdb->prefix."wj_portal_tags",
+            $wpdb->prefix."wj_portal_jobshortlist",
+            $wpdb->prefix."wj_portal_jobsearches",
+            $wpdb->prefix."wj_portal_jobalertsetting",
+            $wpdb->prefix."wj_portal_jobalertcities",
+
             //zywrap classes
             $wpdb->prefix."wj_portal_zywrap_wrappers",
             $wpdb->prefix."wj_portal_zywrap_categories",
@@ -88,7 +104,48 @@ class WPJOBPORTALdeactivation {
             $wpdb->prefix."wj_portal_zywrap_ai_models",
             $wpdb->prefix."wj_portal_zywrap_block_templates",
             $wpdb->prefix."wj_portal_zywrap_logs",
+            $wpdb->prefix."wj_portal_zywrap_use_cases",
         );
+        return $wpjobportal_tables;
+    }
+
+    /**
+     * Tables Core's own list does not hold but nothing else will remove.
+     *
+     * While products are deleted one by one, the uninstall guard keeps every
+     * table another installed plugin still reads - Core reads most of them -
+     * and the Marketplace Suite keeps its business data by design. So once the
+     * last product and then Core itself are deleted, those tables were left
+     * behind, and a fresh install's CREATE TABLE IF NOT EXISTS picked the old
+     * packages, invoices, messages and departments up again.
+     *
+     * Core is the last to go, so it removes them - but only when no product
+     * is installed any more. A product still in its folder (active or not)
+     * still owns that data.
+     *
+     * @return array Full table names.
+     */
+    static function wpjobportal_shared_tables_to_drop() {
+        global $wpdb;
+        foreach (array('wp-job-portal-pro', 'wp-job-portal-marketplacesuite', 'wp-job-portal-recruitsuite', 'wp-job-portal-matchingsuite') as $wpjobportal_product) {
+            if (file_exists(WP_PLUGIN_DIR . '/' . $wpjobportal_product . '/' . $wpjobportal_product . '.php')) {
+                return array();
+            }
+        }
+
+        include_once dirname(__FILE__) . '/services/class-wpjobportal-uninstall-guard.php';
+        $wpjobportal_names = array_keys(WPJOBPORTAL_Uninstall_Guard::readers());
+        // The Marketplace Suite's own tables; its uninstall keeps them.
+        $wpjobportal_names = array_merge($wpjobportal_names, array(
+            'marketplace_verifications',
+            'marketplace_risk_events',
+            'marketplace_feature_schedules',
+        ));
+
+        $wpjobportal_tables = array();
+        foreach (array_unique($wpjobportal_names) as $wpjobportal_name) {
+            $wpjobportal_tables[] = $wpdb->prefix . 'wj_portal_' . sanitize_key($wpjobportal_name);
+        }
         return $wpjobportal_tables;
     }
 

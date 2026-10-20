@@ -16,4 +16,5 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("Ruyigi", "Ruyigi", "Ruyigi", NULL, 147, 0, 1, NULL, "-3.4733471", "30.2501278"),
 ("Cankuzo", "Cankuzo", "Cankuzo", NULL, 147, 0, 1, NULL, "-3.2204922", "30.5495774"),
 ("Muyinga", "Muyinga", "Muyinga", NULL, 147, 0, 1, NULL, "-2.8453256", "30.3393883"),
-("Kirundo", "Kirundo", "Kirundo", NULL, 147, 0, 1, NULL, "-2.5853872", "30.0933449");
+("Kirundo", "Kirundo", "Kirundo", NULL, 147, 0, 1, NULL, "-2.5853872", "30.0933449"),
+("Manga", "Manga", "Manga", NULL, 147, 0, 1, NULL, "-3.4294444", "29.5161111");

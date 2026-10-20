@@ -160,12 +160,12 @@ class WPJOBPORTAL_Database_Readiness_Service {
         global $wpdb;
 
         $table = $wpdb->prefix . 'wj_portal_config';
-        if ($wpdb->get_var($wpdb->prepare('SHOW TABLES LIKE %s', $wpdb->esc_like($table))) !== $table) {
+        if (wpjobportaldb_direct::get_var($wpdb->prepare('SHOW TABLES LIKE %s', $wpdb->esc_like($table))) !== $table) {
             return false;
         }
 
-        $version = $wpdb->get_var(
-            "SELECT configvalue FROM `{$table}` WHERE configname = 'versioncode' LIMIT 1"
+        $version = wpjobportaldb_direct::get_var(
+            $wpdb->prepare("SELECT configvalue FROM %i WHERE configname = 'versioncode' LIMIT 1", $table)
         );
         $version = absint(str_replace('.', '', (string) $version));
 
@@ -230,7 +230,7 @@ class WPJOBPORTAL_Database_Readiness_Service {
         }
 
         $sql = 'ALTER TABLE `' . $table . '` ' . implode(', ', array_values($additions));
-        if ($wpdb->query($sql) === false) {
+        if (wpjobportaldb_direct::query($sql) === false) {
             $error = $wpdb->last_error ? $wpdb->last_error : 'Unknown database error';
             $error = WPJOBPORTAL_Redactor::redact($error);
             foreach ($additions as $name => $statement) {
@@ -251,11 +251,11 @@ class WPJOBPORTAL_Database_Readiness_Service {
     private static function table_indexes($table) {
         global $wpdb;
 
-        if ($wpdb->get_var($wpdb->prepare('SHOW TABLES LIKE %s', $wpdb->esc_like($table))) !== $table) {
+        if (wpjobportaldb_direct::get_var($wpdb->prepare('SHOW TABLES LIKE %s', $wpdb->esc_like($table))) !== $table) {
             return null;
         }
 
-        $rows = $wpdb->get_results('SHOW INDEX FROM `' . $table . '`', ARRAY_A);
+        $rows = wpjobportaldb_direct::get_results($wpdb->prepare('SHOW INDEX FROM %i', $table), ARRAY_A);
         $indexes = array();
         foreach ((array) $rows as $row) {
             $name = $row['Key_name'];
@@ -278,7 +278,7 @@ class WPJOBPORTAL_Database_Readiness_Service {
     private static function table_columns($table) {
         global $wpdb;
 
-        $rows = $wpdb->get_results('SHOW COLUMNS FROM `' . $table . '`', ARRAY_A);
+        $rows = wpjobportaldb_direct::get_results($wpdb->prepare('SHOW COLUMNS FROM %i', $table), ARRAY_A);
         $columns = array();
         foreach ((array) $rows as $row) {
             $columns[$row['Field']] = true;

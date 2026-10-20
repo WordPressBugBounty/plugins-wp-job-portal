@@ -59,14 +59,14 @@ class WPJOBPORTALpopup {
                 $wpjobportal_action = '';
                 if ($wpjobportal_formid) { // popup in case of form is opened
                     if ($wpjobportal_formid == 'resumeform') {
-                        wp_register_script( 'wpjobportal-inline-handle', '' );
+                        wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
                         wp_enqueue_script( 'wpjobportal-inline-handle' );
                         $wpjobportal_inline_js_script = '
                                     '.$wpjobportalPopupResumeFormProceeds.'(\'' . $wpjobportal_action . '\');
                                 ';
                                 wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
                     } else {
-                        wp_register_script( 'wpjobportal-inline-handle', '' );
+                        wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
                         wp_enqueue_script( 'wpjobportal-inline-handle' );
                         $wpjobportal_inline_js_script = '
                                     '.$wpjobportalPopupFormProceeds.'(\'' . $wpjobportal_formid . '\',\'' . $wpjobportal_action . '\');
@@ -74,7 +74,7 @@ class WPJOBPORTALpopup {
                                 wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
                     }
                 } elseif ($srcid && $anchorid) { // popup in case of add to gold and feature
-                    wp_register_script( 'wpjobportal-inline-handle', '' );
+                    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
                         wp_enqueue_script( 'wpjobportal-inline-handle' );
                         $wpjobportal_inline_js_script = '
                                 '.$wpjobportalPopupProceeds.'(\'' . $wpjobportal_actionname . '\',' . $objectid . ',\'' . $srcid . '\',\'' . $anchorid . '\',\'' . $wpjobportal_action . '\',\'' . $wpjobportal_themecall . '\');
@@ -82,14 +82,14 @@ class WPJOBPORTALpopup {
                             wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
                 } elseif($wpjobportal_actionname == 'job_apply') { // popup in case of view company, resume, job contact detail
                     if($wpjobportal_themecall != null){
-                        wp_register_script( 'wpjobportal-inline-handle', '' );
+                        wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
                         wp_enqueue_script( 'wpjobportal-inline-handle' );
                         $wpjobportal_inline_js_script = '
                                 getApplyNowByJobid('. $objectid . ',' . $wpjobportal_pageid .',1);
                             ';
                             wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
                     }else{
-                        wp_register_script( 'wpjobportal-inline-handle', '' );
+                        wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
                         wp_enqueue_script( 'wpjobportal-inline-handle' );
                         $wpjobportal_inline_js_script = '
                                 getApplyNowByJobid('. $objectid . ',' . $wpjobportal_pageid .');
@@ -97,7 +97,7 @@ class WPJOBPORTALpopup {
                             wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
                     }
                 }else { // popup in case of view company, resume, job contact detail
-                    wp_register_script( 'wpjobportal-inline-handle', '' );
+                    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
                         wp_enqueue_script( 'wpjobportal-inline-handle' );
                         $wpjobportal_inline_js_script = '
                                 location.href= "' . esc_url($wpjobportal_result['link']) . '";
@@ -125,7 +125,7 @@ class WPJOBPORTALpopup {
                             $wpjobportal_html .='<i class="fa '.$wpjobportal_font_aw_value. $absolute_class .' '.esc_attr($this->class_prefix).'-modal-left-image" aria-hidden="true" ></i>
                             </div>
                             <div class="'.esc_attr($this->class_prefix).'-modal-header">
-                                <a title="close" class="'.esc_attr($this->class_prefix).'-modal-close-icon-wrap" >
+                                <a title="'.esc_attr__('Close', 'wp-job-portal').'" class="'.esc_attr($this->class_prefix).'-modal-close-icon-wrap" >
                                     <i class="fa fa-times-circle-o '.esc_attr($this->class_prefix).'-modal-close-icon" aria-hidden="true"></i>
                                 </a>
                                 <h2 class="'.esc_attr($this->class_prefix).'-modal-title">'. $wpjobportal_result['title-text'] .' '.$wpjobportal_result['title'].' </h2>
@@ -174,7 +174,7 @@ class WPJOBPORTALpopup {
                 $wpjobportal_html .='<div class="col-md-11 col-md-offset-1 '.esc_attr($this->class_prefix).'-modal-data-wrp">
                         <div class="modal-body '.esc_attr($this->class_prefix).'-modal-body">
                               <div class="'.esc_attr($this->class_prefix).'-modal-credit-action-btn-wrp">
-                                  <a title="cancel" href="#" class="'.esc_attr($this->class_prefix).'-modal-credit-action-btn" onclick="wpjobportalClosePopup(\''.$wpjobportal_themecall.'\');">
+                                  <a title="'.esc_attr__('Cancel', 'wp-job-portal').'" href="#" class="'.esc_attr($this->class_prefix).'-modal-credit-action-btn" onclick="wpjobportalClosePopup(\''.$wpjobportal_themecall.'\');">
                                       ' . esc_html(__('Cancel', 'wp-job-portal')) . '
                                   </a>';
                 $objectid = WPJOBPORTALRequest::getVar('id');
@@ -251,14 +251,14 @@ class WPJOBPORTALpopup {
                 }
                 if ($wpjobportal_formid) { // popup in case of form is opened
                     if ($wpjobportal_formid == 'resumeform') {
-                        wp_register_script( 'wpjobportal-inline-handle', '' );
+                        wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
                         wp_enqueue_script( 'wpjobportal-inline-handle' );
                         $wpjobportal_inline_js_script = '
                                     '.$wpjobportalPopupResumeFormProceeds.'(\'' . $wpjobportal_action . '\');
                                 ';
                                 wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
                     } else {
-                        wp_register_script( 'wpjobportal-inline-handle', '' );
+                        wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
                         wp_enqueue_script( 'wpjobportal-inline-handle' );
                         $wpjobportal_inline_js_script = '
                                     '.$wpjobportalPopupFormProceeds.'(\'' . $wpjobportal_formid . '\',\'' . $wpjobportal_action . '\');
@@ -266,7 +266,7 @@ class WPJOBPORTALpopup {
                                 wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
                     }
                 } elseif ($srcid && $anchorid) { // popup in case of add to gold and feature
-                    wp_register_script( 'wpjobportal-inline-handle', '' );
+                    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
                         wp_enqueue_script( 'wpjobportal-inline-handle' );
                         $wpjobportal_inline_js_script = '
                                 '.$wpjobportalPopupProceeds.'(\'' . $wpjobportal_actionname . '\',' . $objectid . ',\'' . $srcid . '\',\'' . $anchorid . '\',\'' . $wpjobportal_action . '\',\'' . $wpjobportal_themecall . '\');
@@ -274,14 +274,14 @@ class WPJOBPORTALpopup {
                             wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
                 } elseif($wpjobportal_actionname == 'job_apply') { // popup in case of view company, resume, job contact detail
                     if($wpjobportal_themecall != null){
-                        wp_register_script( 'wpjobportal-inline-handle', '' );
+                        wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
                         wp_enqueue_script( 'wpjobportal-inline-handle' );
                         $wpjobportal_inline_js_script = '
                                 getApplyNowByJobid('. $objectid . ',' . $wpjobportal_pageid .',1);
                             ';
                             wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
                     }else{
-                        wp_register_script( 'wpjobportal-inline-handle', '' );
+                        wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
                         wp_enqueue_script( 'wpjobportal-inline-handle' );
                         $wpjobportal_inline_js_script = '
                                 getApplyNowByJobid('. $objectid . ',' . $wpjobportal_pageid .');
@@ -289,7 +289,7 @@ class WPJOBPORTALpopup {
                             wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
                     }
                 }else { // popup in case of view company, resume, job contact detail
-                    wp_register_script( 'wpjobportal-inline-handle', '' );
+                    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
                         wp_enqueue_script( 'wpjobportal-inline-handle' );
                         $wpjobportal_inline_js_script = '
                                 location.href= "' . esc_url($wpjobportal_result['link']) . '";
@@ -317,7 +317,7 @@ class WPJOBPORTALpopup {
                             $wpjobportal_html .='<i class="fa '.$wpjobportal_font_aw_value. $absolute_class .' '.esc_attr($this->class_prefix).'-modal-left-image" aria-hidden="true" ></i>
                             </div>
                             <div class="'.esc_attr($this->class_prefix).'-modal-header">
-                                <a title="close" class="'.esc_attr($this->class_prefix).'-modal-close-icon-wrap" >
+                                <a title="'.esc_attr__('Close', 'wp-job-portal').'" class="'.esc_attr($this->class_prefix).'-modal-close-icon-wrap" >
                                     <i class="fa fa-times-circle-o '.esc_attr($this->class_prefix).'-modal-close-icon" aria-hidden="true"></i>
                                 </a>
                                 <h2 class="'.esc_attr($this->class_prefix).'-modal-title">'. $wpjobportal_result['title-text'] .' '.$wpjobportal_result['title'].' </h2>
@@ -366,7 +366,7 @@ class WPJOBPORTALpopup {
                 $wpjobportal_html .='<div class="col-md-11 col-md-offset-1 '.esc_attr($this->class_prefix).'-modal-data-wrp">
                         <div class="modal-body '.esc_attr($this->class_prefix).'-modal-body">
                               <div class="'.esc_attr($this->class_prefix).'-modal-credit-action-btn-wrp">
-                                  <a title="cancel" href="#" class="'.esc_attr($this->class_prefix).'-modal-credit-action-btn" onclick="wpjobportalClosePopup(\''.$wpjobportal_themecall.'\');">
+                                  <a title="'.esc_attr__('Cancel', 'wp-job-portal').'" href="#" class="'.esc_attr($this->class_prefix).'-modal-credit-action-btn" onclick="wpjobportalClosePopup(\''.$wpjobportal_themecall.'\');">
                                       ' . esc_html(__('Cancel', 'wp-job-portal')) . '
                                   </a>';
                 $objectid = WPJOBPORTALRequest::getVar('id');
@@ -395,7 +395,7 @@ class WPJOBPORTALpopup {
                 $wpjobportal_html .= '<div id="wpjobportal-popup-background"></div>';
                 $wpjobportal_html .= '<div id="wpjobportal-popup">';
                 $wpjobportal_html .= '<img class="jsicon" src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/popup-coin-icon.png"/>';
-                $wpjobportal_html .= '<span class="popup-title">' . $wpjobportal_result['popuptitle'] . '<img id="popup_cross" alt="popup cross"  src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/popup-close.png"></span>';
+                $wpjobportal_html .= '<span class="popup-title">' . $wpjobportal_result['popuptitle'] . '<img id="popup_cross" alt="' . esc_attr__('Close', 'wp-job-portal') . '"  src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/popup-close.png"></span>';
                 $wpjobportal_html .= '<div class="popup-row name">';
                 $wpjobportal_html .= '<span class="title">' . $wpjobportal_result['title-text'] . ' </span><span class="value">' . $wpjobportal_result['title'] . '</span></div>';
                 $wpjobportal_html .= '<div class="popup-row name"><span class="title">' . esc_html(__('Total Credits', 'wp-job-portal')) . '</span>';
@@ -482,8 +482,22 @@ class WPJOBPORTALpopup {
             $wpjobportal_html .= '<div id="wpjobportal-popup">';
             if($wpjobportal_result == false){
                 $wpjobportal_html .= '<span class="popup-title">' . esc_html(__('Insufficient Credits', 'wp-job-portal')) . '</span>';
-                $wpjobportal_actionfor = WPJOBPORTALincluder::getJSModel('credits')->getCreditsForByAction($wpjobportal_actionname);
-                if ($wpjobportal_actionfor == 2) {
+                /*
+                 * Which credits page to send them to.
+                 *
+                 * This asked getCreditsForByAction() on the credits model for a
+                 * role code. No version of the product defines that method - it
+                 * appears in exactly two files, and both of them call it - so
+                 * every "Insufficient Credits" popup fataled instead of offering
+                 * the link that is its whole purpose.
+                 *
+                 * The answer was already to hand. The person short of credits is
+                 * the one being shown the popup, and roleid 2 is a job seeker,
+                 * which is the same 2 that code compared against. Asking the
+                 * current user is also steadier than a table of action names
+                 * would have been: a new action cannot be forgotten in it.
+                 */
+                if (WPJOBPORTALincluder::getObjectClass('user')->isjobseeker()) {
                     $wpjobportal_link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'credits', 'wpjobportallt'=>'jobseekercredits', 'wpjobportalpageid'=>$wpjobportal_pageid));
                 } else {
                     $wpjobportal_link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'credits', 'wpjobportallt'=>'employercredits', 'wpjobportalpageid'=>$wpjobportal_pageid));

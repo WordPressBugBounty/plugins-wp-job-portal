@@ -35,7 +35,7 @@ if(isset($wpjobportal_packages)){
         </div>
         <div class="wpj-jp-pkg-list-btm">
             <div class="wpj-jp-pkg-list-action-wrp">
-                <a class="wpj-jp-outline-btn" title="<?php echo esc_attr__('Change Package', "wp-job-portal"); ?>" href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'multicompany','wpjobportallt'=>'addcompany'))); ?>">
+                <a class="wpj-jp-outline-btn" title="<?php echo esc_attr__('Change Package', "wp-job-portal"); ?>" href="<?php echo esc_url(add_query_arg('choosepackage', 1, wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'multicompany','wpjobportallt'=>'addcompany')))); ?>">
                     <?php echo esc_html__("Change Package", "wp-job-portal") ?>
                 </a>
             </div>
@@ -81,7 +81,7 @@ if(isset($wpjobportal_packages)){
                 // dont show change package button if user only has 1 package
                 if(WPJOBPORTALincluder::getJSModel('purchasehistory')->showChangePackageButtonToUser()){ ?>
                     <div class="wjportal-pkg-list-item-action-wrp">
-                        <a href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'multicompany','wpjobportallt'=>'addcompany'))); ?>" class="wjportal-pkg-list-item-act-btn" title="<?php echo esc_attr(__('Change Package','wp-job-portal')); ?>">
+                        <a href="<?php echo esc_url(add_query_arg('choosepackage', 1, wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'multicompany','wpjobportallt'=>'addcompany')))); ?>" class="wjportal-pkg-list-item-act-btn" title="<?php echo esc_attr(__('Change Package','wp-job-portal')); ?>">
                             <?php echo esc_html(__('Change Package','wp-job-portal')); ?>
                         </a>
                     </div>

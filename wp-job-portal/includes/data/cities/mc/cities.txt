@@ -1,3 +1,8 @@
 
 INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
-("Monaco", "Monaco", "Monaco", NULL, 78, 0, 1, NULL, "43.7309898", "7.4209708");
+("Monaco", "Monaco", "Monaco", NULL, 78, 0, 1, NULL, "43.7309898", "7.4209708"),
+("Fontvieille", "Fontvieille", "Fontvieille", NULL, 78, 0, 1, NULL, "43.7281385", "7.417857"),
+("La Condamine", "La Condamine", "La Condamine", NULL, 78, 0, 1, NULL, "43.7349329", "7.423264"),
+("Moneghetti", "Moneghetti", "Moneghetti", NULL, 78, 0, 1, NULL, "43.7359241", "7.4171811"),
+("Monte-Carlo", "Monte-Carlo", "Monte-Carlo", NULL, 78, 0, 1, NULL, "43.7400718", "7.4266436"),
+("Saint-Roman", "Saint-Roman", "Saint-Roman", NULL, 78, 0, 1, NULL, "43.7480545", "7.4320513");

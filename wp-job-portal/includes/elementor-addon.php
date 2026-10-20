@@ -50,6 +50,13 @@ function wpjobportal_save_post_job_portal_shortcode_element($post_id) {
     // Prevent auto-saves, revisions, or bulk edits from triggering the function
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
     if (wp_is_post_revision($post_id)) return;
+    // Only for post types that are registered. This runs on every save of
+    // every kind of post, and asking "can this user edit it?" about a type
+    // nothing has registered - a theme demo's price tables and testimonials -
+    // makes WordPress print a notice per post, which during a demo import
+    // arrived before the redirect and broke it ("headers already sent").
+    // An unregistered type is never an Elementor page anyway.
+    if (!post_type_exists(get_post_type($post_id))) return;
     if (!current_user_can('edit_post', $post_id)) return;
 
     // Check if Elementor data exists(is elementor page)
@@ -210,15 +217,12 @@ function wpjobportal_create_css_from_widget_settings_for_elegant($wpjobportal_se
         require_once ABSPATH . 'wp-admin/includes/file.php';
     }
     global $wp_filesystem;
-    if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-        $creds = request_filesystem_credentials( site_url() );
-        wp_filesystem( $creds );
-    }
-    if ( ! defined('ELEGANTDESIGN_PLUGIN_PATH') || ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
+    $wp_filesystem = wpjobportal::wpjobportal_filesystem();
+    if ( wpjobportal_elegant_design_path() === '' || ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
         return false;
     }
     //$file = ELEGANTDESIGN_PLUGIN_PATH . 'includes/css/elegant_elementor_overrides.css';
-    $file = ELEGANTDESIGN_PLUGIN_PATH . 'includes/css/elegantdesignvariables.css';
+    $file = wpjobportal_elegant_design_path() . 'includes/css/elegantdesignvariables.css';
     $wp_filesystem->put_contents( $file, $css_variables, FS_CHMOD_FILE );
 
 
@@ -371,12 +375,9 @@ function wpjobportal_create_css_from_widget_settings_for_elegant($wpjobportal_se
                 require_once ABSPATH . 'wp-admin/includes/file.php';
             }
             global $wp_filesystem;
-            if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-                $creds = request_filesystem_credentials( site_url() );
-                wp_filesystem( $creds );
-            }
+            $wp_filesystem = wpjobportal::wpjobportal_filesystem();
             //$file = ELEGANTDESIGN_PLUGIN_PATH . 'includes/css/elegant_elementor_overrides.css';
-            $file = ELEGANTDESIGN_PLUGIN_PATH . 'includes/css/elegant_elementor_overrides.css';
+            $file = wpjobportal_elegant_design_path() . 'includes/css/elegant_elementor_overrides.css';
             $wp_filesystem->put_contents( $file, '', 0755 );
             $response = $wp_filesystem->put_contents( $file, $custom_css );
 
@@ -537,10 +538,7 @@ function wpjobportal_jp_put_css_in_file($css){
         require_once ABSPATH . 'wp-admin/includes/file.php';
     }
     global $wp_filesystem;
-    if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-        $creds = request_filesystem_credentials( site_url() );
-        wp_filesystem( $creds );
-    }
+    $wp_filesystem = wpjobportal::wpjobportal_filesystem();
     if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
         return false;
     }

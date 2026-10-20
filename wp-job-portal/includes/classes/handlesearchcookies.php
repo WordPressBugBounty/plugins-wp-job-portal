@@ -252,6 +252,37 @@ class WPJOBPORTALhandlesearchcookies {
     private function searchdataforjobs(){
         $wpjobportal_search_userfields = array();
         // $wpjobportal_search_userfields = JSSTincluder::getObjectClass('customfields')->userFieldsForSearch(1);
+
+        /*
+         * A saved search stands in for the search form.
+         *
+         * What comes back is the same array getFrontSideJobSearchFormData()
+         * builds, so from here on nothing can tell the difference between a
+         * saved search and one just typed in - the ordinary job query runs, and
+         * a filter added to the search form later is replayed without anything
+         * here being taught about it.
+         *
+         * _setcookies is left on so the criteria land in the search cookie:
+         * without that, page two of a saved search would come back unfiltered.
+         */
+        $wpjobportal_savedsearch = WPJOBPORTALrequest::getVar('savedsearch');
+        if (!is_admin() && is_numeric($wpjobportal_savedsearch) && $wpjobportal_savedsearch > 0) {
+            $wpjobportal_saved_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
+            $wpjobportal_saved = WPJOBPORTALincluder::getJSModel('jobsearch')->getSavedJobSearchData($wpjobportal_savedsearch, $wpjobportal_saved_uid);
+
+            if (!empty($wpjobportal_saved)) {
+                $this->_jsjp_search_array = $wpjobportal_saved;
+                $this->_setcookies = true;
+                WPJOBPORTALincluder::getJSModel('job')->setSearchVariableForJob($this->_jsjp_search_array, $wpjobportal_search_userfields);
+                wpjobportal::$_data['savedsearchid'] = (int) $wpjobportal_savedsearch;
+
+                return;
+            }
+            // It is gone, or it is somebody else's. Fall through and show the
+            // job list rather than an error: the URL is one a person may have
+            // bookmarked, and an unfiltered list is a better answer than a wall.
+        }
+
         if($this->_callfrom == 1 || $this->_callfrom == 3){ //  3 for theme
             if(is_admin()){
                 $this->_jsjp_search_array = WPJOBPORTALincluder::getJSModel('job')->getAdminJobSearchFormData($wpjobportal_search_userfields);
@@ -357,31 +388,31 @@ class WPJOBPORTALhandlesearchcookies {
         $wpjobportal_user_data  =  get_transient( 'wpjobportal-social-login-data');
         if( $wpjobportal_user_data !== FALSE){ // it will be false if transient does not exsist
             if($wpjobportal_user_data != '' && is_array($wpjobportal_user_data) && !empty($wpjobportal_user_data)){
-                if (!isset($_COOKIE['wpjobportal-socialid'])){
+                if (!WPJOBPORTALrequest::hasCookie('wpjobportal-socialid')){
                     wpjobportalphplib::wpJP_setcookie('wpjobportal-socialid' , $wpjobportal_user_data['socialid'] , time() + 1209600 , COOKIEPATH);
                     if ( SITECOOKIEPATH != COOKIEPATH ){
                         wpjobportalphplib::wpJP_setcookie('wpjobportal-socialid' , $wpjobportal_user_data['socialid'] , time() + 1209600 , SITECOOKIEPATH);
                     }
                 }
-                if (!isset($_COOKIE['wpjobportal-socialfirstname'])){
+                if (!WPJOBPORTALrequest::hasCookie('wpjobportal-socialfirstname')){
                     wpjobportalphplib::wpJP_setcookie('wpjobportal-socialfirstname' , $wpjobportal_user_data['socialfirstname'] , time() + 1209600 , COOKIEPATH);
                     if ( SITECOOKIEPATH != COOKIEPATH ){
                        wpjobportalphplib::wpJP_setcookie('wpjobportal-socialfirstname' , $wpjobportal_user_data['socialfirstname'] , time() + 1209600 , SITECOOKIEPATH);
                     }
                 }
-                if (!isset($_COOKIE['wpjobportal-sociallastname'])){
+                if (!WPJOBPORTALrequest::hasCookie('wpjobportal-sociallastname')){
                     wpjobportalphplib::wpJP_setcookie('wpjobportal-sociallastname' , $wpjobportal_user_data['sociallastname'], time() + 1209600 , COOKIEPATH);
                     if ( SITECOOKIEPATH != COOKIEPATH ){
                        wpjobportalphplib::wpJP_setcookie('wpjobportal-sociallastname' , $wpjobportal_user_data['sociallastname'], time() + 1209600 , SITECOOKIEPATH);
                     }
                 }
-                if (!isset($_COOKIE['wpjobportal-socialemail'])){
+                if (!WPJOBPORTALrequest::hasCookie('wpjobportal-socialemail')){
                     wpjobportalphplib::wpJP_setcookie('wpjobportal-socialemail' , $wpjobportal_user_data['socialemail'], time() + 1209600 , COOKIEPATH);
                     if ( SITECOOKIEPATH != COOKIEPATH ){
                     wpjobportalphplib::wpJP_setcookie('wpjobportal-socialemail' , $wpjobportal_user_data['socialemail'], time() + 1209600 , SITECOOKIEPATH);
                     }
                 }
-                if (!isset($_COOKIE['wpjobportal-socialmedia'])){
+                if (!WPJOBPORTALrequest::hasCookie('wpjobportal-socialmedia')){
                     wpjobportalphplib::wpJP_setcookie('wpjobportal-socialmedia' , $wpjobportal_user_data['socialmedia'], time() + 1209600 , COOKIEPATH);
                     if ( SITECOOKIEPATH != COOKIEPATH ){
                     wpjobportalphplib::wpJP_setcookie('wpjobportal-socialmedia' , $wpjobportal_user_data['socialmedia'], time() + 1209600 , SITECOOKIEPATH);
@@ -397,7 +428,7 @@ class WPJOBPORTALhandlesearchcookies {
         if( $remove_coookies !== FALSE){ // it will be false if transient does not exsist
             if($remove_coookies != '' && !empty($remove_coookies) && $remove_coookies == 'remove-cookies' ){
 
-                if(isset($_COOKIE['wpjobportal-socialid'])){
+                if(WPJOBPORTALrequest::hasCookie('wpjobportal-socialid')){
                     wpjobportalphplib::wpJP_setcookie('wpjobportal-socialid' , '' , time() - 3600 , COOKIEPATH);
                     if ( SITECOOKIEPATH != COOKIEPATH ){
                         wpjobportalphplib::wpJP_setcookie('wpjobportal-socialid' , '' , time() - 3600 , SITECOOKIEPATH);
@@ -405,7 +436,7 @@ class WPJOBPORTALhandlesearchcookies {
                     unset($_COOKIE['wpjobportal-socialid']);
                 }
 
-                if(isset($_COOKIE['wpjobportal-socialfirstname'])){
+                if(WPJOBPORTALrequest::hasCookie('wpjobportal-socialfirstname')){
                     wpjobportalphplib::wpJP_setcookie('wpjobportal-socialfirstname' , '' , time() - 3600 , COOKIEPATH);
                     if ( SITECOOKIEPATH != COOKIEPATH ){
                        wpjobportalphplib::wpJP_setcookie('wpjobportal-socialfirstname' , '' , time() - 3600 , SITECOOKIEPATH);
@@ -413,7 +444,7 @@ class WPJOBPORTALhandlesearchcookies {
                     unset($_COOKIE['wpjobportal-socialfirstname']);
                 }
 
-                if(isset($_COOKIE['wpjobportal-sociallastname'])){
+                if(WPJOBPORTALrequest::hasCookie('wpjobportal-sociallastname')){
                     wpjobportalphplib::wpJP_setcookie('wpjobportal-sociallastname' , '', time() - 3600 , COOKIEPATH);
                     if ( SITECOOKIEPATH != COOKIEPATH ){
                        wpjobportalphplib::wpJP_setcookie('wpjobportal-sociallastname' , '', time() - 3600 , SITECOOKIEPATH);
@@ -421,7 +452,7 @@ class WPJOBPORTALhandlesearchcookies {
                     unset($_COOKIE['wpjobportal-sociallastname']);
                 }
 
-                if(isset($_COOKIE['wpjobportal-socialemail'])){
+                if(WPJOBPORTALrequest::hasCookie('wpjobportal-socialemail')){
                     wpjobportalphplib::wpJP_setcookie('wpjobportal-socialemail' , '', time() - 3600 , COOKIEPATH);
                     if ( SITECOOKIEPATH != COOKIEPATH ){
                         wpjobportalphplib::wpJP_setcookie('wpjobportal-socialemail' , '', time() - 3600 , SITECOOKIEPATH);
@@ -429,7 +460,7 @@ class WPJOBPORTALhandlesearchcookies {
                     unset($_COOKIE['wpjobportal-socialemail']);
                 }
 
-                if(isset($_COOKIE['wpjobportal-socialmedia'])){
+                if(WPJOBPORTALrequest::hasCookie('wpjobportal-socialmedia')){
                     wpjobportalphplib::wpJP_setcookie('wpjobportal-socialmedia' , '', time() - 3600 , COOKIEPATH);
                     if ( SITECOOKIEPATH != COOKIEPATH ){
                         wpjobportalphplib::wpJP_setcookie('wpjobportal-socialmedia' , '', time() - 3600 , SITECOOKIEPATH);

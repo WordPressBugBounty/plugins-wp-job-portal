@@ -132,8 +132,8 @@ $wpjobportal_listing_fields = WPJOBPORTALincluder::getJSModel('fieldordering')->
                      * WP Job Portal: AI Match Score Badge
                      */
                     if(in_array('smartmatching', wpjobportal::$_active_addons)){
-                        $show_match_score_resume_list  = wpjobportal::$_config->getConfigurationByConfigName('show_match_score_resume_list');
-                        if (! empty($show_match_score_resume_list) && !empty($wpjobportal_data->match_score)) {
+                        $wpjobportal_show_match_score_resume_list  = wpjobportal::$_config->getConfigurationByConfigName('show_match_score_resume_list');
+                        if (! empty($wpjobportal_show_match_score_resume_list) && !empty($wpjobportal_data->match_score)) {
                             $wpjobportal_ai_match_score = (int) $wpjobportal_data->match_score;
                             do_action('wpjobportal_addon_resumelisting_match_score',$wpjobportal_ai_match_score);
                         }

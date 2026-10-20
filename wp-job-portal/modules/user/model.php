@@ -15,9 +15,62 @@ class WPJOBPORTALUserModel {
         return $wpjobportal_prefix;
     }
 
+    /**
+     * Limit a query on the network-wide users table to this site's members.
+     *
+     * On multisite every site shares wp_users, so "all WordPress users" meant
+     * every user of every site. A member of a site is a user with that site's
+     * capabilities row, which is what WordPress itself checks.
+     *
+     * @param string $column The users.ID column in the query, e.g. user.ID.
+     * @return string SQL to append to a WHERE clause; '' on a single site.
+     */
+    function siteMembersOnly($column) {
+        global $wpdb;
+        if (!is_multisite()) {
+            return '';
+        }
+        $column = preg_replace('/[^A-Za-z0-9_.]/', '', (string) $column);
+        return $wpdb->prepare(
+            // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- $column is the caller's own column name (e.g. user.ID), reduced to letters, digits, _ and . above; %i cannot take a table.column pair.
+            ' AND ' . $column . ' IN (SELECT user_id FROM %i WHERE meta_key = %s)',
+            $wpdb->usermeta,
+            $wpdb->get_blog_prefix() . 'capabilities'
+        );
+    }
+
+    /**
+     * Leave out this site's administrators (they are not given a portal role).
+     *
+     * @param string $column The users.ID column in the query.
+     * @return string SQL to append to a WHERE clause.
+     */
+    function notSiteAdministrator($column) {
+        global $wpdb;
+        $column = preg_replace('/[^A-Za-z0-9_.]/', '', (string) $column);
+        return $wpdb->prepare(
+            // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- $column is the caller's own column name (e.g. user.ID), reduced to letters, digits, _ and . above; %i cannot take a table.column pair.
+            ' AND NOT EXISTS (SELECT umeta_id FROM %i WHERE meta_key = %s AND meta_value LIKE %s AND user_id = ' . $column . ')',
+            $wpdb->usermeta,
+            $wpdb->get_blog_prefix() . 'capabilities',
+            '%' . $wpdb->esc_like('administrator') . '%'
+        );
+    }
+
        function getMyAvailableCredits($wpjobportal_uid) {
             if (!is_numeric($wpjobportal_uid))
             return false;
+
+        // Neither table below is created by anything - not Core, not any
+        // migration, not any add-on in the original distribution. This lookup
+        // has always queried tables that do not exist, and went unnoticed
+        // because nothing reached it. Answer with a balance of nothing rather
+        // than two failed queries. Zero, not false: callers compare the result
+        // against a price, and in PHP 8 `0 <= false` is true.
+        if (!class_exists('WPJOBPORTAL_Monetisation')
+            || !WPJOBPORTAL_Monetisation::ledger_ready()) {
+            return 0;
+        }
         $query = "SELECT purchase.purchasecredit AS credits,purchase.expireindays,purchase.created
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_purchasehistory` AS purchase
                     WHERE purchase.uid = " . (int) ($wpjobportal_uid)." AND purchase.transactionverified = 1 ORDER BY purchase.id ASC";
@@ -202,103 +255,172 @@ class WPJOBPORTALUserModel {
         }
     }
 
-   function enforceDeleteOurUser($wpjobportal_uid, $wpjobportal_roleid) {
-        if (!is_numeric($wpjobportal_uid))
+    function enforceDeleteOurUser($wpjobportal_uid, $wpjobportal_roleid) {
+        unset($wpjobportal_roleid); // removeUserData() reads the role from the profile itself.
+        return $this->removeUserData($wpjobportal_uid) !== false;
+    }
+
+    /**
+     * Remove a person's portal data - the one path every account deletion takes.
+     *
+     * Used by WordPress's own Users screen (the delete_user hook), by bulk and
+     * programmatic deletes, by this plugin's Users page, and by the System
+     * Status clean-up of records whose WordPress account is already gone.
+     *
+     * - An employer whose content is attributed to another employer hands over
+     *   companies, jobs (with their applications), departments and resume
+     *   folders to that employer. A job seeker's data is personal and never
+     *   moves to anyone else.
+     * - Everything else the person owns is deleted through the same company,
+     *   job and resume deletes the admin screens use, so files, child rows and
+     *   the add-ons' after-delete hooks are handled once, in one place.
+     * - Payment records stay for the site's accounts; the payer's personal
+     *   details on invoices are blanked.
+     *
+     * @param int $wpjobportal_uid          Portal user id (wj_portal_users.id).
+     * @param int $wpjobportal_reassign_wp  WordPress user id the content is attributed to, 0 for none.
+     * @return array|false Counts of what was moved and deleted, false when there is no such portal user.
+     */
+    function removeUserData($wpjobportal_uid, $wpjobportal_reassign_wp = 0) {
+        global $wpdb;
+        $wpjobportal_uid = absint($wpjobportal_uid);
+        if ($wpjobportal_uid < 1) {
             return false;
-        $query = '';
+        }
+        $wpjobportal_user = wpjobportaldb_direct::get_row($wpdb->prepare('SELECT id, uid, roleid FROM %i WHERE id = %d', $wpdb->prefix . 'wj_portal_users', $wpjobportal_uid));
+        if (!$wpjobportal_user) {
+            return false;
+        }
+        $wp_uid = absint($wpjobportal_user->uid);
+        $wpjobportal_roleid = (int) $wpjobportal_user->roleid;
+        $wpjobportal_report = array('moved_to' => 0, 'moved' => 0, 'jobs' => 0, 'companies' => 0, 'resumes' => 0, 'not_moved_reason' => '');
 
-        if ($wpjobportal_roleid == 1) { // employer
-            $query = "DELETE u, job,comp";
-            if(in_array('departments', wpjobportal::$_active_addons)){
-                $query .= ",dep ";
+        // Who takes over an employer's listings, if anyone.
+        $wpjobportal_target = 0;
+        $wpjobportal_reassign_wp = absint($wpjobportal_reassign_wp);
+        if ($wpjobportal_reassign_wp > 0) {
+            $wpjobportal_target_row = wpjobportaldb_direct::get_row($wpdb->prepare('SELECT id, roleid FROM %i WHERE uid = %d', $wpdb->prefix . 'wj_portal_users', $wpjobportal_reassign_wp));
+            if ($wpjobportal_roleid != 1) {
+                $wpjobportal_report['not_moved_reason'] = 'not_employer';
+            } elseif (!$wpjobportal_target_row || (int) $wpjobportal_target_row->roleid != 1) {
+                $wpjobportal_report['not_moved_reason'] = 'target_not_employer';
+            } elseif ((int) $wpjobportal_target_row->id !== $wpjobportal_uid) {
+                $wpjobportal_target = (int) $wpjobportal_target_row->id;
             }
-            if(in_array('folder', wpjobportal::$_active_addons)){
-                $query .= ",folder,folder_resumes ";
-            }
-            if(in_array('message', wpjobportal::$_active_addons)){
-                $query .= ",message ";
-            }
-
-            if(in_array('credits', wpjobportal::$_active_addons)){
-                $query .= ",upackage,tlog,subs,invoice ";
-            }
-
-            $query .= " ,jobcity,compcity
-                        FROM
-                        `" . wpjobportal::$_db->prefix . "wj_portal_users` AS u
-                LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job ON job.uid = u.id
-                LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobcities` AS jobcity ON jobcity.jobid = job.id
-                LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS comp ON comp.uid = u.id";
-                if(in_array('departments', wpjobportal::$_active_addons)){
-                    $query .= " LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_departments` AS dep ON dep.companyid = comp.id";
-                }
-                if(in_array('folder', wpjobportal::$_active_addons)){
-                    $query .= " LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_folders` AS folder ON folder.uid = u.id";
-                    $query .= " LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_folderresumes` AS folder_resumes ON folder_resumes.uid = u.id";
-                }
-                if(in_array('message', wpjobportal::$_active_addons)){
-                    $query .= " LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_messages` AS message ON message.employerid = u.id";
-                }
-                if(in_array('credits', wpjobportal::$_active_addons)){
-                    $query .= " LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_userpackages` AS upackage ON upackage.uid = u.id";
-                    $query .= " LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_transactionlog` AS tlog ON tlog.uid = u.id";
-                    $query .= " LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_subscriptions` AS subs ON subs.uid = u.id";
-                    $query .= " LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_invoices` AS invoice ON invoice.uid = u.id";
-                }
-
-                $query .= " LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companycities` AS compcity ON compcity.companyid = comp.id
-                WHERE u.id = " . (int) ($wpjobportal_uid);
         }
 
-        if ($wpjobportal_roleid == 2) { // seeker
-                $query = "DELETE u,resume , ra, re,rf,ri,rl,ja ";
-                    if(in_array('resumesearch', wpjobportal::$_active_addons)){
-                        $query .= " ,rs ";
-                    }
-                    if(in_array('message', wpjobportal::$_active_addons)){
-                        $query .= " ,message ";
-                    }
-                    if(in_array('credits', wpjobportal::$_active_addons)){
-                        $query .= ",upackage,tlog,subs,invoice ";
-                    }
-                    if(in_array('jobalert', wpjobportal::$_active_addons)){
-                        $query .= " ,jobalert,acity ";
-                    }
-                $query .= "
-                    FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` AS u
-                    LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume ON resume.uid = u.id
-                    LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` AS ra ON ra.resumeid = resume.id
-                    LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resumeemployers` AS re ON re.resumeid = resume.id
-                    LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resumefiles` AS rf ON rf.resumeid = resume.id
-                    LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resumeinstitutes` AS ri ON ri.resumeid = resume.id
-                    LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resumelanguages` AS rl ON rl.resumeid = resume.id
-                    LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` AS ja ON ja.uid = u.id ";
-                    if(in_array('resumesearch', wpjobportal::$_active_addons)){
-                        $query .= " LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resumesearches` AS rs ON rs.uid = u.id";
-                    }
-                    if(in_array('message', wpjobportal::$_active_addons)){
-                        $query .= " LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_messages` AS message ON message.jobseekerid = u.id ";
-                    }
-                    if(in_array('credits', wpjobportal::$_active_addons)){
-                        $query .= " LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_userpackages` AS upackage ON upackage.uid = u.id";
-                        $query .= " LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_transactionlog` AS tlog ON tlog.uid = u.id";
-                        $query .= " LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_subscriptions` AS subs ON subs.uid = u.id";
-                        $query .= " LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_invoices` AS invoice ON invoice.uid = u.id";
-                    }
-                    if(in_array('jobalert', wpjobportal::$_active_addons)){
-                        $query .= " LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobalertsetting` AS jobalert ON jobalert.uid = u.id ";
-                        $query .= " LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobalertcities` AS acity ON acity.alertid = jobalert.id ";
-                    }
-                    $query .= " WHERE u.id = " . (int) ($wpjobportal_uid);
+        if ($wpjobportal_target > 0) {
+            foreach (array('wj_portal_companies' => 'uid', 'wj_portal_jobs' => 'uid', 'wj_portal_departments' => 'uid', 'wj_portal_folders' => 'uid', 'wj_portal_folderresumes' => 'uid', 'wj_portal_messages' => 'employerid') as $wpjobportal_table => $wpjobportal_column) {
+                if ($this->portalTableExists($wpjobportal_table)) {
+                    $wpjobportal_moved = wpjobportaldb_direct::query($wpdb->prepare('UPDATE %i SET %i = %d WHERE %i = %d', $wpdb->prefix . $wpjobportal_table, $wpjobportal_column, $wpjobportal_target, $wpjobportal_column, $wpjobportal_uid));
+                    $wpjobportal_report['moved'] += absint($wpjobportal_moved);
+                }
+            }
+            $wpjobportal_report['moved_to'] = $wpjobportal_target;
+            do_action('wpjobportal_user_content_reassigned', $wpjobportal_uid, $wpjobportal_target);
+        } else {
+            // Jobs first, each through the job delete (applications, cities, hooks), then the companies.
+            foreach ((array) wpjobportaldb_direct::get_col($wpdb->prepare('SELECT id FROM %i WHERE uid = %d', $wpdb->prefix . 'wj_portal_jobs', $wpjobportal_uid)) as $wpjobportal_jobid) {
+                if (WPJOBPORTALincluder::getJSModel('job')->jobEnforceDelete((int) $wpjobportal_jobid, $wpjobportal_uid) == WPJOBPORTAL_DELETED) {
+                    $wpjobportal_report['jobs']++;
+                }
+            }
+            foreach ((array) wpjobportaldb_direct::get_col($wpdb->prepare('SELECT id FROM %i WHERE uid = %d', $wpdb->prefix . 'wj_portal_companies', $wpjobportal_uid)) as $wpjobportal_companyid) {
+                if (WPJOBPORTALincluder::getJSModel('company')->companyEnforceDeletes((int) $wpjobportal_companyid, false) == WPJOBPORTAL_DELETED) {
+                    $wpjobportal_report['companies']++;
+                }
+            }
+            foreach (array('wj_portal_departments' => 'uid', 'wj_portal_folders' => 'uid', 'wj_portal_folderresumes' => 'uid', 'wj_portal_messages' => 'employerid') as $wpjobportal_table => $wpjobportal_column) {
+                $this->deletePortalRows($wpjobportal_table, $wpjobportal_column, $wpjobportal_uid);
+            }
         }
 
-        if($query != ''){
-            if (wpjobportaldb::query($query)) {
+        // A job seeker's own data: resumes (with their applications and files) and everything personal around them.
+        foreach ((array) wpjobportaldb_direct::get_col($wpdb->prepare('SELECT id FROM %i WHERE uid = %d', $wpdb->prefix . 'wj_portal_resume', $wpjobportal_uid)) as $wpjobportal_resumeid) {
+            if (WPJOBPORTALincluder::getJSModel('resume')->resumeEnforceDelete((int) $wpjobportal_resumeid, $wpjobportal_uid, false) == WPJOBPORTAL_DELETED) {
+                $wpjobportal_report['resumes']++;
+            }
+        }
+        $wpjobportal_alert_ids = $this->portalTableExists('wj_portal_jobalertsetting') ? array_map('absint', (array) wpjobportaldb_direct::get_col($wpdb->prepare('SELECT id FROM %i WHERE uid = %d', $wpdb->prefix . 'wj_portal_jobalertsetting', $wpjobportal_uid))) : array();
+        if (!empty($wpjobportal_alert_ids) && $this->portalTableExists('wj_portal_jobalertcities')) {
+            wpjobportaldb_direct::query($wpdb->prepare('DELETE FROM %i WHERE alertid IN (' . implode(',', array_fill(0, count($wpjobportal_alert_ids), '%d')) . ')', ...array_merge(array($wpdb->prefix . 'wj_portal_jobalertcities'), $wpjobportal_alert_ids)));
+        }
+        foreach (array('wj_portal_jobapply' => 'uid', 'wj_portal_coverletters' => 'uid', 'wj_portal_jobshortlist' => 'uid', 'wj_portal_jobalertsetting' => 'uid', 'wj_portal_jobsearches' => 'uid', 'wj_portal_resumesearches' => 'uid', 'wj_portal_messages' => 'jobseekerid') as $wpjobportal_table => $wpjobportal_column) {
+            $this->deletePortalRows($wpjobportal_table, $wpjobportal_column, $wpjobportal_uid);
+        }
+
+        // Payments stay on the books; who paid does not.
+        if ($this->portalTableExists('wj_portal_invoices')) {
+            wpjobportaldb_direct::query($wpdb->prepare("UPDATE %i SET payer_name = %s, payer_email = '', payer_address = '', payer_contactnumber = '' WHERE uid = %d", $wpdb->prefix . 'wj_portal_invoices', __('Deleted user', 'wp-job-portal'), $wpjobportal_uid));
+        }
+
+        // The add-ons' own personal data (Recruit, Marketplace), as on a privacy erase request.
+        apply_filters('wpjobportal_privacy_erase_personal_data', false, $wpjobportal_uid, $wp_uid);
+
+        wpjobportaldb_direct::query($wpdb->prepare('DELETE FROM %i WHERE id = %d', $wpdb->prefix . 'wj_portal_users', $wpjobportal_uid));
+        if ($wp_uid > 0) {
+            $wpjobportal_wpdir = wp_upload_dir();
+            $wpjobportal_profile_dir = $wpjobportal_wpdir['basedir'] . '/' . wpjobportal::$_config->getConfigurationByConfigName('data_directory') . '/data/profile/profile_' . $wp_uid;
+            $wp_filesystem = wpjobportal::wpjobportal_filesystem();
+            if ($wp_filesystem && $wp_filesystem->exists($wpjobportal_profile_dir)) {
+                $wp_filesystem->rmdir($wpjobportal_profile_dir, true);
+            }
+        }
+
+        do_action('wpjobportal_user_deleted', $wpjobportal_uid, $wp_uid, $wpjobportal_roleid);
+        return $wpjobportal_report;
+    }
+
+    /**
+     * Whether a WordPress user owns job portal content - companies, jobs,
+     * resumes or applications - that deleting the account removes or moves.
+     *
+     * @param int $wp_uid WordPress user id.
+     * @return bool
+     */
+    function userHasPortalContent($wp_uid) {
+        global $wpdb;
+        $wpjobportal_uid = absint($this->getUserIDByWPUid(absint($wp_uid)));
+        if ($wpjobportal_uid < 1) {
+            return false;
+        }
+        foreach (array('wj_portal_companies', 'wj_portal_jobs', 'wj_portal_resume', 'wj_portal_jobapply') as $wpjobportal_table) {
+            if ($this->portalTableExists($wpjobportal_table) && wpjobportaldb_direct::get_var($wpdb->prepare('SELECT id FROM %i WHERE uid = %d LIMIT 1', $wpdb->prefix . $wpjobportal_table, $wpjobportal_uid))) {
                 return true;
-            } else {
-                return false;
             }
         }
+        return false;
+    }
+
+    private function deletePortalRows($wpjobportal_table, $wpjobportal_column, $wpjobportal_uid) {
+        global $wpdb;
+        if ($this->portalTableExists($wpjobportal_table)) {
+            wpjobportaldb_direct::query($wpdb->prepare('DELETE FROM %i WHERE %i = %d', $wpdb->prefix . $wpjobportal_table, $wpjobportal_column, $wpjobportal_uid));
+        }
+    }
+
+    private function portalTableExists($wpjobportal_table) {
+        static $wpjobportal_known = array();
+        global $wpdb;
+        if (!isset($wpjobportal_known[$wpjobportal_table])) {
+            $wpjobportal_known[$wpjobportal_table] = (wpjobportaldb_direct::get_var($wpdb->prepare('SHOW TABLES LIKE %s', $wpdb->esc_like($wpdb->prefix . $wpjobportal_table))) === $wpdb->prefix . $wpjobportal_table);
+        }
+        return $wpjobportal_known[$wpjobportal_table];
+    }
+
+    /**
+     * Portal profiles whose WordPress account no longer exists - left behind
+     * by deletions from WordPress's Users screen before 2.7.0, whose hook read
+     * delete_option as one value while WordPress posts one per user.
+     *
+     * @return int[] Portal user ids.
+     */
+    function getOrphanedPortalUserIds($wpjobportal_limit = 0) {
+        global $wpdb;
+        if ($wpjobportal_limit > 0) {
+            return array_map('absint', (array) wpjobportaldb_direct::get_col($wpdb->prepare('SELECT portal.id FROM %i AS portal LEFT JOIN %i AS wpuser ON wpuser.ID = portal.uid WHERE portal.uid > 0 AND wpuser.ID IS NULL ORDER BY portal.id LIMIT %d', $wpdb->prefix . 'wj_portal_users', $wpdb->users, absint($wpjobportal_limit))));
+        }
+        return array_map('absint', (array) wpjobportaldb_direct::get_col($wpdb->prepare('SELECT portal.id FROM %i AS portal LEFT JOIN %i AS wpuser ON wpuser.ID = portal.uid WHERE portal.uid > 0 AND wpuser.ID IS NULL ORDER BY portal.id', $wpdb->prefix . 'wj_portal_users', $wpdb->users)));
     }
 
     function getUserRoleByUid($wpjobportal_uid) {
@@ -412,16 +534,10 @@ class WPJOBPORTALUserModel {
             if ($this->userCanDelete($wpjobportal_uid, $wpjobportal_roleid)) {
                 $wp_uid = $this->getWPuidByOuruid($wpjobportal_uid);
 
-                if ($this->deleteOurUser($wpjobportal_uid)) {
+                // removeUserData() also fires wpjobportal_user_deleted, for every way a user is deleted.
+                if ($this->removeUserData($wpjobportal_uid) !== false) {
                     do_action('wpjobportal_load_wp_users');
                     if (wp_delete_user($wp_uid)) {
-
-                        // --- NEW HOOK INTEGRATION START ---
-                        // Blueprint: Privacy and System Synchronization
-                        // Crucial for GDPR compliance and external CRM/ATS cleanup protocols.
-                        do_action('wpjobportal_user_deleted', $wpjobportal_uid, $wp_uid, $wpjobportal_roleid);
-                        // --- NEW HOOK INTEGRATION END ---
-
                         return WPJOBPORTAL_DELETED;
                     } else {
                         return WPJOBPORTAL_DELETE_ERROR;
@@ -491,7 +607,7 @@ class WPJOBPORTALUserModel {
             die( 'Security check Failed' );
         }
         $wpjobportal_userlimit = WPJOBPORTALrequest::getVar('userlimit', null, 0);
-        $wpjobportal_maxrecorded = 3;
+        $wpjobportal_maxrecorded = 10;
         //Filters
         $uname = WPJOBPORTALrequest::getVar('uname');
         $wpjobportal_name = WPJOBPORTALrequest::getVar('name');
@@ -552,7 +668,7 @@ class WPJOBPORTALUserModel {
             die( 'Security check Failed' );
         }
         $wpjobportal_userlimit = WPJOBPORTALrequest::getVar('userlimit', null, 0);
-        $wpjobportal_maxrecorded = 3;
+        $wpjobportal_maxrecorded = 10;
         //Filters
 
         $wpjobportal_name = WPJOBPORTALrequest::getVar('name');
@@ -578,11 +694,19 @@ class WPJOBPORTALUserModel {
         }
 
         $query = "SELECT COUNT( user.ID ) AS total
-                    FROM `" . $this->jsGetPrefix() . "users` AS user
-                    WHERE NOT EXISTS( SELECT jsuser.id FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` AS jsuser WHERE user.ID = jsuser.uid) AND
-                    NOT EXISTS(SELECT umeta_id FROM `".wpjobportal::$_db->prefix."usermeta` WHERE meta_value LIKE '%administrator%' AND user_id = user.id)";
+                    FROM `" . wpjobportal::$_db->users . "` AS user
+                    WHERE NOT EXISTS( SELECT jsuser.id FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` AS jsuser WHERE user.ID = jsuser.uid)"
+                    . $this->notSiteAdministrator('user.ID') . $this->siteMembersOnly('user.ID');
         $query .= $wpjobportal_inquery;
-        $query .= " GROUP BY user.ID";
+        /*
+         * No GROUP BY here.
+         *
+         * COUNT(user.ID) grouped by user.ID counts each user into a group of
+         * one, and get_var reads the first row - so the total was 1 however many
+         * users there were. The clamp below then reset every page to the first,
+         * and the picker showed the same three people out of hundreds, which is
+         * exactly how it looked: "all users not listed".
+         */
         $wpjobportal_total = wpjobportaldb::get_var($query);
 
         $limit = $wpjobportal_userlimit * $wpjobportal_maxrecorded;
@@ -592,12 +716,22 @@ class WPJOBPORTALUserModel {
 
         // Data
         $query = "SELECT DISTINCT user.ID AS userid, user.user_login , user.user_email AS emailaddress, user.display_name AS name
-                    FROM `" . $this->jsGetPrefix() . "users` AS user
-                    WHERE NOT EXISTS( SELECT jsuser.id FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` AS jsuser WHERE user.ID = jsuser.uid) AND
-                    NOT EXISTS(SELECT umeta_id FROM `".wpjobportal::$_db->prefix."usermeta` WHERE meta_value LIKE '%administrator%' AND user_id = user.ID)";
+                    FROM `" . wpjobportal::$_db->users . "` AS user
+                    WHERE NOT EXISTS( SELECT jsuser.id FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` AS jsuser WHERE user.ID = jsuser.uid)"
+                    . $this->notSiteAdministrator('user.ID') . $this->siteMembersOnly('user.ID');
 
         $query .= $wpjobportal_inquery;
-        $query .= " ORDER BY user.ID ASC LIMIT $limit, $wpjobportal_maxrecorded";
+        /*
+         * Newest first.
+         *
+         * Somebody assigning a role is nearly always dealing with a recent
+         * registration, and oldest-first buried those at the far end of the
+         * list. Ordering rather than filtering, deliberately: a date cut-off
+         * would hide an older account with no way for the administrator to tell
+         * why it was missing, and the search by name, username or email above
+         * still reaches everyone.
+         */
+        $query .= " ORDER BY user.user_registered DESC, user.ID DESC LIMIT $limit, $wpjobportal_maxrecorded";
         $wpjobportal_users = wpjobportaldb::get_results($query);
 
         $wpjobportal_html = $this->makeUserList($wpjobportal_users, $wpjobportal_total, $wpjobportal_maxrecorded, $wpjobportal_userlimit , true);
@@ -628,13 +762,18 @@ class WPJOBPORTALUserModel {
                         }else{
                             $wpjobportal_username = $wpjobportal_user->first_name . ' ' . $wpjobportal_user->last_name;
                         }
+                        // A blank name left an empty, unclickable link; fall back to the login, then the email.
+                        $wpjobportal_username = trim((string) $wpjobportal_username);
+                        if ($wpjobportal_username == '') {
+                            $wpjobportal_username = !empty($wpjobportal_user->user_login) ? $wpjobportal_user->user_login : $wpjobportal_user->emailaddress;
+                        }
                         $wpjobportal_html .='
                             <div class="user-records-row" >
                                 <div class="user-list-body-col user-id">
                                     ' . $wpjobportal_user->userid . '
                                 </div>
                                 <div class="user-list-body-col user-name">
-                                    <a href="#" class="userpopup-link js-userpopup-link" data-id=' . $wpjobportal_user->userid . ' data-name="' . $wpjobportal_username . '" data-email="' . $wpjobportal_user->emailaddress . '" >' . $wpjobportal_username . '</a>
+                                    <a href="#" class="userpopup-link js-userpopup-link" data-id=' . esc_attr($wpjobportal_user->userid) . ' data-name="' . esc_attr($wpjobportal_username) . '" data-email="' . esc_attr($wpjobportal_user->emailaddress) . '" >' . esc_html($wpjobportal_username) . '</a>
                                 </div>
                                 <div class="user-list-body-col user-name-n">
                                     ' . $wpjobportal_user->user_login . '
@@ -778,11 +917,10 @@ class WPJOBPORTALUserModel {
         $wpjobportal_data['first_name'] = wpjobportal::wpjobportal_sanitizeData(WPJOBPORTALrequest::getVar('wpjobportal_user_first'));
         $wpjobportal_data['last_name'] = wpjobportal::wpjobportal_sanitizeData(WPJOBPORTALrequest::getVar('wpjobportal_user_last'));
         $wpjobportal_data = wpjobportal::wpjobportal_sanitizeData($wpjobportal_data);
-        $wpjobportal_data = wpjobportal::$_common->stripslashesFull($wpjobportal_data);// remove slashes with quotes.
         $desc_text = WPJOBPORTALrequest::getVar('description','post','','',1);
         // clean it first
         $desc_text = str_ireplace(['<script', '< script'], '-', $desc_text);
-        $wpjobportal_data['description'] = wpautop(wptexturize(wp_kses_post(wpjobportalphplib::wpJP_stripslashes($desc_text))));
+        $wpjobportal_data['description'] = wpautop(wptexturize(wp_kses_post($desc_text)));
         $wpjobportal_row = WPJOBPORTALincluder::getJSTable('users');
         if(!$wpjobportal_row->bind($wpjobportal_data)) {
             return WPJOBPORTAL_SAVE_ERROR;
@@ -793,6 +931,8 @@ class WPJOBPORTALUserModel {
         if(!$wpjobportal_row->store()) {
             return WPJOBPORTAL_SAVE_ERROR;
         }
+
+        $this->syncWPUserName($wpjobportal_row->id, $wpjobportal_data);
 
         $this->storeUserPhoto(WPJOBPORTALincluder::getObjectClass('user')->getWPuid());
 
@@ -815,11 +955,39 @@ class WPJOBPORTALUserModel {
         return WPJOBPORTAL_SAVED;
     }
 
+    // Keep the WordPress user (first/last name meta, display name) in step with the portal profile, so WP admin
+    // Users and the toolbar greeting show the new name. Only when the form sent the name fields.
+    function syncWPUserName($wpjobportal_our_uid, $wpjobportal_data) {
+        if (WPJOBPORTALrequest::getVar('wpjobportal_user_first', 'post', null) === null && WPJOBPORTALrequest::getVar('wpjobportal_user_last', 'post', null) === null) {
+            return;
+        }
+        $wpjobportal_wpuid = $this->getWPuidByOuruid($wpjobportal_our_uid);
+        if (!is_numeric($wpjobportal_wpuid) || !get_userdata($wpjobportal_wpuid)) {
+            return;
+        }
+        $wpjobportal_first = isset($wpjobportal_data['first_name']) ? $wpjobportal_data['first_name'] : '';
+        $wpjobportal_last = isset($wpjobportal_data['last_name']) ? $wpjobportal_data['last_name'] : '';
+        $wpjobportal_userdata = array('ID' => (int) $wpjobportal_wpuid, 'first_name' => $wpjobportal_first, 'last_name' => $wpjobportal_last);
+        // same display name rule as the registration form
+        $wpjobportal_display_name = trim($wpjobportal_first . ' ' . $wpjobportal_last);
+        if ($wpjobportal_display_name != '') {
+            $wpjobportal_userdata['display_name'] = $wpjobportal_display_name;
+        }
+        // WordPress user functions expect slashed data and unslash it again (a typed backslash would be lost)
+        wp_update_user(wp_slash($wpjobportal_userdata));
+    }
+
     function storeUserPhoto($wpjobportal_id){
         if(!is_numeric($wpjobportal_id)){
             return false;
         }
-        if(!empty($_FILES['photo']) && $_FILES['photo']['size'] > 0) { // logo
+        if(WPJOBPORTALrequest::fileSize('photo') > 0) { // logo
+            // Check the new file first: removing the current photo and then refusing the upload left none.
+            if (WPJOBPORTALincluder::getObjectClass('uploads')->checkImageUpload('photo') != 1) {
+                $wpjobportal_msg = WPJOBPORTALMessages::getMessage(WPJOBPORTAL_FILE_TYPE_ERROR, '');
+                WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'], $this->getMessagekey());
+                return;
+            }
             $query = "SELECT photo FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE uid = " . (int) ($wpjobportal_id);
             $wpjobportal_photo = wpjobportal::$_db->get_var($query);
             if( !empty($wpjobportal_photo) ){
@@ -847,8 +1015,8 @@ class WPJOBPORTALUserModel {
     function getSavedCookiesDataForSearch(){
         $wpjobportal_jsjp_search_array = array();
         $wpjp_search_cookie_data = '';
-        if(isset($_COOKIE['jsjp_jobportal_search_data'])){
-            $wpjp_search_cookie_data = wpjobportal::wpjobportal_sanitizeData($_COOKIE['jsjp_jobportal_search_data']);
+        if(WPJOBPORTALrequest::hasCookie('jsjp_jobportal_search_data')){
+            $wpjp_search_cookie_data = WPJOBPORTALrequest::cookie('jsjp_jobportal_search_data');
             $wpjp_search_cookie_data = wpjobportalphplib::wpJP_safe_decoding($wpjp_search_cookie_data);
             $wpjp_search_cookie_data = json_decode( $wpjp_search_cookie_data , true );
         }

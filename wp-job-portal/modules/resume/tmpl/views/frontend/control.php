@@ -76,7 +76,7 @@ switch ($wpjobportal_control) {
                         <?php
                         // the below code is written in this way to accomodate the design
                             echo '
-                            <a class="wjportal-resume-act-btn wjportal-list-act-btn-view-profile" href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'viewresume', 'jobid'=>$wpjobportal_myresume->id, 'wpjobportalid'=>$wpjobportal_myresume->resumealiasid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).' title='. esc_html(__('View Profile', 'wp-job-portal')) .'>
+                            <a class="wjportal-resume-act-btn wjportal-list-act-btn-view-profile" href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'viewresume', 'jobid'=>(isset($wpjobportal_myresume->jobid) ? $wpjobportal_myresume->jobid : $wpjobportal_myresume->id), 'wpjobportalid'=>$wpjobportal_myresume->resumealiasid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).' title='. esc_html(__('View Profile', 'wp-job-portal')) .'>
                                 '. esc_html(__('View Profile', 'wp-job-portal')) .'
                             </a>';
                             if ( has_action( 'wpjobportal_addons_resume_bottom_action_appliedresume' ) ) {
@@ -127,7 +127,28 @@ switch ($wpjobportal_control) {
         </div>
             <?php
         break;
-
+    default:
+        /*
+         * A list of resumes that belongs to an extension.
+         *
+         * As with the job card: every case above is one of Core's own
+         * screens, so an extension wanting this card had nowhere to put its
+         * own buttons and built a card of its own instead. The row is
+         * Core's; what goes in its action bar, on a screen Core does not
+         * own, is the extension's. Nothing is printed if nobody answers.
+         *
+         * @param string   $wpjobportal_control  The screen asking.
+         * @param stdClass $wpjobportal_myresume The resume on this row.
+         */
+        ob_start();
+        do_action('wpjobportal_resume_list_controls', $wpjobportal_control, $wpjobportal_myresume);
+        $wpjobportal_extension_controls = ob_get_clean();
+        if (trim($wpjobportal_extension_controls) !== '') {
+            echo '<div class="wjportal-resume-list-btm-wrp"><div class="wjportal-resume-action-wrp">'
+                . $wpjobportal_extension_controls // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- printed by the extension's own escaped output.
+                . '</div></div>';
+        }
+        break;
 
 }
 ?>

@@ -14,4 +14,14 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("Cartago", "Cartago", "Cartago", NULL, 9, 0, 1, NULL, "9.8642435", "-83.9204377"),
 ("Turrialba", "Turrialba", "Turrialba", NULL, 9, 0, 1, NULL, "9.9068828", "-83.6820361"),
 ("Guápiles", "Guápiles", "Guápiles", NULL, 9, 0, 1, NULL, "10.2154361", "-83.7913634"),
-("Limón", "Limón", "Limón", NULL, 9, 0, 1, NULL, "9.9935604", "-83.0303139");
+("Limón", "Limón", "Limón", NULL, 9, 0, 1, NULL, "9.9935604", "-83.0303139"),
+("Barra Del Colorado", "Barra Del Colorado", "Barra Del Colorado", NULL, 9, 0, 1, NULL, "10.7713685", "-83.5969227"),
+("Ciudad Quesada", "Ciudad Quesada", "Ciudad Quesada", NULL, 9, 0, 1, NULL, "10.3270781", "-84.4356706"),
+("Curridabat", "Curridabat", "Curridabat", NULL, 9, 0, 1, NULL, "9.9145505", "-84.0386633"),
+("Escazu", "Escazu", "Escazu", NULL, 9, 0, 1, NULL, "9.920695", "-84.1461519"),
+("Jaco", "Jaco", "Jaco", NULL, 9, 0, 1, NULL, "9.6202396", "-84.6217487"),
+("Playas del Coco", "Playas del Coco", "Playas del Coco", NULL, 9, 0, 1, NULL, "10.5525", "-85.6961111"),
+("Samara", "Samara", "Samara", NULL, 9, 0, 1, NULL, "9.8820222", "-85.5290361"),
+("San Francisco De Dos Rios", "San Francisco De Dos Rios", "San Francisco De Dos Rios", NULL, 9, 0, 1, NULL, "9.9080918", "-84.0616709"),
+("Santa Maria", "Santa Maria", "Santa Maria", NULL, 9, 0, 1, NULL, "9.548854", "-83.985008"),
+("Tibas", "Tibas", "Tibas", NULL, 9, 0, 1, NULL, "9.9576176", "-84.0816123");

@@ -164,12 +164,14 @@ class WPJOBPORTALPostinstallationModel {
 
     }
 
+    /**
+     * Who the sample records should belong to.
+     *
+     * @param int $wpjobportal_chosen Portal user id picked on the onboarding screen, or 0.
+     * @param int $wpjobportal_roleid 1 employer, 2 job seeker.
+     * @return int Portal user id, or 0 when the site holds nobody of that role.
+     */
     function installSampleData($wpjobportal_insertsampledata, $wpjobportal_jsmenu,$wpjobportal_empmenu,$wpjobportal_temp_data = 0,$wpjobportal_joblist_menu = 0) {
-        $wpjobportal_date = gmdate('Y-m-d H:i:s');
-        $wpjobportal_curdate = gmdate('Y-m-d H:i:s');
-        $thirdydaydate = gmdate('Y-m-d', strtotime($wpjobportal_curdate. ' + 30 days'));
-        $wpjobportal_data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue('data_directory');
-        $wpjobportal_sample_job_ids = array();
 
 
         if($wpjobportal_jsmenu == 1){
@@ -211,7 +213,7 @@ class WPJOBPORTALPostinstallationModel {
             $pageexists = wpjobportal::$_db->get_var($query);
             if($pageexists == 0){
                 $post = array(
-                    'post_name' => 'wp-job-portal-newset-jobs',
+                    'post_name' => 'wp-job-portal-newest-jobs',
                     'post_title' => 'Newest Jobs',
                     'post_status' => 'publish',
                     'post_content' => '[wpjobportal_job]',
@@ -223,526 +225,29 @@ class WPJOBPORTALPostinstallationModel {
                 }
             }
         }
-        if ( ! function_exists( 'WP_Filesystem' ) ) {
-            require_once ABSPATH . 'wp-admin/includes/file.php';
-        }
-        global $wp_filesystem;
-        if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-            $creds = request_filesystem_credentials( site_url() );
-            wp_filesystem( $creds );
-        }
-
         if ($wpjobportal_insertsampledata == 1) {
-            $wp_upload_dir = wp_upload_dir();
-            $wpjobportal_data_directory_path = $wp_upload_dir["basedir"]."/".$wpjobportal_data_directory;
-            WPJOBPORTAL_Sample_Data_Service::install_assets($wpjobportal_data_directory_path);
-            $wpjobportal_jobseeker_id = 0;
+            // The owners were chosen on the previous screen, and the controller
+            // refused the request unless both were sound. Choosing an existing
+            // WordPress user gives them the WP Job Portal profile for the role;
+            // no WordPress user is ever created here.
             $wpjobportal_employer_id = 0;
-            $post_jobseeker_id = absint(WPJOBPORTALrequest::getVar('jobseeker_id','post'));
-            if($post_jobseeker_id > 0){
-
-                /* insert new jobseeker */
-                $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "users` where ID= ". $post_jobseeker_id;
-                $wpjobportal_jobseeker_data =wpjobportaldb::get_row($query);
-
-                $query = "SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` where uid= ". $post_jobseeker_id;
-                $wpjobportal_jobseeker_already_exist =wpjobportaldb::get_var($query);
-                if(empty($wpjobportal_jobseeker_already_exist)){
-                    $wpjobportal_insert_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_users`
-                                (id,uid,first_name,roleid,emailaddress,status,created)
-                                  VALUES('',".esc_sql($post_jobseeker_id).",'".esc_sql($wpjobportal_jobseeker_data->user_login)."',2,'".esc_sql($wpjobportal_jobseeker_data->user_email)."',1,'".esc_sql($wpjobportal_date)."');";
-                    wpjobportaldb::query($wpjobportal_insert_query);
-                    $wpjobportal_jobseeker_id = wpjobportal::$_db->insert_id;
-                }else{
-                    $wpjobportal_jobseeker_id = $wpjobportal_jobseeker_already_exist;
-                }
-            }
+            $wpjobportal_jobseeker_id = 0;
             $post_employer_id = absint(WPJOBPORTALrequest::getVar('employer_id','post'));
-            if($post_employer_id > 0){
-
-                /* insert new employer */
-                $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "users` where ID= ". $post_employer_id;
-                $wpjobportal_employer_data =wpjobportaldb::get_row($query);
-
-                $query = "SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` where uid= ". $post_employer_id;
-                $wpjobportal_employer_already_exist =wpjobportaldb::get_var($query);
-                if(empty($wpjobportal_employer_already_exist)){
-                    $wpjobportal_insert_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_users`
-                                (id,uid,first_name,roleid,emailaddress,status,created)
-                                  VALUES('',".$post_employer_id.",'". esc_sql($wpjobportal_employer_data->user_login) ."',1,'". esc_sql($wpjobportal_employer_data->user_email) ."',1,'".esc_sql($wpjobportal_date)."');";
-                    wpjobportaldb::query($wpjobportal_insert_query);
-                    $wpjobportal_employer_id = wpjobportal::$_db->insert_id;
-                }else{
-                    $wpjobportal_employer_id = $wpjobportal_employer_already_exist;
-                }
+            $post_jobseeker_id = absint(WPJOBPORTALrequest::getVar('jobseeker_id','post'));
+            if ($post_employer_id > 0) {
+                $wpjobportal_owner = WPJOBPORTAL_Sample_Data_Service::portal_account_for($post_employer_id, WPJOBPORTAL_Sample_Data_Service::ROLE_EMPLOYER);
+                $wpjobportal_employer_id = is_wp_error($wpjobportal_owner) ? 0 : $wpjobportal_owner;
+            }
+            if ($post_jobseeker_id > 0) {
+                $wpjobportal_owner = WPJOBPORTAL_Sample_Data_Service::portal_account_for($post_jobseeker_id, WPJOBPORTAL_Sample_Data_Service::ROLE_JOBSEEKER);
+                $wpjobportal_jobseeker_id = is_wp_error($wpjobportal_owner) ? 0 : $wpjobportal_owner;
             }
 
-            /**
-            *@param wp job portal
-            * * Sample Data Company
-            */
-            // For feature vehicle addons
-            $wpjobportal_isfeaturedcompany = 0;
-            $wpjobportal_startfeatureddate = "0000-00-00 00:00:00";
-            $wpjobportal_endfeatureddate = "0000-00-00 00:00:00";
-            if(in_array('featuredcompany', wpjobportal::$_active_addons)){
-               $wpjobportal_isfeaturedcompany = 1;
-               $wpjobportal_startfeatureddate = gmdate("Y-m-d H:i:s");
-               $wpjobportal_endfeatureddate = gmdate("Y-m-d H:i:s", strtotime("+12 months"));
+            // The records themselves come from includes/sample-data/sample-data.json,
+            // sized to what this site shows; see WPJOBPORTAL_Sample_Data_Importer.
+            if ($wpjobportal_employer_id > 0 && $wpjobportal_jobseeker_id > 0) {
+                WPJOBPORTAL_Sample_Data_Importer::import($wpjobportal_employer_id, $wpjobportal_jobseeker_id);
             }
-
-            //if($wpjobportal_employer_id > 0 && is_numeric($wpjobportal_employer_id)){
-            if(is_numeric($wpjobportal_employer_id)){
-
-                //  first company
-                $cityid = '33';// cityids for companies
-                $wpjobportal_insert_company = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companies` ( `uid`, `name`, `alias`, `url`, `logofilename`, `logoisfile`, `logo`, `smalllogofilename`, `smalllogoisfile`, `smalllogo`, `tagline`, `contactemail`, `description`, `city`, `address1`, `address2`, `created`, `modified`, `hits`, `metadescription`, `metakeywords`, `status`, `userpackageid`, `price`, `isgoldcompany`, `startgolddate`, `endgolddate`, `endfeatureddate`, `isfeaturedcompany`, `startfeatureddate`, `params`, `serverstatus`, `serverid`) VALUES
-                    ( '".esc_sql($wpjobportal_employer_id) ."', 'Buruj Solution', 'buruj-solution', 'http://www.burujsolutions.com', 'default-logo.png', 1, '', '', 0, '', 'We are the Best', 'sampledata@info.com', '<p>We aligns itself with modern and advanced concepts in IT industry to help its customers by providing value added software. We performs thorough research on each given problem and advises its customers on how their business growth aims can be achieved by the implementation of a specific and research-based software solution</p>\n', '$cityid', 'WAPDA Town, Gujranwala ', '', '".$wpjobportal_curdate."', '".$wpjobportal_curdate."', 0, NULL, NULL, 1, 0, 0, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '".$thirdydaydate."', 2, '0000-00-00 00:00:00', '[]', '', 0)
-                    ";
-                wpjobportaldb::query($wpjobportal_insert_company);
-                $wpjobportal_companyid = wpjobportal::$_db->insert_id;
-                WPJOBPORTAL_Sample_Data_Service::record_entity('companies', $wpjobportal_companyid);
-                    // logo handling
-                if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x1")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x1",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_".$wpjobportal_companyid);
-                //Cities
-                 $wpjobportal_insert_companycity = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companycities` (`companyid`, `cityid`)
-                VALUES( " . esc_sql($wpjobportal_companyid) . ", " . esc_sql($cityid) . ");";
-                wpjobportaldb::query($wpjobportal_insert_companycity);
-
-                //  Second Company
-                $cityid1 = '36';// cityids for companies
-
-                $wpjobportal_insert_company = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companies` ( `uid`, `name`, `alias`, `url`, `logofilename`, `logoisfile`, `logo`, `smalllogofilename`, `smalllogoisfile`, `smalllogo`, `tagline`, `contactemail`, `description`, `city`, `address1`, `address2`, `created`, `modified`, `hits`, `metadescription`, `metakeywords`, `status`, `userpackageid`, `price`, `isgoldcompany`, `startgolddate`, `endgolddate`, `endfeatureddate`, `isfeaturedcompany`, `startfeatureddate`, `params`, `serverstatus`, `serverid`) VALUES
-                    ('".esc_sql($wpjobportal_employer_id) ."', 'Joom Sky', 'joom-sky', 'http://www.joomsky.com', 'default-logo.png', 1, '', '', 0, '', 'We are the Best', 'sampledata@joomsky.com', '<p>We aligns itself with modern and advanced concepts in IT industry to help its customers by providing value added software. We performs thorough research on each given problem and advises its customers on how their business growth aims can be achieved by the implementation of a specific and research-based software solution</p>\n', '$cityid1', 'WAPDA Town, Gujranwala ', '', '".$wpjobportal_curdate."', '".$wpjobportal_curdate."', 0, NULL, NULL, 1, 0, 0, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '".$thirdydaydate."', 2, '0000-00-00 00:00:00', '[]', '', 0)
-                    ";
-                wpjobportaldb::query($wpjobportal_insert_company);
-                $wpjobportal_companyid1 = wpjobportal::$_db->insert_id;
-                WPJOBPORTAL_Sample_Data_Service::record_entity('companies', $wpjobportal_companyid1);
-                // logo handling
-                if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x2")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x2",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_".$wpjobportal_companyid1);
-
-                $wpjobportal_insert_companycity = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companycities` (`companyid`, `cityid`)
-                VALUES( " . esc_sql($wpjobportal_companyid1) . ", " . esc_sql($cityid1) . ");";
-                wpjobportaldb::query($wpjobportal_insert_companycity);
-
-
-                //Third Company
-                $cityid2 = '483';// cityids for companies
-
-                $wpjobportal_insert_company = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companies` ( `uid`, `name`, `alias`, `url`, `logofilename`, `logoisfile`, `logo`, `smalllogofilename`, `smalllogoisfile`, `smalllogo`, `tagline`, `contactemail`, `description`, `city`, `address1`, `address2`, `created`, `modified`, `hits`, `metadescription`, `metakeywords`, `status`, `userpackageid`, `price`, `isgoldcompany`, `startgolddate`, `endgolddate`, `endfeatureddate`, `isfeaturedcompany`, `startfeatureddate`, `params`, `serverstatus`, `serverid`) VALUES
-                    ('".esc_sql($wpjobportal_employer_id) ."', 'Joom Shark', 'joom-shark', 'http://www.joomshark.com', 'default-logo.png', 1, '', '', 0, '', 'We are the Best', 'sample@joomshark.com', '<p>We aligns itself with modern and advanced concepts in IT industry to help its customers by providing value added software. We performs thorough research on each given problem and advises its customers on how their business growth aims can be achieved by the implementation of a specific and research-based software solution</p>\n', '$cityid2', 'WAPDA Town, Gujranwala ', '', '".$wpjobportal_curdate."', '".$wpjobportal_curdate."', 0, NULL, NULL, 1, 0, 0, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '".$wpjobportal_endfeatureddate."', '".$wpjobportal_isfeaturedcompany."', '".$wpjobportal_startfeatureddate."', '[]', '', 0)
-                    ";
-                wpjobportaldb::query($wpjobportal_insert_company);
-                $wpjobportal_companyid2 = wpjobportal::$_db->insert_id;
-                WPJOBPORTAL_Sample_Data_Service::record_entity('companies', $wpjobportal_companyid2);
-                // logo handling
-                if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x3")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x3",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_".$wpjobportal_companyid2);
-
-                $wpjobportal_insert_companycity = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companycities` (`companyid`, `cityid`)
-                VALUES( " . esc_sql($wpjobportal_companyid2) . ", " . esc_sql($cityid2) . ");";
-                wpjobportaldb::query($wpjobportal_insert_companycity);
-
-
-                //  Fourth Company
-                $cityid3 = '880';// cityids for companies
-
-                $wpjobportal_insert_company = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companies` ( `uid`, `name`, `alias`, `url`, `logofilename`, `logoisfile`, `logo`, `smalllogofilename`, `smalllogoisfile`, `smalllogo`, `tagline`, `contactemail`, `description`, `city`, `address1`, `address2`, `created`, `modified`, `hits`, `metadescription`, `metakeywords`, `status`, `userpackageid`, `price`, `isgoldcompany`, `startgolddate`, `endgolddate`, `endfeatureddate`, `isfeaturedcompany`, `startfeatureddate`, `params`, `serverstatus`, `serverid`) VALUES
-                    ( '".esc_sql($wpjobportal_employer_id) ."', 'Sample Company', 'sample-company', 'http://www.sample.com', 'default-logo.png', 1, '', '', 0, '', 'We are the Best', 'sample@sample.com', '<p>We perform thorough research on each given problem and advises its customers on how their business growth aims can be achieved by the implementation of a specific and research-based software solution</p>\n', '$cityid3', 'some streest in some city ', '', '".$wpjobportal_curdate."', '".$wpjobportal_curdate."', 0, NULL, NULL, 1, 0, 0, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '".$thirdydaydate."', 2, '0000-00-00 00:00:00', '[]', '', 0)
-                    ";
-                wpjobportaldb::query($wpjobportal_insert_company);
-                $wpjobportal_companyid3 = wpjobportal::$_db->insert_id;
-                WPJOBPORTAL_Sample_Data_Service::record_entity('companies', $wpjobportal_companyid3);
-                // logo handling
-                if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x4")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x4",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_".$wpjobportal_companyid3);
-
-                $wpjobportal_insert_companycity = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companycities` (`companyid`, `cityid`)
-                VALUES( " . esc_sql($wpjobportal_companyid3) . ", " . esc_sql($cityid3) . ");";
-                wpjobportaldb::query($wpjobportal_insert_companycity);
-
-                //Fifth Company
-                $cityid4 = '837';
-
-                $wpjobportal_insert_company = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companies` ( `uid`, `name`, `alias`, `url`, `logofilename`, `logoisfile`, `logo`, `smalllogofilename`, `smalllogoisfile`, `smalllogo`, `tagline`, `contactemail`, `description`, `city`, `address1`, `address2`, `created`, `modified`, `hits`, `metadescription`, `metakeywords`, `status`, `userpackageid`, `price`, `isgoldcompany`, `startgolddate`, `endgolddate`, `endfeatureddate`, `isfeaturedcompany`, `startfeatureddate`, `params`, `serverstatus`, `serverid`) VALUES
-                    ('".esc_sql($wpjobportal_employer_id) ."', 'Sample Company 1', 'sample-company-1', 'http://www.sample1.com', 'default-logo.png', 1, '', '', 0, '', 'We are the Best', 'sample1@sample1.com', '<p>We perform thorough research on each given problem and advises its customers on how their business growth aims can be achieved by the implementation of a specific and research-based software solution</p>\n', '$cityid4', 'some streest in some city ', '', '".$wpjobportal_curdate."', '".$wpjobportal_curdate."', 0, NULL, NULL, 1, 0, 0, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '".$thirdydaydate."', 2, '0000-00-00 00:00:00', '[]', '', 0)
-                    ";
-                wpjobportaldb::query($wpjobportal_insert_company);
-                $wpjobportal_companyid4 = wpjobportal::$_db->insert_id;
-                WPJOBPORTAL_Sample_Data_Service::record_entity('companies', $wpjobportal_companyid4);
-                // logo handling
-                if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x5")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x5",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_".$wpjobportal_companyid4);
-
-                $wpjobportal_insert_companycity = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companycities` (`companyid`, `cityid`)
-                VALUES( " . esc_sql($wpjobportal_companyid4) . ", " . esc_sql($cityid4) . ");";
-                wpjobportaldb::query($wpjobportal_insert_companycity);
-
-
-                //Sixth  Company
-                $cityid5 = '1329';
-                $wpjobportal_insert_company = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companies` ( `uid`, `name`, `alias`, `url`, `logofilename`, `logoisfile`, `logo`, `smalllogofilename`, `smalllogoisfile`, `smalllogo`, `tagline`, `contactemail`, `description`, `city`, `address1`, `address2`, `created`, `modified`, `hits`, `metadescription`, `metakeywords`, `status`, `userpackageid`, `price`, `isgoldcompany`, `startgolddate`, `endgolddate`, `endfeatureddate`, `isfeaturedcompany`, `startfeatureddate`, `params`, `serverstatus`, `serverid`) VALUES
-                    ('".esc_sql($wpjobportal_employer_id) ."', 'Sample Company 2', 'sample-company-2', 'http://www.sample2.com', 'default-logo.png', 1, '', '', 0, '', 'We are the Best', 'sample2@2sample.com', '<p>problem and advises its customers on how their business growth aims can be achieved by the implementation of a specific and research-based software solution</p>\n', '$cityid5', 'some streest in some city ', '', '".$wpjobportal_curdate."', '".$wpjobportal_curdate."', 0, NULL, NULL, 1, 0, 0, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '".$wpjobportal_endfeatureddate."', '".$wpjobportal_isfeaturedcompany."', '".$wpjobportal_startfeatureddate."', '[]', '', 0)";
-
-                wpjobportaldb::query($wpjobportal_insert_company);
-                $wpjobportal_companyid5 = wpjobportal::$_db->insert_id;
-                WPJOBPORTAL_Sample_Data_Service::record_entity('companies', $wpjobportal_companyid5);
-                // logo handling
-                if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x6")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x6",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_".$wpjobportal_companyid5);
-
-                $wpjobportal_insert_companycity = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companycities` (`companyid`, `cityid`)VALUES( " . esc_sql($wpjobportal_companyid5) . ", " . esc_sql($cityid5) . ");";
-                wpjobportaldb::query($wpjobportal_insert_companycity);
-
-
-
-                //Seventh Company
-                $cityid6 = '857';
-
-                $wpjobportal_insert_company = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companies` (`uid`, `name`, `alias`, `url`, `logofilename`, `logoisfile`, `logo`, `smalllogofilename`, `smalllogoisfile`, `smalllogo`, `tagline`, `contactemail`, `description`, `city`, `address1`, `address2`, `created`, `modified`, `hits`, `metadescription`, `metakeywords`, `status`, `userpackageid`, `price`, `isgoldcompany`, `startgolddate`, `endgolddate`, `endfeatureddate`, `isfeaturedcompany`, `startfeatureddate`, `params`, `serverstatus`, `serverid`) VALUES
-                    ('".esc_sql($wpjobportal_employer_id) ."', 'Sample Company 3', 'sample-company-3', 'http://www.sample3.com', 'default-logo.png', 1, '', '', 0, '', 'We are the Best', 'sample3@3sample.com', '<p>problem and advises its customers on how their business growth aims can be achieved by the implementation of a specific and research-based software solution</p>\n', '$cityid6', 'some streest in some city ', '', '".$wpjobportal_curdate."', '".$wpjobportal_curdate."', 0, NULL, NULL, 1, 0, 0, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '".$thirdydaydate."', 2, '0000-00-00 00:00:00', '[]', '', 0)
-                    ";
-                wpjobportaldb::query($wpjobportal_insert_company);
-                $wpjobportal_companyid6 = wpjobportal::$_db->insert_id;
-                WPJOBPORTAL_Sample_Data_Service::record_entity('companies', $wpjobportal_companyid6);
-                // logo handling
-                if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x7")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x7",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_".$wpjobportal_companyid6);
-
-                $wpjobportal_insert_companycity = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companycities` (`companyid`, `cityid`)
-                VALUES( " . esc_sql($wpjobportal_companyid6) . ", " . esc_sql($cityid6) . ");";
-                wpjobportaldb::query($wpjobportal_insert_companycity);
-
-                //Eight Company
-                 $cityid7 = '872';
-
-                 $wpjobportal_insert_company = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companies` (`uid`, `name`, `alias`, `url`, `logofilename`, `logoisfile`, `logo`, `smalllogofilename`, `smalllogoisfile`, `smalllogo`, `tagline`, `contactemail`, `description`, `city`, `address1`, `address2`, `created`, `modified`, `hits`, `metadescription`, `metakeywords`, `status`, `userpackageid`, `price`, `isgoldcompany`, `startgolddate`, `endgolddate`, `endfeatureddate`, `isfeaturedcompany`, `startfeatureddate`, `params`, `serverstatus`, `serverid`) VALUES
-                    ('".esc_sql($wpjobportal_employer_id) ."', 'Sample Company 4', 'sample-company-4', 'http://www.sample.com', 'default-logo.png', 1, '', '', 0, '', 'We are the Best', 'sample4@4sample.com', '<p>problem and advises its customers on how their business growth aims can be achieved by the implementation of a specific and research-based software solution</p>\n', '$cityid7', 'some streest in some city ', '', '".$wpjobportal_curdate."', '".$wpjobportal_curdate."', 0, NULL, NULL, 1, 0, 0, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '".$thirdydaydate."', 2, '0000-00-00 00:00:00', '[]', '', 0)
-                    ";
-                wpjobportaldb::query($wpjobportal_insert_company);
-                $wpjobportal_companyid7 = wpjobportal::$_db->insert_id;
-                WPJOBPORTAL_Sample_Data_Service::record_entity('companies', $wpjobportal_companyid7);
-                // logo handling
-                if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x8")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x8",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_".$wpjobportal_companyid7);
-
-                $wpjobportal_insert_companycity = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companycities` (`companyid`, `cityid`)
-                VALUES( " . esc_sql($wpjobportal_companyid7) . ", " . esc_sql($cityid7) . ");";
-                wpjobportaldb::query($wpjobportal_insert_companycity);
-
-                //Ninth Company
-                $cityid8 = '5';
-
-                $wpjobportal_insert_company = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companies` (`uid`, `name`, `alias`, `url`, `logofilename`, `logoisfile`, `logo`, `smalllogofilename`, `smalllogoisfile`, `smalllogo`, `tagline`, `contactemail`, `description`, `city`, `address1`, `address2`, `created`, `modified`, `hits`, `metadescription`, `metakeywords`, `status`, `userpackageid`, `price`, `isgoldcompany`, `startgolddate`, `endgolddate`, `endfeatureddate`, `isfeaturedcompany`, `startfeatureddate`, `params`, `serverstatus`, `serverid`) VALUES
-                    ('".esc_sql($wpjobportal_employer_id) ."', 'Sample Company 5', 'sample-company-5', 'http://www.sample5.com', 'default-logo.png', 1, '', '', 0, '', 'We are the Best', 'sample5@5sample.com', '<p>problem and advises its customers on how their business growth aims can be achieved by the implementation of a specific and research-based software solution</p>\n', '$cityid8', 'some streest in some city ', '', '".$wpjobportal_curdate."', '".$wpjobportal_curdate."', 0, NULL, NULL, 1, 0, 0, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '".$wpjobportal_endfeatureddate."', '".$wpjobportal_isfeaturedcompany."', '".$wpjobportal_startfeatureddate."', '[]', '', 0)
-                    ";
-                wpjobportaldb::query($wpjobportal_insert_company);
-                $wpjobportal_companyid8 = wpjobportal::$_db->insert_id;
-                WPJOBPORTAL_Sample_Data_Service::record_entity('companies', $wpjobportal_companyid8);
-                // logo handling
-                if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x9")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_x9",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/employer/comp_".$wpjobportal_companyid8);
-                $wpjobportal_insert_companycity = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_companycities` (`companyid`, `cityid`)
-                VALUES( " . esc_sql($wpjobportal_companyid8) . ", " . esc_sql($cityid8) . ");";
-                wpjobportaldb::query($wpjobportal_insert_companycity);
-
-                /**
-                *@param wp job portal
-                * * Sample Data For job
-                */
-
-
-                //First  JOB
-                $wpjobportal_isfeaturedjob = 2;
-                $wpjobportal_startfeatureddate = "0000-00-00 00:00:00";
-                $wpjobportal_endfeatureddate = "0000-00-00 00:00:00";
-                if(in_array('featuredjob', wpjobportal::$_active_addons)){
-                    $wpjobportal_isfeaturedjob = 1;
-                    $wpjobportal_startfeatureddate = gmdate("Y-m-d H:i:s");
-                    $wpjobportal_endfeatureddate = gmdate("Y-m-d H:i:s", strtotime("+12 months"));
-                }
-
-                $wpjobportal_insert_job = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_jobs` (`uid`, `companyid`, `title`, `alias`, `jobcategory`, `jobtype`, `jobstatus`, `hidesalaryrange`, `description`, `qualifications`, `prefferdskills`, `applyinfo`, `company`, `city`, `zipcode`, `address1`, `address2`, `companyurl`, `contactname`, `contactphone`, `contactemail`, `showcontact`, `noofjobs`, `reference`, `duration`, `heighestfinisheducation`, `created`, `created_by`, `modified`, `modified_by`, `hits`, `experience`, `startpublishing`, `stoppublishing`, `departmentid`, `sendemail`, `metadescription`, `metakeywords`, `ordering`, `aboutjobfile`, `status`, `educationid`, `degreetitle`, `careerlevel`, `map`, `subcategoryid`, `currency`, `jobid`, `longitude`, `latitude`, `isgoldjob`, `startgolddate`, `endgolddate`, `startfeatureddate`, `endfeatureddate`, `isfeaturedjob`, `raf_gender`, `raf_degreelevel`, `raf_experience`, `raf_age`, `raf_education`, `raf_category`, `raf_subcategory`, `raf_location`, `jobapplylink`, `joblink`, `params`, `serverstatus`, `serverid`, `tags`, `salarytype`, `salarymin`, `salarymax`, `salaryduration`, `userpackageid`, `price`, `aijobsearchtext`, `aijobsearchdescription`, `is_urgent`) VALUES
-                    ('".$wpjobportal_employer_id."', '".esc_sql($wpjobportal_companyid)."', 'PHP Developer', 'php-developer', '13', 1, 2, 0, '<p>Responsibilities</p>\n<p>Work closely with Project Managers and other members of the Development Team to both develop detailed specification documents with clear project deliverables and timelines, and to ensure timely completion of deliverables.<br />\nProduce project estimates during sales process, including expertise required, total number of people required, total number of development hours required, etc.<br />\nAttend client meetings during the sales process and during development.<br />\nWork with clients and Project Managers to build and refine graphic designs for websites. Must have strong skills in Photoshop, Fireworks, or equivalent application(s).<br />\nConvert raw images and layouts from a graphic designer into CSS/XHTML themes.<br />\nDetermine appropriate architecture, and other technical solutions, and make relevant recommendations to clients.<br />\nCommunicate to the Project Manager with efficiency and accuracy any progress and/or delays. Engage in outside-the-box thinking to provide high value-of-service to clients.<br />\nAlert colleagues to emerging technologies or applications and the opportunities to integrate them into operations and activities.<br />\nBe actively involved in and contribute regularly to the development community of the CMS of your choice.<br />\nDevelop innovative, reusable Web-based tools for activism and community building.</p>\n', '', '', '', '', '".$cityid."', '', '', '', '', '', '', '', 0, 2, '', '3 Month', '', '".$wpjobportal_curdate."', 0, '0000-00-00 00:00:00', 0, 0, 0, '".$wpjobportal_curdate."', '".$thirdydaydate."', '', 0, '', '', 0, '', 1, NULL, 'BSCS', 3, '', 0, '$', 'qgk6BtRM8', '67.0099388', '24.8614622', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '".$wpjobportal_startfeatureddate."', '".$wpjobportal_endfeatureddate."', '".$wpjobportal_isfeaturedjob."', 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '[]', '', 0, '', 3, 1000, 1500, 2, 0, 0, 'PHP Developer Buruj Solution Computer/IT Full-Time Interviewing 1,000 - 1,500 $ Per Month Entry Level Santa Barbara, California, United States 3 Month', 'PHP Developer Buruj Solution Computer/IT Full-Time Interviewing 1,000 - 1,500 $ Per Month Entry Level Santa Barbara, California, United States 3 Month<p>Responsibilities</p>',1);
-                    ";
-                wpjobportaldb::query($wpjobportal_insert_job);
-                $wpjobportal_jobid = wpjobportal::$_db->insert_id;
-                $wpjobportal_sample_job_ids[] = absint($wpjobportal_jobid);
-                WPJOBPORTAL_Sample_Data_Service::record_entity('jobs', $wpjobportal_jobid);
-                $wpjobportal_insetjobcities = $this->insertJobCities($wpjobportal_jobid, $cityid);
-
-
-
-                //Second job
-                $wpjobportal_insert_job = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_jobs` (`uid`, `companyid`, `title`, `alias`, `jobcategory`, `jobtype`, `jobstatus`, `hidesalaryrange`, `description`, `qualifications`, `prefferdskills`, `applyinfo`, `company`, `city`, `zipcode`, `address1`, `address2`, `companyurl`, `contactname`, `contactphone`, `contactemail`, `showcontact`, `noofjobs`, `reference`, `duration`, `heighestfinisheducation`, `created`, `created_by`, `modified`, `modified_by`, `hits`, `experience`, `startpublishing`, `stoppublishing`, `departmentid`, `sendemail`, `metadescription`, `metakeywords`, `ordering`, `aboutjobfile`, `status`, `educationid`, `degreetitle`, `careerlevel`, `map`, `subcategoryid`, `currency`, `jobid`, `longitude`, `latitude`, `isgoldjob`, `startgolddate`, `endgolddate`, `startfeatureddate`, `endfeatureddate`, `isfeaturedjob`, `raf_gender`, `raf_degreelevel`, `raf_experience`, `raf_age`, `raf_education`, `raf_category`, `raf_subcategory`, `raf_location`, `jobapplylink`, `joblink`, `params`, `serverstatus`, `serverid`, `tags`, `salarytype`, `salarymin`, `salarymax`, `salaryduration`, `userpackageid`, `price`, `aijobsearchtext`, `aijobsearchdescription`, `workplace_type`) VALUES
-                        ('".$wpjobportal_employer_id."', '".esc_sql($wpjobportal_companyid1)."', 'Android Developer', 'android-developer', '13', 1, 3, 0, '<p>Games developers are involved in the creation and production of games for personal computers, games consoles, social/online games, arcade games, tablets, mobile phones and other hand held devices. Their work involves either design (including art and animation) or programming.</p>\n<p>Games development is a fast-moving, multi-billion pound industry. The making of a game from concept to finished product can take up to three years and involve teams of up to 200 professionals.</p>\n<p>There are many stages, including creating and designing a game&#8217;s look and how it plays, animating characters and objects, creating audio, programming, localisation, testing and producing.</p>\n<p>The games developer job title covers a broad area of work and there are many specialisms within the industry. These include:</p>\n<p>quality assurance tester;<br />\nprogrammer, with various specialisms such as network, engine, toolchain and artificial intelligence;<br />\naudio engineer;<br />\nartist, including concept artist, animator and 3D modeller;<br />\nproducer;<br />\neditor;<br />\ndesigner;<br />\nspecial effects technician.</p>\n', '', '', '', '', '".$cityid1."', '', '', '', '', '', '', '', 0, 3, '', '', '', '".$wpjobportal_curdate."', 0, '0000-00-00 00:00:00', 0, 0, 0, '".$wpjobportal_curdate."', '".$thirdydaydate."', '', 0, '', '', 0, '', 1, NULL, 'BSCS', 3, '', 0, '$', 'CKd6@8JQw', '73.0791073', '31.4187142', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '[]', '', 0, '', 3, 2500, 3000, 2, 0, 0, 'Android Developer Joom Sky Computer/IT Full-Time Closed to New Applicants 2,500 - 3,000 $ Per Month Entry Level Ventura, California, United States', 'Android Developer Joom Sky Computer/IT Full-Time Closed to New Applicants 2,500 - 3,000 $ Per Month Entry Level Ventura, California, United States<p>Games developers are involved in the creation and production of games for personal computers, games consoles, social/online games, arcade games, tablets, mobile phones and other hand held devices. Their work involves either design (including art and animation) or programming.</p>',1);
-
-                    ";
-
-                wpjobportaldb::query($wpjobportal_insert_job);
-                $wpjobportal_jobid = wpjobportal::$_db->insert_id;
-                $wpjobportal_sample_job_ids[] = absint($wpjobportal_jobid);
-                WPJOBPORTAL_Sample_Data_Service::record_entity('jobs', $wpjobportal_jobid);
-                $wpjobportal_insetjobcities = $this->insertJobCities($wpjobportal_jobid, $cityid1);
-
-
-                // Third Job
-                $wpjobportal_insert_job = " INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_jobs` (`uid`, `companyid`, `title`, `alias`, `jobcategory`, `jobtype`, `jobstatus`, `hidesalaryrange`, `description`, `qualifications`, `prefferdskills`, `applyinfo`, `company`, `city`, `zipcode`, `address1`, `address2`, `companyurl`, `contactname`, `contactphone`, `contactemail`, `showcontact`, `noofjobs`, `reference`, `duration`, `heighestfinisheducation`, `created`, `created_by`, `modified`, `modified_by`, `hits`, `experience`, `startpublishing`, `stoppublishing`, `departmentid`, `sendemail`, `metadescription`, `metakeywords`, `ordering`, `aboutjobfile`, `status`, `educationid`, `degreetitle`, `careerlevel`, `map`, `subcategoryid`, `currency`, `jobid`, `longitude`, `latitude`, `isgoldjob`, `startgolddate`, `endgolddate`, `startfeatureddate`, `endfeatureddate`, `isfeaturedjob`, `raf_gender`, `raf_degreelevel`, `raf_experience`, `raf_age`, `raf_education`, `raf_category`, `raf_subcategory`, `raf_location`, `jobapplylink`, `joblink`, `params`, `serverstatus`, `serverid`, `tags`, `salarytype`, `salarymin`, `salarymax`, `salaryduration`, `userpackageid`, `price`, `aijobsearchtext`, `aijobsearchdescription`) VALUES
-                        ('".$wpjobportal_employer_id."', '".esc_sql($wpjobportal_companyid2)."', 'Accountant', 'accountant', '13', 1, 3, 0, '<ul>\n<li>Accountant Job Duties:</li>\n<li>Prepares asset, liability, and capital account entries by compiling and analyzing account information.<br />\nDocuments financial transactions by entering account information.<br />\nRecommends financial actions by analyzing accounting options.<br />\nSummarizes current financial status by collecting information; preparing balance sheet, profit and loss statement, and other reports.<br />\nSubstantiates financial transactions by auditing documents.<br />\nMaintains accounting controls by preparing and recommending policies and procedures.<br />\nGuides accounting clerical staff by coordinating activities and answering questions.<br />\nReconciles financial discrepancies by collecting and analyzing account information.<br />\nSecures financial information by completing data base backups.<br />\nMaintains financial security by following internal controls.<br />\nPrepares payments by verifying documentation, and requesting disbursements.<br />\nAnswers accounting procedure questions by researching and interpreting accounting policy and regulations.<br />\nComplies with federal, state, and local financial legal requirements by studying existing and new legislation, enforcing adherence to requirements, and advising management on needed actions.<br />\nPrepares special financial reports by collecting, analyzing, and summarizing account information and trends.<br />\nMaintains customer confidence and protects operations by keeping financial information confidential.<br />\nMaintains professional and technical knowledge by attending educational workshops; reviewing professional publications; establishing personal networks; participating in professional societies.<br />\nAccomplishes the result by performing the duty.<br />\nContributes to team effort by accomplishing related results as needed.</li>\n</ul>\n', '', '', '', '', '".$cityid2."', '', '', '', '', '', '', '', 0, 1, '', '', '', '".$wpjobportal_curdate."', 0, '0000-00-00 00:00:00', 0, 0, 0, '".$wpjobportal_curdate."', '".$thirdydaydate."', '', 0, '', '', 0, '', 1, NULL, 'CA', 3, '', 0, '$', 'pmX6r!W27', '73.0931461', '33.7293882', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '[]', '', 0, '', 3, 4000, 4500, 2, 0, 0, 'Accountant Joom Shark Computer/IT Full-Time Closed to New Applicants 4,000 - 4,500 $ Per Month Entry Level Leona, Kansas, United States', 'Accountant Joom Shark Computer/IT Full-Time Closed to New Applicants 4,000 - 4,500 $ Per Month Entry Level Leona, Kansas, United States<ul>');";
-                            wpjobportaldb::query($wpjobportal_insert_job);
-                            $wpjobportal_jobid = wpjobportal::$_db->insert_id;
-                            $wpjobportal_sample_job_ids[] = absint($wpjobportal_jobid);
-                            WPJOBPORTAL_Sample_Data_Service::record_entity('jobs', $wpjobportal_jobid);
-                            $wpjobportal_insetjobcities = $this->insertJobCities($wpjobportal_jobid, $cityid2);
-
-
-                //4th job
-                $wpjobportal_insert_job = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_jobs` (`uid`, `companyid`, `title`, `alias`, `jobcategory`, `jobtype`, `jobstatus`, `hidesalaryrange`, `description`, `qualifications`, `prefferdskills`, `applyinfo`, `company`, `city`, `zipcode`, `address1`, `address2`, `companyurl`, `contactname`, `contactphone`, `contactemail`, `showcontact`, `noofjobs`, `reference`, `duration`, `heighestfinisheducation`, `created`, `created_by`, `modified`, `modified_by`, `hits`, `experience`, `startpublishing`, `stoppublishing`, `departmentid`, `sendemail`, `metadescription`, `metakeywords`, `ordering`, `aboutjobfile`, `status`, `educationid`, `degreetitle`, `careerlevel`, `map`, `subcategoryid`, `currency`, `jobid`, `longitude`, `latitude`, `isgoldjob`, `startgolddate`, `endgolddate`, `startfeatureddate`, `endfeatureddate`, `isfeaturedjob`, `raf_gender`, `raf_degreelevel`, `raf_experience`, `raf_age`, `raf_education`, `raf_category`, `raf_subcategory`, `raf_location`, `jobapplylink`, `joblink`, `params`, `serverstatus`, `serverid`, `tags`, `salarytype`, `salarymin`, `salarymax`, `salaryduration`, `userpackageid`, `price`, `aijobsearchtext`, `aijobsearchdescription`, `workplace_type`) VALUES
-                        ('".$wpjobportal_employer_id."', '".esc_sql($wpjobportal_companyid3)."', 'Senior Software Engineer', 'senior-software-engineer', '13', 1, 2, 0, '<ul>\n<li>You might be responsible for the replacement of a whole system based on the specifications provided by an IT analyst but often you&#8217;ll work with &#8216;off the shelf&#8217; software, modifying it and integrating it into the existing network. The skill in this is creating the code to link the systems together.</li>\n<li>You&#8217;ll also be responsible for:</li>\n<li>Reviewing current systems<br />\nPresenting ideas for system improvements, including cost proposals<br />\nWorking closely with analysts, designers and staff<br />\nProducing detailed specifications and writing the programme codes<br />\nTesting the product in controlled, real situations before going live<br />\nPreparation of training manuals for users<br />\nMaintaining the systems once they are up and running</li>\n</ul>\n', '', '', '', '', '".$cityid3."', '', '', '', '', '', '', '', 0, 1, '', '', '', '".$wpjobportal_curdate."', 0, '0000-00-00 00:00:00', 0, 5, 0, '".$wpjobportal_curdate."', '".$thirdydaydate."', '', 0, '', '', 0, '', 1, NULL, 'BSCS', 4, '', 0, '$', 'CNQ83Jrgm', '74.3833333', '31.5166667', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '[]', '', 0, '', 2, 4500, 4500, 2, 0, 0, 'Senior Software Engineer Sample Company Computer/IT Full-Time Interviewing 4,500 $ Per Month Experienced (Non-Manager) Sheboygan, Wisconsin, United States', 'Senior Software Engineer Sample Company Computer/IT Full-Time Interviewing 4,500 $ Per Month Experienced (Non-Manager) Sheboygan, Wisconsin, United States<ul><li>You might be responsible for the replacement of a whole system based on the specifications provided by an IT analyst but often you&#8217;ll work with &#8216;off the shelf&#8217; software, modifying it and integrating it into the existing network. The skill in this is creating the code to link the systems together.</li><li>You&#8217;ll also be responsible for:</li><li>Reviewing current systems<br />Presenting ideas for system improvements, including cost proposals<br />Working closely with analysts, designers and staff<br />Producing detailed specifications and writing the programme codes<br />Testing the product in controlled, real situations before going live<br />Preparation of training manuals for users<br />Maintaining the systems once they are up and running</li></ul> 05/23/2025 06/22/2025 ',2);
-                        ";
-
-                 wpjobportaldb::query($wpjobportal_insert_job);
-                $wpjobportal_jobid = wpjobportal::$_db->insert_id;
-                $wpjobportal_sample_job_ids[] = absint($wpjobportal_jobid);
-                WPJOBPORTAL_Sample_Data_Service::record_entity('jobs', $wpjobportal_jobid);
-                $wpjobportal_insetjobcities = $this->insertJobCities($wpjobportal_jobid, $cityid3);
-
-                //5th job
-
-                $wpjobportal_insert_job = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_jobs` (`uid`, `companyid`, `title`, `alias`, `jobcategory`, `jobtype`, `jobstatus`, `hidesalaryrange`, `description`, `qualifications`, `prefferdskills`, `applyinfo`, `company`, `city`, `zipcode`, `address1`, `address2`, `companyurl`, `contactname`, `contactphone`, `contactemail`, `showcontact`, `noofjobs`, `reference`, `duration`, `heighestfinisheducation`, `created`, `created_by`, `modified`, `modified_by`, `hits`, `experience`, `startpublishing`, `stoppublishing`, `departmentid`, `sendemail`, `metadescription`, `metakeywords`, `ordering`, `aboutjobfile`, `status`, `educationid`, `degreetitle`, `careerlevel`, `map`, `subcategoryid`, `currency`, `jobid`, `longitude`, `latitude`, `isgoldjob`, `startgolddate`, `endgolddate`, `startfeatureddate`, `endfeatureddate`, `isfeaturedjob`, `raf_gender`, `raf_degreelevel`, `raf_experience`, `raf_age`, `raf_education`, `raf_category`, `raf_subcategory`, `raf_location`, `jobapplylink`, `joblink`, `params`, `serverstatus`, `serverid`, `tags`, `salarytype`, `salarymin`, `salarymax`, `salaryduration`, `userpackageid`, `price`, `aijobsearchtext`, `aijobsearchdescription`, `is_urgent`) VALUES
-                        ('".$wpjobportal_employer_id."', '".esc_sql($wpjobportal_companyid4)."', 'Web Designer Engineer', 'web-designer', '13', 1, 2, 0, '<p>An associates degree program related to web design, such as an Associate of Applied Science in Web Graphic Design, provides a student with a foundation in the design and technical aspects of creating a website. Students learn web design skills and build professional portfolios that highlight their skills and abilities. Common topics include:</p>\r\n<ul>\r\n<li>Fundamentals of design imaging</li>\r\n<li>Basic web design</li>\r\n<li>Animation</li>\r\n<li>Multimedia design</li>\r\n<li>Content management</li>\r\n<li>Editing for video and audio</li>\r\n<li>Multimedia programming and technology</li>\r\n</ul>\r\n<p>A bachelors degree program in multimedia or web design allows students to learn advanced skills needed for professional web design. Students develop artistic and creative abilities in addition to technical skills. Degree programs, such as a Bachelor of Science in Web Design and Interactive Media, cover:</p>\r\n<ul>\r\n<li>Databases</li>\r\n<li>Webpage scripting</li>\r\n<li>Programming</li>\r\n<li>Digital imaging</li>\r\n<li>Multimedia design</li>\r\n<li>Web development</li>\r\n</ul>', '', '', '', '', '".$cityid4."', '', '', '', '', '', '', '', 0, 1, '', '', '', '".$wpjobportal_curdate."', 0, '0000-00-00 00:00:00', 0, 5, 0, '".$wpjobportal_curdate."', '".$thirdydaydate."', '', 0, '', '', 0, '', 1, NULL, 'BSCS', 4, '', 0, '$', 'JZH6Nz2cm', '73.06137450000006', '33.697006', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '".$wpjobportal_startfeatureddate."', '".$wpjobportal_endfeatureddate."', '".$wpjobportal_isfeaturedjob."', 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '[]', '', 0, '', 2, 4500, 4500, 2, 0, 0, 'Web Designer Engineer Sample Company 1 Computer/IT Full-Time Interviewing 4,500 $ Per Month Experienced (Non-Manager) Danville, Virginia, United States', 'Web Designer Engineer Sample Company 1 Computer/IT Full-Time Interviewing 4,500 $ Per Month Experienced (Non-Manager) Danville, Virginia, United States<p>An associates degree program related to web design, such as an Associate of Applied Science in Web Graphic Design, provides a student with a foundation in the design and technical aspects of creating a website. Students learn web design skills and build professional portfolios that highlight their skills and abilities. Common topics include:</p>', 1);
-                        ";
-                wpjobportaldb::query($wpjobportal_insert_job);
-                $wpjobportal_jobid = wpjobportal::$_db->insert_id;
-                $wpjobportal_sample_job_ids[] = absint($wpjobportal_jobid);
-                WPJOBPORTAL_Sample_Data_Service::record_entity('jobs', $wpjobportal_jobid);
-                $wpjobportal_insetjobcities = $this->insertJobCities($wpjobportal_jobid, $cityid4);
-
-
-
-                $wpjobportal_insert_job = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_jobs` (`uid`, `companyid`, `title`, `alias`, `jobcategory`, `jobtype`, `jobstatus`, `hidesalaryrange`, `description`, `qualifications`, `prefferdskills`, `applyinfo`, `company`, `city`, `zipcode`, `address1`, `address2`, `companyurl`, `contactname`, `contactphone`, `contactemail`, `showcontact`, `noofjobs`, `reference`, `duration`, `heighestfinisheducation`, `created`, `created_by`, `modified`, `modified_by`, `hits`, `experience`, `startpublishing`, `stoppublishing`, `departmentid`, `sendemail`, `metadescription`, `metakeywords`, `ordering`, `aboutjobfile`, `status`, `educationid`, `degreetitle`, `careerlevel`, `map`, `subcategoryid`, `currency`, `jobid`, `longitude`, `latitude`, `isgoldjob`, `startgolddate`, `endgolddate`, `startfeatureddate`, `endfeatureddate`, `isfeaturedjob`, `raf_gender`, `raf_degreelevel`, `raf_experience`, `raf_age`, `raf_education`, `raf_category`, `raf_subcategory`, `raf_location`, `jobapplylink`, `joblink`, `params`, `serverstatus`, `serverid`, `tags`, `salarytype`, `salarymin`, `salarymax`, `salaryduration`, `userpackageid`, `price`, `aijobsearchtext`, `aijobsearchdescription`) VALUES
-                        ('".$wpjobportal_employer_id."', '".esc_sql($wpjobportal_companyid5)."', 'WP Developer', 'wp-developer', '13', 1, 2, 0, '<ul>\n<li>You might be responsible for the replacement of a whole system based on the specifications provided by an IT analyst but often you&#8217;ll work with &#8216;off the shelf&#8217; software, modifying it and integrating it into the existing network. The skill in this is creating the code to link the systems together.</li>\n<li>You&#8217;ll also be responsible for:</li>\n<li>Reviewing current systems<br />\nPresenting ideas for system improvements, including cost proposals<br />\nWorking closely with analysts, designers and staff<br />\nProducing detailed specifications and writing the programme codes<br />\nTesting the product in controlled, real situations before going live<br />\nPreparation of training manuals for users<br />\nMaintaining the systems once they are up and running</li>\n</ul>\n', '', '', '', '', '".$cityid5."', '', '', '', '', '', '', '', 0, 1, '', '', '', '".$wpjobportal_curdate."', 0, '0000-00-00 00:00:00', 0, 5, 0, '".$wpjobportal_curdate."', '".$thirdydaydate."', '', 0, '', '', 0, '', 1, NULL, 'BSCS', 4, '', 0, '$', 'CNQ83Jrgm', '', '', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '[]', '', 0, '', 2, 4500, 4500, 2, 0, 0, 'WP Developer Sample Company 2 Computer/IT Full-Time Interviewing 4,500 $ Per Month Experienced (Non-Manager) Laconia, New Hampshire, United States', 'WP Developer Sample Company 2 Computer/IT Full-Time Interviewing 4,500 $ Per Month Experienced (Non-Manager) Laconia, New Hampshire, United States<ul>');
-                        ";
-
-
-
-                wpjobportaldb::query($wpjobportal_insert_job);
-                $wpjobportal_jobid = wpjobportal::$_db->insert_id;
-                $wpjobportal_sample_job_ids[] = absint($wpjobportal_jobid);
-                WPJOBPORTAL_Sample_Data_Service::record_entity('jobs', $wpjobportal_jobid);
-                $wpjobportal_insetjobcities = $this->insertJobCities($wpjobportal_jobid, $cityid5);
-
-
-                $wpjobportal_insert_job = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_jobs` (`uid`, `companyid`, `title`, `alias`, `jobcategory`, `jobtype`, `jobstatus`, `hidesalaryrange`, `description`, `qualifications`, `prefferdskills`, `applyinfo`, `company`, `city`, `zipcode`, `address1`, `address2`, `companyurl`, `contactname`, `contactphone`, `contactemail`, `showcontact`, `noofjobs`, `reference`, `duration`, `heighestfinisheducation`, `created`, `created_by`, `modified`, `modified_by`, `hits`, `experience`, `startpublishing`, `stoppublishing`, `departmentid`, `sendemail`, `metadescription`, `metakeywords`, `ordering`, `aboutjobfile`, `status`, `educationid`, `degreetitle`, `careerlevel`, `map`, `subcategoryid`, `currency`, `jobid`, `longitude`, `latitude`, `isgoldjob`, `startgolddate`, `endgolddate`, `startfeatureddate`, `endfeatureddate`, `isfeaturedjob`, `raf_gender`, `raf_degreelevel`, `raf_experience`, `raf_age`, `raf_education`, `raf_category`, `raf_subcategory`, `raf_location`, `jobapplylink`, `joblink`, `params`, `serverstatus`, `serverid`, `tags`, `salarytype`, `salarymin`, `salarymax`, `salaryduration`, `userpackageid`, `price`, `aijobsearchtext`, `aijobsearchdescription`) VALUES
-                        ('".$wpjobportal_employer_id."', '".esc_sql($wpjobportal_companyid6)."', 'Senior Web Developer', 'senior-web-developer', '13', 1, 2, 0, '<ul>\n<li>You might be responsible for the replacement of a whole system based on the specifications provided by an IT analyst but often you&#8217;ll work with &#8216;off the shelf&#8217; software, modifying it and integrating it into the existing network. The skill in this is creating the code to link the systems together.</li>\n<li>You&#8217;ll also be responsible for:</li>\n<li>Reviewing current systems<br />\nPresenting ideas for system improvements, including cost proposals<br />\nWorking closely with analysts, designers and staff<br />\nProducing detailed specifications and writing the programme codes<br />\nTesting the product in controlled, real situations before going live<br />\nPreparation of training manuals for users<br />\nMaintaining the systems once they are up and running</li>\n</ul>\n', '', '', '', '', '".$cityid6."', '', '', '', '', '', '', '', 0, 1, '', '', '', '".$wpjobportal_curdate."', 0, '0000-00-00 00:00:00', 0, 5, 0, '".$wpjobportal_curdate."', '".$thirdydaydate."', '', 0, '', '', 0, '', 1, NULL, 'BSCS', 4, '', 0, '$', 'JZH6Nz2cm', '73.06137450000006', '33.697006', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '".$wpjobportal_startfeatureddate."', '".$wpjobportal_endfeatureddate."', '".$wpjobportal_isfeaturedjob."', 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '[]', '', 0, '', 2, 4500, 4500, 2, 0, 0, 'Senior Web Developer Sample Company 3 Computer/IT Full-Time Interviewing 4,500 $ Per Month Experienced (Non-Manager) Elgin, Illinois, United States', 'Senior Web Developer Sample Company 3 Computer/IT Full-Time Interviewing 4,500 $ Per Month Experienced (Non-Manager) Elgin, Illinois, United States<ul>');
-                        ";
-                wpjobportaldb::query($wpjobportal_insert_job);
-                $wpjobportal_jobid = wpjobportal::$_db->insert_id;
-                $wpjobportal_sample_job_ids[] = absint($wpjobportal_jobid);
-                WPJOBPORTAL_Sample_Data_Service::record_entity('jobs', $wpjobportal_jobid);
-                $wpjobportal_insetjobcities = $this->insertJobCities($wpjobportal_jobid, $cityid6);
-
-
-                $wpjobportal_insert_job = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_jobs` (`uid`, `companyid`, `title`, `alias`, `jobcategory`, `jobtype`, `jobstatus`, `hidesalaryrange`, `description`, `qualifications`, `prefferdskills`, `applyinfo`, `company`, `city`, `zipcode`, `address1`, `address2`, `companyurl`, `contactname`, `contactphone`, `contactemail`, `showcontact`, `noofjobs`, `reference`, `duration`, `heighestfinisheducation`, `created`, `created_by`, `modified`, `modified_by`, `hits`, `experience`, `startpublishing`, `stoppublishing`, `departmentid`, `sendemail`, `metadescription`, `metakeywords`, `ordering`, `aboutjobfile`, `status`, `educationid`, `degreetitle`, `careerlevel`, `map`, `subcategoryid`, `currency`, `jobid`, `longitude`, `latitude`, `isgoldjob`, `startgolddate`, `endgolddate`, `startfeatureddate`, `endfeatureddate`, `isfeaturedjob`, `raf_gender`, `raf_degreelevel`, `raf_experience`, `raf_age`, `raf_education`, `raf_category`, `raf_subcategory`, `raf_location`, `jobapplylink`, `joblink`, `params`, `serverstatus`, `serverid`, `tags`, `salarytype`, `salarymin`, `salarymax`, `salaryduration`, `userpackageid`, `price`, `aijobsearchtext`, `aijobsearchdescription`, `workplace_type`) VALUES
-                        ('".$wpjobportal_employer_id."', '".esc_sql($wpjobportal_companyid7)."', 'Junior PHP Developer', 'junior-php-developer', '13', 1, 2, 0, '<ul>\n<li>You might be responsible for the replacement of a whole system based on the specifications provided by an IT analyst but often you&#8217;ll work with &#8216;off the shelf&#8217; software, modifying it and integrating it into the existing network. The skill in this is creating the code to link the systems together.</li>\n<li>You&#8217;ll also be responsible for:</li>\n<li>Reviewing current systems<br />\nPresenting ideas for system improvements, including cost proposals<br />\nWorking closely with analysts, designers and staff<br />\nProducing detailed specifications and writing the programme codes<br />\nTesting the product in controlled, real situations before going live<br />\nPreparation of training manuals for users<br />\nMaintaining the systems once they are up and running</li>\n</ul>\n', '', '', '', '', '".$cityid7."', '', '', '', '', '', '', '', 0, 1, '', '', '', '".$wpjobportal_curdate."', 0, '0000-00-00 00:00:00', 0, 5, 0, '".$wpjobportal_curdate."', '".$thirdydaydate."', '', 0, '', '', 0, '', 1, NULL, 'BSCS', 4, '', 0, '$', 'JZH6Nz2cm', '73.06137450000006', '33.697006', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '".$wpjobportal_startfeatureddate."', '".$wpjobportal_endfeatureddate."', '".$wpjobportal_isfeaturedjob."', 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '[]', '', 0, '', 2, 4500, 4500, 2, 0, 0, 'Junior PHP Developer Sample Company 4 Computer/IT Full-Time Interviewing 4,500 $ Per Month Experienced (Non-Manager) Rockford, Illinois, United States', 'Junior PHP Developer Sample Company 4 Computer/IT Full-Time Interviewing 4,500 $ Per Month Experienced (Non-Manager) Rockford, Illinois, United States<ul>',3);";
-                wpjobportaldb::query($wpjobportal_insert_job);
-                $wpjobportal_jobid = wpjobportal::$_db->insert_id;
-                $wpjobportal_sample_job_ids[] = absint($wpjobportal_jobid);
-                WPJOBPORTAL_Sample_Data_Service::record_entity('jobs', $wpjobportal_jobid);
-                $wpjobportal_insetjobcities = $this->insertJobCities($wpjobportal_jobid, $cityid7);
-
-
-                $wpjobportal_insert_job = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_jobs` (`uid`, `companyid`, `title`, `alias`, `jobcategory`, `jobtype`, `jobstatus`, `hidesalaryrange`, `description`, `qualifications`, `prefferdskills`, `applyinfo`, `company`, `city`, `zipcode`, `address1`, `address2`, `companyurl`, `contactname`, `contactphone`, `contactemail`, `showcontact`, `noofjobs`, `reference`, `duration`, `heighestfinisheducation`, `created`, `created_by`, `modified`, `modified_by`, `hits`, `experience`, `startpublishing`, `stoppublishing`, `departmentid`, `sendemail`, `metadescription`, `metakeywords`, `ordering`, `aboutjobfile`, `status`, `educationid`, `degreetitle`, `careerlevel`, `map`, `subcategoryid`, `currency`, `jobid`, `longitude`, `latitude`, `isgoldjob`, `startgolddate`, `endgolddate`, `startfeatureddate`, `endfeatureddate`, `isfeaturedjob`, `raf_gender`, `raf_degreelevel`, `raf_experience`, `raf_age`, `raf_education`, `raf_category`, `raf_subcategory`, `raf_location`, `jobapplylink`, `joblink`, `params`, `serverstatus`, `serverid`, `tags`, `salarytype`, `salarymin`, `salarymax`, `salaryduration`, `userpackageid`, `price`, `aijobsearchtext`, `aijobsearchdescription`, `is_urgent`) VALUES
-                        ('".$wpjobportal_employer_id."', '".esc_sql($wpjobportal_companyid8)."', 'Junior Andriod Developer', 'junior-games-developer', '13', 1, 2, 0, '<p>Games developers are involved in the creation and production of games for personal computers, games consoles, social/online games, arcade games, tablets, mobile phones and other hand held devices. Their work involves either design (including art and animation) or programming.</p>\r\n<p>Games development is a fast-moving, multi-billion pound industry. The making of a game from concept to finished product can take up to three years and involve teams of up to 200 professionals.</p>\r\n<p>There are many stages, including creating and designing a games look and how it plays, animating characters and objects, creating audio, programming, localisation, testing and producing.</p>\r\n<p>The games developer job title covers a broad area of work and there are many specialisms within the industry. These include:</p>\r\n<ul>\r\n<li>quality assurance tester;</li>\r\n<li>programmer, with various specialisms such as network, engine, toolchain and artificial intelligence;</li>\r\n<li>audio engineer;</li>\r\n<li>artist, including concept artist, animator and 3D modeller;</li>\r\n<li>producer;</li>\r\n<li>editor;</li>\r\n<li>designer;</li>\r\n<li>special effects technician.</li>\r\n</ul>', '', '', '', '', '".$cityid8."', '', '', '', '', '', '', '', 0, 1, '', '', '', '".$wpjobportal_curdate."', 0, '0000-00-00 00:00:00', 0, 5, 0, '".$wpjobportal_curdate."', '".$thirdydaydate."', '', 0, '', '', 0, '', 1, NULL, 'BSCS', 4, '', 0, '$', 'JZH6Nz2cm', '73.06137450000006', '33.697006', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '[]', '', 0, '', 2, 4500, 4500, 2, 0, 0,'Junior Andriod Developer Sample Company 5 Computer/IT Full-Time Interviewing 4,500 $ Per Month Experienced (Non-Manager) El Cajon, California, United States', 'Junior Andriod Developer Sample Company 5 Computer/IT Full-Time Interviewing 4,500 $ Per Month Experienced (Non-Manager) El Cajon, California, United States<p>Games developers are involved in the creation and production of games for personal computers, games consoles, social/online games, arcade games, tablets, mobile phones and other hand held devices. Their work involves either design (including art and animation) or programming.</p>',1);";
-
-                wpjobportaldb::query($wpjobportal_insert_job);
-                $wpjobportal_jobid = wpjobportal::$_db->insert_id;
-                $wpjobportal_sample_job_ids[] = absint($wpjobportal_jobid);
-                WPJOBPORTAL_Sample_Data_Service::record_entity('jobs', $wpjobportal_jobid);
-                $wpjobportal_insetjobcities = $this->insertJobCities($wpjobportal_jobid, $cityid8);
-            }
-
-            //if($wpjobportal_jobseeker_id > 0){
-            if($wpjobportal_jobseeker_id >= 0){
-
-                /**
-                  * @param wp job portal
-                  * * Sample Data * *
-                  * * * Resume  * * *
-                  */
-
-                $cityid = '33';// cityids for resume
-                $cityid1 = '36';// cityids for resume
-                $cityid2 = '483';// cityids for resume
-                $cityid3 = '880';// cityids for resume
-                $cityid4 = '837';// cityids for resume
-                $cityid5 = '1329';// cityids for resume
-                $cityid6 = '857';// cityids for resume
-                $cityid7 = '872';// cityids for resume
-                $cityid8 = '5';// cityids for resume
-
-                // first  resumes
-
-                $wpjobportal_isfeaturedresume = 2;
-                $wpjobportal_startfeatureresumeddate = "0000-00-00 00:00:00";
-                $wpjobportal_endfeatureresumeddate = "0000-00-00 00:00:00";
-                if(in_array('featureresume', wpjobportal::$_active_addons)){
-                    $wpjobportal_isfeaturedresume = 1;
-                    $wpjobportal_startfeatureresumeddate = gmdate("Y-m-d H:i:s");
-                    $wpjobportal_endfeatureresumeddate = gmdate("Y-m-d H:i:s", strtotime("+12 months"));
-                }
-
-                $wpjobportal_resume_query = "INSERT INTO `".wpjobportal::$_db->prefix."wj_portal_resume` ( `uid`, `created`, `last_modified`, `published`, `hits`, `application_title`, `salaryfixed`, `keywords`, `alias`, `first_name`, `last_name`, `gender`, `email_address`, `cell`, `nationality`, `searchable`, `photo`, `job_category`, `jobtype`, `status`, `resume`, `skills`, `isgoldresume`, `startgolddate`, `startfeatureddate`, `endgolddate`, `endfeatureddate`, `isfeaturedresume`, `serverstatus`, `serverid`, `tags`, `params`, `userpackageid`, `price`, `airesumesearchtext`, `airesumesearchdescription`) VALUES
-                    ('".esc_sql($wpjobportal_jobseeker_id)."', '".esc_sql($wpjobportal_date)."', '0000-00-00', 0, 0, 'Sample Data', '340000', '', 'Sample-Data', 'First name ', 'last Name', '1', 'sampledata@info.com', '123456789', '1', 1, 'resume-photo.png', 13, 1, 1, '', 'this is some text that i have written in skills section of reusme.', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, '', 0, '', '[]', 0, 0, 'Sample Data Computer/IT Full-Time United States Male 340000Santa Barbara, California, United States', 'Sample Data Computer/IT Full-Time United States Male 340000Santa Barbara, California, United States Gujranwala 31.5166667 74.3833333 Sample data Sample data Sample 12/18/2019 12/5/2014 Sample data 2025-05-23 06:08:01 2025-05-23 06:08:01 123456789 GT ROAD TRUST PLAZA Santa Barbara, California, United States this is some text that i have written in skills section of reusme. Sample data ');";
-                wpjobportaldb::query($wpjobportal_resume_query);
-                $wpjobportal_resumeid = wpjobportal::$_db->insert_id;
-                WPJOBPORTAL_Sample_Data_Service::record_entity('resumes', $wpjobportal_resumeid);
-
-                if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x1")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x1",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_".$wpjobportal_resumeid);
-
-                $wpjobportal_resume_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` ( `resumeid`, `address`, `address_city`, `longitude`, `latitude`, `created`, `last_modified`, `serverstatus`, `serverid`)
-                                VALUES (" . esc_sql($wpjobportal_resumeid) . ", 'Gujranwala', $cityid, 74.3833333, 31.5166667, '".esc_sql($wpjobportal_date)."', '0000-00-00 00:00:00', NULL  , NULL);";
-                wpjobportaldb::query($wpjobportal_resume_query);
-
-
-                $wpjobportal_resume_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_resumeemployers` (`resumeid`, `employer`, `employer_from_date`, `employer_to_date`, `employer_current_status`, `employer_city`, `employer_phone`, `employer_address`, `created`, `last_modified`, `params`, `serverstatus`, `serverid`)
-                                VALUES( " .esc_sql($wpjobportal_resumeid).  ", 'Sample data', '" .esc_sql($wpjobportal_date). "', '" .esc_sql($wpjobportal_date). "' , 0, '" .$cityid. "', '123456789', 'GT ROAD TRUST PLAZA', '0000-00-00 00:00:00', '', '', NULL, NULL);";
-                wpjobportaldb::query($wpjobportal_resume_query);
-
-
-                $wpjobportal_resume_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_resumeinstitutes` ( `resumeid`, `institute`, `institute_certificate_name`, `institute_study_area`, `created`, `last_modified`, `serverstatus`, `serverid`, `fromdate`, `todate` , `params`)
-                                        VALUES( " .esc_sql($wpjobportal_resumeid). " , 'Sample data', 'Sample data', 'Sample', '" .esc_sql($wpjobportal_date). "', '', NULL, NULL, '12/5/2014', '12/18/2019', '');";
-
-                wpjobportaldb::query($wpjobportal_resume_query);
-
-
-                $wpjobportal_resume_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_resumelanguages` ( `resumeid`, `language`, `created`, `last_modified`, `serverstatus`, `serverid`)
-                                VALUES (" . esc_sql($wpjobportal_resumeid) . ", 'Sample data','".esc_sql($wpjobportal_date)."','0000-00-00 00:00:00',NULL,NULL);";
-                wpjobportaldb::query($wpjobportal_resume_query);
-
-                // 2nd resume
-
-                $wpjobportal_resume_query = "INSERT INTO `".wpjobportal::$_db->prefix."wj_portal_resume` ( `uid`, `created`, `last_modified`, `published`, `hits`, `application_title`, `salaryfixed`, `keywords`, `alias`, `first_name`, `last_name`, `gender`, `email_address`, `cell`, `nationality`, `searchable`, `photo`, `job_category`, `jobtype`, `status`, `resume`, `skills`, `isgoldresume`, `startgolddate`, `startfeatureddate`, `endgolddate`, `endfeatureddate`, `isfeaturedresume`, `serverstatus`, `serverid`, `tags`, `params`, `userpackageid`, `price`, `airesumesearchtext`, `airesumesearchdescription`) VALUES
-                    ('".esc_sql($wpjobportal_jobseeker_id)."', '".esc_sql($wpjobportal_date)."', '0000-00-00', 0, 0, 'Sample Resume', '340000', '', 'sample-resume', 'John ', 'Doe', '1', 'sample@resume.com', '123456789', '1', 1, 'resume-photo.png', 13, 1, 1, '', 'this is some text that i have written in skills section of reusme.', 2, '0000-00-00 00:00:00', '".$wpjobportal_startfeatureresumeddate."', '0000-00-00 00:00:00', '".$wpjobportal_endfeatureresumeddate."', '".$wpjobportal_isfeaturedresume."', '', 0, '', '[]', 0, 0, 'Sample Resume Computer/IT Full-Time United States Male 340000Ventura, California, United States', 'Sample Resume Computer/IT Full-Time United States Male 340000Ventura, California, United States Gujranwala 31.5166667 74.3833333 this is some text that i have written in skills section of reusme. ');";
-                wpjobportaldb::query($wpjobportal_resume_query);
-                $wpjobportal_resumeid = wpjobportal::$_db->insert_id;
-                WPJOBPORTAL_Sample_Data_Service::record_entity('resumes', $wpjobportal_resumeid);
-                if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x2")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x2",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_".$wpjobportal_resumeid);
-
-                $wpjobportal_resume_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` ( `resumeid`, `address`, `address_city`,  `longitude`, `latitude`, `created`, `last_modified`, `serverstatus`, `serverid`)
-                    VALUES (" . esc_sql($wpjobportal_resumeid) . ", 'Gujranwala', $cityid1, 74.3833333, 31.5166667, '".esc_sql($wpjobportal_date)."', '0000-00-00 00:00:00', NULL  , NULL);";
-                wpjobportaldb::query($wpjobportal_resume_query);
-
-                //3rd Resume
-                $wpjobportal_resume_query = "INSERT INTO `".wpjobportal::$_db->prefix."wj_portal_resume` ( `uid`, `created`, `last_modified`, `published`, `hits`, `application_title`, `salaryfixed`, `keywords`, `alias`, `first_name`, `last_name`, `gender`, `email_address`, `cell`, `nationality`, `searchable`, `photo`, `job_category`, `jobtype`, `status`, `resume`, `skills`, `isgoldresume`, `startgolddate`, `startfeatureddate`, `endgolddate`, `endfeatureddate`, `isfeaturedresume`, `serverstatus`, `serverid`, `tags`, `params`, `userpackageid`, `price`, `airesumesearchtext`, `airesumesearchdescription`) VALUES
-                    ('".esc_sql($wpjobportal_jobseeker_id)."', '".esc_sql($wpjobportal_date)."', '0000-00-00', 0, 0, 'Sample Resume 1', '340000', '', 'sample-resume-1', 'John ', 'Doe', '1', 'sample@resume1.com', '123456789', '1', 1, 'resume-photo.png', 13, 1, 1, '', 'this is some text that i have written in skills section of reusme.', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, '', 0, '', '[]', 0, 0, 'Sample Resume 1 Computer/IT Full-Time United States Male 340000Leona, Kansas, United States ', 'Sample Resume 1 Computer/IT Full-Time United States Male 340000Leona, Kansas, United States Gujranwala 31.5166667 74.3833333 this is some text that i have written in skills section of reusme. ');";
-                wpjobportaldb::query($wpjobportal_resume_query);
-                $wpjobportal_resumeid = wpjobportal::$_db->insert_id;
-                WPJOBPORTAL_Sample_Data_Service::record_entity('resumes', $wpjobportal_resumeid);
-                if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x3")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x3",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_".$wpjobportal_resumeid);
-
-                $wpjobportal_resume_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` ( `resumeid`, `address`, `address_city`,  `longitude`, `latitude`, `created`, `last_modified`, `serverstatus`, `serverid`)
-                    VALUES (" . esc_sql($wpjobportal_resumeid) . ", 'Gujranwala', $cityid2, 74.3833333, 31.5166667, '".esc_sql($wpjobportal_date)."', '0000-00-00 00:00:00', NULL  , NULL);";
-                wpjobportaldb::query($wpjobportal_resume_query);
-                //4th Resume
-
-                 $wpjobportal_resume_query = "INSERT INTO `".wpjobportal::$_db->prefix."wj_portal_resume` ( `uid`, `created`, `last_modified`, `published`, `hits`, `application_title`, `salaryfixed`, `keywords`, `alias`, `first_name`, `last_name`, `gender`, `email_address`, `cell`, `nationality`, `searchable`, `photo`, `job_category`, `jobtype`, `status`, `resume`, `skills`, `isgoldresume`, `startgolddate`, `startfeatureddate`, `endgolddate`, `endfeatureddate`, `isfeaturedresume`, `serverstatus`, `serverid`, `tags`, `params`, `userpackageid`, `price`, `airesumesearchtext`, `airesumesearchdescription`) VALUES
-                    ('".esc_sql($wpjobportal_jobseeker_id)."', '".esc_sql($wpjobportal_date)."', '0000-00-00', 0, 0, 'Sample Resume 2', '340000', '', 'sample-resume-2', 'John ', 'Doe', '1', 'sample@resume2.com', '123456789', '1', 1, 'resume-photo.png', 13, 1, 1, '', 'this is some text that i have written in skills section of reusme.', 2, '0000-00-00 00:00:00', '".$wpjobportal_startfeatureresumeddate."', '0000-00-00 00:00:00', '".$wpjobportal_endfeatureresumeddate."', '".$wpjobportal_isfeaturedresume."', '', 0, '', '[]', 0, 0, 'Sample Resume 2 Computer/IT Full-Time United States Male 340000Sheboygan, Wisconsin, United States ', 'Sample Resume 2 Computer/IT Full-Time United States Male 340000Sheboygan, Wisconsin, United States Gujranwala 31.5166667 74.3833333 this is some text that i have written in skills section of reusme. ');";
-                wpjobportaldb::query($wpjobportal_resume_query);
-                $wpjobportal_resumeid = wpjobportal::$_db->insert_id;
-                WPJOBPORTAL_Sample_Data_Service::record_entity('resumes', $wpjobportal_resumeid);
-                if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x4")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x4",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_".$wpjobportal_resumeid);
-
-                $wpjobportal_resume_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` ( `resumeid`, `address`, `address_city`,  `longitude`, `latitude`, `created`, `last_modified`, `serverstatus`, `serverid`)
-                                VALUES (" . esc_sql($wpjobportal_resumeid) . ", 'Gujranwala', $cityid3, 74.3833333, 31.5166667, '".esc_sql($wpjobportal_date)."', '0000-00-00 00:00:00', NULL  , NULL);";
-                wpjobportaldb::query($wpjobportal_resume_query);
-                //5th Resume
-                $wpjobportal_resume_query = "INSERT INTO `".wpjobportal::$_db->prefix."wj_portal_resume` ( `uid`, `created`, `last_modified`, `published`, `hits`, `application_title`, `salaryfixed`, `keywords`, `alias`, `first_name`, `last_name`, `gender`, `email_address`, `cell`, `nationality`, `searchable`, `photo`, `job_category`, `jobtype`, `status`, `resume`, `skills`, `isgoldresume`, `startgolddate`, `startfeatureddate`, `endgolddate`, `endfeatureddate`, `isfeaturedresume`, `serverstatus`, `serverid`, `tags`, `params`, `userpackageid`, `price`, `airesumesearchtext`, `airesumesearchdescription`) VALUES
-                    ('".esc_sql($wpjobportal_jobseeker_id)."', '".esc_sql($wpjobportal_date)."', '0000-00-00', 0, 0, 'Sample Resume 3', '340000', '', 'sample-resume-3', 'John ', 'Doe', '1', 'sample@resume3.com', '123456789', '1', 1, 'resume-photo.png', 13, 1, 1, '', 'this is some text that i have written in skills section of reusme.', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, '', 0, '', '[]', 0, 0, 'Sample Resume 3 Computer/IT Full-Time United States Male 340000Danville, Virginia, United States ', 'Sample Resume 3 Computer/IT Full-Time United States Male 340000Danville, Virginia, United States Gujranwala 31.5166667 74.3833333 this is some text that i have written in skills section of reusme. ');";
-                    wpjobportaldb::query($wpjobportal_resume_query);
-                $wpjobportal_resumeid = wpjobportal::$_db->insert_id;
-                WPJOBPORTAL_Sample_Data_Service::record_entity('resumes', $wpjobportal_resumeid);
-                if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x5")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x5",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_".$wpjobportal_resumeid);
-
-                $wpjobportal_resume_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` ( `resumeid`, `address`, `address_city`,  `longitude`, `latitude`, `created`, `last_modified`, `serverstatus`, `serverid`)
-                                VALUES (" . esc_sql($wpjobportal_resumeid) . ", 'Gujranwala', $cityid4, 74.3833333, 31.5166667, '".esc_sql($wpjobportal_date)."', '0000-00-00 00:00:00', NULL  , NULL);";
-                wpjobportaldb::query($wpjobportal_resume_query);
-
-                ///6th Resume
-                $wpjobportal_resume_query = "INSERT INTO `".wpjobportal::$_db->prefix."wj_portal_resume` ( `uid`, `created`, `last_modified`, `published`, `hits`, `application_title`, `salaryfixed`, `keywords`, `alias`, `first_name`, `last_name`, `gender`, `email_address`, `cell`, `nationality`, `searchable`, `photo`, `job_category`, `jobtype`, `status`, `resume`, `skills`, `isgoldresume`, `startgolddate`, `startfeatureddate`, `endgolddate`, `endfeatureddate`, `isfeaturedresume`, `serverstatus`, `serverid`, `tags`, `params`, `userpackageid`, `price`, `airesumesearchtext`, `airesumesearchdescription`) VALUES
-                    ('".esc_sql($wpjobportal_jobseeker_id)."', '".esc_sql($wpjobportal_date)."', '0000-00-00', 0, 0, 'Sample Resume 4', '340000', '', 'sample-resume-4', 'John ', 'Doe', '1', 'sample@resume4.com', '123456789', '1', 1, 'resume-photo.png', 13, 1, 1, '', 'this is some text that i have written in skills section of reusme.', 2, '0000-00-00 00:00:00', '".$wpjobportal_startfeatureresumeddate."', '0000-00-00 00:00:00', '".$wpjobportal_endfeatureresumeddate."', '".$wpjobportal_isfeaturedresume."', '', 0, '', '[]', 0, 0, 'Sample Resume 4 Computer/IT Full-Time United States Male 340000Laconia, New Hampshire, United States ', 'Sample Resume 4 Computer/IT Full-Time United States Male 340000Laconia, New Hampshire, United States Gujranwala 31.5166667 74.3833333 this is some text that i have written in skills section of reusme. ');";
-                wpjobportaldb::query($wpjobportal_resume_query);
-                $wpjobportal_resumeid = wpjobportal::$_db->insert_id;
-                WPJOBPORTAL_Sample_Data_Service::record_entity('resumes', $wpjobportal_resumeid);
-                if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x6")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x6",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_".$wpjobportal_resumeid);
-
-                $wpjobportal_resume_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` ( `resumeid`, `address`, `address_city`,  `longitude`, `latitude`, `created`, `last_modified`, `serverstatus`, `serverid`)
-                                VALUES (" . esc_sql($wpjobportal_resumeid) . ", 'Gujranwala', $cityid5, 74.3833333, 31.5166667, '".esc_sql($wpjobportal_date)."', '0000-00-00 00:00:00', NULL  , NULL);";
-                wpjobportaldb::query($wpjobportal_resume_query);
-
-
-                //7th Resume
-                $wpjobportal_resume_query = "INSERT INTO `".wpjobportal::$_db->prefix."wj_portal_resume` ( `uid`, `created`, `last_modified`, `published`, `hits`, `application_title`, `salaryfixed`, `keywords`, `alias`, `first_name`, `last_name`, `gender`, `email_address`, `cell`, `nationality`, `searchable`, `photo`, `job_category`, `jobtype`, `status`, `resume`, `skills`, `isgoldresume`, `startgolddate`, `startfeatureddate`, `endgolddate`, `endfeatureddate`, `isfeaturedresume`, `serverstatus`, `serverid`, `tags`, `params`, `userpackageid`, `price`, `airesumesearchtext`, `airesumesearchdescription`) VALUES
-                    ('".esc_sql($wpjobportal_jobseeker_id)."', '".esc_sql($wpjobportal_date)."', '0000-00-00', 0, 0, 'Sample Resume 5', '340000', '', 'sample-resume-5', 'John ', 'Doe', '1', 'sample@resume5.com', '123456789', '1', 1, 'resume-photo.png', 13, 1, 1, '', 'this is some text that i have written in skills section of reusme.', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, '', 0, '', '[]', 0, 0, 'Sample Resume 5 Computer/IT Full-Time United States Male 340000Elgin, Illinois, United States ', 'Sample Resume 5 Computer/IT Full-Time United States Male 340000Elgin, Illinois, United States Gujranwala 31.5166667 74.3833333 this is some text that i have written in skills section of reusme. ');";
-
-                wpjobportaldb::query($wpjobportal_resume_query);
-                $wpjobportal_resumeid = wpjobportal::$_db->insert_id;
-                WPJOBPORTAL_Sample_Data_Service::record_entity('resumes', $wpjobportal_resumeid);
-                if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x7")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x7",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_".$wpjobportal_resumeid);
-
-                $wpjobportal_resume_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` ( `resumeid`, `address`, `address_city`,  `longitude`, `latitude`, `created`, `last_modified`, `serverstatus`, `serverid`)
-                                VALUES (" . esc_sql($wpjobportal_resumeid) . ", 'Gujranwala', $cityid6, 74.3833333, 31.5166667, '".esc_sql($wpjobportal_date)."', '0000-00-00 00:00:00', NULL  , NULL);";
-                wpjobportaldb::query($wpjobportal_resume_query);
-
-
-
-                ///8th Resume
-
-                $wpjobportal_resume_query = "INSERT INTO `".wpjobportal::$_db->prefix."wj_portal_resume` ( `uid`, `created`, `last_modified`, `published`, `hits`, `application_title`, `salaryfixed`, `keywords`, `alias`, `first_name`, `last_name`, `gender`, `email_address`, `cell`, `nationality`, `searchable`, `photo`, `job_category`, `jobtype`, `status`, `resume`, `skills`, `isgoldresume`, `startgolddate`, `startfeatureddate`, `endgolddate`, `endfeatureddate`, `isfeaturedresume`, `serverstatus`, `serverid`, `tags`, `params`, `userpackageid`, `price`, `airesumesearchtext`, `airesumesearchdescription`) VALUES
-                    ('".esc_sql($wpjobportal_jobseeker_id)."', '".esc_sql($wpjobportal_date)."', '0000-00-00', 0, 0, 'Sample Resume 3', '340000', '', 'sample-resume-6', 'John ', 'Doe', '1', 'sample@resume6.com', '123456789', '1', 1, 'resume-photo.png', 13, 1, 1, '', 'this is some text that i have written in skills section of reusme.', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, '', 0, '', '[]', 0, 0, 'Sample Resume 3 Computer/IT Full-Time United States Male 340000Rockford, Illinois, United States ', 'Sample Resume 3 Computer/IT Full-Time United States Male 340000Rockford, Illinois, United States Gujranwala 31.5166667 74.3833333 this is some text that i have written in skills section of reusme. ');";
-                 wpjobportaldb::query($wpjobportal_resume_query);
-                $wpjobportal_resumeid = wpjobportal::$_db->insert_id;
-                WPJOBPORTAL_Sample_Data_Service::record_entity('resumes', $wpjobportal_resumeid);
-                if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x8")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x8",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_".$wpjobportal_resumeid);
-
-                $wpjobportal_resume_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` ( `resumeid`, `address`, `address_city`,  `longitude`, `latitude`, `created`, `last_modified`, `serverstatus`, `serverid`)
-                                VALUES (" . esc_sql($wpjobportal_resumeid) . ", 'Gujranwala', $cityid7, 74.3833333, 31.5166667, '".esc_sql($wpjobportal_date)."', '0000-00-00 00:00:00', NULL  , NULL);";
-                wpjobportaldb::query($wpjobportal_resume_query);
-
-                ///9th Resume
-
-                $wpjobportal_resume_query = "INSERT INTO `".wpjobportal::$_db->prefix."wj_portal_resume` ( `uid`, `created`, `last_modified`, `published`, `hits`, `application_title`, `salaryfixed`, `keywords`, `alias`, `first_name`, `last_name`, `gender`, `email_address`, `cell`, `nationality`, `searchable`, `photo`, `job_category`, `jobtype`, `status`, `resume`, `skills`, `isgoldresume`, `startgolddate`, `startfeatureddate`, `endgolddate`, `endfeatureddate`, `isfeaturedresume`, `serverstatus`, `serverid`, `tags`, `params`, `userpackageid`, `price`, `airesumesearchtext`, `airesumesearchdescription`) VALUES
-                    ('".esc_sql($wpjobportal_jobseeker_id)."', '".esc_sql($wpjobportal_date)."', '0000-00-00', 0, 0, 'Sample Resume 7', '340000', '', 'sample-resume-7', 'John ', 'Doe', '1', 'sample@resume7.com', '123456789', '1', 1, 'resume-photo.png', 13, 1, 1, '', 'this is some text that i have written in skills section of reusme.', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, '', 0, '', '[]', 0, 0, 'Sample Resume 7 Computer/IT Full-Time United States Male 340000El Cajon, California, United States ', 'Sample Resume 7 Computer/IT Full-Time United States Male 340000El Cajon, California, United States Gujranwala 31.5166667 74.3833333 this is some text that i have written in skills section of reusme. ');";
-                wpjobportaldb::query($wpjobportal_resume_query);
-                $wpjobportal_resumeid = wpjobportal::$_db->insert_id;
-                WPJOBPORTAL_Sample_Data_Service::record_entity('resumes', $wpjobportal_resumeid);
-                if ($wp_filesystem->exists($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x9")) $wp_filesystem->move($wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_x9",$wp_upload_dir["basedir"]."/".$wpjobportal_data_directory."/data/jobseeker/resume_".$wpjobportal_resumeid);
-
-                $wpjobportal_resume_query = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` ( `resumeid`, `address`, `address_city`,  `longitude`, `latitude`, `created`, `last_modified`, `serverstatus`, `serverid`)
-                                VALUES (" . esc_sql($wpjobportal_resumeid) . ", 'Gujranwala', $cityid8, 74.3833333, 31.5166667, '".esc_sql($wpjobportal_date)."', '0000-00-00 00:00:00', NULL  , NULL);";
-                wpjobportaldb::query($wpjobportal_resume_query);
-
-
-
-
-                /**
-                ** @param wp job portal
-                *Sample Data
-                * * *Job Apply Code
-                **/
-
-                // Apply only to exact jobs created in this request. Title-based
-                // matching could attach sample applications to real jobs.
-                $wpjobportal_jobids = array_slice($wpjobportal_sample_job_ids, 0, 5);
-                foreach ($wpjobportal_jobids AS $wpjobportal_jobid) {
-                    $wpjobportal_appliedjobs = "INSERT INTO `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` (`jobid`, `uid`, `cvid`, `apply_date`, `resumeview`, `comments`, `coverletterid`, `action_status`, `serverstatus`, `serverid`,status)
-                        VALUES (" . absint($wpjobportal_jobid) . "," . esc_sql($wpjobportal_jobseeker_id) . "," . esc_sql($wpjobportal_resumeid) . ",'" . esc_sql($wpjobportal_date) . "',0,NULL,NULL,1,NULL,NULL,1)";
-                    wpjobportaldb::query($wpjobportal_appliedjobs);
-                    WPJOBPORTAL_Sample_Data_Service::record_entity('applications', wpjobportal::$_db->insert_id);
-                }
-            }
-            // if ($wpjobportal_temp_data == 1) {
-            //     $wpjobportal_product_type = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('producttype');
-            //     if($wpjobportal_product_type == 'pro'){
-            //         $flag = 'p';
-            //     }else{
-            //         $flag = 'f';
-            //     }
-            //     $this->installSampleDataTemplate($flag);
-            // }
         }
         WPJOBPORTAL_Sample_Data_Service::finalize_batch();
         return true;
@@ -791,15 +296,20 @@ class WPJOBPORTALPostinstallationModel {
             require_once ABSPATH . 'wp-admin/includes/file.php';
         }
         global $wp_filesystem;
-        if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-            $creds = request_filesystem_credentials( site_url() );
-            wp_filesystem( $creds );
-        }
+        $wp_filesystem = wpjobportal::wpjobportal_filesystem();
 
         if ($wp_filesystem->exists(get_template_directory() . "/framework/plugins/sample-data.zip")) {
-            do_action('wpjobportal_load_wp_pcl_zip');
-            $archive = new PclZip(get_template_directory() . "/framework/plugins/sample-data.zip");
-            $v_list = $archive->extract($wp_upload_dir["basedir"]);
+            /*
+             * The demo's pictures, unpacked into uploads.
+             *
+             * This called PclZip directly with the uploads path exactly as
+             * WordPress reports it, which on a Windows host is "D:\...\uploads".
+             * PclZip reads that as a relative folder called "D:", fails with
+             * PCLZIP_ERR_DIR_CREATE_FAIL, and still hands back its file list -
+             * so nothing was unpacked and nothing said so. unzip_file() is the
+             * WordPress call for this and copes with either kind of path.
+             */
+            unzip_file(get_template_directory() . "/framework/plugins/sample-data.zip", $wp_upload_dir["basedir"]);
         }
         if( ! function_exists("wpjobportal_wp_update_post_meta")){
             function wpjobportal_wp_update_post_meta( $post_id, $wpjobportal_field_name, $wpjobportal_value = "" ){
@@ -1940,10 +1450,7 @@ class WPJOBPORTALPostinstallationModel {
             require_once ABSPATH . 'wp-admin/includes/file.php';
         }
         global $wp_filesystem;
-        if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-            $creds = request_filesystem_credentials( site_url() );
-            wp_filesystem( $creds );
-        }
+        $wp_filesystem = wpjobportal::wpjobportal_filesystem();
         $wpjobportal_data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue('data_directory');
         $wpjobportal_structure = glob(wpjobportalphplib::wpJP_rtrim($wpjobportal_dir, "/").'/*');
         if (is_array($wpjobportal_structure)) {
@@ -1978,10 +1485,7 @@ class WPJOBPORTALPostinstallationModel {
             require_once ABSPATH . 'wp-admin/includes/file.php';
         }
         global $wp_filesystem;
-        if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-            $creds = request_filesystem_credentials( site_url() );
-            wp_filesystem( $creds );
-        }
+        $wp_filesystem = wpjobportal::wpjobportal_filesystem();
 
         if (!$wp_filesystem->exists($wpjobportal_path)){
             $wp_filesystem->mkdir( $wpjobportal_path, 0755 );
@@ -1995,7 +1499,8 @@ class WPJOBPORTALPostinstallationModel {
     }
 
     function getWpUsersList() {
-        $query = "SELECT ID as id,CONCAT(user_login,' ( ',display_name,' ) - ',id) AS text  FROM `" . wpjobportal::$_db->prefix . "users`";
+        // This site's users only: on multisite wp_users holds the whole network.
+        $query = "SELECT ID as id,CONCAT(user_login,' ( ',display_name,' ) - ',id) AS text  FROM `" . wpjobportal::$_db->users . "` WHERE 1 = 1" . WPJOBPORTALincluder::getJSModel('user')->siteMembersOnly('ID');
         $wpjobportal_users = wpjobportal::$_db->get_results($query);
         $wpjobportal_data[0] = (object) array('id' => 0, 'text' => esc_html(__('Select User', 'wp-job-portal')));
         foreach ($wpjobportal_users as $wpjobportal_user) {
@@ -2007,7 +1512,7 @@ class WPJOBPORTALPostinstallationModel {
     function addMissingUsers(){
         // wpuid column does not esist in the table. it was showing a query error in log
         $missingUser2 = 0;
-        $query = "SELECT ID FROM `" . wpjobportal::$_db->prefix . "users`";
+        $query = "SELECT ID FROM `" . wpjobportal::$_db->users . "` WHERE 1 = 1" . WPJOBPORTALincluder::getJSModel('user')->siteMembersOnly('ID');
         $wpjobportal_users = wpjobportal::$_db->get_results($query);
         $wpUsers = array();
         $wpjobportal_jsstUsers = array();
@@ -2025,12 +1530,12 @@ class WPJOBPORTALPostinstallationModel {
             $query = "SELECT count(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE uid = " . (int) ($missingUser);
             $wpjobportal_total = wpjobportal::$_db->get_var($query);
             if ($wpjobportal_total == 0) {
-                $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "users` WHERE id = " . (int) ($missingUser);
+                $query = "SELECT * FROM `" . wpjobportal::$_db->users . "` WHERE id = " . (int) ($missingUser);
                 $wpjobportal_user = wpjobportal::$_db->get_row($query);
                 if (isset($wpjobportal_user)) {
                     $wpjobportal_row = WPJOBPORTALincluder::getJSTable('users');
                     $wpjobportal_data['uid'] = $wpjobportal_user->ID;
-                    $wpjobportal_data['first_name '] = $wpjobportal_user->display_name;
+                    $wpjobportal_data['first_name'] = $wpjobportal_user->display_name;
                     $wpjobportal_data['emailaddress'] = $wpjobportal_user->user_email;
                     $wpjobportal_data['issocial'] = 0;
                     $wpjobportal_data['socialid'] = null;
@@ -2094,17 +1599,22 @@ class WPJOBPORTALPostinstallationModel {
             require_once ABSPATH . 'wp-admin/includes/file.php';
         }
         global $wp_filesystem;
-        if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-            $creds = request_filesystem_credentials( site_url() );
-            wp_filesystem( $creds );
-        }
+        $wp_filesystem = wpjobportal::wpjobportal_filesystem();
 
 
         $wp_upload_dir = wp_upload_dir();
         if ($wp_filesystem->exists(get_template_directory() . "/framework/plugins/sample-data.zip")) {
-            do_action('wpjobportal_load_wp_pcl_zip');
-            $archive = new PclZip(get_template_directory() . "/framework/plugins/sample-data.zip");
-            $v_list = $archive->extract($wp_upload_dir["basedir"]);
+            /*
+             * The demo's pictures, unpacked into uploads.
+             *
+             * This called PclZip directly with the uploads path exactly as
+             * WordPress reports it, which on a Windows host is "D:\...\uploads".
+             * PclZip reads that as a relative folder called "D:", fails with
+             * PCLZIP_ERR_DIR_CREATE_FAIL, and still hands back its file list -
+             * so nothing was unpacked and nothing said so. unzip_file() is the
+             * WordPress call for this and copes with either kind of path.
+             */
+            unzip_file(get_template_directory() . "/framework/plugins/sample-data.zip", $wp_upload_dir["basedir"]);
         }
         if( ! function_exists("wpjobportal_wp_update_post_meta")){
             function wpjobportal_wp_update_post_meta( $post_id, $wpjobportal_field_name, $wpjobportal_value = "" ){
@@ -2405,6 +1915,14 @@ class WPJOBPORTALPostinstallationModel {
         return $wpjobportal_result;
     }
 
+    function isUntouchedThemeDemoPost($post_id){
+        $post_id = absint($post_id);
+        $wpjobportal_saved_signature = (string) get_post_meta($post_id, '_wpjobportal_theme_demo_signature', true);
+        return $post_id > 0
+            && '' !== $wpjobportal_saved_signature
+            && hash_equals($wpjobportal_saved_signature, $this->themeDemoPostSignature($post_id));
+    }
+
     function themeDemoPostSignature($post_id){
         $wpjobportal_post = get_post(absint($post_id));
         if (!$wpjobportal_post) {
@@ -2430,9 +1948,40 @@ class WPJOBPORTALPostinstallationModel {
         $filetype = wp_check_filetype( wpjobportalphplib::wpJP_basename( $filename ), null );
         // Get the path to the upload directory.
         $wp_upload_dir = wp_upload_dir();
+        /*
+         * The theme demo names its pictures relative to the uploads folder -
+         * "/2017/01/post2.jpg", the layout sample-data.zip is unpacked into -
+         * and this passed that string on as though it were a file path. It is
+         * not one: wp_insert_attachment() recorded "/2017/01/post2.jpg" as the
+         * file, so every URL came out as uploads//2017/01/post2.jpg, and
+         * wp_generate_attachment_metadata() warned that it could not open a
+         * file at the root of the drive. Every blog, news and team picture of
+         * an imported demo was a broken image.
+         *
+         * A path already inside uploads is used as it is; anything else is
+         * taken as relative to uploads. The GUID follows the file rather than
+         * this month's folder, which the file was never in.
+         */
+        $wpjobportal_basedir = wp_normalize_path($wp_upload_dir["basedir"]);
+        $wpjobportal_given = wp_normalize_path($filename);
+        if (strpos($wpjobportal_given, $wpjobportal_basedir . '/') === 0) {
+            $wpjobportal_relative = substr($wpjobportal_given, strlen($wpjobportal_basedir) + 1);
+        } else {
+            $wpjobportal_relative = ltrim($wpjobportal_given, '/');
+        }
+        // Built from WordPress's own uploads path, not the normalised one:
+        // update_attached_file() strips exactly that prefix to store the file
+        // as "2017/01/post2.jpg", and a path it does not recognise is stored
+        // whole - which then resolves to no URL at all.
+        $filename = $wp_upload_dir["basedir"] . '/' . $wpjobportal_relative;
+        if (!file_exists($filename)) {
+            // An attachment pointing at nothing draws a broken image wherever
+            // the post is listed. Without the picture, leave the post without one.
+            return;
+        }
         // Prepare an array of post data for the attachment.
         $attachment = array(
-            "guid"           => $wp_upload_dir["url"] . "/" . wpjobportalphplib::wpJP_basename( $filename ),
+            "guid"           => $wp_upload_dir["baseurl"] . "/" . $wpjobportal_relative,
             "post_mime_type" => $filetype["type"],
             "post_title"     => wpjobportalphplib::wpJP_preg_replace( "/\.[^.]+$/", "", wpjobportalphplib::wpJP_basename( $filename ) ),
             "post_content"   => "",
@@ -2541,6 +2090,20 @@ class WPJOBPORTALPostinstallationModel {
                 $page_id = $page_check->ID;
             }
         }
+        /*
+         * Importing a second demo found the first one's "Home" (and from the
+         * third import on, its "Job Portal Home") and kept it, so only the
+         * colours changed and the new demo's page layout never arrived. A page
+         * an earlier import made, still exactly as it made it, takes the new
+         * demo's content; one the site owner has edited since is left alone.
+         */
+        if(!$wpjobportal_page_created && !empty($page_id) && $this->isUntouchedThemeDemoPost($page_id)){
+            $wpjobportal_updated = wp_update_post(array(
+                'ID' => absint($page_id),
+                'post_content' => $page_content,
+            ), true);
+            $wpjobportal_page_created = !is_wp_error($wpjobportal_updated);
+        }
         if($wpjobportal_page_created){
             self::$wpjobportal_theme_demo_created_posts[] = absint($page_id);
             update_post_meta($page_id, "jp_show_header", $wpjobportal_show_header);
@@ -2593,9 +2156,17 @@ class WPJOBPORTALPostinstallationModel {
         // set widget in wordpress site bar options
             $widget_positions = get_option("sidebars_widgets");
             if($widget_position != 'footer3' ){ // to handle the case of using same widget in muliple footer positions.
-                $widget_positions[$widget_position][] = $wpjobportal_name_string."-1";
+                $widget_id = $wpjobportal_name_string."-1";
             }else{
-                $widget_positions[$widget_position][] = $wpjobportal_name_string."-2";
+                $widget_id = $wpjobportal_name_string."-2";
+            }
+            // Placed once. Every demo import used to add the widget again, so a
+            // site imported twice showed each footer column twice.
+            if(!isset($widget_positions[$widget_position]) || !is_array($widget_positions[$widget_position])){
+                $widget_positions[$widget_position] = array();
+            }
+            if(!in_array($widget_id, $widget_positions[$widget_position], true)){
+                $widget_positions[$widget_position][] = $widget_id;
             }
             update_option( "sidebars_widgets" , $widget_positions);
             return;

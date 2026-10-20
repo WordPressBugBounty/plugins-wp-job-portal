@@ -24,4 +24,14 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("Nikki", "Nikki", "Nikki", NULL, 144, 0, 1, NULL, "9.9363383", "3.2085658"),
 ("Kandi", "Kandi", "Kandi", NULL, 144, 0, 1, NULL, "11.1311029", "2.9322321"),
 ("Banikoara", "Banikoara", "Banikoara", NULL, 144, 0, 1, NULL, "11.3004241", "2.4370752"),
-("Malanville", "Malanville", "Malanville", NULL, 144, 0, 1, NULL, "11.8618128", "3.3862982");
+("Malanville", "Malanville", "Malanville", NULL, 144, 0, 1, NULL, "11.8618128", "3.3862982"),
+("Beterou", "Beterou", "Beterou", NULL, 144, 0, 1, NULL, "9.2008079", "2.2691943"),
+("Bassila", "Bassila", "Bassila", NULL, 144, 0, 1, NULL, "9.006393", "1.6639235"),
+("Bembereke", "Bembereke", "Bembereke", NULL, 144, 0, 1, NULL, "10.2183336", "2.6660901"),
+("Come", "Come", "Come", NULL, 144, 0, 1, NULL, "6.4096168", "1.8855057"),
+("Cove", "Cove", "Cove", NULL, 144, 0, 1, NULL, "7.2188798", "2.3394209"),
+("Dogbo", "Dogbo", "Dogbo", NULL, 144, 0, 1, NULL, "6.80126", "1.782828"),
+("Grand-Popo", "Grand-Popo", "Grand-Popo", NULL, 144, 0, 1, NULL, "6.2639324", "1.7417143"),
+("Save", "Save", "Save", NULL, 144, 0, 1, NULL, "8.0335995", "2.4851463"),
+("Tanguieta", "Tanguieta", "Tanguieta", NULL, 144, 0, 1, NULL, "10.6227552", "1.2650349"),
+("Tchaourou", "Tchaourou", "Tchaourou", NULL, 144, 0, 1, NULL, "8.8879709", "2.5941239");

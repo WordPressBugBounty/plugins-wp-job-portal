@@ -45,7 +45,7 @@ class WPJOBPORTALsystemerrorModel {
             $failed_query = wpjobportal::$_db->last_query;
 
             // Middle Ground Backtrace: Grab up to 5 levels
-            $raw_backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 5);
+            $raw_backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 5); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_debug_backtrace -- System Errors screen records where an error came from.
             $trace_path    = array();
 
             foreach ($raw_backtrace as $trace) {

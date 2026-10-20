@@ -70,7 +70,7 @@ class WPJOBPORTALStateController {
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'state');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_state&wpjobportallt=states&countryid=" . esc_attr($wpjobportal_countryid)));
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -90,7 +90,7 @@ class WPJOBPORTALStateController {
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_state&wpjobportallt=states&countryid=" . esc_attr($wpjobportal_countryid)));
         if ($wpjobportal_pagenum)
             $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -110,7 +110,7 @@ class WPJOBPORTALStateController {
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_state&wpjobportallt=states&countryid=" . esc_attr($wpjobportal_countryid)));
         if ($wpjobportal_pagenum)
             $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -127,7 +127,7 @@ class WPJOBPORTALStateController {
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_state&wpjobportallt=states&countryid=" . esc_attr($wpjobportal_countryid)));
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'state');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 

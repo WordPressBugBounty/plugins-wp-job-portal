@@ -1,3 +1,7 @@
 
 INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
-("Città di San Marino", "Città di San Marino", "City of San Marino", NULL, 86, 0, 1, NULL, "43.9363996", "12.4466991");
+("Città di San Marino", "Città di San Marino", "City of San Marino", NULL, 86, 0, 1, NULL, "43.9363996", "12.4466991"),
+("Acquaviva", "Acquaviva", "Acquaviva", NULL, 86, 0, 1, NULL, "43.945153", "12.4179988"),
+("Poggio di Chiesanuova", "Poggio di Chiesanuova", "Poggio di Chiesanuova", NULL, 86, 0, 1, NULL, "43.9142905", "12.4208642"),
+("San Marino", "San Marino", "San Marino", NULL, 86, 0, 1, NULL, "43.9355907", "12.4472806"),
+("Serravalle", "Serravalle", "Serravalle", NULL, 86, 0, 1, NULL, "43.9690367", "12.4774099");

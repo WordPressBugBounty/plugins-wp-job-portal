@@ -3,33 +3,27 @@
 $wpjobportal_desc_editor = isset($wpjobportal_desc_editor) ? $wpjobportal_desc_editor : '';
 
 // Enqueue marked.js for Markdown parsing
-wp_enqueue_script(
-    'wpjobportal-marked-js',
-    WPJOBPORTAL_PLUGIN_URL . 'includes/js/zywrap/marked.min.js',
-    array('jquery'),
-    '',
-    true
-);
+wp_enqueue_script( 'wpjobportal-marked-js', WPJOBPORTAL_PLUGIN_URL . 'includes/js/zywrap/marked.min.js', array('jquery'), WPJOBPORTAL_VERSION, true );
 
 // Register handle for inline JS injection
-wp_register_script('wpjobportal-resume-inline-handle', '');
+wp_register_script( 'wpjobportal-resume-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
 wp_enqueue_script('wpjobportal-resume-inline-handle');
 
 // Prepare localized strings and safe variables for JS injection
-$locale_js = esc_js(get_user_locale());
-$ajax_url_js = esc_url(admin_url('admin-ajax.php'));
+$wpjobportal_locale_js = esc_js(get_user_locale());
+$wpjobportal_ajax_url_js = esc_url(admin_url('admin-ajax.php'));
 
-$str_ai_addition     = esc_html__('✨ AI ADDITION', 'wp-job-portal');
-$str_analyzing       = esc_html__('Analyzing Profile...', 'wp-job-portal');
-$str_yes             = esc_html__('Yes', 'wp-job-portal');
-$str_generated       = esc_html__('Skills Generated!', 'wp-job-portal');
-$str_failed          = esc_html__('Generation Failed: ', 'wp-job-portal');
-$str_unknown         = esc_html__('Unknown error.', 'wp-job-portal');
-$str_server_err      = esc_html__('Server communication error. Please try again.', 'wp-job-portal');
-$str_generate_btn    = esc_html__('Generate Skills', 'wp-job-portal');
+$wpjobportal_str_ai_addition     = esc_html__('✨ AI ADDITION', 'wp-job-portal');
+$wpjobportal_str_analyzing       = esc_html__('Analyzing Profile...', 'wp-job-portal');
+$wpjobportal_str_yes             = esc_html__('Yes', 'wp-job-portal');
+$wpjobportal_str_generated       = esc_html__('Skills Generated!', 'wp-job-portal');
+$wpjobportal_str_failed          = esc_html__('Generation Failed: ', 'wp-job-portal');
+$wpjobportal_str_unknown         = esc_html__('Unknown error.', 'wp-job-portal');
+$wpjobportal_str_server_err      = esc_html__('Server communication error. Please try again.', 'wp-job-portal');
+$wpjobportal_str_generate_btn    = esc_html__('Generate Skills', 'wp-job-portal');
 
 $wpjobportal_inline_js_script = '
-var wpjp_current_lang = "' . $locale_js . '";
+var wpjp_current_lang = "' . $wpjobportal_locale_js . '";
 
 jQuery(document).ready(function($) {
     // 1. Utility for handling raw Markdown to Plain Text
@@ -46,7 +40,7 @@ jQuery(document).ready(function($) {
         smartInsert: function(editorId, contentPlain) {
             var el = jQuery("#" + editorId);
             var currentContent = el.val().trim();
-            var spacer = currentContent ? "\n\n--- ' . $str_ai_addition . ' ---\n\n" : "";
+            var spacer = currentContent ? "\n\n--- ' . $wpjobportal_str_ai_addition . ' ---\n\n" : "";
             el.val(currentContent + spacer + contentPlain);
             el.scrollTop(el[0].scrollHeight);
         }
@@ -101,7 +95,7 @@ jQuery(document).ready(function($) {
 
         $btn.prop("disabled", true).addClass("wjportal-ai-loading-ring");
         $icon.removeClass().addClass("dashicons dashicons-update wjportal-ai-text-white").css("animation", "spin 1s linear infinite");
-        $text.text("' . $str_analyzing . '");
+        $text.text("' . $wpjobportal_str_analyzing . '");
 
         $("#skills").css("opacity", "0.6");
 
@@ -135,7 +129,7 @@ jQuery(document).ready(function($) {
                         val = $el.find("option:selected").text();
                     } else if ($el.is(":checkbox") || $el.is(":radio")) {
                         if (!$el.is(":checked")) return;
-                        val = $el.next("label").text() || $el.parent().text().trim() || "' . $str_yes . '";
+                        val = $el.next("label").text() || $el.parent().text().trim() || "' . $wpjobportal_str_yes . '";
                     } else {
                         val = $el.val();
                     }
@@ -199,7 +193,7 @@ jQuery(document).ready(function($) {
             existingContent = $("#skills").val().trim();
         }
 
-        var wjp_ajaxurl = typeof ajaxurl !== "undefined" ? ajaxurl : "' . $ajax_url_js . '";
+        var wjp_ajaxurl = typeof ajaxurl !== "undefined" ? ajaxurl : "' . $wpjobportal_ajax_url_js . '";
 
         var requestData = {
             action: "wpjobportal_ajax",
@@ -214,7 +208,7 @@ jQuery(document).ready(function($) {
 
         $.post(wjp_ajaxurl, requestData).done(function(response) {
             if(response.success) {
-                $text.text("' . $str_generated . '");
+                $text.text("' . $wpjobportal_str_generated . '");
                 let aiOutput = response.data.output;
 
                 // For resume skills, we convert to raw text since we aren\'t using TinyMCE here
@@ -223,16 +217,16 @@ jQuery(document).ready(function($) {
 
                 checkEditorContent();
             } else {
-                alert("' . $str_failed . '" + (response.data.message || "' . $str_unknown . '"));
+                alert("' . $wpjobportal_str_failed . '" + (response.data.message || "' . $wpjobportal_str_unknown . '"));
             }
         }).fail(function() {
-            alert("' . $str_server_err . '");
+            alert("' . $wpjobportal_str_server_err . '");
         }).always(function() {
             $btn.prop("disabled", false).removeClass("wjportal-ai-loading-ring");
             $icon.removeClass().addClass("dashicons dashicons-yes wjportal-ai-text-white").css("animation", "");
             setTimeout(function() {
                 $icon.removeClass().addClass("dashicons dashicons-lightning wjportal-ai-text-indigo-200").css("animation", "");
-                $text.text("' . $str_generate_btn . '");
+                $text.text("' . $wpjobportal_str_generate_btn . '");
             }, 2500);
             $("#skills").css("opacity", "1");
         });
@@ -245,7 +239,9 @@ wp_add_inline_script('wpjobportal-resume-inline-handle', $wpjobportal_inline_js_
 // Enqueue job portal variables CSS
 wp_enqueue_style(
     'wpjobportal-variables',
-    WPJOBPORTAL_PLUGIN_URL . 'includes/css/job_portal_variables.css'
+    WPJOBPORTAL_PLUGIN_URL . 'includes/css/job_portal_variables.css',
+    array(),
+    wpjobportal_asset_version('includes/css/job_portal_variables.css')
 );
 ?>
 

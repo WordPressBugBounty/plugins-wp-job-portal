@@ -112,6 +112,49 @@ class WPJOBPORTALJobseekerModel {
         return;
     }
 
+    /**
+     * The three counts the My Stats page shows a job seeker.
+     *
+     * Same queries the control panel uses, so the two screens cannot disagree.
+     * The resume count keeps the Multi Resume cap for the same reason: a seeker
+     * without that feature owns one usable resume however many rows exist.
+     *
+     * @param int $wpjobportal_uid WP Job Portal user id.
+     * @return bool False when the id is not usable.
+     */
+    function getMyStats($wpjobportal_uid) {
+        if (!is_numeric($wpjobportal_uid)) {
+            return false;
+        }
+
+        $wpjobportal_stats = array(
+            'totalresume' => 0,
+            'totalcoverletter' => 0,
+            'totalapplied' => 0,
+        );
+
+        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE uid = " . (int) ($wpjobportal_uid) . " AND status = 1";
+        $wpjobportal_stats['totalresume'] = (int) wpjobportal::$_db->get_var($query);
+        if (!in_array('multiresume', wpjobportal::$_active_addons) && $wpjobportal_stats['totalresume'] > 1) {
+            $wpjobportal_stats['totalresume'] = 1;
+        }
+
+        // Only counted where the feature exists. The table can survive an
+        // uninstall, and reporting letters a seeker has no way to open would be
+        // worse than reporting none.
+        if (in_array('coverletter', wpjobportal::$_active_addons)) {
+            $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_coverletters` WHERE uid = " . (int) ($wpjobportal_uid);
+            $wpjobportal_stats['totalcoverletter'] = (int) wpjobportal::$_db->get_var($query);
+        }
+
+        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` WHERE status = 1 AND uid = " . (int) ($wpjobportal_uid);
+        $wpjobportal_stats['totalapplied'] = (int) wpjobportal::$_db->get_var($query);
+
+        wpjobportal::$_data[0] = $wpjobportal_stats;
+
+        return true;
+    }
+
     function getUserinfo($wpjobportal_uid){
         if (!is_numeric($wpjobportal_uid))
             return false;

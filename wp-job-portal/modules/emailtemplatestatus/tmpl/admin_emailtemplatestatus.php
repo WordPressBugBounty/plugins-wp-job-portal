@@ -1,7 +1,7 @@
 <?php
 if (!defined('ABSPATH'))
 die('Restricted Access');
-wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js');
+wp_enqueue_script( 'wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js', array(), wpjobportal_asset_version('includes/js/responsivetable.js'), false );
 ?>
 <!-- main wrapper -->
 <div id="wpjobportaladmin-wrapper">

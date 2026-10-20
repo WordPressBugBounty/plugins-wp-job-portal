@@ -125,7 +125,7 @@ class WPJOBPORTALslugModel {
         $wpjobportal_slug = WPJOBPORTALrequest::getVar('slug');
         $wpjobportal_html = '<span class="popup-top">
                     <span id="popup_title" >' . esc_html(__("Edit","wp-job-portal"))." ". esc_html(__("Slug", "wp-job-portal")) . '</span>
-                        <img id="popup_cross" alt="popup cross" onClick="closePopup();" src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/popup-close.png"></span>';
+                        <img id="popup_cross" alt="' . esc_attr__('Close', 'wp-job-portal') . '" onClick="closePopup();" src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/popup-close.png"></span>';
 
         $wpjobportal_html .= '<div class="popup-field-wrapper">
                     <div class="popup-field-title">' . esc_html(__('Slug','wp-job-portal')).' '. esc_html(__('Name', 'wp-job-portal')) . ' <span style="color: red;"> *</span></div>
@@ -141,6 +141,36 @@ class WPJOBPORTALslugModel {
         $query = "SELECT  defaultslug FROM `".wpjobportal::$_db->prefix."wj_portal_slug` WHERE slug = '".esc_sql($wpjobportal_layout)."'";
         $wpjobportal_val = wpjobportal::$_db->get_var($query);
         return sanitize_title($wpjobportal_val);
+    }
+
+    /**
+     * Is this exact slug on file?
+     *
+     * Asked by paramregister when an incoming URL segment begins with the
+     * configured slug prefix, to tell two cases apart: a page whose slug
+     * genuinely starts with those characters, which must be left alone, and a
+     * prefix added to the URL, which must be stripped before the layout is
+     * read. Answering wrongly sends the request to the wrong page; not
+     * answering at all was a fatal, because this method did not exist and
+     * every prefixed request called it.
+     *
+     * Matched on slug alone, like getDefaultSlugFromSlug above: the question
+     * is whether the URL is taken, and a disabled page still owns its URL.
+     *
+     * @param string $wpjobportal_layout Slug as it appeared in the URL.
+     * @return bool
+     */
+    function checkIfSlugExist($wpjobportal_layout) {
+        $wpjobportal_layout = (string) $wpjobportal_layout;
+        if ($wpjobportal_layout === '') {
+            return false;
+        }
+
+        $query = wpjobportal::$_db->prepare(
+            "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_slug` WHERE slug = %s",
+            $wpjobportal_layout);
+
+        return (int) wpjobportal::$_db->get_var($query) > 0;
     }
 
     function getSlugFromFileName($wpjobportal_layout,$wpjobportal_module) {
@@ -219,8 +249,8 @@ class WPJOBPORTALslugModel {
     function getSavedCookiesDataForSearch(){
         $wpjobportal_jsjp_search_array = array();
         $wpjp_search_cookie_data = '';
-        if(isset($_COOKIE['jsjp_jobportal_search_data'])){
-            $wpjp_search_cookie_data = wpjobportal::wpjobportal_sanitizeData($_COOKIE['jsjp_jobportal_search_data']);
+        if(WPJOBPORTALrequest::hasCookie('jsjp_jobportal_search_data')){
+            $wpjp_search_cookie_data = WPJOBPORTALrequest::cookie('jsjp_jobportal_search_data');
             $wpjp_search_cookie_data = wpjobportalphplib::wpJP_safe_decoding($wpjp_search_cookie_data);
             $wpjp_search_cookie_data = json_decode( $wpjp_search_cookie_data , true );
         }

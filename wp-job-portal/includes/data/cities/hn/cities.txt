@@ -21,4 +21,14 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("Catacamas", "Catacamas", "Catacamas", NULL, 19, 0, 1, NULL, "14.8483829", "-85.8935619"),
 ("La Ceiba", "La Ceiba", "La Ceiba", NULL, 19, 0, 1, NULL, "15.7833743", "-86.7917749"),
 ("Trujillo", "Trujillo", "Trujillo", NULL, 19, 0, 1, NULL, "15.918749", "-85.9531058"),
-("Puerto Lempira", "Puerto Lempira", "Puerto Lempira", NULL, 19, 0, 1, NULL, "15.2656275", "-83.7740635");
+("Puerto Lempira", "Puerto Lempira", "Puerto Lempira", NULL, 19, 0, 1, NULL, "15.2656275", "-83.7740635"),
+("Comayaguela", "Comayaguela", "Comayaguela", NULL, 19, 0, 1, NULL, "14.0722751", "-87.192136"),
+("Cortes", "Cortes", "Cortes", NULL, 19, 0, 1, NULL, "15.4909515", "-87.9334803"),
+("El Llano", "El Llano", "El Llano", NULL, 19, 0, 1, NULL, "15.1539332", "-87.8721602"),
+("El Progreso", "El Progreso", "El Progreso", NULL, 19, 0, 1, NULL, "15.3843415", "-87.8058402"),
+("La Lima", "La Lima", "La Lima", NULL, 19, 0, 1, NULL, "15.4321163", "-87.9040571"),
+("Progreso", "Progreso", "Progreso", NULL, 19, 0, 1, NULL, "15.3843415", "-87.8058402"),
+("Roatan", "Roatan", "Roatan", NULL, 19, 0, 1, NULL, "16.3239655", "-86.5350176"),
+("Santa Rita", "Santa Rita", "Santa Rita", NULL, 19, 0, 1, NULL, "15.2007942", "-87.881977"),
+("Santa Rosa", "Santa Rosa", "Santa Rosa", NULL, 19, 0, 1, NULL, "14.76627", "-88.777496"),
+("Tela", "Tela", "Tela", NULL, 19, 0, 1, NULL, "15.7732601", "-87.4653502");

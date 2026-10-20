@@ -35,7 +35,8 @@ echo '<div class="wjportal-resume-cnt-wrp">
                 <div class="wjportal-resume-data">';
                     if(empty(wpjobportal::$_data['shortcode_option_hide_resume_location'])){
                         if(in_array('advanceresumebuilder', wpjobportal::$_active_addons)){
-                            if(isset($wpjobportal_listing_fields['address_city'])){
+                            // No city, no row: an empty value left a lone map pin on the card.
+                            if(isset($wpjobportal_listing_fields['address_city']) && trim((string) $wpjobportal_myresume->location, " ,") !== ''){
                                 echo '<div class="wjportal-resume-data-text wjportal-jobs-data-icon-class-lcoation">
                                     <span class="wjportal-resume-data-title">'. esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_listing_fields['address_city'])) . ': '.'</span>
                                     <span class="wjportal-resume-data-value">'. esc_html($wpjobportal_myresume->location) .'</span>
@@ -99,10 +100,10 @@ echo '<div class="wjportal-resume-cnt-wrp">
        }
        
     echo'<div class="wjportal-resume-right-wrp">';
-                if(isset($wpjobportal_listing_fields['jobtype'])){
+                if(isset($wpjobportal_listing_fields['jobtype']) && !empty($wpjobportal_myresume->jobtypetitle)){
                     echo '
                         <div class="wjportal-resume-data">
-                            <span class="wjportal-resume-job-type" style="background-color:'.esc_attr($wpjobportal_myresume->jobtypecolor).'">'.esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_myresume->jobtypetitle)) .'</span>
+                            <span class="wjportal-resume-job-type" style="--wpjp-jobtype-color:'.esc_attr($wpjobportal_myresume->jobtypecolor).'">'.esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_myresume->jobtypetitle)) .'</span>
                         </div>';
                 }
 
@@ -110,8 +111,8 @@ echo '<div class="wjportal-resume-cnt-wrp">
                  * WP Job Portal: AI Match Score Badge
                  */
                 if(in_array('smartmatching', wpjobportal::$_active_addons)){
-                    $show_match_score_resume_list  = wpjobportal::$_config->getConfigurationByConfigName('show_match_score_resume_list');
-                    if (! empty($show_match_score_resume_list) && !empty($wpjobportal_myresume->match_score)) {
+                    $wpjobportal_show_match_score_resume_list  = wpjobportal::$_config->getConfigurationByConfigName('show_match_score_resume_list');
+                    if (! empty($wpjobportal_show_match_score_resume_list) && !empty($wpjobportal_myresume->match_score)) {
                         $wpjobportal_ai_match_score = (int) $wpjobportal_myresume->match_score;
                         do_action('wpjobportal_addon_resumelisting_match_score',$wpjobportal_ai_match_score);
                     }

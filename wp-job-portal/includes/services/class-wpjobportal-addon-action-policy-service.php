@@ -15,6 +15,23 @@ class WPJOBPORTAL_Addon_Action_Policy_Service {
 
     const STATS_OPTION = 'wpjobportal_addon_action_policy_stats';
 
+    /**
+     * Why the last refusal happened, for the message the person is shown.
+     *
+     * Every check here - method, role, nonce, input shape, ownership - ended
+     * in the same sentence: "You are not allowed to perform this WP Job Portal
+     * action." A tester reporting that has told us nothing, and neither the
+     * support desk nor the person at the screen could tell an expired form
+     * from a missing portal role. The reason was written to an option nobody
+     * reads; it is worth saying out loud.
+     */
+    private static $wpjobportal_last_reason = '';
+
+    /** The reason for the most recent refusal in this request, if any. */
+    public static function last_denial_reason() {
+        return self::$wpjobportal_last_reason;
+    }
+
     public static function authorize($module, $task, $channel) {
         $module = sanitize_key($module);
         $task = strtolower(preg_replace('/[^A-Za-z0-9_]/', '', (string) $task));
@@ -558,12 +575,11 @@ class WPJOBPORTAL_Addon_Action_Policy_Service {
         if ($module === 'message') {
             global $wpdb;
             $table = $wpdb->prefix . 'wj_portal_messages';
-            $placeholders = implode(', ', array_fill(0, count($ids), '%d'));
             $sql = $wpdb->prepare(
-                "SELECT COUNT(DISTINCT id) FROM `{$table}` WHERE id IN ({$placeholders}) AND (employerid = %d OR jobseekerid = %d)",
-                array_merge($ids, array($uid, $uid))
+                'SELECT COUNT(DISTINCT id) FROM %i WHERE id IN (' . implode(', ', array_fill(0, count($ids), '%d')) . ') AND (employerid = %d OR jobseekerid = %d)',
+                ...array_merge(array($table), $ids, array($uid, $uid))
             );
-            return absint($wpdb->get_var($sql)) === count($ids);
+            return absint(wpjobportaldb_direct::get_var($sql)) === count($ids);
         }
         if (!isset($table_map[$module])) {
             return true;
@@ -571,12 +587,11 @@ class WPJOBPORTAL_Addon_Action_Policy_Service {
 
         global $wpdb;
         $table = $wpdb->prefix . $table_map[$module];
-        $placeholders = implode(', ', array_fill(0, count($ids), '%d'));
         $sql = $wpdb->prepare(
-            "SELECT COUNT(DISTINCT id) FROM `{$table}` WHERE id IN ({$placeholders}) AND uid = %d",
-            array_merge($ids, array($uid))
+            'SELECT COUNT(DISTINCT id) FROM %i WHERE id IN (' . implode(', ', array_fill(0, count($ids), '%d')) . ') AND uid = %d',
+            ...array_merge(array($table), $ids, array($uid))
         );
-        return absint($wpdb->get_var($sql)) === count($ids);
+        return absint(wpjobportaldb_direct::get_var($sql)) === count($ids);
     }
 
     /**
@@ -625,14 +640,16 @@ class WPJOBPORTAL_Addon_Action_Policy_Service {
         global $wpdb;
         $table = $wpdb->prefix . 'wj_portal_folders';
         $sql = $wpdb->prepare(
-            "SELECT COUNT(id) FROM `{$table}` WHERE id = %d AND uid = %d",
+            "SELECT COUNT(id) FROM %i WHERE id = %d AND uid = %d",
+            $table,
             $folder_id,
             $uid
         );
-        return absint($wpdb->get_var($sql)) > 0;
+        return absint(wpjobportaldb_direct::get_var($sql)) > 0;
     }
 
     private static function deny($module, $task, $channel, $reason) {
+        self::$wpjobportal_last_reason = sanitize_key($reason);
         $stats = get_option(self::STATS_OPTION, array());
         if (!is_array($stats)) {
             $stats = array();

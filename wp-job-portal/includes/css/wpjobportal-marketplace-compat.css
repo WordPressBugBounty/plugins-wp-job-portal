@@ -1,0 +1,444 @@
+/* Marketplace Suite presentation adapter for the WP Job Portal design system. */
+
+/*
+ * On wp-admin, the dashboard's palette, not the portal's - as the Recruit
+ * adapter does for its screens. .wpjobportal-marketplace-native-content is
+ * the admin shell only.
+ */
+.wpjobportal-marketplace-native-content {
+    --wpjp-primary-color: var(--wjp-color-primary, #4f46e5);
+    --wpjp-secondary-color: var(--wjp-text-dark, #1e293b);
+    --wpjp-body-font-color: var(--wjp-text-medium, #475569);
+    --wpjp-border-color: var(--wjp-border-color, #e2e8f0);
+    --wpjp-background-color: var(--wjp-bg-light, #f1f5f9);
+}
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-admin,
+.wpjp-marketplace-verification,
+.wpjp-marketplace-commerce {
+    --wjp-market-ink: var(--wjp-text-dark, var(--wpjp-secondary-color, #333333));
+    --wjp-market-muted: var(--wjp-text-medium, var(--wpjp-body-font-color, #575757));
+    --wjp-market-border: var(--wjp-border-color, var(--wpjp-border-color, #e9ecef));
+    --wjp-market-surface: var(--wjp-bg-card, var(--wpjp-card-background, #fff));
+    --wjp-market-accent: var(--wjp-color-primary, var(--wpjp-primary-color, #3baeda));
+    --wpjp-marketplace-accent: var(--wpjp-primary-color, #3baeda);
+    --wpjp-marketplace-border: var(--wpjp-border-color, #e9ecef);
+    --wpjp-marketplace-ink: var(--wpjp-secondary-color, #333333);
+    --wpjp-marketplace-muted: var(--wpjp-body-font-color, #575757);
+    --wpjp-commerce-accent: var(--wpjp-primary-color, #3baeda);
+    --wpjp-commerce-accent-dark: var(--wpjp-secondary-color, #333333);
+    --wpjp-commerce-border: var(--wpjp-border-color, #e9ecef);
+    --wpjp-commerce-ink: var(--wpjp-secondary-color, #333333);
+    --wpjp-commerce-muted: var(--wpjp-body-font-color, #575757);
+}
+
+.wpjobportal-marketplace-native-shell #wpjobportal-head {
+    align-items: center;
+    background: var(--wjp-color-primary, #4f46e5);
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.wpjobportal-marketplace-native-content {
+    min-width: 0;
+    padding: 0;
+}
+
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-admin {
+    display: grid;
+    gap: 18px;
+    margin: 0;
+    max-width: none;
+    min-width: 0;
+    width: 100%;
+}
+
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-hero {
+    align-items: center;
+    background: var(--wjp-market-surface);
+    border: 1px solid var(--wjp-market-border);
+    border-block-start: 4px solid var(--wjp-market-accent);
+    border-radius: 8px;
+    box-shadow: var(--wjp-shadow, 0 4px 15px rgba(0, 0, 0, .08));
+    color: var(--wjp-market-muted);
+    margin: 0;
+    padding: 22px 24px;
+}
+
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-hero h1 {
+    display: none;
+}
+
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-hero p {
+    color: var(--wjp-market-muted);
+    line-height: 1.6;
+}
+
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-eyebrow {
+    color: var(--wjp-market-accent);
+}
+
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-version,
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-panel-heading > span {
+    background: var(--wjp-bg-light, var(--wpjp-background-color, #f6f6f6));
+    border: 1px solid var(--wjp-market-border);
+    color: var(--wjp-market-muted);
+}
+
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-hero-link,
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-hero-link.button {
+    background: var(--wjp-market-accent) !important;
+    border-color: var(--wjp-market-accent) !important;
+    color: #fff !important;
+    min-height: 44px;
+}
+
+/*
+ * Core's div#wpjobportaladmin-wrapper .button paints every button white, so a
+ * primary action looked like any other. Draw it as the dashboard's primary,
+ * and small row actions as the Jobs list's Edit / Copy Job buttons.
+ */
+#wpjobportaladmin-wrapper .wpjobportal-marketplace-native-content .button.button-primary {
+    color: #fff;
+    background: var(--wjp-color-primary, #4f46e5);
+    border-color: var(--wjp-color-primary, #4f46e5);
+}
+
+#wpjobportaladmin-wrapper .wpjobportal-marketplace-native-content .button.button-primary:hover,
+#wpjobportaladmin-wrapper .wpjobportal-marketplace-native-content .button.button-primary:focus-visible {
+    color: #fff;
+    background: var(--wjp-color-primary-dark, #4338ca);
+    border-color: var(--wjp-color-primary-dark, #4338ca);
+}
+
+#wpjobportaladmin-wrapper .wpjobportal-marketplace-native-content .button.button-small {
+    color: var(--wjp-text-medium, #475569);
+    background: var(--wjp-bg-light, #f1f5f9);
+    border-color: var(--wjp-border-color, #e2e8f0);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+#wpjobportaladmin-wrapper .wpjobportal-marketplace-native-content .button.button-small:hover,
+#wpjobportaladmin-wrapper .wpjobportal-marketplace-native-content .button.button-small:focus-visible {
+    color: var(--wjp-color-primary, #4f46e5);
+    border-color: var(--wjp-color-primary, #4f46e5);
+}
+
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-card,
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-panel,
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-report-filter {
+    background: var(--wjp-market-surface);
+    border: 1px solid var(--wjp-market-border);
+    border-radius: 8px;
+    box-shadow: var(--wjp-shadow, 0 4px 15px rgba(0, 0, 0, .08));
+}
+
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-card .dashicons {
+    background: var(--wjp-color-primary-bg, #f0edff);
+    color: var(--wjp-market-accent);
+}
+
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-card h2,
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-panel-heading h2,
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-form label > span,
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-details > summary,
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-rule-grid > legend {
+    color: var(--wjp-market-ink);
+}
+
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-card p,
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-panel-heading p,
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-form small {
+    color: var(--wjp-market-muted);
+}
+
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-rule {
+    background: var(--wjp-bg-light, var(--wpjp-background-color, #f6f6f6));
+    border-color: var(--wjp-market-border);
+}
+
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-form input,
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-form select,
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-inline-form input,
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-inline-form select,
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-report-filter select {
+    border-color: var(--wjp-market-border);
+    border-radius: 5px;
+    min-height: 44px;
+}
+
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-form input:focus,
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-form select:focus,
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-inline-form input:focus,
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-inline-form select:focus,
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-report-filter select:focus {
+    border-color: var(--wjp-market-accent);
+    box-shadow: var(--wpjp-focus-shadow-color, 0 0 0 3px rgba(98, 36, 198, .25));
+    outline: 0;
+}
+
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-table-wrap {
+    max-width: 100%;
+}
+
+.wpjobportal-marketplace-native-content .wpjobportal-marketplace-table-wrap table,
+.wpjobportal-marketplace-native-content .wpjp-marketplace-commerce-table table {
+    min-width: 0;
+}
+
+.wpjobportal-marketplace-native-content :focus-visible,
+.wpjp-marketplace-verification :focus-visible,
+.wpjp-marketplace-commerce :focus-visible {
+    outline: 3px solid var(--wpjp-primary-color, #3baeda);
+    outline-offset: 2px;
+}
+
+.wpjp-marketplace-verification-intro,
+.wpjp-marketplace-verification-card,
+.wpjp-marketplace-commerce-summary section,
+.wpjp-marketplace-commerce-panel {
+    background: var(--wpjp-card-background, #fff);
+    border-color: var(--wpjp-border-color, #e9ecef);
+    border-radius: 8px;
+    box-shadow: var(--wpjp-card-shadow, 0 4px 15px rgba(0, 0, 0, .08));
+}
+
+.wpjp-marketplace-verification-intro,
+.wpjp-marketplace-commerce-hero {
+    border-block-start: 4px solid var(--wpjp-primary-color, #3baeda);
+}
+
+.wpjp-marketplace-verification-intro h2,
+.wpjp-marketplace-verification-card h3,
+.wpjp-marketplace-verification-form label > span,
+.wpjp-marketplace-verification-meta dd,
+.wpjp-marketplace-commerce-summary strong,
+.wpjp-marketplace-commerce-panel-head h3,
+.wpjp-marketplace-commerce-form label > span {
+    color: var(--wpjp-secondary-color, #333333);
+}
+
+.wpjp-marketplace-verification-intro p,
+.wpjp-marketplace-verification-card-head p,
+.wpjp-marketplace-verification-form small,
+.wpjp-marketplace-verification-meta dt,
+.wpjp-marketplace-commerce-summary span,
+.wpjp-marketplace-commerce-panel-head p,
+.wpjp-marketplace-commerce-list article span,
+.wpjp-marketplace-commerce-list article small,
+.wpjp-marketplace-empty p {
+    color: var(--wpjp-body-font-color, #575757);
+}
+
+.wpjp-marketplace-commerce-hero {
+    align-items: center;
+    background: var(--wpjp-card-background, #fff);
+    border: 1px solid var(--wpjp-border-color, #e9ecef);
+    border-block-start-width: 4px;
+    border-radius: 8px;
+    box-shadow: var(--wpjp-card-shadow, 0 4px 15px rgba(0, 0, 0, .08));
+    color: var(--wpjp-body-font-color, #575757);
+    padding: 24px;
+}
+
+.wpjp-marketplace-commerce-hero h2 {
+    color: var(--wpjp-secondary-color, #333333);
+    font-size: var(--wpjp-second-sub-heading, 27px);
+}
+
+.wpjp-marketplace-commerce-hero p {
+    color: var(--wpjp-body-font-color, #575757);
+    opacity: 1;
+}
+
+.wpjp-marketplace-commerce-shop,
+.wpjp-marketplace-commerce-shop.wjportal-form-btn {
+    background: var(--wpjp-primary-color, #3baeda) !important;
+    border-color: var(--wpjp-primary-color, #3baeda) !important;
+    color: #fff !important;
+    min-height: 44px;
+}
+
+.wpjp-marketplace-verification-form input,
+.wpjp-marketplace-verification-form select,
+.wpjp-marketplace-commerce-form input,
+.wpjp-marketplace-commerce-form select {
+    background: var(--wpjp-card-background, #fff);
+    border-color: var(--wpjp-border-color, #e9ecef);
+    border-radius: 5px;
+    color: var(--wpjp-body-font-color, #575757);
+}
+
+.wpjp-marketplace-verification-form input:focus,
+.wpjp-marketplace-verification-form select:focus,
+.wpjp-marketplace-commerce-form input:focus,
+.wpjp-marketplace-commerce-form select:focus {
+    border-color: var(--wpjp-primary-color, #3baeda);
+    box-shadow: var(--wpjp-focus-shadow-color, 0 0 0 3px rgba(98, 36, 198, .25));
+    outline: 0;
+}
+
+.wpjp-marketplace-commerce-table {
+    max-width: 100%;
+}
+
+.wpjp-marketplace-commerce-table table {
+    min-width: 0;
+}
+
+@media (max-width: 900px) {
+    .wpjobportal-marketplace-native-content .wpjobportal-marketplace-status-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 782px) {
+    .wpjobportal-marketplace-native-shell #wpjobportal-wrapper-top,
+    .wpjobportal-marketplace-native-shell #wpjobportal-head,
+    .wpjobportal-marketplace-native-content .wpjobportal-marketplace-hero,
+    .wpjobportal-marketplace-native-content .wpjobportal-marketplace-panel-heading,
+    .wpjobportal-marketplace-native-content .wpjobportal-marketplace-report-filter,
+    .wpjp-marketplace-commerce-hero {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .wpjobportal-marketplace-native-shell #wpjobportal-wrapper-top-right {
+        margin-block-start: 12px;
+    }
+
+    .wpjobportal-marketplace-native-content .wpjobportal-marketplace-status-grid,
+    .wpjobportal-marketplace-native-content .wpjobportal-marketplace-actions-grid,
+    .wpjobportal-marketplace-native-content .wpjobportal-marketplace-form-grid,
+    .wpjobportal-marketplace-native-content .wpjobportal-marketplace-rule-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .wpjobportal-marketplace-native-content .wpjobportal-marketplace-hero-link,
+    .wpjobportal-marketplace-native-shell .wpjobportal-add-link,
+    .wpjp-marketplace-commerce-shop {
+        align-self: flex-start;
+    }
+
+    .wpjobportal-marketplace-responsive-table,
+    .wpjobportal-marketplace-responsive-table tbody,
+    .wpjobportal-marketplace-responsive-table tr,
+    .wpjobportal-marketplace-responsive-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .wpjobportal-marketplace-responsive-table thead {
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+    }
+
+    .wpjobportal-marketplace-responsive-table tbody {
+        padding: 12px;
+    }
+
+    .wpjobportal-marketplace-responsive-table tbody tr {
+        background: var(--wjp-market-surface, var(--wpjp-card-background, #fff));
+        border: 1px solid var(--wjp-market-border, var(--wpjp-border-color, #e9ecef));
+        border-radius: 8px;
+        margin-block-end: 12px;
+        overflow: hidden;
+    }
+
+    .wpjobportal-marketplace-responsive-table tbody tr:last-child {
+        margin-block-end: 0;
+    }
+
+    .wpjobportal-marketplace-responsive-table tbody td {
+        align-items: start;
+        border: 0;
+        border-block-end: 1px solid var(--wjp-market-border, var(--wpjp-border-color, #e9ecef));
+        display: grid;
+        gap: 14px;
+        grid-template-columns: minmax(96px, 38%) minmax(0, 1fr);
+        overflow-wrap: anywhere;
+        padding: 12px 14px;
+        text-align: start;
+    }
+
+    .wpjobportal-marketplace-responsive-table tbody td:last-child {
+        border-block-end: 0;
+    }
+
+    .wpjobportal-marketplace-responsive-table tbody td::before {
+        color: var(--wjp-market-ink, var(--wpjp-secondary-color, #333333));
+        content: attr(data-label);
+        font-weight: 700;
+    }
+
+    .wpjobportal-marketplace-responsive-table .wpjobportal-marketplace-inline-form {
+        min-width: 0;
+    }
+
+    .wpjobportal-marketplace-responsive-table .wpjobportal-marketplace-empty-row,
+    .wpjobportal-marketplace-responsive-table .wpjobportal-marketplace-empty-row td {
+        display: block;
+    }
+
+    .wpjobportal-marketplace-responsive-table .wpjobportal-marketplace-empty-row td::before {
+        content: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .wpjobportal-marketplace-native-content .wpjobportal-marketplace-hero,
+    .wpjobportal-marketplace-native-content .wpjobportal-marketplace-card,
+    .wpjobportal-marketplace-native-content .wpjobportal-marketplace-panel-heading,
+    .wpjobportal-marketplace-native-content .wpjobportal-marketplace-form,
+    .wpjp-marketplace-verification-intro,
+    .wpjp-marketplace-verification-card-head,
+    .wpjp-marketplace-verification-form,
+    .wpjp-marketplace-commerce-hero,
+    .wpjp-marketplace-commerce-panel-head,
+    .wpjp-marketplace-commerce-form {
+        padding-inline: 18px;
+    }
+
+    .wpjobportal-marketplace-responsive-table tbody td {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+}
+
+html[dir="rtl"] .wpjobportal-marketplace-native-content,
+html[dir="rtl"] .wpjp-marketplace-verification,
+html[dir="rtl"] .wpjp-marketplace-commerce {
+    text-align: start;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wpjobportal-marketplace-native-shell *,
+    .wpjobportal-marketplace-native-shell *::before,
+    .wpjobportal-marketplace-native-shell *::after,
+    .wpjp-marketplace-verification *,
+    .wpjp-marketplace-commerce * {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+@media (forced-colors: active) {
+    .wpjobportal-marketplace-native-content .wpjobportal-marketplace-hero,
+    .wpjobportal-marketplace-native-content .wpjobportal-marketplace-card,
+    .wpjobportal-marketplace-native-content .wpjobportal-marketplace-panel,
+    .wpjp-marketplace-verification-intro,
+    .wpjp-marketplace-verification-card,
+    .wpjp-marketplace-commerce-hero,
+    .wpjp-marketplace-commerce-summary section,
+    .wpjp-marketplace-commerce-panel {
+        border: 1px solid CanvasText;
+    }
+}

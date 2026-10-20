@@ -48,6 +48,7 @@ if (!defined('WPJOBPORTAL_FILE_TYPE_ERROR')) {
     define('WPJOBPORTAL_PACKAGE_ALREADY_PURCHASED', 'WPJOBPORTAL_PACKAGE_ALREADY_PURCHASED');
     define('WPJOBPORTAL_PLUGIN_PATH', plugin_dir_path( __DIR__ ));
     define('WPJOBPORTAL_PLUGIN_URL', plugin_dir_url( __DIR__ ));
+    define('WPJOBPORTAL_VERSION', '2.7.0');
 
     define('WPJOBPORTAL_COMPANY',1);
     define('WPJOBPORTAL_JOB',2);
@@ -80,8 +81,6 @@ if (!defined('WPJOBPORTAL_FILE_TYPE_ERROR')) {
     define('WPJOBPORTAL_SLUG',34);
     define('WPJOBPORTAL_PREFIX',35);
     define('WPJOBPORTAL_JOBALERT',36);
-    define('folderresume', 37);
-    define('folder', 37);
     define('WPJOBPORTAL_SALARY_NEGOTIABLE',1);
     define('WPJOBPORTAL_SALARY_FIXED',2);
     define('WPJOBPORTAL_SALARY_RANGE',3);
@@ -172,6 +171,9 @@ if (!defined('WPJOBPORTAL_FILE_TYPE_ERROR')) {
         ),
         'input'      => array(
             'type'  => array(),
+            'data-sitekey' => array(),
+            'data-callback' => array(),
+            'data-action' => array(),
             'id' => array(),
             'class' => array(),
             'name' => array(),

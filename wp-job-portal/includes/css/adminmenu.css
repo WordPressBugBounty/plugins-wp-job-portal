@@ -1,3 +1,21 @@
 a.wp-has-submenu.wp-not-current-submenu.toplevel_page_wpjobportal div.wp-menu-image.dashicons-before{background: url(../images/admin_wpjobportal1.png) no-repeat center center;}
 a.wp-has-submenu.wp-has-current-submenu.toplevel_page_wpjobportal div.wp-menu-image.dashicons-before{background: url(../images/admin_wpjobportal2.png) no-repeat center center;}
 #adminmenu li#toplevel_page_wpjobportal:hover a.toplevel_page_wpjobportal div.wp-menu-image.dashicons-before{background: url(../images/admin_wpjobportal2.png) no-repeat center center;}
+
+/* The "New" mark, beside a feature this administrator has not opened yet.
+   It disappears for good the first time they do, so it is small, quiet, and
+   never sits where it could be mistaken for a count. */
+.wpjobportal-new-badge {
+    display: inline-block;
+    margin-inline-start: 6px;
+    padding: 1px 6px;
+    border-radius: 999px;
+    background: #2271b1;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.6;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    vertical-align: middle;
+}

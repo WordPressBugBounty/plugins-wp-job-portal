@@ -7,7 +7,7 @@
 $wpjobportal_extra_featured_class = '';
 if(!empty($wpjobportal_job) && !empty($wpjobportal_job->isfeaturedjob) && $wpjobportal_job->isfeaturedjob == 1){
     $wpjobportal_curdate = date_i18n('Y-m-d');
-    $wpjobportal_featuredexpiry = date_i18n('Y-m-d', strtotime($wpjobportal_job->endfeatureddate));
+    $wpjobportal_featuredexpiry = date_i18n('Y-m-d', strtotime((string) $wpjobportal_job->endfeatureddate));
     if($wpjobportal_featuredexpiry >= $wpjobportal_curdate){
         $wpjobportal_extra_featured_class = 'wjportal-view-page-featured-flag';
     }

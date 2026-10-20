@@ -9,4 +9,14 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("Owando", "Owando", "Owando", NULL, 152, 0, 1, NULL, "-0.4833599", "15.8974175"),
 ("Liranga", "Liranga", "Liranga", NULL, 152, 0, 1, NULL, "-0.6621466", "17.6107531"),
 ("Ouésso", "Ouésso", "Ouésso", NULL, 152, 0, 1, NULL, "1.6105452", "16.0513456"),
-("Impfondo", "Impfondo", "Impfondo", NULL, 152, 0, 1, NULL, "1.6187416", "18.0623499");
+("Impfondo", "Impfondo", "Impfondo", NULL, 152, 0, 1, NULL, "1.6187416", "18.0623499"),
+("Djambala", "Djambala", "Djambala", NULL, 152, 0, 1, NULL, "-2.5398781", "14.7550108"),
+("Ewo", "Ewo", "Ewo", NULL, 152, 0, 1, NULL, "-0.880167", "14.8162784"),
+("Gamboma", "Gamboma", "Gamboma", NULL, 152, 0, 1, NULL, "-1.8699741", "15.8818766"),
+("Kayes", "Kayes", "Kayes", NULL, 152, 0, 1, NULL, "-4.423943", "11.69283"),
+("Kinkala", "Kinkala", "Kinkala", NULL, 152, 0, 1, NULL, "-4.3601087", "14.7608448"),
+("Loandjili", "Loandjili", "Loandjili", NULL, 152, 0, 1, NULL, "-4.76732", "11.8627984"),
+("Makoua", "Makoua", "Makoua", NULL, 152, 0, 1, NULL, "-0.004491", "15.6119301"),
+("Mossendjo", "Mossendjo", "Mossendjo", NULL, 152, 0, 1, NULL, "-2.9655267", "12.7278766"),
+("Sembe", "Sembe", "Sembe", NULL, 152, 0, 1, NULL, "1.6480399", "14.5742675"),
+("Sibiti", "Sibiti", "Sibiti", NULL, 152, 0, 1, NULL, "-3.6846513", "13.3500652");

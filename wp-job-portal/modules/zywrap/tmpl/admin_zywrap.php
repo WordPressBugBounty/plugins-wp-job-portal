@@ -2,13 +2,13 @@
 if (!defined('ABSPATH'))
     die('Restricted Access');
 // global $wpdb;
-//             $wpdb->query('SET FOREIGN_KEY_CHECKS = 0;');
-//             $wpdb->query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_wrappers`");
-//             $wpdb->query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_categories`");
-//             $wpdb->query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_languages`");
-//             $wpdb->query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_block_templates`");
-//             $wpdb->query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_ai_models`");
-//             $wpdb->query('SET FOREIGN_KEY_CHECKS = 1;');
+//             wpjobportaldb_direct::query('SET FOREIGN_KEY_CHECKS = 0;');
+//             wpjobportaldb_direct::query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_wrappers`");
+//             wpjobportaldb_direct::query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_categories`");
+//             wpjobportaldb_direct::query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_languages`");
+//             wpjobportaldb_direct::query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_block_templates`");
+//             wpjobportaldb_direct::query("TRUNCATE TABLE `" . $wpdb->prefix . "wj_portal_zywrap_ai_models`");
+//             wpjobportaldb_direct::query('SET FOREIGN_KEY_CHECKS = 1;');
 /*
 
             // Categories table
@@ -210,19 +210,19 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
                                     echo esc_html(__("and navigate to your Dashboard / API Keys.", 'wp-job-portal')); ?>
                                     <?php
                                 }else{
-                                    $api_key_status = get_option('wpjobportal_zywrap_api_status');
-                                    if(!empty($api_key_status)){
-                                        if($api_key_status['status'] == 'ok'){ ?>
+                                    $wpjobportal_api_key_status = get_option('wpjobportal_zywrap_api_status');
+                                    if(!empty($wpjobportal_api_key_status)){
+                                        if($wpjobportal_api_key_status['status'] == 'ok'){ ?>
                                             <div id="wpjobportal-zywrap-status-result">
                                                 <div class="notice notice-success">
-                                                    <p><strong><?php echo esc_html__($api_key_status['response'],'wp-job-portal') ?></strong></p>
+                                                    <p><strong><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_api_key_status['response'])) ?></strong></p>
                                                 </div>
                                             </div>
                                             <?php
                                         }else{  ?>
                                             <div id="wpjobportal-zywrap-status-result">
                                                 <div class="notice notice-warning">
-                                                    <p><strong><?php echo esc_html__($api_key_status['response'],'wp-job-portal') ?></strong></p>
+                                                    <p><strong><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_api_key_status['response'])) ?></strong></p>
                                                 </div>
                                             </div>
                                         <?php
@@ -265,8 +265,8 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
             </form>
 
             <?php
-            $api_key_status = get_option('wpjobportal_zywrap_api_status');
-            if(!empty($api_key_status) && $api_key_status['status'] == 'ok'){
+            $wpjobportal_api_key_status = get_option('wpjobportal_zywrap_api_status');
+            if(!empty($wpjobportal_api_key_status) && $wpjobportal_api_key_status['status'] == 'ok'){
                 // Check if the API key is saved. If not, this section will be hidden.
                 if (!empty($wpjobportal_saved_key)) :
                     $wpjobportal_data_version = get_option('wpjobportal_zywrap_version', '');
@@ -299,9 +299,9 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
 
 
                                             <?php
-                                            $wpjobporatl_update_time = get_option('wpjobportal_zywrap_version_time');
-                                            if(!empty($wpjobporatl_update_time)){
-                                                echo esc_html(__('Last Sync', 'wp-job-portal')); ?>: <?php echo esc_html(human_time_diff(strtotime($wpjobporatl_update_time),strtotime(date_i18n("Y-m-d H:i:s"))).' '.esc_html(__("Ago",'wp-job-portal')));;
+                                            $wpjobportal_wpjobporatl_update_time = get_option('wpjobportal_zywrap_version_time');
+                                            if(!empty($wpjobportal_wpjobporatl_update_time)){
+                                                echo esc_html(__('Last Sync', 'wp-job-portal')); ?>: <?php echo esc_html(human_time_diff(strtotime($wpjobportal_wpjobporatl_update_time),strtotime(date_i18n("Y-m-d H:i:s"))).' '.esc_html(__("Ago",'wp-job-portal')));;
                                             }
                                         ?></p>
 
@@ -459,7 +459,7 @@ jQuery(document).ready(function($) {
                 resultDiv.html('<div class=\"notice ' + statusClass + '\"><p><strong>" . esc_js(__('Status', 'wp-job-portal')) . ": ' + response.data.status.toUpperCase() + '</strong><br>' + response.data.message + '</p></div>');
             } else {
                 // Key is invalid or API call failed
-                resultDiv.html('<div class=\"notice notice-error\"><p><strong>" . esc_js(__('Status', 'wp-job-portal')) . ": ' + (response.data.status || 'Error') + '</strong><br>' + response.data.message + '</p></div>');
+                resultDiv.html('<div class=\"notice notice-error\"><p><strong>" . esc_js(__('Status', 'wp-job-portal')) . ": ' + (response.data.status || '" . esc_js(__('Error', 'wp-job-portal')) . "') + '</strong><br>' + response.data.message + '</p></div>');
             }
         })
         .fail(function(xhr, textStatus, errorThrown) {
@@ -573,7 +573,7 @@ jQuery(document).ready(function($) {
     });
 });
 ";
-wp_register_script( 'wpjobportal-inline-handle', '' );
+wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
 wp_enqueue_script( 'wpjobportal-inline-handle' );
 
 wp_add_inline_script('wpjobportal-inline-handle', $wpjobportal_js);

@@ -1,3 +1,19 @@
 
 INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
-("Monrovia", "Monrovia", "Monrovia", NULL, 167, 0, 1, NULL, "6.328034", "-10.797788");
+("Monrovia", "Monrovia", "Monrovia", NULL, 167, 0, 1, NULL, "6.328034", "-10.797788"),
+("Barclayville", "Barclayville", "Barclayville", NULL, 167, 0, 1, NULL, "4.676354", "-8.2339446"),
+("Bensonville", "Bensonville", "Bensonville", NULL, 167, 0, 1, NULL, "6.446976", "-10.6182477"),
+("Bopolu", "Bopolu", "Bopolu", NULL, 167, 0, 1, NULL, "7.069609", "-10.48656"),
+("Buchanan", "Buchanan", "Buchanan", NULL, 167, 0, 1, NULL, "5.887247", "-10.0303723"),
+("Fish Town", "Fish Town", "Fish Town", NULL, 167, 0, 1, NULL, "5.200699", "-7.878112"),
+("Ganta", "Ganta", "Ganta", NULL, 167, 0, 1, NULL, "7.2357275", "-8.98527"),
+("Gbarnga", "Gbarnga", "Gbarnga", NULL, 167, 0, 1, NULL, "7.0024321", "-9.4728244"),
+("Greenville", "Greenville", "Greenville", NULL, 167, 0, 1, NULL, "5.0153677", "-9.0377612"),
+("Harper", "Harper", "Harper", NULL, 167, 0, 1, NULL, "4.3759676", "-7.7009416"),
+("Kakata", "Kakata", "Kakata", NULL, 167, 0, 1, NULL, "6.5301553", "-10.3441758"),
+("New Yekepa", "New Yekepa", "New Yekepa", NULL, 167, 0, 1, NULL, "7.5790498", "-8.5363982"),
+("Robertsport", "Robertsport", "Robertsport", NULL, 167, 0, 1, NULL, "6.7509063", "-11.367219"),
+("Sanniquellie", "Sanniquellie", "Sanniquellie", NULL, 167, 0, 1, NULL, "7.3586557", "-8.7095789"),
+("Tubmanburg", "Tubmanburg", "Tubmanburg", NULL, 167, 0, 1, NULL, "6.8701522", "-10.8253946"),
+("Voinjama", "Voinjama", "Voinjama", NULL, 167, 0, 1, NULL, "8.4201951", "-9.7539282"),
+("Zwedru", "Zwedru", "Zwedru", NULL, 167, 0, 1, NULL, "6.064944", "-8.1393179");

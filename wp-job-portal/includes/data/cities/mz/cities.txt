@@ -20,4 +20,16 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("Chiure-Sede", "Chiure-Sede", "Chiure-Sede", NULL, 175, 0, 1, NULL, "-13.3826809", "39.7884693"),
 ("Pemba", "Pemba", "Pemba", NULL, 175, 0, 1, NULL, "-12.9735551", "40.5215098"),
 ("Mocímboa da Praia", "Mocímboa da Praia", "Mocímboa da Praia", NULL, 175, 0, 1, NULL, "-11.3438956", "40.3576715"),
-("Palma", "Palma", "Palma", NULL, 175, 0, 1, NULL, "-10.7758093", "40.4673261");
+("Palma", "Palma", "Palma", NULL, 175, 0, 1, NULL, "-10.7758093", "40.4673261"),
+("Antonio Enes", "Antonio Enes", "Antonio Enes", NULL, 175, 0, 1, NULL, "-19.8311375", "34.8340014"),
+("Chibuto", "Chibuto", "Chibuto", NULL, 175, 0, 1, NULL, "-24.6967014", "33.544808"),
+("Chokwe", "Chokwe", "Chokwe", NULL, 175, 0, 1, NULL, "-24.5323166", "32.9831998"),
+("Cidade de Nacala", "Cidade de Nacala", "Cidade de Nacala", NULL, 175, 0, 1, NULL, "-14.5656065", "40.6854309"),
+("Cuamba", "Cuamba", "Cuamba", NULL, 175, 0, 1, NULL, "-14.8000877", "36.5337731"),
+("Dondo", "Dondo", "Dondo", NULL, 175, 0, 1, NULL, "-19.6115404", "34.7409293"),
+("Ilha de Mocambique", "Ilha de Mocambique", "Ilha de Mocambique", NULL, 175, 0, 1, NULL, "-15.03815", "40.731701"),
+("Macia", "Macia", "Macia", NULL, 175, 0, 1, NULL, "-25.0263578", "33.1070309"),
+("Manjacaze", "Manjacaze", "Manjacaze", NULL, 175, 0, 1, NULL, "-24.7057037", "33.8801952"),
+("Mocimboa", "Mocimboa", "Mocimboa", NULL, 175, 0, 1, NULL, "-14.5666667", "40.6666667"),
+("Mocuba", "Mocuba", "Mocuba", NULL, 175, 0, 1, NULL, "-16.8402212", "36.9648534"),
+("Mutuali", "Mutuali", "Mutuali", NULL, 175, 0, 1, NULL, "-14.8759552", "37.0024533");

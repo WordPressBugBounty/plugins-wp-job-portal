@@ -33,7 +33,7 @@ class WPJOBPORTALsitemap {
         $query_var = get_query_var(self::QUERY_VAR);
         $request_uri = isset($_SERVER['REQUEST_URI']) ? sanitize_text_field(wp_unslash($_SERVER['REQUEST_URI'])) : '';
         $is_direct_path = (false !== strpos($request_uri, '/' . self::SITEMAP_PATH));
-        $is_query_request = isset($_GET[self::QUERY_VAR]) && absint($_GET[self::QUERY_VAR]) === 1;
+        $is_query_request = absint(WPJOBPORTALrequest::getVar(self::QUERY_VAR, 'get', 0)) === 1;
 
         if (!$query_var && !$is_direct_path && !$is_query_request) {
             return;

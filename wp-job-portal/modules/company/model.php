@@ -200,11 +200,21 @@ class WPJOBPORTALCompanyModel {
             $wpjobportal_total = wpjobportaldb::get_var($query);
         // to handle the case of show 1 in case of base plugin and 0 in case of not record found
 
-        if(!in_array('multicompany', wpjobportal::$_active_addons)){
-            if($wpjobportal_total > 1){
-                $wpjobportal_total = 1;
-            }
-        }
+        /*
+         * Every company this employer owns, whether or not Multi Company is
+         * installed.
+         *
+         * This used to report 1 and return only the oldest. An administrator can
+         * create companies for an employer with no such limit - the save path
+         * skips the check for administrators - so an employer could own several,
+         * see one, and have the other publicly listed on the site with their name
+         * on it. The one hidden was always the newest, which is precisely the one
+         * the administrator had just added for them.
+         *
+         * The limit belongs on adding, not on looking. userCanAddCompany() still
+         * enforces it, so what Multi Company sells is unchanged: this only stops
+         * the product hiding somebody's own record from them.
+         */
         wpjobportal::$_data['total'] = $wpjobportal_total;
         wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($wpjobportal_total,'mycompany');
         //Data
@@ -213,11 +223,7 @@ class WPJOBPORTALCompanyModel {
                 FROM " . wpjobportal::$_db->prefix . "wj_portal_companies AS company
                 WHERE company.uid = " . (int) ($wpjobportal_uid);
         $query .= $wpjobportal_inquery;
-        if(in_array('multicompany', wpjobportal::$_active_addons)){
-            $query .= " ORDER BY company.created DESC LIMIT " . WPJOBPORTALpagination::$_offset . "," . WPJOBPORTALpagination::$_limit;
-        }else{
-            $query .= " ORDER BY company.id ASC LIMIT 0,1";
-        }
+        $query .= " ORDER BY company.created DESC LIMIT " . WPJOBPORTALpagination::$_offset . "," . WPJOBPORTALpagination::$_limit;
         wpjobportal::$_data[0] = wpjobportaldb::get_results($query);
         $wpjobportal_data = array();
         foreach (wpjobportal::$_data[0] AS $d) {
@@ -252,7 +258,10 @@ class WPJOBPORTALCompanyModel {
                 wpjobportal::$_data['sorting'] = ' company.status ';
                 break;
             default:
-                //wpjobportal::$_data['sorting'] = ' company.created ';
+                // sorton arrives from the request and is not range-checked.
+                // Without this the column is never set and the query goes
+                // out as "ORDER BY  DESC".
+                wpjobportal::$_data['sorting'] = ' company.created ';
             break;
         }
         if (wpjobportal::$_data['sortby'] == 1) {
@@ -448,6 +457,11 @@ class WPJOBPORTALCompanyModel {
             $wpjobportal_isnew = false;
         }
 
+        // Paid posting is on hold while old Credits is paused.
+        if($wpjobportal_isnew && !wpjobportal::$_common->wpjp_isadmin() && WPJOBPORTAL_Monetisation::paused()){
+            return WPJOBPORTAL_SAVE_ERROR;
+        }
+
         //making sure uid is not changed
         // admin can edit other employers companies
         if(!wpjobportal::$_common->wpjp_isadmin()){
@@ -461,7 +475,7 @@ class WPJOBPORTALCompanyModel {
                 $wpjobportal_submissionType = wpjobportal::$_config->getConfigValue('submission_type');
                 if(!wpjobportal::$_common->wpjp_isadmin()){
                     $wpjobportal_data['uid'] = $cuser->uid();
-                    if(in_array('credits', wpjobportal::$_active_addons)){
+                    if(WPJOBPORTAL_Monetisation::usable('credits')){
                         # prepare data + credits
                         if($wpjobportal_submissionType == 1){
                             $wpjobportal_data['status'] = wpjobportal::$_config->getConfigValue('companyautoapprove');
@@ -504,14 +518,14 @@ class WPJOBPORTALCompanyModel {
                     }
                 }else{
                     if(wpjobportal::$_common->wpjp_isadmin()){
-                        if(in_array('credits', wpjobportal::$_active_addons)){
+                        if(WPJOBPORTAL_Monetisation::usable('credits')){
                             if ($wpjobportal_submissionType == 3) {
                                 $wpjobportal_result = WPJOBPORTALincluder::getJSModel('credits')->checkIfPackageDefinedForRole(1); //1 for employer;
                                 if($wpjobportal_result == 0){ // 0 means no package found. so allow the action.
                                     $wpjobportal_no_package_needed = 1;
                                 }
                                 if($wpjobportal_no_package_needed == 0){
-                                    if ($wpjobportal_data['payment'] == 0) {
+                                    if (!isset($wpjobportal_data['payment']) || $wpjobportal_data['payment'] == 0) {
                                         $wpjobportal_upakid = WPJOBPORTALrequest::getVar('upakid',null,0);
                                         $wpjobportal_data['userpackageid'] = $wpjobportal_upakid;
                                     } else {
@@ -560,12 +574,9 @@ class WPJOBPORTALCompanyModel {
             if(isset($wpjobportal_data['description'])){
                 // Clean it first
                 $wpjobportal_tempdesc = str_ireplace(['<script', '< script'], '-', $wpjobportal_tempdesc);
-                $wpjobportal_data['description'] = wpautop(wptexturize(wp_kses_post(wpjobportalphplib::wpJP_stripslashes($wpjobportal_tempdesc))));
+                $wpjobportal_data['description'] = wpautop(wptexturize(wp_kses_post($wpjobportal_tempdesc)));
             }
 
-            if(WPJOBPORTALincluder::getJSModel('common')->checkLanguageSpecialCase()){
-                $wpjobportal_data = wpjobportal::$_common->stripslashesFull($wpjobportal_data);
-            }
 
         # store in db
             $wpjobportal_row = WPJOBPORTALincluder::getJSTable('company');
@@ -604,12 +615,16 @@ class WPJOBPORTALCompanyModel {
             if(isset($wpjobportal_data['company_logo_deleted'])){
                 $this->deleteCompanyLogoModel($wpjobportal_companyid);
             }
-            if(isset($_FILES['logo'])){// min field issue
-                if ($_FILES['logo']['size'] > 0) {
-                    if(!isset($wpjobportal_data['company_logo_deleted'])){
-                        $this->deleteCompanyLogoModel($wpjobportal_companyid);
+            if (WPJOBPORTALrequest::hasFile('logo')) {// min field issue
+                if (WPJOBPORTALrequest::fileSize('logo') > 0) {
+                    // Check the new file first: removing the current logo and then refusing the upload left none.
+                    $res = WPJOBPORTALincluder::getObjectClass('uploads')->checkImageUpload('logo', 'company_logofilezize');
+                    if ($res == 1) {
+                        if(!isset($wpjobportal_data['company_logo_deleted'])){
+                            $this->deleteCompanyLogoModel($wpjobportal_companyid);
+                        }
+                        $res = $this->uploadFile($wpjobportal_companyid);
                     }
-                    $res = $this->uploadFile($wpjobportal_companyid);
                     if ($res == 6){
                         $wpjobportal_msg = WPJOBPORTALMessages::getMessage(WPJOBPORTAL_FILE_TYPE_ERROR, '');
                         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->getMessagekey());
@@ -734,10 +749,7 @@ class WPJOBPORTALCompanyModel {
                     require_once ABSPATH . 'wp-admin/includes/file.php';
                     }
                     global $wp_filesystem;
-                    if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-                        $creds = request_filesystem_credentials( site_url() );
-                        wp_filesystem( $creds );
-                    }
+                    $wp_filesystem = wpjobportal::wpjobportal_filesystem();
 
                     if(is_dir($wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . "/data/employer/comp_".$wpjobportal_id."/logo")){
                         @$wp_filesystem->rmdir($wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . "/data/employer/comp_".$wpjobportal_id."/logo");
@@ -785,7 +797,7 @@ class WPJOBPORTALCompanyModel {
             return true;
     }
 
-    function companyEnforceDeletes($wpjobportal_companyid) {
+    function companyEnforceDeletes($wpjobportal_companyid, $wpjobportal_send_mail = true) {
         if (empty($wpjobportal_companyid))
             return false;
         if (!is_numeric($wpjobportal_companyid))
@@ -829,7 +841,10 @@ class WPJOBPORTALCompanyModel {
         if (!wpjobportaldb::query($query)) {
             return WPJOBPORTAL_DELETE_ERROR;
         }
-        WPJOBPORTALincluder::getJSModel('emailtemplate')->sendMail(1, 2, $wpjobportal_companyid,$wpjobportal_mailextradata); // 1 for company,2 for delete company
+        // Not when a whole account is being removed: removeUserData() passes false.
+        if ($wpjobportal_send_mail) {
+            WPJOBPORTALincluder::getJSModel('emailtemplate')->sendMail(1, 2, $wpjobportal_companyid,$wpjobportal_mailextradata); // 1 for company,2 for delete company
+        }
 
         $wpjobportal_data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
         $wpjobportal_wpdir = wp_upload_dir();
@@ -840,10 +855,7 @@ class WPJOBPORTALCompanyModel {
             require_once ABSPATH . 'wp-admin/includes/file.php';
         }
         global $wp_filesystem;
-        if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-            $creds = request_filesystem_credentials( site_url() );
-            wp_filesystem( $creds );
-        }
+        $wp_filesystem = wpjobportal::wpjobportal_filesystem();
         if($wp_filesystem->exists($wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . "/data/employer/comp_".$wpjobportal_companyid."/logo")) {
             $wp_filesystem->rmdir($wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . "/data/employer/comp_".$wpjobportal_companyid."/logo");
         }
@@ -970,8 +982,8 @@ class WPJOBPORTALCompanyModel {
         $wpjobportal_row = WPJOBPORTALincluder::getJSTable('company');
         if($wpjobportal_row->load($wpjobportal_id)){
             $wpjobportal_row->columns['isfeaturedcompany'] = 1;
-            $wpjobportal_startfeatureddate = strtotime($wpjobportal_row->startfeatureddate);
-            $wpjobportal_endfeatureddate = strtotime($wpjobportal_row->endfeatureddate);
+            $wpjobportal_startfeatureddate = strtotime((string) $wpjobportal_row->startfeatureddate);
+            $wpjobportal_endfeatureddate = strtotime((string) $wpjobportal_row->endfeatureddate);
             $wpjobportal_datediff = $wpjobportal_endfeatureddate - $wpjobportal_startfeatureddate;
             $wpjobportal_diff_days = floor($wpjobportal_datediff/(60*60*24));
             $wpjobportal_row->columns['startfeatureddate'] = gmdate('Y-m-d H:i:s');
@@ -1052,12 +1064,17 @@ class WPJOBPORTALCompanyModel {
     function getUserCompaniesForCombo() {
         $wpjobportal_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
         if(!is_numeric($wpjobportal_uid)) return false;
+        /*
+         * Which company is this job for?
+         *
+         * The same reasoning as getMyCompanies(), plus one of its own: this list
+         * used to be cut with ORDER BY name ASC LIMIT 1 while My Companies was
+         * cut with ORDER BY id ASC LIMIT 0,1. Two different orderings, so the one
+         * company an employer could see was not necessarily the one they were
+         * allowed to post a job under. A company they can see but cannot use is a
+         * worse dead end than one they never see at all.
+         */
         $query = "SELECT id, name AS text FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` WHERE uid = " . (int) ($wpjobportal_uid) . " AND status = 1 ORDER BY name ASC ";
-        if(!wpjobportal::$_common->wpjp_isadmin()){
-            if(!in_array('multicompany', wpjobportal::$_active_addons)){
-                $query .= "LIMIT 1";
-            }
-        }
         $wpjobportal_rows = wpjobportaldb::get_results($query);
         return $wpjobportal_rows;
     }
@@ -1317,7 +1334,7 @@ class WPJOBPORTALCompanyModel {
                 '[separator]' => '-',
                 '[sitename]' => get_bloginfo( 'name', 'display' )
             );
-            $wpjobportal_result = $this->replaceMatches($wpjobportal_company_seo,$wpjobportal_matcharray);
+            $wpjobportal_result = wpjobportal::$_common->tidySeoDocumentTitle($this->replaceMatches($wpjobportal_company_seo,$wpjobportal_matcharray));
 
         }
 
@@ -1517,8 +1534,8 @@ class WPJOBPORTALCompanyModel {
     function getCookiesSavedMyCompany(){
         $wpjobportal_jsjp_search_array = array();
         $wpjp_search_cookie_data = '';
-        if(isset($_COOKIE['jsjp_jobportal_search_data'])){
-            $wpjp_search_cookie_data = wpjobportal::wpjobportal_sanitizeData($_COOKIE['jsjp_jobportal_search_data']);
+        if(WPJOBPORTALrequest::hasCookie('jsjp_jobportal_search_data')){
+            $wpjp_search_cookie_data = WPJOBPORTALrequest::cookie('jsjp_jobportal_search_data');
             $wpjp_search_cookie_data = wpjobportalphplib::wpJP_safe_decoding($wpjp_search_cookie_data);
             $wpjp_search_cookie_data = json_decode( $wpjp_search_cookie_data , true );
         }
@@ -1557,8 +1574,8 @@ class WPJOBPORTALCompanyModel {
     function getAdminCompanySavedCookies(){
         $wpjobportal_jsjp_search_array = array();
         $wpjp_search_cookie_data = '';
-        if(isset($_COOKIE['jsjp_jobportal_search_data'])){
-            $wpjp_search_cookie_data = wpjobportal::wpjobportal_sanitizeData($_COOKIE['jsjp_jobportal_search_data']);
+        if(WPJOBPORTALrequest::hasCookie('jsjp_jobportal_search_data')){
+            $wpjp_search_cookie_data = WPJOBPORTALrequest::cookie('jsjp_jobportal_search_data');
             $wpjp_search_cookie_data = wpjobportalphplib::wpJP_safe_decoding($wpjp_search_cookie_data);
             $wpjp_search_cookie_data = json_decode( $wpjp_search_cookie_data , true );
         }
@@ -1705,7 +1722,7 @@ class WPJOBPORTALCompanyModel {
             <div id="wjportal-popup-background" style="display: none;"></div>
             <div id="package-popup" class="wjportal-popup-wrp wjportal-packages-popup '.$wpjobportal_addonclass.'">
                 <div class="wjportal-popup-cnt">
-                    <img id="wjportal-popup-close-btn" alt="popup cross" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/popup-close.png">
+                    <img id="wjportal-popup-close-btn" alt="' . esc_attr__('Close', 'wp-job-portal') . '" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/popup-close.png">
                     <div class="wjportal-popup-title">
                         '.__("Select Package",'wp-job-portal').'
                         <div class="wjportal-popup-title3">

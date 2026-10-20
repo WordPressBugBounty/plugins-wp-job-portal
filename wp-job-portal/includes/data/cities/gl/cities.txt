@@ -4,4 +4,6 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("Nuuk", "Nuuk", "Nuuk", NULL, 14, 0, 1, NULL, "64.175029", "-51.7355386"),
 ("Sisimiut", "Sisimiut", "Sisimiut", NULL, 14, 0, 1, NULL, "66.9371906", "-53.6664816"),
 ("Aasiaat", "Aasiaat", "Aasiaat", NULL, 14, 0, 1, NULL, "68.709588", "-52.8512976"),
-("Ilulissat", "Ilulissat", "Ilulissat", NULL, 14, 0, 1, NULL, "69.2197127", "-51.0986385");
+("Ilulissat", "Ilulissat", "Ilulissat", NULL, 14, 0, 1, NULL, "69.2197127", "-51.0986385"),
+("Kangerlussuaq", "Kangerlussuaq", "Kangerlussuaq", NULL, 14, 0, 1, NULL, "67.0094782", "-50.7211501"),
+("Upernavik", "Upernavik", "Upernavik", NULL, 14, 0, 1, NULL, "72.7862881", "-56.1375527");

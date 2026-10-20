@@ -1,7 +1,7 @@
 <?php
 if (!defined('ABSPATH'))
     die('Restricted Access');
-wp_enqueue_style('wpjobportal-wpjobportalrating', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportalrating.css');
+wp_enqueue_style('wpjobportal-wpjobportalrating', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportalrating.css', array(), wpjobportal_asset_version('includes/css/wpjobportalrating.css'));
 if (!WPJOBPORTALincluder::getTemplate('templates/admin/header',array('wpjobportal_module' => 'jobapply'))){
     return;
 }
@@ -17,7 +17,7 @@ $wpjobportal_gender = array(
 <?php
     // to handle the email candidate case
     $wpjobportal_jobid = WPJOBPORTALrequest::getVar('jobid','','');
-    wp_register_script( 'wpjobportal-inline-handle', '' );
+    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
     $wpjobportal_inline_js_script = "

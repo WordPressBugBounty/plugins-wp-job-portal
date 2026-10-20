@@ -3,4 +3,12 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("عالي", "عالي", "A'ali", NULL, 98, 0, 1, NULL, "26.1544539", "50.5273639"),
 ("الرفاع", "الرفاع", "Riffa", NULL, 98, 0, 1, NULL, "26.1315261", "50.5503431"),
 ("المحرق", "المحرق", "Muharraq", NULL, 98, 0, 1, NULL, "26.2465946", "50.6164127"),
-("المنامة", "المنامة", "Manama", NULL, 98, 0, 1, NULL, "26.2235041", "50.5822436");
+("المنامة", "المنامة", "Manama", NULL, 98, 0, 1, NULL, "26.2235041", "50.5822436"),
+("Al Hadd", "Al Hadd", "Al Hadd", NULL, 98, 0, 1, NULL, "26.2159009", "50.6689995"),
+("Al Muharraq", "Al Muharraq", "Al Muharraq", NULL, 98, 0, 1, NULL, "26.2650742", "50.6223267"),
+("Ar Rifa", "Ar Rifa", "Ar Rifa", NULL, 98, 0, 1, NULL, "26.1226062", "50.534262"),
+("Dar Kulayb", "Dar Kulayb", "Dar Kulayb", NULL, 98, 0, 1, NULL, "26.0696179", "50.5006231"),
+("Jidd Hafs", "Jidd Hafs", "Jidd Hafs", NULL, 98, 0, 1, NULL, "26.2198633", "50.5329678"),
+("Madinat Hamad", "Madinat Hamad", "Madinat Hamad", NULL, 98, 0, 1, NULL, "26.1256441", "50.4980362"),
+("Madinat Isa", "Madinat Isa", "Madinat Isa", NULL, 98, 0, 1, NULL, "26.1656051", "50.5523828"),
+("Sitrah", "Sitrah", "Sitrah", NULL, 98, 0, 1, NULL, "26.1628197", "50.6275108");

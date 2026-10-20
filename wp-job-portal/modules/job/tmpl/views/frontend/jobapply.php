@@ -8,10 +8,9 @@ $wpjobportal_show_quick_apply_form  = wpjobportal::$_config->getConfigurationByC
 if (WPJOBPORTALincluder::getObjectClass('user')->isguest()) {
     $wpjobportal_show_quick_apply_form  = wpjobportal::$_config->getConfigurationByConfigName('quick_apply_for_visitor');
 }
-$wpjobportal_google_recaptcha_3 = false;
 $wpjobportal_captcha_quick_apply  = wpjobportal::$_config->getConfigurationByConfigName('quick_apply_captcha');
 
-wp_register_script( 'wpjobportal-inline-handle', '' );
+wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
 wp_enqueue_script( 'wpjobportal-inline-handle' );
 
 $wpjobportal_inline_js_script = "
@@ -95,13 +94,13 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
                             // -------------------------------------------------------------
                             // INTEGRATED COVER LETTER (QUICK APPLY)
                             // -------------------------------------------------------------
-                            $enable_cover_letter_quick_apply  = wpjobportal::$_config->getConfigurationByConfigName('enable_cover_letter_quick_apply');
-                            if(in_array('coverletter', wpjobportal::$_active_addons) && !WPJOBPORTALincluder::getObjectClass('user')->isguest() && $enable_cover_letter_quick_apply == 1){
-                                $api_key = get_option('wpjobportal_zywrap_api_key', '');
-                                $enable_jobapply_copilot  = wpjobportal::$_config->getConfigurationByConfigName('enable_jobapply_copilot');
+                            $wpjobportal_enable_cover_letter_quick_apply  = wpjobportal::$_config->getConfigurationByConfigName('enable_cover_letter_quick_apply');
+                            if(in_array('coverletter', wpjobportal::$_active_addons) && !WPJOBPORTALincluder::getObjectClass('user')->isguest() && $wpjobportal_enable_cover_letter_quick_apply == 1){
+                                $wpjobportal_api_key = get_option('wpjobportal_zywrap_api_key', '');
+                                $wpjobportal_enable_jobapply_copilot  = wpjobportal::$_config->getConfigurationByConfigName('enable_jobapply_copilot');
 
                                 // Check if AI Copilot is fully configured and enabled
-                                if(!empty($api_key)  && (!empty($enable_jobapply_copilot) || current_user_can('manage_options')) ){
+                                if(!empty($wpjobportal_api_key)  && (!empty($wpjobportal_enable_jobapply_copilot) || current_user_can('manage_options')) ){
 
                                     echo '
                                     <div class="wjportal-cl-unified-box">
@@ -148,6 +147,8 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
 
                                                 $wpjobportal_cl_editor = WPJOBPORTALformfield::editor('coverletter_text', '', array('class' => 'inputbox one wjportal-form-textarea-field'));
 
+                                                
+                                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- the template returns its own markup, escaped where it is built.
                                                 echo WPJOBPORTALincluder::getTemplate('views/frontend/content-generation-cover-letter', array('wpjobportal_desc_editor' => $wpjobportal_cl_editor,'module'=>'coverletter','module_name'=>'coverletter'));
 
                                             echo '</div>';
@@ -180,17 +181,9 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
                             // -------------------------------------------------------------
 
                             if (WPJOBPORTALincluder::getObjectClass('user')->isguest() && $wpjobportal_captcha_quick_apply == 1) {
-                                $wpjobportal_config_array = wpjobportal::$_config->getConfigByFor('captcha');
-                                if ($wpjobportal_config_array['captcha_selection'] == 1) {
-                                    if($wpjobportal_config_array['recaptcha_version'] == 1){
-                                        echo '<div class="g-recaptcha" data-sitekey="'.esc_attr($wpjobportal_config_array["recaptcha_publickey"]).'"></div>';
-                                    }else{
-                                        $wpjobportal_google_recaptcha_3 = true;
-                                    }
-                                } else {
-                                    $wpjobportal_captcha = new WPJOBPORTALcaptcha;
-                                    echo '<div class="recaptcha-wrp">'.wp_kses($wpjobportal_captcha->getCaptchaForForm(),WPJOBPORTAL_ALLOWED_TAGS).'</div>';
-                                }
+                                echo '<div class="recaptcha-wrp">';
+                                WPJOBPORTAL_Captcha_Service::output();
+                                echo '</div>';
                             }
                             echo wp_kses(WPJOBPORTALformfield::hidden('quickapply', 1),WPJOBPORTAL_ALLOWED_TAGS);
                         } else {
@@ -222,11 +215,11 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
                                     // B. INTEGRATED COVER LETTER (REGULAR APPLY)
                                     if(in_array('coverletter', wpjobportal::$_active_addons) && !WPJOBPORTALincluder::getObjectClass('user')->isguest()){
 
-                                        $api_key = get_option('wpjobportal_zywrap_api_key', '');
-                                        $enable_jobapply_copilot  = wpjobportal::$_config->getConfigurationByConfigName('enable_jobapply_copilot');
+                                        $wpjobportal_api_key = get_option('wpjobportal_zywrap_api_key', '');
+                                        $wpjobportal_enable_jobapply_copilot  = wpjobportal::$_config->getConfigurationByConfigName('enable_jobapply_copilot');
 
                                         // Check if AI Copilot is fully configured and enabled
-                                        if(!empty($api_key) && (!empty($enable_jobapply_copilot) || current_user_can('manage_options')) ){
+                                        if(!empty($wpjobportal_api_key) && (!empty($wpjobportal_enable_jobapply_copilot) || current_user_can('manage_options')) ){
                                             echo '
                                             <div class="wjportal-cl-unified-box">
                                                 <div class="wjportal-cl-unified-header">
@@ -270,6 +263,8 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
 
                                                         $wpjobportal_cl_editor = WPJOBPORTALformfield::editor('coverletter_text', '', array('class' => 'inputbox one wjportal-form-textarea-field'));
 
+                                                        
+                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- the template returns its own markup, escaped where it is built.
                                                         echo WPJOBPORTALincluder::getTemplate('views/frontend/content-generation-cover-letter', array('wpjobportal_desc_editor' => $wpjobportal_cl_editor,'module'=>'coverletter','module_name'=>'coverletter'));
 
                                                     echo '</div>';
@@ -315,7 +310,7 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
                             $wpjobportal_hide_apply_btn = 1;
                             $wpjobportal_force_hide_btn = 1;
                         } else {
-                            if(in_array('credits', wpjobportal::$_active_addons)){
+                            if(WPJOBPORTAL_Monetisation::usable('credits')){
                                 if( $wpjobportal_subtype == 3 ){
                                     if ( empty($wpjobportal_uid) ) {
                                         $wpjobportal_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
@@ -512,11 +507,4 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
     <?php
 }
 
-if($wpjobportal_captcha_quick_apply == 1){
-    $wpjobportal_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-    $wpjobportal_config_array = wpjobportal::$_config->getConfigByFor('captcha');
-    if($wpjobportal_config_array['captcha_selection'] == 1 && $wpjobportal_config_array['recaptcha_privatekey'] ){
-        wp_enqueue_script('wpjobportal-repaptcha-scripti', $wpjobportal_protocol . 'www.google.com/recaptcha/api.js');
-    }
-}
 ?>

@@ -27,4 +27,7 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("Ouanaminthe", "Ouanaminthe", "Ouanaminthe", NULL, 18, 0, 1, NULL, "19.5485315", "-71.7258332"),
 ("Fort-Liberté", "Fort-Liberté", "Fort-Liberté", NULL, 18, 0, 1, NULL, "19.6635608", "-71.8367046"),
 ("Port-de-Paix", "Port-de-Paix", "Port-de-Paix", NULL, 18, 0, 1, NULL, "19.9389855", "-72.8308129"),
-("Cap-Haïtien", "Cap-Haïtien", "Cap-Haitien", NULL, 18, 0, 1, NULL, "19.7595236", "-72.2008068");
+("Cap-Haïtien", "Cap-Haïtien", "Cap-Haitien", NULL, 18, 0, 1, NULL, "19.7595236", "-72.2008068"),
+("Bourdon", "Bourdon", "Bourdon", NULL, 18, 0, 1, NULL, "18.5408502", "-72.316313"),
+("Diquini", "Diquini", "Diquini", NULL, 18, 0, 1, NULL, "18.5279223", "-72.3875792"),
+("Petit Goave", "Petit Goave", "Petit Goave", NULL, 18, 0, 1, NULL, "18.4311407", "-72.8545019");

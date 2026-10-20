@@ -4,4 +4,15 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("ފުވައްމުލައް", "ފުވައްމުލައް", "Fuvahmulah", NULL, 120, 0, 1, NULL, "-0.3005253", "73.4254986"),
 ("ހިތަދޫ", "ހިތަދޫ", "Hithadhoo", NULL, 120, 0, 1, NULL, "-0.6061889", "73.0879612"),
 ("މާލެ", "މާލެ", "Malé", NULL, 120, 0, 1, NULL, "4.1779879", "73.5107387"),
-("ކުޅުދުއްފުށި", "ކުޅުދުއްފުށި", "Kulhudhuffushi", NULL, 120, 0, 1, NULL, "6.6229329", "73.0709428");
+("ކުޅުދުއްފުށި", "ކުޅުދުއްފުށި", "Kulhudhuffushi", NULL, 120, 0, 1, NULL, "6.6229329", "73.0709428"),
+("Dhidhdhoo", "Dhidhdhoo", "Dhidhdhoo", NULL, 120, 0, 1, NULL, "6.8873531", "73.113569"),
+("Eydhafushi", "Eydhafushi", "Eydhafushi", NULL, 120, 0, 1, NULL, "5.1032642", "73.07078"),
+("Funadhoo", "Funadhoo", "Funadhoo", NULL, 120, 0, 1, NULL, "6.1488525", "73.2905413"),
+("Kudahuvadhoo", "Kudahuvadhoo", "Kudahuvadhoo", NULL, 120, 0, 1, NULL, "2.6707463", "72.8943768"),
+("Mahibadhoo", "Mahibadhoo", "Mahibadhoo", NULL, 120, 0, 1, NULL, "3.7567833", "72.9689398"),
+("Manadhoo", "Manadhoo", "Manadhoo", NULL, 120, 0, 1, NULL, "5.7650768", "73.4106543"),
+("Midu", "Midu", "Midu", NULL, 120, 0, 1, NULL, "2.9992834", "73.0073196"),
+("Muli", "Muli", "Muli", NULL, 120, 0, 1, NULL, "2.9205384", "73.5807606"),
+("Naifaru", "Naifaru", "Naifaru", NULL, 120, 0, 1, NULL, "5.4443719", "73.3657118"),
+("Thinadhoo", "Thinadhoo", "Thinadhoo", NULL, 120, 0, 1, NULL, "3.4879727", "73.538431"),
+("Ugoofaaru", "Ugoofaaru", "Ugoofaaru", NULL, 120, 0, 1, NULL, "5.6675876", "73.0301968");

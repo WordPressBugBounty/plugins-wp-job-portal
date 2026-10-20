@@ -282,8 +282,8 @@ class WPJOBPORTALjobModel {
         $wpjobportal_row = WPJOBPORTALincluder::getJSTable('job');
         if($wpjobportal_row->load($wpjobportal_id)){
             $wpjobportal_row->columns['isfeaturedjob'] = 1;
-            $wpjobportal_startfeatureddate = strtotime($wpjobportal_row->startfeatureddate);
-            $wpjobportal_endfeatureddate = strtotime($wpjobportal_row->endfeatureddate);
+            $wpjobportal_startfeatureddate = strtotime((string) $wpjobportal_row->startfeatureddate);
+            $wpjobportal_endfeatureddate = strtotime((string) $wpjobportal_row->endfeatureddate);
             $wpjobportal_datediff = $wpjobportal_endfeatureddate - $wpjobportal_startfeatureddate;
             $wpjobportal_diff_days = floor($wpjobportal_datediff/(60*60*24));
             $wpjobportal_row->columns['startfeatureddate'] = gmdate('Y-m-d H:i:s');
@@ -399,6 +399,19 @@ class WPJOBPORTALjobModel {
         $query .= " WHERE  job.id = " . (int) ($wpjobportal_job_id) ."";
         wpjobportal::$_data[0] = wpjobportaldb::get_row($query);
         $wpjobportal_job = wpjobportal::$_data[0];
+
+        // No row means no job: an id that does not exist, or a query that could
+        // not run. Either way the properties below were assigned straight onto
+        // null, which is a fatal in PHP 8 and took the whole page down rather
+        // than showing a missing job. A visitor opening a stale link should get
+        // an empty view, not a critical error.
+        if (!is_object(wpjobportal::$_data[0])) {
+            wpjobportal::$_data[2] = wpjobportal::$_wpjpfieldordering->getFieldsOrderingforForm(2);
+            wpjobportal::$_data['config'] = wpjobportal::$_config->getConfigurationByConfigForMultiple("'company', 'jobapply','social'");
+
+            return false;
+        }
+
         wpjobportal::$_data[0]->multicity = WPJOBPORTALincluder::getJSModel('wpjobportal')->getMultiCityDataForView($wpjobportal_job_id, 1);
         wpjobportal::$_data[0]->location = WPJOBPORTALincluder::getJSModel('city')->getLocationDataForView(wpjobportal::$_data[0]->compcity);
         wpjobportal::$_data[2] = wpjobportal::$_wpjpfieldordering->getFieldsOrderingforForm(2);
@@ -575,7 +588,7 @@ class WPJOBPORTALjobModel {
             <div id="wjportal-popup-background" style="display: none;"></div>
             <div id="package-popup" class="wjportal-popup-wrp wjportal-packages-popup '.$wpjobportal_addonclass.'">
                 <div class="wjportal-popup-cnt">
-                    <img id="wjportal-popup-close-btn" alt="popup cross" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/popup-close.png">
+                    <img id="wjportal-popup-close-btn" alt="' . esc_attr__('Close', 'wp-job-portal') . '" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/popup-close.png">
                     <div class="wjportal-popup-title">
                         '.esc_html(__("Select Package",'wp-job-portal')).'
                         <div class="wjportal-popup-title3">
@@ -759,6 +772,12 @@ class WPJOBPORTALjobModel {
                 break;
             case 8:
                 wpjobportal::$_data['sorting'] = ' job.salarymax ';
+                break;
+            default:
+                // sorton arrives from the request and is not range-checked.
+                // Without this the column is never set and the query goes out
+                // as "ORDER BY  DESC".
+                wpjobportal::$_data['sorting'] = ' job.created ';
                 break;
         }
         if (wpjobportal::$_data['sortby'] == 1) {
@@ -998,6 +1017,31 @@ class WPJOBPORTALjobModel {
             $wpjobportal_data['uid'] = false;
         }
 
+        /*
+         * A job with no company at all.
+         *
+         * The check below only ever looked at a company that was named, so a
+         * post with the field left empty went straight past it and saved a
+         * job belonging to company 0 - orphaned, and invisible in My Jobs,
+         * which lists a person's jobs by the company they own. The form used
+         * to stop this by marking a hidden field required, which stopped the
+         * person instead: Save Job did nothing and said nothing. The form now
+         * explains itself, and the rule lives here, where it belongs.
+         *
+         * An administrator posting on somebody's behalf is left alone; they
+         * are offered a company chooser and the ownership rules below.
+         */
+        if (!wpjobportal::$_common->wpjp_isadmin()
+            && (!isset($wpjobportal_data['companyid']) || absint($wpjobportal_data['companyid']) < 1)) {
+            return WPJOBPORTAL_SAVE_ERROR;
+        }
+
+        // Paid posting is on hold while old Credits is paused; editing a job
+        // that already exists is not.
+        if ($wpjobportal_isnew == 1 && !wpjobportal::$_common->wpjp_isadmin() && WPJOBPORTAL_Monetisation::paused()) {
+            return WPJOBPORTAL_SAVE_ERROR;
+        }
+
         // need to reheck this case
         if( isset($wpjobportal_data['companyid']) && $wpjobportal_data['companyid'] !=''){ // handling log error for unpublished company
             if(!wpjobportal::$_common->wpjp_isadmin()){ // maiking sure crrent record is not added/updated by admin
@@ -1059,7 +1103,7 @@ class WPJOBPORTALjobModel {
 
                     if($wpjobportal_no_package_needed == 0){
                         $wpjobportal_upakid = WPJOBPORTALrequest::getVar('upakid',null,0);
-                        if ($wpjobportal_data['payment'] == 0 && wpjobportal::$_common->wpjp_isadmin()) {
+                        if ((!isset($wpjobportal_data['payment']) || $wpjobportal_data['payment'] == 0) && wpjobportal::$_common->wpjp_isadmin()) {
                             $wpjobportal_upakid = WPJOBPORTALrequest::getVar('upakid',null,0);
                             $wpjobportal_data['userpackageid'] = $wpjobportal_upakid;
                         } else {
@@ -1091,7 +1135,17 @@ class WPJOBPORTALjobModel {
                         $wpjobportal_data['status'] = wpjobportal::$_config->getConfigValue('jobautoapprove');
                     }
                     $wpjobportal_curdate = date_i18n('Y-m-d');
-                    $wpjobportal_data['stoppublishing'] = gmdate($wpjobportal_dateformat,strtotime($wpjobportal_curdate.'+'.$wpjobportal_expiry));
+                    // An administrator posting without a package keeps the
+                    // Stop Publishing date they typed; the default duration
+                    // only fills an empty one. A package's own duration still
+                    // decides for jobs that use a package.
+                    $wpjobportal_admin_own_date = wpjobportal::$_common->wpjp_isadmin()
+                        && empty($wpjobportal_data['userpackageid'])
+                        && !empty($wpjobportal_data['stoppublishing'])
+                        && strtotime((string) $wpjobportal_data['stoppublishing']) !== false;
+                    if (!$wpjobportal_admin_own_date) {
+                        $wpjobportal_data['stoppublishing'] = gmdate($wpjobportal_dateformat,strtotime($wpjobportal_curdate.'+'.$wpjobportal_expiry));
+                    }
                 }
             }else{
                 if(isset($wpjobportal_data['draft']) && $wpjobportal_data['draft'] == 1 ){
@@ -1111,7 +1165,7 @@ class WPJOBPORTALjobModel {
                     return false;
                 }
                 //handle stop publishing date in edit case
-                if(in_array('credits', wpjobportal::$_active_addons)){ // if package system
+                if(WPJOBPORTAL_Monetisation::usable('credits')){ // if package system
                     $wpjobportal_submission_type   = wpjobportal::$_config->getConfigValue('submission_type');
                     if($wpjobportal_submission_type == 3){// if membership mode is selected
                         if(!wpjobportal::$_common->wpjp_isadmin()){ // to handle different possible cases
@@ -1156,6 +1210,19 @@ class WPJOBPORTALjobModel {
         if( isset($wpjobportal_data['salarytype']) && $wpjobportal_data['salarytype'] == WPJOBPORTAL_SALARY_FIXED){ // min field issue
             $wpjobportal_data['salarymin'] = $wpjobportal_data['salaryfixed'];
             $wpjobportal_data['salarymax'] = $wpjobportal_data['salaryfixed'];
+        }
+
+        // Salary is typed into a plain text box with the currency symbol shown
+        // next to it, so "$50,000" is the obvious thing to write. The columns
+        // are floats: unread, that was stored as zero, and the hook fired below
+        // then passed the raw string to a function that multiplies it.
+        foreach (array('salarymin', 'salarymax') as $wpjobportal_salary_field) {
+            if (!isset($wpjobportal_data[$wpjobportal_salary_field])) {
+                continue;
+            }
+
+            $wpjobportal_salary_value = wpjobportal::$_common->normaliseSalary($wpjobportal_data[$wpjobportal_salary_field]);
+            $wpjobportal_data[$wpjobportal_salary_field] = $wpjobportal_salary_value === null ? '' : $wpjobportal_salary_value;
         }
         // Uid must be the same as the company owner id
 
@@ -1204,14 +1271,11 @@ class WPJOBPORTALjobModel {
         }
 
 // already satinzed above
-        if(WPJOBPORTALincluder::getJSModel('common')->checkLanguageSpecialCase()){
-           $wpjobportal_data = wpjobportal::$_common->stripslashesFull($wpjobportal_data);
-        }
 
     	$wpjobportal_description = WPJOBPORTALrequest::getVar('description','post','','',1);// sanitizing description data
         // clean it first
         $wpjobportal_description = str_ireplace(['<script', '< script'], '-', $wpjobportal_description);
-        $wpjobportal_data['description'] = wpautop(wptexturize(wp_kses_post(wpjobportalphplib::wpJP_stripslashes($wpjobportal_description))));
+        $wpjobportal_data['description'] = wpautop(wptexturize(wp_kses_post($wpjobportal_description)));
         // remove slashes with quotes.
 
 
@@ -1294,6 +1358,7 @@ class WPJOBPORTALjobModel {
 
             if ($wpjobportal_captcha_check == 1) {
                 if ($wpjobportal_config_array['captcha_selection'] == 1) { // Google recaptcha
+                    $gresponse = '';
                     if($wpjobportal_token_v3 == ''){
                         $wpjobportal_google_recaptcha = WPJOBPORTALrequest::getVar('g-recaptcha-response','post','');
                         if($wpjobportal_google_recaptcha != ''){
@@ -1790,13 +1855,27 @@ class WPJOBPORTALjobModel {
                 }
                 break;
             case 'tags':
-                $wpjobportal_array = wpjobportalphplib::wpJP_explode(',', $wpjobportal_array);
-                foreach ($wpjobportal_array as $wpjobportal_item) {
-                    $qa[] = wpjobportal::$_db->prepare("job.tags LIKE %s", wpjobportaldb::like($wpjobportal_item));
-                }
-                break;
             case 'job_tags':
+                // Both shapes arrive here. The tag control posts a comma
+                // separated string, and the AJAX filter posts one value per
+                // checked box - an array. Exploding an array is a fatal error
+                // in PHP 8, which killed the AJAX request, and a filter request
+                // that 500s looks from the page exactly like a tag that matches
+                // no jobs at all.
+                if (!is_array($wpjobportal_array)) {
+                    $wpjobportal_array = wpjobportalphplib::wpJP_explode(',', (string) $wpjobportal_array);
+                }
+
                 foreach ($wpjobportal_array as $wpjobportal_item) {
+                    if (!is_scalar($wpjobportal_item)) {
+                        continue;
+                    }
+
+                    $wpjobportal_item = trim((string) $wpjobportal_item);
+                    if ($wpjobportal_item === '') {
+                        continue;
+                    }
+
                     $qa[] = wpjobportal::$_db->prepare("job.tags LIKE %s", wpjobportaldb::like($wpjobportal_item));
                 }
                 break;
@@ -2453,10 +2532,23 @@ class WPJOBPORTALjobModel {
         $wpjobportal_inquery = '';
 
         if (isset($wpjobportal_vars['search']) && $wpjobportal_vars['search'] != null) {
+            /*
+             * The old saved-search link, "<name>-<id>", still used by themes.
+             *
+             * It called getSaveSearchForView(), which only the resume models
+             * have, so following it was a fatal error. It now replays the
+             * search the way the savedsearch link does: the stored criteria,
+             * only for their owner, through the ordinary job query.
+             */
             $wpjobportal_array = wpjobportalphplib::wpJP_explode('-', $wpjobportal_vars['search']);
             $wpjobportal_search = $wpjobportal_array[count($wpjobportal_array) - 1];
-            $wpjobportal_inquery = $this->getSaveSearchForView($wpjobportal_search);
-            wpjobportal::$_data['filter']['search'] = $wpjobportal_search;
+            $wpjobportal_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
+            $wpjobportal_saved = WPJOBPORTALincluder::getJSModel('jobsearch')->getSavedJobSearchData($wpjobportal_search, $wpjobportal_uid);
+            if (!empty($wpjobportal_saved)) {
+                $this->setSearchVariableForJob($wpjobportal_saved, array());
+                wpjobportal::$_data['savedsearchid'] = (int) $wpjobportal_search;
+            }
+            $wpjobportal_inquery = $this->getRefinedJobs();
         } elseif (empty($wpjobportal_vars)) {
             $wpjobportal_inquery = $this->getRefinedJobs();
         } elseif(isset($wpjobportal_vars['searchajax'])){
@@ -2666,17 +2758,19 @@ class WPJOBPORTALjobModel {
     }
 
 
-    function canAddFeaturedJob($wpjobportal_uid) {
-        if (!is_numeric($wpjobportal_uid))
-            return false;
-        $wpjobportal_credits = WPJOBPORTALincluder::getJSModel('credits')->getMinimumCreditIDByAction('featured_job');
-        $availablecredits = WPJOBPORTALincluder::getObjectClass('user')->getAvailableCredits();
-        if ($wpjobportal_credits <= $availablecredits) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    /*
+     * canAddFeaturedJob() used to sit here and has been removed.
+     *
+     * Nothing called it. The one dispatcher for this question,
+     * WPJOBPORTALUserCredits::getUserCreditsDetailForAction('featured_job'),
+     * routes to the featuredjob model - not this one - and both the Featured
+     * Job add-on and the Marketplace Suite implement it there.
+     *
+     * Had it ever been reached it would have answered wrongly: it called
+     * getJSModel('credits'), which the includer instantiates without checking
+     * the directory exists, and read a balance from two tables that nothing in
+     * the product creates. It was the only route to that balance lookup.
+     */
 
    function canAddJob($wpjobportal_uid,$wpjobportal_actionname) {
        if (!is_numeric($wpjobportal_uid))
@@ -2906,8 +3000,8 @@ class WPJOBPORTALjobModel {
 
    function custom_wpjobportal_cookie($cookievalue, $cookieindex) {
         $wpjobportal_value = array();
-        if (isset($_COOKIE['wp_wpjobportal_cookie'])) {
-            $cookie = wp_unslash($_COOKIE['wp_wpjobportal_cookie']);
+        if (WPJOBPORTALrequest::hasCookie('wp_wpjobportal_cookie')) {
+            $cookie = WPJOBPORTALrequest::rawCookie('wp_wpjobportal_cookie');
             $decoded_cookie = json_decode($cookie, true);
             if (!is_array($decoded_cookie)) {
                 $decoded_cookie = @unserialize($cookie, array('allowed_classes' => false));
@@ -3313,7 +3407,7 @@ class WPJOBPORTALjobModel {
                 '[separator]' => '-',
                 '[sitename]' => get_bloginfo( 'name', 'display' )
             );
-            $wpjobportal_result = $this->replaceMatches($wpjobportal_job_seo,$wpjobportal_matcharray);
+            $wpjobportal_result = wpjobportal::$_common->tidySeoDocumentTitle($this->replaceMatches($wpjobportal_job_seo,$wpjobportal_matcharray));
         }
         return $wpjobportal_result;
     }
@@ -3489,8 +3583,8 @@ class WPJOBPORTALjobModel {
     function getCookiesSavedSearchDataJob($wpjobportal_search_userfields){
         $wpjobportal_jsjp_search_array = array();
         $wpjp_search_cookie_data = '';
-        if(isset($_COOKIE['jsjp_jobportal_search_data'])){
-            $wpjp_search_cookie_data = wpjobportal::wpjobportal_sanitizeData($_COOKIE['jsjp_jobportal_search_data']);
+        if(WPJOBPORTALrequest::hasCookie('jsjp_jobportal_search_data')){
+            $wpjp_search_cookie_data = WPJOBPORTALrequest::cookie('jsjp_jobportal_search_data');
             $wpjp_search_cookie_data = json_decode( wpjobportalphplib::wpJP_safe_decoding($wpjp_search_cookie_data) , true );
         }
         if($wpjp_search_cookie_data != '' && isset($wpjp_search_cookie_data['search_from_jobs']) && $wpjp_search_cookie_data['search_from_jobs'] == 1){
@@ -4273,7 +4367,7 @@ class WPJOBPORTALjobModel {
         $wpjobportal_jobs = wpjobportaldb::get_results($query); // fetch all jobs
 
         foreach ($wpjobportal_jobs as $wpjobportal_job) { // loop over all jobs
-            $wpjobportal_job_arrray = json_decode(json_encode($wpjobportal_job),true); // convert std class object to array
+            $wpjobportal_job_arrray = json_decode(wp_json_encode($wpjobportal_job),true); // convert std class object to array
             $this->importAIStringDataForJobs($wpjobportal_job_arrray);
         }
         return;
@@ -4360,21 +4454,18 @@ class WPJOBPORTALjobModel {
             if(!empty(wpjobportal::$_data[0])){
                 $jobs_data = wpjobportal::$_data[0];
                 $jobs_html = $this->renderJobsHtmlForAjax($jobs_data);
-                echo $jobs_html;
+                echo $jobs_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- buffered output of the job list template.
                 $no_of_jobs_total = wpjobportal::$_data['total'];
                 $pagination_html = $this->renderPaginationHtmlForAjax($no_of_jobs_total);
                 if(!empty($pagination_html)){
-                    echo $pagination_html;
+                    echo $pagination_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- paginate_links() output.
                 }
             }else{
                 $norecord_html = $this->renderNoRecordFoundHtmlForAjax();
-                echo $norecord_html;
+                echo $norecord_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- buffered output of the no-record template.
             }
         }else{ // in case of theme this code will generate listing html
-            ob_start();
-            $html = ob_get_clean();
             include_once( get_template_directory() . '/wp-job-portal/fullwidthlist.php');
-            echo  $html;
 
         }
         exit;

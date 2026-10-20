@@ -28,13 +28,13 @@ if (!WPJOBPORTALincluder::getTemplate('templates/admin/header',array('module' =>
 
 
 // Ensure wpjobportal::$_data[0] is retrieved and initialized safely
-$data = wpjobportal::$_data[0] ?? array();
+$wpjobportal_data = wpjobportal::$_data[0] ?? array();
 
 // Extract logs and summary data with safe fallbacks
-$logs = $data['logs'] ?? array();
+$wpjobportal_logs = $wpjobportal_data['logs'] ?? array();
    
 // Initialize summary data with default/N/A values, excluding cost.
-$summary_data = $data['summary'] ?? array(
+$wpjobportal_summary_data = $wpjobportal_data['summary'] ?? array(
     'runs'    => '0',
     'errors'  => '0',
     'model'   => __('N/A (Error)', 'wp-job-portal'),
@@ -91,15 +91,15 @@ $summary_data = $data['summary'] ?? array(
                                 <div class="wpjobportal-summary-grid">
                                     <div class="wpjobportal-summary-card">
                                         <div class="wpjobportal-summary-label"><?php echo esc_html( __('Total API Runs (24h)', 'wp-job-portal') ); ?></div>
-                                        <div class="wpjobportal-summary-value"><?php echo esc_html( $summary_data['runs'] ); ?></div>
+                                        <div class="wpjobportal-summary-value"><?php echo esc_html( $wpjobportal_summary_data['runs'] ); ?></div>
                                     </div>
                                     <div class="wpjobportal-summary-card">
                                         <div class="wpjobportal-summary-label"><?php echo esc_html( __('API Errors (24h)', 'wp-job-portal') ); ?></div>
-                                        <div class="wpjobportal-summary-value wpjobportal-error"><?php echo esc_html( $summary_data['errors'] ); ?></div>
+                                        <div class="wpjobportal-summary-value wpjobportal-error"><?php echo esc_html( $wpjobportal_summary_data['errors'] ); ?></div>
                                     </div>
                                     <div class="wpjobportal-summary-card">
                                         <div class="wpjobportal-summary-label"><?php echo esc_html( __('Top Model Used', 'wp-job-portal') ); ?></div>
-                                        <div class="wpjobportal-summary-value wpjobportal-model"><?php echo esc_html( $summary_data['model'] ); ?></div>
+                                        <div class="wpjobportal-summary-value wpjobportal-model"><?php echo esc_html( $wpjobportal_summary_data['model'] ); ?></div>
                                     </div>
                                 </div>
                                 <div class="wpjobportal-filter-bar">
@@ -132,58 +132,58 @@ $summary_data = $data['summary'] ?? array(
                                     </thead>
                                     <tbody>
                                         <?php
-                                        if ( empty( $logs ) ) : ?>
+                                        if ( empty( $wpjobportal_logs ) ) : ?>
                                             <tr>
                                                 <td colspan="7" class="wpjobportal-text-center">
                                                     <?php echo esc_html( __('No log entries found or a database error occurred.', 'wp-job-portal') ); ?>
                                                 </td>
                                             </tr>
                                         <?php else : ?>
-                                            <?php foreach ( $logs as $log ) :
+                                            <?php foreach ( $wpjobportal_logs as $wpjobportal_log ) :
                                                 // Safely retrieve data using the null coalescing operator (??)
-                                                $http_status = absint($log['status'] ?? 0); // Assuming status is the HTTP status code
-                                                $tokens_in = absint($log['prompt_tokens'] ?? 0);
-                                                $tokens_out = absint($log['completion_tokens'] ?? 0);
-                                                $total_tokens = $tokens_in + $tokens_out;
+                                                $wpjobportal_http_status = absint($wpjobportal_log['status'] ?? 0); // Assuming status is the HTTP status code
+                                                $wpjobportal_tokens_in = absint($wpjobportal_log['prompt_tokens'] ?? 0);
+                                                $wpjobportal_tokens_out = absint($wpjobportal_log['completion_tokens'] ?? 0);
+                                                $wpjobportal_total_tokens = $wpjobportal_tokens_in + $wpjobportal_tokens_out;
 
                                                 // Determine status class/text
-                                                $status_text = $log['status'];
-                                                $status_class = 'wpjobportal-status-ok';
-                                                if ($http_status >= 500 || $status_text === 'error') {
-                                                    $status_class = 'wpjobportal-status-error';
-                                                    $status_text = 'ERR';
-                                                } elseif ($http_status >= 400 || $status_text === 'warning') {
-                                                    $status_class = 'wpjobportal-status-warning';
-                                                    $status_text = 'LIM';
-                                                } elseif ($http_status === 200 || $status_text === 'success') {
-                                                    $status_class = 'wpjobportal-status-success';
-                                                    $status_text = 'SUC';
+                                                $wpjobportal_status_text = $wpjobportal_log['status'];
+                                                $wpjobportal_status_class = 'wpjobportal-status-ok';
+                                                if ($wpjobportal_http_status >= 500 || $wpjobportal_status_text === 'error') {
+                                                    $wpjobportal_status_class = 'wpjobportal-status-error';
+                                                    $wpjobportal_status_text = 'ERR';
+                                                } elseif ($wpjobportal_http_status >= 400 || $wpjobportal_status_text === 'warning') {
+                                                    $wpjobportal_status_class = 'wpjobportal-status-warning';
+                                                    $wpjobportal_status_text = 'LIM';
+                                                } elseif ($wpjobportal_http_status === 200 || $wpjobportal_status_text === 'success') {
+                                                    $wpjobportal_status_class = 'wpjobportal-status-success';
+                                                    $wpjobportal_status_text = 'SUC';
                                                 }
 
-                                                // Fallback/Simulated data for display strings (if not provided by $data)
-                                                $log_id = $log['id'] ?? $log['log_id'] ?? 0;
-                                                $action = $log['action'] ?? __('N/A', 'wp-job-portal');
-                                                $user = $log['user'] ?? __('Guest', 'wp-job-portal');
-                                                $user_id = $log['user_id'] ?? 0;
-                                                $wrapper = $log['wrapper_code'] ?? '-';
-                                                $model_code = $log['model_code'] ?? '-';
-                                                $message = $log['response_message'] ?? $log['error_message'] ?? __('Request completed or details N/A.', 'wp-job-portal');
-                                                $log_timestamp = $log['timestamp'] ?? null;
-                                                $time_ago = __('N/A', 'wp-job-portal');
+                                                // Fallback/Simulated data for display strings (if not provided by $wpjobportal_data)
+                                                $wpjobportal_log_id = $wpjobportal_log['id'] ?? $wpjobportal_log['log_id'] ?? 0;
+                                                $action = $wpjobportal_log['action'] ?? __('N/A', 'wp-job-portal');
+                                                $wpjobportal_user = $wpjobportal_log['user'] ?? __('Guest', 'wp-job-portal');
+                                                $wpjobportal_user_id = $wpjobportal_log['user_id'] ?? 0;
+                                                $wpjobportal_wrapper = $wpjobportal_log['wrapper_code'] ?? '-';
+                                                $wpjobportal_model_code = $wpjobportal_log['model_code'] ?? '-';
+                                                $wpjobportal_message = $wpjobportal_log['response_message'] ?? $wpjobportal_log['error_message'] ?? __('Request completed or details N/A.', 'wp-job-portal');
+                                                $wpjobportal_log_timestamp = $wpjobportal_log['timestamp'] ?? null;
+                                                $wpjobportal_time_ago = __('N/A', 'wp-job-portal');
 
-                                                if ( $log_timestamp ) {
+                                                if ( $wpjobportal_log_timestamp ) {
                                                     // Convert the database timestamp string to a Unix time
-                                                    $timestamp_unix = strtotime($log_timestamp);
+                                                    $wpjobportal_timestamp_unix = strtotime($wpjobportal_log_timestamp);
 
                                                     // Ensure the timestamp is valid and not in the future
-                                                    if ( $timestamp_unix && $timestamp_unix <= current_time('timestamp') ) {
-                                                        $time_ago = sprintf(
-                                                            __('%s ago', 'wp-job-portal'),
-                                                            human_time_diff($timestamp_unix, current_time('timestamp'))
+                                                    if ( $wpjobportal_timestamp_unix && $wpjobportal_timestamp_unix <= current_time('timestamp') ) {
+                                                        $wpjobportal_time_ago = sprintf(
+                                                            /* translators: %s: human time diff timestamp unix current time timestamp */ __('%s ago', 'wp-job-portal'),
+                                                            human_time_diff($wpjobportal_timestamp_unix, current_time('timestamp'))
                                                         );
                                                     } else {
                                                          // If timestamp exists but cannot be calculated (e.g., future time)
-                                                        $time_ago = esc_html( date('M j, Y H:i', $timestamp_unix) );
+                                                        $wpjobportal_time_ago = esc_html( gmdate('M j, Y H:i', $wpjobportal_timestamp_unix) );
                                                     }
                                                 }
 
@@ -192,38 +192,38 @@ $summary_data = $data['summary'] ?? array(
                                             ?>
                                         <tr>
                                             <td>
-                                                <span class="wpjobportal-status-badge <?php echo esc_attr( $status_class ); ?>">
-                                                    <?php echo esc_html( $status_text ); ?>
-                                                    <?php if($http_status >= 400){ ?>
-                                                        <span class="wpjobportal-font-bold"><?php echo esc_html( __('HTTP:', 'wp-job-portal') ); ?></span><span class="wpjobportal-text-error">                                                        <?php echo esc_html( $http_status ); ?></span>
+                                                <span class="wpjobportal-status-badge <?php echo esc_attr( $wpjobportal_status_class ); ?>">
+                                                    <?php echo esc_html( $wpjobportal_status_text ); ?>
+                                                    <?php if($wpjobportal_http_status >= 400){ ?>
+                                                        <span class="wpjobportal-font-bold"><?php echo esc_html( __('HTTP:', 'wp-job-portal') ); ?></span><span class="wpjobportal-text-error">                                                        <?php echo esc_html( $wpjobportal_http_status ); ?></span>
                                                     <?php } ?>
                                                 </span>
                                             </td>
                                             <td>
                                                 <div class="wpjobportal-font-bold wpjobportal-text-gray-800"><?php echo esc_html( $action ); ?></div>
-                                                <div class="wpjobportal-text-sm wpjobportal-text-gray-500" title="<?php echo esc_attr( sprintf( __('User ID: %s', 'wp-job-portal'), $user_id ) ); ?>">
-                                                    <?php echo esc_html( $user ); ?>
+                                                <div class="wpjobportal-text-sm wpjobportal-text-gray-500" title="<?php echo esc_attr( sprintf( /* translators: %s: user id */ __('User ID: %s', 'wp-job-portal'), $wpjobportal_user_id ) ); ?>">
+                                                    <?php echo esc_html( $wpjobportal_user ); ?>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="wpjobportal-wrapper-model-cell">
-                                                    <div title="<?php echo esc_attr( $wrapper ); ?>">
+                                                    <div title="<?php echo esc_attr( $wpjobportal_wrapper ); ?>">
                                                         <span class="wpjobportal-text-xs wpjobportal-font-semibold wpjobportal-text-gray-500"><?php echo esc_html( __('W:', 'wp-job-portal') ); ?></span>
-                                                        <?php echo esc_html( $wrapper === '-' ? '-' : substr($wrapper, 0, 28) . '...' ); ?>
+                                                        <?php echo esc_html( $wpjobportal_wrapper === '-' ? '-' : substr($wpjobportal_wrapper, 0, 28) . '...' ); ?>
                                                     </div>
-                                                    <div title="<?php echo esc_attr( $model_code ); ?>">
+                                                    <div title="<?php echo esc_attr( $wpjobportal_model_code ); ?>">
                                                         <span class="wpjobportal-text-xs wpjobportal-font-semibold wpjobportal-text-gray-500"><?php echo esc_html( __('M:', 'wp-job-portal') ); ?></span>
-                                                        <?php echo esc_html( $model_code === '-' ? '-' : substr($model_code, 0, 28) . '...' ); ?>
+                                                        <?php echo esc_html( $wpjobportal_model_code === '-' ? '-' : substr($wpjobportal_model_code, 0, 28) . '...' ); ?>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="wpjobportal-performance-stats">
-                                                    <?php if ($total_tokens > 0) : ?>
+                                                    <?php if ($wpjobportal_total_tokens > 0) : ?>
                                                         <div class="wpjobportal-token-stats">
                                                             <span class="wpjobportal-font-bold"><?php echo esc_html( __('Tokens:', 'wp-job-portal') ); ?></span>
-                                                            <span class="wpjobportal-text-gray-700" title="<?php echo esc_attr( sprintf( __('In: %s / Out: %s', 'wp-job-portal'), number_format_i18n($tokens_in), number_format_i18n($tokens_out) ) ); ?>">
-                                                                <?php echo esc_html( number_format_i18n($total_tokens) ); ?>
+                                                            <span class="wpjobportal-text-gray-700" title="<?php echo esc_attr( sprintf( /* translators: 1: tokens in, 2: tokens out */ __('In: %1$s / Out: %2$s', 'wp-job-portal'), number_format_i18n($wpjobportal_tokens_in), number_format_i18n($wpjobportal_tokens_out) ) ); ?>">
+                                                                <?php echo esc_html( number_format_i18n($wpjobportal_total_tokens) ); ?>
                                                             </span>
                                                         </div>
                                                     <?php else : ?>
@@ -232,11 +232,11 @@ $summary_data = $data['summary'] ?? array(
 
                                                     </div>
                                             </td>
-                                            <td title="<?php echo esc_attr( $log['timestamp'] ?? 'N/A' ); ?>" class="wpjobportal-text-gray-600">
-                                                <?php echo esc_html( $time_ago ); ?>
+                                            <td title="<?php echo esc_attr( $wpjobportal_log['timestamp'] ?? 'N/A' ); ?>" class="wpjobportal-text-gray-600">
+                                                <?php echo esc_html( $wpjobportal_time_ago ); ?>
                                             </td>
                                             <td class="wpjobportal-text-center">
-                                                <button class="wpjobportal-details-btn" data-log-id="<?php echo esc_attr( $log_id ); ?>">
+                                                <button class="wpjobportal-details-btn" data-log-id="<?php echo esc_attr( $wpjobportal_log_id ); ?>">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                                                   <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
                                                   <circle cx="12" cy="12" r="3"/>

@@ -12,19 +12,26 @@ $wpjobportal_custom_class = !empty($wpjobportal_shortcode_options['class']) ? ' 
 ?>
 <div class="wjportal-main-up-wrapper <?php echo esc_attr($wpjobportal_custom_class); ?>">
 <?php
-if ($wpjobportal_show_header && !WPJOBPORTALincluder::getTemplate('templates/header',array('wpjobportal_module' => 'user'))){
+// Messages and errors always; show_header is the trail, show_title the heading.
+if (!WPJOBPORTALincluder::getTemplate('templates/header',array('wpjobportal_module' => 'user'))){
     return ;
 }
 if (!is_user_logged_in()) {
-    // check to make sure user registration is enabled
-    $wpjobportal_is_enable = get_option('users_can_register');
+    // WP Job Portal's own sign-up setting, which by default follows
+    // WordPress's "Anyone can register"; see WPJOBPORTAL_Registration_Policy.
+    $wpjobportal_is_enable = WPJOBPORTAL_Registration_Policy::is_open();
     // only show the registration form if allowed
     if ($wpjobportal_is_enable) { ?>
         <div class="wjportal-main-wrapper wjportal-clearfix">
-            <?php if ($wpjobportal_show_title) { ?>
+            <?php if ($wpjobportal_show_title || $wpjobportal_show_header) { ?>
                 <div class="wjportal-page-header">
                     <?php
-                        WPJOBPORTALincluder::getTemplate('templates/pagetitle',array('wpjobportal_module' => 'user','wpjobportal_layout'=>'reg'));
+                        WPJOBPORTALincluder::getTemplate('templates/pagetitle',array(
+                            'wpjobportal_module' => 'user',
+                            'wpjobportal_layout' => 'reg',
+                            'wpjobportal_hide_heading' => !$wpjobportal_show_title,
+                            'wpjobportal_hide_breadcrumbs' => !$wpjobportal_show_header,
+                        ));
                     ?>
                 </div>
             <?php } ?>
@@ -44,12 +51,5 @@ if (!is_user_logged_in()) {
         WPJOBPORTALlayout::getRegistrationDisabled();
     }
 }
-?>
-<?php
-    $wpjobportal_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-    $wpjobportal_config_array = wpjobportal::$_config->getConfigByFor('captcha');
-    if($wpjobportal_config_array['captcha_selection'] == 1 && $wpjobportal_config_array['recaptcha_privatekey'] ){
-        wp_enqueue_script('wpjobportal-repaptcha-scripti', $wpjobportal_protocol . 'www.google.com/recaptcha/api.js');
-    }
 ?>
 </div>

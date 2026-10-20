@@ -20,7 +20,7 @@ if (!defined('ABSPATH'))
                 $matcharray = explode('$matches', $value);
                 $countmatch = COUNT($matcharray);
                 //on all pages
-                // $_key = $newkey . '/(jobseeker-purchase-history|jobseeker-control-panel|jobseeker-credits-log|jobseeker-credits|jobseeker-messages|jobseeker-my-stats|jobseeker-rate-list|jobseeker-register|wpjobportal-login|employer-purchase-history|employer-control-panel|employer-credits-log|employer-credits|employer-messages|employer-my-stats|employer-rate-list|employer-register|folder-resumes|resume-save-searches|resume-categories|resume-search|resume-rss|add-resume|my-resumes|resumes|resume|my-companies|add-company|companies|company|add-cover-letter|my-cover-letters|cover-letter|add-department|my-departments|department|add-folder|my-folders|add-job|my-jobs|job-applied-resume|job-save-searches|job-categories|job-messages|job-by-types|job-search|job-types|job-alert|job-rss|my-applied-jobs|newest-jobs|shortlisted-jobs|messages|message|new-in-wpjobportal|folder|jobs|job|user-register|jm-user-register|resume-pdf|resume-print)(/[^/]*)?(/[^/]*)?(/[^/]*)?/?$';
+                // $_key = $newkey . '/(jobseeker-purchase-history|jobseeker-control-panel|jobseeker-credits-log|jobseeker-credits|jobseeker-messages|jobseeker-my-stats|jobseeker-rate-list|jobseeker-register|wpjobportal-login|employer-purchase-history|employer-control-panel|employer-credits-log|employer-credits|employer-messages|employer-my-stats|employer-rate-list|employer-register|folder-resumes|resume-save-searches|resume-categories|resume-search|resume-rss|add-resume|my-resumes|resumes|resume|my-companies|add-company|companies|company|add-cover-letter|my-cover-letters|cover-letter|add-department|my-departments|department|add-folder|my-folders|add-job|my-jobs|job-applied-resume|job-categories|job-messages|job-by-types|job-search|job-types|job-alert|job-rss|my-applied-jobs|newest-jobs|shortlisted-jobs|messages|message|new-in-wpjobportal|folder|jobs|job|user-register|jm-user-register|resume-pdf|resume-print)(/[^/]*)?(/[^/]*)?(/[^/]*)?/?$';
                 $_key = $newkey.'/(';
                 $_key .= WPJOBPORTALincluder::getJSModel('slug')->getSlugString();
                 $_key .= ')(/[^/]*)?(/[^/]*)?(/[^/]*)?/?$';
@@ -349,6 +349,10 @@ if (!defined('ABSPATH'))
                 wpjobportal::$_data['sanitized_args']['wpjobportalme'] = 'resumesearch';
                 wpjobportal::$_data['sanitized_args']['wpjobportallt'] = 'resumesavesearch';
                 break;
+                case 'job-save-searches':
+                wpjobportal::$_data['sanitized_args']['wpjobportalme'] = 'jobsearch';
+                wpjobportal::$_data['sanitized_args']['wpjobportallt'] = 'jobsavesearch';
+                break;
                 case 'resume-categories':
                 wpjobportal::$_data['sanitized_args']['wpjobportalme'] = 'resume';
                 wpjobportal::$_data['sanitized_args']['wpjobportallt'] = 'resumebycategory';
@@ -465,10 +469,6 @@ if (!defined('ABSPATH'))
                 wpjobportal::$_data['sanitized_args']['wpjobportalme'] = 'jobsearch';
                 wpjobportal::$_data['sanitized_args']['wpjobportallt'] = 'jobsearch';
                 break;
-                case 'job-save-searches':
-                    wpjobportal::$_data['sanitized_args']['wpjobportalme'] = 'jobsearch';
-                    wpjobportal::$_data['sanitized_args']['wpjobportallt'] = 'jobsavesearch';
-                    break;
                 case 'job-alert':
                     wpjobportal::$_data['sanitized_args']['wpjobportalme'] = 'jobalert';
                     wpjobportal::$_data['sanitized_args']['wpjobportallt'] = 'jobalert';
@@ -841,6 +841,10 @@ if (!defined('ABSPATH'))
                 wpjobportal::$_data['sanitized_args']['wpjobportalme'] = 'resumesearch';
                 wpjobportal::$_data['sanitized_args']['wpjobportallt'] = 'resumesavesearch';
                 break;
+                case 'job-save-searches':
+                wpjobportal::$_data['sanitized_args']['wpjobportalme'] = 'jobsearch';
+                wpjobportal::$_data['sanitized_args']['wpjobportallt'] = 'jobsavesearch';
+                break;
                 case 'resume-categories':
                 wpjobportal::$_data['sanitized_args']['wpjobportalme'] = 'resume';
                 wpjobportal::$_data['sanitized_args']['wpjobportallt'] = 'resumebycategory';
@@ -958,10 +962,6 @@ if (!defined('ABSPATH'))
                 wpjobportal::$_data['sanitized_args']['wpjobportalme'] = 'jobsearch';
                 wpjobportal::$_data['sanitized_args']['wpjobportallt'] = 'jobsearch';
                 break;
-                case 'job-save-searches':
-                wpjobportal::$_data['sanitized_args']['wpjobportalme'] = 'jobsearch';
-                wpjobportal::$_data['sanitized_args']['wpjobportallt'] = 'jobsavesearch';
-                break;
                 case 'job-alert':
                 wpjobportal::$_data['sanitized_args']['wpjobportalme'] = 'jobalert';
                 wpjobportal::$_data['sanitized_args']['wpjobportallt'] = 'jobalert';
@@ -1045,7 +1045,7 @@ if (!defined('ABSPATH'))
 
 
             /*
-            $array = array('/jm-employer-credits-log','/jm-jobseeker-credits-log','/jm-employer-rate-list','/jm-jobseeker-rate-list','/jm-jobseeker-purchase-history','/jm-shortlisted-jobs','/jm-job-rss','/jm-job-alert','/jm-job-save-searches','/jm-job-search','/jm-job-applied-resume','/jm-my-applied-jobs'
+            $array = array('/jm-employer-credits-log','/jm-jobseeker-credits-log','/jm-employer-rate-list','/jm-jobseeker-rate-list','/jm-jobseeker-purchase-history','/jm-shortlisted-jobs','/jm-job-rss','/jm-job-alert','/jm-job-search','/jm-job-applied-resume','/jm-my-applied-jobs'
                 ,'/jm-companies','/jm-job-by-types','/jm-newest-jobs','/jm-job-categories','/jm-my-cover-letters','/jm-add-cover-letter','/jm-my-resumes','/jm-jobseeker-register','/jm-employer-register','/jm-add-resume','/jm-jobseker-my-stats','/jm-employer-my-stats','/jm-employer-purchase-history','/jm-jobseeker-credits','/jm-employer-credits','/jm-resume-rss','/jm-resume-categories'
                 ,'/jm-resume-save-searches','/jm-resume-search','/jm-messages','/jm-job-types','/jm-job-messages','/jm-message','/jm-employer-messages','/jm-jobseeker-messages','/jm-folder-resumes','/jm-folder','/jm-add-folder','/jm-my-folders','/jm-job','/jm-resume','/jm-company','/jm-cover-letter','/jm-department'
                 ,'/jm-add-department','/jm-my-departments','/jm-add-job','/jm-my-jobs','/jm-add-company','/jm-my-companies','/jm-jobs','/jm-resumes','/jm-employer-control-panel','/jm-employer-my-stats','/jm-jobseeker-my-stats','/jm-jobseeker-control-panel','/jm-wpjobportal-login','/jm-new-in-wpjobportal','/jm-user-register','/jm-resume-pdf','/jm-resume-print');

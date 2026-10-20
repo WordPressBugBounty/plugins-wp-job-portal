@@ -45,7 +45,7 @@ class WPJOBPORTAL_Route_Registry_Service {
                 'remove',
                 'addviewcontactdetail',
             ),
-            'configuration' => array('saveconfiguration', 'saveautoupdateconfiguration'),
+            'configuration' => array('saveconfiguration'),
             'country' => array('remove', 'publish', 'unpublish', 'savecountry'),
             'currency' => array('savecurrency', 'remove', 'publish', 'unpublish', 'saveordering'),
             'customfield' => array(
@@ -85,7 +85,7 @@ class WPJOBPORTAL_Route_Registry_Service {
                 'jobenforcedelete',
             ),
             'jobapply' => array('jobapplyasvisitor', 'applyonjob'),
-            'jobsearch' => array(),
+            'jobsearch' => array('savejobsearch', 'removesavedjobsearch'),
             'jobseeker' => array(),
             'jobstatus' => array('savejobstatus', 'remove', 'publish', 'unpublish', 'saveordering'),
             'jobtype' => array('savejobtype', 'remove', 'publish', 'unpublish', 'saveordering'),
@@ -93,17 +93,11 @@ class WPJOBPORTAL_Route_Registry_Service {
                 'save',
                 'savesampledata',
                 'savetemplatesampledata',
-                'importtemplatesampledata',
                 'getdemocode',
                 'dismissonboarding',
                 'reopenonboarding',
                 'cleansampledata',
-            ),
-            'premiumplugin' => array(
-                'verifytransactionkey',
-                'downloadandinstalladdons',
-                'wpjobportalupdatetransactionkey',
-                'wpjobportal_remove_unused_keys',
+                'assignsampleowner',
             ),
             'quickapply' => array('addtoquickapply', 'quickapplyonjob'),
             'report' => array(),
@@ -126,7 +120,7 @@ class WPJOBPORTAL_Route_Registry_Service {
             'state' => array('remove', 'publish', 'unpublish', 'savestate'),
             'systemerror' => array(),
             'systemstatus' => array(),
-            'theme' => array('savetheme'),
+            'theme' => array('savetheme', 'savedesign'),
             'thirdpartyimport' => array('importjobmanagerdata', 'getjobmanagerdatastats'),
             'user' => array('saveuserrole', 'saveuser', 'assignuserrole', 'changeuserstatus', 'deleteuser', 'enforcedeleteuser'),
             'wpjobportal' => array('saveordering', 'savedocumenttitleoptions', 'savescreenoptions'),
@@ -173,6 +167,7 @@ class WPJOBPORTAL_Route_Registry_Service {
             'pdf',
             'print',
             'reports',
+            'recruitsuite',
             'resumeaction',
             'resumesearch',
             'rssfeedback',
@@ -184,6 +179,23 @@ class WPJOBPORTAL_Route_Registry_Service {
             'visitorapplyjob',
             'visitorcanaddjob',
             'widgets',
+        );
+    }
+
+    /**
+     * WP Job Portal's own 2.7.0 products and the add-on keys they register.
+     *
+     * Not unknown, so System Status does not flag them, but their routes are
+     * not all listed below yet, so they keep compatibility mode while active.
+     *
+     * @return array
+     */
+    public static function first_party_products() {
+        return array(
+            'pro',
+            'marketplacesuite',
+            'matchingsuite',
+            'rating',
         );
     }
 
@@ -222,7 +234,6 @@ class WPJOBPORTAL_Route_Registry_Service {
                 'unsubscribeJobAlertSettingEmail',
                 'sendjobalert',
             ),
-            'joblistingenhancer' => array('approve'),
             'message' => array(
                 'publishmessages',
                 'unpublishmessages',
@@ -410,11 +421,12 @@ class WPJOBPORTAL_Route_Registry_Service {
 
         $extension_routes = self::extension_routes();
         $unknown_addons = self::unknown_active_addons();
+        $compatibility_products = self::compatibility_products();
         $active_addons = array_values(array_unique(array_map('sanitize_key', (array) wpjobportal::$_active_addons)));
         $supported_active = array_intersect($active_addons, self::supported_addons());
 
         return array(
-            'mode' => empty($unknown_addons)
+            'mode' => self::strict_addon_mode()
                 ? 'core_and_supported_addons_enforced'
                 : 'core_enforced_unknown_addon_compatibility',
             'core_modules' => count(self::core_routes()),
@@ -424,7 +436,8 @@ class WPJOBPORTAL_Route_Registry_Service {
             'supported_addons' => count(self::supported_addons()),
             'supported_active_addons' => count($supported_active),
             'unknown_active_addons' => $unknown_addons,
-            'strict_addon_mode' => empty($unknown_addons),
+            'compatibility_products' => $compatibility_products,
+            'strict_addon_mode' => self::strict_addon_mode(),
             'denied' => isset($stats['denied']) ? absint($stats['denied']) : 0,
             'last_denied_at' => isset($stats['last_denied_at']) ? sanitize_text_field($stats['last_denied_at']) : '',
             'last_reason' => isset($stats['last_reason']) ? sanitize_key($stats['last_reason']) : '',
@@ -479,16 +492,28 @@ class WPJOBPORTAL_Route_Registry_Service {
      */
     private static function unknown_active_addons() {
         $active = array_values(array_unique(array_map('sanitize_key', (array) wpjobportal::$_active_addons)));
-        $unknown = array_values(array_diff($active, self::supported_addons()));
+        $unknown = array_values(array_diff($active, self::supported_addons(), self::first_party_products()));
         sort($unknown);
         return $unknown;
+    }
+
+    /**
+     * Return active first-party product keys, which keep compatibility mode.
+     *
+     * @return array
+     */
+    private static function compatibility_products() {
+        $active = array_values(array_unique(array_map('sanitize_key', (array) wpjobportal::$_active_addons)));
+        $products = array_values(array_intersect($active, self::first_party_products()));
+        sort($products);
+        return $products;
     }
 
     /**
      * @return bool
      */
     private static function strict_addon_mode() {
-        return empty(self::unknown_active_addons());
+        return empty(self::unknown_active_addons()) && empty(self::compatibility_products());
     }
 
     /**

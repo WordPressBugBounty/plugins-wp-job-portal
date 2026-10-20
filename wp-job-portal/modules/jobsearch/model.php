@@ -200,7 +200,7 @@ class WPJOBPORTALjobSearchModel {
         </form>
         </div>';
 
-        wp_register_script( 'wpjobportal-inline-handle', '' );
+        wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
         wp_enqueue_script( 'wpjobportal-inline-handle' );
         $wpjobportal_inline_js_script = '
             function getTokenInputWidget() {
@@ -288,7 +288,7 @@ class WPJOBPORTALjobSearchModel {
         </form>
         </div>';
 
-        wp_register_script( 'wpjobportal-inline-handle', '' );
+        wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
         wp_enqueue_script( 'wpjobportal-inline-handle' );
         $wpjobportal_inline_js_script = '
             function getTokenInputWidget() {
@@ -313,6 +313,265 @@ class WPJOBPORTALjobSearchModel {
 
     function getJobSearchOptions() {
         wpjobportal::$_data[2] = WPJOBPORTALincluder::getJSModel('fieldordering')->getFieldsOrderingforSearch(2);
+    }
+
+    /**
+     * Keep the search the visitor has just run, under a name of their choosing.
+     *
+     * What is stored is the array the search form produced - the same one the
+     * search cookie carries - and nothing is translated on the way in. That is
+     * deliberate: replaying it hands that array straight back to
+     * setSearchVariableForJob(), so a saved search runs the ordinary job query.
+     * The alternative, rebuilding a WHERE clause field by field, is how the
+     * resume side does it, and it is why a filter on a column the resume table
+     * does not have survived there for years.
+     *
+     * @return int A WPJOBPORTAL_* result constant.
+     */
+    function storeJobSearch() {
+        $wpjobportal_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
+        if (!is_numeric($wpjobportal_uid) || $wpjobportal_uid == 0) {
+            return WPJOBPORTAL_SAVE_ERROR;
+        }
+
+        $wpjobportal_name = trim((string) WPJOBPORTALrequest::getVar('searchname', 'post'));
+        if ($wpjobportal_name === '') {
+            return WPJOBPORTAL_SAVE_ERROR;
+        }
+        // The column is varchar(50). Trimming here means a long name is stored
+        // as the visitor will see it, rather than however the database decides
+        // to truncate it.
+        $wpjobportal_name = wpjobportalphplib::wpJP_substr($wpjobportal_name, 0, 50);
+
+        $wpjobportal_criteria = $this->getCurrentJobSearchCriteria();
+        if (empty($wpjobportal_criteria)) {
+            // Nothing was actually searched for. Saving "everything" is not a
+            // search, and it would replay as an empty form.
+            return WPJOBPORTAL_SAVE_ERROR;
+        }
+
+        $wpjobportal_row = WPJOBPORTALincluder::getJSTable('jobsearch');
+        $wpjobportal_data = array(
+            'id' => '',
+            'uid' => $wpjobportal_uid,
+            'searchname' => $wpjobportal_name,
+            'searchparams' => wp_json_encode($wpjobportal_criteria),
+            'params' => '',
+            'created' => gmdate('Y-m-d H:i:s'),
+            'status' => 1,
+        );
+
+        if (!$wpjobportal_row->bind($wpjobportal_data)) {
+            return WPJOBPORTAL_SAVE_ERROR;
+        }
+        if (!$wpjobportal_row->check()) {
+            return WPJOBPORTAL_SAVE_ERROR;
+        }
+        if (!$wpjobportal_row->store()) {
+            return WPJOBPORTAL_SAVE_ERROR;
+        }
+
+        wpjobportal::$_data['searchname'] = $wpjobportal_name;
+        wpjobportal::$_data['id'] = $wpjobportal_row->id;
+
+        return WPJOBPORTAL_SAVED;
+    }
+
+    /**
+     * Is there a search here worth keeping?
+     *
+     * Deliberately the same test storeJobSearch() applies, so the button is
+     * offered exactly when pressing it would work. Asking the question two
+     * different ways is how a form comes to exist that always fails.
+     *
+     * @return bool
+     */
+    function hasSavableJobSearch() {
+        return !empty($this->getCurrentJobSearchCriteria());
+    }
+
+    /**
+     * The search that produced the page the visitor is looking at.
+     *
+     * Two sources, because neither one covers both moments this is needed:
+     *
+     *  - On the request that runs the search, the criteria are in
+     *    wpjobportal::$_search['jobs'] but the cookie has only just been sent
+     *    in the response, so $_COOKIE is still empty. This is when the Save
+     *    Search button has to decide whether to appear.
+     *  - On the request that saves it, the save form is posted on its own -
+     *    the search form is not resubmitted - so $_search['jobs'] is empty and
+     *    the cookie, set a moment ago, is the record of what was searched.
+     *
+     * Preferring the request in memory over the cookie also means a saved
+     * search being replayed reports its own criteria rather than whatever was
+     * searched for before it.
+     *
+     * @return array Empty when no job search is in effect.
+     */
+    private function getCurrentJobSearchCriteria() {
+        $wpjobportal_source = array();
+
+        if (isset(wpjobportal::$_search['jobs']) && is_array(wpjobportal::$_search['jobs'])) {
+            $wpjobportal_source = wpjobportal::$_search['jobs'];
+        }
+
+        if (empty(array_filter($wpjobportal_source, array($this, 'isRealSearchValue')))) {
+            $wpjobportal_source = $this->getJobSearchCookie();
+        }
+
+        // Drop the empties, so an untouched form does not count as criteria and
+        // so what is stored stays small and readable. Sorting goes too: it is
+        // how the results are arranged, not what was searched for, and keeping
+        // it would pin a saved search to one ordering forever.
+        $wpjobportal_criteria = array();
+        foreach ($wpjobportal_source as $wpjobportal_key => $wpjobportal_value) {
+            if (in_array($wpjobportal_key, array('search_from_jobs', 'sorton', 'sortby', 'backlink_pagenum'), true)) {
+                continue;
+            }
+            if (is_array($wpjobportal_value)) {
+                $wpjobportal_value = array_values(array_filter($wpjobportal_value, array($this, 'isRealSearchValue')));
+            }
+            if (!$this->isRealSearchValue($wpjobportal_value)) {
+                continue;
+            }
+            $wpjobportal_criteria[$wpjobportal_key] = $wpjobportal_value;
+        }
+
+        return $wpjobportal_criteria;
+    }
+
+    /**
+     * Did the visitor actually put something in this field?
+     *
+     * @param mixed $wpjobportal_value
+     * @return bool
+     */
+    private function isRealSearchValue($wpjobportal_value) {
+        if (is_array($wpjobportal_value)) {
+            return !empty($wpjobportal_value);
+        }
+
+        return $wpjobportal_value !== '' && $wpjobportal_value !== null;
+    }
+
+    /**
+     * The search cookie, when it is carrying a job search.
+     *
+     * @return array
+     */
+    private function getJobSearchCookie() {
+        if (!WPJOBPORTALrequest::hasCookie('jsjp_jobportal_search_data')) {
+            return array();
+        }
+
+        $wpjobportal_raw = WPJOBPORTALrequest::cookie('jsjp_jobportal_search_data');
+        $wpjobportal_decoded = json_decode(wpjobportalphplib::wpJP_safe_decoding($wpjobportal_raw), true);
+
+        if (!is_array($wpjobportal_decoded)) {
+            return array();
+        }
+        if (!isset($wpjobportal_decoded['search_from_jobs']) || $wpjobportal_decoded['search_from_jobs'] != 1) {
+            // The cookie is carrying somebody else's search - a resume search,
+            // say - and storing that under a job search name would replay as
+            // nothing at all.
+            return array();
+        }
+
+        return $wpjobportal_decoded;
+    }
+
+    /**
+     * A saved search, ready to be handed back to the job search.
+     *
+     * @param int $wpjobportal_searchid The saved search.
+     * @param int $wpjobportal_uid      Who is asking. A saved search is private
+     *                                  to the person who saved it.
+     * @return array Empty when it does not exist or is not theirs.
+     */
+    function getSavedJobSearchData($wpjobportal_searchid, $wpjobportal_uid) {
+        if (!is_numeric($wpjobportal_searchid) || !is_numeric($wpjobportal_uid) || $wpjobportal_uid == 0) {
+            return array();
+        }
+
+        $wpjobportal_query = "SELECT searchparams FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobsearches`
+                              WHERE id = " . (int) ($wpjobportal_searchid) . " AND uid = " . (int) ($wpjobportal_uid);
+        $wpjobportal_params = wpjobportaldb::get_var($wpjobportal_query);
+
+        if ($wpjobportal_params === null || $wpjobportal_params === '') {
+            return array();
+        }
+
+        $wpjobportal_decoded = json_decode($wpjobportal_params, true);
+        if (!is_array($wpjobportal_decoded)) {
+            return array();
+        }
+
+        // Put back the marker the search pipeline uses to tell a job search from
+        // any other, which getCurrentJobSearchCriteria() strips on the way in.
+        $wpjobportal_decoded['search_from_jobs'] = 1;
+
+        return $wpjobportal_decoded;
+    }
+
+    /**
+     * The searches this job seeker has kept.
+     *
+     * @param int      $wpjobportal_uid    Owner.
+     * @param int|null $wpjobportal_cpcall 1 for the control panel summary, which
+     *                                     shows a handful and no pager.
+     * @return array|bool|void
+     */
+    function getMyJobSearchesbyUid($wpjobportal_uid, $wpjobportal_cpcall = null) {
+        if (!is_numeric($wpjobportal_uid) || $wpjobportal_uid == 0) {
+            return false;
+        }
+
+        $wpjobportal_query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobsearches`
+                              WHERE uid = " . (int) ($wpjobportal_uid);
+        $wpjobportal_total = wpjobportaldb::get_var($wpjobportal_query);
+
+        $wpjobportal_query = "SELECT search.* FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobsearches` AS search
+                              WHERE search.uid = " . (int) ($wpjobportal_uid) . " ORDER BY search.created DESC ";
+
+        if ($wpjobportal_cpcall == 1) {
+            $wpjobportal_query .= " LIMIT 5 ";
+            return wpjobportaldb::get_results($wpjobportal_query);
+        }
+
+        wpjobportal::$_data['total'] = $wpjobportal_total;
+        wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($wpjobportal_total);
+
+        $wpjobportal_query .= " LIMIT " . WPJOBPORTALpagination::$_offset . ", " . WPJOBPORTALpagination::$_limit;
+        wpjobportal::$_data[0] = wpjobportaldb::get_results($wpjobportal_query);
+
+        return;
+    }
+
+    /**
+     * Forget a saved search.
+     *
+     * @param int $wpjobportal_searchid The saved search.
+     * @param int $wpjobportal_uid      Owner, checked before anything is removed.
+     * @return int A WPJOBPORTAL_* result constant.
+     */
+    function deleteJobSearch($wpjobportal_searchid, $wpjobportal_uid) {
+        if (!is_numeric($wpjobportal_searchid) || !is_numeric($wpjobportal_uid) || $wpjobportal_uid == 0) {
+            return WPJOBPORTAL_DELETE_ERROR;
+        }
+
+        $wpjobportal_query = "SELECT COUNT(search.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobsearches` AS search
+                              WHERE search.id = " . (int) ($wpjobportal_searchid) . " AND search.uid = " . (int) ($wpjobportal_uid);
+        if (wpjobportaldb::get_var($wpjobportal_query) == 0) {
+            return WPJOBPORTAL_NOT_EXIST;
+        }
+
+        $wpjobportal_row = WPJOBPORTALincluder::getJSTable('jobsearch');
+        if (!$wpjobportal_row->delete($wpjobportal_searchid)) {
+            return WPJOBPORTAL_DELETE_ERROR;
+        }
+
+        return WPJOBPORTAL_DELETED;
     }
 
     function getMessagekey(){

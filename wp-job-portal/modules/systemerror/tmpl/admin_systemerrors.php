@@ -1,7 +1,7 @@
 <?php
 if (!defined('ABSPATH'))
     die('Restricted Access');
-wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js');
+wp_enqueue_script( 'wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js', array(), wpjobportal_asset_version('includes/js/responsivetable.js'), false );
 ?>
 <!-- main wrapper -->
 <div id="wpjobportaladmin-wrapper">
@@ -74,51 +74,51 @@ wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'i
                                 <tr>
                                     <td class="wpjobportal-text-left w70" style="padding: 12px 15px; vertical-align: top;">
                                         <?php
-                                        $raw_error  = WPJOBPORTAL_Redactor::redact($wpjobportal_systemerror->error);
-                                        $error_data = json_decode( $raw_error, true );
+                                        $wpjobportal_raw_error  = WPJOBPORTAL_Redactor::redact($wpjobportal_systemerror->error);
+                                        $wpjobportal_error_data = json_decode( $wpjobportal_raw_error, true );
 
-                                        if ( is_array( $error_data ) ) :
+                                        if ( is_array( $wpjobportal_error_data ) ) :
                                         ?>
                                             <div class="wjp-error-cell">
                                                 <div class="wjp-error-row">
-                                                    <span class="wjp-badge wjp-badge-danger">Error</span>
-                                                    <span class="wjp-error-text"><?php echo esc_html( isset( $error_data['error'] ) ? $error_data['error'] : 'Unknown Error' ); ?></span>
+                                                    <span class="wjp-badge wjp-badge-danger"><?php echo esc_html__('Error', 'wp-job-portal'); ?></span>
+                                                    <span class="wjp-error-text"><?php echo esc_html( isset( $wpjobportal_error_data['error'] ) ? $wpjobportal_error_data['error'] : __('Unknown Error', 'wp-job-portal') ); ?></span>
                                                 </div>
 
                                                 <div class="wjp-error-row">
-                                                    <span class="wjp-badge wjp-badge-slate">URL</span>
-                                                    <span class="wjp-url-text"><?php echo esc_html( isset( $error_data['url'] ) ? $error_data['url'] : 'N/A' ); ?></span>
+                                                    <span class="wjp-badge wjp-badge-slate"><?php echo esc_html__('URL', 'wp-job-portal'); ?></span>
+                                                    <span class="wjp-url-text"><?php echo esc_html( isset( $wpjobportal_error_data['url'] ) ? $wpjobportal_error_data['url'] : __('N/A', 'wp-job-portal') ); ?></span>
                                                 </div>
 
                                                 <details class="wjp-error-details">
-                                                    <summary><span class="wjp-summary-text">View Query & Trace</span></summary>
+                                                    <summary><span class="wjp-summary-text"><?php echo esc_html__('View Query & Trace', 'wp-job-portal'); ?></span></summary>
                                                     <div class="wjp-error-expanded">
                                                         <div class="wjp-code-group">
-                                                            <div class="wjp-code-title">Path</div>
-                                                            <div class="wjp-code-block"><?php echo esc_html( isset( $error_data['path'] ) ? $error_data['path'] : 'N/A' ); ?></div>
+                                                            <div class="wjp-code-title"><?php echo esc_html__('Path', 'wp-job-portal'); ?></div>
+                                                            <div class="wjp-code-block"><?php echo esc_html( isset( $wpjobportal_error_data['path'] ) ? $wpjobportal_error_data['path'] : __('N/A', 'wp-job-portal') ); ?></div>
                                                         </div>
 
                                                         <div class="wjp-code-group">
-                                                            <div class="wjp-code-title">Query</div>
-                                                            <div class="wjp-code-block"><?php echo esc_html( isset( $error_data['query'] ) ? $error_data['query'] : 'N/A' ); ?></div>
+                                                            <div class="wjp-code-title"><?php echo esc_html__('Query', 'wp-job-portal'); ?></div>
+                                                            <div class="wjp-code-block"><?php echo esc_html( isset( $wpjobportal_error_data['query'] ) ? $wpjobportal_error_data['query'] : __('N/A', 'wp-job-portal') ); ?></div>
                                                         </div>
                                                     </div>
                                                 </details>
                                             </div>
                                         <?php
                                         // Fallback for plain text
-                                        elseif ( ! empty( $raw_error ) ) :
+                                        elseif ( ! empty( $wpjobportal_raw_error ) ) :
                                         ?>
                                             <div class="wjp-error-cell">
                                                 <div class="wjp-error-row">
-                                                    <span class="wjp-badge wjp-badge-danger">Legacy Error</span>
+                                                    <span class="wjp-badge wjp-badge-danger"><?php echo esc_html__('Legacy Error', 'wp-job-portal'); ?></span>
                                                 </div>
                                                 <div class="wjp-code-block wjp-text-danger">
-                                                    <?php echo esc_html( $raw_error ); ?>
+                                                    <?php echo esc_html( $wpjobportal_raw_error ); ?>
                                                 </div>
                                             </div>
                                         <?php else : ?>
-                                            <span class="wjp-text-light">No error data recorded.</span>
+                                            <span class="wjp-text-light"><?php echo esc_html__('No error data recorded.', 'wp-job-portal'); ?></span>
                                         <?php endif; ?>
                                     </td>
                                     <td>

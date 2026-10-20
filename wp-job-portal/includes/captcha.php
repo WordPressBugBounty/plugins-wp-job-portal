@@ -3,119 +3,79 @@
 if (!defined('ABSPATH'))
     die('Restricted Access');
 
+/**
+ * The form spam check, as the rest of the product still asks for it.
+ *
+ * This class used to *be* the check: it generated an arithmetic question -
+ * "what is 14 + 7?" - rendered it, kept the answer in the notification table
+ * against the session, and compared what came back. That is solved by any bot
+ * that can read a page, and it is an obstacle only to people. The operands were
+ * also offered as an image, which makes it an obstacle to anybody using a
+ * screen reader and none at all to optical character recognition.
+ *
+ * The two methods below are called from ten places across Core, so they stay,
+ * and they now hand the work to WPJOBPORTAL_Captcha_Service. Every one of those
+ * call sites gets the same three providers - Cloudflare Turnstile, Google
+ * reCAPTCHA with its v3 score actually checked, and a built-in check that asks
+ * the visitor for nothing - without any of them having to know that.
+ *
+ * The arithmetic is gone: nothing generates it and nothing stores an answer.
+ *
+ * @see WPJOBPORTAL_Captcha_Service
+ */
 class WPJOBPORTALcaptcha {
 
-    function getCaptchaForForm() {
-        $wpjobportal_config_array = WPJOBPORTALincluder::getJSModel('configuration')->getConfigByFor('captcha');
-        $wpjobportal_rand = $this->randomNumber();
-        WPJOBPORTALincluder::getObjectClass('wpjpnotification')->addSessionNotificationDataToTable($wpjobportal_rand,'','wpjobportal_spamcheckid','captcha');
-        $wpjobportal_rot13 = wp_rand(0, 1);
-        WPJOBPORTALincluder::getObjectClass('wpjpnotification')->addSessionNotificationDataToTable($wpjobportal_rot13,'','wpjobportal_rot13','captcha');
-        $operator = 2;
-        if ($operator == 2) {
-            $tcalc = $wpjobportal_config_array['owncaptcha_calculationtype'];
-        }
-        $wpjobportal_max_value = 20;
-        $wpjobportal_negativ = 1;
-        $operend_1 = wp_rand($wpjobportal_negativ, $wpjobportal_max_value);
-        $operend_2 = wp_rand($wpjobportal_negativ, $wpjobportal_max_value);
-        $operand = $wpjobportal_config_array['owncaptcha_totaloperand'];
-        if ($operand == 3) {
-            $operend_3 = wp_rand($wpjobportal_negativ, $wpjobportal_max_value);
+    /**
+     * The markup a form needs.
+     *
+     * @param string $wpjobportal_context Which form this is, so a response
+     *                                    issued for one cannot be replayed
+     *                                    against another.
+     * @return string
+     */
+    function getCaptchaForForm($wpjobportal_context = 'form') {
+        if (!class_exists('WPJOBPORTAL_Captcha_Service')) {
+            return '';
         }
 
-        if ($wpjobportal_config_array['owncaptcha_calculationtype'] == 2) { // Subtraction
-            if ($wpjobportal_config_array['owncaptcha_subtractionans'] == 1) {
-                $ans = $operend_1 - $operend_2;
-                if ($ans < 0) {
-                    $one = $operend_2;
-                    $operend_2 = $operend_1;
-                    $operend_1 = $one;
-                }
-                if ($operand == 3) {
-                    $ans = $operend_1 - $operend_2 - $operend_3;
-                    if ($ans < 0) {
-                        if ($operend_1 < $operend_2) {
-                            $one = $operend_2;
-                            $operend_2 = $operend_1;
-                            $operend_1 = $one;
-                        }
-                        if ($operend_1 < $operend_3) {
-                            $one = $operend_3;
-                            $operend_3 = $operend_1;
-                            $operend_1 = $one;
-                        }
-                    }
-                }
-            }
-        }
-
-        if ($tcalc == 0)
-            $tcalc = wp_rand(1, 2);
-
-        if ($tcalc == 1) { // Addition
-            if ($wpjobportal_rot13 == 1) { // ROT13 coding
-                if ($operand == 2) {
-                    WPJOBPORTALincluder::getObjectClass('wpjpnotification')->addSessionNotificationDataToTable(wpjobportalphplib::wpJP_str_rot13(wpjobportalphplib::wpJP_safe_encoding($operend_1 + $operend_2)),'','wpjobportal_spamcheckresult','captcha');
-                } elseif ($operand == 3) {
-                    WPJOBPORTALincluder::getObjectClass('wpjpnotification')->addSessionNotificationDataToTable(wpjobportalphplib::wpJP_str_rot13(wpjobportalphplib::wpJP_safe_encoding($operend_1 + $operend_2 + $operend_3)),'','wpjobportal_spamcheckresult','captcha');
-                }
-            } else {
-                if ($operand == 2) {
-                    WPJOBPORTALincluder::getObjectClass('wpjpnotification')->addSessionNotificationDataToTable(wpjobportalphplib::wpJP_safe_encoding($operend_1 + $operend_2),'','wpjobportal_spamcheckresult','captcha');
-                } elseif ($operand == 3) {
-                    WPJOBPORTALincluder::getObjectClass('wpjpnotification')->addSessionNotificationDataToTable(wpjobportalphplib::wpJP_safe_encoding($operend_1 + $operend_2 + $operend_3),'','wpjobportal_spamcheckresult','captcha');
-                }
-            }
-        } elseif ($tcalc == 2) { // Subtraction
-            if ($wpjobportal_rot13 == 1) {
-                if ($operand == 2) {
-                    WPJOBPORTALincluder::getObjectClass('wpjpnotification')->addSessionNotificationDataToTable(wpjobportalphplib::wpJP_str_rot13(wpjobportalphplib::wpJP_safe_encoding($operend_1 - $operend_2)),'','wpjobportal_spamcheckresult','captcha');
-                } elseif ($operand == 3) {
-                    WPJOBPORTALincluder::getObjectClass('wpjpnotification')->addSessionNotificationDataToTable(wpjobportalphplib::wpJP_str_rot13(wpjobportalphplib::wpJP_safe_encoding($operend_1 - $operend_2 - $operend_3)),'','wpjobportal_spamcheckresult','captcha');
-                }
-            } else {
-                if ($operand == 2) {
-                    WPJOBPORTALincluder::getObjectClass('wpjpnotification')->addSessionNotificationDataToTable(wpjobportalphplib::wpJP_safe_encoding($operend_1 - $operend_2),'','wpjobportal_spamcheckresult','captcha');
-                } elseif ($operand == 3) {
-                    WPJOBPORTALincluder::getObjectClass('wpjpnotification')->addSessionNotificationDataToTable(wpjobportalphplib::wpJP_safe_encoding($operend_1 - $operend_2 - $operend_3),'','wpjobportal_spamcheckresult','captcha');
-                }
-            }
-        }
-        $wpjobportal_add_string = "";
-        if (wpjobportal::$wpjobportal_theme_chk == 1) {
-            $wpjobportal_add_string .= '<div class="wpj-jp-form-captcha" ><div class="wpj-jp-form-label" for="' . $wpjobportal_rand . '">';
-        } else {
-            $wpjobportal_add_string .= '<div class="wjportal-form-row wjportal-form-captcha" ><div class="wjportal-form-title" for="' . $wpjobportal_rand . '">';
-        }
-
-        if ($tcalc == 1) {
-            if ($operand == 2) {
-                $wpjobportal_add_string .= $operend_1 . ' ' . esc_html(__('Plus', 'wp-job-portal')) . ' ' . $operend_2 . ' ' . esc_html(__('Equals', 'wp-job-portal')) . ' ';
-            } elseif ($operand == 3) {
-                $wpjobportal_add_string .= $operend_1 . ' ' . esc_html(__('Plus', 'wp-job-portal')) . ' ' . $operend_2 . ' ' . esc_html(__('Plus', 'wp-job-portal')) . ' ' . $operend_3 . ' ' . esc_html(__('Equals', 'wp-job-portal')) . ' ';
-            }
-        } elseif ($tcalc == 2) {
-            $converttostring = 0;
-            if ($operand == 2) {
-                $wpjobportal_add_string .= $operend_1 . ' ' . esc_html(__('Minus', 'wp-job-portal')) . ' ' . $operend_2 . ' ' . esc_html(__('Equals', 'wp-job-portal')) . ' ';
-            } elseif ($operand == 3) {
-                $wpjobportal_add_string .= $operend_1 . ' ' . esc_html(__('Minus', 'wp-job-portal')) . ' ' . $operend_2 . ' ' . esc_html(__('Minus', 'wp-job-portal')) . ' ' . $operend_3 . ' ' . esc_html(__('Equals', 'wp-job-portal')) . ' ';
-            }
-        }
-
-        $wpjobportal_add_string .= '<font color="red">* </font></div>';
-        $wpjobportal_class_prefix = "";
-        if(wpjobportal::$wpjobportal_theme_chk == 1){
-            $wpjobportal_class_prefix = 'wpj-jp';
-        }
-
-        $wpjobportal_add_string .= '<div class="wjportal-form-value"><input type="text" name="' . $wpjobportal_rand . '" id="' . $wpjobportal_rand . '" size="3" class="inputbox form-control wjportal-form-input-field '.$wpjobportal_class_prefix.'-input-field  ' . $wpjobportal_rand . '" value="" data-validation="required" /></div>';
-        $wpjobportal_add_string .= '</div>';
-
-        return $wpjobportal_add_string;
+        return WPJOBPORTAL_Captcha_Service::render($wpjobportal_context);
     }
 
+    /**
+     * Did this submission come from a person?
+     *
+     * Returns 1 and not true, because every caller compares against 1.
+     *
+     * @param string $wpjobportal_context Which form this is.
+     * @return int 1 when the check passed, 2 when it did not.
+     */
+    function checkCaptchaUserForm($wpjobportal_context = 'form') {
+        if (!class_exists('WPJOBPORTAL_Captcha_Service')) {
+            return 1;
+        }
+
+        $wpjobportal_result = WPJOBPORTAL_Captcha_Service::verify($wpjobportal_context);
+
+        if (is_wp_error($wpjobportal_result)) {
+            // Somewhere a visitor can be told what actually happened. "Invalid
+            // captcha" was the same sentence whether they had mistyped
+            // something or the verification service was unreachable.
+            wpjobportal::$_data['google_captchaerror'] = WPJOBPORTAL_Captcha_Service::error_message($wpjobportal_result);
+
+            return 2;
+        }
+
+        return 1;
+    }
+
+    /**
+     * A short random string.
+     *
+     * Nothing in the spam check needs this any more; it is kept because it is a
+     * public method and something else may have reached for it.
+     *
+     * @return string
+     */
     function randomNumber() {
         $pw = '';
 
@@ -134,33 +94,4 @@ class WPJOBPORTALcaptcha {
         }
         return $pw;
     }
-
-    private function performChecks() {
-        $wpjobportal_rot13 = WPJOBPORTALincluder::getObjectClass('wpjpnotification')->getNotificationDatabySessionId('wpjobportal_rot13',true);
-        if ($wpjobportal_rot13 == 1) {
-            $spamcheckresult = wpjobportalphplib::wpJP_str_rot13(WPJOBPORTALincluder::getObjectClass('wpjpnotification')->getNotificationDatabySessionId('wpjobportal_spamcheckresult',true));
-        } else {
-            $spamcheckresult = WPJOBPORTALincluder::getObjectClass('wpjpnotification')->getNotificationDatabySessionId('wpjobportal_spamcheckresult',true);
-        }
-        $spamcheckresult = wpjobportalphplib::wpJP_safe_decoding($spamcheckresult);
-
-
-        $spamcheck = WPJOBPORTALincluder::getObjectClass('wpjpnotification')->getNotificationDatabySessionId('wpjobportal_spamcheckid',true);
-        $spamcheck = WPJOBPORTALrequest::getVar($spamcheck, '', 'post');
-        if (!is_numeric($spamcheckresult) || $spamcheckresult != $spamcheck) {
-            return false; // Failed
-        }
-        return true;
-    }
-
-    function checkCaptchaUserForm() {
-        if (!$this->performChecks())
-            $return = 2;
-        else
-            $return = 1;
-        return $return;
-    }
-
 }
-
-?>

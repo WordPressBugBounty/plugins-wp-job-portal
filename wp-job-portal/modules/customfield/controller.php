@@ -75,7 +75,7 @@ class WPJOBPORTALCustomFieldController {
         $wpjobportal_url = esc_url_raw(admin_url('admin.php?page=wpjobportal_customfield&wpjobportallt=fieldsordering&ff=' . esc_attr($wpjobportal_fieldfor)));
         if ($wpjobportal_pagenum)
             $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -95,7 +95,7 @@ class WPJOBPORTALCustomFieldController {
         $wpjobportal_url = esc_url_raw(admin_url('admin.php?page=wpjobportal_customfield&wpjobportallt=fieldsordering&ff=' . esc_attr($wpjobportal_fieldfor)));
         if ($wpjobportal_pagenum)
             $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -115,7 +115,7 @@ class WPJOBPORTALCustomFieldController {
         $wpjobportal_url = esc_url_raw(admin_url('admin.php?page=wpjobportal_customfield&wpjobportallt=fieldsordering&ff=' . esc_attr($wpjobportal_fieldfor)));
         if ($wpjobportal_pagenum)
             $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -135,7 +135,7 @@ class WPJOBPORTALCustomFieldController {
         $wpjobportal_url = esc_url_raw(admin_url('admin.php?page=wpjobportal_customfield&wpjobportallt=fieldsordering&ff=' . esc_attr($wpjobportal_fieldfor)));
         if ($wpjobportal_pagenum)
             $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -149,7 +149,7 @@ class WPJOBPORTALCustomFieldController {
         $wpjobportal_url = esc_url_raw(admin_url('admin.php?page=wpjobportal_customfield&wpjobportallt=fieldsordering&ff=' . esc_attr($wpjobportal_fieldfor)));
         if ($wpjobportal_pagenum)
             $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -163,7 +163,7 @@ class WPJOBPORTALCustomFieldController {
         $wpjobportal_url = esc_url_raw(admin_url('admin.php?page=wpjobportal_customfield&wpjobportallt=fieldsordering&ff=' . esc_attr($wpjobportal_fieldfor)));
         if ($wpjobportal_pagenum)
             $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }*/
 
@@ -177,7 +177,7 @@ class WPJOBPORTALCustomFieldController {
         $wpjobportal_url = esc_url_raw(admin_url('admin.php?page=wpjobportal_customfield&wpjobportallt=fieldsordering&ff=' . esc_attr($wpjobportal_fieldfor)));
         if ($wpjobportal_pagenum)
             $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -191,7 +191,7 @@ class WPJOBPORTALCustomFieldController {
         $wpjobportal_url = esc_url_raw(admin_url('admin.php?page=wpjobportal_customfield&wpjobportallt=fieldsordering&ff=' . esc_attr($wpjobportal_fieldfor)));
         if ($wpjobportal_pagenum)
             $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }*/
 
@@ -214,7 +214,7 @@ class WPJOBPORTALCustomFieldController {
             $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_customfield&ff=" . esc_attr($wpjobportal_fieldfor)));
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'customfield');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -228,7 +228,7 @@ class WPJOBPORTALCustomFieldController {
     //     $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_customfield&wpjobportallt=searchfields&fieldfor=" . esc_attr($wpjobportal_fieldfor)));
     //     $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'customfield');
     //     WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-    //     wp_redirect($wpjobportal_url);
+    //     wp_safe_redirect($wpjobportal_url);
     //     die();
     // }
 
@@ -242,7 +242,7 @@ class WPJOBPORTALCustomFieldController {
     //     $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_customfield&wpjobportallt=searchfields&fieldfor=" . esc_attr($wpjobportal_fieldfor)));
     //     $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'customfield');
     //     WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-    //     wp_redirect($wpjobportal_url);
+    //     wp_safe_redirect($wpjobportal_url);
     //     die();
     // }
 
@@ -262,7 +262,7 @@ class WPJOBPORTALCustomFieldController {
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_customfield&ff=".esc_attr($wpjobportal_ff)));
         if ($wpjobportal_pagenum)
             $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 

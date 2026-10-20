@@ -2,4 +2,8 @@
 INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
 ("San Ignacio & Santa Elena", "San Ignacio & Santa Elena", "San Ignacio & Santa Elena", NULL, 5, 0, 1, NULL, "17.1582776", "-89.0681672"),
 ("Belmopan", "Belmopan", "Belmopan", NULL, 5, 0, 1, NULL, "17.250199", "-88.770018"),
-("Belize City", "Belize City", "Belize City", NULL, 5, 0, 1, NULL, "17.5000543", "-88.2003115");
+("Belize City", "Belize City", "Belize City", NULL, 5, 0, 1, NULL, "17.5000543", "-88.2003115"),
+("Belize", "Belize", "Belize", NULL, 5, 0, 1, NULL, "17.5045661", "-88.1962133"),
+("Orange Walk", "Orange Walk", "Orange Walk", NULL, 5, 0, 1, NULL, "17.760353", "-88.864698"),
+("Punta Gorda", "Punta Gorda", "Punta Gorda", NULL, 5, 0, 1, NULL, "16.098935", "-88.8094906"),
+("San Ignacio", "San Ignacio", "San Ignacio", NULL, 5, 0, 1, NULL, "17.1522786", "-89.0800227");

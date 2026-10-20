@@ -33,7 +33,7 @@ class WPJOBPORTALajax {
                                 'getPaymentPopup','getPackagePopupForFeaturedCompany','getPackagePopupForFeaturedJob','getPackagePopupForFeaturedResume',
                                 'getPackagePopupForJobAlert','getPackagePopupJobView','getPackagePopupForCopyJob','getPackagePopupForCompanyContactDetail',
                                 'getPackagePopupForResumeContactDetail','gettagsbytagname','listDepartments','deleteUserPhoto',
-                                'getStripePlans','downloadandinstalladdonfromAjax','getChildForVisibleCombobox','isFieldRequired','getFieldsForComboBySection',
+                                'getStripePlans','getChildForVisibleCombobox','isFieldRequired','getFieldsForComboBySection',
                                 'getUserRoleBasedInfo','storeConfigurationSingle','importZywrapData','checkZywrapApiKey','importZywrapBatchProcess',
                                 'getWrappersByCategory','executeZywrapProxy','getZywrapAllWrappers','getSchemaByUseCode','getAjaxJobs', 'executeCompanyCopilot',
                                 'executeJobCopilot', 'executeResumeCopilot', 'executeCoverLetterCopilot');

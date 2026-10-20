@@ -39,4 +39,14 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("اسدابادښار", "اسدابادښار", "Asadabad", NULL, 97, 0, 1, NULL, "34.8727951", "71.1508321"),
 ("قندوز", "قندوز", "Kunduz", NULL, 97, 0, 1, NULL, "36.7175566", "68.8672916"),
 ("تالقان", "تالقان", "Taloqan", NULL, 97, 0, 1, NULL, "36.7356491", "69.5350725"),
-("فیض‌آباد", "فیض‌آباد", "Fayzabad", NULL, 97, 0, 1, NULL, "37.1187512", "70.5784966");
+("فیض‌آباد", "فیض‌آباد", "Fayzabad", NULL, 97, 0, 1, NULL, "37.1187512", "70.5784966"),
+("Aibak", "Aibak", "Aibak", NULL, 97, 0, 1, NULL, "36.3155506", "67.9642863"),
+("Alaqahdari Deh-e Shu", "Alaqahdari Deh-e Shu", "Alaqahdari Deh-e Shu", NULL, 97, 0, 1, NULL, "32.6975", "61.4527778"),
+("Andkhoy", "Andkhoy", "Andkhoy", NULL, 97, 0, 1, NULL, "36.9549975", "65.1254488"),
+("Anar Darah", "Anar Darah", "Anar Darah", NULL, 97, 0, 1, NULL, "32.6975", "61.4527778"),
+("Arghestan", "Arghestan", "Arghestan", NULL, 97, 0, 1, NULL, "31.461224", "66.5223902"),
+("Balkh", "Balkh", "Balkh", NULL, 97, 0, 1, NULL, "36.7550603", "66.8975372"),
+("Baraki Barak", "Baraki Barak", "Baraki Barak", NULL, 97, 0, 1, NULL, "33.9690929", "68.9509787"),
+("Basowl", "Basowl", "Basowl", NULL, 97, 0, 1, NULL, "34.5071799", "69.1909015"),
+("Chahar Burj", "Chahar Burj", "Chahar Burj", NULL, 97, 0, 1, NULL, "34.5238986", "69.0742655"),
+("Chiras", "Chiras", "Chiras", NULL, 97, 0, 1, NULL, "35.4166669", "65.983333");

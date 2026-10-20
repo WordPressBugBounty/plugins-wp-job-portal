@@ -64,7 +64,7 @@ class WPJOBPORTALJobtypeController {
         $wpjobportal_url = esc_url_raw(admin_url('admin.php?page=wpjobportal_jobtype&wpjobportallt=jobtypes'));
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'jobtype');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
     }
 
     function remove() {
@@ -79,7 +79,7 @@ class WPJOBPORTALJobtypeController {
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'jobtype');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_jobtype&wpjobportallt=jobtypes"));
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -98,7 +98,7 @@ class WPJOBPORTALJobtypeController {
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_jobtype&wpjobportallt=jobtypes"));
         if ($wpjobportal_pagenum)
             $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -117,7 +117,7 @@ class WPJOBPORTALJobtypeController {
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_jobtype&wpjobportallt=jobtypes"));
         if ($wpjobportal_pagenum)
             $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -147,7 +147,7 @@ class WPJOBPORTALJobtypeController {
         WPJOBPORTALincluder::getJSModel('jobtype')->storeOrderingFromPage($post);
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_jobtype"));
 
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         exit;
     }
 

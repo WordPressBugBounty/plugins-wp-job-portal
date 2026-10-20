@@ -1,3 +1,9 @@
 
 INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
-("Nukuʻalofa", "Nukuʻalofa", "Nuku'alofa", NULL, 209, 0, 1, NULL, "-21.1343401", "-175.201808");
+("Nukuʻalofa", "Nukuʻalofa", "Nuku'alofa", NULL, 209, 0, 1, NULL, "-21.1343401", "-175.201808"),
+("Havelu", "Havelu", "Havelu", NULL, 209, 0, 1, NULL, "48.792264", "1.53699"),
+("Hihifo", "Hihifo", "Hihifo", NULL, 209, 0, 1, NULL, "-15.9528061", "-173.7955818"),
+("Neiafu", "Neiafu", "Neiafu", NULL, 209, 0, 1, NULL, "-18.6476779", "-173.9836854"),
+("Pangai", "Pangai", "Pangai", NULL, 209, 0, 1, NULL, "-19.811431", "-174.3502613"),
+("Vaini", "Vaini", "Vaini", NULL, 209, 0, 1, NULL, "-21.1935", "-175.1751534"),
+("`Ohonua", "`Ohonua", "`Ohonua", NULL, 209, 0, 1, NULL, "-21.3430913", "-174.9531416");

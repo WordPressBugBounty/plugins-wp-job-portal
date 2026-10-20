@@ -173,9 +173,9 @@ foreach ($wpjobportal_fieldslist AS $wpjobportal_field) {
                     <div class="wjportal-form-image-wrp" style="display:'.$wpjobportal_display.';">
                     <img class="rs_photo wjportal-form-image" id="rs_photo" src="' . $wpjobportal_img . '" alt="'.esc_attr(__('Profile image','wp-job-portal')).'"/>';
                     if(isset(wpjobportal::$_data[0]) && !empty(wpjobportal::$_data[0]->id)){
-                        $wpjobportal_fieldvalue .= '<img id="wjportal-form-delete-image" onClick="return removeLogo('.wpjobportal::$_data[0]->uid.')" alt="cross" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/no.png" />';
+                        $wpjobportal_fieldvalue .= '<img id="wjportal-form-delete-image" onClick="return removeLogo('.wpjobportal::$_data[0]->uid.')" alt="'.esc_attr__('Remove', 'wp-job-portal').'" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/no.png" />';
                     }else{
-                        $wpjobportal_fieldvalue .= '<img id="wjportal-form-delete-image"  alt="cross" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/no.png" />';
+                        $wpjobportal_fieldvalue .= '<img id="wjportal-form-delete-image"  alt="'.esc_attr__('Remove', 'wp-job-portal').'" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/no.png" />';
                     }
                     $wpjobportal_fieldvalue .=  '</div>';
                     $wpjobportal_logoformat = wpjobportal::$_config->getConfigurationByConfigName('image_file_type');
@@ -246,22 +246,9 @@ foreach ($wpjobportal_fieldslist AS $wpjobportal_field) {
     ?>
     <?php
     $wpjobportal_config_array = wpjobportal::$_config->getConfigByFor('captcha');
-    $wpjobportal_google_recaptcha_3 = false;
 
     if ($wpjobportal_config_array['cap_on_reg_form'] == 1) {
-        if ($wpjobportal_config_array['captcha_selection'] == 1) { // Google recaptcha
-
-            if ($wpjobportal_config_array['recaptcha_version'] == 1) { // Google recaptcha 2
-                ?>
-                <div class="g-recaptcha" data-sitekey="<?php echo esc_attr($wpjobportal_config_array['recaptcha_publickey']);?>"></div>
-                <?php
-            }else{
-                $wpjobportal_google_recaptcha_3 = true;
-            }
-        } else { // own captcha
-            $wpjobportal_captcha = new WPJOBPORTALcaptcha;
-            echo wp_kses($wpjobportal_captcha->getCaptchaForForm(), WPJOBPORTAL_ALLOWED_TAGS);
-        }
+        WPJOBPORTAL_Captcha_Service::output();
     }
     echo wp_kses(WPJOBPORTALformfield::hidden('wpjobportalpageid', wpjobportal::wpjobportal_getPageid()), WPJOBPORTAL_ALLOWED_TAGS);
     echo wp_kses(WPJOBPORTALformfield::hidden('wpjobportal_nonce', esc_html(wp_create_nonce('wpjobportal_nonce'))), WPJOBPORTAL_ALLOWED_TAGS);
@@ -272,11 +259,7 @@ foreach ($wpjobportal_fieldslist AS $wpjobportal_field) {
         : __('Register New Account', 'wp-job-portal');
     ?>
     <div class="wjportal-form-btn-wrp">
-        <?php if($wpjobportal_google_recaptcha_3 == false){ ?>
-            <input type="submit" id="save" class="button wjportal-form-btn wjportal-save-btn g-recaptcha" value="<?php echo esc_attr($wpjobportal_registration_button_text); ?>"/>
-        <?php }else{ ?>
-            <input type="submit" id="save" data-sitekey="<?php echo esc_attr($wpjobportal_config_array['recaptcha_publickey']);?>" data-callback='onSubmit' data-action='submit' class="button wjportal-form-btn wjportal-save-btn g-recaptcha" value="<?php echo esc_attr($wpjobportal_registration_button_text); ?>"/>
-        <?php } ?>
+        <input type="submit" id="save" class="button wjportal-form-btn wjportal-save-btn" value="<?php echo esc_attr($wpjobportal_registration_button_text); ?>"/>
     </div>
     <input type="hidden" name="wpjobportal_jobs_register_nonce" value="<?php echo esc_attr(wp_create_nonce('wpjobportal-jobs-register-nonce')); ?>"/>
     <?php } ?>

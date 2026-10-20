@@ -19,10 +19,20 @@ class WPJOBPORTALsystemerrorController {
                     WPJOBPORTALincluder::getJSModel('systemerror')->getSystemErrors();
                     break;
 
-                case 'admin_addsystemerror':
-                    $wpjobportal_id = WPJOBPORTALrequest::getVar('jssupportticketid', 'get');
-                    WPJOBPORTALincluder::getJSModel('systemerror')->getsystemerrorForForm($wpjobportal_id);
-                    break;
+                /*
+                 * 'admin_addsystemerror' used to be handled here and is gone.
+                 *
+                 * It called getsystemerrorForForm() on the systemerror model,
+                 * which does not define it - and nor does anything else, here or
+                 * in the original distribution. There is no template for the
+                 * layout and nothing routes to it, so it could never have
+                 * rendered; reaching it would have fataled. The id it read came
+                 * from a request variable named jssupportticketid, which belongs
+                 * to a different product altogether.
+                 *
+                 * The System Errors listing next door is a real screen, linked
+                 * from the admin menu, and is untouched.
+                 */
                 default:
                     return;
             }

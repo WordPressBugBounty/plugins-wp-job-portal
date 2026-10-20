@@ -336,7 +336,7 @@ class WPJOBPORTAL_Storage_Engine_Service {
     public static function compatibility() {
         global $wpdb;
 
-        $rows = $wpdb->get_results('SHOW ENGINES', ARRAY_A);
+        $rows = wpjobportaldb_direct::get_results('SHOW ENGINES', ARRAY_A);
         foreach ((array) $rows as $row) {
             if (isset($row['Engine'], $row['Support'])
                 && strtoupper((string) $row['Engine']) === 'INNODB'
@@ -386,7 +386,7 @@ class WPJOBPORTAL_Storage_Engine_Service {
         if ($engine === null) {
             return new WP_Error(
                 'wpjobportal_storage_table_missing',
-                sprintf(__('Core table %s was not found.', 'wp-job-portal'), $table_suffix)
+                sprintf(/* translators: %s: table suffix */ __('Core table %s was not found.', 'wp-job-portal'), $table_suffix)
             );
         }
 
@@ -397,22 +397,22 @@ class WPJOBPORTAL_Storage_Engine_Service {
         if ($engine !== 'MYISAM') {
             return new WP_Error(
                 'wpjobportal_storage_engine_unexpected',
-                sprintf(__('Core table %1$s uses unsupported engine %2$s.', 'wp-job-portal'), $table_suffix, $engine)
+                sprintf(/* translators: 1: table suffix, 2: engine */ __('Core table %1$s uses unsupported engine %2$s.', 'wp-job-portal'), $table_suffix, $engine)
             );
         }
 
-        if ($wpdb->query('ALTER TABLE `' . $table . '` ENGINE=InnoDB') === false) {
+        if (wpjobportaldb_direct::query($wpdb->prepare('ALTER TABLE %i ENGINE=InnoDB', $table)) === false) {
             $message = $wpdb->last_error ? $wpdb->last_error : __('Unknown database error.', 'wp-job-portal');
             return new WP_Error(
                 'wpjobportal_storage_conversion_failed',
-                sprintf(__('Could not convert %1$s: %2$s', 'wp-job-portal'), $table_suffix, WPJOBPORTAL_Redactor::redact($message))
+                sprintf(/* translators: 1: table suffix, 2: wpjobportal redactor redact message */ __('Could not convert %1$s: %2$s', 'wp-job-portal'), $table_suffix, WPJOBPORTAL_Redactor::redact($message))
             );
         }
 
         if (self::get_table_engine($table) !== 'INNODB') {
             return new WP_Error(
                 'wpjobportal_storage_conversion_unverified',
-                sprintf(__('The database did not confirm conversion of %s.', 'wp-job-portal'), $table_suffix)
+                sprintf(/* translators: %s: table suffix */ __('The database did not confirm conversion of %s.', 'wp-job-portal'), $table_suffix)
             );
         }
 
@@ -427,7 +427,7 @@ class WPJOBPORTAL_Storage_Engine_Service {
 
         $targets = array_fill_keys(self::target_tables(), true);
         $pattern = $wpdb->esc_like($wpdb->prefix . 'wj_portal_') . '%';
-        $rows = $wpdb->get_results($wpdb->prepare('SHOW TABLE STATUS LIKE %s', $pattern), ARRAY_A);
+        $rows = wpjobportaldb_direct::get_results($wpdb->prepare('SHOW TABLE STATUS LIKE %s', $pattern), ARRAY_A);
         $statuses = array();
 
         foreach ((array) $rows as $row) {
@@ -457,7 +457,7 @@ class WPJOBPORTAL_Storage_Engine_Service {
     private static function get_table_engine($table) {
         global $wpdb;
 
-        $row = $wpdb->get_row($wpdb->prepare('SHOW TABLE STATUS LIKE %s', $table), ARRAY_A);
+        $row = wpjobportaldb_direct::get_row($wpdb->prepare('SHOW TABLE STATUS LIKE %s', $table), ARRAY_A);
         if (!$row || empty($row['Engine'])) {
             return null;
         }

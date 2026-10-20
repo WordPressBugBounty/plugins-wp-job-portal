@@ -1,264 +1,201 @@
 === WP Job Portal – AI-Powered Recruitment System for Company or Job Board website ===
 Contributors: wpjobportal
-Donate link: https://wpjobportal.com/pricing/
-Tags: job board, job listing, careers, job manager, jobs, recruiting
-Requires at least: 5.5 
-Tested up to: 7.0
-Stable tag: 2.6.0
+Tags: job board, careers, recruitment, job listing, jobs
+Requires at least: 6.2
+Tested up to: 7.1
+Stable tag: 2.7.0
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-A smart, AI-powered job board plugin for WordPress. Build modern recruitment platforms with job listings, resume search, and intelligent matching.
+A smart, AI-powered job board plugin for WordPress. Build a company careers page or a full job board with resumes, applications and smart matching.
 
 == Description ==
-	
-== A Complete Job Board Plugin ==
-**We understand your HR needs and have built a smarter way to manage recruitment using the power of AI. WP Job Portal makes hiring easier, faster, and more accurate—designed for a better future**
 
-WP Job Portal is a lightweight, AI-powered job board plugin for WordPress that delivers a complete recruitment system. With intelligent automation, it helps match the right candidates to the right jobs, streamlines resume parsing, and boosts decision-making using AI-driven filters, job suggestions, and resume recommendations.
+**WP Job Portal is a complete recruitment system for WordPress: a careers page for your own company, or a job board for many employers.** Post jobs, receive applications, review resumes and hire from your WordPress dashboard. No coding needed.
 
-You can manage everything from your WordPress dashboard—no coding required. With support for multiple themes and powerful shortcodes, you’ll get started in minutes with advanced AI features working for you behind the scenes.
+* **Hiring for your company?** Publish your openings on a branded careers page, take applications and keep every candidate in one place.
+* **Running a job board?** Employers register, post jobs and manage their applicants; job seekers build resumes and apply in a few clicks. Charge for listings when you are ready.
 
-👉 <a href="https://demo.wpjobportal.com/" target="_blank">View Demo</a> | <a href="https://docs.wpjobportal.com/" target="_blank">Documentation</a> | <a href="https://www.youtube.com/channel/UCk_qYTzV6gusKmMHxTrgU2Q" target="_blank">Watch Videos</a> | <a href="https://wpjobportal.com/support/" target="_blank">Support</a> | <a href="https://wpjobportal.com/" target="_blank">Plugin Homepage</a> 
+You are live in minutes: the setup wizard prepares the site for a company or a job board, creates the pages and can add sample jobs to show it working.
+
+[View demo](https://demo.wpjobportal.com/) | [Documentation](https://docs.wpjobportal.com/) | [Videos](https://www.youtube.com/channel/UCk_qYTzV6gusKmMHxTrgU2Q) | [Support](https://wpjobportal.com/support/)
 
 https://www.youtube.com/watch?v=UmO6EwsNMZo
 
-= Shortcode =
- [wpjobportal_job] 
- [wpjobportal_job_search] 
- [wpjobportal_jobseeker_controlpanel] 
- [wpjobportal_employer_controlpanel] 
+= Smarter hiring with AI =
 
+* **AI writing**: draft job and company descriptions, resume skills and cover letters in seconds (needs a ZyWrap account).
+* **Smart Search & Matching** (premium): relevance-ranked job and resume search, suggested jobs for candidates, suggested resumes for employers and a match score for every application, run on your own server.
+
+= Jobs that get found =
+
+* **Google for Jobs**: every job carries JobPosting structured data, so it can appear in Google's job search.
+* Search-engine-friendly job addresses and a jobs XML sitemap
+* Share buttons, RSS feeds and a "tell a friend" email for every job
+* Weekly job alert emails that bring candidates back
+
+= For job seekers =
+
+* Search by keyword, category, job type, location and salary, and save searches to run again
+* Build a resume once and apply in a few clicks, or use Quick Apply with a resume file
+* Shortlist jobs and follow every application from a personal dashboard
+
+= For employers =
+
+* Post, copy and manage jobs and company profiles from the front end
+* Review applicants, read and print resumes
+* A dashboard with their jobs, applications and statistics
+
+= Easy to run and fit to your site =
+
+* Approve jobs, companies and resumes before they go live
+* Custom fields for jobs, resumes, companies and registration, with conditional logic
+* Gutenberg blocks, an Elementor widget, 30+ shortcodes and seven sidebar widgets
+* Works with any theme, with color presets to match your design, and supports right-to-left languages
+* Registration and login for employers and job seekers, protected by Google reCAPTCHA or Cloudflare Turnstile
+* An email template for every notification, and control over who receives which
+* Location data for 186 countries, in English or the local language
+* Import companies, jobs, resumes and applications from WP Job Manager
+* Activity log and a system status page
+
+= Premium products =
+
+Add what your site needs. Each product works with the free plugin on its own and installs from your WordPress dashboard. [Compare plans](https://wpjobportal.com/pricing/).
+
+* **Pro**: advanced resume builder, multiple resumes and cover letters, resume search, visitor applications, messaging, PDF and export, reports, instant job alerts and maps with radius search.
+* **Marketplace Suite**: sell job packages, credits and subscriptions through Stripe, PayPal or WooCommerce, with paid featured jobs, companies and resumes.
+* **Recruit Suite**: a hiring pipeline for teams, with stages, scorecards, shared notes, offers with approvals and e-signatures, and recruiting reports.
+* **Smart Search & Matching**: AI job and resume search, suggestions and match scores.
 
 = Translations =
-WP Job Portal is available in English, Arabic (العربية), German(Deutsch), Spanish(Español), French(Français), Italian(Italiano), Dutch(Nederlands), Polish(Polski), Brazilian Portuguese(Português do Brasil), Russian(Русский), Czech(Čeština), Greek(Ελληνικά), Indonesian(Bahasa Indonesia), Japanese(日本語), Swedish(Svenska), Thai(ไทย), Turkish(Türkçe), Cinese(简体中文), Malaysian(Bahasa Melayu), Korean(한국어), Romanian(Română) and Filipino(Tagalog)
 
+WP Job Portal is available in Arabic, Chinese (China), Czech, Dutch, French, German, Greek, Hebrew, Indonesian, Italian, Japanese, Polish, Portuguese (Brazil), Romanian, Russian, Spanish and Turkish, and installs the one your site uses. Help translate on [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/wp-job-portal/).
 
-WP Job Portal simplifies hiring with a complete, all-in-one solution powered by smart filtering to streamline your recruitment process.
+== External services ==
 
-> WP Job Portal provides all the essential tools to help job seekers discover better career opportunities and ensure a secure future. It delivers a highly customizable, user-friendly, and reliable experience for all users.
-> For employers, it minimizes effort by eliminating the manual work of sifting through resumes—automating the process of identifying top talent with ease.
+WP Job Portal runs on your own server. It connects to the services below only in the cases described.
 
-WP Job Portal is the simplest and most efficient way to manage recruitment, helping you attract, organize, and hire the right candidates faster.
-### KEY FEATURES OF WP JOB PORTAL ### 
+**WP Job Portal translations** (wpjobportal.com): when the site language is not English, the plugin downloads that language's translation files and checks daily for updates. It sends nothing but the request for the files. To turn this off, add `define( 'WPJOBPORTAL_TRANSLATIONS_AUTO', false );` to wp-config.php. [Terms](https://wpjobportal.com/terms/), [Privacy policy](https://wpjobportal.com/privacy-policy/).
 
-**Job Search**
--AI Job Search Addon- *Makes finding relevant jobs faster with AI-enhanced search from WP Job Portal.*
-Job seekers can refine their search and effectively distinguish the specific jobs they are searching for utilizing the search function. The plugin includes the classification, location, and compensation range.
+**WP Job Portal licences and updates** (wpjobportal.com): only when you enter a licence key or have a premium product installed. It sends the licence key, your site address and the installed product versions, to activate the licence and offer updates. [Terms](https://wpjobportal.com/terms/), [Privacy policy](https://wpjobportal.com/privacy-policy/).
 
-**Flexible Job Apply Options**
-Control how users apply to jobs on your site. You can allow candidates to apply by selecting a **saved resume** from their profile, or enable **Quick Apply**, which lets job seekers or visitors upload a resume file and submit basic contact details.
+**ZyWrap** (api.zywrap.com): only when you turn on AI content generation and add your ZyWrap key. The text you ask it to write about is sent to ZyWrap. [Terms](https://zywrap.com/terms), [Privacy policy](https://zywrap.com/privacy).
 
-**Employer & Job Seeker Registration and Dashboards**
-WP Job Portal allows registration for employers and job seekers. Each role receives a specific dashboard tailored to their needs. Employers can manage job listings, applicants, and company profiles, while job seekers can build resumes, apply for jobs, and track applications. Dashboards present only relevant tools, providing a streamlined and intuitive experience.
+**Google Maps** (maps.googleapis.com): only when you add a Google Maps API key. Map pages load Google's map script in the visitor's browser. [Terms](https://cloud.google.com/maps-platform/terms), [Privacy policy](https://policies.google.com/privacy).
 
-**Advanced Field Management**
-WP Job Portal offers powerful tools to manage fields across all entities—jobs, resumes, companies, and user profiles. You can create custom fields and also configure existing system fields, applying detailed controls like visibility, required status, publishing rules for visitors or users, and whether they appear in listings. Additionally, use conditional logic to make any field dynamically show or hide based on other field values, enabling tailored forms and cleaner data collection.
-
-**Elementor Integration for Full Design Control**
-Easily tailor the look and feel of all WP Job Portal interfaces with Elementor. Use its visual builder to adjust typography, color schemes, spacing, and layouts across job listings, resumes, dashboards, and more. This ensures seamless design integration with your site.
-
-**Quick Start Wizard**
-The Quick Start Wizard streamlines the initial setup by walking the admin through essential configurations step by step. Begin by selecting Careers & ATS or Job Marketplace. Based on this choice, the wizard automatically adjusts relevant settings to fit the selected use case. Admins can also import sample data (jobs, companies, resumes, and applications) for testing or demonstration purposes. 
-
-**Comprehensive Shortcode Support with Customization Options**
-WP Job Portal offers a wide range of shortcodes to display jobs, resumes, companies, dashboards, and more anywhere on your site. Major shortcode's supports multiple attributes, giving you better control over layout, filters, sorting, visibility, and styling for matching your site’s structure and design needs.
-
-**Custom Fields On Registration Form**
-You can add custom fields on the registration page and approved information and save them under the client meta field. you can likewise eliminate the current input field by the remove action hook. 
-
-**Country & Language-Based Location Data Import**
-Import comprehensive location data cities, states and countries. You can choose whether to import data in English or the country's native language, giving you flexibility to match your site's audience and language preferences.
-
-**Email Alerts for User Actions**
-WP Job Portal sends automated email notifications to Admins, Employers, Job Seekers, and Visitors for key events like job applications, approvals, registrations, and more. Admins have full control over which notifications are sent and to whom. Each alert uses customizable email templates for a personalized communication experience.
-
-**Third-Party Data Import**
-WP Job Portal offers a built-in interface to import data from WP Job Manager, making migration effortless. Easily transfer existing companies, jobs, resumes, and job applications into WP Job Portal without data loss or hassle.
-
-**Highly Customizable with Role-Based Configuration**
-WP Job Portal offers hundreds of configuration settings to fine-tune how your job board works. The intuitive admin panel organizes settings by user role—Employer, Job Seeker, and Visitor—for easier management. Admins can control the visibility of sections, links, actions, and more to shape the user experience exactly as needed.
-
-**Color Manager**
-Get multiple presets with a beautiful color schemes to make your plugin more beautiful with just one click. Admin can Configure the theme settings to different eye-catchy colors schemes.
-
-https://www.youtube.com/watch?v=eHUMwjFuV2I
-
-### MORE WITH PLUGIN ###
-
-*Fully responsive design works smoothly on desktops, tablets, and mobile devices.
-*Supports unlimited salary ranges, range type, job types, job shifts, job statuses, experience levels, educations, age ranges, career levels, and currencies.
-*Admins can manage job types, shifts, statuses, and other job attributes easily from the dashboard.
-*Includes 45 shortcodes with premium addon and 25 in the base version for flexible content display.
-*Admin can require approval for companies, jobs, and resumes before they appear on the site.
-*Admin can control which featured or gold listings are approved for jobs, resumes, and companies.
-*Admin can enable or disable any field and change the order in which fields appear.
-*Comes with built-in registration and login pages for both employers and job seekers.
-*Tracks all major actions with a full activity log for admins, employers, and job seekers.
-*Allows printing of applied resumes directly from the system.
-*Optimized for SEO with search engine–friendly URLs.
-*Employers can post unlimited jobs from the front-end.
-*Job posts can include over 30 fields for detailed information.
-*Create unlimited categories with unlimited nested levels.
-*Automatically drops a marker on Google Maps when a city is selected.
-
-**Multi-Language Support**
-WP Job Portal is multi-language supported. You can download the latest translations and convert the plugin into language of your choice. <a href="https://www.transifex.com/projects/p/js_jobs/" target="_blank">Contribute in WP Job Portal translations</a>.
-
-###Power-up your work with the premium Add-ons###
-**AI Search Job**
-Empower job seekers with WP Job Portal AI Search Job to find the most relevant job listings using intelligent, context-aware search.
-
-**AI Search Resume**
-WP Job Portal AI Search Resume helps employers instantly locate the best-matching resumes with advanced AI-driven filtering.
-
-**AI Suggested Jobs**
-With WP Job Portal AI Suggested Jobs, the system recommends opportunities tailored to each job seeker’s profile and activity.
-
-**AI Suggested Resumes**
-WP Job Portal AI Suggested Resumes delivers smart resume suggestions to employers, streamlining the hiring process.
-
-**Job Alert Notifications**
-Job alerts consider automated emails with multiple notification email templates to be sent with explicit and customized job postings. At the point when new positions match the set criteria, our system sends an email alert with significant offers directly to their inbox.
-
-**Featured Entities**
-Admins, employers, or job seekers can mark jobs, resumes, or companies as "Featured." Featured entities are highlighted prominently across the site using distinct layouts and styling. Visibility and approval of featured listings are fully controlled by the admin.
-
-**Apply as Visitor**
-WP Job Portal allows visitors to apply for jobs without creating an account. Admins can choose between two methods: the standard method, where applicants fill out a complete resume form and apply using it, or the quick apply option, where they can upload a resume file and provide basic details like name, email, phone, and a short message.
-
-**Advance Resume Builder**
-The Advanced Resume add-on enhances resume creation by adding multiple detailed sections, including personal information, multiple addresses, education history, past employers, skills, languages helping job seekers build comprehensive, professional resumes.
-
-**Credit System**
-The WP Job Portal system offers flexible monetization options: Free Mode allows users to add jobs, companies, resumes, and applications without any cost. In Per Listing Mode, each item (job, company, resume, or job apply) is published only after payment. Membership Mode lets admins create packages that define how many listings a user can submit. Payments for Per Listing and Membership modes are supported via PayPal, Stripe, and WooCommerce.
-
-**Message System** 
-The internal messaging system allows employers or admins to initiate direct conversations with job seekers within WP Job Portal. This feature facilitates smooth communication, with admin controls to manage who can send and receive messages. All messaging takes place securely inside the plugin—no external tools needed.
-
-**Manage & Evaluate Resumes And Job Applies**
-Employers and admins have complete control over managing resumes—whether from a job application or while browsing. They can view full resume details, print, export as CSV, or generate a PDF. Direct emails can be sent to job seekers from within the system. Each resume can be tagged with statuses like inbox, hired, shortlisted, or spam. Additionally, employers can add internal notes and ratings to streamline evaluation and tracking.
-
-**Visitor Job & Resume Submission**
-WP Job Portal enhances accessibility by allowing visitors to submit jobs and resumes directly without needing an account. This streamlined feature encourages more engagement while keeping employers and admins informed through instant email notifications.
-
-**Multiple Companies**
-If employers have multiple companies, no need to add a new account, he can manage all companies with an existing account.
-
-**Shortlist Jobs**
-Admin will configure the setting about shortlisting the numerous jobs admins gives the rights to job seekers to shortlist their desired job jobs.
-
-**Reports**
-Admin will see multiple reports against every employer and job seeker. Admin will see their reports by their companies, by their jobs, and by their resumes.
-
-**Multi Resume**
-Admin will configure the setting about adding multiple resumes against particular job admin will give permission to job seeker to add multi resumes related to jobs.
-
-**Multi Departments**
-WP Job Portal will help employers to add multiple departments related to jobs which are helpful for both employers and job seekers to apply for their department-related jobs.
-
-**Address Data**
-Upgrade to premium location data for more accurate and detailed geographic coverage compared to the free version. It offers extensive city listings and enhanced precision, improving the quality of job listings, searches, and filters.
-
-**Cron Job**
-This add-on allows you to run scheduled tasks using your hosting panel’s (e.g., cPanel) native cron job feature. If WordPress cron jobs become unreliable, admins can configure a direct server-side cron job for better stability and performance.
-
-**Widgets**
-Widgets in WordPress allow you to add content and features in the widget areas of your theme. However, these widget-ready areas can be in the header, footer, sidebar, below content, and basically any other area in your theme.
-
-**Export**
-The Export add-on will create export options for resumes admin can also export resumes. This will help the employer to export resumes in excel format (CSV).
-
-**Tell A Friend**
-By using this feature employers and job seekers can share a Job by sending them an email form the system. Admin can enable/disable the tell a friend feature.
-
-**Tags**
-Employers or job seekers can add some important tags related to jobs or resumes to better organize and access relevant information.
-
-**Resume Folders**
-To organize resumes employers can create separate folders and place resumes into that folder to access later.
-
-**PDF & Print**
-After PDF permission which is set by the admin, the employer and job Seeker can save the complete details and pieces of information of the desired resume in PDF format.
-
-**Resume Search**
-Resume Search add-on offers to the employer to search the resume in the system with different criteria employers can perform resume search and get the result.
-
-**RSS**
-WP Job Portal offers Real Simple Syndication (RSS) to set feeds for the jobs and resumes.
-
-**Social Share**
-job seekers will see the social media icons for sharing any job. When a job seeker clicks on any social media icon that job will share to that social media.
-
+**Google reCAPTCHA** (google.com) or **Cloudflare Turnstile** (challenges.cloudflare.com): only when you turn one on for forms. The form page loads its script in the visitor's browser. [Google privacy policy](https://policies.google.com/privacy), [Cloudflare privacy policy](https://www.cloudflare.com/privacypolicy/).
 
 == Installation ==
 
-= Automatic installation =
+1. In your dashboard, go to **Plugins > Add New Plugin**, search for **WP Job Portal**, then click **Install Now** and **Activate**.
+2. Follow the setup wizard: choose a company careers site or a job board, answer a few questions and add sample data if you like.
+3. Your job pages are created for you. To show jobs, search or dashboards elsewhere, use the blocks or the shortcodes under **WP Job Portal > Shortcodes**.
 
-Automatic installation is the easiest option as WordPress handles the file transfers itself and you don not need to leave your web browser. To do an automatic install of WP Job Portal, log in to your WordPress dashboard, navigate to the Plugins menu and click Add New.
-In the search field type WP Job Portal  and click Search Plugins. Once you have found our job board plugin you can view details about it such as the the point release, rating and description. Most importantly of course, you can install it by simply clicking Install Now.
-
-= Manual installation =
-
-The manual installation method involves downloading our job board plugin and uploading it to your webserver via your favorite FTP application. The WordPress codex contains [instructions on how to do this here](http://codex.wordpress.org/Managing_Plugins#Manual_Plugin_Installation).
+To install by hand, download the ZIP and upload it under **Plugins > Add New Plugin > Upload Plugin**.
 
 = Updating =
 
-Automatic updates should work like a charm; as always though, ensure you backup your site just in case.
+Updates install like any other plugin; back up your site first. Premium products update from your dashboard in the same way.
 
-= Minimum Requirements =
+= Minimum requirements =
 
-* WordPress 5.5 or greater
-* PHP version 7.4 or greater
-* MySQL version 5.0 or greater
+* WordPress 6.2 or greater
+* PHP 7.4 or greater
+* MySQL 5.5.5 or greater, or MariaDB
 
+== Frequently Asked Questions ==
+
+= Is WP Job Portal free? =
+
+Yes. Job posting, resumes, applications, employer and job seeker dashboards, search, job alerts and everything above not marked premium are free. The premium products add paid listings, team hiring tools, advanced resumes and smart matching.
+
+= Can I use it only for my company's careers page? =
+
+Yes. Choose the careers site option in the setup wizard: only your company posts jobs, and candidates apply to you.
+
+= Can employers pay to post or feature jobs? =
+
+Yes, with Marketplace Suite: job packages, credits and subscriptions, paid through Stripe, PayPal or WooCommerce.
+
+= Will my jobs show in Google for Jobs? =
+
+Each job page includes JobPosting structured data, which is what Google reads for its job search. Google decides what it shows; you can check a job page with Google's Rich Results Test.
+
+= Will WP Job Portal work with my theme? =
+
+Yes, it works with any theme. Color presets, blocks and the Elementor widget help it match your design.
+
+= Can I move from WP Job Manager? =
+
+Yes. The built-in import brings over companies, jobs, resumes and applications.
+
+= I bought separate add-ons before 2.7.0. What happens to them? =
+
+Twelve of them are now free and part of the plugin. The rest are included in Pro, Marketplace Suite, Recruit Suite and Smart Search & Matching. See [Upgrading to 2.7](https://wpjobportal.com/upgrading-to-2-7/) for what your purchase includes now.
+
+= What are the main shortcodes? =
+
+[wpjobportal_jobseeker_controlpanel], [wpjobportal_employer_controlpanel], [wpjobportal_job_search], [wpjobportal_job], [wpjobportal_job_categories], [wpjobportal_employer_registration], [wpjobportal_jobseeker_registration], [wpjobportal_login_page] and [wpjobportal_searchjob]. The full list, with options, is under WP Job Portal > Shortcodes.
+
+= Which options do the registration shortcodes have? =
+
+The employer and job seeker registration shortcodes can hide the role choice, show or hide the header and title, change the button text, send people to a page after sign-up, and add a CSS class.
+
+Employer example:
+[wpjobportal_employer_registration hide_role="1" show_header="1" show_title="1" button_text="Register as Employer" redirect_url="" class=""]
+
+Job seeker example:
+[wpjobportal_jobseeker_registration hide_role="1" show_header="1" show_title="1" button_text="Register as Job Seeker" redirect_url="" class=""]
+
+= Where can I get help? =
+
+Read the [documentation](https://docs.wpjobportal.com/), ask in the support forum here on WordPress.org, or contact us through [wpjobportal.com/support](https://wpjobportal.com/support/).
+
+= How can I report a security issue? =
+
+Through the Patchstack Vulnerability Disclosure Program, whose team validates and handles reports. [Report a security vulnerability](https://patchstack.com/database/vdp/wp-job-portal).
 
 == Screenshots ==
- 
-1. Admin Dashboard
 
-2. Job Seeker Control Panel
-
-3. Newest Jobs
-
-4. Applied Resume
-
+1. Admin dashboard
+2. Job seeker dashboard
+3. Newest jobs
+4. An applied resume
 5. Resume
-
-6. Credit Packs
-
-7. Pay For View Detail
-
+6. Credit packs (Marketplace Suite)
+7. Pay to view details (Marketplace Suite)
 8. Login
-
-9. Apply Now
-
-10. Credit Log
-
-11. Add Resume
-
-12. Add Job
-
-13. Themes
-
-14. Activity Log
-
+9. Apply now
+10. Credit log (Marketplace Suite)
+11. Add a resume
+12. Add a job
+13. Color presets
+14. Activity log
 15. Reports
-
 16. Fields
-
-17. Admin - Jobs Listing
-
-18. Users List
-
-19. Add User Fields
-
+17. Admin: job listing
+18. Users
+19. User fields
 20. Configurations
 
-
-
 == Changelog ==
+
+= 2.7.0 =
+Major update: the separate add-ons become four premium products, and twelve of them are now free.
+
+* New: Recruit Suite, a hiring pipeline for teams with stages, scorecards, shared notes, offers with approvals and e-signatures, and recruiting reports.
+* New: Marketplace Suite, to sell job packages, credits and subscriptions through Stripe, PayPal or WooCommerce, with paid featured jobs, companies and resumes.
+* New: Smart Search & Matching, with AI job and resume search, suggested jobs and resumes, and match scores.
+* New: Pro, with the advanced resume builder, resume search, messaging, PDF and export, reports, instant job alerts and maps.
+* New: twelve former add-ons are now free: Shortlist, Tags, Job Alert, RSS, Social Share, Print, Tell a Friend, Copy Job, Cron Job, All Companies, Job Listing Enhancer and Widgets.
+* New: four-step setup wizard and sample data that fits your site.
+* New: Account Sign-Up setting, separate from WordPress's "Anyone can register".
+* New: saved job searches for job seekers.
+* Fixed: updating from 2.6 could end on a critical error. Existing job and company links keep working after the update.
+* Fixed: the salary, currency, education and postcode filters in search.
+* Fixed: RSS feeds, Tags, Shortlisted Jobs and Job Alert on new installs.
+* Fixed: other errors on new installs and in the Insufficient Credits popup.
 
 = 2.6.0 =
 * Added explicit Careers & ATS and Job Marketplace setup modes.
@@ -271,6 +208,7 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 * Added durable ownership markers, exact cleanup previews, and conservative cleanup for newly installed sample records.
 * Hardened optional sample-image downloads with bounded, image-only, traversal-safe archive extraction.
 * Preserved the selected operating mode during sample-page creation and protected pre-existing or modified demo content from cleanup.
+* Simplified mode-specific administration labels while preserving bookmarked and direct URLs.
 
 = 2.5.9 =
 * Added System Status Page
@@ -286,367 +224,9 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 * Security hardening: prepared SQL query paths for job/apply filters and related lookups.
 * SEO improvement: added native WP Job Portal jobs XML sitemap and sitemap integration hooks.
 
-= 2.5.6 =
-* Added New addon Smart Matching
-* Updated ZyWrap integration for AI Content Generation.
-* Seamless AI Content Generation For Job, Company Description.
-* Seamless AI Content Generation For Resume Skills.
-* Seamless AI Content Generation For Cover Letter.
-* Seamless AI Content Generation For Job Apply.
-
-= 2.5.5 =
-* Security fixes.
-
-= 2.5.4 =
-* Added Job Alert Instant Job Apply Support
-* Added New Fields For Job Alert Form
-* Added Field Ordering Controls For Job Alert Form
-* Implemented Auto Down Of Language Files
-
-= 2.5.3 =
-* Enhanced multilingual compatibility
-* Security fixes
-
-= 2.5.2 =
-* Security fixes.
-
-= 2.5.1 =
-* Added New addon Job Listing Enhancer
-* Improved Job listing top filter
-* Added WorkPlace type field for job entity.
-* Bug fixes.
-
-= 2.5.0 =
-* Security fixes.
-
-= 2.4.9 =
-* Security fixes.
-* Updated ZyWrap integration for AI content generation.
-* Bug fixes and performance improvements.
-
-= 2.4.8 =
-* Added 67 new hooks (actions and filters) to extend and customize the plugin functionality.
-* Enhanced AI content generation compatibility with Elementor.
-* Added a color preview/customization interface for the Elegant Design addon.
-
-= 2.4.7 =
-* AI Content Generation
-
-
-= 2.4.6 =
-* Companies Widget Redesigned
-* Jobs Widget Redesigned
-* Resumes Widget Redesigned
-
-= 2.4.5 =
-* Bug fixes
-
-= 2.4.4 =
-* Color Preview Interface Implemented
-* Bug fixes
-
-= 2.4.3 =
-* Bug fixes
-
-= 2.4.2 =
-* Security fixes
-
-= 2.4.1 =
-* Security fixes
-* Wordpress widgets design updated
-* Elementor widgets design updated
-
-= 2.4.0 =
-* Default Theme design issues fixed
-
-= 2.3.9 =
-* Complete redesign with a more modern, cleaner, and intuitive interface.
-* Improved company contact detail viewing functionality.
-* Improved resume contact detail viewing functionality.
-* Added the ability to display descriptions on job and company listings.
-
-= 2.3.8 =
-* Redesigned the Configuration Interface with a Modern and Enhanced Layout
-* Added a “Back to Listing” button that preserves search criteria in the admin area
-
-= 2.3.7 =
-* Redesigned admin dashboard for a cleaner, more intuitive experience
-* Added Screen Options support to the admin dashboard
-* Enhanced membership mode for packages with role-based package handling
-
-
-= 2.3.6 =
-* Added WP Job Manager import functionality
-* Added AI Job Search Widget
-* Added AI resume Search Widget
-* Improved Custom Elementor Widgets for WP Job Portal
-
-
-= 2.3.5 =
-* Improved Quick Start Interface
-* Improved Addon Installation
-* Added Custom Elementor Widgets for WP Job Portal
-* Imporoved WP Job Portal Widgets
-
-
-= 2.3.4 =
-* Addon AI Job Search Added
-* Addon AI Suggested Jobs Added
-* Addon AI Resume Search Added
-* Addon AI Suggested Resumes Added
-
-
-= 2.3.3 =
-* Resume Search visibility control improved
-* Security fixes
-* Custom field bug fixed
-* Package system functionality improved
-* Job form salary field required bug fixed
-
-
-= 2.3.2 =
-* Quick Apply upload file bug fixed
-* Custom fields bug fixed
-
-= 2.3.1 =
-* Elementor Support Added
-* Elementor widget for WP Job portal shortcodes added
-* Elementor widget to customize typography
-* Elementor widget to customize color scheme
-* Addons auto update functionality added
-
-
-= 2.3.0 =
-* Improve Job Apply
-* Add Elegant Design Addon
-
-= 2.2.9 =
-* Remove company requirement in posting a job
-* Security fixes
-* Job Seeker Dashboard Graph improved
-* Employer Dashboard Graph improved
-
-= 2.2.8 =
-* Security fixes
-
-= 2.2.7 =
-* Security fixes
-
-= 2.2.6 =
-* Security fixes
-
-= 2.2.5 =
-* Security fixes
-
-= 2.2.4 =
-* Bug fixes
-
-= 2.2.3 =
-* Improved import location data functionality
-* Added job views count on job detail
-* Added document (SEO) titles for all layouts
-* Security fixes
-
-
-= 2.2.2 =
-* Shortcode options added for job, company and resume listing shortocodes
-* Shortcode options added for job seeker & employer dashboard shortcode
-* New configuration added to control visibility of profile section on user dashboard
-* New shortcode added for User Registration
-* Open Street Map bug fixed
-* New configuration added to set default place holder image
-
-= 2.2.1 =
-* Security update
-
-
-= 2.2.0 =
-* Menu bug fix.
-
-= 2.1.9 =
-* Native language support for location data (cities, states, and countries).
-* Interface to import cities data for any country in international(English) or native language.
-* Customizable (SEO-friendly) URLs for job, resume, and company pages.
-* Customizable document (SEO) titles for company, job, and resume pages with fixed text and entity properties.
-* Wordpress title bug on WP Job Portal pages fixed.
-* Security update.
-
-= 2.1.8 =
-* Add quick apply
-* Minimize required fields
-
-= 2.1.7 =
-* Security update
-
-= 2.1.6 =
-* Security update
-
-= 2.1.5 =
-* Added new Shortcode for Featured Jobs
-* Added new Shortcode for Featured Resumes
-* Added new Shortcode for Featured Companies
-* Added new Addon for All Companies
-* Added new Addon for All Resumes
-
-
-= 2.1.4 =
-* Added new interface to optimize system as a job board or single employer
-* Security fix
-
-= 2.1.3 =
-* Added visibility control for custom fields
-* Added Cover Letter addon
-* Translation issues fixed
-* Bug fixes
-
-= 2.1.2 =
-* Added 3 New custom field types(Text area, Multi select, File upload)
-* Added Custom sections for resume
-* Bug fixes
-
-= 2.1.1 =
-* Bug fixes
-
-= 2.1.0 =
-* Apply now bug fix
-
-= 2.0.9 =
-* Security fix
-* Bug fix
-
-
-= 2.0.8 =
-* Security fix
-* Visitor Job Apply Bug fix
-
-
-= 2.0.7 =
-* Security fix
-
-= 2.0.6 =
-* Bug fix
-
-= 2.0.5 =
-* Add reCaptcha 3
-
-= 2.0.4 =
-* Security fix
-
-= 2.0.3 =
-* Bug fix
-
-= 2.0.2 =
-* Security fix
-
-= 2.0.1 =
-* Multi Language Job Apply Bug fix
-
-
-= 2.0.0 =
-* PHP 8.2 compatibility
-* Cover Letter Addon added
-* Jobs By Cities page added
-* Jobs By Types page added
-* Email notifications bug fixed
-* Search results pagination bug fixed
-
-= 1.1.9 =
-* CSS improve
-* Custom field bug fix
-
-= 1.1.8 =
-* Bug fix
-
-= 1.1.7 =
-* Bug fix
-
-= 1.1.6 =
-* Compatible with Job Portal theme
-
-= 1.1.5 =
-* Bug Fix
-
-= 1.1.4 =
-* Add Help page in admin area
-
-= 1.1.3 =
-* Add custom fields advance options
-
-= 1.1.2 =
-* Add plugin colors page
-
-= 1.1.1 =
-* Configuration base login redirect link
-* Configuration base register redirect link
-
-= 1.1.0 =
-* Bug Fix
-
-= 1.0.9 =
-* Bug Fix
-
-= 1.0.8 =
-* Sample Data Fix
-
-= 1.0.7 =
-* Security Update
-
-= 1.0.6 =
-* Fixed social login with facebook and linked
-* Fixed social apply with facebook and linked
-* Bug fixes
-
-= 1.0.5 =
-* Add Wrapper
-* Improvement in resume builder
-* Bug fixes
-
-= 1.0.4 =
-* Bug fixes
-
-= 1.0.3 =
-* Session and cookies issue resolved
-* Bug fixes
-
-= 1.0.2 =
-* Drag and drop fields ordering
-
-= 1.0.1 =
-* Custom register link for Job Seeker
-* Custom register link for Employer
-
-= 1.0.0 =
-* Just release.
-
+Earlier versions are listed in changelog.txt in the plugin folder.
 
 == Upgrade Notice ==
 
-Bug fixes for latest version.
-
-
-== Frequently Asked Questions ==
-
-= What are common shortcodes =
-These are common shortcodes
-[wpjobportal_jobseeker_controlpanel], [wpjobportal_employer_controlpanel], [wpjobportal_job_search], [wpjobportal_job], [wpjobportal_job_categories], [wpjobportal_employer_registration], [wpjobportal_jobseeker_registration], [wpjobportal_login_page], [wpjobportal_searchjob]  
-
-= Which options are available for employer and job seeker registration shortcodes? =
-The dedicated registration shortcodes support optional role hiding, header/title visibility, custom button text, a safe post-registration redirect, and a custom wrapper class.
-
-Employer example:
-[wpjobportal_employer_registration hide_role="1" show_header="1" show_title="1" button_text="Register as Employer" redirect_url="" class=""]
-
-Job seeker example:
-[wpjobportal_jobseeker_registration hide_role="1" show_header="1" show_title="1" button_text="Register as Job Seeker" redirect_url="" class=""]
-
-The hide_role parameter hides the role selector and securely submits the correct role for the selected dedicated shortcode.
-
-= Will WP Job Portal work with my theme? =
-Yes; WP Job Portal will work with any theme.
-
-= Where can I report bugs or contribute to the project? =
-Bugs can be reported either in our support forum or preferably on the (https://wpjobportal.com).
-
-= How can I report security bugs? =
-
-You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/wp-job-portal)
+= 2.7.0 =
+Major update: the add-ons become Pro, Marketplace Suite, Recruit Suite and Smart Search & Matching, and twelve add-ons are now free. Back up your site before updating.

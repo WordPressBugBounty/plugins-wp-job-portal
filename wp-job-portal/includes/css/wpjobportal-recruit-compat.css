@@ -1,0 +1,569 @@
+/* Recruit Suite presentation adapter for the WP Job Portal design system. */
+
+/*
+ * On wp-admin, the dashboard's palette, not the portal's.
+ *
+ * .wpjobportal-recruit-native-content is the admin shell only. Everything
+ * below reads the portal's colour variables, so the Recruit screens drew their
+ * buttons, links and focus rings in the portal's sky blue (#3baeda) inside a
+ * dashboard whose every other button is its indigo. Pointing the portal's
+ * variables at the dashboard's own, here, recolours them all at once and
+ * leaves the portal's front end untouched.
+ */
+.wpjobportal-recruit-native-content {
+    --wpjp-primary-color: var(--wjp-color-primary, #4f46e5);
+    --wpjp-secondary-color: var(--wjp-text-dark, #1e293b);
+    --wpjp-body-font-color: var(--wjp-text-medium, #475569);
+    --wpjp-border-color: var(--wjp-border-color, #e2e8f0);
+    --wpjp-background-color: var(--wjp-bg-light, #f1f5f9);
+}
+.wpjobportal-recruit-native-content,
+.wpjp-native-recruit-view,
+.wpjp-native-application-workflow,
+.wpjobportal-candidate-portal {
+    --wjp-blue: var(--wpjp-primary-color, #3baeda);
+    --wjp-ink: var(--wpjp-secondary-color, #333333);
+    --wjp-muted: var(--wpjp-body-font-color, #575757);
+    --wpjp-ds-color-primary: var(--wpjp-primary-color, #3baeda);
+    --wpjp-ds-color-primary-strong: var(--wpjp-secondary-color, #333333);
+    --wpjp-ds-color-text: var(--wpjp-body-font-color, #575757);
+    --wpjp-ds-color-text-muted: var(--wpjp-body-font-color, #575757);
+    --wpjp-ds-color-border: var(--wpjp-border-color, #e9ecef);
+    --wpjp-ds-color-surface: var(--wpjp-card-background, #fff);
+    --wpjp-ds-color-canvas: var(--wpjp-background-color, #f6f6f6);
+    min-width: 0;
+}
+
+.wpjobportal-recruit-native-shell #wpjobportal-head {
+    align-items: center;
+    background: var(--wjp-color-primary, #4f46e5);
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.wpjobportal-recruit-native-content {
+    padding: 0;
+}
+
+.wpjobportal-recruit-native-content > :where(
+    .wpjobportal-recruit-team,
+    .wpjobportal-recruit-pipeline,
+    .wpjobportal-recruit-workspace,
+    .wpjobportal-recruit-insights,
+    .wpjobportal-recruit-automation
+) {
+    display: grid;
+    gap: 16px;
+    margin: 0;
+    max-width: none;
+    min-width: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.wpjobportal-recruit-native-content > :where(
+    .wpjobportal-recruit-team,
+    .wpjobportal-recruit-pipeline,
+    .wpjobportal-recruit-workspace
+) > h1 {
+    display: none;
+}
+
+.wpjobportal-recruit-native-content > .wpjobportal-recruit-team > p,
+.wpjobportal-recruit-native-content > .wpjobportal-recruit-pipeline > p,
+.wpjobportal-recruit-native-content > .wpjobportal-recruit-workspace > p:first-of-type {
+    margin: 0;
+    padding: 16px;
+    color: var(--wpjp-body-font-color, #575757);
+    background: var(--wpjp-background-color, #f6f6f6);
+    border: 1px solid var(--wpjp-border-color, #e9ecef);
+    border-radius: 10px;
+}
+
+.wpjobportal-recruit-native-content :where(.wjp-auto-heading, .wjp-insights-heading) {
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+    background: var(--wpjp-card-background, #fff);
+    border: 1px solid var(--wpjp-border-color, #e9ecef);
+    border-block-start: 4px solid var(--wpjp-primary-color, #3baeda);
+    border-radius: 10px;
+    box-shadow: var(--wpjp-card-shadow, 0 4px 15px rgba(0, 0, 0, .08));
+}
+
+.wpjobportal-recruit-native-content :where(.wjp-auto-heading, .wjp-insights-heading) h1 {
+    display: none;
+}
+
+.wpjobportal-recruit-native-content :where(.wjp-auto-heading, .wjp-insights-heading) p {
+    color: var(--wpjp-body-font-color, #575757);
+}
+
+.wpjobportal-recruit-native-content :where(.wjp-auto-heading, .wjp-insights-heading) > div > span {
+    color: var(--wpjp-primary-color, #3baeda);
+}
+
+.wpjobportal-recruit-native-content :where(
+    .wpjp-team-card,
+    .wjp-pipeline-toolbar,
+    .wjp-kanban-column,
+    .wjp-candidate-card,
+    .wjp-workspace-picker,
+    .wjp-candidate-summary,
+    .wjp-workspace-card,
+    .wjp-auto-cards article,
+    .wjp-auto-panel,
+    .wjp-insights-filters,
+    .wjp-insights-cards article,
+    .wjp-insights-panel,
+    .wjp-insights-empty
+) {
+    color: var(--wpjp-body-font-color, #575757);
+    background: var(--wpjp-card-background, #fff);
+    border: 1px solid var(--wpjp-border-color, #e9ecef);
+    /*
+     * 12px, because that is what a card's corner is in this plugin - the
+     * job card and the resume card on the screens either side of these
+     * ones. At 8px the pipeline's columns and cards read as a tighter,
+     * squarer family sitting inside the same page.
+     */
+    border-radius: 12px;
+    box-shadow: var(--wpjp-card-shadow, 0 4px 15px rgba(0, 0, 0, .08));
+}
+
+.wpjobportal-recruit-native-content :where(h2, h3, .wjp-auto-cards strong, .wjp-insights-cards strong) {
+    color: var(--wpjp-secondary-color, #333333);
+}
+
+.wpjobportal-recruit-native-content :where(
+    .wjp-auto-cards span,
+    .wjp-auto-cards small,
+    .wjp-insights-cards span,
+    .wjp-insights-cards small,
+    .wjp-candidate-card span,
+    .wjp-candidate-card small,
+    .description
+) {
+    color: var(--wpjp-body-font-color, #575757);
+}
+
+.wpjobportal-recruit-native-content :where(.wjp-pipeline-toolbar, .wjp-workspace-picker, .wpjp-team-company-picker) {
+    margin: 0;
+    padding: 16px;
+}
+
+.wpjobportal-recruit-native-content .wjp-candidate-summary {
+    margin: 0;
+    background: var(--wpjp-background-color, #f6f6f6);
+}
+
+.wpjobportal-recruit-native-content .wjp-workspace-grid,
+.wpjobportal-recruit-native-content .wjp-workspace-main {
+    gap: 16px;
+}
+
+.wpjobportal-recruit-native-content .wjp-workspace-card {
+    padding: 20px;
+}
+
+.wpjobportal-recruit-native-content :where(.wjp-note, .wjp-task, .wjp-interview, .wjp-scorecard, .wjp-offer, .wjp-auto-list > article, .wjp-auto-check, .wjp-signature-list article) {
+    background: var(--wpjp-background-color, #f6f6f6);
+    border-color: var(--wpjp-border-color, #e9ecef);
+    border-radius: 6px;
+}
+
+.wpjobportal-recruit-native-content :where(input[type="text"], input[type="number"], input[type="date"], input[type="datetime-local"], input[type="url"], input[type="password"], select, textarea) {
+    box-sizing: border-box;
+    min-height: 44px;
+    max-width: 100%;
+    color: var(--wpjp-body-font-color, #575757);
+    background: var(--wpjp-card-background, #fff);
+    border: 1px solid var(--wpjp-border-color, #e9ecef);
+    border-radius: 8px;
+}
+
+.wpjobportal-recruit-native-content :where(input, select, textarea):focus {
+    border-color: var(--wpjp-primary-color, #3baeda);
+    box-shadow: var(--wpjp-focus-shadow-color, 0 0 0 3px rgba(98, 36, 198, .25));
+    outline: 0;
+}
+
+.wpjobportal-recruit-native-content :where(.button, button, input[type="submit"]) {
+    align-items: center;
+    box-sizing: border-box;
+    display: inline-flex;
+    justify-content: center;
+    min-height: 44px;
+    padding: 10px 15px;
+    color: var(--wpjp-primary-color, #3baeda);
+    background: var(--wpjp-card-background, #fff);
+    border: 1px solid var(--wpjp-primary-color, #3baeda);
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.wpjobportal-recruit-native-content :where(.button-primary, .wjportal-form-btn, input[type="submit"]) {
+    color: #fff !important;
+    background: var(--wpjp-primary-color, #3baeda) !important;
+    border-color: var(--wpjp-primary-color, #3baeda) !important;
+}
+
+.wpjobportal-recruit-native-content .button-link-delete {
+    min-height: 0;
+    padding: 0;
+    color: var(--wpjp-danger-color, #dc3545);
+    background: transparent;
+    border: 0;
+}
+
+.wpjobportal-recruit-native-content .wjp-kanban-navigation {
+    display: none;
+}
+
+.wpjobportal-recruit-native-content .wjp-kanban {
+    display: grid;
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+    align-items: stretch;
+    gap: 16px;
+    overflow: visible;
+    padding: 0;
+}
+
+.wpjobportal-recruit-native-content .wjp-kanban-column {
+    min-height: 180px;
+    overflow: hidden;
+    background: var(--wpjp-background-color, #f6f6f6);
+}
+
+.wpjobportal-recruit-native-content .wjp-kanban-column > header {
+    color: var(--wpjp-secondary-color, #333333);
+    background: var(--wpjp-card-background, #fff);
+}
+
+.wpjobportal-recruit-native-content .wjp-candidate-card {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+}
+
+.wpjobportal-recruit-native-content :where(.widefat, .wjp-workload-table table) {
+    border: 0;
+    border-collapse: collapse;
+    margin: 0;
+    width: 100%;
+}
+
+.wpjobportal-recruit-native-content :where(.widefat, .wjp-workload-table table) th {
+    color: var(--wpjp-secondary-color, #333333);
+    background: var(--wpjp-background-color, #f6f6f6);
+}
+
+.wpjobportal-recruit-native-content :where(.widefat, .wjp-workload-table table) :where(th, td) {
+    padding: 12px 16px;
+    border-block-end: 1px solid var(--wpjp-border-color, #e9ecef);
+    text-align: start;
+    vertical-align: middle;
+}
+
+.wpjp-native-recruit-view,
+.wpjp-native-application-workflow {
+    width: 100%;
+}
+
+.wpjp-native-recruit-view > :where(
+    .wpjobportal-recruit-team,
+    .wpjobportal-recruit-pipeline,
+    .wpjobportal-recruit-workspace,
+    .wpjobportal-recruit-insights,
+    .wpjobportal-recruit-automation,
+    .wpjobportal-recruit-candidates
+) {
+    margin: 0;
+    max-width: none;
+    padding: 0;
+    width: 100%;
+}
+
+.wpjp-native-recruit-view .wpjp-native-view-heading {
+    margin: 0 0 20px;
+    padding: 16px;
+    color: var(--wpjp-body-font-color, #575757);
+    background: var(--wpjp-background-color, #f6f6f6);
+    border: 1px solid var(--wpjp-border-color, #e9ecef);
+    border-radius: 10px;
+}
+
+.wpjp-native-recruit-view :where(.wpjobportal-recruit-workspace, .wpjobportal-recruit-pipeline, .wpjobportal-recruit-team) > h1,
+.wpjp-native-application-workflow .wpjobportal-recruit-workspace > h1 {
+    display: none;
+}
+
+.wpjp-native-recruit-view :where(
+    .wjportal-cp-sect-wrp,
+    .wjp-pipeline-toolbar,
+    .wjp-kanban-column,
+    .wjp-candidate-card,
+    .wjp-workspace-card,
+    .wjp-auto-cards article,
+    .wjp-auto-panel,
+    .wjp-insights-filters,
+    .wjp-insights-cards article,
+    .wjp-insights-panel,
+    .wjp-insights-empty,
+    .wpjp-team-card,
+    .wpjp-ds-card
+),
+.wpjp-native-application-workflow :where(.wjp-workspace-picker, .wjp-candidate-summary, .wjp-workspace-card),
+.wpjobportal-candidate-portal :where(.wjp-candidate-picker, .wjp-candidate-summary, .wjp-candidate-portal-card) {
+    color: var(--wpjp-body-font-color, #575757);
+    background: var(--wpjp-card-background, #fff);
+    border-color: var(--wpjp-border-color, #e9ecef);
+    /* 12px: a card's corner in this plugin, the same one the job and resume
+       cards on the screens either side of these ones are given. */
+    border-radius: 12px;
+    box-shadow: var(--wpjp-card-shadow, 0 4px 15px rgba(0, 0, 0, .08));
+}
+
+.wpjp-native-recruit-view :where(h2, h3, .wjportal-cp-sec-title),
+.wpjp-native-application-workflow :where(h2, h3),
+.wpjobportal-candidate-portal :where(h2, h3) {
+    color: var(--wpjp-secondary-color, #333333);
+}
+
+.wpjp-native-recruit-view :where(.wpjobportal-recruit-pipeline, .wpjobportal-recruit-automation, .wpjobportal-recruit-insights, .wpjobportal-recruit-team, .wpjobportal-recruit-candidates).is-frontend {
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * The board scrolls sideways, so the control that scrolls it is shown.
+ *
+ * This hid the navigation outright, from when the board wrapped into rows and
+ * there was nothing to scroll. The rule below turns it back into a single
+ * scrolling row, and a default seven-stage board needs 1776px in an 890px
+ * column - three and a half stages visible, the rest reached only by a
+ * scrollbar the reader has to notice. "Previous stages" and "Next stages"
+ * were written for exactly this and were sitting there switched off.
+ *
+ * Still hidden where the board does not scroll.
+ */
+.wpjp-native-recruit-view .wjp-kanban-navigation {
+    display: none;
+}
+
+.wpjp-native-recruit-view[data-recruit-view="pipeline"] .wjp-kanban-navigation {
+    display: flex;
+}
+
+/* A pipeline is a sequence: it scrolls sideways rather than wrapping into a
+   set of tiles. The suite's own sheet says the same at more length. */
+.wpjp-native-recruit-view[data-recruit-view="pipeline"] .wjp-kanban {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(240px, 288px);
+    grid-template-columns: none;
+    overflow-x: auto;
+    overflow-y: visible;
+    padding: 0;
+}
+
+.wpjp-native-recruit-view[data-recruit-view="pipeline"] .wjp-kanban-column {
+    min-height: 170px;
+}
+
+.wpjp-native-recruit-view[data-recruit-view="pipeline"] .wjp-kanban-cards {
+    min-height: 90px;
+}
+
+.wpjp-native-recruit-view :where(input[type="text"], input[type="number"], input[type="date"], input[type="datetime-local"], input[type="url"], select, textarea),
+.wpjp-native-application-workflow :where(input[type="text"], input[type="number"], input[type="date"], input[type="datetime-local"], input[type="url"], select, textarea),
+.wpjobportal-candidate-portal :where(input, select, textarea) {
+    min-height: 44px;
+    color: var(--wpjp-body-font-color, #575757);
+    background: var(--wpjp-card-background, #fff);
+    border-color: var(--wpjp-border-color, #e9ecef);
+    border-radius: 8px;
+}
+
+.wpjp-native-recruit-view :where(input, select, textarea):focus,
+.wpjp-native-application-workflow :where(input, select, textarea):focus,
+.wpjobportal-candidate-portal :where(input, select, textarea):focus {
+    border-color: var(--wpjp-primary-color, #3baeda);
+    box-shadow: var(--wpjp-focus-shadow-color, 0 0 0 3px rgba(98, 36, 198, .25));
+    outline: 0;
+}
+
+.wpjp-native-recruit-view :where(.button-primary, .wjportal-form-btn, .wjportal-cp-view-btn, input[type="submit"]),
+.wpjp-native-application-workflow :where(.button-primary, .wjportal-form-btn, input[type="submit"]),
+.wpjobportal-candidate-portal :where(button, .wjp-candidate-button.is-primary) {
+    color: #fff !important;
+    background: var(--wpjp-primary-color, #3baeda) !important;
+    border-color: var(--wpjp-primary-color, #3baeda) !important;
+    border-radius: 8px;
+}
+
+.wpjp-native-recruit-view .wjp-empty,
+.wpjp-native-application-workflow .wjp-empty,
+.wpjobportal-candidate-portal .wjp-candidate-empty {
+    padding: 24px 20px;
+    color: var(--wpjp-body-font-color, #575757);
+    background: var(--wpjp-background-color, #f6f6f6);
+    border: 1px dashed var(--wpjp-border-color, #e9ecef);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.wpjp-native-recruit-view :focus-visible,
+.wpjp-native-application-workflow :focus-visible,
+.wpjobportal-candidate-portal :focus-visible,
+.wpjobportal-recruit-native-content :focus-visible {
+    outline: 3px solid var(--wpjp-primary-color, #3baeda);
+    outline-offset: 2px;
+}
+
+/* Typing fields draw their focus ring inside the box: drawn outside, it ran
+   into the label above and past the edge of the card. */
+:is(.wpjp-native-recruit-view, .wpjp-native-application-workflow, .wpjobportal-candidate-portal, .wpjobportal-recruit-native-content)
+    :is(textarea, select, input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]):not([type="reset"])):is(:focus, :focus-visible) {
+    outline: 2px solid var(--wpjp-primary-color, #3baeda);
+    outline-offset: -2px;
+    box-shadow: none;
+}
+
+@media (max-width: 960px) {
+    .wpjobportal-recruit-native-content :where(.wjp-workspace-grid, .wjp-auto-admin-grid, .wjp-insights-grid, .wpjp-team-grid) {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 782px) {
+    .wpjobportal-recruit-native-shell #wpjobportal-wrapper-top,
+    .wpjobportal-recruit-native-shell #wpjobportal-head,
+    .wpjobportal-recruit-native-content :where(.wjp-auto-heading, .wjp-insights-heading, .wjp-pipeline-toolbar, .wjp-pipeline-toolbar form, .wjp-workspace-picker, .wjp-candidate-summary),
+    .wpjp-native-recruit-view :where(.wjp-pipeline-toolbar, .wjp-pipeline-toolbar form, .wjp-auto-heading, .wjp-insights-heading),
+    .wpjp-native-application-workflow :where(.wjp-workspace-picker, .wjp-candidate-summary) {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .wpjobportal-recruit-native-shell #wpjobportal-wrapper-top-right {
+        margin-block-start: 12px;
+    }
+
+    .wpjobportal-recruit-native-content :where(.wjp-auto-cards, .wjp-insights-cards, .wjp-auto-admin-grid, .wjp-insights-grid, .wpjp-team-grid, .wjp-task-fields, .wjp-interview-fields, .wjp-offer-fields),
+    .wpjp-native-recruit-view :where(.wjp-auto-cards, .wjp-insights-cards, .wjp-auto-admin-grid, .wjp-insights-grid, .wpjp-team-grid),
+    .wpjp-native-application-workflow :where(.wjp-workspace-grid, .wjp-task-fields, .wjp-interview-fields, .wjp-offer-fields) {
+        grid-template-columns: 1fr;
+    }
+
+    .wpjobportal-recruit-native-content .wjp-kanban,
+    .wpjp-native-recruit-view[data-recruit-view="pipeline"] .wjp-kanban {
+        grid-auto-columns: minmax(224px, 80%);
+    }
+
+    .wpjobportal-recruit-responsive-table,
+    .wpjobportal-recruit-responsive-table tbody,
+    .wpjobportal-recruit-responsive-table tr,
+    .wpjobportal-recruit-responsive-table td {
+        display: block;
+        min-width: 0;
+        width: 100%;
+    }
+
+    .wpjobportal-recruit-responsive-table thead {
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+    }
+
+    .wpjobportal-recruit-responsive-table tbody {
+        padding: 12px;
+    }
+
+    .wpjobportal-recruit-responsive-table tbody tr {
+        background: var(--wpjp-card-background, #fff);
+        border: 1px solid var(--wpjp-border-color, #e9ecef);
+        border-radius: 10px;
+        margin-block-end: 12px;
+        overflow: hidden;
+    }
+
+    .wpjobportal-recruit-responsive-table tbody tr:last-child {
+        margin-block-end: 0;
+    }
+
+    .wpjobportal-recruit-responsive-table tbody td {
+        align-items: start;
+        border: 0;
+        border-block-end: 1px solid var(--wpjp-border-color, #e9ecef);
+        display: grid;
+        gap: 16px;
+        grid-template-columns: minmax(100px, 36%) minmax(0, 1fr);
+        overflow-wrap: anywhere;
+        padding: 12px 16px;
+        text-align: start;
+    }
+
+    .wpjobportal-recruit-responsive-table tbody td:last-child {
+        border-block-end: 0;
+    }
+
+    .wpjobportal-recruit-responsive-table tbody td::before {
+        color: var(--wpjp-secondary-color, #333333);
+        content: attr(data-label);
+        font-weight: 700;
+    }
+
+    .wpjobportal-recruit-responsive-table .wpjobportal-recruit-empty-row,
+    .wpjobportal-recruit-responsive-table .wpjobportal-recruit-empty-row td {
+        display: block;
+    }
+
+    .wpjobportal-recruit-responsive-table .wpjobportal-recruit-empty-row td::before {
+        content: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .wpjobportal-recruit-responsive-table tbody td {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .wpjobportal-recruit-native-content :where(.wjp-workspace-card, .wjp-auto-panel, .wjp-insights-panel, .wpjp-team-card),
+    .wpjp-native-recruit-view :where(.wjp-workspace-card, .wjp-auto-panel, .wjp-insights-panel, .wpjp-team-card),
+    .wpjp-native-application-workflow .wjp-workspace-card {
+        padding-inline: 16px;
+    }
+}
+
+html[dir="rtl"] :where(.wpjobportal-recruit-native-content, .wpjp-native-recruit-view, .wpjp-native-application-workflow, .wpjobportal-candidate-portal) {
+    text-align: start;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wpjobportal-recruit-native-shell *,
+    .wpjobportal-recruit-native-shell *::before,
+    .wpjobportal-recruit-native-shell *::after,
+    .wpjp-native-recruit-view *,
+    .wpjp-native-application-workflow *,
+    .wpjobportal-candidate-portal * {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+@media (forced-colors: active) {
+    .wpjobportal-recruit-native-content :where(.wpjp-team-card, .wjp-kanban-column, .wjp-candidate-card, .wjp-workspace-card, .wjp-auto-panel, .wjp-insights-panel),
+    .wpjp-native-recruit-view :where(.wjportal-cp-sect-wrp, .wjp-kanban-column, .wjp-candidate-card, .wjp-workspace-card, .wjp-auto-panel, .wjp-insights-panel),
+    .wpjp-native-application-workflow .wjp-workspace-card,
+    .wpjobportal-candidate-portal .wjp-candidate-portal-card {
+        border: 1px solid CanvasText;
+    }
+}

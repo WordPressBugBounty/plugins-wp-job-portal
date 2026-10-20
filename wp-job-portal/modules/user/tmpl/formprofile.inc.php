@@ -1,8 +1,8 @@
 <?php if (!defined('ABSPATH')) die('Restricted Access'); ?>
 <?php
 wp_enqueue_script('jquery-ui-datepicker');
-$wpjobportal_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jquery-ui-smoothness.css');
+$wpjobportal_protocol = is_ssl() ? "https://" : "http://";
+wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jquery-ui-smoothness.css', array(), wpjobportal_asset_version('includes/css/jquery-ui-smoothness.css'));
 
 $wpjobportal_dateformat = wpjobportal::$_configuration['date_format'];
 if($wpjobportal_dateformat == 'm/d/Y' || $wpjobportal_dateformat == 'd/m/y' || $wpjobportal_dateformat == 'm/d/y' || $wpjobportal_dateformat == 'd/m/Y') {
@@ -22,7 +22,7 @@ $wpjobportal_js_scriptdateformat = $wpjobportal_firstvalue . $wpjobportal_dash .
 $wpjobportal_js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy', $wpjobportal_js_scriptdateformat);
 ?>
 <?php
-    wp_register_script( 'wpjobportal-inline-handle', '' );
+    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
     $wpjobportal_inline_js_script = "
@@ -42,7 +42,7 @@ $wpjobportal_js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy'
             if (input.files && input.files[0]) {
                 var fileext = input.files[0].name.split('.').pop().trim().toLowerCase();
                 var filesize = (input.files[0].size / 1024);
-                var allowedsize = ". WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('image_file_size').";
+                var allowedsize = ". WPJOBPORTALincluder::getJSModel('common')->configAsJsNumber('image_file_size', 2048).";
                 var allowedExt = '". WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('image_file_type')."';
                 allowedExt = allowedExt.split(',').map(function(ext) {
                     return ext.trim().toLowerCase().replace(/^\.+/, '');

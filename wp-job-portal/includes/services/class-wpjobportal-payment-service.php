@@ -41,6 +41,30 @@ class WPJOBPORTAL_Payment_Service {
     }
 
     /**
+     * Every task that is a provider calling us, rather than a person.
+     *
+     * A provider may declare one webhook task or several.
+     *
+     * @return array
+     */
+    public static function webhook_tasks() {
+        $tasks = array();
+        foreach (self::providers() as $provider) {
+            if (empty($provider['webhook_task'])) {
+                continue;
+            }
+            foreach ((array) $provider['webhook_task'] as $task) {
+                $task = strtolower(preg_replace('/[^A-Za-z0-9_]/', '', (string) $task));
+                if ($task !== '') {
+                    $tasks[] = $task;
+                }
+            }
+        }
+
+        return array_values(array_unique($tasks));
+    }
+
+    /**
      * Validate the shared boundary before a purchase controller runs.
      */
     public static function authorize_route($task) {
@@ -54,7 +78,11 @@ class WPJOBPORTAL_Payment_Service {
         $method = isset($_SERVER['REQUEST_METHOD'])
             ? strtoupper(sanitize_text_field(wp_unslash($_SERVER['REQUEST_METHOD'])))
             : '';
-        $is_webhook = in_array($task, array('stripewebhook', 'paypalwebhook'), true);
+        // Taken from the providers map rather than a list written out here,
+        // so a gateway that grows a second endpoint - PayPal's REST webhooks
+        // beside its IPN listener - does not fall through to the logged-in
+        // branch and reject its own provider's calls.
+        $is_webhook = in_array($task, self::webhook_tasks(), true);
         if ($is_webhook && $method !== 'POST') {
             self::record('rejected', 'webhook_method');
             return false;
@@ -64,7 +92,22 @@ class WPJOBPORTAL_Payment_Service {
             return false;
         }
 
-        if ($provider === 'stripe' && !$is_webhook) {
+        // The legacy Stripe flow posts a card token, and a request without one
+        // is not a purchase. A hosted-checkout flow has no token by design -
+        // no card detail reaches this site at all - so the requirement belongs
+        // to the task rather than to the gateway.
+        $token_required = ($provider === 'stripe' && !$is_webhook);
+
+        /**
+         * Filter whether a route must carry a card token.
+         *
+         * @param bool   $token_required Whether a token is required.
+         * @param string $task           Task being run.
+         * @param string $provider       Payment provider.
+         */
+        $token_required = (bool) apply_filters('wpjobportal_payment_token_required', $token_required, $task, $provider);
+
+        if ($token_required) {
             $token = WPJOBPORTALrequest::getVar('stripeToken', 'post');
             if (!is_string($token) || trim($token) === '') {
                 self::record('rejected', 'missing_payment_token');

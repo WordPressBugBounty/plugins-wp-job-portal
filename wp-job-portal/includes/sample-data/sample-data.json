@@ -1,0 +1,183 @@
+{
+    "about": "WP Job Portal sample data. Read by WPJOBPORTAL_Sample_Data_Importer. Every company and person here is fictional; addresses use example.com, which is reserved for examples. A record with \"requires\" is imported only when that add-on module is active, so every count on every dashboard is true for the site it lands on.",
+    "companies": [
+        {
+            "key": "brightpath",
+            "name": "Brightpath Solutions",
+            "tagline": "Software that grows with your business",
+            "url": "https://brightpath.example.com",
+            "email": "careers@brightpath.example.com",
+            "logo": "brightpath.png",
+            "description": "<p>Brightpath Solutions builds web and mobile software for small and medium-sized businesses. Our team of forty designers, engineers and support specialists works closely with each client, from the first workshop to long after launch.</p><p>We offer flexible hours, a yearly learning budget and a hybrid office.</p>"
+        },
+        {
+            "key": "skyline",
+            "requires": "multicompany",
+            "name": "Skyline Digital",
+            "tagline": "Stories that people share",
+            "url": "https://skyline.example.com",
+            "email": "jobs@skyline.example.com",
+            "logo": "skyline.png",
+            "description": "<p>Skyline Digital is a content and social media agency. We plan, write and run campaigns for brands in retail, travel and education.</p>"
+        },
+        {
+            "key": "harbor",
+            "requires": "multicompany",
+            "name": "Harbor Analytics",
+            "tagline": "Clear answers from your data",
+            "url": "https://harbor.example.com",
+            "email": "talent@harbor.example.com",
+            "logo": "harbor.png",
+            "description": "<p>Harbor Analytics helps finance and operations teams turn their numbers into decisions, with reporting, forecasting and data clean-up projects.</p>"
+        }
+    ],
+    "jobs": [
+        {
+            "key": "php",
+            "company": "brightpath",
+            "title": "Senior PHP Developer",
+            "category": "Computer/IT",
+            "type": "Full-Time",
+            "status": "Interviewing",
+            "career": "Experienced (Non-Manager)",
+            "salary": [4500, 6000, "Per Month"],
+            "featured": true,
+            "description": "<p>We are looking for an experienced PHP developer to lead the back end of our client projects.</p><ul><li>Design and build features in PHP and MySQL</li><li>Review code and mentor two junior developers</li><li>Work with designers and clients to plan each release</li></ul><p>You have four or more years of PHP, know a modern framework or WordPress well, and write tests as a habit.</p>"
+        },
+        {
+            "key": "frontend",
+            "company": "brightpath",
+            "title": "Front-End Developer",
+            "category": "Web Site Development",
+            "type": "Full-Time",
+            "status": "Sourcing",
+            "career": "Entry Level",
+            "salary": [3000, 4200, "Per Month"],
+            "description": "<p>Join our front-end team and turn designs into fast, accessible web pages.</p><ul><li>Build responsive layouts in HTML, CSS and JavaScript</li><li>Keep pages accessible and quick to load</li><li>Fix bugs reported by clients and testers</li></ul><p>A portfolio of two or three sites you have built is more useful to us than a degree.</p>"
+        },
+        {
+            "key": "ux",
+            "company": "brightpath",
+            "title": "UX Designer",
+            "category": "Design",
+            "type": "Full-Time",
+            "status": "Interviewing",
+            "career": "Experienced (Non-Manager)",
+            "salary": [3800, 5000, "Per Month"],
+            "description": "<p>Shape how our clients' customers find their way around websites and apps.</p><ul><li>Run interviews and usability tests</li><li>Sketch flows and build clickable prototypes</li><li>Hand designs to developers and stay with them through launch</li></ul>"
+        },
+        {
+            "key": "support",
+            "company": "brightpath",
+            "title": "Customer Success Specialist",
+            "category": "Customer Service",
+            "type": "Full-Time",
+            "status": "Sourcing",
+            "career": "Entry Level",
+            "salary": [2400, 3200, "Per Month"],
+            "description": "<p>Be the person our clients call first. You answer questions, train new users and pass ideas back to the product team.</p><p>Patience, clear writing and a liking for solving problems matter more than experience.</p>"
+        },
+        {
+            "key": "marketing",
+            "company": "brightpath",
+            "title": "Marketing Coordinator",
+            "category": "Marketing",
+            "type": "Part-Time",
+            "status": "Sourcing",
+            "career": "Entry Level",
+            "salary": [1800, 2400, "Per Month"],
+            "description": "<p>Twenty hours a week, planning our newsletter, case studies and event calendar. A good fit for someone who enjoys writing and keeping a schedule.</p>"
+        },
+        {
+            "key": "intern",
+            "company": "brightpath",
+            "title": "Software Engineering Intern",
+            "category": "Internships/Trainees",
+            "type": "Internship",
+            "status": "Sourcing",
+            "career": "Student (Undergraduate)",
+            "salary": [900, 1200, "Per Month"],
+            "description": "<p>A three-month paid internship for a student who has built something of their own. You will pair with a senior developer on real client work.</p>"
+        },
+        {
+            "key": "content",
+            "company": "skyline",
+            "requires": "multicompany",
+            "title": "Content Strategist",
+            "category": "Marketing",
+            "type": "Full-Time",
+            "status": "Interviewing",
+            "career": "Experienced (Non-Manager)",
+            "salary": [3500, 4500, "Per Month"],
+            "description": "<p>Plan what our clients publish and why. You set the calendar, brief writers and report on what worked.</p>"
+        },
+        {
+            "key": "social",
+            "company": "skyline",
+            "requires": "multicompany",
+            "title": "Social Media Manager",
+            "category": "Communications",
+            "type": "Full-Time",
+            "status": "Sourcing",
+            "career": "Experienced (Non-Manager)",
+            "salary": [3200, 4200, "Per Month"],
+            "description": "<p>Run day-to-day social accounts for three client brands, from posts and replies to monthly reports.</p>"
+        },
+        {
+            "key": "analyst",
+            "company": "harbor",
+            "requires": "multicompany",
+            "title": "Data Analyst",
+            "category": "Computer/IT",
+            "type": "Full-Time",
+            "status": "Interviewing",
+            "career": "Experienced (Non-Manager)",
+            "salary": [4000, 5200, "Per Month"],
+            "featured": true,
+            "description": "<p>Clean, join and explain data for our finance clients. SQL every day, Python on most days, and a dashboard tool of your choice.</p>"
+        },
+        {
+            "key": "accountant",
+            "company": "harbor",
+            "requires": "multicompany",
+            "title": "Management Accountant",
+            "category": "Accounting/Finance",
+            "type": "Full-Time",
+            "status": "Sourcing",
+            "career": "Manager",
+            "salary": [4800, 6000, "Per Month"],
+            "description": "<p>Own monthly reporting and budgets for a portfolio of clients, and help them plan the year ahead.</p>"
+        }
+    ],
+    "resumes": [
+        {
+            "key": "developer",
+            "title": "Full-Stack Web Developer",
+            "category": "Computer/IT",
+            "type": "Full-Time",
+            "salary": "3500",
+            "skills": "PHP, JavaScript, WordPress, MySQL, REST APIs, Git",
+            "employer": {"name": "Northbridge Media", "address": "Main Street office", "from": "-36 months", "current": true},
+            "institute": {"name": "Lakeside University", "certificate": "BSc Computer Science", "area": "Computer Science", "from": "2016-09-01", "to": "2020-06-30"},
+            "languages": ["English", "Spanish"]
+        },
+        {
+            "key": "designer",
+            "requires": "multiresume",
+            "title": "UX and Interface Designer",
+            "category": "Design",
+            "type": "Full-Time",
+            "salary": "3800",
+            "skills": "User research, wireframes, prototyping, design systems, accessibility",
+            "employer": {"name": "Brightwave Studio", "address": "Harbour Road studio", "from": "-24 months", "current": false},
+            "institute": {"name": "City College of Art", "certificate": "BA Interaction Design", "area": "Design", "from": "2015-09-01", "to": "2018-06-30"},
+            "languages": ["English"]
+        }
+    ],
+    "applications": [
+        {"job": "php", "resume": "developer"},
+        {"job": "frontend", "resume": "developer"},
+        {"job": "intern", "resume": "developer"},
+        {"job": "ux", "resume": "designer", "requires": "multiresume"}
+    ]
+}

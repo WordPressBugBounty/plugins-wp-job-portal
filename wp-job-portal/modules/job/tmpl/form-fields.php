@@ -35,7 +35,21 @@ foreach($wpjobportal_fields AS $wpjobportal_field){
                             if (WPJOBPORTALincluder::getJSModel('company')->employerHaveCompany($wpjobportal_uid)) {
                                 $wpjobportal_content = WPJOBPORTALformfield::select('companyid', WPJOBPORTALincluder::getJSModel('company')->getCompanyForCombo($wpjobportal_uid), isset($wpjobportal_job->companyid) ? $wpjobportal_job->companyid : '', esc_html(__('Select','wp-job-portal')) .' '. esc_html(__('Company', 'wp-job-portal')), array('class' => 'inputbox wjportal-form-select-field', 'onchange' => 'getdepartments(\'departmentid\', this.value);', 'data-validation' => $wpjobportal_field->validation));
                             } else {
-                                $wpjobportal_content = '<a class="wjportal-form-add-comp" href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'addcompany'))).'">' . esc_html(__('Add','wp-job-portal')).' '. esc_html(__('Company', 'wp-job-portal')) . '</a><input type="hidden" name="companyid" id="companyid" data-validation="'.$wpjobportal_field->validation.'" />';
+                                $wpjobportal_content = '<div class="wjportal-form-needs-company">'
+                                    . '<p>' . esc_html(__('A job belongs to a company, and you have not added one yet. Add your company first, then come back and post the job.', 'wp-job-portal')) . '</p>'
+                                    . '<a class="wjportal-form-add-comp" href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'addcompany'))).'">' . esc_html(__('Add','wp-job-portal')).' '. esc_html(__('Company', 'wp-job-portal')) . '</a>'
+                                    . '</div>'
+                                    /*
+                                     * The field was a hidden input carrying
+                                     * data-validation="required" and no value it
+                                     * could ever be given. Pressing Save Job did
+                                     * nothing at all: the validator refused the
+                                     * form and hung its complaint on something
+                                     * nobody can see. The requirement is real -
+                                     * storeJob() enforces it now - but it is a
+                                     * sentence to read, not an invisible trap.
+                                     */
+                                    . '<input type="hidden" name="companyid" id="companyid" value="" />';
                             }
                         }
                     }else{
@@ -46,7 +60,21 @@ foreach($wpjobportal_fields AS $wpjobportal_field){
                          $wpjobportal_content = "<div class='wjportal-form-text'>".$wpjobportal_companyname ." </div>";
                             $wpjobportal_content .= WPJOBPORTALformfield::hidden('companyid',$wpjobportal_companyid);
                         }else{
-                              $wpjobportal_content = '<a class="wjportal-form-add-comp" href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'addcompany'))).'">' . esc_html(__('Add','wp-job-portal')).' '. esc_html(__('Company', 'wp-job-portal')) . '</a><input type="hidden" name="companyid" id="companyid" data-validation="'.$wpjobportal_field->validation.'" />';
+                              $wpjobportal_content = '<div class="wjportal-form-needs-company">'
+                                    . '<p>' . esc_html(__('A job belongs to a company, and you have not added one yet. Add your company first, then come back and post the job.', 'wp-job-portal')) . '</p>'
+                                    . '<a class="wjportal-form-add-comp" href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'addcompany'))).'">' . esc_html(__('Add','wp-job-portal')).' '. esc_html(__('Company', 'wp-job-portal')) . '</a>'
+                                    . '</div>'
+                                    /*
+                                     * The field was a hidden input carrying
+                                     * data-validation="required" and no value it
+                                     * could ever be given. Pressing Save Job did
+                                     * nothing at all: the validator refused the
+                                     * form and hung its complaint on something
+                                     * nobody can see. The requirement is real -
+                                     * storeJob() enforces it now - but it is a
+                                     * sentence to read, not an invisible trap.
+                                     */
+                                    . '<input type="hidden" name="companyid" id="companyid" value="" />';
                         }
 
                     }
@@ -67,9 +95,9 @@ foreach($wpjobportal_fields AS $wpjobportal_field){
             $wpjobportal_content = WPJOBPORTALformfield::text('experience', $wpjobportal_job ? $wpjobportal_job->experience : '', array('class' => 'inputbox wjportal-form-input-field', 'data-validation' => $wpjobportal_field->validation,'placeholder'=> wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->placeholder)));
         break;
         case 'map':
-            if(in_array('addressdata', wpjobportal::$_active_addons)){
-               $wpjobportal_content = apply_filters('wpjobportal_credit_addons_map_load_for_jobform',false,$wpjobportal_field,$wpjobportal_job);
-            }
+            // Provided by Pro, or by the legacy add-on where it is still
+            // installed. Nothing renders when neither is present.
+            $wpjobportal_content = apply_filters('wpjobportal_credit_addons_map_load_for_jobform',false,$wpjobportal_field,$wpjobportal_job);
             break;
         case 'jobsalaryrange':
             $wpjobportal_content = WPJOBPORTALincluder::getTemplateHtml('job/salary-field', array('class' => 'inputbox wjportal-form-select-field','wpjobportal_field' => $wpjobportal_field, 'wpjobportal_job' => $wpjobportal_job));
@@ -114,10 +142,10 @@ foreach($wpjobportal_fields AS $wpjobportal_field){
             break;
         case 'description':
             $wpjobportal_content = WPJOBPORTALformfield::editor('description', isset($wpjobportal_job->description) ? $wpjobportal_job->description : '', array('class' => 'inputbox one wjportal-form-textarea-field'));
-            $api_key = get_option('wpjobportal_zywrap_api_key', '');
-            if(!empty($api_key) && !WPJOBPORTALincluder::getObjectClass('user')->isguest()){
-                $enable_job_copilot  = wpjobportal::$_config->getConfigurationByConfigName('enable_job_copilot');
-                if(!empty($enable_job_copilot) || current_user_can('manage_options')){
+            $wpjobportal_api_key = get_option('wpjobportal_zywrap_api_key', '');
+            if(!empty($wpjobportal_api_key) && !WPJOBPORTALincluder::getObjectClass('user')->isguest()){
+                $wpjobportal_enable_job_copilot  = wpjobportal::$_config->getConfigurationByConfigName('enable_job_copilot');
+                if(!empty($wpjobportal_enable_job_copilot) || current_user_can('manage_options')){
                     $wpjobportal_content = WPJOBPORTALincluder::getTemplate('job/views/frontend/content-generation',array(
                         'wpjobportal_desc_editor' => $wpjobportal_content
                     ));

@@ -40,4 +40,13 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("Melo", "Melo", "Melo", NULL, 41, 0, 1, NULL, "-32.3680849", "-54.1697146"),
 ("Tacuarembó", "Tacuarembó", "Tacuarembó", NULL, 41, 0, 1, NULL, "-31.7110183", "-55.9788762"),
 ("Río Branco", "Río Branco", "Río Branco", NULL, 41, 0, 1, NULL, "-32.588689", "-53.3780831"),
-("Rivera", "Rivera", "Rivera", NULL, 41, 0, 1, NULL, "-30.900058", "-55.5408151");
+("Rivera", "Rivera", "Rivera", NULL, 41, 0, 1, NULL, "-30.900058", "-55.5408151"),
+("Atlantida", "Atlantida", "Atlantida", NULL, 41, 0, 1, NULL, "-34.7793791", "-55.7596225"),
+("Barra de Carrasco", "Barra de Carrasco", "Barra de Carrasco", NULL, 41, 0, 1, NULL, "-34.8850061", "-56.0556603"),
+("Cardona", "Cardona", "Cardona", NULL, 41, 0, 1, NULL, "-33.8707399", "-57.3694285"),
+("Castillos", "Castillos", "Castillos", NULL, 41, 0, 1, NULL, "-34.1979128", "-53.8617544"),
+("Chuy", "Chuy", "Chuy", NULL, 41, 0, 1, NULL, "-33.692754", "-53.4552817"),
+("Colonia Nicolich", "Colonia Nicolich", "Colonia Nicolich", NULL, 41, 0, 1, NULL, "-34.8176238", "-56.0182019"),
+("Delta del Tigre", "Delta del Tigre", "Delta del Tigre", NULL, 41, 0, 1, NULL, "-34.7611766", "-56.3628409"),
+("Empalme Olmos", "Empalme Olmos", "Empalme Olmos", NULL, 41, 0, 1, NULL, "-34.6930716", "-55.8961208"),
+("Guichon", "Guichon", "Guichon", NULL, 41, 0, 1, NULL, "-32.3605627", "-57.2000138");

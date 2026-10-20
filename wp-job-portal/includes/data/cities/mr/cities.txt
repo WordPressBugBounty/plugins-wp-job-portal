@@ -39,4 +39,5 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("تامشكط", "تامشكط", "Tamchekett", NULL, 172, 0, 1, NULL, "17.2451191", "-10.6701655"),
 ("تيشيت", "تيشيت", "Tichit", NULL, 172, 0, 1, NULL, "18.444062", "-9.493115"),
 ("ولاتة", "ولاتة", "Walatah", NULL, 172, 0, 1, NULL, "17.3004736", "-7.0258082"),
-("الزويرات", "الزويرات", "Zouérat", NULL, 172, 0, 1, NULL, "22.7374428", "-12.4728954");
+("الزويرات", "الزويرات", "Zouérat", NULL, 172, 0, 1, NULL, "22.7374428", "-12.4728954"),
+("Barkewol", "Barkewol", "Barkewol", NULL, 172, 0, 1, NULL, "16.65", "-12.5");

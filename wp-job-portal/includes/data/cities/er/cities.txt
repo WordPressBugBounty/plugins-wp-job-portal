@@ -2,4 +2,13 @@
 INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
 ("ኣስመራ Asmara أسمرة", "ኣስመራ Asmara أسمرة", "Asmara", NULL, 157, 0, 1, NULL, "15.3389667", "38.9326763"),
 ("ከረን Keren كرن", "ከረን Keren كرن", "Keren", NULL, 157, 0, 1, NULL, "15.780477", "38.453606"),
-("ዓሰብ Assab عصب", "ዓሰብ Assab عصب", "Assab", NULL, 157, 0, 1, NULL, "13.0091289", "42.7444596");
+("ዓሰብ Assab عصب", "ዓሰብ Assab عصب", "Assab", NULL, 157, 0, 1, NULL, "13.0091289", "42.7444596"),
+("Adi Keyh", "Adi Keyh", "Adi Keyh", NULL, 157, 0, 1, NULL, "14.8488436", "39.369897"),
+("Akordat", "Akordat", "Akordat", NULL, 157, 0, 1, NULL, "15.5406754", "37.8777561"),
+("Barentu", "Barentu", "Barentu", NULL, 157, 0, 1, NULL, "15.1074513", "37.5907446"),
+("Dekemhare", "Dekemhare", "Dekemhare", NULL, 157, 0, 1, NULL, "15.0712647", "39.0450242"),
+("Idi", "Idi", "Idi", NULL, 157, 0, 1, NULL, "13.9293327", "41.6896925"),
+("Massawa", "Massawa", "Massawa", NULL, 157, 0, 1, NULL, "15.607875", "39.4553839"),
+("Mendefera", "Mendefera", "Mendefera", NULL, 157, 0, 1, NULL, "14.8725628", "38.8100855"),
+("Quandeba", "Quandeba", "Quandeba", NULL, 157, 0, 1, NULL, "15.0712647", "39.0450242"),
+("Teseney", "Teseney", "Teseney", NULL, 157, 0, 1, NULL, "15.0981366", "36.6579649");

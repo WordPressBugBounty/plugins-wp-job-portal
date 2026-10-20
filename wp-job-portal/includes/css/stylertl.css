@@ -40,7 +40,8 @@ div#wjportal-emp-cp-wrp div.wjportal-cp-right div.wjportal-cp-boxes div.wjportal
 div#wjportal-emp-cp-wrp .wjportal-user-tagline{text-align:right ;}
 div#wjportal-emp-cp-wrp #wpjobportal-center .wjportal-cp-sec-title{width: 100%; text-align: right;}
 div#wjportal-emp-cp-wrp .wjportal-applied-job-resume-status{left: 1rem; right: unset;}
-div#wjportal-emp-cp-wrp h3.wjportal-section-title{text-align: right;}
+div#wjportal-emp-cp-wrp h3.wjportal-section-title,
+div#wjportal-emp-cp-wrp summary.wjportal-section-title{text-align: right;}
 div#wjportal-emp-cp-wrp .wjportal-cp-sec-title{text-align: right;}
 div#wjportal-emp-cp-wrp .wjportal-list-anchor{gap: 0;}
 div#wjportal-emp-cp-wrp .wjportal-table-wrp  {text-align: center;}
@@ -67,7 +68,8 @@ div#wjportal-job-cp-wrp .wjportal-user-tagline {float: right;}
 .wjportal-cp-box-btm a::after {content: '←';font-size: 18px; margin-right: 8px; transition: transform 0.3s ease;}
 #wjportal-job-cp-wrp #wpjobportal-center .wjportal-cp-sec-title{width: 100%; text-align: right;}
 #wjportal-job-cp-wrp .wjportal-applied-job-resume-status{left: 1rem; right: unset;}
-#wjportal-job-cp-wrp h3.wjportal-section-title{text-align: right;}
+#wjportal-job-cp-wrp h3.wjportal-section-title,
+#wjportal-job-cp-wrp summary.wjportal-section-title{text-align: right;}
 #wjportal-job-cp-wrp .wjportal-cp-sec-title{text-align: right;}
 #wjportal-job-cp-wrp .wjportal-list-anchor{gap: 0;}
 #wjportal-job-cp-wrp .wjportal-table-wrp  {text-align: center;}

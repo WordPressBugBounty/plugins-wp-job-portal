@@ -1,3 +1,20 @@
 
 INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
-("Apia", "Apia", "Apia", NULL, 207, 0, 1, NULL, "-13.8344639", "-171.7649144");
+("Apia", "Apia", "Apia", NULL, 207, 0, 1, NULL, "-13.8344639", "-171.7649144"),
+("Afenga", "Afenga", "Afenga", NULL, 207, 0, 1, NULL, "-13.7987574", "-171.8531711"),
+("Falefa", "Falefa", "Falefa", NULL, 207, 0, 1, NULL, "-13.8875282", "-171.5877457"),
+("Faleula", "Faleula", "Faleula", NULL, 207, 0, 1, NULL, "-13.7973358", "-171.8319995"),
+("Fasitoouta", "Fasitoouta", "Fasitoouta", NULL, 207, 0, 1, NULL, "-13.8117019", "-171.940524"),
+("Gataivai", "Gataivai", "Gataivai", NULL, 207, 0, 1, NULL, "-13.7720906", "-172.3899338"),
+("Leulumoega", "Leulumoega", "Leulumoega", NULL, 207, 0, 1, NULL, "-13.8238306", "-171.9596185"),
+("Levi", "Levi", "Levi", NULL, 207, 0, 1, NULL, "28.998902", "-82.4963036"),
+("Lotofaga", "Lotofaga", "Lotofaga", NULL, 207, 0, 1, NULL, "-14.0166076", "-171.5166503"),
+("Lufilufi", "Lufilufi", "Lufilufi", NULL, 207, 0, 1, NULL, "-13.8765001", "-171.6014507"),
+("Malie", "Malie", "Malie", NULL, 207, 0, 1, NULL, "34.6205589", "-92.5358212"),
+("Matavai", "Matavai", "Matavai", NULL, 207, 0, 1, NULL, "-13.4712549", "-172.4197476"),
+("Nofoalii", "Nofoalii", "Nofoalii", NULL, 207, 0, 1, NULL, "-13.8117019", "-171.940524"),
+("Safotu", "Safotu", "Safotu", NULL, 207, 0, 1, NULL, "-13.4528458", "-172.4041647"),
+("Siusega", "Siusega", "Siusega", NULL, 207, 0, 1, NULL, "-13.8386121", "-171.8197036"),
+("Solosolo", "Solosolo", "Solosolo", NULL, 207, 0, 1, NULL, "-13.876472", "-171.6425505"),
+("Vaitele", "Vaitele", "Vaitele", NULL, 207, 0, 1, NULL, "-13.8295301", "-171.806039"),
+("Vaiusu", "Vaiusu", "Vaiusu", NULL, 207, 0, 1, NULL, "-13.831435", "-171.7985223");

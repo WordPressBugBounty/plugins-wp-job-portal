@@ -1,7 +1,7 @@
 <?php
 if (!defined('ABSPATH'))
 die('Restricted Access');
-wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js');
+wp_enqueue_script( 'wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js', array(), wpjobportal_asset_version('includes/js/responsivetable.js'), false );
 ?>
 
 <?php
@@ -9,7 +9,7 @@ wp_enqueue_script('jquery-ui-sortable');
 wp_enqueue_style('wp-jquery-ui-dialog');
 ?>
 <?php
-    wp_register_script( 'wpjobportal-inline-handle', '' );
+    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
     $wpjobportal_inline_js_script = "
@@ -176,7 +176,7 @@ wp_enqueue_style('wp-jquery-ui-dialog');
                                             </td>
                                             <td>
                                                 <?php if ($wpjobportal_row->default == 1) { ?>
-                                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/default.png" alt="Default" border="0" alt="<?php echo esc_attr(__('Default', 'wp-job-portal')); ?>" />
+                                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/default.png" border="0" alt="<?php echo esc_attr(__('Default', 'wp-job-portal')); ?>" />
                                                 <?php } else { ?>
                                                     <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_common&task=makedefault&action=wpjobportaltask&for=currencies&id='.$wpjobportal_row->id.$wpjobportal_pageid),'wpjobportal_common_entity_nonce')); ?>" title="<?php echo esc_attr(__('not default', 'wp-job-portal')); ?>">
                                                         <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/notdefault.png" border="0" alt="<?php echo esc_attr(__('not default', 'wp-job-portal')); ?>" />

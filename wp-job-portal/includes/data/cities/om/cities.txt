@@ -32,4 +32,17 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("صحار", "صحار", "Sohar", NULL, 125, 0, 1, NULL, "24.3445577", "56.7424766"),
 ("الخابورة", "الخابورة", "Al Khaburah", NULL, 125, 0, 1, NULL, "23.9708646", "57.0910976"),
 ("شناص", "شناص", "Shinas", NULL, 125, 0, 1, NULL, "24.7441619", "56.4598209"),
-("صور", "صور", "Sur", NULL, 125, 0, 1, NULL, "22.5694263", "59.5297203");
+("صور", "صور", "Sur", NULL, 125, 0, 1, NULL, "22.5694263", "59.5297203"),
+("Al Buraymi", "Al Buraymi", "Al Buraymi", NULL, 125, 0, 1, NULL, "24.2815207", "55.8245558"),
+("Al Liwa", "Al Liwa", "Al Liwa", NULL, 125, 0, 1, NULL, "24.5068401", "56.5952891"),
+("As Sib", "As Sib", "As Sib", NULL, 125, 0, 1, NULL, "23.6271673", "58.1665132"),
+("As Suwayq", "As Suwayq", "As Suwayq", NULL, 125, 0, 1, NULL, "23.8262343", "57.4287899"),
+("Badiyah", "Badiyah", "Badiyah", NULL, 125, 0, 1, NULL, "22.4428429", "58.8003292"),
+("Bawshar", "Bawshar", "Bawshar", NULL, 125, 0, 1, NULL, "23.5651914", "58.4201892"),
+("Baytal Awabi", "Baytal Awabi", "Baytal Awabi", NULL, 125, 0, 1, NULL, "22.386514", "57.5249708"),
+("Dib Dibba", "Dib Dibba", "Dib Dibba", NULL, 125, 0, 1, NULL, "25.6365398", "56.2538153"),
+("Ibra", "Ibra", "Ibra", NULL, 125, 0, 1, NULL, "22.7244454", "58.5258173"),
+("Rustaq", "Rustaq", "Rustaq", NULL, 125, 0, 1, NULL, "23.4425277", "57.4344451"),
+("Sufalat Samail", "Sufalat Samail", "Sufalat Samail", NULL, 125, 0, 1, NULL, "23.303506", "58.026708"),
+("Suhar", "Suhar", "Suhar", NULL, 125, 0, 1, NULL, "24.3460959", "56.7075141"),
+("Yanqul", "Yanqul", "Yanqul", NULL, 125, 0, 1, NULL, "23.5989926", "56.5448304");

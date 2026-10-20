@@ -1,3 +1,5 @@
 
 INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
-("Stanley", "Stanley", "Stanley", NULL, 35, 0, 1, NULL, "-51.6930616", "-57.856525");
+("Stanley", "Stanley", "Stanley", NULL, 35, 0, 1, NULL, "-51.6930616", "-57.856525"),
+("Goose Green Settlement", "Goose Green Settlement", "Goose Green Settlement", NULL, 35, 0, 1, NULL, "35.2366019", "-80.5667775"),
+("Port Howard", "Port Howard", "Port Howard", NULL, 35, 0, 1, NULL, "-51.6117748", "-59.5224278");

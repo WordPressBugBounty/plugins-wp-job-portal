@@ -45,7 +45,7 @@ class WPJOBPORTALResumeViewlayout {
                                 </div>
                             </div>
                         </div>';
-                        wp_register_script( 'wpjobportal-inline-handle', '' );
+                        wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
                         wp_enqueue_script( 'wpjobportal-inline-handle' );
                         $wpjobportal_inline_js_script = '
                             jQuery(document).ready(function(){
@@ -59,7 +59,7 @@ class WPJOBPORTALResumeViewlayout {
                     <div class="row-title"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/resume/hide-map.png" class="image"/>' . esc_html($wpjobportal_text) . '</div>
                     <div class="row-value"><div id="' . esc_attr($wpjobportal_id) . '" class="map" style="width:100%;min-height:200px;">' . esc_html($longitude) . ' - ' . esc_html($latitude) . '</div></div>
                     ';
-                    wp_register_script( 'wpjobportal-inline-handle', '' );
+                    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
                     wp_enqueue_script( 'wpjobportal-inline-handle' );
                     $wpjobportal_inline_js_script = '
                         jQuery(document).ready(function() {
@@ -73,11 +73,20 @@ class WPJOBPORTALResumeViewlayout {
         return $wpjobportal_html;
     }
 
+    // The resume has files and the current user may download them: the same check the download tasks
+    // (resume controller getresumefiledownloadbyid / getallresumefiles) run, so a shown link never ends in a 403.
+    function canDownloadResumeFiles() {
+        if (empty(wpjobportal::$_data[0]['file_section']) || empty(wpjobportal::$_data[0]['personal_section']->id)) {
+            return false;
+        }
+        return WPJOBPORTAL_Authorization_Service::can_download_resume_archive(wpjobportal::$_data[0]['personal_section']->id, false);
+    }
+
     function getAttachmentRowForViewForTemplate($adminLogin) {
         $wpjobportal_html='<div id="'.esc_attr($this->class_prefix).'-resumedetail-attachment" class="'.esc_attr($this->class_prefix).'-resumedetail-section">
             <div class="'.esc_attr($this->class_prefix).'-resumedetail-section-title">
                 <span class="'.esc_attr($this->class_prefix).'-resumedetail-section-icon">
-                    <img alt="attachment" title="attachment" src="'.JOB_PORTAL_THEME_IMAGE.'/attchments.png">
+                    <img alt="'.esc_attr__('Attachment', 'wp-job-portal').'" title="'.esc_attr__('Attachment', 'wp-job-portal').'" src="'.JOB_PORTAL_THEME_IMAGE.'/attchments.png">
                 </span>
                 <h5 class="'.esc_attr($this->class_prefix).'-resumedetail-section-txt">
                     '.esc_html(__("Attachment","wp-job-portal")).'
@@ -86,7 +95,7 @@ class WPJOBPORTALResumeViewlayout {
             <div class="'.esc_attr($this->class_prefix).'-resumedetail-sec-data">
                 <div class="'.esc_attr($this->class_prefix).'-resumedetail-sec-download">
                     <div class="input-group">';
-                        foreach (wpjobportal::$_data[0]['file_section'] AS $file) {
+                        foreach (($this->canDownloadResumeFiles() ? wpjobportal::$_data[0]['file_section'] : array()) AS $file) {
                             $files=$file->filename;
                             $wpjobportal_exp_extension = wpjobportalphplib::wpJP_explode(".", $files);
                             $wpjobportal_extension = end($wpjobportal_exp_extension);
@@ -98,7 +107,7 @@ class WPJOBPORTALResumeViewlayout {
                                     </a>';
                         }
                     $wpjobportal_html .='</div>';
-                    if(!empty(wpjobportal::$_data[0]['file_section']) && (wpjobportal::$wpjobportal_data['resumecontactdetail'] == true || $adminLogin)){
+                    if($this->canDownloadResumeFiles() && (wpjobportal::$wpjobportal_data['resumecontactdetail'] == true || $adminLogin)){
                          $wpjobportal_html .= apply_filters('wpjobportal_addons_resume_action_ResumeFile',false,wpjobportal::$_data[0]['personal_section']);
                     }
                 $wpjobportal_html .= '</div>
@@ -423,7 +432,7 @@ class WPJOBPORTALResumeViewlayout {
                         $wpjobportal_html .= $this->getRowForView($wpjobportal_text, $wpjobportal_value, $wpjobportal_i,$wpjobportal_themecall);
                         break;
                     case 'resumefiles':
-                        if (wpjobportal::$wpjobportal_data['resumecontactdetail'] == true) {
+                        if (wpjobportal::$wpjobportal_data['resumecontactdetail'] == true && $this->canDownloadResumeFiles()) {
                             // $files_html = '';
                             if ($wpjobportal_i % 2 != 0) { // close the div if one field is print and the function is finished;
                                 $files_html .= '</div>'; // closing div for the more option
@@ -483,7 +492,13 @@ class WPJOBPORTALResumeViewlayout {
             $wpjobportal_is_qucik_apply = wpjobportal::$_data[0]['personal_section']->quick_apply;
         }
         $wpjobportal_html = '<div class="wjportal-resume-top-section">';
-        if(!WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()){
+        /*
+         * The photo and the actions are this builder's to draw unless an
+         * add-on template is drawing this screen and prints its own. That
+         * used to be asked as "is Elegant Design active", which hid them on
+         * every Core-rendered screen of an Elegant Design site.
+         */
+        if(!WPJOBPORTALincluder::renderingOverride()){
             if($wpjobportal_is_qucik_apply == 0){ // hide photo which is not set in case of quick apply
                 if (isset(wpjobportal::$_data[2][1]['photo'])) {
                     $wpjobportal_html .= '<div class="wjportal-resume-image">';
@@ -515,7 +530,7 @@ class WPJOBPORTALResumeViewlayout {
                        }
                        //PRINT HOOK
                        $wpjobportal_html .= apply_filters('wpjobportal_addons_resume_views_action_for_print',false,wpjobportal::$_data[0]['personal_section']->id);
-                    if(!empty(wpjobportal::$_data[0]['file_section']) && (wpjobportal::$wpjobportal_data['resumecontactdetail'] == true || $adminLogin)){
+                    if($this->canDownloadResumeFiles() && (wpjobportal::$wpjobportal_data['resumecontactdetail'] == true || $adminLogin)){
                         //Downloadable File Addons HOOK
                         $wpjobportal_html .= apply_filters('wpjobportal_addons_resume_action_ResumeFile',false,wpjobportal::$_data[0]['personal_section']);
                     }
@@ -575,7 +590,7 @@ class WPJOBPORTALResumeViewlayout {
         if (wpjobportal::$wpjobportal_data['resumecontactdetail'] == true || $adminLogin) {
             if (isset(wpjobportal::$_data[2][1]['jobtype'])) {
                 if(isset(wpjobportal::$_data[0]) && !empty(wpjobportal::$_data[0]['personal_section']->jobtypetitle)){
-                    $wpjobportal_html .= '<div class="wjportal-resume-info"> <span class="wjportal-jobtype" style="background-color: '.wpjobportal::$_data[0]['personal_section']->jobtypecolor.';">'  . esc_html(wpjobportal::wpjobportal_getVariableValue(wpjobportal::$_data[0]['personal_section']->jobtypetitle)) . '</span></div>';
+                    $wpjobportal_html .= '<div class="wjportal-resume-info"> <span class="wjportal-jobtype" style="--wpjp-jobtype-color: '.wpjobportal::$_data[0]['personal_section']->jobtypecolor.';">'  . esc_html(wpjobportal::wpjobportal_getVariableValue(wpjobportal::$_data[0]['personal_section']->jobtypetitle)) . '</span></div>';
                 }
             }
             if (isset(wpjobportal::$_data[2][1]['email_address'])) {
@@ -619,11 +634,11 @@ class WPJOBPORTALResumeViewlayout {
         $wpjobportal_resume_object = wpjobportal::$_data[0]['personal_section'];
         $wpjobportal_dateformat    = wpjobportal::$_configuration['date_format'];
         $wpjobportal_curdate       = date_i18n('Y-m-d');
-        $wpjobportal_featuredexpiry = date_i18n('Y-m-d', strtotime($wpjobportal_resume_object->endfeatureddate));
+        $wpjobportal_featuredexpiry = date_i18n('Y-m-d', strtotime((string) $wpjobportal_resume_object->endfeatureddate));
 
         if ($wpjobportal_resume_object->isfeaturedresume == 1 && $wpjobportal_featuredexpiry >= $wpjobportal_curdate) {
             $wpjobportal_expiry_text = ($wpjobportal_resume_object->isfeaturedresume == 1)
-                ? __("Expiry Date", "wp-job-portal") . ': ' . esc_html(date_i18n($wpjobportal_dateformat, strtotime($wpjobportal_resume_object->endfeatureddate)))
+                ? __("Expiry Date", "wp-job-portal") . ': ' . esc_html(date_i18n($wpjobportal_dateformat, strtotime((string) $wpjobportal_resume_object->endfeatureddate)))
                 : __('Featured Approval Waiting', 'wp-job-portal');
 
             $wpjobportal_html .= '
@@ -639,7 +654,7 @@ class WPJOBPORTALResumeViewlayout {
 
 
         $wpjobportal_html .= '<div class="wjportal-personal-data">';
-        if(current_user_can('manage_options') || !WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()){
+        if(current_user_can('manage_options') || !WPJOBPORTALincluder::renderingOverride()){ // same question as getPersonalTopSection
             if($wpjobportal_is_qucik_apply == 0){ // hide photo which is not set in case of quick apply
                 if (isset(wpjobportal::$_data[2][1]['photo'])) {
                     $wpjobportal_html .= '<div class="wjportal-resume-image">';
@@ -709,7 +724,7 @@ class WPJOBPORTALResumeViewlayout {
         }
             if (isset(wpjobportal::$_data[2][1]['jobtype'])) {
                 if(isset(wpjobportal::$_data[0]) && !empty(wpjobportal::$_data[0]['personal_section']->jobtypetitle)){
-                    $wpjobportal_html .= '<div class="wjportal-resume-info  wjportal-resume-info-jobtype"> <span class="wjportal-jobtype" style="background-color: '.wpjobportal::$_data[0]['personal_section']->jobtypecolor.';">'  . esc_html(wpjobportal::wpjobportal_getVariableValue(wpjobportal::$_data[0]['personal_section']->jobtypetitle)) . '</span></div>';
+                    $wpjobportal_html .= '<div class="wjportal-resume-info  wjportal-resume-info-jobtype"> <span class="wjportal-jobtype" style="--wpjp-jobtype-color: '.wpjobportal::$_data[0]['personal_section']->jobtypecolor.';">'  . esc_html(wpjobportal::wpjobportal_getVariableValue(wpjobportal::$_data[0]['personal_section']->jobtypetitle)) . '</span></div>';
                 }
             }
         if (wpjobportal::$wpjobportal_data['resumecontactdetail'] == true || $adminLogin) {
@@ -758,7 +773,7 @@ class WPJOBPORTALResumeViewlayout {
                    }
                    //PRINT HOOK
                    $wpjobportal_extra_actions_html .= apply_filters('wpjobportal_addons_resume_views_action_for_print',false,wpjobportal::$_data[0]['personal_section']->id);
-                if(!empty(wpjobportal::$_data[0]['file_section']) && (wpjobportal::$wpjobportal_data['resumecontactdetail'] == true || $adminLogin)){
+                if($this->canDownloadResumeFiles() && (wpjobportal::$wpjobportal_data['resumecontactdetail'] == true || $adminLogin)){
                     //Downloadable File Addons HOOK
                     $wpjobportal_extra_actions_html .= apply_filters('wpjobportal_addons_resume_action_ResumeFile',false,wpjobportal::$_data[0]['personal_section']);
                 }

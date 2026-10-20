@@ -2,18 +2,17 @@
 if (!defined('ABSPATH'))
     die('Restricted Access');
 
-wp_enqueue_style('wpjobportal-redesign-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportaladmin_redesign.css', array(), wpjobportal_asset_version('includes/css/wpjobportaladmin_redesign.css'));
 // Enqueue necessary scripts and styles
-// wp_enqueue_style('wjp-font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
-// wp_enqueue_script('chart-js', 'https://cdn.jsdelivr.net/npm/chart.js');
+// wp_enqueue_style( 'wjp-font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css', array(), WPJOBPORTAL_VERSION );
+// wp_enqueue_script( 'chart-js', 'https://cdn.jsdelivr.net/npm/chart.js', array(), WPJOBPORTAL_VERSION, false );
 // Safely load external CSS/JS
 
 wp_enqueue_script( 'jp-google-charts', esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/js/google-charts.js', array(), '1.1.1', false );
-wp_enqueue_style('status-graph', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/status_graph.css');
+wp_enqueue_style('status-graph', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/status_graph.css', array(), wpjobportal_asset_version('includes/css/status_graph.css'));
 
 
 // Register a handle for our inline script
-wp_register_script('wp-job-portal-dashboard-js', '');
+wp_register_script( 'wp-job-portal-dashboard-js', '', array(), WPJOBPORTAL_VERSION, false );
 wp_enqueue_script('wp-job-portal-dashboard-js');
 
 // Define default options and get the user's saved options from the wp_options table
@@ -780,9 +779,9 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                                     $wpjobportal_log_class = wpjobportal_get_error_log_class($wpjobportal_log->error);
                                     
                                     $wpjobportal_error = $wpjobportal_log->error;
-                                    $decoded_error = json_decode( $wpjobportal_error );
-                                    if ( json_last_error() === JSON_ERROR_NONE && isset( $decoded_error->error ) ) {
-                                        $wpjobportal_error = $decoded_error->error;
+                                    $wpjobportal_decoded_error = json_decode( $wpjobportal_error );
+                                    if ( json_last_error() === JSON_ERROR_NONE && isset( $wpjobportal_decoded_error->error ) ) {
+                                        $wpjobportal_error = $wpjobportal_decoded_error->error;
                                     }
                                     ?>
                                 <div class="wjp-list-item wjp-list-item-simple">
@@ -1107,6 +1106,48 @@ function drawApplicationChart() {
 ";
 
 wp_add_inline_script('wp-job-portal-dashboard-js', $wpjobportal_applicationChart_js);
+
+/*
+ * Google Charts draws at the width its box has at that moment and never
+ * again. The content area animates its width for 500ms on load and whenever
+ * the left menu is toggled, so a chart drawn mid-animation overflowed its
+ * card and the page scrolled sideways. Redraw once the width has settled.
+ */
+$wpjobportal_chart_redraw_js = "
+(function () {
+    var timer = null;
+    function redrawCharts() {
+        if (typeof google === 'undefined' || !google.visualization) {
+            return;
+        }
+        if (typeof drawApplicationChart === 'function') { drawApplicationChart(); }
+        if (typeof drawTopCategoriesChart === 'function') { drawTopCategoriesChart(); }
+        if (typeof drawJobsStatusChart === 'function') { drawJobsStatusChart(); }
+    }
+    function scheduleRedraw() {
+        clearTimeout(timer);
+        timer = setTimeout(redrawCharts, 150);
+    }
+    function watchContentWidth() {
+        var data = document.getElementById('wpjobportaladmin-data');
+        if (data) {
+            data.addEventListener('transitionend', function (event) {
+                if (event.target === data && event.propertyName === 'padding-left') {
+                    scheduleRedraw();
+                }
+            });
+        }
+    }
+    window.addEventListener('resize', scheduleRedraw);
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', watchContentWidth);
+    } else {
+        watchContentWidth();
+    }
+})();
+";
+
+wp_add_inline_script('wp-job-portal-dashboard-js', $wpjobportal_chart_redraw_js);
 
 
 ?>

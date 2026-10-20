@@ -57,8 +57,12 @@ class WPJOBPORTALCityModel {
     }
 
     function getAllStatesCities($wpjobportal_countryid, $wpjobportal_stateid) {
-        if (!is_numeric($wpjobportal_countryid))
+        if (!is_numeric($wpjobportal_countryid)) {
+            // Opened without a country (e.g. from the menu); the list template still reads the filter.
+            wpjobportal::$_data['filter']['searchname'] = '';
+            wpjobportal::$_data['filter']['status'] = '';
             return false;
+        }
 
         //Filter
         $wpjobportal_searchname = wpjobportal::$_search['city']['searchname'];
@@ -122,7 +126,6 @@ class WPJOBPORTALCityModel {
         $wpjobportal_data['cityName'] = $wpjobportal_data['name'];
 
         $wpjobportal_row = WPJOBPORTALincluder::getJSTable('city');
-        $wpjobportal_data = WPJOBPORTALincluder::getJSmodel('common')->stripslashesFull($wpjobportal_data);// remove slashes with quotes.
         $wpjobportal_data = wpjobportal::wpjobportal_sanitizeData($wpjobportal_data);
         if (!$wpjobportal_row->bind($wpjobportal_data)) {
             return WPJOBPORTAL_SAVE_ERROR;
@@ -417,7 +420,6 @@ class WPJOBPORTALCityModel {
         $wpjobportal_data['longitude'] = $longitude;
         $wpjobportal_data = wpjobportal::wpjobportal_sanitizeData($wpjobportal_data);
         $wpjobportal_row = WPJOBPORTALincluder::getJSTable('city');
-        $wpjobportal_data = WPJOBPORTALincluder::getJSmodel('common')->stripslashesFull($wpjobportal_data);// remove slashes with quotes.
         if (!$wpjobportal_row->bind($wpjobportal_data)) {
             return 2;
         }
@@ -472,8 +474,8 @@ class WPJOBPORTALCityModel {
     function getCookiesSavedCity(){
         $wpjobportal_jsjp_search_array = array();
         $wpjp_search_cookie_data = '';
-        if(isset($_COOKIE['jsjp_jobportal_search_data'])){
-            $wpjp_search_cookie_data = wpjobportal::wpjobportal_sanitizeData($_COOKIE['jsjp_jobportal_search_data']);
+        if(WPJOBPORTALrequest::hasCookie('jsjp_jobportal_search_data')){
+            $wpjp_search_cookie_data = WPJOBPORTALrequest::cookie('jsjp_jobportal_search_data');
             $wpjp_search_cookie_data = wpjobportalphplib::wpJP_safe_decoding($wpjp_search_cookie_data);
             $wpjp_search_cookie_data = json_decode( $wpjp_search_cookie_data , true );
         }
@@ -508,10 +510,35 @@ class WPJOBPORTALCityModel {
         }
 
         // $wpjobportal_language code of country
-        $wpjobportal_language_code = $wpjobportal_data['country_code'];
+        $wpjobportal_language_code = self::sanitizeCountryCode($wpjobportal_data['country_code']);
+        if ($wpjobportal_language_code === '') {
+            return WPJOBPORTAL_SAVE_ERROR;
+        }
+
+        // The erase branches below look the country up by this same value, so
+        // a code the import will not accept must not reach them either.
+        $wpjobportal_data['country_code'] = $wpjobportal_language_code;
         // free data or pro data
         //$wpjobportal_data_to_import = 'free';
         $wpjobportal_data_to_import = $wpjobportal_data['data_to_import'];
+
+        // Paid data served from a file this site already has. Pro ships the
+        // dataset, so there is nothing to fetch and nothing arriving as SQL
+        // over the network to be executed. It is the whole world in one import
+        // rather than one country, so it goes to the import service, which
+        // stages the rows and swaps them in only once every statement has
+        // succeeded, instead of the per-country delete-then-insert below.
+        if ($wpjobportal_data_to_import == 'pro'
+            && !in_array('addressdata', wpjobportal::$_active_addons)
+            && class_exists('WPJOBPORTAL_Address_Import_Service')
+            && WPJOBPORTAL_Address_Import_Service::has_bundled_dataset()
+        ) {
+            $wpjobportal_keep = isset($wpjobportal_data['keepdata'])
+                ? absint($wpjobportal_data['keepdata'])
+                : 1;
+
+            return WPJOBPORTAL_Address_Import_Service::import_bundled($wpjobportal_keep === 1, 3);
+        }
 
         $file_contents = $this->getLocationDataFileContents($wpjobportal_language_code,$wpjobportal_data_to_import);
         if ($file_contents != '') { // making sure the string is not empty (every error case will return this string as empty)
@@ -686,7 +713,42 @@ class WPJOBPORTALCityModel {
     }
 
 
+    /**
+     * A country code, or an empty string.
+     *
+     * Every namecode in the countries table is two letters, and every folder
+     * under includes/data/cities is named after one, so this both normalises
+     * the value and rules out anything that could escape that directory.
+     *
+     * @param mixed $wpjobportal_country_code Value from the request.
+     * @return string
+     */
+    public static function sanitizeCountryCode($wpjobportal_country_code) {
+        if (!is_string($wpjobportal_country_code)) {
+            return '';
+        }
+
+        // Matched before trimming, so surrounding spaces are tolerated but a
+        // null byte is not: trim() would strip one and leave a code that looks
+        // perfectly valid, which is how poisoned input usually gets through.
+        if (!preg_match('/^\s*([A-Za-z]{2})\s*$/', $wpjobportal_country_code, $wpjobportal_match)) {
+            return '';
+        }
+
+        return strtolower($wpjobportal_match[1]);
+    }
+
     function getLocationDataFileContents($wpjobportal_country_code,$wpjobportal_data_to_import){
+
+        // The code arrives straight from the request and is about to become
+        // both a path segment and a parameter to the licence server. Every
+        // country in the table has a two-letter code and so does every data
+        // folder, so anything else is not a country and is not asked about.
+        $wpjobportal_country_code = self::sanitizeCountryCode($wpjobportal_country_code);
+        if ($wpjobportal_country_code === '') {
+            WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError('Address Data import rejected an invalid country code');
+            return '';
+        }
 
         // if trying to import pro data check if addon is installed
         if(in_array('addressdata',wpjobportal::$_active_addons) && $wpjobportal_data_to_import == 'pro'){
@@ -717,12 +779,21 @@ class WPJOBPORTALCityModel {
                 require_once ABSPATH . 'wp-admin/includes/file.php';
             }
             global $wp_filesystem;
-            if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-                $creds = request_filesystem_credentials( site_url() );
-                wp_filesystem( $creds );
+            $wp_filesystem = wpjobportal::wpjobportal_filesystem();
+
+            // Resolved and then checked to be inside the data directory: the
+            // code is already validated above, and this holds even if that
+            // ever changes or a symlink points outward.
+            $wpjobportal_datadir = realpath(WPJOBPORTAL_PLUGIN_PATH . 'includes/data/cities');
+            $wpjobportal_installfile = realpath($wpjobportal_datadir . DIRECTORY_SEPARATOR . $wpjobportal_country_code . DIRECTORY_SEPARATOR . 'cities.txt');
+
+            if ($wpjobportal_datadir === false
+                || $wpjobportal_installfile === false
+                || strpos($wpjobportal_installfile, $wpjobportal_datadir . DIRECTORY_SEPARATOR) !== 0) {
+                WPJOBPORTALincluder::getJSModel('systemerror')->addSystemError('Address Data file not found');
+                return '';
             }
 
-            $wpjobportal_installfile = WPJOBPORTAL_PLUGIN_PATH . 'includes/data/cities/'.$wpjobportal_country_code.'/cities.txt';
             // check file exsists
             if ($wp_filesystem->exists($wpjobportal_installfile)) {
                 // reading the file

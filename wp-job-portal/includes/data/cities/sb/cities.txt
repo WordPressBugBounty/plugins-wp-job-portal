@@ -1,4 +1,8 @@
 
 INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
 ("Honiara", "Honiara", "Honiara", NULL, 208, 0, 1, NULL, "-9.4310769", "159.9552552"),
-("Marakuru", "Marakuru", "Marakuru", NULL, 208, 0, 1, NULL, "-9.9168951", "160.5758025");
+("Marakuru", "Marakuru", "Marakuru", NULL, 208, 0, 1, NULL, "-9.9168951", "160.5758025"),
+("Auki", "Auki", "Auki", NULL, 208, 0, 1, NULL, "-8.7678593", "160.6960306"),
+("Gizo", "Gizo", "Gizo", NULL, 208, 0, 1, NULL, "-8.1058258", "156.8349986"),
+("Kirakira", "Kirakira", "Kirakira", NULL, 208, 0, 1, NULL, "-10.4571902", "161.9199371"),
+("Tulaghi", "Tulaghi", "Tulaghi", NULL, 208, 0, 1, NULL, "-9.1015826", "160.147069");

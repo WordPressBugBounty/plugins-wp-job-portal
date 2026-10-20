@@ -1,0 +1,53 @@
+<?php
+if (!defined('ABSPATH'))
+    die('Restricted Access');
+?>
+<div class="wjportal-main-up-wrapper">
+<?php
+    wp_enqueue_script( 'wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js', array(), wpjobportal_asset_version('includes/js/responsivetable.js'), false );
+
+$wpjobportal_msgkey = WPJOBPORTALincluder::getJSModel('employer')->getMessagekey();
+WPJOBPORTALMessages::getLayoutMessage($wpjobportal_msgkey);
+WPJOBPORTALbreadcrumbs::getBreadcrumbs();
+include_once(WPJOBPORTAL_PLUGIN_PATH . 'includes/header.php');
+if (wpjobportal::$_error_flag == null) {
+    ?>
+    <div id="wpjobportal-wrapper">
+        <div class="page_heading"><?php echo esc_html(__('Stats', 'wp-job-portal')); ?></div>
+        <?php if(isset(wpjobportal::$_data[0]) AND !empty(wpjobportal::$_data[0])){ ?>
+
+        <div class="wpjobportal-bottom-wrapper">
+            <div class="js-topstats">
+                <div class="js-mainwrp js-col-xs-12 js-col-md-4">
+                    <div class="jobs tprow">
+                        <div class="js-headtext"><?php echo esc_html(__('Total Jobs','wp-job-portal')); ?></div>
+                        <div class="js-count">(<?php echo esc_html(wpjobportal::$_data[0]['totaljobs']); ?>)</div>
+                    </div>
+                </div>
+                <div class="js-mainwrp js-col-xs-12 js-col-md-4">
+                    <div class="companies tprow">
+                        <div class="js-headtext"><?php echo esc_html(__('Companies','wp-job-portal')); ?></div>
+                        <div class="js-count">(<?php echo esc_html(wpjobportal::$_data[0]['totalcompanies']); ?>)</div>
+                    </div>
+                </div>
+                <div class="js-mainwrp js-col-xs-12 js-col-md-4">
+                    <div class="appliedjobs tprow">
+                        <div class="js-headtext"><?php echo esc_html(__('Applications Received','wp-job-portal')); ?></div>
+                        <div class="js-count">(<?php echo esc_html(wpjobportal::$_data[0]['totalapplied']); ?>)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+    } else{
+        $wpjobportal_msg = esc_html(__('No Records Found','wp-job-portal'));
+        WPJOBPORTALlayout::getNoRecordFound($wpjobportal_msg);
+    }
+        ?>
+
+    </div>
+<?php
+}else{
+    echo wp_kses_post(wpjobportal::$_error_flag_message);
+} ?>
+</div>

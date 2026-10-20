@@ -27,7 +27,7 @@ if($wpjobportal_control == 'myresumes'){
     // handling featured class for main wrap
    	$wpjobportal_curdate = date_i18n('Y-m-d');
    	if(!empty($wpjobportal_myresume->isfeaturedresume)){
-        $wpjobportal_featuredexpiry = date_i18n('Y-m-d', strtotime($wpjobportal_myresume->endfeatureddate));
+        $wpjobportal_featuredexpiry = date_i18n('Y-m-d', strtotime((string) $wpjobportal_myresume->endfeatureddate));
         if($wpjobportal_myresume->isfeaturedresume == 1 && $wpjobportal_featuredexpiry >= $wpjobportal_curdate){
             $wpjobportal_list_item_status_extra_class .= ' wpjobportal-list-item-is-featured ';
         }
@@ -50,6 +50,16 @@ if($wpjobportal_control == 'myresumes'){
 			));
 	echo	'</div>
 		';
+		/*
+		 * The skills excerpt, once only the Elegant Design fork of this card
+		 * carried. Behind the same setting as the job card's excerpt: one
+		 * decision about list cards, not one switch per card.
+		 */
+		if (wpjobportal::$_config->getConfigurationByConfigName('show_job_description_in_list') == 1) {
+			WPJOBPORTALincluder::getTemplate('resume/views/frontend/description', array(
+			    'wpjobportal_myresume' => $wpjobportal_myresume
+			));
+		}
 		echo '<div id="wjportal-'.esc_attr($wpjobportal_myresume->id).'" > </div>
             	<div id="comments" class="wjportal-applied-job-actions-popup '.esc_attr($wpjobportal_myresume->id).'" style="display:none" ></div>';
 				WPJOBPORTALincluder::getTemplate('resume/views/frontend/control',array(
@@ -57,4 +67,7 @@ if($wpjobportal_control == 'myresumes'){
 			        'wpjobportal_myresume'=> $wpjobportal_myresume,
 			        'wpjobportal_featuredflag' => true
 			    ));
+				if ($wpjobportal_control === 'myresumes') {
+					do_action('wpjobportal_my_resume_extensions', $wpjobportal_myresume);
+				}
 		echo  '</div>';

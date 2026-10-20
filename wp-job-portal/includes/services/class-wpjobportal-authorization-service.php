@@ -110,6 +110,14 @@ class WPJOBPORTAL_Authorization_Service {
             $owner_id = isset($entity->uid) ? absint($entity->uid) : 0;
             $allowed = $owner_id > 0 && $owner_id === self::current_internal_user_id();
 
+            $allowed = (bool) apply_filters(
+                'wpjobportal_authorization_custom_file',
+                $allowed,
+                $upload_for,
+                absint($entity_id),
+                get_current_user_id()
+            );
+
             // Published company and currently published job attachments are
             // intentionally public because their links are rendered on the
             // corresponding public detail pages.
@@ -192,6 +200,15 @@ class WPJOBPORTAL_Authorization_Service {
         if ($is_employer
             && self::employer_has_resume_relationship(absint($resume_id), $internal_user_id)
         ) {
+            return true;
+        }
+
+        if ((bool) apply_filters(
+            'wpjobportal_authorization_resume',
+            false,
+            absint($resume_id),
+            get_current_user_id()
+        )) {
             return true;
         }
 

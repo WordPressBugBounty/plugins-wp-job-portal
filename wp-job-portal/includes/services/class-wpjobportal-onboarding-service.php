@@ -37,14 +37,20 @@ class WPJOBPORTAL_Onboarding_Service {
 
         $mode = WPJOBPORTAL_Product_Mode_Service::get_mode();
         $is_marketplace = WPJOBPORTAL_Product_Mode_Service::MODE_MARKETPLACE === $mode;
-        $company_count = absint($wpdb->get_var(
-            "SELECT COUNT(`id`) FROM `{$wpdb->prefix}wj_portal_companies` WHERE `status` = 1"
+        // Sample records are not the site's own. Counted, they ticked "company
+        // profile complete" and "first job published" the moment the demo was
+        // imported, and the checklist stopped pointing at work still to do.
+        $company_count = absint(wpjobportaldb_direct::get_var(
+            "SELECT COUNT(`id`) FROM `{$wpdb->prefix}wj_portal_companies` WHERE `status` = 1" . self::not_sample('companies')
         ));
-        $job_count = absint($wpdb->get_var(
-            "SELECT COUNT(`id`) FROM `{$wpdb->prefix}wj_portal_jobs` WHERE `status` = 1"
+        $job_count = absint(wpjobportaldb_direct::get_var(
+            "SELECT COUNT(`id`) FROM `{$wpdb->prefix}wj_portal_jobs` WHERE `status` = 1" . self::not_sample('jobs')
         ));
-        $application_count = absint($wpdb->get_var(
-            "SELECT COUNT(`id`) FROM `{$wpdb->prefix}wj_portal_jobapply`"
+        $application_count = absint(wpjobportaldb_direct::get_var(
+            "SELECT COUNT(`id`) FROM `{$wpdb->prefix}wj_portal_jobapply` WHERE 1 = 1" . self::not_sample('applications')
+        ));
+        $city_count = absint(wpjobportaldb_direct::get_var(
+            $wpdb->prepare("SELECT COUNT(`id`) FROM %i", $wpdb->prefix . 'wj_portal_cities')
         ));
         $page_status = self::default_page_status();
         $items = array();
@@ -54,7 +60,7 @@ class WPJOBPORTAL_Onboarding_Service {
             __('Choose an operating mode', 'wp-job-portal'),
             WPJOBPORTAL_Product_Mode_Service::is_selected()
                 ? sprintf(
-                    __('%s is selected.', 'wp-job-portal'),
+                    /* translators: %s: wpjobportal product mode service get label mode */ __('%s is selected.', 'wp-job-portal'),
                     WPJOBPORTAL_Product_Mode_Service::get_label($mode)
                 )
                 : __('Choose Careers & ATS or Job Marketplace intentionally; existing-site compatibility remains unchanged until then.', 'wp-job-portal'),
@@ -64,7 +70,8 @@ class WPJOBPORTAL_Onboarding_Service {
         );
 
         if ($is_marketplace) {
-            $employer_enabled = '0' === (string) self::configuration_value('disable_employer', '1');
+            // 1 is "on", whatever the setting's name suggests.
+            $employer_enabled = '1' === (string) self::configuration_value('disable_employer', '1');
             $registration_enabled = '1' === (string) self::configuration_value('showemployerlink', '0');
             $items[] = self::item(
                 'employer_registration',
@@ -78,12 +85,29 @@ class WPJOBPORTAL_Onboarding_Service {
             );
         }
 
+        // Before the company and job steps on purpose: both ask for a
+        // location, and typed locations are off by default, so neither can
+        // be completed properly until a city list exists.
+        $items[] = self::item(
+            'cities',
+            __('Load the city list', 'wp-job-portal'),
+            $city_count > 0
+                ? sprintf(
+                    /* translators: %d: city count */ _n('%d city is available to choose from.', '%d cities are available to choose from.', $city_count, 'wp-job-portal'),
+                    $city_count
+                )
+                : self::city_prompt(),
+            $city_count > 0,
+            admin_url('admin.php?page=wpjobportal_city&wpjobportallt=loadaddressdata'),
+            $city_count > 0 ? __('Review locations', 'wp-job-portal') : __('Load address data', 'wp-job-portal')
+        );
+
         $items[] = self::item(
             'company',
             $is_marketplace ? __('Approve the first company', 'wp-job-portal') : __('Complete the company profile', 'wp-job-portal'),
             $company_count > 0
                 ? sprintf(
-                    _n('%d approved company is available.', '%d approved companies are available.', $company_count, 'wp-job-portal'),
+                    /* translators: %d: company count */ _n('%d approved company is available.', '%d approved companies are available.', $company_count, 'wp-job-portal'),
                     $company_count
                 )
                 : ($is_marketplace
@@ -111,7 +135,7 @@ class WPJOBPORTAL_Onboarding_Service {
             'job',
             __('Publish the first job', 'wp-job-portal'),
             $job_count > 0
-                ? sprintf(_n('%d published job is available.', '%d published jobs are available.', $job_count, 'wp-job-portal'), $job_count)
+                ? sprintf(/* translators: %d: job count */ _n('%d published job is available.', '%d published jobs are available.', $job_count, 'wp-job-portal'), $job_count)
                 : __('Create and publish a real job so candidates can apply.', 'wp-job-portal'),
             $job_count > 0,
             $job_count > 0
@@ -124,7 +148,7 @@ class WPJOBPORTAL_Onboarding_Service {
             'applications',
             $is_marketplace ? __('Verify the application workflow', 'wp-job-portal') : __('Review the candidate workflow', 'wp-job-portal'),
             $application_count > 0
-                ? sprintf(_n('%d application has been received.', '%d applications have been received.', $application_count, 'wp-job-portal'), $application_count)
+                ? sprintf(/* translators: %d: application count */ _n('%d application has been received.', '%d applications have been received.', $application_count, 'wp-job-portal'), $application_count)
                 : __('No application has been received yet. Use a separate candidate account when testing this step.', 'wp-job-portal'),
             $application_count > 0,
             admin_url('admin.php?page=wpjobportal_job'),
@@ -191,7 +215,7 @@ class WPJOBPORTAL_Onboarding_Service {
             return;
         }
 
-        $page = isset($_GET['page']) ? sanitize_key(wp_unslash($_GET['page'])) : '';
+        $page = sanitize_key((string) WPJOBPORTALrequest::getVar('page', 'get', ''));
         if ('wpjobportal' !== $page || !WPJOBPORTAL_Product_Mode_Service::is_selected()) {
             return;
         }
@@ -208,7 +232,7 @@ class WPJOBPORTAL_Onboarding_Service {
                 <strong><?php echo esc_html__('Finish setting up WP Job Portal.', 'wp-job-portal'); ?></strong>
                 <?php
                 echo esc_html(sprintf(
-                    __('%1$d of %2$d onboarding steps are complete.', 'wp-job-portal'),
+                    /* translators: 1: state completed, 2: state total */ __('%1$d of %2$d onboarding steps are complete.', 'wp-job-portal'),
                     absint($state['completed']),
                     absint($state['total'])
                 ));
@@ -217,6 +241,57 @@ class WPJOBPORTAL_Onboarding_Service {
             </p>
         </div>
         <?php
+    }
+
+    /**
+     * What to say when no city has been loaded.
+     *
+     * Naming the country makes the step one click rather than a decision,
+     * and it is the same guess the setup notice offers.
+     *
+     * @return string
+     */
+    /**
+     * An "AND id NOT IN (...)" for the sample records of one type, or ''.
+     *
+     * @param string $type companies, jobs or applications.
+     * @return string
+     */
+    private static function not_sample($type) {
+        if (!class_exists('WPJOBPORTAL_Sample_Data_Service')) {
+            return '';
+        }
+        $ids = array_map('absint', WPJOBPORTAL_Sample_Data_Service::tracked_ids($type));
+
+        return empty($ids) ? '' : ' AND `id` NOT IN (' . implode(',', $ids) . ')';
+    }
+
+    private static function city_prompt() {
+        if (!class_exists('WPJOBPORTAL_Site_Country_Service')
+            || !class_exists('WPJOBPORTAL_Address_Setup_Notice')) {
+            return __('Import a city list so employers can choose a job location.', 'wp-job-portal');
+        }
+
+        $country = WPJOBPORTAL_Site_Country_Service::country_name();
+        $available = WPJOBPORTAL_Address_Setup_Notice::available_for(
+            WPJOBPORTAL_Site_Country_Service::country_code()
+        );
+
+        if ($country === '' || $available < 1) {
+            return __('Import a city list so employers can choose a job location.', 'wp-job-portal');
+        }
+
+        /* translators: 1: number of cities, 2: country name. */
+        return sprintf(
+            /* translators: 1: available, 2: country */ _n(
+                'Employers cannot choose a job location yet. %1$d city is ready to import for %2$s.',
+                'Employers cannot choose a job location yet. %1$d cities are ready to import for %2$s.',
+                $available,
+                'wp-job-portal'
+            ),
+            $available,
+            $country
+        );
     }
 
     /**
@@ -260,8 +335,9 @@ class WPJOBPORTAL_Onboarding_Service {
     private static function configuration_value($name, $default = '') {
         global $wpdb;
 
-        $value = $wpdb->get_var($wpdb->prepare(
-            "SELECT `configvalue` FROM `{$wpdb->prefix}wj_portal_config` WHERE `configname` = %s LIMIT 1",
+        $value = wpjobportaldb_direct::get_var($wpdb->prepare(
+            "SELECT `configvalue` FROM %i WHERE `configname` = %s LIMIT 1",
+            $wpdb->prefix . 'wj_portal_config',
             sanitize_key($name)
         ));
 

@@ -1,8 +1,8 @@
 <?php
 if (!defined('ABSPATH'))    die('Restricted Access');
 wp_enqueue_script('jquery-ui-datepicker');
-$wpjobportal_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jquery-ui-smoothness.css');
+$wpjobportal_protocol = is_ssl() ? "https://" : "http://";
+wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jquery-ui-smoothness.css', array(), wpjobportal_asset_version('includes/css/jquery-ui-smoothness.css'));
 ?>
 
 <style>
@@ -38,11 +38,11 @@ $wpjobportal_js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy'
             wp_enqueue_script( 'jp-google-map', $wpjobportal_filekey, array(), '1.1.1', false );
         }elseif($wpjobportal_mappingservice == 'osm'){
             # Open Street
-            wp_enqueue_script( 'wpjp-osm-js', esc_url(WPJOBPORTAL_PLUGIN_URL).'/includes/js/ol.min.js' );
-            wp_enqueue_style( 'wpjp-osm-css', esc_url(WPJOBPORTAL_PLUGIN_URL).'/includes/css/ol.min.css' );
+            wp_enqueue_script( 'wpjp-osm-js', esc_url(WPJOBPORTAL_PLUGIN_URL).'/includes/js/ol.min.js', array(), wpjobportal_asset_version('includes/js/ol.min.js'), false );
+            wp_enqueue_style( 'wpjp-osm-css', esc_url(WPJOBPORTAL_PLUGIN_URL).'/includes/css/ol.min.css', array(), wpjobportal_asset_version('includes/css/ol.min.css') );
         }
 
-    wp_register_script( 'wpjobportal-inline-handle', '' );
+    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
     $wpjobportal_inline_js_script = "
@@ -628,7 +628,11 @@ if($wpjobportal_mapfield):
 
             if($wpjobportal_mapfield):
                 if($wpjobportal_mapfield->published == 1){
-                    $wpjobportal_inline_js_script .= "loadMap();";
+                    $wpjobportal_inline_js_script .= "
+                    /* The map container comes from Pro's Maps module; without it
+                       (a free site) loadMap() threw and stopped this ready handler,
+                       so the terms-and-conditions check below was never attached. */
+                    if (document.getElementById('map_container') && typeof google === 'object' && typeof google.maps === 'object') { loadMap(); }";
                 }
             endif;
             $wpjobportal_inline_js_script .= "
@@ -706,7 +710,7 @@ if($wpjobportal_mapfield):
                 }
             });
             if (test == false) {
-                alert('Email is not of correct Format');
+                alert('" . esc_js(__('Email is not of correct Format', 'wp-job-portal')) . "');
             } else {
                 var termsandcondtions = jQuery('div.wpjobportal-terms-and-conditions-wrap').attr('data-wpjobportal-terms-and-conditions');
                 // theme has these classes and attributes

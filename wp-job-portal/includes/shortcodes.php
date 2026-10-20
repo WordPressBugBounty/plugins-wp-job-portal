@@ -95,7 +95,17 @@ class WPJOBPORTALshortcodes {
             $wpjobportal_employerarray = array('addcompany', 'mycompanies', 'adddepartment', 'mydepartments', 'addfolder', 'myfolders', 'addjob', 'myjobs');
             $wpjobportal_isouruser = WPJOBPORTALincluder::getObjectClass('user')->isWPJOBPortalUser();
             $wpjobportal_isguest = WPJOBPORTALincluder::getObjectClass('user')->isguest();
-            if (in_array($wpjobportal_layout, $wpjobportal_employerarray) && $wpjobportal_isouruser == false && $wpjobportal_isguest == false) {
+            $wpjobportal_bound = wpjobportal::$_common->userBoundToAnotherArea('employer');
+            if ($wpjobportal_bound) {
+                /*
+                 * Somebody who belongs to another part of the product. They
+                 * hold no portal role, so the test below reads them as a
+                 * newcomer and offers the role picker; choosing one would make
+                 * them something they are not. A recruiting team member is not
+                 * turned away here - this panel is where their work lives.
+                 */
+                WPJOBPORTALlayout::getBoundElsewhereMsg($wpjobportal_bound);
+            } elseif (in_array($wpjobportal_layout, $wpjobportal_employerarray) && $wpjobportal_isouruser == false && $wpjobportal_isguest == false) {
                 WPJOBPORTALincluder::include_file('newinwpjobportal', 'common');
             } else {
                 wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
@@ -153,7 +163,12 @@ class WPJOBPORTALshortcodes {
             $wpjobportal_jobseekerarray = array('myresumes','myappliedjobs');
             $wpjobportal_isouruser = WPJOBPORTALincluder::getObjectClass('user')->isWPJOBPortalUser();
             $wpjobportal_isguest = WPJOBPORTALincluder::getObjectClass('user')->isguest();
-            if (in_array($wpjobportal_layout, $wpjobportal_jobseekerarray) && $wpjobportal_isouruser == false && $wpjobportal_isguest == false) {
+            $wpjobportal_bound = wpjobportal::$_common->userBoundToAnotherArea('jobseeker');
+            if ($wpjobportal_bound) {
+                // See the employer panel above: a person who already belongs
+                // somewhere is not a newcomer to be given a role.
+                WPJOBPORTALlayout::getBoundElsewhereMsg($wpjobportal_bound);
+            } elseif (in_array($wpjobportal_layout, $wpjobportal_jobseekerarray) && $wpjobportal_isouruser == false && $wpjobportal_isguest == false) {
                 WPJOBPORTALincluder::include_file('newinwpjobportal', 'common');
             } else {
                 wpjobportal::$_data['sanitized_args']['wpjobportal_nonce'] = esc_html(wp_create_nonce('wpjobportal_nonce'));
@@ -1585,7 +1600,7 @@ function wpjobportal_register_block_editor_assets() {
                 'wp-i18n',
                 'wp-server-side-render',
             ),
-            '2.6.0',
+            '2.7.0',
             true
         );
 
@@ -1603,7 +1618,7 @@ function wpjobportal_register_block_editor_assets() {
             'wpjobportal-blocks-editor',
             esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportal-block-editor.css',
             array('wp-edit-blocks'),
-            '2.6.0'
+            '2.7.0'
         );
     }
 }
@@ -1752,9 +1767,9 @@ function wpjobportal_jobs_block_widgets($attributes, $wpjobportal_content){
     if ($wpjobportal_jobs != '') {
         $wpjobportal_html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->getJOBSWidgetHTML($wpjobportal_jobs,$wpjobportal_sanitized_args['wpjobportalpageid'],$wpjobportal_sanitized_args['title'],$wpjobportal_sanitized_args['fieldcolumn'],$wpjobportal_layoutName,$wpjobportal_sanitized_args['listingstyle'],$wpjobportal_sanitized_args['typeofjobs']);
     }
-    wp_enqueue_style('wpjobportal-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/style.css');
+    wp_enqueue_style('wpjobportal-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/style.css', array(), wpjobportal_asset_version('includes/css/style.css'));
     if (is_rtl()) {
-        wp_enqueue_style('wpjobportal-site-rtl', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/stylertl.css');
+        wp_enqueue_style('wpjobportal-site-rtl', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/stylertl.css', array(), wpjobportal_asset_version('includes/css/stylertl.css'));
     }
     return wpjobportal_block_wrap($wpjobportal_html, 'wpjobportal-jobs-block');
 }
@@ -1839,9 +1854,9 @@ function wpjobportal_companies_block_widgets($attributes, $wpjobportal_content){
     $wpjobportal_html = '';
     $wpjobportal_companies = WPJOBPORTALincluder::getJSModel('company')->getCompanies_Widget($wpjobportal_sanitized_args['companytype'], $wpjobportal_sanitized_args['noofcompanies']);
     $wpjobportal_html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->getCompanies_WidgetHtml($wpjobportal_sanitized_args['title'],$wpjobportal_layoutName, $wpjobportal_companies, $wpjobportal_sanitized_args['noofcompanies'], $wpjobportal_sanitized_args['listingstyle'],$wpjobportal_sanitized_args['companytype'],$wpjobportal_sanitized_args['fieldcolumn']);
-    wp_enqueue_style('wpjobportal-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/style.css');
+    wp_enqueue_style('wpjobportal-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/style.css', array(), wpjobportal_asset_version('includes/css/style.css'));
     if (is_rtl()) {
-        wp_enqueue_style('wpjobportal-site-rtl', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/stylertl.css');
+        wp_enqueue_style('wpjobportal-site-rtl', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/stylertl.css', array(), wpjobportal_asset_version('includes/css/stylertl.css'));
     }
     return wpjobportal_block_wrap($wpjobportal_html, 'wpjobportal-companies-block');
 }
@@ -1930,9 +1945,9 @@ function wpjobportal_resumes_block_widgets($attributes, $wpjobportal_content){
     $wpjobportal_html = '';
     $wpjobportal_resumes = WPJOBPORTALincluder::getJSModel('resume')->getResumes_Widget($wpjobportal_sanitized_args['typeofresume'], $wpjobportal_sanitized_args['noofresumes']);
     $wpjobportal_html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->getResume_WidgetHtml($wpjobportal_sanitized_args['title'],$wpjobportal_layoutName, $wpjobportal_resumes, $wpjobportal_sanitized_args['noofresumes'], $wpjobportal_sanitized_args['listingstyle'],$wpjobportal_sanitized_args['typeofresume'],$wpjobportal_sanitized_args['fieldcolumn']);
-    wp_enqueue_style('wpjobportal-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/style.css');
+    wp_enqueue_style('wpjobportal-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/style.css', array(), wpjobportal_asset_version('includes/css/style.css'));
     if (is_rtl()) {
-        wp_enqueue_style('wpjobportal-site-rtl', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/stylertl.css');
+        wp_enqueue_style('wpjobportal-site-rtl', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/stylertl.css', array(), wpjobportal_asset_version('includes/css/stylertl.css'));
     }
     return wpjobportal_block_wrap($wpjobportal_html, 'wpjobportal-resumes-block');
 }
@@ -2083,11 +2098,11 @@ function wpjobportal_jobsearch_block_widgets($attributes, $wpjobportal_content){
 
     $wpjobportal_html = '';
     $wpjobportal_html = WPJOBPORTALincluder::getJSModel('wpjobportalwidgets')->getSearchJobs_WidgetHTML($wpjobportal_sanitized_args['title'], $wpjobportal_sanitized_args['showtitle'], $wpjobportal_sanitized_args['jobtitle'], $wpjobportal_sanitized_args['category'], $wpjobportal_sanitized_args['jobtype'], $wpjobportal_sanitized_args['jobstatus'], $wpjobportal_sanitized_args['salaryrange'], $wpjobportal_sanitized_args['shift'], $wpjobportal_sanitized_args['duration'], $wpjobportal_sanitized_args['startpublishing'], $wpjobportal_sanitized_args['stoppublishing'], $wpjobportal_sanitized_args['company'], $wpjobportal_sanitized_args['address'], $wpjobportal_sanitized_args['columnperrow']);
-    wp_enqueue_style('wpjobportal-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/style.css');
-    wp_enqueue_style('wpjobportal-tokeninput', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/tokeninput.css');
-    wp_enqueue_script('wpjobportal-tokeninput', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/jquery.tokeninput.js');
+    wp_enqueue_style('wpjobportal-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/style.css', array(), wpjobportal_asset_version('includes/css/style.css'));
+    wp_enqueue_style('wpjobportal-tokeninput', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/tokeninput.css', array(), wpjobportal_asset_version('includes/css/tokeninput.css'));
+    wp_enqueue_script( 'wpjobportal-tokeninput', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/jquery.tokeninput.js', array(), wpjobportal_asset_version('includes/js/jquery.tokeninput.js'), false );
     if (is_rtl()) {
-        wp_enqueue_style('wpjobportal-site-rtl', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/stylertl.css');
+        wp_enqueue_style('wpjobportal-site-rtl', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/stylertl.css', array(), wpjobportal_asset_version('includes/css/stylertl.css'));
     }
     return wpjobportal_block_wrap($wpjobportal_html, 'wpjobportal-job-search-block');
 

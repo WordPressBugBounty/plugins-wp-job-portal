@@ -4,13 +4,65 @@ $wpjobportal_controller = WPJOBPORTALrequest::getVar('page',null,'wpjobportal');
 $wpjobportal_layout = WPJOBPORTALrequest::getVar('wpjobportallt');
 $wpjobportal_fieldfor = WPJOBPORTALrequest::getVar('ff');
 $wpjobportal_for = WPJOBPORTALrequest::getVar('for');
+$wpjobportal_configid = WPJOBPORTALrequest::getVar('wpjpconfigid');
+// A list screen is opened both without a layout (the links below) and with its
+// default layout spelled out (redirects after a save, breadcrumbs), and its
+// detail views belong to the same entry; fold them all into '' so every item
+// tests one value. The add-on hooks below receive the same folded layout.
+$wpjobportal_list_layouts = array(
+    'wpjobportal' => array('controlpanel'),
+    'wpjobportal_job' => array('jobs', 'view_job'),
+    'wpjobportal_resume' => array('resumes', 'viewresume', 'formresume'),
+    'wpjobportal_company' => array('companies', 'view_company'),
+    'wpjobportal_user' => array('users', 'userdetail', 'changerole'),
+    'wpjobportal_fieldordering' => array('fieldsordering'),
+    'wpjobportal_customfield' => array('fieldsordering'),
+    'wpjobportal_activitylog' => array('activitylogs'),
+    'wpjobportal_systemerror' => array('systemerrors'),
+    'wpjobportal_country' => array('countries'),
+    'wpjobportal_state' => array('states'),
+    'wpjobportal_city' => array('cities'),
+    'wpjobportal_jobtype' => array('jobtypes'),
+    'wpjobportal_jobstatus' => array('jobstatus'),
+    'wpjobportal_highesteducation' => array('highesteducations'),
+    'wpjobportal_careerlevel' => array('careerlevels'),
+    'wpjobportal_currency' => array('currency'),
+    'wpjobportal_category' => array('categories'),
+    'wpjobportal_salaryrangetype' => array('salaryrangetype'),
+    'wpjobportal_emailtemplatestatus' => array('emailtemplatestatus'),
+    'wpjobportal_coverletter' => array('coverletter'),
+    'wpjobportal_departments' => array('departments'),
+    'wpjobportal_jobalert' => array('jobalert'),
+    'wpjobportal_tag' => array('tags'),
+    'wpjobportal_folder' => array('folders'),
+    'wpjobportal_message' => array('messages'),
+    'wpjobportal_package' => array('packages'),
+    'wpjobportal_purchasehistory' => array('totalpurchasehistory'),
+    'wpjobportal_invoice' => array('invoices', 'invoicedetail'),
+);
+if (isset($wpjobportal_list_layouts[$wpjobportal_controller]) && in_array($wpjobportal_layout, $wpjobportal_list_layouts[$wpjobportal_controller], true)) {
+    $wpjobportal_layout = '';
+}
+// Field screens of every entity share one page; ff says whose fields they are.
+// The controller falls back to 1 (company) for the fields list and 2 (job) for
+// search fields when ff is missing.
+$wpjobportal_is_fields_page = ($wpjobportal_controller == 'wpjobportal_fieldordering' || $wpjobportal_controller == 'wpjobportal_customfield');
+if ($wpjobportal_is_fields_page && $wpjobportal_fieldfor == '') {
+    $wpjobportal_fieldfor = ($wpjobportal_layout == 'searchfields') ? 2 : 1;
+}
+$wpjobportal_is_fields_list = $wpjobportal_is_fields_page && ($wpjobportal_layout == '' || $wpjobportal_layout == 'formuserfield');
+$wpjobportal_is_search_fields = $wpjobportal_is_fields_page && $wpjobportal_layout == 'searchfields';
+// The emails screen shows the new-company template when no template is named.
+if ($wpjobportal_controller == 'wpjobportal_emailtemplate' && $wpjobportal_for == '') {
+    $wpjobportal_for = 'ew-cm';
+}
 $wpjobportal_product_mode = WPJOBPORTAL_Product_Mode_Service::get_mode();
 $wpjobportal_is_careers_mode = WPJOBPORTAL_Product_Mode_Service::MODE_CAREERS === $wpjobportal_product_mode;
 $wpjobportal_resume_menu_label = $wpjobportal_is_careers_mode ? __('Candidates', 'wp-job-portal') : __('Resume', 'wp-job-portal');
 $wpjobportal_company_menu_label = $wpjobportal_is_careers_mode ? __('Company Profile', 'wp-job-portal') : __('Companies', 'wp-job-portal');
 $wpjobportal_configuration_menu_label = $wpjobportal_is_careers_mode ? __('Hiring Settings', 'wp-job-portal') : __('Configuration', 'wp-job-portal');
 
-wp_register_script( 'wpjobportal-menu-handle', '' );
+wp_register_script( 'wpjobportal-menu-handle', '', array(), WPJOBPORTAL_VERSION, false );
 wp_enqueue_script( 'wpjobportal-menu-handle' );
 
 $wpjobportal_menu_js_script = '
@@ -24,6 +76,13 @@ $wpjobportal_menu_js_script = '
 
     ';
 wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
+
+// The menu's open/closed choice is kept in a cookie. It is applied here, as the page is
+// drawn, rather than by the script at the end of the page: from there the page first
+// showed the narrow menu and then widened it, with its transition, on every load.
+if (WPJOBPORTALrequest::cookie('wpjobportaladmin_collapse_admin_menu') === '1') {
+    wp_print_inline_script_tag('(function(w){if(w){w.classList.add("menu-collasped-active");}})(document.getElementById("wpjobportaladmin-wrapper"));');
+}
 ?>
 <div id="wpjobportaladmin-logo">
     <a href="admin.php?page=wpjobportal" class="wpjobportaladmin-anchor">
@@ -32,14 +91,14 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
     <img id="wpjobportaladmin-menu-toggle" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/control_panel/dashboard/admin-left-menu/menu.png'; ?>" />
 </div>
 <ul class="wpjobportaladmin-sidebar-menu tree" data-widget="tree" id="accordion">
-    <li class="treeview <?php if( ($wpjobportal_controller == 'wpjobportal' && $wpjobportal_layout != 'themes' && $wpjobportal_layout != 'shortcodes' && $wpjobportal_layout != 'addonstatus') || $wpjobportal_controller == 'wpjobportal_activitylog' || $wpjobportal_controller == 'wpjobportal_systemerror' || $wpjobportal_controller == 'wpjobportal_systemstatus' || $wpjobportal_controller == 'wpjobportal_postinstallation' || $wpjobportal_controller == 'wpjobportal_slug' ) echo 'active'; ?>">
+    <li class="treeview <?php if( ($wpjobportal_controller == 'wpjobportal' && !in_array($wpjobportal_layout, array('themes', 'shortcodes', 'licences', 'help', 'translations'), true)) || $wpjobportal_controller == 'wpjobportal_thirdpartyimport' || $wpjobportal_controller == 'wpjobportal_activitylog' || $wpjobportal_controller == 'wpjobportal_systemerror' || $wpjobportal_controller == 'wpjobportal_systemstatus' || $wpjobportal_controller == 'wpjobportal_postinstallation' || $wpjobportal_controller == 'wpjobportal_slug' ) echo 'active'; ?>">
         <a href="admin.php?page=wpjobportal" title="<?php echo esc_attr(__('Dashboard' , 'wp-job-portal')); ?>" class="wpjobportaladmin-menu-icon-class wpjobportaladmin-menu-icon-dashboard">
             <span class="wpjobportaladmin-text">
                 <?php echo esc_html(__('Dashboard' , 'wp-job-portal')); ?>
             </span>
         </a>
         <ul class="wpjobportaladmin-sidebar-submenu treeview-menu">
-            <li class="<?php if($wpjobportal_controller == 'wpjobportal' && ($wpjobportal_layout == 'controlpanel' || $wpjobportal_layout == '')) echo 'active'; ?>">
+            <li class="<?php if($wpjobportal_controller == 'wpjobportal' && $wpjobportal_layout == '') echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal" title="<?php echo esc_attr(__('Dashboard', 'wp-job-portal')); ?>">
                     <?php echo esc_html(__('Dashboard', 'wp-job-portal')); ?>
                 </a>
@@ -49,27 +108,27 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
                     <?php echo esc_html(__('Slug','wp-job-portal')); ?>
                 </a>
             </li>
-            <li class="<?php if($wpjobportal_controller == 'wpjobportal' && ($wpjobportal_layout == 'pageseo' || $wpjobportal_layout == '')) echo 'active'; ?>">
+            <li class="<?php if($wpjobportal_controller == 'wpjobportal' && $wpjobportal_layout == 'pageseo') echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal&wpjobportallt=pageseo" title="<?php echo esc_attr(__('SEO','wp-job-portal')); ?>">
                     <?php echo esc_html(__('SEO','wp-job-portal')); ?>
                 </a>
             </li>
-            <li class="<?php if($wpjobportal_controller == 'wpjobportal_thirdpartyimport' && ($wpjobportal_layout == 'importdata' || $wpjobportal_layout == '')) echo 'active'; ?>">
+            <li class="<?php if($wpjobportal_controller == 'wpjobportal_thirdpartyimport') echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal_thirdpartyimport" title="<?php echo esc_attr(__('Import Data','wp-job-portal')); ?>">
                     <?php echo esc_html(__('Import Third Party Data','wp-job-portal')); ?>
                 </a>
             </li>
-            <li class="<?php if($wpjobportal_controller == 'wpjobportal' && ($wpjobportal_layout == 'actionhooks' || $wpjobportal_layout == '')) echo 'active'; ?>">
+            <li class="<?php if($wpjobportal_controller == 'wpjobportal' && $wpjobportal_layout == 'actionhooks') echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal&wpjobportallt=actionhooks" title="<?php echo esc_attr(__('Actions and Filters','wp-job-portal')); ?>">
                     <?php echo esc_html(__('Hooks','wp-job-portal')); ?>
                 </a>
             </li>
-            <li class="<?php if($wpjobportal_controller == 'wpjobportal_activitylog' && ($wpjobportal_layout == 'wpjobportal_activitylog' || $wpjobportal_layout == '')) echo 'active'; ?>">
+            <li class="<?php if($wpjobportal_controller == 'wpjobportal_activitylog') echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal_activitylog" title="<?php echo esc_attr(__('Activity Log','wp-job-portal')); ?>">
                     <?php echo esc_html(__('Activity Log','wp-job-portal')); ?>
                 </a>
             </li>
-            <li class="<?php if($wpjobportal_controller == 'wpjobportal' && ($wpjobportal_layout == 'wpjobportalstats' || $wpjobportal_layout == '')) echo 'active'; ?>">
+            <li class="<?php if($wpjobportal_controller == 'wpjobportal' && $wpjobportal_layout == 'wpjobportalstats') echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal&wpjobportallt=wpjobportalstats" title="<?php echo esc_attr(__('Stats','wp-job-portal')); ?>">
                     <?php echo esc_html(__('Stats','wp-job-portal')); ?>
                 </a>
@@ -80,7 +139,7 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
                     <?php echo esc_html(__('Translations','wp-job-portal')); ?>
                 </a>
             </li> */?>
-            <li class="<?php if($wpjobportal_controller == 'wpjobportal_systemerror' && ($wpjobportal_layout == 'wpjobportal_systemerror' || $wpjobportal_layout == '')) echo 'active'; ?>">
+            <li class="<?php if($wpjobportal_controller == 'wpjobportal_systemerror') echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal_systemerror" title="<?php echo esc_attr(__('System Errors','wp-job-portal')); ?>">
                     <?php echo esc_html(__('System Errors','wp-job-portal')); ?>
                 </a>
@@ -103,14 +162,14 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
 
         </ul>
     </li>
-    <li class="treeview <?php if($wpjobportal_controller == 'wpjobportal_job' || $wpjobportal_controller == 'wpjobportal_jobapply' || $wpjobportal_controller == 'wpjobportal_jobalert' || $wpjobportal_controller == 'wpjobportal_customfield' || ($wpjobportal_controller == 'wpjobportal_fieldordering' && $wpjobportal_fieldfor == 2)) echo 'active'; ?>">
+    <li class="treeview <?php if($wpjobportal_controller == 'wpjobportal_job' || $wpjobportal_controller == 'wpjobportal_jobapply' || $wpjobportal_controller == 'wpjobportal_jobalert' || ($wpjobportal_is_fields_page && ($wpjobportal_fieldfor == 2 || $wpjobportal_fieldfor == 6)) || ($wpjobportal_controller == 'wpjobportal_configuration' && $wpjobportal_configid == 'job_apply')) echo 'active'; ?>">
         <a href="admin.php?page=wpjobportal_job" title="<?php echo esc_attr(__('Jobs' , 'wp-job-portal')); ?>" class="wpjobportaladmin-menu-icon-class wpjobportaladmin-menu-icon-jobs">
             <span class="wpjobportaladmin-text">
                 <?php echo esc_html(__('Jobs' , 'wp-job-portal')); ?>
             </span>
         </a>
         <ul class="wpjobportaladmin-sidebar-submenu treeview-menu">
-            <li class="<?php if($wpjobportal_controller == 'wpjobportal_job' && ($wpjobportal_controller == 'wpjobportal_jobapply' && $wpjobportal_layout == 'jobappliedresume' || $wpjobportal_layout == '')) echo 'active'; ?>">
+            <li class="<?php if(($wpjobportal_controller == 'wpjobportal_job' && $wpjobportal_layout == '') || $wpjobportal_controller == 'wpjobportal_jobapply') echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal_job" title="<?php echo esc_attr(__('Jobs', 'wp-job-portal')); ?>">
                     <?php echo esc_html(__('Jobs', 'wp-job-portal')); ?>
                 </a>
@@ -127,17 +186,17 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
                 </a>
             </li>
             <?php endif; ?>
-            <li class="<?php if($wpjobportal_controller == 'wpjobportal_fieldordering' && ($wpjobportal_layout == '')) echo 'active'; ?>">
+            <li class="<?php if($wpjobportal_is_fields_list && $wpjobportal_fieldfor == 2) echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal_fieldordering&ff=2" title="<?php echo esc_attr(__('Fields', 'wp-job-portal')); ?>">
                     <?php echo esc_html(__('Fields', 'wp-job-portal')); ?>
                 </a>
             </li>
-            <li class="<?php if($wpjobportal_controller == 'wpjobportal_fieldordering' && ($wpjobportal_layout == 'searchfields')) echo 'active'; ?>">
+            <li class="<?php if($wpjobportal_is_search_fields && $wpjobportal_fieldfor == 2) echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal_fieldordering&wpjobportallt=searchfields&ff=2" title="<?php echo esc_attr(__('Search Fields', 'wp-job-portal')); ?>">
                     <?php echo esc_html(__('Search Fields', 'wp-job-portal')); ?>
                 </a>
             </li>
-            <li class="<?php if($wpjobportal_controller == 'wpjobportal_configuration' && ($wpjobportal_layout == 'configurations')) echo 'active'; ?>">
+            <li class="<?php if($wpjobportal_controller == 'wpjobportal_configuration' && $wpjobportal_configid == 'job_apply') echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=job_apply" title="<?php echo esc_attr(__('Configuration', 'wp-job-portal')); ?>">
                     <?php echo esc_html(__('Job Apply Configurations', 'wp-job-portal')); ?>
                 </a>
@@ -150,13 +209,8 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
                 do_action('wpjobportal_addons_sidemenue_admin_jobalert',$wpjobportal_controller,$wpjobportal_layout);
             }else{
                 $wpjobportal_addoninfo = wpjobportal_checkWPJPPluginInfo('wp-job-portal-jobalert/wp-job-portal-jobalert.php');
-                if($wpjobportal_addoninfo['availability'] == "1"){
-                    $wpjobportal_text = $wpjobportal_addoninfo['text'];
-                    $wpjobportal_url = "plugins.php?s=wp-job-portal-jobalert&plugin_status=inactive";
-                }elseif($wpjobportal_addoninfo['availability'] == "0"){
-                    $wpjobportal_text = $wpjobportal_addoninfo['text'];
-                    $wpjobportal_url = "https://wpjobportal.com/product/job-alert/";
-                } ?>
+                $wpjobportal_text = $wpjobportal_addoninfo['text'];
+                $wpjobportal_url = $wpjobportal_addoninfo['url']; ?>
                 <li class="disabled-menu">
                     <span class="wpjobportaladmin-text"><?php echo esc_html(__('Job Alert' , 'wp-job-portal')); ?></span>
                     <a href="<?php echo esc_url($wpjobportal_url); ?>" class="wpjobportaladmin-install-btn" title="<?php echo esc_attr($wpjobportal_text); ?>"><?php echo esc_html($wpjobportal_text); ?></a>
@@ -164,7 +218,7 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
             <?php } ?>
         </ul>
     </li>
-    <li class="treeview <?php if($wpjobportal_controller == 'wpjobportal_resume' ||  ($wpjobportal_controller == 'wpjobportal_fieldordering' && $wpjobportal_fieldfor == 3)) echo 'active'; ?>">
+    <li class="treeview <?php if($wpjobportal_controller == 'wpjobportal_resume' ||  ($wpjobportal_is_fields_page && ($wpjobportal_fieldfor == 3 || $wpjobportal_fieldfor == 5))) echo 'active'; ?>">
         <a href="admin.php?page=wpjobportal_resume" title="<?php echo esc_attr(__('Resume' , 'wp-job-portal')); ?>" class="wpjobportaladmin-menu-icon-class wpjobportaladmin-menu-icon-resumes">
             <span class="wpjobportaladmin-text">
                 <?php echo esc_html(__('Resume' , 'wp-job-portal')); ?>
@@ -181,20 +235,20 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
                     <?php echo esc_html(__('Approval Queue', 'wp-job-portal')); ?>
                 </a>
             </li>
-            <li class="<?php if($wpjobportal_controller == 'wpjobportal_fieldordering' && ($wpjobportal_layout == '')) echo 'active'; ?>">
+            <li class="<?php if($wpjobportal_is_fields_list && $wpjobportal_fieldfor == 3) echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal_fieldordering&ff=3" title="<?php echo esc_attr(__('Fields', 'wp-job-portal')); ?>">
                     <?php echo esc_html(__('Fields', 'wp-job-portal')); ?>
                 </a>
             </li>
             <?php if(in_array('resumesearch', wpjobportal::$_active_addons)){ // hiding search fields without resume search addon ?>
-                <li class="<?php if($wpjobportal_controller == 'wpjobportal_fieldordering' && ($wpjobportal_layout == 'searchfields')) echo 'active'; ?>">
+                <li class="<?php if($wpjobportal_is_search_fields && $wpjobportal_fieldfor == 3) echo 'active'; ?>">
                     <a href="admin.php?page=wpjobportal_fieldordering&wpjobportallt=searchfields&ff=3" title="<?php echo esc_attr(__('Search Fields', 'wp-job-portal')); ?>">
                         <?php echo esc_html(__('Search Fields', 'wp-job-portal')); ?>
                     </a>
                 </li>
             <?php } ?>
             
-                <li class="<?php if($wpjobportal_controller == 'wpjobportal_fieldordering' && ($wpjobportal_layout == 'quickapply')) echo 'active'; ?>">
+                <li class="<?php if($wpjobportal_is_fields_list && $wpjobportal_fieldfor == 5) echo 'active'; ?>">
                     <a href="admin.php?page=wpjobportal_fieldordering&ff=5" title="<?php echo esc_attr(__('Search Fields', 'wp-job-portal')); ?>">
                         <?php echo esc_html(__('Quick Apply Fields', 'wp-job-portal')); ?>
                     </a>
@@ -202,7 +256,7 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
         </ul>
     </li>
 
-    <li class="treeview <?php if(($wpjobportal_controller == 'wpjobportal_company' || ($wpjobportal_controller == 'wpjobportal_fieldordering' && $wpjobportal_fieldfor == 1)) ) echo 'active'; ?>">
+    <li class="treeview <?php if(($wpjobportal_controller == 'wpjobportal_company' || ($wpjobportal_is_fields_page && $wpjobportal_fieldfor == 1)) ) echo 'active'; ?>">
         <a href="admin.php?page=wpjobportal_company" title="<?php echo esc_attr(__('Companies' , 'wp-job-portal')); ?>" class="wpjobportaladmin-menu-icon-class wpjobportaladmin-menu-icon-companies">
             <span class="wpjobportaladmin-text">
                 <?php echo esc_html(__('Companies' , 'wp-job-portal')); ?>
@@ -226,23 +280,50 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
                 </a>
             </li>
             <?php endif; ?>
-            <li class="<?php if($wpjobportal_controller == 'wpjobportal_fieldordering' && ($wpjobportal_layout == '')) echo 'active'; ?>">
+            <li class="<?php if($wpjobportal_is_fields_list && $wpjobportal_fieldfor == 1) echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal_fieldordering&ff=1" title="<?php echo esc_attr(__('Fields', 'wp-job-portal')); ?>">
                     <?php echo esc_html(__('Fields', 'wp-job-portal')); ?>
                 </a>
             </li>
         </ul>
     </li>
-    <li class="treeview <?php if($wpjobportal_controller == 'wpjobportal_configuration' || $wpjobportal_controller == 'wpjobportal_paymentmethodconfiguration' || $wpjobportal_controller == 'wpjobportal_cronjob' ) echo 'active'; ?>">
+    <?php
+    /**
+     * A suite's own group in this menu.
+     *
+     * Every entry above is written out by hand, and the only extension points
+     * are inside particular groups - a link under Reports, a link under Tags.
+     * A suite that adds whole screens of its own had nowhere to put them, which
+     * is why the five Recruit pages appeared in the WordPress sidebar but not
+     * here: you could open Recruit Pipeline and then find no way back to it from
+     * the plugin's own navigation.
+     *
+     * It runs here, after Companies, rather than at the end of the menu. A
+     * suite that adds whole screens adds a place to work, and the working areas
+     * are the first four entries; printed last, Recruitment came out below
+     * Help, under every list of job types and salary ranges - the position a
+     * menu uses for what nobody needs often.
+     *
+     * @param string $wpjobportal_controller Current page slug.
+     * @param string $wpjobportal_layout     Current layout.
+     */
+    do_action('wpjobportal_addons_admin_sidemenu_suite_groups', $wpjobportal_controller, $wpjobportal_layout);
+    ?>
+    <li class="treeview <?php if(($wpjobportal_controller == 'wpjobportal_configuration' && $wpjobportal_configid != 'job_apply') || $wpjobportal_controller == 'wpjobportal_paymentmethodconfiguration' || $wpjobportal_controller == 'wpjobportal_cronjob' || ($wpjobportal_controller == 'wpjobportal' && $wpjobportal_layout == 'translations')) echo 'active'; ?>">
         <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('Configuration' , 'wp-job-portal')); ?>" class="wpjobportaladmin-menu-icon-class wpjobportaladmin-menu-icon-configurations">
             <span class="wpjobportaladmin-text">
                 <?php echo esc_html(__('Configuration' , 'wp-job-portal')); ?>
             </span>
         </a>
         <ul class="wpjobportaladmin-sidebar-submenu treeview-menu">
-            <li class="<?php if($wpjobportal_controller == 'wpjobportal_configuration' && ($wpjobportal_layout == 'configurations')) echo 'active'; ?>">
+            <li class="<?php if($wpjobportal_controller == 'wpjobportal_configuration' && $wpjobportal_configid != 'job_apply') echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal_configuration&wpjobportallt=configurations" title="<?php echo esc_attr(__('Configuration', 'wp-job-portal')); ?>">
                     <?php echo esc_html(__('Configuration', 'wp-job-portal')); ?>
+                </a>
+            </li>
+            <li class="<?php if($wpjobportal_controller == 'wpjobportal' && $wpjobportal_layout == 'translations') echo 'active'; ?>">
+                <a href="admin.php?page=wpjobportal&wpjobportallt=translations" title="<?php echo esc_attr(__('Translations', 'wp-job-portal')); ?>">
+                    <?php echo esc_html(__('Translations', 'wp-job-portal')); ?>
                 </a>
             </li>
             <?php  if(in_array('cronjob', wpjobportal::$_active_addons)){ ?>
@@ -254,31 +335,21 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
             <?php  } ?>
         </ul>
     </li>
-    <li class="treeview <?php if($wpjobportal_controller == 'wpjobportal_premiumplugin' || ($wpjobportal_controller == 'wpjobportal' && $wpjobportal_layout == 'addonstatus')) echo 'active'; ?>">
-        <a href="admin.php?page=wpjobportal_premiumplugin" title="<?php echo esc_attr(__('Add Ons' , 'wp-job-portal')); ?>" class="wpjobportaladmin-menu-icon-class wpjobportaladmin-menu-icon-addons">
+    <li class="treeview <?php if($wpjobportal_controller == 'wpjobportal' && ($wpjobportal_layout == 'licences')) echo 'active'; ?>">
+        <a href="admin.php?page=wpjobportal&wpjobportallt=licences" title="<?php echo esc_attr(__('Licences and add-ons' , 'wp-job-portal')); ?>" class="wpjobportaladmin-menu-icon-class wpjobportaladmin-menu-icon-addons">
             <span class="wpjobportaladmin-text">
-                <?php echo esc_html(__('Addons' , 'wp-job-portal')); ?>
+                <?php echo esc_html(__('Licences' , 'wp-job-portal')); ?>
             </span>
         </a>
         <ul class="wpjobportaladmin-sidebar-submenu treeview-menu">
-            <li class="<?php if($wpjobportal_controller == 'wpjobportal_premiumplugin' && ($wpjobportal_layout == '' || $wpjobportal_layout == 'step1' || $wpjobportal_layout == 'step2' || $wpjobportal_layout == 'step3')) echo 'active'; ?>">
-                <a href="admin.php?page=wpjobportal_premiumplugin" title="<?php echo esc_attr(__('Install Addons','wp-job-portal')); ?>">
-                    <?php echo esc_html(__('Install Addons','wp-job-portal')); ?>
+            <li class="<?php if($wpjobportal_controller == 'wpjobportal' && $wpjobportal_layout == 'licences') echo 'active'; ?>">
+                <a href="admin.php?page=wpjobportal&wpjobportallt=licences" title="<?php echo esc_attr(__('Licences and add-ons','wp-job-portal')); ?>">
+                    <?php echo esc_html(__('Licences and add-ons','wp-job-portal')); ?>
                 </a>
             </li>
-            <li class="<?php if($wpjobportal_controller == 'wpjobportal' && $wpjobportal_layout == 'addonstatus') echo 'active'; ?>">
-                <a href="admin.php?page=wpjobportal&wpjobportallt=addonstatus" title="<?php echo esc_attr(__('Addons Status','wp-job-portal')); ?>">
-                    <?php echo esc_html(__('Addons Status','wp-job-portal')); ?>
-                </a>
-            </li>
-            <li class="<?php if($wpjobportal_controller == 'wpjobportal' && $wpjobportal_layout == 'updatekey') echo 'active'; ?>">
-                <a href="admin.php?page=wpjobportal_premiumplugin&wpjobportallt=updatekey" title="<?php echo esc_attr(__('Update Key','wp-job-portal')); ?>">
-                    <?php echo esc_html(__('Update Key','wp-job-portal')); ?>
-                </a>
-            </li>
-            <li class="<?php if($wpjobportal_controller == 'wpjobportal_premiumplugin' && ($wpjobportal_layout == 'addonfeatures')) echo 'active'; ?>">
-                <a href="?page=wpjobportal_premiumplugin&wpjobportallt=addonfeatures" title="<?php echo esc_attr(__('Addons List','wp-job-portal')); ?>">
-                    <?php echo esc_html(__('Addons List','wp-job-portal')); ?>
+            <li>
+                <a href="<?php echo esc_url(admin_url('update-core.php')); ?>" title="<?php echo esc_attr(__('Updates for every plugin on this site, WP Job Portal products included','wp-job-portal')); ?>">
+                    <?php echo esc_html(__('WordPress updates','wp-job-portal')); ?>
                 </a>
             </li>
         </ul>
@@ -322,15 +393,15 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
         </ul>
     </li>
     <li class="treeview <?php if($wpjobportal_controller == 'wpjobportal_theme') echo 'active'; ?>">
-        <a href="admin.php?page=wpjobportal_theme" title="<?php echo esc_attr(__('Colors' , 'wp-job-portal')); ?>" class="wpjobportaladmin-menu-icon-class wpjobportaladmin-menu-icon-colors">
+        <a href="admin.php?page=wpjobportal_theme" title="<?php echo esc_attr(__('Design' , 'wp-job-portal')); ?>" class="wpjobportaladmin-menu-icon-class wpjobportaladmin-menu-icon-colors">
             <span class="wpjobportaladmin-text">
-                <?php echo esc_html(__('Colors' , 'wp-job-portal')); ?>
+                <?php echo esc_html(__('Design' , 'wp-job-portal')); ?>
             </span>
         </a>
         <ul class="wpjobportaladmin-sidebar-submenu treeview-menu">
             <li class="<?php if($wpjobportal_controller == 'wpjobportal_theme') echo 'active'; ?>">
-                <a href="admin.php?page=wpjobportal_theme" title="<?php echo esc_attr(__('Colors','wp-job-portal')); ?>">
-                    <?php echo esc_html(__('Colors','wp-job-portal')); ?>
+                <a href="admin.php?page=wpjobportal_theme" title="<?php echo esc_attr(__('Design','wp-job-portal')); ?>">
+                    <?php echo esc_html(__('Design','wp-job-portal')); ?>
                 </a>
             </li>
         </ul>
@@ -352,13 +423,8 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
                     do_action('wpjobportal_addons_admin_sidemenu_links_for_reports',$wpjobportal_controller,$wpjobportal_layout);
                 }else{
                     $wpjobportal_addoninfo = wpjobportal_checkWPJPPluginInfo('wp-job-portal-reports/wp-job-portal-reports.php');
-                    if($wpjobportal_addoninfo['availability'] == "1"){
-                        $wpjobportal_text = $wpjobportal_addoninfo['text'];
-                        $wpjobportal_url = "plugins.php?s=wp-job-portal-reports&plugin_status=inactive";
-                    }elseif($wpjobportal_addoninfo['availability'] == "0"){
-                        $wpjobportal_text = $wpjobportal_addoninfo['text'];
-                        $wpjobportal_url = "https://wpjobportal.com/product/reports/";
-                    } ?>
+                    $wpjobportal_text = $wpjobportal_addoninfo['text'];
+                    $wpjobportal_url = $wpjobportal_addoninfo['url']; ?>
                     <li class="disabled-menu fw">
                         <span class="wpjobportaladmin-text"><?php echo esc_html(__('Employer / Job Seeker Report' , 'wp-job-portal')); ?></span>
                         <a href="<?php echo esc_url($wpjobportal_url); ?>" class="wpjobportaladmin-install-btn" title="<?php echo esc_attr($wpjobportal_text); ?>"><?php echo esc_html($wpjobportal_text); ?></a>
@@ -393,13 +459,8 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
         </li>
     <?php }else{
         $wpjobportal_addoninfo = wpjobportal_checkWPJPPluginInfo('wp-job-portal-departments/wp-job-portal-departments.php');
-        if($wpjobportal_addoninfo['availability'] == "1"){
-            $wpjobportal_text = $wpjobportal_addoninfo['text'];
-            $wpjobportal_url = "plugins.php?s=wp-job-portal-departments&plugin_status=inactive";
-        }elseif($wpjobportal_addoninfo['availability'] == "0"){
-            $wpjobportal_text = $wpjobportal_addoninfo['text'];
-            $wpjobportal_url = "https://wpjobportal.com/product/multi_departments/";
-        } ?>
+        $wpjobportal_text = $wpjobportal_addoninfo['text'];
+        $wpjobportal_url = $wpjobportal_addoninfo['url']; ?>
         <li class="treeview">
             <a href="javascript: void(0);" title="<?php echo esc_attr(__('Departments' , 'wp-job-portal')); ?>" class="wpjobportaladmin-menu-icon-class wpjobportaladmin-menu-icon-departments wpjobportaladmin-menu-icon-disabled">
                 <span class="wpjobportaladmin-text disabled-menu"><?php echo esc_html(__('Department' , 'wp-job-portal')); ?></span>
@@ -442,13 +503,8 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
         </li>
     <?php }else{
         $wpjobportal_addoninfo = wpjobportal_checkWPJPPluginInfo('wp-job-portal-coverletter/wp-job-portal-coverletter.php');
-        if($wpjobportal_addoninfo['availability'] == "1"){
-            $wpjobportal_text = $wpjobportal_addoninfo['text'];
-            $wpjobportal_url = "plugins.php?s=wp-job-portal-coverletter&plugin_status=inactive";
-        }elseif($wpjobportal_addoninfo['availability'] == "0"){
-            $wpjobportal_text = $wpjobportal_addoninfo['text'];
-            $wpjobportal_url = "https://wpjobportal.com/product/multi_coverletter/";
-        } ?>
+        $wpjobportal_text = $wpjobportal_addoninfo['text'];
+        $wpjobportal_url = $wpjobportal_addoninfo['url']; ?>
         <li class="treeview">
             <a href="javascript: void(0);" title="<?php echo esc_attr(__('Cover Letter' , 'wp-job-portal')); ?>" class="wpjobportaladmin-menu-icon-class wpjobportaladmin-menu-icon-coverletters wpjobportaladmin-menu-icon-disabled">
                 <span class="wpjobportaladmin-text disabled-menu"><?php echo esc_html(__('Cover Letter' , 'wp-job-portal')); ?></span>
@@ -468,13 +524,8 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
             do_action('wpjobportal_addons_admin_sidemenu_links_for_message' , $wpjobportal_controller,$wpjobportal_layout ); // cc
         }else{
             $wpjobportal_addoninfo = wpjobportal_checkWPJPPluginInfo('wp-job-portal-message/wp-job-portal-message.php');
-            if($wpjobportal_addoninfo['availability'] == "1"){
-                $wpjobportal_text = $wpjobportal_addoninfo['text'];
-                $wpjobportal_url = "plugins.php?s=wp-job-portal-message&plugin_status=inactive";
-            }elseif($wpjobportal_addoninfo['availability'] == "0"){
-                $wpjobportal_text = $wpjobportal_addoninfo['text'];
-                $wpjobportal_url = "https://wpjobportal.com/product/messages/";
-            } ?>
+            $wpjobportal_text = $wpjobportal_addoninfo['text'];
+            $wpjobportal_url = $wpjobportal_addoninfo['url']; ?>
             <li class="treeview">
                 <a href="javascript: void(0);" title="<?php echo esc_attr(__('Message' , 'wp-job-portal')); ?>" class="wpjobportaladmin-menu-icon-class wpjobportaladmin-menu-icon-messages wpjobportaladmin-menu-icon-disabled">
                     <span class="wpjobportaladmin-text disabled-menu"><?php echo esc_html(__('Message' , 'wp-job-portal')); ?></span>
@@ -494,13 +545,8 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
         }else{
 
             $wpjobportal_addoninfo = wpjobportal_checkWPJPPluginInfo('wp-job-portal-credits/wp-job-portal-credits.php');
-            if($wpjobportal_addoninfo['availability'] == "1"){
-                $wpjobportal_text = $wpjobportal_addoninfo['text'];
-                $wpjobportal_url = "plugins.php?s=wp-job-portal-credits&plugin_status=inactive";
-            }elseif($wpjobportal_addoninfo['availability'] == "0"){
-                $wpjobportal_text = $wpjobportal_addoninfo['text'];
-                $wpjobportal_url = "https://wpjobportal.com/product/credit-system/";
-            } ?>
+            $wpjobportal_text = $wpjobportal_addoninfo['text'];
+            $wpjobportal_url = $wpjobportal_addoninfo['url']; ?>
             <li class="treeview">
                 <a href="javascript: void(0);" title="<?php echo esc_attr(__('Credits' , 'wp-job-portal')); ?>" class="wpjobportaladmin-menu-icon-class wpjobportaladmin-menu-icon-credits wpjobportaladmin-menu-icon-disabled">
                     <span class="wpjobportaladmin-text disabled-menu"><?php echo esc_html(__('Credits' , 'wp-job-portal')); ?></span>
@@ -550,13 +596,8 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
             do_action('wpjobportal_addons_admin_sidemenu_links_for_folder' , $wpjobportal_controller,$wpjobportal_layout );
         }else{
             $wpjobportal_addoninfo = wpjobportal_checkWPJPPluginInfo('wp-job-portal-folder/wp-job-portal-folder.php');
-            if($wpjobportal_addoninfo['availability'] == "1"){
-                $wpjobportal_text = $wpjobportal_addoninfo['text'];
-                $wpjobportal_url = "plugins.php?s=wp-job-portal-folder&plugin_status=inactive";
-            }elseif($wpjobportal_addoninfo['availability'] == "0"){
-                $wpjobportal_text = $wpjobportal_addoninfo['text'];
-                $wpjobportal_url = "https://wpjobportal.com/product/folders/";
-            } ?>
+            $wpjobportal_text = $wpjobportal_addoninfo['text'];
+            $wpjobportal_url = $wpjobportal_addoninfo['url']; ?>
             <li class="treeview">
                 <a href="javascript: void(0);" title="<?php echo esc_attr(__('Folder' , 'wp-job-portal')); ?>" class="wpjobportaladmin-menu-icon-class wpjobportaladmin-menu-icon-folders wpjobportaladmin-menu-icon-disabled">
                     <span class="wpjobportaladmin-text disabled-menu"><?php echo esc_html(__('Folder' , 'wp-job-portal')); ?></span>
@@ -674,7 +715,7 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
             </span>
         </a>
         <ul class="wpjobportaladmin-sidebar-submenu treeview-menu">
-            <li class="<?php if($wpjobportal_controller == 'wpjobportal_careerlevel' && ($wpjobportal_layout == 'wpjobportal_careerlevel' || $wpjobportal_layout == '')) echo 'active'; ?>">
+            <li class="<?php if($wpjobportal_controller == 'wpjobportal_careerlevel' && $wpjobportal_layout == '') echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal_careerlevel" title="<?php echo esc_attr(__('Career Levels','wp-job-portal')); ?>">
                     <?php echo esc_html(__('Career Levels','wp-job-portal')); ?>
                 </a>
@@ -693,7 +734,7 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
             </span>
         </a>
         <ul class="wpjobportaladmin-sidebar-submenu treeview-menu">
-            <li class="<?php if($wpjobportal_controller == 'wpjobportal_currency' && ($wpjobportal_layout == 'wpjobportal_currency' || $wpjobportal_layout == '')) echo 'active'; ?>">
+            <li class="<?php if($wpjobportal_controller == 'wpjobportal_currency' && $wpjobportal_layout == '') echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal_currency" title="<?php echo esc_attr(__('Currency','wp-job-portal')); ?>">
                     <?php echo esc_html(__('Currency','wp-job-portal')); ?>
                 </a>
@@ -729,13 +770,8 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
             do_action('wpjobportal_addons_admin_sidemenu_links_for_tags',$wpjobportal_controller,$wpjobportal_layout);
         }else{
             $wpjobportal_addoninfo = wpjobportal_checkWPJPPluginInfo('wp-job-portal-tag/wp-job-portal-tag.php');
-            if($wpjobportal_addoninfo['availability'] == "1"){
-                $wpjobportal_text = $wpjobportal_addoninfo['text'];
-                $wpjobportal_url = "plugins.php?s=wp-job-portal-tag&plugin_status=inactive";
-            }elseif($wpjobportal_addoninfo['availability'] == "0"){
-                $wpjobportal_text = $wpjobportal_addoninfo['text'];
-                $wpjobportal_url = "https://wpjobportal.com/product/tags/";
-            } ?>
+            $wpjobportal_text = $wpjobportal_addoninfo['text'];
+            $wpjobportal_url = $wpjobportal_addoninfo['url']; ?>
             <li class="treeview">
                 <a href="javascript: void(0);" title="<?php echo esc_attr(__('Tags' , 'wp-job-portal')); ?>" class="wpjobportaladmin-menu-icon-class wpjobportaladmin-menu-icon-tags wpjobportaladmin-menu-icon-disabled">
                     <span class="wpjobportaladmin-text disabled-menu"><?php echo esc_html(__('Tags' , 'wp-job-portal')); ?></span>
@@ -767,7 +803,7 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
             </li>
         </ul>
     </li>
-    <li class="treeview <?php if($wpjobportal_controller == 'wpjobportal_user' || $wpjobportal_controller == 'wpjobportal_customfield' || ($wpjobportal_controller == 'wpjobportal_fieldordering' && ($wpjobportal_layout == '') && $wpjobportal_fieldfor == 4)) echo 'active'; ?>">
+    <li class="treeview <?php if($wpjobportal_controller == 'wpjobportal_user' || ($wpjobportal_is_fields_page && $wpjobportal_fieldfor == 4)) echo 'active'; ?>">
         <a href="admin.php?page=wpjobportal_user" title="<?php echo esc_attr(__('Users' , 'wp-job-portal')); ?>" class="wpjobportaladmin-menu-icon-class wpjobportaladmin-menu-icon-users">
             <span class="wpjobportaladmin-text">
                 <?php echo esc_html(__('Users' , 'wp-job-portal')); ?>
@@ -784,7 +820,7 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
                     <?php echo esc_html(__('Assign Role', 'wp-job-portal')); ?>
                 </a>
             </li>
-            <li class="<?php if($wpjobportal_controller == 'wpjobportal_fieldordering' || $wpjobportal_controller == 'wpjobportal_customfield'  && ($wpjobportal_layout == '' || $wpjobportal_layout == 'formuserfield')) echo 'active'; ?>">
+            <li class="<?php if($wpjobportal_is_fields_list && $wpjobportal_fieldfor == 4) echo 'active'; ?>">
                 <a href="admin.php?page=wpjobportal_fieldordering&ff=4" title="<?php echo esc_attr(__('Fields', 'wp-job-portal')); ?>">
                     <?php echo esc_html(__('Fields', 'wp-job-portal')); ?>
                 </a>
@@ -952,14 +988,6 @@ wp_add_inline_script( 'wpjobportal-menu-handle', $wpjobportal_menu_js_script );
 </ul>
 <?php
 $wpjobportal_menu_js_script = '
-    var cookielist = document.cookie.split(";");
-    for (var i=0; i<cookielist.length; i++) {
-        if (cookielist[i].trim() == "wpjobportaladmin_collapse_admin_menu=1") {
-            jQuery("#wpjobportaladmin-wrapper").addClass("menu-collasped-active");
-            break;
-        }
-    }
-
     jQuery(document).ready(function(){
 
         var pageWrapper = jQuery("#wpjobportaladmin-wrapper");

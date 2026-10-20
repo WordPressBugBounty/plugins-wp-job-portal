@@ -47,4 +47,6 @@ INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `s
 ("Shahrixon", "Shahrixon", "Sharixon", NULL, 139, 0, 1, NULL, "40.7090399", "72.0577601"),
 ("Asaka", "Asaka", "Asaka", NULL, 139, 0, 1, NULL, "40.6462095", "72.2489005"),
 ("Namangan", "Namangan", "Namangan", NULL, 139, 0, 1, NULL, "40.9996482", "71.6726238"),
-("Andijon", "Andijon", "Andijon", NULL, 139, 0, 1, NULL, "40.7833471", "72.3506746");
+("Andijon", "Andijon", "Andijon", NULL, 139, 0, 1, NULL, "40.7833471", "72.3506746"),
+("Bektemir", "Bektemir", "Bektemir", NULL, 139, 0, 1, NULL, "41.233333", "69.333333"),
+("Beruniy", "Beruniy", "Beruniy", NULL, 139, 0, 1, NULL, "41.6751633", "60.7598174");

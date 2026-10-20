@@ -261,7 +261,6 @@ class WPJOBPORTALquickapplyModel {
         $wpjobportal_resume_data['alias'] = $alias;
 
         $wpjobportal_resume_data = wpjobportal::wpjobportal_sanitizeData($wpjobportal_resume_data);
-        $wpjobportal_resume_data = WPJOBPORTALincluder::getJSmodel('common')->stripslashesFull($wpjobportal_resume_data);// remove slashes with quotes.
         $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resume');
 
         if (!$wpjobportal_row->bind($wpjobportal_resume_data)) {
@@ -276,13 +275,14 @@ class WPJOBPORTALquickapplyModel {
         // uploading file to resume files
 
         // the below code is to modify the data to use existing file upload code
-        if(isset($_FILES['resumefiles']) && !empty($_FILES['resumefiles'])){
+        $wpjobportal_quick_file = WPJOBPORTALrequest::file('resumefiles');
+        if($wpjobportal_quick_file){
             $outputArray = array(
-                'name' => array($_FILES['resumefiles']['name']),
-                'type' => array($_FILES['resumefiles']['type']),
-                'tmp_name' => array($_FILES['resumefiles']['tmp_name']),
-                'error' => array($_FILES['resumefiles']['error']),
-                'size' => array($_FILES['resumefiles']['size'])
+                'name' => array($wpjobportal_quick_file['name']),
+                'type' => array($wpjobportal_quick_file['type']),
+                'tmp_name' => array($wpjobportal_quick_file['tmp_name']),
+                'error' => array($wpjobportal_quick_file['error']),
+                'size' => array($wpjobportal_quick_file['size'])
             );
             $_FILES['resumefiles'] = $outputArray;
 
@@ -306,10 +306,19 @@ class WPJOBPORTALquickapplyModel {
         return WPJOBPORTAL_SAVED;
     }
 
-    function uploadFile($wpjobportal_id) {
-        $wpjobportal_result =  WPJOBPORTALincluder::getObjectClass('uploads')->uploadQuickApplyResume($wpjobportal_id);
-        return $wpjobportal_result;
-    }
+    /*
+     * uploadFile() used to sit here and has been removed.
+     *
+     * It called uploads->uploadQuickApplyResume(), a method the uploads class
+     * does not define and never has, so reaching it was a fatal. Nothing
+     * reached it: no caller anywhere in Core, and quick apply does not need one
+     * because it already uploads the CV itself, in quickApplyOnJob() above -
+     * it reshapes $_FILES['resumefiles'] and hands it to the resume model,
+     * which is the same path the full resume form uses.
+     *
+     * So this was a second, unfinished attempt at a job already done thirty
+     * lines up. Removing it loses nothing and takes a fatal with it.
+     */
 
 
     function getMessagekey(){

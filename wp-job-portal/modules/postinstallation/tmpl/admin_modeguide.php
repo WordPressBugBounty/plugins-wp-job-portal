@@ -3,7 +3,6 @@ if (!defined('ABSPATH')) {
     die('Restricted Access');
 }
 
-wp_enqueue_style('wpjobportal-redesign-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportaladmin_redesign.css', array(), wpjobportal_asset_version('includes/css/wpjobportaladmin_redesign.css'));
 
 $wpjobportal_mode_status = isset(wpjobportal::$_data['mode_status']) && is_array(wpjobportal::$_data['mode_status'])
     ? wpjobportal::$_data['mode_status']

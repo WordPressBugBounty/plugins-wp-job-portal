@@ -15,6 +15,8 @@ div.menu-collasped-active div#wpjobportaladmin-data {padding-right: 270px;paddin
 div#wpjobportaladmin-logo img#wpjobportaladmin-menu-toggle {float: left;}
 ul.wpjobportaladmin-sidebar-menu > li > a:not(.wpjobportaladmin-install-btn):hover, 
 ul.wpjobportaladmin-sidebar-menu > li.active > a:not(.wpjobportaladmin-install-btn) {border-left: 0;border-right: 3px solid #1572e8;}
+ul.wpjobportaladmin-sidebar-submenu > li > a:not(.wpjobportaladmin-install-btn):hover,
+ul.wpjobportaladmin-sidebar-submenu > li.active > a:not(.wpjobportaladmin-install-btn) {border-left: 0;border-right: 3px solid var(--wjp-color-primary);}
 ul.wpjobportaladmin-sidebar-menu li a span.wpjobportaladmin-text {padding-left: 0;padding-right: 35px;}
 ul.wpjobportaladmin-sidebar-menu li ul.wpjobportaladmin-sidebar-submenu {margin-left: 0;margin-right: 30px;}
 div#wpjobportaladmin-wrapper:not(.menu-collasped-active) div#wpjobportaladmin-leftmenu ul.wpjobportaladmin-sidebar-menu li.treeview:hover ul.wpjobportaladmin-sidebar-submenu {left: auto;right: 60px;}

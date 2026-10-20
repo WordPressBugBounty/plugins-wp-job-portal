@@ -29,7 +29,7 @@ switch ($wpjobportal_layout) {
             }
 	break;
 	case 'control':
-        $wpjobportal_featuredexpiry = date_i18n('Y-m-d', strtotime($wpjobportal_company->endfeatureddate));
+        $wpjobportal_featuredexpiry = date_i18n('Y-m-d', strtotime((string) $wpjobportal_company->endfeatureddate));
         ?>
         <div class="wjportal-company-action-wrp">
             <?php 

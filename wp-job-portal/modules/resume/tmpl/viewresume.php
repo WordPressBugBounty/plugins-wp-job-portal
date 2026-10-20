@@ -17,7 +17,8 @@ if(! wpjobportal::$_common->wpjp_isadmin()){
     }  
 }
 $wpjobportal_resumeid = isset(wpjobportal::$_data[0]['personal_section']->id) ? wpjobportal::$_data[0]['personal_section']->id :'';
-if (wpjobportal::$_error_flag == null) {
+$wpjobportal_has_resume = isset(wpjobportal::$_data[0]['personal_section']) && is_object(wpjobportal::$_data[0]['personal_section']);
+if (wpjobportal::$_error_flag == null && $wpjobportal_has_resume) {
     $wpjobportal_resumeviewlayout = WPJOBPORTALincluder::getObjectClass('resumeviewlayout');
     $wpjobportal_name = wpjobportal::$_data[0]['personal_section']->first_name .  ' ' . wpjobportal::$_data[0]['personal_section']->last_name;
     ?>
@@ -49,6 +50,16 @@ if (wpjobportal::$_error_flag == null) {
                ));
             }
         ?>
+        <?php
+            /**
+             * Contextual application extensions may add workflow panels to the
+             * existing resume/application detail without replacing its shell.
+             */
+            do_action(
+                'wpjobportal_resume_detail_extensions',
+                wpjobportal::$_data[0]['personal_section']
+            );
+        ?>
         <?php 
             if(in_array('credits', wpjobportal::$_active_addons)){
                 if(wpjobportal::$_config->getConfigValue('submission_type') == 2){
@@ -71,7 +82,10 @@ if (wpjobportal::$_error_flag == null) {
 <?php 
 } else {
     // Through Error Flag's Over the Page
-    echo wp_kses_post(wpjobportal::$_error_flag_message);
+    $wpjobportal_error_message = !empty(wpjobportal::$_error_flag_message)
+        ? wpjobportal::$_error_flag_message
+        : __('The requested resume is unavailable or you do not have permission to view it.', 'wp-job-portal');
+    echo '<div class="wjportal-error-msg">' . wp_kses_post($wpjobportal_error_message) . '</div>';
 } 
 ?>
 </div>

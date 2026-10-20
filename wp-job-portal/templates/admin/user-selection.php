@@ -64,7 +64,7 @@ if(isset(wpjobportal::$wpjobportal_data['admin_form_company']) && wpjobportal::$
 </div>
 <!-- popup code end -->
 <?php
-    wp_register_script( 'wpjobportal-inline-handle', '' );
+    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 // not sending listfor 1 brings all the employer exluding admin
     $wpjobportal_inline_js_script = "

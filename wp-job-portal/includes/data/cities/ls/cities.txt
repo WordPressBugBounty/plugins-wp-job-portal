@@ -1,3 +1,13 @@
 
 INSERT INTO `#__wj_portal_cities` ( `name`, `localname`, `internationalname`, `stateid`, `countryid`, `isedit`, `enabled`, `serverid`, `latitude`, `longitude`) VALUES 
-("Maseru", "Maseru", "Maseru", NULL, 166, 0, 1, NULL, "-29.310054", "27.478222");
+("Maseru", "Maseru", "Maseru", NULL, 166, 0, 1, NULL, "-29.310054", "27.478222"),
+("Butha-Buthe", "Butha-Buthe", "Butha-Buthe", NULL, 166, 0, 1, NULL, "-28.801561", "28.5331038"),
+("Leribe", "Leribe", "Leribe", NULL, 166, 0, 1, NULL, "-28.8638065", "28.0478826"),
+("Mafeteng", "Mafeteng", "Mafeteng", NULL, 166, 0, 1, NULL, "-29.8224312", "27.2388161"),
+("Maputsoe", "Maputsoe", "Maputsoe", NULL, 166, 0, 1, NULL, "-28.8953831", "27.9073244"),
+("Mohales Hoek", "Mohales Hoek", "Mohales Hoek", NULL, 166, 0, 1, NULL, "-30.1425917", "27.4673845"),
+("Mokhotlong", "Mokhotlong", "Mokhotlong", NULL, 166, 0, 1, NULL, "-29.2875557", "29.0605389"),
+("Qachas Nek", "Qachas Nek", "Qachas Nek", NULL, 166, 0, 1, NULL, "-30.1114565", "28.678979"),
+("Quthing", "Quthing", "Quthing", NULL, 166, 0, 1, NULL, "-30.4015687", "27.7080133"),
+("Teyateyaneng", "Teyateyaneng", "Teyateyaneng", NULL, 166, 0, 1, NULL, "-29.1395802", "27.7490656"),
+("Thaba-Tseka", "Thaba-Tseka", "Thaba-Tseka", NULL, 166, 0, 1, NULL, "-29.5157527", "28.5901895");

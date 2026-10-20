@@ -21,7 +21,7 @@ class WPJOBPORTALwpjpnotification {
         }
         $wpjobportal_data = array();
         $wpjobportal_update = false;
-        if(isset($_COOKIE['_wpjsjp_session_']) && isset(wpjobportal::$_jsjpsession->sessionid)){
+        if(WPJOBPORTALrequest::hasCookie('_wpjsjp_session_') && isset(wpjobportal::$_jsjpsession->sessionid)){
             if($wpjobportal_sessiondatafor == 'notification'){
                 $wpjobportal_data = $this->getNotificationDatabySessionId($wpjobportal_sessiondatafor);
                 if(empty($wpjobportal_data)){

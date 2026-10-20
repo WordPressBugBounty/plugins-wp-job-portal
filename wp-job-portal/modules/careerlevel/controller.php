@@ -63,7 +63,7 @@ class WPJOBPORTALCareerlevelController {
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'careerlevel');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_careerlevel&wpjobportallt=careerlevels"));
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -78,7 +78,7 @@ class WPJOBPORTALCareerlevelController {
         $wpjobportal_result = WPJOBPORTALincluder::getJSModel('careerlevel')->deleteCareerLevels($wpjobportal_ids);
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'careerlevel');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        wp_redirect(esc_url_raw(admin_url("admin.php?page=wpjobportal_careerlevel&wpjobportallt=careerlevels")));
+        wp_safe_redirect(esc_url_raw(admin_url("admin.php?page=wpjobportal_careerlevel&wpjobportallt=careerlevels")));
         die();
     }
 
@@ -97,7 +97,7 @@ class WPJOBPORTALCareerlevelController {
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_careerlevel&wpjobportallt=careerlevels"));
         if ($wpjobportal_pagenum)
             $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -116,7 +116,7 @@ class WPJOBPORTALCareerlevelController {
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_careerlevel&wpjobportallt=careerlevels"));
         if ($wpjobportal_pagenum)
             $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -145,7 +145,7 @@ class WPJOBPORTALCareerlevelController {
         }
         WPJOBPORTALincluder::getJSModel('careerlevel')->storeOrderingFromPage($post);
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_careerlevel"));
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         exit;
     }
 

@@ -1,7 +1,7 @@
 <?php
     if (!defined('ABSPATH'))
         die('Restricted Access');
-    wp_enqueue_script('wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js');
+    wp_enqueue_script( 'wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js', array(), wpjobportal_asset_version('includes/js/responsivetable.js'), false );
 ?>
 <!-- main wrapper -->
 <div id="wpjobportaladmin-wrapper">
@@ -180,7 +180,7 @@
                                     <?php
                                     if($wpjobportal_show_link == 1){
                                         echo '('; ?>
-                                        <a href="https://wpjobportal.com/product/featured-job/" target="_blank">
+                                        <a href="https://wpjobportal.com/pricing/" target="_blank">
                                             <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
                                         </a>
                                         <?php echo ')';
@@ -303,7 +303,7 @@
                                     <?php
                                     if($wpjobportal_show_link == 1){
                                         echo '('; ?>
-                                        <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_premiumplugin&wpjobportallt=addonfeatures')); ?>">
+                                        <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal&wpjobportallt=licences')); ?>">
                                             <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
                                         </a>
                                         <?php echo ')';
@@ -349,7 +349,7 @@
                                     <?php
                                     if($wpjobportal_show_link == 1){
                                         echo '('; ?>
-                                        <a href="https://wpjobportal.com/product/featured-company/" target="_blank">
+                                        <a href="https://wpjobportal.com/pricing/" target="_blank">
                                             <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
                                         </a>
                                         <?php echo ')';
@@ -440,7 +440,7 @@
                                     <?php
                                     if($wpjobportal_show_link == 1){
                                         echo '('; ?>
-                                        <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_premiumplugin&wpjobportallt=addonfeatures')); ?>">
+                                        <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal&wpjobportallt=licences')); ?>">
                                             <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
                                         </a>
                                         <?php echo ')';
@@ -486,7 +486,7 @@
                                     <?php
                                     if($wpjobportal_show_link == 1){
                                         echo '('; ?>
-                                        <a href="https://wpjobportal.com/product/featured-resume/" target="_blank">
+                                        <a href="https://wpjobportal.com/pricing/" target="_blank">
                                             <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
                                         </a>
                                         <?php echo ')';
@@ -550,7 +550,7 @@
                                     <?php
                                     if($wpjobportal_show_link == 1){
                                         echo '('; ?>
-                                        <a href="https://wpjobportal.com/product/multi_departments/" target="_blank">
+                                        <a href="https://wpjobportal.com/pricing/" target="_blank">
                                             <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
                                         </a>
                                         <?php echo ')';
@@ -630,7 +630,7 @@
                                     <?php
                                     if($wpjobportal_show_link == 1){
                                         echo '('; ?>
-                                        <a href="https://wpjobportal.com/product/resume-save-search/" target="_blank">
+                                        <a href="https://wpjobportal.com/pricing/" target="_blank">
                                             <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
                                         </a>
                                         <?php echo ')';
@@ -673,6 +673,7 @@
                     <div class="wpjobportal-shortcode-shortcodewrp">
                         <span class="wpjobportal-shortcode-title"><?php echo esc_html(__('Shortcode With All Options','wp-job-portal')); ?></span>
                         <span class="wpjobportal-shortcode-secndshortcodetext">[wpjobportal_employer_registration hide_role="1" show_header="1" show_title="1" button_text="Register as Employer" redirect_url="" class=""]</span>
+                        <p class="wpjobportal-shortcode-text"><?php echo esc_html(__('hide_role: 1 hides the role choice. show_header: 1 shows the breadcrumb trail, 0 hides it. show_title: 1 shows the page heading, 0 hides it.','wp-job-portal')); ?></p>
                     </div>
                 </div>
             </div>
@@ -690,6 +691,7 @@
                     <div class="wpjobportal-shortcode-shortcodewrp">
                         <span class="wpjobportal-shortcode-title"><?php echo esc_html(__('Shortcode With All Options','wp-job-portal')); ?></span>
                         <span class="wpjobportal-shortcode-secndshortcodetext">[wpjobportal_jobseeker_registration hide_role="1" show_header="1" show_title="1" button_text="Register as Job Seeker" redirect_url="" class=""]</span>
+                        <p class="wpjobportal-shortcode-text"><?php echo esc_html(__('hide_role: 1 hides the role choice. show_header: 1 shows the breadcrumb trail, 0 hides it. show_title: 1 shows the page heading, 0 hides it.','wp-job-portal')); ?></p>
                     </div>
                 </div>
             </div>
@@ -744,7 +746,7 @@
                                     <?php
                                     if($wpjobportal_show_link == 1){
                                         echo '('; ?>
-                                        <a href="https://wpjobportal.com/product/widgets/" target="_blank">
+                                        <a href="https://wpjobportal.com/pricing/" target="_blank">
                                             <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
                                         </a>
                                         <?php echo ')';
@@ -790,7 +792,7 @@
                                     <?php
                                     if($wpjobportal_show_link == 1){
                                         echo '('; ?>
-                                        <a href="https://wpjobportal.com/product/credit-system/" target="_blank">
+                                        <a href="https://wpjobportal.com/pricing/" target="_blank">
                                             <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
                                         </a>
                                         <?php echo ')';
@@ -836,7 +838,7 @@
                                     <?php
                                     if($wpjobportal_show_link == 1){
                                         echo '('; ?>
-                                        <a href="https://wpjobportal.com/product/credit-system/" target="_blank">
+                                        <a href="https://wpjobportal.com/pricing/" target="_blank">
                                             <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
                                         </a>
                                         <?php echo ')';
@@ -882,7 +884,7 @@
                                     <?php
                                     if($wpjobportal_show_link == 1){
                                         echo '('; ?>
-                                        <a href="https://wpjobportal.com/product/credit-system/" target="_blank">
+                                        <a href="https://wpjobportal.com/pricing/" target="_blank">
                                             <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
                                         </a>
                                         <?php echo ')';
@@ -928,7 +930,7 @@
                                     <?php
                                     if($wpjobportal_show_link == 1){
                                         echo '('; ?>
-                                        <a href="https://wpjobportal.com/product/credit-system/">
+                                        <a href="https://wpjobportal.com/pricing/">
                                             <?php echo esc_html(__('Get Addon','wp-job-portal'));?>
                                         </a>
                                         <?php echo ')';
@@ -940,6 +942,13 @@
                     </div>
                 </div>
             </div>
+            <?php
+            /**
+             * Allow active add-ons to append their own shortcode reference
+             * cards without placing add-on names or business logic in core.
+             */
+            do_action('wpjobportal_admin_shortcodes_after_list');
+            ?>
         </div>
     </div>
 </div>

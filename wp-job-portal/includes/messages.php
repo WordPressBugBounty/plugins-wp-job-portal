@@ -42,7 +42,7 @@ class WPJOBPORTALMessages {
                             }
                             $wpjobportal_divHtml .= '<div class="alert alert-' . $alert_class . '" role="alert" id="autohidealert">
                                             <img class="leftimg" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/'.$wpjobportal_img_name.'" />
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="' . esc_attr__('Close', 'wp-job-portal') . '">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                             '. $wpjobportal_notificationdata['msg'][$wpjobportal_i] . '
@@ -456,9 +456,9 @@ class WPJOBPORTALMessages {
             case 'prefix':
                 $wpjobportal_name = esc_html(__('Prefix', 'wp-job-portal')).'('. esc_html(__('s','wp-job-portal')) .')';
             break;
-            case folder:$wpjobportal_name = esc_html(__('Folder', 'wp-job-portal'));
+            case 'folder':$wpjobportal_name = esc_html(__('Folder', 'wp-job-portal'));
                 break;
-            case folderresume:$wpjobportal_name = esc_html(__('Folder Resume', 'wp-job-portal'));
+            case 'folderresume':$wpjobportal_name = esc_html(__('Folder Resume', 'wp-job-portal'));
                 break;
             case 'resume':
                 $wpjobportal_name = esc_html(__('Resume', 'wp-job-portal'));
@@ -476,9 +476,12 @@ class WPJOBPORTALMessages {
             case WPJOBPORTAL_PREFIX:
                     $wpjobportal_name = esc_html(__('Prefix', 'wp-job-portal')).'('. esc_html(__('s','wp-job-portal')) .')';
                 break;
-            case 'jobsavesearch':$wpjobportal_name = esc_html(__('Job Search', 'wp-job-portal'));
             break;
         case 'resumesearch':$wpjobportal_name = esc_html(__('Resume Search', 'wp-job-portal'));
+            break;
+        // Named for what the visitor sees, not for the module: "Saved search
+        // has been successfully saved" reads better than "Job Search has".
+        case 'jobsearch':$wpjobportal_name = esc_html(__('Saved search', 'wp-job-portal'));
             break;
         case 'package':$wpjobportal_name=esc_html(__('Package','wp-job-portal'));
             break;
@@ -533,7 +536,7 @@ class WPJOBPORTALMessages {
         }
         $wpjobportal_divHtml .= '<div class="alert alert-' . $alert_class . '" role="alert" id="autohidealert">
             <img class="leftimg" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/'.$wpjobportal_img_name.'" />
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <button type="button" class="close" data-dismiss="alert" aria-label="' . esc_attr__('Close', 'wp-job-portal') . '">
                 <span aria-hidden="true">&times;</span>
             </button>
             '. $message . '

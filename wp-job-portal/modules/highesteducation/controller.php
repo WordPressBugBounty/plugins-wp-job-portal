@@ -65,7 +65,7 @@ class WPJOBPORTALHighesteducationController {
         $wpjobportal_url = esc_url_raw(admin_url('admin.php?page=wpjobportal_highesteducation&wpjobportallt=highesteducations'));
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'highesteducation');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
     }
 
     function remove() {
@@ -81,7 +81,7 @@ class WPJOBPORTALHighesteducationController {
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'highesteducation');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_highesteducation&wpjobportallt=highesteducations"));
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -101,7 +101,7 @@ class WPJOBPORTALHighesteducationController {
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_highesteducation&wpjobportallt=highesteducations"));
         if ($wpjobportal_pagenum)
             $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -121,7 +121,7 @@ class WPJOBPORTALHighesteducationController {
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_highesteducation&wpjobportallt=highesteducations"));
         if ($wpjobportal_pagenum)
             $wpjobportal_url .= "&pagenum=" . $wpjobportal_pagenum;
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         die();
     }
 
@@ -148,7 +148,7 @@ class WPJOBPORTALHighesteducationController {
         }
         WPJOBPORTALincluder::getJSModel('highesteducation')->storeOrderingFromPage($post);
         $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_highesteducation"));
-        wp_redirect($wpjobportal_url);
+        wp_safe_redirect($wpjobportal_url);
         exit;
     }
 }

@@ -274,7 +274,6 @@ class WPJOBPORTALCustomFieldModel {
             $wpjobportal_data['cannotshowonlisting'] = 1;
         }
         $wpjobportal_data = wpjobportal::wpjobportal_sanitizeData($wpjobportal_data);
-        $wpjobportal_data = WPJOBPORTALincluder::getJSmodel('common')->stripslashesFull($wpjobportal_data);// remove slashes with quotes.
         if (!$wpjobportal_row->bind($wpjobportal_data)) {
             return WPJOBPORTAL_SAVE_ERROR;
         }
@@ -750,10 +749,7 @@ class WPJOBPORTALCustomFieldModel {
             require_once ABSPATH . 'wp-admin/includes/file.php';
         }
         global $wp_filesystem;
-        if ( ! is_a( $wp_filesystem, 'WP_Filesystem_Base') ) {
-            $creds = request_filesystem_credentials( site_url() );
-            wp_filesystem( $creds );
-        }
+        $wp_filesystem = wpjobportal::wpjobportal_filesystem();
 
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Binary file download output
         echo $wp_filesystem->get_contents($file);

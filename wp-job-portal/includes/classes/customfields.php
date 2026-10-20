@@ -167,6 +167,10 @@ class WPJOBPORTALcustomfields {
                         }
                     }
                     //END handleformresume
+                    // stored as Y-m-d H:i:s; show it in the site date format like formCustomFields() does
+                    if ($wpjobportal_value != '') {
+                        $wpjobportal_value = gmdate(wpjobportal::$_configuration['date_format'],strtotime($wpjobportal_value));
+                    }
                     $wpjobportal_user_field .= $this->dateResume($wpjobportal_field->field, $wpjobportal_value, $wpjobportal_extraattr, $wpjobportal_section , $wpjobportal_sectionid);
             break;
             case 'textarea':
@@ -827,15 +831,31 @@ class WPJOBPORTALcustomfields {
             }
         } elseif (isset(wpjobportal::$_data[0]->id)) {
             // to handle the case of custom fields showing on listing and detail but not on form in edit case
-            $params = wpjobportal::$_data[0]->params;
-            if(WPJOBPORTALincluder::getJSModel('common')->checkLanguageSpecialCase()){
-                $params = wpjobportalphplib::wpJP_stripslashes($params);
-            }
-            $params = html_entity_decode($params, ENT_QUOTES);
+            $params = (string) wpjobportal::$_data[0]->params;
+            // Values are stored entity-encoded ("T-&quot;7&quot;"). Decoding the whole JSON first turned
+            // &quot; into a bare quote inside a JSON string, and stripslashes() first turned 中 into
+            // u4e2d: json_decode() failed or the text changed, the form showed the fields empty or wrong,
+            // and saving it stored that. Decode the JSON as stored, then each value; the old stripslashes
+            // and whole-string decodes stay only as fallbacks for params that do not decode as stored.
             $wpjobportal_userfielddataarray = json_decode($params);
+            if (!is_object($wpjobportal_userfielddataarray) && WPJOBPORTALincluder::getJSModel('common')->checkLanguageSpecialCase()) {
+                $wpjobportal_userfielddataarray = json_decode(wpjobportalphplib::wpJP_stripslashes($params));
+            }
+            if (!is_object($wpjobportal_userfielddataarray)) {
+                $wpjobportal_userfielddataarray = json_decode(html_entity_decode($params, ENT_QUOTES));
+            }
             $uffield = $wpjobportal_field->field;
             if (isset($wpjobportal_userfielddataarray->$uffield) || !empty($wpjobportal_userfielddataarray->$uffield)) {
                 $wpjobportal_value = $wpjobportal_userfielddataarray->$uffield;
+                if (is_string($wpjobportal_value)) {
+                    $wpjobportal_value = html_entity_decode($wpjobportal_value, ENT_QUOTES);
+                } elseif (is_array($wpjobportal_value)) {
+                    foreach ($wpjobportal_value as $wpjobportal_k => $wpjobportal_v) {
+                        if (is_string($wpjobportal_v)) {
+                            $wpjobportal_value[$wpjobportal_k] = html_entity_decode($wpjobportal_v, ENT_QUOTES);
+                        }
+                    }
+                }
             } else {
                 $wpjobportal_value = '';
             }
@@ -1261,6 +1281,14 @@ class WPJOBPORTALcustomfields {
             if(empty($wpjobportal_field)){
                 return false;
             }
+            // An email-type field is contact data whatever it is called: keep it behind the
+            // resume's contact lock, like the built-in email and phone.
+            if ($wpjobportal_field->userfieldtype == 'email'
+                && isset(wpjobportal::$wpjobportal_data['resumecontactdetail'])
+                && wpjobportal::$wpjobportal_data['resumecontactdetail'] == false
+                && !wpjobportal::$_common->wpjp_isadmin()) {
+                return false;
+            }
         }
         if(!empty($params)){
             if(WPJOBPORTALincluder::getJSModel('common')->checkLanguageSpecialCase()){
@@ -1286,6 +1314,11 @@ class WPJOBPORTALcustomfields {
         if($wpjobportal_field->userfieldtype=='file'){
 
            if($wpjobportal_uploadfor !=null && $wpjobportal_entity_id !=''){
+               // Nothing for someone the download would refuse: no label, no file name, no button.
+               if ($fvalue != null && !wpjobportal::$_common->wpjp_isadmin()
+                   && !WPJOBPORTAL_Authorization_Service::can_download_custom_file($wpjobportal_uploadfor, $wpjobportal_entity_id, $fvalue, false)) {
+                   return false;
+               }
                if($fvalue !=null){
                     //$wpjobportal_path = esc_url_raw(admin_url("?page=ticket&action=jstask&task=downloadbyname&id=".jssupportticket::$_data['custom']['ticketid']."&name=".$fvalue));
                     $wpjobportal_path = esc_url(wp_nonce_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'customfield', 'task'=>'downloadcustomfile', 'entity_id'=>esc_attr($wpjobportal_entity_id),'upload_for'=>esc_attr($wpjobportal_uploadfor),'file_name'=>$fvalue, 'action'=>'wpjobportaltask','wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid())),'wpjobportal_field_nonce'));
@@ -1299,6 +1332,13 @@ class WPJOBPORTALcustomfields {
             }
         }elseif ($wpjobportal_field->userfieldtype == 'date' && $fvalue != '') {
             $fvalue = date_i18n(wpjobportal::$_configuration['date_format'],strtotime($fvalue));
+        }
+
+        // Cards in a listing only show what was filled in: an empty field printed a bare
+        // "Label:" (or ", ," for an empty checkbox group) on every card.
+        if (in_array((int) $wpjobportal_fieldfor, array(1, 4, 7, 8, 9, 10), true)
+            && trim(is_array($fvalue) ? implode(',', $fvalue) : (string) $fvalue, " ,\t\n\r\0\x0B") === '') {
+            return '';
         }
 
         if($wpjobportal_fieldfor == 1){ // jobs listing
@@ -1505,9 +1545,6 @@ class WPJOBPORTALcustomfields {
         }
         // code for unpublished fields to be written later as in wp jobs by shees
         $params = wpjobportal::wpjobportal_sanitizeData($params);
-        if(WPJOBPORTALincluder::getJSModel('common')->checkLanguageSpecialCase()){
-            $params = WPJOBPORTALincluder::getJSModel('common')->stripslashesFull($params);// remove slashes with quotes.
-        }
         $params = wp_json_encode($params);
         $wpjobportal_uploadfor = '';
         if($wpjobportal_entity == WPJOBPORTAL_COMPANY){
@@ -1546,8 +1583,8 @@ class WPJOBPORTALcustomfields {
         //storing custom field attachments
         if($customflagforadd == true){
             foreach ($custom_field_namesforadd as $wpjobportal_key) {
-                if (isset($_FILES[$wpjobportal_key])) {
-                    if ($_FILES[$wpjobportal_key]['size'] > 0) { // logo
+                if (WPJOBPORTALrequest::hasFile($wpjobportal_key)) {
+                    if (WPJOBPORTALrequest::fileSize($wpjobportal_key) > 0) { // logo
                        $res = $this->uploadFileCustom($wpjobportal_id,$wpjobportal_key,$wpjobportal_entity_for);
                     }
                 }
