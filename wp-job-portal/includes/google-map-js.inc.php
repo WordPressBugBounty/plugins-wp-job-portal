@@ -1,1 +1,0 @@
-{PROTOCOL}maps.googleapis.com/maps/api/js?key={KEY}
