@@ -3729,8 +3729,13 @@ class WPJOBPORTALjobModel {
         if(is_array($wpjobportal_value) || is_object($wpjobportal_value))
             return '';
 
-        $wpjobportal_value = wp_strip_all_tags((string) $wpjobportal_value);
-        $wpjobportal_value = html_entity_decode($wpjobportal_value, ENT_QUOTES, get_bloginfo('charset'));
+        // Decode entities first, then strip tags (security fix, 2.7.1). The old
+        // order stripped tags off a value that was still entity-encoded, then
+        // decoded it -- turning a stored "&lt;/script&gt;&lt;img ...&gt;" into a
+        // live tag in the JSON-LD. Decoding first means any such tag is removed
+        // by the strip that follows.
+        $wpjobportal_value = html_entity_decode((string) $wpjobportal_value, ENT_QUOTES, get_bloginfo('charset'));
+        $wpjobportal_value = wp_strip_all_tags($wpjobportal_value);
         return wpjobportalphplib::wpJP_trim($wpjobportal_value);
     }
 
@@ -3910,7 +3915,11 @@ class WPJOBPORTALjobModel {
         $schema_array = apply_filters('wpjobportal_google_job_schema_json_ld', $schema_array, $wpjobportal_job_id);
         // --- NEW HOOK INTEGRATION END ---
 
-        return wp_json_encode($schema_array, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+        // JSON_HEX_TAG keeps < and > out of the output as < / >, so a
+        // value cannot carry a literal </script> and break out of the
+        // <script type="application/ld+json"> block it is printed inside
+        // (security fix, 2.7.1). Google reads the escaped form fine.
+        return wp_json_encode($schema_array, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
     }
 
     // functino for ai addons get jobs by job ids for suggested and ai web search

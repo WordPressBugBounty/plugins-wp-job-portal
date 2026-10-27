@@ -654,7 +654,7 @@ class WPJOBPORTALshortcodes {
             'wpjobportallt' => 'regemployer',
         );
         $wpjobportal_default_shortcode_options = array(
-            'hide' => '0',
+            'hide' => '',
             'hide_role' => '',
             'show_header' => '1',
             'show_title' => '1',
@@ -736,7 +736,7 @@ class WPJOBPORTALshortcodes {
             'wpjobportallt' => 'regjobseeker',
         );
         $wpjobportal_default_shortcode_options = array(
-            'hide' => '0',
+            'hide' => '',
             'hide_role' => '',
             'show_header' => '1',
             'show_title' => '1',
@@ -1523,11 +1523,16 @@ class WPJOBPORTALshortcodes {
     }
 
     private function sanitizeRegistrationShortcodeOptions($wpjobportal_options, $wpjobportal_role_id) {
+        // The employer and job seeker shortcodes already decide the account
+        // type, so their role field is hidden unless hide_role="0" (or the older
+        // hide="0") asks for it (2.7.1). It used to be shown by default, and
+        // sites setting up separate employer / job seeker pages kept finding a
+        // role dropdown on them.
         $wpjobportal_hide_role = $this->shortcodeBooleanValue(
             isset($wpjobportal_options['hide_role']) && $wpjobportal_options['hide_role'] !== ''
                 ? $wpjobportal_options['hide_role']
                 : $wpjobportal_options['hide'],
-            false
+            true
         );
 
         $wpjobportal_class_names = array();
@@ -1600,7 +1605,7 @@ function wpjobportal_register_block_editor_assets() {
                 'wp-i18n',
                 'wp-server-side-render',
             ),
-            '2.7.0',
+            '2.7.1',
             true
         );
 
@@ -1618,7 +1623,7 @@ function wpjobportal_register_block_editor_assets() {
             'wpjobportal-blocks-editor',
             esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportal-block-editor.css',
             array('wp-edit-blocks'),
-            '2.7.0'
+            '2.7.1'
         );
     }
 }

@@ -50,6 +50,22 @@ if (!is_user_logged_in()) {
     } else {
         WPJOBPORTALlayout::getRegistrationDisabled();
     }
+} else {
+    // Already logged in. The form above is only for new accounts, so without
+    // this a signed-in visitor (an administrator checking the page, or a member
+    // who followed a register link) saw an empty page (2.7.1). Point them at
+    // their dashboard instead.
+    $wpjobportal_dashboard_url = WPJOBPORTALincluder::getObjectClass('user')->isemployer()
+        ? wpjobportal::wpjobportal_makeUrl(array('wpjobportalme' => 'employer', 'wpjobportallt' => 'controlpanel'))
+        : wpjobportal::wpjobportal_makeUrl(array('wpjobportalme' => 'jobseeker', 'wpjobportallt' => 'controlpanel'));
+    ?>
+    <div class="wjportal-main-wrapper wjportal-clearfix">
+        <div class="wjportal-form-wrp">
+            <p><?php echo esc_html(__('You are already signed in, so there is nothing to register here.', 'wp-job-portal')); ?></p>
+            <p><a class="button wjportal-form-btn" href="<?php echo esc_url($wpjobportal_dashboard_url); ?>"><?php echo esc_html(__('Go to your dashboard', 'wp-job-portal')); ?></a></p>
+        </div>
+    </div>
+    <?php
 }
 ?>
 </div>

@@ -249,9 +249,12 @@ function wpjobportal_registration_errors($errors, $wpjobportal_sanitized_user_lo
         // The wording is for whoever is reading it. "You must set jobs user
         // role" is an instruction to the site owner, and the person who sees it
         // is somebody trying to register, who cannot act on it.
+        //
+        // 2.7.1: the message it had read like a site set-up fault, but what it
+        // means is that this visitor left "Jobs Role" on "Select Role". Say so.
         $errors->add(
             'user_role_error',
-            esc_html(__('Registration is not available yet: this site has not been set up to say whether new accounts are employers or job seekers.', 'wp-job-portal'))
+            esc_html(__('Please choose whether you are registering as an employer or a job seeker.', 'wp-job-portal'))
         );
     }
 
@@ -383,6 +386,10 @@ function wpjobportal_add_new_member() {
 
         foreach ($wpjobportal_fieldslist AS $wpjobportal_field) {
             if($wpjobportal_field->isuserfield == 1 && $wpjobportal_field->required == 1) {
+                // Reset for every field (2.7.1). It carried over from the field
+                // before, so once one required custom field was filled, every
+                // later required one passed even when it was left empty.
+                $cf_data = '';
                 $wpjobportal_field_value = WPJOBPORTALrequest::getVar($wpjobportal_field->field,'post','');
                 if ($wpjobportal_field_value != '') {
                     $cf_data = $wpjobportal_field_value;
@@ -391,6 +398,13 @@ function wpjobportal_add_new_member() {
                     wpjobportal_errors()->add($wpjobportal_field->fieldtitle.'_empty', esc_html(sprintf(/* translators: %s: field fieldtitle */ __('Please enter a %s', 'wp-job-portal'), wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle))));
                 }
             }
+        }
+
+        // The account type, checked with the other fields (2.7.1) so the visitor
+        // sees it in the same list of errors. Before, it was only checked later
+        // inside WordPress's own registration, after everything else had passed.
+        if (!in_array((int) wpjobportal_get_registration_role(), array(1, 2), true)) {
+            wpjobportal_errors()->add('jobs_role_empty', esc_html(__('Please choose whether you are registering as an employer or a job seeker.', 'wp-job-portal')));
         }
 
         $wpjobportal_config_array = wpjobportal::$_config->getConfigByFor('captcha');
@@ -517,36 +531,38 @@ function wpjobportal_add_new_member() {
                     wpjobportal_send_registration_welcome_mail($wpjobportal_new_user_id, $wpjobportal_userrole);
                     $wpjobportal_nickname = $wpjobportal_user_first . ' ' . $wpjobportal_user_last;
 
-                    $wpjobportal_pageid = wpjobportal::$_config->getConfigurationByConfigName('register_jobseeker_redirect_page');
-
-                    if($wpjobportal_userrole == 1){
-                        $wpjobportal_pageid = wpjobportal::$_config->getConfigurationByConfigName('register_employer_redirect_page');
-                    }elseif($wpjobportal_userrole == 2){
-                        $wpjobportal_pageid = wpjobportal::$_config->getConfigurationByConfigName('register_jobseeker_redirect_page');
-                    }
                     WPJOBPORTALMessages::setLayoutMessage(esc_html(__('User has been successfully created', 'wp-job-portal')), 'updated',$wpjobportal_key);
-                    // $wpjobportal_url = home_url();
-                    if (empty($wpjobportal_registration_context['redirect_url']) && is_numeric($wpjobportal_pageid) && $wpjobportal_pageid > 0) {
-                        if (get_post_status($wpjobportal_pageid) == 'publish') {
-                            if ($wpjobportal_userrole == 1) {
-                                $wpjobportal_setRegisterLinkEmploye = wpjobportal::$_config->getConfigurationByConfigName('employe_set_register_link');
-                                $customeRegisterLinkForEmploye = wpjobportal::$_config->getConfigurationByConfigName('employe_register_link');
-                                if ($wpjobportal_setRegisterLinkEmploye == 2) {
-                                    wp_redirect(esc_url_raw($customeRegisterLinkForEmploye)); // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect -- admin-configured registration page, which may be on another site. // to handle the case of invalid url showing error,
-                                    exit;
-                                } else {
-                                    $wpjobportal_url = get_the_permalink($wpjobportal_pageid);
-                                }
-                            } elseif ($wpjobportal_userrole == 2) {
-                                $wpjobportal_setRegisterLinkJobSeeker = wpjobportal::$_config->getConfigurationByConfigName('jobseeker_set_register_link');
-                                $customeRegisterLinkForJobSeeker = wpjobportal::$_config->getConfigurationByConfigName('jobseeker_register_link');
-                                if ($wpjobportal_setRegisterLinkJobSeeker == 2) {
-                                    wp_redirect(esc_url_raw($customeRegisterLinkForJobSeeker)); // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect -- admin-configured registration page, which may be on another site. // to handle the case of invalid url showing error,
-                                    exit;
-                                } else {
-                                    $wpjobportal_url = get_the_permalink($wpjobportal_pageid);
-                                }
-                            }
+
+                    /*
+                     * Where the new account goes next, per role (2.7.1).
+                     *
+                     * "Custom" (2) sends it to the role's Custom After-Registration
+                     * Link; otherwise the role's After-Registration Page when it is
+                     * a published page; otherwise the dashboard set above.
+                     *
+                     * The custom link used to be read only inside
+                     * `is_numeric($pageid) && $pageid > 0`, so a site that chose
+                     * Custom and typed an address but left the After-Registration
+                     * Page empty never reached it. A redirect_url on the shortcode
+                     * still wins.
+                     */
+                    if (empty($wpjobportal_registration_context['redirect_url']) && ($wpjobportal_userrole == 1 || $wpjobportal_userrole == 2)) {
+                        if ($wpjobportal_userrole == 1) {
+                            $wpjobportal_after_mode = wpjobportal::$_config->getConfigurationByConfigName('employe_set_register_link');
+                            $wpjobportal_after_link = wpjobportal::$_config->getConfigurationByConfigName('employe_register_link');
+                            $wpjobportal_pageid = wpjobportal::$_config->getConfigurationByConfigName('register_employer_redirect_page');
+                        } else {
+                            $wpjobportal_after_mode = wpjobportal::$_config->getConfigurationByConfigName('jobseeker_set_register_link');
+                            $wpjobportal_after_link = wpjobportal::$_config->getConfigurationByConfigName('jobseeker_register_link');
+                            $wpjobportal_pageid = wpjobportal::$_config->getConfigurationByConfigName('register_jobseeker_redirect_page');
+                        }
+                        $wpjobportal_after_link = trim((string) $wpjobportal_after_link);
+                        if ($wpjobportal_after_mode == 2 && $wpjobportal_after_link !== '') {
+                            wp_redirect(esc_url_raw($wpjobportal_after_link)); // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect -- admin-configured after-registration address, which may be on another site.
+                            exit;
+                        }
+                        if (is_numeric($wpjobportal_pageid) && $wpjobportal_pageid > 0 && get_post_status($wpjobportal_pageid) == 'publish') {
+                            $wpjobportal_url = get_the_permalink($wpjobportal_pageid);
                         }
                     }
                     if (!empty($wpjobportal_registration_context['redirect_url'])) {

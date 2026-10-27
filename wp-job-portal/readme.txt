@@ -3,7 +3,7 @@ Contributors: wpjobportal
 Tags: job board, careers, recruitment, job listing, jobs
 Requires at least: 6.2
 Tested up to: 7.1
-Stable tag: 2.7.0
+Stable tag: 2.7.1
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -181,6 +181,17 @@ Through the Patchstack Vulnerability Disclosure Program, whose team validates an
 
 == Changelog ==
 
+= 2.7.1 =
+Security and fixes.
+
+* Security: fixed a stored cross-site scripting issue where a logged-in employer could place script in a job's structured data that ran for visitors of the job page. The job's JSON-LD is now encoded so markup cannot break out of it. All sites should update.
+* Fixed: the registration page showed a blank area to visitors who were already signed in; it now links them to their dashboard.
+* Fixed: the Custom After-Registration Link for employers and job seekers was ignored unless an After-Registration Page was also chosen. It now works on its own.
+* Fixed: a required custom field on the registration form could be left empty once an earlier required field was filled.
+* Improved: the employer and job seeker registration shortcodes hide the role choice by default, since they already set the account type. Use hide_role="0" to show it.
+* Improved: a visitor who doesn't choose employer or job seeker is now told to choose one, alongside the other form errors.
+* Improved: clearer descriptions for the registration and after-registration link settings.
+
 = 2.7.0 =
 Major update: the separate add-ons become four premium products, and twelve of them are now free.
 
@@ -227,6 +238,9 @@ Major update: the separate add-ons become four premium products, and twelve of t
 Earlier versions are listed in changelog.txt in the plugin folder.
 
 == Upgrade Notice ==
+
+= 2.7.1 =
+Security update: fixes a stored XSS on job pages. All sites should update.
 
 = 2.7.0 =
 Major update: the add-ons become Pro, Marketplace Suite, Recruit Suite and Smart Search & Matching, and twelve add-ons are now free. Back up your site before updating.
