@@ -178,6 +178,18 @@ class WPJOBPORTALUserModel {
         if (! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_user_nonce') ) {
             die( 'Security check Failed' );
         }
+        // Admin only (security fix, 2.7.2). This returns another account's
+        // company name, resume title or the resume holder's real name, chosen by
+        // the uid in the request. Its only callers are the admin Users list and
+        // the admin user-detail screen (modules/user/tmpl/admin_users.php,
+        // modules/user/tmpl/views/admin/userdetail.php). The nonce above is the
+        // one the front-end profile form uses, so every logged-in portal user
+        // holds it; it authenticates the caller but does not authorise reading
+        // another user's record, which let any subscriber read other users' data
+        // by walking uid.
+        if (! current_user_can('manage_options')) {
+            return false;
+        }
         $wpjobportal_uid = WPJOBPORTALrequest::getVar('uid');
         if(!is_numeric($wpjobportal_uid)){
             return false;

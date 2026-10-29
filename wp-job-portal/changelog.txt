@@ -2,6 +2,11 @@
 
 == Changelog ==
 
+= 2.7.2 =
+Security.
+
+* Security: fixed a missing permission check on the admin "show role info" request, where any logged-in user could read another user's company name, resume title or name by account id. The request is now restricted to administrators. All sites should update.
+
 = 2.7.1 =
 Security and fixes.
 

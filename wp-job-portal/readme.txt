@@ -3,7 +3,7 @@ Contributors: wpjobportal
 Tags: job board, careers, recruitment, job listing, jobs
 Requires at least: 6.2
 Tested up to: 7.1
-Stable tag: 2.7.1
+Stable tag: 2.7.2
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -181,6 +181,11 @@ Through the Patchstack Vulnerability Disclosure Program, whose team validates an
 
 == Changelog ==
 
+= 2.7.2 =
+Security.
+
+* Security: fixed a missing permission check on the admin "show role info" request, where any logged-in user could read another user's company name, resume title or name by account id. The request is now restricted to administrators. All sites should update.
+
 = 2.7.1 =
 Security and fixes.
 
@@ -238,6 +243,9 @@ Major update: the separate add-ons become four premium products, and twelve of t
 Earlier versions are listed in changelog.txt in the plugin folder.
 
 == Upgrade Notice ==
+
+= 2.7.2 =
+Security update: adds a missing permission check so one user cannot read another's profile data. All sites should update.
 
 = 2.7.1 =
 Security update: fixes a stored XSS on job pages. All sites should update.

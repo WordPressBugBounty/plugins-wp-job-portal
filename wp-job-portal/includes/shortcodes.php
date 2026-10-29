@@ -1605,7 +1605,7 @@ function wpjobportal_register_block_editor_assets() {
                 'wp-i18n',
                 'wp-server-side-render',
             ),
-            '2.7.1',
+            '2.7.2',
             true
         );
 
@@ -1623,7 +1623,7 @@ function wpjobportal_register_block_editor_assets() {
             'wpjobportal-blocks-editor',
             esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportal-block-editor.css',
             array('wp-edit-blocks'),
-            '2.7.1'
+            '2.7.2'
         );
     }
 }

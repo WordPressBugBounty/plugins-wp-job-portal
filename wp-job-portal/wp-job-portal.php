@@ -5,7 +5,7 @@
   * Plugin URI: https://wpjobportal.com/
   * Description: WP Job Portal is WordPress’s best job board plugin — easy to use, highly configurable, and built to support both job seekers and employers. AI-powered add-ons offers smart job & resume search, and personalized recommendations.
   * Author: WP Job Portal
-  * Version: 2.7.1
+  * Version: 2.7.2
   * Requires at least: 6.2
   * Requires PHP: 7.4
   * Text Domain: wp-job-portal
@@ -1454,7 +1454,7 @@ function wpjobportal_asset_version($wpjobportal_relative_path, $wpjobportal_base
             return (string) $wpjobportal_mtime;
         }
     }
-    return '2.7.1';
+    return '2.7.2';
 }
 
 /**
