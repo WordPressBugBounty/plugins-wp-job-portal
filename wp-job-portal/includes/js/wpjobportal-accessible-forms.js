@@ -262,6 +262,84 @@
             }
         });
         syncErrorsIn(scope);
+        nameWidgetInputs(scope);
+    }
+
+    /*
+     * Inputs that Chosen and the token input create outside a labelled form row
+     * (a list filter, the job board's city box) had no accessible name at all.
+     * Give them the name of the field they stand in for.
+     */
+    function hasName(el) {
+        return el.getAttribute('aria-label') || el.getAttribute('aria-labelledby') || (el.id && document.querySelector('label[for="' + el.id + '"]'));
+    }
+
+    function fieldName(field) {
+        if (!field) {
+            return '';
+        }
+        var label = field.id ? document.querySelector('label[for="' + field.id + '"]') : null;
+        return (field.getAttribute('aria-label') || (label && label.textContent) || field.getAttribute('data-placeholder') || field.getAttribute('placeholder') || '').replace(/\s+/g, ' ').trim();
+    }
+
+    function nameWidgetInputs(scope) {
+        var searches = scope.querySelectorAll('.chosen-search input, .chosen-search-input');
+        Array.prototype.forEach.call(searches, function (input) {
+            if (hasName(input)) {
+                return;
+            }
+            var container = input.closest('.chosen-container');
+            var name = fieldName(container ? container.previousElementSibling : null);
+            setAttr(input, 'aria-label', name || (window.wpjobportalFormsL10n && wpjobportalFormsL10n.search) || 'Search');
+        });
+        // Last resort for plugin fields that still have no name (list filters, the Design page's colour
+        // and size boxes): the placeholder, a select's empty "Select ..." option, or a short caption just
+        // before the field. Fields with a label, aria-label or title are left alone.
+        var bare = scope.querySelectorAll('input:not([type="hidden"]):not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]), select, textarea');
+        Array.prototype.forEach.call(bare, function (field) {
+            if (hasName(field) || field.closest('label') || field.getAttribute('title') || !field.closest('#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper, .wjportal-main-wrapper')) {
+                return;
+            }
+            var name = (field.getAttribute('placeholder') || '').trim();
+            if (!name && field.tagName === 'SELECT' && field.options.length && field.options[0].value === '') {
+                name = field.options[0].textContent.trim();
+            }
+            if (!name) {
+                for (var el = field, depth = 0; el && depth < 3 && !name; el = el.parentElement, depth++) {
+                    var prev = el.previousElementSibling;
+                    var text = prev ? prev.textContent.replace(/\s+/g, ' ').trim() : '';
+                    if (text && text.length <= 60 && !prev.querySelector('input, select, textarea')) {
+                        name = text.replace(/[:*]\s*$/, '');
+                    }
+                }
+            }
+            if (name) {
+                setAttr(field, 'aria-label', name);
+            }
+        });
+
+        // Clickable images (the resume form's delete icons) act as buttons: focusable, Enter/Space below
+        var clickable = scope.querySelectorAll('img[onclick]');
+        Array.prototype.forEach.call(clickable, function (img) {
+            if (!img.closest('#wpjobportal-wrapper, #wpjobportaladmin-wrapper, .wjportal-main-up-wrapper, .wjportal-main-wrapper')) {
+                return;
+            }
+            setAttr(img, 'role', 'button');
+            if (!img.hasAttribute('tabindex')) {
+                img.setAttribute('tabindex', '0');
+            }
+        });
+        var tokens = scope.querySelectorAll('li.wpjobportal-input-input-token input, li.wpjobportal-input-input-token-wpjobportal input');
+        Array.prototype.forEach.call(tokens, function (input) {
+            if (hasName(input)) {
+                return;
+            }
+            var list = input.closest('ul');
+            var name = fieldName(list ? list.nextElementSibling : null);
+            if (name) {
+                setAttr(input, 'aria-label', name);
+            }
+        });
     }
 
     function connectObserver() {
@@ -631,6 +709,14 @@
         document.addEventListener('submit', function (event) {
             if (event.target && event.target.matches('form')) {
                 focusFirstError(event.target);
+            }
+        }, true);
+
+        document.addEventListener('keydown', function (event) {
+            var el = event.target;
+            if ((event.key === 'Enter' || event.key === ' ') && el && el.tagName === 'IMG' && el.getAttribute('role') === 'button' && el.hasAttribute('onclick')) {
+                event.preventDefault();
+                el.click();
             }
         }, true);
 

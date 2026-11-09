@@ -256,7 +256,7 @@ class WPJOBPORTAL_Sample_Data_Importer {
             'jobtype' => self::lookup('jobtypes', 'title', $resume['type']),
             'status' => 1,
             'skills' => $resume['skills'],
-            'isfeaturedresume' => 0,
+            'isfeaturedresume' => 2, // 2 = not featured; 0 means a feature request waiting
             'params' => '[]',
             'price' => 0,
             'quick_apply' => 0,
@@ -333,7 +333,9 @@ class WPJOBPORTAL_Sample_Data_Importer {
             return array(1, self::$ctx['now'], gmdate('Y-m-d H:i:s', current_time('timestamp') + YEAR_IN_SECONDS));
         }
 
-        return array(0, '', '');
+        // 2 = not featured, as normal saves write. 0 means "featured requested,
+        // waiting", which put every sample record in Approvals.
+        return array(2, '', '');
     }
 
     /**

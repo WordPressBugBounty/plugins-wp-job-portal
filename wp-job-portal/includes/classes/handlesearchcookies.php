@@ -385,6 +385,16 @@ class WPJOBPORTALhandlesearchcookies {
     }
 
     private function setCookiesFromTransientData(){
+        // Security: the discontinued Social Login add-on left the signed-in
+        // person's social id in ONE site-wide transient, and this handed it to
+        // whichever visitor loaded the next page, as a cookie that Core then
+        // trusted as a login. Social Login is discontinued and the cookie is no
+        // longer an identity (WPJOBPORTALuser::trustedSocialId()), so never turn
+        // that transient into cookies; just clear any leftover value.
+        if (get_transient('wpjobportal-social-login-data') !== false) {
+            delete_transient('wpjobportal-social-login-data');
+        }
+        return;
         $wpjobportal_user_data  =  get_transient( 'wpjobportal-social-login-data');
         if( $wpjobportal_user_data !== FALSE){ // it will be false if transient does not exsist
             if($wpjobportal_user_data != '' && is_array($wpjobportal_user_data) && !empty($wpjobportal_user_data)){

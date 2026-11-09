@@ -47,7 +47,8 @@ final class WPJOBPORTAL_Feature_jobalert {
         // suite has unlocked it - asked when the menu is drawn, not here: this
         // runs while Core's own file loads, before Pro has added its filter, so
         // checking here hid the links even with Pro installed.
-        add_action('wpjobportal_addons_sidemenue_admin_jobalert', array($feature, 'admin_sidemenu'), 10, 2);
+        // The admin menu (WPJOBPORTAL_Admin_Menu_Service) draws these links itself now.
+        // add_action('wpjobportal_addons_sidemenue_admin_jobalert', array($feature, 'admin_sidemenu'), 10, 2);
 
         // Delivery. The per-site secret replaces the hardcoded key the legacy
         // add-on shipped; it is generated in code because migrations here never
@@ -142,7 +143,7 @@ final class WPJOBPORTAL_Feature_jobalert {
 
             if($job_alert_allowed == 1){
                 echo ' <div class="wjportal-cp-list">
-                            <a class="wjportal-list-anchor" href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobalert', 'wpjobportallt'=>'jobalert'))).'>'. wp_kses(wpjobportal_cp_menu_icon('bell'), WPJOBPORTAL_ALLOWED_TAGS) .'<span class="wjportal-cp-link-text">'. esc_html__('Job Alert', 'wp-job-portal').'</span></a>
+                            <a class="wjportal-list-anchor" href="'. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobalert', 'wpjobportallt'=>'jobalert'))).'">'. wp_kses(wpjobportal_cp_menu_icon('bell'), WPJOBPORTAL_ALLOWED_TAGS) .'<span class="wjportal-cp-link-text">'. esc_html__('Job Alert', 'wp-job-portal').'</span></a>
                         </div>';
             }
         }

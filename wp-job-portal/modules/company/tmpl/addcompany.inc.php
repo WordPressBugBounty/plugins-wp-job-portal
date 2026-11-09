@@ -179,7 +179,7 @@ $wpjobportal_js_scriptdateformat = wpjobportalphplib::wpJP_str_replace('Y', 'yy'
                     }
                 } else{
                     jQuery('input#logo').replaceWith(jQuery('input#logo').val('').clone(true));
-                    alert(\"". esc_html(__("File extension is mismatched", "wp-job-portal")) ."\");
+                    alert(\"". esc_html(__("This file type is not allowed", "wp-job-portal")) ."\");
                 }
             }
         }

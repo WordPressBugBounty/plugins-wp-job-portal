@@ -9,6 +9,21 @@
  */
 
 (function ($) {
+// Security: the default formatters build token/result markup by string
+// concatenation, so a tag value such as x' onanimationstart='...' breaks out of
+// the single-quoted id attribute and injects event handlers (stored XSS on the
+// admin Edit Resume page). Escape every value that is placed into that markup.
+    if (typeof $.wpjpTokenEscapeHtml !== "function") {
+        $.wpjpTokenEscapeHtml = function (value) {
+            return String(value == null ? "" : value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#39;")
+                .replace(/`/g, "&#96;");
+        };
+    }
 // Default settings
     var DEFAULT_SETTINGS = {
         // Search settings
@@ -39,10 +54,10 @@
         width: "auto",
         // Formatters
         resultsFormatter: function (item) {
-            return "<li>" + item[this.propertyToSearch] + "</li>"
+            return "<li>" + $.wpjpTokenEscapeHtml(item[this.propertyToSearch]) + "</li>"
         },
         tokenFormatter: function (item) {
-            return "<li id='" + (item.id) + "'><p>" + item[this.propertyToSearch] + "</p></li>"
+            return "<li id='" + $.wpjpTokenEscapeHtml(item.id) + "'><p>" + $.wpjpTokenEscapeHtml(item[this.propertyToSearch]) + "</p></li>"
         },
         // Callbacks
         onResult: null,

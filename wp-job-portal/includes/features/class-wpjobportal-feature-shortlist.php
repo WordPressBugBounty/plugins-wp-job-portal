@@ -54,16 +54,16 @@ final class WPJOBPORTAL_Feature_shortlist {
              * under every job, next to a Tell A Friend that is a button - so
              * a list gets the same button every other design gets.
              */
-            $html = '<a onclick="getShortlistViewByJobid('.esc_js($job->id).');" class="wjportal-elegant-addon-job-shortlist-section" href="#"title="'. esc_html(__("Shortlist",'wp-job-portal')) .'">
+            $html = '<a onclick="getShortlistViewByJobid('.esc_js($job->id).');" class="wjportal-elegant-addon-job-shortlist-section" href="#" title="'. esc_html(__("Save Job",'wp-job-portal')) .'">
                 <span class="wjportal-elegant-addon-job-shortlist-section-logo">
-                    <img class="wjportal-elegant-addon-job-shortlist-colorlogo" src="'. esc_url(wpjobportal_elegant_design_url()) .'includes/images/shortlist.png" alt="'. esc_html(__('Shortlist','wp-job-portal')) .'" title="'. esc_html(__('Shortlist','wp-job-portal')) .'">
+                    <img class="wjportal-elegant-addon-job-shortlist-colorlogo" src="'. esc_url(wpjobportal_elegant_design_url()) .'includes/images/shortlist.png" alt="'. esc_html(__('Save Job','wp-job-portal')) .'" title="'. esc_html(__('Save Job','wp-job-portal')) .'">
                 </span>
                 <span class="wjportal-elegant-addon-job-shortlist-section-title">'. esc_html(__("Mark As Shortlist Job",'wp-job-portal')) .'</span>
                 <p class="wjportal-elegant-addon-job-shortlist-section-disc">'. esc_html(__("Keep this job on your list! Mark it as shortlisted and find it easily whenever you need.",'wp-job-portal')) .'</p>
             </a>';
         } else {
             if(!empty(wpjobportal::$_data['sanitized_args']['wpjobportallt']) && wpjobportal::$_data['sanitized_args']['wpjobportallt'] == 'viewjob'){
-                $html = '<a class="wjportal-jobs-act-btn wjportal-job-act-btn-shortlist" href="#" onclick="getShortlistViewByJobid('.esc_js($job->id).');">'. esc_html__('Short List','wp-job-portal').'</a>';
+                $html = '<a class="wjportal-jobs-act-btn wjportal-job-act-btn-shortlist" href="#" onclick="getShortlistViewByJobid('.esc_js($job->id).');">'. esc_html__('Save Job','wp-job-portal').'</a>';
             }else{
                 /*
                  * The label belongs on the list button too.
@@ -76,13 +76,21 @@ final class WPJOBPORTAL_Feature_shortlist {
                  * gap, and a comment in style.css that reads "Space between
                  * icon and text" - the text was simply never passed.
                  */
-                $html = '<a class="wjportal-jobs-act-btn wjportal-job-act-btn-shortlist" href="#" onclick="getShortlistViewByJobid('.esc_js($job->id).');" title="'. esc_js(__('Short List','wp-job-portal')).'">'. esc_html(__('Short List','wp-job-portal')) .'</a>';
+                $html = '<a class="wjportal-jobs-act-btn wjportal-job-act-btn-shortlist" href="#" onclick="getShortlistViewByJobid('.esc_js($job->id).');" title="'. esc_js(__('Save Job','wp-job-portal')).'">'. esc_html(__('Save Job','wp-job-portal')) .'</a>';
             }
         }
         echo wp_kses($html, WPJOBPORTAL_ALLOWED_TAGS);
     }
 
+    /** Saving jobs is off by default; a link to a list that cannot fill is hidden with it. */
+    private static function saving_enabled() {
+        return wpjobportal::$_config->getConfigurationByConfigName('allow_jobshortlist') == 1;
+    }
+
     public function wpjobportal_addons_list_job_shortlist($print, $elegantdesign = ''){
+        if (!self::saving_enabled()) {
+            return;
+        }
         $print = wpjobportal_jobseekercheckLinks('listjobshortlist');
         if ($print) {
             if ($elegantdesign == 1) {
@@ -91,7 +99,7 @@ final class WPJOBPORTAL_Feature_shortlist {
                 $url = WPJOBPORTAL_PLUGIN_URL;
             }
             echo '<div class="wjportal-cp-list">
-                <a class="wjportal-list-anchor" href='.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'shortlist', 'wpjobportallt'=>'shortlistedjobs'))).'>'. wp_kses(wpjobportal_cp_menu_icon('star'), WPJOBPORTAL_ALLOWED_TAGS) .'<span class="wjportal-cp-link-text">'. esc_html__('Short Listed Jobs', 'wp-job-portal').'</span></a>
+                <a class="wjportal-list-anchor" href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'shortlist', 'wpjobportallt'=>'shortlistedjobs'))).'">'. wp_kses(wpjobportal_cp_menu_icon('star'), WPJOBPORTAL_ALLOWED_TAGS) .'<span class="wjportal-cp-link-text">'. esc_html__('Saved Jobs', 'wp-job-portal').'</span></a>
             </div>';
         }
     }
@@ -152,14 +160,17 @@ final class WPJOBPORTAL_Feature_shortlist {
     }
 
     public function wpjobportal_addons_dashboard_shortlist_view($shortlist){
+        if (!self::saving_enabled()) {
+            return;
+        }
        echo '<div class="wjportal-cp-box box4">
             <div class="wjportal-cp-box-top">
-                <img src=' . esc_url(WPJOBPORTAL_PLUGIN_URL . 'includes/images/control_panel/employer/cp-shortlisted-jobs.png') . ' alt='.esc_attr__("shortlisted jobs","wp-job-portal").'>
+                <img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL . 'includes/images/control_panel/employer/cp-shortlisted-jobs.png') . '" alt="'.esc_attr__("shortlisted jobs","wp-job-portal").'">
                 <div class="wjportal-cp-box-num">
                     '. esc_html(isset($shortlist) ? $shortlist : '') .'
                 </div>
                 <div class="wjportal-cp-box-tit">
-                    '. esc_html__('Shortlisted Jobs','wp-job-portal').'
+                    '. esc_html__('Saved Jobs','wp-job-portal').'
                 </div>
             </div>
             <div class="wjportal-cp-box-btm clearfix">

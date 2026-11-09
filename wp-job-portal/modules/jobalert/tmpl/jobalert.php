@@ -59,7 +59,7 @@ if (wpjobportal::$_error_flag == null) {?>
                         <?php
                             /*Submission For Per Listing */
                             if(isset(wpjobportal::$_data[0]) && wpjobportal::$_config->getConfigValue('submission_type') == 2 && ($status != 1 && $status == 3)){
-                                echo '<a class="wjportal-act-btn wjportan-canc-act-btn  wjportal-list-act-btn-cancel-payment" href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobseeker', 'wpjobportallt'=>'controlpanel'))).'>
+                                echo '<a class="wjportal-act-btn wjportan-canc-act-btn  wjportal-list-act-btn-cancel-payment" href="'. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobseeker', 'wpjobportallt'=>'controlpanel'))).'">
                                             '. esc_html__('Cancel Payment', 'wp-job-portal').'
                                         </a>
                                         <button type="button" class="wjportal-act-btn wjportal-list-act-btn-proceed-payment" id="proceedPaymentBtn">

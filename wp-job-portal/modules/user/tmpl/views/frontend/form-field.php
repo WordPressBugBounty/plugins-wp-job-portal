@@ -133,7 +133,8 @@ foreach ($wpjobportal_fieldslist AS $wpjobportal_field) {
         }
         break;
         case 'photo':   
-        if($wpjobportal_field->published == 1) {
+        // W-11: a photo can wait until the profile; sign-up stays short
+        if($wpjobportal_field->published == 1 && is_user_logged_in()) {
             $wpjobportal_req = '';
             $title = wpjobportal::wpjobportal_getVariableValue($wpjobportal_field->fieldtitle);
             $wpjobportal_description = $wpjobportal_field->description;
@@ -167,7 +168,7 @@ foreach ($wpjobportal_fieldslist AS $wpjobportal_field) {
                     </span>
                     <span class="wjportal-form-upload-btn">
                     '.esc_html(__("Upload Image","wp-job-portal")).'
-                    <input type="file" name="photo" class="photo wjportal-form-upload-field" id="photo" value='.$wpjobportal_photoname.' />
+                    <input type="file" name="photo" class="photo wjportal-form-upload-field" id="photo" value="'.$wpjobportal_photoname.'" />
                     </span>
                     </div>
                     <div class="wjportal-form-image-wrp" style="display:'.$wpjobportal_display.';">

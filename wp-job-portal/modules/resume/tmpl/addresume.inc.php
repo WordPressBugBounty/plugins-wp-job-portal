@@ -10,7 +10,7 @@ $wpjobportal_mappingservice = wpjobportal::$_config->getConfigValue('mappingserv
 wp_enqueue_style('jquery-ui-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/jquery-ui-smoothness.css', array(), wpjobportal_asset_version('includes/css/jquery-ui-smoothness.css'));
 
 if($wpjobportal_mappingservice == "gmap"){
-    wp_register_script ( 'wpjp-google-map-js', $wpjobportal_protocol . 'maps.googleapis.com/maps/api/js?key=' . wpjobportal::$_configuration['google_map_api_key'], array(), WPJOBPORTAL_VERSION, false );
+    wp_register_script ( 'wpjp-google-map-js', WPJOBPORTAL_Google_Maps::script_url(), array(), WPJOBPORTAL_VERSION, false );
     wp_enqueue_script ( 'wpjp-google-map-js' );
 }elseif ($wpjobportal_mappingservice == "osm") {
     wp_register_script ( 'wpjp-osm-map-js', esc_url(WPJOBPORTAL_PLUGIN_URL).'/includes/js/ol.min.js', array(), wpjobportal_asset_version('includes/js/ol.min.js'), false );
@@ -76,7 +76,7 @@ $wpjobportal_resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[
                 var files = this.files;
                 for (i = 0; i < files.length; i++){
                     var fileext = files[i].name.split('.').pop();
-                    var filesize = (files[i].size / 1024);
+                    var filesize = Math.ceil(files[i].size / 1024);
                     var allowedExt = \"". wpjobportal::$_config->getConfigurationByConfigName('document_file_type')."\";
                     var allowedSize = \"". wpjobportal::$_config->getConfigurationByConfigName('document_file_size')."\";
                     var maxFiles = ". WPJOBPORTALincluder::getJSModel('common')->configAsJsNumber('document_max_files', 5).";
@@ -107,7 +107,7 @@ $wpjobportal_resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[
                                     canupload = 1;
                                     k++;
                                 } else{
-                                    reason = \"". esc_html(__('File extension is mismatched', 'wp-job-portal'))."\";
+                                    reason = \"". esc_html(__('This file type is not allowed. Allowed types:', 'wp-job-portal'))." \" + allowedExt.join(', ');
                                 }
                             } else{
                                 reason = \"". esc_html(__('File size exceeds limit', 'wp-job-portal'))."\";
@@ -792,7 +792,7 @@ $wpjobportal_resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[
     function readURL(input, srcimage) {
         if (input.files && input.files[0]) {
             var fileext = input.files[0].name.split('.').pop().trim().toLowerCase();
-            var filesize = (input.files[0].size / 1024);
+            var filesize = Math.ceil(input.files[0].size / 1024);
             var allowedsize = \"". wpjobportal::$_config->getConfigurationByConfigName('resume_photofilesize')."\";
             var allowedExt = \"". wpjobportal::$_config->getConfigurationByConfigName('image_file_type')."\";
             allowedExt = allowedExt.split(',').map(function(ext) {
@@ -820,7 +820,7 @@ $wpjobportal_resume = isset(wpjobportal::$_data[0]) ? isset(wpjobportal::$_data[
                 }
             } else{
                 jQuery('input#photo').replaceWith(jQuery('input#photo').val('').clone(true));
-                alert(\"". esc_html(__("File extension is mismatched", 'wp-job-portal'))."\");
+                alert(\"". esc_html(__("This file type is not allowed", 'wp-job-portal'))."\");
             }
         }
     }

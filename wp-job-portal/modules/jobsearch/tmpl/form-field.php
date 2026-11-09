@@ -38,7 +38,7 @@ foreach ($wpjobportal_fields AS $wpjobportal_field) {
 
             break;
         case 'jobstatus':
-            $wpjobportal_content = WPJOBPORTALformfield::select('jobstatus[]', WPJOBPORTALincluder::getJSModel('jobstatus')->getJobStatusForCombo(), isset(wpjobportal::$_data[0]['filter']->jobstatus) ? wpjobportal::$_data[0]['filter']->jobstatus : '', esc_html(__('Select','wp-job-portal')) .' '. esc_html(__('Job Status', 'wp-job-portal')), array('class' => 'inputbox wpjobportal-multiselect wjportal-form-select-field', 'multiple' => 'true'));
+            $wpjobportal_content = WPJOBPORTALformfield::select('jobstatus[]', WPJOBPORTALincluder::getJSModel('jobstatus')->getJobStatusForCombo(true), isset(wpjobportal::$_data[0]['filter']->jobstatus) ? wpjobportal::$_data[0]['filter']->jobstatus : '', esc_html(__('Select','wp-job-portal')) .' '. esc_html(__('Job Status', 'wp-job-portal')), array('class' => 'inputbox wpjobportal-multiselect wjportal-form-select-field', 'multiple' => 'true'));
 
             break;
 

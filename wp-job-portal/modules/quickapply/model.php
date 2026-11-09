@@ -6,6 +6,12 @@ if (!defined('ABSPATH'))
 class WPJOBPORTALquickapplyModel {
    function quickapply($wpjobportal_jobid, $wpjobportal_actionid) {
         if (is_numeric($wpjobportal_jobid)) {
+            // Security: only the job's owner (or an administrator) may copy it;
+            // the copy keeps the original owner, so anyone could add jobs to
+            // another employer's account.
+            if (!$this->canCopyJob($wpjobportal_jobid)) {
+                return WPJOBPORTAL_SAVE_ERROR;
+            }
             $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE id = " . (int) ($wpjobportal_jobid);
             $wpjobportal_job = wpjobportaldb::get_row($query);
             $wpjobportal_data = (array) $wpjobportal_job;
@@ -13,7 +19,7 @@ class WPJOBPORTALquickapplyModel {
             $wpjobportal_data['title'] = $wpjobportal_data['title'] . ' ' . __('Copy', 'wp-job-portal');
             $wpjobportal_data['jobid'] = WPJOBPORTALincluder::getJSModel('job')->getJobId();
             $wpjobportal_data['isjob'] = 2;
-            $wpjobportal_isadmin = WPJOBPORTALrequest::getVar('isadmin');
+            $wpjobportal_isadmin = (current_user_can('manage_options') ? WPJOBPORTALrequest::getVar('isadmin') : ''); // Security: admin-only flag, never trusted from a non-admin request.
             $wpjobportal_user = WPJOBPORTALincluder::getObjectClass('user');
             $wpjobportal_dateformat = wpjobportal::$_configuration['date_format'];
             $wpjobportal_subType = wpjobportal::$_config->getConfigValue('submission_type');
@@ -158,6 +164,9 @@ class WPJOBPORTALquickapplyModel {
         }
         $wpjobportal_jobid = (int) WPJOBPORTALrequest::getVar('jobid');
         $res = "error";
+        if ($wpjobportal_jobid && is_numeric($wpjobportal_jobid) && !$this->canCopyJob($wpjobportal_jobid)) {
+            return "error"; // Security: owner or administrator only
+        }
         if ($wpjobportal_jobid && is_numeric($wpjobportal_jobid)) {
             $res = "copied";
             $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE id = " . (int) ($wpjobportal_jobid);
@@ -323,6 +332,23 @@ class WPJOBPORTALquickapplyModel {
 
     function getMessagekey(){
         $wpjobportal_key = 'job';if(wpjobportal::$_common->wpjp_isadmin()){$wpjobportal_key = 'admin_'.$wpjobportal_key;}return $wpjobportal_key;
+    }
+
+    /**
+     * May the current user copy this job? Its owner or an administrator.
+     */
+    private function canCopyJob($jobid) {
+        if (wpjobportal::$_common->wpjp_isadmin()) {
+            return true;
+        }
+        $me = (int) WPJOBPORTALincluder::getObjectClass('user')->uid();
+        if ($me < 1) {
+            return false;
+        }
+        $owner = wpjobportal::$_db->get_var(wpjobportal::$_db->prepare(
+            "SELECT uid FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE id = %d", (int) $jobid
+        ));
+        return $owner !== null && (int) $owner === $me;
     }
 }
 

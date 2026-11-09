@@ -15,7 +15,7 @@ switch ($wpjobportal_layouts) {
     	if(!empty($wpjobportal_field_ordering) && isset($wpjobportal_field_ordering['photo'])){
 			echo '
 				<div class="wjportal-user-logo">
-	        	 	<img src='. esc_url($wpjobportal_img) .' alt="'.esc_attr(__("User image",'wp-job-portal')).'" title="'.esc_attr(__("User image",'wp-job-portal')).'" class="wjportal-user-logo-image" />
+	        	 	<img src="'. esc_url($wpjobportal_img) .'" alt="'.esc_attr(__("User image",'wp-job-portal')).'" title="'.esc_attr(__("User image",'wp-job-portal')).'" class="wjportal-user-logo-image" />
 	        	</div>
 	        ';
 	    }

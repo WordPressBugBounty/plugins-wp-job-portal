@@ -522,7 +522,7 @@ div.wjportal-add-job-form .wjportal-form-value.wpjp-has-chosen,
    the fill alone, so the fill is all that is stated here. */
 
 :where(#wpjobportal-wrapper, #wpjobportaladmin-wrapper, #wpjobportal-admin-wrapper, .wjportal-main-up-wrapper, .wpj-jp-main-up-wrapper) .chosen-container .chosen-results li.highlighted {
-    background: var(--wpjp-primary-color, #3baeda);
+    background: var(--wpjp-primary-color, #2f6fc4);
 }
 
 /* The one already chosen, when the list opens on it. Not while it is under the

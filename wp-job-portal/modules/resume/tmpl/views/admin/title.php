@@ -75,7 +75,7 @@ $wpjobportal_listing_fields = WPJOBPORTALincluder::getJSModel('fieldordering')->
     </div>
     <div class="wpjobportal-resume-right-wrp">
         <?php if(isset($wpjobportal_listing_fields['jobtype'])){ ?>
-            <span class="wpjobportal-resume-job-type" style="background-color: <?php echo esc_attr($wpjobportal_resume->color); ?>" >
+            <span class="wpjobportal-resume-job-type" style="background-color: <?php echo esc_attr(WPJOBPORTAL_Color::on_white($wpjobportal_resume->color)); ?>" >
                 <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_resume->jobtypetitle)); ?>
             </span>
         <?php } ?>

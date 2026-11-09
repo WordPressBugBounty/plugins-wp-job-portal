@@ -80,10 +80,20 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
             return self::deny($module, $task, $channel, 'input_schema');
         }
 
+        self::$conflicting_input = false;
+
         if ($policy['ownership'] !== ''
             && !self::ownership_is_allowed($policy['ownership'])
         ) {
             return self::deny($module, $task, $channel, 'object_ownership');
+        }
+
+        // Security: the checks above read each field the way the controller
+        // will (query string first). A field sent with one value in the query
+        // string and another in the body could otherwise be authorized for one
+        // record while the controller acts on the other. Refuse such requests.
+        if (self::$conflicting_input) {
+            return self::deny($module, $task, $channel, 'conflicting_input');
         }
 
         return true;
@@ -136,6 +146,7 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
 
         self::override_policy($policies, 'job.savejob', 'employer_or_administrator', 'job_save');
         self::override_policy($policies, 'job.remove', 'employer_or_administrator', 'job_remove');
+        self::override_policy($policies, 'job.setjobclosed', 'employer_or_administrator'); // the controller checks ownership
 
         self::override_policy($policies, 'jobapply.jobapplyasvisitor', 'public');
         self::override_policy($policies, 'jobapply.applyonjob', 'jobseeker_or_permitted_visitor');
@@ -145,6 +156,7 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
 
         self::override_policy($policies, 'jobsearch.savejobsearch', 'jobseeker');
         self::override_policy($policies, 'jobsearch.removesavedjobsearch', 'jobseeker');
+        self::override_policy($policies, 'jobsearch.togglesearchalert', 'jobseeker');
 
         self::override_policy($policies, 'resume.saveresume', 'resume_submitter', 'resume_save');
         self::override_policy($policies, 'resume.removeresume', 'resume_submitter', 'resume_remove');
@@ -158,6 +170,129 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
          */
         $filtered = apply_filters('wpjobportal_core_action_policies', $policies);
         return is_array($filtered) ? $filtered : $policies;
+    }
+
+    /**
+     * Authorize an AJAX task that reads or changes one application.
+     *
+     * The AJAX dispatcher resolves a task against whichever module the request
+     * names, so the policy is keyed by task alone: the same check applies no
+     * matter which model ends up answering. Tasks not listed here keep the
+     * dispatcher's allowlist behaviour.
+     *
+     * @param string $task Model method requested.
+     * @return bool
+     */
+    public static function authorize_ajax($task) {
+        $task = strtolower(preg_replace('/[^A-Za-z0-9_]/', '', (string) $task));
+        $policies = self::ajax_policies();
+        if (!isset($policies[$task])) {
+            return true;
+        }
+
+        if (!is_user_logged_in()) {
+            return self::deny('ajax', $task, 'ajax', 'capability');
+        }
+        if (!self::ownership_is_allowed($policies[$task]['ownership'])) {
+            return self::deny('ajax', $task, 'ajax', 'object_ownership');
+        }
+        return true;
+    }
+
+    /**
+     * Application AJAX tasks and the ownership rule each one needs.
+     *
+     * @return array
+     */
+    public static function ajax_policies() {
+        $policies = array(
+            'getresumecommentsection' => array('ownership' => 'application'),
+            'storeresumecomments' => array('ownership' => 'application'),
+            'updatejobapplyresumestatus' => array('ownership' => 'application'),
+            'setresumeratting' => array('ownership' => 'application'),
+            'getfoldersection' => array('ownership' => 'folder_applicant'),
+            'getfoldersectionjobmanager' => array('ownership' => 'folder_applicant'),
+            'savetofolderresume' => array('ownership' => 'folder_save'),
+            'getemailfields' => array('ownership' => 'email_applicant'),
+            'sendemailtojobseeker' => array('ownership' => 'email_applicant'),
+        );
+        $filtered = apply_filters('wpjobportal_core_ajax_policies', $policies);
+        return is_array($filtered) ? $filtered : $policies;
+    }
+
+    /**
+     * Whether a WordPress user may manage a job and its applications: an
+     * administrator, the employer who owns the job, or anyone an add-on vouches
+     * for (Recruit Suite adds its company admins, recruiters and assigned
+     * users through the filter).
+     *
+     * @param int $job_id
+     * @param int $wp_user_id Defaults to the current user.
+     * @return bool
+     */
+    public static function can_manage_job($job_id, $wp_user_id = 0) {
+        $job_id = absint($job_id);
+        $wp_user_id = $wp_user_id ? absint($wp_user_id) : get_current_user_id();
+        if ($job_id < 1 || $wp_user_id < 1) {
+            return false;
+        }
+        if (user_can($wp_user_id, 'manage_options')) {
+            return true;
+        }
+
+        $query = wpjobportal::$_db->prepare(
+            'SELECT portal_user.uid
+             FROM `' . wpjobportal::$_db->prefix . 'wj_portal_jobs` AS job
+             INNER JOIN `' . wpjobportal::$_db->prefix . 'wj_portal_users` AS portal_user ON portal_user.id = job.uid
+             WHERE job.id = %d',
+            $job_id
+        );
+        if (absint(wpjobportaldb::get_var($query)) === $wp_user_id) {
+            return true;
+        }
+        return (bool) apply_filters('wpjobportal_can_manage_job', false, $job_id, $wp_user_id);
+    }
+
+    /**
+     * Whether a WordPress user may read or change one application (notes,
+     * rating, status, folders, emails): the same people who manage its job.
+     *
+     * @param int $application_id jobapply.id
+     * @param int $wp_user_id     Defaults to the current user.
+     * @return bool
+     */
+    public static function can_manage_application($application_id, $wp_user_id = 0) {
+        $application_id = absint($application_id);
+        if ($application_id < 1) {
+            return false;
+        }
+        $query = wpjobportal::$_db->prepare(
+            'SELECT jobid FROM `' . wpjobportal::$_db->prefix . 'wj_portal_jobapply` WHERE id = %d',
+            $application_id
+        );
+        $job_id = absint(wpjobportaldb::get_var($query));
+        return $job_id > 0 && self::can_manage_job($job_id, $wp_user_id);
+    }
+
+    /**
+     * Whether a resume has applied to a job, so a job's manager may act on it.
+     *
+     * @param int $resume_id
+     * @param int $job_id
+     * @return bool
+     */
+    public static function resume_applied_to_job($resume_id, $job_id) {
+        $resume_id = absint($resume_id);
+        $job_id = absint($job_id);
+        if ($resume_id < 1 || $job_id < 1) {
+            return false;
+        }
+        $query = wpjobportal::$_db->prepare(
+            'SELECT COUNT(id) FROM `' . wpjobportal::$_db->prefix . 'wj_portal_jobapply` WHERE cvid = %d AND jobid = %d',
+            $resume_id,
+            $job_id
+        );
+        return absint(wpjobportaldb::get_var($query)) > 0;
     }
 
     /**
@@ -187,8 +322,12 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
             }
         }
 
+        // Application AJAX tasks always enforce ownership.
+        $ajax_routes = count(self::ajax_policies());
+
         return array(
             'protected_routes' => count($policies),
+            'ajax_routes' => $ajax_routes,
             'ownership_routes' => $ownership_routes,
             'schema_routes' => $schema_routes,
             'post_only_routes' => $post_only_routes,
@@ -240,6 +379,13 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
             'fieldordering.savesearchfieldordering',
             'fieldordering.savesearchfieldorderingfromform',
             'job.savejob',
+            'job.bulkjobs',
+            'company.bulkcompanies',
+            'resume.bulkresumes',
+            'user.bulkusers',
+            'jobalert.bulkjobalerts',
+            'message.bulkmessages',
+            'purchasehistory.bulkuserpackages',
             'jobapply.applyonjob',
             'postinstallation.save',
             'postinstallation.savesampledata',
@@ -325,6 +471,7 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
             'common.wpjobportal_synchronize_ai_search_data' => 'synchronize_ai_search_data',
             'jobsearch.savejobsearch' => 'wpjobportal_job_search_nonce',
             'jobsearch.removesavedjobsearch' => 'wpjobportal_job_search_nonce',
+            'jobsearch.togglesearchalert' => 'wpjobportal_job_search_nonce',
             'quickapply.addtoquickapply' => 'copy-job',
             'quickapply.quickapplyonjob' => 'wpjobportal_quick_apply_nonce',
             'wpjobportal.saveordering' => 'wpjobportal_field_nonce',
@@ -421,6 +568,26 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
             'company.rejectqueuefeaturecompany' => self::required_id('id'),
             'company.approvequeueallcompanies' => self::required_id_list('id'),
             'company.rejectqueueallcompanies' => self::required_id_list('id'),
+            'resume.bulkresumes' => array(
+                'wpjobportal-cb' => array('type' => 'id_list', 'required' => true),
+                'bulkop' => array('type' => 'enum', 'required' => true, 'values' => array('approve', 'reject', 'delete')),
+            ),
+            'purchasehistory.bulkuserpackages' => array(
+                'wpjobportal-cb' => array('type' => 'id_list', 'required' => true),
+                'bulkop' => array('type' => 'enum', 'required' => true, 'values' => array('enable', 'disable', 'delete')),
+            ),
+            'message.bulkmessages' => array(
+                'wpjobportal-cb' => array('type' => 'id_list', 'required' => true),
+                'bulkop' => array('type' => 'enum', 'required' => true, 'values' => array('approve', 'reject', 'delete')),
+            ),
+            'jobalert.bulkjobalerts' => array(
+                'wpjobportal-cb' => array('type' => 'id_list', 'required' => true),
+                'bulkop' => array('type' => 'enum', 'required' => true, 'values' => array('delete')),
+            ),
+            'company.bulkcompanies' => array(
+                'wpjobportal-cb' => array('type' => 'id_list', 'required' => true),
+                'bulkop' => array('type' => 'enum', 'required' => true, 'values' => array('approve', 'reject', 'delete')),
+            ),
             'company.savecompany' => array('id' => array('type' => 'optional_id')),
             'company.enforcedelete' => self::required_id('id'),
             'company.addviewcontactdetail' => array(
@@ -471,6 +638,10 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
                 'companyid' => array('type' => 'optional_id'),
             ),
             'job.jobenforcedelete' => self::required_id('jobid'),
+            'job.bulkjobs' => array(
+                'wpjobportal-cb' => array('type' => 'id_list', 'required' => true),
+                'bulkop' => array('type' => 'enum', 'required' => true, 'values' => array('approve', 'close', 'reopen', 'delete')),
+            ),
             'jobapply.jobapplyasvisitor' => self::required_id('wpjobportalid-jobid'),
             'jobapply.applyonjob' => self::required_id('jobid'),
             'postinstallation.save' => array(
@@ -529,6 +700,10 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
             'user.changeuserstatus' => self::required_id('wpjobportalid'),
             'user.deleteuser' => self::required_id('wpjobportalid'),
             'user.enforcedeleteuser' => self::required_id('wpjobportalid'),
+            'user.bulkusers' => array(
+                'wpjobportal-cb' => array('type' => 'id_list', 'required' => true),
+                'bulkop' => array('type' => 'enum', 'required' => true, 'values' => array('enable', 'disable', 'delete')),
+            ),
         );
 
         if (isset($overrides[$route])) {
@@ -746,6 +921,29 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
             return self::is_empty_value($id)
                 || absint($id) === self::current_internal_user_id();
         }
+        if ($resolver === 'application') {
+            $id = self::request_value('jobapplyid');
+            return self::valid_id($id) && self::can_manage_application($id);
+        }
+        if ($resolver === 'folder_applicant' || $resolver === 'folder_save') {
+            $job_id = self::request_value('jid');
+            $resume_id = self::request_value('rid');
+            if (!self::valid_id($job_id) || !self::valid_id($resume_id)
+                || !self::can_manage_job($job_id)
+                || !self::resume_applied_to_job($resume_id, $job_id)
+            ) {
+                return false;
+            }
+            return $resolver === 'folder_applicant'
+                || self::owns_records('wj_portal_folders', array(self::request_value('folid')));
+        }
+        if ($resolver === 'email_applicant') {
+            $job_id = self::request_value('jobid');
+            $resume_id = self::request_value('resumeid');
+            return self::valid_id($job_id) && self::valid_id($resume_id)
+                && self::can_manage_job($job_id)
+                && self::resume_applied_to_job($resume_id, $job_id);
+        }
 
         return false;
     }
@@ -809,8 +1007,23 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
      * @param string $field
      * @return mixed
      */
+    /** @var bool Set when a checked field differs between GET and POST. */
+    private static $conflicting_input = false;
+
     private static function request_value($field) {
-        return WPJOBPORTALrequest::raw($field);
+        // Read in the same order as WPJOBPORTALrequest::getVar(), which is what
+        // the controllers use: query string first, then the body. Before, this
+        // read the body first, so the id that was authorized and the id the
+        // controller acted on could be two different records.
+        $in_get = isset($_GET[$field]);
+        $in_post = isset($_POST[$field]);
+        if ($in_get && $in_post && wp_unslash($_GET[$field]) !== wp_unslash($_POST[$field])) {
+            self::$conflicting_input = true;
+        }
+        if ($in_get) {
+            return wp_unslash($_GET[$field]);
+        }
+        return WPJOBPORTALrequest::raw($field, 'post');
     }
 
     /**

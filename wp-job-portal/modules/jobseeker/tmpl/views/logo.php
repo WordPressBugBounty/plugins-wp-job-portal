@@ -9,8 +9,8 @@
 		case 'toprowlogo':
 			echo '
 				 <div class="wjportal-jobs-logo">
-					<a href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$wpjobportal_job->companyid))) .' >
-					    <img src='. esc_url(WPJOBPORTALincluder::getJSModel('company')->getLogoUrl($wpjobportal_job->companyid,$wpjobportal_job->logofilename)).' alt="'.esc_attr(__('Company Logo','wp-job-portal')).'">
+					<a href="'. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$wpjobportal_job->companyid))) .'" >
+					    <img src="'. esc_url(WPJOBPORTALincluder::getJSModel('company')->getLogoUrl($wpjobportal_job->companyid,$wpjobportal_job->logofilename)).'" alt="'.esc_attr(__('Company Logo','wp-job-portal')).'">
 					</a>
 				</div>
 				';
@@ -25,7 +25,7 @@
         	$wpjobportal_field_ordering = wpjobportalincluder::getJSModel('fieldordering')->getFieldsOrderingforView(4);
         	if(!empty($wpjobportal_field_ordering) && isset($wpjobportal_field_ordering['photo'])){
 				echo '<div class="wjportal-user-logo">
-			 		<img src='.esc_url($wpjobportal_img).' class="wjportal-user-logo-image" alt="'.esc_attr(__('Profile image','wp-job-portal')).'">
+			 		<img src="'.esc_url($wpjobportal_img).'" class="wjportal-user-logo-image" alt="'.esc_attr(__('Profile image','wp-job-portal')).'">
 		 		</div>';
         	}
 

@@ -78,7 +78,7 @@ foreach ($wpjobportal_sections as $wpjobportal_section_key => $wpjobportal_secti
                         $wpjobportal_defaultUrl = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'user','wpjobportallt'=>'regjobseeker'));
                         $wpjobportal_lrlink = WPJOBPORTALincluder::getJSModel('configuration')->getLoginRegisterRedirectLink($wpjobportal_defaultUrl,'register');
                         echo '<div class="wjportal-cp-list">
-                                <a class="wjportal-list-anchor" href='.esc_url($wpjobportal_lrlink).' title="'. esc_attr(__('Register', 'wp-job-portal')) .'">
+                                <a class="wjportal-list-anchor" href="'.esc_url($wpjobportal_lrlink).'" title="'. esc_attr(__('Register', 'wp-job-portal')) .'">
                                     '. wp_kses(wpjobportal_cp_menu_icon('user-plus'), WPJOBPORTAL_ALLOWED_TAGS) .'
                                     <span class="wjportal-cp-link-text">'. esc_html(__('Register', 'wp-job-portal')) .'</span>
                                 </a>
@@ -91,7 +91,7 @@ foreach ($wpjobportal_sections as $wpjobportal_section_key => $wpjobportal_secti
                 $wpjobportal_print = wpjobportal_jobseekercheckLinks($wpjobportal_value);
                 if ($wpjobportal_print) {
                     echo' <div class="wjportal-cp-list">
-                            <a class="wjportal-list-anchor" href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobapply','wpjobportallt'=>esc_attr($wpjobportal_value)))).' title="'. esc_attr(__('My Applied Jobs', 'wp-job-portal')).'">
+                            <a class="wjportal-list-anchor" href="'. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobapply','wpjobportallt'=>esc_attr($wpjobportal_value)))).'" title="'. esc_attr(__('My Applied Jobs', 'wp-job-portal')).'">
                                 '. wp_kses(wpjobportal_cp_menu_icon('paper-plane'), WPJOBPORTAL_ALLOWED_TAGS) .'
                                 <span class="wjportal-cp-link-text">'. esc_html(__('My Applied Jobs', 'wp-job-portal')).'</span>
                             </a>
@@ -112,7 +112,7 @@ foreach ($wpjobportal_sections as $wpjobportal_section_key => $wpjobportal_secti
                 } else {
                     if ($wpjobportal_print) {
                         echo '<div class="wjportal-cp-list">
-                                <a class="wjportal-list-anchor" href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume','wpjobportallt'=>'myresumes'))).'>
+                                <a class="wjportal-list-anchor" href="'. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume','wpjobportallt'=>'myresumes'))).'">
                                     '. wp_kses(wpjobportal_cp_menu_icon('file-text'), WPJOBPORTAL_ALLOWED_TAGS) .'
                                     <span class="wjportal-cp-link-text">'. esc_html(__('My Resumes', 'wp-job-portal')).'</span>
                                 </a>
@@ -125,7 +125,7 @@ foreach ($wpjobportal_sections as $wpjobportal_section_key => $wpjobportal_secti
                 $wpjobportal_print = wpjobportal_jobseekercheckLinks('listnewestjobs');
                 if ($wpjobportal_print) {
                     echo '<div class="wjportal-cp-list">
-                            <a class="wjportal-list-anchor" href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job','wpjobportallt'=>'newestjobs'))).' title="'. esc_attr(__('Newest Jobs', 'wp-job-portal')).'">
+                            <a class="wjportal-list-anchor" href="'. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job','wpjobportallt'=>'newestjobs'))).'" title="'. esc_attr(__('Newest Jobs', 'wp-job-portal')).'">
                                 '. wp_kses(wpjobportal_cp_menu_icon('bolt'), WPJOBPORTAL_ALLOWED_TAGS) .'
                                 <span class="wjportal-cp-link-text">'. esc_html(__('Newest Jobs', 'wp-job-portal')).'</span>
                             </a>
@@ -137,7 +137,7 @@ foreach ($wpjobportal_sections as $wpjobportal_section_key => $wpjobportal_secti
                 $wpjobportal_print = wpjobportal_jobseekercheckLinks($wpjobportal_value);
                 if ($wpjobportal_print) {
                     echo '<div class="wjportal-cp-list">
-                            <a class="wjportal-list-anchor" href='.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobsearch','wpjobportallt'=>esc_attr($wpjobportal_value)))).' title="'. esc_attr(__('Search Job', 'wp-job-portal')).'">
+                            <a class="wjportal-list-anchor" href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobsearch','wpjobportallt'=>esc_attr($wpjobportal_value)))).'" title="'. esc_attr(__('Search Job', 'wp-job-portal')).'">
                                 '. wp_kses(wpjobportal_cp_menu_icon('search'), WPJOBPORTAL_ALLOWED_TAGS) .'
                                 <span class="wjportal-cp-link-text">'. esc_html(__('Search Job', 'wp-job-portal')).'</span>
                             </a>
@@ -157,7 +157,7 @@ foreach ($wpjobportal_sections as $wpjobportal_section_key => $wpjobportal_secti
                 $wpjobportal_print = wpjobportal_jobseekercheckLinks('my_jobsearches');
                 if ($wpjobportal_print) {
                     echo '<div class="wjportal-cp-list">
-                            <a class="wjportal-list-anchor" href='.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobsearch','wpjobportallt'=>'jobsavesearch'))).' title="'. esc_attr(__('Saved Searches', 'wp-job-portal')).'">
+                            <a class="wjportal-list-anchor" href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobsearch','wpjobportallt'=>'jobsavesearch'))).'" title="'. esc_attr(__('Saved Searches', 'wp-job-portal')).'">
                                 '. wp_kses(wpjobportal_cp_menu_icon('bookmark'), WPJOBPORTAL_ALLOWED_TAGS) .'
                                 <span class="wjportal-cp-link-text">'. esc_html(__('Saved Searches', 'wp-job-portal')).'</span>
                             </a>
@@ -195,7 +195,7 @@ foreach ($wpjobportal_sections as $wpjobportal_section_key => $wpjobportal_secti
                 $wpjobportal_print = wpjobportal_jobseekercheckLinks($wpjobportal_value);
                 if ($wpjobportal_print) {
                     echo '<div class="wjportal-cp-list">
-                            <a class="wjportal-list-anchor" href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job','wpjobportallt'=>'jobsbycategories'))).' title="'. esc_attr(__('Jobs By Categories', 'wp-job-portal')).'">
+                            <a class="wjportal-list-anchor" href="'. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job','wpjobportallt'=>'jobsbycategories'))).'" title="'. esc_attr(__('Jobs By Categories', 'wp-job-portal')).'">
                                 '. wp_kses(wpjobportal_cp_menu_icon('th-list'), WPJOBPORTAL_ALLOWED_TAGS) .'
                                 <span class="wjportal-cp-link-text">'. esc_html(__('Jobs By Categories', 'wp-job-portal')).'</span>
                             </a>
@@ -207,7 +207,7 @@ foreach ($wpjobportal_sections as $wpjobportal_section_key => $wpjobportal_secti
                 $wpjobportal_print = wpjobportal_jobseekercheckLinks($wpjobportal_value);
                 if ($wpjobportal_print) {
                     echo '<div class="wjportal-cp-list">
-                            <a class="wjportal-list-anchor" href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job','wpjobportallt'=>'jobsbytypes'))).' title="'. esc_attr(__('Jobs By Types', 'wp-job-portal')).'">
+                            <a class="wjportal-list-anchor" href="'. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job','wpjobportallt'=>'jobsbytypes'))).'" title="'. esc_attr(__('Jobs By Types', 'wp-job-portal')).'">
                             '. wp_kses(wpjobportal_cp_menu_icon('tags'), WPJOBPORTAL_ALLOWED_TAGS) .'
                             <span class="wjportal-cp-link-text">'. esc_html(__('Jobs By Types', 'wp-job-portal')).'</span></a>
                         </div>';
@@ -219,7 +219,7 @@ foreach ($wpjobportal_sections as $wpjobportal_section_key => $wpjobportal_secti
                     $wpjobportal_print = wpjobportal_jobseekercheckLinks($wpjobportal_value);
                     if ($wpjobportal_print) {
                         echo '<div class="wjportal-cp-list">
-                                <a class="wjportal-list-anchor" href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'multicompany','wpjobportallt'=>'companies'))).' title="'. esc_attr(__('Companies', 'wp-job-portal')).'">
+                                <a class="wjportal-list-anchor" href="'. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'multicompany','wpjobportallt'=>'companies'))).'" title="'. esc_attr(__('Companies', 'wp-job-portal')).'">
                                 '. wp_kses(wpjobportal_cp_menu_icon('building'), WPJOBPORTAL_ALLOWED_TAGS) .'
                                 <span class="wjportal-cp-link-text">'. esc_html(__('Companies', 'wp-job-portal')).'</span></a>
                             </div>';
@@ -231,7 +231,7 @@ foreach ($wpjobportal_sections as $wpjobportal_section_key => $wpjobportal_secti
                 $wpjobportal_print = wpjobportal_jobseekercheckLinks($wpjobportal_value);
                 if ($wpjobportal_print) {
                     echo '<div class="wjportal-cp-list">
-                            <a class="wjportal-list-anchor" href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job','wpjobportallt'=>'jobsbycities'))).' title="'. esc_attr(__('Jobs By Cities', 'wp-job-portal')).'">
+                            <a class="wjportal-list-anchor" href="'. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job','wpjobportallt'=>'jobsbycities'))).'" title="'. esc_attr(__('Jobs By Cities', 'wp-job-portal')).'">
                             '. wp_kses(wpjobportal_cp_menu_icon('map-marker'), WPJOBPORTAL_ALLOWED_TAGS) .'
                             <span class="wjportal-cp-link-text">'. esc_html(__('Jobs By Cities', 'wp-job-portal')).'</span></a>
                         </div>';
@@ -251,14 +251,14 @@ foreach ($wpjobportal_sections as $wpjobportal_section_key => $wpjobportal_secti
                     if ($wpjobportal_print) {
                         if ($wpjobportal_count > 0) {
                             echo '<div class="wjportal-cp-list">
-                                    <a class="wjportal-list-anchor" href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume','wpjobportallt'=>'addresume','wpjobportalid'=>$wpjobportal_resumeid))).' title="'. esc_attr(__('Edit Resume', 'wp-job-portal')).'">
+                                    <a class="wjportal-list-anchor" href="'. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume','wpjobportallt'=>'addresume','wpjobportalid'=>$wpjobportal_resumeid))).'" title="'. esc_attr(__('Edit Resume', 'wp-job-portal')).'">
                                         '. wp_kses(wpjobportal_cp_menu_icon('pencil-square'), WPJOBPORTAL_ALLOWED_TAGS) .'
                                         <span class="wjportal-cp-link-text">'. esc_html(__('Edit Resume', 'wp-job-portal')).'</span>
                                     </a>
                             </div>';
                         } else {
                             echo '<div class="wjportal-cp-list">
-                                    <a class="wjportal-list-anchor" href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume','wpjobportallt'=>'addresume'))).' title="'. esc_attr(__('Add Resume', 'wp-job-portal')).'">
+                                    <a class="wjportal-list-anchor" href="'. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume','wpjobportallt'=>'addresume'))).'" title="'. esc_attr(__('Add Resume', 'wp-job-portal')).'">
                                         '. wp_kses(wpjobportal_cp_menu_icon('plus-square'), WPJOBPORTAL_ALLOWED_TAGS) .'
                                         <span class="wjportal-cp-link-text">'. esc_html(__('Add Resume', 'wp-job-portal')).'</span>
                                     </a>
@@ -276,7 +276,7 @@ foreach ($wpjobportal_sections as $wpjobportal_section_key => $wpjobportal_secti
                         $wpjobportal_defaultUrl = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'wpjobportal','wpjobportallt'=>'login','wpjobportalredirecturl'=>$wpjobportal_thiscpurl,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
                         $wpjobportal_lrlink = WPJOBPORTALincluder::getJSModel('configuration')->getLoginRegisterRedirectLink($wpjobportal_defaultUrl,'login');
                         echo '<div class="wjportal-cp-list">
-                                <a class="wjportal-list-anchor" href='.esc_url($wpjobportal_lrlink).' title="'.esc_attr(__('Login', 'wp-job-portal')).'">
+                                <a class="wjportal-list-anchor" href="'.esc_url($wpjobportal_lrlink).'" title="'.esc_attr(__('Login', 'wp-job-portal')).'">
                                     '. wp_kses(wpjobportal_cp_menu_icon('sign-in'), WPJOBPORTAL_ALLOWED_TAGS) .'
                                     <span class="wjportal-cp-link-text">'.esc_html(__('Login', 'wp-job-portal')).'</span>
                                 </a>
@@ -287,7 +287,7 @@ foreach ($wpjobportal_sections as $wpjobportal_section_key => $wpjobportal_secti
                             $wpjobportal_logout_url = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'sociallogin','task'=>'socialogout','action'=>'wpjobportaltask','wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
                         }
                         echo '<div class="wjportal-cp-list">
-                                <a class="wjportal-list-anchor" href='. esc_url($wpjobportal_logout_url) .' title="'. esc_attr(__('Logout', 'wp-job-portal')).'">
+                                <a class="wjportal-list-anchor" href="'. esc_url($wpjobportal_logout_url) .'" title="'. esc_attr(__('Logout', 'wp-job-portal')).'">
                                     '. wp_kses(wpjobportal_cp_menu_icon('sign-out'), WPJOBPORTAL_ALLOWED_TAGS) .'
                                     <span class="wjportal-cp-link-text">'. esc_html(__('Logout', 'wp-job-portal')).'</span>
                                 </a>

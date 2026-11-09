@@ -79,13 +79,13 @@ if (!defined('ABSPATH')) die('Restricted Access'); ?>
         </div>
         <div class="wpjobportal-post-data">
             <div class="wpjobportal-post-heading-wrp">
-                <div class="wpjobportal-post-heading">
+                <h1 class="wpjobportal-post-heading">
                     <?php echo esc_html(__('Employer Settings','wp-job-portal'));?>
-                </div>
+                </h1>
                 <div class="wpjobportal-post-head-rightbtns-wrp">
                     <span class="wpjobportal-post-head-pagestep"><?php echo esc_html(__('Step 3 of 5','wp-job-portal'));?></span>
-                    <a class="wpjobportal-post-head-closebtn" href="admin.php?page=wpjobportal"title="<?php echo esc_attr(__('Close','wp-job-portal'));?>">
-                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/close.png" />
+                    <a class="wpjobportal-post-head-closebtn" href="admin.php?page=wpjobportal" title="<?php echo esc_attr(__('Close','wp-job-portal'));?>">
+                        <?php echo esc_html__('Exit setup', 'wp-job-portal'); ?>
                     </a>
                 </div>
             </div>

@@ -36,7 +36,7 @@ $wpjobportal_js_script = "
             lineWidth: 3,
             pointSize: 5,
             hAxis: { title: 'Month', titleTextStyle: { color: '#333' } },
-            vAxis: { minValue: 0, format: 0, title: 'Total Jobs' },
+            vAxis: { minValue: 0, viewWindow: { min: 0 }, format: 0, title: 'Total Jobs' },
             chartArea: { left: 65, width: '80%' },
             series: {
                 0: { areaOpacity: 0.3, color: '#4e79a7' },

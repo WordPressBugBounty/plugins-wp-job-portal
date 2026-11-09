@@ -175,7 +175,12 @@ wpjobportal::$wpjobportal_data['layout_values']['tags_field_enalbed'] = 0;
                 }
 
             // job apply form
-                    WPJOBPORTALincluder::getTemplate('job/views/frontend/jobapply', array('wpjobportal_job' => $wpjobportal_job));
+                    // D-8: a closed job has no apply form. Its "No longer accepting
+                    // applications" label is already shown where the Apply button goes
+                    // (title.php), so it is not printed a second time here (finding 28).
+                    if (!WPJOBPORTALincluder::getJSModel('job')->isJobClosedForApplications($wpjobportal_job)) {
+                        WPJOBPORTALincluder::getTemplate('job/views/frontend/jobapply', array('wpjobportal_job' => $wpjobportal_job));
+                    }
             ?>
             <div class="wjportal-job-btn-wrp">
                 <?php

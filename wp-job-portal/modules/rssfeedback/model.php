@@ -20,7 +20,7 @@ class WPJOBPORTALrssfeedbackModel {
         $query = "SELECT job.title, job.description, job.noofjobs, job.id, job.created, job.modified,
                         job.startpublishing, job.stoppublishing, job.address1, job.address2, job.hidesalaryrange,
                         cat.cat_title, company.logofilename AS logofilename, company.id AS companyid,
-                        company.name AS comp_title, jobtype.title AS jobtype, jobstatus.title AS jobstatus,
+                        company.name AS comp_title, jobtype.title AS jobtype, jobstatus.title AS jobstatus, job.jobstatus AS jobstatusid,
                         job.salarymax, job.salarymin, job.salarytype, srtype.title AS srangetypetitle,
                         jobtype.color AS jobtypecolor, CONCAT(job.alias,'-',job.id) AS jobaliasid, job.currency
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
@@ -105,7 +105,7 @@ class WPJOBPORTALrssfeedbackModel {
                                resume.alias, cat.cat_title
                         FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
                         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON resume.job_category = cat.id
-                        WHERE resume.status = 1 AND resume.searchable = 1
+                        WHERE resume.status = 1 AND resume.searchable = 1 AND resume.quick_apply <> 1 AND resume.uid <> 0
                         ORDER BY resume.created DESC
                         LIMIT " . esc_sql($limit) . "
                     ) AS resume";

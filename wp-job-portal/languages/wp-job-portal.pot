@@ -3,9 +3,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Job Portal 2.7.0\n"
+"Project-Id-Version: WP Job Portal 2.8.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-job-portal\n"
-"POT-Creation-Date: 2026-10-16 11:04+0500\n"
+"POT-Creation-Date: 2026-11-04 14:54+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22377,4 +22377,3375 @@ msgid "Your data and settings are kept and come back as soon as the licence is a
 msgstr ""
 
 msgid "Full time"
+msgstr ""
+
+#, php-format
+msgid "%1$d of %2$d companies approved (only companies waiting for approval change)."
+msgstr ""
+
+#, php-format
+msgid "%1$d of %2$d companies rejected (only companies waiting for approval change)."
+msgstr ""
+
+#, php-format
+msgid "%1$d of %2$d done"
+msgstr ""
+
+#, php-format
+msgid "%1$d of %2$d job alerts unsubscribed."
+msgstr ""
+
+#, php-format
+msgid "%1$d of %2$d jobs approved."
+msgstr ""
+
+#, php-format
+msgid "%1$d of %2$d resumes approved (only resumes waiting for approval change)."
+msgstr ""
+
+#, php-format
+msgid "%1$d of %2$d resumes rejected (only resumes waiting for approval change)."
+msgstr ""
+
+#, php-format
+msgid "%1$d of %2$d steps complete for %3$s. It updates as you complete each step."
+msgstr ""
+
+#, php-format
+msgid "%1$d of %2$d users deleted with everything they own (your own account is never deleted here)."
+msgstr ""
+
+#, php-format
+msgid "%1$d of %2$d users deleted. Users who still own companies, jobs or resumes are kept unless you also delete everything."
+msgstr ""
+
+#, php-format
+msgid "%1$d of %2$d users disabled (users already disabled, and your own account, stay as they are)."
+msgstr ""
+
+#, php-format
+msgid "%1$d of %2$d users enabled (users already enabled stay as they are)."
+msgstr ""
+
+#, php-format
+msgid "%1$d setup step left. The site runs as %2$s."
+msgid_plural "%1$d setup steps left. The site runs as %2$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%1$d state-changing core routes enforce HTTP method, role or capability and nonce policies; %2$d validate security-relevant input fields and %3$d also enforce object ownership. %4$d application AJAX tasks (notes, rating, status, folders, emails) check that the user manages the job."
+msgstr ""
+
+#, php-format
+msgid "%1$s %2$s"
+msgstr ""
+
+#, php-format
+msgid "%1$s applied for %2$s"
+msgstr ""
+
+#, php-format
+msgid "%1$s applied to %2$s"
+msgstr ""
+
+#, php-format
+msgid "%1$s email failed since %2$s."
+msgid_plural "%1$s emails failed since %2$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%1$s in %2$s"
+msgstr ""
+
+#, php-format
+msgid "%1$s joined as %2$s"
+msgstr ""
+
+#, php-format
+msgid "%1$s posted %2$s"
+msgstr ""
+
+#, php-format
+msgid "%1$s: %2$s, click to change"
+msgstr ""
+
+#, php-format
+msgid "%d add-on features are switched on through your installed products."
+msgstr ""
+
+#, php-format
+msgid "%d job alert subscription was deleted."
+msgid_plural "%d job alert subscriptions were deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%d job closed to new applicants."
+msgid_plural "%d jobs closed to new applicants."
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%d job reopened."
+msgid_plural "%d jobs reopened."
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%d new"
+msgstr ""
+
+#, php-format
+msgid "%d uploaded file (resume, photo or attachment) was deleted from the server."
+msgid_plural "%d uploaded files (resumes, photos or attachments) were deleted from the server."
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%d waiting for approval"
+msgid_plural "%d waiting for approval"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s alert"
+msgid_plural "%s alerts"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s applicant"
+msgid_plural "%s applicants"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s application"
+msgid_plural "%s applications"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s city"
+msgid_plural "%s cities"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s company"
+msgid_plural "%s companies"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s critical"
+msgid_plural "%s critical"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s details"
+msgstr ""
+
+#, php-format
+msgid "%s entry"
+msgid_plural "%s entries"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s error logged this week"
+msgid_plural "%s errors logged this week"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s experience"
+msgstr ""
+
+#, php-format
+msgid "%s field"
+msgid_plural "%s fields"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s is switched off."
+msgstr ""
+
+#, php-format
+msgid "%s item needs your attention"
+msgid_plural "%s items need your attention"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s item waiting for a decision"
+msgid_plural "%s items waiting for a decision"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s job"
+msgid_plural "%s jobs"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s new"
+msgstr ""
+
+#, php-format
+msgid "%s not selected"
+msgid_plural "%s not selected"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s open job has no applications after 7 days"
+msgid_plural "%s open jobs have no applications after 7 days"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s page address"
+msgid_plural "%s page addresses"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s profile view"
+msgid_plural "%s profile views"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s resume"
+msgid_plural "%s resumes"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s selected company(ies) will be deleted. Companies that still have jobs or departments are kept unless you also tick the box below."
+msgstr ""
+
+#, php-format
+msgid "%s selected item(s) will be deleted."
+msgstr ""
+
+#, php-format
+msgid "%s selected item(s) will be deleted. Items that jobs or resumes still use are kept."
+msgstr ""
+
+#, php-format
+msgid "%s selected job alert(s) will be removed and stop sending emails. This cannot be undone."
+msgstr ""
+
+#, php-format
+msgid "%s selected job(s) will be deleted. Jobs that have applications are kept unless you also tick the box below."
+msgstr ""
+
+#, php-format
+msgid "%s selected resume(s) will be deleted. Resumes that have applications are kept unless you also tick the box below."
+msgstr ""
+
+#, php-format
+msgid "%s selected user(s) will be deleted, with their WordPress accounts. Users who still own companies, jobs or resumes are kept unless you also tick the box below."
+msgstr ""
+
+#, php-format
+msgid "%s view"
+msgid_plural "%s views"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s waiting"
+msgstr ""
+
+#, php-format
+msgid "%s waiting for approval"
+msgstr ""
+
+#, php-format
+msgid "%s waiting over 3 days"
+msgid_plural "%s waiting over 3 days"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s warning"
+msgid_plural "%s warnings"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s%% done. It carries on in the background if you leave this page."
+msgstr ""
+
+#, php-format
+msgid "%s+ year"
+msgid_plural "%s+ years"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s.5+ years"
+msgstr ""
+
+msgid "0 to 365 days. Default 90."
+msgstr ""
+
+msgid "0 to 3650 days. Default 365."
+msgstr ""
+
+msgid "0 to 3650 days. Default 730."
+msgstr ""
+
+msgid "12 months"
+msgstr ""
+
+msgid "30 days"
+msgstr ""
+
+msgid "7 days"
+msgstr ""
+
+msgid "90 days"
+msgstr ""
+
+msgid "A portal address did not open. Saving Settings, Permalinks in WordPress often fixes this."
+msgstr ""
+
+msgid "A portal address was opened and works."
+msgstr ""
+
+msgid "A step failed. Nothing was lost: it stopped at the last record that finished. Reload the page to try again."
+msgstr ""
+
+msgid "A step failed. Nothing was lost: it stopped at the last record that finished. Try again, or open System status."
+msgstr ""
+
+msgid "A stylesheet the site needs is missing or cannot be read."
+msgstr ""
+
+msgid "AI writer"
+msgstr ""
+
+#, php-format
+msgid "Accepted types: %s."
+msgstr ""
+
+msgid "Accepting applicants"
+msgstr ""
+
+msgid "Accepting applications"
+msgstr ""
+
+msgid "Active subscriptions"
+msgstr ""
+
+msgid "Activity History (days)"
+msgstr ""
+
+#, php-format
+msgid "Activity history: %d days"
+msgstr ""
+
+msgid "Activity log"
+msgstr ""
+
+#, php-format
+msgid "Add New %s"
+msgstr ""
+
+msgid "Add a city, or set Workplace Type to Remote. Google for Jobs lists a job only when it has a location or is marked remote."
+msgstr ""
+
+msgid "Add a job"
+msgstr ""
+
+msgid "Add one to start applying for jobs."
+msgstr ""
+
+msgid "Add the first one; it then appears in the job form."
+msgstr ""
+
+msgid "Add your Google Maps key in Settings to show maps."
+msgstr ""
+
+msgid "Add your company"
+msgstr ""
+
+msgid "Add your first job"
+msgstr ""
+
+msgid "All applications"
+msgstr ""
+
+msgid "All categories"
+msgstr ""
+
+#, php-format
+msgid "All categories (%s)"
+msgstr ""
+
+msgid "All companies"
+msgstr ""
+
+msgid "All job types"
+msgstr ""
+
+msgid "All jobs"
+msgstr ""
+
+msgid "All locations"
+msgstr ""
+
+msgid "All owners"
+msgstr ""
+
+msgid "All records are up to date."
+msgstr ""
+
+msgid "All resumes"
+msgstr ""
+
+msgid "All users"
+msgstr ""
+
+msgid "Also delete everything about these companies (their jobs, departments and applications). This cannot be undone."
+msgstr ""
+
+msgid "Also delete everything about these jobs (applications and related records). This cannot be undone."
+msgstr ""
+
+msgid "Also delete everything about these resumes (their applications and files). This cannot be undone."
+msgstr ""
+
+msgid "Also delete everything these users own (companies, jobs, resumes, applications and files). This cannot be undone."
+msgstr ""
+
+msgid "Always"
+msgstr ""
+
+msgid "Always on"
+msgstr ""
+
+msgid "An earlier version saved these as WordPress's Sample Page (or a page that no longer exists) whenever Settings were saved, even if nobody chose it:"
+msgstr ""
+
+msgid "Another request is working on it; checking again shortly."
+msgstr ""
+
+msgid "Any category"
+msgstr ""
+
+msgid "Any frequency"
+msgstr ""
+
+msgid "Any status"
+msgstr ""
+
+msgid "Appearance & language"
+msgstr ""
+
+msgid "Applicants"
+msgstr ""
+
+msgid "Applicants move here from the Move to menu on each row."
+msgstr ""
+
+msgid "Applicants, employers and you may be missing messages."
+msgstr ""
+
+msgid "Application not opened yet"
+msgid_plural "Applications not opened yet"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "Applications (%s)"
+msgstr ""
+
+msgid "Applications in the last 7 days"
+msgstr ""
+
+#, php-format
+msgid "Applications made in the last %s, by how far they got."
+msgstr ""
+
+msgid "Applications per 100 views"
+msgstr ""
+
+msgid "Applications show up under My Jobs."
+msgstr ""
+
+#, php-format
+msgid "Applied for %s"
+msgstr ""
+
+msgid "Apply form"
+msgstr ""
+
+msgid "Apply rate"
+msgstr ""
+
+msgid "Apply settings"
+msgstr ""
+
+msgid "Approval"
+msgstr ""
+
+msgid "Approval queue"
+msgstr ""
+
+msgid "Approval status"
+msgstr ""
+
+msgid "Approvals"
+msgstr ""
+
+msgid "Approve feature"
+msgstr ""
+
+msgid "Approve new companies automatically"
+msgstr ""
+
+msgid "Approve new jobs automatically"
+msgstr ""
+
+msgid "Are you sure to unsubscribe"
+msgstr ""
+
+msgid "Automation"
+msgstr ""
+
+msgid "Behind everything on the page"
+msgstr ""
+
+msgid "Body text"
+msgstr ""
+
+msgid "Breadcrumb"
+msgstr ""
+
+msgid "Browser tab titles and link words for job, company and resume pages."
+msgstr ""
+
+msgid "Bulk actions"
+msgstr ""
+
+msgid "Buttons, links and highlights"
+msgstr ""
+
+msgid "By"
+msgstr ""
+
+msgid "Candidate files"
+msgstr ""
+
+msgid "Career levels"
+msgstr ""
+
+msgid "Change"
+msgstr ""
+
+msgid "Change log"
+msgstr ""
+
+msgid "Change log (staff edits)"
+msgstr ""
+
+msgid "Change mode"
+msgstr ""
+
+msgid "Change or reset the filters."
+msgstr ""
+
+msgid "Change role"
+msgstr ""
+
+msgid "Change sort order"
+msgstr ""
+
+msgid "Change status on the job's applicants"
+msgstr ""
+
+msgid "Change under Settings, System & Site, Privacy Retention"
+msgstr ""
+
+#, php-format
+msgid "Change: %s"
+msgstr ""
+
+msgid "Changed"
+msgstr ""
+
+msgid "Changed from default"
+msgstr ""
+
+msgid "Changing mode applies the new mode's defaults to registration, approvals and the admin menu, so settings you changed by hand there may be reset. Jobs, companies, candidates and applications are kept. You then go through the setup steps again."
+msgstr ""
+
+msgid "Choose mode & setup"
+msgstr ""
+
+#, php-format
+msgid "Cities of %s"
+msgstr ""
+
+msgid "City names"
+msgstr ""
+
+msgid "Clear selection"
+msgstr ""
+
+msgid "Close job"
+msgstr ""
+
+msgid "Close to new applicants"
+msgstr ""
+
+msgid "Closed"
+msgstr ""
+
+#, php-format
+msgid "Closes %s"
+msgstr ""
+
+msgid "Closing in 7 days"
+msgstr ""
+
+msgid "Collapse"
+msgstr ""
+
+msgid "Collapse or expand the menu"
+msgstr ""
+
+msgid "Colour"
+msgstr ""
+
+msgid "Companies waiting for approval"
+msgstr ""
+
+msgid "Companies you or your employers add appear here."
+msgstr ""
+
+msgid "Company / resume"
+msgstr ""
+
+msgid "Company details"
+msgstr ""
+
+msgid "Company form fields"
+msgstr ""
+
+msgid "Company web addresses"
+msgstr ""
+
+msgid "Conflict prefix"
+msgstr ""
+
+msgid "Connection"
+msgstr ""
+
+msgid "Countries & cities"
+msgstr ""
+
+msgid "Cover letters"
+msgstr ""
+
+msgid "Create new"
+msgstr ""
+
+msgid "Created between"
+msgstr ""
+
+msgid "Created from"
+msgstr ""
+
+msgid "Created to"
+msgstr ""
+
+msgid "Current location field"
+msgstr ""
+
+#, php-format
+msgid "Current value (%s)"
+msgstr ""
+
+msgid "Custom fields"
+msgstr ""
+
+msgid "Date range"
+msgstr ""
+
+#, php-format
+msgid "Delete %s?"
+msgstr ""
+
+msgid "Delete All Data When The Plugin Is Deleted"
+msgstr ""
+
+msgid "Delete companies?"
+msgstr ""
+
+msgid "Delete jobs?"
+msgstr ""
+
+msgid "Delete resumes?"
+msgstr ""
+
+msgid "Delete this field? Values people entered in it are deleted too."
+msgstr ""
+
+msgid "Delete users?"
+msgstr ""
+
+msgid "Delete?"
+msgstr ""
+
+#, php-format
+msgid "Departments (%s)"
+msgstr ""
+
+msgid "Dismiss until the next failure"
+msgstr ""
+
+msgid "Do not want these emails any more?"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+msgid "Download the numbers for this period as a spreadsheet (CSV)"
+msgstr ""
+
+msgid "Drag a row by its handle to change the order on the site."
+msgstr ""
+
+msgid "Drag a row to change the order on the form."
+msgstr ""
+
+msgid "Drag a row to change the order on the search form."
+msgstr ""
+
+msgid "Drag to reorder"
+msgstr ""
+
+msgid "Each time a job, company, resume or setting is added, changed or deleted, it is noted here."
+msgstr ""
+
+msgid "Earlier"
+msgstr ""
+
+#, php-format
+msgid "Edit %s"
+msgstr ""
+
+msgid "Edit job"
+msgstr ""
+
+msgid "Edit resume"
+msgstr ""
+
+msgid "Education Level"
+msgstr ""
+
+msgid "Education level"
+msgstr ""
+
+msgid "Email me new matches"
+msgstr ""
+
+msgid "Email templates"
+msgstr ""
+
+msgid "Emails"
+msgstr ""
+
+#, php-format
+msgid "Emails are sent from \"%s\". Most mail servers reject this address, so these emails may never arrive. Set a sender address on your own domain under Settings."
+msgstr ""
+
+msgid "Emails from your job board are not being sent."
+msgstr ""
+
+msgid "Emails wait in a queue and are retried if sending fails. Job alerts always use the queue."
+msgstr ""
+
+msgid "Emoji can't be saved yet. Remove them and save again."
+msgstr ""
+
+msgid "Employer area"
+msgstr ""
+
+msgid "Employers can register"
+msgstr ""
+
+msgid "Employers can see the job seeker dashboard"
+msgstr ""
+
+msgid "Ended"
+msgstr ""
+
+msgid "Error (older format)"
+msgstr ""
+
+msgid "Error log"
+msgstr ""
+
+msgid "Every job is posted under a company. Add yours - it takes a minute - and you will come straight back here to post the job."
+msgstr ""
+
+msgid "Every word you changed goes back to its default. Links people saved with your words will stop working."
+msgstr ""
+
+msgid "Everything waiting"
+msgstr ""
+
+msgid "Exit setup"
+msgstr ""
+
+msgid "Expected salary between"
+msgstr ""
+
+msgid "Expiring soonest"
+msgstr ""
+
+msgid "Featured jobs only"
+msgstr ""
+
+msgid "Featured request"
+msgstr ""
+
+msgid "Featured request waiting"
+msgstr ""
+
+msgid "Featured resumes only"
+msgstr ""
+
+#, php-format
+msgid "Featured until %s"
+msgstr ""
+
+msgid "Fields marked * are required."
+msgstr ""
+
+msgid "Fills in the colours below. Nothing changes on your site until you save."
+msgstr ""
+
+msgid "Filters"
+msgstr ""
+
+msgid "Find a setting"
+msgstr ""
+
+msgid "Find jobs"
+msgstr ""
+
+msgid "Finish setup"
+msgstr ""
+
+msgid "First, add your company"
+msgstr ""
+
+msgid "For"
+msgstr ""
+
+msgid "Forms & fields"
+msgstr ""
+
+msgid "Frequency"
+msgstr ""
+
+msgid "From"
+msgstr ""
+
+msgid "Full screen"
+msgstr ""
+
+msgid "Full screen: hide the WordPress menu"
+msgstr ""
+
+msgid "Get started"
+msgstr ""
+
+msgid "Give a user who has no role yet the employer or job seeker role."
+msgstr ""
+
+msgid "Go to the first page"
+msgstr ""
+
+msgid "Go to your dashboard"
+msgstr ""
+
+#, php-format
+msgid "Good afternoon, %s"
+msgstr ""
+
+#, php-format
+msgid "Good evening, %s"
+msgstr ""
+
+#, php-format
+msgid "Good morning, %s"
+msgstr ""
+
+msgid "Headings and job titles"
+msgstr ""
+
+msgid "Hello,"
+msgstr ""
+
+msgid "Help & docs"
+msgstr ""
+
+msgid "Highest educations"
+msgstr ""
+
+msgid "Highest rated"
+msgstr ""
+
+msgid "Highest rating"
+msgstr ""
+
+msgid "Highest salary"
+msgstr ""
+
+msgid "Hiring"
+msgstr ""
+
+msgid "Hiring funnel"
+msgstr ""
+
+msgid "Hiring status"
+msgstr ""
+
+msgid "Home page prefix"
+msgstr ""
+
+msgid "Hooks & filters"
+msgstr ""
+
+msgid "How long records about people are kept before they are removed automatically. 0 keeps them until an administrator or a WordPress privacy erasure request removes them."
+msgstr ""
+
+msgid "How modes work"
+msgstr ""
+
+msgid "How your job board looks to visitors."
+msgstr ""
+
+msgid "I have a recent backup of the database"
+msgstr ""
+
+msgid "ID, highest first"
+msgstr ""
+
+msgid "ID, lowest first"
+msgstr ""
+
+msgid "If your site uses a caching plugin, clear its cache after saving so visitors see the new look."
+msgstr ""
+
+msgid "Import"
+msgstr ""
+
+msgid "Import companies"
+msgstr ""
+
+msgid "Import jobs"
+msgstr ""
+
+msgid "Import settings"
+msgstr ""
+
+msgid "Import the cities of a country into the location lists."
+msgstr ""
+
+msgid "In review"
+msgstr ""
+
+msgid "In the Inbox"
+msgstr ""
+
+msgid "Inside job cards and boxes"
+msgstr ""
+
+msgid "Instant"
+msgstr ""
+
+msgid "It goes live once it is approved."
+msgstr ""
+
+#, php-format
+msgid "It is now under %s."
+msgstr ""
+
+msgid "It may have been deleted, or the link is wrong."
+msgstr ""
+
+msgid "Items that need your approval appear here."
+msgstr ""
+
+#, php-format
+msgid "Job alert #%d"
+msgstr ""
+
+msgid "Job alert form fields"
+msgstr ""
+
+msgid "Job alerts"
+msgstr ""
+
+msgid "Job alerts without an account"
+msgstr ""
+
+msgid "Job and resume maps stay hidden until then; latitude and longitude still save."
+msgstr ""
+
+msgid "Job attributes"
+msgstr ""
+
+#, php-format
+msgid "Job board summary, last %s"
+msgstr ""
+
+msgid "Job closes in the next 7 days"
+msgid_plural "Jobs close in the next 7 days"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Job details"
+msgstr ""
+
+msgid "Job form fields"
+msgstr ""
+
+msgid "Job not found"
+msgstr ""
+
+msgid "Job performance"
+msgstr ""
+
+msgid "Job saved"
+msgstr ""
+
+msgid "Job search"
+msgstr ""
+
+msgid "Job search fields"
+msgstr ""
+
+msgid "Job searches"
+msgstr ""
+
+msgid "Job seekers"
+msgstr ""
+
+msgid "Job web addresses"
+msgstr ""
+
+#, php-format
+msgid "Jobs (%s)"
+msgstr ""
+
+msgid "Jobs are posted under a company."
+msgstr ""
+
+msgid "Jobs of this company"
+msgstr ""
+
+msgid "Jobs posted"
+msgstr ""
+
+msgid "Jobs you or your employers post appear here."
+msgstr ""
+
+#, php-format
+msgid "Joined as %s"
+msgstr ""
+
+msgid "Keep them published"
+msgstr ""
+
+msgid "Key number"
+msgstr ""
+
+msgid "Key numbers"
+msgstr ""
+
+#, php-format
+msgid "Last error: %s"
+msgstr ""
+
+#, php-format
+msgid "Last month: %s"
+msgstr ""
+
+msgid "Last sent"
+msgstr ""
+
+msgid "Latest payments received"
+msgstr ""
+
+msgid "Latest subscriptions"
+msgstr ""
+
+msgid "Lines around cards and fields"
+msgstr ""
+
+msgid "Load sample data"
+msgstr ""
+
+msgid "Location name settings"
+msgstr ""
+
+msgid "Locations"
+msgstr ""
+
+msgid "Log in"
+msgstr ""
+
+msgid "Log in or create an account"
+msgstr ""
+
+msgid "Lowest salary"
+msgstr ""
+
+msgid "Make default"
+msgstr ""
+
+msgid "Market"
+msgstr ""
+
+msgid "Max file size allowed"
+msgstr ""
+
+msgid "Max photo size allowed"
+msgstr ""
+
+msgid "More"
+msgstr ""
+
+msgid "More actions"
+msgstr ""
+
+msgid "More add-ons"
+msgstr ""
+
+msgid "More filters"
+msgstr ""
+
+msgid "More pages"
+msgstr ""
+
+msgid "Most applications"
+msgstr ""
+
+msgid "Most jobs"
+msgstr ""
+
+msgid "Most urgent:"
+msgstr ""
+
+#, php-format
+msgid "Move %s down"
+msgstr ""
+
+#, php-format
+msgid "Move %s up"
+msgstr ""
+
+msgid "Move to"
+msgstr ""
+
+msgid "Name not given"
+msgstr ""
+
+msgid "Needs"
+msgstr ""
+
+msgid "Needs your attention"
+msgstr ""
+
+msgid "New application"
+msgstr ""
+
+msgid "New companies"
+msgstr ""
+
+#, php-format
+msgid "New company: %s"
+msgstr ""
+
+msgid "New job alert"
+msgstr ""
+
+#, php-format
+msgid "New job: %s"
+msgstr ""
+
+msgid "New jobs"
+msgstr ""
+
+msgid "New jobs, companies, resumes and other items that need your approval appear here."
+msgstr ""
+
+msgid "New members"
+msgstr ""
+
+msgid "New resumes"
+msgstr ""
+
+msgid "Newest applications"
+msgstr ""
+
+msgid "Newest first"
+msgstr ""
+
+msgid "Next page"
+msgstr ""
+
+#, php-format
+msgid "No %s match these filters"
+msgstr ""
+
+#, php-format
+msgid "No %s yet"
+msgstr ""
+
+msgid "No activity yet"
+msgstr ""
+
+#, php-format
+msgid "No applicants in %s"
+msgstr ""
+
+msgid "No applicants yet"
+msgstr ""
+
+msgid "No applications in this period."
+msgstr ""
+
+msgid "No applications match these filters"
+msgstr ""
+
+msgid "No applications yet"
+msgstr ""
+
+msgid "No companies match these filters"
+msgstr ""
+
+msgid "No companies yet"
+msgstr ""
+
+msgid "No cover letter"
+msgstr ""
+
+msgid "No cron key is set yet, so there is no address to call."
+msgstr ""
+
+msgid "No email"
+msgstr ""
+
+msgid "No errors"
+msgstr ""
+
+msgid "No fields match"
+msgstr ""
+
+msgid "No job alerts match these filters"
+msgstr ""
+
+msgid "No job alerts yet"
+msgstr ""
+
+#, php-format
+msgid "No jobs in a city called \"%s\". Try picking a city from the list."
+msgstr ""
+
+msgid "No jobs match these filters"
+msgstr ""
+
+msgid "No jobs yet"
+msgstr ""
+
+msgid "No location"
+msgstr ""
+
+msgid "No longer accepting applications"
+msgstr ""
+
+msgid "No new jobs or applications in this period. Try a longer range, or add a job to get started."
+msgstr ""
+
+msgid "No open jobs right now."
+msgstr ""
+
+msgid "No page addresses"
+msgstr ""
+
+msgid "No page recorded"
+msgstr ""
+
+msgid "No payments received yet."
+msgstr ""
+
+msgid "No portal role"
+msgstr ""
+
+msgid "No resumes match these filters"
+msgstr ""
+
+msgid "No resumes yet"
+msgstr ""
+
+msgid "No search fields"
+msgstr ""
+
+msgid "No status"
+msgstr ""
+
+msgid "No subscriptions yet."
+msgstr ""
+
+msgid "No title or email"
+msgstr ""
+
+msgid "No users match these filters"
+msgstr ""
+
+msgid "No users yet"
+msgstr ""
+
+msgid "No website or email"
+msgstr ""
+
+msgid "No: jobs with this status show \"No longer accepting applications\" and refuse new ones. Visitors only ever see Accepting applications or Closed."
+msgstr ""
+
+msgid "Nobody matches these filters"
+msgstr ""
+
+msgid "Not pinned yet"
+msgstr ""
+
+msgid "Not published yet"
+msgstr ""
+
+msgid "Not set"
+msgstr ""
+
+msgid "Nothing has happened yet. New jobs, applications and members will show here."
+msgstr ""
+
+msgid "Nothing is missing. Employers see everything you have filled in."
+msgstr ""
+
+msgid "Nothing is waiting"
+msgstr ""
+
+msgid "Nothing is waiting. You are all caught up."
+msgstr ""
+
+msgid "Nothing matches these filters"
+msgstr ""
+
+msgid "Nothing matches this search"
+msgstr ""
+
+msgid "Nothing needs you right now. Here is how the job board is doing."
+msgstr ""
+
+msgid "Nothing new. No approvals are waiting and no one applied in the last seven days."
+msgstr ""
+
+msgid "Nothing on this page"
+msgstr ""
+
+msgid "Nothing waiting matches"
+msgstr ""
+
+msgid "Nothing yet"
+msgstr ""
+
+#, php-format
+msgid "Notifications, %d new"
+msgid_plural "Notifications, %d new"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "Now: %s"
+msgstr ""
+
+msgid "Off keeps every job, resume and application when the plugin is deleted, so reinstalling brings them back. On removes them for good when the plugin is deleted."
+msgstr ""
+
+msgid "Oldest applications"
+msgstr ""
+
+msgid "Oldest first"
+msgstr ""
+
+msgid "On"
+msgstr ""
+
+msgid "On/off options"
+msgstr ""
+
+msgid "Only approved companies show on the site."
+msgstr ""
+
+msgid "Only approved jobs show on the site."
+msgstr ""
+
+msgid "Only this job"
+msgstr ""
+
+msgid "Open Plugins"
+msgstr ""
+
+msgid "Open Settings"
+msgstr ""
+
+#, php-format
+msgid "Open in %s"
+msgstr ""
+
+msgid "Open job"
+msgstr ""
+
+msgid "Operational Audit (days)"
+msgstr ""
+
+#, php-format
+msgid "Operational audit: %d days"
+msgstr ""
+
+msgid "Other approvals"
+msgstr ""
+
+msgid "Overall"
+msgstr ""
+
+#, php-format
+msgid "Owner: %s"
+msgstr ""
+
+msgid "Page"
+msgstr ""
+
+msgid "Page addresses"
+msgstr ""
+
+msgid "Pages & SEO"
+msgstr ""
+
+msgid "Paid"
+msgstr ""
+
+msgid "Paid by"
+msgstr ""
+
+msgid "Paid submissions"
+msgstr ""
+
+msgid "Paid this month"
+msgstr ""
+
+msgid "Path and query"
+msgstr ""
+
+msgid "Payment methods"
+msgstr ""
+
+msgid "Payment not completed"
+msgid_plural "Payments not completed"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Payments not completed"
+msgstr ""
+
+msgid "Pending payment"
+msgstr ""
+
+msgid "People who register as employers or job seekers appear here. You can also give a portal role to an existing WordPress user."
+msgstr ""
+
+msgid "Period"
+msgstr ""
+
+msgid "Pick the right page in Settings if you use them."
+msgstr ""
+
+#, php-format
+msgid "Pinned at %1$s, %2$s"
+msgstr ""
+
+msgid "Plans & credits"
+msgstr ""
+
+msgid "Playground"
+msgstr ""
+
+msgid "Please choose whether you are registering as an employer or a job seeker."
+msgstr ""
+
+msgid "Please confirm you have a backup first."
+msgstr ""
+
+msgid "Plugins"
+msgstr ""
+
+msgid "Portal addresses"
+msgstr ""
+
+msgid "Post a job"
+msgstr ""
+
+msgid "Post your first job"
+msgstr ""
+
+msgid "Posted between"
+msgstr ""
+
+msgid "Posted from"
+msgstr ""
+
+msgid "Posted to"
+msgstr ""
+
+msgid "Prefixes"
+msgstr ""
+
+msgid "Preview (not saved yet)"
+msgstr ""
+
+#, php-format
+msgid "Previous %1$s: %2$s"
+msgstr ""
+
+msgid "Previous page"
+msgstr ""
+
+msgid "Previous period"
+msgstr ""
+
+msgid "Privacy Retention"
+msgstr ""
+
+msgid "Published or not"
+msgstr ""
+
+msgid "Publishing"
+msgstr ""
+
+msgid "Put these on any page to show that part of the job board."
+msgstr ""
+
+msgid "Quick apply"
+msgstr ""
+
+msgid "Quick apply for members"
+msgstr ""
+
+msgid "Quick apply for visitors"
+msgstr ""
+
+msgid "Rating"
+msgstr ""
+
+msgid "Recent activity"
+msgstr ""
+
+msgid "Recruit"
+msgstr ""
+
+msgid "Reject feature"
+msgstr ""
+
+msgid "Renewing in 7 days"
+msgstr ""
+
+msgid "Required or not"
+msgstr ""
+
+msgid "Reset all"
+msgstr ""
+
+msgid "Reset all page addresses?"
+msgstr ""
+
+msgid "Reset all to defaults"
+msgstr ""
+
+msgid "Reset filters"
+msgstr ""
+
+msgid "Restore my previous settings for this mode"
+msgstr ""
+
+#, php-format
+msgid "Resume #%d"
+msgstr ""
+
+msgid "Resume form fields"
+msgstr ""
+
+msgid "Resume not found"
+msgstr ""
+
+msgid "Resume photo"
+msgstr ""
+
+msgid "Resume search"
+msgstr ""
+
+msgid "Resume search fields"
+msgstr ""
+
+msgid "Resume searches"
+msgstr ""
+
+msgid "Resume web addresses"
+msgstr ""
+
+msgid "Resumes sent without an account"
+msgstr ""
+
+msgid "Resumes that job seekers create appear here."
+msgstr ""
+
+msgid "Resumes waiting for approval"
+msgstr ""
+
+msgid "Revenue"
+msgstr ""
+
+msgid "Review your applicants"
+msgstr ""
+
+msgid "Role details"
+msgstr ""
+
+msgid "Roles"
+msgstr ""
+
+msgid "Salary range type"
+msgstr ""
+
+msgid "Salary range types"
+msgstr ""
+
+msgid "Salary ranges"
+msgstr ""
+
+msgid "Sales reports"
+msgstr ""
+
+msgid "Sample data does not count here."
+msgstr ""
+
+msgid "Save Job"
+msgstr ""
+
+msgid "Save order"
+msgstr ""
+
+msgid "Saved Jobs"
+msgstr ""
+
+msgid "Saved job"
+msgstr ""
+
+msgid "Scheduled tasks"
+msgstr ""
+
+msgid "Search applications"
+msgstr ""
+
+msgid "Search by name"
+msgstr ""
+
+msgid "Search by name or who sent it"
+msgstr ""
+
+msgid "Search candidate, email, resume, job or company"
+msgstr ""
+
+msgid "Search career levels"
+msgstr ""
+
+msgid "Search categories"
+msgstr ""
+
+msgid "Search cities"
+msgstr ""
+
+msgid "Search companies"
+msgstr ""
+
+msgid "Search countries"
+msgstr ""
+
+msgid "Search currencies"
+msgstr ""
+
+msgid "Search education levels"
+msgstr ""
+
+msgid "Search error, page or query"
+msgstr ""
+
+msgid "Search field titles"
+msgstr ""
+
+msgid "Search job alerts"
+msgstr ""
+
+msgid "Search job statuses"
+msgstr ""
+
+msgid "Search job types"
+msgstr ""
+
+msgid "Search name, email or keywords"
+msgstr ""
+
+msgid "Search name, email, login, company or resume"
+msgstr ""
+
+msgid "Search name, website, email, owner or location"
+msgstr ""
+
+msgid "Search pages, jobs, companies, resumes and people (Ctrl K)"
+msgstr ""
+
+msgid "Search resumes"
+msgstr ""
+
+msgid "Search salary periods"
+msgstr ""
+
+msgid "Search states"
+msgstr ""
+
+msgid "Search tags"
+msgstr ""
+
+msgid "Search the activity log"
+msgstr ""
+
+msgid "Search the error log"
+msgstr ""
+
+msgid "Search title, company, category or location"
+msgstr ""
+
+msgid "Search title, name, email, category or location"
+msgstr ""
+
+msgid "Search users"
+msgstr ""
+
+msgid "Search what happened or who did it"
+msgstr ""
+
+#, php-format
+msgid "See all applications (%d this week)"
+msgid_plural "See all applications (%d this week)"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "See the jobs"
+msgstr ""
+
+msgid "Seen"
+msgstr ""
+
+msgid "Select all"
+msgstr ""
+
+#, php-format
+msgid "Select all %s"
+msgstr ""
+
+msgid "Select all companies"
+msgstr ""
+
+msgid "Select all fields"
+msgstr ""
+
+msgid "Select all job alerts"
+msgstr ""
+
+msgid "Select all jobs"
+msgstr ""
+
+msgid "Select all resumes"
+msgstr ""
+
+msgid "Select all users"
+msgstr ""
+
+msgid "Send Emails Through The Reliable Queue"
+msgstr ""
+
+msgid "Send a test email"
+msgstr ""
+
+msgid "Set them to draft so menus and search engines stop sending people there?"
+msgstr ""
+
+msgid "Set these pages to draft"
+msgstr ""
+
+msgid "Setup"
+msgstr ""
+
+msgid "Setup step left"
+msgid_plural "Setup steps left"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "Show %s"
+msgstr ""
+
+msgid "Show all applicants"
+msgstr ""
+
+msgid "Show all fields to pick which ones people can search by."
+msgstr ""
+
+msgid "Show city names in English or in their own language."
+msgstr ""
+
+msgid "Show less"
+msgstr ""
+
+msgid "Show more"
+msgstr ""
+
+msgid "Show or hide the menu"
+msgstr ""
+
+msgid "Show settings from add-ons you do not have"
+msgstr ""
+
+#, php-format
+msgid "Show the pages in %s"
+msgstr ""
+
+msgid "Showing 1 of 1"
+msgstr ""
+
+#, php-format
+msgid "Showing <b>%1$s</b> of %2$s companies."
+msgstr ""
+
+#, php-format
+msgid "Showing <b>%1$s</b> of %2$s jobs."
+msgstr ""
+
+#, php-format
+msgid "Showing <b>%1$s</b> of %2$s resumes."
+msgstr ""
+
+msgid "Site health"
+msgstr ""
+
+msgid "Site mode"
+msgstr ""
+
+msgid "Site mode & setup"
+msgstr ""
+
+msgid "Site styling"
+msgstr ""
+
+msgid "Some page settings were set back to none."
+msgstr ""
+
+msgid "Someone"
+msgstr ""
+
+msgid "Start the update"
+msgstr ""
+
+#, php-format
+msgid "States of %s"
+msgstr ""
+
+msgid "Stop emailing me"
+msgstr ""
+
+msgid "Stop receiving job alerts by email?"
+msgstr ""
+
+msgid "Suites"
+msgstr ""
+
+msgid "Switch sections on or off and drag them (or use the arrows) into the order you want. This layout is saved for you only."
+msgstr ""
+
+msgid "Symbol"
+msgstr ""
+
+msgid "System status"
+msgstr ""
+
+msgid "System status report"
+msgstr ""
+
+msgid "Takes applications"
+msgstr ""
+
+msgid "Technical details"
+msgstr ""
+
+msgid "Templates"
+msgstr ""
+
+msgid "Test email sent."
+msgstr ""
+
+msgid "That record could not be found. It may have been deleted."
+msgstr ""
+
+msgid "The add-on is installed but switched off. Switch it on in Plugins to use this screen; its data is kept."
+msgstr ""
+
+msgid "The add-on it belongs to is not installed or is switched off."
+msgstr ""
+
+msgid "The employer's My Jobs page with your choices. Its buttons do nothing here."
+msgstr ""
+
+msgid "The file could not be stored safely. Please try again."
+msgstr ""
+
+msgid "The folder of candidate files can be listed from the web. Turn off directory listing on the server."
+msgstr ""
+
+msgid "The folder of candidate files cannot be listed from the web."
+msgstr ""
+
+msgid "The job is closed. It no longer accepts applications, and the ones you have are kept."
+msgstr ""
+
+msgid "The job is open for applications again."
+msgstr ""
+
+msgid "The new order is not saved yet."
+msgstr ""
+
+msgid "The page the Register link opens, when Custom is selected above. This is not where people go after they register: set that on the Employers and Job Seekers tabs."
+msgstr ""
+
+#, php-format
+msgid "The resume was saved, but the file \"%1$s\" was not added: %2$s"
+msgstr ""
+
+msgid "The server did not answer; trying again shortly."
+msgstr ""
+
+msgid "The styles for colours, phones and keyboard use are in place."
+msgstr ""
+
+msgid "The test email could not be sent."
+msgstr ""
+
+msgid "The words used in the job portal's links."
+msgstr ""
+
+msgid "These published pages use it and now show nothing to visitors:"
+msgstr ""
+
+msgid "This application could not be withdrawn."
+msgstr ""
+
+msgid "This file type is not allowed"
+msgstr ""
+
+msgid "This file type is not allowed. Allowed types:"
+msgstr ""
+
+msgid "This is a test email from WP Job Portal. If you can read it, your site can send email to applicants and employers."
+msgstr ""
+
+msgid "This job is not available."
+msgstr ""
+
+msgid "This list has fewer pages now."
+msgstr ""
+
+msgid "This mode changes none of your settings."
+msgstr ""
+
+msgid "This mode will change these settings:"
+msgstr ""
+
+#, php-format
+msgid "This part of the page needs the %s add-on, which is switched off. Visitors see nothing here."
+msgstr ""
+
+msgid "This period"
+msgstr ""
+
+msgid "This runs in small steps, so it is safe on large sites. Your site keeps working while it runs."
+msgstr ""
+
+#, php-format
+msgid "This screen needs %s"
+msgstr ""
+
+msgid "This unsubscribe link is no longer active. You may already be unsubscribed."
+msgstr ""
+
+msgid "This week"
+msgstr ""
+
+msgid "Tools"
+msgstr ""
+
+msgid "Trust & safety"
+msgstr ""
+
+msgid "Try fewer letters, or reset the search."
+msgstr ""
+
+msgid "Try fewer words, or reset the filters."
+msgstr ""
+
+msgid "Try fewer words, or reset the search."
+msgstr ""
+
+msgid "Turn on or off under Settings, Email"
+msgstr ""
+
+msgid "Unknown error"
+msgstr ""
+
+msgid "Unnamed"
+msgstr ""
+
+msgid "Unnamed applicant"
+msgstr ""
+
+msgid "Unsubscribe job alerts?"
+msgstr ""
+
+#, php-format
+msgid "Until %s"
+msgstr ""
+
+#, php-format
+msgid "Untitled (#%d)"
+msgstr ""
+
+msgid "Update history"
+msgstr ""
+
+msgid "User Messages (days)"
+msgstr ""
+
+#, php-format
+msgid "User messages: %d days"
+msgstr ""
+
+msgid "User packages"
+msgstr ""
+
+msgid "User profile fields"
+msgstr ""
+
+msgid "Version 2.8.0 removed the key every site used to share, because its daily limit kept running out for everyone at once."
+msgstr ""
+
+msgid "Video guides and support."
+msgstr ""
+
+msgid "Video: How to use ZyWrap in WP Job Portal"
+msgstr ""
+
+msgid "View job on site"
+msgstr ""
+
+msgid "View on site"
+msgstr ""
+
+msgid "View resume"
+msgstr ""
+
+msgid "Visitors and job seekers subscribe to job alerts from the site and get matching jobs by email. You can add one here too."
+msgstr ""
+
+msgid "Visitors can add a resume"
+msgstr ""
+
+msgid "Visitors can apply without an account"
+msgstr ""
+
+msgid "Visitors can post jobs"
+msgstr ""
+
+msgid "WP Job Portal dashboard"
+msgstr ""
+
+msgid "WP Job Portal needs to update some existing records."
+msgstr ""
+
+#, php-format
+msgid "WP Job Portal: %1$s #%2$d is no longer featured and its invoice was withdrawn."
+msgstr ""
+
+#, php-format
+msgid "WP Job Portal: %1$s #%2$d is waiting for payment again and its invoice was withdrawn."
+msgstr ""
+
+#, php-format
+msgid "WP Job Portal: %s was not reversed automatically; please review it."
+msgstr ""
+
+#, php-format
+msgid "WP Job Portal: access to %1$s #%2$d was taken back and its invoice was withdrawn."
+msgstr ""
+
+msgid "We will email you new jobs that match this search."
+msgstr ""
+
+msgid "What happened"
+msgstr ""
+
+msgid "What was added, changed or deleted, and by whom."
+msgstr ""
+
+msgid "What you typed has been kept below."
+msgstr ""
+
+msgid "When a database query fails, the plugin notes it here with the page and the query."
+msgstr ""
+
+msgid "When job seekers apply to jobs, their applications appear here."
+msgstr ""
+
+msgid "When someone applies to this job, they appear here."
+msgstr ""
+
+msgid "Where a new employer goes after registering. Default: the Employer After-Registration Page. Custom: the Employer Custom After-Registration Link."
+msgstr ""
+
+msgid "Where a new job seeker goes after registering. Default: the Job Seeker After-Registration Page. Custom: the Job Seeker Custom After-Registration Link."
+msgstr ""
+
+msgid "Withdraw application"
+msgstr ""
+
+msgid "Withdraw this application? The employer will no longer see it, and you cannot apply to this job again."
+msgstr ""
+
+msgid "Withdrawn by candidate"
+msgstr ""
+
+msgid "Word in the link"
+msgstr ""
+
+#, php-format
+msgid "WordPress accepted it for %s. If it does not arrive in a few minutes, check the spam folder and your mail settings."
+msgstr ""
+
+msgid "WordPress account missing"
+msgstr ""
+
+#, php-format
+msgid "WordPress said: %s"
+msgstr ""
+
+msgid "WordPress users"
+msgstr ""
+
+#, php-format
+msgid "WordPress: %s"
+msgstr ""
+
+msgid "Yesterday"
+msgstr ""
+
+#, php-format
+msgid "You applied on %s"
+msgstr ""
+
+msgid "You are already signed in, so there is nothing to register here."
+msgstr ""
+
+msgid "You are not allowed to do that."
+msgstr ""
+
+msgid "You are not allowed to view this resume."
+msgstr ""
+
+msgid "You are unsubscribed and will not receive these job alerts any more."
+msgstr ""
+
+msgid "You have no resume yet"
+msgstr ""
+
+msgid "You have no saved cover letters. A cover letter is optional."
+msgstr ""
+
+msgid "You have unsaved changes."
+msgstr ""
+
+msgid "You need a resume to apply. Add one and you will come straight back to this job."
+msgstr ""
+
+msgid "You will no longer get emails for this search."
+msgstr ""
+
+msgid "You withdrew your application"
+msgstr ""
+
+msgid "Your application was withdrawn. The employer no longer sees it."
+msgstr ""
+
+#, php-format
+msgid "Your job \"%1$s\" closes on %2$s and will stop taking applications then. To keep it open, change its closing date from My Jobs:"
+msgstr ""
+
+msgid "Your job board is ready. Start by adding a job, or load sample data to look around."
+msgstr ""
+
+msgid "Your job closes soon"
+msgstr ""
+
+msgid "Your resume is complete"
+msgstr ""
+
+msgid "Your resume is waiting for approval. You can apply once it is approved."
+msgstr ""
+
+#, php-format
+msgid "Your setup is complete. The site runs as %s."
+msgstr ""
+
+msgid "Your site cannot send email yet. An SMTP plugin with your mail provider's settings usually fixes this."
+msgstr ""
+
+#, php-format
+msgid "[%s] Test email from WP Job Portal"
+msgstr ""
+
+msgid "a job seeker"
+msgstr ""
+
+msgid "add-on"
+msgstr ""
+
+msgid "an add-on"
+msgstr ""
+
+msgid "an employer"
+msgstr ""
+
+msgid "applicants"
+msgstr ""
+
+msgid "applications"
+msgstr ""
+
+#, php-format
+msgid "applied %s ago"
+msgstr ""
+
+msgid "career level"
+msgstr ""
+
+msgid "city"
+msgstr ""
+
+msgid "country"
+msgstr ""
+
+msgid "currencies"
+msgstr ""
+
+msgid "current"
+msgstr ""
+
+msgid "education level"
+msgstr ""
+
+msgid "education levels"
+msgstr ""
+
+msgid "entries"
+msgstr ""
+
+msgid "errors"
+msgstr ""
+
+#, php-format
+msgid "expects %s"
+msgstr ""
+
+msgid "expired"
+msgstr ""
+
+msgid "field"
+msgstr ""
+
+#, php-format
+msgid "in %s day"
+msgid_plural "in %s days"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "it could not be stored safely. Please try again."
+msgstr ""
+
+#, php-format
+msgid "it is larger than %d KB."
+msgstr ""
+
+msgid "its content does not match its file extension."
+msgstr ""
+
+msgid "job alerts"
+msgstr ""
+
+msgid "job statuses"
+msgstr ""
+
+msgid "job type"
+msgstr ""
+
+#, php-format
+msgid "keywords: %s"
+msgstr ""
+
+#, php-format
+msgid "last %1$s, compared with the %1$s before"
+msgstr ""
+
+#, php-format
+msgid "last sent %s"
+msgstr ""
+
+#, php-format
+msgid "login %s"
+msgstr ""
+
+msgid "not approved"
+msgstr ""
+
+msgid "not sent yet"
+msgstr ""
+
+msgid "nothing"
+msgstr ""
+
+msgid "page addresses"
+msgstr ""
+
+msgid "per hour, per month, per year"
+msgstr ""
+
+#, php-format
+msgid "posted %s ago"
+msgstr ""
+
+msgid "resumes"
+msgstr ""
+
+msgid "salary range types"
+msgstr ""
+
+msgid "saved jobs"
+msgstr ""
+
+msgid "selected"
+msgstr ""
+
+#, php-format
+msgid "stage: %s"
+msgstr ""
+
+msgid "state"
+msgstr ""
+
+msgid "stopped"
+msgstr ""
+
+msgid "tag"
+msgstr ""
+
+msgid "the hiring stage shown to the job owner; visitors see only Accepting applications or Closed"
+msgstr ""
+
+msgid "this file type is not accepted."
+msgstr ""
+
+msgid "this view"
+msgstr ""
+
+msgid "to new applicants"
+msgstr ""
+
+msgid "today"
+msgstr ""
+
+msgid "waiting for approval"
+msgstr ""
+
+msgid "with a cover letter"
+msgstr ""
+
+#, php-format
+msgid "%1$d of %2$d conversations approved."
+msgstr ""
+
+#, php-format
+msgid "%1$d of %2$d conversations deleted with their replies."
+msgstr ""
+
+#, php-format
+msgid "%1$d of %2$d conversations deleted. Conversations with replies are kept unless you also delete the replies."
+msgstr ""
+
+#, php-format
+msgid "%1$d of %2$d conversations rejected."
+msgstr ""
+
+#, php-format
+msgid "%1$s application · %2$s new"
+msgid_plural "%1$s applications · %2$s new"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%1$s company · %2$s waiting for approval"
+msgid_plural "%1$s companies · %2$s waiting for approval"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%1$s conversation · %2$s waiting for approval"
+msgid_plural "%1$s conversations · %2$s waiting for approval"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%1$s cover letter · %2$s waiting for approval"
+msgid_plural "%1$s cover letters · %2$s waiting for approval"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%1$s error · %2$s new"
+msgid_plural "%1$s errors · %2$s new"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%1$s field · %2$s custom"
+msgid_plural "%1$s fields · %2$s custom"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%1$s folder · %2$s waiting for approval"
+msgid_plural "%1$s folders · %2$s waiting for approval"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%1$s invoice · %2$s voided"
+msgid_plural "%1$s invoices · %2$s voided"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%1$s item needs your attention · most urgent: %2$s %3$s."
+msgid_plural "%1$s items need your attention · most urgent: %2$s %3$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%1$s jobs · %2$s open"
+msgstr ""
+
+#, php-format
+msgid "%1$s open · %2$s applications"
+msgstr ""
+
+#, php-format
+msgid "%1$s package · %2$s published"
+msgid_plural "%1$s packages · %2$s published"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%1$s resume · %2$s waiting for approval"
+msgid_plural "%1$s resumes · %2$s waiting for approval"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%1$s user package · %2$s active"
+msgid_plural "%1$s user packages · %2$s active"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%1$s user · %2$s employers · %3$s job seekers"
+msgid_plural "%1$s users · %2$s employers · %3$s job seekers"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%1$s: installed %2$s, needs %3$s or later"
+msgstr ""
+
+#, php-format
+msgid "%d invoice could not be voided."
+msgid_plural "%d invoices could not be voided."
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s active"
+msgstr ""
+
+#, php-format
+msgid "%s applications"
+msgstr ""
+
+#, php-format
+msgid "%s companies"
+msgstr ""
+
+#, php-format
+msgid "%s company contact view"
+msgstr ""
+
+#, php-format
+msgid "%s company contact views"
+msgstr ""
+
+#, php-format
+msgid "%s cover letter"
+msgstr ""
+
+#, php-format
+msgid "%s cover letters"
+msgstr ""
+
+#, php-format
+msgid "%s department"
+msgid_plural "%s departments"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s departments"
+msgstr ""
+
+#, php-format
+msgid "%s featured companies"
+msgstr ""
+
+#, php-format
+msgid "%s featured company"
+msgstr ""
+
+#, php-format
+msgid "%s featured job"
+msgstr ""
+
+#, php-format
+msgid "%s featured jobs"
+msgstr ""
+
+#, php-format
+msgid "%s featured resume"
+msgstr ""
+
+#, php-format
+msgid "%s featured resumes"
+msgstr ""
+
+#, php-format
+msgid "%s job alert"
+msgstr ""
+
+#, php-format
+msgid "%s job alerts"
+msgstr ""
+
+#, php-format
+msgid "%s job search"
+msgstr ""
+
+#, php-format
+msgid "%s job searches"
+msgstr ""
+
+#, php-format
+msgid "%s jobs"
+msgstr ""
+
+#, php-format
+msgid "%s off"
+msgstr ""
+
+#, php-format
+msgid "%s reply"
+msgid_plural "%s replies"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s resume contact view"
+msgstr ""
+
+#, php-format
+msgid "%s resume contact views"
+msgstr ""
+
+#, php-format
+msgid "%s resume in this folder"
+msgid_plural "%s resumes in this folder"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s resume search"
+msgstr ""
+
+#, php-format
+msgid "%s resume searches"
+msgstr ""
+
+#, php-format
+msgid "%s resumes"
+msgstr ""
+
+#, php-format
+msgid "%s selected conversation(s) will be deleted. Conversations that have replies are kept unless you also tick the box below."
+msgstr ""
+
+#, php-format
+msgid "%s selected cover letter(s) will be deleted. Cover letters that were sent with an application are kept."
+msgstr ""
+
+#, php-format
+msgid "%s selected department(s) will be deleted. Departments that jobs still use are kept."
+msgstr ""
+
+#, php-format
+msgid "%s selected folder(s) will be deleted. Folders that still hold resumes are kept."
+msgstr ""
+
+#, php-format
+msgid "%s selected invoice(s) will be marked Voided. They stay in the list and can be restored."
+msgstr ""
+
+#, php-format
+msgid "%s selected package(s) will be deleted. Packages someone has bought are kept; unpublish them instead."
+msgstr ""
+
+#, php-format
+msgid "%s selected user package(s) will be revoked: their owners lose what is left of them. The records stay, marked Revoked."
+msgstr ""
+
+#, php-format
+msgid "%s%% off"
+msgstr ""
+
+#, php-format
+msgid "about %s"
+msgstr ""
+
+msgid "Add resumes to it from an applicant's More menu (Copy To Folder)."
+msgstr ""
+
+msgid "Add your company website."
+msgstr ""
+
+#, php-format
+msgid "added %s"
+msgstr ""
+
+msgid "AI assistant limit reached. Please try again later."
+msgstr ""
+
+msgid "All currencies"
+msgstr ""
+
+msgid "All folders"
+msgstr ""
+
+msgid "All messages"
+msgstr ""
+
+msgid "Also delete every reply in these conversations. This cannot be undone."
+msgstr ""
+
+msgid "An invoice is made each time someone pays for a package. They appear here."
+msgstr ""
+
+msgid "an unknown job seeker"
+msgstr ""
+
+#, php-format
+msgid "and %s"
+msgstr ""
+
+msgid "Any type"
+msgstr ""
+
+msgid "Application title A–Z"
+msgstr ""
+
+msgid "Automatic checks flagged this company for review."
+msgstr ""
+
+msgid "Between"
+msgstr ""
+
+msgid "Bought"
+msgstr ""
+
+msgid "Candidate A–Z"
+msgstr ""
+
+msgid "Category A–Z"
+msgstr ""
+
+msgid "Category not provided"
+msgstr ""
+
+msgid "Category · type"
+msgstr ""
+
+msgid "Choose a rejection reason from the list."
+msgstr ""
+
+msgid "City not provided"
+msgstr ""
+
+msgid "Company A–Z"
+msgstr ""
+
+msgid "Conversation"
+msgstr ""
+
+msgid "conversations"
+msgstr ""
+
+msgid "cover letter"
+msgstr ""
+
+#, php-format
+msgid "Cover letter #%d"
+msgstr ""
+
+msgid "Cover letter add-on"
+msgstr ""
+
+msgid "cover letters"
+msgstr ""
+
+msgid "Cover letters waiting for approval"
+msgstr ""
+
+msgid "Credits add-on"
+msgstr ""
+
+msgid "Delete conversations?"
+msgstr ""
+
+msgid "Delete cover letters?"
+msgstr ""
+
+msgid "Delete departments?"
+msgstr ""
+
+msgid "Delete folders?"
+msgstr ""
+
+msgid "Delete packages?"
+msgstr ""
+
+msgid "Delete this section"
+msgstr ""
+
+msgid "Departments add-on"
+msgstr ""
+
+msgid "Edit message"
+msgstr ""
+
+msgid "Email candidates when their application moves to"
+msgstr ""
+
+msgid "Employers add departments to their company from their dashboard. You can add one here too."
+msgstr ""
+
+msgid "Employers and job seekers message each other about jobs and resumes. Their conversations appear here."
+msgstr ""
+
+msgid "Employers make folders to sort the resumes they like. You can add one here too."
+msgstr ""
+
+msgid "Ending soonest"
+msgstr ""
+
+msgid "Ends"
+msgstr ""
+
+msgid "Enter the person's email address. Team members are added by email."
+msgstr ""
+
+#, php-format
+msgid "expires in %s"
+msgstr ""
+
+msgid "First name A–Z"
+msgstr ""
+
+msgid "Flagged"
+msgstr ""
+
+#, php-format
+msgid "Folder #%d"
+msgstr ""
+
+msgid "Folders add-on"
+msgstr ""
+
+msgid "Folders waiting for approval"
+msgstr ""
+
+#, php-format
+msgid "for %s"
+msgstr ""
+
+msgid "For employers"
+msgstr ""
+
+msgid "For everyone"
+msgstr ""
+
+msgid "For job seekers"
+msgstr ""
+
+msgid "for nobody yet"
+msgstr ""
+
+msgid "From the applicants list"
+msgstr ""
+
+msgid "How employers and job seekers pay for packages."
+msgstr ""
+
+msgid "How salaries are shown on jobs"
+msgstr ""
+
+msgid "I am a…"
+msgstr ""
+
+msgid "If this address has job alerts, we have emailed it a link to unsubscribe."
+msgstr ""
+
+msgid "Includes"
+msgstr ""
+
+msgid "Internal note (only your team sees this)"
+msgstr ""
+
+#, php-format
+msgid "Invoice #%d"
+msgstr ""
+
+msgid "Invoice voided. It stays in the list, marked Voided."
+msgstr ""
+
+msgid "Items per page"
+msgstr ""
+
+msgid "Job A–Z"
+msgstr ""
+
+msgid "Job seeker A–Z"
+msgstr ""
+
+msgid "Job seekers write cover letters from their dashboard and attach them when they apply. They appear here."
+msgstr ""
+
+msgid "Job type A–Z"
+msgstr ""
+
+msgid "Job type not provided"
+msgstr ""
+
+msgid "Largest amount"
+msgstr ""
+
+msgid "Last activity"
+msgstr ""
+
+msgid "Latest activity"
+msgstr ""
+
+msgid "Loading rejection reasons…"
+msgstr ""
+
+msgid "Location A–Z"
+msgstr ""
+
+msgid "Login A–Z"
+msgstr ""
+
+#, php-format
+msgid "Message #%d"
+msgstr ""
+
+msgid "Message to the candidate (optional)"
+msgstr ""
+
+msgid "Messages add-on"
+msgstr ""
+
+msgid "Messages waiting for approval"
+msgstr ""
+
+msgid "Most bought"
+msgstr ""
+
+msgid "Most replies"
+msgstr ""
+
+msgid "Most resumes"
+msgstr ""
+
+msgid "Most used"
+msgstr ""
+
+msgid "Move candidates through your company's hiring stages. Each candidate's application status updates to match."
+msgstr ""
+
+msgid "Name A–Z"
+msgstr ""
+
+msgid "Name Z–A"
+msgstr ""
+
+msgid "never expires"
+msgstr ""
+
+#, php-format
+msgid "New job · %s"
+msgstr ""
+
+#, php-format
+msgid "New resume · %s"
+msgstr ""
+
+#, php-format
+msgid "New resume: %1$s · %2$s"
+msgstr ""
+
+msgid "No cover letters match these filters"
+msgstr ""
+
+msgid "No cover letters yet"
+msgstr ""
+
+msgid "No departments match these filters"
+msgstr ""
+
+msgid "No departments yet"
+msgstr ""
+
+msgid "No description"
+msgstr ""
+
+msgid "no end"
+msgstr ""
+
+msgid "No folders match these filters"
+msgstr ""
+
+msgid "No folders yet"
+msgstr ""
+
+msgid "No invoices match these filters"
+msgstr ""
+
+msgid "No invoices yet"
+msgstr ""
+
+msgid "No messages"
+msgstr ""
+
+msgid "No messages match these filters"
+msgstr ""
+
+msgid "No messages yet"
+msgstr ""
+
+msgid "No owner"
+msgstr ""
+
+msgid "No packages match these filters"
+msgstr ""
+
+msgid "No packages yet"
+msgstr ""
+
+msgid "No text"
+msgstr ""
+
+msgid "No user packages match these filters"
+msgstr ""
+
+msgid "No user packages yet"
+msgstr ""
+
+msgid "Oldest activity"
+msgstr ""
+
+msgid "One email per change, in the words candidates see. Uses the \"Applied resume status\" email template; moving between two stages with the same label sends nothing."
+msgstr ""
+
+msgid "Owner A–Z"
+msgstr ""
+
+msgid "package"
+msgstr ""
+
+#, php-format
+msgid "Package #%d"
+msgstr ""
+
+msgid "Package A–Z"
+msgstr ""
+
+msgid "Package deleted"
+msgstr ""
+
+msgid "Package for"
+msgstr ""
+
+msgid "Packages are what employers and job seekers buy to post jobs, resumes and more. Add the first one."
+msgstr ""
+
+msgid "Packages that employers and job seekers buy, or that you give them, appear here."
+msgstr ""
+
+#, php-format
+msgid "paid by %s"
+msgstr ""
+
+msgid "Payment method"
+msgstr ""
+
+msgid "Please enter valid email addresses."
+msgstr ""
+
+msgid "Please log in to use the AI assistant."
+msgstr ""
+
+msgid "Please sign in to your job board account before buying a package. Packages are added to your account, so they cannot be bought as a guest."
+msgstr ""
+
+msgid "Please update your WP Job Portal add-ons."
+msgstr ""
+
+msgid "Price, low to high"
+msgstr ""
+
+#, php-format
+msgid "Rated %d out of 5"
+msgstr ""
+
+msgid "Read-only here"
+msgstr ""
+
+msgid "Reject this application"
+msgstr ""
+
+msgid "Remove this resume from the folder? The resume itself stays."
+msgstr ""
+
+#, php-format
+msgid "renewal %s off"
+msgstr ""
+
+msgid "Replies"
+msgstr ""
+
+msgid "Restore"
+msgstr ""
+
+#, php-format
+msgid "resume %s"
+msgstr ""
+
+msgid "Resume title A–Z"
+msgstr ""
+
+msgid "Revoke user packages?"
+msgstr ""
+
+msgid "Salary currency"
+msgstr ""
+
+msgid "Salary fits"
+msgstr ""
+
+msgid "Salary not provided"
+msgstr ""
+
+msgid "Same category"
+msgstr ""
+
+msgid "Same city"
+msgstr ""
+
+msgid "Same job type"
+msgstr ""
+
+msgid "Search by company"
+msgstr ""
+
+msgid "Search by member"
+msgstr ""
+
+msgid "Search cover letters"
+msgstr ""
+
+msgid "Search department or company name"
+msgstr ""
+
+msgid "Search departments"
+msgstr ""
+
+msgid "Search folders"
+msgstr ""
+
+msgid "Search invoices"
+msgstr ""
+
+msgid "Search messages"
+msgstr ""
+
+msgid "Search name, description, owner or company"
+msgstr ""
+
+msgid "Search package title"
+msgstr ""
+
+msgid "Search packages"
+msgstr ""
+
+msgid "Search subject, text, job, resume, company or people"
+msgstr ""
+
+msgid "Search title, text or job seeker"
+msgstr ""
+
+msgid "Search user packages"
+msgstr ""
+
+msgid "Search user, email or package"
+msgstr ""
+
+msgid "Search user, payer, description or transaction"
+msgstr ""
+
+msgid "Searching jobs and people…"
+msgstr ""
+
+msgid "Search…"
+msgstr ""
+
+msgid "Select all conversations"
+msgstr ""
+
+msgid "Select all cover letters"
+msgstr ""
+
+msgid "Select all departments"
+msgstr ""
+
+msgid "Select all folders"
+msgstr ""
+
+msgid "Select all invoices"
+msgstr ""
+
+msgid "Select all packages"
+msgstr ""
+
+msgid "Select all user packages"
+msgstr ""
+
+#, php-format
+msgid "Select invoice %d"
+msgstr ""
+
+msgid "Send the verification request below."
+msgstr ""
+
+#, php-format
+msgid "Showing %1$s–%2$s of %3$s %4$s"
+msgstr ""
+
+msgid "Similar title"
+msgstr ""
+
+msgid "Someone asked to stop job alerts for this address. To unsubscribe, open the link for each alert below. If this was not you, ignore this email."
+msgstr ""
+
+msgid "Subject A–Z"
+msgstr ""
+
+msgid "Tell the candidate this reason"
+msgstr ""
+
+msgid "The city has not been saved: no country was chosen. Open Countries, then the Cities of that country, and add the city there."
+msgstr ""
+
+msgid "The currency symbol for job salaries is set under Jobs, Salary."
+msgstr ""
+
+msgid "The following job alerts were processed and queued for sending. Delivery happens in the background; failed emails are retried."
+msgstr ""
+
+msgid "The site's team reviews the remaining checks; you do not need to do anything for those."
+msgstr ""
+
+msgid "The symbol shown with job salaries, e.g. $. Changing it also updates jobs that use the old symbol; imported jobs with their own currency keep it."
+msgstr ""
+
+msgid "The text looked like contact details or a link"
+msgstr ""
+
+msgid "This conversation has no messages."
+msgstr ""
+
+msgid "This customer has no WP Job Portal account (no employer or job seeker profile), so no package was granted. Ask them to choose a role, then mark the order Completed again."
+msgstr ""
+
+msgid "This folder is empty"
+msgstr ""
+
+msgid "This item is not waiting for your payment."
+msgstr ""
+
+msgid "This reason is for your team only."
+msgstr ""
+
+msgid "Title A–Z"
+msgstr ""
+
+msgid "Title Z–A"
+msgstr ""
+
+msgid "Too many messages. Please try again later."
+msgstr ""
+
+#, php-format
+msgid "transaction %s"
+msgstr ""
+
+msgid "Type A–Z"
+msgstr ""
+
+msgid "Type Z–A"
+msgstr ""
+
+msgid "Unknown employer"
+msgstr ""
+
+#, php-format
+msgid "Unsubscribe from job alerts on %s"
+msgstr ""
+
+msgid "Use a contact email at your company's own domain, not a free mail service."
+msgstr ""
+
+msgid "Use a contact email on the same domain as your website."
+msgstr ""
+
+msgid "Use a permanent contact email; temporary mail addresses are not accepted."
+msgstr ""
+
+msgid "Use a website address that starts with https://."
+msgstr ""
+
+msgid "Use Reset all to defaults in the ⋯ menu to restore them."
+msgstr ""
+
+msgid "User A–Z"
+msgstr ""
+
+msgid "User details"
+msgstr ""
+
+msgid "User not found"
+msgstr ""
+
+msgid "user not found"
+msgstr ""
+
+msgid "user package"
+msgstr ""
+
+msgid "User Z–A"
+msgstr ""
+
+msgid "Valid"
+msgstr ""
+
+msgid "Void invoices?"
+msgstr ""
+
+msgid "Voided"
+msgstr ""
+
+#, php-format
+msgid "WP Job Portal %s needs newer versions of these add-ons. Until they are updated, some of their features may not work."
+msgstr ""
+
+#, php-format
+msgid "WP Job Portal revoked %1$d unused package grant(s) and ended %2$d partly used package(s). The %3$d item(s) already posted with them stay; their remaining credits can no longer be used. The invoice is marked refunded."
+msgstr ""
+
+msgid "WP Job Portal: this line does not match the product bought, or the record is not waiting for this payment. Nothing was granted."
+msgstr ""
+
+msgid "You can speed this up:"
+msgstr ""
+
+msgid "Your account has no job alerts at this email address."
+msgstr ""
+
+msgid "Your packages and customers' balances stay as they are."
+msgstr ""
+
+msgid "— None —"
+msgstr ""
+
+msgid "Select Department"
 msgstr ""

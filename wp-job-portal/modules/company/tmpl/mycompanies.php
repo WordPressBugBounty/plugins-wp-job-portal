@@ -19,9 +19,9 @@ $wpjobportal_companies = isset(wpjobportal::$_data[0]) && is_array(wpjobportal::
                 <?php
                 if(wpjobportal::$_error_flag == null && WPJOBPORTALincluder::getObjectClass('user')->isemployer()){
                     if(in_array('multicompany',wpjobportal::$_active_addons)){
-                        echo '<a class="wjportal-act-btn" href='.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'multicompany', 'wpjobportallt'=>'addcompany'))).'><i class="fa fa-plus"></i>'.esc_html(__('Add New','wp-job-portal')) .' '. esc_html(__('Company', 'wp-job-portal')) .'</a> ';
+                        echo '<a class="wjportal-act-btn" href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'multicompany', 'wpjobportallt'=>'addcompany'))).'"><i class="fa fa-plus"></i>'.esc_html(__('Add New','wp-job-portal')) .' '. esc_html(__('Company', 'wp-job-portal')) .'</a> ';
                     }else{
-                        echo '<a class="wjportal-act-btn" href='.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'addcompany'))).'><i class="fa fa-plus"></i>'.esc_html(__('Add New','wp-job-portal')) .' '. esc_html(__('Company', 'wp-job-portal')) .'</a> ';
+                        echo '<a class="wjportal-act-btn" href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'addcompany'))).'"><i class="fa fa-plus"></i>'.esc_html(__('Add New','wp-job-portal')) .' '. esc_html(__('Company', 'wp-job-portal')) .'</a> ';
                     }
                 }
                 ?>

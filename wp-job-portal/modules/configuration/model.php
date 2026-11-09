@@ -4,6 +4,8 @@ if (!defined('ABSPATH'))
     die('Restricted Access');
 
 class WPJOBPORTALconfigurationModel {
+    private static $config_cache = array();
+
 
     /*
      * Stored payment credentials. The settings screen never prints them back
@@ -61,6 +63,27 @@ class WPJOBPORTALconfigurationModel {
             return false;
         if (!current_user_can('manage_options')) { //only admin can change it.
             return false;
+        }
+        // P-4: the mail queue setting lives in an option, not in this table
+        if (isset($wpjobportal_data['wpjobportal_mail_queue']) && class_exists('WPJOBPORTAL_Notification_Queue_Service')) {
+            $wpjobportal_queue_on = (string) $wpjobportal_data['wpjobportal_mail_queue'] === '1';
+            if ($wpjobportal_queue_on) {
+                WPJOBPORTAL_Notification_Queue_Service::ensure_schema();
+            }
+            update_option(WPJOBPORTAL_Notification_Queue_Service::MODE_OPTION, $wpjobportal_queue_on ? '1' : '0', false);
+            unset($wpjobportal_data['wpjobportal_mail_queue']);
+        }
+        // U-1: the privacy retention periods live in their own option, moved here from System Status
+        $wpjobportal_retention_keys = array('activity_days' => 'wpjobportal_privacy_activity_days', 'message_days' => 'wpjobportal_privacy_message_days', 'audit_days' => 'wpjobportal_privacy_audit_days');
+        $wpjobportal_retention = array();
+        foreach ($wpjobportal_retention_keys as $wpjobportal_setting => $wpjobportal_field) {
+            if (isset($wpjobportal_data[$wpjobportal_field])) {
+                $wpjobportal_retention[$wpjobportal_setting] = $wpjobportal_data[$wpjobportal_field];
+                unset($wpjobportal_data[$wpjobportal_field]);
+            }
+        }
+        if ($wpjobportal_retention && class_exists('WPJOBPORTAL_Privacy_Service')) {
+            WPJOBPORTAL_Privacy_Service::save_settings($wpjobportal_retention);
         }
 
         // if ($wpjobportal_data['isgeneralbuttonsubmit'] == 1) {
@@ -167,7 +190,10 @@ class WPJOBPORTALconfigurationModel {
                         WPJOBPORTALMessages::setLayoutMessage(esc_html(__('Data directory is not proper.', 'wp-job-portal')), 'error',$this->getMessagekey());
                         continue;
                     }
-                    $wpjobportal_path = WPJOBPORTAL_PLUGIN_PATH.'/'.$wpjobportal_data_directory;
+                    // The data lives in uploads, not in the plugin folder (which updates replace
+                    // and which is often read-only): create and check it there
+                    $wpjobportal_upload_dir = wp_upload_dir();
+                    $wpjobportal_path = $wpjobportal_upload_dir['basedir'].'/'.$wpjobportal_data_directory;
                     if ( ! function_exists( 'WP_Filesystem' ) ) {
                         require_once ABSPATH . 'wp-admin/includes/file.php';
                     }
@@ -175,7 +201,7 @@ class WPJOBPORTALconfigurationModel {
                     $wp_filesystem = wpjobportal::wpjobportal_filesystem();
 
                     if ( ! $wp_filesystem->exists($wpjobportal_path)) {
-                       $wp_filesystem->mkdir($wpjobportal_path, 0755);
+                       $wp_filesystem->mkdir($wpjobportal_path, FS_CHMOD_DIR);
                     }
                     if( ! $wp_filesystem->is_writable($wpjobportal_path)){
                         WPJOBPORTALMessages::setLayoutMessage(esc_html(__('Data directory is not writable.', 'wp-job-portal')), 'error',$this->getMessagekey());
@@ -185,6 +211,15 @@ class WPJOBPORTALconfigurationModel {
                 $query = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_config` SET `configvalue` = '".esc_sql($wpjobportal_value)."' WHERE `configname`= '" . esc_sql($wpjobportal_key) . "'";
                 if (false === wpjobportaldb::query($query)) {
                     $error = true;
+                } elseif ($wpjobportal_key == 'job_currency') {
+                    // A job keeps the symbol it was saved with, so changing the default left
+                    // every existing listing on the old one. Jobs on the old default (or none)
+                    // follow it; an imported job with its own currency keeps that.
+                    wpjobportaldb::query(wpjobportal::$_db->prepare(
+                        "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_jobs` SET `currency` = %s WHERE `currency` = %s OR `currency` = '' OR `currency` IS NULL",
+                        $wpjobportal_value,
+                        $current_configs[$wpjobportal_key]
+                    ));
                 }
             }elseif(isset($current_payment_configs[$wpjobportal_key]) && ($current_payment_configs[$wpjobportal_key]  != $wpjobportal_value)) {
                 if(in_array('credits',wpjobportal::$_active_addons)){
@@ -311,22 +346,55 @@ class WPJOBPORTALconfigurationModel {
         return true;
     }
 
+    /**
+     * P-1: every setting, read once per request. Any write to the settings table,
+     * from wherever it comes, empties this (see forgetConfigOnWrite), and the key
+     * holds the table prefix so multisite's switch_to_blog() cannot cross sites.
+     *
+     * @return array byname, lowername (MySQL's = ignored case), byfor
+     */
+    private static function allConfig() {
+        $wpjobportal_prefix = wpjobportal::$_db->prefix;
+        if (!isset(self::$config_cache[$wpjobportal_prefix])) {
+            if (!has_filter('query', array(__CLASS__, 'forgetConfigOnWrite'))) {
+                add_filter('query', array(__CLASS__, 'forgetConfigOnWrite'));
+            }
+            $wpjobportal_all = array('byname' => array(), 'lowername' => array(), 'byfor' => array());
+            $wpjobportal_rows = wpjobportal::$_db->get_results("SELECT configname, configvalue, configfor FROM `" . $wpjobportal_prefix . "wj_portal_config`");
+            foreach ((array) $wpjobportal_rows as $wpjobportal_row) {
+                $wpjobportal_all['byname'][$wpjobportal_row->configname] = $wpjobportal_row->configvalue;
+                $wpjobportal_all['lowername'][strtolower($wpjobportal_row->configname)] = $wpjobportal_row->configvalue;
+                $wpjobportal_all['byfor'][strtolower((string) $wpjobportal_row->configfor)][$wpjobportal_row->configname] = $wpjobportal_row->configvalue;
+            }
+            self::$config_cache[$wpjobportal_prefix] = $wpjobportal_all;
+        }
+        return self::$config_cache[$wpjobportal_prefix];
+    }
+
+    /** The query filter behind allConfig(): cheap, since most queries fail the first test. */
+    public static function forgetConfigOnWrite($wpjobportal_query) {
+        if (strpos($wpjobportal_query, 'wj_portal_config') !== false && !empty(self::$config_cache) && preg_match('/^\s*(UPDATE|INSERT|REPLACE|DELETE|DROP|TRUNCATE)\b/i', $wpjobportal_query)) {
+            self::$config_cache = array();
+        }
+        return $wpjobportal_query;
+    }
+
     function getConfigByFor($wpjobportal_configfor) {
         if (!$wpjobportal_configfor)
             return;
-        $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_config` WHERE configfor = '" . esc_sql($wpjobportal_configfor) . "'";
-        $wpjobportal_config = wpjobportaldb::get_results($query);
-        $wpjobportal_configs = array();
-        foreach ($wpjobportal_config as $conf) {
-            $wpjobportal_configs[$conf->configname] = $conf->configvalue;
-        }
-        return $wpjobportal_configs;
+        $wpjobportal_all = self::allConfig();
+        $wpjobportal_key = strtolower((string) $wpjobportal_configfor);
+        return isset($wpjobportal_all['byfor'][$wpjobportal_key]) ? $wpjobportal_all['byfor'][$wpjobportal_key] : array();
     }
 
     function getConfigValue($wpjobportal_configname) {
-        $query = "SELECT configvalue FROM `" . wpjobportal::$_db->prefix . "wj_portal_config` WHERE configname = '" . esc_sql($wpjobportal_configname) . "'";
-        //return wpjobportaldb::get_var($query);
-        return wpjobportal::$_db->get_var($query);
+        $wpjobportal_all = self::allConfig();
+        $wpjobportal_key = (string) $wpjobportal_configname;
+        if (isset($wpjobportal_all['byname'][$wpjobportal_key])) {
+            return $wpjobportal_all['byname'][$wpjobportal_key];
+        }
+        $wpjobportal_key = strtolower($wpjobportal_key);
+        return isset($wpjobportal_all['lowername'][$wpjobportal_key]) ? $wpjobportal_all['lowername'][$wpjobportal_key] : null;
     }
 
     function getConfigurationByConfigForMultiple($wpjobportal_configfor){
@@ -342,11 +410,7 @@ class WPJOBPORTALconfigurationModel {
     }
 
     function getConfigurationByConfigName($wpjobportal_configname){
-        $query = "SELECT configvalue
-                  FROM `".wpjobportal::$_db->prefix."wj_portal_config` WHERE configname ='" . esc_sql($wpjobportal_configname) . "'";
-        $wpjobportal_result = wpjobportaldb::get_var($query);
-        return $wpjobportal_result;
-
+        return $this->getConfigValue($wpjobportal_configname);
     }
 
     function checkCronKey($passkey) {

@@ -731,13 +731,13 @@ class WPJOBPORTALCustomFieldModel {
         }
 
 
-        $file = $wpjobportal_path .'/'.$filename;
-        if (!is_file($file) || !is_readable($file)) {
+        $file = WPJOBPORTAL_Resume_File_Store::find($wpjobportal_path, $filename);
+        if ($file === '' || !is_readable($file)) {
             return false;
         }
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename=' . wpjobportalphplib::wpJP_basename($file));
+        header('Content-Disposition: attachment; filename="' . $filename . '"'); // the name without the S-4 prefix
         header('Content-Transfer-Encoding: binary');
         header('Expires: 0');
         header('Cache-Control: must-revalidate, post-check=0, pre-check=0');

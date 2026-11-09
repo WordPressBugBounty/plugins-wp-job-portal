@@ -75,6 +75,15 @@
             font-size:var(--wpjp-body-font-size);
             opacity: 0.85;
         }
+        /* The Find jobs / Post a job links took the theme's link colour (orange on the blue banner,
+           1.4:1); they read as the banner's own text, underlined. Scoped to the wrapper to outrank
+           style.css's .wjportal-main-up-wrapper a { text-decoration: unset } */
+        .wjportal-main-up-wrapper .wjportal-cp-guest-banner-middle-bottom a,
+        .wjportal-main-up-wrapper .wjportal-cp-guest-banner-middle-bottom a:visited {
+            color: inherit;
+            text-decoration: underline;
+            font-weight: 600;
+        }
 
         /* --- 4. Right Button Area --- */
         .wjportal-cp-guest-banner-right {

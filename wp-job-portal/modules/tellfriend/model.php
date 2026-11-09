@@ -31,6 +31,36 @@ class WPJOBPORTALtellfriendMODEL{
 
         if(!is_numeric($jobid)) return false;
 
+        // Security: this task is public, so it must not work as an open mail
+        // relay. Only when Tell a Friend is switched on, only for a published
+        // job (title read from the job, not the request), only to real
+        // addresses, with a per-visitor rate limit. The visitor's address goes
+        // in Reply-To; the message is sent From the site.
+        if ((int) wpjobportal::$_config->getConfigValue('allow_tellafriend') !== 1) {
+            return false;
+        }
+        $wpjobportal_job_title = wpjobportal::$_db->get_var(wpjobportal::$_db->prepare(
+            "SELECT title FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE id = %d AND status = 1",
+            (int) $jobid
+        ));
+        if ($wpjobportal_job_title === null) {
+            return false;
+        }
+        $jobtitle = $wpjobportal_job_title;
+        $youremail = is_email((string) $youremail) ? (string) $youremail : '';
+        $femail1 = is_email((string) $femail1) ? (string) $femail1 : '';
+        $femail2 = is_email((string) $femail2) ? (string) $femail2 : '';
+        if ($youremail === '' || ($femail1 === '' && $femail2 === '')) {
+            return wp_json_encode(array('status' => 0, 'message' => __('Please enter valid email addresses.', 'wp-job-portal')));
+        }
+        $wpjobportal_rate_who = is_user_logged_in() ? 'u' . get_current_user_id() : 'ip' . md5(isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field(wp_unslash($_SERVER['REMOTE_ADDR'])) : '');
+        $wpjobportal_rate_key = 'wpjp_tellfriend_' . md5($wpjobportal_rate_who);
+        $wpjobportal_rate_count = (int) get_transient($wpjobportal_rate_key);
+        if ($wpjobportal_rate_count >= 10) {
+            return wp_json_encode(array('status' => 0, 'message' => __('Too many messages. Please try again later.', 'wp-job-portal')));
+        }
+        set_transient($wpjobportal_rate_key, $wpjobportal_rate_count + 1, HOUR_IN_SECONDS);
+
         $config_array = wpjobportal::$_config->getConfigByFor('captcha');
 
         if(WPJOBPORTALincluder::getObjectClass('user')->isguest() && $config_array['tell_a_friend_captcha'] == 1){
@@ -76,7 +106,7 @@ class WPJOBPORTALtellfriendMODEL{
         //$link = '<a href="'.wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'viewjob', 'wpjobportalid'=>$jobid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid())).'">'. __('Click Here To View Job','wp-job-portal') .'</a>';
         $link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'viewjob', 'wpjobportalid'=>$jobid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
         $sitename = get_bloginfo();
-        $siteTitle = wpjobportal::$_config->getConfigValue('title');
+        $siteTitle = WPJOBPORTALincluder::getJSModel('emailtemplate')->siteTitle();
         $matcharray = array(
             '{SENDER_NAME}' => $yourname,
             '{SITE_NAME}' => $sitename,
@@ -102,7 +132,11 @@ class WPJOBPORTALtellfriendMODEL{
         //     $receveremail[] = $femail5;
         WPJOBPORTALincluder::getJSModel('emailtemplate')->replaceMatches($msgSubject, $matcharray);
         WPJOBPORTALincluder::getJSModel('emailtemplate')->replaceMatches($msgBody, $matcharray);
-        WPJOBPORTALincluder::getJSModel('emailtemplate')->sendEmail($receveremail, $msgSubject, $msgBody, $youremail, $yourname, '', '');
+        $wpjobportal_from = wpjobportal::$_config->getConfigValue('mailfromaddress');
+        if (!is_email($wpjobportal_from)) {
+            $wpjobportal_from = get_option('admin_email');
+        }
+        WPJOBPORTALincluder::getJSModel('emailtemplate')->sendEmail($receveremail, $msgSubject, $msgBody, $wpjobportal_from, get_bloginfo('name'), '', array('Reply-To: ' . $yourname . ' <' . $youremail . '>'));
         // added code to show close button
         if (wpjobportal::$wpjobportal_theme_chk == 1) {
             $html = '<div id="wpj-jp-notification-ok"><label id="wpj-jp-popup_message"><img src="'.WPJOBPORTAL_PLUGIN_URL .'includes/images/approve.png">'.__('Email has been sent to friend[s]','wp-job-portal').'</label><button class="applynow-closebutton" onclick="wpjobportalClosePopup(1);" ><img src="'.WPJOBPORTAL_PLUGIN_URL.'/includes/images/popupcloseicon.png"/>'.__('Close','wp-job-portal').'</button></div>';
@@ -151,8 +185,8 @@ class WPJOBPORTALtellfriendMODEL{
 
                 $content .= '<div class="wpj-jp-popup-list-logo">';
                 if(isset($company_listing_fields['logo'])){
-                    $content .=     '<a href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$job->companyid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))) .' title='. esc_attr__('Company Logo','job-portal-theme').'>';
-                    $content .=         '<img src='. esc_attr($path) .' alt="'.esc_attr__('Company Logo','job-portal-theme').'" >';
+                    $content .=     '<a href="'. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$job->companyid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))) .'" title="'. esc_attr__('Company Logo','job-portal-theme').'">';
+                    $content .=         '<img src="'. esc_attr($path) .'" alt="'.esc_attr__('Company Logo','job-portal-theme').'" >';
                     $content .=     '</a>';
                 }
 
@@ -161,18 +195,18 @@ class WPJOBPORTALtellfriendMODEL{
             $content .= '<div class="wpj-jp-popup-list-cnt-wrp">';
             $content .=     '<div class="wpj-jp-popup-list-cnt">';
             if(isset($listing_fields['jobtype'])){
-                $content .=          '<span class="wpj-jp-job-type" style="color:'.esc_attr($job->jobtypecolor).'">';
+                $content .=          '<span class="wpj-jp-job-type" style="color:'.esc_attr(WPJOBPORTAL_Color::on_white($job->jobtypecolor)).'">';
                 $content .=             wpjobportal::wpjobportal_getVariableValue($job->jobtypetitle, 'job-portal-theme');
                 $content .=          '</span>';
             }
 
             $content .=     '</div>';
             $content .=     '<div class="wpj-jp-popup-list-cnt">';
-            $content .=         '<a class="wpj-jp-popup-list-comp-tit" href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$job->companyid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).' title="'.esc_attr__('Company Name','job-portal-theme').'">'. wpjobportal::wpjobportal_getVariableValue($job->companyname, 'job-portal-theme').'</a>';
+            $content .=         '<a class="wpj-jp-popup-list-comp-tit" href="'. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$job->companyid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).'" title="'.esc_attr__('Company Name','job-portal-theme').'">'. wpjobportal::wpjobportal_getVariableValue($job->companyname, 'job-portal-theme').'</a>';
             $content .=     '</div>';
             $content .=     '<div class="wpj-jp-popup-list-cnt">';
             $content .=         '<h5 class="wpj-jp-popup-list-tit">
-                                    <a href='.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'viewjob', 'wpjobportalid'=>$job->jobaliasid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).' title="'.esc_attr__('Job Title','job-portal-theme').'">'.wpjobportal::wpjobportal_getVariableValue($job->title, 'job-portal-theme').'</a>
+                                    <a href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'viewjob', 'wpjobportalid'=>$job->jobaliasid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).'" title="'.esc_attr__('Job Title','job-portal-theme').'">'.wpjobportal::wpjobportal_getVariableValue($job->title, 'job-portal-theme').'</a>
                                 </h5>';
             $content .=     '</div>';
             $content .=     '<div class="wpj-jp-popup-list-cnt">';

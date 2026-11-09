@@ -38,7 +38,7 @@
             "title": "Senior PHP Developer",
             "category": "Computer/IT",
             "type": "Full-Time",
-            "status": "Interviewing",
+            "status": "Open",
             "career": "Experienced (Non-Manager)",
             "salary": [4500, 6000, "Per Month"],
             "featured": true,
@@ -50,7 +50,7 @@
             "title": "Front-End Developer",
             "category": "Web Site Development",
             "type": "Full-Time",
-            "status": "Sourcing",
+            "status": "Open",
             "career": "Entry Level",
             "salary": [3000, 4200, "Per Month"],
             "description": "<p>Join our front-end team and turn designs into fast, accessible web pages.</p><ul><li>Build responsive layouts in HTML, CSS and JavaScript</li><li>Keep pages accessible and quick to load</li><li>Fix bugs reported by clients and testers</li></ul><p>A portfolio of two or three sites you have built is more useful to us than a degree.</p>"
@@ -61,7 +61,7 @@
             "title": "UX Designer",
             "category": "Design",
             "type": "Full-Time",
-            "status": "Interviewing",
+            "status": "Open",
             "career": "Experienced (Non-Manager)",
             "salary": [3800, 5000, "Per Month"],
             "description": "<p>Shape how our clients' customers find their way around websites and apps.</p><ul><li>Run interviews and usability tests</li><li>Sketch flows and build clickable prototypes</li><li>Hand designs to developers and stay with them through launch</li></ul>"
@@ -72,7 +72,7 @@
             "title": "Customer Success Specialist",
             "category": "Customer Service",
             "type": "Full-Time",
-            "status": "Sourcing",
+            "status": "Open",
             "career": "Entry Level",
             "salary": [2400, 3200, "Per Month"],
             "description": "<p>Be the person our clients call first. You answer questions, train new users and pass ideas back to the product team.</p><p>Patience, clear writing and a liking for solving problems matter more than experience.</p>"
@@ -83,7 +83,7 @@
             "title": "Marketing Coordinator",
             "category": "Marketing",
             "type": "Part-Time",
-            "status": "Sourcing",
+            "status": "Open",
             "career": "Entry Level",
             "salary": [1800, 2400, "Per Month"],
             "description": "<p>Twenty hours a week, planning our newsletter, case studies and event calendar. A good fit for someone who enjoys writing and keeping a schedule.</p>"
@@ -94,7 +94,7 @@
             "title": "Software Engineering Intern",
             "category": "Internships/Trainees",
             "type": "Internship",
-            "status": "Sourcing",
+            "status": "Open",
             "career": "Student (Undergraduate)",
             "salary": [900, 1200, "Per Month"],
             "description": "<p>A three-month paid internship for a student who has built something of their own. You will pair with a senior developer on real client work.</p>"
@@ -106,7 +106,7 @@
             "title": "Content Strategist",
             "category": "Marketing",
             "type": "Full-Time",
-            "status": "Interviewing",
+            "status": "Open",
             "career": "Experienced (Non-Manager)",
             "salary": [3500, 4500, "Per Month"],
             "description": "<p>Plan what our clients publish and why. You set the calendar, brief writers and report on what worked.</p>"
@@ -118,7 +118,7 @@
             "title": "Social Media Manager",
             "category": "Communications",
             "type": "Full-Time",
-            "status": "Sourcing",
+            "status": "Open",
             "career": "Experienced (Non-Manager)",
             "salary": [3200, 4200, "Per Month"],
             "description": "<p>Run day-to-day social accounts for three client brands, from posts and replies to monthly reports.</p>"
@@ -130,7 +130,7 @@
             "title": "Data Analyst",
             "category": "Computer/IT",
             "type": "Full-Time",
-            "status": "Interviewing",
+            "status": "Open",
             "career": "Experienced (Non-Manager)",
             "salary": [4000, 5200, "Per Month"],
             "featured": true,
@@ -143,7 +143,7 @@
             "title": "Management Accountant",
             "category": "Accounting/Finance",
             "type": "Full-Time",
-            "status": "Sourcing",
+            "status": "Open",
             "career": "Manager",
             "salary": [4800, 6000, "Per Month"],
             "description": "<p>Own monthly reporting and budgets for a portfolio of clients, and help them plan the year ahead.</p>"

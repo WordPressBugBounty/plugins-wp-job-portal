@@ -211,10 +211,10 @@ class WPJOBPORTAL_Diagnostics_Service {
             ),
             self::check(
                 $design_system_ready ? 'good' : 'critical',
-                __('Shared design system', 'wp-job-portal'),
+                __('Site styling', 'wp-job-portal'),
                 $design_system_ready
-                    ? __('Shared design tokens, responsive primitives, focus treatment, and reduced-motion support are available.', 'wp-job-portal')
-                    : __('The shared design-system stylesheet is missing or unreadable.', 'wp-job-portal')
+                    ? __('The styles for colours, phones and keyboard use are in place.', 'wp-job-portal')
+                    : __('A stylesheet the site needs is missing or cannot be read.', 'wp-job-portal')
             ),
             self::check(
                 $accessible_forms_ready ? 'good' : 'critical',
@@ -254,11 +254,29 @@ class WPJOBPORTAL_Diagnostics_Service {
             self::check('info', __('PHP memory limit', 'wp-job-portal'), $memory_limit ? $memory_limit : __('Unknown', 'wp-job-portal')),
             self::check('info', __('Maximum upload size', 'wp-job-portal'), size_format(wp_max_upload_size())),
             self::check(
-                get_option('permalink_structure') ? 'good' : 'warning',
-                __('Permalinks', 'wp-job-portal'),
-                get_option('permalink_structure') ? __('Pretty permalinks enabled', 'wp-job-portal') : __('Plain permalinks', 'wp-job-portal')
+                ($wpjobportal_private_ok = self::candidate_files_private()) ? 'good' : 'critical',
+                __('Candidate files', 'wp-job-portal'),
+                $wpjobportal_private_ok ? __('The folder of candidate files cannot be listed from the web.', 'wp-job-portal') : __('The folder of candidate files can be listed from the web. Turn off directory listing on the server.', 'wp-job-portal')
+            ),
+            self::check(
+                ($wpjobportal_route_ok = self::portal_address_works()) ? 'good' : 'warning',
+                __('Portal addresses', 'wp-job-portal'),
+                $wpjobportal_route_ok ? __('A portal address was opened and works.', 'wp-job-portal') : __('A portal address did not open. Saving Settings, Permalinks in WordPress often fixes this.', 'wp-job-portal')
             ),
         );
+    }
+
+    /** S-4: ask the web server for the folder, as a stranger would. */
+    private static function candidate_files_private() {
+        $upload = wp_upload_dir();
+        $response = wp_remote_get(trailingslashit($upload['baseurl']) . wpjobportal::$_config->getConfigurationByConfigName('data_directory') . '/data/jobseeker/', array('timeout' => 5));
+        return is_wp_error($response) || stripos((string) wp_remote_retrieve_body($response), 'Index of') === false;
+    }
+
+    /** U-1: "permalinks are on" proves nothing; open a real portal address and see. */
+    private static function portal_address_works() {
+        $wpjobportal_response = wp_remote_head(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme' => 'company', 'wpjobportallt' => 'companies')), array('timeout' => 5, 'redirection' => 3));
+        return !is_wp_error($wpjobportal_response) && (int) wp_remote_retrieve_response_code($wpjobportal_response) === 200;
     }
 
     /**
@@ -282,7 +300,7 @@ class WPJOBPORTAL_Diagnostics_Service {
             ),
             self::check(
                 $migration_table ? 'good' : 'critical',
-                __('Migration ledger', 'wp-job-portal'),
+                __('Update history', 'wp-job-portal'),
                 $migration_table ? __('Available', 'wp-job-portal') : __('Missing', 'wp-job-portal')
             ),
             self::check(
@@ -457,7 +475,7 @@ class WPJOBPORTAL_Diagnostics_Service {
                 __('Add-on request compatibility', 'wp-job-portal'),
                 sprintf(
                     /* translators: %d: number of supported add-ons. */
-                    __('%d supported add-ons are active. WP Job Portal Pro and the suites keep compatibility mode for add-on routes.', 'wp-job-portal'),
+                    __('%d add-on features are switched on through your installed products.', 'wp-job-portal'),
                     absint($routing['supported_active_addons'])
                 )
             );
@@ -502,10 +520,11 @@ class WPJOBPORTAL_Diagnostics_Service {
             'good',
             __('Core mutation authorization', 'wp-job-portal'),
             sprintf(
-                /* translators: 1: mutation policies protected routes, 2: mutation policies schema routes, 3: mutation policies ownership routes */ __('%1$d state-changing core routes enforce HTTP method, role or capability and nonce policies; %2$d validate security-relevant input fields and %3$d also enforce object ownership.', 'wp-job-portal'),
+                /* translators: 1: mutation policies protected routes, 2: mutation policies schema routes, 3: mutation policies ownership routes, 4: application AJAX tasks */ __('%1$d state-changing core routes enforce HTTP method, role or capability and nonce policies; %2$d validate security-relevant input fields and %3$d also enforce object ownership. %4$d application AJAX tasks (notes, rating, status, folders, emails) check that the user manages the job.', 'wp-job-portal'),
                 absint($mutation_policies['protected_routes']),
                 absint($mutation_policies['schema_routes']),
-                absint($mutation_policies['ownership_routes'])
+                absint($mutation_policies['ownership_routes']),
+                absint($mutation_policies['ajax_routes'])
             )
         );
 

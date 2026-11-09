@@ -15,6 +15,15 @@
 </div>
 <div class="wpjobportal-form-wrapper">
 	<div class="wpjobportal-form-title">
+		<?php echo esc_html(__('Takes applications', 'wp-job-portal')); ?>
+	</div>
+	<div class="wpjobportal-form-value">
+		<?php echo wp_kses(WPJOBPORTALformfield::radiobutton('acceptsapplications', array('1' => esc_html(__('Yes', 'wp-job-portal')), '0' => esc_html(__('No', 'wp-job-portal'))), isset(wpjobportal::$_data[0]->acceptsapplications) ? wpjobportal::$_data[0]->acceptsapplications : 1, array('class' => 'radiobutton')),WPJOBPORTAL_ALLOWED_TAGS); ?>
+		<div class="wjportal-form-help-txt"><?php echo esc_html(__('No: jobs with this status show "No longer accepting applications" and refuse new ones. Visitors only ever see Accepting applications or Closed.', 'wp-job-portal')); ?></div>
+	</div>
+</div>
+<div class="wpjobportal-form-wrapper">
+	<div class="wpjobportal-form-title">
 		<?php echo esc_html(__('Published', 'wp-job-portal')); ?>
 	</div>
 	<div class="wpjobportal-form-value">

@@ -95,7 +95,7 @@ function wpjobportal_save_post_job_portal_shortcode_element($post_id) {
             wpjobportal_jp_put_css_in_file($elementor_css);
         }
         // to handle reset case
-        // $wpjobportal_color_array['color1'] = "#3baeda";
+        // $wpjobportal_color_array['color1'] = "#2f6fc4";
         // $wpjobportal_color_array['color2'] = "#333333";
         // $wpjobportal_color_array['color3'] = "#575757";
 
@@ -116,7 +116,7 @@ function wpjobportal_save_post_job_portal_shortcode_element($post_id) {
         if(!empty($widget_settings['jp_primarycolor'])){
             $wpjobportal_color_array['color1'] = $widget_settings['jp_primarycolor'];
         }else{
-            $wpjobportal_color_array['color1'] = "#3baeda";
+            $wpjobportal_color_array['color1'] = "#2f6fc4";
         }
 
         if(!empty($widget_settings['jp_secondarycolor'])){

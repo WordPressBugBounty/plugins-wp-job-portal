@@ -96,7 +96,7 @@ if(isset(wpjobportal::$_data[2][$wpjobportal_mapfield]) && wpjobportal::$_data[2
 <?php
         $wpjobportal_mappingservice = wpjobportal::$_config->getConfigValue('mappingservice');
         if($wpjobportal_mappingservice == 'gmap'){
-            wp_register_script ( 'wpjp-google-map-api', $wpjobportal_protocol . 'maps.googleapis.com/maps/api/js?key=' . wpjobportal::$_config->getConfigValue('google_map_api_key'), array(), WPJOBPORTAL_VERSION, false );
+            wp_register_script ( 'wpjp-google-map-api', WPJOBPORTAL_Google_Maps::script_url(), array(), WPJOBPORTAL_VERSION, false );
             wp_enqueue_script ( 'wpjp-google-map-api' );
         }elseif($wpjobportal_mappingservice == 'osm'){
             wp_register_script ( 'wpjp-osm-map-js', esc_url(WPJOBPORTAL_PLUGIN_URL).'/includes/js/ol.min.js', array(), wpjobportal_asset_version('includes/js/ol.min.js'), false );

@@ -291,7 +291,7 @@ class WPJOBPORTALResumeFormlayout {
                     $wpjobportal_data .= ' ' . $wpjobportal_key . '="' . $wpjobportal_val . '"';
                 }
             }
-                $wpjobportal_data .= '" />
+                $wpjobportal_data .= ' />
                 ';
                 $wpjobportal_description = $wpjobportal_field->description;
                 if(!empty($wpjobportal_description)){
@@ -341,7 +341,7 @@ class WPJOBPORTALResumeFormlayout {
                     $wpjobportal_data .= ' ' . $wpjobportal_key . '="' . $wpjobportal_val . '"';
                 }
             }
-                $wpjobportal_data .= '" />
+                $wpjobportal_data .= ' />
                 ';
                 $wpjobportal_description = $wpjobportal_field->description;
                 if(!empty($wpjobportal_description)){
@@ -551,10 +551,10 @@ class WPJOBPORTALResumeFormlayout {
         $wpjobportal_html .= '  </label>
                 </div>
                 <div class="wjportal-form-value">
-                    <input data-for="'.esc_attr($cityfor).'_'.esc_attr($wpjobportal_sectionid).'" class="inputbox jstokeninputcity ' . $city_required . '" '.$wpjobportal_data_required.' type="text" name="sec_'.$for.'['.esc_attr($cityfor).'_city]['.esc_attr($wpjobportal_sectionid).']" id="'.esc_attr($cityfor).'_city_'.esc_attr($wpjobportal_sectionid).'" size="40" maxlength="100" value="'.$wpjobportal_data['city_name'].'" />
+                    <input data-for="'.esc_attr($cityfor).'_'.esc_attr($wpjobportal_sectionid).'" class="inputbox jstokeninputcity ' . $city_required . '" '.$wpjobportal_data_required.' type="text" name="sec_'.$for.'['.esc_attr($cityfor).'_city]['.esc_attr($wpjobportal_sectionid).']" id="'.esc_attr($cityfor).'_city_'.esc_attr($wpjobportal_sectionid).'" size="40" maxlength="100" value="'.esc_attr($wpjobportal_data['city_name']).'" />
                     <input type="hidden" name="sec_'.$for.'['.esc_attr($cityfor).'cityforedit]['.esc_attr($wpjobportal_sectionid).']" id="'.esc_attr($cityfor).'cityforedit_'.esc_attr($wpjobportal_sectionid).'" value="'. wpjobportalphplib::wpJP_htmlspecialchars($cityforedit).'" />
-                    <input type="hidden" class="jscityid" name="jscityid" value="'.$wpjobportal_data['city_id'].'" />
-                    <input type="hidden" class="jscityname" name="jscityname" value="'.$wpjobportal_data['city_name'].'" />
+                    <input type="hidden" class="jscityid" name="jscityid" value="'.esc_attr($wpjobportal_data['city_id']).'" />
+                    <input type="hidden" class="jscityname" name="jscityname" value="'.esc_attr($wpjobportal_data['city_name']).'" />
                     ';
                 $wpjobportal_description = $wpjobportal_field->description;
                 if(!empty($wpjobportal_description)){
@@ -601,7 +601,7 @@ class WPJOBPORTALResumeFormlayout {
             $wpjobportal_html .= '<div class="section_wrapper form wjportal-resume-section '.$wpjobportal_jssection_hide.' jssection_address_'.esc_attr($wpjobportal_sectionid).'">
                         <div class="wjportal-resume-section-head">'.esc_html(__('Address','wp-job-portal')). ' ' .$wpjobportal_sectionhead++.'</div>
                         <div class="jsundo wjportal-resume-section-undo"><img class="jsundoimage wjportal-resume-section-undo-image" onclick="undoThisSection(this);" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/resume/undo-icon.png" /></div>
-                        <img class="jsdeleteimage wjportal-resume-section-delete" onclick="deleteThisSection(this);" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/resume/delete-icon.png" />';
+                        <img class="jsdeleteimage wjportal-resume-section-delete" onclick="deleteThisSection(this);" alt="'.esc_attr__('Delete this section', 'wp-job-portal').'" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/resume/delete-icon.png" />';
             foreach (wpjobportal::$_data[2][2] as $wpjobportal_field) {
                 switch ($wpjobportal_field->field) {
                     case "address_city":
@@ -686,7 +686,7 @@ class WPJOBPORTALResumeFormlayout {
             $wpjobportal_html .= '<div class="section_wrapper form wjportal-resume-section jssection_wrapper '.$wpjobportal_jssection_hide.' jssection_employer_'.esc_attr($wpjobportal_sectionid).'">
                         <div class="wjportal-resume-section-head">'.esc_html(__('Employer','wp-job-portal')).' '.$wpjobportal_sectionhead++.'</div>
                         <div class="jsundo wjportal-resume-section-undo"><img class="jsundoimage wjportal-resume-section-undo-image" onclick="undoThisSection(this);" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/resume/undo-icon.png" /></div>
-                        <img class="jsdeleteimage wjportal-resume-section-delete" onclick="deleteThisSection(this);" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/resume/delete-icon.png" />';
+                        <img class="jsdeleteimage wjportal-resume-section-delete" onclick="deleteThisSection(this);" alt="'.esc_attr__('Delete this section', 'wp-job-portal').'" src="'.esc_url(WPJOBPORTAL_PLUGIN_URL).'includes/images/resume/delete-icon.png" />';
             $wpjobportal_counter = 0;
             foreach (wpjobportal::$_data[2][4] as $wpjobportal_field) {
                 switch ($wpjobportal_field->field) {
@@ -932,7 +932,7 @@ class WPJOBPORTALResumeFormlayout {
                                 $wpjobportal_logoformat = wpjobportal::$_config->getConfigurationByConfigName('image_file_type');
                                 $wpjobportal_maxsize = wpjobportal::$_config->getConfigurationByConfigName('resume_photofilesize');
                                 $wpjobportal_p_detail = '<div class="wjportal-form-help-txt"> ('.$wpjobportal_logoformat.')</div>';
-                                $wpjobportal_p_detail .= '<div class="wjportal-form-help-txt"> ('.esc_html(__("Max logo size allowed","wp-job-portal")).' '.$wpjobportal_maxsize.' Kb)</div>';
+                                $wpjobportal_p_detail .= '<div class="wjportal-form-help-txt"> ('.esc_html(__("Max photo size allowed","wp-job-portal")).' '.$wpjobportal_maxsize.' KB)</div>';
                             $wpjobportal_fieldvalue .= $wpjobportal_p_detail;
                         $wpjobportal_fieldvalue .= '</div>';
                         $wpjobportal_data .= $this->wpjobportal_getRowForForm($wpjobportal_text, $wpjobportal_fieldvalue,$wpjobportal_themecall);
@@ -964,7 +964,7 @@ class WPJOBPORTALResumeFormlayout {
                         $wpjobportal_logoformat = wpjobportal::$_config->getConfigurationByConfigName('document_file_type');
                                 $wpjobportal_maxsize = wpjobportal::$_config->getConfigurationByConfigName('document_file_size');
                                 $wpjobportal_p_detail = '<div class="wjportal-form-help-txt"> ('.$wpjobportal_logoformat.')</div>';
-                                $wpjobportal_p_detail .= '<div class="wjportal-form-help-txt"> ('.esc_html(__("Max logo size allowed","wp-job-portal")).' '.$wpjobportal_maxsize.' Kb)</div>';
+                                $wpjobportal_p_detail .= '<div class="wjportal-form-help-txt"> ('.esc_html(__("Max file size allowed","wp-job-portal")).' '.$wpjobportal_maxsize.' KB)</div>';
                             $wpjobportal_fieldvalue .= $wpjobportal_p_detail;
                         $wpjobportal_fieldvalue .= '</div>';
                         $wpjobportal_data .= $this->wpjobportal_getRowForForm($wpjobportal_text, $wpjobportal_fieldvalue,$wpjobportal_themecall);
@@ -1220,6 +1220,9 @@ class WPJOBPORTALResumeFormlayout {
             $wpjobportal_html .=WPJOBPORTALformfield::hidden('form_request', 'wpjobportal');
             $wpjobportal_html .=WPJOBPORTALformfield::hidden('resume_logo_deleted', '');
             $wpjobportal_html .=WPJOBPORTALformfield::hidden('_wpnonce', esc_html(wp_create_nonce('wpjobportal_resume_nonce')));
+            if (WPJOBPORTAL_Seeker_Start::requested_job()) { // W-4: back to the job after saving
+                $wpjobportal_html .=WPJOBPORTALformfield::hidden(WPJOBPORTAL_Seeker_Start::RETURN_JOB, WPJOBPORTAL_Seeker_Start::requested_job());
+            }
             $wpjobportal_html .='<div class="wjportal-form-btn-wrp" id="save-button">';
             $guestallowed = 0;
             if (WPJOBPORTALincluder::getObjectClass('user')->isguest()) {

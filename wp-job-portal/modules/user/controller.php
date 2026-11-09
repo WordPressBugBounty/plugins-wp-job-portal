@@ -19,7 +19,7 @@ class WPJOBPORTALUserController {
         if (self::canaddfile($wpjobportal_layout)) {
             switch ($wpjobportal_layout) {
                 case 'admin_users':
-                    WPJOBPORTALincluder::getJSModel('user')->getAllUsers();
+                    WPJOBPORTALincluder::getJSModel('user')->getAdminUserList();
                     break;
                 case 'admin_changerole':
                     $wpjobportal_id = WPJOBPORTALrequest::getVar('wpjobportalid');
@@ -48,6 +48,12 @@ class WPJOBPORTALUserController {
                         wpjobportal::$_error_flag_message_for = 1;
                         wpjobportal::$_error_flag_message = WPJOBPORTALLayout::setMessageFor(1 , $wpjobportal_link , $wpjobportal_linktext,1);
                         // wpjobportal::$_error_flag_message = WPJOBPORTAL_GUEST;
+                    }elseif( !WPJOBPORTALincluder::getObjectClass('user')->isWPJOBPortalUser() ){
+                        // a WordPress account with no portal role yet has no profile to edit
+                        $wpjobportal_link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'common', 'wpjobportallt'=>'newinwpjobportal', 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
+                        $wpjobportal_linktext = esc_html(__('Select Role','wp-job-portal'));
+                        wpjobportal::$_error_flag_message_for = 1;
+                        wpjobportal::$_error_flag_message = WPJOBPORTALLayout::setMessageFor(9 , $wpjobportal_link , $wpjobportal_linktext,1);
                     }else{
                         $wpjobportal_id = WPJOBPORTALincluder::getObjectClass('user')->uid();
                         WPJOBPORTALincluder::getJSModel('user')->getUserForForm($wpjobportal_id);
@@ -191,7 +197,7 @@ class WPJOBPORTALUserController {
         if($wpjobportal_detail == 1){
             $wpjobportal_url = esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userdetail&id='.esc_attr($wpjobportal_userid)));
         }else{
-            $wpjobportal_url = esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=users'));
+            $wpjobportal_url = WPJOBPORTAL_Admin_List_UI::return_url('wpjobportal_user', 'admin.php?page=wpjobportal_user&wpjobportallt=users');
         }
         wp_safe_redirect($wpjobportal_url);
         die();
@@ -209,7 +215,7 @@ class WPJOBPORTALUserController {
         $wpjobportal_result = WPJOBPORTALincluder::getJSModel('user')->deleteUser($wpjobportal_userid);
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'user');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        $wpjobportal_url = esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=users'));
+        $wpjobportal_url = WPJOBPORTAL_Admin_List_UI::return_url('wpjobportal_user', 'admin.php?page=wpjobportal_user&wpjobportallt=users');
         wp_safe_redirect($wpjobportal_url);
         die();
     }
@@ -227,8 +233,60 @@ class WPJOBPORTALUserController {
         //var_dump($wpjobportal_result); die();
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'user');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        $wpjobportal_url = esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=users'));
+        $wpjobportal_url = WPJOBPORTAL_Admin_List_UI::return_url('wpjobportal_user', 'admin.php?page=wpjobportal_user&wpjobportallt=users');
         wp_safe_redirect($wpjobportal_url);
+        die();
+    }
+
+    /**
+     * Bulk actions from the Users list: enable, disable, delete (optionally
+     * with everything the person owns, today's Enforce Delete). The admin's
+     * own account is never disabled or deleted from here.
+     */
+    function bulkusers() {
+        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_user_nonce') ) {
+             die( 'Security check Failed' );
+        }
+        if (!current_user_can('manage_options')) {
+            die( 'Not Allowed!' );
+        }
+        $wpjobportal_ids = array_values(array_filter(array_map('absint', (array) WPJOBPORTALrequest::getVar('wpjobportal-cb'))));
+        $wpjobportal_op = sanitize_key((string) WPJOBPORTALrequest::getVar('bulkop'));
+        $wpjobportal_model = WPJOBPORTALincluder::getJSModel('user');
+        switch ($wpjobportal_op) {
+            case 'enable':
+            case 'disable':
+                $wpjobportal_done = $wpjobportal_model->setUsersStatus($wpjobportal_ids, $wpjobportal_op === 'enable');
+                $wpjobportal_text = ($wpjobportal_op === 'enable')
+                    /* translators: 1: users changed, 2: users selected */
+                    ? __('%1$d of %2$d users enabled (users already enabled stay as they are).', 'wp-job-portal')
+                    /* translators: 1: users changed, 2: users selected */
+                    : __('%1$d of %2$d users disabled (users already disabled, and your own account, stay as they are).', 'wp-job-portal');
+                WPJOBPORTALMessages::setLayoutMessage(sprintf($wpjobportal_text, $wpjobportal_done, count($wpjobportal_ids)), $wpjobportal_done ? 'updated' : 'error', $this->_msgkey);
+                break;
+            case 'delete':
+                $wpjobportal_self = (int) $wpjobportal_model->getUserIDByWPUid(get_current_user_id());
+                $wpjobportal_all = WPJOBPORTALrequest::getVar('deleteall') === '1';
+                $wpjobportal_done = 0;
+                foreach ($wpjobportal_ids as $wpjobportal_id) {
+                    if ($wpjobportal_id === $wpjobportal_self) {
+                        continue;
+                    }
+                    $wpjobportal_result = $wpjobportal_all ? $wpjobportal_model->enforceDeleteUser($wpjobportal_id) : $wpjobportal_model->deleteUser($wpjobportal_id);
+                    if ($wpjobportal_result == WPJOBPORTAL_DELETED) {
+                        $wpjobportal_done++;
+                    }
+                }
+                $wpjobportal_text = $wpjobportal_all
+                    /* translators: 1: users deleted, 2: users selected */
+                    ? __('%1$d of %2$d users deleted with everything they own (your own account is never deleted here).', 'wp-job-portal')
+                    /* translators: 1: users deleted, 2: users selected */
+                    : __('%1$d of %2$d users deleted. Users who still own companies, jobs or resumes are kept unless you also delete everything.', 'wp-job-portal');
+                WPJOBPORTALMessages::setLayoutMessage(sprintf($wpjobportal_text, $wpjobportal_done, count($wpjobportal_ids)), $wpjobportal_done ? 'updated' : 'error', $this->_msgkey);
+                break;
+        }
+        wp_safe_redirect(WPJOBPORTAL_Admin_List_UI::return_url('wpjobportal_user', 'admin.php?page=wpjobportal_user'));
         die();
     }
 

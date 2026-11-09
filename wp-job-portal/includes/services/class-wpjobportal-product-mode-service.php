@@ -15,6 +15,7 @@ class WPJOBPORTAL_Product_Mode_Service {
 
     const OPTION = 'wpjobportal_product_mode';
     const SELECTED_AT_OPTION = 'wpjobportal_product_mode_selected_at';
+    const SNAPSHOT_OPTION = 'wpjobportal_product_mode_saved_settings';
     const MODE_LEGACY = 'legacy';
     const MODE_CAREERS = 'careers_ats';
     const MODE_MARKETPLACE = 'marketplace';
@@ -92,7 +93,96 @@ class WPJOBPORTAL_Product_Mode_Service {
      * @param string $mode Requested mode.
      * @return bool
      */
-    public static function apply_mode($mode) {
+    /**
+     * W-18: what switching to a mode would change on this site, for the confirm step.
+     *
+     * @return array[] name, label, from, to
+     */
+    public static function changes_for($mode) {
+        global $wpdb;
+        $mode = sanitize_key((string) $mode);
+        if (!in_array($mode, self::selectable_modes(), true)) {
+            return array();
+        }
+        $profile = self::get_configuration_profile($mode);
+        // The page always restores saved settings when there are some (its
+        // Restore box is ticked and cannot be cleared), so preview the same
+        // values apply_mode() will write, not the bare preset.
+        if (self::has_saved_settings($mode)) {
+            $saved = get_option(self::SNAPSHOT_OPTION, array());
+            $profile['configuration'] = array_merge($profile['configuration'], (array) $saved[$mode], WPJOBPORTAL_Mode_Policy_Service::get_locked_settings($mode));
+        }
+        $current = self::current_values(array_keys($profile['configuration']));
+        $labels = array(
+            'disable_employer' => __('Employer area', 'wp-job-portal'),
+            'employerview_js_controlpanel' => __('Employers can see the job seeker dashboard', 'wp-job-portal'),
+            'visitor_can_apply_to_job' => __('Visitors can apply without an account', 'wp-job-portal'),
+            'visitor_can_add_resume' => __('Visitors can add a resume', 'wp-job-portal'),
+            'quick_apply_for_user' => __('Quick apply for members', 'wp-job-portal'),
+            'quick_apply_for_visitor' => __('Quick apply for visitors', 'wp-job-portal'),
+            'cur_location' => __('Current location field', 'wp-job-portal'),
+            'jobautoapprove' => __('Approve new jobs automatically', 'wp-job-portal'),
+            'companyautoapprove' => __('Approve new companies automatically', 'wp-job-portal'),
+            'showemployerlink' => __('Employers can register', 'wp-job-portal'),
+            'visitor_can_post_job' => __('Visitors can post jobs', 'wp-job-portal'),
+            'submission_type' => __('Paid submissions', 'wp-job-portal'),
+        );
+        $word = function ($value, $name) {
+            if ($name === 'submission_type') {
+                return (string) $value === '1' ? __('Free', 'wp-job-portal') : __('Paid', 'wp-job-portal');
+            }
+            return (string) $value === '1' ? __('On', 'wp-job-portal') : ((string) $value === '0' ? __('Off', 'wp-job-portal') : (string) $value);
+        };
+        $changes = array();
+        foreach ($profile['configuration'] as $name => $value) {
+            if (isset($current[$name]) && (string) $current[$name] !== (string) $value) {
+                $changes[] = array(
+                    'name' => $name,
+                    'label' => isset($labels[$name]) ? $labels[$name] : ucfirst(str_replace('_', ' ', $name)),
+                    'from' => $word($current[$name], $name),
+                    'to' => $word($value, $name),
+                );
+            }
+        }
+        return $changes;
+    }
+
+    /** @return array configname => value, for the names that exist */
+    private static function current_values($names) {
+        global $wpdb;
+        if (empty($names)) {
+            return array();
+        }
+        $rows = wpjobportaldb_direct::get_results($wpdb->prepare(
+            "SELECT configname, configvalue FROM `" . $wpdb->prefix . "wj_portal_config` WHERE configname IN (" . implode(',', array_fill(0, count($names), '%s')) . ")",
+            $names
+        ));
+        $values = array();
+        foreach ((array) $rows as $row) {
+            $values[$row->configname] = $row->configvalue;
+        }
+        return $values;
+    }
+
+    /** W-18: whether this site has settings saved from when it last used this mode. */
+    public static function has_saved_settings($mode) {
+        $saved = get_option(self::SNAPSHOT_OPTION, array());
+        return is_array($saved) && !empty($saved[sanitize_key((string) $mode)]);
+    }
+
+    /** Remember the values the mode being left would overwrite, so they can come back with it. */
+    private static function remember_settings($leaving, $names) {
+        $saved = get_option(self::SNAPSHOT_OPTION, array());
+        $saved = is_array($saved) ? $saved : array();
+        $saved[$leaving] = self::current_values($names);
+        self::update_non_autoloaded_option(self::SNAPSHOT_OPTION, $saved);
+    }
+
+    /**
+     * @param string $mode    The mode to switch to.
+     * @param bool   $restore W-18: bring back the values saved when this mode was last left.
+     */
+    public static function apply_mode($mode, $restore = false) {
         global $wpdb;
 
         $mode = sanitize_key((string) $mode);
@@ -110,6 +200,17 @@ class WPJOBPORTAL_Product_Mode_Service {
         }
         $config_table = $wpdb->prefix . 'wj_portal_config';
         $fields_table = $wpdb->prefix . 'wj_portal_fieldsordering';
+
+        // W-18: a site that really changes mode can get its settings back later.
+        $leaving = self::is_selected() ? self::get_mode() : '';
+        if ($leaving !== '' && $leaving !== $mode) {
+            self::remember_settings($leaving, array_keys($profile['configuration']));
+        }
+        if ($restore && self::has_saved_settings($mode)) {
+            $saved = get_option(self::SNAPSHOT_OPTION, array());
+            // What the mode locks still wins, so saved values cannot break it.
+            $profile['configuration'] = array_merge($profile['configuration'], (array) $saved[$mode], WPJOBPORTAL_Mode_Policy_Service::get_locked_settings($mode));
+        }
 
         foreach ($profile['configuration'] as $name => $value) {
             $result = wpjobportaldb_direct::query($wpdb->prepare(
@@ -219,8 +320,10 @@ class WPJOBPORTAL_Product_Mode_Service {
             <p>
                 <strong><?php echo esc_html__('Choose how you use WP Job Portal.', 'wp-job-portal'); ?></strong>
                 <?php echo esc_html__('Your existing settings are unchanged. Select Careers & ATS or Job Marketplace when you are ready to use mode-specific setup and navigation.', 'wp-job-portal'); ?>
-                <a href="<?php echo esc_url($url); ?>"><?php echo esc_html__('Choose setup mode', 'wp-job-portal'); ?></a>
-                <a href="<?php echo esc_url(WPJOBPORTAL_Mode_Policy_Service::guide_url()); ?>"><?php echo esc_html__('Compare the modes', 'wp-job-portal'); ?></a>
+            </p>
+            <p>
+                <a class="button button-primary" href="<?php echo esc_url($url); ?>"><?php echo esc_html__('Choose setup mode', 'wp-job-portal'); ?></a>
+                <a class="button" href="<?php echo esc_url(WPJOBPORTAL_Mode_Policy_Service::guide_url()); ?>"><?php echo esc_html__('Compare the modes', 'wp-job-portal'); ?></a>
             </p>
         </div>
         <?php
@@ -255,6 +358,9 @@ class WPJOBPORTAL_Product_Mode_Service {
                     'quick_apply_for_user' => 1,
                     'quick_apply_for_visitor' => 1,
                     'cur_location' => 0,
+                    // Careers mode has no approval queue for jobs, so a job
+                    // left waiting could never be published.
+                    'jobautoapprove' => 1,
                 ),
             );
         } else {

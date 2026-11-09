@@ -509,6 +509,24 @@ function wpjobportal_paymentperlisting_complete_by_wc($order_id){
         $parse = wpjobportalphplib::wpJP_explode('-', $wpjobportal_module);
         $wpjobportal_moduleid = $parse[1];
         $wpjobportal_actionname = $parse[0];
+        /*
+         * Security: what is granted must be what was bought. The action can come
+         * from a hidden checkout field the buyer controls, so a cheap product
+         * could pay for an expensive action on any record. Grant only when the
+         * purchased product is configured for exactly this action, and the
+         * buyer may still pay for this record (own record waiting for payment,
+         * not-yet-featured, or a contact view not yet bought).
+         */
+        global $wpdb;
+        $wpjobportal_product_config = (string) get_post_meta($wpjobportal_product_id, 'wpjobportal_perlistingpack_field', true);
+        $wpjobportal_portal_uid = (int) $wpdb->get_var($wpdb->prepare(
+            "SELECT id FROM `" . $wpdb->prefix . "wj_portal_users` WHERE uid = %d", (int) $wpjobportal_user_id
+        ));
+        if ($wpjobportal_product_config === '' || $wpjobportal_product_config !== (string) $wpjobportal_actionname
+            || !wpjobportal_perlisting_can_pay($wpjobportal_actionname, $wpjobportal_moduleid, $wpjobportal_portal_uid)) {
+            $order->add_order_note(__('WP Job Portal: this line does not match the product bought, or the record is not waiting for this payment. Nothing was granted.', 'wp-job-portal'));
+            continue;
+        }
         # switch case
         # Need to change this
            // $wpjobportal_currencyid = wpjobportal::$_config->getConfigValue('job_currency_department_perlisting');

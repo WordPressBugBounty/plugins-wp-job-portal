@@ -141,7 +141,7 @@ switch ($wpjobportal_layout) {
                                 <?php echo esc_html(__('Created', 'wp-job-portal')) . ':'; ?>
                             </span>
                             <span class="wjportal-company-data-value">
-                                <?php echo esc_html(human_time_diff(strtotime($wpjobportal_company->created),strtotime(date_i18n("Y-m-d H:i:s")))).' '.esc_html(__("Ago",'wp-job-portal')); ?>
+                                <?php echo esc_html(sprintf(/* translators: %s: how long ago, e.g. 3 days */ __('%s ago', 'wp-job-portal'), human_time_diff(strtotime($wpjobportal_company->created),strtotime(date_i18n("Y-m-d H:i:s"))))); ?>
                             </span>
                         </div>
                     <?php endif; ?>

@@ -601,7 +601,8 @@ if($wpjobportal_mapfield):
                 if(isset($wpjobportal_job) && !empty($wpjobportal_job)){
                     if($wpjobportal_mappingservice == "osm"){
                         if(isset($wpjobportal_job->longitude) && !empty($wpjobportal_job->latitude)){
-                            $wpjobportal_inline_js_script .= "lmap.addMarker([parseFloat('".esc_attr($wpjobportal_job->longitude)."'),parseFloat('". esc_attr($wpjobportal_job->latitude)."')]);";
+                            // Security: emit numbers, not quoted strings.
+                            $wpjobportal_inline_js_script .= "lmap.addMarker([". (float) $wpjobportal_job->longitude .",". (float) $wpjobportal_job->latitude ."]);";
                        }
                     }
                 } 

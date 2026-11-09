@@ -610,3 +610,45 @@ summary.wjportal-section-title{
         margin-top: 50px;
     }
 }
+
+/* W-3: Get started - company, first job, applicants - until all three are done. */
+.wjportal-get-started { margin: 0 0 20px; padding: 18px 20px; border: 1px solid #e2e8f0; border-radius: 12px; background: linear-gradient(120deg, #eef2ff 0%, #fff 70%); }
+.wjportal-get-started-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+.wjportal-get-started-head h2 { margin: 0; font-size: 18px; font-weight: 700; color: #1e293b; }
+.wjportal-get-started-head span { font-size: 13px; color: #64748b; }
+.wjportal-get-started-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+.wjportal-get-started-steps li { display: flex; align-items: center; gap: 12px; margin: 0; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 10px; background: #fff; }
+.wjportal-get-started-steps li.is-next { border-color: #a5b4fc; box-shadow: 0 0 0 1px #c7d2fe; }
+.wjportal-gs-num { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 30px; width: 30px; height: 30px; border-radius: 50%; background: #f1f5f9; color: #475569; font-weight: 700; }
+.is-next .wjportal-gs-num { background: #4f46e5; color: #fff; }
+.is-done .wjportal-gs-num { background: #dcfce7; color: #15803d; }
+.wjportal-gs-text { display: flex; flex: 1; flex-direction: column; min-width: 0; }
+.wjportal-gs-text strong { font-size: 14px; color: #1e293b; }
+.wjportal-gs-text small { font-size: 12.5px; color: #64748b; }
+.is-done .wjportal-gs-text strong { color: #64748b; text-decoration: line-through; }
+.wjportal-gs-btn { flex: 0 0 auto; padding: 7px 12px; border-radius: 8px; background: #4f46e5; color: #fff !important; font-size: 13px; font-weight: 600; text-decoration: none; }
+.wjportal-gs-btn:hover { background: #4338ca; }
+.wjportal-get-started { flex: 0 0 100%; width: 100%; box-sizing: border-box; } /* its parent is a flex row: take the whole row */
+
+/* Owner: the card looked like the admin. It now uses the site's own Design colours (Appearance › Design) and font. */
+.wjportal-get-started { padding: 20px; border: 1px solid var(--wpjp-border-color, #e9ecef); border-radius: 8px; background: #fff; font-family: inherit; box-shadow: none; }
+.wjportal-get-started-head h2 { font-size: 20px; color: var(--wpjp-secondary-color, #000); }
+.wjportal-get-started-head span { color: var(--wpjp-body-font-color, #575757); }
+.wjportal-get-started-steps li { border: 1px solid var(--wpjp-border-color, #e9ecef); border-radius: 8px; background: var(--wpjp-background-color, #f6f6f6); }
+.wjportal-get-started-steps li.is-next { border-color: var(--wpjp-primary-color, #2f6fc4); background: #fff; box-shadow: none; }
+.wjportal-gs-num { background: #fff; color: var(--wpjp-body-font-color, #575757); border: 1px solid var(--wpjp-border-color, #e9ecef); }
+.is-next .wjportal-gs-num { background: var(--wpjp-primary-color, #2f6fc4); border-color: var(--wpjp-primary-color, #2f6fc4); color: #fff; }
+.is-done .wjportal-gs-num { background: var(--wpjp-primary-color, #2f6fc4); border-color: var(--wpjp-primary-color, #2f6fc4); color: #fff; opacity: .55; }
+.wjportal-gs-text strong { color: var(--wpjp-secondary-color, #000); }
+.wjportal-gs-text small { color: var(--wpjp-body-font-color, #575757); }
+.wjportal-gs-btn { border-radius: 6px; background: var(--wpjp-primary-color, #2f6fc4); }
+.wjportal-gs-btn:hover { background: var(--wpjp-primary-color, #2f6fc4); filter: brightness(.92); }
+/* Same pattern as the dashboard's own cards (.wjportal-cp-cnt / .wjportal-cp-box) and section titles; colours and sizes from the Design variables. */
+.wjportal-get-started { padding: 25px; border: 1px solid var(--wpjp-border-color); border-radius: 12px; background: var(--wpjp-card-background, #fff); box-shadow: var(--wpjp-card-shadow); font-size: var(--wpjp-body-font-size); color: var(--wpjp-body-font-color); }
+.wjportal-get-started-head h2 { font-size: var(--wpjp-second-sub-heading, 23px); font-weight: 700; color: var(--wpjp-body-font-color); line-height: 1.3; }
+.wjportal-get-started-head span { font-size: calc(var(--wpjp-body-font-size, 17px) - 3px); }
+.wjportal-get-started-steps li { padding: 14px 16px; border-radius: 10px; background: var(--wpjp-background-color); }
+.wjportal-get-started-steps li.is-next { background: var(--wpjp-card-background, #fff); }
+.wjportal-gs-text strong { font-size: var(--wpjp-body-font-size); font-weight: 600; color: var(--wpjp-secondary-color); }
+.wjportal-gs-text small { font-size: calc(var(--wpjp-body-font-size, 17px) - 3px); color: var(--wpjp-body-font-color); }
+.wjportal-gs-btn { padding: 10px 16px; border-radius: 8px; font-size: calc(var(--wpjp-body-font-size, 17px) - 2px); font-weight: 600; }

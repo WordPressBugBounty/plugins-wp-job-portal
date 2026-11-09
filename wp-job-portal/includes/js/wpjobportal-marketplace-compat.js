@@ -36,7 +36,46 @@
         marketplace.parentNode.insertBefore(shell, marketplace);
         marketplace.classList.remove('wrap');
         content.appendChild(marketplace);
+        liftIntro(shell, '.wpjobportal-marketplace-native-content .wpjobportal-marketplace-hero');
         template.remove();
+    }
+
+    /*
+     * W-19: as on every core screen, the page's own actions sit in the title
+     * row and its one-line description sits under the title. The suite draws
+     * both in an intro block at the top of its content; move them up.
+     */
+    function liftIntro(shell, selector) {
+        var head = shell.querySelector('.wjpl-head');
+        var intro = shell.querySelector(selector);
+        if (!head || !intro) {
+            return;
+        }
+        var acts = head.querySelector('.wjpl-acts');
+        Array.prototype.slice.call(intro.children).forEach(function (child) {
+            if (child.querySelector('h1')) {
+                var text = child.querySelector('p');
+                if (text) {
+                    var sub = document.createElement('p');
+                    sub.className = 'wjpl-sub';
+                    sub.textContent = text.textContent;
+                    head.parentNode.insertBefore(sub, head.nextSibling);
+                }
+                child.remove();
+                return;
+            }
+            if (!acts) {
+                return;
+            }
+            Array.prototype.forEach.call(child.matches('a, button') ? [child] : child.querySelectorAll('button, a.button, input[type=submit]'), function (button) {
+                button.classList.remove('button', 'button-primary', 'wjportal-form-btn', 'wjportal-search-btn', 'wpjobportal-marketplace-hero-link');
+                button.classList.add('wjpl-btn', 'wjpl-btn-pri');
+            });
+            acts.appendChild(child);
+        });
+        if (!intro.children.length) {
+            intro.remove();
+        }
     }
 
     function init() {

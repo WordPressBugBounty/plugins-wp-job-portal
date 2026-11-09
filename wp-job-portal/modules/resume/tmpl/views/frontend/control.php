@@ -35,7 +35,7 @@ switch ($wpjobportal_control) {
                         do_action('wpjobportal_addons_makePayment_for_department',$wpjobportal_myresume,"payresume");
                     } ?>
 
-                    <a class="wjportal-resume-act-btn wjportal-list-act-btn-delete" href="<?php echo esc_url(wp_nonce_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'task'=>'removeresume', 'action'=>'wpjobportaltask', 'wpjobportal-cb[]'=>$wpjobportal_myresume->id, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid())),'wpjobportal_resume_nonce')); ?>"onclick='return confirmdelete("<?php echo esc_js(__('Are you sure to delete','wp-job-portal')).' ?'; ?>");'>
+                    <a class="wjportal-resume-act-btn wjportal-list-act-btn-delete" href="<?php echo esc_url(wp_nonce_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'task'=>'removeresume', 'action'=>'wpjobportaltask', 'wpjobportal-cb[]'=>$wpjobportal_myresume->id, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid())),'wpjobportal_resume_nonce')); ?>" onclick='return confirmdelete("<?php echo esc_js(__('Are you sure to delete','wp-job-portal')).' ?'; ?>");'>
                         <?php echo esc_html(__('Delete Resume', 'wp-job-portal')); ?>
                     </a>
                     <?php
@@ -76,10 +76,26 @@ switch ($wpjobportal_control) {
                         <?php
                         // the below code is written in this way to accomodate the design
                             echo '
-                            <a class="wjportal-resume-act-btn wjportal-list-act-btn-view-profile" href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'viewresume', 'jobid'=>(isset($wpjobportal_myresume->jobid) ? $wpjobportal_myresume->jobid : $wpjobportal_myresume->id), 'wpjobportalid'=>$wpjobportal_myresume->resumealiasid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).' title='. esc_html(__('View Profile', 'wp-job-portal')) .'>
+                            <a class="wjportal-resume-act-btn wjportal-list-act-btn-view-profile" href="'. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'viewresume', 'jobid'=>(isset($wpjobportal_myresume->jobid) ? $wpjobportal_myresume->jobid : $wpjobportal_myresume->id), 'wpjobportalid'=>$wpjobportal_myresume->resumealiasid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).'" title="'. esc_html(__('View Profile', 'wp-job-portal')) .'">
                                 '. esc_html(__('View Profile', 'wp-job-portal')) .'
                             </a>';
                             if ( has_action( 'wpjobportal_addons_resume_bottom_action_appliedresume' ) ) {
+                                // The menu opened upward only, so with the button mid-screen its first
+                                // options sat under the WordPress toolbar. As it opens, it now goes
+                                // down when there is more room below, and is no taller than the room.
+                                if (!wp_script_is('wpjobportal-actions-dropdown', 'enqueued')) {
+                                    wp_register_script('wpjobportal-actions-dropdown', '', array(), WPJOBPORTAL_VERSION, true);
+                                    wp_enqueue_script('wpjobportal-actions-dropdown');
+                                    wp_add_inline_script('wpjobportal-actions-dropdown', '(function(){'
+                                        . 'function place(dd){var m=dd.querySelector(".wjportal-resume-act-actions-dropdown-menu");if(!m){return;}'
+                                        . 'var bar=document.getElementById("wpadminbar"),top=(bar&&getComputedStyle(bar).position==="fixed")?bar.offsetHeight:0,'
+                                        . 'r=dd.getBoundingClientRect(),above=r.top-top-12,below=window.innerHeight-r.bottom-12,need=Math.min(m.scrollHeight,420),'
+                                        . 'down=above<need&&below>above;dd.classList.toggle("wjportal-dd-down",down);'
+                                        . 'm.style.maxHeight=Math.max(160,Math.min(420,down?below:above))+"px";}'
+                                        . 'function on(e){var dd=e.target&&e.target.closest?e.target.closest(".wjportal-resume-act-actions-dropdown"):null;'
+                                        . 'if(dd&&!(e.relatedTarget&&dd.contains(e.relatedTarget))){place(dd);}}'
+                                        . 'document.addEventListener("mouseover",on);document.addEventListener("focusin",on);})();');
+                                }
                                 ?>
                                 <div class="wjportal-resume-act-actions-dropdown">
                                     <button class="wjportal-resume-act-actions-dropdown-toggle" onclick="return false;">

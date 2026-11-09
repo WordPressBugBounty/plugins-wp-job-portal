@@ -46,7 +46,7 @@ class WPJOBPORTAL_Privacy_Service {
         $email_address = sanitize_email($email_address);
         $page = max(1, absint($page));
         $identity = self::identity_for_email($email_address);
-        if (empty($identity['portal_uid']) && empty($identity['wp_uid'])) {
+        if (empty($identity['portal_uid']) && empty($identity['wp_uid']) && !self::has_visitor_data($email_address)) {
             return array('data' => array(), 'done' => true);
         }
 
@@ -62,8 +62,12 @@ class WPJOBPORTAL_Privacy_Service {
                 array('table' => 'wj_portal_jobs', 'column' => 'uid', 'value' => $uid, 'group' => 'jobs', 'label' => __('Jobs', 'wp-job-portal')),
                 array('table' => 'wj_portal_jobapply', 'column' => 'uid', 'value' => $uid, 'group' => 'applications', 'label' => __('Applications', 'wp-job-portal')),
                 array('table' => 'wj_portal_activitylog', 'column' => 'uid', 'value' => $uid, 'group' => 'activity', 'label' => __('Activity history', 'wp-job-portal')),
+                array('table' => 'wj_portal_jobalertsetting', 'column' => 'uid', 'value' => $uid, 'group' => 'job-alerts', 'label' => __('Job alerts', 'wp-job-portal')),
             );
         }
+        // Applications and alerts made without an account carry only the email address.
+        $definitions[] = array('table' => 'wj_portal_resume', 'column' => 'email_address', 'value' => $email_address, 'group' => 'visitor-resumes', 'label' => __('Resumes sent without an account', 'wp-job-portal'));
+        $definitions[] = array('table' => 'wj_portal_jobalertsetting', 'column' => 'contactemail', 'value' => $email_address, 'group' => 'visitor-job-alerts', 'label' => __('Job alerts without an account', 'wp-job-portal'));
         $data = array();
         $done = true;
         foreach ($definitions as $definition) {
@@ -71,14 +75,25 @@ class WPJOBPORTAL_Privacy_Service {
             if (!self::table_exists($table)) {
                 continue;
             }
-            $query = $wpdb->prepare(
-                "SELECT * FROM %i WHERE %i = %d ORDER BY id ASC LIMIT %d OFFSET %d",
-                $table,
-                $definition['column'],
-                $definition['value'],
-                self::PAGE_SIZE,
-                $offset
-            );
+            if (is_int($definition['value'])) {
+                $query = $wpdb->prepare(
+                    "SELECT * FROM %i WHERE %i = %d ORDER BY id ASC LIMIT %d OFFSET %d",
+                    $table,
+                    $definition['column'],
+                    $definition['value'],
+                    self::PAGE_SIZE,
+                    $offset
+                );
+            } else {
+                $query = $wpdb->prepare(
+                    "SELECT * FROM %i WHERE uid = 0 AND %i = %s ORDER BY id ASC LIMIT %d OFFSET %d",
+                    $table,
+                    $definition['column'],
+                    $definition['value'],
+                    self::PAGE_SIZE,
+                    $offset
+                );
+            }
             $rows = wpjobportaldb_direct::get_results($query, ARRAY_A);
             if (count($rows) === self::PAGE_SIZE) {
                 $done = false;
@@ -110,11 +125,14 @@ class WPJOBPORTAL_Privacy_Service {
             if ($identity_value < 1) {
                 continue;
             }
+            // Not every add-on table has an id column (application_stages is keyed by application_id).
+            $key = self::primary_key($table);
             $query = $wpdb->prepare(
-                "SELECT * FROM %i WHERE %i = %d ORDER BY id ASC LIMIT %d OFFSET %d",
+                "SELECT * FROM %i WHERE %i = %d ORDER BY %i ASC LIMIT %d OFFSET %d",
                 $table,
                 $definition['owner_column'],
                 $identity_value,
+                $key,
                 self::PAGE_SIZE,
                 $offset
             );
@@ -127,7 +145,7 @@ class WPJOBPORTAL_Privacy_Service {
                 $data[] = array(
                     'group_id' => 'wpjobportal-' . $group,
                     'group_label' => sanitize_text_field($definition['label']),
-                    'item_id' => 'wpjobportal-' . $group . '-' . absint($row['id']),
+                    'item_id' => 'wpjobportal-' . $group . '-' . absint(isset($row[$key]) ? $row[$key] : 0),
                     'data' => self::export_row($row),
                 );
             }
@@ -156,7 +174,7 @@ class WPJOBPORTAL_Privacy_Service {
         $identity = self::identity_for_email($email_address);
         $uid = absint($identity['portal_uid']);
         $wp_uid = absint($identity['wp_uid']);
-        if ($uid < 1 && $wp_uid < 1) {
+        if ($uid < 1 && $wp_uid < 1 && !self::has_visitor_data($email_address)) {
             return array(
                 'items_removed' => false,
                 'items_retained' => false,
@@ -171,12 +189,21 @@ class WPJOBPORTAL_Privacy_Service {
 
         $removed = (bool) apply_filters('wpjobportal_privacy_erase_personal_data', $removed, $uid, $wp_uid);
 
+        // Without an account: resumes sent and alerts set up with this email only.
+        $files = self::erase_visitor_data($email_address, $anonymous_email);
+        $alerts = self::erase_job_alerts($uid, $email_address);
+        if ($wp_uid > 0) {
+            // The profile photo folder is named after the WordPress user.
+            $files += self::delete_data_folder('profile/profile_' . $wp_uid . '/profile');
+        }
+        $removed = $removed || $files > 0 || $alerts > 0;
+
         if ($uid < 1) {
-            self::record('erasures', $removed ? 'completed' : 'failed');
+            self::record('erasures', $removed ? 'completed' : 'failed', $files);
             return array(
                 'items_removed' => $removed,
                 'items_retained' => false,
-                'messages' => $errors,
+                'messages' => array_merge($errors, self::erasure_summary($files, $alerts)),
                 'done' => true,
             );
         }
@@ -224,7 +251,12 @@ class WPJOBPORTAL_Privacy_Service {
                 $uid
             ));
             self::erase_resume_children($resume_ids);
+            foreach ($resume_ids as $resume_id) {
+                $files += self::delete_data_folder('jobseeker/resume_' . absint($resume_id));
+            }
         }
+        // Custom-field uploads on the profile are filed under the portal user.
+        $files += self::delete_data_folder('profile/profile_' . $uid . '/custom_uploads');
 
         $jobapply = $wpdb->prefix . 'wj_portal_jobapply';
         if (self::table_exists($jobapply)) {
@@ -238,17 +270,174 @@ class WPJOBPORTAL_Privacy_Service {
         }
 
         self::erase_addon_personal_data($uid, $wp_uid);
-        self::record('erasures', $removed ? 'completed' : 'failed');
+        self::record('erasures', $removed ? 'completed' : 'failed', $files);
 
         return array(
             'items_removed' => $removed,
             'items_retained' => true,
             'messages' => array_merge(
                 $errors,
+                self::erasure_summary($files, $alerts),
                 array(__('Listing, payment and application records required for site integrity are retained in anonymized form.', 'wp-job-portal'))
             ),
             'done' => true,
         );
+    }
+
+    /** Whether resumes or job alerts exist for this email without an account. */
+    private static function has_visitor_data($email_address) {
+        global $wpdb;
+        if ($email_address === '') {
+            return false;
+        }
+        foreach (array('wj_portal_resume' => 'email_address', 'wj_portal_jobalertsetting' => 'contactemail') as $suffix => $column) {
+            $table = $wpdb->prefix . $suffix;
+            if (self::table_exists($table) && wpjobportaldb_direct::get_var($wpdb->prepare(
+                "SELECT id FROM %i WHERE uid = 0 AND %i = %s LIMIT 1",
+                $table,
+                $column,
+                $email_address
+            ))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Resumes sent without an account (visitor and quick apply) under this email:
+     * anonymized like an account's resumes, their files deleted.
+     *
+     * @return int Files deleted.
+     */
+    private static function erase_visitor_data($email_address, $anonymous_email) {
+        global $wpdb;
+        $resume_table = $wpdb->prefix . 'wj_portal_resume';
+        if ($email_address === '' || !self::table_exists($resume_table)) {
+            return 0;
+        }
+        $ids = array_map('absint', (array) wpjobportaldb_direct::get_col($wpdb->prepare(
+            "SELECT id FROM %i WHERE uid = 0 AND email_address = %s",
+            $resume_table,
+            $email_address
+        )));
+        if (empty($ids)) {
+            return 0;
+        }
+        $in = implode(',', array_fill(0, count($ids), '%d'));
+        // phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $in is only %d placeholders, one per id
+        wpjobportaldb_direct::query($wpdb->prepare(
+            "UPDATE %i
+             SET first_name = %s, last_name = %s, email_address = %s,
+                 cell = '', photo = '', resume = '', skills = '', params = '',
+                 keywords = '', searchable = 0, airesumesearchtext = '',
+                 airesumesearchdescription = ''
+             WHERE id IN ($in)",
+            ...array_merge(array($resume_table, __('Erased', 'wp-job-portal'), __('User', 'wp-job-portal'), $anonymous_email), $ids)
+        ));
+        // phpcs:enable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+        self::erase_resume_children($ids);
+        $jobapply = $wpdb->prefix . 'wj_portal_jobapply';
+        if (self::table_exists($jobapply)) {
+            wpjobportaldb_direct::query($wpdb->prepare(
+                // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $in is only %d placeholders, one per id
+                "UPDATE %i SET cvid = NULL, comments = '', apply_message = '' WHERE uid = 0 AND cvid IN ($in)",
+                ...array_merge(array($jobapply), $ids)
+            ));
+        }
+        $files = 0;
+        foreach ($ids as $id) {
+            $files += self::delete_data_folder('jobseeker/resume_' . $id);
+        }
+        return $files;
+    }
+
+    /**
+     * Job alert subscriptions of the account, and any set up with this email
+     * without an account, with their cities.
+     *
+     * @return int Subscriptions deleted.
+     */
+    private static function erase_job_alerts($uid, $email_address) {
+        global $wpdb;
+        $table = $wpdb->prefix . 'wj_portal_jobalertsetting';
+        if (!self::table_exists($table)) {
+            return 0;
+        }
+        $ids = array_map('absint', (array) wpjobportaldb_direct::get_col($wpdb->prepare(
+            "SELECT id FROM %i WHERE (uid > 0 AND uid = %d) OR (uid = 0 AND contactemail = %s)",
+            $table,
+            absint($uid),
+            $email_address
+        )));
+        if (empty($ids)) {
+            return 0;
+        }
+        $in = implode(',', array_fill(0, count($ids), '%d'));
+        $cities = $wpdb->prefix . 'wj_portal_jobalertcities';
+        if (self::table_exists($cities)) {
+            // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $in is only %d placeholders, one per id
+            wpjobportaldb_direct::query($wpdb->prepare("DELETE FROM %i WHERE alertid IN ($in)", ...array_merge(array($cities), $ids)));
+        }
+        // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $in is only %d placeholders, one per id
+        wpjobportaldb_direct::query($wpdb->prepare("DELETE FROM %i WHERE id IN ($in)", ...array_merge(array($table), $ids)));
+        return count($ids);
+    }
+
+    /**
+     * Deletes a folder under uploads/<data directory>/data, with everything in it.
+     * The path must resolve inside that data folder.
+     *
+     * @param string $relative e.g. jobseeker/resume_12
+     * @return int Files deleted.
+     */
+    private static function delete_data_folder($relative) {
+        $data_directory = (string) wpjobportal::$_config->getConfigurationByConfigName('data_directory');
+        if ($data_directory === '' || !preg_match('#^[a-z]+/[a-z]+_\d+(/[a-z_]+)?$#', $relative)) {
+            return 0;
+        }
+        $uploads = wp_upload_dir();
+        $root = realpath($uploads['basedir'] . '/' . $data_directory . '/data');
+        $path = realpath($uploads['basedir'] . '/' . $data_directory . '/data/' . $relative);
+        if ($root === false || $path === false || strpos($path, $root . DIRECTORY_SEPARATOR) !== 0 || !is_dir($path)) {
+            return 0;
+        }
+        $files = 0;
+        $items = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path, FilesystemIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST);
+        foreach ($items as $item) {
+            if ($item->isDir() && !$item->isLink()) {
+                continue;
+            }
+            // The empty index.html guard files the plugin writes are not counted.
+            if ($item->getFilename() !== 'index.html') {
+                $files++;
+            }
+            wp_delete_file($item->getPathname());
+        }
+        // The emptied folders go through WP_Filesystem. Where it cannot start without
+        // credentials they stay behind, empty: the person's files are already gone.
+        if (!function_exists('WP_Filesystem')) {
+            require_once ABSPATH . 'wp-admin/includes/file.php';
+        }
+        global $wp_filesystem;
+        if (WP_Filesystem() && $wp_filesystem) {
+            $wp_filesystem->rmdir($path, true);
+        }
+        return $files;
+    }
+
+    /** The eraser's report lines for files and alerts. */
+    private static function erasure_summary($files, $alerts) {
+        $lines = array();
+        if ($files > 0) {
+            /* translators: %d: number of files */
+            $lines[] = sprintf(_n('%d uploaded file (resume, photo or attachment) was deleted from the server.', '%d uploaded files (resumes, photos or attachments) were deleted from the server.', $files, 'wp-job-portal'), $files);
+        }
+        if ($alerts > 0) {
+            /* translators: %d: number of job alert subscriptions */
+            $lines[] = sprintf(_n('%d job alert subscription was deleted.', '%d job alert subscriptions were deleted.', $alerts, 'wp-job-portal'), $alerts);
+        }
+        return $lines;
     }
 
     public static function ensure_schedule() {
@@ -298,14 +487,32 @@ class WPJOBPORTAL_Privacy_Service {
         }
         check_ajax_referer('wpjobportal_privacy_settings', 'nonce');
 
-        $settings = array(
-            'activity_days' => self::bounded_days(WPJOBPORTALrequest::getVar('activity_days', 'post'), 3650),
-            'message_days' => self::bounded_days(WPJOBPORTALrequest::getVar('message_days', 'post'), 3650),
-            'audit_days' => self::bounded_days(WPJOBPORTALrequest::getVar('audit_days', 'post'), 365),
-        );
-        update_option(self::SETTINGS_OPTION, $settings, false);
-        self::record('settings_updates', 'completed');
+        self::save_settings(array(
+            'activity_days' => WPJOBPORTALrequest::getVar('activity_days', 'post'),
+            'message_days' => WPJOBPORTALrequest::getVar('message_days', 'post'),
+            'audit_days' => WPJOBPORTALrequest::getVar('audit_days', 'post'),
+        ));
         wp_send_json_success(array('message' => __('Privacy retention settings saved.', 'wp-job-portal')));
+    }
+
+    /** U-1: the retention days as Settings shows and saves them (the same limits as before). */
+    public static function current_settings() {
+        return self::settings();
+    }
+
+    /** Saves the three retention periods; values missing from $input keep their current setting. */
+    public static function save_settings($input) {
+        $current = self::settings();
+        $settings = array(
+            'activity_days' => self::bounded_days(isset($input['activity_days']) ? $input['activity_days'] : $current['activity_days'], 3650),
+            'message_days' => self::bounded_days(isset($input['message_days']) ? $input['message_days'] : $current['message_days'], 3650),
+            'audit_days' => self::bounded_days(isset($input['audit_days']) ? $input['audit_days'] : $current['audit_days'], 365),
+        );
+        if ($settings !== $current) { // Settings posts every field on each save
+            update_option(self::SETTINGS_OPTION, $settings, false);
+            self::record('settings_updates', 'completed');
+        }
+        return $settings;
     }
 
     public static function get_status() {
@@ -457,6 +664,13 @@ class WPJOBPORTAL_Privacy_Service {
             return $timestamp !== false && $timestamp >= $cutoff;
         }));
         update_option(WPJOBPORTAL_Audit_Service::OPTION, $events, false);
+    }
+
+    /** The first primary key column of a table, or id. */
+    private static function primary_key($table) {
+        global $wpdb;
+        $column = wpjobportaldb_direct::get_var($wpdb->prepare("SHOW KEYS FROM %i WHERE Key_name = 'PRIMARY'", $table), 4);
+        return (is_string($column) && preg_match('/^[a-z0-9_]+$/', $column)) ? $column : 'id';
     }
 
     private static function table_exists($table) {

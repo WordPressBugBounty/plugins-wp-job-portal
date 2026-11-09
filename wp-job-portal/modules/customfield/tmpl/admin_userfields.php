@@ -8,6 +8,7 @@ wp_enqueue_script( 'wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . '
         <?php  WPJOBPORTALincluder::getClassesInclude('wpjobportaladminsidemenu'); ?>
     </div>
     <div id="wpjobportaladmin-data">
+        <?php WPJOBPORTAL_Admin_List_UI::legacy_top(); ?>
     <?php
 
     $wpjobportal_msgkey = WPJOBPORTALincluder::getJSModel('customfield')->getMessagekey();

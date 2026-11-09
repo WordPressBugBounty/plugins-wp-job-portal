@@ -432,6 +432,13 @@ class wpjobportaladmin {
                 array($this, 'showAdminPage') // function name
         );
         add_submenu_page('wpjobportal_hide', // parent slug
+                esc_html(__('Approvals', 'wp-job-portal')), // Page title
+                esc_html(__('Approvals', 'wp-job-portal')), // menu title
+                'wpjobportal', // capability
+                'wpjobportal_approvals', //menu slug
+                array($this, 'showAdminPage') // function name
+        );
+        add_submenu_page('wpjobportal_hide', // parent slug
                 esc_html(__('WP Job Portal', 'wp-job-portal')), // Page title
                 esc_html(__('WP Job Portal', 'wp-job-portal')), // menu title
                 'wpjobportal', // capability
@@ -521,6 +528,12 @@ class wpjobportaladmin {
         wpjobportal::wpjobportal_addStyleSheets();
         $page = WPJOBPORTALrequest::getVar('page');
         $page = wpjobportalphplib::wpJP_str_replace('wpjobportal_', '', $page);
+        // D-12: an add-on's screen with the add-on switched off used to be a blank page.
+        $wpjobportal_controller = WPJOBPORTALincluder::getPluginPath(wpjobportalphplib::wpJP_clean_file_path($page), 'file');
+        if (!is_string($wpjobportal_controller) || !file_exists($wpjobportal_controller)) {
+            WPJOBPORTAL_Addon_Fallbacks::render_missing_screen($page);
+            return;
+        }
         WPJOBPORTALincluder::include_file($page);
     }
 

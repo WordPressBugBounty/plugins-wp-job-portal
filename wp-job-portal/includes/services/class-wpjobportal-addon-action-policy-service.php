@@ -165,6 +165,7 @@ class WPJOBPORTAL_Addon_Action_Policy_Service {
         }
 
         if (strpos($task, 'save') === 0
+            || strpos($task, 'bulk') === 0 // admin list bulk actions (design 4)
             || $module === 'addressdata'
             || $module === 'paymentmethodconfiguration'
             || $module === 'visitorcanaddjob'
@@ -181,6 +182,10 @@ class WPJOBPORTAL_Addon_Action_Policy_Service {
             && in_array($task, array('stripewebhook', 'paypalwebhook'), true)
         ) {
             return 'public';
+        }
+        // Bulk actions of the rebuilt admin lists (design 4) are for administrators only.
+        if (strpos($task, 'bulk') === 0) {
+            return 'administrator';
         }
         if ($module === 'jobalert'
             && in_array($task, array('savejobalert', 'unsubscribejobalertsettingemail'), true)

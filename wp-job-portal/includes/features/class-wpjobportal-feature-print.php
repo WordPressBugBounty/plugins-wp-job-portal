@@ -27,6 +27,7 @@ final class WPJOBPORTAL_Feature_print {
         $feature = new self();
 
         add_action('wp_enqueue_scripts', array($feature, 'enqueue_print_styles'));
+        add_action('admin_enqueue_scripts', array($feature, 'enqueue_admin_resume_print'));
 
         // The same extension points Pro's Documents module uses, so whichever
         // provider is in charge draws in the same places.
@@ -67,6 +68,29 @@ final class WPJOBPORTAL_Feature_print {
     }
 
     /**
+     * Admin View resume: print only the resume (no WordPress or plugin menus),
+     * and open the print dialogue when arriving from an applicant's Print link.
+     */
+    public function enqueue_admin_resume_print() {
+        if (!$this->owns_printing()) {
+            return;
+        }
+        $page = sanitize_key((string) WPJOBPORTALrequest::getVar('page', 'get', ''));
+        $layout = sanitize_key((string) WPJOBPORTALrequest::getVar('wpjobportallt', 'get', ''));
+        if ($page !== 'wpjobportal_resume' || $layout !== 'viewresume') {
+            return;
+        }
+        wp_register_style(self::HANDLE . '-admin', false, array(), WPJOBPORTAL_VERSION);
+        wp_enqueue_style(self::HANDLE . '-admin');
+        wp_add_inline_style(self::HANDLE . '-admin', '@media print{#adminmenumain,#wpadminbar,#wpfooter,#screen-meta-links,.notice,.update-nag,#wpjobportaladmin-leftmenu,.wjpl-formhead .wjpl-acts,.wjpl-topbar,.wjportal-resume-left-bottom,.wjportal-resume-adv-act-btn{display:none!important}#wpcontent,#wpbody-content{margin-left:0!important;padding:0!important}html.wp-toolbar{padding-top:0!important}}');
+        if ((string) WPJOBPORTALrequest::getVar('wjp_print', 'get', '') === '1') {
+            wp_register_script(self::HANDLE . '-admin', false, array(), WPJOBPORTAL_VERSION, true);
+            wp_enqueue_script(self::HANDLE . '-admin');
+            wp_add_inline_script(self::HANDLE . '-admin', 'window.addEventListener("load",function(){setTimeout(function(){window.print();},300);});');
+        }
+    }
+
+    /**
      * Print control on an applied resume row.
      *
      * @param object $resume Applied-resume row.
@@ -82,6 +106,18 @@ final class WPJOBPORTAL_Feature_print {
             $classes = 'wpj-jp-outline-btn';
         }
         $classes .= ' ' . sanitize_html_class((string) $class);
+        // Admin applicants list: printing this page printed the whole list and the
+        // admin around it. Open this candidate's resume and print that instead.
+        if (is_admin() && is_object($resume) && !empty($resume->appid)) {
+            printf(
+                '<a href="%1$s" target="_blank" rel="noopener" class="%2$s" title="%3$s" aria-label="%3$s">%4$s</a>',
+                esc_url(admin_url('admin.php?page=wpjobportal_resume&wpjobportallt=viewresume&wpjobportalid=' . (int) $resume->appid . '&wjp_print=1')),
+                esc_attr(trim($classes)),
+                esc_attr__('Print this resume', 'wp-job-portal'),
+                esc_html__('Print', 'wp-job-portal')
+            );
+            return;
+        }
 
         printf(
             '<a href="#" onclick="window.print();return false;" class="%1$s" title="%2$s" aria-label="%2$s">%3$s</a>',

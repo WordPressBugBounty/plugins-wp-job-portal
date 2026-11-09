@@ -19,7 +19,7 @@ if (!defined('ABSPATH'))
 // }
 
 $wpjobportal_protocol = is_ssl() ? "https://" : "http://";
-wp_register_script ( 'wpjp-google-map-api', $wpjobportal_protocol . 'maps.googleapis.com/maps/api/js?key=' . wpjobportal::$_configuration['google_map_api_key'], array(), WPJOBPORTAL_VERSION, false );
+wp_register_script ( 'wpjp-google-map-api', WPJOBPORTAL_Google_Maps::script_url(), array(), WPJOBPORTAL_VERSION, false );
 wp_enqueue_script ( 'wpjp-google-map-api' );
 // Guarded, because this is a template: it can be included more than once in a
 // request, and the socialshare feature declares the same helper so that the
@@ -86,7 +86,7 @@ $wpjobportal_mappingservice = wpjobportal::$_config->getConfigValue('mappingserv
                     }
                 } else{
                     jQuery('input#resumefiles').replaceWith(jQuery('input#resumefiles').val('').clone(true));
-                    alert(\"". esc_html(__("File extension is mismatched", 'wp-job-portal'))."\");
+                    alert(\"". esc_html(__("This file type is not allowed", 'wp-job-portal'))."\");
                 }
 
             }
@@ -424,7 +424,8 @@ if($wpjobportal_mapfield):
                     if($wpjobportal_mappingservice == "osm"){
                         $wpjobportal_inline_js_script .= "lmap.addMarker([parseFloat('". esc_attr(wpjobportal::$_config->getConfigValue('default_longitude'))."'),parseFloat('". esc_attr(wpjobportal::$_config->getConfigValue('default_latitude'))."')]);";
                 }else{ 
-                        $wpjobportal_inline_js_script .= "lmap.addMarker([parseFloat('". esc_attr($wpjobportal_job->longitude)."'),parseFloat('". esc_attr($wpjobportal_job->latitude)."')]);";
+                        // Security: emit numbers, not quoted strings (esc_attr does not make a JS string safe).
+                        $wpjobportal_inline_js_script .= "lmap.addMarker([". (float) $wpjobportal_job->longitude .",". (float) $wpjobportal_job->latitude ."]);";
                 }
             }
             $wpjobportal_inline_js_script .= "

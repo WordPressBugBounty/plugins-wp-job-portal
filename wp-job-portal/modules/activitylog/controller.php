@@ -15,7 +15,7 @@ class WPJOBPORTALactivitylogController {
         if (self::canaddfile($wpjobportal_layout)) {
             switch ($wpjobportal_layout) {
                 case 'admin_activitylogs':
-                    WPJOBPORTALincluder::getJSModel('activitylog')->getAllActivities();
+                    WPJOBPORTALincluder::getJSModel('activitylog')->getAdminActivityList();
                     break;
                 default:
                     return;

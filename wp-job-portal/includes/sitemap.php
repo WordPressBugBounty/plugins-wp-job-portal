@@ -118,8 +118,8 @@ class WPJOBPORTALsitemap {
             FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
             LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
             WHERE job.status = 1
-              AND DATE(job.startpublishing) <= %s
-              AND DATE(job.stoppublishing) >= %s
+              AND job.startpublishing < DATE_ADD(%s, INTERVAL 1 DAY)
+              AND job.stoppublishing >= %s
               AND (company.status = 1 OR company.status IS NULL)
             ORDER BY job.modified DESC, job.created DESC
             LIMIT %d",
@@ -137,8 +137,8 @@ class WPJOBPORTALsitemap {
             FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
             LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
             WHERE job.status = 1
-              AND DATE(job.startpublishing) <= %s
-              AND DATE(job.stoppublishing) >= %s
+              AND job.startpublishing < DATE_ADD(%s, INTERVAL 1 DAY)
+              AND job.stoppublishing >= %s
               AND (company.status = 1 OR company.status IS NULL)
             ORDER BY job.modified DESC, job.created DESC
             LIMIT 1",

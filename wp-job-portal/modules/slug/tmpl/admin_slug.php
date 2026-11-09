@@ -1,198 +1,127 @@
 <?php
-if (!defined('ABSPATH'))
-die('Restricted Access');
-wp_enqueue_script( 'wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js', array(), wpjobportal_asset_version('includes/js/responsivetable.js'), false );
+if (!defined('ABSPATH')) die('Restricted Access');
+/*
+ * Pages & SEO › Permalinks (design 4): the words in the job portal's page addresses,
+ * edited in place (2.7 used a popup per row), and the two prefixes.
+ */
+WPJOBPORTAL_Admin_List_UI::enqueue();
+$wpjobportal_rows = isset(wpjobportal::$_data[0]) ? (array) wpjobportal::$_data[0] : array();
+$wpjobportal_total = isset(wpjobportal::$_data['total']) ? (int) wpjobportal::$_data['total'] : count($wpjobportal_rows);
+$search = (string) wpjobportal::$_data['slug'];
+$wpjobportal_pagenum = (int) WPJOBPORTALrequest::getVar('pagenum', 'get', 1);
+$wpjobportal_nonce = wp_create_nonce('wpjobportal_slug_nonce');
+$wpjobportal_reset_url = wp_nonce_url(admin_url('admin.php?page=wpjobportal_slug&task=resetallslugs&action=wpjobportaltask'), 'wpjobportal_slug_nonce');
+// Every 2.7 description starts "Slug for …"; the column already says that.
+$wpjobportal_page_name = function ($description) {
+    $text = trim((string) wpjobportal::wpjobportal_getVariableValue($description));
+    $short = preg_replace('/^slug\s+for\s+/i', '', $text);
+    return $short !== '' ? wpjobportalphplib::wpJP_ucfirst($short) : $text;
+};
+$wpjobportal_prefix_form = function ($task, $value, $label, $help) use ($wpjobportal_nonce) {
+    ?>
+    <form class="wjpl-slug-prefix" method="post" action="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_slug&task=' . $task)); ?>">
+        <label class="wjpl-slug-prefix-l" for="wjpl-<?php echo esc_attr($task); ?>"><?php echo esc_html($label); ?></label>
+        <div class="wjpl-slug-prefix-c">
+            <input class="wjpl-inp" type="text" id="wjpl-<?php echo esc_attr($task); ?>" name="prefix" value="<?php echo esc_attr($value); ?>">
+            <button class="wjpl-btn wjpl-btn-sec" type="submit" name="btnsubmit" value="1"><?php echo esc_html(__('Save', 'wp-job-portal')); ?></button>
+            <div class="wjpl-small"><?php echo esc_html($help); ?></div>
+        </div>
+        <input type="hidden" name="form_request" value="wpjobportal">
+        <input type="hidden" name="_wpnonce" value="<?php echo esc_attr($wpjobportal_nonce); ?>">
+    </form>
+    <?php
+};
 ?>
-<!-- main wrapper -->
-<div id="wpjobportaladmin-wrapper">
-    <div id="full_background" style="display:none;"></div>
-    <div id="popup_main" style="display:none;"></div>
-    <!-- left menu -->
+<div id="wpjobportaladmin-wrapper" class="wjpl-page">
     <div id="wpjobportaladmin-leftmenu">
-        <?php  WPJOBPORTALincluder::getClassesInclude('wpjobportaladminsidemenu'); ?>
+        <?php WPJOBPORTALincluder::getClassesInclude('wpjobportaladminsidemenu'); ?>
     </div>
     <div id="wpjobportaladmin-data">
-        <?php
-            $wpjobportal_msgkey = WPJOBPORTALincluder::getJSModel('slug')->getMessagekey();
-            WPJOBPORTALMessages::getLayoutMessage($wpjobportal_msgkey);
-        ?>
-        <!-- top bar -->
-        <div id="wpjobportal-wrapper-top">
-            <div id="wpjobportal-wrapper-top-left">
-                <div id="wpjobportal-breadcrumbs">
-                    <ul>
-                        <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('Dashboard','wp-job-portal')); ?>">
-                                <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
-                            </a>
-                        </li>
-                        <li><?php echo esc_html(__('Slug','wp-job-portal')); ?></li>
-                    </ul>
-                </div>
-            </div>
-            <div id="wpjobportal-wrapper-top-right">
-                <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('Configuration','wp-job-portal')); ?>">
-                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
-                   </a>
-                </div>
-                <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('Help','wp-job-portal')); ?>">
-                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
-                   </a>
-                </div>
-                <div id="wpjobportal-vers-txt">
-                    <?php echo esc_html(__('Version','wp-job-portal')).': '; ?>
-                    <span class="wpjobportal-ver"><?php echo esc_html(WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue('versioncode')); ?></span>
-                </div>
-            </div>
-        </div>
-        <!-- top head -->
-        <?php WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('wpjobportal_module' => 'slug' , 'wpjobportal_layouts' => 'slug')); ?>
-        <?php
-            wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
-            wp_enqueue_script( 'wpjobportal-inline-handle' );
-
-            $wpjobportal_inline_js_script = "
-                var slug_for_edit = 0;
-                jQuery(document).ready(function () {
-                jQuery('div#full_background').click(function () {
-                  closePopup();
-                   });
-                });
-
-                function resetFrom() {// Resest Form
-                jQuery('input#slug').val('');
-                jQuery('form#wpjobportalform').submit();
-                }
-
-                function showPopupAndSetValues(id,slug) {//Showing PopUp
-                slug = jQuery('td#td_'+id).html();
-                slug_for_edit = id;
-                jQuery.post(ajaxurl, {action: 'wpjobportal_ajax', wpjobportalme: 'slug', task: 'getOptionsForEditSlug',id:id ,slug:slug , '_wpnonce':'". esc_attr(wp_create_nonce("get-options-for-edit-slug"))."'}, function (data) {
-                    if (data) {
-                        var d = jQuery.parseJSON(data);
-                        jQuery('div#full_background').css('display', 'block');
-                        jQuery('div#popup_main').html(d);
-                        jQuery('div#popup_main').slideDown('slow');
-                    }
-                });
-                }
-                function closePopup() {// Close PopUp
-                jQuery('div#popup_main').slideUp('slow');
-                setTimeout(function () {
-                jQuery('div#full_background').hide();
-                jQuery('div#popup_main').html('');
-                }, 700);
-                }
-                function getFieldValue() {
-                var slugvalue = jQuery('#slugedit').val();
-                jQuery('input#'+slug_for_edit).val(slugvalue);
-                jQuery('td#td_'+slug_for_edit).html(slugvalue);
-                closePopup();
-                }
-            ";
-            wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
-        ?>
-
-        <!-- page content -->
-        <div id="wpjobportal-admin-wrapper" class="p0 bg-n bs-n">
-            <!-- filter form -->
-            <form class="wpjobportal-filter-form slug-configform" name="wpjobportalform" id="conwpjobportalform" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_slug&task=savehomeprefix")); ?>">
-                <?php echo wp_kses(WPJOBPORTALformfield::text('prefix', esc_html(wpjobportal::$_configuration['home_slug_prefix']), array('class' => 'inputbox wpjobportal-form-input-field', 'placeholder' => esc_html(__('Home Slug','wp-job-portal')).' '. esc_html(__('Prefix', 'wp-job-portal')))),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                <?php echo wp_kses(WPJOBPORTALformfield::submitbutton('btnsubmit', esc_html(__('Save', 'wp-job-portal')), array('class' => 'button wpjobportal-form-search-btn')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                <?php echo wp_kses(WPJOBPORTALformfield::hidden('form_request', 'wpjobportal'),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                <?php echo wp_kses(WPJOBPORTALformfield::hidden('_wpnonce', esc_html(wp_create_nonce('wpjobportal_slug_nonce'))),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                <div class="wpjobportal-form-help-text">
-                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/view-job-information.png" />
-                    <?php echo esc_html(__('This prefix will be added to slug in case of homepage links','wp-job-portal'))?>
-                </div>
-            </form>
-            <!-- filter form -->
-            <form class="wpjobportal-filter-form slug-configform" name="wpjobportalform" id="conwpjobportalform" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_slug&task=saveprefix")); ?>">
-                <?php echo wp_kses(WPJOBPORTALformfield::text('prefix', esc_html(wpjobportal::$_configuration['slug_prefix']), array('class' => 'inputbox wpjobportal-form-input-field', 'placeholder' => esc_html(__('Slug','wp-job-portal')).' '. esc_html(__('Prefix', 'wp-job-portal')))),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                <?php echo wp_kses(WPJOBPORTALformfield::submitbutton('btnsubmit', esc_html(__('Save', 'wp-job-portal')), array('class' => 'button wpjobportal-form-search-btn')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                <?php echo wp_kses(WPJOBPORTALformfield::hidden('form_request', 'wpjobportal'),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                <?php echo wp_kses(WPJOBPORTALformfield::hidden('_wpnonce', esc_html(wp_create_nonce('wpjobportal_slug_nonce'))),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                <div class="wpjobportal-form-help-text">
-                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/view-job-information.png" />
-                    <?php echo esc_html(__('This prefix will be added to slug in case of conflict','wp-job-portal'))?>
-                </div>
-            </form>
-            <!-- filter form -->
-            <form class="wpjobportal-filter-form" name="wpjobportalform" id="wpjobportalform" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_slug")); ?>">
-                <?php echo wp_kses(WPJOBPORTALformfield::text('slug', esc_html(wpjobportal::$_data['slug']), array('class' => 'inputbox wpjobportal-form-input-field', 'placeholder' => esc_html(__('Search By Slug', 'wp-job-portal')))),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                <?php echo wp_kses(WPJOBPORTALformfield::submitbutton('btnsubmit', esc_html(__('Search', 'wp-job-portal')), array('class' => 'button wpjobportal-form-search-btn')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                <?php echo wp_kses(WPJOBPORTALformfield::button('reset', esc_html(__('Reset', 'wp-job-portal')), array('class' => 'button wpjobportal-form-reset-btn', 'onclick' => 'resetFrom();')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                <?php echo wp_kses(WPJOBPORTALformfield::hidden('WPJOBPORTAL_form_search', 'WPJOBPORTAL_SEARCH'),WPJOBPORTAL_ALLOWED_TAGS); ?>
-            </form>
+        <?php WPJOBPORTALMessages::getLayoutMessage(WPJOBPORTALincluder::getJSModel('slug')->getMessagekey()); ?>
+        <div class="wjpl">
             <?php
-                if (!empty(wpjobportal::$_data[0])) {
-                    ?>
-                    <form id="wpjobportal-list-form" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_slug&task=saveSlug")); ?>">
-                        <table id="wpjobportal-table" class="wpjobportal-table">
-                            <thead>
-                                <tr>
-                                    <th class="wpjobportal-text-left">
-                                        <?php echo esc_html(__('Slug List', 'wp-job-portal')); ?>
-                                    </th>
-                                    <th class="wpjobportal-text-left">
-                                        <?php echo esc_html(__('Description', 'wp-job-portal')); ?>
-                                    </th>
-                                    <th>
-                                        <?php echo esc_html(__('Action', 'wp-job-portal')); ?>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                    $wpjobportal_pagenum = WPJOBPORTALrequest::getVar('pagenum', 'get', 1);
-                                    $wpjobportal_pageid = ($wpjobportal_pagenum > 1) ? '&pagenum=' . $wpjobportal_pagenum : '';
-                                    foreach (wpjobportal::$_data[0] as $wpjobportal_row){
-                                        ?>
-                                        <tr>
-                                            <td class="wpjobportal-text-left" id="<?php echo 'td_'.esc_attr($wpjobportal_row->id);?>">
-                                                <?php echo esc_html($wpjobportal_row->slug);?>
-                                            </td>
-                                            <td class="wpjobportal-text-left wpjobportal-slug-description-text ">
-                                                <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_row->description));?>
-                                            </td>
-                                            <td>
-                                                <a class="wpjobportal-table-act-btn" href="#" onclick="showPopupAndSetValues(<?php echo esc_js($wpjobportal_row->id); ?>)" title="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>">
-                                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/edit.png" alt="<?php echo esc_attr(__('Edit', 'wp-job-portal')); ?>">
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <?php echo wp_kses(WPJOBPORTALformfield::hidden(esc_html($wpjobportal_row->id), esc_html($wpjobportal_row->slug)),WPJOBPORTAL_ALLOWED_TAGS);?>
-                                        <?php
-                                    }
-                                ?>
-                            </tbody>
-                        </table>
-                        <!-- Hidden Fields -->
-                        <div class="wpjobportal-filter-form-action-wrp">
-                            <?php echo wp_kses(WPJOBPORTALformfield::submitbutton('btnsubmit', esc_html(__('Save', 'wp-job-portal')), array('class' => 'button savebutton wpjobportal-form-act-btn wpjobportal-form-act-btn')),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                            <div class="wpjobportal-form-act-msg">
-                                <?php echo  esc_html(__('This button will only save slugs on current page','wp-job-portal')); ?> !
-                            </div>
-                        </div>
-                        <?php echo wp_kses(WPJOBPORTALformfield::hidden('task', ''),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                        <?php echo wp_kses(WPJOBPORTALformfield::hidden('pagenum', ($wpjobportal_pagenum > 1) ? esc_html($wpjobportal_pagenum) : ''),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                        <?php echo wp_kses(WPJOBPORTALformfield::hidden('form_request', 'wpjobportal'),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                        <?php echo wp_kses(WPJOBPORTALformfield::hidden('_wpnonce', esc_html(wp_create_nonce('wpjobportal_slug_nonce'))),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                    </form>
-                    <?php
-                    if (wpjobportal::$_data[1]) {
-                        echo '<div class="tablenav"><div class="tablenav-pages">' . wp_kses_post(wpjobportal::$_data[1]) . '</div></div>';
-                    }
-                } else {
-                    $wpjobportal_msg = esc_html(__('No Records Found','wp-job-portal'));
-                    $wpjobportal_link[] = array(
-                            'link' => 'admin.php?page=wpjobportal_slug&wpjobportallt=formcareerlevels',
-                        );
-                    WPJOBPORTALlayout::getNoRecordFound($wpjobportal_msg, $wpjobportal_link);
-                }
+            WPJOBPORTAL_Admin_List_UI::top_bar(WPJOBPORTAL_Admin_List_UI::menu_crumbs());
+            WPJOBPORTAL_Admin_List_UI::title_row(
+                __('Permalinks', 'wp-job-portal'),
+                /* translators: %s: number of page addresses */
+                sprintf(_n('%s page address', '%s page addresses', $wpjobportal_total, 'wp-job-portal'), number_format_i18n($wpjobportal_total)) . ' · ' . __('The words used in the job portal\'s links.', 'wp-job-portal'),
+                array(__('Reset all to defaults', 'wp-job-portal') => $wpjobportal_reset_url)
+            );
+            WPJOBPORTAL_Admin_List_UI::section_tabs();
             ?>
+            <section class="wjpl-card wjpl-slug-prefixes" aria-label="<?php echo esc_attr(__('Prefixes', 'wp-job-portal')); ?>">
+                <?php
+                $wpjobportal_prefix_form('savehomeprefix', wpjobportal::$_configuration['home_slug_prefix'], __('Home page prefix', 'wp-job-portal'), __('This prefix will be added to slug in case of homepage links', 'wp-job-portal'));
+                $wpjobportal_prefix_form('saveprefix', wpjobportal::$_configuration['slug_prefix'], __('Conflict prefix', 'wp-job-portal'), __('This prefix will be added to slug in case of conflict', 'wp-job-portal'));
+                ?>
+            </section>
+            <section class="wjpl-card" aria-label="<?php echo esc_attr(__('Page addresses', 'wp-job-portal')); ?>">
+                <form class="wjpl-filters" method="post" action="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_slug')); ?>">
+                    <input type="hidden" name="WPJOBPORTAL_form_search" value="WPJOBPORTAL_SEARCH">
+                    <div class="wjpl-tb2">
+                        <div class="wjpl-search">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                            <input class="wjpl-inp" type="search" name="slug" id="slug" value="<?php echo esc_attr($search); ?>" placeholder="<?php echo esc_attr(__('Search By Slug', 'wp-job-portal')); ?>" aria-label="<?php echo esc_attr(__('Search By Slug', 'wp-job-portal')); ?>">
+                        </div>
+                        <span></span>
+                        <span class="wjpl-tb2-acts">
+                            <button class="wjpl-btn wjpl-btn-pri" type="submit" name="btnsubmit" value="1"><?php echo esc_html(__('Search', 'wp-job-portal')); ?></button>
+                            <button class="wjpl-linkbtn" type="submit" onclick="this.form.slug.value='';"><?php echo esc_html(__('Reset', 'wp-job-portal')); ?></button>
+                        </span>
+                    </div>
+                </form>
+                <?php if (!empty($wpjobportal_rows)) : ?>
+                    <form id="wpjobportal-list-form" method="post" action="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_slug&task=saveSlug')); ?>">
+                        <div class="wjpl-tw">
+                            <table class="wjpl-table">
+                                <thead><tr>
+                                    <th><?php echo esc_html(__('Page', 'wp-job-portal')); ?></th>
+                                    <th class="wjpl-slug-col"><?php echo esc_html(__('Word in the link', 'wp-job-portal')); ?></th>
+                                </tr></thead>
+                                <tbody>
+                                <?php foreach ($wpjobportal_rows as $wpjobportal_row) : ?>
+                                    <tr>
+                                        <td class="wjpl-c-main"><label class="wjpl-title" for="wjpl-slug-<?php echo esc_attr($wpjobportal_row->id); ?>"><?php echo esc_html($wpjobportal_page_name($wpjobportal_row->description)); ?></label></td>
+                                        <td class="wjpl-slug-col" data-l="<?php echo esc_attr(__('Word in the link', 'wp-job-portal')); ?>">
+                                            <input class="wjpl-inp wjpl-slug-inp" type="text" id="wjpl-slug-<?php echo esc_attr($wpjobportal_row->id); ?>" name="<?php echo esc_attr($wpjobportal_row->id); ?>" value="<?php echo esc_attr($wpjobportal_row->slug); ?>" spellcheck="false">
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="wjpl-slug-save">
+                            <span class="wjpl-small"><?php echo esc_html(__('This button will only save slugs on current page', 'wp-job-portal')); ?></span>
+                            <button class="wjpl-btn wjpl-btn-pri" type="submit" name="btnsubmit" value="1"><?php echo esc_html(__('Save', 'wp-job-portal')); ?></button>
+                        </div>
+                        <input type="hidden" name="task" value="">
+                        <input type="hidden" name="pagenum" value="<?php echo $wpjobportal_pagenum > 1 ? esc_attr($wpjobportal_pagenum) : ''; ?>">
+                        <input type="hidden" name="form_request" value="wpjobportal">
+                        <input type="hidden" name="_wpnonce" value="<?php echo esc_attr($wpjobportal_nonce); ?>">
+                    </form>
+                <?php elseif ($search !== '') : ?>
+                    <?php WPJOBPORTAL_Admin_List_UI::empty_state(__('Nothing matches this search', 'wp-job-portal'), __('Try fewer letters, or reset the search.', 'wp-job-portal')); ?>
+                <?php else : ?>
+                    <?php WPJOBPORTAL_Admin_List_UI::empty_state(__('No page addresses', 'wp-job-portal'), __('Use Reset all to defaults in the ⋯ menu to restore them.', 'wp-job-portal')); ?>
+                <?php endif; ?>
+                <?php WPJOBPORTAL_Admin_List_UI::footer($wpjobportal_total, __('page addresses', 'wp-job-portal'), function ($page) {
+                    return add_query_arg(array('page' => 'wpjobportal_slug', 'pagenum' => $page > 1 ? $page : null), admin_url('admin.php'));
+                }); ?>
+            </section>
+
+            <dialog id="wjpl-slug-reset" class="wjpl-dialog" aria-labelledby="wjpl-slug-reset-t">
+                <h2 id="wjpl-slug-reset-t"><?php echo esc_html(__('Reset all page addresses?', 'wp-job-portal')); ?></h2>
+                <p><?php echo esc_html(__('Every word you changed goes back to its default. Links people saved with your words will stop working.', 'wp-job-portal')); ?></p>
+                <div class="wjpl-dlg-acts">
+                    <button type="button" class="wjpl-btn wjpl-btn-sec" onclick="this.closest('dialog').close();"><?php echo esc_html(__('Cancel', 'wp-job-portal')); ?></button>
+                    <a class="wjpl-btn wjpl-btn-danger" href="<?php echo esc_url($wpjobportal_reset_url); ?>"><?php echo esc_html(__('Reset all', 'wp-job-portal')); ?></a>
+                </div>
+            </dialog>
         </div>
     </div>
 </div>
+<?php
+wp_register_script('wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false);
+wp_enqueue_script('wpjobportal-inline-handle');
+// The ⋯ menu's reset link asks first.
+wp_add_inline_script('wpjobportal-inline-handle', 'document.addEventListener("click", function (e) { var a = e.target.closest(".wjpl-more a[href*=\\"task=resetallslugs\\"]"); if (a) { e.preventDefault(); a.closest("details").open = false; document.getElementById("wjpl-slug-reset").showModal(); } });');

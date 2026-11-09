@@ -30,7 +30,7 @@
                 <?php echo wp_kses(WPJOBPORTALformfield::select('sorting', $wpjobportal_categoryarray, wpjobportal::$_data['combosort'], '', array('class' => 'inputbox', 'onchange' => 'changeCombo();')),WPJOBPORTAL_ALLOWED_TAGS); ?>
             </span>
             <a class="wpjobportal-sort-icon sort-icon" href="#" data-image1="<?php echo esc_attr($wpjobportal_image1); ?>" data-image2="<?php echo esc_attr($wpjobportal_image2); ?>" data-sortby="<?php echo esc_attr(wpjobportal::$_data['sortby']); ?>">
-                <img id="sortingimage" src="<?php echo esc_url($wpjobportal_image); ?>" />
+                <img alt="<?php echo esc_attr__('Change sort order', 'wp-job-portal'); ?>" id="sortingimage" src="<?php echo esc_url($wpjobportal_image); ?>" />
             </a>
         </div>
          <?php

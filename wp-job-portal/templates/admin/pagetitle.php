@@ -9,6 +9,16 @@
 <?php
 $wpjobportal_html ='';
 if ($wpjobportal_module) {
+	// Design 4 frame for the screens that keep their 2.7 body: the slim top bar
+	// (breadcrumb from the menu, bell, full screen) and the title row's look.
+	// The screen's own 2.7 top strip is hidden by CSS once this frame is there.
+	$wpjobportal_shell = class_exists('WPJOBPORTAL_Admin_List_UI');
+	if ($wpjobportal_shell) {
+		echo '<div class="wjpl wjpl-shell">';
+		if (WPJOBPORTAL_Admin_List_UI::claim_top()) {
+			WPJOBPORTAL_Admin_List_UI::top_bar(WPJOBPORTAL_Admin_List_UI::menu_crumbs());
+		}
+	}
 	$wpjobportal_html.= '<div id="wpjobportal-head">';
 		switch ($wpjobportal_layouts) {
 			case 'controlpanel':
@@ -349,6 +359,17 @@ if ($wpjobportal_module) {
 		}
 	$wpjobportal_html.=  '</div>';
 	echo wp_kses($wpjobportal_html, WPJOBPORTAL_ALLOWED_TAGS);
+	// The approval queues are tabs of Approvals (design 4): the queue screen stays, the tabs sit above it.
+	$wpjobportal_queue_tabs = array('jobapprovalque' => 'jobs', 'companyque' => 'companies', 'resumeque' => 'resumes', 'departmentque' => 'departments', 'coverletterque' => 'coverletters', 'folder-que' => 'folders', 'messageque' => 'messages');
+	if (isset($wpjobportal_queue_tabs[$wpjobportal_layouts]) && class_exists('WPJOBPORTAL_Admin_List_UI')) {
+		WPJOBPORTAL_Admin_List_UI::approvals_tabs($wpjobportal_queue_tabs[$wpjobportal_layouts]);
+	} elseif (class_exists('WPJOBPORTAL_Admin_List_UI')) {
+		// Pages that combine several screens (Categories, Job attributes...) show them as tabs.
+		WPJOBPORTAL_Admin_List_UI::section_tabs();
+	}
+	if ($wpjobportal_shell) {
+		echo '</div>';
+	}
 }
 ?>
 

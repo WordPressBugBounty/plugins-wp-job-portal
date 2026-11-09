@@ -1,7 +1,7 @@
 <?php if (!defined('ABSPATH')) die('Restricted Access'); ?>
 
 <!-- Main Wrapper -->
-<div id="wpjobportaladmin-wrapper">
+<div id="wpjobportaladmin-wrapper" class="wjpl-page">
     <!-- Left Menu -->
     <div id="wpjobportaladmin-leftmenu">
         <?php WPJOBPORTALincluder::getClassesInclude('wpjobportaladminsidemenu'); ?>
@@ -116,51 +116,13 @@
         </script>
 
         <!-- Top Bar -->
-        <div id="wpjobportal-wrapper-top">
-            <div id="wpjobportal-wrapper-top-left">
-                <div id="wpjobportal-breadcrumbs">
-                    <ul>
-                        <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr__('Dashboard', 'wp-job-portal'); ?>">
-                                <?php echo esc_html__('Dashboard', 'wp-job-portal'); ?>
-                            </a>
-                        </li>
-                        <li><?php echo esc_html__('Add New Job Alert', 'wp-job-portal'); ?></li>
-                    </ul>
-                </div>
-            </div>
-            <div id="wpjobportal-wrapper-top-right">
-                <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr__('Configuration', 'wp-job-portal'); ?>">
-                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png" alt="<?php echo esc_attr__('Configuration', 'wp-job-portal'); ?>">
-                    </a>
-                </div>
-                <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr__('Help', 'wp-job-portal'); ?>">
-                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png" alt="<?php echo esc_attr__('Help', 'wp-job-portal'); ?>">
-                    </a>
-                </div>
-                <div id="wpjobportal-vers-txt">
-                    <?php echo esc_html__('Version', 'wp-job-portal') . ': '; ?>
-                    <span class="wpjobportal-ver"><?php echo esc_html(WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue('versioncode')); ?></span>
-                </div>
-            </div>
-        </div>
+        <?php WPJOBPORTAL_Admin_Form_UI::simple_header(__('Job Alert', 'wp-job-portal'), __('job alert', 'wp-job-portal'), 'wpjobportal_jobalert', 'wpjobportal-form'); ?>
 
         <!-- Page Header -->
-        <div id="wpjobportal-head">
-            <h1 class="wpjobportal-head-text">
-                <?php if (isset(wpjobportal::$_data[0])): ?>
-                    <?php echo esc_html__('Edit', 'wp-job-portal') . '&nbsp;' . esc_html__('Job Alert', 'wp-job-portal'); ?>
-                <?php else: ?>
-                    <?php echo esc_html__('Add', 'wp-job-portal') . '&nbsp;' . esc_html__('Job Alert', 'wp-job-portal'); ?>
-                <?php endif; ?>
-            </h1>
-        </div>
 
         <!-- Page Content -->
         <div id="wpjobportal-admin-wrapper">
-            <form id="wpjobportal-form" class="wpjobportal-form" method="post" action="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_jobalert&task=savejobalert')); ?>">
+            <form id="wpjobportal-form" class="wpjobportal-form wjpl-form wjpl-form-simple" method="post" action="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_jobalert&task=savejobalert')); ?>"><?php WPJOBPORTAL_Admin_Form_UI::simple_open(); ?>
 
                 <?php
                 // --- DYNAMIC FORM FIELDS INTEGRATION START ---
@@ -223,7 +185,7 @@
                     </a>
                     <?php echo wp_kses(WPJOBPORTALformfield::submitbutton('save', __('Save', 'wp-job-portal') . ' ' . __('Job Alert', 'wp-job-portal'), array('class' => 'button wpjobportal-form-save-btn')), WPJOBPORTAL_ALLOWED_TAGS); ?>
                 </div>
-            </form>
+            <?php WPJOBPORTAL_Admin_Form_UI::simple_close(); ?></form>
         </div>
     </div>
 </div>

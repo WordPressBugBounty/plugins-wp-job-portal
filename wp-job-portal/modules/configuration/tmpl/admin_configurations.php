@@ -155,6 +155,8 @@ $wpjobportal_job_new_badge_days = [
 ];
 
 $wpjobportal_options_pages_list = WPJOBPORTALincluder::getJSModel('postinstallation')->getPageList();
+// D-11: page settings that may point nowhere (terms, after-registration, visitor redirects) offer None.
+$wpjobportal_options_pages_none = array_merge(array((object) array('id' => 0, 'text' => __('— None —', 'wp-job-portal'))), (array) $wpjobportal_options_pages_list);
 
 global $wp_roles;
 $wpjobportal_roles = $wp_roles->get_names();
@@ -171,6 +173,8 @@ $wpjobportal_options_job_alert_types = apply_filters('wpjobportal_job_alert_freq
     (object) ['id' => 3, 'text' => __('Monthly', 'wp-job-portal')],
     (object) ['id' => 4, 'text' => __('Instant (As soon as job is posted)', 'wp-job-portal')]
 ]);
+
+$wpjobportal_retention_now = class_exists('WPJOBPORTAL_Privacy_Service') ? WPJOBPORTAL_Privacy_Service::current_settings() : array('activity_days' => 365, 'message_days' => 730, 'audit_days' => 90);
 
 $wpjobportal_settings_config = [
 
@@ -191,6 +195,7 @@ $wpjobportal_settings_config = [
                     ['id' => 'default_pageid', 'label' => __('Default Page', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['default_pageid'], 'tooltip' => __('Select the main WordPress page for the job portal', 'wp-job-portal') . '. ' . __('Email links and support icons may not work if this is not set', 'wp-job-portal'), 'options' => $wpjobportal_options_pages_list],
                     ['id' => 'date_format', 'label' => __('Date Format', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['date_format'], 'tooltip' => __('Set the date format used throughout the plugin', 'wp-job-portal'), 'options' => $wpjobportal_options_date_format],
                     ['id' => 'defaultaddressdisplaytype', 'label' => __('Default Address Display Style', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['defaultaddressdisplaytype'], 'tooltip' => __('Select the default format for displaying addresses', 'wp-job-portal'), 'options' => $wpjobportal_options_address_display],
+                    ['id' => 'delete_data_on_uninstall', 'label' => __('Delete All Data When The Plugin Is Deleted', 'wp-job-portal'), 'type' => 'toggle', 'value' => isset(wpjobportal::$_data[0]['delete_data_on_uninstall']) ? wpjobportal::$_data[0]['delete_data_on_uninstall'] : 0, 'tooltip' => __('Off keeps every job, resume and application when the plugin is deleted, so reinstalling brings them back. On removes them for good when the plugin is deleted.', 'wp-job-portal')],
                 ]
             ],
             'login_registration' => [
@@ -211,9 +216,19 @@ $wpjobportal_settings_config = [
                 'title'       => __('Terms and Conditions', 'wp-job-portal'),
                 'description' => __('Assign specific Terms & Conditions pages for different submission types', 'wp-job-portal'),
                 'fields'      => [
-                    ['id' => 'terms_and_conditions_page_company', 'label' => __('Company Terms Page', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['terms_and_conditions_page_company'], 'tooltip' => __('Select the', 'wp-job-portal') . ' ' . __('Terms and Conditions', 'wp-job-portal') . ' ' . __('page for company submissions', 'wp-job-portal'), 'options' => $wpjobportal_options_pages_list],
-                    ['id' => 'terms_and_conditions_page_job', 'label' => __('Job Terms Page', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['terms_and_conditions_page_job'], 'tooltip' => __('Select the', 'wp-job-portal') . ' ' . __('Terms and Conditions', 'wp-job-portal') . ' ' . __('page for job submissions', 'wp-job-portal'), 'options' => $wpjobportal_options_pages_list],
-                    ['id' => 'terms_and_conditions_page_resume', 'label' => __('Resume Terms Page', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['terms_and_conditions_page_resume'], 'tooltip' => __('Select the', 'wp-job-portal') . ' ' . __('Terms and Conditions', 'wp-job-portal') . ' ' . __('page for resume submissions', 'wp-job-portal'), 'options' => $wpjobportal_options_pages_list],
+                    ['id' => 'terms_and_conditions_page_company', 'label' => __('Company Terms Page', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['terms_and_conditions_page_company'], 'tooltip' => __('Select the', 'wp-job-portal') . ' ' . __('Terms and Conditions', 'wp-job-portal') . ' ' . __('page for company submissions', 'wp-job-portal'), 'options' => $wpjobportal_options_pages_none],
+                    ['id' => 'terms_and_conditions_page_job', 'label' => __('Job Terms Page', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['terms_and_conditions_page_job'], 'tooltip' => __('Select the', 'wp-job-portal') . ' ' . __('Terms and Conditions', 'wp-job-portal') . ' ' . __('page for job submissions', 'wp-job-portal'), 'options' => $wpjobportal_options_pages_none],
+                    ['id' => 'terms_and_conditions_page_resume', 'label' => __('Resume Terms Page', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['terms_and_conditions_page_resume'], 'tooltip' => __('Select the', 'wp-job-portal') . ' ' . __('Terms and Conditions', 'wp-job-portal') . ' ' . __('page for resume submissions', 'wp-job-portal'), 'options' => $wpjobportal_options_pages_none],
+                ]
+            ],
+            // U-1: moved here from System Status; stored in the privacy service's own option
+            'privacy_retention' => [
+                'title'       => __('Privacy Retention', 'wp-job-portal'),
+                'description' => __('How long records about people are kept before they are removed automatically. 0 keeps them until an administrator or a WordPress privacy erasure request removes them.', 'wp-job-portal'),
+                'fields'      => [
+                    ['id' => 'wpjobportal_privacy_activity_days', 'label' => __('Activity History (days)', 'wp-job-portal'), 'type' => 'number', 'value' => $wpjobportal_retention_now['activity_days'], 'tooltip' => __('0 to 3650 days. Default 365.', 'wp-job-portal')],
+                    ['id' => 'wpjobportal_privacy_message_days', 'label' => __('User Messages (days)', 'wp-job-portal'), 'type' => 'number', 'value' => $wpjobportal_retention_now['message_days'], 'tooltip' => __('0 to 3650 days. Default 730.', 'wp-job-portal')],
+                    ['id' => 'wpjobportal_privacy_audit_days', 'label' => __('Operational Audit (days)', 'wp-job-portal'), 'type' => 'number', 'value' => $wpjobportal_retention_now['audit_days'], 'tooltip' => __('0 to 365 days. Default 90.', 'wp-job-portal')],
                 ]
             ],
         ]
@@ -308,7 +323,7 @@ $wpjobportal_settings_config = [
                     ['id' => 'employer_defaultgroup', 'label' => __('Employer Default Role', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['employer_defaultgroup'], 'tooltip' => __('This role will auto assign to new employer', 'wp-job-portal'), 'options' => $wpjobportal_user_roles],
                     ['id' => 'employerview_js_controlpanel', 'label' => __('Employer Can View Job Seeker Area', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['employerview_js_controlpanel'], 'tooltip' => __('Allow logged-in employers to view the job seeker control panel', 'wp-job-portal'), 'options' => $wpjobportal_options_yesno],
                     ['id' => 'employe_set_register_link', 'label' => __('Set Employer After-Register Link', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['employe_set_register_link'], 'tooltip' => __('Where a new employer goes after registering. Default: the Employer After-Registration Page. Custom: the Employer Custom After-Registration Link.', 'wp-job-portal'), 'options' => $wpjobportal_options_default_custom],
-                    ['id' => 'register_employer_redirect_page', 'label' => __('Employer After-Registration Page', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['register_employer_redirect_page'], 'tooltip' => __('whenever anyone registers as employer he will be redirected to this page', 'wp-job-portal'), 'options' => $wpjobportal_options_pages_list],
+                    ['id' => 'register_employer_redirect_page', 'label' => __('Employer After-Registration Page', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['register_employer_redirect_page'], 'tooltip' => __('whenever anyone registers as employer he will be redirected to this page', 'wp-job-portal'), 'options' => $wpjobportal_options_pages_none],
                     ['id' => 'employe_register_link', 'label' => __('Employer Custom After-Registration Link', 'wp-job-portal'), 'type' => 'text', 'value' => wpjobportal::$_data[0]['employe_register_link'], 'tooltip' => __('Custom Employer After Register Link', 'wp-job-portal')],
                 ]
             ],
@@ -378,7 +393,7 @@ $wpjobportal_settings_config = [
                 'fields'      => [
                     ['id' => 'jobseeker_defaultgroup', 'label' => __('Job Seeker Default Role', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['jobseeker_defaultgroup'], 'tooltip' => __('This role will auto assign to new job seeker', 'wp-job-portal'), 'options' => $wpjobportal_user_roles],
                     ['id' => 'jobseeker_set_register_link', 'label' => __('Set Job Seeker After-Register Link', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['jobseeker_set_register_link'], 'tooltip' => __('Where a new job seeker goes after registering. Default: the Job Seeker After-Registration Page. Custom: the Job Seeker Custom After-Registration Link.', 'wp-job-portal'), 'options' => $wpjobportal_options_default_custom],
-                    ['id' => 'register_jobseeker_redirect_page', 'label' => __('Job Seeker After-Registration Page', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['register_jobseeker_redirect_page'], 'tooltip' => __('whenever anyone registers as job seeker, he will be redirected to this page', 'wp-job-portal'), 'options' => $wpjobportal_options_pages_list],
+                    ['id' => 'register_jobseeker_redirect_page', 'label' => __('Job Seeker After-Registration Page', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['register_jobseeker_redirect_page'], 'tooltip' => __('whenever anyone registers as job seeker, he will be redirected to this page', 'wp-job-portal'), 'options' => $wpjobportal_options_pages_none],
                     ['id' => 'jobseeker_register_link', 'label' => __('Job Seeker Custom After-Registration Link', 'wp-job-portal'), 'type' => 'text', 'value' => wpjobportal::$_data[0]['jobseeker_register_link'], 'tooltip' => __('Custom Job seeker After Register Link', 'wp-job-portal')],
                     ['id' => 'allow_jobshortlist', 'label' => __('Enable Job Shortlisting', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['allow_jobshortlist'], 'tooltip' => __('Allow job seekers to shortlist jobs', 'wp-job-portal') . '. ' . __('This affects the job detail page', 'wp-job-portal'), 'options' => $wpjobportal_options_yesno , 'pro' => ['slug' => 'shortlist', 'name' => __('Shortlist Jobs', 'wp-job-portal')]],
                     ['id' => 'allow_tellafriend', 'label' => __('Enable', 'wp-job-portal') .' '. __('Tell A Friend', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['allow_tellafriend'], 'tooltip' => __('Enable', 'wp-job-portal') . ' ' . __('Tell A Friend', 'wp-job-portal') . ' ' . __('feature on job listing pages', 'wp-job-portal'), 'options' => $wpjobportal_options_yesno , 'pro' => ['slug' => 'tellfriend', 'name' => __('Tell A Friend', 'wp-job-portal')]],
@@ -443,10 +458,10 @@ $wpjobportal_settings_config = [
                          'description' => __('Define what non-logged-in users are allowed to do on the site', 'wp-job-portal'),
                          'fields'            => [
                                  ['id' => 'visitor_can_post_job', 'label' => __('Visitor Can Post Job', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['visitor_can_post_job'], 'tooltip' => __('Allow non-logged-in users to post jobs', 'wp-job-portal'), 'options' => $wpjobportal_options_yesno, 'pro' => ['slug' => 'visitorcanaddjob', 'name' => __('Visitor Can Add Job', 'wp-job-portal')]],
-                                 ['id' => 'visitor_add_job_redirect_page', 'label' => __('Visitor Job Post Redirect Page', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['visitor_add_job_redirect_page'], 'tooltip' => __('A visitor will be redirected to this page after posting a job', 'wp-job-portal'), 'options' => $wpjobportal_options_pages_list, 'pro' => ['slug' => 'visitorcanaddjob', 'name' => __('Visitor Can Add Job', 'wp-job-portal')]],
+                                 ['id' => 'visitor_add_job_redirect_page', 'label' => __('Visitor Job Post Redirect Page', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['visitor_add_job_redirect_page'], 'tooltip' => __('A visitor will be redirected to this page after posting a job', 'wp-job-portal'), 'options' => $wpjobportal_options_pages_none, 'pro' => ['slug' => 'visitorcanaddjob', 'name' => __('Visitor Can Add Job', 'wp-job-portal')]],
                                  ['id' => 'visitor_can_apply_to_job', 'label' => __('Visitor Can Apply to Job', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['visitor_can_apply_to_job'], 'tooltip' => __('Allow non-logged-in users to apply for jobs', 'wp-job-portal'), 'options' => $wpjobportal_options_yesno, 'pro' => ['slug' => 'visitorapplyjob', 'name' => __('Visitor Apply Job', 'wp-job-portal')]],
                                  ['id' => 'visitor_can_add_resume', 'label' => __('Visitor Can Add Resume', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['visitor_can_add_resume'], 'tooltip' => __('Allow non-logged-in users to add a resume', 'wp-job-portal'), 'options' => $wpjobportal_options_yesno, 'pro' => ['slug' => 'visitorapplyjob', 'name' => __('Visitor Apply Job', 'wp-job-portal')]],
-                                 ['id' => 'visitor_add_resume_redirect_page', 'label' => __('Visitor Resume Post Redirect Page', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['visitor_add_resume_redirect_page'], 'tooltip' => __('A visitor will be redirected to this page after posting a resume', 'wp-job-portal'), 'options' => $wpjobportal_options_pages_list, 'pro' => ['slug' => 'visitorapplyjob', 'name' => __('Visitor Apply Job', 'wp-job-portal')]],
+                                 ['id' => 'visitor_add_resume_redirect_page', 'label' => __('Visitor Resume Post Redirect Page', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['visitor_add_resume_redirect_page'], 'tooltip' => __('A visitor will be redirected to this page after posting a resume', 'wp-job-portal'), 'options' => $wpjobportal_options_pages_none, 'pro' => ['slug' => 'visitorapplyjob', 'name' => __('Visitor Apply Job', 'wp-job-portal')]],
                                  ['id' => 'visitor_can_edit_job', 'label' => __('Visitor Can Edit Job', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['visitor_can_edit_job'], 'tooltip' => __('Allow non-logged-in users to edit jobs they have posted', 'wp-job-portal'), 'options' => $wpjobportal_options_yesno, 'pro' => ['slug' => 'visitorcanaddjob', 'name' => __('Visitor Can Add Job', 'wp-job-portal')]],
                          ]
                  ],
@@ -562,6 +577,14 @@ $wpjobportal_settings_config = [
                     ['id' => 'jobautoapprove', 'label' => __('Job Auto Approve', 'wp-job-portal'), 'type' => 'toggle', 'value' => wpjobportal::$_data[0]['jobautoapprove'], 'tooltip' => __('Automatically approve new jobs upon submission', 'wp-job-portal'), 'options' => $wpjobportal_options_yesno],
                     ['id' => 'jobexpiry_days_free', 'label' => __('Job Expiry Days', 'wp-job-portal') . ' ' . __('Free', 'wp-job-portal'), 'type' => 'text', 'value' => wpjobportal::$_data[0]['jobexpiry_days_free'], 'tooltip' => __('Number of days until a freely posted job expires', 'wp-job-portal')],
                     ['id' => 'jobexpiry_days_perlisting', 'label' => __('Job Expiry Days', 'wp-job-portal') . ' ' . __('Per Listing', 'wp-job-portal'), 'type' => 'text', 'value' => wpjobportal::$_data[0]['jobexpiry_days_perlisting'], 'tooltip' => __('Number of days until a paid', 'wp-job-portal') . ' ' . __('Per Listing', 'wp-job-portal') . ' ' . __('job expires', 'wp-job-portal'), 'pro' => ['slug' => 'credits', 'name' => __('Credits', 'wp-job-portal')]],
+                ]
+            ],
+            'salary' => [
+                'title'       => __('Salary', 'wp-job-portal'),
+                'description' => __('How salaries are shown on jobs', 'wp-job-portal'),
+                'fields'      => [
+                    ['id' => 'job_currency', 'label' => __('Default Currency Symbol', 'wp-job-portal'), 'type' => 'text', 'value' => wpjobportal::$_data[0]['job_currency'], 'tooltip' => __('The symbol shown with job salaries, e.g. $. Changing it also updates jobs that use the old symbol; imported jobs with their own currency keep it.', 'wp-job-portal')],
+                    ['id' => 'currency_align', 'label' => __('Currency Symbol Position', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['currency_align'], 'tooltip' => __('Show currency symbol left or right to the amount', 'wp-job-portal'), 'options' => $wpjobportal_options_currency_align],
                 ]
             ],
             'display' => [
@@ -787,6 +810,7 @@ $wpjobportal_settings_config = [
                 'title'       => __('Email Sender Identity', 'wp-job-portal'),
                 'description' => __('Configure sender details for all outgoing system emails', 'wp-job-portal'),
                 'fields'      => [
+                    ['id' => 'wpjobportal_mail_queue', 'label' => __('Send Emails Through The Reliable Queue', 'wp-job-portal'), 'type' => 'toggle', 'value' => (class_exists('WPJOBPORTAL_Notification_Queue_Service') && WPJOBPORTAL_Notification_Queue_Service::is_enabled()) ? 1 : 0, 'tooltip' => __('Emails wait in a queue and are retried if sending fails. Job alerts always use the queue.', 'wp-job-portal'), 'options' => $wpjobportal_options_yesno],
                     ['id' => 'adminemailaddress', 'label' => __('Admin Email Address', 'wp-job-portal'), 'type' => 'text', 'value' => wpjobportal::$_data[0]['adminemailaddress'], 'tooltip' => __('Admin will receive email notifications at this address', 'wp-job-portal')],
                     ['id' => 'mailfromaddress', 'label' => __('Sender Email Address', 'wp-job-portal'), 'type' => 'text', 'value' => wpjobportal::$_data[0]['mailfromaddress'], 'tooltip' => __('The email address that will be used to send system emails', 'wp-job-portal')],
                     ['id' => 'mailfromname', 'label' => __('Sender Name', 'wp-job-portal'), 'type' => 'text', 'value' => wpjobportal::$_data[0]['mailfromname'], 'tooltip' => __('The sender name that will be used in system emails', 'wp-job-portal')],
@@ -1037,8 +1061,7 @@ $wpjobportal_settings_config = [
                 'description' => __('Core settings for handling payments and packages', 'wp-job-portal'),
                 'fields'      => [
                     ['id' => 'submission_type', 'label' => __('Submission Type', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['submission_type'], 'tooltip' => __('Choose the monetization model for submissions', 'wp-job-portal') . ' ' . __('Free, Per Listing, or Membership-based', 'wp-job-portal'), 'options' => $wpjobportal_options_submission_type, 'pro' => ['slug' => 'credits', 'name' => __('Credits', 'wp-job-portal')]],
-                    ['id' => 'job_currency', 'label' => __('Default Currency Symbol', 'wp-job-portal'), 'type' => 'text', 'value' => wpjobportal::$_data[0]['job_currency'], 'tooltip' => __('The currency symbol to be used across the site', 'wp-job-portal') . ' e.g. $'],
-                    ['id' => 'currency_align', 'label' => __('Currency Symbol Position', 'wp-job-portal'), 'type' => 'select', 'value' => wpjobportal::$_data[0]['currency_align'], 'tooltip' => __('Show currency symbol left or right to the amount', 'wp-job-portal'), 'options' => $wpjobportal_options_currency_align],
+                    ['id' => 'job_currency_moved_note', 'type' => 'info_text', 'label' => __('Salary currency', 'wp-job-portal'), 'text' => __('The currency symbol for job salaries is set under Jobs, Salary.', 'wp-job-portal')],
                 ]
             ],
             'packages' => [
@@ -1170,6 +1193,22 @@ $wpjobportal_mock_pages = [
  * @param array $wpjobportal_mock_pages An array of mock pages for select fields.
  * @param array $wpjobportal_installed_addons An array of slugs for installed addons.
  */
+/** W-7: a group with nothing this site can use, because every field belongs to an add-on it does not have. */
+function wpjobportal_wjp_group_is_addon_only($wpjobportal_group) {
+    if (isset($wpjobportal_group['pro']) && !in_array($wpjobportal_group['pro']['slug'], wpjobportal::$_active_addons, true)) {
+        return true;
+    }
+    if (empty($wpjobportal_group['fields'])) {
+        return false;
+    }
+    foreach ($wpjobportal_group['fields'] as $wpjobportal_field) {
+        if (!isset($wpjobportal_field['pro']) || in_array($wpjobportal_field['pro']['slug'], wpjobportal::$_active_addons, true)) {
+            return false;
+        }
+    }
+    return true;
+}
+
 function wpjobportal_wjp_render_setting_field($wpjobportal_field, $wpjobportal_category_key, $wpjobportal_group_key, $wpjobportal_mock_pages, $wpjobportal_installed_addons) {
     global $wpjobportal;
     $wpjobportal_field_id = 'wjp-' . esc_attr($wpjobportal_field['id']);
@@ -1319,6 +1358,20 @@ function wpjobportal_wjp_render_setting_field($wpjobportal_field, $wpjobportal_c
                     }
 
                 }
+                // D-11: a stored value missing from the list made the browser show and submit the
+                // first option, so an untouched Save changed it (seven page settings went from
+                // 'none' to WordPress's Sample Page). Keep the stored value as an option of its own.
+                $wpjobportal_has_value = false;
+                foreach ($wpjobportal_options_obj as $wpjobportal_o) {
+                    if ((string) $wpjobportal_o->id === (string) $wpjobportal_value) {
+                        $wpjobportal_has_value = true;
+                        break;
+                    }
+                }
+                if (!$wpjobportal_has_value && $wpjobportal_value !== null) {
+                    $wpjobportal_blank = ((string) $wpjobportal_value === '' || (string) $wpjobportal_value === '0');
+                    array_unshift($wpjobportal_options_obj, (object) array('id' => $wpjobportal_value, 'text' => $wpjobportal_blank ? __('— None —', 'wp-job-portal') : sprintf(/* translators: %s: stored value */ __('Current value (%s)', 'wp-job-portal'), $wpjobportal_value)));
+                }
                 $wpjobportal_control_html = WPJOBPORTALformfield::select($wpjobportal_field_name, $wpjobportal_options_obj, $wpjobportal_value, '', ['class' => 'wjp-form-select', 'id' => $wpjobportal_field_id]);
                 break;
              case 'textarea':
@@ -1405,14 +1458,29 @@ function wpjobportal_wjp_render_setting_field($wpjobportal_field, $wpjobportal_c
         </svg>
     </span>' : '';
     $conditional_attrs = !empty($wpjobportal_field['condition']) ? 'data-condition-field="' . esc_attr($wpjobportal_field['condition']['field']) . '" data-condition-value="' . esc_attr($wpjobportal_field['condition']['value']) . '"' : '';
-    $wrapper_class = 'wjp-setting-row-wrapper ' . (!empty($wpjobportal_field['condition']) ? 'wjp-conditional-field-wrapper ' : '') . ($wpjobportal_is_locked ? 'is-pro-field' : '') . ($wpjobportal_is_mode_locked ? ' is-mode-locked-field' : '');
+    // W-7: "Changed from default" filter, and who the setting is for
+    static $wpjobportal_config_defaults = null;
+    if ($wpjobportal_config_defaults === null) {
+        $wpjobportal_config_defaults = include WPJOBPORTAL_PLUGIN_PATH . 'modules/configuration/defaults.php';
+    }
+    $wpjobportal_is_changed = isset($wpjobportal_config_defaults[$wpjobportal_field['id']]) && !is_array($wpjobportal_value) && !$wpjobportal_is_mode_locked
+        && preg_replace('/(\\\\n|\s)+/', '', (string) $wpjobportal_value) !== preg_replace('/(\\\\n|\s)+/', '', (string) $wpjobportal_config_defaults[$wpjobportal_field['id']]);
+    $wpjobportal_role_names = array('employers' => __('Employer', 'wp-job-portal'), 'job_seekers' => __('Job seeker', 'wp-job-portal'), 'visitors' => __('Visitor', 'wp-job-portal'));
+    $wpjobportal_label_text = wpjobportal::wpjobportal_getVariableValue($wpjobportal_field['label']);
+    $wpjobportal_role_chip = (isset($wpjobportal_role_names[$wpjobportal_category_key]) && stripos($wpjobportal_label_text, $wpjobportal_role_names[$wpjobportal_category_key]) !== 0)
+        ? '<span class="wjp-role-chip">' . esc_html($wpjobportal_role_names[$wpjobportal_category_key]) . '</span> ' : '';
+    $wpjobportal_changed_chip = $wpjobportal_is_changed ? ' <span class="wjp-changed-chip">' . esc_html__('Changed', 'wp-job-portal') . '</span>' : '';
+    $wrapper_class = ($wpjobportal_is_changed ? 'is-changed ' : '') . 'wjp-setting-row-wrapper ' . (!empty($wpjobportal_field['condition']) ? 'wjp-conditional-field-wrapper ' : '') . ($wpjobportal_is_locked ? 'is-pro-field' : '') . ($wpjobportal_is_mode_locked ? ' is-mode-locked-field' : '');
     $wpjobportal_mode_label_indicator = $wpjobportal_is_mode_locked ? wpjobportal_wjp_render_mode_lock_badge() : '';
     $wpjobportal_mode_explanation = $wpjobportal_is_mode_locked ? wpjobportal_wjp_render_mode_lock_note($wpjobportal_mode_lock) : '';
 
     echo '<div class="' . esc_attr($wrapper_class) . '" ' . esc_attr($conditional_attrs) . '>';
     echo '  <div class="wjp-setting-row">';
     echo '      <div class="wjp-setting-label">';
-    echo '          <label for="' . esc_attr($wpjobportal_field_id) . '">' . esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_field['label'])) . wp_kses($wpjobportal_pro_label_indicator,WPJOBPORTAL_ALLOWED_TAGS) . wp_kses($wpjobportal_mode_label_indicator,WPJOBPORTAL_ALLOWED_TAGS) . wp_kses($wpjobportal_tooltip_html, wpjobportal_svg_allowed_tags(array('span' => array('class' => true, 'data-tooltip' => true)))) . '</label>';
+    // The label points at the control's real id: WPJOBPORTALformfield writes id="<name>" first, so the
+    // 'wjp-' id passed to it is a second, ignored attribute and a label for it named nothing
+    $wpjobportal_label_for = preg_match('/<(?:input|select|textarea)\b[^>]*?\bid="([^"]+)"/', (string) $wpjobportal_control_html, $wpjobportal_id_match) ? $wpjobportal_id_match[1] : $wpjobportal_field_id;
+    echo '          <label for="' . esc_attr($wpjobportal_label_for) . '">' . wp_kses($wpjobportal_role_chip, WPJOBPORTAL_ALLOWED_TAGS) . esc_html($wpjobportal_label_text) . wp_kses($wpjobportal_changed_chip, WPJOBPORTAL_ALLOWED_TAGS) . wp_kses($wpjobportal_pro_label_indicator,WPJOBPORTAL_ALLOWED_TAGS) . wp_kses($wpjobportal_mode_label_indicator,WPJOBPORTAL_ALLOWED_TAGS) . wp_kses($wpjobportal_tooltip_html, wpjobportal_svg_allowed_tags(array('span' => array('class' => true, 'data-tooltip' => true)))) . '</label>';
     echo '      </div>';
     echo '      <div class="wjp-setting-control" data-field-id="' . esc_attr($wpjobportal_field['id']) . '">';
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- the setting's control, built by WPJOBPORTALformfield and the settings renderers, which escape each value.
@@ -1491,14 +1559,20 @@ function wpjobportal_wjp_render_mode_lock_badge() {
 function wpjobportal_wjp_render_mode_lock_note($wpjobportal_lock) {
     $wpjobportal_note = '<p class="wjp-mode-field-explanation">';
     $wpjobportal_note .= '<span class="wjp-mode-field-headline">' . esc_html(WPJOBPORTAL_Mode_Policy_Service::lock_message()) . '</span>';
+    // Finding 46: a lock can keep a setting ON because the mode needs the feature
+    // (Job Marketplace and employer accounts); "does not use" was wrong there.
+    $wpjobportal_needed = !empty($wpjobportal_lock['available']);
     $wpjobportal_note .= '<span class="wjp-mode-field-detail">' . esc_html(sprintf(
-        /* translators: 1: mode name, 2: feature name. */
-        __('%1$s does not use %2$s.', 'wp-job-portal'),
+        $wpjobportal_needed
+            /* translators: 1: mode name, 2: feature name. */
+            ? __('%1$s needs %2$s, so this setting stays on.', 'wp-job-portal')
+            /* translators: 1: mode name, 2: feature name. */
+            : __('%1$s does not use %2$s.', 'wp-job-portal'),
         $wpjobportal_lock['mode_label'],
         $wpjobportal_lock['label']
     ));
 
-    if (!empty($wpjobportal_lock['note'])) {
+    if (!$wpjobportal_needed && !empty($wpjobportal_lock['note'])) {
         $wpjobportal_note .= ' ' . esc_html($wpjobportal_lock['note']);
     }
 
@@ -1517,6 +1591,7 @@ WPJOBPORTALMessages::getLayoutMessage($wpjobportal_msgkey); ?>
         <?php  WPJOBPORTALincluder::getClassesInclude('wpjobportaladminsidemenu'); ?>
     </div>
     <div id="wpjobportaladmin-data">
+        <?php WPJOBPORTAL_Admin_List_UI::legacy_top(); ?>
         <div id="wjp-config-dashboard">
             <div id="app">
                 <aside id="wjp-sidebar">
@@ -1526,16 +1601,24 @@ WPJOBPORTALMessages::getLayoutMessage($wpjobportal_msgkey); ?>
                               <path d="M512.1 192c0-10.6-3.7-20.8-10.6-28.8l-30-36c-11.2-13.5-12.7-33-2.9-48.2l12.7-19.6c8.1-12.6 8.1-29 0-41.6L443.2 4.9C433.8-3.1 420.2-2.3 408.8 8l-23 18.4c-12.3 9.9-29.6 9.9-42 0L320.8 8c-11.4-10.3-25-11.1-34.4-3.1l-38.1 12.9c-8.1 12.6-8.1 29 0 41.6l12.7 19.6c9.8 15.2 8.3 34.7-2.9 48.2l-30 36c-6.9 8-10.6 18.2-10.6 28.8s3.7 20.8 10.6 28.8l30 36c11.2 13.5 12.7 33 2.9 48.2l-12.7 19.6c-8.1 12.6-8.1 29 0 41.6l38.1 12.9c9.4 8 23 7.2 34.4-3.1l23-18.4c12.3-9.9 29.6-9.9 42 0l23 18.4c11.4 10.3 25 11.1 34.4 3.1l38.1-12.9c8.1-12.6 8.1-29 0-41.6l-12.7-19.6c-9.8-15.2-8.3-34.7 2.9-48.2l30-36c6.9-8 10.6-18.2 10.6-28.8zM416 256c-35.3 0-64-28.7-64-64s28.7-64 64-64 64 28.7 64 64-28.7 64-64 64zM245.9 313.3l-20.7-16.6c-13.7-11-33-11-46.7 0l-20.7 16.6c-12.6 10.1-29.8 11.9-44.2 4.4L87.5 304c-12.7-6.6-19.4-21.4-15.6-35.1l7-26.1c4.3-16.9-3.2-34.6-18.4-43.4l-23.7-13.7c-12.1-7-18.2-21.5-13.9-34.9l9.3-25.9c4.3-11.9 14.9-19.9 27.6-19.9l27.3 .1c17.5 0 33.1-10.7 39.2-27.2l9.4-25.5c4.6-12.6 .9-27-9.4-35.2L98.6 3.9c-10.3-8.2-25.3-7.5-34.8 1.9L40 29.7C15.2 54.5 0 88.5 0 123.6V208c0 13.3 10.7 24 24 24h3.7c17.6 0 33.1 10.7 39.2 27.2l9.4 25.5c4.6 12.6 .9 27-9.4 35.2l-20.7 16.6c-10.3 8.2-13.6 22.8-7.7 34.8l12.9 26.2c6 12.2 19.5 19 32.8 16.6l26.7-4.7c17.3-3.1 34.1 6.3 40.5 22.6l10 25.4c4.8 12.3 16.8 20.2 30 20.2h27.4c13.3 0 24-10.7 24-24v-4.1c0-17.6-10.7-33.1-27.2-39.2l-25.5-9.4c-12.6-4.6-27-.9-35.2 9.4zM128 208c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48z"/>
                             </svg>
                         </div>
-                        <div class="wjp-title"><?php echo esc_html__('Settings', 'wp-job-portal'); ?></div>
+                        <h1 class="wjp-title"><?php echo esc_html__('Settings', 'wp-job-portal'); ?></h1>
                     </div>
                     <?php
                     // Printed here rather than by the script at the end of this (large) page, so the menu is
                     // there from the first paint. The first category is the one shown on load.
                     $wpjobportal_first_category = array_key_first($wpjobportal_settings_config);
+                    // A link naming a section (the menu's Apply form entry: wpjpconfigid=job_apply) opens on it;
+                    // 2.7 did this with a #hash the new menu links don't carry.
+                    $wpjobportal_configid_map = array('job_apply' => 'applications');
+                    $wpjobportal_wanted = isset(wpjobportal::$_data['wpjpconfigid']) ? sanitize_key((string) wpjobportal::$_data['wpjpconfigid']) : '';
+                    $wpjobportal_wanted = isset($wpjobportal_configid_map[$wpjobportal_wanted]) ? $wpjobportal_configid_map[$wpjobportal_wanted] : $wpjobportal_wanted;
+                    if ($wpjobportal_wanted !== '' && isset($wpjobportal_settings_config[$wpjobportal_wanted])) {
+                        $wpjobportal_first_category = $wpjobportal_wanted;
+                    }
                     ?>
                     <nav id="wjp-settings-nav"><ul>
                         <?php foreach ($wpjobportal_settings_config as $wpjobportal_nav_key => $wpjobportal_nav_category) : ?>
-                            <li><a href="#" data-category="<?php echo esc_attr($wpjobportal_nav_key); ?>" class="wpjp-icon-class-<?php echo esc_attr($wpjobportal_nav_category['icon']); ?><?php echo $wpjobportal_nav_key === $wpjobportal_first_category ? ' active' : ''; ?>"><span><?php echo esc_html($wpjobportal_nav_category['label']); ?></span></a></li>
+                            <li<?php echo (!empty($wpjobportal_nav_category['groups']) && count(array_filter($wpjobportal_nav_category['groups'], 'wpjobportal_wjp_group_is_addon_only')) === count($wpjobportal_nav_category['groups'])) ? ' class="is-pro-field"' : ''; ?>><a href="#" data-category="<?php echo esc_attr($wpjobportal_nav_key); ?>" class="wpjp-icon-class-<?php echo esc_attr($wpjobportal_nav_category['icon']); ?><?php echo $wpjobportal_nav_key === $wpjobportal_first_category ? ' active' : ''; ?>"><span><?php echo esc_html($wpjobportal_nav_category['label']); ?></span></a></li>
                         <?php endforeach; ?>
                     </ul></nav>
                 </aside>
@@ -1565,9 +1648,13 @@ WPJOBPORTALMessages::getLayoutMessage($wpjobportal_msgkey); ?>
                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor">
                                       <path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/>
                                     </svg>
-                                    <input type="text" id="wjp-search-box" placeholder="<?php echo esc_attr__('Quickly Find Any Setting', 'wp-job-portal'); ?>">
+                                    <input type="text" id="wjp-search-box" aria-label="<?php echo esc_attr__('Find a setting', 'wp-job-portal'); ?>" placeholder="<?php echo esc_attr__('Quickly Find Any Setting', 'wp-job-portal'); ?>">
                                  </div>
                                  <p class="wjp-search-description"><?php echo esc_html__('Search by setting title or tooltip description', 'wp-job-portal'); ?></p>
+                                 <div class="wjp-search-filters">
+                                     <label><input type="checkbox" id="wjp-filter-changed"> <?php echo esc_html__('Changed from default', 'wp-job-portal'); ?></label>
+                                     <label id="wjp-filter-addons-wrap"><input type="checkbox" id="wjp-filter-addons"> <?php echo esc_html__('Show settings from add-ons you do not have', 'wp-job-portal'); ?></label>
+                                 </div>
                             </div>
                         </div>
                         <?php $wpjobportal_first_groups = $wpjobportal_settings_config[$wpjobportal_first_category]['groups']; ?>
@@ -1593,7 +1680,7 @@ WPJOBPORTALMessages::getLayoutMessage($wpjobportal_msgkey); ?>
                                                 $wpjobportal_is_group_pro = isset($wpjobportal_group['pro']);
                                                 $wpjobportal_is_group_locked = $wpjobportal_is_group_pro && !in_array($wpjobportal_group['pro']['slug'], $wpjobportal_installed_addons);
                                             ?>
-                                                <div class="wjp-group-card <?php echo $wpjobportal_is_group_locked ? 'is-pro-group' : ''; ?>" id="wjp-group-<?php echo esc_attr($wpjobportal_group_key); ?>" data-groupkey="<?php echo esc_attr($wpjobportal_group_key); ?>">
+                                                <div class="wjp-group-card <?php echo $wpjobportal_is_group_locked ? 'is-pro-group' : (wpjobportal_wjp_group_is_addon_only($wpjobportal_group) ? 'is-pro-field' : ''); ?>" id="wjp-group-<?php echo esc_attr($wpjobportal_group_key); ?>" data-groupkey="<?php echo esc_attr($wpjobportal_group_key); ?>">
                                                     <div class="wjp-group-header">
                                                         <div class="wjp-title"><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_group['title'])); ?></div>
                                                         <p><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_group['description'])); ?></p>
@@ -1845,9 +1932,10 @@ $wpjp_config_js = '
         },
 
         handleSearch: function(e) {
-            const query = $(e.target).val().toLowerCase().trim();
+            const query = $("#wjp-search-box").val().toLowerCase().trim();
+            const changedOnly = $("#wjp-filter-changed").is(":checked");
 
-            if (!query) {
+            if (!query && !changedOnly) {
                 $("#wjp-main-panel .wjp-group-card, #wjp-main-panel .wjp-setting-row-wrapper").show();
                 $("#wjp-no-results-message").hide();
                 App.showCategory(App.activeCategory);
@@ -1855,7 +1943,7 @@ $wpjp_config_js = '
             }
 
             $(".wjp-category-container").show();
-            $("#wjp-category-title-span").text(`' . esc_js(__('Search results for', 'wp-job-portal')) . ' "${query}"`);
+            $("#wjp-category-title-span").text(query ? `' . esc_js(__('Search results for', 'wp-job-portal')) . ' "${query}"` : "' . esc_js(__('Changed from default', 'wp-job-portal')) . '");
             $("#wjp-sticky-sub-nav-wrapper").addClass("wjp-hidden");
             let matchCount = 0;
 
@@ -1865,7 +1953,7 @@ $wpjp_config_js = '
             $(".wjp-setting-row-wrapper").each(function() {
                 const label = $(this).find("label").text().toLowerCase();
                 const tooltip = $(this).find(".wjp-tooltip-wrapper").data("tooltip")?.toLowerCase() || "";
-                const isMatch = label.includes(query) || tooltip.includes(query);
+                const isMatch = (label.includes(query) || tooltip.includes(query)) && (!changedOnly || $(this).hasClass("is-changed"));
                 $(this).toggle(isMatch).toggleClass("wjp-search-match", isMatch);
                 if (isMatch) {
                     matchCount++;
@@ -2048,6 +2136,15 @@ $wpjp_config_js = '
             $("#wjp-settings-nav").on("click", "a", this.handleSidebarNav);
             $("#wjp-sticky-sub-nav-wrapper").on("click", "a.wjp-sub-nav-link", this.handleSubNavScroll);
             $("#wjp-search-box").on("input", this.handleSearch);
+            $("#wjp-filter-changed").on("change", this.handleSearch);
+            // Settings of add-ons this site does not have stay out of the way until asked for.
+            $("#wjp-filter-addons").on("change", function() { $("#wjp-config-dashboard").toggleClass("wjp-show-addons", this.checked); });
+            $("#wjp-filter-addons-wrap").toggle($(".is-pro-field, .is-pro-group").length > 0);
+            // A section link must not lead to a section that is hidden.
+            new MutationObserver(function() {
+                $("#wjp-sub-nav a").each(function() { $(this).toggleClass("is-pro-field", $($(this).attr("href")).is(".is-pro-group, .wjp-group-card.is-pro-field")); });
+            }).observe(document.getElementById("wjp-sub-nav"), { childList: true, subtree: true });
+            $("#wjp-sub-nav a").each(function() { $(this).toggleClass("is-pro-field", $($(this).attr("href")).is(".is-pro-group, .wjp-group-card.is-pro-field")); });
             $("#wjp-save-changes").on("click", this.handleSave);
             $("#wjp-discard-changes").on("click", this.handleDiscard);
             $("#wjp-mobile-menu-toggle").on("click", () => $("#wjp-sidebar").toggleClass("is-open"));

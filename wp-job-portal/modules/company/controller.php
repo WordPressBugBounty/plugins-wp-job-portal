@@ -23,11 +23,11 @@ class WPJOBPORTALCompanyController {
             $wpjobportal_config_array = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigForMultiple($wpjobportal_string);
             switch ($wpjobportal_layout) {
                 case 'admin_companies':
-                        WPJOBPORTALincluder::getJSModel('company')->getAllCompanies();
+                    WPJOBPORTALincluder::getJSModel('company')->getAdminCompanyList();
                     break;
                 case 'admin_companiesqueue':
-                    WPJOBPORTALincluder::getJSModel('company')->getAllUnapprovedCompanies();
-                    break;
+                    WPJOBPORTAL_Admin_List_UI::approval_queue('companies');
+                    return;
                 case 'mycompanies':
                     try {
                         if (WPJOBPORTALincluder::getObjectClass('user')->isemployer() && $wpjobportal_empflag == 1) {
@@ -331,7 +331,7 @@ class WPJOBPORTALCompanyController {
         $wpjobportal_result = WPJOBPORTALincluder::getJSModel('company')->approveQueueCompanyModel($wpjobportal_id);
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'company');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_company&wpjobportallt=companiesqueue"));
+        $wpjobportal_url = WPJOBPORTAL_Admin_List_UI::return_url("wpjobportal_company", "admin.php?page=wpjobportal_company&wpjobportallt=companiesqueue");
         wp_safe_redirect($wpjobportal_url);
         die();
     }
@@ -347,7 +347,7 @@ class WPJOBPORTALCompanyController {
         $wpjobportal_result = WPJOBPORTALincluder::getJSModel('company')->approveQueueFeaturedCompanyModel($wpjobportal_id);
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'company');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_company&wpjobportallt=companiesqueue"));
+        $wpjobportal_url = WPJOBPORTAL_Admin_List_UI::return_url("wpjobportal_company", "admin.php?page=wpjobportal_company&wpjobportallt=companiesqueue");
         wp_safe_redirect($wpjobportal_url);
         die();
     }
@@ -363,7 +363,7 @@ class WPJOBPORTALCompanyController {
         $wpjobportal_result = WPJOBPORTALincluder::getJSModel('company')->rejectQueueCompanyModel($wpjobportal_id);
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'company');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_company&wpjobportallt=companiesqueue"));
+        $wpjobportal_url = WPJOBPORTAL_Admin_List_UI::return_url("wpjobportal_company", "admin.php?page=wpjobportal_company&wpjobportallt=companiesqueue");
         wp_safe_redirect($wpjobportal_url);
         die();
     }
@@ -379,7 +379,7 @@ class WPJOBPORTALCompanyController {
         $wpjobportal_result = WPJOBPORTALincluder::getJSModel('company')->rejectQueueFeatureCompanyModel($wpjobportal_id);
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'company');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_company&wpjobportallt=companiesqueue"));
+        $wpjobportal_url = WPJOBPORTAL_Admin_List_UI::return_url("wpjobportal_company", "admin.php?page=wpjobportal_company&wpjobportallt=companiesqueue");
         wp_safe_redirect($wpjobportal_url);
         die();
     }
@@ -396,7 +396,7 @@ class WPJOBPORTALCompanyController {
         $wpjobportal_result = WPJOBPORTALincluder::getJSModel('company')->approveQueueAllCompaniesModel($wpjobportal_id, $wpjobportal_alltype);
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'company');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_company&wpjobportallt=companiesqueue"));
+        $wpjobportal_url = WPJOBPORTAL_Admin_List_UI::return_url("wpjobportal_company", "admin.php?page=wpjobportal_company&wpjobportallt=companiesqueue");
         wp_safe_redirect($wpjobportal_url);
         die();
     }
@@ -413,7 +413,7 @@ class WPJOBPORTALCompanyController {
         $wpjobportal_result = WPJOBPORTALincluder::getJSModel('company')->rejectQueueAllCompaniesModel($wpjobportal_id, $wpjobportal_alltype);
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'company');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_company&wpjobportallt=companiesqueue"));
+        $wpjobportal_url = WPJOBPORTAL_Admin_List_UI::return_url("wpjobportal_company", "admin.php?page=wpjobportal_company&wpjobportallt=companiesqueue");
         wp_safe_redirect($wpjobportal_url);
         die();
     }
@@ -447,6 +447,11 @@ class WPJOBPORTALCompanyController {
             $wpjobportal_msg = WPJOBPORTALMessages::getMessage(WPJOBPORTAL_SAVED, WPJOBPORTAL_COMPANY);
             WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
             $redirecturl = wpjobportal::wpjobportal_redirectUrl('company.success',isset(wpjobportal::$_data['id']) ? wpjobportal::$_data['id'] : '');
+            // W-3: an employer who came from Add Job goes back to it.
+            $wpjobportal_back = WPJOBPORTAL_Employer_Start::return_url_after_company($wpjobportal_isnew);
+            if ($wpjobportal_back !== '') {
+                $redirecturl = $wpjobportal_back;
+            }
 
         }catch(Exception $wpjobportal_ex){
             $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_ex->getMessage(), $wpjobportal_ex->getCode());
@@ -478,6 +483,54 @@ class WPJOBPORTALCompanyController {
             $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_company&wpjobportallt=companiesqueue"));
         }
         wp_safe_redirect($wpjobportal_url);
+        die();
+    }
+
+    /**
+     * Bulk actions from the Companies list: approve or reject waiting
+     * companies, delete (optionally with everything about them, today's
+     * Enforce Delete). Each runs the same model function as the single action.
+     */
+    function bulkcompanies() {
+        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_company_nonce') ) {
+             die( 'Security check Failed' );
+        }
+        if (!current_user_can('manage_options')) {
+            die( 'Not Allowed!' );
+        }
+        $wpjobportal_ids = array_values(array_filter(array_map('absint', (array) WPJOBPORTALrequest::getVar('wpjobportal-cb'))));
+        $wpjobportal_op = sanitize_key((string) WPJOBPORTALrequest::getVar('bulkop'));
+        $wpjobportal_model = WPJOBPORTALincluder::getJSModel('company');
+        switch ($wpjobportal_op) {
+            case 'approve':
+            case 'reject':
+                $wpjobportal_done = $wpjobportal_model->setWaitingCompaniesStatus($wpjobportal_ids, $wpjobportal_op === 'approve');
+                $wpjobportal_text = ($wpjobportal_op === 'approve')
+                    /* translators: 1: companies changed, 2: companies selected */
+                    ? __('%1$d of %2$d companies approved (only companies waiting for approval change).', 'wp-job-portal')
+                    /* translators: 1: companies changed, 2: companies selected */
+                    : __('%1$d of %2$d companies rejected (only companies waiting for approval change).', 'wp-job-portal');
+                WPJOBPORTALMessages::setLayoutMessage(sprintf($wpjobportal_text, $wpjobportal_done, count($wpjobportal_ids)), $wpjobportal_done ? 'updated' : 'error', $this->_msgkey);
+                break;
+            case 'delete':
+                if (WPJOBPORTALrequest::getVar('deleteall') === '1') {
+                    $wpjobportal_result = WPJOBPORTAL_DELETED;
+                    foreach ($wpjobportal_ids as $wpjobportal_id) {
+                        $wpjobportal_one = $wpjobportal_model->companyEnforceDeletes($wpjobportal_id);
+                        if ($wpjobportal_one != WPJOBPORTAL_DELETED) {
+                            $wpjobportal_result = $wpjobportal_one;
+                        }
+                    }
+                } else {
+                    $wpjobportal_result = $wpjobportal_model->deleteCompanies($wpjobportal_ids);
+                }
+                $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'company');
+                WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'], $this->_msgkey);
+                break;
+        }
+        WPJOBPORTAL_Admin_Menu_Service::flush_counts();
+        wp_safe_redirect(WPJOBPORTAL_Admin_List_UI::return_url("wpjobportal_company", "admin.php?page=wpjobportal_company"));
         die();
     }
 

@@ -15,31 +15,15 @@ $wpjobportal_cleanup_result = isset(wpjobportal::$_data['sample_cleanup_result']
     ? wpjobportal::$_data['sample_cleanup_result']
     : array();
 $wpjobportal_action_url = admin_url('admin.php?page=wpjobportal_postinstallation&action=wpjobportaltask');
+/*
+ * A site that already picked a mode gets an overview, not "Step 1 of 4": the
+ * checklist first, in the normal admin layout with the plugin menu, and the
+ * mode choice behind "Change mode" with what changing it does. The full-screen
+ * wizard is for a first install (or wizard=1).
+ */
+$wpjobportal_setup_done = WPJOBPORTAL_Product_Mode_Service::is_selected() && WPJOBPORTALrequest::getVar('wizard', 'get', '') !== '1';
 ?>
-<div id="wpjobportaladmin-wrapper" class="wpjobportal-post-installation-wrp">
-    <div class="wpjobportal-post-installation">
-        <div class="wpjobportal-post-menu">
-            <div class="wpjobportal-post-installation-logowrp">
-                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/quickstrt_logo.png" alt="<?php echo esc_attr__('WP Job Portal', 'wp-job-portal'); ?>" />
-            </div>
-            <?php $wpjobportal_setup_active = 'mode'; include __DIR__ . '/setup-steps.php'; ?>
-        </div>
-
-        <div class="wpjobportal-post-data">
-            <div class="wpjobportal-post-heading-wrp">
-                <div class="wpjobportal-post-heading">
-                    <?php echo esc_html__('Choose your WP Job Portal setup', 'wp-job-portal'); ?>
-                </div>
-                <div class="wpjobportal-post-head-rightbtns-wrp">
-                    <span id="wpjobportal-mode-step-count" class="wpjobportal-post-head-pagestep" data-marketplace="<?php echo esc_attr__('Step 1 of 4', 'wp-job-portal'); ?>" data-careers="<?php echo esc_attr__('Step 1 of 4', 'wp-job-portal'); ?>">
-                        <?php echo esc_html(__('Step 1 of 4', 'wp-job-portal')); ?>
-                    </span>
-                    <a class="wpjobportal-post-head-closebtn" href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr__('Close', 'wp-job-portal'); ?>">
-                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/close.png" alt="<?php echo esc_attr__('Close', 'wp-job-portal'); ?>" />
-                    </a>
-                </div>
-            </div>
-
+<?php ob_start(); ?>
             <form id="wpjobportal-form-ins" class="wpjobportal-form wpjobportal-mode-form" method="post" action="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_postinstallation&task=save&action=wpjobportaltask')); ?>">
                 <?php if (absint(WPJOBPORTALrequest::getVar('wpjobportal_setup_error')) === 1) { ?>
                     <div class="notice notice-error inline wpjobportal-mode-error" role="alert">
@@ -104,6 +88,25 @@ $wpjobportal_action_url = admin_url('admin.php?page=wpjobportal_postinstallation
                     <button type="submit" class="next-step wpjobportal-post-act-btn"><?php echo esc_html__('Continue setup', 'wp-job-portal'); ?></button>
                 </div>
 
+                <?php // W-18: exactly what each mode would change here, shown for the mode selected above.
+                foreach (array(WPJOBPORTAL_Product_Mode_Service::MODE_CAREERS, WPJOBPORTAL_Product_Mode_Service::MODE_MARKETPLACE) as $wpjobportal_preview_mode) :
+                    $wpjobportal_changes = WPJOBPORTAL_Product_Mode_Service::changes_for($wpjobportal_preview_mode); ?>
+                    <div class="wpjp-mode-preview" data-mode="<?php echo esc_attr($wpjobportal_preview_mode); ?>" style="display: none; margin: 16px 0;">
+                        <?php if (empty($wpjobportal_changes)) : ?>
+                            <p><?php echo esc_html__('This mode changes none of your settings.', 'wp-job-portal'); ?></p>
+                        <?php else : ?>
+                            <p><strong><?php echo esc_html__('This mode will change these settings:', 'wp-job-portal'); ?></strong></p>
+                            <ul style="list-style: disc; margin: 0 0 8px 20px;">
+                                <?php foreach ($wpjobportal_changes as $wpjobportal_change) : ?>
+                                    <li><?php echo esc_html($wpjobportal_change['label'] . ': ' . $wpjobportal_change['from'] . ' → ' . $wpjobportal_change['to']); ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endif; ?>
+                        <?php if (WPJOBPORTAL_Product_Mode_Service::has_saved_settings($wpjobportal_preview_mode)) : ?>
+                            <label><input type="checkbox" class="wpjp-mode-restore" name="restore_mode_settings" value="1" checked disabled> <?php echo esc_html__('Restore my previous settings for this mode', 'wp-job-portal'); ?></label>
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('enable_multiple_employers_mode', $wpjobportal_is_marketplace ? 1 : 0), WPJOBPORTAL_ALLOWED_TAGS); ?>
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('action', 'postinstallation_save'), WPJOBPORTAL_ALLOWED_TAGS); ?>
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('form_request', 'wpjobportal'), WPJOBPORTAL_ALLOWED_TAGS); ?>
@@ -111,7 +114,8 @@ $wpjobportal_action_url = admin_url('admin.php?page=wpjobportal_postinstallation
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('step', 1), WPJOBPORTAL_ALLOWED_TAGS); ?>
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('_wpnonce', wp_create_nonce('wpjobportal_postinstallation_nonce')), WPJOBPORTAL_ALLOWED_TAGS); ?>
             </form>
-
+<?php $wpjobportal_mode_form = ob_get_clean(); ?>
+<?php ob_start(); ?>
             <section class="wpjobportal-onboarding-card" aria-labelledby="wpjobportal-onboarding-title">
                 <?php if (!empty($wpjobportal_onboarding['dismissed'])) : ?>
                     <div class="wpjobportal-onboarding-dismissed">
@@ -132,7 +136,7 @@ $wpjobportal_action_url = admin_url('admin.php?page=wpjobportal_postinstallation
                             <p>
                                 <?php
                                 echo esc_html(sprintf(
-                                    /* translators: 1: onboarding completed, 2: onboarding total, 3: onboarding mode label */ __('%1$d of %2$d steps complete for %3$s. Progress is calculated from saved settings and content.', 'wp-job-portal'),
+                                    /* translators: 1: onboarding completed, 2: onboarding total, 3: onboarding mode label */ __('%1$d of %2$d steps complete for %3$s. It updates as you complete each step.', 'wp-job-portal'),
                                     absint($wpjobportal_onboarding['completed']),
                                     absint($wpjobportal_onboarding['total']),
                                     $wpjobportal_onboarding['mode_label']
@@ -296,9 +300,78 @@ $wpjobportal_action_url = admin_url('admin.php?page=wpjobportal_postinstallation
                     <p><?php echo esc_html__('No strongly marked sample records are available for automatic cleanup. Historical sample-like content is preserved for manual review because ownership cannot be proven.', 'wp-job-portal'); ?></p>
                 <?php endif; ?>
             </section>
+<?php $wpjobportal_setup_cards = ob_get_clean(); ?>
+<?php if ($wpjobportal_setup_done) :
+    $wpjobportal_steps_left = max(0, absint($wpjobportal_onboarding['total']) - absint($wpjobportal_onboarding['completed']));
+    $wpjobportal_mode_error = absint(WPJOBPORTALrequest::getVar('wpjobportal_setup_error')) === 1;
+    ?>
+<div id="wpjobportaladmin-wrapper" class="wjpl-page wpjp-setup-overview">
+    <div id="wpjobportaladmin-leftmenu">
+        <?php WPJOBPORTALincluder::getTemplate('templates/admin/leftmenue', array('wpjobportal_module' => 'postinstallation')); ?>
+    </div>
+    <div id="wpjobportaladmin-data">
+        <div class="wjpl">
+            <?php
+            WPJOBPORTAL_Admin_List_UI::page_head(
+                __('Site mode & setup', 'wp-job-portal'),
+                $wpjobportal_steps_left === 0
+                    /* translators: %s: site mode, e.g. Job Marketplace */
+                    ? sprintf(__('Your setup is complete. The site runs as %s.', 'wp-job-portal'), WPJOBPORTAL_Product_Mode_Service::get_label())
+                    /* translators: 1: steps left, 2: site mode */
+                    : sprintf(_n('%1$d setup step left. The site runs as %2$s.', '%1$d setup steps left. The site runs as %2$s.', $wpjobportal_steps_left, 'wp-job-portal'), $wpjobportal_steps_left, WPJOBPORTAL_Product_Mode_Service::get_label()),
+                array(__('How modes work', 'wp-job-portal') => admin_url('admin.php?page=wpjobportal_postinstallation&wpjobportallt=modeguide'))
+            );
+            ?>
+            <div class="wpjobportal-post-data wpjp-setup-overview-body">
+                <?php echo $wpjobportal_setup_cards; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped where it was built above ?>
+                <details class="wjpl-card wpjp-mode-change"<?php echo $wpjobportal_mode_error ? ' open' : ''; ?>>
+                    <summary>
+                        <span class="wpjp-mode-change-title"><?php echo esc_html__('Change mode', 'wp-job-portal'); ?></span>
+                        <span class="wpjp-mode-change-now"><?php /* translators: %s: site mode */ echo esc_html(sprintf(__('Now: %s', 'wp-job-portal'), WPJOBPORTAL_Product_Mode_Service::get_label())); ?></span>
+                    </summary>
+                    <div class="wpjp-mode-change-warning" role="note">
+                        <?php echo esc_html__('Changing mode applies the new mode\'s defaults to registration, approvals and the admin menu, so settings you changed by hand there may be reset. Jobs, companies, candidates and applications are kept. You then go through the setup steps again.', 'wp-job-portal'); ?>
+                    </div>
+                    <?php echo $wpjobportal_mode_form; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped where it was built above ?>
+                </details>
+            </div>
         </div>
     </div>
 </div>
+<?php else : ?>
+<div id="wpjobportaladmin-wrapper" class="wpjobportal-post-installation-wrp">
+    <div class="wpjobportal-post-installation">
+        <div class="wpjobportal-post-menu">
+            <div class="wpjobportal-post-installation-logowrp">
+                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/quickstrt_logo.png" alt="<?php echo esc_attr__('WP Job Portal', 'wp-job-portal'); ?>" />
+            </div>
+            <?php $wpjobportal_setup_active = 'mode'; include __DIR__ . '/setup-steps.php'; ?>
+        </div>
+
+        <div class="wpjobportal-post-data">
+            <div class="wpjobportal-post-heading-wrp">
+                <h1 class="wpjobportal-post-heading">
+                    <?php echo esc_html__('Choose your WP Job Portal setup', 'wp-job-portal'); ?>
+                </h1>
+                <div class="wpjobportal-post-head-rightbtns-wrp">
+                    <span id="wpjobportal-mode-step-count" class="wpjobportal-post-head-pagestep" data-marketplace="<?php echo esc_attr__('Step 1 of 4', 'wp-job-portal'); ?>" data-careers="<?php echo esc_attr__('Step 1 of 4', 'wp-job-portal'); ?>">
+                        <?php echo esc_html(__('Step 1 of 4', 'wp-job-portal')); ?>
+                    </span>
+                    <a class="wpjobportal-post-head-closebtn" href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr__('Close', 'wp-job-portal'); ?>">
+                        <?php echo esc_html__('Exit setup', 'wp-job-portal'); ?>
+                    </a>
+                </div>
+            </div>
+
+<?php echo $wpjobportal_mode_form; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped where it was built above ?>
+<?php
+// The checklist and sample-data cards belong to the overview after setup. Here,
+// before a mode is saved, their buttons only led away from the first step.
+?>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
 
 <?php
 wp_register_script( 'wpjobportal-mode-setup', '', array('jquery'), WPJOBPORTAL_VERSION, true );
@@ -312,6 +385,8 @@ wp_add_inline_script(
             selected.closest('.wpjobportal-post-employer-mode-single').addClass('wpj-is-selected');
             $('#enable_multiple_employers_mode').val(selected.val() === 'marketplace' ? '1' : '0');
             $('.second-part').toggleClass('wpjobportal-mode-step-optional', selected.val() !== 'marketplace');
+            $('.wpjp-mode-preview').hide().find('.wpjp-mode-restore').prop('disabled', true);
+            $('.wpjp-mode-preview[data-mode=\"' + selected.val() + '\"]').show().find('.wpjp-mode-restore').prop('disabled', false);
             var stepCount = $('#wpjobportal-mode-step-count');
             stepCount.text(selected.val() === 'marketplace' ? stepCount.data('marketplace') : stepCount.data('careers'));
         };

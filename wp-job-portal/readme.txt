@@ -3,7 +3,7 @@ Contributors: wpjobportal
 Tags: job board, careers, recruitment, job listing, jobs
 Requires at least: 6.2
 Tested up to: 7.1
-Stable tag: 2.7.2
+Stable tag: 2.8.0
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -76,7 +76,11 @@ WP Job Portal is available in Arabic, Chinese (China), Czech, Dutch, French, Ger
 
 WP Job Portal runs on your own server. It connects to the services below only in the cases described.
 
-**WP Job Portal translations** (wpjobportal.com): when the site language is not English, the plugin downloads that language's translation files and checks daily for updates. It sends nothing but the request for the files. To turn this off, add `define( 'WPJOBPORTAL_TRANSLATIONS_AUTO', false );` to wp-config.php. [Terms](https://wpjobportal.com/terms/), [Privacy policy](https://wpjobportal.com/privacy-policy/).
+**WP Job Portal translations** (d2cx1dgksy1tik.cloudfront.net, WP Job Portal's download server): when the site language is not English, the plugin downloads that language's translation files and checks daily for updates. It sends nothing but the request for the files. To turn this off, add `define( 'WPJOBPORTAL_TRANSLATIONS_AUTO', false );` to wp-config.php. [Terms](https://wpjobportal.com/terms/), [Privacy policy](https://wpjobportal.com/privacy-policy/).
+
+**Translations screen** (www.joomsky.com, the developer's translation service): only when an administrator opens the plugin's Translations screen to list or download a language. It sends the site address, the plugin and WordPress versions, and the language chosen. Before that, the screen checks the internet connection by requesting www.google.com. [Terms](https://wpjobportal.com/terms/), [Privacy policy](https://wpjobportal.com/privacy-policy/).
+
+**Theme demo import** (wpjobportal.com): only with the WP Job Portal theme, when an administrator imports one of its demos. It requests the demo's content and sends nothing else. [Terms](https://wpjobportal.com/terms/), [Privacy policy](https://wpjobportal.com/privacy-policy/).
 
 **WP Job Portal licences and updates** (wpjobportal.com): only when you enter a licence key or have a premium product installed. It sends the licence key, your site address and the installed product versions, to activate the licence and offer updates. [Terms](https://wpjobportal.com/terms/), [Privacy policy](https://wpjobportal.com/privacy-policy/).
 
@@ -152,6 +156,12 @@ Job seeker example:
 
 Read the [documentation](https://docs.wpjobportal.com/), ask in the support forum here on WordPress.org, or contact us through [wpjobportal.com/support](https://wpjobportal.com/support/).
 
+= My site runs on nginx. How do I keep uploaded CVs private? =
+
+CVs and custom-field uploads are stored under random names and handed out only through the plugin's permission-checked download. On Apache and IIS the plugin also blocks direct requests to those folders, but nginx ignores the .htaccess and web.config files that do this. Add this to your site's server block (change wpjobportaldata if you set another data directory):
+
+`location ~* /wp-content/uploads/wpjobportaldata/data/.*/(resume|custom_uploads)/ { deny all; }`
+
 = How can I report a security issue? =
 
 Through the Patchstack Vulnerability Disclosure Program, whose team validates and handles reports. [Report a security vulnerability](https://patchstack.com/database/vdp/wp-job-portal).
@@ -180,6 +190,23 @@ Through the Patchstack Vulnerability Disclosure Program, whose team validates an
 20. Configurations
 
 == Changelog ==
+
+= 2.8.0 =
+Major update: redesigned admin, clearer hiring flow and security fixes. Take a backup before updating.
+
+* Security: uploaded resumes and files are stored privately and served only through permission-checked downloads.
+* Security: stricter permission checks across jobs, resumes, applications, messages and payments. All sites should update.
+* Includes the 2.7.1 and 2.7.2 security fixes.
+* New: redesigned admin with one menu, an Approvals page, search and a dashboard of what needs doing.
+* New: hiring status separate from approval; candidates can withdraw; employers can close a job early.
+* New: saved searches can email new jobs; clean job/company/resume addresses and job structured data.
+* New: email failure warning, test email button and one-click unsubscribe.
+* Changed: a job needs a city or remote workplace; maps use your own Google Maps key.
+* Changed: deleting the plugin keeps your data unless you choose otherwise.
+* Improved: faster pages, plainer wording, better keyboard and screen-reader support.
+* Fixed: many smaller issues (job saving, settings, email attachments, page titles).
+* Fixed: OpenStreetMap maps without a Google key; visitors' resumes stay private; "3 days ago" in every language.
+* Fixed: Licences, Reports, Candidates and Companies menu items are back; login on WordPress.com and Jetpack sites.
 
 = 2.7.2 =
 Security.
@@ -243,6 +270,9 @@ Major update: the separate add-ons become four premium products, and twelve of t
 Earlier versions are listed in changelog.txt in the plugin folder.
 
 == Upgrade Notice ==
+
+= 2.8.0 =
+Security and major update: uploaded resume files can no longer be downloaded directly from the uploads folder, and the admin is redesigned. Back up your site before updating. All sites should update.
 
 = 2.7.2 =
 Security update: adds a missing permission check so one user cannot read another's profile data. All sites should update.

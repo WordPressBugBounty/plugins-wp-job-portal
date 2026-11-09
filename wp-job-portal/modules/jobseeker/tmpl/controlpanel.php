@@ -152,15 +152,15 @@ if (!defined('ABSPATH'))
                                             </div>
                                         </div>
                                         <?php
-                                        if(in_array('shortlist', wpjobportal::$_active_addons)){ ?>
+                                        if(in_array('shortlist', wpjobportal::$_active_addons) && wpjobportal::$_config->getConfigurationByConfigName('allow_jobshortlist') == 1){ ?>
                                             <div class="wjportal-cp-box box4">
                                                 <div class="wjportal-cp-box-top">
-                                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/jobseeker/cp-shortlisted-jobs.png" alt="<?php echo esc_attr(__("shortlisted jobs","wp-job-portal")); ?>">
+                                                    <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/jobseeker/cp-shortlisted-jobs.png" alt="<?php echo esc_attr(__("saved jobs","wp-job-portal")); ?>">
                                                     <div class="wjportal-cp-box-num">
                                                         <?php echo isset(wpjobportal::$_data['totalshorlistjob']) ? esc_html(wpjobportal::$_data['totalshorlistjob']) : 0 ; ?>
                                                     </div>
                                                     <div class="wjportal-cp-box-tit">
-                                                        <?php echo esc_html(__('Shortlisted Jobs','wp-job-portal')); ?>
+                                                        <?php echo esc_html(__('Saved Jobs','wp-job-portal')); ?>
                                                     </div>
                                                 </div>
                                                     <div class="wjportal-cp-box-btm clearfix">
@@ -194,6 +194,11 @@ if (!defined('ABSPATH'))
                             </div>
                             <div class="wjportal-cp-guest-banner-middle-bottom" >
                                 <?php echo esc_html(__('Please log in or register to continue.', 'wp-job-portal')); ?>
+                                <?php // W-11: what a visitor came for, without an account ?>
+                                <a href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'jobs'))); ?>"><?php echo esc_html(__('Find jobs', 'wp-job-portal')); ?></a>
+                                <?php if ((int) wpjobportal::$_config->getConfigValue('visitor_can_post_job') === 1) { ?>
+                                    &middot; <a href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'addjob'))); ?>"><?php echo esc_html(__('Post a job', 'wp-job-portal')); ?></a>
+                                <?php } ?>
                             </div>
                         </div>
                         <div class="wjportal-cp-guest-banner-right" >
@@ -263,8 +268,12 @@ if (!defined('ABSPATH'))
                                         </div>
                                         <?php
                                     } else {
-                                        $wpjobportal_msg = esc_html(__('No Records Found','wp-job-portal'));
-                                        WPJOBPORTALlayout::getNoRecordFound($wpjobportal_msg, '');
+                                        // W-4: only unfinished resumes are listed; say which empty this is
+                                        if (!empty(wpjobportal::$_data['jobseeker_data']['has_resume'])) {
+                                            echo wp_kses(WPJOBPORTALlayout::emptyState(array('title' => __('Your resume is complete','wp-job-portal'), 'description' => __('Nothing is missing. Employers see everything you have filled in.','wp-job-portal'))), WPJOBPORTAL_ALLOWED_TAGS);
+                                        } else {
+                                            echo wp_kses(WPJOBPORTALlayout::emptyState(array('title' => __('You have no resume yet','wp-job-portal'), 'description' => __('Add one to start applying for jobs.','wp-job-portal'), 'actions' => array(array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'addresume')), 'text' => __('Add Resume','wp-job-portal'))))), WPJOBPORTAL_ALLOWED_TAGS);
+                                        }
                                     }?>
                                     <div class="wjportal-cp-view-all-wrp">
                                         <?php

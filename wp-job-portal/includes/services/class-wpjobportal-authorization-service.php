@@ -146,18 +146,38 @@ class WPJOBPORTAL_Authorization_Service {
      * @param bool  $record_denial  Whether to retain a privacy-safe denial.
      * @return bool
      */
+    private static $resume_rows = array();
+
+    private static function resume_row($resume_id) {
+        static $listening = false;
+        if (!$listening) {
+            $listening = true;
+            add_filter('query', function ($query) {
+                if (self::$resume_rows && preg_match('/^\s*(UPDATE|DELETE|REPLACE|INSERT)\b[^;]*wj_portal_resume(?![a-z0-9_])/i', (string) $query)) {
+                    self::$resume_rows = array();
+                }
+                return $query;
+            });
+        }
+        if (!array_key_exists($resume_id, self::$resume_rows)) {
+            self::$resume_rows[$resume_id] = wpjobportaldb::get_row(wpjobportal::$_db->prepare(
+                "SELECT id, uid, status, searchable
+                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume`
+                 WHERE id = %d",
+                $resume_id
+            ));
+        }
+        return self::$resume_rows[$resume_id];
+    }
+
     public static function can_access_resume($resume_id, $record_denial = true) {
         if (!is_numeric($resume_id) || absint($resume_id) < 1) {
             return self::deny('resume', 'invalid_object', $record_denial);
         }
 
-        $query = wpjobportal::$_db->prepare(
-            "SELECT id, uid, status, searchable
-             FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume`
-             WHERE id = %d",
-            absint($resume_id)
-        );
-        $resume = wpjobportaldb::get_row($query);
+        // P-7: an applicant card asks this several times for the same resume; read the row once per
+        // request, and again after anything writes to the resume table
+        $resume = self::resume_row(absint($resume_id));
         if (!$resume) {
             return self::deny('resume', 'object_not_found', $record_denial);
         }
@@ -179,7 +199,10 @@ class WPJOBPORTAL_Authorization_Service {
             return true;
         }
 
-        $is_public_resume = (int) $resume->status === 1 && (int) $resume->searchable === 1;
+        // Audit 40: a resume a visitor made while applying (no owner) is never a
+        // published resume, even when its Searchable box was left ticked; the admin,
+        // the visitor and the employers whose job received it are let in above and below.
+        $is_public_resume = (int) $resume->status === 1 && (int) $resume->searchable === 1 && absint($resume->uid) > 0;
         $contact_policy = absint(
             wpjobportal::$_config->getConfigValue('resume_contact_detail')
         );
@@ -191,6 +214,14 @@ class WPJOBPORTAL_Authorization_Service {
         $user = WPJOBPORTALincluder::getObjectClass('user');
         $is_employer = is_object($user) && $user->isemployer();
         if ($contact_policy === 2 && $is_employer && $is_public_resume) {
+            return true;
+        }
+
+        // B3: "Paid access only" with nothing to pay (no credits add-on, Free
+        // mode, a per-listing price of 0, or no package for the user's role)
+        // shows the contact details on the resume page, so the PDF and print
+        // copies follow the same rule instead of refusing.
+        if ($contact_policy === 3 && $is_public_resume && self::resume_contact_is_free($internal_user_id)) {
             return true;
         }
 
@@ -244,6 +275,36 @@ class WPJOBPORTAL_Authorization_Service {
     /**
      * @return int
      */
+    /**
+     * Whether "Paid access only" has nothing to charge for resume contact
+     * details. Same cases as the resume page (resume model getResumeById).
+     *
+     * @param int $internal_user_id
+     * @return bool
+     */
+    private static function resume_contact_is_free($internal_user_id) {
+        if (!in_array('credits', wpjobportal::$_active_addons)) {
+            return true;
+        }
+        $submission_type = (int) wpjobportal::$_config->getConfigValue('submission_type');
+        if ($submission_type === 1) {
+            return true;
+        }
+        if ($submission_type === 2) {
+            return (float) wpjobportal::$_config->getConfigValue('job_viewresumecontact_price_perlisting') <= 0;
+        }
+        if ($submission_type === 3) {
+            if ($internal_user_id < 1) {
+                return false;
+            }
+            $credits = WPJOBPORTALincluder::getJSModel('credits');
+            return is_object($credits) && method_exists($credits, 'checkIfPackageDefinedForUserRole')
+                && (int) $credits->checkIfPackageDefinedForUserRole($internal_user_id) === 0;
+        }
+
+        return false;
+    }
+
     private static function current_internal_user_id() {
         $user = WPJOBPORTALincluder::getObjectClass('user');
         if (!is_object($user)) {
@@ -308,8 +369,8 @@ class WPJOBPORTAL_Authorization_Service {
                 "SELECT uid, status, params,
                     CASE
                         WHEN status = 1
-                         AND DATE(startpublishing) <= %s
-                         AND DATE(stoppublishing) >= %s
+                         AND startpublishing < DATE_ADD(%s, INTERVAL 1 DAY)
+                         AND stoppublishing >= %s
                         THEN 1 ELSE 0
                     END AS is_public
                  FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs`

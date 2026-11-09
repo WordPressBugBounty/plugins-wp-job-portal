@@ -14,14 +14,38 @@ class WPJOBPORTALCommonModel {
         return $wpjobportal_string;
     }
 
-    function stringToAlias($wpjobportal_string){
+    /*
+     * D-9: a URL slug that works with every permalink setting.
+     *
+     * Non-Latin letters kept as percent-encoded UTF-8 (sanitize_title's way) 404
+     * on sites whose permalinks start with index.php/: WordPress does not match
+     * those rules once the decoded path holds non-ASCII (tested on this site).
+     * So: transliterate to Latin when PHP's intl extension is there (测试 ->
+     * "ce-shi"); accented Latin letters become plain ones (remove_accents, inside
+     * sanitize_title); anything still not ASCII is left out. Repeated, leading and
+     * trailing hyphens are trimmed (job #7's slug ended in "-", its URL in "--7").
+     * Nothing Latin left gives $fallback. The id after the last hyphen is what
+     * finds a record, so a changed slug never breaks an old link.
+     */
+    function stringToAlias($wpjobportal_string, $fallback = ''){
+        $wpjobportal_string = wp_strip_all_tags((string) $wpjobportal_string);
+        if (class_exists('Transliterator')) {
+            $wpjobportal_tr = Transliterator::create('Any-Latin; Latin-ASCII');
+            if ($wpjobportal_tr) {
+                $wpjobportal_out = $wpjobportal_tr->transliterate($wpjobportal_string);
+                if (is_string($wpjobportal_out)) {
+                    $wpjobportal_string = $wpjobportal_out;
+                }
+            }
+        }
         $wpjobportal_string = $this->removeSpecialCharacter($wpjobportal_string);
-        $wpjobportal_string = wpjobportalphplib::wpJP_strtolower(wpjobportalphplib::wpJP_str_replace(' ', '-', $wpjobportal_string));
-        $wpjobportal_string = wpjobportalphplib::wpJP_strtolower(wpjobportalphplib::wpJP_str_replace('_', '-', $wpjobportal_string));
-        return $wpjobportal_string;
+        $wpjobportal_string = preg_replace('/%[0-9a-f]{2}/i', '', $wpjobportal_string);
+        $wpjobportal_string = wpjobportalphplib::wpJP_strtolower(wpjobportalphplib::wpJP_str_replace(array(' ', '_'), '-', $wpjobportal_string));
+        $wpjobportal_string = trim(preg_replace('/-{2,}/', '-', $wpjobportal_string), '-');
+        return ($wpjobportal_string === '' && $fallback !== '') ? $fallback : $wpjobportal_string;
     }
 
-     function getTimeForView($time,$unit){
+    function getTimeForView($time,$unit){
         // made the change to translate unit value(day,days,week,weeks etc)
         if($time > 1){
             $unit .= 's';
@@ -31,20 +55,8 @@ class WPJOBPORTALCommonModel {
     }
 
     function getGoogleMapApiAddress() {
-
-        // The address pattern used to be fetched over HTTP from a file in the plugin; it is the same fixed text.
-        $file_key_string = '{PROTOCOL}maps.googleapis.com/maps/api/js?key={KEY}';
-
-        $wpjobportal_key =wpjobportal::$_configuration['google_map_api_key'];
-        $wpjobportal_protocol = is_ssl() ? "https://" : "http://";
-        $wpjobportal_matcharray = array(
-            '{PROTOCOL}' => $wpjobportal_protocol,
-            '{KEY}' => $wpjobportal_key,
-        );
-        foreach ($wpjobportal_matcharray AS $find => $replace) {
-            $file_key_string = wpjobportalphplib::wpJP_str_replace($find, $replace, $file_key_string);
-        }
-        return $file_key_string;
+        // D-10: the site's own key only (https); '' when there is none, so nothing loads.
+        return WPJOBPORTAL_Google_Maps::script_url();
     }
 
     function getFancyPrice($wpjobportal_price,$currentyid=0,$wpjobportal_override_config=array()){
@@ -53,7 +65,8 @@ class WPJOBPORTALCommonModel {
         $short_price = isset($wpjobportal_override_config['short_price']) ? $wpjobportal_override_config['short_price'] : wpjobportal::$_configuration['short_price'];
         if(isset($wpjobportal_override_config['decimal_places'])){
             if($wpjobportal_override_config['decimal_places'] === 'fit_to_currency' && $currentyid){
-                $wpjobportal_decimal_places = '';//wpjobportalphplib::wpJP_strlen(WPJOBPORTALincluder::getJSModel('currency')->getCurrencySmallestUnit($currentyid))-1;
+                // Was '' (a fatal TypeError in number_format() on PHP 8 when short prices are off): use the site's setting.
+                $wpjobportal_decimal_places = (int) wpjobportal::$_configuration['decimal_places'];
             }else{
                 $wpjobportal_decimal_places = $wpjobportal_override_config['decimal_places'];
             }
@@ -69,7 +82,7 @@ class WPJOBPORTALCommonModel {
         if( $short_price ){
             $wpjobportal_text .= $this->getShortFormatPrice($wpjobportal_price);
         }else{
-            $wpjobportal_text .= wpjobportalphplib::wpJP_number_format($wpjobportal_price,$wpjobportal_decimal_places,'.',$thousand_separator);
+            $wpjobportal_text .= wpjobportalphplib::wpJP_number_format((float) $wpjobportal_price,(int) $wpjobportal_decimal_places,'.',$thousand_separator);
         }
 
         if($currency_align == 2 && $currentyid ){ //right
@@ -399,51 +412,76 @@ class WPJOBPORTALCommonModel {
         if(!is_numeric($wpjobportal_resumeid)){
             return '';
         }
-        $wpjobportal_resume_id = $wpjobportal_resumeid;
         $query ="SELECT resume.employer_from_date AS fromdate,resume.employer_to_date AS todate,resume.employer_current_status
                 AS status FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeemployers` AS resume
-                WHERE resumeid='".esc_sql($wpjobportal_resume_id)."' ORDER BY ID ASC
+                WHERE resumeid='".esc_sql($wpjobportal_resumeid)."' ORDER BY ID ASC
                 ";
-        wpjobportal::$_data[3] = wpjobportaldb::get_results($query);
-        $wpjobportal_daystodate = wpjobportal::$_data[3];
-        $wpjobportal_totalYear = 0;
-        $wpjobportal_totalmonth = 0;
-        $wpjobportal_totaldays = 0;
-        $wpjobportal_html = '';
-        for ($wpjobportal_i=0; $wpjobportal_i < count(wpjobportal::$_data[3]) ; $wpjobportal_i++) {
-            $wpjobportal_status = $wpjobportal_daystodate[$wpjobportal_i]->status;
-            $from = $wpjobportal_daystodate[$wpjobportal_i]->fromdate;
-            $wpjobportal_to   = $wpjobportal_daystodate[$wpjobportal_i]->todate;
-            $wpjobportal_diff = abs(strtotime($wpjobportal_to) - strtotime($from));
-            $years = floor($wpjobportal_diff / (365*60*60*24));
-            $wpjobportal_months = floor(($wpjobportal_diff - $years * 365*60*60*24) / (30*60*60*24));
-            $wpjobportal_days = floor(($wpjobportal_diff - $years * 365*60*60*24 - $wpjobportal_months*30*60*60*24)/ (60*60*24));
-            $wpjobportal_totalYear += $years;
-            $wpjobportal_totalmonth += $wpjobportal_months;
-            $wpjobportal_totaldays += $wpjobportal_days;
+        // P-7: each applicant card asked for this twice; the rows are read once per resume per
+        // request (and again after a write to the table), and still left in $_data[3] as before
+        static $wpjobportal_exp_rows = array();
+        static $wpjobportal_exp_listening = false;
+        if (!$wpjobportal_exp_listening) {
+            $wpjobportal_exp_listening = true;
+            add_filter('query', function ($q) use (&$wpjobportal_exp_rows) {
+                if ($wpjobportal_exp_rows && preg_match('/^\s*(UPDATE|DELETE|REPLACE|INSERT)\b[^;]*wj_portal_resumeemployers(?![a-z0-9_])/i', (string) $q)) {
+                    $wpjobportal_exp_rows = array();
+                }
+                return $q;
+            });
         }
-
-        if(!empty($wpjobportal_daystodate)){
-
-            if($wpjobportal_totalYear > 0){
-                $wpjobportal_html.= $wpjobportal_totalYear;
-
-            }
-            if($wpjobportal_totalYear > 0 && $wpjobportal_totalmonth > 5){
-                $wpjobportal_html.= '.5+'.' '.'Years';
-            }else if($wpjobportal_totalYear>0 && $wpjobportal_totalmonth<=5) {
-                $wpjobportal_html.= ' '.'+'.'Years';
-            }else if ($wpjobportal_totalYear<=0 && $wpjobportal_totalmonth<5) {
-                $wpjobportal_html.='Less than 1 year';
-            }
-            else{
-                $wpjobportal_html.='Less than 1 year';
-            }
+        if (!array_key_exists($wpjobportal_resumeid, $wpjobportal_exp_rows)) {
+            $wpjobportal_exp_rows[$wpjobportal_resumeid] = wpjobportaldb::get_results($query);
         }
-        else{
-            $wpjobportal_html.="Fresh";
+        wpjobportal::$_data[3] = $wpjobportal_exp_rows[$wpjobportal_resumeid];
+        if (empty(wpjobportal::$_data[3])) {
+            return __('Fresh', 'wp-job-portal');
         }
-        return $wpjobportal_html;
+        /*
+         * D-2: a job marked "I currently work there" counts up to today (the form
+         * stores the save day as its end date, which froze the total), and so does
+         * one with no end date (counted from 1970 before: "53.5+ Years"). A job with
+         * no readable start date is left out. Whole months via DateTime::diff.
+         */
+        $wpjobportal_today = new DateTime(current_time('Y-m-d'));
+        $wpjobportal_months = 0;
+        foreach (wpjobportal::$_data[3] as $wpjobportal_job) {
+            $from = $this->parseExperienceDate($wpjobportal_job->fromdate);
+            if (!$from) {
+                continue;
+            }
+            $to = ((int) $wpjobportal_job->status === 1) ? null : $this->parseExperienceDate($wpjobportal_job->todate);
+            if (!$to || $to > $wpjobportal_today) {
+                $to = $wpjobportal_today;
+            }
+            if ($to < $from) {
+                continue;
+            }
+            $wpjobportal_diff = $from->diff($to);
+            $wpjobportal_months += $wpjobportal_diff->y * 12 + $wpjobportal_diff->m;
+        }
+        $wpjobportal_years = intdiv($wpjobportal_months, 12);
+        if ($wpjobportal_years < 1) {
+            return __('Less than 1 year', 'wp-job-portal');
+        }
+        if ($wpjobportal_months % 12 >= 6) {
+            /* translators: %s: whole years of experience, shown as "3.5+ years" */
+            return sprintf(__('%s.5+ years', 'wp-job-portal'), number_format_i18n($wpjobportal_years));
+        }
+        /* translators: %s: whole years of experience */
+        return sprintf(_n('%s+ year', '%s+ years', $wpjobportal_years, 'wp-job-portal'), number_format_i18n($wpjobportal_years));
+    }
+
+    /** A resume employment date (stored as text, normally Y-m-d), or null. */
+    private function parseExperienceDate($value) {
+        $value = trim((string) $value);
+        if ($value === '' || strpos($value, '0000-00-00') === 0) {
+            return null;
+        }
+        $time = strtotime($value);
+        if (!$time || $time < 0) {
+            return null;
+        }
+        return new DateTime(gmdate('Y-m-d', $time));
     }
 
     /**
@@ -932,23 +970,47 @@ class WPJOBPORTALCommonModel {
         for ($wpjobportal_i = 0; $wpjobportal_i < count($wpjobportal_temparray); $wpjobportal_i++) {
             $wpjobportal_array[] = array('id' => $wpjobportal_temparray[$wpjobportal_i], 'name' => $wpjobportal_temparray[$wpjobportal_i]);
         }
-        return wp_json_encode($wpjobportal_array);
+        // Security: this JSON is printed into an inline <script> as the argument
+        // to getTokenInputTags(). The hex flags stop a tag value from closing the
+        // script element or breaking out of the JS string context.
+        return wp_json_encode($wpjobportal_array, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
     }
 
     function saveNewInWPJOBPORTAL($wpjobportal_data) {
         if (empty($wpjobportal_data))
             return false;
 
+        // Security (role-selection takeover): this action only ever creates a
+        // NEW portal row for the signed-in person. The role-selection form has a
+        // hidden id that is empty for a new account, but the table binds any id
+        // supplied and then UPDATEs that row, so a roleless user could post
+        // another person's portal id and have its uid rebound to their own,
+        // taking over that resume/company. Drop any client-supplied id so the
+        // save can only ever INSERT, never retarget an existing row.
+        unset($wpjobportal_data['id']);
+
         $wpjobportal_empflag  = wpjobportal::$_config->getConfigurationByConfigName('disable_employer');
         $wpjobportal_allow_reg_as_emp  = wpjobportal::$_config->getConfigurationByConfigName('showemployerlink');
         if($wpjobportal_empflag == 0 || $wpjobportal_allow_reg_as_emp == 0){
             $wpjobportal_data['roleid'] = 2;
         }
+        // Security: the role comes from the form, so accept only the two roles
+        // this form offers (1 employer, 2 job seeker); anything else becomes a
+        // job seeker rather than some other internal role value.
+        if (!isset($wpjobportal_data['roleid']) || !in_array((int) $wpjobportal_data['roleid'], array(1, 2), true)) {
+            $wpjobportal_data['roleid'] = 2;
+        }
+        $wpjobportal_data['roleid'] = (int) $wpjobportal_data['roleid'];
         // if($wpjobportal_allow_reg_as_emp != 1){
         //     $wpjobportal_data['roleid'] = 2;
         // }
 
-        if(isset($wpjobportal_data['socialmedia']) && !empty($wpjobportal_data['socialid'])){
+        // Security: a posted socialid/socialmedia used to create a row with no
+        // WordPress owner bound to any social id the browser chose. Social Login
+        // is discontinued; only a trusted social identity may take this branch,
+        // and there is none (WPJOBPORTALuser::trustedSocialId()).
+        WPJOBPORTALincluder::getClassesInclude('user'); // not loaded yet on some requests (admin tasks such as Make default): calling it unloaded was a fatal error
+        if(WPJOBPORTALuser::trustedSocialId() !== ''){
             $wpjobportal_data['uid'] = "";
             $wpjobportal_data['socialmedia'] = $wpjobportal_data['socialmedia'];
         } else {
@@ -959,8 +1021,23 @@ class WPJOBPORTALCommonModel {
             $wpjobportal_data['last_name'] = $currentuser->last_name;
             $wpjobportal_data['emailaddress'] = $currentuser->user_email;
             $wpjobportal_data['uid'] = $currentuser->ID;
+
+            // Defence in depth: a WordPress user who already has a portal row has
+            // already chosen a role. Do not create a second row for them from
+            // this form; return their existing identity unchanged.
+            if (is_numeric($wpjobportal_data['uid'])) {
+                $wpjobportal_existing = wpjobportal::$_db->get_var(
+                    wpjobportal::$_db->prepare(
+                        "SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE uid = %d LIMIT 1",
+                        (int) $wpjobportal_data['uid']
+                    )
+                );
+                if (is_numeric($wpjobportal_existing) && $wpjobportal_existing > 0) {
+                    return WPJOBPORTAL_SAVED;
+                }
+            }
         }
-     
+
         $wpjobportal_row = WPJOBPORTALincluder::getJSTable('users');
         $wpjobportal_data['status'] = 1; // all user autoapprove when registered as WP Job Portal users
         $wpjobportal_data['created'] = gmdate('Y-m-d H:i:s');
@@ -1675,6 +1752,22 @@ class WPJOBPORTALCommonModel {
         // sanitized arguments are not populated at that point — checked, rather
         // than assumed, after the routed value arrived empty here every time.
         $wpjobportal_slug = self::requestedSlug();
+        // The add forms also edit: /add-resume/1/ ends in the record's id, so
+        // neither the slug nor the layout tells the two apart.
+        $wpjobportal_edit_titles = array(
+            'addresume' => __('Edit Resume', 'wp-job-portal'),
+            'addjob' => __('Edit Job', 'wp-job-portal'),
+            'addcompany' => __('Edit Company', 'wp-job-portal'),
+        );
+        if (isset($wpjobportal_edit_titles[$wpjobportal_layout])) {
+            $wpjobportal_id = WPJOBPORTALrequest::getVar('wpjobportalid');
+            if ($wpjobportal_id == '' && ctype_digit($wpjobportal_slug)) {
+                $wpjobportal_id = $wpjobportal_slug;
+            }
+            if (is_numeric($wpjobportal_id) && $wpjobportal_id > 0) {
+                return $wpjobportal_edit_titles[$wpjobportal_layout] . ' | ' . get_bloginfo('name', 'display');
+            }
+        }
         if ($wpjobportal_slug !== '') {
             $wpjobportal_by_slug = $this->getPageTitleBySlug($wpjobportal_slug);
             if ($wpjobportal_by_slug !== '') {

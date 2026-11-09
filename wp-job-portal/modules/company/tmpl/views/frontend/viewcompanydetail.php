@@ -44,8 +44,10 @@ if (!defined('ABSPATH'))
     </div>
     <div class="wjportal-companyinfo-right-wrap" >
         <div class="wjportal-companyinfo-social-links-wrapper" >
-            <div class="wjportal-job-btn-wrp">
-                <?php
+            <?php
+            // Tester report: the button box printed empty (a white box) whenever there was
+            // nothing to put in it; it is now printed only when it has content.
+            ob_start();
                 if(in_array('credits', wpjobportal::$_active_addons)){
                     if(wpjobportal::$_config->getConfigValue('submission_type') == 2){
                         $wpjobportal_paymentconfig = wpjobportal::$_data['paymentconfig'];
@@ -62,9 +64,10 @@ if (!defined('ABSPATH'))
                     }
                 }
                 do_action('wpjobportal_addons_company_contact_detail',wpjobportal::$_data[0],wpjobportal::$_data['companycontactdetail']);
-                ?>
-            </div>
-            <?php
+            $wpjobportal_btn_html = trim(ob_get_clean());
+            if ($wpjobportal_btn_html !== '') {
+                echo '<div class="wjportal-job-btn-wrp">' . $wpjobportal_btn_html . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- already-escaped markup from the hooks above.
+            }
             if (wpjobportal::$_data['companycontactdetail'] == true){
                 foreach (wpjobportal::$_data[2] AS $wpjobportal_key => $wpjobportal_val) {
                     switch ($wpjobportal_key) {

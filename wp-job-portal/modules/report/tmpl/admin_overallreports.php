@@ -3,7 +3,7 @@
     wp_enqueue_style('status-graph', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/status_graph.css', array(), wpjobportal_asset_version('includes/css/status_graph.css'));
 ?>
 <!-- main wrapper -->
-<div id="wpjobportaladmin-wrapper">
+<div id="wpjobportaladmin-wrapper" class="wjpl-page">
     <!-- left menu -->
     <div id="wpjobportaladmin-leftmenu">
         <?php  WPJOBPORTALincluder::getClassesInclude('wpjobportaladminsidemenu'); ?>
@@ -14,43 +14,10 @@
             WPJOBPORTALMessages::getLayoutMessage($wpjobportal_msgkey);
             $wpjobportal_protocol = is_ssl() ? "https://" : "http://";
         ?>
-        <!-- top bar -->
-        <div id="wpjobportal-wrapper-top">
-            <div id="wpjobportal-wrapper-top-left">
-                <div id="wpjobportal-breadcrumbs">
-                    <ul>
-                        <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('Dashboard','wp-job-portal')); ?>">
-                                <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
-                            </a>
-                        </li>
-                        <li><?php echo esc_html(__('Overall Reports','wp-job-portal')); ?></li>
-                    </ul>
-                </div>
-            </div>
-            <div id="wpjobportal-wrapper-top-right">
-                <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('Configuration','wp-job-portal')); ?>">
-                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
-                   </a>
-                </div>
-                <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('Help','wp-job-portal')); ?>">
-                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
-                   </a>
-                </div>
-                <div id="wpjobportal-vers-txt">
-                    <?php echo esc_html(__('Version','wp-job-portal')).': '; ?>
-                    <span class="wpjobportal-ver"><?php echo esc_html(WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue('versioncode')); ?></span>
-                </div>
-            </div>
-        </div>
         <!-- top head -->
-        <div id="wpjobportal-head">
-            <h1 class="wpjobportal-head-text">
+        <?php ob_start(); ?>
                 <?php echo esc_html(__('Overall Reports', 'wp-job-portal')); ?>
-            </h1>
-        </div>
+            <?php WPJOBPORTAL_Admin_List_UI::page_head(trim(html_entity_decode(wp_strip_all_tags(ob_get_clean()), ENT_QUOTES))); ?>
         <!-- page content -->
         <div id="wpjobportal-admin-wrapper" class="p0 bg-n bs-n">
             <?php
@@ -102,8 +69,7 @@
                         </div>
                         <div class="wpjobportal-count-link-text">
                             <?php
-                                echo esc_html(__('Total Jobs', 'wp-job-portal'));
-                                echo ' ( '.esc_html(wpjobportal::$_data['totaljobs']).' )';
+                                echo '<b class="wjpl-kpi-n">' . esc_html(number_format_i18n((float) wpjobportal::$_data['totaljobs'])) . '</b><span class="wjpl-kpi-l">' . esc_html(__('Total Jobs', 'wp-job-portal')) . '</span>';
                             ?>
                         </div>
                     </a>
@@ -128,8 +94,7 @@
                         </div>
                         <div class="wpjobportal-count-link-text">
                             <?php
-                                echo esc_html(__('Total Resume', 'wp-job-portal'));
-                                echo ' ( '. esc_html(wpjobportal::$_data['totalresume']).' )';
+                                echo '<b class="wjpl-kpi-n">' . esc_html(number_format_i18n((float) wpjobportal::$_data['totalresume'])) . '</b><span class="wjpl-kpi-l">' . esc_html(__('Total Resume', 'wp-job-portal')) . '</span>';
                             ?>
                         </div>
                     </a>
@@ -154,8 +119,7 @@
                         </div>
                         <div class="wpjobportal-count-link-text">
                             <?php
-                                echo esc_html(__('Total Companies', 'wp-job-portal'));
-                                echo ' ( '. esc_html(wpjobportal::$_data['totalcompany']).' )';
+                                echo '<b class="wjpl-kpi-n">' . esc_html(number_format_i18n((float) wpjobportal::$_data['totalcompany'])) . '</b><span class="wjpl-kpi-l">' . esc_html(__('Total Companies', 'wp-job-portal')) . '</span>';
                             ?>
                         </div>
                     </a>
@@ -180,8 +144,7 @@
                         </div>
                         <div class="wpjobportal-count-link-text">
                             <?php
-                                echo esc_html(__('Applied Resume', 'wp-job-portal'));
-                                echo ' ( '. esc_html(wpjobportal::$_data['totalappliedresume']).' )';
+                                echo '<b class="wjpl-kpi-n">' . esc_html(number_format_i18n((float) wpjobportal::$_data['totalappliedresume'])) . '</b><span class="wjpl-kpi-l">' . esc_html(__('Applied Resume', 'wp-job-portal')) . '</span>';
                             ?>
                         </div>
                     </a>

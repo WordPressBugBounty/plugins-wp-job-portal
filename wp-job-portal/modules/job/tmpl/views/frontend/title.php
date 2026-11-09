@@ -47,6 +47,9 @@ switch ($wpjobportal_layout) {
                              ?>
 
                         <?php  do_action('wpjobportal_credit_addons_feature_job_popup_for_emp',$wpjobportal_job); ?>
+                        <?php if (WPJOBPORTALincluder::getJSModel('job')->isJobClosedForApplications($wpjobportal_job)) { // D-8
+                            echo wp_kses(WPJOBPORTALincluder::getJSModel('job')->closedJobLabel(), WPJOBPORTAL_ALLOWED_TAGS);
+                        } ?>
                     </span>
                     <?php
                     if(in_array('joblistingenhancer',wpjobportal::$_active_addons)){
@@ -82,6 +85,15 @@ switch ($wpjobportal_layout) {
                         if($wpjobportal_startdate > $wpjobportal_curdate){
                             $wpjobportal_publishstatus = esc_html(__('Not Published','wp-job-portal'));
                             $wpjobportal_publishstyle = 'background:var(--wpjp-ds-color-warning, #a15c00);';
+                        }elseif($wpjobportal_startdate <= $wpjobportal_curdate && $wpjobportal_enddate >= $wpjobportal_curdate && WPJOBPORTALincluder::getJSModel('job')->isJobClosedForApplications($wpjobportal_job)){
+                            // D-8: the employer closed it to new applicants; green "Publish" said it was live.
+                            // Audit 11: the owner chose the status (e.g. On hold); show it rather than always "Closed".
+                            $wpjobportal_statustitle = !empty($wpjobportal_job->jobstatustitle) ? $wpjobportal_job->jobstatustitle : '';
+                            if ($wpjobportal_statustitle === '' && !empty($wpjobportal_job->jobstatus)) { // My Jobs selects the status id only
+                                $wpjobportal_statustitle = (string) wpjobportal::$_db->get_var(wpjobportal::$_db->prepare("SELECT title FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobstatus` WHERE id = %d", (int) $wpjobportal_job->jobstatus));
+                            }
+                            $wpjobportal_publishstatus = $wpjobportal_statustitle !== '' ? esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_statustitle)) : esc_html(__('Closed','wp-job-portal'));
+                            $wpjobportal_publishstyle = 'background:#475569;';
                         }elseif($wpjobportal_startdate <= $wpjobportal_curdate && $wpjobportal_enddate >= $wpjobportal_curdate){
                             $wpjobportal_publishstatus = esc_html(__('Publish','wp-job-portal'));
                             $wpjobportal_publishstyle = 'background:var(--wpjp-ds-color-success, #16803c);';
@@ -167,7 +179,7 @@ switch ($wpjobportal_layout) {
                     ?>
                     <?php $wpjobportal_print = WPJOBPORTALincluder::getJSModel('job')->checkLinks('jobtype'); ?>
                     <?php if (isset($wpjobportal_print[0]) && $wpjobportal_print[0] == 1) { ?>
-                        <span class="wjportal-job-type" style="--wpjp-jobtype-color:<?php echo esc_attr($wpjobportal_job->jobtypecolor); ?>">
+                        <span class="wjportal-job-type" style="--wpjp-jobtype-color:<?php echo esc_attr(WPJOBPORTAL_Color::on_white($wpjobportal_job->jobtypecolor)); ?>">
                             <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_job->jobtypetitle)); ?>
                         </span>
                     <?php } ?>
@@ -198,7 +210,7 @@ switch ($wpjobportal_layout) {
                             <?php
                             if($wpjobportal_control != 'newestjobs'){
                                 $wpjobportal_dateformat = wpjobportal::$_configuration['date_format'];
-                                echo esc_html(human_time_diff(strtotime($wpjobportal_job->created),strtotime(date_i18n("Y-m-d H:i:s"))).' '.esc_html(__("Ago",'wp-job-portal')));
+                                echo esc_html(sprintf(/* translators: %s: how long ago, e.g. 3 days */ __('%s ago', 'wp-job-portal'), human_time_diff(strtotime($wpjobportal_job->created),strtotime(date_i18n("Y-m-d H:i:s")))));
                             }
                             ?>
                         </div>
@@ -223,7 +235,7 @@ switch ($wpjobportal_layout) {
                         $wpjobportal_show_match_score_job_list  = wpjobportal::$_config->getConfigurationByConfigName('show_match_score_job_list');
                         if (! empty($wpjobportal_show_match_score_job_list) && !empty($wpjobportal_job->match_score)) {
                             $wpjobportal_ai_match_score = (int) $wpjobportal_job->match_score;
-                            do_action('wpjobportal_addon_joblisting_match_score',$wpjobportal_ai_match_score);
+                            do_action('wpjobportal_addon_joblisting_match_score',$wpjobportal_ai_match_score, isset($wpjobportal_job->match_reasons) ? $wpjobportal_job->match_reasons : array());
                         }
                     }
                     // -------------------------------------------
@@ -283,7 +295,17 @@ switch ($wpjobportal_layout) {
                                         }
                                     break;
                                     case 'jobstatus':
-                                        echo wp_kses(wpjobportal_getDataRow(wpjobportal::wpjobportal_getVariableValue($wpjobportal_fields->fieldtitle), wpjobportal::wpjobportal_getVariableValue($wpjobportal_job->jobstatustitle)), WPJOBPORTAL_ALLOWED_TAGS);
+                                        // Visitors read "Interviewing" as too late to apply: they see only
+                                        // whether the job takes applications (the rule the apply handler
+                                        // uses). The job's owner and admins keep the hiring status.
+                                        $wpjobportal_viewer = WPJOBPORTALincluder::getObjectClass('user')->uid();
+                                        if (current_user_can('manage_options') || ($wpjobportal_viewer && (int) $wpjobportal_viewer === (int) $wpjobportal_job->uid)) {
+                                            $wpjobportal_statuslabel = wpjobportal::wpjobportal_getVariableValue($wpjobportal_job->jobstatustitle);
+                                        } else {
+                                            $wpjobportal_isclosed = WPJOBPORTALincluder::getJSModel('job')->isJobClosedForApplications($wpjobportal_job);
+                                            $wpjobportal_statuslabel = $wpjobportal_isclosed ? __('Closed', 'wp-job-portal') : __('Accepting applications', 'wp-job-portal');
+                                        }
+                                        echo wp_kses(wpjobportal_getDataRow(wpjobportal::wpjobportal_getVariableValue($wpjobportal_fields->fieldtitle), $wpjobportal_statuslabel), WPJOBPORTAL_ALLOWED_TAGS);
                                     break;
                                     case 'noofjobs':
                                         // Left blank, this column stores a zero, and
@@ -362,7 +384,7 @@ switch ($wpjobportal_layout) {
                     if(isset(wpjobportal::$wpjobportal_data['published_fields']['jobtype'])){
                         if(isset($wpjobportal_job) && !empty($wpjobportal_job->jobtypetitle)){
                             echo'<div class="wjportal-jobinfo wjportal-jobinfo-right-data-jobtype">
-                                   <span class="wjportal-jobtype" style="--wpjp-jobtype-color:'.esc_attr($wpjobportal_job->jobtypecolor).'">'.esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_job->jobtypetitle)).'</span>
+                                   <span class="wjportal-jobtype" style="--wpjp-jobtype-color:'.esc_attr(WPJOBPORTAL_Color::on_white($wpjobportal_job->jobtypecolor)).'">'.esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_job->jobtypetitle)).'</span>
                                 </div>';
                         }
                     }
@@ -472,7 +494,10 @@ switch ($wpjobportal_layout) {
         if($wpjobportal_show_apply_form == 0){ // show apply button if not showing form
             if(!WPJOBPORTALincluder::getObjectClass('user')->isguest()){
                 $wpjobportal_applied = WPJOBPORTALincluder::getJSModel('job')->checkAlreadyAppliedJob($wpjobportal_job->id,$wpjobportal_uid);
-                if(wpjobportal::$_config->getConfigValue('showapplybutton') == 1){
+                $wpjobportal_applied_note = WPJOBPORTAL_Seeker_Start::applied_notice($wpjobportal_job->id, $wpjobportal_uid); // W-4
+                if($wpjobportal_applied_note !== ''){
+                    echo wp_kses($wpjobportal_applied_note, WPJOBPORTAL_ALLOWED_TAGS);
+                }elseif(wpjobportal::$_config->getConfigValue('showapplybutton') == 1){
                     if($wpjobportal_job->jobapplylink == 1 && !empty($wpjobportal_job->joblink)){
                         echo '<a class="wjportal-job-company-btn" href="'.esc_url($wpjobportal_job->joblink).'"  target="_blank">' . esc_html(__('Apply On This Job', 'wp-job-portal')).'</a>';
                     }elseif(in_array('credits', wpjobportal::$_active_addons)){
@@ -511,10 +536,18 @@ switch ($wpjobportal_layout) {
         }
         */
 
+        // D-8: a closed job shows the label instead of any way to apply.
+        $wpjobportal_job_closed = WPJOBPORTALincluder::getJSModel('job')->isJobClosedForApplications($wpjobportal_job);
+        if ($wpjobportal_job_closed) {
+            echo wp_kses(WPJOBPORTALincluder::getJSModel('job')->closedJobLabel(), WPJOBPORTAL_ALLOWED_TAGS);
+        } else {
         $wpjobportal_package = '';
         if(!WPJOBPORTALincluder::getObjectClass('user')->isguest()){
             $wpjobportal_applied = WPJOBPORTALincluder::getJSModel('job')->checkAlreadyAppliedJob($wpjobportal_job->id,$wpjobportal_uid);
-            if($wpjobportal_job->jobapplylink == 1 && !empty($wpjobportal_job->joblink)){
+            $wpjobportal_applied_note = WPJOBPORTAL_Seeker_Start::applied_notice($wpjobportal_job->id, $wpjobportal_uid); // W-4
+            if($wpjobportal_applied_note !== ''){
+                echo wp_kses($wpjobportal_applied_note, WPJOBPORTAL_ALLOWED_TAGS);
+            }elseif($wpjobportal_job->jobapplylink == 1 && !empty($wpjobportal_job->joblink)){
                 echo '<a class="wjportal-job-act-btn" href="'.esc_url($wpjobportal_job->joblink).'"  target="_blank" >' . esc_html(__('Apply On This Job', 'wp-job-portal')).'</a>';
             }elseif(in_array('credits', wpjobportal::$_active_addons)){
                 //do_action('wpjobportal_addons_job_apply_jobseeker',$wpjobportal_job,$wpjobportal_package,$wpjobportal_applied);
@@ -546,9 +579,8 @@ switch ($wpjobportal_layout) {
                 }
             }
         }
-        
+        }
 
-        
         $wpjobportal_allow_tellafriend  = wpjobportal::$_config->getConfigurationByConfigName('allow_tellafriend');
         if($wpjobportal_allow_tellafriend == 1 ){
             # Apply shortlist,Alertjob..
@@ -568,6 +600,10 @@ switch ($wpjobportal_layout) {
         break;
 
     case 'apply':
+        // D-8: a closed job shows the label instead of any way to apply.
+        if (WPJOBPORTALincluder::getJSModel('job')->isJobClosedForApplications($wpjobportal_job)) {
+            echo wp_kses(WPJOBPORTALincluder::getJSModel('job')->closedJobLabel(), WPJOBPORTAL_ALLOWED_TAGS);
+        } else {
         $wpjobportal_package = '';
         $wpjobportal_show_apply_form  = wpjobportal::$_config->getConfigurationByConfigName('quick_apply_for_user');
         if (WPJOBPORTALincluder::getObjectClass('user')->isguest()) {
@@ -607,6 +643,7 @@ switch ($wpjobportal_layout) {
                     }
                 }
             }
+        }
         }
          # Social Share
          do_action('wpjobportal_credit_addons_social_share_links_job',$wpjobportal_job);

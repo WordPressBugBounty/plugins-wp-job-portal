@@ -5,7 +5,7 @@
   * Plugin URI: https://wpjobportal.com/
   * Description: WP Job Portal is WordPress’s best job board plugin — easy to use, highly configurable, and built to support both job seekers and employers. AI-powered add-ons offers smart job & resume search, and personalized recommendations.
   * Author: WP Job Portal
-  * Version: 2.7.2
+  * Version: 2.8.0
   * Requires at least: 6.2
   * Requires PHP: 7.4
   * Text Domain: wp-job-portal
@@ -35,9 +35,13 @@ if (!defined('ABSPATH'))
  *   1  wpjobportal_includer_plugin_path      resolve a module file
  *      wpjobportal_includer_template_path    resolve a module view partial
  *      wpjobportal_boot_controller_on_include suppress a controller auto-boot
+ *   2  (2.8.0) the shared admin screens WPJOBPORTAL_Admin_List_UI and
+ *      WPJOBPORTAL_Admin_Form_UI, the application status model and the other
+ *      2.8.0 services the suites call directly. A suite built for 2.8.0 on a
+ *      2.7 Core would stop with a fatal error instead of waiting.
  */
 if (!defined('WPJOBPORTAL_PROVIDER_API')) {
-    define('WPJOBPORTAL_PROVIDER_API', 1);
+    define('WPJOBPORTAL_PROVIDER_API', 2);
 }
 
 class wpjobportal {
@@ -105,6 +109,32 @@ class wpjobportal {
         }
     }
 
+    /**
+     * The payment settings a public page may see: everything except credentials.
+     *
+     * Lives in the base on purpose. Sites update the base before the add-ons
+     * (wordpress.org auto-update), and a call to a method that only a newer
+     * add-on has stops the page with a fatal error. getPaymentConfigFor() is
+     * in every Credits / Marketplace version, so only that is called on the
+     * add-on, and the secrets are removed here.
+     *
+     * @return array Payment config without secrets, or an empty array.
+     */
+    public static function wpjobportal_getPublicPaymentConfig() {
+        $wpjobportal_model = self::$_wpjppaymentconfig;
+        if (!is_object($wpjobportal_model) || !method_exists($wpjobportal_model, 'getPaymentConfigFor')) {
+            return array();
+        }
+        $wpjobportal_config = $wpjobportal_model->getPaymentConfigFor('paypal,stripe,woocommerce', true);
+        if (!is_array($wpjobportal_config)) {
+            return array();
+        }
+        foreach (array('password_paypal', 'signature_paypal', 'username_paypal', 'secretkey_stripe', 'webhooksecret_stripe') as $wpjobportal_secret) {
+            unset($wpjobportal_config[$wpjobportal_secret]);
+        }
+        return $wpjobportal_config;
+    }
+
     function __construct() {
         self::wpjobportal_LoadWpCoreFiles();
         self::wpjobportal_includes();
@@ -126,7 +156,7 @@ class wpjobportal {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '270';
+        self::$_currentversion = '280';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_common = WPJOBPORTALincluder::getJSModel('common');
         self::$_config = WPJOBPORTALincluder::getJSModel('configuration');
@@ -192,6 +222,13 @@ class wpjobportal {
         WPJOBPORTAL_Mode_Policy_Service::register();
         WPJOBPORTAL_Onboarding_Service::register();
         WPJOBPORTAL_Address_Setup_Notice::register();
+        WPJOBPORTAL_Mail_Health_Notice::register();
+        WPJOBPORTAL_Google_Maps::register();
+        WPJOBPORTAL_Settings_Repair_Notice::register();
+        WPJOBPORTAL_Addon_Version_Notice::register(); // Fix #44
+        WPJOBPORTAL_Addon_Fallbacks::register();
+        WPJOBPORTAL_Batch_Runner::register();
+        WPJOBPORTAL_Application_Status::register();
         // Features that used to be separate add-ons. Each stands down while
         // its old plugin is still installed, so upgrades never double-register.
         WPJOBPORTAL_Absorbed_Features::register();
@@ -254,6 +291,11 @@ class wpjobportal {
         if( !wp_next_scheduled( 'jsjp_delete_expire_session_data' ) ) {
             // Schedule the event
             wp_schedule_event( time(), 'daily', 'jsjp_delete_expire_session_data' );
+        }
+        // W-14: tell employers before their job expires
+        add_action('wpjobportal_job_expiry_reminders', array('WPJOBPORTAL_Job_Expiry_Reminder', 'send'));
+        if( !wp_next_scheduled( 'wpjobportal_job_expiry_reminders' ) ) {
+            wp_schedule_event( time() + 3600, 'daily', 'wpjobportal_job_expiry_reminders' );
         }
         add_filter('safe_style_css', array($this,'jsjp_safe_style_css'), 10, 1);
         //add_action( 'upgrader_process_complete', array($this , 'jsjp_upgrade_completed'), 10, 2 );
@@ -378,6 +420,13 @@ class wpjobportal {
     }
 
     function wpjobportal_activation_redirect(){
+        // admin_init also runs for admin-ajax.php, so a visitor's AJAX request (or a
+        // bulk activation) used the flag up and the owner never saw the setup wizard.
+        // Only a real admin screen, for someone who can set the site up, takes it.
+        if (wp_doing_ajax() || wp_doing_cron() || (defined('WP_CLI') && WP_CLI) || is_network_admin()
+            || isset($_GET['activate-multi']) || !current_user_can('manage_options')) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+            return;
+        }
         if (get_option('wpjobportal_do_activation_redirect') == true) {
             update_option('wpjobportal_do_activation_redirect',false);
             wp_safe_redirect(admin_url('admin.php?page=wpjobportal_postinstallation&wpjobportallt=quickstart'));
@@ -445,6 +494,18 @@ class wpjobportal {
         require_once 'includes/services/class-wpjobportal-absorbed-config-guard.php';
         require_once 'includes/services/class-wpjobportal-superseded-addons.php';
         require_once 'includes/services/class-wpjobportal-uninstall-guard.php';
+        require_once 'includes/services/class-wpjobportal-admin-menu-service.php';
+        require_once 'includes/services/class-wpjobportal-dashboard-service.php';
+        require_once 'includes/services/class-wpjobportal-employer-start.php';
+        require_once 'includes/services/class-wpjobportal-seeker-start.php';
+        require_once 'includes/services/class-wpjobportal-color.php';
+        require_once 'includes/services/class-wpjobportal-admin-list-ui.php';
+        require_once 'includes/services/class-wpjobportal-admin-lookup-ui.php';
+        require_once 'includes/services/class-wpjobportal-admin-form-ui.php';
+        if (is_admin()) {
+            WPJOBPORTAL_Admin_Menu_Service::register();
+            WPJOBPORTAL_Dashboard_Service::register();
+        }
         include_once 'includes/formhandler.php';
         include_once 'includes/ajax.php';
         require_once 'includes/constants.php';
@@ -464,12 +525,29 @@ class wpjobportal {
         require_once 'includes/services/class-wpjobportal-mode-policy-service.php';
         require_once 'includes/services/class-wpjobportal-onboarding-service.php';
         require_once 'includes/services/class-wpjobportal-address-setup-notice.php';
+        require_once 'includes/services/class-wpjobportal-mail-health-notice.php';
+        require_once 'includes/services/class-wpjobportal-google-maps.php';
+        require_once 'includes/services/class-wpjobportal-settings-repair-notice.php';
+        require_once 'includes/services/class-wpjobportal-addon-version-notice.php';
+        require_once 'includes/services/class-wpjobportal-addon-fallbacks.php';
+        require_once 'includes/services/class-wpjobportal-batch-runner.php';
+        require_once 'includes/services/class-wpjobportal-application-status.php';
         require_once 'includes/services/class-wpjobportal-feature-tiers.php';
         require_once 'includes/services/class-wpjobportal-absorbed-features.php';
         require_once 'includes/services/class-wpjobportal-sample-data-service.php';
         require_once 'includes/services/class-wpjobportal-diagnostics-service.php';
         require_once 'includes/services/class-wpjobportal-page-provisioning-service.php';
         WPJOBPORTAL_Page_Provisioning_Service::register();
+        require_once 'includes/services/class-wpjobportal-alert-unsubscribe.php';
+        WPJOBPORTAL_Alert_Unsubscribe::register();
+        require_once 'includes/services/class-wpjobportal-job-expiry-reminder.php';
+        require_once 'includes/services/class-wpjobportal-table-upgrade.php';
+        WPJOBPORTAL_Table_Upgrade::register();
+        require_once 'includes/services/class-wpjobportal-seo-values.php';
+        require_once 'includes/services/class-wpjobportal-resume-file-store.php';
+        WPJOBPORTAL_Resume_File_Store::register();
+        require_once 'includes/services/class-wpjobportal-role-urls.php';
+        WPJOBPORTAL_Role_Urls::register();
         include_once 'includes/shortcodes.php';
         include_once 'includes/paramregister.php';
         include_once 'includes/breadcrumbs.php';
@@ -565,6 +643,7 @@ class wpjobportal {
             'applying' => esc_html(__('Applying...', 'wp-job-portal')),
             'noMatch'  => esc_html(__('Nothing matches', 'wp-job-portal')),
             'needed'   => esc_html(__('This form cannot be sent yet:', 'wp-job-portal')),
+            'search'   => esc_html(__('Search', 'wp-job-portal')),
         ));
         if(wpjobportal::$wpjobportal_theme_chk == 0 || wpjobportal::$_common->wpjp_isadmin()){
             wp_enqueue_script( 'wpjobportal-tokeninput', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/jquery.tokeninput.js', array(), wpjobportal_asset_version('includes/js/jquery.tokeninput.js'), false );
@@ -676,7 +755,9 @@ class wpjobportal {
         static $wpjobportal_employer_pageid = null;
 
         $wpjobportal_id = 0;
-        $wpjobportal_pageid = wpjobportal::$_db->get_var("SELECT configvalue FROM `".wpjobportal::$_db->prefix."wj_portal_config` WHERE configname = 'default_pageid'");
+        // P-7: through the config cache (reset on writes), not a query per call; building one
+        // page of links called this a dozen times
+        $wpjobportal_pageid = wpjobportal::$_config->getConfigurationByConfigName('default_pageid');
         if ($wpjobportal_pageid)
             $wpjobportal_id = (int) $wpjobportal_pageid;
 
@@ -810,6 +891,17 @@ class wpjobportal {
 
     static function wpjobportal_makeUrl($wpjobportal_args = array()){
         global $wp_rewrite;
+        // W-5: public pages under the Jobs page, each dashboard on its own page
+        if(isset($wpjobportal_args['wpjobportalme'], $wpjobportal_args['wpjobportallt']) && class_exists('WPJOBPORTAL_Role_Urls')){
+            $wpjobportal_role_page = WPJOBPORTAL_Role_Urls::page_for($wpjobportal_args['wpjobportalme'], $wpjobportal_args['wpjobportallt']);
+            if($wpjobportal_role_page > 0){
+                $wpjobportal_args['wpjobportalpageid'] = $wpjobportal_role_page;
+                $wpjobportal_bare_url = WPJOBPORTAL_Role_Urls::bare_url($wpjobportal_args, $wpjobportal_role_page);
+                if($wpjobportal_bare_url !== ''){
+                    return $wpjobportal_bare_url;
+                }
+            }
+        }
         // firest check the args if page id is set
         if(isset($wpjobportal_args['wpjobportalpageid']) && is_numeric($wpjobportal_args['wpjobportalpageid'])){
             $wpjobportal_pageid = $wpjobportal_args['wpjobportalpageid'];
@@ -840,6 +932,9 @@ class wpjobportal {
             if($homepageid == $wpjobportal_pageid){
                 $wpjobportal_pageid = wpjobportal::wpjobportal_getDefaultPageid();
             }
+        }
+        if(class_exists('WPJOBPORTAL_Role_Urls')){
+            $wpjobportal_pageid = WPJOBPORTAL_Role_Urls::leave_jobs_page($wpjobportal_pageid, $wpjobportal_args);
         }
 
         if(is_numeric($wpjobportal_pageid)){
@@ -1406,6 +1501,74 @@ function wpjobportaladdLostPasswordLink() {
    return '<a class="'.esc_attr($wpjobportal_class_prefix).'-lost-password" href="'.site_url().'/wp-login.php?action=lostpassword">'. esc_html(__('Lost your password','wp-job-portal')) .'?</a>';
 }
 
+/*
+ * Jetpack's brute force protection (on by default on WordPress.com) adds its fields to the
+ * login form through the `login_form` action, which only wp-login.php fires. Our login form
+ * (wp_login_form) never had them. When Jetpack asks a math question, a login from our form
+ * was sent to Jetpack's separate math page and then to wp-login.php, where the password had
+ * to be typed again. Run Jetpack's own `login_form` steps inside our form, and only those:
+ * other `login_form` output (such as the "Log in with WordPress.com" button) belongs to
+ * wp-login.php.
+ *
+ * Only for our own login page: "loginform-custom" is also the id of WordPress's example, so
+ * the page id our template passes must be there too. Jetpack's check of the visitor's address
+ * is left to the login itself on wp-login.php: when that address is blocked Jetpack prints its
+ * own page and stops, which inside our page left its block page under the theme's header.
+ * Without the check the form still carries the math question (asked when Jetpack's service
+ * cannot be reached) or Jetpack's one-time login token.
+ */
+add_filter('login_form_middle', 'wpjobportal_login_form_protection_fields', 10, 2);
+function wpjobportal_login_form_protection_fields($wpjobportal_content, $wpjobportal_args = array()) {
+    global $wp_filter;
+    if (!is_array($wpjobportal_args) || !isset($wpjobportal_args['form_id']) || $wpjobportal_args['form_id'] !== 'loginform-custom'
+        || !isset($wpjobportal_args['wpjobportalpageid']) || empty($wp_filter['login_form'])) {
+        return $wpjobportal_content;
+    }
+    // Jetpack sends every login to its own page, or this address is already known to be blocked:
+    // the plain form, and Jetpack answers on wp-login.php as it always did.
+    if ((defined('JETPACK_ALWAYS_PROTECT_LOGIN') && JETPACK_ALWAYS_PROTECT_LOGIN) || apply_filters('jetpack_has_login_ability', true) === false) {
+        return $wpjobportal_content;
+    }
+    $wpjobportal_done = array();
+    ob_start();
+    // A step can add another one (the math question is added once math is needed), so look again after each.
+    do {
+        $wpjobportal_ran = false;
+        $wpjobportal_steps = $wp_filter['login_form']->callbacks;
+        ksort($wpjobportal_steps);
+        foreach ($wpjobportal_steps as $wpjobportal_list) {
+            foreach ($wpjobportal_list as $wpjobportal_id => $wpjobportal_step) {
+                if (isset($wpjobportal_done[$wpjobportal_id]) || !is_array($wpjobportal_step['function'])
+                    || $wpjobportal_step['function'][1] === 'check_login_ability') {
+                    continue;
+                }
+                $wpjobportal_class = is_object($wpjobportal_step['function'][0]) ? get_class($wpjobportal_step['function'][0]) : (string) $wpjobportal_step['function'][0];
+                // Jetpack 12+ (WAF package) and older Jetpack versions
+                if (strpos(ltrim($wpjobportal_class, '\\'), 'Automattic\\Jetpack\\Waf\\Brute_Force_Protection\\') !== 0 && strpos($wpjobportal_class, 'Jetpack_Protect') !== 0) {
+                    continue;
+                }
+                $wpjobportal_done[$wpjobportal_id] = true;
+                $wpjobportal_ran = true;
+                call_user_func($wpjobportal_step['function']);
+                continue 3;
+            }
+        }
+    } while ($wpjobportal_ran);
+    $wpjobportal_fields = ob_get_clean();
+    if (trim($wpjobportal_fields) !== '') {
+        // the math answer is only valid for a few minutes, so a page cache must not keep this form
+        if (!defined('DONOTCACHEPAGE')) {
+            define('DONOTCACHEPAGE', true);
+        }
+        // a visible question gets a row of its own (style.css); a hidden field alone needs none
+        if (preg_match('/<(label|p)\b/i', $wpjobportal_fields)) {
+            $wpjobportal_fields = '<div class="wjportal-login-protection">' . $wpjobportal_fields . '</div>';
+        }
+        $wpjobportal_content .= $wpjobportal_fields;
+    }
+    return $wpjobportal_content;
+}
+
 add_action('init', 'wpjobportal_custom_init_session', 1);
 
 function wpjobportal_custom_init_session() {
@@ -1454,7 +1617,7 @@ function wpjobportal_asset_version($wpjobportal_relative_path, $wpjobportal_base
             return (string) $wpjobportal_mtime;
         }
     }
-    return '2.7.2';
+    return '2.8.0';
 }
 
 /**
@@ -1480,7 +1643,7 @@ function wpjobportal_supports_look_layers() {
 function wpjobportal_layered_import($src, $layer, $media = '', $ver = '') {
     if (strpos($src, '//') === false) {
         $ver = $ver !== '' ? $ver : wpjobportal_asset_version($src);
-        $src = WPJOBPORTAL_PLUGIN_URL . ltrim($src, '/');
+        $src = wpjobportal_minified_style_src(WPJOBPORTAL_PLUGIN_URL . ltrim($src, '/')); // P-6
     }
     if ($ver !== '') {
         $src = add_query_arg('ver', rawurlencode($ver), $src);
@@ -1652,6 +1815,9 @@ function wpjobportal_admin_register_plugin_styles() {
     wp_enqueue_style('wpjobportal-design-tokens', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/job_portal_variables.css', array(), wpjobportal_asset_version('includes/css/job_portal_variables.css'));
     wp_enqueue_style('wpjobportal-design-system', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportal-design-system.css', array('wpjobportal-design-tokens'), wpjobportal_asset_version('includes/css/wpjobportal-design-system.css'));
     wp_enqueue_style('wpjobportal-admin-desktop-css', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportaladmin_desktop.css',array('wpjobportal-design-system'),wpjobportal_asset_version('includes/css/wpjobportaladmin_desktop.css'),'all');
+    wp_enqueue_style('wpjobportal-admin-menu', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportal-admin-menu.css', array('wpjobportal-admin-desktop-css'), wpjobportal_asset_version('includes/css/wpjobportal-admin-menu.css'));
+    // Top bar and title row of every screen (design 4), not only the rebuilt lists.
+    wp_enqueue_style('wpjobportal-admin-list', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/wpjobportal-admin-list.css', array('wpjobportal-admin-desktop-css'), wpjobportal_asset_version('includes/css/wpjobportal-admin-list.css'));
     // Chosen's sheet first, for the reason given above.
     wp_enqueue_style('wpjobportal-chosen-style', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/chosen/chosen.min.css', array(), wpjobportal_asset_version('includes/js/chosen/chosen.min.css'));
     wp_enqueue_style(
@@ -1697,12 +1863,24 @@ function wpjobportal_admin_page_uses_redesign_css() {
     return false;
 }
 
+/**
+ * A request variable for the head tags: the query string, or the pretty URL's
+ * route as parsed, which stays available after the page's shortcode has run.
+ */
+function wpjobportal_head_request_var($wpjobportal_name) {
+    $wpjobportal_value = WPJOBPORTALrequest::getVar($wpjobportal_name);
+    if (($wpjobportal_value === null || $wpjobportal_value === '') && isset(wpjobportal::$_data['route_args'][$wpjobportal_name])) {
+        $wpjobportal_value = wpjobportal::$_data['route_args'][$wpjobportal_name];
+    }
+    return $wpjobportal_value;
+}
+
 add_action( 'wp_head', 'wpjobportal_add_wpjobportal_meta_tags' , 10 );
 function wpjobportal_add_wpjobportal_meta_tags(){
 
-    $wpjobportal_layout = WPJOBPORTALrequest::getVar('wpjobportallt');
+    $wpjobportal_layout = wpjobportal_head_request_var('wpjobportallt');
     if($wpjobportal_layout == 'viewjob' || $wpjobportal_layout == 'viewresume'){
-        $wpjobportal_upid = WPJOBPORTALrequest::getVar('wpjobportalid');
+        $wpjobportal_upid = wpjobportal_head_request_var('wpjobportalid');
         $wpjobportal_id  = WPJOBPORTALincluder::getJSModel('common')->parseID($wpjobportal_upid);
         if(is_numeric($wpjobportal_id) && $wpjobportal_id > 0){
             if($wpjobportal_layout == 'viewjob'){
@@ -1742,9 +1920,10 @@ function wpjobportal_add_wpjobportal_meta_tags(){
 
 add_action("wp_head","wpjobportal_socialmedia_metatags");
 function wpjobportal_socialmedia_metatags(){
-    $wpjobportal_layout = WPJOBPORTALrequest::getVar('wpjobportallt');
+    $wpjobportal_layout = wpjobportal_head_request_var('wpjobportallt');
     if($wpjobportal_layout == 'viewjob'){
-        $wpjobportal_jobid = WPJOBPORTALrequest::getVar('wpjobportalid');
+        // The id may be a slug ending in the id (pretty URLs and SEO links).
+        $wpjobportal_jobid = wpjobportal::$_common->parseID(wpjobportal_head_request_var('wpjobportalid'));
         $wpjobportal_job = WPJOBPORTALincluder::getJSTable('job');
         $wpjobportal_job->load($wpjobportal_jobid);
         if( $wpjobportal_job->id ){
@@ -1754,9 +1933,9 @@ function wpjobportal_socialmedia_metatags(){
                 $wpjobportal_description = wpjobportalphplib::wpJP_strip_tags($wpjobportal_job->description);
             }
             echo '<meta name= "twitter:card" content="summary" />'."\n";
-            echo '<meta job="og:type" content="place" />'."\n";
-            echo '<meta name="twitter:title" job="og:title" content="'.esc_html($title).'" />'."\n";
-            echo '<meta name="twitter:description" job="og:description" content="'.esc_html($wpjobportal_description).'" />'."\n";
+            echo '<meta property="og:type" content="place" />'."\n";
+            echo '<meta name="twitter:title" property="og:title" content="'.esc_html($title).'" />'."\n";
+            echo '<meta name="twitter:description" property="og:description" content="'.esc_html($wpjobportal_description).'" />'."\n";
             if(!empty($wpjobportal_job->metakeywords)){
                 echo '<meta name="keywords" content="'.esc_html($wpjobportal_job->metakeywords).'"/>'."\n";
             }
@@ -1764,8 +1943,8 @@ function wpjobportal_socialmedia_metatags(){
                 echo '<meta name="description" content="'.esc_html($wpjobportal_description).'"/>'."\n";
             }
             if(!empty($wpjobportal_job->latitude) && !empty($wpjobportal_job->longitude)){
-                echo '<meta job="place:location:latitude" content="'.esc_html($wpjobportal_job->latitude).'">'."\n";
-                echo '<meta job="place:location:longitude" content="'.esc_html($wpjobportal_job->longitude).'">'."\n";
+                echo '<meta property="place:location:latitude" content="'.esc_html($wpjobportal_job->latitude).'">'."\n";
+                echo '<meta property="place:location:longitude" content="'.esc_html($wpjobportal_job->longitude).'">'."\n";
             }
         }
     }
@@ -1775,9 +1954,9 @@ function wpjobportal_socialmedia_metatags(){
 // package system popup was not working so commented it out
 add_action( 'wp_head', 'wpjobportal_job_posting_structured');
 function wpjobportal_job_posting_structured(){
-    $wpjobportal_layout = WPJOBPORTALrequest::getVar('wpjobportallt');
+    $wpjobportal_layout = wpjobportal_head_request_var('wpjobportallt');
     if($wpjobportal_layout == 'viewjob'){
-        $wpjobportal_jobid = WPJOBPORTALrequest::getVar('wpjobportalid');
+        $wpjobportal_jobid = wpjobportal_head_request_var('wpjobportalid');
         $wpjobportal_jobid = wpjobportal::$_common->parseID($wpjobportal_jobid);
         $wpjobportal_job = WPJOBPORTALincluder::getJSModel('job')->jobDataStructuredPost($wpjobportal_jobid);
         if(isset($wpjobportal_job->title) && isset($wpjobportal_job->id)){
@@ -2462,28 +2641,68 @@ function wpjobportal_jobseekercheckLinks($wpjobportal_name) {
 
     return $wpjobportal_print;
 }
+/**
+ * P-6: serve the minified build of the two big stylesheets while it is at least as
+ * new as its source, so editing the source can never serve stale styles. Rebuild
+ * with wp-job-portal-audit/tools/minify_css.py.
+ */
+add_filter('style_loader_src', 'wpjobportal_minified_style_src', 10, 1);
+function wpjobportal_minified_style_src($wpjobportal_src) {
+    if (strpos($wpjobportal_src, 'includes/css/style.css') === false && strpos($wpjobportal_src, 'includes/css/recruitsuite.css') === false) {
+        return $wpjobportal_src;
+    }
+    $wpjobportal_path = wp_parse_url($wpjobportal_src, PHP_URL_PATH);
+    $wpjobportal_plugins = wp_parse_url(WP_PLUGIN_URL, PHP_URL_PATH);
+    if (!$wpjobportal_path || strpos($wpjobportal_path, $wpjobportal_plugins) !== 0) {
+        return $wpjobportal_src;
+    }
+    $wpjobportal_file = WP_PLUGIN_DIR . substr($wpjobportal_path, strlen($wpjobportal_plugins));
+    $wpjobportal_min = substr($wpjobportal_file, 0, -4) . '.min.css';
+    if (is_file($wpjobportal_min) && is_file($wpjobportal_file) && filemtime($wpjobportal_min) >= filemtime($wpjobportal_file)) {
+        return str_replace('.css', '.min.css', $wpjobportal_src);
+    }
+    return $wpjobportal_src;
+}
+/**
+ * P-6: the same for the biggest front-end scripts (rebuild the .min.js files with
+ * terser after editing a source). SCRIPT_DEBUG serves the readable source.
+ */
+add_filter('script_loader_src', 'wpjobportal_minified_script_src', 10, 1);
+function wpjobportal_minified_script_src($wpjobportal_src) {
+    if ((defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) || !preg_match('#/wp-job-portal/includes/js/(jquery\.form-validator|common|wpjobportal-accessible-forms|wpjobportal-job-filters)\.js(\?|$)#', $wpjobportal_src)) {
+        return $wpjobportal_src;
+    }
+    $wpjobportal_path = wp_parse_url($wpjobportal_src, PHP_URL_PATH);
+    $wpjobportal_plugins = wp_parse_url(WP_PLUGIN_URL, PHP_URL_PATH);
+    if (!$wpjobportal_path || strpos($wpjobportal_path, $wpjobportal_plugins) !== 0) {
+        return $wpjobportal_src;
+    }
+    $wpjobportal_file = WP_PLUGIN_DIR . substr($wpjobportal_path, strlen($wpjobportal_plugins));
+    $wpjobportal_min = substr($wpjobportal_file, 0, -3) . '.min.js';
+    if (is_file($wpjobportal_min) && is_file($wpjobportal_file) && filemtime($wpjobportal_min) >= filemtime($wpjobportal_file)) {
+        return preg_replace('#\.js(\?|$)#', '.min.js$1', $wpjobportal_src, 1);
+    }
+    return $wpjobportal_src;
+}
 add_filter( 'login_redirect', 'wpjobportal_login_redirect', 10, 3 );
 function wpjobportal_login_redirect($redirect_to, $wpjobportal_request, $wpjobportal_user){
-   //is there a user to check?
-   global $user;
-   if ( isset( $user->roles ) && is_array( $user->roles ) ) {
-       //check for admins
-       if ( in_array( 'administrator', $user->roles ) ) {
-           return $redirect_to;
-       } else {
-	   $query = wpjobportal::$_db->prepare("SELECT roleid FROM ".wpjobportal::$_db->prefix."wj_portal_users WHERE uid = %d", $user->ID);// small case id casuse notice
-           $wpjobportal_roleid = wpjobportaldb::get_var($query);
-           $wpjobportal_url = $redirect_to;
-           if($wpjobportal_roleid == 2){
-               $wpjobportal_url = wpjobportal::wpjobportal_makeUrl(array('wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid(),'wpjobportalme'=>'jobseeker','wpjobportallt'=>'controlpanel'));
-            }elseif($wpjobportal_roleid == 1){
-               $wpjobportal_url = wpjobportal::wpjobportal_makeUrl(array('wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid(),'wpjobportalme'=>'employer','wpjobportallt'=>'controlpanel'));
-            }
-            return $wpjobportal_url;
-        }
-   } else {
-       return $redirect_to;
-   }
+    if (!($wpjobportal_user instanceof WP_User) || in_array('administrator', (array) $wpjobportal_user->roles, true)) {
+        return $redirect_to;
+    }
+    // W-5: a page that asked to be come back to (the job they were applying to) wins over the dashboard
+    $wpjobportal_asked = untrailingslashit((string) $wpjobportal_request);
+    if ($wpjobportal_asked !== '' && $wpjobportal_asked !== untrailingslashit(home_url()) && strpos($wpjobportal_asked, admin_url()) !== 0) {
+        return $redirect_to;
+    }
+    $query = wpjobportal::$_db->prepare("SELECT roleid FROM ".wpjobportal::$_db->prefix."wj_portal_users WHERE uid = %d", $wpjobportal_user->ID);
+    $wpjobportal_roleid = (int) wpjobportaldb::get_var($query);
+    if ($wpjobportal_roleid === 2) {
+        return wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobseeker', 'wpjobportallt'=>'controlpanel'));
+    }
+    if ($wpjobportal_roleid === 1) {
+        return wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'employer', 'wpjobportallt'=>'controlpanel'));
+    }
+    return $redirect_to;
 }
 
 add_action( 'upgrader_process_complete', 'wpjobportal_upgrade_completed', 10, 2 ); // some time above hook does not workin, so add this hook.
@@ -2681,17 +2900,21 @@ add_action('admin_enqueue_scripts', 'wpjobportal_load_classic_editor_assets');
     /**
      * Loads the new jQuery script and modal styles for the Classic Editor.
      */
-    function wpjobportal_load_classic_editor_assets($hook) {
-        if ('post.php' !== $hook && 'post-new.php' !== $hook) {
-            return;
-        }
+    function wpjobportal_load_classic_editor_assets($hook, $force = false) {
+        // $force: the plugin's own admin forms (job, company), whose description
+        // field has the same AI Content Generation button (WPJOBPORTAL_Admin_Form_UI).
+        if (!$force) {
+            if ('post.php' !== $hook && 'post-new.php' !== $hook) {
+                return;
+            }
 
-        // Load these assets only for the Classic Editor. The modal markup is
-        // rendered later in admin_footer so enqueueing can never send output
-        // before an admin controller performs a redirect.
-        $screen = get_current_screen();
-        if (!$screen || $screen->is_block_editor()) {
-            return;
+            // Load these assets only for the Classic Editor. The modal markup is
+            // rendered later in admin_footer so enqueueing can never send output
+            // before an admin controller performs a redirect.
+            $screen = get_current_screen();
+            if (!$screen || $screen->is_block_editor()) {
+                return;
+            }
         }
 
         // We must enqueue Select2 with its full path, not just by its handle.
@@ -2747,17 +2970,19 @@ add_action('admin_enqueue_scripts', 'wpjobportal_load_classic_editor_assets');
     /**
      * Renders the hidden HTML for the modal popup in the admin footer.
      */
-    function wpjobportal_add_zywrap_classic_modal() {
+    function wpjobportal_add_zywrap_classic_modal($force = false) {
         global $pagenow;
 
-        if ('post.php' !== $pagenow && 'post-new.php' !== $pagenow) {
-            return;
-        }
+        if ($force !== true) {
+            if ('post.php' !== $pagenow && 'post-new.php' !== $pagenow) {
+                return;
+            }
 
-        // Gutenberg has its own footer callback below.
-        $screen = get_current_screen();
-        if (!$screen || $screen->is_block_editor()) {
-            return;
+            // Gutenberg has its own footer callback below.
+            $screen = get_current_screen();
+            if (!$screen || $screen->is_block_editor()) {
+                return;
+            }
         }
 
         WPJOBPORTALincluder::include_file('zywrap', 'admin_classic_modal');

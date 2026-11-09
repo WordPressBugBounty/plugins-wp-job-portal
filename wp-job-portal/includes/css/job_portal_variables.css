@@ -1,6 +1,6 @@
 
         :root {
-            --wpjp-primary-color: #4d89dc;
+            --wpjp-primary-color: #2f6fc4;
             --wpjp-secondary-color: #000000;
             --wpjp-body-font-color: #575757;
             --wpjp-border-color: #e9ecef; /* Light Gray Border */
@@ -21,7 +21,7 @@
             /* Other Variables */
             --wpjp-card-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             --wpjp-card-hover-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            --wpjp-focus-shadow-color: 0 0 0 3px rgba(77, 137, 220, 0.25);
+            --wpjp-focus-shadow-color: 0 0 0 3px rgba(47, 111, 196, 0.25);
             --wpjp-error-color: #e53e3e;
             --wpjp-error-focus-shadow: 0 0 0 3px rgba(229, 62, 62, 0.25);
         }

@@ -138,6 +138,24 @@ class WPJOBPORTALjobSearchController {
      *
      * @return void Redirects.
      */
+    /** W-9: "Email me new matches" on a saved search. */
+    function togglesearchalert() {
+        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (!wp_verify_nonce($wpjobportal_nonce, 'wpjobportal_job_search_nonce')) {
+            die('Security check Failed');
+        }
+        $wpjobportal_id = absint(WPJOBPORTALrequest::getVar('wpjobportalid'));
+        $wpjobportal_on = sanitize_key((string) WPJOBPORTALrequest::getVar('op')) === 'on';
+        $wpjobportal_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
+        if (WPJOBPORTALincluder::getJSModel('jobsearch')->setSearchAlert($wpjobportal_id, $wpjobportal_uid, $wpjobportal_on)) {
+            WPJOBPORTALMessages::setLayoutMessage($wpjobportal_on ? __('We will email you new jobs that match this search.', 'wp-job-portal') : __('You will no longer get emails for this search.', 'wp-job-portal'), 'updated', $this->_msgkey);
+        } else {
+            WPJOBPORTALMessages::setLayoutMessage(__('Failed while performing this action', 'wp-job-portal'), 'error', $this->_msgkey);
+        }
+        wp_safe_redirect(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme' => 'jobsearch', 'wpjobportallt' => 'jobsavesearch', 'wpjobportalpageid' => wpjobportal::wpjobportal_getPageid())));
+        die();
+    }
+
     function removeSavedJobSearch() {
         $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
         if (!wp_verify_nonce($wpjobportal_nonce, 'wpjobportal_job_search_nonce')) {

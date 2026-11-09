@@ -64,7 +64,7 @@ class WPJOBPORTALshortlistModel {
         $query = "SELECT count(sl.id) AS total
                  FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobshortlist` AS sl
                  JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job ON job.id = sl.jobid
-                 WHERE DATE(job.startpublishing) <= CURDATE() AND DATE(job.stoppublishing) >= CURDATE() ";
+                 WHERE job.startpublishing < DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND job.stoppublishing >= CURDATE() ";
         $query .= $subquery;
         $query .= ' GROUP BY sl.jobid ';
         $total = wpjobportaldb::get_results($query);
@@ -83,7 +83,7 @@ class WPJOBPORTALshortlistModel {
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS srtype ON srtype.id = job.salaryduration
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
-                    WHERE DATE(job.startpublishing) <= CURDATE() AND DATE(job.stoppublishing) >= CURDATE() ";
+                    WHERE job.startpublishing < DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND job.stoppublishing >= CURDATE() ";
         $query .= $subquery;
         $query .= ' GROUP BY sl.jobid ';
         $query.= " ORDER BY ". wpjobportal::$_ordering;
@@ -156,7 +156,7 @@ class WPJOBPORTALshortlistModel {
             return $return;
         }
         if ($return != WPJOBPORTAL_SAVE_ERROR) {
-            $msg = '<div id="notification-ok"><label id="popup_message"><img src="' . WPJOBPORTAL_PLUGIN_URL . 'includes/images/approve.png"/>' . __("Job has been Shortlisted", "wp-job-portal") . '</label></div>';
+            $msg = '<div id="notification-ok"><label id="popup_message"><img src="' . WPJOBPORTAL_PLUGIN_URL . 'includes/images/approve.png"/>' . __("Job saved", "wp-job-portal") . '</label></div>';
         } else {
             $msg = '<div id="notification-not-ok"><label id="popup_message"><img src="' . WPJOBPORTAL_PLUGIN_URL . 'includes/images/unpublish.png"/>' . __("Failed while performing this action", "wp-job-portal") . '</label></div>';
         }
@@ -220,7 +220,7 @@ class WPJOBPORTALshortlistModel {
         }
         if ($jobid != null && is_numeric($jobid)) {
             $result = $this->getDataForShortlist($jobid);
-            $title = __('Short List Job', 'wp-job-portal');
+            $title = __('Save Job', 'wp-job-portal');
             $content =  '';
             if (wpjobportal::$wpjobportal_theme_chk == 1) {
                 $listing_fields = WPJOBPORTALincluder::getJSModel('fieldordering')->getFieldOrderingDataForListing(2);
@@ -242,25 +242,25 @@ class WPJOBPORTALshortlistModel {
                     $path = $wpdir['baseurl'] . '/' . $data_directory . '/data/employer/comp_' . $job->companyid . '/logo/' . $job->logofilename;
                 }
                 $content .= '<div class="wpj-jp-popup-list-logo">';
-                $content .=     '<a href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$job->companyid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))) .' title='. esc_attr__('Company Logo','job-portal-theme').'>';
-                $content .=         '<img src='. esc_url($path) .' alt="'.esc_attr__('Company Logo','job-portal-theme').'" >';
+                $content .=     '<a href="'. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$job->companyid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))) .'" title="'. esc_attr__('Company Logo','job-portal-theme').'">';
+                $content .=         '<img src="'. esc_url($path) .'" alt="'.esc_attr__('Company Logo','job-portal-theme').'" >';
                 $content .=     '</a>';
                 $content .= '</div>';
             }
                 $content .= '<div class="wpj-jp-popup-list-cnt-wrp">';
                 $content .=     '<div class="wpj-jp-popup-list-cnt">';
-                $content .=          '<span class="wpj-jp-job-type" style="color:'.$job->jobtypecolor.'">';
+                $content .=          '<span class="wpj-jp-job-type" style="color:'.esc_attr(WPJOBPORTAL_Color::on_white($job->jobtypecolor)).'">';
                 $content .=             wpjobportal::wpjobportal_getVariableValue($job->jobtypetitle, 'job-portal-theme');
                 $content .=          '</span>';
                 $content .=     '</div>';
                 $content .=     '<div class="wpj-jp-popup-list-cnt">';
-                $content .=         '<a class="wpj-jp-popup-list-comp-tit" href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$job->companyid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).' title="'.esc_attr__('Company Name','job-portal-theme').'">
+                $content .=         '<a class="wpj-jp-popup-list-comp-tit" href="'. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$job->companyid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).'" title="'.esc_attr__('Company Name','job-portal-theme').'">
                                         '.wpjobportal::wpjobportal_getVariableValue($job->companyname, 'job-portal-theme').'
                                     </a>';
                 $content .=     '</div>';
                 $content .=     '<div class="wpj-jp-popup-list-cnt">';
                 $content .=         '<h5 class="wpj-jp-popup-list-tit">
-                                        <a href='.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'viewjob', 'wpjobportalid'=>$job->jobaliasid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).' title="'.esc_attr__('Job Title','job-portal-theme').'">
+                                        <a href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'viewjob', 'wpjobportalid'=>$job->jobaliasid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).'" title="'.esc_attr__('Job Title','job-portal-theme').'">
                                             '.wpjobportal::wpjobportal_getVariableValue($job->title, 'job-portal-theme').'
                                         </a>
                                     </h5>';
@@ -363,7 +363,7 @@ class WPJOBPORTALshortlistModel {
             }
         }else {
             $title = __('No Records Found', 'wp-job-portal');
-            $content = '<h1>' . __('No Records Found', 'wp-job-portal') . '</h1>';
+            $content = '<h2>' . __('No Records Found', 'wp-job-portal') . '</h2>';
         }
 
         // --- NEW HOOK INTEGRATION START ---
@@ -413,7 +413,7 @@ class WPJOBPORTALshortlistModel {
         // resolved the css issue beacuse of class typo
         if ($return_value != WPJOBPORTAL_SAVE_ERROR) {
             $html = '<div id="'.$this->class_prefix.'-notification-ok"><div id="'.$this->class_prefix.'-popup_message">
-            <img src="' . WPJOBPORTAL_PLUGIN_URL . 'includes/images/approve.png"/><spam class="popup_msg_txt">' . __("Job has been Shortlisted", "wp-job-portal") . '</spam><button class="applynow-closebutton" onclick="wpjobportalClosePopup(1);" ><img src="'.WPJOBPORTAL_PLUGIN_URL.'/includes/images/popupcloseicon.png"/>'.__('Close','wp-job-portal').'</button></div></div>';
+            <img src="' . WPJOBPORTAL_PLUGIN_URL . 'includes/images/approve.png"/><spam class="popup_msg_txt">' . __("Job saved", "wp-job-portal") . '</spam><button class="applynow-closebutton" onclick="wpjobportalClosePopup(1);" ><img src="'.WPJOBPORTAL_PLUGIN_URL.'/includes/images/popupcloseicon.png"/>'.__('Close','wp-job-portal').'</button></div></div>';
         }else{
             $html = '<div id="'.$this->class_prefix.'-notification-not-ok"><div id="'.$this->class_prefix.'-popup_message">
             <img src="' . WPJOBPORTAL_PLUGIN_URL . 'includes/images/unpublish.png"/><spam class="popup_msg_txt">' . __("Failed while performing this action", "wp-job-portal") . '</spam><button class="applynow-closebutton" onclick="wpjobportalClosePopup(1);" ><img src="'.WPJOBPORTAL_PLUGIN_URL.'/includes/images/popupcloseicon.png"/>'.__('Close','wp-job-portal').'</button></div></div>';
@@ -492,8 +492,8 @@ class WPJOBPORTALshortlistModel {
                     $company_listing_fields = WPJOBPORTALincluder::getJSModel('fieldordering')->getFieldOrderingData(1);
                     $content .= '<div class="wpj-jp-popup-list-logo">';
                     if(isset($company_listing_fields['logo'])){
-                        $content .=     '<a href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$job->companyid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))) .' title='. esc_attr__('Company Logo','job-portal-theme').'>';
-                        $content .=         '<img src='. esc_url($path) .' alt="'.esc_attr__('Company Logo','job-portal-theme').'" >';
+                        $content .=     '<a href="'. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$job->companyid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))) .'" title="'. esc_attr__('Company Logo','job-portal-theme').'">';
+                        $content .=         '<img src="'. esc_url($path) .'" alt="'.esc_attr__('Company Logo','job-portal-theme').'" >';
                         $content .=     '</a>';
                     }
                     $content .= '</div>';
@@ -501,19 +501,19 @@ class WPJOBPORTALshortlistModel {
                 $content .= '<div class="wpj-jp-popup-list-cnt-wrp">';
                 $content .=     '<div class="wpj-jp-popup-list-cnt">';
                 if(isset($listing_fields['jobtype'])){
-                    $content .=          '<span class="wpj-jp-job-type" style="color:'.$job->jobtypecolor.'">';
+                    $content .=          '<span class="wpj-jp-job-type" style="color:'.esc_attr(WPJOBPORTAL_Color::on_white($job->jobtypecolor)).'">';
                     $content .=             wpjobportal::wpjobportal_getVariableValue($job->jobtypetitle, 'job-portal-theme');
                     $content .=          '</span>';
                 }
                 $content .=     '</div>';
                 $content .=     '<div class="wpj-jp-popup-list-cnt">';
-                $content .=         '<a class="wpj-jp-popup-list-comp-tit" href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$job->companyid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).' title="'.esc_attr__('Company Name','job-portal-theme').'">
+                $content .=         '<a class="wpj-jp-popup-list-comp-tit" href="'. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>$mod, 'wpjobportallt'=>'viewcompany', 'wpjobportalid'=>$job->companyid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).'" title="'.esc_attr__('Company Name','job-portal-theme').'">
                                         '.wpjobportal::wpjobportal_getVariableValue($job->companyname, 'job-portal-theme').'
                                     </a>';
                 $content .=     '</div>';
                 $content .=     '<div class="wpj-jp-popup-list-cnt">';
                 $content .=         '<h5 class="wpj-jp-popup-list-tit">
-                                        <a href='.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'viewjob', 'wpjobportalid'=>$jobid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).' title="'.esc_attr__('Job Title','job-portal-theme').'">
+                                        <a href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'viewjob', 'wpjobportalid'=>$jobid,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).'" title="'.esc_attr__('Job Title','job-portal-theme').'">
                                             '.wpjobportal::wpjobportal_getVariableValue($job->title, 'job-portal-theme').'
                                         </a>
                                     </h5>';
@@ -562,7 +562,7 @@ class WPJOBPORTALshortlistModel {
             }
             if (wpjobportal::$wpjobportal_theme_chk == 1) {
                 $content .= '<div class="wpj-jp-popup-left wpj-shortList-left">';
-                $content .=  '<h3 class="'.$this->class_prefix.'-modal-title">'.__("Add To ShortList","wp-job-portal").'</h3>';
+                $content .=  '<h3 class="'.$this->class_prefix.'-modal-title">'.__("Save Job","wp-job-portal").'</h3>';
             }
             $content.='
                     <div class="modal-body '.$this->class_prefix.'-modal-body">
@@ -598,7 +598,7 @@ class WPJOBPORTALshortlistModel {
                                 $content.='</div>
                             <div class="col-md-12 '.$this->class_prefix.'-modal-form-btn">
                                 <div class="form-group">
-                                    <input type="button" class="btn btn-primary btn-lg btn-block '.$this->class_prefix.'-modal-form-btn-inpf" value="'.__("Add To ShortList","wp-job-portal").'" onclick="saveJobShortlist(1);"  />
+                                    <input type="button" class="btn btn-primary btn-lg btn-block '.$this->class_prefix.'-modal-form-btn-inpf" value="'.__("Save Job","wp-job-portal").'" onclick="saveJobShortlist(1);"  />
                                 </div>
                             </div>
                             <div class="'.$this->class_prefix.'-visitor-msg-btn-wrp">
@@ -614,7 +614,7 @@ class WPJOBPORTALshortlistModel {
             }
         }else {
             $title = __('No Records Found', 'wp-job-portal');
-            $content = '<h1>' . __('No Records Found', 'wp-job-portal') . '</h1>';
+            $content = '<h2>' . __('No Records Found', 'wp-job-portal') . '</h2>';
         }
 
         // --- NEW HOOK INTEGRATION START ---

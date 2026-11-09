@@ -79,13 +79,13 @@ $wpjobportal_html = '';
                     if ($wpjobportal_total == 1) {
                         if (isset($wpjobportal_arr['self'])) {
                            
-                            $wpjobportal_html.='<a class="wpjobportal-jobs-act-btn" href="admin.php?page=wpjobportal_job&task=approveQueueJob&id='.$wpjobportal_job->id.'&action=wpjobportaltask&_wpnonce='.wp_create_nonce('wpjobportal_job_nonce').'" title='. esc_html(__('approve', 'wp-job-portal')).'>
+                            $wpjobportal_html.='<a class="wpjobportal-jobs-act-btn" href="admin.php?page=wpjobportal_job&task=approveQueueJob&id='.$wpjobportal_job->id.'&action=wpjobportaltask&_wpnonce='.wp_create_nonce('wpjobportal_job_nonce').'" title="'. esc_html(__('approve', 'wp-job-portal')).'">
                                 '. esc_html(__('Job Approve', 'wp-job-portal')).'
                             </a>';
                         }
                         if (isset($wpjobportal_arr['feature']) && in_array('featuredjob', wpjobportal::$_active_addons)) {
                            
-                            $wpjobportal_html.='<a class="wpjobportal-jobs-act-btn" href="admin.php?page=wpjobportal_job&task=approveQueueFeaturedJob&id='.$wpjobportal_job->id.'&action=wpjobportaltask&_wpnonce='.wp_create_nonce('wpjobportal_job_nonce').'" title='. esc_html(__('approve', 'wp-job-portal')).'>
+                            $wpjobportal_html.='<a class="wpjobportal-jobs-act-btn" href="admin.php?page=wpjobportal_job&task=approveQueueFeaturedJob&id='.$wpjobportal_job->id.'&action=wpjobportaltask&_wpnonce='.wp_create_nonce('wpjobportal_job_nonce').'" title="'. esc_html(__('approve', 'wp-job-portal')).'">
                                 '. esc_html(__('Featured Approve', 'wp-job-portal')).'
                             </a>';
                         }
@@ -97,12 +97,12 @@ $wpjobportal_html = '';
                     } // End approve
                     if ($wpjobportal_total == 1) {
                         if (isset($wpjobportal_arr['self'])) {
-                            $wpjobportal_html.='<a class="wpjobportal-jobs-act-btn" href="admin.php?page=wpjobportal_job&task=rejectQueueJob&id='. $wpjobportal_job->id.'&action=wpjobportaltask&_wpnonce='.wp_create_nonce('wpjobportal_job_nonce').'" title='.  esc_html(__('reject', 'wp-job-portal')).'>
+                            $wpjobportal_html.='<a class="wpjobportal-jobs-act-btn" href="admin.php?page=wpjobportal_job&task=rejectQueueJob&id='. $wpjobportal_job->id.'&action=wpjobportaltask&_wpnonce='.wp_create_nonce('wpjobportal_job_nonce').'" title="'.  esc_html(__('reject', 'wp-job-portal')).'">
                                 '.  esc_html(__('Job Reject', 'wp-job-portal')).'
                             </a>';
                         }
                         if (isset($wpjobportal_arr['feature']) && in_array('featuredjob', wpjobportal::$_active_addons)) {
-                            $wpjobportal_html.='<a class="wpjobportal-jobs-act-btn" href="admin.php?page=wpjobportal_job&task=rejectQueueFeaturedJob&id='. $wpjobportal_job->id.'&action=wpjobportaltask&_wpnonce='.wp_create_nonce('wpjobportal_job_nonce').'" title='.  esc_html(__('reject', 'wp-job-portal')).'>
+                            $wpjobportal_html.='<a class="wpjobportal-jobs-act-btn" href="admin.php?page=wpjobportal_job&task=rejectQueueFeaturedJob&id='. $wpjobportal_job->id.'&action=wpjobportaltask&_wpnonce='.wp_create_nonce('wpjobportal_job_nonce').'" title="'.  esc_html(__('reject', 'wp-job-portal')).'">
                                 '.  esc_html(__('Feature Reject', 'wp-job-portal')).'
                             </a>';
                         }
@@ -112,13 +112,13 @@ $wpjobportal_html = '';
                             $wpjobportal_html.='</div>';
                     }//End Reject 
                     $wpjobportal_html.='
-                    <a class="wpjobportal-jobs-act-btn" href='. esc_url_raw(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=formjob&wpjobportalid='.$wpjobportal_job->id)).' title='.  esc_html(__('Edit', 'wp-job-portal')).'>
+                    <a class="wpjobportal-jobs-act-btn" href="'. esc_url_raw(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=formjob&wpjobportalid='.$wpjobportal_job->id)).'" title="'.  esc_html(__('Edit', 'wp-job-portal')).'">
                         '. esc_html(__('Edit', 'wp-job-portal')).'
                     </a>
-                    <a class="wpjobportal-jobs-act-btn" href='. wp_nonce_url(admin_url('admin.php?page=wpjobportal_job&task=remove&wpjobportal-cb[]='.$wpjobportal_job->id),'wpjobportal_job_nonce').'&action=wpjobportaltask&callfrom=2 onclick="return confirm(\''. esc_html(__('Are you sure to delete','wp-job-portal')) . ' ?'.'\');" title='.esc_html(__('Delete', 'wp-job-portal')).'>
+                    <a class="wpjobportal-jobs-act-btn" href="'. wp_nonce_url(admin_url('admin.php?page=wpjobportal_job&task=remove&wpjobportal-cb[]='.$wpjobportal_job->id),'wpjobportal_job_nonce').'&action=wpjobportaltask&callfrom=2" onclick="return confirm(\''. esc_html(__('Are you sure to delete','wp-job-portal')) . ' ?'.'\');" title='.esc_html(__('Delete', 'wp-job-portal')).'>
                         '.esc_html(__('Delete', 'wp-job-portal')).'
                     </a>
-                    <a class="wpjobportal-jobs-act-btn" href='. wp_nonce_url(admin_url('admin.php?page=wpjobportal_job&task=jobenforcedelete&jobid='.$wpjobportal_job->id),'wpjobportal_job_nonce') .'&action=wpjobportaltask&callfrom=2 onclick="return confirmdelete(\''. esc_html(__('This will delete every thing about this record','wp-job-portal')).'. '.esc_html(__('Are you sure to delete','wp-job-portal')).'?'.'\');" title='. esc_html(__('Force Delete', 'wp-job-portal')).'>
+                    <a class="wpjobportal-jobs-act-btn" href="'. wp_nonce_url(admin_url('admin.php?page=wpjobportal_job&task=jobenforcedelete&jobid='.$wpjobportal_job->id),'wpjobportal_job_nonce') .'&action=wpjobportaltask&callfrom=2" onclick="return confirmdelete(\''. esc_html(__('This will delete every thing about this record','wp-job-portal')).'. '.esc_html(__('Are you sure to delete','wp-job-portal')).'?'.'\');" title='. esc_html(__('Force Delete', 'wp-job-portal')).'>
                         '. esc_html(__('Force Delete', 'wp-job-portal')).'
                     </a>
             </div>  ';

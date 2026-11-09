@@ -39,7 +39,7 @@
 :root:root {
     /* Colour. Elegant Design has no distinct canvas or card colour, so those
        keep the design system's own defaults rather than being invented here. */
-    --wpjp-primary-color: var(--primary-color, #3baeda);
+    --wpjp-primary-color: var(--primary-color, #2f6fc4);
     --wpjp-secondary-color: var(--secondary-color, #333333);
     --wpjp-body-font-color: var(--body-color, #575757);
     --wpjp-text-color: var(--body-color, #575757);
@@ -56,7 +56,7 @@
     /* The focus ring is derived from the primary colour rather than left on
        Core's hard-coded purple rgba(), which would otherwise be the one
        visibly wrong colour on an otherwise correct page. */
-    --wpjp-focus-shadow-color: 0 0 0 3px color-mix(in srgb, var(--primary-color, #3baeda) 25%, transparent);
+    --wpjp-focus-shadow-color: 0 0 0 3px color-mix(in srgb, var(--primary-color, #2f6fc4) 25%, transparent);
 }
 
 /*

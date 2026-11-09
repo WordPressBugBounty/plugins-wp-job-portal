@@ -246,9 +246,21 @@ class WPJOBPORTALJobstatusModel {
             return true;
     }
 
-    function getJobStatusForCombo() {
+    /**
+     * @param bool $wpjobportal_openonly Leave out statuses that refuse
+     *        applications (Closed, On hold). Public search filters pass true:
+     *        those jobs are not what a visitor is looking for. Job forms
+     *        need every status, so the default is false.
+     */
+    function getJobStatusForCombo($wpjobportal_openonly = false) {
 
         $query = "SELECT id, title AS text FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobstatus` WHERE isactive = 1";
+        if ($wpjobportal_openonly) {
+            $wpjobportal_closed = $this->getClosedStatusIds();
+            if (!empty($wpjobportal_closed)) {
+                $query .= " AND id NOT IN (" . implode(',', array_map('intval', $wpjobportal_closed)) . ")";
+            }
+        }
         $query.= " ORDER BY ordering ASC ";
 
         $wpjobportal_rows = wpjobportaldb::get_results($query);
@@ -277,6 +289,27 @@ class WPJOBPORTALJobstatusModel {
         return $wpjobportal_result;
     }
 
+
+    /**
+     * W-2: the hiring statuses that take no applications (acceptsapplications = 0,
+     * set per status on its form; seeded for Closed and On hold). Until 280.sql has
+     * added that column only the seeded "Closed" (3) counts. The closed status the
+     * "Close job" action uses comes first. Filter wpjobportal_closed_job_statuses
+     * still has the last word.
+     *
+     * @return int[]
+     */
+    function getClosedStatusIds() {
+        static $wpjobportal_ids = null;
+        if ($wpjobportal_ids === null) {
+            $wpjobportal_table = wpjobportal::$_db->prefix . 'wj_portal_jobstatus';
+            $wpjobportal_ids = array(3);
+            if (wpjobportal::$_db->get_var("SHOW COLUMNS FROM `" . $wpjobportal_table . "` LIKE 'acceptsapplications'")) {
+                $wpjobportal_ids = array_map('intval', (array) wpjobportal::$_db->get_col("SELECT id FROM `" . $wpjobportal_table . "` WHERE acceptsapplications = 0 ORDER BY (id = 3) DESC, ordering ASC"));
+            }
+        }
+        return array_values(array_filter(array_map('intval', (array) apply_filters('wpjobportal_closed_job_statuses', $wpjobportal_ids))));
+    }
 
     function getDefaultJobStatusId() {
         $query = "SELECT id FROM " . wpjobportal::$_db->prefix . "wj_portal_jobstatus WHERE isdefault = 1";

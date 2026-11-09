@@ -15,46 +15,13 @@ $wpjobportal_look_active = WPJOBPORTALthemeModel::enqueueScreenStyles();
 $wpjobportal_look_hide = $wpjobportal_look_active ? 'display:none' : '';
 ?>
 <!-- main wrapper -->
-<div id="wpjobportaladmin-wrapper">
+<div id="wpjobportaladmin-wrapper" class="wjpl-page">
     <!-- left menu -->
     <div id="wpjobportaladmin-leftmenu">
         <?php WPJOBPORTALincluder::getClassesInclude('wpjobportaladminsidemenu'); ?>
     </div>
     <div id="wpjobportaladmin-data">
-        <!-- top bar -->
-        <div id="wpjobportal-wrapper-top">
-            <div id="wpjobportal-wrapper-top-left">
-                <div id="wpjobportal-breadcrumbs">
-                    <ul>
-                        <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>"
-                                title="<?php echo esc_attr(__('Dashboard', 'wp-job-portal')); ?>">
-                                <?php echo esc_html(__('Dashboard', 'wp-job-portal')); ?>
-                            </a>
-                        </li>
-                        <li><?php echo esc_html(__('Design', 'wp-job-portal')); ?></li>
-                    </ul>
-                </div>
-            </div>
-            <div id="wpjobportal-wrapper-top-right">
-                <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration"
-                        title="<?php echo esc_attr(__('Configuration', 'wp-job-portal')); ?>">
-                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
-                    </a>
-                </div>
-                <div id="wpjobportal-vers-txt">
-                    <?php echo esc_html(__('Version', 'wp-job-portal')) . ': '; ?>
-                    <span class="wpjobportal-ver"><?php echo esc_html(WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue('versioncode')); ?></span>
-                </div>
-            </div>
-        </div>
-        <!-- top head -->
-        <div id="wpjobportal-head">
-            <h1 class="wpjobportal-head-text">
-                <?php echo esc_html(__('Design', 'wp-job-portal')); ?>
-            </h1>
-        </div>
+        <?php WPJOBPORTAL_Admin_List_UI::page_head(__('Design', 'wp-job-portal'), __('How your job board looks to visitors.', 'wp-job-portal')); ?>
         <!-- page content -->
         <div id="wpjobportal-admin-wrapper" class="p0 wpjobportal-admin-themepge-wrapper">
             <?php include __DIR__ . '/design-switch.php'; ?>
@@ -79,6 +46,7 @@ $wpjobportal_look_hide = $wpjobportal_look_active ? 'display:none' : '';
 
                         <span class="wpjb-box-styles"> 8 <?php echo esc_html(__('Styles', 'wp-job-portal')); ?></span>
                     </div>
+                    <p class="wpjp-preset-hint"><?php echo esc_html(__('Fills in the colours below. Nothing changes on your site until you save.', 'wp-job-portal')); ?></p>
                     <div class="theme_platte">
                         <div class="color_wrapper">
                             <div class="color 1" style="background:#36bc9a;"></div>
@@ -105,7 +73,7 @@ $wpjobportal_look_hide = $wpjobportal_look_active ? 'display:none' : '';
                     </div>
                     <div class="theme_platte">
                         <div class="color_wrapper">
-                            <div class="color 1" style="background:#4d89dc;"></div>
+                            <div class="color 1" style="background:#2f6fc4;"></div>
                             <div class="color 2" style="background:#000000;"></div>
                             <div class="color 3" style="background:#575757;"></div>
                             <a href="#"
@@ -188,10 +156,11 @@ $wpjobportal_look_hide = $wpjobportal_look_active ? 'display:none' : '';
                         <span class="color_title">
                             <?php echo esc_html(__('Primary Color', 'wp-job-portal')); ?>
                         </span>
+                        <span class="wpjp-color-hint"><?php echo esc_html(__('Buttons, links and highlights', 'wp-job-portal')); ?></span>
                         <span class="color_wrp">
                             <input type="text" name="color1" id="color1" value="<?php echo esc_attr(wpjobportal::$_data[0]['color1']); ?>" style="background:<?php echo esc_attr(wpjobportal::$_data[0]['color1']); ?> !important;" />
                             <span class="color_wrp_img">
-                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/themes/colorpicker.png">
+                                <img alt="" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/themes/colorpicker.png">
                             </span>
                         </span>
                     </div>
@@ -210,6 +179,14 @@ $wpjobportal_look_hide = $wpjobportal_look_active ? 'display:none' : '';
                             'ed_border'     => __('Border Color', 'wp-job-portal'),
                             'ed_background' => __('Page Background', 'wp-job-portal'),
                             'ed_card'       => __('Card Background', 'wp-job-portal'),
+                        );
+                        $wpjobportal_ed_hints = array(
+                            'ed_color1'     => __('Buttons, links and highlights', 'wp-job-portal'),
+                            'ed_color2'     => __('Headings and job titles', 'wp-job-portal'),
+                            'ed_color3'     => __('Body text', 'wp-job-portal'),
+                            'ed_border'     => __('Lines around cards and fields', 'wp-job-portal'),
+                            'ed_background' => __('Behind everything on the page', 'wp-job-portal'),
+                            'ed_card'       => __('Inside job cards and boxes', 'wp-job-portal'),
                         );
                         $wpjobportal_ed_sizes = array(
                             'ed_mainheading'      => __('Main Heading', 'wp-job-portal'),
@@ -245,13 +222,14 @@ $wpjobportal_look_hide = $wpjobportal_look_active ? 'display:none' : '';
                             ?>
                             <div class="color_portion">
                                 <span class="color_title"><?php echo esc_html($wpjobportal_ed_label); ?></span>
+                                <?php if (isset($wpjobportal_ed_hints[$wpjobportal_ed_key])) : ?><span class="wpjp-color-hint"><?php echo esc_html($wpjobportal_ed_hints[$wpjobportal_ed_key]); ?></span><?php endif; ?>
                                 <span class="color_wrp">
                                     <input type="text" name="<?php echo esc_attr($wpjobportal_ed_key); ?>" id="<?php echo esc_attr($wpjobportal_ed_key); ?>" class="wpjp-ed-field wpjp-ed-color"
                                         data-wpjp-default="<?php echo esc_attr($wpjobportal_ed_fields[$wpjobportal_ed_key]['default']); ?>"
                                         data-wpjp-var="<?php echo esc_attr($wpjobportal_ed_fields[$wpjobportal_ed_key]['var']); ?>"
                                         value="<?php echo esc_attr(wpjobportal::$_data[0][$wpjobportal_ed_key]); ?>" style="background:<?php echo esc_attr(wpjobportal::$_data[0][$wpjobportal_ed_key]); ?> !important; color:<?php echo esc_attr($wpjobportal_ed_ink); ?> !important;" />
                                     <span class="color_wrp_img">
-                                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/themes/colorpicker.png">
+                                        <img alt="" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/themes/colorpicker.png">
                                     </span>
                                 </span>
                             </div>
@@ -263,6 +241,7 @@ $wpjobportal_look_hide = $wpjobportal_look_active ? 'display:none' : '';
                             $wpjobportal_ed_rules = $wpjobportal_ed_fields[$wpjobportal_ed_key]; ?>
                             <div class="color_portion">
                                 <span class="color_title"><?php echo esc_html($wpjobportal_ed_label); ?></span>
+                                <?php if (isset($wpjobportal_ed_hints[$wpjobportal_ed_key])) : ?><span class="wpjp-color-hint"><?php echo esc_html($wpjobportal_ed_hints[$wpjobportal_ed_key]); ?></span><?php endif; ?>
                                 <span class="color_wrp">
                                     <input type="number" name="<?php echo esc_attr($wpjobportal_ed_key); ?>" id="<?php echo esc_attr($wpjobportal_ed_key); ?>" class="wpjp-ed-field wpjp-ed-size wpjp-font-size-field"
                                         data-wpjp-default="<?php echo esc_attr($wpjobportal_ed_rules['default']); ?>"
@@ -296,10 +275,11 @@ $wpjobportal_look_hide = $wpjobportal_look_active ? 'display:none' : '';
                     <div class="color_portion" style="<?php echo esc_attr($wpjobportal_look_hide); ?>">
                         <span class="color_title">
                             <?php echo esc_html(__('Secondary Color', 'wp-job-portal')); ?></span>
+                        <span class="wpjp-color-hint"><?php echo esc_html(__('Headings and job titles', 'wp-job-portal')); ?></span>
                         <span class="color_wrp">
                             <input type="text" name="color2" id="color2" value="<?php echo esc_attr(wpjobportal::$_data[0]['color2']); ?>" style="background:<?php echo esc_attr(wpjobportal::$_data[0]['color2']); ?> !important;" />
                             <span class="color_wrp_img">
-                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/themes/colorpicker.png">
+                                <img alt="" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/themes/colorpicker.png">
                             </span>
                         </span>
                     </div>
@@ -307,10 +287,11 @@ $wpjobportal_look_hide = $wpjobportal_look_active ? 'display:none' : '';
                         <span class="color_title">
                             <?php echo esc_html(__('Content Color', 'wp-job-portal')); ?>
                         </span>
+                        <span class="wpjp-color-hint"><?php echo esc_html(__('Body text', 'wp-job-portal')); ?></span>
                         <span class="color_wrp">
                             <input type="text" name="color3" id="color3" value="<?php echo esc_attr(wpjobportal::$_data[0]['color3']); ?>" style="background:<?php echo esc_attr(wpjobportal::$_data[0]['color3']); ?> !important;" />
                             <span class="color_wrp_img">
-                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/themes/colorpicker.png">
+                                <img alt="" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/themes/colorpicker.png">
                             </span>
                         </span>
                     </div>
@@ -396,6 +377,11 @@ $wpjobportal_look_hide = $wpjobportal_look_active ? 'display:none' : '';
                     }
                     ?>
                 </form>
+                <div class="wpjp-unsaved-bar" id="wpjpUnsavedBar" hidden role="status">
+                    <span><?php echo esc_html(__('You have unsaved changes.', 'wp-job-portal')); ?></span>
+                    <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_theme')); ?>" class="wjpl-btn"><?php echo esc_html(__('Discard', 'wp-job-portal')); ?></a>
+                    <button type="button" class="wjpl-btn wjpl-btn-pri" id="wpjpUnsavedSave"><?php echo esc_html(__('Save Changes', 'wp-job-portal')); ?></button>
+                </div>
                 <div class="wpjobportal-add-button-wrp">
                     <a class="wpjobportal-add-link button" id="saveColors" href="#"
                         title="<?php echo esc_attr(__('Save Changes', 'wp-job-portal')) ?>">
@@ -404,7 +390,7 @@ $wpjobportal_look_hide = $wpjobportal_look_active ? 'display:none' : '';
                     <div class="wpjobportal-sugestion-alert-wrp">
                         <div class="wpjobportal-sugestion-alert">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="info" size="14" style="display:inline; vertical-align:middle;" class="lucide lucide-info"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
-                            <?php echo esc_html(__('Some changes may require clearing your cache to take effect.', 'wp-job-portal')) ?>
+                            <?php echo esc_html(__('If your site uses a caching plugin, clear its cache after saving so visitors see the new look.', 'wp-job-portal')) ?>
                         </div>
                     </div>
                 </div>
@@ -420,7 +406,8 @@ $wpjobportal_look_hide = $wpjobportal_look_active ? 'display:none' : '';
                             <line x1="12" x2="12" y1="17" y2="21"></line>
                         </svg>
                     </div>
-                    <?php echo esc_html(__('Live Preview', 'wp-job-portal')); ?>
+                    <span class="wpjp-preview-titles"><span><?php echo esc_html(__('Preview (not saved yet)', 'wp-job-portal')); ?></span>
+                    <small><?php echo esc_html(__('The employer\'s My Jobs page with your choices. Its buttons do nothing here.', 'wp-job-portal')); ?></small></span>
                 </div>
                 <div class="wjportal-main-up-wrapper">
                     <div class="wjportal-main-wrapper wjportal-clearfix">
@@ -463,7 +450,7 @@ $wpjobportal_look_hide = $wpjobportal_look_active ? 'display:none' : '';
                                     <div class="wjportal-filter-image"><a class="sort-icon" href="#"
                                             data-image1="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/sort-up.png"
                                             data-image2="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/sort-down.png"
-                                            data-sortby="2"><img decoding="async" id="sortingimage"
+                                            data-sortby="2"><img decoding="async" alt="<?php echo esc_attr__('Change sort order', 'wp-job-portal'); ?>" id="sortingimage"
                                                 src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/sort-down.png"></a>
                                     </div>
                                 </div>
@@ -1073,6 +1060,31 @@ $wpjobportal_inline_js_script = "
         jQuery(document).ready(function () {
             jQuery('#saveColors').click(function (e) {
                 jQuery('form#adminForm').submit();
+            });
+            /* Presets and fields change only the preview until saved: say so
+               in a bar that stays in view, and warn before leaving. */
+            var wpjpDirty = false;
+            function wpjpMarkDirty() {
+                if (!wpjpDirty) {
+                    wpjpDirty = true;
+                    jQuery('#wpjpUnsavedBar').prop('hidden', false);
+                }
+            }
+            jQuery('form#adminForm').on('input change', ':input', wpjpMarkDirty);
+            jQuery('a.set_theme, #wpjpResetElegant, #wpjpResetFontSizes').on('click', wpjpMarkDirty);
+            jQuery('#wpjpUnsavedSave').on('click', function () { jQuery('form#adminForm').submit(); });
+            jQuery('form#adminForm').on('submit', function () { wpjpDirty = false; });
+            jQuery(window).on('beforeunload', function () { if (wpjpDirty) { return true; } });
+            jQuery('#wpjpUnsavedBar a').on('click', function () { wpjpDirty = false; });
+            /* The picked preset is marked, and on load the one matching the saved primary colour. */
+            function wpjpMarkPreset(link) {
+                jQuery('div.theme_platte').removeClass('is-picked').find('a.set_theme').attr('aria-pressed', 'false');
+                jQuery(link).attr('aria-pressed', 'true').closest('div.theme_platte').addClass('is-picked');
+            }
+            jQuery('a.set_theme').attr({role: 'button', 'aria-pressed': 'false'}).on('click', function () { wpjpMarkPreset(this); });
+            var wpjpSaved = String(jQuery(wpjpLookActive ? '#ed_color1' : '#color1').val() || '').toLowerCase();
+            jQuery('a.set_theme').each(function () {
+                if (rgb2hex(jQuery(this).parent().find('div.1').css('background-color')).toLowerCase() === wpjpSaved) { wpjpMarkPreset(this); }
             });
             /* Puts the four sizes back to the shipped defaults. It fills the
                fields and leaves them; nothing is stored until Save Changes, so

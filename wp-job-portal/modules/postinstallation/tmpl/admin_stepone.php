@@ -50,13 +50,13 @@ $wpjobportal_approvals = array(
         </div>
         <div class="wpjobportal-post-data">
             <div class="wpjobportal-post-heading-wrp">
-                <div class="wpjobportal-post-heading">
+                <h1 class="wpjobportal-post-heading">
                     <?php echo esc_html(__('Essentials','wp-job-portal'));?>
-                </div>
+                </h1>
                 <div class="wpjobportal-post-head-rightbtns-wrp">
                     <span class="wpjobportal-post-head-pagestep"><?php echo esc_html(__('Step 2 of 4','wp-job-portal')); ?></span>
                     <a class="wpjobportal-post-head-closebtn" href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('Close','wp-job-portal'));?>">
-                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/close.png" alt="<?php echo esc_attr__('Close', 'wp-job-portal'); ?>" />
+                        <?php echo esc_html__('Exit setup', 'wp-job-portal'); ?>
                     </a>
                 </div>
             </div>

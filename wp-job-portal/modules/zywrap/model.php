@@ -1919,12 +1919,35 @@ class WPJOBPORTALzywrapModel {
     /**
          * AJAX Function: Executes the Job Copilot Generation
          */
+
+    /**
+     * Refuse AI copilot calls from visitors, and rate-limit everyone else.
+     */
+    private function assertCopilotAccess() {
+        if (current_user_can('manage_options')) {
+            return;
+        }
+        if (!is_user_logged_in()) {
+            wp_send_json_error(array('message' => __('Please log in to use the AI assistant.', 'wp-job-portal')));
+        }
+        $key = 'wpjp_copilot_' . get_current_user_id();
+        $used = (int) get_transient($key);
+        if ($used >= 30) {
+            wp_send_json_error(array('message' => __('AI assistant limit reached. Please try again later.', 'wp-job-portal')));
+        }
+        set_transient($key, $used + 1, HOUR_IN_SECONDS);
+    }
+
     function executeJobCopilot() {
         //1. Security & Auth Checks
         $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce', 'post');
         if (!wp_verify_nonce($wpjobportal_nonce, 'wpjobportal_job_nonce')) {
              wp_send_json_error(array('message' => __('Security check failed.', 'wp-job-portal')));
         }
+
+        // Security: the copilots spend the site owner's paid AI credits. Signed-in
+        // users only, with a per-user hourly limit (administrators are exempt).
+        $this->assertCopilotAccess();
 
         $api_key = get_option('wpjobportal_zywrap_api_key');
         if (empty($api_key)) {
@@ -1979,6 +2002,10 @@ class WPJOBPORTALzywrapModel {
         if (!empty($aiData['companyContext']) && !empty($aiData['companyId'])) {
             $company_id = intval($aiData['companyId']);
             $query = "SELECT name, description, url, tagline FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` WHERE id = " . (int) ($company_id);
+            // Security: only the user's own company (administrators: any).
+            if (!current_user_can('manage_options')) {
+                $query .= " AND uid = " . (int) WPJOBPORTALincluder::getObjectClass('user')->uid();
+            }
             $company_info = wpjobportaldb::get_row($query);
 
             if ($company_info) {
@@ -2105,6 +2132,10 @@ class WPJOBPORTALzywrapModel {
         if ( ! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_company_nonce' ) ) {
             wp_send_json_error( array( 'message' => __('Security check failed.', 'wp-job-portal') ) );
         }
+
+        // Security: the copilots spend the site owner's paid AI credits. Signed-in
+        // users only, with a per-user hourly limit (administrators are exempt).
+        $this->assertCopilotAccess();
 
         $api_key = get_option('wpjobportal_zywrap_api_key');
 
@@ -2257,6 +2288,10 @@ class WPJOBPORTALzywrapModel {
         if ( ! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_resume_nonce' ) ) {
             wp_send_json_error( array( 'message' => __('Security check failed.', 'wp-job-portal') ) );
         }
+
+        // Security: the copilots spend the site owner's paid AI credits. Signed-in
+        // users only, with a per-user hourly limit (administrators are exempt).
+        $this->assertCopilotAccess();
 
         $api_key = get_option('wpjobportal_zywrap_api_key');
         if (empty($api_key)) {
@@ -2417,6 +2452,10 @@ class WPJOBPORTALzywrapModel {
         if ( ! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_coverletter_nonce' ) ) {
             wp_send_json_error( array( 'msg' => __('Security check failed.', 'wp-job-portal') ) );
         }
+
+        // Security: the copilots spend the site owner's paid AI credits. Signed-in
+        // users only, with a per-user hourly limit (administrators are exempt).
+        $this->assertCopilotAccess();
 
         $api_key = get_option('wpjobportal_zywrap_api_key');
 

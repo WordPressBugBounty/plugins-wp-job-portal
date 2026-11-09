@@ -16,7 +16,7 @@ class WPJOBPORTALsystemerrorController {
         if (self::canaddfile($wpjobportal_layout)) {
             switch ($wpjobportal_layout) {
                 case 'admin_systemerrors':
-                    WPJOBPORTALincluder::getJSModel('systemerror')->getSystemErrors();
+                    WPJOBPORTALincluder::getJSModel('systemerror')->getAdminErrorList();
                     break;
 
                 /*

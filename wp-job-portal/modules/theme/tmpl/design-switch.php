@@ -59,14 +59,14 @@ $wpjobportal_designs = array(
             __('Fewest styles to load', 'wp-job-portal'),
         ),
         'live' => !$wpjobportal_switch_on,
-        'color' => isset($wpjobportal_theme_values['color1']) ? $wpjobportal_theme_values['color1'] : '#3baeda',
+        'color' => isset($wpjobportal_theme_values['color1']) ? $wpjobportal_theme_values['color1'] : '#2f6fc4',
     ),
     'alternative' => array(
         'name' => $wpjobportal_switch['label'],
         'tag' => !empty($wpjobportal_switch['tag']) ? $wpjobportal_switch['tag'] : '',
         'points' => !empty($wpjobportal_switch['points']) ? array_slice((array) $wpjobportal_switch['points'], 0, 4) : array(),
         'live' => $wpjobportal_switch_on,
-        'color' => isset($wpjobportal_theme_values['ed_color1']) ? $wpjobportal_theme_values['ed_color1'] : '#3baeda',
+        'color' => isset($wpjobportal_theme_values['ed_color1']) ? $wpjobportal_theme_values['ed_color1'] : '#2f6fc4',
     ),
 );
 ?>
@@ -113,7 +113,7 @@ $wpjobportal_designs = array(
        job lists (Standard: framed logo on the left; Elegant: status and
        company on top, large title, logo on the right). Fixed sample text, so
        it looks the same whatever the site holds. */
-    .wpjp-design-mock { --mock: #3baeda; display: flex; align-items: center; justify-content: center; height: 150px; padding: 14px; background: #f6f6f6; border-bottom: 1px solid #dcdcde; }
+    .wpjp-design-mock { --mock: #2f6fc4; display: flex; align-items: center; justify-content: center; height: 150px; padding: 14px; background: #f6f6f6; border-bottom: 1px solid #dcdcde; }
     .wpjp-design-mock .mock-card { display: grid; gap: 4px 10px; align-items: center; width: 100%; max-width: 340px; padding: 10px 12px; background: #fff; border: 1px solid #e2e4e7; border-inline-start: 3px solid #1e8e3e; font-size: 11px; line-height: 1.3; color: #575757; }
     .wpjp-design-mock .mock-title { font-weight: 700; color: #222; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .wpjp-design-mock .mock-line { display: flex; align-items: center; gap: 6px; min-width: 0; white-space: nowrap; overflow: hidden; }

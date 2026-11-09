@@ -336,7 +336,7 @@ textarea.wpjp-ds-control {
     gap: 0;
     padding: 48px 40px;
     border: 1px solid var(--wpjp-border-color, #e9ecef);
-    border-block-start: 4px solid var(--wpjp-primary-color, #3baeda);
+    border-block-start: 4px solid var(--wpjp-primary-color, #2f6fc4);
     border-radius: 8px;
     background: var(--wpjp-card-background, #fff);
     box-shadow: var(--wpjp-card-shadow, 0 4px 15px rgba(0, 0, 0, 0.08));
@@ -358,7 +358,7 @@ textarea.wpjp-ds-control {
     inset-inline-start: 18px;
     width: 34px;
     height: 9px;
-    border: 2px solid var(--wpjp-primary-color, #3baeda);
+    border: 2px solid var(--wpjp-primary-color, #2f6fc4);
     border-radius: 5px;
     content: "";
 }
@@ -366,7 +366,7 @@ textarea.wpjp-ds-control {
 .wpjp-ds-empty-state__icon::after { top: 39px; width: 25px; }
 .wpjp-ds-empty-state__eyebrow {
     margin: 0 0 8px;
-    color: var(--wpjp-primary-color, #3baeda);
+    color: var(--wpjp-primary-color, #2f6fc4);
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -398,7 +398,7 @@ textarea.wpjp-ds-control {
     min-height: 44px;
     padding: 0 20px;
     border-radius: 8px;
-    background: var(--wpjp-primary-color, #3baeda);
+    background: var(--wpjp-primary-color, #2f6fc4);
     color: #fff;
     font-weight: 600;
     text-decoration: none;

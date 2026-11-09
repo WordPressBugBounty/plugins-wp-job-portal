@@ -16,6 +16,10 @@ if (!isset($wpjobportal_fields)) {
 }
 $wpjobportal_formfields = array();
 foreach($wpjobportal_fields AS $wpjobportal_field){
+    // W-10: search engine fields belong to the admin, not the employer's job form
+    if (in_array($wpjobportal_field->field, array('metadescription', 'metakeywords'), true) && !wpjobportal::$_common->wpjp_isadmin()) {
+        continue;
+    }
     $wpjobportal_content = '';
    switch ($wpjobportal_field->field) {
         case "jobtitle":
@@ -28,16 +32,31 @@ foreach($wpjobportal_fields AS $wpjobportal_field){
             $wpjobportal_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
             if(!WPJOBPORTALincluder::getObjectClass('user')->isguest()){
                 if (wpjobportal::$_common->wpjp_isadmin()) {
-                    $wpjobportal_content = WPJOBPORTALformfield::select('companyid', WPJOBPORTALincluder::getJSModel('company')->getCompaniesForCombo(), isset($wpjobportal_job->companyid) ? $wpjobportal_job->companyid : 0, esc_html(__('Select','wp-job-portal')) .' '. esc_html(__('Company','wp-job-portal')), array('class' => 'inputbox wjportal-form-select-field', 'data-validation' => $wpjobportal_field->validation));
+                    // The list holds approved companies only. A job whose company is
+                    // still waiting (or was rejected) showed "Select Company" and lost
+                    // its company on the next save; its own company is always offered.
+                    $wpjobportal_companies = (array) WPJOBPORTALincluder::getJSModel('company')->getCompaniesForCombo();
+                    $wpjobportal_own_company = isset($wpjobportal_job->companyid) ? (int) $wpjobportal_job->companyid : 0;
+                    if ($wpjobportal_own_company > 0 && !in_array($wpjobportal_own_company, array_map('intval', wp_list_pluck($wpjobportal_companies, 'id')), true)) {
+                        $wpjobportal_own = wpjobportal::$_db->get_row('SELECT id, name, status FROM `' . wpjobportal::$_db->prefix . 'wj_portal_companies` WHERE id = ' . $wpjobportal_own_company);
+                        if ($wpjobportal_own) {
+                            $wpjobportal_own_state = (int) $wpjobportal_own->status === 0 ? __('waiting for approval', 'wp-job-portal') : __('not approved', 'wp-job-portal');
+                            array_unshift($wpjobportal_companies, (object) array('id' => (int) $wpjobportal_own->id, 'text' => $wpjobportal_own->name . ' (' . $wpjobportal_own_state . ')'));
+                        }
+                    }
+                    $wpjobportal_content = WPJOBPORTALformfield::select('companyid', $wpjobportal_companies, isset($wpjobportal_job->companyid) ? $wpjobportal_job->companyid : 0, esc_html(__('Select','wp-job-portal')) .' '. esc_html(__('Company','wp-job-portal')), array('class' => 'inputbox wjportal-form-select-field', 'data-validation' => $wpjobportal_field->validation));
                 } else {
                     if(in_array('multicompany',wpjobportal::$_active_addons)){
                        if(WPJOBPORTALincluder::getObjectClass('user')->isemployer()){
                             if (WPJOBPORTALincluder::getJSModel('company')->employerHaveCompany($wpjobportal_uid)) {
-                                $wpjobportal_content = WPJOBPORTALformfield::select('companyid', WPJOBPORTALincluder::getJSModel('company')->getCompanyForCombo($wpjobportal_uid), isset($wpjobportal_job->companyid) ? $wpjobportal_job->companyid : '', esc_html(__('Select','wp-job-portal')) .' '. esc_html(__('Company', 'wp-job-portal')), array('class' => 'inputbox wjportal-form-select-field', 'onchange' => 'getdepartments(\'departmentid\', this.value);', 'data-validation' => $wpjobportal_field->validation));
+                                // W-3: an employer with one company has nothing to choose - it is selected.
+                                $wpjobportal_my_companies = (array) WPJOBPORTALincluder::getJSModel('company')->getCompanyForCombo($wpjobportal_uid);
+                                $wpjobportal_company_pick = isset($wpjobportal_job->companyid) ? $wpjobportal_job->companyid : (count($wpjobportal_my_companies) === 1 ? $wpjobportal_my_companies[0]->id : '');
+                                $wpjobportal_content = WPJOBPORTALformfield::select('companyid', $wpjobportal_my_companies, $wpjobportal_company_pick, esc_html(__('Select','wp-job-portal')) .' '. esc_html(__('Company', 'wp-job-portal')), array('class' => 'inputbox wjportal-form-select-field', 'onchange' => 'getdepartments(\'departmentid\', this.value);', 'data-validation' => $wpjobportal_field->validation));
                             } else {
                                 $wpjobportal_content = '<div class="wjportal-form-needs-company">'
                                     . '<p>' . esc_html(__('A job belongs to a company, and you have not added one yet. Add your company first, then come back and post the job.', 'wp-job-portal')) . '</p>'
-                                    . '<a class="wjportal-form-add-comp" href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'addcompany'))).'">' . esc_html(__('Add','wp-job-portal')).' '. esc_html(__('Company', 'wp-job-portal')) . '</a>'
+                                    . '<a class="wjportal-form-add-comp" href="'.esc_url(WPJOBPORTAL_Employer_Start::add_company_url()).'">' . esc_html(__('Add','wp-job-portal')).' '. esc_html(__('Company', 'wp-job-portal')) . '</a>'
                                     . '</div>'
                                     /*
                                      * The field was a hidden input carrying
@@ -62,7 +81,7 @@ foreach($wpjobportal_fields AS $wpjobportal_field){
                         }else{
                               $wpjobportal_content = '<div class="wjportal-form-needs-company">'
                                     . '<p>' . esc_html(__('A job belongs to a company, and you have not added one yet. Add your company first, then come back and post the job.', 'wp-job-portal')) . '</p>'
-                                    . '<a class="wjportal-form-add-comp" href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'company', 'wpjobportallt'=>'addcompany'))).'">' . esc_html(__('Add','wp-job-portal')).' '. esc_html(__('Company', 'wp-job-portal')) . '</a>'
+                                    . '<a class="wjportal-form-add-comp" href="'.esc_url(WPJOBPORTAL_Employer_Start::add_company_url()).'">' . esc_html(__('Add','wp-job-portal')).' '. esc_html(__('Company', 'wp-job-portal')) . '</a>'
                                     . '</div>'
                                     /*
                                      * The field was a hidden input carrying
@@ -158,6 +177,28 @@ foreach($wpjobportal_fields AS $wpjobportal_field){
             break;
         case 'city':
             $wpjobportal_content = WPJOBPORTALformfield::text('city', isset($wpjobportal_job->city) ? $wpjobportal_job->city : '', array('class' => 'inputbox wpjobportal-form-input-field wpjobportal-job-form-city-field', 'data-validation' => $wpjobportal_field->validation));
+            // Google for Jobs lists a job only with a location or a remote flag: ask
+            // for one before the form is sent, so nothing typed is lost (storeJob
+            // refuses the same case). The city box is a token picker, which hides
+            // the input from the form validator, hence a submit check of its own.
+            wp_register_script('wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false);
+            wp_enqueue_script('wpjobportal-inline-handle');
+            wp_add_inline_script('wpjobportal-inline-handle', 'jQuery(function ($) {
+                var $city = $("#city"), $form = $city.closest("form"), text = ' . wp_json_encode(__('Add a city, or set Workplace Type to Remote. Google for Jobs lists a job only when it has a location or is marked remote.', 'wp-job-portal')) . ';
+                $form.on("submit", function (e) {
+                    var $mode = $("#workplace_type");
+                    if ($.trim($city.val() || "") !== "" || ($mode.length && $mode.val() === "3")) { return; }
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    var $note = $("#wpjobportal-location-required");
+                    if (!$note.length) {
+                        $note = $("<div id=\\"wpjobportal-location-required\\" class=\\"help-block form-error wpjobportal-location-required\\" role=\\"alert\\"></div>").insertAfter($city.parent().children().last());
+                    }
+                    $note.text(text);
+                    $("html, body").animate({ scrollTop: $note.offset().top - 140 }, 200);
+                });
+                $(document).on("change", "#workplace_type, #city", function () { $("#wpjobportal-location-required").remove(); });
+            });');
             break;
         case 'tags':
           if(in_array('tag',wpjobportal::$_active_addons)){

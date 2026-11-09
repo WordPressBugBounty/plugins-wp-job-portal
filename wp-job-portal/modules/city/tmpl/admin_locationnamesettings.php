@@ -4,7 +4,7 @@ die('Restricted Access');
 wp_enqueue_script( 'wpjobportal-res-tables', WPJOBPORTAL_PLUGIN_URL . 'includes/js/responsivetable.js', array(), wpjobportal_asset_version('includes/js/responsivetable.js'), false );
 ?>
 <!-- main wrapper -->
-<div id="wpjobportaladmin-wrapper">
+<div id="wpjobportaladmin-wrapper" class="wjpl-page">
     <!-- left menu -->
 	<div id="wpjobportaladmin-leftmenu">
         <?php  WPJOBPORTALincluder::getClassesInclude('wpjobportaladminsidemenu'); ?>
@@ -14,56 +14,18 @@ wp_enqueue_script( 'wpjobportal-res-tables', WPJOBPORTAL_PLUGIN_URL . 'includes/
             $wpjobportal_msgkey = WPJOBPORTALincluder::getJSModel('city')->getMessagekey();
             WPJOBPORTALMessages::getLayoutMessage($wpjobportal_msgkey);
         ?>
-        <!-- top bar -->
-        <div id="wpjobportal-wrapper-top">
-            <div id="wpjobportal-wrapper-top-left">
-                <div id="wpjobportal-breadcrumbs">
-                    <ul>
-                        <li>
-                            <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr__("Dashboard","wp-job-portal"); ?>">
-                                <?php echo esc_html__("Dashboard","wp-job-portal"); ?>
-                            </a>
-                        </li>
-                        <li><?php echo esc_html__("Location Name Settings","wp-job-portal"); ?></li>
-                    </ul>
-                </div>
-            </div>
-            <div id="wpjobportal-wrapper-top-right">
-                <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr__("Configuration","wp-job-portal"); ?>">
-                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
-                   </a>
-                </div>
-                <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr__("Help","wp-job-portal"); ?>">
-                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
-                   </a>
-                </div>
-                <div id="wpjobportal-vers-txt">
-                    <?php echo esc_html__("Version","wp-job-portal").': '; ?>
-                    <span class="wpjobportal-ver"><?php echo esc_html(WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue('versioncode')); ?></span>
-                </div>
-            </div>
-        </div>
-        <!-- top head -->
-        <div id="wpjobportal-head">
-            <h1 class="wpjobportal-head-text">
-                <?php echo esc_html__("Location Name Settings", "wp-job-portal"); ?>
-            </h1>
-            <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_city&wpjobportallt=loadaddressdata')); ?>" class="wpjobportal-add-link button" title="<?php echo esc_attr__("Location Name Settings", "wp-job-portal"); ?>">
-                <?php echo esc_html__("Import Location Data", "wp-job-portal"); ?>
-            </a>
-        </div>
         <!-- page content -->
+        <?php WPJOBPORTAL_Admin_Form_UI::header(__('Location name settings', 'wp-job-portal'), __('Show city names in English or in their own language.', 'wp-job-portal'), __('City names', 'wp-job-portal'), 'wpjobportal-list-form'); ?>
+        <?php WPJOBPORTAL_Admin_List_UI::section_tabs(); ?>
         <div id="wpjobportal-admin-wrapper">
-            <form id="wpjobportal-list-form" class="wpjobportal-form" enctype="multipart/form-data" method="post" action="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_city')); ?>">
+            <form id="wpjobportal-list-form" class="wpjobportal-form wjpl-form wjpl-form-simple" enctype="multipart/form-data" method="post" action="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_city')); ?>"><?php WPJOBPORTAL_Admin_Form_UI::simple_open(); ?>
                 <div class="wpjobportal-city-data-form-wrap wpjobportal-city-data-form-wrap-left">
                     <?php
                     $wpjobportal_name_preference = get_option("wpjobportal_location_name_preference");
                      ?>
                     <div class="wpjobportal-form-wrapper">
                         <div class="wpjobportal-form-title">
-                            <?php echo esc_html__("City Name Preferences", "wp-job-portal"). ': '; ?>
+                            <?php echo esc_html__("City Name Preferences", "wp-job-portal"); ?>
                         </div>
                         <div class="wpjobportal-form-value">
                             <span class="wpjobportal-form-radio-field wpjobportal-form-radio-field-first">
@@ -120,7 +82,7 @@ wp_enqueue_script( 'wpjobportal-res-tables', WPJOBPORTAL_PLUGIN_URL . 'includes/
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('task', 'savecitynamesettings'), WPJOBPORTAL_ALLOWED_TAGS); ?>
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('action', 'city_savecitynamesettings'), WPJOBPORTAL_ALLOWED_TAGS); ?>
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('_wpnonce', wp_create_nonce('wpjobportal_address_data_nonce')), WPJOBPORTAL_ALLOWED_TAGS); ?>
-            </form>
+            <?php WPJOBPORTAL_Admin_Form_UI::simple_close(); ?></form>
 
         </div>
     </div>

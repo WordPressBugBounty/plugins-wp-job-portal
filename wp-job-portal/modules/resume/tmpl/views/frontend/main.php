@@ -16,7 +16,7 @@ echo '<div class="wjportal-resume-cnt-wrp">
                 $wpjobportal_myresume->applicationtitle = isset($wpjobportal_myresume->applicationtitle) ? $wpjobportal_myresume->applicationtitle : $wpjobportal_socialprofile->email;
             }
             echo '<div class="wjportal-resume-data">
-            <a href='.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'viewresume', 'wpjobportalid'=>$wpjobportal_myresume->id, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).'>
+            <a href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'viewresume', 'wpjobportalid'=>$wpjobportal_myresume->id, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).'">
                 <span class="wjportal-resume-name">'.esc_html($wpjobportal_myresume->first_name) .' ' . esc_html($wpjobportal_myresume->last_name).' '.'</span></a>';
                 $wpjobportal_featuredflag = true;
                 $wpjobportal_dateformat = wpjobportal::$_configuration['date_format'];
@@ -103,7 +103,7 @@ echo '<div class="wjportal-resume-cnt-wrp">
                 if(isset($wpjobportal_listing_fields['jobtype']) && !empty($wpjobportal_myresume->jobtypetitle)){
                     echo '
                         <div class="wjportal-resume-data">
-                            <span class="wjportal-resume-job-type" style="--wpjp-jobtype-color:'.esc_attr($wpjobportal_myresume->jobtypecolor).'">'.esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_myresume->jobtypetitle)) .'</span>
+                            <span class="wjportal-resume-job-type" style="--wpjp-jobtype-color:'.esc_attr(WPJOBPORTAL_Color::on_white($wpjobportal_myresume->jobtypecolor)).'">'.esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_myresume->jobtypetitle)) .'</span>
                         </div>';
                 }
 
@@ -114,7 +114,7 @@ echo '<div class="wjportal-resume-cnt-wrp">
                     $wpjobportal_show_match_score_resume_list  = wpjobportal::$_config->getConfigurationByConfigName('show_match_score_resume_list');
                     if (! empty($wpjobportal_show_match_score_resume_list) && !empty($wpjobportal_myresume->match_score)) {
                         $wpjobportal_ai_match_score = (int) $wpjobportal_myresume->match_score;
-                        do_action('wpjobportal_addon_resumelisting_match_score',$wpjobportal_ai_match_score);
+                        do_action('wpjobportal_addon_resumelisting_match_score',$wpjobportal_ai_match_score, isset($wpjobportal_myresume->match_reasons) ? $wpjobportal_myresume->match_reasons : array());
                     }
                 }
 

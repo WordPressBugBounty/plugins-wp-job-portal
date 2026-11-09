@@ -345,6 +345,88 @@ class WPJOBPORTALactivitylogModel {
         return;
     }
 
+    /** Record types in the log (referencefor) and how the list names them. */
+    function getActivityTypes() {
+        return array(
+            'jobs' => __('Jobs', 'wp-job-portal'),
+            'jobapply' => __('Applications', 'wp-job-portal'),
+            'resume' => __('Resumes', 'wp-job-portal'),
+            'companies' => __('Companies', 'wp-job-portal'),
+            'department' => __('Departments', 'wp-job-portal'),
+            'coverletters' => __('Cover letters', 'wp-job-portal'),
+            'folders' => __('Folders', 'wp-job-portal'),
+            'jobsearches' => __('Job searches', 'wp-job-portal'),
+            'resumesearches' => __('Resume searches', 'wp-job-portal'),
+            'categories' => __('Categories', 'wp-job-portal'),
+            'jobtypes' => __('Job types', 'wp-job-portal'),
+            'jobstatus' => __('Job status', 'wp-job-portal'),
+            'careerlevels' => __('Career levels', 'wp-job-portal'),
+            'heighesteducation' => __('Highest education', 'wp-job-portal'),
+            'experiences' => __('Experience', 'wp-job-portal'),
+            'ages' => __('Ages', 'wp-job-portal'),
+            'salaryrange' => __('Salary ranges', 'wp-job-portal'),
+            'salaryrangetypes' => __('Salary range types', 'wp-job-portal'),
+            'shifts' => __('Shifts', 'wp-job-portal'),
+            'currencies' => __('Currencies', 'wp-job-portal'),
+            'countries' => __('Countries', 'wp-job-portal'),
+            'states' => __('States', 'wp-job-portal'),
+            'cities' => __('Cities', 'wp-job-portal'),
+            'userfields' => __('Custom fields', 'wp-job-portal'),
+            'emailtemplates' => __('Email templates', 'wp-job-portal'),
+        );
+    }
+
+    /**
+     * The admin Activity log list (design 4, the Jobs list's parts): a chip per
+     * record type found in the log, a search over the description and the user,
+     * the 2.7 sorts (ID, user, type, date) both ways, from plain query values.
+     *
+     * Leaves its result in wpjobportal::$_data['activitylist'].
+     */
+    function getAdminActivityList() {
+        $db = wpjobportal::$_db;
+        $table = '`' . $db->prefix . 'wj_portal_activitylog`';
+        $get = function ($key) {
+            return trim((string) WPJOBPORTALrequest::getVar($key, 'get', ''));
+        };
+        // Counts per type, biggest first; types the log has but the list does not name still get a chip.
+        $counts = array();
+        foreach ((array) $db->get_results('SELECT referencefor, COUNT(id) AS n FROM ' . $table . ' GROUP BY referencefor ORDER BY n DESC') as $row) {
+            $counts[(string) $row->referencefor] = absint($row->n);
+        }
+        $counts = array('all' => array_sum($counts)) + $counts;
+        $filter = array(
+            'view' => ($get('view') !== '' && isset($counts[$get('view')]) && $get('view') !== 'all') ? $get('view') : 'all',
+            'q' => $get('q'),
+            'sort' => $get('sort'),
+        );
+        $sorts = array('created' => 'act.created', 'id' => 'act.id', 'user' => "CONCAT_WS(' ', u.first_name, u.last_name)", 'type' => 'act.referencefor');
+        $parts = explode('|', $filter['sort']);
+        $key = isset($sorts[$parts[0]]) ? $parts[0] : 'created';
+        $dir = isset($parts[1]) ? ($parts[1] === '1' ? 'ASC' : 'DESC') : 'DESC';
+        $filter['sort'] = $key . '|' . ($dir === 'ASC' ? '1' : '-1');
+
+        $from = ' FROM ' . $table . ' AS act LEFT JOIN `' . $db->prefix . 'wj_portal_users` AS u ON u.id = act.uid';
+        $where = array('1=1');
+        if ($filter['view'] !== 'all') {
+            $where[] = $db->prepare('act.referencefor = %s', $filter['view']);
+        }
+        foreach (preg_split('/\s+/', $filter['q'], -1, PREG_SPLIT_NO_EMPTY) as $word) {
+            $like = '%' . $db->esc_like($word) . '%';
+            $where[] = $db->prepare("(act.description LIKE %s OR CONCAT_WS(' ', u.first_name, u.last_name) LIKE %s)", $like, $like);
+        }
+        $where_sql = ' WHERE ' . implode(' AND ', $where);
+        $total = absint($db->get_var('SELECT COUNT(act.id)' . $from . $where_sql));
+        WPJOBPORTALpagination::getPagination($total);
+        $rows = (array) $db->get_results(
+            'SELECT act.id, act.uid, act.description, act.created, act.referencefor, u.first_name, u.last_name'
+            . $from . $where_sql
+            . ' ORDER BY ' . $sorts[$key] . ' ' . $dir . ', act.id DESC'
+            . $db->prepare(' LIMIT %d, %d', WPJOBPORTALpagination::$_offset, WPJOBPORTALpagination::$_limit)
+        );
+        wpjobportal::$_data['activitylist'] = array('rows' => $rows, 'total' => $total, 'counts' => $counts, 'filter' => $filter, 'types' => $this->getActivityTypes());
+    }
+
     function getEntityNameOrTitle($wpjobportal_id, $wpjobportal_text, $wpjobportal_tablename) {
         if (!is_numeric($wpjobportal_id))
             return false;

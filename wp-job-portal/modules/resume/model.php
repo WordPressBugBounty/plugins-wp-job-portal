@@ -230,7 +230,7 @@ class WPJOBPORTALResumeModel {
     private function getSaveSearchForView($wpjobportal_search) {
        if (!is_numeric($wpjobportal_search))
             return false;
-        $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumesearches` WHERE id = " . (int) ($wpjobportal_search);
+        $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumesearches` WHERE id = " . (int) ($wpjobportal_search) . (wpjobportal::$_common->wpjp_isadmin() ? '' : ' AND uid = ' . (int) WPJOBPORTALincluder::getObjectClass('user')->uid()) /* Security: only the owner's saved search */;
         $wpjobportal_result = wpjobportal::$_db->get_row($query);
         $wpjobportal_inquery = "";
         $params = array();
@@ -395,6 +395,30 @@ class WPJOBPORTALResumeModel {
         $wpjobportal_inquery .= $wpjobportal_inquery2;
         return $wpjobportal_inquery;
     }
+    /**
+     * Does this resume-section row belong to this resume?
+     *
+     * @param string $wpjobportal_table_name e.g. resumeaddresses, resumeinstitutes.
+     * @param mixed  $wpjobportal_rowid      Section row id from the form.
+     * @param mixed  $wpjobportal_resumeid   Resume being saved.
+     * @return bool
+     */
+    function resumeSectionRowBelongsTo($wpjobportal_table_name, $wpjobportal_rowid, $wpjobportal_resumeid) {
+        $wpjobportal_allowed = array('resumeaddresses', 'resumeinstitutes', 'resumeemployers', 'resumereferences', 'resumelanguages');
+        if (!in_array($wpjobportal_table_name, $wpjobportal_allowed, true)) {
+            return false;
+        }
+        if (!is_numeric($wpjobportal_rowid) || !is_numeric($wpjobportal_resumeid) || (int) $wpjobportal_resumeid < 1) {
+            return false;
+        }
+        $query = wpjobportal::$_db->prepare(
+            "SELECT resumeid FROM `" . wpjobportal::$_db->prefix . "wj_portal_" . $wpjobportal_table_name . "` WHERE id = %d",
+            (int) $wpjobportal_rowid
+        );
+        $wpjobportal_owner = wpjobportal::$_db->get_var($query);
+        return $wpjobportal_owner !== null && (int) $wpjobportal_owner === (int) $wpjobportal_resumeid;
+    }
+
     function storeResumeSection( $wpjobportal_formdata, $wpjobportal_section , $wpjobportal_i) { // i is the index of A section have multi forms
         if(empty($wpjobportal_section)) return false;
         $wpjobportal_sectionid = $wpjobportal_section['id'];
@@ -421,6 +445,16 @@ class WPJOBPORTALResumeModel {
             }
         }
         $wpjobportal_resumeid = $wpjobportal_formdata['resumeid'];
+
+        // Security: a section row (address, education, employer, reference,
+        // language) is matched by its own id. Without this check, a user saving
+        // their own resume could post another resume's row id: bind() then
+        // UPDATEs that row and moves it into the caller's resume. An existing row
+        // may only be updated as part of the resume it belongs to.
+        if (!empty($wpjobportal_formdata['id'])
+            && !$this->resumeSectionRowBelongsTo($wpjobportal_table_name, $wpjobportal_formdata['id'], $wpjobportal_resumeid)) {
+            return false;
+        }
 
         //check whether form data array is empty;
             $wpjobportal_check_array = $wpjobportal_formdata;
@@ -641,7 +675,9 @@ class WPJOBPORTALResumeModel {
         if($wpjobportal_sec_id == 5 || $wpjobportal_sec_id == 6){ //skill,editor
             return true;
         }else{
-            $query = "DELETE FROM `" . wpjobportal::$_db->prefix . "wj_portal_".esc_sql($wpjobportal_table_name)."` WHERE id = " . (int) ($wpjobportal_sectionid);
+            // Security: delete the row only if it belongs to the resume whose
+            // ownership was checked above (it used to delete any row by id).
+            $query = "DELETE FROM `" . wpjobportal::$_db->prefix . "wj_portal_".esc_sql($wpjobportal_table_name)."` WHERE id = " . (int) ($wpjobportal_sectionid) . " AND resumeid = " . (int) ($wpjobportal_resumeid);
             if (wpjobportaldb::query($query)) {
                 return true;
             }else{
@@ -650,8 +686,50 @@ class WPJOBPORTALResumeModel {
         }
     }
 
+    /**
+     * Clean a comma-separated resume tag string for safe storage and redisplay.
+     *
+     * Each tag keeps letters, digits, spaces and a small set of punctuation that
+     * real tags use (for example C++, C#, .NET, front-end). The characters that
+     * let a stored tag break out of the token widget's HTML - quotes, backtick,
+     * angle brackets and backslash - are removed.
+     *
+     * @param string $wpjobportal_tags Raw comma-separated tags from the form.
+     * @return string Cleaned comma-separated tags.
+     */
+    function sanitizeResumeTags($wpjobportal_tags){
+        if (!is_string($wpjobportal_tags) || $wpjobportal_tags === '') {
+            return '';
+        }
+        $wpjobportal_parts = explode(',', $wpjobportal_tags);
+        $wpjobportal_clean = array();
+        foreach ($wpjobportal_parts as $wpjobportal_tag) {
+            $wpjobportal_tag = sanitize_text_field($wpjobportal_tag);
+            // Drop the breakout characters: ' " ` < > \ and control chars.
+            $wpjobportal_tag = preg_replace('/[\'"`<>\\\\\x00-\x1f]/', '', $wpjobportal_tag);
+            $wpjobportal_tag = trim($wpjobportal_tag);
+            if ($wpjobportal_tag !== '') {
+                $wpjobportal_clean[] = $wpjobportal_tag;
+            }
+        }
+        return implode(',', $wpjobportal_clean);
+    }
+
     function storePersonalSection($wpjobportal_data){
        if(empty($wpjobportal_data)) return false;
+        // Security: resume tags are stored, then re-displayed inside the token
+        // widget on the admin Edit Resume page. sanitize_text_field() keeps
+        // quotes and angle brackets, so strip the characters a tag would use to
+        // break out of HTML before the value is saved.
+        if (isset($wpjobportal_data['tags'])) {
+            $wpjobportal_data['tags'] = $this->sanitizeResumeTags($wpjobportal_data['tags']);
+        }
+        // Security: featuring, hit counts, packages and the quick-apply flag are
+        // set by the site, not the form. A job seeker could feature their own
+        // resume for free by posting these columns.
+        if (!wpjobportal::$_common->wpjp_isadmin()) {
+            unset($wpjobportal_data['isfeaturedresume'], $wpjobportal_data['startfeatureddate'], $wpjobportal_data['endfeatureddate'], $wpjobportal_data['hits'], $wpjobportal_data['userpackageid'], $wpjobportal_data['quick_apply']);
+        }
         if(isset($wpjobportal_data['id']) && $wpjobportal_data['id'] == 0 ) $wpjobportal_data['id'] = '';
         $wpjobportal_id = (int) $wpjobportal_data['id'];
         $wpjobportal_isnew = !$wpjobportal_id;
@@ -667,16 +745,17 @@ class WPJOBPORTALResumeModel {
                 return false;
             }
             if(isset($wpjobportal_data['application_title'])){
-                $wpjobportal_data['alias'] = wpjobportalphplib::wpJP_str_replace(' ', '-', $wpjobportal_data['application_title']);
+                $wpjobportal_resume_alias = wpjobportal::$_common->stringToAlias($wpjobportal_data['application_title'], 'resume');
             }else{
                 $alias_string = $wpjobportal_data['first_name'];;
                 if(isset($wpjobportal_data['middle_name'])){// min field issue
                     $alias_string .= ' '.$wpjobportal_data['middle_name'];
                 }
                 $alias_string .= ' '.$wpjobportal_data['last_name'];
-                $wpjobportal_data['alias'] = wpjobportalphplib::wpJP_str_replace(' ', '-', $alias_string);
+                $wpjobportal_resume_alias = wpjobportal::$_common->stringToAlias($alias_string, 'resume');
             }
-            $wpjobportal_data['alias'] = wpjobportalphplib::wpJP_str_replace('_', '-', $wpjobportal_data['alias']);
+            // D-9: a real slug (2.7 only swapped spaces, so '?' or '/' reached the URL).
+            $wpjobportal_data['alias'] = $wpjobportal_resume_alias;
             $wpjobportal_data['created'] = gmdate('Y-m-d H:i:s');
             $wpjobportal_visitorcanapply = wpjobportal::$_config->getConfigurationByConfigName('visitor_can_apply_to_job');
             $wpjobportal_isguest = WPJOBPORTALincluder::getObjectClass('user')->isguest();
@@ -739,6 +818,9 @@ class WPJOBPORTALResumeModel {
         $wpjobportal_section = 1;
 
         $wpjobportal_data = wpjobportal::wpjobportal_sanitizeData($wpjobportal_data);
+        if (isset($wpjobportal_resume_alias)) {
+            $wpjobportal_data['alias'] = $wpjobportal_resume_alias; // D-9: after sanitizing, which strips %xx
+        }
 
         $return_cf = $this->makeResumeTableParams($wpjobportal_data,$wpjobportal_section);
         $wpjobportal_data['params'] = $return_cf['params'];
@@ -1394,6 +1476,120 @@ class WPJOBPORTALResumeModel {
         return $wpjobportal_result;
     }
 
+    /**
+     * The admin Resumes list (design 4, the Jobs list's parts): chips for the
+     * status, a search over every word (application title, name, email,
+     * category, location), category / job type / location filters, more
+     * filters for dates, approval status, featured and salary, from plain
+     * query values. Quick-apply resumes stay out, as on the 2.7 list.
+     *
+     * Leaves its result in wpjobportal::$_data['resumelist'].
+     */
+    function getAdminResumeList() {
+        $db = wpjobportal::$_db;
+        $p = $db->prefix . 'wj_portal_';
+        $get = function ($key) {
+            return trim((string) WPJOBPORTALrequest::getVar($key, 'get', ''));
+        };
+        $featured_now = 'app.isfeaturedresume = 1 AND DATE(app.endfeatureddate) >= CURDATE()';
+        $views = array(
+            'all' => '1=1',
+            'approved' => 'app.status = 1',
+            'waiting' => 'app.status = 0',
+            'rejected' => 'app.status = -1',
+            'featured' => $featured_now,
+        );
+        $filter = array(
+            'view' => isset($views[$get('view')]) ? $get('view') : 'all',
+            'q' => $get('q'),
+            'cat' => absint($get('cat')),
+            'type' => absint($get('type')),
+            'loc' => absint($get('loc')),
+            'stat' => in_array($get('stat'), array('1', '0', '-1', '3'), true) ? $get('stat') : '',
+            'from' => preg_match('/^\d{4}-\d{2}-\d{2}$/', $get('from')) ? $get('from') : '',
+            'to' => preg_match('/^\d{4}-\d{2}-\d{2}$/', $get('to')) ? $get('to') : '',
+            'featured' => $get('featured') === '1' ? '1' : '',
+            'smin' => is_numeric($get('smin')) ? $get('smin') : '',
+            'smax' => is_numeric($get('smax')) ? $get('smax') : '',
+            'sort' => $get('sort'),
+        );
+        $sorts = array('created' => 'app.created', 'title' => 'app.application_title', 'name' => 'app.first_name', 'cat' => 'cat.cat_title',
+            'type' => 'jobtype.title', 'loc' => 'city.name', 'stat' => 'app.status', 'apps' => 'totalapps');
+        $parts = explode('|', $filter['sort']);
+        $key = isset($sorts[$parts[0]]) ? $parts[0] : 'created';
+        $dir = isset($parts[1]) ? ($parts[1] === '1' ? 'ASC' : 'DESC') : 'DESC';
+        $filter['sort'] = $key . '|' . ($dir === 'ASC' ? '1' : '-1');
+
+        $from = " FROM `{$p}resume` AS app
+            LEFT JOIN `{$p}categories` AS cat ON cat.id = app.job_category
+            LEFT JOIN `{$p}jobtypes` AS jobtype ON jobtype.id = app.jobtype
+            LEFT JOIN `{$p}cities` AS city ON city.id = (SELECT address_city FROM `{$p}resumeaddresses` WHERE resumeid = app.id ORDER BY id DESC LIMIT 1)";
+        $where = array('app.quick_apply <> 1');
+        foreach (preg_split('/\s+/', $filter['q'], -1, PREG_SPLIT_NO_EMPTY) as $word) {
+            $like = '%' . $db->esc_like($word) . '%';
+            $where[] = $db->prepare("(app.application_title LIKE %s OR CONCAT_WS(' ', app.first_name, app.last_name) LIKE %s OR app.email_address LIKE %s OR cat.cat_title LIKE %s OR city.name LIKE %s)", $like, $like, $like, $like, $like);
+        }
+        if ($filter['cat']) { $where[] = $db->prepare('app.job_category = %d', $filter['cat']); }
+        if ($filter['type']) { $where[] = $db->prepare('app.jobtype = %d', $filter['type']); }
+        if ($filter['loc']) { $where[] = $db->prepare("app.id IN (SELECT resumeid FROM `{$p}resumeaddresses` WHERE address_city = %d)", $filter['loc']); }
+        if ($filter['stat'] !== '') { $where[] = $db->prepare('app.status = %d', (int) $filter['stat']); }
+        if ($filter['from'] !== '') { $where[] = $db->prepare('DATE(app.created) >= %s', $filter['from']); }
+        if ($filter['to'] !== '') { $where[] = $db->prepare('DATE(app.created) <= %s', $filter['to']); }
+        if ($filter['featured'] === '1') { $where[] = $featured_now; }
+        // A resume carries one figure, salaryfixed (a varchar): compared as a number.
+        if ($filter['smin'] !== '' || $filter['smax'] !== '') {
+            $where[] = "app.salaryfixed <> ''";
+            if ($filter['smin'] !== '') { $where[] = $db->prepare('CAST(app.salaryfixed AS DECIMAL(15,2)) >= %f', (float) $filter['smin']); }
+            if ($filter['smax'] !== '') { $where[] = $db->prepare('CAST(app.salaryfixed AS DECIMAL(15,2)) <= %f', (float) $filter['smax']); }
+        }
+        $filters_sql = ' AND ' . implode(' AND ', $where);
+        $view_sql = ' AND ' . $views[$filter['view']];
+
+        $cols = array();
+        foreach ($views as $view => $condition) {
+            $cols[] = 'SUM(CASE WHEN ' . $condition . ' THEN 1 ELSE 0 END) AS `' . $view . '`';
+        }
+        $counts = array_map('absint', (array) $db->get_row('SELECT ' . implode(', ', $cols) . " FROM `{$p}resume` AS app WHERE app.quick_apply <> 1", ARRAY_A));
+        $total = absint($db->get_var('SELECT COUNT(app.id)' . $from . ' WHERE 1=1' . $view_sql . $filters_sql));
+        WPJOBPORTALpagination::getPagination($total);
+        $rows = (array) $db->get_results(
+            "SELECT app.id, app.uid, app.application_title, app.first_name, app.last_name, app.email_address, app.photo, app.salaryfixed,
+                app.created, app.status, app.isfeaturedresume, app.endfeatureddate, cat.cat_title, jobtype.title AS jobtypetitle,
+                city.id AS city, (" . $featured_now . ") AS featurednow,
+                (SELECT COUNT(id) FROM `{$p}jobapply` WHERE cvid = app.id) AS totalapps"
+            . $from . ' WHERE 1=1' . $view_sql . $filters_sql
+            . ' ORDER BY ' . $sorts[$key] . ' ' . $dir . ', app.id DESC'
+            . $db->prepare(' LIMIT %d, %d', WPJOBPORTALpagination::$_offset, WPJOBPORTALpagination::$_limit)
+        );
+        wpjobportal::$_data['resumelist'] = array(
+            'rows' => $rows, 'total' => $total, 'counts' => $counts, 'filter' => $filter,
+            'options' => array(
+                'categories' => (array) $db->get_results("SELECT id, cat_title AS title FROM `{$p}categories` WHERE isactive = 1 ORDER BY cat_title"),
+                'types' => (array) $db->get_results("SELECT DISTINCT jobtype.id, jobtype.title FROM `{$p}resume` AS app INNER JOIN `{$p}jobtypes` AS jobtype ON jobtype.id = app.jobtype ORDER BY jobtype.title"),
+                'locations' => (array) $db->get_results("SELECT DISTINCT city.id, city.name FROM `{$p}resumeaddresses` AS ra INNER JOIN `{$p}cities` AS city ON city.id = ra.address_city ORDER BY city.name"),
+            ),
+            'config' => wpjobportal::$_config->getConfigByFor('resume'),
+        );
+        wpjobportal::$_data['config'] = wpjobportal::$_data['resumelist']['config'];
+    }
+
+    /** Approve or reject waiting resumes (status 0 only). Returns how many changed. */
+    function setWaitingResumesStatus($ids, $approve) {
+        $ids = array_values(array_filter(array_map('absint', (array) $ids)));
+        if (empty($ids)) {
+            return 0;
+        }
+        $waiting = array_map('absint', (array) wpjobportal::$_db->get_col("SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE status = 0 AND id IN (" . implode(',', $ids) . ")"));
+        $done = 0;
+        foreach ($waiting as $id) {
+            $result = $approve ? $this->approveQueueResumeModel($id) : $this->rejectQueueResumeModel($id);
+            if ($result == ($approve ? WPJOBPORTAL_APPROVED : WPJOBPORTAL_REJECTED)) {
+                $done++;
+            }
+        }
+        return $done;
+    }
+
     function rejectQueueResumeModel($wpjobportal_id) {
         if (is_numeric($wpjobportal_id) == false) return false;
         $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resume');
@@ -1497,7 +1693,7 @@ class WPJOBPORTALResumeModel {
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON resume.job_category = cat.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON resume.jobtype = jobtype.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_countries` AS nationality ON nationality.id=resume.nationality
-                WHERE resume.status = 1 ";
+                WHERE resume.status = 1 AND resume.uid <> 0 "; // Audit 40: no visitor resumes in the resume widgets and shortcodes
         $query .= $wpjobportal_inquery;
         if ($wpjobportal_noofresumes != -1 && is_numeric($wpjobportal_noofresumes))
             $query .=" LIMIT " . absint($wpjobportal_noofresumes);
@@ -1698,8 +1894,16 @@ class WPJOBPORTALResumeModel {
         }
         $wpjobportal_msg = esc_html(__('Section has been deleted', 'wp-job-portal'));
         $wpjobportal_result = 1;
-        if ($this->isYoursResume($wpjobportal_resumeid, $wpjobportal_uid)) {
-            if (!$wpjobportal_row->delete($wpjobportal_data['sectionid'])) {
+        // Security: the section row must belong to the resume that was checked
+        // (it used to delete any row by id once any own resume id was posted).
+        $wpjobportal_section_tables = array('languages' => 'resumelanguages', 'employers' => 'resumeemployers', 'institutes' => 'resumeinstitutes', 'addresses' => 'resumeaddresses');
+        $wpjobportal_section_table = isset($wpjobportal_section_tables[$wpjobportal_section]) ? $wpjobportal_section_tables[$wpjobportal_section] : '';
+        $wpjobportal_sectionid = isset($wpjobportal_data['sectionid']) ? $wpjobportal_data['sectionid'] : 0;
+        if ($wpjobportal_row === null || !$this->resumeSectionRowBelongsTo($wpjobportal_section_table, $wpjobportal_sectionid, $wpjobportal_resumeid)) {
+            $wpjobportal_msg = esc_html(__('Error deleting section', 'wp-job-portal'));
+            $wpjobportal_result = 0;
+        } elseif ($this->isYoursResume($wpjobportal_resumeid, $wpjobportal_uid)) {
+            if (!$wpjobportal_row->delete($wpjobportal_sectionid)) {
                 $wpjobportal_msg = esc_html(__('Error deleting section', 'wp-job-portal'));
                 $wpjobportal_result = 0;
             }
@@ -1768,6 +1972,18 @@ class WPJOBPORTALResumeModel {
         $wpjobportal_section = WPJOBPORTALrequest::getVar('section');
         $wpjobportal_sectionid = WPJOBPORTALrequest::getVar('sectionid');
         $wpjobportal_resumeid = WPJOBPORTALrequest::getVar('resumeid');
+        // Security: this loads resume sections into the edit form. The owner
+        // filter below applied only to signed-in portal users, so a visitor (or
+        // a signed-in user with no portal role) could read any resume's name,
+        // email and phone. Only an administrator, the owner, or the visitor
+        // whose session holds this resume may load an existing one.
+        if (is_numeric($wpjobportal_resumeid) && (int) $wpjobportal_resumeid > 0 && !current_user_can('manage_options')) {
+            $wpjobportal_session_rid = isset($_SESSION['wp-wpjobportal']['resumeid']) ? absint($_SESSION['wp-wpjobportal']['resumeid']) : 0;
+            $wpjobportal_is_owner = is_numeric($wpjobportal_uid) && (int) $wpjobportal_uid > 0 && $this->isYoursResume((int) $wpjobportal_resumeid, (int) $wpjobportal_uid);
+            if (!$wpjobportal_is_owner && $wpjobportal_session_rid !== (int) $wpjobportal_resumeid) {
+                return false;
+            }
+        }
         $wpjobportal_resumelayout = WPJOBPORTALincluder::getObjectClass('resumeformlayout');
         $wpjobportal_fieldsordering = wpjobportal::$_wpjpfieldordering->getFieldsOrderingforForm(3); // resume fields
         wpjobportal::$_data[2] = array();
@@ -2020,7 +2236,7 @@ class WPJOBPORTALResumeModel {
             }
 
              if(in_array('credits', wpjobportal::$_active_addons)){
-                wpjobportal::$_data['paymentconfig'] = wpjobportal::$_wpjppaymentconfig->getPaymentConfigFor('paypal,stripe,woocommerce',true);
+                wpjobportal::$_data['paymentconfig'] = wpjobportal::wpjobportal_getPublicPaymentConfig(); // Security: no credentials in page data; base helper so an older add-on cannot crash the page
             }
             // code to show next back on view resume in case of job applied applitcation layout
             $wpjobportal_jobapplyid = WPJOBPORTALrequest::getVar('jobapplyid');
@@ -2156,11 +2372,7 @@ class WPJOBPORTALResumeModel {
         if (is_numeric($wpjobportal_id) == false)
             return false;
         $wpjobportal_result = WPJOBPORTALincluder::getObjectClass('uploads')->uploadResumeFiles($wpjobportal_id);
-        if ($wpjobportal_result === 6) {
-            // a refused file was skipped silently; tell the user like a refused photo does
-            $wpjobportal_msg = WPJOBPORTALMessages::getMessage(WPJOBPORTAL_FILE_TYPE_ERROR, '');
-            WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'], $this->getMessagekey());
-        }
+        // a refused file sets its own message in uploadResumeFiles()
         return $wpjobportal_result;
     }
 
@@ -2214,24 +2426,8 @@ class WPJOBPORTALResumeModel {
                 wpjobportaldb::query($query);
                 $wpjobportal_wpdir = wp_upload_dir();
                 $wpjobportal_data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
-                array_map('wp_delete_file', glob($wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . "/data/jobseeker/resume_".$wpjobportal_id."/resume/*.*"));//deleting files
-                array_map('wp_delete_file', glob($wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . "/data/jobseeker/resume_".$wpjobportal_id."/photo/*.*"));//deleting files
-                if ( ! function_exists( 'WP_Filesystem' ) ) {
-                    require_once ABSPATH . 'wp-admin/includes/file.php';
-                }
-                global $wp_filesystem;
-                $wp_filesystem = wpjobportal::wpjobportal_filesystem();
-
-
-                if ($wp_filesystem->exists($wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . "/data/jobseeker/resume_".$wpjobportal_id.'/resume')) {
-                    @$wp_filesystem->rmdir($wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . "/data/jobseeker/resume_".$wpjobportal_id.'/resume');
-                }
-                if ($wp_filesystem->exists($wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . "/data/jobseeker/resume_".$wpjobportal_id.'/photo')) {
-                    @$wp_filesystem->rmdir($wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . "/data/jobseeker/resume_".$wpjobportal_id.'/photo');
-                }
-                if ($wp_filesystem->exists($wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . "/data/jobseeker/resume_".$wpjobportal_id)) {
-                    @$wp_filesystem->rmdir($wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . "/data/jobseeker/resume_".$wpjobportal_id);
-                }
+                // CVs, photo and custom-field uploads, with the folders' deny files
+                WPJOBPORTAL_Resume_File_Store::delete_resume_files($wpjobportal_id);
                 WPJOBPORTALincluder::getJSModel('emailtemplate')->sendMail(3, 6, $wpjobportal_id,$wpjobportal_mailextradata); // 3 for resume,6 for DELETE resume
                 // action hook for delete resume
                 do_action('wpjobportal_after_delete_resume_hook',$wpjobportal_id);
@@ -2319,24 +2515,8 @@ class WPJOBPORTALResumeModel {
 
         $wpjobportal_data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
         $wpjobportal_wpdir = wp_upload_dir();
-        array_map('wp_delete_file', glob($wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . "/data/jobseeker/resume_".$wpjobportal_resumeid."/resume/*.*"));//deleting files
-        array_map('wp_delete_file', glob($wpjobportal_wpdir['basedir'] . '/'. $wpjobportal_data_directory . "/data/jobseeker/resume_".$wpjobportal_resumeid."/photo/*.*"));//deleting files
-        if ( ! function_exists( 'WP_Filesystem' ) ) {
-            require_once ABSPATH . 'wp-admin/includes/file.php';
-        }
-        global $wp_filesystem;
-        $wp_filesystem = wpjobportal::wpjobportal_filesystem();
-
-
-        if($wp_filesystem->exists($wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . "/data/jobseeker/resume_".$wpjobportal_resumeid.'/resume')) {
-            $wp_filesystem->rmdir($wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . "/data/jobseeker/resume_".$wpjobportal_resumeid.'/resume');
-        }
-        if($wp_filesystem->exists($wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . "/data/jobseeker/resume_".$wpjobportal_resumeid.'/photo')) {
-            $wp_filesystem->rmdir($wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . "/data/jobseeker/resume_".$wpjobportal_resumeid.'/photo');
-        }
-        if($wp_filesystem->exists($wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . "/data/jobseeker/resume_".$wpjobportal_resumeid)) {
-            $wp_filesystem->rmdir($wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . "/data/jobseeker/resume_".$wpjobportal_resumeid);
-        }
+        // CVs, photo and custom-field uploads, with the folders' deny files
+        WPJOBPORTAL_Resume_File_Store::delete_resume_files($wpjobportal_resumeid);
 
         // Not when a whole account is being removed: removeUserData() passes false.
         if ($wpjobportal_send_mail) {
@@ -2689,7 +2869,7 @@ class WPJOBPORTALResumeModel {
                     }elseif (strstr($wpjobportal_inquery, 'address1.address_city')) { // to handle shortcode option case for locations
                         $query .= " JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` AS address1 ON address1.resumeid = resume.id ";
                     }
-                    $query .= " WHERE resume.status = 1 AND resume.quick_apply <> 1 ";
+                    $query .= " WHERE resume.status = 1 AND resume.quick_apply <> 1 AND resume.uid <> 0 "; // Audit 40: a visitor's resume is not a published one
                     if($wpjobportal_ignore_serachable == 0){
                         $query .= " AND resume.searchable = 1 ";
                     }
@@ -2728,7 +2908,7 @@ class WPJOBPORTALResumeModel {
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON city.id = (SELECT address_city FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` WHERE resumeid = resume.id LIMIT 1)
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_states` AS state ON state.id = city.stateid
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_countries` AS country ON country.id = city.countryid ";
-                    $query .= " WHERE resume.status = 1 AND resume.quick_apply <> 1";
+                    $query .= " WHERE resume.status = 1 AND resume.quick_apply <> 1 AND resume.uid <> 0"; // Audit 40: a visitor's resume is not a published one
                     if($wpjobportal_ignore_serachable == 0){
                         $query .= " AND resume.searchable = 1 ";
                     }
@@ -2817,28 +2997,6 @@ class WPJOBPORTALResumeModel {
             return false;
         }
         do_action('wpjobportal_load_wp_pcl_zip');
-        $wpjobportal_data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
-        $wpjobportal_path = WPJOBPORTAL_PLUGIN_PATH . $wpjobportal_data_directory;
-
-        if ( ! function_exists( 'WP_Filesystem' ) ) {
-            require_once ABSPATH . 'wp-admin/includes/file.php';
-        }
-        global $wp_filesystem;
-        $wp_filesystem = wpjobportal::wpjobportal_filesystem();
-
-        if (!$wp_filesystem->exists($wpjobportal_path)) {
-            WPJOBPORTALincluder::getJSModel('common')->makeDir($wpjobportal_path);
-        }
-        $wpjobportal_path .= '/zipdownloads';
-        if (!$wp_filesystem->exists($wpjobportal_path)) {
-            WPJOBPORTALincluder::getJSModel('common')->makeDir($wpjobportal_path);
-        }
-        $wpjobportal_randomfolder = $this->getRandomFolderName($wpjobportal_path);
-        $wpjobportal_path .= '/' . $wpjobportal_randomfolder;
-        if (!$wp_filesystem->exists($wpjobportal_path)) {
-            WPJOBPORTALincluder::getJSModel('common')->makeDir($wpjobportal_path);
-        }
-
         // --- NEW HOOK INTEGRATION START ---
         // Blueprint: wpjobportal_resume_export_filename
         // Allows the naming convention to be altered programmatically (e.g., appending candidate name).
@@ -2846,11 +3004,6 @@ class WPJOBPORTALResumeModel {
         $wpjobportal_export_filename = sanitize_file_name($wpjobportal_export_filename); // Strict security validation
         // --- NEW HOOK INTEGRATION END ---
 
-        //$archive = new PclZip($wpjobportal_path . '/allresumefiles.zip');
-        $archive = new PclZip($wpjobportal_path . '/' . $wpjobportal_export_filename);
-        $wpjobportal_wpdir = wp_upload_dir();
-        $wpjobportal_directory = $wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . '/data/jobseeker/resume_' . $wpjobportal_resumeid . '/resume/';
-        //$scanned_directory = array_diff(scandir($wpjobportal_directory), array('..', '.'));// code seems reduntant but showing error on deleted resume file downloads
         $filelist = array();
         $query = "SELECT filename FROM `".wpjobportal::$_db->prefix."wj_portal_resumefiles` WHERE resumeid = " . (int) ($wpjobportal_resumeid);
         $files = wpjobportal::$_db->get_results($query);
@@ -2860,49 +3013,56 @@ class WPJOBPORTALResumeModel {
                     wpjobportalphplib::wpJP_clean_file_path((string) $file->filename)
                 )
             );
-            $wpjobportal_candidate = $wpjobportal_directory . '/' . $wpjobportal_filename;
+            $wpjobportal_candidate = WPJOBPORTAL_Resume_File_Store::path($wpjobportal_resumeid, $wpjobportal_filename);
             if ($wpjobportal_filename !== ''
                 && is_file($wpjobportal_candidate)
                 && is_readable($wpjobportal_candidate)
             ) {
-                $filelist[] = $wpjobportal_candidate;
+                // S-4: inside the zip a file has the name the candidate gave it
+                $filelist[] = array(PCLZIP_ATT_FILE_NAME => $wpjobportal_candidate, PCLZIP_ATT_FILE_NEW_FULL_NAME => $wpjobportal_filename);
             }
         }
         if (empty($filelist)) {
             return false;
         }
-        $v_list = $archive->create($filelist, PCLZIP_OPT_REMOVE_PATH, $wpjobportal_directory);
+
+        // The zip is built in the server's temp folder, never under the plugin:
+        // that folder is served by the web server and replaced by updates. It is
+        // removed at shutdown too, so a cancelled download or a failed build
+        // cannot leave the candidate's CVs behind.
+        if ( ! function_exists( 'wp_tempnam' ) ) {
+            require_once ABSPATH . 'wp-admin/includes/file.php';
+        }
+        $wpjobportal_zipfile = wp_tempnam($wpjobportal_export_filename);
+        if (!$wpjobportal_zipfile) {
+            return false;
+        }
+        register_shutdown_function(function ($zip) {
+            if (is_file($zip)) {
+                wp_delete_file($zip);
+            }
+        }, $wpjobportal_zipfile);
+
+        $archive = new PclZip($wpjobportal_zipfile);
+        $v_list = $archive->create($filelist);
         if ($v_list == 0) {
             die("Error : '" . wp_kses($archive->errorInfo(),WPJOBPORTAL_ALLOWED_TAGS) . "'");
         }
-        //$file = $wpjobportal_path . '/allresumefiles.zip';
-        $file = $wpjobportal_path . '/' . $wpjobportal_export_filename;
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename=' . wpjobportalphplib::wpJP_basename($file));
+        header('Content-Disposition: attachment; filename=' . $wpjobportal_export_filename);
         header('Content-Transfer-Encoding: binary');
         header('Expires: 0');
         header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
         header('Pragma: public');
-        header('Content-Length: ' . filesize($file));
+        header('Content-Length: ' . filesize($wpjobportal_zipfile));
         ob_clean();//this was commented and causing problems
         flush();
-        if ( ! function_exists( 'WP_Filesystem' ) ) {
-            require_once ABSPATH . 'wp-admin/includes/file.php';
-        }
         global $wp_filesystem;
         $wp_filesystem = wpjobportal::wpjobportal_filesystem();
-
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Binary file download output
-        echo $wp_filesystem->get_contents($file);
-        @wp_delete_file($file);
-        $wpjobportal_path = WPJOBPORTAL_PLUGIN_PATH . $wpjobportal_data_directory;
-        $wpjobportal_path .= '/zipdownloads';
-        $wpjobportal_path .= '/' . $wpjobportal_randomfolder;
-        @wp_delete_file($wpjobportal_path . '/index.html');
-
-
-        $wp_filesystem->rmdir($wpjobportal_path);
+        echo $wp_filesystem->get_contents($wpjobportal_zipfile);
+        wp_delete_file($wpjobportal_zipfile);
         exit();
     }
 
@@ -2930,7 +3090,10 @@ class WPJOBPORTALResumeModel {
         }
         $wpjobportal_data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
         $wpjobportal_wpdir = wp_upload_dir();
-        $file =  $wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . '/data/jobseeker/resume_' . absint($object->resumeid) . '/resume/' . $wpjobportal_filename;
+        $file = WPJOBPORTAL_Resume_File_Store::path($object->resumeid, $wpjobportal_filename);
+        if ($file === '') {
+            return false;
+        }
 
         if ( ! function_exists( 'WP_Filesystem' ) ) {
             require_once ABSPATH . 'wp-admin/includes/file.php';
@@ -2944,7 +3107,7 @@ class WPJOBPORTALResumeModel {
 
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename=' . wpjobportalphplib::wpJP_basename($file));
+        header('Content-Disposition: attachment; filename="' . $wpjobportal_filename . '"'); // S-4: the candidate's name, not the name on disk
         header('Content-Transfer-Encoding: binary');
         header('Expires: 0');
         header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
@@ -3069,7 +3232,14 @@ class WPJOBPORTALResumeModel {
                 }
             }elseif ($wpjobportal_subType == 2) {
                 # Paid Perlisting
-                $wpjobportal_data['status']  == 3;
+                // Security: this line was a comparison (==), so a priced resume
+                // contact unlock fell through to the free insert below. When a
+                // price is set, only the payment flow may grant it.
+                if ((float) wpjobportal::$_config->getConfigValue('job_viewresumecontact_price_perlisting') > 0
+                    && !wpjobportal::$_common->wpjp_isadmin()) {
+                    return false;
+                }
+                $wpjobportal_data['status'] = 1;
             }elseif ($wpjobportal_status == 1) {
                 # Free
                 $wpjobportal_data['status'] == 1;
@@ -3194,15 +3364,27 @@ class WPJOBPORTALResumeModel {
         $wpjobportal_id = WPJOBPORTALrequest::getVar('id');
         if (!is_numeric($wpjobportal_id))
             return false;
+        // Security: who owns the file. Administrators: any. Portal users: their
+        // resumes. Visitors (uid 0 matched every visitor resume): only the
+        // resume held in their own session.
         if(current_user_can('manage_options')){
-            $wpjobportal_uid = ' resume.uid ';
+            $wpjobportal_owner_sql = '1 = 1';
         }else{
-            $wpjobportal_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
+            $wpjobportal_uid = (int) WPJOBPORTALincluder::getObjectClass('user')->uid();
+            if ($wpjobportal_uid > 0) {
+                $wpjobportal_owner_sql = 'resume.uid = ' . $wpjobportal_uid;
+            } else {
+                $wpjobportal_session_rid = isset($_SESSION['wp-wpjobportal']['resumeid']) ? absint($_SESSION['wp-wpjobportal']['resumeid']) : 0;
+                if ($wpjobportal_session_rid < 1) {
+                    return false;
+                }
+                $wpjobportal_owner_sql = 'resume.uid = 0 AND resume.id = ' . $wpjobportal_session_rid;
+            }
         }
         $query = "SELECT COUNT(file.id) AS file, resume.id AS resumeid, file.filename
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
                     JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resumefiles` AS file ON file.resumeid = resume.id
-                    WHERE resume.uid = " . (int) ($wpjobportal_uid)." AND file.id = " . (int) ($wpjobportal_id);
+                    WHERE " . $wpjobportal_owner_sql . " AND file.id = " . (int) ($wpjobportal_id);
         $file = wpjobportal::$_db->get_row($query);
         if ($file->file > 0) { // You are the owner
             $query = "DELETE FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumefiles` WHERE id = " . (int) ($wpjobportal_id);
@@ -3212,14 +3394,25 @@ class WPJOBPORTALResumeModel {
 
             // remove traversal
             $file->filename = wpjobportalphplib::wpJP_clean_file_path($file->filename);
-            $file = $wpjobportal_wpdir['basedir'] . '/' . $wpjobportal_data_directory . '/data/jobseeker/resume_' . $file->resumeid . '/resume/' . $file->filename;
-            @wp_delete_file($file);
+            $file = WPJOBPORTAL_Resume_File_Store::path($file->resumeid, $file->filename);
+            if ($file !== '') {
+                @wp_delete_file($file);
+            }
             return true;
         }
         return false;
     }
 
     function makeResumeSeo($wpjobportal_resume_seo , $wpjobportalid){
+        static $wpjobportal_built = array(); // P-7: each card's links ask for this several times
+        $wpjobportal_built_key = $wpjobportal_resume_seo . '|' . $wpjobportalid;
+        if (!array_key_exists($wpjobportal_built_key, $wpjobportal_built)) {
+            $wpjobportal_built[$wpjobportal_built_key] = $this->buildResumeSeo($wpjobportal_resume_seo, $wpjobportalid);
+        }
+        return $wpjobportal_built[$wpjobportal_built_key];
+    }
+
+    private function buildResumeSeo($wpjobportal_resume_seo , $wpjobportalid){
         if(empty($wpjobportal_resume_seo))
             return '';
 
@@ -3432,7 +3625,7 @@ class WPJOBPORTALResumeModel {
     function getResumeByCategory() {
         $query = "SELECT category.cat_title, CONCAT(category.alias,'-',category.id) AS aliasid,category.serverid,category.id AS categoryid
             ,(SELECT count(resume.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
-                where resume.job_category = category.id AND resume.status = 1 AND resume.searchable = 1 AND resume.quick_apply <> 1)  AS totaljobs
+                where resume.job_category = category.id AND resume.status = 1 AND resume.searchable = 1 AND resume.quick_apply <> 1 AND resume.uid <> 0)  AS totaljobs
             FROM `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category
             WHERE category.isactive = 1 AND category.parentid = 0 ORDER BY category.ordering ASC";
         $wpjobportal_categories = wpjobportaldb::get_results($query);
@@ -3450,7 +3643,7 @@ class WPJOBPORTALResumeModel {
             }
             $query = "SELECT category.cat_title, CONCAT(category.alias,'-',category.id) AS aliasid,category.serverid
                 ,(SELECT count(resume.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
-                where resume.job_category = category.id AND resume.status = 1 AND resume.searchable = 1 AND resume.quick_apply <> 1)  AS totaljobs
+                where resume.job_category = category.id AND resume.status = 1 AND resume.searchable = 1 AND resume.quick_apply <> 1 AND resume.uid <> 0)  AS totaljobs
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category
                 WHERE category.isactive = 1 AND category.parentid = " . (int) ($wpjobportal_category->categoryid)." ORDER BY category.ordering ASC ";
             $wpjobportal_subcats = wpjobportal::$_db->get_results($query);
@@ -3592,6 +3785,14 @@ class WPJOBPORTALResumeModel {
         // to handle visitor quick apply case
         if(!is_numeric($wpjobportal_uid)){
             $wpjobportal_uid = 0;
+        }
+        // Security: with no portal user the uid is 0, which matched EVERY resume
+        // a visitor ever created. A visitor owns only the resume in its own
+        // session. (Quick apply's resume is trusted by the caller, which decides
+        // it on the server.)
+        if ((int) $wpjobportal_uid < 1) {
+            return isset($_SESSION['wp-wpjobportal']['resumeid'])
+                && absint($_SESSION['wp-wpjobportal']['resumeid']) === (int) $wpjobportal_resumeid;
         }
         $query = "SELECT resume.id
         FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
@@ -4015,7 +4216,7 @@ class WPJOBPORTALResumeModel {
             LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON city.id = (SELECT address_city FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` WHERE resumeid = resume.id LIMIT 1)
             LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_states` AS state ON state.id = city.stateid
             LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_countries` AS country ON country.id = city.countryid
-            WHERE resume.status = 1  ";
+            WHERE resume.status = 1 AND resume.uid <> 0 "; // Audit 40: no visitor resumes in the page builder widget
         $query.= " ORDER BY created DESC ";
         //$query.=" LIMIT 4 " ;
         if(is_numeric($wpjobportal_no_of_resumes)){
@@ -4252,7 +4453,7 @@ class WPJOBPORTALResumeModel {
         $wpjobportal_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
         $wpjobportal_resume_list = array();
         if( is_numeric($wpjobportal_uid) && $wpjobportal_uid > 0 ){
-            $query = "SELECT id,application_title,first_name,last_name FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE status = 1 AND quick_apply <> 1 AND uid = " . (int) ($wpjobportal_uid);
+            $query = "SELECT id,application_title,first_name,last_name FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE status = 1 AND (quick_apply IS NULL OR quick_apply <> 1) AND uid = " . (int) ($wpjobportal_uid);
             // code to handle unpublished application_title
             $wpjobportal_resume_data = wpjobportal::$_db->get_results($query);
             $wpjobportal_resume_list = array();
@@ -4290,7 +4491,7 @@ class WPJOBPORTALResumeModel {
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON city.id = (SELECT address_city FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` WHERE resumeid = resume.id LIMIT 1)
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_states` AS state ON state.id = city.stateid
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_countries` AS country ON country.id = city.countryid ";
-                $query .= " WHERE resume.status = 1 AND resume.quick_apply <> 1";
+                $query .= " WHERE resume.status = 1 AND resume.quick_apply <> 1 AND resume.searchable = 1 AND resume.uid <> 0"; // Security: only searchable resumes in search/suggestions; Audit 40: no visitor resumes
                 $wpjobportal_resume_ids = array_filter(array_map('absint', wpjobportalphplib::wpJP_explode(',', (string) $wpjobportal_resume_id_list)));
                 if (empty($wpjobportal_resume_ids)) {
                     return array();
@@ -4317,19 +4518,17 @@ class WPJOBPORTALResumeModel {
 
 
     function updateRecordsForAISearchResume(){
-
-        $query = "SELECT resume.*
-                FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume ";
-                // not sure about this
-                $query .= " WHERE resume.quick_apply <> 1";
-                $query .= " ORDER BY resume.id ASC ";
-
-        $wpjobportal_results = wpjobportal::$_db->get_results($query);
-
-        foreach ($wpjobportal_results AS $wpjobportal_resume) {
-            $wpjobportal_resume_data = json_decode(wp_json_encode($wpjobportal_resume),true); // main record is in personal section (mostly)
-            $this->importAIStringDataForResume($wpjobportal_resume_data);
-        }
+        // P-5: 200 at a time, so a big site does not hold every resume in memory at once
+        $wpjobportal_last = 0;
+        do {
+            $query = "SELECT resume.* FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume WHERE resume.quick_apply <> 1 AND resume.id > " . (int) $wpjobportal_last . " ORDER BY resume.id ASC LIMIT 200";
+            $wpjobportal_results = (array) wpjobportal::$_db->get_results($query);
+            foreach ($wpjobportal_results AS $wpjobportal_resume) {
+                $wpjobportal_last = (int) $wpjobportal_resume->id;
+                $wpjobportal_resume_data = json_decode(wp_json_encode($wpjobportal_resume),true); // main rec
+                $this->importAIStringDataForResume($wpjobportal_resume_data);
+            }
+        } while (count($wpjobportal_results) === 200);
         return;
     }
 

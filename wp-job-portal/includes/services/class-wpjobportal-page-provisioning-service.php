@@ -73,6 +73,11 @@ class WPJOBPORTAL_Page_Provisioning_Service {
                 'slug' => 'wp-job-portal-registration',
                 'title' => __('Register', 'wp-job-portal'),
             ),
+            // W-5: the neutral base of public job and company addresses
+            'wpjobportal_job' => array(
+                'slug' => 'job-board',
+                'title' => __('Jobs', 'wp-job-portal'),
+            ),
         );
     }
 
@@ -189,13 +194,16 @@ class WPJOBPORTAL_Page_Provisioning_Service {
     public static function page_carrying($shortcode) {
         global $wpdb;
 
-        $needle = '%[' . $wpdb->esc_like($shortcode) . '%';
+        // The whole name, so wpjobportal_job does not answer for wpjobportal_job_search.
+        $needle = '%[' . $wpdb->esc_like($shortcode) . ']%';
+        $needle_with_options = '%[' . $wpdb->esc_like($shortcode) . ' %';
 
         return absint(wpjobportaldb_direct::get_var($wpdb->prepare(
             "SELECT ID FROM `{$wpdb->posts}`
-              WHERE post_type = 'page' AND post_content LIKE %s
+              WHERE post_type = 'page' AND (post_content LIKE %s OR post_content LIKE %s)
               ORDER BY ID ASC LIMIT 1",
-            $needle
+            $needle,
+            $needle_with_options
         )));
     }
 }

@@ -174,6 +174,11 @@ class WPJOBPORTALslugModel {
     }
 
     function getSlugFromFileName($wpjobportal_layout,$wpjobportal_module) {
+        static $wpjobportal_slugs = array(); // P-2: asked for by every link on a page
+        $wpjobportal_slug_key = $wpjobportal_layout . '|' . $wpjobportal_module;
+        if (array_key_exists($wpjobportal_slug_key, $wpjobportal_slugs)) {
+            return $wpjobportal_slugs[$wpjobportal_slug_key];
+        }
         $where_query = '';
         if($wpjobportal_layout == 'controlpanel'){
             if($wpjobportal_module == 'jobseeker'){
@@ -191,6 +196,7 @@ class WPJOBPORTALslugModel {
         }
         $query = "SELECT slug FROM `".wpjobportal::$_db->prefix."wj_portal_slug` WHERE filename = '".esc_sql($wpjobportal_layout)."' ".$where_query;
         $wpjobportal_val = wpjobportal::$_db->get_var($query);
+        $wpjobportal_slugs[$wpjobportal_slug_key] = $wpjobportal_val;
         return $wpjobportal_val;
     }
 

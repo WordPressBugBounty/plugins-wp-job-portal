@@ -59,7 +59,7 @@ final class WPJOBPORTAL_Feature_rssfeedback {
                         $url = WPJOBPORTAL_PLUGIN_URL;
                     }
                     $html = '<div class="wjportal-cp-list">
-                            <a class="wjportal-list-anchor" target="_blank" href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('feed'=>'wpjobportal_resumesfeed', 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))) .'>'. wp_kses(wpjobportal_cp_menu_icon('rss'), WPJOBPORTAL_ALLOWED_TAGS) .'<span class="wjportal-cp-link-text">'. esc_html__('Resume RSS', 'wp-job-portal') .'</span></a>
+                            <a class="wjportal-list-anchor" target="_blank" href="'. esc_url(wpjobportal::wpjobportal_makeUrl(array('feed'=>'wpjobportal_resumesfeed', 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))) .'">'. wp_kses(wpjobportal_cp_menu_icon('rss'), WPJOBPORTAL_ALLOWED_TAGS) .'<span class="wjportal-cp-link-text">'. esc_html__('Resume RSS', 'wp-job-portal') .'</span></a>
                          </div>';
                 }
             }
@@ -100,7 +100,7 @@ final class WPJOBPORTAL_Feature_rssfeedback {
                     $url = WPJOBPORTAL_PLUGIN_URL;
                 }
                 echo '<div class="wjportal-cp-list">
-                    <a class="wjportal-list-anchor" target="_blank" href='.esc_url(wpjobportal::wpjobportal_makeUrl(array('feed'=>'wpjobportal_jobsfeed', 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).'>'. wp_kses(wpjobportal_cp_menu_icon('rss'), WPJOBPORTAL_ALLOWED_TAGS) .'<span class="wjportal-cp-link-text">'. esc_html__('Job RSS', 'wp-job-portal').'</span></a>
+                    <a class="wjportal-list-anchor" target="_blank" href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('feed'=>'wpjobportal_jobsfeed', 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).'">'. wp_kses(wpjobportal_cp_menu_icon('rss'), WPJOBPORTAL_ALLOWED_TAGS) .'<span class="wjportal-cp-link-text">'. esc_html__('Job RSS', 'wp-job-portal').'</span></a>
                 </div>';
             }
         }
@@ -210,7 +210,8 @@ final class WPJOBPORTAL_Feature_rssfeedback {
             echo '<description><![CDATA[' . $this->sanitize_cdata_html($this->build_resume_description($result, $config_array)) . ']]></description>' . "\n";
 
             $allow_enclosures = apply_filters('wpjobportal_rss_resume_include_file_enclosures', self::$rss_resume_include_file_enclosures);
-            if ($allow_enclosures && (int) $this->get_config_value($config_array, 'rss_resume_file', 0) == 1 && !empty($result->filename)) {
+            // S-4: a public feed must not give out a CV's address; the filter's old default stays off
+            if (false && $allow_enclosures && (int) $this->get_config_value($config_array, 'rss_resume_file', 0) == 1 && !empty($result->filename)) {
                 $wpdir = wp_upload_dir();
                 $data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
                 foreach ($result->filename AS $file) {
@@ -305,7 +306,7 @@ final class WPJOBPORTAL_Feature_rssfeedback {
         $this->append_feed_row($description, __('Location', 'wp-job-portal'), isset($job->locations) ? $job->locations : '');
         $this->append_feed_row($description, __('Category', 'wp-job-portal'), isset($job->cat_title) ? $job->cat_title : '');
         $this->append_feed_row($description, __('Job Type', 'wp-job-portal'), isset($job->jobtype) ? $job->jobtype : '');
-        $this->append_feed_row($description, __('Job Status', 'wp-job-portal'), isset($job->jobstatus) ? $job->jobstatus : '');
+        $this->append_feed_row($description, __('Job Status', 'wp-job-portal'), $this->public_job_status($job));
         $this->append_feed_row($description, __('Number of Jobs', 'wp-job-portal'), isset($job->noofjobs) && (int) $job->noofjobs > 0 ? (int) $job->noofjobs : '');
 
         if (empty($job->hidesalaryrange) && !empty($job->salarytype)) {
@@ -341,7 +342,7 @@ final class WPJOBPORTAL_Feature_rssfeedback {
         $this->append_feed_row($content, __('Location', 'wp-job-portal'), isset($job->locations) ? $job->locations : '');
         $this->append_feed_row($content, __('Category', 'wp-job-portal'), isset($job->cat_title) ? $job->cat_title : '');
         $this->append_feed_row($content, __('Job Type', 'wp-job-portal'), isset($job->jobtype) ? $job->jobtype : '');
-        $this->append_feed_row($content, __('Job Status', 'wp-job-portal'), isset($job->jobstatus) ? $job->jobstatus : '');
+        $this->append_feed_row($content, __('Job Status', 'wp-job-portal'), $this->public_job_status($job));
 
         if (empty($job->hidesalaryrange) && !empty($job->salarytype)) {
             // No figure on file means no salary line at all - the rate suffix
@@ -395,6 +396,21 @@ final class WPJOBPORTAL_Feature_rssfeedback {
         $this->append_feed_link($description, __('View Resume', 'wp-job-portal'), $this->get_resume_item_link($result));
 
         return apply_filters('wpjobportal_rss_resume_item_description', $description, $result, $config_array);
+    }
+
+    /**
+     * W-2: feeds are public, so they say only whether the job takes applications,
+     * never the hiring status the employer picked.
+     */
+    private function public_job_status($job) {
+        if (!isset($job->jobstatusid)) {
+            return '';
+        }
+        $closed = WPJOBPORTALincluder::getJSModel('job')->isJobClosedForApplications((object) array(
+            'jobstatus' => $job->jobstatusid,
+            'stoppublishing' => isset($job->stoppublishing) ? $job->stoppublishing : '',
+        ));
+        return $closed ? __('Closed', 'wp-job-portal') : __('Accepting applications', 'wp-job-portal');
     }
 
     public function append_feed_row(&$description, $label, $value, $already_safe = false) {

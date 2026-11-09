@@ -12,52 +12,13 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
 $wpjobportal_ff = (int) WPJOBPORTALrequest::getVar('ff','get','');
 ?>
 <!-- main wrapper -->
-<div id="wpjobportaladmin-wrapper">
+<div id="wpjobportaladmin-wrapper" class="wjpl-page">
     <!-- left menu -->
 	<div id="wpjobportaladmin-leftmenu">
         <?php  WPJOBPORTALincluder::getClassesInclude('wpjobportaladminsidemenu'); ?>
     </div>
     <div id="wpjobportaladmin-data">
-        <!-- top bar -->
-        <div id="wpjobportal-wrapper-top">
-            <div id="wpjobportal-wrapper-top-left">
-                <div id="wpjobportal-breadcrumbs">
-                    <ul>
-                        <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('Dashboard','wp-job-portal')); ?>">
-                                <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
-                            </a>
-                        </li>
-                        <li><?php echo esc_html(__('User Fields','wp-job-portal')); ?></li>
-                    </ul>
-                </div>
-            </div>    
-            <div id="wpjobportal-wrapper-top-right">
-                <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('Configuration','wp-job-portal')); ?>">
-                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
-                   </a>
-                </div>
-                <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('Help','wp-job-portal')); ?>">
-                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
-                   </a>
-                </div>
-                <div id="wpjobportal-vers-txt">
-                    <?php echo esc_html(__('Version','wp-job-portal')).': '; ?>
-                    <span class="wpjobportal-ver"><?php echo esc_html(WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue('versioncode')); ?></span>
-                </div>
-            </div>    
-        </div>
-        <!-- top head -->
-        <div id="wpjobportal-head">
-            <h1 class="wpjobportal-head-text">
-                <?php
-                    $wpjobportal_heading = isset(wpjobportal::$_data[0]['userfield']->id) ? esc_html(__('Edit', 'wp-job-portal')) : esc_html(__('Add', 'wp-job-portal'));
-                    echo esc_html($wpjobportal_heading) . ' ' . esc_html(__('User Field', 'wp-job-portal'));
-                ?>
-            </h1>
-        </div>
+        <?php WPJOBPORTAL_Admin_Form_UI::simple_header(__('Field', 'wp-job-portal'), __('field', 'wp-job-portal'), 'wpjobportal_fieldordering&ff=' . $wpjobportal_ff, 'wpjobportal-form'); ?>
         <!-- page content -->
         <div id="wpjobportal-admin-wrapper">
             <?php
@@ -140,7 +101,7 @@ $wpjobportal_ff = (int) WPJOBPORTALrequest::getVar('ff','get','');
                         $wpjobportal_fieldtype_Array = array('class' => 'inputbox one', 'data-validation' => 'required', 'onchange' => 'toggleType(this.options[this.selectedIndex].value);');
                     }
             ?>
-            <form id="wpjobportal-form" class="wpjobportal-form" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_fieldordering&task=saveuserfield")); ?>">
+            <form id="wpjobportal-form" class="wpjobportal-form wjpl-form wjpl-form-simple" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_fieldordering&task=saveuserfield")); ?>"><?php WPJOBPORTAL_Admin_Form_UI::simple_open(); ?>
                 <div class="wpjobportal-form-wrapper">
                     <div class="wpjobportal-form-title">
                         <?php echo esc_html(__('Field Type', 'wp-job-portal')); ?>
@@ -292,7 +253,7 @@ $wpjobportal_ff = (int) WPJOBPORTALrequest::getVar('ff','get','');
                     </a>
                     <?php echo wp_kses(WPJOBPORTALformfield::submitbutton('save', esc_html(__('Save','wp-job-portal')) .' '. esc_html(__('User Field', 'wp-job-portal')), array('class' => 'button wpjobportal-form-save-btn')),WPJOBPORTAL_ALLOWED_TAGS); ?>
                 </div>
-            </form>
+            <?php WPJOBPORTAL_Admin_Form_UI::simple_close(); ?></form>
             <?php
                 $wpjobportal_inline_js_script = "
                     jQuery(document).ready(function () {

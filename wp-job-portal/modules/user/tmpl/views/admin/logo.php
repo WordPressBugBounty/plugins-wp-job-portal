@@ -15,8 +15,8 @@ switch ($wpjobportal_layout) {
 		    $wpjobportal_photo = $wpjobportal_wpdir['baseurl'] . '/' . $wpjobportal_data_directory . '/data/profile/profile_' . esc_attr($wpjobportal_user->uid) . '/profile/' . $wpjobportal_user->photo;
 		}
 		$wpjobportal_html.= '<div class="wpjobportal-user-logo">
-                    <a href='. esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userdetail&id='.esc_attr($wpjobportal_user->id))).'>
-                    	<img src="'. esc_url($wpjobportal_photo) .'" alt='.esc_html(__("Logo","wp-job-portal")).'>
+                    <a href="'. esc_url_raw(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userdetail&id='.esc_attr($wpjobportal_user->id))).'">
+                    	<img src="'. esc_url($wpjobportal_photo) .'" alt="'.esc_html(__("Logo","wp-job-portal")).'">
                     </a>
                 </div>';
 		break;

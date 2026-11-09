@@ -16,6 +16,14 @@ class WPJOBPORTALJobalertController {
 
     function handleRequest() {
         $layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'jobalert');
+        // The admin list and form are a paid-tier tool (hidden from the menu without it), but
+        // opened by URL they loaded anyway; say what they need instead
+        if (is_admin() && in_array($layout, array('admin_jobalert', 'admin_formjobalert'), true)
+            && class_exists('WPJOBPORTAL_Feature_Tiers') && !WPJOBPORTAL_Feature_Tiers::job_alert_admin_tools()
+            && class_exists('WPJOBPORTAL_Addon_Fallbacks')) {
+            WPJOBPORTAL_Addon_Fallbacks::render_missing_screen('jobalert');
+            return;
+        }
         if (self::canaddfile($layout)) {
             $config_array = wpjobportal::$_config->getConfigByFor('jscontrolpanel');
             switch ($layout) {
@@ -77,7 +85,7 @@ class WPJOBPORTALJobalertController {
                     }
                     break;
                 case 'admin_jobalert':
-                    WPJOBPORTALincluder::getJSModel('jobalert')->getAllJobAlerts();
+                    WPJOBPORTALincluder::getJSModel('jobalert')->getAdminJobAlertList();
                     break;
             }
 
@@ -142,11 +150,40 @@ class WPJOBPORTALJobalertController {
         $msg = WPJOBPORTALMessages::getMessage($result, 'jobalert');
         WPJOBPORTALMessages::setLayoutMessage($msg['message'], $msg['status'],$this->_msgkey);
         if(wpjobportal::$_common->wpjp_isadmin()){
-            $url = admin_url('admin.php?page=wpjobportal_jobalert&wpjobportallt=jobalert');
+            $url = WPJOBPORTAL_Admin_List_UI::return_url('wpjobportal_jobalert', 'admin.php?page=wpjobportal_jobalert&wpjobportallt=jobalert');
         }else{
             $url = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobalert', 'wpjobportallt'=>'jobalert','wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
         }
         wp_safe_redirect($url);
+        die();
+    }
+
+    /**
+     * Bulk action from the Job alerts list: unsubscribe (delete) the selected
+     * alerts, as the 2.7 list's per-row Unsubscribe did one at a time.
+     */
+    function bulkjobalerts() {
+        $nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (! wp_verify_nonce( $nonce, 'wpjobportal_job_alert_nonce') ) {
+             die( 'Security check Failed' );
+        }
+        if (!current_user_can('manage_options')) {
+            die( 'Not Allowed!' );
+        }
+        $ids = array_values(array_filter(array_map('absint', (array) WPJOBPORTALrequest::getVar('wpjobportal-cb'))));
+        if (sanitize_key((string) WPJOBPORTALrequest::getVar('bulkop')) === 'delete') {
+            // unSubscribeJobAlert() reports success for an id that no longer exists: count only real alerts.
+            $existing = $ids ? array_map('absint', (array) wpjobportal::$_db->get_col("SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobalertsetting` WHERE id IN (" . implode(',', $ids) . ")")) : array();
+            $done = 0;
+            foreach ($existing as $id) {
+                if (WPJOBPORTALincluder::getJSModel('jobalert')->unSubscribeJobAlert($id) == WPJOBPORTAL_DELETED) {
+                    $done++;
+                }
+            }
+            /* translators: 1: alerts removed, 2: alerts selected */
+            WPJOBPORTALMessages::setLayoutMessage(sprintf(__('%1$d of %2$d job alerts unsubscribed.', 'wp-job-portal'), $done, count($ids)), $done ? 'updated' : 'error', $this->_msgkey);
+        }
+        wp_safe_redirect(WPJOBPORTAL_Admin_List_UI::return_url('wpjobportal_jobalert', 'admin.php?page=wpjobportal_jobalert'));
         die();
     }
 
@@ -157,8 +194,14 @@ class WPJOBPORTALJobalertController {
         }
         $emailaddress = WPJOBPORTALrequest::getVar('emailaddress');
         $result = WPJOBPORTALincluder::getJSModel('jobalert')->unSubscribeJobAlertEmail($emailaddress);
-        $msg = WPJOBPORTALMessages::getMessage($result, 'jobalert');
-        WPJOBPORTALMessages::setLayoutMessage($msg['message'], $msg['status'],$this->_msgkey);
+        if ($result === 'WPJOBPORTAL_UNSUBSCRIBE_NONE') {
+            WPJOBPORTALMessages::setLayoutMessage(__('Your account has no job alerts at this email address.', 'wp-job-portal'), 'error', $this->_msgkey);
+        } elseif ($result === 'WPJOBPORTAL_UNSUBSCRIBE_EMAIL_SENT') {
+            WPJOBPORTALMessages::setLayoutMessage(__('If this address has job alerts, we have emailed it a link to unsubscribe.', 'wp-job-portal'), 'updated', $this->_msgkey);
+        } else {
+            $msg = WPJOBPORTALMessages::getMessage($result, 'jobalert');
+            WPJOBPORTALMessages::setLayoutMessage($msg['message'], $msg['status'],$this->_msgkey);
+        }
         wp_safe_redirect(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobalert', 'wpjobportallt'=>'jobalert','wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid())));
         die();
     }

@@ -32,11 +32,11 @@ class WPJOBPORTAL_Migration_Service {
      *                            the next admin request checks again.
      * @return mixed
      */
-    public static function with_lock($component, $callback, $busy = false) {
+    public static function with_lock($component, $callback, $busy = false, $stale = 600) {
         $option = self::LOCK_OPTION . '_' . sanitize_key($component);
         if (!add_option($option, time(), '', false)) {
             $lock_time = absint(get_option($option, 0));
-            if ($lock_time > 0 && (time() - $lock_time) < 600) {
+            if ($lock_time > 0 && (time() - $lock_time) < max(30, (int) $stale)) {
                 return $busy;
             }
             delete_option($option);
@@ -926,6 +926,61 @@ class WPJOBPORTAL_Migration_Service {
      * @param string $contents SQL file contents.
      * @return array
      */
+    /**
+     * The ledger row for one batched job (D-13), or null.
+     *
+     * Batched jobs live under their own component, so the checks above (which
+     * compare core rows with the .sql files) never see them.
+     *
+     * @param string $name
+     * @return object|null
+     */
+    public static function get_batch_entry($name) {
+        global $wpdb;
+        if (!self::table_exists()) {
+            return null;
+        }
+        return wpjobportaldb_direct::get_row(
+            $wpdb->prepare(
+                'SELECT * FROM %i WHERE component = %s AND migration = %s LIMIT 1',
+                self::table_name(),
+                'batch',
+                $name
+            )
+        );
+    }
+
+    /**
+     * Record a batched job as running, success or failed.
+     *
+     * @param string $name
+     * @param string $status running, success or failed
+     * @param string $error
+     * @return void
+     */
+    public static function record_batch($name, $status, $error = '') {
+        if (!self::table_exists() && !self::ensure_ledger_table()) {
+            return;
+        }
+        $entry = self::get_batch_entry($name);
+        $data = array(
+            'component' => 'batch',
+            'migration' => $name,
+            'checksum' => hash('sha256', 'batch:' . $name),
+            'status' => $status,
+            'attempts' => $entry ? absint($entry->attempts) + ($status === 'running' ? 1 : 0) : 1,
+            'started_at' => $entry && $entry->started_at && $status !== 'running' ? $entry->started_at : current_time('mysql', true),
+            'finished_at' => $status === 'running' ? null : current_time('mysql', true),
+            'error' => $error !== '' ? WPJOBPORTAL_Redactor::redact($error) : null,
+        );
+        $formats = array('%s', '%s', '%s', '%s', '%d', '%s', '%s', '%s');
+        if ($entry) {
+            $data = array_merge(array('id' => absint($entry->id)), $data);
+            array_unshift($formats, '%d');
+        }
+        wpjobportaldb_direct::replace(self::table_name(), $data, $formats);
+    }
+
     public static function split_sql($contents) {
         $lines = preg_split('/\r\n|\r|\n/', $contents);
         $buffer = array();

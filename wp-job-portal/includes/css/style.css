@@ -69,8 +69,11 @@
  * One heading per page. A portal page prints its own heading and breadcrumbs,
  * so the theme's page title above it ("Employer", "Jobseeker") was a second,
  * larger heading that the Recruiting screens already hid.
+ * Only while the portal heading is there, though: a sign-in message, an
+ * access notice or a site with "Show page title" off prints none, and the
+ * theme's title is then the page's only h1.
  */
-body.wpjobportal-page :where(.wp-block-post-title, .entry-title, .page-title) {
+body.wpjobportal-page:has(.wjportal-page-heading, .wjportal-page-header h1) :where(.wp-block-post-title, .entry-title, .page-title) {
     display: none !important;
 }
 body.wpjobportal-page .wp-block-post-content {
@@ -129,6 +132,19 @@ div.wjportal-breadcrumbs-wrp div.wjportal-breadcrumbs-links a.wjportal-breadcrum
     font-weight: 700;
     position: relative;
     width: 100%;
+}
+/*
+ * The page heading is the page's h1 (the theme's own title is hidden above),
+ * so screen readers and search engines find one main heading. It was a div:
+ * keep it looking like one, whatever the theme gives h1.
+ */
+h1.wjportal-page-heading {
+    margin: 0;
+    padding: 0;
+    font-family: inherit;
+    line-height: inherit;
+    letter-spacing: normal;
+    text-transform: none;
 }
 
 /* Main Header Container */
@@ -3818,7 +3834,9 @@ div#wpjobportal_appliedresume_tab_search {
     border-radius: 8px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
     z-index: 10;
-    overflow: hidden;
+    /* Tester report: a long menu (up to 14 options) ran off the top; it scrolls instead. */
+    max-height: min(70vh, 420px);
+    overflow-y: auto;
     padding: 6px;
 }
 
@@ -5418,6 +5436,12 @@ span.wjportal-company-data-value {
     color: var(---wpjp-body-font-color);
 }
 
+/* A long email or web address breaks instead of running off a phone screen */
+.wjportal-company-data-val {
+    overflow-wrap: anywhere;
+    min-width: 0;
+}
+
 .wjportal-company-listing-data-description {
     color: var(--wpjp-body-font-color);
     font-size: var(--wpjp-body-font-size);
@@ -6579,6 +6603,11 @@ div.wjportal-form-wrp div.wjportal-resume-section-wrp div.wjportal-resume-sectio
     border-radius: 8px;
     overflow: hidden;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+/* The resume address map draws into .map_container, which had no height (blank map). */
+.wjportal-form-map .outermapdiv .map_container {
+    height: 100%;
+    min-height: 300px;
 }
 
 #wp-description-wrap:focus-within {
@@ -10299,6 +10328,28 @@ a.wjportal-payment-act-btn::before,
     -webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>');
     mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>');
 }
+/* My Jobs: Close job / Reopen (W-14). Without its own mask the shared ::before
+   painted a solid square. */
+.wjportal-list-act-btn-close::before {
+    -webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9C4.63 15.55 4 13.85 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1C19.37 8.45 20 10.15 20 12c0 4.42-3.58 8-8 8z"/></svg>');
+    mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9C4.63 15.55 4 13.85 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1C19.37 8.45 20 10.15 20 12c0 4.42-3.58 8-8 8z"/></svg>');
+}
+.wjportal-list-act-btn-close.is-closed::before {
+    -webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>');
+    mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>');
+}
+/* Saved search alert switch (W-9): a bell, crossed out when it turns emails off.
+   Without its own mask the shared ::before above painted a solid square. */
+.wjportal-list-act-btn-alert::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9'/%3e%3cpath d='M13.73 21a2 2 0 0 1-3.46 0'/%3e%3c/svg%3e");
+    mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9'/%3e%3cpath d='M13.73 21a2 2 0 0 1-3.46 0'/%3e%3c/svg%3e");
+}
+
+.wjportal-list-act-btn-alert.is-on::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M13.73 21a2 2 0 0 1-3.46 0'/%3e%3cpath d='M18.63 13A17.89 17.89 0 0 1 18 8'/%3e%3cpath d='M6.26 6.26A5.86 5.86 0 0 0 6 8c0 7-3 9-3 9h14'/%3e%3cpath d='M18 8a6 6 0 0 0-9.33-5'/%3e%3cline x1='1' y1='1' x2='23' y2='23'/%3e%3c/svg%3e");
+    mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M13.73 21a2 2 0 0 1-3.46 0'/%3e%3cpath d='M18.63 13A17.89 17.89 0 0 1 18 8'/%3e%3cpath d='M6.26 6.26A5.86 5.86 0 0 0 6 8c0 7-3 9-3 9h14'/%3e%3cpath d='M18 8a6 6 0 0 0-9.33-5'/%3e%3cline x1='1' y1='1' x2='23' y2='23'/%3e%3c/svg%3e");
+}
+
 .wjportal-company-act-btn.wjportal-featured-btn::before {
     -webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>');
     mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>');   
@@ -14377,7 +14428,7 @@ color: #fff;
         padding: 1px 2px;
         /*border-radius: 4px;*/
         /*background: #eff6ff;*/
-        color: var(--wpjp-primary-color, #3baeda);
+        color: var(--wpjp-primary-color, #2f6fc4);
         /*border: 1px solid var(--wpjp-primary-color, #e9ecef);*/
         border-bottom: 1px solid var(--wpjp-primary-color, #e9ecef);
         text-decoration: none !important;
@@ -14386,7 +14437,7 @@ color: #fff;
     }
 
     .wpjp-clickable-tag:hover {
-        background-color: var(--wpjp-primary-color, #3baeda);
+        background-color: var(--wpjp-primary-color, #2f6fc4);
         color: #ffffff;
     }
 
@@ -14525,7 +14576,7 @@ color: #fff;
 .wjportal-main-up-wrapper .wjportal-cp-list.is-active > .wjportal-list-anchor {
     background: var(--wpjp-background-color, #f6f6f6);
     border-radius: 8px;
-    box-shadow: inset 3px 0 0 var(--wpjp-primary-color, #3baeda);
+    box-shadow: inset 3px 0 0 var(--wpjp-primary-color, #2f6fc4);
 }
 
 .wjportal-main-up-wrapper .wjportal-cp-list.is-active .wjportal-cp-link-text {
@@ -14924,7 +14975,7 @@ color: #fff;
 }
 
 .wjportal-main-up-wrapper .wjportal-role-choice:hover {
-    border-color: var(--wpjp-primary-color, #3baeda);
+    border-color: var(--wpjp-primary-color, #2f6fc4);
     box-shadow: var(--wpjp-card-shadow, 0 4px 15px rgba(0, 0, 0, .08));
 }
 
@@ -14935,16 +14986,16 @@ color: #fff;
     block-size: 18px;
     min-height: 0;
     margin: 3px 0 0;
-    accent-color: var(--wpjp-primary-color, #3baeda);
+    accent-color: var(--wpjp-primary-color, #2f6fc4);
 }
 
 .wjportal-main-up-wrapper .wjportal-role-choice:has(.wjportal-role-choice-input:checked) {
-    border-color: var(--wpjp-primary-color, #3baeda);
-    background: color-mix(in srgb, var(--wpjp-primary-color, #3baeda) 6%, var(--wpjp-card-background, #fff));
+    border-color: var(--wpjp-primary-color, #2f6fc4);
+    background: color-mix(in srgb, var(--wpjp-primary-color, #2f6fc4) 6%, var(--wpjp-card-background, #fff));
 }
 
 .wjportal-main-up-wrapper .wjportal-role-choice:has(.wjportal-role-choice-input:focus-visible) {
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--wpjp-primary-color, #3baeda) 35%, transparent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--wpjp-primary-color, #2f6fc4) 35%, transparent);
 }
 
 .wjportal-main-up-wrapper .wjportal-role-choice-body {
@@ -14980,5 +15031,116 @@ color: #fff;
 
 .wjportal-main-up-wrapper .chosen-container .chosen-results li.highlighted {
     color: #fff;
-    background: var(--wpjp-primary-color, #3baeda);
+    background: var(--wpjp-primary-color, #2f6fc4);
+}
+
+/* D-8: jobs closed to new applicants — a label instead of any apply button or form. */
+.wjportal-job-closed-label { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border: 1px solid #e2e8f0; border-radius: 999px; background: #f1f5f9; color: #475569; font-size: 13px; font-weight: 600; line-height: 1.3; white-space: nowrap; }
+.wjportal-job-closed-label::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #94a3b8; }
+.wjportal-job-title .wjportal-job-closed-label { margin-left: 8px; font-size: 12px; padding: 2px 8px; vertical-align: middle; }
+.wjportal-job-closed-wrp { margin: 16px 0; padding: 14px 16px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; }
+.wjportal-job-closed-msg { margin: 0; padding: 12px 0; font-weight: 600; color: #475569; }
+
+/* W-5: guest states */
+.wjportal-guest-login-btn { display: inline-block; margin-left: 8px; padding: 6px 14px; border-radius: 6px; background: var(--wpjp-primary-color); color: #fff; text-decoration: none; }
+.wjportal-guest-login-btn:hover { background: var(--wpjp-secondary-color); color: #fff; }
+
+/* W-4: job seeker first run */
+.wjportal-job-applied-note { margin: 12px 0; padding: 12px 16px; border: 1px solid var(--wpjp-border-color); border-radius: 8px; background: var(--wpjp-card-background); color: var(--wpjp-body-font-color); font-weight: 600; }
+.wjportal-job-applied-note a { color: var(--wpjp-primary-color); text-decoration: underline; }
+.wjportal-form-optional { color: var(--wpjp-body-font-color); font-weight: 400; opacity: .75; }
+
+/* W-1: application status in the candidate's words */
+.wjportal-app-status{display:inline-block;padding:3px 10px;border-radius:999px;font-size:13px;font-weight:600;line-height:1.5;background:#eef2ff;color:#3730a3;border:1px solid #c7d2fe}
+.wjportal-app-status-review,.wjportal-app-status-interviewing{background:#e0f2fe;color:#075985;border-color:#bae6fd}
+.wjportal-app-status-offer{background:#fef3c7;color:#92400e;border-color:#fde68a}
+.wjportal-app-status-hired{background:#dcfce7;color:#166534;border-color:#bbf7d0}
+.wjportal-app-status-not_selected{background:#f1f5f9;color:#475569;border-color:#e2e8f0}
+.wjportal-status-changed{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:0 0 14px;padding:12px 16px;border:1px solid #bbf7d0;border-left:4px solid #16a34a;border-radius:8px;background:#f0fdf4;color:#14532d;font-size:14px}
+.wjportal-status-changed a{font-weight:600;color:#166534;text-decoration:underline}
+.wjportal-status-changed button{margin-left:auto;background:none;border:0;color:#166534;cursor:pointer;font-size:13px;text-decoration:underline}
+.wjportal-app-status-withdrawn{background:#f8fafc;color:#64748b;border-color:#e2e8f0}
+.wjportal-app-withdraw{display:inline-block;margin:6px 0 0}
+.wjportal-app-withdraw-btn{background:none;border:0;padding:0;color:#64748b;font-size:13px;text-decoration:underline;cursor:pointer}
+.wjportal-app-withdraw-btn:hover{color:#b91c1c}
+
+/* Add Job: the company-first notice at the top of the form. */
+.wjportal-needs-company-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin: 0 0 16px; padding: 16px 18px; border: 1px solid #fde68a; border-left: 4px solid #d97706; border-radius: 10px; background: #fffbeb; }
+.wjportal-needs-company-top strong { display: block; font-size: 15px; color: #78350f; }
+.wjportal-needs-company-top p { margin: 4px 0 0; font-size: 14px; color: #92400e; }
+.wjportal-needs-company-btn { padding: 9px 14px; border-radius: 8px; background: #d97706; color: #fff !important; font-weight: 600; text-decoration: none; white-space: nowrap; }
+.wjportal-needs-company-btn:hover { background: #b45309; }
+/* Owner: the Add Job notice in the site's own Design colours, not the admin's. */
+.wjportal-needs-company-top { border: 1px solid var(--wpjp-border-color, #e9ecef); border-left: 4px solid var(--wpjp-primary-color, #2f6fc4); border-radius: 8px; background: #fff; font-family: inherit; }
+.wjportal-needs-company-top strong { color: var(--wpjp-secondary-color, #000); }
+.wjportal-needs-company-top p { color: var(--wpjp-body-font-color, #575757); }
+.wjportal-needs-company-btn { border-radius: 6px; background: var(--wpjp-primary-color, #2f6fc4); }
+.wjportal-needs-company-btn:hover { background: var(--wpjp-primary-color, #2f6fc4); filter: brightness(.92); }
+.wjportal-needs-company-top { padding: 20px 25px; border-radius: 12px; background: var(--wpjp-card-background, #fff); box-shadow: var(--wpjp-card-shadow); font-size: var(--wpjp-body-font-size); }
+.wjportal-needs-company-top strong { font-size: var(--wpjp-sub-heading, 20px); font-weight: 700; }
+.wjportal-needs-company-top p { font-size: var(--wpjp-body-font-size); }
+.wjportal-needs-company-btn { padding: 10px 16px; border-radius: 8px; font-weight: 600; }
+
+/* The dashboard rail: a long word ("Unternehmensverifizierung") ran past its edge,
+   because a flex item will not shrink below its longest word. Long words now break,
+   hyphenated where the browser knows the language. */
+.wjportal-main-up-wrapper .wjportal-cp-left .wjportal-section-title,
+.wjportal-main-up-wrapper .wjportal-cp-left .wjportal-cp-group-name,
+.wjportal-main-up-wrapper .wjportal-cp-left .wjportal-cp-link-text {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+}
+
+/* More Actions opens downward when there is more room below (the script in
+   resume/tmpl/views/frontend/control.php sets the class as it opens). */
+.wjportal-resume-act-actions-dropdown.wjportal-dd-down .wjportal-resume-act-actions-dropdown-menu {
+    top: calc(100% + 6px);
+    bottom: auto;
+}
+
+/* Jetpack's math question on the login form (WordPress.com and Jetpack sites), shown as one
+   row like the others: wp-job-portal.php wraps Jetpack's markup in .wjportal-login-protection. */
+.wjportal-main-up-wrapper #loginform-custom .wjportal-login-protection {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px dashed var(--wpjp-border-color);
+}
+.wjportal-main-up-wrapper #loginform-custom .wjportal-login-protection > div {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 0.75rem 2rem;
+    align-items: center;
+    margin: 0 !important;
+}
+.wjportal-main-up-wrapper #loginform-custom .wjportal-login-protection p {
+    display: block;
+    grid-column: 1 / -1;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: var(--wpjp-body-font-size) !important;
+    color: var(--wpjp-secondary-color);
+}
+.wjportal-main-up-wrapper #loginform-custom .wjportal-login-protection br {
+    display: none;
+}
+.wjportal-main-up-wrapper #loginform-custom .wjportal-login-protection label {
+    padding-top: 0;
+    vertical-align: middle !important;
+}
+.wjportal-main-up-wrapper #loginform-custom .wjportal-login-protection input[type="number"] {
+    width: 120px !important;
+    height: auto !important;
+    font-size: var(--wpjp-body-font-size) !important;
+}
+@media (max-width: 600px) {
+    .wjportal-main-up-wrapper #loginform-custom .wjportal-login-protection {
+        padding: 1.25rem 1.5rem;
+    }
+    .wjportal-main-up-wrapper #loginform-custom .wjportal-login-protection > div {
+        grid-template-columns: auto 1fr;
+        gap: 0.75rem;
+    }
 }

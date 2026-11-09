@@ -113,7 +113,7 @@ class WPJOBPORTALjobSearchModel {
             if($wpjobportal_show_placeholders == 1){
                 $placeholder = esc_html(__('Select Job Status', 'wp-job-portal'));
             }
-            $wpjobportal_value = WPJOBPORTALformfield::select('jobstatus[]', WPJOBPORTALincluder::getJSModel('jobstatus')->getJobStatusForCombo(), isset(wpjobportal::$_data['filter']['jobstatus']) ? wpjobportal::$_data['filter']['jobstatus'] : '', $placeholder, array('class' => 'inputbox'.' '.$wpjobportal_field_custom_class));
+            $wpjobportal_value = WPJOBPORTALformfield::select('jobstatus[]', WPJOBPORTALincluder::getJSModel('jobstatus')->getJobStatusForCombo(true), isset(wpjobportal::$_data['filter']['jobstatus']) ? wpjobportal::$_data['filter']['jobstatus'] : '', $placeholder, array('class' => 'inputbox'.' '.$wpjobportal_field_custom_class));
             $wpjobportal_html .= wpjobportal_renderCurrentFieldJP($title, $wpjobportal_value, $wpjobportal_field_width);
         }
 
@@ -411,19 +411,28 @@ class WPJOBPORTALjobSearchModel {
      */
     private function getCurrentJobSearchCriteria() {
         $wpjobportal_source = array();
-
         if (isset(wpjobportal::$_search['jobs']) && is_array(wpjobportal::$_search['jobs'])) {
             $wpjobportal_source = wpjobportal::$_search['jobs'];
         }
-
-        if (empty(array_filter($wpjobportal_source, array($this, 'isRealSearchValue')))) {
-            $wpjobportal_source = $this->getJobSearchCookie();
+        $wpjobportal_criteria = $this->cleanJobSearchCriteria($wpjobportal_source);
+        // Judged after cleaning: the request may carry only form defaults (the
+        // salary period) while the search the visitor ran is in the cookie.
+        if (empty($wpjobportal_criteria)) {
+            $wpjobportal_criteria = $this->cleanJobSearchCriteria((array) $this->getJobSearchCookie());
         }
+        return $wpjobportal_criteria;
+    }
 
-        // Drop the empties, so an untouched form does not count as criteria and
-        // so what is stored stays small and readable. Sorting goes too: it is
-        // how the results are arranged, not what was searched for, and keeping
-        // it would pin a saved search to one ordering forever.
+    /**
+     * Drop the empties, so an untouched form does not count as criteria and
+     * so what is stored stays small and readable. Sorting goes too: it is how
+     * the results are arranged, not what was searched for, and keeping it
+     * would pin a saved search to one ordering forever.
+     *
+     * @param array $wpjobportal_source
+     * @return array
+     */
+    private function cleanJobSearchCriteria($wpjobportal_source) {
         $wpjobportal_criteria = array();
         foreach ($wpjobportal_source as $wpjobportal_key => $wpjobportal_value) {
             if (in_array($wpjobportal_key, array('search_from_jobs', 'sorton', 'sortby', 'backlink_pagenum'), true)) {
@@ -436,6 +445,14 @@ class WPJOBPORTALjobSearchModel {
                 continue;
             }
             $wpjobportal_criteria[$wpjobportal_key] = $wpjobportal_value;
+        }
+
+        // The form always posts a salary period (per month by default), but the
+        // job query only filters by it together with a salary type. On its own
+        // it is not something the visitor searched for: kept, an untouched form
+        // saved as a search for every job, and its alert mailed every new job.
+        if (empty($wpjobportal_criteria['salarytype'])) {
+            unset($wpjobportal_criteria['salaryduration']);
         }
 
         return $wpjobportal_criteria;
@@ -555,6 +572,72 @@ class WPJOBPORTALjobSearchModel {
      * @param int $wpjobportal_uid      Owner, checked before anything is removed.
      * @return int A WPJOBPORTAL_* result constant.
      */
+    /** W-9: the alert made from this saved search, or 0. */
+    function getSearchAlertId($wpjobportal_searchid, $wpjobportal_uid) {
+        $wpjobportal_db = wpjobportal::$_db;
+        return (int) $wpjobportal_db->get_var($wpjobportal_db->prepare(
+            "SELECT id FROM `" . $wpjobportal_db->prefix . "wj_portal_jobalertsetting` WHERE serverstatus = 'saved_search' AND serverid = %d AND uid = %d",
+            $wpjobportal_searchid, $wpjobportal_uid
+        ));
+    }
+
+    /**
+     * W-9: "Email me new matches" on a saved search: a job alert built from its
+     * criteria, or that alert removed again.
+     *
+     * @return bool
+     */
+    function setSearchAlert($wpjobportal_searchid, $wpjobportal_uid, $wpjobportal_on) {
+        $wpjobportal_db = wpjobportal::$_db;
+        $wpjobportal_search = $wpjobportal_db->get_row($wpjobportal_db->prepare(
+            "SELECT id, searchname, searchparams FROM `" . $wpjobportal_db->prefix . "wj_portal_jobsearches` WHERE id = %d AND uid = %d",
+            $wpjobportal_searchid, $wpjobportal_uid
+        ));
+        if (!in_array('jobalert', (array) wpjobportal::$_active_addons, true)) {
+            return false;
+        }
+        $wpjobportal_alert = $this->getSearchAlertId($wpjobportal_searchid, $wpjobportal_uid);
+        if (!$wpjobportal_on) {
+            return !$wpjobportal_alert || WPJOBPORTALincluder::getJSModel('jobalert')->unSubscribeJobAlert($wpjobportal_alert) === WPJOBPORTAL_DELETED;
+        }
+        if (!$wpjobportal_search) {
+            return false;
+        }
+        if ($wpjobportal_alert) {
+            return true;
+        }
+        $wpjobportal_email = $wpjobportal_db->get_var($wpjobportal_db->prepare("SELECT emailaddress FROM `" . $wpjobportal_db->prefix . "wj_portal_users` WHERE id = %d", $wpjobportal_uid));
+        if (!$wpjobportal_email) {
+            return false;
+        }
+        $wpjobportal_criteria = json_decode((string) $wpjobportal_search->searchparams, true);
+        $wpjobportal_criteria = is_array($wpjobportal_criteria) ? $wpjobportal_criteria : array();
+        $wpjobportal_first = function ($wpjobportal_key) use ($wpjobportal_criteria) {
+            $wpjobportal_value = isset($wpjobportal_criteria[$wpjobportal_key]) ? $wpjobportal_criteria[$wpjobportal_key] : 0;
+            return absint(is_array($wpjobportal_value) ? reset($wpjobportal_value) : $wpjobportal_value);
+        };
+        $wpjobportal_words = trim((isset($wpjobportal_criteria['jobtitle']) ? (string) $wpjobportal_criteria['jobtitle'] : '') . ' ' . (isset($wpjobportal_criteria['metakeywords']) && !is_array($wpjobportal_criteria['metakeywords']) ? (string) $wpjobportal_criteria['metakeywords'] : ''));
+        $wpjobportal_types = WPJOBPORTALincluder::getJSModel('jobalert')->getAlertTypeForCombo();
+        $wpjobportal_now = date_i18n('Y-m-d H:i:s');
+        $wpjobportal_done = $wpjobportal_db->insert($wpjobportal_db->prefix . 'wj_portal_jobalertsetting', array(
+            'uid' => (int) $wpjobportal_uid, 'categoryid' => $wpjobportal_first('category'), 'subcategoryid' => 0,
+            'name' => substr((string) $wpjobportal_search->searchname, 0, 255), 'contactemail' => $wpjobportal_email,
+            'country' => '', 'sendtime' => $wpjobportal_now, 'status' => 1, 'created' => $wpjobportal_now, 'price' => 0, 'userpackageid' => 0,
+            'keywords' => substr($wpjobportal_words, 0, 255), 'company' => $wpjobportal_first('company'), 'jobtype' => $wpjobportal_first('jobtype'),
+            'workplace_type' => $wpjobportal_first('workplace_type'), 'is_urgent' => empty($wpjobportal_criteria['is_urgent']) ? 0 : 1,
+            'tags' => isset($wpjobportal_criteria['tags']) && !is_array($wpjobportal_criteria['tags']) ? substr((string) $wpjobportal_criteria['tags'], 0, 255) : '',
+            'alerttype' => !empty($wpjobportal_types) ? (int) reset($wpjobportal_types)->id : 1,
+            'coordinatesradius' => 0, 'lastmailsend' => $wpjobportal_now, 'serverid' => (int) $wpjobportal_search->id, 'serverstatus' => 'saved_search',
+        ));
+        if (!$wpjobportal_done) {
+            return false;
+        }
+        if (!empty($wpjobportal_criteria['city']) && !is_array($wpjobportal_criteria['city'])) {
+            WPJOBPORTALincluder::getJSModel('jobalert')->storeMultiJobAlertCities((string) $wpjobportal_criteria['city'], $wpjobportal_db->insert_id);
+        }
+        return true;
+    }
+
     function deleteJobSearch($wpjobportal_searchid, $wpjobportal_uid) {
         if (!is_numeric($wpjobportal_searchid) || !is_numeric($wpjobportal_uid) || $wpjobportal_uid == 0) {
             return WPJOBPORTAL_DELETE_ERROR;
@@ -570,6 +653,7 @@ class WPJOBPORTALjobSearchModel {
         if (!$wpjobportal_row->delete($wpjobportal_searchid)) {
             return WPJOBPORTAL_DELETE_ERROR;
         }
+        $this->setSearchAlert($wpjobportal_searchid, $wpjobportal_uid, false); // W-9: no search, no emails
 
         return WPJOBPORTAL_DELETED;
     }

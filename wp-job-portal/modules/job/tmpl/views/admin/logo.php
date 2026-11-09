@@ -17,8 +17,8 @@ switch ($wpjobportal_layout) {
 	        $wpjobportal_logo = $wpjobportal_wpdir['baseurl'] . '/' . $wpjobportal_data_directory.'/data/employer/comp_'.$wpjobportal_job->companyid.'/logo/'. $wpjobportal_job->logo;
 	    }
 		$wpjobportal_html.= '<div class="wpjobportal-jobs-logo">
-					<a href='. esc_url_raw(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=formjob&wpjobportalid='.esc_attr($wpjobportal_job->id))).'>
-						<img src='.$wpjobportal_logo.' alt='.esc_html(__("Logo",'wp-job-portal')).'>
+					<a href="'. esc_url_raw(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=formjob&wpjobportalid='.esc_attr($wpjobportal_job->id))).'">
+						<img src="'.$wpjobportal_logo.'" alt="'.esc_html(__("Logo",'wp-job-portal')).'">
 					</a>
 				</div>';
 		break;
@@ -33,8 +33,8 @@ switch ($wpjobportal_layout) {
             $wpjobportal_path = $wpjobportal_wpdir['baseurl'] . '/' . $wpjobportal_data_directory . '/data/employer/comp_' . $wpjobportal_job->companyid . '/logo/' . $wpjobportal_job->logofilename;
         }
 		$wpjobportal_html.='<div class="wpjobportal-jobs-logo">
-                    <a href='. esc_url_raw(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=formjob&wpjobportalid='.esc_attr($wpjobportal_job->id).'&isqueue=1')).'>
-                    	<img src='.$wpjobportal_path.' alt='.esc_html(__("Logo",'wp-job-portal')).'>
+                    <a href="'. esc_url_raw(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=formjob&wpjobportalid='.esc_attr($wpjobportal_job->id).'&isqueue=1')).'">
+                    	<img src="'.$wpjobportal_path.'" alt="'.esc_html(__("Logo",'wp-job-portal')).'">
                     </a>
                 </div>';
 		break;

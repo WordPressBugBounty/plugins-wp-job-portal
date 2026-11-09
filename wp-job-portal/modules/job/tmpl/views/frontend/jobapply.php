@@ -27,12 +27,12 @@ $wpjobportal_inline_js_script = "
                 $('#wjportal-ai-cl-workspace').slideDown(250);
                 $('#wjportal-saved-cl-container').slideUp(250);
                 $('select[name=\"coverletterid\"]').prop('disabled', true).removeClass('required');
-                $('input[name=\"coverletter_title\"]').prop('disabled', false).addClass('required').attr('data-validation', 'required');
+                $('input[name=\"coverletter_title\"]').prop('disabled', false);
             } else {
                 $('#wjportal-ai-cl-workspace').slideUp(250);
                 $('#wjportal-saved-cl-container').slideDown(250);
-                $('select[name=\"coverletterid\"]').prop('disabled', false).addClass('required');
-                $('input[name=\"coverletter_title\"]').prop('disabled', true).removeClass('required').removeAttr('data-validation');
+                $('select[name=\"coverletterid\"]').prop('disabled', false);
+                $('input[name=\"coverletter_title\"]').prop('disabled', true);
             }
         });
     });
@@ -50,13 +50,13 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
     .wjportal-cl-mode-container { display: flex; background: #f1f5f9; border-radius: 0.75rem; padding: 0.25rem; width: 100%; max-width: 320px; margin: 0; }
     .wjportal-cl-mode-label { flex: 1; text-align: center; padding: 0.5rem 0; font-size: 0.8125rem; font-weight: 600; color: #475569; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 0.375rem; margin: 0 !important; }
     .wjportal-cl-mode-label input[type="radio"] { display: none !important; }
-    .wjportal-cl-mode-label.is-active { background: #ffffff; color: #3baeda; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.04); }
+    .wjportal-cl-mode-label.is-active { background: #ffffff; color: var(--wpjp-primary-color, #2f6fc4); border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.04); }
 
     /* Merged Inputs */
     .wjportal-cl-input-label { display: block; font-size: 0.75rem; font-weight: 600; color: #64748b; margin-bottom: 0.375rem; text-transform: uppercase; letter-spacing: 0.05em; }
     .wjportal-cl-title-input-wrap { margin-bottom: 1.25rem; }
     .wjportal-cl-title-input-wrap input, .wjportal-cl-saved-select-wrap select { width: 100%; border-radius: 0.75rem; border: 1px solid #e2e8f0; padding: 0.75rem 1rem; font-size: 0.875rem; background: #f8fafc; transition: all 0.2s ease; box-sizing: border-box; }
-    .wjportal-cl-title-input-wrap input:focus, .wjportal-cl-saved-select-wrap select:focus { border-color: #3baeda; background: #ffffff; outline: none; box-shadow: 0 0 0 3px rgba(59, 174, 218, 0.1); }
+    .wjportal-cl-title-input-wrap input:focus, .wjportal-cl-saved-select-wrap select:focus { border-color: var(--wpjp-primary-color, #2f6fc4); background: #ffffff; outline: none; box-shadow: 0 0 0 3px rgba(47, 111, 196, 0.1); }
     .wjportal-cl-saved-select-wrap select:disabled { opacity: 0.6; cursor: not-allowed; }
 </style>
 
@@ -73,6 +73,11 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
                     $wpjobportal_show_job_apply_redirect_link_only = 1;
                 }
 
+                // W-4: once applied there is nothing left to fill in, only the note.
+                $wpjobportal_applied_note = (!empty(wpjobportal::$_data[0]) && isset(wpjobportal::$_data[0]->id)) ? WPJOBPORTAL_Seeker_Start::applied_notice(wpjobportal::$_data[0]->id, WPJOBPORTALincluder::getObjectClass('user')->uid()) : '';
+                if ($wpjobportal_applied_note !== '') {
+                    echo wp_kses($wpjobportal_applied_note, WPJOBPORTAL_ALLOWED_TAGS);
+                } else {
                 echo '<form class="wjportal-form" id="wpjobportal-form" method="post" enctype="multipart/form-data" action="'. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobapply', 'task'=>'applyonjob'))).'">';
                     $wpjobportal_jobid =  (!empty(wpjobportal::$_data[0]) && isset(wpjobportal::$_data[0]->id)) ? wpjobportal::$_data[0]->id : '';
                     $wpjobportal_hide_apply_btn = 0;
@@ -106,7 +111,7 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
                                     <div class="wjportal-cl-unified-box">
                                         <div class="wjportal-cl-unified-header">
                                             <div class="wjportal-form-title">
-                                                '. esc_html__('Cover Letter', 'wp-job-portal').' <font color="#000">*</font>
+                                                '. esc_html__('Cover Letter', 'wp-job-portal').' <span class="wjportal-form-optional">'.esc_html__('(optional)', 'wp-job-portal').'</span>
                                             </div>
                                             <div class="wjportal-cl-mode-container">
                                                 <label class="wjportal-cl-mode-label is-active" data-mode="ai">
@@ -128,12 +133,10 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
                                             if(!empty($wpjobportal_cover_letter_list)){
                                                 echo '<div class="wjportal-cl-saved-select-wrap">';
                                                 echo '<label for="coverletterid" class="wjportal-cl-input-label">' . esc_html__('Select Cover Letter', 'wp-job-portal') . '</label>';
-                                                echo wp_kses(WPJOBPORTALformfield::select('coverletterid', $wpjobportal_cover_letter_list, '', '', array('class' => 'inputbox wjportal-form-select-field', 'disabled' => 'disabled')), WPJOBPORTAL_ALLOWED_TAGS);
+                                                echo wp_kses(WPJOBPORTALformfield::select('coverletterid', $wpjobportal_cover_letter_list, '', __('No cover letter', 'wp-job-portal'), array('class' => 'inputbox wjportal-form-select-field', 'disabled' => 'disabled')), WPJOBPORTAL_ALLOWED_TAGS);
                                                 echo '</div>';
                                             } else {
-                                                echo '<div class="job-detail-jobapply-message-wrap" style="margin-bottom:0;">';
-                                                    echo '<span class="job-detail-jobapply-message-msg"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/not-loggedin.png" />' . esc_html(__('No Cover Letters found on your profile.', 'wp-job-portal')) . '</span>';
-                                                echo '</div>';
+                                                echo '<p class="wjportal-form-optional">' . esc_html(__('You have no saved cover letters. A cover letter is optional.', 'wp-job-portal')) . '</p>';
                                             }
                                             echo '</div>';
 
@@ -141,8 +144,8 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
                                             echo '<div id="wjportal-ai-cl-workspace">';
 
                                                 echo '<div class="wjportal-cl-title-input-wrap">';
-                                                    echo '<label for="coverletter_title" class="wjportal-cl-input-label">' . esc_html__('Cover Letter Title', 'wp-job-portal') . ' <font color="#000">*</font></label>';
-                                                    echo wp_kses(WPJOBPORTALformfield::text('coverletter_title', '', array('class' => 'inputbox wjportal-form-text-field', 'placeholder' => esc_attr__('e.g., Senior Product Owner Application', 'wp-job-portal'), 'data-validation' => 'required')), WPJOBPORTAL_ALLOWED_TAGS);
+                                                    echo '<label for="coverletter_title" class="wjportal-cl-input-label">' . esc_html__('Cover Letter Title', 'wp-job-portal') . '</label>';
+                                                    echo wp_kses(WPJOBPORTALformfield::text('coverletter_title', '', array('class' => 'inputbox wjportal-form-text-field', 'placeholder' => esc_attr__('e.g., Senior Product Owner Application', 'wp-job-portal'))), WPJOBPORTAL_ALLOWED_TAGS);
                                                 echo '</div>';
 
                                                 $wpjobportal_cl_editor = WPJOBPORTALformfield::editor('coverletter_text', '', array('class' => 'inputbox one wjportal-form-textarea-field'));
@@ -163,18 +166,15 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
                                         echo '
                                         <div class="wjportal-form-row">
                                             <div class="wjportal-form-title">
-                                                '. esc_html__('Cover Letter', 'wp-job-portal').' <font color="#000">*</font>
+                                                '. esc_html__('Cover Letter', 'wp-job-portal').' <span class="wjportal-form-optional">'.esc_html__('(optional)', 'wp-job-portal').'</span>
                                             </div>
                                             <div class="wjportal-form-value"> ';
-                                                echo wp_kses(WPJOBPORTALformfield::select('coverletterid', $wpjobportal_cover_letter_list, '', '', array('class' => 'inputbox wjportal-form-select-field', 'data-validation' => 'required')), WPJOBPORTAL_ALLOWED_TAGS);
+                                                echo wp_kses(WPJOBPORTALformfield::select('coverletterid', $wpjobportal_cover_letter_list, '', __('No cover letter', 'wp-job-portal'), array('class' => 'inputbox wjportal-form-select-field')), WPJOBPORTAL_ALLOWED_TAGS);
                                         echo '
                                             </div>
                                         </div>';
                                     } else {
-                                        echo '<div class="job-detail-jobapply-message-wrap">';
-                                            echo '<span class="job-detail-jobapply-message-msg"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/not-loggedin.png" />' . esc_html(__('No Cover Letter', 'wp-job-portal')) . '</span>';
-                                            echo '<a class="job-detail-jobapply-message-link" href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'coverletter', 'wpjobportallt'=>'addcoverletter'))).'" class="coverlettteraddlink" target="_blank">' . esc_html(__('Add Cover Letter', 'wp-job-portal')) . '</a>';
-                                        echo '</div>';
+                                        echo '<div class="wjportal-form-row"><div class="wjportal-form-title">' . esc_html__('Cover Letter', 'wp-job-portal') . ' <span class="wjportal-form-optional">' . esc_html__('(optional)', 'wp-job-portal') . '</span></div><div class="wjportal-form-value"><a class="coverlettteraddlink" href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'coverletter', 'wpjobportallt'=>'addcoverletter'))).'" target="_blank">' . esc_html(__('Add Cover Letter', 'wp-job-portal')) . '</a></div></div>';
                                     }
                                 }
                             }
@@ -200,14 +200,19 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
                                                 '. esc_html__('Resume', 'wp-job-portal').' <font color="#000">*</font>
                                             </div>
                                             <div class="wjportal-form-value"> ';
-                                                echo wp_kses(WPJOBPORTALformfield::select('cvid', $wpjobportal_resume_list, '', '', array('class' => 'inputbox wjportal-form-select-field', 'data-validation' => 'required')), WPJOBPORTAL_ALLOWED_TAGS);
+                                                echo wp_kses(WPJOBPORTALformfield::select('cvid', $wpjobportal_resume_list, WPJOBPORTAL_Seeker_Start::new_resume(), '', array('class' => 'inputbox wjportal-form-select-field', 'data-validation' => 'required')), WPJOBPORTAL_ALLOWED_TAGS);
                                         echo '
                                             </div>
                                         </div>';
                                     } else {
+                                        // W-4: Add Resume comes back to this job; a resume waiting for approval is not a missing one.
                                         echo '<div class="job-detail-jobapply-message-wrap">';
-                                            echo '<span class="job-detail-jobapply-message-msg"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/not-loggedin.png" />' . esc_html(__('You do not have any resume!', 'wp-job-portal')) . '</span>';
-                                            echo '<a class="job-detail-jobapply-message-link" href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'addresume'))).'" class="resumeaddlink" target="_blank">' . esc_html(__('Add Resume', 'wp-job-portal')) . '</a>';
+                                        if (WPJOBPORTAL_Seeker_Start::has_resume_waiting($wpjobportal_uid)) {
+                                            echo '<span class="job-detail-jobapply-message-msg">' . esc_html(__('Your resume is waiting for approval. You can apply once it is approved.', 'wp-job-portal')) . '</span>';
+                                        } else {
+                                            echo '<span class="job-detail-jobapply-message-msg">' . esc_html(__('You need a resume to apply. Add one and you will come straight back to this job.', 'wp-job-portal')) . '</span>';
+                                            echo '<a class="job-detail-jobapply-message-link resumeaddlink" href="'.esc_url(WPJOBPORTAL_Seeker_Start::add_resume_url($wpjobportal_jobid)).'">' . esc_html(__('Add Resume', 'wp-job-portal')) . '</a>';
+                                        }
                                         echo '</div>';
                                         $wpjobportal_hide_apply_btn = 1;
                                     }
@@ -224,7 +229,7 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
                                             <div class="wjportal-cl-unified-box">
                                                 <div class="wjportal-cl-unified-header">
                                                     <div class="wjportal-form-title">
-                                                        '. esc_html__('Cover Letter', 'wp-job-portal').' <font color="#000">*</font>
+                                                        '. esc_html__('Cover Letter', 'wp-job-portal').' <span class="wjportal-form-optional">'.esc_html__('(optional)', 'wp-job-portal').'</span>
                                                     </div>
                                                     <div class="wjportal-cl-mode-container">
                                                         <label class="wjportal-cl-mode-label is-active" data-mode="ai">
@@ -245,20 +250,18 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
                                                     if(!empty($wpjobportal_cover_letter_list)){
                                                         echo '<div class="wjportal-cl-saved-select-wrap">';
                                                         echo '<label for="coverletterid" class="wjportal-cl-input-label">' . esc_html__('Select Cover Letter', 'wp-job-portal') . '</label>';
-                                                        echo wp_kses(WPJOBPORTALformfield::select('coverletterid', $wpjobportal_cover_letter_list, '', '', array('class' => 'inputbox wjportal-form-select-field', 'disabled' => 'disabled')), WPJOBPORTAL_ALLOWED_TAGS);
+                                                        echo wp_kses(WPJOBPORTALformfield::select('coverletterid', $wpjobportal_cover_letter_list, '', __('No cover letter', 'wp-job-portal'), array('class' => 'inputbox wjportal-form-select-field', 'disabled' => 'disabled')), WPJOBPORTAL_ALLOWED_TAGS);
                                                         echo '</div>';
                                                     } else {
-                                                        echo '<div class="job-detail-jobapply-message-wrap" style="margin-bottom:0;">';
-                                                            echo '<span class="job-detail-jobapply-message-msg"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/not-loggedin.png" />' . esc_html(__('No Cover Letters found on your profile.', 'wp-job-portal')) . '</span>';
-                                                        echo '</div>';
+                                                        echo '<p class="wjportal-form-optional">' . esc_html(__('You have no saved cover letters. A cover letter is optional.', 'wp-job-portal')) . '</p>';
                                                     }
                                                     echo '</div>';
 
                                                     echo '<div id="wjportal-ai-cl-workspace">';
 
                                                         echo '<div class="wjportal-cl-title-input-wrap">';
-                                                            echo '<label for="coverletter_title" class="wjportal-cl-input-label">' . esc_html__('Document Title', 'wp-job-portal') . ' <font color="#000">*</font></label>';
-                                                            echo wp_kses(WPJOBPORTALformfield::text('coverletter_title', '', array('class' => 'inputbox wjportal-form-text-field', 'placeholder' => esc_attr__('e.g., Senior Product Owner Application', 'wp-job-portal'), 'data-validation' => 'required')), WPJOBPORTAL_ALLOWED_TAGS);
+                                                            echo '<label for="coverletter_title" class="wjportal-cl-input-label">' . esc_html__('Document Title', 'wp-job-portal') . '</label>';
+                                                            echo wp_kses(WPJOBPORTALformfield::text('coverletter_title', '', array('class' => 'inputbox wjportal-form-text-field', 'placeholder' => esc_attr__('e.g., Senior Product Owner Application', 'wp-job-portal'))), WPJOBPORTAL_ALLOWED_TAGS);
                                                         echo '</div>';
 
                                                         $wpjobportal_cl_editor = WPJOBPORTALformfield::editor('coverletter_text', '', array('class' => 'inputbox one wjportal-form-textarea-field'));
@@ -279,18 +282,15 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
                                                 echo '
                                                 <div class="wjportal-form-row">
                                                     <div class="wjportal-form-title">
-                                                        '. esc_html__('Cover Letter', 'wp-job-portal').' <font color="#000">*</font>
+                                                        '. esc_html__('Cover Letter', 'wp-job-portal').' <span class="wjportal-form-optional">'.esc_html__('(optional)', 'wp-job-portal').'</span>
                                                     </div>
                                                     <div class="wjportal-form-value"> ';
-                                                        echo wp_kses(WPJOBPORTALformfield::select('coverletterid', $wpjobportal_cover_letter_list, '', '', array('class' => 'inputbox wjportal-form-select-field', 'data-validation' => 'required')), WPJOBPORTAL_ALLOWED_TAGS);
+                                                        echo wp_kses(WPJOBPORTALformfield::select('coverletterid', $wpjobportal_cover_letter_list, '', __('No cover letter', 'wp-job-portal'), array('class' => 'inputbox wjportal-form-select-field')), WPJOBPORTAL_ALLOWED_TAGS);
                                                 echo '
                                                     </div>
                                                 </div>';
                                             } else {
-                                                echo '<div class="job-detail-jobapply-message-wrap">';
-                                                    echo '<span class="job-detail-jobapply-message-msg"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/not-loggedin.png" />' . esc_html(__('No Cover Letter', 'wp-job-portal')) . '</span>';
-                                                    echo '<a class="job-detail-jobapply-message-link" href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'coverletter', 'wpjobportallt'=>'addcoverletter'))).'" class="coverlettteraddlink" target="_blank">' . esc_html(__('Add Cover Letter', 'wp-job-portal')) . '</a>';
-                                                echo '</div>';
+                                                echo '<div class="wjportal-form-row"><div class="wjportal-form-title">' . esc_html__('Cover Letter', 'wp-job-portal') . ' <span class="wjportal-form-optional">' . esc_html__('(optional)', 'wp-job-portal') . '</span></div><div class="wjportal-form-value"><a class="coverlettteraddlink" href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'coverletter', 'wpjobportallt'=>'addcoverletter'))).'" target="_blank">' . esc_html(__('Add Cover Letter', 'wp-job-portal')) . '</a></div></div>';
                                             }
                                         }
                                     }
@@ -306,7 +306,7 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
                         $wpjobportal_payment_not_required = WPJOBPORTALincluder::getJSmodel('jobapply')->checkjobappllystats($wpjobportal_jobid, $wpjobportal_uid);
 
                         if($wpjobportal_can_apply_on_job == false && $wpjobportal_payment_not_required == true){
-                            echo '<div class="frontend error"><p>'.esc_html(__('You have already applied on this job.', 'wp-job-portal')).'</p></div>';
+                            echo wp_kses(WPJOBPORTAL_Seeker_Start::applied_notice($wpjobportal_jobid, $wpjobportal_uid), WPJOBPORTAL_ALLOWED_TAGS); // W-4
                             $wpjobportal_hide_apply_btn = 1;
                             $wpjobportal_force_hide_btn = 1;
                         } else {
@@ -446,7 +446,7 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
                         $wpjobportal_login_link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'wpjobportal', 'wpjobportallt'=>'login', 'wpjobportalredirecturl'=>$wpjobportal_redirect_url));
 
                         echo '<div class="wjportal-form-btn-wrp wjportal-login-to-apply-btn-wrap">
-                            <a href="'.esc_url($wpjobportal_login_link).'" target="_blank" class="wjportal-login-to-apply-btn" >'.esc_html__('Login', 'wp-job-portal').'</a>
+                            <a href="'.esc_url($wpjobportal_login_link).'" class="wjportal-login-to-apply-btn" >'.esc_html__('Log in or create an account', 'wp-job-portal').'</a>
                         </div>';
 
                         $wpjobportal_visitor_can_apply_to_job = wpjobportal::$_config->getConfigurationByConfigName('visitor_can_apply_to_job');
@@ -501,6 +501,7 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
                     echo wp_kses(WPJOBPORTALformfield::hidden('form_request', 'wpjobportal'),WPJOBPORTAL_ALLOWED_TAGS);
                     echo wp_kses(WPJOBPORTALformfield::hidden('_wpnonce', esc_html(wp_create_nonce('wpjobportal_job_apply_nonce'))),WPJOBPORTAL_ALLOWED_TAGS);
                 echo '</form>';
+                }
             echo '</div>';
        ?>
     </div>

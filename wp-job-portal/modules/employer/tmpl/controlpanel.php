@@ -36,7 +36,7 @@ if (!defined('ABSPATH'))
                          * and every Recruit Suite and Marketplace screen lost
                          * the one way back that Core gives every other page.
                          */
-                        echo '<div class="wjportal-page-heading">' . esc_html($wpjobportal_extension_view_title) . '</div>';
+                        echo '<h1 class="wjportal-page-heading">' . esc_html($wpjobportal_extension_view_title) . '</h1>';
                         if (!WPJOBPORTALincluder::renderingOverride()) {
                             // The trail ends on the view's own title, as on any
                             // other page, not on "Control Panel".
@@ -93,6 +93,31 @@ if (!defined('ABSPATH'))
                     $wpjobportal_print_employerstatboxes = wpjobportal_employercheckLinks('employerstatboxes');
                 }
                 if(!$wpjobportal_extension_view_active && (WPJOBPORTALincluder::getObjectClass('user')->isemployer() || wpjobportal::$_common->wpjp_isadmin()) && ($wpjobportal_employer_profile_section == 1 || $wpjobportal_print_employerstatboxes) ) { ?>
+                    <?php
+                    // W-3: the three first-run steps until they are all done.
+                    if (WPJOBPORTALincluder::getObjectClass('user')->isemployer()) {
+                        $wpjobportal_start_steps = WPJOBPORTAL_Employer_Start::steps(WPJOBPORTALincluder::getObjectClass('user')->uid());
+                        $wpjobportal_start_done = count(array_filter(array_column($wpjobportal_start_steps, 'done')));
+                        if ($wpjobportal_start_done < count($wpjobportal_start_steps)) { ?>
+                        <section class="wjportal-get-started" aria-labelledby="wjportal-get-started-title">
+                            <div class="wjportal-get-started-head">
+                                <h2 id="wjportal-get-started-title"><?php echo esc_html__('Get started', 'wp-job-portal'); ?></h2>
+                                <span><?php /* translators: 1: steps done, 2: all steps */ echo esc_html(sprintf(__('%1$d of %2$d done', 'wp-job-portal'), $wpjobportal_start_done, count($wpjobportal_start_steps))); ?></span>
+                            </div>
+                            <ol class="wjportal-get-started-steps">
+                                <?php $wpjobportal_next = true; foreach ($wpjobportal_start_steps as $wpjobportal_i => $wpjobportal_step) :
+                                    $wpjobportal_is_next = !$wpjobportal_step['done'] && $wpjobportal_next;
+                                    if ($wpjobportal_is_next) { $wpjobportal_next = false; } ?>
+                                    <li class="<?php echo $wpjobportal_step['done'] ? 'is-done' : ($wpjobportal_is_next ? 'is-next' : ''); ?>">
+                                        <span class="wjportal-gs-num" aria-hidden="true"><?php echo $wpjobportal_step['done'] ? '✓' : esc_html($wpjobportal_i + 1); ?></span>
+                                        <span class="wjportal-gs-text"><strong><?php echo esc_html($wpjobportal_step['label']); ?></strong><small><?php echo esc_html($wpjobportal_step['done'] ? __('Done', 'wp-job-portal') : $wpjobportal_step['hint']); ?></small></span>
+                                        <?php if ($wpjobportal_is_next) : ?><a class="wjportal-gs-btn" href="<?php echo esc_url($wpjobportal_step['url']); ?>"><?php echo esc_html($wpjobportal_step['action']); ?></a><?php endif; ?>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ol>
+                        </section>
+                    <?php }
+                    } ?>
                     <div class="wjportal-cp-top">
                         <?php
                         if($wpjobportal_employer_profile_section == 1 && empty(wpjobportal::$_data['shortcode_option_hide_profile_section'])){
@@ -158,8 +183,11 @@ if (!defined('ABSPATH'))
                                                 <?php echo esc_html(__('Applied Resume','wp-job-portal')); ?>
                                             </div>
                                         </div>
+                                        <?php // W-10: all applicants in one place when the Candidate Workspace is there
+                                        $wpjobportal_workspace_page = WPJOBPORTAL_Page_Provisioning_Service::page_carrying('wpjobportal_recruit_workspace');
+                                        $wpjobportal_applicants_url = ($wpjobportal_workspace_page && get_post_status($wpjobportal_workspace_page) === 'publish') ? get_the_permalink($wpjobportal_workspace_page) : wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'myjobs')); ?>
                                         <div class="wjportal-cp-box-btm clearfix">
-                                            <a href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'myjobs'))); ?>" title="<?php echo esc_attr(__('View Detail','wp-job-portal')); ?>">
+                                            <a href="<?php echo esc_url($wpjobportal_applicants_url); ?>" title="<?php echo esc_attr(__('View Detail','wp-job-portal')); ?>">
                                                 <span class="wjportal-cp-box-text">
                                                     <?php echo esc_html(__('View Detail','wp-job-portal')); ?>
                                                 </span>

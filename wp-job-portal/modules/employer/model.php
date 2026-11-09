@@ -163,7 +163,7 @@ class WPJOBPORTALEmployerModel {
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume ON jobapply.cvid = resume.id
                 WHERE jobapply.status = 1 and job.uid =" . (int) ($wpjobportal_uid) ;
                 # Sorting Merge In Query
-                $query.= " ORDER BY job.created DESC";
+                $query.= " ORDER BY jobapply.apply_date DESC"; // U-2: recent applications, not recent jobs
                 $query.=" LIMIT 0,5";
             $wpjobportal_myappliedresume = wpjobportaldb::get_results($query);
             wpjobportal::$_data[0]['myappliedresume'] = $wpjobportal_myappliedresume;

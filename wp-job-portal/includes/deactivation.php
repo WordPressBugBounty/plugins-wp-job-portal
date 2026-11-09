@@ -7,6 +7,13 @@ class WPJOBPORTALdeactivation {
 
     static function wpjobportal_deactivate() {
         wp_clear_scheduled_hook('wpjobportal_cronjobs_action');
+        wp_clear_scheduled_hook('wpjobportal_job_expiry_reminders');
+        wp_clear_scheduled_hook('wpjobportal_table_upgrade');
+        if (class_exists('WPJOBPORTAL_Resume_File_Store')) {
+            wp_clear_scheduled_hook(WPJOBPORTAL_Resume_File_Store::CRON_HOOK);
+            // On reactivation the first request protects folders and restarts any unfinished renaming
+            delete_option(WPJOBPORTAL_Resume_File_Store::VERSION_OPTION);
+        }
         if (class_exists('WPJOBPORTAL_Licence_Client')) {
             wp_clear_scheduled_hook(WPJOBPORTAL_Licence_Client::CRON_HOOK);
         }
@@ -31,7 +38,30 @@ class WPJOBPORTALdeactivation {
         }
         $wpjobportal_id = wpjobportal::wpjobportal_getPageid();
         if(is_numeric($wpjobportal_id)){
+            // Remembered, so activation publishes this page again whatever it holds
+            // (the owner may have made the Jobs page the default, not Jobseeker).
+            if (get_post_status((int) $wpjobportal_id) === 'publish') {
+                update_option('wpjobportal_deactivation_drafted_page', (int) $wpjobportal_id, false);
+            }
             wpjobportal::$_db->get_var("UPDATE `" . wpjobportal::$_db->prefix . "posts` SET post_status = 'draft' WHERE ID =" . (int) ($wpjobportal_id));
+            clean_post_cache((int) $wpjobportal_id);
+        }
+        // Audit 23: the other plugin pages (Jobseeker, Register, Candidate Portal, Recruit
+        // pages...) stayed published and showed visitors raw shortcodes while the plugin was
+        // off. Every published page that holds nothing but plugin shortcodes goes to draft
+        // too; pages with the owner's own content are left alone. Activation publishes
+        // exactly these again.
+        $wpjobportal_drafted_pages = array();
+        $wpjobportal_plugin_pages = wpjobportal::$_db->get_results("SELECT ID, post_content FROM `" . wpjobportal::$_db->prefix . "posts` WHERE post_type = 'page' AND post_status = 'publish' AND post_content LIKE '%[wpjobportal%'");
+        foreach ((array) $wpjobportal_plugin_pages as $wpjobportal_plugin_page) {
+            if (self::wpjobportal_only_plugin_shortcodes($wpjobportal_plugin_page->post_content)) {
+                wpjobportal::$_db->query("UPDATE `" . wpjobportal::$_db->prefix . "posts` SET post_status = 'draft' WHERE ID = " . (int) $wpjobportal_plugin_page->ID);
+                clean_post_cache((int) $wpjobportal_plugin_page->ID);
+                $wpjobportal_drafted_pages[] = (int) $wpjobportal_plugin_page->ID;
+            }
+        }
+        if (!empty($wpjobportal_drafted_pages)) {
+            update_option('wpjobportal_deactivation_drafted_pages', $wpjobportal_drafted_pages, false);
         }
 
         //Delete capabilities
@@ -39,10 +69,53 @@ class WPJOBPORTALdeactivation {
         $wpjobportal_role->remove_cap( 'wpjobportal' );
         $wpjobportal_role->remove_cap( 'wpjobportal_jobs' );
 
-        //Delete Options
-        $wpjobportal_options_array = ['wpjobportal_company_document_title_settings' ,'wpjobportal_job_document_title_settings' ,'wpjobportal_resume_document_title_settings' ,'wp_job_portal_activity_log_filter' ,'wpjobportal_page_size' ,'wpjobportal_countryid_for_city' ,'wpjobportal_stateid_for_city' ,'wpjobportal_location_name_preference' ,'wpjobportal_jobs_sample_data' ,'wpjobportal_post_installation' ,'wpjobportal_multiple_employers' ,'job_portal_demno_id' ,'job_portal_theme_demo_pages_ids' ,'job_portal_theme_demo_post_ids' ,'job_portal_theme_demo_demo_specific_data' ,'wpjobportal_addon_return_data' ,'wpjobportalformresumeuserfield_ff' ,'wpjobportal_countryid_for_stateid' ,'job_portal_jm_data_users' ,'job_portal_jm_data_companies' ,'job_portal_jm_data_jobs' ,'job_portal_jm_data_resumes' ,'wpjob_portal_import_counts' ,'wpjobportal_show_key_expiry_msg' ,'wpjobportal_zywrap_api_status' ,'wpjobportal_zywrap_api_key' ,'wpjobportal_zywrap_version' ,'wpjobportal_zywrap_version_time'];
-        foreach ($wpjobportal_options_array as $option_name) {
+        // Every scheduled event of the plugin, not a list kept by hand: the job alert
+        // run (wpjobportal_send_scheduled_job_alerts) was missing from it and kept
+        // firing with the plugin switched off.
+        self::wpjobportal_clear_cron();
+
+        // Only working state is removed here: what a screen remembered (filters, the
+        // country being browsed), scratch data of an import, cached statuses and
+        // one-off notices. Settings stay. Deleting them made a deactivate and
+        // reactivate reset the page-title formats, page size and location names,
+        // forget the Zywrap API key and the demo pages it can remove, and turn a
+        // single-employer (Careers) site back into a multi-employer one. They are
+        // removed with everything else on uninstall, when the owner chose that.
+        foreach (self::wpjobportal_working_state_options() as $option_name) {
             delete_option($option_name);
+        }
+    }
+
+    /** Options that only hold working state; see wpjobportal_deactivate(). */
+    /** Audit 23: whether a page's content is nothing but plugin shortcodes. */
+    static function wpjobportal_only_plugin_shortcodes($wpjobportal_content) {
+        $wpjobportal_rest = preg_replace('/<!--.*?-->/s', '', (string) $wpjobportal_content);
+        $wpjobportal_rest = preg_replace('/\[\/?wpjobportal[^\]]*\]/i', '', $wpjobportal_rest);
+        $wpjobportal_rest = trim(str_replace('&nbsp;', ' ', wp_strip_all_tags($wpjobportal_rest)));
+        return $wpjobportal_rest === '' && stripos((string) $wpjobportal_content, '[wpjobportal') !== false;
+    }
+
+    static function wpjobportal_working_state_options() {
+        return array('wp_job_portal_activity_log_filter', 'wpjobportal_countryid_for_city', 'wpjobportal_stateid_for_city',
+            'wpjobportal_countryid_for_stateid', 'wpjobportal_jobs_sample_data', 'wpjobportal_addon_return_data',
+            'wpjobportalformresumeuserfield_ff', 'job_portal_jm_data_users', 'job_portal_jm_data_companies', 'job_portal_jm_data_jobs',
+            'job_portal_jm_data_resumes', 'wpjob_portal_import_counts', 'wpjobportal_show_key_expiry_msg', 'wpjobportal_zywrap_api_status',
+            'wpjobportal_zywrap_version_time');
+    }
+
+    /** Clear every scheduled event whose hook belongs to the plugin. */
+    static function wpjobportal_clear_cron() {
+        $wpjobportal_crons = function_exists('_get_cron_array') ? _get_cron_array() : array();
+        $wpjobportal_hooks = array();
+        foreach ((array) $wpjobportal_crons as $wpjobportal_events) {
+            foreach ((array) $wpjobportal_events as $wpjobportal_hook => $wpjobportal_unused) {
+                if (strpos((string) $wpjobportal_hook, 'wpjobportal_') === 0) {
+                    $wpjobportal_hooks[$wpjobportal_hook] = true;
+                }
+            }
+        }
+        foreach (array_keys($wpjobportal_hooks) as $wpjobportal_hook) {
+            wp_unschedule_hook($wpjobportal_hook);
         }
     }
 

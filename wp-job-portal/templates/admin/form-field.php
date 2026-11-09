@@ -30,7 +30,10 @@ if (isset($wpjobportal_field)) {
 }
 $wpjobportal_visibleclass = "";
 if (isset($wpjobportal_field->visibleparams) && $wpjobportal_field->visibleparams != ''){
-    $wpjobportal_visibleclass = " visible js-form-custm-flds-wrp";
+    // Finding 45: start shown when the saved parent value already meets the condition.
+    // js-form-custm-flds-wrp stays either way: the show/hide script finds the field by it.
+    $wpjobportal_starts_shown = isset(wpjobportal::$_wpjpcustomfield) && is_object(wpjobportal::$_wpjpcustomfield) && wpjobportal::$_wpjpcustomfield->visibleFieldStartsShown($wpjobportal_field);
+    $wpjobportal_visibleclass = $wpjobportal_starts_shown ? " js-form-custm-flds-wrp" : " visible js-form-custm-flds-wrp";
 }
 
 $wpjobportal_fullwidth_class = "";

@@ -280,6 +280,14 @@ class WPJOBPORTALcustomfields {
                 if ($wpjobportal_field->depandant_field != null) {
                     $wpjobportal_jsFunction = "getDataForDepandantFieldResume('" . $wpjobportal_field->field . "','" . $wpjobportal_field->depandant_field . "',2,'".$wpjobportal_section."','".$wpjobportal_sectionid."'". $wpjobportal_theme_string.");";
                 }
+                // A Radio field can be the parent of a condition too, as a Dropdown is.
+                if ($wpjobportal_field->visible_field != null) {
+                    foreach (WPJOBPORTALincluder::getJSModel('fieldordering')->getDataForVisibleField($wpjobportal_field->visible_field) as $wpjobportal_visibleparam) {
+                        $wpnonce = wp_create_nonce("is-field-required");
+                        $wpjobportal_jsFunction .= " getDataForVisibleField('".$wpnonce."', this.value, '" . $wpjobportal_visibleparam->visibleParent . "','" . 'sec_1['.$wpjobportal_visibleparam->visibleParentField.']' . "','".$wpjobportal_visibleparam->visibleValue."','".$wpjobportal_visibleparam->visibleCondition."');";
+                        $wpjobportal_jsFunction .= " getDataForVisibleField('".$wpnonce."', this.value, '" . $wpjobportal_visibleparam->visibleParent . "','" . $wpjobportal_visibleparam->visibleParentField. "','".$wpjobportal_visibleparam->visibleValue."','".$wpjobportal_visibleparam->visibleCondition."');";
+                    }
+                }
                 $wpjobportal_extraattr = array('class' => "cf_radio radiobutton $cssclass".$specialClass , 'data-validation' => $cssclass, 'onclick' => $wpjobportal_jsFunction);
                 // handleformresume
                 if($wpjobportal_section AND $wpjobportal_section != 1){
@@ -474,7 +482,7 @@ class WPJOBPORTALcustomfields {
                     // $wpjobportal_value = $wpjobportal_value[1];
                     $wpjobportal_user_field .= WPJOBPORTALformfield::hidden($wpjobportal_field->field.'_1', 0);
                     $wpjobportal_user_field .= WPJOBPORTALformfield::hidden($wpjobportal_field->field.'_2', $wpjobportal_value);
-                    $wpjobportal_user_field .='<span class='.$wpjobportal_field->field.'_1>'.$wpjobportal_value.'( ';
+                    $wpjobportal_user_field .='<span class="'.$wpjobportal_field->field.'_1">'.$wpjobportal_value.'( ';
                     $wpjobportal_user_field .= "<a href='javascript:void(0)' onClick=".$wpjobportal_jsFunction." >". esc_html(__('Delete','wp-job-portal'))."</a>";
                     $wpjobportal_user_field .= ' )</span>';
                 }
@@ -748,6 +756,55 @@ class WPJOBPORTALcustomfields {
         return $wpjobportal_textfield;
     }
 
+    /**
+     * Finding 45: should a conditional field start shown on this form?
+     *
+     * Conditional fields are drawn hidden and the show/hide script only runs
+     * when the parent changes (running it on load would clear saved values).
+     * So on an edit form a child whose saved parent value meets its condition
+     * stayed hidden. This applies the script's own rule (common.js
+     * getDataForVisibleField) to the saved values: an empty parent hides it;
+     * condition 1 shows it when the parent equals the value, 0 when it differs.
+     *
+     * @param object      $wpjobportal_field  Field row with visibleparams.
+     * @param string|null $wpjobportal_params Saved params JSON; default: the record being edited.
+     * @return bool
+     */
+    function visibleFieldStartsShown($wpjobportal_field, $wpjobportal_params = null) {
+        if (!is_object($wpjobportal_field) || empty($wpjobportal_field->visibleparams)) {
+            return false;
+        }
+        $wpjobportal_rule = json_decode((string) $wpjobportal_field->visibleparams);
+        if (!is_object($wpjobportal_rule) || !isset($wpjobportal_rule->visibleParent, $wpjobportal_rule->visibleCondition, $wpjobportal_rule->visibleValue)) {
+            return false;
+        }
+        if ($wpjobportal_params === null) {
+            $wpjobportal_params = (isset(wpjobportal::$_data[0]) && is_object(wpjobportal::$_data[0]) && isset(wpjobportal::$_data[0]->params)) ? wpjobportal::$_data[0]->params : '';
+        }
+        if (!is_string($wpjobportal_params) || $wpjobportal_params === '') {
+            return false;
+        }
+        $wpjobportal_values = json_decode($wpjobportal_params, true);
+        if (!is_array($wpjobportal_values)) {
+            $wpjobportal_values = json_decode(html_entity_decode($wpjobportal_params, ENT_QUOTES), true);
+        }
+        if (!is_array($wpjobportal_values)) {
+            return false;
+        }
+        $wpjobportal_parent = wpjobportal::$_db->get_var(wpjobportal::$_db->prepare(
+            "SELECT field FROM `" . wpjobportal::$_db->prefix . "wj_portal_fieldsordering` WHERE id = %d", (int) $wpjobportal_rule->visibleParent
+        ));
+        if (!$wpjobportal_parent || !isset($wpjobportal_values[$wpjobportal_parent]) || is_array($wpjobportal_values[$wpjobportal_parent])) {
+            return false;
+        }
+        $wpjobportal_value = html_entity_decode((string) $wpjobportal_values[$wpjobportal_parent], ENT_QUOTES);
+        if ($wpjobportal_value === '') {
+            return false;
+        }
+        $wpjobportal_target = html_entity_decode((string) $wpjobportal_rule->visibleValue, ENT_QUOTES);
+        return ((string) $wpjobportal_rule->visibleCondition === '1') ? ($wpjobportal_value === $wpjobportal_target) : ($wpjobportal_value !== $wpjobportal_target);
+    }
+
     function formCustomFields($wpjobportal_field,$wpjobportal_resumeform = null, $wpjobportal_section = null, $refid = null,$wpjobportal_themecall=null) {
         //patch to saolve notices on resume form but it may causse problems like showing disabled fiedls
         if ($wpjobportal_resumeform != 1) {
@@ -979,6 +1036,13 @@ class WPJOBPORTALcustomfields {
                     $wpjobportal_jsFunction = "getDataForDepandantField('" . $wpjobportal_field->field . "','" . $wpjobportal_field->depandant_field . "',2,'',''". $wpjobportal_theme_string.");";
                     $wpjobportal_dependentclass = 'dependent wjportal-form-radio-field';
                 }
+                // A Radio field can be the parent of a condition too, as a Dropdown is.
+                if ($wpjobportal_field->visible_field != null) {
+                    foreach (WPJOBPORTALincluder::getJSModel('fieldordering')->getDataForVisibleField($wpjobportal_field->visible_field) as $wpjobportal_visibleparam) {
+                        $wpnonce = wp_create_nonce("is-field-required");
+                        $wpjobportal_jsFunction .= " getDataForVisibleField('".$wpnonce."', this.value, '" . $wpjobportal_visibleparam->visibleParent . "','" . $wpjobportal_visibleparam->visibleParentField . "','".$wpjobportal_visibleparam->visibleValue."','".$wpjobportal_visibleparam->visibleCondition."');";
+                    }
+                }
                 $wpjobportal_html .= WPJOBPORTALformfield::radiobutton($wpjobportal_field->field, $wpjobportal_comboOptions, $wpjobportal_value, array('data-validation' => $cssclass , 'class' =>  $wpjobportal_dependentclass.$specialClass, 'onclick' => $wpjobportal_jsFunction));
                 break;
             case 'combo':
@@ -1063,7 +1127,7 @@ class WPJOBPORTALcustomfields {
                     //$wpjobportal_jsFunction = "";
                     // $wpjobportal_value = wpjobportalphplib::wpJP_explode('_', $wpjobportal_value , 2);
                     // $wpjobportal_value = $wpjobportal_value[1];
-                    $wpjobportal_user_field .='<span class='.$wpjobportal_field->field.'_1>'.$wpjobportal_value.'( ';
+                    $wpjobportal_user_field .='<span class="'.$wpjobportal_field->field.'_1">'.$wpjobportal_value.'( ';
                     $wpjobportal_user_field .= "<a href='#' onclick='deleteCutomUploadedFile(\"".$wpjobportal_field->field."\")' >". __('Delete','wp-job-portal')."</a>";
                     $wpjobportal_user_field .= ' )</span>';
                 }
@@ -1630,8 +1694,10 @@ class WPJOBPORTALcustomfields {
             }
 
 
-            $wpjobportal_userpath = $wpjobportal_path .'/'.$filename;
-            wp_delete_file($wpjobportal_userpath);
+            $wpjobportal_userpath = WPJOBPORTAL_Resume_File_Store::find($wpjobportal_path, $filename);
+            if ($wpjobportal_userpath !== '') {
+                wp_delete_file($wpjobportal_userpath);
+            }
         }
         return ;
     }

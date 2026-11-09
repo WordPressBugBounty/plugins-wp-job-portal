@@ -58,7 +58,49 @@ class WPJOBPORTALtable {
         return true;
     }
 
+    /**
+     * Keep latitude/longitude columns numeric.
+     *
+     * Security: coordinates are typed by employers (job map) and job seekers
+     * (resume address map) and are later printed inside inline JavaScript
+     * strings and HTML attributes. sanitize_text_field() keeps quotes and
+     * backslashes, so a crafted "coordinate" could break out of those contexts
+     * (stored XSS on the public job page and the admin Edit Job / Edit Resume
+     * screens). Every table with these columns stores through here, so accept
+     * only a decimal number, or a comma-separated list of them (a job with
+     * several cities), and store anything else as empty.
+     */
+    protected function normalizeCoordinateColumns() {
+        foreach (array('latitude', 'longitude') as $wpjobportal_col) {
+            if (!is_array($this->columns) || !array_key_exists($wpjobportal_col, $this->columns)) {
+                continue;
+            }
+            $wpjobportal_value = $this->columns[$wpjobportal_col];
+            if ($wpjobportal_value === null || $wpjobportal_value === '') {
+                continue;
+            }
+            $wpjobportal_parts = explode(',', str_replace(' ', '', (string) $wpjobportal_value));
+            $wpjobportal_clean = array();
+            foreach ($wpjobportal_parts as $wpjobportal_part) {
+                if ($wpjobportal_part === '') {
+                    continue;
+                }
+                if (!preg_match('/^-?\d{1,3}(\.\d{1,20})?$/', $wpjobportal_part)) {
+                    $wpjobportal_clean = array();
+                    break;
+                }
+                $wpjobportal_clean[] = $wpjobportal_part;
+            }
+            $wpjobportal_value = implode(',', $wpjobportal_clean);
+            $this->columns[$wpjobportal_col] = $wpjobportal_value;
+            if (property_exists($this, $wpjobportal_col)) {
+                $this->$wpjobportal_col = $wpjobportal_value;
+            }
+        }
+    }
+
     function store() {
+        $this->normalizeCoordinateColumns();
         if ($this->isnew == true) { // new record store
             wpjobportal::$_db->insert($this->tablename, $this->columns);
             if (wpjobportal::$_db->last_error == null) {

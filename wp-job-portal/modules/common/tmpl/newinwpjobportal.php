@@ -28,9 +28,9 @@ if (wpjobportal::$_error_flag == null && $wpjobportal_error_flag == null) {
     $title = wpjobportal::$_config->getConfigurationByConfigName('title');?>
     <div class="wjportal-main-wrapper wjportal-clearfix">
         <div class="wjportal-page-header">
-            <div class="wjportal-page-heading">
+            <h1 class="wjportal-page-heading">
                 <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue( $title)); ?>
-            </div>
+            </h1>
         </div>
         <div class="wjportal-form-wrp wjportal-new-login-form">
             <form class="wjportal-form" id="coverletter_form" method="post" action="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'common', 'task'=>'savenewinwpjobportal'))); ?>">

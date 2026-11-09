@@ -15,7 +15,7 @@ class WPJOBPORTALEmailtemplateModel {
                 return false;
         $wpjobportal_config_array = WPJOBPORTALincluder::getJSModel('configuration')->getConfigByFor('email');
         $wpjobportal_pageid = WPJOBPORTAL::wpjobportal_getPageid();
-        $siteTitle = wpjobportal::$_config->getConfigValue('title');
+        $siteTitle = self::siteTitle();
         switch ($wpjobportal_mailfor) {
             case 1: // Mail For Company
                 switch ($wpjobportal_action) {
@@ -981,29 +981,16 @@ class WPJOBPORTALEmailtemplateModel {
                         }
                         $Emailtojobseekr = $record->resumeemail;
                         if ($Emailtojobseekr == '') {
-                            $Emailtojobseekr == $record->useremailforjobseeker;
+                            $Emailtojobseekr = $record->useremailforjobseeker;
                         }
                         $wpjobportal_companyname = $record->companyname;
                         $wpjobportal_resumename = $record->resumetitle;
                         $wpjobportal_jobtitle = $record->jobtitle;
                         $wpjobportal_resumeappliedstatus = $record->resumestatus;
                         $wpjobportal_resumetitle = $record->resumetitle;
-                        $wpjobportal_jobseekername = $record->firstname . '' . $record->lastname;
-                        if ($wpjobportal_resumeappliedstatus == 1) {
-                            $wpjobportal_checkstatus = esc_html(__('Inbox', 'wp-job-portal'));
-                        }
-                        if ($wpjobportal_resumeappliedstatus == 1) {
-                            $wpjobportal_checkstatus = esc_html(__('Spam', 'wp-job-portal'));
-                        }
-                        if ($wpjobportal_resumeappliedstatus == 1) {
-                            $wpjobportal_checkstatus = esc_html(__('Hired', 'wp-job-portal'));
-                        }
-                        if ($wpjobportal_resumeappliedstatus == 1) {
-                            $wpjobportal_checkstatus = esc_html(__('Rejected', 'wp-job-portal'));
-                        }
-                        if ($wpjobportal_resumeappliedstatus == 1) {
-                            $wpjobportal_checkstatus = esc_html(__('Short listed', 'wp-job-portal'));
-                        }
+                        $wpjobportal_jobseekername = trim($record->firstname . ' ' . $record->lastname);
+                        // Every branch tested == 1, so this always said Short listed.
+                        $wpjobportal_checkstatus = esc_html(WPJOBPORTAL_Application_Status::employer_label_for($wpjobportal_id, $wpjobportal_resumeappliedstatus));
                         $wpjobportal_resumedata = null;
                         $wpjobportal_matcharray = array(
                             '{JOBSEEKER_NAME}' => $wpjobportal_jobseekername,
@@ -1438,7 +1425,7 @@ class WPJOBPORTALEmailtemplateModel {
             if($ContactName == ''){
                 $ContactName = esc_html(__('Visitor', 'wp-job-portal'));
             }
-            $siteTitle = wpjobportal::$_config->getConfigValue('title');
+            $siteTitle = self::siteTitle();
 			$wpjobportal_joblink = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'viewjob', 'wpjobportalid'=>$wpjobportal_jobid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
             $wpjobportal_msgSubject = wpjobportalphplib::wpJP_str_replace('{COMPANY_NAME}', $CompanyName, $wpjobportal_msgSubject);
             $wpjobportal_msgSubject = wpjobportalphplib::wpJP_str_replace('{CONTACT_NAME}', $ContactName, $wpjobportal_msgSubject);
@@ -1495,7 +1482,17 @@ class WPJOBPORTALEmailtemplateModel {
         return 'text/html';
     }
 
-    function sendEmail($recevierEmail, $wpjobportal_subject, $body, $wpjobportal_senderEmail, $wpjobportal_senderName, $attachments = '') {
+    /** W-12: the name emails go out under: the portal's title, or the site's while that is still the shipped default. */
+    static function siteTitle() {
+        $wpjobportal_title = trim((string) wpjobportal::$_configuration['title']);
+        return ($wpjobportal_title === '' || strtolower($wpjobportal_title) === 'wp job portal') ? wp_specialchars_decode(get_bloginfo('name'), ENT_QUOTES) : $wpjobportal_title;
+    }
+
+    function sendEmail($recevierEmail, $wpjobportal_subject, $body, $wpjobportal_senderEmail, $wpjobportal_senderName, $attachments = '', $wpjobportal_extra_headers = array(), $wpjobportal_bulk = false) {
+        // W-12: every template may use these, whichever code path filled it in
+        $wpjobportal_site_values = array('{SITETITLE}' => self::siteTitle(), '{CURRENT_YEAR}' => gmdate('Y'));
+        $wpjobportal_subject = strtr((string) $wpjobportal_subject, $wpjobportal_site_values);
+        $body = strtr((string) $body, $wpjobportal_site_values);
         if (!$wpjobportal_senderName)
             $wpjobportal_senderName = wpjobportal::$_configuration['title'];
         $headers = 'From: ' . $wpjobportal_senderName . ' <' . $wpjobportal_senderEmail . '>' . "\r\n";
@@ -1504,15 +1501,20 @@ class WPJOBPORTALEmailtemplateModel {
         // Blueprint: wpjobportal_system_email_headers
         // Modifies the HTTP/SMTP headers of all outgoing automated system emails.
         $headers = array('From: ' . $wpjobportal_senderName . ' <' . $wpjobportal_senderEmail . '>');
+        $headers = array_merge($headers, (array) $wpjobportal_extra_headers);
         $headers = apply_filters('wpjobportal_system_email_headers', $headers, $wpjobportal_subject);
         // --- NEW HOOK INTEGRATION END ---
 
 	// 2.6.0 remove it        
 	//add_filter('wp_mail_content_type', array($this,'wpjobportal_set_html_content_type'));
         $body = wpjobportalphplib::wpJP_preg_replace('/\r?\n|\r/', '<br/>', $body);
-        $body = wpjobportalphplib::wpJP_str_replace(array("\r\n", "\r", "\n"), "<br/>", $body);
-        $body = nl2br($body);
-        $wpjobportal_result = WPJOBPORTAL_Notification_Service::send(
+        // P-4: bulk mail always goes through the queue, whatever the site's setting; if the
+        // queue cannot take it, the direct send below still does.
+        $wpjobportal_queued = false;
+        if ($wpjobportal_bulk && class_exists('WPJOBPORTAL_Notification_Queue_Service')) {
+            $wpjobportal_queued = !is_wp_error(WPJOBPORTAL_Notification_Queue_Service::enqueue($recevierEmail, $wpjobportal_subject, $body, $headers, array(), 'job_alert', ''));
+        }
+        $wpjobportal_result = $wpjobportal_queued ? true : WPJOBPORTAL_Notification_Service::send(
             $recevierEmail,
             $wpjobportal_subject,
             $body,

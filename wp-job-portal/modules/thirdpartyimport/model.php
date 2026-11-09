@@ -633,7 +633,7 @@ class WPJOBPORTALthirdpartyimportModel {
         foreach ($relative_paths_segments as $wpjobportal_segment) {
             $current .= '/' . $wpjobportal_segment;
             if ( ! $wp_filesystem->is_dir($current) ) {
-                $wp_filesystem->mkdir($current, FS_CHMOD_DIR, true);
+                $wp_filesystem->mkdir($current, FS_CHMOD_DIR); // the loop makes one level at a time; a third argument would be an owner
             }
             $wpjobportal_index = $current . '/index.html';
             if ( ! $wp_filesystem->exists($wpjobportal_index) ) {
@@ -681,6 +681,13 @@ class WPJOBPORTALthirdpartyimportModel {
             if ( file_exists( $source ) ) {
                 $wpjobportal_result = $filesystem->copy($source, $wpjobportal_destination, true);
              //   var_dump($wpjobportal_result);
+                // An imported CV gets the protection an uploaded one gets: the
+                // folder's deny rules and a random prefix. The update's one-off
+                // pass has already run by the time anyone imports.
+                if ($wpjobportal_result && $wpjobportal_uploadfor == 4) {
+                    WPJOBPORTAL_Resume_File_Store::protect_folders($folder_path);
+                    WPJOBPORTAL_Resume_File_Store::hide($wpjobportal_destination);
+                }
             }
             //  else {
             //     echo "<br><strong>Source file not found:</strong> $source";

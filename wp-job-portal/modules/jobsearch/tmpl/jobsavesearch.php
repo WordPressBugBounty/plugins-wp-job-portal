@@ -35,6 +35,10 @@ if (!defined('ABSPATH'))
                             </span>
                         </div>
                         <div class="wjportal-save-search-action-wrp">
+                            <?php if (in_array('jobalert', (array) wpjobportal::$_active_addons, true)) { // W-9
+                                $wpjobportal_alert_on = WPJOBPORTALincluder::getJSModel('jobsearch')->getSearchAlertId($wpjobportal_savedsearch->id, WPJOBPORTALincluder::getObjectClass('user')->uid()) > 0; ?>
+                                <a class="wjportal-save-search-act-btn wjportal-list-act-btn-alert<?php echo $wpjobportal_alert_on ? ' is-on' : ''; ?>" href="<?php echo esc_url(wp_nonce_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme' => 'jobsearch', 'task' => 'togglesearchalert', 'action' => 'wpjobportaltask', 'wpjobportalid' => $wpjobportal_savedsearch->id, 'op' => $wpjobportal_alert_on ? 'off' : 'on', 'wpjobportalpageid' => wpjobportal::wpjobportal_getPageid())), 'wpjobportal_job_search_nonce')); ?>"><?php echo esc_html($wpjobportal_alert_on ? __('Stop emailing me', 'wp-job-portal') : __('Email me new matches', 'wp-job-portal')); ?></a>
+                            <?php } ?>
                             <a class="wjportal-save-search-act-btn-remove wjportal-list-act-btn-delete" href="<?php echo esc_url(wp_nonce_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme' => 'jobsearch', 'task' => 'removeSavedJobSearch', 'action' => 'wpjobportaltask', 'wpjobportalid' => $wpjobportal_savedsearch->id, 'wpjobportalpageid' => wpjobportal::wpjobportal_getPageid())), 'wpjobportal_job_search_nonce')); ?>" onclick="return confirmdelete('<?php echo esc_html__('Are you sure to delete', 'wp-job-portal') . ' ?'; ?>');">
                                 <?php echo esc_html__('Delete', 'wp-job-portal'); ?>
                             </a>

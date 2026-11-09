@@ -7,18 +7,52 @@ class WPJOBPORTALuser {
 
     private $currentuser = null;
 
+    private static $rows = array();
+
+    /**
+     * The social-login id of the current visitor, or '' when there is none.
+     *
+     * Security: the discontinued Social Login add-on identified its users by a
+     * plain `wpjobportal-socialid` cookie. A cookie is chosen by the browser,
+     * so trusting it let any visitor become any social-login portal user by
+     * setting that cookie (and made isguest() false for any non-empty value).
+     * Social Login is discontinued in 2.8.0 and nothing sets the cookie any
+     * more, so the cookie is never trusted as an identity: this always answers
+     * ''. Social-login users sign in with a WordPress account instead.
+     *
+     * @return string
+     */
+    public static function trustedSocialId() {
+        return '';
+    }
+
+    public static function forgetOnWrite($wpjobportal_query) {
+        if (!empty(self::$rows) && strpos($wpjobportal_query, 'wj_portal_users') !== false && preg_match('/^\s*(UPDATE|INSERT|REPLACE|DELETE)\b/i', $wpjobportal_query)) {
+            self::$rows = array();
+        }
+        return $wpjobportal_query;
+    }
+
     function __construct() {
         if (is_user_logged_in()) { // wp user logged in
             $wpuserid = get_current_user_id();
             if (!is_numeric($wpuserid))
                 return false;
-            $query = wpjobportal::$_db->prepare("SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE uid = %d", $wpuserid);
-            $this->currentuser = wpjobportal::$_db->get_row($query);
+            // P-2: this class is built for almost every check on a page. Any write to the
+            // users table empties the remembered row, so a new role shows at once.
+            if (!array_key_exists($wpuserid, self::$rows)) {
+                if (!has_filter('query', array(__CLASS__, 'forgetOnWrite'))) {
+                    add_filter('query', array(__CLASS__, 'forgetOnWrite'));
+                }
+                $query = wpjobportal::$_db->prepare("SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE uid = %d", $wpuserid);
+                self::$rows[$wpuserid] = wpjobportal::$_db->get_row($query);
+            }
+            $this->currentuser = self::$rows[$wpuserid];
         }else { // wp user is not logged in
         //sanitize_key($_SESSION['wpjobportal-socialid'])
-            if (WPJOBPORTALrequest::hasCookie('wpjobportal-socialid') && !empty(WPJOBPORTALrequest::cookie('wpjobportal-socialid'))) { // social user is logged in
+            if (self::trustedSocialId() !== '') { // social user is logged in
             
-                $wpjobportal_socialid = sanitize_key((string) WPJOBPORTALrequest::cookie('wpjobportal-socialid', ''));
+                $wpjobportal_socialid = self::trustedSocialId();
                 $query = wpjobportal::$_db->prepare("SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE socialid = %s", $wpjobportal_socialid);
                 $this->currentuser = wpjobportal::$_db->get_row($query);
             }
@@ -26,7 +60,7 @@ class WPJOBPORTALuser {
     }
 
     function isguest() {
-        if (WPJOBPORTALrequest::hasCookie('wpjobportal-socialid') && !empty(WPJOBPORTALrequest::cookie('wpjobportal-socialid'))) {
+        if (self::trustedSocialId() !== '') {
             return false;
         } elseif ($this->currentuser == null && !is_user_logged_in()) { // current user is guest
             return true;
@@ -58,7 +92,7 @@ class WPJOBPORTALuser {
         }
         $wpjobportal_id  = $this->currentuser->uid;
         $wpjobportal_string = "users.uid";
-        if (WPJOBPORTALrequest::hasCookie('wpjobportal-socialid') && !empty(WPJOBPORTALrequest::cookie('wpjobportal-socialid'))) { // social user is logged in
+        if (self::trustedSocialId() !== '') { // social user is logged in
             $wpjobportal_id  = $this->currentuser->id;
             $wpjobportal_string = "users.id";
         }
@@ -80,7 +114,7 @@ class WPJOBPORTALuser {
         if($this->isjobseeker()==true){
             $wpjobportal_id  = $this->currentuser->uid;
             $wpjobportal_string = "users.uid";
-            if (WPJOBPORTALrequest::hasCookie('wpjobportal-socialid') && !empty(WPJOBPORTALrequest::cookie('wpjobportal-socialid'))) { // social user is logged in
+            if (self::trustedSocialId() !== '') { // social user is logged in
                 $wpjobportal_id  = $this->currentuser->id;
                 $wpjobportal_string = "users.id";
             }
@@ -103,16 +137,14 @@ class WPJOBPORTALuser {
             $wpuserid = get_current_user_id();
             if (!is_numeric($wpuserid))
                 return false;
-            $query = wpjobportal::$_db->prepare("SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE uid = %d", $wpuserid);
-            $wpjobportal_result = wpjobportal::$_db->get_var($query);
-            if ($wpjobportal_result > 0) {
+            if (!empty($this->currentuser)) {
                 return true;
             } else {
                 return false;
             }
         } else {
-            if (WPJOBPORTALrequest::hasCookie('wpjobportal-socialid') && !empty(WPJOBPORTALrequest::cookie('wpjobportal-socialid'))) { // social user is logged in
-                $wpjobportal_socialid = sanitize_key((string) WPJOBPORTALrequest::cookie('wpjobportal-socialid', ''));
+            if (self::trustedSocialId() !== '') { // social user is logged in
+                $wpjobportal_socialid = self::trustedSocialId();
                 $query = wpjobportal::$_db->prepare("SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE socialid = %s", $wpjobportal_socialid);
                 $wpjobportal_result = wpjobportal::$_db->get_var($query);
                 if ($wpjobportal_result > 0) {
@@ -221,7 +253,7 @@ class WPJOBPORTALuser {
     }
 
     function getAvailableCredits() {
-        $wpjobportal_isadmin = WPJOBPORTALrequest::getVar('isadmin');
+        $wpjobportal_isadmin = (current_user_can('manage_options') ? WPJOBPORTALrequest::getVar('isadmin') : ''); // Security: admin-only flag, never trusted from a non-admin request.
         $wpjobportal_userid = WPJOBPORTALrequest::getVar('userid');
         if($wpjobportal_isadmin && is_numeric($wpjobportal_userid)){
             $wpjobportal_uid = $wpjobportal_userid;
@@ -237,16 +269,14 @@ class WPJOBPORTALuser {
             $wpuserid = get_current_user_id();
             if (!is_numeric($wpuserid))
                 return false;
-            $query = wpjobportal::$_db->prepare("SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE uid = %d", $wpuserid);
-            $wpjobportal_result = wpjobportal::$_db->get_var($query);
-            if ($wpjobportal_result > 0) {
+            if (!empty($this->currentuser)) {
                 return true;
             } else {
                 return false;
             }
         } else {
-            if (WPJOBPORTALrequest::hasCookie('wpjobportal-socialid') && !empty(WPJOBPORTALrequest::cookie('wpjobportal-socialid'))) { // social user is logged in
-                $wpjobportal_socialid = sanitize_key((string) WPJOBPORTALrequest::cookie('wpjobportal-socialid', ''));
+            if (self::trustedSocialId() !== '') { // social user is logged in
+                $wpjobportal_socialid = self::trustedSocialId();
                 $query = wpjobportal::$_db->prepare("SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE socialid = %s", $wpjobportal_socialid);
                 $wpjobportal_result = wpjobportal::$_db->get_var($query);
                 if ($wpjobportal_result > 0) {
@@ -259,7 +289,7 @@ class WPJOBPORTALuser {
     }
 
     function isSocialLogin() {
-        if (WPJOBPORTALrequest::hasCookie('wpjobportal-socialid') && !empty(WPJOBPORTALrequest::cookie('wpjobportal-socialid'))) {
+        if (self::trustedSocialId() !== '') {
             return true;
         } else {
             return false;

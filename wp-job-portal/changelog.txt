@@ -2,6 +2,47 @@
 
 == Changelog ==
 
+= 2.8.0 =
+Major update: a redesigned admin, a clearer hiring flow and security fixes. Take a backup before updating: changes to existing records wait until an administrator confirms there is one.
+
+* Security: resume files and custom-field uploads are stored under random names in folders that refuse direct requests (Apache and IIS; see the FAQ for nginx), and are handed out only through the permission-checked download. Files uploaded before 2.8.0 are protected on the first page load after updating. All sites should update.
+* Security: stricter permission checks on application and job-apply requests, and on which requests visitors, job seekers and employers may send.
+* Security: the resume page no longer prints values sent by the browser.
+* Security: the privacy eraser now also deletes the person's uploaded files and job alerts.
+* Includes the 2.7.1 and 2.7.2 security fixes.
+* New: redesigned admin with one menu, shared list screens, an Approvals page, menu search (Ctrl K), a notifications bell and an Applications list.
+* New: a dashboard that shows what needs doing, with trends, a date range and a layout each administrator can arrange.
+* New: hiring status is separate from approval; candidates can withdraw an application, and candidate emails can be switched on or off per status.
+* New: employers can close a job early and are reminded before it expires; "Closed to New Applicants" now closes the job on the site.
+* New: first steps for new employers and job seekers.
+* New: a saved search can email new matching jobs; a job alert no longer needs a category.
+* New: clean addresses for jobs, companies and resumes, and JobPosting structured data, meta and Open Graph tags on job pages.
+* New: a warning when emails fail and a Send a test email button; default emails use the site's name and include one-click unsubscribe.
+* Changed: a job needs a city or a remote workplace before it is saved.
+* Changed: job seekers save jobs; "Shortlisted" is now only an application status.
+* Changed: maps use the site's own Google Maps key; there is no shared key.
+* Changed: deleting the plugin keeps your data unless you choose otherwise. Tables move to utf8mb4 and exact money amounts in the background after the update.
+* Improved: job search matches every word typed, and a typed city counts.
+* Improved: faster pages: fewer database queries on job lists, minified stylesheets, and job alerts sent in batches.
+* Improved: plainer wording and better keyboard and screen-reader support on admin screens.
+* Fixed: total experience counts a current job up to today.
+* Fixed: a job that fails to save keeps what was typed and says why.
+* Fixed: saving settings without changing anything no longer changes them.
+* Fixed: a site using OpenStreetMap had its maps hidden when it had no Google Maps key; only Google maps are hidden now, and a job's empty Map section goes with them.
+* Fixed: a resume a visitor made while applying is private even with Searchable ticked: it is not in resume search, the resume widgets and shortcodes, the resume RSS feed or category counts, and only the employers whose job received it can open it. This applies to every resume without an owner, including one an administrator made without choosing a user.
+* Fixed: "how long ago" labels follow each language's word order ("vor 3 Tagen", not "3 Tage vor").
+* Fixed: the resume page heads the address section "Address" in every language, not "Add Address".
+* Fixed: Licences and add-ons have their own admin menu item again, with the number of updates waiting; Reports and Shortcodes are top-level items again too.
+* Fixed: the WordPress menu lists Candidates (with new applications) and Companies again, and stays open on every plugin screen with the entry for that screen marked.
+* Fixed: on WordPress.com and other Jetpack sites, a login from the WP Job Portal login form was sent to a separate math page and then to wp-login.php, where the password had to be typed again. The form now shows Jetpack's math question itself.
+* Fixed: an empty date-picker strip showed at the foot of pages with a date field.
+* Fixed: More Actions on an applicant opens downward when there is more room below, and no longer hides under the WordPress toolbar.
+* Fixed: the minified stylesheet was older than the stylesheet it stands for.
+* Fixed: "Email me resume and attachments" now attaches the files.
+* Fixed: wrong settings defaults on new installs.
+* Fixed: a fatal error when prices use "fit to currency" decimals.
+* Fixed: edit pages were titled "Add Resume", "Add Job" or "Add Company" in the browser tab.
+
 = 2.7.2 =
 Security.
 

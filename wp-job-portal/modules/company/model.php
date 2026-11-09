@@ -111,7 +111,7 @@ class WPJOBPORTALCompanyModel {
         wpjobportal::$_db->query($query);
         wpjobportal::$_data['config'] = wpjobportal::$_config->getConfigByFor('company');
         if(in_array('credits', wpjobportal::$_active_addons)){
-            wpjobportal::$_data['paymentconfig'] = wpjobportal::$_wpjppaymentconfig->getPaymentConfigFor('paypal,stripe,woocommerce',true);
+            wpjobportal::$_data['paymentconfig'] = wpjobportal::wpjobportal_getPublicPaymentConfig(); // Security: no credentials in page data; base helper so an older add-on cannot crash the page
         }
 
         return;
@@ -382,6 +382,130 @@ class WPJOBPORTALCompanyModel {
         return;
     }
 
+    /**
+     * The admin Companies list (design 4, same parts as the Jobs list): one
+     * page of companies for the chosen view, search and filters, the chip
+     * counts and the filter options, from plain query values.
+     *
+     * Views: all, approved, waiting (waiting for approval), rejected, featured.
+     * The search matches every word, in any order, in the name, website,
+     * contact email, owner or location.
+     *
+     * Leaves its result in wpjobportal::$_data['companylist'].
+     */
+    function getAdminCompanyList() {
+        $wpjobportal_db = wpjobportal::$_db;
+        $wpjobportal_prefix = $wpjobportal_db->prefix . 'wj_portal_';
+        $wpjobportal_get = function ($wpjobportal_key) {
+            return trim((string) WPJOBPORTALrequest::getVar($wpjobportal_key, 'get', ''));
+        };
+        $wpjobportal_featured_now = 'company.isfeaturedcompany = 1 AND DATE(company.endfeatureddate) >= CURDATE()';
+        $wpjobportal_views = array(
+            'all' => '1=1',
+            'approved' => 'company.status = 1',
+            'waiting' => 'company.status = 0',
+            'rejected' => 'company.status = -1',
+            'featured' => $wpjobportal_featured_now,
+        );
+        $wpjobportal_filter = array(
+            'view' => isset($wpjobportal_views[$wpjobportal_get('view')]) ? $wpjobportal_get('view') : 'all',
+            'q' => $wpjobportal_get('q'),
+            'loc' => absint($wpjobportal_get('loc')),
+            'owner' => absint($wpjobportal_get('owner')),
+            'from' => preg_match('/^\d{4}-\d{2}-\d{2}$/', $wpjobportal_get('from')) ? $wpjobportal_get('from') : '',
+            'to' => preg_match('/^\d{4}-\d{2}-\d{2}$/', $wpjobportal_get('to')) ? $wpjobportal_get('to') : '',
+            'sort' => $wpjobportal_get('sort'),
+        );
+        $wpjobportal_sorts = array('name' => 'company.name', 'created' => 'company.created', 'loc' => 'city.name', 'jobs' => 'totaljobs');
+        $wpjobportal_sort_parts = explode('|', $wpjobportal_filter['sort']);
+        $wpjobportal_sort_key = isset($wpjobportal_sorts[$wpjobportal_sort_parts[0]]) ? $wpjobportal_sort_parts[0] : 'name';
+        $wpjobportal_sort_dir = (isset($wpjobportal_sort_parts[1]) && $wpjobportal_sort_parts[1] === '-1') ? 'DESC' : 'ASC';
+        $wpjobportal_filter['sort'] = $wpjobportal_sort_key . '|' . ($wpjobportal_sort_dir === 'ASC' ? '1' : '-1');
+
+        $wpjobportal_from = " FROM `" . $wpjobportal_prefix . "companies` AS company
+            LEFT JOIN `" . $wpjobportal_prefix . "users` AS owner ON owner.id = company.uid
+            LEFT JOIN `" . $wpjobportal_prefix . "cities` AS city ON city.id = (SELECT cityid FROM `" . $wpjobportal_prefix . "companycities` WHERE companyid = company.id ORDER BY id DESC LIMIT 1)";
+
+        $wpjobportal_where = array();
+        foreach (preg_split('/\s+/', $wpjobportal_filter['q'], -1, PREG_SPLIT_NO_EMPTY) as $wpjobportal_word) {
+            $wpjobportal_like = '%' . $wpjobportal_db->esc_like($wpjobportal_word) . '%';
+            $wpjobportal_where[] = $wpjobportal_db->prepare("(company.name LIKE %s OR company.url LIKE %s OR company.contactemail LIKE %s OR CONCAT_WS(' ', owner.first_name, owner.last_name) LIKE %s OR owner.emailaddress LIKE %s OR city.name LIKE %s)", $wpjobportal_like, $wpjobportal_like, $wpjobportal_like, $wpjobportal_like, $wpjobportal_like, $wpjobportal_like);
+        }
+        if ($wpjobportal_filter['loc']) {
+            $wpjobportal_where[] = $wpjobportal_db->prepare("company.id IN (SELECT companyid FROM `" . $wpjobportal_prefix . "companycities` WHERE cityid = %d)", $wpjobportal_filter['loc']);
+        }
+        if ($wpjobportal_filter['owner']) {
+            $wpjobportal_where[] = $wpjobportal_db->prepare('company.uid = %d', $wpjobportal_filter['owner']);
+        }
+        if ($wpjobportal_filter['from'] !== '') {
+            $wpjobportal_where[] = $wpjobportal_db->prepare('DATE(company.created) >= %s', $wpjobportal_filter['from']);
+        }
+        if ($wpjobportal_filter['to'] !== '') {
+            $wpjobportal_where[] = $wpjobportal_db->prepare('DATE(company.created) <= %s', $wpjobportal_filter['to']);
+        }
+        $wpjobportal_filters_sql = $wpjobportal_where ? ' AND ' . implode(' AND ', $wpjobportal_where) : '';
+        $wpjobportal_view_sql = ' AND ' . $wpjobportal_views[$wpjobportal_filter['view']];
+
+        $wpjobportal_count_cols = array();
+        foreach ($wpjobportal_views as $wpjobportal_view => $wpjobportal_condition) {
+            $wpjobportal_count_cols[] = 'SUM(CASE WHEN ' . $wpjobportal_condition . ' THEN 1 ELSE 0 END) AS `' . $wpjobportal_view . '`';
+        }
+        $wpjobportal_counts = array_map('absint', (array) $wpjobportal_db->get_row('SELECT ' . implode(', ', $wpjobportal_count_cols) . " FROM `" . $wpjobportal_prefix . "companies` AS company", ARRAY_A));
+
+        $wpjobportal_total = absint($wpjobportal_db->get_var('SELECT COUNT(company.id)' . $wpjobportal_from . ' WHERE 1=1' . $wpjobportal_view_sql . $wpjobportal_filters_sql));
+        WPJOBPORTALpagination::getPagination($wpjobportal_total);
+
+        $wpjobportal_has_departments = in_array('departments', (array) wpjobportal::$_active_addons, true);
+        // Open = the Jobs list's "Accepting applicants": approved, in date, not closed to new applicants.
+        $wpjobportal_closed = WPJOBPORTALincluder::getJSModel('jobstatus')->getClosedStatusIds();
+        $wpjobportal_closed_in = implode(',', $wpjobportal_closed ? $wpjobportal_closed : array(0));
+        $wpjobportal_rows = (array) $wpjobportal_db->get_results(
+            "SELECT company.id, company.uid, company.name, company.alias, company.url, company.contactemail, company.logofilename,
+                company.city, company.created, company.status, company.hits, company.isfeaturedcompany, company.startfeatureddate,
+                company.endfeatureddate, company.params, CONCAT(company.alias, '-', company.id) AS aliasid,
+                CONCAT_WS(' ', owner.first_name, owner.last_name) AS ownername, owner.emailaddress AS owneremail,
+                (" . $wpjobportal_featured_now . ") AS featurednow,
+                (SELECT COUNT(id) FROM `" . $wpjobportal_prefix . "jobs` WHERE companyid = company.id) AS totaljobs,
+                (SELECT COUNT(id) FROM `" . $wpjobportal_prefix . "jobs` WHERE companyid = company.id AND status = 1 AND startpublishing < DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND stoppublishing >= CURDATE() AND jobstatus NOT IN (" . $wpjobportal_closed_in . ")) AS openjobs,
+                (SELECT COUNT(ja.id) FROM `" . $wpjobportal_prefix . "jobapply` AS ja INNER JOIN `" . $wpjobportal_prefix . "jobs` AS j ON j.id = ja.jobid WHERE j.companyid = company.id) AS totalapps"
+            . ($wpjobportal_has_departments ? ", (SELECT COUNT(id) FROM `" . $wpjobportal_prefix . "departments` WHERE companyid = company.id) AS totaldepartments" : ", 0 AS totaldepartments")
+            . $wpjobportal_from . ' WHERE 1=1' . $wpjobportal_view_sql . $wpjobportal_filters_sql
+            . ' ORDER BY ' . $wpjobportal_sorts[$wpjobportal_sort_key] . ' ' . $wpjobportal_sort_dir . ', company.id DESC'
+            . $wpjobportal_db->prepare(' LIMIT %d, %d', WPJOBPORTALpagination::$_offset, WPJOBPORTALpagination::$_limit)
+        );
+
+        wpjobportal::$_data['companylist'] = array(
+            'rows' => $wpjobportal_rows,
+            'total' => $wpjobportal_total,
+            'counts' => $wpjobportal_counts,
+            'filter' => $wpjobportal_filter,
+            'options' => array(
+                'locations' => (array) $wpjobportal_db->get_results("SELECT DISTINCT city.id, city.name FROM `" . $wpjobportal_prefix . "companycities` AS cc INNER JOIN `" . $wpjobportal_prefix . "cities` AS city ON city.id = cc.cityid ORDER BY city.name"),
+                'owners' => (array) $wpjobportal_db->get_results("SELECT DISTINCT owner.id, CONCAT_WS(' ', owner.first_name, owner.last_name) AS name FROM `" . $wpjobportal_prefix . "companies` AS company INNER JOIN `" . $wpjobportal_prefix . "users` AS owner ON owner.id = company.uid ORDER BY name"),
+            ),
+            'config' => wpjobportal::$_config->getConfigByFor('company'),
+        );
+        // The Feature add-on's row action reads the company config from here.
+        wpjobportal::$_data['config'] = wpjobportal::$_data['companylist']['config'];
+    }
+
+    /** Approve or reject waiting companies (status 0 only). Returns how many changed. */
+    function setWaitingCompaniesStatus($wpjobportal_ids, $wpjobportal_approve) {
+        $wpjobportal_ids = array_values(array_filter(array_map('absint', (array) $wpjobportal_ids)));
+        if (empty($wpjobportal_ids)) {
+            return 0;
+        }
+        $wpjobportal_waiting = array_map('absint', (array) wpjobportal::$_db->get_col("SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` WHERE status = 0 AND id IN (" . implode(',', $wpjobportal_ids) . ")"));
+        $wpjobportal_done = 0;
+        foreach ($wpjobportal_waiting as $wpjobportal_id) {
+            $wpjobportal_result = $wpjobportal_approve ? $this->approveQueueCompanyModel($wpjobportal_id) : $this->rejectQueueCompanyModel($wpjobportal_id);
+            if ($wpjobportal_result == ($wpjobportal_approve ? WPJOBPORTAL_APPROVED : WPJOBPORTAL_REJECTED)) {
+                $wpjobportal_done++;
+            }
+        }
+        return $wpjobportal_done;
+    }
+
     function getCitySelected($city){
 
         $wpjobportal_city_ids = array_filter(array_map('absint', wpjobportalphplib::wpJP_explode(',', (string) $city)));
@@ -466,6 +590,18 @@ class WPJOBPORTALCompanyModel {
         // admin can edit other employers companies
         if(!wpjobportal::$_common->wpjp_isadmin()){
             $wpjobportal_data['uid'] = $cuser->uid();
+            // Security: approval and featuring are decided by the site (settings,
+            // packages, payment), never by the posted form. An employer used to
+            // approve their own pending company on edit, or feature it for free.
+            unset($wpjobportal_data['isfeaturedcompany'], $wpjobportal_data['startfeatureddate'], $wpjobportal_data['endfeatureddate'], $wpjobportal_data['hits'], $wpjobportal_data['userpackageid'], $wpjobportal_data['status']);
+            if (!$wpjobportal_isnew) {
+                $wpjobportal_current_status = wpjobportal::$_db->get_var(wpjobportal::$_db->prepare(
+                    "SELECT status FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` WHERE id = %d", $wpjobportal_id
+                ));
+                if ($wpjobportal_current_status !== null) {
+                    $wpjobportal_data['status'] = (int) $wpjobportal_current_status;
+                }
+            }
         }
 
         # prepare data + business logic
@@ -565,12 +701,14 @@ class WPJOBPORTALCompanyModel {
                     $wpjobportal_data['status'] = 1;
                 }
             }
-            $wpjobportal_data['alias'] = wpjobportal::$_common->stringToAlias(empty($wpjobportal_data['alias']) ? $wpjobportal_data['name'] : $wpjobportal_data['alias']);
+            $wpjobportal_company_alias = wpjobportal::$_common->stringToAlias(empty($wpjobportal_data['alias']) ? $wpjobportal_data['name'] : $wpjobportal_data['alias'], 'company');
+            $wpjobportal_data['alias'] = $wpjobportal_company_alias;
         # sanitize data
             if(isset($wpjobportal_data['description'])){
                 $wpjobportal_tempdesc = $wpjobportal_data['description'];
             }
             $wpjobportal_data = wpjobportal::wpjobportal_sanitizeData($wpjobportal_data);
+            $wpjobportal_data['alias'] = $wpjobportal_company_alias; // D-9: after sanitizing, which strips the %xx of non-Latin slugs
             if(isset($wpjobportal_data['description'])){
                 // Clean it first
                 $wpjobportal_tempdesc = str_ireplace(['<script', '< script'], '-', $wpjobportal_tempdesc);
@@ -1166,7 +1304,14 @@ class WPJOBPORTALCompanyModel {
                 }
             }elseif ($wpjobportal_subType == 2) {
                 # Paid Perlisting
-                $wpjobportal_data['status']  == 3;
+                // Security: this line was a comparison (==), so a priced contact
+                // unlock fell through to the free insert below. When a price is
+                // set, only the payment flow may grant it.
+                if ((float) wpjobportal::$_config->getConfigValue('job_viewcompanycontact_price_perlisting') > 0
+                    && !wpjobportal::$_common->wpjp_isadmin()) {
+                    return false;
+                }
+                $wpjobportal_data['status'] = 1;
             }elseif ($wpjobportal_status == 1) {
                 # Free
                 $wpjobportal_data['status'] == 1;
@@ -1236,32 +1381,15 @@ class WPJOBPORTALCompanyModel {
             $wpjobportal_total = 3;
 
         for ($wpjobportal_i=0; $wpjobportal_i < $wpjobportal_total; $wpjobportal_i++) {
-            $query = '';
-            switch ($wpjobportal_array[$wpjobportal_i]) {
-                case 'name':
-                    $query = "SELECT name AS col FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` WHERE id = " . (int) ($wpjobportal_id);
-                break;
-                case 'category':
-                    break;
-                    $query = "SELECT category.cat_title AS col
-                        FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company
-                        WHERE company.id = " . (int) ($wpjobportal_id);
-                break;
-                case 'location':
-                    $query = "SELECT company.city AS col
-                        FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company WHERE company.id = " . (int) ($wpjobportal_id);
-                break;
-            }
-            if($query){
-                $wpjobportal_data = wpjobportaldb::get_row($query);
+            {
+                $wpjobportal_data = WPJOBPORTAL_Seo_Values::company($wpjobportal_id, $wpjobportal_array[$wpjobportal_i]);
                 if(isset($wpjobportal_data->col)){
                     if($wpjobportal_array[$wpjobportal_i] == 'location'){
                         $cityids = wpjobportalphplib::wpJP_explode(',', $wpjobportal_data->col);
                         $location = '';
                         for ($j=0; $j < count($cityids); $j++) {
                             if(is_numeric($cityids[$j])){
-                                $query = "SELECT name FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities` WHERE id = " . (int) ($cityids[$j]);
-                                $cityname = wpjobportaldb::get_row($query);
+                                $cityname = WPJOBPORTAL_Seo_Values::city($cityids[$j]);
                                 if(isset($cityname->name)){
                                     if($location == '')
                                         $location .= $cityname->name;

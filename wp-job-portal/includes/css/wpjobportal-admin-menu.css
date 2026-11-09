@@ -1,0 +1,304 @@
+/* WP Job Portal admin menu (design 4). Drawn by includes/classes/wpjobportaladminsidemenu.php.
+   Wide by default (#wpjobportaladmin-wrapper.menu-collasped-active); narrow is an icon rail with flyouts. */
+div#wpjobportaladmin-leftmenu {
+    --wjpm-primary: var(--wjp-color-primary, #4f46e5);
+    --wjpm-primary-dark: #4338ca;
+    --wjpm-primary-bg: #eef2ff;
+    --wjpm-ink: #1e293b;
+    --wjpm-ink-2: #475569;
+    --wjpm-ink-3: #64748b;
+    --wjpm-ink-4: #94a3b8;
+    --wjpm-line: #e4e4f0;
+    --wjpm-bg: #f6f6fb;
+    --wjpm-card: #ffffff;
+    --wjpm-warn-bg: #fef3c7;
+    --wjpm-warn-txt: #b45309;
+    background: var(--wjpm-bg);
+}
+/* The panel: a full-height column against the WordPress menu, as in the design (not a floating card). */
+div#wpjobportaladmin-leftmenu {
+    position: fixed;
+    top: var(--wp-admin--admin-bar--height, 32px);
+    bottom: 0;
+    left: 160px;
+    width: 64px;
+    z-index: 9;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 0;
+    box-shadow: none;
+    border-right: 1px solid var(--wjpm-line);
+    scrollbar-width: thin;
+    scrollbar-color: var(--wjpm-line) transparent;
+    transition: width .15s;
+}
+div.menu-collasped-active div#wpjobportaladmin-leftmenu { width: 248px; }
+.folded div#wpjobportaladmin-leftmenu { left: 36px; }
+/* The icon rail shows each section's pages as a flyout beside it, which a scrolling panel would clip. */
+#wpjobportaladmin-wrapper:not(.menu-collasped-active) div#wpjobportaladmin-leftmenu { overflow: visible; }
+body.wjpm-focus div#wpjobportaladmin-leftmenu { left: 0; }
+/* Content starts 28px after the panel; the page itself already sits 30px in (WordPress gutter + wrapper). */
+div#wpjobportaladmin-wrapper div#wpjobportaladmin-data { padding-left: 62px; }
+div#wpjobportaladmin-wrapper.menu-collasped-active div#wpjobportaladmin-data { padding-left: 246px; }
+body.wjpm-focus #adminmenumain { display: none; }
+body.wjpm-focus #wpcontent, body.wjpm-focus #wpfooter { margin-left: 0; }
+@media (min-width: 783px) and (max-width: 960px) {
+    .auto-fold div#wpjobportaladmin-leftmenu { left: 36px; }
+}
+
+/* Brand, search and create */
+#wpjobportaladmin-leftmenu .wjpm-brand { display: flex; align-items: center; gap: 10px; padding: 16px 16px 10px; white-space: nowrap; }
+#wpjobportaladmin-leftmenu .wjpm-mark { width: 30px; height: 30px; flex: 0 0 30px; border-radius: 8px; background: linear-gradient(90deg, #4f46e5 0%, #0e17c7 50%, #5023d2 100%); display: grid; place-items: center; color: #fff; text-decoration: none; box-shadow: none; }
+#wpjobportaladmin-leftmenu .wjpm-bt { display: grid; justify-items: start; gap: 2px; line-height: 1.2; min-width: 0; }
+#wpjobportaladmin-leftmenu .wjpm-name { font-weight: 700; font-size: 15px; letter-spacing: -.01em; color: var(--wjpm-ink); text-decoration: none; box-shadow: none; }
+#wpjobportaladmin-leftmenu .wjpm-mode { display: inline-flex; align-items: center; gap: 4px; font-size: 11.5px; font-weight: 600; color: var(--wjpm-primary-dark); background: var(--wjpm-primary-bg); border-radius: 999px; padding: 2px 8px; text-decoration: none; box-shadow: none; }
+#wpjobportaladmin-leftmenu .wjpm-mode:hover { background: #e0e7ff; }
+#wpjobportaladmin-leftmenu .wjpm-burger { display: none; margin-left: auto; width: 36px; height: 36px; border: 0; border-radius: 8px; background: none; color: var(--wjpm-ink-2); cursor: pointer; place-items: center; }
+#wpjobportaladmin-leftmenu .wjpm-top { display: flex; gap: 8px; margin: 4px 12px 8px; }
+#wpjobportaladmin-leftmenu .wjpm-search { position: relative; flex: 1; min-width: 0; display: flex; align-items: center; height: 36px; border: 1px solid var(--wjpm-line); border-radius: 8px; background: var(--wjpm-card); color: var(--wjpm-ink-3); }
+#wpjobportaladmin-leftmenu .wjpm-search:focus-within { border-color: var(--wjpm-primary); box-shadow: 0 0 0 3px #e0e7ff; }
+#wpjobportaladmin-leftmenu .wjpm-search > svg { flex: 0 0 16px; margin: 0 0 0 10px; }
+#wpjobportaladmin-leftmenu .wjpm-search input[type="search"] { flex: 1; min-width: 0; width: auto; height: 34px; min-height: 34px; border: 0 !important; border-radius: 0; background: none !important; box-shadow: none !important; padding: 0 8px; margin: 0; font-size: 14px; color: var(--wjpm-ink); outline: none; }
+#wpjobportaladmin-leftmenu .wjpm-search input::-webkit-search-cancel-button { display: none; }
+#wpjobportaladmin-leftmenu .wjpm-search kbd { margin-right: 8px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 11px; border: 1px solid var(--wjpm-line); border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; background: var(--wjpm-card); color: var(--wjpm-ink-3); white-space: nowrap; }
+#wpjobportaladmin-leftmenu .wjpm-new { position: relative; }
+#wpjobportaladmin-leftmenu .wjpm-new summary { list-style: none; width: 36px; height: 36px; border-radius: 8px; background: var(--wjpm-primary); color: #fff; display: grid; place-items: center; cursor: pointer; }
+#wpjobportaladmin-leftmenu .wjpm-new summary::-webkit-details-marker { display: none; }
+#wpjobportaladmin-leftmenu .wjpm-new summary:hover { background: var(--wjpm-primary-dark); }
+#wpjobportaladmin-leftmenu .wjpm-pop { position: absolute; z-index: 30; top: 42px; background: var(--wjpm-card); border: 1px solid var(--wjpm-line); border-radius: 10px; box-shadow: 0 20px 40px -12px rgb(15 23 42 / .25); padding: 6px; display: grid; }
+#wpjobportaladmin-leftmenu .wjpm-pop[hidden] { display: none; }
+#wpjobportaladmin-leftmenu .wjpm-search .wjpm-pop { position: fixed; top: 0; left: 0; width: 460px; z-index: 100000; max-height: min(70vh, 560px); overflow-y: auto; }
+#wpjobportaladmin-leftmenu .wjpm-new .wjpm-pop { right: 0; min-width: 190px; }
+#wpjobportaladmin-leftmenu .wjpm-pop a { display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 6px; font-size: 13.5px; color: var(--wjpm-ink); text-decoration: none; white-space: nowrap; box-shadow: none; }
+#wpjobportaladmin-leftmenu .wjpm-pop a:hover, #wpjobportaladmin-leftmenu .wjpm-pop a.on { background: #f1f5f9; }
+#wpjobportaladmin-leftmenu .wjpm-pop a small { margin-left: auto; color: var(--wjpm-ink-4); font-size: 11.5px; overflow: hidden; text-overflow: ellipsis; }
+#wpjobportaladmin-leftmenu .wjpm-search .wjpm-pop a { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1px; }
+#wpjobportaladmin-leftmenu .wjpm-search .wjpm-pop a small { margin-left: 0; }
+#wpjobportaladmin-leftmenu .wjpm-search .wjpm-pop a > span, #wpjobportaladmin-leftmenu .wjpm-search .wjpm-pop a small { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+#wpjobportaladmin-leftmenu .wjpm-pop .wjpm-i { width: 16px; height: 16px; flex: 0 0 16px; color: var(--wjpm-ink-3); }
+#wpjobportaladmin-leftmenu .wjpm-none { padding: 8px 10px; font-size: 13px; color: var(--wjpm-ink-3); }
+#wpjobportaladmin-leftmenu .wjpm-grp-h { padding: 8px 10px 2px; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--wjpm-ink-3); }
+
+#wpjobportaladmin-leftmenu .wjpm {
+    flex: 1 0 auto;
+    width: 100%;
+    padding: 4px 0 8px;
+    font-size: 14px;
+    line-height: 1.3;
+    color: var(--wjpm-ink-2);
+}
+#wpjobportaladmin-leftmenu .wjpm-grp { padding: 6px 8px; }
+#wpjobportaladmin-leftmenu .wjpm-grp h6 {
+    margin: 8px 8px 4px;
+    font-size: 11px;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: var(--wjpm-ink-4);
+    font-weight: 600;
+    white-space: nowrap;
+}
+#wpjobportaladmin-leftmenu .wjpm-sec { position: relative; }
+#wpjobportaladmin-leftmenu .wjpm-it {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 36px;
+    padding: 0 26px 0 10px;
+    border-radius: 8px;
+    color: var(--wjpm-ink-2);
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: none;
+}
+#wpjobportaladmin-leftmenu .wjpm-it:hover,
+#wpjobportaladmin-leftmenu .wjpm-it:focus { background: var(--wjpm-card); color: var(--wjpm-ink); }
+#wpjobportaladmin-leftmenu .wjpm-it:focus-visible,
+#wpjobportaladmin-leftmenu .wjpm-sub a:focus-visible,
+#wpjobportaladmin-leftmenu .wjpm-chev:focus-visible { outline: 2px solid var(--wjpm-primary); outline-offset: 1px; }
+#wpjobportaladmin-leftmenu .wjpm-ibox {
+    width: 26px;
+    height: 26px;
+    flex: 0 0 26px;
+    margin-left: -4px;
+    border-radius: 7px;
+    display: grid;
+    place-items: center;
+}
+#wpjobportaladmin-leftmenu .wjpm-i { width: 17px; height: 17px; color: var(--wjpm-ink-3); }
+#wpjobportaladmin-leftmenu .wjpm-sec.cur > .wjpm-it,
+#wpjobportaladmin-leftmenu .wjpm-foot .wjpm-it.cur { color: var(--wjpm-primary-dark); font-weight: 600; }
+#wpjobportaladmin-leftmenu .wjpm-sec.cur > .wjpm-it .wjpm-ibox,
+#wpjobportaladmin-leftmenu .wjpm-foot .wjpm-it.cur .wjpm-ibox { background: var(--wjpm-primary); box-shadow: 0 2px 6px -2px var(--wjpm-primary); }
+#wpjobportaladmin-leftmenu .wjpm-sec.cur > .wjpm-it .wjpm-i,
+#wpjobportaladmin-leftmenu .wjpm-foot .wjpm-it.cur .wjpm-i { color: #fff; }
+/* 13.5px system font ≈ the design's 14px Inter, so the longest label (Appearance & language) fits. */
+#wpjobportaladmin-leftmenu .wjpm-lbl { overflow: hidden; text-overflow: ellipsis; font-size: 13.5px; }
+#wpjobportaladmin-leftmenu .wjpm-end { margin-left: auto; display: flex; align-items: center; gap: 6px; }
+#wpjobportaladmin-leftmenu .wjpm-cnt { color: var(--wjpm-ink-4); font-size: 12px; font-weight: 500; font-variant-numeric: tabular-nums; }
+#wpjobportaladmin-leftmenu .wjpm-cnt.wjpm-due { color: var(--wjpm-warn-txt); background: var(--wjpm-warn-bg); border-radius: 999px; padding: 1px 7px; font-weight: 600; }
+#wpjobportaladmin-leftmenu .wjpm-sec.cur > .wjpm-it .wjpm-cnt:not(.wjpm-due) { color: var(--wjpm-primary-dark); }
+#wpjobportaladmin-leftmenu .wjpm-new { display: inline-flex; align-items: center; gap: 4px; font-size: 11.5px; font-weight: 600; color: var(--wjpm-primary); }
+#wpjobportaladmin-leftmenu .wjpm-new i { width: 6px; height: 6px; border-radius: 50%; background: var(--wjpm-primary); }
+#wpjobportaladmin-leftmenu .wjpm-tag { font-size: 9.5px; letter-spacing: .05em; text-transform: uppercase; color: var(--wjpm-ink-4); font-weight: 600; border: 1px solid var(--wjpm-line); border-radius: 4px; padding: 0 4px; }
+#wpjobportaladmin-leftmenu .wjpm-chev {
+    position: absolute;
+    right: 2px;
+    top: 6px;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    background: none;
+    color: var(--wjpm-ink-4);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+}
+#wpjobportaladmin-leftmenu .wjpm-chev:hover { background: var(--wjpm-card); color: var(--wjpm-ink); }
+#wpjobportaladmin-leftmenu .wjpm-chev .wjpm-i { width: 14px; height: 14px; color: currentColor; transition: transform .15s; }
+#wpjobportaladmin-leftmenu .wjpm-sec.open > .wjpm-chev .wjpm-i { transform: rotate(90deg); }
+#wpjobportaladmin-leftmenu .wjpm-sub {
+    display: none;
+    margin: 2px 0 6px 19px;
+    padding-left: 10px;
+    border-left: 1px solid var(--wjpm-line);
+}
+#wpjobportaladmin-leftmenu .wjpm-sec.open > .wjpm-sub { display: grid; gap: 1px; }
+#wpjobportaladmin-leftmenu .wjpm-flyhead { display: none; }
+#wpjobportaladmin-leftmenu .wjpm-sub a {
+    position: relative;
+    display: block;
+    padding: 6px 10px;
+    border-radius: 6px;
+    color: var(--wjpm-ink-3);
+    font-size: 13.5px;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: none;
+}
+#wpjobportaladmin-leftmenu .wjpm-sub a:hover { color: var(--wjpm-ink); background: var(--wjpm-card); }
+#wpjobportaladmin-leftmenu .wjpm-sub a.on { color: var(--wjpm-primary-dark); font-weight: 600; }
+#wpjobportaladmin-leftmenu .wjpm-sub a.on::before {
+    content: "";
+    position: absolute;
+    left: -11px;
+    top: 5px;
+    bottom: 5px;
+    width: 3px;
+    border-radius: 2px;
+    background: var(--wjpm-primary);
+}
+#wpjobportaladmin-leftmenu .wjpm-3 { display: grid; margin: 1px 0 4px 10px; padding-left: 9px; border-left: 1px dashed var(--wjpm-line); }
+#wpjobportaladmin-leftmenu .wjpm-3 a { font-size: 12.5px; padding: 4px 10px; }
+#wpjobportaladmin-leftmenu .wjpm-3 a.on3 { color: var(--wjpm-primary-dark); font-weight: 600; background: var(--wjpm-card); }
+#wpjobportaladmin-leftmenu .wjpm-3 a.on3::before { display: none; }
+#wpjobportaladmin-leftmenu .wjpm-ao { font-size: 10px; color: var(--wjpm-ink-4); margin-left: 6px; font-weight: 500; }
+#wpjobportaladmin-leftmenu .wjpm-foot { margin-top: auto; border-top: 1px solid var(--wjpm-line); padding: 10px 12px; display: flex; flex-wrap: wrap; align-items: center; gap: 0 2px; font-size: 12px; color: var(--wjpm-ink-3); white-space: nowrap; position: sticky; bottom: 0; background: var(--wjpm-bg); }
+#wpjobportaladmin-leftmenu .wjpm-foot button, #wpjobportaladmin-leftmenu .wjpm-foot a { border: 0; background: none; display: flex; align-items: center; gap: 6px; color: var(--wjpm-ink-2); cursor: pointer; padding: 6px 6px; border-radius: 6px; font-weight: 500; font-size: 12px; text-decoration: none; box-shadow: none; }
+#wpjobportaladmin-leftmenu .wjpm-foot button:hover, #wpjobportaladmin-leftmenu .wjpm-foot a:hover, #wpjobportaladmin-leftmenu .wjpm-foot a.cur { background: #f1f5f9; color: var(--wjpm-ink); }
+#wpjobportaladmin-leftmenu .wjpm-foot .wjpm-i { width: 15px; height: 15px; }
+#wpjobportaladmin-leftmenu .wjpm-foot .wjpm-lbl { overflow: visible; }
+#wpjobportaladmin-leftmenu .wjpm-ver { margin-left: auto; padding: 2px 6px; font-size: 11.5px; color: var(--wjpm-ink-4); font-weight: 400; }
+#wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-foot .wjpm-i[viewBox] { transform: scaleX(-1); }
+#wpjobportaladmin-leftmenu .wjpm-legacy ul.wpjobportaladmin-sidebar-menu { margin-top: 0; padding-bottom: 0; }
+
+/* Narrow: icons only; a section's pages open as a flyout on hover or focus. */
+#wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-grp { padding: 4px 8px; }
+#wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-grp h6,
+#wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-lbl,
+#wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-end,
+#wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-chev,
+#wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-legacy { display: none; }
+#wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-grp + .wjpm-grp { border-top: 1px solid var(--wjpm-line); }
+#wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-it { justify-content: center; padding: 0; }
+#wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-ibox { margin-left: 0; }
+#wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-foot { margin: 6px 8px 0; }
+#wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-sub { display: none; }
+#wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-sec:hover > .wjpm-sub,
+#wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-sec:focus-within > .wjpm-sub {
+    display: grid;
+    gap: 1px;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    z-index: 20;
+    min-width: 210px;
+    margin: 0 0 0 8px;
+    padding: 6px;
+    border: 1px solid var(--wjpm-line);
+    border-radius: 10px;
+    background: var(--wjpm-card);
+    box-shadow: 0 12px 28px -8px rgba(15, 23, 42, .25);
+}
+#wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-flyhead {
+    display: block;
+    padding: 4px 10px 6px;
+    font-size: 11px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--wjpm-ink-4);
+    font-weight: 600;
+}
+#wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-sub a.on::before { left: 0; }
+#wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-bt,
+#wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-search,
+#wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-ver,
+#wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-foot .wjpm-lbl { display: none; }
+#wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-brand { padding-inline: 17px; }
+#wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-top { justify-content: center; margin-inline: 0; }
+#wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-foot { flex-direction: column; padding: 8px 0; }
+#wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-new .wjpm-pop { left: 0; right: auto; }
+
+/* Approvals tabs: on the Approvals page and above each queue screen (old and new screens). */
+.wjpl-tabs { display: flex; gap: 4px; overflow-x: auto; background: #fff; border-radius: .75rem; box-shadow: 0 1px 2px rgb(15 23 42 / .06), 0 1px 3px rgb(15 23 42 / .08); padding: 6px; margin: 0 0 16px; scrollbar-width: thin; }
+.wjpl-tabs a { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: .5rem; font-weight: 500; font-size: 14px; color: #475569; text-decoration: none; box-shadow: none; white-space: nowrap; }
+.wjpl-tabs a:hover { background: #f1f5f9; color: #1e293b; }
+.wjpl-tabs a[aria-current="page"] { background: #eef2ff; color: #4338ca; font-weight: 600; }
+.wjpl-tabs .wjpl-tab-n { font-size: 12px; color: #64748b; font-variant-numeric: tabular-nums; }
+.wjpl-tabs .wjpl-tab-n.wjpl-due { background: #fef3c7; color: #b45309; border-radius: 999px; padding: 0 7px; font-weight: 600; }
+#wpjobportal-head + .wjpl-tabs { margin-top: 16px; }
+
+/* RTL */
+.rtl div#wpjobportaladmin-leftmenu { left: auto; right: 160px; border-right: 0; border-left: 1px solid var(--wjpm-line); }
+.rtl.folded div#wpjobportaladmin-leftmenu { right: 36px; }
+.rtl.wjpm-focus div#wpjobportaladmin-leftmenu { right: 0; }
+.rtl div#wpjobportaladmin-wrapper div#wpjobportaladmin-data { padding-left: 0; padding-right: 62px; }
+.rtl div#wpjobportaladmin-wrapper.menu-collasped-active div#wpjobportaladmin-data { padding-left: 0; padding-right: 246px; }
+.rtl body.wjpm-focus #wpcontent { margin-right: 0; }
+.rtl #wpjobportaladmin-leftmenu .wjpm-ver { margin-left: 0; margin-right: auto; }
+.rtl #wpjobportaladmin-leftmenu .wjpm-new .wjpm-pop { right: auto; left: 0; }
+.rtl #wpjobportaladmin-leftmenu .wjpm-it { padding: 0 10px 0 26px; }
+.rtl #wpjobportaladmin-leftmenu .wjpm-ibox { margin-left: 0; margin-right: -4px; }
+.rtl #wpjobportaladmin-leftmenu .wjpm-end { margin-left: 0; margin-right: auto; }
+.rtl #wpjobportaladmin-leftmenu .wjpm-chev { right: auto; left: 2px; }
+.rtl #wpjobportaladmin-leftmenu .wjpm-sec.open > .wjpm-chev .wjpm-i { transform: rotate(-90deg); }
+.rtl #wpjobportaladmin-leftmenu .wjpm-chev .wjpm-i { transform: scaleX(-1); }
+.rtl #wpjobportaladmin-leftmenu .wjpm-sub { margin: 2px 19px 6px 0; padding-left: 0; padding-right: 10px; border-left: 0; border-right: 1px solid var(--wjpm-line); }
+.rtl #wpjobportaladmin-leftmenu .wjpm-sub a.on::before { left: auto; right: -11px; }
+.rtl #wpjobportaladmin-leftmenu .wjpm-3 { margin: 1px 10px 4px 0; padding-left: 0; padding-right: 9px; border-left: 0; border-right: 1px dashed var(--wjpm-line); }
+.rtl #wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-sec:hover > .wjpm-sub,
+.rtl #wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-sec:focus-within > .wjpm-sub { left: auto; right: 100%; margin: 0 8px 0 0; }
+
+/* Phones and small tablets: the WordPress menu becomes a drawer, so the plugin menu sits on top of the page
+   as a header (brand + burger) and opens below it. */
+@media (max-width: 782px) {
+    div#wpjobportaladmin-leftmenu, div.menu-collasped-active div#wpjobportaladmin-leftmenu { position: relative; float: none; top: auto; left: auto; bottom: auto; width: 100%; overflow: visible; border-right: 0; border: 1px solid var(--wjpm-line); border-radius: 10px; margin-bottom: 12px; }
+    div#wpjobportaladmin-wrapper div#wpjobportaladmin-data, div#wpjobportaladmin-wrapper.menu-collasped-active div#wpjobportaladmin-data { padding-left: 0; }
+    #wpjobportaladmin-leftmenu .wjpm-burger { display: grid; }
+    #wpjobportaladmin-leftmenu .wjpm-bt { display: grid !important; }
+    #wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-brand { padding-inline: 16px; }
+    #wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-top,
+    #wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm,
+    #wpjobportaladmin-wrapper:not(.menu-collasped-active) #wpjobportaladmin-leftmenu .wjpm-foot { display: none; }
+    #wpjobportaladmin-leftmenu .wjpm-foot { position: static; }
+    #wpjobportaladmin-leftmenu .wjpm-foot #wpjobportaladmin-menu-toggle { display: none; }
+    #wpjobportaladmin-wrapper.menu-collasped-active #wpjobportaladmin-leftmenu .wjpm-sub { margin-left: 30px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #wpjobportaladmin-leftmenu .wjpm-chev .wjpm-i { transition: none; }
+}

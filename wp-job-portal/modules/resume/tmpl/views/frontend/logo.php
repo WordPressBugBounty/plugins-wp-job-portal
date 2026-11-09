@@ -19,7 +19,7 @@ if(empty(wpjobportal::$_data['shortcode_option_hide_resume_photo'])){ ?>
     <div class="wjportal-resume-logo">
         <span class="fir">
             <a href="<?php echo esc_url($wpjobportal_url); ?>">
-                <img  src="<?php echo esc_url($wpjobportal_photourl); ?>" />
+                <img alt="<?php echo esc_attr__('View resume', 'wp-job-portal'); ?>" src="<?php echo esc_url($wpjobportal_photourl); ?>" />
             </a>
         </span>
     </div>

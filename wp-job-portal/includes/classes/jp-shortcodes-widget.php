@@ -81,7 +81,7 @@ class WPJOBPORTAL_Shortcodes_Wigdet extends \Elementor\Widget_Base {
 
 
 		//to handle default/reset case
-        $wpjobportal_color_array['color1'] = "#3baeda";
+        $wpjobportal_color_array['color1'] = "#2f6fc4";
         $wpjobportal_color_array['color2'] = "#333333";
         $wpjobportal_color_array['color3'] = "#575757";
 

@@ -123,15 +123,15 @@ $wpjobportal_yesno = array((object) array('id' => 1, 'text' => esc_html(__('Yes'
         </div>
         <div class="wpjobportal-post-data">
             <div class="wpjobportal-post-heading-wrp">
-                <div class="wpjobportal-post-heading">
+                <h1 class="wpjobportal-post-heading">
                     <?php echo esc_html(__('Sample Data','wp-job-portal'));?>
-                </div>
+                </h1>
                 <div class="wpjobportal-post-head-rightbtns-wrp">
                     <span class="wpjobportal-post-head-pagestep">
                         <?php echo esc_html(__('Step 3 of 4','wp-job-portal')); ?>
                     </span>
-                    <a class="wpjobportal-post-head-closebtn" href="admin.php?page=wpjobportal"title="<?php echo esc_attr(__('Close','wp-job-portal'));?>">
-                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/postinstallation/close.png" />
+                    <a class="wpjobportal-post-head-closebtn" href="admin.php?page=wpjobportal" title="<?php echo esc_attr(__('Close','wp-job-portal'));?>">
+                        <?php echo esc_html__('Exit setup', 'wp-job-portal'); ?>
                     </a>
                 </div>
             </div>
@@ -192,9 +192,9 @@ $wpjobportal_yesno = array((object) array('id' => 1, 'text' => esc_html(__('Yes'
                 <div id="wpjp-sample-owner-summary" class="wpjobportal-post-owner-summary wpjobportal-post-show-default-user-form" role="status" hidden><span></span></div>
 
                 <?php if(wpjobportal::$wpjobportal_theme_chk == 0){ ?>
-                    <div class="wpjobportal-post-heading">
+                    <h2 class="wpjobportal-post-heading">
                         <?php echo esc_html(__('Menu','wp-job-portal'));?>
-                    </div>
+                    </h2>
                     <div class="wpjobportal-post-data-row">
                         <div class="wpjobportal-post-tit">
                             <?php echo esc_html(__('Job Seeker Menu','wp-job-portal')); ?>

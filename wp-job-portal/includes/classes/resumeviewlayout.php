@@ -128,7 +128,7 @@ class WPJOBPORTALResumeViewlayout {
                 $wpjobportal_html .= '<a target="_blank" href="' . esc_url(wp_nonce_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'action'=>'wpjobportaltask', 'task'=>'getresumefiledownloadbyid', 'wpjobportalid'=>$file->id, 'wpjobportalpageid'=>WPJOBPORTALRequest::getVar('wpjobportalpageid'))),'wpjobportal_resume_nonce'.$file->id)) . '" class="file">
                             <span class="wjportal-resume-attachment-filename">' . $file->filename . '</span>
                             <span class="wjportal-resume-attachment-file-ext"></span>
-                            <img class="wjportal-resume-attachment-file-download" src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/resume/download.png" />
+                            <img alt="" class="wjportal-resume-attachment-file-download" src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/resume/download.png" />
                         </a>';
             }
         }
@@ -508,7 +508,7 @@ class WPJOBPORTALResumeViewlayout {
                         $wpjobportal_data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
                         $wpjobportal_img = $wpjobportal_wpdir['baseurl'] . '/' . $wpjobportal_data_directory . '/data/jobseeker/resume_' . wpjobportal::$_data[0]['personal_section']->id . '/photo/' . wpjobportal::$_data[0]['personal_section']->photo;
                     }
-                    $wpjobportal_html .= '<img src="' . esc_url($wpjobportal_img) . '" />';
+                    $wpjobportal_html .= '<img alt="' . esc_attr__('Resume photo', 'wp-job-portal') . '" src="' . esc_url($wpjobportal_img) . '" />';
                     $wpjobportal_html .= '</div>';
                 }
             }
@@ -590,7 +590,7 @@ class WPJOBPORTALResumeViewlayout {
         if (wpjobportal::$wpjobportal_data['resumecontactdetail'] == true || $adminLogin) {
             if (isset(wpjobportal::$_data[2][1]['jobtype'])) {
                 if(isset(wpjobportal::$_data[0]) && !empty(wpjobportal::$_data[0]['personal_section']->jobtypetitle)){
-                    $wpjobportal_html .= '<div class="wjportal-resume-info"> <span class="wjportal-jobtype" style="--wpjp-jobtype-color: '.wpjobportal::$_data[0]['personal_section']->jobtypecolor.';">'  . esc_html(wpjobportal::wpjobportal_getVariableValue(wpjobportal::$_data[0]['personal_section']->jobtypetitle)) . '</span></div>';
+                    $wpjobportal_html .= '<div class="wjportal-resume-info"> <span class="wjportal-jobtype" style="--wpjp-jobtype-color: '.esc_attr(WPJOBPORTAL_Color::on_white(wpjobportal::$_data[0]['personal_section']->jobtypecolor)).';">'  . esc_html(wpjobportal::wpjobportal_getVariableValue(wpjobportal::$_data[0]['personal_section']->jobtypetitle)) . '</span></div>';
                 }
             }
             if (isset(wpjobportal::$_data[2][1]['email_address'])) {
@@ -604,7 +604,7 @@ class WPJOBPORTALResumeViewlayout {
             }
             if (isset(wpjobportal::$_data[2][1]['cell'])) {
                     if(isset(wpjobportal::$_data[0]) && !empty(wpjobportal::$_data[0]['personal_section']->cell)){
-                        $wpjobportal_html .= '<div class="wjportal-resume-info"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/number.png" alt="'.esc_attr(__('number','wp-job-portal')).'"title="'.esc_html(__('number','wp-job-portal')).'" />'  . wpjobportal::$_data[0]['personal_section']->cell . '</div>';
+                        $wpjobportal_html .= '<div class="wjportal-resume-info"><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/number.png" alt="'.esc_attr(__('number','wp-job-portal')).'" title="'.esc_html(__('number','wp-job-portal')).'" />'  . wpjobportal::$_data[0]['personal_section']->cell . '</div>';
                     }
             }
 
@@ -664,7 +664,7 @@ class WPJOBPORTALResumeViewlayout {
                         $wpjobportal_data_directory = wpjobportal::$_config->getConfigurationByConfigName('data_directory');
                         $wpjobportal_img = $wpjobportal_wpdir['baseurl'] . '/' . $wpjobportal_data_directory . '/data/jobseeker/resume_' . wpjobportal::$_data[0]['personal_section']->id . '/photo/' . wpjobportal::$_data[0]['personal_section']->photo;
                     }
-                    $wpjobportal_html .= '<img src="' . esc_url($wpjobportal_img) . '" />';
+                    $wpjobportal_html .= '<img alt="' . esc_attr__('Resume photo', 'wp-job-portal') . '" src="' . esc_url($wpjobportal_img) . '" />';
                     $wpjobportal_html .= '</div>';
                 }
             }
@@ -724,7 +724,7 @@ class WPJOBPORTALResumeViewlayout {
         }
             if (isset(wpjobportal::$_data[2][1]['jobtype'])) {
                 if(isset(wpjobportal::$_data[0]) && !empty(wpjobportal::$_data[0]['personal_section']->jobtypetitle)){
-                    $wpjobportal_html .= '<div class="wjportal-resume-info  wjportal-resume-info-jobtype"> <span class="wjportal-jobtype" style="--wpjp-jobtype-color: '.wpjobportal::$_data[0]['personal_section']->jobtypecolor.';">'  . esc_html(wpjobportal::wpjobportal_getVariableValue(wpjobportal::$_data[0]['personal_section']->jobtypetitle)) . '</span></div>';
+                    $wpjobportal_html .= '<div class="wjportal-resume-info  wjportal-resume-info-jobtype"> <span class="wjportal-jobtype" style="--wpjp-jobtype-color: '.esc_attr(WPJOBPORTAL_Color::on_white(wpjobportal::$_data[0]['personal_section']->jobtypecolor)).';">'  . esc_html(wpjobportal::wpjobportal_getVariableValue(wpjobportal::$_data[0]['personal_section']->jobtypetitle)) . '</span></div>';
                 }
             }
         if (wpjobportal::$wpjobportal_data['resumecontactdetail'] == true || $adminLogin) {
@@ -741,7 +741,7 @@ class WPJOBPORTALResumeViewlayout {
         if (wpjobportal::$wpjobportal_data['resumecontactdetail'] == true || $adminLogin) {
             if (isset(wpjobportal::$_data[2][1]['cell'])) {
                     if(isset(wpjobportal::$_data[0]) && !empty(wpjobportal::$_data[0]['personal_section']->cell)){
-                        $wpjobportal_html .= '<div class="wjportal-resume-info wjportal-resume-info-cell "><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/number.png" alt="'.esc_attr(__('number','wp-job-portal')).'"title="'.esc_html(__('number','wp-job-portal')).'" />'  . wpjobportal::$_data[0]['personal_section']->cell . '</div>';
+                        $wpjobportal_html .= '<div class="wjportal-resume-info wjportal-resume-info-cell "><img src="' . esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/images/number.png" alt="'.esc_attr(__('number','wp-job-portal')).'" title="'.esc_html(__('number','wp-job-portal')).'" />'  . wpjobportal::$_data[0]['personal_section']->cell . '</div>';
                     }
             }
 
@@ -793,7 +793,14 @@ class WPJOBPORTALResumeViewlayout {
     }
 
     function getFieldTitleByField($wpjobportal_field){
-        return wpjobportal::wpjobportal_getVariableValue(wpjobportal::$wpjobportal_data['fieldtitles'][$wpjobportal_field]);
+        $wpjobportal_title = (string) wpjobportal::$wpjobportal_data['fieldtitles'][$wpjobportal_field];
+        // U-2: this page reads a resume; "Add Address" is the form's heading. "Add " comes
+        // off the stored English title before it is translated: after translating, a German
+        // page had "Adresse hinzufügen", with no "Add" left to remove.
+        if (strpos($wpjobportal_field, 'section_') === 0) {
+            $wpjobportal_title = preg_replace('/^Add\s+/', '', $wpjobportal_title);
+        }
+        return wpjobportal::wpjobportal_getVariableValue($wpjobportal_title);
     }
 
     function getRowForView($wpjobportal_text, $wpjobportal_value, &$wpjobportal_i,$wpjobportal_themecall=null,$full=0) {

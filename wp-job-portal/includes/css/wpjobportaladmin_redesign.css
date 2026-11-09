@@ -1168,6 +1168,8 @@ td.wjp-table-actions a{color: var(--wjp-color-primary); }
 }
 
 #wjp-dashboard-wrapper div.wjp-system-logs .wjp-item-text {
+    min-width: 0;
+    max-width: 100%;
         display: flex;
     flex-direction: column;
     gap: 4px;
@@ -1338,7 +1340,7 @@ td.wjp-table-actions a{color: var(--wjp-color-primary); }
 /* --- Sidebar --- */
 #wjp-config-dashboard #wjp-sidebar .wjp-sidebar-header { padding: 0 24px; height: 64px; border-bottom: 1px solid var(--wjp-border-color); display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
 #wjp-config-dashboard #wjp-sidebar .wjp-sidebar-header .wjp-logo-icon { width: 32px; height: 32px; background-color: var(--wjp-color-primary); color: var(--wjp-text-white); display: flex; align-items: center; justify-content: center; border-radius: var(--wjp-border-radius-sm); flex-shrink: 0; }
-#wjp-config-dashboard #wjp-sidebar .wjp-sidebar-header .wjp-title { font-size: var(--wjp-font-size-lg); font-weight: var(--wjp-font-weight-bold); color: var(--wjp-text-dark); margin: 0; }
+#wjp-config-dashboard #wjp-sidebar .wjp-sidebar-header .wjp-title { font-size: var(--wjp-font-size-lg); font-weight: var(--wjp-font-weight-bold); color: var(--wjp-text-dark); margin: 0; padding: 0; line-height: inherit; } /* an h1 since 2.8.0: the page's only heading */
 #wjp-config-dashboard #wjp-sidebar #wjp-settings-nav { flex: 1; overflow-y: auto; padding: 16px; }
 #wjp-config-dashboard #wjp-sidebar #wjp-settings-nav ul { list-style: none; padding: 0; margin: 0; }
 #wjp-config-dashboard #wjp-sidebar #wjp-settings-nav li:not(:last-child) { border-bottom: 1px solid var(--wjp-bg-light); }
@@ -1357,6 +1359,11 @@ td.wjp-table-actions a{color: var(--wjp-color-primary); }
     border-radius: var(--wjp-border-radius-sm);}
 #wjp-config-dashboard #wjp-main-panel-content .wjp-search-panel #wjp-search-box:focus { outline: none; border-color: var(--wjp-color-primary); background-color: var(--wjp-bg-card); box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.2); }
 #wjp-config-dashboard #wjp-main-panel-content .wjp-search-panel .wjp-search-input-wrapper i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--wjp-text-lighter); }
+/* "Changed from default" filter: unticked, the same light border as the search box
+   above it instead of WordPress's near-black one; ticked stays WordPress's own. */
+#wjp-config-dashboard #wjp-main-panel-content .wjp-search-panel input[type="checkbox"] { border-radius: 4px; }
+#wjp-config-dashboard #wjp-main-panel-content .wjp-search-panel input[type="checkbox"]:not(:checked) { border-color: #cbd5e1; box-shadow: none; }
+#wjp-config-dashboard #wjp-main-panel-content .wjp-search-panel input[type="checkbox"]:not(:checked):hover { border-color: var(--wjp-color-primary); }
 #wjp-config-dashboard #wjp-main-panel-content .wjp-search-panel .wjp-search-description { margin-top: 8px; font-size: var(--wjp-font-size-xs); color: var(--wjp-text-light); }
 /* Sub Navigation */
 #wjp-config-dashboard #wjp-sticky-sub-nav-wrapper { position: sticky; top: 0; z-index: 10; background-color: rgba(248, 250, 252, 0.8); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--wjp-border-color); }
@@ -2216,3 +2223,323 @@ td.wjp-table-actions a{color: var(--wjp-color-primary); }
   .wjp-translations-action { text-align: start; white-space: normal; padding-top: 8px !important; }
   .wjp-translations-action .wjp-licences-btn { width: 100%; }
 }
+
+/*
+ * W-19: the Dashboard drawn like every other screen - a plain title row
+ * (title, one line under it, actions on the right) instead of the purple
+ * banner the shortcut tiles overlapped; cards without a border; Quick Stats
+ * as plain tiles inside their card.
+ */
+#wjp-dashboard-wrapper div#wjp-header { align-items: center; flex-wrap: wrap; gap: 12px; min-height: 0; margin: 0 0 16px; padding: 0; border-radius: 0; background: none; }
+#wjp-dashboard-wrapper div#wjp-header div.wjp-header-actions,
+#wjp-dashboard-wrapper .wjp-header-title { margin-top: 0; }
+#wjp-dashboard-wrapper div#wjp-header div.wjp-header-title .wjp-h2 { margin: 0; padding: 0; font-size: 1.6rem; line-height: 1.2; font-weight: 700; letter-spacing: -.02em; color: #1e293b; }
+#wjp-dashboard-wrapper div#wjp-header div.wjp-header-title p { margin: 4px 0 0; font-size: 14px; color: #64748b; }
+/* Buttons as on the Jobs list: Add is the shared green add button (wjpl-btn-add), 37px, 8px, 14px semibold. */
+#wjp-dashboard-wrapper div#wjp-header a.wjp-btn-secondary,
+#wjp-dashboard-wrapper div#wjp-header a.wjp-btn-primary { height: 37px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 600; }
+#wjp-dashboard-wrapper div#wjp-header a.wjp-btn-secondary { background: #fff; border: 1px solid #e2e8f0; color: #1e293b; }
+#wjp-dashboard-wrapper div#wjp-header a.wjp-btn-primary { background: #15803d; border: 1px solid transparent; color: #fff; }
+#wjp-dashboard-wrapper div#wjp-header a.wjp-btn-primary:hover,
+#wjp-dashboard-wrapper div#wjp-header a.wjp-btn-primary:focus { background: #166534; color: #fff; }
+#wjp-dashboard-wrapper div#wjp-quick-actions { margin-top: 0; margin-bottom: 16px; gap: 16px; }
+#wjp-dashboard-wrapper div.wjp-card,
+#wjp-dashboard-wrapper div#wjp-quick-actions a.wjp-action-card { border: 0; box-shadow: 0 1px 2px rgb(15 23 42 / .06), 0 1px 3px rgb(15 23 42 / .08); }
+#wjp-dashboard-wrapper div.wjp-card:not(div.wjp-grid-section div.wjp-card) { margin-bottom: 16px; }
+#wjp-dashboard-wrapper div#wjp-quick-stats div.wjp-stat-item { border: 0; }
+@media (max-width: 782px) { #wjp-dashboard-wrapper div#wjp-header div.wjp-header-title .wjp-h2 { font-size: 1.4rem; } }
+
+/*
+ * W-19: the rest of the Dashboard in step with the other screens - the
+ * WordPress system font (not Inter), 16px between cards, one icon colour
+ * (indigo), grey tags, white bordered buttons, a flat table header running to
+ * the card edges with long names cut to two lines, and the chart card no
+ * longer stretched to the height of Quick Stats.
+ */
+#wjp-dashboard-wrapper { --wjp-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif; font-family: var(--wjp-font-family); }
+#wjp-dashboard-wrapper :is(p, a, span, div, td, th, button, strong, li, label) { font-family: inherit; }
+#wjp-dashboard-wrapper div.wjp-grid-section { gap: 16px; margin-bottom: 16px; }
+/* Platform Growth sits beside Quick Stats: the stats rows are compact so the two cards are about the same height, and the chart is centred in what is left. */
+#wjp-dashboard-wrapper div#wjp-main-grid > .wjp-card:first-child { display: flex; flex-direction: column; }
+#wjp-dashboard-wrapper div#wjp-main-grid .wjp-chart-container { margin: auto 0; }
+#wjp-dashboard-wrapper div#wjp-quick-stats div.wjp-stat-item { padding: 10px 12px; }
+#wjp-dashboard-wrapper div#wjp-quick-stats div.wjp-stat-icon-wrapper { width: 36px; height: 36px; min-width: 36px; padding: 0; justify-content: center; }
+#wjp-dashboard-wrapper div#wjp-quick-stats div.wjp-stat-icon-wrapper svg { width: 18px; height: 18px; }
+#wjp-dashboard-wrapper div.wjp-grid-section div.wjp-card { margin-bottom: 0; }
+#wjp-dashboard-wrapper [class*="wjp-bg-"]:is(div, span) { background-color: #eef2ff !important; color: #4f46e5 !important; }
+#wjp-dashboard-wrapper span.wjp-tag,
+#wjp-dashboard-wrapper span.wjp-tag:is(.wjp-tag-sky, .wjp-tag-slate, .wjp-tag-emerald, .wjp-tag-blue) { background: #f1f5f9; color: #475569; border: 0; }
+#wjp-dashboard-wrapper a.wjp-btn-xs.wjp-btn-indigo,
+#wjp-dashboard-wrapper div.wjp-card a.wjp-view-all-link { display: inline-flex; align-items: center; height: 32px; padding: 0 12px; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; color: #1e293b; font-size: 13px; font-weight: 500; text-decoration: none; }
+#wjp-dashboard-wrapper a.wjp-btn-xs.wjp-btn-indigo:hover,
+#wjp-dashboard-wrapper div.wjp-card a.wjp-view-all-link:hover { border-color: #c7d2fe; background: #fff; color: #4f46e5; }
+#wjp-dashboard-wrapper div.wjp-card:has(> .wjp-table-wrapper) { overflow: hidden; }
+#wjp-dashboard-wrapper div.wjp-card > .wjp-table-wrapper { margin: 0 -1.5rem -1.5rem; }
+#wjp-dashboard-wrapper table.wjp-table { width: 100%; border-collapse: collapse; }
+#wjp-dashboard-wrapper table.wjp-table thead { background: #f8fafc; font-size: 12px; }
+#wjp-dashboard-wrapper table.wjp-table th { padding: 10px 16px; border-radius: 0 !important; border-bottom: 1px solid #e2e8f0; font-weight: 600; letter-spacing: .02em; color: #64748b; }
+#wjp-dashboard-wrapper table.wjp-table td { padding: 12px 16px; vertical-align: middle; }
+#wjp-dashboard-wrapper table.wjp-table td :is(.wjp-job-title, .wjp-company-name) a,
+#wjp-dashboard-wrapper table.wjp-table td.wjp-job-title a,
+#wjp-dashboard-wrapper table.wjp-table td.wjp-company-name a { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+#wjp-dashboard-wrapper .wjp-initials { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; width: 3.5rem; height: 3.5rem; margin-right: 1rem; border-radius: 8px; background: #eef2ff; color: #4f46e5; font-size: 18px; font-weight: 600; }
+
+/* W-20: date range, "Needs your attention" and the headline numbers. */
+#wjp-dashboard-wrapper nav.wjp-range { display: inline-flex; padding: 3px; border-radius: 8px; background: #e2e8f0; }
+#wjp-dashboard-wrapper nav.wjp-range a { padding: 6px 10px; border-radius: 6px; color: #475569; font-size: 13px; font-weight: 500; text-decoration: none; }
+#wjp-dashboard-wrapper nav.wjp-range a.is-on { background: #fff; color: #1e293b; box-shadow: 0 1px 2px rgb(15 23 42 / .08); }
+#wjp-dashboard-wrapper #wjp-attention { margin-bottom: 16px; padding: 20px; }
+#wjp-dashboard-wrapper #wjp-attention .wjp-card-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+#wjp-dashboard-wrapper .wjp-att-empty { margin: 0; color: #64748b; font-size: 14px; }
+#wjp-dashboard-wrapper .wjp-att-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+#wjp-dashboard-wrapper .wjp-att-list li { display: flex; align-items: center; gap: 12px; margin: 0; padding: 12px 14px; border-radius: 10px; background: #f8fafc; border-left: 4px solid #94a3b8; }
+#wjp-dashboard-wrapper .wjp-att-list li.wjp-att-wait { border-left-color: #d97706; }
+#wjp-dashboard-wrapper .wjp-att-list li.wjp-att-bad { border-left-color: #dc2626; }
+#wjp-dashboard-wrapper .wjp-att-list li.wjp-att-info { border-left-color: #4f46e5; }
+#wjp-dashboard-wrapper .wjp-att-n { min-width: 2ch; font-size: 22px; font-weight: 700; color: #1e293b; }
+#wjp-dashboard-wrapper .wjp-att-t { flex: 1; font-size: 14px; color: #1e293b; }
+#wjp-dashboard-wrapper .wjp-att-t small { display: block; font-size: 12.5px; color: #b91c1c; }
+#wjp-dashboard-wrapper #wjp-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px; margin-bottom: 16px; }
+#wjp-dashboard-wrapper .wjp-kpi { display: flex; flex-direction: column; gap: 4px; padding: 16px 18px; border-radius: 12px; background: #fff; box-shadow: 0 1px 2px rgb(15 23 42 / .06), 0 1px 3px rgb(15 23 42 / .08); color: inherit; text-decoration: none; }
+#wjp-dashboard-wrapper a.wjp-kpi:hover { box-shadow: 0 0 0 1px #c7d2fe, 0 1px 3px rgb(15 23 42 / .08); }
+#wjp-dashboard-wrapper .wjp-kpi-l { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .02em; color: #64748b; }
+#wjp-dashboard-wrapper .wjp-kpi-n { font-size: 26px; font-weight: 700; line-height: 1.1; color: #1e293b; }
+#wjp-dashboard-wrapper .wjp-kpi-d { font-size: 13px; font-weight: 600; }
+#wjp-dashboard-wrapper .wjp-kpi-d small { font-weight: 400; color: #64748b; }
+#wjp-dashboard-wrapper .wjp-kpi-up { color: #15803d; }
+#wjp-dashboard-wrapper .wjp-kpi-down { color: #b91c1c; }
+#wjp-dashboard-wrapper .wjp-kpi-flat { color: #64748b; }
+@media (max-width: 782px) { #wjp-dashboard-wrapper div#wjp-header div.wjp-header-actions { flex-wrap: wrap; } }
+
+/* W-20 part 2: one grid that fills rows whatever the order; the Options arrange list. */
+#wjp-dashboard-wrapper #wjp-sections { display: flex; flex-wrap: wrap; align-items: stretch; gap: 16px; }
+#wjp-dashboard-wrapper .wjp-sec { display: flex; flex-direction: column; min-width: 0; }
+#wjp-dashboard-wrapper .wjp-sec > * { flex: 1 1 auto; margin: 0 !important; }
+#wjp-dashboard-wrapper .wjp-sec-full { flex: 1 1 100%; }
+#wjp-dashboard-wrapper .wjp-sec-wide { flex: 2 1 520px; }
+#wjp-dashboard-wrapper .wjp-sec-narrow { flex: 1 1 300px; }
+#wjp-dashboard-wrapper .wjp-sec-half { flex: 1 1 420px; }
+#wjp-dashboard-wrapper .wjp-sec-wide > .wjp-card { display: flex; flex-direction: column; }
+#wjp-dashboard-wrapper .wjp-sec-wide .wjp-chart-container { margin: auto 0; }
+#wjp-dashboard-wrapper div#wjp-quick-actions { margin: 0; }
+#wjp-dashboard-wrapper .wjp-so-hint { margin: 0 0 10px; font-size: 13px; color: #64748b; }
+#wjp-dashboard-wrapper .wjp-so-arrange { margin: 0; padding: 0; list-style: none; max-height: 55vh; overflow: auto; }
+#wjp-dashboard-wrapper .wjp-so-arrange li { display: flex; align-items: center; gap: 8px; margin: 0 0 6px; padding: 8px 10px; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; cursor: grab; }
+#wjp-dashboard-wrapper .wjp-so-arrange li.is-dragging { opacity: .5; }
+#wjp-dashboard-wrapper .wjp-so-grip { color: #94a3b8; letter-spacing: -2px; }
+#wjp-dashboard-wrapper .wjp-so-name { flex: 1; font-size: 14px; color: #1e293b; }
+#wjp-dashboard-wrapper .wjp-so-move { width: 28px; height: 28px; padding: 0; border: 1px solid #e2e8f0; border-radius: 6px; background: #fff; color: #475569; cursor: pointer; }
+#wjp-dashboard-wrapper .wjp-so-move:hover, #wjp-dashboard-wrapper .wjp-so-move:focus-visible { border-color: #c7d2fe; color: #4f46e5; }
+/* The two chart cards lost their 2.7 wrapper: the card is the whole block, heading included. */
+#wjp-dashboard-wrapper .wjp-sec > div.wjp-chart-card { padding: 1.5rem; border: 0; border-radius: 12px; background: #fff; box-shadow: 0 1px 2px rgb(15 23 42 / .06), 0 1px 3px rgb(15 23 42 / .08); }
+#wjp-dashboard-wrapper .wjp-sec > div.wjp-chart-card .wjp-chart-container { padding: 0; border: 0; background: none; box-shadow: none; }
+/* W-20: job performance and hiring funnel. */
+#wjp-dashboard-wrapper .wjp-num { text-align: right; white-space: nowrap; }
+#wjp-dashboard-wrapper .wjp-perf-none { margin-top: 16px; padding: 12px 14px; border-left: 4px solid #d97706; border-radius: 8px; background: #fffbeb; }
+#wjp-dashboard-wrapper .wjp-perf-none-title { margin-bottom: 6px; font-size: 14px; font-weight: 600; color: #78350f; }
+#wjp-dashboard-wrapper .wjp-perf-none ul { margin: 0; padding: 0; list-style: none; }
+#wjp-dashboard-wrapper .wjp-perf-none li { display: flex; align-items: baseline; gap: 8px; margin: 4px 0; font-size: 13.5px; }
+#wjp-dashboard-wrapper .wjp-perf-none li span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #1e293b; }
+#wjp-dashboard-wrapper .wjp-perf-none li small { color: #64748b; }
+#wjp-dashboard-wrapper .wjp-fun-sub { margin: -8px 0 14px; font-size: 13px; color: #64748b; }
+#wjp-dashboard-wrapper .wjp-fun { margin: 0; padding: 0; list-style: none; }
+#wjp-dashboard-wrapper .wjp-fun li { display: grid; grid-template-columns: 96px 1fr auto 40px; align-items: center; gap: 10px; margin: 0 0 12px; }
+#wjp-dashboard-wrapper .wjp-fun-l { font-size: 13.5px; color: #1e293b; }
+#wjp-dashboard-wrapper .wjp-fun-bar { height: 10px; border-radius: 999px; background: #eef2ff; overflow: hidden; }
+#wjp-dashboard-wrapper .wjp-fun-bar span { display: block; height: 100%; border-radius: 999px; background: #4f46e5; }
+#wjp-dashboard-wrapper .wjp-fun-n { font-size: 14px; color: #1e293b; text-align: right; }
+#wjp-dashboard-wrapper .wjp-fun-p { font-size: 12px; color: #64748b; text-align: right; }
+#wjp-dashboard-wrapper .wjp-fun-foot { margin: 4px 0 0; font-size: 13px; color: #64748b; }
+/* W-20: one activity feed with type filters. */
+#wjp-dashboard-wrapper #wjp-activity-feed .wjp-card-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+#wjp-dashboard-wrapper .wjp-feed-filter { display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 3px; border-radius: 8px; background: #f1f5f9; }
+#wjp-dashboard-wrapper .wjp-feed-filter button { padding: 5px 10px; border: 0; border-radius: 6px; background: transparent; color: #475569; font-size: 13px; cursor: pointer; }
+#wjp-dashboard-wrapper .wjp-feed-filter button.is-on { background: #fff; color: #1e293b; box-shadow: 0 1px 2px rgb(15 23 42 / .08); }
+#wjp-dashboard-wrapper .wjp-feed { margin: 0; padding: 0; list-style: none; }
+#wjp-dashboard-wrapper .wjp-feed li { display: flex; align-items: baseline; gap: 12px; margin: 0; padding: 9px 0; border-top: 1px solid #f1f5f9; font-size: 14px; }
+#wjp-dashboard-wrapper .wjp-feed li[hidden] { display: none; }
+#wjp-dashboard-wrapper .wjp-feed-type { flex: 0 0 110px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .02em; color: #64748b; }
+#wjp-dashboard-wrapper .wjp-feed li a { flex: 1; min-width: 0; color: #1e293b; text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#wjp-dashboard-wrapper .wjp-feed li a:hover { color: #4f46e5; }
+#wjp-dashboard-wrapper .wjp-feed time { flex: 0 0 auto; font-size: 12.5px; color: #64748b; }
+/* W-20 part 3: revenue card, first steps, empty chart. */
+#wjp-dashboard-wrapper #wjp-revenue .wjp-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+#wjp-dashboard-wrapper .wjp-rev-main { display: flex; flex-direction: column; gap: 4px; padding-bottom: 14px; border-bottom: 1px solid #f1f5f9; }
+#wjp-dashboard-wrapper .wjp-rev-list { margin: 10px 0 0; padding: 0; list-style: none; }
+#wjp-dashboard-wrapper .wjp-rev-list li { display: flex; justify-content: space-between; gap: 10px; margin: 0; padding: 7px 0; font-size: 14px; color: #475569; }
+#wjp-dashboard-wrapper .wjp-rev-list b { color: #1e293b; }
+#wjp-dashboard-wrapper .wjp-first-steps { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 12px 0 0; }
+#wjp-dashboard-wrapper .wjp-first-steps a.wjp-btn-primary { display: inline-flex; align-items: center; height: 37px; padding: 0 14px; border-radius: 8px; background: #15803d; color: #fff; font-size: 14px; font-weight: 600; text-decoration: none; }
+#wjp-dashboard-wrapper .wjp-chart-empty { margin: 0 0 8px; }
+#wjp-dashboard-wrapper div#wjp-header a.wjp-btn-secondary[href*="admin-post.php"] { text-decoration: none; }
+
+/*
+ * W-20 direction A ("Today first", chosen by the owner): a soft greeting row,
+ * the waiting work as coloured icon cards, trend lines under the numbers,
+ * shortcuts as a compact button row, icons in the activity feed.
+ */
+#wjp-dashboard-wrapper div#wjp-header.wjp-hello { padding: 22px 24px; border-radius: 12px; background: linear-gradient(120deg, #eef2ff 0%, #fff 60%); box-shadow: 0 1px 2px rgb(15 23 42 / .06), 0 1px 3px rgb(15 23 42 / .08); }
+#wjp-dashboard-wrapper div#wjp-header.wjp-hello div.wjp-header-title .wjp-h2 { font-size: 24px; }
+#wjp-dashboard-wrapper div#wjp-header.wjp-hello div.wjp-header-title p { color: #475569; }
+#wjp-dashboard-wrapper #wjp-attention { margin: 0; padding: 0; background: none; box-shadow: none; }
+#wjp-dashboard-wrapper .wjp-todo { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
+#wjp-dashboard-wrapper a.wjp-todo-card { display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: 12px; background: #fff; box-shadow: 0 1px 2px rgb(15 23 42 / .06), 0 1px 3px rgb(15 23 42 / .08); color: #1e293b; text-decoration: none; transition: box-shadow .15s; }
+#wjp-dashboard-wrapper a.wjp-todo-card:hover, #wjp-dashboard-wrapper a.wjp-todo-card:focus-visible { box-shadow: 0 0 0 1px #c7d2fe, 0 4px 10px rgb(15 23 42 / .08); }
+#wjp-dashboard-wrapper .wjp-todo-ico { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 38px; width: 38px; height: 38px; border-radius: 10px; }
+#wjp-dashboard-wrapper .wjp-att-wait .wjp-todo-ico { background: #fffbeb; color: #d97706; }
+#wjp-dashboard-wrapper .wjp-att-bad .wjp-todo-ico { background: #fef2f2; color: #dc2626; }
+#wjp-dashboard-wrapper .wjp-att-info .wjp-todo-ico { background: #eef2ff; color: #4f46e5; }
+#wjp-dashboard-wrapper .wjp-todo-text { flex: 1; min-width: 0; }
+#wjp-dashboard-wrapper .wjp-todo-text b { display: block; font-size: 22px; line-height: 1.1; }
+#wjp-dashboard-wrapper .wjp-todo-text span { display: block; font-size: 13px; color: #475569; }
+#wjp-dashboard-wrapper .wjp-todo-go { color: #94a3b8; }
+#wjp-dashboard-wrapper a.wjp-todo-card:hover .wjp-todo-go { color: #4f46e5; }
+#wjp-dashboard-wrapper .wjp-att-none { padding: 20px; }
+#wjp-dashboard-wrapper svg.wjp-spark { display: block; width: 100%; height: 34px; margin-top: 6px; overflow: visible; }
+#wjp-dashboard-wrapper svg.wjp-spark polyline { fill: none; stroke: #4f46e5; stroke-width: 2; vector-effect: non-scaling-stroke; }
+#wjp-dashboard-wrapper .wjp-kpi-d.wjp-kpi-up, #wjp-dashboard-wrapper .wjp-kpi-d.wjp-kpi-down { font-weight: 600; }
+/* Shortcuts: a compact row of buttons instead of five large tiles. */
+#wjp-dashboard-wrapper div#wjp-quick-actions { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 16px; border-radius: 12px; background: #fff; box-shadow: 0 1px 2px rgb(15 23 42 / .06), 0 1px 3px rgb(15 23 42 / .08); }
+#wjp-dashboard-wrapper div#wjp-quick-actions a.wjp-action-card { display: inline-flex; flex-direction: row; align-items: center; gap: 8px; min-height: 0; height: 34px; padding: 0 12px; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; box-shadow: none; text-align: left; }
+#wjp-dashboard-wrapper div#wjp-quick-actions a.wjp-action-card:hover { border-color: #c7d2fe; transform: none; }
+#wjp-dashboard-wrapper div#wjp-quick-actions .wjp-action-icon-wrapper { width: auto; height: auto; margin: 0; padding: 0; background: none !important; }
+#wjp-dashboard-wrapper div#wjp-quick-actions .wjp-action-icon-wrapper svg { width: 16px; height: 16px; }
+#wjp-dashboard-wrapper div#wjp-quick-actions p.wjp-action-title { margin: 0; font-size: 13.5px; font-weight: 500; color: #1e293b; }
+#wjp-dashboard-wrapper div#wjp-quick-actions p.wjp-action-subtitle { margin: 0; padding: 0 7px; border-radius: 999px; background: #f1f5f9; font-size: 12px; color: #475569; }
+/* Activity feed: an icon per kind instead of a text label. */
+#wjp-dashboard-wrapper .wjp-feed-ico { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 32px; width: 32px; height: 32px; border-radius: 9px; align-self: center; }
+#wjp-dashboard-wrapper .wjp-feed li { align-items: center; }
+#wjp-dashboard-wrapper .wjp-t-amber { background: #fffbeb; color: #d97706; }
+#wjp-dashboard-wrapper .wjp-t-pri { background: #eef2ff; color: #4f46e5; }
+#wjp-dashboard-wrapper .wjp-t-sky { background: #f0f9ff; color: #0284c7; }
+#wjp-dashboard-wrapper .wjp-t-green { background: #f0fdf4; color: #15803d; }
+#wjp-dashboard-wrapper div#wjp-quick-actions a.wjp-action-card:not(:first-child) p.wjp-action-subtitle { display: none; } /* only the pending count is worth a badge */
+#wjp-dashboard-wrapper div#wjp-quick-actions a.wjp-action-card { justify-content: flex-start; width: auto; flex: 0 0 auto; }
+#wjp-dashboard-wrapper div#wjp-quick-actions .wjp-action-icon-wrapper { display: inline-flex; flex: 0 0 auto; min-width: 0; color: #4f46e5 !important; }
+#wjp-dashboard-wrapper div#wjp-quick-actions div.wjp-action-icon-wrapper { width: auto !important; height: auto !important; margin: 0 !important; }
+
+/* W-20: the older optional sections in the direction A look - flat rows, no boxes inside the card, grey tags, initials. */
+#wjp-dashboard-wrapper .wjp-feed li.wjp-feed-more { display: none; }
+#wjp-dashboard-wrapper #wjp-activity-feed.is-open .wjp-feed li.wjp-feed-more:not([hidden]) { display: flex; }
+#wjp-dashboard-wrapper .wjp-feed-toggle { margin-top: 10px; height: 32px; padding: 0 12px; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; color: #1e293b; font-size: 13px; cursor: pointer; }
+#wjp-dashboard-wrapper .wjp-feed-toggle:hover { border-color: #c7d2fe; color: #4f46e5; }
+#wjp-dashboard-wrapper div#wjp-quick-stats div.wjp-stat-item { width: 100%; min-width: 0; margin: 0; padding: 10px 0; border: 0; border-top: 1px solid #f1f5f9; border-radius: 0; background: none; }
+#wjp-dashboard-wrapper div#wjp-quick-stats div.wjp-stat-item:first-of-type { border-top: 0; }
+#wjp-dashboard-wrapper div#wjp-quick-stats div.wjp-stat-info { display: flex; flex: 1; align-items: baseline; justify-content: space-between; gap: 10px; }
+#wjp-dashboard-wrapper div#wjp-quick-stats p.wjp-stat-label { margin: 0; font-size: 14px; color: #475569; }
+#wjp-dashboard-wrapper div#wjp-quick-stats p.wjp-stat-value { margin: 0; font-size: 16px; font-weight: 700; color: #1e293b; }
+#wjp-dashboard-wrapper .wjp-apply-item,
+#wjp-dashboard-wrapper .wjp-list-item { margin: 0 !important; padding: 12px 0 !important; border: 0 !important; border-top: 1px solid #f1f5f9 !important; border-radius: 0 !important; background: none !important; box-shadow: none !important; }
+#wjp-dashboard-wrapper .wjp-apply-item:first-child,
+#wjp-dashboard-wrapper .wjp-list-item:first-child { border-top: 0 !important; }
+#wjp-dashboard-wrapper img.wjp-avatar, #wjp-dashboard-wrapper img.wjp-logo, #wjp-dashboard-wrapper .wjp-initials { width: 40px !important; height: 40px !important; flex: 0 0 40px; border-radius: 10px; font-size: 14px; margin-right: 12px; }
+#wjp-dashboard-wrapper img.wjp-logo { object-fit: cover; }
+#wjp-dashboard-wrapper .wjp-name, #wjp-dashboard-wrapper .wjp-name a { font-size: 14px; font-weight: 600; color: #1e293b; }
+#wjp-dashboard-wrapper .wjp-subtext, #wjp-dashboard-wrapper .wjp-date, #wjp-dashboard-wrapper .wjp-timestamp { font-size: 12.5px; color: #64748b; }
+#wjp-dashboard-wrapper span.wjp-tag { height: auto; padding: 1px 8px; border-radius: 999px; font-size: 12px; }
+#wjp-dashboard-wrapper .wjp-no-records { color: #64748b; font-size: 14px; }
+
+/* W-20: greeting row, second pass - buttons on the right, a real background, the count and the most urgent item stand out; the range moved to Key numbers. */
+#wjp-dashboard-wrapper div#wjp-header.wjp-hello { position: relative; overflow: hidden; flex-wrap: nowrap; align-items: center; gap: 24px; padding: 26px 28px; background: linear-gradient(115deg, #e0e7ff 0%, #eef2ff 38%, #f8fafc 72%, #fff 100%); }
+#wjp-dashboard-wrapper div#wjp-header.wjp-hello::after { content: ""; position: absolute; right: -60px; top: -80px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgb(79 70 229 / .10) 0%, rgb(79 70 229 / 0) 70%); pointer-events: none; }
+#wjp-dashboard-wrapper div#wjp-header.wjp-hello .wjp-header-title { flex: 1 1 auto; min-width: 0; }
+#wjp-dashboard-wrapper div#wjp-header.wjp-hello .wjp-header-actions { position: relative; z-index: 1; flex: 0 0 auto; }
+#wjp-dashboard-wrapper .wjp-hello-date { display: block; margin-bottom: 4px; font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: #4f46e5; }
+#wjp-dashboard-wrapper div#wjp-header.wjp-hello div.wjp-header-title .wjp-h2 { font-size: 26px; }
+#wjp-dashboard-wrapper div#wjp-header.wjp-hello p.wjp-hello-sub { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin: 8px 0 0; font-size: 14px; }
+#wjp-dashboard-wrapper .wjp-hello-count { font-weight: 600; color: #1e293b; }
+#wjp-dashboard-wrapper .wjp-hello-urgent { color: #475569; }
+#wjp-dashboard-wrapper .wjp-hello-urgent a { padding: 2px 10px; border-radius: 999px; background: #fef2f2; color: #b91c1c; font-weight: 600; text-decoration: none; }
+#wjp-dashboard-wrapper .wjp-hello-urgent a:hover, #wjp-dashboard-wrapper .wjp-hello-urgent a:focus-visible { background: #fee2e2; }
+#wjp-dashboard-wrapper .wjp-sec > .wjp-kpis-head { flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin: 0 0 12px !important; }
+#wjp-dashboard-wrapper .wjp-kpis-head small { margin-left: 6px; font-size: 13px; font-weight: 400; color: #64748b; }
+/* Job performance: the table reaches the card's sides but not its bottom when the no-applications box follows it. */
+#wjp-dashboard-wrapper #wjp-job-performance > .wjp-table-wrapper:not(:last-child) { margin-bottom: 0; }
+#wjp-dashboard-wrapper #wjp-job-performance .wjp-perf-none { margin-top: 16px; }
+/* The greeting's glow is part of its background (no overflow: hidden), so the Options popup is never clipped. */
+#wjp-dashboard-wrapper div#wjp-header.wjp-hello { overflow: visible; background: radial-gradient(circle at 92% -20%, rgb(79 70 229 / .12) 0, rgb(79 70 229 / 0) 260px), linear-gradient(115deg, #e0e7ff 0%, #eef2ff 38%, #f8fafc 72%, #fff 100%); }
+#wjp-dashboard-wrapper div#wjp-header.wjp-hello::after { content: none; }
+/* Options popup: a clear edge over the light page - stronger shadow, darker border, tinted header and footer, above the cards. */
+#wjp-dashboard-wrapper #wjp-screen-options-menu { z-index: 1000; width: 440px; max-width: calc(100vw - 48px); border: 1px solid #cbd5e1; border-radius: 12px; background: #fff; box-shadow: 0 24px 48px -12px rgb(15 23 42 / .28), 0 8px 16px -8px rgb(15 23 42 / .16); overflow: hidden; }
+#wjp-dashboard-wrapper #wjp-screen-options-menu .wjp-so-header { padding: 14px 16px; border-bottom: 1px solid #e2e8f0; background: #f8fafc; }
+#wjp-dashboard-wrapper #wjp-screen-options-menu .wjp-so-title { font-size: 15px; font-weight: 600; color: #1e293b; }
+#wjp-dashboard-wrapper #wjp-screen-options-menu .wjp-so-content { padding: 14px 16px; }
+#wjp-dashboard-wrapper #wjp-screen-options-menu .wjp-so-footer { display: flex; justify-content: flex-end; gap: 8px; padding: 12px 16px; border-top: 1px solid #e2e8f0; background: #f8fafc; }
+#wjp-dashboard-wrapper .wjp-kpi-n.wjp-kpi-multi { font-size: 18px; line-height: 1.3; }
+/* W-20: Latest subscriptions and Latest payments received as compact tables. */
+#wjp-dashboard-wrapper :is(#wjp-latest-subscriptions, #wjp-latest-payments) .wjp-card-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+#wjp-dashboard-wrapper .wjp-money-table td { padding: 10px 16px; vertical-align: middle; font-size: 14px; color: #1e293b; }
+#wjp-dashboard-wrapper .wjp-who { display: flex; align-items: center; gap: 10px; min-width: 0; }
+#wjp-dashboard-wrapper .wjp-who .wjp-initials, #wjp-dashboard-wrapper .wjp-who img.wjp-logo { width: 34px !important; height: 34px !important; flex: 0 0 34px; margin: 0; font-size: 12px; border-radius: 9px; }
+#wjp-dashboard-wrapper .wjp-who span { display: flex; flex-direction: column; min-width: 0; font-weight: 600; }
+#wjp-dashboard-wrapper .wjp-who a { color: #1e293b; text-decoration: none; }
+#wjp-dashboard-wrapper .wjp-who a:hover { color: #4f46e5; }
+#wjp-dashboard-wrapper .wjp-who small { font-weight: 400; font-size: 12.5px; color: #64748b; }
+#wjp-dashboard-wrapper .wjp-pay-for { max-width: 240px; color: #475569 !important; }
+#wjp-dashboard-wrapper .wjp-pill { display: inline-block; padding: 2px 9px; border-radius: 999px; background: #f1f5f9; color: #475569; font-size: 12px; font-weight: 600; white-space: nowrap; }
+#wjp-dashboard-wrapper .wjp-pill-ok { background: #f0fdf4; color: #15803d; }
+#wjp-dashboard-wrapper .wjp-money-table .wjp-who span { white-space: nowrap; }
+/* Options popup: one scroll area (the 2.7 content box scrolled and the arrange list scrolled inside it). */
+#wjp-dashboard-wrapper #wjp-screen-options-menu .wjp-so-content { max-height: min(62vh, 560px); overflow-y: auto; }
+#wjp-dashboard-wrapper #wjp-screen-options-menu .wjp-so-arrange { max-height: none; overflow: visible; }
+#wjp-dashboard-wrapper #wjp-screen-options-menu .wjp-so-arrange li { margin-bottom: 4px; padding: 5px 10px; } #wjp-dashboard-wrapper #wjp-screen-options-menu .wjp-so-move { width: 26px; height: 26px; }
+/* W-20: Recent activity, second pass - day headings, two-line rows (subject in bold, what happened below), clearer icons, two columns on wide screens. */
+#wjp-dashboard-wrapper .wjp-feed { display: block; }
+#wjp-dashboard-wrapper .wjp-feed-group[hidden] { display: none; }
+#wjp-dashboard-wrapper .wjp-feed-day { margin: 14px 0 6px; font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: #64748b; }
+#wjp-dashboard-wrapper .wjp-feed-group:first-child .wjp-feed-day { margin-top: 0; }
+#wjp-dashboard-wrapper .wjp-feed-group ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); column-gap: 24px; margin: 0; padding: 0; list-style: none; }
+#wjp-dashboard-wrapper .wjp-feed-group li { display: flex; align-items: center; gap: 12px; margin: 0; padding: 10px 0; border-top: 1px solid #f1f5f9; }
+#wjp-dashboard-wrapper .wjp-feed-group li[hidden], #wjp-dashboard-wrapper .wjp-feed-group li.wjp-feed-more { display: none; }
+#wjp-dashboard-wrapper #wjp-activity-feed.is-open .wjp-feed-group li.wjp-feed-more:not([hidden]) { display: flex; }
+#wjp-dashboard-wrapper .wjp-feed-group .wjp-feed-ico { flex: 0 0 38px; width: 38px; height: 38px; border-radius: 10px; }
+#wjp-dashboard-wrapper a.wjp-feed-text { display: flex; flex: 1; flex-direction: column; min-width: 0; text-decoration: none; }
+#wjp-dashboard-wrapper a.wjp-feed-text b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px; font-weight: 600; color: #1e293b; }
+#wjp-dashboard-wrapper a.wjp-feed-text span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; color: #64748b; }
+#wjp-dashboard-wrapper a.wjp-feed-text:hover b { color: #4f46e5; }
+#wjp-dashboard-wrapper .wjp-feed-group time { flex: 0 0 auto; font-size: 12.5px; color: #94a3b8; }
+/* Owner: two columns looked messy - back to one column, keeping the two-line rows and day headings. */
+#wjp-dashboard-wrapper .wjp-feed-group ul { grid-template-columns: 1fr; }
+#wjp-dashboard-wrapper .wjp-feed-toggle[hidden] { display: none; }
+/* Long names and package titles are cut with "…" inside their column instead of widening the table (no sideways scroll). */
+#wjp-dashboard-wrapper table.wjp-money-table { table-layout: fixed; width: 100%; }
+#wjp-dashboard-wrapper #wjp-latest-subscriptions table.wjp-money-table th:nth-child(1) { width: 34%; }
+#wjp-dashboard-wrapper #wjp-latest-subscriptions table.wjp-money-table th:nth-child(2) { width: 24%; }
+#wjp-dashboard-wrapper #wjp-latest-subscriptions table.wjp-money-table th:nth-child(3) { width: 14%; }
+#wjp-dashboard-wrapper #wjp-latest-payments table.wjp-money-table th:nth-child(1) { width: 40%; }
+#wjp-dashboard-wrapper #wjp-latest-payments table.wjp-money-table th:nth-child(3) { width: 22%; }
+#wjp-dashboard-wrapper .wjp-money-table td { overflow: hidden; }
+#wjp-dashboard-wrapper .wjp-money-table .wjp-who span { white-space: normal; overflow: hidden; }
+#wjp-dashboard-wrapper .wjp-money-table .wjp-who span > a,
+#wjp-dashboard-wrapper .wjp-money-table .wjp-who span > small,
+#wjp-dashboard-wrapper .wjp-money-table td.wjp-pay-for,
+#wjp-dashboard-wrapper .wjp-money-table td:nth-child(2) { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#wjp-dashboard-wrapper .wjp-money-table td:nth-child(2) { display: table-cell; }
+#wjp-dashboard-wrapper .wjp-money-table .wjp-who > span { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+#wjp-dashboard-wrapper .wjp-money-table .wjp-who span > b.wjp-who-name { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+#wjp-dashboard-wrapper .wjp-money-table td, #wjp-dashboard-wrapper .wjp-money-table th { padding-left: 12px; padding-right: 12px; }
+#wjp-dashboard-wrapper .wjp-money-table .wjp-who .wjp-initials { margin-right: 0 !important; }
+#wjp-dashboard-wrapper #wjp-latest-subscriptions table.wjp-money-table th:nth-child(1) { width: 36%; }
+#wjp-dashboard-wrapper #wjp-latest-subscriptions table.wjp-money-table th:nth-child(2) { width: 22%; }
+#wjp-dashboard-wrapper #wjp-latest-subscriptions table.wjp-money-table th:nth-child(3) { width: 13%; }
+#wjp-dashboard-wrapper .wjp-money-table .wjp-who > span.wjp-initials { display: inline-flex; flex: 0 0 34px; width: 34px !important; min-width: 34px; } /* the name rule above also matched this span */
+#wjp-dashboard-wrapper .wjp-feed-group ul { grid-template-columns: minmax(0, 1fr); } #wjp-dashboard-wrapper .wjp-feed-group li { min-width: 0; } /* long entries are cut, never wider than the card */
+/* Laptops (about 1280px): cards still pair up - smaller minimum widths. */
+#wjp-dashboard-wrapper .wjp-sec-wide { flex-basis: 470px; }
+#wjp-dashboard-wrapper .wjp-sec-narrow { flex-basis: 270px; }
+#wjp-dashboard-wrapper .wjp-sec-half { flex-basis: 360px; }
+/* Narrow screens: tables stay inside their card and scroll inside it if they must. */
+@media (max-width: 782px) {
+    #wjp-dashboard-wrapper div.wjp-card > .wjp-table-wrapper { margin: 0; overflow-x: auto; }
+    #wjp-dashboard-wrapper .wjp-perf-table { min-width: 460px; }
+}
+#wjp-dashboard-wrapper .wjp-hello-urgent a { -webkit-box-decoration-break: clone; box-decoration-break: clone; line-height: 1.9; } /* the pill wraps neatly on phones */
+#wjp-dashboard-wrapper .wjp-kpi-d small { margin-left: 0; font-size: 13px; color: #475569; } #wjp-dashboard-wrapper .wjp-kpi-arrow { font-size: 11px; }
+
+/* W-7: settings filters, role and changed chips */
+#wjp-config-dashboard .wjp-search-filters { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 10px; font-size: 14px; }
+#wjp-config-dashboard .wjp-search-filters input[type="checkbox"] { margin: 0 4px 0 0; }
+#wjp-config-dashboard .wjp-role-chip, #wjp-config-dashboard .wjp-changed-chip { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 500; line-height: 18px; }
+#wjp-config-dashboard .wjp-role-chip { background: #eef2ff; color: #4338ca; }
+#wjp-config-dashboard .wjp-changed-chip { background: #fef3c7; color: #92400e; }
+#wjp-config-dashboard:not(.wjp-show-addons) .is-pro-field, #wjp-config-dashboard:not(.wjp-show-addons) .is-pro-group { display: none !important; }

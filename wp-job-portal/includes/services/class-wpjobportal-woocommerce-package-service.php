@@ -28,6 +28,10 @@ class WPJOBPORTAL_WooCommerce_Package_Service {
         add_action('woocommerce_process_product_meta', array(__CLASS__, 'save_product_mapping'), 100);
         add_action('woocommerce_before_calculate_totals', array(__CLASS__, 'price_cart_items'), 30);
         add_filter('woocommerce_add_to_cart_validation', array(__CLASS__, 'refuse_wrong_audience'), 30, 3);
+        // Fix #33: a package can only be granted to a signed-in job board account.
+        add_action('woocommerce_check_cart_items', array(__CLASS__, 'check_cart_buyer'));
+        add_action('woocommerce_after_checkout_validation', array(__CLASS__, 'check_checkout_buyer'), 30, 2);
+        add_action('woocommerce_store_api_cart_errors', array(__CLASS__, 'check_store_api_buyer'), 30, 2);
         add_filter('woocommerce_product_get_price', array(__CLASS__, 'quote_price'), 30, 2);
         add_filter('woocommerce_product_get_regular_price', array(__CLASS__, 'quote_regular_price'), 30, 2);
         add_filter('woocommerce_product_get_sale_price', array(__CLASS__, 'quote_sale_price'), 30, 2);
@@ -99,7 +103,14 @@ class WPJOBPORTAL_WooCommerce_Package_Service {
                 continue;
             }
 
-            $price = WPJOBPORTAL_Package_Price::final_price($package, false);
+            // Fix #37: My Packages promises the renewal discount; charge it when
+            // the line is a renewal the buyer is really entitled to (their own
+            // holding of this package, and it has run out).
+            $renewing = false;
+            if (!empty($cart_item['wpjobportal_renew_userpackage']) && method_exists('WPJOBPORTAL_Package_Price', 'renewal_is_valid')) {
+                $renewing = WPJOBPORTAL_Package_Price::renewal_is_valid($package_id, absint($cart_item['wpjobportal_renew_userpackage']));
+            }
+            $price = WPJOBPORTAL_Package_Price::final_price($package, $renewing);
             $price = apply_filters('wpjobportal_woocommerce_package_price', $price, $package_id, $cart_item);
             if (!is_numeric($price) || (float) $price < 0) {
                 continue;
@@ -248,10 +259,16 @@ class WPJOBPORTAL_WooCommerce_Package_Service {
         }
 
         /*
-         * A visitor with no role yet is not judged, exactly as the portal's own
-         * listing does not judge one. They may be about to register as either,
-         * and fulfilment asks again once there is an answer.
+         * Fix #33: a package is added to a job board account, and fulfilment
+         * refuses an order without one. Letting a visitor (or a WordPress user
+         * with no job board profile) pay first meant money taken and nothing
+         * given, so they are asked to sign in here, before paying.
          */
+        if (!self::buyer_has_portal_account(get_current_user_id())) {
+            self::add_sign_in_notice();
+            return false;
+        }
+
         $roleid = self::portal_role(get_current_user_id());
         if ($roleid < 1 || self::package_suits_role($package, $roleid)) {
             return $passed;
@@ -269,6 +286,61 @@ class WPJOBPORTAL_WooCommerce_Package_Service {
         }
 
         return false;
+    }
+
+    /** Whether this WordPress user has the job board account a package is granted to. */
+    private static function buyer_has_portal_account($wp_user_id) {
+        $wp_user_id = absint($wp_user_id);
+        if ($wp_user_id < 1) {
+            return false;
+        }
+        return absint(WPJOBPORTALincluder::getObjectClass('user')->getwpjobportaluidbyuserid($wp_user_id)) > 0;
+    }
+
+    /** Whether the cart holds a WP Job Portal package. */
+    private static function cart_has_package() {
+        if (!function_exists('WC') || !WC()->cart) {
+            return false;
+        }
+        foreach (WC()->cart->get_cart() as $item) {
+            $product_id = isset($item['product_id']) ? absint($item['product_id']) : 0;
+            if ($product_id && absint(get_post_meta($product_id, self::PRODUCT_META, true)) > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /** The sign-in message, worded for a buyer. */
+    private static function sign_in_message() {
+        return __('Please sign in to your job board account before buying a package. Packages are added to your account, so they cannot be bought as a guest.', 'wp-job-portal');
+    }
+
+    private static function add_sign_in_notice() {
+        if (function_exists('wc_add_notice') && !wc_has_notice(self::sign_in_message(), 'error')) {
+            wc_add_notice(esc_html(self::sign_in_message()), 'error');
+        }
+    }
+
+    /** Cart and classic checkout pages: a cart filled before signing out is stopped here. */
+    public static function check_cart_buyer() {
+        if (self::cart_has_package() && !self::buyer_has_portal_account(get_current_user_id())) {
+            self::add_sign_in_notice();
+        }
+    }
+
+    /** Classic checkout "Place order". */
+    public static function check_checkout_buyer($data, $errors) {
+        if (is_object($errors) && self::cart_has_package() && !self::buyer_has_portal_account(get_current_user_id())) {
+            $errors->add('wpjobportal_package_sign_in', esc_html(self::sign_in_message()));
+        }
+    }
+
+    /** Block checkout (Store API): errors added here stop the order. */
+    public static function check_store_api_buyer($errors, $cart = null) {
+        if (is_object($errors) && method_exists($errors, 'add') && self::cart_has_package() && !self::buyer_has_portal_account(get_current_user_id())) {
+            $errors->add('wpjobportal_package_sign_in', esc_html(self::sign_in_message()));
+        }
     }
 
     /** Whether a package is sold to the side of the site this role is on. */
@@ -406,6 +478,12 @@ class WPJOBPORTAL_WooCommerce_Package_Service {
 
         $portal_uid = absint(WPJOBPORTALincluder::getObjectClass('user')->getwpjobportaluidbyuserid($wp_user_id));
         if ($portal_uid < 1) {
+            // Fix #33: say why, once, instead of failing with no trace on the order.
+            if ('no_portal_account' !== $order->get_meta(self::STATUS_META, true)) {
+                $order->update_meta_data(self::STATUS_META, 'no_portal_account');
+                $order->save();
+                $order->add_order_note(__('This customer has no WP Job Portal account (no employer or job seeker profile), so no package was granted. Ask them to choose a role, then mark the order Completed again.', 'wp-job-portal'));
+            }
             return false;
         }
         if (self::legacy_order_was_fulfilled($order, $portal_uid)) {
@@ -539,30 +617,44 @@ class WPJOBPORTAL_WooCommerce_Package_Service {
             return true;
         }
 
+        /*
+         * Fix #36: a refunded package is ended whether or not it was used.
+         * Before, a pack with even one job posted was left fully active, so a
+         * buyer could post once, get all their money back and keep posting.
+         * What was already done with it stays (jobs posted, featured periods
+         * running): only its remaining credits stop. The order note says which.
+         */
         $revoked = 0;
-        $used = 0;
+        $used_items = 0;
+        $ended_used = 0;
         foreach ($grants as $transaction => $userpackage_id) {
             $usage = absint(wpjobportaldb_direct::get_var($wpdb->prepare(
                 'SELECT COUNT(*) FROM `' . $wpdb->prefix . 'wj_portal_transactionlog` WHERE userpackageid = %d AND status = 1',
                 $userpackage_id
             )));
-            if ($usage > 0) {
-                $used++;
-                continue;
-            }
             $package_updated = wpjobportaldb_direct::update($wpdb->prefix . 'wj_portal_userpackages', array('status' => 2), array('id' => $userpackage_id, 'status' => 1), array('%d'), array('%d', '%d'));
             if (false !== $package_updated) {
                 wpjobportaldb_direct::update($wpdb->prefix . 'wj_portal_invoices', array('status' => 0), array('recordid' => $userpackage_id, 'payer_transactionumber' => sanitize_text_field($transaction)), array('%d'), array('%d', '%s'));
-                $revoked++;
+                if ($usage > 0) {
+                    $ended_used++;
+                    $used_items += $usage;
+                } else {
+                    $revoked++;
+                }
             }
         }
-        $status = $used > 0 ? 'reversal_needs_attention' : 'reversed';
-        $order->update_meta_data(self::STATUS_META, $status);
+        $order->update_meta_data(self::STATUS_META, 'reversed');
         $order->save();
-        $order->add_order_note($used > 0
-            ? sprintf(/* translators: 1: revoked, 2: used */ __('WP Job Portal revoked %1$d unused package grant(s); %2$d used grant(s) require manual review.', 'wp-job-portal'), $revoked, $used)
-            : sprintf(/* translators: %d: revoked */ _n('%d unused WP Job Portal package grant was revoked.', '%d unused WP Job Portal package grants were revoked.', $revoked, 'wp-job-portal'), $revoked));
-        return 0 === $used;
+        if ($ended_used > 0) {
+            $order->add_order_note(sprintf(
+                /* translators: 1: unused grants revoked, 2: used grants ended, 3: items already used */
+                __('WP Job Portal revoked %1$d unused package grant(s) and ended %2$d partly used package(s). The %3$d item(s) already posted with them stay; their remaining credits can no longer be used. The invoice is marked refunded.', 'wp-job-portal'),
+                $revoked, $ended_used, $used_items
+            ));
+        } else {
+            $order->add_order_note(sprintf(/* translators: %d: revoked */ _n('%d unused WP Job Portal package grant was revoked.', '%d unused WP Job Portal package grants were revoked.', $revoked, 'wp-job-portal'), $revoked));
+        }
+        return true;
     }
 
     private static function is_ready() {

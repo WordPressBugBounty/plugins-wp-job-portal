@@ -86,10 +86,15 @@ $wpjobportal_jobid = WPJOBPORTALrequest::getVar('jobid','','');
             });
         }
 
-        function changeStatusOfResume(id, resumeid, aid,themecall) {
+        " . WPJOBPORTAL_Application_Status::status_change_js() . "
+        function changeStatusOfResume(id, resumeid, aid, themecall, extra) {
             var themecall = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+            // W-1: Recruit Suite asks for the rejection reason in the card first.
+            if (aid == 4 && !extra && window.wpjobportalAskRejection && wpjobportalAskRejection(id, jQuery('div#' + resumeid + ', div#wjportal-' + resumeid).first(), function (x) { changeStatusOfResume(id, resumeid, aid, themecall, x); })) {
+                return;
+            }
             var ajaxurl = \"". esc_url_raw(admin_url('admin-ajax.php'))."\";
-            jQuery.post(ajaxurl, {action: 'wpjobportal_ajax', wpjobportalme: 'resumeaction', task: 'updateJobApplyResumeStatus', jobapplyid: id, actionid: aid, '_wpnonce':'". esc_attr(wp_create_nonce("update-job-apply-resume-status"))."'}, function (data) {
+            jQuery.post(ajaxurl, jQuery.extend({action: 'wpjobportal_ajax', wpjobportalme: 'resumeaction', task: 'updateJobApplyResumeStatus', jobapplyid: id, actionid: aid, '_wpnonce':'". esc_attr(wp_create_nonce("update-job-apply-resume-status"))."'}, extra || {}), function (data) {
                 if (data) {
                     var obj = jQuery.parseJSON(data);
                     if(null != themecall){
@@ -106,9 +111,12 @@ $wpjobportal_jobid = WPJOBPORTALrequest::getVar('jobid','','');
                         }
                     }
                 }
-                setTimeout(function () {
-                    window.location.reload();
-                }, 700);
+                // W-1: a confirmation that stays, naming the tab it moved to.
+                var ok = false;
+                try { ok = data && jQuery.parseJSON(data).saved == 'save'; } catch (e) {}
+                if (ok) {
+                    wpjobportalStatusChanged(jQuery.parseJSON(data), aid);
+                }
             });
         }
 
@@ -359,7 +367,7 @@ $wpjobportal_jobid = WPJOBPORTALrequest::getVar('jobid','','');
                 jQuery('div#comments').css('display', 'inline-block');
             }
             var ajaxurl = \"". esc_url_raw(admin_url('admin-ajax.php')) ."\";
-            jQuery.post(ajaxurl, {action: 'wpjobportal_ajax', wpjobportalme: 'jobapply', task: task, sal: salary, expe: exp, institue: inisi, stud: study, ava: available, '_wpnonce':'". esc_attr(wp_create_nonce("get-resume-detail"))."'}, function (data) {
+            jQuery.post(ajaxurl, {action: 'wpjobportal_ajax', wpjobportalme: 'jobapply', task: task, rid: resumeid, sal: salary, expe: exp, institue: inisi, stud: study, ava: available, '_wpnonce':'". esc_attr(wp_create_nonce("get-resume-detail"))."'}, function (data) {
                 if (data) {
                     jQuery('div.' + resumeid).html(data);
                 }

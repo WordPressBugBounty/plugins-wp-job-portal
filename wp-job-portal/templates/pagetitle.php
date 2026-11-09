@@ -15,7 +15,7 @@
 		// A caller may leave out the heading or the trail (the registration
 		// shortcodes' show_title / show_header); every other page passes neither.
 		if($wpjobportal_show_wpjobportal_page_title == 1 && empty($wpjobportal_hide_heading)){
-			echo '<div class="wjportal-page-heading">';
+			echo '<h1 class="wjportal-page-heading">';
 				switch ($wpjobportal_layout) {
 					case 'company':
 						if(WPJOBPORTALincluder::getJSModel('common')->isElegantDesignEnabled()){
@@ -244,7 +244,7 @@
 						echo esc_html(__('My Invoices', 'wp-job-portal'));
 						break;
 					case 'shortListedJob':
-						echo esc_html(__('Short Listed Jobs', 'wp-job-portal'));
+						echo esc_html(__('Saved Jobs', 'wp-job-portal'));
 						break;
 					case 'jobtype':
 						echo esc_html(__('Jobs By Types', 'wp-job-portal'));
@@ -271,7 +271,7 @@
 						echo esc_html(__('Featured Resumes', 'wp-job-portal'));
 						break;
 				}
-			echo '</div>';
+			echo '</h1>';
 		}
 		/*
 		 * Elegant Design's own page templates draw their breadcrumbs

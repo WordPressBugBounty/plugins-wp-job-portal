@@ -1,141 +1,23 @@
 <?php
-    if (!defined('ABSPATH'))
-        die('Restricted Access');
-
-    wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
-    wp_enqueue_script( 'wpjobportal-inline-handle' );
-
-    $wpjobportal_inline_js_script = "
-    function resetFrom() {
-        jQuery('input#countryname').val('');
-        jQuery('select#status').val('');
-        jQuery('#states1').prop('checked', false);
-        jQuery('#city1').prop('checked', false);
-        jQuery('form#wpjobportalform').submit();
-    }
-    ";
-    wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
-
-    wp_enqueue_script( 'wpjobportal-res-tables', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/responsivetable.js', array(), wpjobportal_asset_version('includes/js/responsivetable.js'), false );
-    if (!WPJOBPORTALincluder::getTemplate('templates/admin/header',array('wpjobportal_module' => 'country'))){
-        return;
-    }
-?>
-<!-- main wrapper -->
-<div id="wpjobportaladmin-wrapper">
-    <!-- left menu -->
-    <div id="wpjobportaladmin-leftmenu">
-        <?php  WPJOBPORTALincluder::getTemplate('templates/admin/leftmenue',array('wpjobportal_module' => 'country')); ?>
-    </div>
-    <div id="wpjobportaladmin-data">
-        <!-- top bar -->
-        <div id="wpjobportal-wrapper-top">
-            <div id="wpjobportal-wrapper-top-left">
-                <div id="wpjobportal-breadcrumbs">
-                    <ul>
-                        <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('Dashboard','wp-job-portal')); ?>">
-                                <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
-                            </a>
-                        </li>
-                        <li><?php echo esc_html(__('Countries','wp-job-portal')); ?></li>
-                    </ul>
-                </div>
-            </div>
-            <div id="wpjobportal-wrapper-top-right">
-                <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('Configuration','wp-job-portal')); ?>">
-                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
-                   </a>
-                </div>
-                <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('Help','wp-job-portal')); ?>">
-                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
-                   </a>
-                </div>
-                <div id="wpjobportal-vers-txt">
-                    <?php echo esc_html(__('Version','wp-job-portal')).': '; ?>
-                    <span class="wpjobportal-ver"><?php echo esc_html(WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue('versioncode')); ?></span>
-                </div>
-            </div>
-        </div>
-        <!-- top head -->
-        <?php  WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('wpjobportal_module' => 'country','wpjobportal_layouts' => 'countries')); ?>
-        <!-- page content -->
-        <div id="wpjobportal-admin-wrapper" class="p0 bg-n bs-n">
-            <!-- quick actions -->
-            <?php  WPJOBPORTALincluder::getTemplate('country/views/multioperation'); ?>
-            <!-- filter form -->
-            <form class="wpjobportal-filter-form" name="wpjobportalform" id="wpjobportalform" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_country")); ?>">
-                <?php WPJOBPORTALincluder::getTemplate('country/views/filter'); ?>
-            </form>
-            <?php
-                if (!empty(wpjobportal::$_data[0])) {
-                    ?>
-                    <form id="wpjobportal-list-form" method="post" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_country")); ?>">
-                        <table id="wpjobportal-table" class="wpjobportal-table">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        <input type="checkbox" name="selectall" id="selectall" value="">
-                                    </th>
-                                    <th>
-                                        <?php echo esc_html(__('Name', 'wp-job-portal')); ?>
-                                    </th>
-                                    <th>
-                                        <?php echo esc_html(__('International Name', 'wp-job-portal')); ?>
-                                    </th>
-                                    <th>
-                                        <?php echo esc_html(__('Native Name', 'wp-job-portal')); ?>
-                                    </th>
-                                    <th>
-                                        <?php echo esc_html(__('Published', 'wp-job-portal')); ?>
-                                    </th>
-                                    <th>
-                                        <?php echo esc_html(__('States', 'wp-job-portal')); ?>
-                                    </th>
-                                    <th>
-                                        <?php echo esc_html(__('Cities', 'wp-job-portal')); ?>
-                                    </th>
-                                    <th>
-                                        <?php echo esc_html(__('Action', 'wp-job-portal')); ?>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                    $wpjobportal_pagenum = WPJOBPORTALrequest::getVar('pagenum', 'get', 1);
-                                    $wpjobportal_pageid = ($wpjobportal_pagenum > 1) ? '&pagenum=' . $wpjobportal_pagenum : '';
-                                    foreach (wpjobportal::$_data[0] AS $wpjobportal_row) {
-                                        $wpjobportal_published = ($wpjobportal_row->enabled == 1) ? 'yes.png' : 'no.png';
-                                        WPJOBPORTALincluder::getTemplate('country/views/main',array('wpjobportal_row' => $wpjobportal_row ,'wpjobportal_pagenum' => $wpjobportal_pagenum ,'wpjobportal_pageid' => $wpjobportal_pageid,'wpjobportal_published' => $wpjobportal_published ));
-                                    }
-                                ?>
-                            </tbody>
-                        </table>
-                        <?php echo wp_kses(WPJOBPORTALformfield::hidden('action', 'country_removecountry'),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                        <?php echo wp_kses(WPJOBPORTALformfield::hidden('pagenum', ($wpjobportal_pagenum > 1) ? esc_html($wpjobportal_pagenum) : ''),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                        <?php echo wp_kses(WPJOBPORTALformfield::hidden('task', ''),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                        <?php echo wp_kses(WPJOBPORTALformfield::hidden('form_request', 'wpjobportal'),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                        <?php echo wp_kses(WPJOBPORTALformfield::hidden('_wpnonce', esc_html(wp_create_nonce('wpjobportal_country_nonce'))),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                    </form>
-                    <?php
-                    if (wpjobportal::$_data[1]) {
-                        WPJOBPORTALincluder::getTemplate('templates/admin/pagination',array('wpjobportal_module' => 'country' , 'pagination' => wpjobportal::$_data[1]));
-                    }
-                } else {
-                    $wpjobportal_msg = esc_html(__('No Records Found','wp-job-portal'));
-                    $wpjobportal_link[] = array(
-                            'link' => 'admin.php?page=wpjobportal_country&wpjobportallt=formcountry',
-                            'text' => esc_html(__('Add New','wp-job-portal')) .' '. esc_html(__('Country','wp-job-portal'))
-                        );
-                    $wpjobportal_link[] = array(
-                            'link' => 'admin.php?page=wpjobportal_city&wpjobportallt=loadaddressdata',
-                            'text' => esc_html(__('Load Address Data','wp-job-portal'))
-                        );
-                    WPJOBPORTALlayout::getNoRecordFound($wpjobportal_msg,$wpjobportal_link);
-                }
-            ?>
-        </div>
-    </div>
-</div>
+if (!defined('ABSPATH')) die('Restricted Access');
+/*
+ * Settings › Locations › Countries (design 4).
+ * Drawn by WPJOBPORTAL_Admin_Lookup_UI; the module's model loads the rows and its tasks do the work.
+ */
+WPJOBPORTAL_Admin_Lookup_UI::render(array(
+    'page' => 'wpjobportal_country', 'form' => 'formcountry', 'nonce' => 'wpjobportal_country_nonce',
+    'title' => __('Countries', 'wp-job-portal'), 'noun' => __('country', 'wp-job-portal'), 'nouns' => __('countries', 'wp-job-portal'), 'noun_title' => __('Country', 'wp-job-portal'),
+    'crumbs' => array(array(__('Settings', 'wp-job-portal'), admin_url('admin.php?page=wpjobportal_configuration&wpjobportallt=configurations')), array(__('Locations', 'wp-job-portal'), admin_url('admin.php?page=wpjobportal_country'))),
+    'label' => 'name', 'published' => 'enabled', 'ordering' => false,
+    'search' => array('countryname', isset(wpjobportal::$_data['filter']['countryname']) ? wpjobportal::$_data['filter']['countryname'] : '', __('Search countries', 'wp-job-portal')),
+    'checks' => array(
+        array('states', __('Has states', 'wp-job-portal'), isset(wpjobportal::$_data['filter']['states']) ? wpjobportal::$_data['filter']['states'] : ''),
+        array('city', __('Has cities', 'wp-job-portal'), isset(wpjobportal::$_data['filter']['city']) ? wpjobportal::$_data['filter']['city'] : ''),
+    ),
+    'row_links' => function ($row) {
+        return array(
+            __('States', 'wp-job-portal') => admin_url('admin.php?page=wpjobportal_state&countryid=' . (int) $row->id),
+            __('Cities', 'wp-job-portal') => admin_url('admin.php?page=wpjobportal_city&countryid=' . (int) $row->id),
+        );
+    },
+));

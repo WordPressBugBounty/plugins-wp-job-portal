@@ -51,7 +51,7 @@ class WPJOBPORTALwpjobportalModel {
         $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply`";
         wpjobportal::$_data['totaljobapply'] = wpjobportal::$_db->get_var($query);
         $wpjobportal_curdate = gmdate('Y-m-d');
-        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE DATE(startpublishing) <= '".esc_sql($wpjobportal_curdate)."' AND DATE(stoppublishing) >= '".esc_sql($wpjobportal_curdate)."' AND status = 1";
+        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE startpublishing < DATE_ADD('".esc_sql($wpjobportal_curdate)."', INTERVAL 1 DAY) AND stoppublishing >= '".esc_sql($wpjobportal_curdate)."' AND status = 1";
         wpjobportal::$_data['totalactivejobs'] = wpjobportal::$_db->get_var($query);
         $wpjobportal_newindays = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('newdays');
         if ($wpjobportal_newindays == 0) {
@@ -122,24 +122,8 @@ class WPJOBPORTALwpjobportalModel {
 
 
         // AI Code Calls (need to add control statements)
-        $wpjobportal_wjp_dashboard_defaults = [
-            'quick_actions' => 'on',
-            'platform_growth' => 'on',
-            'quick_stats' => 'on',
-            'recent_jobs' => 'on',
-            'jobs_by_status_chart' => 'on',
-            'top_categories_chart' => 'on',
-            'latest_job_applies' => 'on',
-            'latest_resumes' => 'on',
-            'latest_subscriptions' => 'on',
-            'latest_payments' => 'on',
-            'latest_activity' => 'on',
-            'system_error_log' => 'on',
-            'latest_job_seekers' => 'on',
-            'latest_employers' => 'on',
-        ];
-        // Retrieve the saved options, falling back to defaults if not set
-        $wpjobportal_wjp_options = get_option('wjp_dashboard_screen_options', $wpjobportal_wjp_dashboard_defaults);
+        // W-20: which sections are on comes from the dashboard service (new blocks, shorter default).
+        $wpjobportal_wjp_options = WPJOBPORTAL_Dashboard_Service::options();
 
 
 
@@ -155,17 +139,11 @@ class WPJOBPORTALwpjobportalModel {
         if (isset($wpjobportal_wjp_options['platform_growth'])) {
             $this->getPlatformGrowthData();
         }
-        if (isset($wpjobportal_wjp_options['quick_stats'])) {
-            $this->getQuickStatsData();
-        }
         if (isset($wpjobportal_wjp_options['jobs_by_status_chart'])) {
             $this->getJobsByStatusData();
         }
         if (isset($wpjobportal_wjp_options['top_categories_chart'])) {
             $this->getTopCategoriesData();
-        }
-        if (isset($wpjobportal_wjp_options['latest_job_applies'])) {
-            WPJOBPORTALincluder::getJSModel('wpjobportal')->getLatestJobAppliesForDashboard();
         }
         if (isset($wpjobportal_wjp_options['latest_subscriptions'])) {
             WPJOBPORTALincluder::getJSModel('wpjobportal')->getLatestSubscriptionsForDashboard();
@@ -179,12 +157,6 @@ class WPJOBPORTALwpjobportalModel {
         if (isset($wpjobportal_wjp_options['system_error_log'])) {
             WPJOBPORTALincluder::getJSModel('wpjobportal')->getLatestErrorLogsForDashboard();
         }
-        if (isset($wpjobportal_wjp_options['latest_job_seekers']) || isset($wpjobportal_wjp_options['latest_employers'])) {
-            WPJOBPORTALincluder::getJSModel('wpjobportal')->getLatestMembersForDashboard();
-        }
-        if (isset($wpjobportal_wjp_options['recent_jobs']) || isset($wpjobportal_wjp_options['latest_resumes'])) {
-            WPJOBPORTALincluder::getJSModel('wpjobportal')->getNewestJobs();
-        }
 
 
         return;
@@ -197,36 +169,44 @@ class WPJOBPORTALwpjobportalModel {
      * Retrieves and prepares data for the Platform Growth chart.
      */
     function getPlatformGrowthData() {
+        // W-20: follows the dashboard's date range - a point per day up to 30 days,
+        // per week for 90 days, per month for 12 months.
+        $wpjobportal_days = WPJOBPORTAL_Dashboard_Service::range();
+        $wpjobportal_unit = $wpjobportal_days <= 30 ? 'day' : ($wpjobportal_days <= 90 ? 'week' : 'month');
         $wpjobportal_end_date = current_time('Y-m-d H:i:s');
-        $wpjobportal_start_date = gmdate('Y-m-d H:i:s', strtotime('-29 days', strtotime($wpjobportal_end_date)));
+        $wpjobportal_start = strtotime('-' . ($wpjobportal_days - 1) . ' days', strtotime(current_time('Y-m-d')));
+        if ($wpjobportal_unit === 'week') {
+            $wpjobportal_start = strtotime('monday this week', $wpjobportal_start);
+        } elseif ($wpjobportal_unit === 'month') {
+            $wpjobportal_start = strtotime(gmdate('Y-m-01', strtotime('-11 months', strtotime(current_time('Y-m-01')))));
+        }
+        $wpjobportal_start_date = gmdate('Y-m-d 00:00:00', $wpjobportal_start);
+        $wpjobportal_bucket = function ($column) use ($wpjobportal_unit) {
+            if ($wpjobportal_unit === 'week') {
+                return "DATE(DATE_SUB(`$column`, INTERVAL WEEKDAY(`$column`) DAY))";
+            }
+            return $wpjobportal_unit === 'month' ? "DATE_FORMAT(`$column`, '%Y-%m-01')" : "DATE(`$column`)";
+        };
+        $wpjobportal_series = function ($table, $column) use ($wpjobportal_bucket, $wpjobportal_start_date, $wpjobportal_end_date) {
+            $rows = wpjobportal::$_db->get_results("SELECT " . $wpjobportal_bucket($column) . " AS date, COUNT(id) AS count
+                FROM `" . wpjobportal::$_db->prefix . "wj_portal_" . $table . "`
+                WHERE `$column` BETWEEN '" . esc_sql($wpjobportal_start_date) . "' AND '" . esc_sql($wpjobportal_end_date) . "'
+                GROUP BY date");
+            return !empty($rows) ? array_column($rows, 'count', 'date') : array();
+        };
+        $wpjobportal_jobs_by_date = $wpjobportal_series('jobs', 'created');
+        $wpjobportal_applies_by_date = $wpjobportal_series('jobapply', 'apply_date');
 
-        // Query for new jobs
-        $wpjobportal_jobs_query = "SELECT DATE(created) as date, COUNT(id) as count
-                       FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs`
-                       WHERE created BETWEEN '" . esc_sql($wpjobportal_start_date) . "' AND '" . esc_sql($wpjobportal_end_date) . "'
-                       GROUP BY DATE(created) ORDER BY date ASC";
-        $wpjobportal_jobs_results = wpjobportal::$_db->get_results($wpjobportal_jobs_query);
-
-        // Query for new applications
-        $wpjobportal_applies_query = "SELECT DATE(apply_date) as date, COUNT(id) as count
-                          FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply`
-                          WHERE apply_date BETWEEN '" . esc_sql($wpjobportal_start_date) . "' AND '" . esc_sql($wpjobportal_end_date) . "'
-                          GROUP BY DATE(apply_date) ORDER BY date ASC";
-        $wpjobportal_applies_results = wpjobportal::$_db->get_results($wpjobportal_applies_query);
-
-        // Process data into arrays for the chart
         $wpjobportal_dates = [];
         $wpjobportal_job_counts = [];
         $wpjobportal_apply_counts = [];
-
-        $wpjobportal_jobs_by_date = !empty($wpjobportal_jobs_results) ? array_column($wpjobportal_jobs_results, 'count', 'date') : [];
-        $wpjobportal_applies_by_date = !empty($wpjobportal_applies_results) ? array_column($wpjobportal_applies_results, 'count', 'date') : [];
-
-        for ($wpjobportal_i = 0; $wpjobportal_i < 30; $wpjobportal_i++) {
-            $current_date_str = gmdate('Y-m-d', strtotime("$wpjobportal_start_date +$wpjobportal_i days"));
-            $wpjobportal_dates[] = gmdate('M j', strtotime($current_date_str));
-            $wpjobportal_job_counts[] = isset($wpjobportal_jobs_by_date[$current_date_str]) ? (int)$wpjobportal_jobs_by_date[$current_date_str] : 0;
-            $wpjobportal_apply_counts[] = isset($wpjobportal_applies_by_date[$current_date_str]) ? (int)$wpjobportal_applies_by_date[$current_date_str] : 0;
+        $wpjobportal_step = $wpjobportal_unit === 'day' ? '+1 day' : ($wpjobportal_unit === 'week' ? '+1 week' : '+1 month');
+        $wpjobportal_label = $wpjobportal_unit === 'month' ? 'M Y' : 'M j';
+        for ($wpjobportal_t = $wpjobportal_start; $wpjobportal_t <= strtotime(current_time('Y-m-d')); $wpjobportal_t = strtotime($wpjobportal_step, $wpjobportal_t)) {
+            $current_date_str = gmdate('Y-m-d', $wpjobportal_t);
+            $wpjobportal_dates[] = date_i18n($wpjobportal_label, $wpjobportal_t);
+            $wpjobportal_job_counts[] = isset($wpjobportal_jobs_by_date[$current_date_str]) ? (int) $wpjobportal_jobs_by_date[$current_date_str] : 0;
+            $wpjobportal_apply_counts[] = isset($wpjobportal_applies_by_date[$current_date_str]) ? (int) $wpjobportal_applies_by_date[$current_date_str] : 0;
         }
 
         wpjobportal::$_data['platform_growth'] = [
@@ -272,7 +252,7 @@ class WPJOBPORTALwpjobportalModel {
         $wpjobportal_total_users = wpjobportal::$_db->get_var($query);
 
         // 6. Closed Jobs
-        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE DATE(stoppublishing) < CURDATE(); ";
+        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE stoppublishing < CURDATE(); ";
         $closed_jobs = wpjobportal::$_db->get_var($query);
 
         wpjobportal::$_data['quick_stats'] = [
@@ -386,9 +366,15 @@ class WPJOBPORTALwpjobportalModel {
             $query = "SELECT
                     ph.uid,
                     ph.created,
+                    ph.enddate,
+                    ph.status,
+                    users.id AS userid,
                     users.first_name,
                     users.last_name,
                     packages.title AS package_name,
+                    packages.price,
+                    packages.isfree,
+                    packages.currencyid,
                     users.photo
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_userpackages` AS ph
                 JOIN `" . wpjobportal::$_db->prefix . "wj_portal_users` AS users ON ph.uid = users.uid
@@ -406,11 +392,15 @@ class WPJOBPORTALwpjobportalModel {
     function getLatestPaymentsForDashboard() {
         if(in_array('credits',wpjobportal::$_active_addons)){
             $query = "SELECT
+                        inv.id,
                         inv.created,
                         inv.payer_name,
+                        inv.paymethod,
                         inv.amount,
                         inv.description,
                         curr.symbol,
+                        users.first_name,
+                        users.last_name,
                         users.photo
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_invoices` AS inv
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_users` AS users ON inv.uid = users.uid
@@ -1222,7 +1212,7 @@ class WPJOBPORTALwpjobportalModel {
                 $wpjobportal_version = WPJOBPORTALIncluder::getJSModel('configuration')->getConfigByFor('default');
 
                 $post_data = array();
-                $wpjobportal_url = "http://www.joomsky.com/translations/api/1.0/index.php";
+                $wpjobportal_url = "https://www.joomsky.com/translations/api/1.0/index.php";
                 $post_data['product'] ='wp-job-portal-wp';
                 $post_data['domain'] = get_site_url();
                 $post_data['producttype'] = $wpjobportal_version['producttype'];
@@ -1372,7 +1362,7 @@ class WPJOBPORTALwpjobportalModel {
 
                 $wpjobportal_version = WPJOBPORTALIncluder::getJSModel('configuration')->getConfigByFor('version');
 
-                $wpjobportal_url = "http://www.joomsky.com/translations/api/1.0/index.php";
+                $wpjobportal_url = "https://www.joomsky.com/translations/api/1.0/index.php";
                 $post_data['product'] ='wp-job-portal-wp';
                 $post_data['domain'] = get_site_url();
                 $post_data['producttype'] = $wpjobportal_version['versiontype'];

@@ -65,7 +65,7 @@ class WPJOBPORTALJobseekerModel {
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON city.id = jobcity.cityid
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_states` AS state ON state.countryid = city.countryid
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_countries` AS country ON country.id = city.countryid
-        WHERE job.status = 1 AND DATE(job.startpublishing) <= CURDATE() AND DATE(job.stoppublishing) >= CURDATE()
+        WHERE job.status = 1 AND job.startpublishing < DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND job.stoppublishing >= CURDATE()
                     ORDER BY job.created DESC
                     LIMIT 0,4";
         $wpjobportal_data = wpjobportaldb::get_results($query);
@@ -179,11 +179,11 @@ class WPJOBPORTALJobseekerModel {
                             FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobshortlist` AS shortlist
                             JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job ON  job.id = shortlist.jobid
                             WHERE shortlist.status = 1  AND shortlist.uid =" . (int) ($wpjobportal_uid)."
-                            AND DATE(job.startpublishing) <= CURDATE() AND DATE(job.stoppublishing) >= CURDATE()";
+                            AND job.startpublishing < DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND job.stoppublishing >= CURDATE()";
             wpjobportal::$_data['totalshorlistjob'] = wpjobportal::$_db->get_var($query23);
         }
         $wpjobportal_curdate = gmdate('Y-m-d');
-        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE DATE(startpublishing) <= '".esc_sql($wpjobportal_curdate)."' AND DATE(stoppublishing) >= '".esc_sql($wpjobportal_curdate)."' AND status = 1";
+        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE startpublishing < DATE_ADD('".esc_sql($wpjobportal_curdate)."', INTERVAL 1 DAY) AND stoppublishing >= '".esc_sql($wpjobportal_curdate)."' AND status = 1";
         wpjobportal::$_data['totalactivejobs'] = wpjobportal::$_db->get_var($query);
         $wpjobportal_newindays = wpjobportal::$_config->getConfigurationByConfigName('newdays');
         if ($wpjobportal_newindays == 0) {
@@ -322,7 +322,7 @@ class WPJOBPORTALJobseekerModel {
 
 
         $query = "SELECT SUM(resume.hits) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
-                    WHERE resume.uid = " . (int) ($wpjobportal_uid)." AND resume.quick_apply <> 1 ";
+                    WHERE resume.uid = " . (int) ($wpjobportal_uid)." AND (resume.quick_apply IS NULL OR resume.quick_apply <> 1) ";
         $wpjobportal_total_hits = wpjobportal::$_db->get_var($query);
 
         $query = "SELECT resume.id,resume.first_name,resume.last_name,resume.application_title as applicationtitle,CONCAT(resume.alias,'-',resume.id) resumealiasid,resume.email_address,category.cat_title,resume.created,jobtype.title AS jobtypetitle,resume.photo,resume.salaryfixed as salary,
@@ -333,7 +333,7 @@ class WPJOBPORTALJobseekerModel {
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON city.id = (SELECT address_city FROM `" . wpjobportal::$_db->prefix . "wj_portal_resumeaddresses` WHERE resumeid = resume.id LIMIT 1)
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_states` AS state ON state.id = city.stateid
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_countries` AS country ON country.id = city.countryid
-                WHERE resume.uid = " . (int) ($wpjobportal_uid)." AND resume.quick_apply <> 1 ";
+                WHERE resume.uid = " . (int) ($wpjobportal_uid)." AND (resume.quick_apply IS NULL OR resume.quick_apply <> 1) ";
         if(in_array('multiresume', wpjobportal::$_active_addons)){
             $query.= " ORDER BY resume.created DESC LIMIT 10 "; // fetching upto 20 resumes at the moment. but will only show 5 most uncomplete onse
         }else{
@@ -362,6 +362,8 @@ class WPJOBPORTALJobseekerModel {
 
         wpjobportal::$_data['jobseeker_data']['hits'] = $wpjobportal_total_hits;
         wpjobportal::$_data['jobseeker_data']['resumes'] = $wpjobportal_resume_array;
+        // W-4: the widget lists only unfinished resumes, so it must know "none unfinished" from "none at all"
+        wpjobportal::$_data['jobseeker_data']['has_resume'] = !empty($wpjobportal_results);
 
     }
 

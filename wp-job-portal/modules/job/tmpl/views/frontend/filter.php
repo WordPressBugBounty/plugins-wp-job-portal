@@ -11,10 +11,10 @@ switch ($wpjobportal_layout) {
 	case 'myjobfilter':
 	    $wpjobportal_html.= '<div class="wjportal-filter-wrp">';
         $wpjobportal_html.= '   <div class="wjportal-filter">';
-        $wpjobportal_html.=         WPJOBPORTALformfield::select('sorting', $wpjobportal_sortbylist, isset(wpjobportal::$_data['combosort']) ? wpjobportal::$_data['combosort'] : null,esc_html(__("Default",'wp-job-portal')),array('onchange'=>'changeCombo()'));
+        $wpjobportal_html.=         WPJOBPORTALformfield::select('sorting', $wpjobportal_sortbylist, isset(wpjobportal::$_data['combosort']) ? wpjobportal::$_data['combosort'] : null,esc_html(__("Default",'wp-job-portal')),array('aria-label'=>esc_attr__('Sort by', 'wp-job-portal'),'onchange'=>'changeCombo()'));
         $wpjobportal_html.='    </div>';
         $wpjobportal_html.= '   <div class="wjportal-filter-image">';
-        $wpjobportal_html .= '<a class="sort-icon" href="#" data-image1='. esc_attr($wpjobportal_image1).' data-image2='. esc_attr($wpjobportal_image2).' data-sortby='.(wpjobportal::$_data['sortby']).'><img id="sortingimage" src='.  esc_attr($wpjobportal_image).'></a>';
+        $wpjobportal_html .= '<a class="sort-icon" href="#" data-image1="'. esc_attr($wpjobportal_image1).'" data-image2="'. esc_attr($wpjobportal_image2).'" data-sortby="'.(wpjobportal::$_data['sortby']).'"><img alt="'.esc_attr__('Change sort order', 'wp-job-portal').'" id="sortingimage" src="'.  esc_attr($wpjobportal_image).'"></a>';
         // $wpjobportal_html .= '</div>';
         // $wpjobportal_html.= '   <div class="wjportal-filter-image">';
         // $wpjobportal_html.= '       <a href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'myjobs','sortby' => wpjobportal::$_sortlinks['newest'], 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))) .' >';
@@ -24,7 +24,7 @@ switch ($wpjobportal_layout) {
         $wpjobportal_html.= ' </div>
                 </div>';
         $wpjobportal_html.= '<div class="wjportal-act-btn-wrp">';
-        $wpjobportal_html.= '    <a class="wjportal-act-btn" href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'addjob'))).'> <i class="fa fa-plus"></i>'. esc_html(__('Add New Job', 'wp-job-portal')).'</a>
+        $wpjobportal_html.= '    <a class="wjportal-act-btn" href="'. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'addjob'))).'"> <i class="fa fa-plus"></i>'. esc_html(__('Add New Job', 'wp-job-portal')).'</a>
                 </div>';
 
 		break;
@@ -40,15 +40,19 @@ switch ($wpjobportal_layout) {
                 // Hide job title filter based on shortcode option
                 if($wpjobportal_show_top_filter_title == 1 && empty(wpjobportal::$_data['shortcode_option_hide_filter_job_title'])){ // if this value is set means hide this option is set in shortcode
                     $wpjobportal_html.='    <div class="wjportal-filter-search-field-wrp">
-                                '. WPJOBPORTALformfield::text('jobtitle',isset(wpjobportal::$_data['filter']['jobtitle']) ? wpjobportal::$_data['filter']['jobtitle'] : '',array('placeholder'=>esc_html(__('Title','wp-job-portal')), 'class'=>'wjportal-filter-search-input-field')).'
+                                '. WPJOBPORTALformfield::text('jobtitle',isset(wpjobportal::$_data['filter']['jobtitle']) ? wpjobportal::$_data['filter']['jobtitle'] : '',array('aria-label'=>esc_attr(__('Title','wp-job-portal')),'placeholder'=>esc_html(__('Title','wp-job-portal')), 'class'=>'wjportal-filter-search-input-field')).'
                             </div> ';
                 }
 
                 // Hide job location filter based on shortcode option
                 if($wpjobportal_show_top_filter_location == 1 && empty(wpjobportal::$_data['shortcode_option_hide_filter_job_location'])){ // if this value is set means hide this option is set in shortcode
                     $wpjobportal_html.='    <div class="wjportal-filter-search-field-wrp">
-                                '. WPJOBPORTALformfield::text('city',isset(wpjobportal::$_data['filter']['city_ids']) ? wpjobportal::$_data['filter']['city_ids'] : '',array('placeholder'=>esc_html(__("City",'wp-job-portal')),'class'=>'wpjobportal-job-listing-city-field')).'
+                                '. WPJOBPORTALformfield::text('city',isset(wpjobportal::$_data['filter']['city_ids']) ? wpjobportal::$_data['filter']['city_ids'] : '',array('placeholder'=>esc_html(__("City",'wp-job-portal')),'aria-label'=>esc_attr__('City', 'wp-job-portal'),'class'=>'wpjobportal-job-listing-city-field')).'
                             </div> ';
+                }
+                if (!empty(wpjobportal::$_data['filter']['city_not_found'])) { // W-17
+                    /* translators: %s: the city as typed */
+                    $wpjobportal_html .= '<p class="wjportal-filter-city-note">' . esc_html(sprintf(__('No jobs in a city called "%s". Try picking a city from the list.', 'wp-job-portal'), wpjobportal::$_data['filter']['city_not_found'])) . '</p>';
                 }
                 // Hide job title filter based on shortcode option
                 if($wpjobportal_show_top_filter_category == 1 && empty(wpjobportal::$_data['shortcode_option_hide_filter_job_category'])){ // if this value is set means hide this option is set in shortcode

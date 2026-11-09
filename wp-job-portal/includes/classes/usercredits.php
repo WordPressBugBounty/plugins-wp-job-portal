@@ -32,14 +32,16 @@ class WPJOBPORTALUserCredits {
     }
 
     function getUserCreditsDetailForAction($wpjobportal_actionname) {
+        // Security: these values are printed into the popup's inline script.
+        $wpjobportal_actionname = preg_replace('/[^a-z0-9_]/', '', strtolower((string) $wpjobportal_actionname));
         $wpjobportal_nonce = WPJOBPORTALrequest::getVar('js_nonce');
         if (! wp_verify_nonce( $wpjobportal_nonce, 'wp-job-portal-nonce') ) {
             die( 'Security check Failed' );
         }
-        $wpjobportal_isadmin = WPJOBPORTALrequest::getVar('isadmin');
+        $wpjobportal_isadmin = (current_user_can('manage_options') ? WPJOBPORTALrequest::getVar('isadmin') : ''); // Security: admin-only flag, never trusted from a non-admin request.
         $wpjobportal_id = WPJOBPORTALrequest::getVar('id');
-        $wpjobportal_themecall = WPJOBPORTALrequest::getVar('themecall');
-        $wpjobportal_pageid = WPJOBPORTALrequest::getVar('wpjobportal_pageid');
+        $wpjobportal_themecall = WPJOBPORTALrequest::getVar('themecall'); $wpjobportal_themecall = ($wpjobportal_themecall === null || $wpjobportal_themecall === '') ? null : absint($wpjobportal_themecall); // Security: numeric flag
+        $wpjobportal_pageid = absint(WPJOBPORTALrequest::getVar('wpjobportal_pageid')); // Security: numeric page id
         if($wpjobportal_isadmin != 1){
             $wpjobportal_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
             if ($wpjobportal_uid == 0)

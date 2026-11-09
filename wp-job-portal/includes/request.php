@@ -14,13 +14,13 @@ class WPJOBPORTALrequest {
         if ($method == null) {
             if (isset($_GET[$wpjobportal_variable_name])) {
                 if(is_array($_GET[$wpjobportal_variable_name])){
-                    $wpjobportal_value = filter_var_array(wp_unslash($_GET[$wpjobportal_variable_name]));
+                    $wpjobportal_value = wpjobportal::wpjobportal_sanitizeData(wp_unslash($_GET[$wpjobportal_variable_name])) /* Security: arrays sanitized like scalars */;
                 }else{
                     $wpjobportal_value = wpjobportal::wpjobportal_sanitizeData(wp_unslash($_GET[$wpjobportal_variable_name]));
                 }
             } elseif (isset($_POST[$wpjobportal_variable_name])) {
                 if(is_array($_POST[$wpjobportal_variable_name])){
-                    $wpjobportal_value = filter_var_array(wp_unslash($_POST[$wpjobportal_variable_name]));
+                    $wpjobportal_value = wpjobportal::wpjobportal_sanitizeData(wp_unslash($_POST[$wpjobportal_variable_name])) /* Security: arrays sanitized like scalars */;
                 }else{
                     if($editor_data == null){
                         $wpjobportal_value = wpjobportal::wpjobportal_sanitizeData(wp_unslash($_POST[$wpjobportal_variable_name]));
@@ -39,7 +39,7 @@ class WPJOBPORTALrequest {
                 case 'post':
                     if (isset($_POST[$wpjobportal_variable_name]))
                         if (is_array($_POST[$wpjobportal_variable_name])) {
-                            $wpjobportal_value = filter_var_array(wp_unslash($_POST[$wpjobportal_variable_name]));
+                            $wpjobportal_value = wpjobportal::wpjobportal_sanitizeData(wp_unslash($_POST[$wpjobportal_variable_name])) /* Security: arrays sanitized like scalars */;
                         }else{
                             if($editor_data == null){
                                 $wpjobportal_value = wpjobportal::wpjobportal_sanitizeData(wp_unslash($_POST[$wpjobportal_variable_name]));
@@ -51,7 +51,7 @@ class WPJOBPORTALrequest {
                 case 'get':
                     if (isset($_GET[$wpjobportal_variable_name]))
                         if (is_array($_GET[$wpjobportal_variable_name])) {
-                            $wpjobportal_value = filter_var_array(wp_unslash($_GET[$wpjobportal_variable_name]));
+                            $wpjobportal_value = wpjobportal::wpjobportal_sanitizeData(wp_unslash($_GET[$wpjobportal_variable_name])) /* Security: arrays sanitized like scalars */;
                         }else{
                             $wpjobportal_value = wpjobportal::wpjobportal_sanitizeData(wp_unslash($_GET[$wpjobportal_variable_name]));
                         }

@@ -6398,203 +6398,63 @@ div#wpjobportaladmin-wrapper a#userpopup:hover {
            Packages 
  =================================================== */
  /* Main Card Container */
-.wpjobportal-pkg-list-item {
 
-    background-color: #ffffff;
-    width: 100%;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 10px 15px rgba(0, 0, 0, 0.03);
-    overflow: hidden;
-    margin: 20px auto;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-sizing: border-box;
-}
 
-.wpjobportal-pkg-list-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
+
 
 /* --- Top Section (Header) --- */
-.wpjobportal-pkg-list-item-top {
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #f1f5f9;
-    background-color: #f8fafc;
-        border-bottom: 3px dotted #291ccb;
 
-}
 
 /* Title Area */
-.wpjobportal-pkg-list-item-title {
-    flex: 1;
-    padding-right: 15px;
-}
 
-.wpjobportal-pkg-list-item-title-txt {
-    font-size: 22px;
-    font-weight: 700;
-    color: #1e293b;
-    margin-bottom: 4px;
-    line-height: 1.3;
-    text-transform: capitalize;
-}
 
-.wpjobportal-pkg-list-item-crt-date {
-    font-size: 15px;
-    color: #94a3b8;
-    margin-bottom: 8px;
-    padding: 10px 0;
-}
+
+
+
 
 
 /* Discount Badge */
-.wpjobportal-pkg-list-item-disc {
-display: inline-block;
-    background-color: #b4ffd2;
-    color: #037809;
-    font-size: 15px;
-    font-weight: 700;
-    padding: 3px 14px;
-    border-radius: 999px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
+
 
 /* Price Area */
-.wpjobportal-pkg-list-item-price {
-    text-align: right;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
-}
 
-.wpjobportal-pkg-list-item-price-discount {
-    font-size: 20px;
-    color: #94a3b8;
-    text-decoration: line-through;
-        margin-bottom: 10px;
-        text-decoration-color: #e30101;
-}
 
-.wpjobportal-pkg-list-item-price-txt {
-    font-size: 24px;
-    font-weight: 800;
-    color: #0f172a;
-}
+
+
+
 
 /* --- Middle Section (Data Rows) --- */
-.wpjobportal-pkg-list-item-data{
-       display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-.wpjobportal-pkg-list-item-mid {
-    padding: 20px 20px;
-    background-color: #ffffff;
-}
-.wpjobportal-pkg-list-item-row {
-    font-size: var(--wjp-font-size-base);
-    display: flex;
-    align-items: center;
-    padding: 16px;
-    border: 1px solid #e2dfdf;
-    border-radius: 8px;
-    background-color: var(--background-color);
-    transition: all 0.3s 
-ease;
-}
-span.wpjobportal-pkg-list-item-row-val{
-   margin-left: 10px;
-}
-.wpjobportal-pkg-list-item-row:last-child {
-    border-bottom: none;
-}
 
-.wpjobportal-pkg-list-item-row-tit {
-    color: #64748b;
-    font-weight: 500;
-}
 
-.wpjobportal-pkg-list-item-row-val {
-    color: #334155;
-    font-weight: 600;
-    text-align: right;
-}
+
+
+
+
+
+
+
 
 /* Highlight "Unlimited" or positive values visually */
-.wpjobportal-pkg-list-item-row-val:contains("Unlimited") { 
-    /* Note: :contains is not standard CSS, but generic styling follows */
-    color: #10b981; 
-}
+
 
 /* --- Bottom Section (Actions) --- */
-.wpjobportal-pkg-list-item-btm {
-    padding: 20px;
-    background-color: #f8fafc;
-    border-top: 1px solid #f1f5f9;
-}
 
-.wpjobportal-pkg-list-item-action-wrp {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-}
 
-.wpjobportal-pkg-list-item-act-btn {
-    flex: 1;
-    text-align: center;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 600;
-    transition: background-color 0.2s, opacity 0.2s;
-    cursor: pointer;
-}
-.wpjobportal-pkg-list-item-act-btn{
-    background-color: #3b82f6;
-    color: #fff !important;
-    border: 1px solid #3b82f6;
-}
-.wpjobportal-pkg-list-item-act-btn:hover {
-    background-color: #281ccb;
-}
+
+
+
+
+
 /* Edit Button Style (Primary) */
-.wpjobportal-pkg-list-item-act-btn[title="Edit"] {
-    background-color: #3b82f6;
-    color: #fff !important;
-    border: 1px solid #3b82f6;
-}
-.wpjobportal-pkg-list-item-act-btn[title="Edit"]:hover {
-    background-color: #281ccb;
-}
+
+
 
 /* Delete Button Style (Danger/Outline) */
-.wpjobportal-pkg-list-item-act-btn[title="Delete"] {
-    background-color: transparent;
-    color: #ef4444 !important;
-    border: 1px solid #ef4444;
-}
-.wpjobportal-pkg-list-item-act-btn[title="Delete"]:hover {
-    background-color: #fee2e2;
-}
+
+
 
 /* Expiry Text */
-.wpjobportal-pkg-list-item-exp-date {
-    text-align: center;
-        font-size: var(--wjp-font-size-base);
-    color: #d68600; /* Amber warning color */
-    font-weight: 600;
-    background: #fffbeb;
-    padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #fef3c7;
-}
+
 h3.wpjobportal-form-sec-heading {
     background: #f1f1f1;
     padding: 22px 15px;
@@ -7096,7 +6956,7 @@ div#wpjobportaladmin-wrapper .wpjobportal-form-wrapper{display: unset;text-align
 div#wpjobportaladmin-wrapper  .wpjobportal-form-title {justify-content: flex-start;}
 div#wpjobportaladmin-wrapper .wpjobportal-form-description{margin-left: 0;}
 div#wpjobportaladmin-wrapper .wpjobportal-resume-middle-wrp{padding-left: 20px;}
-div#wpjobportaladmin-wrapper .wpjobportal-pkg-list-item-data{grid-template-columns: repeat(2, 1fr);}
+
 div#wpjobportaladmin-wrapper .wpjobportal-city-data-form-wrap.wpjobportal-city-data-form-wrap-left .wpjobportal-form-title{margin-top: 25px;}
 }
 
@@ -7193,7 +7053,7 @@ div#wpjobportaladmin-wrapper span.wpjobportal-resume-name{margin-bottom: 20px;}
 div#wpjobportaladmin-wrapper .wpjobportal-resume-middle-wrp{width: 100%;padding-right: 0;}
 div#wpjobportaladmin-wrapper .featurednew{    right: 50px;}
 div#wpjobportaladmin-wrapper .wpjobportal-shortcode-secndshortcodetext{white-space: unset;}
-div#wpjobportaladmin-wrapper .wpjobportal-pkg-list-item-data{grid-template-columns: repeat(1, 1fr);}
+
 div#wpjobportaladmin-wrapper .wpjobportal-form-citycount-wrap{ max-height: 60px;}
 div#wpjobportaladmin-wrapper span#loadaddressdata_city_name_msg { max-height: 80px;}
 div#wpjobportaladmin-wrapper span#loadaddressdata_city_name_msg_warn{ max-height: 90px;}
@@ -7894,7 +7754,10 @@ div.wpjobportal-post-installation div.wpjobportal-post-menu ul li.active a .wpjo
 div.wpjobportal-post-installation div.wpjobportal-post-menu ul li.active a .wpjobportal-post-installation-white-icon{display:flex;align-items: center;}
 div.wpjobportal-post-installation div.wpjobportal-post-menu ul li a img {margin-right: 10px;}
 div.wpjobportal-post-installation div.wpjobportal-post-data {display: flex;flex-direction: column;flex-wrap: wrap; width: calc(100% - 340px);padding: 30px;background: #fff;box-shadow: 0 0 3px 2px rgba(0,0,0,0.2);border-radius: 35px;background-image: url("../../includes/images/postinstallation/quickstrt_bg.png");background-size: contain;background-position:0 100%;background-repeat: no-repeat;border-bottom: 6px solid #32373c;min-height: 763px;}
-div.wpjobportal-post-installation div.wpjobportal-post-data div.wpjobportal-post-heading {float: left;font-size: 28px;line-height: 40px; font-weight: bold;}
+div.wpjobportal-post-installation div.wpjobportal-post-data div.wpjobportal-post-heading,
+div.wpjobportal-post-installation div.wpjobportal-post-data h1.wpjobportal-post-heading {float: left;font-size: 28px;line-height: 40px; font-weight: bold;}
+/* The step title is the page's h1 (2.8.0): no heading margins or colour of its own. */
+div.wpjobportal-post-installation div.wpjobportal-post-data :is(h1, h2).wpjobportal-post-heading {margin: 0; padding: 0; color: inherit; font-family: inherit;}
 div.wpjobportal-post-installation div.wpjobportal-post-data div.wpjobportal-post-heading-wrp{display: flex;align-items: center;justify-content: space-between;padding-bottom: 15px;margin-bottom: 30px;border-bottom: 1px solid #dfdfdf;}
 div.wpjobportal-post-installation div.wpjobportal-post-data div.wpjobportal-post-heading-wrp .wpjobportal-post-head-rightbtns-wrp{display: flex;justify-content: center;gap:5px;min-width: fit-content;}
 div.wpjobportal-post-installation div.wpjobportal-post-data div.wpjobportal-post-heading-wrp .wpjobportal-post-head-pagestep{display: flex;align-items: center;justify-content:center;background-color: #373435;color: #fff;font-size: 18px;padding:15px 20px;border-radius: 6px;font-weight: bold;}
@@ -7941,6 +7804,7 @@ div.wpjobportal-post-installation div.wpjobportal-post-data form .wpjobportal-po
 div.wpjobportal-post-installation div.wpjobportal-post-data .wpjobportal-post-card-mainwrp{display: flex;align-items:flex-start;justify-content: space-between;border: 1px solid #ebeced;padding: 60px 20px 30px;background-color: #fff;border-bottom: 4px solid #32373c;border-radius: 6px;width: 100%;}
 div.wpjobportal-post-installation div.wpjobportal-post-data form .wpjobportal-post-show-default-user-form .wpjobportal-post-val.wpjobportal-post-val-user-list{display: flex;align-items: center;flex-wrap: wrap;gap: 5px;}
 div.wpjobportal-post-installation div.wpjobportal-post-data form#wpjobportal-form-ins .wpjobportal-post-heading{float: left;font-size: 24px;line-height: 40px;font-weight: bold;padding-bottom: 10px;border-bottom: 1px solid #dfdfdf;width: 100%;margin-bottom: 40px;}
+div.wpjobportal-post-installation div.wpjobportal-post-data form#wpjobportal-form-ins h2.wpjobportal-post-heading{margin-top: 0;}
 div.wpjobportal-post-installation div.wpjobportal-post-data .wpjobportal-post-cmpletesetup-wrp{display: flex;align-items: center;justify-content: center;height: 100%;width: 100%;text-align:center;flex-direction: column;padding-top: 50px;}
 div.wpjobportal-post-installation div.wpjobportal-post-data .wpjobportal-post-cmpletesetup-wrp .wpjobportal-post-cmpletesetup-title{font-size: 22px;font-weight: bold;line-height: 35px;padding: 30px 0;}
 div.wpjobportal-post-installation div.wpjobportal-post-data .wpjobportal-post-cmpletesetup-wrp .wpjobportal-post-action-btn .wpjobportal-post-act-btn{display: inline-block;padding: 15px 0px;background: linear-gradient(90deg, rgba(79, 70, 229, 1) 0%, rgba(14, 23, 199, 1) 50%, rgba(80, 35, 210, 1) 100%);color: #fff;border-radius: 6px;width: 40%;max-width: 100%;border: 1px solid #026ef8;font-size: 16px; border-bottom: 2px solid #32373c;font-weight: bold;text-decoration: unset;}
@@ -9651,6 +9515,234 @@ div.wpjobportal-post-installation div.wpjobportal-post-data form p.wpjobportal-p
 }
 
 /* User Packages: a revoked package, shown as such rather than as "not published". */
+
+
+/*
+ * W-19: setup wizard in the light admin design - page-coloured background
+ * instead of the purple gradient, panels as cards (12px, light shadow, no dark
+ * bottom edge), "Exit setup" as a plain button instead of a red X, and the
+ * mode pictures inside their cards instead of hanging over them.
+ */
+div.wpjobportal-post-installation-wrp div.wpjobportal-post-installation { background: #f1f5f9; }
+div.wpjobportal-post-installation div.wpjobportal-post-menu,
+div.wpjobportal-post-installation div.wpjobportal-post-data { border-radius: 12px; border: 0; box-shadow: 0 1px 2px rgb(15 23 42 / .06), 0 1px 3px rgb(15 23 42 / .08); background-image: none; }
+div.wpjobportal-post-installation div.wpjobportal-post-data { min-height: 0; }
+div.wpjobportal-post-installation div.wpjobportal-post-data div.wpjobportal-post-heading-wrp .wpjobportal-post-head-closebtn { padding: 0 14px; height: 36px; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; color: #1e293b; font-size: 14px; font-weight: 500; text-decoration: none; }
+div.wpjobportal-post-installation div.wpjobportal-post-data div.wpjobportal-post-heading-wrp .wpjobportal-post-head-closebtn:hover { border-color: #c7d2fe; color: #4f46e5; }
+/* The step badge beside "Exit setup": same 36px height and corners, so the two line up. */
+div.wpjobportal-post-installation div.wpjobportal-post-data div.wpjobportal-post-heading-wrp .wpjobportal-post-head-pagestep { box-sizing: border-box; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 600; }
+.wpjobportal-post-employer-mode-single-img-wrap { bottom: 0; width: 100%; height: 120px; border: 0; background: transparent; }
+.wpjobportal-post-employer-mode-single-img-wrap img { max-height: 100px; }
+
+/* Site mode & setup on a site that is already set up: the checklist in the normal layout, mode change folded. */
+#wpjobportaladmin-wrapper.wpjp-setup-overview .wpjp-setup-overview-body { display: flex; flex-direction: column; gap: 16px; width: auto; min-height: 0; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
+#wpjobportaladmin-wrapper.wpjp-setup-overview .wpjp-setup-overview-body > section { margin: 0; border: 0; border-radius: 12px; box-shadow: 0 1px 2px rgb(15 23 42 / .06), 0 1px 3px rgb(15 23 42 / .08); }
+#wpjobportaladmin-wrapper.wpjp-setup-overview .wpjp-mode-change { padding: 0; }
+#wpjobportaladmin-wrapper.wpjp-setup-overview .wpjp-mode-change > summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 20px; cursor: pointer; list-style: none; }
+#wpjobportaladmin-wrapper.wpjp-setup-overview .wpjp-mode-change > summary::-webkit-details-marker { display: none; }
+#wpjobportaladmin-wrapper.wpjp-setup-overview .wpjp-mode-change-title { font-size: 18px; font-weight: 600; color: #1e293b; }
+#wpjobportaladmin-wrapper.wpjp-setup-overview .wpjp-mode-change-title::after { content: " \25BE"; color: #64748b; }
+#wpjobportaladmin-wrapper.wpjp-setup-overview .wpjp-mode-change[open] .wpjp-mode-change-title::after { content: " \25B4"; }
+#wpjobportaladmin-wrapper.wpjp-setup-overview .wpjp-mode-change-now { font-size: 13px; color: #64748b; }
+#wpjobportaladmin-wrapper.wpjp-setup-overview .wpjp-mode-change-warning { margin: 0 20px 16px; padding: 12px 14px; border-left: 4px solid #d97706; border-radius: 8px; background: #fffbeb; color: #78350f; font-size: 13.5px; line-height: 1.5; }
+#wpjobportaladmin-wrapper.wpjp-setup-overview .wpjp-mode-change form { padding: 0 20px 20px; }
+#wpjobportaladmin-wrapper.wpjp-setup-overview .wpjp-mode-change .wpjobportal-post-card-mainwrp { padding: 16px; border: 1px solid #e2e8f0; border-radius: 12px; background: #fff; }
+#wpjobportaladmin-wrapper.wpjp-setup-overview .wpjp-mode-change .wpj-is-selected .wpjobportal-post-card-mainwrp { border-color: #4f46e5; box-shadow: 0 0 0 1px #4f46e5; }
+#wpjobportaladmin-wrapper.wpjp-setup-overview .wpjp-mode-change .wpjobportal-post-employer-mode-single-img-wrap { position: static; }
+#wpjobportaladmin-wrapper.wpjp-setup-overview .wpjp-mode-change .wpjobportal-post-action-btn { margin-top: 16px; text-align: right; }
+#wpjobportaladmin-wrapper.wpjp-setup-overview .wpjp-mode-change button.wpjobportal-post-act-btn { height: 38px; padding: 0 18px; border: 0; border-radius: 8px; background: #4f46e5; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; }
+
+/*
+ * Package list of Marketplace Suite 1.0.0 (Plans & credits > Packages). Suite
+ * 1.1.0 draws this list with the shared list parts; these rules keep the 1.0.0
+ * screen readable on a site that updates WP Job Portal before the suite.
+ * Remove once 1.0.0 is no longer supported.
+ */
+ /* Main Card Container */
+.wpjobportal-pkg-list-item {
+
+    background-color: #ffffff;
+    width: 100%;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 10px 15px rgba(0, 0, 0, 0.03);
+    overflow: hidden;
+    margin: 20px auto;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+.wpjobportal-pkg-list-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+/* --- Top Section (Header) --- */
+.wpjobportal-pkg-list-item-top {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f1f5f9;
+    background-color: #f8fafc;
+        border-bottom: 3px dotted #291ccb;
+
+}
+/* Title Area */
+.wpjobportal-pkg-list-item-title {
+    flex: 1;
+    padding-right: 15px;
+}
+.wpjobportal-pkg-list-item-title-txt {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 4px;
+    line-height: 1.3;
+    text-transform: capitalize;
+}
+.wpjobportal-pkg-list-item-crt-date {
+    font-size: 15px;
+    color: #94a3b8;
+    margin-bottom: 8px;
+    padding: 10px 0;
+}
+/* Discount Badge */
+.wpjobportal-pkg-list-item-disc {
+display: inline-block;
+    background-color: #b4ffd2;
+    color: #037809;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 3px 14px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+/* Price Area */
+.wpjobportal-pkg-list-item-price {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+.wpjobportal-pkg-list-item-price-discount {
+    font-size: 20px;
+    color: #94a3b8;
+    text-decoration: line-through;
+        margin-bottom: 10px;
+        text-decoration-color: #e30101;
+}
+.wpjobportal-pkg-list-item-price-txt {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0f172a;
+}
+/* --- Middle Section (Data Rows) --- */
+.wpjobportal-pkg-list-item-data{
+       display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.wpjobportal-pkg-list-item-mid {
+    padding: 20px 20px;
+    background-color: #ffffff;
+}
+.wpjobportal-pkg-list-item-row {
+    font-size: var(--wjp-font-size-base);
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border: 1px solid #e2dfdf;
+    border-radius: 8px;
+    background-color: var(--background-color);
+    transition: all 0.3s 
+ease;
+}
+span.wpjobportal-pkg-list-item-row-val{
+   margin-left: 10px;
+}
+.wpjobportal-pkg-list-item-row:last-child {
+    border-bottom: none;
+}
+.wpjobportal-pkg-list-item-row-tit {
+    color: #64748b;
+    font-weight: 500;
+}
+.wpjobportal-pkg-list-item-row-val {
+    color: #334155;
+    font-weight: 600;
+    text-align: right;
+}
+/* Highlight "Unlimited" or positive values visually */
+.wpjobportal-pkg-list-item-row-val:contains("Unlimited") { 
+    /* Note: :contains is not standard CSS, but generic styling follows */
+    color: #10b981; 
+}
+/* --- Bottom Section (Actions) --- */
+.wpjobportal-pkg-list-item-btm {
+    padding: 20px;
+    background-color: #f8fafc;
+    border-top: 1px solid #f1f5f9;
+}
+.wpjobportal-pkg-list-item-action-wrp {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.wpjobportal-pkg-list-item-act-btn {
+    flex: 1;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.2s, opacity 0.2s;
+    cursor: pointer;
+}
+.wpjobportal-pkg-list-item-act-btn{
+    background-color: #3b82f6;
+    color: #fff !important;
+    border: 1px solid #3b82f6;
+}
+.wpjobportal-pkg-list-item-act-btn:hover {
+    background-color: #281ccb;
+}
+/* Edit Button Style (Primary) */
+.wpjobportal-pkg-list-item-act-btn[title="Edit"] {
+    background-color: #3b82f6;
+    color: #fff !important;
+    border: 1px solid #3b82f6;
+}
+.wpjobportal-pkg-list-item-act-btn[title="Edit"]:hover {
+    background-color: #281ccb;
+}
+/* Delete Button Style (Danger/Outline) */
+.wpjobportal-pkg-list-item-act-btn[title="Delete"] {
+    background-color: transparent;
+    color: #ef4444 !important;
+    border: 1px solid #ef4444;
+}
+.wpjobportal-pkg-list-item-act-btn[title="Delete"]:hover {
+    background-color: #fee2e2;
+}
+/* Expiry Text */
+.wpjobportal-pkg-list-item-exp-date {
+    text-align: center;
+        font-size: var(--wjp-font-size-base);
+    color: #d68600; /* Amber warning color */
+    font-weight: 600;
+    background: #fffbeb;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #fef3c7;
+}
+@media (max-width: 1080px) {
+div#wpjobportaladmin-wrapper .wpjobportal-pkg-list-item-data{grid-template-columns: repeat(2, 1fr);}
+}
+@media (max-width: 480px) {
+div#wpjobportaladmin-wrapper .wpjobportal-pkg-list-item-data{grid-template-columns: repeat(1, 1fr);}
+}
 div#wpjobportaladmin-data .wpjobportal-package-revoked {
     display: inline-block;
     padding: 3px 10px;

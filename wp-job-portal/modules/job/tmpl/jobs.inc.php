@@ -28,11 +28,11 @@ foreach(wpjobportal::$wpjobportal_data['fields'] AS $wpjobportal_key => $wpjobpo
 }
 $wpjobportal_protocol = is_ssl() ? "https://" : "http://";
 if(isset(wpjobportal::$_data[2][$wpjobportal_mapfield]) && wpjobportal::$_data[2][$wpjobportal_mapfield]->published == 1){
-   wp_enqueue_script( 'mapAPI', $wpjobportal_protocol.'maps.googleapis.com/maps/api/js?key='.wpjobportal::$_configuration['google_map_api_key'], array(), WPJOBPORTAL_VERSION, false );
+   wp_enqueue_script( 'mapAPI', WPJOBPORTAL_Google_Maps::script_url(), array(), WPJOBPORTAL_VERSION, false );
 }elseif($wpjobportal_mapfield2 != null) {
-   wp_enqueue_script( 'mapAPI', $wpjobportal_protocol.'maps.googleapis.com/maps/api/js?key='.wpjobportal::$_configuration['google_map_api_key'], array(), WPJOBPORTAL_VERSION, false );
+   wp_enqueue_script( 'mapAPI', WPJOBPORTAL_Google_Maps::script_url(), array(), WPJOBPORTAL_VERSION, false );
 }
-   wp_enqueue_script( 'mapAPI', $wpjobportal_protocol.'maps.googleapis.com/maps/api/js?key='.wpjobportal::$_configuration['google_map_api_key'], array(), WPJOBPORTAL_VERSION, false );
+   wp_enqueue_script( 'mapAPI', WPJOBPORTAL_Google_Maps::script_url(), array(), WPJOBPORTAL_VERSION, false );
 ?>
 <?php
     wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
@@ -241,7 +241,19 @@ if(isset(wpjobportal::$_data[2][$wpjobportal_mapfield]) && wpjobportal::$_data[2
                 noResultsText: \"". esc_html(__('No Results', 'wp-job-portal'))."\",
                 searchingText: \"". esc_html(__('Searching', 'wp-job-portal'))."...\"
             });
-            jQuery('#wpjobportal-input-city').attr('placeholder', \"". esc_html(__('City Name', 'wp-job-portal'))."\");
+            jQuery('#wpjobportal-input-city').attr({'placeholder': \"". esc_html(__('City Name', 'wp-job-portal'))."\", 'aria-label': \"". esc_html(__('City Name', 'wp-job-portal'))."\"});
+            // W-17: text typed but not picked from the list goes with the search. The city
+            // widget empties its box on blur, so the text is kept as it is typed.
+            var typedCity = '';
+            jQuery(document).on('input', '#wpjobportal-input-city', function () { typedCity = jQuery.trim(this.value); });
+            jQuery('.wpjobportal-job-listing-city-field').on('change', function () { typedCity = ''; });
+            jQuery('#job_form').on('submit', function () {
+                if (typedCity !== '') {
+                    var field = jQuery('.wpjobportal-job-listing-city-field');
+                    field.val(field.val() ? field.val() + ',' + typedCity : typedCity);
+                    typedCity = '';
+                }
+            });
         }
     ";
     wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );

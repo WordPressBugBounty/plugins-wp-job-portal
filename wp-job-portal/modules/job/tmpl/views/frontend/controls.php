@@ -17,7 +17,7 @@ switch ($wpjobportal_control) {
         echo '<div class="wjportal-jobs-list-btm-wrp">
                 <div class="wjportal-jobs-action-wrp">';
                     if($wpjobportal_job->status == 1 || $wpjobportal_job->status == 3){
-                        echo '<a class="wjportal-jobs-act-btn wjportal-list-act-btn-edit" title ='.esc_html(__('Edit Job','wp-job-portal')).' href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'addjob', 'wpjobportalid'=>$wpjobportal_job->id))).'>'. esc_html(__('Edit Job', 'wp-job-portal')).'</a>';
+                        echo '<a class="wjportal-jobs-act-btn wjportal-list-act-btn-edit" title="'.esc_html(__('Edit Job','wp-job-portal')).'" href="'. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'addjob', 'wpjobportalid'=>$wpjobportal_job->id))).'">'. esc_html(__('Edit Job', 'wp-job-portal')).'</a>';
                     }
 
                     $wpjobportal_config_array = wpjobportal::$_data['config'];
@@ -28,10 +28,16 @@ switch ($wpjobportal_control) {
                     if($wpjobportal_job->status != 4){ ?>
                     <a class="wjportal-jobs-act-btn wjportal-list-act-btn-delete" href="<?php echo esc_url(wp_nonce_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'task'=>'remove', 'action'=>'wpjobportaltask', 'wpjobportal-cb[]'=>$wpjobportal_job->id,'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid())),'wpjobportal_job_nonce')); ?>" onclick='return confirmdelete("<?php echo esc_js(__('Are you sure to delete','wp-job-portal')).' ?'; ?>");'><?php echo esc_html(__('Delete Job', 'wp-job-portal')); ?></a>
                     <?php }
+                    // W-14: close early, or reopen
+                    if ($wpjobportal_job->status == 1) {
+                        $wpjobportal_is_closed = WPJOBPORTALincluder::getJSModel('job')->isJobClosedForApplications($wpjobportal_job);
+                        $wpjobportal_close_url = wp_nonce_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'task'=>'setjobclosed', 'action'=>'wpjobportaltask', 'wpjobportalid-job'=>$wpjobportal_job->id, 'op'=>($wpjobportal_is_closed ? 'reopen' : 'close'), 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid())), 'wpjobportal_job_nonce');
+                        echo '<a class="wjportal-jobs-act-btn wjportal-list-act-btn-close' . ($wpjobportal_is_closed ? ' is-closed' : '') . '" href="' . esc_url($wpjobportal_close_url) . '">' . esc_html($wpjobportal_is_closed ? __('Reopen', 'wp-job-portal') : __('Close job', 'wp-job-portal')) . '</a>';
+                    }
                     # Copy Job --
                     do_action('wpjobportal_addons_credit_popup_copy_job',$wpjobportal_job);
                     if($wpjobportal_job->status != 3 && $wpjobportal_job->status != 4 ){
-                       echo '<a class="wjportal-jobs-act-btn wjportal-jobs-apply-res wjportal-list-act-btn-applied-resumes" title = "'.esc_attr(__('Resume','wp-job-portal')).'" href='. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobapply', 'wpjobportallt'=>'jobappliedresume', 'jobid'=>$wpjobportal_job->id))).'>'. esc_html(__('Resume', 'wp-job-portal')) . " (" . esc_html($wpjobportal_job->resumeapplied) . ")".'</a>';
+                       echo '<a class="wjportal-jobs-act-btn wjportal-jobs-apply-res wjportal-list-act-btn-applied-resumes" title = "'.esc_attr(__('Resume','wp-job-portal')).'" href="'. esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'jobapply', 'wpjobportallt'=>'jobappliedresume', 'jobid'=>$wpjobportal_job->id))).'">'. esc_html(__('Resume', 'wp-job-portal')) . " (" . esc_html($wpjobportal_job->resumeapplied) . ")".'</a>';
                     }
                    if($wpjobportal_job->status == 0){
                         echo '
@@ -85,7 +91,10 @@ switch ($wpjobportal_control) {
                 </div>
                 <!-- applied job resume status -->
 
-                    <?php do_action('wpjobportal_addons_resume_action_jobapplied_status',$wpjobportal_job);
+                    <?php
+                    // W-1: the candidate's own words for the status, with or without Recruit Suite.
+                    WPJOBPORTAL_Application_Status::render_candidate_badge($wpjobportal_job);
+                    do_action('wpjobportal_addons_resume_action_jobapplied_status',$wpjobportal_job);
 
                     /*
                      * Only when there is a title to show. This printed the
@@ -147,7 +156,7 @@ switch ($wpjobportal_control) {
                 <div class="wjportal-newest-jobs-date">
                     <?php
                         $wpjobportal_dateformat = wpjobportal::$_configuration['date_format'];
-                        echo esc_html(human_time_diff(strtotime($wpjobportal_job->created),strtotime(date_i18n("Y-m-d H:i:s"))).' '.esc_html(__("Ago",'wp-job-portal')));
+                        echo esc_html(sprintf(/* translators: %s: how long ago, e.g. 3 days */ __('%s ago', 'wp-job-portal'), human_time_diff(strtotime($wpjobportal_job->created),strtotime(date_i18n("Y-m-d H:i:s")))));
                     ?>
                 </div>
             
@@ -166,7 +175,9 @@ switch ($wpjobportal_control) {
                 } ?>
                 <?php
                 $wpjobportal_showapplybutton  = wpjobportal::$_config->getConfigurationByConfigName('showapplybutton');
-                if($wpjobportal_showapplybutton == 1){
+                if (WPJOBPORTALincluder::getJSModel('job')->isJobClosedForApplications($wpjobportal_job)) { // D-8
+                    echo wp_kses(WPJOBPORTALincluder::getJSModel('job')->closedJobLabel(), WPJOBPORTAL_ALLOWED_TAGS);
+                } elseif($wpjobportal_showapplybutton == 1){
                     ?>
                     <a class="wjportal-jobs-act-btn-apply <?php echo esc_attr( $wpjobportal_extra_class_job_applied );?>" href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'viewjob', 'wpjobportalid'=>$wpjobportal_job->jobaliasid))); ?>" ><?php echo esc_html($wpjobportal_desc); ?></a><?php
                 }

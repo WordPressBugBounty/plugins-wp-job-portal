@@ -20,7 +20,7 @@ echo '<div class="wjportal-resume-status-dashboard-data">
             <div class="wjportal-resume-logo">
                 <span class="fir">
                     <a href="'.esc_url($wpjobportal_url).'">
-                        <img  src="'.esc_url($wpjobportal_photourl).'" />
+                        <img alt="'.esc_attr__('View resume', 'wp-job-portal').'" src="'.esc_url($wpjobportal_photourl).'" />
                     </a>
                 </span>
             </div>
@@ -31,7 +31,7 @@ echo '<div class="wjportal-resume-status-dashboard-data">
 <div class="wjportal-resume-status-dashboard-right-data">
         ';
         echo '<div class="wjportal-resume-data">
-                <a href='.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'viewresume', 'wpjobportalid'=>$wpjobportal_resume->id, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).'>
+                <a href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'viewresume', 'wpjobportalid'=>$wpjobportal_resume->id, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).'">
                     <span class="wjportal-resume-name">'.esc_html($wpjobportal_resume->first_name) .' ' . esc_html($wpjobportal_resume->last_name).' '.'</span>
                     <span class="wjportal-resume-title">'. esc_html($wpjobportal_resume->applicationtitle) .'</span>
                 </a>';
@@ -50,7 +50,7 @@ echo '<div class="wjportal-resume-status-dashboard-data">
         echo '    </div>';
         echo '</div>';
         echo '<div class="wjportal-progress-complete-resume-wrap">';
-        echo '<a href='.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'addresume', 'wpjobportalid'=>$wpjobportal_resume->id, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).'>
+        echo '<a href="'.esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'addresume', 'wpjobportalid'=>$wpjobportal_resume->id, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))).'">
                     ' . esc_html(__('Complete Your Resume', 'wp-job-portal')) . '
                 </a>';
         echo '</div>';

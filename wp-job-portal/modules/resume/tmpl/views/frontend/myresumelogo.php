@@ -16,14 +16,14 @@ if($wpjobportal_myresume->photo != "") {
 		?>
 		<span class="fir">
             <a href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'viewresume', 'wpjobportalid'=>$wpjobportal_myresume->id, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))); ?>">
-                <img  src="<?php echo esc_url($wpjobportal_path); ?>" />
+                <img alt="<?php echo esc_attr__('View resume', 'wp-job-portal'); ?>" src="<?php echo esc_url($wpjobportal_path); ?>" />
             </a>
         </span>
 		<?php
 	}else{?>
 	<div class="wjportal-resume-logo">
 		<a href="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'viewresume', 'wpjobportalid'=>$wpjobportal_myresume->aliasid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()))); ?>">
-		<img src="<?php echo esc_url($wpjobportal_path); ?>">
+		<img alt="<?php echo esc_attr__('View resume', 'wp-job-portal'); ?>" src="<?php echo esc_url($wpjobportal_path); ?>">
 		</a>
 	</div>
 	<?php

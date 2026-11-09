@@ -22,7 +22,7 @@ class WPJOBPORTALCategoryModel {
 
         if($wpjobportal_count_flag == 3 || $wpjobportal_count_flag == 2){
             $query = " SELECT count(job.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                       WHERE job.jobcategory = " . (int) ($wpjobportal_id)." AND DATE(job.startpublishing) <= CURDATE() AND DATE(job.stoppublishing) >= CURDATE() AND job.status = 1 ";
+                       WHERE job.jobcategory = " . (int) ($wpjobportal_id)." AND job.startpublishing < DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND job.stoppublishing >= CURDATE() AND job.status = 1 ";
             wpjobportal::$_data[0]->count = wpjobportaldb::get_var($query);
         }else{
             if(wpjobportal::$_data[0] == ''){
@@ -103,13 +103,20 @@ class WPJOBPORTALCategoryModel {
             }
         }
         $wpjobportal_totalresult = count($wpjobportal_result);
+        // The list pages over every row (top-level and sub categories), so the
+        // counter and pager must count them all; counting only top-level ones
+        // left the pages after "of 56" unreachable.
+        wpjobportal::$_data['total'] = $wpjobportal_totalresult;
         wpjobportal::$_data[1] = WPJOBPORTALpagination::getPagination($wpjobportal_totalresult);
 
         $finalresult = array();
-        WPJOBPORTALpagination::$_limit = WPJOBPORTALpagination::$_limit + WPJOBPORTALpagination::$_offset;
-        if (WPJOBPORTALpagination::$_limit >= $wpjobportal_totalresult)
-            WPJOBPORTALpagination::$_limit = $wpjobportal_totalresult;
-        for ($wpjobportal_i = WPJOBPORTALpagination::$_offset; $wpjobportal_i < WPJOBPORTALpagination::$_limit; $wpjobportal_i++) {
+        // Tester report: this used to overwrite WPJOBPORTALpagination::$_limit with
+        // limit + offset, so on page 2 the counter and pager read 20 per page
+        // ("Showing 21-40", 3 pages instead of 6). A local end keeps the page size intact.
+        $wpjobportal_end = WPJOBPORTALpagination::$_limit + WPJOBPORTALpagination::$_offset;
+        if ($wpjobportal_end >= $wpjobportal_totalresult)
+            $wpjobportal_end = $wpjobportal_totalresult;
+        for ($wpjobportal_i = WPJOBPORTALpagination::$_offset; $wpjobportal_i < $wpjobportal_end; $wpjobportal_i++) {
             $finalresult[] = $wpjobportal_result[$wpjobportal_i];
         }
 
@@ -127,10 +134,18 @@ class WPJOBPORTALCategoryModel {
             $wpjobportal_is_active_check = ' AND category.isactive = 1 ';
         }
 
-        $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category WHERE category.parentid = " . (int) ($parentid);
-        $query .= $wpjobportal_is_active_check;
-        $query .= " ORDER by category.ordering "; // "isactive = 1" check to hide unpublished categories
-        $wpjobportal_kbcategories = wpjobportal::$_db->get_results($query);
+        // P-7: one query for the whole tree, not one per category
+        static $wpjobportal_children = array();
+        if (!isset($wpjobportal_children[$for_combo])) {
+            $wpjobportal_children[$for_combo] = array();
+            $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category WHERE 1 = 1";
+            $query .= $wpjobportal_is_active_check;
+            $query .= " ORDER by category.ordering "; // "isactive = 1" check to hide unpublished categories
+            foreach ((array) wpjobportal::$_db->get_results($query) as $wpjobportal_row) {
+                $wpjobportal_children[$for_combo][(int) $wpjobportal_row->parentid][] = $wpjobportal_row;
+            }
+        }
+        $wpjobportal_kbcategories = isset($wpjobportal_children[$for_combo][(int) $parentid]) ? $wpjobportal_children[$for_combo][(int) $parentid] : array();
         if (!empty($wpjobportal_kbcategories)) {
             foreach ($wpjobportal_kbcategories as $cat) {
                 $wpjobportal_subrecord = (object) array();
@@ -148,6 +163,11 @@ class WPJOBPORTALCategoryModel {
     }
 
     function getCategoryForCombobox($wpjobportal_themecall=null) {
+        static $wpjobportal_lists = array(); // P-7: every filter on a page asks for this list
+        $wpjobportal_list_key = null != $wpjobportal_themecall ? 'theme' : 'default';
+        if (isset($wpjobportal_lists[$wpjobportal_list_key])) {
+            return $wpjobportal_lists[$wpjobportal_list_key];
+        }
         $wpjobportal_result = array();
         /*
          * A child reads as "|-- Payroll" in the admin list, and read as
@@ -184,6 +204,7 @@ class WPJOBPORTALCategoryModel {
 
             }
         }
+        $wpjobportal_lists[$wpjobportal_list_key] = $list;
         return $list;
     }
 
@@ -353,7 +374,10 @@ class WPJOBPORTALCategoryModel {
                     ( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE jobcategory = " . (int) ($wpjobportal_categoryid) . ")
                     +( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE job_category = " . (int) ($wpjobportal_categoryid) . ")
                     +( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_categories` WHERE id = " . (int) ($wpjobportal_categoryid) . " AND isdefault = 1)
+                    +( SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_categories` WHERE parentid = " . (int) ($wpjobportal_categoryid) . ")
                     AS total ";
+        // The last line: a category that still has subcategories stays, like one in use.
+        // Deleted, it left its subcategories pointing at a parent that no longer exists.
         $wpjobportal_total = wpjobportaldb::get_var($query);
         if ($wpjobportal_total > 0)
             return false;
@@ -410,13 +434,13 @@ class WPJOBPORTALCategoryModel {
             return false;
         if($wpjobportal_resume == 1){
             $query = "SELECT cat.cat_title, CONCAT(cat.alias,'-',cat.id) AS aliasid,cat.id AS categoryid,
-                        (SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE job_category = cat.id AND status = 1 AND searchable = 1) AS totaljobs
+                        (SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE job_category = cat.id AND status = 1 AND searchable = 1 AND quick_apply <> 1 AND uid <> 0) AS totaljobs
                         FROM `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat
                         WHERE cat.isactive = 1 AND cat.parentid = " . (int) ($wpjobportal_categoryid)
                          ;
         }else{
             $query = "SELECT cat.cat_title, CONCAT(cat.alias,'-',cat.id) AS aliasid,cat.id AS categoryid,
-                        (SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS jobs WHERE jobs.jobcategory = cat.id AND DATE(jobs.startpublishing) <= CURDATE() AND DATE(jobs.stoppublishing) >= CURDATE() AND jobs.status = 1) AS totaljobs
+                        (SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS jobs WHERE jobs.jobcategory = cat.id AND jobs.startpublishing < DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND jobs.stoppublishing >= CURDATE() AND jobs.status = 1) AS totaljobs
                         FROM `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat
                         WHERE cat.isactive = 1 AND cat.parentid = " . (int) ($wpjobportal_categoryid)
                          ;
@@ -426,13 +450,13 @@ class WPJOBPORTALCategoryModel {
             if($wpjobportal_resume == 1){
                 $query = "SELECT category.cat_title, CONCAT(category.alias,'-',category.id) AS aliasid,category.serverid
                     ,(SELECT count(resume.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` AS resume
-                        where resume.job_category = category.id AND resume.status = 1)  AS totaljobs
+                        where resume.job_category = category.id AND resume.status = 1 AND resume.uid <> 0)  AS totaljobs
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category
                     WHERE category.isactive = 1 AND category.parentid = " . (int) ($cat_child->categoryid)." ORDER BY category.ordering ASC LIMIT " . absint($wpjobportal_subcategory_limit);
             }else{
                 $query = "SELECT category.cat_title, CONCAT(category.alias,'-',category.id) AS aliasid,category.serverid
                     ,(SELECT count(job.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                        where job.jobcategory = category.id AND DATE(job.startpublishing) <= CURDATE() AND DATE(job.stoppublishing) >= CURDATE())  AS totaljobs
+                        where job.jobcategory = category.id AND job.startpublishing < DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND job.stoppublishing >= CURDATE())  AS totaljobs
                     FROM `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category
                     WHERE category.isactive = 1 AND category.parentid = " . (int) ($cat_child->categoryid)." ORDER BY category.ordering ASC LIMIT " . absint($wpjobportal_subcategory_limit);
             }

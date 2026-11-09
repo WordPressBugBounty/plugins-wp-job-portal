@@ -172,6 +172,104 @@ class WPJOBPORTALUserModel {
         return;
     }
 
+    /**
+     * The admin Users list (design 4, the Jobs list's parts): chips for the
+     * portal role and disabled accounts, a search over every word (name,
+     * email, login, company name, resume name and title), from plain query
+     * values. Each row carries what the person owns, which the 2.7 list
+     * fetched one row at a time behind "Show Info".
+     *
+     * Leaves its result in wpjobportal::$_data['userlist'].
+     */
+    function getAdminUserList() {
+        $db = wpjobportal::$_db;
+        $p = $db->prefix . 'wj_portal_';
+        $get = function ($key) {
+            return trim((string) WPJOBPORTALrequest::getVar($key, 'get', ''));
+        };
+        $views = array(
+            'all' => '1=1',
+            'employer' => 'a.roleid = 1',
+            'jobseeker' => 'a.roleid = 2',
+            'norole' => 'a.roleid NOT IN (1, 2)',
+            'disabled' => 'a.status = 0',
+        );
+        $filter = array(
+            'view' => isset($views[$get('view')]) ? $get('view') : 'all',
+            'q' => $get('q'),
+            'sort' => $get('sort'),
+        );
+        $sorts = array('created' => 'a.created', 'name' => "CONCAT_WS(' ', a.first_name, a.last_name)", 'login' => 'u.user_login', 'role' => 'a.roleid', 'stat' => 'a.status');
+        $parts = explode('|', $filter['sort']);
+        $key = isset($sorts[$parts[0]]) ? $parts[0] : 'created';
+        $dir = isset($parts[1]) ? ($parts[1] === '1' ? 'ASC' : 'DESC') : 'DESC';
+        $filter['sort'] = $key . '|' . ($dir === 'ASC' ? '1' : '-1');
+
+        $from = " FROM `{$p}users` AS a LEFT JOIN `" . $this->jsGetPrefix() . "users` AS u ON u.ID = a.uid";
+        $where = array();
+        foreach (preg_split('/\s+/', $filter['q'], -1, PREG_SPLIT_NO_EMPTY) as $word) {
+            $like = '%' . $db->esc_like($word) . '%';
+            $where[] = $db->prepare("(CONCAT_WS(' ', a.first_name, a.last_name) LIKE %s OR a.emailaddress LIKE %s OR u.user_login LIKE %s OR u.user_email LIKE %s
+                OR EXISTS (SELECT 1 FROM `{$p}companies` WHERE uid = a.id AND name LIKE %s)
+                OR EXISTS (SELECT 1 FROM `{$p}resume` WHERE uid = a.id AND (CONCAT_WS(' ', first_name, last_name) LIKE %s OR application_title LIKE %s)))", $like, $like, $like, $like, $like, $like, $like);
+        }
+        $filters_sql = $where ? ' AND ' . implode(' AND ', $where) : '';
+        $view_sql = ' AND ' . $views[$filter['view']];
+
+        $cols = array();
+        foreach ($views as $view => $condition) {
+            $cols[] = 'SUM(CASE WHEN ' . $condition . ' THEN 1 ELSE 0 END) AS `' . $view . '`';
+        }
+        $counts = array_map('absint', (array) $db->get_row('SELECT ' . implode(', ', $cols) . " FROM `{$p}users` AS a", ARRAY_A));
+        $total = absint($db->get_var('SELECT COUNT(a.id)' . $from . ' WHERE 1=1' . $view_sql . $filters_sql));
+        WPJOBPORTALpagination::getPagination($total);
+        $rows = (array) $db->get_results(
+            "SELECT a.id, a.uid, a.roleid, a.first_name, a.last_name, a.emailaddress, a.photo, a.status, a.created, u.user_login, u.ID AS wpuid,
+                (SELECT COUNT(id) FROM `{$p}companies` WHERE uid = a.id) AS totalcompanies,
+                (SELECT name FROM `{$p}companies` WHERE uid = a.id ORDER BY id LIMIT 1) AS companyname,
+                (SELECT COUNT(id) FROM `{$p}jobs` WHERE uid = a.id) AS totaljobs,
+                (SELECT COUNT(id) FROM `{$p}resume` WHERE uid = a.id AND quick_apply <> 1) AS totalresumes,
+                (SELECT COALESCE(NULLIF(application_title, ''), CONCAT_WS(' ', first_name, last_name)) FROM `{$p}resume` WHERE uid = a.id AND quick_apply <> 1 ORDER BY id LIMIT 1) AS resumetitle,
+                (SELECT COUNT(id) FROM `{$p}jobapply` WHERE uid = a.id) AS totalapps"
+            . $from . ' WHERE 1=1' . $view_sql . $filters_sql
+            . ' ORDER BY ' . $sorts[$key] . ' ' . $dir . ', a.id DESC'
+            . $db->prepare(' LIMIT %d, %d', WPJOBPORTALpagination::$_offset, WPJOBPORTALpagination::$_limit)
+        );
+        // WordPress roles (the 2.7 list's "Group"), read in one go.
+        $wpuids = array_filter(array_map(function ($row) { return (int) $row->wpuid; }, $rows));
+        if ($wpuids) {
+            cache_users($wpuids);
+        }
+        $wp_roles = wp_roles()->get_names();
+        foreach ($rows as $row) {
+            $wp_user = $row->wpuid ? get_userdata((int) $row->wpuid) : false;
+            $role = ($wp_user && !empty($wp_user->roles)) ? reset($wp_user->roles) : '';
+            $row->wprole = $role;
+            $row->wprolename = isset($wp_roles[$role]) ? translate_user_role($wp_roles[$role]) : $role;
+        }
+        wpjobportal::$_data['userlist'] = array('rows' => $rows, 'total' => $total, 'counts' => $counts, 'filter' => $filter);
+    }
+
+    /**
+     * Enable or disable accounts, skipping those already so and the admin's
+     * own account. Returns how many changed.
+     */
+    function setUsersStatus($ids, $enable) {
+        $ids = array_values(array_filter(array_map('absint', (array) $ids)));
+        if (empty($ids)) {
+            return 0;
+        }
+        $self = (int) $this->getUserIDByWPUid(get_current_user_id());
+        $todo = array_map('absint', (array) wpjobportal::$_db->get_col("SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_users` WHERE status = " . ($enable ? 0 : 1) . " AND id IN (" . implode(',', $ids) . ")"));
+        $done = 0;
+        foreach ($todo as $id) {
+            if ($id !== $self && $this->changeUserStatus($id) == ($enable ? WPJOBPORTAL_ENABLED : WPJOBPORTAL_DISABLED)) {
+                $done++;
+            }
+        }
+        return $done;
+    }
+
 
     function getUserRoleBasedInfo() {
         $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
@@ -482,8 +580,10 @@ class WPJOBPORTALUserModel {
     function changeUserStatus($wpjobportal_userid){
         if(!is_numeric($wpjobportal_userid)) return false;
         $wpjobportal_row = WPJOBPORTALincluder::getJSTable('users');
-        if($wpjobportal_row->load($wpjobportal_userid)){
-            $old_status = $wpjobportal_row->status;
+        // Audit A1: load() reports success even when the user no longer exists (a stale
+        // "Disable" link after the user was deleted), and "1 - ''" was a fatal error on PHP 8.
+        if($wpjobportal_row->load($wpjobportal_userid) && (int) $wpjobportal_row->id === (int) $wpjobportal_userid){
+            $old_status = (int) $wpjobportal_row->status;
             $new_status = 1 - $old_status;
             $wpjobportal_row->columns['status'] = $new_status;
 
@@ -566,6 +666,9 @@ class WPJOBPORTALUserModel {
     function userCanDelete($wpjobportal_uid, $wpjobportal_roleid) {
         if (!is_numeric($wpjobportal_uid))
             return false;
+        if ($wpjobportal_roleid != 1 && $wpjobportal_roleid != 2) { // no portal role: owns nothing that blocks a delete
+            return true;
+        }
         if ($wpjobportal_roleid == 1) { // employer
             $query = "SELECT
                     (SELECT COUNT(job.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job WHERE job.uid = " . (int) ($wpjobportal_uid)." )
@@ -617,6 +720,10 @@ class WPJOBPORTALUserModel {
         $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
         if (! wp_verify_nonce( $wpjobportal_nonce, 'get-user-list-ajax') ) {
             die( 'Security check Failed' );
+        }
+        // Lists every user's name and email: administrators only.
+        if (!current_user_can('manage_options')) {
+            die( 'Not Allowed!' );
         }
         $wpjobportal_userlimit = WPJOBPORTALrequest::getVar('userlimit', null, 0);
         $wpjobportal_maxrecorded = 10;
@@ -678,6 +785,10 @@ class WPJOBPORTALUserModel {
         $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
         if (! wp_verify_nonce( $wpjobportal_nonce, 'get-all-role-less-users-ajax') ) {
             die( 'Security check Failed' );
+        }
+        // Lists every user's name and email: administrators only.
+        if (!current_user_can('manage_options')) {
+            die( 'Not Allowed!' );
         }
         $wpjobportal_userlimit = WPJOBPORTALrequest::getVar('userlimit', null, 0);
         $wpjobportal_maxrecorded = 10;
@@ -785,7 +896,7 @@ class WPJOBPORTALUserModel {
                                     ' . $wpjobportal_user->userid . '
                                 </div>
                                 <div class="user-list-body-col user-name">
-                                    <a href="#" class="userpopup-link js-userpopup-link" data-id=' . esc_attr($wpjobportal_user->userid) . ' data-name="' . esc_attr($wpjobportal_username) . '" data-email="' . esc_attr($wpjobportal_user->emailaddress) . '" >' . esc_html($wpjobportal_username) . '</a>
+                                    <a href="#" class="userpopup-link js-userpopup-link" data-id="' . esc_attr($wpjobportal_user->userid) . '" data-name="' . esc_attr($wpjobportal_username) . '" data-email="' . esc_attr($wpjobportal_user->emailaddress) . '" >' . esc_html($wpjobportal_username) . '</a>
                                 </div>
                                 <div class="user-list-body-col user-name-n">
                                     ' . $wpjobportal_user->user_login . '
@@ -933,6 +1044,13 @@ class WPJOBPORTALUserModel {
         // clean it first
         $desc_text = str_ireplace(['<script', '< script'], '-', $desc_text);
         $wpjobportal_data['description'] = wpautop(wptexturize(wp_kses_post($desc_text)));
+        // Security: a user editing their own profile must not be able to change
+        // their role, re-enable a blocked account, move the row to another
+        // WordPress user or set social ids. Those columns are left untouched
+        // (an update only writes the keys it is given).
+        if (!wpjobportal::$_common->wpjp_isadmin()) {
+            unset($wpjobportal_data['roleid'], $wpjobportal_data['status'], $wpjobportal_data['uid'], $wpjobportal_data['socialid'], $wpjobportal_data['socialmedia'], $wpjobportal_data['created'], $wpjobportal_data['photo']);
+        }
         $wpjobportal_row = WPJOBPORTALincluder::getJSTable('users');
         if(!$wpjobportal_row->bind($wpjobportal_data)) {
             return WPJOBPORTAL_SAVE_ERROR;

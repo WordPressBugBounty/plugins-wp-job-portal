@@ -28,7 +28,7 @@ class WPJOBPORTALpopup {
             }else{
                 $autosubmit = true ;
             }
-            $wpjobportal_isadmin = WPJOBPORTALRequest::getVar('isadmin');
+            $wpjobportal_isadmin = (current_user_can('manage_options') ? WPJOBPORTALRequest::getVar('isadmin') : ''); // Security: admin-only flag, never trusted from a non-admin request.
             if($wpjobportal_isadmin){
                 $wpjobportalPopupResumeFormProceeds = 'wpjobportalPopupResumeFormProceedsAdmin';
                 $wpjobportalPopupFormProceeds = 'wpjobportalPopupFormProceedsAdmin';
@@ -41,10 +41,10 @@ class WPJOBPORTALpopup {
                 $wpjobportal_proceedlang = esc_html(__('Proceed','wp-job-portal'));
             }
             if($autosubmit == true){
-                $objectid = WPJOBPORTALRequest::getVar('id');
-                $srcid = WPJOBPORTALRequest::getVar('srcid');
-                $anchorid = WPJOBPORTALRequest::getVar('anchorid');
-                $wpjobportal_formid = WPJOBPORTALRequest::getVar('formid');
+                $objectid = absint(WPJOBPORTALRequest::getVar('id')); // Security: numeric id, printed into a script
+                $srcid = preg_replace('/[^A-Za-z0-9_\-]/', '', (string) WPJOBPORTALRequest::getVar('srcid')) /* Security: a DOM id, printed into a script */;
+                $anchorid = preg_replace('/[^A-Za-z0-9_\-]/', '', (string) WPJOBPORTALRequest::getVar('anchorid')) /* Security: a DOM id, printed into a script */;
+                $wpjobportal_formid = preg_replace('/[^A-Za-z0-9_\-]/', '', (string) WPJOBPORTALRequest::getVar('formid')) /* Security: a DOM id, printed into a script */;
                 $wpjobportal_action = 0;
                 if(wpjobportal::$_common->wpjp_isadmin()){
                     if(is_array($wpjobportal_result['value'])){
@@ -141,7 +141,7 @@ class WPJOBPORTALpopup {
                     $wpjobportal_html .='<div class="'.esc_attr($this->class_prefix).'-modal-credit-row">';
                     $wpjobportal_html .='<span class="tit">';
                     if (sizeof($wpjobportal_result['value']) > 1) {
-                        $wpjobportal_html .= '<input name="credits" type="radio" class="checkboxes" data-credits="' . $wpjobportal_value->credits . '" data-totalcredits="' . $wpjobportal_result['totalcredits'] . '" value=' . $wpjobportal_value->id . ' />';
+                        $wpjobportal_html .= '<input name="credits" type="radio" class="checkboxes" data-credits="' . $wpjobportal_value->credits . '" data-totalcredits="' . $wpjobportal_result['totalcredits'] . '" value="' . $wpjobportal_value->id . '" />';
                         $wpjobportal_action = -1;
                     } else {
                         $wpjobportal_action = $wpjobportal_value->id;
@@ -177,10 +177,10 @@ class WPJOBPORTALpopup {
                                   <a title="'.esc_attr__('Cancel', 'wp-job-portal').'" href="#" class="'.esc_attr($this->class_prefix).'-modal-credit-action-btn" onclick="wpjobportalClosePopup(\''.$wpjobportal_themecall.'\');">
                                       ' . esc_html(__('Cancel', 'wp-job-portal')) . '
                                   </a>';
-                $objectid = WPJOBPORTALRequest::getVar('id');
-                $srcid = WPJOBPORTALRequest::getVar('srcid');
-                $anchorid = WPJOBPORTALRequest::getVar('anchorid');
-                $wpjobportal_formid = WPJOBPORTALRequest::getVar('formid');
+                $objectid = absint(WPJOBPORTALRequest::getVar('id')); // Security: numeric id, printed into a script
+                $srcid = preg_replace('/[^A-Za-z0-9_\-]/', '', (string) WPJOBPORTALRequest::getVar('srcid')) /* Security: a DOM id, printed into a script */;
+                $anchorid = preg_replace('/[^A-Za-z0-9_\-]/', '', (string) WPJOBPORTALRequest::getVar('anchorid')) /* Security: a DOM id, printed into a script */;
+                $wpjobportal_formid = preg_replace('/[^A-Za-z0-9_\-]/', '', (string) WPJOBPORTALRequest::getVar('formid')) /* Security: a DOM id, printed into a script */;
                 if ($wpjobportal_formid) { // popup in case of form is opened
                     if ($wpjobportal_formid == 'resumeform') {
                         $wpjobportal_html .= '<a href="#" class="'.esc_attr($this->class_prefix).'-modal-credit-action-btn color" onclick="'.$wpjobportalPopupResumeFormProceeds.'(\'' . $wpjobportal_action . '\');">' . $wpjobportal_proceedlang . '</a>';
@@ -200,10 +200,10 @@ class WPJOBPORTALpopup {
                 </div>';
                 $wpjobportal_html .= '</div>';
             }else{
-                $objectid = WPJOBPORTALRequest::getVar('id');
-                $srcid = WPJOBPORTALRequest::getVar('srcid');
-                $anchorid = WPJOBPORTALRequest::getVar('anchorid');
-                $wpjobportal_formid = WPJOBPORTALRequest::getVar('formid');
+                $objectid = absint(WPJOBPORTALRequest::getVar('id')); // Security: numeric id, printed into a script
+                $srcid = preg_replace('/[^A-Za-z0-9_\-]/', '', (string) WPJOBPORTALRequest::getVar('srcid')) /* Security: a DOM id, printed into a script */;
+                $anchorid = preg_replace('/[^A-Za-z0-9_\-]/', '', (string) WPJOBPORTALRequest::getVar('anchorid')) /* Security: a DOM id, printed into a script */;
+                $wpjobportal_formid = preg_replace('/[^A-Za-z0-9_\-]/', '', (string) WPJOBPORTALRequest::getVar('formid')) /* Security: a DOM id, printed into a script */;
                 if(!isset($wpjobportal_action)){
                     $wpjobportal_action = 0;
                 }
@@ -225,7 +225,7 @@ class WPJOBPORTALpopup {
         if ($wpjobportal_result != false) {
             $wpjobportal_html = null;
             $autosubmit = true;
-            $wpjobportal_isadmin = WPJOBPORTALRequest::getVar('isadmin');
+            $wpjobportal_isadmin = (current_user_can('manage_options') ? WPJOBPORTALRequest::getVar('isadmin') : ''); // Security: admin-only flag, never trusted from a non-admin request.
             if($wpjobportal_isadmin){
                 $wpjobportalPopupResumeFormProceeds = 'wpjobportalPopupResumeFormProceedsAdmin';
                 $wpjobportalPopupFormProceeds = 'wpjobportalPopupFormProceedsAdmin';
@@ -238,10 +238,10 @@ class WPJOBPORTALpopup {
                 $wpjobportal_proceedlang = esc_html(__('Proceed','wp-job-portal'));
             }
             if($autosubmit == true){
-                $objectid = WPJOBPORTALRequest::getVar('id');
-                $srcid = WPJOBPORTALRequest::getVar('srcid');
-                $anchorid = WPJOBPORTALRequest::getVar('anchorid');
-                $wpjobportal_formid = WPJOBPORTALRequest::getVar('formid');
+                $objectid = absint(WPJOBPORTALRequest::getVar('id')); // Security: numeric id, printed into a script
+                $srcid = preg_replace('/[^A-Za-z0-9_\-]/', '', (string) WPJOBPORTALRequest::getVar('srcid')) /* Security: a DOM id, printed into a script */;
+                $anchorid = preg_replace('/[^A-Za-z0-9_\-]/', '', (string) WPJOBPORTALRequest::getVar('anchorid')) /* Security: a DOM id, printed into a script */;
+                $wpjobportal_formid = preg_replace('/[^A-Za-z0-9_\-]/', '', (string) WPJOBPORTALRequest::getVar('formid')) /* Security: a DOM id, printed into a script */;
                 $wpjobportal_action = 0;
                if(isset($wpjobportal_result)){
                    /* foreach($wpjobportal_result['value'] AS $wpjobportal_value){
@@ -333,7 +333,7 @@ class WPJOBPORTALpopup {
                     $wpjobportal_html .='<div class="'.esc_attr($this->class_prefix).'-modal-credit-row">';
                     $wpjobportal_html .='<span class="tit">';
                     if (sizeof($wpjobportal_result['value']) > 1) {
-                        $wpjobportal_html .= '<input name="credits" type="radio" class="checkboxes" data-credits="' . $wpjobportal_value->credits . '" data-totalcredits="' . $wpjobportal_result['totalcredits'] . '" value=' . $wpjobportal_value->id . ' />';
+                        $wpjobportal_html .= '<input name="credits" type="radio" class="checkboxes" data-credits="' . $wpjobportal_value->credits . '" data-totalcredits="' . $wpjobportal_result['totalcredits'] . '" value="' . $wpjobportal_value->id . '" />';
                         $wpjobportal_action = -1;
                     } else {
                         $wpjobportal_action = $wpjobportal_value->id;
@@ -369,10 +369,10 @@ class WPJOBPORTALpopup {
                                   <a title="'.esc_attr__('Cancel', 'wp-job-portal').'" href="#" class="'.esc_attr($this->class_prefix).'-modal-credit-action-btn" onclick="wpjobportalClosePopup(\''.$wpjobportal_themecall.'\');">
                                       ' . esc_html(__('Cancel', 'wp-job-portal')) . '
                                   </a>';
-                $objectid = WPJOBPORTALRequest::getVar('id');
-                $srcid = WPJOBPORTALRequest::getVar('srcid');
-                $anchorid = WPJOBPORTALRequest::getVar('anchorid');
-                $wpjobportal_formid = WPJOBPORTALRequest::getVar('formid');
+                $objectid = absint(WPJOBPORTALRequest::getVar('id')); // Security: numeric id, printed into a script
+                $srcid = preg_replace('/[^A-Za-z0-9_\-]/', '', (string) WPJOBPORTALRequest::getVar('srcid')) /* Security: a DOM id, printed into a script */;
+                $anchorid = preg_replace('/[^A-Za-z0-9_\-]/', '', (string) WPJOBPORTALRequest::getVar('anchorid')) /* Security: a DOM id, printed into a script */;
+                $wpjobportal_formid = preg_replace('/[^A-Za-z0-9_\-]/', '', (string) WPJOBPORTALRequest::getVar('formid')) /* Security: a DOM id, printed into a script */;
                 if ($wpjobportal_formid) { // popup in case of form is opened
                     if ($wpjobportal_formid == 'resumeform') {
                         $wpjobportal_html .= '<a href="#" class="'.esc_attr($this->class_prefix).'-modal-credit-action-btn color" onclick="'.$wpjobportalPopupResumeFormProceeds.'(\'' . $wpjobportal_action . '\');">' . $wpjobportal_proceedlang . '</a>';
@@ -407,7 +407,7 @@ class WPJOBPORTALpopup {
                     $wpjobportal_html .= '<div class="popup-row name">';
                     $wpjobportal_html .= '<span class="title">';
                     if (sizeof($wpjobportal_result['value']) > 1) {
-                        $wpjobportal_html .= '<input name="credits" type="radio" class="checkboxes" data-credits="' . $wpjobportal_value->credits . '" data-totalcredits="' . $wpjobportal_result['totalcredits'] . '" value=' . $wpjobportal_value->id . ' />';
+                        $wpjobportal_html .= '<input name="credits" type="radio" class="checkboxes" data-credits="' . $wpjobportal_value->credits . '" data-totalcredits="' . $wpjobportal_result['totalcredits'] . '" value="' . $wpjobportal_value->id . '" />';
                         $wpjobportal_action = -1;
                     } else {
                         $wpjobportal_action = $wpjobportal_value->id;
@@ -436,10 +436,10 @@ class WPJOBPORTALpopup {
 
                 $wpjobportal_html .= '<div class="popup-row button">';
                 $wpjobportal_html .= '<a href="#" class="wpjobportal-popup cancel" onclick="wpjobportalClosePopup();">' . esc_html(__('Cancel', 'wp-job-portal')) . '</a>';
-                $objectid = WPJOBPORTALRequest::getVar('id');
-                $srcid = WPJOBPORTALRequest::getVar('srcid');
-                $anchorid = WPJOBPORTALRequest::getVar('anchorid');
-                $wpjobportal_formid = WPJOBPORTALRequest::getVar('formid');
+                $objectid = absint(WPJOBPORTALRequest::getVar('id')); // Security: numeric id, printed into a script
+                $srcid = preg_replace('/[^A-Za-z0-9_\-]/', '', (string) WPJOBPORTALRequest::getVar('srcid')) /* Security: a DOM id, printed into a script */;
+                $anchorid = preg_replace('/[^A-Za-z0-9_\-]/', '', (string) WPJOBPORTALRequest::getVar('anchorid')) /* Security: a DOM id, printed into a script */;
+                $wpjobportal_formid = preg_replace('/[^A-Za-z0-9_\-]/', '', (string) WPJOBPORTALRequest::getVar('formid')) /* Security: a DOM id, printed into a script */;
                 if ($wpjobportal_formid) { // popup in case of form is opened
                     if ($wpjobportal_formid == 'resumeform') {
                         $wpjobportal_html .= '<a href="#" class="wpjobportal-popup proceed" onclick="'.$wpjobportalPopupResumeFormProceeds.'(\'' . $wpjobportal_action . '\');">' . $wpjobportal_proceedlang . '</a>';

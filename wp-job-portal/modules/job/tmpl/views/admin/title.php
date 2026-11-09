@@ -138,7 +138,7 @@ $wpjobportal_job_listing_fields = WPJOBPORTALincluder::getJSModel('fieldordering
                         }
                 }
                 ?>
-                <span class="wpjobportal-jobs-type" style="background: <?php echo esc_attr($wpjobportal_job->jobtypecolor); ?>;">
+                <span class="wpjobportal-jobs-type" style="background: <?php echo esc_attr(WPJOBPORTAL_Color::on_white($wpjobportal_job->jobtypecolor)); ?>;">
                     <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_job->jobtypetitle)); ?>
                 </span>
             </div>
@@ -161,7 +161,7 @@ $wpjobportal_job_listing_fields = WPJOBPORTALincluder::getJSModel('fieldordering
         <div class="wpjobportal-jobs-info">
             <?php
                 $wpjobportal_dateformat = wpjobportal::$_configuration['date_format'];
-                echo esc_html(human_time_diff(strtotime($wpjobportal_job->created) ,strtotime(date_i18n("Y-m-d H:i:s")))).' '.esc_html(__("Ago",'wp-job-portal'));
+                echo esc_html(sprintf(/* translators: %s: how long ago, e.g. 3 days */ __('%s ago', 'wp-job-portal'), human_time_diff(strtotime($wpjobportal_job->created) ,strtotime(date_i18n("Y-m-d H:i:s")))));
             ?>
         </div>
     </div>

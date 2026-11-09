@@ -80,7 +80,7 @@ class WPJOBPORTAL_Onboarding_Service {
                     ? __('The employer area and employer registration are enabled.', 'wp-job-portal')
                     : __('Enable the employer area and decide whether employers may register.', 'wp-job-portal'),
                 $employer_enabled && $registration_enabled,
-                admin_url('admin.php?page=wpjobportal_configuration&wpjobportallt=configurations'),
+                admin_url('admin.php?page=wpjobportal_configuration&wpjobportallt=configurations&wpjpconfigid=employers'),
                 __('Review employer settings', 'wp-job-portal')
             );
         }
@@ -151,7 +151,7 @@ class WPJOBPORTAL_Onboarding_Service {
                 ? sprintf(/* translators: %d: application count */ _n('%d application has been received.', '%d applications have been received.', $application_count, 'wp-job-portal'), $application_count)
                 : __('No application has been received yet. Use a separate candidate account when testing this step.', 'wp-job-portal'),
             $application_count > 0,
-            admin_url('admin.php?page=wpjobportal_job'),
+            admin_url('admin.php?page=wpjobportal_jobapply&wpjobportallt=applications'),
             __('Review job applications', 'wp-job-portal')
         );
 
@@ -161,6 +161,15 @@ class WPJOBPORTAL_Onboarding_Service {
                 $completed++;
             }
         }
+
+        // W-8: say why these can read lower than the dashboard's totals.
+        $sample_types = array('company' => 'companies', 'job' => 'jobs', 'applications' => 'applications');
+        foreach ($items as &$checklist_item) {
+            if (isset($sample_types[$checklist_item['id']]) && self::not_sample($sample_types[$checklist_item['id']]) !== '') {
+                $checklist_item['description'] .= ' ' . __('Sample data does not count here.', 'wp-job-portal');
+            }
+        }
+        unset($checklist_item);
 
         $dismissed_mode = $user_id > 0
             ? sanitize_key((string) get_user_meta($user_id, self::DISMISSED_META, true))
@@ -225,7 +234,8 @@ class WPJOBPORTAL_Onboarding_Service {
             return;
         }
 
-        $url = admin_url('admin.php?page=wpjobportal_postinstallation&wpjobportallt=quickstart');
+        // W-8: straight to the checklist on the Site mode page
+        $url = admin_url('admin.php?page=wpjobportal_postinstallation&wpjobportallt=quickstart#wpjobportal-onboarding-title');
         ?>
         <div class="notice notice-info wpjobportal-onboarding-notice">
             <p>

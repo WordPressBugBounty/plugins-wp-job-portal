@@ -37,7 +37,7 @@ class WPJOBPORTALjobModel {
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON job.jobcategory = cat.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON job.jobtype = jobtype.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
-                WHERE job.status = 1 AND DATE(job.startpublishing) <= CURDATE() AND DATE(job.stoppublishing) >= CURDATE()
+                WHERE job.status = 1 AND job.startpublishing < DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND job.stoppublishing >= CURDATE()
                 ORDER BY created DESC LIMIT " . absint($wpjobportal_noofjobs);
 
             $wpjobportal_result = wpjobportaldb::get_results($query);
@@ -87,7 +87,7 @@ class WPJOBPORTALjobModel {
 
         $wpjobportal_inquery = " (SELECT COUNT(jobs.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS jobs
                         WHERE jobtype.id = jobs.jobtype AND jobs.status = 1
-                        AND DATE(jobs.startpublishing) <= CURDATE() AND DATE(jobs.stoppublishing) >= CURDATE() ) as totaljobs";
+                        AND jobs.startpublishing < DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND jobs.stoppublishing >= CURDATE() ) as totaljobs";
         $query = "SELECT DISTINCT jobtype.id, jobtype.title AS objtitle , CONCAT(jobtype.alias, '-' , jobtype.id) AS aliasid , ";
         $query .= $wpjobportal_inquery;
         $query .= " FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype
@@ -119,7 +119,7 @@ class WPJOBPORTALjobModel {
 
         $wpjobportal_inquery = " (SELECT COUNT(jobs.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS jobs
                         WHERE cat.id = jobs.jobcategory AND jobs.status = 1
-                        AND DATE(jobs.startpublishing) <= CURDATE() AND DATE(jobs.stoppublishing) >= CURDATE() ) as totaljobs";
+                        AND jobs.startpublishing < DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND jobs.stoppublishing >= CURDATE() ) as totaljobs";
         $query = "SELECT DISTINCT cat.id, cat.cat_title AS objtitle , CONCAT(cat.alias,'-',cat.id) AS aliasid,";
         $query .= $wpjobportal_inquery;
         $query .= " FROM `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat
@@ -184,9 +184,9 @@ class WPJOBPORTALjobModel {
             return '';
         $col = '';
         if ($typeofjobs == 1) { // newest jobs
-            $wpjobportal_inquery = " WHERE job.status = 1  AND DATE(job.stoppublishing) >= CURDATE() ORDER BY job.created DESC LIMIT " . absint($wpjobportal_noofjobs);
+            $wpjobportal_inquery = " WHERE job.status = 1  AND job.stoppublishing >= CURDATE() ORDER BY job.created DESC LIMIT " . absint($wpjobportal_noofjobs);
         } elseif ($typeofjobs == 2) { //top jobs
-            $wpjobportal_inquery = " WHERE job.status = 1  AND DATE(job.stoppublishing) >= CURDATE() ORDER BY job.hits DESC LIMIT " . absint($wpjobportal_noofjobs);
+            $wpjobportal_inquery = " WHERE job.status = 1  AND job.stoppublishing >= CURDATE() ORDER BY job.hits DESC LIMIT " . absint($wpjobportal_noofjobs);
         } elseif ($typeofjobs == 3) { // hot jobs
             $col = ' COUNT(ja.jobid) as totalapply , ';
             $wpjobportal_inquery = " JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` AS ja ON ja.jobid = job.id WHERE job.status = 1 AND job.stoppublishing >= CURDATE() GROUP BY ja.jobid ORDER BY totalapply DESC LIMIT " . absint($wpjobportal_noofjobs);
@@ -469,7 +469,7 @@ class WPJOBPORTALjobModel {
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobstatus` AS jobstatus ON job.jobstatus = jobstatus.id
                     LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS salarytype ON job.salaryduration = salarytype.id
 
-                    WHERE job.status = 1 AND DATE(job.startpublishing) <= CURDATE() AND DATE(job.stoppublishing) >= CURDATE()
+                    WHERE job.status = 1 AND job.startpublishing < DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND job.stoppublishing >= CURDATE()
                     AND ".$wpjobportal_inquery." AND job.id != " . (int) ($wpjobportal_job_id)." LIMIT " . absint($wpjobportal_max);
                     $wpjobportal_result = wpjobportaldb::get_results($query);
                     $relatedjobs = array_merge($relatedjobs, $wpjobportal_result);
@@ -677,7 +677,7 @@ class WPJOBPORTALjobModel {
         $wpjobportal_curdate = date_i18n('Y-m-d');
         $query = wpjobportal::$_db->prepare("SELECT job.id
         FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-        WHERE job.status = 1 AND DATE(job.stoppublishing) >= %s
+        WHERE job.status = 1 AND job.stoppublishing >= %s
         AND job.id = %d", $wpjobportal_curdate, $wpjobportal_jobid);
         $wpjobportal_result = wpjobportal::$_db->get_var($query);
         if ($wpjobportal_result == null) {
@@ -715,11 +715,111 @@ class WPJOBPORTALjobModel {
                 WHERE job.id = " . (int) ($wpjobportal_jobid);
             wpjobportal::$_data[0] = wpjobportaldb::get_row($query);
         }
+        $this->restoreJobDraft($wpjobportal_jobid);
         if (isset(wpjobportal::$_data[0])) {
             wpjobportal::$_data[0]->multicity = wpjobportal::$_common->getMultiSelectEdit($wpjobportal_jobid, 1);
             wpjobportal::$_data[0]->jobtags = wpjobportal::$_common->makeFilterdOrEditedTagsToReturn( wpjobportal::$_data[0]->tags );
         }
        wpjobportal::$_data[2] = wpjobportal::$_wpjpfieldordering->getFieldsOrderingforForm(2); // job fields
+    }
+
+    /*
+     * D-7: a job form whose save failed comes back with what was typed.
+     *
+     * The values are kept for ten minutes per signed-in user (visitors share
+     * user 0, so they are not kept) as JSON, so 4-byte characters survive even
+     * where the options table cannot store them, and are put back once.
+     */
+    private function jobDraftKey() {
+        $uid = get_current_user_id();
+        return $uid ? 'wpjobportal_job_draft_' . $uid : '';
+    }
+
+    function keepJobDraft($wpjobportal_data) {
+        $key = $this->jobDraftKey();
+        if ($key === '' || !is_array($wpjobportal_data)) {
+            return;
+        }
+        $keep = array();
+        foreach ($wpjobportal_data as $k => $v) {
+            if (in_array($k, array('_wpnonce', 'action', 'form_request', 'task', 'save'), true)) {
+                continue;
+            }
+            $keep[$k] = $v;
+        }
+        set_transient($key, wp_json_encode($keep), 10 * MINUTE_IN_SECONDS);
+    }
+
+    private function restoreJobDraft($wpjobportal_jobid) {
+        $key = $this->jobDraftKey();
+        $json = $key !== '' ? get_transient($key) : false;
+        if (!is_string($json) || $json === '') {
+            return;
+        }
+        $draft = json_decode($json, true);
+        // Only into the same job (or a new one when the failed save was new).
+        if (!is_array($draft) || (int) (isset($draft['id']) ? $draft['id'] : 0) !== (int) $wpjobportal_jobid) {
+            return;
+        }
+        delete_transient($key);
+        if (!isset(wpjobportal::$_data[0]) || !is_object(wpjobportal::$_data[0])) {
+            wpjobportal::$_data[0] = new stdClass();
+        }
+        foreach ($draft as $k => $v) {
+            if (is_scalar($v) || $v === null) {
+                wpjobportal::$_data[0]->{$k} = $v;
+            }
+        }
+        if (!isset(wpjobportal::$_data[0]->tags)) {
+            wpjobportal::$_data[0]->tags = '';
+        }
+        wpjobportal::$_data['job_draft_restored'] = 1;
+    }
+
+    /*
+     * D-7: emoji and other 4-byte characters cannot be stored in utf8 (utf8mb3)
+     * columns until the tables move to utf8mb4 (W-15). Say so before the insert
+     * instead of letting the database reject the row.
+     */
+    function hasUnstorableCharacters($wpjobportal_data) {
+        $charset = wpjobportal::$_db->get_col_charset(wpjobportal::$_db->prefix . 'wj_portal_jobs', 'title');
+        if (!is_string($charset) || $charset === 'utf8mb4') {
+            return false;
+        }
+        foreach ((array) $wpjobportal_data as $v) {
+            if (is_string($v) && preg_match('/[\x{10000}-\x{10FFFF}]/u', $v)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * D-8: whether the site should treat a job as closed to applications: its
+     * hiring status takes no applications (Closed, On hold; jobstatus model
+     * getClosedStatusIds()) or its closing date has passed.
+     * The same rule the apply handler enforces (S-2), for what the pages show.
+     *
+     * @param object $job Needs jobstatus; stoppublishing when known.
+     * @return bool
+     */
+    function isJobClosedForApplications($job) {
+        if (!is_object($job)) {
+            return false;
+        }
+        $closed = WPJOBPORTALincluder::getJSModel('jobstatus')->getClosedStatusIds();
+        if (isset($job->jobstatus) && in_array((int) $job->jobstatus, $closed, true)) {
+            return true;
+        }
+        if (!empty($job->stoppublishing) && strtotime((string) $job->stoppublishing)) {
+            return date_i18n('Y-m-d', strtotime((string) $job->stoppublishing)) < date_i18n('Y-m-d');
+        }
+        return false;
+    }
+
+    /** D-8: the closed label shown instead of every apply button and form. */
+    function closedJobLabel() {
+        return '<span class="wjportal-job-closed-label">' . esc_html(__('No longer accepting applications', 'wp-job-portal')) . '</span>';
     }
 
     function getJobForApply($wpjobportal_jobid) {
@@ -851,7 +951,7 @@ class WPJOBPORTALjobModel {
         $wpjobportal_curdate = gmdate('Y-m-d');
         $wpjobportal_inquery = "";
         if ($wpjobportal_searchtitle)
-            $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND LOWER(job.title) LIKE LOWER(%s)", wpjobportaldb::like($wpjobportal_searchtitle));
+            $wpjobportal_inquery .= $this->everyWordQuery($wpjobportal_searchtitle);
         if ($wpjobportal_searchcompany)
             $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND LOWER(company.name) LIKE LOWER(%s)", wpjobportaldb::like($wpjobportal_searchcompany));
         if ($wpjobportal_searchjobcategory && is_numeric($wpjobportal_searchjobcategory))
@@ -906,6 +1006,194 @@ class WPJOBPORTALjobModel {
         return;
     }
 
+    /**
+     * The admin Jobs list (design 4): one page of jobs for the chosen view,
+     * search and filters, plus the counts behind the status chips and the
+     * options the filters offer. Everything is read from plain query values,
+     * so a filtered list can be bookmarked or shared.
+     *
+     * Views: all, open (approved, inside its dates, not closed), closed
+     * (Closed, On hold), waiting (waiting for approval), expired.
+     * The search matches every word, in any order, in the title, company,
+     * category or location.
+     *
+     * Leaves its result in wpjobportal::$_data['joblist'].
+     */
+    function getAdminJobList() {
+        $wpjobportal_db = wpjobportal::$_db;
+        $wpjobportal_prefix = $wpjobportal_db->prefix . 'wj_portal_';
+        $wpjobportal_get = function ($wpjobportal_key) {
+            return trim((string) WPJOBPORTALrequest::getVar($wpjobportal_key, 'get', ''));
+        };
+        $wpjobportal_closed = WPJOBPORTALincluder::getJSModel('jobstatus')->getClosedStatusIds();
+        $wpjobportal_closed_in = implode(',', $wpjobportal_closed ? $wpjobportal_closed : array(0));
+        $wpjobportal_in_window = "job.startpublishing < DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND job.stoppublishing >= CURDATE()";
+        $wpjobportal_views = array(
+            'all' => '1=1',
+            'open' => "job.status = 1 AND " . $wpjobportal_in_window . " AND job.jobstatus NOT IN (" . $wpjobportal_closed_in . ")",
+            'closed' => "job.jobstatus IN (" . $wpjobportal_closed_in . ")",
+            'waiting' => "job.status = 0",
+            'expired' => "job.stoppublishing < CURDATE()",
+            // W-20: the Dashboard's "close in the next 7 days" link; no chip of its own.
+            'closing' => "job.status = 1 AND " . $wpjobportal_in_window . " AND job.jobstatus NOT IN (" . $wpjobportal_closed_in . ") AND DATE(job.stoppublishing) <= DATE_ADD(CURDATE(), INTERVAL 7 DAY)",
+        );
+
+        $wpjobportal_filter = array(
+            'view' => isset($wpjobportal_views[$wpjobportal_get('view')]) ? $wpjobportal_get('view') : 'all',
+            'q' => $wpjobportal_get('q'),
+            'cat' => absint($wpjobportal_get('cat')),
+            'type' => absint($wpjobportal_get('type')),
+            'loc' => absint($wpjobportal_get('loc')),
+            'company' => absint($wpjobportal_get('company')),
+            'stat' => in_array($wpjobportal_get('stat'), array('1', '0', '-1', '3'), true) ? $wpjobportal_get('stat') : '',
+            'from' => preg_match('/^\d{4}-\d{2}-\d{2}$/', $wpjobportal_get('from')) ? $wpjobportal_get('from') : '',
+            'to' => preg_match('/^\d{4}-\d{2}-\d{2}$/', $wpjobportal_get('to')) ? $wpjobportal_get('to') : '',
+            'featured' => $wpjobportal_get('featured') === '1' ? '1' : '',
+            'sort' => $wpjobportal_get('sort'),
+        );
+
+        // Sort: key|direction. The column list is fixed here, never taken from the request.
+        $wpjobportal_sorts = array(
+            'posted' => 'job.created', 'exp' => 'job.stoppublishing', 'apps' => 'totalapps',
+            'title' => 'job.title', 'company' => 'company.name', 'cat' => 'cat.cat_title',
+            'loc' => 'city.name', 'type' => 'jobtype.title', 'stat' => 'job.status',
+        );
+        $wpjobportal_sort_parts = explode('|', $wpjobportal_filter['sort']);
+        $wpjobportal_sort_key = isset($wpjobportal_sorts[$wpjobportal_sort_parts[0]]) ? $wpjobportal_sort_parts[0] : 'posted';
+        $wpjobportal_sort_dir = (isset($wpjobportal_sort_parts[1]) && $wpjobportal_sort_parts[1] === '1') ? 'ASC' : 'DESC';
+        if ($wpjobportal_filter['sort'] === '') {
+            $wpjobportal_sort_dir = 'DESC';
+        }
+        $wpjobportal_filter['sort'] = $wpjobportal_sort_key . '|' . ($wpjobportal_sort_dir === 'ASC' ? '1' : '-1');
+
+        $wpjobportal_from = " FROM `" . $wpjobportal_prefix . "jobs` AS job
+            LEFT JOIN `" . $wpjobportal_prefix . "companies` AS company ON company.id = job.companyid
+            LEFT JOIN `" . $wpjobportal_prefix . "categories` AS cat ON cat.id = job.jobcategory
+            LEFT JOIN `" . $wpjobportal_prefix . "jobtypes` AS jobtype ON jobtype.id = job.jobtype
+            LEFT JOIN `" . $wpjobportal_prefix . "salaryrangetypes` AS salaryrangetype ON salaryrangetype.id = job.salaryduration
+            LEFT JOIN `" . $wpjobportal_prefix . "jobstatus` AS hiring ON hiring.id = job.jobstatus
+            LEFT JOIN `" . $wpjobportal_prefix . "cities` AS city ON city.id = (SELECT cityid FROM `" . $wpjobportal_prefix . "jobcities` WHERE jobid = job.id ORDER BY id DESC LIMIT 1)";
+
+        $wpjobportal_where = array();
+        foreach (preg_split('/\s+/', $wpjobportal_filter['q'], -1, PREG_SPLIT_NO_EMPTY) as $wpjobportal_word) {
+            $wpjobportal_like = '%' . $wpjobportal_db->esc_like($wpjobportal_word) . '%';
+            $wpjobportal_where[] = $wpjobportal_db->prepare('(job.title LIKE %s OR company.name LIKE %s OR cat.cat_title LIKE %s OR city.name LIKE %s)', $wpjobportal_like, $wpjobportal_like, $wpjobportal_like, $wpjobportal_like);
+        }
+        if ($wpjobportal_filter['cat']) {
+            $wpjobportal_where[] = $wpjobportal_db->prepare('job.jobcategory = %d', $wpjobportal_filter['cat']);
+        }
+        if ($wpjobportal_filter['type']) {
+            $wpjobportal_where[] = $wpjobportal_db->prepare('job.jobtype = %d', $wpjobportal_filter['type']);
+        }
+        if ($wpjobportal_filter['loc']) {
+            $wpjobportal_where[] = $wpjobportal_db->prepare("job.id IN (SELECT jobid FROM `" . $wpjobportal_prefix . "jobcities` WHERE cityid = %d)", $wpjobportal_filter['loc']);
+        }
+        if ($wpjobportal_filter['company']) {
+            $wpjobportal_where[] = $wpjobportal_db->prepare('job.companyid = %d', $wpjobportal_filter['company']);
+        }
+        if ($wpjobportal_filter['stat'] !== '') {
+            $wpjobportal_where[] = $wpjobportal_db->prepare('job.status = %d', (int) $wpjobportal_filter['stat']);
+        }
+        if ($wpjobportal_filter['from'] !== '') {
+            $wpjobportal_where[] = $wpjobportal_db->prepare('DATE(job.created) >= %s', $wpjobportal_filter['from']);
+        }
+        if ($wpjobportal_filter['to'] !== '') {
+            $wpjobportal_where[] = $wpjobportal_db->prepare('DATE(job.created) <= %s', $wpjobportal_filter['to']);
+        }
+        if ($wpjobportal_filter['featured'] === '1') {
+            $wpjobportal_where[] = 'job.isfeaturedjob = 1 AND DATE(job.startfeatureddate) <= CURDATE() AND DATE(job.endfeatureddate) >= CURDATE()';
+        }
+        $wpjobportal_filters_sql = $wpjobportal_where ? ' AND ' . implode(' AND ', $wpjobportal_where) : '';
+        $wpjobportal_view_sql = ' AND ' . $wpjobportal_views[$wpjobportal_filter['view']];
+
+        // Chip counts: the whole site, in one pass.
+        $wpjobportal_count_cols = array();
+        foreach ($wpjobportal_views as $wpjobportal_view => $wpjobportal_condition) {
+            $wpjobportal_count_cols[] = 'SUM(CASE WHEN ' . $wpjobportal_condition . ' THEN 1 ELSE 0 END) AS `' . $wpjobportal_view . '`';
+        }
+        $wpjobportal_counts = (array) $wpjobportal_db->get_row('SELECT ' . implode(', ', $wpjobportal_count_cols) . " FROM `" . $wpjobportal_prefix . "jobs` AS job", ARRAY_A);
+        $wpjobportal_counts = array_map('absint', $wpjobportal_counts);
+
+        $wpjobportal_total = absint($wpjobportal_db->get_var('SELECT COUNT(job.id)' . $wpjobportal_from . ' WHERE 1=1' . $wpjobportal_view_sql . $wpjobportal_filters_sql));
+        $wpjobportal_pagination = WPJOBPORTALpagination::getPagination($wpjobportal_total);
+
+        $wpjobportal_rows = (array) $wpjobportal_db->get_results(
+            "SELECT job.id, job.title, job.alias, job.uid, job.status, job.jobstatus, job.created, job.startpublishing, job.stoppublishing,
+                job.isfeaturedjob, job.startfeatureddate, job.endfeatureddate, job.city, job.salarytype, job.salarymin, job.salarymax,
+                job.currency, job.workplace_type, job.is_urgent,
+                company.id AS companyid, company.name AS companyname, company.logofilename AS logo,
+                cat.cat_title, jobtype.title AS jobtypetitle, salaryrangetype.title AS salaryrangetype, hiring.title AS hiringstatus,
+                CONCAT(job.alias, '-', job.id) AS jobaliasid,
+                (SELECT COUNT(id) FROM `" . $wpjobportal_prefix . "jobapply` WHERE jobid = job.id AND status = 1) AS totalapps,
+                (SELECT COUNT(id) FROM `" . $wpjobportal_prefix . "jobapply` WHERE jobid = job.id AND status = 1 AND action_status = 1) AS newapps,
+                (" . $wpjobportal_in_window . ") AS inwindow, (job.stoppublishing < CURDATE()) AS isexpired,
+                DATEDIFF(DATE(job.stoppublishing), CURDATE()) AS daysleft"
+            . $wpjobportal_from . ' WHERE 1=1' . $wpjobportal_view_sql . $wpjobportal_filters_sql
+            . ' ORDER BY ' . $wpjobportal_sorts[$wpjobportal_sort_key] . ' ' . $wpjobportal_sort_dir . ', job.id DESC'
+            . $wpjobportal_db->prepare(' LIMIT %d, %d', WPJOBPORTALpagination::$_offset, WPJOBPORTALpagination::$_limit)
+        );
+
+        // Filter options: only values the site's jobs use.
+        $wpjobportal_options = array(
+            'types' => (array) $wpjobportal_db->get_results("SELECT DISTINCT jobtype.id, jobtype.title FROM `" . $wpjobportal_prefix . "jobs` AS job INNER JOIN `" . $wpjobportal_prefix . "jobtypes` AS jobtype ON jobtype.id = job.jobtype ORDER BY jobtype.title"),
+            'locations' => (array) $wpjobportal_db->get_results("SELECT DISTINCT city.id, city.name FROM `" . $wpjobportal_prefix . "jobcities` AS jc INNER JOIN `" . $wpjobportal_prefix . "cities` AS city ON city.id = jc.cityid ORDER BY city.name"),
+            'companies' => (array) $wpjobportal_db->get_results("SELECT DISTINCT company.id, company.name FROM `" . $wpjobportal_prefix . "jobs` AS job INNER JOIN `" . $wpjobportal_prefix . "companies` AS company ON company.id = job.companyid ORDER BY company.name"),
+            'categories' => (array) $wpjobportal_db->get_results("SELECT id, cat_title AS title FROM `" . $wpjobportal_prefix . "categories` WHERE isactive = 1 ORDER BY cat_title"),
+        );
+
+        wpjobportal::$_data['joblist'] = array(
+            'rows' => $wpjobportal_rows,
+            'total' => $wpjobportal_total,
+            'counts' => $wpjobportal_counts,
+            'filter' => $wpjobportal_filter,
+            'options' => $wpjobportal_options,
+            'pagination' => $wpjobportal_pagination,
+            'closed_statuses' => $wpjobportal_closed,
+            'config' => wpjobportal::$_config->getConfigByFor('job'),
+        );
+        // The add-on row actions (Feature, Copy) read the job config from here.
+        wpjobportal::$_data['config'] = wpjobportal::$_data['joblist']['config'];
+    }
+
+    /**
+     * Close jobs to new applicants, or reopen them with the default hiring
+     * status. Returns how many jobs changed.
+     */
+    function setJobsClosed($wpjobportal_ids, $wpjobportal_close) {
+        $wpjobportal_ids = array_values(array_filter(array_map('absint', (array) $wpjobportal_ids)));
+        if (empty($wpjobportal_ids)) {
+            return 0;
+        }
+        $wpjobportal_prefix = wpjobportal::$_db->prefix . 'wj_portal_';
+        $wpjobportal_closed = WPJOBPORTALincluder::getJSModel('jobstatus')->getClosedStatusIds();
+        if ($wpjobportal_close) {
+            $wpjobportal_status = $wpjobportal_closed ? $wpjobportal_closed[0] : 3;
+        } else {
+            // Reopen to the default status, or the first one that takes applications.
+            $wpjobportal_status = absint(wpjobportal::$_db->get_var("SELECT id FROM `" . $wpjobportal_prefix . "jobstatus` WHERE isactive = 1" . ($wpjobportal_closed ? " AND id NOT IN (" . implode(',', $wpjobportal_closed) . ")" : '') . " ORDER BY isdefault DESC, ordering LIMIT 1"));
+            if ($wpjobportal_status < 1) {
+                $wpjobportal_status = 1;
+            }
+        }
+        $wpjobportal_placeholders = implode(',', array_fill(0, count($wpjobportal_ids), '%d'));
+        $wpjobportal_changed = wpjobportal::$_db->query(wpjobportal::$_db->prepare(
+            "UPDATE `" . $wpjobportal_prefix . "jobs` SET jobstatus = %d WHERE id IN (" . $wpjobportal_placeholders . ")",
+            array_merge(array($wpjobportal_status), $wpjobportal_ids)
+        ));
+        // W-14: a reopened job whose closing date has passed would stay closed; give it its
+        // original run again from today. Closing leaves the date alone, so a closed job
+        // stays visible with its label instead of dropping out of the lists.
+        if (!$wpjobportal_close) {
+            wpjobportal::$_db->query(wpjobportal::$_db->prepare(
+                "UPDATE `" . $wpjobportal_prefix . "jobs`
+                    SET stoppublishing = DATE_ADD(%s, INTERVAL GREATEST(30, DATEDIFF(stoppublishing, startpublishing)) DAY)
+                  WHERE stoppublishing < %s AND id IN (" . $wpjobportal_placeholders . ")",
+                array_merge(array(date_i18n('Y-m-d H:i:s'), date_i18n('Y-m-d')), $wpjobportal_ids)
+            ));
+        }
+        return absint($wpjobportal_changed);
+    }
+
     function getAllUnapprovedJobs() {
         $this->sorting();
         //filters
@@ -943,7 +1231,7 @@ class WPJOBPORTALjobModel {
 
         $wpjobportal_inquery = "";
         if ($wpjobportal_searchtitle)
-            $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND LOWER(job.title) LIKE LOWER(%s)", wpjobportaldb::like($wpjobportal_searchtitle));
+            $wpjobportal_inquery .= $this->everyWordQuery($wpjobportal_searchtitle);
         if ($wpjobportal_searchcompany)
             $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND LOWER(company.name) LIKE LOWER(%s)", wpjobportaldb::like($wpjobportal_searchcompany));
         if ($wpjobportal_searchjobcategory && is_numeric($wpjobportal_searchjobcategory))
@@ -1005,9 +1293,80 @@ class WPJOBPORTALjobModel {
         return;
     }
 
+    /**
+     * Only what the job form may set, before the posted array reaches bind().
+     *
+     * The save used to take the whole POST, and bind() copies every key that is
+     * a real job column. So a post could set columns no form offers: a stored
+     * XSS went in through degreetitle (a field switched off in the field
+     * manager), an employer could approve or feature their own job (status,
+     * isfeaturedjob), and anyone could set its view count or package.
+     *
+     * Dropped here, for everyone: columns the code keeps itself (counters,
+     * dates of record, payment and AI data). For anyone but an administrator,
+     * also the approval status, columns of a field switched off for them
+     * (published for members, isvisitorpublished for visitors), and old columns
+     * no form has any more. Custom fields (ufield_*) are not columns and pass.
+     *
+     * @param array  $wpjobportal_data The posted job.
+     * @param string $wpjobportal_side 'member' or 'visitor'.
+     * @return array
+     */
+    function limitJobDataToForm($wpjobportal_data, $wpjobportal_side = 'member') {
+        if (!is_array($wpjobportal_data)) {
+            return $wpjobportal_data;
+        }
+        $wpjobportal_drop = array(
+            'hits', 'created', 'created_by', 'modified', 'modified_by', 'jobid', 'currency', 'ordering',
+            'serverstatus', 'serverid', 'price', 'userpackageid', 'params', 'aijobsearchtext', 'aijobsearchdescription',
+            'isgoldjob', 'startgolddate', 'endgolddate', 'isfeaturedjob', 'startfeatureddate', 'endfeatureddate',
+        );
+        $wpjobportal_isadmin = wpjobportal::$_common->wpjp_isadmin();
+        if (!$wpjobportal_isadmin) {
+            $wpjobportal_drop[] = 'status';
+            // Columns from old versions that no job form has any more.
+            $wpjobportal_drop = array_merge($wpjobportal_drop, array(
+                'applyinfo', 'company', 'address1', 'address2', 'companyurl', 'contactname', 'contactphone',
+                'contactemail', 'showcontact', 'reference', 'heighestfinisheducation', 'subcategoryid',
+                'hidesalaryrange', 'aboutjobfile',
+            ));
+            // Columns of a field that is switched off for this person: only fields
+            // whose inputs are known (form-fields.php). Others write a column the
+            // person may set anyway, and some render inputs under another name
+            // (metadescription posts metakeywords), so they are left alone.
+            $wpjobportal_columns_of = array(
+                'heighesteducation' => array('degreetitle', 'educationid'),
+                'joblink' => array('joblink', 'jobapplylink'),
+                'map' => array('map', 'latitude', 'longitude'),
+                'filter' => array('raf_gender', 'raf_degreelevel', 'raf_experience', 'raf_age', 'raf_education', 'raf_category', 'raf_subcategory', 'raf_location'),
+            );
+            $wpjobportal_flag = $wpjobportal_side === 'visitor' ? 'isvisitorpublished' : 'published';
+            $wpjobportal_fields = wpjobportaldb::get_results("SELECT `field`, `" . $wpjobportal_flag . "` AS shown, `cannotunpublish` FROM `" . wpjobportal::$_db->prefix . "wj_portal_fieldsordering` WHERE `fieldfor` = 2 AND `isuserfield` = 0");
+            $wpjobportal_present = array();
+            foreach ((array) $wpjobportal_fields as $wpjobportal_field) {
+                $wpjobportal_present[$wpjobportal_field->field] = true;
+                if ((int) $wpjobportal_field->shown === 1 || (int) $wpjobportal_field->cannotunpublish === 1
+                    || !isset($wpjobportal_columns_of[$wpjobportal_field->field])) {
+                    continue;
+                }
+                $wpjobportal_drop = array_merge($wpjobportal_drop, $wpjobportal_columns_of[$wpjobportal_field->field]);
+            }
+            // degreetitle and educationid belong to Highest Education; a site whose
+            // field list has no such field has no form input for them either.
+            if (!isset($wpjobportal_present['heighesteducation'])) {
+                $wpjobportal_drop = array_merge($wpjobportal_drop, array('degreetitle', 'educationid'));
+            }
+        }
+        foreach (array_unique($wpjobportal_drop) as $wpjobportal_key) {
+            unset($wpjobportal_data[$wpjobportal_key]);
+        }
+        return $wpjobportal_data;
+    }
+
     function storeJob($wpjobportal_data) {
        if (empty($wpjobportal_data))
             return false;
+        $wpjobportal_data = $this->limitJobDataToForm($wpjobportal_data, 'member');
         $wpjobportal_isnew  = isset($wpjobportal_data['id']) && ((int)$wpjobportal_data['id']) ? 0 : 1;
         $wpjobportal_user =WPJOBPORTALincluder::getObjectClass('user');
         $wpjobportal_row = WPJOBPORTALincluder::getJSTable('job');
@@ -1051,6 +1410,20 @@ class WPJOBPORTALjobModel {
             }
         }
 
+
+        /*
+         * A location or a remote flag. Google for Jobs drops a job with neither
+         * (round 4: job #8 went out with no location at all). The form checks this
+         * before sending; this catches a post that skipped the form. Only while the
+         * City field is on the form, or no job could be saved at all.
+         */
+        $wpjobportal_formfields = WPJOBPORTALincluder::getJSModel('fieldordering')->getFieldsOrderingforForm(2);
+        if (is_array($wpjobportal_formfields) && isset($wpjobportal_formfields['city'])
+            && trim((string) (isset($wpjobportal_data['city']) ? $wpjobportal_data['city'] : '')) === ''
+            && !(isset($wpjobportal_data['workplace_type']) && (int) $wpjobportal_data['workplace_type'] === 3)) {
+            WPJOBPORTALMessages::setLayoutMessage(__('Add a city, or set Workplace Type to Remote. Google for Jobs lists a job only when it has a location or is marked remote.', 'wp-job-portal'), 'error', $this->getMessagekey());
+            return WPJOBPORTAL_SAVE_ERROR;
+        }
 
         if($wpjobportal_data['uid'] == false){
             $wpjobportal_data['uid'] = '';
@@ -1199,13 +1572,7 @@ class WPJOBPORTALjobModel {
         }
 
         $wpjobportal_data['jobapplylink'] = isset($wpjobportal_data['jobapplylink']) ? 1 : 0;
-        if (!empty($wpjobportal_data['alias']))
-            $wpjobportal_jobalias = wpjobportal::$_common->removeSpecialCharacter($wpjobportal_data['alias']);
-        else
-            $wpjobportal_jobalias = wpjobportal::$_common->removeSpecialCharacter($wpjobportal_data['title']);
-
-        $wpjobportal_jobalias = wpjobportalphplib::wpJP_strtolower(wpjobportalphplib::wpJP_str_replace(' ', '-', $wpjobportal_jobalias));
-        $wpjobportal_jobalias = wpjobportalphplib::wpJP_strtolower(wpjobportalphplib::wpJP_str_replace('_', '-', $wpjobportal_jobalias));
+        $wpjobportal_jobalias = wpjobportal::$_common->stringToAlias(!empty($wpjobportal_data['alias']) ? $wpjobportal_data['alias'] : $wpjobportal_data['title'], 'job');
         $wpjobportal_data['alias'] = $wpjobportal_jobalias;
         if( isset($wpjobportal_data['salarytype']) && $wpjobportal_data['salarytype'] == WPJOBPORTAL_SALARY_FIXED){ // min field issue
             $wpjobportal_data['salarymin'] = $wpjobportal_data['salaryfixed'];
@@ -1238,6 +1605,7 @@ class WPJOBPORTALjobModel {
         $wpjobportal_data['currency'] = wpjobportal::$_config->getConfigValue('job_currency');
 
         $wpjobportal_data = wpjobportal::wpjobportal_sanitizeData($wpjobportal_data);
+        $wpjobportal_data['alias'] = $wpjobportal_jobalias; // D-9: after sanitizing, which strips the %xx of non-Latin slugs
 
         // commented this code to make storing customfields same for all entites.
         // //custom field code start
@@ -1626,7 +1994,7 @@ class WPJOBPORTALjobModel {
 
         # Data Query Listing
         // company is must for job
-        $query = "SELECT job.endfeatureddate,job.id,job.uid,job.title,job.isfeaturedjob,job.serverid,job.noofjobs,job.city,job.status,
+        $query = "SELECT job.endfeatureddate,job.id,job.uid,job.title,job.isfeaturedjob,job.serverid,job.noofjobs,job.city,job.status,job.jobstatus,
                 CONCAT(job.alias,'-',job.id) AS jobaliasid,job.created,job.serverid,company.name AS companyname,company.id AS companyid,company.logofilename,CONCAT(company.alias,'-',company.id) AS compnayaliasid,job.salarytype,job.salarymin,job.salarymax,salaryrangetype.title AS salarydurationtitle,job.currency,
                 cat.cat_title, jobtype.title AS jobtypetitle,salaryrangetype.title AS srangetypetitle,
                 (SELECT count(jobapply.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` AS jobapply
@@ -1669,7 +2037,7 @@ class WPJOBPORTALjobModel {
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON job.city = city.id
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS salaryrangetype ON salaryrangetype.id = job.salaryduration
-                WHERE job.status = 1 AND DATE(job.startpublishing) <= CURDATE() AND DATE(job.stoppublishing) >= CURDATE() and company.id =" . (int) ($cid) ;
+                WHERE job.status = 1 AND job.startpublishing < DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND job.stoppublishing >= CURDATE() and company.id =" . (int) ($cid) ;
         # Sorting Merge In Query
         $query.= " ORDER BY job.created DESC LIMIT 3";
         $wpjobportal_results = wpjobportaldb::get_results($query);
@@ -1685,7 +2053,7 @@ class WPJOBPORTALjobModel {
     function getJobsByCategories() {
         $query = "SELECT category.cat_title, CONCAT(category.alias,'-',category.id) AS aliasid,category.serverid,category.id AS categoryid
             ,(SELECT count(job.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                WHERE job.status = 1 AND job.jobcategory = category.id AND DATE(job.startpublishing) <= CURDATE() AND DATE(job.stoppublishing) >= CURDATE())  AS totaljobs
+                WHERE job.status = 1 AND job.jobcategory = category.id AND job.startpublishing < DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND job.stoppublishing >= CURDATE())  AS totaljobs
             FROM `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category
             WHERE category.isactive = 1 AND category.parentid = 0 ORDER BY category.ordering ASC";
         $wpjobportal_categories = wpjobportaldb::get_results($query);
@@ -1698,7 +2066,7 @@ class WPJOBPORTALjobModel {
             $wpjobportal_total = 0;
             $query = "SELECT category.cat_title, CONCAT(category.alias,'-',category.id) AS aliasid,category.serverid
                 ,(SELECT count(job.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                    WHERE job.jobcategory = category.id AND DATE(job.startpublishing) <= CURDATE() AND DATE(job.stoppublishing) >= CURDATE())  AS totaljobs
+                    WHERE job.jobcategory = category.id AND job.startpublishing < DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND job.stoppublishing >= CURDATE())  AS totaljobs
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category
                 WHERE category.isactive = 1 AND category.parentid = " . (int) ($wpjobportal_category->categoryid)." ORDER BY category.ordering ASC ";
             $wpjobportal_subcats = wpjobportal::$_db->get_results($query);
@@ -1733,7 +2101,7 @@ class WPJOBPORTALjobModel {
     function getJobsByTypes() {
         $query = "SELECT jobtype.title,jobtype.id, jobtype.serverid,CONCAT(jobtype.alias,'-',jobtype.id) AS alias
                 ,(SELECT count(job.id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                where job.status = 1 AND job.jobtype = jobtype.id AND DATE(job.startpublishing) <= CURDATE() AND DATE(job.stoppublishing) >= CURDATE())  AS totaljobs
+                where job.status = 1 AND job.jobtype = jobtype.id AND job.startpublishing < DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND job.stoppublishing >= CURDATE())  AS totaljobs
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype
                 WHERE jobtype.isactive = 1 ORDER BY jobtype.ordering ASC"; // to show job types by the ordering set from admin side
         wpjobportal::$_data[0] = wpjobportaldb::get_results($query);
@@ -1750,7 +2118,7 @@ class WPJOBPORTALjobModel {
                 JOIN `". wpjobportal::$_db->prefix ."wj_portal_cities` AS city ON city.id = jobc.cityid
                 JOIN `". wpjobportal::$_db->prefix ."wj_portal_countries` AS country ON country.id = city.countryid
                 WHERE country.enabled = 1 AND job.status = 1
-                AND DATE(job.stoppublishing) >= CURDATE() AND DATE(job.startpublishing) <= CURDATE() GROUP BY city.id ORDER BY cityname";
+                AND job.stoppublishing >= CURDATE() AND job.startpublishing < DATE_ADD(CURDATE(), INTERVAL 1 DAY) GROUP BY city.id ORDER BY cityname";
         $wpjobportal_data = wpjobportaldb::get_results($query);
         wpjobportal::$_data[0] = $wpjobportal_data;
         wpjobportal::$_data['config'] =  wpjobportal::$_config->getConfigByFor('jobcity');
@@ -1907,13 +2275,13 @@ class WPJOBPORTALjobModel {
         if ($wpjobportal_job_rss == 1) {
             $wpjobportal_curdate = gmdate('Y-m-d H:i:s');
             $query = "SELECT job.title,job.noofjobs,job.id, cat.cat_title,company.logofilename AS logofilename,company.id AS companyid,
-                        company.name AS comp_title,jobtype.title AS jobtype,jobstatus.title AS jobstatus,CONCAT(job.alias,'-',job.id) AS jobaliasid,salarytype.title AS salarytype
+                        company.name AS comp_title,jobtype.title AS jobtype,jobstatus.title AS jobstatus,job.jobstatus AS jobstatusid,CONCAT(job.alias,'-',job.id) AS jobaliasid,salarytype.title AS salarytype
                         FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
                         ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON job.companyid = company.id
                         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON job.jobcategory = cat.id
                         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON job.jobtype = jobtype.id
                         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobstatus` AS jobstatus ON job.jobstatus = jobstatus.id
-                        LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS salarytype ON job.salaryrangetype = salarytype.id
+                        LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS salarytype ON job.salaryduration = salarytype.id
                         WHERE job.status = 1 AND job.startpublishing <= %s AND job.stoppublishing >= %s";
             $query = wpjobportal::$_db->prepare($query, $wpjobportal_curdate, $wpjobportal_curdate);
             $query .= " ORDER BY  job.startpublishing DESC";
@@ -2128,6 +2496,46 @@ class WPJOBPORTALjobModel {
 
 
 
+    /** W-17: every word must appear, in any order, in the title, company, category or tags. */
+    private function everyWordQuery($wpjobportal_text) {
+        $wpjobportal_db = wpjobportal::$_db;
+        $wpjobportal_prefix = $wpjobportal_db->prefix . 'wj_portal_';
+        $wpjobportal_query = '';
+        foreach (preg_split('/\s+/u', trim((string) $wpjobportal_text), -1, PREG_SPLIT_NO_EMPTY) as $wpjobportal_word) {
+            $wpjobportal_like = '%' . $wpjobportal_db->esc_like($wpjobportal_word) . '%';
+            $wpjobportal_query .= $wpjobportal_db->prepare(
+                " AND (job.title LIKE %s OR job.tags LIKE %s
+                    OR job.companyid IN (SELECT id FROM `" . $wpjobportal_prefix . "companies` WHERE name LIKE %s)
+                    OR job.jobcategory IN (SELECT id FROM `" . $wpjobportal_prefix . "categories` WHERE cat_title LIKE %s))",
+                $wpjobportal_like, $wpjobportal_like, $wpjobportal_like, $wpjobportal_like
+            );
+        }
+        return $wpjobportal_query;
+    }
+
+    /**
+     * W-17: turn city text into city ids. Null when the value is already ids or
+     * empty; otherwise the matching ids ('' when none) and the text as typed.
+     */
+    private function resolveTypedCity($wpjobportal_city) {
+        if (!is_string($wpjobportal_city) || trim($wpjobportal_city) === '') {
+            return null;
+        }
+        $wpjobportal_parts = array_map('trim', explode(',', $wpjobportal_city));
+        $wpjobportal_ids = array_filter($wpjobportal_parts, 'is_numeric');
+        $wpjobportal_words = array_values(array_diff($wpjobportal_parts, $wpjobportal_ids));
+        if (empty($wpjobportal_words) || $wpjobportal_words[0] === '') {
+            return null;
+        }
+        $wpjobportal_db = wpjobportal::$_db;
+        $wpjobportal_found = $wpjobportal_db->get_col($wpjobportal_db->prepare(
+            "SELECT id FROM `" . $wpjobportal_db->prefix . "wj_portal_cities` WHERE name LIKE %s LIMIT 50",
+            $wpjobportal_db->esc_like($wpjobportal_words[0]) . '%'
+        ));
+        $wpjobportal_all = array_unique(array_merge(array_map('intval', $wpjobportal_ids), array_map('intval', (array) $wpjobportal_found)));
+        return array('ids' => implode(',', $wpjobportal_all), 'text' => $wpjobportal_words[0]);
+    }
+
     private function getRefinedJobs($wpjobportal_searchajax = null) {
         $wpjobportal_inquery = "";
         if($wpjobportal_searchajax == null){
@@ -2148,7 +2556,7 @@ class WPJOBPORTALjobModel {
         }
         if ($wpjobportal_jobtitle) {
             wpjobportal::$_data['filter']['jobtitle'] = $wpjobportal_jobtitle;
-            $wpjobportal_inquery .= wpjobportal::$_db->prepare(" AND job.title LIKE %s", wpjobportaldb::like($wpjobportal_jobtitle));
+            $wpjobportal_inquery .= $this->everyWordQuery($wpjobportal_jobtitle);
         }
         if($wpjobportal_searchajax == null){
             $wpjobportal_company_a = isset(wpjobportal::$_search['jobs']['company']) ? wpjobportal::$_search['jobs']['company'] : '';
@@ -2322,6 +2730,15 @@ class WPJOBPORTALjobModel {
             $city_a = isset($wpjobportal_searchajax['city']) ? $wpjobportal_searchajax['city'] : '';
         }
 
+        // W-17: a city typed but not picked from the list still counts
+        $wpjobportal_typed_city = $this->resolveTypedCity($city_a);
+        if ($wpjobportal_typed_city !== null) {
+            $city_a = $wpjobportal_typed_city['ids'];
+            if ($city_a === '') {
+                wpjobportal::$_data['filter']['city_not_found'] = $wpjobportal_typed_city['text'];
+                $wpjobportal_inquery .= " AND 1 = 0";
+            }
+        }
         if ($city_a) {
             wpjobportal::$_data['filter']['city_ids'] = $city_a;
             wpjobportal::$_data['filter']['city'] = wpjobportal::$_common->getCitiesForFilter($city_a);
@@ -2681,7 +3098,7 @@ class WPJOBPORTALjobModel {
                 LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_states` AS state ON state.countryid = city.countryid
                 LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_countries` AS country ON country.id = city.countryid
                 LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
-                WHERE job.status = 1 AND DATE(job.startpublishing) <= '".$wpjobportal_curdate."' AND DATE(job.stoppublishing) >= '".$wpjobportal_curdate."'";
+                WHERE job.status = 1 AND job.startpublishing < DATE_ADD('".$wpjobportal_curdate."', INTERVAL 1 DAY) AND job.stoppublishing >= '".$wpjobportal_curdate."'";
                 $query .= $wpjobportal_inquery;
                 $wpjobportal_total = wpjobportaldb::get_var($query);
                 wpjobportal::$_data['total'] = $wpjobportal_total;
@@ -2696,7 +3113,7 @@ class WPJOBPORTALjobModel {
             ,job.is_urgent, job.workplace_type";
 
             // new columns needed for data comparison
-            $query .= ", job.jobcategory, job.jobtype, job.salaryduration";
+            $query .= ", job.jobcategory, job.jobtype, job.salaryduration, job.jobstatus";
 
             $query .="
             FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
@@ -2708,11 +3125,12 @@ class WPJOBPORTALjobModel {
             LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON city.id = jobcity.cityid
             LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_states` AS state ON state.countryid = city.countryid
             LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_countries` AS country ON country.id = city.countryid
-            WHERE job.status = 1 AND DATE(job.startpublishing) <= '".$wpjobportal_curdate."' AND DATE(job.stoppublishing) >= '".$wpjobportal_curdate."'";
+            WHERE job.status = 1 AND job.startpublishing < DATE_ADD('".$wpjobportal_curdate."', INTERVAL 1 DAY) AND job.stoppublishing >= '".$wpjobportal_curdate."'";
             $query .= $wpjobportal_inquery;
 
-            // ordering
-            $query .= " ORDER BY ".wpjobportal::$_ordering;
+            // ordering — D-8: jobs closed to new applicants come after the open ones.
+            $wpjobportal_closedids = implode(',', WPJOBPORTALincluder::getJSModel('jobstatus')->getClosedStatusIds());
+            $query .= " ORDER BY " . ($wpjobportal_closedids !== '' ? "(job.jobstatus IN (" . $wpjobportal_closedids . ")) ASC, " : '') . wpjobportal::$_ordering;
 
 
             // limit (no of jobs)
@@ -2723,6 +3141,7 @@ class WPJOBPORTALjobModel {
             }
 
             $wpjobportal_results = wpjobportaldb::get_results($query);
+            WPJOBPORTAL_Seo_Values::prime_jobs(wp_list_pluck((array) $wpjobportal_results, 'id')); // P-2: one query for all the cards' addresses
 
             $wpjobportal_data = array();
             foreach ($wpjobportal_results AS $d) {
@@ -2791,15 +3210,24 @@ class WPJOBPORTALjobModel {
         $wpjobportal_jobid = WPJOBPORTALrequest::getVar('jobid');
         if ($wpjobportal_jobid != null && is_numeric($wpjobportal_jobid)) {
             $query = "SELECT job.title AS jobtitle, company.name AS companyname,job.isfeaturedjob , jobtype.title AS jobtypetitle
-                        , salaryrangetype.title AS salaryrangetype,company.id AS companyid, job.currency, category.cat_title AS category, job.startpublishing, jobstatus.title AS jobstatustitle, job.degreetitle, job.city, job.longitude,job.latitude, job.description, job.duration,job.jobapplylink,job.joblink
+                        , job.salarytype, job.salarymin, job.salarymax, salaryrangetype.title AS srangetypetitle,company.id AS companyid, job.currency, category.cat_title AS category, job.startpublishing, jobstatus.title AS jobstatustitle, job.degreetitle, job.city, job.longitude,job.latitude, job.description, job.duration,job.jobapplylink,job.joblink
                         FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
                         ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
                         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category ON category.id = job.jobcategory
                         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jobtype ON jobtype.id = job.jobtype
                         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobstatus` AS jobstatus ON jobstatus.id = job.jobstatus
-                        LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS salaryrangetype ON salaryrangetype.id = job.salaryrangetype
+                        LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_salaryrangetypes` AS salaryrangetype ON salaryrangetype.id = job.salaryduration
                         WHERE job.id = " . (int) ($wpjobportal_jobid);
+            // Security: this task is public. Show only a live job (approved and
+            // inside its publishing dates), unless the viewer owns it or is an
+            // administrator; pending and unpublished jobs were readable by id.
+            if (!wpjobportal::$_common->wpjp_isadmin()) {
+                $query .= " AND (job.uid = " . max(-1, (int) WPJOBPORTALincluder::getObjectClass('user')->uid() ?: -1) . " OR (job.status = 1 AND job.startpublishing < DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND job.stoppublishing >= CURDATE()))";
+            }
             $wpjobportal_job = wpjobportal::$_db->get_row($query);
+            if (empty($wpjobportal_job)) {
+                return wp_json_encode(array('title' => esc_html(__('No Records Found', 'wp-job-portal')), 'wpjobportal_content' => '<h2>' . esc_html(__('No Records Found', 'wp-job-portal')) . '</h2>'));
+            }
             $title = esc_html(__('Job Info', 'wp-job-portal'));
             $wpjobportal_content = '<div class="quickviewupper">';
             $wpjobportal_content .= '<span class="quickviewtitle">' . $wpjobportal_job->jobtitle . '</span>';
@@ -2831,7 +3259,9 @@ class WPJOBPORTALjobModel {
             if ($wpjobportal_numberDays == 0) {
                 $hourago .= $wpjobportal_day_text;
             } else {
-                $hourago .= $wpjobportal_numberDays . ' ' . $wpjobportal_day_text . ' ' . esc_html(__('Ago', 'wp-job-portal'));
+                // "%s ago" with WordPress's own "3 days" puts the words in each language's
+                // order and form ("vor 3 Tagen"), where "3 Tage vor" was built word by word.
+                $hourago .= esc_html(sprintf(/* translators: %s: how long ago, e.g. 3 days */ __('%s ago', 'wp-job-portal'), human_time_diff($wpjobportal_startTimeStamp, $wpjobportal_endTimeStamp)));
             }
             $wpjobportal_fieldordering = wpjobportal::$_wpjpfieldordering->getFieldsOrderingforView(2);
             $wpjobportal_content .= '<span class="quickviewhalfwidth">' . $hourago . '</span>';
@@ -2850,10 +3280,16 @@ class WPJOBPORTALjobModel {
                 $wpjobportal_content .= $wpjobportal_job->duration;
                 $wpjobportal_content .= '</div>';
             }
-            if (isset($wpjobportal_fieldordering['jobsalaryrange'])) {
+            // B1: the salary columns 2.8.0 has, shown as the job list shows them,
+            // and only when there is a figure.
+            $wpjobportal_quick_salary = (string) wpjobportal::$_common->getSalaryRangeView($wpjobportal_job->salarytype, $wpjobportal_job->salarymin, $wpjobportal_job->salarymax, $wpjobportal_job->currency);
+            if (isset($wpjobportal_fieldordering['jobsalaryrange']) && trim($wpjobportal_quick_salary) !== '') {
                 $wpjobportal_content .= '<div class="quickviewrow">';
                 $wpjobportal_content .= '<span class="title">' . wpjobportal::wpjobportal_getVariableValue($wpjobportal_fieldordering['jobsalaryrange']) . ':</span>';
-                $wpjobportal_content .= wpjobportal::$_common->getSalaryRangeView($wpjobportal_job->currencysymbol, $wpjobportal_job->salaryrangestart, $wpjobportal_job->salaryrangeend, $wpjobportal_job->salaryrangetype);
+                $wpjobportal_content .= esc_html($wpjobportal_quick_salary);
+                if (($wpjobportal_job->salarytype == 2 || $wpjobportal_job->salarytype == 3) && !empty($wpjobportal_job->srangetypetitle)) {
+                    $wpjobportal_content .= ' / ' . esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_job->srangetypetitle));
+                }
                 $wpjobportal_content .= '</div>';
             }
             if (isset($wpjobportal_fieldordering['jobcategory'])) {
@@ -2877,8 +3313,8 @@ class WPJOBPORTALjobModel {
             if (isset($wpjobportal_fieldordering['map'])) {
                 $wpjobportal_content .= '<div class="quickviewrow-without-border">';
                 $wpjobportal_content .= '<div id="map"><div id="map_container1"></div></div>';
-                $wpjobportal_content .= '<input type="hidden" name="longitude1" id="longitude1" value="' . $wpjobportal_job->longitude . '"/>';
-                $wpjobportal_content .= '<input type="hidden" name="latitude1" id="latitude1" value="' . $wpjobportal_job->latitude . '"/>';
+                $wpjobportal_content .= '<input type="hidden" name="longitude1" id="longitude1" value="' . esc_attr($wpjobportal_job->longitude) . '"/>';
+                $wpjobportal_content .= '<input type="hidden" name="latitude1" id="latitude1" value="' . esc_attr($wpjobportal_job->latitude) . '"/>';
                 $wpjobportal_content .= '</div>';
             }
             $wpjobportal_content .= '<span class="quickviewtitle">' . esc_html(__('Description', 'wp-job-portal')) . '</span>';
@@ -2892,7 +3328,9 @@ class WPJOBPORTALjobModel {
                 if (WPJOBPORTALincluder::getObjectClass('user')->isguest()) {
                     $wpjobportal_show_apply_form  = wpjobportal::$_config->getConfigurationByConfigName('quick_apply_for_visitor');
                 }
-                if($wpjobportal_show_apply_form == 0){ // hide apply now button if quick apply is enabled
+                if (WPJOBPORTALincluder::getJSModel('jobapply')->getJobApplyRefusal($wpjobportal_jobid) !== '') { // D-8: closed, no apply button
+                    $wpjobportal_content .= $this->closedJobLabel();
+                } elseif($wpjobportal_show_apply_form == 0){ // hide apply now button if quick apply is enabled
                     $wpjobportal_config_array = wpjobportal::$_data[0]['config'] = wpjobportal::$_config->getConfigByFor('jobapply');
                     if($wpjobportal_config_array['showapplybutton'] == 1){
                         if($wpjobportal_job->jobapplylink == 1 && !empty($wpjobportal_job->joblink)){
@@ -2908,7 +3346,7 @@ class WPJOBPORTALjobModel {
                             }else{
                                 $wpjobportal_joblink = $wpjobportal_config_array['applybuttonredirecturl'];
                             }
-                            $wpjobportal_content .='    <a class="quickviewbutton" id="apply-now-btn" href='.esc_url($wpjobportal_joblink).'" target="_blank" >'. esc_html(__('Apply Now','wp-job-portal')).'</a>';
+                            $wpjobportal_content .='    <a class="quickviewbutton" id="apply-now-btn" href="'.esc_url($wpjobportal_joblink).'" target="_blank" >'. esc_html(__('Apply Now','wp-job-portal')).'</a>';
                         }else{
                             $wpjobportal_isguest = WPJOBPORTALincluder::getObjectClass('user')->isguest();
                             if($wpjobportal_isguest){
@@ -2938,7 +3376,7 @@ class WPJOBPORTALjobModel {
             $wpjobportal_content .= '</div>';
         } else {
             $title = esc_html(__('No Records Found', 'wp-job-portal'));
-            $wpjobportal_content = '<h1>' . esc_html(__('No Records Found', 'wp-job-portal')) . '</h1>';
+            $wpjobportal_content = '<h2>' . esc_html(__('No Records Found', 'wp-job-portal')) . '</h2>';
         }
         $wpjobportal_array = array('title' => $title, 'wpjobportal_content' => $wpjobportal_content);
         return wp_json_encode($wpjobportal_array);
@@ -2953,7 +3391,7 @@ class WPJOBPORTALjobModel {
 
         if ($wpjobportal_jobid != null && is_numeric($wpjobportal_jobid)) {
             $wpjobportal_result = $this->getDataForShortlist($wpjobportal_jobid);
-            $title = esc_html(__('Short List Job', 'wp-job-portal'));
+            $title = esc_html(__('Save Job', 'wp-job-portal'));
             $wpjobportal_content = '<div class="commentrow">';
             $wpjobportal_content .= '<label for="wpjobportalcomment">' . esc_html(__('Comments', 'wp-job-portal')) . '</label>';
             $wpjobportal_comment = (isset($wpjobportal_result->comments)) ? $wpjobportal_result->comments : '';
@@ -2991,7 +3429,7 @@ class WPJOBPORTALjobModel {
             $wpjobportal_content .= '</div>';
         }else {
             $title = esc_html(__('No Records Found', 'wp-job-portal'));
-            $wpjobportal_content = '<h1>' . esc_html(__('No Records Found', 'wp-job-portal')) . '</h1>';
+            $wpjobportal_content = '<h2>' . esc_html(__('No Records Found', 'wp-job-portal')) . '</h2>';
         }
         $wpjobportal_array = array('title' => $title, 'wpjobportal_content' => $wpjobportal_content);
         return wp_json_encode($wpjobportal_array);
@@ -3267,44 +3705,15 @@ class WPJOBPORTALjobModel {
             $wpjobportal_total = 5;
 
         for ($wpjobportal_i=0; $wpjobportal_i < $wpjobportal_total; $wpjobportal_i++) {
-            $query = '';
-            switch ($wpjobportal_array[$wpjobportal_i]) {
-                case 'title':
-                    $query = "SELECT title AS col FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE id = " . (int) ($wpjobportal_id);
-                break;
-                case 'category':
-                    $query = "SELECT category.cat_title AS col
-                        FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                        LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS category ON category.id = job.jobcategory
-                        WHERE job.id = " . (int) ($wpjobportal_id);
-                break;
-                case 'company':
-                    $query = "SELECT company.name AS col
-                        FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                        ".wpjobportal::$_company_job_table_join." JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
-                        WHERE job.id = " . (int) ($wpjobportal_id);
-                break;
-                case 'jobtype':
-                    $query = "SELECT jt.title AS col
-                        FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                        LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jt ON jt.id = job.jobtype
-                        WHERE job.id = " . (int) ($wpjobportal_id);
-                break;
-                case 'location':
-                    $query = "SELECT job.city AS col
-                        FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job WHERE job.id = " . (int) ($wpjobportal_id);
-                break;
-            }
-            if($query != ''){
-                $wpjobportal_data = wpjobportaldb::get_row($query);
+            {
+                $wpjobportal_data = WPJOBPORTAL_Seo_Values::job($wpjobportal_id, $wpjobportal_array[$wpjobportal_i]);
                 if(isset($wpjobportal_data->col)){
                     if($wpjobportal_array[$wpjobportal_i] == 'location'){
                         $cityids = wpjobportalphplib::wpJP_explode(',', $wpjobportal_data->col);
                         $location = '';
                         for ($j=0; $j < count($cityids); $j++) {
                             if(is_numeric($cityids[$j])){
-                                $query = "SELECT name FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities` WHERE id = " . (int) ($cityids[$j]);
-                                $cityname = wpjobportaldb::get_row($query);
+                                $cityname = WPJOBPORTAL_Seo_Values::city($cityids[$j]);
                                 if(isset($cityname->name)){
                                     if($location == '')
                                         $location .= $cityname->name;
@@ -3658,7 +4067,7 @@ class WPJOBPORTALjobModel {
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON city.id = jobcity.cityid
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_states` AS state ON state.countryid = city.countryid
                 LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_countries` AS country ON country.id = city.countryid
-                WHERE job.status = 1 AND DATE(job.startpublishing) <= CURDATE() AND DATE(job.stoppublishing) >= CURDATE()";
+                WHERE job.status = 1 AND job.startpublishing < DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND job.stoppublishing >= CURDATE()";
         $query .= wpjobportal::$_db->prepare("  ORDER BY job.created DESC LIMIT %d", $wpjobportal_no_of_jobs);
         $wpjobportal_results = wpjobportaldb::get_results($query);
         $latestjobs = array();
@@ -3878,8 +4287,11 @@ class WPJOBPORTALjobModel {
                 'name' => $wpjobportal_job->companyname,
                 'value' => $wpjobportal_job_id
             ),
-            'datePosted' => $wpjobportal_job->created,
-            'validThrough' => $wpjobportal_job->stoppublishing,
+            'datePosted' => $wpjobportal_job->created ? (new DateTime((string) $wpjobportal_job->created, wp_timezone()))->format('c') : '', // ISO 8601, as Google asks
+            // The site keeps a job open through its whole closing day (it compares dates
+            // only); the admin form stores the day at 00:00, which read to Google as a
+            // day early. Send the end of that day in the site's time zone.
+            'validThrough' => $wpjobportal_job->stoppublishing ? (new DateTime(gmdate('Y-m-d', strtotime((string) $wpjobportal_job->stoppublishing)) . ' 23:59:59', wp_timezone()))->format('c') : '',
             'employmentType' => $wpjobportal_job->jobtypetitle,
             'hiringOrganization' => array(
                 '@type' => 'Organization',
@@ -3945,7 +4357,7 @@ class WPJOBPORTALjobModel {
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_cities` AS city ON city.id = jobcity.cityid
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_states` AS state ON state.countryid = city.countryid
         LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_countries` AS country ON country.id = city.countryid
-        WHERE job.status = 1 AND DATE(job.startpublishing) <= %s AND DATE(job.stoppublishing) >= %s";
+        WHERE job.status = 1 AND job.startpublishing < DATE_ADD(%s, INTERVAL 1 DAY) AND job.stoppublishing >= %s";
         $wpjobportal_job_id_in = wpjobportaldb::prepareIn($wpjobportal_job_id_list, '%d');
         if ($wpjobportal_job_id_in === false) {
             return false;
@@ -3954,6 +4366,7 @@ class WPJOBPORTALjobModel {
         $query = wpjobportal::$_db->prepare($query, $wpjobportal_curdate, $wpjobportal_curdate);
 
         $wpjobportal_results = wpjobportaldb::get_results($query);
+        WPJOBPORTAL_Seo_Values::prime_jobs(wp_list_pluck((array) $wpjobportal_results, 'id')); // P-2: one query for all the cards' addresses
         $wpjobportal_data = [];
         foreach ($wpjobportal_results AS $d) {
             $d->location = WPJOBPORTALincluder::getJSModel('city')->getLocationDataForView($d->city);
@@ -4370,15 +4783,17 @@ class WPJOBPORTALjobModel {
     }
 
     function updateRecordsForAISearchJob(){
-        $query = " SELECT job.*
-                FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                ORDER BY job.id ASC ";
-        $wpjobportal_jobs = wpjobportaldb::get_results($query); // fetch all jobs
-
-        foreach ($wpjobportal_jobs as $wpjobportal_job) { // loop over all jobs
-            $wpjobportal_job_arrray = json_decode(wp_json_encode($wpjobportal_job),true); // convert std class object to array
-            $this->importAIStringDataForJobs($wpjobportal_job_arrray);
-        }
+        // P-5: 200 at a time, so a big site does not hold every job in memory at once
+        $wpjobportal_last = 0;
+        do {
+            $query = "SELECT job.* FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job WHERE job.id > " . (int) $wpjobportal_last . " ORDER BY job.id ASC LIMIT 200";
+            $wpjobportal_jobs = (array) wpjobportaldb::get_results($query);
+            foreach ($wpjobportal_jobs as $wpjobportal_job) {
+                $wpjobportal_last = (int) $wpjobportal_job->id;
+                $wpjobportal_job_arrray = json_decode(wp_json_encode($wpjobportal_job),true); // convert std class
+                $this->importAIStringDataForJobs($wpjobportal_job_arrray);
+            }
+        } while (count($wpjobportal_jobs) === 200);
         return;
     }
 
@@ -4386,7 +4801,7 @@ class WPJOBPORTALjobModel {
         if (is_numeric($company_id) == false) return false;
         $query = " SELECT count(job.id) AS total
                 FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                WHERE job.companyid = ".$company_id." AND job.status = 1 AND DATE(job.stoppublishing) >= CURDATE() ";
+                WHERE job.companyid = ".$company_id." AND job.status = 1 AND job.stoppublishing >= CURDATE() ";
         $wpjobportal_jobs = wpjobportaldb::get_var($query); // fetch all jobs
         return $wpjobportal_jobs;
     }

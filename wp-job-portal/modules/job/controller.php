@@ -193,7 +193,7 @@ class WPJOBPORTALJobController {
                     $wpjobportal_empflag = 1;
                     break;
                 case 'admin_jobs':
-                    $wpjpjob->getAllJobs();
+                    $wpjpjob->getAdminJobList();
                     break;
                case 'addjob':
                case 'admin_formjob':
@@ -303,8 +303,8 @@ class WPJOBPORTALJobController {
                     }
                  break;
                 case 'admin_jobqueue':
-                    $wpjpjob->getAllUnapprovedJobs();
-                    break;
+                    WPJOBPORTAL_Admin_List_UI::approval_queue('jobs');
+                    return;
                 case 'admin_view_job':
                     $wpjobportal_id = WPJOBPORTALrequest::getVar('wpjobportalid');
                     $wpjpjob->getJobbyIdForView($wpjobportal_jobid);
@@ -342,7 +342,7 @@ class WPJOBPORTALJobController {
         $wpjobportal_result = WPJOBPORTALincluder::getJSModel('job')->approveQueueJobModel($wpjobportal_id);
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'job');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_job&wpjobportallt=jobqueue"));
+        $wpjobportal_url = WPJOBPORTAL_Admin_List_UI::return_url("wpjobportal_job", "admin.php?page=wpjobportal_job&wpjobportallt=jobqueue");
         wp_safe_redirect($wpjobportal_url);
         die();
     }
@@ -357,7 +357,7 @@ class WPJOBPORTALJobController {
         $wpjobportal_result = WPJOBPORTALincluder::getJSModel('job')->rejectQueueJobModel($wpjobportal_id);
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'job');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_job&wpjobportallt=jobqueue"));
+        $wpjobportal_url = WPJOBPORTAL_Admin_List_UI::return_url("wpjobportal_job", "admin.php?page=wpjobportal_job&wpjobportallt=jobqueue");
         wp_safe_redirect($wpjobportal_url);
         die();
     }
@@ -372,7 +372,7 @@ class WPJOBPORTALJobController {
         $wpjobportal_result = WPJOBPORTALincluder::getJSModel('job')->approveQueueFeaturedJobModel($wpjobportal_id);
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'job');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_job&wpjobportallt=jobqueue"));
+        $wpjobportal_url = WPJOBPORTAL_Admin_List_UI::return_url("wpjobportal_job", "admin.php?page=wpjobportal_job&wpjobportallt=jobqueue");
         wp_safe_redirect($wpjobportal_url);
         die();
     }
@@ -387,7 +387,7 @@ class WPJOBPORTALJobController {
         $wpjobportal_result = WPJOBPORTALincluder::getJSModel('job')->rejectQueueFeaturedJobModel($wpjobportal_id);
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'job');
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
-        $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_job&wpjobportallt=jobqueue"));
+        $wpjobportal_url = WPJOBPORTAL_Admin_List_UI::return_url("wpjobportal_job", "admin.php?page=wpjobportal_job&wpjobportallt=jobqueue");
         wp_safe_redirect($wpjobportal_url);
         die();
     }
@@ -445,7 +445,9 @@ class WPJOBPORTALJobController {
         }
         $mjob = WPJOBPORTALincluder::getJSModel('job');
         $wpjobportal_data = WPJOBPORTALrequest::get('post');
-        $wpjobportal_result = $mjob->storeJob($wpjobportal_data);
+        // D-7: say why before the database refuses emoji (utf8 tables), and keep what was typed.
+        $wpjobportal_emoji = $mjob->hasUnstorableCharacters($wpjobportal_data);
+        $wpjobportal_result = $wpjobportal_emoji ? WPJOBPORTAL_SAVE_ERROR : $mjob->storeJob($wpjobportal_data);
         $wpjobportal_isnew = !( isset($wpjobportal_data['id']) && (int)$wpjobportal_data['id'] ) ? 1 : 0;
         $wpjobportal_isqueue = WPJOBPORTALrequest::getVar('isqueue','post',0);
         $adminjoblayout = $wpjobportal_isqueue == 1 ? 'jobqueue' : 'jobs';
@@ -475,15 +477,109 @@ class WPJOBPORTALJobController {
                 $wpjobportal_url = wpjobportal::wpjobportal_visitorJobRedirectUrl();
             }
         } else {
+            // Back to the same form (an edit kept its job), filled in again.
+            $mjob->keepJobDraft($wpjobportal_data);
+            $wpjobportal_editid = isset($wpjobportal_data['id']) ? (int) $wpjobportal_data['id'] : 0;
             if (wpjobportal::$_common->wpjp_isadmin()) {
-                $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_job&wpjobportallt=formjob"));
+                $wpjobportal_url = esc_url_raw(admin_url("admin.php?page=wpjobportal_job&wpjobportallt=formjob" . ($wpjobportal_editid ? '&wpjobportalid=' . $wpjobportal_editid : '')));
             } else {
-                $wpjobportal_url = esc_url_raw(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'addjob')));
+                $wpjobportal_args = array('wpjobportalme'=>'job', 'wpjobportallt'=>'addjob');
+                if ($wpjobportal_editid) {
+                    $wpjobportal_args['wpjobportalid'] = $wpjobportal_editid;
+                }
+                $wpjobportal_url = esc_url_raw(wpjobportal::wpjobportal_makeUrl($wpjobportal_args));
             }
         }
         $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'job');
+        if ($wpjobportal_emoji) {
+            $wpjobportal_msg['message'] = esc_html(__('Emoji can\'t be saved yet. Remove them and save again.', 'wp-job-portal'));
+        } elseif ($wpjobportal_result != WPJOBPORTAL_SAVED && get_current_user_id()) {
+            $wpjobportal_msg['message'] .= ' ' . esc_html(__('What you typed has been kept below.', 'wp-job-portal'));
+        }
         WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'],$this->_msgkey);
         wp_safe_redirect($wpjobportal_url);
+        die();
+    }
+
+    /**
+     * Bulk actions from the Jobs list: approve, close to new applicants,
+     * reopen, delete (optionally with everything about the job, today's Force
+     * Delete). Each runs the same model function as the single-job action.
+     */
+    function bulkjobs() {
+        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_job_nonce') ) {
+             die( 'Security check Failed' );
+        }
+        if (!current_user_can('manage_options')) {
+            die( 'Not Allowed!' );
+        }
+        $wpjobportal_ids = array_values(array_filter(array_map('absint', (array) WPJOBPORTALrequest::getVar('wpjobportal-cb'))));
+        $wpjobportal_op = sanitize_key((string) WPJOBPORTALrequest::getVar('bulkop'));
+        $wpjobportal_model = WPJOBPORTALincluder::getJSModel('job');
+        $wpjobportal_count = count($wpjobportal_ids);
+        switch ($wpjobportal_op) {
+            case 'approve':
+                $wpjobportal_done = 0;
+                // Only jobs that are waiting: approving restarts the publishing
+                // dates, which must not happen to a job that is already live.
+                $wpjobportal_ids = array_map('absint', (array) wpjobportal::$_db->get_col("SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE status = 0 AND id IN (" . implode(',', $wpjobportal_ids ? $wpjobportal_ids : array(0)) . ")"));
+                foreach ($wpjobportal_ids as $wpjobportal_id) {
+                    if ($wpjobportal_model->approveQueueJobModel($wpjobportal_id) == WPJOBPORTAL_APPROVED) {
+                        $wpjobportal_done++;
+                    }
+                }
+                /* translators: 1: jobs approved, 2: jobs selected */
+                WPJOBPORTALMessages::setLayoutMessage(sprintf(__('%1$d of %2$d jobs approved.', 'wp-job-portal'), $wpjobportal_done, $wpjobportal_count), $wpjobportal_done ? 'updated' : 'error', $this->_msgkey);
+                break;
+            case 'close':
+            case 'reopen':
+                $wpjobportal_done = $wpjobportal_model->setJobsClosed($wpjobportal_ids, $wpjobportal_op === 'close');
+                $wpjobportal_text = ($wpjobportal_op === 'close')
+                    /* translators: %d: number of jobs */
+                    ? _n('%d job closed to new applicants.', '%d jobs closed to new applicants.', $wpjobportal_done, 'wp-job-portal')
+                    /* translators: %d: number of jobs */
+                    : _n('%d job reopened.', '%d jobs reopened.', $wpjobportal_done, 'wp-job-portal');
+                WPJOBPORTALMessages::setLayoutMessage(sprintf($wpjobportal_text, $wpjobportal_done), 'updated', $this->_msgkey);
+                WPJOBPORTAL_Admin_Menu_Service::flush_counts();
+                break;
+            case 'delete':
+                if (WPJOBPORTALrequest::getVar('deleteall') === '1') {
+                    $wpjobportal_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
+                    $wpjobportal_result = WPJOBPORTAL_DELETED;
+                    foreach ($wpjobportal_ids as $wpjobportal_id) {
+                        $wpjobportal_one = $wpjobportal_model->jobEnforceDelete($wpjobportal_id, $wpjobportal_uid);
+                        if ($wpjobportal_one != WPJOBPORTAL_DELETED) {
+                            $wpjobportal_result = $wpjobportal_one;
+                        }
+                    }
+                } else {
+                    $wpjobportal_result = $wpjobportal_model->deleteJobs($wpjobportal_ids);
+                }
+                $wpjobportal_msg = WPJOBPORTALMessages::getMessage($wpjobportal_result, 'job');
+                WPJOBPORTALMessages::setLayoutMessage($wpjobportal_msg['message'], $wpjobportal_msg['status'], $this->_msgkey);
+                WPJOBPORTAL_Admin_Menu_Service::flush_counts();
+                break;
+        }
+        wp_safe_redirect(WPJOBPORTAL_Admin_List_UI::return_url("wpjobportal_job", "admin.php?page=wpjobportal_job"));
+        die();
+    }
+
+    /** W-14: the employer closes their own job early, or reopens it. Applications stay. */
+    function setjobclosed() {
+        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_job_nonce') ) {
+             die( 'Security check Failed' );
+        }
+        $wpjobportal_id = absint(WPJOBPORTALrequest::getVar('wpjobportalid-job'));
+        $wpjobportal_close = sanitize_key((string) WPJOBPORTALrequest::getVar('op')) === 'close';
+        $wpjobportal_model = WPJOBPORTALincluder::getJSModel('job');
+        if ($wpjobportal_id && $wpjobportal_model->getIfJobOwner($wpjobportal_id) && $wpjobportal_model->setJobsClosed(array($wpjobportal_id), $wpjobportal_close)) {
+            WPJOBPORTALMessages::setLayoutMessage($wpjobportal_close ? __('The job is closed. It no longer accepts applications, and the ones you have are kept.', 'wp-job-portal') : __('The job is open for applications again.', 'wp-job-portal'), 'updated', $this->_msgkey);
+        } else {
+            WPJOBPORTALMessages::setLayoutMessage(__('Failed while performing this action', 'wp-job-portal'), 'error', $this->_msgkey);
+        }
+        wp_safe_redirect(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'myjobs')));
         die();
     }
 

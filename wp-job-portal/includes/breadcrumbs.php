@@ -163,7 +163,7 @@ class WPJOBPORTALbreadcrumbs {
                             switch ($wpjobportal_layout) {
                                 case 'shortlistedjobs':
                                     $wpjobportal_array[] = $wpjobportal_staticUrl;
-                                    $wpjobportal_array[] = array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'shortlistedjobs')), 'text' => esc_html(__('Short Listed Jobs', 'wp-job-portal')));
+                                    $wpjobportal_array[] = array('link' => wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'shortlistedjobs')), 'text' => esc_html(__('Saved Jobs', 'wp-job-portal')));
                                     break;
                             }
                         break;

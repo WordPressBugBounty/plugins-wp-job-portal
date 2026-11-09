@@ -30,7 +30,7 @@ class WPJOBPORTALcopyjobModel {
             $data['title'] = $data['title'] . ' ' . __('Copy', 'wp-job-portal');
             $data['jobid'] = WPJOBPORTALincluder::getJSModel('job')->getJobId();
             $data['isjob'] = 2;
-            $isadmin = WPJOBPORTALrequest::getVar('isadmin');
+            $isadmin = (current_user_can('manage_options') ? WPJOBPORTALrequest::getVar('isadmin') : ''); // Security: admin-only flag, never trusted from a non-admin request.
             $user = WPJOBPORTALincluder::getObjectClass('user');
             $dateformat = wpjobportal::$_configuration['date_format'];
             $subType = wpjobportal::$_config->getConfigValue('submission_type');

@@ -175,6 +175,12 @@ function wpjobportal_add_registration_fields() {
     $wpjobportal_shortcode_role = $wpjobportal_is_registration_shortcode && isset($wpjobportal_shortcode_options['registration_role'])
         ? (int) $wpjobportal_shortcode_options['registration_role']
         : 0;
+    // W-5: a role-specific register address starts on that role
+    if (!$wpjobportal_shortcode_role && isset(wpjobportal::$_data['sanitized_args']['wpjobportallt'])) {
+        $wpjobportal_address_roles = array('regemployer' => 1, 'regjobseeker' => 2);
+        $wpjobportal_address_layout = wpjobportal::$_data['sanitized_args']['wpjobportallt'];
+        $wpjobportal_shortcode_role = isset($wpjobportal_address_roles[$wpjobportal_address_layout]) ? $wpjobportal_address_roles[$wpjobportal_address_layout] : 0;
+    }
 
     if ($wpjobportal_hide_role && in_array($wpjobportal_shortcode_role, array(1, 2), true)) {
         $wpjobportal_context = wpjobportal_create_registration_shortcode_context(
@@ -193,7 +199,7 @@ function wpjobportal_add_registration_fields() {
     ?>
     <div class="wjportal-form-title">
         <label for="jobs_role">
-            <?php echo esc_html(__('Jobs Role', 'wp-job-portal')); ?>
+            <?php echo esc_html(__('I am a…', 'wp-job-portal')); ?>
         </label>
     </div>
     <div class="wjportal-form-value">
@@ -1091,7 +1097,7 @@ function wpjobportal_getWPJobPortalPageTitle($wpjobportal_module, $wpjobportal_l
                 $title =  esc_html(__('Featured Jobs', 'wp-job-portal'));
                 break;
             case 'shortlistedjobs':
-                $title =  esc_html(__('Short Listed Jobs', 'wp-job-portal'));
+                $title =  esc_html(__('Saved Jobs', 'wp-job-portal'));
                 break;
             case 'visitoraddjob':
                 $title = esc_html(__('Add Job','wp-job-portal'));
@@ -1175,7 +1181,7 @@ function wpjobportal_getWPJobPortalPageTitle($wpjobportal_module, $wpjobportal_l
                 $title =  esc_html(__('Folder Resumes', 'wp-job-portal'));
                 break;
             case 'addresume':
-                $title =  esc_html(__('Add Resume', 'wp-job-portal'));
+                $title = WPJOBPORTALrequest::getVar('wpjobportalid') ? esc_html(__('Edit Resume', 'wp-job-portal')) : esc_html(__('Add Resume', 'wp-job-portal'));
                 break;
             case 'myresumes':
                 $title =  esc_html(__('My Resumes', 'wp-job-portal'));

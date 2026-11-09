@@ -58,6 +58,7 @@ $wpjobportal_company = isset(wpjobportal::$_data[0]) ? wpjobportal::$_data[0] : 
             </div>
             <?php echo wp_kses(WPJOBPORTALformfield::hidden('id', $wpjobportal_company ? esc_html($wpjobportal_company->id) : '' ),WPJOBPORTAL_ALLOWED_TAGS); ?>
             <?php echo wp_kses(WPJOBPORTALformfield::hidden('wpjobportalpageid', get_the_ID()),WPJOBPORTAL_ALLOWED_TAGS); ?>
+            <?php if (class_exists('WPJOBPORTAL_Employer_Start') && WPJOBPORTAL_Employer_Start::requested_return() !== '') { echo wp_kses(WPJOBPORTALformfield::hidden('wpjobportal_return', WPJOBPORTAL_Employer_Start::requested_return()), WPJOBPORTAL_ALLOWED_TAGS); } // W-3: back to Add Job after saving ?>
             <?php echo wp_kses(WPJOBPORTALformfield::hidden('form_request', 'wpjobportal'),WPJOBPORTAL_ALLOWED_TAGS); ?>
             <?php echo wp_kses(WPJOBPORTALformfield::hidden('created', isset(wpjobportal::$_data[0]->created) ? esc_html(wpjobportal::$_data[0]->created) : gmdate('Y-m-d H:i:s')),WPJOBPORTAL_ALLOWED_TAGS); ?>
             <?php echo wp_kses(WPJOBPORTALformfield::hidden('_wpnonce', esc_html(wp_create_nonce('wpjobportal_company_nonce'))),WPJOBPORTAL_ALLOWED_TAGS); ?>

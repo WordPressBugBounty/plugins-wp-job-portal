@@ -345,7 +345,7 @@ class WPJOBPORTALformfield {
 
     static function select($wpjobportal_name, $list, $wpjobportal_defaultvalue, $title = '', $wpjobportal_extraattr = array()) {
         $wpjobportal_extraattr = self::prepareControlAttributes($wpjobportal_name, $wpjobportal_extraattr);
-        $wpjobportal_selectfield = '<select name="' . $wpjobportal_name . '" id="' . $wpjobportal_name . '" ';
+        $wpjobportal_selectfield = '<select name="' . esc_attr($wpjobportal_name) . '" id="' . esc_attr($wpjobportal_name) . '" ';
         if (!empty($wpjobportal_extraattr))
             foreach ($wpjobportal_extraattr AS $wpjobportal_key => $wpjobportal_val) {
                 $wpjobportal_selectfield .= ' ' . $wpjobportal_key . '="' .  wpjobportalphplib::wpJP_htmlspecialchars($wpjobportal_val) . '"';

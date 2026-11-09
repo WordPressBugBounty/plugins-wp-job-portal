@@ -26,6 +26,44 @@ class WPJOBPORTALsystemerrorModel {
     }
 
 
+    /**
+     * The admin Error log list (design 4, the Jobs list's parts): chips for new /
+     * seen, a search over the error text, newest or oldest first, plain query values.
+     *
+     * Leaves its result in wpjobportal::$_data['errorlist'].
+     */
+    function getAdminErrorList() {
+        $db = wpjobportal::$_db;
+        $table = '`' . $db->prefix . 'wj_portal_system_errors`';
+        $get = function ($key) {
+            return trim((string) WPJOBPORTALrequest::getVar($key, 'get', ''));
+        };
+        $views = array('all' => '1=1', 'new' => 'COALESCE(isview, 0) <> 1', 'seen' => 'isview = 1');
+        $filter = array(
+            'view' => isset($views[$get('view')]) ? $get('view') : 'all',
+            'q' => $get('q'),
+            'sort' => $get('sort') === 'created|1' ? 'created|1' : 'created|-1',
+        );
+        $cols = array();
+        foreach ($views as $view => $condition) {
+            $cols[] = 'SUM(CASE WHEN ' . $condition . ' THEN 1 ELSE 0 END) AS `' . $view . '`';
+        }
+        $counts = array_map('absint', (array) $db->get_row('SELECT ' . implode(', ', $cols) . ' FROM ' . $table, ARRAY_A));
+        $where = array($views[$filter['view']]);
+        foreach (preg_split('/\s+/', $filter['q'], -1, PREG_SPLIT_NO_EMPTY) as $word) {
+            $where[] = $db->prepare('error LIKE %s', '%' . $db->esc_like($word) . '%');
+        }
+        $where_sql = ' WHERE ' . implode(' AND ', $where);
+        $total = absint($db->get_var('SELECT COUNT(id) FROM ' . $table . $where_sql));
+        WPJOBPORTALpagination::getPagination($total);
+        $rows = (array) $db->get_results(
+            'SELECT * FROM ' . $table . $where_sql
+            . ' ORDER BY created ' . ($filter['sort'] === 'created|1' ? 'ASC' : 'DESC') . ', id DESC'
+            . $db->prepare(' LIMIT %d, %d', WPJOBPORTALpagination::$_offset, WPJOBPORTALpagination::$_limit)
+        );
+        wpjobportal::$_data['errorlist'] = array('rows' => $rows, 'total' => $total, 'counts' => $counts, 'filter' => $filter);
+    }
+
     function addSystemError($possible_error_msg = '') {
         // 1. Always grab the URL for context
         $error_data = array(

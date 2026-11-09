@@ -306,7 +306,10 @@ class wpjobportalphplib {
     public static function wpJP_number_format($wpjobportal_num,$wpjobportal_decimals = 0,$wpjobportal_decimal_separator = ".",$thousands_separator = ","){
         $output = null;
         if ($wpjobportal_num !== null) {
-            $output = number_format($wpjobportal_num,$wpjobportal_decimals,$wpjobportal_decimal_separator,$thousands_separator);
+            // An unset price setting is '' - PHP 8 throws a TypeError for that, which took
+            // the whole page down (the job payment page with no per-listing price).
+            $wpjobportal_num = is_numeric($wpjobportal_num) ? (float) $wpjobportal_num : 0.0;
+            $output = number_format($wpjobportal_num,(int) $wpjobportal_decimals,$wpjobportal_decimal_separator,$thousands_separator);
         }
         return $output;
     }

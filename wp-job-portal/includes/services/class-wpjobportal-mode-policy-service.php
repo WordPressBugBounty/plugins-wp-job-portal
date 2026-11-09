@@ -177,6 +177,8 @@ class WPJOBPORTAL_Mode_Policy_Service {
                 'note' => isset($feature['unavailable_note']) ? $feature['unavailable_note'] : '',
                 'mode' => $mode,
                 'mode_label' => WPJOBPORTAL_Product_Mode_Service::get_label($mode),
+                // True when this mode needs the feature (the lock keeps it on), false when it does not offer it.
+                'available' => !empty($feature['available'][$mode]),
             );
         }
 

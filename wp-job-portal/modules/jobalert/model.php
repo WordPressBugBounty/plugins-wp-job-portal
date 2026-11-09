@@ -5,6 +5,8 @@ if (!defined('ABSPATH'))
 
 class WPJOBPORTALJobAlertModel {
 
+    const ALERTS_PER_RUN = 50;
+
     function captchaValidate() {
         if (!is_user_logged_in()) {
             $config_array = wpjobportal::$_config->getConfigByFor('captcha');
@@ -59,6 +61,25 @@ class WPJOBPORTALJobAlertModel {
         }
         //$actionid = -1;
         $user = WPJOBPORTALincluder::getObjectClass('user');
+        // Security: this route is public and binds the whole form, so a posted id
+        // used to overwrite anybody's alert (and keep a posted uid/status). An
+        // existing alert may be edited only by its signed-in owner; the owner and
+        // the status are always decided here.
+        if (!wpjobportal::$_common->wpjp_isadmin()) {
+            $wpjobportal_me = (int) $user->uid();
+            unset($data['uid'], $data['status']);
+            $data['status'] = '';
+            if (!empty($data['id'])) {
+                $wpjobportal_alert = wpjobportal::$_db->get_row(wpjobportal::$_db->prepare(
+                    "SELECT uid, status FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobalertsetting` WHERE id = %d", (int) $data['id']
+                ));
+                if (!$wpjobportal_alert || $wpjobportal_me < 1 || (int) $wpjobportal_alert->uid !== $wpjobportal_me) {
+                    return WPJOBPORTAL_SAVE_ERROR;
+                }
+                $data['status'] = (int) $wpjobportal_alert->status;
+            }
+            $data['uid'] = $wpjobportal_me;
+        }
         $subType = wpjobportal::$_config->getConfigValue('submission_type');
         $no_package_needed = 0;
         if (!WPJOBPORTALincluder::getObjectClass('user')->isguest()) { // user is visitor then dont check for credits
@@ -212,7 +233,7 @@ class WPJOBPORTALJobAlertModel {
     function emailValidation($email) {
         if (!$email)
             return;
-        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobalertsetting` WHERE contactemail = '" . esc_sql($email) . "'";
+        $query = "SELECT COUNT(id) FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobalertsetting` WHERE contactemail = '" . esc_sql($email) . "' AND (serverstatus IS NULL OR serverstatus <> 'saved_search')";
         $result = wpjobportaldb::get_var($query);
         if ($result > 0)
             return true;
@@ -233,7 +254,7 @@ class WPJOBPORTALJobAlertModel {
         if(in_array('credits', wpjobportal::$_active_addons)){
             if(wpjobportal::$_config->getConfigValue('submission_type') ==2){
                 // Payment Config->woocommerce,stripe,paypal
-                wpjobportal::$_data['paymentconfig'] = wpjobportal::$_wpjppaymentconfig->getPaymentConfigFor('paypal,stripe,woocommerce',true);
+                wpjobportal::$_data['paymentconfig'] = wpjobportal::wpjobportal_getPublicPaymentConfig(); // Security: no credentials in page data; base helper so an older add-on cannot crash the page
             }
         }
        if ($setting) {
@@ -304,9 +325,54 @@ class WPJOBPORTALJobAlertModel {
         return WPJOBPORTAL_DELETED;
     }
 
-    function unSubscribeJobAlertEmail($emailaddress) {
+    /**
+     * @param string $emailaddress Address whose alerts are removed.
+     * @param bool   $verified     True only when the caller has already proved
+     *                             the request comes from that mailbox (the signed
+     *                             one-click link in WPJOBPORTAL_Alert_Unsubscribe).
+     */
+    function unSubscribeJobAlertEmail($emailaddress, $verified = false) {
         if(empty($emailaddress))
             return false;
+
+        // Security: this form is public and its nonce is shared by every visitor,
+        // so it used to delete the alerts of ANY email address typed in (and
+        // told the visitor whether that address had alerts). Now a signed-in
+        // user removes only their own alerts; anyone else is sent the signed
+        // one-click unsubscribe links at that address, and the answer is the
+        // same whether or not the address has alerts. A request that already
+        // carries a valid signed link ($verified) is removed straight away.
+        if (!$verified && !wpjobportal::$_common->wpjp_isadmin()) {
+            $wpjobportal_email = sanitize_email($emailaddress);
+            if (!is_email($wpjobportal_email)) {
+                return false;
+            }
+            $wpjobportal_me = (int) WPJOBPORTALincluder::getObjectClass('user')->uid();
+            if ($wpjobportal_me > 0) {
+                $query = wpjobportal::$_db->prepare("DELETE jobalert,acity
+                    FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobalertsetting` AS jobalert
+                    LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobalertcities` AS acity ON acity.alertid=jobalert.id
+                    WHERE jobalert.contactemail = %s AND jobalert.uid = %d", $wpjobportal_email, $wpjobportal_me);
+                wpjobportaldb::query($query);
+                // Say so when this account had no alert at that address, rather than "deleted".
+                return ((int) wpjobportal::$_db->rows_affected > 0) ? WPJOBPORTAL_DELETED : 'WPJOBPORTAL_UNSUBSCRIBE_NONE';
+            }
+            $wpjobportal_ids = wpjobportal::$_db->get_col(wpjobportal::$_db->prepare(
+                "SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobalertsetting` WHERE contactemail = %s", $wpjobportal_email
+            ));
+            if (!empty($wpjobportal_ids) && class_exists('WPJOBPORTAL_Alert_Unsubscribe')) {
+                $wpjobportal_links = array();
+                foreach ($wpjobportal_ids as $wpjobportal_aid) {
+                    $wpjobportal_links[] = WPJOBPORTAL_Alert_Unsubscribe::url((int) $wpjobportal_aid, $wpjobportal_email);
+                }
+                wp_mail(
+                    $wpjobportal_email,
+                    sprintf(__('Unsubscribe from job alerts on %s', 'wp-job-portal'), get_bloginfo('name')),
+                    __('Someone asked to stop job alerts for this address. To unsubscribe, open the link for each alert below. If this was not you, ignore this email.', 'wp-job-portal') . "\n\n" . implode("\n", $wpjobportal_links)
+                );
+            }
+            return 'WPJOBPORTAL_UNSUBSCRIBE_EMAIL_SENT';
+        }
 
         $query = "SELECT COUNT(id) FROM `".wpjobportal::$_db->prefix . "wj_portal_jobalertsetting` WHERE contactemail = '" .esc_sql($emailaddress). "'";
         $total = wpjobportaldb::get_var($query);
@@ -419,11 +485,79 @@ class WPJOBPORTALJobAlertModel {
         return;
     }
 
+    /**
+     * The admin Job alerts list (design 4, the Jobs list's parts): chips for
+     * the status, a search over every word (name, email, keywords), category
+     * and frequency filters, from plain query values. Alerts without a
+     * category are listed too (the 2.7 list's inner join hid them).
+     *
+     * Leaves its result in wpjobportal::$_data['jobalertlist'].
+     */
+    function getAdminJobAlertList() {
+        $db = wpjobportal::$_db;
+        $p = $db->prefix . 'wj_portal_';
+        $get = function ($key) {
+            return trim((string) WPJOBPORTALrequest::getVar($key, 'get', ''));
+        };
+        $views = array(
+            'all' => '1=1',
+            'approved' => 'alert.status = 1',
+            'waiting' => 'alert.status = 0',
+            'rejected' => 'alert.status = -1',
+        );
+        if (in_array('credits', (array) wpjobportal::$_active_addons, true)) {
+            $views['payment'] = 'alert.status = 3';
+        }
+        $filter = array(
+            'view' => isset($views[$get('view')]) ? $get('view') : 'all',
+            'q' => $get('q'),
+            'cat' => absint($get('cat')),
+            'freq' => in_array($get('freq'), array('1', '2', '3', '4'), true) ? $get('freq') : '',
+            'sort' => $get('sort'),
+        );
+        $sorts = array('created' => 'alert.created', 'name' => 'alert.name', 'cat' => 'cat.cat_title', 'freq' => 'alert.alerttype', 'sent' => 'alert.lastmailsend', 'stat' => 'alert.status');
+        $parts = explode('|', $filter['sort']);
+        $key = isset($sorts[$parts[0]]) ? $parts[0] : 'created';
+        $dir = isset($parts[1]) ? ($parts[1] === '1' ? 'ASC' : 'DESC') : 'DESC';
+        $filter['sort'] = $key . '|' . ($dir === 'ASC' ? '1' : '-1');
+
+        $from = " FROM `{$p}jobalertsetting` AS alert LEFT JOIN `{$p}categories` AS cat ON cat.id = alert.categoryid";
+        $where = array();
+        foreach (preg_split('/\s+/', $filter['q'], -1, PREG_SPLIT_NO_EMPTY) as $word) {
+            $like = '%' . $db->esc_like($word) . '%';
+            $where[] = $db->prepare('(alert.name LIKE %s OR alert.contactemail LIKE %s OR alert.keywords LIKE %s)', $like, $like, $like);
+        }
+        if ($filter['cat']) { $where[] = $db->prepare('alert.categoryid = %d', $filter['cat']); }
+        if ($filter['freq'] !== '') { $where[] = $db->prepare('alert.alerttype = %d', (int) $filter['freq']); }
+        $filters_sql = $where ? ' AND ' . implode(' AND ', $where) : '';
+        $view_sql = ' AND ' . $views[$filter['view']];
+
+        $cols = array();
+        foreach ($views as $view => $condition) {
+            $cols[] = 'SUM(CASE WHEN ' . $condition . ' THEN 1 ELSE 0 END) AS `' . $view . '`';
+        }
+        $counts = array_map('absint', (array) $db->get_row('SELECT ' . implode(', ', $cols) . " FROM `{$p}jobalertsetting` AS alert", ARRAY_A));
+        $total = absint($db->get_var('SELECT COUNT(alert.id)' . $from . ' WHERE 1=1' . $view_sql . $filters_sql));
+        WPJOBPORTALpagination::getPagination($total);
+        $rows = (array) $db->get_results(
+            "SELECT alert.id, alert.uid, alert.name, alert.contactemail, alert.keywords, alert.alerttype, alert.status, alert.created, alert.lastmailsend,
+                cat.cat_title, (SELECT COUNT(id) FROM `{$p}jobalertcities` WHERE alertid = alert.id) AS totalcities"
+            . $from . ' WHERE 1=1' . $view_sql . $filters_sql
+            . ' ORDER BY ' . $sorts[$key] . ' ' . $dir . ', alert.id DESC'
+            . $db->prepare(' LIMIT %d, %d', WPJOBPORTALpagination::$_offset, WPJOBPORTALpagination::$_limit)
+        );
+        wpjobportal::$_data['jobalertlist'] = array(
+            'rows' => $rows, 'total' => $total, 'counts' => $counts, 'filter' => $filter, 'views' => array_keys($views),
+            'categories' => (array) $db->get_results("SELECT DISTINCT cat.id, cat.cat_title AS title FROM `{$p}jobalertsetting` AS alert INNER JOIN `{$p}categories` AS cat ON cat.id = alert.categoryid ORDER BY cat.cat_title"),
+        );
+    }
+
     function getMyJobAlertId() {
         $uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
         if (!is_numeric($uid))
             return false;
-        $query = "SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobalertsetting` WHERE uid = " . (int) ($uid);
+        // W-9: alerts made from a saved search are managed on that search.
+        $query = "SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobalertsetting` WHERE uid = " . (int) ($uid) . " AND (serverstatus IS NULL OR serverstatus <> 'saved_search')";
         $id = wpjobportal::$_db->get_var($query);
         return $id;
     }
@@ -457,9 +591,17 @@ class WPJOBPORTALJobAlertModel {
         // from sending duplicate alert batches.
         set_transient($lock_name, 1, 15 * MINUTE_IN_SECONDS);
         try {
-            $this->sendJobAlert(1); // Daily subscribers.
-            $this->sendJobAlert(2); // Weekly subscribers.
-            $this->sendJobAlert(3); // Monthly subscribers.
+            // P-4: one batch per run. A subscriber stops being due once handled, so the
+            // query itself is the cursor, and the next run picks up the rest.
+            $wpjobportal_left = self::ALERTS_PER_RUN;
+            foreach (array(1, 2, 3) as $wpjobportal_type) { // Daily, weekly, monthly.
+                if ($wpjobportal_left > 0) {
+                    $wpjobportal_left -= (int) $this->sendJobAlert($wpjobportal_type, $wpjobportal_left);
+                }
+            }
+            if ($wpjobportal_left <= 0 && !wp_next_scheduled('wpjobportal_send_scheduled_job_alerts', array('more'))) {
+                wp_schedule_single_event(time() + 60, 'wpjobportal_send_scheduled_job_alerts', array('more'));
+            }
             return true;
         } catch (Exception $exception) {
             return false;
@@ -477,7 +619,8 @@ class WPJOBPORTALJobAlertModel {
     }
 
 
-    function sendJobAlert($alerttype) {
+    /** @return int How many subscribers this call handled. */
+    function sendJobAlert($alerttype, $wpjobportal_limit = 50) {
         $admin_jobs = '';
 
         $config = wpjobportal::$_config->getConfigByFor('email');
@@ -500,19 +643,19 @@ class WPJOBPORTALJobAlertModel {
         $query = "SELECT person.*
                     FROM `".wpjobportal::$_db->prefix."wj_portal_jobalertsetting` AS person
                     WHERE person.alerttype = " . (int) ($alerttype) . " AND DATE(DATE_ADD(person.lastmailsend,INTERVAL " . (int) ($days) . " DAY)) <= CURDATE()
-                    AND person.status = 1";
+                    AND person.status = 1 ORDER BY person.lastmailsend ASC LIMIT " . (int) $wpjobportal_limit;
 
         $persons = wpjobportaldb::get_results($query);
 
         if (empty($persons))
-            return false; // no person were selected for mail
+            return 0; // no person were selected for mail
 
         // moved this code up to avoid calling the template for every email seperatly
         $query = "SELECT template.* FROM `".wpjobportal::$_db->prefix."wj_portal_emailtemplates` AS template WHERE template.templatefor = 'job-alert'";
         $template = wpjobportaldb::get_row($query);
 
         $currentYear = gmdate('Y');
-        $siteTitle = wpjobportal::$_config->getConfigValue('title');
+        $siteTitle = WPJOBPORTALincluder::getJSModel('emailtemplate')->siteTitle();
 
         foreach ($persons AS $person) {
             $wherequery = "";
@@ -599,11 +742,15 @@ class WPJOBPORTALJobAlertModel {
                                 LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_jobcities` AS mjob ON mjob.jobid = job.id
                                 LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_companies` AS comp ON comp.id = job.company
                                 LEFT JOIN `".wpjobportal::$_db->prefix."wj_portal_jobtypes` AS jtype ON jtype.id = job.jobtype
-                                WHERE job.jobcategory = " . (int) ($person->categoryid);
+                                WHERE " . (!empty($person->categoryid) ? "job.jobcategory = " . (int) ($person->categoryid) : "1 = 1"); // W-9: the category is optional
 
             if ($person->keywords)
                 $query .= " AND ( " . implode(' OR ', $metakeywords) . " )";
             $query .=$wherequery;
+            // D-8: only jobs people can apply to — approved, not past their closing date and
+            // not closed to new applicants (this query checked none of the three).
+            $closedids = implode(',', WPJOBPORTALincluder::getJSModel('jobstatus')->getClosedStatusIds());
+            $query .= " AND job.status = 1 AND job.stoppublishing >= CURDATE()" . ($closedids !== '' ? " AND job.jobstatus NOT IN (" . $closedids . ")" : '');
 
             $jobs = wpjobportaldb::get_results($query);
             foreach ($jobs AS $job) {  // for multicity select
@@ -646,10 +793,10 @@ class WPJOBPORTALJobAlertModel {
 
                 $recevierEmail = $person->contactemail;
                 $subject = $msgSubject;
-                $body = $msgBody;
+                $body = $msgBody . WPJOBPORTAL_Alert_Unsubscribe::footer($person->id, $person->contactemail); // W-12
                 $senderEmail = $config['mailfromaddress'];
                 $senderName = $config['mailfromname'];
-                WPJOBPORTALincluder::getJSModel('emailtemplate')->sendEmail($recevierEmail, $subject, $body, $senderEmail, $senderName);
+                WPJOBPORTALincluder::getJSModel('emailtemplate')->sendEmail($recevierEmail, $subject, $body, $senderEmail, $senderName, '', WPJOBPORTAL_Alert_Unsubscribe::headers($person->id, $person->contactemail), true);
                 // --- NEW HOOK INTEGRATION START ---
                 // Blueprint: wpjobportal_job_alert_triggered
                 // Fires when the Job Alert add-on identifies matches for a user.
@@ -685,11 +832,11 @@ class WPJOBPORTALJobAlertModel {
                 $msgBody = $systemTemplate->body;
 
                 $currentYear = gmdate('Y');
-                $siteTitle = wpjobportal::$_config->getConfigValue('title');
+                $siteTitle = WPJOBPORTALincluder::getJSModel('emailtemplate')->siteTitle();
                 $recevierEmail = $config['adminemailaddress'];
 
                 // Prepare the specific context for this admin notification
-                $adminBodyContent = esc_html__('The following job alerts were successfully processed and sent.', 'wp-job-portal') . '<br/><br/><strong>' . esc_html__('Alert type:', 'wp-job-portal') . '</strong> ' . esc_html($alerttitle) . "<br /><br />" . $admin_jobs;
+                $adminBodyContent = esc_html__('The following job alerts were processed and queued for sending. Delivery happens in the background; failed emails are retried.', 'wp-job-portal') . '<br/><br/><strong>' . esc_html__('Alert type:', 'wp-job-portal') . '</strong> ' . esc_html($alerttitle) . "<br /><br />" . $admin_jobs;
 
                 // Replace the placeholders in the Subject
                 $msgSubject = wpjobportalphplib::wpJP_str_replace('{SYSTEM_SUBJECT}', 'Job Alert Information', $msgSubject);
@@ -718,121 +865,8 @@ class WPJOBPORTALJobAlertModel {
         // $senderEmail = $config['mailfromaddress'];
         // $senderName = $config['mailfromname'];
         // WPJOBPORTALincluder::getJSModel('emailtemplate')->sendEmail($recevierEmail, $subject, $body, $senderEmail, $senderName);
+        return count($persons);
     }
-    /*
-    function sendInstantAlertsBackground($job_id) {
-        if (!is_numeric($job_id)) return;
-
-        // 1. UPDATED DATA FETCHING: Added JOINs to fetch dynamic text titles alongside the raw IDs
-        $query = "SELECT job.*, comp.name AS companyname, jtype.title AS jobtypetitle, cat.cat_title AS categorytitle
-                  FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job
-                  LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS comp ON comp.id = job.companyid
-                  LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobtypes` AS jtype ON jtype.id = job.jobtype
-                  LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_categories` AS cat ON cat.id = job.jobcategory
-                  WHERE job.id = " . (int) ($job_id) . " AND job.status = 1 LIMIT 1";
-        $job = wpjobportaldb::get_row($query);
-
-        if (!$job) return;
-
-        // 2. Optimized SQL: Get "Instant" alerts matching this Job's Category & City
-        // We use a LEFT JOIN to ensure if an alert has NO specific cities, it still gets pulled.
-        $query = "SELECT DISTINCT a.* FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobalertsetting` AS a
-                  LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobalertcities` AS ac ON a.id = ac.alertid
-                  WHERE a.status = 1
-                  AND a.alerttype = 4
-                  AND a.categoryid = " . (int) ($job->jobcategory) . "
-                  AND (ac.cityid IS NULL OR ac.cityid = " . (int) ($job->city) . ")";
-
-        $subscribers = wpjobportaldb::get_results($query);
-
-
-        if (empty($subscribers)) return;
-        $config = wpjobportal::$_config->getConfigByFor('email');
-
-        // Fetch Template
-        $query = "SELECT * FROM `" . wpjobportal::$_db->prefix . "wj_portal_emailtemplates` WHERE templatefor = 'job-alert' LIMIT 1";
-        $template = wpjobportaldb::get_row($query);
-
-        // 3. Loop through potential matches and strictly filter the dynamic fields
-        $currentYear = gmdate('Y');
-        $siteTitle = wpjobportal::$_config->getConfigValue('title');
-        foreach ($subscribers as $person) {
-            $is_match = true;
-
-            // Filter: Company
-            //if (!empty($person->company) && $person->company != $job->companyid) { $is_match = false; }
-
-            // Filter: Job Type
-            //if (!empty($person->jobtype) && $person->jobtype != $job->jobtype) { $is_match = false; }
-
-            // Filter: Workplace Type
-            //if (!empty($person->workplace_type) && $person->workplace_type != $job->workplace_type) { $is_match = false; }
-
-            // Filter: Is Urgent
-            //if ($person->is_urgent == 1 && $job->is_urgent != 1) { $is_match = false; }
-
-            // // Filter: Tags (Text matching)
-            // if ($is_match && !empty($person->tags)) {
-            //     $alert_tags = array_map('trim', explode(',', strtolower($person->tags)));
-            //     $job_tags_lower = strtolower($job->tags);
-            //     $tag_found = false;
-            //     foreach ($alert_tags as $t) {
-            //         if (strpos($job_tags_lower, $t) !== false) {
-            //             $tag_found = true; break;
-            //         }
-            //     }
-            //     if (!$tag_found) $is_match = false;
-            // }
-
-            // // Filter: Keywords (Title / Metakeywords matching)
-            // if ($is_match && !empty($person->keywords)) {
-            //     $keywords = array_map('trim', explode(' ', strtolower($person->keywords)));
-            //     $search_pool = strtolower($job->title . ' ' . $job->metakeywords);
-            //     $keyword_found = false;
-            //     foreach ($keywords as $kw) {
-            //         if (strpos($search_pool, $kw) !== false) {
-            //             $keyword_found = true; break;
-            //         }
-            //     }
-            //     if (!$keyword_found) $is_match = false;
-            // }
-
-            //echo var_dump($is_match);exit;
-
-            // 4. Send the Email if it passes all filters
-            if ($is_match) {
-                $path = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'viewjob', 'wpjobportalid'=>$job->id));
-
-                // $mail_jobs = '<table width="100%" cellpadding="10px" cellspacing="0">
-                //                 <tr><th>' . __('Job Title','wp-job-portal') . '</th></tr>
-                //                 <tr><td><a href="' . $path . '" target="_blank">' . $job->title . '</a></td></tr>
-                //               </table>';
-                $mail_jobs = $this->generateJobsEmailTable([$job]);
-                $msgBody = wpjobportalphplib::wpJP_str_replace('{JOBSEEKER_NAME}', $person->name, $template->body);
-                $msgBody = wpjobportalphplib::wpJP_str_replace('{JOBS_INFO}', $mail_jobs, $msgBody);
-                $msgBody = wpjobportalphplib::wpJP_str_replace('{CURRENT_YEAR}', $currentYear, $msgBody);
-                $msgBody = wpjobportalphplib::wpJP_str_replace('{SITETITLE}', $siteTitle, $msgBody);
-                $msgBody = wpjobportalphplib::wpJP_str_replace('{EMAIL}', $person->contactemail, $msgBody);
-
-                echo '<pre>';print_r($msgBody);echo '</pre>';
-                exit;
-
-                WPJOBPORTALincluder::getJSModel('emailtemplate')->sendEmail(
-                    $person->contactemail,
-                    $template->subject,
-                    $msgBody,
-                    $config['mailfromaddress'],
-                    $config['mailfromname']
-                );
-
-                // Update Last Mail Sent for this user ??
-                // $update_q = "UPDATE `" . wpjobportal::$_db->prefix . "wj_portal_jobalertsetting` SET lastmailsend = '" . current_time('mysql') . "' WHERE id = " . (int) ($person->id);
-                // wpjobportaldb::query($update_q);
-            }
-        }
-    }
-
-    */
     function sendInstantAlertsBackground($job_id) {
             if (!is_numeric($job_id)) return;
 
@@ -853,7 +887,7 @@ class WPJOBPORTALJobAlertModel {
                       LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobalertcities` AS ac ON a.id = ac.alertid
                       WHERE a.status = 1
                       AND a.alerttype = 4
-                      AND a.categoryid = " . (int) ($job->jobcategory) . "
+                      AND (a.categoryid = " . (int) ($job->jobcategory) . " OR a.categoryid = 0)
                       AND (ac.cityid IS NULL OR FIND_IN_SET(ac.cityid, '" . esc_sql($job_city_ids) . "') > 0)";
 
             $subscribers = wpjobportaldb::get_results($query);
@@ -867,7 +901,7 @@ class WPJOBPORTALJobAlertModel {
 
             // 3. Loop through potential matches and strictly filter the dynamic fields
             $currentYear = gmdate('Y');
-            $siteTitle = wpjobportal::$_config->getConfigValue('title');
+            $siteTitle = WPJOBPORTALincluder::getJSModel('emailtemplate')->siteTitle();
 
             foreach ($subscribers as $person) {
                 $is_match = true;
@@ -922,9 +956,12 @@ class WPJOBPORTALJobAlertModel {
                     WPJOBPORTALincluder::getJSModel('emailtemplate')->sendEmail(
                         $person->contactemail,
                         $template->subject,
-                        $msgBody,
+                        $msgBody . WPJOBPORTAL_Alert_Unsubscribe::footer($person->id, $person->contactemail), // W-12
                         $config['mailfromaddress'],
-                        $config['mailfromname']
+                        $config['mailfromname'],
+                        '',
+                        WPJOBPORTAL_Alert_Unsubscribe::headers($person->id, $person->contactemail),
+                        true
                     );
 
                     // Update Last Mail Sent for this user

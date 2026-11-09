@@ -36,7 +36,7 @@ class WPJOBPORTALPostinstallationModel {
                     : WPJOBPORTAL_Product_Mode_Service::MODE_CAREERS;
             }
 
-            if(!WPJOBPORTAL_Product_Mode_Service::apply_mode($wpjobportal_mode)){
+            if(!WPJOBPORTAL_Product_Mode_Service::apply_mode($wpjobportal_mode, !empty($wpjobportal_data['restore_mode_settings']))){
                 $error = true;
             }
         }else{

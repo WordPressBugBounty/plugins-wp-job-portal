@@ -42,7 +42,7 @@ if (empty(wpjobportal::$_data['stack_chart_horizontal']['data'])
                         isStacked: true,
                         legend: {position: 'top'},
                         hAxis: {title: 'Month',  titleTextStyle: {color: '#333'}},
-                        vAxis: {minValue: 0},
+                        vAxis: {minValue: 0, viewWindow: {min: 0}}, // W-3: an empty chart started at -1
                     };
                     ";
                 } else { 
@@ -57,7 +57,7 @@ if (empty(wpjobportal::$_data['stack_chart_horizontal']['data'])
                         pointSize: 5,
                         legend: {position: 'top'},
                         hAxis: {title: 'Month',  titleTextStyle: {color: '#333'}},
-                        vAxis: {minValue: 0},
+                        vAxis: {minValue: 0, viewWindow: {min: 0}}, // W-3: an empty chart started at -1
                         chartArea: {
                             left: 65,
                             width: '80%',

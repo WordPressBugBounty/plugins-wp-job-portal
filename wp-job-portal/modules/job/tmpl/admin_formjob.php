@@ -101,78 +101,116 @@ if (!defined('ABSPATH'))
     ";
     wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script );
 ?>
-<!-- main wrapper -->
-<div id="wpjobportaladmin-wrapper">
+<!-- main wrapper (design 4: fields in section cards in the order set in Forms & fields, publishing in a side panel) -->
+<?php
+$wpjobportal_isedit = isset(wpjobportal::$_data[0]->id) && (int) wpjobportal::$_data[0]->id > 0;
+$wpjobportal_isque = WPJOBPORTALrequest::getVar('isqueue','get','');
+// Which card each field sits in; within a card the Forms & fields order is kept.
+// The fields appear exactly in the order set in Forms & fields; nothing is regrouped.
+// Optional fields that take room or are rarely set start folded, in their own place.
+$wpjobportal_icon = array('WPJOBPORTAL_Admin_Form_UI', 'icon');
+$wpjobportal_foldable = array('map', 'tags', 'metakeywords', 'metadescription');
+// Two fields used to read "Status": the hiring status and, in the side panel, the approval status.
+$wpjobportal_titles = array('jobstatus' => __('Hiring status', 'wp-job-portal'));
+$wpjobportal_formfields = (array) WPJOBPORTALincluder::getTemplate('job/form-fields', array(
+    'wpjobportal_job' => $wpjobportal_job
+));
+$wpjobportal_field = function ($wpjobportal_formfield) use ($wpjobportal_job, $wpjobportal_foldable, $wpjobportal_titles) {
+    WPJOBPORTAL_Admin_Form_UI::field($wpjobportal_formfield, $wpjobportal_job, $wpjobportal_foldable, $wpjobportal_titles);
+};
+WPJOBPORTAL_Admin_Form_UI::scripts('job_form');
+$wpjobportal_token = WPJOBPORTALincluder::getJSModel('common')->getUniqueIdForTransient();
+$wpjobportal_backlink = get_transient('current_user_token_job_'.$wpjobportal_token) ? admin_url('admin.php?page=wpjobportal_job&wpjobportal_restore_results='.$wpjobportal_token) : admin_url('admin.php?page=wpjobportal_job');
+$wpjobportal_status = array((object) array('id' => 0, 'text' => esc_html(__('Waiting for approval', 'wp-job-portal'))), (object) array('id' => 1, 'text' => esc_html(__('Approved', 'wp-job-portal'))), (object) array('id' => -1, 'text' => esc_html(__('Rejected', 'wp-job-portal'))), (object) array('id' => 3, 'text' => esc_html(__('Pending payment', 'wp-job-portal'))));
+?>
+<div id="wpjobportaladmin-wrapper" class="wjpl-page">
     <!-- left menu -->
     <div id="wpjobportaladmin-leftmenu">
         <?php  WPJOBPORTALincluder::getTemplate('templates/admin/leftmenue',array('wpjobportal_module' => 'job')); ?>
     </div>
     <div id="wpjobportaladmin-data">
-        <!-- top bar -->
-        <div id="wpjobportal-wrapper-top">
-            <div id="wpjobportal-wrapper-top-left">
-                <div id="wpjobportal-breadcrumbs">
-                    <ul>
-                        <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr(__('Dashboard','wp-job-portal')); ?>">
-                                <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
-                            </a>
-                        </li>
-                        <li><?php echo esc_html(__('Add New Job','wp-job-portal')); ?></li>
-                    </ul>
-                </div>
-            </div>
-            <div id="wpjobportal-wrapper-top-right">
-                <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr(__('Configuration','wp-job-portal')); ?>">
-                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
-                   </a>
-                </div>
-                <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr(__('Help','wp-job-portal')); ?>">
-                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
-                   </a>
-                </div>
-                <div id="wpjobportal-vers-txt">
-                    <?php echo esc_html(__('Version','wp-job-portal')).': '; ?>
-                    <span class="wpjobportal-ver"><?php echo esc_html(WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue('versioncode')); ?></span>
-                </div>
-            </div>
-        </div>
-        <!-- top head -->
-        <?php  WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('wpjobportal_module' => 'job' , 'wpjobportal_layouts' => 'jobs','wpjobportal_job' => $wpjobportal_job)); ?>
-        <!-- page content -->
-        <div id="wpjobportal-admin-wrapper">
-                <?php
-                $wpjobportal_token = WPJOBPORTALincluder::getJSModel('common')->getUniqueIdForTransient();
-                $wpjobportal_transient_val = get_transient('current_user_token_job_'.$wpjobportal_token);
-                if(!empty($wpjobportal_transient_val)){
-                    ?>
-                    <div class="wpjobportal-admin--backlink-wrap">
-                        <a id="form-back-button" class="wpjobportal-form-back-btn" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_job&wpjobportal_restore_results='.$wpjobportal_token)); ?>" title="<?php echo esc_attr(__('Back To Listing', 'wp-job-portal')); ?>">
-                            <?php echo esc_html(__('Back To Listing', 'wp-job-portal')); ?>
-                        </a>
-                    </div>
-                <?php }?>
-            <form id="job_form" class="wpjobportal-form wpjp-ds-form" method="post" enctype="multipart/form-data" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_job&task=savejob")); ?>">
-                <?php if (isset(wpjobportal::$_data[0]->msg) AND wpjobportal::$_data[0]->msg != '') { ?>
-                    <span class="formMsg">
-                        <font color="red">
-                            <strong>
-                                <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue(wpjobportal::$_data[0]->msg)); ?>
-                            </strong>
-                        </font>
-                    </span>
-                <?php } ?>
-                <?php
-                    $wpjobportal_formfields = WPJOBPORTALincluder::getTemplate('job/form-fields', array(
-                        'wpjobportal_job' => $wpjobportal_job
-                    ));
-                    foreach ($wpjobportal_formfields as $wpjobportal_formfield) {
-                        WPJOBPORTALincluder::getTemplate('templates/admin/form-field', $wpjobportal_formfield);
-                    }
-                $wpjobportal_isque = WPJOBPORTALrequest::getVar('isqueue','get','');
+        <div class="wjpl wjpl-formpage">
+            <?php
+            WPJOBPORTAL_Admin_List_UI::top_bar(array(
+                array('label' => __('Jobs', 'wp-job-portal'), 'url' => $wpjobportal_backlink),
+                array('label' => $wpjobportal_isedit ? __('Edit job', 'wp-job-portal') : __('Add New Job', 'wp-job-portal')),
+            ));
+            $wpjobportal_more = array();
+            if ($wpjobportal_isedit) {
+                $wpjobportal_more[__('View on site', 'wp-job-portal')] = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme' => 'job', 'wpjobportallt' => 'viewjob', 'wpjobportalid' => (int) wpjobportal::$_data[0]->id));
+                $wpjobportal_more[__('Applications', 'wp-job-portal')] = admin_url('admin.php?page=wpjobportal_jobapply&wpjobportallt=jobappliedresume&jobid=' . (int) wpjobportal::$_data[0]->id);
+            }
+            WPJOBPORTAL_Admin_List_UI::title_row(
+                $wpjobportal_isedit ? __('Edit job', 'wp-job-portal') : __('Add New Job', 'wp-job-portal'),
+                $wpjobportal_isedit ? (string) wpjobportal::$_data[0]->title : __('Fields marked * are required.', 'wp-job-portal'),
+                $wpjobportal_more,
+                array()
+            );
+            ?>
+            <?php if ($wpjobportal_isedit) :
+                $wpjobportal_j = wpjobportal::$_data[0];
+                $wpjobportal_approval = array(1 => array('ok', __('Approved', 'wp-job-portal')), 0 => array('wait', __('Waiting for approval', 'wp-job-portal')), -1 => array('bad', __('Rejected', 'wp-job-portal')), 3 => array('wait', __('Pending payment', 'wp-job-portal')));
+                $wpjobportal_a = isset($wpjobportal_approval[(int) $wpjobportal_j->status]) ? $wpjobportal_approval[(int) $wpjobportal_j->status] : null;
+                $wpjobportal_hiring = isset($wpjobportal_j->jobstatus) ? (string) wpjobportal::$_db->get_var('SELECT title FROM `' . wpjobportal::$_db->prefix . 'wj_portal_jobstatus` WHERE id = ' . (int) $wpjobportal_j->jobstatus) : '';
+                $wpjobportal_apps = (int) wpjobportal::$_db->get_var('SELECT COUNT(id) FROM `' . wpjobportal::$_db->prefix . 'wj_portal_jobapply` WHERE jobid = ' . (int) $wpjobportal_j->id);
                 ?>
+                <div class="wjpl-formmeta">
+                    <?php if ($wpjobportal_a) : ?><span class="wjpl-badge wjpl-b-<?php echo esc_attr($wpjobportal_a[0]); ?>"><?php echo esc_html($wpjobportal_a[1]); ?></span><?php endif; ?>
+                    <?php if ($wpjobportal_hiring !== '') : ?><span class="wjpl-badge wjpl-b-closed"><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_hiring)); ?></span><?php endif; ?>
+                    <?php if (!empty($wpjobportal_j->stoppublishing)) : ?><span><?php echo esc_html(sprintf(/* translators: %s: date */ __('Closes %s', 'wp-job-portal'), date_i18n(wpjobportal::$_configuration['date_format'], strtotime((string) $wpjobportal_j->stoppublishing)))); ?></span><?php endif; ?>
+                    <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_jobapply&wpjobportallt=jobappliedresume&jobid=' . (int) $wpjobportal_j->id)); ?>"><?php echo esc_html(sprintf(/* translators: %s: number of applications */ _n('%s application', '%s applications', $wpjobportal_apps, 'wp-job-portal'), number_format_i18n($wpjobportal_apps))); ?></a>
+                </div>
+            <?php endif; ?>
+            <?php if (isset(wpjobportal::$_data[0]->msg) AND wpjobportal::$_data[0]->msg != '') { ?>
+                <div class="wjpl-flash wjpl-flash-bad" role="alert"><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue(wpjobportal::$_data[0]->msg)); ?></div>
+            <?php } ?>
+            <form id="job_form" class="wpjobportal-form wpjp-ds-form wjpl-form" method="post" enctype="multipart/form-data" action="<?php echo esc_url_raw(admin_url("admin.php?page=wpjobportal_job&task=savejob")); ?>">
+                <div class="wjpl-form-main">
+                    <section class="wjpl-card wjpl-fcard" aria-labelledby="wjpl-fs-details">
+                        <h2 id="wjpl-fs-details"><?php echo $wpjobportal_icon('<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2"/>'); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- fixed SVG icon ?><?php echo esc_html(__('Job details', 'wp-job-portal')); ?></h2>
+                        <div class="wjpl-fgrid">
+                            <?php foreach ($wpjobportal_formfields as $wpjobportal_formfield) { $wpjobportal_field($wpjobportal_formfield); } ?>
+                        </div>
+                    </section>
+                </div>
+                <aside class="wjpl-form-side">
+                    <section class="wjpl-card wjpl-fcard wjpl-publish" aria-labelledby="wjpl-fs-publishing">
+                        <h2 id="wjpl-fs-publishing"><span class="wjpl-fcard-i" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span><?php echo esc_html(__('Publishing', 'wp-job-portal')); ?></h2>
+                        <div class="wjpl-fgrid">
+                            <?php
+                            $wpjobportal_field(array(
+                                'title' => esc_html(__('Approval status', 'wp-job-portal')),
+                                'wpjobportal_content' => WPJOBPORTALformfield::select('status', $wpjobportal_status, isset(wpjobportal::$_data[0]->status) ? wpjobportal::$_data[0]->status : 1, esc_html(__('Select Status', 'wp-job-portal')), array('class' => 'inputbox one wpjobportal-form-select-field')),
+                                'wpjobportal_description' => __('Only approved jobs show on the site.', 'wp-job-portal'),
+                            ));
+                            ?>
+                        </div>
+                        <div class="wpjobportal-form-button wjpl-form-acts">
+                            <?php
+                                if (isset(wpjobportal::$_data[0]->id) || (!WPJOBPORTAL_Monetisation::usable('credits')) ) {
+                                echo wp_kses(WPJOBPORTALformfield::submitbutton('save', esc_html(__('Save','wp-job-portal')) .' '. esc_html(__('Job', 'wp-job-portal')), array('class' => 'button wpjobportal-form-save-btn')),WPJOBPORTAL_ALLOWED_TAGS);
+                            }else{
+                                // handle the case of package not defined for employer role
+                                $wpjobportal_subType = wpjobportal::$_config->getConfigValue('submission_type');
+                                if($wpjobportal_subType == 3){
+                                    $wpjobportal_no_package_needed = 0;
+                                    $wpjobportal_result = WPJOBPORTALincluder::getJSModel('credits')->checkIfPackageDefinedForRole(1); // 1 is for employer
+                                    if($wpjobportal_result == 0){ // 0 means no package found. so allow the action.
+                                        echo wp_kses(WPJOBPORTALformfield::submitbutton('save', esc_html(__('Save','wp-job-portal')) .' '. esc_html(__('Job', 'wp-job-portal')), array('class' => 'button wpjobportal-form-save-btn')),WPJOBPORTAL_ALLOWED_TAGS);
+                                    }else{
+                                        echo wp_kses(WPJOBPORTALformfield::button('save', esc_html(__('Save','wp-job-portal')) .' '. esc_html(__('Job', 'wp-job-portal')), array('class' => 'button wpjobportal-form-save-btn','credit_userid' => '', 'onclick' => "wpjobportalformpopupAdmin('add_job','job_form');")),WPJOBPORTAL_ALLOWED_TAGS);
+                                    }
+                                }else{
+                                    echo wp_kses(WPJOBPORTALformfield::button('save', esc_html(__('Save','wp-job-portal')) .' '. esc_html(__('Job', 'wp-job-portal')), array('class' => 'button wpjobportal-form-save-btn','credit_userid' => '', 'onclick' => "wpjobportalformpopupAdmin('add_job','job_form');")),WPJOBPORTAL_ALLOWED_TAGS);
+                                }
+                            }
+                            ?>
+                            <a id="form-cancel-button" class="wpjobportal-form-cancel-btn" href="<?php echo esc_url($wpjobportal_backlink); ?>" title="<?php echo esc_attr(__('cancel', 'wp-job-portal')); ?>">
+                                <?php echo esc_html(__('Cancel', 'wp-job-portal')); ?>
+                            </a>
+                        </div>
+                    </section>
+                </aside>
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('isqueue', $wpjobportal_isque != '' ? 1 : 0),WPJOBPORTAL_ALLOWED_TAGS); ?>
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('id', isset(wpjobportal::$_data[0]->id) ? esc_html(wpjobportal::$_data[0]->id) : ''),WPJOBPORTAL_ALLOWED_TAGS); ?>
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('default_longitude', esc_html(wpjobportal::$_configuration['default_longitude'])),WPJOBPORTAL_ALLOWED_TAGS); ?>
@@ -187,37 +225,6 @@ if (!defined('ABSPATH'))
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('upakid', ''),WPJOBPORTAL_ALLOWED_TAGS); ?>
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('package', 'job'),WPJOBPORTAL_ALLOWED_TAGS); ?>
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('_wpnonce', esc_html(wp_create_nonce('wpjobportal_job_nonce'))),WPJOBPORTAL_ALLOWED_TAGS); ?>
-                <?php
-                    $wpjobportal_status = array((object) array('id' => 0, 'text' => esc_html(__('Pending', 'wp-job-portal'))), (object) array('id' => 1, 'text' => esc_html(__('Approved', 'wp-job-portal'))), (object) array('id' => -1, 'text' => esc_html(__('Rejected', 'wp-job-portal'))), (object) array('id' => 3, 'text' => esc_html(__('Pending Payment', 'wp-job-portal'))));
-                    WPJOBPORTALincluder::getTemplate('templates/admin/form-field', array(
-                        'title' => esc_html(__('Status', 'wp-job-portal')),
-                        'wpjobportal_content' => WPJOBPORTALformfield::select('status', $wpjobportal_status, isset(wpjobportal::$_data[0]->status) ? wpjobportal::$_data[0]->status : 1, esc_html(__('Select Status', 'wp-job-portal')), array('class' => 'inputbox one wpjobportal-form-select-field')))
-                    );
-                ?>
-                <div class="wpjobportal-form-button">
-                    <a id="form-cancel-button" class="wpjobportal-form-cancel-btn" href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_job')); ?>" title="<?php echo esc_attr(__('cancel', 'wp-job-portal')); ?>">
-                        <?php echo esc_html(__('Cancel', 'wp-job-portal')); ?>
-                    </a>
-                    <?php
-                        if (isset(wpjobportal::$_data[0]->id) || (!WPJOBPORTAL_Monetisation::usable('credits')) ) {
-                        echo wp_kses(WPJOBPORTALformfield::submitbutton('save', esc_html(__('Save','wp-job-portal')) .' '. esc_html(__('Job', 'wp-job-portal')), array('class' => 'button wpjobportal-form-save-btn')),WPJOBPORTAL_ALLOWED_TAGS);
-                    }else{
-                        // handle the case of package not defined for employer role
-                        $wpjobportal_subType = wpjobportal::$_config->getConfigValue('submission_type');
-                        if($wpjobportal_subType == 3){
-                            $wpjobportal_no_package_needed = 0;
-                            $wpjobportal_result = WPJOBPORTALincluder::getJSModel('credits')->checkIfPackageDefinedForRole(1); // 1 is for employer
-                            if($wpjobportal_result == 0){ // 0 means no package found. so allow the action.
-                                echo wp_kses(WPJOBPORTALformfield::submitbutton('save', esc_html(__('Save','wp-job-portal')) .' '. esc_html(__('Job', 'wp-job-portal')), array('class' => 'button wpjobportal-form-save-btn')),WPJOBPORTAL_ALLOWED_TAGS);
-                            }else{
-                                echo wp_kses(WPJOBPORTALformfield::button('save', esc_html(__('Save','wp-job-portal')) .' '. esc_html(__('Job', 'wp-job-portal')), array('class' => 'button wpjobportal-form-save-btn','credit_userid' => '', 'onclick' => "wpjobportalformpopupAdmin('add_job','job_form');")),WPJOBPORTAL_ALLOWED_TAGS);
-                            }
-                        }else{
-                            echo wp_kses(WPJOBPORTALformfield::button('save', esc_html(__('Save','wp-job-portal')) .' '. esc_html(__('Job', 'wp-job-portal')), array('class' => 'button wpjobportal-form-save-btn','credit_userid' => '', 'onclick' => "wpjobportalformpopupAdmin('add_job','job_form');")),WPJOBPORTAL_ALLOWED_TAGS);
-                        }
-                    }
-                    ?>
-                </div>
             </form>
         </div>
         <!-- Script Pro -->
@@ -240,7 +247,7 @@ if (!defined('ABSPATH'))
                     </style>
                     <?php if($wpjobportal_mappingservice == "gmap"){ ?>
                         <?php $wpjobportal_protocol = is_ssl() ? "https://" : "http://";
-                        wp_register_script ( 'wpjp-google-map-js', $wpjobportal_protocol . 'maps.googleapis.com/maps/api/js?key=' . wpjobportal::$_configuration['google_map_api_key'], array(), WPJOBPORTAL_VERSION, false );
+                        wp_register_script ( 'wpjp-google-map-js', WPJOBPORTAL_Google_Maps::script_url(), array(), WPJOBPORTAL_VERSION, false );
                         wp_enqueue_script ( 'wpjp-google-map-js' );?>
                     <?php } elseif ($wpjobportal_mappingservice == "osm") {
                         wp_enqueue_script( 'wpjp-osm-js', esc_url(WPJOBPORTAL_PLUGIN_URL).'/includes/js/ol.min.js', array(), wpjobportal_asset_version('includes/js/ol.min.js'), false );
@@ -470,7 +477,8 @@ if (!defined('ABSPATH'))
                     
                         if($wpjobportal_mappingservice == 'osm'){
                             if(isset($wpjobportal_job) && !empty($wpjobportal_job->longitude) && !empty($wpjobportal_job->latitude)) {
-                                    $wpjobportal_inline_js_script .= "lmap.addMarker([parseFloat('". $wpjobportal_job->longitude."'),parseFloat('". $wpjobportal_job->latitude."')]); ";
+                                    // Security: emit numbers; the stored values used to be concatenated raw into a JS string.
+                                    $wpjobportal_inline_js_script .= "lmap.addMarker([". (float) $wpjobportal_job->longitude .",". (float) $wpjobportal_job->latitude ."]); ";
                              }
                         } 
                         $wpjobportal_inline_js_script .= "

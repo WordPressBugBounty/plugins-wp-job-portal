@@ -68,30 +68,16 @@ class WPJOBPORTAL_Recruit_Design_Compatibility_Service {
         $screen = $screens[$page];
         ?>
         <template id="wpjobportal-recruit-native-shell-template">
-            <div id="wpjobportaladmin-wrapper" class="wpjobportal-recruit-native-shell">
+            <div id="wpjobportaladmin-wrapper" class="wjpl-page wpjobportal-recruit-native-shell">
                 <div id="wpjobportaladmin-leftmenu">
                     <?php WPJOBPORTALincluder::getClassesInclude('wpjobportaladminsidemenu'); ?>
                 </div>
                 <div id="wpjobportaladmin-data">
-                    <div id="wpjobportal-wrapper-top">
-                        <div id="wpjobportal-wrapper-top-left">
-                            <div id="wpjobportal-breadcrumbs">
-                                <ul>
-                                    <li><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr__('Dashboard', 'wp-job-portal'); ?>"><?php echo esc_html__('Dashboard', 'wp-job-portal'); ?></a></li>
-                                    <li><?php echo esc_html($screen['title']); ?></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div id="wpjobportal-wrapper-top-right">
-                            <div id="wpjobportal-config-btn"><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_configuration')); ?>" title="<?php echo esc_attr__('Configuration', 'wp-job-portal'); ?>"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL . 'includes/images/control_panel/dashboard/config.png'); ?>" alt="<?php echo esc_attr__('Configuration', 'wp-job-portal'); ?>"></a></div>
-                            <div id="wpjobportal-help-btn" class="wpjobportal-help-btn"><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal&wpjobportallt=help')); ?>" title="<?php echo esc_attr__('Help', 'wp-job-portal'); ?>"><img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL . 'includes/images/control_panel/dashboard/help.png'); ?>" alt="<?php echo esc_attr__('Help', 'wp-job-portal'); ?>"></a></div>
-                            <div id="wpjobportal-vers-txt"><?php echo esc_html__('Version', 'wp-job-portal') . ': '; ?><span class="wpjobportal-ver"><?php echo esc_html(WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue('versioncode')); ?></span></div>
-                        </div>
-                    </div>
-                    <div id="wpjobportal-head">
-                        <h1 class="wpjobportal-head-text"><?php echo esc_html($screen['title']); ?></h1>
-                        <a class="wpjobportal-add-link button" href="<?php echo esc_url($screen['action_url']); ?>" title="<?php echo esc_attr($screen['action_label']); ?>"><?php echo esc_html($screen['action_label']); ?></a>
-                    </div>
+                    <?php
+                    // W-19: the same top bar and title row as every core screen;
+                    // the link to a sibling screen sits in the title row's menu.
+                    WPJOBPORTAL_Admin_List_UI::page_head($screen['title'], '', array($screen['action_label'] => $screen['action_url']));
+                    ?>
                     <div id="wpjobportal-admin-wrapper" class="wpjobportal-recruit-native-content p0 bg-n bs-n" data-wpjobportal-recruit-content></div>
                 </div>
             </div>

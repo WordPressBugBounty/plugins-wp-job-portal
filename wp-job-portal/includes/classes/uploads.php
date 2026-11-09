@@ -85,11 +85,18 @@ class WPJOBPORTALuploads {
                 }
             }
 
-            // // test code
-            $file = $wpjobportal_path."/index.html";
-            if (@ $wp_filesystem->put_contents( $file, '', 0755 ) ) {
+            // A blank index in every level below the data folder (employer/,
+            // comp_1/, comp_1/logo/ ...), so none of them can be listed. The
+            // path used to be relative, so this write never landed.
+            $wpjobportal_index_dir = untrailingslashit($wpjobportal_dir['basedir'] . '/' . $wpjobportal_path);
+            if (wp_mkdir_p($wpjobportal_index_dir)) {
+                $wpjobportal_index_root = $wpjobportal_dir['basedir'] . '/' . $wpjobportal_datadirectory;
+                for ($d = $wpjobportal_index_dir; strpos($d, $wpjobportal_index_root) === 0; $d = dirname($d)) {
+                    if (!is_file($d . '/index.html')) {
+                        $wp_filesystem->put_contents($d . '/index.html', '', FS_CHMOD_FILE);
+                    }
+                }
             }
-            //
 
             $wpjobportal_userpath = $wpjobportal_path;
             $wpjobportal_array = array(
@@ -365,7 +372,7 @@ class WPJOBPORTALuploads {
     function uploadFile($file, $wpjobportal_allowed_types, $wpjobportal_allowed_size){
         $filetyperesult = wp_check_filetype($file['name']);
         if(!WPJOBPORTAL_File_Policy_Service::is_extension_allowed($filetyperesult['ext'], $wpjobportal_allowed_types)){
-            return array('error'=>esc_html(__('File extension is mismatched', 'wp-job-portal')));
+            return array('error'=>esc_html(__('This file type is not allowed', 'wp-job-portal')));
         }
         $filesize = $file['size'] / 1024;
         if( $filesize > $wpjobportal_allowed_size ){
@@ -608,13 +615,32 @@ class WPJOBPORTALuploads {
             if ($wpjobportal_maxfiles > $wpjobportal_totalfiles) {
                 $file = $this->uploadedFile('resumefiles', $wpjobportal_key);
                 if($file && $file['size'] > 0){
+                    // S-4: the browser's limit was the only one
+                    $wpjobportal_max_kb = (int) wpjobportal::$_config->getConfigurationByConfigName('document_file_size');
+                    if ($wpjobportal_max_kb > 0 && $file['size'] / 1024 > $wpjobportal_max_kb) {
+                        /* translators: %d: the largest allowed file size in KB */
+                        $this->refuseResumeFile($file['name'], sprintf(__('it is larger than %d KB.', 'wp-job-portal'), $wpjobportal_max_kb));
+                        continue;
+                    }
                     $filetyperesult = wp_check_filetype($file['name']);
                     if(!empty($filetyperesult['ext']) && !empty($filetyperesult['type'])){
                         $document_file_types = wpjobportal::$_config->getConfigurationByConfigName('document_file_type');
                         if(WPJOBPORTAL_File_Policy_Service::is_extension_allowed($filetyperesult['ext'], $document_file_types)){
                             $wpjobportal_result = wp_handle_upload($file, array('test_form' => false));
                             if ( $wpjobportal_result && ! isset( $wpjobportal_result['error'] ) ) {
-                                $filename = wpjobportalphplib::wpJP_basename( $wpjobportal_result['file'] );
+                                // S-4: the database keeps a name of its own, the disk a random one
+                                $filename = WPJOBPORTAL_Resume_File_Store::unique_name($wpjobportal_id, wpjobportalphplib::wpJP_basename( $wpjobportal_result['file'] ), true); // the plain file is this one
+                                $wpjobportal_hidden_path = dirname($wpjobportal_result['file']) . '/' . bin2hex(random_bytes(16)) . '_' . $filename;
+                                // Deny rules first, so the file is never in an open folder
+                                WPJOBPORTAL_Resume_File_Store::protect_folders(dirname($wpjobportal_result['file']));
+                                if (!WPJOBPORTAL_Resume_File_Store::move($wpjobportal_result['file'], $wpjobportal_hidden_path)) {
+                                    // A CV left under its plain name would be guessable and
+                                    // might not match the name saved below: refuse it instead
+                                    wp_delete_file($wpjobportal_result['file']);
+                                    $this->refuseResumeFile($file['name'], __('it could not be stored safely. Please try again.', 'wp-job-portal'));
+                                    continue;
+                                }
+                                $wpjobportal_result['file'] = $wpjobportal_hidden_path;
                                 $wpjobportal_row = WPJOBPORTALincluder::getJSTable('resumefile');
                                 $cols = array();
                                 $cols['id'] = '';
@@ -639,13 +665,16 @@ class WPJOBPORTALuploads {
                                  * Error generated by _wp_handle_upload()
                                  * @see _wp_handle_upload() in wp-admin/includes/file.php
                                  */
-								WPJOBPORTALMessages::setLayoutMessage($wpjobportal_result['error'], 'error','resume');
+                                $wpjobportal_real = wp_check_filetype_and_ext($file['tmp_name'], $file['name']);
+                                $this->refuseResumeFile($file['name'], empty($wpjobportal_real['ext']) ? $this->resumeFileTypesText(true) : $wpjobportal_result['error']);
                             }
                         }else{
                             $return = 6; // a known type that is not in the allowed document types
+                            $this->refuseResumeFile($file['name'], $this->resumeFileTypesText());
                         }
                     }else{
                         $return = 6;
+                        $this->refuseResumeFile($file['name'], $this->resumeFileTypesText());
                     }
                 }
             }
@@ -668,6 +697,28 @@ class WPJOBPORTALuploads {
         // Set everything back to normal.
         remove_filter( 'upload_dir', array($this,'wpjobportal_upload_dir'));
         return $return;
+    }
+
+    /**
+     * One message per refused CV that says the rest of the resume was kept.
+     * WordPress's own refusal ("not allowed to upload this file type") sat
+     * next to "Resume has been successfully saved" and read as a contradiction;
+     * it also refuses a renamed file, so the allowed types are the useful part.
+     */
+    private function refuseResumeFile($name, $reason) {
+        /* translators: 1: the file's name, 2: why it was refused */
+        $message = sprintf(__('The resume was saved, but the file "%1$s" was not added: %2$s', 'wp-job-portal'), wpjobportalphplib::wpJP_basename((string) $name), $reason);
+        WPJOBPORTALMessages::setLayoutMessage(esc_html($message), 'error', WPJOBPORTALincluder::getJSModel('resume')->getMessagekey());
+    }
+
+    private function resumeFileTypesText($mismatch = false) {
+        $types = wpjobportal::$_config->getConfigurationByConfigName('document_file_type');
+        $types = implode(', ', array_filter(array_map('trim', explode(',', (string) $types))));
+        $reason = $mismatch
+            ? __('its content does not match its file extension.', 'wp-job-portal')
+            : __('this file type is not accepted.', 'wp-job-portal');
+        /* translators: %s: allowed file types, e.g. "pdf, doc, docx" */
+        return $reason . ' ' . sprintf(__('Accepted types: %s.', 'wp-job-portal'), $types);
     }
 
     function storeCustomUploadFile($wpjobportal_id,$wpjobportal_field,$wpjobportal_uploadfor){
@@ -717,7 +768,12 @@ class WPJOBPORTALuploads {
                     $wpjobportal_error_msg = $wpjobportal_result['error'];
                     WPJOBPORTALmessages::setLayoutMessage($wpjobportal_error_msg,'error',WPJOBPORTALincluder::getJSModel($wpjobportal_uploadfor)->getMessagekey());
                 }else{
-                    $filename = wpjobportalphplib::wpJP_basename( $wpjobportal_result['file'] );
+                    // S-4: an unguessable name on disk; the params keep the plain one
+                    $filename = WPJOBPORTAL_Resume_File_Store::hide_custom_upload($wpjobportal_result['file']);
+                    if ($filename === '') {
+                        WPJOBPORTALmessages::setLayoutMessage(esc_html(__('The file could not be stored safely. Please try again.', 'wp-job-portal')), 'error', WPJOBPORTALincluder::getJSModel($wpjobportal_uploadfor)->getMessagekey());
+                    }
+                    $wpjobportal_result['file'] = WPJOBPORTAL_Resume_File_Store::find(dirname($wpjobportal_result['file']), $filename);
                 }
             }
         }

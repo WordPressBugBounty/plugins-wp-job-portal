@@ -20,7 +20,7 @@ switch ($wpjobportal_control) {
 		    <a class="wpjobportal-company-act-btn" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_company&task=remove&action=wpjobportaltask&&callfrom=1&wpjobportal-cb[]='.esc_attr($wpjobportal_company->id)),'wpjobportal_company_nonce')); ?>" onclick='return confirm("<?php echo esc_js(__('Are you sure to delete','wp-job-portal')).' ?'; ?>");' title="<?php echo esc_attr(__('Delete', 'wp-job-portal')); ?>">
 		    	<?php echo esc_html(__('Delete', 'wp-job-portal')); ?>
 		    </a>
-		    <a class="wpjobportal-company-act-btn" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_company&task=enforcedelete&action=wpjobportaltask&callfrom=1&id='.esc_attr($wpjobportal_company->id)),'wpjobportal_company_nonce')); ?>"onclick='return confirmdelete("<?php echo esc_js(__('This will delete every thing about this record','wp-job-portal')).'. '.esc_html(__('Are you sure to delete','wp-job-portal')).' ?'; ?>");' title="<?php echo esc_attr(__('Enforce Delete', 'wp-job-portal')) ?>">
+		    <a class="wpjobportal-company-act-btn" href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=wpjobportal_company&task=enforcedelete&action=wpjobportaltask&callfrom=1&id='.esc_attr($wpjobportal_company->id)),'wpjobportal_company_nonce')); ?>" onclick='return confirmdelete("<?php echo esc_js(__('This will delete every thing about this record','wp-job-portal')).'. '.esc_html(__('Are you sure to delete','wp-job-portal')).' ?'; ?>");' title="<?php echo esc_attr(__('Enforce Delete', 'wp-job-portal')) ?>">
 		    	<?php echo esc_html(__('Enforce Delete', 'wp-job-portal')) ?>
 		    </a>
 		    <?php if(in_array('departments', wpjobportal::$_active_addons)): ?>

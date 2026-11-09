@@ -41,7 +41,7 @@ $wpjobportal_listing_fields = WPJOBPORTALincluder::getJSModel('fieldordering')->
                 <div class="wpjobportal-resume-middle-wrp">
                     <div class="wpjobportal-resume-data">
                         <?php if( isset($wpjobportal_listing_fields['jobtype']) ){ ?>
-                            <span class="wpjobportal-resume-job-type" style="background: <?php echo esc_attr($wpjobportal_data->jobtypecolor); ?>;">
+                            <span class="wpjobportal-resume-job-type" style="background: <?php echo esc_attr(WPJOBPORTAL_Color::on_white($wpjobportal_data->jobtypecolor)); ?>;">
                                 <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_data->jobtypetitle)); ?>
                             </span>
                         <?php }?>
@@ -135,7 +135,7 @@ $wpjobportal_listing_fields = WPJOBPORTALincluder::getJSModel('fieldordering')->
                         $wpjobportal_show_match_score_resume_list  = wpjobportal::$_config->getConfigurationByConfigName('show_match_score_resume_list');
                         if (! empty($wpjobportal_show_match_score_resume_list) && !empty($wpjobportal_data->match_score)) {
                             $wpjobportal_ai_match_score = (int) $wpjobportal_data->match_score;
-                            do_action('wpjobportal_addon_resumelisting_match_score',$wpjobportal_ai_match_score);
+                            do_action('wpjobportal_addon_resumelisting_match_score',$wpjobportal_ai_match_score, isset($wpjobportal_data->match_reasons) ? $wpjobportal_data->match_reasons : array());
                         }
                     }
                     do_action('wpjobportal_addons_rating_resume_applied',$wpjobportal_data);
@@ -150,7 +150,7 @@ $wpjobportal_listing_fields = WPJOBPORTALincluder::getJSModel('fieldordering')->
                                  }
                                 if(isset($wpjobportal_data->coverletterid) && is_numeric($wpjobportal_data->coverletterid) && $wpjobportal_data->coverletterid > 0){
                                      echo '<div id="cover_letter_data_title_'.esc_attr($wpjobportal_data->coverletterid).'" style="display:none;" >'.esc_html($wpjobportal_cover_letter_title).'</div>';
-                                     echo '<div id="cover_letter_data_desc_'.esc_attr($wpjobportal_data->coverletterid).'" style="display:none;" >'.wp_kses($wpjobportal_cover_letter_desc,WPJOBPORTAL_ALLOWED_TAGS).'</div>';
+                                     echo '<div id="cover_letter_data_desc_'.esc_attr($wpjobportal_data->coverletterid).'" style="display:none;" >'.wp_kses_post($wpjobportal_cover_letter_desc).'</div>';
 
                                      echo '
                                      <a class="wpjobportal-viewcover-act-btn" href="#" onClick="showCoverLetterData('.esc_attr($wpjobportal_data->coverletterid).')" title='. esc_html(__('view Cover Letter', 'wp-job-portal')) .'>

@@ -21,6 +21,9 @@ class WPJOBPORTALJobapplyController {
                 case 'admin_appliedresumes':
                     WPJOBPORTALincluder::getJSModel('jobapply')->getAppliedResume();
                     break;
+                case 'admin_applications':
+                    WPJOBPORTALincluder::getJSModel('jobapply')->getAdminApplicationList();
+                    break;
                 case 'myappliedjobs':
                     try {
                         $conflag = wpjobportal::$_config->getConfigurationByConfigName('myappliedjobs');
@@ -85,7 +88,8 @@ class WPJOBPORTALJobapplyController {
                         );
                         if (WPJOBPORTALincluder::getObjectClass('user')->isemployer() || wpjobportal::$_common->wpjp_isadmin() || $wpjobportal_extension_access) {
                             $wpjobportal_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
-                            $wpjobportal_tab_action = WPJOBPORTALrequest::getVar('ta', null, 1);
+                            // The admin list opens on every stage (0); the site's opens on the inbox.
+                            $wpjobportal_tab_action = WPJOBPORTALrequest::getVar('ta', null, is_admin() ? 0 : 1);
                             /*
                              * This screen is the applications for one job, and every
                              * line of it - the tab counts, the filters, the list -
@@ -95,6 +99,15 @@ class WPJOBPORTALJobapplyController {
                              * itself anyway and fill the page with notices about the
                              * job that was not named.
                              */
+                            // Another employer's job: the list stayed empty, but the page still showed its
+                            // view count, applicant count and tab counts. Refused as if it were not there.
+                            if (!wpjobportal::$_common->wpjp_isadmin() && !$wpjobportal_extension_access) {
+                                $wpjobportal_job_owner = wpjobportaldb::get_var(wpjobportal::$_db->prepare("SELECT uid FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE id = %d", absint($wpjobportal_jobid)));
+                                if ($wpjobportal_job_owner === null || (int) $wpjobportal_job_owner !== (int) $wpjobportal_uid) {
+                                    wpjobportal::$_error_flag_message_for = 6;
+                                    throw new Exception(WPJOBPORTALLayout::setMessageFor(6, null, null, 1));
+                                }
+                            }
                             $wpjobportal_applications = WPJOBPORTALincluder::getJSModel('jobapply')->getJobAppliedResume($wpjobportal_tab_action, $wpjobportal_jobid, $wpjobportal_uid);
                             if ($wpjobportal_applications === false) {
                                 wpjobportal::$_error_flag_message_for = 6;
@@ -185,6 +198,10 @@ class WPJOBPORTALJobapplyController {
             } else {
                 $wpjobportal_url = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'jobs'));
             }
+        } elseif (($wpjobportal_refusal = WPJOBPORTALincluder::getJSModel('jobapply')->getJobApplyRefusal($wpjobportal_jobid)) != '') {
+            // Don't send a visitor off to write a resume for a job that won't take it.
+            WPJOBPORTALmessages::setLayoutMessage($wpjobportal_refusal, 'error', 'job');
+            $wpjobportal_url = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'viewjob', 'wpjobportalid'=>$wpjobportal_jobid));
         } else {
             wpjobportalphplib::wpJP_setcookie('wpjobportal_apply_visitor' , $wpjobportal_jobid , 0 , COOKIEPATH);
             if ( SITECOOKIEPATH != COOKIEPATH ){

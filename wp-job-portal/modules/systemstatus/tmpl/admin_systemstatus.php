@@ -37,40 +37,21 @@ wp_add_inline_script(
     'wpjobportal-system-status',
     "document.addEventListener('DOMContentLoaded',function(){var b=document.getElementById('wpjobportal-copy-status');var t=document.getElementById('wpjobportal-system-status-text');if(b&&t){b.addEventListener('click',function(){t.select();t.setSelectionRange(0,99999);if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t.value);}else{document.execCommand('copy');}b.textContent='" . esc_js(__('Copied', 'wp-job-portal')) . "';});}var buttons=document.querySelectorAll('[data-wpjobportal-queue-action]');var notice=document.getElementById('wpjobportal-queue-action-result');buttons.forEach(function(button){button.addEventListener('click',function(){var action=button.getAttribute('data-wpjobportal-queue-action');buttons.forEach(function(item){item.disabled=true;});if(notice){notice.textContent='" . esc_js(__('Working…', 'wp-job-portal')) . "';}var data=new URLSearchParams();data.append('action','wpjobportal_notification_queue_action');data.append('queue_action',action);data.append('nonce','" . esc_js(wp_create_nonce('wpjobportal_notification_queue_action')) . "');fetch('" . esc_url(admin_url('admin-ajax.php')) . "',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},body:data.toString()}).then(function(response){return response.json();}).then(function(response){if(!response.success){throw new Error(response.data&&response.data.message?response.data.message:'" . esc_js(__('The queue action failed.', 'wp-job-portal')) . "');}window.location.reload();}).catch(function(error){buttons.forEach(function(item){item.disabled=false;});if(notice){notice.textContent=error.message;notice.className='notice notice-error inline';}});});});});"
 );
-wp_add_inline_script(
-    'wpjobportal-system-status',
-    "document.addEventListener('DOMContentLoaded',function(){var form=document.getElementById('wpjobportal-privacy-settings');var notice=document.getElementById('wpjobportal-privacy-result');if(!form){return;}form.addEventListener('submit',function(event){event.preventDefault();var button=form.querySelector('button[type=submit]');button.disabled=true;if(notice){notice.textContent='" . esc_js(__('Saving…', 'wp-job-portal')) . "';}var data=new URLSearchParams(new FormData(form));fetch('" . esc_url(admin_url('admin-ajax.php')) . "',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},body:data.toString()}).then(function(response){return response.json();}).then(function(response){if(!response.success){throw new Error(response.data&&response.data.message?response.data.message:'" . esc_js(__('The privacy settings could not be saved.', 'wp-job-portal')) . "');}if(notice){notice.textContent=response.data.message;notice.className='notice notice-success inline';}button.disabled=false;}).catch(function(error){button.disabled=false;if(notice){notice.textContent=error.message;notice.className='notice notice-error inline';}});});});"
-);
 ?>
-<div id="wpjobportaladmin-wrapper">
+<div id="wpjobportaladmin-wrapper" class="wjpl-page">
     <div id="wpjobportaladmin-leftmenu">
         <?php WPJOBPORTALincluder::getClassesInclude('wpjobportaladminsidemenu'); ?>
     </div>
     <div id="wpjobportaladmin-data">
-        <div id="wpjobportal-wrapper-top">
-            <div id="wpjobportal-wrapper-top-left">
-                <div id="wpjobportal-breadcrumbs">
-                    <ul>
-                        <li><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal')); ?>"><?php echo esc_html__('Dashboard', 'wp-job-portal'); ?></a></li>
-                        <li><?php echo esc_html__('System Status', 'wp-job-portal'); ?></li>
-                    </ul>
-                </div>
-            </div>
-            <div id="wpjobportal-wrapper-top-right">
-                <div id="wpjobportal-vers-txt">
-                    <?php echo esc_html__('Version', 'wp-job-portal') . ': '; ?>
-                    <span class="wpjobportal-ver"><?php echo esc_html(WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue('versioncode')); ?></span>
-                </div>
-            </div>
+        <div class="wjpl wjpl-formhead">
+            <?php
+            WPJOBPORTAL_Admin_List_UI::top_bar(WPJOBPORTAL_Admin_List_UI::menu_crumbs());
+            WPJOBPORTAL_Admin_List_UI::title_row(__('System status', 'wp-job-portal'), __('Diagnostics are support-safe and do not expose passwords, API keys, request payloads or candidate email addresses.', 'wp-job-portal'));
+            WPJOBPORTAL_Admin_List_UI::section_tabs();
+            ?>
         </div>
-
-        <?php WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle', array('wpjobportal_module' => 'systemstatus', 'wpjobportal_layouts' => 'systemstatus')); ?>
-
         <div id="wpjobportal-admin-wrapper" class="p0 wpjobportal-admin-system-status-layout">
             <div class="wpjobportal-system-status-inner">
-                <p>
-                    <?php echo esc_html__('Diagnostics are support-safe and do not expose passwords, API keys, request payloads or candidate email addresses.', 'wp-job-portal'); ?>
-                </p>
 
                 <?php if ($wpjobportal_storage_maintenance_needed && $wpjobportal_storage_result === 'started') : ?>
                     <div class="notice notice-success inline"><p><?php echo esc_html__('InnoDB conversion was scheduled. WordPress Cron will process one core table per batch.', 'wp-job-portal'); ?></p></div>
@@ -109,30 +90,13 @@ wp_add_inline_script(
                 <h2><?php echo esc_html__('Privacy retention controls', 'wp-job-portal'); ?></h2>
                 <div class="card" style="max-width:none;margin:0 0 24px;padding:20px;">
                     <p><?php echo esc_html__('Set a value from 0 to the shown maximum. Zero keeps the corresponding records until an administrator or a WordPress privacy erasure request removes them.', 'wp-job-portal'); ?></p>
-                    <form id="wpjobportal-privacy-settings">
-                        <input type="hidden" name="action" value="wpjobportal_privacy_settings">
-                        <input type="hidden" name="nonce" value="<?php echo esc_attr(wp_create_nonce('wpjobportal_privacy_settings')); ?>">
-                        <p>
-                            <label>
-                                <?php echo esc_html__('Activity history (days)', 'wp-job-portal'); ?>
-                                <input type="number" min="0" max="3650" name="activity_days" value="<?php echo esc_attr(isset($wpjobportal_privacy_settings['activity_days']) ? absint($wpjobportal_privacy_settings['activity_days']) : 365); ?>">
-                            </label>
-                        </p>
-                        <p>
-                            <label>
-                                <?php echo esc_html__('User messages (days)', 'wp-job-portal'); ?>
-                                <input type="number" min="0" max="3650" name="message_days" value="<?php echo esc_attr(isset($wpjobportal_privacy_settings['message_days']) ? absint($wpjobportal_privacy_settings['message_days']) : 730); ?>">
-                            </label>
-                        </p>
-                        <p>
-                            <label>
-                                <?php echo esc_html__('Operational audit (days)', 'wp-job-portal'); ?>
-                                <input type="number" min="0" max="365" name="audit_days" value="<?php echo esc_attr(isset($wpjobportal_privacy_settings['audit_days']) ? absint($wpjobportal_privacy_settings['audit_days']) : 90); ?>">
-                            </label>
-                        </p>
-                        <p><button type="submit" class="button"><?php echo esc_html__('Save retention settings', 'wp-job-portal'); ?></button></p>
-                        <div id="wpjobportal-privacy-result" aria-live="polite"></div>
-                    </form>
+                    <?php // U-1: the retention periods are set under Settings now; this shows what is in force ?>
+                    <ul style="margin:0 0 12px 18px;list-style:disc;">
+                        <li><?php echo esc_html(sprintf(/* translators: %d: number of days */ __('Activity history: %d days', 'wp-job-portal'), isset($wpjobportal_privacy_settings['activity_days']) ? absint($wpjobportal_privacy_settings['activity_days']) : 365)); ?></li>
+                        <li><?php echo esc_html(sprintf(/* translators: %d: number of days */ __('User messages: %d days', 'wp-job-portal'), isset($wpjobportal_privacy_settings['message_days']) ? absint($wpjobportal_privacy_settings['message_days']) : 730)); ?></li>
+                        <li><?php echo esc_html(sprintf(/* translators: %d: number of days */ __('Operational audit: %d days', 'wp-job-portal'), isset($wpjobportal_privacy_settings['audit_days']) ? absint($wpjobportal_privacy_settings['audit_days']) : 90)); ?></li>
+                    </ul>
+                    <p><a class="button" href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_configuration')); ?>"><?php echo esc_html__('Change under Settings, System & Site, Privacy Retention', 'wp-job-portal'); ?></a></p>
                 </div>
 
                 <h2><?php echo esc_html__('Reliable notification queue', 'wp-job-portal'); ?></h2>
@@ -178,11 +142,7 @@ wp_add_inline_script(
                     <?php endif; ?>
                     <div id="wpjobportal-queue-action-result" aria-live="polite"></div>
                     <p>
-                        <?php if (!empty($wpjobportal_queue['enabled'])) : ?>
-                            <button type="button" class="button" data-wpjobportal-queue-action="disable"><?php echo esc_html__('Disable queue for new mail', 'wp-job-portal'); ?></button>
-                        <?php else : ?>
-                            <button type="button" class="button button-primary" data-wpjobportal-queue-action="enable"><?php echo esc_html__('Enable reliable queue', 'wp-job-portal'); ?></button>
-                        <?php endif; ?>
+                        <a class="button" href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_configuration')); ?>"><?php echo esc_html__('Turn on or off under Settings, Email', 'wp-job-portal'); ?></a>
                         <?php if (!empty($wpjobportal_queue['outstanding'])) : ?>
                             <button type="button" class="button" data-wpjobportal-queue-action="run_now"><?php echo esc_html__('Process next batch now', 'wp-job-portal'); ?></button>
                         <?php endif; ?>
@@ -303,6 +263,7 @@ wp_add_inline_script(
                     <?php endif; ?>
                 </div>
 
+                <details style="margin:0 0 24px;"><summary style="cursor:pointer;font-weight:600;"><?php echo esc_html__('Technical details', 'wp-job-portal'); ?></summary>
                 <h2><?php echo esc_html__('Operational audit', 'wp-job-portal'); ?></h2>
                 <p>
                     <?php echo esc_html__('This bounded diagnostic log stores operational event names and outcomes only. It does not store recipients, email subjects, message bodies, request payloads or credentials.', 'wp-job-portal'); ?>
@@ -358,9 +319,11 @@ wp_add_inline_script(
                     <p><?php echo esc_html__('No migration history is available yet.', 'wp-job-portal'); ?></p>
                 <?php endif; ?>
 
+                </details>
+
                 <h2><?php echo esc_html__('Support-safe report', 'wp-job-portal'); ?></h2>
                 <p><?php echo esc_html__('Copy this report when support asks for system information. Sensitive values are removed automatically.', 'wp-job-portal'); ?></p>
-                <textarea id="wpjobportal-system-status-text" class="large-text code" rows="18" readonly><?php echo esc_textarea($wpjobportal_status_text); ?></textarea>
+                <textarea id="wpjobportal-system-status-text" class="large-text code" rows="18" readonly aria-label="<?php echo esc_attr__('System status report', 'wp-job-portal'); ?>"><?php echo esc_textarea($wpjobportal_status_text); ?></textarea>
                 <p><button type="button" id="wpjobportal-copy-status" class="button button-primary"><?php echo esc_html__('Copy system status', 'wp-job-portal'); ?></button></p>
             </div>
         </div>

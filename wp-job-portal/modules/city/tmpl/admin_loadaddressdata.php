@@ -7,7 +7,7 @@ if(!WPJOBPORTALrequest::has('case_is', 'get')){
 }
 ?>
 <!-- main wrapper -->
-<div id="wpjobportaladmin-wrapper">
+<div id="wpjobportaladmin-wrapper" class="wjpl-page">
     <!-- left menu -->
 	<div id="wpjobportaladmin-leftmenu">
         <?php  WPJOBPORTALincluder::getClassesInclude('wpjobportaladminsidemenu'); ?>
@@ -17,47 +17,6 @@ if(!WPJOBPORTALrequest::has('case_is', 'get')){
             $wpjobportal_msgkey = WPJOBPORTALincluder::getJSModel('city')->getMessagekey();
             WPJOBPORTALMessages::getLayoutMessage($wpjobportal_msgkey);
         ?>
-        <!-- top bar -->
-        <div id="wpjobportal-wrapper-top">
-            <div id="wpjobportal-wrapper-top-left">
-                <div id="wpjobportal-breadcrumbs">
-                    <ul>
-                        <li>
-                            <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_attr__("Dashboard","wp-job-portal"); ?>">
-                                <?php echo esc_html__("Dashboard","wp-job-portal"); ?>
-                            </a>
-                        </li>
-                        <li><?php echo esc_html__("Load Address Data","wp-job-portal"); ?></li>
-                    </ul>
-                </div>
-            </div>
-            <div id="wpjobportal-wrapper-top-right">
-                <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_attr__("Configuration","wp-job-portal"); ?>">
-                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
-                   </a>
-                </div>
-                <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_attr__("Help","wp-job-portal"); ?>">
-                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
-                   </a>
-                </div>
-                <div id="wpjobportal-vers-txt">
-                    <?php echo esc_html__("Version","wp-job-portal").': '; ?>
-                    <span class="wpjobportal-ver"><?php echo esc_html(WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue('versioncode')); ?></span>
-                </div>
-            </div>
-        </div>
-        <!-- top head -->
-        <div id="wpjobportal-head">
-
-            <h1 class="wpjobportal-head-text">
-                <?php echo esc_html__("Load Address Data", "wp-job-portal"); ?>
-            </h1>
-            <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_city&wpjobportallt=locationnamesettings')); ?>" class="wpjobportal-add-link button" title="<?php echo esc_attr__("Location Name Settings", "wp-job-portal"); ?>">
-                <?php echo esc_html__("Location Name Settings", "wp-job-portal"); ?>
-            </a>
-        </div>
         <?php
         $wpjobportal_default_free ='checked="checked" ';
         $wpjobportal_default_pro = 'disabled="disabled"';//
@@ -92,12 +51,14 @@ if(!WPJOBPORTALrequest::has('case_is', 'get')){
         }
         ?>
         <!-- page content -->
+        <?php WPJOBPORTAL_Admin_Form_UI::header(__('Load address data', 'wp-job-portal'), __('Import the cities of a country into the location lists.', 'wp-job-portal'), __('Import settings', 'wp-job-portal'), 'wpjobportal-list-form', __('Import', 'wp-job-portal')); ?>
+        <?php WPJOBPORTAL_Admin_List_UI::section_tabs(); ?>
         <div id="wpjobportal-admin-wrapper">
-            <form id="wpjobportal-list-form" class="wpjobportal-form" enctype="multipart/form-data" method="post" action="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_city')); ?>">
+            <form id="wpjobportal-list-form" class="wpjobportal-form wjpl-form wjpl-form-simple" enctype="multipart/form-data" method="post" action="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_city')); ?>"><?php WPJOBPORTAL_Admin_Form_UI::simple_open(); ?>
                 <div class="wpjobportal-city-data-form-wrap wpjobportal-city-data-form-wrap-left">
                     <div class="wpjobportal-form-wrapper">
                         <div class="wpjobportal-form-title">
-                            <?php echo esc_html__("Country", "wp-job-portal"). ': '; ?>
+                            <?php echo esc_html__("Country", "wp-job-portal"); ?>
                         </div>
                         <div class="wpjobportal-form-value">
                             <?php echo wp_kses(WPJOBPORTALformfield::select('country_code', WPJOBPORTALincluder::getJSModel('country')->getCountriesForComboForCityImport(), $wpjobportal_detected_country),WPJOBPORTAL_ALLOWED_TAGS); ?>
@@ -113,7 +74,7 @@ if(!WPJOBPORTALrequest::has('case_is', 'get')){
                     </div>
                     <div class="wpjobportal-form-wrapper">
                         <div class="wpjobportal-form-title">
-                            <?php echo esc_html__("Cities Data To Import", "wp-job-portal"). ': '; ?>
+                            <?php echo esc_html__("Cities Data To Import", "wp-job-portal"); ?>
                         </div>
                         <div class="wpjobportal-form-value">
                             <span class="wpjobportal-form-radio-field" >
@@ -125,12 +86,12 @@ if(!WPJOBPORTALrequest::has('case_is', 'get')){
                                 <input type="radio" name="data_to_import" id="data_to_import2" <?php echo esc_html($wpjobportal_default_pro);?> value="pro" />
                                 <label for="data_to_import2"><?php echo esc_html__("Paid Data", "wp-job-portal"); ?>
                                 </label>
-                                <?php if ($wpjobportal_paid_bundled) { ?>
-                                    <span class="description" style="display:block;font-size:12px;opacity:.75">
-                                        <?php echo esc_html__('Included with Pro. Imports every country in one pass, from a file on this site.', 'wp-job-portal'); ?>
-                                    </span>
-                                <?php } ?>
                             </span>
+                            <?php if ($wpjobportal_paid_bundled) { ?>
+                                <div class="wpjobportal-form-description wjpl-addr-note">
+                                        <?php echo esc_html__('Included with Pro. Imports every country in one pass, from a file on this site.', 'wp-job-portal'); ?>
+                                </div>
+                            <?php } ?>
                             <div class="wpjobportal-form-citycount-wrap" >
                                 <span class="wpjobportal-form-radio-field-first" >
                                     <span class="wpjobportal-city-data-free-label" >
@@ -148,7 +109,7 @@ if(!WPJOBPORTALrequest::has('case_is', 'get')){
                     ?>
                     <div class="wpjobportal-form-wrapper">
                         <div class="wpjobportal-form-title">
-                            <?php echo esc_html__("City Name Preferences", "wp-job-portal"). ': '; ?>
+                            <?php echo esc_html__("City Name Preferences", "wp-job-portal"); ?>
                         </div>
                         <div class="wpjobportal-form-value">
                             <span class="wpjobportal-form-radio-field wpjobportal-form-radio-field-first">
@@ -167,7 +128,7 @@ if(!WPJOBPORTALrequest::has('case_is', 'get')){
 
                     <div class="wpjobportal-form-wrapper">
                         <div class="wpjobportal-form-title">
-                            <?php echo esc_html__("Existing Data", "wp-job-portal"). ': '; ?>
+                            <?php echo esc_html__("Existing Data", "wp-job-portal"); ?>
                         </div>
                         <div class="wpjobportal-form-value wpjobportal-load-address-data-erase-data-radios">
                             <span class="wpjobportal-form-radio-field wpjobportal-form-radio-field-first">
@@ -184,7 +145,7 @@ if(!WPJOBPORTALrequest::has('case_is', 'get')){
                                 <label for="keepdata3"><?php echo esc_html__("Erase All Data", "wp-job-portal"); ?></label>
                             </span>
                             <span id="loadaddressdata_city_name_msg_warn">
-                                <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/import-city-warning-icon.png">
+                                <img alt="" src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/import-city-warning-icon.png">
                                 <p>
                                     <?php echo esc_html__("Selecting 'Erase Data' will remove all existing cities from your database. If you choose this option all city data will be permanently deleted.", "wp-job-portal"); ?>
                                 </p>
@@ -277,7 +238,7 @@ if(!WPJOBPORTALrequest::has('case_is', 'get')){
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('task', 'loadaddressdata'), WPJOBPORTAL_ALLOWED_TAGS); ?>
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('action', 'city_loadaddressdata'), WPJOBPORTAL_ALLOWED_TAGS); ?>
                 <?php echo wp_kses(WPJOBPORTALformfield::hidden('_wpnonce', wp_create_nonce('wpjobportal_address_data_nonce')), WPJOBPORTAL_ALLOWED_TAGS); ?>
-            </form>
+            <?php WPJOBPORTAL_Admin_Form_UI::simple_close(); ?></form>
         </div>
     </div>
 </div>

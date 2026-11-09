@@ -14,10 +14,11 @@ class WPJOBPORTALCommonController {
 
     function handleRequest() {
         $wpjobportal_layout = WPJOBPORTALrequest::getLayout('wpjobportallt', null, 'newinwpjobportal');
-         $wpjobportal_socialUser = "";
-        if(WPJOBPORTALrequest::hasCookie('wpjobportal-socialid')){
-            $wpjobportal_socialUser = sanitize_key((string) WPJOBPORTALrequest::cookie('wpjobportal-socialid', ''));
-        }
+        // Security: the social-id cookie is not an identity (see
+        // WPJOBPORTALuser::trustedSocialId()), so it no longer lets a visitor
+        // past the "please log in" check on the role-selection page.
+        WPJOBPORTALincluder::getClassesInclude('user'); // not loaded yet on some requests (admin tasks such as Make default): calling it unloaded was a fatal error
+        $wpjobportal_socialUser = WPJOBPORTALuser::trustedSocialId();
         if (self::canaddfile($wpjobportal_layout)) {
             switch ($wpjobportal_layout) {
                 case 'newinwpjobportal':
@@ -200,6 +201,10 @@ class WPJOBPORTALCommonController {
              die( 'Not Allowed' );
         }
         $wpjobportal_data = WPJOBPORTALrequest::get('post');
+        // Security (role-selection takeover): this request only creates a new
+        // portal row for the current user. Never let the posted body choose which
+        // row is written (id), who owns it (uid) or its approval state (status).
+        unset($wpjobportal_data['id'], $wpjobportal_data['uid'], $wpjobportal_data['status'], $wpjobportal_data['socialid'], $wpjobportal_data['socialmedia']);
         $wpjobportal_result = WPJOBPORTALincluder::getJSModel('common')->saveNewInWPJOBPORTAL($wpjobportal_data);
         if ($wpjobportal_data['desired_module'] == 'common' && $wpjobportal_data['desired_layout'] == 'newinwpjobportal') {
             if (WPJOBPORTALincluder::getObjectClass('user')->isjobseeker()) {

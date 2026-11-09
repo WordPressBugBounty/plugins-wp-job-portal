@@ -11,6 +11,7 @@ class WPJOBPORTALjobstatusTable extends WPJOBPORTALtable {
     public $isdefault = '';
     public $ordering = '';
     public $serverid = '';
+    public $acceptsapplications = 1; // W-2: 0 = closed to applications (Closed, On hold)
 
     function __construct() {
         parent::__construct('jobstatus', 'id'); // tablename, primarykey

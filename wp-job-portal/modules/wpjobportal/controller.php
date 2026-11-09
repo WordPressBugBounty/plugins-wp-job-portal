@@ -131,46 +131,17 @@ class WPJOBPORTALwpjobportalController {
             wp_die(esc_html__('Security check failed.', 'wp-job-portal'));
         }
 
-        // 2. Check if the user has permission to save options
-        if (!current_user_can('manage_options')) {
+        // 2. W-20: anyone who can open the Dashboard arranges their own; it is saved for them only.
+        if (!current_user_can('wpjobportal')) {
             wp_die(esc_html__('You do not have permission to perform this action.', 'wp-job-portal'));
         }
-
-        $wpjobportal_option_name = 'wjp_dashboard_screen_options';
-
-        // 3. Define the default state for the dashboard sections
-        $wpjobportal_wjp_dashboard_defaults = [
-            'quick_actions' => 'on',
-            'platform_growth' => 'on',
-            'quick_stats' => 'on',
-            'recent_jobs' => 'on',
-            'jobs_by_status_chart' => 'on',
-            'top_categories_chart' => 'on',
-            'latest_job_applies' => 'on',
-            'latest_resumes' => 'on',
-            'latest_subscriptions' => 'on',
-            'latest_payments' => 'on',
-            'latest_activity' => 'on',
-            'system_error_log' => 'on',
-            'latest_job_seekers' => 'on',
-            'latest_employers' => 'on',
-        ];
-
-        // 4. Handle the "Reset Defaults" action
         if (WPJOBPORTALrequest::has('wjp_reset_options', 'post')) {
-            update_option($wpjobportal_option_name, $wpjobportal_wjp_dashboard_defaults);
+            WPJOBPORTAL_Dashboard_Service::reset_layout();
         } else {
-            // 5. Sanitize and save the submitted options
-            $wpjobportal_submitted_options = (array) WPJOBPORTALrequest::getVar('wjp_screen_options', 'post', array());
-            $wpjobportal_sanitized_options = [];
-
-            // Loop through the defaults to ensure only valid keys are saved
-            foreach (array_keys($wpjobportal_wjp_dashboard_defaults) as $wpjobportal_key) {
-                if (isset($wpjobportal_submitted_options[$wpjobportal_key])) {
-                    $wpjobportal_sanitized_options[$wpjobportal_key] = 'on'; // Save a consistent value
-                }
-            }
-            update_option($wpjobportal_option_name, $wpjobportal_sanitized_options);
+            WPJOBPORTAL_Dashboard_Service::save_layout(
+                array_keys((array) WPJOBPORTALrequest::getVar('wjp_screen_options', 'post', array())),
+                (array) WPJOBPORTALrequest::getVar('wjp_screen_order', 'post', array())
+            );
         }
 
         // 6. Redirect the user back to the dashboard

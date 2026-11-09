@@ -7,7 +7,7 @@ class WPJOBPORTALthemeModel {
     function getCurrentTheme() {
 
 
-        $wpjobportal_color1 = "#3baeda";
+        $wpjobportal_color1 = "#2f6fc4";
         $wpjobportal_color2 = "#333333";
         $wpjobportal_color3 = "#575757";
 
@@ -22,7 +22,7 @@ class WPJOBPORTALthemeModel {
             }
         }
 
-        $wpjobportal_theme['color1'] = esc_attr(self::wpjpHexColor($wpjobportal_color1, '#3baeda'));
+        $wpjobportal_theme['color1'] = esc_attr(self::wpjpHexColor($wpjobportal_color1, '#2f6fc4'));
         $wpjobportal_theme['color2'] = esc_attr(self::wpjpHexColor($wpjobportal_color2, '#333333'));
         $wpjobportal_theme['color3'] = esc_attr(self::wpjpHexColor($wpjobportal_color3, '#575757'));
 
@@ -66,7 +66,7 @@ class WPJOBPORTALthemeModel {
         $wpjobportal_stored = self::wpjpWithElegantPrimary(is_array($wpjobportal_stored) ? $wpjobportal_stored : array());
         unset($wpjobportal_stored['form_request']);
         $wpjobportal_data = array_merge($wpjobportal_stored, $wpjobportal_data);
-        $wpjobportal_data['color1'] = self::wpjpHexColor(isset($wpjobportal_data['color1']) ? $wpjobportal_data['color1'] : '', '#3baeda');
+        $wpjobportal_data['color1'] = self::wpjpHexColor(isset($wpjobportal_data['color1']) ? $wpjobportal_data['color1'] : '', '#2f6fc4');
         $wpjobportal_data['color2'] = self::wpjpHexColor(isset($wpjobportal_data['color2']) ? $wpjobportal_data['color2'] : '', '#333333');
         $wpjobportal_data['color3'] = self::wpjpHexColor(isset($wpjobportal_data['color3']) ? $wpjobportal_data['color3'] : '', '#575757');
         foreach (self::wpjpElegantFields() as $wpjobportal_key => $wpjobportal_rules) {
@@ -169,7 +169,6 @@ class WPJOBPORTALthemeModel {
         if ($wpjobportal_done !== null) {
             return $wpjobportal_done;
         }
-        $rand = random_int(1,999);
         wp_enqueue_style('wpjobportal-style1', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/theme-interface.css', array('wpjobportal-design-tokens'), wpjobportal_asset_version('includes/css/theme-interface.css'));
         /*
          * With a design add-on active (Elegant Design) the preview is styled the way
@@ -209,7 +208,7 @@ class WPJOBPORTALthemeModel {
             wp_add_inline_style('wpjobportal-style2', $wpjobportal_look_css);
         }
         if (!$wpjobportal_look_active) {
-            wp_enqueue_style('wpjobportal-style2', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/style.css?f_ignore_cache='.$rand, array(), wpjobportal_asset_version('includes/css/style.css'));
+            wp_enqueue_style('wpjobportal-style2', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css/style.css', array(), wpjobportal_asset_version('includes/css/style.css'));
         }
 
         if (is_rtl()) {
@@ -248,7 +247,7 @@ class WPJOBPORTALthemeModel {
      */
     public static function wpjpElegantFields() {
         return array(
-            'ed_color1'           => array('type' => 'color', 'default' => '#3baeda', 'var' => '--primary-color'),
+            'ed_color1'           => array('type' => 'color', 'default' => '#2f6fc4', 'var' => '--primary-color'),
             'ed_color2'           => array('type' => 'color', 'default' => '#12172b', 'var' => '--wpjp-ed-user-secondary'),
             'ed_color3'           => array('type' => 'color', 'default' => '#4d5566', 'var' => '--wpjp-ed-user-text'),
             'ed_border'           => array('type' => 'color', 'default' => '#e3e6ee', 'var' => '--wpjp-ed-user-border'),
@@ -337,7 +336,7 @@ class WPJOBPORTALthemeModel {
     }
 
     /**
-     * "#3baeda" as "59, 174, 218", for the one place a colour has to be stated
+     * "#2f6fc4" as "47, 111, 196", for the one place a colour has to be stated
      * as components rather than as a hex. Anything that is not a hex - a named
      * colour a site has typed in by hand, say - falls back rather than writing
      * a broken rgba() into a stylesheet every page then loads.
@@ -362,7 +361,7 @@ class WPJOBPORTALthemeModel {
             return false; // nothing to do
         }
 
-        $wpjobportal_data['color1'] = self::wpjpHexColor($wpjobportal_data['color1'], '#3baeda');
+        $wpjobportal_data['color1'] = self::wpjpHexColor($wpjobportal_data['color1'], '#2f6fc4');
         $wpjobportal_data['color2'] = self::wpjpHexColor($wpjobportal_data['color2'], '#333333');
         $wpjobportal_data['color3'] = self::wpjpHexColor($wpjobportal_data['color3'], '#575757');
 
@@ -376,7 +375,7 @@ class WPJOBPORTALthemeModel {
          * belonging to no palette in the picker - so a site on Ruby Red or
          * Ocean Cyan still outlined every focused field in violet.
          */
-        $wpjobportal_focus_rgb = self::wpjpHexToRgb($wpjobportal_data['color1'], '59, 174, 218');
+        $wpjobportal_focus_rgb = self::wpjpHexToRgb($wpjobportal_data['color1'], '47, 111, 196');
 
         // Clamped here as well as on read: this is the value that reaches the
         // stylesheet, and it must be safe whatever the form posted.

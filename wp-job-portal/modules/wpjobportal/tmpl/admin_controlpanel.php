@@ -15,24 +15,27 @@ wp_enqueue_style('status-graph', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/css
 wp_register_script( 'wp-job-portal-dashboard-js', '', array(), WPJOBPORTAL_VERSION, false );
 wp_enqueue_script('wp-job-portal-dashboard-js');
 
-// Define default options and get the user's saved options from the wp_options table
-$wpjobportal_wjp_dashboard_defaults = [
-    'quick_actions' => 'on',
-    'platform_growth' => 'on',
-    'quick_stats' => 'on',
-    'recent_jobs' => 'on',
-    'jobs_by_status_chart' => 'on',
-    'top_categories_chart' => 'on',
-    'latest_job_applies' => 'on',
-    'latest_resumes' => 'on',
-    'latest_subscriptions' => 'on',
-    'latest_payments' => 'on',
-    'latest_activity' => 'on',
-    'system_error_log' => 'on',
-    'latest_job_seekers' => 'on',
-    'latest_employers' => 'on',
-];
-$wpjobportal_wjp_options = get_option('wjp_dashboard_screen_options', $wpjobportal_wjp_dashboard_defaults);
+// W-20: sections on/off, the date range, what needs attention and the headline numbers.
+$wpjobportal_wjp_options = WPJOBPORTAL_Dashboard_Service::options();
+$wpjobportal_range = WPJOBPORTAL_Dashboard_Service::range();
+$wpjobportal_att = WPJOBPORTAL_Dashboard_Service::attention();
+list($wpjobportal_hello, $wpjobportal_hello_sub) = WPJOBPORTAL_Dashboard_Service::greeting($wpjobportal_att);
+// Line icons for the attention cards and the activity feed (direction A).
+$wpjobportal_icon = function ($name) {
+    $paths = array(
+        'check' => '<path d="M20 6 9 17l-5-5"/>',
+        'clock' => '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+        'mail' => '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+        'card' => '<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/>',
+        'flag' => '<path d="M5 21V4h11l-2 4 2 4H5"/>',
+        'pulse' => '<path d="M3 12h4l3-8 4 16 3-8h4"/>',
+        'brief' => '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2"/>',
+        'user' => '<circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/>',
+        'file' => '<path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4"/>',
+        'build' => '<path d="M4 21V5l8-2v18M12 9h8v12"/>',
+    );
+    return '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . (isset($paths[$name]) ? $paths[$name] : $paths['check']) . '</svg>';
+};
 
 /**
  * Helper function to determine the CSS class for a system error log entry.
@@ -56,20 +59,48 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
 
 ?>
 
+<?php
+// People without a photo get their initials (as applications already showed a lettered logo), not the stock face.
+$wpjobportal_initials = function ($wpjobportal_name) {
+    $wpjobportal_letters = '';
+    foreach (array_slice(preg_split('/\s+/u', trim((string) $wpjobportal_name), -1, PREG_SPLIT_NO_EMPTY), 0, 2) as $wpjobportal_word) {
+        $wpjobportal_letters .= function_exists('mb_substr') ? mb_strtoupper(mb_substr($wpjobportal_word, 0, 1)) : strtoupper(substr($wpjobportal_word, 0, 1));
+    }
+    return '<span class="wjp-avatar wjp-initials" aria-hidden="true">' . esc_html($wpjobportal_letters !== '' ? $wpjobportal_letters : '?') . '</span>';
+};
+?>
 <div id="wjp-dashboard-wrapper">
     <div id="wpjobportaladmin-wrapper">
         <div id="wpjobportaladmin-leftmenu">
             <?php wpjobportalincluder::getClassesInclude('wpjobportaladminsidemenu'); ?>
         </div>
         <div id="wpjobportaladmin-data">
+            <?php WPJOBPORTAL_Admin_List_UI::legacy_top(); ?>
             <main class="wjp-main-content">
 
-                <div id="wjp-header">
+                <div id="wjp-header" class="wjp-hello">
                     <div class="wjp-header-title">
-                        <div class="wjp-h2"><?php echo esc_html__('Welcome back!', 'wp-job-portal'); ?></div>
-                        <p><?php echo esc_html__('Here\'s a snapshot of your job board\'s performance.', 'wp-job-portal'); ?></p>
+                        <span class="wjp-hello-date"><?php echo esc_html(date_i18n('l, j F')); ?></span>
+                        <h1 class="wjp-h2"><?php echo esc_html($wpjobportal_hello); ?></h1>
+                        <?php $wpjobportal_att_total = (int) array_sum(array_column($wpjobportal_att['items'], 'count')); ?>
+                        <?php if ($wpjobportal_att_total === 0) : ?>
+                            <p><?php echo esc_html($wpjobportal_hello_sub); ?></p>
+                        <?php else : $wpjobportal_urgent = $wpjobportal_att['items'][0]; ?>
+                            <p class="wjp-hello-sub">
+                                <span class="wjp-hello-count"><?php /* translators: %s: number of items */ echo esc_html(sprintf(_n('%s item needs your attention', '%s items need your attention', $wpjobportal_att_total, 'wp-job-portal'), number_format_i18n($wpjobportal_att_total))); ?></span>
+                                <span class="wjp-hello-urgent"><?php echo esc_html__('Most urgent:', 'wp-job-portal'); ?> <a href="<?php echo esc_url($wpjobportal_urgent['url']); ?>"><?php echo esc_html(number_format_i18n((int) $wpjobportal_urgent['count']) . ' ' . (function_exists('mb_strtolower') ? mb_strtolower($wpjobportal_urgent['label']) : strtolower($wpjobportal_urgent['label']))); ?> →</a></span>
+                            </p>
+                        <?php endif; ?>
                     </div>
                     <div class="wjp-header-actions">
+                        <?php if (!isset($wpjobportal_wjp_options['kpis'])) : // the range lives with Key numbers; without them it stays here ?>
+                        <nav class="wjp-range" aria-label="<?php echo esc_attr__('Date range', 'wp-job-portal'); ?>">
+                        <?php foreach (WPJOBPORTAL_Dashboard_Service::ranges() as $wpjobportal_r_days => $wpjobportal_r_label) : ?>
+                            <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal&range=' . $wpjobportal_r_days)); ?>"<?php echo $wpjobportal_r_days === $wpjobportal_range ? ' class="is-on" aria-current="true"' : ''; ?>><?php echo esc_html($wpjobportal_r_label); ?></a>
+                        <?php endforeach; ?>
+                    </nav>
+                        <?php endif; ?>
+                        <a class="wjp-btn wjp-btn-secondary" href="<?php echo esc_url(wp_nonce_url(admin_url('admin-post.php?action=' . WPJOBPORTAL_Dashboard_Service::EXPORT_ACTION . '&range=' . $wpjobportal_range), WPJOBPORTAL_Dashboard_Service::EXPORT_ACTION)); ?>" title="<?php echo esc_attr__('Download the numbers for this period as a spreadsheet (CSV)', 'wp-job-portal'); ?>"><?php echo esc_html__('Export', 'wp-job-portal'); ?></a>
                         <div class="wjp-dropdown">
                            <a href="#" id="wjp-screen-options-btn" class="wjp-btn wjp-btn-secondary">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="wjp-btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -103,222 +134,22 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
 
 
                                     <div class="wjp-so-content">
-
-                                        <div class="wjp-so-section">
-                                            <div class="wjp-so-section-title"><?php echo esc_html__('Core Components', 'wp-job-portal'); ?></div>
-                                            <div class="wjp-so-grid">
-                                                <div class="wjp-so-item">
-                                                    <div class="wjp-so-item-label">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                                                        </svg>
-                                                        <span><?php echo esc_html__('Quick Actions', 'wp-job-portal'); ?></span>
-                                                    </div>
+                                        <p class="wjp-so-hint"><?php echo esc_html__('Switch sections on or off and drag them (or use the arrows) into the order you want. This layout is saved for you only.', 'wp-job-portal'); ?></p>
+                                        <ul class="wjp-so-arrange" id="wjp-so-arrange">
+                                            <?php foreach (WPJOBPORTAL_Dashboard_Service::order() as $wpjobportal_so_key) : ?>
+                                                <li draggable="true" data-key="<?php echo esc_attr($wpjobportal_so_key); ?>">
+                                                    <span class="wjp-so-grip" aria-hidden="true">⋮⋮</span>
+                                                    <input type="hidden" name="wjp_screen_order[]" value="<?php echo esc_attr($wpjobportal_so_key); ?>">
+                                                    <span class="wjp-so-name"><?php echo esc_html(WPJOBPORTAL_Dashboard_Service::label($wpjobportal_so_key)); ?></span>
+                                                    <button type="button" class="wjp-so-move" data-dir="-1" aria-label="<?php echo esc_attr(sprintf(/* translators: %s: section name */ __('Move %s up', 'wp-job-portal'), WPJOBPORTAL_Dashboard_Service::label($wpjobportal_so_key))); ?>">↑</button>
+                                                    <button type="button" class="wjp-so-move" data-dir="1" aria-label="<?php echo esc_attr(sprintf(/* translators: %s: section name */ __('Move %s down', 'wp-job-portal'), WPJOBPORTAL_Dashboard_Service::label($wpjobportal_so_key))); ?>">↓</button>
                                                     <label class="wjp-so-toggle">
-                                                        <input type="checkbox" name="wjp_screen_options[quick_actions]" <?php checked( isset($wpjobportal_wjp_options['quick_actions']) ? $wpjobportal_wjp_options['quick_actions'] : '', 'on' ); ?>>
+                                                        <input type="checkbox" name="wjp_screen_options[<?php echo esc_attr($wpjobportal_so_key); ?>]" <?php checked(isset($wpjobportal_wjp_options[$wpjobportal_so_key])); ?> aria-label="<?php echo esc_attr(sprintf(/* translators: %s: section name */ __('Show %s', 'wp-job-portal'), WPJOBPORTAL_Dashboard_Service::label($wpjobportal_so_key))); ?>">
                                                         <span class="wjp-so-slider"></span>
                                                     </label>
-                                                </div>
-                                                <div class="wjp-so-item">
-                                                    <div class="wjp-so-item-label">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                                                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                                                        </svg>
-                                                        <span><?php echo esc_html__('Recent Jobs', 'wp-job-portal'); ?></span>
-                                                    </div>
-                                                    <label class="wjp-so-toggle">
-                                                        <input type="checkbox" name="wjp_screen_options[recent_jobs]" <?php checked( isset($wpjobportal_wjp_options['recent_jobs']) ? $wpjobportal_wjp_options['recent_jobs'] : '', 'on' ); ?>>
-                                                        <span class="wjp-so-slider"></span>
-                                                    </label>
-                                                </div>
-                                                <div class="wjp-so-item">
-                                                    <div class="wjp-so-item-label">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                            <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
-                                                        </svg>
-                                                        <span><?php echo esc_html__('Quick Stats', 'wp-job-portal'); ?></span>
-                                                    </div>
-                                                    <label class="wjp-so-toggle">
-                                                        <input type="checkbox" name="wjp_screen_options[quick_stats]" <?php checked( isset($wpjobportal_wjp_options['quick_stats']) ? $wpjobportal_wjp_options['quick_stats'] : '', 'on' ); ?>>
-                                                        <span class="wjp-so-slider"></span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="wjp-so-section">
-                                            <div class="wjp-so-section-title"><?php echo esc_html__('Visualizations', 'wp-job-portal'); ?></div>
-                                            <div class="wjp-so-grid">
-                                                <div class="wjp-so-item">
-                                                    <div class="wjp-so-item-label">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-                                                        </svg>
-                                                        <span><?php echo esc_html__('Platform Growth', 'wp-job-portal'); ?></span>
-                                                    </div>
-                                                    <label class="wjp-so-toggle">
-                                                        <input type="checkbox" name="wjp_screen_options[platform_growth]" <?php checked( isset($wpjobportal_wjp_options['platform_growth']) ? $wpjobportal_wjp_options['platform_growth'] : '', 'on' ); ?>>
-                                                        <span class="wjp-so-slider"></span>
-                                                    </label>
-                                                </div>
-                                                <div class="wjp-so-item">
-                                                    <div class="wjp-so-item-label">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                            <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
-                                                            <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
-                                                        </svg>
-                                                        <span><?php echo esc_html__('Jobs By Status', 'wp-job-portal'); ?></span>
-                                                    </div>
-                                                    <label class="wjp-so-toggle">
-                                                        <input type="checkbox" name="wjp_screen_options[jobs_by_status_chart]" <?php checked( isset($wpjobportal_wjp_options['jobs_by_status_chart']) ? $wpjobportal_wjp_options['jobs_by_status_chart'] : '', 'on' ); ?>>
-                                                        <span class="wjp-so-slider"></span>
-                                                    </label>
-                                                </div>
-                                                <div class="wjp-so-item">
-                                                    <div class="wjp-so-item-label">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                            <line x1="12" y1="20" x2="12" y2="10"></line>
-                                                            <line x1="18" y1="20" x2="18" y2="4"></line>
-                                                            <line x1="6" y1="20" x2="6" y2="16"></line>
-                                                        </svg>
-                                                        <span><?php echo esc_html__('Top Categories', 'wp-job-portal'); ?></span>
-                                                    </div>
-                                                    <label class="wjp-so-toggle">
-                                                        <input type="checkbox" name="wjp_screen_options[top_categories_chart]" <?php checked( isset($wpjobportal_wjp_options['top_categories_chart']) ? $wpjobportal_wjp_options['top_categories_chart'] : '', 'on' ); ?>>
-                                                        <span class="wjp-so-slider"></span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="wjp-so-section">
-                                            <div class="wjp-so-section-title"><?php echo esc_html__('Activity & System Feeds', 'wp-job-portal'); ?></div>
-                                            <div class="wjp-so-grid">
-                                                <div class="wjp-so-item">
-                                                    <div class="wjp-so-item-label">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                                            <polyline points="14 2 14 8 20 8"></polyline>
-                                                            <path d="M12 18v-3l3-3 3 3v3H12z"></path>
-                                                        </svg>
-                                                        <span><?php echo esc_html__('Latest Applies', 'wp-job-portal'); ?></span>
-                                                    </div>
-                                                    <label class="wjp-so-toggle">
-                                                        <input type="checkbox" name="wjp_screen_options[latest_job_applies]" <?php checked( isset($wpjobportal_wjp_options['latest_job_applies']) ? $wpjobportal_wjp_options['latest_job_applies'] : '', 'on' ); ?>>
-                                                        <span class="wjp-so-slider"></span>
-                                                    </label>
-                                                </div>
-                                                <div class="wjp-so-item">
-                                                    <div class="wjp-so-item-label">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                                            <polyline points="14 2 14 8 20 8"></polyline>
-                                                            <line x1="16" y1="13" x2="8" y2="13"></line>
-                                                            <line x1="16" y1="17" x2="8" y2="17"></line>
-                                                            <polyline points="10 9 9 9 8 9"></polyline>
-                                                        </svg>
-                                                        <span><?php echo esc_html__('Latest Resumes', 'wp-job-portal'); ?></span>
-                                                    </div>
-                                                    <label class="wjp-so-toggle">
-                                                        <input type="checkbox" name="wjp_screen_options[latest_resumes]" <?php checked( isset($wpjobportal_wjp_options['latest_resumes']) ? $wpjobportal_wjp_options['latest_resumes'] : '', 'on' ); ?>>
-                                                        <span class="wjp-so-slider"></span>
-                                                    </label>
-                                                </div>
-                                                <div class="wjp-so-item">
-                                                    <div class="wjp-so-item-label">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                            <circle cx="12" cy="12" r="10"></circle>
-                                                            <polyline points="12 6 12 12 16 14"></polyline>
-                                                        </svg>
-                                                        <span><?php echo esc_html__('Activity Log', 'wp-job-portal'); ?></span>
-                                                    </div>
-                                                    <label class="wjp-so-toggle">
-                                                        <input type="checkbox" name="wjp_screen_options[latest_activity]" <?php checked( isset($wpjobportal_wjp_options['latest_activity']) ? $wpjobportal_wjp_options['latest_activity'] : '', 'on' ); ?>>
-                                                        <span class="wjp-so-slider"></span>
-                                                    </label>
-                                                </div>
-                                                <div class="wjp-so-item">
-                                                    <div class="wjp-so-item-label">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-                                                            <line x1="12" y1="9" x2="12" y2="13"></line>
-                                                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                                                        </svg>
-                                                        <span><?php echo esc_html__('Error Log', 'wp-job-portal'); ?></span>
-                                                    </div>
-                                                    <label class="wjp-so-toggle">
-                                                        <input type="checkbox" name="wjp_screen_options[system_error_log]" <?php checked( isset($wpjobportal_wjp_options['system_error_log']) ? $wpjobportal_wjp_options['system_error_log'] : '', 'on' ); ?>>
-                                                        <span class="wjp-so-slider"></span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="wjp-so-section">
-                                            <div class="wjp-so-section-title"><?php echo esc_html__('User & Financials', 'wp-job-portal'); ?></div>
-                                            <div class="wjp-so-grid">
-                                                <div class="wjp-so-item">
-                                                    <div class="wjp-so-item-label">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                                            <circle cx="9" cy="7" r="4"></circle>
-                                                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                                        </svg>
-                                                        <span><?php echo esc_html__('Job Seekers', 'wp-job-portal'); ?></span>
-                                                    </div>
-                                                    <label class="wjp-so-toggle">
-                                                        <input type="checkbox" name="wjp_screen_options[latest_job_seekers]" <?php checked( isset($wpjobportal_wjp_options['latest_job_seekers']) ? $wpjobportal_wjp_options['latest_job_seekers'] : '', 'on' ); ?>>
-                                                        <span class="wjp-so-slider"></span>
-                                                    </label>
-                                                </div>
-                                                <div class="wjp-so-item">
-                                                    <div class="wjp-so-item-label">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                            <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
-                                                            <line x1="9" y1="22" x2="9" y2="22"></line>
-                                                            <line x1="15" y1="22" x2="15" y2="22"></line>
-                                                            <line x1="12" y1="22" x2="12" y2="22"></line>
-                                                            <line x1="12" y1="2" x2="12" y2="22"></line>
-                                                        </svg>
-                                                        <span><?php echo esc_html__('Employers', 'wp-job-portal'); ?></span>
-                                                    </div>
-                                                    <label class="wjp-so-toggle">
-                                                        <input type="checkbox" name="wjp_screen_options[latest_employers]" <?php checked( isset($wpjobportal_wjp_options['latest_employers']) ? $wpjobportal_wjp_options['latest_employers'] : '', 'on' ); ?>>
-                                                        <span class="wjp-so-slider"></span>
-                                                    </label>
-                                                </div>
-                                                <?php if(in_array('credits', wpjobportal::$_active_addons)){ ?>
-                                                    <div class="wjp-so-item">
-                                                        <div class="wjp-so-item-label">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-                                                                <line x1="7" y1="7" x2="7.01" y2="7"></line>
-                                                            </svg>
-                                                            <span><?php echo esc_html__('Subscriptions', 'wp-job-portal'); ?></span>
-                                                        </div>
-                                                        <label class="wjp-so-toggle">
-                                                            <input type="checkbox" name="wjp_screen_options[latest_subscriptions]" <?php checked( isset($wpjobportal_wjp_options['latest_subscriptions']) ? $wpjobportal_wjp_options['latest_subscriptions'] : '', 'on' ); ?>>
-                                                            <span class="wjp-so-slider"></span>
-                                                        </label>
-                                                    </div>
-                                                    <div class="wjp-so-item">
-                                                        <div class="wjp-so-item-label">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                                                                <line x1="1" y1="10" x2="23" y2="10"></line>
-                                                            </svg>
-                                                            <span><?php echo esc_html__('Payments', 'wp-job-portal'); ?></span>
-                                                        </div>
-                                                        <label class="wjp-so-toggle">
-                                                            <input type="checkbox" name="wjp_screen_options[latest_payments]" <?php checked( isset($wpjobportal_wjp_options['latest_payments']) ? $wpjobportal_wjp_options['latest_payments'] : '', 'on' ); ?>>
-                                                            <span class="wjp-so-slider"></span>
-                                                        </label>
-                                                    </div>
-                                                <?php } ?>
-                                            </div>
-                                        </div>
+                                                </li>
+                                            <?php endforeach; ?>
+                                        </ul>
                                     </div>
 
                                     <div class="wjp-so-footer">
@@ -337,7 +168,71 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                         </a>
                     </div>
                 </div>
-                <?php if (isset($wpjobportal_wjp_options['quick_actions'])) : ?>
+<?php
+                // W-20: every section is captured, then printed in this user's order in one
+                // row-filling grid (the 2.7 wrappers around pairs of cards are dropped).
+                $wpjobportal_sec = array();
+                ob_start(); ?>
+                                <?php if (isset($wpjobportal_wjp_options['attention'])) : ob_start(); ?>
+                <section id="wjp-attention" aria-label="<?php echo esc_attr__('Needs your attention', 'wp-job-portal'); ?>">
+                    <?php if (empty($wpjobportal_att['items'])) : ?>
+                    <div class="wjp-card wjp-att-none">
+                        <?php if ((int) wpjobportal::$_db->get_var('SELECT COUNT(id) FROM `' . wpjobportal::$_db->prefix . 'wj_portal_jobs`') === 0) : // W-20: a new site gets first steps ?>
+                            <p class="wjp-att-empty"><?php echo esc_html__('Your job board is ready. Start by adding a job, or load sample data to look around.', 'wp-job-portal'); ?></p>
+                            <p class="wjp-first-steps">
+                                <a class="wjp-btn wjp-btn-primary" href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=formjob')); ?>"><?php echo esc_html__('Add your first job', 'wp-job-portal'); ?></a>
+                                <a class="wjp-view-all-link" href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_postinstallation&wpjobportallt=stepfour&wizard=1')); ?>"><?php echo esc_html__('Load sample data', 'wp-job-portal'); ?></a>
+                            </p>
+                        <?php else : ?>
+                            <p class="wjp-att-empty"><?php echo esc_html__('Nothing is waiting. You are all caught up.', 'wp-job-portal'); ?></p>
+                        <?php endif; ?>
+                    </div>
+                    <?php else : ?>
+                        <div class="wjp-todo">
+                            <?php foreach ($wpjobportal_att['items'] as $wpjobportal_item) : $wpjobportal_tone = isset($wpjobportal_item['tone']) ? $wpjobportal_item['tone'] : 'info'; ?>
+                                <a class="wjp-todo-card wjp-att-<?php echo esc_attr($wpjobportal_tone); ?>" href="<?php echo esc_url($wpjobportal_item['url']); ?>">
+                                    <span class="wjp-todo-ico"><?php echo $wpjobportal_icon(isset($wpjobportal_item['icon']) ? $wpjobportal_item['icon'] : 'check'); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- fixed SVG ?></span>
+                                    <span class="wjp-todo-text">
+                                        <b><?php echo esc_html(number_format_i18n((int) $wpjobportal_item['count'])); ?></b>
+                                        <span><?php echo esc_html($wpjobportal_item['label']); ?><?php if (!empty($wpjobportal_item['note'])) : ?> · <?php echo esc_html($wpjobportal_item['note']); ?><?php endif; ?></span>
+                                    </span>
+                                    <span class="wjp-todo-go" aria-hidden="true">→</span>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                </section>
+                <?php $wpjobportal_sec['attention'] = ob_get_clean(); endif; ?>
+                <?php if (isset($wpjobportal_wjp_options['kpis'])) : ob_start();
+                    ?>
+                <div class="wjp-kpis-head">
+                    <div class="wjp-h3" style="margin:0;"><?php echo esc_html__('Key numbers', 'wp-job-portal'); ?> <small><?php /* translators: %s: range, e.g. 30 days */ echo esc_html(sprintf(__('last %1$s, compared with the %1$s before', 'wp-job-portal'), WPJOBPORTAL_Dashboard_Service::ranges()[$wpjobportal_range])); ?></small></div>
+                    <nav class="wjp-range" aria-label="<?php echo esc_attr__('Date range', 'wp-job-portal'); ?>">
+                        <?php foreach (WPJOBPORTAL_Dashboard_Service::ranges() as $wpjobportal_r_days => $wpjobportal_r_label) : ?>
+                            <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal&range=' . $wpjobportal_r_days)); ?>"<?php echo $wpjobportal_r_days === $wpjobportal_range ? ' class="is-on" aria-current="true"' : ''; ?>><?php echo esc_html($wpjobportal_r_label); ?></a>
+                        <?php endforeach; ?>
+                    </nav>
+                </div>
+                <section id="wjp-kpis" aria-label="<?php echo esc_attr__('Key numbers', 'wp-job-portal'); ?>">
+                    <?php foreach (WPJOBPORTAL_Dashboard_Service::kpis($wpjobportal_range) as $wpjobportal_kpi) :
+                        list($wpjobportal_d_text, $wpjobportal_d_tone) = isset($wpjobportal_kpi['delta']) ? $wpjobportal_kpi['delta'] : WPJOBPORTAL_Dashboard_Service::delta($wpjobportal_kpi['value'], $wpjobportal_kpi['previous']);
+                        $wpjobportal_val = isset($wpjobportal_kpi['display']) ? $wpjobportal_kpi['display'] : number_format_i18n($wpjobportal_kpi['value']);
+                        $wpjobportal_tag = !empty($wpjobportal_kpi['url']) ? 'a' : 'div'; ?>
+                        <<?php echo $wpjobportal_tag; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- a or div ?> class="wjp-kpi"<?php echo !empty($wpjobportal_kpi['url']) ? ' href="' . esc_url($wpjobportal_kpi['url']) . '"' : ''; ?>>
+                            <span class="wjp-kpi-l"><?php echo esc_html($wpjobportal_kpi['label']); ?></span>
+                            <b class="wjp-kpi-n<?php echo strpos($wpjobportal_val, ' + ') !== false ? ' wjp-kpi-multi' : ''; ?>"><?php echo esc_html($wpjobportal_val); ?></b>
+                            <?php
+                            // Owner: the earlier number in plain words, no maths for the reader; an arrow shows the direction.
+                            $wpjobportal_prev_txt = isset($wpjobportal_kpi['previous_display']) ? $wpjobportal_kpi['previous_display'] : number_format_i18n($wpjobportal_kpi['previous']);
+                            $wpjobportal_arrow = $wpjobportal_d_tone === 'up' ? '▲' : ($wpjobportal_d_tone === 'down' ? '▼' : '');
+                            ?>
+                            <span class="wjp-kpi-d wjp-kpi-<?php echo esc_attr($wpjobportal_d_tone); ?>" title="<?php echo esc_attr(sprintf(/* translators: %s: change, e.g. +21 or +35% */ __('Change: %s', 'wp-job-portal'), $wpjobportal_d_text)); ?>"><?php if ($wpjobportal_arrow) : ?><b class="wjp-kpi-arrow" aria-hidden="true"><?php echo esc_html($wpjobportal_arrow); ?></b> <?php endif; ?><small><?php /* translators: 1: range, e.g. 7 days, 2: the previous period's number */ echo esc_html(sprintf(__('Previous %1$s: %2$s', 'wp-job-portal'), WPJOBPORTAL_Dashboard_Service::ranges()[$wpjobportal_range], $wpjobportal_prev_txt)); ?></small></span>
+                            <?php if (!empty($wpjobportal_kpi['series'])) : ?><svg class="wjp-spark" viewBox="0 0 100 34" preserveAspectRatio="none" aria-hidden="true"><polyline points="<?php echo esc_attr(WPJOBPORTAL_Dashboard_Service::spark_points($wpjobportal_kpi['series'])); ?>"/></svg><?php endif; ?>
+                        </<?php echo $wpjobportal_tag; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- a or div ?>>
+                    <?php endforeach; ?>
+                </section>
+                <?php $wpjobportal_sec['kpis'] = ob_get_clean(); endif; ?>
+                <?php if (isset($wpjobportal_wjp_options['quick_actions'])) : ob_start(); ?>
                 <div id="wjp-quick-actions">
                     <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=jobqueue')); ?>" class="wjp-action-card">
                         <div class="wjp-action-icon-wrapper wjp-bg-indigo"> <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -345,7 +240,8 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                             </svg>
                         </div>
                         <p class="wjp-action-title"><?php echo esc_html__('Approve Jobs', 'wp-job-portal'); ?></p>
-                        <p class="wjp-action-subtitle"><?php echo esc_html(isset(wpjobportal::$_data['totalnewjobspending']) ? wpjobportal::$_data['totalnewjobspending'] : '0'); ?> <?php echo esc_html__('Pending', 'wp-job-portal'); ?></p>
+                        <p class="wjp-action-subtitle"><?php $wpjobportal_menu_counts = WPJOBPORTAL_Admin_Menu_Service::counts(); // W-20: the same count as Approvals › Jobs and the attention list
+echo esc_html(number_format_i18n(isset($wpjobportal_menu_counts['approvals_jobs']) ? $wpjobportal_menu_counts['approvals_jobs'] : 0)); ?> <?php echo esc_html__('Pending', 'wp-job-portal'); ?></p>
                     </a>
                     <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_job')); ?>" class="wjp-action-card">
                         <div class="wjp-action-icon-wrapper wjp-bg-sky">
@@ -393,359 +289,102 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                         <p class="wjp-action-subtitle"><?php echo esc_html__('Platform Config', 'wp-job-portal'); ?></p>
                     </a>
                 </div>
-                <?php endif; ?>
+                <?php $wpjobportal_sec['quick_actions'] = ob_get_clean(); endif; ?>
                 <div id="wjp-main-grid" class="wjp-grid-section">
-                    <?php if (isset($wpjobportal_wjp_options['platform_growth'])) : ?>
+                    <?php if (isset($wpjobportal_wjp_options['platform_growth'])) : ob_start(); ?>
                     <div id="wjp-platform-growth" class="wjp-card">
                         <div class="wjp-card-header">
                             <div class="wjp-h3" style="margin-bottom:0;"><?php echo esc_html__('Platform Growth', 'wp-job-portal'); ?></div>
                             <div class="wjp-chart-legend">
                                 <span class="wjp-legend-item"><span class="wjp-legend-dot" style="background-color: var(--wjp-color-primary);"></span><?php echo esc_html__('Applications', 'wp-job-portal'); ?></span>
-                                <span class="wjp-legend-item"><span class="wjp-legend-dot" style="background-color: #14b8a6;"></span><?php echo esc_html__('New Jobs', 'wp-job-portal'); ?></span>
+                                <span class="wjp-legend-item"><span class="wjp-legend-dot" style="background-color: #94a3b8;"></span><?php echo esc_html__('New Jobs', 'wp-job-portal'); ?></span>
                             </div>
                         </div>
+                        <?php $wpjobportal_pg = isset(wpjobportal::$_data['platform_growth']) ? wpjobportal::$_data['platform_growth'] : array('jobs' => array(), 'applies' => array());
+                        if (array_sum($wpjobportal_pg['jobs']) + array_sum($wpjobportal_pg['applies']) === 0) : // W-20: nothing to draw ?>
+                            <p class="wjp-att-empty wjp-chart-empty"><?php echo esc_html__('No new jobs or applications in this period. Try a longer range, or add a job to get started.', 'wp-job-portal'); ?></p>
+                        <?php endif; ?>
                         <div class="wjp-chart-container"><div id="applicationChart"></div></div>
                     </div>
-                    <?php endif; ?>
+                    <?php $wpjobportal_sec['platform_growth'] = ob_get_clean(); endif; ?>
 
-                    <?php if (isset($wpjobportal_wjp_options['quick_stats'])) : ?>
-                    <div id="wjp-quick-stats" class="wjp-card">
-                        <div class="wjp-h3"><?php echo esc_html__('Quick Stats', 'wp-job-portal'); ?></div>
-                        <div class="wjp-stats-list">
-
-                            <div class="wjp-stat-item">
-                                <div class="wjp-stat-icon-wrapper wjp-bg-amber">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                        <polyline points="14 2 14 8 20 8"></polyline>
-                                        <line x1="16" y1="13" x2="8" y2="13"></line>
-                                        <line x1="16" y1="17" x2="8" y2="17"></line>
-                                        <polyline points="10 9 9 9 8 9"></polyline>
-                                    </svg>
-                                </div>
-                                <div class="wjp-stat-info">
-                                    <p class="wjp-stat-label"><?php echo esc_html__('Pending Jobs', 'wp-job-portal'); ?></p>
-                                    <p class="wjp-stat-value"><?php echo esc_html(wpjobportal::$_data['quick_stats']['pending_jobs']); ?></p>
-                                </div>
-                            </div>
-
-                            <div class="wjp-stat-item">
-                                <div class="wjp-stat-icon-wrapper wjp-bg-sky">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                        <circle cx="8.5" cy="7" r="4"></circle>
-                                        <line x1="20" y1="8" x2="20" y2="14"></line>
-                                        <line x1="23" y1="11" x2="17" y2="11"></line>
-                                    </svg>
-                                </div>
-                                <div class="wjp-stat-info">
-                                    <p class="wjp-stat-label"><?php echo esc_html__('New Applicants', 'wp-job-portal'); ?></p>
-                                    <p class="wjp-stat-value"><?php echo esc_html(wpjobportal::$_data['quick_stats']['new_applicants']); ?></p>
-                                </div>
-                            </div>
-                            <?php if(in_array('credits', wpjobportal::$_active_addons)){ ?>
-                                <div class="wjp-stat-item">
-                                    <div class="wjp-stat-icon-wrapper wjp-bg-indigo">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-                                            <line x1="7" y1="7" x2="7.01" y2="7"></line>
-                                        </svg>
-                                    </div>
-                                    <div class="wjp-stat-info">
-                                        <p class="wjp-stat-label"><?php echo esc_html__('Active Subscriptions', 'wp-job-portal'); ?></p>
-                                        <p class="wjp-stat-value"><?php echo esc_html(wpjobportal::$_data['quick_stats']['active_subscriptions']); ?></p>
-                                    </div>
-                                </div>
-                            <?php }?>
-
-                            <div class="wjp-stat-item">
-                                <div class="wjp-stat-icon-wrapper wjp-bg-green">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                        <circle cx="9" cy="7" r="4"></circle>
-                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                    </svg>
-                                </div>
-                                <div class="wjp-stat-info">
-                                    <p class="wjp-stat-label"><?php echo esc_html__('Total Users', 'wp-job-portal'); ?></p>
-                                    <p class="wjp-stat-value"><?php echo esc_html(wpjobportal::$_data['quick_stats']['total_users']); ?></p>
-                                </div>
-                            </div>
-
-                            <div class="wjp-stat-item">
-                                <div class="wjp-stat-icon-wrapper wjp-bg-red">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <line x1="15" y1="9" x2="9" y2="15"></line>
-                                        <line x1="9" y1="9" x2="15" y2="15"></line>
-                                    </svg>
-                                </div>
-                                <div class="wjp-stat-info">
-                                    <p class="wjp-stat-label"><?php echo esc_html__('Closed Jobs', 'wp-job-portal'); ?></p>
-                                    <p class="wjp-stat-value"><?php echo esc_html(wpjobportal::$_data['quick_stats']['closed_jobs']); ?></p>
-                                </div>
-                            </div>
-                            <?php if(in_array('credits', wpjobportal::$_active_addons)){ ?>
-                                <div class="wjp-stat-item">
-                                    <div class="wjp-stat-icon-wrapper wjp-bg-emerald">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <line x1="12" y1="1" x2="12" y2="23"></line>
-                                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="wjp-stat-info">
-                                        <p class="wjp-stat-label"><?php echo esc_html__('Monthly Revenue', 'wp-job-portal'); ?></p>
-                                        <p class="wjp-stat-value">$<?php echo esc_html(number_format(wpjobportal::$_data['quick_stats']['monthly_revenue'], 2)); ?></p>
-                                    </div>
-                                </div>
-                            <?php } ?>
-
-                        </div>
-                    </div>
-                    <?php endif; ?>
                 </div>
-                <?php if (isset($wpjobportal_wjp_options['recent_jobs'])) : ?>
-                <div id="wjp-recent-jobs" class="wjp-card">
-                    <div class="wjp-h3"><?php echo esc_html__('Recent Job Postings', 'wp-job-portal'); ?></div>
-                    <div class="wjp-table-wrapper">
-                        <?php
-                        // field ordering check
-                        $wpjobportal_job_listing_fields = WPJOBPORTALincluder::getJSModel('fieldordering')->getFieldOrderingData(2);
-                        ?>
-                        <table class="wjp-table">
-                            <thead>
-                                <tr><th><?php echo esc_html__('Job Title', 'wp-job-portal'); ?></th>
-                                    <th><?php echo esc_html__('Company', 'wp-job-portal'); ?></th>
-                                    <?php if(isset($wpjobportal_job_listing_fields['jobcategory']) && $wpjobportal_job_listing_fields['jobcategory'] !='' ){ ?>
-                                        <th><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_job_listing_fields['jobcategory'])); ?></th>
-                                    <?php } ?>
-                                    <th><?php echo esc_html__('Date Posted', 'wp-job-portal'); ?></th>
-                                    <th><?php echo esc_html__('Status', 'wp-job-portal'); ?></th>
-                                    <th><?php echo esc_html__('Actions', 'wp-job-portal'); ?></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if(isset(wpjobportal::$_data[0]['latestjobs']) && !empty(wpjobportal::$_data[0]['latestjobs'])){
-                                    foreach (wpjobportal::$_data[0]['latestjobs'] AS $wpjobportal_job) { ?>
-                                    <tr>
-                                        <td class="wjp-job-title"><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=formjob&wpjobportalid='.$wpjobportal_job->id)); ?>"><?php echo esc_html($wpjobportal_job->title); ?></a></td>
-                                        <td class="wjp-company-name"><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_company&wpjobportallt=formcompany&wpjobportalid='.$wpjobportal_job->companyid)); ?>"><?php echo esc_html($wpjobportal_job->companyname); ?></a></td>
-                                        <?php if(isset($wpjobportal_job_listing_fields['jobcategory']) && $wpjobportal_job_listing_fields['jobcategory'] !='' ){ ?>
-                                            <td><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_job->cat_title)); ?></td>
-                                        <?php } ?>
-                                        <td><?php echo esc_html(human_time_diff(strtotime($wpjobportal_job->created) ,strtotime(date_i18n("Y-m-d H:i:s")))).' '.esc_html(__("Ago",'wp-job-portal')); ?></td>
-                                        <td>
-                                            <?php
-                                            $wpjobportal_status_label = esc_html__('Pending', 'wp-job-portal');
-                                            $wpjobportal_status_class = ($wpjobportal_job->status == 1) ? 'wjp-status-active' : 'wjp-status-closed';
-                                            if($wpjobportal_job->status == 1){
-                                                $wpjobportal_status_label = esc_html__('Approved', 'wp-job-portal');
-                                            }elseif($wpjobportal_job->status == 0){
-                                                $wpjobportal_status_label = esc_html__('Pending', 'wp-job-portal');
-                                            }elseif($wpjobportal_job->status == -1){
-                                                $wpjobportal_status_label = esc_html__('Rejected', 'wp-job-portal');
-                                            }elseif($wpjobportal_job->status == 3){
-                                                $wpjobportal_status_label = esc_html__('Pending', 'wp-job-portal');
-                                            }
-                                            ?>
-                                            <span class="wjp-status-badge <?php echo esc_attr($wpjobportal_status_class); ?>">
-                                                <?php echo esc_html($wpjobportal_status_label); ?>
-                                            </span>
-                                        </td>
-                                        <td class="wjp-table-actions"><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=formjob&wpjobportalid='.$wpjobportal_job->id)); ?>"><?php echo esc_html__('Edit', 'wp-job-portal'); ?></a></td>
-                                    </tr>
-                                <?php }
-                                } else { ?>
-                                    <tr class="wjp-no-records">
-                                        <td colspan="6"><?php echo esc_html__('No recent job postings found.', 'wp-job-portal'); ?></td>
-                                    </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <?php endif; ?>
                 <div id="wjp-new-charts" class="">
-                    <?php if (isset($wpjobportal_wjp_options['jobs_by_status_chart'])) : ?>
+                    <?php if (isset($wpjobportal_wjp_options['jobs_by_status_chart'])) : ob_start(); ?>
                     <div class="wjp-chart-card">
                         <div class="wjp-h3"><?php echo esc_html__('Jobs By Status', 'wp-job-portal'); ?></div>
                         <div class="wjp-chart-container"><div id="jobsStatusChart"></div></div>
                     </div>
-                    <?php endif; ?>
-                    <?php if (isset($wpjobportal_wjp_options['top_categories_chart'])) : ?>
+                    <?php $wpjobportal_sec['jobs_by_status_chart'] = ob_get_clean(); endif; ?>
+                    <?php if (isset($wpjobportal_wjp_options['top_categories_chart'])) : ob_start(); ?>
                     <div class="wjp-chart-card">
                         <div class="wjp-h3"><?php echo esc_html__('Top Job Categories', 'wp-job-portal'); ?></div>
                         <div class="wjp-chart-container"><div id="topCategoriesChart"></div></div>
                     </div>
-                    <?php endif; ?>
+                    <?php $wpjobportal_sec['top_categories_chart'] = ob_get_clean(); endif; ?>
                 </div>
                 <div class="wjp-grid-section">
-                    <?php if (isset($wpjobportal_wjp_options['latest_job_applies'])) : ?>
-                    <div id="" class="wjp-card wjp-new-sections">
-                        <div class="wjp-card-header"><div class="wjp-h3" style="margin-bottom:0;"><?php echo esc_html__('Latest Job Applies', 'wp-job-portal'); ?></div></div>
-                        <div class="wjp-list wjp-apply-list">
-                            <?php if (isset(wpjobportal::$_data[0]['latest_applies']) && !empty(wpjobportal::$_data[0]['latest_applies'])) {
-                                $wpjobportal_data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
-                                foreach(wpjobportal::$_data[0]['latest_applies'] as $wpjobportal_apply) {
-
-                                    $wpjobportal_logo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('employer');
-                                    if (isset($wpjobportal_apply->logo) && $wpjobportal_apply->logo != '') {
-                                        $wpjobportal_wpdir = wp_upload_dir();
-                                        $wpjobportal_logo = $wpjobportal_wpdir['baseurl'] . '/' . $wpjobportal_data_directory.'/data/employer/comp_'.$wpjobportal_apply->companyid.'/logo/'. $wpjobportal_apply->logo;
-                                    }
-                                    ?>
-                                    <div class="wjp-apply-item">
-                                        <div class="wjp-apply-item-header">
-                                            <div class="wjp-applicant-info">
-                                                <img src="<?php echo esc_url($wpjobportal_logo)?>" alt="<?php echo esc_attr($wpjobportal_apply->first_name); ?>" class="wjp-avatar">
-                                                <div class="wjp-applicant-text">
-                                                    <p class="wjp-text-1"><strong><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_resume&wpjobportallt=viewresume&wpjobportalid='.(isset($wpjobportal_apply->resumeid) ? $wpjobportal_apply->resumeid : ''))); ?>"><?php echo esc_html($wpjobportal_apply->first_name . ' ' . $wpjobportal_apply->last_name); ?></a></strong> <?php echo esc_html__('applied for', 'wp-job-portal'); ?></p>
-                                                    <p class="wjp-job-title"><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=formjob&wpjobportalid='.(isset($wpjobportal_apply->jobid) ? $wpjobportal_apply->jobid : ''))); ?>"><?php echo esc_html($wpjobportal_apply->job_title); ?></a></p>
-                                                    <p class="wjp-company-loc"><?php echo esc_html__('at', 'wp-job-portal'); ?> <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_company&wpjobportallt=formcompany&wpjobportalid='.(isset($wpjobportal_apply->companyid) ? $wpjobportal_apply->companyid : ''))); ?>"><?php echo esc_html($wpjobportal_apply->company_name); ?></a></p>
-                                                </div>
-                                            </div>
-                                            <span class="wjp-timestamp"><?php echo esc_html(human_time_diff(strtotime($wpjobportal_apply->apply_date) ,strtotime(date_i18n("Y-m-d H:i:s")))).' '.esc_html(__("Ago",'wp-job-portal')); ?></span>
-                                        </div>
-                                        <div class="wjp-item-footer">
-                                            <div class="wjp-tag-list">
-                                                <span class="wjp-tag wjp-tag-sky"><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_apply->jobtype_title)); ?></span>
-                                                <span class="wjp-tag wjp-tag-slate">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                                    <circle cx="12" cy="10" r="3"></circle>
-                                                </svg>
-                                                 <?php echo esc_html(wpjobportal::wpjobportal_getVariableValue(WPJOBPORTALincluder::getJSModel('city')->getLocationDataForView($wpjobportal_apply->city))); ?></span>
-                                                <?php /*
-                                                <span class="wjp-tag wjp-tag-emerald">
-                                                    <?php echo esc_html(wpjobportal::$_common->getSalaryRangeView($wpjobportal_apply->salarytype, $wpjobportal_apply->salarymin, $wpjobportal_apply->salarymax,$wpjobportal_apply->currency)); ?>
-                                                    <?php if($wpjobportal_apply->salarytype==3 || $wpjobportal_apply->salarytype==2) { ?>
-                                                        <span class="wpjobportal-salary-type"> <?php echo ' / ' .esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_apply->salaryrangetype)); ?></span>
-                                                    <?php }?>
-                                                </span>
-                                             */ ?>
-                                            </div>
-                                            <div class="wjp-actions"><a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal_jobapply&wpjobportallt=jobappliedresume&jobid='.$wpjobportal_apply->jobid)); ?>" class="wjp-btn-xs wjp-btn-indigo"><?php echo esc_html__('View Apply', 'wp-job-portal'); ?></a></div>
-                                        </div>
-                                    </div>
-                                <?php }
-                            } else { ?>
-                                <div class="wjp-no-records"><?php echo esc_html__('No recent job applications to display.', 'wp-job-portal'); ?></div>
-                            <?php } ?>
-                        </div>
-                    </div>
-                    <?php endif; ?>
-                    <?php if (isset($wpjobportal_wjp_options['latest_resumes'])) : ?>
-                    <div id="" class="wjp-card wjp-new-sections">
-                         <div class="wjp-card-header"><div class="wjp-h3" style="margin-bottom:0;"><?php echo esc_html__('Latest Resumes', 'wp-job-portal'); ?></div><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_resume')); ?>" class="wjp-view-all-link"><?php echo esc_html__('View All', 'wp-job-portal'); ?></a></div>
-                         <div class="wjp-list">
-                            <?php if(isset(wpjobportal::$_data[0]['latestresumes']) && !empty(wpjobportal::$_data[0]['latestresumes'])){
-                                $wpjobportal_data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
-                                foreach(wpjobportal::$_data[0]['latestresumes'] AS $wpjobportal_resume){
-                                $wpjobportal_photo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
-                                if (isset($wpjobportal_resume->photo) && $wpjobportal_resume->photo != '') {
-                                    $wpjobportal_wpdir = wp_upload_dir();
-                                    $wpjobportal_photo = $wpjobportal_wpdir['baseurl'] . '/' . $wpjobportal_data_directory . '/data/jobseeker/resume_' . $wpjobportal_resume->id. '/photo/' . $wpjobportal_resume->photo;
-                                }
-                                ?>
-                                <div class="wjp-list-item">
-                                    <div class="wjp-item-main-info">
-                                        <img src="<?php echo esc_url($wpjobportal_photo); ?>" alt="<?php echo esc_attr($wpjobportal_resume->application_title); ?>" class="wjp-avatar">
-                                        <div class="wjp-item-text"><p class="wjp-name"><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_resume&wpjobportallt=viewresume&wpjobportalid='.$wpjobportal_resume->id)); ?>"><?php echo esc_html($wpjobportal_resume->first_name . ' ' . $wpjobportal_resume->last_name); ?></a></p><p class="wjp-subtext"> <?php echo esc_html($wpjobportal_resume->application_title); ?></p>
-                                            <div class="wjp-tag-list" style="margin-top: 0.25rem;">
-                                                <span class="wjp-tag wjp-tag-sky"><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_resume->jobtypetitle)); ?></span>
-                                                <span class="wjp-tag wjp-tag-slate"><?php echo esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_resume->cat_title)); ?></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wjp-item-aside-info"><span class="wjp-tag wjp-tag-blue"><?php echo esc_html__('New', 'wp-job-portal'); ?></span><p class="wjp-date"><?php echo esc_html(human_time_diff(strtotime($wpjobportal_resume->created) ,strtotime(date_i18n("Y-m-d H:i:s")))).' '.esc_html(__("Ago",'wp-job-portal')); ?></p></div>
-                                </div>
-                            <?php }
-                            } else { ?>
-                                <div class="wjp-no-records"><?php echo esc_html__('No new resumes have been added recently.', 'wp-job-portal'); ?></div>
-                            <?php } ?>
-                         </div>
-                    </div>
-                    <?php endif; ?>
 
                     <?php if(in_array('credits', wpjobportal::$_active_addons)){ ?>
 
-                        <?php if (isset($wpjobportal_wjp_options['latest_subscriptions'])) : ?>
-                        <div id="" class="wjp-card wjp-financials">
-                            <div class="wjp-h3"><?php echo esc_html__('Latest Package Subscriptions', 'wp-job-portal'); ?></div>
-                            <div class="wjp-list">
-                                <?php if (isset(wpjobportal::$_data[0]['latest_subscriptions']) && !empty(wpjobportal::$_data[0]['latest_subscriptions'])) {
-                                    foreach(wpjobportal::$_data[0]['latest_subscriptions'] as $wpjobportal_sub) { ?>
-                                    <div class="wjp-list-item wjp-list-item-simple">
-                                        <div class="wjp-item-main-info">
-                                            <?php
-                                            $wpjobportal_photo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
-                                            if (isset($wpjobportal_sub->photo) && $wpjobportal_sub->photo != '') {
-                                                $wpjobportal_wpdir = wp_upload_dir();
-                                                $wpjobportal_data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
-                                                $wpjobportal_photo = $wpjobportal_wpdir['baseurl'] . '/' . $wpjobportal_data_directory . '/data/profile/profile_' . esc_attr($wpjobportal_sub->uid) . '/profile/' . $wpjobportal_sub->photo;
-                                            }
-                                            ?>
-                                            <img src="<?php echo esc_url($wpjobportal_photo);?>" alt="<?php echo esc_attr($wpjobportal_sub->first_name); ?> Logo" class="wjp-logo">
-                                            <p>
-                                                <span class="wjp-company-name">
-                                                    <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userdetail&id='.(isset($wpjobportal_sub->uid) ? $wpjobportal_sub->uid : ''))); ?>">
-                                                        <?php echo esc_html($wpjobportal_sub->first_name . ' ' . $wpjobportal_sub->last_name); ?>
-                                                    </a>
-                                                </span>
-                                                <?php echo esc_html__('subscribed to', 'wp-job-portal'); ?>
-                                                <span class="wjp-plan-pro"><?php echo esc_html($wpjobportal_sub->package_name); ?></span>.
-                                            </p>
-                                        </div>
-                                        <span class="wjp-timestamp"><?php echo esc_html(human_time_diff(strtotime($wpjobportal_sub->created) ,strtotime(date_i18n("Y-m-d H:i:s")))).' '.esc_html(__("Ago",'wp-job-portal')); ?></span>
-                                    </div>
-                                <?php }
-                                } else { ?>
-                                    <div class="wjp-list-item wjp-list-item-simple"><p><?php echo esc_html__('No new subscriptions found.', 'wp-job-portal'); ?></p></div>
-                                <?php } ?>
-                            </div>
+                        <?php if (isset($wpjobportal_wjp_options['latest_subscriptions'])) : ob_start(); ?>
+                        <div id="wjp-latest-subscriptions" class="wjp-card">
+                            <div class="wjp-card-header"><div class="wjp-h3" style="margin-bottom:0;"><?php echo esc_html__('Latest subscriptions', 'wp-job-portal'); ?></div><a class="wjp-view-all-link" href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_purchasehistory')); ?>"><?php echo esc_html__('Purchase history', 'wp-job-portal'); ?></a></div>
+                            <?php $wpjobportal_subs = isset(wpjobportal::$_data[0]['latest_subscriptions']) ? (array) wpjobportal::$_data[0]['latest_subscriptions'] : array(); ?>
+                            <?php if (empty($wpjobportal_subs)) : ?>
+                                <p class="wjp-att-empty"><?php echo esc_html__('No subscriptions yet.', 'wp-job-portal'); ?></p>
+                            <?php else : ?>
+                                <div class="wjp-table-wrapper"><table class="wjp-table wjp-money-table">
+                                    <thead><tr><th><?php echo esc_html__('Member', 'wp-job-portal'); ?></th><th><?php echo esc_html__('Package', 'wp-job-portal'); ?></th><th class="wjp-num"><?php echo esc_html__('Price', 'wp-job-portal'); ?></th><th><?php echo esc_html__('Status', 'wp-job-portal'); ?></th></tr></thead>
+                                    <tbody>
+                                    <?php foreach ($wpjobportal_subs as $wpjobportal_sub) :
+                                        $wpjobportal_sub_name = trim($wpjobportal_sub->first_name . ' ' . (isset($wpjobportal_sub->last_name) ? $wpjobportal_sub->last_name : ''));
+                                        $wpjobportal_sub_active = !empty($wpjobportal_sub->status) && (empty($wpjobportal_sub->enddate) || strtotime($wpjobportal_sub->enddate) >= current_time('timestamp'));
+                                        $wpjobportal_sub_price = !empty($wpjobportal_sub->isfree) || (float) $wpjobportal_sub->price <= 0 ? __('Free', 'wp-job-portal') : WPJOBPORTAL_Dashboard_Service::format_amounts(array((int) $wpjobportal_sub->currencyid => (float) $wpjobportal_sub->price)); ?>
+                                        <tr>
+                                            <td><div class="wjp-who"><?php if (!empty($wpjobportal_sub->photo)) : ?><img class="wjp-logo" src="<?php echo esc_url(wp_upload_dir()['baseurl'] . '/' . WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory') . '/data/profile/profile_' . (int) $wpjobportal_sub->uid . '/profile/' . $wpjobportal_sub->photo); ?>" alt=""><?php else : echo $wpjobportal_initials($wpjobportal_sub_name); endif; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in the helper ?><span><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userdetail&id=' . (int) $wpjobportal_sub->userid)); ?>"><?php echo esc_html($wpjobportal_sub_name !== '' ? $wpjobportal_sub_name : __('Member', 'wp-job-portal')); ?></a><small><?php /* translators: %s: time, e.g. 3 days */ echo esc_html(sprintf(__('%s ago', 'wp-job-portal'), human_time_diff(strtotime($wpjobportal_sub->created), current_time('timestamp')))); ?></small></span></div></td>
+                                            <td><?php echo esc_html($wpjobportal_sub->package_name); ?></td>
+                                            <td class="wjp-num"><?php echo esc_html($wpjobportal_sub_price); ?></td>
+                                            <td><?php if ($wpjobportal_sub_active) : ?><span class="wjp-pill wjp-pill-ok"><?php echo esc_html(!empty($wpjobportal_sub->enddate) ? sprintf(/* translators: %s: short date, e.g. 5 Nov 2026 */ __('Until %s', 'wp-job-portal'), date_i18n('j M Y', strtotime($wpjobportal_sub->enddate))) : __('Active', 'wp-job-portal')); ?></span><?php else : ?><span class="wjp-pill"><?php echo esc_html__('Ended', 'wp-job-portal'); ?></span><?php endif; ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                    </tbody>
+                                </table></div>
+                            <?php endif; ?>
                         </div>
-                        <?php endif; ?>
-                        <?php if (isset($wpjobportal_wjp_options['latest_payments'])) : ?>
-                        <div id="" class="wjp-card wjp-financials">
-                            <div class="wjp-h3"><?php echo esc_html__('Latest Payments', 'wp-job-portal'); ?></div>
-                             <div class="wjp-list">
-                                 <?php if (isset(wpjobportal::$_data[0]['latest_payments']) && !empty(wpjobportal::$_data[0]['latest_payments'])) {
-                                    foreach(wpjobportal::$_data[0]['latest_payments'] as $wpjobportal_payment) { ?>
-
-                                    <div class="wjp-list-item wjp-list-item-simple">
-                                        <div class="wjp-item-main-info">
-                                            <?php
-                                            $wpjobportal_photo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
-                                            if (isset($wpjobportal_sub->photo) && $wpjobportal_sub->photo != '') {
-                                                $wpjobportal_wpdir = wp_upload_dir();
-                                                $wpjobportal_data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
-                                                $wpjobportal_photo = $wpjobportal_wpdir['baseurl'] . '/' . $wpjobportal_data_directory . '/data/profile/profile_' . esc_attr($wpjobportal_sub->uid) . '/profile/' . $wpjobportal_sub->photo;
-                                            }
-                                            ?>
-                                            <img src="<?php echo esc_url($wpjobportal_photo);?>" alt="<?php echo esc_attr($wpjobportal_payment->payer_name); ?> Logo" class="wjp-logo">
-                                            <div class="wjp-item-text">
-                                                <p class="wjp-name"><?php echo esc_html($wpjobportal_payment->payer_name); ?></p>
-                                                <p class="wjp-subtext"><?php echo esc_html($wpjobportal_payment->description); ?></p>
-                                            </div>
-                                        </div>
-                                        <div class="wjp-item-aside-info">
-                                            <p class="wjp-amount"><?php echo esc_html($wpjobportal_payment->symbol) . esc_html($wpjobportal_payment->amount); ?></p>
-                                        </div>
-                                    </div>
-                                 <?php }
-                                 } else { ?>
-                                    <div class="wjp-no-records"><?php echo esc_html__('No recent payments to display.', 'wp-job-portal'); ?></div>
-                                 <?php } ?>
-                             </div>
+                        <?php $wpjobportal_sec['latest_subscriptions'] = ob_get_clean(); endif; ?>
+                        <?php if (isset($wpjobportal_wjp_options['latest_payments'])) : ob_start(); ?>
+                        <div id="wjp-latest-payments" class="wjp-card">
+                            <div class="wjp-card-header"><div class="wjp-h3" style="margin-bottom:0;"><?php echo esc_html__('Latest payments received', 'wp-job-portal'); ?></div><a class="wjp-view-all-link" href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_invoice')); ?>"><?php echo esc_html__('Invoices', 'wp-job-portal'); ?></a></div>
+                            <?php $wpjobportal_pays = isset(wpjobportal::$_data[0]['latest_payments']) ? (array) wpjobportal::$_data[0]['latest_payments'] : array(); ?>
+                            <?php if (empty($wpjobportal_pays)) : ?>
+                                <p class="wjp-att-empty"><?php echo esc_html__('No payments received yet.', 'wp-job-portal'); ?></p>
+                            <?php else : ?>
+                                <div class="wjp-table-wrapper"><table class="wjp-table wjp-money-table">
+                                    <thead><tr><th><?php echo esc_html__('Paid by', 'wp-job-portal'); ?></th><th><?php echo esc_html__('For', 'wp-job-portal'); ?></th><th class="wjp-num"><?php echo esc_html__('Amount', 'wp-job-portal'); ?></th></tr></thead>
+                                    <tbody>
+                                    <?php foreach ($wpjobportal_pays as $wpjobportal_payment) :
+                                        $wpjobportal_pay_name = trim((string) $wpjobportal_payment->payer_name);
+                                        if ($wpjobportal_pay_name === '') {
+                                            $wpjobportal_pay_name = trim((isset($wpjobportal_payment->first_name) ? $wpjobportal_payment->first_name : '') . ' ' . (isset($wpjobportal_payment->last_name) ? $wpjobportal_payment->last_name : ''));
+                                        } ?>
+                                        <tr>
+                                            <td><div class="wjp-who"><?php echo $wpjobportal_initials($wpjobportal_pay_name !== '' ? $wpjobportal_pay_name : __('Guest', 'wp-job-portal')); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in the helper ?><span><b class="wjp-who-name"><?php echo esc_html($wpjobportal_pay_name !== '' ? $wpjobportal_pay_name : __('Name not given', 'wp-job-portal')); ?></b><small><?php echo esc_html(date_i18n('j M Y', strtotime($wpjobportal_payment->created))); ?><?php if (!empty($wpjobportal_payment->paymethod)) : ?> · <?php echo esc_html(ucfirst((string) $wpjobportal_payment->paymethod)); ?><?php endif; ?></small></span></div></td>
+                                            <td class="wjp-pay-for"><?php echo esc_html(wp_trim_words(wp_strip_all_tags((string) $wpjobportal_payment->description), 8)); ?></td>
+                                            <td class="wjp-num"><b><?php echo esc_html(trim((string) $wpjobportal_payment->symbol) . number_format_i18n((float) $wpjobportal_payment->amount, 2)); ?></b></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                    </tbody>
+                                </table></div>
+                            <?php endif; ?>
                         </div>
-                        <?php endif; ?>
+                        <?php $wpjobportal_sec['latest_payments'] = ob_get_clean(); endif; ?>
 
                     <?php } ?>
 
-                    <?php if (isset($wpjobportal_wjp_options['latest_activity'])) : ?>
+                    <?php if (isset($wpjobportal_wjp_options['latest_activity'])) : ob_start(); ?>
                     <div id="" class="wjp-card wjp-system-logs wjp-col-span-3">
-                        <div class="wjp-h3"><?php echo esc_html__('Latest Activity', 'wp-job-portal'); ?></div>
+                        <div class="wjp-h3"><?php echo esc_html__('Change log', 'wp-job-portal'); ?></div>
                         <div class="wjp-list">
                             <?php if (isset(wpjobportal::$_data[0]['latest_activity']) && !empty(wpjobportal::$_data[0]['latest_activity'])) {
                                 foreach(wpjobportal::$_data[0]['latest_activity'] as $wpjobportal_log) {
@@ -762,15 +401,15 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                                     </div>
                                     <div class="wjp-activity-text">
                                         <p><?php echo isset($wpjobportal_log->description) ? wp_kses_post($wpjobportal_log->description) : ''; ?></p>
-                                        <p class="wjp-subtext"><?php echo isset($wpjobportal_log->created) ? esc_html(human_time_diff(strtotime($wpjobportal_log->created) ,strtotime(date_i18n("Y-m-d H:i:s")))).' '.esc_html(__("Ago",'wp-job-portal')) : ''; ?></p>
+                                        <p class="wjp-subtext"><?php echo isset($wpjobportal_log->created) ? esc_html(human_time_diff(strtotime($wpjobportal_log->created) ,strtotime(date_i18n("Y-m-d H:i:s")))).' '.esc_html(__("ago",'wp-job-portal')) : ''; ?></p>
                                     </div>
                                 </div>
                             <?php }
                             } ?>
                         </div>
                     </div>
-                    <?php endif; ?>
-                    <?php if (isset($wpjobportal_wjp_options['system_error_log'])) : ?>
+                    <?php $wpjobportal_sec['latest_activity'] = ob_get_clean(); endif; ?>
+                    <?php if (isset($wpjobportal_wjp_options['system_error_log'])) : ob_start(); ?>
                     <div id="" class="wjp-card wjp-system-logs wjp-col-span-2">
                         <div class="wjp-h3"><?php echo esc_html__('System Error Log', 'wp-job-portal'); ?></div>
                         <div class="wjp-list">
@@ -787,7 +426,7 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
                                 <div class="wjp-list-item wjp-list-item-simple">
                                     <div class="wjp-item-text">
                                         <p class="wjp-log-text <?php echo esc_attr($wpjobportal_log_class); ?>"><?php echo esc_html($wpjobportal_error); ?></p>
-                                        <p class="wjp-subtext"><?php echo esc_html(human_time_diff(strtotime($wpjobportal_log->created), current_time('timestamp'))) . ' ' . esc_html__('Ago', 'wp-job-portal'); ?></p>
+                                        <p class="wjp-subtext"><?php echo esc_html(human_time_diff(strtotime($wpjobportal_log->created), current_time('timestamp'))) . ' ' . esc_html__('ago', 'wp-job-portal'); ?></p>
                                     </div>
 
                                 </div>
@@ -798,72 +437,146 @@ if (!function_exists('wpjobportal_get_error_log_class')) {
 
                         </div>
                     </div>
-                    <?php endif; ?>
+                    <?php $wpjobportal_sec['system_error_log'] = ob_get_clean(); endif; ?>
 
 
-                    <?php if (isset($wpjobportal_wjp_options['latest_job_seekers'])) : ?>
-                    <div id="" class="wjp-card wjp-latest-members">
-                        <div class="wjp-h3"><?php echo esc_html__('Latest Job Seekers', 'wp-job-portal'); ?></div>
-                         <div class="wjp-list">
-                            <?php if (isset(wpjobportal::$_data[0]['latest_jobseekers']) && !empty(wpjobportal::$_data[0]['latest_jobseekers'])) {
-                                foreach(wpjobportal::$_data[0]['latest_jobseekers'] as $wpjobportal_seeker) { ?>
-                                <div class="wjp-list-item wjp-list-item-simple">
-                                    <div class="wjp-item-main-info">
-                                        <?php
-                                        $wpjobportal_photo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
-                                        if (isset($wpjobportal_seeker->photo) && $wpjobportal_seeker->photo != '') {
-                                            $wpjobportal_wpdir = wp_upload_dir();
-                                            $wpjobportal_data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
-                                            $wpjobportal_photo = $wpjobportal_wpdir['baseurl'] . '/' . $wpjobportal_data_directory . '/data/profile/profile_' . esc_attr($wpjobportal_seeker->uid) . '/profile/' . $wpjobportal_seeker->photo;
-                                        }
-                                        ?>
-                                        <img src="<?php echo esc_url($wpjobportal_photo) ?>" alt="<?php echo esc_attr($wpjobportal_seeker->title); ?>" class="wjp-avatar">
-                                        <div class="wjp-item-text">
-                                            <p class="wjp-name"><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userdetail&id='.(isset($wpjobportal_seeker->id) ? $wpjobportal_seeker->id : ''))); ?>"><?php echo esc_html($wpjobportal_seeker->username); ?></a></p>
-                                            <p class="wjp-subtext"><?php echo esc_html($wpjobportal_seeker->title); ?></p>
-                                            <p class="wjp-subtext"><?php echo esc_html__('Joined', 'wp-job-portal'); ?>: <?php echo !empty($wpjobportal_seeker->created) ? esc_html(date_i18n(get_option('date_format'), strtotime($wpjobportal_seeker->created))) : ''; ?></p>
-                                        </div>
-                                    </div>
-                                    <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userdetail&id='.(isset($wpjobportal_seeker->id) ? $wpjobportal_seeker->id : ''))); ?>" class="wjp-view-all-link"><?php echo esc_html__('View Profile', 'wp-job-portal'); ?></a>
-                                </div>
-                            <?php }
-                            } else { ?>
-                                <div class="wjp-no-records"><?php echo esc_html__('No new job seekers have registered.', 'wp-job-portal'); ?></div>
-                            <?php } ?>
-                         </div>
-                    </div>
+                </div>
+<?php if (isset($wpjobportal_wjp_options['job_performance'])) : ob_start();
+                    $wpjobportal_perf = WPJOBPORTAL_Dashboard_Service::job_performance(); ?>
+                <div id="wjp-job-performance" class="wjp-card">
+                    <div class="wjp-h3"><?php echo esc_html__('Job performance', 'wp-job-portal'); ?></div>
+                    <?php if (empty($wpjobportal_perf['best'])) : ?>
+                        <p class="wjp-att-empty"><?php echo esc_html__('No open jobs right now.', 'wp-job-portal'); ?> <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=formjob')); ?>"><?php echo esc_html__('Add a job', 'wp-job-portal'); ?></a></p>
+                    <?php else : ?>
+                        <div class="wjp-table-wrapper">
+                            <table class="wjp-table wjp-perf-table">
+                                <thead><tr><th><?php echo esc_html__('Open job', 'wp-job-portal'); ?></th><th class="wjp-num"><?php echo esc_html__('Views', 'wp-job-portal'); ?></th><th class="wjp-num"><?php echo esc_html__('Applications', 'wp-job-portal'); ?></th><th class="wjp-num" title="<?php echo esc_attr__('Applications per 100 views', 'wp-job-portal'); ?>"><?php echo esc_html__('Apply rate', 'wp-job-portal'); ?></th><th></th></tr></thead>
+                                <tbody>
+                                <?php foreach ($wpjobportal_perf['best'] as $wpjobportal_pj) :
+                                    $wpjobportal_rate = (int) $wpjobportal_pj->hits > 0 ? round((int) $wpjobportal_pj->apps / (int) $wpjobportal_pj->hits * 100) . '%' : '—'; ?>
+                                    <tr>
+                                        <td class="wjp-job-title"><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=formjob&wpjobportalid=' . (int) $wpjobportal_pj->id)); ?>"><?php echo esc_html($wpjobportal_pj->title); ?></a></td>
+                                        <td class="wjp-num"><?php echo esc_html(number_format_i18n((int) $wpjobportal_pj->hits)); ?></td>
+                                        <td class="wjp-num"><?php echo esc_html(number_format_i18n((int) $wpjobportal_pj->apps)); ?></td>
+                                        <td class="wjp-num"><?php echo esc_html($wpjobportal_rate); ?></td>
+                                        <td class="wjp-table-actions"><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_jobapply&wpjobportallt=jobappliedresume&jobid=' . (int) $wpjobportal_pj->id)); ?>"><?php echo esc_html__('Applications', 'wp-job-portal'); ?></a></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <?php if ($wpjobportal_perf['none_total'] > 0) : ?>
+                            <div class="wjp-perf-none">
+                                <div class="wjp-perf-none-title"><?php /* translators: %s: number of jobs */ echo esc_html(sprintf(_n('%s open job has no applications after 7 days', '%s open jobs have no applications after 7 days', $wpjobportal_perf['none_total'], 'wp-job-portal'), number_format_i18n($wpjobportal_perf['none_total']))); ?></div>
+                                <ul>
+                                    <?php foreach ($wpjobportal_perf['none'] as $wpjobportal_nj) : ?>
+                                        <li><span><?php echo esc_html($wpjobportal_nj->title); ?></span> <small><?php /* translators: %s: number of views */ echo esc_html(sprintf(_n('%s view', '%s views', (int) $wpjobportal_nj->hits, 'wp-job-portal'), number_format_i18n((int) $wpjobportal_nj->hits))); ?></small> <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_job&wpjobportallt=formjob&wpjobportalid=' . (int) $wpjobportal_nj->id)); ?>"><?php echo esc_html__('Edit', 'wp-job-portal'); ?></a></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        <?php endif; ?>
                     <?php endif; ?>
-                    <?php if (isset($wpjobportal_wjp_options['latest_employers'])) : ?>
-                    <div id="" class="wjp-card wjp-latest-members">
-                        <div class="wjp-h3"><?php echo esc_html__('Latest Employers', 'wp-job-portal'); ?></div>
-                        <div class="wjp-list">
-                            <?php if (isset(wpjobportal::$_data[0]['latest_employers']) && !empty(wpjobportal::$_data[0]['latest_employers'])) {
-                                foreach(wpjobportal::$_data[0]['latest_employers'] as $wpjobportal_employer) { ?>
-                                <div class="wjp-list-item wjp-list-item-simple">
-                                    <div class="wjp-item-main-info">
-                                        <?php
-                                        $wpjobportal_photo = WPJOBPORTALincluder::getJSModel('common')->getDefaultImage('jobseeker');
-                                        if (isset($wpjobportal_employer->photo) && $wpjobportal_employer->photo != '') {
-                                            $wpjobportal_wpdir = wp_upload_dir();
-                                            $wpjobportal_data_directory = WPJOBPORTALincluder::getJSModel('configuration')->getConfigurationByConfigName('data_directory');
-                                            $wpjobportal_photo = $wpjobportal_wpdir['baseurl'] . '/' . $wpjobportal_data_directory . '/data/profile/profile_' . esc_attr($wpjobportal_employer->uid) . '/profile/' . $wpjobportal_employer->photo;
-                                        }
-                                        ?>
-                                        <img src="<?php echo esc_url($wpjobportal_photo) ?>" alt="<?php echo esc_attr($wpjobportal_employer->title); ?> Logo" class="wjp-logo">
-                                        <div class="wjp-item-text">
-                                            <p class="wjp-name"><a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userdetail&id='.(isset($wpjobportal_employer->emp_user_id) ? $wpjobportal_employer->emp_user_id : ''))); ?>"><?php echo esc_html($wpjobportal_employer->username); ?></a></p>
-                                            <p class="wjp-subtext"><?php echo esc_html__('Joined', 'wp-job-portal'); ?>: <?php echo !empty($wpjobportal_employer->created) ? esc_html(date_i18n(get_option('date_format'), strtotime($wpjobportal_employer->created))) : ''; ?></p>
-                                        </div>
-                                    </div>
-                                    <a href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_user&wpjobportallt=userdetail&id='.(isset($wpjobportal_employer->emp_user_id) ? $wpjobportal_employer->emp_user_id : ''))); ?>" class="wjp-view-all-link"><?php echo esc_html__('View Profile', 'wp-job-portal'); ?></a>
-                                </div>
-                            <?php }
-                            } else { ?>
-                                <div class="wjp-no-records"><?php echo esc_html__('No new employers have registered.', 'wp-job-portal'); ?></div>
-                            <?php } ?>
+                </div>
+                <?php $wpjobportal_sec['job_performance'] = ob_get_clean(); endif; ?>
+                <?php if (isset($wpjobportal_wjp_options['hiring_funnel'])) : ob_start();
+                    $wpjobportal_fun = WPJOBPORTAL_Dashboard_Service::funnel($wpjobportal_range);
+                    $wpjobportal_fun_top = max(1, (int) $wpjobportal_fun['steps'][0]['count']); ?>
+                <div id="wjp-hiring-funnel" class="wjp-card">
+                    <div class="wjp-h3"><?php echo esc_html__('Hiring funnel', 'wp-job-portal'); ?></div>
+                    <p class="wjp-fun-sub"><?php /* translators: %s: range, e.g. 30 days */ echo esc_html(sprintf(__('Applications made in the last %s, by how far they got.', 'wp-job-portal'), WPJOBPORTAL_Dashboard_Service::ranges()[$wpjobportal_range])); ?></p>
+                    <?php if ($wpjobportal_fun['total'] === 0) : ?>
+                        <p class="wjp-att-empty"><?php echo esc_html__('No applications in this period.', 'wp-job-portal'); ?></p>
+                    <?php else : ?>
+                        <ul class="wjp-fun">
+                            <?php foreach ($wpjobportal_fun['steps'] as $wpjobportal_step) :
+                                $wpjobportal_pct = round($wpjobportal_step['count'] / $wpjobportal_fun_top * 100); ?>
+                                <li>
+                                    <span class="wjp-fun-l"><?php echo esc_html($wpjobportal_step['label']); ?></span>
+                                    <span class="wjp-fun-bar"><span style="width:<?php echo esc_attr(max(2, $wpjobportal_pct)); ?>%"></span></span>
+                                    <b class="wjp-fun-n"><?php echo esc_html(number_format_i18n($wpjobportal_step['count'])); ?></b>
+                                    <small class="wjp-fun-p"><?php echo esc_html($wpjobportal_pct . '%'); ?></small>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <p class="wjp-fun-foot"><?php /* translators: %s: number of applications */ echo esc_html(sprintf(_n('%s not selected', '%s not selected', $wpjobportal_fun['not_selected'], 'wp-job-portal'), number_format_i18n($wpjobportal_fun['not_selected']))); ?></p>
+                    <?php endif; ?>
+                </div>
+                <?php $wpjobportal_sec['hiring_funnel'] = ob_get_clean(); endif; ?>
+                <?php if (isset($wpjobportal_wjp_options['activity_feed'])) : ob_start();
+                    $wpjobportal_feed = WPJOBPORTAL_Dashboard_Service::activity_feed(); ?>
+                <div id="wjp-activity-feed" class="wjp-card">
+                    <div class="wjp-card-header">
+                        <div class="wjp-h3" style="margin-bottom:0;"><?php echo esc_html__('Recent activity', 'wp-job-portal'); ?></div>
+                        <div class="wjp-feed-filter" role="group" aria-label="<?php echo esc_attr__('Show', 'wp-job-portal'); ?>">
+                            <button type="button" class="is-on" data-type="" aria-pressed="true"><?php echo esc_html__('All', 'wp-job-portal'); ?></button>
+                            <?php foreach (WPJOBPORTAL_Dashboard_Service::activity_types() as $wpjobportal_ft => $wpjobportal_fl) : ?>
+                                <button type="button" data-type="<?php echo esc_attr($wpjobportal_ft); ?>" aria-pressed="false"><?php echo esc_html($wpjobportal_fl); ?></button>
+                            <?php endforeach; ?>
                         </div>
                     </div>
+                    <?php if (empty($wpjobportal_feed)) : ?>
+                        <p class="wjp-att-empty"><?php echo esc_html__('Nothing has happened yet. New jobs, applications and members will show here.', 'wp-job-portal'); ?></p>
+                    <?php else : ?>
+<?php $wpjobportal_ev_n = 0; $wpjobportal_groups = array();
+                        foreach ($wpjobportal_feed as $wpjobportal_ev) {
+                            $wpjobportal_g = WPJOBPORTAL_Dashboard_Service::day_group($wpjobportal_ev['time']);
+                            $wpjobportal_groups[$wpjobportal_g[0]]['label'] = $wpjobportal_g[1];
+                            $wpjobportal_groups[$wpjobportal_g[0]]['items'][] = $wpjobportal_ev;
+                        }
+                        $wpjobportal_ev_icon = array('application' => array('mail', 'amber'), 'job' => array('brief', 'pri'), 'resume' => array('file', 'sky'), 'company' => array('build', 'green'), 'member' => array('user', 'pri')); ?>
+                        <div class="wjp-feed">
+                            <?php foreach ($wpjobportal_groups as $wpjobportal_group) : ?>
+                                <div class="wjp-feed-group">
+                                    <div class="wjp-feed-day"><?php echo esc_html($wpjobportal_group['label']); ?></div>
+                                    <ul>
+                                        <?php foreach ($wpjobportal_group['items'] as $wpjobportal_ev) : $wpjobportal_ei = $wpjobportal_ev_icon[$wpjobportal_ev['type']]; ?>
+                                            <li data-type="<?php echo esc_attr($wpjobportal_ev['type']); ?>"<?php echo $wpjobportal_ev_n++ >= 8 ? ' class="wjp-feed-more"' : ''; ?>>
+                                                <span class="wjp-feed-ico wjp-t-<?php echo esc_attr($wpjobportal_ei[1]); ?>" title="<?php echo esc_attr(WPJOBPORTAL_Dashboard_Service::activity_types()[$wpjobportal_ev['type']]); ?>"><?php echo $wpjobportal_icon($wpjobportal_ei[0]); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- fixed SVG ?></span>
+                                                <a class="wjp-feed-text" href="<?php echo esc_url($wpjobportal_ev['url']); ?>">
+                                                    <b><?php echo esc_html($wpjobportal_ev['title']); ?></b>
+                                                    <span><?php echo esc_html($wpjobportal_ev['detail']); ?></span>
+                                                </a>
+                                                <time datetime="<?php echo esc_attr(mysql2date('c', $wpjobportal_ev['time'])); ?>"><?php /* translators: %s: time, e.g. 3 hours */ echo esc_html(sprintf(__('%s ago', 'wp-job-portal'), human_time_diff(strtotime($wpjobportal_ev['time']), strtotime(current_time('mysql'))))); ?></time>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <?php if (count($wpjobportal_feed) > 8) : ?><button type="button" class="wjp-feed-toggle" aria-expanded="false"><?php echo esc_html__('Show more', 'wp-job-portal'); ?></button><?php endif; ?>
                     <?php endif; ?>
+                </div>
+                <?php $wpjobportal_sec['activity_feed'] = ob_get_clean(); endif; ?>
+                <?php if (isset($wpjobportal_wjp_options['revenue']) && WPJOBPORTAL_Dashboard_Service::has_payments() && current_user_can('manage_options')) : ob_start();
+                    $wpjobportal_rev = WPJOBPORTAL_Dashboard_Service::revenue();
+                    list($wpjobportal_rev_d, $wpjobportal_rev_t) = $wpjobportal_rev['delta']; ?>
+                <div id="wjp-revenue" class="wjp-card">
+                    <div class="wjp-card-header">
+                        <div class="wjp-h3" style="margin-bottom:0;"><?php echo esc_html__('Revenue', 'wp-job-portal'); ?></div>
+                        <a class="wjp-view-all-link" href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal_invoice')); ?>"><?php echo esc_html__('Invoices', 'wp-job-portal'); ?></a>
+                    </div>
+                    <div class="wjp-rev-main">
+                        <span class="wjp-kpi-l"><?php echo esc_html__('Paid this month', 'wp-job-portal'); ?></span>
+                        <b class="wjp-kpi-n"><?php echo esc_html($wpjobportal_rev['this_month']); ?></b>
+                        <span class="wjp-kpi-d wjp-kpi-<?php echo esc_attr($wpjobportal_rev_t); ?>" title="<?php echo esc_attr(sprintf(/* translators: %s: change */ __('Change: %s', 'wp-job-portal'), $wpjobportal_rev_d)); ?>"><?php if ($wpjobportal_rev_t !== 'flat') : ?><b class="wjp-kpi-arrow" aria-hidden="true"><?php echo esc_html($wpjobportal_rev_t === 'up' ? '▲' : '▼'); ?></b> <?php endif; ?><small><?php /* translators: %s: amount paid last month */ echo esc_html(sprintf(__('Last month: %s', 'wp-job-portal'), $wpjobportal_rev['last_month_empty'] ? __('nothing', 'wp-job-portal') : $wpjobportal_rev['last_month'])); ?></small></span>
+                    </div>
+                    <ul class="wjp-rev-list">
+                        <li><span><?php echo esc_html__('Payments not completed', 'wp-job-portal'); ?></span><b><?php echo esc_html(number_format_i18n($wpjobportal_rev['pending_n'])); ?><?php if ($wpjobportal_rev['pending_n']) : ?> · <?php echo esc_html($wpjobportal_rev['pending']); ?><?php endif; ?></b></li>
+                        <li><span><?php echo esc_html__('Active subscriptions', 'wp-job-portal'); ?></span><b><?php echo esc_html(number_format_i18n($wpjobportal_rev['active'])); ?></b></li>
+                        <li><span><?php echo esc_html__('Renewing in 7 days', 'wp-job-portal'); ?></span><b><?php echo esc_html(number_format_i18n($wpjobportal_rev['renewing'])); ?></b></li>
+                    </ul>
+                </div>
+                <?php $wpjobportal_sec['revenue'] = ob_get_clean(); endif; ?>
+                <?php ob_end_clean(); ?>
+                <div id="wjp-sections">
+                    <?php foreach (WPJOBPORTAL_Dashboard_Service::order() as $wpjobportal_sec_key) {
+                        if (!isset($wpjobportal_sec[$wpjobportal_sec_key])) {
+                            continue;
+                        }
+                        echo '<div class="wjp-sec wjp-sec-' . esc_attr(WPJOBPORTAL_Dashboard_Service::width($wpjobportal_sec_key)) . '" data-key="' . esc_attr($wpjobportal_sec_key) . '">';
+                        echo $wpjobportal_sec[$wpjobportal_sec_key]; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- each section escapes its own output above
+                        echo '</div>';
+                    } ?>
                 </div>
             </main>
             <?php
@@ -918,6 +631,68 @@ $wpjobportal_js = '
       });
 ';
 wp_add_inline_script('wp-job-portal-dashboard-js', $wpjobportal_js);
+// W-20: the activity feed's filter buttons.
+wp_add_inline_script('wp-job-portal-dashboard-js', "
+function wjpFeedGroups(card) {
+    if (!card) { return; }
+    var open = card.classList.contains('is-open');
+    card.querySelectorAll('.wjp-feed-group').forEach(function (g) {
+        var shown = Array.prototype.some.call(g.querySelectorAll('li'), function (li) { return !li.hidden && (open || !li.classList.contains('wjp-feed-more')); });
+        g.hidden = !shown;
+    });
+}
+document.addEventListener('DOMContentLoaded', function () { wjpFeedGroups(document.getElementById('wjp-activity-feed')); });
+document.addEventListener('click', function (e) {
+    var more = e.target.closest('.wjp-feed-toggle');
+    if (more) {
+        var open = more.getAttribute('aria-expanded') !== 'true';
+        more.closest('#wjp-activity-feed').classList.toggle('is-open', open);
+        more.setAttribute('aria-expanded', open ? 'true' : 'false');
+        more.textContent = open ? '" . esc_js(__('Show less', 'wp-job-portal')) . "' : '" . esc_js(__('Show more', 'wp-job-portal')) . "';
+        wjpFeedGroups(more.closest('#wjp-activity-feed'));
+        return;
+    }
+    var btn = e.target.closest('.wjp-feed-filter button');
+    if (!btn) { return; }
+    var card = btn.closest('#wjp-activity-feed'), type = btn.dataset.type;
+    card.querySelectorAll('.wjp-feed-filter button').forEach(function (b) { b.classList.toggle('is-on', b === btn); b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+    card.querySelectorAll('.wjp-feed li').forEach(function (li) { li.hidden = type !== '' && li.dataset.type !== type; });
+    // A filtered list shows every match, so Show more has nothing to add; All goes back to the short list.
+    var toggle = card.querySelector('.wjp-feed-toggle');
+    card.classList.toggle('is-open', type !== '');
+    if (toggle) {
+        toggle.hidden = type !== '';
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.textContent = '" . esc_js(__('Show more', 'wp-job-portal')) . "';
+    }
+    wjpFeedGroups(card);
+});
+");
+// W-20: arrange the sections in Options - drag a row, or use its arrows.
+wp_add_inline_script('wp-job-portal-dashboard-js', "
+document.addEventListener('DOMContentLoaded', function () {
+    var list = document.getElementById('wjp-so-arrange');
+    if (!list) { return; }
+    var dragged = null;
+    list.addEventListener('click', function (e) {
+        var btn = e.target.closest('.wjp-so-move');
+        if (!btn) { return; }
+        var li = btn.closest('li');
+        if (btn.dataset.dir === '-1' && li.previousElementSibling) { list.insertBefore(li, li.previousElementSibling); }
+        if (btn.dataset.dir === '1' && li.nextElementSibling) { list.insertBefore(li.nextElementSibling, li); }
+        btn.focus();
+    });
+    list.addEventListener('dragstart', function (e) { dragged = e.target.closest('li'); if (dragged) { dragged.classList.add('is-dragging'); e.dataTransfer.effectAllowed = 'move'; } });
+    list.addEventListener('dragend', function () { if (dragged) { dragged.classList.remove('is-dragging'); } dragged = null; });
+    list.addEventListener('dragover', function (e) {
+        var over = e.target.closest('li');
+        if (!dragged || !over || over === dragged) { return; }
+        e.preventDefault();
+        var r = over.getBoundingClientRect();
+        list.insertBefore(dragged, (e.clientY - r.top) > r.height / 2 ? over.nextElementSibling : over);
+    });
+});
+");
 
 $wpjobportal_labels = isset( wpjobportal::$_data['top_categories']['labels'] )
     ? wpjobportal::$_data['top_categories']['labels']
@@ -950,9 +725,9 @@ function drawTopCategoriesChart() {
     ]);
 
     var view = new google.visualization.DataView(data);
+    // One colour for every bar (the dashboard's indigo), not a colour per category.
     view.setColumns([0, 1,
-        { calc: 'stringify', sourceColumn: 1, type: 'string', role: 'annotation' },
-        2
+        { calc: 'stringify', sourceColumn: 1, type: 'string', role: 'annotation' }
     ]);
 
     var options = {
@@ -961,7 +736,9 @@ function drawTopCategoriesChart() {
         height: 300,
         bar: { groupWidth: '80%' },
         legend: { position: 'none' },
-        chartArea: { width: '90%', top: 50 }
+        colors: ['#4f46e5'],
+        chartArea: { width: '90%', top: 50 },
+        vAxis: { viewWindow: { min: 0 } }
     };
 
     var chart = new google.visualization.ColumnChart(document.getElementById('topCategoriesChart'));
@@ -1008,6 +785,7 @@ function drawJobsStatusChart() {
         height: 300,
         legend: { position: 'bottom' },
         pieHole: 0.7, // same as Chart.js cutout: '70%'
+        colors: ['#4f46e5', '#818cf8', '#c7d2fe', '#3730a3', '#a5b4fc', '#64748b'],
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('jobsStatusChart'));
@@ -1086,21 +864,24 @@ function drawApplicationChart() {
     ]);
 
     var options = {
-        colors:['#5F3BBB', '#179650', '#D98E11', '#1EADD8', '#DB624C'],
+        colors: ['#4f46e5', '#94a3b8', '#818cf8', '#334155', '#c7d2fe'],
         curveType: 'function',
         legend: { position: 'bottom' },
-        pointSize: 6,
+        pointSize: 0,
+        areaOpacity: 0.22,
+        lineWidth: 2.5,
         height: 350,
         width: '100%',
         focusTarget: 'category',
         chartArea: { width: '90%', top: 50 },
+        vAxis: { viewWindow: { min: 0 } }, // counts are never negative; the smoothed curve dipped below 0
         hAxis: {
             // if date axis, format nicely; otherwise strings show as-is
             format: '" . ($wpjobportal_x_column_type === 'date' ? 'MMM yyyy' : '') . "'
         }
     };
 
-    var chart = new google.visualization.LineChart(document.getElementById('applicationChart'));
+    var chart = new google.visualization.AreaChart(document.getElementById('applicationChart')); // direction A: filled area
     chart.draw(data, options);
 }
 ";

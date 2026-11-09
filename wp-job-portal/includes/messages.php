@@ -89,6 +89,10 @@ class WPJOBPORTALMessages {
                 if ($wpjobportal_msg1)
                     $wpjobportal_msg['message'] = $wpjobportal_msg1 . ' ' . $wpjobportal_msg2;
                 break;
+            case WPJOBPORTAL_CITY_NO_COUNTRY:
+                $wpjobportal_msg['status'] = "error";
+                $wpjobportal_msg['message'] = esc_html(__('The city has not been saved: no country was chosen. Open Countries, then the Cities of that country, and add the city there.', 'wp-job-portal'));
+                break;
             case WPJOBPORTAL_DELETED:
                 $wpjobportal_msg2 = esc_html(__('has been successfully deleted', 'wp-job-portal'));
                 if ($wpjobportal_msg1)
@@ -425,7 +429,7 @@ class WPJOBPORTALMessages {
                 break;
             case 'tag':$wpjobportal_name = esc_html(__('Tag', 'wp-job-portal'));
                 break;
-            case 'shortlisted':$wpjobportal_name = esc_html(__('Short listed', 'wp-job-portal'));
+            case 'shortlisted':$wpjobportal_name = esc_html(__('Saved job', 'wp-job-portal'));
                 break;
             case WPJOBPORTAL_CONFIGURATION:$wpjobportal_name = esc_html(__('Configuration', 'wp-job-portal'));
                 break;

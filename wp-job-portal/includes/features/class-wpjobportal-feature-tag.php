@@ -20,7 +20,8 @@ final class WPJOBPORTAL_Feature_tag {
     public static function register() {
         $feature = new self();
 
-        add_action('wpjobportal_addons_admin_sidemenu_links_for_tags', array($feature, 'wpjobportal_addons_credit_addcompany'), 10, 2);
+        // The admin menu (WPJOBPORTAL_Admin_Menu_Service) draws these links itself now.
+        // add_action('wpjobportal_addons_admin_sidemenu_links_for_tags', array($feature, 'wpjobportal_addons_credit_addcompany'), 10, 2);
         add_filter('wpjobportal_credit_job_input_for_tagline', array($feature, 'wp_job_portaladdons_credit_input_tagline_for_jobs'), 10, 3);
         add_action('wpjobportal_credit_addons_search_job_ref_tags', array($feature, 'wp_job_portaladdons_searc_job_tags'), 10, 1);
         add_filter('wpjobportal_addons_makeanchor_for_tags', array($feature, 'wpjobportal_addons_make_anchor_for_tags'), 10, 2);
@@ -37,7 +38,7 @@ final class WPJOBPORTAL_Feature_tag {
             if($c == 'wpjobportal_tag') $class = 'active';
             $html .= '<li class="treeview '.esc_attr($class).'">
                         <a href="admin.php?page=wpjobportal_tag" title="'. __('Tags' , 'wp-job-portal').'">
-                            <img class="wpjobportaladmin-menu-icon" alt="'.__('Tags' , 'wp-job-portal').'" src='.WPJOBPORTAL_PLUGIN_URL.'includes/images/control_panel/dashboard/admin-left-menu/tags.png />
+                            <img class="wpjobportaladmin-menu-icon" alt="'.__('Tags' , 'wp-job-portal').'" src="'.WPJOBPORTAL_PLUGIN_URL.'includes/images/control_panel/dashboard/admin-left-menu/tags.png" />
                             <span class="wpjobportaladmin-text">
                                 '.__('Tags' , 'wp-job-portal').'
                             </span>

@@ -155,7 +155,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                                 $wpjobportal_logo = $wpjobportal_wpdir['baseurl'] . '/' . $wpjobportal_data_directory . '/data/employer/comp_' . $wpjobportal_company->id . '/logo/' . $wpjobportal_company->logofilename;
                             }
 
-                            $wpjobportal_contents .= '<a href=' . esc_url($c_l) . '><img  src="' . esc_url($wpjobportal_logo) . '"  /></a>';
+                            $wpjobportal_contents .= '<a href="' . esc_url($c_l) . '"><img  src="' . esc_url($wpjobportal_logo) . '"  /></a>';
                             $wpjobportal_contents .= '</span>';
                         }
                         if ($title != 0) {
@@ -477,7 +477,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                                 $wpjobportal_logo = $wpjobportal_wpdir['baseurl'] . '/' . $wpjobportal_data_directory . '/data/jobseeker/resume_' . $wpjobportal_resume->resumeid . '/photo/' . $wpjobportal_resume->photo;
                             }
 
-                            $wpjobportal_contents .= '<a href=' . esc_url($c_l) . '><img  src="' . esc_url($wpjobportal_logo) . '"  /></a>';
+                            $wpjobportal_contents .= '<a href="' . esc_url($c_l) . '"><img  src="' . esc_url($wpjobportal_logo) . '"  /></a>';
                             $wpjobportal_contents .= '</span>';
                         }
                         if ($wpjobportal_applicationtitle != 0) {
@@ -607,7 +607,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                             $an_link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'resume', 'wpjobportallt'=>'viewresume', 'wpjobportalid'=>$wpjobportal_resume->resumealiasid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
                             $wpjobportal_contents .= '
                                                 <div id="wpjobportal_module_data_fieldwrapper" class="' . esc_attr($colwidthclass) . esc_attr($wpjobportal_class) . ' wjportal-res-data">
-                                                    <a class="wjportal-res-app" href=' . esc_url($an_link) . '>' . esc_html($wpjobportal_resume->applicationtitle) . '</a>
+                                                    <a class="wjportal-res-app" href="' . esc_url($an_link) . '">' . esc_html($wpjobportal_resume->applicationtitle) . '</a>
                                                 </div>
                                               ';
                         }
@@ -987,7 +987,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                             var showCategory = '.$wpjobportal_category.';
                             var showCompany = '.$wpjobportal_company.';
                             var default_latitude = parseFloat('.$wpjobportal_default_latitude.');
-                            var default_longitude = parseFloat('.$wpjobportal_default_latitude.');;
+                            var default_longitude = parseFloat('.$wpjobportal_default_longitude.');
                             var coordinate = [default_longitude,default_latitude];
                             if(!osmMap){
                                 osmMap = new ol.Map({
@@ -1096,7 +1096,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                                     if($wpjobportal_job->logofilename != ''){
                                         $wpjobportal_logo = $wpjobportal_wpdir['baseurl'] . '/' . $wpjobportal_data_directory . '/data/employer/comp_' . $wpjobportal_job->companyid . '/logo/' . $wpjobportal_job->logofilename;
                                     }
-                                    $wpjobportal_contents .= '<a href=' . esc_url($c_l) . '><img src="' . esc_url($wpjobportal_logo) . '"  /></a>';
+                                    $wpjobportal_contents .= '<a href="' . esc_url($c_l) . '"><img src="' . esc_url($wpjobportal_logo) . '"  /></a>';
                                 $wpjobportal_contents .= '</div>';
                                 $an_link = wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'wpjobportallt'=>'viewjob', 'wpjobportalid'=>$wpjobportal_job->jobaliasid, 'wpjobportalpageid'=>wpjobportal::wpjobportal_getPageid()));
                                 $wpjobportal_contents .= '<div class="wjportal-jobs-cnt-wrp">
@@ -1160,7 +1160,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                                                         </div>
                                                     </div>
                                                     <div class="wjportal-jobs-info">
-                                                        '.human_time_diff(strtotime($wpjobportal_job->created),strtotime(date_i18n("Y-m-d H:i:s"))).' '.esc_html(__("Ago",'wp-job-portal'))  .'
+                                                        '.esc_html(sprintf(/* translators: %s: how long ago, e.g. 3 days */ __('%s ago', 'wp-job-portal'), human_time_diff(strtotime($wpjobportal_job->created),strtotime(date_i18n("Y-m-d H:i:s")))))  .'
                                                     </div>
                                                 </div>
                                             </div>';
@@ -1222,7 +1222,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                                     if($wpjobportal_company->logofilename != ''){
                                         $wpjobportal_logo = $wpjobportal_wpdir['baseurl'] . '/' . $wpjobportal_data_directory . '/data/employer/comp_' . $wpjobportal_company->id . '/logo/' . $wpjobportal_company->logofilename;
                                     }
-                                    $wpjobportal_contents .= '<a href=' . esc_url($c_l) . '><img src="' . esc_url($wpjobportal_logo) . '"  /></a>';
+                                    $wpjobportal_contents .= '<a href="' . esc_url($c_l) . '"><img src="' . esc_url($wpjobportal_logo) . '"  /></a>';
                                 $wpjobportal_contents .= '</div>';
                                 $wpjobportal_contents .= '<div class="wjportal-company-cnt-wrp">';
                                     $wpjobportal_contents .= '<div class="wjportal-company-middle-wrp">
@@ -1241,7 +1241,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                                                     <div class="wjportal-company-data">
                                                         <div class="wjportal-company-data-text">
                                                             <span class="wjportal-company-data-title">'. esc_html(__("Created",'wp-job-portal')) .':</span>
-                                                            <span class="wjportal-company-data-value">'. human_time_diff(strtotime($wpjobportal_company->created),strtotime(date_i18n("Y-m-d H:i:s"))).' '.esc_html(__("Ago",'wp-job-portal')) .':</span>
+                                                            <span class="wjportal-company-data-value">'. esc_html(sprintf(/* translators: %s: how long ago, e.g. 3 days */ __('%s ago', 'wp-job-portal'), human_time_diff(strtotime($wpjobportal_company->created),strtotime(date_i18n("Y-m-d H:i:s"))))) .':</span>
                                                         </div>
                                                         <div class="wjportal-company-data-text">
                                                             <span class="wjportal-company-data-title">'. esc_html(__("Status",'wp-job-portal')) .':</span>
@@ -1309,12 +1309,12 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                                     if($wpjobportal_resume->photo != ''){
                                         $wpjobportal_logo = $wpjobportal_wpdir['baseurl'] . '/' . $wpjobportal_data_directory . '/data/jobseeker/resume_' . $wpjobportal_resume->resumeid . '/photo/' . $wpjobportal_resume->photo;
                                     }
-                                    $wpjobportal_contents .= '<a href=' . esc_url($c_l) . '><img class="wpjobportal-module-datalist-img" src="' . esc_url($wpjobportal_logo) . '"  /></a>';
+                                    $wpjobportal_contents .= '<a href="' . esc_url($c_l) . '"><img class="wpjobportal-module-datalist-img" src="' . esc_url($wpjobportal_logo) . '"  /></a>';
                                 $wpjobportal_contents .= '</div>';
                                 $wpjobportal_contents .= '<div class="wjportal-resume-cnt-wrp">
                                                 <div class="wjportal-resume-middle-wrp">
                                                     ' . (!empty($wpjobportal_resume->jobtypetitle) ? '<div class="wjportal-resume-data">
-                                                        <span class="wjportal-resume-job-type" style="--wpjp-jobtype-color:'.$wpjobportal_resume->jobtypecolor.'">
+                                                        <span class="wjportal-resume-job-type" style="--wpjp-jobtype-color:'.esc_attr(WPJOBPORTAL_Color::on_white($wpjobportal_resume->jobtypecolor)).'">
                                                             ' .esc_html( $wpjobportal_resume->jobtypetitle) . '
                                                         </span>
                                                     </div>' : '') . '
@@ -1418,7 +1418,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
         }
         if ($wpjobportal_jobstatus == 1) {
             $title = esc_html(__('Job Status', 'wp-job-portal'));
-            $wpjobportal_value = WPJOBPORTALformfield::select('jobstatus[]', WPJOBPORTALincluder::getJSModel('jobstatus')->getJobStatusForCombo(), isset(wpjobportal::$_data[0]['filter']->jobstatus) ? wpjobportal::$_data[0]['filter']->jobstatus : '', esc_html(__('Select','wp-job-portal')) .' '. esc_html(__('Job Status', 'wp-job-portal')), array('class' => 'inputbox wjportal-form-select-field'));
+            $wpjobportal_value = WPJOBPORTALformfield::select('jobstatus[]', WPJOBPORTALincluder::getJSModel('jobstatus')->getJobStatusForCombo(true), isset(wpjobportal::$_data[0]['filter']->jobstatus) ? wpjobportal::$_data[0]['filter']->jobstatus : '', esc_html(__('Select','wp-job-portal')) .' '. esc_html(__('Job Status', 'wp-job-portal')), array('class' => 'inputbox wjportal-form-select-field'));
             $wpjobportal_html .= '<div class="wjportal-form-row" ' . esc_attr($wpjobportal_style) . '>
                 <div class="wjportal-form-title">' . esc_html($title) . '</div>
                 <div class="wjportal-form-value">' . wp_kses($wpjobportal_value,WPJOBPORTAL_ALLOWED_TAGS) . '</div>
@@ -1636,7 +1636,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
             }
             if ($wpjobportal_show_posted && !empty($wpjobportal_job->created)) {
                 $wpjobportal_html .= '&nbsp; - &nbsp; <span class="wpjobportal-job-company-posted-date">';
-                $wpjobportal_html .= human_time_diff(strtotime($wpjobportal_job->created), strtotime(date_i18n("Y-m-d H:i:s"))) . ' ' . esc_html(__("Ago", 'wp-job-portal'));
+                $wpjobportal_html .= esc_html(sprintf(/* translators: %s: how long ago, e.g. 3 days */ __('%s ago', 'wp-job-portal'), human_time_diff(strtotime($wpjobportal_job->created), strtotime(date_i18n("Y-m-d H:i:s"))))) ;
                 $wpjobportal_html .= '</span>';
             }
             $wpjobportal_html .= '</div>';
@@ -1764,7 +1764,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
                 if ($wpjobportal_show_jobtype && !empty($wpjobportal_job->jobtypetitle)) {
                     //if($wpjobportal_layout != 'grid'){
                         $wpjobportal_field_value = $wpjobportal_job->jobtypetitle;
-                        $wpjobportal_job_type_color = $wpjobportal_job->jobtypecolor;
+                        $wpjobportal_job_type_color = WPJOBPORTAL_Color::on_white($wpjobportal_job->jobtypecolor);
                     // }else{
                     //     $wpjobportal_field_value = '
                     //     <span class="wjportal-job-type" style="background:'. esc_attr($wpjobportal_job->jobtypecolor).'">
@@ -1788,7 +1788,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
 
             case 'posted':
                 // if ($wpjobportal_show_posted && !empty($wpjobportal_job->created)) {
-                //     $wpjobportal_field_value = human_time_diff(strtotime($wpjobportal_job->created), strtotime(date_i18n("Y-m-d H:i:s"))) . ' ' . esc_html(__("Ago", 'wp-job-portal'));
+                //     $wpjobportal_field_value = esc_html(sprintf(/* translators: %s: how long ago, e.g. 3 days */ __('%s ago', 'wp-job-portal'), human_time_diff(strtotime($wpjobportal_job->created), strtotime(date_i18n("Y-m-d H:i:s"))))) ;
                 // }
                 break;
 
@@ -1990,7 +1990,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
             case 'job_type':
                 if ($wpjobportal_show_jobtype && !empty($wpjobportal_resume->jobtypetitle)) {
                     $wpjobportal_field_value = $wpjobportal_resume->jobtypetitle;
-                    $wpjobportal_job_type_color = $wpjobportal_resume->jobtypecolor;
+                    $wpjobportal_job_type_color = WPJOBPORTAL_Color::on_white($wpjobportal_resume->jobtypecolor);
                     // if($wpjobportal_layout != 'grid'){
                     //     $wpjobportal_field_value = $wpjobportal_resume->jobtypetitle;
                     // }else{
@@ -2034,7 +2034,7 @@ class WPJOBPORTALwpjobportalwidgetsModel {
 
             case 'posted':
                 if ($wpjobportal_show_posted && !empty($wpjobportal_resume->created)) {
-                    $wpjobportal_field_value = human_time_diff(strtotime($wpjobportal_resume->created), strtotime(date_i18n("Y-m-d H:i:s"))) . ' ' . esc_html(__("Ago", 'wp-job-portal'));
+                    $wpjobportal_field_value = esc_html(sprintf(/* translators: %s: how long ago, e.g. 3 days */ __('%s ago', 'wp-job-portal'), human_time_diff(strtotime($wpjobportal_resume->created), strtotime(date_i18n("Y-m-d H:i:s"))))) ;
                 }
                 break;
         }

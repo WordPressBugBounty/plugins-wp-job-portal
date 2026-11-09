@@ -703,7 +703,7 @@ class WPJOBPORTALFieldorderingModel {
         $wpjobportal_sectionfor = WPJOBPORTALrequest::getVar('sectionfor');
         if(!is_numeric($wpjobportal_sectionfor)) return false;
 
-        $query = "SELECT fieldtitle AS text ,id FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE fieldfor = 3 AND userfieldtype = 'combo' AND section = " . (int) ($wpjobportal_sectionfor);
+        $query = "SELECT fieldtitle AS text ,id FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE fieldfor = 3 AND userfieldtype IN ('combo', 'radio') AND section = " . (int) ($wpjobportal_sectionfor);
         $wpjobportal_data = wpjobportaldb::get_results($query);
         $wpjobportal_jsFunction = '';
 
@@ -932,11 +932,11 @@ class WPJOBPORTALFieldorderingModel {
             die( 'Security check Failed' );
         }
         $wpjobportal_val = WPJOBPORTALrequest::getVar('fvalue');
-        $childfield = WPJOBPORTALrequest::getVar('child');
+        $childfield = preg_replace('/[^A-Za-z0-9_\-]/', '', (string) WPJOBPORTALrequest::getVar('child')); // Security: a field name, printed into HTML.
         $wpjobportal_section = WPJOBPORTALrequest::getVar('section');
         $wpjobportal_sectionid = WPJOBPORTALrequest::getVar('sectionid');
         $type = WPJOBPORTALrequest::getVar('type');
-        $wpjobportal_themecall = WPJOBPORTALrequest::getVar('themecall');
+        $wpjobportal_themecall = WPJOBPORTALrequest::getVar('themecall'); $wpjobportal_themecall = ($wpjobportal_themecall === null || $wpjobportal_themecall === '') ? $wpjobportal_themecall : (string) absint($wpjobportal_themecall); // Security: printed into an onchange handler.
         switch ($type) {
             case 1: //select type dependent combo
             case 2: //radio type dependent combo
@@ -952,8 +952,8 @@ class WPJOBPORTALFieldorderingModel {
             die( 'Security check Failed' );
         }
         $wpjobportal_val = WPJOBPORTALrequest::getVar('fvalue');
-        $childfield = WPJOBPORTALrequest::getVar('child');
-        $wpjobportal_themecall = WPJOBPORTALrequest::getVar('themecall');
+        $childfield = preg_replace('/[^A-Za-z0-9_\-]/', '', (string) WPJOBPORTALrequest::getVar('child')); // Security: a field name, printed into HTML.
+        $wpjobportal_themecall = WPJOBPORTALrequest::getVar('themecall'); $wpjobportal_themecall = ($wpjobportal_themecall === null || $wpjobportal_themecall === '') ? $wpjobportal_themecall : (string) absint($wpjobportal_themecall); // Security: printed into an onchange handler.
         $wpjobportal_themeclass="";
         if($wpjobportal_themecall){
             $wpjobportal_theme_string = ','. $wpjobportal_themecall ;
@@ -1101,7 +1101,7 @@ class WPJOBPORTALFieldorderingModel {
         }
         $wherequery = '';
         if(isset($wpjobportal_field) && $wpjobportal_field !='' ){
-            $query = "SELECT id FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE fieldfor = " . (int) ($wpjobportal_fieldfor) . " AND (userfieldtype = 'combo') AND visible_field = '" . esc_sql($wpjobportal_field) . "' ";
+            $query = "SELECT id FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE fieldfor = " . (int) ($wpjobportal_fieldfor) . " AND userfieldtype IN ('combo', 'radio') AND visible_field = '" . esc_sql($wpjobportal_field) . "' ";
             $parent = wpjobportal::$_db->get_var($query);
             if (is_numeric($parent)) {
                 $wherequery = ' OR id = ' . (int) ($parent);
@@ -1117,7 +1117,7 @@ class WPJOBPORTALFieldorderingModel {
         }
 
 
-        $query = "SELECT fieldtitle AS text ,id FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE fieldfor = " . (int) ($wpjobportal_fieldfor)." AND userfieldtype = 'combo' ".$wherequeryforedit.$wherequery;
+        $query = "SELECT fieldtitle AS text ,id FROM " . wpjobportal::$_db->prefix . "wj_portal_fieldsordering WHERE fieldfor = " . (int) ($wpjobportal_fieldfor)." AND userfieldtype IN ('combo', 'radio') ".$wherequeryforedit.$wherequery;
         $wpjobportal_data = wpjobportal::$_db->get_results($query);
         return $wpjobportal_data;
     }

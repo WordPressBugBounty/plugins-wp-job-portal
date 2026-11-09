@@ -18,6 +18,18 @@ $wpjobportal_msg = isset(wpjobportal::$_data[0]) ? esc_html(__('Edit', 'wp-job-p
         ?>
     </div>
     <?php if (wpjobportal::$_error_flag == null) { ?>
+    <?php
+    // W-3: say up front that a company comes first, not halfway down the form.
+    $wpjobportal_start_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
+    if (!WPJOBPORTALincluder::getObjectClass('user')->isguest() && WPJOBPORTALincluder::getObjectClass('user')->isemployer() && !WPJOBPORTAL_Employer_Start::has_company($wpjobportal_start_uid)) { ?>
+        <div class="wjportal-needs-company-top" role="note">
+            <div>
+                <strong><?php echo esc_html__('First, add your company', 'wp-job-portal'); ?></strong>
+                <p><?php echo esc_html__('Every job is posted under a company. Add yours - it takes a minute - and you will come straight back here to post the job.', 'wp-job-portal'); ?></p>
+            </div>
+            <a class="wjportal-needs-company-btn" href="<?php echo esc_url(WPJOBPORTAL_Employer_Start::add_company_url()); ?>"><?php echo esc_html__('Add your company', 'wp-job-portal'); ?></a>
+        </div>
+    <?php } ?>
     <div class="wjportal-form-wrp wjportal-add-job-form">
         <form class="wjportal-form wpjp-ds-form" id="wpjobportal-form" method="post" enctype="multipart/form-data" action="<?php echo esc_url(wpjobportal::wpjobportal_makeUrl(array('wpjobportalme'=>'job', 'task'=>'savejob'))); ?>">
             <?php

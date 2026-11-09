@@ -43,6 +43,9 @@ class WPJOBPORTAL_Uninstall_Guard {
     /** @var string Provider key of the product being uninstalled, if it is one. */
     private static $uninstalling = '';
 
+    /** @var bool A suite is going while "Delete all data" is off: keep all its tables. */
+    private static $keep_all = false;
+
     /** @var array Tables kept during this request. */
     private static $kept = array();
 
@@ -112,6 +115,9 @@ class WPJOBPORTAL_Uninstall_Guard {
      */
     public static function arm($plugin) {
         self::$uninstalling = self::provider_for($plugin);
+        // A suite's own uninstall.php (1.0.0 Recruit Suite) drops its tables
+        // whatever the owner chose. Read the choice now, before the filter is on.
+        self::$keep_all = in_array(self::$uninstalling, array('pro', 'recruit', 'marketplace', 'matching'), true) && !self::owner_deletes_data();
 
         // Priority 1: ahead of anything that rewrites queries for other reasons.
         add_filter('query', array(__CLASS__, 'filter_query'), 1);
@@ -137,7 +143,7 @@ class WPJOBPORTAL_Uninstall_Guard {
         $keep = array();
         $drop = array();
         foreach ($tables as $raw => $name) {
-            if (self::is_protected($name)) {
+            if (self::$keep_all || self::is_protected($name)) {
                 $keep[] = $name;
                 continue;
             }
@@ -213,6 +219,23 @@ class WPJOBPORTAL_Uninstall_Guard {
         }
 
         return false;
+    }
+
+    /**
+     * Did the owner switch on "Delete all data when the plugin is deleted"?
+     * The same rule as Core's uninstall: a missing setting means keep.
+     *
+     * @return bool
+     */
+    public static function owner_deletes_data() {
+        global $wpdb;
+        $config = $wpdb->prefix . 'wj_portal_config';
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+        if ($wpdb->get_var($wpdb->prepare('SHOW TABLES LIKE %s', $config)) !== $config) {
+            return false;
+        }
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+        return (string) $wpdb->get_var($wpdb->prepare('SELECT configvalue FROM %i WHERE configname = %s', $config, 'delete_data_on_uninstall')) === '1';
     }
 
     /**

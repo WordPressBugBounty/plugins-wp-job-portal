@@ -1029,6 +1029,9 @@ if (!defined('ABSPATH'))
             }
             */
         }
+        // Shortcodes unset sanitized_args once they render. A block theme renders
+        // the page before wp_head, so the head tags read this copy instead.
+        wpjobportal::$_data['route_args'] = isset(wpjobportal::$_data['sanitized_args']) ? (array) wpjobportal::$_data['sanitized_args'] : array();
     }
 
     add_action('parse_request', 'wpjp_parse_request');

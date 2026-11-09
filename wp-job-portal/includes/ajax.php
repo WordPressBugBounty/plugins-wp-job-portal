@@ -17,28 +17,44 @@ class WPJOBPORTALajax {
     }
 
     function ajaxhandler() {
-        $fucntin_allowed = array('DataForDepandantFieldResume', 'DataForDepandantField', 'saveJobShortlist', 'saveJobShortlistJobManager',
-                                'getQuickViewByJobId', 'getShortListViewByJobId', 'getShortListViewByJobIdJobPortal', 'getApplyNowByJobid',
-                                'jobapply', 'jobapplyjobmanager', 'getTellaFriend', 'deletecompanylogo', 'deleteResumeLogo',
-                                'getuserlistajax', 'getLogForUserById', 'getFieldsForComboByFieldFor', 'getSectionToFillValues', 'getUserIdByCompanyid',
-                                'changeNotifyOfNotifications', 'changeViewOfNotifications', 'getOptionsForFieldEdit', 'listdepartments',
-                                'saveTokenInputTag', 'makeJobCopyAjax', 'getsubcategorypopup', 'updateJobApplyResumeStatus', 'getResumeCommentSection',
-                                'getFolderSection', 'saveToFolderResume', 'storeResumeComments', 'setResumeRatting', 'getResumeDetail', 'getEmailFields',
-                                'jobapplyid', 'getFolderSection', 'getFolderSectionJobManager', 'saveToFolderResume', 'sendEmailToJobSeeker',
-                                'getResumeDetailJobManager', 'getEmailFieldsJobManager', 'hideTemplateBanner', 'getListTranslations',
-                                'validateandshowdownloadfilename', 'getlanguagetranslation', 'getPacakageListByUid', 'canceljobapplyasvisitor',
-                                'visitorapplyjob', 'removeResumeFileById', 'getResumeSectionAjax', 'deleteResumeSectionAjax', 'getOptionsForEditSlug',
-                                'getAllRoleLessUsersAjax', 'savetokeninputcity','sendmessageresume', 'sendmailtofriend',
-                                'getResumeCommentSectionJobManager',
-                                'getPaymentPopup','getPackagePopupForFeaturedCompany','getPackagePopupForFeaturedJob','getPackagePopupForFeaturedResume',
-                                'getPackagePopupForJobAlert','getPackagePopupJobView','getPackagePopupForCopyJob','getPackagePopupForCompanyContactDetail',
-                                'getPackagePopupForResumeContactDetail','gettagsbytagname','listDepartments','deleteUserPhoto',
-                                'getStripePlans','getChildForVisibleCombobox','isFieldRequired','getFieldsForComboBySection',
-                                'getUserRoleBasedInfo','storeConfigurationSingle','importZywrapData','checkZywrapApiKey','importZywrapBatchProcess',
-                                'getWrappersByCategory','executeZywrapProxy','getZywrapAllWrappers','getSchemaByUseCode','getAjaxJobs', 'executeCompanyCopilot',
-                                'executeJobCopilot', 'executeResumeCopilot', 'executeCoverLetterCopilot');
+        // Who may call each task. Visitors reach this handler too (wp_ajax_nopriv), so
+        // anything that needs an account or the admin is listed apart and checked here
+        // before the model runs, on top of each task's own nonce.
+        $wpjobportal_public_tasks = array(
+            'DataForDepandantFieldResume', 'DataForDepandantField', 'getQuickViewByJobId', 'getShortListViewByJobId',
+            'getShortListViewByJobIdJobPortal', 'getApplyNowByJobid', 'jobapply', 'jobapplyjobmanager', 'getTellaFriend',
+            'sendmailtofriend', 'deletecompanylogo', 'deleteResumeLogo', 'listdepartments', 'listDepartments', 'saveTokenInputTag',
+            'getsubcategorypopup', 'canceljobapplyasvisitor', 'visitorapplyjob', 'removeResumeFileById', 'getResumeSectionAjax',
+            'deleteResumeSectionAjax', 'savetokeninputcity', 'getPackagePopupJobView',
+            'getPackagePopupForCompanyContactDetail', 'getPackagePopupForResumeContactDetail', 'isFieldRequired', 'getAjaxJobs',
+            'executeCompanyCopilot', 'executeJobCopilot', 'executeResumeCopilot', 'executeCoverLetterCopilot');
+        $wpjobportal_user_tasks = array(
+            'saveJobShortlist', 'saveJobShortlistJobManager', 'changeNotifyOfNotifications', 'changeViewOfNotifications',
+            'makeJobCopyAjax', 'updateJobApplyResumeStatus', 'getResumeCommentSection', 'getResumeCommentSectionJobManager',
+            'storeResumeComments', 'setResumeRatting', 'getFolderSection', 'getFolderSectionJobManager', 'saveToFolderResume',
+            'getResumeDetail', 'getResumeDetailJobManager', 'getEmailFields', 'getEmailFieldsJobManager', 'sendEmailToJobSeeker',
+            'sendmessageresume', 'getPaymentPopup', 'getPackagePopupForFeaturedCompany', 'getPackagePopupForFeaturedJob',
+            'getPackagePopupForFeaturedResume', 'getPackagePopupForCopyJob', 'deleteUserPhoto', 'getWrappersByCategory',
+            'executeZywrapProxy', 'getZywrapAllWrappers', 'getSchemaByUseCode');
+        $wpjobportal_admin_tasks = array(
+            'getuserlistajax', 'getAllRoleLessUsersAjax', 'getUserRoleBasedInfo', 'getUserIdByCompanyid', 'getFieldsForComboByFieldFor',
+            'getSectionToFillValues', 'getFieldsForComboBySection', 'getChildForVisibleCombobox', 'getOptionsForFieldEdit',
+            'getOptionsForEditSlug', 'getStripePlans', 'getListTranslations', 'validateandshowdownloadfilename', 'getlanguagetranslation',
+            'importZywrapData', 'checkZywrapApiKey', 'importZywrapBatchProcess');
+        $fucntin_allowed = $wpjobportal_public_tasks;
+        if (is_user_logged_in()) {
+            $fucntin_allowed = array_merge($fucntin_allowed, $wpjobportal_user_tasks);
+        }
+        if (current_user_can('manage_options')) {
+            $fucntin_allowed = array_merge($fucntin_allowed, $wpjobportal_admin_tasks);
+        }
         $wpjobportal_task = preg_replace('/[^A-Za-z0-9_]/', '', (string) WPJOBPORTALrequest::getVar('task'));
         if($wpjobportal_task != '' && in_array($wpjobportal_task, $fucntin_allowed, true)){
+            // Tasks that touch one application also need the job's owner, an
+            // administrator or a recruit-team member.
+            if (!WPJOBPORTAL_Core_Action_Policy_Service::authorize_ajax($wpjobportal_task)) {
+                die('Not Allowed!');
+            }
             $wpjobportal_module = WPJOBPORTALrequest::getVar('wpjobportalme');
 
             // $wpjobportal_module = str_replace("..","",$wpjobportal_module);

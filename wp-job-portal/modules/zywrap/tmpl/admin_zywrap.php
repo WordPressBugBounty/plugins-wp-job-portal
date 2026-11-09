@@ -125,36 +125,7 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
     </div>
 
     <div id="wpjobportaladmin-data">
-        <div id="wpjobportal-wrapper-top">
-            <div id="wpjobportal-wrapper-top-left">
-                <div id="wpjobportal-breadcrumbs">
-                    <ul>
-                        <li>
-                            <a href="<?php echo esc_url_raw(admin_url('admin.php?page=wpjobportal')); ?>" title="<?php echo esc_html(__('Dashboard','wp-job-portal')); ?>">
-                                <?php echo esc_html(__('Dashboard','wp-job-portal')); ?>
-                            </a>
-                        </li>
-                        <li><?php echo esc_html(__('Zywrap Settings','wp-job-portal')); ?></li>
-                    </ul>
-                </div>
-            </div>
-            <div id="wpjobportal-wrapper-top-right">
-                <div id="wpjobportal-config-btn">
-                    <a href="admin.php?page=wpjobportal_configuration" title="<?php echo esc_html(__('Configuration','wp-job-portal')); ?>">
-                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/config.png">
-                   </a>
-                </div>
-                <div id="wpjobportal-help-btn" class="wpjobportal-help-btn">
-                    <a href="admin.php?page=wpjobportal&wpjobportallt=help" title="<?php echo esc_html(__('Help','wp-job-portal')); ?>">
-                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/control_panel/dashboard/help.png">
-                   </a>
-                </div>
-                <div id="wpjobportal-vers-txt">
-                    <?php echo esc_html(__('Version','wp-job-portal')).': '; ?>
-                    <span class="wpjobportal-ver"><?php echo esc_html(WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue('versioncode')); ?></span>
-                </div>
-            </div>
-        </div>
+        <?php WPJOBPORTAL_Admin_List_UI::legacy_top(); ?>
 
         <?php WPJOBPORTALincluder::getTemplate('templates/admin/pagetitle',array('wpjobportal_module' => 'wpjobportal' , 'wpjobportal_layouts' => 'zywrap')); ?>
 
@@ -301,7 +272,7 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
                                             <?php
                                             $wpjobportal_wpjobporatl_update_time = get_option('wpjobportal_zywrap_version_time');
                                             if(!empty($wpjobportal_wpjobporatl_update_time)){
-                                                echo esc_html(__('Last Sync', 'wp-job-portal')); ?>: <?php echo esc_html(human_time_diff(strtotime($wpjobportal_wpjobporatl_update_time),strtotime(date_i18n("Y-m-d H:i:s"))).' '.esc_html(__("Ago",'wp-job-portal')));;
+                                                echo esc_html(__('Last Sync', 'wp-job-portal')); ?>: <?php echo esc_html(sprintf(/* translators: %s: how long ago, e.g. 3 days */ __('%s ago', 'wp-job-portal'), human_time_diff(strtotime($wpjobportal_wpjobporatl_update_time),strtotime(date_i18n("Y-m-d H:i:s")))));;
                                             }
                                         ?></p>
 
@@ -370,7 +341,7 @@ $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
                 </div>
                 <div class="wpjobportal-zwrap-settings-section">
                     <a href="https://www.youtube.com/watch?v=JXpkwiW_5jE" title="<?php echo esc_html(__('How To Set Up','wp-job-portal')); ?>" target="_blank">
-                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/help-page/zywrap-how-to-set-up.jpg" width="720px">
+                        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL); ?>includes/images/help-page/zywrap-how-to-set-up.jpg" width="720px" alt="<?php echo esc_attr__('Video: How to use ZyWrap in WP Job Portal', 'wp-job-portal'); ?>">
                     </a>
                 </div>
 

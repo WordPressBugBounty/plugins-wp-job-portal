@@ -1,6 +1,18 @@
 /* Marketplace Suite presentation adapter for the WP Job Portal design system. */
 
 /*
+ * The suite prints its 2.7 page (blue hero banner) and the script at the foot
+ * of the page moves it into the new shell, so the old page flashed for a
+ * moment first. Keep it hidden until then: mounting removes its .wrap class.
+ * If the script never runs it still appears after 3 seconds.
+ */
+@keyframes wjpl-suite-reveal { to { visibility: visible; } }
+body.wp-admin .wrap.wpjobportal-marketplace-admin {
+    visibility: hidden;
+    animation: wjpl-suite-reveal 0s 3s forwards;
+}
+
+/*
  * On wp-admin, the dashboard's palette, not the portal's - as the Recruit
  * adapter does for its screens. .wpjobportal-marketplace-native-content is
  * the admin shell only.
@@ -19,26 +31,16 @@
     --wjp-market-muted: var(--wjp-text-medium, var(--wpjp-body-font-color, #575757));
     --wjp-market-border: var(--wjp-border-color, var(--wpjp-border-color, #e9ecef));
     --wjp-market-surface: var(--wjp-bg-card, var(--wpjp-card-background, #fff));
-    --wjp-market-accent: var(--wjp-color-primary, var(--wpjp-primary-color, #3baeda));
-    --wpjp-marketplace-accent: var(--wpjp-primary-color, #3baeda);
+    --wjp-market-accent: var(--wjp-color-primary, var(--wpjp-primary-color, #2f6fc4));
+    --wpjp-marketplace-accent: var(--wpjp-primary-color, #2f6fc4);
     --wpjp-marketplace-border: var(--wpjp-border-color, #e9ecef);
     --wpjp-marketplace-ink: var(--wpjp-secondary-color, #333333);
     --wpjp-marketplace-muted: var(--wpjp-body-font-color, #575757);
-    --wpjp-commerce-accent: var(--wpjp-primary-color, #3baeda);
+    --wpjp-commerce-accent: var(--wpjp-primary-color, #2f6fc4);
     --wpjp-commerce-accent-dark: var(--wpjp-secondary-color, #333333);
     --wpjp-commerce-border: var(--wpjp-border-color, #e9ecef);
     --wpjp-commerce-ink: var(--wpjp-secondary-color, #333333);
     --wpjp-commerce-muted: var(--wpjp-body-font-color, #575757);
-}
-
-.wpjobportal-marketplace-native-shell #wpjobportal-head {
-    align-items: center;
-    background: var(--wjp-color-primary, #4f46e5);
-    display: flex;
-    gap: 16px;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    padding: 20px;
 }
 
 .wpjobportal-marketplace-native-content {
@@ -55,16 +57,16 @@
     width: 100%;
 }
 
+/* W-19: the title row names the screen; what is left is its one-line description and action. */
 .wpjobportal-marketplace-native-content .wpjobportal-marketplace-hero {
     align-items: center;
-    background: var(--wjp-market-surface);
-    border: 1px solid var(--wjp-market-border);
-    border-block-start: 4px solid var(--wjp-market-accent);
-    border-radius: 8px;
-    box-shadow: var(--wjp-shadow, 0 4px 15px rgba(0, 0, 0, .08));
+    background: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
     color: var(--wjp-market-muted);
-    margin: 0;
-    padding: 22px 24px;
+    margin: 0 0 16px;
+    padding: 0;
 }
 
 .wpjobportal-marketplace-native-content .wpjobportal-marketplace-hero h1 {
@@ -77,7 +79,7 @@
 }
 
 .wpjobportal-marketplace-native-content .wpjobportal-marketplace-eyebrow {
-    color: var(--wjp-market-accent);
+    display: none;
 }
 
 .wpjobportal-marketplace-native-content .wpjobportal-marketplace-version,
@@ -192,7 +194,7 @@
 .wpjobportal-marketplace-native-content :focus-visible,
 .wpjp-marketplace-verification :focus-visible,
 .wpjp-marketplace-commerce :focus-visible {
-    outline: 3px solid var(--wpjp-primary-color, #3baeda);
+    outline: 3px solid var(--wpjp-primary-color, #2f6fc4);
     outline-offset: 2px;
 }
 
@@ -208,7 +210,7 @@
 
 .wpjp-marketplace-verification-intro,
 .wpjp-marketplace-commerce-hero {
-    border-block-start: 4px solid var(--wpjp-primary-color, #3baeda);
+    border-block-start: 4px solid var(--wpjp-primary-color, #2f6fc4);
 }
 
 .wpjp-marketplace-verification-intro h2,
@@ -256,8 +258,8 @@
 
 .wpjp-marketplace-commerce-shop,
 .wpjp-marketplace-commerce-shop.wjportal-form-btn {
-    background: var(--wpjp-primary-color, #3baeda) !important;
-    border-color: var(--wpjp-primary-color, #3baeda) !important;
+    background: var(--wpjp-primary-color, #2f6fc4) !important;
+    border-color: var(--wpjp-primary-color, #2f6fc4) !important;
     color: #fff !important;
     min-height: 44px;
 }
@@ -276,7 +278,7 @@
 .wpjp-marketplace-verification-form select:focus,
 .wpjp-marketplace-commerce-form input:focus,
 .wpjp-marketplace-commerce-form select:focus {
-    border-color: var(--wpjp-primary-color, #3baeda);
+    border-color: var(--wpjp-primary-color, #2f6fc4);
     box-shadow: var(--wpjp-focus-shadow-color, 0 0 0 3px rgba(98, 36, 198, .25));
     outline: 0;
 }
@@ -297,7 +299,6 @@
 
 @media (max-width: 782px) {
     .wpjobportal-marketplace-native-shell #wpjobportal-wrapper-top,
-    .wpjobportal-marketplace-native-shell #wpjobportal-head,
     .wpjobportal-marketplace-native-content .wpjobportal-marketplace-hero,
     .wpjobportal-marketplace-native-content .wpjobportal-marketplace-panel-heading,
     .wpjobportal-marketplace-native-content .wpjobportal-marketplace-report-filter,
@@ -441,4 +442,156 @@ html[dir="rtl"] .wpjp-marketplace-commerce {
     .wpjp-marketplace-commerce-panel {
         border: 1px solid CanvasText;
     }
+}
+
+/*
+ * W-19: the same parts as every rebuilt screen (design 4, the Jobs list is the
+ * reference): cards without a border, 36px controls, 14px text, 18px section
+ * headings. Colours and layout stay the suite's own.
+ */
+#wpjobportaladmin-wrapper .wpjobportal-marketplace-native-content {
+    --wpjp-ds-control-height: 36px;
+    --wpjp-field-height: 36px;
+    --wpjp-body-font-size: 14px;
+    color: var(--wjpl-ink);
+    font-size: 14px;
+}
+
+#wpjobportaladmin-wrapper .wpjobportal-marketplace-native-content :is(.wpjobportal-marketplace-card, .wpjobportal-marketplace-panel, .wpjobportal-marketplace-report-filter) {
+    background: var(--wjpl-card);
+    border: 0;
+    border-radius: var(--wjpl-r);
+    box-shadow: var(--wjpl-shadow);
+}
+
+#wpjobportaladmin-wrapper .wpjobportal-marketplace-native-content :is(h2, h3) {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--wjpl-ink);
+}
+
+#wpjobportaladmin-wrapper .wpjobportal-marketplace-native-content .wpjobportal-marketplace-hero p {
+    font-size: 14px;
+    color: var(--wjpl-ink-3);
+}
+
+#wpjobportaladmin-wrapper .wpjobportal-marketplace-native-content :is(button, .button, a.button, input[type=submit], input[type=button]):not(.button-small):not(.wjpl-iconbtn) {
+    /* 2.7 admin CSS forces 55px !important on #wpjobportal-admin-wrapper controls. */
+    height: 36px !important;
+    min-height: 36px;
+    min-block-size: 36px;
+    padding: 0 14px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+    border-radius: var(--wjpl-r-sm);
+    box-shadow: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#wpjobportaladmin-wrapper .wpjobportal-marketplace-native-content :is(.button-small, .wjp-move-button) {
+    height: 32px !important;
+    min-height: 32px;
+    min-block-size: 32px;
+    padding: 0 12px;
+    font-size: 13px;
+    border-radius: var(--wjpl-r-sm);
+}
+
+#wpjobportaladmin-wrapper .wpjobportal-marketplace-native-content :is(input[type=text], input[type=search], input[type=email], input[type=number], input[type=url], input[type=tel], input[type=date], input[type=datetime-local], input[type=time], input[type=password], select) {
+    /* 2.7 admin CSS forces 55px !important on #wpjobportal-admin-wrapper controls. */
+    height: 36px !important;
+    min-height: 36px;
+    min-block-size: 36px;
+    padding: 0 12px;
+    font-size: 14px;
+    line-height: 1.2;
+    color: var(--wjpl-ink);
+    background-color: var(--wjpl-card);
+    border: 1px solid var(--wjpl-line);
+    border-radius: var(--wjpl-r-sm);
+    box-shadow: none;
+}
+
+#wpjobportaladmin-wrapper .wpjobportal-marketplace-native-content select {
+    padding-right: 32px;
+}
+
+#wpjobportaladmin-wrapper .wpjobportal-marketplace-native-content textarea {
+    height: auto !important;
+    min-height: 80px;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: var(--wjpl-ink);
+    border: 1px solid var(--wjpl-line);
+    border-radius: var(--wjpl-r-sm);
+    box-shadow: none;
+}
+
+#wpjobportaladmin-wrapper .wpjobportal-marketplace-native-content :is(input, select, textarea):focus {
+    outline: none;
+    border-color: var(--wjpl-primary);
+    box-shadow: 0 0 0 3px var(--wjpl-primary-light);
+}
+
+/* A table inside a panel is part of the card, as in the Jobs list: no frame of its own. */
+#wpjobportaladmin-wrapper .wpjobportal-marketplace-native-content .wpjobportal-marketplace-table-wrap {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* Tables read like the Jobs list: small uppercase headings on a light band, white rows with thin dividers. */
+#wpjobportaladmin-wrapper .wpjobportal-marketplace-native-content table:not(.form-table) th {
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+    color: var(--wjpl-ink-3);
+    background: var(--wjpl-soft);
+    border: 0;
+    border-bottom: 1px solid var(--wjpl-line);
+}
+
+#wpjobportaladmin-wrapper .wpjobportal-marketplace-native-content table:not(.form-table) td {
+    padding: 12px 14px;
+    text-align: left;
+    font-size: 14px;
+    color: var(--wjpl-ink);
+    background: var(--wjpl-card);
+    border: 0;
+    border-bottom: 1px solid var(--wjpl-line);
+}
+
+#wpjobportaladmin-wrapper .wpjobportal-marketplace-native-content table:not(.form-table) tr:last-child td {
+    border-bottom: 0;
+}
+
+/* W-19: the description lifted under the title row (see liftIntro in the compat script). */
+#wpjobportaladmin-wrapper.wpjobportal-marketplace-native-shell .wjpl-sub {
+    /* The header is a grid with a 16px gap; sit 4px under the title, as in the mockup. */
+    margin: -12px 0 0;
+    max-width: 780px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--wjpl-ink-3);
+}
+
+#wpjobportaladmin-wrapper.wpjobportal-marketplace-native-shell .wjpl-acts form {
+    margin: 0;
+}
+
+/* The intro block moved into the header; the first block left keeps the header's 16px, as on Jobs. */
+#wpjobportaladmin-wrapper .wpjobportal-marketplace-native-content > * > :first-child {
+    margin-top: 0;
+}
+
+/* 2.7's narrow-screen padding on #wpjobportal-admin-wrapper pushed the cards in from the title's edge. */
+#wpjobportaladmin-wrapper #wpjobportal-admin-wrapper.wpjobportal-marketplace-native-content {
+    padding: 0;
 }
