@@ -2046,7 +2046,17 @@ class WPJOBPORTALResumeModel {
             absint($wpjobportal_id),
             get_current_user_id()
         );
-        if (WPJOBPORTALincluder::getObjectClass('user')->isemployer() || current_user_can( 'manage_options' ) || $wpjobportal_extension_access) { // Current user is employer or an authorized extension user.
+        // Patchstack 38700: the resume's owner was taken from the requested resume for every
+        // employer, so any employer could open any resume by its id. Decide first whether this
+        // caller may open it at all: a published resume, or one they own, applied to their job,
+        // unlocked or are authorized for. Only then is its owner read, to load its sections.
+        if (is_numeric($wpjobportal_id) && $wpjobportal_id > 0 && !current_user_can('manage_options')
+            && !WPJOBPORTAL_Authorization_Service::can_view_resume((int) $wpjobportal_id)
+        ) {
+            wpjobportal::$wpjobportal_data['resumecontactdetail'] = false;
+            return false;
+        }
+        if (WPJOBPORTALincluder::getObjectClass('user')->isemployer() || current_user_can( 'manage_options' ) || $wpjobportal_extension_access) { // Current user is employer or an authorized extension user, allowed above.
             $wpjobportal_uid = $this->getUidByResumeId($wpjobportal_id);
         } else {
 			$wpjobportal_userobject = WPJOBPORTALincluder::getObjectClass('user');
@@ -2233,6 +2243,17 @@ class WPJOBPORTALResumeModel {
             // Allow the owner, administrators, and server-authorized extension users to view contact details.
             if (!WPJOBPORTALincluder::getObjectClass('user')->isguest()&& (wpjobportal::$_common->wpjp_isadmin() || $wpjobportal_extension_access || (isset(wpjobportal::$_data[0]['personal_section']->uid) && wpjobportal::$_data[0]['personal_section']->uid == WPJOBPORTALincluder::getObjectClass('user')->uid()))) {
                 wpjobportal::$wpjobportal_data['resumecontactdetail'] = true;
+            }
+            // Patchstack 38700: the contact details of a resume that is not published (not
+            // searchable, not approved, or a visitor's) only for the administrator, its owner and
+            // those with a link to it (an application to their job, an unlock, an add-on), whatever
+            // the contact-detail setting says.
+            if (!empty(wpjobportal::$wpjobportal_data['resumecontactdetail']) && !current_user_can('manage_options')
+                && isset(wpjobportal::$_data[0]['personal_section']->id)
+                && !((int) wpjobportal::$_data[0]['personal_section']->status === 1 && (int) wpjobportal::$_data[0]['personal_section']->searchable === 1 && absint(wpjobportal::$_data[0]['personal_section']->uid) > 0)
+                && !WPJOBPORTAL_Authorization_Service::can_access_resume((int) wpjobportal::$_data[0]['personal_section']->id, false)
+            ) {
+                wpjobportal::$wpjobportal_data['resumecontactdetail'] = false;
             }
 
              if(in_array('credits', wpjobportal::$_active_addons)){

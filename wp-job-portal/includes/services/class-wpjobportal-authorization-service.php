@@ -247,6 +247,36 @@ class WPJOBPORTAL_Authorization_Service {
     }
 
     /**
+     * Whether the current user may open a resume's page (Patchstack 38700).
+     *
+     * A published resume (approved, searchable, with an owner) may be opened by
+     * anyone the resume settings let in; its contact details stay under their own
+     * rule. Any other resume - not searchable, not approved, or made by a visitor
+     * while applying - only by the administrator, its owner, the visitor's own
+     * session, an employer whose job received it or who unlocked it, and add-ons
+     * that authorize it: everyone can_access_resume() lets in.
+     *
+     * @param int $resume_id Resume id.
+     * @return bool
+     */
+    public static function can_view_resume($resume_id) {
+        if (!is_numeric($resume_id) || absint($resume_id) < 1) {
+            return false;
+        }
+        if (current_user_can('manage_options')) {
+            return true;
+        }
+        $resume = self::resume_row(absint($resume_id));
+        if (!$resume) {
+            return false;
+        }
+        if ((int) $resume->status === 1 && (int) $resume->searchable === 1 && absint($resume->uid) > 0) {
+            return true;
+        }
+        return self::can_access_resume(absint($resume_id), false);
+    }
+
+    /**
      * Return privacy-safe authorization diagnostics.
      *
      * @return array

@@ -1572,8 +1572,24 @@ class WPJOBPORTALjobapplyModel {
     }
 
     function getEmailFieldsJobManager(){
+        // 2.9.0: the same checks as getEmailFields. resumeid was printed into
+        // onclick unquoted, so a crafted link could run script (reported 12 Nov 2026).
+        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
+        if (! wp_verify_nonce( $wpjobportal_nonce, 'get-email-fields') ) {
+            die( 'Security check Failed' );
+        }
         $wpjobportal_email = WPJOBPORTALrequest::getVar('em');
         $wpjobportal_resumeid = WPJOBPORTALrequest::getVar('resumeid');
+        $wpjobportal_jobid = WPJOBPORTALrequest::getVar('jobid');
+        if (!is_numeric($wpjobportal_jobid) || !is_numeric($wpjobportal_resumeid)) {
+            return '';
+        }
+        $wpjobportal_jobid = (int) $wpjobportal_jobid;
+        $wpjobportal_resumeid = absint($wpjobportal_resumeid);
+        $wpjobportal_job_owner = WPJOBPORTALincluder::getJSModel('job')->getIfJobOwner($wpjobportal_jobid);
+        if (!wpjobportal::$_common->wpjp_isadmin() && $wpjobportal_job_owner !== true) {
+            return '';
+        }
         $wpjobportal_html = '<div class="'.esc_attr($this->class_prefix).'-sendemail-form">
                     <form class="">
                         <div class="col-md-4">
@@ -1597,7 +1613,7 @@ class WPJOBPORTALjobapplyModel {
                         </div>
                         <div class="col-md-4 '.esc_attr($this->class_prefix).'-sendemail-btn-wrp">
                             <div class="form-group '.esc_attr($this->class_prefix).'-sendemail-btn-data">
-                                <input type="button" class="form-control '.esc_attr($this->class_prefix).'-sendemail-btn" value="' . esc_html(__('Send', 'wp-job-portal')) . '" onclick="sendEmail('.esc_js($wpjobportal_resumeid).')">
+                                <input type="button" class="form-control '.esc_attr($this->class_prefix).'-sendemail-btn" value="' . esc_html(__('Send', 'wp-job-portal')) . '" onclick="sendEmail('.esc_attr(absint($wpjobportal_resumeid)).')">
                                 <input type="button" class="form-control '.esc_attr($this->class_prefix).'-sendemail-btn" onclick="closeSection()" value="' . esc_html(__('Cancel', 'wp-job-portal')) . '">
                             </div>
                         </div>

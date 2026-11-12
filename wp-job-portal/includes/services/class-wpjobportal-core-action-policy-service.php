@@ -214,6 +214,7 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
             'getfoldersectionjobmanager' => array('ownership' => 'folder_applicant'),
             'savetofolderresume' => array('ownership' => 'folder_save'),
             'getemailfields' => array('ownership' => 'email_applicant'),
+            'getemailfieldsjobmanager' => array('ownership' => 'email_applicant'),
             'sendemailtojobseeker' => array('ownership' => 'email_applicant'),
         );
         $filtered = apply_filters('wpjobportal_core_ajax_policies', $policies);

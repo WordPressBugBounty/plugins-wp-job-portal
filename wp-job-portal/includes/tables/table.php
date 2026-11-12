@@ -45,10 +45,18 @@ class WPJOBPORTALtable {
             }
         } else { // update record
             if (isset($wpjobportal_data[$this->primarykey])) {
-                foreach ($wpjobportal_data AS $wpjobportal_k => $v) {
-                    if (isset($this->$wpjobportal_k)) {
-                        $this->$wpjobportal_k = $v;
-                        $this->columns[$wpjobportal_k] = $v;
+                // Security (SQLi, reported Nov 2026): take the column names from
+                // this table's own declared properties, never from the request
+                // keys. A request key named "columns" would otherwise replace the
+                // whole column map, and a crafted key such as "name` = SLEEP(1)-- "
+                // would reach $wpdb->update() as a raw SQL identifier. Only real,
+                // declared columns are written, exactly as the insert branch does.
+                $wpjobportal_array = get_object_vars($this);
+                unset($wpjobportal_array['isnew'], $wpjobportal_array['columns'], $wpjobportal_array['primarykey'], $wpjobportal_array['tablename']);
+                foreach ($wpjobportal_array AS $wpjobportal_k => $v) {
+                    if (array_key_exists($wpjobportal_k, $wpjobportal_data)) {
+                        $this->$wpjobportal_k = $wpjobportal_data[$wpjobportal_k];
+                        $this->columns[$wpjobportal_k] = $wpjobportal_data[$wpjobportal_k];
                     }
                 }
             } else {
@@ -101,6 +109,16 @@ class WPJOBPORTALtable {
 
     function store() {
         $this->normalizeCoordinateColumns();
+        // Security (SQLi, reported Nov 2026): a real column name is always
+        // [A-Za-z0-9_]. Drop any other key so a crafted identifier can never
+        // reach $wpdb->insert()/update() unescaped, whatever built $columns.
+        if (is_array($this->columns)) {
+            foreach (array_keys($this->columns) as $wpjobportal_col) {
+                if (!is_string($wpjobportal_col) || !preg_match('/^[A-Za-z0-9_]+$/', $wpjobportal_col)) {
+                    unset($this->columns[$wpjobportal_col]);
+                }
+            }
+        }
         if ($this->isnew == true) { // new record store
             wpjobportal::$_db->insert($this->tablename, $this->columns);
             if (wpjobportal::$_db->last_error == null) {

@@ -167,12 +167,12 @@ class WPJOBPORTALResumeController {
                                 $wpjobportal_resumeowner = true;
                                 $wpjobportal_idarray = wpjobportalphplib::wpJP_explode('-', $wpjobportal_resumeid);
                                 $wpjobportal_resumeid = !empty($wpjobportal_idarray) ? end($wpjobportal_idarray) : '';
-                                // Audit 40 (owner's decision): a resume made by a visitor while applying is
-                                // not a published resume. Only the admin, the visitor and employers whose
-                                // job received it may open it, whatever the resume visibility settings say.
+                                // Patchstack 38700 and Audit 40: a resume that is not published (not searchable,
+                                // not approved, or made by a visitor while applying) opens only for the admin, its
+                                // owner, the visitor's own session, employers whose job received it or who unlocked
+                                // it, and add-ons that authorize it. Being an employer is not enough.
                                 if (is_numeric($wpjobportal_resumeid) && !current_user_can('manage_options')) {
-                                    $wpjobportal_resume_owner_uid = wpjobportal::$_db->get_var(wpjobportal::$_db->prepare("SELECT uid FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE id = %d", (int) $wpjobportal_resumeid));
-                                    if ($wpjobportal_resume_owner_uid !== null && (int) $wpjobportal_resume_owner_uid === 0 && !WPJOBPORTAL_Authorization_Service::can_access_resume((int) $wpjobportal_resumeid, false)) {
+                                    if (!WPJOBPORTAL_Authorization_Service::can_view_resume((int) $wpjobportal_resumeid)) {
                                         wpjobportal::$_error_flag_message = __('The requested resume is unavailable or you do not have permission to view it.', 'wp-job-portal');
                                         wpjobportal::$_error_flag = true;
                                         break;

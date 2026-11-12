@@ -2,12 +2,19 @@
 
 == Changelog ==
 
+= 2.8.1 =
+Security.
+
+* Security: fixed an SQL injection reachable by a logged-in job seeker or employer through crafted field names in the profile and resume forms. Saved data is now written only to the plugin's own database columns. All sites should update.
+* Security: fixed a reflected cross-site scripting issue in the e-mail form on an employer's list of applicants. A crafted link could run script when a signed-in user pressed Send. The request now needs the page's security token, real resume and job ids, and the job's owner or an administrator. All sites should update.
+
 = 2.8.0 =
 Major update: a redesigned admin, a clearer hiring flow and security fixes. Take a backup before updating: changes to existing records wait until an administrator confirms there is one.
 
 * Security: resume files and custom-field uploads are stored under random names in folders that refuse direct requests (Apache and IIS; see the FAQ for nginx), and are handed out only through the permission-checked download. Files uploaded before 2.8.0 are protected on the first page load after updating. All sites should update.
 * Security: stricter permission checks on application and job-apply requests, and on which requests visitors, job seekers and employers may send.
 * Security: the resume page no longer prints values sent by the browser.
+* Security: an employer can open a resume that is not searchable only when their job received it or they unlocked it, and its contact details follow the same rule (Patchstack report 38700).
 * Security: the privacy eraser now also deletes the person's uploaded files and job alerts.
 * Includes the 2.7.1 and 2.7.2 security fixes.
 * New: redesigned admin with one menu, shared list screens, an Approvals page, menu search (Ctrl K), a notifications bell and an Applications list.

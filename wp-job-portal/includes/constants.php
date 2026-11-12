@@ -49,7 +49,7 @@ if (!defined('WPJOBPORTAL_FILE_TYPE_ERROR')) {
     define('WPJOBPORTAL_PACKAGE_ALREADY_PURCHASED', 'WPJOBPORTAL_PACKAGE_ALREADY_PURCHASED');
     define('WPJOBPORTAL_PLUGIN_PATH', plugin_dir_path( __DIR__ ));
     define('WPJOBPORTAL_PLUGIN_URL', plugin_dir_url( __DIR__ ));
-    define('WPJOBPORTAL_VERSION', '2.8.0');
+    define('WPJOBPORTAL_VERSION', '2.8.1');
 
     define('WPJOBPORTAL_COMPANY',1);
     define('WPJOBPORTAL_JOB',2);

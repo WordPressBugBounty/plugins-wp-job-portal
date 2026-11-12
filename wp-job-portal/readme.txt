@@ -3,7 +3,7 @@ Contributors: wpjobportal
 Tags: job board, careers, recruitment, job listing, jobs
 Requires at least: 6.2
 Tested up to: 7.1
-Stable tag: 2.8.0
+Stable tag: 2.8.1
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -191,6 +191,12 @@ Through the Patchstack Vulnerability Disclosure Program, whose team validates an
 
 == Changelog ==
 
+= 2.8.1 =
+Security.
+
+* Security: fixed an SQL injection reachable by a logged-in job seeker or employer through crafted field names in the profile and resume forms. Saved data is now written only to the plugin's own database columns. All sites should update.
+* Security: fixed a reflected cross-site scripting issue in the e-mail form on an employer's list of applicants. A crafted link could run script when a signed-in user pressed Send. The request now needs the page's security token, real resume and job ids, and the job's owner or an administrator. All sites should update.
+
 = 2.8.0 =
 Major update: redesigned admin, clearer hiring flow and security fixes. Take a backup before updating.
 
@@ -270,6 +276,9 @@ Major update: the separate add-ons become four premium products, and twelve of t
 Earlier versions are listed in changelog.txt in the plugin folder.
 
 == Upgrade Notice ==
+
+= 2.8.1 =
+Security update: fixes an SQL injection in the profile and resume forms and a cross-site scripting issue in the applicants' e-mail form. All sites should update.
 
 = 2.8.0 =
 Security and major update: uploaded resume files can no longer be downloaded directly from the uploads folder, and the admin is redesigned. Back up your site before updating. All sites should update.
