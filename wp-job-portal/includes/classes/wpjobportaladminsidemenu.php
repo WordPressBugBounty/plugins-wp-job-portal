@@ -45,7 +45,7 @@ if (in_array('jobalert', (array) wpjobportal::$_active_addons, true) && (!class_
 ?>
 <div class="wjpm-brand">
     <a class="wjpm-mark" href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal')); ?>" aria-label="<?php echo esc_attr(__('WP Job Portal dashboard', 'wp-job-portal')); ?>">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2"/></svg>
+        <img src="<?php echo esc_url(WPJOBPORTAL_PLUGIN_URL . 'includes/images/wpjobportal-mark.png'); ?>" width="30" height="30" alt="">
     </a>
     <span class="wjpm-bt">
         <a class="wjpm-name" href="<?php echo esc_url(admin_url('admin.php?page=wpjobportal')); ?>"><?php echo esc_html(__('WP Job Portal', 'wp-job-portal')); ?></a>

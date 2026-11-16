@@ -85,7 +85,8 @@ class WPJOBPORTALquickapplyModel {
                     $wpjobportal_data['userpackageid'] = $wpjobportal_upakid;
 
                     if(isset($wpjobportal_package) && !empty($wpjobportal_package)){
-                        $wpjobportal_expiry = $wpjobportal_package->jobtime.''.$wpjobportal_package->jobtimeunit;
+                        $wpjobportal_jobexpiry = WPJOBPORTALincluder::getJSModel('common')->getPackageJobExpiry($wpjobportal_package);
+                        $wpjobportal_expiry = $wpjobportal_jobexpiry[0].' '.$wpjobportal_jobexpiry[1];
                     }else{
                         $wpjobportal_expiry = "30 days"; // in case of undefined add job for 30 days
                     }

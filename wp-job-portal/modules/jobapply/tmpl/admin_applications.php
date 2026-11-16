@@ -165,6 +165,12 @@ foreach ($wpjobportal_list['jobs'] as $wpjobportal_j) {
                                                     <a href="<?php echo esc_url($wpjobportal_applicants); ?>"><?php echo esc_html(__('Change status on the job\'s applicants', 'wp-job-portal')); ?></a>
                                                     <a href="<?php echo esc_url($link(array('job' => (int) $wpjobportal_c->jobid))); ?>"><?php echo esc_html(__('Only this job', 'wp-job-portal')); ?></a>
                                                 </div>
+                                                <?php
+                                                // 2.9.0: rejection and offer e-mail drafts for this application.
+                                                if (class_exists('WPJOBPORTAL_AI_Tasks')) {
+                                                    echo WPJOBPORTAL_AI_Tasks::toolbar(array('rejection_email', 'offer_email'), array('application' => $id, 'compact' => true)); // phpcs:ignore WordPress.Security.EscapeOutput -- built from escaped parts
+                                                }
+                                                ?>
                                             </div>
                                         </div>
                                     </td>

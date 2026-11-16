@@ -2,6 +2,26 @@
 
 == Changelog ==
 
+= 2.9.0 =
+AI update: choose your AI engine, new AI tools, and security fixes.
+
+* Security: the cover letter writer could include another candidate's resume title and skills; it now reads only your own resume and published jobs. All sites should update.
+* Security: fixed an SQL injection reachable by a logged-in job seeker or employer through crafted field names in the profile and resume forms; saved data is now written only to the plugin's own database columns. All sites should update.
+* Security: fixed a reflected cross-site scripting issue on the employer's applicants page. A crafted link could run script in the browser of anyone who opened it, signed in or not. Job ids from the address are now read as numbers, and the page sets nothing up when access is refused.
+* Security: fixed the same kind of issue in the Apply Now popup and in dependent custom fields: values from the request are no longer printed into the page's script.
+* New: create or connect a Zywrap account from the AI screen, with no key to copy. Paid plans include monthly Zywrap credits.
+* New: or use your own Anthropic (Claude) or OpenAI key, checked before saving and stored encrypted.
+* New: AI tools for employers (job titles, job post check, screening and interview questions, rejection and offer e-mails) and job seekers (resume wording, how well you match a job).
+* New: one AI screen (WP Job Portal > AI) with a switch per task, daily limits, a budget for your own key, usage figures and a privacy level.
+* Changed: contact details and personal resume fields are never sent to the AI; answers are cleaned before they reach the editor.
+* Fixed: the Unsubscribe link in a job alert e-mail now stops only that alert. Other alerts and saved-search e-mails at the same address stay.
+* Fixed: the admin Resumes screen showed an error to users who can open the plugin's admin but are not administrators (a role given the "wpjobportal" capability). They now see the list, as on the Jobs and Companies screens.
+* Fixed: prices show their exact amount (1,950 instead of 2K, 19.99 instead of 20) on package pages, invoices, pay-to-view prices and e-mails, with the currency's decimals.
+* Fixed: a package's Job Expiry of -1 (shown as "Unlimited") gave every job posted with the package yesterday's end date, so the job was never seen. Such jobs now get the default 30 days, and the package list shows the real duration.
+* Fixed: typing a city in Greek or another non-Latin alphabet found no city on some databases, so a job could not be saved. The city search now also tries the name with capital letters.
+* Fixed: a dependent drop-down on the resume form could stop with an error when the request named a theme that is not installed.
+* Fixed: the AI instructions are no longer added to descriptions; clearer AI error messages; AI log counts.
+
 = 2.8.1 =
 Security.
 

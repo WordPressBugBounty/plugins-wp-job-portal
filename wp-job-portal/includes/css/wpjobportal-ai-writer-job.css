@@ -274,3 +274,17 @@
         padding: 1rem 1rem 1.25rem 1rem;
         border-top: 1px solid var(--wpjp-border-color, #f1f5f9);
     }
+
+/* 2.9.0: the writer opens on request (the "AI writer" button). It sits beside the
+   editor only when there is room for both, and below it otherwise, so it never
+   squeezes the editor or runs out of a narrow form column. */
+.wjportal-ai-app-wrapper { flex-direction: row; flex-wrap: wrap; align-items: flex-start; }
+.wjportal-ai-app-wrapper > .wjportal-ai-editor-panel { flex: 1 1 420px; min-width: 0; }
+.wjportal-ai-app-wrapper > .wjportal-ai-panel { display: none; flex: 1 1 340px; width: auto; max-width: 100%; min-width: 0; }
+.wjportal-ai-app-wrapper.is-ai-open > .wjportal-ai-panel { display: flex; }
+.wjportal-ai-header-menu:focus-visible { outline: 2px solid var(--wpjp-primary-color, #2f6fc4); outline-offset: 2px; }
+/* In wp-admin: the admin's colours, and no box inside the form's own box. */
+#wpjobportaladmin-wrapper .wjportal-ai-app-wrapper { --wpjp-primary-color: var(--wjp-color-primary, #4f46e5); background: transparent; padding: 0; gap: 1rem; }
+#wpjobportaladmin-wrapper .wjportal-ai-app-wrapper > .wjportal-ai-editor-panel { padding: 0; background: transparent; box-shadow: none; border-radius: 0; }
+#wpjobportaladmin-wrapper .wjportal-ai-app-wrapper .wjportal-ai-editor-header { margin-bottom: 0.75rem; justify-content: flex-end; }
+#wpjobportaladmin-wrapper .wjportal-ai-app-wrapper > .wjportal-ai-panel { border: 1px solid var(--wjp-border-color, #e2e8f0); box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04); border-radius: 12px; backdrop-filter: none; background: #fff; }

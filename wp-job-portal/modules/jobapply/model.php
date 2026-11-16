@@ -596,7 +596,7 @@ class WPJOBPORTALjobapplyModel {
         $wpjobportal_jobid = WPJOBPORTALrequest::getVar('jobid');
         $wpjobportal_themecall = WPJOBPORTALrequest::getVar('themecall');
         // page id from ajax call
-        $wpjobportal_pageid_ajax = WPJOBPORTALrequest::getVar('wpjobportal_pageid','',wpjobportal::wpjobportal_getPageid());
+        $wpjobportal_pageid_ajax = absint(WPJOBPORTALrequest::getVar('wpjobportal_pageid','',wpjobportal::wpjobportal_getPageid())); // Security: printed into onclick
         $wpjobportal_upakid = WPJOBPORTALrequest::getVar('upkid','',0);
         $wpjobportal_config_array = wpjobportal::$_config->getConfigByFor('jobapply');
         $wpjobportal_user = WPJOBPORTALincluder::getObjectClass('user');

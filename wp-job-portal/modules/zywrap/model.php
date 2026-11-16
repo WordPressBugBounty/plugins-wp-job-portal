@@ -1029,7 +1029,7 @@ class WPJOBPORTALzywrapModel {
             wp_send_json_error(array('message' => __('Security check failed.', 'wp-job-portal')));
         }
 
-        $api_key = get_option('wpjobportal_zywrap_api_key');
+        $api_key = WPJOBPORTAL_AI_Engine::apiKey('zywrap');
         if (empty($api_key)) {
             wp_send_json_error(array('message' => __('API Key is not set.', 'wp-job-portal')));
         }
@@ -1707,10 +1707,20 @@ class WPJOBPORTALzywrapModel {
             wp_send_json_error(array('message' => __('Security check failed.', 'wp-job-portal')));
         }
 
-        $api_key = get_option('wpjobportal_zywrap_api_key');
+        $api_key = WPJOBPORTAL_AI_Engine::apiKey('zywrap');
         if (empty($api_key)) {
-            wp_send_json_error(array('message' => __('API Key is not set.', 'wp-job-portal')));
+            wp_send_json_error(array('message' => __('Zywrap is not connected. Connect it under WP Job Portal > AI > Settings.', 'wp-job-portal')));
         }
+        if (!WPJOBPORTAL_AI_Policy::enabled()) {
+            wp_send_json_error(array('message' => __('AI is switched off on this site.', 'wp-job-portal')));
+        }
+        // The playground is metered like every other AI call (2.9.0).
+        $wpjobportal_meter = array('engine' => 'zywrap', 'model' => 'zywrap', 'funded' => WPJOBPORTAL_AI_Usage::FUNDED_ZYWRAP, 'feature' => 'playground');
+        $wpjobportal_verdict = WPJOBPORTAL_AI_Usage::guard($wpjobportal_meter);
+        if ($wpjobportal_verdict['state'] !== 'ok') {
+            wp_send_json_error(array('message' => $wpjobportal_verdict['detail']));
+        }
+        $wpjobportal_started = microtime(true);
 
         // Get data from AJAX request
         $wpjobportal_model = WPJOBPORTALrequest::getVar('model', 'post');
@@ -1849,6 +1859,7 @@ class WPJOBPORTALzywrapModel {
 
         if (is_wp_error($response)) {
             $wpjobportal_error_msg = $response->get_error_message();
+            WPJOBPORTAL_AI_Usage::record($wpjobportal_meter + array('ms' => (int) round((microtime(true) - $wpjobportal_started) * 1000)), array('ok' => false, 'error' => $wpjobportal_error_msg));
             $this->log_api_call('proxy_execute', 'error', [
                 'wrapper_code' => $wrapper_code,
                 'model_code' => $wpjobportal_model,
@@ -1860,7 +1871,11 @@ class WPJOBPORTALzywrapModel {
         $http_code = wp_remote_retrieve_response_code($response);
         // Check for non-200 status codes
         if ($http_code !== 200) {
-            $wpjobportal_error_message = $wpjobportal_data['message'] ?? 'An API error occurred.';
+            // 2.8.0 read an undefined variable here, so the real error was never shown.
+            $wpjobportal_error_body = WPJOBPORTAL_AI_Engine::parseZywrap(wp_remote_retrieve_body($response));
+            $wpjobportal_error_message = (is_array($wpjobportal_error_body) && !empty($wpjobportal_error_body['message'])) ? sanitize_text_field((string) $wpjobportal_error_body['message'])
+                : ((is_array($wpjobportal_error_body) && !empty($wpjobportal_error_body['error']) && is_string($wpjobportal_error_body['error'])) ? sanitize_text_field($wpjobportal_error_body['error']) : __('An API error occurred.', 'wp-job-portal'));
+            WPJOBPORTAL_AI_Usage::record($wpjobportal_meter + array('ms' => (int) round((microtime(true) - $wpjobportal_started) * 1000)), array('ok' => false, 'error' => $wpjobportal_error_message));
             $this->log_api_call('proxy_execute', 'error', [
                 'wrapper_code' => $wrapper_code,
                 'model_code' => $wpjobportal_model,
@@ -1869,27 +1884,17 @@ class WPJOBPORTALzywrapModel {
             ]);
             wp_send_json_error(array('message' => "Error (Code $http_code): $wpjobportal_error_message"));
         }else{
-            $body = wp_remote_retrieve_body($response);
-            $lines = explode("\n", $body);
-            $finalJson = null;
+            // A plain JSON answer or an event stream: both are read (2.9.0).
+            $wpjobportal_parsed = WPJOBPORTAL_AI_Engine::parseZywrap(wp_remote_retrieve_body($response));
 
-            foreach ($lines as $line) {
-                $line = trim($line);
-                if (strpos($line, 'data: ') === 0) {
-                    $jsonStr = substr($line, 6);
-                    // Try decoding to see if it's the valid payload
-                    $data = json_decode($jsonStr, true);
-                    if ($data && (isset($data['output']) || isset($data['error']))) {
-                        $finalJson = $jsonStr;
-                    }
-                }
-            }
-
-            if ($finalJson) {
-                $wpjobportal_data = json_decode($finalJson, true);
+            if (is_array($wpjobportal_parsed) && isset($wpjobportal_parsed['output'])) {
+                $wpjobportal_data = $wpjobportal_parsed;
 
 
                 $wpjobportal_token_data = $wpjobportal_data['usage'] ?? null;
+                WPJOBPORTAL_AI_Engine::noteCredits($wpjobportal_data);
+                WPJOBPORTAL_AI_Usage::record($wpjobportal_meter + array('ms' => (int) round((microtime(true) - $wpjobportal_started) * 1000), 'model' => !empty($wpjobportal_data['model']) ? (string) $wpjobportal_data['model'] : (!empty($wpjobportal_model) ? (string) $wpjobportal_model : 'zywrap')),
+                    array_merge(array('ok' => true), WPJOBPORTAL_AI_Engine::usageFrom($wpjobportal_data)));
 
                 $this->log_api_call('proxy_execute', 'success', [
                     'wrapper_code' => $wrapper_code,
@@ -1908,720 +1913,294 @@ class WPJOBPORTALzywrapModel {
 
                 wp_send_json_success($wpjobportal_data);
             }else{
+                $wpjobportal_why = (is_array($wpjobportal_parsed) && !empty($wpjobportal_parsed['error']))
+                    ? sanitize_text_field(is_string($wpjobportal_parsed['error']) ? $wpjobportal_parsed['error'] : wp_json_encode($wpjobportal_parsed['error']))
+                    : __('Failed to parse streaming response from Zywrap.', 'wp-job-portal');
+                WPJOBPORTAL_AI_Usage::record($wpjobportal_meter, array('ok' => false, 'error' => $wpjobportal_why));
                 wp_send_json_error(array(
                     'status'  =>  'error',
-                    'message' => __('Failed to parse streaming response from Zywrap.', 'wp-job-portal')
+                    'message' => $wpjobportal_why
                 ));
             }
         }
 
     }
-    /**
-         * AJAX Function: Executes the Job Copilot Generation
-         */
+    /*
+     * The four writing assistants on the job, company, resume and cover letter
+     * forms. (2.9.0) Same AJAX tasks, nonces and answers as 2.8.0, so the
+     * buttons in Core and the suites keep working; the work is done by
+     * WPJOBPORTAL_AI_Tasks, which checks who may run it, keeps instructions apart
+     * from the person's text, removes contact details and meters the call.
+     */
+
+    /** JSON from a POST field, as an array. */
+    private function aiPostJson($wpjobportal_name) {
+        $wpjobportal_raw = WPJOBPORTALrequest::getVar($wpjobportal_name, 'post');
+        $wpjobportal_value = !empty($wpjobportal_raw) ? json_decode($wpjobportal_raw, true) : array();
+        if (!is_array($wpjobportal_value) && !empty($wpjobportal_raw)) {
+            $wpjobportal_value = json_decode(wpjobportalphplib::wpJP_stripslashes($wpjobportal_raw), true);
+        }
+        return is_array($wpjobportal_value) ? $wpjobportal_value : array();
+    }
+
+    private function aiCheckNonce($wpjobportal_action) {
+        if (!wp_verify_nonce(WPJOBPORTALrequest::getVar('_wpnonce', 'post'), $wpjobportal_action)) {
+            wp_send_json_error(array('message' => __('Security check failed.', 'wp-job-portal')));
+        }
+    }
 
     /**
-     * Refuse AI copilot calls from visitors, and rate-limit everyone else.
+     * Form fields that identify or contact a person are never sent: the writing
+     * tasks do not need them, and redaction alone would leave names and
+     * addresses in. (2.8.0 sent every visible resume field.)
      */
-    private function assertCopilotAccess() {
-        if (current_user_can('manage_options')) {
-            return;
+    private function aiWithoutPersonalFields($wpjobportal_pairs) {
+        $wpjobportal_out = array();
+        foreach ((array) $wpjobportal_pairs as $wpjobportal_item) {
+            $wpjobportal_label = is_array($wpjobportal_item) && isset($wpjobportal_item['label']) ? (string) $wpjobportal_item['label'] : '';
+            // The field's own name first: labels are translated, names are not.
+            $wpjobportal_field = is_array($wpjobportal_item) && isset($wpjobportal_item['name']) ? (string) $wpjobportal_item['name'] : '';
+            if ($wpjobportal_field !== '' && preg_match('/(first_name|last_name|middle_name|email|cell|phone|mobile|nationality|gender|photo|date_of_birth|dob|address|zipcode|zip_code|postal|resumefiles|religion|marital)/i', $wpjobportal_field)) {
+                continue;
+            }
+            if ($wpjobportal_label !== '' && preg_match('/(e-?mail|phone|mobile|cell|fax|whatsapp|address|street|zip|postal|post ?code|birth|\bdob\b|\bage\b|gender|nationality|religion|marital|passport|cnic|\bssn\b|social security|id card|photo|first ?name|last ?name|middle ?name|full ?name|^\s*name\s*$)/i', $wpjobportal_label)) {
+                continue;
+            }
+            $wpjobportal_out[] = $wpjobportal_item;
         }
-        if (!is_user_logged_in()) {
-            wp_send_json_error(array('message' => __('Please log in to use the AI assistant.', 'wp-job-portal')));
+        return $wpjobportal_out;
+    }
+
+    /** A company's profile as plain text, only the caller's own (administrators: any). */
+    private function aiCompanyContext($wpjobportal_companyid) {
+        $wpjobportal_companyid = (int) $wpjobportal_companyid;
+        if ($wpjobportal_companyid <= 0) {
+            return '';
         }
-        $key = 'wpjp_copilot_' . get_current_user_id();
-        $used = (int) get_transient($key);
-        if ($used >= 30) {
-            wp_send_json_error(array('message' => __('AI assistant limit reached. Please try again later.', 'wp-job-portal')));
+        $wpjobportal_query = "SELECT name, description, url, tagline FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` WHERE id = " . $wpjobportal_companyid;
+        if (!current_user_can('manage_options')) {
+            $wpjobportal_query .= " AND uid = " . (int) WPJOBPORTALincluder::getObjectClass('user')->uid();
         }
-        set_transient($key, $used + 1, HOUR_IN_SECONDS);
+        $wpjobportal_company = wpjobportaldb::get_row($wpjobportal_query);
+        if (!$wpjobportal_company) {
+            return '';
+        }
+        $wpjobportal_lines = array('Company name: ' . WPJOBPORTAL_AI_Tasks::clean($wpjobportal_company->name, 200));
+        if (!empty($wpjobportal_company->tagline)) {
+            // 2.8.0 passed the tagline through esc_url(), which mangled it.
+            $wpjobportal_lines[] = 'Tagline: ' . WPJOBPORTAL_AI_Tasks::clean($wpjobportal_company->tagline, 300);
+        }
+        if (!empty($wpjobportal_company->url)) {
+            $wpjobportal_lines[] = 'Website: ' . esc_url_raw($wpjobportal_company->url);
+        }
+        if (!empty($wpjobportal_company->description)) {
+            $wpjobportal_lines[] = 'About: ' . WPJOBPORTAL_AI_Tasks::clean($wpjobportal_company->description, 3000);
+        }
+        return implode("\n", $wpjobportal_lines);
+    }
+
+    /**
+     * A job as plain text, only when the caller may see it: published, the
+     * caller's own, or any for an administrator. (2.8.0 loaded any job id.)
+     */
+    private function aiJobContext($wpjobportal_jobid) {
+        $wpjobportal_jobid = (int) $wpjobportal_jobid;
+        if ($wpjobportal_jobid <= 0) {
+            return '';
+        }
+        $wpjobportal_query = "SELECT title, description, status, uid FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobs` WHERE id = " . $wpjobportal_jobid;
+        $wpjobportal_job = wpjobportaldb::get_row($wpjobportal_query);
+        if (!$wpjobportal_job) {
+            return '';
+        }
+        if (!current_user_can('manage_options') && (int) $wpjobportal_job->status !== 1
+                && (int) $wpjobportal_job->uid !== (int) WPJOBPORTALincluder::getObjectClass('user')->uid()) {
+            return '';
+        }
+        $wpjobportal_text = 'Job title: ' . WPJOBPORTAL_AI_Tasks::clean($wpjobportal_job->title, 200);
+        if (!empty($wpjobportal_job->description)) {
+            $wpjobportal_text .= "\nJob description: " . WPJOBPORTAL_AI_Tasks::clean($wpjobportal_job->description, 3000);
+        }
+        return $wpjobportal_text;
+    }
+
+    /** The caller's own resume (title and skills) as plain text. (2.8.0 loaded any resume id.) */
+    private function aiOwnResumeContext($wpjobportal_resumeid) {
+        $wpjobportal_resumeid = (int) $wpjobportal_resumeid;
+        if ($wpjobportal_resumeid <= 0) {
+            return '';
+        }
+        $wpjobportal_query = "SELECT application_title, skills, uid FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume` WHERE id = " . $wpjobportal_resumeid;
+        $wpjobportal_resume = wpjobportaldb::get_row($wpjobportal_query);
+        if (!$wpjobportal_resume) {
+            return '';
+        }
+        $wpjobportal_uid = (int) WPJOBPORTALincluder::getObjectClass('user')->uid();
+        if (!current_user_can('manage_options') && ($wpjobportal_uid <= 0 || (int) $wpjobportal_resume->uid !== $wpjobportal_uid)) {
+            return '';
+        }
+        $wpjobportal_text = 'Professional title: ' . WPJOBPORTAL_AI_Tasks::clean($wpjobportal_resume->application_title, 200);
+        if (!empty($wpjobportal_resume->skills)) {
+            $wpjobportal_text .= "\nSkills: " . WPJOBPORTAL_AI_Tasks::clean($wpjobportal_resume->skills, 2000);
+        }
+        return $wpjobportal_text;
     }
 
     function executeJobCopilot() {
-        //1. Security & Auth Checks
-        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce', 'post');
-        if (!wp_verify_nonce($wpjobportal_nonce, 'wpjobportal_job_nonce')) {
-             wp_send_json_error(array('message' => __('Security check failed.', 'wp-job-portal')));
+        $this->aiCheckNonce('wpjobportal_job_nonce');
+        $wpjobportal_ai = $this->aiPostJson('aiData');
+        $wpjobportal_sections = array();
+        if (!empty($wpjobportal_ai['formDataContext'])) {
+            $wpjobportal_sections['job_details'] = WPJOBPORTAL_AI_Tasks::fields($this->aiPostJson('jobData'));
         }
-
-        // Security: the copilots spend the site owner's paid AI credits. Signed-in
-        // users only, with a per-user hourly limit (administrators are exempt).
-        $this->assertCopilotAccess();
-
-        $api_key = get_option('wpjobportal_zywrap_api_key');
-        if (empty($api_key)) {
-            wp_send_json_error(array('message' => __('API Key is not set in Zywrap Settings.', 'wp-job-portal')));
+        if (!empty($wpjobportal_ai['companyContext']) && !empty($wpjobportal_ai['companyId'])) {
+            $wpjobportal_sections['company'] = $this->aiCompanyContext($wpjobportal_ai['companyId']);
         }
-
-        // check for un authorized access
-        $enable_job_copilot  = wpjobportal::$_config->getConfigurationByConfigName('enable_job_copilot');
-        if (!current_user_can('manage_options') && $enable_job_copilot == 0) {
-            wp_send_json_error( array( 'message' => __('Security check failed.', 'wp-job-portal') ) );
-        }
-
-        // 2. Retrieve & Decode Payload
-        $raw_job_data   = WPJOBPORTALrequest::getVar('jobData', 'post');
-        $raw_ai_data    = WPJOBPORTALrequest::getVar('aiData', 'post');
-        $raw_highlights = WPJOBPORTALrequest::getVar('highlights', 'post');
-        $existing_text  = WPJOBPORTALrequest::getVar('existing_content', 'post');
-
-        $jobData    = !empty($raw_job_data) ? json_decode($raw_job_data, true) : array();
-        $aiData     = !empty($raw_ai_data) ? json_decode($raw_ai_data, true) : array();
-        $highlights = !empty($raw_highlights) ? json_decode($raw_highlights, true) : array();
-
-        // 3. Construct the Master Prompt
-        $wpjobportal_prompt = "You are an expert technical recruiter and HR copywriter. Your task is to write a compelling, highly professional Job Description based EXACTLY on the parameters provided below. Format the output in clean HTML.\n\n";
-
-        // AI System Instructions
-        $wpjobportal_prompt .= "--- SYSTEM INSTRUCTIONS ---\n";
-        $wpjobportal_prompt .= "Brand Tone: " . sanitize_text_field($aiData['tone'] ?? 'Professional') . "\n";
-        $wpjobportal_prompt .= "Target Length: " . sanitize_text_field($aiData['length'] ?? 'Standard') . "\n";
-        $wpjobportal_prompt .= "Format Structure: " . sanitize_text_field($aiData['formatStructure'] ?? 'Balanced') . "\n";
-
-        if (!empty($aiData['customPrompt'])) {
-            $wpjobportal_prompt .= "Custom Rules: " . sanitize_text_field($aiData['customPrompt']) . "\n";
-        }
-        if (!empty($aiData['seo'])) {
-            $wpjobportal_prompt .= "SEO Keywords to naturally integrate: " . sanitize_text_field($aiData['seo']) . "\n";
-        }
-
-        // Job Form Data (UPDATED: Now respects the toggle)
-        if (!empty($aiData['formDataContext'])) {
-            $wpjobportal_prompt .= "\n--- CORE JOB DETAILS ---\n";
-            if (!empty($jobData) && is_array($jobData)) {
-                foreach ($jobData as $item) {
-                    if (!empty($item['label']) && isset($item['value'])) {
-                        $wpjobportal_prompt .= sanitize_text_field($item['label']) . ": " . sanitize_text_field($item['value']) . "\n";
-                    }
-                }
-            }
-        }
-
-        // Company Profile Context (NEW: Fetches company details if toggle is enabled)
-        if (!empty($aiData['companyContext']) && !empty($aiData['companyId'])) {
-            $company_id = intval($aiData['companyId']);
-            $query = "SELECT name, description, url, tagline FROM `" . wpjobportal::$_db->prefix . "wj_portal_companies` WHERE id = " . (int) ($company_id);
-            // Security: only the user's own company (administrators: any).
-            if (!current_user_can('manage_options')) {
-                $query .= " AND uid = " . (int) WPJOBPORTALincluder::getObjectClass('user')->uid();
-            }
-            $company_info = wpjobportaldb::get_row($query);
-
-            if ($company_info) {
-                $wpjobportal_prompt .= "\n--- COMPANY PROFILE CONTEXT ---\n";
-                $wpjobportal_prompt .= "Company Name: " . sanitize_text_field($company_info->name) . "\n";
-
-                if (!empty($company_info->url)) {
-                    $wpjobportal_prompt .= "Website: " . esc_url($company_info->url) . "\n";
-                }
-                if (!empty($company_info->tagline)) {
-                    $wpjobportal_prompt .= "Tagline: " . esc_url($company_info->tagline) . "\n";
-                }
-
-                if (!empty($company_info->description)) {
-                    // Strip tags to give the AI clean text rather than nested HTML
-                    $clean_desc = wp_strip_all_tags(wpjobportalphplib::wpJP_stripslashes($company_info->description));
-                    $wpjobportal_prompt .= "Description: " . $clean_desc . "\n";
-                }
-            }
-        }
-
-        // Focus Areas (Pills)
-        if (!empty($highlights) && is_array($highlights)) {
-            $wpjobportal_prompt .= "\n--- HIGHLIGHT & PRIORITIZE THESE SECTIONS ---\n";
-            $wpjobportal_prompt .= implode(", ", array_map('sanitize_text_field', $highlights)) . "\n";
-        }
-
-        // Improvement Mode Logic
-        if ( !empty($aiData['improving']) && !empty($existing_text) ) {
-            $wpjobportal_prompt .= "\n--- ACTION REQUIRED ---\n";
-            $wpjobportal_prompt .= "Do not write from scratch. Take the following existing text and IMPROVE it by applying the Tone, Length, Format, and SEO rules defined above while keeping the core meaning intact:\n\n";
-            $wpjobportal_prompt .= wp_kses_post($existing_text);
-        }
-
-        // 4. Build API Payload
-        $wpjobportal_payloadData = array(
-            //'model' => 'alibaba-qwen-flash',
-            'wrapperCodes' => array('hjd_inclusive_job_description_writer_base'), // Default identifying wrapper
-            'prompt' => $wpjobportal_prompt
-        );
-
-        if (!empty($aiData['language'])) {
-            $wpjobportal_payloadData['language'] = sanitize_text_field($aiData['language']);
-        }
-
-        // 5. Execute Zywrap API Request (Mirroring executeZywrapProxy)
-        $wpjobportal_url = 'https://api.zywrap.com/v1/proxy';
-        $wpjobportal_args = array(
-            'method'  => 'POST',
-            'timeout' => 300,
-            'sslverify' => wpjobportal_sslverify($wpjobportal_url),
-            'headers' => array(
-                'Content-Type' => 'application/json',
-                'Authorization' => 'Bearer ' . $api_key
-            ),
-            'body'    => wp_json_encode($wpjobportal_payloadData)
-        );
-
-        $response = wp_remote_post($wpjobportal_url, $wpjobportal_args);
-
-        if (is_wp_error($response)) {
-            $this->log_api_call('job_copilot_execute', 'error', ['error_message' => $response->get_error_message()]);
-            wp_send_json_error(array('message' => __('API Connection Error:', 'wp-job-portal') . ' ' . $response->get_error_message()));
-        }
-
-        $http_code = wp_remote_retrieve_response_code($response);
-
-        if ($http_code !== 200) {
-            $body = wp_remote_retrieve_body($response);
-            $error_data = json_decode($body, true);
-            $error_msg = $error_data['message'] ?? 'Unknown API Error';
-
-            $this->log_api_call('job_copilot_execute', 'error', [
-                'http_code' => $http_code,
-                'error_message' => $error_msg
-            ]);
-            wp_send_json_error(array('message' => "Zywrap API Error (Code $http_code): " . $error_msg));
-            // $this->log_api_call('job_copilot_execute', 'error', ['http_code' => $http_code]);
-            // wp_send_json_error(array('message' => "Zywrap API Error (Code $http_code). Check your logs."));
-        } else {
-            // Parse the streaming body lines
-            $body = wp_remote_retrieve_body($response);
-            $lines = explode("\n", $body);
-            $finalJson = null;
-
-            foreach ($lines as $line) {
-                $line = trim($line);
-                if (strpos($line, 'data: ') === 0) {
-                    $jsonStr = substr($line, 6);
-                    $data = json_decode($jsonStr, true);
-                    if ($data && (isset($data['output']) || isset($data['error']))) {
-                        $finalJson = $jsonStr;
-                    }
-                }
-            }
-
-            if ($finalJson) {
-                $wpjobportal_data = json_decode($finalJson, true);
-                $wpjobportal_token_data = $wpjobportal_data['usage'] ?? null;
-
-                $this->log_api_call('job_copilot_execute', 'success', [
-                    'model_code' => 'default',
-                    'http_code' => $http_code,
-                    'token_data' => $wpjobportal_token_data
-                ]);
-
-                // Strip markdown formatting if AI returned a code block
-
-                $output_html = isset($wpjobportal_data['output']) ? trim($wpjobportal_data['output']) : '';
-                $output_html = preg_replace('/^```[a-z]*\s*|\s*```$/i', '', $output_html);
-                wp_send_json_success(array('output' => $output_html));
-            } else {
-                wp_send_json_error(array('message' => __('Failed to parse streaming response from Zywrap.', 'wp-job-portal')));
-            }
-        }
+        WPJOBPORTAL_AI_Tasks::respond(WPJOBPORTAL_AI_Tasks::run('job_description', $wpjobportal_sections, WPJOBPORTAL_AI_Tasks::settings($wpjobportal_ai), array(
+            'highlights' => $this->aiPostJson('highlights'),
+            'existing'   => WPJOBPORTALrequest::getVar('existing_content', 'post'),
+        )));
     }
 
-    /**
-     * AJAX Function: Executes the Company Copilot Generation
-     */
     function executeCompanyCopilot() {
-        // 1. Security & Auth Checks
-        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce', 'post');
-        if ( ! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_company_nonce' ) ) {
-            wp_send_json_error( array( 'message' => __('Security check failed.', 'wp-job-portal') ) );
+        $this->aiCheckNonce('wpjobportal_company_nonce');
+        $wpjobportal_ai = $this->aiPostJson('aiData');
+        $wpjobportal_sections = array();
+        if (!empty($wpjobportal_ai['formDataContext'])) {
+            $wpjobportal_sections['company_details'] = WPJOBPORTAL_AI_Tasks::fields($this->aiWithoutPersonalFields($this->aiPostJson('companyData')));
         }
-
-        // Security: the copilots spend the site owner's paid AI credits. Signed-in
-        // users only, with a per-user hourly limit (administrators are exempt).
-        $this->assertCopilotAccess();
-
-        $api_key = get_option('wpjobportal_zywrap_api_key');
-
-        if (empty($api_key)) {
-            wp_send_json_error(array('message' => __('API Key is not set in Zywrap Settings.', 'wp-job-portal')));
-        }
-
-        // check for un authorized access
-        $enable_company_copilot  = wpjobportal::$_config->getConfigurationByConfigName('enable_company_copilot');
-        if (!current_user_can('manage_options') && $enable_company_copilot == 0) {
-            wp_send_json_error( array( 'message' => __('Security check failed.', 'wp-job-portal') ) );
-        }
-
-        // Retrieve & Decode Payload
-        $raw_company_data = WPJOBPORTALrequest::getVar('companyData', 'post');
-        $raw_ai_data      = WPJOBPORTALrequest::getVar('aiData', 'post');
-        $raw_highlights   = WPJOBPORTALrequest::getVar('highlights', 'post');
-        $existing_text    = WPJOBPORTALrequest::getVar('existing_content', 'post');
-
-        $companyData = !empty($raw_company_data) ? json_decode($raw_company_data, true) : array();
-        $aiData      = !empty($raw_ai_data) ? json_decode($raw_ai_data, true) : array();
-        $highlights  = !empty($raw_highlights) ? json_decode($raw_highlights, true) : array();
-
-        // Construct the Master Prompt
-        $wpjobportal_prompt = "You are an expert corporate copywriter and employer branding specialist. Your task is to write a compelling, highly professional Company Profile/About Us section based EXACTLY on the parameters provided below. Format the output in clean HTML.\n\n";
-
-        // AI System Instructions
-        $wpjobportal_prompt .= "--- SYSTEM INSTRUCTIONS ---\n";
-        $wpjobportal_prompt .= "Brand Tone: " . sanitize_text_field($aiData['tone'] ?? 'Professional') . "\n";
-        $wpjobportal_prompt .= "Target Length: " . sanitize_text_field($aiData['length'] ?? 'Standard') . "\n";
-        $wpjobportal_prompt .= "Format Structure: " . sanitize_text_field($aiData['formatStructure'] ?? 'Balanced') . "\n";
-
-        if (!empty($aiData['customPrompt'])) {
-            $wpjobportal_prompt .= "Custom Rules: " . sanitize_text_field($aiData['customPrompt']) . "\n";
-        }
-        if (!empty($aiData['seo'])) {
-            $wpjobportal_prompt .= "SEO Keywords to naturally integrate: " . sanitize_text_field($aiData['seo']) . "\n";
-        }
-
-        // Company Form Data
-        if (!empty($aiData['formDataContext'])) {
-            $wpjobportal_prompt .= "\n--- CORE COMPANY DETAILS ---\n";
-            if (!empty($companyData) && is_array($companyData)) {
-                foreach ($companyData as $item) {
-                    if (!empty($item['label']) && isset($item['value'])) {
-                        $wpjobportal_prompt .= sanitize_text_field($item['label']) . ": " . sanitize_text_field($item['value']) . "\n";
-                    }
-                }
-            }
-        }
-
-        // Focus Areas (Pills)
-        if (!empty($highlights) && is_array($highlights)) {
-            $wpjobportal_prompt .= "\n--- HIGHLIGHT & PRIORITIZE THESE SECTIONS ---\n";
-            $wpjobportal_prompt .= implode(", ", array_map('sanitize_text_field', $highlights)) . "\n";
-        }
-
-        // Improvement Mode Logic
-        if ( !empty($aiData['improving']) && !empty($existing_text) ) {
-            $wpjobportal_prompt .= "\n--- ACTION REQUIRED ---\n";
-            $wpjobportal_prompt .= "Do not write from scratch. Take the following existing text and IMPROVE it by applying the Tone, Length, Format, and SEO rules defined above while keeping the core meaning intact:\n\n";
-            $wpjobportal_prompt .= wp_kses_post($existing_text);
-        }
-
-        // Build API Payload
-        $wpjobportal_payloadData = array(
-            //'model' => 'alibaba-qwen-flash',
-            'wrapperCodes' => array('hjd_company_overview_careers_content_base'), // Adjust wrapper code as needed for your Zywrap setup
-            'prompt' => $wpjobportal_prompt
-        );
-
-        if (!empty($aiData['language'])) {
-            $wpjobportal_payloadData['language'] = sanitize_text_field($aiData['language']);
-        }
-
-        // Execute Zywrap API Request
-        $wpjobportal_url = 'https://api.zywrap.com/v1/proxy';
-        $wpjobportal_args = array(
-            'method'    => 'POST',
-            'timeout'   => 300,
-            'sslverify' => wpjobportal_sslverify($wpjobportal_url),
-            'headers'   => array(
-                'Content-Type'  => 'application/json',
-                'Authorization' => 'Bearer ' . $api_key
-            ),
-            'body' => wp_json_encode($wpjobportal_payloadData)
-        );
-
-        $response = wp_remote_post($wpjobportal_url, $wpjobportal_args);
-
-
-        if (is_wp_error($response)) {
-            $this->log_api_call('company_copilot_execute', 'error', ['error_message' => $response->get_error_message()]);
-            wp_send_json_error(array('message' => __('API Connection Error:', 'wp-job-portal') . ' ' . $response->get_error_message()));
-        }
-
-        $http_code = wp_remote_retrieve_response_code($response);
-
-        if ($http_code !== 200) {
-            $body = wp_remote_retrieve_body($response);
-            $error_data = json_decode($body, true);
-            $error_msg = $error_data['message'] ?? 'Unknown API Error';
-
-            $this->log_api_call('company_copilot_execute', 'error', [
-                'http_code' => $http_code,
-                'error_message' => $error_msg
-            ]);
-            wp_send_json_error(array('message' => "Zywrap API Error (Code $http_code): " . $error_msg));
-        } else {
-            $body = wp_remote_retrieve_body($response);
-            $lines = explode("\n", $body);
-            $finalJson = null;
-
-            foreach ($lines as $line) {
-                $line = trim($line);
-                if (strpos($line, 'data: ') === 0) {
-                    $jsonStr = substr($line, 6);
-                    $data = json_decode($jsonStr, true);
-                    if ($data && (isset($data['output']) || isset($data['error']))) {
-                        $finalJson = $jsonStr;
-                    }
-                }
-            }
-
-            if ($finalJson) {
-                $wpjobportal_data = json_decode($finalJson, true);
-                $wpjobportal_token_data = $wpjobportal_data['usage'] ?? null;
-
-                $this->log_api_call('company_copilot_execute', 'success', [
-                    'model_code' => 'default',
-                    'http_code'  => $http_code,
-                    'token_data' => $wpjobportal_token_data
-                ]);
-
-                $output_html = isset($wpjobportal_data['output']) ? trim($wpjobportal_data['output']) : '';
-                $output_html = preg_replace('/^```[a-z]*\s*|\s*```$/i', '', $output_html);
-                wp_send_json_success(array('output' => $output_html));
-            } else {
-                wp_send_json_error(array('message' => __('Failed to parse streaming response from Zywrap.', 'wp-job-portal')));
-            }
-        }
+        WPJOBPORTAL_AI_Tasks::respond(WPJOBPORTAL_AI_Tasks::run('company_description', $wpjobportal_sections, WPJOBPORTAL_AI_Tasks::settings($wpjobportal_ai), array(
+            'highlights' => $this->aiPostJson('highlights'),
+            'existing'   => WPJOBPORTALrequest::getVar('existing_content', 'post'),
+        )));
     }
 
-    /**
-     * AJAX Function: Executes the Resume Copilot Generation (Skills Focus)
-     */
     function executeResumeCopilot() {
-        // 1. Security & Auth Checks
-        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce', 'post');
-        if ( ! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_resume_nonce' ) ) {
-            wp_send_json_error( array( 'message' => __('Security check failed.', 'wp-job-portal') ) );
-        }
-
-        // Security: the copilots spend the site owner's paid AI credits. Signed-in
-        // users only, with a per-user hourly limit (administrators are exempt).
-        $this->assertCopilotAccess();
-
-        $api_key = get_option('wpjobportal_zywrap_api_key');
-        if (empty($api_key)) {
-            wp_send_json_error(array('message' => __('API Key is not set in Zywrap Settings.', 'wp-job-portal')));
-        }
-
-        // check for un authorized access
-        $enable_resume_copilot  = wpjobportal::$_config->getConfigurationByConfigName('enable_resume_copilot');
-        if (!current_user_can('manage_options') && $enable_resume_copilot == 0) {
-            wp_send_json_error( array( 'message' => __('Security check failed.', 'wp-job-portal') ) );
-        }
-
-        // Retrieve & Decode Payload
-        $raw_resume_data  = WPJOBPORTALrequest::getVar('resumeData', 'post');
-        $raw_ai_data      = WPJOBPORTALrequest::getVar('aiData', 'post');
-        $raw_highlights   = WPJOBPORTALrequest::getVar('highlights', 'post');
-        $existing_text    = WPJOBPORTALrequest::getVar('existing_content', 'post');
-
-        $resumeData = !empty($raw_resume_data) ? json_decode($raw_resume_data, true) : array();
-        $aiData     = !empty($raw_ai_data) ? json_decode($raw_ai_data, true) : array();
-        $highlights = !empty($raw_highlights) ? json_decode($raw_highlights, true) : array();
-
-        // Construct the Master Prompt
-        $wpjobportal_prompt = "You are an expert career coach and professional resume writer. Your task is to generate an optimized, keyword-rich 'Skills' section for a candidate's resume based EXACTLY on the parameters provided below. Provide plain text formatted as requested, do NOT use HTML unless specifically asked.\n\n";
-
-        // AI System Instructions
-        $wpjobportal_prompt .= "--- SYSTEM INSTRUCTIONS ---\n";
-        $wpjobportal_prompt .= "Target Length: " . sanitize_text_field($aiData['length'] ?? 'Standard') . "\n";
-        $wpjobportal_prompt .= "Format Structure: " . sanitize_text_field($aiData['formatStructure'] ?? 'Comma Separated') . "\n";
-
-        // Apply Voice/Tone if provided
-        if (!empty($aiData['tone'])) {
-            $wpjobportal_prompt .= "Voice & Tone: " . sanitize_text_field($aiData['tone']) . "\n";
-        }
-
-        if (!empty($aiData['customPrompt'])) {
-            $wpjobportal_prompt .= "Custom Rules: " . sanitize_text_field($aiData['customPrompt']) . "\n";
-        }
-
-        // ATS / SEO Keywords Injection
-        if (!empty($aiData['seo'])) {
-            $wpjobportal_prompt .= "\n--- ATS / SEO OPTIMIZATION ---\n";
-            $wpjobportal_prompt .= "CRITICAL: You must naturally integrate the following exact keywords to optimize for Applicant Tracking Systems (ATS). Do not just list them awkwardly; weave them contextually into the selected format structure:\n";
-            $wpjobportal_prompt .= sanitize_text_field($aiData['seo']) . "\n";
-        }
-
-        // Resume Form Data Context (If they filled out a job title/category)
-        if (!empty($resumeData) && is_array($resumeData)) {
-            $wpjobportal_prompt .= "\n--- CANDIDATE PROFILE CONTEXT ---\n";
-            foreach ($resumeData as $item) {
-                if (!empty($item['label']) && isset($item['value'])) {
-                    $wpjobportal_prompt .= sanitize_text_field($item['label']) . ": " . sanitize_text_field($item['value']) . "\n";
-                }
-            }
-            $wpjobportal_prompt .= "Use this context to infer relevant industry standard skills if needed.\n";
-        }
-
-        // Focus Areas (Pills)
-        if (!empty($highlights) && is_array($highlights)) {
-            $wpjobportal_prompt .= "\n--- HIGHLIGHT & PRIORITIZE THESE SKILL CATEGORIES ---\n";
-            $wpjobportal_prompt .= implode(", ", array_map('sanitize_text_field', $highlights)) . "\n";
-        }
-
-        // Improvement Mode Logic
-        if ( !empty($aiData['improving']) && !empty($existing_text) ) {
-            $wpjobportal_prompt .= "\n--- ACTION REQUIRED ---\n";
-            $wpjobportal_prompt .= "Take the following existing skills list and ENHANCE it. Format it according to the structure rules, correct typos, group them logically, and expand upon them slightly if it fits the context:\n\n";
-            $wpjobportal_prompt .= wp_kses_post($existing_text);
-        }
-
-        // Build API Payload
-        $wpjobportal_payloadData = array(
-            //'model' => 'alibaba-qwen-flash',
-            'wrapperCodes' => array('rccpb_jobs_skil_sect_gene_9881_base'), // Adjust wrapper code as needed for Zywrap
-            'prompt' => $wpjobportal_prompt
+        $this->aiCheckNonce('wpjobportal_resume_nonce');
+        $wpjobportal_ai = $this->aiPostJson('aiData');
+        $wpjobportal_sections = array(
+            'candidate_profile' => WPJOBPORTAL_AI_Tasks::fields($this->aiWithoutPersonalFields($this->aiPostJson('resumeData'))),
         );
+        WPJOBPORTAL_AI_Tasks::respond(WPJOBPORTAL_AI_Tasks::run('resume_skills', $wpjobportal_sections, WPJOBPORTAL_AI_Tasks::settings($wpjobportal_ai), array(
+            'highlights' => $this->aiPostJson('highlights'),
+            'existing'   => WPJOBPORTALrequest::getVar('existing_content', 'post'),
+        )));
+    }
 
-        if (!empty($aiData['language'])) {
-            $wpjobportal_payloadData['language'] = sanitize_text_field($aiData['language']);
+    function executeCoverLetterCopilot() {
+        $this->aiCheckNonce('wpjobportal_coverletter_nonce');
+        $wpjobportal_ai = $this->aiPostJson('aiData');
+        $wpjobportal_sections = array();
+        if (!empty($wpjobportal_ai['jobContext']) && !empty($wpjobportal_ai['jobId'])) {
+            $wpjobportal_sections['target_job'] = $this->aiJobContext($wpjobportal_ai['jobId']);
         }
-
-        // Execute Zywrap API Request
-        $wpjobportal_url = 'https://api.zywrap.com/v1/proxy';
-        $wpjobportal_args = array(
-            'method'    => 'POST',
-            'timeout'   => 300,
-            'sslverify' => wpjobportal_sslverify($wpjobportal_url),
-            'headers'   => array(
-                'Content-Type'  => 'application/json',
-                'Authorization' => 'Bearer ' . $api_key
-            ),
-            'body' => wp_json_encode($wpjobportal_payloadData)
-        );
-
-        $response = wp_remote_post($wpjobportal_url, $wpjobportal_args);
-
-        if (is_wp_error($response)) {
-            $this->log_api_call('resume_copilot_execute', 'error', ['error_message' => $response->get_error_message()]);
-            wp_send_json_error(array('message' => __('API Connection Error:', 'wp-job-portal') . ' ' . $response->get_error_message()));
+        if (!empty($wpjobportal_ai['resumeContext']) && !empty($wpjobportal_ai['resumeId'])) {
+            $wpjobportal_sections['candidate_resume'] = $this->aiOwnResumeContext($wpjobportal_ai['resumeId']);
         }
-
-        $http_code = wp_remote_retrieve_response_code($response);
-
-        if ($http_code !== 200) {
-            $body = wp_remote_retrieve_body($response);
-            $error_data = json_decode($body, true);
-            $error_msg = $error_data['message'] ?? 'Unknown API Error';
-
-            $this->log_api_call('resume_copilot_execute', 'error', [
-                'http_code' => $http_code,
-                'error_message' => $error_msg
-            ]);
-            wp_send_json_error(array('message' => "Zywrap API Error (Code $http_code): " . $error_msg));
-        } else {
-            $body = wp_remote_retrieve_body($response);
-            $lines = explode("\n", $body);
-            $finalJson = null;
-
-            foreach ($lines as $line) {
-                $line = trim($line);
-                if (strpos($line, 'data: ') === 0) {
-                    $jsonStr = substr($line, 6);
-                    $data = json_decode($jsonStr, true);
-                    if ($data && (isset($data['output']) || isset($data['error']))) {
-                        $finalJson = $jsonStr;
-                    }
-                }
-            }
-
-            if ($finalJson) {
-                $wpjobportal_data = json_decode($finalJson, true);
-                $wpjobportal_token_data = $wpjobportal_data['usage'] ?? null;
-
-                $this->log_api_call('resume_copilot_execute', 'success', [
-                    'model_code' => 'default',
-                    'http_code'  => $http_code,
-                    'token_data' => $wpjobportal_token_data
-                ]);
-
-                $output_html = isset($wpjobportal_data['output']) ? trim($wpjobportal_data['output']) : '';
-                // Strip markdown blocks if they exist
-                $output_html = preg_replace('/^```[a-z]*\s*|\s*```$/i', '', $output_html);
-                wp_send_json_success(array('output' => $output_html));
-            } else {
-                wp_send_json_error(array('message' => __('Failed to parse streaming response from Zywrap.', 'wp-job-portal')));
-            }
-        }
+        $wpjobportal_sections['applicant_notes'] = WPJOBPORTAL_AI_Tasks::fields($this->aiWithoutPersonalFields($this->aiPostJson('coverLetterData')));
+        WPJOBPORTAL_AI_Tasks::respond(WPJOBPORTAL_AI_Tasks::run('cover_letter', $wpjobportal_sections, WPJOBPORTAL_AI_Tasks::settings($wpjobportal_ai), array(
+            'highlights' => $this->aiPostJson('highlights'),
+            'existing'   => WPJOBPORTALrequest::getVar('existing_content', 'post'),
+            'item'       => isset($wpjobportal_ai['jobId']) ? (int) $wpjobportal_ai['jobId'] : 0,
+        )));
     }
 
     /**
-     * AJAX Function: Executes the Cover Letter Copilot Generation
+     * The AI tools bar (2.9.0): job titles, job post check, screening and
+     * interview questions (employer, job form); rejection and offer e-mail
+     * drafts (employer, one application); resume wording and "how well do I
+     * match" (job seeker). Signed-in users only (ajax.php); who may run which
+     * task is WPJOBPORTAL_AI_Tasks::allowed(), and every id the page sends is
+     * checked again here against the caller.
      */
-    function executeCoverLetterCopilot() {
-        global $wpdb;
-
-        // 1. Security & Auth Checks
-        $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce', 'post');
-        if ( ! wp_verify_nonce( $wpjobportal_nonce, 'wpjobportal_coverletter_nonce' ) ) {
-            wp_send_json_error( array( 'msg' => __('Security check failed.', 'wp-job-portal') ) );
+    function executeAiTask() {
+        $this->aiCheckNonce('wpjobportal_ai_task');
+        $wpjobportal_task = sanitize_key((string) WPJOBPORTALrequest::getVar('ai_task', 'post', ''));
+        $wpjobportal_context = json_decode(wpjobportalphplib::wpJP_stripslashes((string) WPJOBPORTALrequest::getVar('context', 'post', '{}')), true);
+        if (!is_array($wpjobportal_context)) {
+            $wpjobportal_context = array();
         }
+        $wpjobportal_text = WPJOBPORTAL_AI_Tasks::clean(WPJOBPORTALrequest::getVar('text', 'post', ''), 4000);
+        $wpjobportal_jobid = isset($wpjobportal_context['job']) ? (int) $wpjobportal_context['job'] : 0;
+        $wpjobportal_appid = isset($wpjobportal_context['application']) ? (int) $wpjobportal_context['application'] : 0;
+        $wpjobportal_sections = array();
+        $wpjobportal_item = 0;
 
-        // Security: the copilots spend the site owner's paid AI credits. Signed-in
-        // users only, with a per-user hourly limit (administrators are exempt).
-        $this->assertCopilotAccess();
-
-        $api_key = get_option('wpjobportal_zywrap_api_key');
-
-        if (empty($api_key)) {
-            wp_send_json_error(array('message' => __('API Key is not set in Zywrap Settings.', 'wp-job-portal')));
-        }
-
-        // check for un authorized access
-        $enable_coverletter_copilot  = wpjobportal::$_config->getConfigurationByConfigName('enable_coverletter_copilot');
-        $enable_cover_letter_quick_apply  = wpjobportal::$_config->getConfigurationByConfigName('enable_cover_letter_quick_apply');
-        if (!current_user_can('manage_options') && $enable_coverletter_copilot == 0 && $enable_cover_letter_quick_apply == 0) {
-            wp_send_json_error( array( 'message' => __('Security check failed.', 'wp-job-portal') ) );
-        }
-
-        // Retrieve & Decode Payload
-        $raw_coverletter_data = WPJOBPORTALrequest::getVar('coverLetterData', 'post');
-        $raw_ai_data          = WPJOBPORTALrequest::getVar('aiData', 'post');
-        $raw_highlights       = WPJOBPORTALrequest::getVar('highlights', 'post');
-
-        $coverLetterData = !empty($raw_coverletter_data) ? json_decode($raw_coverletter_data, true) : array();
-        $aiData          = !empty($raw_ai_data) ? json_decode($raw_ai_data, true) : array();
-        $highlights      = !empty($raw_highlights) ? json_decode($raw_highlights, true) : array();
-
-        // Construct the Master Prompt
-        $wpjobportal_prompt = "You are an expert career strategist and executive copywriter. Your task is to write a highly persuasive, professional Cover Letter based EXACTLY on the parameters provided below. Format the output in clean HTML with paragraphs.\n\n";
-
-        // AI System Instructions
-        $wpjobportal_prompt .= "--- SYSTEM INSTRUCTIONS ---\n";
-        $wpjobportal_prompt .= "Voice/Tone: " . sanitize_text_field($aiData['tone'] ?? 'Executive') . "\n";
-        $wpjobportal_prompt .= "Target Length: " . sanitize_text_field($aiData['length'] ?? 'Standard') . "\n";
-        $wpjobportal_prompt .= "Format Structure: " . sanitize_text_field($aiData['formatStructure'] ?? 'Standard Letter Block format') . "\n";
-
-        if (!empty($aiData['customPrompt'])) {
-            $wpjobportal_prompt .= "Custom Rules: " . sanitize_text_field($aiData['customPrompt']) . "\n";
-        }
-        if (!empty($aiData['seo'])) {
-            $wpjobportal_prompt .= "ATS Keywords to naturally integrate: " . sanitize_text_field($aiData['seo']) . "\n";
-        }
-
-        // Target Job Context Extraction
-        if (!empty($aiData['jobContext']) && !empty($aiData['jobId'])) {
-            $job_id = intval($aiData['jobId']);
-            $query = $wpdb->prepare("SELECT title, description FROM `" . $wpdb->prefix . "wj_portal_jobs` WHERE id = %d", $job_id);
-            $job_info = wpjobportaldb_direct::get_row($query);
-
-            if ($job_info) {
-                $wpjobportal_prompt .= "\n--- TARGET JOB DETAILS ---\n";
-                $wpjobportal_prompt .= "Job Title: " . sanitize_text_field($job_info->title) . "\n";
-                if (!empty($job_info->description)) {
-                    $clean_desc = wp_strip_all_tags(wpjobportalphplib::wpJP_stripslashes($job_info->description));
-                    $wpjobportal_prompt .= "Job Description context: " . mb_substr($clean_desc, 0, 1500) . "...\n";
-                }
-            }
-        }
-
-        // Candidate Resume Context Extraction
-        if (!empty($aiData['resumeContext']) && !empty($aiData['resumeId'])) {
-            $resume_id = intval($aiData['resumeId']);
-            $query = $wpdb->prepare("SELECT application_title as title, skills FROM `" . $wpdb->prefix . "wj_portal_resume` WHERE id = %d", $resume_id);
-            $resume_info = wpjobportaldb_direct::get_row($query);
-
-            if ($resume_info) {
-                $wpjobportal_prompt .= "\n--- CANDIDATE RESUME PROFILE ---\n";
-                $wpjobportal_prompt .= "Professional Title: " . sanitize_text_field($resume_info->title) . "\n";
-                if (!empty($resume_info->skills)) {
-                    $wpjobportal_prompt .= "Key Skills: " . sanitize_text_field($resume_info->skills) . "\n";
-                }
-                if (!empty($resume_info->description)) {
-                    $clean_resume_desc = wp_strip_all_tags(wpjobportalphplib::wpJP_stripslashes($resume_info->description));
-                    $wpjobportal_prompt .= "Experience Summary: " . mb_substr($clean_resume_desc, 0, 1500) . "...\n";
-                }
-            }
-        }
-
-        // Fallback or additional Form Data
-        if (!empty($coverLetterData) && is_array($coverLetterData)) {
-            $wpjobportal_prompt .= "\n--- ADDITIONAL APPLICANT INPUTS ---\n";
-            foreach ($coverLetterData as $item) {
-                if (!empty($item['label']) && isset($item['value'])) {
-                    $wpjobportal_prompt .= sanitize_text_field($item['label']) . ": " . sanitize_text_field($item['value']) . "\n";
-                }
-            }
-        }
-
-        // Focus Areas (Pills)
-        if (!empty($highlights) && is_array($highlights)) {
-            $wpjobportal_prompt .= "\n--- HIGHLIGHT & PRIORITIZE THESE AREAS ---\n";
-            $wpjobportal_prompt .= implode(", ", array_map('sanitize_text_field', $highlights)) . "\n";
-        }
-
-        // Build API Payload
-        $wpjobportal_payloadData = array(
-            //'model' => 'alibaba-qwen-flash',
-            'wrapperCodes' => array('rccpb_resume_cover_letter_generator_base'),
-            'prompt' => $wpjobportal_prompt
-        );
-
-        if (!empty($aiData['language'])) {
-            $wpjobportal_payloadData['language'] = sanitize_text_field($aiData['language']);
-        }
-
-        // Execute Zywrap Proxy
-        $wpjobportal_url = 'https://api.zywrap.com/v1/proxy';
-        $wpjobportal_args = array(
-            'method'    => 'POST',
-            'timeout'   => 300,
-            'sslverify' => wpjobportal_sslverify($wpjobportal_url),
-            'headers'   => array(
-                'Content-Type'  => 'application/json',
-                'Authorization' => 'Bearer ' . $api_key
-            ),
-            'body' => wp_json_encode($wpjobportal_payloadData)
-        );
-
-        $response = wp_remote_post($wpjobportal_url, $wpjobportal_args);
-
-        if (is_wp_error($response)) {
-            $this->log_api_call('cover_letter_execute', 'error', ['error_message' => $response->get_error_message()]);
-            wp_send_json_error(array('message' => __('API Connection Error:', 'wp-job-portal') . ' ' . $response->get_error_message()));
-        }
-
-        $http_code = wp_remote_retrieve_response_code($response);
-
-        if ($http_code !== 200) {
-            $body = wp_remote_retrieve_body($response);
-            $error_data = json_decode($body, true);
-            $error_msg = $error_data['message'] ?? 'Unknown API Error';
-
-            $this->log_api_call('cover_letter_execute', 'error', [
-                'http_code' => $http_code,
-                'error_message' => $error_msg
-            ]);
-            wp_send_json_error(array('message' => "Zywrap API Error (Code $http_code): " . $error_msg));
-        } else {
-            $body = wp_remote_retrieve_body($response);
-            $lines = explode("\n", $body);
-            $finalJson = null;
-
-            foreach ($lines as $line) {
-                $line = trim($line);
-                if (strpos($line, 'data: ') === 0) {
-                    $jsonStr = substr($line, 6);
-                    $data = json_decode($jsonStr, true);
-                    if ($data && (isset($data['output']) || isset($data['error']))) {
-                        $finalJson = $jsonStr;
+        switch ($wpjobportal_task) {
+            case 'job_title':
+            case 'job_post_check':
+            case 'screening_questions':
+            case 'interview_questions':
+                // The job as it is on the form now, or as saved when the form is not sent.
+                $wpjobportal_fields = $this->aiWithoutPersonalFields($this->aiPostJson('fields'));
+                if (!empty($wpjobportal_fields)) {
+                    $wpjobportal_sections['job'] = WPJOBPORTAL_AI_Tasks::fields($wpjobportal_fields);
+                } elseif ($wpjobportal_jobid > 0) {
+                    if (!WPJOBPORTAL_Core_Action_Policy_Service::can_manage_job($wpjobportal_jobid)) {
+                        wp_send_json_error(array('message' => __('You can only use this on your own jobs.', 'wp-job-portal')));
                     }
+                    $wpjobportal_sections['job'] = $this->aiJobContext($wpjobportal_jobid);
                 }
-            }
+                if (empty($wpjobportal_sections['job'])) {
+                    wp_send_json_error(array('message' => __('Fill in the job title and description first.', 'wp-job-portal')));
+                }
+                $wpjobportal_item = $wpjobportal_jobid;
+                break;
 
-            if ($finalJson) {
-                $wpjobportal_data = json_decode($finalJson, true);
-                $wpjobportal_token_data = $wpjobportal_data['usage'] ?? null;
+            case 'rejection_email':
+            case 'offer_email':
+                if ($wpjobportal_appid <= 0 || !WPJOBPORTAL_Core_Action_Policy_Service::can_manage_application($wpjobportal_appid)) {
+                    wp_send_json_error(array('message' => __('You can only use this on applications to your own jobs.', 'wp-job-portal')));
+                }
+                $wpjobportal_row = wpjobportaldb::get_row("SELECT job.title, company.name AS companyname
+                    FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobapply` AS apply
+                    JOIN `" . wpjobportal::$_db->prefix . "wj_portal_jobs` AS job ON job.id = apply.jobid
+                    LEFT JOIN `" . wpjobportal::$_db->prefix . "wj_portal_companies` AS company ON company.id = job.companyid
+                    WHERE apply.id = " . (int) $wpjobportal_appid);
+                if (!$wpjobportal_row) {
+                    wp_send_json_error(array('message' => __('That application was not found.', 'wp-job-portal')));
+                }
+                // The candidate's name is not sent: the draft greets "[Candidate name]".
+                $wpjobportal_sections['application'] = 'Job title: ' . WPJOBPORTAL_AI_Tasks::clean($wpjobportal_row->title, 200)
+                    . "\nCompany: " . WPJOBPORTAL_AI_Tasks::clean($wpjobportal_row->companyname, 200)
+                    . "\nCandidate: [Candidate name]";
+                if ($wpjobportal_text !== '') {
+                    $wpjobportal_sections['employer_notes'] = $wpjobportal_text;
+                }
+                $wpjobportal_item = $wpjobportal_appid;
+                break;
 
-                $this->log_api_call('cover_letter_execute', 'success', [
-                    'model_code' => 'default',
-                    'http_code'  => $http_code,
-                    'token_data' => $wpjobportal_token_data
-                ]);
+            case 'resume_improve':
+                if ($wpjobportal_text === '') {
+                    wp_send_json_error(array('message' => __('Enter some text first.', 'wp-job-portal')));
+                }
+                $wpjobportal_sections['resume_text'] = $wpjobportal_text;
+                break;
 
-                $output_html = isset($wpjobportal_data['output']) ? trim($wpjobportal_data['output']) : '';
-                $output_html = preg_replace('/^```[a-z]*\s*|\s*```$/i', '', $output_html);
-                wp_send_json_success(array('output' => $output_html));
-            } else {
-                wp_send_json_error(array('message' => __('Failed to parse streaming response from Zywrap.', 'wp-job-portal')));
-            }
+            case 'skills_gap':
+                $wpjobportal_job = $this->aiJobContext($wpjobportal_jobid);
+                if ($wpjobportal_job === '') {
+                    wp_send_json_error(array('message' => __('That job is not available.', 'wp-job-portal')));
+                }
+                $wpjobportal_uid = (int) WPJOBPORTALincluder::getObjectClass('user')->uid();
+                $wpjobportal_resumeid = $wpjobportal_uid > 0 ? (int) wpjobportaldb::get_var("SELECT id FROM `" . wpjobportal::$_db->prefix . "wj_portal_resume`
+                    WHERE uid = " . $wpjobportal_uid . " ORDER BY status DESC, id DESC LIMIT 1") : 0;
+                $wpjobportal_resume = $this->aiOwnResumeContext($wpjobportal_resumeid);
+                if ($wpjobportal_resume === '') {
+                    wp_send_json_error(array('message' => __('Add a resume first, so there is something to compare.', 'wp-job-portal')));
+                }
+                $wpjobportal_sections['job'] = $wpjobportal_job;
+                $wpjobportal_sections['my_profile'] = $wpjobportal_resume;
+                $wpjobportal_item = $wpjobportal_jobid;
+                break;
+
+            default:
+                wp_send_json_error(array('message' => __('That AI task does not exist.', 'wp-job-portal')));
         }
+
+        WPJOBPORTAL_AI_Tasks::respond(WPJOBPORTAL_AI_Tasks::run($wpjobportal_task, $wpjobportal_sections, WPJOBPORTAL_AI_Tasks::settings(array('language' => get_locale())), array(
+            'item' => $wpjobportal_item,
+        )));
     }
 }
 ?>

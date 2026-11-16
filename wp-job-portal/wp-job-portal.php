@@ -5,7 +5,7 @@
   * Plugin URI: https://wpjobportal.com/
   * Description: WP Job Portal is WordPress’s best job board plugin — easy to use, highly configurable, and built to support both job seekers and employers. AI-powered add-ons offers smart job & resume search, and personalized recommendations.
   * Author: WP Job Portal
-  * Version: 2.8.1
+  * Version: 2.9.0
   * Requires at least: 6.2
   * Requires PHP: 7.4
   * Text Domain: wp-job-portal
@@ -156,7 +156,7 @@ class wpjobportal {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '280';
+        self::$_currentversion = '290';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_common = WPJOBPORTALincluder::getJSModel('common');
         self::$_config = WPJOBPORTALincluder::getJSModel('configuration');
@@ -485,6 +485,19 @@ class wpjobportal {
         require_once 'includes/services/class-wpjobportal-product-map.php';
         require_once 'includes/services/class-wpjobportal-licence-client.php';
         require_once 'includes/services/class-wpjobportal-update-client.php';
+        // The AI core (2.9.0): one engine registry, policy, meter, licence credits, Zywrap connect, tasks.
+        require_once 'includes/services/ai/class-wpjobportal-ai-policy.php';
+        require_once 'includes/services/ai/class-wpjobportal-ai-engine.php';
+        require_once 'includes/services/ai/class-wpjobportal-ai-usage.php';
+        require_once 'includes/services/ai/class-wpjobportal-ai-credits.php';
+        require_once 'includes/services/ai/class-wpjobportal-zywrap-connect.php';
+        require_once 'includes/services/ai/class-wpjobportal-ai-tasks.php';
+        WPJOBPORTAL_AI_Usage::register();
+        WPJOBPORTAL_Zywrap_Connect::register();
+        add_action('admin_init', array('WPJOBPORTAL_AI_Engine', 'migrateLegacyKey'));
+        // 2.8.0 code and the 1.1.0 suites ask this option whether to show an AI button.
+        // The key itself now lives encrypted elsewhere; this answers "is AI ready" only.
+        add_filter('pre_option_wpjobportal_zywrap_api_key', 'wpjobportal_ai_legacy_key_flag');
         require_once 'includes/services/class-wpjobportal-update-service.php';
         require_once 'includes/services/class-wpjobportal-addon-installer.php';
         require_once 'includes/services/class-wpjobportal-translations.php';
@@ -1617,7 +1630,7 @@ function wpjobportal_asset_version($wpjobportal_relative_path, $wpjobportal_base
             return (string) $wpjobportal_mtime;
         }
     }
-    return '2.8.1';
+    return '2.9.0';
 }
 
 /**
@@ -2862,7 +2875,8 @@ add_action('admin_enqueue_scripts', 'wpjobportal_load_classic_editor_assets');
         );
         // Get all data from our local DB tables
         $playground_data = WPJOBPORTALincluder::getJSModel('zywrap')->getPlaygroundData();
-        $api_key = get_option('wpjobportal_zywrap_api_key', '');
+        // The editor buttons run Zywrap wrappers, so they need Zywrap itself (2.9.0). Never the key.
+        $api_key = WPJOBPORTAL_AI_Engine::usable('zywrap') ? '1' : '';
 
         // Pass all data and security nonces to the JavaScript file
         wp_localize_script('wpjobportal-zywrap-editor', 'zywrapEditorData', array(
@@ -2873,7 +2887,7 @@ add_action('admin_enqueue_scripts', 'wpjobportal_load_classic_editor_assets');
             'wrappers_nonce'  => wp_create_nonce('zywrap_get_wrappers'),
             'execute_nonce'   => wp_create_nonce('zywrap_execute_proxy'),
             // === ADDED: Data for Warnings ===
-            'has_api_key'     => ($api_key),
+            'has_api_key'     => !empty($api_key),
             'settings_url'    => admin_url("admin.php?page=wpjobportal_zywrap&wpjobportallt=zywrap"),
             'warning_key'     => __('Setup Required: Please add your API Key in settings.', 'wp-job-portal'),
             'warning_sync'    => __('Action Needed: Please sync the Wrapper Catalog (Step 2) in settings.', 'wp-job-portal'),
@@ -2932,7 +2946,8 @@ add_action('admin_enqueue_scripts', 'wpjobportal_load_classic_editor_assets');
 
         // Get all data from our local DB tables
         $playground_data = WPJOBPORTALincluder::getJSModel('zywrap')->getPlaygroundData();
-        $api_key = get_option('wpjobportal_zywrap_api_key', '');
+        // The editor buttons run Zywrap wrappers, so they need Zywrap itself (2.9.0). Never the key.
+        $api_key = WPJOBPORTAL_AI_Engine::usable('zywrap') ? '1' : '';
 
         // Pass all data and nonces to this script
         wp_localize_script('wpjobportal-zywrap-classic-editor', 'wpjpzywrapClassicData', array(
@@ -3025,7 +3040,8 @@ add_action('admin_enqueue_scripts', 'wpjobportal_load_classic_editor_assets');
 
         // Get all data from our local DB tables
         $playground_data = WPJOBPORTALincluder::getJSModel('zywrap')->getPlaygroundData();
-        $api_key = get_option('wpjobportal_zywrap_api_key', '');
+        // The editor buttons run Zywrap wrappers, so they need Zywrap itself (2.9.0). Never the key.
+        $api_key = WPJOBPORTAL_AI_Engine::usable('zywrap') ? '1' : '';
 
         $data_array = array(
             'categories'      => $playground_data['categories'],
@@ -3112,7 +3128,8 @@ function wpjobportal_load_classic_editor_assets_elementor($hook) {
 
     // Get your data
     $playground_data = WPJOBPORTALincluder::getJSModel('zywrap')->getPlaygroundData();
-    $api_key = get_option('wpjobportal_zywrap_api_key', '');
+    // The editor buttons run Zywrap wrappers, so they need Zywrap itself (2.9.0). Never the key.
+    $api_key = WPJOBPORTAL_AI_Engine::usable('zywrap') ? '1' : '';
 
     // Pass data to JS
     wp_localize_script('wpjobportal-zywrap-classic-editor', 'wpjpzywrapClassicData', array(
@@ -3151,4 +3168,15 @@ function wpjobportal_load_classic_editor_assets_elementor($hook) {
 
     wp_add_inline_style('wpjobportal-chosen-style', $wpjobportal_inline_css);
     wp_enqueue_script( 'chosen', esc_url(WPJOBPORTAL_PLUGIN_URL) . 'includes/js/chosen/chosen.jquery.min.js', array(), wpjobportal_asset_version('includes/js/chosen/chosen.jquery.min.js'), false );
+}
+
+/**
+ * Answers get_option('wpjobportal_zywrap_api_key') for code written before 2.9.0:
+ * a non-empty marker when an AI engine is ready, '' when not. Never the key.
+ */
+function wpjobportal_ai_legacy_key_flag() {
+    if (!class_exists('WPJOBPORTAL_AI_Engine')) {
+        return false;
+    }
+    return WPJOBPORTAL_AI_Engine::usable() ? 'wpjp-ai-ready' : '';
 }

@@ -120,7 +120,7 @@ class WPJOBPORTAL_Admin_Form_UI {
     /**
      * The AI Content Generation window behind the button on description/skills fields.
      * 2.7 loaded it on the WordPress post editor only, so on these forms the button did
-     * nothing. Without an API key the window says so and links to the AI writer settings.
+     * nothing. Without an API key the window says so and links to the AI settings.
      */
     private static function ai_writer() {
         static $done = false;

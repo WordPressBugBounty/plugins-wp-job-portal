@@ -1,8 +1,14 @@
 <?php if (!defined('ABSPATH')) die('Restricted Access'); ?>
 <?php
 
+// Security: nothing to set up when the controller refused the page (visitor, wrong role):
+// the template shows only the message. Patchstack, 16 Nov 2026.
+if (wpjobportal::$_error_flag) {
+    return;
+}
 // to handle the email candidate case
-$wpjobportal_jobid = WPJOBPORTALrequest::getVar('jobid','','');
+// Security: jobid is printed into the inline script below; read it as a number.
+$wpjobportal_jobid = absint(WPJOBPORTALrequest::getVar('jobid','',''));
     wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
@@ -388,7 +394,7 @@ $wpjobportal_jobid = WPJOBPORTALrequest::getVar('jobid','','');
             }else{
                 jQuery('div#comments').css('display', 'inline-block');
             }
-            var jobid = ".$wpjobportal_jobid.";// needed to get employer email address
+            var jobid = ".absint($wpjobportal_jobid).";// needed to get employer email address
             var ajaxurl = \"". esc_url_raw(admin_url('admin-ajax.php')) ."\";
             jQuery.post(ajaxurl, {action: 'wpjobportal_ajax', wpjobportalme: 'jobapply', task: task, em: emailid, resumeid:resumeid, jobid:jobid, '_wpnonce':'". esc_attr(wp_create_nonce("get-email-fields"))."'}, function (data) {
                 if (data) {

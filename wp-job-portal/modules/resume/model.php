@@ -1801,7 +1801,7 @@ class WPJOBPORTALResumeModel {
         }
         if ($wpjobportal_section != 'skills' && $wpjobportal_section != 'resume' && $wpjobportal_section != 'personal') {
             $canadd = $this->canAddMoreSection($wpjobportal_uid, $wpjobportal_resumeid, $wpjobportal_section);
-            $anchor = '<a class="add" data-section="' . $wpjobportal_section . '"> + ' . esc_html(__('Add New', 'wp-job-portal')) . ' ' . wpjobportal::wpjobportal_getVariableValue($wpjobportal_section) . '</a>';
+            $anchor = '<a class="add" data-section="' . esc_attr($wpjobportal_section) . '"> + ' . esc_html(__('Add New', 'wp-job-portal')) . ' ' . wpjobportal::wpjobportal_getVariableValue($wpjobportal_section) . '</a>';
         } else {
             $canadd = 0;
             $anchor = '';
@@ -1909,7 +1909,7 @@ class WPJOBPORTALResumeModel {
             }
         }
         $canadd = $this->canAddMoreSection($wpjobportal_uid, $wpjobportal_resumeid, $wpjobportal_section);
-        $anchor = '<a class="add" data-section="' . $wpjobportal_section . '"> + ' . esc_html(__('Add New', 'wp-job-portal')) . ' ' . wpjobportal::wpjobportal_getVariableValue($wpjobportal_section) . '</a>';
+        $anchor = '<a class="add" data-section="' . esc_attr($wpjobportal_section) . '"> + ' . esc_html(__('Add New', 'wp-job-portal')) . ' ' . wpjobportal::wpjobportal_getVariableValue($wpjobportal_section) . '</a>';
         $wpjobportal_array = wp_json_encode(array('canadd' => $canadd, 'msg' => $wpjobportal_msg, 'result' => $wpjobportal_result, 'anchor' => $anchor));
         return $wpjobportal_array;
     }

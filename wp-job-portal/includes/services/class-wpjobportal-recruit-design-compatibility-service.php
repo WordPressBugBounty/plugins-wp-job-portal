@@ -44,6 +44,11 @@ class WPJOBPORTAL_Recruit_Design_Compatibility_Service {
         if (!self::is_recruit_available() || !self::is_frontend_view()) {
             return;
         }
+        // 2.9.0: only on top of the suite's own stylesheet. A suite without a licence
+        // loads nothing, and the missing dependency made WordPress log a notice.
+        if (!wp_style_is('wpjobportal-recruitsuite', 'registered')) {
+            return;
+        }
         wp_enqueue_style(
             self::STYLE_HANDLE,
             WPJOBPORTAL_PLUGIN_URL . 'includes/css/wpjobportal-recruit-compat.css',

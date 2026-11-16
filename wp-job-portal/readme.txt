@@ -3,7 +3,7 @@ Contributors: wpjobportal
 Tags: job board, careers, recruitment, job listing, jobs
 Requires at least: 6.2
 Tested up to: 7.1
-Stable tag: 2.8.1
+Stable tag: 2.9.0
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -25,7 +25,9 @@ https://www.youtube.com/watch?v=UmO6EwsNMZo
 
 = Smarter hiring with AI =
 
-* **AI writing**: draft job and company descriptions, resume skills and cover letters in seconds (needs a ZyWrap account).
+* **AI writing**: draft job and company descriptions, resume skills and cover letters in seconds.
+* **AI tools**: job title ideas, a job post check, screening and interview questions and e-mail drafts for employers; resume wording and "how well do I match" for job seekers.
+* **Your choice of AI**: create a free Zywrap account from your dashboard (paid plans add monthly credits), or use your own Anthropic (Claude) or OpenAI key. Limits, usage figures and a privacy setting are included.
 * **Smart Search & Matching** (premium): relevance-ranked job and resume search, suggested jobs for candidates, suggested resumes for employers and a match score for every application, run on your own server.
 
 = Jobs that get found =
@@ -82,9 +84,13 @@ WP Job Portal runs on your own server. It connects to the services below only in
 
 **Theme demo import** (wpjobportal.com): only with the WP Job Portal theme, when an administrator imports one of its demos. It requests the demo's content and sends nothing else. [Terms](https://wpjobportal.com/terms/), [Privacy policy](https://wpjobportal.com/privacy-policy/).
 
-**WP Job Portal licences and updates** (wpjobportal.com): only when you enter a licence key or have a premium product installed. It sends the licence key, your site address and the installed product versions, to activate the licence and offer updates. [Terms](https://wpjobportal.com/terms/), [Privacy policy](https://wpjobportal.com/privacy-policy/).
+**WP Job Portal licences and updates** (wpjobportal.com): only when you enter a licence key or have a premium product installed. It sends the licence key, your site address and the installed product versions, to activate the licence and offer updates. When you claim the monthly AI credits a paid plan includes, it also sends the ID of your connected Zywrap account. [Terms](https://wpjobportal.com/terms/), [Privacy policy](https://wpjobportal.com/privacy-policy/).
 
-**ZyWrap** (api.zywrap.com): only when you turn on AI content generation and add your ZyWrap key. The text you ask it to write about is sent to ZyWrap. [Terms](https://zywrap.com/terms), [Privacy policy](https://zywrap.com/privacy).
+**Zywrap** (api.zywrap.com, zywrap.com): when Zywrap is the AI engine. Creating or connecting an account from the AI screen sends the e-mail address and name you enter and your site address. Each time someone uses an AI button, the text it is asked to write about is sent. Resume name and contact fields are never sent, and e-mail addresses and phone numbers are removed from the text by default (a setting on the AI screen). [Terms](https://zywrap.com/terms), [Privacy policy](https://zywrap.com/privacy).
+
+**Anthropic** (api.anthropic.com): only when you add your own Anthropic key and choose it as the AI engine. The same text as for Zywrap is sent. [Terms](https://www.anthropic.com/legal/commercial-terms), [Privacy policy](https://www.anthropic.com/legal/privacy).
+
+**OpenAI** (api.openai.com): only when you add your own OpenAI key and choose it as the AI engine. The same text as for Zywrap is sent. [Terms](https://openai.com/policies/terms-of-use), [Privacy policy](https://openai.com/policies/privacy-policy).
 
 **Google Maps** (maps.googleapis.com): only when you add a Google Maps API key. Map pages load Google's map script in the visitor's browser. [Terms](https://cloud.google.com/maps-platform/terms), [Privacy policy](https://policies.google.com/privacy).
 
@@ -191,6 +197,26 @@ Through the Patchstack Vulnerability Disclosure Program, whose team validates an
 
 == Changelog ==
 
+= 2.9.0 =
+AI update: choose your AI engine, new AI tools, and security fixes.
+
+* Security: the cover letter writer could include another candidate's resume title and skills; it now reads only your own resume and published jobs. All sites should update.
+* Security: fixed an SQL injection reachable by a logged-in job seeker or employer through crafted field names in the profile and resume forms; saved data is now written only to the plugin's own database columns. All sites should update.
+* Security: fixed a reflected cross-site scripting issue on the employer's applicants page. A crafted link could run script in the browser of anyone who opened it, signed in or not. Job ids from the address are now read as numbers, and the page sets nothing up when access is refused.
+* Security: fixed the same kind of issue in the Apply Now popup and in dependent custom fields: values from the request are no longer printed into the page's script.
+* New: create or connect a Zywrap account from the AI screen, with no key to copy. Paid plans include monthly Zywrap credits.
+* New: or use your own Anthropic (Claude) or OpenAI key, checked before saving and stored encrypted.
+* New: AI tools for employers (job titles, job post check, screening and interview questions, rejection and offer e-mails) and job seekers (resume wording, how well you match a job).
+* New: one AI screen (WP Job Portal > AI) with a switch per task, daily limits, a budget for your own key, usage figures and a privacy level.
+* Changed: contact details and personal resume fields are never sent to the AI; answers are cleaned before they reach the editor.
+* Fixed: the Unsubscribe link in a job alert e-mail now stops only that alert. Other alerts and saved-search e-mails at the same address stay.
+* Fixed: the admin Resumes screen showed an error to users who can open the plugin's admin but are not administrators (a role given the "wpjobportal" capability). They now see the list, as on the Jobs and Companies screens.
+* Fixed: prices show their exact amount (1,950 instead of 2K, 19.99 instead of 20) on package pages, invoices, pay-to-view prices and e-mails, with the currency's decimals.
+* Fixed: a package's Job Expiry of -1 (shown as "Unlimited") gave every job posted with the package yesterday's end date, so the job was never seen. Such jobs now get the default 30 days, and the package list shows the real duration.
+* Fixed: typing a city in Greek or another non-Latin alphabet found no city on some databases, so a job could not be saved. The city search now also tries the name with capital letters.
+* Fixed: a dependent drop-down on the resume form could stop with an error when the request named a theme that is not installed.
+* Fixed: the AI instructions are no longer added to descriptions; clearer AI error messages; AI log counts.
+
 = 2.8.1 =
 Security.
 
@@ -276,6 +302,9 @@ Major update: the separate add-ons become four premium products, and twelve of t
 Earlier versions are listed in changelog.txt in the plugin folder.
 
 == Upgrade Notice ==
+
+= 2.9.0 =
+AI update with security fixes (cover letter writer, an SQL injection in the profile and resume forms, and a cross-site scripting issue on the applicants page). Your Zywrap key moves to encrypted storage by itself. Back up your site before updating.
 
 = 2.8.1 =
 Security update: fixes an SQL injection in the profile and resume forms and a cross-site scripting issue in the applicants' e-mail form. All sites should update.

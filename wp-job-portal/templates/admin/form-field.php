@@ -71,7 +71,8 @@ $wpjobportal_control_id = WPJOBPORTALformfield::getFirstControlId($wpjobportal_c
 
     <div class="wpjobportal-form-value" role="group" aria-labelledby="<?php echo esc_attr($wpjobportal_label_id); ?>">
            <?php
-            if(isset($wpjobportal_field->field) && ($wpjobportal_field->field == 'description' || $wpjobportal_field->field == 'skills')  ){
+            // 2.9.0: not where the AI writer panel is shown (job, company): one AI button per field.
+            if(isset($wpjobportal_field->field) && ($wpjobportal_field->field == 'description' || $wpjobportal_field->field == 'skills') && strpos((string) $wpjobportal_content, 'wjportal-ai-app-wrapper') === false ){
                echo '<a href="#" id="zywrap-open-modal-button" class="button" title="' . esc_attr__('AI Content Generation', 'wp-job-portal') . '">
                      <span class="dashicons dashicons-testimonial"></span>
                      ' . esc_html__('AI Content Generation', 'wp-job-portal') . '

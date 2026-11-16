@@ -33,7 +33,7 @@ class WPJOBPORTAL_Addon_Version_Notice {
     /** The base plugin's own version, from its header. */
     private static function base_version() {
         $data = get_file_data(dirname(__DIR__, 2) . '/wp-job-portal.php', array('Version' => 'Version'));
-        return !empty($data['Version']) ? $data['Version'] : '2.8.1';
+        return !empty($data['Version']) ? $data['Version'] : '2.9.0';
     }
 
     public static function register() {

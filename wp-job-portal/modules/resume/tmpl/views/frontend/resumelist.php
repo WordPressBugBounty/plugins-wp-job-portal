@@ -70,4 +70,8 @@ if($wpjobportal_control == 'myresumes'){
 				if ($wpjobportal_control === 'myresumes') {
 					do_action('wpjobportal_my_resume_extensions', $wpjobportal_myresume);
 				}
+				// 2.9.0: e-mail drafts for this application, sent by the employer, never by the AI.
+				if ($wpjobportal_control === 'jobapply' && !empty($wpjobportal_myresume->jobapplyid) && class_exists('WPJOBPORTAL_AI_Tasks')) {
+					echo WPJOBPORTAL_AI_Tasks::toolbar(array('rejection_email', 'offer_email'), array('application' => (int) $wpjobportal_myresume->jobapplyid, 'compact' => true)); // phpcs:ignore WordPress.Security.EscapeOutput -- built from escaped parts
+				}
 		echo  '</div>';

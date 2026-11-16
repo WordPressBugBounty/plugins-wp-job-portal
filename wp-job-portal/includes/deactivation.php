@@ -178,6 +178,8 @@ class WPJOBPORTALdeactivation {
             $wpdb->prefix."wj_portal_zywrap_block_templates",
             $wpdb->prefix."wj_portal_zywrap_logs",
             $wpdb->prefix."wj_portal_zywrap_use_cases",
+            // AI usage counts (2.9.0)
+            $wpdb->prefix."wj_portal_ai_usage",
         );
         return $wpjobportal_tables;
     }

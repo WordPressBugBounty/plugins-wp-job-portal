@@ -127,7 +127,7 @@ class WPJOBPORTAL_Route_Registry_Service {
             'thirdpartyimport' => array('importjobmanagerdata', 'getjobmanagerdatastats'),
             'user' => array('saveuserrole', 'saveuser', 'assignuserrole', 'changeuserstatus', 'deleteuser', 'enforcedeleteuser', 'bulkusers'),
             'wpjobportal' => array('saveordering', 'savedocumenttitleoptions', 'savescreenoptions'),
-            'zywrap' => array('save_zywrap_settings'),
+            'zywrap' => array('save_zywrap_settings', 'save_ai_settings'),
             'zywraplogs' => array(),
         );
     }

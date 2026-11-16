@@ -8,7 +8,7 @@ if ( !WPJOBPORTALincluder::getTemplate('templates/header',array('wpjobportal_mod
     return;
 }
 if (wpjobportal::$_error_flag == null) {
-    $wpjobportal_ids=WPJOBPORTALrequest::getVar('jobid');
+    $wpjobportal_ids=absint(WPJOBPORTALrequest::getVar('jobid'));
     $wpjobportal_id=isset($wpjobportal_ids) ? $wpjobportal_ids : null;
     ?>
     <div class="wjportal-main-wrapper wjportal-clearfix">

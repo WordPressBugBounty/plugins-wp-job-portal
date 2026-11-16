@@ -2148,6 +2148,32 @@ class WPJOBPORTALactivation {
           ) ENGINE=InnoDB " . wpjobportal::$_db->get_charset_collate() . ";";
           self::runQuery($query);
 
+          // The AI layer (2.9.0): one usage table for every AI request. Counts only (task,
+          // engine, model, tokens, cost, time, result), never the text. 290.sql creates the
+          // same table for sites that update; both are IF NOT EXISTS.
+          $query = "CREATE TABLE IF NOT EXISTS `".wpjobportal::$_db->prefix."wj_portal_ai_usage` (
+              `id` bigint(20) NOT NULL AUTO_INCREMENT,
+              `created` datetime DEFAULT NULL,
+              `engine` varchar(50) NOT NULL DEFAULT '',
+              `model` varchar(100) NOT NULL DEFAULT '',
+              `funded` varchar(10) NOT NULL DEFAULT 'byok',
+              `feature` varchar(60) NOT NULL DEFAULT '',
+              `itemid` bigint(20) NOT NULL DEFAULT '0',
+              `userid` bigint(20) NOT NULL DEFAULT '0',
+              `intokens` int(11) NOT NULL DEFAULT '0',
+              `outtokens` int(11) NOT NULL DEFAULT '0',
+              `tokensknown` tinyint(1) NOT NULL DEFAULT '1',
+              `cost` decimal(12,6) NOT NULL DEFAULT '0.000000',
+              `priced` tinyint(1) NOT NULL DEFAULT '1',
+              `ms` int(11) NOT NULL DEFAULT '0',
+              `ok` tinyint(1) NOT NULL DEFAULT '1',
+              `error` varchar(255) NOT NULL DEFAULT '',
+              PRIMARY KEY (`id`),
+              KEY `wpjp_ai_when` (`created`),
+              KEY `wpjp_ai_user` (`userid`, `created`)
+          ) ENGINE=InnoDB " . wpjobportal::$_db->get_charset_collate() . ";";
+          self::runQuery($query);
+
           // Job shortlist, tags and job alerts. These four arrived as upgrade
           // migrations, so a fresh install only ever got them because activation
           // seeded a lower version than the code expected and the migration loop

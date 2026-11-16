@@ -404,6 +404,7 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
             'wpjobportal.savedocumenttitleoptions',
             'wpjobportal.savescreenoptions',
             'zywrap.save_zywrap_settings',
+            'zywrap.save_ai_settings',
         );
         $route = $module . '.' . $task;
 
@@ -479,6 +480,7 @@ class WPJOBPORTAL_Core_Action_Policy_Service {
             'wpjobportal.savedocumenttitleoptions' => 'wpjobportal_document_title_nonce',
             'wpjobportal.savescreenoptions' => 'wjp_dashboard_options_nonce',
             'zywrap.save_zywrap_settings' => 'save-zywrap-settings',
+            'zywrap.save_ai_settings' => 'save-ai-settings',
         );
         $route = $module . '.' . $task;
 

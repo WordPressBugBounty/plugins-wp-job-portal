@@ -48,8 +48,10 @@ class WPJOBPORTAL_Alert_Unsubscribe {
             wp_die(esc_html__('This unsubscribe link is no longer active. You may already be unsubscribed.', 'wp-job-portal'), esc_html($title), array('response' => 200));
         }
         if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
-            // The token above proves this request comes from the mailbox itself.
-            WPJOBPORTALincluder::getJSModel('jobalert')->unSubscribeJobAlertEmail($email, true);
+            // The token above proves this request comes from the mailbox itself. It is signed
+            // for this one alert, so only this alert goes; other alerts and saved-search
+            // emails at the same address stay (2.9.0; before, every alert at the address went).
+            WPJOBPORTALincluder::getJSModel('jobalert')->unSubscribeJobAlert($alertid, true);
             wp_die(esc_html__('You are unsubscribed and will not receive these job alerts any more.', 'wp-job-portal'), esc_html($title), array('response' => 200));
         }
         $form = '<p>' . esc_html__('Stop receiving job alerts by email?', 'wp-job-portal') . '</p>'

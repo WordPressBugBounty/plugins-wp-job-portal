@@ -1325,7 +1325,7 @@ class WPJOBPORTALwpjobportalModel {
 
 
         $wpjobportal_lang_name = WPJOBPORTALrequest::getVar('langname');
-        $wpjobportal_language_code = WPJOBPORTALrequest::getVar('filename');
+        $wpjobportal_language_code = preg_replace('/[^A-Za-z0-9_@-]/', '', (string) WPJOBPORTALrequest::getVar('filename')); // Security: part of a file path
 
         $wpjobportal_result = array();
         $wpjobportal_result['error'] = false;

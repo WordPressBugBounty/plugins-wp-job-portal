@@ -123,7 +123,8 @@ class WPJOBPORTALcopyjobModel {
                     }
 
                     if(isset($package) && !empty($package)){
-                        $expiry = $package->jobtime.''.$package->jobtimeunit;
+                        $jobexpiry = WPJOBPORTALincluder::getJSModel('common')->getPackageJobExpiry($package);
+                        $expiry = $jobexpiry[0].' '.$jobexpiry[1];
                     }else{
                         $expiry = "30 days"; // in case of undefined add job for 30 days
                     }
@@ -342,7 +343,7 @@ class WPJOBPORTALcopyjobModel {
                                                             '.esc_html__("Expiry",'job-portal-theme').' :
                                                         </span>
                                                         <span class="wpj-jp-pkg-item-val">
-                                                            '.$package->jobtime.' '.$package->jobtimeunit.'
+                                                            '.esc_html(call_user_func_array(array(WPJOBPORTALincluder::getJSModel('common'), 'getTimeForView'), WPJOBPORTALincluder::getJSModel('common')->getPackageJobExpiry($package))).'
                                                         </span>
                                                     </div>
                                                 </div>
@@ -414,7 +415,7 @@ class WPJOBPORTALcopyjobModel {
                                                         '.__("Expiry",'wp-job-portal').'. :
                                                     </span>
                                                     <span class="wjportal-pkg-item-val">
-                                                        '.$package->jobtime.' '.$package->jobtimeunit.'
+                                                        '.esc_html(call_user_func_array(array(WPJOBPORTALincluder::getJSModel('common'), 'getTimeForView'), WPJOBPORTALincluder::getJSModel('common')->getPackageJobExpiry($package))).'
                                                     </span>
                                                 </div>
                                                 <div class="wjportal-pkg-item-btn-row">

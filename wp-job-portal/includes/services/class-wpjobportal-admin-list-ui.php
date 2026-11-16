@@ -353,8 +353,8 @@ class WPJOBPORTAL_Admin_List_UI {
 
     /**
      * Tabs for a page that combines several of today's screens (design 4):
-     * Reports, Categories, Job attributes, Locations, Forms & fields, AI writer,
-     * Site mode (from the menu's third-level links) and Emails (its two pages).
+     * Reports, Categories, Job attributes, Locations, Forms & fields,
+     * Site mode (from the menu's third-level links), and Emails and AI (their pages).
      * Draws nothing on other pages, so screens can call it unconditionally.
      */
     public static function section_tabs() {
@@ -371,7 +371,7 @@ class WPJOBPORTAL_Admin_List_UI {
                 $wpjobportal_tabs = $wpjobportal_sub['third'];
                 $wpjobportal_on = $wpjobportal_current['third'];
                 $wpjobportal_label = $wpjobportal_sub['label'];
-            } elseif (in_array($wpjobportal_section['id'], array('emails', 'reports', 'licences'), true) && count($wpjobportal_section['subs']) > 1) {
+            } elseif (in_array($wpjobportal_section['id'], array('emails', 'reports', 'licences', 'ai'), true) && count($wpjobportal_section['subs']) > 1) {
                 // Reports and Licences are menu sections of their own again; their pages keep the tabs they had as Dashboard pages.
                 $wpjobportal_tabs = $wpjobportal_section['subs'];
                 $wpjobportal_on = $wpjobportal_current['sub'];

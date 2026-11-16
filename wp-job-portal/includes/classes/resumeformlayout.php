@@ -1271,6 +1271,11 @@ class WPJOBPORTALResumeFormlayout {
         $wpjobportal_html .= '</div>';
         $wpjobportal_html .= '</div>';
         $wpjobportal_html .= '</form>';
+        // 2.9.0: improve a sentence or paragraph of the resume (the person pastes it in).
+        // Outside the form, so nothing of it is ever saved with the resume.
+        if (class_exists('WPJOBPORTAL_AI_Tasks')) {
+            $wpjobportal_html .= WPJOBPORTAL_AI_Tasks::toolbar(array('resume_improve'));
+        }
         $wpjobportal_html .= '</div>';// section wrapper end;
 
         //echo wp_kses($wpjobportal_html,WPJOBPORTAL_ALLOWED_TAGS);

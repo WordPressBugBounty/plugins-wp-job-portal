@@ -56,7 +56,7 @@ foreach($wpjobportal_fields AS $wpjobportal_field){
         break;
         case 'description':
                 $wpjobportal_content = WPJOBPORTALformfield::editor($wpjobportal_inputprefix.$wpjobportal_sys.'description', isset($wpjobportal_company->description) ? $wpjobportal_company->description : '', array('class' => 'inputbox one wjportal-form-textarea-field'));
-                $wpjobportal_api_key = get_option('wpjobportal_zywrap_api_key', '');
+                $wpjobportal_api_key = WPJOBPORTAL_AI_Engine::usable() ? '1' : ''; // 2.9.0: is an AI engine ready (any of the three)
                 if(!empty($wpjobportal_api_key) && !WPJOBPORTALincluder::getObjectClass('user')->isguest()){
                     $wpjobportal_enable_company_copilot  = wpjobportal::$_config->getConfigurationByConfigName('enable_company_copilot');
                     if(!empty($wpjobportal_enable_company_copilot) || current_user_can('manage_options')){

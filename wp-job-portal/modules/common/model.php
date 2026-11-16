@@ -45,6 +45,20 @@ class WPJOBPORTALCommonModel {
         return ($wpjobportal_string === '' && $fallback !== '') ? $fallback : $wpjobportal_string;
     }
 
+    /**
+     * How long a job posted with this package stays live, as array(number, unit).
+     * Job Expiry must be at least 1 day, week, month or year. Anything else (-1 was shown as
+     * "Unlimited" but gave the job yesterday as its end date) uses the default 30 days.
+     */
+    function getPackageJobExpiry($wpjobportal_package) {
+        $wpjobportal_time = isset($wpjobportal_package->jobtime) ? (int) $wpjobportal_package->jobtime : 0;
+        $wpjobportal_unit = isset($wpjobportal_package->jobtimeunit) ? (string) $wpjobportal_package->jobtimeunit : '';
+        if ($wpjobportal_time < 1 || !in_array($wpjobportal_unit, array('day', 'week', 'month', 'year'), true)) {
+            return array(30, 'day');
+        }
+        return array($wpjobportal_time, $wpjobportal_unit);
+    }
+
     function getTimeForView($time,$unit){
         // made the change to translate unit value(day,days,week,weeks etc)
         if($time > 1){
@@ -62,11 +76,19 @@ class WPJOBPORTALCommonModel {
     function getFancyPrice($wpjobportal_price,$currentyid=0,$wpjobportal_override_config=array()){
         $currency_align = isset($wpjobportal_override_config['currency_align']) ? $wpjobportal_override_config['currency_align'] : wpjobportal::$_configuration['currency_align'];
         $thousand_separator = isset($wpjobportal_override_config['thousand_separator']) ? $wpjobportal_override_config['thousand_separator'] : wpjobportal::$_configuration['thousand_separator'];
-        $short_price = isset($wpjobportal_override_config['short_price']) ? $wpjobportal_override_config['short_price'] : wpjobportal::$_configuration['short_price'];
+        // Every caller shows an amount someone pays: package prices, invoices, pay-to-view
+        // prices, e-mails. The short form ("K2K" for K1,950) rounded them, and the stored
+        // setting short_price (on by default, not on any settings screen) applied it to all
+        // of them. Amounts are now exact; a caller can still ask for the short form.
+        $short_price = isset($wpjobportal_override_config['short_price']) ? $wpjobportal_override_config['short_price'] : 0;
         if(isset($wpjobportal_override_config['decimal_places'])){
             if($wpjobportal_override_config['decimal_places'] === 'fit_to_currency' && $currentyid){
-                // Was '' (a fatal TypeError in number_format() on PHP 8 when short prices are off): use the site's setting.
-                $wpjobportal_decimal_places = (int) wpjobportal::$_configuration['decimal_places'];
+                // The currency's own decimal places (from its smallest unit, as the package detail
+                // page does), else the site's setting. Was '' until 2.8: a fatal TypeError in number_format().
+                $wpjobportal_decimal_places = WPJOBPORTALincluder::getJSModel('currency')->getDecimalPlaces($currentyid);
+                if (!is_numeric($wpjobportal_decimal_places) || $wpjobportal_decimal_places < 0) {
+                    $wpjobportal_decimal_places = (int) wpjobportal::$_configuration['decimal_places'];
+                }
             }else{
                 $wpjobportal_decimal_places = $wpjobportal_override_config['decimal_places'];
             }
@@ -82,7 +104,13 @@ class WPJOBPORTALCommonModel {
         if( $short_price ){
             $wpjobportal_text .= $this->getShortFormatPrice($wpjobportal_price);
         }else{
-            $wpjobportal_text .= wpjobportalphplib::wpJP_number_format((float) $wpjobportal_price,(int) $wpjobportal_decimal_places,'.',$thousand_separator);
+            // Whole amounts without ".00" (K1,950, as the short form showed whole amounts);
+            // others with all their decimals ($19.99).
+            $wpjobportal_amount = (float) $wpjobportal_price;
+            if ((int) $wpjobportal_decimal_places > 0 && abs($wpjobportal_amount - round($wpjobportal_amount)) < 0.000001) {
+                $wpjobportal_decimal_places = 0;
+            }
+            $wpjobportal_text .= wpjobportalphplib::wpJP_number_format($wpjobportal_amount,(int) $wpjobportal_decimal_places,'.',$thousand_separator);
         }
 
         if($currency_align == 2 && $currentyid ){ //right

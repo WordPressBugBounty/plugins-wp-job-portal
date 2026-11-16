@@ -16,7 +16,7 @@ $wpjobportal_gender = array(
 ?>
 <?php
     // to handle the email candidate case
-    $wpjobportal_jobid = WPJOBPORTALrequest::getVar('jobid','','');
+    $wpjobportal_jobid = absint(WPJOBPORTALrequest::getVar('jobid','','')); // Security: printed into the inline script
     wp_register_script( 'wpjobportal-inline-handle', '', array(), WPJOBPORTAL_VERSION, false );
     wp_enqueue_script( 'wpjobportal-inline-handle' );
 
@@ -370,7 +370,7 @@ $wpjobportal_gender = array(
             });
         }
         function getEmailFields(emailid, resumeid) {
-            var jobid = ".$wpjobportal_jobid.";// needed to get employer email address
+            var jobid = ".absint($wpjobportal_jobid).";// needed to get employer email address
             var ajaxurl = \"". esc_url_raw(admin_url('admin-ajax.php')) ."\";
             jQuery.post(ajaxurl, {action: 'wpjobportal_ajax', wpjobportalme: 'jobapply', task: 'getEmailFields', em: emailid,resumeid: resumeid, jobid:jobid, '_wpnonce':'". esc_attr(wp_create_nonce("get-email-fields"))."'}, function (data) {
                 if (data) {

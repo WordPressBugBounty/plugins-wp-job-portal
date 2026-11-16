@@ -503,7 +503,7 @@ class WPJOBPORTALCustomFieldModel {
         $wpjobportal_data = wpjobportal::$_db->get_row($query);
         $wpjobportal_decoded_data = json_decode($wpjobportal_data->userfieldparams);
         $wpjobportal_comboOptions = array();
-        $wpjobportal_themeclass=($wpjobportal_themecall)?getJobManagerThemeClass('select'):"";
+        $wpjobportal_themeclass=($wpjobportal_themecall && function_exists('getJobManagerThemeClass'))?getJobManagerThemeClass('select'):"";
 
         $flag = 0;
         foreach ($wpjobportal_decoded_data as $wpjobportal_key => $wpjobportal_value) {
@@ -555,10 +555,12 @@ class WPJOBPORTALCustomFieldModel {
         }
         $wpjobportal_val = WPJOBPORTALrequest::getVar('fvalue');
         $childfield = WPJOBPORTALrequest::getVar('child');
-        $wpjobportal_section = WPJOBPORTALrequest::getVar('section');
-        $wpjobportal_sectionid = WPJOBPORTALrequest::getVar('sectionid');
-        $type = WPJOBPORTALrequest::getVar('type');
-        $wpjobportal_themecall = WPJOBPORTALrequest::getVar('themecall');
+        // Security: these four are printed into an onchange handler; keep them to the
+        // characters their real values use (numbers and section names).
+        $wpjobportal_section = preg_replace('/[^A-Za-z0-9_-]/', '', (string) WPJOBPORTALrequest::getVar('section'));
+        $wpjobportal_sectionid = preg_replace('/[^A-Za-z0-9_-]/', '', (string) WPJOBPORTALrequest::getVar('sectionid'));
+        $type = preg_replace('/[^A-Za-z0-9_-]/', '', (string) WPJOBPORTALrequest::getVar('type'));
+        $wpjobportal_themecall = WPJOBPORTALrequest::getVar('themecall'); $wpjobportal_themecall = ($wpjobportal_themecall === null || $wpjobportal_themecall === '') ? $wpjobportal_themecall : (string) absint($wpjobportal_themecall);
         switch ($type) {
             case 1: //select type dependent combo
             case 2: //radio type dependent combo
@@ -575,7 +577,8 @@ class WPJOBPORTALCustomFieldModel {
         }
         $wpjobportal_val = WPJOBPORTALrequest::getVar('fvalue');
         $childfield = WPJOBPORTALrequest::getVar('child');
-        $wpjobportal_themecall = WPJOBPORTALrequest::getVar('themecall');
+        // Security: printed into an onchange handler, as in fieldordering/model.php.
+        $wpjobportal_themecall = WPJOBPORTALrequest::getVar('themecall'); $wpjobportal_themecall = ($wpjobportal_themecall === null || $wpjobportal_themecall === '') ? $wpjobportal_themecall : (string) absint($wpjobportal_themecall);
         $wpjobportal_themeclass="";
         if($wpjobportal_themecall){
             $wpjobportal_theme_string = ','. $wpjobportal_themecall ;

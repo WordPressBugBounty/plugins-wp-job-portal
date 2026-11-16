@@ -553,7 +553,11 @@ class WPJOBPORTALResumeController {
                     WPJOBPORTAL_Admin_List_UI::approval_queue('resumes');
                     return;
                 case 'admin_resumes':
-                    if(wpjobportal::$_common->wpjp_isadmin()){
+                    // Whoever may open the page (its menu needs the "wpjobportal" capability) gets the
+                    // list, as on the Jobs and Companies screens. Administrators only, as before, left a
+                    // role with that capability but not manage_options with a fatal error on this screen.
+                    // Approving, rejecting and deleting still need an administrator (action policy).
+                    if (wpjobportal::$_common->wpjp_isadmin() || current_user_can('wpjobportal')) {
                         WPJOBPORTALincluder::getJSModel('resume')->getAdminResumeList();
                     }
                     break;

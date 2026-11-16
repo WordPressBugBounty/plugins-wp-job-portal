@@ -29,6 +29,7 @@ $wpjobportal_str_custom          = esc_html__('Custom:', 'wp-job-portal');
 $wpjobportal_str_failed          = esc_html__('Generation Failed: ', 'wp-job-portal');
 $wpjobportal_str_unknown         = esc_html__('Unknown error.', 'wp-job-portal');
 $wpjobportal_str_server_err      = esc_html__('Server communication error. Please try again.', 'wp-job-portal');
+$wpjobportal_str_need_title      = esc_js(__('Fill in the job title and description first.', 'wp-job-portal'));
 $wpjobportal_str_generate_btn    = esc_html__('Generate Description', 'wp-job-portal');
 
 $wpjobportal_inline_js_script = '
@@ -132,10 +133,11 @@ jQuery(document).ready(function($) {
     const $improveWrapper = $("#ai-improve-wrapper");
     const $improveCheckbox = $("#ai-improve");
 
+    $(".wjportal-ai-header-menu").attr("aria-expanded", "false");
     $(".wjportal-ai-header-menu").on("click", function(e) {
         e.preventDefault();
-        $(".wjportal-ai-panel").toggle();
-        $(this).toggleClass("is-active");
+        var wpjpAiOpen = $(this).closest(".wjportal-ai-app-wrapper").toggleClass("is-ai-open").hasClass("is-ai-open");
+        $(this).toggleClass("is-active", wpjpAiOpen).attr("aria-expanded", wpjpAiOpen ? "true" : "false");
     });
 
     function checkEditorContent() {
@@ -189,6 +191,15 @@ jQuery(document).ready(function($) {
 
     $("#wjportal-generate-btn").on("click", function(e) {
         e.preventDefault();
+        // Nothing to write about yet: no title and no description.
+        const $wpjpForm = $(".wjportal-ai-app-wrapper").closest("form").length ? $(".wjportal-ai-app-wrapper").closest("form") : $("#wpjobportal-form");
+        const $wpjpTitle = $wpjpForm.find("[name=\"title\"]").first();
+        const wpjpDesc = (typeof tinymce !== "undefined" && tinymce.get("description")) ? tinymce.get("description").getContent({format: "text"}) : ($("#description").val() || "");
+        if ($wpjpTitle.length && !$.trim($wpjpTitle.val() || "") && !$.trim(wpjpDesc)) {
+            alert("' . $wpjobportal_str_need_title . '");
+            $wpjpTitle.trigger("focus");
+            return;
+        }
         const $btn = $(this);
         const $icon = $("#wjportal-btn-icon");
         const $text = $("#wjportal-btn-text");
@@ -203,9 +214,9 @@ jQuery(document).ready(function($) {
         $("#description").css("opacity", "0.6");
 
         const jobData = [];
-        const fieldsToSkip = ["termsconditions", "_wpnonce", "action", "uid", "id", "draft", "created", "wpjobportalpageid", "form_request", "upakid", "salaryfixed", "salarymin", "salarymax", "salaryduration", "salarytype"];
+        const fieldsToSkip = ["termsconditions", "_wpnonce", "action", "uid", "id", "draft", "created", "wpjobportalpageid", "form_request", "upakid", "salaryfixed", "salarymin", "salarymax", "salaryduration", "salarytype", "sendemail", "status", "jobstatus", "stoppublishing", "startpublishing"];
 
-        $("#wpjobportal-form").find("input:not([type=\"submit\"], [type=\"button\"]), select, textarea")
+        ($(".wjportal-ai-app-wrapper").closest("form").length ? $(".wjportal-ai-app-wrapper").closest("form") : $("#wpjobportal-form")).find("input:not([type=\"submit\"], [type=\"button\"]), select, textarea")
             .not("#description")
             .not(".wjportal-ai-app-wrapper input, .wjportal-ai-app-wrapper select, .wjportal-ai-app-wrapper textarea")
             .each(function() {
@@ -234,10 +245,10 @@ jQuery(document).ready(function($) {
                 if (val) {
                     let labelText = "";
                     labelText = $el.closest(".wjportal-form-row").find(".wjportal-form-title").first().text();
-                    if (!labelText && idAttr) labelText = $("label[for=\"" + idAttr + "\"]").text();
+                    if (!labelText && idAttr) labelText = $("label[for=\"" + idAttr + "\"]").first().clone().find(".wpjp-ds-required, .wpjp-ds-visually-hidden, .screen-reader-text, .wjp-tooltip-wrapper").remove().end().text();
                     if (!labelText) labelText = $el.closest("label").clone().children().remove().end().text();
                     if (!labelText) labelText = nameAttr.replace(/[_-]/g, " ").replace(/\b\w/g, l => l.toUpperCase());
-                    labelText = labelText.replace(/\*/g, "").trim();
+                    labelText = labelText.replace(/\*/g, "").replace(/\s+/g, " ").trim();
 
                     if (labelText && !jobData.find(item => item.label === labelText)) {
                         jobData.push({ label: labelText, value: val });
@@ -327,12 +338,13 @@ jQuery(document).ready(function($) {
                 </div>`;
 
                 if (typeof tinyMCE !== "undefined" && tinyMCE.get("description") && !tinyMCE.get("description").isHidden()) {
-                    let finalHtml = metaBlock + ZywrapFormatter.toHTML(aiOutput);
+                    // 2.9.0: only the written text goes in; the instructions block was published with it.
+                    let finalHtml = ZywrapFormatter.toHTML(aiOutput);
                     tinyMCE.get("description").setContent(finalHtml);
                 } else {
                     let plainMeta = metaBlock.replace(/<[^>]*>?/gm, "\n").replace(/\n+/g, "\n").trim();
                     let plainOutput = ZywrapFormatter.toPlainText(aiOutput);
-                    $("#description").val(plainMeta + "\n" + plainOutput);
+                    $("#description").val(plainOutput);
                 }
 
                 checkEditorContent();
@@ -384,9 +396,9 @@ return '
     <div class="wjportal-ai-editor-panel">
         <div class="wjportal-ai-editor-header">
             <div class="wjportal-ai-editor-title"></div>
-            <button type="button" class="wjportal-ai-header-menu" title="' . esc_attr__('Toggle AI Copilot', 'wp-job-portal') . '">
+            <button type="button" class="wjportal-ai-header-menu" aria-expanded="false" title="' . esc_attr__('Toggle AI Copilot', 'wp-job-portal') . '">
                 <span class="dashicons dashicons-admin-generic"></span>
-                <span class="wjportal-ai-header-menu-text">' . esc_html__('AI Settings', 'wp-job-portal') . '</span>
+                <span class="wjportal-ai-header-menu-text">' . esc_html__('AI writer', 'wp-job-portal') . '</span>
             </button>
         </div>
         <div class="wjportal-ai-input-soft wjportal-ai-editor-input-container">
@@ -402,7 +414,7 @@ return '
                     <span class="dashicons dashicons-admin-customizer"></span>
                 </div>
                 <div>
-                    <h3 class="wjportal-ai-header-title">' . esc_html__('Zywrap Copilot', 'wp-job-portal') . '</h3>
+                    <h3 class="wjportal-ai-header-title">' . esc_html__('AI writer', 'wp-job-portal') . '</h3>
                     <p class="wjportal-ai-header-subtitle">' . esc_html__('AI Generation', 'wp-job-portal') . '</p>
                 </div>
             </div>
@@ -582,6 +594,7 @@ return '
                 <span class="dashicons dashicons-lightning wjportal-ai-text-indigo-200" id="wjportal-btn-icon"></span>
                 <span id="wjportal-btn-text">' . esc_html__('Generate Description', 'wp-job-portal') . '</span>
             </button>
+            <p class="wjportal-ai-disclosure" style="margin:8px 0 0;font-size:12px;opacity:.8;">' . esc_html(class_exists('WPJOBPORTAL_AI_Policy') ? WPJOBPORTAL_AI_Policy::disclosure() : '') . '</p>
         </div>
 
     </div>

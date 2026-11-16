@@ -15,9 +15,52 @@ $wpjobportal_categories = $wpjobportal_data['categories'];
 $wpjobportal_models = $wpjobportal_data['models'];
 $wpjobportal_languages = $wpjobportal_data['languages'];
 $wpjobportal_templates = $wpjobportal_data['templates'];
-$wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
+$wpjobportal_saved_key = WPJOBPORTAL_AI_Engine::usable('zywrap') ? '1' : ''; // 2.9.0: Zywrap connected (the key is never read here)
 ?>
 
+<style>
+/* Playground (2.9.0): the same type scale, controls and buttons as the other admin screens. */
+#wpjobportaladmin-wrapper .zywrap-playground-grid{font-size:14px;color:var(--wjp-text-dark,#1e293b);font-family:inherit}
+#wpjobportaladmin-wrapper .zywrap-playground-grid .wpjobportal-sidebar-section-title{font-size:16px;font-weight:600;color:var(--wjp-text-dark,#1e293b);margin-bottom:8px}
+#wpjobportaladmin-wrapper .zywrap-playground-grid .wpjobportal-panel-title{font-size:16px;font-weight:600;color:var(--wjp-text-dark,#1e293b)}
+#wpjobportaladmin-wrapper .zywrap-playground-grid .input-label,
+#wpjobportaladmin-wrapper .zywrap-playground-grid .wpjobportal-input-label-s-case{font-size:14px;font-weight:500;color:var(--wjp-text-dark,#1e293b);padding-bottom:0;margin-bottom:6px}
+#wpjobportaladmin-wrapper .zywrap-playground-grid .input-label span{color:var(--wjp-text-light,#64748b);font-weight:400;padding-left:6px}
+#wpjobportaladmin-wrapper .zywrap-playground-grid .wpjobportal-zywrap-playground-label{font-size:14px;font-weight:500;color:var(--wjp-text-dark,#1e293b)}
+/* Plain boxes instead of dashed and dotted ones. */
+#wpjobportaladmin-wrapper .zywrap-playground-grid .wpjobportal-special-config-wrapper{background:var(--wjp-bg-body,#f8fafc);border:1px solid var(--wjp-border-color,#e2e8f0);border-radius:12px}
+#wpjobportaladmin-wrapper .zywrap-playground-grid .wpjobportal-wpjobportal-glass-panel-s{background:var(--wjp-bg-body,#f8fafc);border:1px solid var(--wjp-border-color,#e2e8f0);border-radius:12px}
+#wpjobportaladmin-wrapper .zywrap-playground-grid .wpjobportal-glass-panel .wpjobportal-input-group{border-bottom:1px solid var(--wjp-border-color,#e2e8f0)}
+#wpjobportaladmin-wrapper .zywrap-playground-grid .wpjobportal-glass-panel,
+#wpjobportaladmin-wrapper .zywrap-playground-grid .zywrap-controls-column{border-radius:12px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+/* Fields: 44px, light border, 14px text. */
+#wpjobportal-admin-wrapper .zywrap-playground-grid select.dark-select,
+#wpjobportaladmin-wrapper .zywrap-playground-grid select.dark-select,
+#wpjobportaladmin-wrapper .zywrap-playground-grid input.dark-input{height:44px !important;min-height:44px !important;padding:8px 36px 8px 12px;font-size:14px;color:#334155;border:1px solid #cbd5e1;border-radius:6px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+#wpjobportaladmin-wrapper .zywrap-playground-grid .dark-textarea{font-size:14px;border:1px solid #cbd5e1;border-radius:6px;padding:10px 12px}
+#wpjobportaladmin-wrapper .zywrap-playground-grid .chosen-container{font-size:14px}
+#wpjobportaladmin-wrapper .zywrap-playground-grid .chosen-container-single .chosen-single{height:44px !important;min-height:44px !important;padding:0 12px !important;line-height:42px !important;border-color:#cbd5e1 !important;border-radius:6px !important;font-size:14px}
+#wpjobportaladmin-wrapper .zywrap-playground-grid details.modern-details summary{font-size:14px}
+/* Featured / Base only chips: a light primary tint on hover, filled when on. */
+#wpjobportaladmin-wrapper .wpjobportal-zywrap-playground-container .wpjobportal-zywrap-playground-chip{font-size:13px;min-height:34px;border-radius:999px;border:1px solid #cbd5e1;background:#fff;color:var(--wjp-text-medium,#475569)}
+#wpjobportaladmin-wrapper .wpjobportal-zywrap-playground-container .wpjobportal-zywrap-playground-chip:hover,
+#wpjobportaladmin-wrapper .wpjobportal-zywrap-playground-container .wpjobportal-zywrap-playground-chip:focus-visible{background:var(--wjp-color-primary-bg,#eef2ff);border-color:var(--wjp-color-primary,#4f46e5);color:var(--wjp-color-primary,#4f46e5);outline:none}
+#wpjobportaladmin-wrapper .wpjobportal-zywrap-playground-container .wpjobportal-zywrap-playground-chip:hover svg,
+#wpjobportaladmin-wrapper #filter_featured.wpjobportal-zywrap-playground-chip:hover svg{color:var(--wjp-color-primary,#4f46e5) !important;stroke:var(--wjp-color-primary,#4f46e5) !important}
+#wpjobportaladmin-wrapper .wpjobportal-zywrap-playground-container .wpjobportal-zywrap-playground-chip.wpjbpis-active{background:var(--wjp-color-primary,#4f46e5);border-color:var(--wjp-color-primary,#4f46e5);color:#fff}
+#wpjobportaladmin-wrapper .wpjobportal-zywrap-playground-container .wpjobportal-zywrap-playground-chip.wpjbpis-active:hover{background:var(--wjp-color-primary-dark,#4338ca);border-color:var(--wjp-color-primary-dark,#4338ca);color:#fff}
+#wpjobportaladmin-wrapper .wpjobportal-zywrap-playground-container .wpjobportal-zywrap-playground-chip.wpjbpis-active svg,
+#wpjobportaladmin-wrapper .wpjobportal-zywrap-playground-container .wpjobportal-zywrap-playground-chip.wpjbpis-active:hover svg{color:#fff !important;stroke:#fff !important}
+/* Generate: the admin's solid primary button. */
+#wpjobportaladmin-wrapper .zywrap-playground-grid .btn-primary{background:var(--wjp-color-primary,#4f46e5);border:1px solid var(--wjp-color-primary,#4f46e5);color:#fff;min-height:44px;padding:0 20px;border-radius:6px;font-size:14px;font-weight:600;letter-spacing:0;text-transform:none;box-shadow:0 1px 2px rgba(0,0,0,.05);transform:none}
+#wpjobportaladmin-wrapper .zywrap-playground-grid .btn-primary:hover,
+#wpjobportaladmin-wrapper .zywrap-playground-grid .btn-primary:focus-visible{background:var(--wjp-color-primary-dark,#4338ca);border-color:var(--wjp-color-primary-dark,#4338ca);color:#fff;transform:none;box-shadow:0 1px 2px rgba(0,0,0,.08);outline:none}
+#wpjobportaladmin-wrapper .zywrap-playground-grid .btn-primary:hover svg{color:#fff !important;stroke:#fff !important}
+#wpjobportaladmin-wrapper .zywrap-playground-grid .btn-primary[disabled]{opacity:.6;cursor:not-allowed}
+#wpjobportaladmin-wrapper .zywrap-playground-grid .btn-icon{border-radius:6px;border:1px solid #cbd5e1}
+#wpjobportaladmin-wrapper .zywrap-playground-grid .btn-icon:hover{background:var(--wjp-color-primary-bg,#eef2ff);color:var(--wjp-color-primary,#4f46e5);border-color:var(--wjp-color-primary,#4f46e5)}
+#wpjobportaladmin-wrapper .zywrap-playground-grid .output-container{font-size:13px}
+</style>
 <div id="wpjobportaladmin-wrapper">
     <div id="wpjobportaladmin-leftmenu">
         <?php  WPJOBPORTALincluder::getClassesInclude('wpjobportaladminsidemenu'); ?>

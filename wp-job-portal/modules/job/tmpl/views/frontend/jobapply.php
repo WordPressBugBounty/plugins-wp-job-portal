@@ -101,7 +101,7 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
                             // -------------------------------------------------------------
                             $wpjobportal_enable_cover_letter_quick_apply  = wpjobportal::$_config->getConfigurationByConfigName('enable_cover_letter_quick_apply');
                             if(in_array('coverletter', wpjobportal::$_active_addons) && !WPJOBPORTALincluder::getObjectClass('user')->isguest() && $wpjobportal_enable_cover_letter_quick_apply == 1){
-                                $wpjobportal_api_key = get_option('wpjobportal_zywrap_api_key', '');
+                                $wpjobportal_api_key = WPJOBPORTAL_AI_Engine::usable() ? '1' : ''; // 2.9.0: is an AI engine ready (any of the three)
                                 $wpjobportal_enable_jobapply_copilot  = wpjobportal::$_config->getConfigurationByConfigName('enable_jobapply_copilot');
 
                                 // Check if AI Copilot is fully configured and enabled
@@ -220,7 +220,7 @@ wp_add_inline_script( 'wpjobportal-inline-handle', $wpjobportal_inline_js_script
                                     // B. INTEGRATED COVER LETTER (REGULAR APPLY)
                                     if(in_array('coverletter', wpjobportal::$_active_addons) && !WPJOBPORTALincluder::getObjectClass('user')->isguest()){
 
-                                        $wpjobportal_api_key = get_option('wpjobportal_zywrap_api_key', '');
+                                        $wpjobportal_api_key = WPJOBPORTAL_AI_Engine::usable() ? '1' : ''; // 2.9.0: is an AI engine ready (any of the three)
                                         $wpjobportal_enable_jobapply_copilot  = wpjobportal::$_config->getConfigurationByConfigName('enable_jobapply_copilot');
 
                                         // Check if AI Copilot is fully configured and enabled

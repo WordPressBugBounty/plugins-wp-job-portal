@@ -161,7 +161,7 @@ foreach($wpjobportal_fields AS $wpjobportal_field){
             break;
         case 'description':
             $wpjobportal_content = WPJOBPORTALformfield::editor('description', isset($wpjobportal_job->description) ? $wpjobportal_job->description : '', array('class' => 'inputbox one wjportal-form-textarea-field'));
-            $wpjobportal_api_key = get_option('wpjobportal_zywrap_api_key', '');
+            $wpjobportal_api_key = WPJOBPORTAL_AI_Engine::usable() ? '1' : ''; // 2.9.0: is an AI engine ready (any of the three)
             if(!empty($wpjobportal_api_key) && !WPJOBPORTALincluder::getObjectClass('user')->isguest()){
                 $wpjobportal_enable_job_copilot  = wpjobportal::$_config->getConfigurationByConfigName('enable_job_copilot');
                 if(!empty($wpjobportal_enable_job_copilot) || current_user_can('manage_options')){
@@ -169,6 +169,13 @@ foreach($wpjobportal_fields AS $wpjobportal_field){
                         'wpjobportal_desc_editor' => $wpjobportal_content
                     ));
                 }
+            }
+            // 2.9.0: AI tools for this job (titles, post check, screening and interview questions).
+            if (class_exists('WPJOBPORTAL_AI_Tasks')) {
+                $wpjobportal_content .= WPJOBPORTAL_AI_Tasks::toolbar(
+                    array('job_title', 'job_post_check', 'screening_questions', 'interview_questions'),
+                    array('form' => true, 'job' => isset($wpjobportal_job->id) ? (int) $wpjobportal_job->id : 0)
+                );
             }
 
             break;

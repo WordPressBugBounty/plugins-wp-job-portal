@@ -21,6 +21,10 @@ if(!empty($wpjobportal_job) && !empty($wpjobportal_job->isfeaturedjob) && $wpjob
                     'wpjobportal_job'       =>  $wpjobportal_job ,
                     'wpjobportal_jobfields'  =>  $wpjobportal_jobfields
                 ));
+                // 2.9.0: a private skills-gap check for the job seeker (advice, not a hiring decision).
+                if (!empty($wpjobportal_job->id) && class_exists('WPJOBPORTAL_AI_Tasks')) {
+                    echo WPJOBPORTAL_AI_Tasks::toolbar(array('skills_gap'), array('job' => (int) $wpjobportal_job->id)); // phpcs:ignore WordPress.Security.EscapeOutput -- built from escaped parts
+                }
             ?>
         </div>
     </div>

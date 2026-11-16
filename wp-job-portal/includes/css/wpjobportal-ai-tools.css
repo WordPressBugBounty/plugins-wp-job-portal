@@ -1,0 +1,23 @@
+/* WP Job Portal 2.9.0: the AI tools bar. */
+.wpjp-ai-tools{margin:12px 0;padding:12px 14px;border:1px solid #e0e7ff;border-radius:10px;background:#f8faff;box-sizing:border-box;max-width:100%}
+.wpjp-ai-tools-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.wpjp-ai-tools-label{font-weight:600;color:#4338ca;margin-right:4px}
+.wpjp-ai-tools .wpjp-ai-tool{display:inline-flex;align-items:center;gap:4px;padding:6px 12px;border:1px solid #c7d2fe;border-radius:999px;background:#fff;color:#3730a3;font-size:13px;line-height:1.4;cursor:pointer}
+.wpjp-ai-tools .wpjp-ai-tool .dashicons{font-size:16px;width:16px;height:16px}
+.wpjp-ai-tools .wpjp-ai-tool:hover,.wpjp-ai-tools .wpjp-ai-tool:focus{background:#eef2ff;outline:2px solid transparent;box-shadow:0 0 0 2px #a5b4fc}
+.wpjp-ai-tools .wpjp-ai-tool.is-active{background:#4f46e5;border-color:#4f46e5;color:#fff}
+.wpjp-ai-tools .wpjp-ai-tool:disabled{opacity:.6;cursor:wait}
+.wpjp-ai-tools-input{margin-top:10px}
+.wpjp-ai-tools-input textarea{width:100%;box-sizing:border-box;min-height:80px;padding:8px;border:1px solid #c7d2fe;border-radius:6px;font:inherit}
+.wpjp-ai-tools-run,.wpjp-ai-tools-copy,.wpjp-ai-tools-close{margin-top:8px;margin-right:6px;padding:6px 14px;border-radius:6px;border:1px solid #4f46e5;background:#4f46e5;color:#fff;font-size:13px;cursor:pointer}
+.wpjp-ai-tools-close{background:#fff;color:#4f46e5}
+.wpjp-ai-tools-result{margin-top:10px}
+.wpjp-ai-tools-out{white-space:pre-wrap;word-wrap:break-word;padding:10px 12px;border-radius:6px;background:#fff;border:1px solid #e5e7eb;font-size:14px;line-height:1.55;max-height:420px;overflow:auto;color:#1f2937}
+.wpjp-ai-tools-out.is-error{border-color:#fecaca;background:#fef2f2;color:#991b1b}
+.wpjp-ai-tools-note{margin:8px 0 0;font-size:12px;color:#6b7280}
+.wpjp-ai-tools .wpjp-ai-hide{display:none!important}
+.wpjp-ai-tools.wpjp-ai-compact{margin:6px 0 0;padding:0;border:0;background:none}
+.wpjp-ai-compact .wpjp-ai-tools-label{font-weight:500;font-size:12px}
+.wpjp-ai-compact .wpjp-ai-tool{padding:3px 10px;font-size:12px}
+.wpjp-ai-compact .wpjp-ai-tools-note{display:none}
+.wpjp-ai-compact.is-open .wpjp-ai-tools-note{display:block}

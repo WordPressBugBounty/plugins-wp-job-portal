@@ -294,12 +294,20 @@ class WPJOBPORTALJobAlertModel {
         return apply_filters('wpjobportal_job_alert_frequency_options', $list);
     }
 
-    function unSubscribeJobAlert($alertid) {
+    /**
+     * Remove one job alert.
+     *
+     * @param int  $alertid  The alert.
+     * @param bool $verified True when the request carries this alert's signed unsubscribe
+     *                       link (WPJOBPORTAL_Alert_Unsubscribe), which proves it comes from
+     *                       the alert's own mailbox; then no login is needed.
+     */
+    function unSubscribeJobAlert($alertid, $verified = false) {
         if (!is_numeric($alertid))
             return false;
 
         // Only the alert's owner (or an administrator) may remove it; the id comes from the URL.
-        if (!wpjobportal::$_common->wpjp_isadmin()) {
+        if (!$verified && !wpjobportal::$_common->wpjp_isadmin()) {
             $wpjobportal_uid = WPJOBPORTALincluder::getObjectClass('user')->uid();
             $query = "SELECT uid FROM `" . wpjobportal::$_db->prefix . "wj_portal_jobalertsetting` WHERE id = " . (int) ($alertid);
             $wpjobportal_owner = wpjobportaldb::get_var($query);

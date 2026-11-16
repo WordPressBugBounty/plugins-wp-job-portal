@@ -44,7 +44,8 @@ class WPJOBPORTALzywraplogsModel {
 
         // --- 2. Calculate Summary Data (Last 24 Hours) ---
         
-        $cutoff_time = gmdate('Y-m-d H:i:s', strtotime('-24 hours'));
+        // Rows are written in the site's own time (current_time('mysql')), so the cutoff is too (2.9.0).
+        $cutoff_time = gmdate('Y-m-d H:i:s', current_time('timestamp') - DAY_IN_SECONDS);
         
         // Count total runs in the last 24 hours
         $total_runs_24h = wpjobportaldb_direct::get_var( $wpdb->prepare( 
@@ -53,9 +54,9 @@ class WPJOBPORTALzywraplogsModel {
             $cutoff_time 
         ) );
         
-        // Count errors (HTTP >= 400) in the last 24 hours
+        // Count errors in the last 24 hours. status holds 'error' or 'success' (2.8.0 compared it with 400, so it was always 0).
         $api_errors_24h = wpjobportaldb_direct::get_var( $wpdb->prepare( 
-            "SELECT COUNT(id) FROM %i WHERE timestamp >= %s AND status >= 400", 
+            "SELECT COUNT(id) FROM %i WHERE timestamp >= %s AND (status = 'error' OR http_code >= 400)", 
             $table_name, 
             $cutoff_time 
         ) );

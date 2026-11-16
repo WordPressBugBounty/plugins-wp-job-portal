@@ -37,8 +37,8 @@ if(isset($wpjobportal_package)){
                         <?php echo esc_html__("Job Expiry","wp-job-portal")." : "; ?>
                     </span>
                     <?php 
-                        echo ($wpjobportal_package->jobtime==-1 ? esc_html__('Unlimited','wp-job-portal') : esc_html(wpjobportal::wpjobportal_getVariableValue( $wpjobportal_package->jobtime)));
-                        echo ($wpjobportal_package->jobtime==-1 ? esc_html__('Unlimited','wp-job-portal') : esc_html(wpjobportal::wpjobportal_getVariableValue( $wpjobportal_package->jobtimeunit)));
+                        $wpjobportal_jobexpiry = WPJOBPORTALincluder::getJSModel('common')->getPackageJobExpiry($wpjobportal_package);
+                        echo esc_html(WPJOBPORTALincluder::getJSModel('common')->getTimeForView($wpjobportal_jobexpiry[0], $wpjobportal_jobexpiry[1]));
                     ?>
                 </div>
             <?php } ?>
@@ -89,8 +89,8 @@ if(isset($wpjobportal_package)){
                                     <?php echo esc_html(__('Job Expiry','wp-job-portal')). ' : '; ?>
                                 </span>
                                 <span class="wjportal-pkg-list-item-row-val">
-                                    <?php echo ($wpjobportal_package->jobtime==-1 ? esc_html(__('Unlimited','wp-job-portal')) : esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_package->jobtime)));
-                                    echo ($wpjobportal_package->jobtime==-1 ? esc_html(__('Unlimited','wp-job-portal')) : esc_html(wpjobportal::wpjobportal_getVariableValue($wpjobportal_package->jobtimeunit)));
+                                    <?php $wpjobportal_jobexpiry = WPJOBPORTALincluder::getJSModel('common')->getPackageJobExpiry($wpjobportal_package);
+                                    echo esc_html(WPJOBPORTALincluder::getJSModel('common')->getTimeForView($wpjobportal_jobexpiry[0], $wpjobportal_jobexpiry[1]));
                                      ?>
                                 </span>
                             </div>

@@ -336,7 +336,7 @@ if ($wpjobportal_module) {
 					$wpjobportal_html .='<h1 class="wpjobportal-head-text">'. esc_html(__('AI Content Generation', 'wp-job-portal')).'</h1>';
 			break;
 			case 'zywrap':
-					$wpjobportal_html .='<h1 class="wpjobportal-head-text">'. esc_html(__('Zywrap Settings', 'wp-job-portal')).'</h1>';
+					$wpjobportal_html .='<h1 class="wpjobportal-head-text">'. esc_html(__('AI settings', 'wp-job-portal')).'</h1>';
 			break;
 			case 'modeguide':
 					$wpjobportal_html .='<h1 class="wpjobportal-head-text">'. esc_html(__('How WP Job Portal modes work', 'wp-job-portal')).'</h1>

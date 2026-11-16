@@ -529,7 +529,7 @@ if (!defined('ABSPATH')) die('Restricted Access');
         <a href="#" id="zywrap-classic-modal-close">&times;</a>
     </div>
     <?php
-        $wpjobportal_saved_key = get_option('wpjobportal_zywrap_api_key', '');
+        $wpjobportal_saved_key = WPJOBPORTAL_AI_Engine::usable('zywrap') ? '1' : ''; // 2.9.0: Zywrap connected (the key is never read here)
         ?>
         <div style="clear: both;">
             <?php if(!$wpjobportal_saved_key): ?>

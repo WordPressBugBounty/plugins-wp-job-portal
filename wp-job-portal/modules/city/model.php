@@ -358,8 +358,30 @@ class WPJOBPORTALCityModel {
         //     $query .= " WHERE city.id = " . (int) ($wpjobportal_id)." AND country.enabled = 1 AND city.enabled = 1";
         // Typed in any of the city's names: with "Native Name" chosen, name holds
         // the native spelling (Ηράκλειο), so "Heraklion" used to find nothing.
-        $wpjobportal_like = esc_sql(wpjobportal::$_db->esc_like($cityname)) . '%';
-        $wpjobportal_name_match = "(city.name LIKE '" . $wpjobportal_like . "' OR city.internationalname LIKE '" . $wpjobportal_like . "' OR city.localname LIKE '" . $wpjobportal_like . "')";
+        // The city box sends what is typed in lower case (jquery.tokeninput). Where the
+        // database compares Greek, Cyrillic and other non-Latin letters case-sensitively,
+        // "ηράκ" never found "Ηράκλειο" and every Greek search said "No Results".
+        // Look for the text as sent and with capital first letters too. Lower-casing
+        // "ΘΕΣΣ" ends it in a final sigma (θεσς); the name goes on, so try σ as well.
+        $wpjobportal_bases = array($cityname);
+        $wpjobportal_sigma = preg_replace('/ς$/u', 'σ', $cityname); // null for text that is not UTF-8
+        if (is_string($wpjobportal_sigma) && $wpjobportal_sigma !== $cityname) {
+            $wpjobportal_bases[] = $wpjobportal_sigma;
+        }
+        $wpjobportal_spellings = array();
+        foreach ($wpjobportal_bases as $wpjobportal_spelling) {
+            $wpjobportal_spellings[] = $wpjobportal_spelling;
+            if (function_exists('mb_convert_case')) {
+                $wpjobportal_spellings[] = mb_convert_case($wpjobportal_spelling, MB_CASE_TITLE, 'UTF-8');
+                $wpjobportal_spellings[] = mb_strtoupper(mb_substr($wpjobportal_spelling, 0, 1, 'UTF-8'), 'UTF-8') . mb_substr($wpjobportal_spelling, 1, null, 'UTF-8');
+            }
+        }
+        $wpjobportal_name_match = array();
+        foreach (array_unique($wpjobportal_spellings) as $wpjobportal_spelling) {
+            $wpjobportal_like = esc_sql(wpjobportal::$_db->esc_like($wpjobportal_spelling)) . '%';
+            $wpjobportal_name_match[] = "city.name LIKE '" . $wpjobportal_like . "' OR city.internationalname LIKE '" . $wpjobportal_like . "' OR city.localname LIKE '" . $wpjobportal_like . "'";
+        }
+        $wpjobportal_name_match = "(" . implode(' OR ', $wpjobportal_name_match) . ")";
         if ($wpjobportal_id == 0) {
             if (isset($wpjobportal_countryname)) {
                 $query .= " WHERE " . $wpjobportal_name_match . " AND country.name LIKE '" . esc_sql($wpjobportal_countryname) . "%' AND country.enabled = 1 AND city.enabled = 1 AND IF(state.name is not null,state.enabled,1) = 1 LIMIT " . WPJOBPORTALincluder::getJSModel('configuration')->getConfigValue("number_of_cities_for_autocomplete");

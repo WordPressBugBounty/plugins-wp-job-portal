@@ -153,7 +153,7 @@ class WPJOBPORTAL_Admin_Menu_Service {
 
     /**
      * The WordPress flyout: Dashboard, Approvals (waiting count), Jobs,
-     * Candidates (new applications), Companies, Settings, Licences (updates
+     * Candidates (new applications), Companies, AI, Settings, Licences (updates
      * count); the top item shows the waiting and update counts added up.
      * Approvals, Candidates and Licences are added as plain URLs: Approvals is
      * registered under the hidden parent, Candidates opens the Applications
@@ -170,7 +170,7 @@ class WPJOBPORTAL_Admin_Menu_Service {
         $wpjobportal_approvals = isset($wpjobportal_counts['approvals']) ? (int) $wpjobportal_counts['approvals'] : 0;
         $wpjobportal_updates = self::update_count();
 
-        $wpjobportal_keep = array('wpjobportal' => 0, 'wpjobportal_job' => 2, 'wpjobportal_company' => 4, 'wpjobportal_configuration' => 5);
+        $wpjobportal_keep = array('wpjobportal' => 0, 'wpjobportal_job' => 2, 'wpjobportal_company' => 4, 'wpjobportal_zywrap' => 5, 'wpjobportal_configuration' => 6);
         $wpjobportal_ordered = array();
         $wpjobportal_rest = array();
         foreach ($submenu['wpjobportal'] as $wpjobportal_item) {
@@ -179,6 +179,8 @@ class WPJOBPORTAL_Admin_Menu_Service {
                 $wpjobportal_item[4] = trim((isset($wpjobportal_item[4]) ? $wpjobportal_item[4] : '') . ' wjp-wpmenu-keep');
                 if ($wpjobportal_slug === 'wpjobportal_configuration') {
                     $wpjobportal_item[0] = esc_html__('Settings', 'wp-job-portal');
+                } elseif ($wpjobportal_slug === 'wpjobportal_zywrap') {
+                    $wpjobportal_item[0] = esc_html__('AI', 'wp-job-portal');
                 }
                 $wpjobportal_ordered[$wpjobportal_keep[$wpjobportal_slug]] = $wpjobportal_item;
             } else {
@@ -188,7 +190,7 @@ class WPJOBPORTAL_Admin_Menu_Service {
         $wpjobportal_ordered[1] = array(esc_html__('Approvals', 'wp-job-portal') . self::bubble($wpjobportal_approvals, 'awaiting-mod', 'pending-count'), 'wpjobportal', 'admin.php?page=wpjobportal_approvals', esc_html__('Approvals', 'wp-job-portal'), 'wjp-wpmenu-keep');
         $wpjobportal_new_applications = isset($wpjobportal_counts['new_applications']) ? (int) $wpjobportal_counts['new_applications'] : 0;
         $wpjobportal_ordered[3] = array(esc_html__('Candidates', 'wp-job-portal') . self::bubble($wpjobportal_new_applications, 'update-plugins', 'plugin-count'), 'wpjobportal', 'admin.php?page=wpjobportal_jobapply&wpjobportallt=applications', esc_html__('Candidates', 'wp-job-portal'), 'wjp-wpmenu-keep');
-        $wpjobportal_ordered[6] = array(esc_html__('Licences', 'wp-job-portal') . self::bubble($wpjobportal_updates, 'update-plugins', 'plugin-count'), 'wpjobportal', 'admin.php?page=wpjobportal&wpjobportallt=licences', esc_html__('Licences', 'wp-job-portal'), 'wjp-wpmenu-keep');
+        $wpjobportal_ordered[7] = array(esc_html__('Licences', 'wp-job-portal') . self::bubble($wpjobportal_updates, 'update-plugins', 'plugin-count'), 'wpjobportal', 'admin.php?page=wpjobportal&wpjobportallt=licences', esc_html__('Licences', 'wp-job-portal'), 'wjp-wpmenu-keep');
         ksort($wpjobportal_ordered);
         $submenu['wpjobportal'] = array_merge(array_values($wpjobportal_ordered), $wpjobportal_rest);
 
@@ -223,6 +225,7 @@ class WPJOBPORTAL_Admin_Menu_Service {
             'jobs' => 'wpjobportal_job',
             'candidates' => 'admin.php?page=wpjobportal_jobapply&wpjobportallt=applications',
             'companies' => 'wpjobportal_company',
+            'ai' => 'wpjobportal_zywrap',
             'settings' => 'wpjobportal_configuration',
             'licences' => 'admin.php?page=wpjobportal&wpjobportallt=licences',
         );
@@ -443,6 +446,11 @@ class WPJOBPORTAL_Admin_Menu_Service {
                         array('label' => __('Location name settings', 'wp-job-portal'), 'url' => 'wpjobportal_city&wpjobportallt=locationnamesettings', 'match' => array(array('page' => 'wpjobportal_city', 'lt' => array('locationnamesettings')))),
                     )),
             )),
+            array('id' => 'ai', 'group' => 'setup', 'label' => __('AI', 'wp-job-portal'), 'icon' => 'spark', 'subs' => array(
+                array('label' => __('Settings', 'wp-job-portal'), 'url' => 'wpjobportal_zywrap&wpjobportallt=zywrap', 'match' => array(array('page' => 'wpjobportal_zywrap', 'not_lt' => array('playground')))),
+                array('label' => __('Playground', 'wp-job-portal'), 'url' => 'wpjobportal_zywrap&wpjobportallt=playground', 'match' => array(array('page' => 'wpjobportal_zywrap', 'lt' => array('playground')))),
+                array('label' => __('Logs', 'wp-job-portal'), 'url' => 'wpjobportal_zywraplogs&wpjobportallt=logs', 'match' => array(array('page' => 'wpjobportal_zywraplogs'))),
+            )),
             array('id' => 'emails', 'group' => 'setup', 'label' => __('Emails', 'wp-job-portal'), 'icon' => 'mail', 'subs' => array(
                 array('label' => __('Templates', 'wp-job-portal'), 'url' => 'wpjobportal_emailtemplate', 'match' => array(array('page' => 'wpjobportal_emailtemplate'))),
                 array('label' => __('On/off options', 'wp-job-portal'), 'url' => 'wpjobportal_emailtemplatestatus', 'match' => array(array('page' => 'wpjobportal_emailtemplatestatus'))),
@@ -459,13 +467,6 @@ class WPJOBPORTAL_Admin_Menu_Service {
             )),
             array('id' => 'tools', 'group' => 'system', 'label' => __('Tools', 'wp-job-portal'), 'icon' => 'tool', 'subs' => array(
                 array('label' => __('Import', 'wp-job-portal'), 'url' => 'wpjobportal_thirdpartyimport', 'match' => array(array('page' => 'wpjobportal_thirdpartyimport'))),
-                array('label' => __('AI writer', 'wp-job-portal'), 'url' => 'wpjobportal_zywrap&wpjobportallt=playground',
-                    'match' => array(array('page' => 'wpjobportal_zywrap'), array('page' => 'wpjobportal_zywraplogs')),
-                    'third' => array(
-                        array('label' => __('Playground', 'wp-job-portal'), 'url' => 'wpjobportal_zywrap&wpjobportallt=playground', 'match' => array(array('page' => 'wpjobportal_zywrap', 'lt' => array('playground')))),
-                        array('label' => __('Connection', 'wp-job-portal'), 'url' => 'wpjobportal_zywrap&wpjobportallt=zywrap', 'match' => array(array('page' => 'wpjobportal_zywrap', 'not_lt' => array('playground')))),
-                        array('label' => __('Logs', 'wp-job-portal'), 'url' => 'wpjobportal_zywraplogs&wpjobportallt=logs', 'match' => array(array('page' => 'wpjobportal_zywraplogs'))),
-                    )),
             )),
             array('id' => 'developers', 'group' => 'system', 'label' => __('Hooks & filters', 'wp-job-portal'), 'icon' => 'code',
                 'url' => 'wpjobportal&wpjobportallt=actionhooks', 'match' => array(array('page' => 'wpjobportal', 'lt' => array('actionhooks'))), 'subs' => array()),
@@ -676,6 +677,7 @@ class WPJOBPORTAL_Admin_Menu_Service {
             'key' => '<circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3M14 9l2 2"/>',
             'help' => '<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.7M12 17h.01"/>',
             'pulse' => '<path d="M3 12h4l3-8 4 16 3-8h4"/>',
+            'spark' => '<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/>',
             'chev' => '<path d="M9 6l6 6-6 6"/>',
             'collapse' => '<path d="M15 6l-6 6 6 6"/>',
         );

@@ -35,7 +35,7 @@ class WPJOBPORTALajax {
             'getResumeDetail', 'getResumeDetailJobManager', 'getEmailFields', 'getEmailFieldsJobManager', 'sendEmailToJobSeeker',
             'sendmessageresume', 'getPaymentPopup', 'getPackagePopupForFeaturedCompany', 'getPackagePopupForFeaturedJob',
             'getPackagePopupForFeaturedResume', 'getPackagePopupForCopyJob', 'deleteUserPhoto', 'getWrappersByCategory',
-            'executeZywrapProxy', 'getZywrapAllWrappers', 'getSchemaByUseCode');
+            'executeZywrapProxy', 'getZywrapAllWrappers', 'getSchemaByUseCode', 'executeAiTask');
         $wpjobportal_admin_tasks = array(
             'getuserlistajax', 'getAllRoleLessUsersAjax', 'getUserRoleBasedInfo', 'getUserIdByCompanyid', 'getFieldsForComboByFieldFor',
             'getSectionToFillValues', 'getFieldsForComboBySection', 'getChildForVisibleCombobox', 'getOptionsForFieldEdit',

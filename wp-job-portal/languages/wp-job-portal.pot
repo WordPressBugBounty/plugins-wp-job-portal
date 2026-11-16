@@ -1,11 +1,9 @@
-# Copyright (C) 2026 WP Job Portal
-# This file is distributed under the GPLv3.
-#, fuzzy
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Job Portal 2.8.0\n"
+"Project-Id-Version: WP Job Portal 2.9.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-job-portal\n"
-"POT-Creation-Date: 2026-11-04 14:54+0500\n"
+"POT-Creation-Date: 2026-11-10 10:00+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22379,319 +22377,254 @@ msgstr ""
 msgid "Full time"
 msgstr ""
 
-#, php-format
 msgid "%1$d of %2$d companies approved (only companies waiting for approval change)."
 msgstr ""
 
-#, php-format
 msgid "%1$d of %2$d companies rejected (only companies waiting for approval change)."
 msgstr ""
 
-#, php-format
 msgid "%1$d of %2$d done"
 msgstr ""
 
-#, php-format
 msgid "%1$d of %2$d job alerts unsubscribed."
 msgstr ""
 
-#, php-format
 msgid "%1$d of %2$d jobs approved."
 msgstr ""
 
-#, php-format
 msgid "%1$d of %2$d resumes approved (only resumes waiting for approval change)."
 msgstr ""
 
-#, php-format
 msgid "%1$d of %2$d resumes rejected (only resumes waiting for approval change)."
 msgstr ""
 
-#, php-format
 msgid "%1$d of %2$d steps complete for %3$s. It updates as you complete each step."
 msgstr ""
 
-#, php-format
 msgid "%1$d of %2$d users deleted with everything they own (your own account is never deleted here)."
 msgstr ""
 
-#, php-format
 msgid "%1$d of %2$d users deleted. Users who still own companies, jobs or resumes are kept unless you also delete everything."
 msgstr ""
 
-#, php-format
 msgid "%1$d of %2$d users disabled (users already disabled, and your own account, stay as they are)."
 msgstr ""
 
-#, php-format
 msgid "%1$d of %2$d users enabled (users already enabled stay as they are)."
 msgstr ""
 
-#, php-format
 msgid "%1$d setup step left. The site runs as %2$s."
 msgid_plural "%1$d setup steps left. The site runs as %2$s."
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%1$d state-changing core routes enforce HTTP method, role or capability and nonce policies; %2$d validate security-relevant input fields and %3$d also enforce object ownership. %4$d application AJAX tasks (notes, rating, status, folders, emails) check that the user manages the job."
 msgstr ""
 
-#, php-format
 msgid "%1$s %2$s"
 msgstr ""
 
-#, php-format
 msgid "%1$s applied for %2$s"
 msgstr ""
 
-#, php-format
 msgid "%1$s applied to %2$s"
 msgstr ""
 
-#, php-format
 msgid "%1$s email failed since %2$s."
 msgid_plural "%1$s emails failed since %2$s."
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%1$s in %2$s"
 msgstr ""
 
-#, php-format
 msgid "%1$s joined as %2$s"
 msgstr ""
 
-#, php-format
 msgid "%1$s posted %2$s"
 msgstr ""
 
-#, php-format
 msgid "%1$s: %2$s, click to change"
 msgstr ""
 
-#, php-format
 msgid "%d add-on features are switched on through your installed products."
 msgstr ""
 
-#, php-format
 msgid "%d job alert subscription was deleted."
 msgid_plural "%d job alert subscriptions were deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%d job closed to new applicants."
 msgid_plural "%d jobs closed to new applicants."
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%d job reopened."
 msgid_plural "%d jobs reopened."
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%d new"
 msgstr ""
 
-#, php-format
 msgid "%d uploaded file (resume, photo or attachment) was deleted from the server."
 msgid_plural "%d uploaded files (resumes, photos or attachments) were deleted from the server."
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%d waiting for approval"
 msgid_plural "%d waiting for approval"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s alert"
 msgid_plural "%s alerts"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s applicant"
 msgid_plural "%s applicants"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s application"
 msgid_plural "%s applications"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s city"
 msgid_plural "%s cities"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s company"
 msgid_plural "%s companies"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s critical"
 msgid_plural "%s critical"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s details"
 msgstr ""
 
-#, php-format
 msgid "%s entry"
 msgid_plural "%s entries"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s error logged this week"
 msgid_plural "%s errors logged this week"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s experience"
 msgstr ""
 
-#, php-format
 msgid "%s field"
 msgid_plural "%s fields"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s is switched off."
 msgstr ""
 
-#, php-format
 msgid "%s item needs your attention"
 msgid_plural "%s items need your attention"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s item waiting for a decision"
 msgid_plural "%s items waiting for a decision"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s job"
 msgid_plural "%s jobs"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s new"
 msgstr ""
 
-#, php-format
 msgid "%s not selected"
 msgid_plural "%s not selected"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s open job has no applications after 7 days"
 msgid_plural "%s open jobs have no applications after 7 days"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s page address"
 msgid_plural "%s page addresses"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s profile view"
 msgid_plural "%s profile views"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s resume"
 msgid_plural "%s resumes"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s selected company(ies) will be deleted. Companies that still have jobs or departments are kept unless you also tick the box below."
 msgstr ""
 
-#, php-format
 msgid "%s selected item(s) will be deleted."
 msgstr ""
 
-#, php-format
 msgid "%s selected item(s) will be deleted. Items that jobs or resumes still use are kept."
 msgstr ""
 
-#, php-format
 msgid "%s selected job alert(s) will be removed and stop sending emails. This cannot be undone."
 msgstr ""
 
-#, php-format
 msgid "%s selected job(s) will be deleted. Jobs that have applications are kept unless you also tick the box below."
 msgstr ""
 
-#, php-format
 msgid "%s selected resume(s) will be deleted. Resumes that have applications are kept unless you also tick the box below."
 msgstr ""
 
-#, php-format
 msgid "%s selected user(s) will be deleted, with their WordPress accounts. Users who still own companies, jobs or resumes are kept unless you also tick the box below."
 msgstr ""
 
-#, php-format
 msgid "%s view"
 msgid_plural "%s views"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s waiting"
 msgstr ""
 
-#, php-format
 msgid "%s waiting for approval"
 msgstr ""
 
-#, php-format
 msgid "%s waiting over 3 days"
 msgid_plural "%s waiting over 3 days"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s warning"
 msgid_plural "%s warnings"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s%% done. It carries on in the background if you leave this page."
 msgstr ""
 
-#, php-format
 msgid "%s+ year"
 msgid_plural "%s+ years"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s.5+ years"
 msgstr ""
 
@@ -22734,7 +22667,6 @@ msgstr ""
 msgid "AI writer"
 msgstr ""
 
-#, php-format
 msgid "Accepted types: %s."
 msgstr ""
 
@@ -22750,14 +22682,12 @@ msgstr ""
 msgid "Activity History (days)"
 msgstr ""
 
-#, php-format
 msgid "Activity history: %d days"
 msgstr ""
 
 msgid "Activity log"
 msgstr ""
 
-#, php-format
 msgid "Add New %s"
 msgstr ""
 
@@ -22788,7 +22718,6 @@ msgstr ""
 msgid "All categories"
 msgstr ""
 
-#, php-format
 msgid "All categories (%s)"
 msgstr ""
 
@@ -22866,14 +22795,12 @@ msgid_plural "Applications not opened yet"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "Applications (%s)"
 msgstr ""
 
 msgid "Applications in the last 7 days"
 msgstr ""
 
-#, php-format
 msgid "Applications made in the last %s, by how far they got."
 msgstr ""
 
@@ -22883,7 +22810,6 @@ msgstr ""
 msgid "Applications show up under My Jobs."
 msgstr ""
 
-#, php-format
 msgid "Applied for %s"
 msgstr ""
 
@@ -22977,7 +22903,6 @@ msgstr ""
 msgid "Change under Settings, System & Site, Privacy Retention"
 msgstr ""
 
-#, php-format
 msgid "Change: %s"
 msgstr ""
 
@@ -22993,7 +22918,6 @@ msgstr ""
 msgid "Choose mode & setup"
 msgstr ""
 
-#, php-format
 msgid "Cities of %s"
 msgstr ""
 
@@ -23012,7 +22936,6 @@ msgstr ""
 msgid "Closed"
 msgstr ""
 
-#, php-format
 msgid "Closes %s"
 msgstr ""
 
@@ -23073,7 +22996,6 @@ msgstr ""
 msgid "Current location field"
 msgstr ""
 
-#, php-format
 msgid "Current value (%s)"
 msgstr ""
 
@@ -23083,7 +23005,6 @@ msgstr ""
 msgid "Date range"
 msgstr ""
 
-#, php-format
 msgid "Delete %s?"
 msgstr ""
 
@@ -23108,7 +23029,6 @@ msgstr ""
 msgid "Delete?"
 msgstr ""
 
-#, php-format
 msgid "Departments (%s)"
 msgstr ""
 
@@ -23142,7 +23062,6 @@ msgstr ""
 msgid "Earlier"
 msgstr ""
 
-#, php-format
 msgid "Edit %s"
 msgstr ""
 
@@ -23167,7 +23086,6 @@ msgstr ""
 msgid "Emails"
 msgstr ""
 
-#, php-format
 msgid "Emails are sent from \"%s\". Most mail servers reject this address, so these emails may never arrive. Set a sender address on your own domain under Settings."
 msgstr ""
 
@@ -23228,7 +23146,6 @@ msgstr ""
 msgid "Featured resumes only"
 msgstr ""
 
-#, php-format
 msgid "Featured until %s"
 msgstr ""
 
@@ -23283,15 +23200,12 @@ msgstr ""
 msgid "Go to your dashboard"
 msgstr ""
 
-#, php-format
 msgid "Good afternoon, %s"
 msgstr ""
 
-#, php-format
 msgid "Good evening, %s"
 msgstr ""
 
-#, php-format
 msgid "Good morning, %s"
 msgstr ""
 
@@ -23382,7 +23296,6 @@ msgstr ""
 msgid "It goes live once it is approved."
 msgstr ""
 
-#, php-format
 msgid "It is now under %s."
 msgstr ""
 
@@ -23392,7 +23305,6 @@ msgstr ""
 msgid "Items that need your approval appear here."
 msgstr ""
 
-#, php-format
 msgid "Job alert #%d"
 msgstr ""
 
@@ -23411,7 +23323,6 @@ msgstr ""
 msgid "Job attributes"
 msgstr ""
 
-#, php-format
 msgid "Job board summary, last %s"
 msgstr ""
 
@@ -23450,7 +23361,6 @@ msgstr ""
 msgid "Job web addresses"
 msgstr ""
 
-#, php-format
 msgid "Jobs (%s)"
 msgstr ""
 
@@ -23466,7 +23376,6 @@ msgstr ""
 msgid "Jobs you or your employers post appear here."
 msgstr ""
 
-#, php-format
 msgid "Joined as %s"
 msgstr ""
 
@@ -23479,11 +23388,9 @@ msgstr ""
 msgid "Key numbers"
 msgstr ""
 
-#, php-format
 msgid "Last error: %s"
 msgstr ""
 
-#, php-format
 msgid "Last month: %s"
 msgstr ""
 
@@ -23553,11 +23460,9 @@ msgstr ""
 msgid "Most urgent:"
 msgstr ""
 
-#, php-format
 msgid "Move %s down"
 msgstr ""
 
-#, php-format
 msgid "Move %s up"
 msgstr ""
 
@@ -23579,14 +23484,12 @@ msgstr ""
 msgid "New companies"
 msgstr ""
 
-#, php-format
 msgid "New company: %s"
 msgstr ""
 
 msgid "New job alert"
 msgstr ""
 
-#, php-format
 msgid "New job: %s"
 msgstr ""
 
@@ -23611,18 +23514,15 @@ msgstr ""
 msgid "Next page"
 msgstr ""
 
-#, php-format
 msgid "No %s match these filters"
 msgstr ""
 
-#, php-format
 msgid "No %s yet"
 msgstr ""
 
 msgid "No activity yet"
 msgstr ""
 
-#, php-format
 msgid "No applicants in %s"
 msgstr ""
 
@@ -23665,7 +23565,6 @@ msgstr ""
 msgid "No job alerts yet"
 msgstr ""
 
-#, php-format
 msgid "No jobs in a city called \"%s\". Try picking a city from the list."
 msgstr ""
 
@@ -23774,13 +23673,11 @@ msgstr ""
 msgid "Nothing yet"
 msgstr ""
 
-#, php-format
 msgid "Notifications, %d new"
 msgid_plural "Notifications, %d new"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "Now: %s"
 msgstr ""
 
@@ -23814,7 +23711,6 @@ msgstr ""
 msgid "Open Settings"
 msgstr ""
 
-#, php-format
 msgid "Open in %s"
 msgstr ""
 
@@ -23824,7 +23720,6 @@ msgstr ""
 msgid "Operational Audit (days)"
 msgstr ""
 
-#, php-format
 msgid "Operational audit: %d days"
 msgstr ""
 
@@ -23834,7 +23729,6 @@ msgstr ""
 msgid "Overall"
 msgstr ""
 
-#, php-format
 msgid "Owner: %s"
 msgstr ""
 
@@ -23885,7 +23779,6 @@ msgstr ""
 msgid "Pick the right page in Settings if you use them."
 msgstr ""
 
-#, php-format
 msgid "Pinned at %1$s, %2$s"
 msgstr ""
 
@@ -23928,7 +23821,6 @@ msgstr ""
 msgid "Preview (not saved yet)"
 msgstr ""
 
-#, php-format
 msgid "Previous %1$s: %2$s"
 msgstr ""
 
@@ -23992,7 +23884,6 @@ msgstr ""
 msgid "Restore my previous settings for this mode"
 msgstr ""
 
-#, php-format
 msgid "Resume #%d"
 msgstr ""
 
@@ -24158,7 +24049,6 @@ msgstr ""
 msgid "Search what happened or who did it"
 msgstr ""
 
-#, php-format
 msgid "See all applications (%d this week)"
 msgid_plural "See all applications (%d this week)"
 msgstr[0] ""
@@ -24173,7 +24063,6 @@ msgstr ""
 msgid "Select all"
 msgstr ""
 
-#, php-format
 msgid "Select all %s"
 msgstr ""
 
@@ -24215,7 +24104,6 @@ msgid_plural "Setup steps left"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "Show %s"
 msgstr ""
 
@@ -24240,22 +24128,18 @@ msgstr ""
 msgid "Show settings from add-ons you do not have"
 msgstr ""
 
-#, php-format
 msgid "Show the pages in %s"
 msgstr ""
 
 msgid "Showing 1 of 1"
 msgstr ""
 
-#, php-format
 msgid "Showing <b>%1$s</b> of %2$s companies."
 msgstr ""
 
-#, php-format
 msgid "Showing <b>%1$s</b> of %2$s jobs."
 msgstr ""
 
-#, php-format
 msgid "Showing <b>%1$s</b> of %2$s resumes."
 msgstr ""
 
@@ -24280,7 +24164,6 @@ msgstr ""
 msgid "Start the update"
 msgstr ""
 
-#, php-format
 msgid "States of %s"
 msgstr ""
 
@@ -24350,7 +24233,6 @@ msgstr ""
 msgid "The page the Register link opens, when Custom is selected above. This is not where people go after they register: set that on the Employers and Job Seekers tabs."
 msgstr ""
 
-#, php-format
 msgid "The resume was saved, but the file \"%1$s\" was not added: %2$s"
 msgstr ""
 
@@ -24393,7 +24275,6 @@ msgstr ""
 msgid "This mode will change these settings:"
 msgstr ""
 
-#, php-format
 msgid "This part of the page needs the %s add-on, which is switched off. Visitors see nothing here."
 msgstr ""
 
@@ -24403,7 +24284,6 @@ msgstr ""
 msgid "This runs in small steps, so it is safe on large sites. Your site keeps working while it runs."
 msgstr ""
 
-#, php-format
 msgid "This screen needs %s"
 msgstr ""
 
@@ -24443,11 +24323,9 @@ msgstr ""
 msgid "Unsubscribe job alerts?"
 msgstr ""
 
-#, php-format
 msgid "Until %s"
 msgstr ""
 
-#, php-format
 msgid "Untitled (#%d)"
 msgstr ""
 
@@ -24457,7 +24335,6 @@ msgstr ""
 msgid "User Messages (days)"
 msgstr ""
 
-#, php-format
 msgid "User messages: %d days"
 msgstr ""
 
@@ -24503,19 +24380,15 @@ msgstr ""
 msgid "WP Job Portal needs to update some existing records."
 msgstr ""
 
-#, php-format
 msgid "WP Job Portal: %1$s #%2$d is no longer featured and its invoice was withdrawn."
 msgstr ""
 
-#, php-format
 msgid "WP Job Portal: %1$s #%2$d is waiting for payment again and its invoice was withdrawn."
 msgstr ""
 
-#, php-format
 msgid "WP Job Portal: %s was not reversed automatically; please review it."
 msgstr ""
 
-#, php-format
 msgid "WP Job Portal: access to %1$s #%2$d was taken back and its invoice was withdrawn."
 msgstr ""
 
@@ -24558,28 +24431,24 @@ msgstr ""
 msgid "Word in the link"
 msgstr ""
 
-#, php-format
 msgid "WordPress accepted it for %s. If it does not arrive in a few minutes, check the spam folder and your mail settings."
 msgstr ""
 
 msgid "WordPress account missing"
 msgstr ""
 
-#, php-format
 msgid "WordPress said: %s"
 msgstr ""
 
 msgid "WordPress users"
 msgstr ""
 
-#, php-format
 msgid "WordPress: %s"
 msgstr ""
 
 msgid "Yesterday"
 msgstr ""
 
-#, php-format
 msgid "You applied on %s"
 msgstr ""
 
@@ -24616,7 +24485,6 @@ msgstr ""
 msgid "Your application was withdrawn. The employer no longer sees it."
 msgstr ""
 
-#, php-format
 msgid "Your job \"%1$s\" closes on %2$s and will stop taking applications then. To keep it open, change its closing date from My Jobs:"
 msgstr ""
 
@@ -24632,14 +24500,12 @@ msgstr ""
 msgid "Your resume is waiting for approval. You can apply once it is approved."
 msgstr ""
 
-#, php-format
 msgid "Your setup is complete. The site runs as %s."
 msgstr ""
 
 msgid "Your site cannot send email yet. An SMTP plugin with your mail provider's settings usually fixes this."
 msgstr ""
 
-#, php-format
 msgid "[%s] Test email from WP Job Portal"
 msgstr ""
 
@@ -24661,7 +24527,6 @@ msgstr ""
 msgid "applications"
 msgstr ""
 
-#, php-format
 msgid "applied %s ago"
 msgstr ""
 
@@ -24692,7 +24557,6 @@ msgstr ""
 msgid "errors"
 msgstr ""
 
-#, php-format
 msgid "expects %s"
 msgstr ""
 
@@ -24702,7 +24566,6 @@ msgstr ""
 msgid "field"
 msgstr ""
 
-#, php-format
 msgid "in %s day"
 msgid_plural "in %s days"
 msgstr[0] ""
@@ -24711,7 +24574,6 @@ msgstr[1] ""
 msgid "it could not be stored safely. Please try again."
 msgstr ""
 
-#, php-format
 msgid "it is larger than %d KB."
 msgstr ""
 
@@ -24727,19 +24589,15 @@ msgstr ""
 msgid "job type"
 msgstr ""
 
-#, php-format
 msgid "keywords: %s"
 msgstr ""
 
-#, php-format
 msgid "last %1$s, compared with the %1$s before"
 msgstr ""
 
-#, php-format
 msgid "last sent %s"
 msgstr ""
 
-#, php-format
 msgid "login %s"
 msgstr ""
 
@@ -24758,7 +24616,6 @@ msgstr ""
 msgid "per hour, per month, per year"
 msgstr ""
 
-#, php-format
 msgid "posted %s ago"
 msgstr ""
 
@@ -24774,7 +24631,6 @@ msgstr ""
 msgid "selected"
 msgstr ""
 
-#, php-format
 msgid "stage: %s"
 msgstr ""
 
@@ -24808,269 +24664,211 @@ msgstr ""
 msgid "with a cover letter"
 msgstr ""
 
-#, php-format
 msgid "%1$d of %2$d conversations approved."
 msgstr ""
 
-#, php-format
 msgid "%1$d of %2$d conversations deleted with their replies."
 msgstr ""
 
-#, php-format
 msgid "%1$d of %2$d conversations deleted. Conversations with replies are kept unless you also delete the replies."
 msgstr ""
 
-#, php-format
 msgid "%1$d of %2$d conversations rejected."
 msgstr ""
 
-#, php-format
 msgid "%1$s application · %2$s new"
 msgid_plural "%1$s applications · %2$s new"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%1$s company · %2$s waiting for approval"
 msgid_plural "%1$s companies · %2$s waiting for approval"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%1$s conversation · %2$s waiting for approval"
 msgid_plural "%1$s conversations · %2$s waiting for approval"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%1$s cover letter · %2$s waiting for approval"
 msgid_plural "%1$s cover letters · %2$s waiting for approval"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%1$s error · %2$s new"
 msgid_plural "%1$s errors · %2$s new"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%1$s field · %2$s custom"
 msgid_plural "%1$s fields · %2$s custom"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%1$s folder · %2$s waiting for approval"
 msgid_plural "%1$s folders · %2$s waiting for approval"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%1$s invoice · %2$s voided"
 msgid_plural "%1$s invoices · %2$s voided"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%1$s item needs your attention · most urgent: %2$s %3$s."
 msgid_plural "%1$s items need your attention · most urgent: %2$s %3$s."
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%1$s jobs · %2$s open"
 msgstr ""
 
-#, php-format
 msgid "%1$s open · %2$s applications"
 msgstr ""
 
-#, php-format
 msgid "%1$s package · %2$s published"
 msgid_plural "%1$s packages · %2$s published"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%1$s resume · %2$s waiting for approval"
 msgid_plural "%1$s resumes · %2$s waiting for approval"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%1$s user package · %2$s active"
 msgid_plural "%1$s user packages · %2$s active"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%1$s user · %2$s employers · %3$s job seekers"
 msgid_plural "%1$s users · %2$s employers · %3$s job seekers"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%1$s: installed %2$s, needs %3$s or later"
 msgstr ""
 
-#, php-format
 msgid "%d invoice could not be voided."
 msgid_plural "%d invoices could not be voided."
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s active"
 msgstr ""
 
-#, php-format
 msgid "%s applications"
 msgstr ""
 
-#, php-format
 msgid "%s companies"
 msgstr ""
 
-#, php-format
 msgid "%s company contact view"
 msgstr ""
 
-#, php-format
 msgid "%s company contact views"
 msgstr ""
 
-#, php-format
 msgid "%s cover letter"
 msgstr ""
 
-#, php-format
 msgid "%s cover letters"
 msgstr ""
 
-#, php-format
 msgid "%s department"
 msgid_plural "%s departments"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s departments"
 msgstr ""
 
-#, php-format
 msgid "%s featured companies"
 msgstr ""
 
-#, php-format
 msgid "%s featured company"
 msgstr ""
 
-#, php-format
 msgid "%s featured job"
 msgstr ""
 
-#, php-format
 msgid "%s featured jobs"
 msgstr ""
 
-#, php-format
 msgid "%s featured resume"
 msgstr ""
 
-#, php-format
 msgid "%s featured resumes"
 msgstr ""
 
-#, php-format
 msgid "%s job alert"
 msgstr ""
 
-#, php-format
 msgid "%s job alerts"
 msgstr ""
 
-#, php-format
 msgid "%s job search"
 msgstr ""
 
-#, php-format
 msgid "%s job searches"
 msgstr ""
 
-#, php-format
 msgid "%s jobs"
 msgstr ""
 
-#, php-format
 msgid "%s off"
 msgstr ""
 
-#, php-format
 msgid "%s reply"
 msgid_plural "%s replies"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s resume contact view"
 msgstr ""
 
-#, php-format
 msgid "%s resume contact views"
 msgstr ""
 
-#, php-format
 msgid "%s resume in this folder"
 msgid_plural "%s resumes in this folder"
 msgstr[0] ""
 msgstr[1] ""
 
-#, php-format
 msgid "%s resume search"
 msgstr ""
 
-#, php-format
 msgid "%s resume searches"
 msgstr ""
 
-#, php-format
 msgid "%s resumes"
 msgstr ""
 
-#, php-format
 msgid "%s selected conversation(s) will be deleted. Conversations that have replies are kept unless you also tick the box below."
 msgstr ""
 
-#, php-format
 msgid "%s selected cover letter(s) will be deleted. Cover letters that were sent with an application are kept."
 msgstr ""
 
-#, php-format
 msgid "%s selected department(s) will be deleted. Departments that jobs still use are kept."
 msgstr ""
 
-#, php-format
 msgid "%s selected folder(s) will be deleted. Folders that still hold resumes are kept."
 msgstr ""
 
-#, php-format
 msgid "%s selected invoice(s) will be marked Voided. They stay in the list and can be restored."
 msgstr ""
 
-#, php-format
 msgid "%s selected package(s) will be deleted. Packages someone has bought are kept; unpublish them instead."
 msgstr ""
 
-#, php-format
 msgid "%s selected user package(s) will be revoked: their owners lose what is left of them. The records stay, marked Revoked."
 msgstr ""
 
-#, php-format
 msgid "%s%% off"
 msgstr ""
 
-#, php-format
 msgid "about %s"
 msgstr ""
 
@@ -25080,7 +24878,6 @@ msgstr ""
 msgid "Add your company website."
 msgstr ""
 
-#, php-format
 msgid "added %s"
 msgstr ""
 
@@ -25105,7 +24902,6 @@ msgstr ""
 msgid "an unknown job seeker"
 msgstr ""
 
-#, php-format
 msgid "and %s"
 msgstr ""
 
@@ -25154,7 +24950,6 @@ msgstr ""
 msgid "cover letter"
 msgstr ""
 
-#, php-format
 msgid "Cover letter #%d"
 msgstr ""
 
@@ -25215,7 +25010,6 @@ msgstr ""
 msgid "Enter the person's email address. Team members are added by email."
 msgstr ""
 
-#, php-format
 msgid "expires in %s"
 msgstr ""
 
@@ -25225,7 +25019,6 @@ msgstr ""
 msgid "Flagged"
 msgstr ""
 
-#, php-format
 msgid "Folder #%d"
 msgstr ""
 
@@ -25235,7 +25028,6 @@ msgstr ""
 msgid "Folders waiting for approval"
 msgstr ""
 
-#, php-format
 msgid "for %s"
 msgstr ""
 
@@ -25272,7 +25064,6 @@ msgstr ""
 msgid "Internal note (only your team sees this)"
 msgstr ""
 
-#, php-format
 msgid "Invoice #%d"
 msgstr ""
 
@@ -25315,7 +25106,6 @@ msgstr ""
 msgid "Login A–Z"
 msgstr ""
 
-#, php-format
 msgid "Message #%d"
 msgstr ""
 
@@ -25352,15 +25142,12 @@ msgstr ""
 msgid "never expires"
 msgstr ""
 
-#, php-format
 msgid "New job · %s"
 msgstr ""
 
-#, php-format
 msgid "New resume · %s"
 msgstr ""
 
-#, php-format
 msgid "New resume: %1$s · %2$s"
 msgstr ""
 
@@ -25433,7 +25220,6 @@ msgstr ""
 msgid "package"
 msgstr ""
 
-#, php-format
 msgid "Package #%d"
 msgstr ""
 
@@ -25452,7 +25238,6 @@ msgstr ""
 msgid "Packages that employers and job seekers buy, or that you give them, appear here."
 msgstr ""
 
-#, php-format
 msgid "paid by %s"
 msgstr ""
 
@@ -25474,7 +25259,6 @@ msgstr ""
 msgid "Price, low to high"
 msgstr ""
 
-#, php-format
 msgid "Rated %d out of 5"
 msgstr ""
 
@@ -25487,7 +25271,6 @@ msgstr ""
 msgid "Remove this resume from the folder? The resume itself stays."
 msgstr ""
 
-#, php-format
 msgid "renewal %s off"
 msgstr ""
 
@@ -25497,7 +25280,6 @@ msgstr ""
 msgid "Restore"
 msgstr ""
 
-#, php-format
 msgid "resume %s"
 msgstr ""
 
@@ -25600,14 +25382,12 @@ msgstr ""
 msgid "Select all user packages"
 msgstr ""
 
-#, php-format
 msgid "Select invoice %d"
 msgstr ""
 
 msgid "Send the verification request below."
 msgstr ""
 
-#, php-format
 msgid "Showing %1$s–%2$s of %3$s %4$s"
 msgstr ""
 
@@ -25665,7 +25445,6 @@ msgstr ""
 msgid "Too many messages. Please try again later."
 msgstr ""
 
-#, php-format
 msgid "transaction %s"
 msgstr ""
 
@@ -25678,7 +25457,6 @@ msgstr ""
 msgid "Unknown employer"
 msgstr ""
 
-#, php-format
 msgid "Unsubscribe from job alerts on %s"
 msgstr ""
 
@@ -25724,11 +25502,9 @@ msgstr ""
 msgid "Voided"
 msgstr ""
 
-#, php-format
 msgid "WP Job Portal %s needs newer versions of these add-ons. Until they are updated, some of their features may not work."
 msgstr ""
 
-#, php-format
 msgid "WP Job Portal revoked %1$d unused package grant(s) and ended %2$d partly used package(s). The %3$d item(s) already posted with them stay; their remaining credits can no longer be used. The invoice is marked refunded."
 msgstr ""
 
@@ -25748,4 +25524,696 @@ msgid "— None —"
 msgstr ""
 
 msgid "Select Department"
+msgstr ""
+
+msgid "Print this resume"
+msgstr ""
+
+msgid "%1$s needs %2$s, so this setting stays on."
+msgstr ""
+
+msgid "Your %1$s licence adds %2$s Zywrap credits every month once you connect an account."
+msgstr ""
+
+msgid "Your %1$s licence includes %2$s Zywrap credits every month. Claim them for this account."
+msgstr ""
+
+msgid "This licence's monthly credits go to the Zywrap account connected on %s."
+msgstr ""
+
+msgid "Your %1$s licence adds %2$s credits to this account every month."
+msgstr ""
+
+msgid "%1$s left this month. They refill on %2$s."
+msgstr ""
+
+msgid "Waiting for Zywrap to add them. This is checked again twice a day."
+msgstr ""
+
+msgid "Create a free account right here, with 10,000 credits to start, or connect the one you have. Paid WP Job Portal plans add monthly credits."
+msgstr ""
+
+msgid "A key from the API keys page of your Zywrap account."
+msgstr ""
+
+msgid "Your own Anthropic key. The request goes from your server to Anthropic, and Anthropic bills you."
+msgstr ""
+
+msgid "Starts with sk-ant-. Created at console.anthropic.com."
+msgstr ""
+
+msgid "Your own OpenAI key. The request goes from your server to OpenAI, and OpenAI bills you."
+msgstr ""
+
+msgid "Starts with sk-. Created at platform.openai.com."
+msgstr ""
+
+msgid "Enter a key first."
+msgstr ""
+
+msgid "That is not an engine this site knows about."
+msgstr ""
+
+msgid "Could not reach the provider to check the key: %s"
+msgstr ""
+
+msgid "The provider rejected this key. Check it and try again."
+msgstr ""
+
+msgid "The provider could not check the key (HTTP %d). Try again shortly."
+msgstr ""
+
+msgid "Zywrap says this key is not active."
+msgstr ""
+
+msgid "No AI engine is set up on this site."
+msgstr ""
+
+msgid "AI is switched off on this site."
+msgstr ""
+
+msgid "No AI engine is set up yet. An administrator can connect one under WP Job Portal > AI > Settings."
+msgstr ""
+
+msgid "The answer was cut off before it finished, so it was not used."
+msgstr ""
+
+msgid "Could not reach the AI provider: %s"
+msgstr ""
+
+msgid "The AI provider sent something this could not read."
+msgstr ""
+
+msgid "The AI provider account has no credit left. Add credit with the provider, or choose another engine under WP Job Portal > AI > Settings."
+msgstr ""
+
+msgid "The AI provider rejected the key. An administrator can check it under WP Job Portal > AI > Settings."
+msgstr ""
+
+msgid "The provider does not offer the model this site is set to use. Pick another under WP Job Portal > AI > Settings."
+msgstr ""
+
+msgid "The AI provider is busy with this site's requests. Wait a moment and try again."
+msgstr ""
+
+msgid "The AI provider is unavailable right now. Nothing was changed; try again shortly."
+msgstr ""
+
+msgid "The AI provider refused the request (%1$d). %2$s"
+msgstr ""
+
+msgid "This AI task has no Zywrap prompt. Use an Anthropic or OpenAI key for it."
+msgstr ""
+
+msgid "Could not reach Zywrap: %s"
+msgstr ""
+
+msgid "Zywrap returned an empty answer. Try again."
+msgstr ""
+
+msgid "The Zywrap credits have run out. An administrator can add credits on zywrap.com."
+msgstr ""
+
+msgid "Zywrap rejected this site's key. An administrator can connect Zywrap again under WP Job Portal > AI > Settings."
+msgstr ""
+
+msgid "Zywrap is busy with this site's requests. Wait a moment and try again."
+msgstr ""
+
+msgid "Zywrap is unavailable right now. Nothing was changed; try again shortly."
+msgstr ""
+
+msgid "Zywrap refused the request: %s"
+msgstr ""
+
+msgid "Zywrap sent an answer this could not read (HTTP %d)."
+msgstr ""
+
+msgid "The model declined to write this one. Nothing was changed."
+msgstr ""
+
+msgid "The model returned nothing. Try again."
+msgstr ""
+
+msgid "Credentials only"
+msgstr ""
+
+msgid "Anything shaped like a password or an API key is removed."
+msgstr ""
+
+msgid "Credentials and contact details (recommended)"
+msgstr ""
+
+msgid "Also removes e-mail addresses, phone numbers and IP addresses."
+msgstr ""
+
+msgid "Strict"
+msgstr ""
+
+msgid "Also removes card-shaped numbers and long runs of digits."
+msgstr ""
+
+msgid "AI is switched off. Nothing is sent anywhere."
+msgstr ""
+
+msgid "AI is on, but no engine is set up yet."
+msgstr ""
+
+msgid "AI is on. %s writes the text, after contact details are removed."
+msgstr ""
+
+msgid "Written with AI. Check it before you save; what you enter here is sent to our AI provider."
+msgstr ""
+
+msgid "AI switched on"
+msgstr ""
+
+msgid "AI switched off"
+msgstr ""
+
+msgid "Redaction set to %s"
+msgstr ""
+
+msgid "Engine set to %s"
+msgstr ""
+
+msgid "Key saved for %s"
+msgstr ""
+
+msgid "Key removed for %s"
+msgstr ""
+
+msgid "AI features changed"
+msgstr ""
+
+msgid "AI limits changed"
+msgstr ""
+
+msgid "Connected to Zywrap as %s"
+msgstr ""
+
+msgid "Connected to Zywrap"
+msgstr ""
+
+msgid "Disconnected from Zywrap"
+msgstr ""
+
+msgid "Licence credits claimed for the connected Zywrap account"
+msgstr ""
+
+msgid "Setting changed"
+msgstr ""
+
+msgid "Job description writer"
+msgstr ""
+
+msgid "Company description writer"
+msgstr ""
+
+msgid "Resume skills writer"
+msgstr ""
+
+msgid "Cover letter writer"
+msgstr ""
+
+msgid "Job title suggestions"
+msgstr ""
+
+msgid "Job post check"
+msgstr ""
+
+msgid "Screening questions"
+msgstr ""
+
+msgid "Interview questions"
+msgstr ""
+
+msgid "Rejection e-mail draft"
+msgstr ""
+
+msgid "Offer e-mail draft"
+msgstr ""
+
+msgid "Resume wording improver"
+msgstr ""
+
+msgid "How well do I match this job"
+msgstr ""
+
+msgid "That AI task does not exist."
+msgstr ""
+
+msgid "This AI assistant is switched off on this site."
+msgstr ""
+
+msgid "This AI assistant is for employers."
+msgstr ""
+
+msgid "This AI assistant is for job seekers."
+msgstr ""
+
+msgid "Suggest titles"
+msgstr ""
+
+msgid "Check this job post"
+msgstr ""
+
+msgid "Draft a rejection e-mail"
+msgstr ""
+
+msgid "Anything to mention? For example: we will keep your resume on file. (optional)"
+msgstr ""
+
+msgid "Draft an offer e-mail"
+msgstr ""
+
+msgid "Details to include, for example start date or next step. (optional)"
+msgstr ""
+
+msgid "Improve resume wording"
+msgstr ""
+
+msgid "Paste a sentence or paragraph from your resume."
+msgstr ""
+
+msgid "How well do I match this job?"
+msgstr ""
+
+msgid "AI tools"
+msgstr ""
+
+msgid "Text for the AI"
+msgstr ""
+
+msgid "Write it"
+msgstr ""
+
+msgid "Writing..."
+msgstr ""
+
+msgid "The AI could not answer:"
+msgstr ""
+
+msgid "Enter some text first."
+msgstr ""
+
+msgid "The request failed. Try again."
+msgstr ""
+
+msgid "You have used today's %s AI requests. Try again tomorrow."
+msgstr ""
+
+msgid "This site has reached its daily limit of AI requests. Try again tomorrow."
+msgstr ""
+
+msgid "This site's daily AI budget has been spent. Try again tomorrow."
+msgstr ""
+
+msgid "This site's monthly AI budget has been spent."
+msgstr ""
+
+msgid "daily AI budget"
+msgstr ""
+
+msgid "monthly AI budget"
+msgstr ""
+
+msgid "daily AI request limit"
+msgstr ""
+
+msgid "The %1$s of %2$s is used up. AI requests are refused until it resets."
+msgstr ""
+
+msgid "The %1$s of %2$s is %3$d%% used."
+msgstr ""
+
+msgid "Only %1$s of this month's %2$s included Zywrap credits are left. After that, Zywrap uses the account's own credits."
+msgstr ""
+
+msgid "The Zywrap credits have run out, so AI requests are refused until you add credits."
+msgstr ""
+
+msgid "[%s] AI usage warning"
+msgstr ""
+
+msgid "Zywrap credits"
+msgstr ""
+
+msgid "Your own provider key"
+msgstr ""
+
+msgid "Security check failed. Reload the page and try again."
+msgstr ""
+
+msgid "%d try left."
+msgid_plural "%d tries left."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Connected to Zywrap as %s."
+msgstr ""
+
+msgid "Connected to Zywrap."
+msgstr ""
+
+msgid "That code is not right. Check the e-mail and try again."
+msgstr ""
+
+msgid "Enter the 6-digit code from the e-mail."
+msgstr ""
+
+msgid "That code has expired. Ask for a new one."
+msgstr ""
+
+msgid "That code can no longer be used. Ask for a new one."
+msgstr ""
+
+msgid "Too many attempts. Wait a few minutes and try again."
+msgstr ""
+
+msgid "Your Zywrap account already has as many API keys as it can. Revoke one on zywrap.com, then connect again."
+msgstr ""
+
+msgid "This Zywrap account is blocked. Contact Zywrap support."
+msgstr ""
+
+msgid "This account uses two-factor sign-in. Use \"Connect on zywrap.com instead\" below."
+msgstr ""
+
+msgid "This site could not reach Zywrap. Check that it can make outgoing HTTPS requests, then try again."
+msgstr ""
+
+msgid "Enter a valid e-mail address."
+msgstr ""
+
+msgid "Tick the box to agree to the Zywrap Terms of Service and Privacy Policy."
+msgstr ""
+
+msgid "That connect link expired or was already used. Connect again to start over."
+msgstr ""
+
+msgid "Connecting was cancelled on zywrap.com. Nothing was changed."
+msgstr ""
+
+msgid "zywrap.com sent back something this could not read. Nothing was changed."
+msgstr ""
+
+msgid "Connecting to Zywrap did not finish. Nothing was changed; try again."
+msgstr ""
+
+msgid "Zywrap key saved."
+msgstr ""
+
+msgid "%1$s answered in %2$s ms. AI is working."
+msgstr ""
+
+msgid "The test did not pass: %s"
+msgstr ""
+
+msgid "The key was removed from this site."
+msgstr ""
+
+msgid "Zywrap was disconnected from this site. The key stays valid on zywrap.com until you revoke it there."
+msgstr ""
+
+msgid "This licence's monthly credits now go to the connected Zywrap account."
+msgstr ""
+
+msgid "The credits could not be claimed. Check that the licence is active and Zywrap is connected, then try again."
+msgstr ""
+
+msgid "AI settings saved."
+msgstr ""
+
+msgid "Zywrap is not connected. Connect it under WP Job Portal > AI > Settings."
+msgstr ""
+
+msgid "An API error occurred."
+msgstr ""
+
+msgid "You can only use this on your own jobs."
+msgstr ""
+
+msgid "Fill in the job title and description first."
+msgstr ""
+
+msgid "You can only use this on applications to your own jobs."
+msgstr ""
+
+msgid "That application was not found."
+msgstr ""
+
+msgid "That job is not available."
+msgstr ""
+
+msgid "Add a resume first, so there is something to compare."
+msgstr ""
+
+msgid "Engine & account"
+msgstr ""
+
+msgid "Features"
+msgstr ""
+
+msgid "Usage & limits"
+msgstr ""
+
+msgid "Privacy"
+msgstr ""
+
+msgid "Connected"
+msgstr ""
+
+msgid "Account: %s"
+msgstr ""
+
+msgid "Key: %s"
+msgstr ""
+
+msgid "%s credits available"
+msgstr ""
+
+msgid "Buy credits on zywrap.com"
+msgstr ""
+
+msgid "Model"
+msgstr ""
+
+msgid "Let Zywrap choose (recommended)"
+msgstr ""
+
+msgid "Your e-mail"
+msgstr ""
+
+msgid "Your name (optional)"
+msgstr ""
+
+msgid "I agree to the Zywrap %1$s and %2$s, and to this site's address and my e-mail being sent to Zywrap to create or connect the account."
+msgstr ""
+
+msgid "Terms of Service"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+msgid "Create or connect a free Zywrap account"
+msgstr ""
+
+msgid "New accounts start with 10,000 free credits."
+msgstr ""
+
+msgid "6-digit code from the e-mail"
+msgstr ""
+
+msgid "Connect"
+msgstr ""
+
+msgid "Send a new code"
+msgstr ""
+
+msgid "Other ways to connect"
+msgstr ""
+
+msgid "Signed in to Zywrap with Google, GitHub or two-factor sign-in? Connect on zywrap.com instead:"
+msgstr ""
+
+msgid "Connect on zywrap.com instead"
+msgstr ""
+
+msgid "Or paste a Zywrap key"
+msgstr ""
+
+msgid "Key saved"
+msgstr ""
+
+msgid "leave empty to keep"
+msgstr ""
+
+msgid "The key is checked with the provider before it is saved, and kept encrypted."
+msgstr ""
+
+msgid "Spare engine"
+msgstr ""
+
+msgid "Used only when the chosen engine is down, busy or out of credit, and only if it is set up."
+msgstr ""
+
+msgid "Test the connection"
+msgstr ""
+
+msgid "Claim the licence credits"
+msgstr ""
+
+msgid "Disconnect Zywrap from this site?"
+msgstr ""
+
+msgid "Disconnect Zywrap"
+msgstr ""
+
+msgid "Remove this key from the site?"
+msgstr ""
+
+msgid "Remove the %s key"
+msgstr ""
+
+msgid "Zywrap catalogue"
+msgstr ""
+
+msgid "The playground and the editor buttons choose from Zywrap's catalogue of prompts, models and languages, kept on this site. The AI buttons on the job, company and resume forms do not need it."
+msgstr ""
+
+msgid "Not downloaded yet."
+msgstr ""
+
+msgid "Download the catalogue"
+msgstr ""
+
+msgid "Last updated %s ago."
+msgstr ""
+
+msgid "Get updates"
+msgstr ""
+
+msgid "AI is switched on for this site"
+msgstr ""
+
+msgid "Off means off: no AI button is shown and nothing is sent anywhere, whatever is set below."
+msgstr ""
+
+msgid "Who uses it"
+msgstr ""
+
+msgid "Employers and administrators"
+msgstr ""
+
+msgid "Job seekers and administrators"
+msgstr ""
+
+msgid "Signed-in users and administrators"
+msgstr ""
+
+msgid "Administrators can use every task while AI is on. Each task runs only when a person presses its button; nothing runs on its own, and no task ranks or rejects candidates."
+msgstr ""
+
+msgid "zywrap.com"
+msgstr ""
+
+msgid "Requests"
+msgstr ""
+
+msgid "Tokens"
+msgstr ""
+
+msgid "Cost on your own key"
+msgstr ""
+
+msgid "This month"
+msgstr ""
+
+msgid "%s on Zywrap credits"
+msgstr ""
+
+msgid "This month by task"
+msgstr ""
+
+msgid "No AI requests this month yet."
+msgstr ""
+
+msgid "Playground and editor"
+msgstr ""
+
+msgid "Connection tests"
+msgstr ""
+
+msgid "Limits"
+msgstr ""
+
+msgid "0 means no limit. A limit is checked before a request is sent."
+msgstr ""
+
+msgid "Requests per user per day"
+msgstr ""
+
+msgid "Employers and job seekers; administrators are not limited."
+msgstr ""
+
+msgid "Requests per day, whole site"
+msgstr ""
+
+msgid "Daily budget, own key (USD)"
+msgstr ""
+
+msgid "Monthly budget, own key (USD)"
+msgstr ""
+
+msgid "E-mail the site administrator at 80% and 100% of a limit"
+msgstr ""
+
+msgid "Latest requests"
+msgstr ""
+
+msgid "Engine / model"
+msgstr ""
+
+msgid "OK"
+msgstr ""
+
+msgid "Only counts are kept here, never the text that was sent or written. Rows older than 400 days are removed."
+msgstr ""
+
+msgid "Removed before text leaves the site"
+msgstr ""
+
+msgid "Names, e-mail, phone, address and date-of-birth fields of a resume are never sent, at any level."
+msgstr ""
+
+msgid "Notice under the AI buttons"
+msgstr ""
+
+msgid "Leave empty for the default. Tell people their text is sent to an AI provider; mention it in your privacy policy too."
+msgstr ""
+
+msgid "Changes to these settings"
+msgstr ""
+
+msgid "Sending a code to your e-mail..."
+msgstr ""
+
+msgid "You already have a Zywrap account. Enter the code we sent to sign in."
+msgstr ""
+
+msgid "Check your e-mail for a 6-digit code."
+msgstr ""
+
+msgid "Something went wrong. Try again."
+msgstr ""
+
+msgid "Fetching what changed..."
+msgstr ""
+
+msgid "Done."
+msgstr ""
+
+msgid "AI"
 msgstr ""
