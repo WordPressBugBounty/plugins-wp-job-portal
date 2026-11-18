@@ -2,6 +2,16 @@
 
 == Changelog ==
 
+= 2.9.1 =
+Fixes: job end dates, adding new cities, password reset link, translations.
+
+* Fixed: a job saved without a Stop Publishing date could get 1 January 1970 as its end date and never be listed. A new job now gets the number of days in Settings > Jobs > "Job Expiry Days Free" (30 on new sites; 730 days when it is empty, as before), and editing a job without a date keeps the date it has.
+* New: Settings > Integrations > Mapping & Geo Location > "User can add new city in the system". When it is on, job seekers and employers can type a city that is not in the list yet; typing the same city again uses the one already saved.
+* New: WooCommerce's "Sold individually" option for WP Job Portal package products (one of a package per order).
+* Fixed: the "Lost your password?" link under the login form went to wp-login.php even on sites where a security plugin moves the login page. It now opens the site's own password reset page, and links other plugins add under the form are kept.
+* Fixed: a PHP warning (undefined variable) from dependent drop-down fields on the resume form.
+* Fixed: the Arabic, Chinese, French, German, Greek, Italian, Japanese, Portuguese (Brazil), Russian and Spanish translations had many lines left in English.
+
 = 2.9.0 =
 AI update: choose your AI engine, new AI tools, and security fixes.
 

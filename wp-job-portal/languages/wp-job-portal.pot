@@ -1,7 +1,7 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Job Portal 2.9.0\n"
+"Project-Id-Version: WP Job Portal 2.9.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-job-portal\n"
 "POT-Creation-Date: 2026-11-10 10:00+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"

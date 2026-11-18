@@ -3,7 +3,7 @@ Contributors: wpjobportal
 Tags: job board, careers, recruitment, job listing, jobs
 Requires at least: 6.2
 Tested up to: 7.1
-Stable tag: 2.9.0
+Stable tag: 2.9.1
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -197,6 +197,16 @@ Through the Patchstack Vulnerability Disclosure Program, whose team validates an
 
 == Changelog ==
 
+= 2.9.1 =
+Fixes: job end dates, adding new cities, password reset link, translations.
+
+* Fixed: a job saved without a Stop Publishing date could get 1 January 1970 as its end date and never be listed. A new job now gets the number of days in Settings > Jobs > "Job Expiry Days Free" (30 on new sites; 730 days when it is empty, as before), and editing a job without a date keeps the date it has.
+* New: Settings > Integrations > Mapping & Geo Location > "User can add new city in the system". When it is on, job seekers and employers can type a city that is not in the list yet; typing the same city again uses the one already saved.
+* New: WooCommerce's "Sold individually" option for WP Job Portal package products (one of a package per order).
+* Fixed: the "Lost your password?" link under the login form went to wp-login.php even on sites where a security plugin moves the login page. It now opens the site's own password reset page, and links other plugins add under the form are kept.
+* Fixed: a PHP warning (undefined variable) from dependent drop-down fields on the resume form.
+* Fixed: the Arabic, Chinese, French, German, Greek, Italian, Japanese, Portuguese (Brazil), Russian and Spanish translations had many lines left in English.
+
 = 2.9.0 =
 AI update: choose your AI engine, new AI tools, and security fixes.
 
@@ -302,6 +312,9 @@ Major update: the separate add-ons become four premium products, and twelve of t
 Earlier versions are listed in changelog.txt in the plugin folder.
 
 == Upgrade Notice ==
+
+= 2.9.1 =
+Fixes jobs saved without an end date getting 1970, adds a switch for users to add new cities, and completes ten translations.
 
 = 2.9.0 =
 AI update with security fixes (cover letter writer, an SQL injection in the profile and resume forms, and a cross-site scripting issue on the applicants page). Your Zywrap key moves to encrypted storage by itself. Back up your site before updating.

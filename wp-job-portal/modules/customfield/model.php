@@ -534,6 +534,11 @@ class WPJOBPORTALCustomFieldModel {
             $wpjobportal_extraattr['onchange']=$wpjobportal_jsFunction;
         }
         // handleformresume
+        // Copied from the resume form, where these two are set; here they never were,
+        // so PHP warned on every dependent drop-down and the block below never ran. It
+        // still does not run (an AJAX-built field is never a hidden section copy).
+        $wpjobportal_ishidden = false;
+        $wpjobportal_required = $wpjobportal_data->required;
         if($wpjobportal_section AND $wpjobportal_section != 1){
             if($wpjobportal_ishidden){
                 if ($wpjobportal_required == 1) {

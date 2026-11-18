@@ -816,7 +816,7 @@ class WPJOBPORTALactivation {
               ('job_currency_viewresumecontact_perlisting', '1', 'paidsubmission', NULL),
               ('job_currency_viewcompanycontact_perlisting', '1', 'paidsubmission', NULL),
               ('job_viewcompanycontact_price_perlisting', '', 'paidsubmission', NULL),
-              ('jobexpiry_days_free', '', 'paidsubmission', NULL),
+              ('jobexpiry_days_free', '30', 'paidsubmission', NULL),
               ('jobexpiry_days_perlisting', '', 'paidsubmission', NULL),
               ('job_currency_price_perlisting', '', 'paidsubmission', NULL),
               ('feature_company_free_expiry', '', 'paidsubmission', NULL),

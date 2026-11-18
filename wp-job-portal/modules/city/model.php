@@ -454,6 +454,25 @@ class WPJOBPORTALCityModel {
             $wpjobportal_stateid = null;
         }
 
+        // A city already in the list (same name, country and state, ignoring case and
+        // outer spaces) is reused rather than stored a second time.
+        $wpjobportal_existing = wpjobportal::$_db->get_row(wpjobportal::$_db->prepare(
+            "SELECT id, name FROM `" . wpjobportal::$_db->prefix . "wj_portal_cities`
+             WHERE LOWER(TRIM(name)) = LOWER(%s) AND countryid = %d AND " . ($wpjobportal_stateid ? "stateid = " . (int) $wpjobportal_stateid : "(stateid IS NULL OR stateid = 0)") . "
+             ORDER BY id ASC LIMIT 1",
+            trim((string) $cityname),
+            (int) $wpjobportal_countryid
+        ));
+        if ($wpjobportal_existing) {
+            $wpjobportal_result = array();
+            $wpjobportal_result[0] = 1;
+            $wpjobportal_result[1] = (int) $wpjobportal_existing->id;
+            $wpjobportal_result[2] = WPJOBPORTALincluder::getJSModel('common')->getLocationForView($wpjobportal_existing->name, isset($wpjobportal_statename) ? wpjobportalphplib::wpJP_ucwords($wpjobportal_statename) : '', $wpjobportal_countryname);
+            $wpjobportal_result[3] = $latitude;
+            $wpjobportal_result[4] = $longitude;
+            return $wpjobportal_result;
+        }
+
         $wpjobportal_data = array();
         $wpjobportal_data['id'] = null;
         $wpjobportal_data['cityName'] = wpjobportalphplib::wpJP_ucwords($cityname);
@@ -491,6 +510,13 @@ class WPJOBPORTALCityModel {
         $wpjobportal_nonce = WPJOBPORTALrequest::getVar('_wpnonce');
         if (! wp_verify_nonce( $wpjobportal_nonce, 'save-token-input-city') ) {
             die( 'Security check Failed' );
+        }
+        // The forms offer a typed city only when the setting is on; the request
+        // itself must obey it too. An administrator manages cities anyway.
+        if ((string) wpjobportal::$_config->getConfigValue('newtyped_cities') !== '1'
+            && !current_user_can('manage_options') && !current_user_can('wpjobportal')) {
+            echo esc_html(__('You are not allowed', 'wp-job-portal'));
+            exit();
         }
         $city_string = WPJOBPORTALrequest::getVar('citydata');
         $wpjobportal_result = $this->storeTokenInputCity($city_string);

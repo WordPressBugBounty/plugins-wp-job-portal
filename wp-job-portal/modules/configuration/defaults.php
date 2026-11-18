@@ -220,7 +220,7 @@ return array(
     'jobautoapprove' => '1',
     'jobcat' => '1',
     'jobcity_per_row' => '2',
-    'jobexpiry_days_free' => '',
+    'jobexpiry_days_free' => '30',
     'jobexpiry_days_perlisting' => '',
     'joblisting_ajax_filter_tags' => '[jobtype][workplacetype][jobsalaryrange][dateposted]',
     'joblisting_ajax_show_sorting' => '1',

@@ -1363,6 +1363,18 @@ class WPJOBPORTALjobModel {
         return $wpjobportal_data;
     }
 
+    /**
+     * How many days a new job runs when no Stop Publishing date was given: the
+     * Job Expiry Days (Free) setting. A fresh install sets it to 30. Sites that
+     * upgraded with it empty keep the old two years (730 days) until they set it.
+     *
+     * @return int
+     */
+    function getDefaultJobDuration() {
+        $wpjobportal_days = (int) wpjobportal::$_config->getConfigValue('jobexpiry_days_free');
+        return $wpjobportal_days > 0 ? $wpjobportal_days : 730;
+    }
+
     function storeJob($wpjobportal_data) {
        if (empty($wpjobportal_data))
             return false;
@@ -1437,7 +1449,10 @@ class WPJOBPORTALjobModel {
                 if($wpjobportal_submission_type == 1){
                     #Per listing --Free job Expiry date
                     $wpjobportal_expiry = wpjobportal::$_config->getConfigValue('jobexpiry_days_free');
-                    if(isset($wpjobportal_data['stoppublishing']) && empty($wpjobportal_data['stoppublishing'])){
+                    // An empty setting used to make "+ days", which strtotime() rejects, so the
+                    // job was saved as 1970-01-01 and expired at once. Left empty here, the
+                    // default duration below fills it.
+                    if(isset($wpjobportal_data['stoppublishing']) && empty($wpjobportal_data['stoppublishing']) && (int) $wpjobportal_expiry > 0){
                         $wpjobportal_data['stoppublishing'] = gmdate($wpjobportal_dateformat,strtotime($wpjobportal_data['stoppublishing'].'+'.$wpjobportal_expiry.' days') );
                     }
                     if (!wpjobportal::$_common->wpjp_isadmin()) {
@@ -1446,7 +1461,7 @@ class WPJOBPORTALjobModel {
                 }elseif ($wpjobportal_submission_type == 2) {
                     #Per listing --Free job Expiry date
                     $wpjobportal_expiry = wpjobportal::$_config->getConfigValue('jobexpiry_days_perlisting');
-                    if(isset($wpjobportal_data['stoppublishing']) && empty($wpjobportal_data['stoppublishing'])){
+                    if(isset($wpjobportal_data['stoppublishing']) && empty($wpjobportal_data['stoppublishing']) && (int) $wpjobportal_expiry > 0){
                         $wpjobportal_data['stoppublishing'] = gmdate($wpjobportal_dateformat,strtotime($wpjobportal_data['stoppublishing'].'+'.$wpjobportal_expiry.' days') );
                     }
                     if (!wpjobportal::$_common->wpjp_isadmin()) {
@@ -1563,12 +1578,22 @@ class WPJOBPORTALjobModel {
        }
         #Free,per-listing,Package --Adjust
         if($wpjobportal_ignore_stop_pulbishing_verification == 0){ // to handle edit in case in membership mode
-            if(isset($wpjobportal_data['stoppublishing'])){
-                $wpjobportal_data['stoppublishing'] = gmdate('Y-m-d H:i:s', strtotime($wpjobportal_data['stoppublishing']));
-            }else{ // if stop publishing date
-                $wpjobportal_expiry = "2 years";
+            /*
+             * A Stop Publishing date that is missing, empty or unreadable. It used to go
+             * through strtotime('') and be saved as 1970-01-01, so a job posted with the
+             * field left empty (sites that made it optional) expired at once, and an edit
+             * with the field cleared expired the job. Now a new job runs for the default
+             * duration (Job Expiry Days, Free) and an edit keeps the job's current date.
+             */
+            $wpjobportal_stopdate = isset($wpjobportal_data['stoppublishing']) ? trim((string) $wpjobportal_data['stoppublishing']) : '';
+            $wpjobportal_stoptime = ($wpjobportal_stopdate !== '') ? strtotime($wpjobportal_stopdate) : false;
+            if ($wpjobportal_stoptime !== false && $wpjobportal_stoptime > 0) {
+                $wpjobportal_data['stoppublishing'] = gmdate('Y-m-d H:i:s', $wpjobportal_stoptime);
+            } elseif ($wpjobportal_data['id'] == '') {
                 $wpjobportal_curdate = date_i18n('Y-m-d');
-                $wpjobportal_data['stoppublishing'] = gmdate('Y-m-d H:i:s',strtotime($wpjobportal_curdate.'+'.$wpjobportal_expiry));
+                $wpjobportal_data['stoppublishing'] = gmdate('Y-m-d H:i:s', strtotime($wpjobportal_curdate . ' +' . $this->getDefaultJobDuration() . ' days'));
+            } else {
+                unset($wpjobportal_data['stoppublishing']);
             }
         }
 

@@ -5,7 +5,7 @@
   * Plugin URI: https://wpjobportal.com/
   * Description: WP Job Portal is WordPress’s best job board plugin — easy to use, highly configurable, and built to support both job seekers and employers. AI-powered add-ons offers smart job & resume search, and personalized recommendations.
   * Author: WP Job Portal
-  * Version: 2.9.0
+  * Version: 2.9.1
   * Requires at least: 6.2
   * Requires PHP: 7.4
   * Text Domain: wp-job-portal
@@ -156,7 +156,7 @@ class wpjobportal {
         self::$_data = array();
         self::$_error_flag = null;
         self::$_error_flag_message = null;
-        self::$_currentversion = '290';
+        self::$_currentversion = '291';
         self::$_addon_query = array('select'=>'','join'=>'','where'=>'');
         self::$_common = WPJOBPORTALincluder::getJSModel('common');
         self::$_config = WPJOBPORTALincluder::getJSModel('configuration');
@@ -1505,13 +1505,16 @@ class wpjobportal {
 $wpjobportal = new wpjobportal();
 // lost your password link hook
 add_action( 'login_form_bottom', 'wpjobportaladdLostPasswordLink' );
-function wpjobportaladdLostPasswordLink() {
+function wpjobportaladdLostPasswordLink($wpjobportal_content = '') {
     if(wpjobportal::$wpjobportal_theme_chk == 1){
         $wpjobportal_class_prefix = 'wpj-jp-form';
     }else{
         $wpjobportal_class_prefix = 'wjportal-form';
     }
-   return '<a class="'.esc_attr($wpjobportal_class_prefix).'-lost-password" href="'.site_url().'/wp-login.php?action=lostpassword">'. esc_html(__('Lost your password','wp-job-portal')) .'?</a>';
+    // wp_lostpassword_url(), not a hard-coded wp-login.php: security plugins that move
+    // the login page filter it, and the old link was a dead end on those sites. What
+    // other plugins already added to the bottom of the form is kept.
+    return (string) $wpjobportal_content . '<a class="'.esc_attr($wpjobportal_class_prefix).'-lost-password" href="'.esc_url(wp_lostpassword_url()).'">'. esc_html(__('Lost your password','wp-job-portal')) .'?</a>';
 }
 
 /*
@@ -1630,7 +1633,7 @@ function wpjobportal_asset_version($wpjobportal_relative_path, $wpjobportal_base
             return (string) $wpjobportal_mtime;
         }
     }
-    return '2.9.0';
+    return '2.9.1';
 }
 
 /**

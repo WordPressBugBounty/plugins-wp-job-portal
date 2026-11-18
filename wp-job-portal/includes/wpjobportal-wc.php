@@ -5,6 +5,19 @@ if (!defined('ABSPATH'))
 
 add_filter('product_type_selector', 'wpjobportal_packages_add_product_type');
 
+/*
+ * The Inventory tab, for "Sold individually" (one of this package per order; other packages
+ * can still go in the same order). WooCommerce shows the tab only for the types it names.
+ */
+add_filter('woocommerce_product_data_tabs', 'wpjobportal_packages_inventory_tab');
+
+function wpjobportal_packages_inventory_tab($tabs) {
+    if (isset($tabs['inventory']['class']) && is_array($tabs['inventory']['class'])) {
+        $tabs['inventory']['class'][] = 'show_if_wpjobportal_packages';
+    }
+    return $tabs;
+}
+
 function wpjobportal_packages_add_product_type($types) {
     $types['wpjobportal_packages'] = esc_html(__('WP JOB PORTAL Package', 'wp-job-portal'));
     # Per Listing types
@@ -186,6 +199,10 @@ function wpjobportal_packages_add_custom_settings() {
         $wpjobportal_inline_js_script = '
         jQuery(document).ready(function(){
                 jQuery( ".options_group.pricing" ).addClass( "show_if_wpjobportal_packages" ).show();
+                // WooCommerce\'s own "Sold individually" (one of this product per order), which
+                // it shows only for the types it names. A package product is a simple product
+                // underneath, so WooCommerce already enforces it in the cart.
+                jQuery( ".inventory_sold_individually, ._sold_individually_field" ).addClass( "show_if_wpjobportal_packages" );
 
                 /*
                  * Which types may name a package.
